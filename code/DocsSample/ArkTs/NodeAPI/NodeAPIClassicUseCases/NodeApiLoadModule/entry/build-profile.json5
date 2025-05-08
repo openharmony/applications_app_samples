@@ -15,6 +15,7 @@
 
 {
   "apiType": "stageMode",
+  // [Start napi_load_module_napi_build]
   "buildOption": {
     "arkOptions" : {
       "runtimeOnly" : {
@@ -23,6 +24,7 @@
         ]
       }
     },
+  // [End napi_load_module_napi_build]
     "externalNativeOptions": {
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "",

@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start export_variable_a]
 import { c } from './B';
 
 console.info(c);
+// [End export_variable_a]
 
 export { c };

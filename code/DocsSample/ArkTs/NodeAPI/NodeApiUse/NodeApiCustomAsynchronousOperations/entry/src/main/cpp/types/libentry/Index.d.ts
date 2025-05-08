@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
+// [Start napi_async_open_close_callback_scope_api]
 export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | void;
+// [End napi_async_open_close_callback_scope_api]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start napi_async_open_close_callback_scope]
 #include "napi/native_api.h"
 
 static constexpr int INT_ARG_3 = 3; // 入参索引
@@ -68,6 +69,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
     napi_async_destroy(env, context);
     return result;
 }
+// [End napi_async_open_close_callback_scope]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

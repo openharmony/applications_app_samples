@@ -15,6 +15,7 @@
 
 #include "napi/native_api.h"
 
+// [Start napi_is_arraybuffer]
 // napi_is_arraybuffer
 static napi_value IsArrayBuffer(napi_env env, napi_callback_info info)
 {
@@ -34,7 +35,9 @@ static napi_value IsArrayBuffer(napi_env env, napi_callback_info info)
     napi_get_boolean(env, result, &returnValue);
     return returnValue;
 }
+// [End napi_is_arraybuffer]
 
+// [Start napi_get_arraybuffer_info]
 // napi_get_arraybuffer_info
 static napi_value GetArraybufferInfo(napi_env env, napi_callback_info info)
 {
@@ -69,7 +72,9 @@ static napi_value GetArraybufferInfo(napi_env env, napi_callback_info info)
     napi_set_named_property(env, result, "buffer", bufferData);
     return result;
 }
+// [End napi_get_arraybuffer_info]
 
+// [Start napi_detach_arraybuffer]
 // napi_detach_arraybuffer
 static napi_value DetachedArraybuffer(napi_env env, napi_callback_info info)
 {
@@ -98,7 +103,9 @@ static napi_value IsDetachedArraybuffer(napi_env env, napi_callback_info info)
     napi_get_boolean(env, result, &returnValue);
     return returnValue;
 }
+// [End napi_detach_arraybuffer]
 
+// [Start napi_create_arraybuffer]
 // napi_create_arraybuffer
 static napi_value CreateArraybuffer(napi_env env, napi_callback_info info)
 {
@@ -121,6 +128,7 @@ static napi_value CreateArraybuffer(napi_env env, napi_callback_info info)
     // 返回ArrayBuffer
     return result;
 }
+// [End napi_create_arraybuffer]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

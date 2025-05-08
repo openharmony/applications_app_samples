@@ -70,6 +70,7 @@ struct Index {
               .fontSize(16)
               .onClick(() => {
                 if (item === resourceToString($r('app.string.business_expansion_scenario'))) {
+                  // [Start dynamic_load_har_module_reflect_call]
                   import('harlibrary').then((ns: ESObject) => {
                     ns.Calc.staticAdd(8, 9); // 调用静态成员函数staticAdd()
                     let calc: ESObject = new ns.Calc(); // 实例化类Calc
@@ -86,47 +87,65 @@ struct Index {
                     calc1[methodName](14, 15); // 调用成员函数instanceAdd()
                     ns[functionName](16, 17); // 调用全局方法addHarlibrary()
                   })
+                  // [End dynamic_load_har_module_reflect_call]
                 } else if (item === resourceToString($r('app.string.dynamic_import_HAR_name'))) {
+                  // [Start const_dynamic_import_har_name]
                   //HAP常量动态import HAR模块名
                   import('myhar').then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   })
+                  // [End const_dynamic_import_har_name]
                 } else if (item === resourceToString($r('app.string.dynamic_import_HAR_path'))) {
+                  // [Start const_dynamic_import_har_path]
                   // HAP常量动态import HAR模块文件路径
                   import('myhar/Index').then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   });
+                  // [End const_dynamic_import_har_path]
                 } else if (item === resourceToString($r('app.string.dynamic_import_HSP_name'))) {
+                  // [Start const_dynamic_import_hsp_name]
                   // HAP常量动态import HSP模块名
                   import('myhsp').then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   });
+                  // [End const_dynamic_import_hsp_name]
                 } else if (item === resourceToString($r('app.string.dynamic_import_HSP_path'))) {
+                  // [Start const_dynamic_import_hsp_path]
                   // HAP常量动态import HSP模块名文件路径
                   import('myhsp/Index').then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   });
+                  // [End const_dynamic_import_hsp_path]
                 } else if (item === resourceToString($r('app.string.dynamic_import_remote_HAR_name'))) {
+                  // [Start const_dynamic_import_crypto]
                   // HAP常量动态import远程HAR模块名
                   import('@ohos/crypto-js').then((ns: ESObject) => {
                     console.info('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.src);
                   });
+                  // [End const_dynamic_import_crypto]
                 } else if (item === resourceToString($r('app.string.dynamic_import_ohpm'))) {
+                  // [Start const_dynamic_import_ohpm]
                   // HAP常量动态import ohpm包
                   import('@ohos/hypium').then((ns: ESObject) => {
                     console.info('DynamicImport @ohos/hypium: ', ns.TestType.FUNCTION.toString());
                   });
+                  // [End const_dynamic_import_ohpm]
                 } else if (item === resourceToString($r('app.string.dynamic_import_file'))) {
+                  // [Start hap_const_dynamic_import]
                   // HAP常量动态import自己的单文件
                   import('../Calc').then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   })
+                  // [End hap_const_dynamic_import]
                 } else if (item === resourceToString($r('app.string.dynamic_import_native'))) {
+                  // [Start hap_const_dynamic_import_native_index]
                   // HAP常量动态import自己的Native库
                   import('libentry.so').then((ns: ESObject) => {
                     console.info('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
                   });
+                  // [End hap_const_dynamic_import_native_index]
                 } else if (item === resourceToString($r('app.string.dynamic_import_system_app'))) {
+                  // [Start hap_const_dynamic_import_api]
                   // HAP常量动态import加载API
                   import('@system.app').then((ns: ESObject) => {
                     ns.default.getInfo();
@@ -147,55 +166,73 @@ struct Index {
                     ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.');
                     hilog.info(0x000, 'testTag', '%{public}s', ns.default.LogLevel.DEBUG);
                   });
+                  // [End hap_const_dynamic_import_api]
                 } else if (item === resourceToString($r('app.string.dynamic_import_module_myhar'))) {
+                  // [Start variable_dynamic_import]
                   // 变量动态import其他模块myHar
                   let harName = 'myhar';
                   import(harName).then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   });
+                  // [StartExclude variable_dynamic_import]
                 } else if (item === resourceToString($r('app.string.dynamic_import_module_file'))) {
+                  // [EndExclude variable_dynamic_import]
                   // 变量动态import本模块自己的单文件
                   let filePath = '../utils/Calc';
                   import(filePath).then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   });
+                  // [End variable_dynamic_import]
                 } else if (item === resourceToString($r('app.string.dynamic_import_HAR_name_variable'))) {
+                  // [Start hap_variable_dynamic_import_har]
                   // HAP变量动态import HAR模块名
                   let harPackageName = 'myhar';
                   import(harPackageName).then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   });
+                  // [End hap_variable_dynamic_import_har]
                 } else if (item === resourceToString($r('app.string.dynamic_import_HSP_name_variable'))) {
+                  // [Start hap_variable_dynamic_import_hsp]
                   // HAP变量动态import HSP模块名
                   let hspPackageName = 'myhsp';
                   import(hspPackageName).then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   });
+                  // [End hap_variable_dynamic_import_hsp]
                 } else if (item === resourceToString($r('app.string.dynamic_import_remote_HAR_name_variable'))) {
+                  // [Start hap_variable_dynamic_import_har_crypto]
                   // HAP变量动态import远程HAR模块名
                   let remoteHarPackageName = '@ohos/crypto-js';
                   import(remoteHarPackageName).then((ns: ESObject) => {
                     console.info('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.src);
                   });
+                  // [End hap_variable_dynamic_import_har_crypto]
                 } else if (item === resourceToString($r('app.string.dynamic_import_ohpm_variable'))) {
+                  // [Start hap_variable_dynamic_import_ohpm]
                   // HAP变量动态import ohpm包
                   let ohpmPackageName = '@ohos/hypium';
                   import(ohpmPackageName).then((ns: ESObject) => {
                     console.info('DynamicImport @ohos/hypium: ', ns.TestType.FUNCTION.toString());
                   });
+                  // [End hap_variable_dynamic_import_ohpm]
                 } else if (item === resourceToString($r('app.string.dynamic_import_file_variable'))) {
+                  // [Start hap_variable_dynamic_import_calc]
                   // HAP变量动态import自己的单文件
                   let calcFilePath = '../Calc';
                   import(calcFilePath).then((ns: ESObject) => {
                     console.info(ns.add(3, 5));
                   });
+                  // [End hap_variable_dynamic_import_calc]
                 } else if (item === resourceToString($r('app.string.dynamic_import_native_variable'))) {
+                  // [Start hap_variable_dynamic_import_native]
                   // HAP变量动态import自己的Native库
                   let soName = 'libentry.so';
                   import(soName).then((ns: ESObject) => {
                     console.info('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
                   });
+                  // [End hap_variable_dynamic_import_native]
                 } else if (item === resourceToString($r('app.string.dynamic_import_system_app_variable'))) {
+                  // [Start hap_variable_dynamic_import_api]
                   // HAP变量动态import加载API
                   let packageName = '@system.app';
                   import(packageName).then((ns: ESObject) => {
@@ -219,11 +256,14 @@ struct Index {
                   import(packageName).then((ns: ESObject) => {
                     ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.');
                   })
+                  // [End hap_variable_dynamic_import_api]
                 } else if (item === resourceToString($r('app.string.dynamic_import_HAR'))) {
+                  // [Start hap_variable_dynamic_import_har1]
                   let harName = 'har1';
                   import(harName).then((ns: ESObject) => {
                     console.info('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
                   });
+                  // [End hap_variable_dynamic_import_har1]
                 }
               })
           }

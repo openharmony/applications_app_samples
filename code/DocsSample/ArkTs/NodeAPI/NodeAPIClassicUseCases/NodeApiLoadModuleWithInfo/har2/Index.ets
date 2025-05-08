@@ -14,7 +14,7 @@
  */
 
 export { MainPage } from './src/main/ets/components/MainPage'
-
+// [Start napi_load_module_with_info_har2_index]
 let value = 123;
 
 function test() {
@@ -22,3 +22,4 @@ function test() {
 }
 
 export { value, test };
+// [End napi_load_module_with_info_har2_index]

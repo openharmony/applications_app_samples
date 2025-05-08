@@ -15,6 +15,7 @@
  
 {
   "apiType": "stageMode",
+  // [Start hap_load_native_dependence_01]
   "buildOption": {
     "arkOptions": {
       "runtimeOnly": {
@@ -23,6 +24,7 @@
         ]
       }
     },
+    // [StartExclude hap_load_native_dependence_01]
     "externalNativeOptions": {
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "",
@@ -32,8 +34,10 @@
         "x86_64",
         "armeabi-v7a"
       ]
-    }
+    },
+    // [EndExclude hap_load_native_dependence_01]
   },
+  // [End hap_load_native_dependence_01]
   "buildOptionSet": [
     {
       "name": "release",

@@ -12,9 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start napi_ark_runtime_dts]
 export const createArkRuntime: () => object;
-
+// [End napi_ark_runtime_dts]
+// [Start napi_event_loop_dts]
 export const runEventLoop: (isDefault: boolean) => object;
-
+// [End napi_event_loop_dts]
+// [Start napi_call_threadsafe_function_with_priority_dts]
 export const callThreadSafeWithPriority: (cb: (a: number, b: number) => number) => void;
+// [End napi_call_threadsafe_function_with_priority_dts]

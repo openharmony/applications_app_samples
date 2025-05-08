@@ -15,7 +15,7 @@
 
 #include <string>
 #include "napi/native_api.h"
-
+// [Start napi_load_module_with_info_entry_remote_har]
 static napi_value loadModule(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -30,7 +30,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info)
     napi_get_property(env, result, key, &defaultValue);
     return result;
 }
-
+// [End napi_load_module_with_info_entry_remote_har]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

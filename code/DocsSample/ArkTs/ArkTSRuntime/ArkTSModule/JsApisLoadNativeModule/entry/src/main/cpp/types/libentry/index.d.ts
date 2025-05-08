@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
+// [Start hap_load_native]
 export const add: (a: number, b: number) => number;
+// [End hap_load_native]

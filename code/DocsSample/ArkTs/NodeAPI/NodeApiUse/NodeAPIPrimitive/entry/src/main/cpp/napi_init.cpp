@@ -15,6 +15,7 @@
 
 #include "napi/native_api.h"
 
+// [Start napi_coerce_to_bool]
 // napi_coerce_to_bool
 static napi_value CoerceToBool(napi_env env, napi_callback_info info)
 {
@@ -28,7 +29,9 @@ static napi_value CoerceToBool(napi_env env, napi_callback_info info)
     // 返回强转之后的ArkTS boolean值
     return result;
 }
+// [End napi_coerce_to_bool]
 
+// [Start napi_coerce_to_number]
 // napi_coerce_to_number
 static napi_value CoerceToNumber(napi_env env, napi_callback_info info)
 {
@@ -41,7 +44,9 @@ static napi_value CoerceToNumber(napi_env env, napi_callback_info info)
     napi_coerce_to_number(env, args[0], &result);
     return result;
 }
+// [End napi_coerce_to_number]
 
+// [Start napi_coerce_to_object]
 // napi_coerce_to_object
 static napi_value CoerceToObject(napi_env env, napi_callback_info info)
 {
@@ -54,7 +59,9 @@ static napi_value CoerceToObject(napi_env env, napi_callback_info info)
     napi_coerce_to_object(env, args[0], &obj);
     return obj;
 }
+// [End napi_coerce_to_object]
 
+// [Start napi_coerce_to_string]
 // napi_coerce_to_string
 static napi_value CoerceToString(napi_env env, napi_callback_info info)
 {
@@ -67,7 +74,9 @@ static napi_value CoerceToString(napi_env env, napi_callback_info info)
     napi_coerce_to_string(env, args[0], &str);
     return str;
 }
+// [End napi_coerce_to_string]
 
+// [Start napi_get_boolean]
 // napi_get_boolean
 static napi_value GetBoolean(napi_env env, napi_callback_info info)
 {
@@ -87,7 +96,9 @@ static napi_value GetBoolean(napi_env env, napi_callback_info info)
     // 返回结果
     return returnValue;
 }
+// [End napi_get_boolean]
 
+// [Start napi_get_value_bool]
 // napi_get_value_bool
 static napi_value GetValueBool(napi_env env, napi_callback_info info)
 {
@@ -105,7 +116,9 @@ static napi_value GetValueBool(napi_env env, napi_callback_info info)
     napi_get_boolean(env, boolC, &boolNapi);
     return boolNapi;
 }
+// [End napi_get_value_bool]
 
+// [Start napi_get_global]
 // napi_get_global
 static napi_value GetGlobal(napi_env env, napi_callback_info info)
 {
@@ -114,7 +127,9 @@ static napi_value GetGlobal(napi_env env, napi_callback_info info)
     napi_get_global(env, &global);
     return global;
 }
+// [End napi_get_global]
 
+// [Start napi_get_null]
 // napi_get_null
 static napi_value GetNull(napi_env env, napi_callback_info info)
 {
@@ -122,7 +137,9 @@ static napi_value GetNull(napi_env env, napi_callback_info info)
     napi_get_null(env, &nullValue);
     return nullValue;
 }
+// [End napi_get_null]
 
+// [Start napi_get_undefined]
 // napi_get_undefined
 static napi_value GetUndefined(napi_env env, napi_callback_info info)
 {
@@ -142,6 +159,7 @@ static napi_value GetUndefined(napi_env env, napi_callback_info info)
     napi_get_boolean(env, isEqual, &result);
     return result;
 }
+// [End napi_get_undefined]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

@@ -16,6 +16,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
+// [Start ark_napi_new_instance]
 class Fruit {
   name: string;
 
@@ -24,6 +25,7 @@ class Fruit {
   }
 }
 
+// [StartExclude ark_napi_new_instance]
 @Entry
 @Component
 struct Index {
@@ -55,13 +57,16 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiNewInstance') {
+                  // [EndExclude ark_napi_new_instance]
                   // napi_new_instance
                   // 调用函数，用变量obj接收函数返回的实例化对象
                   let obj = testNapi.newInstance(Fruit, 'test');
                   // 打印实例化对象obj的信息
                   hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(obj));
+                  // [End ark_napi_new_instance]
                   this.result = 'napiNewInstanceSuccess';
                 } else if (item === '2.napiRemoveWrap') {
+                  // [Start ark_napi_wrap_unwrap_remove_wrap]
                   try {
                     class Obj {
                     }
@@ -70,11 +75,16 @@ struct Index {
                     testNapi.wrap(obj) // napi_wrap
                     testNapi.unWrap(obj) // napi_unwrap
                     testNapi.removeWrap(obj) // napi_remove_wrap
+                    // [StartExclude ark_napi_wrap_unwrap_remove_wrap]
                     this.result = 'napiRemoveWrapSuccess';
+                    // [EndExclude ark_napi_wrap_unwrap_remove_wrap]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag', 'Test Node-API error: %{public}s', error.message);
+                    // [StartExclude ark_napi_wrap_unwrap_remove_wrap]
                     this.result = 'napiRemoveWrapFail';
+                    // [EndExclude ark_napi_wrap_unwrap_remove_wrap]
                   }
+                  // [End ark_napi_wrap_unwrap_remove_wrap]
                 }
               })
           }

@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
+// [Start ark_napi_async_open_close_callback_scope]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 import process from '@ohos.process';
 
+// [StartExclude ark_napi_async_open_close_callback_scope]
 @Entry
 @Component
 struct Index {
@@ -39,6 +41,7 @@ struct Index {
             .borderRadius(30)
             .backgroundColor(Color.White)
             .onClick(() => {
+              // [EndExclude ark_napi_async_open_close_callback_scope]
               try {
                 hilog.info(0x0000, 'testTag', 'Test Node-API asynchronousWork: %{public}d',
                   testNapi.asynchronousWork({}, process.ProcessManager, (num: number) => {
@@ -49,6 +52,7 @@ struct Index {
                 hilog.error(0x0000, 'testTag', 'Test Node-API asynchronousWork error: %{public}s', error.message);
                 this.result = 'customAsyncFail';
               }
+              // [End ark_napi_async_open_close_callback_scope]
             })
         }
       }.scrollBar(BarState.Off)

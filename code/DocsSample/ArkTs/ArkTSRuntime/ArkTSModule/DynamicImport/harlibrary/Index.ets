@@ -15,4 +15,6 @@
 
 export { MainPage } from './src/main/ets/components/MainPage'
 
+// [Start module_members_export]
 export { Calc, addHarlibrary } from './src/main/ets/utils/Calc'
+// [End module_members_export]

@@ -18,6 +18,7 @@
 
 static constexpr int INT_ARG_2 = 2; // 入参索引
 
+// [Start napi_get_property_names]
 // napi_get_property_names
 static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
 {
@@ -34,7 +35,9 @@ static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_get_property_names]
 
+// [Start napi_set_property]
 // napi_set_property
 static napi_value SetProperty(napi_env env, napi_callback_info info)
 {
@@ -54,7 +57,9 @@ static napi_value SetProperty(napi_env env, napi_callback_info info)
     // 返回设置成功的object对象
     return args[0];
 }
+// [End napi_set_property]
 
+// [Start napi_get_property]
 // napi_get_property
 static napi_value GetProperty(napi_env env, napi_callback_info info)
 {
@@ -71,7 +76,9 @@ static napi_value GetProperty(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_get_property]
 
+// [Start napi_has_property]
 // napi_has_property
 static napi_value HasProperty(napi_env env, napi_callback_info info)
 {
@@ -93,7 +100,9 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
     napi_get_boolean(env, result, &returnResult);
     return returnResult;
 }
+// [End napi_has_property]
 
+// [Start napi_delete_property]
 // napi_delete_property
 // 从传入的Object对象中删除指定属性，返回是否删除成功的bool结果值
 static napi_value DeleteProperty(napi_env env, napi_callback_info info)
@@ -121,7 +130,9 @@ static napi_value DeleteProperty(napi_env env, napi_callback_info info)
     napi_get_boolean(env, result, &ret);
     return ret;
 }
+// [End napi_delete_property]
 
+// [Start napi_has_own_property]
 // napi_has_own_property
 static napi_value NapiHasOwnProperty(napi_env env, napi_callback_info info)
 {
@@ -155,7 +166,9 @@ static napi_value NapiHasOwnProperty(napi_env env, napi_callback_info info)
     napi_get_boolean(env, hasProperty, &result);
     return result;
 }
+// [End napi_has_own_property]
 
+// [Start napi_set_named_property]
 // napi_set_named_property
 static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
 {
@@ -184,7 +197,9 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
     // 返回设置了命名属性的对象newObj
     return newObj;
 }
+// [End napi_set_named_property]
 
+// [Start napi_get_named_property]
 // napi_get_named_property
 static napi_value NapiGetNamedProperty(napi_env env, napi_callback_info info)
 {
@@ -207,7 +222,9 @@ static napi_value NapiGetNamedProperty(napi_env env, napi_callback_info info)
     // 返回result
     return result;
 }
+// [End napi_get_named_property]
 
+// [Start napi_has_named_property]
 // napi_has_named_property
 static napi_value NapiHasNamedProperty(napi_env env, napi_callback_info info)
 {
@@ -232,7 +249,9 @@ static napi_value NapiHasNamedProperty(napi_env env, napi_callback_info info)
     napi_get_boolean(env, hasProperty, &result);
     return result;
 }
+// [End napi_has_named_property]
 
+// [Start napi_define_properties]
 // napi_define_properties
 static napi_value DefineMethodPropertiesExample(napi_env env, napi_callback_info info)
 {
@@ -311,7 +330,9 @@ static napi_value CreateStringWithGetterSetter(napi_env env, napi_callback_info 
     napi_define_properties(env, obj, 1, &desc);
     return obj;
 }
+// [End napi_define_properties]
 
+// [Start napi_get_all_property_names]
 // napi_get_all_property_names
 static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
 {
@@ -332,6 +353,7 @@ static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
 
     return result;
 }
+// [End napi_get_all_property_names]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

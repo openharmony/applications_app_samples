@@ -48,6 +48,7 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiIsArraybuffer') {
+                  // [Start ark_napi_is_arraybuffer]
                   // napi_is_arraybuffer
                   try {
                     let value = new ArrayBuffer(1);
@@ -56,19 +57,27 @@ struct Index {
                       testNapi.isArrayBuffer(value));
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_arraybuffer: %{public}s',
                       testNapi.isArrayBuffer(data));
+                    // [StartExclude ark_napi_is_arraybuffer]
                     this.result = 'napiIsArraybufferSuccess';
+                    // [EndExclude ark_napi_is_arraybuffer]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_arraybuffer error: %{public}s',
                       error.message);
+                    // [StartExclude ark_napi_is_arraybuffer]
                     this.result = 'napiIsArraybufferFail';
+                    // [EndExclude ark_napi_is_arraybuffer]
                   }
+                  // [End ark_napi_is_arraybuffer]
                 } else if (item === '2.napiGetArraybufferInfo') {
+                  // [Start ark_napi_get_arraybuffer_info
                   // napi_get_arraybuffer_info
                   const buffer = new ArrayBuffer(10);
                   hilog.info(0x0000, 'testTag', 'Test Node-API get_arraybuffer_info:%{public}s ',
                     JSON.stringify(testNapi.getArraybufferInfo(buffer)));
+                  // [End ark_napi_get_arraybuffer_info]
                   this.result = 'napiGetArraybufferInfoSuccess';
                 } else if (item === '3.napiDetachArraybuffer') {
+                  // [Start ark_napi_detach_arraybuffer]
                   // napi_detach_arraybuffer and napi_is_detached_arraybuffer
                   try {
                     const bufferArray = new ArrayBuffer(8);
@@ -76,16 +85,23 @@ struct Index {
                       testNapi.isDetachedArraybuffer(bufferArray));
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer two: %{public}s ',
                       testNapi.isDetachedArraybuffer(testNapi.detachedArraybuffer(bufferArray)));
+                    // [StartExclude ark_napi_detach_arraybuffer]
                     this.result = 'napiDetachArraybufferSuccess';
+                    // [EndExclude ark_napi_detach_arraybuffer]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer error: %{public}s',
                       error.message);
+                    // [StartExclude ark_napi_detach_arraybuffer]
                     this.result = 'napiDetachArraybufferFail';
+                    // [EndExclude ark_napi_detach_arraybuffer]
                   }
+                  // [End ark_napi_detach_arraybuffer]
                 } else if (item === '4.napiCreateArraybuffer') {
+                  // [Start ark_napi_create_arraybuffer]
                   // napi_create_arraybuffer
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s',
                     testNapi.createArraybuffer(10).toString());
+                  // [End ark_napi_create_arraybuffer]
                   this.result = 'napiCreateArraybufferSuccess';
                 }
               })

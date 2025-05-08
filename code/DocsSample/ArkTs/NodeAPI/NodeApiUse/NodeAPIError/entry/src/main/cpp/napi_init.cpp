@@ -16,6 +16,7 @@
 #include "hilog/log.h"
 #include "napi/native_api.h"
 
+// [Start napi_get_last_error_info]
 // napi_get_last_error_info
 static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
 {
@@ -42,7 +43,9 @@ static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, errorInfo->error_message, NAPI_AUTO_LENGTH, &result);
     return result;
 }
+// [End napi_get_last_error_info]
 
+// [Start napi_create_type_error]
 // napi_create_type_error
 static napi_value CreatTypeError(napi_env env, napi_callback_info info)
 {
@@ -56,7 +59,9 @@ static napi_value CreatTypeError(napi_env env, napi_callback_info info)
     napi_create_type_error(env, errorCode, errorMessage, &error);
     return error;
 }
+// [End napi_create_type_error]
 
+// [Start napi_create_range_error]
 // napi_create_range_error
 static napi_value CreatRangeError(napi_env env, napi_callback_info info)
 {
@@ -70,7 +75,9 @@ static napi_value CreatRangeError(napi_env env, napi_callback_info info)
     napi_create_range_error(env, errorCode, errorMessage, &error);
     return error;
 }
+// [End napi_create_range_error]
 
+// [Start napi_create_error]
 // napi_create_error and napi_throw
 static napi_value NapiThrow(napi_env env, napi_callback_info info)
 {
@@ -88,7 +95,9 @@ static napi_value NapiThrow(napi_env env, napi_callback_info info)
     napi_throw(env, error);
     return nullptr;
 }
+// [End napi_create_error]
 
+// [Start napi_throw_error]
 // napi_throw_error
 // 这里直接抛出一个带有errorMessage的错误
 static napi_value NapiThrowErrorMessage(napi_env env, napi_callback_info info)
@@ -115,7 +124,9 @@ static napi_value NapiThrowError(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
+// [End napi_throw_error]
 
+// [Start napi_throw_type_error]
 // napi_throw_type_error
 // 这里直接抛出一个带有errorMessage的TypeError
 static napi_value ThrowTypeErrorMessage(napi_env env, napi_callback_info info)
@@ -141,7 +152,9 @@ static napi_value ThrowTypeError(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
+// [End napi_throw_type_error]
 
+// [Start napi_throw_range_error]
 // napi_throw_range_error
 // 这里直接抛出一个带有errorMessage的RangeError
 static napi_value ThrowRangeErrorMessage(napi_env env, napi_callback_info info)
@@ -173,7 +186,9 @@ static napi_value ThrowRangeError(napi_env env, napi_callback_info info)
     napi_create_double(env, result, &resultValue);
     return resultValue;
 }
+// [End napi_throw_range_error]
 
+// [Start napi_is_error]
 // napi_is_error
 static napi_value NapiIsError(napi_env env, napi_callback_info info)
 {
@@ -190,7 +205,9 @@ static napi_value NapiIsError(napi_env env, napi_callback_info info)
     napi_get_boolean(env, result, &returnValue);
     return returnValue;
 }
+// [End napi_is_error]
 
+// [Start napi_get_and_clear_last_exception]
 // napi_get_and_clear_last_exception
 static napi_value GetAndClearLastException(napi_env env, napi_callback_info info)
 {
@@ -204,7 +221,9 @@ static napi_value GetAndClearLastException(napi_env env, napi_callback_info info
     }
     return result;
 }
+// [End napi_get_and_clear_last_exception]
 
+// [Start napi_is_exception_pending]
 // napi_is_exception_pending
 static napi_value IsExceptionPending(napi_env env, napi_callback_info info)
 {
@@ -229,7 +248,9 @@ static napi_value IsExceptionPending(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
+// [End napi_is_exception_pending]
 
+// [Start napi_fatal_error]
 // napi_fatal_error
 static napi_value FatalError(napi_env env, napi_callback_info info)
 {
@@ -242,7 +263,9 @@ static napi_value FatalError(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
+// [End napi_fatal_error]
 
+// [Start napi_fatal_exception]
 // napi_fatal_exception
 static napi_value FatalException(napi_env env, napi_callback_info info)
 {
@@ -261,6 +284,7 @@ static napi_value FatalException(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
+// [End napi_fatal_exception]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

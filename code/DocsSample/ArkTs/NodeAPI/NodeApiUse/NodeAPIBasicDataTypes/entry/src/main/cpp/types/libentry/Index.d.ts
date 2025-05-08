@@ -13,18 +13,34 @@
  * limitations under the License.
  */
 
+// [Start napi_get_value_uint32_api]
 export const getValueUint32: <T>(data: T) => number | void; // napi_get_value_uint32
+// [End napi_get_value_uint32_api]
 
+// [Start napi_get_value_int32_api]
 export const getValueInt32: (value: number | string) => number | void; // napi_get_value_int32
+// [End napi_get_value_int32_api]
 
+// [Start napi_get_value_int64_api]
 export const getValueInt64: (value: number | string) => number | void; // napi_get_value_int64
+// [End napi_get_value_int64_api]
 
+// [Start napi_get_value_double_api]
 export const getDouble: (value: number | string) => number | void; // napi_get_value_double
+// [End napi_get_value_double_api]
 
+// [Start napi_create_int32_api]
 export const createInt32: () => number; // napi_create_int32
+// [End napi_create_int32_api]
 
+// [Start napi_create_uint32_api]
 export const createUInt32: () => number; // napi_create_uint32
+// [End napi_create_uint32_api]
 
+// [Start napi_create_int64_api]
 export const createInt64: () => number; // napi_create_int64
+// [End napi_create_int64_api]
 
+// [Start napi_create_double_api]
 export const createDouble: () => number; // napi_create_double
+// [End napi_create_double_api]

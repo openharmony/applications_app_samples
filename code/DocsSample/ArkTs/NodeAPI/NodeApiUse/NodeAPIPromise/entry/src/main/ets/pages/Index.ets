@@ -47,13 +47,16 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiIsPromise') {
+                  // [Start ark_napi_is_promise]
                   // napi_is_promise
                   let value = Promise.resolve();
                   // 传入的对象为Promise时，返回true，否则返回false
                   hilog.info(0x0000, 'Node-API', 'napi_is_promise %{public}s', testNapi.isPromise(value));
                   hilog.info(0x0000, 'Node-API', 'napi_is_promise string %{public}s', testNapi.isPromise(''));
+                  // [End ark_napi_is_promise]
                   this.result = 'napiIsPromiseSuccess';
                 } else if (item === '2.napiDeferred') {
+                  // [Start ark_napi_resolve_reject_deferred]
                   // napi_resolve_deferred & napi_reject_deferred
                   // 创建promise如果创建成功返回true，创建失败返回false
                   hilog.info(0x0000, 'Node-API', 'napi_create_promise %{public}s', testNapi.createPromise());
@@ -63,21 +66,30 @@ struct Index {
                     testNapi.resolveRejectDeferred('success', 'fail', true) as Promise<string>;
                   promiseSuccess.then((res) => {
                     hilog.info(0x0000, 'Node-API', 'get_resolve_deferred resolve %{public}s', res)
+                    // [StartExclude ark_napi_resolve_reject_deferred]
                     this.result = 'napiDeferredSuccess';
+                    // [EndExclude ark_napi_resolve_reject_deferred]
                   }).catch((err: Error) => {
                     hilog.info(0x0000, 'Node-API', 'get_resolve_deferred reject %{public}s', err)
+                    // [StartExclude ark_napi_resolve_reject_deferred]
                     this.result = 'napiDeferredFail';
+                    // [EndExclude ark_napi_resolve_reject_deferred]
                   })
                   // Promise状态为false时设置reject，返回结果在catch函数中获得
                   let promiseFail: Promise<string> =
                     testNapi.resolveRejectDeferred('success', 'fail', false) as Promise<string>;
                   promiseFail.then((res) => {
                     hilog.info(0x0000, 'Node-API', 'get_resolve_deferred resolve %{public}s', res)
+                    // [StartExclude ark_napi_resolve_reject_deferred]
                     this.result = 'napiDeferredSuccess';
+                    // [EndExclude ark_napi_resolve_reject_deferred]
                   }).catch((err: Error) => {
                     hilog.info(0x0000, 'Node-API', 'get_resolve_deferred reject %{public}s', err)
+                    // [StartExclude ark_napi_resolve_reject_deferred]
                     this.result = 'napiDeferredFail';
+                    // [EndExclude ark_napi_resolve_reject_deferred]
                   })
+                  // [End ark_napi_resolve_reject_deferred]
                 }
               })
           }

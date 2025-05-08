@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start const_dynamic_import_hsp]
 export function add(a: number, b: number): number {
   let c = a + b;
   console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
   return c;
 }
+// [End const_dynamic_import_hsp]

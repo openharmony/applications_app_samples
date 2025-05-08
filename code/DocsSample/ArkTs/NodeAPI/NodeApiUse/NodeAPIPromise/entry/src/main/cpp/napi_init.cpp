@@ -17,6 +17,7 @@
 
 static constexpr int INT_ARGS_2 = 2; // 入参索引
 
+// [Start napi_is_promise]
 // napi_is_promise
 static napi_value IsPromise(napi_env env, napi_callback_info info)
 {
@@ -37,7 +38,9 @@ static napi_value IsPromise(napi_env env, napi_callback_info info)
     napi_get_boolean(env, isPromise, &result);
     return result;
 }
+// [End napi_is_promise]
 
+// [Start napi_resolve_reject_deferred] 
 // napi_resolve_deferred & napi_reject_deferred
 static napi_value CreatePromise(napi_env env, napi_callback_info info)
 {
@@ -85,7 +88,7 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     // 返回设置了resolve或reject的Promise对象
     return promise;
 }
-
+// [End napi_resolve_reject_deferred]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

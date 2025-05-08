@@ -13,8 +13,12 @@
  * limitations under the License.
  */
 
+// [Start napi_is_promise_api]
 export const isPromise: <T>(value: T) => boolean; // napi_is_promise
+// [End napi_is_promise_api]
 
+// [Start napi_resolve_reject_deferred_api]
 export const createPromise: () => boolean | void; // napi_resolve_deferred & napi_reject_deferred
 
 export const resolveRejectDeferred: (resolve: string, reject: string, status: boolean) => Promise<string> | void;
+// [End napi_resolve_reject_deferred_api]

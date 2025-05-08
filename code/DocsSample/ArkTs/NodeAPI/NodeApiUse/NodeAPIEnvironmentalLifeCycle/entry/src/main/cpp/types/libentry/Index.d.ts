@@ -13,6 +13,10 @@
  * limitations under the License.
  */
 
+// [Start napi_set_instance_data_api]
 export const setInstanceData: (data: number) => boolean; // napi_set_instance_data
+// [End napi_set_instance_data_api]
 
+// [Start napi_get_instance_data_api]
 export const getInstanceData: () => number; // napi_get_instance_data
+// [End napi_get_instance_data_api]

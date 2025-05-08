@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start import_global_module_data]
 export let data = 'data from module';
 
 globalThis.someGlobalVar = 100;
+// [End import_global_module_data]

@@ -46,17 +46,26 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiString') {
+                  // [Start ark_napi_get_value_string_utf8]
                   // 分别传入字符和非字符检测接口，传入字符串类型的数据将返回原字符串，传入其他类型返回undefined
                   hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_string %{public}s',
                     testNapi.getValueStringUtf8('aaBC+-$%^你好123'));
                   hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_not_string %{public}s',
                     testNapi.getValueStringUtf8(50));
+                  // [End ark_napi_get_value_string_utf8]
+                  // [Start ark_napi_create_string_utf8]
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf8:%{public}s',
                     testNapi.createStringUtf8());
+                  // [End ark_napi_create_string_utf8]
+                  // [Start ark_napi_get_value_string_utf16]
                   let result = testNapi.getValueStringUtf16('hello,');
                   hilog.info(0x0000, 'testTag', 'Node-API napi_get_value_string_utf16:%{public}s', result);
+                  // [End ark_napi_get_value_string_utf16]
+                  // [Start ark_napi_create_string_utf16]
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf16:%{public}s ',
                     testNapi.createStringUtf16());
+                  // [End ark_napi_create_string_utf16]
+                  // [Start ark_napi_get_value_string_latin1]
                   // 传入非字符型数据，函数返回undefined
                   hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_not_string %{public}s',
                     testNapi.getValueStringLatin1(10));
@@ -66,8 +75,11 @@ struct Index {
                   // 传入其他字符，不会乱码
                   hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_string %{public}s',
                     testNapi.getValueStringLatin1('abo ABP=-&*/'));
+                  // [End ark_napi_get_value_string_latin1]
+                  // [Start ark_napi_create_string_latin1]
                   hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_string_latin1:%{public}s',
                     testNapi.createStringLatin1());
+                  // End ark_napi_create_string_latin1]
                   this.result = 'napiStringSuccess';
                 }
               })

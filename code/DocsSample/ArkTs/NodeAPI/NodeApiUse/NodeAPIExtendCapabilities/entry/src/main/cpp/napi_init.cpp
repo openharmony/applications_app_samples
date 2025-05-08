@@ -22,6 +22,7 @@
 
 static constexpr int INT_ARG_100 = 100; // 入参索引
 
+// [Start node_api_module_add]
 // 模块加载
 static napi_value Add(napi_env env, napi_callback_info info)
 {
@@ -43,6 +44,9 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
     return sum;
 }
+
+// [StartExclude node_api_module_add]
+// [Start node_api_module_create_object_properties]
 // ArkTS Object相关 napi_create_object_with_properties
 static napi_value CreateObjectWithProperties(napi_env env, napi_callback_info info)
 {
@@ -62,6 +66,8 @@ static napi_value CreateObjectWithProperties(napi_env env, napi_callback_info in
         return object;
     }
 }
+// [End node_api_module_create_object_properties]
+// [Start node_api_module_create_object_name_properties]
 // ArkTS Object相关 napi_create_object_with_named_properties
 static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_info info)
 {
@@ -84,6 +90,8 @@ static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_inf
     }
     return obj;
 }
+// [End node_api_module_create_object_name_properties]
+// [Start node_api_module_run_script_path]
 // 运行指定abc文件 napi_run_script_path
 static napi_value RunScriptPath(napi_env env, napi_callback_info info)
 {
@@ -101,7 +109,9 @@ static napi_value RunScriptPath(napi_env env, napi_callback_info info)
     }
     return returnValue;
 }
+// [End node_api_module_run_script_path]
 // 给ArkTS对象绑定回调和回调所需的参数 napi_coerce_to_native_binding_object
+// [Start napi_coerce_to_native_binding_object]
 class Object {
 public:
     Object() = default;
@@ -264,6 +274,8 @@ napi_value AttachCallback(napi_env env, void *value, void *hint)
     napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, hint);
     return object;
 }
+// [StartExclude napi_coerce_to_native_binding_object]
+// [Start napi_serialize_deserialize_delete_serialization_data]
 // 序列化和反序列化
 static napi_value AboutSerialize(napi_env env, napi_callback_info info)
 {
@@ -299,6 +311,8 @@ static napi_value AboutSerialize(napi_env env, napi_callback_info info)
     // 返回获取到的属性值
     return number;
 }
+// [End napi_serialize_deserialize_delete_serialization_data]
+// [Start napi_is_sendable]
 // Sendable相关 napi_is_sendable
 static napi_value IsSendable(napi_env env, napi_callback_info info)
 {
@@ -311,7 +325,9 @@ static napi_value IsSendable(napi_env env, napi_callback_info info)
     napi_get_boolean(env, isSendable, &result);
     return result;
 }
+// [End napi_is_sendable]
 
+// [Start napi_define_sendable_class]
 static napi_value func(napi_env env, napi_callback_info info)
 {
     napi_value val;
@@ -353,6 +369,8 @@ static napi_value DefineSendableClass(napi_env env)
 
     return sendableClass;
 }
+// [End napi_define_sendable_class]
+// [Start napi_create_sendable_object_with_properties]
 // Sendable相关 napi_create_sendable_object_with_properties
 static napi_value GetSendableObject(napi_env env, napi_callback_info info)
 {
@@ -365,6 +383,8 @@ static napi_value GetSendableObject(napi_env env, napi_callback_info info)
     napi_create_sendable_object_with_properties(env, 1, desc1, &obj);
     return obj;
 }
+// [End napi_create_sendable_object_with_properties
+// [Start napi_create_sendable_array]
 // Sendable相关 napi_create_sendable_array
 static napi_value GetSendableArray(napi_env env, napi_callback_info info)
 {
@@ -372,6 +392,8 @@ static napi_value GetSendableArray(napi_env env, napi_callback_info info)
     napi_create_sendable_array(env, &result);
     return result;
 }
+// [End napi_create_sendable_array]
+// [Start napi_create_sendable_array_with_length]
 // Sendable相关 napi_create_sendable_array_with_length
 static napi_value GetSendableArrayWithLength(napi_env env, napi_callback_info info)
 {
@@ -379,6 +401,8 @@ static napi_value GetSendableArrayWithLength(napi_env env, napi_callback_info in
     napi_create_sendable_array_with_length(env, 1, &result);
     return result;
 }
+// End napi_create_sendable_array_with_length]
+// [Start napi_create_sendable_arraybuffer]
 // Sendable相关 napi_create_sendable_arraybuffer
 static napi_value GetSendableArrayBuffer(napi_env env, napi_callback_info info)
 {
@@ -391,6 +415,8 @@ static napi_value GetSendableArrayBuffer(napi_env env, napi_callback_info info)
     OH_LOG_INFO(LOG_APP, "isArrayBuffer: %{public}d", isArrayBuffer);
     return result;
 }
+// [End napi_create_sendable_arraybuffer]
+// [Start napi_create_sendable_typed_array]
 // Sendable相关 napi_create_sendable_typedarray
 static napi_value GetSendableTypedArray(napi_env env, napi_callback_info info)
 {
@@ -407,6 +433,8 @@ static napi_value GetSendableTypedArray(napi_env env, napi_callback_info info)
     OH_LOG_INFO(LOG_APP, "isTypedArray: %{public}d", isTypedArray);
     return result;
 }
+// [End napi_create_sendable_typed_array]
+// [Start napi_wrap_sendable]
 // Sendable相关 napi_wrap_sendable
 static napi_value WrapSendable(napi_env env, napi_callback_info info)
 {
@@ -424,6 +452,8 @@ static napi_value WrapSendable(napi_env env, napi_callback_info info)
 
     return nullptr;
 }
+// [End napi_wrap_sendable]
+// [Start napi_wrap_sendable_with_size]
 // Sendable相关 napi_wrap_sendable_with_size
 static napi_value WrapSendableWithSize(napi_env env, napi_callback_info info)
 {
@@ -441,6 +471,8 @@ static napi_value WrapSendableWithSize(napi_env env, napi_callback_info info)
 
     return nullptr;
 }
+// [End napi_wrap_sendable_with_size]
+// [Start napi_unwrap_sendable]
 // Sendable相关 napi_unwrap_sendable
 static napi_value UnwrapSendable(napi_env env, napi_callback_info info)
 {
@@ -462,6 +494,8 @@ static napi_value UnwrapSendable(napi_env env, napi_callback_info info)
 
     return nullptr;
 }
+// [End napi_unwrap_sendable]
+// [Start napi_remove_wrap_sendable]
 // Sendable相关 napi_remove_wrap_sendable
 static napi_value RemoveWrapSendable(napi_env env, napi_callback_info info)
 {
@@ -483,6 +517,10 @@ static napi_value RemoveWrapSendable(napi_env env, napi_callback_info info)
 
     return nullptr;
 }
+// [End napi_remove_wrap_sendable]
+// [EndExclude napi_coerce_to_native_binding_object]
+// [EndExclude node_api_module_add]
+
 // C++函数Init用于初始化插件，用于将ArkTS层的函数或属性与C++层的函数进行关联
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
@@ -536,3 +574,5 @@ static napi_module demoModule = {
 
 // 在RegisterEntryModule函数中，使用napi_module_register函数注册并导出了这个插件
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+// [End napi_coerce_to_native_binding_object]
+// [End node_api_module_add]

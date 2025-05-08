@@ -14,7 +14,7 @@
  */
 
 #include "napi/native_api.h"
-
+// [Start napi_load_module_with_info_entry_napi_init]
 static constexpr int INT_ARG_2 = 2; // 入参索引
 static constexpr int INT_ARG_3 = 3; // 入参索引
 
@@ -38,7 +38,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info)
     napi_call_function(env, result, addFn, INT_ARG_2, args, &returnValue);
     return result;
 }
-
+// [End napi_load_module_with_info_entry_napi_init]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

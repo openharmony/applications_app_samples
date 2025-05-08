@@ -20,8 +20,10 @@
   "main": "Index.ets",
   "author": "",
   "license": "Apache-2.0",
+  // [Start napi_load_module_with_info_har1_oh]
   "dependencies": {
     "har2": "file:../har2",
+  // [End napi_load_module_with_info_har1_oh]
     "libhar1.so": "file:./src/main/cpp/types/libhar1"
   }
 }

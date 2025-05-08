@@ -48,32 +48,45 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiOpenHandleScope') {
+                  // [Start ark_napi_open_close_handle_scope]
                   // napi_open_handle_scope  napi_close_handle_scope
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API handleScopeTest: %{public}s',
                       testNapi.handleScopeTest());
                     hilog.info(0x0000, 'testTag', 'Test Node-API handleScope: %{public}s', testNapi.handleScope());
+                    // [StartExclude ark_napi_open_close_handle_scope]
                     this.result = 'napiOpenHandleScopeSuccess';
+                    // [EndExclude ark_napi_open_close_handle_scope]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag',
                       'Test Node-API handleScopeTest errorCode: %{public}s, errorMessage: %{public}s', error.code,
                       error.message);
+                    // [StartExclude ark_napi_open_close_handle_scope]
                     this.result = 'napiOpenHandleScopeFail';
+                    // [EndExclude ark_napi_open_close_handle_scope]
                   }
+                  // [End ark_napi_open_close_handle_scope]
                 } else if (item === '2.napiOpenEscapableHandleScope') {
+                  // [Start ark_napi_open_close_escapable_handle_scope]
                   // napi_open_escapable_handle_scope napi_close_escapable_handle_scope、napi_escape_handle
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API EscapableHandleScopeTest: %{public}s',
                       testNapi.escapableHandleScopeTest());
+                    // [StartExclude ark_napi_open_close_escapable_handle_scope]
                     this.result = 'napiOpenEscapableHandleScopeSuccess';
+                    // [EndExclude ark_napi_open_close_escapable_handle_scope]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag',
                       'Test Node-API EscapableHandleScopeTest errorCode: %{public}s, errorMessage: %{public}s',
                       error.code,
                       error.message);
+                    // [StartExclude ark_napi_open_close_escapable_handle_scope]
                     this.result = 'napiOpenEscapableHandleScopeFail';
+                    // [EndExclude ark_napi_open_close_escapable_handle_scope]
                   }
+                  // [End ark_napi_open_close_escapable_handle_scope]
                 } else if (item === '3.napiAddFinalizer') {
+                  // [Start ark_napi_create_delete_reference]
                   // napi_add_finalizer
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API createReference: %{public}s',
@@ -82,13 +95,18 @@ struct Index {
                       JSON.stringify(testNapi.useReference()));
                     hilog.info(0x0000, 'testTag', 'Test Node-API deleteReference: %{public}s',
                       testNapi.deleteReference());
+                    // [StartExclude ark_napi_create_delete_reference]
                     this.result = 'napiAddFinalizerSuccess';
+                    // [EndExclude ark_napi_create_delete_reference]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag',
                       'Test Node-API ReferenceTest errorCode: %{public}s, errorMessage: %{public}s', error.code,
                       error.message);
+                    // [StartExclude ark_napi_create_delete_reference]
                     this.result = 'napiAddFinalizerFail';
+                    // [EndExclude ark_napi_create_delete_reference]
                   }
+                  // [End ark_napi_create_delete_reference]
                 }
               })
           }

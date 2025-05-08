@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ark_napi_delete_property]
 import testNapi from 'libentry.so';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -33,3 +34,4 @@ export function napiDeleteProperty() {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property config: %{public}s',
     testNapi.deleteProperty(obj, 'config'));
 }
+// [End ark_napi_delete_property]

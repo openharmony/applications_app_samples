@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start napi_load_module_with_info_entry_test]
 let value = 123;
 
 function test() {
@@ -20,3 +20,4 @@ function test() {
 }
 
 export { value, test };
+// [End napi_load_module_with_info_entry_test]

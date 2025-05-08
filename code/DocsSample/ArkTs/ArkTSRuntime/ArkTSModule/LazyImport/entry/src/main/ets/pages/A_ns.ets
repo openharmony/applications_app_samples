@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start export_variable_a_ns]
 import * as ns from './B';
 
 console.info(ns.c);
+// [End export_variable_a_ns]
 
 export { ns };

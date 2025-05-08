@@ -16,6 +16,7 @@
 #include <string>
 #include "napi/native_api.h"
 
+// [Start napi_create_array]
 static constexpr int INT_NUMBER_5 = 5; // 入参索引
 static constexpr int INT_ARGS_2 = 2; // 入参索引
 
@@ -34,7 +35,9 @@ static napi_value CreateArray(napi_env env, napi_callback_info info)
     // 返回已创建好的数组
     return jsArray;
 }
+// [End napi_create_array]
 
+// [Start napi_create_array_with_length]
 // 使用Node-API接口进行array相关开发 napi_create_array_with_length
 static napi_value CreateArrayWithLength(napi_env env, napi_callback_info info)
 {
@@ -51,7 +54,9 @@ static napi_value CreateArrayWithLength(napi_env env, napi_callback_info info)
     // 返回数组
     return jsArray;
 }
+// [End napi_create_array_with_length]
 
+// [Start napi_get_array_length]
 // 使用Node-API接口进行array相关开发 napi_get_array_length
 static napi_value GetArrayLength(napi_env env, napi_callback_info info)
 {
@@ -73,7 +78,9 @@ static napi_value GetArrayLength(napi_env env, napi_callback_info info)
     napi_create_uint32(env, length, &result);
     return result;
 }
+// [End napi_get_array_length]
 
+// [Start napi_is_array]
 // 使用Node-API接口进行array相关开发 napi_is_array
 static napi_value IsArray(napi_env env, napi_callback_info info)
 {
@@ -94,7 +101,9 @@ static napi_value IsArray(napi_env env, napi_callback_info info)
 
     return returnValue;
 }
+// [End napi_is_array]
 
+// [Start napi_set_element]
 // 使用Node-API接口进行array相关开发 napi_set_element
 static napi_value NapiSetElement(napi_env env, napi_callback_info info)
 {
@@ -117,7 +126,9 @@ static napi_value NapiSetElement(napi_env env, napi_callback_info info)
 
     return nullptr;
 }
+// [End napi_set_element]
 
+// [Start napi_get_element]
 // 使用Node-API接口进行array相关开发 napi_get_element
 static napi_value NapiGetElement(napi_env env, napi_callback_info info)
 {
@@ -134,7 +145,9 @@ static napi_value NapiGetElement(napi_env env, napi_callback_info info)
 
     return result;
 }
+// [End napi_get_element]
 
+// [Start napi_has_element]
 // 使用Node-API接口进行array相关开发 napi_has_element
 static napi_value NapiHasElement(napi_env env, napi_callback_info info)
 {
@@ -153,7 +166,9 @@ static napi_value NapiHasElement(napi_env env, napi_callback_info info)
     napi_get_boolean(env, hasElement, &result);
     return result;
 }
+// [End napi_has_element]
 
+// [Start napi_delete_element]
 // 使用Node-API接口进行array相关开发 napi_delete_element
 static napi_value NapiDeleteElement(napi_env env, napi_callback_info info)
 {
@@ -172,7 +187,9 @@ static napi_value NapiDeleteElement(napi_env env, napi_callback_info info)
     napi_get_boolean(env, deleted, &result);
     return result;
 }
+// [End napi_delete_element]
 
+// [Start napi_create_typed_array]
 // 使用Node-API接口进行array相关开发 napi_create_typedarray
 static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
 {
@@ -227,7 +244,9 @@ static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
     napi_create_typedarray(env, arrayType, length, arrayBuffer, 0, &typedArray);
     return typedArray;
 }
+// [End napi_create_typed_array]
 
+// [Start napi_is_typed_array]
 // 使用Node-API接口进行array相关开发 napi_is_typedarray
 static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 {
@@ -248,7 +267,9 @@ static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 
     return returnValue;
 }
+// [End napi_is_typed_array]
 
+// [Start napi_get_typed_array_info]
 // 使用Node-API接口进行array相关开发 napi_get_typedarray_info
 static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
 {
@@ -298,7 +319,9 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_get_typed_array_info]
 
+// [Start napi_create_data_view]
 // 使用Node-API接口进行array相关开发 napi_create_dataview
 static napi_value CreateDataView(napi_env env, napi_callback_info info)
 {
@@ -332,7 +355,9 @@ static napi_value CreateDataView(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_create_data_view]
 
+// [Start napi_is_data_view]
 // 使用Node-API接口进行array相关开发 napi_is_dataview
 static napi_value IsDataView(napi_env env, napi_callback_info info)
 {
@@ -354,7 +379,9 @@ static napi_value IsDataView(napi_env env, napi_callback_info info)
 
     return returnValue;
 }
+// [End napi_is_data_view]
 
+// [Start napi_get_data_view_info]
 // 使用Node-API接口进行array相关开发 napi_get_dataview_info
 static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
 {
@@ -396,7 +423,9 @@ static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_get_data_view_info]
 
+// [Start change_use_napi_process]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -431,6 +460,7 @@ static napi_value Init(napi_env env, napi_value exports)
     return exports;
 }
 EXTERN_C_END
+// [End change_use_napi_process]
 
 static napi_module demoModule = {
     .nm_version = 1,

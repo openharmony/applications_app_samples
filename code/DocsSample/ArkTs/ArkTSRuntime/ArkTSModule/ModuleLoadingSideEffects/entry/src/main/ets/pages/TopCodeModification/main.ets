@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+// [Start import_put_console_log]
 import { data } from './topCodeModule'; // 导入时，module.ets中的console.log会执行，产生输出。
 import { dataOptimizeOne } from './topCodeModuleOptimize';
 import { dataOptimizeTwo } from './module';
+// [End import_put_console_log]
 
 @Entry
 @Component

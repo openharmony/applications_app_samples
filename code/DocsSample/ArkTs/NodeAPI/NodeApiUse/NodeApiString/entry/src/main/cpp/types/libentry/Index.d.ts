@@ -13,14 +13,26 @@
  * limitations under the License.
  */
 
+// [Start napi_get_value_string_utf8_api]
 export const getValueStringUtf8: (param: string | number) => string | void;
+// [End napi_get_value_string_utf8_api]
 
+// [Start napi_create_string_utf8_api]
 export const createStringUtf8: () => string | void;
+// [End napi_create_string_utf8_api]
 
+// [Start napi_get_value_string_utf16_api]
 export const getValueStringUtf16: (data: string) => string;
+// [End napi_get_value_string_utf16_api]
 
+// [Start napi_create_string_utf16_api]
 export const createStringUtf16: () => string | void;
+// [End napi_create_string_utf16_api]
 
+// [Start napi_get_value_string_latin1_api]
 export const getValueStringLatin1: (param: number | string) => string | void;
+// [End napi_get_value_string_latin1_api]
 
+// [Start napi_create_string_latin1_api]
 export const createStringLatin1: () => string | void;
+// [End napi_create_string_latin1_api]

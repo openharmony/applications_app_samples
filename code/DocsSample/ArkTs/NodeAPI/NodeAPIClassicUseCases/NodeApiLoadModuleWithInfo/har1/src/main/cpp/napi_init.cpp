@@ -40,7 +40,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
     return sum;
 }
-
+// [Start napi_load_module_with_info_har1_napi_init]
 static napi_value loadModule(napi_env env, napi_callback_info info)
 {
     napi_value result;
@@ -61,7 +61,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info)
     napi_get_property(env, result, key, &value);
     return result;
 }
-
+// [End napi_load_module_with_info_har1_napi_init]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

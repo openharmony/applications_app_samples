@@ -15,4 +15,6 @@
 
 export { MainPage } from './src/main/ets/components/MainPage';
 
+// [Start export_add_har1]
 export { addHar1 } from './src/main/ets/utils/Calc';
+// [End export_add_har1]

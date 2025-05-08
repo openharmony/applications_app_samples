@@ -15,11 +15,13 @@
 
 {
   "apiType": "stageMode",
+  // [Start napi_load_module_with_info_har1_build]
   "buildOption": {
     "arkOptions": {
       "runtimeOnly": {
         "packages": [
           "har2",
+  // [End napi_load_module_with_info_har1_build]
           "libhar1.so"
         ]
       }

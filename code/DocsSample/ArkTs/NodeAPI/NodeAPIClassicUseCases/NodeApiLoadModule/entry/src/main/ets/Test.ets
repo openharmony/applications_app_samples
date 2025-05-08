@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start napi_load_module_napi_test]
 let value = 123;
 function test() {
   console.log('Hello OpenHarmony');
 }
 export {value, test};
+// [End napi_load_module_napi_test]

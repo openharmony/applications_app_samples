@@ -16,6 +16,7 @@
 #include "napi/native_api.h"
 #include "hilog/log.h"
 
+// [Start napi_create_bigint_int64]
 // napi_create_bigint_int64
 static napi_value CreateBigintInt64t(napi_env env, napi_callback_info info)
 {
@@ -26,7 +27,9 @@ static napi_value CreateBigintInt64t(napi_env env, napi_callback_info info)
     napi_create_bigint_int64(env, value, &returnValue);
     return returnValue;
 }
+// [End napi_create_bigint_int64]
 
+// [Start napi_create_bigint_uint64]
 // napi_create_bigint_uint64
 static napi_value CreateBigintUint64t(napi_env env, napi_callback_info info)
 {
@@ -37,7 +40,9 @@ static napi_value CreateBigintUint64t(napi_env env, napi_callback_info info)
     napi_create_bigint_uint64(env, value, &returnValue);
     return returnValue;
 }
+// [End napi_create_bigint_uint64]
 
+// [Start napi_create_bigint_words]
 // napi_create_bigint_words
 static napi_value CreateBigintWords(napi_env env, napi_callback_info info)
 {
@@ -53,7 +58,9 @@ static napi_value CreateBigintWords(napi_env env, napi_callback_info info)
     }
     return returnValue;
 }
+// [End napi_create_bigint_words]
 
+// [Start napi_get_value_bigint_int64]
 // napi_get_value_bigint_int64
 static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
 {
@@ -74,7 +81,9 @@ static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
     napi_get_boolean(env, status == napi_ok, &returnValue);
     return returnValue;
 }
+// [End napi_get_value_bigint_int64]
 
+// [Start napi_get_value_bigint_uint64]
 // napi_get_value_bigint_uint64
 static napi_value GetValueBigintUint64t(napi_env env, napi_callback_info info)
 {
@@ -95,7 +104,9 @@ static napi_value GetValueBigintUint64t(napi_env env, napi_callback_info info)
     napi_get_boolean(env, status == napi_ok, &returnValue);
     return returnValue;
 }
+// [End napi_get_value_bigint_uint64]
 
+// [Start napi_get_value_bigint_words]
 // napi_get_value_bigint_words
 static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
 {
@@ -121,6 +132,7 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
     napi_create_int32(env, signBit, &returnValue);
     return returnValue;
 }
+// [End napi_get_value_bigint_words]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
