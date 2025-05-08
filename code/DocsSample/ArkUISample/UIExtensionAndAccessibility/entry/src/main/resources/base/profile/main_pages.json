@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/IsolatedComponent/Extension",
+    "pages/EmbeddedComponent/Extension"
+  ]
+}
