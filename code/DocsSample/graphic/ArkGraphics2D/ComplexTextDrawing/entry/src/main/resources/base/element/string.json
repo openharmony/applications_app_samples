@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ComplexTextDrawing"
+    },
+    {
+      "name": "Button_label1",
+      "value": "Draw complex text"
+    },
+    {
+      "name": "Button_label2",
+      "value": "Multilingual text"
+    },
+    {
+      "name": "Button_label3",
+      "value": "Multi-line text"
+    }
+  ]
+}
