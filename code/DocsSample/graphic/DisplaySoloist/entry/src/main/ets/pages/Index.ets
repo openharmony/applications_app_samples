@@ -16,21 +16,12 @@ import XComponentContext from '../interface/XComponentContext';
 import Logger from '../utils/Logger';
 
 const TAG = '[XComponentDisplaySoloist]';
-const START = 'Start';
-const STOP = 'Stop';
 
 @Entry
 @Component
 struct Index {
-  @State status1: string = START;
-  @State isOn1: boolean = false;
-  @State status2: string = START;
-  @State isOn2: boolean = false;
-  @State status3: string = START;
-  @State isOn3: boolean = false;
   private xComponentContext1: XComponentContext | undefined = undefined;
   private xComponentContext2: XComponentContext | undefined = undefined;
-  private xComponentContext3: XComponentContext | undefined = undefined;
 
   aboutToDisappear(): void {
     Logger.info(TAG, 'aboutToDisappear');
@@ -42,26 +33,12 @@ struct Index {
       this.xComponentContext2.unregister();
       this.xComponentContext2.destroy();
     }
-    if (this.xComponentContext3) {
-      this.xComponentContext3.unregister();
-      this.xComponentContext3.destroy();
-    }
-  }
-
-  Execute(component: XComponentContext, flg: boolean): string {
-    if (flg) {
-      component.register();
-      return STOP;
-    } else {
-      component.unregister();
-      return START;
-    }
   }
 
   build() {
     Column() {
       Row() {
-        Text('30hz')
+        Text('30fps')
           .fontWeight(FontWeight.Bold)
           .fontSize(12)
           .fontColor(Color.Red)
@@ -69,25 +46,22 @@ struct Index {
           .width(40)
           .height(30)
 
-        Button(this.status1)
-          .id('Start30')
-          .controlSize(ControlSize.SMALL)
-          .onClick((): void => {
-            if (this.xComponentContext1) {
-              this.isOn1 = !(this.isOn1);
-              this.status1 = this.Execute(this.xComponentContext1, this.isOn1);
-            }
-          }).margin(4)
-
-        XComponent({ id: 'xcomponentId30', type: XComponentType.SURFACE, libraryname: 'entry' })
+        XComponent({
+          id: 'xcomponentId_30',
+          type: XComponentType.SURFACE,
+          libraryname: 'entry'
+        })
           .onLoad((xComponentContext) => {
             this.xComponentContext1 = xComponentContext as XComponentContext;
           }).width('640px')
-          .backgroundColor(Color.White);
-      }.height('30%')
+          .backgroundColor(Color.White)
+
+
+      }.height('40%')
+
 
       Row() {
-        Text('60hz')
+        Text('120fps')
           .fontWeight(FontWeight.Bold)
           .fontSize(12)
           .fontColor(Color.Red)
@@ -95,48 +69,56 @@ struct Index {
           .width(40)
           .height(30)
 
-        Button(this.status2)
-          .id('Start60')
-          .controlSize(ControlSize.SMALL)
-          .onClick((): void => {
-            if (this.xComponentContext2) {
-              this.isOn2 = !(this.isOn2);
-              this.status2 = this.Execute(this.xComponentContext2, this.isOn2);
-            }
-          }).margin(4)
-
-        XComponent({ id: 'xcomponentId60', type: XComponentType.SURFACE, libraryname: 'entry' })
+        XComponent({
+          id: 'xcomponentId_120',
+          type: XComponentType.SURFACE,
+          libraryname: 'entry'
+        })
           .onLoad((xComponentContext) => {
             this.xComponentContext2 = xComponentContext as XComponentContext;
           }).width('640px')
-          .backgroundColor(Color.White);
-      }.height('30%')
+          .backgroundColor(Color.White)
+      }.height('40%')
 
       Row() {
-        Text('120hz')
-          .fontWeight(FontWeight.Bold)
-          .fontSize(12)
-          .fontColor(Color.Red)
-          .textAlign(TextAlign.End)
-          .width(40)
-          .height(30)
-
-        Button(this.status3)
-          .id('Start120')
-          .controlSize(ControlSize.SMALL)
-          .onClick((): void => {
-            if (this.xComponentContext3) {
-              this.isOn3 = !(this.isOn3);
-              this.status3 = this.Execute(this.xComponentContext3, this.isOn3);
+        Button('Start')
+          .id('Start')
+          .fontSize(14)
+          .fontWeight(500)
+          .margin({ bottom: 20, right: 6, left: 6 })
+          .onClick(() => {
+            if (this.xComponentContext1) {
+              this.xComponentContext1.register();
             }
-          }).margin(4)
+            if (this.xComponentContext2) {
+              this.xComponentContext2.register();
+            }
+          })
+          .width('30%')
+          .height(40)
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-        XComponent({ id: 'xcomponentId120', type: XComponentType.SURFACE, libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext3 = xComponentContext as XComponentContext;
-          }).width('640px')
-          .backgroundColor(Color.White);
-      }.height('30%')
+        Button('Stop')
+          .id('Stop')
+          .fontSize(14)
+          .fontWeight(500)
+          .margin({ bottom: 20, left: 6 })
+          .onClick(() => {
+            if (this.xComponentContext1) {
+              this.xComponentContext1.unregister();
+            }
+            if (this.xComponentContext2) {
+              this.xComponentContext2.unregister();
+            }
+          })
+          .width('30%')
+          .height(40)
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
+      }
+      .justifyContent(FlexAlign.SpaceEvenly)
+      .width('100%')
+      .height('20%')
     }
   }
 }

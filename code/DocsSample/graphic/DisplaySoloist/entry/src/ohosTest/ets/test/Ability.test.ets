@@ -19,7 +19,8 @@ import Logger from '../utils/Logger';
 const TAG = '[Sample_DisplaySoloist]';
 const BUNDLE = 'MyApp_'
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const DELAYMS1S = 1000;
+const DELAYMS_1S = 1000;
+const DELAYMS_5S = 5000;
 
 export default function abilityTest() {
   describe('AbilityTest', () => {
@@ -52,30 +53,17 @@ export default function abilityTest() {
         Logger.info(TAG, BUNDLE + 'DisplaySoloist_001 begin');
 
         let driver = Driver.create();
-        await driver.assertComponentExist(ON.id('Start30'));
-        let Start30Button = await driver.findComponent(ON.id('Start30'));
-        await Start30Button.click();
+        await driver.delayMs(DELAYMS_1S);
 
-        await driver.assertComponentExist(ON.id('Start60'));
-        let start60Button = await driver.findComponent(ON.id('Start60'));
-        await start60Button.click();
+        await driver.assertComponentExist(ON.id('Start'));
+        let startButton = await driver.findComponent(ON.id('Start'));
+        await startButton.click();
+        await driver.delayMs(DELAYMS_5S);
 
-        await driver.assertComponentExist(ON.id('Start120'));
-        let Start120Button = await driver.findComponent(ON.id('Start120'));
-        await Start120Button.click();
-
-        await driver.assertComponentExist(ON.id('Start30'));
-        let Stop30Button = await driver.findComponent(ON.id('Start30'));
-        await Stop30Button.click();
-
-        await driver.assertComponentExist(ON.id('Start60'));
-        let Stop60Button = await driver.findComponent(ON.id('Start60'));
-        await Stop60Button.click();
-
-        await driver.assertComponentExist(ON.id('Start120'));
-        let Stop120Button = await driver.findComponent(ON.id('Start120'));
-        await Stop120Button.click();
-        await driver.delayMs(DELAYMS1S);
+        await driver.assertComponentExist(ON.id('Stop'));
+        let stopButton = await driver.findComponent(ON.id('Stop'));
+        await stopButton.click();
+        await driver.delayMs(DELAYMS_1S);
 
         Logger.info(TAG, BUNDLE + 'DisplaySoloist_001 end');
         done();

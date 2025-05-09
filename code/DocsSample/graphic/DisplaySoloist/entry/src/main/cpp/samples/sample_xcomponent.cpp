@@ -95,8 +95,14 @@ static void TestCallback(long long timestamp, long long targetTimestamp, void *d
     if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
         render->Prepare();
         render->Create();
-        int offset = 8;
-        render->ConstructPath(offset, offset, render->defaultOffsetY);
+        if (id == "xcomponentId_30") {
+            int offset = 16;
+            render->ConstructPath(offset, offset, render->defaultOffsetY);
+        }
+        if (id == "xcomponentId_120") {
+            int offset = 4;
+            render->ConstructPath(offset, offset, render->defaultOffsetY);
+        }
         render->SetPenAndBrush();
         render->DrawPath();
         render->DisPlay();
@@ -282,11 +288,6 @@ napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
         bool useExclusiveThread = false;
         if (id == "xcomponentId30") {
             range = {30, 120, 30};
-        }
-
-        if (id == "xcomponentId60") {
-            range = {30, 120, 60};
-            useExclusiveThread = true;
         }
 
         if (id == "xcomponentId120") {
