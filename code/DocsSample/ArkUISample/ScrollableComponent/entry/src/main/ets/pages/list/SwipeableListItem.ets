@@ -21,6 +21,7 @@ export struct SwipeListItem {
   private index: number = 0;
   @State arr: number[] = [0, 1, 2, 3];
 
+  // [Start build_the_tail_slide_out_component]
   @Builder
   itemEnd(index: number) {
     // 构建尾端滑出组件
@@ -29,12 +30,15 @@ export struct SwipeListItem {
         .width(40)
         .height(40)
     }
+    // [StartExclude build_the_tail_slide_out_component]
     .backgroundColor('#FFE1E2E3')
+    // [EndExclude build_the_tail_slide_out_component]
     .onClick(() => {
       // this.messages为列表数据源，可根据实际场景构造。点击后从数据源删除指定数据项。
       this.arr.splice(index, 1);
     })
   }
+  // [End build_the_tail_slide_out_component]
 
   build() {
     NavDestination() {
@@ -42,7 +46,9 @@ export struct SwipeListItem {
         ComponentCard({ title: $r('app.string.SwipeListItem_titleExample') }) {
           List({ space: 12 }) {
             ForEach(this.arr, (item: number) => {
+              // [Start bind_the_swipeAction_property_to_left_swipe_list_item]
               ListItem() {
+                // [StartExclude bind_the_swipeAction_property_to_left_swipe_list_item]
                 Text('Message ' + item)
                   .width('100%')
                   .height(50)
@@ -50,6 +56,7 @@ export struct SwipeListItem {
                   .textAlign(TextAlign.Center)
                   .borderRadius(10)
                   .backgroundColor('#FFF1F3F5')
+                // [EndExclude bind_the_swipeAction_property_to_left_swipe_list_item]
               }.swipeAction({
                 end: {
                   // index为该ListItem在List中的索引值。
@@ -58,6 +65,7 @@ export struct SwipeListItem {
                     this.itemEnd(this.index);
                   },
                 }
+                // [End bind_the_swipeAction_property_to_left_swipe_list_item]
               })
             }, (item: number) => item.toString())
           }

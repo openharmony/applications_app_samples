@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card';
 
+// [Start set_the_head_component_of_the_list_grouping_by_header]
 @Entry
 @Component
 export struct GroupedList {
@@ -35,6 +36,7 @@ export struct GroupedList {
           List({ space: 12 }) {
             ListItemGroup({ header: this.itemHead('A') }) {
               // 循环渲染分组A的ListItem
+              // [StartExclude set_the_head_component_of_the_list_grouping_by_header]
               ListItem() {
                 Text('ListItem A One')
               }
@@ -42,10 +44,12 @@ export struct GroupedList {
               ListItem() {
                 Text('ListItem A Two')
               }
+              // [EndExclude set_the_head_component_of_the_list_grouping_by_header]
             }
 
             ListItemGroup({ header: this.itemHead('B') }) {
               // 循环渲染分组B的ListItem
+              // [StartExclude set_the_head_component_of_the_list_grouping_by_header]
               ListItem() {
                 Text('ListItem B One')
               }
@@ -53,10 +57,12 @@ export struct GroupedList {
               ListItem() {
                 Text('ListItem B Two')
               }
+              // [EndExclude set_the_head_component_of_the_list_grouping_by_header]
             }
           }
         }
       }
+      // [End set_the_head_component_of_the_list_grouping_by_header]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })

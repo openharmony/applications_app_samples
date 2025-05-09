@@ -22,10 +22,13 @@ export struct BottomTabBar {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.BottomTabBar_titleExample') }) {
+          // [Start bottom_navigation]
           Tabs({ barPosition: BarPosition.End }) {
+            // [StartExclude bottom_navigation]
             TabContent() {
               Text($r('app.string.homepage_content'))
                 .fontSize(30)
+
             }
             .backgroundColor(Color.Blue)
             .tabBar($r('app.string.homepage'))
@@ -50,7 +53,9 @@ export struct BottomTabBar {
             }
             .backgroundColor(Color.Orange)
             .tabBar($r('app.string.mine'))
+            // [EndExclude bottom_navigation]
           }
+          // [End bottom_navigation]
           .height(500)
         }
       }

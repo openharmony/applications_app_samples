@@ -22,12 +22,15 @@ export struct TabsLayout {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.TabsLayout_titleExample') }) {
+          // [Start basic_layout_displays_many_contents]
           Tabs() {
+            // [Start basic_layout_displays_one_content]
             TabContent() {
               Text($r('app.string.homepage_content'))
                 .fontSize(30)
             }
             .tabBar($r('app.string.homepage'))
+            // [End basic_layout_displays_one_content]
 
             TabContent() {
               Text($r('app.string.recommend_content'))
@@ -46,8 +49,11 @@ export struct TabsLayout {
                 .fontSize(30)
             }
             .tabBar($r('app.string.mine'))
+            // [StartExclude basic_layout_displays_many_contents]
           }.height(300)
+          // [EndExclude basic_layout_displays_many_contents]
         }
+        // [End basic_layout_displays_many_contents]
       }
       .width('100%')
       .height('100%')

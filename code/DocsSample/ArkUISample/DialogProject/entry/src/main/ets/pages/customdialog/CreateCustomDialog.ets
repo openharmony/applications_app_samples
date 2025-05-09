@@ -16,6 +16,7 @@
 import { PromptActionClass } from '../../common/PromptActionClass';
 import { ComponentContent } from '@kit.ArkUI';
 
+// [Start create_custom_dialog_example]
 @CustomDialog
 struct CustomDialogExample {
   controller: CustomDialogController = new CustomDialogController({
@@ -34,7 +35,10 @@ struct CustomDialogExample {
     })
   }
 }
+// [End create_custom_dialog_example]
 
+// [Start click_event_pop_dialog]
+// [Start create_custom_dialog_controller]
 @Entry
 @Component
 export struct CreateDialog {
@@ -42,6 +46,7 @@ export struct CreateDialog {
     builder: CustomDialogExample(),
   })
 
+  // [StartExclude create_custom_dialog_controller]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -61,4 +66,7 @@ export struct CreateDialog {
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CustomDialog_create'))
   }
+  // [EndExclude create_custom_dialog_controller]
+  // [End create_custom_dialog_controller]
+  // [End click_event_pop_dialog]
 }

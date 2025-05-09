@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card';
 
+// [Start build_scrollable_horizontally_grid_layouts]
 @Entry
 @Component
 export struct ScrollableGrid {
@@ -32,12 +33,15 @@ export struct ScrollableGrid {
               }.backgroundColor('#FFF1F3F5').width('25%')
             }, (service: string): string => service)
           }
+          // [StartExclude build_scrollable_horizontally_grid_layouts]
           .height(200)
           .columnsGap(10)
+          // [EndExclude build_scrollable_horizontally_grid_layouts]
           .rowsGap(15)
           .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
         }
       }
+      // [End build_scrollable_horizontally_grid_layouts]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })

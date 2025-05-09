@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start key_event_intercept]
 import { KeyCode } from '@kit.InputKit';
 
 @Entry
@@ -51,3 +52,4 @@ export struct PreIme {
     .title($r('app.string.Device_OnKeyPreIme_title'))
   }
 }
+// [End key_event_intercept]

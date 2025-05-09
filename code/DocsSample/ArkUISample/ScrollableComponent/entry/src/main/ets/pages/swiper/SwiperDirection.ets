@@ -26,7 +26,9 @@ export struct SwiperDirection {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SwiperPageSwitchMethod_titleHorizontal') }) {
           Column({ space: 8 }) {
+            // [Start rotate_horizontally]
             Swiper(this.swiperHorizontalController) {
+              // [StartExclude rotate_horizontally]
               Text('0')
                 .width('90%')
                 .height('100%')
@@ -47,10 +49,14 @@ export struct SwiperDirection {
                 .backgroundColor(Color.Pink)
                 .textAlign(TextAlign.Center)
                 .fontSize(30)
+              // [EndExclude rotate_horizontally]
             }
+            // [StartExclude rotate_horizontally]
             .height(200)
+            // [EndExclude rotate_horizontally]
             .indicator(true)
             .vertical(false)
+            // [End rotate_horizontally]
 
             Row({ space: 12 }) {
               Button('showNext')
@@ -67,7 +73,9 @@ export struct SwiperDirection {
 
         ComponentCard({ title: $r('app.string.SwiperPageSwitchMethod_titleVertical') }) {
           Column({ space: 8 }) {
+            // [Start rotate_vertically]
             Swiper(this.swiperVerticalController) {
+              // [StartExclude rotate_vertically]
               Text('0')
                 .width('90%')
                 .height('100%')
@@ -88,10 +96,14 @@ export struct SwiperDirection {
                 .backgroundColor(Color.Pink)
                 .textAlign(TextAlign.Center)
                 .fontSize(30)
+              // [EndExclude rotate_vertically]
             }
+            // [StartExclude rotate_vertically]
             .height(200)
+            // [EndExclude rotate_vertically]
             .indicator(true)
             .vertical(true)
+            // [End rotate_vertically]
 
             Row({ space: 12 }) {
               Button('showNext')

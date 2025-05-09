@@ -16,6 +16,7 @@
 import { KeyCode } from '@kit.InputKit';
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
+// [Start dynamic_focus_click_count]
 @Entry
 @Component
 export struct FocusAndClick {
@@ -50,3 +51,4 @@ export struct FocusAndClick {
     .title($r('app.string.Focus_FocusAndClick_title'))
   }
 }
+// [End dynamic_focus_click_count]

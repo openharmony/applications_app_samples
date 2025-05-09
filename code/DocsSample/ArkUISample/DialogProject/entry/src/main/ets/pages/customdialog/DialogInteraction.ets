@@ -16,6 +16,7 @@
 import { PromptActionClass } from '../../common/PromptActionClass';
 import { ComponentContent } from '@kit.ArkUI';
 
+// [Start custom_dialog_build_button]
 @CustomDialog
 struct CustomDialogExample {
   cancel?: () => void;
@@ -62,7 +63,9 @@ struct CustomDialogExample {
 
   }
 }
+// [End custom_dialog_build_button]
 
+// [Start dialog_constructor_accept]
 @Entry
 @Component
 export struct DialogInteraction {
@@ -104,4 +107,5 @@ export struct DialogInteraction {
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CustomDialog_interaction'))
   }
+  // [End dialog_constructor_accept]
 }

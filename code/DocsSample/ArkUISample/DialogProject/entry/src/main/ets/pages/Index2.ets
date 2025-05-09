@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start dialog_route_jump_back]
 @Entry
 @Component
 struct Index2 {
@@ -32,3 +33,4 @@ struct Index2 {
     }.width('100%').height('100%').margin({ top: 20 })
   }
 }
+// [End dialog_route_jump_back]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start date_picker_dialog]
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
@@ -51,3 +52,4 @@ export struct DatePickerDialogExample {
     .title($r('app.string.CustomDialog_date'))
   }
 }
+// [End date_picker_dialog]

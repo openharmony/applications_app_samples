@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start custom_popup]
 @Entry
 @Component
 export struct CustomPopupExample {
@@ -59,3 +60,4 @@ export struct CustomPopupExample {
     .title($r('app.string.custom_popup'))
   }
 }
+// [End custom_popup]

@@ -26,6 +26,7 @@ export struct TaggedListItems {
         ComponentCard({ title: $r('app.string.TaggedListItems_titleExample') }) {
           List() {
             ForEach(this.arr, (item: number) => {
+              // [Start add_tags_to_list_items]
               ListItem() {
                 // Badge组件实现消息右上角添加标记功能
                 Badge({
@@ -33,6 +34,7 @@ export struct TaggedListItems {
                   position: BadgePosition.RightTop,
                   style: { badgeSize: 16, badgeColor: '#FA2A2D' }
                 }) {
+                  // [StartExclude add_tags_to_list_items]
                   Text('消息' + item)
                     .width('95%')
                     .height(50)
@@ -40,7 +42,9 @@ export struct TaggedListItems {
                     .textAlign(TextAlign.Center)
                     .borderRadius(10)
                     .backgroundColor('#FFF1F3F5')
+                  // [EndExclude add_tags_to_list_items]
                 }
+                // [End add_tags_to_list_items]
               }.margin({ top: 12 })
             }, (item: number) => item.toString())
           }

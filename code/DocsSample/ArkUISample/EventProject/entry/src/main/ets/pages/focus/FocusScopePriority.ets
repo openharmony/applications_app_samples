@@ -16,6 +16,7 @@
 import { KeyCode } from '@kit.InputKit';
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
+// [Start focus_scope_navigation]
 @Entry
 @Component
 export struct FocusScopePriority {
@@ -146,3 +147,4 @@ export struct FocusScopePriority {
     .title($r('app.string.Focus_FocusScopePriority_title'))
   }
 }
+// [End focus_scope_navigation]

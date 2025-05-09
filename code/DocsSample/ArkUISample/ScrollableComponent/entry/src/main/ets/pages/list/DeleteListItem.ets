@@ -15,6 +15,7 @@
 
 import { util } from '@kit.ArkTS';
 
+// [Start structural_references]
 export class ToDo {
   public key: string = util.generateRandomUUID(true);
   public name: string;
@@ -23,6 +24,7 @@ export class ToDo {
     this.name = name;
   }
 }
+// [End structural_references]
 
 @Component
 export struct ToDoListItem {
@@ -31,7 +33,9 @@ export struct ToDoListItem {
   private toDoItem: ToDo = new ToDo('');
 
   build() {
+    // [Start enter_edit_mode]
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      // [StartExclude enter_edit_mode]
       Text(this.toDoItem.name)
         .fontSize(16)
         .width('80%')
@@ -50,6 +54,7 @@ export struct ToDoListItem {
     .width('100%')
     .height(40)
     .borderRadius(12)
+    // [EndExclude enter_edit_mode]
     .gesture(
       GestureGroup(GestureMode.Exclusive,
         LongPressGesture()
@@ -60,6 +65,7 @@ export struct ToDoListItem {
     )
   }
 }
+// [End enter_edit_mode]
 
 @Entry
 @Component
@@ -144,6 +150,7 @@ export struct DeleteListItem {
 
         if (this.isEditMode) {
           Column({ space: 8 }) {
+            // [Start implement_deletion]
             Button('delete')
               .width('90%')
               .backgroundColor(Color.Red)
@@ -155,6 +162,7 @@ export struct DeleteListItem {
           }
         }
       }
+      // [End implement_deletion]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
@@ -163,5 +171,3 @@ export struct DeleteListItem {
     .title($r('app.string.DeleteListItem_title'))
   }
 }
-
-

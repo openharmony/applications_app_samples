@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start set_dialog_nest]
 @CustomDialog
 struct CustomDialogExampleTwo {
   controllerTwo?: CustomDialogController;
@@ -168,3 +169,4 @@ export struct NestDialog {
     .title($r('app.string.CustomDialog_nest'))
   }
 }
+// [End set_dialog_nest]

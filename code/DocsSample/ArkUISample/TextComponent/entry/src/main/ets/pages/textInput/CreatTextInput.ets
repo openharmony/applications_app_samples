@@ -22,7 +22,9 @@ export struct CreatTextInput {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CreatTextInput_title_1') }) {
+          // [Start create_text_input]
           TextInput()
+          // [End create_text_input]
         }
 
         ComponentCard({
@@ -30,9 +32,13 @@ export struct CreatTextInput {
           description: $r('app.string.CreatTextInput_description_1')
         }) {
           Column({ space: 8 }) {
+            // [Start create_text_area]
             TextArea()
+            // [End create_text_area]
+            // [Start create_text_area_example]
             TextArea({ text: $r('app.string.CreatTextInput_textContent') })
               .width(300)
+            // [End create_text_area_example]
           }
         }
       }

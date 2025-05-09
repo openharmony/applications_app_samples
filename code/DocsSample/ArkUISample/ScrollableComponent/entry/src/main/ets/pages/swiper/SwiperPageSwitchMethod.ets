@@ -15,15 +15,18 @@
 
 import { ComponentCard } from '../../common/Card';
 
+// [Start switch_pages]
 @Entry
 @Component
 export struct SwiperPageSwitchMethod {
   private swiperController: SwiperController = new SwiperController();
 
   build() {
+    // [StartExclude switch_pages]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SwiperPageSwitchMethod_title') }) {
+          // [EndExclude switch_pages]
           Column({ space: 8 }) {
             Swiper(this.swiperController) {
               Text('0')
@@ -45,7 +48,9 @@ export struct SwiperPageSwitchMethod {
                 .textAlign(TextAlign.Center)
                 .fontSize(30)
             }
+            // [StartExclude switch_pages]
             .height(200)
+            // [EndExclude switch_pages]
             .indicator(true)
 
             Row({ space: 12 }) {
@@ -61,6 +66,7 @@ export struct SwiperPageSwitchMethod {
           }
         }
       }
+      // [End switch_pages]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })

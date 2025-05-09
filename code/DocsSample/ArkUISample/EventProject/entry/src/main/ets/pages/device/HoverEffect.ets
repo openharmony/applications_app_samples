@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start mouse_hover_effect]
 @Entry
 @Component
 export struct HoverEffectSample {
@@ -48,3 +49,4 @@ export struct HoverEffectSample {
     .title($r('app.string.HoverEffectSample_title'))
   }
 }
+// [End mouse_hover_effect]

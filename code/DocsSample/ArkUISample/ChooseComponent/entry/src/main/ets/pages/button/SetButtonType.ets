@@ -31,25 +31,31 @@ export struct SetButtonType {
           title: $r('app.string.SetButtonType_titleOne'),
           description: $r('app.string.SetButtonType_descriptionOne')
         }) {
+          // [Start create_capsule_button]
           Button('Button', { type: ButtonType.Capsule })
             .id('Capsule')
+          // [End create_capsule_button]
         }
 
         ComponentCard({
           title: $r('app.string.SetButtonType_titleTwo'),
           description: $r('app.string.SetButtonType_descriptionTwo')
         }) {
+          // [Start create_circle_button]
           Button('Button', { type: ButtonType.Circle })
             .id('Circle')
             .width(80)
+          // [End create_circle_button]
         }
 
         ComponentCard({
           title: $r('app.string.SetButtonType_titleThree'),
           description: $r('app.string.SetButtonType_descriptionThree')
         }) {
+          // [Start create_normal_button]
           Button('Button', { type: ButtonType.Normal })
             .id('Normal')
+          // [End create_normal_button]
         }
 
         ComponentCard({

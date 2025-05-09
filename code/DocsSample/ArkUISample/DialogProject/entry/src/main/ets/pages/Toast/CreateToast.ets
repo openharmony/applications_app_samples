@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start create_toast]
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -50,3 +51,4 @@ export struct CreateToastExample {
     .title($r('app.string.CreateToast_title'))
   }
 }
+// [End create_toast]

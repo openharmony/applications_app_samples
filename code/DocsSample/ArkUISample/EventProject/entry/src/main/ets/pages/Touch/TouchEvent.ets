@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start touch_event_handle]
 @Entry
 @Component
 export struct Touch {
@@ -71,3 +72,4 @@ export struct Touch {
     .title($r('app.string.Touch_TouchEvent_title'))
   }
 }
+// [End touch_event_handle]

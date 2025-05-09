@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card';
 
+// [Start customize_transition_animations]
 @Entry
 @Component
 export struct SwiperCustomAnimation {
@@ -36,9 +37,13 @@ export struct SwiperCustomAnimation {
   }
 
   build() {
+    // [StartExclude customize_transition_animations]
     NavDestination() {
+      // [EndExclude customize_transition_animations]
       Column({ space: 12 }) {
+        // [StartExclude customize_transition_animations]
         ComponentCard({ title: $r('app.string.SwiperCustomAnimation_titleExample') }) {
+          // [EndExclude customize_transition_animations]
           Swiper() {
             ForEach(this.backgroundColors, (backgroundColor: Color, index: number) => {
               Text(index.toString())
@@ -88,6 +93,7 @@ export struct SwiperCustomAnimation {
         }
       }
       .width('100%')
+      // [End customize_transition_animations]
       .height('100%')
       .padding({ left: 12, right: 12 })
     }

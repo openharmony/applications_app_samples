@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start age_friendly_tab]
 import { abilityManager, Configuration } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { promptAction, uiAppearance } from '@kit.ArkUI';
@@ -72,7 +73,9 @@ export struct AgeFriendlyTabs {
   }
 
   build() {
+    // [StartExclude age_friendly_tab]
     NavDestination() {
+      // [EndExclude age_friendly_tab]
       Column() {
         Column() {
           Row() {
@@ -175,6 +178,7 @@ export struct AgeFriendlyTabs {
         .margin({ top: 200 })
       }.width('100%')
     }
+    // [End age_friendly_tab]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.AgeFriendlyTabs_title'))
   }

@@ -20,22 +20,30 @@ import { ComponentCard } from '../../common/Card';
 export struct ScrollPosition {
   @State services: Array<string> = ['Live Streaming', 'Imported', 'Categories', 'Recharge',
     'Membership', 'Claim Coupon', 'Lottery', 'Favorites', 'Points', 'More'];
+  // [Start build_a_private_scrolling_object]
   private scroller: Scroller = new Scroller();
+  // [End build_a_private_scrolling_object]
+
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ScrollPosition_titleExample') }) {
+          // [Start control_the_grid_scroll]
           Column({ space: 12 }) {
             Grid(this.scroller) {
+              // [StartExclude control_the_grid_scroll]
               ForEach(this.services, (service: string) => {
                 GridItem() {
                   Text(service)
                 }.backgroundColor('#FFF1F3F5').width('25%')
               }, (service: string): string => service)
+              // [EndExclude control_the_grid_scroll]
             }
+            // [StartExclude control_the_grid_scroll]
             .height(100)
             .columnsGap(10)
+            // [EndExclude control_the_grid_scroll]
             .rowsTemplate('1fr')
 
             Row({ space: 20 }) {
@@ -50,6 +58,7 @@ export struct ScrollPosition {
                 })
             }
           }
+          // [End control_the_grid_scroll]
         }
       }
       .width('100%')

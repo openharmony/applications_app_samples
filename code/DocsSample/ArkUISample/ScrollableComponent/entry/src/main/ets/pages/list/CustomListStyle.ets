@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card';
 
+// [Start set_the_divider]
 class DividerTmp {
   public strokeWidth: Length = 1;
   public startMargin: Length = 60;
@@ -35,6 +36,7 @@ export struct CustomListStyle {
   @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0');
 
   build() {
+    // [StartExclude set_the_divider]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CustomListStyle_titleContentSpacing') }) {
@@ -52,6 +54,7 @@ export struct CustomListStyle {
         }
 
         ComponentCard({ title: $r('app.string.CustomListStyle_titleDividerLines') }) {
+          // [EndExclude set_the_divider]
           List({ space: 10 }) {
             ListItem() {
               Text('ListItem One')
@@ -64,9 +67,12 @@ export struct CustomListStyle {
           .divider(this.egDivider)
           .alignListItem(ListItemAlign.Center)
         }
+        // [End set_the_divider]
 
         ComponentCard({ title: $r('app.string.CustomListStyle_titleScrollbars') }) {
+          // [Start add_a_scrollbar]
           List({ space: 10 }) {
+            // [StartExclude add_a_scrollbar]
             ListItem() {
               Text('ListItem One')
             }.height(30)
@@ -78,9 +84,13 @@ export struct CustomListStyle {
             ListItem() {
               Text('ListItem Three')
             }.height(30)
+            // [EndExclude add_a_scrollbar]
           }
+          // [StartExclude add_a_scrollbar]
           .height(60)
+          // [EndExclude add_a_scrollbar]
           .scrollBar(BarState.Auto)
+          // [End add_a_scrollbar]
           .backgroundColor('#FFF1F3F5')
         }
       }

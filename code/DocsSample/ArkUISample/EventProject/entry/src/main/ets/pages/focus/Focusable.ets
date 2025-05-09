@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import { KeyCode } from '@kit.InputKit';
 
+// [Start dynamic_focus_control_manage]
 @Entry
 @Component
 export struct FocusableExample {
@@ -109,3 +110,4 @@ export struct FocusableExample {
     .title($r('app.string.Focus_Focusable_title'))
   }
 }
+// [End dynamic_focus_control_manage]

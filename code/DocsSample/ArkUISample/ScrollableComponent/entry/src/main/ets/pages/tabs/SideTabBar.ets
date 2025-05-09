@@ -22,7 +22,9 @@ export struct SideTabBar {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SideTabBar_titleExample') }) {
+          // [Start side_navigation]
           Tabs({ barPosition: BarPosition.Start  }) {
+            // [StartExclude side_navigation]
             TabContent() {
               Text($r('app.string.homepage_content'))
                 .fontSize(30)
@@ -50,11 +52,15 @@ export struct SideTabBar {
             }
             .backgroundColor(Color.Orange)
             .tabBar($r('app.string.mine'))
+            // [EndExclude side_navigation]
           }
+          // [StartExclude side_navigation]
           .height(200)
+          // [EndExclude side_navigation]
           .vertical(true)
           .barWidth(100)
           .barHeight(200)
+          // [End side_navigation]
         }
       }
       .width('100%')

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start click_event_handle]
 @Entry
 @Component
 export struct Click {
@@ -49,3 +50,4 @@ export struct Click {
     .title($r('app.string.Touch_ClickEvent_title'))
   }
 }
+// [End click_event_handle]

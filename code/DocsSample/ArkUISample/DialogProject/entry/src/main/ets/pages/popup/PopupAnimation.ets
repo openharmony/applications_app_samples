@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start animation_popup]
 @Entry
 @Component
 export struct AnimationPopupExample {
@@ -82,3 +83,4 @@ export struct AnimationPopupExample {
     .title($r('app.string.AnimationPopup_title'))
   }
 }
+// [End animation_popup]

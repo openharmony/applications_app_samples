@@ -22,6 +22,7 @@ export struct SwiperLoop {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SwiperLoop_titleTrue') }) {
+          // [Start loop_with_true]
           Swiper() {
             Text('0')
               .width('90%')
@@ -44,12 +45,17 @@ export struct SwiperLoop {
               .textAlign(TextAlign.Center)
               .fontSize(30)
           }
+          // [StartExclude loop_with_true]
           .height(200)
+          // [EndExclude loop_with_true]
           .loop(true)
+          // [End loop_with_true]
         }
 
         ComponentCard({ title: $r('app.string.SwiperLoop_titleFalse') }) {
+          // [Start loop_with_false]
           Swiper() {
+            // [StartExclude loop_with_false]
             Text('0')
               .width('90%')
               .height('100%')
@@ -70,9 +76,13 @@ export struct SwiperLoop {
               .backgroundColor(Color.Pink)
               .textAlign(TextAlign.Center)
               .fontSize(30)
+            // [EndExclude loop_with_false]
           }
+          // [StartExclude loop_with_false]
           .height(200)
+          // [EndExclude loop_with_false]
           .loop(false)
+          // [End loop_with_false]
         }
       }
       .width('100%')

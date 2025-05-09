@@ -22,11 +22,13 @@ export struct SwipeLockedTabBar {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SwipeLockedTabBar_titleExample') }) {
+          // [Start swipe_locked_tab_bar]
           Tabs({ barPosition: BarPosition.End }) {
             TabContent() {
               Column() {
                 Tabs() {
                   // 顶部导航栏内容
+                  // [StartExclude swipe_locked_tab_bar]
                   TabContent() {
                     Text($r('app.string.FocusOn_content'))
                       .fontSize(30)
@@ -83,9 +85,13 @@ export struct SwipeLockedTabBar {
             }
             .backgroundColor(Color.Orange)
             .tabBar($r('app.string.mine'))
+            // [EndExclude swipe_locked_tab_bar]
           }
+          // [StartExclude swipe_locked_tab_bar]
           .height(500)
+          // [EndExclude swipe_locked_tab_bar]
           .scrollable(false)
+          // [End swipe_locked_tab_bar]
         }
       }
       .width('100%')

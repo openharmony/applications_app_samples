@@ -31,27 +31,33 @@ export struct ButtonCustomStyle {
           title: $r('app.string.ButtonCustomStyle_titleOne'),
           description: $r('app.string.ButtonCustomStyle_descriptionOne')
         }) {
+          // [Start custom_button_border_radius]
           Button('Button', { type: ButtonType.Normal })
             .id('circle_border')
             .borderRadius(10)
+          // [End custom_button_border_radius]
         }
 
         ComponentCard({
           title: $r('app.string.ButtonCustomStyle_titleTwo'),
           description: $r('app.string.ButtonCustomStyle_descriptionTwo')
         }) {
+          // [Start custom_font_style]
           Button('Button').id('font_style')
             .fontSize(20)
             .fontColor(Color.Pink)
             .fontWeight(800)
+          // [End custom_font_style]
         }
 
         ComponentCard({
           title: $r('app.string.ButtonCustomStyle_titleThree'),
           description: $r('app.string.ButtonCustomStyle_descriptionThree')
         }) {
+          // [Start custom_background_color]
           Button('Button').id('background_color')
             .backgroundColor(Color.Red)
+          // [End custom_background_color]
         }
       }
       .width('100%')

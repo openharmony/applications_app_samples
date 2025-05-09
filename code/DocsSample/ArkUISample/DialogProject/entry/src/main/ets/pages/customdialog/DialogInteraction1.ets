@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start dialog_route_jump]
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string;
@@ -148,3 +149,4 @@ export struct DialogInteraction1 {
     .title($r('app.string.CustomDialog_interaction1'))
   }
 }
+// [End dialog_route_jump]

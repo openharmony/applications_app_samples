@@ -23,6 +23,7 @@ export struct SwiperIndicatorStyle {
       Column({ space: 12 }) {
 
         ComponentCard({ title: $r('app.string.SwiperIndicatorStyle_titleDefault') }) {
+          // [Start default_navigation_point_style]
           Swiper() {
             Text('0')
               .width('90%')
@@ -45,11 +46,14 @@ export struct SwiperIndicatorStyle {
               .textAlign(TextAlign.Center)
               .fontSize(30)
           }
+          // [End default_navigation_point_style]
           .height(100)
         }
 
         ComponentCard({ title: $r('app.string.SwiperIndicatorStyle_titleCustom') }) {
+          // [Start customize_navigation_point_styles]
           Swiper() {
+            // [StartExclude customize_navigation_point_styles]
             Text('0')
               .width('90%')
               .height('100%')
@@ -70,6 +74,7 @@ export struct SwiperIndicatorStyle {
               .backgroundColor(Color.Pink)
               .textAlign(TextAlign.Center)
               .fontSize(30)
+            // [EndExclude customize_navigation_point_styles]
           }
           .height(100)
           .indicator(
@@ -83,9 +88,12 @@ export struct SwiperIndicatorStyle {
               .selectedColor(Color.Blue)
           )
         }
+        // [End customize_navigation_point_styles]
 
         ComponentCard({ title: $r('app.string.SwiperIndicatorStyle_titleDefaultArrows') }) {
+          // [Start default_arrow_style]
           Swiper() {
+            // [StartExclude default_arrow_style]
             Text('0')
               .width('90%')
               .height('100%')
@@ -106,13 +114,19 @@ export struct SwiperIndicatorStyle {
               .backgroundColor(Color.Pink)
               .textAlign(TextAlign.Center)
               .fontSize(30)
+            // [EndExclude default_arrow_style]
           }
+          // [StartExclude default_arrow_style]
           .height(100)
+          // [EndExclude default_arrow_style]
           .displayArrow(true, false)
+          // [End default_arrow_style]
         }
 
         ComponentCard({ title: $r('app.string.SwiperIndicatorStyle_titleCustomArrows') }) {
+          // [Start customize_the_arrow_style]
           Swiper() {
+            // [StartExclude customize_the_arrow_style]
             Text('0')
               .width('90%')
               .height('100%')
@@ -133,8 +147,11 @@ export struct SwiperIndicatorStyle {
               .backgroundColor(Color.Pink)
               .textAlign(TextAlign.Center)
               .fontSize(30)
+            // [EndExclude customize_the_arrow_style]
           }
+          // [StartExclude customize_the_arrow_style]
           .height(100)
+          // [EndExclude customize_the_arrow_style]
           .displayArrow({
             showBackground: true,
             isSidebarMiddle: true,
@@ -143,6 +160,7 @@ export struct SwiperIndicatorStyle {
             arrowSize: 18,
             arrowColor: Color.Blue
           }, false)
+          // [End customize_the_arrow_style]
         }
       }
       .width('100%')

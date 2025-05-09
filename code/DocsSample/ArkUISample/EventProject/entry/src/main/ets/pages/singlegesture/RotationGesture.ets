@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start catch_rotation_gesture_event]
 @Entry
 @Component
 export struct Rotation {
@@ -62,3 +63,4 @@ export struct Rotation {
     .title($r('app.string.singlegesture_RotationGesture_title'))
   }
 }
+// [End catch_rotation_gesture_event]

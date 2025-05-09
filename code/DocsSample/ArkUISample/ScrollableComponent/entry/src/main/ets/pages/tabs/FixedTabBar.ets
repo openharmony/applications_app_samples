@@ -22,7 +22,9 @@ export struct FixedTabBar {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.FixedTabBar_titleExample') }) {
+          // [Start fixed_tab_bar]
           Tabs({ barPosition: BarPosition.End }) {
+            // [StartExclude fixed_tab_bar]
             TabContent() {
               Text($r('app.string.homepage_content'))
                 .fontSize(30)
@@ -50,9 +52,13 @@ export struct FixedTabBar {
             }
             .backgroundColor(Color.Orange)
             .tabBar($r('app.string.mine'))
+            // [EndExclude fixed_tab_bar]
           }
+          // [StartExclude fixed_tab_bar]
           .height(500)
+          // [EndExclude fixed_tab_bar]
           .barMode(BarMode.Fixed)
+          // [End fixed_tab_bar]
         }
       }
       .width('100%')

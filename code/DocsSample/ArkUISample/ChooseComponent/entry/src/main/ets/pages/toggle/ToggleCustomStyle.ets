@@ -31,6 +31,7 @@ export struct CustomStyle {
           title: $r('app.string.ToggleCustomStyle_titleOne'),
           description: $r('app.string.ToggleCustomStyle_descriptionOne')
         }) {
+          // [Start custom_toggle]
           Toggle({ type: ToggleType.Button, isOn: true }) {
             Text('status button')
               .fontColor(Color.White)
@@ -45,18 +46,21 @@ export struct CustomStyle {
           Toggle({ type: ToggleType.Switch, isOn: true })
             .selectedColor(Color.Pink)
             .id('toggle3')
+          // [End custom_toggle]
         }
 
         ComponentCard({
           title: $r('app.string.ToggleCustomStyle_titleTwo'),
           description: $r('app.string.ToggleCustomStyle_descriptionTwo')
         }) {
+          // [Start custom_switch_point_color]
           Toggle({ type: ToggleType.Switch, isOn: false })
             .switchPointColor(Color.Pink)
             .id('toggle4')
           Toggle({ type: ToggleType.Switch, isOn: true })
             .switchPointColor(Color.Pink)
             .id('toggle5')
+          // [End custom_switch_point_color]
         }
       }
       .width('100%')

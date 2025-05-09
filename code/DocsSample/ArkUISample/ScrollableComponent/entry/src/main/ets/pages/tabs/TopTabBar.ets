@@ -22,7 +22,9 @@ export struct TopTabBar {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.TopTabBar_titleExample') }) {
+          // [Start top_navigation]
           Tabs({ barPosition: BarPosition.Start }) {
+            // [StartExclude top_navigation]
             TabContent() {
               Text($r('app.string.FocusOn_content'))
                 .fontSize(30)
@@ -58,7 +60,9 @@ export struct TopTabBar {
             .backgroundColor(Color.Pink)
             .tabBar($r('app.string.technology'))
           }.height(500)
+          // [EndExclude top_navigation]
         }
+        // [End top_navigation]
       }
       .width('100%')
       .height('100%')

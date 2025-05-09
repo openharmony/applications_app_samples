@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start catch_long_press_event]
 @Entry
 @Component
 export struct LongPress {
@@ -52,3 +53,4 @@ export struct LongPress {
     .title($r('app.string.singlegesture_LongPressGesture_title'))
   }
 }
+// [End catch_long_press_event]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start catch_swipe_gesture_event]
 @Entry
 @Component
 export struct Swipe {
@@ -54,3 +55,4 @@ export struct Swipe {
     .title($r('app.string.singlegesture_SwipeGesture_title'))
   }
 }
+// [End catch_swipe_gesture_event]

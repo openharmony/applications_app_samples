@@ -16,6 +16,7 @@
 import { KeyCode } from '@kit.InputKit';
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
+// [Start dynamic_focus_control_demo]
 @Entry
 @Component
 export struct FocusControl {
@@ -96,3 +97,4 @@ export struct FocusControl {
     .title($r('app.string.Focus_FocusController_title'))
   }
 }
+// [End dynamic_focus_control_demo]

@@ -22,6 +22,7 @@ export struct SwiperMultiPage {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SwiperMultiPage_titleExample') }) {
+          // [Start each_page_displays_multiple_subpages]
           Swiper() {
             Text('0')
               .width('90%')
@@ -48,10 +49,13 @@ export struct SwiperMultiPage {
               .textAlign(TextAlign.Center)
               .fontSize(30)
           }
+          // [StartExclude each_page_displays_multiple_subpages]
           .height(200)
+          // [EndExclude each_page_displays_multiple_subpages]
           .indicator(true)
           .displayCount(2)
         }
+        // [End each_page_displays_multiple_subpages]
       }
       .width('100%')
       .height('100%')
