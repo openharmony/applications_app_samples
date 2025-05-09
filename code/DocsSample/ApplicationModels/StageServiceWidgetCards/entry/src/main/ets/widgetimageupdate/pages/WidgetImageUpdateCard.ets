@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_image_update_card]
 let storageWidgetImageUpdate = new LocalStorage();
 
 @Entry(storageWidgetImageUpdate)
@@ -61,7 +62,9 @@ struct WidgetImageUpdateCard {
       .width('100%').height('100%')
       .backgroundImage('memory://' + this.imgName)
       .backgroundImageSize(ImageSize.Cover)
-    } else {
+    } 
+    // [StartExclude widget_image_update_card]
+    else {
       Column() {
         Column() {
           Text(this.text)
@@ -99,5 +102,7 @@ struct WidgetImageUpdateCard {
       .backgroundImage($r('app.media.ImageDisp'))
       .backgroundImageSize(ImageSize.Cover)
     }
-  }
+    // [EndExclude widget_image_update_card]
+  } 
 }
+// [End widget_image_update_card]

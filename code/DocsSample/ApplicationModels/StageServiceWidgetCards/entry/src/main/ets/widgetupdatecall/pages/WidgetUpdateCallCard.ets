@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_update_call_card]
 let storageUpdtCall = new LocalStorage();
 
 @Entry(storageUpdtCall)
@@ -64,3 +65,4 @@ struct WidgetUpdateCallCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+// [End widget_update_call_card]

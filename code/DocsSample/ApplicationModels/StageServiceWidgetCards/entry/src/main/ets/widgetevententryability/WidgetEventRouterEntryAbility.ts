@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_event_router_entry_ability]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -77,3 +78,4 @@ export default class WidgetEventRouterEntryAbility extends UIAbility {
     });
   }
 }
+// [End widget_event_router_entry_ability]

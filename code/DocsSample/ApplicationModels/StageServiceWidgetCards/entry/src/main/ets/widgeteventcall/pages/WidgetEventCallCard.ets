@@ -15,6 +15,7 @@
 
 let storageEventCall = new LocalStorage();
 
+// [Start widget_event_call_card]
 @Entry(storageEventCall)
 @Component
 struct WidgetEventCallCard {
@@ -22,23 +23,29 @@ struct WidgetEventCallCard {
 
   build() {
     Column() {
+      // [StartExclude widget_event_call_card]
       Text($r('app.string.WidgetEventCallEntryAbility_desc'))
         .fontColor('#FFFFFF')
         .opacity(0.9)
         .fontSize(14)
         .margin({ top: '8%', left: '10%' })
+        // [EndExclude widget_event_call_card]
       Row() {
         Column() {
           Button() {
+            // [StartExclude widget_event_call_card]
             Text($r('app.string.ButtonA_label'))
               .fontColor('#45A6F4')
               .fontSize(12)
+              // [EndExclude widget_event_call_card]
           }
+          // [StartExclude widget_event_call_card]
           .width(120)
           .height(32)
           .margin({ top: '20%' })
           .backgroundColor('#FFFFFF')
           .borderRadius(16)
+          // [EndExclude widget_event_call_card]
           .onClick(() => {
             postCardAction(this, {
               action: 'call',
@@ -51,15 +58,19 @@ struct WidgetEventCallCard {
           })
 
           Button() {
+            // [StartExclude widget_event_call_card]
             Text($r('app.string.ButtonB_label'))
               .fontColor('#45A6F4')
               .fontSize(12)
+              // [EndExclude widget_event_call_card]
           }
+          // [StartExclude widget_event_call_card]
           .width(120)
           .height(32)
           .margin({ top: '8%', bottom: '15vp' })
           .backgroundColor('#FFFFFF')
           .borderRadius(16)
+          // [EndExclude widget_event_call_card]
           .onClick(() => {
             postCardAction(this, {
               action: 'call',
@@ -78,7 +89,10 @@ struct WidgetEventCallCard {
     .width('100%')
     .height('100%')
     .alignItems(HorizontalAlign.Start)
+    // [StartExclude widget_event_call_card]
     .backgroundImage($r('app.media.CardEvent'))
     .backgroundImageSize(ImageSize.Cover)
+    // [EndExclude widget_event_call_card]
   }
 }
+// [End widget_event_call_card]

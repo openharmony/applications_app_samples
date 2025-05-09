@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start update_by_time_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -23,6 +24,7 @@ const FIVE_MINUTE: number = 5;
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class UpdateByTimeFormAbility extends FormExtensionAbility {
+  // [StartExclude update_by_time_form_ability]
   onAddForm(want: Want): formBindingData.FormBindingData {
     // Called to return a FormBindingData object.
     let formData = {};
@@ -45,6 +47,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     });
   }
 
+  // [EndExclude update_by_time_form_ability]
   onFormEvent(formId: string, message: string): void {
     // Called when a specified message event defined by the form provider is triggered.
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
@@ -66,9 +69,11 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     }
     ;
   }
-
+  // [StartExclude update_by_time_form_ability]
   onAcquireFormState(want: Want): formInfo.FormState {
     // Called to return a {@link FormState} object.
     return formInfo.FormState.READY;
   }
+  // [EndExclude update_by_time_form_ability]
 }
+// [End update_by_time_form_ability]

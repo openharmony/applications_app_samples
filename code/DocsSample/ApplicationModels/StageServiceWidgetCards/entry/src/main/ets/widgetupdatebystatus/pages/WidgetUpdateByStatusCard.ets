@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_update_by_status_card]
 let storageUpdateByStatus = new LocalStorage();
 
 @Entry(storageUpdateByStatus)
@@ -110,3 +111,4 @@ struct WidgetUpdateByStatusCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+// [End widget_update_by_status_card]

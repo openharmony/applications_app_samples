@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_process_data_card]
 let storageProcess = new LocalStorage();
 
 @Entry(storageProcess)
@@ -36,3 +37,4 @@ struct WidgetProcessDataCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+// [End widget_process_data_card]

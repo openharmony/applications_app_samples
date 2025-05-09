@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start local_file_refresh]
+// [Start network_file_refresh]
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
@@ -26,6 +28,7 @@ const TEXT1: string = '刷新中...'
 const TEXT2: string = '刷新失败'
 
 export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
+  // [StartExclude network_file_refresh]
   // 在添加卡片时，打开一个本地图片并将图片内容传递给卡片页面显示
   onAddForm(want: Want): formBindingData.FormBindingData {
     // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
@@ -55,7 +58,8 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     // 将fd封装在formData中并返回至卡片页面
     return formBindingData.createFormBindingData(formData);
   }
-
+  // [StartExclude local_file_refresh]
+  // [EndExclude network_file_refresh]
   async onFormEvent(formId: string, message: string): Promise<void> {
     let param: Record<string, string> = {
       'text': TEXT1
@@ -121,10 +125,14 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     }
     httpRequest.destroy();
   }
+  // [StartExclude network_file_refresh]
 
   onAcquireFormState(want: Want): formInfo.FormState {
     // Called to return a {@link FormState} object.
     return formInfo.FormState.READY;
   }
+  // [EndExclude local_file_refresh]
+  // [EndExclude network_file_refresh]
 }
+// [End local_file_refresh]
 
