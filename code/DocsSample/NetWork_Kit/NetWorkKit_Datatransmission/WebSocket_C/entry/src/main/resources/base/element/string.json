@@ -51,8 +51,10 @@
     {
       "name": "Close_connection_failed",
       "value": "关闭连接失败！"
+    },
+    {
+      "name": "grant_internet",
+      "value": "网络使用权限"
     }
-
-
   ]
 }

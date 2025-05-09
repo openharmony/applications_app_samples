@@ -79,6 +79,7 @@ function handleMessage(message: TlsTwoWayMessage) {
   }
 }
 
+// [Start two-way_authentication_via_tls_socket]
 // 读取文件并返回内容
 function loadFile(fileUri: string) {
   try {
@@ -158,6 +159,7 @@ function sendMessageToServer(message: string) {
     workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
   });
 }
+// [End two-way_authentication_via_tls_socket]
 
 // ArrayBuffer 转 utf8 字符串
 function buf2String(buf: ArrayBuffer): string {
@@ -165,4 +167,5 @@ function buf2String(buf: ArrayBuffer): string {
   let textDecoder = util.TextDecoder.create('utf-8');
   return textDecoder.decodeToString(msgArray);
 }
+
 

@@ -39,6 +39,10 @@
     {
       "name": "httpSendSuccess",
       "value": "httpSendSuccess"
+    },
+    {
+      "name": "grant_internet",
+      "value": "grant_internet"
     }
   ]
 }

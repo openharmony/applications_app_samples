@@ -16,7 +16,7 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, MatchPattern, ON } from '@kit.TestKit';
 import Logger from '../../../main/ets/common/Logger';
-import { UIAbility } from '@kit.AbilityKit';
+import { UIAbility, Want} from '@kit.AbilityKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 

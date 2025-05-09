@@ -77,6 +77,7 @@ function handleMessage(message: TlsOneWayMessage) {
   }
 }
 
+// [Start one-way_authentication_via_tls_socket]
 // 读取 CA 证书
 function loadCA(fileUri: string) {
   try {
@@ -146,6 +147,7 @@ function sendMessageToServer(message: string) {
       workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
     });
 }
+// [End one-way_authentication_via_tls_socket]
 
 // ArrayBuffer 转 utf8 字符串
 function buf2String(buf: ArrayBuffer): string {
@@ -153,3 +155,4 @@ function buf2String(buf: ArrayBuffer): string {
   let textDecoder = util.TextDecoder.create('utf-8');
   return textDecoder.decodeToString(msgArray);
 }
+

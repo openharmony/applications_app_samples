@@ -48,6 +48,7 @@ function stringToArrayBuffer(str: string): ArrayBuffer {
   return buf;
 }
 
+// [Start application_transmits_data_via_local_socket]
 // 启动本地 Socket 客户端
 function startLocalSocket(address: string, timeout: number, closeTime: number): void {
   let client: socket.LocalSocket = socket.constructLocalSocketInstance();
@@ -91,8 +92,9 @@ function startLocalSocket(address: string, timeout: number, closeTime: number): 
     workerPort.postMessage({ type: 'clientStatus', status: 'Closed by timeout' });
   }, closeTime);
 }
+// [End application_transmits_data_via_local_socket]
 
-
+// [Start application_transmits_data_via_local_socket_server]
 // 启动本地 Socket 服务器
 function startLocalSocketServer(address: string): void {
   let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
@@ -135,3 +137,4 @@ function startLocalSocketServer(address: string): void {
     Logger.info('Server events unsubscribed.');
   }, 30000); // 设置一个合理的超时关闭（例如30秒后关闭服务器）
 }
+// [End application_transmits_data_via_local_socket_server]

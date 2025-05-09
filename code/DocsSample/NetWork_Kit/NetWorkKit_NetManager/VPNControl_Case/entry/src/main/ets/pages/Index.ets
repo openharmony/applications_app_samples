@@ -21,7 +21,7 @@ import { notificationUtil } from '../notification/NotificationUtil';
 
 // 常量定义
 const TITLE_FONT_SIZE = 35; // 标题字体大小
-const BUTTON_FONT_SIZE = 45; // 按钮字体大小
+const BUTTON_FONT_SIZE = 25; // 按钮字体大小
 const BUTTON_MARGIN = 16; // 按钮边距
 
 @Entry
@@ -47,7 +47,7 @@ struct Index {
           })
 
         // Start VPN 按钮
-        Button('Start VPN')
+        Button($r('app.string.Start_VPN'))
           .onClick(() => {
             Logger.info('developTag', '%{public}s', 'Succeeded in clicking the button.');
             router.pushUrl({ url: 'pages/StartVpn' }).then(() => {
@@ -65,7 +65,7 @@ struct Index {
           .margin(BUTTON_MARGIN)
 
         // Stop VPN 按钮
-        Button('Stop VPN')
+        Button($r('app.string.Stop_VPN'))
           .onClick(() => {
             Logger.info('developTag', '%{public}s', 'Succeeded in clicking the button.');
             router.pushUrl({ url: 'pages/StopVpn' }).then(() => {

@@ -69,6 +69,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
     this.Destroy();
   }
 
+// [Start call_the_ondestroy_method]
   Destroy() {
     Logger.info('developTag', '%{public}s', 'vpn Destroy');
     // 关闭VPN
@@ -78,6 +79,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
       Logger.error('developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
     });
   }
+// [End call_the_ondestroy_method]
 
   // 创建隧道的方法
   CreateTunnel() {

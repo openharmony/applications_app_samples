@@ -47,6 +47,42 @@
     {
       "name": "Allow",
       "value": "Allow"
+    },
+    {
+      "name": "Start_VPN",
+      "value": "Startup interface"
+    },
+    {
+      "name": "Stop_VPN",
+      "value": "Shutdown interface"
+    },
+    {
+      "name": "CreateTunnel",
+      "value": "CreateTunnel"
+    },
+    {
+      "name": "Protect",
+      "value": "Protect"
+    },
+    {
+      "name": "start_vpnExt",
+      "value": "Start vpnExt"
+    },
+    {
+      "name": "SetupVpn",
+      "value": "Setup Vpn"
+    },
+    {
+      "name": "stop_vpn",
+      "value": "Shutdown Vpn"
+    },
+    {
+      "name": "stop_vpnExt",
+      "value": "Shutdown Vpn_Ext"
+    },
+    {
+      "name": "grant_internet",
+      "value": "grant_internet"
     }
   ]
 }

@@ -74,6 +74,7 @@ function handleMessage(message: TlsOneWayMessage) {
   }
 }
 
+// [Start one-way_authentication_by_upgrading_tcp_socket_to_tls_socket]
 function loadCA(fileUri: string) {
   try {
     let buf = new ArrayBuffer(4096);
@@ -153,6 +154,7 @@ function sendMessageToServer(message: string) {
     workerPort.postMessage({ type: 'sendMessageFailure', message: `Failed to send message: ${e.message}` });
   });
 }
+// [End one-way_authentication_by_upgrading_tcp_socket_to_tls_socket]
 
 function buf2String(buf: ArrayBuffer): string {
   let msgArray = new Uint8Array(buf);

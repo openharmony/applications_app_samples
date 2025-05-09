@@ -209,6 +209,7 @@ struct MdnsServiceDemo {
     .justifyContent(FlexAlign.Center);
   }
 
+  // [Start manage_local_services]
   private addLocalService(): void {
     this.addServiceStatus = serviceOperateStatus.ADDING;
     mdns.addLocalService(context, this.localServiceInfo).then((data) => {
@@ -241,7 +242,9 @@ struct MdnsServiceDemo {
       Logger.error(`Error removing local service: ${JSON.stringify(err)}`);
     });
   }
+  // [End manage_local_services]
 
+  // [Start discover_local_services]
   private async startServiceDiscovery(): Promise<void> {
     this.discoveryStatus = serviceOperateStatus.DISCOVERY_STARTING;
     if (!context) {
@@ -289,4 +292,5 @@ struct MdnsServiceDemo {
       Logger.info(`Error stopping mDNS service discovery: ${JSON.stringify(err)}`);
     }
   }
+  // [End discover_local_services]
 }

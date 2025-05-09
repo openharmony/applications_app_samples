@@ -55,6 +55,14 @@
     {
       "name": "TitleName",
       "value": "Flow_Manage_Name"
+    },
+    {
+      "name": "grant_internet",
+      "value": "grant_internet"
+    },
+    {
+      "name": "grant_get_network_info",
+      "value": "grant_get_network_info"
     }
   ]
 }

@@ -61,21 +61,24 @@
           }
         ]
       },
+      // [Start create_vpn_extension_ability]
       {
         "name": "MyVpnExtAbility",
         "srcEntry": "./ets/vpnability/VPNExtentionAbility.ets",
         "type": "vpn"
       }
+      // [End create_vpn_extension_ability]
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.INTERNET"
-      },
-      {
-        "name": "ohos.permission.MANAGE_VPN"
-      },
-      {
-        "name": "ohos.permission.NOTIFICATION_CONTROLLER"
+        "name": "ohos.permission.INTERNET",
+        "reason": "$string:grant_internet",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       }
     ],
   }

@@ -38,6 +38,7 @@ function postMessage(arg0: Message) {
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
+// [Start application_transmits_data_via_multicast_socket]
 function startMulticast(data: MulticastData) {
   let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 
@@ -99,6 +100,7 @@ workerPort.onmessage = (e: MessageEvents) => {
     startMulticast(multicastData);
   }
 };
+// [End application_transmits_data_via_multicast_socket]
 
 /**
  * Defines the event handler to be called when the worker receives a message that cannot be deserialized.

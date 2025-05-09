@@ -171,6 +171,7 @@ struct NetworkStatisticsDemo {
     .justifyContent(FlexAlign.Center);
   }
 
+// [Start obtain_realtime_traffic_statistics_of_network_interface_cards/uid]
   // 获取各种实体的流量数据方法
   getIfaceRxBytes() {
     statistics.getIfaceRxBytes(IFACE).then((stats: number) => {
@@ -262,4 +263,5 @@ struct NetworkStatisticsDemo {
       this.logMessage = `Failed to get socket file descriptor: ${JSON.stringify(err)}`;
     });
   }
+// [End obtain_realtime_traffic_statistics_of_network_interface_cards/uid]
 }

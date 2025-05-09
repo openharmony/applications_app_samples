@@ -39,6 +39,10 @@
     {
       "name": "httpSendSuccess",
       "value": "发送HTTP请求成功"
+    },
+    {
+      "name": "grant_internet",
+      "value": "网络使用权限"
     }
   ]
 }

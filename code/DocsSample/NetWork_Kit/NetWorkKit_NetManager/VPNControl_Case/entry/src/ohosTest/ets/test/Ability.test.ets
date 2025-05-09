@@ -22,7 +22,6 @@ import Logger from '../../../main/ets/common/Logger';
 const BUNDLE = 'VPNCASE_';
 const BUNDLE_NAME = 'com.samples.vpncontrol_case';
 const ABILITY_NAME: string = 'EntryAbility';
-let driver: Driver = Driver.create();
 const DELAY_TIME = 2000;
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -35,6 +34,7 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 async function goBack() {
+  let driver: Driver = Driver.create();
   await driver.assertComponentExist(ON.id('btnBack'));
   let backButton = await driver.findComponent(ON.id('btnBack'));
   await backButton.click();
@@ -55,6 +55,7 @@ export default function VPNTest() {
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
       };
+      let driver: Driver = Driver.create();
       await delegator.startAbility(want);
       await driver.delayMs(DELAY_TIME);
       let str = await getResourceString($r('app.string.Allow'));
@@ -75,6 +76,7 @@ export default function VPNTest() {
      * @tc.desc 测试 StartVPN 按钮点击事件
      */
     it(BUNDLE + 'StartVPNButton_001', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
       Logger.info(`${BUNDLE_NAME} StartVPNButton_001 begin`);
       // 验证StartVPN按钮存在并点击
       await driver.delayMs(DELAY_TIME);
@@ -103,6 +105,7 @@ export default function VPNTest() {
      * @tc.desc 测试 CreateTunnel 按钮点击事件
      */
     it(BUNDLE + 'CreateTunnelButton_001', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
       Logger.info(`${BUNDLE_NAME} CreateTunnelButton_001 begin`);
       await driver.delayMs(DELAY_TIME);
       await driver.assertComponentExist(ON.id(ComponentId.CREATE_TUNNEL_BUTTON));
@@ -130,6 +133,7 @@ export default function VPNTest() {
      * @tc.desc 测试 Protect 按钮点击事件
      */
     it(BUNDLE + 'ProtectButton_001', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
       Logger.info(`${BUNDLE_NAME} ProtectButton_001 begin`);
       await driver.delayMs(DELAY_TIME);
       await driver.assertComponentExist(ON.id(ComponentId.PROTECT_BUTTON));
@@ -152,17 +156,52 @@ export default function VPNTest() {
     });
 
     /**
+     * @tc.number StartVpnExtButton_001
+     * @tc.name StartVpnExtButton_001
+     * @tc.desc 测试 StartVpnExt 按钮点击事件
+     */
+    it(BUNDLE + 'StartVpnExtButton_001', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
+      Logger.info(`${BUNDLE_NAME} StartVpnExtButton_001 begin`);
+      await driver.delayMs(DELAY_TIME);
+      await driver.assertComponentExist(ON.id(ComponentId.START_VPN_EXT_BUTTON));
+      const startVpnExtButton = await driver.findComponent(ON.id(ComponentId.START_VPN_EXT_BUTTON));
+      await startVpnExtButton.click();
+      await driver.delayMs(DELAY_TIME);
+      let str = await getResourceString($r('app.string.Certain'));
+      await driver.assertComponentExist(ON.text(str));
+      let confirmButton: Component = await driver.findComponent(ON.text(str));
+      await confirmButton.click();
+      await driver.delayMs(DELAY_TIME);
+      try {
+        let errorComponent = await driver.findComponent(ON.id('Error'));
+        if (errorComponent) {
+          let errorText = await errorComponent.getText();
+          Logger.error(`${BUNDLE_NAME} StartVpnExtButton_001 failed with error: ${errorText}`);
+          expect(false).assertTrue(); // 如果有 Error 组件，测试失败
+        }
+      } catch (e) {
+        Logger.info(`${BUNDLE_NAME} StartVpnExtButton_001 passed: No error component found.`);
+        expect(true).assertTrue(); // 如果没有 Error 组件，测试通过
+      }
+      Logger.info(`${BUNDLE_NAME} StartVpnExtButton_001 end`);
+      done();
+    });
+
+    /**
      * @tc.number SetupVpnButton_001
      * @tc.name SetupVpnButton_001
      * @tc.desc 测试 SetupVpn 按钮点击事件
      */
     it(BUNDLE + 'SetupVpnButton_001', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
       Logger.info(`${BUNDLE_NAME} SetupVpnButton_001 begin`);
       await driver.delayMs(DELAY_TIME);
       await driver.assertComponentExist(ON.id(ComponentId.SETUP_VPN_BUTTON));
       const setupVpnButton = await driver.findComponent(ON.id(ComponentId.SETUP_VPN_BUTTON));
       await setupVpnButton.click();
       await driver.delayMs(DELAY_TIME);
+      await goBack();
       try {
         let errorComponent = await driver.findComponent(ON.id('Error'));
         if (errorComponent) {
@@ -179,45 +218,12 @@ export default function VPNTest() {
     });
 
     /**
-     * @tc.number StartVpnExtButton_001
-     * @tc.name StartVpnExtButton_001
-     * @tc.desc 测试 StartVpnExt 按钮点击事件
-     */
-    it(BUNDLE + 'StartVpnExtButton_001', 0, async (done: Function) => {
-      Logger.info(`${BUNDLE_NAME} StartVpnExtButton_001 begin`);
-      await driver.delayMs(DELAY_TIME);
-      await driver.assertComponentExist(ON.id(ComponentId.START_VPN_EXT_BUTTON));
-      const startVpnExtButton = await driver.findComponent(ON.id(ComponentId.START_VPN_EXT_BUTTON));
-      await startVpnExtButton.click();
-      await driver.delayMs(DELAY_TIME);
-      let str = await getResourceString($r('app.string.Certain'));
-      await driver.assertComponentExist(ON.text(str));
-      let confirmButton: Component = await driver.findComponent(ON.text(str));
-      await confirmButton.click();
-      await driver.delayMs(DELAY_TIME);
-      await goBack();
-      try {
-        let errorComponent = await driver.findComponent(ON.id('Error'));
-        if (errorComponent) {
-          let errorText = await errorComponent.getText();
-          Logger.error(`${BUNDLE_NAME} StartVpnExtButton_001 failed with error: ${errorText}`);
-          expect(false).assertTrue(); // 如果有 Error 组件，测试失败
-        }
-      } catch (e) {
-        Logger.info(`${BUNDLE_NAME} StartVpnExtButton_001 passed: No error component found.`);
-        expect(true).assertTrue(); // 如果没有 Error 组件，测试通过
-      }
-      Logger.info(`${BUNDLE_NAME} StartVpnExtButton_001 end`);
-      done();
-    });
-
-
-    /**
      * @tc.number StopButton_001
      * @tc.name StopButton_001
      * @tc.desc 测试 StopVPN 按钮点击事件
      */
     it(BUNDLE + 'StopButton_001', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
       Logger.info(`${BUNDLE_NAME} StopButton_001 begin`);
       // 验证StopVPN按钮存在并点击
       await driver.delayMs(DELAY_TIME);
@@ -246,6 +252,7 @@ export default function VPNTest() {
      * @tc.desc 测试 StopVPN 按钮点击事件
      */
     it(BUNDLE + 'StopVpnButton_001', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
       Logger.info(`${BUNDLE_NAME} StopVpnButton_001 begin`);
       // 验证 stopVpn 按钮是否存在并点击
       await driver.delayMs(DELAY_TIME);
@@ -275,6 +282,7 @@ export default function VPNTest() {
      * @tc.desc 测试 StopVpnExt 按钮点击事件
      */
     it(BUNDLE + 'StopVpnExtButton_001', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
       Logger.info(`${BUNDLE_NAME} StopVpnExtButton_001 begin`);
       // 验证 stopVpnExt 按钮是否存在并点击
       await driver.delayMs(DELAY_TIME);

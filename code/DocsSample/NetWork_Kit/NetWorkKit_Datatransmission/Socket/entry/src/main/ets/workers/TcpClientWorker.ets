@@ -48,6 +48,7 @@ function sendMessage(tcpMessage: TcpMessage) {
     return;
   }
 
+  // [Start client_applies_tcp_protocol_for_communication]
   // 绑定本地服务器地址
   class SocketInfo {
     public message: ArrayBuffer = new ArrayBuffer(1);
@@ -116,7 +117,7 @@ function disConnect() {
     workerPort.postMessage({ type: 'Close connection failed' });
   });
 }
-
+  // [End client_applies_tcp_protocol_for_communication]
 /**
  * Defines the event handler to be called when the worker thread receives a message sent by the host thread.
  * The event handler is executed in the worker thread.

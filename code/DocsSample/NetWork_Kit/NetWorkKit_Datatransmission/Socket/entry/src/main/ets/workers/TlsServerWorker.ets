@@ -38,9 +38,8 @@ function handleMessage(message: TlsServerMessage) {
   }
 }
 
+// [Start application_transmits_encrypted_data_via_tls_socket_server]
 function startTLSserver(message: TlsServerMessage) {
-
-
   try {
     const tlsSecureOptions: socket.TLSSecureOptions = {
       key: message.serverKey,
@@ -90,6 +89,7 @@ function handleClientConnection(client: socket.TLSSocketConnection) {
     workerPort.postMessage({ type: 'error', message: `Failed to close connection: ${err.message}` });
   });
 }
+// [End application_transmits_encrypted_data_via_tls_socket_server]
 
 function bufToString(buf: ArrayBuffer): string {
   let msgArray = new Uint8Array(buf);

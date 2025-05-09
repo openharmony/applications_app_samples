@@ -39,6 +39,10 @@
     {
       "name": "CloseConnectionResult",
       "value": "CloseConnectionResult"
+    },
+    {
+      "name": "grant_internet",
+      "value": "grant_internet"
     }
   ]
 }

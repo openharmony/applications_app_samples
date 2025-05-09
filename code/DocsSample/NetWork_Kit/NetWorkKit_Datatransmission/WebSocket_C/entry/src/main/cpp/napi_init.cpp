@@ -25,6 +25,7 @@
 #define LOG_DOMAIN 0x3200 // 全局domain宏，标识业务领域
 #define LOG_TAG "WSDEMO"  // 全局tag宏，标识模块日志tag
 
+// [Start websocket_build_project]
 // WebSocket客户端全局变量
 static struct WebSocket *g_client = nullptr;
 
@@ -95,6 +96,7 @@ static napi_value ConnectWebsocket(napi_env env, napi_callback_info info)
     napi_get_boolean(env, connectRet == 0, &result);
     return result;
 }
+// [End websocket_build_project]
 
 static napi_value SendMessage(napi_env env, napi_callback_info info)
 {

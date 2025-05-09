@@ -12,19 +12,23 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 
 使用说明
 
+备注：需在 `entry\src\main\module.json5` 文件的 `extensionAbilities` 节点下，为 `type` 字段手动新增 `vpn` 选项。
+
 1. 在设备上启动应用。
 
-2. 在界面上输入 VPN 服务器 IP 地址、虚拟网卡 IP 地址和需要阻止的应用包名。
+2. 在界面上输入 VPN 服务器 IP 地址、虚拟网卡 IP 地址和需要阻止的应用包名。（也可以使用默认数据作为选项）
 
-3. 点击 `CreateTunnel` 按钮以建立 UDP 隧道。
+3. 点击 `创建隧道` 按钮以建立 UDP 隧道。
 
-4. 点击 `Protect` 按钮以将隧道与虚拟网卡绑定。
+4. 点击 `保护隧道` 按钮以将隧道与虚拟网卡绑定。
 
-5. 点击 `SetupVpn` 按钮配置 VPN 并启动 VPN 服务。
+5. 点击启动VPN拓展程序启动VPN拓展能力。
 
-6. 点击 `Stop vpn` 按钮以停止 VPN 连接。
+6. 点击 `启动VPN` 按钮配置 VPN 并启动 VPN 服务。
 
-7. 点击 `Stop vpnExt` 按钮以停止 VPN 扩展能力。
+7. 点击 `关闭VPN` 按钮以停止 VPN 连接。
+
+8. 点击 `关闭VPN拓展程序` 按钮以停止 VPN 扩展能力。
 
    
 
@@ -100,8 +104,6 @@ entry/src/main/cpp/
 ### 相关权限
 
 [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
-[ohos.permission.MANAGE_VPN](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_vpn)
-[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_controller)
 
 ### 依赖
 
@@ -112,9 +114,6 @@ entry/src/main/cpp/
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 2. 本示例为Stage模型，支持API14版本SDK，版本号：5.0.2。
 3. 本示例需要使用DevEco Studio Release（5.0.5.306）及以上版本才可编译运行。
-4. 本示例在启动前需搭建服务端环境，成功启动相应服务端后再运行客户端，服务端脚本（server/UDP_server.py）需要在Python 3.8.5版本下运行（需与客户端处于同一局域网,如连接同一热点）。
-5. 该示例运行测试完成后，再次运行需要重新启动服务端和客户端。
-6. 本示例使用了system_basic级别的权限（相关权限级别请查看[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md) ），需要手动配置高级别的权限签名(具体操作可查看[自动化签名方案](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.harmonyos.com%2Fcn%2Fdocs%2Fdocumentation%2Fdoc-guides%2Fohos-auto-configuring-signature-information-0000001271659465) ) 。
 
 ### 下载
 

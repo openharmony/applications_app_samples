@@ -24,13 +24,13 @@ import Logger from '../common/Logger';
 
 // 常量提取
 const TITLE_FONT_SIZE = 35; // 标题字体大小
-const BUTTON_FONT_SIZE = 50; // 按钮字体大小
+const BUTTON_FONT_SIZE = 25; // 按钮字体大小
 const TOAST_DURATION = 2000; // Toast 显示时间
 const BUTTON_MARGIN = 16;
 
 let want: Want = {
   deviceId: '',
-  bundleName: 'com.example.myvpndemo',
+  bundleName: 'com.samples.vpncontrol_case',
   abilityName: 'MyVpnExtAbility',
 };
 let g_tunnelFd = -1;
@@ -68,7 +68,7 @@ struct StopVpn {
           .onClick(() => {
             Logger.info('developTag', '%{public}s', 'vpn Client');
           })
-        Button('stop vpn')
+        Button($r('app.string.stop_vpn'))
           .onClick(() => {
             this.Destroy();
           })
@@ -76,7 +76,8 @@ struct StopVpn {
           .id(ComponentId.INNER_STOP_VPN_BUTTON)
           .fontSize(BUTTON_FONT_SIZE)
           .margin(BUTTON_MARGIN)
-        Button('stop vpnExt')
+        // [Start stop_vpn_extension_ability]
+        Button($r('app.string.stop_vpnExt'))
           .onClick(() => {
             try {
               vpnext.stopVpnExtensionAbility(want).then(() => {
@@ -94,6 +95,7 @@ struct StopVpn {
           .id(ComponentId.STOP_VPN_EXT_BUTTON)
           .fontSize(BUTTON_FONT_SIZE)
           .margin(BUTTON_MARGIN)
+        // [End stop_vpn_extension_ability]
       }.width('100%');
     }.height('100%');
   }
