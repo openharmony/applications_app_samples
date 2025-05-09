@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_rsa_keypair]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
@@ -51,3 +52,4 @@ OH_Crypto_ErrCode randomGenerateAsymKey()
     OH_CryptoKeyPair_Destroy(keyPair);
     return ret;
 }
+// [End generate_rsa_keypair]

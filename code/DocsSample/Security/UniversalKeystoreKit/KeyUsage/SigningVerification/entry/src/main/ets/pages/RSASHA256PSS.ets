@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//
+// [Start key_algorithm_RSASHA256PSS]
 /*
  * 密钥算法为RSA，摘要算法为SHA256，填充模式为PSS
  */
@@ -188,6 +189,8 @@ export async function testSignVerify() {
   await deleteRsaKey(keyAlias);
 }
 
+
+// [End key_algorithm_RSASHA256PSS]
 @Entry
 @Component
 struct Index {

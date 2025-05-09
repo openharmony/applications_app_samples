@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start encrypt_and_decrypt_RSAECBPKCS1_V1_5]
 /*
  * 以下以RSA/ECB/PKCS1_V1_5模式的Promise操作使用为例
  */
@@ -221,6 +221,9 @@ async function deleteKey() {
     })
 }
 
+
+
+// [End encrypt_and_decrypt_RSAECBPKCS1_V1_5]
 @Entry
 @Component
 struct Index {

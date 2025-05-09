@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pkcs8_convert_ecc_pri_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 async function main() {
@@ -36,6 +37,7 @@ async function main() {
     });
   });
 }
+// [End pkcs8_convert_ecc_pri_keypair]
 
 @Entry
 @Component

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start bin_convert_sm2_keypair_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function convertSM2AsyKeySync() {
@@ -37,6 +38,7 @@ function convertSM2AsyKeySync() {
     console.error(`get key pair failed, ${e.code}, ${e.message}`);
   }
 }
+// [End bin_convert_sm2_keypair_sync]
 
 @Entry
 @Component

@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start message_digest_calculation_segmented_digest_algorithm]
+
 #include <cstdlib>
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_digest.h"
@@ -58,3 +60,5 @@ OH_Crypto_ErrCode doLoopMd()
     OH_DigestCrypto_Destroy(ctx);
     return ret;
 }
+
+// [End message_digest_calculation_segmented_digest_algorithm]

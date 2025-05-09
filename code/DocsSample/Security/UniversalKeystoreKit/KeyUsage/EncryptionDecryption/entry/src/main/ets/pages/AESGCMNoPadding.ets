@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start encrypt_and_decrypt_AESGCMNoPadding]
 /*
  * 以下以AES/GCM/NoPadding的Promise操作使用为例
  */
@@ -233,6 +233,7 @@ async function deleteKey() {
     })
 }
 
+// [End encrypt_and_decrypt_AESGCMNoPadding]
 @Entry
 @Component
 struct Index {

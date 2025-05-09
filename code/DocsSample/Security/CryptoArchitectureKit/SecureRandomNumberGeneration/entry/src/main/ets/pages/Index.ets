@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start secure_random_number_generation]
 
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -40,6 +41,8 @@ async function doRand() {
   let randOutput = await rand.generateRandom(len);
   console.info('rand output:' + randOutput.data);
 }
+
+// [End secure_random_number_generation]
 
 @Entry
 @Component

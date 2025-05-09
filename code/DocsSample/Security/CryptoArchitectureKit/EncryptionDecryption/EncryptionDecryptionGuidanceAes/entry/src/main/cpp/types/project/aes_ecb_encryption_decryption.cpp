@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ecb_encrypt_decrypt_aes_symkey]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
 #include <cstring>
@@ -83,3 +84,4 @@ end:
     OH_Crypto_FreeDataBlob(&decUpdate);
     return ret;
 }
+// [End ecb_encrypt_decrypt_aes_symkey]

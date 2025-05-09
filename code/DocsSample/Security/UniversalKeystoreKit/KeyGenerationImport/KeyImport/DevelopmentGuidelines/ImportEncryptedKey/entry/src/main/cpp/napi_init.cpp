@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start encrypt_import_key]
+
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
@@ -563,6 +565,11 @@ static napi_value NAPI_Global_importWrappedKey(napi_env env, napi_callback_info 
     return ret;
 }
 
+
+// [End encrypt_import_key]
+
+
+// [Start encryption_import_key_commissioning_and_verification]
 static napi_value IsKeyExist(napi_env env, napi_callback_info info)
 {
     /* 1.指定密钥别名 */
@@ -577,6 +584,8 @@ static napi_value IsKeyExist(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
+
+// [End encryption_import_key_commissioning_and_verification]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

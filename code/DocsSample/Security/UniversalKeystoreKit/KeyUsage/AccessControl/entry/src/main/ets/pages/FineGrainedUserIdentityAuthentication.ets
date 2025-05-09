@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
+// [Start generate_key_specify_fingerprint_access_control_and_auth_purpose]
 import { huks } from '@kit.UniversalKeystoreKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyAlias = 'test_sm4_key_alias';
+
 let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据。
 let IV = '1234567890123456';
 let handle = 0;
@@ -28,6 +29,7 @@ let challenge: Uint8Array;
 let authType = userAuth.UserAuthType.PIN;
 let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 
+let keyAlias = 'test_sm4_key_alias';
 class ThrowObject {
   public isThrow: boolean = false;
 }
@@ -131,7 +133,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
 async function testGenKeyForFingerprintAccessControl() {
   await publicGenKeyFunc(keyAlias, generateHuksOptions);
 }
-
+// [End generate_key_specify_fingerprint_access_control_and_auth_purpose]
 class HuksProperties {
   public tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
   public value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode

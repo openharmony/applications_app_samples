@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_pem_string_convert_rsa_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let priKeyPkcs1Str1024: string =
@@ -48,6 +49,7 @@ async function testPkcs1ToPkcs8ByPromise() {
   console.info('[promise]TestPkcs1ToPkcs8ByPromise priString output is ' + priString);
   console.info('[promise]TestPkcs1ToPkcs8ByPromise pubString output is ' + pubString);
 }
+// [End specify_pem_string_convert_rsa_keypair]
 
 @Entry
 @Component

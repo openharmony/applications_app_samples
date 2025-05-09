@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start convert_sm2_keypair]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
@@ -50,3 +51,4 @@ OH_Crypto_ErrCode doAsymSm2Covert()
     OH_CryptoKeyPair_Destroy(dupKeyPair);
     return ret;
 }
+// [End convert_sm2_keypair]

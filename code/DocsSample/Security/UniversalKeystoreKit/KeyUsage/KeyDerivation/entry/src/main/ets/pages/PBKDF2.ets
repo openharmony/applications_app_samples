@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start the_key_is_derived_from_pbkdf2]
 /*
  * 以下以PBKDF2密钥的Promise操作使用为例
  */
@@ -336,7 +336,7 @@ async function testDerive() {
   await publicFinishFunc(handle, finishOptions);
   await publicDeleteKeyFunc(srcKeyAlias, huksOptions);
 }
-
+// [End the_key_is_derived_from_pbkdf2]
 @Entry
 @Component
 struct Index {

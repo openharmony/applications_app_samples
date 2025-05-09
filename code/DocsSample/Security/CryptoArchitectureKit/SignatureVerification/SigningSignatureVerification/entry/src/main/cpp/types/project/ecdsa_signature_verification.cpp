@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start verify_signatures_with_ecdsa_keys_c]
 #include "signing_signature_verification.h"
 
 bool DoTestEcdsaSignature()
@@ -77,3 +77,4 @@ bool DoTestEcdsaSignature()
     OH_CryptoKeyPair_Destroy(keyPair);
     return res;
 }
+// [End verify_signatures_with_ecdsa_keys_c]

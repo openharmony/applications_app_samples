@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start encrypt_the_import_key]
 
 import { huks } from '@kit.UniversalKeystoreKit';
 
@@ -620,6 +621,10 @@ async function ImportWrappedKey() {
   await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
 }
 
+
+// [End encrypt_the_import_key]
+
+// [Start encrypt_the_import_key_to_verify_that_the_key_exists]
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
@@ -652,4 +657,5 @@ function Check() {
   }
 }
 
+// [End encrypt_the_import_key_to_verify_that_the_key_exists]
 export { ImportWrappedKey, Check };

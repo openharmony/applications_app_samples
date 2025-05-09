@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start cbc_encrypt_decrypt_aes_symkey_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -75,6 +76,7 @@ function main() {
     console.error(`AES CBC “${error}“, error code: ${error.code}`);
   }
 }
+// [End cbc_encrypt_decrypt_aes_symkey_sync]
 
 @Entry
 @Component

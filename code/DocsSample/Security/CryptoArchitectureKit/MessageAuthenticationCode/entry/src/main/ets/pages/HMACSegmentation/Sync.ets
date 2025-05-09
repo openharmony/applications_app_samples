@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start message_authentication_code_calculation_sync_one_time_incoming]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -39,6 +39,8 @@ function doHmacBySync() {
   let macLen = mac.getMacLength();
   console.info('HMAC len:' + macLen);
 }
+
+// [End message_authentication_code_calculation_sync_one_time_incoming]
 
 @Entry
 @Component

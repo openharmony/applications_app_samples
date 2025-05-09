@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start async_symmetry_encrypt_decrypt_sm4]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -54,6 +55,7 @@ async function main() {
     console.error('decrypt failed');
   }
 }
+// [End async_symmetry_encrypt_decrypt_sm4]
 
 @Entry
 @Component

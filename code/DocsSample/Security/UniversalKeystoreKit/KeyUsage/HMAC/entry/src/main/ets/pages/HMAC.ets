@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start hmac_to]
 /*
  * 以下以HMAC密钥的Promise操作使用为例
  */
@@ -118,7 +118,7 @@ async function hMACData() {
       throw (error as Error);
     })
 }
-
+// [End hmac_to]
 @Entry
 @Component
 struct Index {

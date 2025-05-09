@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start message_authentication_code_calculation_hmac_one_time_incoming]
+
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -39,6 +41,8 @@ async function doHmac() {
   let macLen = mac.getMacLength();
   console.info('HMAC len:' + macLen);
 }
+
+// [End message_authentication_code_calculation_hmac_one_time_incoming]
 
 @Entry
 @Component

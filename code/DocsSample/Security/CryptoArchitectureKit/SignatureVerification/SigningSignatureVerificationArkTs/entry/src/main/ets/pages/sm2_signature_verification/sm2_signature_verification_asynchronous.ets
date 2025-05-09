@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start use_the_sm2_key_pair_to_sign_and_verify_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -52,6 +52,8 @@ async function main() {
   }
 }
 
+
+// [End use_the_sm2_key_pair_to_sign_and_verify_async]
 @Entry
 @Component
 struct Index {

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_rsa_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function generateAsyKey() {
@@ -30,6 +31,7 @@ function generateAsyKey() {
     console.info('sk bin data' + skBlob.data);
   });
 }
+// [End generate_rsa_keypair]
 
 @Entry
 @Component

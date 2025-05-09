@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_pem_string_convert_rsa_keypair_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let priKeyPkcs1Str1024: string =
@@ -57,6 +58,7 @@ function testPkcs1ToPkcs8BySync() {
     console.error(`Sync error, ${e.code}, ${e.message}`);
   }
 }
+// [End specify_pem_string_convert_rsa_keypair_sync]
 
 @Entry
 @Component

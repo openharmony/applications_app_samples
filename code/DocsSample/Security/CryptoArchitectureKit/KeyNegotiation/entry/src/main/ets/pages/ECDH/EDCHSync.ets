@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start use_ecdh_for_key_negotiation_sync]
+
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function ecdhAwait() {
@@ -43,6 +45,8 @@ function ecdhAwait() {
     console.error('ecdh result is not equal');
   }
 }
+
+// [End use_ecdh_for_key_negotiation_sync]
 
 @Entry
 @Component

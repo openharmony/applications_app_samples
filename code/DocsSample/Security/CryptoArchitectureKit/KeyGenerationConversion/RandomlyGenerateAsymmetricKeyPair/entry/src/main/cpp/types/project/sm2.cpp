@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_sm2_keypair]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
@@ -49,3 +50,4 @@ OH_Crypto_ErrCode randomGenerateRSA()
     OH_CryptoKeyPair_Destroy(dupKeyPair);
     return ret;
 }
+// [End generate_sm2_keypair]

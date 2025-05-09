@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start use_hkdf_for_key_derivation_await]
+
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -31,7 +33,7 @@ async function kdfAwait() {
   let secret = await kdf.generateSecret(spec);
   console.info('key derivation output is ' + secret.data);
 }
-
+// [End use_hkdf_for_key_derivation_await]
 @Entry
 @Component
 struct Index {

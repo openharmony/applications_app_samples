@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pkcs1_recover_rsa_keypair_sign]
 #include "signing_signature_verification.h"
 
 OH_Crypto_ErrCode DoTestRsaSignatureRecover()
@@ -96,3 +97,4 @@ OH_Crypto_ErrCode DoTestRsaSignatureRecover()
     OH_CryptoKeyPair_Destroy(keyPair);
     return ret;
 }
+// [End pkcs1_recover_rsa_keypair_sign]

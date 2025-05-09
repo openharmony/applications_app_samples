@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start bin_convert_rsa_keypair_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function convertAsyKeySync() {
@@ -35,6 +36,7 @@ function convertAsyKeySync() {
     console.error(`get key pair failed, ${e.code}, ${e.message}`);
   }
 }
+// [End bin_convert_rsa_keypair_sync]
 
 @Entry
 @Component

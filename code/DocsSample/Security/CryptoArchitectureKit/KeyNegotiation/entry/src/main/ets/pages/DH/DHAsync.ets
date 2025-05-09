@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start use_dh_for_key_negotiation_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 async function dhAwait() {
@@ -34,6 +34,7 @@ async function dhAwait() {
     console.error('DH result is not equal');
   }
 }
+// [End use_dh_for_key_negotiation_async]
 
 @Entry
 @Component

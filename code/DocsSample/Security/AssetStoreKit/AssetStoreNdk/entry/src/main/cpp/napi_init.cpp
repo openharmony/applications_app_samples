@@ -20,6 +20,7 @@
 static constexpr int INT_ARG_7 = 7; // 入参索引
 static constexpr int INT_ARG_6 = 6; // 入参索引
 
+// [Start add_critical_asset]
 static napi_value NAPI_Global_AddAsset(napi_env env, napi_callback_info info)
 {
     static const char *secretContent = "demo_pwd";
@@ -47,7 +48,9 @@ static napi_value NAPI_Global_AddAsset(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End add_critical_asset]
 
+// [Start remove_critical_asset]
 static napi_value RemoveAsset(napi_env env, napi_callback_info info)
 {
     static const char *aliasContent = "demo_alias";
@@ -68,7 +71,9 @@ static napi_value RemoveAsset(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End remove_critical_asset]
 
+// [Start update_critical_asset]
 static napi_value NAPI_Global_UpdateAsset(napi_env env, napi_callback_info info)
 {
     static const char *aliasContent = "demo_alias";
@@ -96,7 +101,9 @@ static napi_value NAPI_Global_UpdateAsset(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End update_critical_asset]
 
+// [Start query_single_plaintext]
 static napi_value NAPI_Global_QueryAsset(napi_env env, napi_callback_info info)
 {
     static const char *aliasContent = "demo_alias";
@@ -123,6 +130,9 @@ static napi_value NAPI_Global_QueryAsset(napi_env env, napi_callback_info info)
     OH_Asset_FreeResultSet(&resultSet);
     return result;
 }
+// [End query_single_plaintext]
+
+// [Start query_single_attribute]
 static napi_value NAPI_Global_QueryAttributes(napi_env env, napi_callback_info info)
 {
     static const char *aliasContent = "demo_alias";
@@ -149,7 +159,9 @@ static napi_value NAPI_Global_QueryAttributes(napi_env env, napi_callback_info i
     OH_Asset_FreeResultSet(&resultSet);
     return result;
 }
+// [End query_single_attribute]
 
+// [Start query_list_attribute]
 static napi_value NAPI_Global_BatchQuery(napi_env env, napi_callback_info info)
 {
     static const char *labelContent = "demo_label";
@@ -181,6 +193,8 @@ static napi_value NAPI_Global_BatchQuery(napi_env env, napi_callback_info info)
     OH_Asset_FreeResultSet(&resultSet);
     return result;
 }
+// [End query_list_attribute]
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

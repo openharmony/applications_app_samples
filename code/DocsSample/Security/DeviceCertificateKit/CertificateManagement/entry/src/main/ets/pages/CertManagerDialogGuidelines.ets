@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start certificate_management_dialog_box_development_guide]
 import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -34,6 +34,8 @@ async function certificateManagerDialogSample() {
   }
 }
 
+
+// [End certificate_management_dialog_box_development_guide]
 @Entry
 @Component
 struct Index {

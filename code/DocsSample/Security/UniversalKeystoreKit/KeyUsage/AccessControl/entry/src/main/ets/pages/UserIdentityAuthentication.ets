@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+
+// [Start user_authentication_and_access_control_guide]
 import { huks } from '@kit.UniversalKeystoreKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
@@ -374,7 +376,7 @@ async function testSm4Cipher() {
     console.info('test finish encrypt success');
   }
 }
-
+// [End user_authentication_and_access_control_guide]
 async function main() {
   await testGenKeyForFingerprintAccessControl();
   await testInitAndAuthFinger();

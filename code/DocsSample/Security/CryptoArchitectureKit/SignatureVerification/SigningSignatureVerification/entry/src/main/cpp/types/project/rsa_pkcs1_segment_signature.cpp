@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pkcs1_seg_verify_rsa_keypair_sign]
 #include "signing_signature_verification.h"
 
 static constexpr int INT_64 = 64;
@@ -119,3 +120,4 @@ bool DoTestRsaSignatureSeg()
     OH_CryptoKeyPair_Destroy(keyPair);
     return res;
 }
+// [End pkcs1_seg_verify_rsa_keypair_sign]

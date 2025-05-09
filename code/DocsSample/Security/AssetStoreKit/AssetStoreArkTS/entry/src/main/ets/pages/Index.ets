@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start query_user_auth_critical_asset]
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
 import userAuth from '@ohos.userIAM.userAuth';
@@ -127,7 +128,9 @@ async function queryAsset(): Promise<string> {
   })
   return result;
 }
+// [End query_user_auth_critical_asset]
 
+// [Start add_critical_asset]
 async function addCriticalAsset(): Promise<string> {
   let result: string = '';
   let attr: asset.AssetMap = new Map();
@@ -150,6 +153,7 @@ async function addCriticalAsset(): Promise<string> {
   }
   return result;
 }
+// [End add_critical_asset]
 
 async function addCriticalAssetAuth(): Promise<string> {
   let result: string = '';
@@ -175,6 +179,7 @@ async function addCriticalAssetAuth(): Promise<string> {
   return result;
 }
 
+// [Start remove_critical_asset]
 async function removeCriticalAsset(): Promise<string> {
   let result: string = '';
   let attr: asset.AssetMap = new Map();
@@ -195,6 +200,7 @@ async function removeCriticalAsset(): Promise<string> {
   }
   return result;
 }
+// [End remove_critical_asset]
 
 async function removeCriticalAssetSecond(): Promise<string> {
   let result: string = '';
@@ -217,6 +223,7 @@ async function removeCriticalAssetSecond(): Promise<string> {
   return result;
 }
 
+// [Start update_critical_asset]
 async function updateCriticalAsset(): Promise<string> {
   let result: string = '';
   let query: asset.AssetMap = new Map();
@@ -239,7 +246,9 @@ async function updateCriticalAsset(): Promise<string> {
   }
   return result;
 }
+// [End update_critical_asset]
 
+// [Start query_single_plaintext]
 async function queryAllCriticalAsset(): Promise<string> {
   let result: string = '';
   let query: asset.AssetMap = new Map();
@@ -265,7 +274,9 @@ async function queryAllCriticalAsset(): Promise<string> {
   }
   return result;
 }
+// [End query_single_plaintext]
 
+// [Start query_single_attribute]
 async function queryAttributesCriticalAsset(): Promise<string> {
   let result: string = '';
   let query: asset.AssetMap = new Map();
@@ -289,7 +300,9 @@ async function queryAttributesCriticalAsset(): Promise<string> {
   }
   return result;
 }
+// [End query_single_attribute]
 
+// [Start query_list_attribute]
 async function queryListCriticalAsset(): Promise<string> {
   let result: string = '';
   let query: asset.AssetMap = new Map();
@@ -316,6 +329,7 @@ async function queryListCriticalAsset(): Promise<string> {
   }
   return result;
 }
+// [End query_list_attribute]
 
 @Entry
 @Component

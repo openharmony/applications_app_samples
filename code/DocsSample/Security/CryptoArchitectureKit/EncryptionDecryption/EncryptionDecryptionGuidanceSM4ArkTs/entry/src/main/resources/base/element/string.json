@@ -41,6 +41,10 @@
       "value": "sm4_gcm_seg_encryption_decryption_asynchronous"
     },
     {
+      "name": "sm4_gcm_seg_encryption_decryption_synchronous",
+      "value": "sm4_gcm_seg_encryption_decryption_synchronous"
+    },
+    {
       "name": "call_sm4_cbc_asynchronous",
       "value": "Call SM4_CBC Asynchronous"
     },

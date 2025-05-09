@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_aes_key]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function testGenerateAesKey() {
@@ -26,6 +27,7 @@ function testGenerateAesKey() {
     console.info('key hex:' + encodedKey.data);
   });
 }
+// [End generate_aes_key]
 
 @Entry
 @Component

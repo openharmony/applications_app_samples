@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ecb_encrypt_decrypt_aes_symkey_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -58,6 +59,7 @@ async function aesECB() {
     console.error(`AES ECB “${error}“, error code: ${error.code}`);
   }
 }
+// [End ecb_encrypt_decrypt_aes_symkey_async]
 
 @Entry
 @Component

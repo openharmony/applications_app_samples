@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start import_keys_in_plaintext_X25519]
 /* 以下以导入X25519密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
 
@@ -67,6 +67,9 @@ function importX25519() {
     throw (error as Error);
   }
 }
+
+
+// [End import_keys_in_plaintext_X25519]
 
 let isKeyExist = false;
 

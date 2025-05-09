@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start bin_convert_ecc_keypair_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function convertECCAsyKeySync() {
@@ -36,6 +37,7 @@ function convertECCAsyKeySync() {
     console.error(`get key pair failed, ${e.code}, ${e.message}`);
   }
 }
+// [End bin_convertbin_convert_ecc_keypair_sync]
 
 @Entry
 @Component

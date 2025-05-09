@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_parameter_generate_rsa_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 // RSA公钥密钥参数生成函数
@@ -81,6 +82,7 @@ function rsaUsePubKeySpecGetCallback() {
     }
   });
 }
+// [End specify_parameter_generate_rsa_keypair]
 
 @Entry
 @Component

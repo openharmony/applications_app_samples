@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start convert_ecc_uncompressed_pub_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 async function eccPubUncompressedToCompressed() {
@@ -27,6 +28,7 @@ async function eccPubUncompressedToCompressed() {
   let returnBlob = keyPair.pubKey.getEncodedDer('X509|COMPRESSED');
   console.info('returnBlob data：' + returnBlob.data);
 }
+// [End convert_ecc_uncompressed_pub_keypair]
 
 @Entry
 @Component

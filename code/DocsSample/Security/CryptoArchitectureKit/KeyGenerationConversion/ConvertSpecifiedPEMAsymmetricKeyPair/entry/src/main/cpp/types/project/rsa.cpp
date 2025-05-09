@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_pem_string_convert_rsa_keypair]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
@@ -58,3 +59,4 @@ OH_Crypto_ErrCode doTestPemDataCovertAsymKey()
     OH_CryptoKeyPair_Destroy(dupKeyPair);
     return ret;
 }
+// [End specify_pem_string_convert_rsa_keypair]

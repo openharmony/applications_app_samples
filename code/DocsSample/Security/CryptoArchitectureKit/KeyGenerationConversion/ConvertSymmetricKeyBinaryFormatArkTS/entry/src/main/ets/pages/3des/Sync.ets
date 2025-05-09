@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
+// [Start generate_3des_key_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
-    0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
+  0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
     0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
     0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72]; // 密钥长度为192位，即24字节。
   let keyMaterial = new Uint8Array(arr);
@@ -47,6 +48,7 @@ function testConvertSymKey() {
     console.error(`convertKey failed, ${e.code}, ${e.message}`);
   }
 }
+// [End generate_3des_key_sync]
 
 @Entry
 @Component

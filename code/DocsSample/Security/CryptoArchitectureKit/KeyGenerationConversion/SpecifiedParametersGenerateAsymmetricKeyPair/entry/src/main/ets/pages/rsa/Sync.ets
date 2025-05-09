@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_parameter_generate_rsa_keypair_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 // RSA公钥密钥参数生成函数
@@ -84,6 +85,7 @@ function rsaUsePubKeySpecGetSync() {
     console.error(`get pub key result fail, ${e.code}, ${e.message}`);
   }
 }
+// [End specify_parameter_generate_rsa_keypair_sync]
 
 @Entry
 @Component

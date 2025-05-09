@@ -16,11 +16,12 @@
 /*
  * 以下以HKDF256密钥的Promise操作使用为例
  */
+// [Start key_deletions]
 import { huks } from '@kit.UniversalKeystoreKit';
 
 /* 1.确定密钥别名 */
 let keyAlias = 'test_Key';
-
+// [StartExclude key_deletions]
 /* 2.初始化密钥属性集 */
 let generateProperties: huks.HuksParam[] = [
   {
@@ -81,7 +82,7 @@ async function testGenKey(): Promise<string> {
   return ret;
 }
 
-
+// [EndExclude key_deletions]
 /* 4.构造空对象 */
 let deleteHuksOptions: huks.HuksOptions = {
   properties: []
@@ -138,7 +139,7 @@ async function testDerive(): Promise<string> {
   let ret = await publicDeleteKeyFunc(keyAlias, deleteHuksOptions);
   return ret;
 }
-
+// [End key_deletions]
 @Entry
 @Component
 struct Index {

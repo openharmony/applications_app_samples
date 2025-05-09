@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start verify_signatures_with_sm2_key_pair_c]
 #include "signing_signature_verification.h"
 
 bool DoTestSm2Signature()
@@ -84,3 +84,5 @@ bool DoTestSm2Signature()
     OH_CryptoKeyPair_Destroy(keyPair);
     return res;
 }
+
+// [End verify_signatures_with_sm2_key_pair_c]

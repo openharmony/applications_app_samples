@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_ecc_uncompressed_point_get_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 async function eccPointCompressedToPoint() {
@@ -41,6 +42,7 @@ async function eccPointCompressedToPoint() {
   console.info('ECC_PK_X_BN：' +
     eccPkX); // 64750044510792891439269945828433327517677381559622384455951527515863444933970
 }
+// [End specify_ecc_uncompressed_point_get_keypair]
 
 @Entry
 @Component

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start gcm_encrypt_decrypt_aes_symkey]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
 #include <cstring>
@@ -114,3 +115,4 @@ end:
     OH_Crypto_FreeDataBlob(&tagOutPut);
     return ret;
 }
+// [End gcm_encrypt_decrypt_aes_symkey]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_sm2_keypair_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function generateSM2KeySync() {
@@ -36,6 +37,7 @@ function generateSM2KeySync() {
     console.error(`get key pair failed, ${e.code}, ${e.message}`);
   }
 }
+// [End generate_sm2_keypair_sync]
 
 @Entry
 @Component

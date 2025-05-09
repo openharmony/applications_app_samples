@@ -25,6 +25,10 @@
       "value": "SM4 Promise"
     },
     {
+      "name": "sm4_sync",
+      "value": "SM4 Sync"
+    },
+    {
       "name": "call_aes_promise",
       "value": "Call AES Promise"
     },

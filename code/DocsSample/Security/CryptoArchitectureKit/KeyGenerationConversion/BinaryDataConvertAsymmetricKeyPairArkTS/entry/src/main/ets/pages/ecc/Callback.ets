@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start bin_convert_ecc_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function convertEccAsyKey() {
@@ -35,6 +36,7 @@ function convertEccAsyKey() {
     console.info('convertKey success');
   });
 }
+// [End bin_convert_ecc_keypair]
 
 @Entry
 @Component

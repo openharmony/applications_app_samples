@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start guidance_on_the_development_of_data_leakage_prevention_services]
+
 import { dlpPermission } from '@kit.DataProtectionKit';
 import { common, Want } from '@kit.AbilityKit';
 import { fileIo } from '@kit.CoreFileKit';
@@ -186,6 +188,9 @@ dlpPermission.isDLPFeatureProvided().then((res) => {
 }).catch((err: BusinessError) => {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 });
+
+
+// [End guidance_on_the_development_of_data_leakage_prevention_services]
 
 @Entry
 @Component

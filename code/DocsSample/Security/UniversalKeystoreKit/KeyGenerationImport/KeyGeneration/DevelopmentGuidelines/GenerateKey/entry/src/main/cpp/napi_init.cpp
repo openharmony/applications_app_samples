@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start generate_key]
 /* 以下以生成ECC密钥为例 */
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
@@ -66,7 +66,7 @@ static napi_value GenerateKey(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-
+// [End generate_key]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

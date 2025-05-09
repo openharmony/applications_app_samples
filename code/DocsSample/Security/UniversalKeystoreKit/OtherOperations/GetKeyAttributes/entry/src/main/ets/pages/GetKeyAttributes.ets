@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start obtaining_key_attribute]
 import { huks } from '@kit.UniversalKeystoreKit';
 
 /* 1. 设置密钥别名 */
@@ -21,7 +22,7 @@ let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
   properties: []
 };
-
+// [StartExclude obtaining_key_attribute]
 let properties1: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -82,6 +83,7 @@ async function testGenKey(): Promise<string> {
 }
 
 function check(): string {
+// [EndExclude obtaining_key_attribute]
   try {
     /* 1. 生成密钥 */
     testGenKey();
@@ -98,6 +100,7 @@ function check(): string {
     console.error(`callback: getKeyItemProperties input arg invalid, ${JSON.stringify(error)}`);
     return 'Failed';
   }
+// [End obtaining_key_attribute]
 }
 
 @Entry

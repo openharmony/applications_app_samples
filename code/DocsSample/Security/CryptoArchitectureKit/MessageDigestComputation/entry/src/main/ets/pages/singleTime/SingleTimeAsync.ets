@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start message_digest_calculation_digest_algorithm_one_time_incoming_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -27,6 +27,8 @@ async function doMd() {
   let mdLen = md.getMdLength();
   console.info('md len: ' + mdLen);
 }
+
+// [End message_digest_calculation_digest_algorithm_one_time_incoming_async]
 
 @Entry
 @Component

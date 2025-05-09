@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start key_agreement_dh]
 /*
 *以下以 DH密钥的Promise操作使用为例
 */
@@ -166,6 +166,8 @@ export default async function huksDhAgreeTest() {
   await huks.deleteKeyItem(aliasBob, emptyOptions);
 }
 
+
+// [End key_agreement_dh]
 @Entry
 @Component
 struct Index {

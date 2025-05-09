@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pkcs1_seg_verify_rsa_keypair_sign_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -95,3 +96,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End pkcs1_seg_verify_rsa_keypair_sign_async]

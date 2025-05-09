@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pss_verify_rsa_keypair_sign_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -101,6 +102,7 @@ async function rsaUseSpecDecryptOAEPPromise() {
     console.error('oaep decrypt fail');
   }
 }
+// [End pss_verify_rsa_keypair_sign_async]
 
 @Entry
 @Component

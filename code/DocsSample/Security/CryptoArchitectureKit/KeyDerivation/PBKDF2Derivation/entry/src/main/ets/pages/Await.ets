@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start use_pbkdf2_for_key_derivation_await]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 async function kdfAwait() {
@@ -27,6 +27,8 @@ async function kdfAwait() {
   let secret = await kdf.generateSecret(spec);
   console.info('key derivation output is ' + secret.data);
 }
+
+// [End use_pbkdf2_for_key_derivation_await]
 
 @Entry
 @Component

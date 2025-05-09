@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
+// [Start get_persistent_storage_asymmetric_public_keys]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <cstring>
-
+// [StartExclude get_persistent_storage_asymmetric_public_keys]
 /* 以下以生成ECC密钥为例 */
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount)
@@ -62,12 +63,13 @@ static OH_Huks_Result GenerateKeyHelper(const char *alias)
     OH_Huks_FreeParamSet(&testGenerateKeyParamSet);
     return ohResult;
 }
-
+// [EndExclude get_persistent_storage_asymmetric_public_keys]
 static napi_value ExportKey(napi_env env, napi_callback_info info)
 {
     /* 1. 参数构造：确定密钥别名 */
     const char *alias = "test_key";
     struct OH_Huks_Blob aliasBlob = { .size = (uint32_t)strlen(alias), .data = (uint8_t *)alias };
+    // [StartExclude get_persistent_storage_asymmetric_public_keys]
     /* 生成密钥 */
     OH_Huks_Result genResult = GenerateKeyHelper(alias);
     if (genResult.errorCode != OH_HUKS_SUCCESS) {
@@ -75,6 +77,7 @@ static napi_value ExportKey(napi_env env, napi_callback_info info)
         napi_create_int32(env, genResult.errorCode, &ret);
         return ret;
     }
+    // [EndExclude get_persistent_storage_asymmetric_public_keys]
     /* 构造参数：为待导出公钥申请内存 */
     uint8_t *pubKey = (uint8_t *)malloc(512); // 请业务按实际密钥大小评估申请
     if (pubKey == nullptr) {
@@ -93,7 +96,7 @@ static napi_value ExportKey(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-
+// [End get_persistent_storage_asymmetric_public_keys]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
