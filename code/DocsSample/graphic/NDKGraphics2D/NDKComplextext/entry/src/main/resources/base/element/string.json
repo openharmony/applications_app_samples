@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NDKComplextext"
+    },
+    {
+      "name": "Button_label1",
+      "value": "FontVariation"
+    },
+    {
+      "name": "Button_label2",
+      "value": "TextShadow"
+    },
+    {
+      "name": "Button_label3",
+      "value": "Brush"
+    },
+    {
+      "name": "Button_label4",
+      "value": "Ellipsis"
+    }
+  ]
+}
