@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NDKComplexTextPart2"
+    },
+    {
+      "name": "Button_label1",
+      "value": "Multilingual text"
+    },
+    {
+      "name": "Button_label2",
+      "value": "Multi-line text"
+    },
+    {
+      "name": "Button_label3",
+      "value": "AddFontFeature"
+    }
+  ]
+}
