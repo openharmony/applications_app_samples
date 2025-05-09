@@ -13,12 +13,18 @@
  * limitations under the License.
  */
 
+// [Start HiLog_CPP_Callback]
 #include "napi/native_api.h"
+static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
+// [StartExclude HiLog_CPP_Callback]
+// [Start HiLog_CPP_Header]
 #include "hilog/log.h"
 #undef LOG_DOMAIN
 #undef LOG_TAG
 #define LOG_DOMAIN 0x3200  // 全局domain宏，标识业务领域
 #define LOG_TAG "MY_TAG"   // 全局tag宏，标识模块日志tag
+// [End HiLog_CPP_Header]
+// [EndExclude HiLog_CPP_Callback]
 
 void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
 {
@@ -29,9 +35,14 @@ void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain
 static napi_value HiLogTest(napi_env env, napi_callback_info info)
 {
     OH_LOG_SetCallback(MyHiLog);
+    HiLog::Info(LABEL, "hello world");
+// [StartExclude HiLog_CPP_Callback]
+// [Start HiLog_CPP_Log_Error]
     OH_LOG_ERROR(LOG_APP, "Failed to test");
+// [End HiLog_CPP_Log_Error]
+// [EndExclude HiLog_CPP_Callback]
 }
-
+// [End HiLog_CPP_Callback]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start EventEsc_Header_And_Add_Processor]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -53,6 +54,8 @@ struct Index {
             };
             this.processorId = hiAppEvent.addProcessor(processor);
           })
+        // [StartExclude EventEsc_Header_And_Add_Processor]
+        // [Start Button_Add_ID]
         Button($r('app.string.UserIdTest_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -69,6 +72,8 @@ struct Index {
             let userId = hiAppEvent.getUserId('testUserIdName');
             hilog.info(0x0000, 'testTag', `userId: ${userId}`)
           })
+        // [End Button_Add_ID]
+        // [Start Button_Add_Property]
         Button($r('app.string.UserPropertyTest_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -85,6 +90,8 @@ struct Index {
             let userProperty = hiAppEvent.getUserProperty('testUserPropertyName');
             hilog.info(0x0000, 'testTag', `userProperty: ${userProperty}`)
           })
+        // [End Button_Add_Property]
+        // [Start Button_Add_Event]
         Button($r('app.string.WriteTest_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -112,6 +119,8 @@ struct Index {
               hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
             });
           })
+        // [End Button_Add_Event]
+        // [Start Button_Remove_Processor]
         Button($r('app.string.RemoveProcessorTest_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -124,9 +133,12 @@ struct Index {
             // 在按钮点击函数中进行数据处理者移除
             hiAppEvent.removeProcessor(this.processorId);
           })
+        // [End Button_Remove_Processor]
+        // [EndExclude EventEsc_Header_And_Add_Processor]
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+// [End EventEsc_Header_And_Add_Processor]

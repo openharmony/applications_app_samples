@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
+// [Start Project_Header]
 import { hilog, hiTraceMeter, hiTraceChain, hidebug, hiAppEvent } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import testNapi from 'libentry.so';
-
+// [End Project_Header]
+// [Start testHidebug]
 function testHidebug(event?: ClickEvent) {
   try {
     hilog.info(0x0000, 'testTag', `getSystemCpuUsage ${hidebug.getSystemCpuUsage()}`);
@@ -24,13 +26,14 @@ function testHidebug(event?: ClickEvent) {
     hilog.error(0x0000, 'testTag', `error message is ${(err as BusinessError).message}`);
   }
 }
-
+// [End testHidebug]
 @Entry
 @Component
 struct Index {
   build() {
     Row() {
       Column() {
+        // [Start HiTraceMeterArkTS_Button]
         Button($r('app.string.HiTraceMeterArkTS_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -60,7 +63,8 @@ struct Index {
             // 结束taskId为1002的跟踪任务
             hiTraceMeter.finishTrace("myTraceTest", 1002);
           })
-
+        // [End HiTraceMeterArkTS_Button]
+        // [Start HiTraceChainArkTS_Button]
         Button($r('app.string.HiTraceChainArkTS_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -96,7 +100,8 @@ struct Index {
               console.error(`error message is ${(err as BusinessError).message}`);
             }
           })
-
+        // [End HiTraceChainArkTS_Button]
+        // [Start HiDebugArkTS_Button]
         Button($r('app.string.HiDebugArkTS_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -107,7 +112,7 @@ struct Index {
           .height('5%')
           // 添加点击事件
           .onClick(testHidebug);
-
+        // [End HiDebugArkTS_Button]
         Button($r('app.string.HiCheckerArkTS_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -131,7 +136,7 @@ struct Index {
           .onClick(() => {
             hilog.info(0x0000, 'testTag', 'HiTraceMeter C++', testNapi.testHiTraceMeterNDK());
           })
-
+        // [Start HiTraceChainCPP_Button]
         Button($r('app.string.HiTraceChainCPP_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -143,7 +148,8 @@ struct Index {
           .onClick(() => {
             hilog.info(0x0000, 'testTag', 'HiTraceChain C++', testNapi.testHiTraceChainNDK());
           })
-
+        // [End HiTraceChainCPP_Button]
+        // [Start HiDebugCPP_Button]
         Button($r('app.string.HiDebugCPP_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -154,7 +160,8 @@ struct Index {
           .height('5%')
           // 添加点击事件，触发testHidebugNdk方法。
           .onClick(testNapi.testHidebugNdk);
-
+        // [End HiDebugCPP_Button]
+        // [Start HiCollie_Buttons]
         Button($r('app.string.TestHiCollieJankNdk_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -176,6 +183,7 @@ struct Index {
           .height('5%')
           // 添加点击事件，触发testHiCollieStuckNdk方法
           .onClick(testNapi.testHiCollieStuckNdk);
+        // [End HiCollie_Buttons]
       }
       .width('50%')
     }

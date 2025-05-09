@@ -13,15 +13,19 @@
  * limitations under the License.
  */
  
+// [Start EventSub_EntryAbility_Header]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hiAppEvent, hilog, hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
+// [End EventSub_EntryAbility_Header]
+// [Start EventSub_Capi_Header]
 import testNapi from 'libentry.so';
-
+// [End EventSub_Capi_Header]
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    // [Start AppEvent_ArkTS_Add_Watcher]
     // 添加按钮事件观察者
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
@@ -57,6 +61,8 @@ export default class EntryAbility extends UIAbility {
         }
       }
     });
+    // [End AppEvent_ArkTS_Add_Watcher]
+    // [Start Crash&FreezeEvent_ArkTS_Add_Event]
     // 开发者完成参数键值对赋值
     let params: Record<string, hiAppEvent.ParamType> = {
       'testData': 100,
@@ -70,6 +76,8 @@ export default class EntryAbility extends UIAbility {
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
+    // [End Crash&FreezeEvent_ArkTS_Add_Event]
+    // [Start CrashEvent_ArkTS_Add_Watcher]
     // 添加崩溃事件观察者
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
@@ -123,6 +131,8 @@ export default class EntryAbility extends UIAbility {
         }
       }
     });
+    // [End CrashEvent_ArkTS_Add_Watcher]
+    // [Start FreezeEvent_ArkTS_Add_Watcher]
     // 添加卡死事件观察者
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
@@ -193,6 +203,8 @@ export default class EntryAbility extends UIAbility {
         }
       }
     });
+    // [End FreezeEvent_ArkTS_Add_Watcher]
+    // [Start PssleakEvent_ArkTS_Add_Watcher]
     // 添加资源泄露事件观察者
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
@@ -217,6 +229,8 @@ export default class EntryAbility extends UIAbility {
         }
       }
     });
+    // [End PssleakEvent_ArkTS_Add_Watcher]
+    // [Start AsanEvent_ArkTS_Add_Watcher]
     // 添加踩地址事件观察者
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
@@ -252,6 +266,8 @@ export default class EntryAbility extends UIAbility {
         }
       }
     });
+    // [End AsanEvent_ArkTS_Add_Watcher]
+    // [Start TimeOutEvent_ArkTS_Add_Watcher]
     // 添加主线程超时事件观察者
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
@@ -296,8 +312,11 @@ export default class EntryAbility extends UIAbility {
         }
       }
     });
+    // [End TimeOutEvent_ArkTS_Add_Watcher]
+    // [Start EventSub_Call_Capi_Function]
     // 调用C++观察者
     testNapi.registerWatcher();
+    // [End EventSub_Call_Capi_Function]
   }
 
   onDestroy(): void {

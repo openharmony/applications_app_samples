@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start EventSub_napi_Header]
 #include "napi/native_api.h"
 #include "json/json.h"
 #include "hilog/log.h"
@@ -21,11 +22,16 @@
 
 #undef LOG_TAG
 #define LOG_TAG "testTag"
+// [End EventSub_napi_Header]
 
 // 定义一变量，用来缓存创建的观察者的指针。
+// [Start EventSub_onReceive_ptr]
 static HiAppEvent_Watcher *eventWatcherR;
+// [End EventSub_onReceive_ptr]
+// [Start EventSub_onTrigger_ptr]
 static HiAppEvent_Watcher *eventWatcherT;
-
+// [End EventSub_onTrigger_ptr]
+// [Start AppEvent_OnReceive]
 static void OnReceiveDottingEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
     if (strcmp(appEventGroups[i].appEventInfos[j].domain, "button") == 0 &&
@@ -39,7 +45,8 @@ static void OnReceiveDottingEvent(const struct HiAppEvent_AppEventGroup *appEven
         }
     }
 }
-
+// [End AppEvent_OnReceive]
+// [Start CrashEvent_OnReceive]
 static void OnReceiveCrashEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
     if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
@@ -81,6 +88,8 @@ static void OnReceiveCrashEvent(const struct HiAppEvent_AppEventGroup *appEventG
         }
     }
 }
+// [End CrashEvent_OnReceive]
+// [Start FreezeEvent_OnReceive_Output]
 // OnReceiveFreezeEvent超出50行限制，将日志输出单独抽出
 static void FreezeEventOutput(Json::Value params, Json::FastWriter writer)
 {
@@ -131,7 +140,8 @@ static void FreezeEventOutput(Json::Value params, Json::FastWriter writer)
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d",
                 logOverLimit);
 }
-
+// [End FreezeEvent_OnReceive_Output]
+// [Start FreezeEvent_OnReceive]
 static void OnReceiveFreezeEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
     if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
@@ -144,7 +154,8 @@ static void OnReceiveFreezeEvent(const struct HiAppEvent_AppEventGroup *appEvent
         }
     }
 }
-
+// [End FreezeEvent_OnReceive]
+// [Start PssLeakEvent_OnReceive]
 static void OnReceivePssLeakEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
     if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
@@ -179,7 +190,8 @@ static void OnReceivePssLeakEvent(const struct HiAppEvent_AppEventGroup *appEven
         }
     }
 }
-
+// [End PssLeakEvent_OnReceive]
+// [Start AsanEvent_OnReceive]
 static void OnReceiveAsanEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
     if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
@@ -212,7 +224,8 @@ static void OnReceiveAsanEvent(const struct HiAppEvent_AppEventGroup *appEventGr
         }
     }
 }
-
+// [End AsanEvent_OnReceive]
+// [Start TimeOutEvent_OnReceive]
 static void OnReceiveTimeOutEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
     if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
@@ -246,7 +259,8 @@ static void OnReceiveTimeOutEvent(const struct HiAppEvent_AppEventGroup *appEven
         }
     }
 }
-
+// [End TimeOutEvent_OnReceive]
+// [Start EventSub_OnReceive_All]
 static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
 {
     for (int i = 0; i < groupLen; ++i) {
@@ -273,7 +287,8 @@ static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup 
         }
     }
 }
-
+// [End EventSub_OnReceive_All]
+// [Start AppEvent_OnTrigger]
 static void OnTriggerDottingEvent(std::string domain, std::string name, Json::Value eventInfo)
 {
     if (domain == "button" && name == "click") {
@@ -281,7 +296,8 @@ static void OnTriggerDottingEvent(std::string domain, std::string name, Json::Va
         OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.click_time=%{public}lld", clickTime);
     }
 }
-
+// [End AppEvent_OnTrigger]
+// [Start CrashEvent_OnTrigger]
 static void OnTriggerCrashEvent(std::string domain, std::string name, Json::Value eventInfo, Json::FastWriter writer)
 {
     if (domain == DOMAIN_OS && name == EVENT_APP_CRASH) {
@@ -313,7 +329,8 @@ static void OnTriggerCrashEvent(std::string domain, std::string name, Json::Valu
         OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
     }
 }
-
+// [End CrashEvent_OnTrigger]
+// [Start FreezeEvent_OnTrigger]
 static void OnTriggerFreezeEvent(std::string domain, std::string name, Json::Value eventInfo, Json::FastWriter writer)
 {
     if (domain == DOMAIN_OS && name == EVENT_APP_FREEZE) {
@@ -360,7 +377,8 @@ static void OnTriggerFreezeEvent(std::string domain, std::string name, Json::Val
         OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
     }
 }
-
+// [End FreezeEvent_OnTrigger]
+// [Start PssLeakEvent_OnTrigger]
 static void OnTriggerPssLeakEvent(std::string domain, std::string name, Json::Value eventInfo, Json::FastWriter writer)
 {
     if (domain == DOMAIN_OS && name == EVENT_RESOURCE_OVERLIMIT) {
@@ -388,7 +406,8 @@ static void OnTriggerPssLeakEvent(std::string domain, std::string name, Json::Va
                     logOverLimit.c_str());
     }
 }
-
+// [End PssLeakEvent_OnTrigger]
+// [Start AsanEvent_OnTrigger]
 static void OnTriggerAsanEvent(std::string domain, std::string name, Json::Value eventInfo, Json::FastWriter writer)
 {
     if (domain == DOMAIN_OS && name == EVENT_ADDRESS_SANITIZER) {
@@ -413,7 +432,8 @@ static void OnTriggerAsanEvent(std::string domain, std::string name, Json::Value
                     logOverLimit.c_str());
     }
 }
-
+// [End AsanEvent_OnTrigger]
+// [Start EventSub_OnTake_All]
 // 开发者可以自行实现获取已监听到事件的回调函数，其中events指针指向内容仅在该函数内有效。
 static void OnTake(const char *const *events, uint32_t eventLen)
 {
@@ -442,14 +462,16 @@ static void OnTake(const char *const *events, uint32_t eventLen)
         }
     }
 }
-
+// [End EventSub_OnTake_All]
+// [Start EventSub_OnTrigger]
 // 开发者可以自行实现订阅回调函数，以便对获取到的事件打点数据进行自定义处理。
 static void OnTrigger(int row, int size)
 {
     // 接收回调后，获取指定数量的已接收事件。
     OH_HiAppEvent_TakeWatcherData(eventWatcherT, row, OnTake);
 }
-
+// [End EventSub_OnTrigger]
+// [Start EventSub_RegisterWatcher_All]
 static napi_value RegisterWatcher(napi_env env, napi_callback_info info)
 {
     // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
@@ -477,7 +499,8 @@ static napi_value RegisterWatcher(napi_env env, napi_callback_info info)
     OH_HiAppEvent_AddWatcher(eventWatcherR);
     return {};
 }
-
+// [End EventSub_RegisterWatcher_All]
+// [Start EventSub_RemoveWatcher_All]
 static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
 {
     // 使观察者停止监听事件
@@ -485,7 +508,8 @@ static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
     OH_HiAppEvent_RemoveWatcher(eventWatcherR);
     return {};
 }
-
+// [End EventSub_RemoveWatcher_All]
+// [Start EventSub_DestroyWatcher_All]
 static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
 {
     // 销毁创建的观察者，并置appEventWatcher为nullptr。
@@ -495,7 +519,8 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
     eventWatcherR = nullptr;
     return {};
 }
-
+// [End EventSub_DestroyWatcher_All]
+// [Start AppEvent_WriteAppEvent]
 static napi_value WriteAppEvent(napi_env env, napi_callback_info info)
 {
     auto params = OH_HiAppEvent_CreateParamList();
@@ -505,7 +530,8 @@ static napi_value WriteAppEvent(napi_env env, napi_callback_info info)
     OH_LOG_INFO(LogType::LOG_APP, "writeEvent C++ success");
     return {};
 }
-
+// [End AppEvent_WriteAppEvent]
+// [Start AsanEvent_AddressTest]
 static napi_value AddressTest(napi_env env, napi_callback_info info)
 {
     // 任意实数
@@ -516,7 +542,8 @@ static napi_value AddressTest(napi_env env, napi_callback_info info)
     a[length] = num;
     return {};
 }
-
+// [End AsanEvent_AddressTest]
+// [Start EventSub_Init_All]
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
@@ -527,7 +554,7 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
-
+// [End EventSub_Init_All]
 static napi_module demoModule = {
     .nm_version = 1,
     .nm_flags = 0,

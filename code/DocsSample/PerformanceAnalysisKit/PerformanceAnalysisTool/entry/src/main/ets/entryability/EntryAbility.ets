@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start HiChecker]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hichecker, hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -63,3 +64,4 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 };
+// [End HiChecker]

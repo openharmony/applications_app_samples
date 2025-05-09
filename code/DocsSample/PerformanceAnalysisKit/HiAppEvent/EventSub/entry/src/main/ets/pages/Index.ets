@@ -12,11 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start EventSub_Header]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+// [End EventSub_Header]
+// [Start PssleakEvent_Header]
 import hidebug from '@ohos.hidebug';
+// [End PssleakEvent_Header]
+// [Start EventSub_Index_Capi_Header]
 import testNapi from 'libentry.so';
-
+// [End EventSub_Index_Capi_Header]
 @Entry
 @Component
 struct Index {
@@ -25,7 +31,9 @@ struct Index {
   build() {
     Row() {
       Column() {
+        // [Start AppEvent_ArkTS_Button]
         Button($r('app.string.WriteEventArkTS_Button'))
+          // [StartExclude AppEvent_ArkTS_Button]
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -33,6 +41,7 @@ struct Index {
           .backgroundColor('#0D9FFB')
           .width('80%')
           .height('5%')
+          // [EndExclude AppEvent_ArkTS_Button]
           .onClick(() => {
             // 在按钮点击函数中进行事件打点，以记录按钮点击事件
             let eventParams: Record<string, number> = {'clickTime': 100};
@@ -52,6 +61,8 @@ struct Index {
               hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
             });
           })
+        // [End AppEvent_ArkTS_Button]
+        // [Start CrashEvent_Button]
         Button($r('app.string.Crash_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -64,6 +75,8 @@ struct Index {
             // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
             JSON.parse('');
           })
+        // [End CrashEvent_Button]
+        // [Start PssleakEvent_Button]
         Button($r('app.string.Pssleak_Button'))
             .type(ButtonType.Capsule)
             .margin({
@@ -79,6 +92,8 @@ struct Index {
                 this.leakedArray.push(new Array(1).fill('leak'));
               }
             })
+          // [End PssleakEvent_Button]
+          // [Start TimeOutEvent_Button]
           Button($r('app.string.TimeOut_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -92,11 +107,14 @@ struct Index {
             while (Date.now() - t <= 350) {
             }
           })
+          // [End TimeOutEvent_Button]
       }
       .width('50%')
 
       Column() {
+        // [Start AppEvent_CPP_Button]
         Button($r('app.string.WriteEventCPP_Button'))
+          // [StartExclude AppEvent_CPP_Button]
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -104,9 +122,12 @@ struct Index {
           .backgroundColor('#0D9FFB')
           .width('80%')
           .height('5%')
+          // [EndExclude AppEvent_CPP_Button]
           .onClick(() => {
             testNapi.writeAppEvent();
           })
+        // [End AppEvent_CPP_Button]
+        // [Start FreezeEvent_Button]
         Button($r('app.string.Freeze_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -121,6 +142,8 @@ struct Index {
               }
             }, 1000)
           })
+        // [End FreezeEvent_Button]
+        // [Start AsanEvent_Button]
         Button($r('app.string.AsanEvent_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -132,6 +155,7 @@ struct Index {
           .onClick(() => {
             testNapi.addressTest();
           })
+        // [End AsanEvent_Button]
       }
       .width('50%')
     }

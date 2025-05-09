@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start napi_Header]
 #include "napi/native_api.h"
 #include "hitrace/trace.h"
 #include "hilog/log.h"
@@ -25,7 +26,8 @@
 
 #undef LOG_TAG
 #define LOG_TAG "testTag"
-
+// [End napi_Header]
+// [Start HiCollie]
 static OH_HiCollie_BeginFunc beginFunc_;                                     // 定义回调函数对象
 static OH_HiCollie_EndFunc endFunc_;                                         // 定义回调函数对象
 HiCollie_DetectionParam param{.sampleStackTriggerTime = 150, .reserved = 0}; // 定义结构体
@@ -117,7 +119,8 @@ static napi_value TestHiCollieStuckNdk(napi_env env, napi_callback_info info)
     threadObj.join();                          // 执行回调函数
     return 0;
 }
-
+// [End HiCollie]
+// [Start HiTraceMeterNDK]
 static napi_value TestHiTraceMeterNDK(napi_env env, napi_callback_info info)
 {
     // 测试标记数
@@ -128,7 +131,8 @@ static napi_value TestHiTraceMeterNDK(napi_env env, napi_callback_info info)
     OH_HiTrace_FinishAsyncTrace("hitraceTest", testNum);
     return 0;
 }
-
+// [End HiTraceMeterNDK]
+// [Start HiTraceChainNDK]
 static napi_value TestHiTraceChainNDK(napi_env env, napi_callback_info info)
 {
     // 需要开启分布式跟踪的地方
@@ -137,15 +141,17 @@ static napi_value TestHiTraceChainNDK(napi_env env, napi_callback_info info)
     OH_HiTrace_EndChain();
     return 0;
 }
-
+// [End HiTraceChainNDK]
+// [Start TestHidebugNdk]
 static napi_value TestHidebugNdk(napi_env env, napi_callback_info info)
 {
     double cpuUsage = OH_HiDebug_GetSystemCpuUsage();
     OH_LOG_INFO(LogType::LOG_APP, "GetSystemCpuUsage: %{public}f", cpuUsage);
     return 0;
 }
-
+// [End TestHidebugNdk]
 EXTERN_C_START
+// [Start Init_All]
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
@@ -158,6 +164,7 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
+// [End Init_All]
 EXTERN_C_END
 
 static napi_module demoModule = {
