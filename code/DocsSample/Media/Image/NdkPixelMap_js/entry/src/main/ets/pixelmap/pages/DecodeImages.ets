@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ndk_pixelmap_js_image_decode]
 import testNapi from 'libentry.so';
 import { image } from '@kit.ImageKit';
 import { router } from '@kit.ArkUI';
@@ -43,3 +44,4 @@ struct DecodeImages {
     .height('100%')
   }
 }
+// [End ndk_pixelmap_js_image_decode]

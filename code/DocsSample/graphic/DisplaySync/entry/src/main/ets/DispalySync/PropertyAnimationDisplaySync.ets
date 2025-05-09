@@ -14,6 +14,7 @@
  */
 import { router } from '@kit.ArkUI';
 
+// [Start display_sync_by_property_animation_complete_example]
 @Entry
 @Component
 struct AnimationToAnimationDemo {
@@ -62,7 +63,9 @@ struct AnimationToAnimationDemo {
       .height('20%')
 
       Row() {
+        // [Start display_sync_property_animation]
         Text('60')
+          // [StartExclude display_sync_property_animation]
           .fontWeight(FontWeight.Bold)
           .fontSize(16)
           .fontColor(Color.White)
@@ -72,6 +75,7 @@ struct AnimationToAnimationDemo {
           .width(80)
           .height(80)
           .translate({ x: this.translateX3 })
+          // [EndExclude display_sync_property_animation]
           .animation({
             duration: 1200,
             iterations: 10,
@@ -82,11 +86,14 @@ struct AnimationToAnimationDemo {
               max: 120,
             },
           })
+        // [End display_sync_property_animation]
       }
       .height('20%')
 
       Row() {
+        // [Start display_sync_explicit_animation]
         Button('Start')
+          // [StartExclude display_sync_explicit_animation]
           .id('PropertyAnimationStart')
           .fontSize(14)
           .fontWeight(500)
@@ -95,6 +102,7 @@ struct AnimationToAnimationDemo {
           .onClick(() => {
             this.isAnimation = !this.isAnimation;
             this.translateX3 = this.isAnimation ? 100 : -100;
+            // [EndExclude display_sync_explicit_animation]
 
             this.uiContext?.animateTo({
               duration: 1200,
@@ -108,6 +116,7 @@ struct AnimationToAnimationDemo {
             }, () => {
               this.translateX1 = this.isAnimation ? 100 : -100;
             })
+            // [End display_sync_explicit_animation]
 
             this.uiContext?.animateTo({
               duration: 1200,
@@ -151,3 +160,4 @@ struct AnimationToAnimationDemo {
     .layoutWeight(1)
   }
 }
+// [End display_sync_by_property_animation_complete_example]

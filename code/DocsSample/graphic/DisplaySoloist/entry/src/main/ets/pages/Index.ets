@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start display_soloist_create_xcomponent]
 import XComponentContext from '../interface/XComponentContext';
 import Logger from '../utils/Logger';
 
@@ -23,6 +24,8 @@ struct Index {
   private xComponentContext1: XComponentContext | undefined = undefined;
   private xComponentContext2: XComponentContext | undefined = undefined;
 
+  // [StartExclude display_soloist_create_xcomponent]
+  // [Start display_soloist_disappear]
   aboutToDisappear(): void {
     Logger.info(TAG, 'aboutToDisappear');
     if (this.xComponentContext1) {
@@ -34,10 +37,13 @@ struct Index {
       this.xComponentContext2.destroy();
     }
   }
+  // [End display_soloist_disappear]
+  // [EndExclude display_soloist_create_xcomponent]
 
   build() {
     Column() {
       Row() {
+        // [StartExclude display_soloist_create_xcomponent]
         Text('30fps')
           .fontWeight(FontWeight.Bold)
           .fontSize(12)
@@ -45,6 +51,7 @@ struct Index {
           .textAlign(TextAlign.End)
           .width(40)
           .height(30)
+        // [EndExclude display_soloist_create_xcomponent]
 
         XComponent({
           id: 'xcomponentId_30',
@@ -55,12 +62,10 @@ struct Index {
             this.xComponentContext1 = xComponentContext as XComponentContext;
           }).width('640px')
           .backgroundColor(Color.White)
-
-
       }.height('40%')
 
-
       Row() {
+        // [StartExclude display_soloist_create_xcomponent]
         Text('120fps')
           .fontWeight(FontWeight.Bold)
           .fontSize(12)
@@ -68,6 +73,7 @@ struct Index {
           .textAlign(TextAlign.End)
           .width(40)
           .height(30)
+        // [EndExclude display_soloist_create_xcomponent]
 
         XComponent({
           id: 'xcomponentId_120',
@@ -79,7 +85,9 @@ struct Index {
           }).width('640px')
           .backgroundColor(Color.White)
       }.height('40%')
+      // [End display_soloist_create_xcomponent]
 
+      // [Start display_soloist_start_and_stop]
       Row() {
         Button('Start')
           .id('Start')
@@ -119,6 +127,7 @@ struct Index {
       .justifyContent(FlexAlign.SpaceEvenly)
       .width('100%')
       .height('20%')
+      // [End display_soloist_start_and_stop]
     }
   }
 }

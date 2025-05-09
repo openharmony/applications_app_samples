@@ -18,6 +18,7 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 import { VALUE_100, VALUE_200, VALUE_300, VALUE_900 } from '../../pages/Index';
 
 function drawBaseText(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_base_text]
   // 创建字型对象
   const font = new drawing.Font();
   // 设置字体大小
@@ -26,9 +27,11 @@ function drawBaseText(canvas: drawing.Canvas) {
   const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
   // 绘制字块
   canvas.drawTextBlob(textBlob, VALUE_200, VALUE_300);
+  // [End arkts_graphics_draw_base_text]
 }
 
 function drawStrokeText(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_stroke_text]
   // 创建画笔
   let pen = new drawing.Pen();
   // 设置抗锯齿
@@ -49,9 +52,11 @@ function drawStrokeText(canvas: drawing.Canvas) {
   canvas.drawTextBlob(textBlob, VALUE_200, VALUE_300);
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_stroke_text]
 }
 
 function drawGradientText(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_gradient_text]
   let startPt: common2D.Point = { x: VALUE_100, y: VALUE_100 };
   let endPt: common2D.Point = { x: VALUE_900, y: VALUE_900 };
   let colors = [0xFFFFFF00, 0xFFFF0000, 0xFF0000FF];
@@ -73,6 +78,7 @@ function drawGradientText(canvas: drawing.Canvas) {
   canvas.drawTextBlob(textBlob, VALUE_100, VALUE_300);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_gradient_text]
 }
 
 // 自定义RenderNode

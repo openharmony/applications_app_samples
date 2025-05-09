@@ -24,8 +24,10 @@
 #include <native_drawing/drawing_pixel_map.h>
 #include <native_drawing/drawing_text_blob.h>
 #include <native_drawing/drawing_shader_effect.h>
+// [Start ndk_graphics_draw_include_native_drawing_surface_and_gpu_context]
 #include <native_drawing/drawing_gpu_context.h>
 #include <native_drawing/drawing_surface.h>
+// [End ndk_graphics_draw_include_native_drawing_surface_and_gpu_context]
 #include <native_drawing/drawing_path_effect.h>
 #include <native_drawing/drawing_color_filter.h>
 #include <native_drawing/drawing_filter.h>
@@ -37,9 +39,6 @@
 #include "common/log_common.h"
 #include "sample_graphics.h"
 #include "utils/adaptation_util.h"
-
-#include <native_drawing/drawing_surface.h>
-#include <native_drawing/drawing_gpu_context.h>
 
 const uint16_t RGBA_MIN = 0x00;
 const uint16_t RGBA_MAX = 0xFF;
@@ -63,6 +62,7 @@ float SampleGraphics::value900_ = adaptationUtil->GetWidth(900.f);
 float SampleGraphics::value1000_ = adaptationUtil->GetWidth(1000.f);
 float SampleGraphics::value1200_ = adaptationUtil->GetWidth(1200.f);
 
+// [Start ndk_graphics_draw_initialize_egl_context]
 EGLConfig getConfig(int version, EGLDisplay eglDisplay)
 {
     int attribList[] = {EGL_SURFACE_TYPE,
@@ -127,7 +127,9 @@ int32_t SampleGraphics::InitializeEglContext()
     SAMPLE_LOGE("Init success.");
     return 0;
 }
+// [End ndk_graphics_draw_initialize_egl_context]
 
+// [Start ndk_graphics_draw_deinitialize_egl_context]
 void SampleGraphics::DeInitializeEglContext()
 {
     EGLBoolean ret = eglDestroySurface(EGLDisplay_, EGLSurface_);
@@ -149,6 +151,7 @@ void SampleGraphics::DeInitializeEglContext()
     EGLContext_ = NULL;
     EGLDisplay_ = NULL;
 }
+// [End ndk_graphics_draw_deinitialize_egl_context]
 
 static void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
 {
@@ -210,22 +213,27 @@ void SampleGraphics::Prepare()
         return;
     }
     // 这里的nativeWindow是从上一步骤中的回调函数中获得的
+    // [Start ndk_graphics_draw_get_buffer_handle]
     // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
     int ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
     SAMPLE_LOGI("request buffer ret = %{public}d", ret);
     // 通过 OH_NativeWindow_GetBufferHandleFromNative 获取 buffer 的 handle
     bufferHandle_ = OH_NativeWindow_GetBufferHandleFromNative(buffer_);
+    // [End ndk_graphics_draw_get_buffer_handle]
+    // [Start ndk_graphics_draw_get_mapped_addr]
     // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
     mappedAddr_ = static_cast<uint32_t *>(
         mmap(bufferHandle_->virAddr, bufferHandle_->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle_->fd, 0));
     if (mappedAddr_ == MAP_FAILED) {
         SAMPLE_LOGE("mmap failed");
     }
+    // [End ndk_graphics_draw_get_mapped_addr]
 }
 
 void SampleGraphics::Create()
 {
     uint32_t width = static_cast<uint32_t>(bufferHandle_->stride / 4);
+    // [Start ndk_graphics_draw_create_canvas]
     // 创建一个bitmap对象
     cScreenBitmap_ = OH_Drawing_BitmapCreate();
     // 定义bitmap的像素格式
@@ -237,12 +245,14 @@ void SampleGraphics::Create()
     cScreenCanvas_ = OH_Drawing_CanvasCreate();
     // 将画布与bitmap绑定，画布画的内容会输出到绑定的bitmap内存中
     OH_Drawing_CanvasBind(cScreenCanvas_, cScreenBitmap_);
+    // [End ndk_graphics_draw_create_canvas]
     // 使用白色清除画布内容
     OH_Drawing_CanvasClear(cScreenCanvas_, OH_Drawing_ColorSetArgb(RGBA_MAX, RGBA_MAX, RGBA_MAX, 0xFF));
 }
 
 void SampleGraphics::CreateByCPU()
 {
+    // [Start ndk_graphics_draw_create_canvas_by_cpu]
     // 创建一个离屏位图对象
     cOffScreenBitmap_ = OH_Drawing_BitmapCreate();
     // 设置位图属性
@@ -256,8 +266,11 @@ void SampleGraphics::CreateByCPU()
     cCPUCanvas_ = OH_Drawing_CanvasCreate();
     // 将离屏Canvas与离屏bitmap绑定，离屏Canvas绘制的内容会输出到绑定的离屏bitmap内存中
     OH_Drawing_CanvasBind(cCPUCanvas_, cOffScreenBitmap_);
+    // [End ndk_graphics_draw_create_canvas_by_cpu]
+    // [Start ndk_graphics_draw_clear_canvas_cpu]
     // 将背景设置为白色
     OH_Drawing_CanvasClear(cCPUCanvas_, OH_Drawing_ColorSetArgb(RGBA_MAX, RGBA_MAX, RGBA_MAX, 0xFF));
+    // [End ndk_graphics_draw_clear_canvas_cpu]
     
     // 创建一个bitmap对象
     cScreenBitmap_ = OH_Drawing_BitmapCreate();
@@ -282,6 +295,7 @@ void SampleGraphics::CreateByGPU()
     // 将画布与bitmap绑定，画布画的内容会输出到绑定的bitmap内存中
     OH_Drawing_CanvasBind(cScreenCanvas_, cScreenBitmap_);
     
+    // [Start ndk_graphics_draw_create_canvas_by_gpu]
     // 设置宽高（按需设定）
     int32_t cWidth = 800;
     int32_t cHeight = 800;
@@ -296,8 +310,11 @@ void SampleGraphics::CreateByGPU()
     OH_Drawing_Surface *surface = OH_Drawing_SurfaceCreateFromGpuContext(gpuContext, true, imageInfo);
     // 创建一个canvas对象
     cGPUCanvas_ = OH_Drawing_SurfaceGetCanvas(surface);
+    // [End ndk_graphics_draw_create_canvas_by_gpu]
+    // [Start ndk_graphics_draw_clear_canvas_gpu]
     // 将背景设置为白色
     OH_Drawing_CanvasClear(cGPUCanvas_, OH_Drawing_ColorSetArgb(RGBA_MAX, RGBA_MAX, RGBA_MAX, 0xFF));
+    // [End ndk_graphics_draw_clear_canvas_gpu]
 }
 
 void SampleGraphics::DisPlay()
@@ -320,10 +337,12 @@ void SampleGraphics::DisPlay()
             *pixel++ = *value++;
         }
     }
+    // [Start ndk_graphics_draw_native_window_flush_buffer]
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer_, fenceFd_, region);
+    // [End ndk_graphics_draw_native_window_flush_buffer]
     // 内存使用完记得去掉内存映射
     int result = munmap(mappedAddr_, bufferHandle_->size);
     if (result == -1) {
@@ -333,8 +352,10 @@ void SampleGraphics::DisPlay()
 
 void SampleGraphics::DisPlayCPU()
 {
+    // [Start ndk_graphics_draw_drawing_to_window_canvas_cpu]
     // 将离屏bitmap中的内容绘制到屏幕画布，实现上屏操作
     OH_Drawing_CanvasDrawBitmap(cScreenCanvas_, cOffScreenBitmap_, 0, 0);
+    // [End ndk_graphics_draw_drawing_to_window_canvas_cpu]
     DisPlay();
 }
 
@@ -345,16 +366,19 @@ void SampleGraphics::DisPlayGPU()
     int32_t cHeight = 800;
     // 设置图像，包括宽度、高度、颜色格式和透明度格式
     OH_Drawing_Image_Info imageInfo = {cWidth, cHeight, COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_PREMUL};
+    // [Start ndk_graphics_draw_drawing_to_window_canvas_gpu]
     void* dstPixels = malloc(cWidth * cHeight * RGBA_SIZE); // 4 for rgba
     OH_Drawing_CanvasReadPixels(cGPUCanvas_, &imageInfo, dstPixels, RGBA_SIZE * cWidth, 0, 0);
     OH_Drawing_Bitmap* cOffScreenBitmap_ = OH_Drawing_BitmapCreateFromPixels(&imageInfo, dstPixels,
         RGBA_SIZE * cWidth);
     OH_Drawing_CanvasDrawBitmap(cScreenCanvas_, cOffScreenBitmap_, 0, 0);
+    // [End ndk_graphics_draw_drawing_to_window_canvas_gpu]
     DisPlay();
 }
 
 void SampleGraphics::DrawClipOperation(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_canvas_clip]
     // 创建画刷对象
     OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
     // 设置画刷填充颜色为蓝色
@@ -371,10 +395,12 @@ void SampleGraphics::DrawClipOperation(OH_Drawing_Canvas *canvas)
     OH_Drawing_CanvasDetachBrush(canvas);
     // 销毁画刷对象并收回其占的内存
     OH_Drawing_BrushDestroy(brush);
+    // [End ndk_graphics_draw_canvas_clip]
 }
 
 void SampleGraphics::DrawTranslationOperation(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_canvas_translation]
     // 创建画刷对象
     OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
     // 设置填充颜色
@@ -392,10 +418,12 @@ void SampleGraphics::DrawTranslationOperation(OH_Drawing_Canvas *canvas)
     OH_Drawing_CanvasDetachBrush(canvas);
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_MatrixDestroy(matrix);
+    // [End ndk_graphics_draw_canvas_translation]
 }
 
 void SampleGraphics::DrawRotationOperation(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_canvas_rotation]
     // 创建画刷对象
     OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
     // 设置填充颜色
@@ -413,10 +441,12 @@ void SampleGraphics::DrawRotationOperation(OH_Drawing_Canvas *canvas)
     OH_Drawing_CanvasDetachBrush(canvas);
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_MatrixDestroy(matrix);
+    // [End ndk_graphics_draw_canvas_rotation]
 }
 
 void SampleGraphics::DrawScaleOperation(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_canvas_scale]
     // 创建画刷对象
     OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
     // 设置填充颜色
@@ -433,10 +463,12 @@ void SampleGraphics::DrawScaleOperation(OH_Drawing_Canvas *canvas)
     // 去除画布中的画刷
     OH_Drawing_CanvasDetachBrush(canvas);
     OH_Drawing_RectDestroy(rect);
+    // [End ndk_graphics_draw_canvas_scale]
 }
 
 void SampleGraphics::DrawStateOperation(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_canvas_state_operation]
     // 创建画笔对象
     OH_Drawing_Pen* pen = OH_Drawing_PenCreate();
     // 设置画笔描边颜色
@@ -463,47 +495,74 @@ void SampleGraphics::DrawStateOperation(OH_Drawing_Canvas *canvas)
     OH_Drawing_PenDestroy(pen);
     OH_Drawing_PointDestroy(point);
     OH_Drawing_MatrixDestroy(matrix);
+    // [End ndk_graphics_draw_canvas_state_operation]
 }
 
 void SampleGraphics::DrawFilling(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_create_brush]
     // 创建画刷
     OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
+    // [End ndk_graphics_draw_create_brush]
+    // [Start ndk_graphics_draw_brush_set_color]
     // 设置填充颜色为红色
     uint32_t color = 0xffff0000;
     OH_Drawing_BrushSetColor(brush, color);
+    // [End ndk_graphics_draw_brush_set_color]
+    // [Start ndk_graphics_draw_brush_set_antialias]
     // 开启抗锯齿效果
     OH_Drawing_BrushSetAntiAlias(brush, true);
+    // [End ndk_graphics_draw_brush_set_antialias]
+    // [Start ndk_graphics_draw_canvas_attach_brush]
     // 设置画布的画刷
     OH_Drawing_CanvasAttachBrush(canvas, brush);
+    // [End ndk_graphics_draw_canvas_attach_brush]
     OH_Drawing_Rect* rect = OH_Drawing_RectCreate(0, 0, value800_, value800_);
     // 绘制椭圆
     OH_Drawing_CanvasDrawOval(canvas, rect);
+    // [Start ndk_graphics_draw_canvas_detach_brush]
     // 去除画布中的画刷
     OH_Drawing_CanvasDetachBrush(canvas);
+    // [End ndk_graphics_draw_canvas_detach_brush]
+    // [Start ndk_graphics_draw_brush_destroy]
     // 销毁各类对象
     OH_Drawing_BrushDestroy(brush);
+    // [End ndk_graphics_draw_brush_destroy]
     OH_Drawing_RectDestroy(rect);
 }
 
 void SampleGraphics::DrawStroke(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_create_drawing_pen]
     // 创建画笔
     OH_Drawing_Pen* pen = OH_Drawing_PenCreate();
+    // [End ndk_graphics_draw_create_drawing_pen]
+    // [Start ndk_graphics_draw_pen_set_color]
     // 设置画笔颜色为红色
     uint32_t color = 0xffff0000;
     OH_Drawing_PenSetColor(pen, color);
+    // [End ndk_graphics_draw_pen_set_color]
+    // [Start ndk_graphics_draw_pen_set_stroke_width]
     // 设置画笔的线宽为50像素
     float width = 50.0;
     OH_Drawing_PenSetWidth(pen, width);
+    // [End ndk_graphics_draw_pen_set_stroke_width]
+    // [Start ndk_graphics_draw_pen_set_antialias]
     // 设置画笔抗锯齿
     OH_Drawing_PenSetAntiAlias(pen, true);
+    // [End ndk_graphics_draw_pen_set_antialias]
+    // [Start ndk_graphics_draw_pen_set_cap_style]
     // 设置画笔线帽样式
     OH_Drawing_PenSetCap(pen, OH_Drawing_PenLineCapStyle::LINE_ROUND_CAP);
+    // [End ndk_graphics_draw_pen_set_cap_style]
+    // [Start ndk_graphics_draw_pen_set_join_style]
     // 设置画笔转角样式
     OH_Drawing_PenSetJoin(pen, OH_Drawing_PenLineJoinStyle::LINE_BEVEL_JOIN);
+    // [End ndk_graphics_draw_pen_set_join_style]
+    // [Start ndk_graphics_draw_canvas_attach_pen]
     // 设置画布的画笔
     OH_Drawing_CanvasAttachPen(canvas, pen);
+    // [End ndk_graphics_draw_canvas_attach_pen]
     // 创建路径
     OH_Drawing_Path* path = OH_Drawing_PathCreate();
     float aX = value100_;
@@ -522,16 +581,21 @@ void SampleGraphics::DrawStroke(OH_Drawing_Canvas *canvas)
     OH_Drawing_PathLineTo(path, dX, dY);
     // 绘制闭合路径
     OH_Drawing_CanvasDrawPath(canvas, path);
+    // [Start ndk_graphics_draw_canvas_detach_pen]
     // 去除掉画布中的画笔
     OH_Drawing_CanvasDetachPen(canvas);
+    // [End ndk_graphics_draw_canvas_detach_pen]
+    // [Start ndk_graphics_draw_pen_destroy]
     // 销毁各类对象
     OH_Drawing_PenDestroy(pen);
+    // [End ndk_graphics_draw_pen_destroy]
     OH_Drawing_PathDestroy(path);
 }
 
 void SampleGraphics::DrawMixedMode(OH_Drawing_Canvas *canvas)
 {
     OH_Drawing_CanvasClear(canvas, OH_Drawing_ColorSetArgb(RGBA_MAX, RGBA_MIN, RGBA_MIN, RGBA_MIN));
+    // [Start ndk_graphics_draw_mixed_mode]
     // 创建画刷对象
     OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
     // 设置目标像素颜色
@@ -558,10 +622,12 @@ void SampleGraphics::DrawMixedMode(OH_Drawing_Canvas *canvas)
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_BrushDestroy(brush);
     OH_Drawing_PointDestroy(point);
+    // [End ndk_graphics_draw_mixed_mode]
 }
 
 void SampleGraphics::DrawPathEffect(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_path_effect]
     // 创建画笔
     OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
     // 设置画笔描边颜色
@@ -585,10 +651,12 @@ void SampleGraphics::DrawPathEffect(OH_Drawing_Canvas *canvas)
     OH_Drawing_PenDestroy(pen);
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_PathEffectDestroy(pathEffect);
+    // [End ndk_graphics_draw_path_effect]
 }
 
 void SampleGraphics::DrawLinearGradient(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_linear_gradient]
     // 开始点
     OH_Drawing_Point *startPt = OH_Drawing_PointCreate(20, 20);
     // 结束点
@@ -617,10 +685,12 @@ void SampleGraphics::DrawLinearGradient(OH_Drawing_Canvas *canvas)
     OH_Drawing_ShaderEffectDestroy(colorShaderEffect);
     OH_Drawing_PointDestroy(startPt);
     OH_Drawing_PointDestroy(endPt);
+    // [End ndk_graphics_draw_linear_gradient]
 }
 
 void SampleGraphics::DrawPathGradient(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_path_gradient]
     // 圆心坐标
     OH_Drawing_Point *centerPt = OH_Drawing_PointCreate(value500_, value500_);
     // 半径
@@ -648,10 +718,12 @@ void SampleGraphics::DrawPathGradient(OH_Drawing_Canvas *canvas)
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_ShaderEffectDestroy(colorShaderEffect);
     OH_Drawing_PointDestroy(centerPt);
+    // [End ndk_graphics_draw_path_gradient]
 }
 
 void SampleGraphics::DrawSectorGradient(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_sector_gradient]
     // 中心点
     OH_Drawing_Point *centerPt = OH_Drawing_PointCreate(value500_, value500_);
     // 颜色数组
@@ -677,10 +749,12 @@ void SampleGraphics::DrawSectorGradient(OH_Drawing_Canvas *canvas)
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_ShaderEffectDestroy(colorShaderEffect);
     OH_Drawing_PointDestroy(centerPt);
+    // [End ndk_graphics_draw_sector_gradient]
 }
 
 void SampleGraphics::DrawColorFilter(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_color_filter]
     // 创建画刷
     OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
     // 设置画刷抗锯齿
@@ -716,10 +790,12 @@ void SampleGraphics::DrawColorFilter(OH_Drawing_Canvas *canvas)
     OH_Drawing_ColorFilterDestroy(colorFilter);
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_FilterDestroy(filter);
+    // [End ndk_graphics_draw_color_filter]
 }
 
 void SampleGraphics::DrawImageFilter(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_image_filter]
     // 创建画笔
     OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
     // 设置画笔抗锯齿
@@ -750,10 +826,12 @@ void SampleGraphics::DrawImageFilter(OH_Drawing_Canvas *canvas)
     OH_Drawing_ImageFilterDestroy(imageFilter);
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_FilterDestroy(filter);
+    // [End ndk_graphics_draw_image_filter]
 }
 
 void SampleGraphics::DrawMaskFilter(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_mask_filter]
     // 创建画笔
     OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
     // 设置画笔抗锯齿
@@ -783,11 +861,13 @@ void SampleGraphics::DrawMaskFilter(OH_Drawing_Canvas *canvas)
     OH_Drawing_MaskFilterDestroy(maskFilter);
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_FilterDestroy(filter);
+    // [End ndk_graphics_draw_mask_filter]
 }
 
 void SampleGraphics::DrawPoint(OH_Drawing_Canvas *canvas)
 {
     SAMPLE_LOGI("DrawPoint");
+    // [Start ndk_graphics_draw_point]
     // 创建画笔对象
     OH_Drawing_Pen* pen = OH_Drawing_PenCreate();
     // 设置画笔颜色
@@ -812,10 +892,12 @@ void SampleGraphics::DrawPoint(OH_Drawing_Canvas *canvas)
     OH_Drawing_CanvasDetachPen(canvas);
     // 销毁各类对象
     OH_Drawing_PenDestroy(pen);
+    // [End ndk_graphics_draw_point]
 }
 
 void SampleGraphics::DrawArc(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_arc]
     // 创建画笔对象
     OH_Drawing_Pen* pen = OH_Drawing_PenCreate();
     // 设置画笔描边颜色
@@ -833,10 +915,12 @@ void SampleGraphics::DrawArc(OH_Drawing_Canvas *canvas)
     // 销毁各类对象
     OH_Drawing_PenDestroy(pen);
     OH_Drawing_RectDestroy(rect);
+    // [End ndk_graphics_draw_arc]
 }
 
 void SampleGraphics::DrawCircle(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_circle]
     // 创建画笔对象
     OH_Drawing_Pen* pen = OH_Drawing_PenCreate();
     // 设置画笔描边颜色
@@ -854,10 +938,12 @@ void SampleGraphics::DrawCircle(OH_Drawing_Canvas *canvas)
     // 销毁各类对象
     OH_Drawing_PenDestroy(pen);
     OH_Drawing_PointDestroy(point);
+    // [End ndk_graphics_draw_circle]
 }
 
 void SampleGraphics::DrawPath(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_path]
     // 创建画笔对象
     OH_Drawing_Pen* pen = OH_Drawing_PenCreate();
     // 设置画笔描边颜色
@@ -904,10 +990,12 @@ void SampleGraphics::DrawPath(OH_Drawing_Canvas *canvas)
     OH_Drawing_PenDestroy(pen);
     OH_Drawing_BrushDestroy(brush);
     OH_Drawing_PathDestroy(path);
+    // [End ndk_graphics_draw_path]
 }
 
 void SampleGraphics::DrawRegion(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_region]
     // 创建画刷对象
     OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
     // 设置画刷填充颜色
@@ -933,10 +1021,12 @@ void SampleGraphics::DrawRegion(OH_Drawing_Canvas *canvas)
     OH_Drawing_RegionDestroy(region2);
     OH_Drawing_RectDestroy(rect1);
     OH_Drawing_RectDestroy(rect2);
+    // [End ndk_graphics_draw_region]
 }
 
 void SampleGraphics::DrawRect(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_rect]
     // 创建画刷对象
     OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
     // 设置画刷的填充颜色
@@ -951,10 +1041,12 @@ void SampleGraphics::DrawRect(OH_Drawing_Canvas *canvas)
     // 销毁各类对象
     OH_Drawing_BrushDestroy(brush);
     OH_Drawing_RectDestroy(rect);
+    // [End ndk_graphics_draw_rect]
 }
 
 void SampleGraphics::DrawRoundRect(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_round_rect]
     // 创建画刷对象
     OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
     // 设置画刷的填充颜色
@@ -973,10 +1065,12 @@ void SampleGraphics::DrawRoundRect(OH_Drawing_Canvas *canvas)
     OH_Drawing_BrushDestroy(brush);
     OH_Drawing_RectDestroy(rect);
     OH_Drawing_RoundRectDestroy(roundRect);
+    // [End ndk_graphics_draw_round_rect]
 }
 
 void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_image]
     // 图片宽高分别为 600 * 400
     uint32_t width = 600;
     uint32_t height = 400;
@@ -1020,10 +1114,12 @@ void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
     OH_Drawing_CanvasDrawPixelMapRect(canvas, pixelMap, src, dst, samplingOptions);
     OH_PixelmapNative_Release(pixelMapNative);
     delete[] pixels;
+    // [End ndk_graphics_draw_image]
 }
 
 void SampleGraphics::DrawBaseText(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_base_text]
     // 创建字体对象
     OH_Drawing_Font *font = OH_Drawing_FontCreate();
     // 设置字体大小
@@ -1039,10 +1135,12 @@ void SampleGraphics::DrawBaseText(OH_Drawing_Canvas *canvas)
     OH_Drawing_TextBlobDestroy(textBlob);
     // 释放字体对象
     OH_Drawing_FontDestroy(font);
+    // [End ndk_graphics_draw_base_text]
 }
 
 void SampleGraphics::DrawStrokeText(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_stroke_text]
     // 创建画笔
     OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
     // 设置抗锯齿
@@ -1069,10 +1167,12 @@ void SampleGraphics::DrawStrokeText(OH_Drawing_Canvas *canvas)
     OH_Drawing_TextBlobDestroy(textBlob);
     OH_Drawing_FontDestroy(font);
     OH_Drawing_PenDestroy(pen);
+    // [End ndk_graphics_draw_stroke_text]
 }
 
 void SampleGraphics::DrawGradientText(OH_Drawing_Canvas *canvas)
 {
+    // [Start ndk_graphics_draw_gradient_text]
     // 开始点
     OH_Drawing_Point *startPt = OH_Drawing_PointCreate(value100_, value100_);
     // 结束点
@@ -1106,6 +1206,7 @@ void SampleGraphics::DrawGradientText(OH_Drawing_Canvas *canvas)
     OH_Drawing_TextBlobDestroy(textBlob);
     OH_Drawing_FontDestroy(font);
     OH_Drawing_BrushDestroy(brush);
+    // [End ndk_graphics_draw_gradient_text]
 }
 
 void SampleGraphics::InitDrawFunction(std::string id)

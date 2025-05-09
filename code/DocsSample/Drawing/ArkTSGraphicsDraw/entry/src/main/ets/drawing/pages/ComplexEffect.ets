@@ -27,6 +27,7 @@ import {
 } from '../../pages/Index';
 
 function drawMixedMode(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_mixed_mode]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置目标像素颜色，即矩形的颜色
@@ -52,9 +53,11 @@ function drawMixedMode(canvas: drawing.Canvas) {
   canvas.drawCircle(VALUE_600, VALUE_600, VALUE_300);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_mixed_mode]
 }
 
 function drawPathEffect(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_path_effect]
   // 创建画笔
   let pen = new drawing.Pen();
   // 设置线宽
@@ -79,9 +82,11 @@ function drawPathEffect(canvas: drawing.Canvas) {
   canvas.drawRect(rect);
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_path_effect]
 }
 
 function drawLinearGradient(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_linear_gradient]
   let startPt: common2D.Point = { x: VALUE_100, y: VALUE_100 };
   let endPt: common2D.Point = { x: VALUE_900, y: VALUE_900 };
   let colors = [0xFFFFFF00, 0xFFFF0000, 0xFF0000FF];
@@ -103,9 +108,11 @@ function drawLinearGradient(canvas: drawing.Canvas) {
   canvas.drawRect(rect);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_linear_gradient]
 }
 
 function drawPathGradient(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_path_gradient]
   let centerPt: common2D.Point = { x: VALUE_500, y: VALUE_500 };
   let colors = [0xFFFF0000, 0xFF00FF00, 0xFF0000FF];
   // 创建径向渐变着色器
@@ -126,9 +133,11 @@ function drawPathGradient(canvas: drawing.Canvas) {
   canvas.drawRect(rect);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_path_gradient]
 }
 
 function drawSectorGradient(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_sector_gradient]
   let centerPt: common2D.Point = { x: VALUE_500, y: VALUE_500 };
   let colors = [0xFF00FFFF, 0xFFFF00FF, 0xFFFFFF00];
   // 创建扇形渐变着色器
@@ -149,9 +158,11 @@ function drawSectorGradient(canvas: drawing.Canvas) {
   canvas.drawRect(rect);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_sector_gradient]
 }
 
 function drawColorFilter(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_color_filter]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置颜色
@@ -179,9 +190,11 @@ function drawColorFilter(canvas: drawing.Canvas) {
   canvas.drawRect(rect);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_color_filter]
 }
 
 function drawImageFilter(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_image_filter]
   // 设置画笔
   let pen = new drawing.Pen();
   // 设置线宽
@@ -204,9 +217,11 @@ function drawImageFilter(canvas: drawing.Canvas) {
   canvas.drawRect(rect);
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_image_filter]
 }
 
 function drawMaskFilter(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_mask_filter]
   // 创建画笔
   let pen = new drawing.Pen();
   // 设置线宽
@@ -229,6 +244,7 @@ function drawMaskFilter(canvas: drawing.Canvas) {
   canvas.drawRect(rect);
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_mask_filter]
 }
 
 // 自定义RenderNode

@@ -12,19 +12,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start display_sync_by_ui_import_module]
 import { displaySync } from '@kit.ArkGraphics2D';
+// [End display_sync_by_ui_import_module]
 import { router } from '@kit.ArkUI';
 
+// [Start display_sync_by_ui_complete_example]
+// [Start display_sync_create_object]
 @Entry
 @Component
 struct Index {
+  // [StartExclude display_sync_create_object]
   @State drawFirstSize: number = 25;
   @State drawSecondSize: number = 25;
+  // [EndExclude display_sync_create_object]
   private backDisplaySyncSlow: displaySync.DisplaySync | undefined = undefined;
   private backDisplaySyncFast: displaySync.DisplaySync | undefined = undefined;
+// [End display_sync_create_object]
   private isBigger_30: boolean = true;
   private isBigger_60: boolean = true;
 
+  // [Start display_sync_create_text_component]
   @Builder
   doSomeRenderFirst() {
     Text('30')
@@ -36,7 +44,9 @@ struct Index {
     Text('60')
       .fontSize(this.drawSecondSize)
   }
+  // [End display_sync_create_text_component]
 
+  // [Start display_sync_frame_rate_setting_and_subscription_function_registration]
   CreateDisplaySyncSlow() {
     let range: ExpectedFrameRateRange = {
       expected: 30,
@@ -62,6 +72,7 @@ struct Index {
     this.backDisplaySyncSlow.setExpectedFrameRateRange(range);
     this.backDisplaySyncSlow.on("frame", draw30);
   }
+  // [End display_sync_frame_rate_setting_and_subscription_function_registration]
 
   CreateDisplaySyncFast() {
     let range: ExpectedFrameRateRange = {
@@ -89,6 +100,7 @@ struct Index {
     this.backDisplaySyncFast.on("frame", draw60);
   }
 
+  // [Start display_sync_call_stop]
   aboutToDisappear() {
     if (this.backDisplaySyncSlow) {
       this.backDisplaySyncSlow.stop();
@@ -99,6 +111,7 @@ struct Index {
       this.backDisplaySyncFast = undefined;
     }
   }
+  // [End display_sync_call_stop]
 
   build() {
     Column() {
@@ -113,6 +126,7 @@ struct Index {
       .height('40%')
 
       Row() {
+        // [Start display_sync_start_per_frame_callback]
         Button('Start')
           .id('CustomDrawStart')
           .fontSize(14)
@@ -136,7 +150,9 @@ struct Index {
           .width('20%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+        // [End display_sync_start_per_frame_callback]
 
+        // [Start display_sync_stop_per_frame_callback]
         Button('Stop')
           .id('CustomDrawStop')
           .fontSize(14)
@@ -154,6 +170,7 @@ struct Index {
           .width('20%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+        // [End display_sync_stop_per_frame_callback]
 
         Button('Back')
           .id('CustomDrawBack')
@@ -182,3 +199,4 @@ struct Index {
     }
   }
 }
+// [End display_sync_by_ui_complete_example]

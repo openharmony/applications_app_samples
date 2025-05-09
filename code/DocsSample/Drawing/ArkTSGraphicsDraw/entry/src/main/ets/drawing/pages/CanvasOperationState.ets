@@ -19,6 +19,7 @@ import { VALUE_200, VALUE_300, VALUE_600 } from '../../pages/Index';
 
 
 function drawClipOperation(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_canvas_clip]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置颜色为蓝色
@@ -33,9 +34,11 @@ function drawClipOperation(canvas: drawing.Canvas) {
   canvas.drawCircle(VALUE_300, VALUE_300, VALUE_300);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_canvas_clip]
 }
 
 function drawTranslationOperation(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_canvas_translation]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置颜色为红色
@@ -48,9 +51,11 @@ function drawTranslationOperation(canvas: drawing.Canvas) {
   canvas.drawRect({ left: VALUE_200, top: VALUE_200, right: VALUE_600, bottom: VALUE_600 });
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_canvas_translation]
 }
 
 function drawRotationOperation(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_canvas_rotation]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置颜色为红色
@@ -63,9 +68,11 @@ function drawRotationOperation(canvas: drawing.Canvas) {
   canvas.drawRect({ left: VALUE_200, top: VALUE_200, right: VALUE_600, bottom: VALUE_600 });
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_canvas_rotation]
 }
 
 function drawScaleOperation(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_canvas_scale]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置颜色为红色
@@ -78,9 +85,11 @@ function drawScaleOperation(canvas: drawing.Canvas) {
   canvas.drawRect({ left: VALUE_200, top: VALUE_200, right: VALUE_600, bottom: VALUE_600 });
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_canvas_scale]
 }
 
 function drawStateOperation(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_canvas_state_operation]
   // 创建画笔
   let pen = new drawing.Pen();
   // 设置颜色为红色
@@ -101,6 +110,7 @@ function drawStateOperation(canvas: drawing.Canvas) {
   canvas.drawCircle(VALUE_300, VALUE_300, VALUE_200);
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_canvas_state_operation]
 }
 
 

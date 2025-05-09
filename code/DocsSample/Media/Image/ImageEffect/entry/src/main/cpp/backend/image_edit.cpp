@@ -15,9 +15,11 @@
 
 #include <strstream>
 #include <map>
+// [Start image_effect_include_module]
 #include <multimedia/image_effect/image_effect.h>
 #include <multimedia/image_effect/image_effect_filter.h>
 #include <multimedia/image_effect/image_effect_errors.h>
+// [End image_effect_include_module]
 #include <multimedia/image_framework/image_pixel_map_mdk.h>
 #include <native_buffer/native_buffer.h>
 #include "logging.h"
@@ -98,7 +100,9 @@ napi_value ImageEdit::PixelMapFilterStart(napi_env env, napi_callback_info info)
     std::string path = CommonUtils::GetStringArgument(env, args[EXPECTED_ARGS_ZERO]);
     std::vector<std::vector<FilterArrayData>> filters = GetFilters(env, args[EXPECTED_ARGS_ONE]);
 
+    // [Start image_effect_instance_creation]
     OH_ImageEffect *imageEffect = OH_ImageEffect_Create("imageEdit");
+    // [End image_effect_instance_creation]
     CHECK_AND_RETURN_RET_LOG(imageEffect != nullptr, result, "OH_ImageEffect_Create fail!");
     std::shared_ptr<OH_ImageEffect> imageEffectPtr(
         imageEffect, [](OH_ImageEffect *imageEffect) { OH_ImageEffect_Release(imageEffect); });
@@ -129,6 +133,7 @@ napi_value ImageEdit::PixelMapFilterStart(napi_env env, napi_callback_info info)
         SetFilterValue(filter, filters[i][0].name.c_str(), filters[i][0].value, pixelmapNativePtr.get());
     }
 
+    // [Start image_effect_pixelmap_native]
     ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetInputPixelmap(imageEffectPtr.get(), pixelmapNativePtr.get());
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
                              "OH_ImageEffect_SetInputPixelMap fail! errorCode = %{public}d", errorCode);
@@ -137,15 +142,20 @@ napi_value ImageEdit::PixelMapFilterStart(napi_env env, napi_callback_info info)
     errorCode = OH_ImageEffect_SetOutputPixelmap(imageEffectPtr.get(), pixelmapNativePtr.get());
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
                              "OH_ImageEffect_SetOutputPixelmap fail!");
+    // [End image_effect_pixelmap_native]
 
+    // [Start image_effect_start]
     errorCode = OH_ImageEffect_Start(imageEffectPtr.get());
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
                              "OH_ImageEffect_Start fail! errorCode = %{public}d", errorCode);
+    // [End image_effect_start]
 
+    // [Start image_effect_save]
     // (可选 序列化效果器)
     char *imageinfo = nullptr;
     errorCode = OH_ImageEffect_Save(imageEffect, &imageinfo);
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result, "OH_ImageEffect_Save fail!");
+    // [End image_effect_save]
 
     bool encodeRes = PixelMapHelper::Encode(pixelmapNativePtr.get(), path);
     CHECK_AND_RETURN_RET_LOG(encodeRes, result, "Encode path fail! path=%{public}s", path.c_str());
@@ -169,8 +179,10 @@ napi_value ImageEdit::NativeBufferFilterStart(napi_env env, napi_callback_info i
     OH_ImageEffect *imageEffect = OH_ImageEffect_Create("imageEdit");
     CHECK_AND_RETURN_RET_LOG(imageEffect != nullptr, result, "OH_ImageEffect_Create fail!");
     std::shared_ptr<OH_ImageEffect> imageEffectPtr(imageEffect, [](OH_ImageEffect *imageEffect) {
+        // [Start image_effect_release]
         ImageEffect_ErrorCode errorCode = OH_ImageEffect_Release(imageEffect);
         CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_Release fail!");
+        // [End image_effect_release]
     });
 
     OH_NativeBuffer_Config config{
@@ -191,6 +203,7 @@ napi_value ImageEdit::NativeBufferFilterStart(napi_env env, napi_callback_info i
 
     OH_NativeBuffer *outputNativeBuffer = inputNativeBuffer;
 
+    // [Start image_effect_native_buffer]
     // 设置输入的NativeBuffer。
     ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetInputNativeBuffer(imageEffect, inputNativeBuffer);
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
@@ -200,6 +213,7 @@ napi_value ImageEdit::NativeBufferFilterStart(napi_env env, napi_callback_info i
     errorCode = OH_ImageEffect_SetOutputNativeBuffer(imageEffect, outputNativeBuffer);
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
                              "OH_ImageEffect_SetOutputNativeBuffer fail!");
+    // [End image_effect_native_buffer]
     
     errorCode = OH_ImageEffect_Start(imageEffectPtr.get());
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
@@ -243,6 +257,7 @@ napi_value ImageEdit::URIFilterStart(napi_env env, napi_callback_info info)
         SetFilterValue(filter, filters[i][0].name.c_str(), filters[i][0].value, pixelmapNativePtr.get());
     }
 
+    // [Start image_effect_url]
     // 设置输入的URI。
     ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetInputUri(imageEffectPtr.get(), path.c_str());
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
@@ -252,6 +267,7 @@ napi_value ImageEdit::URIFilterStart(napi_env env, napi_callback_info info)
     errorCode = OH_ImageEffect_SetOutputUri(imageEffect, path.c_str());
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
                              "OH_ImageEffect_SetOutputUri fail!");
+    // [End image_effect_url]
 
     errorCode = OH_ImageEffect_Start(imageEffectPtr.get());
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
@@ -303,9 +319,11 @@ napi_value ImageEdit::SurfaceFilterStop(napi_env env, napi_callback_info info)
     OH_ImageEffect *imageEffect = ImageEdit::imageEffect_;
     CHECK_AND_RETURN_RET_LOG(imageEffect != nullptr, result, "imageEffect is nullptr!");
     
+    // [Start image_effect_stop]
     // 停止生效滤镜效果。
     ImageEffect_ErrorCode errorCode = OH_ImageEffect_Stop(imageEffect);
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result, "OH_ImageEffect_Stop fail!");
+    // [End image_effect_stop]
     
     napi_get_boolean(env, true, &result);
     return result;
@@ -313,32 +331,42 @@ napi_value ImageEdit::SurfaceFilterStop(napi_env env, napi_callback_info info)
 
 OH_EffectFilter *AddFilter(OH_ImageEffect *imageEffect, const char *filterName)
 {
+    // [Start image_effect_add_filter]
     OH_EffectFilter *filter = OH_ImageEffect_AddFilter(imageEffect, filterName);
     CHECK_AND_RETURN_RET_LOG(filter != nullptr, filter, "OH_ImageEffect_AddFilter fail!");
+    // [End image_effect_add_filter]
     return filter;
 }
 
 void AddFilterSingle(const char *filterName, float filterValue, OH_PixelmapNative *inputPixelmap,
                      OH_PixelmapNative *outputPixelmap)
 {
+    // [Start image_effect_create_filter]
     // 创建滤镜。比如：创建对比度效果器。
     OH_EffectFilter *filter = OH_EffectFilter_Create(filterName);
     CHECK_AND_RETURN_LOG(filter != nullptr, "OH_EffectFilter_Create fail!");
+    // [End image_effect_create_filter]
 
+    // [Start image_effect_set_filter_value]
     // 设置滤镜参数, 滤镜强度设置为传入参数。
     ImageEffect_Any value;
     value.dataType = ImageEffect_DataType::EFFECT_DATA_TYPE_FLOAT;
     value.dataValue.floatValue = static_cast<float>(filterValue);
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_SetValue(filter, OH_EFFECT_FILTER_INTENSITY_KEY, &value);
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_EffectFilter_SetValue fail!");
+    // [End image_effect_set_filter_value]
 
+    // [Start image_effect_filter_render]
     // 生效滤镜效果。
     errorCode = OH_EffectFilter_Render(filter, inputPixelmap, outputPixelmap);
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_EffectFilter_Render fail!");
+    // [End image_effect_filter_render]
 
+    // [Start image_effect_filter_release]
     // 销毁滤镜实例。
     errorCode = OH_EffectFilter_Release(filter);
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_EffectFilter_Release fail!");
+    // [End image_effect_filter_release]
 }
 
 PixelmapInfo GetPixelmapInfo(OH_PixelmapNative *pixelmap)
@@ -486,6 +514,7 @@ napi_value ImageEdit::LookupFilterInfo(napi_env env, napi_callback_info info)
     CHECK_AND_RETURN_RET_LOG(status == napi_ok, result, "napi_get_cb_info fail! status = %{public}d", status);
     std::string filterName = CommonUtils::GetStringArgument(env, args[EXPECTED_ARGS_ZERO]);
 
+    // [Start image_effect_lookup_filter_info_by_name]
     OH_EffectFilterInfo *effectInfo = OH_EffectFilterInfo_Create();
     // 示例代码: 传入nullptr的format, 获取OH_Formats的size
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_LookupFilterInfo(filterName.c_str(), effectInfo);
@@ -512,9 +541,11 @@ napi_value ImageEdit::LookupFilterInfo(napi_env env, napi_callback_info info)
     CHECK_AND_RETURN_RET_LOG(status == napi_ok, result, "napi_create_string_utf8 fail!");
 
     OH_EffectFilterInfo_Release(effectInfo);
+    // [End image_effect_lookup_filter_info_by_name]
     return result;
 }
 
+// [Start image_effect_buffer_info]
 // 图像信息结构体。
 struct EffectBufferInfo {
     void *addr = nullptr;
@@ -523,6 +554,7 @@ struct EffectBufferInfo {
     int32_t rowSize = 0;
     ImageEffect_Format format = ImageEffect_Format::EFFECT_PIXEL_FORMAT_UNKNOWN;
 };
+// [End image_effect_buffer_info]
 
 void ApplyCustomBrightnessAlgo(OH_EffectFilter *filter, EffectBufferInfo inputBufferInfo)
 {
@@ -559,6 +591,7 @@ void ApplyCustomBrightnessAlgo(OH_EffectFilter *filter, EffectBufferInfo inputBu
     }
 }
 
+// [Start image_effect_render_brightness]
 bool RenderBrightness(OH_EffectFilter *filter, OH_EffectBufferInfo *info, OH_EffectFilterDelegate_PushData pushData)
 {
     // 获取图像信息具体参数。
@@ -576,6 +609,7 @@ bool RenderBrightness(OH_EffectFilter *filter, OH_EffectBufferInfo *info, OH_Eff
     pushData(filter, info);
     return true;
 }
+// [End image_effect_render_brightness]
 
 void ApplyCustomCropAlgo(OH_EffectFilter *filter, EffectBufferInfo inputBufferInfo,
                          EffectBufferInfo &outputBufferInfo)
@@ -610,6 +644,7 @@ void ApplyCustomCropAlgo(OH_EffectFilter *filter, EffectBufferInfo inputBufferIn
     outputBufferInfo.format = inputBufferInfo.format;
 }
 
+// [Start image_effect_render_crop]
 bool RenderCrop(OH_EffectFilter *filter, OH_EffectBufferInfo *info, OH_EffectFilterDelegate_PushData pushData)
 {
     // 获取图像信息具体参数。
@@ -642,6 +677,7 @@ bool RenderCrop(OH_EffectFilter *filter, OH_EffectBufferInfo *info, OH_EffectFil
 
     return true;
 }
+// [End image_effect_render_crop]
 
 bool SaveFilterBrightness(OH_EffectFilter *filter, char **info)
 {
@@ -694,6 +730,7 @@ bool SaveFilterCrop(OH_EffectFilter *filter, char **info)
 napi_value ImageEdit::RegisterCustomBrightness()
 {
     napi_value result = nullptr;
+    // [Start image_effect_create_custom_filter_info]
     // 创建 OH_EffectFilterInfo 实例。
     OH_EffectFilterInfo *customFilterInfo = OH_EffectFilterInfo_Create();
     CHECK_AND_RETURN_RET_LOG(customFilterInfo != nullptr, result, "OH_EffectFilter_GetValue fail!");
@@ -707,6 +744,8 @@ napi_value ImageEdit::RegisterCustomBrightness()
     ImageEffect_Format formatArray = ImageEffect_Format::EFFECT_PIXEL_FORMAT_RGBA8888;
     OH_EffectFilterInfo_SetSupportedFormats(customFilterInfo,
         sizeof(formatArray) / sizeof(ImageEffect_Format), &formatArray);
+    // [End image_effect_create_custom_filter_info]
+    // [Start image_effect_custom_filter]
     // 自定义滤镜具体实现。
     delegateBrightness = {
         .setValue =
@@ -745,10 +784,13 @@ napi_value ImageEdit::RegisterCustomBrightness()
             }
             return filter;
         }};
+    // [End image_effect_custom_filter]
 
+    // [Start image_effect_custom_filter_register]
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_Register(customFilterInfo, &delegateBrightness);
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
                              "OH_EffectFilter_Register fail! errorCode = %{public}d", errorCode);
+    // [End image_effect_custom_filter_register]
     return result;
 }
 
@@ -822,6 +864,7 @@ napi_value ImageEdit::LookupFilters(napi_env env, napi_callback_info info)
     CHECK_AND_RETURN_RET_LOG(status == napi_ok, result, "napi_get_cb_info fail! status = %{public}d", status);
     const char *key = CommonUtils::GetStringArgument(env, args[EXPECTED_ARGS_ZERO]);
 
+    // [Start image_effect_lookup_filter_info_by_condition]
     ImageEffect_FilterNames *filterNames = OH_EffectFilter_LookupFilters(key);
     CHECK_AND_RETURN_RET_LOG(filterNames != nullptr, result, "OH_EffectFilter_LookupFilters fail!");
 
@@ -835,6 +878,7 @@ napi_value ImageEdit::LookupFilters(napi_env env, napi_callback_info info)
     status = napi_create_string_utf8(env, res.c_str(), res.size(), &result);
     // 释放FilterNames虚拟内存资源。
     OH_EffectFilter_ReleaseFilterNames();
+    // [End image_effect_lookup_filter_info_by_condition]
     return result;
 }
 
@@ -849,6 +893,7 @@ napi_value ImageEdit::getSurfaceId(napi_env env, napi_callback_info info)
     CHECK_AND_RETURN_RET_LOG(status == napi_ok, result, "napi_get_cb_info fail! status = %{public}d", status);
 
     std::string surfaceId = CommonUtils::GetStringArgument(env, args[EXPECTED_ARGS_ZERO]);
+    // [Start image_effect_get_surface_id]
     // 根据SurfaceId创建NativeWindow，注意创建出来的NativeWindow在使用结束后需要主动调用OH_NativeWindow_DestoryNativeWindow进行释放。
     uint64_t iSurfaceId;
     std::istrstream iss(surfaceId.c_str());
@@ -890,6 +935,7 @@ napi_value ImageEdit::getSurfaceId(napi_env env, napi_callback_info info)
     OH_NativeWindow_DestroyNativeWindow(inputNativeWindow);
 
     std::string inputSurfaceIdStr = std::to_string(inputSurfaceId);
+    // [End image_effect_get_surface_id]
     
     status = napi_create_string_utf8(env, inputSurfaceIdStr.c_str(), inputSurfaceIdStr.length(), &result);
     CHECK_AND_RETURN_RET_LOG(status == napi_status::napi_ok, result, "napi_create_string_utf8 fail!");

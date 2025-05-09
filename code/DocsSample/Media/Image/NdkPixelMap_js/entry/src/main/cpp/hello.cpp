@@ -15,6 +15,7 @@
 
 #include "napi/native_api.h"
 
+// [Start ndk_pixelmap_js_include_module_in_decode]
 // 引入图片框架、raw文件、raw文件管理和日志打印头文件
 #include <cstdlib>
 #include <cstring>
@@ -24,13 +25,20 @@
 #include <rawfile/raw_file.h>
 #include <rawfile/raw_file_manager.h>
 #include <hilog/log.h>
+// [End ndk_pixelmap_js_include_module_in_decode]
+// [Start ndk_pixelmap_js_include_module_in_pixelmap_operation]
+// [Start ndk_pixelmap_js_include_module_in_image_transformation]
 #include <multimedia/image_framework/image_mdk_common.h>
+// [End ndk_pixelmap_js_include_module_in_image_transformation]
 #include <cstdlib>
+// [End ndk_pixelmap_js_include_module_in_pixelmap_operation]
 #include <fcntl.h>
 #include <unistd.h>
 
+// [Start ndk_pixelmap_js_include_module_in_encode]
 // 引入编码器image_packer_mdk.h头文件。
 #include "multimedia/image_framework/image_packer_mdk.h"
+// [End ndk_pixelmap_js_include_module_in_encode]
 
 const uint32_t BUFFER_MAX = 1024 * 1024;
 const uint16_t BUFFER_SIZE = 2048;
@@ -41,7 +49,7 @@ const uint16_t OPS_HEIGHT = 500;
 const uint16_t OPS_PIXEL_FORMAT = 4;
 const uint16_t OPS_ALPHA_TYPE = 0;
 
-
+// [Start ndk_pixelmap_js_get_sync_pixelmap]
 static napi_value getSyncPixelMap(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
@@ -115,6 +123,7 @@ static napi_value getSyncPixelMap(napi_env env, napi_callback_info info)
     OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
     return nullptr;
 }
+// [End ndk_pixelmap_js_get_sync_pixelmap]
 
 static napi_value DecodeIncrementally(napi_env env, long len, RawFile *rawFile)
 {
@@ -171,6 +180,7 @@ static napi_value DecodeIncrementally(napi_env env, long len, RawFile *rawFile)
     return pixelMap;
 }
 
+// [Start ndk_pixelmap_js_get_sync_pixelmap_incremental]
 static napi_value getSyncPixelMapIncremental(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
@@ -227,7 +237,8 @@ static napi_value getSyncPixelMapIncremental(napi_env env, napi_callback_info in
     OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
     return nullptr;
 }
-
+// [End ndk_pixelmap_js_get_sync_pixelmap_incremental]
+// [Start ndk_pixelmap_js_test_get_image_info]
 static napi_value TestGetImageInfo(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
@@ -243,7 +254,8 @@ static napi_value TestGetImageInfo(napi_env env, napi_callback_info info)
     OHOS::Media::OH_GetImageInfo(env, argValue[0], &pixelMapInfo);
     return result;
 }
-
+// [End ndk_pixelmap_js_test_get_image_info]
+// [Start ndk_pixelmap_js_test_access_pixels]
 static napi_value TestAccessPixels(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
@@ -259,7 +271,8 @@ static napi_value TestAccessPixels(napi_env env, napi_callback_info info)
     OHOS::Media::OH_AccessPixels(env, argValue[0], &addrPtr);
     return result;
 }
-
+// [End ndk_pixelmap_js_test_access_pixels]
+// [Start ndk_pixelmap_js_test_un_access_pixels]
 static napi_value TestUnAccessPixels(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
@@ -274,7 +287,8 @@ static napi_value TestUnAccessPixels(napi_env env, napi_callback_info info)
     OHOS::Media::OH_UnAccessPixels(env, argValue[0]);
     return result;
 }
-
+// [End ndk_pixelmap_js_test_un_access_pixels]
+// [Start ndk_pixelmap_js_create_pixelmap_test]
 napi_value CreatePixelMapTest(napi_env env, napi_callback_info info)
 {
     napi_value udfVar = nullptr;
@@ -303,7 +317,8 @@ napi_value CreatePixelMapTest(napi_env env, napi_callback_info info)
     }
     return pixelMap;
 }
-
+// [End ndk_pixelmap_js_create_pixelmap_test]
+// [Start ndk_pixelmap_js_create_alpha_pixelmap]
 napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info)
 {
     napi_value udfVar = nullptr;
@@ -325,7 +340,8 @@ napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info)
     }
     return alphaPixelMap;
 }
-
+// [End ndk_pixelmap_js_create_alpha_pixelmap]
+// [Start ndk_pixelmap_js_transform]
 napi_value Transform(napi_env env, napi_callback_info info)
 {
     napi_value thisVar = nullptr;
@@ -419,6 +435,7 @@ napi_value Transform(napi_env env, napi_callback_info info)
 
     return result;
 }
+// [End ndk_pixelmap_js_transform]
 
 napi_value EncodeImagesToFile(napi_env env, napi_callback_info info)
 {
@@ -436,15 +453,19 @@ napi_value EncodeImagesToFile(napi_env env, napi_callback_info info)
     if (source == nullptr) {
         return nullptr;
     }
-
+    // [Start ndk_pixelmap_create_native_packer]
     // 使用napi_value 承接创建的编码器对象
     napi_value packer;
     // 通过 napi_env 创建编码器，返回result为 IMAGE_RESULT_SUCCESS则创建成功
     int32_t result = OH_ImagePacker_Create(env, &packer);
+    // [End ndk_pixelmap_create_native_packer]
 
+    // [Start ndk_pixelmap_init_native_packer]
     // 通过 napi_env 及上述创建的编码器对象初始化原生实例对象
     ImagePacker_Native *nativePacker = OH_ImagePacker_InitNative(env, packer);
+    // [End ndk_pixelmap_init_native_packer]
 
+    // [Start ndk_pixelmap_js_decode_to_file]
     // 编码参数
     struct ImagePacker_Opts_ opts;
     // 配置编码格式（必须）
@@ -466,7 +487,9 @@ napi_value EncodeImagesToFile(napi_env env, napi_callback_info info)
         // 关闭输出文件
         close(fd);
     }
+    // [End ndk_pixelmap_js_decode_to_file]
 
+    // [Start ndk_pixelmap_release_native_packer]
     // 调用OH_ImagePacker_Release, 销毁编码器
     int32_t ret = OH_ImagePacker_Release(nativePacker);
     if (ret != IMAGE_RESULT_SUCCESS) {
@@ -474,6 +497,7 @@ napi_value EncodeImagesToFile(napi_env env, napi_callback_info info)
     } else {
         nativePacker = NULL; // 不可重复destroy
     }
+    // [End ndk_pixelmap_release_native_packer]
     return nullptr;
 }
 
@@ -502,6 +526,7 @@ napi_value EncodeImagesToBuffer(napi_env env, napi_callback_info info)
     // 通过 napi_env 及上述创建的编码器对象初始化原生实例对象
     ImagePacker_Native *nativePacker = OH_ImagePacker_InitNative(env, packer);
 
+    // [Start ndk_pixelmap_js_decode_to_buffer]
     // 编码参数
     struct ImagePacker_Opts_ opts;
     // 配置编码格式（必须）
@@ -515,6 +540,7 @@ napi_value EncodeImagesToBuffer(napi_env env, napi_callback_info info)
     // 开始对输入source进行编码过程，返回result为
     // IMAGE_RESULT_SUCCESS则编码成功，同时bufferSize中包含编码实际使用缓存区大小
     int32_t result = OH_ImagePacker_PackToData(nativePacker, source, &opts, outData, &bufferSize);
+    // [End ndk_pixelmap_js_decode_to_buffer]
 
     // 调用OH_ImagePacker_Release, 销毁编码器
     int32_t ret = OH_ImagePacker_Release(nativePacker);

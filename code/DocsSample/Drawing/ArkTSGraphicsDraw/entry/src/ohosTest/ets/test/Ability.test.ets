@@ -19,7 +19,6 @@ import Logger from '../utils/Logger';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
-
 const TAG = '[Sample_ArkTSGraphicsDraw]';
 const DELAY_SHORT = 400;
 const DELAY_LONG = 1000;
