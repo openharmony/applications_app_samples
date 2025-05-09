@@ -1,0 +1,10 @@
+{
+  "routerMap": [
+    {
+      "name": "decodeheifimage/DecodeHEIFImageView",
+      "pageModule": "decodeheifimage",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "registerFunction": "decodeHEIFImageViewRegister"
+    }
+  ]
+}

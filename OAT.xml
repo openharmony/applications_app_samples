@@ -2324,6 +2324,23 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Security/DeviceCertificateKit/CertificateAlgorithmLibrary/screenshots/CertificateAlgorithmLibrary2.png" desc="Provided by code/DocsSample/Security"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/DeviceCertificateKit/CertificateManagement/screenshots/CertificateManagement1.png" desc="Provided by code/DocsSample/Security"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/DeviceCertificateKit/CertificateManagement/screenshots/CertificateManagement2.png" desc="Provided by code/DocsSample/Security"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/libs/arm64-v8a/libcurl.so" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/libs/arm64-v8a/libde265.so" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/libs/arm64-v8a/libheif.so.1" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/libs/arm64-v8a/libnativedecodeheif.so" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/libs/arm64-v8a/libnativedownloadheif.so" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/HPKBUILD1.png" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/HPKBUILD2.png" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/decode_heif_image.gif" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/image1.heic" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/image2.heic" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/image3.heic" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/image4.heic" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/image5.heic" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/image6.heic" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/libheif_compile_result.png" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/libheif_dependency_so.png" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/DecodeHEIFImage/decodeheifimage/src/main/resources/base/media/libheif_symbol_info.png" desc="Provide by code/BasicFeature/Native/DecodeHEIFImage"/>
 				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/WebGetCameraImage"/>
 				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/WebGetCameraImage"/>
 				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/WebGetCameraImage"/>

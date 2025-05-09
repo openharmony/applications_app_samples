@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "decode_heif_image_background_color",
+      "value": "#FFDBD9D9"
+    },
+    {
+      "name": "decode_heif_image_flow_item_font_color",
+      "value": "#202020"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "decode_heif_image_title",
+      "value": "HEIF图片软解码"
+    },
+    {
+      "name": "decode_heif_image_button_label",
+      "value": "展示HEIF网络图片"
+    },
+    {
+      "name": "decode_heif_image_url1",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/decodeheifimage/src/main/resources/base/media/image1.heic"
+    },
+    {
+      "name": "decode_heif_image_url2",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/decodeheifimage/src/main/resources/base/media/image2.heic"
+    },
+    {
+      "name": "decode_heif_image_url3",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/decodeheifimage/src/main/resources/base/media/image3.heic"
+    },
+    {
+      "name": "decode_heif_image_url4",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/decodeheifimage/src/main/resources/base/media/image4.heic"
+    },
+    {
+      "name": "decode_heif_image_url5",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/decodeheifimage/src/main/resources/base/media/image5.heic"
+    },
+    {
+      "name": "decode_heif_image_url6",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/decodeheifimage/src/main/resources/base/media/image6.heic"
+    }
+  ]
+}
