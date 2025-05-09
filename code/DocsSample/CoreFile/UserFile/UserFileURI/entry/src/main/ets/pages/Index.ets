@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start import_user_fileAccess]
+// [Start import_get_uri_assets]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -23,9 +25,12 @@ import Logger from '../common/Logger';
 
 // context 是EntryAbility 传过来的context
 let context = getContext(this) as common.UIAbilityContext;
+// [End import_user_fileAccess]
+
 // 定义一个uri数组，用于接收PhotoViewPicker选择图片返回的uri
 let uris: string[] = [];
 
+// [StartExclude import_get_uri_assets]
 async function getFileAccessAbilityInfo() {
   let wantInfos: Want[] = [];
   try {
@@ -36,7 +41,9 @@ async function getFileAccessAbilityInfo() {
     Logger.error('getFileAccessAbilityInfo failed, errCode:' + error.code + ', errMessage:' + error.message);
   }
 }
+// [EndExclude import_get_uri_assets]
 
+// [Start ]
 // 调用PhotoViewPicker.select选择图片
 async function photoPickerGetUri() {
   try {
@@ -87,15 +94,18 @@ async function uriGetAssets(): Promise<string> {
         console.error('getThumbnail fail', err);
       }
     });
+    // [StartExclude import_get_uri_assets]
     if (uris.length !== 0 && asset !== null) {
       return 'ReadMediaUriSuccess';
     }
+    // [EndExclude import_get_uri_assets]
   } catch (error) {
     console.error('uriGetAssets failed with err: ' + JSON.stringify(error));
     return 'ReadMediaUriFail';
   }
   return 'ReadMediaUriFail';
 }
+// [End import_get_uri_assets]
 
 @Entry
 @Component
@@ -204,6 +214,7 @@ struct Index {
     .backgroundColor($r('app.color.lightGrayColor')) // 背景颜色为浅灰色
   }
 
+  // [Start function_example]
   async documentURIExample() {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
@@ -244,7 +255,9 @@ struct Index {
       Logger.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
     }
   }
-
+  // [Start function_example]
+ 
+  // [Start copy_file_uri_example ]
   async copyingFileByUriExample() {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
@@ -286,6 +299,7 @@ struct Index {
       Logger.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
     }
   }
+  // [End copy_file_uri_example]
 
   selectDocumentFiles() {
     const documentSelectOptions = new picker.DocumentSelectOptions();

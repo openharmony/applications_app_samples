@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
+// [Start subscribe_events_1]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { commonEventManager } from '@kit.BasicServicesKit';
 import { volumeManager } from '@kit.CoreFileKit';
 import Logger from '../common/Logger';
 
 let subscriber: commonEventManager.CommonEventSubscriber;
-
+// [End subscribe_events_1]
 @Entry
 @Component
 struct Index {
@@ -85,6 +86,7 @@ struct Index {
     .backgroundColor($r('app.color.lightGrayColor')) // 设置背景颜色为浅灰色
   }
 
+  // [Start subscribe_events_2]
   async subscribeToEvents() {
     Logger.info('subscribeToEvents() begin');
     const subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
@@ -103,18 +105,24 @@ struct Index {
       Logger.error('Failed to create subscriber: ' + JSON.stringify(error));
     }
   }
+   // [End subscribe_events_2]
 
+  // [Start subscribe_events_3]
   receiveBroadcastNotifications() {
+    // [StartExclude subscribe_events_3]
     Logger.info('receiveBroadcastNotifications() begin');
     if (subscriber === undefined) {
       Logger.error('Subscriber is not defined. Please subscribe to events first.');
       return;
     }
+    // [EndExclude subscribe_events_3]
     commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+      // [StartExclude subscribe_events_3]
       if (err) {
         Logger.error('Subscription failed: ' + JSON.stringify(err));
         return;
       }
+      // [EndExclude subscribe_events_3]
       if (data.event === 'usual.event.data.VOLUME_MOUNTED' && data.parameters !== undefined) {
         let volId: string = data.parameters.id;
         volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
@@ -122,10 +130,13 @@ struct Index {
             Logger.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
           } else {
             Logger.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
+            // [StartExclude subscribe_events_3]
             this.message = 'Successfully obtained volume device information';
+            // [EndExclude subscribe_events_3]
           }
         });
       }
     });
   }
+  // [End subscribe_events_3]
 }

@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
+// [Start import_interface_file_manager]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { Filter, fileAccess } from '@kit.CoreFileKit';
 import Logger from '../../common/Logger';
+// [End import_interface_file_manager]
 
 let rootInfos: fileAccess.RootInfo[] = [];
 let rootInfo: fileAccess.RootInfo = rootInfos[0];
@@ -30,9 +32,10 @@ let isDone02: boolean = false;
 let sourceUri: string = 'file://docs/storage/Users/currentUser/Download';
 let displayName: string = 'file2';
 let fileUri: string = '';
+
+// [Start file_access_root_info]
 // 获取应用上下文
 let context = getContext(this) as common.UIAbilityContext;
-
 // 创建连接系统内所有文件管理服务端的helper对象
 let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
 
@@ -47,6 +50,7 @@ function createFileAccessHelper(): void {
     Logger.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
   }
 }
+// [End file_access_root_info]
 
 @Entry
 @Component
@@ -85,6 +89,7 @@ struct Index {
     .backgroundColor($r('app.color.lightGrayColor')) // 背景颜色为浅灰色
   }
 
+  // [Start file_access_get_root]
   async getRoots(): Promise<void> {
     try {
       rootIterator = await fileAccessHelperAllServer.getRoots();
@@ -105,7 +110,9 @@ struct Index {
       Logger.error('getRoots failed, errCode:' + error.code + ', errMessage:' + error.message);
     }
   }
+  // [End file_access_get_root]
 
+  // [Start file_info_dir]
   async listRootFiles(): Promise<void> {
     try {
       let fileIterator = rootInfo.listFile(); // 遍历设备rootinfos[0]的根目录，返回迭代器对象
@@ -145,7 +152,9 @@ struct Index {
       Logger.error('listFile failed, errCode:' + error.code + ', errMessage:' + error.message);
     }
   }
+  // [End file_info_dir]
 
+  // [Start create_file_promise]
   async creatFile(): Promise<void> {
     try {
       // fileAccessHelperAllServer 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -161,6 +170,7 @@ struct Index {
     }
     ;
   }
+  // [End create_file_promise]
 }
 
 // 在组件加载时创建文件访问助手

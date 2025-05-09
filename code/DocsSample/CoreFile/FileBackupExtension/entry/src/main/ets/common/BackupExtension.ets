@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start on_backup_restore]
 import BackupExtensionAbility, { BundleVersion } from '@ohos.application.BackupExtensionAbility';
 import Logger from '../common/Logger';
+
 
 interface ErrorInfo {
   type: string,
@@ -56,4 +58,4 @@ class BackupExt extends BackupExtensionAbility {
     return JSON.stringify(errorInfo);
   }
 }
-
+// [End on_backup_restore]

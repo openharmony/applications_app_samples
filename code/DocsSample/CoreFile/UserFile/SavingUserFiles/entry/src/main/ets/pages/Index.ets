@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
+// [Start import_interface_fileio]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs, picker } from '@kit.CoreFileKit';
 import Logger from '..//common//Logger';
+// [End import_interface_fileio]
 
 // 确保 getContext(this) 返回结果为 UIAbilityContext
 let context = getContext(this) as common.Context;
@@ -109,29 +111,40 @@ struct Index {
   }
 
   saveDocumentFile() {
+    // [Start document_save_options]
     const documentSaveOptions = new picker.DocumentSaveOptions();
     documentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
     documentSaveOptions.fileSuffixChoices = [resourceToString($r('app.string.document')), '.pdf'];
+    // [End document_save_options]
 
+    // [Start save_file_picker]
     const context = getContext(this) as common.Context;
     const documentViewPicker = new picker.DocumentViewPicker(context);
     documentViewPicker.save(documentSaveOptions).then((documentSaveResult: string[]) => {
       this.uris = documentSaveResult;
       Logger.info('documentViewPicker.save to file succeed and uris are:' + this.uris);
+      // [StartExclude save_file_picker]
       if (this.uris.length > 0) {
         this.writeDocumentFile(this.uris[0]);
       }
+      // [EndExclude save_file_picker]
     }).catch((err: BusinessError) => {
       Logger.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
     });
+    // [End save_file_picker]
   }
 
   writeDocumentFile(uri: string) {
+    // [Start document_open_mode]
     let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
     Logger.info('file fd: ' + file.fd);
+    // [End document_open_mode]
+
+    // [Start document_writesync]
     let writeLen: number = fs.writeSync(file.fd, 'hello, world');
     Logger.info('write data to file succeed and size is:' + writeLen);
     fs.closeSync(file);
+    // [End document_writesync]
   }
 
   selectDocumentFiles() {
@@ -160,8 +173,12 @@ struct Index {
   }
 
   saveAudioFile() {
+    // [Start audio_save_options]
     const audioSaveOptions = new picker.AudioSaveOptions();
     audioSaveOptions.newFileNames = ['AudioViewPicker03.mp3']; // 保存文件名（可选）
+    // [End audio_save_options]
+
+    // [Start audio_save_file]
     const context = getContext(this) as common.Context;
     const audioViewPicker = new picker.AudioViewPicker(context);
     audioViewPicker.save(audioSaveOptions).then((audioSelectResult: string[]) => {
@@ -171,6 +188,7 @@ struct Index {
     }).catch((err: BusinessError) => {
       Logger.error(`Invoke audioViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
     });
+    // [Start audio_save_file]
   }
 
   writeAudioFile() {
@@ -178,11 +196,16 @@ struct Index {
       Logger.error('URI is empty, cannot write file');
       return;
     }
+    // [Start audio_open_mode]
     let file = fs.openSync(this.uri, fs.OpenMode.READ_WRITE);
     Logger.info('file fd: ' + file.fd);
+    // [End audio_open_mode]
+
+    // [Start audio_write_sync]
     let writeLen = fs.writeSync(file.fd, 'hello, world');
     Logger.info('write data to file succeed and size is:' + writeLen);
     fs.closeSync(file);
+    // [End audio_write_sync]
     this.result = 'Successfully saved audio files';
   }
 }

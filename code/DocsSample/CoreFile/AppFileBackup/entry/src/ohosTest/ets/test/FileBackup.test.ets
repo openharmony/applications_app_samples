@@ -172,9 +172,9 @@ export default function FileBackupRestoreTest() {
         bundleName: 'com.samples.filebackupextension',
         abilityName: 'EntryAbility'
       };
-      await DELEGATOR.startAbility(want);
       let driver: Driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
+      await DELEGATOR.startAbility(want);
       hilog.info(DOMAIN, TAG, BUNDLE + 'get top ability');
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_003 end');

@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start application_file_share]
+// [Start get_uri]
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs, ReadOptions, ListFileOptions } from '@kit.CoreFileKit';
 import Logger from '../common/Logger';
@@ -25,6 +27,32 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
+// 分享应用文件
+export async function shareFile(fileName: string): Promise<void> {
+  // 获取文件的沙箱路径
+  let pathInSandbox = context.filesDir + '/' + fileName + '.txt';
+  // 将沙箱路径转换为uri
+  let uri = fileUri.getUriFromPath(pathInSandbox);
+  // [End get_uri]
+  Logger.info('FilePath is : ' + uri);
+  let want: Want = {
+    // 配置被分享文件的读写权限，例如对被分享应用进行读写授权
+    flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+    // 配置分享应用的隐式拉起规则
+    action: 'ohos.want.action.sendData',
+    uri: uri,
+    type: 'text/plain',
+  };
+  await context.startAbility(want)
+    .then(() => {
+      Logger.info('Invoke getCurrentBundleStats succeeded.');
+    })
+    .catch((err: BusinessError) => {
+      Logger.error(`Invoke startAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+}
+
+// [End application_file_share]
 // 新建并读写一个文件test1.txt
 export function createFile(): number {
   // 新建并打开文件
@@ -74,29 +102,4 @@ export function getListFile(): string {
     str += files[i] + '\n';
   }
   return str;
-}
-
-// 分享应用文件
-export async function shareFile(fileName: string): Promise<void> {
-  console.info('shareFile start');
-  // 获取文件的沙箱路径
-  let pathInSandbox = context.filesDir + '/' + fileName + '.txt';
-  // 将沙箱路径转换为uri
-  let uri = fileUri.getUriFromPath(pathInSandbox);
-  Logger.info('FilePath is : ' + uri);
-  let want: Want = {
-    // 配置被分享文件的读写权限，例如对被分享应用进行读写授权
-    flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-    // 配置分享应用的隐式拉起规则
-    action: 'ohos.want.action.sendData',
-    uri: uri,
-    type: 'text/plain',
-  };
-  await context.startAbility(want)
-    .then(() => {
-      Logger.info('Invoke getCurrentBundleStats succeeded.');
-    })
-    .catch((err: BusinessError) => {
-      Logger.error(`Invoke startAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
 }

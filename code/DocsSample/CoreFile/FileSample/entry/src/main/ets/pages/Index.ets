@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start import_starf_storageStatistics]
 import { common } from '@kit.AbilityKit';
 import { statfs } from '@kit.CoreFileKit';
 import { buffer } from '@kit.ArkTS';
@@ -31,27 +32,31 @@ import {
   hashFileWithStream
 } from '../fileFs/FileFs';
 
+// [StartExclude import_starf_storageStatistics]
 const BUFFER: number = 1024; // 读取文件缓冲区
 const MARGIN = 5; // 组件间的间隔
+// [EndExclude import_starf_storageStatistics]
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
+// [End import_starf_storageStatistics]
 
+// [Start get_share_file]
 function getShareFile(): string {
   let strFile = '';
   try {
     let URI: string | undefined = AppStorage.get('URI');
-    let uri = URI;
-    if (uri == null || uri == undefined) {
+    if (URI === null || URI === undefined) {
       Logger.info('uri is invalid');
       let str = 'uri is invalid';
       return str;
     }
     try {
       // 根据需要对被分享文件的URI进行相应操作。例如读写的方式打开URI获取file对象
-      let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+      let file = fs.openSync(URI, fs.OpenMode.READ_WRITE);
       Logger.info('open file successfully!');
+      // [StartExclude get_share_file]
       // 1024为读取文件内容的缓冲区大小
       let arrayBuffer = new ArrayBuffer(BUFFER);
       let readOptions: ReadOptions = {
@@ -65,6 +70,7 @@ function getShareFile(): string {
       // 关闭文件
       strFile = 'the content of file: ' + buf.toString();
       fs.closeSync(file);
+      // [EndExclude get_share_file]
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       Logger.info(`Invoke openSync failed, code is ${error.code}, message is ${error.message}`);
@@ -75,6 +81,8 @@ function getShareFile(): string {
   }
   return strFile;
 }
+
+// [End get_share_file]
 
 @Entry
 @Component
@@ -134,28 +142,36 @@ export default struct Index {
         .height('6%')
         .margin(MARGIN)
         .onClick(() => {
+          // [Start statfs_get_FreeSize]
           statfs.getFreeSize(filesDir, (err: BusinessError, number: number) => {
             if (err) {
               Logger.info(`Invoke getFreeSize failed, code is ${err.code}, message is ${err.message}`);
             } else {
               Logger.info(`Invoke getFreeSize succeeded, size is ${number}`);
+              // [StartExclude statfs_get_FreeSize]
               this.message += 'The size of the remaining space in the file system data: ' + number.toString() + '\n';
+              // [EndExclude statfs_get_FreeSize]
             }
           });
+          // [End statfs_get_FreeSize]
         })
       Button($r('app.string.appStorageSpaceSize'))
         .width('80%')
         .height('6%')
         .margin(MARGIN)
         .onClick(() => {
+          // [Start storageStatistics_getCurrentBundleStats]
           storageStatistics.getCurrentBundleStats((err: BusinessError, bundleStats: storageStatistics.BundleStats) => {
             if (err) {
               Logger.info(`Invoke getCurrentBundleStats failed, code is ${err.code}, message is ${err.message}`);
             } else {
               Logger.info(`Invoke getCurrentBundleStats succeeded, appsize is ${bundleStats.appSize}`);
+              // [StartExclude storageStatistics_getCurrentBundleStats]
               this.message += 'The size of the storage space in the system: ' + bundleStats.appSize.toString() + '\n';
+              // [EndExclude storageStatistics_getCurrentBundleStats]
             }
           });
+          // [End storageStatistics_getCurrentBundleStats]
         })
       Row() {
         Button($r('app.string.hash'))
@@ -167,7 +183,7 @@ export default struct Index {
         Button($r('app.string.getShareFile'))
           .onClick(() => {
             this.message += getShareFile() + '\n';
-            let str: string | undefined = AppStorage.get('content');
+            let str: string | undefined = AppStorage.get('URI');
             this.message += str + '\n';
           })
           .width('50%')

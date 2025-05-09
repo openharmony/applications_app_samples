@@ -21,8 +21,9 @@
 #undef LOG_TAG
 #define LOG_TAG "Sample_NDKAppFileAccess"
 
-static napi_value GetFileLocation(napi_env env, napi_callback_info info)
-{
+// [Start get_file_location]
+static napi_value GetFileLocation(napi_env env, napi_callback_info info) {
+    // [StartExclude get_file_location]
     size_t argc = 1;
     napi_value args[1] = {nullptr};
 
@@ -42,12 +43,15 @@ static napi_value GetFileLocation(napi_env env, napi_callback_info info)
     // 获取字符串的长度
     size_t strLength = 0;
     napi_get_value_string_utf8(env, args[0], nullptr, 0, &strLength);
+    // [EndExclude get_file_location]
     // 为 char* uri 分配内存
     char *uri = new char[strLength + 1]; // +1 for null terminator
     // 将 JavaScript 字符串复制到 uri
+    // [StartExclude get_file_location]
     napi_get_value_string_utf8(env, args[0], uri, strLength + 1, &strLength);
     // 输出 uri 字符串（用于调试）
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.WatcherType=OnTrigger: %{public}s", uri);
+    // [EndExclude get_file_location]
     FileIO_FileLocation location;
     FileManagement_ErrCode ret = OH_FileIO_GetFileLocation(uri, strlen(uri), &location);
     if (ret == 0) {
@@ -61,14 +65,16 @@ static napi_value GetFileLocation(napi_env env, napi_callback_info info)
     } else {
         OH_LOG_INFO(LogType::LOG_APP, "GetFileLocation failed, error code is %{public}d", ret);
     }
+    // [StartExclude get_file_location]
     // 如果需要返回值，可以创建一个 JavaScript 字符串返回
     napi_value result;
     napi_create_string_utf8(env, uri, strLength, &result);
     return result;
+    // [EndExclude get_file_location]
 }
+// [End get_file_location]
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
+static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
         {"getFileLocation", nullptr, GetFileLocation, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
