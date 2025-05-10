@@ -48,7 +48,7 @@ entry
 
 ### 相关权限
 
-无。
+ohos.permission.READ_IMAGEVIDEO
 
 ### 依赖
 

@@ -15,6 +15,10 @@
     {
       "name": "completed",
       "value": "完成"
+    },
+    {
+      "name": "read_image_video_permission",
+      "value": "读取用户公共目录的图片或视频文件"
     }
   ]
 }
