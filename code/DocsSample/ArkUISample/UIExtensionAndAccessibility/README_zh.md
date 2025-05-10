@@ -59,7 +59,9 @@ entry/src/ohosTest/
 
 ### 相关权限
 
-ohos.permission.RUN_DYN_CODE
+允许系统方舟运行时引擎在受限模式下执行动态下发的方舟字节码。
+
+[ohos.permission.RUN_DYN_CODE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionrun_dyn_code)
 
 ### 依赖
 
@@ -72,6 +74,8 @@ ohos.permission.RUN_DYN_CODE
 2.本示例为Stage模型，支持API18版本SDK，版本号：5.1.0.59，镜像版本号：OpenHarmony_5.1.0.59。
 
 3.本示例需要使用DevEco Studio 5.0.3 Release (Build Version: 5.0.9.300, built on March 13, 2025)及以上版本才可编译运行。
+
+4.本示例使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
 ### 下载
 
