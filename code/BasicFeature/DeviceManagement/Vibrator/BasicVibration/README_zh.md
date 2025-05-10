@@ -8,7 +8,7 @@
 
 |设置倒计时间|振动倒计时|
 |--------------------------------|--------------------------------|
-|![](./screenshots/device/setTime.jpeg)|![](./screenshots/device/vibratorTime.jpeg)
+|![](./screenshots/device/setTime.jpeg)|![](./screenshots/device/vibratorTime.jpeg)|
 
 使用说明
 
@@ -21,19 +21,18 @@
 ### 工程目录
 ```
 entry/src/main/ets/
-|---MainAbility
-|   |---common
-|   |   |---TextDialog.ts                   // 弹窗组件
-|   |   |---TextTimeComponent.ts            // 内容模块
-|   |   |---TimerPicker.ts                  // TimerPicker模块
-|   |   |---TitleBar.ts                     // 标题组件
-|   |---mode
-|   |   |---Logger.ts                       // 日志工具
-|   |   |---TimerData.ts                    // 时间数据
-|   |---page
-|   |   |---Index.ets                       // 首页
-
+|---common
+|   |---TextDialog.ts                   // 弹窗组件
+|   |---TextTimeComponent.ts            // 内容模块
+|   |---TimerPicker.ts                  // TimerPicker模块
+|   |---TitleBar.ts                     // 标题组件
+|---mode
+|   |---Logger.ts                       // 日志工具
+|   |---TimerData.ts                    // 时间数据
+|---page
+|   |---Index.ets                       // 首页
 ```
+
 ### 具体实现
 
 * 本示例实现振动的方法主要封装在TextTimerComponent中，源码参考: [TextTimerComponent](entry/src/main/ets/MainAbility/common/TextTimerComponent.ets) 。
@@ -56,9 +55,9 @@ entry/src/main/ets/
 
 2.本示例需要使用有振动器的设备测试。
 
-3.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+3.本示例已适配API version 14版本SDK，版本号：5.0.2.123。
 
-4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上版本才可编译运行。
+4.本示例需要使用DevEco Studio 5.0.2 Release (Build Version: 5.0.7.210 构建 2025年2月11日)及以上版本才可编译运行。
 
 ### 下载
 
@@ -69,6 +68,5 @@ git config core.sparsecheckout true
 echo code/BasicFeature/DeviceManagement/Vibrator/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-
 ```
 
