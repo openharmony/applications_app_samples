@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { WLANDATA } from '../mock/InfoData'
-import { TitleBar, Title, Taggle, Show } from './common/Common'
+import router from '@ohos.router';
+import { WLANDATA, WLANDataType } from '../mock/InfoData';
+import { TitleBar, Title, Taggle, Show, ParamsType } from './common/Common';
 
 @Entry
 @Component
@@ -47,12 +47,12 @@ struct Wlan {
         .margin({ left: 24 })
 
       Column() {
-        ForEach(WLANDATA, (item) => {
+        ForEach(WLANDATA, (item: WLANDataType) => {
           Row() {
             this.ShowInfo(item.text, item.info, item.img)
           }
           .height(64)
-        }, item => JSON.stringify(item))
+        }, (item: WLANDataType) => item.text.id.toString())
       }
       .width('95%')
       .borderRadius(24)
@@ -97,9 +97,9 @@ struct Wlan {
 
   aboutToAppear() {
     try {
-      this.isLand = router.getParams()['bool']
+      this.isLand = (router.getParams() as ParamsType).bool;
     } catch (err) {
-      this.isLand = false
+      this.isLand = false;
     }
   }
 }

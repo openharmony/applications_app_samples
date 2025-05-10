@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { TitleBar, Title, Taggle, Show } from './common/Common'
+import router from '@ohos.router';
+import { TitleBar, Title, Taggle, Show, ParamsType } from './common/Common';
 
 @Entry
 @Component
@@ -82,9 +82,9 @@ struct Bluetooth {
         .margin({ left: 24 })
 
       Column() {
-        this.deviceShow($r('app.media.watch'), $r('app.string.smart_watch'), null)
-        this.deviceShow($r('app.media.computer'), $r('app.string.my_pc'), null)
-        this.deviceShow($r('app.media.earphone'), $r('app.string.my_earphones'), null)
+        this.deviceShow($r('app.media.watch'), $r('app.string.smart_watch'), undefined)
+        this.deviceShow($r('app.media.computer'), $r('app.string.my_pc'), undefined)
+        this.deviceShow($r('app.media.earphone'), $r('app.string.my_earphones'), undefined)
       }
       .width('95%')
       .borderRadius(24)
@@ -96,7 +96,7 @@ struct Bluetooth {
     .backgroundColor('#fff6f6f6')
   }
 
-  @Builder deviceShow(device: Resource, info: Resource, img: Resource) {
+  @Builder deviceShow(device: Resource, info: Resource, img: Resource | undefined) {
     Row() {
       Row() {
         Image(device)
@@ -123,9 +123,9 @@ struct Bluetooth {
 
   aboutToAppear() {
     try {
-      this.isLand = router.getParams()['bool']
+      this.isLand = (router.getParams() as ParamsType).bool;
     } catch (err) {
-      this.isLand = false
+      this.isLand = false;
     }
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
+
+export interface ParamsType {
+  bool: boolean
+}
 
 @Component
 export struct TitleBar {
@@ -43,7 +47,7 @@ export struct TitleBar {
 
 @Component
 export struct Title {
-  private title: Resource = undefined
+  private title: Resource | string = '';
 
   build() {
     Row() {
@@ -62,7 +66,7 @@ export struct Title {
 
 @Component
 export struct Taggle {
-  private info: Resource = undefined
+  private info: Resource | string = '';
 
   build() {
     Row() {
@@ -90,7 +94,7 @@ export struct Taggle {
 
 @Component
 export struct Show {
-  private info: Resource = undefined
+  private info: Resource | string = '';
 
   build() {
     Row() {

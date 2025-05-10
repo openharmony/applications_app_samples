@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntry": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:description_mainability",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -27,7 +27,6 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "uiSyntax": "ets",
     "metadata": [
       {
         "name": "ArkTSPartialUpdate",
@@ -37,13 +36,14 @@
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description":"$string:description_mainability",
         "icon": "$media:icon",
         "label": "$string:entry_MainAbility",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true,
+        "exported": true,
+        "orientation": "auto_rotation",
         "skills": [
           {
             "entities": [
@@ -59,12 +59,12 @@
     "extensionAbilities": [
       {
         "name": "WlanExtAbility",
-        "srcEntrance": "./ets/MainAbility/WlanExtAbility.ts",
+        "srcEntry": "./ets/MainAbility/WlanExtAbility.ts",
         "icon": "$media:icon",
-        "description": "WindowExtension",
-        "type": "window",
+        "description": "UIExtensionAbility",
+        "type": "sys/commonUI",
         "permissions": [],
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "actions": [],
@@ -75,12 +75,12 @@
       },
       {
         "name": "BluetoothExtAbility",
-        "srcEntrance": "./ets/MainAbility/BluetoothExtAbility.ts",
+        "srcEntry": "./ets/MainAbility/BluetoothExtAbility.ts",
         "icon": "$media:icon",
-        "description": "WindowExtension",
-        "type": "window",
+        "description": "UIExtensionAbility",
+        "type": "sys/commonUI",
         "permissions": [],
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "actions": [],
@@ -91,12 +91,12 @@
       },
       {
         "name": "MobileDataExtAbility",
-        "srcEntrance": "./ets/MainAbility/MobileDataExtAbility.ts",
+        "srcEntry": "./ets/MainAbility/MobileDataExtAbility.ts",
         "icon": "$media:icon",
-        "description": "WindowExtension",
-        "type": "window",
+        "description": "UIExtensionAbility",
+        "type": "sys/commonUI",
         "permissions": [],
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "actions": [],

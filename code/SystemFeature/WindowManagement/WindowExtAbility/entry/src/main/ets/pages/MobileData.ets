@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { RESOURCES } from '../mock/InfoData'
-import { TitleBar, Title } from './common/Common'
+import router from '@ohos.router';
+import { RESOURCES } from '../mock/InfoData';
+import { TitleBar, Title, ParamsType } from './common/Common';
 
 @Entry
 @Component
@@ -51,9 +51,9 @@ struct MobileData {
         .padding({ left: 24, right: 24 })
         .backgroundColor(Color.White)
 
-        ForEach(RESOURCES, (item) => {
+        ForEach(RESOURCES, (item: Resource) => {
           this.textShow(item)
-        }, item => JSON.stringify(item))
+        }, (item: Resource) => item.id.toString())
       }
       .width('95%')
       .borderRadius(24)
@@ -85,7 +85,7 @@ struct MobileData {
     .backgroundColor('#fff6f6f6')
   }
 
-  @Builder textShow(text: string) {
+  @Builder textShow(text: Resource) {
     Row() {
       Text(text)
         .fontSize(16)
@@ -105,9 +105,9 @@ struct MobileData {
 
   aboutToAppear() {
     try {
-      this.isLand = router.getParams()['bool']
+      this.isLand = (router.getParams() as ParamsType).bool;
     } catch (err) {
-      this.isLand = false
+      this.isLand = false;
     }
   }
 }
