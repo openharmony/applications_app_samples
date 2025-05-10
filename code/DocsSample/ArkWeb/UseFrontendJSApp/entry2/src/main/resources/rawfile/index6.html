@@ -19,8 +19,32 @@
 <button type='button' onclick='callArkTS()'>Click Me!</button>
 <p id='demo'></p>
 <script>
+    // 写法1
+    class Student {
+        constructor(nameList) {
+            this.methodNameListForJsProxy = nameList;
+        }
+
+        hello(param) {
+            testObjName.toString(param);
+        }
+    }
+    let st = new Student(['hello']);
+
+    // 写法2
+    //创建一个构造器，构造函数首字母大写
+    function Obj1() {
+        this.methodNameListForJsProxy = ['hello'];
+        this.hello = function(param) {
+            testObjName.toString(param);
+        };
+    }
+    //利用构造器，通过new关键字生成对象
+    let st1 = new Obj1();
+
     function callArkTS() {
-        testObjName.toString(testObjName.test());
+        testObjName.test(st);
+        testObjName.test(st1);
     }
 </script>
 </body>
