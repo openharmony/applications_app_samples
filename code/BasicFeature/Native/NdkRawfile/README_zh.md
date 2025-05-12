@@ -44,11 +44,22 @@ entry/src/main/
 
 ### 具体实现
 
-通过在IDE中创建Native c++ 工程，在c++代码中定义对外接口为getFileList、getRawFileContent、getRawFileDescriptor，映射C++接口分别为GetFileList、GetRawFileContent、GetRawFileDescriptor。
+通过在IDE中创建Native c++ 工程，在cpp目录下的index.d.ts中定义对外js接口，同时在c++中实现接口，映射关系如下：
+
+| index.d.ts中的接口名                  | rawfile_demo.cpp对应的实现函数                                                                             |
+|:---------------------------------|:----------------------------------------------------------------------------------------------------|
+| getFileList                      | GetFileList                                                                                         |
+| getRawFileContent                | GetRawFileContent                                                                                   |
+| getRawFileContent64              | GetRawFileContent64                                                                                 |
+| getRawFileDescriptor             | GetRawFileDescriptor                                                                                |
+| getRawFileDescriptor64           | GetRawFileDescriptor64                                                                              |
+| releaseRawFileDescriptor         | ReleaseRawFileDescriptor                                                                            |
+| releaseRawFileDescriptor64       | ReleaseRawFileDescriptor64                                                                          |
+
 通过获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符{fd, offset, length}。
 在Js侧导入"libentry.so"，通过getContext().resourceManager获取资源管理对象。调用src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象和相关参数获取对于rawfile相关资源信息。
 源码参考：[rawfile_demo.cpp](entry/src/main/cpp/rawfile_demo.cpp)
-。 涉及到的相关接口：
+。 涉及到的native rawfile相关接口：
 
 | 接口名                            | 描述                                                                                                     |
 |:-------------------------------|:-------------------------------------------------------------------------------------------------------|
@@ -59,9 +70,12 @@ entry/src/main/
 | 打开指定rawfile文件。                 | RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName)        |
 | 获取rawfile文件大小。                 | long OH_ResourceManager_GetRawFileSize(RawFile *rawFile)                                               |
 | 读取rawfile文件内容。                 | int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length)                   |
+| 指定rawfile文件的偏移量。               | int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence)                    |
+| 获取rawfile文件的偏移量。               | long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile)                                       |
 | 释放rawfile文件相关资源。               | void OH_ResourceManager_CloseRawFile(RawFile *rawFile)                                                 |
 | 释放rawfile目录相关资源。               | void OH_ResourceManager_CloseRawDir(RawDir *rawDir)                                                    |
 | 获取rawfile的fd。                  | bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor)    |
+| 关闭rawfile的fd。                  | bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor)                  |
 | 释放native resource manager相关资源。 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr)                    |
 
 
@@ -78,9 +92,9 @@ entry/src/main/
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
+2. 本示例为Stage模型，支持API Version 15版本SDK，版本号：5.0.3.135，最低兼容API Version 11，镜像版本号：OpenHarmony-5.0.3.137 Release
 
-3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3. 本示例需要使用DevEco Studio NEXT Developer Beta1(5.0.3.404)及以上版本才可编译运行。
 
 ### 下载
 
