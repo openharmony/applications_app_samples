@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "MindSporeLite"
+    },
+    {
+      "name": "read_image_video_permission",
+      "value": "read image or video files from the user's public directory"
     }
   ]
 }

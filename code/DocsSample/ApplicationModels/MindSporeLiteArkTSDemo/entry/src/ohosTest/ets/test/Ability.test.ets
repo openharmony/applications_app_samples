@@ -1,3 +1,18 @@
+/*
+* Copyright (c) 2024-2025 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, it, expect } from '@ohos/hypium';
 import Want from '@ohos.app.ability.Want';
@@ -35,6 +50,13 @@ export default function abilityTest() {
         expect(err).assertNull();
       })
       await driver.delayMs(3000);
+      // 用户授权
+      await driver.assertComponentExist(ON.text(
+        await abilityDelegator.getAppContext().resourceManager.getStringValue($r('app.string.allow'))));
+      let permissionAllowBtn = await driver.findComponent(ON.text(
+        await abilityDelegator.getAppContext().resourceManager.getStringValue($r('app.string.allow'))));
+      await permissionAllowBtn.click();
+      await driver.delayMs(1000);
       hilog.info(domain, TAG, BUNDLE + 'EntryAbility_001 end');
       done();
     })
@@ -72,7 +94,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('photo'));
       let msPhoto = await driver.findComponent(ON.text('photo'));
       await msPhoto.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(5000);
       // 点击照片，选中一张照片
       let gridItems = await driver.findComponents(ON.type('GridItem'));
       await gridItems[1].click();

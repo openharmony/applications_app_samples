@@ -1,11 +1,29 @@
+/*
+* Copyright (c) 2024-2025 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 import resourceManager from '@ohos.resourceManager'
 import fileIo from '@ohos.file.fs';
 import msliteNapi from 'libentry.so'
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'MindSporeLite';
+const PERMISSIONS: Permissions[] = ['ohos.permission.READ_IMAGEVIDEO'];
 
 @Entry
 @Component
@@ -103,6 +121,19 @@ struct Index {
     'Jewellery', 'Bridge', 'Cuisine', 'Bread', 'Caving',
     'Shell', 'Wreath', 'Roof', 'Cookie', 'Canoe'
   ];
+
+  aboutToAppear() {
+    abilityAccessCtrl.createAtManager().requestPermissionsFromUser(getContext(this), PERMISSIONS).then((data) => {
+      if (data.authResults[0] == 0) {
+        hilog.info(0xFF00, TAG, '%{public}s', 'request permission success');
+      } else {
+        hilog.info(0xFF00, TAG, '%{public}s', 'user rejected');
+      }
+    }).catch((err: BusinessError) => {
+      hilog.error(0xFF00, TAG, '%{public}s',
+        `request permission failed, error message: ${(err as BusinessError).message}`);
+    });
+  }
 
   build() {
     Row() {
