@@ -90,7 +90,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 const char *SRC_CALL_NATIVE = R"JS(getVM())JS";
-// [EndExclude oh_jsvm_get_vm]
+// [End oh_jsvm_get_vm]
 
 static int32_t TestJSVM()
 {
