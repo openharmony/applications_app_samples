@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,16 +15,17 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
 import Logger from '../util/Logger';
 
 const BUNDLE = 'WindowExtAbility_';
 const TAG = 'AppTestPage';
 
 export default function appTest() {
-  describe('appTest', function () {
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+  describe('appTest', () => {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, 'StartAbility start')
-      let want = {
+      let want: Want = {
         bundleName: 'ohos.samples.windowextability',
         abilityName: 'MainAbility'
       }
@@ -38,7 +39,7 @@ export default function appTest() {
     /**
      * 点击进入WLAN详情页面、蓝牙详情页面、移动数据详情页面
      */
-    it(BUNDLE + 'IndexPage_EnterDetailPage_001', 0, async function () {
+    it(BUNDLE + 'IndexPage_EnterDetailPage_001', 0, async (done: Function) => {
       Logger.info(TAG, 'IndexPage_EnterDetailPage_001 start');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -57,6 +58,7 @@ export default function appTest() {
         await backBtn.click();
         await driver.delayMs(1000);
       }
+      done();
       Logger.info(TAG, 'IndexPage_EnterDetailPage_001 end');
     })
   })

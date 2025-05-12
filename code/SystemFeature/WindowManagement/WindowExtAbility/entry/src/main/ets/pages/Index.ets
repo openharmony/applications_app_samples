@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,17 +13,18 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import mediaQuery from '@ohos.mediaquery'
-import { INFODATA } from '../mock/InfoData'
+import router from '@ohos.router';
+import mediaQuery from '@ohos.mediaquery';
+import { INFODATA, InfoType } from '../mock/InfoData';
 
 @Entry
 @Component
 struct Index {
-  @State flag: number = -1
-  @State info: string = ''
-  @State isLand: boolean = false
-  private listener: mediaQuery.MediaQueryListener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
+  @State flag: number = -1;
+  @State info: string = '';
+  @State isLand: boolean = false;
+  private listener: mediaQuery.MediaQueryListener =
+    mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)');
 
   build() {
     Row() {
@@ -42,7 +43,7 @@ struct Index {
         .margin({ top: 56, left: 2, bottom: 4 })
 
         Column() {
-          ForEach(INFODATA, (item, index) => {
+          ForEach(INFODATA, (item: InfoType, index) => {
             Column() {
               if (index !== 0) {
                 Divider()
@@ -68,11 +69,13 @@ struct Index {
                   .fontSize(14)
                   .fontColor('#182431')
                   .margin({ right: 4 })
+                  .position({ top: '30%', right: 20 })
 
                 Image($r('app.media.right'))
                   .width(16)
                   .height(18)
                   .objectFit(ImageFit.Contain)
+                  .position({ top: '30%', right: 0 })
               }
               .width('100%')
               .height(56)
@@ -80,10 +83,11 @@ struct Index {
               .id(`settingType${index}`)
               .padding({ left: 24, right: 24 })
               .onClick(() => {
+                console.log('selected info ' + JSON.stringify(item))
                 this.info = item.info
                 this.flag = item.index
                 if (!this.isLand) {
-                  router.push({
+                  router.pushUrl({
                     url: item.uri,
                     params: {
                       bool: true
@@ -92,7 +96,7 @@ struct Index {
                 }
               })
             }
-          }, item => JSON.stringify(item))
+          }, (item: InfoType) => item.uri)
         }
         .width('90%')
         .borderRadius(24)
@@ -129,21 +133,21 @@ struct Index {
 
   // 拉起WindowExtAbility
   @Builder Component(info: string) {
-    AbilityComponent({
-      want:{
-        abilityName: info,
-        bundleName: 'ohos.samples.windowextability'
+    UIExtensionComponent({
+      abilityName: info,
+      bundleName: 'ohos.samples.windowextability',
+      moduleName: 'entry',
+      parameters: {
+        'ability.want.params.uiExtensionType': 'sys/commonUI',
       }
     })
       .width(767)
       .height(805)
   }
 
-  onPortrait(mediaQueryResult) {
-    this.isLand = mediaQueryResult.matches
-  }
-
   aboutToAppear() {
-    this.listener.on('change', this.onPortrait.bind(this))
+    this.listener.on('change', (mediaQueryResult) => {
+      this.isLand = mediaQueryResult.matches;
+    });
   }
 }

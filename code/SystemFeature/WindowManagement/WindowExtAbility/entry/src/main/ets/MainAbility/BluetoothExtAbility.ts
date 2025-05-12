@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,28 +13,34 @@
  * limitations under the License.
  */
 
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility'
-import Logger from '../feature/Logger'
-import Rpc from '../feature/Rpc'
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import Logger from '../feature/Logger';
 
 const TAG: string = 'BlueToothExtAbility'
 
-export default class BluetoothExtAbility extends WindowExtensionAbility {
-  onWindowReady(window) {
-    window.loadContent('pages/Bluetooth').then(() => {
-      window.getProperties().then((pro) => {
-        Logger.info(TAG, `BlueTooth WindowExtension ${JSON.parse(pro)}`)
-      })
-      window.show()
-    })
+export default class BluetoothExtAbility extends UIExtensionAbility {
+  onCreate() {
+    Logger.info(TAG, `BluetoothExtAbility onCreate`);
   }
 
-  onConnect(want) {
-    Logger.info(TAG, `BlueTooth WindowExtAbility onConnect ${want.abilityName}`)
-    return Rpc
+  onForeground() {
+    Logger.info(TAG, `BluetoothExtAbility onForeground`);
   }
 
-  onDisconnect(want) {
-    Logger.info(TAG, `BlueTooth WindowExtAbility onDisconnect ${want.abilityName}`)
+  onBackground() {
+    Logger.info(TAG, `BluetoothExtAbility onBackground`);
+  }
+
+  onDestroy() {
+    Logger.info(TAG, `BluetoothExtAbility onDestroy`);
+  }
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    Logger.info(TAG, `BluetoothExtAbility session create, want: ${JSON.stringify(want)}}`);
+    session.loadContent('pages/Bluetooth');
+  }
+
+  onSessionDestroy(session: UIExtensionContentSession) {
+    Logger.info(TAG, `BluetoothExtAbility onSessionDestroy`);
   }
 }

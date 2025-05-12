@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,28 +13,34 @@
  * limitations under the License.
  */
 
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility'
-import Logger from '../feature/Logger'
-import Rpc from '../feature/Rpc'
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import Logger from '../feature/Logger';
 
 const TAG: string = 'WlanExtAbility'
 
-export default class WlanExtAbility extends WindowExtensionAbility {
-  onWindowReady(window) {
-    window.loadContent('pages/Wlan').then(() => {
-      window.getProperties().then((properties) => {
-        Logger.info(TAG, `Wlan WindowExtension ${JSON.parse(properties)}`)
-      })
-      window.show()
-    })
+export default class WlanExtAbility extends UIExtensionAbility {
+  onCreate() {
+    Logger.info(TAG, `WlanExtAbility onCreate`);
   }
 
-  onConnect(want) {
-    Logger.info(TAG, `Wlan WindowExtAbility onConnect ${want.abilityName}`)
-    return Rpc
+  onForeground() {
+    Logger.info(TAG, `WlanExtAbility onForeground`);
   }
 
-  onDisconnect(want) {
-    Logger.info(TAG, `Wlan WindowExtAbility onDisconnect ${want.abilityName}`)
+  onBackground() {
+    Logger.info(TAG, `WlanExtAbility onBackground`);
+  }
+
+  onDestroy() {
+    Logger.info(TAG, `WlanExtAbility onDestroy`);
+  }
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    Logger.info(TAG, `WlanExtAbility session create, want: ${JSON.stringify(want)}}`);
+    session.loadContent('pages/Wlan');
+  }
+
+  onSessionDestroy(session: UIExtensionContentSession) {
+    Logger.info(TAG, `WlanExtAbility onSessionDestroy`);
   }
 }
