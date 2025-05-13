@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FilePreviewDLP"
+    },
+    {
+      "name": "file_preview_dlp_text",
+      "value": "DLP文件添加展示"
+    },
+    {
+      "name": "file_preview_dlp_hundred_percent",
+      "value": "100%"
+    },
+    {
+      "name": "file_preview_dlp_show_ui",
+      "value": "此样式仅为案例展示"
+    },
+    {
+      "name": "file_preview_dlp_show_text",
+      "value": "点击跳转文件预览展示DLP文件"
+    }
+  ]
+}
