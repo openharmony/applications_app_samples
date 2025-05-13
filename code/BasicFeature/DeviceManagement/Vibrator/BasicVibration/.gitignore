@@ -4,6 +4,9 @@
 /.idea
 **/build
 /.hvigor
-/package-lock.json
-/entry/package-lock.json
-**/.preview
+.cxx
+/.clangd
+/.clang-format
+/.clang-tidy
+**/.test
+/.appanalyzer
