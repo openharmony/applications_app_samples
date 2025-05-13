@@ -149,6 +149,7 @@ function connectIpc(context: common.UIAbilityContext, callback: () => void) {
 function disConnectIpc(context: common.UIAbilityContext) {
   if (connectid != undefined) {
     context.disconnectServiceExtensionAbility(connectid);
+    proxy = undefined;
   }
 }
 
