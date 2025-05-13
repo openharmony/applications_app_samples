@@ -233,10 +233,6 @@ struct Index {
    * */
   initiatingUserAuthentication4() {
     // 设置认证参数
-    let reuseUnlockResult: userAuth.ReuseUnlockResult = {
-      reuseMode: userAuth.ReuseMode.CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT,
-      reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
-    };
     try {
       const rand = cryptoFramework.createRandom();
       const len: number = 16;
@@ -245,7 +241,6 @@ struct Index {
         challenge: randData,
         authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE, userAuth.UserAuthType.FINGERPRINT],
         authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-        reuseUnlockResult: reuseUnlockResult,
       };
       // 配置认证界面
       const widgetParam: userAuth.WidgetParam = {
