@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "AboutcodecacheAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AboutcodecacheAbility_label",
+      "value": "JsvmDebug"
+    }
+  ]
+}
