@@ -75,7 +75,8 @@ entry/src/main/ets/
     ```
     function disConnectIpc(context: common.UIAbilityContext) {
       if (connectid != undefined) {
-        context.disconnectServiceExtensionAbility(connectid)
+        context.disconnectServiceExtensionAbility(connectid);
+        proxy = undefined;
       } 
     }
     ```
