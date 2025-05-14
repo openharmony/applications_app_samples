@@ -14,7 +14,7 @@
 */
 
 {
-  "modelVersion": "5.0.2",
+  "modelVersion": "6.0.0",
   "dependencies": {
     "@ohos/hypium": "1.0.6"
   }

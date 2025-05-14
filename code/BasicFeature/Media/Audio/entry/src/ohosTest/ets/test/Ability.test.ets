@@ -684,6 +684,7 @@ export default function abilityTest() {
         await driver.delayMs(1000);
         await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.NORMAL_CAPTURER'))));
         await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.PARALLEL_CAPTURER'))));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.LIVE_CAPTURER'))));
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'CapturerHome_001:' + JSON.stringify(err));
         expect(false).assertTrue();
@@ -762,6 +763,7 @@ export default function abilityTest() {
     it(BUNDLE + 'NormalCapturer_004', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'NormalCapturer_004 begin');
       try {
+        await driver.delayMs(2000);
         let stopRecordBtnComponent = await driver.findComponent(ON.id('normal_stop_record_btn'));
         await stopRecordBtnComponent.click();
         await driver.delayMs(1000);
@@ -800,6 +802,117 @@ export default function abilityTest() {
       done();
     })
 
+     /**
+     * [NLiveCapturer] display LiveCapturer page,and click start record btn
+     */
+    it(BUNDLE + 'LiveCapturer_001', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_001 begin');
+      try {
+        let parallelCapturerBtnComponent = await driver.findComponent(ON.id('btn_live_capturer'));
+        await parallelCapturerBtnComponent.click();
+        await driver.delayMs(1000);
+        let startRecordBtnComponent = await driver.findComponent(ON.id('live_start_record_btn'));
+        await startRecordBtnComponent.click();
+        await driver.delayMs(3000);
+        await driver.assertComponentExist(ON.id('live_show_time_txt'));
+        await driver.assertComponentExist(ON.id('live_stop_record_btn'));
+        await driver.assertComponentExist(ON.id('live_pause_record_btn'));
+        startRecordBtnComponent = await driver.findComponent(ON.id('live_start_record_btn'));
+        expect(startRecordBtnComponent === null).assertTrue();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'LiveCapturer_001:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_001 end');
+      done();
+    })
+
+    /**
+     * [LiveCapturer] display LiveCapturer page,and click pause record btn
+     */
+    it(BUNDLE + 'LiveCapturer_002', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_002 begin');
+      try {
+        let pauseRecordBtnComponent = await driver.findComponent(ON.id('live_pause_record_btn'));
+        await pauseRecordBtnComponent.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('live_continue_record_btn'));
+        pauseRecordBtnComponent = await driver.findComponent(ON.id('live_pause_record_btn'));
+        console.log(`pauseRecordBtnComponent=${JSON.stringify(pauseRecordBtnComponent)}`);
+        expect(pauseRecordBtnComponent === null).assertTrue();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'LiveCapturer_002:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_002 end');
+      done();
+    })
+
+    /**
+     * [LiveCapturer] display LiveCapturer page,and click continue record btn
+     */
+    it(BUNDLE + 'LiveCapturer_003', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_003 begin');
+      try {
+        let continueRecordBtnComponent = await driver.findComponent(ON.id('live_continue_record_btn'));
+        await continueRecordBtnComponent.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('live_pause_record_btn'));
+        continueRecordBtnComponent = await driver.findComponent(ON.id('live_continue_record_btn'));
+        expect(continueRecordBtnComponent === null).assertTrue();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'LiveCapturer_003:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_003 end');
+      done();
+    })
+
+    /**
+     * [LiveCapturer] display LiveCapturer page,and click stop record btn
+     *  show result
+     */
+    it(BUNDLE + 'LiveCapturer_004', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_004 begin');
+      try {
+        await driver.delayMs(2000);
+        let stopRecordBtnComponent = await driver.findComponent(ON.id('live_stop_record_btn'));
+        await stopRecordBtnComponent.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('live_player'));
+        await driver.assertComponentExist(ON.id('disalbe_btn'));
+        stopRecordBtnComponent = await driver.findComponent(ON.id('live_stop_record_btn'));
+        console.log('stopRecordBtnComponent==' + JSON.stringify(stopRecordBtnComponent));
+        expect(stopRecordBtnComponent === null).assertTrue();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'LiveCapturer_004:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_004 end');
+      done();
+    })
+
+    /**
+     * [LiveCapturer] click record_player to play and pause
+     *  show result
+     */
+    it(BUNDLE + 'LiveCapturer_005', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_005 begin');
+      try {
+        let live_player = await driver.findComponent(ON.id('live_player'));
+        await live_player.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('playing_state'));
+        await driver.delayMs(2000);
+        await live_player.click();
+        await driver.assertComponentExist(ON.id('paused_state'));
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'LiveCapturer_005:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'LiveCapturer_005 end');
+      done();
+    })
     /**
      * [ParallelCapturer] display ParallelCapturer page
      */

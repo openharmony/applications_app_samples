@@ -7,6 +7,7 @@
     "pages/RealtimeEffect",
     "pages/NormalCapturer",
     "pages/ParallelCapturer",
+    "pages/LiveCapturer",
     "pages/VolumePanel",
     "pages/SpatialAudio"
   ]

@@ -217,6 +217,10 @@
       "value": "并行录制"
     },
     {
+      "name": "LIVE_CAPTURER",
+      "value": "并行录制"
+    },
+    {
       "name": "CONTINUE",
       "value": "继续"
     },
