@@ -123,7 +123,7 @@ private:
     void *window_ = nullptr;
     uint64_t width_ = 0;
     uint64_t height_ = 0;
-
+    long long period = 0;
     // 其他状态变量
     std::atomic<bool> isPaused_{false};
 };

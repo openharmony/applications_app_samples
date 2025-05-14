@@ -20,6 +20,7 @@
 #include <GLES2/gl2ext.h>
 #include <mutex>
 #include <condition_variable>
+#include <native_vsync/native_vsync.h>
 #include <unistd.h>
 
 namespace {
@@ -133,6 +134,7 @@ void RenderEngine::WaitForVsync()
     if (vSyncCnt_ > 0) {
         vSyncCnt_--;
         (void)OH_NativeVSync_RequestFrame(nativeVsync_, &RenderEngine::OnVsync, this);
+        OH_NativeVSync_GetPeriod(nativeVsync_, &period);
     }
 }
 
@@ -327,6 +329,7 @@ void RenderEngine::DestroyNativeImage()
     }
 
     if (nativeImage_ != nullptr) {
+        OH_NativeImage_DetachContext(nativeImage_);
         (void)OH_NativeImage_UnsetOnFrameAvailableListener(nativeImage_);
         OH_NativeImage_Destroy(&nativeImage_);
         nativeImage_ = nullptr;
@@ -346,7 +349,7 @@ bool RenderEngine::StartNativeRenderThread()
             return false;
         }
 
-        if (!nativeRender_->SetSurfaceId(nativeImageSurfaceId_, width_, height_)) {
+        if (!nativeRender_->SetSurfaceWidthAndHeight(nativeImage_, nativeImageSurfaceId_, width_, height_)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
                 "RenderEngine", "Failed to set SurfaceId for NativeRender");
             return false;
