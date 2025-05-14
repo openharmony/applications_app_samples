@@ -25,6 +25,7 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    // [Start back_hce_swipe]
     "abilities": [
       {
         "name": "Entry1Ability",
@@ -67,6 +68,7 @@
         "reason": "$string:app_name",
       }
     ],
+    // [End back_hce_swipe]
     "extensionAbilities": [
       {
         "name": "Entry1BackupAbility",

@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start front_get_nfc_tag_ets]
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -132,3 +133,4 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
+// [End front_get_nfc_tag_ets]

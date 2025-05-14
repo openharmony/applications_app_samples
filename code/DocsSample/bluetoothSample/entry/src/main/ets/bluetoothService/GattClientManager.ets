@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generic_attribute]
 import { ble } from '@kit.ConnectivityKit';
 import { constant } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -20,7 +21,9 @@ import { ToastReport } from '../common/ToastReport';
 import util from '@ohos.util';
 
 const TAG: string = 'GattClientManager';
+// [StartExclude generic_attribute]
 let encoder = new util.TextEncoder();
+// [EndExclude generic_attribute]
 
 export class GattData {
   public serviceUuid: string = '00001810-0000-1000-8000-00805F9B34FB';
@@ -83,7 +86,9 @@ export class GattClientManager {
       message += value[i] + ' ';
     }
     console.info(TAG, message);
+    // [StartExclude generic_attribute]
     this.toastReport.showResult(message);
+    // [EndExclude generic_attribute]
   }
 
   private logDescriptor(des: ble.BLEDescriptor) {
@@ -94,7 +99,9 @@ export class GattClientManager {
       message += value[i] + ' ';
     }
     console.info(TAG, message);
+    // [StartExclude generic_attribute]
     this.toastReport.showResult(message);
+    // [EndExclude generic_attribute]
   }
 
   private checkService(services: Array<ble.GattService>): boolean {
@@ -179,10 +186,14 @@ export class GattClientManager {
     try {
       this.onGattClientStateChange(); // 2.2 订阅连接状态
       this.gattClient.connect(); // 2.3 发起连接
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('startConnect success');
       console.info(TAG, 'startConnect success');
+      // [EndExclude generic_attribute]
     } catch (err) {
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('startConnect fail');
+      // [EndExclude generic_attribute]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -197,12 +208,16 @@ export class GattClientManager {
     try {
       await this.gattClient.getServices().then((result: Array<ble.GattService>) => {
         console.info(TAG, 'getServices success: ' + JSON.stringify(result));
+        // [StartExclude generic_attribute]
         this.serviceResult = JSON.stringify(result);
         this.toastReport.showResult('getServices success: ' + JSON.stringify(result));
+        // [EndExclude generic_attribute]
         this.found = this.checkService(result); // 要确保server端的服务内容有业务所需要的服务
       });
     } catch (err) {
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('getServices fail');
+      // [EndExclude generic_attribute]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -211,12 +226,16 @@ export class GattClientManager {
   public readCharacteristicValue() {
     if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
       console.error(TAG, 'no gattClient or not connected');
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('no gattClient or not connected');
+      // [EndExclude generic_attribute]
       return;
     }
     if (!this.found) { // 要确保server端有对应的characteristic
       console.error(TAG, 'no characteristic from server');
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('no characteristic from server');
+      // [EndExclude generic_attribute]
       return;
     }
 
@@ -226,9 +245,13 @@ export class GattClientManager {
       this.gattClient.readCharacteristicValue(characteristic).then((outData: ble.BLECharacteristic) => {
         this.logCharacteristic(outData);
       })
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('readCharacteristicValue success');
+      // [EndExclude generic_attribute]
     } catch (err) {
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('readCharacteristicValue fail');
+      // [EndExclude generic_attribute]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -237,12 +260,16 @@ export class GattClientManager {
   public writeCharacteristicValue() {
     if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
       console.error(TAG, 'no gattClient or not connected');
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('no gattClient or not connected');
+      // [EndExclude generic_attribute]
       return;
     }
     if (!this.found) { // 要确保server端有对应的characteristic
       console.error(TAG, 'no characteristic from server');
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('no characteristic from server');
+      // [EndExclude generic_attribute]
       return;
     }
 
@@ -255,12 +282,16 @@ export class GattClientManager {
             'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
           return;
         }
+        // [StartExclude generic_attribute]
         this.toastReport.showResult('writeCharacteristicValue success');
+        // [EndExclude generic_attribute]
         console.info(TAG, 'writeCharacteristicValue success');
       });
     } catch (err) {
+      // [StartExclude generic_attribute]
       console.info(TAG, 'writeCharacteristicValue fail');
       this.toastReport.showResult('writeCharacteristicValue fail');
+      // [EndExclude generic_attribute]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -269,12 +300,16 @@ export class GattClientManager {
   public readDescriptorValue() {
     if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
       console.error(TAG, 'no gattClient or not connected');
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('no gattClient or not connected');
+      // [EndExclude generic_attribute]
       return;
     }
     if (!this.found) { // 要确保server端有对应的descriptor
       console.error(TAG, 'no descriptor from server');
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('no descriptor from server');
+      // [EndExclude generic_attribute]
       return;
     }
 
@@ -285,9 +320,13 @@ export class GattClientManager {
       this.gattClient.readDescriptorValue(descriptor).then((outData: ble.BLEDescriptor) => {
         this.logDescriptor(outData);
       });
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('readDescriptorValue success');
+      // [EndExclude generic_attribute]
     } catch (err) {
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('readDescriptorValue fail');
+      // [EndExclude generic_attribute]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -296,12 +335,16 @@ export class GattClientManager {
   public writeDescriptorValue() {
     if (!this.gattClient || this.connectState != constant.ProfileConnectionState.STATE_CONNECTED) {
       console.error(TAG, 'no gattClient or not connected');
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('no gattClient or not connected');
+      // [EndExclude generic_attribute]
       return;
     }
     if (!this.found) { // 要确保server端有对应的descriptor
       console.error(TAG, 'no descriptor from server');
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('no descriptor from server');
+      // [EndExclude generic_attribute]
       return;
     }
 
@@ -319,10 +362,14 @@ export class GattClientManager {
           return;
         }
         console.info(TAG, 'writeDescriptorValue success');
+        // [StartExclude generic_attribute]
         this.toastReport.showResult('writeDescriptorValue success');
+        // [EndExclude generic_attribute]
       });
     } catch (err) {
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('writeDescriptorValue fail');
+      // [EndExclude generic_attribute]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -340,9 +387,13 @@ export class GattClientManager {
       this.gattClient.off('BLEConnectionStateChange', (stateInfo: ble.BLEConnectionChangeState) => {
       });
       this.gattClient.close() // 8.2 如果不再使用此gattClient，则需要close
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('stopConnect success');
+      // [EndExclude generic_attribute]
     } catch (err) {
+      // [StartExclude generic_attribute]
       this.toastReport.showResult('stopConnect fail');
+      // [EndExclude generic_attribute]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -351,3 +402,4 @@ export class GattClientManager {
 let gattClientManager = new GattClientManager();
 
 export default gattClientManager as GattClientManager;
+// [End generic_attribute]

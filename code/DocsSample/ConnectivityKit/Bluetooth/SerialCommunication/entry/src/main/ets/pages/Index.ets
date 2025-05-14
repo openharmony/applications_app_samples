@@ -67,6 +67,7 @@ struct serialCommunication {
         }).height('40vp').width('70%')
       }.width('80%')
 
+      // [Start server_write_client]
       Button('listenSocket')
         .width('50%')
         .id('listenSocket')
@@ -130,6 +131,7 @@ struct serialCommunication {
           }
         })
 
+      // [Start socket_spp_connect]
       Button('connectDevice')
         .width('50%')
         .backgroundColor('#8CE072')
@@ -153,9 +155,9 @@ struct serialCommunication {
             (err as BusinessError).message);
             this.toastReport.showResult('errCode: ' + (err as BusinessError).code + ', errMessage: ' +
             (err as BusinessError).message);
-
           }
         })
+      // [End socket_spp_connect]
 
       Button('writeData')
         .width('50%')
@@ -251,6 +253,7 @@ struct serialCommunication {
           console.info(TAG, 'sppCloseClientSocket success');
           this.toastReport.showResult('sppCloseClientSocket success');
         })
+      // [End server_write_client]
     }
     .width('100%')
     .height('100%')

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start gatt_server_manage]
 import { ble } from '@kit.ConnectivityKit';
 import { constant } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -293,3 +294,4 @@ export class GattServerManager {
 let gattServerManager = new GattServerManager();
 
 export default gattServerManager as GattServerManager;
+// [End gatt_server_manage]

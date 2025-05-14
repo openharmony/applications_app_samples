@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start access_security_unit]
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -120,3 +121,4 @@ export default class EntryAbility extends UIAbility {
 
   }
 }
+// [End access_security_unit]
