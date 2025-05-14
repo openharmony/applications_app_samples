@@ -33,7 +33,7 @@ const routes: Route[] = [
     name: EMBEDDED_ROUTE_PREFIX
   },
   {
-    title: resource.resourceToString($r('app.string.pageIndex_FullScreenComponent')),
+    title: resource.resourceToString($r('app.string.pageIndex_FullScreenLaunchComponent')),
     name: SCREEN_ROUTE_PREFIX
   },
   {

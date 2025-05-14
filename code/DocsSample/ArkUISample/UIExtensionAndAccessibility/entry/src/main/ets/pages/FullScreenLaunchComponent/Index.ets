@@ -59,7 +59,7 @@ struct FullScreenExample {
       .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
-    .title(resource.resourceToString($r('app.string.pageIndex_FullScreenComponent')), {
+    .title(resource.resourceToString($r('app.string.pageIndex_FullScreenLaunchComponent')), {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
