@@ -18,6 +18,7 @@
 #include <sys/mman.h>
 #include "logger_common.h"
 #include "IPCKit/ipc_cparcel.h"
+#include "native_window/graphic_error_code.h"
 
 namespace NativeWindowSample {
 void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -55,7 +56,15 @@ NativeRender* NativeRender::GetInstance()
 void NativeRender::Release()
 {
     NativeRender *render = NativeRender::GetInstance();
+    // 方式一
+    if (render->nativeWindow_) {
+        (void)OH_NativeWindow_NativeObjectUnreference(render->nativeWindow_);
+        
+    }
+    // 方式二
     OH_NativeWindow_DestroyNativeWindow(render->nativeWindow_);
+
+    render->nativeWindow_ = nullptr;
 }
 
 napi_value NativeRender::GetNativeRender(napi_env env, napi_callback_info info)
@@ -131,6 +140,7 @@ void NativeRender::SetNativeWindow(OHNativeWindow* nativeWindow, uint64_t width,
     int code = SET_BUFFER_GEOMETRY;
     int32_t bufferHeight = static_cast<int32_t>(height_ / 4);
     int32_t bufferWidth = static_cast<int32_t>(width_ / 2);
+    (void)OH_NativeWindow_NativeObjectReference(nativeWindow_);
     OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, bufferWidth, bufferHeight);
 }
 
@@ -231,7 +241,12 @@ void NativeRender::DrawBaseColor()
         }
     }
     struct Region *region = new Region();
-    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, fenceFd, *region);
+    ret = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, fenceFd, *region);
+    if (ret != NATIVE_ERROR_OK) {
+        LOGE("flush failed");
+        (void)OH_NativeWindow_NativeWindowAbortBuffer(nativeWindow, nativeWindowBuffer);
+        return;
+    }
     if (munmap(mappedAddr, bufferHandle->size) < 0) {
         OH_NativeWindow_DestroyNativeWindow(nativeWindow);
         LOGE("munmap failed");
@@ -242,6 +257,7 @@ void NativeRender::DrawBaseColor()
     float matrix[16];
     ret = OH_NativeWindow_GetLastFlushedBuffer(nativeWindow, &lastFlushedBuffer, &lastFlushedFenceFd, matrix);
     if (ret != 0) {
+        (void)OH_NativeWindow_DestroyNativeWindowBuffer(lastFlushedBuffer);
         OH_NativeWindow_DestroyNativeWindow(nativeWindow);
         LOGE("OH_NativeWindow_GetLastFlushedBuffer fail, ret = %{public}d", ret);
         return;
