@@ -16,7 +16,7 @@
 
 | 音频录制页面-<br>直播录制             | 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     | 空间音频页面                                           |
 |-----------------------------------------|----------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
-| ![ParallelCapturer](screenshots/device/parallel_capturer.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
+| ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
 
 使用说明
 
