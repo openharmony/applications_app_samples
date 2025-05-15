@@ -1,0 +1,6 @@
+{
+  "src": [
+    "pages/FoodCategoryList",
+    "pages/FoodDetail"
+  ]
+}
