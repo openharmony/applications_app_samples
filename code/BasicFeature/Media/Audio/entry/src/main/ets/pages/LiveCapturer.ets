@@ -151,7 +151,7 @@ struct LiveCapturer {
     try {
       await fs.open(path, 0o100);
       Logger.info('file created success');
-    }  catch (err) {
+    } catch (err) {
       let error = err as BusinessError;
       Logger.error('file created err:' + JSON.stringify(error));
       return;
@@ -235,7 +235,7 @@ struct LiveCapturer {
     try {
       bufferSize = await this.audioRenderer.getBufferSize();
       await this.audioRenderer.start();
-    }  catch (err) {
+    } catch (err) {
       let error = err as BusinessError;
       Logger.error(`start err:${JSON.stringify(error)}`);
     }
@@ -273,7 +273,7 @@ struct LiveCapturer {
         this.start = 0;
         await this.renderStop();
       }
-    }  catch (err) {
+    } catch (err) {
       let error = err as BusinessError;
       Logger.error(`write err:${JSON.stringify(error)}`);
     }
@@ -285,7 +285,7 @@ struct LiveCapturer {
     }
     try {
       await this.audioRenderer.pause();
-    }  catch (err) {
+    } catch (err) {
       let error = err as BusinessError;
       Logger.error(`pause err:${JSON.stringify(error)}`);
     }
@@ -298,7 +298,7 @@ struct LiveCapturer {
     try {
       await this.audioRenderer.stop();
       this.start = 0;
-    }  catch (err) {
+    } catch (err) {
       let error = err as BusinessError;
       Logger.error(`stop err:${JSON.stringify(error)}`);
     }
@@ -310,7 +310,7 @@ struct LiveCapturer {
     }
     try {
       await this.audioRenderer.release();
-    }  catch (err) {
+    } catch (err) {
       let error = err as BusinessError;
       Logger.error(`release err:${JSON.stringify(error)}`);
     }
@@ -341,7 +341,7 @@ struct LiveCapturer {
       setTimeout(async () => {
         await this.readCapturer();
       }, READ_TIME_OUT);
-    }  catch (err) {
+    } catch (err) {
       let error = err as BusinessError;
       Logger.error(`LiveCapturer:audioCapturer start err=${JSON.stringify(error)}`);
     }
@@ -382,7 +382,7 @@ struct LiveCapturer {
       this.recordState = 'paused';
 
       clearInterval(this.interval);
-    }  catch (err) {
+    } catch (err) {
       let error = err as BusinessError;
       Logger.error(`LiveCapturer:audioCapturer stop err=${JSON.stringify(error)}`);
       return;
@@ -414,7 +414,7 @@ struct LiveCapturer {
         startOffset += this.bufferSize;
         this.capturerOffsetStart = startOffset;
       }
-    }  catch (err) {
+    } catch (err) { 
       let error = err as BusinessError;
       Logger.error(`readCapturer err=${JSON.stringify(error)}`);
     }
