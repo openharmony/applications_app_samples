@@ -14,7 +14,7 @@
 */
 
 {
-  "modelVersion": "6.0.0",
+  "modelVersion": "5.0.2",
   "license": "ISC",
   "devDependencies": {
     "@ohos/hypium": "1.0.6"
