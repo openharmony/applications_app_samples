@@ -148,7 +148,7 @@ library/
     * 接下来就是分别调用两个audioRenderer对象的start,pause,stop以及fs.read等接口进行录音数据的播放，暂停，停止这些操作
 * 音频录制-直播录制功能都封装在LiveCapturer,源码参考：[LiveCapturer.ets](entry/src/main/ets/pages/LiveCapturer.ets)
     * 先判断当前平台SOURCE_TYPE_LIVE是否支持回声消除，如果不支持，建议应用创建一个麦克风源的capturer对象用于录音并自己实现回声消除。如果支持则直接创建一个直播类型的capturer对象用于录音
-    * 点击开始录制时，调用capturer对象的start方法，同时调用capturer的read读取录音数据，并通过使用fs.write接口将录音数据写入到文件中去存储起来，接口参考：[@ohos.file.fs](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)，同时利用setTimeout开启一个计时器，记录录音时间。
+    * 点击开始录制时，调用capturer对象的start方法，同时调用capturer的read读取录音数据，并通过使用fs.write接口将录音数据写入到文件中去存储起来，接口参考：[@ohos.file.fs](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)，同时利用setTimeout开启一个计时器，记录录音时间。
     * 点击暂停，调用capturer.stop(),同时文件写入也停止
     * 点击继续，再次调用capturer.start(),capturer.read()以及继续将录音数据写入到文件中去
     * 点击停止,调用capturer.stop(),同时文件写入也停止，录音结果生成成功，然后创建一个audioRenderer对象用于播放录音结果
