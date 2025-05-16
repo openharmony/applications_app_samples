@@ -17,6 +17,7 @@
 #define NATIVE_IMAGE_NATIVE_RENDER_H
 #include <native_window/external_window.h>
 #include <native_buffer/native_buffer.h>
+#include <native_image/native_image.h>
 #include <sys/mman.h>
 #include <mutex>
 
@@ -25,7 +26,7 @@ public:
     OHNativeRender() = default;
     ~OHNativeRender();
 
-    bool SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t height);
+    bool SetSurfaceWidthAndHeight(OH_NativeImage* image, uint64_t surfaceId, uint64_t width, uint64_t height);
     void RenderFrame();
 
 private:

@@ -16,6 +16,7 @@
 #include <common/common.h>
 #include <algorithm>
 #include <cmath>
+#include <native_image/native_image.h>
 #include <poll.h>
 #include <unistd.h>
 #include <cerrno>
@@ -69,7 +70,7 @@ OHNativeRender::~OHNativeRender()
     }
 }
 
-bool OHNativeRender::SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t height)
+bool OHNativeRender::SetSurfaceWidthAndHeight(OH_NativeImage* image, uint64_t surfaceId, uint64_t width, uint64_t height)
 {
     if (nativeWindow_ != nullptr) {
         (void)OH_NativeWindow_NativeObjectUnreference(nativeWindow_);
@@ -79,8 +80,9 @@ bool OHNativeRender::SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t h
     // 保存宽度和高度
     width_ = width;
     height_ = height;
-
-    // 从 SurfaceId 创建 NativeWindow
+    //方式一： 从 NativeImage 创建 NativeWindow
+    nativeWindow_ = OH_NativeImage_AcquireNativeWindow(image);
+    //方式二： 从 SurfaceId 创建 NativeWindow 
     int ret = OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow_);
     if (ret != SUCCESS) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender",
