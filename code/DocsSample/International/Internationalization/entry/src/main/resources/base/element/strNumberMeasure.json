@@ -21,6 +21,34 @@
       "value": "显示百分数: "
     },
     {
+      "name": "RoundingModePositive",
+      "value": "舍入模式（正数）: "
+    },
+    {
+      "name": "RoundingModeNegative",
+      "value": "舍入模式（负数）: "
+    },
+    {
+      "name": "RoundingPriority",
+      "value": "舍入优先级: "
+    },
+    {
+      "name": "RoundingMode",
+      "value": "舍入增量: "
+    },
+    {
+      "name": "FormatRange",
+      "value": "数字范围格式化: "
+    },
+    {
+      "name": "IntegerFormattedRange",
+      "value": "整数范围格式化: "
+    },
+    {
+      "name": "FractionFormattedRange",
+      "value": "小数舍入范围格式化: "
+    },
+    {
       "name": "ResultsOfCurrencyAndUnit",
       "value": "货币和单位格式化结果: "
     },

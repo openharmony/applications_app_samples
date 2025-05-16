@@ -134,9 +134,9 @@ const expectedFormattedRelativeTime2 = 'yesterday';
 const expectedFormattedRelativeTime3 = 'il y a 1 jour';
 const expectedFormattedRelativeTime4 = '-1 j';
 const expectedCustomFormat =
-  '[{\"type\":\"literal\",\"value\":\"in \"},' +
-    '{\"type\":\"integer\",\"value\":\"1\",\"unit\":\"day\"},' +
-    '{\"type\":\"literal\",\"value\":\" day\"}]';
+  '[{\"value\":\"in \",\"type\":\"literal\"},' +
+    '{\"value\":\"1\",\"unit\":\"day\",\"type\":\"integer\"},' +
+    '{\"value\":\" day\",\"type\":\"literal\"}]';
 const expectedNumeric = 'auto';
 
 @Extend(Text)

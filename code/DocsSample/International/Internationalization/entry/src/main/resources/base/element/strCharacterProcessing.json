@@ -26,7 +26,7 @@
     },
     {
       "name": "CharacterTransResult",
-      "value": "中国,德国,美国,法国音译结果: "
+      "value": "中国音译结果: "
     },
     {
       "name": "ChinaTrans",
@@ -71,6 +71,22 @@
     {
       "name": "BreakText",
       "value": "断句文本: "
+    },
+    {
+      "name": "ResultsOfMirror",
+      "value": "文件路径镜像处理测试结果: "
+    },
+    {
+      "name": "originPath",
+      "value": "原始路径: "
+    },
+    {
+      "name": "MirrorLanguage",
+      "value": "镜像语言: "
+    },
+    {
+      "name": "UnMirrorLanguage",
+      "value": "非镜像语言: "
     }
   ]
 }

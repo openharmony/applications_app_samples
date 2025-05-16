@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "ResultsOfDateTimeFormat",
-      "value": "时间日期格式化结果: "
+      "value": "系统时制为24小时制条件下时间日期格式化结果: "
     },
     {
       "name": "FullDateStyle",

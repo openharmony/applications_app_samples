@@ -16,7 +16,8 @@
 import TitleBar from '../component/TitleBar';
 import { assertEqual, assertEqualLong } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
-import { i18n } from '@kit.LocalizationKit';
+import { i18n, intl } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /**********************************************************************************************************************
  * 字符属性开发参考步骤
@@ -54,23 +55,16 @@ let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
 
 // 音译成Latn格式
 let transliterator = i18n.Transliterator.getInstance('Any-Latn');
-let wordArray =
-  [resourceToString($r('app.string.CountryWordChina')), resourceToString($r('app.string.CountryWordGermany')),
-    resourceToString($r('app.string.CountryWordUSA')), resourceToString($r('app.string.CountryWordFrance'))]
-let transRes: string[] = [];
-for (let i = 0; i < wordArray.length; i++) {
-  let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
-  transRes.push(res);
-}
+let text = resourceToString($r('app.string.CountryWordChina'));
+let translatedText: string = transliterator.transform(text); // translatedText = 'zhōng guó'
 
 // 汉语音译去声调
-let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-let result = transliter.transform(resourceToString($r('app.string.CountryWordChina'))); // result: zhong guo
+let toneLessTransliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+let toneTranslatedText: string = toneLessTransliterator.transform(resourceToString($r('app.string.CountryWordChina'))); // result: zhong guo
 
 // 汉语姓氏读音
-let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-let result1 = nameTransliter.transform(resourceToString($r('app.string.TeacherShan'))); // result1: shàn lǎo shī
-let result2 = nameTransliter.transform(resourceToString($r('app.string.ZhangSunWuJi'))); // result2: zhǎng sūn wú jì
+let nameTransliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
+let nameTranslatedText: string = nameTransliterator.transform(resourceToString($r('app.string.TeacherShan'))); // result1: shàn lǎo shī
 
 // 获取音译支持的ID列表
 let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
@@ -128,14 +122,39 @@ let isBoundary = iterator.isBoundary(9); // isBoundary: true
 // 获取BreakIterator对象处理的文本
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
 
+/**********************************************************************************************************************
+ * 文件路径镜像处理开发步骤参考
+ * 1. 导入模块
+ *  import { i18n, intl } from '@kit.LocalizationKit';
+ * 2. 文件路径镜像处理
+ *  let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
+ *********************************************************************************************************************/
+
+let mirrorPath: string = "";
+let unMirrorPath: string = "";
+// 传入镜像语言，对路径进行镜像处理
+let originPath: string = 'data/out/tmp';
+
+try {
+  let delimiter: string = '/';
+  let locale: intl.Locale = new intl.Locale('ar');
+  // mirrorPath = 'tmp/out/data/'
+  mirrorPath = i18n.I18NUtil.getUnicodeWrappedFilePath(originPath, delimiter, locale);
+  // 传入非镜像语言，不处理路径
+  let localeZh: intl.Locale = new intl.Locale('zh');
+  // unMirrorPath = 'data/out/tmp'
+  unMirrorPath = i18n.I18NUtil.getUnicodeWrappedFilePath(originPath, delimiter, localeZh);
+} catch (error) {
+  console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+}
+
 const expectedIsDigit = true;
 const expectedIsRTL = false;
 const expectedIsIdeograph = true;
 const expectedType = 'U_LOWERCASE_LETTER';
-const expectedTransResult = 'zhōng guó,dé guó,měi guó,fǎ guó';
-const expectedResult = 'zhong guo';
-const expectedResult1 = 'shàn lǎo shī';
-const expectedResult2 = 'zhǎng sūn wú jì';
+const expectedTransResult = 'zhōng guó';
+const expectedToneTranslatedText = 'zhong guo';
+const expectedNameTranslatedText = 'shàn lǎo shī';
 const expectedIds = ['ASCII-Latin', 'Accents-Any'];
 const expectedNormalizedText = 'ẛ̣';
 const expectedFirstPos = 0;
@@ -171,13 +190,11 @@ export default struct CharacterProcessing {
           Text($r('app.string.ResultsOfTrans'))
             .textStyle()
             .fontWeight(FontWeight.Bold)
-          Text(assertEqual(transRes.join(','), expectedTransResult, $r('app.string.CharacterTransResult')))
+          Text(assertEqual(translatedText, expectedTransResult, $r('app.string.CharacterTransResult')))
             .textStyle()
-          Text(assertEqual(result, expectedResult, $r('app.string.ChinaTrans')))
+          Text(assertEqual(toneTranslatedText, expectedToneTranslatedText, $r('app.string.ChinaTrans')))
             .textStyle()
-          Text(assertEqual(result1, expectedResult1, $r('app.string.TeachersSurnameTrans')))
-            .textStyle()
-          Text(assertEqual(result2, expectedResult2, $r('app.string.ZhangSunWuJiTrans')))
+          Text(assertEqual(nameTranslatedText, expectedNameTranslatedText, $r('app.string.TeachersSurnameTrans')))
             .textStyle()
           Text(assertEqualLong(ids.join(', '), expectedIds, $r('app.string.ResultsOfSupportedId')))
             .textStyle()
@@ -212,6 +229,21 @@ export default struct CharacterProcessing {
           Text(assertEqual(isBoundary, expectedIsBoundary, $r('app.string.IsBoundary')))
             .textStyle()
           Text(assertEqual(breakText, expectedBreakText, $r('app.string.BreakText')))
+            .textStyle()
+          Text($r('app.string.ResultsOfMirror'))
+            .textStyle()
+            .fontWeight(FontWeight.Bold)
+          Text($r('app.string.originPath'))
+            .textStyle()
+          Text(originPath)
+            .textStyle()
+          Text($r('app.string.MirrorLanguage'))
+            .textStyle()
+          Text(mirrorPath)
+            .textStyle()
+          Text($r('app.string.UnMirrorLanguage'))
+            .textStyle()
+          Text(unMirrorPath)
             .textStyle()
           Blank().height('10%')
         }
