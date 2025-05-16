@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023 Huawei Device Co., Ltd.
+* Copyright (C) 2025 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -16,6 +16,7 @@ import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
+import Logger from '../../../ohosTest/ets/utils/Logger';
 
 const MIN_RECORD_SECOND = 5;
 const TOTAL_SECOND = 30;
@@ -94,7 +95,7 @@ struct LiveCapturer {
   }
 
   async aboutToAppear(): Promise<void> {
-    console.log('LiveCapturer aboutToAppear');
+    Logger.info('LiveCapturer aboutToAppear');
     await this.initResource();
   }
 
@@ -114,7 +115,7 @@ struct LiveCapturer {
       await this.openFile(this.path);
     } catch (err) {
       let error = err as BusinessError;
-      console.log(`LiveCapturer:createAudioCapturer err=${JSON.stringify(error)}`);
+      Logger.error(`LiveCapturer:createAudioCapturer err=${JSON.stringify(error)}`);
     }
   }
 
@@ -127,42 +128,42 @@ struct LiveCapturer {
       clearInterval(this.interval);
     }
     if (this.audioCapturer) {
-      console.log('LiveCapturer,audioCapturer released');
+      Logger.info('LiveCapturer,audioCapturer released');
       await this.audioCapturer.release();
       this.audioCapturer = undefined;
       this.recordState = 'init';
       clearInterval(this.interval);
     }
     if (this.audioRenderer) {
-      console.log('LiveCapturer,audioRenderer released');
+      Logger.info('LiveCapturer,audioRenderer released');
       await this.audioRenderer.release();
       this.audioRenderer = undefined;
     }
   }
 
   async aboutToDisappear(): Promise<void> {
-    console.log('LiveCapturer,aboutToDisappear is called');
+    Logger.info('LiveCapturer,aboutToDisappear is called');
     await this.releseResource();
   }
 
   async openFile(path: string): Promise<void> {
-    console.log(path);
+    Logger.info(path);
     try {
       await fs.open(path, 0o100);
-      console.log('file created success');
-    } catch (err) {
+      Logger.info('file created success');
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log('file created err:' + JSON.stringify(error));
+      Logger.error('file created err:' + JSON.stringify(error));
       return;
     }
 
     try {
       let file = await fs.open(path, 0o2);
       this.fd = file.fd;
-      console.log(`file open success for read and write mode,fd=${file.fd}`);
+      Logger.info(`file open success for read and write mode,fd=${file.fd}`);
     } catch (err) {
       let error = err as BusinessError;
-      console.log('file open err:' + JSON.stringify(error));
+      Logger.error('file open err:' + JSON.stringify(error));
       return;
     }
   }
@@ -170,17 +171,17 @@ struct LiveCapturer {
   async closeFile(): Promise<void> {
     try {
       await fs.close(this.fd);
-      console.log('file close success');
+      Logger.info('file close success');
     } catch (err) {
       let error = err as BusinessError;
-      console.log('file close err:' + JSON.stringify(error));
+      Logger.error('file close err:' + JSON.stringify(error));
       return;
     }
   }
 
   async capturerStart(): Promise<void> {
     if (!this.audioCapturer) {
-      console.log(`LiveCapturer,capturerStart:audioCapturer is null`);
+      Logger.error(`LiveCapturer,capturerStart:audioCapturer is null`);
       return;
     }
 
@@ -189,7 +190,7 @@ struct LiveCapturer {
       // when start,init recordSec
       this.recordSec = 0;
       this.recordState = 'started';
-      console.log('audioCapturer start ok');
+      Logger.info('audioCapturer start ok');
       clearInterval(this.interval);
       this.interval = setInterval(async () => {
         if (this.recordSec >= TOTAL_SECOND) {
@@ -209,7 +210,7 @@ struct LiveCapturer {
       }, READ_TIME_OUT);
     } catch (err) {
       let error = err as BusinessError;
-      console.log(`LiveCapturer:audioCapturer start err=${JSON.stringify(error)}`);
+      Logger.error(`LiveCapturer:audioCapturer start err=${JSON.stringify(error)}`);
     }
   }
 
@@ -222,7 +223,7 @@ struct LiveCapturer {
       });
     } catch (err) {
       let error = err as BusinessError;
-      console.log(`createAudioRenderer err=${JSON.stringify(error)}`);
+      Logger.error(`createAudioRenderer err=${JSON.stringify(error)}`);
     }
   }
 
@@ -234,15 +235,15 @@ struct LiveCapturer {
     try {
       bufferSize = await this.audioRenderer.getBufferSize();
       await this.audioRenderer.start();
-    } catch (err) {
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log(`start err:${JSON.stringify(error)}`);
+      Logger.error(`start err:${JSON.stringify(error)}`);
     }
 
     try {
       let stat = await fs.stat(this.path);
       let buf = new ArrayBuffer(bufferSize);
-      console.log(`audioRenderer write start..........`);
+      Logger.info(`audioRenderer write start..........`);
       let startOffset = this.start;
       while (startOffset <= stat.size) {
         if (this.audioRenderer.state === audio.AudioState.STATE_PAUSED) {
@@ -259,7 +260,7 @@ struct LiveCapturer {
           offset: startOffset,
           length: bufferSize
         };
-        console.log('renderStart,options=' + JSON.stringify(options));
+        Logger.info('renderStart,options=' + JSON.stringify(options));
 
         await fs.read(this.fd, buf, options);
         await this.audioRenderer.write(buf);
@@ -267,14 +268,14 @@ struct LiveCapturer {
         startOffset = startOffset + bufferSize;
         this.start = startOffset;
       }
-      console.log(`audioRenderer write end..........`)
+      Logger.info(`audioRenderer write end..........`)
       if (this.audioRenderer.state === audio.AudioState.STATE_RUNNING) {
         this.start = 0;
         await this.renderStop();
       }
-    } catch (err) {
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log(`write err:${JSON.stringify(error)}`);
+      Logger.error(`write err:${JSON.stringify(error)}`);
     }
   }
 
@@ -284,9 +285,9 @@ struct LiveCapturer {
     }
     try {
       await this.audioRenderer.pause();
-    } catch (err) {
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log(`pause err:${JSON.stringify(error)}`);
+      Logger.error(`pause err:${JSON.stringify(error)}`);
     }
   }
 
@@ -297,9 +298,9 @@ struct LiveCapturer {
     try {
       await this.audioRenderer.stop();
       this.start = 0;
-    } catch (err) {
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log(`stop err:${JSON.stringify(error)}`);
+      Logger.error(`stop err:${JSON.stringify(error)}`);
     }
   }
 
@@ -309,22 +310,22 @@ struct LiveCapturer {
     }
     try {
       await this.audioRenderer.release();
-    } catch (err) {
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log(`release err:${JSON.stringify(error)}`);
+      Logger.error(`release err:${JSON.stringify(error)}`);
     }
   }
 
   async capturerContinue(): Promise<void> {
     if (!this.audioCapturer) {
-      console.log(`LiveCapturer,capturerContinue:audioCapturer is null`);
+      Logger.error(`LiveCapturer,capturerContinue:audioCapturer is null`);
       return;
     }
 
     try {
       await this.audioCapturer.start()
       this.recordState = 'continued';
-      console.log('audioCapturer start ok');
+      Logger.info('audioCapturer start ok');
       this.interval = setInterval(async () => {
         if (this.recordSec >= TOTAL_SECOND) {
           // over TOTAL_SECOND,need to stop auto
@@ -340,15 +341,15 @@ struct LiveCapturer {
       setTimeout(async () => {
         await this.readCapturer();
       }, READ_TIME_OUT);
-    } catch (err) {
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log(`LiveCapturer:audioCapturer start err=${JSON.stringify(error)}`);
+      Logger.error(`LiveCapturer:audioCapturer start err=${JSON.stringify(error)}`);
     }
   }
 
   async capturerStop(): Promise<void> {
     if (!this.audioCapturer) {
-      console.log(`LiveCapturer,capturerStop:audioCapturer is null`);
+      Logger.error(`LiveCapturer,capturerStop:audioCapturer is null`);
       return;
     }
     if (this.recordSec < MIN_RECORD_SECOND) {
@@ -364,7 +365,7 @@ struct LiveCapturer {
       let error = err as BusinessError;
       // when recordState is paused
       this.recordState = 'stopped';
-      console.log(`LiveCapturer:audioCapturer stop err=${JSON.stringify(error)}`);
+      Logger.info(`LiveCapturer:audioCapturer stop err=${JSON.stringify(error)}`);
     }
     this.isRecordOver = true;
     await this.renderCreate();
@@ -372,7 +373,7 @@ struct LiveCapturer {
 
   async capturerPause(): Promise<void> {
     if (!this.audioCapturer) {
-      console.log(`LiveCapturer,capturerPause:audioCapturer is null`);
+      Logger.error(`LiveCapturer,capturerPause:audioCapturer is null`);
       return;
     }
 
@@ -381,17 +382,17 @@ struct LiveCapturer {
       this.recordState = 'paused';
 
       clearInterval(this.interval);
-    } catch (err) {
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log(`LiveCapturer:audioCapturer stop err=${JSON.stringify(error)}`);
+      Logger.error(`LiveCapturer:audioCapturer stop err=${JSON.stringify(error)}`);
       return;
     }
   }
 
   async readCapturer(): Promise<void> {
-    console.log('LiveCapturer:readCapturer enter');
+    Logger.info('LiveCapturer:readCapturer enter');
     if (!this.audioCapturer) {
-      console.log(`LiveCapturer,readCapturer:audioCapturer is null`);
+      Logger.error(`LiveCapturer,readCapturer:audioCapturer is null`);
       return;
     }
 
@@ -399,23 +400,23 @@ struct LiveCapturer {
       let startOffset = this.capturerOffsetStart;
       while (true) {
         if (this.audioCapturer.state === audio.AudioState.STATE_STOPPED) {
-          console.log('state is changed to be stopped');
+          Logger.info('state is changed to be stopped');
           break;
         }
         let buffer = await this.audioCapturer.read(this.bufferSize, true);
-        console.log('LiveCapturer:readCapturer read success');
+        Logger.info('LiveCapturer:readCapturer read success');
         let options: Options = {
           offset: startOffset,
           length: this.bufferSize
         };
         let writen = await fs.write(this.fd, buffer, options);
-        console.log(`LiveCapturer:readCapturer,startOffset=${startOffset},writen=${writen}`);
+        Logger.info(`LiveCapturer:readCapturer,startOffset=${startOffset},writen=${writen}`);
         startOffset += this.bufferSize;
         this.capturerOffsetStart = startOffset;
       }
-    } catch (err) {
+    }  catch (err) {
       let error = err as BusinessError;
-      console.log(`readCapturer err=${JSON.stringify(error)}`);
+      Logger.error(`readCapturer err=${JSON.stringify(error)}`);
     }
   }
 
