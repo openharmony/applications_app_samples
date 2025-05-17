@@ -17,25 +17,25 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif, sans-serif;
-      text-align: center;
-      background-color: #f2f2f2;
-      padding: 20px;
-    }
-    #image {
-      display: none;
-      max-width: 100%;
-      height: auto;
-      margin-top: 15px;
-    }
-    #image_preview {
-      display: none;
-      margin-top: 15px;
-    }
-  </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <style>
+        body {
+          font-family: Arial, Helvetica, sans-serif, sans-serif;
+          text-align: center;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+        #image {
+          display: none;
+          max-width: 100%;
+          height: auto;
+          margin-top: 15px;
+        }
+        #image_preview {
+          display: none;
+          margin-top: 15px;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,8 +55,13 @@
       document.getElementById('image_preview').style.display = 'block';
       document.getElementById('image').style.display = 'block';
     }
+
+    function sharePic() {
+      shareObject.share();
+    }
   </script>
-  <input ref="camera" type="file" id="upload" name="upload" accept="image/*" capture="upload" onchange="showPic()" />
+  <input ref="camera" type="file" id="upload" name="upload" accept="image/*" capture="upload" onchange="showPic()"/>
+  <button onclick="sharePic()">分享图片</button>
   <p id="image_preview">图片预览</p>
   <img id="image">
 </body>
