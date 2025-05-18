@@ -125,7 +125,9 @@ struct ParallelCapturer {
 
   @Builder TabBuilder(index: number, btnId: string) {
     Column() {
-      Text(index === 0 ? $r('app.string.NORMAL_CAPTURER') : $r('app.string.PARALLEL_CAPTURER'))
+      Text(index === 0 ? $r('app.string.NORMAL_CAPTURER') :
+        index === 1 ? $r('app.string.PARALLEL_CAPTURER') :
+        $r('app.string.LIVE_CAPTURER'))
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
         .opacity(this.currentIndex === index ? 1 : 0.6)
         .fontSize(16)
@@ -685,11 +687,9 @@ struct ParallelCapturer {
 
       Column() {
         Tabs({ barPosition: BarPosition.Start, index: 1 }) {
-          TabContent() {
-          }.tabBar(this.TabBuilder(0, 'normal_capturer'));
-
-          TabContent() {
-          }.tabBar(this.TabBuilder(1, 'parallel_capturer'));
+          TabContent().tabBar(this.TabBuilder(0, 'normal_capturer'));
+          TabContent().tabBar(this.TabBuilder(1, 'parallel_capturer'));
+          TabContent().tabBar(this.TabBuilder(2, 'live_capturer'));
         }
         .vertical(false)
         .barMode(BarMode.Fixed)
@@ -701,7 +701,9 @@ struct ParallelCapturer {
           console.log(`${index}`)
           if (this.currentIndex === 0) {
             router.replaceUrl({ url: 'pages/NormalCapturer' });
-          }
+          } else if(this.currentIndex === 2) {
+            router.replaceUrl({ url: 'pages/LiveCapturer' });
+          } 
         })
         .width('100%')
         .height(56)

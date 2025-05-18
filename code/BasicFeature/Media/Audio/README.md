@@ -14,9 +14,9 @@
 |-----------------------------------------|----------------------------------------|----------------------------------------|----------------------------------------|
 | ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) | ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) |
 
-| 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     | 空间音频页面                                           |
-|----------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
-| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
+| 音频录制页面-<br>直播录制             | 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     | 空间音频页面                                           |
+|-----------------------------------------|----------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
+| ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
 
 使用说明
 
@@ -51,27 +51,32 @@
 27. 在普通录制界面，点击继续按钮，继续录制，录音时间继续计时
 28. 在普通录制界面，点击停止录制按钮，停止录制，也可以不停止录制，应用设置了30s的超时后，自动停止录制
 29. 停止录制后，会生成录制结果，界面上有一个录制成功的音频播放器，点击播放可听到录制的音频
-30. 点击并行录制按钮，可切换到并行录制界面
+30. 点击并行录制按钮，可切换到并行录制界面，点击直播录制按钮，可切换到直播录制界面
 31. 在并行录制界面中，点击音乐播放器，播放音乐
 32. 在并行录制界面中，点击录制按钮，开始录制，同时开启麦克风录制和屏幕录制，5s内不允许结束
 33. 在并行录制界面中，点击停止录制按钮，停止录制，或者超时30s会自动停止录制，停止后按钮点成不可点击状态
 34. 在并行录制界面中，录制停止后，会生成两个音频播放器，一个是麦克风的录音结果，一个是屏幕录制的结果，点击进行播放，暂停，播放结束自动停止
-35. 点击返回按按钮回到主页
-36. 在主界面点击“音量组件”按钮，进入音量组件页面
-37. 在音量组件页面，点击“音量+”或“音量-”按钮，弹出音量面板
-38. 在音量组件页面，点击左上方返回图标，回到主页
-39. 在主界面点击“空间音频”按钮，进入空间音频页面
-40. 若本地没有音频资源，可主动push音频文件到本地媒体库路径：
+35. 在直播录制界面，点击录制按钮，开始录制，录音时间开始计时，5s内不允许结束
+36. 在直播录制界面，点击暂停按钮，暂停录制，录音时间也停止计时
+37. 在直播录制界面，点击继续按钮，继续录制，录音时间继续计时
+38. 在直播录制界面，点击停止录制按钮，停止录制，也可以不停止录制，应用设置了30s的超时后，自动停止录制
+39. 停止录制后，会生成录制结果，界面上有一个录制成功的音频播放器，点击播放可听到录制的音频
+40. 点击返回按按钮回到主页
+41. 在主界面点击“音量组件”按钮，进入音量组件页面
+42. 在音量组件页面，点击“音量+”或“音量-”按钮，弹出音量面板
+43. 在音量组件页面，点击左上方返回图标，回到主页
+44. 在主界面点击“空间音频”按钮，进入空间音频页面
+45. 若本地没有音频资源，可主动push音频文件到本地媒体库路径：
 ```
 hdc file send 2p0.pcm data/app/el2/100/base/com.samples.audio/haps/entry/files/
 hdc file send 5p1.pcm data/app/el2/100/base/com.samples.audio/haps/entry/files/
 ```
-41. 在空间音频页面，点击“2.0音乐示例”播放器，开始播放立体声音源
-42. 在空间音频页面，当设备不支持空间音频时，“5.0音乐示例”播放器置灰
-43. 在空间音频页面，当设备支持空间音频时，“5.0音乐示例”播放器亮起，点击出现弹窗提示“请开启空间音频”
-44. 在空间音频页面，当设备支持空间音频且空间音频开关已开启时，点击“5.0音乐示例”播放器，开始播放AudioVivid音源
-45. 在空间音频页面，当设备支持空间音频且空间音频开关被打开时，出现弹窗提示“空间音频已开启”
-46. 在空间音频页面，当设备支持空间音频且空间音频开关被关闭时，出现弹窗提示“空间音频已关闭”
+46. 在空间音频页面，点击“2.0音乐示例”播放器，开始播放立体声音源
+47. 在空间音频页面，当设备不支持空间音频时，“5.0音乐示例”播放器置灰
+48. 在空间音频页面，当设备支持空间音频时，“5.0音乐示例”播放器亮起，点击出现弹窗提示“请开启空间音频”
+49. 在空间音频页面，当设备支持空间音频且空间音频开关已开启时，点击“5.0音乐示例”播放器，开始播放AudioVivid音源
+50. 在空间音频页面，当设备支持空间音频且空间音频开关被打开时，出现弹窗提示“空间音频已开启”
+51. 在空间音频页面，当设备支持空间音频且空间音频开关被关闭时，出现弹窗提示“空间音频已关闭”
 
 
 ### 工程目录
@@ -86,6 +91,7 @@ entry/src/main/ets/
 |---|---RealtimeEffect.ets                  //音效管理页面-实时音效设置
 |---|---NormalCapturer.ets                  //音频录制-普通录制
 |---|---ParallelCapturer.ets                //音频录制-并行录制
+|---|---LiveCapturer.ets                    //音频录制-直播录制
 |---|---VolumePanel.ets                     //音量组件页面
 |---|---SpatialAudio.ets                    //空间音频页面
 library/
@@ -140,6 +146,15 @@ library/
     * 点击开始录制，则相继调用audioCapturerNormal.start()，audioCapturerScreen.start(),同时利用setTimeout开始计时,且还要分别调用audioCapturerNormal.read()，audioCapturerScreen.read(),以及调用fs.write将录音数据写入不同的文件
     * 点击停止录制，则相继调用audioCapturerNormal.stop()，audioCapturerScreen.stop()，同时利用clearInterval清除计时器，从而停止计时，同时也创建两个audiorenderer对象分别用于播放录音数据
     * 接下来就是分别调用两个audioRenderer对象的start,pause,stop以及fs.read等接口进行录音数据的播放，暂停，停止这些操作
+* 音频录制-直播录制功能都封装在LiveCapturer,源码参考：[LiveCapturer.ets](entry/src/main/ets/pages/LiveCapturer.ets)
+    * 先判断当前平台SOURCE_TYPE_LIVE是否支持回声消除，如果不支持，建议应用创建一个麦克风源的capturer对象用于录音并自己实现回声消除。如果支持则直接创建一个直播类型的capturer对象用于录音
+    * 点击开始录制时，调用capturer对象的start方法，同时调用capturer的read读取录音数据，并通过使用fs.write接口将录音数据写入到文件中去存储起来，接口参考：[@ohos.file.fs](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)，同时利用setTimeout开启一个计时器，记录录音时间。
+    * 点击暂停，调用capturer.stop(),同时文件写入也停止
+    * 点击继续，再次调用capturer.start(),capturer.read()以及继续将录音数据写入到文件中去
+    * 点击停止,调用capturer.stop(),同时文件写入也停止，录音结果生成成功，然后创建一个audioRenderer对象用于播放录音结果
+    * 点击音频播放器，调用fs.read()读取数据，并将录音数据调用audioRenderer.wirte写入，进行播放
+    * 再点击可以调用audioRenderer.pause()可以暂停音频播放，文件读取结束后自动调用audioRenderer.stop()停止音频播放
+    * 退出音频录制，会调用caturer.ralease()，audioRenderer.release()释放资源和fs.close()关闭文件
 * 音量组件功能都封装在VolumePanel,源码参考：[VolumePanel.ets](entry/src/main/ets/pages/VolumePanel.ets)
     * 调用AVVolumePanel组件创建音量面板,其中参数volumeLevel属于number类型,用于设置设备音量;参数volumeParameter属于AVVolumePanelParameter类型,用于设置音量面板的自定义参数
     * 点击”音量+”或”音量-”按钮,会传入不同的volumeLevel，从而弹出音量面板
@@ -167,7 +182,7 @@ library/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例仅支持API16版本SDK，SDK版本号(API Version 16 Release),镜像版本号(5.1Release)；
+2. 本示例仅支持API20版本SDK，SDK版本号(API Version 20 Release),镜像版本号(6.0Release)；
 3. 本示例需要使用DevEco Studio 版本号(5.0Release)才可编译运行；
 
 ### 下载
