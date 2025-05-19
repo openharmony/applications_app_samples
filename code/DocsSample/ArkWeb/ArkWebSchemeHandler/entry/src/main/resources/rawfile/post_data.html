@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script>
+        function textPostXhr(url) {
+            var formData = new FormData();
+            var myBlob = new Blob(["This is my blob content"], {type : "text/plain"});
+            formData.append("upload", myBlob);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.send(formData);
+            xhr.onreadystatechange = function (err) {
+                console.log(err.target.status);
+            }
+        }
+        function textPutXhr(url) {
+            var formData = new FormData();
+            var myBlob = new Blob(["This is my blob content"], {type : "text/plain"});
+            formData.append("upload", myBlob);
+            var xhr = new XMLHttpRequest();
+            xhr.open('PUT', url, true);
+            xhr.send(formData);
+            xhr.onreadystatechange = function (err) {
+                console.log(err.target.status);
+            }
+        }
+    </script>
+</head>
+<body>
+<button onclick="textPostXhr('https://www.example.com/xhr')">test xhr post</button>
+<button onclick="textPutXhr('https://www.example.com/xhr')">test xhr put</button>
+</body>
+</html>

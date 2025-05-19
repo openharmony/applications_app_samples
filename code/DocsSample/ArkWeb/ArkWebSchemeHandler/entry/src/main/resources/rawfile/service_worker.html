@@ -1,0 +1,18 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script>
+        function registerSuccess() {
+            const body = document.body;
+            const element = document.createElement('div');
+            element.textContent = 'register sw successful.';
+            body.appendChild(element);
+        }
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => registerSuccess())
+            .catch(error => console.log('failed!', error))
+    </script>
+</head>
+<body>
+</body>
+</html>
