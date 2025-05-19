@@ -58,6 +58,7 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiGetPropertyNames') {
+                  // [Start ark_napi_get_property_names]
                   // napi_get_property_names
                   try {
                     class Obj {
@@ -72,14 +73,20 @@ struct Index {
                         propertyNames[0]);
                       hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property_names: %{public}s',
                         propertyNames[1]);
+                      // [StartExclude ark_napi_get_property_names]
                       this.result = 'napiGetPropertyNamesSuccess';
+                      // [EndExclude ark_napi_get_property_names]
                     }
                   } catch (error) {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_property_names error: %{public}s',
                       error.message);
+                    // [StartExclude ark_napi_get_property_names]
                     this.result = 'napiGetPropertyNamesFail';
+                    // [EndExclude ark_napi_get_property_names]
                   }
+                  // [End ark_napi_get_property_names]
                 } else if (item === '2.napiSetProperty') {
+                  // [Start ark_napi_set_property]
                   // napi_set_property
                   try {
                     class Obj {
@@ -91,12 +98,18 @@ struct Index {
                     let result = testNapi.setProperty(obj, 'code', 'hi');
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_property: %{public}s',
                       JSON.stringify(result));
+                    // [StartExclude ark_napi_set_property]
                     this.result = 'napiSetPropertySuccess';
+                    // [EndExclude ark_napi_set_property]
                   } catch (error) {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_property error: %{public}s', error.message);
+                    // [StartExclude ark_napi_set_property]
                     this.result = 'napiSetPropertyFail';
+                    // [EndExclude ark_napi_set_property]
                   }
+                  // [End ark_napi_set_property]
                 } else if (item === '3.napiGetProperty') {
+                  // [Start ark_napi_get_property]
                   // napi_get_property
                   try {
                     class Obj {
@@ -107,12 +120,18 @@ struct Index {
                     let obj: Obj = { data: 0, message: 'hello world' };
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property: %{public}s',
                       testNapi.getProperty(obj, 'message'));
+                    // [StartExclude ark_napi_get_property]
                     this.result = 'napiGetPropertySuccess';
+                    // [EndExclude ark_napi_get_property]
                   } catch (error) {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property error: %{public}s', error.message);
+                    // [StartExclude ark_napi_get_property]
                     this.result = 'napiGetPropertyFail';
+                    // [EndExclude ark_napi_get_property]
                   }
+                  // [End ark_napi_get_property]
                 } else if (item === '4.napiHasProperty') {
+                  // [Start ark_napi_has_property]
                   // napi_has_property
                   try {
                     class Obj {
@@ -127,11 +146,16 @@ struct Index {
                       JSON.stringify(resultFalse));
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_property: %{public}s',
                       JSON.stringify(resultTrue));
+                    // [StartExclude ark_napi_has_property]
                     this.result = 'napiHasPropertySuccess';
+                    // [EndExclude ark_napi_has_property]
                   } catch (error) {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_property error: %{public}s', error.message);
+                    // [StartExclude ark_napi_has_property]
                     this.result = 'napiHasPropertyFail';
+                    // [EndExclude ark_napi_has_property]
                   }
+                  // [End ark_napi_has_property]
                 } else if (item === '5.napiDeleteProperty') {
                   // napi_delete_property
                   napiDeleteProperty();
@@ -141,12 +165,15 @@ struct Index {
                   napiHasOwnProperty();
                   this.result = 'napiHasOwnPropertySuccess';
                 } else if (item === '7.napiSetNamedProperty') {
+                  // [Start ark_napi_set_named_property]
                   // napi_set_named_property
                   let obj = testNapi.napiSetNamedProperty('myProperty');
                   let objAsString = JSON.stringify(obj);
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_named_property: %{public}s', objAsString);
+                  // [End ark_napi_set_named_property]
                   this.result = 'napiSetNamedPropertySuccess';
                 } else if (item === '8.napiGetNamedProperty') {
+                  // [Start ark_napi_get_named_property]
                   // napi_get_named_property
                   interface NestedObj {
                     nestedStr: string;
@@ -177,8 +204,10 @@ struct Index {
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s', objAsString);
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s',
                     testNapi.napiGetNamedProperty(obj, 'null'));
+                  // [End ark_napi_get_named_property]
                   this.result = 'napiGetNamedPropertySuccess';
                 } else if (item === '9.napiHasNamedProperty') {
+                  // [Start ark_napi_has_named_property]
                   // napi_has_named_property
                   interface NestedObj {
                     nestedStr: string;
@@ -204,8 +233,10 @@ struct Index {
                     testNapi.napiHasNamedProperty(obj, 'nestedStr'));
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s',
                     testNapi.napiHasNamedProperty(obj, 'bol'));
+                  // [End ark_napi_has_named_property]
                   this.result = 'napiHasNamedPropertySuccess';
                 } else if (item === '10.napiDefineProperties') {
+                  // [Start ark_napi_define_properties]
                   // napi_define_properties
                   // 定义method类型的属性
                   hilog.info(0x0000, 'testTag', 'Test Node-API define_method_properties:%{public}d',
@@ -222,8 +253,10 @@ struct Index {
                   hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ',
                     testNapi.createStringWithGetterSetter()
                       .setterCallback('set data'));
+                  // [End ark_napi_define_properties]
                   this.result = 'napiDefinePropertiesSuccess';
                 } else if (item === '11.napiGetAllPropertyNames') {
+                  // [Start ark_napi_get_all_property_names]
                   // napi_get_all_property_names
                   try {
                     class Obj {
@@ -235,12 +268,17 @@ struct Index {
                     let propertyNames = testNapi.getAllPropertyNames(obj);
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_all_property_names: %{public}s',
                       JSON.stringify(propertyNames));
+                    // [StartExclude ark_napi_get_all_property_names]
                     this.result = 'napiGetAllPropertyNamesSuccess';
+                    // [EndExclude ark_napi_get_all_property_names]
                   } catch (error) {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_all_property_names error: %{public}s',
                       error.message);
+                    // [StartExclude ark_napi_get_all_property_names]
                     this.result = 'napiGetAllPropertyNamesFail';
+                    // [EndExclude ark_napi_get_all_property_names]
                   }
+                  // [End ark_napi_get_all_property_names]
                 }
               })
           }

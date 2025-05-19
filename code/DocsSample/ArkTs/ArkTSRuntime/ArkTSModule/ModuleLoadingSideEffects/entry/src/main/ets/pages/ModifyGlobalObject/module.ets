@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start export_change_global_data_100]
 export let data1 = 'data from module';
 
 globalThis.someGlobalVar = 100; // 改变了全局状态
+// [End export_change_global_data_100]

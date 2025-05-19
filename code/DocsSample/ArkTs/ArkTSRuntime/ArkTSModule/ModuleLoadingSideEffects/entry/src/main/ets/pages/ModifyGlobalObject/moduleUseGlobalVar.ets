@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+// [Start export_change_some_global_var]
 import { data1 } from './module'; // 此时可能预期全局变量someGlobalVar的值为100
 
 export function useGlobalVar() {
   console.log(data1);
   console.log(globalThis.someGlobalVar); // 此时由于main.ets中加载了sideEffectModule模块，someGlobalVar的值已经被改为200
 }
+// [End export_change_some_global_var]

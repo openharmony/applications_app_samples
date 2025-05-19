@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start set_app_storage_var]
 export let data = 'data from module';
 
 AppStorage.setOrCreate('SomeAppStorageVar1', 200); // 修改应用全局的UI状态
+// [End set_app_storage_var]

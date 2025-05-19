@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
+// [Start hap_const_dynamic_import_native]
 export const add: (a: number, b: number) => number;
+// [End hap_const_dynamic_import_native]

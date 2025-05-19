@@ -48,35 +48,49 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiCreateDate') {
+                  // [Start ark_napi_create_date]
                   // napi_create_date
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_date: %{public}s',
                     testNapi.createDate().toString());
+                  // [End ark_napi_create_date]
                   this.result = 'napiCreateDateSuccess';
                 } else if (item === '2.napiGetDateValue') {
+                  // [Start ark_napi_get_date_value]
                   // napi_get_date_value
                   try {
                     const date = new Date();
                     hilog.info(0x0000, 'testTag', 'Node-API: output the Unix Time Stamp: %{public}d', date.getTime());
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_date_value: %{public}d',
                       testNapi.getDateValue(date));
+                    // [StartExclude ark_napi_get_date_value]
                     this.result = 'napiGetDateValueSuccess';
+                    // [EndExclude ark_napi_get_date_value]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_date_value error: %{public}s',
                       error.message);
+                    // [StartExclude ark_napi_get_date_value]
                     this.result = 'napiGetDateValueFail';
+                    // [EndExclude ark_napi_get_date_value]
                   }
+                  // [End ark_napi_get_date_value]
                 } else if (item === '3.napiIsDate') {
+                  // [Start ark_napi_is_date]
                   // napi_is_date
                   try {
                     let now: Date = new Date();
                     let date = "123";
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_date: %{public}s', testNapi.isDate(now));
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_date: %{public}s', testNapi.isDate(date));
+                    // [StartExclude ark_napi_is_date]
                     this.result = 'napiIsDateSuccess';
+                    // [EndExclude ark_napi_is_date]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_date error: %{public}s', error.message);
+                    // [StartExclude ark_napi_is_date]
                     this.result = 'napiIsDateFail';
+                    // [EndExclude ark_napi_is_date]
                   }
+                  // [End ark_napi_is_date]
                 }
               })
           }

@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start napi_ark_runtime_utils]
 export function Logger() {
   console.log('print log');
 }
-
+// [End napi_ark_runtime_utils]
+// [Start napi_event_loop_utils]
 export function SetTimeout(): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -26,3 +27,4 @@ export function SetTimeout(): Promise<void> {
     }, 1000)
   })
 }
+// [End napi_event_loop_utils]

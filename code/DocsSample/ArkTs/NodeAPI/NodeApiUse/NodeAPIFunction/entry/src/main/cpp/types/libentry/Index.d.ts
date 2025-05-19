@@ -13,16 +13,21 @@
  * limitations under the License.
  */
 
+// [Start napi_get_cb_info_api]
 export const getCbArgs: <T>(arg: T) => T; // napi_get_cb_info
 
 // getCbArgQuantity的入参由用户自定义，在此用例中，我们用两个入参，一个是string，一个是number
 export const getCbArgQuantity: (str: string, num: number) => number;
 
 export const getCbContext: () => Object;
+// [End napi_get_cb_info_api]
 
+// [Start napi_call_function_api]
 export const callFunction: (func: Function) => number; // napi_call_function
 
 export const objCallFunction: (obj: Object, func: Function) => number;
+// [End napi_call_function_api]
 
+// [Start napi_create_function_api]
 export const calculateArea: (width: number, height: number) => number; // napi_create_function
-
+// [End napi_create_function_api]

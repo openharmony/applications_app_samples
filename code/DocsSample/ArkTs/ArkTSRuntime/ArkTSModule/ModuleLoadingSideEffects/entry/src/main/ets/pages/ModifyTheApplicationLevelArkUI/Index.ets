@@ -16,6 +16,7 @@
 import { data } from './module'; // 将AppStorage中的SomeAppStorageVar改为200
 import { dataOptimize } from './moduleOptimize';
 
+// [Start set_app_storage_var_200]
 @Entry
 @Component
 struct Index {
@@ -59,6 +60,7 @@ struct Index {
 function maybeNotCalledAtAll() {
   console.log(data);
 }
+// [End set_app_storage_var_200]
 
 function maybeNotCalledAtAllOptimize() {
   console.log(dataOptimize);

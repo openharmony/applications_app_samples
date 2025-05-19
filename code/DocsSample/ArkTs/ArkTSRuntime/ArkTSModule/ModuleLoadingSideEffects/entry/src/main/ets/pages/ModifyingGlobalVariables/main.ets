@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start call_modify_array_prototype_include]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function resourceToString(resource: Resource) {
@@ -71,3 +72,4 @@ struct main {
     .width('100%')
   }
 }
+// [End call_modify_array_prototype_include]

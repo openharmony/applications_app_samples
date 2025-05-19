@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start array_prototype_include]
 export let data = 'data from modifyPrototype';
 
 Array.prototype.includes = function (value) {
   return this.indexOf(value) == -1;
 };
+// [End array_prototype_include]

@@ -19,6 +19,7 @@
 
 static const int MAX_BUFFER_SIZE = 128;
 
+// [Start napi_get_value_string_utf8]
 static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -43,7 +44,9 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
     };
     return result;
 }
+// [End napi_get_value_string_utf8]
 
+// [Start napi_create_string_utf8]
 static napi_value CreateStringUtf8(napi_env env, napi_callback_info info)
 {
     const char *str = u8"你好, World!, successes to create UTF-8 string! 111";
@@ -56,7 +59,9 @@ static napi_value CreateStringUtf8(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_create_string_utf8]
 
+// [Start napi_get_value_string_utf16]
 static napi_value GetValueStringUtf16(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -76,7 +81,9 @@ static napi_value GetValueStringUtf16(napi_env env, napi_callback_info info)
     // 返回结果
     return result;
 }
+// [End napi_get_value_string_utf16]
 
+// [Start napi_create_string_utf16]
 static napi_value CreateStringUtf16(napi_env env, napi_callback_info info)
 {
     const char16_t *str = u"你好, World!, successes to create UTF-16 string! 111";
@@ -89,7 +96,9 @@ static napi_value CreateStringUtf16(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_create_string_utf16]
 
+// [Start napi_get_value_string_latin1]
 static napi_value GetValueStringLatin1(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -106,7 +115,9 @@ static napi_value GetValueStringLatin1(napi_env env, napi_callback_info info)
     napi_create_string_latin1(env, buf, length, &napi_Res);
     return napi_Res;
 }
+// [End napi_get_value_string_latin1]
 
+// [Start napi_create_string_latin1]
 static napi_value CreateStringLatin1(napi_env env, napi_callback_info info)
 {
     const char *str = "Hello, World! éçñ, successes to create Latin1 string! 111";
@@ -120,6 +131,7 @@ static napi_value CreateStringLatin1(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_create_string_latin1]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

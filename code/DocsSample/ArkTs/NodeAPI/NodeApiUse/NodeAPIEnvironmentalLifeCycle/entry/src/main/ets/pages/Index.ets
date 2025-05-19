@@ -47,17 +47,21 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiSetInstanceData') {
+                  // [Start ark_napi_set_instance_data]
                   // napi_set_instance_data
                   let data = 5;
                   let value = testNapi.setInstanceData(data);
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}s', value);
+                  // [End ark_napi_set_instance_data]
                   this.result = 'napiSetInstanceDataSuccess';
                 } else if (item === '2.napiGetInstanceData') {
+                  // [Start ark_napi_get_instance_data]
                   // napi_get_instance_data
                   let data = 5;
                   testNapi.setInstanceData(data);
                   let value = testNapi.getInstanceData();
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}d', value);
+                  // [End ark_napi_get_instance_data]
                   this.result = 'napiGetInstanceDataSuccess';
                 }
               })

@@ -15,8 +15,10 @@
 
 export { MainPage } from './src/main/ets/components/MainPage'
 
+// [Start const_dynamic_import_har]
 export function add(a: number, b: number): number {
   let c = a + b;
   console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
   return c;
 }
+// [End const_dynamic_import_har]

@@ -19,6 +19,7 @@
 
 static constexpr int INT_ARG_18 = 18; // 入参索引
 
+// [Start napi_new_instance]
 // napi_new_instance
 static napi_value NewInstance(napi_env env, napi_callback_info info)
 {
@@ -31,7 +32,9 @@ static napi_value NewInstance(napi_env env, napi_callback_info info)
     napi_new_instance(env, args[0], 1, &args[1], &result);
     return result;
 }
+// [End napi_new_instance]
 
+// [Start napi_wrap_unwrap_remove_wrap]
 struct Object {
     std::string name;
     int32_t age;
@@ -89,6 +92,7 @@ static napi_value UnWrap(napi_env env, napi_callback_info info)
     OH_LOG_INFO(LOG_APP, "Node-API age: %{public}d", data->age);
     return nullptr;
 }
+// [End napi_wrap_unwrap_remove_wrap]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

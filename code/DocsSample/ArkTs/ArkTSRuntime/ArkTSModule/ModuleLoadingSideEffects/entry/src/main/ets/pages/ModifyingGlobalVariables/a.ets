@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start module_cycle_dependence_a]
 import { b } from './b';
 
 console.log('Module A: ', b);
 
 export const a = 'A';
+// [End module_cycle_dependence_a]

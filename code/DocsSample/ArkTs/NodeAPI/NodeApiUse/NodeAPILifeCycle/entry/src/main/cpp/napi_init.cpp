@@ -16,6 +16,7 @@
 #include "hilog/log.h"
 #include "napi/native_api.h"
 
+// [Start napi_open_close_handle_scope]
 // napi_open_handle_scope、napi_close_handle_scope
 static napi_value HandleScopeTest(napi_env env, napi_callback_info info)
 {
@@ -57,7 +58,9 @@ static napi_value HandleScope(napi_env env, napi_callback_info info)
     napi_get_named_property(env, obj, "key", &result);
     return result;
 }
+// [End napi_open_close_handle_scope]
 
+// [Start napi_open_close_escapable_handle_scope]
 // napi_open_escapable_handle_scope、napi_close_escapable_handle_scope、napi_escape_handle
 static napi_value EscapableHandleScopeTest(napi_env env, napi_callback_info info)
 {
@@ -82,7 +85,9 @@ static napi_value EscapableHandleScopeTest(napi_env env, napi_callback_info info
     napi_get_named_property(env, escapedObj, "key", &result);
     return result;
 }
+// [End napi_open_close_escapable_handle_scope]
 
+// [Start napi_create_delete_reference]
 // 创建一个指向napi_ref类型的指针，用于存储创建的引用。在调用napi_create_reference函数之前，你需要分配一个napi_ref类型的变量，并将其地址传递给result位置的参数
 napi_ref g_ref;
 
@@ -100,12 +105,14 @@ static napi_value CreateReference(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "CreateReference", NAPI_AUTO_LENGTH, &value);
     // 将键值对添加到对象中
     napi_set_named_property(env, obj, "key", value);
+    // [StartExclude napi_create_delete_reference]
     // 创建对ArkTS对象的引用
     napi_status status = napi_create_reference(env, obj, 1, &g_ref);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_create_reference fail");
         return nullptr;
     }
+    // [EndExclude napi_create_delete_reference]
     // 添加终结器
     void *data = {};
     napi_add_finalizer(env, obj, data, Finalizer, nullptr, &g_ref);
@@ -158,6 +165,7 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "napi_delete_reference success", NAPI_AUTO_LENGTH, &returnResult);
     return returnResult;
 }
+// [End napi_create_delete_reference]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

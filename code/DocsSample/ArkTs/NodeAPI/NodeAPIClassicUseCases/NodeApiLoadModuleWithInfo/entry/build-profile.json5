@@ -15,21 +15,39 @@
 
 {
   "apiType": "stageMode",
+  // [Start napi_load_module_with_info_entry_build]
+  // [Start napi_load_module_with_info_entry_build2]
+  // [Start napi_load_module_with_info_entry_build3]
+  // [Start napi_load_module_with_info_entry_build4]
   "buildOption": {
     "arkOptions" : {
       "runtimeOnly" : {
+        // [StartExclute napi_load_module_with_info_entry_build2]
+        // [StartExclute napi_load_module_with_info_entry_build3]
+        // [StartExclute napi_load_module_with_info_entry_build4]
         "sources": [
           "./src/main/ets/Test.ets",
         ],
+        // [EndExclute napi_load_module_with_info_entry_build2]
+        // [EndExclute napi_load_module_with_info_entry_build3]
+        // [EndExclute napi_load_module_with_info_entry_build4]
+  // [End napi_load_module_with_info_entry_build]
         "packages": [
+          // [StartExclute napi_load_module_with_info_entry_build3]
+          // [StartExclute napi_load_module_with_info_entry_build4]
           "library",
+  // [End napi_load_module_with_info_entry_build2]
+          // [EndExclute napi_load_module_with_info_entry_build4]
           "libentry.so",
+          // [End napi_load_module_with_info_entry_build4]
           "libentryone.so",
           "libentrytwo.so",
           "libentrythree.so",
           "libentryfour.so",
           "har1",
+          // [EndExclute napi_load_module_with_info_entry_build3]
           "@ohos/hypium"
+          // [End napi_load_module_with_info_entry_build3]
         ]
       }
     },

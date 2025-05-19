@@ -13,6 +13,10 @@
  * limitations under the License.
  */
 
+// [Start napi_remove_add_env_cleanup_hook_api]
 export const napiEnvCleanUpHook: () => Object | void;
+// [End napi_remove_add_env_cleanup_hook_api]
 
+// [Start napi_add_remove_async_cleanup_hook_api]
 export const napiAsyncCleanUpHook: () => boolean | void;
+// [End napi_add_remove_async_cleanup_hook_api]

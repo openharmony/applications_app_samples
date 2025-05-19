@@ -15,6 +15,7 @@
 
 #include "napi/native_api.h"
 
+// [Start napi_create_async_work]
 struct CallbackData {
     napi_async_work asyncWork = nullptr;
     napi_deferred deferred = nullptr;
@@ -23,12 +24,16 @@ struct CallbackData {
     double result = 0;
 };
 
+// [StartExclude napi_create_async_work]
+// [Start napi_first_call_back_work]
 static void ExecuteCB(napi_env env, void *data)
 {
     CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
     callbackData->result = callbackData->args;
 }
+// [End napi_first_call_back_work]
 
+// [Start napi_second_call_back_main]
 static void CompleteCB(napi_env env, napi_status status, void *data)
 {
     CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -43,6 +48,8 @@ static void CompleteCB(napi_env env, napi_status status, void *data)
     napi_delete_async_work(env, callbackData->asyncWork);
     delete callbackData;
 }
+// [End napi_second_call_back_main]
+// [EndExclude napi_create_async_work]
 
 static napi_value AsyncWork(napi_env env, napi_callback_info info)
 {
@@ -67,6 +74,7 @@ static napi_value AsyncWork(napi_env env, napi_callback_info info)
 
     return promise;
 }
+// [End napi_create_async_work]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

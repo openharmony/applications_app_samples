@@ -52,6 +52,7 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiGetValueUint32') {
+                  // [Start ark_napi_get_value_uint32]
                   // napi_get_value_uint32
                   let value = testNapi.getValueUint32<number>(111111111111);
                   let data = testNapi.getValueUint32<string>("sssss");
@@ -61,8 +62,10 @@ struct Index {
                   // 传入uint32范围内的数字100时函数返回原数字
                   hilog.info(0x0000, 'Node-API', 'get_value_uint32_number %{public}d',
                     testNapi.getValueUint32<number>(100));
+                  // [End ark_napi_get_value_uint32]
                   this.result = 'napiGetValueUint32Success';
                 } else if (item === '2.napiGetValueInt32') {
+                  // [Start ark_napi_get_value_int32]
                   // napi_get_value_int32
                   // 传入非数字“ss”时函数返回undefined
                   hilog.info(0x0000, 'Node-API', 'get_value_int32_not_number %{public}s', testNapi.getValueInt32('ss'));
@@ -80,8 +83,10 @@ struct Index {
                     testNapi.getValueInt32(+Infinity));
                   hilog.info(0x0000, 'Node-API', 'get_value_int32_number_-Infinity %{public}d',
                     testNapi.getValueInt32(-Infinity));
+                  // [End ark_napi_get_value_int32]
                   this.result = 'napiGetValueInt32Success';
                 } else if (item === '3.napiGetValueInt64') {
+                  // [Start ark_napi_get_value_int64]
                   // napi_get_value_int64
                   // 输入不超过int64表示范围的数字，会返回该数字
                   hilog.info(0x0000, 'Node-API', 'get_value_int64_number %{public}d', testNapi.getValueInt64(80));
@@ -97,29 +102,40 @@ struct Index {
                     testNapi.getValueInt64(+Infinity));
                   hilog.info(0x0000, 'Node-API', 'get_value_int64_number_-Infinity %{public}d',
                     testNapi.getValueInt64(-Infinity));
+                  // [End ark_napi_get_value_int64]
                   this.result = 'napiGetValueInt64Success';
                 } else if (item === '4.napiGetValueDouble') {
+                  // [Start ark_napi_get_value_double]
                   // napi_get_value_double
                   // 输入数字，返回该数字
                   hilog.info(0x0000, 'Node-API', 'get_value_double_number %{public}d', testNapi.getDouble(80.885));
                   // 传入非数字，获得函数返回的值应为undefined
                   hilog.info(0x0000, 'Node-API', 'get_value_double_not_number %{public}s', testNapi.getDouble('sAs'));
+                  // [End ark_napi_get_value_double]
                   this.result = 'napiGetValueDoubleSuccess';
                 } else if (item === '5.napiCreateInt32') {
+                  // [Start ark_napi_create_int32]
                   // napi_create_int32
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_int32：' + testNapi.createInt32());
+                  // [End ark_napi_create_int32]
                   this.result = 'napiCreateInt32Success';
                 } else if (item === '6.napiCreateUint32') {
+                  // [Start ark_napi_create_uint32]
                   // napi_create_uint32
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_uint32: ' + testNapi.createUInt32());
+                  // [End ark_napi_create_uint32]
                   this.result = 'napiCreateUint32Success';
                 } else if (item === '7.napiCreateInt64') {
+                  // [Start ark_napi_create_int64]
                   // napi_create_int64
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_int64: ' + testNapi.createInt64());
+                  // [End ark_napi_create_int64]
                   this.result = 'napiCreateInt64Success';
                 } else if (item === '8.napiCreateDouble') {
+                  // [Start ark_napi_create_double]
                   // napi_create_double
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_double: ' + testNapi.createDouble());
+                  // [End ark_napi_create_double]
                   this.result = 'napiCreateDoubleSuccess';
                 }
               })

@@ -13,10 +13,14 @@
  * limitations under the License.
  */
 
+// [Start napi_new_instance_api]
 export const newInstance: (obj: Object, param: string) => Object // napi_new_instance
+// [End napi_new_instance_api]
 
+// [Start napi_wrap_unwrap_remove_wrap_api]
 export const wrap: (obj: Object) => Object; // napi_wrap
 
 export const unWrap: (obj: Object) => void; // napi_unwrap
 
 export const removeWrap: (obj: Object) => void; // napi_remove_wrap
+// [End napi_wrap_unwrap_remove_wrap_api]

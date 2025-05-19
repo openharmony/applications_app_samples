@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start napi_set_instance_data]
 #include <cstdlib>
 #include "napi/native_api.h"
 
@@ -51,7 +52,9 @@ static napi_value SetInstanceData(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_set_instance_data]
 
+// [Start napi_get_instance_data]
 // napi_get_instance_data
 static napi_value GetInstanceData(napi_env env, napi_callback_info info)
 {
@@ -62,6 +65,7 @@ static napi_value GetInstanceData(napi_env env, napi_callback_info info)
     napi_create_int32(env, resData->value, &result);
     return result;
 }
+// [End napi_get_instance_data]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

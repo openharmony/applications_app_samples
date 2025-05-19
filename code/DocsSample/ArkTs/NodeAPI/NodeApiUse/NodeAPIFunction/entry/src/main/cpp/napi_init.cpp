@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start napi_get_cb_info]
 #include "napi/native_api.h"
 
 // napi_get_cb_info
@@ -42,7 +43,9 @@ static napi_value GetCbContext(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, nullptr, nullptr, &thisArg, nullptr);
     return thisArg;
 }
+// [End napi_get_cb_info]
 
+// [Start napi_call_function]
 // napi_call_function
 static napi_value CallFunction(napi_env env, napi_callback_info info)
 {
@@ -73,7 +76,9 @@ static napi_value ObjCallFunction(napi_env env, napi_callback_info info)
     napi_call_function(env, argv[0], argv[1], argc, argv, &result);
     return result;
 }
+// [End napi_call_function]
 
+// [Start napi_create_function]
 // napi_create_function
 static napi_value CalculateArea(napi_env env, napi_callback_info info)
 {
@@ -89,6 +94,7 @@ static napi_value CalculateArea(napi_env env, napi_callback_info info)
     napi_create_double(env, width * height, &area);
     return area;
 }
+// [End napi_create_function]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

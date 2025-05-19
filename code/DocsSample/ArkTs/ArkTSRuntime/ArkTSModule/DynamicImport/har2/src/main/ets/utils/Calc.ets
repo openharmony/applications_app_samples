@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start function_add_har2]
 export function addHar2(a: number, b: number): number {
   let c = a + b;
   console.info('DynamicImport I am har2, %d + %d = %d', a, b, c);
   return c;
 }
+// [End function_add_har2]

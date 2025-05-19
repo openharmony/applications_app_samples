@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ark_napi_has_own_property]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
@@ -26,3 +27,4 @@ export function napiHasOwnProperty() {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property inherited: %{public}s',
     testNapi.napiHasOwnProperty(myObj, 'inheritedProperty'));
 }
+// [End ark_napi_has_own_property]

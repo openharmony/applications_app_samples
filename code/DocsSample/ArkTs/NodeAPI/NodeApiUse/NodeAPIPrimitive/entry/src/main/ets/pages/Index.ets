@@ -54,6 +54,7 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiCoerceToBool') {
+                  // [Start ark_napi_coerce_to_bool]
                   // napi_coerce_to_bool
                   let value = testNapi.coerceToBool<number>(0);
                   let str = testNapi.coerceToBool<string>('111111111');
@@ -68,8 +69,10 @@ struct Index {
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_bool:%{public}s', res);
                   // false
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_bool:%{public}s', result);
+                  // [End ark_napi_coerce_to_bool]
                   this.result = 'napiCoerceToBoolSuccess';
                 } else if (item === '2.napiCoerceToNumber') {
+                  // [Start ark_napi_coerce_to_number]
                   // napi_coerce_to_number
                   let value = testNapi.coerceToNumber<string>('2556');
                   let str = testNapi.coerceToNumber<string>('sssss');
@@ -79,8 +82,10 @@ struct Index {
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', str);
                   // 返回的是1
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', bool);
+                  // [End ark_napi_coerce_to_number]
                   this.result = 'napiCoerceToNumberSuccess';
                 } else if (item === '3.napiCoerceToObject') {
+                  // [Start ark_napi_coerce_to_object]
                   // napi_coerce_to_object
                   let value = testNapi.coerceToObject<string>('222222');
                   let result = testNapi.coerceToObject<number>(111);
@@ -90,8 +95,10 @@ struct Index {
                   } else {
                     hilog.info(0x0000, 'testTag', 'Node-API The value is not an object.');
                   }
+                  // [End ark_napi_coerce_to_object]
                   this.result = 'napiCoerceToObjectSuccess';
                 } else if (item === '4.napiCoerceToString') {
+                  // [Start ark_napi_coerce_to_string]
                   // napi_coerce_to_string
                   let value = testNapi.coerceToString<number>(212);
                   let obj = new Object();
@@ -100,39 +107,50 @@ struct Index {
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_string:%{public}s', value);
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_string:%{public}s', typeof res);
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_string:%{public}s', bool);
+                  // [End ark_napi_coerce_to_string]
                   this.result = 'napiCoerceToStringSuccess';
                 } else if (item === '5.napiGetBoolean') {
+                  // [Start ark_napi_get_boolean]
                   // napi_get_boolean
                   let value = testNapi.getBoolean<number>(1, '1');
                   let data = testNapi.getBoolean<string>('sss', '1');
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_boolean:%{public}s', value);
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_boolean:%{public}s', data);
+                  // [End ark_napi_get_boolean]
                   this.result = 'napiGetBooleanSuccess';
                 } else if (item === '6.napiGetValueBool') {
+                  // [Start ark_napi_get_value_bool]
                   // napi_get_value_bool
                   //         // 分别传入布尔值和非布尔值检测接口,传入布尔值将返回原布尔值,传入其他类型返回undefined
                   hilog.info(0x0000, 'Node-API', 'get_value_bool_not_bool %{public}s',
                     testNapi.getValueBool('你好123'));
                   hilog.info(0x0000, 'Node-API', 'get_value_bool_true %{public}s', testNapi.getValueBool(true));
                   hilog.info(0x0000, 'Node-API', 'get_value_bool_false %{public}s', testNapi.getValueBool(false));
+                  // [End ark_napi_get_value_bool]
                   this.result = 'napiGetValueBoolSuccess';
                 } else if (item === '7.napiGetGlobal') {
+                  // [Start ark_napi_get_global]
                   // napi_get_global
                   let globalObj = testNapi.getGlobal();
                   // 判断获取的global是否具有global的自身属性
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_global:%{public}s',
                     globalObj.hasOwnProperty!("undefined"));
+                  // [End ark_napi_get_global]
                   this.result = 'napiGetGlobalSuccess';
                 } else if (item === '8.napiGetNull') {
+                  // [Start ark_napi_get_null]
                   // napi_get_null
                   let value = testNapi.getNull();
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_null:%{public}s', value);
+                  // [End ark_napi_get_null]
                   this.result = 'napiGetNullSuccess';
                 } else if (item === '9.napiGetUndefined') {
+                  // [Start ark_napi_get_undefined]
                   // napi_get_undefined
                   let data: undefined = undefined;
                   let value = testNapi.getUndefined(data);
                   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_undefined:%{public}s', value);
+                  // [End ark_napi_get_undefined]
                   this.result = 'napiGetUndefinedSuccess';
                 }
               })

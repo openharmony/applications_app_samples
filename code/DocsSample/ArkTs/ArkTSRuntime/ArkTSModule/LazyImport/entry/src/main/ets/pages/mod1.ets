@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start export_module_variable_01]
 export let a = 'mod1 a executed';
 
 console.info(a);
@@ -20,3 +21,4 @@ console.info(a);
 export let b = 'mod1 b executed';
 
 console.info(b);
+// [End export_module_variable_01]

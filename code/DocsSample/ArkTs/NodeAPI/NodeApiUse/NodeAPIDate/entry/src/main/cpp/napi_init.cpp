@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start napi_create_date]
 #include <hilog/log.h>
 #include "napi/native_api.h"
 
@@ -26,7 +27,9 @@ static napi_value CreateDate(napi_env env, napi_callback_info info)
     napi_create_date(env, value, &returnValue);
     return returnValue;
 }
+// [End napi_create_date]
 
+// [Start napi_get_date_value]
 // napi_get_date_value
 static napi_value GetDateValue(napi_env env, napi_callback_info info)
 {
@@ -50,7 +53,9 @@ static napi_value GetDateValue(napi_env env, napi_callback_info info)
     napi_create_double(env, value, &returnValue);
     return returnValue;
 }
+// [End napi_get_date_value]
 
+// [Start napi_is_date]
 // napi_is_date
 static napi_value IsDate(napi_env env, napi_callback_info info)
 {
@@ -72,6 +77,7 @@ static napi_value IsDate(napi_env env, napi_callback_info info)
 
     return returnValue;
 }
+// [End napi_is_date]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

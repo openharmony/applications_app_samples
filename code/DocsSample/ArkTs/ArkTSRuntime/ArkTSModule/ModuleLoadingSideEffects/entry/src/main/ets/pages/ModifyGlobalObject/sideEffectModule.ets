@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start export_change_global_data_200]
 export let data2 = 'data from side effect module';
 
 globalThis.someGlobalVar = 200; // 也变了全局状态
+// [End export_change_global_data_200]

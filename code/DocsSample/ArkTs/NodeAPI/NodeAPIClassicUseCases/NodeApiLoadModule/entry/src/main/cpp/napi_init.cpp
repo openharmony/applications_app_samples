@@ -15,7 +15,7 @@
 
 #include "napi/native_api.h"
 #include <string>
-
+// [Start napi_load_module_napi_init]
 static napi_value loadModule(napi_env env, napi_callback_info info)
 {
     // 1. 使用napi_load_module加载模块@ohos.hilog
@@ -42,7 +42,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info)
     napi_call_function(env, result, infoFn, 3, args, nullptr);
     return result;
 }
-
+// [End napi_load_module_napi_init]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

@@ -15,6 +15,7 @@
 
 #include "napi/native_api.h"
 
+// [Start napi_get_value_uint32]
 // napi_get_value_uint32
 static napi_value GetValueUint32(napi_env env, napi_callback_info info)
 {
@@ -36,7 +37,9 @@ static napi_value GetValueUint32(napi_env env, napi_callback_info info)
     napi_create_uint32(env, number, &result);
     return result;
 }
+// [End napi_get_value_uint32]
 
+// [Start napi_get_value_int32]
 // napi_get_value_int32
 static napi_value GetValueInt32(napi_env env, napi_callback_info info)
 {
@@ -56,7 +59,9 @@ static napi_value GetValueInt32(napi_env env, napi_callback_info info)
     napi_create_int32(env, result32, &napiResult32);
     return napiResult32;
 }
+// [End napi_get_value_int32]
 
+// [Start napi_get_value_int64]
 // napi_get_value_int64
 static napi_value GetValueInt64(napi_env env, napi_callback_info info)
 {
@@ -76,7 +81,9 @@ static napi_value GetValueInt64(napi_env env, napi_callback_info info)
     napi_create_int64(env, result64, &napiResult64);
     return napiResult64;
 }
+// [End napi_get_value_int64]
 
+// [Start napi_get_value_double]
 // napi_get_value_double
 static napi_value GetDouble(napi_env env, napi_callback_info info)
 {
@@ -93,7 +100,9 @@ static napi_value GetDouble(napi_env env, napi_callback_info info)
     napi_create_double(env, value, &result);
     return result;
 }
+// [End napi_get_value_double]
 
+// [Start napi_create_int32]
 // napi_create_int32
 static napi_value CreateInt32(napi_env env, napi_callback_info info)
 {
@@ -109,7 +118,9 @@ static napi_value CreateInt32(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_create_int32]
 
+// [Start napi_create_uint32]
 // napi_create_uint32
 static napi_value CreateUInt32(napi_env env, napi_callback_info info)
 {
@@ -127,7 +138,9 @@ static napi_value CreateUInt32(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_create_uint32]
 
+// [Start napi_create_int64]
 // napi_create_int64
 static napi_value CreateInt64(napi_env env, napi_callback_info info)
 {
@@ -143,7 +156,9 @@ static napi_value CreateInt64(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_create_int64]
 
+// [Start napi_create_double]
 // napi_create_double
 static napi_value CreateDouble(napi_env env, napi_callback_info info)
 {
@@ -157,6 +172,7 @@ static napi_value CreateDouble(napi_env env, napi_callback_info info)
     }
     return result;
 }
+// [End napi_create_double]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

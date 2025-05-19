@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start hap_const_dynamic_import_add]
 export function add(a: number, b: number): number {
   let c = a + b;
   console.info('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
   return c;
 }
+// [End hap_const_dynamic_import_add]

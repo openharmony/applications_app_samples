@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start napi_remove_add_env_cleanup_hook]
 #include <hilog/log.h>
 #include <string>
 #include <malloc.h>
@@ -29,10 +30,12 @@ typedef struct {
 void ExternalFinalize(napi_env env, void *finalizeData, void *finalizeHint)
 {
     Memory *wrapper = (Memory *)finalizeHint;
+    // [StartExclude napi_remove_add_env_cleanup_hook]
     if (wrapper == nullptr) {
         //处理内存分配失败的情况
         return;
     }
+    // [EndExclude napi_remove_add_env_cleanup_hook]
     free(wrapper->data);
     free(wrapper);
     OH_LOG_INFO(LOG_APP, "Node-API napi_add_env_cleanup_hook ExternalFinalize");
@@ -51,10 +54,12 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
     // 分配内存并复制字符串数据到内存中
     std::string str("Hello from Node-API!");
     Memory *wrapper = (Memory *)malloc(sizeof(Memory));
+    // [StartExclude napi_remove_add_env_cleanup_hook]
     if (wrapper == nullptr) {
         //处理内存分配失败的情况
         return nullptr;
     }
+    // [End napi_remove_add_env_cleanup_hook]
     wrapper->data = static_cast<char *>(malloc(str.size()));
     strcpy(wrapper->data, str.c_str());
     wrapper->size = str.size();
@@ -82,7 +87,9 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
     // 返回创建的外部缓冲区对象
     return buffer;
 }
+// [End napi_remove_add_env_cleanup_hook]
 
+// [Start napi_add_remove_async_cleanup_hook]
 typedef struct {
     napi_env env;
     void *testData;
@@ -135,10 +142,12 @@ static napi_value NapiAsyncCleanUpHook(napi_env env, napi_callback_info info)
 {
     // 分配AsyncContent内存
     AsyncContent *data = reinterpret_cast<AsyncContent *>(malloc(sizeof(AsyncContent)));
+    // StartExclude napi_add_remove_async_cleanup_hook]
     if (data == nullptr) {
         //处理内存分配失败的情况
         return nullptr;
     }
+    // [EndExclude napi_add_remove_async_cleanup_hook]
     data->env = env;
     data->cleanupHandle = nullptr;
     // 分配内存并复制字符串数据
@@ -156,6 +165,7 @@ static napi_value NapiAsyncCleanUpHook(napi_env env, napi_callback_info info)
     napi_get_boolean(env, true, &result);
     return result;
 }
+// [End napi_add_remove_async_cleanup_hook]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

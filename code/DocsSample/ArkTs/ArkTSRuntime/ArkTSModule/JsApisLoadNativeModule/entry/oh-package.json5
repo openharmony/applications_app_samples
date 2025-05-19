@@ -20,7 +20,9 @@
   "main": "",
   "author": "",
   "license": "",
+  // [Start hap_load_native_dependence]
   "dependencies": {
     "libentry.so": "file:./src/main/cpp/types/libentry"
-  }
+  },
+  // [End hap_load_native_dependence]
 }

@@ -12,5 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start napi_thread_safety_dts]
 export const startThread: (a: () => Promise<string>) => void;
+// [End napi_thread_safety_dts]

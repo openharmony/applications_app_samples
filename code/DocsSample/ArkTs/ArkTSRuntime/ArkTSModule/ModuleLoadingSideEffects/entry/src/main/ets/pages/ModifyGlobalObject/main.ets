@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start import_change_global_var]
 import { data1 } from './module'; // 将全局变量someGlobalVar的值改为100
 import { data2 } from './sideEffectModule'; // 又将全局变量someGlobalVar的值改为200
 import { useGlobalVar } from './moduleUseGlobalVar';
@@ -24,6 +25,7 @@ function maybeNotCalledAtAll() {
   console.log(data1);
   console.log(data2);
 }
+// [End import_change_global_var]
 
 function maybeNotCalledAtAllOptimize() {
   console.log(dataOptimize1);

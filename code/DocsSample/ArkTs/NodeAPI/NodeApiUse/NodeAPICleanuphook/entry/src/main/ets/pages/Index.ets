@@ -48,6 +48,7 @@ struct Index {
                 if (item === 'Reset Result Message') {
                   this.result = '';
                 } else if (item === '1.napiRemoveEnvCleanupHook') {
+                  // [Start connect_with_worker]
                   let wk = new worker.ThreadWorker('entry/ets/workers/worker.ts');
                   // 发送消息到worker线程
                   wk.postMessage('test NapiEnvCleanUpHook');
@@ -57,18 +58,25 @@ struct Index {
                       JSON.stringify(message));
                     wk.terminate();
                   };
+                  // [End connect_with_worker]
                   this.result = 'napiRemoveEnvCleanupHookSuccess';
                 } else if (item === '2.napiRemoveAsyncCleanupHook') {
+                  // [Start ark_napi_remove_add_env_cleanup_hook]
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_add_async_cleanup_hook: %{public}s',
                       testNapi.napiAsyncCleanUpHook());
+                    // [StartExclude ark_napi_remove_add_env_cleanup_hook]
                     this.result = 'napiRemoveAsyncCleanupHookSuccess';
+                    // [EndExclude ark_napi_remove_add_env_cleanup_hook]
                   } catch (error) {
                     hilog.error(0x0000, 'testTag',
                       'Test Node-API napi_add_async_cleanup_hook error.message: %{public}s',
                       error.message);
+                    // [StartExclude ark_napi_remove_add_env_cleanup_hook]
                     this.result = 'napiRemoveAsyncCleanupHookFail';
+                    // [EndExclude ark_napi_remove_add_env_cleanup_hook]
                   }
+                  // [End ark_napi_remove_add_env_cleanup_hook]
                 }
               })
           }

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start connect_with_main_thread]
 import hilog from '@ohos.hilog';
 import worker from '@ohos.worker';
 import testNapi from 'libentry.so';
@@ -24,3 +25,4 @@ parent.onmessage = function(message) {
   // 发送消息到主线程
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
 }
+// [End connect_with_main_thread]

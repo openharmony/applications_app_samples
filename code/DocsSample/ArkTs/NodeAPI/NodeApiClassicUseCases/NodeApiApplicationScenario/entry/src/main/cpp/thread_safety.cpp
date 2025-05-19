@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start napi_thread_safety_cpp]
 #include "napi/native_api.h"
 #include "hilog/log.h"
 #include <future>
@@ -131,6 +131,7 @@ static napi_value Init(napi_env env, napi_value exports)
     return exports;
 }
 EXTERN_C_END
+// [End napi_thread_safety_cpp]
 
 static napi_module demoModule = {
     .nm_version = 1,

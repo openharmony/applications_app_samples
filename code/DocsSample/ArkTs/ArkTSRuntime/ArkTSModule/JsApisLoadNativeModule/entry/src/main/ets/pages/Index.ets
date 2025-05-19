@@ -24,9 +24,11 @@ struct Index {
         .width('50%')
         .margin({ bottom: 3 })
         .onClick(() => {
+          // [Start hap_load_system_module]
           //HAP加载系统库模块
           let hilog: ESObject = loadNativeModule('@ohos.hilog');
           hilog.info(0, 'testTag', 'loadNativeModule ohos.hilog success');
+          // [End hap_load_system_module]
           this.message = 'loadNativeModule ohos.hilog success'
         })
 
@@ -34,9 +36,11 @@ struct Index {
         .width('50%')
         .margin({ bottom: 3 })
         .onClick(() => {
+          // [Start load_native_module_libentry]
           //HAP加载Native库
           let module: ESObject = loadNativeModule('libentry.so');
           let sum: number = module.add(1, 2);
+          // [End load_native_module_libentry]
           this.message = 'loadNativeModule libentry.so success result: ' + sum.toString();
         })
       Text(this.message)

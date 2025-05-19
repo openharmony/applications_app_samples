@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start napi_load_module_with_info_har1_dts]
 export const add: (a: number, b: number) => number;
-
+// [End napi_load_module_with_info_har1_dts]
 export const loadModule: () => void;

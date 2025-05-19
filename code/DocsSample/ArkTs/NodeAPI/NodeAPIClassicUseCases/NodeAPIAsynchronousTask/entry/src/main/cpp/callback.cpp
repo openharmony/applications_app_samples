@@ -15,6 +15,7 @@
 
 #include "napi/native_api.h"
 
+// [Start napi_create_queue_async_work]
 static constexpr int INT_ARGS_2 = 2; // 入参索引
 
 struct CallbackData {
@@ -24,12 +25,16 @@ struct CallbackData {
     double result = 0;
 };
 
+// [StartExclude napi_create_queue_async_work]
+// [Start napi_async_first_call_back_work]
 static void ExecuteCB(napi_env env, void *data)
 {
     CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
     callbackData->result = callbackData->args[0] + callbackData->args[1];
 }
+// [End napi_async_first_call_back_work]
 
+// [Start napi_async_second_call_back_work]
 static void CompleteCB(napi_env env, napi_status status, void *data)
 {
     CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -47,6 +52,8 @@ static void CompleteCB(napi_env env, napi_status status, void *data)
     napi_delete_async_work(env, callbackData->asyncWork);
     delete callbackData;
 }
+// [End napi_async_second_call_back_work]
+// [EndExclude napi_create_queue_async_work]
 
 napi_value AsyncWork(napi_env env, napi_callback_info info)
 {
@@ -68,7 +75,9 @@ napi_value AsyncWork(napi_env env, napi_callback_info info)
     napi_queue_async_work(env, asyncContext->asyncWork);
     return nullptr;
 }
+// [End napi_create_queue_async_work]
 
+// [Start napi_value_init]
 // 模块初始化
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -78,6 +87,7 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
+// [End napi_value_init]
 
 static napi_module demoModule = {
     .nm_version = 1,

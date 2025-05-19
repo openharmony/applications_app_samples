@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start dynamic_call_add]
 export class Calc {
   public static staticAdd(a: number, b: number): number {
     let c = a + b;
@@ -32,3 +33,4 @@ export function addHarlibrary(a: number, b: number): number {
   console.info('DynamicImport I am harlibrary in addHarlibrary, %d + %d = %d', a, b, c);
   return c;
 }
+// [End dynamic_call_add]

@@ -13,8 +13,12 @@
  * limitations under the License.
  */
 
+// [Start module_load_directly]
 export function initialize() {
   console.log('Module loaded!');
 }
+// [End module_load_directly]
 
+// [Start module_load_optimize]
 export const dataOptimizeTwo = 1;
+// [End module_load_optimize]

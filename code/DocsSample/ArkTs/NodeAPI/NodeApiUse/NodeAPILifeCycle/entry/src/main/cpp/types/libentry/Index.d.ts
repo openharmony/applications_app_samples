@@ -13,14 +13,20 @@
  * limitations under the License.
  */
 
+// [Start napi_open_close_handle_scope_api]
 export const handleScopeTest: () => string; // napi_open_handle_scope、napi_close_handle_scope
 
 export const handleScope: () => string;
+// [End napi_open_close_handle_scope_api]
 
+// [Start napi_open_close_escapable_handle_scope_api]
 export const escapableHandleScopeTest: () => string; // napi_open_escapable_handle_scope、napi_close_escapable_handle_scope、napi_escape_handle
+// [End napi_open_close_escapable_handle_scope_api]
 
+// [Start napi_create_delete_reference_api]
 export const createReference: () => Object | void; // napi_add_finalizer
 
 export const useReference: () => Object | void;
 
 export const deleteReference: () => string | void;
+// [End napi_create_delete_reference_api]

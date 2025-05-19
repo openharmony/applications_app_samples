@@ -20,14 +20,24 @@
   "main": "",
   "author": "",
   "license": "",
+  // [Start napi_load_module_with_info_entry_oh]
+  // [Start napi_load_module_with_info_entry_oh2]
+  // [Start napi_load_module_with_info_entry_oh3]
   "dependencies": {
+    // [StartExclute napi_load_module_with_info_entry_oh]
+    // [StartExclute napi_load_module_with_info_entry_oh2]
     "libentry.so": "file:./src/main/cpp/types/libentry",
+  // [Start napi_load_module_with_info_entry_oh3]
     "libentryone.so": "file:./src/main/cpp/types/libentryone",
     "libentrytwo.so": "file:./src/main/cpp/types/libentrytwo",
     "libentrythree.so": "file:./src/main/cpp/types/libentrythree",
     "libentryfour.so": "file:./src/main/cpp/types/libentryfour",
+    // [EndExclute napi_load_module_with_info_entry_oh]
     "library": "file:../library",
+    // [End napi_load_module_with_info_entry_oh]
+    // [EndExclute napi_load_module_with_info_entry_oh2]
     "@ohos/hypium": "1.0.16",
+    // [End napi_load_module_with_info_entry_oh2]
     "har1": "file:../har1"
   }
 }

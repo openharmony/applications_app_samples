@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start lazy_import_global_module_data]
 import lazy { data } from './module';
 import lazy { dataOptimize, initialize } from './moduleOptimize';
 
@@ -25,6 +26,7 @@ struct moduleUseGlobalVar {
   build() {
     Column() {
       Row() {
+        // [StartExclude lazy_import_global_module_data]
         Button('LazyImportSideEffect')
           .width('40%')
           .height(30)
@@ -33,6 +35,7 @@ struct moduleUseGlobalVar {
             this.message1 = 'SideEffect: ' + globalThis.someGlobalVar;
             console.log(data); // 使用到module模块的变量，此时module模块执行，someGlobalVar的值变为100
           })
+        // [EndExclude lazy_import_global_module_data]
         Divider()
           .vertical(true)
           .margin({ left: 8, right: 8 })
@@ -67,3 +70,4 @@ struct moduleUseGlobalVar {
     .width('100%')
   }
 }
+// [End lazy_import_global_module_data]

@@ -47,7 +47,7 @@
         "x86_64",
         "armeabi-v7a"
       ]
-    }
+    },
   },
   "buildOptionSet": [
     {
@@ -68,7 +68,7 @@
           "exclude": []
         }
       }
-    },
+    }
   ],
   "targets": [
     {
