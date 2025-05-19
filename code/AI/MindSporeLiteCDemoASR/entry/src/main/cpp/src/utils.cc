@@ -17,7 +17,7 @@
 #include <fstream>
 #include <algorithm>
 
-std::vector<std::vector<float>> transpose_mel(const std::vector<std::vector<float>>& mels) {
+std::vector<std::vector<float>> TransposeMel(const std::vector<std::vector<float>>& mels) {
     if (mels.empty()) return {};
     
     size_t rows = mels.size();
@@ -33,7 +33,7 @@ std::vector<std::vector<float>> transpose_mel(const std::vector<std::vector<floa
     return result;
 }
 
-std::vector<float> resample_audio(
+std::vector<float> ResampleAudio(
     const std::vector<float>& input_data,
     int input_sample_rate,
     int output_sample_rate,
@@ -65,7 +65,7 @@ std::vector<float> resample_audio(
     return output_data;
 }
 
-void processMelSpectrogram(std::vector<std::vector<float>>& mels) {
+void ProcessMelSpectrogram(std::vector<std::vector<float>>& mels) {
     // log_spec = np.log10(np.maximum(mel, 1e-10))
     for (auto& row : mels) {
         for (auto& val : row) {

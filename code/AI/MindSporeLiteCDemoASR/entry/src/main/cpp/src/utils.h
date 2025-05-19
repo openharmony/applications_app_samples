@@ -18,14 +18,14 @@
 #include "AudioFile.h"
 #include "samplerate.h"
 
-std::vector<std::vector<float>> transpose_mel(const std::vector<std::vector<float>>& mels);
-std::vector<float> resample_audio(
+std::vector<std::vector<float>> TransposeMel(const std::vector<std::vector<float>>& mels);
+std::vector<float> ResampleAudio(
     const std::vector<float>& input_data,
     int input_sample_rate,
     int output_sample_rate,
     int channels,
     int converter
 );
-void processMelSpectrogram(std::vector<std::vector<float>>& mels);
+void ProcessMelSpectrogram(std::vector<std::vector<float>>& mels);
 
 

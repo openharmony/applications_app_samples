@@ -16,7 +16,7 @@
 {
   "name": "entry",
   "version": "1.0.0",
-  "description": "Please describe the basic information.",
+  "description": "MindSpore Lite inference module",
   "main": "",
   "author": "",
   "license": "",

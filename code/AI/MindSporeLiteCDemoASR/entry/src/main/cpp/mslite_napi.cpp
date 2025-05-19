@@ -13,25 +13,25 @@
  * limitations under the License.
  */
 
-#include "napi/native_api.h"
-#include <hilog/log.h>
-#include <rawfile/raw_file_manager.h>
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <mindspore/types.h>
-#include <mindspore/model.h>
-#include <mindspore/context.h>
-#include <mindspore/status.h>
-#include <mindspore/tensor.h>
-#include <sstream>
-#include <librosa/librosa.h>
-#include <vector>
-#include <numeric>
-#include <algorithm>
-#include "utils.h"
 #include "AudioFile.h"
 #include "base64.h"
+#include "napi/native_api.h"
+#include "utils.h"
+#include <algorithm>
+#include <cstdlib>
+#include <fstream>
+#include <hilog/log.h>
+#include <iostream>
+#include <librosa/librosa.h>
+#include <mindspore/context.h>
+#include <mindspore/model.h>
+#include <mindspore/status.h>
+#include <mindspore/tensor.h>
+#include <mindspore/types.h>
+#include <numeric> 
+#include <rawfile/raw_file_manager.h>
+#include <sstream>
+#include <vector>
 
 #define LOGI(...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
 #define LOGD(...) ((void)OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
@@ -39,16 +39,16 @@
 #define LOGE(...) ((void)OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, "[MSLiteNapi]", __VA_ARGS__))
 
 const float NEG_INF = -std::numeric_limits<float>::infinity();
-const int WHISPER_SOT           = 50258;
-const int WHISPER_TRANSCRIBE    = 50359;
-const int WHISPER_TRANSLATE     = 50358;
+const int WHISPER_SOT = 50258;
+const int WHISPER_TRANSCRIBE = 50359;
+const int WHISPER_TRANSLATE = 50358;
 const int WHISPER_NO_TIMESTAMPS = 50363;
-const int WHISPER_EOT           = 50257;
-const int WHISPER_BLANK         = 220;
-const int WHISPER_NO_SPEECH     = 50362;
-const int WHISPER_N_TEXT_CTX    = 448;
+const int WHISPER_EOT = 50257;
+const int WHISPER_BLANK = 220;
+const int WHISPER_NO_SPEECH = 50362;
+const int WHISPER_N_TEXT_CTX = 448;
 const int WHISPER_N_TEXT_STATE = 384; // for tiny
-constexpr int  WHISPER_SAMPLE_RATE = 16000;
+constexpr int WHISPER_SAMPLE_RATE = 16000;
 constexpr int K_NUM_PRINT_OF_OUT_DATA = 20;
 
 using BinBuffer = std::pair<void *, size_t>;
@@ -63,7 +63,7 @@ int FillInputTensor(OH_AI_TensorHandle input, const BinBuffer &bin)
     return OH_AI_STATUS_SUCCESS;
 }
 
-BinBuffer ReadTokens(NativeResourceManager *nativeResourceManager, const std::string &modelName){
+BinBuffer ReadTokens(NativeResourceManager *nativeResourceManager, const std::string &modelName) {
     auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
     if (rawFile == nullptr) {
         LOGE("MS_LITE_ERR: Open model file failed");
@@ -156,27 +156,25 @@ OH_AI_ModelHandle CreateMSLiteModel(BinBuffer &bin)
 }
 
 template <class T>
-void PrintBinAs(const BinBuffer &bin, const std::string& name = "Vector", const size_t n_visible = 10) {
+void PrintBinAs(const BinBuffer &bin, const std::string &name = "Vector", const size_t n_visible = 10) {
     size_t n_elem = bin.second / sizeof(T);
     std::stringstream ss;
     const T *data = reinterpret_cast<T *>(bin.first);
     for (size_t i = 0; i < bin.second / sizeof(T) && i < n_visible; i++) {
         ss << data[i] << " ";
     }
-    LOGD("MS_LITE_LOG: bin name: %{public}s, n_elem: %{public}zu, data: [%{public}s]", name.c_str(), n_elem, ss.str().c_str());
-}
+    LOGD("MS_LITE_LOG: bin name: %{public}s, n_elem: %{public}zu, data: [%{public}s]", name.c_str(), n_elem,
+         ss.str().c_str());
+    }
 
-void save_to_binary_file(const std::vector<float>& data, const std::string& filename) {
+void SaveToBinaryFile(const std::vector<float>& data, const std::string& filename) {
     // 打开文件，以二进制格式写入
     std::ofstream outFile(filename, std::ios::binary);
-    
     if (!outFile) {
         throw std::runtime_error("无法打开文件进行写入!");
     }
-
     // 写入数据到文件
     outFile.write(reinterpret_cast<const char*>(data.data()), data.size() * sizeof(float));
-
     // 关闭文件
     outFile.close();
     std::cout << "数据已成功保存为二进制文件: " << filename << std::endl;
@@ -226,15 +224,12 @@ int RunMSLiteModel(OH_AI_ModelHandle model, std::vector<BinBuffer> inputBins)
     return OH_AI_STATUS_SUCCESS;
 }
 
-std::vector<float> convertIntVectorToFloat(const std::vector<int>& vec) {
+std::vector<float> ConvertIntVectorToFloat(const std::vector<int>& vec) {
     std::vector<float> floatVec(vec.size());
-
     float* floatPtr = reinterpret_cast<float*>(const_cast<int*>(vec.data()));
-
     for (size_t i = 0; i < vec.size(); ++i) {
         floatVec[i] = *(floatPtr + i);
     }
-
     return floatVec;
 }
 
@@ -244,14 +239,14 @@ BinBuffer GetMSOutput(OH_AI_TensorHandle output) {
     return {outputData, size};
 }
 
-std::vector<float> getVecOutput(OH_AI_TensorHandle output){
+std::vector<float> GetVecOutput(OH_AI_TensorHandle output){
     float *outputData = reinterpret_cast<float *>(OH_AI_TensorGetMutableData(output));
     size_t len = OH_AI_TensorGetElementNum(output);
     std::vector<float> res(outputData, outputData + len);
     return res;
 }
 
-void supress_tokens(BinBuffer& logits, bool is_initial) {
+void SupressTokens(BinBuffer &logits, bool is_initial) {
     auto logits_data = static_cast<float *>(logits.first);
     if (is_initial) {
         // 假设这两个值在 logits 中的索引位置
@@ -267,7 +262,8 @@ void supress_tokens(BinBuffer& logits, bool is_initial) {
 }
 
 template <class T>
-void CompareVectorHelper(const T *data_a, const T *data_b, const std::string &label, size_t n, float rtol = 1e-3, float atol = 5e-3) {
+void CompareVectorHelper(const T *data_a, const T *data_b, const std::string &label, size_t n, float rtol = 1e-3,
+                         float atol = 5e-3) {
     LOGD("MS_LITE_LOG: ==== 精度校验 ====");
     LOGD("MS_LITE_LOG: 比较 %{public}s", label.c_str());
 
@@ -295,9 +291,9 @@ void CompareVectorHelper(const T *data_a, const T *data_b, const std::string &la
         int show_count = 0;
         for (size_t i = 0; i < n && show_count < MAX_SHOW; ++i) {
             float diff = data_a[i] - data_b[i];
-            if (std::abs(diff) > (atol + rtol * std::abs(data_b[i]))  && data_a[i] != 0.0f ) {
-                LOGD("MS_LITE_LOG: 索引[%{public}zu]: %{public}.6f vs %{public}.6f (Δ=%{public}.6f)",
-                     i, data_a[i], data_b[i], diff);
+            if (std::abs(diff) > (atol + rtol * std::abs(data_b[i])) && data_a[i] != 0.0f) {
+                LOGD("MS_LITE_LOG: 索引[%{public}zu]: %{public}.6f vs %{public}.6f (Δ=%{public}.6f)", i, data_a[i],
+                     data_b[i], diff);
                 ++show_count;
             }
         }
@@ -306,7 +302,8 @@ void CompareVectorHelper(const T *data_a, const T *data_b, const std::string &la
     return;
 }
 
-void CompareFloatVector(const BinBuffer &a, const BinBuffer &b, const std::string &label, float rtol = 1e-3, float atol = 5e-3) {
+void CompareFloatVector(const BinBuffer &a, const BinBuffer &b, const std::string &label, float rtol = 1e-3,
+                        float atol = 5e-3) {
     // 检查数据尺寸
     assert(a.second == b.second);
     const float *data_a = (const float *)a.first;
@@ -314,7 +311,8 @@ void CompareFloatVector(const BinBuffer &a, const BinBuffer &b, const std::strin
     CompareVectorHelper<float>(data_a, data_b, label, b.second / sizeof(float), rtol, atol);
 }
 
-void CompareFloatVector(const std::vector<float> &fp_a, const BinBuffer &b, const std::string &label, float rtol = 1e-3, float atol = 5e-3) {
+void CompareFloatVector(const std::vector<float> &fp_a, const BinBuffer &b, const std::string &label, float rtol = 1e-3,
+                        float atol = 5e-3) {
     // 检查数据尺寸
     assert(fp_a.size() * sizeof(float) == b.second);
 
@@ -324,7 +322,8 @@ void CompareFloatVector(const std::vector<float> &fp_a, const BinBuffer &b, cons
     CompareVectorHelper<float>(data_a, data_b, label, b.second / sizeof(float), rtol, atol);
 }
 
-void CompareIntVector(const BinBuffer &a, const BinBuffer &b, const std::string &label, float rtol = 1e-3, float atol = 5e-3) {
+void CompareIntVector(const BinBuffer &a, const BinBuffer &b, const std::string &label, float rtol = 1e-3,
+                      float atol = 5e-3) {
     // 检查数据尺寸
     assert(a.second == b.second);
 
@@ -334,24 +333,25 @@ void CompareIntVector(const BinBuffer &a, const BinBuffer &b, const std::string 
     CompareVectorHelper<int>(data_a, data_b, label, b.second / sizeof(float), rtol, atol);
 }
 
-std::vector<int> loop_predict(const OH_AI_ModelHandle model, const BinBuffer &n_layer_cross_k, const BinBuffer &n_layer_cross_v,
-            const BinBuffer &logits_init, BinBuffer &out_n_layer_self_k_cache,
-            BinBuffer &out_n_layer_self_v_cache, const BinBuffer &data_embedding, const int loop, const int offset_init) {
+std::vector<int> LoopPredict(const OH_AI_ModelHandle model, const BinBuffer &n_layer_cross_k,
+                             const BinBuffer &n_layer_cross_v, const BinBuffer &logits_init,
+                             BinBuffer &out_n_layer_self_k_cache, BinBuffer &out_n_layer_self_v_cache,
+                             const BinBuffer &data_embedding, const int loop, const int offset_init) {
     // logits
     BinBuffer logits{nullptr, 51865 * sizeof(float)};
     logits.first = malloc(logits.second);
     if (!logits.first) {
         LOGE("MS_LITE_LOG: Fail to malloc!\n");
     }
-    void* logits_init_src = static_cast<char*>(logits_init.first) +  51865 * 3 * sizeof(float);
+    void *logits_init_src = static_cast<char *>(logits_init.first) + 51865 * 3 * sizeof(float);
     memcpy(logits.first, logits_init_src, logits.second);
-    supress_tokens(logits, true); 
+    SupressTokens(logits, true);
 
     std::vector<int> output_token;
-    float* logits_data = static_cast<float*>(logits.first);
+    float *logits_data = static_cast<float *>(logits.first);
     int max_token_id = 0;
     float max_token = logits_data[0];
-    for (int i=0; i< logits.second / sizeof(float); i++) {
+    for (int i = 0; i < logits.second / sizeof(float); i++) {
         if (logits_data[i] > max_token) {
             max_token_id = i;
             max_token = logits_data[i];
@@ -380,7 +380,8 @@ std::vector<int> loop_predict(const OH_AI_ModelHandle model, const BinBuffer &n_
         }
         BinBuffer tokens{&max_token_id, sizeof(int)};
 
-        void* data_embedding_src = static_cast<char*>(data_embedding.first) + offset * WHISPER_N_TEXT_STATE * sizeof(float);
+        void *data_embedding_src =
+            static_cast<char *>(data_embedding.first) + offset * WHISPER_N_TEXT_STATE * sizeof(float);
         memcpy(slice.first, data_embedding_src, slice.second);
         // out_n_layer_self_k_cache
         // out_n_layer_self_v_cache
@@ -388,21 +389,20 @@ std::vector<int> loop_predict(const OH_AI_ModelHandle model, const BinBuffer &n_
         // n_layer_cross_v
         // slice
         // token
-        BinBuffer mask_bin(mask.data(),mask.size()*sizeof(float));
-        int ret = RunMSLiteModel(model, {tokens, out_n_layer_self_k_cache_new,
-                                out_n_layer_self_v_cache_new, n_layer_cross_k,
-                                n_layer_cross_v, slice, mask_bin});
-        
+        BinBuffer mask_bin(mask.data(), mask.size() * sizeof(float));
+        int ret = RunMSLiteModel(model, {tokens, out_n_layer_self_k_cache_new, out_n_layer_self_v_cache_new,
+                                         n_layer_cross_k, n_layer_cross_v, slice, mask_bin});
+
         auto outputs = OH_AI_ModelGetOutputs(model);
         logits = GetMSOutput(outputs.handle_list[0]);
         out_n_layer_self_k_cache_new = GetMSOutput(outputs.handle_list[1]);
         out_n_layer_self_v_cache_new = GetMSOutput(outputs.handle_list[2]);
         offset++;
-        supress_tokens(logits, false);
-        logits_data = static_cast<float*>(logits.first);
+        SupressTokens(logits, false);
+        logits_data = static_cast<float *>(logits.first);
         max_token = logits_data[0];
 
-        for (int j=0; j< logits.second / sizeof(float); j++) {
+        for (int j = 0; j < logits.second / sizeof(float); j++) {
             if (logits_data[j] > max_token) {
                 max_token_id = j;
                 max_token = logits_data[j];
@@ -414,12 +414,12 @@ std::vector<int> loop_predict(const OH_AI_ModelHandle model, const BinBuffer &n_
     return output_token;
 }
 
-std::vector<std::string> processDataLines(const BinBuffer token_txt) {
-    void* data_ptr = token_txt.first;
+std::vector<std::string> ProcessDataLines(const BinBuffer token_txt) {
+    void *data_ptr = token_txt.first;
     size_t data_size = token_txt.second;
     std::vector<std::string> tokens;
-  
-    const char* char_data = static_cast<const char*>(data_ptr);
+
+    const char *char_data = static_cast<const char *>(data_ptr);
     std::stringstream ss(std::string(char_data, char_data + data_size));
     std::string line;
     while (std::getline(ss, line)) {
@@ -449,11 +449,11 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
     size_t dataSize = audioBin.second;
     uint8_t *dataBuffer = (uint8_t *)audioBin.first;
     bool ok = audioFile.loadFromMemory(std::vector<uint8_t>(dataBuffer, dataBuffer + dataSize));
-    if(!ok ){
+    if (!ok) {
         LOGI("MS_LITE_LOG: Fail to read  %{public}s!", filePath.c_str());
     }
     std::vector<float> data(audioFile.samples[0]);
-    resample_audio(data, audioFile.getSampleRate(), WHISPER_SAMPLE_RATE, 1, SRC_SINC_BEST_QUALITY);
+    ResampleAudio(data, audioFile.getSampleRate(), WHISPER_SAMPLE_RATE, 1, SRC_SINC_BEST_QUALITY);
     std::vector<float> audio(data);
 
     int padding = 480000;
@@ -462,20 +462,23 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
     int n_hop = 160;
     int n_mel = 80;
     int fmin = 0; // Minimum frequency, default value is 0.0 Hz
-    int fmax = sr / 2.0; // Maximum frequency, default value is half of the sampling rate (sr / 2.0), i.e., the Nyquist frequency.
-    audio.insert(audio.end(),padding,0.0f);
-    std::vector<std::vector<float>> mels_T = librosa::Feature::melspectrogram(audio, sr, n_fft, n_hop, "hann", true, "reflect", 2.f, n_mel, fmin, fmax);
-    std::cout << "mels:   "<<std::endl;
+    int fmax =
+        sr /
+        2.0; // Maximum frequency, default value is half of the sampling rate (sr / 2.0), i.e., the Nyquist frequency.
+    audio.insert(audio.end(), padding, 0.0f);
+    std::vector<std::vector<float>> mels_T =
+        librosa::Feature::melspectrogram(audio, sr, n_fft, n_hop, "hann", true, "reflect", 2.f, n_mel, fmin, fmax);
+    std::cout << "mels:   " << std::endl;
 
-    std::vector<std::vector<float>> mels = transpose_mel(mels_T);
-    processMelSpectrogram(mels);
+    std::vector<std::vector<float>> mels = TransposeMel(mels_T);
+    ProcessMelSpectrogram(mels);
 
     std::vector<float> inputMels(mels.size() * mels[0].size(), 0);
     for (int i = 0; i < mels.size(); i++) {
         std::copy(mels[i].begin(), mels[i].end(), inputMels.begin() + i * mels[0].size());
     }
 
-    BinBuffer inputMelsBin(inputMels.data(), inputMels.size() * sizeof(float) );
+    BinBuffer inputMelsBin(inputMels.data(), inputMels.size() * sizeof(float));
 
     // --- encoder ---
     auto encoderBin = ReadBinFile(resourcesManager, "tiny-encoder.ms");
@@ -497,12 +500,9 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
     auto n_layer_cross_v = GetMSOutput(outputs.handle_list[1]);
 
     // --- decoder_main ---
-    std::vector<int> SOT_SEQUENCE = {
-        WHISPER_SOT,
-        WHISPER_SOT + 1 + 1, // wait to modify
-        WHISPER_TRANSCRIBE,
-        WHISPER_NO_TIMESTAMPS
-    };
+    std::vector<int> SOT_SEQUENCE = {WHISPER_SOT,
+                                     WHISPER_SOT + 1 + 1, // wait to modify
+                                     WHISPER_TRANSCRIBE, WHISPER_NO_TIMESTAMPS};
     BinBuffer sotSequence(SOT_SEQUENCE.data(), SOT_SEQUENCE.size() * sizeof(int));
 
     const std::string decoder_main_path = "tiny-decoder-main.ms";
@@ -511,7 +511,7 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
         return error_ret;
     }
     auto decoder_main = CreateMSLiteModel(decoderMainBin);
-    int ret2 = RunMSLiteModel(decoder_main, {sotSequence,n_layer_cross_k, n_layer_cross_v});
+    int ret2 = RunMSLiteModel(decoder_main, {sotSequence, n_layer_cross_k, n_layer_cross_v});
 
     if (ret2 != OH_AI_STATUS_SUCCESS) {
         OH_AI_ModelDestroy(&decoder_main);
@@ -520,7 +520,7 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
     LOGI("run decoder_main ok!\n");
 
     auto decoderMainOut = OH_AI_ModelGetOutputs(decoder_main);
-    auto logitsBin= GetMSOutput(decoderMainOut.handle_list[0]);
+    auto logitsBin = GetMSOutput(decoderMainOut.handle_list[0]);
     auto out_n_layer_self_k_cache_Bin = GetMSOutput(decoderMainOut.handle_list[1]);
     auto out_n_layer_self_v_cache_Bin = GetMSOutput(decoderMainOut.handle_list[2]);
 
@@ -537,17 +537,16 @@ static napi_value RunDemo(napi_env env, napi_callback_info info)
 
     int loop_times = WHISPER_N_TEXT_CTX - SOT_SEQUENCE.size();
     int offset_init = SOT_SEQUENCE.size();
-    auto output_tokens = loop_predict(decoder_loop, n_layer_cross_k, 
-    n_layer_cross_v, logitsBin, out_n_layer_self_k_cache_Bin, 
-    out_n_layer_self_v_cache_Bin, data_embedding, loop_times, offset_init);
+    auto output_tokens =
+        LoopPredict(decoder_loop, n_layer_cross_k, n_layer_cross_v, logitsBin, out_n_layer_self_k_cache_Bin,
+                    out_n_layer_self_v_cache_Bin, data_embedding, loop_times, offset_init);
 
-    std::vector<std::string> token_tables = processDataLines(ReadTokens(resourcesManager, "tiny-tokens.txt"));
+    std::vector<std::string> token_tables = ProcessDataLines(ReadTokens(resourcesManager, "tiny-tokens.txt"));
     std::string result;
     for (const auto i : output_tokens) {
         char str[1024];
-        base64_decode((const uint8*)token_tables[i].c_str(), (uint32)token_tables[i].size(), str);
+        base64_decode((const uint8 *)token_tables[i].c_str(), (uint32)token_tables[i].size(), str);
         result += str;
-        
     }
     LOGI("MS_LITE_LOG: result is -> %{public}s", result.c_str());
 
