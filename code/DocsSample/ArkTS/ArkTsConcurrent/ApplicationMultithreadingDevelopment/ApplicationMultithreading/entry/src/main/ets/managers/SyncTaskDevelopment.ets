@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start taskpool_handle_sync_task]
 import { worker } from '@kit.ArkTS';
 import { taskpool } from '@kit.ArkTS';
 
@@ -35,6 +36,7 @@ async function mainFunc(): Promise<void> {
   console.info('taskpool: task res2 is: ' + res2);
 }
 
+// [Start worker_handle_associated_sync_task]
 @Entry
 @Component
 struct Index {
@@ -70,3 +72,5 @@ struct Index {
     .height('100%')
   }
 }
+// [End worker_handle_associated_sync_task]
+// [End taskpool_handle_sync_task]

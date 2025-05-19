@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start native_deserialize_sendable]
+// [Start native_load_arkts_module]
 #include <thread>
 
 #include "napi/native_api.h"
@@ -59,6 +61,7 @@ static void* CreateEnvAndSendSendable(void*)
     }
     return nullptr;
 }
+// [End native_load_arkts_module]
 
 static void* CreateEnvAndReceiveSendable(void*)
 {
@@ -126,3 +129,4 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&demoModule);
 }
+// [End native_deserialize_sendable]

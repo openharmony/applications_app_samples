@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start taskpool_listen_sensor_data]
 import { sensor } from '@kit.SensorServiceKit';
 import { taskpool } from '@kit.ArkTS';
 import { BusinessError, emitter } from '@kit.BasicServicesKit';
@@ -74,3 +75,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End taskpool_listen_sensor_data]

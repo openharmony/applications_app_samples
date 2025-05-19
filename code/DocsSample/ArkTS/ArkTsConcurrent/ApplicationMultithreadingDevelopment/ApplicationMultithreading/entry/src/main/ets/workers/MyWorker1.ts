@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start interact_main_thread]
 import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -53,3 +54,4 @@ workerPort.onmessage = (e: MessageEvents): void => {
   // 销毁线程
   // workerPort.close();
 }
+// [End interact_main_thread]

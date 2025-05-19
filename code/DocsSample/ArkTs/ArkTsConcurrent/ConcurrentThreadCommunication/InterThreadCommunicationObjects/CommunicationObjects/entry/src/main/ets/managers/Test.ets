@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start define_test_class]
 // 自定义class TestA
 export class TestA {
   constructor(name: string) {
@@ -20,3 +21,4 @@ export class TestA {
   }
   name: string = 'ClassA';
 }
+// [End define_test_class]

@@ -14,6 +14,7 @@
  */
 
 // 不允许使用side-effects-import
+// [Start constrained_test]
 // import "./sharedModule"
 
 export let num = 1;
@@ -24,3 +25,4 @@ export let str = 'aaa';
 
 // export * from './test'; // 编译报错，不允许直接导出模块
 // export {num, str} from './test'; // 正确示例，导出对象合集
+// [End constrained_test]

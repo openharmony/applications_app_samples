@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start distribute_child_thread]
 import { Calculator } from '../sdk/Calculator';
 import { TimerSdk } from '../sdk/TimerSdk';
 import { taskpool } from '@kit.ArkTS';
@@ -93,3 +94,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End distribute_child_thread]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start main_thread_init_call]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 import { SendableObjTest } from './SendableObjTest'
@@ -41,3 +42,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End main_thread_init_call]

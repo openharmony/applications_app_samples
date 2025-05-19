@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start define_concurrent_function]
 import { write } from './write'
 import { BusinessError } from '@kit.BasicServicesKit';
 import { taskpool } from '@kit.ArkTS';
@@ -36,7 +37,9 @@ async function concurrentTest(context: common.UIAbilityContext): Promise<boolean
   }
   return true;
 }
+// [End define_concurrent_function]
 
+// [Start taskpool_execute_concurrent_function]
 @Entry
 @Component
 struct Index {
@@ -64,3 +67,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End taskpool_execute_concurrent_function]

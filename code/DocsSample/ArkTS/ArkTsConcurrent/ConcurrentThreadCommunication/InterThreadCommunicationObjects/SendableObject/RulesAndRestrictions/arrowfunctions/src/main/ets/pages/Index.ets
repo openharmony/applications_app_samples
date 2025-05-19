@@ -14,6 +14,7 @@
  */
 
 //箭头函数不支持共享
+// [Start counter_example]
 //正例：
 @Sendable
 type SendableFuncType = () => void;
@@ -43,6 +44,7 @@ let sendableClass = new SendableClass(sendableFunc);
 // class SendableClass {
 //   func: SendableFuncType = () => {}; // 编译报错
 // }
+// [End counter_example]
 
 @Entry
 @Component

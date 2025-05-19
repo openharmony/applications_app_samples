@@ -14,6 +14,7 @@
  */
 
 //Sendable class/interface的成员变量不支持使用计算属性名
+// [Start counter_example]
 //正例：
 @Sendable
 class A {
@@ -34,6 +35,7 @@ class A {
 //   ['aaa']: number = 1; // ['aaa'] is allowed in other classes in ets files
 //   [B.b1]: number = 2; // [B.b1] is allowed in other classes in ets files
 // }
+// [End counter_example]
 
 @Entry
 @Component

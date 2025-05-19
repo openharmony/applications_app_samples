@@ -29,5 +29,4 @@ workerPort.onmessage = (e: MessageEvents): void => {
   } else if (e.data instanceof Array) {
     workerPort.postMessage(e.data.slice(0, 4));
   }
-
 }

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start access_global_config]
 import { config } from './Config';
 import { taskpool } from '@kit.ArkTS';
 
@@ -123,3 +124,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End access_global_config]

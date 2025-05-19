@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start execute_task]
 import { taskpool } from '@kit.ArkTS';
 import { IconItemSource } from './IconItemSource';
 import { loadPicture } from './IndependentTask';
@@ -45,3 +46,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End execute_task]

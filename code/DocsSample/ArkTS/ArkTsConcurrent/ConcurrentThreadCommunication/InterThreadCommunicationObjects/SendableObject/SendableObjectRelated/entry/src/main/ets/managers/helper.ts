@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start provide_encapsulate_method]
 export function freezeObj(obj: any) {
   Object.freeze(obj);
 }
+// [End provide_encapsulate_method]

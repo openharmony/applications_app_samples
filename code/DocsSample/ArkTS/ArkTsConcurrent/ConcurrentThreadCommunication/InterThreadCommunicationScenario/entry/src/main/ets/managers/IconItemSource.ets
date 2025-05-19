@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start implement_child_thread_task]
 export class IconItemSource {
   image: string | Resource = '';
   text: string | Resource = '';
@@ -22,3 +23,4 @@ export class IconItemSource {
     this.text = text;
   }
 }
+// [End implement_child_thread_task]

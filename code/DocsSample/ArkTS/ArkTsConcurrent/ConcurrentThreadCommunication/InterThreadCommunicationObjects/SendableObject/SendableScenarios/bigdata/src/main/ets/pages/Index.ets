@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start across_concurrent_instance_transfer_large_data]
 import { taskpool } from '@kit.ArkTS';
 import { TestTypeA, TestTypeB, Test } from './sendable';
 import { BusinessError, emitter } from '@kit.BasicServicesKit';
@@ -77,3 +78,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End across_concurrent_instance_transfer_large_data]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start define_timer_module]
 @Sendable
 export class TimerSdk {
   static init(): TimerSdk {
@@ -28,3 +29,4 @@ export class TimerSdk {
     });
   }
 }
+// [End define_timer_module]

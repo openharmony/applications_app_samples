@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start create_worker_obj]
 import worker from '@ohos.worker';
 import { IconItemSource } from './IconItemSource';
 
@@ -65,3 +66,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End create_worker_obj]

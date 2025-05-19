@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_modify_class]
 export { MainPage } from './src/main/ets/components/MainPage';
 
 @Sendable
@@ -29,3 +30,4 @@ class SendableTestClass {
 
 let object = new SendableTestClass;
 export { object }
+// [End example_modify_class]

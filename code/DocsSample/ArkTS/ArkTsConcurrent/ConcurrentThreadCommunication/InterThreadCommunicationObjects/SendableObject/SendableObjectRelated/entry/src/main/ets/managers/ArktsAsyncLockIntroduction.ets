@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_protect]
 import { ArkTSUtils, taskpool } from '@kit.ArkTS';
 
 @Sendable
@@ -67,3 +68,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End example_protect]

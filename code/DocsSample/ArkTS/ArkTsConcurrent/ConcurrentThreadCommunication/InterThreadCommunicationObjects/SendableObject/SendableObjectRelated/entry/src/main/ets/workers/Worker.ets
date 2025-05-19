@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start directly_operate_obj]
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 // import { GlobalConfig } from '../pages/Index';
 import { GlobalConfig } from '../managers/SendableFreeze';
@@ -22,3 +22,4 @@ workerPort.onmessage = (e: MessageEvents) => {
   let gConfig: GlobalConfig = e.data;
   // 使用gConfig对象
 }
+// [End directly_operate_obj]

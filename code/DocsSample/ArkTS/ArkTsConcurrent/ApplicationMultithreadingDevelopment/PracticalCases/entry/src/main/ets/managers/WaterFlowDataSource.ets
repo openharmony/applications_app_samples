@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start encapsulate_waterfall_data_source]
 // 实现IDataSource接口的对象，用于瀑布流组件加载数据
 export class WaterFlowDataSource implements IDataSource {
   private dataArray: number[] = [];
@@ -140,3 +141,4 @@ export class WaterFlowDataSource implements IDataSource {
     this.notifyDataReload();
   }
 }
+// [End encapsulate_waterfall_data_source]

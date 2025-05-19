@@ -14,6 +14,7 @@
  */
 
 //非Sendable class只能实现非Sendable interface
+// [Start counter_example_achieve_non]
 //正例：
 interface I {
   a: string;
@@ -31,8 +32,10 @@ class B implements I {
 // interface I extends ISendable {};
 //
 // class B implements I {};
+// [End counter_example_achieve_non]
 
 //Sendable装饰器修饰类型时仅支持修饰函数类型
+// [Start counter_example_only_support]
 //正例：
 @Sendable
 type SendableFuncType = () => void;
@@ -46,6 +49,7 @@ type SendableFuncType = () => void;
 //
 // @Sendable
 // type D = C; // 编译报错
+// [End counter_example_only_support]
 
 @Entry
 @Component

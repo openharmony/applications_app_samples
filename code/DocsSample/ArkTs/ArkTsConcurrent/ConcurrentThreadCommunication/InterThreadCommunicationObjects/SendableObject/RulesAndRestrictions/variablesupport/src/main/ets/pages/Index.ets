@@ -14,6 +14,7 @@
  */
 
 // Sendable class/interface成员变量必须是Sendable支持的数据类型
+// [Start counter_example]
 // 正例：
 @Sendable
 class A {
@@ -29,6 +30,7 @@ class A {
 //   }
 //   b: Array<number> = [1, 2, 3] // 需使用collections.Array
 // }
+// [End counter_example]
 
 @Entry
 @Component

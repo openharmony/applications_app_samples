@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_use]
 import { ArkTSUtils, collections, taskpool } from '@kit.ArkTS';
 
 @Concurrent
@@ -57,3 +58,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End example_use]

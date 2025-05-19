@@ -23,10 +23,13 @@ const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
  *
  * @param e message data
  */
+
+// [Start create_har_worker]
 workerPort.onmessage = (e: MessageEvents) => {
   console.info('worker thread receive message: ', e.data);
   workerPort.postMessage('worker thread post message to main thread');
 }
+// [End create_har_worker]
 
 /**
  * Defines the event handler to be called when the worker receives a message that cannot be deserialized.

@@ -14,6 +14,7 @@
  */
 
 // Sendable class/interface的成员变量不支持使用!断言
+// [Start counter_example]
 // 正例：
 @Sendable
 class A {
@@ -29,6 +30,7 @@ class A {
 //   }
 //   a!: number;
 // }
+// [End counter_example]
 
 @Entry
 @Component

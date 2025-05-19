@@ -12,11 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start create_worker_execute_multi_task]
+// [Start call_main_method]
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
+// [StartExclude create_worker_execute_multi_task]
 try {
   // 调用方法无入参
   let res: string = workerPort.callGlobalCallObjectMethod('picData', 'setUp', 0) as string;
@@ -25,6 +27,8 @@ try {
   // 异常处理
   console.error('worker: error code is ' + error.code + ' error message is ' + error.message);
 }
+// [End call_main_method]
+// [EndExclude create_worker_execute_multi_task]
 
 // Worker接收宿主线程的消息，做相应的处理
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -32,3 +36,4 @@ workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage('success');
   }
 }
+// [End create_worker_execute_multi_task]

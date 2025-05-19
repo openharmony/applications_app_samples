@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start register_callback_function]
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -35,3 +36,4 @@ workerPort.onmessageerror = () => {
 workerPort.onerror = (err: ErrorEvent) => {
   console.info('workerPort onerror err is: ', err.message);
 }
+// [End register_callback_function]

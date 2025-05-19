@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start config_har_dependency]
 {
   "name": "entry",
   "version": "1.0.0",
@@ -24,4 +25,4 @@
     "har": "file:../har"
   }
 }
-
+// [End config_har_dependency]

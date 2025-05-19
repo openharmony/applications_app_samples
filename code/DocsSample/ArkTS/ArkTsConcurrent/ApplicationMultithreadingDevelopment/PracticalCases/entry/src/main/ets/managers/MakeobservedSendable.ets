@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start update_arkui_data]
 import { taskpool } from '@kit.ArkTS';
 import { SendableData } from './SendableData';
 import { UIUtils } from '@kit.ArkUI';
@@ -55,3 +56,4 @@ struct Index {
     }
   }
 }
+// [End update_arkui_data]

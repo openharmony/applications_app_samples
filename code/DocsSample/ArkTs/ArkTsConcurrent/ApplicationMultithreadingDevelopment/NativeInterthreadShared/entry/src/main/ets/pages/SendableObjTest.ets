@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+// [Start arkts_define_obj]
 @Sendable
 export class SendableObjTest {
   static newSendable() {
     return 1024;
   }
 }
+// [End arkts_define_obj]

@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
+// [Start worker_correspond_main_thread]
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 let isRunning = false;
 workerPort.onmessage = (e: MessageEvents) => {
   const type = e.data.type as string;
-  if (type === 'start') {
+  if (type === 'End') {
     if (!isRunning) {
       isRunning = true;
       // 开始常驻任务
@@ -39,3 +40,4 @@ function performTask() {
   }
   workerPort.postMessage('Worker is stop performing a task');
 }
+// [End worker_correspond_main_thread]

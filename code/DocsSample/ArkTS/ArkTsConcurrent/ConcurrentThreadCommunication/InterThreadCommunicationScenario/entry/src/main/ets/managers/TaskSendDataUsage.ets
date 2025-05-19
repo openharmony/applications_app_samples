@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start implement_child_thread_task]
+// [Start receive_task_message]
 import { taskpool } from '@kit.ArkTS';
 import { IconItemSource } from './IconItemSource';
 import resource from '../util/resource';
@@ -20,6 +22,7 @@ import resource from '../util/resource';
 function notice(data: number): void {
   console.info(resource.resourceToString($r('app.string.Loading_pictures')), data);
 }
+// [End receive_task_message]
 
 // 通过Task的sendData方法，即时通知宿主线程信息
 @Concurrent
@@ -41,6 +44,7 @@ export function loadPictureSendData(count: number): IconItemSource[] {
   return iconItemSourceList;
 }
 
+// [Start host_receive_task_data]
 @Entry
 @Component
 struct Index {
@@ -68,3 +72,5 @@ struct Index {
     .height('100%')
   }
 }
+// [End host_receive_task_data]
+// [End implement_child_thread_task]
