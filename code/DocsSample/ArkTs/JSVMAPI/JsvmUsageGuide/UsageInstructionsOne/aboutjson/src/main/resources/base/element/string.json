@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "AboutjsonAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AboutjsonAbility_label",
+      "value": "UsageInstructionsOne"
+    }
+  ]
+}

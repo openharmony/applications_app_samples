@@ -1,0 +1,27 @@
+{
+  "module": {
+    "name": "pumpmessageloop",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "PumpmessageloopAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "PumpmessageloopAbility",
+        "srcEntry": "./ets/pumpmessageloopability/PumpmessageloopAbility.ets",
+        "description": "$string:PumpmessageloopAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:PumpmessageloopAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}

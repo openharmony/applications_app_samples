@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "PumpmessageloopAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "PumpmessageloopAbility_label",
+      "value": "UsageInstructionsOne"
+    }
+  ]
+}

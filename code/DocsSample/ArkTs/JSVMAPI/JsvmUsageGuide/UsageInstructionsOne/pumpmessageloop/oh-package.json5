@@ -1,0 +1,11 @@
+{
+  "name": "pumpmessageloop",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "libpumpmessageloop.so": "file:./src/main/cpp/types/libpumpmessageloop"
+  }
+}
