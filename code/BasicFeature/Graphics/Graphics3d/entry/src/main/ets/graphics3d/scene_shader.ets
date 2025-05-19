@@ -90,7 +90,7 @@ struct sceneShader {
       }
     }
     if (this.scene === null) {
-      scene3d.Scene.load($rawfile("gltf/Cube/glTF/Cube.gltf"))
+      scene3d.Scene.load($rawfile("gltf/Cube/glTF/Cube.glb"))
         .then(async (result: scene3d.Scene) => {
           this.scene = result;
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;

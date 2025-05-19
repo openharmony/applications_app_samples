@@ -66,7 +66,7 @@ struct sceneAnimation {
       }
     }
     if (this.scene === null) {
-      scene3d.Scene.load($rawfile("gltf/BrainStem/glTF/BrainStem.gltf"))
+      scene3d.Scene.load($rawfile("gltf/BrainStem/glTF/BrainStem.glb"))
         .then(async (result: scene3d.Scene) => {
           this.scene = result;
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;

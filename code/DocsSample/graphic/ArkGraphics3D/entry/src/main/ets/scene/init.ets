@@ -40,7 +40,7 @@ struct Init {
   init(): void {
     if (this.scene == null) {
       // Load the model and place the gltf file in the related path. Use the actual path during loading.
-      Scene.load($rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'))
+      Scene.load($rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.glb'))
         .then(async (result: Scene) => {
           this.scene = result;
           let rf: SceneResourceFactory = this.scene.getResourceFactory();
