@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -56,6 +56,7 @@ export struct Timer {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private selectedTime: Date = new Date();
   private intervalId: number = 0;
+  private calendarTimerId: number = 0;
 
   aboutToAppear() {
     this.intervalId = setInterval(() => {
@@ -244,7 +245,7 @@ export struct Timer {
     if (deviceTypeInfo === 'default') {
       await this.handleDefaultDevice(context);
     } else {
-      setTimeout(() => {
+      this.calendarTimerId = setTimeout(() => {
         this.handleNonDefaultDevice(context);
       }, this.countdownTime * Constant.SECONDS_MILLISECONDS);
     }
@@ -308,35 +309,43 @@ export struct Timer {
   }
 
   async pause() {
-    clearInterval(this.timer)
-    clearTimeout(this.audioId)
-    clearTimeout(this.vibratorId)
-    this.isRunning = true
-    this.isPausing = true
-    this.startImg = $r('app.media.ic_public_start')
-    await reminderAgent.cancelReminder(this.reminderId)
+    clearInterval(this.timer);
+    clearTimeout(this.audioId);
+    clearTimeout(this.vibratorId);
+    this.isRunning = true;
+    this.isPausing = true;
+    this.startImg = $r('app.media.ic_public_start');
+    if (deviceTypeInfo === 'default') {
+      await reminderAgent.cancelReminder(this.reminderId);
+    } else {
+      clearTimeout(this.calendarTimerId);
+    }
     await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
   }
 
   async reset(isCancel?: boolean) {
-    clearInterval(this.timer)
-    clearTimeout(this.audioId)
-    clearTimeout(this.vibratorId)
-    this.isRunning = false
-    this.isPausing = false
-    this.progressVal = 0
-    this.rotates = 0
-    this.passSec = 0
-    this.hoursTime = 0
-    this.minuteTime = 0
-    this.secondTime = 0
-    this.pickerHour = 0
-    this.pickerMinute = 0
-    this.pickerSecond = 0
-    this.startImg = $r('app.media.ic_public_start')
-    this.resetImg = $r('app.media.ic_countdown_reset')
+    clearInterval(this.timer);
+    clearTimeout(this.audioId);
+    clearTimeout(this.vibratorId);
+    this.isRunning = false;
+    this.isPausing = false;
+    this.progressVal = 0;
+    this.rotates = 0;
+    this.passSec = 0;
+    this.hoursTime = 0;
+    this.minuteTime = 0;
+    this.secondTime = 0;
+    this.pickerHour = 0;
+    this.pickerMinute = 0;
+    this.pickerSecond = 0;
+    this.startImg = $r('app.media.ic_public_start');
+    this.resetImg = $r('app.media.ic_countdown_reset');
     if (isCancel) {
-      await reminderAgent.cancelReminder(this.reminderId);
+      if (deviceTypeInfo === 'default') {
+        await reminderAgent.cancelReminder(this.reminderId);
+      } else {
+        clearTimeout(this.calendarTimerId);
+      }
     }
     await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
   }
