@@ -1,0 +1,11 @@
+export const setup: (filePath: string, type: number, offset: number, size: number) => number;
+export const play: () => void;
+export const setSpeed: (sp: number) => void;
+export const getSpeed: () => number
+export const pause: () => void;
+export const seek: (value: number, seekMode: number) => void;
+export const getDuration: () => number;
+export const getCurrentTime: () => number;
+export const getVideoHeight: () => number;
+export const getVideoWidth: () => number;
+export const release: () => number;
