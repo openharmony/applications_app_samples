@@ -11,6 +11,14 @@
     {
       "name": "EntryAbility_label",
       "value": "mindsporeliteASR"
+    },
+    {
+      "name": "play",
+      "value": "播放示例音频"
+    },
+    {
+      "name": "asr",
+      "value": "识别示例音频"
     }
   ]
 }
