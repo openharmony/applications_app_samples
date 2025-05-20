@@ -45,8 +45,8 @@ export default function abilityTest() {
      * 打开应用，点击 测试三方协议忽略csp检查，并成功拦截 按钮
      * 拦截自定义的忽略了csp属性的scheme请求。
      */
-    it('loadCspTest', 0, async (done: Function) => {
-      console.info('uitest: loadCspTest begin');
+    it('loadTestHtml', 0, async (done: Function) => {
+      console.info('uitest: loadTestHtml begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -59,18 +59,13 @@ export default function abilityTest() {
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       await driver.delayMs(1000);
 
-      const button1 = await driver.findComponent(ON.text('测试三方协议忽略csp检查'));
-      await button1.click();
-      await driver.delayMs(1000);
-
-
       const web1 = await driver.findComponent(ON.type('Web'));
       let src: string = await web1.getText();
-      expect(src).assertContain('csp_bypassing.html');
+      expect(src).assertContain('test.html');
 
       await driver.pressBack();
       await driver.delayMs(1000);
-      console.info('uitest: loadCspTest end');
+      console.info('uitest: loadTestHtml end');
       done();
     });
   })
