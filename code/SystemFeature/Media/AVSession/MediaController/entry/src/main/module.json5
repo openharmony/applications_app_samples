@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023 Huawei Device Co., Ltd.
+* Copyright (C) 2023-2025 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -26,17 +26,16 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "uiSyntax": "ets",
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ets",
+        "srcEntry": "./ets/MainAbility/MainAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "entities": [
@@ -61,6 +60,9 @@
       },
       {
         "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.MANAGE_MEDIA_RESOURCES"
       }
     ]
   }

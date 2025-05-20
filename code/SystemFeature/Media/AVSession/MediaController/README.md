@@ -16,6 +16,8 @@
 
 #### 使用说明（需与媒体提供方一起使用）
 
+> 本示例在运行前，需预先在本机命令行中执行"hdc shell setenforce 0"命令，才可保证示例功能正常。
+
 1. 打开媒体控制方示例应用，可以看到音乐应用的历史记录。
 2. 点击播放按钮，应用的播放状态发生变化。
 3. 点击暂停按钮，应用的播放状态开始变化。
@@ -152,6 +154,24 @@ entry/src/main/ets/
       "requestPermissions": [
         {
           "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+        }
+      ]
+  }
+}
+```
+
+#### 媒体资源管理相关权限
+
+如果需要获取当前设备正在播放的媒体资源，并对其进行管理，需要申请媒体资源管理权限[ohos.permission.MANAGE_MEDIA_RESOURCES](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_media_resources)
+
+请在需要获取Bundle信息权限的Ability的`module.json5`中添加以下配置：
+
+```json5
+{
+  "module": {
+      "requestPermissions": [
+        {
+          "name": "ohos.permission.MANAGE_MEDIA_RESOURCES"
         }
       ]
   }
