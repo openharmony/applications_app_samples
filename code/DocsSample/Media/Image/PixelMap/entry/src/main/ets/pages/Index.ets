@@ -20,7 +20,6 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import Logger from '../common/Logger';
 import { readAndEditEXIF } from '../common/EditingEXIF';
 import { encodeToStreamByPixelMap } from '../common/Encode';
-import { JSON } from '@kit.ArkTS';
 import { DisPlayInfo } from '../utils/DisPlayInfoUtil';
 
 const DEFAULT_IMAGE_WIDTH = 700; // 图像的默认宽度
@@ -45,6 +44,7 @@ struct Index {
     Logger.info('aboutToAppear Start');
     this.pixelMap = await this.loadPixelMap();
     this.oldPixelMap = this.clonePixelMap(this.pixelMap);
+    encodeToStreamByPixelMap(this.pixelMap, false);
     await this.updateImageInfo();
     Logger.info('aboutToAppear End');
   }
