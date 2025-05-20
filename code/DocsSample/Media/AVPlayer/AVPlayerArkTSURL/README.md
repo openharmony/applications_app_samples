@@ -4,7 +4,7 @@
 
 本示例为媒体->Media Kit(媒体服务)->[使用AVPlayer设置播放URL(ArkTS)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/media/playback-url-setting-method.md)的配套示例工程。 
 
-本示例展示了如何使用AVPlayer开发播放功能，在不同的场景下（流媒体/本地Raw文件）如何设置URL。
+本示例展示了如何使用AVPlayer开发播放功能，在不同的场景下（流媒体/本地文件）如何设置URL。
 
 ## 效果预览
 
@@ -30,6 +30,7 @@ entry/src/main/resources/
 │       ├── ic_video_play.svg  (播放键图片资源)
 │       └── ic_video_pause.svg (暂停键图片资源)
 └── rawfile
+    ├── test.m3u8    (m3u8资源)
     └── test_01.mp3 （音频资源）
 entry/src/ohosTest/ets/
 └── test
