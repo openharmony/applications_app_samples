@@ -59,6 +59,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "entry3",
+      "srcPath": "./entry3",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
