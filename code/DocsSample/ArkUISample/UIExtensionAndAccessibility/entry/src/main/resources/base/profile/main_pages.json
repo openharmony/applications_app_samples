@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/IsolatedComponent/Extension",
-    "pages/EmbeddedComponent/Extension"
+    "pages/EmbeddedComponent/Extension",
+    "pages/UIExtensionComponent/Extension"
   ]
 }

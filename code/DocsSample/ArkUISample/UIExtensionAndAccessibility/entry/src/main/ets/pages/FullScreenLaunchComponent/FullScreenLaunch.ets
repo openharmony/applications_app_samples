@@ -25,7 +25,7 @@ function sampleColumnChild() {
 
 @Component
 export struct FullScreenLaunch {
-  @State appId: string = '6917571765457174309'; // 原子化服务appId
+  @State appId: string = '5765880207855083101'; // 原子化服务appId
 
   build() {
     NavDestination() {

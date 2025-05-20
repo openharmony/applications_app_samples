@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-let storage = LocalStorage.getShared();
+import { Want } from '@kit.AbilityKit'
 
-@Entry(storage)
 @Component
 export struct Embedded {
   @State message: string = 'Message: '
   private want: Want = {
-    bundleName: 'com.example.embeddeddemo',
+    bundleName: 'com.samples.uiextensionandaccessibility',
     abilityName: 'ExampleEmbeddedAbility',
   }
 

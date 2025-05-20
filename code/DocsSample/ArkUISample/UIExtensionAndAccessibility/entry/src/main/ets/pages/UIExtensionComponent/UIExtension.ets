@@ -57,7 +57,7 @@ export struct UIExtension {
           Text(this.message3).fontSize(25)
 
           UIExtensionComponent({
-            bundleName: 'com.example.newdemo',
+            bundleName: 'com.samples.uiextensionandaccessibility',
             abilityName: 'UIExtensionProvider',
             parameters: {
               'ability.want.params.uiExtensionType': 'sys/commonUI'
