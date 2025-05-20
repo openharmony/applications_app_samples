@@ -42,7 +42,7 @@ export struct Isolated {
   // abc文件名
   private fileName: string = 'modules';
   // abc文件所属应用的bundleName
-  private bundleName: string = 'com.example.isolateddemo';
+  private bundleName: string = 'com.samples.uiextensionandaccessibility';
   // 受限worker
   private worker ?: worker.RestrictedWorker = new worker.RestrictedWorker('entry/ets/workers/OhCardWorker.ets');
 

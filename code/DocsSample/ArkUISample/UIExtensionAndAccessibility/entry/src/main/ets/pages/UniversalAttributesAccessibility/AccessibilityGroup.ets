@@ -26,11 +26,10 @@ export struct AccessibilityGroup {
         Button().accessibilityLevel('yes').accessibilityText($r('app.string.UniversalAttributesAccessibility_text2'))
         Button($r('app.string.UniversalAttributesAccessibility_text3')).accessibilityLevel('yes')
         Button()
-        Button('btnl23').accessibilityText($r('app.string.UniversalAttributesAccessibility_text4')).accessibilityLevel('yes')
+        Button('btn123').accessibilityText($r('app.string.UniversalAttributesAccessibility_text4')).accessibilityLevel('yes')
         Button('btn123').accessibilityLevel('yes')
       }
       .accessibilityGroup(true, { accessibilityPreferred: true })
-      //.accessibilityGroup(true)
       .borderWidth(5)
       .width('100%')
       .height('100%')

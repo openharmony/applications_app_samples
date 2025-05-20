@@ -26,8 +26,7 @@
         "targetSdkVersion": 18,
         "buildOption": {
           "strictMode": {
-            "caseSensitiveCheck": true,
-            "useNormalizedOHMUrl": true
+            "caseSensitiveCheck": true
           }
         }
       }

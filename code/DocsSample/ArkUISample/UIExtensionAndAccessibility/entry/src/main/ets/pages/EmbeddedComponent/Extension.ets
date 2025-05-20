@@ -33,7 +33,7 @@ struct Extension {
         this.session?.terminateSelfWithResult({
           resultCode: 1,
           want: {
-            bundleName: 'com.example.embeddeddemo',
+            bundleName: 'com.samples.uiextensionandaccessibility',
             abilityName: 'ExampleEmbeddedAbility',
           }
         });
