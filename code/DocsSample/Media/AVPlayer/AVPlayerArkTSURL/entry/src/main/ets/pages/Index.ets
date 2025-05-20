@@ -56,6 +56,7 @@ struct Index {
 
   @State title: Resource = $r('app.string.EntryAbility_label');
   @State fileName: string = 'test_01.mp3';
+  @State m3u8fileName: string = 'test.m3u8';
   @State isSwiping: boolean = false; // 用户滑动过程中
   @State isPaused: boolean = true; // 暂停播放
   @State XComponentFlag: boolean = false;
@@ -122,16 +123,18 @@ struct Index {
     });
 
     // 情况一：播放HTTP/HTTPS媒体资源
+    // 设置对应的播放url
     let url = "https://vd3.bdstatic.com/mda-pdc2kmwtd2vxhiy4/cae_h264/1681502407203843413/mda-pdc2kmwtd2vxhiy4.mp4";
-    this.avPlayer.url = url; // 设置对应的播放url
+    this.avPlayer.url = url;
 
     // 情况二：HLS媒体资源播放(点播/直播)
+    // 设置对应的播放url
     // let url = 'http://media.iyuns.top:1000/720-270-480.m3u8';
-    // this.avPlayer.url = url; // 设置对应的播放url
+    // this.avPlayer.url = url;
 
     // 情况三：设置HTTP请求头信息播放
-    // 设置对应的播放url
     /*
+    // 设置对应的播放url
     let url = 'https://vd3.bdstatic.com/mda-nmh2004d24kf4bjh/hd/h264/1671326683061787710/mda-nmh2004d24kf4bjh.mp4';
     // 创建mediaSource实例对象，设置媒体来源，定制HTTP请求，如需要，可以键值对的形式设置User-Agent、Cookie、Referer等字段
     let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,  {'aa' : 'bb', 'cc' : 'dd'});
@@ -145,7 +148,7 @@ struct Index {
     // 情况四：通过本地Raw文件中的m3u8文件播放在线流媒体资源
     /*
     // 通过本地m3u8文件名，获取文件描述符
-    let fileDescriptor = await this.context.resourceManager.getRawFd('test3.m3u8');
+    let fileDescriptor = await this.context.resourceManager.getRawFd(this.m3u8fileName);
     // 用文件描述符构造本地m3u8的URL
     let fdUrl : string = "fd://" + fileDescriptor.fd +
       "?offset=" + fileDescriptor.offset + "&size=" + fileDescriptor.length;
@@ -166,7 +169,7 @@ struct Index {
 
     // 情况五：通过应用沙箱中的m3u8文件播放在线流媒体资源
     /*
-    let filePath = "/data/storage/el1/bundle/${m3u8FileName}";
+    let filePath = `/data/storage/el1/bundle/${this.m3u8fileName}`;
     // 通过fs.openSync获取文件句柄
     let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
     let fd : string = file.fd.toString();
@@ -189,23 +192,16 @@ struct Index {
     * */
 
     // 本地raw文件播放场景下设置URL
-    // 情况一：应用沙箱文件播放
     /*
-    import { common } from '@kit.AbilityKit';
-    private context: Context | undefined;
-    constructor(context: Context) {
-      this.context = context; // this.getUIContext().getHostContext();
-    }
-    // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    // 情况一：应用沙箱文件播放
     let fdPath = 'fd://';
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = this.context.filesDir;
-    let path = '/data/storage/el1/bundle/01.mp3';
+    let path = `/data/storage/el1/bundle/${this.fileName}`;
     // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
     let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
-    avPlayer.url = fdPath;
+    this.avPlayer.url = fdPath;
     * */
 
     // 情况二：本地文件播放
