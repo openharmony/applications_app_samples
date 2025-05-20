@@ -58,7 +58,7 @@ struct nodeBase {
 
   init(): void {
     if (this.scene === null) {
-      scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf")).then(async (result: scene3d.Scene) => {
+      scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb")).then(async (result: scene3d.Scene) => {
         this.scene = result;
         this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
         let rf: scene3d.SceneResourceFactory = this.scene.getResourceFactory();

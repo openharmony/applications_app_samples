@@ -18,7 +18,7 @@ import { router } from '@kit.ArkUI';
 import logger from '../utils/Logger';
 
 async function createAnimationPromise(): Promise<Animation> {
-  let scene: Scene = await Scene.load($rawfile('gltf/BrainStem/glTF/BrainStem.gltf'));
+  let scene: Scene = await Scene.load($rawfile('gltf/BrainStem/glTF/BrainStem.glb'));
 
   // create animation
   let anim: Animation = scene.animations[0];
@@ -54,7 +54,7 @@ struct sceneAnimation {
   init(): void {
     if (this.scene == null) {
       // Loading scene.
-      Scene.load($rawfile('gltf/BrainStem/glTF/BrainStem.gltf'))
+      Scene.load($rawfile('gltf/BrainStem/glTF/BrainStem.glb'))
         .then(async (result: Scene) => {
           this.scene = result;
           let rf: SceneResourceFactory = this.scene.getResourceFactory();
