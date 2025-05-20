@@ -60,12 +60,34 @@
 10.设备基础信息：打开设备信息管理页面，展示基础信息。
 
 11.组合按键：进入组合按键管理页面，包括显示组合按键信息，组合按键的订阅状态，在订阅状态下，组合按键被触发时显示组合按键的信息。
+```
+// 系统级别的组合按键在使用前需在系统中预定义
+hdc shell mount -o rw,remount /
+hdc file recv /system/etc/multimodalinput/exceptional_system_keys_config.json
+// 添加以下预定义组合按键
+/*
+    {
+        "preKeys": [ 2045, 2047 ],
+        "finalKey": 2035,
+        "longPressTime": 0,
+        "triggerType": "down"
+    },
+    {
+        "preKeys": [ 2045, 2047 ],
+        "finalKey": 2020,
+        "longPressTime": 0,
+        "triggerType": "down"
+    }
+*/
+hdc file send exceptional_system_keys_config.json /system/etc/multimodalinput
+hdc shell reboot
+```
 
 12.输入设备：进入设备输入管理页面，展示设备输入列表，可以查看输入设备详情，同时可以监听设备的热插拔状态。
 
 13.输入事件：进入全屏监听页面，实现启动或取消全屏输入事件，在启动全屏输入事件监听时，可以查看当前触屏的详细信息，模拟注入返回事件，实现返回能力。
 
-14.输入按键事件：进入输入按键事件管理页面，显示由外部设备如软键盘输入触发的消息。
+14.输入按键事件：进入输入按键事件管理页面，显示由外部设备如软键盘输入触发的消息，使用前需按`TAB`键，让输入按键事件文本获取焦点。
 
 15.鼠标指针：进入鼠标管理页面，实现鼠标状态、鼠标指针信息、设置鼠标速度和显示样式，启动鼠标事件监听时，可以查看鼠标在界面上操作的详细信息。
 
@@ -177,6 +199,9 @@ DeviceManagementCollection
 5.允许应用监听输入事件权限：[ohos.permission.INPUT_MONITORING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissioninput_monitoring)
 
 6.允许应用读取已安装应用列表：[ohos.permission.GET_INSTALLED_BUNDLE_LIST](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_installed_bundle_list)
+
+7.允许应用设置SettingsData中设备级配置数据表和用户级配置数据表：[ohos.permission.MANAGE_SETTINGS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_settings)
+
 ### 依赖
 
 不涉及。
