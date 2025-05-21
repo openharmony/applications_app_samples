@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023 Huawei Device Co., Ltd.
+* Copyright (C) 2023-2025 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -30,7 +30,7 @@ struct PreferOutputDevice {
   private appContext?: common.Context;
   private audioRendererOption: audio.AudioRendererOptions = {
     streamInfo: {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
       channels: audio.AudioChannel.CHANNEL_2,
       sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
       encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
