@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "通用密钥管理"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "通用密钥管理"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "通用密钥管理"
+    },
+    {
+      "name": "please_input",
+      "value": "通用密钥管理"
+    },
+    {
+      "name": "send",
+      "value": "发送"
+    }
+  ]
+}

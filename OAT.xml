@@ -179,10 +179,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/screenshots/addFormByMenu.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/screenshots/addStaticCard.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
-        <filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/src/main/resources/base/media/multiple_files_download_stop.png" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
-        <filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/src/main/resources/base/media/multiple_files_download_start.png" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
-        <filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/multiple_files_download.gif" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
-        <filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/src/main/resources/base/media/multiple_files_download_file.png" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
+				<filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/src/main/resources/base/media/multiple_files_download_stop.png" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
+				<filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/src/main/resources/base/media/multiple_files_download_start.png" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
+				<filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/multiple_files_download.gif" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
+				<filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/src/main/resources/base/media/multiple_files_download_file.png" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/screenshots/device/changeColor.png" desc="Provided by code/BasicFeature/Native/ArkTSXComponent."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/screenshots/device/drawStar.png" desc="Provided by code/BasicFeature/Native/ArkTSXComponent."/>
@@ -201,6 +201,8 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkXComponent/screenshots/device/main.png" desc="Provided by code/BasicFeature/Native/NdkXComponent."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkXComponent/AppScope/resources/base/media/app_icon.png" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkXComponent/entry/src/main/resources/base/media/icon.png" desc="Provided by the UX team."/>
+				<filteritem type="filepath" name="code/BasicFeature/Security/KeyManager/entry/src/main/resources/base/media/background.png" desc="code/BasicFeature/Security/KeyManager"/>
+				<filteritem type="filepath" name="code/BasicFeature/Security/KeyManager/entry/src/main/resources/base/media/foreground.png" desc="code/BasicFeature/Security/KeyManager"/>
 			    <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/app_icon.png" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/forward.png" desc="Provided by the UX team."/>
 		        <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/back.png" desc="Provided by the UX team."/>
@@ -448,10 +450,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_2.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_3.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_4.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
-        <filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_all_traffic_downStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
-        <filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_all_traffic_upStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
-        <filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_traffic_downStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
-        <filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_traffic_upStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_all_traffic_downStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_all_traffic_upStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_traffic_downStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_traffic_upStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/DlpManager.hap" desc="Provided by DlpManager"/>
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.hap" desc="Provided by FileEdit"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
