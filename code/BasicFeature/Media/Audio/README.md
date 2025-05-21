@@ -192,7 +192,7 @@ library/
 ```
 git init
 git config core.sparsecheckout true
-echo Audio/Audio/ > .git/info/sparse-checkout
+echo code/BasicFeature/Media/Audio > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
