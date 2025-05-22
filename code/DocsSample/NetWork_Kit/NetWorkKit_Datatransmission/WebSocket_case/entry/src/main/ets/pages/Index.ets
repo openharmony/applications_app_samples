@@ -103,6 +103,7 @@ struct WebSocketDemo {
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 
+// [Start websocket_development_steps]
   // 连接WebSocket
   connectWebSocket() {
     this.connectionStatus = 'Connecting...';
@@ -214,4 +215,6 @@ struct WebSocketDemo {
     this.ws.off('error');
     this.ws = null;
   }
+  // [End websocket_development_steps]
 }
+

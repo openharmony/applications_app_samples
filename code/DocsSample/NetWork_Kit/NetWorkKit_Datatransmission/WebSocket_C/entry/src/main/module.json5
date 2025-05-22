@@ -51,6 +51,7 @@
     "requestPermissions":[
       {
         "name" : "ohos.permission.INTERNET",
+        "reason": "$string:grant_internet",
         "usedScene": {
           "abilities": [
             "FormAbility"

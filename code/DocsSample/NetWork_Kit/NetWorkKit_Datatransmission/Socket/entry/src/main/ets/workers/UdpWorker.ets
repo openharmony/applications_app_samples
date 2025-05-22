@@ -40,6 +40,7 @@ function handleMessage(message: TcpMessage) {
   }
 }
 
+// [Start apply_udp_protocol_for_communication]
 function startServer(tcpMessage: TcpMessage) {
   let ipAddress: socket.NetAddress = {} as socket.NetAddress;
   ipAddress.address = tcpMessage.serverIp!; // 服务端IP
@@ -91,6 +92,7 @@ function disConnect() {
     }
   });
 }
+// [End apply_udp_protocol_for_communication]
 
 workerPort.onmessage = (e: MessageEvents) => {
   const message: TcpMessage = e.data;

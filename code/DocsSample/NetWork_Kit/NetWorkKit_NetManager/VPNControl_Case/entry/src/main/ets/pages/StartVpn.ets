@@ -26,15 +26,15 @@ import NotificationOperations from '../notification/NotificationOperations';
 
 // 提取常量
 const TITLE_FONT_SIZE = 35; // 标题字体大小
-const LABEL_FONT_SIZE = 30; // 标签字体大小
-const BUTTON_FONT_SIZE = 50; // 按钮字体大小
+const LABEL_FONT_SIZE = 20; // 标签字体大小
+const BUTTON_FONT_SIZE = 25; // 按钮字体大小
 const INPUT_MARGIN = 2; // 输入框边距
 const BUTTON_SUCCESS_MESSAGE = 4000; // Toast 显示时间
 const BUTTON_MARGIN = 16;
 
 let want: Want = {
   deviceId: '',
-  bundleName: 'com.example.myvpndemo',
+  bundleName: 'com.samples.vpncontrol_case',
   abilityName: 'MyVpnExtAbility',
 };
 
@@ -247,7 +247,7 @@ struct StartVpn {
             .margin(INPUT_MARGIN)
         }.width('90%')
 
-        Button('CreateTunnel')
+        Button($r('app.string.CreateTunnel'))
           .onClick(() => {
             this.CreateTunnel();
           })
@@ -255,7 +255,7 @@ struct StartVpn {
           .id(ComponentId.CREATE_TUNNEL_BUTTON)
           .fontSize(BUTTON_FONT_SIZE)
           .margin(BUTTON_MARGIN);
-        Button('Protect')
+        Button($r('app.string.Protect'))
           .onClick(() => {
             this.Protect();
           })
@@ -263,15 +263,8 @@ struct StartVpn {
           .id(ComponentId.PROTECT_BUTTON)
           .fontSize(BUTTON_FONT_SIZE)
           .margin(BUTTON_MARGIN);
-        Button('SetupVpn')
-          .onClick(() => {
-            this.SetupVpn();
-          })
-          .width('70%')
-          .id(ComponentId.SETUP_VPN_BUTTON)
-          .fontSize(BUTTON_FONT_SIZE)
-          .margin(BUTTON_MARGIN);
-        Button('start_vpnExt')
+        // [Start start_vpn_extension_ability]
+        Button($r('app.string.start_vpnExt'))
           .onClick(() => {
             try {
               vpnext.startVpnExtensionAbility(want).then(() => {
@@ -289,7 +282,15 @@ struct StartVpn {
           .id(ComponentId.START_VPN_EXT_BUTTON)
           .fontSize(BUTTON_FONT_SIZE)
           .margin(BUTTON_MARGIN)
-
+        // [End start_vpn_extension_ability]
+        Button($r('app.string.SetupVpn'))
+          .onClick(() => {
+            this.SetupVpn();
+          })
+          .width('70%')
+          .id(ComponentId.SETUP_VPN_BUTTON)
+          .fontSize(BUTTON_FONT_SIZE)
+          .margin(BUTTON_MARGIN);
       }.width('100%');
     }.height('100%');
 

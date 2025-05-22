@@ -299,6 +299,14 @@
     {
       "name": "Select_Server_Cert",
       "value": "选择服务器证书"
+    },
+    {
+      "name": "grant_internet",
+      "value": "网络使用权限"
+    },
+    {
+      "name": "grant_get_wifi_info",
+      "value": "获取wifi信息权限"
     }
   ]
 }

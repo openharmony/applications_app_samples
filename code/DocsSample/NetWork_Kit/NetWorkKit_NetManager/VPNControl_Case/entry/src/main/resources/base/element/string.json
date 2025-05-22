@@ -45,8 +45,36 @@
       "value": "vpn_clickable_notification"
     },
     {
-      "name": "vpn_clickable_information",
-      "value": "vpn_clickable_information"
+      "name": "Start_VPN",
+      "value": "Startup interface"
+    },
+    {
+      "name": "Stop_VPN",
+      "value": "Shutdown interface"
+    },
+    {
+      "name": "CreateTunnel",
+      "value": "CreateTunnel"
+    },
+    {
+      "name": "Protect",
+      "value": "Protect"
+    },
+    {
+      "name": "start_vpnExt",
+      "value": "Start_vpnExt"
+    },
+    {
+      "name": "SetupVpn",
+      "value": "SetupVpn"
+    },
+    {
+      "name": "stop_vpn",
+      "value": "Shutdown vpn"
+    },
+    {
+      "name": "stop_vpnExt",
+      "value": "Shutdown vpn_Ext"
     }
   ]
 }

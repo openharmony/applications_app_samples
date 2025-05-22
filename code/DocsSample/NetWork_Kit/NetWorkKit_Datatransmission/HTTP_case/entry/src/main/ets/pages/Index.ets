@@ -69,6 +69,7 @@ struct HttpRequestDemo {
     .justifyContent(FlexAlign.Center)
   }
   
+  // [Start request_interface_development]
   // 封装普通的 HTTP 请求逻辑
   private sendHttpRequest(): void {
     this.normalReqResult = $r('app.string.testing');
@@ -151,7 +152,9 @@ struct HttpRequestDemo {
     }
     );
   }
+  // [End request_interface_development]
 
+  // [Start request_in_stream_interface_development]
   // 封装流式 HTTP 请求逻辑
   private sendStreamHttpRequest(): void {
     this.streamReqResult = $r('app.string.testing');
@@ -234,4 +237,5 @@ struct HttpRequestDemo {
         httpRequest.destroy();
       });
   }
+  // [End request_in_stream_interface_development]
 }

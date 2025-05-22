@@ -55,6 +55,14 @@
     {
       "name": "TitleName",
       "value": "流量管理"
+    },
+    {
+      "name": "grant_internet",
+      "value": "网络使用权限"
+    },
+    {
+      "name": "grant_get_network_info",
+      "value": "获取网络信息权限"
     }
   ]
 }

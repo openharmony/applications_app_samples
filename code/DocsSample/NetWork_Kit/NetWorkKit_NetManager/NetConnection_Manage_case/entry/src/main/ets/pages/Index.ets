@@ -33,6 +33,8 @@ let netAddress: socket.NetAddress = {
   port: 8080 // 端口号，默认设置为8080
 };
 
+// [Start original_network_connection_uses_socket]
+// [Start monitor_default_network_change]
 // 监控默认网络变化
 async function test() {
   const netConnection = connection.createNetConnection();
@@ -41,6 +43,7 @@ async function test() {
     Logger.info(JSON.stringify(data));
   });
 }
+// [End monitor_default_network_change]
 
 // 原网络连接使用Socket模块建立连接
 async function useSocket() {
@@ -100,7 +103,9 @@ async function socketTest() {
     Logger.error(e.code.toString());
   };
 }
+// [End original_network_connection_uses_socket]
 
+// [Start construct_singleton_object]
 // 构造单例对象
 export class GlobalContext {
   private static instance: GlobalContext;
@@ -126,6 +131,7 @@ export class GlobalContext {
     this._objects.set(key, objectClass);
   }
 }
+// [End construct_singleton_object]
 
 export function resourceToString(resource: Resource): string {
   return getContext().resourceManager.getStringSync(resource);
@@ -259,6 +265,7 @@ struct NetworkConnectionPage {
     .justifyContent(FlexAlign.Center)
   }
 
+  // [Start notification_of_network_status_change]
   // 连接并接收指定网络的状态变化通知
   connectNetwork() {
     if (this.conn) {
@@ -320,7 +327,10 @@ struct NetworkConnectionPage {
       Logger.info('No active network connection.');
     }
   }
+  // [End notification_of_network_status_change]
 
+  // [Start query_the_capability_information_and_connection_information]
+  // [Start get_all_registered_networks]
   // 获取所有注册的网络
   getAllNetworks() {
     // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)
@@ -346,6 +356,7 @@ struct NetworkConnectionPage {
       }
     });
   }
+  // [End get_all_registered_networks]
 
   // 根据数据网络查询网络的能力信息及连接信息
   getDefaultNetwork() {
@@ -404,7 +415,9 @@ struct NetworkConnectionPage {
       }
     });
   }
+  // [End query_the_capability_information_and_connection_information]
 
+  // [Start resolve_the_domain_name_and_get_all_ips]
   // 使用默认网络解析主机名以获取所有IP地址
   getDefaultNetworkIP() {
     this.defaultNetworkIPStatus = 'Retrieving...';
@@ -426,4 +439,5 @@ struct NetworkConnectionPage {
       Logger.error('Failed to retrieve default network:', JSON.stringify(err));
     });
   }
+  // [End resolve_the_domain_name_and_get_all_ips]
 }

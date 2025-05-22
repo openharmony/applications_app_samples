@@ -39,6 +39,10 @@
     {
       "name": "CloseConnectionResult",
       "value": "关闭连接结果"
+    },
+    {
+      "name": "grant_internet",
+      "value": "网络使用权限"
     }
   ]
 }

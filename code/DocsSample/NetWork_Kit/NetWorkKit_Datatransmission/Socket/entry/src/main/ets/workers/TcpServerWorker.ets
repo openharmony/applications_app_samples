@@ -43,6 +43,7 @@ function handleMessage(message: TcpMessage) {
   }
 }
 
+// [Start application_transmits_data_via_tcp_socket_server]
 function startServer(tcpMessage: TcpMessage) {
   let ipAddress: socket.NetAddress = {} as socket.NetAddress;
   ipAddress.address = tcpMessage.serverIp!; // 服务端IP
@@ -131,6 +132,7 @@ function disConnect() {
 
   }
 }
+// [End application_transmits_data_via_tcp_socket_server]
 
 /**
  * Defines the event handler to be called when the worker thread receives a message sent by the host thread.

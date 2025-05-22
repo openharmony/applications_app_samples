@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "VPN_Case"
+      "value": "VPN示例"
     },
     {
       "name": "VPNExtensionAbility_desc",
@@ -47,6 +47,42 @@
     {
       "name": "Allow",
       "value": "允许"
+    },
+    {
+      "name": "Start_VPN",
+      "value": "启动接口"
+    },
+    {
+      "name": "Stop_VPN",
+      "value": "关闭接口"
+    },
+    {
+      "name": "CreateTunnel",
+      "value": "创建隧道"
+    },
+    {
+      "name": "Protect",
+      "value": "保护隧道"
+    },
+    {
+      "name": "start_vpnExt",
+      "value": "启动VPN拓展程序"
+    },
+    {
+      "name": "SetupVpn",
+      "value": "启动VPN"
+    },
+    {
+      "name": "stop_vpn",
+      "value": "关闭VPN"
+    },
+    {
+      "name": "stop_vpnExt",
+      "value": "关闭VPN拓展程序"
+    },
+    {
+      "name": "grant_internet",
+      "value": "网络使用权限"
     }
   ]
 }

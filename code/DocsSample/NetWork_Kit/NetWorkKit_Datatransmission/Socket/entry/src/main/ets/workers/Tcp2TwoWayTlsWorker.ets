@@ -75,6 +75,7 @@ function handleMessage(message: TlsTwoWayMessage) {
   }
 }
 
+// [Start two-way_authentication_by_upgrading_tcp_socket_to_tls_socket]
 // Handle file loading (CA certificate, client certificate, private key)
 function loadFile(fileUri: string) {
   try {
@@ -159,6 +160,7 @@ function sendMessageToServer(message: string) {
     workerPort.postMessage({ type: 'sendMessageFailure', message: `Send failed: ${e.message}` });
   });
 }
+// [End two-way_authentication_by_upgrading_tcp_socket_to_tls_socket]
 
 function buf2String(buf: ArrayBuffer): string {
   let msgArray = new Uint8Array(buf);
