@@ -67,7 +67,7 @@ static void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
     SampleXComponent::Release(id);
 }
 
-
+// [Start display_soloist_frame_rate_setting_and_subscription_function_registration]
 static void TestCallback(long long timestamp, long long targetTimestamp, void *data)
 {
     SAMPLE_LOGI("test callback timestamp = %{public}llu, ", timestamp);
@@ -109,6 +109,7 @@ static void TestCallback(long long timestamp, long long targetTimestamp, void *d
         render->Destroy();
     }
 }
+// [End display_soloist_frame_rate_setting_and_subscription_function_registration]
 
 static std::unordered_map<std::string, SampleXComponent *> g_instance;
 
@@ -248,6 +249,7 @@ void ExecuteDisplaySoloist(std::string id, DisplaySoloist_ExpectedRateRange rang
     OH_DisplaySoloist_Start(nativeDisplaySoloist, TestCallback, nativeXComponent);
 }
 
+// [Start display_soloist_napi_register]
 napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
 {
     SAMPLE_LOGI("NapiRegister");
@@ -297,6 +299,7 @@ napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
+// [End display_soloist_napi_register]
 
 napi_value SampleXComponent::NapiUnregister(napi_env env, napi_callback_info info)
 {

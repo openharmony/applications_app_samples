@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start display_soloist_export_interface_xcomponent_context]
 export default interface XComponentContext {
   register(): void;
 
@@ -19,3 +20,4 @@ export default interface XComponentContext {
 
   destroy(): void;
 };
+// [End display_soloist_export_interface_xcomponent_context]

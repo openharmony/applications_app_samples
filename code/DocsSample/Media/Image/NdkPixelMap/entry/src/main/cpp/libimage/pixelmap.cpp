@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ndk_pixelmap_bitmap_operations]
 #include <linux/kd.h>
 #include <string>
 
@@ -162,3 +163,4 @@ static Image_ErrorCode PixelmapTest()
     OH_PixelmapNative_Release(pixelmap);
     return IMAGE_SUCCESS;
 }
+// [End ndk_pixelmap_bitmap_operations]

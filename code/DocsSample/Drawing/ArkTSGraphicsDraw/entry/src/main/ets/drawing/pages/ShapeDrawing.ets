@@ -31,6 +31,7 @@ import {
 } from '../../pages/Index';
 
 function drawPoint(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_point]
   // 设置画笔
   let pen = new drawing.Pen();
   // 设置颜色
@@ -47,9 +48,11 @@ function drawPoint(canvas: drawing.Canvas) {
   canvas.drawPoint(VALUE_1000, VALUE_1000);
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_point]
 }
 
 function drawArc(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_arc]
   // 创建画笔
   let pen = new drawing.Pen();
   // 设置颜色
@@ -74,9 +77,11 @@ function drawArc(canvas: drawing.Canvas) {
   canvas.drawArc(rect, 0, 180);
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_arc]
 }
 
 function drawCircle(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_circle]
   // 创建画笔
   let pen = new drawing.Pen();
   // 设置颜色
@@ -94,9 +99,11 @@ function drawCircle(canvas: drawing.Canvas) {
   canvas.drawCircle(VALUE_630, VALUE_630, VALUE_500);
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_circle]
 }
 
 function drawPath(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_path]
   let height_ = VALUE_1800;
   let width_ = VALUE_1800;
   let len = height_ / 4;
@@ -145,9 +152,11 @@ function drawPath(canvas: drawing.Canvas) {
   canvas.detachBrush();
   // 去除描边效果
   canvas.detachPen();
+  // [End arkts_graphics_draw_path]
 }
 
 function drawRegion(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_region]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置颜色
@@ -166,9 +175,11 @@ function drawRegion(canvas: drawing.Canvas) {
   canvas.drawRegion(region1);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_region]
 }
 
 function drawRect(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_rect]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置颜色
@@ -179,9 +190,11 @@ function drawRect(canvas: drawing.Canvas) {
   canvas.drawRect(VALUE_200, VALUE_200, VALUE_1000, VALUE_700);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_rect]
 }
 
 function drawRoundRect(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_round_rect]
   // 创建画刷
   let brush = new drawing.Brush();
   // 设置颜色
@@ -202,6 +215,7 @@ function drawRoundRect(canvas: drawing.Canvas) {
   canvas.drawRoundRect(rrect);
   // 去除填充效果
   canvas.detachBrush();
+  // [End arkts_graphics_draw_round_rect]
 }
 
 // 自定义RenderNode

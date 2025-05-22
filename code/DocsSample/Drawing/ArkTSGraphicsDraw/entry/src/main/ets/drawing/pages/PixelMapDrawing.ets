@@ -21,6 +21,7 @@ import { VALUE_100, VALUE_200 } from '../../pages/Index';
 let pixelMap: image.PixelMap;
 
 function drawImage(canvas: drawing.Canvas) {
+  // Start arkts_graphics_draw_image]
   // 图片宽高
   let width = 600;
   let height = 400;
@@ -50,9 +51,11 @@ function drawImage(canvas: drawing.Canvas) {
   pixelMap = image.createPixelMapSync(color, opts);
   // 为了使图片完全显示，修改绘制起点参数为（100，200）
   canvas.drawImage(pixelMap, VALUE_100, VALUE_200);
+  // End arkts_graphics_draw_image]
 }
 
 function editPixel(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_edit_pixel]
   // 设置编辑区域的宽高
   let innerWidth = 400;
   let innerHeight = 200;
@@ -85,6 +88,7 @@ function editPixel(canvas: drawing.Canvas) {
   pixelMap.writePixelsSync(area);
   // 为了使图片完全显示，修改绘制起点参数为（100，200）
   canvas.drawImage(pixelMap, VALUE_100, VALUE_200);
+  // [End arkts_graphics_draw_edit_pixel]
 }
 
 // 自定义RenderNode

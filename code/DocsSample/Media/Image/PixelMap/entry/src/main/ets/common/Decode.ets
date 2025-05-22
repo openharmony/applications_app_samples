@@ -13,16 +13,26 @@
  * limitations under the License.
  */
 
+// [Start pixelmap_import_BusinessError_module]
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End pixelmap_importBusinessError_module]
+// [Start pixelmap_import_image_module_in_decode]
 import { image } from '@kit.ImageKit';
+// [End pixelmap_import_image_module_in_decode]
+// [Start pixelmap_import_fileio_modulef]
 import { fileIo as fs } from '@kit.CoreFileKit';
+// [End pixelmap_import_fileio_modulef]
+// [Start pixelmap_get_resource_manager]
 // 导入resourceManager资源管理器
+// [Start pixelmap_import_resource_manager_modulef]
 import { resourceManager } from '@kit.LocalizationKit';
+// [End pixelmap_import_resource_manager_modulef]
 import Logger from './Logger';
 
 const context: Context = getContext(this);
 // 获取resourceManager资源管理
 const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+// [End pixelmap_get_resource_manager]
 
 export class Decode {
   /**
@@ -32,10 +42,14 @@ export class Decode {
    * @returns 图片资源实例。
    **/
   public getImageSourceByFilePath(fileName: string): image.ImageSource {
+    // [Start pixelmap_get_image_by_filepath]
     const context: Context = getContext(this);
     const filePath: string = context.cacheDir + fileName;
+    // [End pixelmap_get_image_by_filepath]
     // path为已获得的沙箱路径
+    // [Start pixelmap_create_image_source_by_file_path]
     const imageSource: image.ImageSource = image.createImageSource(filePath);
+    // [End pixelmap_create_image_source_by_file_path]
     return imageSource;
   }
 
@@ -46,12 +60,16 @@ export class Decode {
    * @returns 图片资源实例。
    **/
   public getImageSourceByFd(fileName: string): image.ImageSource {
+    // [Start pixelmap_get_image_by_fd]
     const context: Context = getContext(this);
     const filePath = context.cacheDir + fileName;
     const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
     const fd: number = file?.fd;
+    // [End pixelmap_get_image_by_fd]
     // fd为已获得的文件描述符
+    // [Start pixelmap_create_image_source_by_fd]
     const imageSource: image.ImageSource = image.createImageSource(fd);
+    // [End pixelmap_create_image_source_by_fd]
     return imageSource;
   }
 
@@ -62,19 +80,25 @@ export class Decode {
    * @returns 图片资源实例。
    **/
   public getImageSourceByArrayBuffer(fileName: string): Promise<image.ImageSource> {
+    // [Start pixelmap_get_resource_manager_in_arraybuffer]
     const context: Context = getContext(this);
     const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+    // [End pixelmap_get_resource_manager_in_arraybuffer]
     return new Promise((resolve, reject) => {
+      // [Start pixelmap_get_arraybuffer_of_resource]
       resourceMgr.getRawFileContent(fileName).then((fileData: Uint8Array) => {
         Logger.info('getImageSourceByArrayBuffer: ', 'Succeeded in getting RawFileContent');
         // 获取图片的ArrayBuffer
         const buffer = fileData.buffer.slice(0);
+        // [Start pixelmap_create_image_source_by_arraybuffer]
         const imageSource: image.ImageSource = image.createImageSource(buffer);
+        // [End pixelmap_create_image_source_by_arraybuffer]
         resolve(imageSource);
       }).catch((err: BusinessError) => {
         Logger.error('getImageSourceByArrayBuffer: ', 'Failed to get RawFileContent');
         reject(err);
       });
+      // [End pixelmap_get_arraybuffer_of_resource]
     });
   }
 
@@ -85,18 +109,24 @@ export class Decode {
    * @returns 图片资源实例。
    **/
   public getImageSourceByRawFileDescriptor(fileName: string): Promise<image.ImageSource> {
+    // [Start pixelmap_get_resource_manager_in_raw_file_descriptor]
     // 获取resourceManager资源管理器
     const context: Context = getContext(this);
     const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+    // [End pixelmap_get_resource_manager_in_raw_file_descriptor]
     return new Promise((resolve, reject) => {
+      // [Start pixelmap_get_rawfd_by_resource_manager]
       resourceMgr.getRawFd(fileName).then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
         Logger.info('getImageSourceByRawFileDescriptor: ', 'Succeeded in getting RawFileDescriptor');
+        // [Start pixelmap_create_image_source_by_rawfd]
         const imageSource: image.ImageSource = image.createImageSource(rawFileDescriptor);
+        // [End pixelmap_create_image_source_by_rawfd]
         resolve(imageSource);
       }).catch((err: BusinessError) => {
         Logger.error('getImageSourceByRawFileDescriptor: ', 'Failed to get RawFileDescriptor');
         reject(err);
       });
+      // [End pixelmap_get_rawfd_by_resource_manager]
     });
   }
 
@@ -158,6 +188,7 @@ export class Decode {
    **/
   public async decodeByFormat(): Promise<image.PixelMap> {
     Logger.info('getPixelMap DecodeByFormat Start');
+    // [Start pixelmap_decode_using_RGBA_8888_format]
     let img = await getContext(this).resourceManager.getMediaContent($r('app.media.image'));
     let imageSource: image.ImageSource = image.createImageSource(img.buffer.slice(0));
     let decodingOptions: image.DecodingOptions = {
@@ -173,7 +204,11 @@ export class Decode {
         Logger.error('decodeByFormat: ', 'Failed to create PixelMap');
         reject(err);
       });
+      // [Start pixelmap_release_image_source]
+      imageSource.release();
+      // [End pixelmap_release_image_source]
     });
+    // [End pixelmap_decode_using_RGBA_8888_format]
   }
 
   /**
@@ -182,6 +217,7 @@ export class Decode {
    * @returns 位图操作对象。
    **/
   public async decodeByAuto(): Promise<image.PixelMap> {
+    // [Start pixelmap_decode_using_auto_format]
     let img = await getContext(this).resourceManager.getMediaContent($r('app.media.CUVAHdr'));
     let imageSource: image.ImageSource = image.createImageSource(img.buffer.slice(0));
     let decodingOptions: image.DecodingOptions = {
@@ -200,7 +236,9 @@ export class Decode {
         Logger.error('decodeByAuto: ', 'Failed to create PixelMap');
         reject(err);
       });
+      imageSource.release();
     });
+    // [End pixelmap_decode_using_auto_format]
   }
 
   /**
@@ -210,11 +248,13 @@ export class Decode {
    **/
   public decodeSample_1(): Promise<image.PixelMap> {
     return new Promise((resolve, reject) => {
+      // [Start pixelmap_create_image_source_by_text_jpg_arraybuffer]
       resourceMgr.getRawFileContent('test.jpg').then((fileData: Uint8Array) => {
         Logger.info('decodeSample_1: ', 'Succeeded in getting RawFileContent');
         // 获取图片的ArrayBuffer
         const buffer = fileData.buffer.slice(0);
         const imageSource: image.ImageSource = image.createImageSource(buffer);
+        // [Start pixelmap_create_pixelmap]
         imageSource.createPixelMap().then((pixelMap: image.PixelMap) => {
           Logger.info('decodeSample_1: ', 'Succeeded in creating PixelMap');
           resolve(pixelMap);
@@ -222,10 +262,13 @@ export class Decode {
           Logger.error('decodeSample_1: ', 'Failed to create PixelMap');
           reject(err);
         });
+        // [End pixelmap_create_pixelmap]
+        imageSource.release();
       }).catch((err: BusinessError) => {
         Logger.error('decodeSample_1: ', 'Failed to get RawFileContent');
         reject(err);
       });
+      // [End pixelmap_create_image_source_by_text_jpg_arraybuffer]
     });
   }
 
@@ -246,6 +289,7 @@ export class Decode {
           Logger.error('decodeSample_2: ', 'Failed to create PixelMap');
           reject(err);
         });
+        imageSource.release();
       }).catch((err: BusinessError) => {
         Logger.error('decodeSample_2: ', 'Failed to get RawFileContent');
         reject(err);

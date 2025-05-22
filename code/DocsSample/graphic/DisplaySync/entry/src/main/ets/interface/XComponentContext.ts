@@ -12,8 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start display_sync_export_interface_xcomponent_context]
 export default interface XComponentContext {
   register(): void;
 
   unregister(): void;
 };
+// [End display_sync_export_interface_xcomponent_context]

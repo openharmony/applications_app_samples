@@ -46,6 +46,7 @@ PluginManager::~PluginManager()
     pluginRenderMap_.clear();
 }
 
+// [Start display_soloist_export_api]
 void PluginManager::Export(napi_env env, napi_value exports)
 {
     nativeXComponentMap_.clear();
@@ -87,6 +88,7 @@ void PluginManager::Export(napi_env env, napi_value exports)
         }
     }
 }
+// [End display_soloist_export_api]
 
 void PluginManager::SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent)
 {

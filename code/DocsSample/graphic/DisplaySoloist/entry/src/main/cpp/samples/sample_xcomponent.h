@@ -14,6 +14,7 @@
  */
 #ifndef SAMPLE_XCOMPONENT_H
 #define SAMPLE_XCOMPONENT_H
+// [Start display_soloist_import_module]
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <arpa/nameser.h>
 #include <bits/alltypes.h>
@@ -29,6 +30,7 @@
 #include <sys/mman.h>
 #include <string>
 #include "napi/native_api.h"
+// [End display_soloist_import_module]
 
 class SampleXComponent {
 public:

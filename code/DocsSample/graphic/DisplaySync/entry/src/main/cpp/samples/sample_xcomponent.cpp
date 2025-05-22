@@ -63,6 +63,7 @@ static void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
     SampleXComponent::Release(id);
 }
 
+// Start display_sync_napi_frame_rate_setting_and_subscription_function_registration]
 static void TestCallback(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp)
 {
     SAMPLE_LOGI("test callback timestamp = %{public}llu, targetTimestamp = %{public}llu", timestamp, targetTimestamp);
@@ -102,6 +103,7 @@ static void TestCallback(OH_NativeXComponent *component, uint64_t timestamp, uin
         render->Destroy();
     }
 }
+// End display_sync_napi_frame_rate_setting_and_subscription_function_registration]
 
 static std::unordered_map<std::string, SampleXComponent *> g_instance;
 
@@ -240,8 +242,10 @@ void SampleXComponent::DrawPath()
     OH_Drawing_CanvasDrawPath(cCanvas_, cPath_);
 }
 
+// [Start display_sync_napi_register]
 napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
 {
+    // [StartExclude display_sync_napi_register]
     SAMPLE_LOGI("NapiRegister");
     if ((env == nullptr) || (info == nullptr)) {
         SAMPLE_LOGE("NapiRegister: env or info is null");
@@ -285,13 +289,19 @@ napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
             OH_NativeXComponent_ExpectedRateRange range = {30, 120, 120};
             OH_NativeXComponent_SetExpectedFrameRateRange(nativeXComponent, &range);
         }
+        // [EndExclude display_sync_napi_register]
         render->RegisterOnFrameCallback(nativeXComponent);
+        // [StartExclude display_sync_napi_register]
     }
     return nullptr;
+    // [EndExclude display_sync_napi_register]
 }
+// [End display_sync_napi_register]
 
+// [Start display_sync_napi_unregister]
 napi_value SampleXComponent::NapiUnregister(napi_env env, napi_callback_info info)
 {
+    // [StartExclude display_sync_napi_unregister]
     SAMPLE_LOGI("NapiUnregister");
     if ((env == nullptr) || (info == nullptr)) {
         SAMPLE_LOGE("NapiUnregister: env or info is null");
@@ -326,13 +336,17 @@ napi_value SampleXComponent::NapiUnregister(napi_env env, napi_callback_info inf
     std::string id(idStr);
     SampleXComponent *render = SampleXComponent().GetInstance(id);
     if (render != nullptr) {
+        // [EndExclude display_sync_napi_unregister]
         OH_NativeXComponent_UnregisterOnFrameCallback(nativeXComponent);
+        // [StartExclude display_sync_napi_unregister]
         SAMPLE_LOGI("NapiUnregister executed");
     } else {
         SAMPLE_LOGE("render is nullptr");
     }
     return nullptr;
+    // [EndExclude display_sync_napi_unregister]
 }
+// [End display_sync_napi_unregister]
 
 SampleXComponent::~SampleXComponent()
 {
@@ -402,11 +416,13 @@ void SampleXComponent::RegisterCallback(OH_NativeXComponent *nativeXComponent)
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &renderCallback_);
 }
 
+// [Start display_sync_register_on_frame_callback]
 void SampleXComponent::RegisterOnFrameCallback(OH_NativeXComponent *nativeXComponent)
 {
     SAMPLE_LOGI("register onFrameCallback");
     OH_NativeXComponent_RegisterOnFrameCallback(nativeXComponent, TestCallback);
 }
+// [End display_sync_register_on_frame_callback]
 
 SampleXComponent *SampleXComponent::GetInstance(std::string &id)
 {

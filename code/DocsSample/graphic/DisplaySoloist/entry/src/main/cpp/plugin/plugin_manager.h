@@ -22,6 +22,7 @@
 #include <unordered_map>
 #include "samples/sample_xcomponent.h"
 
+// [Start display_soloist_create_plugin_manager]
 class PluginManager {
 public:
     ~PluginManager();
@@ -36,4 +37,5 @@ private:
     std::unordered_map<std::string, OH_NativeXComponent *> nativeXComponentMap_;
     std::unordered_map<std::string, SampleXComponent *> pluginRenderMap_;
 };
+// [End display_soloist_create_plugin_manager]
 #endif // PLUGIN_MANAGER_H

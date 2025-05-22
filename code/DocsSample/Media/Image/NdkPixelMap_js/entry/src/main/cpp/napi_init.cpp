@@ -19,17 +19,25 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
+        // [Start ndk_pixelmap_js_init_get_sync_pixelmap]
         {"getSyncPixelMap", nullptr, getSyncPixelMap, nullptr, nullptr, nullptr, napi_default, nullptr},
+        // [End ndk_pixelmap_js_init_get_sync_pixelmap]
         {"getSyncPixelMapIncremental", nullptr, getSyncPixelMapIncremental, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        // [Start ndk_pixelmap_js_init_image_transformation_api]
         {"testGetImageInfo", nullptr, TestGetImageInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testAccessPixels", nullptr, TestAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testUnAccessPixels", nullptr, TestUnAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr},
+        // [End ndk_pixelmap_js_init_image_transformation_api]
+        // [Start ndk_pixelmap_js_init_pixelmap_operation_api]
         {"createPixelMapTest", nullptr, CreatePixelMapTest, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"createAlphaPixelMap", nullptr, CreateAlphaPixelMap, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"transform", nullptr, Transform, nullptr, nullptr, nullptr, napi_default, nullptr},
+        // [End ndk_pixelmap_js_init_pixelmap_operation_api]
+        // [Start ndk_pixelmap_js_init_decode_api]
         {"EncodeImagesToFile", nullptr, EncodeImagesToFile, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"EncodeImagesToBuffer", nullptr, EncodeImagesToBuffer, nullptr, nullptr, nullptr, napi_default, nullptr},
+        // [End ndk_pixelmap_js_init_decode_api]
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

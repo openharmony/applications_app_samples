@@ -14,13 +14,17 @@
  */
 
 // 导入相关模块包
+// [Start pixelmap_import_image_module_in_encode]
 import { image } from '@kit.ImageKit';
+// [End pixelmap_import_image_module_in_encode]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import Logger from './Logger';
 
 const context: Context = getContext(this);
+// [Start pixelmap_create_image_packer]
 const imagePackerApi = image.createImagePacker();
+// [End pixelmap_create_image_packer]
 
 /**
  *  图片编码，通过PixelMap将图片打包成文件流，再将文件流写入文件保存。
@@ -31,10 +35,15 @@ const imagePackerApi = image.createImagePacker();
 export async function encodeToStreamByPixelMap(pixelMap: image.PixelMap, isHdr:boolean) {
   const path: string = context.cacheDir + '/pixel_map.jpg';
   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  // [Start pixelmap_set_image_packer_option]
   let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
+  // [End pixelmap_set_image_packer_option]
   if(isHdr == true) {
+    // [Start pixelmap_hdr_content_encoding]
     packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
+    // [End pixelmap_hdr_content_encoding]
   }
+  // [Start pixelmap_encoding_through_pixelmap]
   imagePackerApi.packing(pixelMap, packOpts).then((data: ArrayBuffer) => {
     // data 为打包获取到的文件流，写入文件保存即可得到一张图片
     fs.write(file.fd, data);
@@ -42,6 +51,7 @@ export async function encodeToStreamByPixelMap(pixelMap: image.PixelMap, isHdr:b
   }).catch((error: BusinessError) => {
     Logger.error('Failed to pack the image. And the error is: ', String(error));
   })
+  // [End pixelmap_encoding_through_pixelmap]
 }
 
 /**
@@ -57,6 +67,7 @@ export async function encodeToStreamByImageSource(imageSource:image.ImageSource,
   }
   const path: string = context.cacheDir + '/pixel_map.jpg';
   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  // [Start pixelmap_encoding_through_image_source]
   imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
     // data 为打包获取到的文件流，写入文件保存即可得到一张图片
     fs.write(file.fd, data);
@@ -64,6 +75,7 @@ export async function encodeToStreamByImageSource(imageSource:image.ImageSource,
   }).catch((error : BusinessError) => {
     Logger.error('Failed to pack the image. And the error is: ', String(error));
   })
+  // [End pixelmap_encoding_through_image_source]
 }
 
 /**
@@ -77,6 +89,7 @@ export async function encodeToFileByPixelMap(pixelMap: image.PixelMap,isHdr:bool
   if(isHdr == true) {
     packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
   }
+  // [Start pixelmap_encoding_into_file_through_pixelmap]
   const path : string = context.cacheDir + '/pixel_map.jpg';
   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   await imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
@@ -85,6 +98,7 @@ export async function encodeToFileByPixelMap(pixelMap: image.PixelMap,isHdr:bool
   }).catch((error : BusinessError) => {
     Logger.error('Failed to pack the image. And the error is: ', String(error));
   })
+  // [End pixelmap_encoding_into_file_through_pixelmap]
 }
 
 /**
@@ -98,6 +112,7 @@ export async function encodeToFileByImageSource(imageSource:image.ImageSource,is
   if(isHdr == true) {
     packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
   }
+  // [Start pixelmap_encoding_into_file_through_image_source]
   const filePath : string = context.cacheDir + '/image_source.jpg';
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
@@ -106,4 +121,5 @@ export async function encodeToFileByImageSource(imageSource:image.ImageSource,is
   }).catch((error : BusinessError) => {
     Logger.error('Failed to pack the image. And the error is: ', String(error));
   })
+  // [End pixelmap_encoding_into_file_through_image_source]
 }

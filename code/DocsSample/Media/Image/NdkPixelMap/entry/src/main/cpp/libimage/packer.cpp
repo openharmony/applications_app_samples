@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ndk_pixelmap_packer]
 #include <linux/kd.h>
 #include <string>
 
@@ -144,3 +145,4 @@ static Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t buffSi
 
     return IMAGE_SUCCESS;
 }
+// [End ndk_pixelmap_packer]

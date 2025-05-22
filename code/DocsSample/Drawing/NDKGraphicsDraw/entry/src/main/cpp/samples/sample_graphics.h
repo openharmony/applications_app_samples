@@ -17,17 +17,23 @@
 #define SAMPLE_GRAPHICS_H
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <native_window/external_window.h>
+// [Start ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
 #include <native_drawing/drawing_bitmap.h>
+// [StartExclude ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
 #include <native_drawing/drawing_color.h>
+// [EndExclude ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
 #include <native_drawing/drawing_canvas.h>
+// [End ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
 #include <native_drawing/drawing_pen.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_path.h>
 #include <cstdint>
 #include <unordered_map>
 #include <string>
+// [Start ndk_graphics_draw_include_egl_module]
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
+// [End ndk_graphics_draw_include_egl_module]
 #include <GLES3/gl3.h>
 #include "napi/native_api.h"
 
@@ -116,10 +122,12 @@ private:
     static float value1200_;
     bool desc = false;
 
+    // [Start ndk_graphics_draw_initialize_egl_context_parameter]
     EGLDisplay EGLDisplay_ = EGL_NO_DISPLAY;
     EGLConfig EGLConfig_ = nullptr;
     EGLContext EGLContext_ = EGL_NO_CONTEXT;
     EGLSurface EGLSurface_ = nullptr;
+    // [End ndk_graphics_draw_initialize_egl_context_parameter]
     
     OH_Drawing_Bitmap *cScreenBitmap_ = nullptr;
     OH_Drawing_Canvas *cScreenCanvas_ = nullptr;

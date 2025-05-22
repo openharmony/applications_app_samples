@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start display_sync_create_xcomponent]
 import XComponentContext from '../interface/XComponentContext';
 import { router } from '@kit.ArkUI';
 
@@ -24,6 +25,7 @@ struct Index {
   build() {
     Column() {
       Row() {
+        // [StartExclude display_sync_create_xcomponent]
         Text('30fps')
           .fontWeight(FontWeight.Bold)
           .fontSize(12)
@@ -31,10 +33,11 @@ struct Index {
           .textAlign(TextAlign.End)
           .width(40)
           .height(30)
+        // [EndExclude display_sync_create_xcomponent]
 
         XComponent({
           id: 'xcomponentId_30',
-          type: 'surface',
+          type: XComponentType.SURFACE,
           libraryname: 'entry'
         })
           .onLoad((xComponentContext) => {
@@ -47,6 +50,7 @@ struct Index {
 
 
       Row() {
+        // [StartExclude display_sync_create_xcomponent]
         Text('120fps')
           .fontWeight(FontWeight.Bold)
           .fontSize(12)
@@ -54,10 +58,11 @@ struct Index {
           .textAlign(TextAlign.End)
           .width(40)
           .height(30)
+        // [EndExclude display_sync_create_xcomponent]
 
         XComponent({
           id: 'xcomponentId_120',
-          type: 'surface',
+          type: XComponentType.SURFACE,
           libraryname: 'entry'
         })
           .onLoad((xComponentContext) => {
@@ -65,7 +70,9 @@ struct Index {
           }).width('640px')
           .backgroundColor(Color.White)
       }.height('40%')
+      // [End display_sync_create_xcomponent]
 
+      // [Start display_sync_start_and_stop_per_frame_callback]
       Row() {
         Button('Start')
           .id('Start')
@@ -100,6 +107,7 @@ struct Index {
           .width('30%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+        // [End display_sync_start_and_stop_per_frame_callback]
 
         Button('Back')
           .id('Back')

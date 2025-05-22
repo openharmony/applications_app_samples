@@ -13,17 +13,22 @@
  * limitations under the License.
  */
 
+// [Start ndk_pixelmap_js_export_get_sync_pixelmap]
+// [Start ndk_pixelmap_js_import_image]
 import { image } from '@kit.ImageKit';
+// [End ndk_pixelmap_js_import_image]
 import { resourceManager } from '@kit.LocalizationKit';
 
 // 同步调用，入参为资源管理器和图片资源名称，返回PixelMap
 export const getSyncPixelMap: (resMgr: resourceManager.ResourceManager, src: string) => image.PixelMap;
-
+// [End ndk_pixelmap_js_export_get_sync_pixelmap]
+// [Start ndk_pixelmap_js_export_image_transformation_api]
 export const testGetImageInfo: (a: image.PixelMap) => image.PixelMap;
 
 export const testAccessPixels: (a: image.PixelMap) => image.PixelMap;
 
 export const testUnAccessPixels: (a: image.PixelMap) => image.PixelMap;
+// [End ndk_pixelmap_js_export_image_transformation_api]
 
 export const createPixelMapTest: () => image.PixelMap;
 

@@ -144,6 +144,7 @@ struct ImageEditPage {
             .objectFit(ImageFit.None)
         }
         if (this.inputType == 'NativeWindow') {
+          // [Start image_effect_add_xcomponent]
           XComponent({
             id: 'xcomponentId',
             type: XComponentType.SURFACE,
@@ -160,6 +161,7 @@ struct ImageEditPage {
             })
             .width('100%')
             .height('100%')
+          // [End image_effect_add_xcomponent]
         }
       }
       .clip(true)

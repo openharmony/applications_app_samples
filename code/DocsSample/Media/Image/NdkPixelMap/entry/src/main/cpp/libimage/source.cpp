@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ndk_pixelmap_source]
 #include <linux/kd.h>
 #include <string>
 
@@ -179,3 +180,4 @@ static napi_value sourceTest(napi_env env, napi_callback_info info)
     OH_LOG_INFO(LOG_APP, "ImageSourceNativeCTest sourceTest success.");
     return getJsResult(env, IMAGE_SUCCESS);
 }
+// [End ndk_pixelmap_source]

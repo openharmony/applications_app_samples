@@ -25,12 +25,14 @@ import Logger from './Logger';
  **/
 export async function readAndEditEXIF(fd: number) {
   Logger.info('readAndEditEXIF Start');
+  // [Start pixelmap_create_image_source_by_fd_in_edit]
   // 获取沙箱路径创建ImageSource
   const imageSourceApi: image.ImageSource = image.createImageSource(fd);
+  // [End pixelmap_create_image_source_by_fd_in_edit]
   if (imageSourceApi == null) {
     Logger.error('fd undefined');
   }
-
+  // [Start pixelmap_read_and_edit_EXIF_info]
   // 读取EXIF信息，BitsPerSample为每个像素比特数
   let options: image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
   await imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data: string) => {
@@ -49,6 +51,7 @@ export async function readAndEditEXIF(fd: number) {
   }).catch((error: BusinessError) => {
     Logger.error('Failed to modify the Image Width.', String(error));
   })
+  // [End pixelmap_read_and_edit_EXIF_info]
 
   Logger.info('readAndEditEXIF End');
 }

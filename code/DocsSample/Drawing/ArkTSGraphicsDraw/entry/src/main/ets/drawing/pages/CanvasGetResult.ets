@@ -18,6 +18,7 @@ import { image } from '@kit.ImageKit';
 import { taskpool } from '@kit.ArkTS';
 import { drawing } from '@kit.ArkGraphics2D';
 
+// [Start arkts_graphics_draw_direct_canvas_api]
 // 1. 自定义 RenderNode
 class MyRenderNodeDirectDisplay extends RenderNode {
   async draw(context: DrawContext) {
@@ -61,7 +62,9 @@ class MyNodeControllerDirectDisplay extends NodeController {
     return this.rootNode;
   }
 }
+// [End arkts_graphics_draw_direct_canvas_api]
 
+// [Start arkts_graphics_draw_indirect_canvas_api]
 // 1. 自定义RenderNode
 export class MyRenderNodeIndirectDisplay extends RenderNode {
   private pixelMap: image.PixelMap | null = null;
@@ -127,7 +130,9 @@ export class MyNodeControllerIndirectDisplay extends NodeController {
     return this.rootNode;
   }
 }
+// [End arkts_graphics_draw_indirect_canvas_api]
 
+// [Start arkts_graphics_draw_direct_and_indirect_canvas]
 @Entry
 @Component
 struct CanvasGetResult {
@@ -156,3 +161,4 @@ struct CanvasGetResult {
     }
   }
 }
+// [End arkts_graphics_draw_direct_and_indirect_canvas]

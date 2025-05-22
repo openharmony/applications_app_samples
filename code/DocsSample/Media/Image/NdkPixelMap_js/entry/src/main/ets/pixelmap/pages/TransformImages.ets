@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ndk_pixelmap_js_image_transformation]
 import testNapi from 'libentry.so';
 import { image } from '@kit.ImageKit';
 import { router } from '@kit.ArkUI';
@@ -62,3 +63,4 @@ struct TransformImages {
     .height('100%')
   }
 }
+// [End ndk_pixelmap_js_image_transformation]

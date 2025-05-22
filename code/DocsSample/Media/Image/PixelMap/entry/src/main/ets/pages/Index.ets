@@ -63,7 +63,9 @@ struct Index {
 
   aboutToDisappear(): void {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_release_pixelmap]
       this.pixelMap.release();
+      // [End pixelmap_release_pixelmap]
     }
     if (this.oldPixelMap != undefined) {
       this.oldPixelMap.release();
@@ -207,6 +209,7 @@ struct Index {
   private async updateImageInfo() {
     this.changeFlag = !this.changeFlag;
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_get_image_info]
       // 获取图片大小
       await this.pixelMap.getImageInfo().then((info: image.ImageInfo) => {
         this.imageInfo = info;
@@ -215,12 +218,14 @@ struct Index {
       }).catch((err: BusinessError) => {
         Logger.error('Failed to obtain the image pixel map information.And the error is: ', String(err));
       });
+      // [End pixelmap_get_image_info]
     }
   }
 
   // 裁剪大小为400×400
   private cropImage() {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_crop_image]
       // x：裁剪起始点横坐标0
       // y：裁剪起始点纵坐标0
       // height：裁剪高度400，方向为从上往下（裁剪后的图片高度为400）
@@ -228,26 +233,31 @@ struct Index {
       this.pixelMap.crop({ x: 0, y: 0, size: { height: 400, width: 400 } }).then(() => {
         this.updateImageInfo();
       })
+      // [End pixelmap_crop_image]
     }
   }
 
   // 缩放图片大小为原来的1/2
   private scaleImage() {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_scale_image]
       // 宽为原来的0.5
       // 高为原来的0.5
       this.pixelMap.scale(0.5, 0.5).then(() => {
         this.updateImageInfo();
       })
+      // [End pixelmap_scale_image]
     }
   }
 
   // 向右下移动图片
   private translateImage() {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_translate_image]
       // 向下偏移100
       // 向右偏移100
       this.pixelMap.translate(100, 100).then(() => {
+        // [End pixelmap_translate_image]
         // 偏移后图片变为800×800,重新裁剪为700×700
         if (this.imageInfo!.size.height == 700) {
           this.pixelMap!.crop({ x: 0, y: 0, size: { height: 700, width: 700 } }).then(() => {
@@ -263,46 +273,55 @@ struct Index {
   // 顺时针旋转图片
   private rotateImage() {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_rotate_image]
       // 顺时针旋转90°
       this.pixelMap.rotate(90).then(() => {
         this.updateImageInfo();
       })
+      // [End pixelmap_rotate_image]
     }
   }
 
   // 垂直翻转图片
   private verticalFlipImage() {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_vertical_flip_image]
       // 垂直翻转
       this.pixelMap.flip(false, true).then(() => {
         this.updateImageInfo();
       })
+      // [End pixelmap_vertical_flip_image]
     }
   }
 
   // 水平翻转图片
   private horizontalFlipImage() {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_horizontal_flip_image]
       // 水平翻转
       this.pixelMap.flip(true, false).then(() => {
         this.updateImageInfo();
       })
+      // [End pixelmap_horizontal_flip_image]
     }
   }
 
   // 修改图片透明度为0.5
   private changeOpacityImage() {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_change_opacity_image]
       // 透明度0.5
       this.pixelMap.opacity(0.5).then(() => {
         this.updateImageInfo();
       })
+      // [End pixelmap_change_opacity_image]
     }
   }
 
   // 位图操作所有像素
   private async bitmapOperationAll() {
     if (this.pixelMap != undefined) {
+      // [Start pixelmap_get_pixelmap_info]
       // 获取图像像素的总字节数
       let pixelBytesNumber: number = this.pixelMap.getPixelBytesNumber();
       Logger.info('pixelBytesNumber:', pixelBytesNumber.toString());
@@ -312,7 +331,9 @@ struct Index {
       // 获取当前图像像素密度。像素密度是指每英寸图片所拥有的像素数量。像素密度越大，图片越精细。
       let getDensity: number = this.pixelMap.getDensity();
       Logger.info('getDensity:', getDensity.toString());
+      // [End pixelmap_get_pixelmap_info]
 
+      // [Start pixelmap_bitmap_operation_all]
       // 场景一：将读取的整张图像像素数据结果写入ArrayBuffer中
       const buffer = new ArrayBuffer(pixelBytesNumber);
       await this.pixelMap.readPixelsToBuffer(buffer).then(() => {
@@ -320,6 +341,7 @@ struct Index {
       }).catch((error: BusinessError) => {
         Logger.error('Failed to read image pixel data. And the error is: ' + String(error));
       })
+      // [StartExclude pixelmap_bitmap_operation_all]
       let bufferArr: Uint8Array = new Uint8Array(buffer);
       // RGBA_8888格式下，一个像素点由4个字节组成，分别表示Red、Green、Blue、Alpha四个通道的值。
       for (let i = 0; i < bufferArr.length; i++) {
@@ -340,18 +362,21 @@ struct Index {
             break;
         }
       }
+      // [EndExclude pixelmap_bitmap_operation_all]
       this.pixelMap!.writeBufferToPixels(buffer).then(() => {
         Logger.info('Succeeded in writing image pixel data.');
         this.updateImageInfo();
       }).catch((error : BusinessError) => {
         Logger.error('Failed to write image pixel data. And the error is: ' + String(error));
       })
+      // [End pixelmap_bitmap_operation_all]
     }
   }
 
   // 位图操作部分像素
   private async bitmapOperation() {
     if (this.pixelMap !== undefined) {
+      // [Start pixelmap_bitmap_operation]
       // 场景二：读取指定区域内的图片数据，结果写入area.pixels中
       const area: image.PositionArea = {
         pixels: new ArrayBuffer(8),
@@ -361,6 +386,7 @@ struct Index {
       }
       await this.pixelMap.readPixels(area).then(() => {
         Logger.info('Succeeded in reading the image data in the area.');
+        // [StartExclude pixelmap_bitmap_operation]
         // 对于读取的图片数据，可以独立使用（创建新的pixelMap），也可以对area.pixels进行所需修改
         // RGBA_8888格式下，一个像素点由4个字节组成，分别表示Red、Green、Blue、Alpha四个通道的值。
         for (let i = 0; i < area.pixels.byteLength; i++) {
@@ -381,6 +407,7 @@ struct Index {
               break;
           }
         }
+        // [EndExclude pixelmap_bitmap_operation]
       }).catch((error: BusinessError) => {
         Logger.error('Failed to read the image data in the area. And the error is: ' + String(error));
       })
@@ -391,9 +418,11 @@ struct Index {
       }).catch((error: BusinessError) => {
         Logger.error('Failed to write pixelMap into the specified area. And the error is: ' + String(error));
       })
+      // [End pixelmap_bitmap_operation]
     }
   }
 
+  // [Start pixelmap_clone]
   /**
    *  复制（深拷贝）一个新的PixelMap
    *
@@ -425,3 +454,4 @@ struct Index {
     this.pixelMap = await this.decode.decodeByFormatWithParameter(imageSource);
   }
 }
+// [End pixelmap_clone]
