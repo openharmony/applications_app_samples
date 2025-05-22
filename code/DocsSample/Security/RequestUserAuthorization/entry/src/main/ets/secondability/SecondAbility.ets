@@ -14,6 +14,7 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [Start request_permission_in_UIAbility]
 import { abilityAccessCtrl, AbilityConstant, common, Permissions, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -21,7 +22,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const permissions: Permissions[] = ['ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'];
 
 function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
+  // [Start second_request_permission]
   let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+  // [StartExclude second_request_permission]
   // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
   atManager.requestPermissionsFromUser(context, permissions).then((data) => {
     let grantStatus: number[]= data.authResults;
@@ -32,6 +35,8 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
 
       } else {
         // 用户拒绝授权，拉起二次授权功能
+
+        // [EndExclude second_request_permission]
         atManager.requestPermissionOnSetting(context, ['ohos.permission.APPROXIMATELY_LOCATION'])
           .then((data: Array<abilityAccessCtrl.GrantStatus>) => {
             console.info('data:' + JSON.stringify(data));
@@ -39,6 +44,7 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
           .catch((err: BusinessError) => {
             console.error('data:' + JSON.stringify(err));
           });
+        // [End second_request_permission]
         return;
       }
     }
@@ -49,6 +55,7 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
 }
 
 export default class SecondAbility extends UIAbility {
+  // [StartExclude request_permission_in_UIAbility]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -56,21 +63,24 @@ export default class SecondAbility extends UIAbility {
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
-
+  // [EndExclude request_permission_in_UIAbility]
   onWindowStageCreate(windowStage: window.WindowStage): void {
+    // [StartExclude request_permission_in_UIAbility]
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
+  // [EndExclude request_permission_in_UIAbility]
     windowStage.loadContent('secondpages/Index', (err) => {
       reqPermissionsFromUser(permissions, this.context);
+      // [StartExclude request_permission_in_UIAbility]
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+      // [EndExclude request_permission_in_UIAbility]
     });
   }
-
+  // [StartExclude request_permission_in_UIAbility]
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
@@ -103,4 +113,6 @@ export default class SecondAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
 
   }
+  // [EndExclude request_permission_in_UIAbility]
 }
+// [End request_permission_in_UIAbility]
