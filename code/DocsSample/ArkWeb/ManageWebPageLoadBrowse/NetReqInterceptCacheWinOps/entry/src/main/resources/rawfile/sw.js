@@ -13,6 +13,7 @@
 * limitations under the License.
 */
 
+// [Start add_event_listener_java_script]
 self.addEventListener('install', event => {
     console.log('v1 installing');
     event.waitUntil(
@@ -23,3 +24,4 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
     console.log('v1 now redy to handle fetches.');
 });
+// [End add_event_listener_java_script]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start the_arkts_interface_is_exposed_on_the_node_api_side]
 export const nativeWebInit: (webName: string) => void;
 export const createWebMessagePorts: (webName: string) => void;
 export const postMessage: (webName: string) => void;
@@ -24,3 +25,4 @@ export const postBufferMessage: (webName: string) => void;
 export const destroyNullMessagePort: (webName: string) => void;
 export const setMessageEventHandlerThread: (webName: string) => void;
 export const postMessageThread: (webName: string) => void;
+// [End the_arkts_interface_is_exposed_on_the_node_api_side]

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start clear_all_intelligent_tracking_prevention_bypasses]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -30,3 +30,4 @@ struct WebComponent {
     }
   }
 }
+// [End clear_all_intelligent_tracking_prevention_bypasses]

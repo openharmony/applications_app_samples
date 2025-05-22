@@ -13,6 +13,7 @@
  * limitations under the License.
  */
  
+// [Start rawfile_request_head]
 #ifndef RAWFILE_REQUEST_H
 #define RAWFILE_REQUEST_H
 
@@ -58,3 +59,4 @@ private:
 };
 
 #endif  // RAWFILE_REQUEST_H
+// [End rawfile_request_head]

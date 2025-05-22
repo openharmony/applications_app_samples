@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start enable_configuration]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -27,3 +28,4 @@ struct WebComponent {
     }
   }
 }
+// [End enable_configuration]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start after_load_complete_call_to_change_page]
 export class GlobalContext {
   private constructor() {}
   private static instance: GlobalContext;
@@ -33,3 +34,4 @@ export class GlobalContext {
     this._objects.set(key, objectClass);
   }
 }
+// [End after_load_complete_call_to_change_page]

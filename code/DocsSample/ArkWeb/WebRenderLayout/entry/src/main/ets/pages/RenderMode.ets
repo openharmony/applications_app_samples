@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start web_component_rendering_mode]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -30,3 +31,4 @@ struct WebHeightPage {
     }
   }
 }
+// [End web_component_rendering_mode]

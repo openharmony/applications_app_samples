@@ -15,6 +15,8 @@
 
 import { resourceManager } from "@kit.LocalizationKit";
 
+// [Start export_register_set_init_schemes]
 export const registerCustomSchemes: () => void;
 export const setSchemeHandler: () => void;
 export const initResourceManager: (resmgr: resourceManager.ResourceManager) => void;
+// [End export_register_set_init_schemes]

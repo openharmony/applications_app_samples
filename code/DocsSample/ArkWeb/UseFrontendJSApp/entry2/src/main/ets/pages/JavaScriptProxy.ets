@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start functions_that_trigger_a_run_on_the_front_end_page_are_registered_in_the_front_end_page]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -66,3 +67,4 @@ struct WebComponent {
     }
   }
 }
+// [End functions_that_trigger_a_run_on_the_front_end_page_are_registered_in_the_front_end_page]

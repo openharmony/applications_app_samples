@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start create_a_message_port_to_implement_communication_between_the_two_ends]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -86,3 +87,4 @@ struct WebComponent {
     }
   }
 }
+// [End create_a_message_port_to_implement_communication_between_the_two_ends]

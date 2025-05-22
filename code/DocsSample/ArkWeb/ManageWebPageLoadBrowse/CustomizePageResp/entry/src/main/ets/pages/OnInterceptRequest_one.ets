@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+// [Start build_response_resources_to_implement_custom_page_response_scenarios]
 import { webview } from '@kit.ArkWeb';
 
 function resourceToString(resource: Resource) {
@@ -57,3 +57,4 @@ struct WebComponent {
     }
   }
 }
+// [End build_response_resources_to_implement_custom_page_response_scenarios]

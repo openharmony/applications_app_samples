@@ -13,13 +13,16 @@
  * limitations under the License.
  */
 
+// [Start collect_information_about_ad_filtering]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
   @State totalAdsBlockCounts: number = 0;
+  // [StartExclude collect_information_about_ad_filtering]
   @State myString: string = 'onAdsBlocked';
+  // [EndExclude collect_information_about_ad_filtering]
   controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
@@ -36,3 +39,4 @@ struct WebComponent {
     }
   }
 }
+// [End collect_information_about_ad_filtering]

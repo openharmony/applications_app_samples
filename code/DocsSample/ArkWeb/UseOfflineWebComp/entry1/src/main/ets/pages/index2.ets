@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start nodeContainer_bind_controller_show_dynamic_pages]
 import web_webview from '@ohos.web.webview';
 
 @Entry
@@ -32,3 +32,4 @@ struct index2 {
     .height('100%')
   }
 }
+// [End nodeContainer_bind_controller_show_dynamic_pages]

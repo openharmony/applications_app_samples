@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start check_if_web_component_anti_tracking_on]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -37,3 +38,4 @@ struct WebComponent {
     }
   }
 }
+// [End check_if_web_component_anti_tracking_on]

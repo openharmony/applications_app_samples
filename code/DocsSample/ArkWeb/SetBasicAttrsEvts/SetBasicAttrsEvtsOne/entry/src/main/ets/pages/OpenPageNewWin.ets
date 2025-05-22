@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start receive_a_web_component_new_window_event]
 import { webview } from '@kit.ArkWeb';
 
 // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
@@ -66,3 +67,4 @@ struct WebComponent {
     }
   }
 }
+// [End receive_a_web_component_new_window_event]

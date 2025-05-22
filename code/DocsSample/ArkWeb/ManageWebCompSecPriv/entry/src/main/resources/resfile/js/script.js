@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
+// [Start cors_script]
 const body = document.body;
 const element = document.createElement('div');
 element.textContent = 'success';
 body.appendChild(element);
+// [End cors_script]

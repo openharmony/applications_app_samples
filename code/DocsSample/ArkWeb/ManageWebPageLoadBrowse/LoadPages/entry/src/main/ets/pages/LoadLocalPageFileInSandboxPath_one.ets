@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start load_local_page_file_in_sandbox_path]
 import { webview } from '@kit.ArkWeb';
 import { GlobalContext } from './GlobalContext';
 
@@ -31,3 +32,4 @@ struct WebComponent {
     }
   }
 }
+// [End load_local_page_file_in_sandbox_path]

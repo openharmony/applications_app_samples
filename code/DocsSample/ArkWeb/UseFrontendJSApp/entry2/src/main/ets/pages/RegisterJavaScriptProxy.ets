@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start application_side_api_registration]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -80,3 +81,4 @@ struct Index {
     }
   }
 }
+// [End application_side_api_registration]

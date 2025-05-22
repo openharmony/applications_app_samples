@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start configure_the_caching_mode_for_page_resources]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -28,3 +29,4 @@ struct WebComponent {
     }
   }
 }
+// [End configure_the_caching_mode_for_page_resources]

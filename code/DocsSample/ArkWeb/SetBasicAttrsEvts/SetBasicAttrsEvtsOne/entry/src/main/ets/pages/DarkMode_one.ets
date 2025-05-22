@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start configure_page_dark_mode_to_follow_the_system]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -28,3 +29,4 @@ struct WebComponent {
     }
   }
 }
+// [End configure_page_dark_mode_to_follow_the_system]

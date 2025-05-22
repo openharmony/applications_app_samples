@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+
+// [Start manage_dynamic_webview_components_in_harmonyos_app]
 // 创建NodeController
 // common.ets
 import { UIContext, NodeController, BuilderNode, Size, FrameNode } from '@kit.ArkUI';
@@ -96,3 +98,4 @@ export const createNWeb = (url: ResourceStr, uiContext: UIContext) => {
 export const getNWeb = (url: ResourceStr) : MyNodeController | undefined => {
   return nodeMap.get(url);
 }
+// [End manage_dynamic_webview_components_in_harmonyos_app]

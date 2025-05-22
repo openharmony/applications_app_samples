@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start web_file_upload]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { picker } from '@kit.CoreFileKit';
@@ -44,3 +45,4 @@ struct WebComponent {
     }
   }
 }
+// [End web_file_upload]

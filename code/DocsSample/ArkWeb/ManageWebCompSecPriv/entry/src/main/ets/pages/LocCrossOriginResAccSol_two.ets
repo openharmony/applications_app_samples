@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start cors_loccross_two]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -43,3 +44,4 @@ struct WebComponent {
     }
   }
 }
+// [End cors_loccross_two]

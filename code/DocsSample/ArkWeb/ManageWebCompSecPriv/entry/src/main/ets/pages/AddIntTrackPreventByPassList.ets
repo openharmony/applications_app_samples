@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start set_domains_to_bypass_intelligent_tracking]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -37,3 +37,4 @@ struct WebComponent {
     }
   }
 }
+// [End set_domains_to_bypass_intelligent_tracking]

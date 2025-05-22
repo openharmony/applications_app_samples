@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start soft_keyboard_index]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -27,3 +28,4 @@ struct KeyboardAvoidExample {
     }.width('100%').height('100%')
   }
 }
+// [End soft_keyboard_index]

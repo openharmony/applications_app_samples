@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start clear_all_storage_currently_used_by_web_sql_in_privacy_mode]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -38,3 +39,4 @@ struct WebComponent {
     }
   }
 }
+// [End clear_all_storage_currently_used_by_web_sql_in_privacy_mode]

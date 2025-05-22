@@ -13,7 +13,9 @@
 * limitations under the License.
 */
 
+// [Start csp_rules_java_script]
 const body = document.body;
 const element = document.createElement('div');
 element.textContent = 'csp_script.js bypass the csp rules';
 body.appendChild(element);
+// [End csp_rules_java_script]

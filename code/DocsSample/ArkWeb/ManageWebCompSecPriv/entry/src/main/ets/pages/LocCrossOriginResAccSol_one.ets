@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start cors_loccross_one]
 import { webview } from '@kit.ArkWeb';
 
 function resourceToString(resource: Resource) {
@@ -75,3 +76,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End cors_loccross_one]

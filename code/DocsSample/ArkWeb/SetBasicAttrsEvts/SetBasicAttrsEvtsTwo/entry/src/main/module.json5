@@ -62,10 +62,13 @@
         ]
       }
     ],
+    // [Start declare_the_appropriate_sensor_permissions]
     "requestPermissions": [
+      // [StartExclude declare_the_appropriate_sensor_permissions]
       {
         "name": "ohos.permission.INTERNET"
       },
+      // [EndExclude declare_the_appropriate_sensor_permissions]
       {
         "name" : "ohos.permission.ACCELEROMETER" // 加速度权限
       },
@@ -73,5 +76,6 @@
         "name" : "ohos.permission.GYROSCOPE"     // 陀螺仪权限
       }
     ]
+    // [End declare_the_appropriate_sensor_permissions]
   }
 }

@@ -27,6 +27,7 @@ export default class Entry1Ability extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
 
+  // [Start entry_ability_window_stage_created_after_page_loaded]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     windowStage.loadContent('pages/Index', (err, data) => {
       // 创建空的Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
@@ -36,6 +37,7 @@ export default class Entry1Ability extends UIAbility {
       }
     });
   }
+  // [End entry_ability_window_stage_created_after_page_loaded]
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources

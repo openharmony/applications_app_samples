@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+//[Start video_playing_usage]
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -274,3 +275,4 @@ export class AVPlayerDemo {
     this.schedule();
   }
 }
+//[End video_playing_usage]

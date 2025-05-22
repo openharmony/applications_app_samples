@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start soft_keyboard_web]
 import { webview } from '@kit.ArkWeb';
 import { inputMethodEngine } from '@kit.IMEKit';
 
@@ -118,3 +119,4 @@ struct WebComponent {
     }
   }
 }
+// [End soft_keyboard_web]

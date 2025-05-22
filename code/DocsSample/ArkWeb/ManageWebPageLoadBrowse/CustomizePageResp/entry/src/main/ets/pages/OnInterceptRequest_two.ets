@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start build_response_resource_enable_gen]
 import { webview } from '@kit.ArkWeb';
 
 function resourceToString(resource: Resource) {
@@ -74,3 +75,4 @@ struct WebComponent {
     }
   }
 }
+// [End build_response_resource_enable_gen]

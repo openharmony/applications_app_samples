@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start obtain_the_value_of_the_cookie_corresponding_to_the_specified_url_in_privacy_mode]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -38,3 +39,4 @@ struct WebComponent {
     }
   }
 }
+// [End obtain_the_value_of_the_cookie_corresponding_to_the_specified_url_in_privacy_mode]

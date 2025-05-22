@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start use_load_interface_to_show_web_changes]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -37,3 +38,4 @@ struct WebComponent {
     }
   }
 }
+// [End use_load_interface_to_show_web_changes]

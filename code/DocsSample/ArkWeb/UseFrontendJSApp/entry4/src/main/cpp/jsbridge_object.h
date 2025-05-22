@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-
+// [Start the_service_code_on_the_native_side]
 #include "web/arkweb_type.h"
 #include <string>
 
@@ -36,4 +36,5 @@ private:
     std::string webTag_;
     std::weak_ptr<JSBridgeObject> weak_ptr_;
 };
+// [End the_service_code_on_the_native_side]
 #endif // HEADER_GUARD_H

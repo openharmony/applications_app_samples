@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start devs_load_page_fragments_for_quick_loading]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -41,3 +41,4 @@ struct WebComponent {
     }
   }
 }
+// [End devs_load_page_fragments_for_quick_loading]

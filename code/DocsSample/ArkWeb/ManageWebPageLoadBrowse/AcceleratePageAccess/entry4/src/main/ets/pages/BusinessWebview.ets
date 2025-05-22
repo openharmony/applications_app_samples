@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+// [Start write_code_for_business_components]
 import { BuilderData } from './DynamicComponent';
 
 @Builder
@@ -23,3 +23,4 @@ function webBuilder(data: BuilderData) {
 }
 
 export const businessWebview = wrapBuilder<BuilderData[]>(webBuilder);
+// [End write_code_for_business_components]

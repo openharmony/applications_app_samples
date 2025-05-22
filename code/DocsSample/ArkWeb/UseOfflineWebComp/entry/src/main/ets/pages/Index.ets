@@ -15,6 +15,7 @@
 
 // 使用NodeController的Page页
 // Index.ets
+// [Start nodeContainer_bind_controller_to_show_dynamic_pages]
 import { getNWeb } from './common'
 @Entry
 @Component
@@ -33,3 +34,5 @@ struct Index {
     .height('100%')
   }
 }
+// [End nodeContainer_bind_controller_to_show_dynamic_pages]
+

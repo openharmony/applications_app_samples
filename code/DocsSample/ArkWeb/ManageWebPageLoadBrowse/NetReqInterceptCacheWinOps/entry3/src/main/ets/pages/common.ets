@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start dynamic_web_module_manage]
 // 提供动态挂载Web组件能力
 import { UIContext, NodeController, BuilderNode, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
@@ -113,4 +114,5 @@ export const getBuilderNode = (url : string) : BuilderNode<[Data]> | undefined =
 export const getWebviewController = (url : string) : webview.WebviewController | undefined => {
   return webControllerMap.get(url);
 }
+// [End dynamic_web_module_manage]
 

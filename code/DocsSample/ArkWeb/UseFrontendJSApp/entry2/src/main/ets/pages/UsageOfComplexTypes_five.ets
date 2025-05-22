@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start the_front_end_page_calls_the_function_in_the_object_on_the_application_side]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -83,3 +84,4 @@ struct Index {
     }
   }
 }
+// [End the_front_end_page_calls_the_function_in_the_object_on_the_application_side]

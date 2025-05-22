@@ -26,6 +26,7 @@ export default class Entry2Ability extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
 
+  // [Start soft_keyboard_entryability]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -42,6 +43,7 @@ export default class Entry2Ability extends UIAbility {
     });
   }
 
+  // [End soft_keyboard_entryability]
   onWindowStageDestroy(): void {
       // Main window is destroyed, release UI related resources
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start handles_javascript_calls_from_webview]
 #include "jsbridge_object.h"
 
 #include "hilog/log.h"
@@ -86,3 +87,4 @@ void JSBridgeObject::SaySomething(const char *say)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "JSBridgeObject SaySomething argc:%{public}s", say);
 }
+// [End handles_javascript_calls_from_webview]

@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start interact_with_web_pages_through_button_click_events]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -42,3 +43,4 @@ struct WebComponent {
     }
   }
 }
+// [End interact_with_web_pages_through_button_click_events]

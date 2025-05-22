@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start the_status_of_web_component_web_page_loading]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { promptAction } from '@kit.ArkUI';
@@ -128,3 +128,4 @@ struct WebComponent {
     }
   }
 }
+// [End the_status_of_web_component_web_page_loading]

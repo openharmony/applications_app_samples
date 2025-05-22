@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start the_node_api_layer_code_for_the_data_channel_between_the_application_side_and_the_frontend_page]
 #include "napi/native_api.h"
 #include <bits/alltypes.h>
 #include <memory>
@@ -465,3 +466,4 @@ static napi_module demoModule = {
 };
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+// [End the_node_api_layer_code_for_the_data_channel_between_the_application_side_and_the_frontend_page]

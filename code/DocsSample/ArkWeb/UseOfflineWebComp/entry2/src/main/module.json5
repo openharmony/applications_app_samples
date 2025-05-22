@@ -38,10 +38,12 @@
         "exported": true
       }
     ],
+    // [Start add_network_permission]
     "requestPermissions":[
       {
         "name" : "ohos.permission.INTERNET"
       }
-    ]
+    ],
+    // [End add_network_permission]
   }
 }

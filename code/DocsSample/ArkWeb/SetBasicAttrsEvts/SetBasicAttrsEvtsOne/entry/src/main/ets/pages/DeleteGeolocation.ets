@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start clear_the_geolocation_permission_status_of_the_specified_source_in_privacy_mode]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -38,3 +39,4 @@ struct WebComponent {
     }
   }
 }
+// [End clear_the_geolocation_permission_status_of_the_specified_source_in_privacy_mode]

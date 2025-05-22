@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start web_module_open_bf_cache]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -27,6 +28,7 @@ export default class Entry2Ability extends UIAbility {
     webview.WebviewController.initializeWebEngine();
     AppStorage.setOrCreate('abilityWant', want);
   }
+  // [End web_module_open_bf_cache]
 
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');

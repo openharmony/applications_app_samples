@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start recovery_download_task]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { DownloadUtil, fileName, filePath } from './downloadUtil'; // downloadUtil.ets 见下文
@@ -102,3 +103,4 @@ struct WebComponent {
     }
   }
 }
+// [End recovery_download_task]

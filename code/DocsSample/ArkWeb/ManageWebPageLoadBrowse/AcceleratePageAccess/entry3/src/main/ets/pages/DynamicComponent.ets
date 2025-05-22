@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+// [Start underlying_code_required_for_dynamic_components]
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 export interface BuilderData {
@@ -57,3 +57,4 @@ export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: 
   baseNode.initWeb(data.url, data.controller);
   return baseNode;
 }
+// [End underlying_code_required_for_dynamic_components]

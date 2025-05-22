@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start task_info_persistence_util]
 import { util } from '@kit.ArkTS';
 import fileStream from '@ohos.file.fs';
 
@@ -64,3 +65,4 @@ export namespace  DownloadUtil {
   }
 
 }
+// [End task_info_persistence_util]

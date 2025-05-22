@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start set_the_value_of_a_single_cookie]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -36,3 +37,4 @@ struct WebComponent {
     }
   }
 }
+// [End set_the_value_of_a_single_cookie]
