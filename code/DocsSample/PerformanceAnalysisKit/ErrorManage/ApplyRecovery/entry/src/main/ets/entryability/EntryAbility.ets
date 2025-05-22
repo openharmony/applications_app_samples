@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start AppRecovery_All]
 import {
   AbilityConstant,
   UIAbility,
@@ -106,3 +107,4 @@ export default class EntryAbility extends UIAbility {
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }
 }
+// [End AppRecovery_All]

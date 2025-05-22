@@ -13,9 +13,11 @@
  * limitations under the License.
  */
  
+// [Start HiLog_ArkTS]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [StartExclude HiLog_ArkTS]
 import testNapi from 'libentry.so';
-
+// [EndExclude HiLog_ArkTS]
 @Entry
 @Component
 struct Index {
@@ -45,6 +47,7 @@ struct Index {
               'A log with a domainID of 0xFF00 and a label of testTag can print logs at the Info level or higher.');
             }
           })
+// [StartExclude HiLog_ArkTS]
         Button($r('app.string.HiLogCPP_Button'))
           .type(ButtonType.Capsule)
           .margin({
@@ -56,9 +59,11 @@ struct Index {
           .onClick(() => {
             testNapi.HiLogTest();
           })
+// [EndExclude HiLog_ArkTS]
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+// [End HiLog_ArkTS]

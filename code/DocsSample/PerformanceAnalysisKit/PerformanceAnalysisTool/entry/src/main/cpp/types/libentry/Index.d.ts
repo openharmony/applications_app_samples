@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start Project_Index.d.ts]
 export const testHiCollieJankNdk: () => void;
 export const testHiCollieStuckNdk: () => void;
 export const testHiTraceMeterNDK: () => void;
 export const testHiTraceChainNDK: () => void;
 export const testHidebugNdk: () => void;
+// [End Project_Index.d.ts]

@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start EventSub_Index.d.ts_All]
 export const registerWatcher: () => void;
 export const writeAppEvent: () => void;
 export const addressTest: () => void;
+// [End EventSub_Index.d.ts_All]
