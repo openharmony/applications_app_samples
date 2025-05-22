@@ -62,6 +62,7 @@
         ]
       }
     ],
+    // [Start request_permission_backup]
     "requestPermissions": [
       {
         "name": "ohos.permission.BACKUP",
@@ -73,5 +74,6 @@
         }
       }
     ]
+    // [End request_permission_backup]
   }
 }

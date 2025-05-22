@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+// [Start get_local_cap_ability]
+// [Start session_backup]
+// [Start session_restore]
 import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
 import backup from '@ohos.file.backup';
 import { common } from '@kit.AbilityKit';
@@ -20,7 +23,9 @@ import { BusinessError } from '@ohos.base';
 import buffer from '@ohos.buffer';
 import Logger from '../common/Logger';
 
+// [StartExclude get_local_cap_ability]
 const BUFFER: number = 1024; // 读写文件的缓冲区
+// [EndExclude get_local_cap_ability]
 
 // 获取应用文件沙箱路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -37,6 +42,7 @@ export async function getLocalCapabilities(): Promise<void> {
     Logger.info('getLocalCapabilities success');
     let fpath = filesDir + '/localCapabilities.json';
     fs.copyFileSync(fileData.fd, fpath);
+    // [StartExclude get_local_cap_ability]
     let file = fs.openSync(fpath, fs.OpenMode.READ_WRITE);
     // 从文件中读取一段内容
     let arrayBuffer = new ArrayBuffer(BUFFER);
@@ -48,11 +54,13 @@ export async function getLocalCapabilities(): Promise<void> {
     // 这个 buf 对象是 arrayBuffer 中从位置 0 开始的前 readLen 字节
     let buf = buffer.from(arrayBuffer, 0, readLen);
     Logger.info('the content of file: ' + buf.toString());
+    // [EndExclude get_local_cap_ability]
     fs.closeSync(fileData.fd);
   } catch (error) {
     Logger.error('getLocalCapabilities failed with err: ' + JSON.stringify(error));
   }
 }
+// [End get_local_cap_ability]
 
 // 应用备份数据
 function createSessionBackup(): backup.SessionBackup {
@@ -121,6 +129,7 @@ export async function release() {
     console.error('release failed with err: ' + JSON.stringify(err));
   }
 }
+// [End session_backup]
 
 export async function sessionBackup(): Promise<void> {
   gSession = createSessionBackup();
@@ -228,4 +237,4 @@ export async function sessionRestore(): Promise<void> {
   await gSessionRestore.getFileHandle(handle);
   Logger.info('getFileHandle success');
 }
-
+// [End session_restore]

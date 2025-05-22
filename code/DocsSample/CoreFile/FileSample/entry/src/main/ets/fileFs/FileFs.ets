@@ -13,6 +13,12 @@
  * limitations under the License.
  */
 
+// [Start create_Write_File]
+// [Start read_Write_File]
+// [Start streams_Read_Write_File]
+// [Start view_File_List]
+// [Start streams_file]
+// [Start hash_File_Stream]
 import { fileIo as fs, ReadOptions, WriteOptions, ListFileOptions } from '@kit.CoreFileKit';
 import { buffer } from '@kit.ArkTS';
 import { common } from '@kit.AbilityKit';
@@ -23,8 +29,11 @@ import Logger from '../common/Logger';
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
+// [StartExclude create_Write_File]
 const BUFFER: number = 1024; // 读取文件数据的缓冲区大小
 const READSIZE: number = 0; // 初始化读取的字节数为 0
+
+// [EndExclude create_Write_File]
 
 export function createFile(): string {
   // 新建并打开文件
@@ -46,6 +55,8 @@ export function createFile(): string {
   fs.closeSync(file);
   return str;
 }
+
+// [End create_Write_File]
 
 // 读取文件内容并写入到另一个文件 test.txt => testFile.txt
 export function readWriteFile(): void {
@@ -76,42 +87,7 @@ export function readWriteFile(): void {
   fs.closeSync(destFile);
 }
 
-// 根据文件名读取文件内容
-export function readFile(fileName: string): string {
-  let file = fs.openSync(filesDir + '/' + fileName + '.txt', fs.OpenMode.READ_ONLY);
-  let arrayBuffer = new ArrayBuffer(BUFFER);
-  let readOptions: ReadOptions = {
-    offset: 0, // 从文件的开头开始读取
-    length: arrayBuffer.byteLength
-  };
-  let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
-  // 这个 buf 对象是 arrayBuffer 中从位置 0 开始的前 readLen 字节
-  let buf = buffer.from(arrayBuffer, 0, readLen);
-  Logger.info('the content of file: ' + buf.toString());
-  let str = 'the content of file: ' + buf.toString();
-  return str;
-}
-
-// 查看文件列表
-export function getListFile(): string {
-  let str = '';
-  let listFileOption: ListFileOptions = {
-    recursion: false,
-    listNum: 0, // 0 表示不限制文件数量
-    filter: {
-      suffix: ['.png', '.jpg', '.txt', '.jpeg', '.json'],
-      displayName: ['*'],
-      fileSizeOver: 0, // 0 表示列出所有文件，不限制文件大小
-      lastModifiedAfter: new Date(0).getTime()  // 返回的时间戳是0
-    }
-  };
-  let files = fs.listFileSync(filesDir, listFileOption);
-  for (let i = 0; i < files.length; i++) {
-    Logger.info(`The name of file: ${files[i]}`);
-    str += files[i] + '\n';
-  }
-  return str;
-}
+// [End read_Write_File]
 
 // 以流的形式读写文件test.txt => destFile.txt
 export async function readWriteFileWithStream(): Promise<void> {
@@ -140,6 +116,31 @@ export async function readWriteFileWithStream(): Promise<void> {
   outputStream.closeSync();
 }
 
+// [End streams_Read_Write_File]
+
+// 查看文件列表
+export function getListFile(): string {
+  let str = '';
+  let listFileOption: ListFileOptions = {
+    recursion: false,
+    listNum: 0, // 0 表示不限制文件数量
+    filter: {
+      suffix: ['.png', '.jpg', '.txt', '.jpeg', '.json'],
+      displayName: ['*'],
+      fileSizeOver: 0, // 0 表示列出所有文件，不限制文件大小
+      lastModifiedAfter: new Date(0).getTime()  // 返回的时间戳是0
+    }
+  };
+  let files = fs.listFileSync(filesDir, listFileOption);
+  for (let i = 0; i < files.length; i++) {
+    Logger.info(`The name of file: ${files[i]}`);
+    str += files[i] + '\n';
+  }
+  return str;
+}
+
+// [End view_File_List]
+
 // 使用文件流
 export function copyFileWithReadable(): void {
   // 创建文件可读流
@@ -157,7 +158,6 @@ export function copyFileWithReadable(): void {
 }
 
 export function copyFileWithData(): void {
-
   // 创建文件可读流
   const rs = fs.createReadStream(`${filesDir}/testFile.txt`);
   // 创建文件可写流
@@ -171,6 +171,8 @@ export function copyFileWithData(): void {
     ws.write(data as Uint8Array);
   });
 }
+
+// [End streams_file]
 
 // 使用文件哈希流
 export function hashFileWithStream() {
@@ -189,4 +191,22 @@ export function hashFileWithStream() {
     const fileHash = await hash.hash(filePath, 'sha256');
     Logger.info(`hashResult: ${hashResult}, fileHash: ${fileHash}`);
   });
+}
+
+// [End hash_File_Stream]
+
+// 根据文件名读取文件内容
+export function readFile(fileName: string): string {
+  let file = fs.openSync(filesDir + '/' + fileName + '.txt', fs.OpenMode.READ_ONLY);
+  let arrayBuffer = new ArrayBuffer(BUFFER);
+  let readOptions: ReadOptions = {
+    offset: 0, // 从文件的开头开始读取
+    length: arrayBuffer.byteLength
+  };
+  let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
+  // 这个 buf 对象是 arrayBuffer 中从位置 0 开始的前 readLen 字节
+  let buf = buffer.from(arrayBuffer, 0, readLen);
+  Logger.info('the content of file: ' + buf.toString());
+  let str = 'the content of file: ' + buf.toString();
+  return str;
 }

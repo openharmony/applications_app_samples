@@ -80,6 +80,20 @@ struct Index {
   onInit() {
     this.createFileAccessHelper();
   }
+  // [Start monitor_equipment]
+  // [Start call_bakc_dir1]
+  // 提供监听回调方法
+  callBackDir1 = (notifyMessageDir: fileAccess.NotifyMessage) => {
+    if (notifyMessageDir != undefined) {
+      Logger.info('NotifyType: ' + notifyMessageDir.type + 'NotifyUri:' + notifyMessageDir.uris[0]);
+      // [StartExclude call_bakc_dir1]
+      this.result = 'Monitoring succeeded'; // 更新 result 状态
+      // [EndExclude call_bakc_dir1]
+    } else {
+      Logger.error('notifyMessageDir is undefined');
+    }
+  }
+  // [End call_bakc_dir1]
 
   createFileAccessHelper(): void {
     try {
@@ -90,16 +104,6 @@ struct Index {
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       Logger.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
-    }
-  }
-
-  // 提供监听回调方法
-  callBackDir1 = (notifyMessageDir: fileAccess.NotifyMessage) => {
-    if (notifyMessageDir != undefined) {
-      Logger.info('NotifyType: ' + notifyMessageDir.type + 'NotifyUri:' + notifyMessageDir.uris[0]);
-      this.result = 'Monitoring succeeded'; // 更新 result 状态
-    } else {
-      Logger.error('notifyMessageDir is undefined');
     }
   }
 
@@ -124,4 +128,5 @@ struct Index {
       Logger.error('unregisterObserver failed, errCode:' + error.code + ', errMessage:' + error.message);
     }
   }
+  // [Start monitor_equipment]
 }

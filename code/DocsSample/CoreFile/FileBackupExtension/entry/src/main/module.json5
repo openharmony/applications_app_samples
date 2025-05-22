@@ -50,6 +50,7 @@
         ]
       }
     ],
+    // [Start extension_abilities]
     "extensionAbilities": [
       {
         "name": "BackupExtension",
@@ -64,5 +65,6 @@
         ]
       }
     ]
+    // [End extension_abilities]
   }
 }

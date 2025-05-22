@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
+// [Start import_interface_file]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess, fileIo as fs,  picker } from '@kit.CoreFileKit';
 import Logger from '../common/Logger';
+// [End import_interface_file]
 
 let context = getContext(this) as common.Context;
 
@@ -125,58 +127,83 @@ struct Index {
   }
 
   selectDocumentFiles() {
+    // [Start create_document_select_option]
     const documentSelectOptions = new picker.DocumentSelectOptions();
+    // [End create_document_select_option]
 
+    // [Start picker_select]
     const context = getContext(this) as common.Context;
     const documentViewPicker = new picker.DocumentViewPicker(context);
     documentViewPicker.select(documentSelectOptions).then((documentSelectResult: string[]) => {
       this.documentUris = documentSelectResult;
       Logger.info('documentViewPicker.select to file succeed and uris are:' + this.documentUris);
+      // [StartExclude picker_select]
       if (this.documentUris.length > 0) {
         this.readDocumentFile(this.documentUris[0]);
       }
+      // [EndExclude picker_select]
     }).catch((err: BusinessError) => {
       Logger.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
     });
+    // [End picker_select]
   }
 
   readDocumentFile(uri: string) {
+    // [Start document_read_only]
     let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
     Logger.info('file fd: ' + file.fd);
+    // [End document_read_only]
+
+    // [Start document_fs_read_sync]
     let buffer = new ArrayBuffer(4096); // 分配一个大小为4096字节的缓冲区
     let readLen = fs.readSync(file.fd, buffer); // 读取文件内容
     Logger.info('readSync data to file succeed and buffer size is:' + readLen);
     this.result = 'Read Success';
     fs.closeSync(file);
+    // [Start document_fs_read_sync]
   }
 
+  // [Start audio_view_picker]
   async selectAudioFile() {
+    // [Start audio_select_option]
     const audioSelectOptions = new picker.AudioSelectOptions();
+    // [End audio_select_option]
     const audioViewPicker = new picker.AudioViewPicker(context);
     try {
       const audioSelectResult: string[] = await audioViewPicker.select(audioSelectOptions);
       this.audioUris = audioSelectResult[0];
       Logger.info('audioViewPicker.select to file succeed and uri is:' + this.audioUris);
+      // [StartExclude audio_view_picker]
       this.fileContent = 'Select Success';
       this.readAudioFile(this.audioUris);
+      // [EndExclude audio_view_picker]
     } catch (err) {
       const error: BusinessError = err as BusinessError;
       Logger.error(`Invoke audioViewPicker.select failed, code is ${error.code}, message is ${error.message}`);
     }
   }
+  // [Start audio_view_picker]
 
   readAudioFile(uri: string) {
     try {
+      // [Start openmode_read_only]
       const file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
       Logger.info('file fd: ' + file.fd);
+      // [Start openmode_read_only]
+
+      // [Start fs_read_sync]
       const buffer = new ArrayBuffer(4096); // 分配一个大小为4096字节的缓冲区
       const readLen = fs.readSync(file.fd, buffer); // 读取文件内容
       Logger.info('readSync data to file succeed and buffer size is:' + readLen);
+      // [StartExclude fs_read_sync]
       this.fileContent = `Read ${readLen} bytes from file.`; // 显示读取的字节数
+      // [EndExclude fs_read_sync]
       fs.closeSync(file);
+      // [End fs_read_sync]
     } catch (err) {
       const error: BusinessError = err as BusinessError;
       Logger.error(`Failed to read file, code is ${error.code}, message is ${error.message}`);
     }
   }
+  
 }

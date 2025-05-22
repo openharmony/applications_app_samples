@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+// [Start cross_device_file_access_B]
+// [Start import_interface_distributed]
+// [Start dis_mount_public_dir]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common, abilityAccessCtrl } from '@kit.AbilityKit';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
@@ -21,21 +24,16 @@ import { buffer } from '@kit.ArkTS';
 import Logger from '../common/Logger';
 import { showToast } from '../common/ShowToast';
 
+// [Start import_interface_distributed]
 const BUFFER: number = 4096; // 读写文件的缓冲区
 const DELAY: number = 1000; // 延时1秒
 const MARGIN: number = 5; // 组件的间隔
 
+// [Start cross_device_file_access_A]
 let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息
 let pathDir: string = context.filesDir; // 应用沙箱路径
 let distributedPathDir: string = context.distributedFilesDir; // 应用分布式路径
 let atManager = abilityAccessCtrl.createAtManager();
-
-// 定义访问公共文件目录的回调
-let listeners: fs.DfsListeners = {
-  onStatus: (networkId: string, status: number): void => {
-    Logger.info('Failed to access public directory');
-  }
-}
 
 // 设备A上在分布式路径下创建测试文件，并写入内容
 function createFile(path: string, fileName: string): void {
@@ -48,6 +46,9 @@ function createFile(path: string, fileName: string): void {
   fs.closeSync(file.fd);
 }
 
+// [End cross_device_file_access_A]
+
+// [Start set_security_label]
 // 打开文件并设置文件数据等级为‘s0’
 function setFileLv(path: string): void {
   let file = fs.openSync(path, fs.OpenMode.READ_ONLY);
@@ -60,6 +61,16 @@ function setFileLv(path: string): void {
   });
 }
 
+// [End set_security_label]
+
+// 定义访问公共文件目录的回调
+let listeners: fs.DfsListeners = {
+  onStatus: (networkId: string, status: number): void => {
+    Logger.info('Failed to access public directory');
+  }
+}
+
+// [StartExclude cross_device_file_access_B]
 // 申请多设备协同权限
 async function applyPermission() {
   try {
@@ -73,12 +84,17 @@ async function applyPermission() {
   }
 }
 
+// [EndExclude cross_device_file_access_B]
+
 // 设备B主动向设备A发起建链，建链成功后设备B可在分布式路径下读取测试文件
 async function mountPublicDir() {
+  // [StartExclude cross_device_file_access_B]
   // 通过分布式设备管理的接口获取设备A的networkId信息
   let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.distributedmusicplayer');
   let deviceInfoList: distributedDeviceManager.DeviceBasicInfo[] = dmInstance.getAvailableDeviceListSync();
   let networkId = deviceInfoList[0].networkId; // 0表示可信设备列表中第一台设备
+  // [EndExclude cross_device_file_access_B]
+
   // 访问并挂载公共文件目录
   fs.connectDfs(networkId, listeners).then(() => {
     Logger.info('Success to connectDfs');
@@ -115,6 +131,8 @@ async function mountPublicDir() {
   });
 }
 
+// [Start cross_device_file_access_B]
+
 // 取消公共文件目录挂载,断开链路。
 function disMountPublicDir(): void {
   // 通过分布式设备管理的接口获取设备A的networkId信息
@@ -130,6 +148,9 @@ function disMountPublicDir(): void {
   })
 }
 
+// [End dis_mount_public_dir]
+
+// [Start copy_sand_to_distributed]
 // 将A设备的待拷贝沙箱文件，拷贝到A设备的分布式路径下。
 function copySandFile(): void {
   // 待拷贝文件沙箱路径
@@ -152,8 +173,10 @@ function copySandFile(): void {
     fs.copy(srcUri, destUri).then(() => {
       Logger.info('Succeeded in copying---. ');
       Logger.info('src: ' + srcUri + 'dest: ' + destUri);
+      // [StartExclude copy_sand_to_distributed]
       setFileLv(distributedPathDir + '/src.txt');
       showToast('Succeed copy from sandDir to distributedDir', DELAY);
+      // [EndExclude copy_sand_to_distributed]
     }).catch((error: BusinessError) => {
       let err: BusinessError = error as BusinessError;
       Logger.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
@@ -164,6 +187,9 @@ function copySandFile(): void {
   }
 }
 
+// [End copy_sand_to_distributed]
+
+// [End copy_distributed_to_sand]
 // B设备在获取A端沙箱文件时，从B设备的分布式路径下将对应的文件拷贝走，以此完成跨设备拷贝。
 function copyDistributedFile(): void {
   // 待拷贝文件的目标沙箱路径
@@ -195,6 +221,8 @@ function copyDistributedFile(): void {
   }
 }
 
+// [End copy_distributed_to_sand]
+
 // 查看文件列表
 function getListFile(pathDir: string): void {
   let listFileOption: ListFileOptions = {
@@ -217,7 +245,6 @@ function getListFile(pathDir: string): void {
 @Entry
 @Component
 struct Distributed {
-
   build() {
     Column() {
       Row() {
