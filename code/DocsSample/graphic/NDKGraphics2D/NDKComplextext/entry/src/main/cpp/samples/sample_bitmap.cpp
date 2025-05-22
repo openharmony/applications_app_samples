@@ -187,9 +187,9 @@ void SampleBitMap::AddFontVariation() {
     OH_Drawing_SetTextStyleFontWeight(txtStyleNoVar, FONT_WEIGHT_400);
 
     // 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
-    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+    OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
     // 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
-    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fontCollection);
 
     // 加入带有可变字体的文本样式
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyleWithVar);
@@ -218,7 +218,7 @@ void SampleBitMap::AddFontVariation() {
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     OH_Drawing_DestroyTextStyle(txtStyleWithVar);
     OH_Drawing_DestroyTextStyle(txtStyleNoVar);
-    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyFontCollection(fontCollection);
     OH_Drawing_DestroyTypographyHandler(handler);
     OH_Drawing_DestroyTypography(typography);
 }
@@ -238,7 +238,7 @@ void SampleBitMap::SetTextShadow()
     OH_Drawing_SetTextStyleFontSize(txtStyleWithShadow, 100);
     OH_Drawing_SetTextStyleFontWeight(txtStyleWithShadow, FONT_WEIGHT_400);
     // 设置阴影偏移量
-    OH_Drawing_Point *offset = OH_Drawing_PointCreate(1, 1);
+    OH_Drawing_Point *offset = OH_Drawing_PointCreate(10, 10);
     OH_Drawing_TextShadow *shadow = OH_Drawing_CreateTextShadow();
     // 为 TextShadow 设置样式
     OH_Drawing_SetTextShadow(shadow, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00), offset, 10);
@@ -253,9 +253,9 @@ void SampleBitMap::SetTextShadow()
     OH_Drawing_SetTextStyleFontWeight(txtStyleNoShadow, FONT_WEIGHT_400);
 
     // 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
-    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+    OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
     // 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
-    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fontCollection);
 
     // 加入带有阴影的文本样式
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyleWithShadow);
@@ -281,7 +281,7 @@ void SampleBitMap::SetTextShadow()
     OH_Drawing_DestroyTextStyle(txtStyleWithShadow);
     OH_Drawing_DestroyTextShadow(shadow);
     OH_Drawing_DestroyTextStyle(txtStyleNoShadow);
-    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyFontCollection(fontCollection);
     OH_Drawing_DestroyTypographyHandler(handler);
     OH_Drawing_DestroyTypography(typography);
 }
@@ -315,25 +315,26 @@ void SampleBitMap::SetTextBrush()
     OH_Drawing_SetTextStyleLocale(txtStyleWithBackgroundBrush, "zh-Hans");
     // 设置文本的单词间距。
     OH_Drawing_SetTextStyleWordSpacing(txtStyleWithBackgroundBrush, 5.0);
-    
+    // 设置文本大小。
     OH_Drawing_SetTextStyleFontSize(txtStyleWithBackgroundBrush, 60);
     OH_Drawing_SetTextStyleFontWeight(txtStyleWithBackgroundBrush, FONT_WEIGHT_400);
 
-    //创建文本样式设置其前景色
+    // 创建文本样式设置其前景色。
     OH_Drawing_TextStyle *txtStyleWithForegrounddBrush = OH_Drawing_CreateTextStyle();
+    // 设置文本大小。
     OH_Drawing_SetTextStyleFontSize(txtStyleWithForegrounddBrush, 60);
     OH_Drawing_Brush* foregrounddBrush = OH_Drawing_BrushCreate();
-    //设置字体前景色为绿色
+    // 设置字体前景色为绿色。
     OH_Drawing_BrushSetColor(foregrounddBrush, OH_Drawing_ColorSetArgb(255, 0, 255, 0));
     // 设置指定文本样式中的前景色画刷。
     OH_Drawing_SetTextStyleForegroundBrush(txtStyleWithForegrounddBrush, foregrounddBrush);
-    // 设置文本颜色为蓝色
+    // 设置文本颜色为蓝色。
     OH_Drawing_SetTextStyleColor(txtStyleWithForegrounddBrush, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0xFF));
 
     // 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
-    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
-    // 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
-    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
+    // 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography。
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fontCollection);
     
     // 创建一个 placeholder，并且初始化其成员变量
     OH_Drawing_PlaceholderSpan placeholder;
@@ -376,7 +377,7 @@ void SampleBitMap::SetTextBrush()
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     OH_Drawing_DestroyTextStyle(txtStyleWithBackgroundBrush);
     OH_Drawing_DestroyTextStyle(txtStyleWithForegrounddBrush);
-    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyFontCollection(fontCollection);
     OH_Drawing_DestroyTypographyHandler(handler);
     OH_Drawing_DestroyTypography(typography);
 }
@@ -414,9 +415,9 @@ void SampleBitMap::SetTextEllipsis()
     OH_Drawing_SetTypographyTextMaxLines(typoStyle, 1);
 
     // 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
-    OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+    OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
     // 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
-    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+    OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fontCollection);
 
     // 将之前创建的 TextStyle 加入 handler 中
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
@@ -455,7 +456,7 @@ void SampleBitMap::SetTextEllipsis()
     // 释放内存
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     OH_Drawing_DestroyTextStyle(txtStyle);
-    OH_Drawing_DestroyFontCollection(fc);
+    OH_Drawing_DestroyFontCollection(fontCollection);
     OH_Drawing_DestroyTypographyHandler(handler);
     OH_Drawing_DestroyTypography(typography);
 }
