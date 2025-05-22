@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
+// [Start import_system_account_module]
 import { osAccount } from '@kit.BasicServicesKit';
+// [End import_system_account_module]
 import account_osAccount from "@ohos.account.osAccount";
 
 function strToUint8Arr(str: string): Uint8Array {
@@ -46,18 +48,24 @@ struct SystemAccount {
   private async addCred(): Promise<void> {
     try {
       this.cid = await account_osAccount.getAccountManager().getForegroundOsAccountLocalId();
+      // [Start create_credential_management_object]
       let userIDM = new account_osAccount.UserIdentityManager();
+      // [End create_credential_management_object]
       let password: Uint8Array = new Uint8Array([0x31, 0x32, 0x33, 0x34, 0x35, 0x36]);
       if (this.textPassword != '') {
         password = strToUint8Arr(this.textPassword);
       }
       let PINAuth = new account_osAccount.PINAuth();
+      // [Start define_pin_credential_information]
       let credentialInfo :account_osAccount.CredentialInfo = {
+        // [StartExclude define_pin_credential_information]
         accountId: this.cid,
+        // [EndExclude define_pin_credential_information]
         credType:account_osAccount.AuthType.PIN,
         credSubType:account_osAccount.AuthSubType.PIN_SIX,
         token:new Uint8Array([])
       }
+      // [End define_pin_credential_information]
       PINAuth.unregisterInputer();
       PINAuth.registerInputer({
         onGetData:(authSubType, callback)=>{
@@ -67,10 +75,12 @@ struct SystemAccount {
       userIDM.closeSession(this.cid);
       userIDM.openSession(this.cid).then((data)=>{
         console.log('openSession info: ' + JSON.stringify(data));
+        // [Start call_the_api_to_add_the_specified_credentials]
         userIDM.addCredential(credentialInfo,{
           onResult: (err, extraInfo)=>{
             console.log('addCredential result: ' + JSON.stringify(err));
             console.log('edential info: ' + JSON.stringify(extraInfo));
+            // [StartExclude call_the_api_to_add_the_specified_credentials]
             if (err == 0) {
               this.message = 'PIN code entry successful';
             } else {
@@ -78,7 +88,9 @@ struct SystemAccount {
             }
             PINAuth.unregisterInputer();
             userIDM.closeSession(this.cid);
+            // [EndExclude call_the_api_to_add_the_specified_credentials]
           }})
+        // [End call_the_api_to_add_the_specified_credentials]
       }).catch((err: Error)=>{
         console.error('openSession failed, error: ' + JSON.stringify(err));
         this.message = 'Failed to open session:' + JSON.stringify(err);
@@ -108,18 +120,22 @@ struct SystemAccount {
         console.log('openSession info: ' + JSON.stringify(data));
         let authType: osAccount.AuthType = osAccount.AuthType.PIN;
         let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
+        // [Start call_the_auth_operation_for_authentication]
         userAuth.auth(data, authType, authTrustLevel, {
           onResult: (result: number, extraInfo: osAccount.AuthResult) => {
             console.log('pin auth result = ' + result);
             console.log('pin auth extraInfo = ' + JSON.stringify(extraInfo));
             let authToken = extraInfo.token;
+            // [StartExclude call_the_auth_operation_for_authentication]
             if(result == 0) {
               this.message = 'PIN code entry successful';
             } else {
               this.message = 'PIN code authentication failed: ' + result;
             }
+            // [EndExclude call_the_auth_operation_for_authentication]
           }
         });
+        // [End call_the_auth_operation_for_authentication]
       }).catch((err: Error)=>{
         console.error('openSession failed, error: ' + JSON.stringify(err));
         this.message = 'Failed to open session:' + JSON.stringify(err);
@@ -130,16 +146,20 @@ struct SystemAccount {
   }
 
   private async addBiologyCred(): Promise<void> {
+    // [Start define_facial_credential_information]
     let faceCredInfo: osAccount.CredentialInfo = {
       credType: osAccount.AuthType.FACE,
       credSubType: osAccount.AuthSubType.FACE_2D,
       token: new Uint8Array([1, 2, 3, 4, 5])
     }
+    // [End define_facial_credential_information]
+    // [Start define_fingerprint_credential_information]
     let fingerprintCredInfo: osAccount.CredentialInfo = {
       credType: osAccount.AuthType.FINGERPRINT,
       credSubType: osAccount.AuthSubType.FINGERPRINT_CAPACITIVE,
       token: new Uint8Array([1, 2, 3, 4, 5])
     }
+    // [End define_fingerprint_credential_information]
     try {
       let userIDM = new account_osAccount.UserIdentityManager();
       let userAuth = new account_osAccount.UserAuth();
@@ -162,28 +182,36 @@ struct SystemAccount {
             console.log('pin auth extraInfo = ' + JSON.stringify(extraInfo));
             faceCredInfo.token = extraInfo.token;
             fingerprintCredInfo.token = extraInfo.token;
+            // [Start input_facial_credential_information]
             userIDM.addCredential(faceCredInfo, {
               onResult: (code: number, result: osAccount.RequestResult) => {
                 console.log('add face credential, resultCode: ' + code);
                 console.log('add face credential, request result: ' + result);
+                // [StartExclude input_facial_credential_information]
                 if(code == 0) {
                   this.message = 'Successfully entered facial credentials';
                 } else {
                   this.message = 'Failed to enter facial credentials: ' + code;
                 }
+                // [EndExclude input_facial_credential_information]
               }
             });
+            // [End input_facial_credential_information]
+            // [Start enter_the_fingerprint_credentials]
             userIDM.addCredential(fingerprintCredInfo, {
               onResult: (code: number, result: osAccount.RequestResult) => {
                 console.log('add fingerprint credential, resultCode: ' + code);
                 console.log('add fingerprint credential, request result: ' + result);
+                // [StartExclude enter_the_fingerprint_credentials]
                 if(code == 0) {
                   this.message += 'Successfully entered fingerprint credentials';
                 } else {
                   this.message = 'Failed to enter fingerprint credentials: ' + code;
                 }
+                // [EndExclude enter_the_fingerprint_credentials]
               }
             });
+            // [End enter_the_fingerprint_credentials]
           }
         });
       }).catch((err: Error)=>{
@@ -212,17 +240,21 @@ struct SystemAccount {
         console.log('openSession info: ' + JSON.stringify(data));
         let authType: osAccount.AuthType = osAccount.AuthType.FACE;
         let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
+        // [Start call_the_auth_operation_for_face_authentication]
         userAuth.auth(data, authType, authTrustLevel, {
           onResult: (result: number, extraInfo: osAccount.AuthResult) => {
             console.log('face auth result = ' + result);
             console.log('face auth extraInfo = ' + JSON.stringify(extraInfo));
+            // [StartExclude call_the_auth_operation_for_face_authentication]
             if(result == 0) {
               this.message = 'Successfully authenticated biometric credentials';
             } else {
               this.message = 'Failed to authenticate biometric credentials: ' + result;
             }
+            // [EndExclude call_the_auth_operation_for_face_authentication]
           }
         });
+        // [End call_the_auth_operation_for_face_authentication]
       }).catch((err: Error)=>{
         console.error('openSession failed, error: ' + JSON.stringify(err));
         this.message = 'Failed to open session:' + JSON.stringify(err);
@@ -244,12 +276,16 @@ struct SystemAccount {
     if (this.textPassword != '') {
       password = strToUint8Arr(this.textPassword);
     }
+    // [Start define_the_credential_information_to_be_updated]
     let credentialInfo :account_osAccount.CredentialInfo = {
+      // [StartExclude define_the_credential_information_to_be_updated]
       accountId:this.cid,
+      // [EndExclude define_the_credential_information_to_be_updated]
       credType:account_osAccount.AuthType.PIN,
       credSubType:account_osAccount.AuthSubType.PIN_SIX,
       token:new Uint8Array([])
     }
+    // [End define_the_credential_information_to_be_updated]
     PINAuth.unregisterInputer();
     PINAuth.registerInputer({
       onGetData:(authSubType, callback)=>{
@@ -271,10 +307,12 @@ struct SystemAccount {
               callback.onSetData(account_osAccount.AuthSubType.PIN_SIX, password)
             }
           })
+          // [Start update_your_credentials]
           userIDM.updateCredential(credentialInfo, {
             onResult:(result: number, extraInfo: osAccount.RequestResult)=>{
               console.log('updateCredential result: ' + JSON.stringify(result));
               console.log('updateCredential extraInfo: ' + JSON.stringify(extraInfo));
+              // [StartExclude update_your_credentials]
               if(result == 0) {
                 this.message = 'Successfully updated PIN code credentials';
               } else {
@@ -282,8 +320,10 @@ struct SystemAccount {
               }
               PINAuth.unregisterInputer();
               userIDM.closeSession(this.cid);
+              // [EndExclude update_your_credentials]
             }
           })
+          // [End update_your_credentials]
         }
       })
     }).catch((err: Error)=>{
@@ -300,8 +340,10 @@ struct SystemAccount {
         console.log('getAuthInfo data: ' + JSON.stringify(data));
         this.message = 'Query information length: ' + data.length;
       })
+      // [Start obtain_credential_information_of_the_specified_type]
       let enrolledFingerCredInfoList: osAccount.EnrolledCredInfo[] =
         await userIDM.getAuthInfo(osAccount.AuthType.PIN);
+      // [End obtain_credential_information_of_the_specified_type]
     } catch (err) {
       console.error('getAuthInfo failed: ' + JSON.stringify(err));
       this.message = 'Query information failed: ' + JSON.stringify(err);
@@ -312,6 +354,7 @@ struct SystemAccount {
     let userIDM = new account_osAccount.UserIdentityManager();
     let userAuth = new account_osAccount.UserAuth();
     let PINAuth = new account_osAccount.PINAuth();
+    // [Start obtain_the_credential_information_of_the_fingerprint_type]
     let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
     let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
     let credInfoList: osAccount.EnrolledCredInfo[] = 
@@ -319,6 +362,7 @@ struct SystemAccount {
     if (credInfoList.length != 0) {
       credentialId = credInfoList[0].credentialId;
     }
+    // [End obtain_the_credential_information_of_the_fingerprint_type]
     PINAuth.unregisterInputer();
     PINAuth.registerInputer({
       onGetData:(authSubType, callback)=>{
@@ -336,23 +380,31 @@ struct SystemAccount {
           console.log('authUser info: ' + JSON.stringify(authResult));
           console.log('authUser info.userId: ' + authResult.accountId);
           try {
+            // [Start delete_specified_credentials]
             userIDM.delCred(credentialId, authResult.token, {
               onResult: (result: number, extraInfo: osAccount.RequestResult) => {
                 console.log('delCred result = ' + result);
                 console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
+                // [StartExclude delete_specified_credentials]
                 if(result == 0) {
                   this.message = 'Successfully deleted credentials';
                 } else {
                   this.message = 'Failed to delete credentials: ' + result;
                 }
+                // [EndExclude delete_specified_credentials]
               }
             });
+            // [End delete_specified_credentials]
           } catch (e) {
             console.error('delUser exception = ' + JSON.stringify(e));
             this.message = 'Failed to delete credentials: ' + JSON.stringify(e);
           }
+          // [Start deactivate_pin_input_device]
           PINAuth.unregisterInputer();
+          // [End deactivate_pin_input_device]
+          // [Start close_the_session_and_end_credential_management]
           userIDM.closeSession(this.cid);
+          // [End close_the_session_and_end_credential_management]
         }
       })
     }).catch((err: Error)=>{
