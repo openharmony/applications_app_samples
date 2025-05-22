@@ -152,7 +152,7 @@ struct Index {
         this.avPlayer.pause();
         console.info(`${this.tag}: avPause==`);
       } catch (e) {
-        console.info(`${this.tag}: avPause== ${JSON.stringify(e)}`);
+        console.error(`${this.tag}: avPause== ${JSON.stringify(e)}`);
       }
     }
   }
@@ -164,7 +164,7 @@ struct Index {
         this.avPlayer.seek(seekTime, 1);
         this.currentTime = seekTime;
       } catch (e) {
-        console.info(`${this.tag}: videoSeek== ${JSON.stringify(e)}`);
+        console.error(`${this.tag}: videoSeek== ${JSON.stringify(e)}`);
       }
     }
   }
@@ -175,7 +175,7 @@ struct Index {
         this.avPlayer.setSpeed(speed);
         console.info(`${this.tag}: avSetSpeed enum ${speed}`);
       } catch (e) {
-        console.info(`${this.tag}: avSetSpeed == ${JSON.stringify(e)}`);
+        console.error(`${this.tag}: avSetSpeed == ${JSON.stringify(e)}`);
       }
     }
   }
@@ -184,7 +184,7 @@ struct Index {
   async setAVPlayerCallback(callback: (avPlayer: media.AVPlayer) => void, vType?: number): Promise<void> {
     // seek操作结果回调函数
     if (this.avPlayer == null) {
-      console.info(`${this.tag}: avPlayer has not init!`);
+      console.error(`${this.tag}: avPlayer has not init!`);
       return;
     }
     this.avPlayer.on('seekDone', (seekDoneTime) => {
@@ -197,7 +197,7 @@ struct Index {
     this.avPlayer.on('error', (err) => {
       console.error(`${this.tag}: setAVPlayerCallback Invoke avPlayer failed ${JSON.stringify(err)}`);
       if (this.avPlayer == null) {
-        console.info(`${this.tag}: avPlayer has not init on error`);
+        console.error(`${this.tag}: avPlayer has not init on error`);
         return;
       }
       this.avPlayer.reset();
@@ -293,7 +293,7 @@ struct Index {
           console.info(`${this.tag}: setAVPlayerCallback AVPlayer state stopped called.`);
           break
         case 'error':
-          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state error called.`);
+          console.error(`${this.tag}: setAVPlayerCallback AVPlayer state error called.`);
           break
         case 'paused':
           console.info(`${this.tag}: setAVPlayerCallback AVPlayer state paused called.`);
@@ -339,7 +339,7 @@ struct Index {
       if (err == null) {
         console.info(`${this.tag}: videoRelease release success`);
       } else {
-        console.error(`${this.tag}: videoRelease release filed,error message is = ${JSON.stringify(err.message)}`);
+        console.error(`${this.tag}: videoRelease release failed, error message is = ${JSON.stringify(err.message)}`);
       }
     });
     emitter.off(innerEventFalse.eventId);

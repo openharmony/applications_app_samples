@@ -13,6 +13,10 @@
       "value": "ArkTS播放音频示例"
     },
     {
+      "name": "additional_desc",
+      "value": "起播后3s暂停，暂停3s重新播放"
+    },
+    {
       "name": "video_speed_1_0X",
       "value": "1.0X"
     },

@@ -10,7 +10,7 @@
 
 | 播放效果                                      | 
 | -------------------------------------------- | 
-| ![AVPlayerArkTSURL_1](./screenshots/AVPlayerArkTSURL.jpeg) 
+<img src="./screenshots/AVPlayerArkTSURL.jpeg" width="300" />
 
 
 ## 工程目录

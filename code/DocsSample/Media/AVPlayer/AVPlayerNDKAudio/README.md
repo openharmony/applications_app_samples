@@ -10,7 +10,7 @@
 
 | 播放效果                                      | 
 | -------------------------------------------- | 
-| ![AVPlayerNDKAudio_1](./screenshots/AVPlayerNDKAudio.jpeg) 
+<img src="./screenshots/AVPlayerNDKAudio.jpeg" width="300" />
 
 
 ## 工程目录

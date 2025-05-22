@@ -10,7 +10,7 @@
 
 | 播放效果                                      | 
 | -------------------------------------------- | 
-| ![AVPlayerNDKVideo_1](./screenshots/AVPlayerNDKVideo.jpeg) 
+<img src="./screenshots/AVPlayerNDKVideo.jpeg" width="300" />
 
 
 ## 工程目录
