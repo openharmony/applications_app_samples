@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start use_location_button]
 import { geoLocationManager } from '@kit.LocationKit';
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -73,3 +74,4 @@ struct Index {
     .backgroundColor(0xF1F3F5)
   }
 }
+// [End use_location_button]
