@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start encrypt_and_decrypt]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
@@ -201,6 +202,9 @@ static napi_value EncDecKey(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
+
+
+// [End encrypt_and_decrypt]
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)

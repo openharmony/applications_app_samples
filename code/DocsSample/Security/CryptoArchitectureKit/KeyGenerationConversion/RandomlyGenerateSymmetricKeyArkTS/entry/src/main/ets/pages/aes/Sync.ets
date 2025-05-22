@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_aes_key_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function testSyncGenerateAesKey() {
@@ -24,6 +25,7 @@ function testSyncGenerateAesKey() {
   let encodedKey = promiseSymKey.getEncoded();
   console.info('key hex:' + encodedKey.data);
 }
+// [End generate_aes_key_sync]
 
 @Entry
 @Component

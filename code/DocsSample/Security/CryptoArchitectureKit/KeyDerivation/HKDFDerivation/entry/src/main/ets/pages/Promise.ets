@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start use_hkdf_for_key_derivation_promise]
+
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { buffer } from '@kit.ArkTS';
@@ -37,6 +39,7 @@ function kdfPromise() {
   });
 }
 
+// [End use_hkdf_for_key_derivation_promise]
 @Entry
 @Component
 struct Index {

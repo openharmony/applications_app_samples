@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_parameter_generate_ecc_keypair_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -108,6 +109,7 @@ function testEccUseCommKeySpecGetSync() {
     console.error(`get key pair result fail, ${e.code}, ${e.message}`);
   }
 }
+// [End specify_parameter_generate_ecc_keypair_sync]
 
 @Entry
 @Component

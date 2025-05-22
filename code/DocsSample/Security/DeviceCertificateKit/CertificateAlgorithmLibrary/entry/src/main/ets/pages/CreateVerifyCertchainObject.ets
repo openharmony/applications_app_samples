@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start certificate_chain_object_creation_and_validation]
+
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
@@ -118,6 +120,8 @@ async function sample() {
   }
 }
 
+
+// [End certificate_chain_object_creation_and_validation]
 @Entry
 @Component
 struct Index {

@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+
+// [Start create_parse_validate_certificate_extension_info_objects]
+
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
@@ -68,6 +71,7 @@ function certExtensionSample(): void {
 }
 
 
+// [End create_parse_validate_certificate_extension_info_objects]
 
 @Entry
 @Component

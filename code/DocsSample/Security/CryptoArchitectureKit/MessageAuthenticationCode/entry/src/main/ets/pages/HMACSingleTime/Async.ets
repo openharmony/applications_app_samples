@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start message_authentication_code_calculated_as_fragmented_hmac_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -46,6 +46,8 @@ async function doLoopHmac() {
   console.info('HMAC len:' + macLen);
 }
 
+
+// [End message_authentication_code_calculated_as_fragmented_hmac_async]
 @Entry
 @Component
 struct Index {

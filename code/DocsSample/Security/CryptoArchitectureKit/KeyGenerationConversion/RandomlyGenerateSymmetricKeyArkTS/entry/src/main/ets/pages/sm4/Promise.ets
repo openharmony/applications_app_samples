@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_sm4_key]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function testGenerateSM4Key() {
@@ -26,6 +27,7 @@ function testGenerateSM4Key() {
     console.info('key hex:' + encodedKey.data);
   });
 }
+// [End generate_sm4_key]
 
 @Entry
 @Component

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_3des_key]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_key.h"
 #include "file.h"
@@ -45,4 +46,5 @@ OH_Crypto_ErrCode doTestDataCovertSymKey()
     OH_Crypto_FreeDataBlob(&out);
     return ret;
 }
+// [End generate_3des_key]
 

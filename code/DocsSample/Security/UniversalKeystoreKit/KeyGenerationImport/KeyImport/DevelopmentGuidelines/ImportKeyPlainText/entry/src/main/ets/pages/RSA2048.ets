@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start import_keys_in_plaintext_RSA2048]
 /* 以下以导入RSA2048密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
 
@@ -106,6 +107,9 @@ function importRSA2048() {
   }
 }
 
+
+
+// [End import_keys_in_plaintext_RSA2048]
 let isKeyExist = false;
 
 let keyProperties: huks.HuksParam[] = [

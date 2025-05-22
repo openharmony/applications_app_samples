@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start crypt_decrypt_flow]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
 #include <cstring>
@@ -75,3 +76,4 @@ end:
     OH_Crypto_FreeDataBlob(&decUpdate);
     return ret;
 }
+// [End crypt_decrypt_flow]

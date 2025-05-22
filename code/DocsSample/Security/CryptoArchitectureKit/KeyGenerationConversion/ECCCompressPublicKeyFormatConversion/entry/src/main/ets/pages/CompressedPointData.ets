@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start convert_ecc_uncompressed_point]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function eccPointUncompressedToCompressed() {
@@ -27,6 +28,7 @@ function eccPointUncompressedToCompressed() {
     returnData); // (因为y为偶数，所以压缩点数据的前缀是02)returnData: 2,143,39,57,249,145,50,63,222,35,70,178,121,202,154,21,
   // 146,129,75,76,63,8,195,157,111,40,217,215,148,120,224,205,82
 }
+// [End convert_ecc_uncompressed_point]
 
 @Entry
 @Component

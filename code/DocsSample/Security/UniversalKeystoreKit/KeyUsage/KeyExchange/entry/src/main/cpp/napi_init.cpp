@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start key_agreement]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
@@ -241,6 +241,7 @@ static napi_value AgreeKey(napi_env env, napi_callback_info info)
     return ret;
 }
 
+// [End key_agreement]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

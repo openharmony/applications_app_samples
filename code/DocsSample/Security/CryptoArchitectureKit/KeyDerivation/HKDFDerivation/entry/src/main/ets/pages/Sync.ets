@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start use_hkdf_for_key_derivation_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -32,6 +32,7 @@ function kdfSync() {
   console.info('[Sync]key derivation output is ' + secret.data);
 }
 
+// [End use_hkdf_for_key_derivation_sync]
 @Entry
 @Component
 struct Index {

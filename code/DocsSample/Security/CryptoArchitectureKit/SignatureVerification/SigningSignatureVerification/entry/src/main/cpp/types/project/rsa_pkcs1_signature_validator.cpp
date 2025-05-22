@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pkcs1_verify_rsa_keypair_sign]
 #include "signing_signature_verification.h"
 
 bool DoTestRsaSignature()
@@ -98,3 +99,4 @@ bool DoTestRsaSignature()
     OH_CryptoKeyPair_Destroy(keyPair);
     return res;
 }
+// [End pkcs1_verify_rsa_keypair_sign]

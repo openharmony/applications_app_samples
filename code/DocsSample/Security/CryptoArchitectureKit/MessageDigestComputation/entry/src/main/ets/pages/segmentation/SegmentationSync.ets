@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start message_digest_calculation_segmented_digest_algorithm_sync]
+
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -33,7 +35,7 @@ function doLoopMdBySync() {
   let mdLen = md.getMdLength();
   console.info('md len: ' + mdLen);
 }
-
+// [End message_digest_calculation_segmented_digest_algorithm_sync]
 @Entry
 @Component
 struct Index {

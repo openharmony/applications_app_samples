@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start certificate_object_creation_resolution_validation]
+
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
@@ -84,6 +86,8 @@ function certSample(): void {
   });
 }
 
+
+// [End certificate_object_creation_resolution_validation]
 @Entry
 @Component
 struct Index {

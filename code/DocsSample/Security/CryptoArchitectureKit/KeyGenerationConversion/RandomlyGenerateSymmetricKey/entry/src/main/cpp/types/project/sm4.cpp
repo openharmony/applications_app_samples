@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_sm4_key]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_key.h"
 #include "file.h"
@@ -40,3 +41,4 @@ OH_Crypto_ErrCode testGenerateSM4Key()
     OH_Crypto_FreeDataBlob(&out);
     return ret;
 }
+// [End generate_sm4_key]

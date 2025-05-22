@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start sync_symmetry_encrypt_decrypt_sm4_cbc]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -75,6 +76,7 @@ function main() {
     console.error(`SM4 “${error}“, error code: ${error.code}`);
   }
 }
+// [End sync_symmetry_encrypt_decrypt_sm4_cbc]
 
 @Entry
 @Component

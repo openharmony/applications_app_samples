@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start bin_convert_sm2_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function convertSM2AsyKey() {
@@ -36,6 +37,7 @@ function convertSM2AsyKey() {
     console.info('convertKey success');
   });
 }
+// [End bin_convert_sm2_keypair]
 
 @Entry
 @Component

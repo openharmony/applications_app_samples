@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+
+// [Start trust_array_constructed_from_p12_file_during_validation]
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -130,6 +132,8 @@ function test() {
   }
 }
 
+
+// [End trust_array_constructed_from_p12_file_during_validation]
 @Entry
 @Component
 struct Index {

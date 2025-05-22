@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start Start non_anonymized_key_proof]
 /*
  * 以下以attestKey的Promise接口操作验证为例
  */
@@ -184,7 +184,7 @@ async function attestKeyTest(): Promise<string> {
   console.info('attest certChain data: ' + attestCertChain)
   return ret;
 }
-
+// [End Start non_anonymized_key_proof]
 @Entry
 @Component
 struct Index {

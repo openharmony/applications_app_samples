@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+
+// [Start querying_the_existence_of_a_key]
 import { huks } from '@kit.UniversalKeystoreKit';
 
 /* 1.确定密钥别名 */
@@ -22,7 +24,7 @@ let isKeyExist: Boolean;
 let huksOptions: huks.HuksOptions = {
   properties: []
 }
-
+// [StartExclude querying_the_existence_of_a_key]
 /* 3.初始化密钥属性集 */
 let generateProperties: huks.HuksParam[] = [
   {
@@ -84,6 +86,7 @@ async function testGenKey(): Promise<string> {
 }
 
 function check(): string {
+// [EndExclude querying_the_existence_of_a_key]
   try {
     /* 1.生成密钥 */
     testGenKey();
@@ -103,6 +106,7 @@ function check(): string {
     console.error(`callback: hasKeyItem input arg invalid, ` + JSON.stringify(error));
     return 'Failed';
   }
+// [End querying_the_existence_of_a_key]
 }
 
 @Entry

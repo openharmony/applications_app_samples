@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start convert_rsa_keypair]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 #include "file.h"
@@ -49,3 +50,4 @@ OH_Crypto_ErrCode doTestDataCovertAsymKey()
     OH_CryptoKeyPair_Destroy(dupKeyPair);
     return ret;
 }
+// [End convert_rsa_keypair]

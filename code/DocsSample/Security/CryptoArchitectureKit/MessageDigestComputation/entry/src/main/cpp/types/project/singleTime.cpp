@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start message_digest_calculation_digest_algorithm_one_time_incoming]
+
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_digest.h"
 #include <cstring>
@@ -45,3 +47,5 @@ OH_Crypto_ErrCode doTestMd()
     OH_DigestCrypto_Destroy(ctx);
     return ret;
 }
+
+// [End message_digest_calculation_digest_algorithm_one_time_incoming]

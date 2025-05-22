@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start certificate_management_development_guidance]
 
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -271,6 +272,8 @@ async function certificateManagerSample() {
     console.error(`Failed to uninstall private certificate. Code: ${e.code}, message: ${e.message}`);
   }
 }
+
+// [End certificate_management_development_guidance]
 
 @Entry
 @Component

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_parameter_generate_ecc_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -116,6 +117,7 @@ function testEccUseCommKeySpecGet() {
     console.error(`ecc comm spec failed, ${e.code}, ${e.message}`);
   }
 }
+// [End specify_parameter_generate_ecc_keypair]
 
 @Entry
 @Component

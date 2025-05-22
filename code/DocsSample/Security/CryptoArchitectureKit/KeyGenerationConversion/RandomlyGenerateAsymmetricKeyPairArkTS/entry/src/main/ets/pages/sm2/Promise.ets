@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_sm2_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function generateSM2Key() {
@@ -30,6 +31,7 @@ function generateSM2Key() {
     console.info('sk bin data' + skBlob.data);
   });
 }
+// [End generate_sm2_keypair]
 
 @Entry
 @Component

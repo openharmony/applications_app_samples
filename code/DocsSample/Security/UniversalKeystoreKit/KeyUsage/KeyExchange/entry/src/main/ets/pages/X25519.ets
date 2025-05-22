@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start key_agreement_X25519]
 
 /*
 *以下以X25519密钥的Promise操作使用为例
@@ -389,6 +390,8 @@ async function testAgree() {
   await publicDeleteKeyFunc(srcKeyAliasSecond, huksOptions);
 }
 
+
+// [End key_agreement_X25519]
 @Entry
 @Component
 struct Index {

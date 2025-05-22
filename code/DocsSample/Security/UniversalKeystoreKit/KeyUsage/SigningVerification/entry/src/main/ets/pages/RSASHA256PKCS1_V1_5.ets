@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start key_algorithm_RSASHA256PKCS1_V1_5]
 /*
  * 密钥算法为RSA，摘要算法为SHA256，填充模式为PKCS1_V1_5
  */
@@ -180,6 +181,9 @@ export async function testSignVerify() {
   await deleteRsaKey(keyAlias);
 }
 
+
+
+// [End key_algorithm_RSASHA256PKCS1_V1_5]
 @Entry
 @Component
 struct Index {

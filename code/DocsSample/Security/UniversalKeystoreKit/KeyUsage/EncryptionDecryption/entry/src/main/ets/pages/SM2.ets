@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start encrypt_and_decrypt_SM2]
 /*
  * 以下以SM2模式的Promise操作使用为例
  */
@@ -208,6 +208,9 @@ async function deleteKey() {
       throw (error as Error);
     })
 }
+
+
+// [End encrypt_and_decrypt_SM2]
 
 @Entry
 @Component

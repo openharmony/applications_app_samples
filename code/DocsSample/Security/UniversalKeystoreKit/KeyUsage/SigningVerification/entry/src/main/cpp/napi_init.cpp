@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start signature_verification_supported_algorithms] 
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
@@ -142,6 +142,8 @@ static napi_value SignVerifyKey(napi_env env, napi_callback_info info)
     return ret;
 }
 
+
+// [End signature_verification_supported_algorithms] 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

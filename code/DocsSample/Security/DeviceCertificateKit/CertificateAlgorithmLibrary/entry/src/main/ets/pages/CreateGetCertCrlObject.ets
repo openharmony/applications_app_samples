@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+
+
+// [Start certificate_collection_and_certificate_revocation_list_collection_object_creation_and_acquisition]
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
@@ -103,6 +106,8 @@ async function sample() {
   }
 }
 
+
+// [End certificate_collection_and_certificate_revocation_list_collection_object_creation_and_acquisition]
 @Entry
 @Component
 struct Index {

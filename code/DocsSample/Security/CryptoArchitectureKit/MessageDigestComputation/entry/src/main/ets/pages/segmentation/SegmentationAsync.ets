@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start message_digest_calculation_segmented_digest_algorithm_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -34,6 +34,7 @@ async function doLoopMd() {
   console.info('md len: ' + mdLen);
 }
 
+// [End message_digest_calculation_segmented_digest_algorithm_async]
 @Entry
 @Component
 struct Index {

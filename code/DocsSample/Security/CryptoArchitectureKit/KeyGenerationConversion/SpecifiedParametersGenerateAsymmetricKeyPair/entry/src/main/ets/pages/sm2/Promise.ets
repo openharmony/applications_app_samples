@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start specify_parameter_generate_sm2_keypair]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function genSM2KeyPairSpec() {
@@ -37,6 +38,7 @@ async function sm2Test() {
   let sm2CurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
   console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2
 }
+// [End specify_parameter_generate_sm2_keypair]
 
 @Entry
 @Component

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_rsa_keypair_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function generateAsyKeySync() {
@@ -36,6 +37,7 @@ function generateAsyKeySync() {
     console.error(`get key pair failed, ${e.code}, ${e.message}`);
   }
 }
+// [End generate_rsa_keypair_sync]
 
 @Entry
 @Component

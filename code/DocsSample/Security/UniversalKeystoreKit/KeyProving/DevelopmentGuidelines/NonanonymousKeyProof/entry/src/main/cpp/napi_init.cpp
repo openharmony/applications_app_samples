@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start non_anonymized_key_proof]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
@@ -132,7 +132,7 @@ static napi_value AttestKey(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-
+// [End non_anonymized_key_proof]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

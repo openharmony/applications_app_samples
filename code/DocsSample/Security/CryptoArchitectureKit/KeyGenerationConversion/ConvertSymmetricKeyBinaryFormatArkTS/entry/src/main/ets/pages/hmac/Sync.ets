@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_hmac_key_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -27,6 +28,7 @@ function testConvertKeySync() {
   let encodedKey = key.getEncoded();
   console.info('key encoded data：' + encodedKey.data);
 }
+// [End generate_hmac_key_sync]
 
 @Entry
 @Component

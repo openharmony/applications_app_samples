@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pss_verify_rsa_keypair_sign_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 // 根据密钥参数属性构造RSA非对称密钥对密钥参数
@@ -96,6 +97,7 @@ function main() {
     console.error('oaep decrypt fail');
   }
 }
+// [End pss_verify_rsa_keypair_sign_sync]
 
 @Entry
 @Component

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start crypt_decrypt_sm4_gcm_seg]
 #include <cstring>
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
@@ -140,3 +141,4 @@ end:
     OH_Crypto_FreeDataBlob(&decUpdate);
     return ret;
 }
+// [End crypt_decrypt_sm4_gcm_seg]

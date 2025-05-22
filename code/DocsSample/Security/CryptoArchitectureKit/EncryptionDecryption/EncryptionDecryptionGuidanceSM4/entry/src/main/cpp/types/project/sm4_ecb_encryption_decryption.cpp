@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
+// [Start crypt_decrypt_sm4_ecb]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
 #include <cstring>
+// [StartExclude crypt_decrypt_sm4_ecb]
 #include "file.h"
+// [EndExclude crypt_decrypt_sm4_ecb]
 
 OH_Crypto_ErrCode doTestSm4Ecb()
 {
@@ -83,3 +86,4 @@ end:
     OH_Crypto_FreeDataBlob(&decUpdate);
     return ret;
 }
+// [End crypt_decrypt_sm4_ecb]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_sm4_key_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function testSyncGenerateSm4Key() {
@@ -24,6 +25,7 @@ function testSyncGenerateSm4Key() {
   let encodedKey = promiseSymKey.getEncoded();
   console.info('key hex:' + encodedKey.data);
 }
+// [End generate_sm4_key_sync]
 
 @Entry
 @Component

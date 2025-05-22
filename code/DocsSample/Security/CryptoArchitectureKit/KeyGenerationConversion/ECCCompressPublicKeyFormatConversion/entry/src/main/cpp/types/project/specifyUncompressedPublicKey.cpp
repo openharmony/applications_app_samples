@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start convert_ecc_uncompressed_pub_keypair]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 
@@ -56,3 +57,4 @@ OH_Crypto_ErrCode doTestEccDataCovert()
     OH_CryptoKeyPair_Destroy(keyPair);
     return ret;
 }
+// [End convert_ecc_uncompressed_pub_keypair]

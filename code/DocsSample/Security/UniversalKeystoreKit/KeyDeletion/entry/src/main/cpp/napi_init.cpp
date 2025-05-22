@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start key_deletion]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <cstring>
-
+// [StartExclude key_deletion]
 /* 以下以生成ECC密钥为例 */
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount)
@@ -62,7 +62,7 @@ static OH_Huks_Result GenerateKeyHelper(const char *alias)
     OH_Huks_FreeParamSet(&testGenerateKeyParamSet);
     return ohResult;
 }
-
+// [EndExclude key_deletion]
 static napi_value DeleteKey(napi_env env, napi_callback_info info)
 {
     /* 1.获取密钥别名 */
@@ -71,7 +71,7 @@ static napi_value DeleteKey(napi_env env, napi_callback_info info)
         (uint32_t)strlen("test_key"),
         (uint8_t *)"test_key"
     };
-
+    // [StartExclude key_deletion]
     /* 生成密钥 */
     OH_Huks_Result genResult = GenerateKeyHelper(alias);
     if (genResult.errorCode != OH_HUKS_SUCCESS) {
@@ -79,6 +79,7 @@ static napi_value DeleteKey(napi_env env, napi_callback_info info)
         napi_create_int32(env, genResult.errorCode, &ret);
         return ret;
     }
+    // [EndExclude key_deletion]
 
     /* 2.调用OH_Huks_DeleteKeyItem删除密钥  */
     struct OH_Huks_Result ohResult = OH_Huks_DeleteKeyItem(&keyAlias, nullptr);
@@ -87,7 +88,7 @@ static napi_value DeleteKey(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-
+// [End key_deletion]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

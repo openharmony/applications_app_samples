@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start gcm_seg_encrypt_decrypt_aes_symkey_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -113,6 +114,7 @@ function main() {
     console.error('decrypt failed');
   }
 }
+// [End gcm_seg_encrypt_decrypt_aes_symkey_sync]
 
 @Entry
 @Component

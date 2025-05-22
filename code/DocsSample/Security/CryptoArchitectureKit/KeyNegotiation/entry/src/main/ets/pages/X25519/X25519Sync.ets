@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start use_x25519a_for_key_negotiation_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function x25519Await() {
@@ -41,7 +41,7 @@ function x25519Await() {
     console.error('x25519 result is not equal');
   }
 }
-
+// [End use_x25519a_for_key_negotiation_sync]
 @Entry
 @Component
 struct Index {

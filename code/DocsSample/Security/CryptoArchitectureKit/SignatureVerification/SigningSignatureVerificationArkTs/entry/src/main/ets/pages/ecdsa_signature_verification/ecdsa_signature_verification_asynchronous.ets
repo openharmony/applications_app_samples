@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start signature_verification_with_ecdsa_key_pair_ark_async]
+
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -52,6 +54,7 @@ async function main() {
   }
 }
 
+// [End signature_verification_with_ecdsa_key_pair_ark_async]
 @Entry
 @Component
 struct Index {

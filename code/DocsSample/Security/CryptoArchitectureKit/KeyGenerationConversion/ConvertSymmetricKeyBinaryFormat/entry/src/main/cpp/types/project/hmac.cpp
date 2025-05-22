@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start generate_hmac_key]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_key.h"
 #include <cstring>
@@ -46,4 +47,5 @@ OH_Crypto_ErrCode testConvertHmacKey()
     OH_Crypto_FreeDataBlob(&out);
     return ret;
 }
+// [End generate_hmac_key]
 

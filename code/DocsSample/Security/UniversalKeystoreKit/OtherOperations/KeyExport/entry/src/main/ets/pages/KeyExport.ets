@@ -13,15 +13,16 @@
  * limitations under the License.
  */
 
+// [Start fetch_persistent_security_public_keys]
 import { huks } from '@kit.UniversalKeystoreKit';
 
 /* 1. 设置密钥别名 */
 let keyAlias = 'keyAlias';
 /* option对象传空 */
 let emptyOptions: huks.HuksOptions = {
-  properties: []
+properties: []
 };
-
+// [StartExclude fetch_persistent_security_public_keys]
 let properties1: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -82,9 +83,12 @@ async function testGenKey(): Promise<string> {
 }
 
 function check(): string {
+// [EndExclude fetch_persistent_security_public_keys]
   try {
+    // [StartExclude fetch_persistent_security_public_keys]
     /* 1. 生成密钥 */
     testGenKey()
+    // [EndExclude fetch_persistent_security_public_keys]
     /* 2. 导出密钥 */
     huks.exportKeyItem(keyAlias, emptyOptions, (error, data) => {
       if (error) {
@@ -98,6 +102,7 @@ function check(): string {
     console.error(`callback: exportKeyItem input arg invalid, ${JSON.stringify(error)}`);
     return 'Failed';
   }
+// [End fetch_persistent_security_public_keys]
 }
 
 @Entry

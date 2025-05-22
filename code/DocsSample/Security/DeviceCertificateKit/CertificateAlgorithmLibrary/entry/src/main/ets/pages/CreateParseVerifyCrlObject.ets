@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+// [Start create_parse_verify_certificate_revocation_list_objects]
+
+
 import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -171,6 +174,9 @@ function crlSample(): void {
     })
   });
 }
+
+
+// [End create_parse_verify_certificate_revocation_list_objects]
 
 @Entry
 @Component

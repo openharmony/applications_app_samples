@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start obtain_the_key_attributes]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <cstring>
-
+// [StartExclude obtain_the_key_attributes]
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount)
 {
@@ -61,12 +61,13 @@ static OH_Huks_Result GenerateKeyHelper(const char *alias)
     OH_Huks_FreeParamSet(&testGenerateKeyParamSet);
     return ohResult;
 }
-
+// [EndExclude obtain_the_key_attributes]
 static napi_value GetKeyParamSet(napi_env env, napi_callback_info info)
 {
     /* 1. 参数构造：确定密钥别名 */
     const char *alias = "test_key";
     struct OH_Huks_Blob aliasBlob = { .size = (uint32_t)strlen(alias), .data = (uint8_t *)alias };
+    // [StartExclude obtain_the_key_attributes]
     /* 生成密钥 */
     OH_Huks_Result genResult = GenerateKeyHelper(alias);
     if (genResult.errorCode != OH_HUKS_SUCCESS) {
@@ -74,6 +75,7 @@ static napi_value GetKeyParamSet(napi_env env, napi_callback_info info)
         napi_create_int32(env, genResult.errorCode, &ret);
         return ret;
     }
+    // [EndExclude obtain_the_key_attributes]
     const size_t paramSetSize = 512;
     /* 构造参数：为参数集申请内存
      * 请业务按实际情况评估大小进行申请
@@ -102,7 +104,7 @@ static napi_value GetKeyParamSet(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-
+// [End obtain_the_key_attributes]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

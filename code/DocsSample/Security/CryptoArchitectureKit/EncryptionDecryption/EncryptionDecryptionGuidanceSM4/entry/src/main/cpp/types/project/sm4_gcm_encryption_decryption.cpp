@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
+// [Start crypt_decrypt_sm4_gcm]
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
 #include <cstring>
+// [StartExclude crypt_decrypt_sm4_gcm]
 #include "file.h"
+// [EndExclude crypt_decrypt_sm4_gcm]
 
 OH_Crypto_ErrCode doTestSm4Gcm()
 {
@@ -114,3 +117,4 @@ end:
     OH_Crypto_FreeDataBlob(&tagOutPut);
     return ret;
 }
+// [End crypt_decrypt_sm4_gcm]

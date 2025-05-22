@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start import_keys_in_plaintext]
 /* 以下以明文导入AES密钥为例 */
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
@@ -76,6 +77,7 @@ static napi_value ImportKey(napi_env env, napi_callback_info info)
     return ret;
 }
 
+// [End import_keys_in_plaintext]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start encrypt_and_decrypt_AESCBCPKCS7]
 /*
  * 以下以AES/CBC/PKCS7的Promise操作使用为例
  */
@@ -221,6 +221,10 @@ async function deleteKey() {
       throw (error as Error);
     })
 }
+
+
+// [End encrypt_and_decrypt_AESCBCPKCS7]
+
 
 @Entry
 @Component

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start use_the_sm2_key_pair_to_sign_and_verify_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -51,6 +51,8 @@ function main() {
     console.error('verify failed');
   }
 }
+
+// [End use_the_sm2_key_pair_to_sign_and_verify_sync]
 
 @Entry
 @Component

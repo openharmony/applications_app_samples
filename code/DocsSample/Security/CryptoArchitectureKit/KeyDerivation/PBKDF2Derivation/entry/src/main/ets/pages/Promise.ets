@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start use_pbkdf2_for_key_derivation_promise]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -32,7 +32,7 @@ function kdfPromise() {
     console.error('key derivation error.');
   });
 }
-
+// [End use_pbkdf2_for_key_derivation_promise]
 @Entry
 @Component
 struct Index {

@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start query_whether_the_key_exists]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <cstring>
-
+// [StartExclude query_whether_the_key_exists]
 /* 以下以生成ECC密钥为例 */
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount)
@@ -62,7 +62,7 @@ static OH_Huks_Result GenerateKeyHelper(const char *alias)
     OH_Huks_FreeParamSet(&testGenerateKeyParamSet);
     return ohResult;
 }
-
+// [EndExclude query_whether_the_key_exists]
 static napi_value IsKeyExist(napi_env env, napi_callback_info info)
 {
     /* 1.获取密钥别名 */
@@ -88,7 +88,7 @@ static napi_value IsKeyExist(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-
+// [End query_whether_the_key_exists]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/// [Start use_ecdh_for_key_negotiation_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 async function ecdhAwait() {
@@ -44,6 +44,7 @@ async function ecdhAwait() {
   }
 }
 
+// [End use_ecdh_for_key_negotiation_async]
 @Entry
 @Component
 struct Index {

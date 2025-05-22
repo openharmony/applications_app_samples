@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start import_keys_in_plaintext_AES256]
+
 /* 以下以导入AES256密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
 
@@ -60,6 +62,8 @@ function importAES256() {
     throw (error as Error);
   }
 }
+
+// [End import_keys_in_plaintext_AES256]
 
 let isKeyExist = false;
 

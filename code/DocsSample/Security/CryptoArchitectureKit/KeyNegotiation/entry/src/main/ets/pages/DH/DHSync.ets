@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+
+// [Start use_dh_for_key_negotiation_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function dhAwait() {
@@ -34,7 +36,7 @@ function dhAwait() {
     console.error('DH result is not equal');
   }
 }
-
+// [End use_dh_for_key_negotiation_sync]
 @Entry
 @Component
 struct Index {

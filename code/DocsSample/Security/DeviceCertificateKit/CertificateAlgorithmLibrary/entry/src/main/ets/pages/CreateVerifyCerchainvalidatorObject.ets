@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+
+
+// [Start certificate_chain_validator_object_creation_and_validation]
 import { cert } from '@kit.DeviceCertificateKit';
 import { util } from '@kit.ArkTS';
 
@@ -122,6 +125,8 @@ function certChainValidatorSample(): void {
   });
 }
 
+
+// [End certificate_chain_validator_object_creation_and_validation]
 @Entry
 @Component
 struct Index {

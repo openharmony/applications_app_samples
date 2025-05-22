@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start signature_verification_with_ecdsa_key_pair_ark_sync]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -52,6 +52,8 @@ function main() {
   }
 }
 
+
+// [End signature_verification_with_ecdsa_key_pair_ark_sync]
 @Entry
 @Component
 struct Index {

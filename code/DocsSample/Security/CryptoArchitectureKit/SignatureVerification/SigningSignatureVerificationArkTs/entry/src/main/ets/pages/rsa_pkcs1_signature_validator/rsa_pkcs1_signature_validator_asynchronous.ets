@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pkcs1_verify_rsa_keypair_sign_async]
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -51,6 +52,7 @@ async function main() {
     console.error('verify failed');
   }
 }
+// [End pkcs1_verify_rsa_keypair_sign_async]
 
 @Entry
 @Component
