@@ -314,12 +314,12 @@ struct ImageEditPage {
 
   private confirmInfo() {
     this.filterOptions = [];
-    if (this.brightnessSelect) {
+    if (this.brightnessSelect && this.inputType != 'URI') {
       let brightnessArray: (string | number)[] = [];
       brightnessArray.push('Brightness', this.brightnessSetValue);
       this.filterOptions.push(brightnessArray);
     }
-    if (this.contrastSelect) {
+    if (this.contrastSelect && this.inputType != 'URI') {
       let contrastArray: (string | number)[] = [];
       contrastArray.push('Contrast', this.contrastSetValue);
       this.filterOptions.push(contrastArray);
@@ -446,94 +446,98 @@ struct CustomDialogExample {
 
           Row() {
             Column() {
-              Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-                Checkbox({ name: 'brightnessCheckbox', group: 'filterCheckboxGroup' })
-                  .selectedColor(0x39a2db)
-                  .select(this.brightnessSelect)
-                  .onChange((value: boolean) => {
-                    this.brightnessSelect = value;
+              if (this.inputType != 'URI') {
+                Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+                  Checkbox({ name: 'brightnessCheckbox', group: 'filterCheckboxGroup' })
+                    .selectedColor(0x39a2db)
+                    .select(this.brightnessSelect)
+                    .onChange((value: boolean) => {
+                      this.brightnessSelect = value;
+                    })
+                    .width($r('app.float.check_box_width'))
+                    .height($r('app.float.check_box_height'))
+                    .id('checkbox_brightness')
+                  Text('Brightness').fontSize($r('app.float.filter_text_size')).width('18%')
+                  Slider({
+                    value: this.brightnessSetValue,
+                    min: VALUE_MIN_MINUS,
+                    max: VALUE_MAX,
+                    style: SliderStyle.OutSet
                   })
-                  .width($r('app.float.check_box_width'))
-                  .height($r('app.float.check_box_height'))
-                  .id('checkbox_brightness')
-                Text('Brightness').fontSize($r('app.float.filter_text_size')).width('18%')
-                Slider({
-                  value: this.brightnessSetValue,
-                  min: VALUE_MIN_MINUS,
-                  max: VALUE_MAX,
-                  style: SliderStyle.OutSet
-                })
-                  .showTips(true, this.brightnessSetValue.toFixed())
-                  .onChange((value: number, mode: SliderChangeMode) => {
-                    this.brightnessSetValue = value;
-                    console.info('value:' + value + 'mode:' + mode.toString());
-                  })
-                  .width('60%')
-                  .id('slider_brightness')
-                // toFixed()将滑动条返回值处理为整数精度
-                Column() {
-                  Text(this.brightnessSetValue.toFixed()).fontSize($r('app.float.filter_number_size'))
-                }.width('8%')
+                    .showTips(true, this.brightnessSetValue.toFixed())
+                    .onChange((value: number, mode: SliderChangeMode) => {
+                      this.brightnessSetValue = value;
+                      console.info('value:' + value + 'mode:' + mode.toString());
+                    })
+                    .width('60%')
+                    .id('slider_brightness')
+                  // toFixed()将滑动条返回值处理为整数精度
+                  Column() {
+                    Text(this.brightnessSetValue.toFixed()).fontSize($r('app.float.filter_number_size'))
+                  }.width('8%')
 
-                Column() {
-                  Image($r('app.media.ic_public_search'))
-                    .width('5%')
-                    .height('3.7%')
-                }.bindMenu(this.filterInfoMenu, {
-                  onAppear: () => {
-                    this.doLookFilterInfo('Brightness');
-                  },
-                  onDisappear: () => {
-                    this.filterInfo = '';
-                  }
-                })
-                .margin({ left: $r('app.float.margin_left') })
-                .id('btn_search_brightness')
+                  Column() {
+                    Image($r('app.media.ic_public_search'))
+                      .width('5%')
+                      .height('3.7%')
+                  }.bindMenu(this.filterInfoMenu, {
+                    onAppear: () => {
+                      this.doLookFilterInfo('Brightness');
+                    },
+                    onDisappear: () => {
+                      this.filterInfo = '';
+                    }
+                  })
+                  .margin({ left: $r('app.float.margin_left') })
+                  .id('btn_search_brightness')
+                }
               }
 
-              Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-                Checkbox({ name: 'contrastCheckbox', group: 'filterCheckboxGroup' })
-                  .selectedColor(0x39a2db)
-                  .select(this.contrastSelect)
-                  .onChange((value: boolean) => {
-                    this.contrastSelect = value;
+              if (this.inputType != 'URI') {
+                Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+                  Checkbox({ name: 'contrastCheckbox', group: 'filterCheckboxGroup' })
+                    .selectedColor(0x39a2db)
+                    .select(this.contrastSelect)
+                    .onChange((value: boolean) => {
+                      this.contrastSelect = value;
+                    })
+                    .width($r('app.float.check_box_width'))
+                    .height($r('app.float.check_box_height'))
+                    .id('checkbox_contrast')
+                  Text('Contrast').fontSize($r('app.float.filter_text_size')).width('18%')
+                  Slider({
+                    value: this.contrastSetValue,
+                    min: VALUE_MIN_MINUS,
+                    max: VALUE_MAX,
+                    style: SliderStyle.OutSet
                   })
-                  .width($r('app.float.check_box_width'))
-                  .height($r('app.float.check_box_height'))
-                  .id('checkbox_contrast')
-                Text('Contrast').fontSize($r('app.float.filter_text_size')).width('18%')
-                Slider({
-                  value: this.contrastSetValue,
-                  min: VALUE_MIN_MINUS,
-                  max: VALUE_MAX,
-                  style: SliderStyle.OutSet
-                })
-                  .showTips(true, this.contrastSetValue.toFixed())
-                  .onChange((value: number, mode: SliderChangeMode) => {
-                    this.contrastSetValue = value;
-                    console.info('value:' + value + 'mode:' + mode.toString());
-                  })
-                  .width('60%')
-                  .id('slider_contrast')
-                // toFixed()将滑动条返回值处理为整数精度
-                Column() {
-                  Text(this.contrastSetValue.toFixed()).fontSize($r('app.float.filter_number_size'))
-                }.width('8%')
+                    .showTips(true, this.contrastSetValue.toFixed())
+                    .onChange((value: number, mode: SliderChangeMode) => {
+                      this.contrastSetValue = value;
+                      console.info('value:' + value + 'mode:' + mode.toString());
+                    })
+                    .width('60%')
+                    .id('slider_contrast')
+                  // toFixed()将滑动条返回值处理为整数精度
+                  Column() {
+                    Text(this.contrastSetValue.toFixed()).fontSize($r('app.float.filter_number_size'))
+                  }.width('8%')
 
-                Column() {
-                  Image($r('app.media.ic_public_search'))
-                    .width('5%')
-                    .height('3.7%')
-                }.bindMenu(this.filterInfoMenu, {
-                  onAppear: () => {
-                    this.doLookFilterInfo('Contrast');
-                  },
-                  onDisappear: () => {
-                    this.filterInfo = '';
-                  }
-                })
-                .margin({ left: $r('app.float.margin_left') })
-                .id('btn_search_contrast')
+                  Column() {
+                    Image($r('app.media.ic_public_search'))
+                      .width('5%')
+                      .height('3.7%')
+                  }.bindMenu(this.filterInfoMenu, {
+                    onAppear: () => {
+                      this.doLookFilterInfo('Contrast');
+                    },
+                    onDisappear: () => {
+                      this.filterInfo = '';
+                    }
+                  })
+                  .margin({ left: $r('app.float.margin_left') })
+                  .id('btn_search_contrast')
+                }
               }
 
               if (this.inputType != 'NativeBuffer' && this.inputType != 'NativeWindow') {
