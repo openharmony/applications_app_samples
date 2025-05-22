@@ -59,72 +59,83 @@
 </style>
 <script>
 	function initPad() {
-	    this.isPhone = false
-		func1()
+	    this.isPhone = false;
+		func1();
 	}
 	function adapterDevice() {
-	    console.info('function adapterDevice')
-	    var v = document.querySelector('meta[name="viewport"]');
+	    console.info('function adapterDevice');
+	    let v = document.querySelector('meta[name="viewport"]');
         if (v) {
             v.setAttribute('content', 'width=720, user-scalable=yes');
         } else {
-            var m = document.createElement('meta');
-            m.content='width=720, user-scalable=yes'
-            m.name='viewport';
+            let m = document.createElement('meta');
+            m.content = 'width=720, user-scalable=yes';
+            m.name = 'viewport';
             document.getElementsByTagName('head')[0].appendChild(m);
         }
 	}
     function func1() {
-        let array = [{src: "./bing.png", name:"必应", addr: "bing.com"},
-             {src: "./12306.png", name: "12306", addr: "www.12306.cn"},
-             {src: "./dianping.png", name: "大众点评", addr:"www.dianping.com"},
-             {src: "./sina.png", name: "新浪新闻", addr:"news.sina.com.cn/"},
-             {src: "./jingdong.png", name: "京东", addr:"www.jd.com"},
-             {src: "./pinduoduo.png", name: "拼多多", addr:"www.pinduoduo.com"},
-             {src: "./weibo.png", name:"微博", addr: "weibo.com/"},
-             {src: "./taobao.png", name:"淘宝", addr: "www.tmall.com"},
-             {src: "./weipinhui.png", name:"唯品会", addr:"www.vip.com"},
-             {src: "./weixin.png", name:"微信阅读", addr:"weread.qq.com"},
-             {src: "./zhihu.png", name:"知乎", addr:"www.zhihu.com"},
-             {src: "./xiecheng.png", name:"携程", addr:"www.ctrip.com"},]
-      var div = document.getElementById("test")
-      div.className = isPhone ? "phone" : "tablet"
+        let array = [{src: './bing.png', name:'必应', addr: 'bing.com'},
+             {src: './12306.png', name: '12306', addr: 'www.12306.cn'},
+             {src: './dianping.png', name: '大众点评', addr:'www.dianping.com'},
+             {src: './sina.png', name: '新浪新闻', addr:'news.sina.com.cn/'},
+             {src: './jingdong.png', name: '京东', addr:'www.jd.com'},
+             {src: './pinduoduo.png', name: '拼多多', addr:'www.pinduoduo.com'},
+             {src: './weibo.png', name:'微博', addr: 'weibo.com/'},
+             {src: './taobao.png', name:'淘宝', addr: 'www.tmall.com'},
+             {src: './weipinhui.png', name:'唯品会', addr:'www.vip.com'},
+             {src: './weixin.png', name:'微信阅读', addr:'weread.qq.com'},
+             {src: './zhihu.png', name:'知乎', addr:'www.zhihu.com'},
+             {src: './xiecheng.png', name:'携程', addr:'www.ctrip.com'},]
+      let div = document.getElementById('test');
+      div.className = isPhone ? 'phone' : 'tablet'
       for(let i = 0; i < array.length; i++) {
-        let box = document.createElement("div")
-		box.style.display = 'flex'
-		box.style.flexDirection = 'column'
-		box.style.justifyContent = 'center'
-		box.style.alignItems = 'center'
-		box.style.height = '120px'
-		box.style.minWidth = '100px'
-		box.style.borderRadius = '15px'
+        let box = document.createElement('div');
+		box.style.display = 'flex';
+		box.style.flexDirection = 'column';
+		box.style.justifyContent = 'center';
+		box.style.alignItems = 'center';
+		box.style.height = '120px';
+		box.style.minWidth = '100px';
+		box.style.borderRadius = '15px';
 		box.addEventListener('touchstart', function(e){
-			box.style.backgroundColor = '#e4e4e4'
-		})
+			box.style.backgroundColor = '#e4e4e4';
+		});
 		box.addEventListener('touchend', function(e){
-			box.style.backgroundColor = '#00000000'
-		})
-        let text = document.createElement('p')
-		text.innerHTML = array[i].name
-        text.style.fontSize = '13px'
-        text.style.fontWeight = 400
-        var image = new Image()
-        image.src = array[i].src
-        image.style.width = '48px'
-		image.style.height = '48px'
+			box.style.backgroundColor = '#00000000';
+		});
+        let text = document.createElement('p');
+		text.innerHTML = array[i].name;
+        text.style.fontSize = '13px';
+        text.style.fontWeight = 400;
+        let image = new Image();
+        image.src = array[i].src;
+        image.style.width = '48px';
+		image.style.height = '48px';
         image.onclick = function() {
-            console.info('image.onclick')
-            etsObj.test(array[i].addr)
+            console.info('image.onclick');
+            etsObj.test(array[i].addr);
         }
-        box.appendChild(image)
-        box.appendChild(text)
-        div.appendChild(box)
+        box.appendChild(image);
+        box.appendChild(text);
+        div.appendChild(box);
       }
     }
     function uploadWord() {
-        let inputDom = document.getElementById("searchCon")
-        console.info(`pad inputDom.value=${inputDom.value}`)
-        etsObj.searchWord(inputDom.value)
+        let inputDom = document.getElementById('searchCon');
+        console.info(`pad inputDom.value=${inputDom.value}`);
+        etsObj.searchWord(inputDom.value);
+    }
+
+    function searchWord(e) {
+        console.info(`searchWord keyCode=${e.keyCode}`);
+        if (e.keyCode === 13) {
+            let inputDom = document.getElementById('searchCon');
+            console.info(`phone inputDom.value=${inputDom.value}`);
+            etsObj.searchWord(inputDom.value);
+            return true;
+        }
+        return false;
     }
  </script>
 <body style="margin：0px; background-image: url(./backgroundImg.jpg);
@@ -137,7 +148,8 @@
         </div>
         <form autocomplete="off">
             <input id="searchCon" type="text" style="border-bottom-right-radius: 8px;
-                border-top-right-radius: 8px; text-align: left;">
+                border-top-right-radius: 8px; text-align: left;" onkeyup="searchWord(event)"
+                onkeypress="return event.keyCode !== 13;">
         </form>
         <div style="display:flex;height: 100%; width: 33px;position: absolute; right:9px; z-index: 3;
             align-items: center;justify-content: center;" onclick="uploadWord()">
