@@ -15,16 +15,19 @@
 
 import { ComponentCard } from '../../common/Card';
 
+// [Start keyboard_avoid]
 @Entry
 @Component
 export struct KeyboardAvoidance {
   placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7'];
 
   build() {
+    // [StartExclude keyboard_avoid]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.KeyboardAvoidance_title') }) {
           Column({ space: 12 }) {
+            // [EndExclude keyboard_avoid]
             Scroll() {
               Column() {
                 ForEach(this.placeHolderArr, (placeholder: string) => {
@@ -37,6 +40,7 @@ export struct KeyboardAvoidance {
             .width('100%')
           }
         }
+        // [End keyboard_avoid]
       }
       .width('100%')
       .height('100%')

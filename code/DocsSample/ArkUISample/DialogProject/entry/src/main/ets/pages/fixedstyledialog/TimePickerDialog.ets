@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start time_picker_dialog]
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
@@ -57,3 +58,4 @@ export struct TimePickerDialogExample {
     .title($r('app.string.CustomDialog_time'))
   }
 }
+// [End time_picker_dialog]

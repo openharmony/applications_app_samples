@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start listen_response_key_event]
 @Entry
 @Component
 export struct OnKey {
@@ -74,3 +75,4 @@ export struct OnKey {
     .title($r('app.string.Device_OnKey_title'))
   }
 }
+// [End listen_response_key_event]

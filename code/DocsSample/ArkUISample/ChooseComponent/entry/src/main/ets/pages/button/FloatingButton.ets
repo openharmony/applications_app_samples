@@ -13,18 +13,23 @@
  * limitations under the License.
  */
 
+// [Start floating_button]
 @Entry
 @Component
 export struct FloatingButton {
   @State private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  // [StartExclude floating_button]
   pathStack: NavPathStack = new NavPathStack();
 
   resourceToString(resource: Resource): string {
     return getContext(this).resourceManager.getStringSync(resource);
   }
+  // [EndExclude floating_button]
 
   build() {
+    // [StartExclude floating_button]
     NavDestination() {
+      // [EndExclude floating_button]
       Stack() {
         List({ space: 12, initialIndex: 0 }) {
           ForEach(this.arr, (item: number) => {
@@ -46,6 +51,7 @@ export struct FloatingButton {
           right: 15
         })
 
+        // [Start custom_button_function]
         Button() {
           Image($r('sys.media.ohos_ic_public_add'))
             .fillColor(0xffffff)
@@ -58,14 +64,18 @@ export struct FloatingButton {
         .position({ x: '80%', y: 570 })
         .onClick(() => {
           // 需要执行的操作
+          // [StartExclude custom_button_function]
           this.arr.push(this.arr.length);
+          // [EndExclude custom_button_function]
         })
+        // [End custom_button_function]
       }
       .width('100%')
       .height('100%')
       .backgroundColor(0xDCDCDC)
       .padding({ top: 6 })
     }
+    // [End floating_button]
     .backgroundColor('#f1f2f3')
     .title(this.resourceToString($r('app.string.FloatingButton_title')))
   }

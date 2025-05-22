@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start sequence_recognition_gesture]
 @Entry
 @Component
 export struct Sequence {
@@ -89,3 +90,4 @@ export struct Sequence {
     .title($r('app.string.groupgesture_Sequence_title'))
   }
 }
+// [End sequence_recognition_gesture]

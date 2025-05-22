@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start set_dialog_animation]
 @CustomDialog
 struct CustomDialogExample {
   controller?: CustomDialogController;
@@ -75,3 +76,4 @@ export struct DialogAnimation {
     .title($r('app.string.CustomDialog_Animation1'))
   }
 }
+// [End set_dialog_animation]

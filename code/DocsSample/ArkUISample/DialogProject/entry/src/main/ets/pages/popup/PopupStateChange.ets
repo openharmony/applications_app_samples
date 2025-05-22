@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start state_popup]
 @Entry
 @Component
 export struct StatePopupExample {
@@ -47,3 +48,4 @@ export struct StatePopupExample {
     .title($r('app.string.onStateChange_title'))
   }
 }
+// [End state_popup]

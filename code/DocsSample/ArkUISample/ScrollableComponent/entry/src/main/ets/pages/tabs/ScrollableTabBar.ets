@@ -22,7 +22,9 @@ export struct ScrollableTabBar {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ScrollableTabBar_titleExample') }) {
+          // [Start scrollable_tab_bar]
           Tabs({ barPosition: BarPosition.Start  }) {
+            // [StartExclude scrollable_tab_bar]
             TabContent() {
               Text($r('app.string.FocusOn_content'))
                 .fontSize(30)
@@ -78,10 +80,14 @@ export struct ScrollableTabBar {
             }
             .backgroundColor(Color.Red)
             .tabBar($r('app.string.humanities'))
+            // [EndExclude scrollable_tab_bar]
           }
+          // [StartExclude scrollable_tab_bar]
           .barWidth(250)
           .height(500)
+          // [EndExclude scrollable_tab_bar]
           .barMode(BarMode.Scrollable)
+          // [End scrollable_tab_bar]
         }
       }
       .width('100%')

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start catch_click_twice_event]
 @Entry
 @Component
 export struct Tap {
@@ -47,3 +48,4 @@ export struct Tap {
     .title($r('app.string.singlegesture_TapGesture_title'))
   }
 }
+// [End catch_click_twice_event]

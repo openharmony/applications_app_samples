@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,13 +16,16 @@
 
 import { ComponentCard } from '../../common/Card';
 
+// [Start list_statically_creates_the_contents_of_list_item]
 @Entry
 @Component
 export struct DataInList {
   build() {
+    // [StartExclude list_statically_creates_the_contents_of_list_item]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.DataInList_titleCityList') }) {
+          // [EndExclude list_statically_creates_the_contents_of_list_item]
           List() {
             ListItem() {
               Text($r('app.string.city_beijing'))
@@ -41,8 +45,10 @@ export struct DataInList {
           .backgroundColor('#FFF1F3F5')
           .alignListItem(ListItemAlign.Center)
         }
+        // [End list_statically_creates_the_contents_of_list_item]
 
         ComponentCard({ title: $r('app.string.DataInList_titleContactsList') }) {
+          // [Start encapsulate_the_image_and_text_into_a_row]
           List() {
             ListItem() {
               Row() {
@@ -70,6 +76,7 @@ export struct DataInList {
           }
         }
       }
+      // [End encapsulate_the_image_and_text_into_a_row]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })

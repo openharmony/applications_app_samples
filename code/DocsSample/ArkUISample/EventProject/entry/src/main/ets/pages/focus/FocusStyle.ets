@@ -16,6 +16,7 @@
 import { KeyCode } from '@kit.InputKit';
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
+// [Start focus_style_manage]
 @Entry
 @Component
 export struct FocusStyle {
@@ -49,3 +50,4 @@ export struct FocusStyle {
     .title($r('app.string.Focus_FocusStyle_title'))
   }
 }
+// [End focus_style_manage]

@@ -28,20 +28,24 @@ export struct CreateButton {
           title: $r('app.string.CreateButton_titleOne'),
           description: $r('app.string.CreateButton_descriptionOne')
         }) {
+          // [Start create_button_by_label]
           Button('Button', { type: ButtonType.Capsule, stateEffect: true })
             .id('button')
+          // [End create_button_by_label]
         }
 
         ComponentCard({
           title: $r('app.string.CreateButton_titleTwo'),
           description: $r('app.string.CreateButton_descriptionTwo')
         }) {
+          // [Start create_button_by_button_options]
           Button() {
             Row({ space: 4 }) {
               Image($r('sys.media.ohos_ic_back')).width(20).height(40).fillColor(0xffffff)
               Text('back').fontColor(0xffffff)
             }.alignItems(VerticalAlign.Center).justifyContent(FlexAlign.Center).width(90).height(40)
           }.id('button_back')
+          // [End create_button_by_button_options]
         }
       }
       .width('100%')

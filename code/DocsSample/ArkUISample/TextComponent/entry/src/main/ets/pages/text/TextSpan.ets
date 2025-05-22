@@ -24,14 +24,17 @@ export struct TextSpan {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.TextSpan_title_1') }) {
+          // [Start create_span]
           Text($r('app.string.TextSpan_textContent_1')) {
             Span($r('app.string.TextSpan_textContent_2'))
           }
           .padding(10)
           .borderWidth(1)
+          // [End create_span]
         }
 
         ComponentCard({ title: $r('app.string.TextSpan_title_2') }) {
+          // [Start create_span_with_lines]
           Text() {
             Span($r('app.string.TextSpan_textContent_3'))
               .fontSize(16)
@@ -49,18 +52,22 @@ export struct TextSpan {
           }
           .borderWidth(1)
           .padding(10)
+          // [End create_span_with_lines]
         }
 
         ComponentCard({ title: $r('app.string.TextSpan_title_3') }) {
+          // [Start create_span_with_upper_case]
           Text() {
             Span('I am Upper-span').fontSize(12)
               .textCase(TextCase.UpperCase)
           }
           .borderWidth(1)
           .padding(10)
+          // [End create_span_with_upper_case]
         }
 
         ComponentCard({ title: $r('app.string.TextSpan_title_4') }) {
+          // [Start create_span_with_onclick]
           Text() {
             Span(this.onClickText)
               .fontSize(12)
@@ -69,6 +76,7 @@ export struct TextSpan {
                 this.onClickText = $r('app.string.TextSpan_textContent_6');
               })
           }
+          // [End create_span_with_onclick]
         }
       }
       .width('100%')

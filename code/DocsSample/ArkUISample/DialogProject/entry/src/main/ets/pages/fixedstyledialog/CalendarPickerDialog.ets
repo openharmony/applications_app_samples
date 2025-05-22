@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start calender_picker_dialog]
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
@@ -60,3 +61,4 @@ export struct CalendarDialog {
     .title($r('app.string.CustomDialog_calender'))
   }
 }
+// [End calender_picker_dialog]

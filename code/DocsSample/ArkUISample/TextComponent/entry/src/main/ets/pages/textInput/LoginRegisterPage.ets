@@ -16,13 +16,16 @@
 import { ComponentCard } from '../../common/Card';
 import resource from '../../common/resource';
 
+// [Start the_example_of_text_input]
 @Entry
 @Component
 export struct LoginRegisterPage {
   build() {
+    // [StartExclude the_example_of_text_input]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.LoginRegisterPage_title') }) {
+          // [EndExclude the_example_of_text_input]
           Column({ space: 12 }) {
             TextInput({ placeholder: 'input your username' })
               .id('username')
@@ -44,6 +47,7 @@ export struct LoginRegisterPage {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [End the_example_of_text_input]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.LoginRegisterPage_title'))
   }

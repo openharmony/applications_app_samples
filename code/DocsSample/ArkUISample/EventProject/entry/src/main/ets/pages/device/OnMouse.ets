@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start listen_response_mouse_event]
 @Entry
 @Component
 export struct Mouse {
@@ -77,3 +78,4 @@ export struct Mouse {
     .title($r('app.string.Device_OnMouse_title'))
   }
 }
+// [End listen_response_mouse_event]

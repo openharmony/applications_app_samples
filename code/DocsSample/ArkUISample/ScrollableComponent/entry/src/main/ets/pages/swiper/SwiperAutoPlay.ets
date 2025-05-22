@@ -22,7 +22,9 @@ export struct SwiperAutoPlay {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SwiperAutoPlay_title') }) {
+          // [Start autoplay_loop_true]
           Swiper() {
+            // [StartExclude autoplay_loop_true]
             Text('0')
               .width('90%')
               .height('100%')
@@ -43,11 +45,15 @@ export struct SwiperAutoPlay {
               .backgroundColor(Color.Pink)
               .textAlign(TextAlign.Center)
               .fontSize(30)
+            // [EndExclude autoplay_loop_true]
           }
+          // [StartExclude autoplay_loop_true]
           .height(200)
+          // [EndExclude autoplay_loop_true]
           .loop(true)
           .autoPlay(true)
           .interval(1000)
+          // [End autoplay_loop_true]
         }
       }
       .width('100%')

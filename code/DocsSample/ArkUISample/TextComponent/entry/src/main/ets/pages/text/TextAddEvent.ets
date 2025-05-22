@@ -24,11 +24,13 @@ export struct TextAddEvent {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.TextAddEvent_title') }) {
+          // [Start add_event_onclick]
           Text(this.onClickText)
             .id('Click')
             .onClick(() => {
               this.onClickText = $r('app.string.TextAddEvent_textContent_2');
             })
+          // [End add_event_onclick]
         }
       }
       .width('100%')

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start dynamic_response_mouse_hover]
 @Entry
 @Component
 export struct Hover {
@@ -47,3 +48,4 @@ export struct Hover {
     .title($r('app.string.Device_OnHover_title'))
   }
 }
+// [End dynamic_response_mouse_hover]

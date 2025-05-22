@@ -22,19 +22,23 @@ export struct CreateText {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CreatText_title_1') }) {
+          // [Start create_a_text_in_one_way]
           Text('This is a text string')
+          // [End create_a_text_in_one_way]
         }
 
         ComponentCard({
           title: $r('app.string.CreatText_title_2'),
           description: $r('app.string.CreatText_description_1')
         }) {
+          // [Start create_a_text_in_another_way]
           Text($r('app.string.module_desc'))
             .baselineOffset(0)
             .fontSize(30)
             .border({ width: 1 })
             .padding(10)
             .width(300)
+          // [End create_a_text_in_another_way]
         }
       }
       .width('100%')

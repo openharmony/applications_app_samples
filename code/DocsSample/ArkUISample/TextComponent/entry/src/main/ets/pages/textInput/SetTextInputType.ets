@@ -22,15 +22,19 @@ export struct SetTextInputType {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SetTextInputType_title_1') }) {
+          // [Start set_normal_input_type]
           TextInput()
             .id('Normal')
             .type(InputType.Normal)
+          // [End set_normal_input_type]
         }
 
         ComponentCard({ title: $r('app.string.SetTextInputType_title_2') }) {
+          // [Start set_password_input_type]
           TextInput()
             .id('Password')
             .type(InputType.Password)
+          // [End set_password_input_type]
         }
       }
       .width('100%')

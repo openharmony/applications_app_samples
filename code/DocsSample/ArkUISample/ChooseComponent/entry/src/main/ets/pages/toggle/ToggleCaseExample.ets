@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start the_example_of_bluetooth]
 import { promptAction } from '@kit.ArkUI';
 
 @Entry
@@ -34,17 +35,23 @@ export struct ToggleSample {
           Row() {
             Text('Bluetooth')
             Blank()
+            // [Start create_toggle_case]
             Toggle({ type: ToggleType.Switch })
               .id('toggle')
               .onChange((isOn: boolean) => {
                 if (isOn) {
+                  // [StartExclude create_toggle_case]
                   this.message = 'on';
                   promptAction.showToast({ 'message': 'Bluetooth is on.' });
+                  // [EndExclude create_toggle_case]
                 } else {
+                  // [StartExclude create_toggle_case]
                   this.message = 'off';
                   promptAction.showToast({ 'message': 'Bluetooth is off.' });
+                  // [EndExclude create_toggle_case]
                 }
               })
+            // [End create_toggle_case]
           }.width('100%')
         }
         .alignItems(HorizontalAlign.Start)
@@ -61,3 +68,4 @@ export struct ToggleSample {
     .title(this.resourceToString($r('app.string.ToggleCaseExample_title')))
   }
 }
+// [End the_example_of_bluetooth]

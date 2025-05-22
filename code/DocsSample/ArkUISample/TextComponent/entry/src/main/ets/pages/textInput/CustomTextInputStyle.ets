@@ -22,22 +22,28 @@ export struct CustomTextInputStyle {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_1') }) {
+          // [Start custom_text_input_with_place_holder]
           TextInput({ placeholder: $r('app.string.CustomTextInputStyle_textContent_1') })
+          // [End custom_text_input_with_place_holder]
         }
 
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_2') }) {
+          // [Start custom_text_input_with_place_holder_and_text]
           TextInput({
             placeholder: $r('app.string.CustomTextInputStyle_textContent_1'),
             text: $r('app.string.CustomTextInputStyle_textContent_2')
           })
+          // [End custom_text_input_with_place_holder_and_text]
         }
 
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_3') }) {
+          // [Start custom_text_input_background_color]
           TextInput({
             placeholder: $r('app.string.CustomTextInputStyle_textContent_1'),
             text: $r('app.string.CustomTextInputStyle_textContent_2')
           })
             .backgroundColor(Color.Pink)
+          // [End custom_text_input_background_color]
         }
       }
       .width('100%')

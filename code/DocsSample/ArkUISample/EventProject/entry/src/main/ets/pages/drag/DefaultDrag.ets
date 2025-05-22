@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start default_drag]
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -27,6 +28,7 @@ export struct DefaultDrag {
   @State imgState: Visibility = Visibility.Visible;
   @State pixmap: image.PixelMap | undefined = undefined;
 
+  // [Start generate_pix_map]
   @Builder
   pixelMapBuilder() {
     Column() {
@@ -37,6 +39,8 @@ export struct DefaultDrag {
     }
   }
 
+  // [StartExclude generate_pix_map]
+  // [Start data_delayed_retry]
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent) => void) {
     try {
       let data: UnifiedData = event.getData();
@@ -64,6 +68,8 @@ export struct DefaultDrag {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
+  // [End data_delayed_retry]
+  // [EndExclude generate_pix_map]
 
   // 调用componentSnapshot中的createFromBuilder接口截取自定义builder的截图
   private getComponentSnapshot(): void {
@@ -78,6 +84,7 @@ export struct DefaultDrag {
         this.pixmap = pixmap;
       })
   }
+  // [End generate_pix_map]
 
   // 长按50ms时提前准备自定义截图的pixmap
   private PreDragChange(preDragStatus: PreDragStatus): void {
@@ -99,15 +106,20 @@ export struct DefaultDrag {
               .margin(10)
               .backgroundColor('#008888')
             Row() {
+              // [Start module_draggable]
               Image($r('app.media.app_icon'))
                 .width(100)
                 .height(100)
                 .draggable(true)
                 .margin({ left: 15 })
+                // [StartExclude module_draggable]
                 .visibility(this.imgState)// 绑定平行手势，可同时触发应用自定义长按手势
+                // [Start bind_parallel_gesture]
                 .parallelGesture(LongPressGesture().onAction(() => {
                   promptAction.showToast({ duration: 100, message: 'Long press gesture trigger' });
                 }))
+                  // [End bind_parallel_gesture]
+                // [EndExclude module_draggable]
                 .onDragStart((event) => {
                   let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
                   data.imageUri = 'common/pic/img.png';
@@ -119,10 +131,15 @@ export struct DefaultDrag {
                     extraInfo: 'this is extraInfo',
                   };
                   return dragItemInfo;
-                })// 提前准备拖拽自定义背板图
+                })
+                  // [End module_draggable]
+                  // 提前准备拖拽自定义背板图
+                // [Start set_custom_drag_status]
                 .onPreDrag((status: PreDragStatus) => {
                   this.PreDragChange(status);
                 })
+                // [End set_custom_drag_status]
+                // [Start set_on_drag_end]
                 .onDragEnd((event) => {
                   // onDragEnd里取到的result值在接收方onDrop设置
                   if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
@@ -131,6 +148,7 @@ export struct DefaultDrag {
                     promptAction.showToast({ duration: 100, message: 'Drag failed' });
                   }
                 })
+              // [End set_on_drag_end]
             }
 
             Text('Drag Target Area')
@@ -146,11 +164,16 @@ export struct DefaultDrag {
                 .draggable(true)
                 .margin({ left: 15 })
                 .border({ color: Color.Black, width: 1 })// 控制角标显示类型为MOVE，即不显示角标
+                // [Start set_drag_behavior_move]
                 .onDragMove((event) => {
                   event.setResult(DragResult.DROP_ENABLED)
                   event.dragBehavior = DragBehavior.MOVE
+                  // [End set_drag_behavior_move]
                 })
+                // [Start allow_drag_type]
                 .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
+                // [End allow_drag_type]
+                // [Start set_on_drop_call]
                 .onDrop((dragEvent?: DragEvent) => {
                   // 获取拖拽数据
                   this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
@@ -164,6 +187,7 @@ export struct DefaultDrag {
                     event.setResult(DragResult.DRAG_SUCCESSFUL);
                   })
                 })
+              // [End set_on_drop_call]
             }
           }
           .width('100%')
@@ -180,3 +204,4 @@ export struct DefaultDrag {
     .title($r('app.string.Drag_DefaultDrag_title'))
   }
 }
+// [End default_drag]

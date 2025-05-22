@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start catch_pan_gesture_event]
 @Entry
 @Component
 export struct Pan {
@@ -63,3 +64,4 @@ export struct Pan {
     .title($r('app.string.singlegesture_PanGesture_title'))
   }
 }
+// [End catch_pan_gesture_event]

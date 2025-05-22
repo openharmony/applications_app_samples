@@ -14,6 +14,7 @@
  */
 
 // PromptActionClass.ts
+// [Start open_close_update_custom_dialog]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, window } from '@kit.ArkUI';
 import { UIContext } from '@ohos.arkui.UIContext';
@@ -35,6 +36,7 @@ export class PromptActionClass {
     this.options = options;
   }
 
+  // [Start call_open_custom_dialog]
   static openDialog() {
     if (this.contentNode !== null) {
       this.ctx.getPromptAction().openCustomDialog(this.contentNode, this.options)
@@ -48,7 +50,9 @@ export class PromptActionClass {
         })
     }
   }
+  // [End call_open_custom_dialog]
 
+  // [Start call_close_custom_dialog]
   static closeDialog() {
     if (this.contentNode !== null) {
       this.ctx.getPromptAction().closeCustomDialog(this.contentNode)
@@ -62,7 +66,9 @@ export class PromptActionClass {
         })
     }
   }
+  // [End call_close_custom_dialog]
 
+  // [Start update_custom_dialog_property]
   static updateDialog(options: Object) {
     if (this.contentNode !== null) {
       this.ctx.getPromptAction().updateCustomDialog(this.contentNode, options)
@@ -76,4 +82,6 @@ export class PromptActionClass {
         })
     }
   }
+  // [End update_custom_dialog_property]
 }
+// [End open_close_update_custom_dialog]

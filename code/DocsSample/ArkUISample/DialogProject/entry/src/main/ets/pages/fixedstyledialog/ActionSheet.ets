@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start action_sheet_dialog]
 @Entry
 @Component
 export struct showActionSheetExample {
@@ -81,3 +82,4 @@ export struct showActionSheetExample {
     .title($r('app.string.CustomDialog_ActionSheet'))
   }
 }
+// [End action_sheet_dialog]

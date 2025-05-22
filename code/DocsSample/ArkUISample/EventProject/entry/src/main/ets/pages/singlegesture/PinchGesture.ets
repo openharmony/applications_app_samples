@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start catch_pinch_gesture_event]
 @Entry
 @Component
 export struct Pinch {
@@ -63,3 +64,4 @@ export struct Pinch {
     .title($r('app.string.singlegesture_PinchGesture_title'))
   }
 }
+// [End catch_pinch_gesture_event]

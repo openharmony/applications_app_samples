@@ -15,6 +15,7 @@
  
 import { KeyCode } from '@kit.InputKit';
 
+// [Start focus_visualization_manage]
 @Entry
 @Component
 export struct DefaultFocus {
@@ -82,3 +83,4 @@ export struct DefaultFocus {
     .title($r('app.string.Focus_DefaultFocus_title'))
   }
 }
+// [End focus_visualization_manage]

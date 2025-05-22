@@ -15,15 +15,21 @@
 
 import { ComponentCard } from '../../common/Card';
 
+// [Start build_a_office_services_grid_of_foreach]
 @Entry
 @Component
 export struct DataInGrid {
   @State services: Array<string> = ['Meeting', 'Voting', 'Check-in', 'Printing'];
 
   build() {
+    // [StartExclude build_a_office_services_grid_of_foreach]
     NavDestination() {
+      // [EndExclude build_a_office_services_grid_of_foreach]
       Column({ space: 12 }) {
+        // [StartExclude build_a_office_services_grid_of_foreach]
         ComponentCard({ title: $r('app.string.DataInGrid_titleOfficeServices') }) {
+          // [EndExclude build_a_office_services_grid_of_foreach]
+          // [Start build_a_office_services_grid]
           Grid() {
             GridItem() {
               Text('Meeting')
@@ -45,14 +51,19 @@ export struct DataInGrid {
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
           }
+          // [StartExclude build_a_office_services_grid]
           .height(200)
+          // [EndExclude build_a_office_services_grid]
           .columnsGap(6)
           .rowsGap(6)
           .rowsTemplate('1fr 1fr')
           .columnsTemplate('1fr 1fr')
+          // [End build_a_office_services_grid]
         }
 
+        // [StartExclude build_a_office_services_grid_of_foreach]
         ComponentCard({ title: $r('app.string.DataInGrid_titleForEach') }) {
+          // [EndExclude build_a_office_services_grid_of_foreach]
           Grid() {
             ForEach(this.services, (service: string) => {
               GridItem() {
@@ -60,13 +71,16 @@ export struct DataInGrid {
               }.backgroundColor('#FFF1F3F5')
             }, (service: string): string => service)
           }
+          // [StartExclude build_a_office_services_grid_of_foreach]
           .height(200)
           .columnsGap(6)
           .rowsGap(6)
+          // [EndExclude build_a_office_services_grid_of_foreach]
           .rowsTemplate(('1fr 1fr') as string)
           .columnsTemplate(('1fr 1fr') as string)
         }
       }
+      // [End build_a_office_services_grid_of_foreach]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })

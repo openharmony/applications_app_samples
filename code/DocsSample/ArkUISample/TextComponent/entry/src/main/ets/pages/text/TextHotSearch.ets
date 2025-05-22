@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start the_text_fact_example]
 import { ComponentCard } from '../../common/Card';
 
 @Entry
@@ -106,3 +107,4 @@ export struct TextHotSearch {
     .title($r('app.string.TextHotSearch_title'))
   }
 }
+// [End the_text_fact_example]

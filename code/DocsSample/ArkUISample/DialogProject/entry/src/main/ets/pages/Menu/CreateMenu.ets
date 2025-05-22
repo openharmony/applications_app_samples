@@ -15,6 +15,7 @@
 
 import { PromptAction } from '@kit.ArkUI';
 
+// [Start builder_menu_content]
 class Tmp {
   private iconStr2: ResourceStr = $r('app.media.app_icon')
 
@@ -75,9 +76,11 @@ export struct menuExample  {
     }
   }
   build() {
+    // [StartExclude builder_menu_content]
     NavDestination() {
       Column({ space: 12 }) {
 
+        // [Start call_bind_menu]
         Button($r('app.string.menu_default'))
           .bindMenu([
             {
@@ -87,16 +90,21 @@ export struct menuExample  {
               }
             }
           ])
+          // [End call_bind_menu]
           .width(160)
           .height(50)
 
+        // [Start bind_menu_property]
         Button($r('app.string.menu_bind'))
           .bindMenu(this.MyMenu)
+          // [End bind_menu_property]
           .width(160)
           .height(50)
 
+        // [Start create_right_click_menu]
         Button($r('app.string.menu_rightClick'))
           .bindContextMenu(this.MyMenu, ResponseType.RightClick)
+          // [End create_right_click_menu]
           .width(160)
           .height(50)
 
@@ -108,4 +116,6 @@ export struct menuExample  {
     .backgroundColor('#f1f2f3')
     .title($r('app.string.create_menu'))
   }
+  // [EndExclude builder_menu_content]
 }
+// [End builder_menu_content]

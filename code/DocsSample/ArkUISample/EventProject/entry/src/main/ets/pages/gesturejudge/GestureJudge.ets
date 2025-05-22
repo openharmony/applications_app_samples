@@ -13,15 +13,19 @@
  * limitations under the License.
  */
 
+// [Start gesture_judge]
+// [Start set_gesture_judge]
 @Entry
 @Component
 export struct GestureJudge {
   scroller: Scroller = new Scroller();
+  // [StartExclude set_gesture_judge]
   scroller2: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   private childRecognizer: GestureRecognizer = new GestureRecognizer();
   private currentRecognizer: GestureRecognizer = new GestureRecognizer();
   private lastOffset: number = 0;
+  // [EndExclude set_gesture_judge]
 
   build() {
     NavDestination() {
@@ -115,6 +119,7 @@ export struct GestureJudge {
             }
             return GestureJudgeResult.CONTINUE;
           })
+          // [StartExclude set_gesture_judge]
           .parallelGesture( // 绑定一个Pan手势作为动态控制器
             PanGesture()
               .onActionUpdate((event: GestureEvent) => {
@@ -151,6 +156,7 @@ export struct GestureJudge {
                 this.lastOffset = event.offsetY;
               })
           )
+          // [EndExclude set_gesture_judge]
         }.width('100%').height('90%').backgroundColor(0xDCDCDC)
       }
       .width('100%')
@@ -161,3 +167,5 @@ export struct GestureJudge {
     .title($r('app.string.gesture_GestureJudge_title'))
   }
 }
+// [End set_gesture_judge]
+// [End gesture_judge]

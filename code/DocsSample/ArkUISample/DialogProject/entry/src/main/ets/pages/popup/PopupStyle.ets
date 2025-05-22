@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start style_popup]
 @Entry
 @Component
 export struct StylePopupExample {
@@ -59,3 +60,4 @@ export struct StylePopupExample {
     .title($r('app.string.StylePopup_title'))
   }
 }
+// [End style_popup]

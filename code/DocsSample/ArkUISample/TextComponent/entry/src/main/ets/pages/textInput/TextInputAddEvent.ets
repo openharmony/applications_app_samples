@@ -28,6 +28,7 @@ export struct TextInputAddEvent {
           Column({ space: 8 }) {
             Text(this.eventText)
             Text(this.inputValue)
+            // [Start add_text_input_event]
             TextInput()
               .onChange((value: string) => {
                 this.inputValue = value;
@@ -35,6 +36,7 @@ export struct TextInputAddEvent {
               .onFocus(() => {
                 this.eventText = $r('app.string.TextInputAddEvent_textContent_3');
               })
+            // [End add_text_input_event]
           }
         }
       }

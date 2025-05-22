@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start click_radio_to_change_function]
 import { promptAction } from '@kit.ArkUI';
 
 @Entry
@@ -31,26 +32,33 @@ export struct RadioSample {
         Column({ space: 8 }) {
           Text(this.message).id('message')
           Row() {
+            // [Start set_radio_status]
             Radio({ value: 'Ringing', group: 'radioGroup' })
               .checked(true)
+                // [End set_radio_status]
               .id('ringing')
               .onChange((isChecked: boolean) => {
                 if (isChecked) {
                   // 切换为响铃模式
+                  // [StartExclude click_radio_to_change_function]
                   this.message = 'Ringing mode';
+                  // [EndExclude click_radio_to_change_function]
                   promptAction.showToast({ 'message': 'Ringing mode.' });
                 }
               })
             Text('Ringing')
           }.width('25%')
 
+          // [Start change_radio_function]
           Row() {
             Radio({ value: 'Vibration', group: 'radioGroup' })
               .id('vibration')
               .onChange((isChecked: boolean) => {
                 if (isChecked) {
                   // 切换为振动模式
+                  // [StartExclude change_radio_function]
                   this.message = 'Vibration';
+                  // [EndExclude change_radio_function]
                   promptAction.showToast({ 'message': 'Vibration mode.' });
                 }
               })
@@ -63,12 +71,15 @@ export struct RadioSample {
               .onChange((isChecked: boolean) => {
                 if (isChecked) {
                   // 切换为静音模式
+                  // [StartExclude change_radio_function]
                   this.message = 'Silent';
+                  // [EndExclude change_radio_function]
                   promptAction.showToast({ 'message': 'Silent mode.' });
                 }
               })
             Text('Silent')
           }.width('25%')
+          // [End change_radio_function]
         }
         .alignItems(HorizontalAlign.Center)
         .backgroundColor('#fff')
@@ -84,3 +95,4 @@ export struct RadioSample {
     .title(this.resourceToString($r('app.string.RadioSample_title')))
   }
 }
+// [End click_radio_to_change_function]

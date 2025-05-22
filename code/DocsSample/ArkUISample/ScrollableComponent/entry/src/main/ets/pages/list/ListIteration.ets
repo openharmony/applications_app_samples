@@ -13,8 +13,11 @@
  * limitations under the License.
  */
 
+// [Start use_foreach_to_replace_similar_list_items]
 import { util } from '@kit.ArkTS';
+// [StartExclude import_component_card]
 import { ComponentCard } from '../../common/Card';
+// [EndExclude import_component_card]
 
 class Contact {
   public key: string = util.generateRandomUUID(true);
@@ -36,9 +39,11 @@ export struct ListIteration {
   ];
 
   build() {
+    // [StartExclude use_the_nav_destination]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ListIteration_titleExample') }) {
+          // [EndExclude use_the_nav_destination]
           List() {
             ForEach(this.contacts, (item: Contact) => {
               ListItem() {
@@ -57,6 +62,7 @@ export struct ListIteration {
           .width('100%')
         }
       }
+      // [End use_foreach_to_replace_similar_list_items]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })

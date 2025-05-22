@@ -16,9 +16,11 @@
 import { util } from '@kit.ArkTS';
 import { ComponentCard } from '../../common/Card';
 
+// [Start respond_to_scroll_position]
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
+// [StartExclude respond_to_scroll_position]
 class Contact {
   public key: string = util.generateRandomUUID(true);
   public name: string | Resource;
@@ -98,6 +100,7 @@ export let contactsGroups: object[] = [
     key: util.generateRandomUUID(true)
   } as ContactsGroup
 ];
+// [EndExclude respond_to_scroll_position]
 
 @Entry
 @Component
@@ -106,6 +109,7 @@ export struct ResponsiveScrollPositionList {
   private listScroller: Scroller = new Scroller();
   private currentGroupTitle: string = ''; // 用于跟踪当前显示的分组标题
 
+  // [StartExclude respond_to_scroll_position]
   @Builder
   itemHead(text: string) {
     // 列表分组的头部组件，对应联系人分组A、B等位置的组件
@@ -115,14 +119,18 @@ export struct ResponsiveScrollPositionList {
       .width('100%')
       .padding(5)
   }
+  // [EndExclude respond_to_scroll_position]
 
   build() {
+    // [StartExclude respond_to_scroll_position]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ResponsiveScrollPositionList_titleExample') }) {
+          // [EndExclude use_stack]
           Stack({ alignContent: Alignment.End }) {
             // 此为响应滚动位置示例List容器
             List({ scroller: this.listScroller }) {
+              // [StartExclude use_foreach]
               ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
                 ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
                   // 循环渲染ListItem
@@ -133,22 +141,28 @@ export struct ResponsiveScrollPositionList {
                           Image(item.icon).width(40).height(40).margin(10)
                           Text(item.name).fontSize(20)
                         }.width('100%').justifyContent(FlexAlign.Start)
+                        // [EndExclude respond_to_scroll_position]
                       }
+                      // [StartExclude respond_to_scroll_position]
                     }, (item: Contact) => JSON.stringify(item))
                   }
                 }
               }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
             }
+            // [EndExclude respond_to_scroll_position]
             .onScrollIndex((firstIndex: number) => {
+              // [StartExclude respond_to_scroll_position]
               // 根据列表滚动到的索引值，重新计算对应联系人索引栏的位置this.selectedIndex
               let group = contactsGroups[firstIndex] as ContactsGroup;
               this.currentGroupTitle = group.title;
               this.selectedIndex = alphabets.indexOf(this.currentGroupTitle);
+              // [EndExclude respond_to_scroll_position]
             })
 
             // 字母表索引组件
             AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
               .selected(this.selectedIndex)
+            // [End respond_to_scroll_position]
           }.height('90%')
         }
       }

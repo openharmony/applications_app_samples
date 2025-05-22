@@ -30,20 +30,25 @@ export struct CreateToggle {
         ComponentCard({
           title: 'ToggleType is Checkbox',
         }) {
+          // [Start create_toggle_with_checkbox]
           Toggle({ type: ToggleType.Checkbox, isOn: false }).id('toggle1')
           Toggle({ type: ToggleType.Checkbox, isOn: true }).id('toggle2')
+          // [End create_toggle_with_checkbox]
         }
 
         ComponentCard({
           title: 'ToggleType is Switch',
         }) {
+          // [Start create_toggle_with_switch]
           Toggle({ type: ToggleType.Switch, isOn: false }).id('toggle3')
           Toggle({ type: ToggleType.Switch, isOn: true }).id('toggle4')
+          // [End create_toggle_with_switch]
         }
 
         ComponentCard({
           title: 'ToggleType is Button',
         }) {
+          // [Start create_a_toggle_that_contains_subcomponents]
           Toggle({ type: ToggleType.Button, isOn: false }) {
             Text('status button')
               .fontColor('#182431')
@@ -55,6 +60,7 @@ export struct CreateToggle {
               .fontColor('#182431')
               .fontSize(12)
           }.width(100).id('toggle6')
+          // [End create_a_toggle_that_contains_subcomponents]
         }
       }
       .width('100%')

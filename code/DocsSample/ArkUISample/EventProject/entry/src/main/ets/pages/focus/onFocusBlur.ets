@@ -15,6 +15,7 @@
  
 import { KeyCode } from '@kit.InputKit';
 
+// [Start focus_dynamic_reflect]
 @Entry
 @Component
 export struct OnFocusBlur {
@@ -80,3 +81,4 @@ export struct OnFocusBlur {
     .title($r('app.string.Focus_OnFocusBlur_title'))
   }
 }
+// [End focus_dynamic_reflect]

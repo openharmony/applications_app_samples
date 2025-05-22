@@ -15,6 +15,7 @@
  
 import { KeyCode } from '@kit.InputKit';
 
+// [Start focus_priority_manage]
 @Entry
 @Component
 export struct FocusPrioritySample {
@@ -44,3 +45,4 @@ export struct FocusPrioritySample {
     .title($r('app.string.Focus_FocusPriority_title'))
   }
 }
+// [End focus_priority_manage]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start parallel_recognition_gesture]
 @Entry
 @Component
 export struct Parallel {
@@ -53,3 +54,4 @@ export struct Parallel {
     .title($r('app.string.groupgesture_Parallel_title'))
   }
 }
+// [End parallel_recognition_gesture]

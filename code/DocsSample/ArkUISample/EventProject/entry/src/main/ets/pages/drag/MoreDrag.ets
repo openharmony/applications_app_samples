@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start more_drag]
 import { KeyCode } from '@kit.InputKit';
 import { image } from '@kit.ImageKit';
 
@@ -60,6 +61,7 @@ export struct MoreDrag {
       Column({ space: 12 }) {
 
         Column({ space: 5 }) {
+          // [Start create_grid_item_module]
           Grid() {
             ForEach(this.numbers, (idx: number) => {
               GridItem() {
@@ -70,6 +72,7 @@ export struct MoreDrag {
                   .opacity(1.0)
                   .id('grid' + idx)
               }
+              // [StartExclude create_grid_item_module]
               .dragPreview(this.previewData[idx])
               .selectable(true)
               .selected(this.isSelectedGrid[idx])
@@ -78,8 +81,10 @@ export struct MoreDrag {
                 normal: this.normalStyles,
                 selected: this.selectStyles
               })
+              // [Start grid_item_module_selected_true]
               .onClick(() => {
                 this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
+                // [StartExclude grid_item_module_selected_true]
                 if (this.isSelectedGrid[idx]) {
                   this.numberBadge++;
                   let gridItemName = 'grid' + idx;
@@ -95,14 +100,20 @@ export struct MoreDrag {
                 } else {
                   this.numberBadge--;
                 }
+                // [EndExclude grid_item_module_selected_true]
               })
+              // [End grid_item_module_selected_true]
               // 使能多选拖拽，右上角数量角标需要应用设置numberBadge参数
+              // [EndExclude create_grid_item_module]
+              // [Start drag_preview_options]
               .dragPreviewOptions({ numberBadge: this.numberBadge },
                 { isMultiSelectionEnabled: true, defaultAnimationBeforeLifting: true })
+              // [End drag_preview_options]
               .onDragStart(() => {
               })
             }, (idx: string) => idx)
           }
+          // [End create_grid_item_module]
           .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
           .columnsGap(5)
           .rowsGap(10)
@@ -118,3 +129,4 @@ export struct MoreDrag {
     .title($r('app.string.Drag_MoreDrag_title'))
   }
 }
+// [End more_drag]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start set_dialog_style]
 @CustomDialog
 struct CustomDialogExample {
   controller?: CustomDialogController;
@@ -83,3 +84,4 @@ export struct DialogStyle {
     .title($r('app.string.CustomDialog_style'))
   }
 }
+// [End set_dialog_style]

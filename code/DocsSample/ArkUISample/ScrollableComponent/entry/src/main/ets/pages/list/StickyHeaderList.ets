@@ -14,6 +14,7 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+// [Start Add_sticky_titles]
 import { util } from '@kit.ArkTS';
 
 class Contact {
@@ -68,9 +69,11 @@ export struct StickyHeaderList {
   }
 
   build() {
+    // [StartExclude add_sticky_titles]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.StickyHeaderList_titleExample') }) {
+          // [EndExclude add_sticky_titles]
           List() {
             // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
             ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
@@ -79,19 +82,24 @@ export struct StickyHeaderList {
                 if (itemGroup.contacts) {
                   ForEach(itemGroup.contacts, (item: Contact) => {
                     ListItem() {
+                      // [StartExclude add_sticky_titles]
                       Row() {
                         Image(item.icon).width(40).height(40).margin(10)
                         Text(item.name).fontSize(20)
                       }.width('100%').justifyContent(FlexAlign.Start)
+                      // [EndExclude add_sticky_titles]
                     }
                   }, (item: Contact) => JSON.stringify(item))
                 }
               }
             }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
           }
+          // [StartExclude add_sticky_titles]
           .height(230)
+          // [EndExclude add_sticky_titles]
           .sticky(StickyStyle.Header) // 设置吸顶，实现粘性标题效果
         }
+        // [End add_sticky_titles]
       }
       .width('100%')
       .height('100%')

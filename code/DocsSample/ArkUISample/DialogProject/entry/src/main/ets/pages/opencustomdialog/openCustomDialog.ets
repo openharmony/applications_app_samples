@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start open_close_component_content]
 import { PromptActionClass } from '../../common/PromptActionClass';
 import { ComponentContent } from '@kit.ArkUI';
 
@@ -89,8 +90,10 @@ function buildText(params: Params) {
 export struct openCustomDialog {
   @State message: string = 'hello'
   private ctx: UIContext = this.getUIContext();
+  // [Start create_component_content]
   private contentNode: ComponentContent<Object> =
     new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
+  // [End create_component_content]
 
   aboutToAppear(): void {
     PromptActionClass.setContext(this.ctx);
@@ -127,3 +130,4 @@ export struct openCustomDialog {
     .title($r('app.string.open_customDialog'))
   }
 }
+// [End open_close_component_content]

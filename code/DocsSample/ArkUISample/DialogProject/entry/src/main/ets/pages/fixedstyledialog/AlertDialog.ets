@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start alert_dialog]
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
@@ -71,3 +72,4 @@ export struct showAlertDialogExample {
     .title($r('app.string.CustomDialog_AlertDialog'))
   }
 }
+// [End alert_dialog]

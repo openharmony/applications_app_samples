@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start exclusive_recognition_gesture]
 @Entry
 @Component
 export struct Exclusive {
@@ -53,3 +54,4 @@ export struct Exclusive {
     .title($r('app.string.groupgesture_Exclusive_title'))
   }
 }
+// [End exclusive_recognition_gesture]

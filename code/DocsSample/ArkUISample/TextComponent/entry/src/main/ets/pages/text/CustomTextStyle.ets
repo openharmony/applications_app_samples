@@ -26,6 +26,7 @@ export struct CustomTextStyle {
         Column({ space: 12 }) {
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_1') }) {
             Column() {
+              // [Start custom_text_align]
               Text($r('app.string.TextAlign_Start'))
                 .width(300)
                 .textAlign(TextAlign.Start)
@@ -41,6 +42,7 @@ export struct CustomTextStyle {
                 .textAlign(TextAlign.End)
                 .border({ width: 1 })
                 .padding(10)
+              // [End custom_text_align]
             }
           }
 
@@ -49,6 +51,7 @@ export struct CustomTextStyle {
             description: $r('app.string.CustomTextStyle_description_1')
           }) {
             Column({ space: 8 }) {
+              // [Start custom_text_overflow]
               Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow ' +
                 'to None text content. This is the setting of textOverflow to Clip text content This is the setting ' +
                 'of textOverflow to None text content.')
@@ -74,11 +77,13 @@ export struct CustomTextStyle {
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
+              // [End custom_text_overflow]
             }
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_3') }) {
             Column({ space: 8 }) {
+              // [Start custom_line_height]
               Text('This is the text with the line height set. This is the text with the line height set.')
                 .width(300).fontSize(12).border({ width: 1 }).padding(10)
               Text('This is the text with the line height set. This is the text with the line height set.')
@@ -87,11 +92,13 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .lineHeight(20)
+              // [End custom_line_height]
             }
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_4') }) {
             Column({ space: 8 }) {
+              // [Start custom_text_line_and_color]
               Text('This is the text')
                 .decoration({
                   type: TextDecorationType.LineThrough,
@@ -113,11 +120,13 @@ export struct CustomTextStyle {
                 })
                 .borderWidth(1)
                 .padding(10)
+              // [End custom_text_line_and_color]
             }
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_5') }) {
             Column({ space: 8 }) {
+              // [Start custom_text_baseline_offset]
               Text('This is the text content with baselineOffset 0.')
                 .baselineOffset(0)
                 .fontSize(12)
@@ -136,11 +145,13 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .width('100%')
+              // [End custom_text_baseline_offset]
             }
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_6') }) {
             Column({ space: 8 }) {
+              // [Start custom_text_letter_space]
               Text('This is the text content with letterSpacing 0.')
                 .letterSpacing(0)
                 .fontSize(12)
@@ -159,11 +170,13 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
                 .width('100%')
+              // [End custom_text_letter_space]
             }
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_7') }) {
             Column({ space: 8 }) {
+              // [Start custom_the_size_of_text]
               Text($r('app.string.CustomTextStyle_textContent_3'))
                 .width(250)
                 .maxLines(1)
@@ -192,11 +205,13 @@ export struct CustomTextStyle {
                 .minFontSize(15)
                 .border({ width: 1 })
                 .padding(10)
+              // [End custom_the_size_of_text]
             }
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_8') }) {
             Column({ space: 8 }) {
+              // [Start custom_the_text_by_text_case]
               Text('This is the text content with textCase set to Normal.')
                 .textCase(TextCase.Normal)
                 .padding(10)
@@ -214,13 +229,16 @@ export struct CustomTextStyle {
                 .textCase(TextCase.UpperCase)
                 .border({ width: 1 })
                 .padding(10)
+              // [End custom_the_text_by_text_case]
             }
           }
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_9') }) {
+            // [Start custom_the_text_by_copy_option]
             Text($r('app.string.CustomTextStyle_textContent_7'))
               .fontSize(30)
               .copyOption(CopyOptions.InApp)
+            // [End custom_the_text_by_copy_option]
           }
         }
         .width('100%')
