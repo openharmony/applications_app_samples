@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start create_p2p_connect]
 import { wifiManager } from '@kit.ConnectivityKit';
 
 export class P2PConnectMananger {
@@ -79,3 +80,4 @@ export class P2PConnectMananger {
 let p2pConnectManager = new P2PConnectMananger();
 
 export default p2pConnectManager as P2PConnectMananger;
+// [End create_p2p_connect]

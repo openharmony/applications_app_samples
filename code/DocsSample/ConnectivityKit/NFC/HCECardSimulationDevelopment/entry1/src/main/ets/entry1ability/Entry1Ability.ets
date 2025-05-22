@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start back_hce_swipe_ets]
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -83,3 +84,4 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
+// [End back_hce_swipe_ets]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start open_close_scan]
 import { ble } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ScanData } from '../common/ScanData';
@@ -76,11 +77,13 @@ export class BleScanManager {
       if (data.length > 0) {
         console.info(TAG, 'BLE scan result = ' + data[0].deviceId);
         this.parseScanResult(data[0].data);
+        // [StartExclude open_close_scan]
         this.toastReport.showResult(data[0].deviceId);
         if (!this.scanDataList.some(item => item.getDeviceName() === data[0].deviceName)) {
           this.scanDataList.push(new ScanData(data[0].deviceId, data[0].deviceName, data[0].rssi, data[0].connectable,
             new Uint8Array(data[0].data)));
         }
+        // [EndExclude open_close_scan]
       }
     });
   }
@@ -232,6 +235,7 @@ export class BleScanManager {
       // manufactureData: manufactureData.buffer,
       manufactureDataMask: manufactureDataMask.buffer,
     };
+    // [StartExclude open_close_scan]
     if (this.deviceName) {
       console.info('===lyk=== deviceName is not null ' + this.deviceName)
       scanFilter.name = this.deviceName;
@@ -239,6 +243,8 @@ export class BleScanManager {
     if (this.deviceId) {
       scanFilter.deviceId = this.deviceId;
     }
+    // [EndExclude open_close_scan]
+
     // 2.2 构造扫描参数
     let scanOptions: ble.ScanOptions = {
       interval: this.interval,
@@ -246,13 +252,19 @@ export class BleScanManager {
       matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
     }
     try {
+      // [StartExclude open_close_scan]
       this.scanDataList = [];
+      // [EndExclude open_close_scan]
       this.onScanResult(); // 订阅扫描结果
       ble.startBLEScan([scanFilter], scanOptions);
+      // [StartExclude open_close_scan]
       this.toastReport.showResult('startBleScan success');
+      // [EndExclude open_close_scan]
       console.info(TAG, 'startBleScan success');
     } catch (err) {
+      // [StartExclude open_close_scan]
       this.toastReport.showResult('startBleScan fail');
+      // [EndExclude open_close_scan]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -264,10 +276,14 @@ export class BleScanManager {
         console.info(TAG, 'off success');
       });
       ble.stopBLEScan();
+      // [StartExclude open_close_scan]
       this.toastReport.showResult('stopBleScan success');
+      // [EndExclude open_close_scan]
       console.info(TAG, 'stopBleScan success');
     } catch (err) {
+      // [StartExclude open_close_scan]
       this.toastReport.showResult('stopBleScan fail');
+      // [EndExclude open_close_scan]
       console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
@@ -276,3 +292,4 @@ export class BleScanManager {
 let bleScanManager = new BleScanManager();
 
 export default bleScanManager as BleScanManager;
+// [End open_close_scan]

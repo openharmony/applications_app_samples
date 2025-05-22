@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start open_close_advertising]
 import { ble } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ToastReport } from '../common/ToastReport';
@@ -180,3 +181,4 @@ export class BleAdvertisingManager {
 let bleAdvertisingManager = new BleAdvertisingManager();
 
 export default bleAdvertisingManager as BleAdvertisingManager;
+// [End open_close_advertising]

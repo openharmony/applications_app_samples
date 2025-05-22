@@ -25,6 +25,7 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    // [Start back_get_nfc_tag]
     "abilities": [
       {
         "name": "EntryAbility",
@@ -65,6 +66,7 @@
         "reason": "$string:app_name",
       }
     ],
+    // [End back_get_nfc_tag]
     "extensionAbilities": [
       {
         "name": "Entry1BackupAbility",

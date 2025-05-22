@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start create_delete_p2p_group]
 import { wifiManager } from '@kit.ConnectivityKit';
 
 export class P2PManager {
@@ -52,3 +53,4 @@ export class P2PManager {
 let p2pManager = new P2PManager();
 
 export default p2pManager as P2PManager;
+// [End create_delete_p2p_group]

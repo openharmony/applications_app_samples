@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start open_close_bluetooth]
 import { access } from '@kit.ConnectivityKit';
 
 export class BluetoothSwitch {
   public openBluetooth() {
+
     access.off('stateChange');
     access.enableBluetooth();
     access.on('stateChange', (data) => {
@@ -52,7 +53,6 @@ export class BluetoothSwitch {
       }
       console.info('bluetooth statues: ' + btStateMessage);
     });
-
   }
 
   public closeBluetooth() {
@@ -92,3 +92,4 @@ export class BluetoothSwitch {
     });
   }
 }
+// [End open_close_bluetooth]
