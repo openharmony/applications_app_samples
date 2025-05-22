@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start fun_a]
 @Entry
 @Component
 struct FunA {
@@ -44,3 +45,4 @@ struct FunA {
     .height('100%')
   }
 }
+// [End fun_a]

@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start module_config_extensionAbilities]
 {
   "module": {
+    //[StartExclude module_config_extensionAbilities]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -47,6 +49,7 @@
         ]
       }
     ],
+    // [EndExclude module_config_extensionAbilities]
     "extensionAbilities": [
       {
         "name": "EntryFormAbility",
@@ -64,3 +67,4 @@
     ]
   }
 }
+//[End module_config_extensionAbilities]

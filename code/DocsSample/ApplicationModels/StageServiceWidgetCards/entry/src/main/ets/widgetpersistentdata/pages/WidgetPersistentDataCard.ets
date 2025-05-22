@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_persistent_data_card]
 let storagePersis = new LocalStorage();
 
 @Entry(storagePersis)
@@ -37,3 +38,4 @@ struct WidgetPersistentDataCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+// [End widget_persistent_data_card]

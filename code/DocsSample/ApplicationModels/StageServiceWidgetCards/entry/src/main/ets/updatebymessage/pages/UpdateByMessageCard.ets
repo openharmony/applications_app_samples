@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start update_by_message_card]
 let storageUpdateByMsg = new LocalStorage();
 
 @Entry(storageUpdateByMsg)
@@ -64,3 +65,4 @@ struct UpdateByMessageCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+// [End update_by_message_card]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_event_router_card]
 @Entry
 @Component
 struct WidgetEventRouterCard {
@@ -71,3 +72,4 @@ struct WidgetEventRouterCard {
     .backgroundImageSize(ImageSize.Cover)
   }
 }
+// [End widget_event_router_card]

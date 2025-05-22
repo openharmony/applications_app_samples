@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start form_host_index]
 import { HashMap, HashSet } from '@kit.ArkTS';
 import { formHost, formInfo, formObserver } from '@kit.FormKit';
 import { bundleMonitor } from '@kit.AbilityKit';
@@ -368,11 +369,13 @@ struct formHostSample {
                   break;
                 case 1:
                   try {
+                    // [Start request_form]
                     formHost.requestForm(this.selectFormId, (error: BusinessError) => {
                       if (error) {
                         console.error(`requestForm error, code: ${error.code}, message: ${error.message}`);
                       }
                     });
+                    // [End request_form]
                   } catch (error) {
                     console.error(`requestForm catch error, code: ${(error as BusinessError).code},
                     message: ${(error as BusinessError).message}`);
@@ -443,4 +446,4 @@ struct formHostSample {
     }
   }
 }
-
+// [End form_host_index]

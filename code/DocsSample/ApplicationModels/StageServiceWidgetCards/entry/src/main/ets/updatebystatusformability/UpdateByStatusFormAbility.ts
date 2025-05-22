@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start update_by_status_form_ability]
+// [Start receive_message_event]
 import { Want } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -121,3 +123,5 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
     });
   }
 }
+// [End update_by_status_form_ability]
+// [End receive_message_event]

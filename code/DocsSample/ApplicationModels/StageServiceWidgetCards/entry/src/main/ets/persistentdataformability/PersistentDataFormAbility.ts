@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start persistent_data_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
 import { dataShare } from '@kit.ArkData';
@@ -47,9 +48,11 @@ export default class PersistentDataFormAbility extends FormExtensionAbility {
     };
     return formBinding;
   }
-
+  // [StartExclude persistent_data_form_ability]
   onAcquireFormState(want: Want): formInfo.FormState {
     // Called to return a {@link FormState} object.
     return formInfo.FormState.READY;
   }
+  // [EndExclude persistent_data_form_ability]
 }
+// [End persistent_data_form_ability]

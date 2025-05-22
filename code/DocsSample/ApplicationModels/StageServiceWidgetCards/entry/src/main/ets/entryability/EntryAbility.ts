@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start entry_ability]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -75,3 +76,4 @@ export default class EntryAbility extends UIAbility {
     });
   }
 }
+// [End entry_ability]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start animation_card]
 @Entry
 @Component
 struct AnimationCard {
@@ -36,3 +37,4 @@ struct AnimationCard {
      .alignItems(VerticalAlign.Center)
   }
 }
+// [End animation_card]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_callee_entry_ability]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -92,3 +93,4 @@ export default class WidgetCalleeEntryAbility extends UIAbility {
     });
   }
 }
+// [End widget_callee_entry_ability]

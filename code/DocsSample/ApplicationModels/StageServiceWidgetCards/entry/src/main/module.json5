@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start jscard_extension_ability]
 {
   "module": {
+    // [StartExclude jscard_extension_ability]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -26,7 +28,9 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    // [Start module_json5_abilities]
     "abilities": [
+      // [StartExclude module_json5_abilities]
       {
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ts",
@@ -74,6 +78,7 @@
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background"
       },
+      // [EndExclude module_json5_abilities]
       {
         "name": "WidgetEventCallEntryAbility",
         "srcEntry": "./ets/widgeteventcallentryability/WidgetEventCallEntryAbility.ts",
@@ -84,7 +89,10 @@
         "startWindowBackground": "$color:start_window_background"
       }
     ],
+    // [End module_json5_abilities]
+    // [EndExclude jscard_extension_ability]
     "extensionAbilities": [
+      // [StartExclude jscard_extension_ability]
       {
         "name": "EntryFormAbility",
         "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
@@ -137,6 +145,7 @@
           }
         ]
       },
+      // [EndExclude jscard_extension_ability]
       {
         "name": "JsCardFormAbility",
         "srcEntry": "./ets/jscardformability/JsCardFormAbility.ts",
@@ -150,6 +159,7 @@
           }
         ]
       },
+      // [StartExclude jscard_extension_ability]
       {
         "name": "ProcessDataFormAbility",
         "srcEntry": "./ets/processdataentryability/ProcessDataFormAbility.ts",
@@ -190,10 +200,12 @@
         ]
       }
     ],
+    // [Start module_json5_request_permissions]
     "requestPermissions": [
       {
         "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
       },
+      // [StartExclude module_json5_request_permissions]
       {
         "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
       },
@@ -209,6 +221,10 @@
           "when": "inuse",
         }
       }
+      // [EndExclude module_json5_request_permissions]
+      // [EndExclude jscard_extension_ability]
     ]
+    // [End module_json5_request_permissions]
   }
 }
+// [End jscard_extension_ability]

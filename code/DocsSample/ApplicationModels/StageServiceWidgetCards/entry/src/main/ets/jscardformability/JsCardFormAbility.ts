@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 
+// [Start js_card_form_ability]
+// [Start remove_form_interface]
+// [Start update_form_interface]
 import { common, Want } from '@kit.AbilityKit';
+// [Start receive_message_interface]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+// [StartExclude receive_message_interface]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { preferences } from '@kit.ArkData';
 import { Configuration } from '@kit.ArkUI';
+// [EndExclude receive_message_interface]
 
 const TAG: string = 'JsCardFormAbility';
+// [StartExclude update_form_interface]
+// [StartExclude receive_message_interface]
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
+// [EndExclude update_form_interface]
+// [EndExclude receive_message_interface]
 const DOMAIN_NUMBER: number = 0xFF00;
 
+// [StartExclude remove_form_interface]
+// [StartExclude update_form_interface]
+// [StartExclude receive_message_interface]
 let storeFormInfo =
   async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
     // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
@@ -45,6 +58,8 @@ let storeFormInfo =
     ;
   };
 
+// [StartExclude js_card_form_ability]
+// [EndExclude remove_form_interface]
 let deleteFormInfo = async (formId: string, context: common.FormExtensionContext): Promise<void> => {
   try {
     const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -58,8 +73,13 @@ let deleteFormInfo = async (formId: string, context: common.FormExtensionContext
   }
   ;
 };
-
+// [EndExclude js_card_form_ability]
+// [EndExclude update_form_interface]
+// [EndExclude receive_message_interface]
 export default class JsCardFormAbility extends FormExtensionAbility {
+  // [StartExclude remove_form_interface]
+  // [StartExclude update_form_interface]
+  // [StartExclude receive_message_interface]
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[JsCardFormAbility] onAddForm');
 
@@ -81,11 +101,13 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     return formData;
   }
 
+  // [StartExclude js_card_form_ability]
   onCastToNormalForm(formId: string): void {
     // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
   }
 
+  // [EndExclude update_form_interface]
   onUpdateForm(formId: string): void {
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
@@ -98,11 +120,13 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }
+  // [StartExclude update_form_interface]
 
   onChangeFormVisibility(newStatus: Record<string, number>): void {
     // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
   }
+  // [EndExclude receive_message_interface]
 
   onFormEvent(formId: string, message: string): void {
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
@@ -114,7 +138,8 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
     }
   }
-
+  // [StartExclude receive_message_interface]
+  // [EndExclude remove_form_interface]
   onRemoveForm(formId: string): void {
     // 删除卡片实例数据
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
@@ -122,6 +147,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
     deleteFormInfo(formId, this.context);
   }
+  // [StartExclude js_card_form_ability]
 
   onConfigurationUpdate(config: Configuration) {
     // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
@@ -133,4 +159,12 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
     return formInfo.FormState.READY;
   }
+  // [EndExclude js_card_form_ability]
+  // [EndExclude remove_form_interface]
+  // [EndExclude update_form_interface]
+  // [EndExclude receive_message_interface]
 }
+// [End js_card_form_ability]
+// [End remove_form_interface]
+// [End update_form_interface]
+// [End receive_message_interface]

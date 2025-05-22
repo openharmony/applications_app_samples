@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start widget_event_call_card_entry_ability]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -82,3 +83,4 @@ export default class WidgetEventCallEntryAbility extends UIAbility {
     };
   }
 }
+// [Start widget_event_call_card_entry_ability]

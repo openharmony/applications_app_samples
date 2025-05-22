@@ -13,15 +13,23 @@
  * limitations under the License.
  */
 
+// [Start import_entry_form_ability]
+// [Start update_form_interface]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+// [StartExclude update_form_interface]
 import { Configuration, Want } from '@kit.AbilityKit';
+// [EndExclude update_form_interface]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [End import_entry_form_ability]
 
+// [Start form_extension_ability_interface]
 const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 
+// [Start form_extension_lifecycle_interface]
 export default class EntryFormAbility extends FormExtensionAbility {
+  // [StartExclude update_form_interface]
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
     hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
@@ -53,10 +61,11 @@ export default class EntryFormAbility extends FormExtensionAbility {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
   }
 
+  // [EndExclude update_form_interface]
   onFormEvent(formId: string, message: string): void {
     // Called when a specified message event defined by the form provider is triggered.
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
-
+    // [StartExclude form_extension_lifecycle_interface]
     class FormDataClass {
       title: string = 'Title Update.'; // 和卡片布局中对应
       detail: string = 'Description update success.'; // 和卡片布局中对应
@@ -69,8 +78,10 @@ export default class EntryFormAbility extends FormExtensionAbility {
     }).catch((error) => {
       hilog.error(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
     });
+    // [EndExclude form_extension_lifecycle_interface]
   }
 
+  // [StartExclude update_form_interface]
   onRemoveForm(formId: string): void {
     // 删除卡片实例数据
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
@@ -78,14 +89,20 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
   }
 
+  // [StartExclude form_extension_lifecycle_interface]
   onConfigurationUpdate(config: Configuration) {
     // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
     // 需注意：formExtensionAbility创建后10秒内无操作将会被清理。
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
+  // [EndExclude form_extension_lifecycle_interface]
 
   onAcquireFormState(want: Want): formInfo.FormState {
     // Called to return a {@link FormState} object.
     return formInfo.FormState.READY;
   }
+  // [EndExclude update_form_interface]
 }
+// [End form_extension_ability_interface]
+// [End update_form_interface]
+// [End form_extension_lifecycle_interface]

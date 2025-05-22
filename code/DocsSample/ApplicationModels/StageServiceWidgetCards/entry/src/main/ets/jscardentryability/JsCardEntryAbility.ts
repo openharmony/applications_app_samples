@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start js_card_entry_ability]
+// [Start receive_router_event]
 import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -21,12 +23,13 @@ import type window from '@ohos.window';
 
 const TAG: string = 'JsCardEntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
+// [End js_card_entry_ability]
 
 export default class JsCardEntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (want.parameters) {
       let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
-      if (params.info === 'router info') { 
+      if (params.info === 'router info') {
         hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
       }
       if (params.message === 'router message') {
@@ -35,6 +38,7 @@ export default class JsCardEntryAbility extends UIAbility {
     }
   }
 
+  // [StartExclude receive_router_event]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
@@ -47,4 +51,6 @@ export default class JsCardEntryAbility extends UIAbility {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
+  // [EndExclude receive_router_event]
 }
+// [End receive_router_event]
