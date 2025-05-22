@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,18 +13,20 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import Logger from '../model/Logger'
+import router from '@ohos.router';
+import Logger from '../model/Logger';
 
 const TAG: string = '[NavigationBar]'
 
 @Component
 export struct NavigationBar {
-  private url: string = ''
-  private username: string = ''
-  private bundleName: string = ''
-  private flag: boolean = undefined
-  private title: Resource = undefined
+  private url: string = '';
+  private username: string = '';
+  private bundleName: string = '';
+  private signature: string = '';
+  private email: string = '';
+  private flag: boolean = undefined;
+  private title: Resource = undefined;
 
   build() {
     Row() {
@@ -49,11 +51,13 @@ export struct NavigationBar {
                 primaryButton: {
                   value: $r('app.string.confirm'),
                   action: () => {
-                    router.push({
+                    router.pushUrl({
                       url: this.url,
                       params: {
                         bundleName: this.bundleName,
-                        username: this.username
+                        username: this.username,
+                        signature: this.signature,
+                        email: this.email
                       }
                     })
                   }
