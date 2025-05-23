@@ -22,6 +22,7 @@ import { SwiperIndicatorStyle } from './SwiperIndicatorStyle';
 import { SwiperLoop } from './SwiperLoop';
 import { SwiperMultiPage } from './SwiperMultiPage';
 import { SwiperPageSwitchMethod } from './SwiperPageSwitchMethod';
+import { SwiperAndTabsLinkage } from './SwiperAndTabsLinkage';
 import resource from '../../common/resource';
 
 export const SWIPER_ROUTE_PREFIX: string = 'swiper';
@@ -61,6 +62,11 @@ const routes: Route[] = [
     name: `${SWIPER_ROUTE_PREFIX}/SwiperCustomAnimation`,
     title: resource.resourceToString($r('app.string.SwiperCustomAnimation_title')),
     description: $r('app.string.SwiperCustomAnimation_description')
+  },
+  {
+    name: `${SWIPER_ROUTE_PREFIX}/SwiperAndTabsLinkage`,
+    title: resource.resourceToString($r('app.string.SwiperAndTabsLinkage_title')),
+    description: $r('app.string.SwiperAndTabsLinkage_description')
   }
 ];
 
@@ -82,6 +88,8 @@ export function swiperDestination(name: string) {
     SwiperMultiPage();
   } else if (name === routes[6].name) {
     SwiperCustomAnimation();
+  } else if (name === routes[7].name) {
+    SwiperAndTabsLinkage();
   }
 }
 
