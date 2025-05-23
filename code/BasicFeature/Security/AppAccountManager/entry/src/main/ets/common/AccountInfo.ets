@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,20 +13,20 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import Logger from '../model/Logger'
-import { AccountData } from '../model/AccountData'
+import router from '@ohos.router';
+import Logger from '../model/Logger';
+import { AccountData } from '../model/AccountData';
 import { AccountModel } from '../model/AccountModel';
 
-const TAG: string = '[AccountInfo]'
+const TAG: string = '[AccountInfo]';
 
 @Component
 export struct AccountInfo {
-  @Prop email: string
-  @Prop username: string
-  @Prop signature: string
-  @Prop bundleName: string
-  private storage: AccountData = AccountData.getInstance()
+  @Prop email: string;
+  @Prop username: string;
+  @Prop signature: string;
+  @Prop bundleName: string;
+  private storage: AccountData = AccountData.getInstance();
   private accountModel: AccountModel = new AccountModel();
 
   @Builder infoShow(title: Resource, value: string) {
@@ -61,11 +61,13 @@ export struct AccountInfo {
           .fontColor(Color.White)
           .type(ButtonType.Capsule)
           .onClick(() => {
-            router.push({
+            router.pushUrl({
               url: 'pages/Modify',
               params: {
                 username: this.username,
-                bundleName: this.bundleName
+                bundleName: this.bundleName,
+                signature: this.signature,
+                email: this.email
               }
             })
           })
