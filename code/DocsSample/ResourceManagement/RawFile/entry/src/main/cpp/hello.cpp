@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start includes]
 #include <js_native_api.h>
 #include <js_native_api_types.h>
 #include <string>
@@ -24,10 +25,14 @@
 #include "rawfile/raw_file.h"
 #include "rawfile/raw_dir.h"
 #include "hilog/log.h"
+// [End includes]
 
+// [Start constants]
 const int GLOBAL_RESMGR = 0xFF00;
 const char *TAG = "[Sample_rawfile]";
+// [End constants]
 
+// [Start example_get_file_list]
 // 示例一：获取rawfile文件列表 GetFileList
 static napi_value GetFileList(napi_env env, napi_callback_info info)
 {
@@ -74,7 +79,9 @@ static napi_value GetFileList(napi_env env, napi_callback_info info)
     OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
     return fileList;
 }
+// [End example_get_file_list]
 
+// [Start helper_create_js_array]
 // 示例二：获取rawfile文件内容 GetRawFileContent
 napi_value CreateJsArrayValue(napi_env env, std::unique_ptr<uint8_t[]> &data, long length)
 {
@@ -99,7 +106,9 @@ napi_value CreateJsArrayValue(napi_env env, std::unique_ptr<uint8_t[]> &data, lo
     data.release();
     return result;
 }
+// [End helper_create_js_array]
 
+// [Start example_get_rawfile_content]
 static napi_value GetRawFileContent(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "GetFileContent Begin");
@@ -134,7 +143,9 @@ static napi_value GetRawFileContent(napi_env env, napi_callback_info info)
     // 转为js对象
     return CreateJsArrayValue(env, data, len);
 }
+// [End example_get_rawfile_content]
 
+// [Start helper_create_file_descriptor]
 // 示例三：获取rawfile文件描述符 GetRawFileDescriptor
 // 定义一个函数，将RawFileDescriptor转为js对象
 napi_value createJsFileDescriptor(napi_env env, RawFileDescriptor& descriptor)
@@ -180,7 +191,9 @@ napi_value createJsFileDescriptor(napi_env env, RawFileDescriptor& descriptor)
     }
     return result;
 }
+// [End helper_create_file_descriptor]
 
+// [Start example_get_rawfile_descriptor]
 static napi_value GetRawFileDescriptor(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "NDKTest GetRawFileDescriptor Begin");
@@ -212,7 +225,9 @@ static napi_value GetRawFileDescriptor(napi_env env, napi_callback_info info)
     // 转为js对象
     return createJsFileDescriptor(env, descriptor);
 }
+// [End example_get_rawfile_descriptor]
 
+// [Start helper_create_js_bool]
 napi_value CreateJsBool(napi_env env, bool &bValue)
 {
     napi_value jsValue = nullptr;
@@ -221,7 +236,9 @@ napi_value CreateJsBool(napi_env env, bool &bValue)
     }
     return jsValue;
 }
+// [End helper_create_js_bool]
 
+// [Start example_is_raw_dir]
 static napi_value IsRawDir(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "NDKTest IsRawDir Begin");
@@ -251,7 +268,9 @@ static napi_value IsRawDir(napi_env env, napi_callback_info info)
     OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
     return CreateJsBool(env, result);
 }
+// [End example_is_raw_dir]
 
+// [Start module_registration]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -281,4 +300,4 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&demoModule);
 }
-
+// [End module_registration]
