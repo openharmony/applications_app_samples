@@ -17,12 +17,20 @@
       "value": "列表/List"
     },
     {
+      "name": "pageIndex_ArcList",
+      "value": "弧形列表/ArcList"
+    },
+    {
       "name": "pageIndex_Grid",
       "value": "网格/Grid"
     },
     {
       "name": "pageIndex_Swiper",
       "value": "轮播/Swiper"
+    },
+    {
+      "name": "pageIndex_ArcSwiper",
+      "value": "弧形轮播/ArcSwiper"
     },
     {
       "name": "pageIndex_Tabs",
@@ -699,6 +707,274 @@
     {
       "name": "DeleteListItem_description",
       "value": "在示例中用户长按列表项进入删除模式，提供用户删除列表项选择的交互界面，勾选完成后点击删除按钮，列表中删除对应的项目。"
+    },
+    {
+      "name": "pageIndex_WaterFlow",
+      "value": "创建瀑布流/WaterFlow"
+    },
+    {
+      "name": "WaterFlowInfiniteScrolling_title",
+      "value": "无限滚动（到达末尾时新增数据）"
+    },
+    {
+      "name": "WaterFlowInfiniteScrolling_description",
+      "value": "在瀑布流组件到达末尾位置时触发事件回调，增加新数据。"
+    },
+    {
+      "name": "WaterFlowInfiniteScrollingEarly_title",
+      "value": "无限滚动（提前新增数据）"
+    },
+    {
+      "name": "WaterFlowInfiniteScrollingEarly_description",
+      "value": "为了实现更加流畅的无限滑动，需要调整增加新数据的时机。可以在还剩余若干个数据未遍历的情况下提前加载新数据。"
+    },
+    {
+      "name": "WaterFlowGroupingMixing_title",
+      "value": "分组混合布局"
+    },
+    {
+      "name": "WaterFlowGroupingMixing_description",
+      "value": "许多应用界面在瀑布流上方包含其他内容，这类场景可通过在Scroll或List内部嵌套WaterFlow来实现。"
+    },
+    {
+      "name": "WaterFlowDynamicSwitchover_title",
+      "value": "动态切换列数"
+    },
+    {
+      "name": "WaterFlowDynamicSwitchover_description",
+      "value": "通过动态调整瀑布流的列数，应用能够实现在列表模式与瀑布流模式间的切换，或适应屏幕宽度的变化。"
+    },
+    {
+      "name": "GridSideToSide_title",
+      "value": "控制滚动位置"
+    },
+    {
+      "name": "GridSideToSide_description",
+      "value": "与新闻列表的返回顶部场景类似，控制滚动位置功能在网格布局中也很常用，例如下图所示日历的翻页功能。"
+    },
+    {
+      "name": "GridScrollbar_title",
+      "value": "添加外置滚动条"
+    },
+    {
+      "name": "GridScrollbar_description",
+      "value": "网格组件Grid可与ScrollBar组件配合使用，为网格添加外置滚动条。"
+    },
+    {
+      "name": "ArcSwiperHorizontal_title",
+      "value": "水平方向轮播"
+    },
+    {
+      "name": "ArcSwiperHorizontal_description",
+      "value": "设置水平方向上轮播。"
+    },
+    {
+      "name": "ArcSwiperVertical_title",
+      "value": "垂直方向轮播"
+    },
+    {
+      "name": "ArcSwiperVertical_description",
+      "value": "设置垂直方向轮播，导航点设为3点钟方向。。"
+    },
+    {
+      "name": "ArcSwiperAction_title",
+      "value": "自定义切换动画"
+    },
+    {
+      "name": "ArcSwiperAction_description",
+      "value": "ArcSwiper支持设置自定义切换动画，可以在回调中对视窗内所有页面逐帧设置透明度、缩放比例、位移、渲染层级等属性，从而实现自定义切换动画效果。"
+    },
+    {
+      "name": "ArcSwiperSideSlip_title",
+      "value": "实现侧滑返回"
+    },
+    {
+      "name": "ArcSwiperSideSlip_description",
+      "value": "ArcSwiper的滑动事件会与侧滑返回冲突，可以通过手势拦截去判断ArcSwiper是否滑动到开头去拦截ArcSwiper的滑动手势，实现再次左滑返回上一页的功能。"
+    },
+    {
+      "name": "ArcSwiperStyles_title",
+      "value": "设置导航点样式"
+    },
+    {
+      "name": "ArcSwiperStyles_titleDefault",
+      "value": "导航点使用默认样式"
+    },
+    {
+      "name": "ArcSwiperStyles_titleCustomize",
+      "value": "自定义导航点样式"
+    },
+    {
+      "name": "ArcSwiperStyles_description",
+      "value": "ArcSwiper提供了默认的弧形导航点样式，导航点默认显示在ArcSwiper下方居中位置，开发者也可以通过indicator属性自定义弧形导航点的样式。"
+    },
+    {
+      "name": "ArcSwiperToggle_title",
+      "value": "控制页面切换方式"
+    },
+    {
+      "name": "ArcSwiperToggle_description",
+      "value": "以下示例展示通过控制控制器和旋转表冠翻页的方法。"
+    },
+    {
+      "name": "ArcListAcrScrollBar_title",
+      "value": "添加外置滚动条ArcScrollBar"
+    },
+    {
+      "name": "ArcListAcrScrollBar_description",
+      "value": "弧形列表ArcList可与ArcScrollBar组件配合使用，为弧形列表添加外置滚动条。"
+    },
+    {
+      "name": "ArcListArcIndexerBar_title",
+      "value": "与弧形索引条ArcAlphabetIndexer联动"
+    },
+    {
+      "name": "ArcListArcIndexerBar_description",
+      "value": "许多应用需要监测列表的滚动位置变动并作出响应，或通过调整滚动位置实现列表的快速定位。为此，需使用弧形索引条组件ArcAlphabetIndexer。"
+    },
+    {
+      "name": "arcListBuiltInScrollerBar_title",
+      "value": "添加内置滚动条"
+    },
+    {
+      "name": "arcListBuiltInScrollerBar_description",
+      "value": "当列表项的高度超过屏幕高度时，弧形列表能够沿垂直方向滚动。"
+    },
+    {
+      "name": "ArcListContents_title",
+      "value": "迭代弧形列表内容"
+    },
+    {
+      "name": "ArcListContents_description",
+      "value": "通常，应用会通过数据集合动态创建列表。采用循环渲染的方式，可以从数据源中迭代获取数据，在每次迭代过程中创建相应的组件，从而降低代码的复杂度。"
+    },
+    {
+      "name": "ArcListCrown_title",
+      "value": "响应旋转表冠"
+    },
+    {
+      "name": "ArcListCrown_description",
+      "value": "手表设备上弧形列表在获焦的情况下可对旋转表冠做出响应，用户可通过旋转表冠的操作滑动列表，浏览列表项数据。"
+    },
+    {
+      "name": "ArcListShow_title",
+      "value": "在弧形列表中显示数据"
+    },
+    {
+      "name": "ArcListShow_description",
+      "value": "弧形列表视图垂直展示项目集合，当列表项超出屏幕范围时，提供滚动功能，这使得它非常适合展示大型数据集合。"
+    },
+    {
+      "name": "ArcListSideSlip_title",
+      "value": "响应列表项侧滑"
+    },
+    {
+      "name": "ArcListSideSlip_description",
+      "value": "ArcListItem的swipeAction属性可用于实现列表项的左右滑动功能。"
+    },
+    {
+      "name": "ArcListStyles_head",
+      "value": "自定义弧形列表标题"
+    },
+    {
+      "name": "ArcListStyles_title",
+      "value": "自定义弧形列表样式"
+    },
+    {
+      "name": "ArcListStyles_titleSpacing",
+      "value": "自定义弧形列表项间距"
+    },
+    {
+      "name": "ArcListStyles_titleScale",
+      "value": "列表项关闭自动缩放"
+    },
+    {
+      "name": "ArcListStyles_description",
+      "value": "以下示例展示自定义弧形列表样式的方法。"
+    },
+    {
+      "name": "LongList_title",
+      "value": "长列表的处理"
+    },
+    {
+      "name": "LongList_description",
+      "value": "循环渲染适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用数据懒加载（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。"
+    },
+    {
+      "name": "CollapseAndExpand_title",
+      "value": "折叠与展开"
+    },
+    {
+      "name": "CollapseAndExpand_description",
+      "value": "列表项的折叠与展开用途广泛，常用于信息清单的展示、填写等应用场景。"
+    },
+    {
+      "name": "SwiperAndTabsLinkage_title",
+      "value": "Swiper与Tabs联动"
+    },
+    {
+      "name": "SwiperAndTabsLinkage_description",
+      "value": "Swiper选中的元素改变时，会通过onSelected回调事件，将元素的索引值index返回。通过调用tabsController.changeIndex(index)方法来实现Tabs页签的切换。"
+    },
+    {
+      "name": "SwiperIgnoreComponentSize_title",
+      "value": "设置圆点导航点间距和忽略导航点组件大小"
+    },
+    {
+      "name": "SwiperIgnoreComponentSize_description",
+      "value": "针对圆点导航点，可以通过DotIndicator的space属性来设置圆点导航点的间距。当导航点的bottom设为0之后，导航点的底部与Swiper的底部还会有一定间距。如果希望消除该间距，可通过调用bottom(bottom, ignoreSize)属性来进行设置。"
+    },
+    {
+      "name": "ArcLongList_title",
+      "value": "处理长列表"
+    },
+    {
+      "name": "ArcLongList_description",
+      "value": "循环渲染适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用数据懒加载（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。"
+    },
+    {
+      "name": "ListChatRoom_title",
+      "value": "切换布局方向"
+    },
+    {
+      "name": "ListChatRoom_description",
+      "value": "部分业务场景需要列表底部插入数据时，自动向上滚动，把新插入的节点展示出来。"
+    },
+    {
+      "name": "LongGrid_title",
+      "value": "性能优化"
+    },
+    {
+      "name": "LongGrid_description",
+      "value": "与长列表的处理类似，循环渲染适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用数据懒加载方式实现按需迭代加载数据，从而提升列表性能。"
+    },
+    {
+      "name": "ArcListCrown_set",
+      "value": "设置"
+    },
+    {
+      "name": "ArcListStyles_waln",
+      "value": "WLAN"
+    },
+    {
+      "name": "ArcListStyles_open",
+      "value": "已开启"
+    },
+    {
+      "name": "ArcListStyles_blue",
+      "value": "蓝牙"
+    },
+    {
+      "name": "ArcListStyles_net",
+      "value": "移动网络"
+    },
+    {
+      "name": "ArcListStyles_connect",
+      "value": "更多连接"
+    },
+    {
+      "name": "ArcListStyles_light",
+      "value": "显示和亮度"
     }
   ]
 }

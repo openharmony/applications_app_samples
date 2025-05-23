@@ -19,7 +19,10 @@ import { LengthMetrics } from '@kit.ArkUI';
 import { Route } from '../common/Route';
 import { RoutableCard } from '../common/Card';
 import { swiperDestination, SWIPER_ROUTE_PREFIX } from './swiper';
+import { waterFlowDestination, WATERFLOW_ROUTE_PREFIX } from './waterFlow';
 import { tabsDestination, TABS_ROUTE_PREFIX } from './tabs';
+import { arcSwiperDestination, ARCSWIPER_ROUTE_PREFIX } from './arcSwiper';
+import { arcListDestination, ARCLIST_ROUTE_PREFIX } from './arcList';
 import resource from '../common/resource';
 
 const routes: Route[] = [
@@ -28,12 +31,24 @@ const routes: Route[] = [
     name: List_ROUTE_PREFIX
   },
   {
+    title: resource.resourceToString($r('app.string.pageIndex_ArcList')),
+    name: ARCLIST_ROUTE_PREFIX
+  },
+  {
     title: resource.resourceToString($r('app.string.pageIndex_Grid')),
     name: GRID_ROUTE_PREFIX
   },
   {
+    title: resource.resourceToString($r('app.string.pageIndex_WaterFlow')),
+    name: WATERFLOW_ROUTE_PREFIX
+  },
+  {
     title: resource.resourceToString($r('app.string.pageIndex_Swiper')),
     name: SWIPER_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_ArcSwiper')),
+    name: ARCSWIPER_ROUTE_PREFIX
   },
   {
     title: resource.resourceToString($r('app.string.pageIndex_Tabs')),
@@ -49,8 +64,14 @@ function destination(name: string) {
     gridDestination(name);
   } else if (name.startsWith(SWIPER_ROUTE_PREFIX)) {
     swiperDestination(name);
+  } else if (name.startsWith(ARCSWIPER_ROUTE_PREFIX)) {
+    arcSwiperDestination(name);
   } else if (name.startsWith(TABS_ROUTE_PREFIX)) {
     tabsDestination(name);
+  } else if (name.startsWith(WATERFLOW_ROUTE_PREFIX)) {
+    waterFlowDestination(name);
+  } else if (name.startsWith(ARCLIST_ROUTE_PREFIX)) {
+    arcListDestination(name);
   }
 }
 

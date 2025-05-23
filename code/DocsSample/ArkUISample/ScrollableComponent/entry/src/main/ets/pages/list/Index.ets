@@ -27,6 +27,9 @@ import { Route } from '../../common/Route';
 import { StickyHeaderList } from './StickyHeaderList';
 import { SwipeListItem } from './SwipeableListItem';
 import { TaggedListItems } from './TaggedListItems';
+import { CollapseAndExpand } from './CollapseAndExpand';
+import { LongList } from './LongList';
+import { ListChatRoom } from './ListChatRoom';
 import resource from '../../common/resource';
 
 export const List_ROUTE_PREFIX: string = 'list';
@@ -91,6 +94,21 @@ const routes: Route[] = [
     name: `${List_ROUTE_PREFIX}/DeleteListItem`,
     title: resource.resourceToString($r('app.string.DeleteListItem_title')),
     description: $r('app.string.DeleteListItem_description')
+  },
+  {
+    name: `${List_ROUTE_PREFIX}/LongList`,
+    title: resource.resourceToString($r('app.string.LongList_title')),
+    description: $r('app.string.LongList_description')
+  },
+  {
+    name: `${List_ROUTE_PREFIX}/CollapseAndExpand`,
+    title: resource.resourceToString($r('app.string.CollapseAndExpand_title')),
+    description: $r('app.string.CollapseAndExpand_description')
+  },
+  {
+    name: `${List_ROUTE_PREFIX}/ListChatRoom`,
+    title: resource.resourceToString($r('app.string.ListChatRoom_title')),
+    description: $r('app.string.ListChatRoom_description')
   }
 ];
 
@@ -122,6 +140,12 @@ export function listDestination(name: string) {
     AddListItem();
   } else if (name === routes[11].name) {
     DeleteListItem();
+  } else if (name === routes[12].name) {
+    LongList();
+  } else if (name === routes[13].name) {
+    CollapseAndExpand();
+  } else if (name === routes[14].name) {
+    ListChatRoom();
   }
 }
 
