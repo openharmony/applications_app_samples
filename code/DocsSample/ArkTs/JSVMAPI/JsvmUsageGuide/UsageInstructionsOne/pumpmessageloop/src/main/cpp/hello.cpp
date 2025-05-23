@@ -98,7 +98,7 @@ static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[1];
     #define MAX_LOG_LENGTH 255
     char log[MAX_LOG_LENGTH + 1] = "";
-    size_t logLength;
+    size_t logLength = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     OH_JSVM_GetValueStringUtf8(env, args[0], log, MAX_LOG_LENGTH, &logLength);

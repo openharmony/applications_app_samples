@@ -36,6 +36,12 @@ static int g_aa = 0;
         }                                                                                                              \
     } while (0)
 
+#define CHECK(cond)                                                                                                    \
+    if (!(cond)) {                                                                                                     \
+        OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__,      \
+                     cond);                                                                                            \
+        return -1;                                                                                                     \
+    }
 
 // 用于调用theCall并检查其返回值是否为JSVM_OK。
 // 如果不是，则调用OH_JSVM_GetLastErrorInfo处理错误并返回retVal。
@@ -55,13 +61,12 @@ static int g_aa = 0;
 #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
 // [EndExclude jsvm_wasm]
 
-#ifndef CHECK
-#define CHECK(cond)                                                                                                    \
-    do {                                                                                                               \
-        if (!(cond)) {                                                                                                 \
-            OH_LOG_ERROR(LOG_APP, "CHECK FAILED");                                                                     \
-            abort();                                                                                                   \
-        }                                                                                                              \
+#ifndef CHECK_STATUS
+#define CHECK_STATUS(cond)                           \
+    do {                                             \
+        if (!(cond)) {                               \
+            OH_LOG_ERROR(LOG_APP, "CHECK FAILED");   \
+        }                                            \
     } while (0)
 #endif
 
@@ -70,7 +75,7 @@ static bool IsWasmModuleObject(JSVM_Env env, JSVM_Value value)
 {
     bool result;
     JSVM_Status status = OH_JSVM_IsWasmModuleObject(env, value, &result);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
     return result;
 }
 
@@ -79,7 +84,7 @@ static JSVM_Value CreateString(JSVM_Env env, const char *str)
 {
     JSVM_Value jsvmStr;
     JSVM_Status status = OH_JSVM_CreateStringUtf8(env, str, JSVM_AUTO_LENGTH, &jsvmStr);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
     return jsvmStr;
 }
 
@@ -88,7 +93,7 @@ static JSVM_Value CreateInt32(JSVM_Env env, int32_t val)
 {
     JSVM_Value jsvmInt32;
     JSVM_Status status = OH_JSVM_CreateInt32(env, val, &jsvmInt32);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
     return jsvmInt32;
 }
 
@@ -98,20 +103,20 @@ static JSVM_Value InstantiateWasmModule(JSVM_Env env, JSVM_Value wasmModule)
     JSVM_Status status = JSVM_OK;
     JSVM_Value globalThis;
     status = OH_JSVM_GetGlobal(env, &globalThis);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value webAssembly;
     status = OH_JSVM_GetProperty(env, globalThis, CreateString(env, "WebAssembly"), &webAssembly);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value webAssemblyInstance;
     status = OH_JSVM_GetProperty(env, webAssembly, CreateString(env, "Instance"), &webAssemblyInstance);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value instance;
     JSVM_Value argv[] = {wasmModule};
     status = OH_JSVM_NewInstance(env, webAssemblyInstance, 1, argv, &instance);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
     return instance;
 }
 
@@ -141,11 +146,11 @@ static void VerifyAddWasmInstance(JSVM_Env env, JSVM_Value wasmInstance)
     // 从 wasm instance 获取 exports.add 函数
     JSVM_Value exports;
     status = OH_JSVM_GetProperty(env, wasmInstance, CreateString(env, "exports"), &exports);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value add;
     status = OH_JSVM_GetProperty(env, exports, CreateString(env, "add"), &add);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
 
     // 执行 exports.add(1, 2)，期望得到结果 3
     JSVM_Value undefined;
@@ -156,10 +161,10 @@ static void VerifyAddWasmInstance(JSVM_Env env, JSVM_Value wasmInstance)
     JSVM_Value result;
     const int argumentCount = 2;
     status = OH_JSVM_CallFunction(env, undefined, add, argumentCount, argv, &result);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
     int32_t resultInt32;
     OH_JSVM_GetValueInt32(env, result, &resultInt32);
-    CHECK(resultInt32 == 3);
+    CHECK_STATUS(resultInt32 == 3);
 }
 
 // WebAssembly demo 主函数
@@ -172,14 +177,14 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value wasmModule;
     // 根据 wasm 字节码得到 wasm module
     status = OH_JSVM_CompileWasmModule(env, wasmBytecode, wasmBytecodeLength, NULL, 0, NULL, &wasmModule);
-    CHECK(status == JSVM_OK);
-    CHECK(IsWasmModuleObject(env, wasmModule));
+    CHECK_STATUS(status == JSVM_OK);
+    CHECK_STATUS(IsWasmModuleObject(env, wasmModule));
 
     // 对当前 wasm module 中定义的第一个函数 (即 add) 执行编译优化
     int32_t functionIndex = 0;
     // 注意：当前只支持 high level optimization，即传入 JSVM_WASM_OPT_BASELINE 和传入 JSVM_WASM_OPT_HIGH 效果是一样的
     status = OH_JSVM_CompileWasmFunction(env, wasmModule, functionIndex, JSVM_WASM_OPT_HIGH);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
     // 对编译得到的 wasm module 进行实例化
     JSVM_Value wasmInstance = InstantiateWasmModule(env, wasmModule);
     // 对实例化的 wasm instance 中的函数进行功能验证
@@ -189,10 +194,10 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info)
     const uint8_t *wasmCacheData = NULL;
     size_t wasmCacheLength = 0;
     status = OH_JSVM_CreateWasmCache(env, wasmModule, &wasmCacheData, &wasmCacheLength);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
     // 期望 wasm cache 创建成功
-    CHECK(wasmCacheData != NULL);
-    CHECK(wasmCacheLength > 0);
+    CHECK_STATUS(wasmCacheData != NULL);
+    CHECK_STATUS(wasmCacheLength > 0);
 
     // 通过将 wasm cache 赋值来模拟 cache 持久化，实际使用场景可能将 wasm cache 保存到文件
     std::vector<uint8_t> cacheBuffer(wasmCacheData, wasmCacheData + wasmCacheLength);
@@ -200,31 +205,35 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info)
     // cache 一旦保存完成后，需要显式释放，以免发生内存泄露
     // 注意：传入的 JSVM_CacheType 必须匹配
     status = OH_JSVM_ReleaseCache(env, wasmCacheData, JSVM_CACHE_TYPE_WASM);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
 
     // 使用 wasm code 反序列化来生成 wasm module
     bool cacheRejected;
     JSVM_Value wasmModule2;
     status = OH_JSVM_CompileWasmModule(env, wasmBytecode, wasmBytecodeLength, cacheBuffer.data(), cacheBuffer.size(),
                                        &cacheRejected, &wasmModule2);
-    CHECK(status == JSVM_OK);
+
     // 传入的 wasm cache 如果是匹配的，且内部校验通过 (如版本)，则会接受 cache
-    CHECK(cacheRejected == false);
-    CHECK(IsWasmModuleObject(env, wasmModule2));
+    CHECK_STATUS(!cacheRejected);
+    CHECK_STATUS(IsWasmModuleObject(env, wasmModule2));
 
     // 对反序列化得到的 wasmModule2 进行同样的操作：函数编译、实例化、验证功能，期望也都是通过的
     status = OH_JSVM_CompileWasmFunction(env, wasmModule2, functionIndex, JSVM_WASM_OPT_HIGH);
-    CHECK(status == JSVM_OK);
+    CHECK_STATUS(status == JSVM_OK);
+
     JSVM_Value wasmInstance2 = InstantiateWasmModule(env, wasmModule);
     VerifyAddWasmInstance(env, wasmInstance2);
 
     JSVM_Value result;
     OH_JSVM_GetBoolean(env, true, &result);
+    OH_LOG_INFO(LOG_APP, "JSVM resultInt: %{public}d", result);
     return result;
 }
 
 // WasmDemo 方法注册回调
-static JSVM_CallbackStruct param[] = {{.data = nullptr, .callback = WasmDemo}};
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = WasmDemo}
+};
 static JSVM_CallbackStruct *method = param;
 // 将 C++ callback WasmDemo 函数注册为 JSVM globalThis.wasmDemo 属性，供 JS 侧调用
 static JSVM_PropertyDescriptor descriptor[] = {

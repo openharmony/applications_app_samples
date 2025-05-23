@@ -72,7 +72,7 @@ static JSVM_Value GetAllPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
     // 获取给定对象的所有属性名称(自有属性)
     JSVM_Value result;
     JSVM_Status status = OH_JSVM_GetAllPropertyNames(env, args[0],
-                                                     JSVM_KeyCollectionMode::JSVM_KEY_O_ONLY,
+                                                     JSVM_KeyCollectionMode::JSVM_KEY_OWN_ONLY,
                                                      JSVM_KeyFilter::JSVM_KEY_WRITABLE,
                                                      JSVM_KeyConversion::JSVM_KEY_NUMBERS_TO_STRINGS, &result);
     if (status != JSVM_OK) {

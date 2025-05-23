@@ -30,7 +30,7 @@ export default function abilityTest() {
 
       const want: Want = {
         bundleName: bundleName,
-        abilityName: 'EntryAbility'
+        abilityName: 'RuntimetaskAbility'
       }
       const driver = Driver.create();
       await delegator.startAbility(want);
@@ -38,7 +38,7 @@ export default function abilityTest() {
 
       const ability: UIAbility = await delegator.getCurrentTopAbility();
       console.log('get top ability');
-      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      expect(ability.context.abilityInfo.name).assertEqual('RuntimetaskAbility');
 
       await driver.delayMs(1000);
       const text = await driver.findComponent(ON.text('Hello World'));

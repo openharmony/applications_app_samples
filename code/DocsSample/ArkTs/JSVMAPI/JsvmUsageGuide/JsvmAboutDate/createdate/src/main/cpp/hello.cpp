@@ -76,7 +76,7 @@ static JSVM_Value CreateDate(JSVM_Env env, JSVM_CallbackInfo info)
 
     bool isDate;
     JSVM_CALL(OH_JSVM_IsDate(env, returnValue, &isDate));
-    if (isDate == false) {
+    if (!isDate) {
         OH_LOG_ERROR(LOG_APP, "JSVM IsDate fail");
         return returnValue;
     }

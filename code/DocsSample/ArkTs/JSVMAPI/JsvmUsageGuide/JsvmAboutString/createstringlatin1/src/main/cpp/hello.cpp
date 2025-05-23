@@ -78,7 +78,7 @@ static JSVM_Value CreateStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM CreateStringLatin1 fail");
     } else {
         char buf[MAX_BUFFER_SIZE];
-        size_t lengthInner;
+        size_t lengthInner = 0;
         OH_JSVM_GetValueStringLatin1(env, result, buf, MAX_BUFFER_SIZE, &lengthInner);
         OH_LOG_INFO(LOG_APP, "JSVM CreateStringLatin1 success: %{public}s", buf);
     }

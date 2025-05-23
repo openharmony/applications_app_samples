@@ -71,7 +71,7 @@ static JSVM_Value CreateTypedArray(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    int32_t typeNum;
+    int32_t typeNum = 0;
     OH_JSVM_GetValueInt32(env, args[0], &typeNum);
     JSVM_TypedarrayType arrayType;
     // 用于存储每个元素的大小
