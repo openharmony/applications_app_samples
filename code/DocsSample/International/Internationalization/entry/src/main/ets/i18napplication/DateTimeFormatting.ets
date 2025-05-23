@@ -16,7 +16,9 @@
 import TitleBar from '../component/TitleBar';
 import { assertEqual } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
+// [Start import_module]
 import { intl } from '@kit.LocalizationKit';
+// [End import_module]
 
 /**********************************************************************************************************************
  * 时间日期格式化开发参考步骤
@@ -34,7 +36,7 @@ import { intl } from '@kit.LocalizationKit';
  * 4. 获取格式化选项，查看对象的设置信息
  *  let options: intl.DateTimeOptions = dateFormat.resolvedOptions();
  *********************************************************************************************************************/
-
+// [Start date_and_time_formatting]
 // 时间日期格式化开发实例
 // 设置要格式化的日期
 let date = new Date(2021, 8, 17, 13, 4, 0);
@@ -80,6 +82,7 @@ let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formatt
 let dataFormat8 = new intl.DateTimeFormat('en-GB', { dateStyle: 'full' });
 let options = dataFormat8.resolvedOptions();
 let dateStyle = options.dateStyle; // dateStyle: full
+// [End date_and_time_formatting]
 
 /**********************************************************************************************************************
  * 相对时间格式化开发参考步骤
@@ -95,7 +98,7 @@ let dateStyle = options.dateStyle; // dateStyle: full
  * 5. 获取相对时间格式化选项，查看对象的设置信息
  *  let options: intl.RelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
  *********************************************************************************************************************/
-
+// [Start relative_time_formatting]
 // 相对时间格式化开发实例
 // 显示相对时间
 let relativeTimeFormat1 = new intl.RelativeTimeFormat('en-GB');
@@ -120,6 +123,7 @@ let parts = relativeTimeFormat5.formatToParts(1, 'day');
 let relativeTimeFormat6 = new intl.RelativeTimeFormat('en-GB', { numeric: 'auto' });
 let relativeOptions = relativeTimeFormat6.resolvedOptions();
 let numeric = relativeOptions.numeric; // numeric: auto
+// [End relative_time_formatting]
 
 const expectedFormattedDate1 = resourceToString($r('app.string.ExpectedFormattedDate1'));
 const expectedFormattedDate2 = '2021/9/17 13:04';

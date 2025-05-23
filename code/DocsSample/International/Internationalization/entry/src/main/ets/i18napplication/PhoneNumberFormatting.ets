@@ -15,7 +15,9 @@
 
 import TitleBar from '../component/TitleBar';
 import { assertEqual } from '../component/AssertEqual';
+// [Start import_module]
 import { i18n } from '@kit.LocalizationKit';
+// [End import_module]
 
 /**********************************************************************************************************************
  * 电话号码格式化开发参考步骤
@@ -30,7 +32,7 @@ import { i18n } from '@kit.LocalizationKit';
  *  let isValidNumber: boolean = phoneNumberFormat.isValidNumber(phoneNumber: string); // 判断电话号码正确性
  *  let locationName: string = phoneNumberFormat.getLocationName(number: string, locale: string); // 获取号码归属地
  *********************************************************************************************************************/
-
+// [Start format_phone_numbers]
 // 电话号码格式化开发实例
 // 格式化电话号码
 let phoneNumberFormat1 = new i18n.PhoneNumberFormat('CN');
@@ -57,6 +59,7 @@ for (let i = 0; i < phoneNumber.length; i++) {
   formatResult = phoneNumberFmt.format(formatResult);
 }
 console.log(formatResult); // formatResult: 0755 453
+// [End format_phone_numbers]
 
 const expectedFormattedPhoneNumber1 = '158 1234 2312';
 const expectedFormattedPhoneNumber2 = 'tel:+86-158-1234-2312';

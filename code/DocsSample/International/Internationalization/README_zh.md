@@ -65,7 +65,7 @@ entry/src/main/ets
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例为Stage模型，支持API18版本SDK，版本号：5.1.0。
+2. 本示例为Stage模型，支持API18版本full-SDK，版本号：5.1.0。
 3. 支持的IDE版本：本示例已支持DevEco Studio 5.0.1 Release (构建版本：5.0.5.306，构建 2024年12月6日)编译运行。
 4. 本示例涉及[ohos.permission.UPDATE_CONFIGURATION](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionupdate_configuration)为system_core级别，需要配置高权限签名，可参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/hapsigntool-overview.md)。
 5. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/hapsigntool-overview.md)，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
