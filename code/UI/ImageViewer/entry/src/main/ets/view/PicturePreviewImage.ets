@@ -306,7 +306,7 @@ export struct PicturePreviewImage {
 
     if ((calculatedOffset > maxAllowedOffset) && (this.imageIndex !== 0)) {
       // 右滑 -- 当前滑动超过最大值时 并且 不是第一个元素去设置list偏移量显“下一张”图片
-      let listOffset :number= calculatedOffset - maxAllowedOffset;
+      let listOffset: number = calculatedOffset - maxAllowedOffset;
       this.setListOffset(-listOffset)
       this.imageListOffset = listOffset;
     } else if ((calculatedOffset < -maxAllowedOffset) && (this.imageIndex < this.imageMaxLength - 1)) {
@@ -413,17 +413,12 @@ export struct PicturePreviewImage {
           .onActionEnd((event: GestureEvent) => {
             this.imageOffsetInfo.stash();
             this.evaluateBound();
-          })
-      ),
-    )
-    // 两根手指操作
-    .gesture(
-      GestureGroup(
-        GestureMode.Parallel,
+          }),
+        // 两根手指操作
         // 双指旋转图片
         RotationGesture({ angle: this.imageRotateInfo.startAngle })
           .onActionUpdate((event: GestureEvent) => {
-            let angle :number= this.imageRotateInfo.lastRotate + event.angle;
+            let angle: number = this.imageRotateInfo.lastRotate + event.angle;
             if (event.angle > 0) {
               angle -= this.imageRotateInfo.startAngle;
             } else {
@@ -461,7 +456,7 @@ export struct PicturePreviewImage {
         // TODO：知识点：双指捏合缩放图片
         PinchGesture({ fingers: 2, distance: 1 })
           .onActionUpdate((event: GestureEvent) => {
-            let scale :number= this.imageScaleInfo.lastValue * event.scale;
+            let scale: number = this.imageScaleInfo.lastValue * event.scale;
             // TODO：知识点：缩放时不允许大于最大缩放因子+额外缩放因子，不允许小于默认大小-额外缩放因子，额外缩放因子用于提升用户体验4
             if (scale > this.imageScaleInfo.maxScaleValue *
               (1 + this.imageScaleInfo.extraScaleValue)
