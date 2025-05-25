@@ -1,0 +1,45 @@
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SheetTransitionExample3 {
+  @State isShow: boolean = false;
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button("content1")
+        .margin(10)
+        .fontSize(20)
+
+      Button("content2")
+        .margin(10)
+        .fontSize(20)
+    }
+    .width('100%')
+  }
+
+  build() {
+    Column() {
+      Button("transition modal 1")
+        .onClick(() => {
+          this.isShow = true;
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
+          borderWidth: { top: LengthMetrics.vp(10), start: LengthMetrics.vp(10), end: LengthMetrics.vp(20) },
+          borderColor: { top: Color.Pink, start: Color.Blue, end: Color.Yellow },
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}

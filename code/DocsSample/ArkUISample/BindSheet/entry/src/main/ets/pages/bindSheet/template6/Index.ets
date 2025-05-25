@@ -1,0 +1,108 @@
+//xxx.ets
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+@Entry
+@Component
+struct ListenKeyboardHeightChange {
+  @State isShow: boolean = false;
+  @State avoidMode: SheetKeyboardAvoidMode = SheetKeyboardAvoidMode.RESIZE_ONLY;
+  scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6];
+  windowClass: window.Window | undefined = undefined;
+
+  aboutToAppear(): void {
+    try {
+      window.getLastWindow(this.getUIContext().getHostContext(), (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to obtain the top window, Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        this.windowClass = data;
+        try {
+          if (this.windowClass !== undefined) {
+            console.log('success in listen height change');
+            this.windowClass.on('keyboardHeightChange', this.callback);
+          }
+        } catch (exception) {
+          console.error(`Failed to enable the listener for keyboard height changes, Cause code: ${exception.code}, message: ${exception.message}`);
+        }
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error(`Failed to obtain the top window, Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+
+  callback = (height: number) => {
+    console.log('height change: ' + height);
+    if (height !== 0) {
+      this.scroller.scrollTo({
+        xOffset: 0, yOffset: height + this.scroller.currentOffset().yOffset,
+        animation: { duration: 1000, curve: Curve.Ease, canOverScroll: false }
+      });
+    }
+  }
+
+  @Builder
+  myBuilder() {
+    Scroll(this.scroller) {
+      Column() {
+        ForEach(this.arr, (item: number) => {
+          Row() {
+            Text(item.toString())
+              .width('80%')
+              .height(60)
+              .backgroundColor('#3366CC')
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 5 })
+          }
+        }, (item: number) => item.toString())
+
+        TextInput().height('100')
+
+        Flex({ alignItems: ItemAlign.End }) {
+          Row() {
+            Button("click")
+              .margin(10)
+              .fontSize(20)
+              .width('45%')
+
+            Button("cancel")
+              .margin(10)
+              .fontSize(20)
+              .width('45%')
+          }.width('100%')
+        }.height(100)
+      }.margin({ right: 15, bottom: 50 })
+    }
+    .height('100%')
+    .scrollBar(BarState.On)
+    .scrollable(ScrollDirection.Vertical)
+  }
+
+  build() {
+    Column() {
+      Button("transition modal 1")
+        .onClick(() => {
+          this.isShow = true;
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: 750,
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
+          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY,
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}

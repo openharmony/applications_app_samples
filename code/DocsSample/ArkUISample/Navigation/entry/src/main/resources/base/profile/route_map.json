@@ -1,0 +1,76 @@
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template2/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "pageTwo",
+      "pageSourceFile": "src/main/ets/pages/navigation/template2/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    },
+    {
+      "name": "temp3-pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template3/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "temp3-pageTwo",
+      "pageSourceFile": "src/main/ets/pages/navigation/template3/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    },
+    {
+      "name": "temp4-pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template4/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "temp4-pageTwo",
+      "pageSourceFile": "src/main/ets/pages/navigation/template4/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    },
+    {
+      "name": "temp6-pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template6/PageOne.ets",
+      "buildFunction": "PageOneBuilder"
+    },
+    {
+      "name": "temp7-pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template7/Index.ets",
+      "buildFunction": "PageOneBuilder"
+    },
+    {
+      "name": "temp8-pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template8/Index.ets",
+      "buildFunction": "PageOneBuilder"
+    },
+    {
+      "name": "temp13-PageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template13/Index.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "temp13-PageTwo",
+      "pageSourceFile": "src/main/ets/pages/navigation/template13/Index.ets",
+      "buildFunction": "PageTwoBuilder"
+    },
+    {
+      "name": "navPath-pageOne",
+      "pageSourceFile": "src/main/ets/pages/navPathStackExtend/template1/PageOne.ets",
+      "buildFunction": "PageOneBuilder"
+    }
+  ]
+}

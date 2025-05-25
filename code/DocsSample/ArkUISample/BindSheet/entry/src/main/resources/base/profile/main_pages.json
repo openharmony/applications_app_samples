@@ -1,0 +1,25 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/bindContentCover/template1/Index",
+    "pages/bindContentCover/template2/Index",
+    "pages/bindContentCover/template3/Index",
+    "pages/bindContentCover/template4/Index",
+    "pages/bindContentCover/template5/Index",
+    "pages/bindContentCover/template6/Index",
+    "pages/bindContentCover/template7/Index",
+    "pages/bindSheet/template1/Index",
+    "pages/bindSheet/template2/Index",
+    "pages/bindSheet/template3/Index",
+    "pages/bindSheet/template4/Index",
+    "pages/bindSheet/template5/Index",
+    "pages/bindSheet/template6/Index",
+    "pages/bindSheet/template7/Index",
+    "pages/bindSheet/template8/Index",
+    "pages/bindSheet/template9/Index",
+    "pages/bindSheet/template10/Index",
+    "pages/bindSheetCmd/template1/Index",
+    "pages/bindSheetCmd/template2/Index",
+    "pages/bindSheetCmd/template3/Index"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "navigation_toolbar_add",
+      "value": "add"
+    },
+    {
+      "name": "navigation_toolbar_app",
+      "value": "app"
+    },
+    {
+      "name": "navigation_toolbar_collect",
+      "value": "collect"
+    }, {
+      "name": "please_click_button",
+      "value": "请点击按钮"
+    }
+  ]
+}
