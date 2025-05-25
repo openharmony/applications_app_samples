@@ -48,8 +48,22 @@ int32_t AudioDecoder::Configure(const SampleInfo &sampleInfo)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, sampleInfo.audioChannelCount);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleInfo.audioSampleRate);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, sampleInfo.audioChannelLayout);
+    if (sampleInfo.codecConfigLen > 0) {
+        AVCODEC_SAMPLE_LOGI("====== AudioDecoder config ====== codecConfig:%{public}p, len:%{public}i, "
+                            "adts:${public}i, 0:0x%{public}02x, 1:0x%{public}02x",
+                            sampleInfo.codecConfig, sampleInfo.codecConfigLen, sampleInfo.aacAdts,
+                            sampleInfo.codecConfig[0], sampleInfo.codecConfig[1]);
+        uint8_t tmpCodecConfig[2];
+        tmpCodecConfig[0] = 0x13;                      // 0x11
+        tmpCodecConfig[1] = 0x10;                      // 0x90
+        tmpCodecConfig[0] = sampleInfo.codecConfig[0]; // 0x11
+        tmpCodecConfig[1] = sampleInfo.codecConfig[1]; // 0x90
+        AVCODEC_SAMPLE_LOGI("====== AudioDecoder config ====== 0:0x%{public}02x, 1:0x%{public}02x", tmpCodecConfig[0],
+                            tmpCodecConfig[1]);
+        OH_AVFormat_SetBuffer(format, OH_MD_KEY_CODEC_CONFIG, sampleInfo.codecConfig, sampleInfo.codecConfigLen);
+    }
+    
     AVCODEC_SAMPLE_LOGI("====== AudioDecoder config ======");
-
     int ret = OH_AudioCodec_Configure(decoder, format);
     AVCODEC_SAMPLE_LOGI("====== AudioDecoder config ======");
     CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Config failed, ret: %{public}d", ret);

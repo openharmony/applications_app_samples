@@ -64,6 +64,9 @@ struct SampleInfo {
 
     void (*playDoneCallback)(void *context) = nullptr;
     void *playDoneCallbackData = nullptr;
+    uint8_t codecConfig[1024];
+    size_t codecConfigLen = 0;
+    int32_t aacAdts = -1;
 };
 
 struct CodecBufferInfo {
