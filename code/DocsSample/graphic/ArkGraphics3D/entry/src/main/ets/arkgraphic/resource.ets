@@ -24,102 +24,11 @@ import {
   SceneResourceFactory,
   SceneResourceParameters,
   Shader,
-  ShaderMaterial
+  ShaderMaterial,
+  EnvironmentBackgroundType
 } from '@kit.ArkGraphics3D';
 import { router } from '@kit.ArkUI';
 import logger from '../utils/Logger';
-
-async function createMaterialPromise(): Promise<Material> {
-  try {
-    logger.info('start to create a new Material.');
-
-    // Loading scene
-    const result: Scene = await Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.gltf'));
-
-    let sceneFactory: SceneResourceFactory = result.getResourceFactory();
-    let sceneMaterialParameter: SceneResourceParameters = { name: 'material' };
-
-    // Create a material without anything
-    let material: Material = await sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
-
-    return material;
-  } catch (error) {
-    logger.error('Failed to create material: ' + error);
-    throw new Error('Failed to create material');
-  }
-}
-
-async function createShaderPromise(): Promise<Shader> {
-  try {
-    logger.info('start to create a new shader.');
-
-    let scene: Scene = await Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.gltf'));
-    let sceneFactory: SceneResourceFactory = scene.getResourceFactory();
-
-    // Create a variable of the SceneResourceParameters type and use it to create a shader.
-    let sceneResourceParameter: SceneResourceParameters = {
-      name: 'shaderResource',
-      uri: $rawfile('shaders/custom_shader/custom_material_sample.shader')
-    };
-
-    // Create a material.
-    let shader: Shader = await sceneFactory.createShader(sceneResourceParameter);
-
-    return shader;
-  } catch (error) {
-    logger.error('Failed to create shader: ' + error);
-    throw new Error('Failed to create shader');
-  }
-}
-
-async function createImagePromise(): Promise<Image> {
-  try {
-    logger.info('start to create a new image.');
-
-    let scene: Scene = await Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.gltf'));
-    let sceneFactory: SceneResourceFactory = scene.getResourceFactory();
-    let sceneImageParameter: SceneResourceParameters = { name: 'image', uri: $rawfile('image/Cube_BaseColor.png') };
-    // create image
-    let image: Image = await sceneFactory.createImage(sceneImageParameter);
-
-    return image;
-  } catch (error) {
-    logger.error('Failed to creat image: ' + error);
-    throw new Error('Failed to create image');
-  }
-}
-
-async function createEnvrionmentPromise(): Promise<Environment> {
-  try {
-    logger.info('start to create a new envrionment.');
-
-    let scene: Scene = await Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.gltf'));
-    let sceneFactory: SceneResourceFactory = scene.getResourceFactory();
-
-    // create a new environment.
-    let env: Environment = await sceneFactory.createEnvironment({
-      name: 'env',
-      uri: $rawfile('KTX/quarry_02_2k_radiance.ktx')
-    });
-
-    let image: Image = await sceneFactory.createImage({
-      name: 'Image',
-      uri: $rawfile('image/Cube_BaseColor.png')
-    });
-
-    env.environmentImage = image;
-
-    env.indirectDiffuseFactor.x = 1;
-    env.indirectDiffuseFactor.y = 1;
-    env.indirectDiffuseFactor.z = 1;
-    env.indirectDiffuseFactor.w = 1;
-
-    return env;
-  } catch (error) {
-    logger.error('Failed to creat envrionment: ' + error);
-    throw new Error('Failed to create envrionment');
-  }
-}
 
 @Entry
 @Component
@@ -161,9 +70,99 @@ struct materialPage {
     this.env = null;
   }
 
+  async createMaterialPromise(): Promise<Material|null> {
+    try {
+      logger.info('start to create a new Material.');
+      if (!this.rf) {
+        return null;
+      }
+      let sceneMaterialParameter: SceneResourceParameters = { name: 'material' };
+
+      // Create a material without anything
+      let material: Material = await this.rf.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
+
+      return material;
+    } catch (error) {
+      logger.error('Failed to create material: ' + error);
+      return null;
+    }
+  }
+
+  async createShaderPromise(): Promise<Shader|null> {
+    try {
+      logger.info('start to create a new shader.');
+      if (!this.rf) {
+        return null;
+      }
+
+      // Create a variable of the SceneResourceParameters type and use it to create a shader.
+      let sceneResourceParameter: SceneResourceParameters = {
+        name: 'shaderResource',
+        uri: $rawfile('shaders/custom_shader/custom_material_sample.shader')
+      };
+
+      // Create a material.
+      let shader: Shader = await this.rf.createShader(sceneResourceParameter);
+
+      return shader;
+    } catch (error) {
+      logger.error('Failed to create shader: ' + error);
+      return null;
+    }
+  }
+
+  async createImagePromise(): Promise<Image|null> {
+    try {
+      logger.info('start to create a new image.');
+      if (!this.rf) {
+        return null;
+      }
+      let sceneImageParameter: SceneResourceParameters = { name: 'image', uri: $rawfile('image/Cube_BaseColor.png') };
+      // create image
+      let image: Image = await this.rf.createImage(sceneImageParameter);
+
+      return image;
+    } catch (error) {
+      logger.error('Failed to create image: ' + error);
+      return null;
+    }
+  }
+
+  async createEnvironmentPromise(): Promise<Environment|null> {
+    try {
+      logger.info('start to create a new environment.');
+      if (!this.rf) {
+        return null;
+      }
+
+      // create a new environment.
+      let env: Environment = await this.rf.createEnvironment({
+        name: 'env'
+      });
+
+      let image: Image = await this.rf.createImage({
+        name: 'Image',
+        uri: $rawfile('image/Cube_BaseColor.png')
+      });
+
+      env.backgroundType = EnvironmentBackgroundType.BACKGROUND_EQUIRECTANGULAR;
+      env.environmentImage = image;
+
+      env.indirectDiffuseFactor.x = 1;
+      env.indirectDiffuseFactor.y = 1;
+      env.indirectDiffuseFactor.z = 1;
+      env.indirectDiffuseFactor.w = 1;
+
+      return env;
+    } catch (error) {
+      logger.error('Failed to create environment: ' + error);
+      return null;
+    }
+  }
+
   init(): void {
     if (this.scene === null) {
-      Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.gltf'))
+      Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'))
         .then(async (result: Scene) => {
           this.scene = result;
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
@@ -173,9 +172,7 @@ struct materialPage {
           this.cam.position.z = 5;
 
           // create a geometry
-          if (!this.geom) {
-            this.geom = this.scene.getNodeByPath('rootNode_/Scene/AnimatedCube') as Geometry;
-          }
+          this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/AnimatedCube') as Geometry;
 
           // record original material
           this.originalMat = this.geom.mesh.subMeshes[0].material;
@@ -207,19 +204,20 @@ struct materialPage {
             logger.info('Start to replace with a blank material');
 
             if (!this.blankMat) {
-              this.blankMat = await createMaterialPromise();
+              this.blankMat = await this.createMaterialPromise();
             }
 
             if (!this.scene || !this.rf) {
               return;
             }
 
-            if (!this.geom) {
-              this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/Cube') as Geometry;
-            }
+            this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/AnimatedCube') as Geometry;
 
             this.geom.mesh.materialOverride = undefined;
-            this.geom.mesh.subMeshes[0].material = this.blankMat;
+            if (this.blankMat) {
+              this.geom.mesh.subMeshes[0].material = this.blankMat;
+            }
+
           });
 
         Button('Replace with a Shader material')
@@ -231,7 +229,7 @@ struct materialPage {
             logger.info('Start to replace with a blank material');
 
             if (!this.shader) {
-              this.shader = await createShaderPromise();
+              this.shader = await this.createShaderPromise();
             }
 
             if (!this.scene || !this.rf) {
@@ -243,13 +241,11 @@ struct materialPage {
               this.shaderMat = await rf.createMaterial({ name: 'shaderMat' }, MaterialType.SHADER);
             }
 
-            if (this.shaderMat) {
+            if (this.shader) {
               this.shaderMat.colorShader = this.shader;
             }
 
-            if (!this.geom) {
-              this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/Cube') as Geometry;
-            }
+            this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/AnimatedCube') as Geometry;
 
             this.geom.mesh.materialOverride = undefined;
 
@@ -281,11 +277,13 @@ struct materialPage {
 
             // bind between shader and imageMat
             this.imageMat.colorShader = this.shader;
-            this.imageMat.colorShader.inputs['BASE_COLOR_Image'] = await createImagePromise();
-
-            if (!this.geom) {
-              this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/Cube') as Geometry;
+            let createdImage =  await this.createImagePromise();
+            if (createdImage) {
+              this.imageMat.colorShader.inputs['BASE_COLOR_Image'] = createdImage;
             }
+
+
+            this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/AnimatedCube') as Geometry;
 
             this.geom.mesh.materialOverride = undefined;
             this.geom.mesh.subMeshes[0].material = this.imageMat;
@@ -303,8 +301,9 @@ struct materialPage {
               return;
             }
 
-            this.env = await createEnvrionmentPromise();
-            this.scene.environment = this.env;
+            this.env = await this.createEnvironmentPromise();
+            if (this.env)
+              this.scene.environment = this.env;
           });
 
         Button('back')

@@ -30,7 +30,7 @@ struct LightPage {
 
   createLightPromise(): Promise<Light> {
     return new Promise((resolve, reject) => {
-      Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.gltf'))
+      Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'))
         .then(async (result: Scene) => {
           try {
             this.scene = result;
