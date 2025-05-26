@@ -430,6 +430,8 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_2.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_3.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_4.zip" desc="Provided by code/Solutions/IM/Chat"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPicture/entry/src/main/resources/rawfile/test.jpg" desc="Provided by code/DocsSample/Media/Image/NdkPicture"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPicture/screenshots/NdkPictureUI.jpg" desc="Provided by code/DocsSample/Media/Image/NdkPicture"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap/entry/src/main/resources/rawfile/test.gif" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap/screenshots/NdkPixelMap.jpeg" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_horizontal_flip.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
