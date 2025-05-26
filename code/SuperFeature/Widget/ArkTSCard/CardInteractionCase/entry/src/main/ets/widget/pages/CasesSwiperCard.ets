@@ -80,6 +80,10 @@ struct Widget_DynamicCard {
             })
           }
           .autoPlay(true)
+        } else {
+          Image($r('app.media.share_button'))
+            .width('100%')
+            .height('100%')
         }
       }
       .width($r('app.string.widget_display_full_width_percent'))
