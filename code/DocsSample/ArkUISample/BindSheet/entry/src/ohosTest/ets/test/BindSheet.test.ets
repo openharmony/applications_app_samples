@@ -18,6 +18,7 @@ import { ON } from '@ohos.UiTest';
 
 /*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'BindSheet_'
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
@@ -26,11 +27,11 @@ const driver = Driver.create();
 let aimComponent : Component
 
 export function BindSheetTest() {
-  describe('BindSheetTest', () => {
+  describe(BUNDLE + 'BindSheetTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.bindSheet',
+        bundleName: 'com.samples.bindSheet',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function BindSheetTest() {
       } while (aimComponent == null)
     })
 
-    it('BindSheetTest_001', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（不同高度的半模态弹窗）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -75,7 +76,7 @@ export function BindSheetTest() {
 
     })
 
-    it('BindSheetTest_002', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（设置三个不同高度的档位）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -100,7 +101,7 @@ export function BindSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindSheetTest_003', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（使用边框宽度和颜色）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -111,7 +112,7 @@ export function BindSheetTest() {
 
     })
 
-    it('BindSheetTest_004', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（使用关闭回调函数）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -126,7 +127,7 @@ export function BindSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindSheetTest_005', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_005', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例5（设置内容区刷新时机）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -142,7 +143,7 @@ export function BindSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindSheetTest_006', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_006', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例6（设置压缩模态内容）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -159,7 +160,7 @@ export function BindSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindSheetTest_007', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_007', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例7（镜像场景下如何设置圆角属性）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -169,7 +170,7 @@ export function BindSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindSheetTest_008', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_008', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例8（半模态Side侧边样式）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -179,7 +180,7 @@ export function BindSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindSheetTest_009', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_009', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例9（使用bindSheet构建半模态转场效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -192,7 +193,7 @@ export function BindSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindSheetTest_0010', 0, async () => {
+    it(BUNDLE + 'BindSheetTest_0010', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例10（使用嵌套滚动交互）'));
       await aimComponent.click();
       await driver.delayMs(1000);

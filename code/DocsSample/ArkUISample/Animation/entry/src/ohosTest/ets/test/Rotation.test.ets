@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Animation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function RotationTest() {
-  describe('RotationTest', () => {
+  describe(BUNDLE + 'RotationTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.animation',
+        bundleName: 'com.samples.animation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function RotationTest() {
       } while (aimComponent == null)
     })
 
-    it('RotationTest_001', 0, async () => {
+    it(BUNDLE + 'RotationTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（布局切换的旋转屏动画）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -59,7 +60,7 @@ export function RotationTest() {
       await driver.delayMs(1000);
     })
 
-    it('RotationTest_002', 0, async () => {
+    it(BUNDLE + 'RotationTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（透明度变化的旋转屏动画）'));
       await aimComponent.click();
       await driver.delayMs(1000);

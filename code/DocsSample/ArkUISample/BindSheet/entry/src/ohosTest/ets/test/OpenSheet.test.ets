@@ -18,6 +18,7 @@ import { ON } from '@ohos.UiTest';
 
 /*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'BindSheet_'
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
@@ -26,11 +27,11 @@ const driver = Driver.create();
 let aimComponent : Component
 
 export function OpenSheetTest() {
-  describe('OpenSheetTest', () => {
+  describe(BUNDLE + 'OpenSheetTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.bindSheet',
+        bundleName: 'com.samples.bindSheet',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function OpenSheetTest() {
       } while (aimComponent == null)
     })
 
-    it('OpenSheetTest_001', 0, async () => {
+    it(BUNDLE + 'OpenSheetTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（openBindSheet）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -58,7 +59,7 @@ export function OpenSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('OpenSheetTest_002', 0, async () => {
+    it(BUNDLE + 'OpenSheetTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（updateBindSheet）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -72,7 +73,7 @@ export function OpenSheetTest() {
       await driver.delayMs(1000);
     })
 
-    it('OpenSheetTest_003', 0, async () => {
+    it(BUNDLE + 'OpenSheetTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（closeBindSheet）'));
       await aimComponent.click();
       await driver.delayMs(1000);

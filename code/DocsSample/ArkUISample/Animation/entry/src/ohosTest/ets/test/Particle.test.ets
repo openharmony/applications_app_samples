@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Animation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function ParticleTest() {
-  describe('ParticleTest', () => {
+  describe(BUNDLE + 'ParticleTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.animation',
+        bundleName: 'com.samples.animation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function ParticleTest() {
       } while (aimComponent == null)
     })
 
-    it('ParticleTest_001', 0, async () => {
+    it(BUNDLE + 'ParticleTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（圆形初始化粒子）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -60,7 +61,7 @@ export function ParticleTest() {
       }
     })
 
-    it('ParticleTest_002', 0, async () => {
+    it(BUNDLE + 'ParticleTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（图片初始化粒子）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -72,7 +73,7 @@ export function ParticleTest() {
       }
     })
 
-    it('ParticleTest_003', 0, async () => {
+    it(BUNDLE + 'ParticleTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（粒子扰动场的干扰下运动轨迹发生变化）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -84,7 +85,7 @@ export function ParticleTest() {
       }
     })
 
-    it('ParticleTest_004', 0, async () => {
+    it(BUNDLE + 'ParticleTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（调整粒子发射器位置）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -96,7 +97,7 @@ export function ParticleTest() {
       }
     })
 
-    it('ParticleTest_005', 0, async () => {
+    it(BUNDLE + 'ParticleTest_005', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例5（环形发射器创建）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -108,7 +109,7 @@ export function ParticleTest() {
       }
     })
 
-    it('ParticleTest_006', 0, async () => {
+    it(BUNDLE + 'ParticleTest_006', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例6（环形发射器更新）'));
       await aimComponent.click();
       await driver.delayMs(1000);

@@ -18,6 +18,7 @@ import { ON } from '@ohos.UiTest';
 
 /*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'VisionEffect_'
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
@@ -26,11 +27,11 @@ const driver = Driver.create();
 let aimComponent : Component
 
 export function ForegroundColorTest() {
-  describe('ForegroundColorTest', () => {
+  describe(BUNDLE + 'ForegroundColorTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.visionEffect',
+        bundleName: 'com.samples.visionEffect',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,19 +49,19 @@ export function ForegroundColorTest() {
       } while (aimComponent == null)
     })
 
-    it('ForegroundColorTest_001', 0, async () => {
+    it(BUNDLE + 'ForegroundColorTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（使用前景色设置）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ForegroundColorTest_002', 0, async () => {
+    it(BUNDLE + 'ForegroundColorTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（设置前景色为组件背景色反色）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ForegroundColorTest_003', 0, async () => {
+    it(BUNDLE + 'ForegroundColorTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（前置景色未继承父组件）'));
       await aimComponent.click();
       await driver.delayMs(1000);

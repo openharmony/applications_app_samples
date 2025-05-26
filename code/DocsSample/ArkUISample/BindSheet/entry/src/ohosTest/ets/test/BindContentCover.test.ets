@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'BindSheet_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function BindContentCoverTest() {
-  describe('BindContentCoverTest', () => {
+  describe(BUNDLE + 'BindContentCoverTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.bindSheet',
+        bundleName: 'com.samples.bindSheet',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function BindContentCoverTest() {
       } while (aimComponent == null)
     })
 
-    it('BindContentCoverTest_001', 0, async () => {
+    it(BUNDLE + 'BindContentCoverTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（使用全屏模态转场）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -70,7 +71,7 @@ export function BindContentCoverTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindContentCoverTest_002', 0, async () => {
+    it(BUNDLE + 'BindContentCoverTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（自定义转场动画）'));
       await aimComponent.click();
       await driver.delayMs(2000);
@@ -92,7 +93,7 @@ export function BindContentCoverTest() {
       await driver.delayMs(2000);
     })
 
-    it('BindContentCoverTest_003', 0, async () => {
+    it(BUNDLE + 'BindContentCoverTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（上下切换转场）'));
       await aimComponent.click();
       await driver.delayMs(2000);
@@ -114,7 +115,7 @@ export function BindContentCoverTest() {
       await driver.delayMs(2000);
     })
 
-    it('BindContentCoverTest_004', 0, async () => {
+    it(BUNDLE + 'BindContentCoverTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（透明度渐变转场）'));
       await aimComponent.click();
       await driver.delayMs(2000);
@@ -136,7 +137,7 @@ export function BindContentCoverTest() {
       await driver.delayMs(2000);
     })
 
-    it('BindContentCoverTest_005', 0, async () => {
+    it(BUNDLE + 'BindContentCoverTest_005', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例5（设置不同效果的自定义转场）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -158,7 +159,7 @@ export function BindContentCoverTest() {
       await driver.delayMs(5000);
     })
 
-    it('BindContentCoverTest_006', 0, async () => {
+    it(BUNDLE + 'BindContentCoverTest_006', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例6（使用bindContentCover构建全屏模态内容覆盖半模态）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -176,7 +177,7 @@ export function BindContentCoverTest() {
       await driver.delayMs(1000);
     })
 
-    it('BindContentCoverTest_007', 0, async () => {
+    it(BUNDLE + 'BindContentCoverTest_007', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例7（使用bindContentCover构建全屏模态转场效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);

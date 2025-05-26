@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Navigation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function NavDestinationTest() {
-  describe('NavDestinationTest', () => {
+  describe(BUNDLE + 'NavDestinationTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.navigation',
+        bundleName: 'com.samples.navigation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function NavDestinationTest() {
       } while (aimComponent == null)
     })
 
-    it('NavDestinationTest_001', 0, async () => {
+    it(BUNDLE + 'NavDestinationTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（标题栏工具栏与可滚动类组件联动）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -91,7 +92,7 @@ export function NavDestinationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavDestinationTest_002', 0, async () => {
+    it(BUNDLE + 'NavDestinationTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（设置NavDestination自定义转场）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -113,7 +114,7 @@ export function NavDestinationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavDestinationTest_003', 0, async () => {
+    it(BUNDLE + 'NavDestinationTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（设置指定的NavDestination系统转场）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -151,7 +152,7 @@ export function NavDestinationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavDestinationTest_004', 0, async () => {
+    it(BUNDLE + 'NavDestinationTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（NavDestination配置页面方向和对应状态栏、导航条显隐）'));
       await aimComponent.click();
       await driver.delayMs(1000);

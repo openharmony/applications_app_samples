@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Navigation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function QueryNavDestinationInfoTest() {
-  describe('QueryNavDestinationInfoTest', () => {
+  describe(BUNDLE + 'QueryNavDestinationInfoTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.navigation',
+        bundleName: 'com.samples.navigation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function QueryNavDestinationInfoTest() {
       } while (aimComponent == null)
     })
 
-    it('QueryNavDestinationInfoTest_001', 0, async () => {
+    it(BUNDLE + 'QueryNavDestinationInfoTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('queryNavDestinationInfo18+'));
       await aimComponent.click();
       await driver.delayMs(1000);

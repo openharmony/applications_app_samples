@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Animation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function CohesionTest() {
-  describe('CohesionTest', () => {
+  describe(BUNDLE + 'CohesionTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.animation',
+        bundleName: 'com.samples.animation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function CohesionTest() {
       } while (aimComponent == null)
     })
 
-    it('CohesionTest_001', 0, async () => {
+    it(BUNDLE + 'CohesionTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（动画衔接）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -58,7 +59,7 @@ export function CohesionTest() {
       await driver.delayMs(1000);
     })
 
-    it('CohesionTest_002', 0, async () => {
+    it(BUNDLE + 'CohesionTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（手势与动画的衔接）'));
       await aimComponent.click();
       await driver.delayMs(1000);

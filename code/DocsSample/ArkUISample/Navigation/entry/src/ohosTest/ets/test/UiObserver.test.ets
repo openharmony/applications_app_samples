@@ -18,6 +18,7 @@ import { ON } from '@ohos.UiTest';
 
 /*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'Navigation_'
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
@@ -26,10 +27,10 @@ const driver = Driver.create();
 let aimComponent : Component
 
 export function UiObserverTest() {
-  describe('UiObserverTest', () => {
+  describe(BUNDLE + 'UiObserverTest', () => {
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.navigation',
+        bundleName: 'com.samples.navigation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function UiObserverTest() {
       } while (aimComponent == null)
     })
 
-    it('UiObserverTest_001', 0, async () => {
+    it(BUNDLE + 'UiObserverTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text("uiObserver.on('navDestinationUpdate')"));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -58,7 +59,7 @@ export function UiObserverTest() {
       await driver.delayMs(1000);
     })
 
-    it('UiObserverTest_002', 0, async () => {
+    it(BUNDLE + 'UiObserverTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text("uiObserver.on('navDestinationUpdate')指定监听"));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -69,7 +70,7 @@ export function UiObserverTest() {
       await driver.pressBack();
     })
 
-    it('UiObserverTest_003', 0, async () => {
+    it(BUNDLE + 'UiObserverTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text("uiObserver.on('navDestinationSwitch')"));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -79,7 +80,7 @@ export function UiObserverTest() {
       await driver.delayMs(1000);
     })
 
-    it('UiObserverTest_004', 0, async () => {
+    it(BUNDLE + 'UiObserverTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text("uiObserver.on('navDestinationSwitch')指定监听"));
       await aimComponent.click();
       await driver.delayMs(1000);

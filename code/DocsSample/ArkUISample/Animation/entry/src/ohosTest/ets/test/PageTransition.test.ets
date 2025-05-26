@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Animation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function PageTransitionTest() {
-  describe('PageTransitionTest', () => {
+  describe(BUNDLE + 'PageTransitionTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.animation',
+        bundleName: 'com.samples.animation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,13 +49,13 @@ export function PageTransitionTest() {
       } while (aimComponent == null)
     })
 
-    it('PageTransitionTest_001', 0, async () => {
+    it(BUNDLE + 'PageTransitionTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（设置退入场动画）'));
       await aimComponent.click();
       await driver.delayMs(5000);
     })
 
-    it('PageTransitionTest_002', 0, async () => {
+    it(BUNDLE + 'PageTransitionTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（设置退入场平移效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -68,7 +69,7 @@ export function PageTransitionTest() {
       await driver.delayMs(3000);
     })
 
-    it('PageTransitionTest_003', 0, async () => {
+    it(BUNDLE + 'PageTransitionTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（不推荐)（利用pushUrl跳转能力）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -82,7 +83,7 @@ export function PageTransitionTest() {
       await driver.delayMs(3000);
     })
 
-    it('PageTransitionTest_004', 0, async () => {
+    it(BUNDLE + 'PageTransitionTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（不推荐)（type为None的页面转场）'));
       await aimComponent.click();
       await driver.delayMs(1000);

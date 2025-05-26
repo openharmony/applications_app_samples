@@ -18,6 +18,7 @@ import { ON } from '@ohos.UiTest';
 
 /*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'VisionEffect_'
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
@@ -26,11 +27,11 @@ const driver = Driver.create();
 let aimComponent : Component
 
 export function ImageEffectTest() {
-  describe('ImageEffectTest', () => {
+  describe(BUNDLE + 'ImageEffectTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.visionEffect',
+        bundleName: 'com.samples.visionEffect',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,61 +49,61 @@ export function ImageEffectTest() {
       } while (aimComponent == null)
     })
 
-    it('ImageEffectTest_001', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（设置图片不同属性效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_002', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（设置组件线性渐变模糊效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_003', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（设置离屏渲染效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_004', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（当前组件内容与下方画布内容混合）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_005', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_005', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例5（前景智能取反色）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_006', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_006', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例6（设置同层阴影不重叠效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_007', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_007', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例7（设置组件图像球面效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_008', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_008', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例8（设置组件图像渐亮效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_009', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_009', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例9（设置组件图像边缘像素扩展效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('ImageEffectTest_010', 0, async () => {
+    it(BUNDLE + 'ImageEffectTest_010', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例10（系统导航条智能反色）'));
       await aimComponent.click();
       await driver.delayMs(1000);

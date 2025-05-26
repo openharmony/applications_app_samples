@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Animation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function ComponentTransitionTest() {
-  describe('ComponentTransitionTest', () => {
+  describe(BUNDLE + 'ComponentTransitionTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.animation',
+        bundleName: 'com.samples.animation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function ComponentTransitionTest() {
       } while (aimComponent == null)
     })
 
-    it('ComponentTransitionTest_001', 0, async () => {
+    it(BUNDLE + 'ComponentTransitionTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（使用同一接口实现图片出现消失）'));
       await aimComponent.click();
       await driver.delayMs(3000);
@@ -62,7 +63,7 @@ export function ComponentTransitionTest() {
       await driver.delayMs(3000);
     })
 
-    it('ComponentTransitionTest_002', 0, async () => {
+    it(BUNDLE + 'ComponentTransitionTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（使用不同接口实现图片出现消失）'));
       await aimComponent.click();
       await driver.delayMs(3000);
@@ -76,7 +77,7 @@ export function ComponentTransitionTest() {
       await driver.delayMs(3000);
     })
 
-    it('ComponentTransitionTest_003', 0, async () => {
+    it(BUNDLE + 'ComponentTransitionTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（设置父子组件为transition）'));
       await aimComponent.click();
       await driver.delayMs(3000);
@@ -90,7 +91,7 @@ export function ComponentTransitionTest() {
       await driver.delayMs(3000);
     })
 
-    it('ComponentTransitionTest_004', 0, async () => {
+    it(BUNDLE + 'ComponentTransitionTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（出现/消失转场）'));
       await aimComponent.click();
       await driver.delayMs(3000);
@@ -104,7 +105,7 @@ export function ComponentTransitionTest() {
       await driver.delayMs(3000);
     })
 
-    it('ComponentTransitionTest_005', 0, async () => {
+    it(BUNDLE + 'ComponentTransitionTest_005', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例5（多个组件渐次出现消失）'));
       await aimComponent.click();
       await driver.delayMs(1000);

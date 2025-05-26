@@ -21,16 +21,16 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
-
+const BUNDLE = 'VisionEffect_'
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function BackgroundTest() {
-  describe('BackgroundTest', () => {
+  describe(BUNDLE + 'BackgroundTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.visionEffect',
+        bundleName: 'com.samples.visionEffect',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,43 +48,43 @@ export function BackgroundTest() {
       } while (aimComponent == null)
     })
 
-    it('BackgroundTest_001', 0, async () => {
+    it(BUNDLE + 'BackgroundTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（设置背景基础样式）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('BackgroundTest_002', 0, async () => {
+    it(BUNDLE + 'BackgroundTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（设置背景模糊样式）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('BackgroundTest_003', 0, async () => {
+    it(BUNDLE + 'BackgroundTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（设置组件背景）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('BackgroundTest_004', 0, async () => {
+    it(BUNDLE + 'BackgroundTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（设置组件背景提亮效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('BackgroundTest_005', 0, async () => {
+    it(BUNDLE + 'BackgroundTest_005', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例5（设置模糊属性）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('BackgroundTest_006', 0, async () => {
+    it(BUNDLE + 'BackgroundTest_006', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例6（设置文字异形模糊效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('BackgroundTest_007', 0, async () => {
+    it(BUNDLE + 'BackgroundTest_007', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例7（模糊效果对比）'));
       await aimComponent.click();
       await driver.delayMs(1000);

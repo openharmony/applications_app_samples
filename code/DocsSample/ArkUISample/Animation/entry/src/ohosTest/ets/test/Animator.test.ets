@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Animation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function AnimatorTest() {
-  describe('AnimatorTest', () => {
+  describe(BUNDLE + 'AnimatorTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.animation',
+        bundleName: 'com.samples.animation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function AnimatorTest() {
       } while (aimComponent == null)
     })
 
-    it('AnimatorTest_001', 0, async () => {
+    it(BUNDLE + 'AnimatorTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（基于ArkTS扩展的声明式开发范式）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -90,7 +91,7 @@ export function AnimatorTest() {
       await driver.delayMs(3000);
     })
 
-    it('AnimatorTest_002', 0, async () => {
+    it(BUNDLE + 'AnimatorTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（位移动画示例）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -112,7 +113,7 @@ export function AnimatorTest() {
       await driver.delayMs(3000);
     })
 
-    it('AnimatorTest_003', 0, async () => {
+    it(BUNDLE + 'AnimatorTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（使用帧动画实现小球抛物运动）'));
       await aimComponent.click();
       await driver.delayMs(1000);

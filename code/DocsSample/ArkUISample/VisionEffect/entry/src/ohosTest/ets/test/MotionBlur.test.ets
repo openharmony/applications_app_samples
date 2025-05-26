@@ -18,6 +18,7 @@ import { ON } from '@ohos.UiTest';
 
 /*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'VisionEffect_'
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
@@ -26,11 +27,11 @@ const driver = Driver.create();
 let aimComponent : Component
 
 export function MotionBlurTest() {
-  describe('MotionBlurTest', () => {
+  describe(BUNDLE + 'MotionBlurTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.visionEffect',
+        bundleName: 'com.samples.visionEffect',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function MotionBlurTest() {
       } while (aimComponent == null)
     })
 
-    it('MotionBlurTest_001', 0, async () => {
+    it(BUNDLE + 'MotionBlurTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1'));
       await aimComponent.click();
       await driver.delayMs(1000);

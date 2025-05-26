@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'VisionEffect_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function ClickEffectTest() {
-  describe('ClickEffectTest', () => {
+  describe(BUNDLE + 'ClickEffectTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.visionEffect',
+        bundleName: 'com.samples.visionEffect',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function ClickEffectTest() {
       } while (aimComponent == null)
     })
 
-    it('ClickEffectTest_001', 0, async () => {
+    it(BUNDLE + 'ClickEffectTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1'));
       await aimComponent.click();
       await driver.delayMs(1000);

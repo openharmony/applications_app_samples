@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Animation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function AnimateToTest() {
-  describe('AnimateToTest', () => {
+  describe(BUNDLE + 'AnimateToTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.animation',
+        bundleName: 'com.samples.animation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function AnimateToTest() {
       } while (aimComponent == null)
     })
 
-    it('AnimateToTest_001', 0, async () => {
+    it(BUNDLE + 'AnimateToTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（在组件出现时创建动画）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -58,7 +59,7 @@ export function AnimateToTest() {
       await driver.delayMs(5000);
     })
 
-    it('AnimateToTest_002', 0, async () => {
+    it(BUNDLE + 'AnimateToTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（动画执行结束后组件消失）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -69,7 +70,7 @@ export function AnimateToTest() {
     })
 
 
-    it('AnimateToTest_003', 0, async () => {
+    it(BUNDLE + 'AnimateToTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（在状态管理V2中使用animateTo）'));
       await aimComponent.click();
       await driver.delayMs(1000);

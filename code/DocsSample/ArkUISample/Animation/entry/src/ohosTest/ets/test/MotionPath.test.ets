@@ -21,16 +21,17 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
+const BUNDLE = 'Animation_'
 
 /*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function MotionPathTest() {
-  describe('MotionPathTest', () => {
+  describe(BUNDLE + 'MotionPathTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.animation',
+        bundleName: 'com.samples.animation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function MotionPathTest() {
       } while (aimComponent == null)
     })
 
-    it('MotionPathTest_001', 0, async () => {
+    it(BUNDLE + 'MotionPathTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1'));
       await aimComponent.click();
       await driver.delayMs(1000);

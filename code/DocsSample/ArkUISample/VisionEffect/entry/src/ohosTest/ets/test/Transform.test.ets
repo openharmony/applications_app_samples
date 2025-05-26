@@ -18,6 +18,7 @@ import { ON } from '@ohos.UiTest';
 
 /*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'VisionEffect_'
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
@@ -26,11 +27,11 @@ const driver = Driver.create();
 let aimComponent : Component
 
 export function TransformTest() {
-  describe('TransformTest', () => {
+  describe(BUNDLE + 'TransformTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.visionEffect',
+        bundleName: 'com.samples.visionEffect',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,13 +49,13 @@ export function TransformTest() {
       } while (aimComponent == null)
     })
 
-    it('TransformTest_001', 0, async () => {
+    it(BUNDLE + 'TransformTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（为组件添加图形变换效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
 
-    it('TransformTest_002', 0, async () => {
+    it(BUNDLE + 'TransformTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（设置旋转视距）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -64,7 +65,7 @@ export function TransformTest() {
       await driver.delayMs(1000);
     })
 
-    it('TransformTest_003', 0, async () => {
+    it(BUNDLE + 'TransformTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（按中心点旋转）'));
       await aimComponent.click();
       await driver.delayMs(1000);

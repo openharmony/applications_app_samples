@@ -18,6 +18,7 @@ import { ON } from '@ohos.UiTest';
 
 /*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const BUNDLE = 'Navigation_'
 
 /*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
@@ -26,11 +27,11 @@ const driver = Driver.create();
 let aimComponent : Component
 
 export function NavigationTest() {
-  describe('NavigationTest', () => {
+  describe(BUNDLE + 'NavigationTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.example.navigation',
+        bundleName: 'com.samples.navigation',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -48,7 +49,7 @@ export function NavigationTest() {
       } while (aimComponent == null)
     })
 
-    it('NavigationTest_001', 0, async () => {
+    it(BUNDLE + 'NavigationTest_001', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例1（Navigation页面布局）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -63,7 +64,7 @@ export function NavigationTest() {
       expect(aimComponent)
     })
 
-    it('NavigationTest_002', 0, async () => {
+    it(BUNDLE + 'NavigationTest_002', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例2（使用路由栈方法）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -88,7 +89,7 @@ export function NavigationTest() {
       expect(aimComponent)
     })
 
-    it('NavigationTest_003', 0, async () => {
+    it(BUNDLE + 'NavigationTest_003', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例3（设置可交互转场动画）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -110,7 +111,7 @@ export function NavigationTest() {
       await driver.delayMs(2000);
     })
 
-    it('NavigationTest_004', 0, async () => {
+    it(BUNDLE + 'NavigationTest_004', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例4（Navigation带参返回）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -143,7 +144,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_005', 0, async () => {
+    it(BUNDLE + 'NavigationTest_005', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例5（设置背景颜色和模糊效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -189,7 +190,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_006', 0, async () => {
+    it(BUNDLE + 'NavigationTest_006', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例6（嵌套场景下获取外层栈）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -203,7 +204,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_007', 0, async () => {
+    it(BUNDLE + 'NavigationTest_007', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例7（通过onReady获取栈）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -241,7 +242,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_008', 0, async () => {
+    it(BUNDLE + 'NavigationTest_008', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例8（NavDestination生命周期时序）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -279,7 +280,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_009', 0, async () => {
+    it(BUNDLE + 'NavigationTest_009', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例9（标题栏布局效果）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -305,7 +306,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_010', 0, async () => {
+    it(BUNDLE + 'NavigationTest_010', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例10（定义路由栈派生类）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -335,7 +336,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_011', 0, async () => {
+    it(BUNDLE + 'NavigationTest_011', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例11（使用Symbol组件）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -345,7 +346,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_012', 0, async () => {
+    it(BUNDLE + 'NavigationTest_012', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例12（设置自定义标题栏边距）'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -391,7 +392,7 @@ export function NavigationTest() {
       await driver.delayMs(1000);
     })
 
-    it('NavigationTest_013', 0, async () => {
+    it(BUNDLE + 'NavigationTest_013', 0, async () => {
       aimComponent = await driver.findComponent(ON.text('示例13（自定义转场动画）'));
       await aimComponent.click();
       await driver.delayMs(1000);
