@@ -107,7 +107,7 @@ entry/src/ohosTest/
 ### 相关权限
 
 不涉及。
-[README_zh.md](..%2FDialogProject%2FREADME_zh.md)
+
 ### 依赖
 
 不涉及。
@@ -116,7 +116,7 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API18版本SDK，版本[README_zh.md](..%2FVisionEffect%2FREADME_zh.md)号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56。
+2.本示例为Stage模型，支持API18版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56。
 
 ### 下载
 
