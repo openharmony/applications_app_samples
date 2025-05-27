@@ -32,7 +32,7 @@ import { intl } from '@kit.LocalizationKit';
  *  - 时间日期格式化
  *  let formattedDate: string = dateFormat.format(date: Date);
  *  - 相对时间格式化
- *  let formattedDate: string = dateFormat.format(date: Date);
+ *  let formattedDateRange: string = dateFormat.formatRange(startDate: Date, endDate: Date);
  * 4. 获取格式化选项，查看对象的设置信息
  *  let options: intl.DateTimeOptions = dateFormat.resolvedOptions();
  *********************************************************************************************************************/
@@ -137,10 +137,6 @@ const expectedFormattedRelativeTime1 = '1 day ago';
 const expectedFormattedRelativeTime2 = 'yesterday';
 const expectedFormattedRelativeTime3 = 'il y a 1 jour';
 const expectedFormattedRelativeTime4 = '-1 j';
-const expectedCustomFormat =
-  '[{\"value\":\"in \",\"type\":\"literal\"},' +
-    '{\"value\":\"1\",\"unit\":\"day\",\"type\":\"integer\"},' +
-    '{\"value\":\" day\",\"type\":\"literal\"}]';
 const expectedNumeric = 'auto';
 
 @Extend(Text)
@@ -190,7 +186,9 @@ struct DateTimeFormatting {
           Text(assertEqual(formattedRelativeTime4, expectedFormattedRelativeTime4,
             $r('app.string.NarrowFormatRelativeTime')))
             .textStyle()
-          Text(assertEqual(JSON.stringify(parts), expectedCustomFormat, $r('app.string.CustomFormatRelativeTime')))
+          Text($r('app.string.CustomFormatRelativeTime'))
+            .textStyle()
+          Text(JSON.stringify(parts))
             .textStyle()
           Text(assertEqual(numeric, expectedNumeric, $r('app.string.GetRelativeTimeFormatOptions')))
             .textStyle()
