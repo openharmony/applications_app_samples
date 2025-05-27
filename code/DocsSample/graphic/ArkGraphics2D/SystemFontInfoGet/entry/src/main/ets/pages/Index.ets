@@ -146,8 +146,8 @@ struct RenderTest {
       }.width('100%')
     }
     .width('100%')
-    .justifyContent(FlexAlign.Center)
-    .shadow(ShadowStyle.OUTER_DEFAULT_SM)
-    .layoutWeight(1)
+    .justifyContent(FlexAlign.Center) // 设置当前Row容器内子元素在主轴上居中对齐
+    .shadow(ShadowStyle.OUTER_DEFAULT_SM) // 设置Row容器外阴影效果
+    .layoutWeight(1) // 设置当前Row在父容器Column中的布局权重为1
   }
 }

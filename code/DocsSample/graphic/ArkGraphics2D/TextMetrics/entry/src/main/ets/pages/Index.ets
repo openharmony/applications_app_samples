@@ -155,9 +155,9 @@ struct RenderTest {
           .height(40)
       }
       .width('100%')
-      .justifyContent(FlexAlign.Center)
-      .alignItems(VerticalAlign.Bottom)
-      .layoutWeight(1)
+      .justifyContent(FlexAlign.Center) // 设置当前Row容器内子元素在主轴上居中对齐
+      .alignItems(VerticalAlign.Bottom) // 设置当前Row容器内子元素在交叉轴（垂直方向）上的对齐方式为底部对齐
+      .layoutWeight(1) // 设置当前Row在父容器Column中的布局权重为1
     }
   }
 }
