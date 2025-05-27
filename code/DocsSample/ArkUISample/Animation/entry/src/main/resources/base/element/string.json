@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "Animation"
     },
     {
       "name": "navigation_toolbar_add",
@@ -21,11 +21,212 @@
       "value": "app"
     },
     {
+      "name": "page1",
+      "value": "页面1"
+    },
+    {
+      "name": "page2",
+      "value": "页面2"
+    },
+    {
+      "name": "create",
+      "value": "创建"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "complete",
+      "value": "完成"
+    },
+    {
+      "name": "playing",
+      "value": "播放中"
+    },
+    {
+      "name": "animatorStatus",
+      "value": "当前动画状态为:"
+    },
+    {
+      "name": "play",
+      "value": "播放"
+    },
+    {
+      "name": "reset",
+      "value": "重置"
+    },
+    {
+      "name": "pause",
+      "value": "暂停"
+    },
+    {
       "name": "navigation_toolbar_collect",
       "value": "collect"
-    }, {
-      "name": "please_click_button",
-      "value": "请点击按钮"
+    },
+    {
+      "name": "temp1",
+      "value": "示例1"
+    },
+    {
+      "name": "animate_to_label",
+      "value": "显示动画（animateTo）"
+    },
+    {
+      "name": "animate_to_temp_label1",
+      "value": "示例1（在组件出现时创建动画）"
+    },
+    {
+      "name": "animate_to_temp_label2",
+      "value": "示例2（动画执行结束后组件消失）"
+    },
+    {
+      "name": "animate_to_temp_label3",
+      "value": "示例3（在状态管理V2中使用animateTo）"
+    },
+    {
+      "name": "animation_label",
+      "value": "属性动画（animation）"
+    },
+    {
+      "name": "animation_temp_label2",
+      "value": "示例2（使用animateTo产生属性动画）"
+    },
+    {
+      "name": "animation_temp_label3",
+      "value": "示例3（使用animation产生属性动画）"
+    },
+    {
+      "name": "animation_temp_label4",
+      "value": "示例4（使用keyframeAnimateTo产生属性动画）"
+    },
+    {
+      "name": "cohesion_label",
+      "value": "动画衔接"
+    },
+    {
+      "name": "cohesion_temp_label1",
+      "value": "示例1（动画衔接）"
+    },
+    {
+      "name": "cohesion_temp_label2",
+      "value": "示例2（手势与动画的衔接）"
+    },
+    {
+      "name": "keyframeAnimateTo_label",
+      "value": "关键帧动画"
+    },
+    {
+      "name": "pageTransition_label",
+      "value": "页面间转场"
+    },
+    {
+      "name": "pageTransition_temp_label1",
+      "value": "示例1（设置退入场动画）"
+    },
+    {
+      "name": "pageTransition_temp_label2",
+      "value": "示例2（设置退入场平移效果）"
+    },
+    {
+      "name": "pageTransition_temp_label3",
+      "value": "示例3（不推荐)（利用pushUrl跳转能力）"
+    },
+    {
+      "name": "pageTransition_temp_label4",
+      "value": "示例4（不推荐)（type为None的页面转场）"
+    },
+    {
+      "name": "compTransition_label",
+      "value": "组件内转场"
+    },
+    {
+      "name": "compTransition_temp_label1",
+      "value": "示例1（使用同一接口实现图片出现消失）"
+    },
+    {
+      "name": "compTransition_temp_label2",
+      "value": "示例2（使用不同接口实现图片出现消失）"
+    },
+    {
+      "name": "compTransition_temp_label3",
+      "value": "示例3（设置父子组件为transition）"
+    },
+    {
+      "name": "compTransition_temp_label4",
+      "value": "示例4（出现/消失转场）"
+    },
+    {
+      "name": "compTransition_temp_label5",
+      "value": "示例5（多个组件渐次出现消失）"
+    },
+    {
+      "name": "shareTransition_label",
+      "value": "共享元素转场"
+    },
+    {
+      "name": "motionPath_label",
+      "value": "路径动画"
+    },
+    {
+      "name": "particle_label",
+      "value": "粒子动画"
+    },
+    {
+      "name": "particle_temp_label1",
+      "value": "示例1（圆形初始化粒子）"
+    },
+    {
+      "name": "particle_temp_label2",
+      "value": "示例2（图片初始化粒子）"
+    },
+    {
+      "name": "particle_temp_label3",
+      "value": "示例3（粒子扰动场的干扰下运动轨迹发生变化）"
+    },
+    {
+      "name": "particle_temp_label4",
+      "value": "示例4（调整粒子发射器位置）"
+    },
+    {
+      "name": "particle_temp_label5",
+      "value": "示例5（环形发射器创建）"
+    },
+    {
+      "name": "particle_temp_label6",
+      "value": "示例6（环形发射器更新）"
+    },
+    {
+      "name": "animator_label",
+      "value": "帧动画"
+    },
+    {
+      "name": "animator_temp_label1",
+      "value": "示例1（基于ArkTS扩展的声明式开发范式）"
+    },
+    {
+      "name": "animator_temp_label2",
+      "value": "示例2（位移动画示例）"
+    },
+    {
+      "name": "animator_temp_label3",
+      "value": "示例3（使用帧动画实现小球抛物运动）"
+    },
+    {
+      "name": "animateToImmediately_label",
+      "value": "显式动画立即下发"
+    },
+    {
+      "name": "rotation_label",
+      "value": "旋转屏动画"
+    },
+    {
+      "name": "rotation_temp_label1",
+      "value": "示例1（布局切换的旋转屏动画）"
+    },
+    {
+      "name": "rotation_temp_label2",
+      "value": "示例2（透明度变化的旋转屏动画）"
     }
   ]
 }

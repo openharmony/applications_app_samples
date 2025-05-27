@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,20 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import resource from '../../../main/ets/common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 
-/*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
 const BUNDLE = 'Animation_'
+const TAG = '[Sample_Animation]';
+const DOMAIN = 0xF811
 
-/*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function AnimationTest() {
-  describe(BUNDLE + 'AnimationTest', () => {
+  describe('Animation_AnimationTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -36,7 +37,7 @@ export function AnimationTest() {
       });
       await driver.delayMs(3000);
 
-      aimComponent = await driver.findComponent(ON.text('属性动画（animation）'));
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.animation_label"))));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
@@ -49,8 +50,17 @@ export function AnimationTest() {
       } while (aimComponent == null)
     })
 
+    /*
+     * @tc.number: Animation_AnimationTest_001
+     * @tc.name: Set attribute animate use animation
+     * @tc.desc: Set attribute animate use animation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'AnimationTest_001', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例1'));
+      hilog.info(DOMAIN, TAG, 'Animation_AnimationTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.temp1"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -61,36 +71,67 @@ export function AnimationTest() {
       aimComponent = await driver.findComponent(ON.text('change rotate angle'))
       await aimComponent.click();
       await driver.delayMs(5000);
+      hilog.info(DOMAIN, TAG, 'Animation_AnimationTest_001_end');
     })
 
+    /*
+    * @tc.number: Animation_AnimationTest_002
+    * @tc.name: Set attribute animate use animationTo
+    * @tc.desc: Set attribute animate use animationTo
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level Level 1
+    */
     it(BUNDLE + 'AnimationTest_002', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例2（使用animateTo产生属性动画）'));
+      hilog.info(DOMAIN, TAG, 'Animation_AnimationTest_002_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.animation_temp_label2"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.type('Column'))
       await aimComponent.click();
       await driver.delayMs(5000);
+      hilog.info(DOMAIN, TAG, 'Animation_AnimationTest_002_end');
     })
 
+    /*
+    * @tc.number: Animation_AnimationTest_003
+    * @tc.name: Set attribute animate use animation
+    * @tc.desc: Set attribute animate use animation
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level Level 1
+    */
     it(BUNDLE + 'AnimationTest_003', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例3（使用animation产生属性动画）'));
+      hilog.info(DOMAIN, TAG, 'Animation_AnimationTest_003_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.animation_temp_label3"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.type('Column'))
       await aimComponent.click();
       await driver.delayMs(5000);
+      hilog.info(DOMAIN, TAG, 'Animation_AnimationTest_003_end');
     })
 
+    /*
+    * @tc.number: Animation_AnimationTest_004
+    * @tc.name: Set attribute animate use keyframeAnimateTo
+    * @tc.desc: Set attribute animate use keyframeAnimateTo
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level Level 1
+    */
     it(BUNDLE + 'AnimationTest_004', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例4（使用keyframeAnimateTo产生属性动画）'));
+      hilog.info(DOMAIN, TAG, 'Animation_AnimationTest_004_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.animation_temp_label4"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.type('Column'))
       await aimComponent.click();
       await driver.delayMs(5000);
+      hilog.info(DOMAIN, TAG, 'Animation_AnimationTest_004_end');
     })
 
   })

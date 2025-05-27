@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,20 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import resource from '../../../main/ets/common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 
-/*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
 const BUNDLE = 'Animation_'
+const TAG = '[Sample_Animation]';
+const DOMAIN = 0xF811
 
-/*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function CohesionTest() {
-  describe(BUNDLE + 'CohesionTest', () => {
+  describe('Animation_CohesionTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -36,7 +37,7 @@ export function CohesionTest() {
       });
       await driver.delayMs(3000);
 
-      aimComponent = await driver.findComponent(ON.text('动画衔接'));
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.cohesion_label"))));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
@@ -49,18 +50,37 @@ export function CohesionTest() {
       } while (aimComponent == null)
     })
 
+    /*
+     * @tc.number: Animation_CohesionTest_001
+     * @tc.name: Set Cohesion animate
+     * @tc.desc: Set Cohesion animate
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'CohesionTest_001', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例1（动画衔接）'));
+      hilog.info(DOMAIN, TAG, 'Animation_CohesionTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.cohesion_temp_label1"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('Click'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Animation_CohesionTest_001_end');
     })
 
+    /*
+     * @tc.number: Animation_CohesionTest_002
+     * @tc.name: Set Cohesion animate with gesture
+     * @tc.desc: Set Cohesion animate with gesture
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'CohesionTest_002', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例2（手势与动画的衔接）'));
+      hilog.info(DOMAIN, TAG, 'Animation_CohesionTest_002_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.cohesion_temp_label2"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -69,6 +89,7 @@ export function CohesionTest() {
 
       await driver.swipe(x, Math.floor(size.y * 0.2013), x, Math.floor(size.y * 0.5544));
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Animation_CohesionTest_002_end');
     })
 
   })

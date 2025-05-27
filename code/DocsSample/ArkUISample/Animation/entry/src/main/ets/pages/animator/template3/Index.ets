@@ -1,10 +1,25 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import resource from '../../../common/resource';
 
 @Entry
 @Component
 struct Index {
   @State animatorOptions: AnimatorResult | undefined = undefined;
-  @State animatorStatus: string = '创建';
+  @State animatorStatus: ResourceStr = $r('app.string.create');
   begin: number = 0;
   end: number = 300;
   topWidth: number = 150;
@@ -32,13 +47,13 @@ struct Index {
       }
     }
     this.animatorOptions.onCancel = () => {
-      this.animatorStatus = '取消';
+      this.animatorStatus = $r('app.string.cancel');
     }
     this.animatorOptions.onFinish = () => {
-      this.animatorStatus = '完成';
+      this.animatorStatus = $r('app.string.complete');
     }
     this.animatorOptions.onRepeat = () => {
-      console.log("动画重复播放");
+      console.log("repeat play");
     }
   }
 
@@ -49,17 +64,17 @@ struct Index {
   build() {
     Column() {
       Column({ space: 30 }) {
-        Button('播放').onClick(() => {
+        Button($r('app.string.play')).onClick(() => {
           this.animatorOptions?.play();
-          this.animatorStatus = '播放中';
+          this.animatorStatus = $r('app.string.playing');
         }).width(80).height(35)
-        Button("重置").onClick(() => {
+        Button($r('app.string.reset')).onClick(() => {
           this.translateX = 0;
           this.translateY = 0;
         }).width(80).height(35)
-        Button("暂停").onClick(() => {
+        Button($r('app.string.pause')).onClick(() => {
           this.animatorOptions?.pause();
-          this.animatorStatus = '暂停';
+          this.animatorStatus = $r('app.string.pause');
         }).width(80).height(35)
       }.width("100%").height('25%')
 
@@ -73,7 +88,7 @@ struct Index {
       .height('45%')
       .align(Alignment.Start)
 
-      Text("当前动画状态为:" + this.animatorStatus)
+      Text(resource.resourceToString($r('app.string.animatorStatus')) + this.animatorStatus)
     }.width("100%").height('100%')
   }
 }

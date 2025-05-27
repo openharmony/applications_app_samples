@@ -118,6 +118,8 @@ entry/src/ohosTest/
 
 2.本示例为Stage模型，支持API18版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56。
 
+3.本示例需要使用DevEco Studio 6.0.0 Canary1 (Build Version: 6.0.0.270， built on May 9, 2025)及以上版本才可编译运行。
+
 ### 下载
 
 如需单独下载本工程，执行如下命令：
@@ -125,7 +127,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/VisionEffect > .git/info/sparse-checkout
+echo code/DocsSample/ArkUIDocSample/Navigation > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

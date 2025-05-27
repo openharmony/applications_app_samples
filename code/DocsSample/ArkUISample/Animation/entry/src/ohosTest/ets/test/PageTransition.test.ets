@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,20 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import resource from '../../../main/ets/common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 
-/*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
 const BUNDLE = 'Animation_'
+const TAG = '[Sample_Animation]';
+const DOMAIN = 0xF811
 
-/*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function PageTransitionTest() {
-  describe(BUNDLE + 'PageTransitionTest', () => {
+  describe('Animation_PageTransitionTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -36,7 +37,7 @@ export function PageTransitionTest() {
       });
       await driver.delayMs(3000);
 
-      aimComponent = await driver.findComponent(ON.text('页面间转场'));
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.pageTransition_label"))));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
@@ -49,28 +50,57 @@ export function PageTransitionTest() {
       } while (aimComponent == null)
     })
 
+    /*
+      * @tc.number: Animation_PageTransitionTest_001
+      * @tc.name: Set pageTransition
+      * @tc.desc: Set pageTransition
+      * @tc.size: MediumTest
+      * @tc.type: Function
+      * @tc.level Level 1
+      */
     it(BUNDLE + 'PageTransitionTest_001', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例1（设置退入场动画）'));
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.pageTransition_temp_label1"))));
       await aimComponent.click();
       await driver.delayMs(5000);
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_001_end');
     })
 
+    /*
+      * @tc.number: Animation_PageTransitionTest_002
+      * @tc.name: Set move effect
+      * @tc.desc: Set move effect
+      * @tc.size: MediumTest
+      * @tc.type: Function
+      * @tc.level Level 1
+      */
     it(BUNDLE + 'PageTransitionTest_002', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例2（设置退入场平移效果）'));
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_002_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.pageTransition_temp_label2"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('页面1'));
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.page1'))));
       await aimComponent.click();
       await driver.delayMs(3000);
 
-      aimComponent = await driver.findComponent(ON.text('页面2'));
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.page2'))));
       await aimComponent.click();
       await driver.delayMs(3000);
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_002_end');
     })
 
+    /*
+      * @tc.number: Animation_PageTransitionTest_003
+      * @tc.name: Set pageTransition with pushUrl
+      * @tc.desc: Set pageTransition with pushUrl
+      * @tc.size: MediumTest
+      * @tc.type: Function
+      * @tc.level Level 1
+      */
     it(BUNDLE + 'PageTransitionTest_003', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例3（不推荐)（利用pushUrl跳转能力）'));
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_003_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.pageTransition_temp_label3"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -81,10 +111,20 @@ export function PageTransitionTest() {
       aimComponent = await driver.findComponent(ON.text('back'));
       await aimComponent.click();
       await driver.delayMs(3000);
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_003_end');
     })
 
+    /*
+      * @tc.number: Animation_PageTransitionTest_004
+      * @tc.name: Set none type pageTransition
+      * @tc.desc: Set none type pageTransition
+      * @tc.size: MediumTest
+      * @tc.type: Function
+      * @tc.level Level 1
+      */
     it(BUNDLE + 'PageTransitionTest_004', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例4（不推荐)（type为None的页面转场）'));
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_004_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.pageTransition_temp_label4"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -95,6 +135,7 @@ export function PageTransitionTest() {
       aimComponent = await driver.findComponent(ON.text('back'));
       await aimComponent.click();
       await driver.delayMs(3000);
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_004_end');
     })
 
   })

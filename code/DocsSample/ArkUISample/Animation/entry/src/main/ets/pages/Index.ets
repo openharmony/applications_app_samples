@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import curves from '@ohos.curves';
 import { Route, RouteGroup } from './common/Index';
 import { KeyboardAvoidMode } from '@kit.ArkUI';
@@ -47,96 +46,96 @@ struct AnimateIndex {
   @State routes: RouteGroup[] = [
     {
       name: "animateTo",
-      label: "显示动画（animateTo）",
+      label: $r('app.string.animate_to_label'),
       children: [
-        { name: 'template1/Index', label: '示例1（在组件出现时创建动画）' },
-        { name: 'template2/Index', label: '示例2（动画执行结束后组件消失）' },
-        { name: 'template3/Index', label: '示例3（在状态管理V2中使用animateTo）' },
+        { name: 'template1/Index', label: $r('app.string.animate_to_temp_label1') },
+        { name: 'template2/Index', label: $r('app.string.animate_to_temp_label2') },
+        { name: 'template3/Index', label: $r('app.string.animate_to_temp_label3') }
       ]
     },{
     name: "animation",
-    label:"属性动画（animation）",
+    label: $r("app.string.animation_label"),
     children:[
-      { name: 'template1/Index', label: '示例1' },
-      { name: 'template2/Index', label: '示例2（使用animateTo产生属性动画）' },
-      { name: 'template3/Index', label: '示例3（使用animation产生属性动画）' },
-      { name: 'template4/Index', label: '示例4（使用keyframeAnimateTo产生属性动画）' },
+      { name: 'template1/Index', label: $r("app.string.temp1") },
+      { name: 'template2/Index', label: $r("app.string.animation_temp_label2") },
+      { name: 'template3/Index', label: $r("app.string.animation_temp_label3") },
+      { name: 'template4/Index', label: $r("app.string.animation_temp_label4") }
     ]
   }, {
     name: "cohesion",
-    label: "动画衔接",
+    label: $r("app.string.cohesion_label"),
     children:[
-      { name: 'template1/Index', label: '示例1（动画衔接）' },
-      { name: 'template2/Index', label: '示例2（手势与动画的衔接）' },
+      { name: 'template1/Index', label: $r("app.string.cohesion_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.cohesion_temp_label2") }
     ]
   }, {
     name: "keyframeAnimateTo",
-    label: "关键帧动画",
+    label: $r("app.string.keyframeAnimateTo_label"),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r("app.string.temp1") }
     ]
   }, {
     name: "pageTransition",
-    label: "页面间转场",
+    label: $r("app.string.pageTransition_label"),
     children:[
-      { name: 'template1/Index', label: '示例1（设置退入场动画）' },
-      { name: 'template2/Index', label: '示例2（设置退入场平移效果）' },
-      { name: 'template3/pageTransitionSrc1', label: '示例3（不推荐)（利用pushUrl跳转能力）' },
-      { name: 'template4/pageTransitionSrc2', label: '示例4（不推荐)（type为None的页面转场）' },
+      { name: 'template1/Index', label: $r("app.string.pageTransition_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.pageTransition_temp_label2") },
+      { name: 'template3/pageTransitionSrc1', label: $r("app.string.pageTransition_temp_label3") },
+      { name: 'template4/pageTransitionSrc2', label: $r("app.string.pageTransition_temp_label4") }
     ]
   }, {
     name: "compTransition",
-    label: "组件内转场",
+    label: $r("app.string.compTransition_label"),
     children:[
-      { name: 'template1/Index', label: '示例1（使用同一接口实现图片出现消失）' },
-      { name: 'template2/Index', label: '示例2（使用不同接口实现图片出现消失）' },
-      { name: 'template3/Index', label: '示例3（设置父子组件为transition）' },
-      { name: 'template4/Index', label: '示例4（出现/消失转场）' },
-      { name: 'template5/Index', label: '示例5（多个组件渐次出现消失）' },
+      { name: 'template1/Index', label: $r("app.string.compTransition_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.compTransition_temp_label2") },
+      { name: 'template3/Index', label: $r("app.string.compTransition_temp_label3") },
+      { name: 'template4/Index', label: $r("app.string.compTransition_temp_label4") },
+      { name: 'template5/Index', label: $r("app.string.compTransition_temp_label5") }
     ]
   }, {
     name: "shareTransition",
-    label: "共享元素转场",
+    label: $r("app.string.shareTransition_label"),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r("app.string.temp1") }
     ]
   }, {
     name: "motionPath",
-    label: "路径动画",
+    label: $r("app.string.motionPath_label"),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r("app.string.temp1") }
     ]
   }, {
     name: "particle",
-    label: "粒子动画",
+    label: $r("app.string.particle_label"),
     children:[
-      { name: 'template1/Index', label: '示例1（圆形初始化粒子）' },
-      { name: 'template2/Index', label: '示例2（图片初始化粒子）' },
-      { name: 'template3/Index', label: '示例3（粒子扰动场的干扰下运动轨迹发生变化）' },
-      { name: 'template4/Index', label: '示例4（调整粒子发射器位置）' },
-      { name: 'template5/Index', label: '示例5（环形发射器创建）' },
-      { name: 'template6/Index', label: '示例6（环形发射器更新）' },
+      { name: 'template1/Index', label: $r("app.string.particle_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.particle_temp_label2") },
+      { name: 'template3/Index', label: $r("app.string.particle_temp_label3") },
+      { name: 'template4/Index', label: $r("app.string.particle_temp_label4") },
+      { name: 'template5/Index', label: $r("app.string.particle_temp_label5") },
+      { name: 'template6/Index', label: $r("app.string.particle_temp_label6") }
     ]
   }, {
     name: "animator",
-    label: "帧动画",
+    label: $r("app.string.animator_label"),
     children:[
-      { name: 'template1/Index', label: '示例1（基于ArkTS扩展的声明式开发范式）' },
-      { name: 'template2/Index', label: '示例2（位移动画示例）' },
-      { name: 'template3/Index', label: '示例3（使用帧动画实现小球抛物运动）' },
+      { name: 'template1/Index', label: $r("app.string.animator_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.animator_temp_label2") },
+      { name: 'template3/Index', label: $r("app.string.animator_temp_label3") }
     ]
   }, {
     name: "animateToImmediately",
-    label: "显式动画立即下发",
+    label: $r("app.string.animateToImmediately_label"),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r("app.string.temp1") }
     ]
   }, {
     name: "rotation",
-    label: "旋转屏动画",
+    label: $r("app.string.rotation_label"),
     children:[
-      { name: 'template1/Index', label: '示例1（布局切换的旋转屏动画）' },
-      { name: 'template2/Index', label: '示例2（透明度变化的旋转屏动画）' },
+      { name: 'template1/Index', label: $r("app.string.rotation_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.rotation_temp_label2") }
     ]
   }
   ];

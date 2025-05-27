@@ -15,7 +15,7 @@
 9. [粒子动画](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-particle-animation.md)。
 10. [帧动画](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-animator.md)。
 11. [显式动画立即下发](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)。
-12. [旋转屏动画](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-transition-overview.md)。
+12. [旋转屏动画](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-rotation-transition-animation.md)。
 
 
 ### 效果预览
@@ -150,6 +150,7 @@ entry/src/ohosTest/
 
 2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.33，镜像版本号：OpenHarmony_6.0.0.33。
 
+3.本示例需要使用DevEco Studio 6.0.0 Canary1 (Build Version: 6.0.0.270， built on May 9, 2025)及以上版本才可编译运行。
 
 ### 下载
 
@@ -158,7 +159,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/VisionEffect > .git/info/sparse-checkout
+echo code/DocsSample/ArkUIDocSample/Animation > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
