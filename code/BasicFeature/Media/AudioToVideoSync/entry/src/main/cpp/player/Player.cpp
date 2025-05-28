@@ -208,11 +208,6 @@ void Player::Release()
 {
     std::lock_guard<std::mutex> lock(mutex);
     isStarted = false;
-
-    // Clear the queue
-    while (audioDecContext && !audioDecContext->renderQueue.empty()) {
-        audioDecContext->renderQueue.pop();
-    }
     if (audioRenderer != nullptr) {
         OH_AudioRenderer_Release(audioRenderer);
         audioRenderer = nullptr;
@@ -246,6 +241,10 @@ void Player::Release()
     doneCond.notify_all();
     // Trigger the callback
     sampleInfo.playDoneCallback(sampleInfo.playDoneCallbackData);
+    // Clear the queue
+    while (audioDecContext && !audioDecContext->renderQueue.empty()) {
+        audioDecContext->renderQueue.pop();
+    }
     AVCODEC_SAMPLE_LOGI("Succeed");
 }
 

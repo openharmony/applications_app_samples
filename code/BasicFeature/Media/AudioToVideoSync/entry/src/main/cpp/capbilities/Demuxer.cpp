@@ -23,11 +23,12 @@ Demuxer::~Demuxer() { Release(); }
 int32_t Demuxer::Create(SampleInfo &info)
 {
     source = OH_AVSource_CreateWithFD(info.inputFd, info.inputFileOffset, info.inputFileSize);
-    
+
     CHECK_AND_RETURN_RET_LOG(source != nullptr, AVCODEC_SAMPLE_ERR_ERROR,
-        "Create demuxer source failed, fd: %{public}d, offset: %{public}PRId64, "
-        "file size: %{public}PRId64", info.inputFd, info.inputFileOffset, info.inputFileSize);
-    
+                             "Create demuxer source failed, fd: %{public}d, offset: %{public}PRId64, "
+                             "file size: %{public}PRId64",
+                             info.inputFd, info.inputFileOffset, info.inputFileSize);
+
     demuxer = OH_AVDemuxer_CreateWithSource(source);
     CHECK_AND_RETURN_RET_LOG(demuxer != nullptr, AVCODEC_SAMPLE_ERR_ERROR, "Create demuxer failed");
 
@@ -99,15 +100,26 @@ int32_t Demuxer::GetTrackInfo(std::shared_ptr<OH_AVFormat> sourceFormat, SampleI
             char *audioCodecMime;
             OH_AVFormat_GetStringValue(trackFormat.get(), OH_MD_KEY_CODEC_MIME,
                                        const_cast<char const **>(&audioCodecMime));
+            uint8_t *codecConfig = nullptr;
+            OH_AVFormat_GetBuffer(trackFormat.get(), OH_MD_KEY_CODEC_CONFIG, &codecConfig, &info.codecConfigLen);
+            if (info.codecConfigLen > 0 && info.codecConfigLen < sizeof(info.codecConfig)) {
+                memcpy(info.codecConfig, codecConfig, info.codecConfigLen);
+                AVCODEC_SAMPLE_LOGI(
+                    "codecConfig:%{public}p, len:%{public}i, 0:0x%{public}02x 1:0x:%{public}02x, bufLen:%{public}u",
+                    info.codecConfig, (int)info.codecConfigLen, info.codecConfig[0], info.codecConfig[1],
+                    sizeof(info.codecConfig));
+            }
+            OH_AVFormat_GetIntValue(trackFormat.get(), OH_MD_KEY_AAC_IS_ADTS, &info.aacAdts);
             info.audioCodecMime = audioCodecMime;
             audioTrackId = index;
 
             AVCODEC_SAMPLE_LOGI("====== Demuxer Audio config ======");
             AVCODEC_SAMPLE_LOGI("Mime: %{public}s", audioCodecMime);
-            AVCODEC_SAMPLE_LOGI("audioMime:%{public}s sampleForamt:%{public}d "
-                                "sampleRate:%{public}d channelCount:%{public}d channelLayout:%{public}d",
-                                info.audioCodecMime.c_str(), info.audioSampleForamt, info.audioSampleRate,
-                                info.audioChannelCount, (int)info.audioChannelLayout);
+            AVCODEC_SAMPLE_LOGI(
+                "audioMime:%{public}s sampleForamt:%{public}d "
+                "sampleRate:%{public}d channelCount:%{public}d channelLayout:%{public}d adts:%{public}i",
+                info.audioCodecMime.c_str(), info.audioSampleForamt, info.audioSampleRate, info.audioChannelCount,
+                info.audioChannelLayout, info.aacAdts);
             AVCODEC_SAMPLE_LOGI("====== Demuxer Audio config ======");
         }
     }
