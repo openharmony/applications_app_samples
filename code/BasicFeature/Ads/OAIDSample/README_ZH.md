@@ -24,8 +24,18 @@
 
 3.点击“通过异步callback获取OAID”，上方文本框显示OAID。
 
-4.重置功能需安装[ResetOAID](/code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.hap)，点击“重置OAID”，上方文本框OAID重置。
-
+4.重置功能需安装[ResetOAID](/code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.hap)，此外还需将应用包名配置到设备侧系统配置文件中，具体操作步骤如下，点击“重置OAID”，重新获取OAID上方文本框OAID改变。
+```
+hdc shell mount -o rw,remount /
+hdc file recv etc/advertising/oaid/oaid_service_config.json
+// 修改oaid_service_config.json文件，添加包名
+{
+    "resetOAIDBundleName": ["com.samples.resetOAID"],
+    "providerBundleName": "",
+    "providerAbilityName": ""
+}
+hdc file send oaid_service_config.json etc/advertising/oaid/oaid_service_config.json
+```
 
 ### 工程目录
 ```
