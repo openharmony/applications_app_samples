@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,19 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const BUNDLE = 'Navigation_'
-
-/*初始化与UI元素交互的驱动对象*/
+const TAG = '[Sample_Navigation_]';
+const DOMAIN = 0xF811
+let resourceManager = delegator.getAppContext().resourceManager;
 const driver = Driver.create();
 
-/*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function StepperTest() {
-  describe(BUNDLE + 'StepperTest', () => {
+  describe('Navigation_StepperTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -49,8 +49,17 @@ export function StepperTest() {
       } while (aimComponent == null)
     })
 
+    /*
+     * @tc.number: Navigation_StepperTest_001
+     * @tc.name: example_one_Stepper
+     * @tc.desc: example_one_Stepper
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'StepperTest_001', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例1'));
+      hilog.info(DOMAIN, TAG, 'Navigation_StepperTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text21'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -78,13 +87,14 @@ export function StepperTest() {
       await aimComponent.click();
       await driver.delayMs(1500);
 
-      aimComponent = await driver.findComponent(ON.text('返回'));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text24'))));
       await aimComponent.click();
       await driver.delayMs(1500);
 
       aimComponent = await driver.findComponent(ON.text('Previous'));
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_StepperTest_001_end');
     })
 
   })

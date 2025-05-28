@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,19 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 
-/*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
 const BUNDLE = 'Navigation_'
-
-/*当前获取到的目标组件对象*/
+const TAG = '[Sample_Navigation_]';
+const DOMAIN = 0xF811
+let resourceManager = delegator.getAppContext().resourceManager;
 let aimComponent : Component
 
 export function QueryNavDestinationInfoTest() {
-  describe(BUNDLE + 'QueryNavDestinationInfoTest', () => {
+  describe('Navigation_QueryNavDestinationInfoTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -36,7 +36,7 @@ export function QueryNavDestinationInfoTest() {
       });
       await driver.delayMs(3000);
 
-      aimComponent = await driver.findComponent(ON.text('NavPathStack派生类'));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text22'))));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
@@ -49,7 +49,16 @@ export function QueryNavDestinationInfoTest() {
       } while (aimComponent == null)
     })
 
+    /*
+     * @tc.number: Navigation_QueryNavDestinationInfoTest_001
+     * @tc.name: example_one_QueryNavDestinationInfo
+     * @tc.desc: example_one_QueryNavDestinationInfo
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'QueryNavDestinationInfoTest_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Navigation_QueryNavDestinationInfoTest_001_begin');
       aimComponent = await driver.findComponent(ON.text('queryNavDestinationInfo18+'));
       await aimComponent.click();
       await driver.delayMs(1000);
@@ -58,13 +67,14 @@ export function QueryNavDestinationInfoTest() {
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('点击向内查找'))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.navStackTemp1PageOne_text1'))))
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('点击向外查找'))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.navStackTemp1PageOne_text3'))))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_QueryNavDestinationInfoTest_001_end');
     })
 
   })

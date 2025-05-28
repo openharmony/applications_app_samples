@@ -33,7 +33,7 @@
 entry/src/main/ets/
 |---entryability
 |---pages
-|   |---navDestination                       //NavDestination 
+|   |---navDestination                       // NavDestination 
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
@@ -42,7 +42,7 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |   |---template4
 |   |   |   |---Index.ets
-|   |---navigation                      //Navigation
+|   |---navigation                      // Navigation
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
@@ -69,10 +69,10 @@ entry/src/main/ets/
 |   |   |   |---Index.ets    
 |   |   |---template13
 |   |   |   |---Index.ets      
-|   |---navPathStackExtend                             //NavPathStack派生类
+|   |---navPathStackExtend                             // NavPathStack派生类
 |   |   |---template1
 |   |   |   |---Index.ets
-|   |---observer              //无感监听
+|   |---observer              // 无感监听
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
@@ -81,13 +81,13 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |   |---template4
 |   |   |   |---Index.ets
-|   |---router                  //Router
+|   |---router                  // Router
 |   |   |---template1
 |   |   |   |---Index.ets
-|   |---sideBarContainer                 //SideBarContainer
+|   |---sideBarContainer                 // SideBarContainer
 |   |   |---template1
 |   |   |   |---Index.ets   
-|   |---stepper                      //Stepper
+|   |---stepper                      // Stepper
 |   |   |---template1
 |   |   |   |---Index.ets      
 |---pages

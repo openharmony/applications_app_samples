@@ -16,7 +16,7 @@
 @Component
 struct ParticleExample2 {
   @State
-  myCount: number = 100
+  myCount: number = 100;
   flag: boolean = false;
 
   build() {

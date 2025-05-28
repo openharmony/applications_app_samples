@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -47,116 +47,116 @@ struct VisionEffectIndex {
   @State routes: RouteGroup[] = [
     {
       name: "transform",
-      label: "图形变换",
+      label: $r('app.string.transform'),
       children: [
-        { name: 'template1/Index', label: '示例1（为组件添加图形变换效果）' },
-        { name: 'template2/Index', label: '示例2（设置旋转视距）' },
-        { name: 'template3/Index', label: '示例3（按中心点旋转）' },
+        { name: 'template1/Index', label: $r('app.string.example_one_transform') },
+        { name: 'template2/Index', label: $r('app.string.example_two_transform') },
+        { name: 'template3/Index', label: $r('app.string.example_three_transform') },
       ]
     },{
     name: "opacity",
-    label:"透明度设置",
+    label: $r('app.string.opacity'),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r('app.string.example_one_opacity') },
     ]
   }, {
     name: "clip",
-    label: "形状裁剪",
+    label: $r('app.string.clip'),
     children:[
-      { name: 'template1/Index', label: '示例1（使用不同裁剪属性）' },
-      { name: 'template2/Index', label: '示例2（裁剪属性动画）' },
+      { name: 'template1/Index', label: $r('app.string.example_one_clip') },
+      { name: 'template2/Index', label: $r('app.string.example_two_clip') },
     ]
   }, {
     name: "imageEffect",
-    label: "图像效果",
+    label: $r('app.string.imageEffect'),
     children:[
-      { name: 'template1/Index', label: '示例1（设置图片不同属性效果）' },
-      { name: 'template2/Index', label: '示例2（设置组件线性渐变模糊效果）' },
-      { name: 'template3/Index', label: '示例3（设置离屏渲染效果）' },
-      { name: 'template4/Index', label: '示例4（当前组件内容与下方画布内容混合）' },
-      { name: 'template5/Index', label: '示例5（前景智能取反色）' },
-      { name: 'template6/Index', label: '示例6（设置同层阴影不重叠效果）' },
-      { name: 'template7/Index', label: '示例7（设置组件图像球面效果）' },
-      { name: 'template8/Index', label: '示例8（设置组件图像渐亮效果）' },
-      { name: 'template9/Index', label: '示例9（设置组件图像边缘像素扩展效果）' },
-      { name: 'template10/Index', label: '示例10（系统导航条智能反色）' },
+      { name: 'template1/Index', label: $r('app.string.example_one_imageEffect') },
+      { name: 'template2/Index', label: $r('app.string.example_two_imageEffect') },
+      { name: 'template3/Index', label: $r('app.string.example_three_imageEffect') },
+      { name: 'template4/Index', label: $r('app.string.example_four_imageEffect') },
+      { name: 'template5/Index', label: $r('app.string.example_five_imageEffect') },
+      { name: 'template6/Index', label: $r('app.string.example_six_imageEffect') },
+      { name: 'template7/Index', label: $r('app.string.example_seven_imageEffect') },
+      { name: 'template8/Index', label: $r('app.string.example_eight_imageEffect') },
+      { name: 'template9/Index', label: $r('app.string.example_nine_imageEffect') },
+      { name: 'template10/Index', label: $r('app.string.example_ten_imageEffect') },
     ]
   }, {
     name: "background",
-    label: "背景设置",
+    label: $r('app.string.background'),
     children:[
-      { name: 'template1/Index', label: '示例1（设置背景基础样式）' },
-      { name: 'template2/Index', label: '示例2（设置背景模糊样式）' },
-      { name: 'template3/Index', label: '示例3（设置组件背景）' },
-      { name: 'template4/Index', label: '示例4（设置组件背景提亮效果）' },
-      { name: 'template5/Index', label: '示例5（设置模糊属性）' },
-      { name: 'template6/Index', label: '示例6（设置文字异形模糊效果）' },
-      { name: 'template7/Index', label: '示例7（模糊效果对比）' },
+      { name: 'template1/Index', label: $r('app.string.example_one_background') },
+      { name: 'template2/Index', label: $r('app.string.example_two_background') },
+      { name: 'template3/Index', label: $r('app.string.example_three_background') },
+      { name: 'template4/Index', label: $r('app.string.example_four_background') },
+      { name: 'template5/Index', label: $r('app.string.example_five_background') },
+      { name: 'template6/Index', label: $r('app.string.example_six_background') },
+      { name: 'template7/Index', label: $r('app.string.example_seven_background') },
     ]
   }, {
     name: "foregroundBlurStyle",
-    label: "组件内容模糊",
+    label: $r('app.string.foregroundBlurStyle'),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r('app.string.example_one_foregroundBlurStyle') },
     ]
   }, {
     name: "foregroundColor",
-    label: "前景色设置",
+    label: $r('app.string.foregroundColor'),
     children:[
-      { name: 'template1/Index', label: '示例1（使用前景色设置）' },
-      { name: 'template2/Index', label: '示例2（设置前景色为组件背景色反色）' },
-      { name: 'template3/Index', label: '示例3（前置景色未继承父组件）' },
+      { name: 'template1/Index', label: $r('app.string.example_one_foregroundColor') },
+      { name: 'template2/Index', label: $r('app.string.example_two_foregroundColor') },
+      { name: 'template3/Index', label: $r('app.string.example_three_foregroundColor') },
     ]
   }, {
     name: "clickEffect",
-    label: "点击回弹效果",
+    label: $r('app.string.clickEffect'),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r('app.string.example_one_clickEffect') },
     ]
   }, {
     name: "useEffect",
-    label: "特效绘制合并",
+    label: $r('app.string.useEffect'),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r('app.string.example_one_useEffect') },
     ]
   }, {
     name: "renderFit",
-    label: "组件内容填充方式",
+    label: $r('app.string.renderFit'),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r('app.string.example_one_renderFit') },
     ]
   }, {
     name: "outline",
-    label: "外描边设置",
+    label: $r('app.string.outline'),
     children:[
-      { name: 'template1/Index', label: '示例1（使用外描边属性）' },
-      { name: 'template2/Index', label: '示例2（使用LocalizedEdgeColors类型）' },
+      { name: 'template1/Index', label: $r('app.string.example_one_outline') },
+      { name: 'template2/Index', label: $r('app.string.example_two_outline') },
     ]
   }, {
     name: "motionBlur",
-    label: "运动模糊",
+    label: $r('app.string.motionBlur'),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r('app.string.example_one_motionBlur') },
     ]
   }, {
     name: "linearGradient",
-    label: "颜色渐变",
+    label: $r('app.string.linearGradient'),
     children:[
-      { name: 'template1/Index', label: '示例1（颜色从右向左线性渐变）' },
-      { name: 'template2/Index', label: '示例2（颜色按旋转角度渐变）' },
-      { name: 'template3/Index', label: '示例3（颜色按径向渐变）' },
+      { name: 'template1/Index', label: $r('app.string.example_one_linearGradient') },
+      { name: 'template2/Index', label: $r('app.string.example_two_linearGradient') },
+      { name: 'template3/Index', label: $r('app.string.example_three_linearGradient') },
     ]
   }, {
     name: "foregroundEffect",
-    label: "前景属性设置",
+    label: $r('app.string.foregroundEffect'),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r('app.string.example_one_foregroundEffect') },
     ]
   }, {
     name: "visualEffect",
-    label: "视效设置",
+    label: $r('app.string.visualEffect'),
     children:[
-      { name: 'template1/Index', label: '示例1' },
+      { name: 'template1/Index', label: $r('app.string.example_one_visualEffect') },
     ]
   }
   ];

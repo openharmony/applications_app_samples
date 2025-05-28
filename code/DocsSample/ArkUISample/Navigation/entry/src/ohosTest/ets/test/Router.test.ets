@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,19 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const BUNDLE = 'Navigation_'
-
-/*初始化与UI元素交互的驱动对象*/
+const TAG = '[Sample_Navigation_]';
+const DOMAIN = 0xF811
+let resourceManager = delegator.getAppContext().resourceManager;
 const driver = Driver.create();
 
-/*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function RouterTest() {
-  describe(BUNDLE + 'RouterTest', () => {
+  describe('Navigation_RouterTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -49,14 +49,24 @@ export function RouterTest() {
       } while (aimComponent == null)
     })
 
+    /*
+     * @tc.number: Navigation_RouterTest_001
+     * @tc.name: example_one_Router
+     * @tc.desc: example_one_Router
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'RouterTest_001', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('基于TS扩展的声明式开发范式'));
+      hilog.info(DOMAIN, TAG, 'Navigation_RouterTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text23'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('next page'));
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_RouterTest_001_end');
     })
 
   })

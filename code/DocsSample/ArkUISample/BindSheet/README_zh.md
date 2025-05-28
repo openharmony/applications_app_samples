@@ -31,7 +31,7 @@
 entry/src/main/ets/
 |---entryability
 |---pages
-|   |---bindContentCover                       //全模态转场 
+|   |---bindContentCover                       // 全模态转场 
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
@@ -46,7 +46,7 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |   |---template7
 |   |   |   |---Index.ets
-|   |---bindSheet                      //半模态转场
+|   |---bindSheet                      // 半模态转场
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
@@ -67,7 +67,7 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |   |---template10
 |   |   |   |---Index.ets
-|   |---bindSheetCmd                             //命令式打开半模态
+|   |---bindSheetCmd                             // 命令式打开半模态
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2

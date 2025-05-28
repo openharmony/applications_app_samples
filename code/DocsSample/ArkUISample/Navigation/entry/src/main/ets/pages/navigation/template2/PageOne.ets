@@ -1,4 +1,17 @@
-// PageOne.ets
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 class TmpClass {
   count: number = 10;
 }
@@ -38,7 +51,7 @@ export struct PageOne {
           .onClick(() => {
             this.pageInfos.popToName('pageTwo'); //回退路由栈到第一个名为name的NavDestination页面
             console.log('popToName' + JSON.stringify(this.pageInfos),
-              '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')));
+              'Return value' + JSON.stringify(this.pageInfos.popToName('pageTwo')));
           })
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -55,7 +68,7 @@ export struct PageOne {
           .onClick(() => {
             this.pageInfos.moveToTop('pageTwo'); // 将第一个名为name的NavDestination页面移到栈顶
             console.log('moveToTop' + JSON.stringify(this.pageInfos),
-              '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')));
+              'Return value' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')));
           })
         Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -78,20 +91,20 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             console.log('-------------------');
-            console.log('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()));
-            console.log('获取index指定的NavDestination页面的参数信息',
+            console.log('Get the names of all NavDestination pages in the stack.', JSON.stringify(this.pageInfos.getAllPathName()));
+            console.log('Get the parameter information of the NavDestination page specified by index.',
               JSON.stringify(this.pageInfos.getParamByIndex(1)));
-            console.log('获取全部名为name的NavDestination页面的参数信息',
+            console.log('Get all parameter information of NavDestination pages named "name"',
               JSON.stringify(this.pageInfos.getParamByName('pageTwo')));
-            console.log('获取全部名为name的NavDestination页面的位置索引',
+            console.log('Get the position indices of all NavDestination pages named "name"',
               JSON.stringify(this.pageInfos.getIndexByName('pageOne')));
-            console.log('获取栈大小', JSON.stringify(this.pageInfos.size()));
+            console.log('Get the stack size', JSON.stringify(this.pageInfos.size()));
           })
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo));
       return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageInfos = context.pathStack;

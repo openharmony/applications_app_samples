@@ -15,10 +15,10 @@
 @Entry
 @Component
 struct AttrAnimationExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State rotateAngle: number = 0
-  @State flag: boolean = true
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State rotateAngle: number = 0;
+  @State flag: boolean = true;
 
   build() {
     Column() {

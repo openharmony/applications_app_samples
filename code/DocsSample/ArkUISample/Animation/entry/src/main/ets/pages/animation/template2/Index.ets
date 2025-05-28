@@ -51,7 +51,6 @@ struct attrAnimateToDemo2 {
 
       // 组件二
       Column() {
-
       }
       .justifyContent(FlexAlign.Center)
       .width(100)

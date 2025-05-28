@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
@@ -26,7 +40,7 @@ struct SheetSideExample8 {
       }, (item: number) => item.toString())
       TextInput()
         .margin({ top: 5 })
-      Text('改变半模态交互模式')
+      Text($r('app.string.sideBuilder_text1'))
         .fontSize(22).fontColor(0xFFFFFF).fontWeight(FontWeight.Bold).textAlign(TextAlign.Center)
         .width('100%').height(50).backgroundColor('#2ebd82')
       Button("change enableOutsideInteractive = " + this.enableOutsideInteractive)
@@ -49,14 +63,14 @@ struct SheetSideExample8 {
 
   build() {
     Column({space:3}) {
-      Button("半模态弹窗-Side")
+      Button($r('app.string.sideBuilder_text2'))
         .onClick(() => {
           this.isShowSide = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShowSide, this.sideBuilder(), {
-          title: { title: "SideSheet", subtitle: "默认宽度" },
+          title: { title: "SideSheet", subtitle: $r('app.string.sideBuilder_text3') },
           backgroundColor: Color.Grey,
           onWillAppear: () => {
             console.log("SideSheet onWillAppear.");

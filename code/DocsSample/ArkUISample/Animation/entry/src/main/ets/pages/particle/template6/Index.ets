@@ -18,17 +18,17 @@ import { LengthMetrics } from '@kit.ArkUI'
 @Component
 struct ParticleExample6 {
 
-  @State radius: number = 1
-  @State shape: ParticleEmitterShape = ParticleEmitterShape.ANNULUS
-  @State emitRate: number = 200
-  @State count: number = 2000
-  private timerID: number = -1
-  private centerX: LengthMetrics = LengthMetrics.percent(0.5)
-  private centerY: LengthMetrics = LengthMetrics.percent(0.5)
-  private inRadius: LengthMetrics = LengthMetrics.vp(120)
-  private outRadius: LengthMetrics = LengthMetrics.vp(120)
-  private startAngle: number = 0
-  private endAngle: number = 90
+  @State radius: number = 1;
+  @State shape: ParticleEmitterShape = ParticleEmitterShape.ANNULUS;
+  @State emitRate: number = 200;
+  @State count: number = 2000;
+  private timerID: number = -1;
+  private centerX: LengthMetrics = LengthMetrics.percent(0.5);
+  private centerY: LengthMetrics = LengthMetrics.percent(0.5);
+  private inRadius: LengthMetrics = LengthMetrics.vp(120);
+  private outRadius: LengthMetrics = LengthMetrics.vp(120);
+  private startAngle: number = 0;
+  private endAngle: number = 90;
   @State emitterProperties: Array<EmitterProperty> = [
     {
       index: 0,
@@ -41,14 +41,14 @@ struct ParticleExample6 {
         endAngle: 0 // 圆环的结束角度
       }
     }
-  ]
+  ];
   @State region: ParticleAnnulusRegion = {
     center:{x:this.centerX, y: this.centerY},
     outerRadius: this.outRadius,
     innerRadius: this.inRadius,
     startAngle: -90,
     endAngle: 0
-  }
+  };
 
   aboutToDisappear(): void {
     // 页面销毁时清除计时器

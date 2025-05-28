@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,20 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const BUNDLE = 'VisionEffect_'
+const TAG = '[Sample_VisionEffect_]';
+const DOMAIN = 0xF811
 
-/*初始化与UI元素交互的驱动对象*/
 const driver = Driver.create();
 
-/*当前获取到的目标组件对象*/
 let aimComponent : Component
+let resourceManager = delegator.getAppContext().resourceManager;
 
 export function OutLineTest() {
-  describe(BUNDLE + 'OutLineTest', () => {
+  describe('VisionEffect_OutLineTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -36,7 +37,7 @@ export function OutLineTest() {
       });
       await driver.delayMs(3000);
 
-      aimComponent = await driver.findComponent(ON.text('外描边设置'));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.outline'))));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
@@ -49,16 +50,36 @@ export function OutLineTest() {
       } while (aimComponent == null)
     })
 
+    /*
+     * @tc.number: VisionEffect_OutLineTest_001
+     * @tc.name: example_one_outline
+     * @tc.desc: example_one_outline
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'OutLineTest_001', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例1（使用外描边属性）'));
+      hilog.info(DOMAIN, TAG, 'VisionEffect_OutLineTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.example_one_outline'))));
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'VisionEffect_OutLineTest_001_end');
     })
 
+    /*
+     * @tc.number: VisionEffect_OutLineTest_002
+     * @tc.name: example_two_outline
+     * @tc.desc: example_two_outline
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'OutLineTest_002', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例2（使用LocalizedEdgeColors类型）'));
+      hilog.info(DOMAIN, TAG, 'VisionEffect_OutLineTest_002_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.example_two_outline'))));
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'VisionEffect_OutLineTest_002_end');
     })
 
   })

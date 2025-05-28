@@ -17,11 +17,11 @@ import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 @Entry
 @Component
 struct AnimatorTest {
-  private TAG: string = '[AnimatorTest]'
-  private backAnimator: AnimatorResult | undefined = undefined
-  private flag: boolean = false
-  @State wid: number = 100
-  @State hei: number = 100
+  private TAG: string = '[AnimatorTest]';
+  private backAnimator: AnimatorResult | undefined = undefined;
+  private flag: boolean = false;
+  @State wid: number = 100;
+  @State hei: number = 100;
 
   create() {
     this.backAnimator = animator.create({

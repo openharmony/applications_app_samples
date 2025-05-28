@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,19 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const BUNDLE = 'BindSheet_'
-
-/*初始化与UI元素交互的驱动对象*/
+const TAG = '[Sample_BindSheet_]';
+const DOMAIN = 0xF811
+let resourceManager = delegator.getAppContext().resourceManager;
 const driver = Driver.create();
 
-/*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function BindSheetTest() {
-  describe(BUNDLE + 'BindSheetTest', () => {
+  describe('BindSheet_BindSheetTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -36,7 +36,7 @@ export function BindSheetTest() {
       });
       await driver.delayMs(3000);
 
-      aimComponent = await driver.findComponent(ON.text('半模态转场'));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label'))));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
@@ -49,8 +49,17 @@ export function BindSheetTest() {
       } while (aimComponent == null)
     })
 
+    /*
+     * @tc.number: BindSheet_BindSheetTest_001
+     * @tc.name: example_one_BindSheet
+     * @tc.desc: example_one_BindSheet
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'BindSheetTest_001', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例1（不同高度的半模态弹窗）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label1'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -73,11 +82,21 @@ export function BindSheetTest() {
       aimComponent = await driver.findComponent(ON.text('close modal 1'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_001_end');
 
     })
 
+    /*
+     * @tc.number: BindSheet_BindSheetTest_002
+     * @tc.name: example_two_BindSheet
+     * @tc.desc: example_two_BindSheet
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'BindSheetTest_002', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例2（设置三个不同高度的档位）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_002_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label2'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -99,21 +118,41 @@ export function BindSheetTest() {
 
       await driver.swipe(endX, endY, startX, Math.floor(size.y * 0.883));
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_002_end');
     })
 
+    /*
+     * @tc.number: BindSheet_BindSheetTest_003
+     * @tc.name: example_three_BindSheet
+     * @tc.desc: example_three_BindSheet
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'BindSheetTest_003', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例3（使用边框宽度和颜色）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_003_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label3'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('transition modal 1'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_003_end');
 
     })
 
+    /*
+     * @tc.number: BindSheet_BindSheetTest_004
+     * @tc.name: example_four_BindSheet
+     * @tc.desc: example_four_BindSheet
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'BindSheetTest_004', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例4（使用关闭回调函数）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_004_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label4'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -125,10 +164,21 @@ export function BindSheetTest() {
       let x = Math.floor(size.x * 0.5)
       await driver.swipe(x, Math.floor(size.y * 0.4125), x, Math.floor(size.y * 0.95));
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_004_end');
     })
 
+
+    /*
+     * @tc.number: BindSheet_BindSheetTest_005
+     * @tc.name: example_five_BindSheet
+     * @tc.desc: example_five_BindSheet
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'BindSheetTest_005', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例5（设置内容区刷新时机）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_005_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label5'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -141,10 +191,20 @@ export function BindSheetTest() {
 
       await driver.swipe(x, Math.floor(size.y * 0.706), x, Math.floor(size.y * 0.353));
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_005_end');
     })
 
+    /*
+     * @tc.number: BindSheet_BindSheetTest_006
+     * @tc.name: example_six_BindSheet
+     * @tc.desc: example_six_BindSheet
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'BindSheetTest_006', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例6（设置压缩模态内容）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_006_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label6'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -158,43 +218,85 @@ export function BindSheetTest() {
 
       await driver.pressBack();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_006_end');
+
     })
 
+    /*
+     * @tc.number: BindSheet_BindSheetTest_007
+     * @tc.name: example_seven_BindSheet
+     * @tc.desc: example_seven_BindSheet
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'BindSheetTest_007', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例7（镜像场景下如何设置圆角属性）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_007_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label7'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('transition modal 1'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_007_end');
     })
 
+   /*
+    * @tc.number: BindSheet_BindSheetTest_008
+    * @tc.name: example_eight_BindSheet
+    * @tc.desc: example_eight_BindSheet
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level Level 1
+    */
     it(BUNDLE + 'BindSheetTest_008', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例8（半模态Side侧边样式）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_008_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label8'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('半模态弹窗-Side'))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.sideBuilder_text2'))));
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_008_end');
     })
 
+
+   /*
+    * @tc.number: BindSheet_BindSheetTest_009
+    * @tc.name: example_nine_BindSheet
+    * @tc.desc: example_nine_BindSheet
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level Level 1
+    */
     it(BUNDLE + 'BindSheetTest_009', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例9（使用bindSheet构建半模态转场效果）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_009_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label9'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('选择点餐口味和餐具'))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.temp9string_text9'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       await driver.pressBack();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_009_end');
     })
 
+    /*
+     * @tc.number: BindSheet_BindSheetTest_0010
+     * @tc.name: example_ten_BindSheet
+     * @tc.desc: example_ten_BindSheet
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'BindSheetTest_0010', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例10（使用嵌套滚动交互）'));
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_010_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindSheet_label10'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -222,7 +324,9 @@ export function BindSheetTest() {
 
       await driver.swipe(startX, Math.floor(size.y * 0.53), endX, Math.floor(size.y * 0.8828));
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'BindSheet_BindSheetTest_010_end');
     })
 
   })
+
 }

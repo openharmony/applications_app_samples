@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 @Entry
 @Component
 struct SheetDemo {
@@ -25,7 +39,7 @@ struct SheetDemo {
         scrollBackward: NestedScrollMode.SELF_FIRST,
       })
 
-      Text("非滚动区域")
+      Text($r('app.string.tSheetBuilder_text1'))
         .width('100%')
         .backgroundColor(Color.Gray)
         .layoutWeight(1)
@@ -43,7 +57,7 @@ struct SheetDemo {
         .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
           preferType: SheetType.BOTTOM,
-          title: { title: '嵌套滚动场景' },
+          title: { title: $r('app.string.tSheetBuilder_text2') },
         })
     }.width('100%').height('100%')
     .justifyContent(FlexAlign.Center)

@@ -1,4 +1,17 @@
-// 通过router.pushUrl跳转至目标页携带params参数
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -27,7 +40,7 @@ struct Index {
   async routePage() {
     let options: router.RouterOptions = {
       url: 'pages/router/template1/second',
-      params: new routerParams('这是第一页的值', [12, 45, 78])
+      params: new routerParams('This is the value of the first page', [12, 45, 78])
     }
     // 建议使用this.getUIContext().getRouter().pushUrl()
     router.pushUrl(options)
@@ -41,7 +54,7 @@ struct Index {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text('这是第一页')
+      Text($r('app.string.RouterTemp1PageOne_text2'))
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
       Button() {

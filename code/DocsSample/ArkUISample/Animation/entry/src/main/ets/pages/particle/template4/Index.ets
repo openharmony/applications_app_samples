@@ -22,7 +22,7 @@ struct ParticleExample4 {
       position: { x: 60, y: 80 },
       size: { width: 200, height: 200 }
     }
-  ]
+  ];
 
   build() {
     Stack() {

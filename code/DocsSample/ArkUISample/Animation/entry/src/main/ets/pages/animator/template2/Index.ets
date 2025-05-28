@@ -17,10 +17,10 @@ import { AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
 @Entry
 @Component
 struct AnimatorTest {
-  private TAG: string = '[AnimatorTest]'
-  private backAnimator: AnimatorResult | undefined = undefined
-  private flag: boolean = false
-  @State translate_: number = 0
+  private TAG: string = '[AnimatorTest]';
+  private backAnimator: AnimatorResult | undefined = undefined;
+  private flag: boolean = false;
+  @State translate_: number = 0;
 
   create() {
     this.backAnimator = this.getUIContext()?.createAnimator(

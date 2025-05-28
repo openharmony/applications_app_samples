@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -47,39 +47,39 @@ struct Index {
   @State routes: RouteGroup[] = [
     {
       name: "bindContentCover",
-      label: "全模态转场",
+      label: $r('app.string.bindContentCover_label'),
       children: [
-        { name:"template1/Index", label:"示例1（使用全屏模态转场）" },
-        { name:"template2/Index", label:"示例2（自定义转场动画）" },
-        { name:"template3/Index", label:"示例3（上下切换转场）" },
-        { name:"template4/Index", label:"示例4（透明度渐变转场）" },
-        { name:"template5/Index", label:"示例5（设置不同效果的自定义转场）" },
-        { name:"template6/Index", label:"示例6（使用bindContentCover构建全屏模态内容覆盖半模态）" },
-        { name:"template7/Index", label:"示例7（使用bindContentCover构建全屏模态转场效果）" },
+        { name:"template1/Index", label: $r('app.string.bindContentCover_label1') },
+        { name:"template2/Index", label: $r('app.string.bindContentCover_label2') },
+        { name:"template3/Index", label: $r('app.string.bindContentCover_label3') },
+        { name:"template4/Index", label: $r('app.string.bindContentCover_label4') },
+        { name:"template5/Index", label: $r('app.string.bindContentCover_label5') },
+        { name:"template6/Index", label: $r('app.string.bindContentCover_label6') },
+        { name:"template7/Index", label: $r('app.string.bindContentCover_label7') },
 
       ]
     }, {
       name: "bindSheet",
-      label: "半模态转场",
+      label: $r('app.string.bindSheet_label'),
       children: [
-        { name:"template1/Index", label:"示例1（不同高度的半模态弹窗）" },
-        { name:"template2/Index", label:"示例2（设置三个不同高度的档位）" },
-        { name:"template3/Index", label:"示例3（使用边框宽度和颜色）" },
-        { name:"template4/Index", label:"示例4（使用关闭回调函数）" },
-        { name:"template5/Index", label:"示例5（设置内容区刷新时机）" },
-        { name:"template6/Index", label:"示例6（设置压缩模态内容）" },
-        { name:"template7/Index", label:"示例7（镜像场景下如何设置圆角属性）" },
-        { name:"template8/Index", label:"示例8（半模态Side侧边样式）" },
-        { name:"template9/Index", label:"示例9（使用bindSheet构建半模态转场效果）" },
-        { name:"template10/Index", label:"示例10（使用嵌套滚动交互）" },
+        { name:"template1/Index", label: $r('app.string.bindSheet_label1') },
+        { name:"template2/Index", label: $r('app.string.bindSheet_label2') },
+        { name:"template3/Index", label: $r('app.string.bindSheet_label3') },
+        { name:"template4/Index", label: $r('app.string.bindSheet_label4') },
+        { name:"template5/Index", label: $r('app.string.bindSheet_label5') },
+        { name:"template6/Index", label: $r('app.string.bindSheet_label6') },
+        { name:"template7/Index", label: $r('app.string.bindSheet_label7') },
+        { name:"template8/Index", label: $r('app.string.bindSheet_label8') },
+        { name:"template9/Index", label: $r('app.string.bindSheet_label9') },
+        { name:"template10/Index", label: $r('app.string.bindSheet_label10') },
       ]
     }, {
       name: "bindSheetCmd",
-      label: "命令式打开半模态",
+      label: $r('app.string.bindSheetCmd_label'),
       children: [
-        { name:"template1/Index", label:"示例1（openBindSheet）" },
-        { name:"template2/Index", label:"示例2（updateBindSheet）" },
-        { name:"template3/Index", label:"示例3（closeBindSheet）" },
+        { name:"template1/Index", label: $r('app.string.bindSheetCmd_label1') },
+        { name:"template2/Index", label: $r('app.string.bindSheetCmd_label2') },
+        { name:"template3/Index", label: $r('app.string.bindSheetCmd_label3') },
       ]
     }
   ];

@@ -1,9 +1,23 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 @Entry
 @Component
 struct BindSheetDemo9 {
   // 半模态转场显示隐藏控制
   @State isShowSheet: boolean = false;
-  private menuList: string[] = ['不要辣', '少放辣', '多放辣', '不要香菜', '不要香葱', '不要一次性餐具', '需要一次性餐具'];
+  private menuList: string[] = ['No spicy food', 'Put less chili', 'Add more chili', 'No coriander, please', 'No chives, please', 'No disposable tableware, please', 'Disposable tableware is needed'];
 
   // 通过@Builder构建半模态展示界面
   @Builder
@@ -29,7 +43,7 @@ struct BindSheetDemo9 {
 
   build() {
     Column() {
-      Text('口味与餐具')
+      Text($r('app.string.temp9string_text8'))
         .fontSize(28)
         .padding({ top: 30, bottom: 30 })
       Column() {
@@ -42,7 +56,7 @@ struct BindSheetDemo9 {
             .borderRadius(20)
 
           Column() {
-            Text('选择点餐口味和餐具')
+            Text($r('app.string.temp9string_text9'))
               .fontSize(16)
               .fontWeight(FontWeight.Medium)
           }

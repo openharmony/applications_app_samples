@@ -19,7 +19,7 @@ import resource from '../../../common/resource';
 @Component
 struct Index {
   @State animatorOptions: AnimatorResult | undefined = undefined;
-  @State animatorStatus: ResourceStr = $r('app.string.create');
+  @State animatorStatus: Resource = $r('app.string.create');
   begin: number = 0;
   end: number = 300;
   topWidth: number = 150;
@@ -39,7 +39,7 @@ struct Index {
   @State translateY: number = 0;
 
   onPageShow(): void {
-    this.animatorOptions = this.getUIContext().createAnimator(this.animatorOption)
+    this.animatorOptions = this.getUIContext().createAnimator(this.animatorOption);
     this.animatorOptions.onFrame = (progress: number) => {
       this.translateX = progress;
       if (progress > this.topWidth && this.translateY < this.bottomHeight) {
@@ -88,7 +88,7 @@ struct Index {
       .height('45%')
       .align(Alignment.Start)
 
-      Text(resource.resourceToString($r('app.string.animatorStatus')) + this.animatorStatus)
+      Text(resource.resourceToString($r('app.string.animatorStatus')) + resource.resourceToString(this.animatorStatus))
     }.width("100%").height('100%')
   }
 }

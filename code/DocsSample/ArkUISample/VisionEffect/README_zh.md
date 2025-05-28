@@ -42,7 +42,7 @@
 entry/src/main/ets/
 |---entryability
 |---pages
-|   |---background                       //背景设置 
+|   |---background                       // 背景设置 
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
@@ -57,28 +57,28 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |   |---template7
 |   |   |   |---Index.ets
-|   |---clickEffect                      //点击回弹效果
+|   |---clickEffect                      // 点击回弹效果
 |   |   |---template1
 |   |   |   |---Index.ets
-|   |---clip                             //形状裁剪
+|   |---clip                             // 形状裁剪
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
 |   |   |   |---Index.ets
-|   |---foregroundBlurStyle              //组件内容模糊
+|   |---foregroundBlurStyle              // 组件内容模糊
 |   |   |---template1
 |   |   |   |---Index.ets
-|   |---foregroundColor                  //前景色设置
+|   |---foregroundColor                  // 前景色设置
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
 |   |   |   |---Index.ets
 |   |   |---template3
 |   |   |   |---Index.ets
-|   |---foregroundEffect                 //前景属性设置
+|   |---foregroundEffect                 // 前景属性设置
 |   |   |---template1
 |   |   |   |---Index.ets   
-|   |---imageEffect                      //图像效果
+|   |---imageEffect                      // 图像效果
 |   |   |---template1
 |   |   |   |---Index.ets     
 |   |   |---template2
@@ -99,38 +99,38 @@ entry/src/main/ets/
 |   |   |   |---Index.ets    
 |   |   |---template10
 |   |   |   |---Index.ets       
-|   |---linearGradient                   //颜色渐变
+|   |---linearGradient                   // 颜色渐变
 |   |   |---template1
 |   |   |   |---Index.ets          
 |   |   |---template2
 |   |   |   |---Index.ets     
 |   |   |---template3
 |   |   |   |---Index.ets        
-|   |---motionBlur                       //运动模糊
+|   |---motionBlur                       // 运动模糊
 |   |   |---template1
 |   |   |   |---Index.ets          
-|   |---opacity                          //透明度设置
+|   |---opacity                          // 透明度设置
 |   |   |---template1
 |   |   |   |---Index.ets           
-|   |---outline                          //外描边设置
+|   |---outline                          // 外描边设置
 |   |   |---template1
 |   |   |   |---Index.ets       
 |   |   |---template2
 |   |   |   |---Index.ets       
-|   |---renderFit                        //组件内容填充方式
+|   |---renderFit                        // 组件内容填充方式
 |   |   |---template1
 |   |   |   |---Index.ets        
-|   |---transform                        //图形变换
+|   |---transform                        // 图形变换
 |   |   |---template1
 |   |   |   |---Index.ets       
 |   |   |---template2
 |   |   |   |---Index.ets       
 |   |   |---template3
 |   |   |   |---Index.ets       
-|   |---useEffect                        //特效绘制合并
+|   |---useEffect                        // 特效绘制合并
 |   |   |---template1
 |   |   |   |---Index.ets      
-|   |---visualEffect                     //视效设置
+|   |---visualEffect                     // 视效设置
 |   |   |---template1
 |   |   |   |---Index.ets      
 |---pages

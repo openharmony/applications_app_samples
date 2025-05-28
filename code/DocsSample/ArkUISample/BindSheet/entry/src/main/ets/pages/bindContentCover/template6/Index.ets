@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { curves } from '@kit.ArkUI';
 
 interface PersonList {
@@ -9,10 +23,10 @@ interface PersonList {
 @Component
 struct BindContentCoverDemo {
   private personList: Array<PersonList> = [
-    { name: '王**', cardnum: '1234***********789' },
-    { name: '宋*', cardnum: '2345***********789' },
-    { name: '许**', cardnum: '3456***********789' },
-    { name: '唐*', cardnum: '4567***********789' }
+    { name: 'wang**', cardnum: '1234***********789' },
+    { name: 'song*', cardnum: '2345***********789' },
+    { name: 'xu**', cardnum: '3456***********789' },
+    { name: 'tang*', cardnum: '4567***********789' }
   ];
   // 半模态转场控制变量
   @State isSheetShow: boolean = false;
@@ -23,7 +37,7 @@ struct BindContentCoverDemo {
   MyContentCoverBuilder() {
     Column() {
       Row() {
-        Text('选择乘车人')
+        Text($r('app.string.bindSheetCmd_label1'))
           .fontSize(20)
           .fontColor(Color.White)
           .width('100%')
@@ -33,7 +47,7 @@ struct BindContentCoverDemo {
       .backgroundColor(0x007dfe)
 
       Row() {
-        Text('+ 添加乘车人')
+        Text($r('app.string.bindSheetCmd_label2'))
           .fontSize(16)
           .fontColor(0x333333)
           .margin({ top: 10 })
@@ -75,7 +89,7 @@ struct BindContentCoverDemo {
             .alignItems(HorizontalAlign.Start)
 
             Column() {
-              Text('编辑')
+              Text($r('app.string.bindSheetCmd_label3'))
                 .fontColor(0x007dfe)
                 .fontSize(16)
             }
@@ -89,7 +103,7 @@ struct BindContentCoverDemo {
       }
       .padding({ top: 20, bottom: 20 })
 
-      Text('确认')
+      Text($r('app.string.bindSheetCmd_label4'))
         .width('90%')
         .height(40)
         .textAlign(TextAlign.Center)
@@ -109,19 +123,19 @@ struct BindContentCoverDemo {
     Row() {
       Column() {
         Text('00:25')
-        Text('始发站')
+        Text($r('app.string.bindSheetCmd_label5'))
       }
       .width('25%')
 
       Column() {
         Text('G1234')
-        Text('8时1分')
+        Text($r('app.string.bindSheetCmd_label6'))
       }
       .width('25%')
 
       Column() {
         Text('08:26')
-        Text('终点站')
+        Text($r('app.string.bindSheetCmd_label7'))
       }
       .width('25%')
     }
@@ -142,7 +156,7 @@ struct BindContentCoverDemo {
       .borderRadius(10)
 
       Column() {
-        Text('+ 选择乘车人')
+        Text($r('app.string.MySheetBuilder_text1'))
           .fontSize(18)
           .fontColor(Color.Orange)
           .fontWeight(FontWeight.Bold)
@@ -167,7 +181,7 @@ struct BindContentCoverDemo {
     Column() {
       Row() {
         this.TripInfo()
-        Text('有票')
+        Text($r('app.string.MySheetBuilder_text2'))
           .fontColor(Color.Blue)
           .width('25%')
       }
@@ -181,7 +195,7 @@ struct BindContentCoverDemo {
       // 第一步：定义半模态转场效果
       .bindSheet($$this.isSheetShow, this.MySheetBuilder(), {
         height: SheetSize.MEDIUM,
-        title: {title: "确认订单"},
+        title: {title: $r('app.string.MySheetBuilder_text3')},
       })
     }
     .width('100%')

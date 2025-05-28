@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,19 @@
 import { abilityDelegatorRegistry, Component, Driver } from '@kit.TestKit';
 import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/*获取AbilityDelegator实例,管理Ability的生命周期和事件*/
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const BUNDLE = 'Navigation_'
-
-/*初始化与UI元素交互的驱动对象*/
+const TAG = '[Sample_Navigation_]';
+const DOMAIN = 0xF811
+let resourceManager = delegator.getAppContext().resourceManager;
 const driver = Driver.create();
 
-/*当前获取到的目标组件对象*/
 let aimComponent : Component
 
 export function NavigationTest() {
-  describe(BUNDLE + 'NavigationTest', () => {
+  describe('Navigation_NavigationTest', () => {
 
     beforeAll(async () => {
       await delegator.startAbility({
@@ -49,8 +49,17 @@ export function NavigationTest() {
       } while (aimComponent == null)
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_001
+     * @tc.name: example_one_Navigation
+     * @tc.desc: example_one_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_001', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例1（Navigation页面布局）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text1'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -62,10 +71,20 @@ export function NavigationTest() {
 
       aimComponent = await driver.findComponent(ON.type('NavBarContent'))
       expect(aimComponent)
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_001_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_002
+     * @tc.name: example_two_Navigation
+     * @tc.desc: example_two_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_002', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例2（使用路由栈方法）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_002_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text2'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -87,10 +106,20 @@ export function NavigationTest() {
 
       aimComponent = await driver.findComponent(ON.text('NavIndex'))
       expect(aimComponent)
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_002_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_003
+     * @tc.name: example_three_Navigation
+     * @tc.desc: example_three_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_003', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例3（设置可交互转场动画）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_003_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text3'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -109,10 +138,20 @@ export function NavigationTest() {
       aimComponent = await driver.findComponent(ON.type('BackButton'))
       await aimComponent.click();
       await driver.delayMs(2000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_003_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_004
+     * @tc.name: example_four_Navigation
+     * @tc.desc: example_four_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_004', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例4（Navigation带参返回）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_004_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text4'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -142,10 +181,20 @@ export function NavigationTest() {
 
       await driver.pressBack();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_004_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_005
+     * @tc.name: example_five_Navigation
+     * @tc.desc: example_five_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_005', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例5（设置背景颜色和模糊效果）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_005_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text5'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -188,10 +237,20 @@ export function NavigationTest() {
       await driver.delayMs(1000);
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_005_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_006
+     * @tc.name: example_six_Navigation
+     * @tc.desc: example_six_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_006', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例6（嵌套场景下获取外层栈）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_006_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text6'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -202,10 +261,20 @@ export function NavigationTest() {
       aimComponent = await driver.findComponent(ON.type('BackButton'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_006_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_007
+     * @tc.name: example_seven_Navigation
+     * @tc.desc: example_seven_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_007', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例7（通过onReady获取栈）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_007_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text7'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -240,10 +309,20 @@ export function NavigationTest() {
       aimComponent = await driver.findComponent(ON.type('BackButton'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_007_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_008
+     * @tc.name: example_eight_Navigation
+     * @tc.desc: example_eight_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_008', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例8（NavDestination生命周期时序）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_008_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text8'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -278,10 +357,20 @@ export function NavigationTest() {
       aimComponent = await driver.findComponent(ON.type('BackButton'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_008_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_009
+     * @tc.name: example_nine_Navigation
+     * @tc.desc: example_nine_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_009', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例9（标题栏布局效果）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_009_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text9'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -304,10 +393,20 @@ export function NavigationTest() {
       await driver.delayMs(1000);
       await driver.swipe(endX, endY, startX, startY);
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_009_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_010
+     * @tc.name: example_ten_Navigation
+     * @tc.desc: example_ten_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_010', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例10（定义路由栈派生类）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_010_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text10'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -334,20 +433,40 @@ export function NavigationTest() {
       aimComponent = await driver.findComponent(ON.type('BackButton'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_010_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_011
+     * @tc.name: example_eleven_Navigation
+     * @tc.desc: example_eleven_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_011', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例11（使用Symbol组件）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_011_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text11'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('跳转'));
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_011_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_012
+     * @tc.name: example_twelve_Navigation
+     * @tc.desc: example_twelve_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_012', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例12（设置自定义标题栏边距）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_012_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text12'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -390,10 +509,20 @@ export function NavigationTest() {
       await driver.delayMs(1000);
       await Toggles[0].click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_012_end');
     })
 
+    /*
+     * @tc.number: Navigation_NavigationTest_013
+     * @tc.name: example_thirteen_Navigation
+     * @tc.desc: example_thirteen_Navigation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
     it(BUNDLE + 'NavigationTest_013', 0, async () => {
-      aimComponent = await driver.findComponent(ON.text('示例13（自定义转场动画）'));
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_013_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.stepperIndex_text13'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -412,6 +541,7 @@ export function NavigationTest() {
       aimComponent = await driver.findComponent(ON.type('BackButton'))
       await aimComponent.click();
       await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_013_end');
     })
 
   })

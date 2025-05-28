@@ -1,4 +1,17 @@
-// 在second页面中接收传递过来的参数
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { router } from '@kit.ArkUI';
 
 class innerParams {
@@ -22,7 +35,7 @@ class routerParams {
 @Entry
 @Component
 struct Second {
-  private content: string = "这是第二页";
+  private content: string = "This is the second page";
   // 建议使用this.getUIContext().getRouter().getParams()
   @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text;
   @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data;
@@ -39,7 +52,7 @@ struct Second {
           this.secondData = (this.data['array'][1]).toString();
         })
         .margin({ top: 20 })
-      Text(`第一页传来的数值:${this.secondData}`)
+      Text(`The value transmitted from the first page:${this.secondData}`)
         .fontSize(20)
         .margin({ top: 20 })
         .backgroundColor('red')

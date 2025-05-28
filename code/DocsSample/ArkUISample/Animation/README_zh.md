@@ -39,82 +39,82 @@
 entry/src/main/ets/
 |---entryability
 |---pages
-|   |---animateTo                       //显示动画（animateTo） 
+|   |---animateTo                       // 显示动画（animateTo） 
 |   |   |---template1         
-|   |   |   |---Index.ets           //示例1（在组件出现时创建动画）
+|   |   |   |---Index.ets           // 示例1（在组件出现时创建动画）
 |   |   |---template2    
-|   |   |   |---Index.ets                //示例2（动画执行结束后组件消失）
+|   |   |   |---Index.ets                // 示例2（动画执行结束后组件消失）
 |   |   |---template3                    
-|   |   |   |---Index.ets            //示例3（在状态管理V2中使用animateTo）
-|   |---animateToImmediately                      //显式动画立即下发
+|   |   |   |---Index.ets            // 示例3（在状态管理V2中使用animateTo）
+|   |---animateToImmediately                      // 显式动画立即下发
 |   |   |---template1
 |   |   |   |---Index.ets
-|   |---animation                             //属性动画（animation）
+|   |---animation                             // 属性动画（animation）
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2                   
-|   |   |   |---Index.ets          //示例2（使用animateTo产生属性动画）
+|   |   |   |---Index.ets          // 示例2（使用animateTo产生属性动画）
 |   |   |---template3             
-|   |   |   |---Index.ets        //示例3（使用animation产生属性动画）
+|   |   |   |---Index.ets        // 示例3（使用animation产生属性动画）
 |   |   |---template4         
-|   |   |   |---Index.ets         //示例4（使用keyframeAnimateTo产生属性动画）
-|   |---animator              //帧动画
-|   |   |---template1        //示例1（基于ArkTS扩展的声明式开发范式）
+|   |   |   |---Index.ets         // 示例4（使用keyframeAnimateTo产生属性动画）
+|   |---animator              // 帧动画
+|   |   |---template1        // 示例1（基于ArkTS扩展的声明式开发范式）
 |   |   |   |---Index.ets
-|   |   |---template2          //示例2（位移动画示例）
+|   |   |---template2          // 示例2（位移动画示例）
 |   |   |   |---Index.ets
-|   |   |---template3           //示例3（使用帧动画实现小球抛物运动）
+|   |   |---template3           // 示例3（使用帧动画实现小球抛物运动）
 |   |   |   |---Index.ets
-|   |---cohesion                  //动画衔接
+|   |---cohesion                  // 动画衔接
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
 |   |   |   |---Index.ets
-|   |---compTransition                 //组件内转场
+|   |---compTransition                 // 组件内转场
 |   |   |---template1     
-|   |   |   |---Index.ets            //示例1（使用同一接口实现图片出现消失）
+|   |   |   |---Index.ets            // 示例1（使用同一接口实现图片出现消失）
 |   |   |---template2       
-|   |   |   |---Index.ets       //示例2（使用不同接口实现图片出现消失）
+|   |   |   |---Index.ets       // 示例2（使用不同接口实现图片出现消失）
 |   |   |---template3       
-|   |   |   |---Index.ets       //示例3（设置父子组件为transition）
+|   |   |   |---Index.ets       // 示例3（设置父子组件为transition）
 |   |   |---template4      
-|   |   |   |---Index.ets        //示例4（出现/消失转场）
+|   |   |   |---Index.ets        // 示例4（出现/消失转场）
 |   |   |---template5       
-|   |   |   |---Index.ets    //示例5（多个组件渐次出现消失）
-|   |---keyframeAnimateTo                      //关键帧动画
+|   |   |   |---Index.ets    // 示例5（多个组件渐次出现消失）
+|   |---keyframeAnimateTo                      // 关键帧动画
 |   |   |---template1
 |   |   |   |---Index.ets     
-|   |---motionPath                   //路径动画
+|   |---motionPath                   // 路径动画
 |   |   |---template1
 |   |   |   |---Index.ets          
-|   |---pageTransition                       //页面间转场
+|   |---pageTransition                       // 页面间转场
 |   |   |---template1      
-|   |   |   |---Index.ets         //示例1（设置退入场动画）
+|   |   |   |---Index.ets         // 示例1（设置退入场动画）
 |   |   |---template2      
-|   |   |   |---Index.ets      //示例2（设置退入场平移效果）
+|   |   |   |---Index.ets      // 示例2（设置退入场平移效果）
 |   |   |---template3    
-|   |   |   |---Index.ets     //示例3（不推荐)（利用pushUrl跳转能力）
+|   |   |   |---Index.ets     // 示例3（不推荐)（利用pushUrl跳转能力）
 |   |   |---template4     
-|   |   |   |---Index.ets         //示例4（不推荐)（type为None的页面转场）
-|   |---particle                          //粒子动画
+|   |   |   |---Index.ets         // 示例4（不推荐)（type为None的页面转场）
+|   |---particle                          // 粒子动画
 |   |   |---template1       
-|   |   |   |---Index.ets      //示例1（圆形初始化粒子）
+|   |   |   |---Index.ets      // 示例1（圆形初始化粒子）
 |   |   |---template2      
-|   |   |   |---Index.ets     //示例2（图片初始化粒子）
+|   |   |   |---Index.ets     // 示例2（图片初始化粒子）
 |   |   |---template3     
-|   |   |   |---Index.ets     //示例3（粒子扰动场的干扰下运动轨迹发生变化）
+|   |   |   |---Index.ets     // 示例3（粒子扰动场的干扰下运动轨迹发生变化）
 |   |   |---template4         
-|   |   |   |---Index.ets         //示例4（调整粒子发射器位置）  
+|   |   |   |---Index.ets         // 示例4（调整粒子发射器位置）  
 |   |   |---template5     
-|   |   |   |---Index.ets          //示例5（环形发射器创建）
+|   |   |   |---Index.ets          // 示例5（环形发射器创建）
 |   |   |---template6       
-|   |   |   |---Index.ets        //示例6（环形发射器更新）
-|   |---rotation                          //旋转屏动画
+|   |   |   |---Index.ets        // 示例6（环形发射器更新）
+|   |---rotation                          // 旋转屏动画
 |   |   |---template1
 |   |   |   |---Index.ets       
 |   |   |---template2
 |   |   |   |---Index.ets       
-|   |---shareTransition                        //共享元素转场
+|   |---shareTransition                        // 共享元素转场
 |   |   |---template1
 |   |   |   |---Index.ets        
 |---pages
@@ -126,8 +126,8 @@ entry/src/ohosTest/
 |   |   |---AnimateToImmediately.test.ets                     // 显式动画立即下发示例代码测试代码
 |   |   |---Animation.test.ets                            // 属性动画（animation）示例代码测试代码
 |   |   |---Animator.test.ets             // 帧动画示例代码测试代码
-|   |   |---Cohesion.test.ets                 //动画衔接示例代码测试代码
-|   |   |---ComponentTransition.test.ets                //组件内转场示例代码测试代码
+|   |   |---Cohesion.test.ets                 // 动画衔接示例代码测试代码
+|   |   |---ComponentTransition.test.ets                // 组件内转场示例代码测试代码
 |   |   |---KeyFrameAnimateTo.test.ets                     // 关键帧动画示例代码测试代码
 |   |   |---MotionPath.test.ets                  // 路径动画示例代码测试代码
 |   |   |---PageTransition.test.ets                      // 页面间转场示例代码测试代码
