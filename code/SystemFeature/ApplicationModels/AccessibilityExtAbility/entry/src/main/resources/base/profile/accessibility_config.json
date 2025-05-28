@@ -1,8 +1,0 @@
-{
-  "accessibilityCapabilities": [
-    "retrieve",
-    "gesture",
-    "keyEventObserver",
-    "touchGuide"
-  ]
-}
