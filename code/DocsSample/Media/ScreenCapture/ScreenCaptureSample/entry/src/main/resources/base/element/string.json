@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "录屏Sample"
+    },
+    {
+      "name": "sample_label",
+      "value": "AVScreenCapture录屏Sample"
+    },
+    {
+      "name": "saving_file_desc",
+      "value": "录屏存文件"
+    },
+    {
+      "name": "streaming_desc",
+      "value": "录屏取码流"
+    },
+    {
+      "name": "streaming_surface_mode_desc",
+      "value": "录屏取码流Surface模式"
+    },
+    {
+      "name": "list_desc",
+      "value": "录屏场景列表"
+    },
+    {
+      "name": "index_desc",
+      "value": "主页"
+    },
+    {
+      "name": "other_mode_desc",
+      "value": "其他场景"
+    },
+    {
+      "name": "choose_mode_desc",
+      "value": "选择录屏场景"
+    },
+    {
+      "name": "start_desc",
+      "value": "Start"
+    },
+    {
+      "name": "stop_desc",
+      "value": "Stop"
+    },
+    {
+      "name": "saving_file_eng_desc",
+      "value": "Saving File"
+    },
+    {
+      "name": "streaming_eng_desc",
+      "value": "Original Stream"
+    },
+    {
+      "name": "streaming_surface_mode_eng_desc",
+      "value": "Original Stream With Surface"
+    },
+    {
+      "name": "all_mode_desc",
+      "value": "全量"
+    }
+  ]
+}
