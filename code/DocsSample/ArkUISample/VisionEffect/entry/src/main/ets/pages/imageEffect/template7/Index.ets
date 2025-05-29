@@ -30,6 +30,6 @@ struct SphericalEffectExample {
           weight: FontWeight.Bold
         })
         .sphericalEffect(0.5)
-    }.alignContent(Alignment.Center).width("100%").height("100%")
+    }.alignContent(Alignment.Center).width('100%').height('100%')
   }
 }

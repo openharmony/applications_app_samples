@@ -22,7 +22,7 @@ class innerParams {
   }
 }
 
-class routerParams {
+class RouterParams {
   text: string;
   data: innerParams;
 
@@ -35,10 +35,10 @@ class routerParams {
 @Entry
 @Component
 struct Second {
-  private content: string = "This is the second page";
+  private content: string = 'This is the second page';
   // 建议使用this.getUIContext().getRouter().getParams()
-  @State text: string = (this.getUIContext().getRouter().getParams() as routerParams).text;
-  @State data: object = (this.getUIContext().getRouter().getParams() as routerParams).data;
+  @State text: string = (this.getUIContext().getRouter().getParams() as RouterParams).text;
+  @State data: object = (this.getUIContext().getRouter().getParams() as RouterParams).data;
   @State secondData: string = '';
 
   build() {

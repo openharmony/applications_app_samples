@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class resultClass {
+class ResultClass {
   constructor(count: number) {
     this.count = count;
   }
 
-  count: number = 10;
+  public count: number = 10;
 }
 
 @Builder
@@ -37,7 +37,7 @@ export struct PageTwo {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.pop(new resultClass(1)); // 回退到上一个页面，将处理结果传入push的onPop回调中。
+            this.pathStack.pop(new ResultClass(1)); // 回退到上一个页面，将处理结果传入push的onPop回调中。
           })
 
         Button('popToName', { stateEffect: true, type: ButtonType.Capsule })
@@ -46,7 +46,7 @@ export struct PageTwo {
           .margin(20)
           .onClick(() => {
             this.pathStack.popToName('temp4-pageOne',
-              new resultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
+              new ResultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
           })
 
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
@@ -54,7 +54,7 @@ export struct PageTwo {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.popToIndex(0, new resultClass(111)); // 将index指定的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
+            this.pathStack.popToIndex(0, new ResultClass(111)); // 将index指定的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
           })
 
         Button('popWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
@@ -83,7 +83,7 @@ export struct PageTwo {
       }.width('100%').height('100%')
     }.title('pageTwo')
     .onBackPressed(() => {
-      this.pathStack.pop(new resultClass(0)); // 回退到上一个页面，将处理结果传入push的onPop回调。
+      this.pathStack.pop(new ResultClass(0)); // 回退到上一个页面，将处理结果传入push的onPop回调。
       return true;
     }).onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;

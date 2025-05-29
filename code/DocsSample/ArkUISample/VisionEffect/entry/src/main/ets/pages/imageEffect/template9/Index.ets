@@ -30,6 +30,6 @@ struct PixelStretchExample {
           right: 10,
           bottom: 10
         })
-    }.alignContent(Alignment.Center).width("100%").height("100%")
+    }.alignContent(Alignment.Center).width('100%').height('100%')
   }
 }

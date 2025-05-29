@@ -45,7 +45,7 @@ export struct NavigationExample3 {
       if (CustomTransition.getInstance().interactive) {
         let customAnimation: NavigationAnimatedTransition = {
           onTransitionEnd: (isSuccess: boolean) => {
-            console.log("===== current transition is " + isSuccess);
+            console.log('===== current transition is ' + isSuccess);
             CustomTransition.getInstance().recoverState();
             CustomTransition.getInstance().proxy = undefined;
           },

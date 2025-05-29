@@ -56,7 +56,7 @@ struct NavDest {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" });
+            this.stack.pushPath({ name: this.name == 'PageOne' ? 'PageTwo' : 'PageOne' });
           })
       }
       .size({ width: '100%', height: '100%' })

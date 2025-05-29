@@ -24,10 +24,10 @@ const customTransitionMap: Map<string, AnimateCallback> = new Map();
 
 export class CustomTransition {
   static delegate = new CustomTransition();
-  interactive: boolean = false;
+  public interactive: boolean = false;
   proxy: NavigationTransitionProxy | undefined = undefined;
   private animationId: number = 0;
-  operation: NavigationOperation = NavigationOperation.PUSH;
+  public operation: NavigationOperation = NavigationOperation.PUSH;
 
   static getInstance() {
     return CustomTransition.delegate;

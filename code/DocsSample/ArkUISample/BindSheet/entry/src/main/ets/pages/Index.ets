@@ -19,21 +19,21 @@ import { KeyboardAvoidMode } from '@kit.ArkUI';
 import router from '@ohos.router';
 
 @Styles
-function CardPressedStyle() {
+function cardPressedStyle() {
   .backgroundColor('rgba(0,0,0,0.1)')
   .opacity(1)
   .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 })
 }
 
 @Styles
-function CardNormalStyle() {
+function cardNormalStyle() {
   .backgroundColor('rgba(0,0,0,0)')
   .opacity(1)
   .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 })
 }
 
 @Styles
-function CardDisabledStyle() {
+function cardDisabledStyle() {
   .backgroundColor('rgba(0,0,0,0)')
   .opacity(0.5)
   .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 })
@@ -110,9 +110,9 @@ struct Index {
     .padding(8)
     .enabled(!!route.children.length)
     .stateStyles({
-      pressed: CardPressedStyle,
-      normal: CardNormalStyle,
-      disabled: CardDisabledStyle,
+      pressed: cardPressedStyle,
+      normal: cardNormalStyle,
+      disabled: cardDisabledStyle,
     })
     .onClick(() => {
       animateTo(
@@ -132,7 +132,7 @@ struct Index {
   }
   build() {
     Column() {
-      Text("Index")
+      Text('Index')
       List() {
         ForEach(this.routes, (routeGroup: RouteGroup) => {
           ListItemGroup({
@@ -151,9 +151,9 @@ struct Index {
                       .width(24)
                   }
                   .stateStyles({
-                    pressed: CardPressedStyle,
-                    normal: CardNormalStyle,
-                    disabled: CardDisabledStyle,
+                    pressed: cardPressedStyle,
+                    normal: cardNormalStyle,
+                    disabled: cardDisabledStyle,
                   })
                   .borderRadius(20)
                   .padding(8)

@@ -47,9 +47,9 @@ struct bindSheetExample4 {
             }
           }),
 
-          onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
+          onWillSpringBackWhenDismiss: ((springBackAction: SpringBackAction) => {
             //没有注册springBack，下拉半模态页面无回弹行为
-            //SpringBackAction.springBack();
+            //springBackAction.springBack();
           }),
         })
     }

@@ -56,7 +56,7 @@ export struct PageTwo {
         this.translateX = '0';
         this.getUIContext()?.animateTo({
           duration: 500, onFinish: () => {
-            this.translateX = "0";
+            this.translateX = '0';
           }
         }, () => {
           this.translateX = '100%';

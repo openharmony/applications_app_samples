@@ -32,7 +32,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
     uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
     uiObserver.on('navDestinationSwitch', this.context, {
-      navigationId: "myNavId"
+      navigationId: 'myNavId'
     }, callBackFunc2);
   }
 
@@ -40,7 +40,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
     uiObserver.off('navDestinationSwitch', this.context, callBackFunc);
     uiObserver.off('navDestinationSwitch', this.context, {
-      navigationId: "myNavId"
+      navigationId: 'myNavId'
     }, callBackFunc);
   }
 

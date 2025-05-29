@@ -27,7 +27,7 @@ struct NavigationExample2 {
           return;
         }
         if (typeof to === "string") {
-          console.log("target page is navigation home");
+          console.log('target page is navigation home');
           return;
         }
         // 重定向目标页面，更改为pageTwo页面到pageOne页面。
@@ -44,12 +44,12 @@ struct NavigationExample2 {
           return;
         }
         if (typeof from === "string") {
-          console.log("current transition is from navigation home");
+          console.log('current transition is from navigation home');
         } else {
           console.log(`current transition is from  ${(from as NavDestinationContext).pathInfo.name}`);
         }
         if (typeof to === "string") {
-          console.log("current transition to is navBar");
+          console.log('current transition to is navBar');
         } else {
           console.log(`current transition is to ${(to as NavDestinationContext).pathInfo.name}`);
         }

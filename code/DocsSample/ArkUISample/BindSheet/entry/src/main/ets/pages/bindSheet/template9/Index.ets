@@ -80,7 +80,6 @@ struct BindSheetDemo9 {
         .alignItems(VerticalAlign.Center)
         .padding({ left: 15, top: 15, bottom: 15 })
         .backgroundColor(Color.White)
-        // 通过选定的半模态接口，绑定模态展示界面，style中包含两个参数，一个是设置半模态的高度，不设置时默认高度是Large，一个是是否显示控制条DragBar，默认是true显示控制条，通过onDisappear控制状态变量变换。
         .bindSheet(this.isShowSheet, this.mySheet(), {
           height: 300,
           dragBar: false,

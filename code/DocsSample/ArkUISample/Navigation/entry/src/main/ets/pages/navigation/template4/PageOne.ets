@@ -19,8 +19,8 @@ class TmpClass {
 }
 
 class ParamWithOp {
-  operation: number = 1;
-  count: number = 10;
+  public operation: number = 1;
+  public count: number = 10;
 }
 
 @Builder

@@ -53,7 +53,7 @@ struct Index {
       this.animatorStatus = $r('app.string.complete');
     }
     this.animatorOptions.onRepeat = () => {
-      console.log("repeat play");
+      console.log('repeat play');
     }
   }
 
@@ -76,7 +76,7 @@ struct Index {
           this.animatorOptions?.pause();
           this.animatorStatus = $r('app.string.pause');
         }).width(80).height(35)
-      }.width("100%").height('25%')
+      }.width('100%').height('25%')
 
       Stack() {
         Button()
@@ -84,11 +84,11 @@ struct Index {
           .height(60)
           .translate({ x: this.translateX, y: this.translateY })
       }
-      .width("100%")
+      .width('100%')
       .height('45%')
       .align(Alignment.Start)
 
       Text(resource.resourceToString($r('app.string.animatorStatus')) + resource.resourceToString(this.animatorStatus))
-    }.width("100%").height('100%')
+    }.width('100%').height('100%')
   }
 }

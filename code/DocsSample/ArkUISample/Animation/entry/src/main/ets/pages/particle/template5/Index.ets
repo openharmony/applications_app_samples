@@ -87,6 +87,6 @@ struct ParticleExample5 {
           }
         ]
       }).width(300).height(300)
-    }.width("100%").height("100%").align(Alignment.Center)
+    }.width('100%').height('100%').align(Alignment.Center)
   }
 }

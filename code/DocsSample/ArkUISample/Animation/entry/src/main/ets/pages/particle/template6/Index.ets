@@ -84,8 +84,8 @@ struct ParticleExample6 {
               },
             },
           ]
-        }).width("100%")
-          .height("100%")
+        }).width('100%')
+          .height('100%')
           .emitter(this.emitterProperties)
           .onClick(()=>{
             // 清除已有定时器
@@ -121,8 +121,8 @@ struct ParticleExample6 {
 
           })
       }
-      .width("100%")
-      .height("100%")
+      .width('100%')
+      .height('100%')
       .align(Alignment.Center)
     }
   }

@@ -58,16 +58,16 @@ struct SheetTransitionExample1 {
           height: this.sheetHeight,
           backgroundColor: Color.Green,
           onWillAppear: () => {
-            console.log("BindSheet onWillAppear.");
+            console.log('BindSheet onWillAppear.');
           },
           onAppear: () => {
-            console.log("BindSheet onAppear.");
+            console.log('BindSheet onAppear.');
           },
           onWillDisappear: () => {
-            console.log("BindSheet onWillDisappear.");
+            console.log('BindSheet onWillDisappear.');
           },
           onDisappear: () => {
-            console.log("BindSheet onDisappear.");
+            console.log('BindSheet onDisappear.');
           }
         })
     }

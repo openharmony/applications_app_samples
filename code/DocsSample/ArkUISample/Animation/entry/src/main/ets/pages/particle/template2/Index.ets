@@ -55,7 +55,7 @@ struct ParticleExample2 {
                     },
                     {
                       from: 1.0,
-                      to: .0,
+                      to: 0,
                       startMillis: 6000,
                       endMillis: 10000
                     }
@@ -177,7 +177,7 @@ struct ParticleExample2 {
                   },
                   {
                     from: 1.0,
-                    to: .0,
+                    to: 0,
                     startMillis: 6000,
                     endMillis: 10000
                   }
@@ -298,7 +298,7 @@ struct ParticleExample2 {
                   },
                   {
                     from: 1.0,
-                    to: .0,
+                    to: 0,
                     startMillis: 6000,
                     endMillis: 10000
                   }
@@ -393,7 +393,7 @@ struct ParticleExample2 {
         }).width(300).height(300)
 
       }.width(500).height(500).align(Alignment.Center)
-    }.width("100%").height("100%")
+    }.width('100%').height('100%')
 
   }
 }

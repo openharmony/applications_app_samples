@@ -50,20 +50,20 @@ struct SpringMotionDemo {
             }
           })
       }
-      .width("100%").height("80%")
+      .width('100%').height("80%")
       .clip(true) // 如果球超出父组件范围，使球不可见
       .backgroundColor(Color.Orange)
 
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Center }) {
         Text("拖动小球").fontSize(16)
       }
-      .width("100%")
+      .width('100%')
 
       Row() {
         Text('点击位置: [x: ' + Math.round(this.positionX) + ', y:' + Math.round(this.positionY) + ']').fontSize(16)
       }
       .padding(10)
-      .width("100%")
+      .width('100%')
     }.height('100%').width('100%')
   }
 }

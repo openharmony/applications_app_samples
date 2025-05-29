@@ -30,7 +30,7 @@ struct AnimatorTest {
       easing: "ease",
       delay: 0,
       fill: "forwards",
-      direction: "normal",
+      direction: 'normal',
       iterations: 1,
       begin: 100,
       end: 200

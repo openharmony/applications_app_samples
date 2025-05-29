@@ -24,9 +24,9 @@ class innerParams {
   }
 }
 
-class routerParams {
-  text: string;
-  data: innerParams;
+class RouterParams {
+  public text: string;
+  public data: innerParams;
 
   constructor(str: string, tuple: number[]) {
     this.text = str;
@@ -40,7 +40,7 @@ struct Index {
   async routePage() {
     let options: router.RouterOptions = {
       url: 'pages/router/template1/second',
-      params: new routerParams('This is the value of the first page', [12, 45, 78])
+      params: new RouterParams('This is the value of the first page', [12, 45, 78])
     }
     // 建议使用this.getUIContext().getRouter().pushUrl()
     router.pushUrl(options)

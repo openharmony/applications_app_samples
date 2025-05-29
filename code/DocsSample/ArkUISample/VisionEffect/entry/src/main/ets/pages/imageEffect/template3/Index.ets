@@ -50,8 +50,8 @@ struct RenderGroupExample {
       Component1({ renderGroupValue: false })
         .margin(20)
     }
-    .width("100%")
-    .height("100%")
+    .width('100%')
+    .height('100%')
     .alignItems(HorizontalAlign.Center)
   }
 }

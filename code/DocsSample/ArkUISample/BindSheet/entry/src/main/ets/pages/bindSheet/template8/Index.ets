@@ -73,19 +73,19 @@ struct SheetSideExample8 {
           title: { title: "SideSheet", subtitle: $r('app.string.sideBuilder_text3') },
           backgroundColor: Color.Grey,
           onWillAppear: () => {
-            console.log("SideSheet onWillAppear.");
+            console.log('SideSheet onWillAppear.');
           },
           onAppear: () => {
-            console.log("SideSheet onAppear.");
+            console.log('SideSheet onAppear.');
           },
           onWillDisappear: () => {
-            console.log("SideSheet onWillDisappear.");
+            console.log('SideSheet onWillDisappear.');
           },
           onDisappear: () => {
-            console.log("SideSheet onDisappear.");
+            console.log('SideSheet onDisappear.');
           },
 
-          preferType: SheetType.SIDE,  // SheetType.SIDE
+          preferType: SheetType.SIDE,
           blurStyle: BlurStyle.Regular,
           maskColor: "#4bffc62d",  // 自定义蒙层颜色
           enableOutsideInteractive: this.enableOutsideInteractive,
@@ -94,10 +94,10 @@ struct SheetSideExample8 {
           borderColor: this.borderColors,
 
           onHeightDidChange: (height: number)=>{
-            console.log("SideSheet eight change:" + height);
+            console.log('SideSheet eight change:' + height);
           },
           onTypeDidChange: (type: SheetType) => {
-            console.log("SideSheet type change:" + type);
+            console.log('SideSheet type change:' + type);
           },
         })
     }

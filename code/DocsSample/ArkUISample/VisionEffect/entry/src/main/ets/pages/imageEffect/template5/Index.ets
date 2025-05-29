@@ -21,13 +21,13 @@ struct ImageEffect5 {
       Stack() {
         Image($r('app.media.r')).width('100%')
         Column() {
-          Column().width("100%").height(30).invert({
+          Column().width('100%').height(30).invert({
             low: 0,
             high: 1,
             threshold: 0.5,
             thresholdRange: 0.2
           })
-          Column().width("100%").height(30).invert({
+          Column().width('100%').height(30).invert({
             low: 0.2,
             high: 0.5,
             threshold: 0.3,

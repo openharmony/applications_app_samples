@@ -127,6 +127,6 @@ struct ParticleExample3 {
         noiseFrequency: 15,
         noiseAmplitude: 5
       }])
-    }.width("100%").height("100%").align(Alignment.Center)
+    }.width('100%').height('100%').align(Alignment.Center)
   }
 }

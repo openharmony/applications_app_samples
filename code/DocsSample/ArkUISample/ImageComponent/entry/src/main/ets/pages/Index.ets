@@ -78,7 +78,7 @@ struct Index {
     Column() {
       Text($r('app.string.ImageShow'))
         .height('8.00%')
-        .width("100%")
+        .width('100%')
         .textAlign(TextAlign.Center)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
@@ -96,7 +96,7 @@ struct Index {
                   .maxLines(1)
 
                 Text(listitem.description)
-                  .width("100%")
+                  .width('100%')
               }
               .margin({ bottom: index >= demandList.length - 1 ? 100 : 0 })
               .padding({

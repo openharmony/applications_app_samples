@@ -96,13 +96,13 @@ struct NavigationCustomTransitionExample {
 // PageOne
 @Builder
 export function PageOneBuilder() {
-  PageContainer({ title: "PageOne" });
+  PageContainer({ title: 'PageOne' });
 }
 
 // PageTwo
 @Builder
 export function PageTwoBuilder() {
-  PageContainer({ title: "PageTwo" });
+  PageContainer({ title: 'PageTwo' });
 }
 
 @Component

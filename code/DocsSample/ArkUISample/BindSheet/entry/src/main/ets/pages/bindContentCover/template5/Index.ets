@@ -21,7 +21,7 @@ struct ModalTransitionExample5 {
   @Builder
   myBuilder2() {
     Column() {
-      Button("Close Modal 2")
+      Button('Close Modal 2')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -51,16 +51,16 @@ struct ModalTransitionExample5 {
             transition: TransitionEffect.SLIDE.animation({ duration: 5000, curve: Curve.LinearOutSlowIn }),
             onWillDismiss: ((dismissContentCoverAction: DismissContentCoverAction) => {
               if (dismissContentCoverAction.reason == DismissReason.PRESS_BACK) {
-                console.log("BindContentCover dismiss reason is back pressed");
+                console.log('BindContentCover dismiss reason is back pressed');
               }
               dismissContentCoverAction.dismiss();
             }),
             onAppear: () => {
-              console.info("BindContentCover onAppear.");
+              console.info('BindContentCover onAppear.');
             },
             onDisappear: () => {
               this.isShow2 = false;
-              console.info("BindContentCover onDisappear.");
+              console.info('BindContentCover onDisappear.');
             }
           })
 
@@ -99,16 +99,16 @@ struct ModalTransitionExample5 {
             ),
             onWillDismiss: ((dismissContentCoverAction: DismissContentCoverAction) => {
               if (dismissContentCoverAction.reason == DismissReason.PRESS_BACK) {
-                console.log("back pressed");
+                console.log('back pressed');
               }
               dismissContentCoverAction.dismiss();
             }),
             onAppear: () => {
-              console.log("BindContentCover onAppear.");
+              console.log('BindContentCover onAppear.');
             },
             onDisappear: () => {
               this.isShow = false;
-              console.log("BindContentCover onDisappear.");
+              console.log('BindContentCover onDisappear.');
             }
           })
     }

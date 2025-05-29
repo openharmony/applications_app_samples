@@ -38,11 +38,11 @@ struct Index {
   }
 
   aboutToAppear() {
-    uiObserver.on('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
+    uiObserver.on('navDestinationSwitch', this.getUIContext(), { navigationId: 'myNavId' }, callBackFunc)
   }
 
   aboutToDisappear() {
-    uiObserver.off('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
+    uiObserver.off('navDestinationSwitch', this.getUIContext(), { navigationId: 'myNavId' }, callBackFunc)
   }
 
   build() {
@@ -52,7 +52,7 @@ struct Index {
           this.stack.pushPath({ name: "pageOne" });
         })
       }
-      .id("myNavId")
+      .id('myNavId')
       .title("Navigation")
       .navDestination(this.PageBuilder)
     }

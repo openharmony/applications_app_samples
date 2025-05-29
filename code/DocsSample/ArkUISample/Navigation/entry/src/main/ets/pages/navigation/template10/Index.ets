@@ -23,7 +23,7 @@ class DerivedNavPathStack extends NavPathStack {
 
   // new function in derived class
   getInfo(): string {
-    return "this page used Derived NavPathStack, id: " + this.id;
+    return 'this page used Derived NavPathStack, id: ' + this.id;
   }
 
   // overwrite function of NavPathStack

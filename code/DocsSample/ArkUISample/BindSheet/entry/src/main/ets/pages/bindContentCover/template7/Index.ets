@@ -169,7 +169,7 @@ struct BindContentCoverDemo {
           .padding({ top: 10, bottom: 10 })
           .width('60%')
           .textAlign(TextAlign.Center)
-          .borderRadius(15)// 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择DEFAULT代表设置上下切换动画效果，通过onDisappear控制状态变量变换。
+          .borderRadius(15)
           .bindContentCover(this.isPresent, this.MyBuilder(), {
             modalTransition: ModalTransition.DEFAULT,
             onDisappear: () => {

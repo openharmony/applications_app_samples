@@ -56,16 +56,16 @@ struct ModalTransitionExample2 {
         modalTransition: ModalTransition.NONE,
         backgroundColor: Color.Orange,
         onWillAppear: () => {
-          console.log("BindContentCover onWillAppear.");
+          console.log('BindContentCover onWillAppear.');
         },
         onAppear: () => {
-          console.log("BindContentCover onAppear.");
+          console.log('BindContentCover onAppear.');
         },
         onWillDisappear: () => {
-          console.log("BindContentCover onWillDisappear.");
+          console.log('BindContentCover onWillDisappear.');
         },
         onDisappear: () => {
-          console.log("BindContentCover onDisappear.");
+          console.log('BindContentCover onDisappear.');
         }
       })
 
@@ -95,16 +95,16 @@ struct ModalTransitionExample2 {
           modalTransition: ModalTransition.NONE,
           backgroundColor: Color.Pink,
           onWillAppear: () => {
-            console.log("BindContentCover onWillAppear.");
+            console.log('BindContentCover onWillAppear.');
           },
           onAppear: () => {
-            console.log("BindContentCover onAppear.");
+            console.log('BindContentCover onAppear.');
           },
           onWillDisappear: () => {
-            console.log("BindContentCover onWillDisappear.");
+            console.log('BindContentCover onWillDisappear.');
           },
           onDisappear: () => {
-            console.log("BindContentCover onDisappear.");
+            console.log('BindContentCover onDisappear.');
           }
         })
     }

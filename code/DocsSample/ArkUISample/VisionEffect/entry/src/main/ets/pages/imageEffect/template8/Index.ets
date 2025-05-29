@@ -24,6 +24,6 @@ struct LightUpExample {
         .padding(10)
         .width('50%')
         .lightUpEffect(0.6)
-    }.alignContent(Alignment.Center).width("100%").height("100%")
+    }.alignContent(Alignment.Center).width('100%').height('100%')
   }
 }
