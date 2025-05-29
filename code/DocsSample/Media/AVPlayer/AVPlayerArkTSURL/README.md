@@ -63,6 +63,6 @@ ohos.permission.GET_WIFI_INFO
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Media/AVPlayer/AVPlayerArkTSURL/ > .git/info/sparse-checkout
-git remote add origin OpenHarmony/applications_app_samples
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
