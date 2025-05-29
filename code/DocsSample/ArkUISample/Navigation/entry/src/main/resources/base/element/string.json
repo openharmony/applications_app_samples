@@ -1,0 +1,130 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Navigation"
+    },
+    {
+      "name": "navigation_toolbar_add",
+      "value": "add"
+    },
+    {
+      "name": "navigation_toolbar_app",
+      "value": "app"
+    },
+    {
+      "name": "navigation_toolbar_collect",
+      "value": "collect"
+    }, {
+      "name": "please_click_button",
+      "value": "请点击按钮"
+    }, {
+      "name": "PageOneBuilder_text1",
+      "value": "返回值"
+    }, {
+      "name": "navStackTemp1PageOne_text1",
+      "value": "点击向内查找"
+    }, {
+      "name": "navStackTemp1PageOne_text2",
+      "value": "向内查找的NavDestination是"
+    }, {
+      "name": "navStackTemp1PageOne_text3",
+      "value": "点击向外查找"
+    }, {
+      "name": "navStackTemp1PageOne_text4",
+      "value": "向外查找的NavDestination是"
+    }, {
+      "name": "RouterTemp1PageOne_text1",
+      "value": "这是第一页的值"
+    }, {
+      "name": "RouterTemp1PageOne_text2",
+      "value": "这是第一页"
+    }, {
+      "name": "RouterTemp1PageOne_text3",
+      "value": "这是第二页"
+    }, {
+      "name": "RouterTemp1PageOne_text4",
+      "value": "向外查找的NavDestination是"
+    }, {
+      "name": "stepperIndex_text1",
+      "value": "示例1（Navigation页面布局）"
+    }, {
+      "name": "stepperIndex_text2",
+      "value": "示例2（使用路由栈方法）"
+    }, {
+      "name": "stepperIndex_text3",
+      "value": "示例3（设置可交互转场动画）"
+    }, {
+      "name": "stepperIndex_text4",
+      "value": "示例4（Navigation带参返回）"
+    }, {
+      "name": "stepperIndex_text5",
+      "value": "示例5（设置背景颜色和模糊效果）"
+    }, {
+      "name": "stepperIndex_text6",
+      "value": "示例6（嵌套场景下获取外层栈）"
+    }, {
+      "name": "stepperIndex_text7",
+      "value": "示例7（通过onReady获取栈）"
+    }, {
+      "name": "stepperIndex_text8",
+      "value": "示例8（NavDestination生命周期时序）"
+    }, {
+      "name": "stepperIndex_text9",
+      "value": "示例9（标题栏布局效果）"
+    }, {
+      "name": "stepperIndex_text10",
+      "value": "示例10（定义路由栈派生类）"
+    }, {
+      "name": "stepperIndex_text11",
+      "value": "示例11（使用Symbol组件）"
+    }, {
+      "name": "stepperIndex_text12",
+      "value": "示例12（设置自定义标题栏边距）"
+    }, {
+      "name": "stepperIndex_text13",
+      "value": "示例13（自定义转场动画）"
+    }, {
+      "name": "stepperIndex_text14",
+      "value": "示例1（标题栏工具栏与可滚动类组件联动）"
+    }, {
+      "name": "stepperIndex_text15",
+      "value": "示例2（设置NavDestination自定义转场）"
+    }, {
+      "name": "stepperIndex_text16",
+      "value": "示例3（设置指定的NavDestination系统转场）"
+    }, {
+      "name": "stepperIndex_text17",
+      "value": "示例4（NavDestination配置页面方向和对应状态栏、导航条显隐）"
+    }, {
+      "name": "stepperIndex_text18",
+      "value": "无感监听"
+    }, {
+      "name": "stepperIndex_text19",
+      "value": "uiObserver.on('navDestinationUpdate')指定监听"
+    }, {
+      "name": "stepperIndex_text20",
+      "value": "uiObserver.on('navDestinationSwitch')指定监听"
+    }, {
+      "name": "stepperIndex_text21",
+      "value": "示例1"
+    }, {
+      "name": "stepperIndex_text22",
+      "value": "NavPathStack派生类"
+    }, {
+      "name": "stepperIndex_text23",
+      "value": "基于TS扩展的声明式开发范式"
+    }, {
+      "name": "stepperIndex_text24",
+      "value": "返回"
+    }
+  ]
+}

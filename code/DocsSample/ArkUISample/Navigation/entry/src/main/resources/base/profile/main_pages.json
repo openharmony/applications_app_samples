@@ -1,0 +1,31 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/navigation/template1/Index",
+    "pages/navigation/template2/Index",
+    "pages/navigation/template3/Index",
+    "pages/navigation/template4/Index",
+    "pages/navigation/template5/Index",
+    "pages/navigation/template6/Index",
+    "pages/navigation/template7/Index",
+    "pages/navigation/template8/Index",
+    "pages/navigation/template9/Index",
+    "pages/navigation/template10/Index",
+    "pages/navigation/template11/Index",
+    "pages/navigation/template12/Index",
+    "pages/navigation/template13/Index",
+    "pages/navDestination/template1/Index",
+    "pages/navDestination/template2/Index",
+    "pages/navDestination/template3/Index",
+    "pages/navDestination/template4/Index",
+    "pages/stepper/template1/Index",
+    "pages/sideBarContainer/template1/Index",
+    "pages/router/template1/Index",
+    "pages/router/template1/second",
+    "pages/observer/template1/Index",
+    "pages/observer/template2/Index",
+    "pages/observer/template3/Index",
+    "pages/observer/template4/Index",
+    "pages/navPathStackExtend/template1/Index"
+  ]
+}

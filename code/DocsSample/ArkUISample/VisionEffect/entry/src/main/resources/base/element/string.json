@@ -1,0 +1,256 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VisionEffect"
+    },
+    {
+      "name": "navigation_toolbar_add",
+      "value": "add"
+    },
+    {
+      "name": "navigation_toolbar_app",
+      "value": "app"
+    },
+    {
+      "name": "navigation_toolbar_collect",
+      "value": "collect"
+    }, 
+    {
+      "name": "please_click_button",
+      "value": "请点击按钮"
+    }, 
+    {
+      "name": "transform",
+      "value": "图形变换"
+    }, 
+    {
+      "name": "example_one_transform",
+      "value": "示例1（为组件添加图形变换效果）"
+    }, 
+    {
+      "name": "example_two_transform",
+      "value": "示例2（设置旋转视距）"
+    }, 
+    {
+      "name": "example_three_transform",
+      "value": "示例3（按中心点旋转）"
+    }, 
+    {
+      "name": "opacity",
+      "value": "透明度设置"
+    }, 
+    {
+      "name": "example_one_opacity",
+      "value": "示例1"
+    }, 
+    {
+      "name": "example_one_clip",
+      "value": "示例1（使用不同裁剪属性）"
+    }, 
+    {
+      "name": "example_two_clip",
+      "value": "示例2（裁剪属性动画）"
+    }, 
+    {
+      "name": "clip",
+      "value": "形状裁剪"
+    }, 
+    {
+      "name": "imageEffect",
+      "value": "图像效果"
+    }, 
+    {
+      "name": "background",
+      "value": "背景设置"
+    }, 
+    {
+      "name": "foregroundBlurStyle",
+      "value": "组件内容模糊"
+    }, 
+    {
+      "name": "foregroundColor",
+      "value": "前景色设置"
+    }, 
+    {
+      "name": "clickEffect",
+      "value": "点击回弹效果"
+    }, 
+    {
+      "name": "useEffect",
+      "value": "特效绘制合并"
+    }, 
+    {
+      "name": "renderFit",
+      "value": "组件内容填充方式"
+    }, 
+    {
+      "name": "outline",
+      "value": "外描边设置"
+    }, 
+    {
+      "name": "motionBlur",
+      "value": "运动模糊"
+    }, 
+    {
+      "name": "linearGradient",
+      "value": "颜色渐变"
+    }, 
+    {
+      "name": "foregroundEffect",
+      "value": "前景属性设置"
+    }, 
+    {
+      "name": "visualEffect",
+      "value": "视效设置"
+    }, 
+    {
+      "name": "example_one_imageEffect",
+      "value": "示例1（设置图片不同属性效果）'"
+    }, 
+    {
+      "name": "example_two_imageEffect",
+      "value": "示例2（设置组件线性渐变模糊效果）"
+    }, 
+    {
+      "name": "example_three_imageEffect",
+      "value": "示例3（设置离屏渲染效果）"
+    }, 
+    {
+      "name": "example_four_imageEffect",
+      "value": "示例4（当前组件内容与下方画布内容混合）"
+    }, 
+    {
+      "name": "example_five_imageEffect",
+      "value": "示例5（前景智能取反色）"
+    }, 
+    {
+      "name": "example_six_imageEffect",
+      "value": "示例6（设置同层阴影不重叠效果）"
+    }, 
+    {
+      "name": "example_seven_imageEffect",
+      "value": "示例7（设置组件图像球面效果）"
+    }, 
+    {
+      "name": "example_eight_imageEffect",
+      "value": "示例8（设置组件图像渐亮效果）"
+    }, 
+    {
+      "name": "example_nine_imageEffect",
+      "value": "示例9（设置组件图像边缘像素扩展效果）"
+    }, 
+    {
+      "name": "example_ten_imageEffect",
+      "value": "示例10（系统导航条智能反色）"
+    },
+    {
+      "name": "example_one_background",
+      "value": "示例1（设置背景基础样式）'"
+    }, 
+    {
+      "name": "example_two_background",
+      "value": "示例2（设置背景模糊样式）"
+    }, 
+    {
+      "name": "example_three_background",
+      "value": "示例3（设置组件背景）"
+    }, 
+    {
+      "name": "example_four_background",
+      "value": "示例4（设置组件背景提亮效果）"
+    }, 
+    {
+      "name": "example_five_background",
+      "value": "示例5（设置模糊属性）"
+    }, 
+    {
+      "name": "example_six_background",
+      "value": "示例6（设置文字异形模糊效果）"
+    }, 
+    {
+      "name": "example_seven_background",
+      "value": "示例7（模糊效果对比）"
+    }, 
+    {
+      "name": "example_one_foregroundBlurStyle",
+      "value": "示例1"
+    }, 
+    {
+      "name": "example_one_foregroundColor",
+      "value": "示例1（使用前景色设置）'"
+    }, 
+    {
+      "name": "example_two_foregroundColor",
+      "value": "示例2（设置前景色为组件背景色反色）"
+    }, 
+    {
+      "name": "example_three_foregroundColor",
+      "value": "示例3（前置景色未继承父组件）"
+    }, 
+    {
+      "name": "example_one_clickEffect",
+      "value": "示例1'"
+    }, 
+    {
+      "name": "example_one_useEffect",
+      "value": "示例1'"
+    }, 
+    {
+      "name": "example_one_renderFit",
+      "value": "示例1'"
+    }, 
+    {
+      "name": "example_one_outline",
+      "value": "示例1（使用外描边属性）'"
+    }, 
+    {
+      "name": "example_two_outline",
+      "value": "示例2（使用LocalizedEdgeColors类型）"
+    }, 
+    {
+      "name": "example_one_motionBlur",
+      "value": "示例1'"
+    }, 
+    {
+      "name": "example_one_linearGradient",
+      "value": "示例1（颜色从右向左线性渐变）"
+    }, 
+    {
+      "name": "example_two_linearGradient",
+      "value": "示例2（颜色按旋转角度渐变）'"
+    }, 
+    {
+      "name": "example_three_linearGradient",
+      "value": "示例3（颜色按径向渐变）"
+    }, 
+    {
+      "name": "example_one_foregroundEffect",
+      "value": "示例1'"
+    }, 
+    {
+      "name": "example_one_visualEffect",
+      "value": "示例1'"
+    }, 
+    {
+      "name": "October_16th",
+      "value": "10月16日'"
+    }, 
+    {
+      "name": "Monday",
+      "value": "星期一'"
+    }, 
+    {
+      "name": "placeholder",
+      "value": "请输入变化范围百分比（[0%,100%]）'"
+    }
+  ]
+}
