@@ -23,7 +23,7 @@ export struct NavigationExample3 {
     if (this.pageInfos === undefined) {
       this.pageInfos = new NavPathStack();
     }
-    this.pageInfos.pushPath({ name: 'temp3-pageTwo', param: CustomTransition.getInstance().getAnimationId() });
+    this.pageInfos.pushPath({ name: 'temp3-pageOne', param: CustomTransition.getInstance().getAnimationId() });
   }
 
   build() {

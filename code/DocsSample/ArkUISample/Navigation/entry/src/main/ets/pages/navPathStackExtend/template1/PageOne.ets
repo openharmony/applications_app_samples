@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { uiObserver } from '@kit.ArkUI';
+import resource from '../../common/Index';
 
 @Builder
 export function PageOneBuilder() {
@@ -35,7 +36,7 @@ export struct PageOneComponent {
             this.navDesInfo = this.queryNavDestinationInfo(true);
             this.text = JSON.stringify(this.navDesInfo?.name);
           })
-        Text($r('app.string.navStackTemp1PageOne_text2') + this.text)
+        Text(resource.resourceToString($r('app.string.navStackTemp1PageOne_text2')) + this.text)
           .width('80%')
           .height(50)
           .margin(50)
@@ -63,7 +64,7 @@ struct MyComponent {
           this.navDesInfo = this.queryNavDestinationInfo(false);
           this.text = JSON.stringify(this.navDesInfo?.name);
         })
-      Text($r('app.string.navStackTemp1PageOne_text4') + this.text)
+      Text(resource.resourceToString($r('app.string.navStackTemp1PageOne_text4')) + this.text)
         .width('80%')
         .height(50)
         .margin(50)
