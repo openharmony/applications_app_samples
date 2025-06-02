@@ -5,15 +5,15 @@
 
 ### 效果预览
 
-|               主页               |             上传             |             片段上传             |                 下载                 |                 证书锁定                 |
-| :---------------------------------------: | :---------------------------------------: | :--------------------------------------: | :--------------------------------------: | ---------------------------------------- |
-|    ![home](screenshots/devices/zh/home.jpg)    | ![util](screenshots/devices/zh/upload.jpg) | ![util](screenshots/devices/zh/uploadchunk.jpg) | ![convertxml](screenshots/devices/zh/download.jpg) | ![cert_lock](screenshots/devices/zh/cert_lock.jpg) |
+|               主页               |             上传             |             片段上传             |                 下载                 |                 下载到用户目录                 |                 证书锁定                 |
+| :---------------------------------------: | :---------------------------------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | ---------------------------------------- |
+|    ![home](screenshots/devices/zh/home.jpg)    | ![util](screenshots/devices/zh/upload.jpg) | ![util](screenshots/devices/zh/uploadchunk.jpg) | ![convertxml](screenshots/devices/zh/download.jpg) | ![convertxml](screenshots/devices/zh/download_user.jpg) | ![cert_lock](screenshots/devices/zh/cert_lock.jpg) |
 
 使用说明
 
 1.本示例功能需要先配置服务器环境后使用，具体配置见[上传下载服务配置](./environment)。
 
-2.首页展示上传、下载和证书锁定三个入口组件，点击进入对应的页面，如果要使用后台下载任务，请开启后台任务开关。
+2.首页展示上传、下载、下载到用户目录和证书锁定四个入口组件，点击进入对应的页面，如果要使用后台下载任务，请开启后台任务开关。
 
 3.上传页面：
 
@@ -133,9 +133,9 @@ UploadAndDownload
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，支持API12版本SDK，SDK版本号(API Version 12),镜像版本号(5.0)
+2.本示例为Stage模型，支持API20版本SDK，SDK版本号(API Version 20),镜像版本号(6.0)
 
-3.本示例需要使用DevEco Studio 版本号(4.1 Release)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(5.0.5 Release)及以上版本才可编译运行。
 
 4.运行本示例需全程联网。
 

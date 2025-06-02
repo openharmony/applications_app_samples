@@ -24,41 +24,38 @@ class FileUtil {
   constructor() {
   }
 
-  async initDownloadDir(): Promise<void> {
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-    logger.info(TAG, `initDownloadDir cacheDir=${context.cacheDir}`);
+  async initDownloadDir(downloadDir: string): Promise<void> {  
+    logger.info(TAG, `initDownloadDir downloadDir=${downloadDir}`);
     try {
-      fs.mkdirSync(`${context.cacheDir}/${ALBUMS[0]}`);
-      fs.mkdirSync(`${context.cacheDir}/${ALBUMS[1]}`);
-      fs.mkdirSync(`${context.cacheDir}/${ALBUMS[2]}`);
+      fs.mkdirSync(`${downloadDir}/${ALBUMS[0]}`);
+      fs.mkdirSync(`${downloadDir}/${ALBUMS[1]}`);
+      fs.mkdirSync(`${downloadDir}/${ALBUMS[2]}`);
     } catch (err) {
       logger.info(TAG, `initDownloadDir err =${JSON.stringify(err)}`);
     }
   }
 
-  async listFolders(): Promise<Array<string>> {
-    await this.initDownloadDir();
+  async listFolders(downloadDir: string): Promise<Array<string>> {
+    await this.initDownloadDir(downloadDir);
     return ALBUMS;
   }
 
-  async clearFolder(folderName: string): Promise<void> {
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  async clearFolder(downloadDir: string,folderName: string): Promise<void> {
     try {
-      let files: string[] = fs.listFileSync(`${context.cacheDir}/${folderName}`);
+      let files: string[] = fs.listFileSync(`${downloadDir}/${folderName}`);
       logger.info(TAG, `listFiles listFileSync =${JSON.stringify(files)}`);
       for (let i = 0; i < files.length; i++) {
-        fs.unlinkSync(`${context.cacheDir}/${folderName}/${files[i]}`);
+        fs.unlinkSync(`${downloadDir}/${folderName}/${files[i]}`);
       }
     } catch (err) {
       logger.info(TAG, `listFiles err =${JSON.stringify(err)}`);
     }
   }
 
-  async listFiles(folderName: string): Promise<Array<string>> {
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  async listFiles(downloadDir:string,folderName: string): Promise<Array<string>> { 
     let files: string[] = [];
     try {
-      files = fs.listFileSync(`${context.cacheDir}/${folderName}`);
+      files = fs.listFileSync(`${downloadDir}/${folderName}`);
       logger.info(TAG, `listFiles listFileSync =${JSON.stringify(files)}`);
     } catch (err) {
       logger.info(TAG, `listFiles err =${JSON.stringify(err)}`);

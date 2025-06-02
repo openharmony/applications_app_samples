@@ -99,7 +99,7 @@ class RequestDownload {
   }
 
   async downloadFile(folder: string, url: string, callback: (progress: number, isSuccess: boolean) => void) {
-    logger.info(TAG, 'downloadFile');
+    logger.info(TAG, `downloadFile folder:${folder} url:${url}`);
     // 查询到存在正在执行的下载任务，提示并返回
     let tasks = await request.agent.search({
       state: request.agent.State.RUNNING,
@@ -111,15 +111,16 @@ class RequestDownload {
       return;
     }
     let splitUrl = url.split('//')[1].split('/');
+    let saveas = `${folder}/${splitUrl[splitUrl.length-1]}`
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
     let downloadConfig: request.agent.Config = {
       action: request.agent.Action.DOWNLOAD,
       url: url,
-      method: 'POST',
+      method: 'GET',
       title: 'download',
       mode: request.agent.Mode.FOREGROUND,
       network: request.agent.Network.ANY,
-      saveas: `./${folder}/${splitUrl[splitUrl.length-1]}`,
+      saveas: saveas,
       overwrite: true
     }
     logger.info(TAG, `downloadFile, downloadConfig = ${JSON.stringify(downloadConfig)}`);
@@ -142,7 +143,8 @@ class RequestDownload {
       this.downloadTask.on('failed', async (progress: request.agent.Progress) => {
         if (this.downloadTask) {
           let taskInfo = await request.agent.show(this.downloadTask.tid);
-          logger.info(TAG, `fail,  resean = ${taskInfo.reason}, faults = ${JSON.stringify(taskInfo.faults)}`);
+          logger.error(TAG, `fail,  resean = ${taskInfo.reason}, faults = ${JSON.stringify(taskInfo.faults)}`);
+          promptAction.showToast({ message: `fail,  resean = ${taskInfo.reason}, faults = ${JSON.stringify(taskInfo.faults)}`, bottom: TOAST_BOTTOM  });
         }
         callback(100, false);
         this.deleteTask();
@@ -150,6 +152,7 @@ class RequestDownload {
       await this.downloadTask.start();
     } catch (err) {
       logger.error(TAG, `task  err, err  = ${JSON.stringify(err)}`);
+      promptAction.showToast({ message: JSON.stringify(err), bottom: TOAST_BOTTOM });
       callback(100, false);
     }
   }

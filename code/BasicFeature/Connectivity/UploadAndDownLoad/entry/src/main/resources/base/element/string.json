@@ -69,6 +69,18 @@
       "value": "Download"
     },
     {
+      "name": "downloadToApplication",
+      "value": "downloadToApplication"
+    },
+    {
+      "name": "downloadToUser",
+      "value": "DownloadToUser"
+    },
+    {
+      "name": "downloadServer",
+      "value": "https://gitee.com/tiga-ultraman/downloadTests/releases/download/v1.01/"
+    },    
+    {
       "name": "download_to",
       "value": "Select a download location"
     },
