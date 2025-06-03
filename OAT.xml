@@ -398,7 +398,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/casesfeature/calendarswitch/calendar_switch.gif" desc="Provided by code/UI/CalendarViewSwitch"/>
 				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/CalendarViewSwitch"/>
 				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/CalendarViewSwitch"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LanguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="Provided by code/Solutions/Tools/FlipClock"/>
@@ -1246,7 +1246,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/resources/app1-signed.hap" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.hap" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.hap" desc="Provided by code/UI/ArkTsComponentCollection/ComponentCollection"/>
-                <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.hap" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
+                <filteritem type="filepath" name="code/LanguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.hap" desc="Provided by code/LanguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.hap" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.hap" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.hap" desc="Provided by code/Solutions/Tools/FlipClock"/>
@@ -1352,16 +1352,16 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/screenshots/select.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/screenshots/drag.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091553194.jpeg" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091619146.jpeg" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091638669.jpeg" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091651506.jpeg" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_next.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_back.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/file.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/add.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/zip.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091553194.jpeg" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091619146.jpeg" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091638669.jpeg" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091651506.jpeg" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_next.png" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_back.png" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/file.png" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/add.png" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/zip.png" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LanguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon.png" desc="Provided by code/LanguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/ohosTest/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
@@ -2405,7 +2405,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/rawfile/tabcontentoverflow_play_video.MP4" desc="二进制文件，无需添加License头"/>
-                <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/LanguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
@@ -2476,7 +2476,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/rawfile/tabcontentoverflow_play_video.MP4" desc="二进制文件，无需添加版权头"/>
-                <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/LanguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>

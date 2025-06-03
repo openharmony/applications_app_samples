@@ -19,7 +19,7 @@
 
 # 6月6日-6月9日新增sample (总计26个分类，146个sample)
 1.[`MissionManager`：系统任务管理(ArkTS)（API9）](code/SystemFeature/ApplicationModels/MissionManager)
-2.[`ZipLib`：压缩与解压(ArkTS)（API9）](code/LaunguageBaseClassLibrary/ZipLib)
+2.[`ZipLib`：压缩与解压(ArkTS)（API9）](code/LanguageBaseClassLibrary/ZipLib)
 3.[`ArkTSDistributedMusicPlayer`：分布式音乐(ArkTS)（API9）](code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
 
 # 6月9日-6月18日新增sample (总计27个分类，155个sample)
