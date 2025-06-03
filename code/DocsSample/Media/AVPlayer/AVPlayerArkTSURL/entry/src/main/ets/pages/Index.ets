@@ -56,7 +56,7 @@ struct Index {
 
   @State title: Resource = $r('app.string.EntryAbility_label');
   @State fileName: string = 'test_01.mp3';
-  @State m3u8fileName: string = 'test.m3u8';
+  @State m3u8FileName: string = 'test.m3u8';
   @State isSwiping: boolean = false; // 用户滑动过程中
   @State isPaused: boolean = true; // 暂停播放
   @State XComponentFlag: boolean = false;
@@ -148,7 +148,7 @@ struct Index {
     // 情况四：通过本地Raw文件中的m3u8文件播放在线流媒体资源
     /*
     // 通过本地m3u8文件名，获取文件描述符
-    let fileDescriptor = await this.context.resourceManager.getRawFd(this.m3u8fileName);
+    let fileDescriptor = await this.context.resourceManager.getRawFd(this.m3u8FileName);
     // 用文件描述符构造本地m3u8的URL
     let fdUrl : string = "fd://" + fileDescriptor.fd +
       "?offset=" + fileDescriptor.offset + "&size=" + fileDescriptor.length;
@@ -169,7 +169,7 @@ struct Index {
 
     // 情况五：通过应用沙箱中的m3u8文件播放在线流媒体资源
     /*
-    let filePath = `/data/storage/el1/bundle/${this.m3u8fileName}`;
+    let filePath = `/data/storage/el1/bundle/${this.m3u8FileName}`;
     // 通过fs.openSync获取文件句柄
     let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
     let fd : string = file.fd.toString();
