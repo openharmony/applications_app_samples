@@ -169,7 +169,7 @@ struct Index {
 
     // 情况五：通过应用沙箱中的m3u8文件播放在线流媒体资源
     /*
-    let filePath = `/data/storage/el1/bundle/${this.m3u8FileName}`;
+    let filePath = `${this.context.filesDir}/${this.m3u8FileName}`;
     // 通过fs.openSync获取文件句柄
     let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
     let fd : string = file.fd.toString();
@@ -196,8 +196,7 @@ struct Index {
     // 情况一：应用沙箱文件播放
     let fdPath = 'fd://';
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
-    let pathDir = this.context.filesDir;
-    let path = `/data/storage/el1/bundle/${this.fileName}`;
+    let path = `${this.context.filesDir}/${this.fileName}`;
     // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
     let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
