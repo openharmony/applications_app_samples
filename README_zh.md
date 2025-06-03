@@ -597,9 +597,9 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="1" align="center" x:str><strong>语言基础类库</strong></td>
   <td rowspan="1" x:str><strong>语言基础类库</strong></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/ConcurrentModule">多线程任务</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库（API 10）</a></td>
-  <td x:str><a href="code/LaunguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
+  <td x:str><a href="code/LanguageBaseClassLibrary/ConcurrentModule">多线程任务</a></td>
+  <td x:str><a href="code/LanguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库（API 10）</a></td>
+  <td x:str><a href="code/LanguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -709,9 +709,9 @@ code
   |---ApplicationHap               # 应用程序包
   |---HapBuild                     # 流水线预测试工具
   |---Test                         # 测试框架
-|---LaunguageBaseClassLibrary  # 语言基础类库
+|---LanguageBaseClassLibrary  # 语言基础类库
   |---ConcurrentModule             # 多线程任务
-  |---LaunguageBaseClassLibrary    # 语言基础类库
+  |---LanguageBaseClassLibrary    # 语言基础类库
   |---ZipLib                       # 解压与压缩
 |---Performance                # 性能
   |---ArkRuntime                   # 方舟运行时

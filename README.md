@@ -54,7 +54,7 @@ We provide a series of app samples to help you quickly get familiar with the API
   - [`SimManager`：SIM Card Manager（ArkTS）（API9）](code/BasicFeature/Telephony/SimManager)
   - [`MobileNetwork`：Cellular Network(ArkTS)（API9）](code/BasicFeature/Telephony/MobileNetwork)
 - thread
-  - [`JsWorker`：Launch a worker（API12）](code/LaunguageBaseClassLibrary/ConcurrentModule)
+  - [`JsWorker`：Launch a worker（API12）](code/LanguageBaseClassLibrary/ConcurrentModule)
 - CompleteApps
   - [`KikaInput`：Lite Input Method（JS）（API10）](code/Solutions/InputMethod/KikaInput)
   - [`FlipClock`：Flip Clock（ArkTS）（API9）](code/Solutions/Tools/FlipClock)
@@ -76,7 +76,7 @@ We provide a series of app samples to help you quickly get familiar with the API
   - [`ArkTSDistributeCalc`：Distributed Calculator（ArkTS）（API9）](code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
   - [`ArkTSDistributedMusicPlayer`：Distributed Music Player (ArkTS)（API9）](code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
 - PackageManagement
-  - [`ZipLib`：zip&unzip(ArkTS)（API9）](code/LaunguageBaseClassLibrary/ZipLib)
+  - [`ZipLib`：zip&unzip(ArkTS)（API9）](code/LanguageBaseClassLibrary/ZipLib)
 - ResourcesSchedule
   - [`Flybird`：Game（ArkTS）（API9）](code/SystemFeature/TaskManagement/Flybird)
 
