@@ -213,8 +213,8 @@ struct Index {
       // 获取图片大小
       await this.pixelMap.getImageInfo().then((info: image.ImageInfo) => {
         this.imageInfo = info;
-        Logger.info('info.width = ', info.size.width.toString())
-        Logger.info('info.height = ', info.size.height.toString())
+        Logger.info('info.width = ', info.size.width.toString());
+        Logger.info('info.height = ', info.size.height.toString());
       }).catch((err: BusinessError) => {
         Logger.error('Failed to obtain the image pixel map information.And the error is: ', String(err));
       });

@@ -44,12 +44,14 @@ export async function encodeToStreamByPixelMap(pixelMap: image.PixelMap, isHdr:b
     // [End pixelmap_hdr_content_encoding]
   }
   // [Start pixelmap_encoding_through_pixelmap]
-  imagePackerApi.packing(pixelMap, packOpts).then((data: ArrayBuffer) => {
+  imagePackerApi.packToData(pixelMap, packOpts).then((data: ArrayBuffer) => {
     // data 为打包获取到的文件流，写入文件保存即可得到一张图片
     fs.write(file.fd, data);
     Logger.info('Succeeded to pack the image and write to the file.');
   }).catch((error: BusinessError) => {
     Logger.error('Failed to pack the image. And the error is: ', String(error));
+  }).finally(()=>{
+    fs.closeSync(file.fd);
   })
   // [End pixelmap_encoding_through_pixelmap]
 }
@@ -68,12 +70,14 @@ export async function encodeToStreamByImageSource(imageSource:image.ImageSource,
   const path: string = context.cacheDir + '/pixel_map.jpg';
   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   // [Start pixelmap_encoding_through_image_source]
-  imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
+  imagePackerApi.packToData(imageSource, packOpts).then( (data : ArrayBuffer) => {
     // data 为打包获取到的文件流，写入文件保存即可得到一张图片
     fs.write(file.fd, data);
     Logger.info('Succeeded to pack the image and write to the file.');
   }).catch((error : BusinessError) => {
     Logger.error('Failed to pack the image. And the error is: ', String(error));
+  }).finally(()=>{
+    fs.closeSync(file.fd);
   })
   // [End pixelmap_encoding_through_image_source]
 }
@@ -97,6 +101,8 @@ export async function encodeToFileByPixelMap(pixelMap: image.PixelMap,isHdr:bool
     Logger.info('Succeeded to pack the image and write to the file.');
   }).catch((error : BusinessError) => {
     Logger.error('Failed to pack the image. And the error is: ', String(error));
+  }).finally(()=>{
+    fs.closeSync(file.fd);
   })
   // [End pixelmap_encoding_into_file_through_pixelmap]
 }
@@ -120,6 +126,8 @@ export async function encodeToFileByImageSource(imageSource:image.ImageSource,is
     Logger.info('Succeeded to pack the image and write to the file.');
   }).catch((error : BusinessError) => {
     Logger.error('Failed to pack the image. And the error is: ', String(error));
+  }).finally(()=>{
+    fs.closeSync(file.fd);
   })
   // [End pixelmap_encoding_into_file_through_image_source]
 }

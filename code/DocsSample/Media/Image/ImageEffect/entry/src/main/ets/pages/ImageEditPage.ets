@@ -305,7 +305,7 @@ struct ImageEditPage {
     }
     console.info(`savePixel to ${filePath}`);
     let uri = fileUri.getUriFromPath(filePath);
-    let imageData = await imagePackerApi.packing(pixelMap, packOption);
+    let imageData = await imagePackerApi.packToData(pixelMap, packOption);
     let file = fs.openSync(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let writeLen = fs.writeSync(file.fd, imageData);
     fs.closeSync(file);

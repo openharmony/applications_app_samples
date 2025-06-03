@@ -122,7 +122,7 @@ export default function abilityTest() {
      * @tc.name CropImage_001
      * @tc.desc 点击裁剪
      */
-    it('CropImage_001', 1, async (done: Function) => {
+    it('CropImage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CropImage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -142,7 +142,7 @@ export default function abilityTest() {
      * @tc.name scaleImage_001
      * @tc.desc 点击缩放
      */
-    it('scaleImage_001', 2, async (done: Function) => {
+    it('scaleImage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CropImage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -161,7 +161,7 @@ export default function abilityTest() {
      * @tc.name scaleImage_001
      * @tc.desc 点击向右下移动
      */
-    it('translateImage_001', 3, async (done: Function) => {
+    it('translateImage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'translateImage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -180,7 +180,7 @@ export default function abilityTest() {
      * @tc.name clockwiseRotateImage_001
      * @tc.desc 点击顺时针旋转
      */
-    it('clockwiseRotateImage_001', 4, async (done: Function) => {
+    it('clockwiseRotateImage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'clockwiseRotateImage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -200,7 +200,7 @@ export default function abilityTest() {
      * @tc.name verticalFlipImage_001
      * @tc.desc 点击垂直翻转
      */
-    it('verticalFlipImage_001', 5, async (done: Function) => {
+    it('verticalFlipImage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'verticalFlipImage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -219,7 +219,7 @@ export default function abilityTest() {
      * @tc.name horizontalFlipImage_001
      * @tc.desc 点击水平翻转
      */
-    it('horizontalFlipImage_001', 6, async (done: Function) => {
+    it('horizontalFlipImage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'horizontalFlipImage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -238,7 +238,7 @@ export default function abilityTest() {
      * @tc.name bitmapOperation_001
      * @tc.desc 点击位图操作
      */
-    it('bitmapOperation_001', 7, async (done: Function) => {
+    it('bitmapOperation_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'bitmapOperation_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -258,7 +258,7 @@ export default function abilityTest() {
      * @tc.name bitmapOperationAll_001
      * @tc.desc 点击位图操作全部
      */
-    it('bitmapOperationAll_001', 8, async (done: Function) => {
+    it('bitmapOperationAll_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'bitmapOperationAll_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -277,7 +277,7 @@ export default function abilityTest() {
      * @tc.name changeOpacity_001
      * @tc.desc 点击设置透明度
      */
-    it('changeOpacity_001', 9, async (done: Function) => {
+    it('changeOpacity_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'changeOpacity_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -296,7 +296,7 @@ export default function abilityTest() {
      * @tc.name saveImage_001
      * @tc.desc 点击保存图片
      */
-    it('saveImage_001', 10, async (done: Function) => {
+    it('saveImage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'saveImage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -315,7 +315,7 @@ export default function abilityTest() {
      * @tc.name openImage_001
      * @tc.desc 点击打开图片
      */
-    it('openImage_001', 11, async (done: Function) => {
+    it('openImage_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'openImage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);
@@ -333,7 +333,7 @@ export default function abilityTest() {
      * @tc.name editEXIF_001
      * @tc.desc 点击编辑EXIF信息
      */
-    it('editEXIF_001', 12, async (done: Function) => {
+    it('editEXIF_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'editEXIF_001 begin');
       let driver = Driver.create();
       await driver.delayMs(DELAY_TIME);

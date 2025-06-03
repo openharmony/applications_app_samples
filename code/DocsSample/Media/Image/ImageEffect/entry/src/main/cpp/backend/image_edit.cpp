@@ -515,32 +515,32 @@ napi_value ImageEdit::LookupFilterInfo(napi_env env, napi_callback_info info)
     std::string filterName = CommonUtils::GetStringArgument(env, args[EXPECTED_ARGS_ZERO]);
 
     // [Start image_effect_lookup_filter_info_by_name]
-    OH_EffectFilterInfo *effectInfo = OH_EffectFilterInfo_Create();
+    OH_EffectFilterInfo *filterInfo = OH_EffectFilterInfo_Create();
     // 示例代码: 传入nullptr的format, 获取OH_Formats的size
-    ImageEffect_ErrorCode errorCode = OH_EffectFilter_LookupFilterInfo(filterName.c_str(), effectInfo);
+    ImageEffect_ErrorCode errorCode = OH_EffectFilter_LookupFilterInfo(filterName.c_str(), filterInfo);
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
                              "OH_EffectFilter_LookupFilterInfo fail! errorCode = %{public}d", errorCode);
 
     char *name = nullptr;
-    OH_EffectFilterInfo_GetFilterName(effectInfo, &name);
+    OH_EffectFilterInfo_GetFilterName(filterInfo, &name);
 
     uint32_t supportedBufferTypesCount = 0;
     ImageEffect_BufferType *bufferTypeArray = nullptr;
-    OH_EffectFilterInfo_GetSupportedBufferTypes(effectInfo, &supportedBufferTypesCount, &bufferTypeArray);
+    OH_EffectFilterInfo_GetSupportedBufferTypes(filterInfo, &supportedBufferTypesCount, &bufferTypeArray);
 
     uint32_t supportedFormatsCount = 0;
     ImageEffect_Format *formatArray = nullptr;
-    OH_EffectFilterInfo_GetSupportedFormats(effectInfo, &supportedFormatsCount, &formatArray);
+    OH_EffectFilterInfo_GetSupportedFormats(filterInfo, &supportedFormatsCount, &formatArray);
 
     LOG_I("LookupFilterInfo: name=%{public}s, bufferTypesCount=%{public}d, formatsCount=%{public}d", name,
           supportedBufferTypesCount, supportedFormatsCount);
 
-    std::string infoStr = CommonUtils::EffectInfoToString(effectInfo);
+    std::string infoStr = CommonUtils::EffectInfoToString(filterInfo);
     LOG_I("LookupFilterInfo:%{public}s", infoStr.c_str());
     status = napi_create_string_utf8(env, infoStr.c_str(), strlen(infoStr.c_str()), &result);
     CHECK_AND_RETURN_RET_LOG(status == napi_ok, result, "napi_create_string_utf8 fail!");
 
-    OH_EffectFilterInfo_Release(effectInfo);
+    OH_EffectFilterInfo_Release(filterInfo);
     // [End image_effect_lookup_filter_info_by_name]
     return result;
 }
@@ -741,9 +741,9 @@ napi_value ImageEdit::RegisterCustomBrightness()
     OH_EffectFilterInfo_SetSupportedBufferTypes(customFilterInfo,
         sizeof(bufferTypeArray) / sizeof(ImageEffect_BufferType), bufferTypeArray);
     // 设置自定义滤镜所支持的像素格式。
-    ImageEffect_Format formatArray = ImageEffect_Format::EFFECT_PIXEL_FORMAT_RGBA8888;
+    ImageEffect_Format formatArray[] = {ImageEffect_Format::EFFECT_PIXEL_FORMAT_RGBA8888};
     OH_EffectFilterInfo_SetSupportedFormats(customFilterInfo,
-        sizeof(formatArray) / sizeof(ImageEffect_Format), &formatArray);
+        sizeof(formatArray) / sizeof(ImageEffect_Format), formatArray);
     // [End image_effect_create_custom_filter_info]
     // [Start image_effect_custom_filter]
     // 自定义滤镜具体实现。
@@ -807,9 +807,9 @@ napi_value ImageEdit::RegisterCustomCrop()
     OH_EffectFilterInfo_SetSupportedBufferTypes(customFilterInfo,
         sizeof(bufferTypeArray) / sizeof(ImageEffect_BufferType), bufferTypeArray);
     // 设置自定义滤镜所支持的像素格式。
-    ImageEffect_Format formatArray = ImageEffect_Format::EFFECT_PIXEL_FORMAT_RGBA8888;
+    ImageEffect_Format formatArray[] = {ImageEffect_Format::EFFECT_PIXEL_FORMAT_RGBA8888};
     OH_EffectFilterInfo_SetSupportedFormats(customFilterInfo,
-        sizeof(formatArray) / sizeof(ImageEffect_Format), &formatArray);
+        sizeof(formatArray) / sizeof(ImageEffect_Format), formatArray);
     // 自定义滤镜具体实现。
     delegateCrop = {
         .setValue =
@@ -895,12 +895,12 @@ napi_value ImageEdit::getSurfaceId(napi_env env, napi_callback_info info)
     std::string surfaceId = CommonUtils::GetStringArgument(env, args[EXPECTED_ARGS_ZERO]);
     // [Start image_effect_get_surface_id]
     // 根据SurfaceId创建NativeWindow，注意创建出来的NativeWindow在使用结束后需要主动调用OH_NativeWindow_DestoryNativeWindow进行释放。
-    uint64_t iSurfaceId;
+    uint64_t outputSurfaceId;
     std::istrstream iss(surfaceId.c_str());
-    iss >> iSurfaceId;
-    LOG_I("iSurfaceId %{public}llu", iSurfaceId);
+    iss >> outputSurfaceId;
+    LOG_I("outputSurfaceId %{public}llu", outputSurfaceId);
     OHNativeWindow *outputNativeWindow = nullptr;
-    int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(iSurfaceId, &outputNativeWindow);
+    int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(outputSurfaceId, &outputNativeWindow);
     CHECK_AND_RETURN_RET_LOG(res == 0, result, "OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
 
     OH_ImageEffect *imageEffect = OH_ImageEffect_Create("imageEdit");
