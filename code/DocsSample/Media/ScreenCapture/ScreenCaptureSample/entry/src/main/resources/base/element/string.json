@@ -67,6 +67,18 @@
     {
       "name": "all_mode_desc",
       "value": "全量"
+    },
+    {
+      "name": "js_saving_file_desc",
+      "value": "js-录屏存文件"
+    },
+    {
+      "name": "display_id_desc",
+      "value": "Display Id"
+    },
+    {
+      "name": "allow_desc",
+      "value": "允许"
     }
   ]
 }

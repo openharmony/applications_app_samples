@@ -19,7 +19,6 @@ import testNapi from 'libentry.so';
 @Entry({ routeName : 'Scene3' })
 @Component
 export struct Scene3 {
-  @State message: string = '录屏取码流Surface模式';
   @State isCapturing: boolean = false;
   @Consume('pageInfos') pageInfos: NavPathStack;
 
@@ -28,12 +27,9 @@ export struct Scene3 {
 
       Column({ space: 15 }) {
         Column() {
-          Text(this.message)
+          Text($r('app.string.streaming_surface_mode_desc'))
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
-            .onClick(() => {
-              hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
-            })
         }
         .width('100%')
         .height('20%')
@@ -75,6 +71,6 @@ export struct Scene3 {
       }
       .width('100%')
     }
-    .title($r('app.string.other_mode_desc'))
+    .title($r('app.string.streaming_surface_mode_desc'))
     }
 }

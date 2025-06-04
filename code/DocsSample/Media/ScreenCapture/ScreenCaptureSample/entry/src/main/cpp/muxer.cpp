@@ -37,7 +37,7 @@ int32_t Muxer::Create(int32_t fd)
 
 int32_t Muxer::Config(SampleInfo &sampleInfo)
 {
-    OH_LOG_INFO(LOG_APP, "==DEMO== Config");
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== Config");
     OH_AVFormat *formatVideo = OH_AVFormat_CreateVideoFormat(sampleInfo.codecMime.data(),
         sampleInfo.videoWidth, sampleInfo.videoHeight);
 
@@ -48,7 +48,7 @@ int32_t Muxer::Config(SampleInfo &sampleInfo)
     
     int32_t ret = OH_AVMuxer_AddTrack(muxer_, &videoTrackId_, formatVideo);
     OH_AVFormat_Destroy(formatVideo);
-    OH_LOG_INFO(LOG_APP, "==DEMO== Config End");
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== Config End");
     return 0;
 }
 

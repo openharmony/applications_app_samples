@@ -40,7 +40,7 @@ void SampleCallback::OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, voi
 // 设置 OH_AVCodecOnNeedInputBuffer 回调函数，编码输入帧送入数据队列
 void SampleCallback::OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData) {
 // surface模式下，该回调函数无作用，用户通过获取的surface输入数据
-    OH_LOG_INFO(LOG_APP, "==DEMO== Video OnNeedInputBuffer");
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== Video OnNeedInputBuffer");
     (void)userData;
     (void)index;
     (void)buffer;
@@ -60,7 +60,7 @@ void SampleCallback::OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVB
     // 完成帧的数据buffer送入outBufferQueue队列
     // 数据处理，请参考:
     // - 释放编码帧
-    OH_LOG_INFO(LOG_APP, "==DEMO== Video OnNewOutputBuffer");
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== Video OnNewOutputBuffer");
     if (userData == nullptr) {
         return;
     }
