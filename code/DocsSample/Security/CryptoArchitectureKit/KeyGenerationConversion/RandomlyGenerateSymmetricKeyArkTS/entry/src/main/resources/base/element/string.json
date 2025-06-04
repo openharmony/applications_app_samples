@@ -43,10 +43,6 @@
     {
       "name": "call_sm4_promise",
       "value": "Call SM4 Promise"
-    },
-    {
-      "name": "sm4_sync",
-      "value": "SM4 Sync"
     }
   ]
 }

@@ -20,9 +20,7 @@
     "description": "$string:module_desc",
     "mainElement": "Entry2Ability",
     "deviceTypes": [
-      "phone",
-      "2in1",
-      "car"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,

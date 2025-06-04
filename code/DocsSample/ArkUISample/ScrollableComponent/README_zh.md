@@ -133,7 +133,7 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API18版本SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
+2.本示例为Stage模型，支持API18版本full-SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
 
 3.本示例需要使用DevEco Studio 5.0.5 Release (Build Version: 5.0.13.200， built on May 13, 2025)及以上版本才可编译运行。
 
