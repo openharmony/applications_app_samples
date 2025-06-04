@@ -135,7 +135,8 @@ export class MyNodeControllerIndirectDisplay extends NodeController {
 // [Start arkts_graphics_draw_direct_and_indirect_canvas]
 @Entry
 @Component
-struct CanvasGetResult {
+struct RenderTest {
+  @State message: string = 'hello';
   myNodeController_1 = new MyNodeControllerDirectDisplay();
   myNodeController_2 = new MyNodeControllerIndirectDisplay();
 
