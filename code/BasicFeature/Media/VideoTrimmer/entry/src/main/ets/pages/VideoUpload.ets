@@ -67,7 +67,7 @@ export struct VideoUpload {
   /**
    * 获取视频第一张图片
    */
-  async getVideoFirstImage(): Promise<void> {
+  async getVideoFirstImage(videoSrc: string): Promise<void> {
     let callBack: ICallBack = {
       //  回调函数
       callBackResult: (code: number) => {
@@ -96,7 +96,7 @@ export struct VideoUpload {
       }
     }
     // TODO: 知识点：设置MP4Parser视频源地址及回调函数
-    MP4Parser.setDataSource(this.workItem.videoSrc, callBack);
+    MP4Parser.setDataSource(videoSrc, callBack);
   }
 
   // 配置服务器地址
@@ -188,7 +188,7 @@ export struct VideoUpload {
       this.workItem.trimmerSrc = '';
       logger.info(TAG, 'the source video path is:' + this.workItem.videoSrc);
       // 获取视频第一张图片
-      await this.getVideoFirstImage();
+      await this.getVideoFirstImage(this.workItem.videoSrc);
       // 视频剪辑参数选项
       let tempOption = new VideoTrimmerOption();
       tempOption.listener = this.initListener;
@@ -217,10 +217,11 @@ export struct VideoUpload {
       logger.info(TAG, '开始裁剪');
       this.dialogController.open();
     },
-    onFinishTrim: (outVideoPath: string) => {
+    onFinishTrim: async (outVideoPath: string) => {
       this.dialogController.close();
       // 更新上传视频地址
       this.workItem.trimmerSrc = outVideoPath;
+      await this.getVideoFirstImage(this.workItem.trimmerSrc);
       this.isTrimmer = false;
       logger.info(TAG, '裁剪成功 path=' + this.workItem.trimmerSrc)
     },
@@ -323,8 +324,7 @@ export struct VideoUpload {
 
     // 背景图
     Stack({ alignContent: Alignment.Center }) {
-      Image($r('app.media.video_trimmer_autoplay_preview2'))
-
+      Image(this.workItem.firstImage)
         .id('image_to_trimmer')
         .height($r('app.integer.video_trimmer_upload_video_height'))
         .onClick(() => {
