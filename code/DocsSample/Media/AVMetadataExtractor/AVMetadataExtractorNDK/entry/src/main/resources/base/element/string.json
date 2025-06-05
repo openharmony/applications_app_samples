@@ -1,0 +1,116 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "获取元数据NDK"
+    },
+    {
+      "name": "FetchCover",
+      "value": "获取视频的封面"
+    },
+    {
+      "name": "FetchCoverStart",
+      "value": "开始获取视频的封面"
+    },
+    {
+      "name": "FetchMetaData",
+      "value": "获取视频的元数据"
+    },
+    {
+      "name": "FetchMetaDataStart",
+      "value": "开始获取视频的元数据"
+    },
+    {
+      "name": "album",
+      "value": "album"
+    },
+    {
+      "name": "albumArtist",
+      "value": "albumArtist"
+    },
+    {
+      "name": "artist",
+      "value": "artist"
+    },
+    {
+      "name": "author",
+      "value": "author"
+    },
+    {
+      "name": "dateTime",
+      "value": "dateTime"
+    },
+    {
+      "name": "dateTimeFormat",
+      "value": "dateTimeFormat"
+    },
+    {
+      "name": "composer",
+      "value": "composer"
+    },
+    {
+      "name": "duration",
+      "value": "duration"
+    },
+    {
+      "name": "genre",
+      "value": "genre"
+    },
+    {
+      "name": "hasAudio",
+      "value": "hasAudio"
+    },
+    {
+      "name": "hasVideo",
+      "value": "hasVideo"
+    },
+    {
+      "name": "mimeType",
+      "value": "mimeType"
+    },
+    {
+      "name": "trackCount",
+      "value": "trackCount"
+    },
+    {
+      "name": "sampleRate",
+      "value": "sampleRate"
+    },
+    {
+      "name": "title",
+      "value": "title"
+    },
+    {
+      "name": "videoHeight",
+      "value": "videoHeight"
+    },
+    {
+      "name": "videoWidth",
+      "value": "videoWidth"
+    },
+    {
+      "name": "videoOrientation",
+      "value": "videoOrientation"
+    },
+    {
+      "name": "hdrType",
+      "value": "hdrType"
+    },
+    {
+      "name": "location",
+      "value": "location"
+    },
+    {
+      "name": "noValue",
+      "value": "无"
+    }
+  ]
+}
