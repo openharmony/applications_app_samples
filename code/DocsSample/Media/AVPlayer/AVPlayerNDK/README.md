@@ -74,7 +74,7 @@ entry/src/ohosTest/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Media/AVPlayer/AVPlayerNDKVideo/ > .git/info/sparse-checkout
-git remote add origin OpenHarmony/applications_app_samples
+echo code/DocsSample/Media/AVPlayer/AVPlayerNDK/ > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openHarmony/applications_app_samples.git
 git pull origin master
 ```
