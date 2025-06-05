@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "获取缩略图NDK"
+    },
+    {
+      "name": "nextSync",
+      "value": "next sync"
+    },
+    {
+      "name": "previousSync",
+      "value": "previous sync"
+    },
+    {
+      "name": "closestSync",
+      "value": "closest sync"
+    },
+    {
+      "name": "closest",
+      "value": "closest"
+    },
+    {
+      "name": "FetchFrame",
+      "value": "开始抽帧"
+    },
+    {
+      "name": "ClearPictures",
+      "value": "清除图片"
+    },
+    {
+      "name": "ClearPicturesFinish",
+      "value": "已清除图片"
+    }
+  ]
+}
