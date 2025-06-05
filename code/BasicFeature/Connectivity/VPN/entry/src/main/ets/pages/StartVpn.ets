@@ -170,6 +170,9 @@ struct StartVpn {
             vpnext.startVpnExtensionAbility(want).then(() => {
               showToast('start vpnExt Success', 2000);
               hilog.info(0x0000, 'developTag', '%{public}s', 'start vpnExt Success');
+            }).catch((err: BusinessError) => {
+              showToast('start vpnExt Fail', 2000);
+              hilog.error(0x0000, 'developTag', 'start vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
             })
           } catch (err) {
             showToast('start vpnExt Fail: ' + JSON.stringify(err), 2000);
