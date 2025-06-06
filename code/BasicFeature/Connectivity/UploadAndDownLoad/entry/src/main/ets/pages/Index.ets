@@ -96,13 +96,16 @@ struct Index {
             })
           this.CapabilityView($r('app.media.ic_download'), $r('app.string.downloadToUser'), 'btn_downloadToUser',
             () => {
-
-              router.pushUrl({
-                url: 'pages/Download',
-                params: {
-                  action: 'ToUser'
-                }
-              })
+              if (this.isBackground == false ) {
+                router.pushUrl({
+                  url: 'pages/Download',
+                  params: {
+                    action: 'ToUser'
+                  }
+                })
+              } else {
+                promptAction.showToast({ message: "不支持后台下载到用户目录", duration: 5000 });
+              }
             })
           this.CapabilityView($r('app.media.ic_certified'), $r('app.string.cert_lock'), 'btn_cert_lock', () => {
             router.pushUrl({
