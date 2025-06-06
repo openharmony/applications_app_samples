@@ -18,7 +18,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-const TAG = '[MdmSample]';
+const TAG = '[Sample_Mdm]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'EnterpriseAdminAbility_';
 const BUNDLE_NAME = 'com.example.mdmsample';
@@ -47,7 +47,7 @@ export default function abilityTest() {
     });
     it(BUNDLE + 'onEnableAdmin', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onEnableAdmin begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onEnableAdmin clickEnableAdmin');
       await driver.assertComponentExist(ON.id('enable_admin_id'));
@@ -60,7 +60,7 @@ export default function abilityTest() {
     });
     it(BUNDLE + 'onDisableAdmin', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onDisableAdmin begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onDisableAdmin clickDisableAdmin');
       await driver.assertComponentExist(ON.id('disable_admin_id'));
@@ -72,7 +72,7 @@ export default function abilityTest() {
     });
     it(BUNDLE + 'onEnableWifi', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onEnableWifi begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onEnableWifi clickEnableWifi');
       await driver.assertComponentExist(ON.id('enable_wifi_id'));
@@ -84,7 +84,7 @@ export default function abilityTest() {
     });
     it(BUNDLE + 'onDisableWifi', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onDisableWifi begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onDisableWifi clickDisableWifi');
       await driver.assertComponentExist(ON.id('disable_wifi_id'));
@@ -96,7 +96,7 @@ export default function abilityTest() {
     });
     it(BUNDLE + 'onRebootDevice', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'onRebootDevice begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'onRebootDevice clickRebootDevice');
       await driver.assertComponentExist(ON.id('reboot_device_id'));

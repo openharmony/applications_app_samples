@@ -15,7 +15,7 @@
 
 @Component
 export struct NormalButtonComponent {
-  private btnText: string | Resource = $r('app.string.app_name');
+  btnText: string | Resource = $r('app.string.app_name');
 
   build() {
     Row() {
