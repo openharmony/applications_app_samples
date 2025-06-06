@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-export const add: (a: number, b: number) => number;
 export const startScreenCapture: () => number;
 export const stopScreenCapture: () => number;
 export const startCaptureAsFile: () => number;

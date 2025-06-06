@@ -13,8 +13,15 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import Base from '@ohos.base';
+import { Driver, ON } from '@ohos.UiTest';
+import fs from '@ohos.file.fs';
+
+const TAG = 'abilityTest';
+const domain: number = 0x0000;
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -37,14 +44,35 @@ export default function abilityTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it('assertContain', 0, () => {
+    it('assertContain', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
+      let want: Want = {
+        bundleName: 'com.sample.screencapturesample',
+        abilityName: 'EntryAbility'
+      };
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      abilityDelegator.startAbility(want, (err: Base.BusinessError) => {
+        hilog.info(domain, TAG, 'StartAbility get err ' + JSON.stringify(err));
+        expect(err).assertNull();
+      })
+      let driver = await Driver.create();
+      await driver.delayMs(2000);
+      let allowBtn1 = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.allow_desc'))));
+      await allowBtn1.click();
+      let allowBtn2 = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.allow_desc'))));
+      await allowBtn2.click();
+      let btn3 = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.js_saving_file_desc'))));
+      await btn3.click();
+      let btn4 = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.start_desc'))));
+      await btn4.click();
+      await driver.delayMs(2000);
+      let allowBtn3 = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.allow_desc'))));
+      await allowBtn3.click();
+      await driver.delayMs(5000);
+      let btn5 = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.stop_desc'))));
+      await btn5.click();
+      let files: string[] = fs.listFileSync('/data/storage/el2/base/files/');
+      expect(files).assertContain('js_saving_file.mp4');
     })
   })
 }

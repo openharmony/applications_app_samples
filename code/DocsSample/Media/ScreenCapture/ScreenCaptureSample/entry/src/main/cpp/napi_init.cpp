@@ -16,51 +16,29 @@
 #include "main.h"
 
 using namespace std;
-#define LOG_TAG "MY_TAG"
+#define LOG_TAG "ScreenCaptureSample"
 
-static napi_value Add(napi_env env, napi_callback_info info) {
-    size_t requireArgc = 2;
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    napi_valuetype valuetype0;
-    napi_typeof(env, args[0], &valuetype0);
-
-    napi_valuetype valuetype1;
-    napi_typeof(env, args[1], &valuetype1);
-
-    double value0;
-    napi_get_value_double(env, args[0], &value0);
-
-    double value1;
-    napi_get_value_double(env, args[1], &value1);
-
-    napi_value sum;
-    napi_create_double(env, value0 + value1, &sum);
-    return sum;
-}
-
-void OpenFile(std::string filename_) {
-    snprintf(filename, sizeof(filename), "data/storage/el2/base/files/MIC_%s.pcm", filename_.c_str());
-    micFile_ = fopen(filename, "wb");
+void OpenFile(std::string fileName)
+{
+    std::string filePath = "data/storage/el2/base/files/MIC_" + fileName + ".pcm";
+    micFile_ = fopen(filePath.c_str(), "wb");
     if (micFile_ == nullptr) {
-        // OH_LOG_ERROR(LOG_APP, "OpenFile micFile_ audio open failed. %{public}s", strerror(errno));
+        OH_LOG_ERROR(LOG_APP, "OpenFile micFile_ audio open failed. %{public}s", strerror(errno));
     }
-    snprintf(filename, sizeof(filename), "data/storage/el2/base/files/INNER_%s.pcm", filename_.c_str());
-    innerFile_ = fopen(filename, "wb");
+    filePath = "data/storage/el2/base/files/INNER_" + fileName + ".pcm";
+    innerFile_ = fopen(filePath.c_str(), "wb");
     if (innerFile_ == nullptr) {
-        // OH_LOG_ERROR(LOG_APP, "OpenFile innerFile_ audio open failed. %{public}s", strerror(errno));
+        OH_LOG_ERROR(LOG_APP, "OpenFile innerFile_ audio open failed. %{public}s", strerror(errno));
     }
-    snprintf(filename, sizeof(filename), "data/storage/el2/base/files/VIDEO_%s.yuv", filename_.c_str());
-    vFile_ = fopen(filename, "wb");
+    filePath = "data/storage/el2/base/files/VIDEO_" + fileName + ".yuv";
+    vFile_ = fopen(filePath.c_str(), "wb");
     if (vFile_ == nullptr) {
-        // OH_LOG_ERROR(LOG_APP, "OpenFile vFile video open failed. %{public}s", strerror(errno));
+        OH_LOG_ERROR(LOG_APP, "OpenFile vFile video open failed. %{public}s", strerror(errno));
     }
 }
 
-void CloseFile(void) {
+void CloseFile(void)
+{
     if (micFile_ != nullptr) {
         fclose(micFile_);
         micFile_ = nullptr;
@@ -75,7 +53,8 @@ void CloseFile(void) {
     }
 }
 
-void SetConfig(OH_AVScreenCaptureConfig &config) {
+void SetConfig(OH_AVScreenCaptureConfig &config)
+{
     int32_t width = 720;
     int32_t height = 1280;
     OH_AudioCaptureInfo micCapInfo = {.audioSampleRate = 48000, .audioChannels = 2, .audioSource = OH_MIC};
@@ -97,15 +76,17 @@ void SetConfig(OH_AVScreenCaptureConfig &config) {
     };
 }
 
-void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
+void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData)
+{
     (void)capture;
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OnError errorCode is %{public}d", errorCode);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnError errorCode is %{public}d", errorCode);
     (void)userData;
 }
 
-void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData)
+{
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OnStateChange started");
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnStateChange started");
         // 处理状态变更
         // 可选 配置录屏旋转
         int32_t ret = OH_AVScreenCapture_SetCanvasRotation(capture, true);
@@ -123,9 +104,11 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
 }
 
 void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType,
-                       int64_t timestamp, void *userData) {
+                       int64_t timestamp, void *userData)
+{
     if (m_isRunning) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OnBufferAvailable bufferType is %{public}d", bufferType);
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable bufferType is %{public}d",
+            bufferType);
         if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
             // 处理视频buffer
             OH_NativeBuffer *nativebuffer = OH_AVBuffer_GetNativeBuffer(buffer);
@@ -133,13 +116,13 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
                 int bufferLen = OH_AVBuffer_GetCapacity(buffer);
                 OH_AVCodecBufferAttr info;
                 int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-                OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture size %{public}d", info.size);
-                OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture bufferLen %{public}d", bufferLen);
+                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture size %{public}d", info.size);
+                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture bufferLen %{public}d", bufferLen);
 
                 OH_NativeBuffer_Config config;
                 OH_NativeBuffer_GetConfig(nativebuffer, &config);
-                OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture height %{public}d width %{public}d", config.height,
-                            config.width);
+                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture height %{public}d width %{public}d",
+                    config.height, config.width);
                 // int32_t length = config.height * config.width * 4;
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
                 if (buf == nullptr) {
@@ -148,14 +131,14 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
                 fwrite(buf, 1, bufferLen, vFile_);
                 OH_NativeBuffer_Unreference(nativebuffer);
                 buffer = nullptr;
-                OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OnBufferAvailable inner audio");
+                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
             }
         } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
             // 处理内录buffer
             int bufferLen = OH_AVBuffer_GetCapacity(buffer);
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
             if (buf != nullptr) {
-                OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OnBufferAvailable inner audio");
+                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable inner audio");
                 fwrite(buf, 1, bufferLen, innerFile_);
             }
         } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
@@ -163,7 +146,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
             int bufferLen = OH_AVBuffer_GetCapacity(buffer);
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
             if (buf != nullptr) {
-                OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OnBufferAvailable mic audio");
+                OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnBufferAvailable mic audio");
                 fwrite(buf, 1, bufferLen, micFile_);
             }
         }
@@ -174,12 +157,13 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData)
 {
     (void)capture;
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OnError errorCode is %{public}uld", displayId);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OnError errorCode is %{public}uld", displayId);
     (void)userData;
 }
 
 // 开始录屏原始码流
-static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info) {
+static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info)
+{
     g_avCapture = OH_AVScreenCapture_Create();
     if (g_avCapture == nullptr) {
         OH_LOG_ERROR(LOG_APP, "create screen capture failed");
@@ -206,16 +190,16 @@ static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info) {
     // 可选，排除指定窗口/指定音频类型 end
     int result = OH_AVScreenCapture_Init(g_avCapture, config_);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
     }
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
 
     result = OH_AVScreenCapture_StartScreenCapture(g_avCapture);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture Started failed %{public}d", result);
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started failed %{public}d", result);
         OH_AVScreenCapture_Release(g_avCapture);
     }
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture Started %{public}d", result);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
     m_isRunning = true;
 
@@ -225,7 +209,8 @@ static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info) {
 }
 
 // 开始录屏存文件
-static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info) {
+static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
+{
     g_avCapture = OH_AVScreenCapture_Create();
     if (g_avCapture == nullptr) {
         OH_LOG_ERROR(LOG_APP, "create screen capture failed");
@@ -233,12 +218,12 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config_;
 
     OH_RecorderInfo recorderInfo;
-    const std::string SCREEN_CAPTURE_ROOT = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((SCREEN_CAPTURE_ROOT + "saving_file.mp4").c_str(), O_RDWR | O_CREAT, 0777);
+    const std::string filePath = "/data/storage/el2/base/files/";
+    int32_t outputFd = open((filePath + "saving_file.mp4").c_str(), O_RDWR | O_CREAT, 0777);
     std::string fileUrl = "fd://" + std::to_string(outputFd);
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture fileUrl %{public}s", fileUrl.c_str());
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture fileUrl %{public}s", fileUrl.c_str());
 
     SetConfig(config_);
     config_.captureMode = OH_CAPTURE_HOME_SCREEN;
@@ -250,16 +235,16 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetDisplayCallback(g_avCapture, OnDisplaySelected, nullptr);
     OH_AVSCREEN_CAPTURE_ErrCode result = OH_AVScreenCapture_Init(g_avCapture, config_);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
     }
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
 
     result = OH_AVScreenCapture_StartScreenRecording(g_avCapture);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture Started failed %{public}d", result);
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started failed %{public}d", result);
         OH_AVScreenCapture_Release(g_avCapture);
     }
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture Started %{public}d", result);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
     m_scSaveFileIsRunning = true;
     napi_value res;
@@ -268,9 +253,11 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info) {
 }
 
 // 开始录屏原始码流SurfaceMode
-void ThreadVideoRunMethod() {
+void ThreadVideoRunMethod()
+{
     while (m_scSurfaceIsRunning) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ThreadVideoRunMethod m_scSurfaceIsRunning %{public}d", m_scSurfaceIsRunning);
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ThreadVideoRunMethod m_scSurfaceIsRunning %{public}d",
+            m_scSurfaceIsRunning);
         if (!isStarted_.load()) {
             return;
         }
@@ -300,43 +287,8 @@ void ThreadVideoRunMethod() {
     }
 }
 
-static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info) {
-    isStarted_.store(false);
-    inputVideoThread_ = nullptr;
-    g_encContext = nullptr;
-    g_avCapture = OH_AVScreenCapture_Create();
-    if (g_avCapture == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "create screen capture failed");
-    }
-    OH_AVScreenCaptureConfig config_;
-    SetConfig(config_);
-    bool isMicrophone = false;
-    OH_AVScreenCapture_SetMicrophoneEnabled(g_avCapture, isMicrophone);
-    OH_AVScreenCapture_SetErrorCallback(g_avCapture, OnError, nullptr);
-    OH_AVScreenCapture_SetStateCallback(g_avCapture, OnStateChange, nullptr);
-    OH_AVScreenCapture_SetDataCallback(g_avCapture, OnBufferAvailable, nullptr);
-    OH_AVScreenCapture_SetDisplayCallback(g_avCapture, OnDisplaySelected, nullptr);
-    int result = OH_AVScreenCapture_Init(g_avCapture, config_);
-    if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
-    }
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
-
-    // 获取需要输入的Surface，以进行编码
-    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-    const char *name = OH_AVCapability_GetName(capability);
-    g_videoEnc = OH_VideoEncoder_CreateByName(name);
-    g_muxer = std::make_unique<Muxer>();
-    const std::string SCREEN_CAPTURE_ROOT = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((SCREEN_CAPTURE_ROOT + "surface.mp4").c_str(), O_RDWR | O_CREAT, 0777);
-    g_muxer->Create(outputFd);
-    g_encContext = new CodecUserData;
-    g_encContext->sampleInfo = &sampleInfo_;
-    // 配置异步回调，调用 OH_VideoEncoder_SetCallback 接口
-    OH_VideoEncoder_RegisterCallback(g_videoEnc,
-                                     {SampleCallback::OnError, SampleCallback::OnStreamChanged,
-                                     SampleCallback::OnNeedInputBuffer, SampleCallback::OnNewOutputBuffer},
-                                     g_encContext);
+int SetFormat()
+{
     OH_AVFormat *format = OH_AVFormat_Create();
     // 配置视频帧速率
     double frameRate = 30.0;
@@ -357,7 +309,7 @@ static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info) {
     // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
     int32_t quality = 0;
     // 配置比特率
-    int64_t bitRate = 3000000;
+    int64_t bitRate = 2000000;
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
     sampleInfo_.videoWidth = DEFAULT_WIDTH;
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
@@ -375,54 +327,95 @@ static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info) {
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
-    result = OH_VideoEncoder_Configure(g_videoEnc, format);
-    OH_LOG_INFO(LOG_APP, "==DEMO==  OH_VideoEncoder_Configure ret=%{public}d", result);
+    int result = OH_VideoEncoder_Configure(g_videoEnc, format);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== OH_VideoEncoder_Configure ret=%{public}d", result);
     OH_AVFormat_Destroy(format);
+    return result;
+}
 
+int GetInputSurface()
+{
+    // 获取需要输入的Surface，以进行编码
+    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+    const char *name = OH_AVCapability_GetName(capability);
+    g_videoEnc = OH_VideoEncoder_CreateByName(name);
+    g_muxer = std::make_unique<Muxer>();
+    const std::string filePath = "/data/storage/el2/base/files/";
+    int32_t outputFd = open((filePath + "surface.mp4").c_str(), O_RDWR | O_CREAT, 0777);
+    g_muxer->Create(outputFd);
+    g_encContext = new CodecUserData;
+    g_encContext->sampleInfo = &sampleInfo_;
+    // 配置异步回调，调用 OH_VideoEncoder_SetCallback 接口
+    OH_VideoEncoder_RegisterCallback(g_videoEnc,
+                                     {SampleCallback::OnError, SampleCallback::OnStreamChanged,
+                                     SampleCallback::OnNeedInputBuffer, SampleCallback::OnNewOutputBuffer},
+                                     g_encContext);
+    (void)SetFormat();
     // 从视频编码器获取输入Surface
     OHNativeWindow *nativeWindow;
-    result = OH_VideoEncoder_GetSurface(g_videoEnc, &nativeWindow);
+    int result = OH_VideoEncoder_GetSurface(g_videoEnc, &nativeWindow);
     if (result != AV_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture Started OH_VideoEncoder_GetSurface ret=%{public}d", result);
+        OH_LOG_ERROR(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started OH_VideoEncoder_GetSurface ret=%{public}d",
+            result);
+        return result;
     }
     result = OH_VideoEncoder_Prepare(g_videoEnc);
     g_muxer->Config(sampleInfo_);
     g_muxer->Start();
     // 启动编码器
-    int32_t retEnc = OH_VideoEncoder_Start(g_videoEnc);
+    result = OH_VideoEncoder_Start(g_videoEnc);
     isStarted_.store(true);
     m_scSurfaceIsRunning = true;
     inputVideoThread_ = std::make_unique<std::thread>(ThreadVideoRunMethod);
     // 指定surface开始录屏
     result = OH_AVScreenCapture_StartScreenCaptureWithSurface(g_avCapture, nativeWindow);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
-        OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture Started failed %{public}d", result);
+        OH_LOG_ERROR(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started failed %{public}d", result);
         OH_AVScreenCapture_Release(g_avCapture);
+        return result;
     }
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture Started %{public}d", result);
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
+    return result;
+}
+
+static napi_value StartScreenCapture_03(napi_env env, napi_callback_info info)
+{
+    isStarted_.store(false);
+    inputVideoThread_ = nullptr;
+    g_encContext = nullptr;
+    g_avCapture = OH_AVScreenCapture_Create();
+    if (g_avCapture == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "create screen capture failed");
+    }
+    OH_AVScreenCaptureConfig config_;
+    SetConfig(config_);
+    bool isMicrophone = false;
+    OH_AVScreenCapture_SetMicrophoneEnabled(g_avCapture, isMicrophone);
+    OH_AVScreenCapture_SetErrorCallback(g_avCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(g_avCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(g_avCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetDisplayCallback(g_avCapture, OnDisplaySelected, nullptr);
+    int result = OH_AVScreenCapture_Init(g_avCapture, config_);
+    if (result != AV_SCREEN_CAPTURE_ERR_OK) {
+        OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init failed %{public}d", result);
+    }
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture OH_AVScreenCapture_Init %{public}d", result);
+    (void)GetInputSurface();
     napi_value res;
     napi_create_int32(env, result, &res);
     return res;
 }
 
 // 停止
-static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
-    OH_LOG_INFO(LOG_APP, "==DEMO== ScreenCapture Stop");
+static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
+{
+    OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Stop");
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
     napi_value res;
     if (m_scSurfaceIsRunning) {
-        int32_t ret = OH_VideoEncoder_NotifyEndOfStream(g_videoEnc);
-        if (ret != AV_ERR_OK) {
-            // 异常处理
-        }
-        ret = OH_VideoEncoder_Stop(g_videoEnc);
-        if (ret != AV_ERR_OK) {
-            // 异常处理
-        }
-        ret = OH_VideoEncoder_Destroy(g_videoEnc);
-        if (ret != AV_ERR_OK) {
-            // 异常处理
-        }
+        (void)OH_VideoEncoder_NotifyEndOfStream(g_videoEnc);
+        (void)OH_VideoEncoder_Stop(g_videoEnc);
+        (void)OH_VideoEncoder_Destroy(g_videoEnc);
         g_videoEnc = nullptr;
         g_muxer->Stop();
         m_scSurfaceIsRunning = false;
@@ -431,16 +424,15 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
             inputVideoThread_->join();
         }
     }
-
+    if (g_avCapture == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "capture_ is null.");
+    }
     if (m_scSaveFileIsRunning) {
-        if (g_avCapture == nullptr) {
-            OH_LOG_ERROR(LOG_APP, "capture_ is null.");
-        }
         result = OH_AVScreenCapture_StopScreenRecording(g_avCapture);
         if (result != AV_SCREEN_CAPTURE_ERR_BASE) {
-            OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_StopScreenCapture Result: %{public}d", result);
+            OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_StopScreenRecording Result: %{public}d",
+                result);
         }
-        OH_LOG_INFO(LOG_APP, "StopScreenCapture OH_AVScreenCapture_StopScreenCapture");
         result = OH_AVScreenCapture_Release(g_avCapture);
         if (result != AV_SCREEN_CAPTURE_ERR_BASE) {
             OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_Release: %{public}d", result);
@@ -448,31 +440,25 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
         OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
         m_scSaveFileIsRunning = false;
     } else {
-        if (g_avCapture == nullptr) {
-            OH_LOG_ERROR(LOG_APP, "capture_ is null.");
-        }
         result = OH_AVScreenCapture_StopScreenCapture(g_avCapture);
         if (result != AV_SCREEN_CAPTURE_ERR_BASE) {
             OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_StopScreenCapture Result: %{public}d", result);
         }
-        OH_LOG_INFO(LOG_APP, "StopScreenCapture OH_AVScreenCapture_StopScreenCapture");
         result = OH_AVScreenCapture_Release(g_avCapture);
         if (result != AV_SCREEN_CAPTURE_ERR_BASE) {
             OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_Release: %{public}d", result);
         }
         OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
         CloseFile();
-        OH_LOG_INFO(LOG_APP, "CloseFile success");
         m_isRunning = false;
     }
-
     napi_create_int32(env, result, &res);
     return res;
 }
 
 
 // 调用老接口，仅提供代码实现，不建议使用
-void MockOnAudioBufferAvailable(OH_AVScreenCapture *screenCapture, bool isReady, OH_AudioCaptureSourceType type) 
+void MockOnAudioBufferAvailable(OH_AVScreenCapture *screenCapture, bool isReady, OH_AudioCaptureSourceType type)
 {
     if (isReady == true) {
         OH_AudioBuffer *audioBuffer = (OH_AudioBuffer *)malloc(sizeof(OH_AudioBuffer));
@@ -540,9 +526,9 @@ void SetScreenCaptureCallback()
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
-        {"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"startScreenCapture", nullptr, StartScreenCapture_01, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"startCaptureAsFile", nullptr, StartScreenCapture_02, nullptr, nullptr, nullptr, napi_default, nullptr},

@@ -30,9 +30,6 @@ export struct Scene2 {
         Text($r('app.string.streaming_desc'))
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
-          })
       }
       .width('100%')
       .height('20%')

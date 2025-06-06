@@ -24,7 +24,7 @@ export struct MenuSCComponent {
       MenuItemGroup({ header: $r('app.string.list_desc') }) {
         MenuItem({ content: $r('app.string.index_desc') })
           .onChange((selected) => {
-            console.info("menuItem select" + selected);
+            console.info('menuItem select' + selected);
             router.pushUrl({
               url: 'pages/Index' // 目标url
             }, router.RouterMode.Single, (err) => {
@@ -74,23 +74,18 @@ export struct MenuSCComponent {
             console.info('Invoke pushUrl succeeded.');
           });
         })
-      }
 
-      MenuItemGroup({ header: $r('app.string.other_mode_desc') }) {
-        MenuItem({ content: $r('app.string.all_mode_desc') })
+        MenuItem({ content: $r('app.string.js_saving_file_desc')})
           .onChange((selected) => {
-            router.pushUrl({
-              url: 'pages/Scene4' // 目标url
-            }, router.RouterMode.Single, (err) => {
-              if (err) {
-                console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
-                return;
-              }
-              console.info('Invoke pushUrl succeeded.');
-            });
-          })
-        MenuItem({
-          content: $r('app.string.all_mode_desc'),
+          router.pushUrl({
+            url: 'pages/Scene4' // 目标url
+          }, router.RouterMode.Single, (err) => {
+            if (err) {
+              console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            console.info('Invoke pushUrl succeeded.');
+          });
         })
       }
     }

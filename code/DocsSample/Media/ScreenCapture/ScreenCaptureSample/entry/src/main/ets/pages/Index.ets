@@ -57,6 +57,13 @@ struct Index {
               })
           }
           ListItem() {
+            Button($r('app.string.js_saving_file_desc'))
+              .width('80%')
+              .onClick(() => {
+                this.pageInfos.pushPathByName('Scene4', '');
+              })
+          }
+          ListItem() {
             Text($r('app.string.streaming_desc'))
               .fontSize(20)
           }
@@ -75,7 +82,7 @@ struct Index {
               })
           }
         }
-        .width("100%")
+        .width('100%')
         .margin({ top: 12 })
         .alignListItem(ListItemAlign.Center)
         .divider(this.egDivider)
