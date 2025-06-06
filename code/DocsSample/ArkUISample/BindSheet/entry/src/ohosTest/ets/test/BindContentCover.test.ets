@@ -31,7 +31,7 @@ export function BindContentCoverTest() {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.samples.bindSheet',
+        bundleName: 'com.samples.bindsheet',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
