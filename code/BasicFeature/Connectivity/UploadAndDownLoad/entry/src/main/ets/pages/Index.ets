@@ -105,7 +105,7 @@ struct Index {
                   }
                 })
               } else {
-                promptAction.showToast({ message: "不支持后台下载到用户目录", duration: 5000 });
+                promptAction.showToast({ message: '不支持后台下载到用户目录', duration: 5000 });
               }
             })
           this.CapabilityView($r('app.media.ic_certified'), $r('app.string.cert_lock'), 'btn_cert_lock', () => {
