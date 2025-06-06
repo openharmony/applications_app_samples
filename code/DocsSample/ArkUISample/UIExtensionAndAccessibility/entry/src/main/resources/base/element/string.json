@@ -61,6 +61,10 @@
       "value": "使用无障碍属性 2"
     },
     {
+      "name": "UniversalAttributesAccessibility_title3",
+      "value": "使用无障碍属性 3"
+    },
+    {
       "name": "Embedded_Component_description",
       "value": "展示 EmbeddedComponent 组件的基础使用方式"
     },
@@ -83,6 +87,10 @@
     {
       "name": "UniversalAttributesAccessibility_description2",
       "value": "设置无障碍组"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_description3",
+      "value": "设置无障碍焦点绿框绘制层级"
     },
     {
       "name": "UIExtensionComponent_button1",
@@ -139,6 +147,14 @@
     {
       "name": "UniversalAttributesAccessibility_text8",
       "value": "Column组件可以被选中，播报的内容是“分组”"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text9",
+      "value": "文本3"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text10",
+      "value": "文本4"
     }
   ]
 }

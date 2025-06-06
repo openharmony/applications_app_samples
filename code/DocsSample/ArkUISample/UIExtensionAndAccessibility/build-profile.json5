@@ -21,9 +21,9 @@
         "name": "default",
         "signingConfig": "default",
         "runtimeOS": "OpenHarmony",
-        "compileSdkVersion": 18,
-        "compatibleSdkVersion": 18,
-        "targetSdkVersion": 18,
+        "compileSdkVersion": 20,
+        "compatibleSdkVersion": 20,
+        "targetSdkVersion": 20,
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true

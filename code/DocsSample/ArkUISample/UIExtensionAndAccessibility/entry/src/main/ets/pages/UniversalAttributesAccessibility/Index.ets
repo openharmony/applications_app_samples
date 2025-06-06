@@ -17,6 +17,7 @@ import { CompletedRoutableCard } from '../../common/Card'
 import { Route } from '../../common/Route'
 import { AccessibilityText } from './AccessibilityText'
 import { AccessibilityGroup } from './AccessibilityGroup'
+import { AccessibilityFocusDrawLevel } from './AccessibilityFocusDrawLevel'
 import resource from '../../common/resource'
 
 export const ACCESSIBILITY_ROUTE_PREFIX: string = 'UniversalAttributesAccessibility';
@@ -31,6 +32,11 @@ const routes: Route[] = [
     name: `${ACCESSIBILITY_ROUTE_PREFIX}/AccessibilityGroup`,
     title: resource.resourceToString($r('app.string.UniversalAttributesAccessibility_title2')),
     description: resource.resourceToString($r('app.string.UniversalAttributesAccessibility_description2')),
+  },
+  {
+    name: `${ACCESSIBILITY_ROUTE_PREFIX}/AccessibilityFocusDrawLevel`,
+    title: resource.resourceToString($r('app.string.UniversalAttributesAccessibility_title3')),
+    description: resource.resourceToString($r('app.string.UniversalAttributesAccessibility_description3')),
   }
 ];
 
@@ -42,6 +48,8 @@ export function AccessibilityDestination(name: string) {
     AccessibilityText();
   } else if (name == routes[1].name) {
     AccessibilityGroup();
+  } else if (name == routes[2].name) {
+    AccessibilityFocusDrawLevel();
   }
 }
 
