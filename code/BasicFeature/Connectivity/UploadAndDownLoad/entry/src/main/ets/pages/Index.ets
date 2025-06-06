@@ -17,7 +17,8 @@ import notificationManager from '@ohos.notificationManager';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
 import { urlUtils } from '@ohos/uploaddownload';
-import util from '@ohos.util';
+import { promptAction } from '@kit.ArkUI';
+
 
 @Styles
 function itemStyle() {
