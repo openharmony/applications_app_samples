@@ -52,19 +52,23 @@
 ```
 entry/src/main/ets/
 |---common
-|   |---Common.ts                       // 公用方法，如bufferToString
+|   |---Common.ets                       // 公用方法，如bufferToString
 |   |---Logger.ts                       // 日志
 |---component
+|   |---SendableTest.ets                 // 传递SendableClass页签
 |   |---TaskPoolTab.ets                 // taskpool页签
+|   |---test.ets                        // Sendable Class
 |   |---WorkerTab.ets                   // worker页签
 |---entryability
+|---fileFs
+|   |---MyWorker.ets                    // 批量拷贝文件
 |---pages
 |   |---CopyFile.ets                    // 拷贝文件界面，可选择把文件进行拷贝并显示触发事件后日志
 |   |---Index.ets                       // 首页
 |   |---StrSort.ets                     // worker和taskpool页签都在这里调用
 |---workers
 |   |---Worker.ts                       // worker线程
-|   |---Worker03.ts                     // 拷贝文件的worker线程
+|   |---WorkerCopy.ts                   // 拷贝文件的worker线程
 ```
 
 ### 具体实现
@@ -87,7 +91,7 @@ entry/src/main/ets/
 
   * 拷贝文件：在[CopyFile.ets](entry/src/main/ets/pages/CopyFile.ets)
 
-    中调用MyWorker.WorkToCopyFiles()，在WorkToCopyFiles方法中向worker03线程发消息，并在worker03线程中批量拷贝，拷贝完成后将结果返回。
+    中调用MyWorker.WorkToCopyFiles()，在WorkToCopyFiles方法中向WorkerCopy线程发消息，并在WorkerCopy线程中批量拷贝，拷贝完成后将结果返回。
 
 ### 相关权限
 
