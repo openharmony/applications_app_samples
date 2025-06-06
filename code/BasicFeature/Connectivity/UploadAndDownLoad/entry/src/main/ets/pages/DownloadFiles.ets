@@ -18,9 +18,10 @@ import { FileBrowse } from '@ohos/uploaddownload';
 @Entry
 @Component
 struct DownLoadFiles {
+  @StorageLink('downloadDir') downloadDir: string = './';
   build() {
     Column() {
-      FileBrowse()
+      FileBrowse({downloadDir:this.downloadDir})
     }
     .width('100%')
     .height('100%')

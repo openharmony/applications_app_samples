@@ -139,6 +139,14 @@
     {
       "name": "cert_lock",
       "value": "证书锁定"
+    },
+    {
+      "name": "downloadToUser",
+      "value": "下载到用户目录"
+    },
+    {
+      "name": "downloadToApplication",
+      "value": "下载到应用目录"
     }
   ]
 }

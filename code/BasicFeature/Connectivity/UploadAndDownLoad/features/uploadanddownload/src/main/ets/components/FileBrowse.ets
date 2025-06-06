@@ -21,9 +21,10 @@ export struct FileBrowse {
   @State folders: Array<string> = ['folder'];
   @State files: Array<string> = [];
   @State currentFolder: string = '';
+  @Link downloadDir: string;
 
   aboutToAppear() {
-    fileUtils.listFolders().then((folders: Array<string>) => {
+    fileUtils.listFolders(this.downloadDir).then((folders: Array<string>) => {
       this.folders = folders;
     })
   }
@@ -57,7 +58,7 @@ export struct FileBrowse {
             .onStateChange(async (isActivated: boolean) => {
               if (isActivated) {
                 this.currentFolder = item;
-                this.files = await fileUtils.listFiles(item);
+                this.files = await fileUtils.listFiles(this.downloadDir,item);
               }
             })
           }
@@ -132,7 +133,7 @@ export struct FileBrowse {
       }
       .margin({ bottom: 24, top: 6 })
       .onClick(() => {
-        fileUtils.clearFolder(this.currentFolder);
+        fileUtils.clearFolder(this.downloadDir,this.currentFolder);
         this.files = [];
       })
     }

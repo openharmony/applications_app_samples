@@ -139,6 +139,14 @@
     {
       "name": "cert_lock",
       "value": "Cert lock"
+    },
+    {
+      "name": "downloadToUser",
+      "value": "DownloadToUser"
+    },
+    {
+      "name": "downloadToApplication",
+      "value": "DownloadToApplication"
     }
   ]
 }

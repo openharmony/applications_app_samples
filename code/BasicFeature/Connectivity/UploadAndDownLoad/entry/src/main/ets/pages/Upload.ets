@@ -168,7 +168,7 @@ struct Upload {
       this.progress = 0;
       let index = this.chunkImgIndex;
       let fileUris = this.imageList.slice(index);
-      console.debug(TAG + 'fileuri:' + fileUris);
+      logger.debug(TAG + 'fileuri:' + fileUris);
       requestUpload.uploadFileChunk(fileUris, this.chunkParaBegins, this.chunkParaEnds, (progress: number, isSucceed: boolean) => {
         this.progress = progress;
         if (this.progress === 100 && isSucceed) {
@@ -191,7 +191,7 @@ struct Upload {
       });
       return;
     }
-    console.debug(TAG + ':imageList:' + this.imageList);
+    logger.debug(TAG + ':imageList:' + this.imageList);
     if (this.isBackground) {
       AppStorage.setOrCreate('backTaskState', BackgroundTaskState.RUNNING);
       requestUpload.uploadFilesBackground(this.imageList);

@@ -27,25 +27,32 @@ import {
   TOAST_BOTTOM
 } from '@ohos/uploaddownload';
 import { SelectFolderDialog } from '../components/SelectFolderDialog';
+import { common } from '@kit.AbilityKit';
+import { picker } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'DownloadSample';
+const userDir: string =  'file://docs/storage/Users/currentUser';
 
 @Entry
 @Component
 struct Download {
   private fileData: CustomDataSource = new CustomDataSource([]);
+  private documentSelectOptions = new picker.DocumentSelectOptions();
   @StorageLink('isBackground') isBackground: boolean = false;
   @StorageLink('backDownTaskState') backDownTaskState: BackgroundTaskState = BackgroundTaskState.NONE;
+  @StorageLink('downloadServer') downloadServerStr: string = './';
   @Provide downloadFolder: Array<string> = [];
   @State isGetData: boolean = false;
   @State checkFile: Array<string> = [];
   @State checkList: Array<boolean> = [];
   @State isRunning: boolean = false;
+  @State isUserFolder: boolean = true;
   @State isPause: boolean = false;
   @State progress: number = 0;
   private selectFolder = (folder: string) => {
     logger.info(TAG, `selectFolder = ${folder}`);
-    this.download(folder);
+    this.download('./' + folder);
   }
   private folderDialogController: CustomDialogController = new CustomDialogController({
     builder: SelectFolderDialog({ selectFolder: this.selectFolder }),
@@ -53,6 +60,56 @@ struct Download {
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -12 }
   });
+  async selectUserFolder() {
+    const documentSaveOptions = new picker.DocumentSaveOptions();    
+    logger.info(TAG, `documentSaveOptions: ${JSON.stringify(documentSaveOptions)}`)
+    logger.info(TAG, `documentSelectOptions: ${JSON.stringify(this.documentSelectOptions)}`)
+    this.checkFile = [];
+    if (this.checkList === undefined) {
+      return;
+    }
+    logger.info(TAG, `checkList = ${JSON.stringify(this.checkList)}`);
+    for (let i = 0; i < this.checkList.length; i++) {
+      if (this.checkList[i]) {
+        let fileModel = this.fileData.getData(i);
+        logger.info(TAG, `fileModel = ${JSON.stringify(fileModel)}`);
+        fileModel.files.forEach((url: string) => {
+          let splitUrl = url.split('//')[1].split('/');
+          if (splitUrl[splitUrl.length-1] !== '') {
+            this.checkFile.push(url);
+            documentSaveOptions.newFileNames = [splitUrl[splitUrl.length-1]];
+          }
+        });
+      }
+    }
+
+    logger.info(TAG, `checkFile = ${JSON.stringify(this.checkFile)}`);
+    
+    if (this.checkFile.length === 0) {
+      promptAction.showToast({ message: $r('app.string.check_file_tips'), bottom: TOAST_BOTTOM });
+      return;
+    }
+
+    logger.info(TAG, `documentSaveOptions: ${documentSaveOptions}`)
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    logger.info(TAG, `context: ${JSON.stringify(context)}`)
+    const documentViewPicker = new picker.DocumentViewPicker(context);
+    logger.info(TAG, `documentViewPicker: ${JSON.stringify(documentViewPicker)}`)
+    await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+      logger.info(TAG, `documentSaveResult: ${documentSaveResult}`)
+      let splitUrl = documentSaveResult[0].split('/');
+      logger.info(TAG, `splitUrl: ${splitUrl}`)
+      splitUrl.pop();
+      logger.info(TAG, `splitUrl: ${splitUrl}`)
+      let splitUrl1=splitUrl.join('/');
+      logger.info(TAG, `selectFolder = ${splitUrl1}`);
+      this.documentSelectOptions.defaultFilePathUri = splitUrl1
+      this.download(splitUrl1);
+      logger.info(TAG, `selectFolder = ${splitUrl1}`);
+    }).catch((err: BusinessError) => {
+      logger.error(TAG, `code : ${err.code} message : ${err.message}`)
+    });
+  }
 
   build() {
     Navigation() {
@@ -91,7 +148,7 @@ struct Download {
     .mode(NavigationMode.Stack)
     .backgroundColor($r('app.color.light_gray'))
     .hideToolBar(false)
-    .title($r('app.string.download'))
+    .title(this.isUserFolder?$r('app.string.downloadToUser'):$r('app.string.download'))
   }
 
   @Builder
@@ -192,7 +249,7 @@ struct Download {
                 .fontSize(16)
                 .margin({ left: 12 })
             } else {
-              Text($r('app.string.download'))
+              Text(this.isUserFolder?$r('app.string.downloadToUser'):$r('app.string.download'))
                 .fontColor(Color.White)
                 .fontSize(16)
             }
@@ -203,9 +260,13 @@ struct Download {
         .height(45)
         .width('100%')
         .backgroundColor($r('app.color.button_blue'))
-        .onClick(() => {
+        .onClick(async () => {
           if (!this.isRunning) {
-            this.folderDialogController.open();
+            if (this.isUserFolder ) {
+              await this.selectUserFolder();
+            } else {
+              this.folderDialogController.open();
+            }
           }
         })
       }
@@ -218,9 +279,22 @@ struct Download {
         .margin({ bottom: 12 })
         .fontColor($r('app.color.btn_text_blue'))
         .onClick(() => {
-          router.pushUrl({
-            url: 'pages/DownloadFiles'
-          });
+          if (this.isUserFolder ) {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            logger.info(TAG, `context: ${JSON.stringify(context)}`)
+            const documentViewPicker = new picker.DocumentViewPicker(context);
+            logger.info(TAG, `documentViewPicker: ${JSON.stringify(documentViewPicker)}`)
+            logger.info(TAG, `documentSelectOptions: ${JSON.stringify(this.documentSelectOptions)}`)
+            documentViewPicker.select(this.documentSelectOptions).then((documentSelectResult: Array<string>) =>{
+              logger.info(TAG, `documentSelectResult: ${documentSelectResult}`)
+            })
+          } else {
+            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+            AppStorage.setOrCreate('downloadDir', context.cacheDir);
+            router.pushUrl({
+              url: 'pages/DownloadFiles'
+            })
+          }            
         })
     }
     .margin({ top: 12, left: 12, right: 12 })
@@ -231,19 +305,45 @@ struct Download {
     this.isRunning = false;
     this.isPause = false;
     this.isGetData = true;
-    requestFiles.requestFiles().then((data: FileModel[]) => {
+    const params = router.getParams();
+    logger.info(`router.params: ${params}`);
+    if (params) {
+      this.isUserFolder=true;
       this.checkList = [];
-      this.isRunning = false;
-      this.fileData.dataArray = data;
+      this.isRunning = false;      
+      let itemtxt:FileModel = new FileModel('test.txt',false,[this.downloadServerStr + 'test.txt']);
+      let itemjpg:FileModel = new FileModel('edge_picture.jpg',false,[this.downloadServerStr + 'edge_picture.jpg']);
+      let itemmp3:FileModel = new FileModel('audio_test.mp3',false,[this.downloadServerStr + 'audio_test.mp3']);
+      let itemmp4:FileModel = new FileModel('video_media.mp4',false,[this.downloadServerStr + 'video_media.mp4']);
+      this.fileData.dataArray = [itemtxt,itemjpg,itemmp3,itemmp4] ;
       this.fileData.dataArray.forEach((item: FileModel) => {
+        logger.debug(TAG, `item:${JSON.stringify(item)}`);
         this.checkList.push(false);
       })
       this.isGetData = false;
       this.fileData.notifyDataReload();
-    })
-    fileUtils.listFolders().then((folders: Array<string>) => {
-      this.downloadFolder = folders;
-    })
+      fileUtils.listFolders(userDir).then((folders: Array<string>) => {
+        logger.debug(TAG, `folders:${JSON.stringify(folders)}`);
+        this.downloadFolder = folders;
+      })      
+    } else {
+      this.isUserFolder=false;
+      requestFiles.requestFiles().then((data: FileModel[]) => {
+        this.checkList = [];
+        this.isRunning = false;
+        this.fileData.dataArray = data;
+        this.fileData.dataArray.forEach((item: FileModel) => {
+          this.checkList.push(false);
+        })
+        this.isGetData = false;
+        this.fileData.notifyDataReload();
+      })    
+      let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+      fileUtils.listFolders(context.cacheDir).then((folders: Array<string>) => {
+        logger.debug(TAG, `folders:${JSON.stringify(folders)}`);
+        this.downloadFolder = folders;
+      })
+    }
   }
 
   fileCheck(index: number) {

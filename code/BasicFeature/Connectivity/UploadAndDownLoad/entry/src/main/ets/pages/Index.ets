@@ -17,7 +17,8 @@ import notificationManager from '@ohos.notificationManager';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
 import { urlUtils } from '@ohos/uploaddownload';
-import util from '@ohos.util';
+import { promptAction } from '@kit.ArkUI';
+
 
 @Styles
 function itemStyle() {
@@ -65,6 +66,11 @@ struct Index {
           .itemStyle()
           .margin({ top: 20 })
 
+          TextInput({ text: $r('app.string.downloadServer') })
+            .visibility(Visibility.Hidden)
+            .height(0)
+            .onChange((downloadServer) =>  AppStorage.setOrCreate('downloadServer', downloadServer))          
+
           Row() {
             Text($r('app.string.HFS_tips'))
               .textStyle()
@@ -87,8 +93,21 @@ struct Index {
           this.CapabilityView($r('app.media.ic_download'), $r('app.string.download'), 'btn_download', () => {
             router.pushUrl({
               url: 'pages/Download'
+              })
             })
-          })
+          this.CapabilityView($r('app.media.ic_download'), $r('app.string.downloadToUser'), 'btn_downloadToUser',
+            () => {
+              if (this.isBackground == false ) {
+                router.pushUrl({
+                  url: 'pages/Download',
+                  params: {
+                    action: 'ToUser'
+                  }
+                })
+              } else {
+                promptAction.showToast({ message: '不支持后台下载到用户目录', duration: 5000 });
+              }
+            })
           this.CapabilityView($r('app.media.ic_certified'), $r('app.string.cert_lock'), 'btn_cert_lock', () => {
             router.pushUrl({
               url: 'pages/CertLock'
