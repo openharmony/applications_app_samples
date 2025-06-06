@@ -62,8 +62,8 @@ struct Download {
   });
   async selectUserFolder() {
     const documentSaveOptions = new picker.DocumentSaveOptions();    
-    console.info(TAG, `documentSaveOptions: ${JSON.stringify(documentSaveOptions)}`)
-    console.info(TAG, `documentSelectOptions: ${JSON.stringify(this.documentSelectOptions)}`)
+    logger.info(TAG, `documentSaveOptions: ${JSON.stringify(documentSaveOptions)}`)
+    logger.info(TAG, `documentSelectOptions: ${JSON.stringify(this.documentSelectOptions)}`)
     this.checkFile = [];
     if (this.checkList === undefined) {
       return;
@@ -90,24 +90,24 @@ struct Download {
       return;
     }
 
-    console.info(TAG, `documentSaveOptions: ${documentSaveOptions}`)
+    logger.info(TAG, `documentSaveOptions: ${documentSaveOptions}`)
     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    console.info(TAG, `context: ${JSON.stringify(context)}`)
+    logger.info(TAG, `context: ${JSON.stringify(context)}`)
     const documentViewPicker = new picker.DocumentViewPicker(context);
-    console.info(TAG, `documentViewPicker: ${JSON.stringify(documentViewPicker)}`)
+    logger.info(TAG, `documentViewPicker: ${JSON.stringify(documentViewPicker)}`)
     await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
-      console.info(TAG, `documentSaveResult: ${documentSaveResult}`)
+      logger.info(TAG, `documentSaveResult: ${documentSaveResult}`)
       let splitUrl = documentSaveResult[0].split('/');
-      console.info(TAG, `splitUrl: ${splitUrl}`)
+      logger.info(TAG, `splitUrl: ${splitUrl}`)
       splitUrl.pop();
-      console.info(TAG, `splitUrl: ${splitUrl}`)
+      logger.info(TAG, `splitUrl: ${splitUrl}`)
       let splitUrl1=splitUrl.join('/');
       logger.info(TAG, `selectFolder = ${splitUrl1}`);
       this.documentSelectOptions.defaultFilePathUri = splitUrl1
       this.download(splitUrl1);
       logger.info(TAG, `selectFolder = ${splitUrl1}`);
     }).catch((err: BusinessError) => {
-      console.error(TAG, `code : ${err.code} message : ${err.message}`)
+      logger.error(TAG, `code : ${err.code} message : ${err.message}`)
     });
   }
 
@@ -281,12 +281,12 @@ struct Download {
         .onClick(() => {
           if (this.isUserFolder ) {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-            console.info(TAG, `context: ${JSON.stringify(context)}`)
+            logger.info(TAG, `context: ${JSON.stringify(context)}`)
             const documentViewPicker = new picker.DocumentViewPicker(context);
-            console.info(TAG, `documentViewPicker: ${JSON.stringify(documentViewPicker)}`)
-            console.info(TAG, `documentSelectOptions: ${JSON.stringify(this.documentSelectOptions)}`)
+            logger.info(TAG, `documentViewPicker: ${JSON.stringify(documentViewPicker)}`)
+            logger.info(TAG, `documentSelectOptions: ${JSON.stringify(this.documentSelectOptions)}`)
             documentViewPicker.select(this.documentSelectOptions).then((documentSelectResult: Array<string>) =>{
-              console.info(TAG, `documentSelectResult: ${documentSelectResult}`)
+              logger.info(TAG, `documentSelectResult: ${documentSelectResult}`)
             })
           } else {
             let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
@@ -306,7 +306,7 @@ struct Download {
     this.isPause = false;
     this.isGetData = true;
     const params = router.getParams();
-    console.info(`router.params: ${params}`);
+    logger.info(`router.params: ${params}`);
     if (params) {
       this.isUserFolder=true;
       this.checkList = [];
