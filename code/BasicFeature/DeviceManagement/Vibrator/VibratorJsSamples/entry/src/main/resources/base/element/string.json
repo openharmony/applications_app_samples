@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VibratorJsSamples"
+    },
+    {
+      "name": "file",
+      "value": "file"
+    },
+    {
+      "name": "preset",
+      "value": "preset:"
+    },
+    {
+      "name": "time",
+      "value": "time"
+    },
+    {
+      "name": "addTransientEvent",
+      "value": "pattern:addTransientEvent"
+    },
+    {
+      "name": "addContinuousEvent",
+      "value": "pattern:addContinuousEvent"
+    },
+    {
+      "name": "stopVibration",
+      "value": "stopVibration"
+    },
+    {
+      "name": "on",
+      "value": "on"
+    },
+    {
+      "name": "off",
+      "value": "off"
+    },
+    {
+      "name": "getVibratorInfoSync",
+      "value": "getVibratorInfoSync"
+    }
+  ]
+}
