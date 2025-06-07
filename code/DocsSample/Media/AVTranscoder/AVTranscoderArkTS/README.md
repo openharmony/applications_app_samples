@@ -12,6 +12,9 @@
 | -------------------------------------------- | 
 <img src="./screenshots/AVTranscoderArkTS.png" width="300" />
 
+## 使用说明
+1. 安装编译生成的hap包，并打开应用；
+2. 点击启动转码按钮，当进度条达到100%时完成转码，可从设置的沙箱路径导出生成的转码视频；
 
 ## 工程目录
 
@@ -22,7 +25,7 @@ entry/src/main/ets/
 │    └── Index.ets (转码界面)
 │
 └── transcoder
-    └── AVTranscoderManager.ets（转码功能）
+    └── AVTranscoderManager.ets (转码功能)
 
 entry/src/main/resources/
 ├── base
@@ -33,7 +36,7 @@ entry/src/main/resources/
 │   └── media
 │
 └── rawfile
-    └── H264_AAC.mp4 （视频资源）
+    └── H264_AAC.mp4 (视频资源)
 entry/src/ohosTest/ets/
 └── test
     ├── Ability.test.ets (UI测试代码)

@@ -13,6 +13,10 @@
 <img src="./screenshots/FetchCover.png" width="300" />
 <img src="./screenshots/FetchMetaData.png" width="300" />
 
+## 使用说明
+1. 安装编译生成的hap包，并打开应用；
+2. 点击获取视频的封面按钮，获取专辑封面；
+3. 点击获取视频的元数据按钮，获取资源文件元数据信息；
 
 ## 工程目录
 
@@ -21,16 +25,23 @@ AVMetadataExtractorNDK
 entry/src/main/ets/
 └── pages
     └── Index.ets (获取元数据界面)
-entry/src/main/resources/
-├── base
-│   ├── element
-│   │   ├── color.json
-│   │   ├── float.json
-│   │   └── string.json
-│   └── media
-│
-└── rawfile
-    └── test.mp3（音频资源）
+entry/src/main/
+├── cpp
+│   ├── types
+│   │   └── libentry
+│   │       └── Index.d.ts (NDK函数对应的js映射)
+│   ├── CMakeLists.txt (CMake脚本)
+│   └── napi_init.cpp (NDK函数)
+└── resources
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │
+    └── rawfile
+        └── test.mp3 (音频资源)
 entry/src/ohosTest/ets/
 └── test
     ├── Ability.test.ets (UI测试代码)
