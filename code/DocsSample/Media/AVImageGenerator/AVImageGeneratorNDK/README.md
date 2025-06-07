@@ -12,6 +12,11 @@
 | -------------------------------------------- | 
 <img src="./screenshots/AVImageGeneratorNDK.png" width="300" />
 
+## 使用说明
+1. 安装编译生成的hap包，并打开应用；
+2. 选择传入时间点与关键帧的关系，点击开始抽帧按钮，获取指定时间的视频缩略图；
+3. 点击清楚图片按钮，清除生成的缩略图；
+
 
 ## 工程目录
 
@@ -20,16 +25,23 @@ AVImageGeneratorNDK
 entry/src/main/ets/
 └── pages
     └── Index.ets (获取缩略图界面)
-entry/src/main/resources/
-├── base
-│   ├── element
-│   │   ├── color.json
-│   │   ├── float.json
-│   │   └── string.json
-│   └── media
-│
-└── rawfile
-    └── H264_AAC.mp4（视频资源）
+entry/src/main/
+├── cpp
+│   ├── types
+│   │   └── libentry
+│   │       └── Index.d.ts (NDK函数对应的js映射)
+│   ├── CMakeLists.txt (CMake脚本)
+│   └── napi_init.cpp (NDK函数)
+└── resources
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │
+    └── rawfile
+        └── H264_AAC.mp4 (视频资源)
 entry/src/ohosTest/ets/
 └── test
     ├── Ability.test.ets (UI测试代码)

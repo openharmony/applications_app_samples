@@ -12,6 +12,9 @@
 | -------------------------------------------- | 
 <img src="./screenshots/AVMetadataExtractorArkTS.png" width="300" />
 
+## 使用说明
+1. 安装编译生成的hap包，并打开应用；
+2. 点击获取元数据信息按钮，日志打印资源文件的元数据信息，获取专辑封面；
 
 ## 工程目录
 
@@ -29,7 +32,7 @@ entry/src/main/resources/
 │   └── media
 │
 └── rawfile
-    └── test.mp3（音频资源）
+    └── test.mp3 (音频资源)
 entry/src/ohosTest/ets/
 └── test
     ├── Ability.test.ets (UI测试代码)

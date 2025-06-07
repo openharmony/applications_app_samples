@@ -12,6 +12,10 @@
 | -------------------------------------------- | 
 <img src="./screenshots/AVImageGeneratorArkTS.png" width="300" />
 
+## 使用说明
+1. 安装编译生成的hap包，并打开应用；
+2. 点击获取缩略图按钮，获取视频缩略图；
+
 
 ## 工程目录
 
@@ -29,7 +33,7 @@ entry/src/main/resources/
 │   └── media
 │
 └── rawfile
-    └── H264_AAC.mp4（视频资源）
+    └── H264_AAC.mp4 (视频资源)
 entry/src/ohosTest/ets/
 └── test
     ├── Ability.test.ets (UI测试代码)
