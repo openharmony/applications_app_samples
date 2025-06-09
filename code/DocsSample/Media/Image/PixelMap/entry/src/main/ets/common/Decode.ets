@@ -44,6 +44,7 @@ export class Decode {
   public getImageSourceByFilePath(fileName: string): image.ImageSource {
     // [Start pixelmap_get_image_by_filepath]
     const context: Context = getContext(this);
+    // fileName可使用'/test.jpg'，也可以根据实际环境传入其他图片名
     const filePath: string = context.cacheDir + fileName;
     // [End pixelmap_get_image_by_filepath]
     // path为已获得的沙箱路径
@@ -62,6 +63,7 @@ export class Decode {
   public getImageSourceByFd(fileName: string): image.ImageSource {
     // [Start pixelmap_get_image_by_fd]
     const context: Context = getContext(this);
+    // fileName可使用'/test.jpg'，也可以根据实际环境传入其他图片名
     const filePath = context.cacheDir + fileName;
     const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
     const fd: number = file?.fd;
@@ -86,6 +88,7 @@ export class Decode {
     // [End pixelmap_get_resource_manager_in_arraybuffer]
     return new Promise((resolve, reject) => {
       // [Start pixelmap_get_arraybuffer_of_resource]
+      // fileName可使用'/test.jpg'，也可以根据实际环境传入其他图片名
       resourceMgr.getRawFileContent(fileName).then((fileData: Uint8Array) => {
         Logger.info('getImageSourceByArrayBuffer: ', 'Succeeded in getting RawFileContent');
         // 获取图片的ArrayBuffer
@@ -116,6 +119,7 @@ export class Decode {
     // [End pixelmap_get_resource_manager_in_raw_file_descriptor]
     return new Promise((resolve, reject) => {
       // [Start pixelmap_get_rawfd_by_resource_manager]
+      // fileName可使用'/test.jpg'，也可以根据实际环境传入其他图片名
       resourceMgr.getRawFd(fileName).then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
         Logger.info('getImageSourceByRawFileDescriptor: ', 'Succeeded in getting RawFileDescriptor');
         // [Start pixelmap_create_image_source_by_rawfd]

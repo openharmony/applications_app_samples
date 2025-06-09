@@ -32,7 +32,7 @@ const uint32_t NAME_SIZE = 1024;
 
 static napi_value getJsResult(napi_env env, Image_ErrorCode errCode)
 {
-    napi_value result;
+    napi_value result = nullptr;
     napi_create_int32(env, errCode, &result);
     return result;
 }
