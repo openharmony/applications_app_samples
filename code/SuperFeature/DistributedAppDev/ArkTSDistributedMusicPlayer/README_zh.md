@@ -96,7 +96,7 @@ deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer') [源码
 
 2.本示例完整功能必须双端授予允许使用分布式协同能力，否则在只有发起端授权条件下，发起端会弹框提示错误。
 
-3.本示例为stage模型，已适配API version 14版本SDK，SDK版本号(API Version 14 Release),镜像版本号(5.0.2Release)。
+3.本示例为stage模型，已适配API version 20版本SDK，SDK版本号(API Version 20 Release),镜像版本号(6.0.0Release)。
 
 4.本示例需要使用DevEco Studio 版本号(5.0.2Release)才可编译运行。
 
