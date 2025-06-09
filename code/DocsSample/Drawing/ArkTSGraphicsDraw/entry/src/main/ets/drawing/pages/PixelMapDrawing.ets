@@ -49,8 +49,8 @@ function drawImage(canvas: drawing.Canvas) {
     { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: height, width: width } };
   // 创建PixelMap
   pixelMap = image.createPixelMapSync(color, opts);
-  // 为了使图片完全显示，修改绘制起点参数为（100，200）
-  canvas.drawImage(pixelMap, VALUE_100, VALUE_200);
+  // 为了使图片完全显示，修改绘制起点参数为（0，0）
+  canvas.drawImage(pixelMap, 0, 0);
   // End arkts_graphics_draw_image]
 }
 
@@ -86,8 +86,8 @@ function editPixel(canvas: drawing.Canvas) {
   };
   // 编辑位图，形成中间的黑白相间条纹
   pixelMap.writePixelsSync(area);
-  // 为了使图片完全显示，修改绘制起点参数为（100，200）
-  canvas.drawImage(pixelMap, VALUE_100, VALUE_200);
+  // 为了使图片完全显示，修改绘制起点参数为（0，0）
+  canvas.drawImage(pixelMap, 0, 0);
   // [End arkts_graphics_draw_edit_pixel]
 }
 
