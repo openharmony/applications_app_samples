@@ -97,13 +97,10 @@ export class WaterFlowDataSource implements IDataSource {
   }
 
   public addNewItems(count: number): void {
-    let len = this.dataArray.length;
     for (let i = 0; i < count; i++) {
       this.dataArray.push(this.dataArray.length);
+      this.notifyDataAdd(this.dataArray.length - 1);
     }
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange([{ type: DataOperationType.ADD, index: len, count: count }]);
-    })
   }
 
   // 在指定索引位置增加一个元素
