@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "subscribe",
+      "value": "subscribe"
+    },
+    {
+      "name": "unSubscribe",
+      "value": "unSubscribe"
+    },
+    {
+      "name": "getSensorListByDeviceSync",
+      "value": "getSensorListByDeviceSync"
+    },
+    {
+      "name": "getSingleSensorByDeviceSync",
+      "value": "getSingleSensorByDeviceSync"
+    },
+    {
+      "name": "on",
+      "value": "on SensorStatusChange"
+    },
+    {
+      "name": "off",
+      "value": "off SensorStatusChange"
+    },
+    {
+      "name": "clean",
+      "value": "clean"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SensorJsSamples"
+    }
+  ]
+}
