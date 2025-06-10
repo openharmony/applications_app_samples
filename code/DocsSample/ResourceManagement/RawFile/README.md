@@ -2,13 +2,13 @@
 
 ### 介绍
 
-本工程主要实现了[Rawfile开发指导](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/napi/rawfile-guidelines.md)中功能，开发者可以通过本项目了解如何使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile。
+本工程主要实现了[Rawfile开发指导](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/napi/rawfile-guidelines.md)中功能，开发者可以通过本项目了解如何使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile。
 
 ### 效果预览
 
-| 显示页面                                                     | 点击后日志打印效果                              |
-| ------------------------------------------------------------ | ----------------------------------------------- |
-| ![](screenshots/RawFile_Index1.png) | ![](screenshots/log.png) |
+| 显示页面                                                     | 点击Hello World后的页面                   | 点击后日志打印效果                              |
+| ------------------------------------------------------------|-------------------------------------| ----------------------------------------------- |
+| ![](screenshots/RawFile_Index1.png) | ![](screenshots/RawFile_Index2.png) | ![](screenshots/log.png) |
 
 ### 使用说明
 
@@ -41,8 +41,8 @@ RawFile/entry/src/
 
 ### 具体实现
 
-- 想要使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile，需要在CPP目录下的index.d.ts文件中声明应用侧函数getFileList()、getRawFileContent()、getRawFileDescriptor()。
-- 在hallo.cpp中实现getFileList()、getRawFileContent()、getRawFileDescriptor()的具体代码，实际操作逻辑。
+- 想要使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile，需要在CPP目录下的index.d.ts文件中声明应用侧函数getFileList()、getRawFileContent()、getRawFileDescriptor()、isRawDir()。
+- 在hello.cpp中实现getFileList()、getRawFileContent()、getRawFileDescriptor()、isRawDir()的具体代码，实际操作逻辑。
 - 在ets目录下的index.ets文件就可以通过import testNapi from "libentry.so";导入相关库，进行对上述函数的调用。
 
 ### 相关权限
@@ -55,9 +55,9 @@ RawFile/entry/src/
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.58；
-3. 本示例需要使用DevEco Studio Beta1（5.0.5.200）及以上版本才可编译运行；
+1. 本示例仅支持标准系统上运行，支持设备：RK3568。
+2. 本示例为Stage模型，支持API 18版本SDK，版本号：5.1.0.108。
+3. 本示例需要使用DevEco Studio 5.0.4 Release（5.0.11.100）及以上版本才可编译运行。
 
 ### 下载
 
