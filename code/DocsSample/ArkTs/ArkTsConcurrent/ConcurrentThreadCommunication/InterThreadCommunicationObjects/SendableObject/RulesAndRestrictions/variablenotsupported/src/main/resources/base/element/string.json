@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "VariablenotsupportedAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "VariablenotsupportedAbility_label",
+      "value": "RulesAndRestrictions"
+    }
+  ]
+}
