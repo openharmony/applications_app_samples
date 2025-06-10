@@ -17,6 +17,37 @@ import { Camera, Light, LightType, Scene, SceneNodeParameters, SceneResourceFact
 import { router } from '@kit.ArkUI';
 import logger from '../utils/Logger';
 
+let globalScene: Scene | null = null;
+
+function createLightPromise(): Promise<Light> {
+  return new Promise((resolve, reject) => {
+    // Switched from .gltf to .glb; same content, different format
+    let scene: Promise<Scene> = Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'));
+    scene.then(async (result: Scene) => {
+      // Save loaded scene globally for reuse (e.g., in LightPage)
+      globalScene = result;
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let lightParameter: SceneNodeParameters = { name: 'light' };
+      // Create directional light.
+      let light: Promise<Light> = sceneFactory.createLight(lightParameter, LightType.DIRECTIONAL);
+      light.then(async (lightEntity: Light) => {
+        // Set the color of the directional light.
+        lightEntity.color = { r: 0.8, g: 0.1, b: 0.2, a: 1.0 };
+
+        // Set other light parameters.
+        // ...
+        resolve(lightEntity);
+      }).catch((err: string) => {
+        logger.error('Light create failed: ' + err + '.');
+        reject(err);
+      });
+    }).catch((error: string) => {
+        logger.error('Scene load failed: ' + error);
+        reject(error);
+      });
+  });
+}
+
 @Entry
 @Component
 struct LightPage {
@@ -24,51 +55,10 @@ struct LightPage {
   @State sceneOpt: SceneOptions | null = null;
   cam: Camera | null = null;
   light: Light | null = null;
+  rf: SceneResourceFactory | null = null;
   @State red: number = 0;
   @State green: number = 0;
   @State blue: number = 0;
-
-  createLightPromise(): Promise<Light> {
-    return new Promise((resolve, reject) => {
-      Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'))
-        .then(async (result: Scene) => {
-          try {
-            this.scene = result;
-            this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE };
-
-            let sceneFactory: SceneResourceFactory = this.scene.getResourceFactory();
-
-            // Create a new camera.
-            this.cam = await sceneFactory.createCamera({ name: 'camera' });
-            this.cam.enabled = true;
-            this.cam.position.z = 10;
-
-            let sceneLightParameter: SceneNodeParameters = { name: 'light' };
-            // Create directional light.
-            let light: Light = await sceneFactory.createLight(sceneLightParameter, LightType.DIRECTIONAL);
-            // Set the color of the directional light.
-            light.color = {
-              r: this.red,
-              g: this.green,
-              b: this.blue,
-              a: 1.0
-            };
-
-            // Set other light parameters.
-            // ...
-
-            resolve(light);
-          } catch (error) {
-            logger.error('Error in createLightPromise: ' + error + '.');
-            reject(error);
-          }
-        })
-        .catch((error: string) => {
-          logger.error('Error loading scene: ' + error + '.');
-          reject(error);
-        })
-    })
-  }
 
   onPageShow(): void {
     this.init();
@@ -82,10 +72,24 @@ struct LightPage {
     this.sceneOpt = null;
     this.cam = null;
     this.light = null;
+    this.rf = null;
+    globalScene = null;
   }
 
   async init(): Promise<void> {
-    this.light = await this.createLightPromise();
+    this.light = await createLightPromise();
+    if (globalScene && this.light) {
+      this.scene = globalScene;
+      this.sceneOpt = { scene: globalScene, modelType: ModelType.SURFACE } as SceneOptions;
+      this.rf = this.scene.getResourceFactory();
+      this.cam = await this.rf.createCamera({ 'name': 'Camera1' });
+      this.cam.enabled = true;
+      this.cam.position.z = 5;
+      // Initialize color value
+      this.red = this.light.color.r;
+      this.green = this.light.color.g;
+      this.blue = this.light.color.b;
+    }
   }
 
   build() {
@@ -94,7 +98,7 @@ struct LightPage {
         if (this.sceneOpt) {
           Component3D(this.sceneOpt);
         } else {
-          Text('loading···');
+          Text('Loading···');
         }
 
         Column() {
@@ -199,6 +203,3 @@ struct LightPage {
     .height('60%')
   }
 }
-
-
-

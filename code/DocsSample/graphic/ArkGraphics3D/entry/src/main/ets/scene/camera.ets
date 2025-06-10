@@ -17,6 +17,43 @@ import { Camera, Scene, SceneNodeParameters, SceneResourceFactory } from '@kit.A
 import { router } from '@kit.ArkUI';
 import logger from '../utils/Logger';
 
+let globalScene: Scene | null = null;
+
+function createCameraPromise(): Promise<Camera> {
+  return new Promise((resolve, reject) => {
+    // Switched from .gltf to .glb; same content, different format
+    let scene: Promise<Scene> = Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'));
+    scene.then(async (result: Scene) => {
+      // Save loaded scene globally for reuse (e.g., in CameraPage)
+      globalScene = result;
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneCameraParameter: SceneNodeParameters = { name: 'camera' };
+      // Create a Camera.
+      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      camera.then(async (cameraEntity: Camera) => {
+        // Enable the camera node.
+        cameraEntity.enabled = true;
+
+        // Set the camera position.
+        cameraEntity.position.z = 5;
+
+        // Set the FoV.
+        cameraEntity.fov = 60 * Math.PI / 180;
+
+        // Set other camera parameters.
+        // ...
+        resolve(cameraEntity);
+      }).catch((error: string) => {
+        logger.error('Camera create failed: ' + error + '.');
+        reject(error);
+      });
+    }).catch((error: string) => {
+        logger.error('Scene load failed: ' + error);
+        reject(error);
+      });
+  });
+}
+
 @Entry
 @Component
 struct CameraPage {
@@ -27,7 +64,7 @@ struct CameraPage {
   @State positionY: number = 0;
   @State positionZ: number = 5;
 
-  async onPageShow(): Promise<void> {
+  onPageShow(): void {
     this.init();
   }
 
@@ -38,49 +75,18 @@ struct CameraPage {
     this.scene = null;
     this.sceneOpt = null;
     this.camera = null;
-  }
-
-  createCameraPromise(): Promise<Camera> {
-    return new Promise((resolve, reject) => {
-      Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'))
-        .then(async (result: Scene) => {
-          try {
-            this.scene = result;
-            const sceneFactory: SceneResourceFactory = result.getResourceFactory();
-            let sceneCameraParameter: SceneNodeParameters = { name: 'camera' };
-            // Create a Camera.
-            let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
-            camera.then(async (cameraEntity: Camera) => {
-              // Enable the camera node.
-              cameraEntity.enabled = true;
-
-              // Set the camera position.
-              cameraEntity.position.x = this.positionX;
-              cameraEntity.position.y = this.positionY;
-              cameraEntity.position.z = this.positionZ;
-
-              // Set the FoV.
-              cameraEntity.fov = 60 * Math.PI / 180;
-              // Set other camera parameters.
-              // ...
-            });
-            this.sceneOpt = { scene: result, modelType: ModelType.SURFACE } as SceneOptions;
-
-            resolve(camera);
-          } catch (error) {
-            logger.error('Error in createCameraPromise: ' + error + '.');
-            reject(error);
-          }
-        })
-        .catch((error: string) => {
-          logger.error('Error loading scene: ' + error + '.');
-          reject(error);
-        });
-    });
+    globalScene = null;
   }
 
   async init(): Promise<void> {
-    this.camera = await this.createCameraPromise();
+    this.camera = await createCameraPromise();
+    if (globalScene && this.camera) {
+      this.scene = globalScene;
+      this.positionX = this.camera.position.x;
+      this.positionY = this.camera.position.y;
+      this.positionZ = this.camera.position.z;
+      this.sceneOpt = { scene: globalScene, modelType: ModelType.SURFACE } as SceneOptions;
+    }
   }
 
   build() {
@@ -179,6 +185,3 @@ struct CameraPage {
     }.height('60%')
   }
 }
-
-
-

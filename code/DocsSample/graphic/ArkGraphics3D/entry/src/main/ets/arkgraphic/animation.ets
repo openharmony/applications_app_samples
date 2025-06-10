@@ -17,17 +17,6 @@ import { Animation, Camera, Scene, SceneResourceFactory } from '@kit.ArkGraphics
 import { router } from '@kit.ArkUI';
 import logger from '../utils/Logger';
 
-async function createAnimationPromise(): Promise<Animation> {
-  let scene: Scene = await Scene.load($rawfile('gltf/BrainStem/glTF/BrainStem.glb'));
-
-  // create animation
-  let anim: Animation = scene.animations[0];
-
-  logger.info('ready to create a new animation.');
-
-  return anim;
-}
-
 @Entry
 @Component
 struct sceneAnimation {
@@ -54,19 +43,37 @@ struct sceneAnimation {
   init(): void {
     if (this.scene == null) {
       // Loading scene.
+      // Switched from .gltf to .glb; same content, different format
       Scene.load($rawfile('gltf/BrainStem/glTF/BrainStem.glb'))
         .then(async (result: Scene) => {
           this.scene = result;
           let rf: SceneResourceFactory = this.scene.getResourceFactory();
+
+          // Get animation resources
+          this.anim = this.scene.animations[0];
+          if (this.anim) {
+            this.anim.enabled = true;
+            // Register callback function
+            this.anim.onStarted(() => {
+              console.info('onStarted');
+              this.animationCallbackInvoked = 'animation on start';
+            });
+
+            this.anim.onFinished(() => {
+              console.info('onFinished');
+              this.animationCallbackInvoked = 'animation on finish';
+            });
+
+            logger.info('ready to create a new animation.');
+          } else {
+            logger.error('No animation found in scene.');
+          }
+
           // create a new camera.
           this.cam = await rf.createCamera({ 'name': 'Camera' });
           // set the camera.
           this.cam.enabled = true;
           this.cam.position.z = 5;
-
-          this.scene.animations[0] = await createAnimationPromise();
-
-          this.scene.animations[0].enabled = true;
 
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
         }).catch((err: string) => {
@@ -82,24 +89,9 @@ struct sceneAnimation {
           if (this.sceneOpt) {
             Component3D(this.sceneOpt)
               .renderWidth('60%')
-              .renderHeight('60%')
-              .onAppear(() => {
-                if (!this.scene || !this.scene.animations[0]) {
-                  return;
-                }
-
-                let anim: Animation = this.scene.animations[0];
-
-                anim.onStarted(() => {
-                  this.animationCallbackInvoked = 'animation on start';
-                });
-
-                anim.onFinished(() => {
-                  this.animationCallbackInvoked = 'animation on finish';
-                });
-              });
+              .renderHeight('60%');
           } else {
-            Text('loading 1...');
+            Text('Loading···');
           }
         }
         .height('30%');
@@ -117,7 +109,7 @@ struct sceneAnimation {
             if (!this.scene || !this.scene.animations[0]) {
               return;
             }
-            this.anim = this.scene?.animations[0];
+            this.anim = this.scene.animations[0];
             this.anim.start();
           });
 

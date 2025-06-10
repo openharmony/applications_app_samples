@@ -19,7 +19,7 @@ import logger from '../utils/Logger';
 
 @Entry
 @Component
-struct Init {
+struct Model {
   scene: Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   cam: Camera | null = null;
@@ -40,6 +40,7 @@ struct Init {
   init(): void {
     if (this.scene == null) {
       // Load the model and place the gltf file in the related path. Use the actual path during loading.
+      // Switched from .gltf to .glb; same content, different format
       Scene.load($rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.glb'))
         .then(async (result: Scene) => {
           this.scene = result;
@@ -52,8 +53,9 @@ struct Init {
 
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
           logger.info('initialization completely.');
-        }).catch((err: string) => {
-        logger.error('Error: ' + err + '.');
+        })
+        .catch((reason: string) => {
+          console.log(reason);
       });
     }
   }
