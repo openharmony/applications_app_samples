@@ -75,7 +75,7 @@ static JSVM_Value GetValueStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Status status = OH_JSVM_GetValueStringUtf8(env, args[0], nullptr, 0, &length);
     if (length == 0 || length > MAX_MALLOC_SIZE) {
         OH_LOG_ERROR(LOG_APP, "Invalid string length: %{public}zu", length);
-        return jsVmResult;
+        return nullptr;
     }
     char *buf = (char *)malloc(length + 1);
     status = OH_JSVM_GetValueStringUtf8(env, args[0], buf, length + 1, &length);

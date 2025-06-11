@@ -63,15 +63,6 @@ static int g_aa = 0;
 #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
 // [EndExclude oh_jsvm_get_value_bool]
 
-// GetValueBool注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueBool},
-};
-static JSVM_CallbackStruct *method = param;
-// GetValueBool方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetValueBool的样例方法
 static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -91,6 +82,15 @@ static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &boolJv);
     return boolJv;
 }
+// GetValueBool注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueBool},
+};
+static JSVM_CallbackStruct *method = param;
+// GetValueBool方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 // [End oh_jsvm_get_value_bool]
 // 样例测试js
 const char *SRC_CALL_NATIVE = R"JS(getValueBool("abc"))JS";

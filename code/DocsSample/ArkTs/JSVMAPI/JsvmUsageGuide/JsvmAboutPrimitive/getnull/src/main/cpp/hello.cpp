@@ -63,15 +63,6 @@ static int g_aa = 0;
 #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
 // [EndExclude oh_jsvm_get_null]
 
-// GetNull注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetNull},
-};
-static JSVM_CallbackStruct *method = param;
-// GetNull方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getNull", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetNull的样例方法
 static JSVM_Value GetNull(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -84,6 +75,15 @@ static JSVM_Value GetNull(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return nullValue;
 }
+// GetNull注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetNull},
+};
+static JSVM_CallbackStruct *method = param;
+// GetNull方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getNull", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 // [End oh_jsvm_get_null]
 // 样例测试js
 const char *SRC_CALL_NATIVE = R"JS(getNull())JS";

@@ -71,7 +71,7 @@ static JSVM_Value GetDateValue(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[1] = {nullptr};
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
     // 获取传入的Unix Time Stamp时间
-    double value;
+    double value = 0;
     JSVM_CALL(OH_JSVM_GetDateValue(env, args[0], &value));
 
     // 将获取到的Unix Time Stamp时间转化为日期字符串打印

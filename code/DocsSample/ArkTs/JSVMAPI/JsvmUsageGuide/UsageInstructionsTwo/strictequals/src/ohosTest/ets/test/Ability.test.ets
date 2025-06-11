@@ -23,7 +23,7 @@ const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     /**
-     * 打开应用,点击OH_JSVM_StrictEquals执行
+     * 打开应用,点击Hello World执行
      */
     it('testStrictEquals', 0, async (done: Function) => {
       console.log('uitest: TestStrictEquals begin');
@@ -41,7 +41,7 @@ export default function abilityTest() {
       expect(ability.context.abilityInfo.name).assertEqual('StrictequalsAbility');
 
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('OH_JSVM_StrictEquals'));
+      const text = await driver.findComponent(ON.text('Hello World'));
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('success'));

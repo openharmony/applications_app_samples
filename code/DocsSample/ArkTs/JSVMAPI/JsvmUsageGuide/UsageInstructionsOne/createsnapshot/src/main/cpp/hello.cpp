@@ -24,40 +24,48 @@
 
 static int g_aa = 0;
 
-#define CHECK_RET(theCall)                                                                                             \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if ((cond) != JSVM_OK) {                                                                                       \
-            const JSVM_ExtendedErrorInfo *info;                                                                        \
-            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
-                         __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
-            return -1;                                                                                                 \
-        }                                                                                                              \
+#define CHECK_RET(theCall)                                                                           \
+    do {                                                                                             \
+        JSVM_Status cond = theCall;                                                                  \
+        if ((cond) != JSVM_OK) {                                                                     \
+            const JSVM_ExtendedErrorInfo *info;                                                      \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                    \
+            OH_LOG_ERROR(LOG_APP,                                                                    \
+                "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                __FILE__,                                                                            \
+                __LINE__,                                                                            \
+                cond,                                                                                \
+                info != nullptr ? info->errorMessage : "");                                          \
+            return -1;                                                                               \
+        }                                                                                            \
     } while (0)
 
-#define CHECK(theCall)                                                                                                 \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if ((cond) != JSVM_OK) {                                                                                       \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__,  \
-                         cond);                                                                                        \
-            return -1;                                                                                                 \
-        }                                                                                                              \
+#define CHECK(theCall)                                                                                              \
+    do {                                                                                                            \
+        JSVM_Status cond = theCall;                                                                                 \
+        if ((cond) != JSVM_OK) {                                                                                    \
+            OH_LOG_ERROR(                                                                                           \
+                LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__, cond); \
+            return -1;                                                                                              \
+        }                                                                                                           \
     } while (0)
 
 // 用于调用theCall并检查其返回值是否为JSVM_OK。
 // 如果不是，则调用GET_AND_THROW_LAST_ERROR处理错误并返回retVal。
-#define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if (cond != JSVM_OK) {                                                                                         \
-            const JSVM_ExtendedErrorInfo *info;                                                                        \
-            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
-                         __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
-            return retVal;                                                                                             \
-        }                                                                                                              \
+#define JSVM_CALL_BASE(env, theCall, retVal)                                                         \
+    do {                                                                                             \
+        JSVM_Status cond = theCall;                                                                  \
+        if (cond != JSVM_OK) {                                                                       \
+            const JSVM_ExtendedErrorInfo *info;                                                      \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                    \
+            OH_LOG_ERROR(LOG_APP,                                                                    \
+                "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                __FILE__,                                                                            \
+                __LINE__,                                                                            \
+                cond,                                                                                \
+                info != nullptr ? info->errorMessage : "");                                          \
+            return retVal;                                                                           \
+        }                                                                                            \
     } while (0)
 
 // JSVM_CALL_BASE的简化版本，返回nullptr
@@ -255,7 +263,8 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     OH_LOG_INFO(LOG_APP, "JSVM Init");
-    napi_property_descriptor desc[] = {{"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
+    napi_property_descriptor desc[] = {
+        {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
 
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

@@ -125,8 +125,8 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 // 样例测试js
 const char *SRC_CALL_NATIVE_CREATE_PROMISE = R"JS(createPromise())JS";
-const char *SRC_CALL_NATIVE_RESOLVE_REJECT_DEFERRED1 = R"JS(resolveRejectDeferred('success','fail', true))JS";
-const char *SRC_CALL_NATIVE_RESOLVE_REJECT_DEFERRED2 = R"JS(resolveRejectDeferred('success','fail', false))JS";
+const char *SRC_CALL_NATIVE_RESOLVE_REJECT_DEFERRED1 = R"JS(resolveRejectDeferred('success', 'fail', true))JS";
+const char *SRC_CALL_NATIVE_RESOLVE_REJECT_DEFERRED2 = R"JS(resolveRejectDeferred('success', 'fail', false))JS";
 // [End oh_jsvm_resolvedeferred_and_rejectdeferred]
 
 static int32_t TestJSVM()

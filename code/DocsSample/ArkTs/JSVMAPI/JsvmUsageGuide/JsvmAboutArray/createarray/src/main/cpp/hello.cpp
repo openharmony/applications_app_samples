@@ -64,7 +64,6 @@ static int g_aa = 0;
 #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
 // [EndExclude oh_jsvm_create_array]
 
-// CreateArray注册回调
 static int g_diffValueFive = 5;
 // OH_JSVM_CreateArray的样例方法
 static JSVM_Value CreateArray(JSVM_Env env, JSVM_CallbackInfo info)
@@ -85,6 +84,7 @@ static JSVM_Value CreateArray(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return array;
 }
+// CreateArray注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateArray},
 };

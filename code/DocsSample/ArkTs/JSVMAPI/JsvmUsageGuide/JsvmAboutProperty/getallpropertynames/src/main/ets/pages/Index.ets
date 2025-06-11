@@ -18,7 +18,7 @@ import napitest from 'libgetallpropertynames.so';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'OH_JSVM_GetAllPropertyNames';
+  @State message: string = 'Hello World';
 
   build() {
     Row() {

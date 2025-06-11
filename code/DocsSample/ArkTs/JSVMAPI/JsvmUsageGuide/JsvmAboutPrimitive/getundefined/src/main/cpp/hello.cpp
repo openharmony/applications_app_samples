@@ -63,15 +63,6 @@ static int g_aa = 0;
 #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
 // [EndExclude oh_jsvm_get_undefined]
 
-// GetUndefined注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetUndefined},
-};
-static JSVM_CallbackStruct *method = param;
-// GetUndefined方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getUndefined", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetUndefined的样例方法
 static JSVM_Value GetUndefined(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -89,6 +80,15 @@ static JSVM_Value GetUndefined(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return value;
 }
+// GetUndefined注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetUndefined},
+};
+static JSVM_CallbackStruct *method = param;
+// GetUndefined方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getUndefined", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 // [End oh_jsvm_get_undefined]
 // 样例测试js
 const char *SRC_CALL_NATIVE = R"JS(getUndefined())JS";

@@ -100,11 +100,10 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getBoolean", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-
+// [End oh_jsvm_get_boolean]
 // 样例测试js
 const char *SRC_CALL_NATIVE = R"JS(getBoolean(1, 2))JS";
 // const char *SRC_CALL_NATIVE = R"JS(getBoolean(1, 1))JS";
-// [End oh_jsvm_get_boolean]
 
 static int32_t TestJSVM()
 {
