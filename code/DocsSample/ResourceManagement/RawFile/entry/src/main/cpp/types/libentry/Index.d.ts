@@ -17,4 +17,4 @@ import resourceManager from '@ohos.resourceManager';
 export const getFileList: (resmgr: resourceManager.ResourceManager, path: string) => Array<String>;
 export const getRawFileContent: (resmgr: resourceManager.ResourceManager, path: string) => Uint8Array;
 export const getRawFileDescriptor: (resmgr: resourceManager.ResourceManager, path: string) => resourceManager.RawFileDescriptor;
-export const isRawDir: (resmgr: resourceManager.ResourceManager, path: string) => Boolean;
+export const isRawDir: (resmgr: resourceManager.ResourceManager, path: string) => boolean;

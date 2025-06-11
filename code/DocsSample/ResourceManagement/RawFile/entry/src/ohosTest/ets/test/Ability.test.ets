@@ -15,7 +15,7 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, expect, it } from '@ohos/hypium';
-import { UIAbility } from '@kit.AbilityKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 
 const TAG = '[Sample_rawfile]';
@@ -29,7 +29,7 @@ function sleep(time: number) {
 
 export default function abilityTest() {
   describe('RawFileTest', () => {
-it('StartAbility_001', 0, async (done: Function) => {
+    it('StartAbility_001', 0, async (done: Function) => {
       console.info("uitest: StartAbility_001 begin");
       const want: Want = {
         bundleName: BUNDLE,
@@ -42,7 +42,7 @@ it('StartAbility_001', 0, async (done: Function) => {
       done();
       console.info("uitest: StartAbility_001 end");
     });
-    
+
     it(BUNDLE + 'clickTest_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'clickTest begin');
       let driver = Driver.create();
@@ -79,7 +79,7 @@ it('StartAbility_001', 0, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let fileContentText = await driver.findComponent(ON.id('get_raw_file_content'));
-      expect(await fileContentText.getText() === 'RawFileContent = 115,100,103,100,102,103').assertTrue();
+      expect(await fileContentText.getText() === 'RawFileContent = sdgdfg').assertTrue();
       hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentTest end');
       done();
     })
