@@ -264,7 +264,8 @@ static napi_value PrepareAVRecorder(napi_env env, napi_callback_info info)
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Prepare failed %{public}d", result);
     }
-    OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder enableTemporalScale：%{public}d", static_cast<int>(config->profile.enableTemporalScale));
+    OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder enableTemporalScale：%{public}d",
+        static_cast<int>(config->profile.enableTemporalScale));
     
     // 1.4 更新视频旋转角度 OH_AVRecorder_UpdateRotation
     int32_t rotation = 90;
