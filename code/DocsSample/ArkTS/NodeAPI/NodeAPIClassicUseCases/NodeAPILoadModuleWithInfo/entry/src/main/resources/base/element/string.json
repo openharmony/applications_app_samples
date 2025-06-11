@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NodeAPILoadModuleWithInfo"
+    },
+    {
+      "name": "loadModuleFile",
+      "value": "Call loadModuleFile"
+    },
+    {
+      "name": "loadModuleHarName",
+      "value": "Call loadModuleHarName"
+    },
+    {
+      "name": "loadModuleRemoteHar",
+      "value": "Call loadModuleRemoteHar"
+    },
+    {
+      "name": "loadModuleAPI",
+      "value": "Call loadModuleAPI"
+    },
+    {
+      "name": "loadModuleNative",
+      "value": "Call loadModuleNative"
+    },
+    {
+      "name": "loadModuleHarToHar",
+      "value": "Call loadModuleHarToHar"
+    }
+  ]
+}

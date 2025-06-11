@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NodeAPILoadModule"
+    },
+    {
+      "name": "loadModuleSystem",
+      "value": "Call loadModuleSystem"
+    },
+    {
+      "name": "loadModuleFile",
+      "value": "Call loadModuleFile"
+    }
+  ]
+}
