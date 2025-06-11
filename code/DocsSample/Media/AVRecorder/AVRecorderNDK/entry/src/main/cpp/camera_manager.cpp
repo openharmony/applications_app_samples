@@ -28,12 +28,15 @@ const std::unordered_map<uint32_t, Camera_SceneMode> g_int32ToCameraSceneMode = 
 };
 
 NDKCamera::NDKCamera(uint32_t focusMode, uint32_t cameraDeviceIndex, uint32_t sceneMode,
-    char *previewId, char *photoId, char *videoId)
+    const SurfaceIds& surfaceIds)
     : focusMode_(focusMode), cameraDeviceIndex_(cameraDeviceIndex),
-      previewSurfaceId_(previewId), photoSurfaceId_(photoId), videoSurfaceId_(videoId),
-      cameras_(nullptr), profile_(nullptr), cameraOutputCapability_(nullptr), captureSession_(nullptr),
-      cameraInput_(nullptr), previewOutput_(nullptr), photoOutput_(nullptr), videoOutput_(nullptr),
-      isCameraMuted_(nullptr), metaDataObjectType_(nullptr), metadataOutput_(nullptr),
+      previewSurfaceId_(surfaceIds.previewId), 
+      photoSurfaceId_(surfaceIds.photoId), 
+      videoSurfaceId_(surfaceIds.videoId),
+      cameras_(nullptr), profile_(nullptr), cameraOutputCapability_(nullptr), 
+      captureSession_(nullptr), cameraInput_(nullptr), previewOutput_(nullptr), 
+      photoOutput_(nullptr), videoOutput_(nullptr), isCameraMuted_(nullptr), 
+      metaDataObjectType_(nullptr), metadataOutput_(nullptr),
       isExposureModeSupported_(false), isFocusModeSupported_(false), isSuccess_(false), 
       sceneMode_(NORMAL_VIDEO), exposureMode_(EXPOSURE_MODE_LOCKED), ret_(CAMERA_OK), 
       size_(0), minExposureBias_(0), maxExposureBias_(0), step_(0)
@@ -290,7 +293,7 @@ Camera_ErrorCode NDKCamera::SessionCommitConfig(void)
 Camera_ErrorCode NDKCamera::SessionStart(void)
 {
     bool isSupport = false;
-    OH_CaptureSession_IsVideoStabilizationModeSupported(captureSession_, 
+    OH_CaptureSession_IsVideoStabilizationModeSupported(captureSession_,
         Camera_VideoStabilizationMode::STABILIZATION_MODE_AUTO, &isSupport);
     if (isSupport) {
         OH_CaptureSession_SetVideoStabilizationMode(captureSession_,
@@ -466,7 +469,7 @@ Camera_ErrorCode NDKCamera::CreatePhotoOutput(char *photoSurfaceId)
     }
 
     profile_->size.width = videoFrameWidth;
-    profile_->size.height = videoFrameHeight ;
+    profile_->size.height = videoFrameHeight;
     ret_ = OH_CameraManager_CreatePhotoOutput(cameraManager_, profile_, photoSurfaceId, &photoOutput_);
 
     if (photoSurfaceId == nullptr || photoOutput_ == nullptr || ret_ != CAMERA_OK) {
@@ -488,13 +491,13 @@ Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId)
         OH_LOG_ERROR(LOG_APP, "Get videoProfiles failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
-    
+
     OH_LOG_ERROR(LOG_APP, "CreateVideoOutput width：%{public}d", videoProfile_->size.width);
     OH_LOG_ERROR(LOG_APP, "CreateVideoOutput height：%{public}d", videoProfile_->size.height);
     OH_LOG_ERROR(LOG_APP, "CreateVideoOutput format：%{public}d", videoProfile_->format);
     OH_LOG_ERROR(LOG_APP, "CreateVideoOutput range.min：%{public}d", videoProfile_->range.min);
     OH_LOG_ERROR(LOG_APP, "CreateVideoOutput range.max：%{public}d", videoProfile_->range.max);
-    
+
     videoProfile_->size.width = videoFrameWidth;
     videoProfile_->size.height = videoFrameHeight;
     ret_ = OH_CameraManager_CreateVideoOutput(cameraManager_, videoProfile_, videoId, &videoOutput_);

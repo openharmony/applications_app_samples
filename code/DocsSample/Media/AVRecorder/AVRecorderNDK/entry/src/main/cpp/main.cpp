@@ -31,31 +31,45 @@ int videoFrameWidth = 1280;
 int videoFrameHeight = 720;
 
 // 配置参数，可选三种录制模式
-// Type 1: 音视频录制 
+// Type 1: 音视频录制
 void SetConfig(OH_AVRecorder_Config &config)
 {
     config.audioSourceType = AVRECORDER_MIC;
     config.videoSourceType = AVRECORDER_SURFACE_YUV;
 
+    // 配置音频参数 比特率 96000
     config.profile.audioBitrate = 96000;
+    // 配置音频参数 声道数 2
     config.profile.audioChannels = 2;
+    // 配置音频参数 编码格式 aac
     config.profile.audioCodec = AVRECORDER_AUDIO_AAC;
+    // 配置音频参数 采样率 48000
     config.profile.audioSampleRate = 48000;
 
+    // 配置视频参数 比特率 2000000
     config.profile.videoBitrate = 2000000;
+    // 配置视频参数 宽度
     config.profile.videoFrameWidth = videoFrameWidth;
+    // 配置视频参数 高度
     config.profile.videoFrameHeight = videoFrameHeight;
+    // 配置视频参数 帧率 30
     config.profile.videoFrameRate = 30;
+    // 配置视频参数 编码格式 AVC
     config.profile.videoCodec = AVRECORDER_VIDEO_AVC;
+    // 配置视频参数 是否为HDR
     config.profile.isHdr = false;
+    // 配置视频参数 是否支持分层编码
     config.profile.enableTemporalScale = false;
-
+    // 配置视频参数 封装格式
     config.profile.fileFormat = AVRECORDER_CFT_MPEG_4;
+    // 配置视频参数 由系统创建媒体文件
     config.fileGenerationMode = AVRECORDER_AUTO_CREATE_CAMERA_SCENE;
 
-    config.metadata.videoOrientation = (char*)malloc(2);
+    // 初始长度为3的空间，存放视频旋转角度
+    config.metadata.videoOrientation = (char*)malloc(3);
     if (config.metadata.videoOrientation != nullptr) {
-        strcpy(config.metadata.videoOrientation, "90");
+        strncpy(config.metadata.videoOrientation, "90", 2);
+        config.metadata.videoOrientation[2] = '\0';
     }
     OH_LOG_INFO(LOG_APP, "==NDKDemo== videoOrientation: %{public}s", config.metadata.videoOrientation);
 
@@ -68,15 +82,22 @@ void SetConfigAudio(OH_AVRecorder_Config &config)
 {
     config.audioSourceType = AVRECORDER_MIC;
 
+    // 配置音频参数 比特率 32000
     config.profile.audioBitrate = 32000; 
+    // 配置音频参数 声道数 2
     config.profile.audioChannels = 2;
+    // 配置音频参数 编码格式 aac
     config.profile.audioCodec = AVRECORDER_AUDIO_AAC;
+    // 配置音频参数 采样率 8000
     config.profile.audioSampleRate = 8000;
 
-    config.profile.fileFormat = AVRECORDER_CFT_AAC;
+    // 配置音频参数 封装格式 mp3
+    config.profile.fileFormat = AVRECORDER_CFT_MP3;
+    // 配置音频参数 应用自行创建
     config.fileGenerationMode = AVRECORDER_APP_CREATE;
-
+    // 配置纬度 31.791863
     config.metadata.location.latitude = 31.791863;
+    // 配置经度 64.574687
     config.metadata.location.longitude = 64.574687;
 }
 
@@ -85,20 +106,30 @@ void SetConfigVideo(OH_AVRecorder_Config &config)
 {
     config.videoSourceType = AVRECORDER_SURFACE_YUV;
 
+    // 配置视频参数 比特率 2000000
     config.profile.videoBitrate = 2000000;
+    // 配置视频参数 宽度
     config.profile.videoFrameWidth = videoFrameWidth;
+    // 配置视频参数 高度
     config.profile.videoFrameHeight = videoFrameHeight;
+    // 配置视频参数 帧率 30
     config.profile.videoFrameRate = 30;
+    // 配置视频参数 编码格式 AVC
     config.profile.videoCodec = AVRECORDER_VIDEO_AVC;
+    // 配置视频参数 是否为HDR
     config.profile.isHdr = false;
+    // 配置视频参数 是否支持分层编码
     config.profile.enableTemporalScale = false;
-
+    // 配置视频参数 封装格式
     config.profile.fileFormat = AVRECORDER_CFT_MPEG_4;
+    // 配置视频参数 由系统创建媒体文件
     config.fileGenerationMode = AVRECORDER_APP_CREATE;
 
-    config.metadata.videoOrientation = (char*)malloc(2);
+    // 初始长度为3的空间，存放视频旋转角度
+    config.metadata.videoOrientation = (char*)malloc(3);
     if (config.metadata.videoOrientation != nullptr) {
-        strcpy(config.metadata.videoOrientation, "90");
+        strncpy(config.metadata.videoOrientation, "90", 2);
+        config.metadata.videoOrientation[2] = '\0';
     }
     OH_LOG_INFO(LOG_APP, "==NDKDemo== videoOrientation: %{public}s", config.metadata.videoOrientation);
 
@@ -186,9 +217,9 @@ static napi_value PrepareAVRecorder(napi_env env, napi_callback_info info)
 {
     (void)info;
     OH_LOG_INFO(LOG_APP, "==NDKDemo== PrepareAVRecorder in!");
-    g_avRecorder = OH_AVRecorder_Create();
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder Create OK! g_avRecorder: %{public}p", g_avRecorder);
-    if (g_avRecorder == nullptr) {
+    avRecorder = OH_AVRecorder_Create();
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder Create OK! avRecorder: %{public}p", avRecorder);
+    if (avRecorder == nullptr) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Create failed!");
     }
     OH_AVRecorder_Config *config = new OH_AVRecorder_Config();
@@ -205,12 +236,12 @@ static napi_value PrepareAVRecorder(napi_env env, napi_callback_info info)
 
     // 1.2 回调
     // 状态回调
-    OH_AVRecorder_SetStateCallback(g_avRecorder, OnStateChange, nullptr);
+    OH_AVRecorder_SetStateCallback(avRecorder, OnStateChange, nullptr);
     // 错误回调
-    OH_AVRecorder_SetErrorCallback(g_avRecorder, OnError, nullptr);
+    OH_AVRecorder_SetErrorCallback(avRecorder, OnError, nullptr);
     // 生成媒体文件回调
     OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback in!");
-    OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
+    OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(avRecorder, OnUri, nullptr);
     OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback out!");
     if (ret == AV_ERR_OK) {
         OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");
@@ -219,7 +250,7 @@ static napi_value PrepareAVRecorder(napi_env env, napi_callback_info info)
     }
     
     // 1.3 prepare接口
-    int result = OH_AVRecorder_Prepare(g_avRecorder, config);
+    int result = OH_AVRecorder_Prepare(avRecorder, config);
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Prepare failed %{public}d", result);
     }
@@ -227,7 +258,7 @@ static napi_value PrepareAVRecorder(napi_env env, napi_callback_info info)
     
     // 1.4 更新视频旋转角度 OH_AVRecorder_UpdateRotation
     int32_t rotation = 90;
-    result = OH_AVRecorder_UpdateRotation(g_avRecorder, rotation);
+    result = OH_AVRecorder_UpdateRotation(avRecorder, rotation);
     if (result != AV_ERR_OK) {
         OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder UpdateRotation failed! ret=%{public}d", result);
     } else {
@@ -244,12 +275,9 @@ static napi_value GetAVRecorderConfig(napi_env env, napi_callback_info info)
 {
     (void)info;
     
-//     OH_AVRecorder_Config *config = new OH_AVRecorder_Config();
-//     SetConfig(*config);
-    
     OH_AVRecorder_Config *config = nullptr;
     
-    int result = OH_AVRecorder_GetAVRecorderConfig(g_avRecorder, &config);
+    int result = OH_AVRecorder_GetAVRecorderConfig(avRecorder, &config);
     if (result != AV_ERR_OK || config == nullptr) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== Get AVRecorder Config failed %{public}d", result);
         napi_value res;
@@ -257,21 +285,36 @@ static napi_value GetAVRecorderConfig(napi_env env, napi_callback_info info)
         return res;
     }
     
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoOrientation: %{public}s", config->metadata.videoOrientation);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioSourceType: %{public}d", config->audioSourceType);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoSourceType: %{public}d", config->videoSourceType);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioBitrate: %{public}d", config->profile.audioBitrate);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioChannels: %{public}d", config->profile.audioChannels);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioCodec: %{public}d", config->profile.audioCodec);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioSampleRate: %{public}d", config->profile.audioSampleRate);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig fileFormat: %{public}d", config->profile.fileFormat);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoBitrate: %{public}d", config->profile.videoBitrate);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoCodec: %{public}d", config->profile.videoCodec);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoFrameWidth: %{public}d", config->profile.videoFrameWidth);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoFrameHeight: %{public}d", config->profile.videoFrameHeight);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoFrameRate: %{public}d", config->profile.videoFrameRate);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig latitude: %{public}.6f", config->metadata.location.latitude);
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig longitude: %{public}.6f", config->metadata.location.longitude);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoOrientation: %{public}s",
+        config->metadata.videoOrientation);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioSourceType: %{public}d",
+        config->audioSourceType);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoSourceType: %{public}d",
+        config->videoSourceType);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioBitrate: %{public}d",
+        config->profile.audioBitrate);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioChannels: %{public}d",
+        config->profile.audioChannels);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioCodec: %{public}d",
+        config->profile.audioCodec);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig audioSampleRate: %{public}d",
+        config->profile.audioSampleRate);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig fileFormat: %{public}d",
+        config->profile.fileFormat);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoBitrate: %{public}d",
+        config->profile.videoBitrate);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoCodec: %{public}d",
+        config->profile.videoCodec);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoFrameWidth: %{public}d",
+        config->profile.videoFrameWidth);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoFrameHeight: %{public}d",
+        config->profile.videoFrameHeight);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig videoFrameRate: %{public}d",
+        config->profile.videoFrameRate);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig latitude: %{public}.6f",
+        config->metadata.location.latitude);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== GetAVRecorderConfig longitude: %{public}.6f",
+        config->metadata.location.longitude);
     
     napi_value res;
     napi_create_int32(env, result, &res);
@@ -287,46 +330,56 @@ static napi_value GetAvailableEncoder(napi_env env, napi_callback_info info)
     int32_t lengthValue = 0;  // 定义一个实际的 int32_t 变量
     int32_t *length = &lengthValue; 
 
-    int result = OH_AVRecorder_GetAvailableEncoder(g_avRecorder, &encoderInfo, length);
+    int result = OH_AVRecorder_GetAvailableEncoder(avRecorder, &encoderInfo, length);
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== GetAvailableEncoder failed %{public}d", result);
-    } else {
-        // 打印 encoderInfo 的内容
-        if (encoderInfo != nullptr) {
-            OH_LOG_INFO(LOG_APP, "==NDKDemo== Encoder Info in！");
+        napi_value res;
+        napi_create_int32(env, result, &res);
+        return res;
+    }
+    // 打印 encoderInfo 的内容
+    if (encoderInfo != nullptr) {
+        OH_LOG_INFO(LOG_APP, "==NDKDemo== Encoder Info in！");
 
-            // 打印 mimeType (假设是一个枚举类型或可转为字符串的类型)
-            OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder MIME Type: %{public}d", encoderInfo->mimeType);
+        // 打印 mimeType (假设是一个枚举类型或可转为字符串的类型)
+        OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder MIME Type: %{public}d", encoderInfo->mimeType);
 
-            // 打印 type
-            OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder Type: %{public}s", encoderInfo->type);
+        // 打印 type
+        OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder Type: %{public}s", encoderInfo->type);
 
-            // 打印 bitRate 范围
-            OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder BitRate Min: %{public}d, Max: %{public}d", encoderInfo->bitRate.min, encoderInfo->bitRate.max);
+        // 打印 bitRate 范围
+        OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder BitRate Min: %{public}d, Max: %{public}d",
+            encoderInfo->bitRate.min, encoderInfo->bitRate.max);
 
-            // 打印 frameRate 范围
-            OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder FrameRate Min: %{public}d, Max: %{public}d", encoderInfo->frameRate.min, encoderInfo->frameRate.max);
+        // 打印 frameRate 范围
+        OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder FrameRate Min: %{public}d, Max: %{public}d",
+            encoderInfo->frameRate.min, encoderInfo->frameRate.max);
 
-            // 打印 width 范围
-            OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder Width Min: %{public}d, Max: %{public}d", encoderInfo->width.min, encoderInfo->width.max);
+        // 打印 width 范围
+        OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder Width Min: %{public}d, Max: %{public}d",
+            encoderInfo->width.min, encoderInfo->width.max);
 
-            // 打印 height 范围
-            OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder Height Min: %{public}d, Max: %{public}d", encoderInfo->height.min, encoderInfo->height.max);
+        // 打印 height 范围
+        OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder Height Min: %{public}d, Max: %{public}d",
+            encoderInfo->height.min, encoderInfo->height.max);
 
-            // 打印 channels 范围
-            OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder Channels Min: %{public}d, Max: %{public}d", encoderInfo->channels.min, encoderInfo->channels.max);
+        // 打印 channels 范围
+        OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder Channels Min: %{public}d, Max: %{public}d",
+            encoderInfo->channels.min, encoderInfo->channels.max);
 
-            // 打印 sampleRate 列表和长度
-            OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder SampleRate Length: %{public}d", encoderInfo->sampleRateLen);
-            if (encoderInfo->sampleRate != nullptr) {
-                OH_LOG_INFO(LOG_APP, "==NDKDemo==  SampleRates: ");
-                for (int i = 0; i < encoderInfo->sampleRateLen; i++) {
-                    OH_LOG_INFO(LOG_APP, "  ==NDKDemo== GetAvailableEncoder SampleRate: %{public}d", i, encoderInfo->sampleRate[i]);
-                }
+        // 打印 sampleRate 列表和长度
+        OH_LOG_INFO(LOG_APP, " ==NDKDemo== GetAvailableEncoder SampleRate Length: %{public}d",
+            encoderInfo->sampleRateLen);
+
+        if (encoderInfo->sampleRate != nullptr) {
+            OH_LOG_INFO(LOG_APP, "==NDKDemo==  SampleRates: ");
+            for (int i = 0; i < encoderInfo->sampleRateLen; i++) {
+                OH_LOG_INFO(LOG_APP, "  ==NDKDemo== GetAvailableEncoder SampleRate: %{public}d",
+                    i, encoderInfo->sampleRate[i]);
             }
-        } else {
-            OH_LOG_ERROR(LOG_APP, "==NDKDemo== EncoderInfo is null");
         }
+    } else {
+        OH_LOG_ERROR(LOG_APP, "==NDKDemo== EncoderInfo is null");
     }
     napi_value res;
     napi_create_int32(env, result, &res);
@@ -347,36 +400,42 @@ static napi_value PrepareCamera(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     int32_t focusMode;
+    // 获取第一个参数值
     napi_get_value_int32(env, args[0], &focusMode);
 
     uint32_t cameraDeviceIndex;
+    // 获取第二个参数值
     napi_get_value_uint32(env, args[1], &cameraDeviceIndex);
 
     uint32_t sceneMode;
+    // 获取第三个参数值
     napi_get_value_uint32(env, args[2], &sceneMode);
 
     char* previewId = nullptr;
+    // 获取第四个参数值
     napi_get_value_string_utf8(env, args[3], nullptr, 0, &typeLen);
     previewId = new char[typeLen + 1];
+    // 获取第四个参数值
     napi_get_value_string_utf8(env, args[3], previewId, typeLen + 1, &typeLen);
 
     char* photoId = nullptr;
+    // 获取第五个参数值
     napi_get_value_string_utf8(env, args[4], nullptr, 0, &typeLen);
     photoId = new char[typeLen + 1];
+    // 获取第五个参数值
     napi_get_value_string_utf8(env, args[4], photoId, typeLen + 1, &typeLen);
 
     // 获取surfaceID
     OHNativeWindow *window = nullptr;
 
-    int resultCode = OH_AVRecorder_GetInputSurface(g_avRecorder, &window);
+    int resultCode = OH_AVRecorder_GetInputSurface(avRecorder, &window);
     if (resultCode != AV_ERR_OK || window == nullptr) {
-        OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder GetInputSurface failed! resultCode=%{public}d, window=%{public}p", resultCode, window);
+        OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder GetInputSurface failed!");
         napi_value errorResult;
         napi_create_int32(env, -1, &errorResult);    // -1 表示错误
         return errorResult;
     } else {
-    // 打印 window 地址以确认是否分配成功
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder GetInputSurface succeeded! window address: %{public}p", window);
+        OH_LOG_INFO(LOG_APP, "==NDKDemo== AVRecorder GetInputSurface succeeded!");
     }
     
     uint64_t surfaceId;
@@ -389,7 +448,8 @@ static napi_value PrepareCamera(napi_env env, napi_callback_info info)
     OH_LOG_ERROR(LOG_APP, "InitCamera photoId : %{public}s", photoId);
     OH_LOG_ERROR(LOG_APP, "InitCamera videoId : %{public}s", videoId);
 
-    ndkCamera_ = new NDKCamera(focusMode, cameraDeviceIndex, sceneMode, previewId, photoId, videoId);
+    SurfaceIds surfaceIds(previewId, photoId, videoId);
+    ndkCamera_ = new NDKCamera(focusMode, cameraDeviceIndex, sceneMode, surfaceIds);
     OH_LOG_INFO(LOG_APP, "InitCamera End");
 
     int result = 0;
@@ -402,8 +462,8 @@ static napi_value PrepareCamera(napi_env env, napi_callback_info info)
 static napi_value StartAVRecorder(napi_env env, napi_callback_info info)
 {
     (void)info;
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== g_avRecorder start: %{public}p", g_avRecorder);
-    int result = OH_AVRecorder_Start(g_avRecorder);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== avRecorder start: %{public}p", avRecorder);
+    int result = OH_AVRecorder_Start(avRecorder);
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Start failed %{public}d", result);
     }
@@ -416,7 +476,7 @@ static napi_value StartAVRecorder(napi_env env, napi_callback_info info)
 static napi_value PauseAVRecorder(napi_env env, napi_callback_info info)
 {
     (void)info;
-    int result = OH_AVRecorder_Pause(g_avRecorder);
+    int result = OH_AVRecorder_Pause(avRecorder);
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Pause failed %{public}d", result);
     }
@@ -429,7 +489,7 @@ static napi_value PauseAVRecorder(napi_env env, napi_callback_info info)
 static napi_value ResumeAVRecorder(napi_env env, napi_callback_info info)
 {
     (void)info;
-    int result = OH_AVRecorder_Resume(g_avRecorder);
+    int result = OH_AVRecorder_Resume(avRecorder);
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Resume failed %{public}d", result);
     }
@@ -442,8 +502,8 @@ static napi_value ResumeAVRecorder(napi_env env, napi_callback_info info)
 static napi_value StopAVRecorder(napi_env env, napi_callback_info info)
 {
     (void)info;
-    OH_LOG_INFO(LOG_APP, "==NDKDemo== g_avRecorder stop: %{public}p", g_avRecorder);
-    int result = OH_AVRecorder_Stop(g_avRecorder);
+    OH_LOG_INFO(LOG_APP, "==NDKDemo== avRecorder stop: %{public}p", avRecorder);
+    int result = OH_AVRecorder_Stop(avRecorder);
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Stop failed %{public}d", result);
     }
@@ -456,15 +516,15 @@ static napi_value StopAVRecorder(napi_env env, napi_callback_info info)
 static napi_value ResetAVRecorder(napi_env env, napi_callback_info info)
 {
     (void)info;
-    // 检查 g_avRecorder 是否有效
-    if (g_avRecorder == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "==NDKDemo== g_avRecorder is nullptr!");
+    // 检查 avRecorder 是否有效
+    if (avRecorder == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "==NDKDemo== avRecorder is nullptr!");
         napi_value res;
         napi_create_int32(env, AV_ERR_INVALID_VAL, &res);
         return res;
     }
 
-    int result = OH_AVRecorder_Reset(g_avRecorder);
+    int result = OH_AVRecorder_Reset(avRecorder);
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Reset failed %{public}d", result);
     }
@@ -477,16 +537,16 @@ static napi_value ResetAVRecorder(napi_env env, napi_callback_info info)
 static napi_value ReleaseAVRecorder(napi_env env, napi_callback_info info)
 {
     (void)info;
-    // 检查 g_avRecorder 是否有效
-    if (g_avRecorder == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "==NDKDemo== g_avRecorder is nullptr!");
+    // 检查 avRecorder 是否有效
+    if (avRecorder == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "==NDKDemo== avRecorder is nullptr!");
         napi_value res;
         napi_create_int32(env, AV_ERR_INVALID_VAL, &res);
         return res;
     }
     
-    int result = OH_AVRecorder_Release(g_avRecorder);
-    g_avRecorder = nullptr;   // 释放录制资源后，需要显式地将g_avRecorder指针置空
+    int result = OH_AVRecorder_Release(avRecorder);
+    avRecorder = nullptr;   // 释放录制资源后，需要显式地将avRecorder指针置空
     
     if (result != AV_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Release failed %{public}d", result);

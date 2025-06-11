@@ -97,11 +97,9 @@ export struct Index {
             .height(65)
             .onClick(() => {
               this.previewId = this.mXComponentController.getXComponentSurfaceId();
-              hilog.info(0x0000, 'testTag', 'dztdztdzt previewId: %{public}s', this.previewId);
               hilog.info(0x0000, 'testTag', 'Prepare AVRecorder %{public}d', testNapi.prepareAVRecorder());
               hilog.info(0x0000, 'testTag', 'prepare Camera %{public}d', testNapi.prepareCamera(this.focusMode, this.cameraDeviceIndex,
                 this.sceneMode, this.previewId, this.photoId, this.videoId));
-              hilog.info(0x0000, 'testTag', 'Start AVRecorder %{public}d', testNapi.startAVRecorder());
             })
           Button($r('app.string.Start'), { type: ButtonType.Circle, stateEffect: true })
             .id("Start")
