@@ -42,11 +42,20 @@
 #include "main.h"
 
 namespace OHOS_CAMERA_SAMPLE {
+struct SurfaceIds {
+    char* previewId;
+    char* photoId;
+    char* videoId;
+    
+    SurfaceIds(char* preview = nullptr, char* photo = nullptr, char* video = nullptr)
+        : previewId(preview), photoId(photo), videoId(video) {}
+};
 class NDKCamera {
-  public:
+public:
     ~NDKCamera();
+    
     NDKCamera(uint32_t focusMode, uint32_t cameraDeviceIndex, uint32_t sceneMode,
-        char *previewId, char *photoId, char *videoId);
+              const SurfaceIds& surfaceIds);
 
     static void Destroy()
     {

@@ -23,14 +23,14 @@
 class SampleCallback {
 public:
     SampleCallback() {}
-    SampleCallback(SampleCallback *p1) {}
+    explicit SampleCallback(SampleCallback *p1) {}
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData);
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData);
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData);
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData);
     
     OH_AVMuxer *muxer_ = nullptr;
-    int32_t g_videoTrackId = -1;
+    int32_t videoTrackId = -1;
 };
 
 #endif //AVCODEC_SAMPLE_CALLBACK_H

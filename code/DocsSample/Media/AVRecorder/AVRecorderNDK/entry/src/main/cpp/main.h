@@ -39,7 +39,7 @@
 #include "multimedia/media_library/media_access_helper_capi.h"
 #include "multimedia/media_library/media_asset_capi.h"
 
-static struct OH_AVRecorder *g_avRecorder = {};
+static struct OH_AVRecorder *avRecorder;
 OH_AVRecorder* InitRecorder();
 void StartRecording(OH_AVRecorder *recorder);
 
