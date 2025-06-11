@@ -45,6 +45,10 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
       this.dataPreferenceHelper = new DataPreferencesHelper(this.context.getApplicationContext());
     }
     this.commonEventManagerHelper.createSubscriber(this.subscribeInfo, (error, data) => {
+      if (error) {
+        Logger.error(`PublishCallBack err = ${JSON.stringify(error)}`);
+        return;
+      }
       this.handleEvent(data.event);
     });
   }
@@ -111,7 +115,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 
   onAppStart(bundleName: string): void {
-    Logger.error(`onAppStart bundleName:` + bundleName);
+    Logger.info(`onAppStart bundleName:` + bundleName);
   }
 
   private getStringByResource(res: Resource): string {

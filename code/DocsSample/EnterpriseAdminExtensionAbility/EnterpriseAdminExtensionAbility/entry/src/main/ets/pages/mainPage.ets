@@ -18,7 +18,7 @@ import Logger from '../common/Logger';
 import { NormalButtonComponent } from './component/normalButtonComponent';
 import { HeadComponent, HeadComponentController } from './component/headComponent';
 import { CommonEventValue } from '../utils/CommonEventValue';
-import { promptAction } from '@kit.ArkUI';
+import { PromptAction } from '@ohos.arkui.UIContext';
 import { CommonEventManagerHelper } from '../utils/CommonEventManagerHelper';
 import { common } from '@kit.AbilityKit';
 import { DataPreferencesHelper } from '../utils/DataPreferencesHelper';
@@ -42,6 +42,7 @@ struct MainPage {
       CommonEventValue.EVENT_RESULT,
     ],
   };
+  private promptAction = this.getUIContext().getPromptAction() as PromptAction;
 
   aboutToAppear(): void {
     if (this.dataPreferenceHelper == null) {
@@ -58,7 +59,7 @@ struct MainPage {
 
   private isNeedToShowToast(action: () => void) {
     if (this.isFirstActivated) {
-      promptAction.showToast({
+      this.promptAction.showToast({
         message: $r('app.string.please_use_hdc_active_device'),
         duration: 2000
       });
@@ -120,7 +121,7 @@ struct MainPage {
         Flex({ alignItems: ItemAlign.Center }) {
           NormalButtonComponent({ btnText: $r('app.string.enable_admin') })
             .onClick(() => {
-              promptAction.showToast({
+              this.promptAction.showToast({
                 message: $r('app.string.please_use_hdc_active_device'),
                 duration: 2000
               });

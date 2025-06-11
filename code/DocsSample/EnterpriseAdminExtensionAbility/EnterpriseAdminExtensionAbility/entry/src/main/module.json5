@@ -58,7 +58,7 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN",
+        "name": "ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN"
       },
       {
         "name": "ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS"

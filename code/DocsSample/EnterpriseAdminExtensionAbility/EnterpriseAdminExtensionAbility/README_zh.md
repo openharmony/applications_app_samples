@@ -2,7 +2,7 @@
 
 ### 介绍
 
-企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能。本示例涉及使用接口：@ohos.enterprise.adminManager中的disableAdmin接口，@ohos.enterprise.restrictions中的setDisallowedPolicy、getDisallowedPolicy接口，以及@ohos.enterprise.deviceControl中的operateDevice接口。
+企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能。本示例依照开发指南[MDM Kit（企业设备管理）](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/mdm/Readme-CN.md)进行编写。本示例涉及使用接口：@ohos.enterprise.adminManager中的[disableAdmin](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-adminmanager#adminmanagerdisableadmin)接口，@ohos.enterprise.restrictions中的[setDisallowedPolicy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-restrictions#restrictionssetdisallowedpolicy)、[getDisallowedPolicy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-restrictions#restrictionsgetdisallowedpolicy)接口，以及@ohos.enterprise.deviceControl中的[operateDevice](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-devicecontrol#devicecontroloperatedevice)接口。
 
 ### 效果预览
 
@@ -29,14 +29,16 @@ entry/src/main/ets/
 |---enterpriseadminability
 |   |---EnterpriseAdminAbility.ets    // 数据类型
 |---entryability
-|   |---EntryAbility.ets                
+|   |---EntryAbility.ets              // 程序入口
 |---pages
 |   |---component                     // 自定义组件目录
 |       |---headComponent.ets         // 自定义AtionBar
 |       |---normalButtonComponent.ets // 自定义通用Button
-|---launcherPage.ets                  // 启动页
-|---mainPage.ets                      // 主页
-|---readStatementPage.ets             // 使用声明页
+|   |---mainPage.ets                  // 主页
+|---utils
+|   |---CommonEventManagerHelper.ets  // 事件管理
+|   |---CommonEventValue.ets          // 事件定义
+|   |---DataPreferencesHelper.ets     // 数据工具
 ```
 ### 具体实现
 
@@ -58,9 +60,9 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1. 本示例已适配API version 12版本SDK，版本号：5.0.0.17。
+1. 本示例已适配API version 18版本SDK，版本号：5.1.0.59。
 
-2. 本示例需要使用DevEco Studio NEXT Developer Beta2 (Build Version: 5.0.3.500 构建 2024年7月17日)及以上版本才可编译运行。
+2. 本示例需要使用DevEco Studio 5.1.0 Canary1 (Build Version: 5.1.0.230 构建 2025年1月10日)及以上版本才可编译运行。
 
 ### 下载
 

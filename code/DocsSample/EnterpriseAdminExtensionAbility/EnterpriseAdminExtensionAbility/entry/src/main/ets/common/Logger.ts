@@ -17,7 +17,7 @@ import hilog from '@ohos.hilog';
 
 class Logger {
   private domain: number;
-  private prefix: string = 'MdmSample';
+  private prefix: string = 'Sample_Mdm';
   private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {

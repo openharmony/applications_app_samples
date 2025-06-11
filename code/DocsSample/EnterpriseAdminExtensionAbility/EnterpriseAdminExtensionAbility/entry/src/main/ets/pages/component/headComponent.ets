@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
+import { Router } from '@ohos.arkui.UIContext';
 
 export class HeadComponentController {
   public title?: Resource | string;
@@ -26,6 +26,7 @@ export struct HeadComponent {
     title: '',
     needBack: true
   }
+  private router = this.getUIContext().getRouter() as Router;
 
   build() {
     Row() {
@@ -37,17 +38,17 @@ export struct HeadComponent {
             .width(21.8)
             .height(19.6)
             .onClick(() => {
-              router.back()
+              this.router.back()
             })
           Text(this.controller.title)
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
-            .margin({left: 17.4})
+            .margin({ left: 17.4 })
 
         }
         .height(60)
         .backgroundColor($r('sys.color.white'))
-        .padding({top: 13, bottom: 15, left: 28.3})
+        .padding({ top: 13, bottom: 15, left: 28.3 })
       }
     }
     .height(60)
