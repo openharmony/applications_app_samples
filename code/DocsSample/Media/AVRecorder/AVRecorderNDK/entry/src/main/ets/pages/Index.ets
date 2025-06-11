@@ -15,14 +15,7 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
-import camera from '@ohos.multimedia.camera';
-import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
-import { BusinessError } from'@kit.BasicServicesKit';
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-const permissions: Array<Permissions> = ['ohos.permission.CAMERA'];
-
-const componentType_Jpeg = image.ComponentType.JPEG
 
 @Entry
 @Component
@@ -70,7 +63,7 @@ export struct Index {
 
           // ** 可选: 获取实时录制参数 **
           Button($r('app.string.GetConfig'), { type: ButtonType.Circle, stateEffect: true })
-            .id("GetConfig")
+            .id('GetConfig')
             .backgroundColor(0xF55A42)
             .width(65)
             .height(65)
@@ -80,7 +73,7 @@ export struct Index {
 
           // ** 可选: 获取编码信息 **
           Button($r('app.string.GetInfo'), { type: ButtonType.Circle, stateEffect: true })
-            .id("GetInfo")
+            .id('GetInfo')
             .backgroundColor(0xF55A42)
             .width(65)
             .height(65)
@@ -91,7 +84,7 @@ export struct Index {
           Flex({ direction: FlexDirection.Row, wrap:FlexWrap.Wrap, justifyContent: FlexAlign.SpaceEvenly,
             alignItems: ItemAlign.Center, alignContent:FlexAlign.Center }){
           Button($r('app.string.Prepare'), { type: ButtonType.Circle, stateEffect: true })
-            .id("Prepare")
+            .id('Prepare')
             .backgroundColor(Color.Black)
             .width(65)
             .height(65)
@@ -102,7 +95,7 @@ export struct Index {
                 this.sceneMode, this.previewId, this.photoId, this.videoId));
             })
           Button($r('app.string.Start'), { type: ButtonType.Circle, stateEffect: true })
-            .id("Start")
+            .id('Start')
             .backgroundColor(0xF55A42)
             .width(65)
             .height(65)
@@ -111,7 +104,7 @@ export struct Index {
               hilog.info(0x0000, 'testTag', 'Start AVRecorder %{public}d', testNapi.startAVRecorder());
             })
           Button($r('app.string.Pause'), { type: ButtonType.Normal, stateEffect: true })
-            .id("Pause")
+            .id('Pause')
             .backgroundColor(0x4287F5)
             .width(65)
             .height(65)
@@ -119,7 +112,7 @@ export struct Index {
               hilog.info(0x0000, 'testTag', 'Pause AVRecorder %{public}d', testNapi.pauseAVRecorder());
             })
           Button($r('app.string.Resume'), { type: ButtonType.Capsule, stateEffect: true })
-            .id("Resume")
+            .id('Resume')
             .backgroundColor(0x4287F5)
             .width(65)
             .height(65)
@@ -130,7 +123,7 @@ export struct Index {
         Flex({ direction: FlexDirection.Row, wrap:FlexWrap.Wrap, justifyContent: FlexAlign.SpaceEvenly,
             alignItems: ItemAlign.Center, alignContent:FlexAlign.Center }){
           Button($r('app.string.Stop'), { type: ButtonType.Capsule, stateEffect: true })
-            .id("Stop")
+            .id('Stop')
             .backgroundColor(0x4287F5)
             .width(65)
             .height(65)
@@ -138,7 +131,7 @@ export struct Index {
               hilog.info(0x0000, 'testTag', 'Stop AVRecorder %{public}d', testNapi.stopAVRecorder());
             })
           Button($r('app.string.Reset'), { type: ButtonType.Capsule, stateEffect: true })
-            .id("Reset")
+            .id('Reset')
             .backgroundColor(0x4287F5)
             .width(65)
             .height(65)
@@ -146,7 +139,7 @@ export struct Index {
               hilog.info(0x0000, 'testTag', 'Reset AVRecorder %{public}d', testNapi.resetAVRecorder());
             })
           Button($r('app.string.Release'), { type: ButtonType.Capsule, stateEffect: true })
-            .id("Release")
+            .id('Release')
             .backgroundColor(0x4287F5)
             .width(65)
             .height(65)

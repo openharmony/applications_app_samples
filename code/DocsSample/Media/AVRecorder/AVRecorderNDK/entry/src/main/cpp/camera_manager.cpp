@@ -24,21 +24,21 @@ std::mutex NDKCamera::mtx_;
 const std::unordered_map<uint32_t, Camera_SceneMode> g_int32ToCameraSceneMode = {
     {1, Camera_SceneMode::NORMAL_PHOTO},
     {2, Camera_SceneMode::NORMAL_VIDEO},
-    {12, Camera_SceneMode::SECURE_PHOTO} 
+    {12, Camera_SceneMode::SECURE_PHOTO}
 };
 
 NDKCamera::NDKCamera(uint32_t focusMode, uint32_t cameraDeviceIndex, uint32_t sceneMode,
     const SurfaceIds& surfaceIds)
     : focusMode_(focusMode), cameraDeviceIndex_(cameraDeviceIndex),
-      previewSurfaceId_(surfaceIds.previewId), 
-      photoSurfaceId_(surfaceIds.photoId), 
+      previewSurfaceId_(surfaceIds.previewId),
+      photoSurfaceId_(surfaceIds.photoId),
       videoSurfaceId_(surfaceIds.videoId),
-      cameras_(nullptr), profile_(nullptr), cameraOutputCapability_(nullptr), 
-      captureSession_(nullptr), cameraInput_(nullptr), previewOutput_(nullptr), 
-      photoOutput_(nullptr), videoOutput_(nullptr), isCameraMuted_(nullptr), 
+      cameras_(nullptr), profile_(nullptr), cameraOutputCapability_(nullptr),
+      captureSession_(nullptr), cameraInput_(nullptr), previewOutput_(nullptr),
+      photoOutput_(nullptr), videoOutput_(nullptr), isCameraMuted_(nullptr),
       metaDataObjectType_(nullptr), metadataOutput_(nullptr),
-      isExposureModeSupported_(false), isFocusModeSupported_(false), isSuccess_(false), 
-      sceneMode_(NORMAL_VIDEO), exposureMode_(EXPOSURE_MODE_LOCKED), ret_(CAMERA_OK), 
+      isExposureModeSupported_(false), isFocusModeSupported_(false), isSuccess_(false),
+      sceneMode_(NORMAL_VIDEO), exposureMode_(EXPOSURE_MODE_LOCKED), ret_(CAMERA_OK),
       size_(0), minExposureBias_(0), maxExposureBias_(0), step_(0)
 {
     // release camera
@@ -663,7 +663,7 @@ Camera_ErrorCode NDKCamera::IsMeteringPoint(int x, int y)
 Camera_ErrorCode NDKCamera::IsExposureBiasRange(int exposureBias)
 {
     OH_LOG_INFO(LOG_APP, "IsExposureBiasRange end.");
-    float exposureBiasValue = (float)exposureBias;
+    float exposureBiasValue = static_cast<float>(exposureBias);
     ret_ = OH_CaptureSession_GetExposureBiasRange(captureSession_, &minExposureBias_, &maxExposureBias_, &step_);
     if (&minExposureBias_ == nullptr || &maxExposureBias_ == nullptr || &step_ == nullptr || ret_ != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "GetExposureBiasRange failed.");

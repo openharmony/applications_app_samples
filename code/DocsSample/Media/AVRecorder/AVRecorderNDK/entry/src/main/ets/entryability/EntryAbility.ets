@@ -21,7 +21,7 @@ import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let permissionNames: Array<Permissions> = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
+    let permissionNames: Permissions[] = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
       'ohos.permission.WRITE_MEDIA', 'ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'];
     globalThis.abilityWant = this.launchWant;
     globalThis.abilityContext = this.context;

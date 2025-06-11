@@ -20,11 +20,12 @@
 
 #define LOG_DOMAIN 0x3200
 #define LOG_TAG "MY_NDKDEMO"
-#include <inttypes.h>
+#include <cinttypes>
 
 using namespace std;
 using namespace OHOS_CAMERA_SAMPLE;
 static NDKCamera* ndkCamera_ = nullptr;
+static struct OH_AVRecorder *avRecorder;
 
 // 设置视频分辨率
 int videoFrameWidth = 1280;
@@ -68,12 +69,16 @@ void SetConfig(OH_AVRecorder_Config &config)
     // 初始长度为3的空间，存放视频旋转角度
     config.metadata.videoOrientation = (char*)malloc(3);
     if (config.metadata.videoOrientation != nullptr) {
+        // 2为存储空间
         strncpy(config.metadata.videoOrientation, "90", 2);
+        // 2为末尾位置，添加终止符
         config.metadata.videoOrientation[2] = '\0';
     }
     OH_LOG_INFO(LOG_APP, "==NDKDemo== videoOrientation: %{public}s", config.metadata.videoOrientation);
 
+    // 配置纬度 31.791863
     config.metadata.location.latitude = 31.791863;
+    // 配置经度 64.574687
     config.metadata.location.longitude = 64.574687;
 }
 
@@ -128,12 +133,16 @@ void SetConfigVideo(OH_AVRecorder_Config &config)
     // 初始长度为3的空间，存放视频旋转角度
     config.metadata.videoOrientation = (char*)malloc(3);
     if (config.metadata.videoOrientation != nullptr) {
+        // 2为存储空间
         strncpy(config.metadata.videoOrientation, "90", 2);
+        // 2为末尾位置，添加终止符
         config.metadata.videoOrientation[2] = '\0';
     }
     OH_LOG_INFO(LOG_APP, "==NDKDemo== videoOrientation: %{public}s", config.metadata.videoOrientation);
 
+    // 配置纬度 31.791863
     config.metadata.location.latitude = 31.791863;
+    // 配置经度 64.574687
     config.metadata.location.longitude = 64.574687;
 }
 
@@ -144,7 +153,8 @@ void OnStateChange(OH_AVRecorder *recorder, OH_AVRecorder_State state,
     (void)userData;
 
     // 将 reason 转换为字符串表示
-    const char *reasonStr = (reason == AVRECORDER_USER) ? "USER" : (reason == AVRECORDER_BACKGROUND) ? "BACKGROUND" : "UNKNOWN";
+    const char *reasonStr = (reason == AVRECORDER_USER) ? "USER" : (reason == AVRECORDER_BACKGROUND)
+        ? "BACKGROUND" : "UNKNOWN";
 
     if (state == AVRECORDER_IDLE) {
         OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange IDLE, reason: %{public}s", reasonStr);
@@ -227,8 +237,8 @@ static napi_value PrepareAVRecorder(napi_env env, napi_callback_info info)
     SetConfig(*config);
 
     // 1.1 设置URL
-    const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
-    int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777);    // 设置文件名
+    const std::string avRecorderRoot = "/data/storage/el2/base/files/";
+    int32_t outputFd = open((avRecorderRoot + "avrecorder01.mp4").c_str(), O_RDWR | O_CREAT, 0777);    // 设置文件名
     std::string fileUrl = "fd://" + std::to_string(outputFd);
     config->url = const_cast<char *>(fileUrl.c_str());
     OH_LOG_INFO(LOG_APP, "config.url is: %s", const_cast<char *>(fileUrl.c_str()));
@@ -400,29 +410,29 @@ static napi_value PrepareCamera(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     int32_t focusMode;
-    // 获取第一个参数值
+    // 0 代表获取第一个参数值
     napi_get_value_int32(env, args[0], &focusMode);
 
     uint32_t cameraDeviceIndex;
-    // 获取第二个参数值
+    // 1 代表获取第二个参数值
     napi_get_value_uint32(env, args[1], &cameraDeviceIndex);
 
     uint32_t sceneMode;
-    // 获取第三个参数值
+    // 2 代表获取第三个参数值
     napi_get_value_uint32(env, args[2], &sceneMode);
 
     char* previewId = nullptr;
-    // 获取第四个参数值
+    // 3 代表获取第四个参数值
     napi_get_value_string_utf8(env, args[3], nullptr, 0, &typeLen);
     previewId = new char[typeLen + 1];
-    // 获取第四个参数值
+    // 3 代表获取第四个参数值
     napi_get_value_string_utf8(env, args[3], previewId, typeLen + 1, &typeLen);
 
     char* photoId = nullptr;
-    // 获取第五个参数值
+    // 4 代表获取第五个参数值
     napi_get_value_string_utf8(env, args[4], nullptr, 0, &typeLen);
     photoId = new char[typeLen + 1];
-    // 获取第五个参数值
+    // 4 代表获取第五个参数值
     napi_get_value_string_utf8(env, args[4], photoId, typeLen + 1, &typeLen);
 
     // 获取surfaceID

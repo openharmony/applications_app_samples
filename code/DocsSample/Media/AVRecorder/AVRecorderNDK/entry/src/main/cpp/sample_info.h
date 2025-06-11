@@ -64,7 +64,6 @@ struct SampleInfo {
     int32_t rotation = 0;
     OHNativeWindow *window = nullptr;
 
-    
     int32_t sampleRate = 44100;
     int32_t channelCount = 2;
 
@@ -72,8 +71,6 @@ struct SampleInfo {
     double readTime = 0;
     double memcpyTime = 0;
     double writeTime = 0;
-    void (*PlayDoneCallback)(void *context) = nullptr;
-    void *playDoneCallbackData = nullptr;
 };
 
 struct CodecBufferInfo {
