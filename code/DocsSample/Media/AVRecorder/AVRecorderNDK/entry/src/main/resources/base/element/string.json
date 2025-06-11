@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AVRecorderSample"
+    },
+    {
+      "name": "sample_label",
+      "value": "AVRecorderSample"
+    },
+    {
+      "name": "GetConfig",
+      "value": "GetConfig"
+    },
+    {
+      "name": "GetInfo",
+      "value": "GetInfo"
+    },
+    {
+      "name": "Prepare",
+      "value": "Prepare"
+    },
+    {
+      "name": "Start",
+      "value": "Start"
+    },
+    {
+      "name": "Pause",
+      "value": "Pause"
+    },
+    {
+      "name": "Resume",
+      "value": "Resume"
+    },
+    {
+      "name": "Stop",
+      "value": "Stop"
+    },
+    {
+      "name": "Reset",
+      "value": "Reset"
+    },
+    {
+      "name": "Release",
+      "value": "Release"
+    }
+  ]
+}
