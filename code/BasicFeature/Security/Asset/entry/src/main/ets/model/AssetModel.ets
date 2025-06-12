@@ -207,7 +207,6 @@ async function getFirstQuery(alias: string, label: string): Promise<asset.AssetM
     let map: asset.AssetMap = new Map();
     if (alias.length > 0) {
       map.set(asset.Tag.ALIAS, stringToArray(alias));
-      map.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL)
     }
     map.set(options[i], stringToArray(label));
     try {
