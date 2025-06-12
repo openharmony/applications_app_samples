@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本实例主要测试了当前2D引擎提供的接口功能，主要调用了[@ohos.graphics.drawing](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.graphics.drawing.d.ts)和[@kit.ArkGraphics2D](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-effectKit.md)中的接口，测试了每一个接口的功能。2D引擎渲染的画面会被显示在[Text](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@internal/component/ets/text.d.ts)这一控件中。点击“...展开”会有评论区展开效果，点击“...收起”会展示收起效果。
+本实例主要测试了当前2D引擎提供的接口功能，主要调用了[@ohos.graphics.drawing](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)和[@kit.ArkGraphics2D](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-effectKit.md)中的接口，测试了每一个接口的功能。2D引擎渲染的画面会被显示在[Text](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md)这一控件中。点击“...展开”会有评论区展开效果，点击“...收起”会展示收起效果。
 
 ### 使用说明
 

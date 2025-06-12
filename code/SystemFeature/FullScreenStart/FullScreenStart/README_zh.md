@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[@ohos.app.ability.EmbeddableUIAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.EmbeddableUIAbility.d.ts),[@ohos.arkui.advanced.FullScreenLaunchComponent](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.arkui.advanced.FullScreenLaunchComponent.d.ets)，[UIAbilityContext.openAtomicService](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/UIAbilityContext.d.ts)，[UIExtensionContext.openAtomicService](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/UIExtensionContext.d.ts)等接口，展示了如何全屏启动原子化服务。
+本示例使用[@ohos.app.ability.EmbeddableUIAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md),[@ohos.arkui.advanced.FullScreenLaunchComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)，[UIAbilityContext.openAtomicService](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)，[UIExtensionContext.openAtomicService](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)等接口，展示了如何全屏启动原子化服务。
 
 ### 效果预览
 
@@ -40,17 +40,17 @@ entry/src/main/ets/
     * FullScreenLaunchComponent (全屏启动原子化服务组件)
         * 调用FullScreenLaunchComponent全屏启动原子化服务组件，当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务。
         * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)
-        * 参考接口：[@ohos.arkui.advanced.FullScreenLaunchComponent](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.arkui.advanced.FullScreenLaunchComponent.d.ets)
+        * 参考接口：[@ohos.arkui.advanced.FullScreenLaunchComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
 
     * UIAbility全屏启动原子化服务
         * 调用UIAbilityContext.openAtomicService()，使用方全屏跳出式启动原子化服务。
         * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)
-        * 参考接口：[UIAbilityContext.openAtomicService](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/UIAbilityContext.d.ts)
+        * 参考接口：[UIAbilityContext.openAtomicService](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)
 
     * UIExtension全屏启动原子化服务
         * 调用UIExtensionContext.openAtomicService()，使用方全屏跳出式启动原子化服务。
         * 源码链接：[ExtensionIndex.ets](entry/src/main/ets/pages/ExtensionIndex.ets)
-        * 参考接口：[UIExtensionContext.openAtomicService](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/UIExtensionContext.d.ts)
+        * 参考接口：[UIExtensionContext.openAtomicService](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)
 
 ### 相关权限
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本实例主要测试了当前2D引擎提供的接口功能，主要调用了[@ohos.graphics.drawing](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.graphics.drawing.d.ts)中的接口，测试了每一个接口的功能。实现文字逐字绘制。
+本实例主要测试了当前2D引擎提供的接口功能，主要调用了[@ohos.graphics.drawing](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)中的接口，测试了每一个接口的功能。实现文字逐字绘制。
 ### 效果预览
 
 | 效果                         |

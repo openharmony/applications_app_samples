@@ -58,7 +58,7 @@ entry/src/ohosTest/ets/
 2. 本示例为stage模型，仅适配API version11版本SDK，SDK版本号(API Version 11 Release)。
 3. 本示例需要使用DevEco Studio 版本号(3.1.1 Release)版本才可编译运行。
 
-本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)
+本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md)
 ，把配置文件中的“app-feature”字段信息改为“hos_system_app”,"apl"字段修改为“system_basic”。
 
 ### 下载

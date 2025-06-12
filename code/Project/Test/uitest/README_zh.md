@@ -2,7 +2,7 @@
 ### 介绍
 本示例展示测试框架中UI测试框架的使用示例。
 
-测试框架arkxtest的详细介绍请[参考](https://gitee.com/openharmony/testfwk_arkxtest) 。
+测试框架arkxtest的详细介绍请[参考](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/application-test/arkxtest-guidelines.md) 。
 
 本实例需要引入UiTest接口[@ohos.UiTest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md) 。  
 
