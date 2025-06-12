@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,16 +14,16 @@
  */
 
 import router from '@ohos.router';
-import prompt from '@ohos.prompt'
-import { ServiceModel } from '../model/ServiceModel'
-import { TitleBar } from '../component/TitleBar'
-import { OperateView } from '../component/OperateView'
-import rpc from "@ohos.rpc"
+import prompt from '@ohos.prompt';
+import { ServiceModel } from '../model/ServiceModel';
+import { TitleBar } from '../component/TitleBar';
+import { OperateView } from '../component/OperateView';
+import rpc from '@ohos.rpc';
 import reminderAgent from '@ohos.reminderAgent';
 import notification from '@ohos.notification';
-import Logger from '../model/Logger'
+import Logger from '../model/Logger';
 
-const TAG = "Index"
+const TAG = 'Index';
 
 async function routePage() {
   let options = {
@@ -82,19 +82,19 @@ struct Index {
       // 用于设置弹出的提醒通知信息上显示的按钮类型和标题
       actionButton: [
         {
-          title: "snooze",
+          title: 'snooze',
           type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE,
         }
       ],
       // wantAgent用于点击提醒通知后跳转的目标ability信息
       wantAgent: {
-        pkgName: "ohos.samples.flybird",
-        abilityName: "EntryAbility"
+        pkgName: 'ohos.samples.flybird',
+        abilityName: 'EntryAbility'
       },
       // maxScreenWantAgent用于全屏显示提醒到达时自动拉起的目标ability信息，该接口预留
       maxScreenWantAgent: {
-        pkgName: "ohos.samples.flybird",
-        abilityName: "EntryAbility"
+        pkgName: 'ohos.samples.flybird',
+        abilityName: 'EntryAbility'
       },
       // 指明响铃时长
       ringDuration: 10,
@@ -103,17 +103,27 @@ struct Index {
       // 执行延迟提醒间隔
       timeInterval: 5 * 60,
       // 指明延迟提醒时需要显示的内容
-      snoozeContent: "later",
+      snoozeContent: 'later',
       // 指明提醒标题
-      title: "game alarm",
+      title: 'game alarm',
       // 指明提醒内容
-      content: "remember play game",
+      content: 'remember play game',
       // 指明提醒过期后需要显示的内容
-      expiredContent: "expiredContent",
+      expiredContent: 'expiredContent',
       // 指明提醒使用的通知的id号，相同id号的提醒会覆盖
       notificationId: 200,
-    }
-    reminderAgent.publishReminder(reminder);
+    };
+    reminderAgent.publishReminder(reminder).then(() => {
+      prompt.showToast({
+        message: 'set game alarm successed'
+      });
+      Logger.info(TAG, 'set game alarm successed');
+    }).catch((err) => {
+      prompt.showToast({
+        message: 'set game alarm failed'
+      });
+      Logger.error(TAG, `set game alarm failed, err = ${JSON.stringify(err)}`);
+    });
   }
 
   async callback(err, data) {
@@ -125,8 +135,8 @@ struct Index {
   }
   // 日历实例对象，用于设置提醒的时间
   async setGameRenmindCalendar() {
-    Logger.info(`${TAG} setGameRenmindCalendar begin`)
-    let calendar: {
+    Logger.info(`${TAG} setGameRenmindCalendar begin`);
+    let calendar: reminderAgent.ReminderRequestCalendar = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
       // 指明提醒的目标时间
       dateTime: {
@@ -142,24 +152,34 @@ struct Index {
       // 指明重复提醒的日期
       repeatDays: [1],
       wantAgent: {
-        pkgName: "ohos.samples.flybird",
-        abilityName: "EntryAbility"
+        pkgName: 'ohos.samples.flybird',
+        abilityName: 'EntryAbility'
       },
       maxScreenWantAgent: {
-        pkgName: "ohos.samples.flybird",
-        abilityName: "EntryAbility"
+        pkgName: 'ohos.samples.flybird',
+        abilityName: 'EntryAbility'
       },
       ringDuration: 5,
       snoozeTimes: 2,
       timeInterval: 5,
-      title: "game calendar",
-      content: "game calender",
-      expiredContent: "this reminder has expired",
-      snoozeContent: "remind later",
+      title: 'game calendar',
+      content: 'game calender',
+      expiredContent: 'this reminder has expired',
+      snoozeContent: 'remind later',
       notificationId: 100,
       slotType: notification.SlotType.SOCIAL_COMMUNICATION
-    }
-    reminderAgent.publishReminder(calendar);
+    };
+    reminderAgent.publishReminder(calendar).then(() => {
+      prompt.showToast({
+        message: 'set game calendar successed'
+      });
+      Logger.info(TAG, 'set game calendar successed');
+    }).catch((err) => {
+      prompt.showToast({
+        message: 'set game calendar failed'
+      });
+      Logger.error(TAG, `set game calendar failed, err = ${JSON.stringify(err)}`);
+    });
   }
 
   async disconenctService() {
@@ -196,21 +216,21 @@ struct Index {
   }
 
   async startGameEx() {
-    Logger.info(`${TAG} startGame begin`)
-    let mRemote = this.serviceModel.getRemoteObject()
+    Logger.info(`${TAG} startGame begin`);
+    let mRemote = this.serviceModel.getRemoteObject();
     if (mRemote === null) {
       prompt.showToast({
         message: 'please connect service'
-      })
+      });
     }
 
-    let option: rpc.MessageOption = new rpc.MessageOption()
-    let data: rpc.MessageParcel = rpc.MessageParcel.create()
-    let reply: rpc.MessageParcel = rpc.MessageParcel.create()
-    data.writeString("start_game")
-    await mRemote.sendRequest(1, data, reply, option)
-    let msg = reply.readString()
-    this.afterSortString = msg
+    let option: rpc.MessageOption = new rpc.MessageOption();
+    let data: rpc.MessageParcel = rpc.MessageParcel.create();
+    let reply: rpc.MessageParcel = rpc.MessageParcel.create();
+    data.writeString('start_game');
+    await mRemote.sendRequest(1, data, reply, option);
+    let msg = reply.readString();
+    this.afterSortString = msg;
   }
 
   build() {
