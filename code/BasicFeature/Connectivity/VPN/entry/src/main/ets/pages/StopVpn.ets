@@ -19,6 +19,7 @@ import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import vpn_client from "libvpn_client.so";
 import { showToast } from '../components/ShowToast';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   deviceId: "",
@@ -68,6 +69,9 @@ struct StopVpn {
             vpnext.stopVpnExtensionAbility(want).then(() => {
               showToast('stop vpnExt Success', 2000);
               hilog.info(0x0000, 'developTag', '%{public}s', 'stop vpnExt Success');
+            }).catch((err: BusinessError) => {
+              showToast('stop vpnExt Fail: ' + JSON.stringify(err), 2000);
+              hilog.error(0x0000, 'developTag', 'stop vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
             })
           } catch (err) {
             showToast('stop vpnExt Fail: ' + JSON.stringify(err), 2000);
