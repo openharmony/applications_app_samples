@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[application/AutoFillRequest](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AutoFillRequest.d.ts)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.AutoFillExtensionAbility.d.ts)，[application/ViewData](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ViewData.d.ts)，[@ohos.app.ability.autoFillManager ](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.autoFillManager.d.ts)等接口，展示了如何使用AutoFill自动填充框架。具体而言实现了如下几点功能：
+本示例使用[application/AutoFillRequest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoFillRequest-sys.md)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)，[application/ViewData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md)，[@ohos.app.ability.autoFillManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)等接口，展示了如何使用AutoFill自动填充框架。具体而言实现了如下几点功能：
 
 1.账号和密码的自动保存；
 2.账号和密码的自动填充；
@@ -57,32 +57,32 @@ entry/src/main/ets/
 
   * USER_NAME类型的TextInput控件获焦后拉起AutoFillExtensionAbility，并触发onFillRequest回调，将选择的账号密码返回到textInput组件。
   * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/AutoFillAbility.ts)，[AutoFillControl.ets](entry/src/main/ets/autofillpages/AutoFillControl.ets)
-  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AutoFillRequest.d.ts)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.AutoFillExtensionAbility.d.ts)，[application/ViewData](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ViewData.d.ts)
+  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoFillRequest-sys.md)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)，[application/ViewData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md)
 
    2. Password类型的AutoFill控件自动填充
 
   * Password类型的TextInput控件获焦后拉起AutoFillExtensionAbility，并触发onFillRequest回调，将选择的账号密码返回到textInput组件。
   * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/AutoFillAbility.ts)，[AutoFillControl.ets](entry/src/main/ets/autofillpages/AutoFillControl.ets)
-  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AutoFillRequest.d.ts)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.AutoFillExtensionAbility.d.ts)， [application/ViewData](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ViewData.d.ts)
+  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoFillRequest-sys.md)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)， [application/ViewData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md)
 
   3. NEW_PASSWORD类型的AutoFill控件自动填充
 
   * NEW_PASSWORD类型的TextInput控件获焦后拉起AutoFillExtensionAbility，并触发onFillRequest回调，将选择的账号密码返回到textInput组件。
   * 源码链接：[RegisterPage.ets](entry/src/main/ets/autofillpages/RegisterPage.ets),  [AutoFillAbility.ts](entry/src/main/ets/autofillability/AutoFillAbility.ts)，[AutoFillNewPassWord.ets](entry/src/main/ets/autofillpages/AutoFillNewPassWord.ets)
 
-  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AutoFillRequest.d.ts)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.AutoFillExtensionAbility.d.ts)， [application/ViewData](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ViewData.d.ts)
+  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoFillRequest-sys.md)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)， [application/ViewData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md)
 
   4. 自动保存能力
 
   * 当登录页面消失，发起自动保存请求，触发onSaveRequest生命周期。
   * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/AutoFillAbility.ts)，[LoginSuccessPage.ets](entry/src/main/ets/autofillpages/LoginSuccessPage.ets)，[SavePage.ets](entry/src/main/ets/autofillpages/SavePage.ets)
-  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AutoFillRequest.d.ts)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.AutoFillExtensionAbility.d.ts)
+  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoFillRequest-sys.md)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
 
   5. 用户主动调用保存接口
 
   * 用户主动调用requestAutoSave接口保存账号密码。
   * 源码链接：[RegisterPage.ets](entry/src/main/ets/autofillpages/RegisterPage.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/AutoFillAbility.ts)，[SavePage.ets](entry/src/main/ets/autofillpages/SavePage.ets)
-  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AutoFillRequest.d.ts)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.AutoFillExtensionAbility.d.ts)，[@ohos.app.ability.autoFillManager](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.autoFillManager.d.ts)
+  * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-autoFillRequest-sys.md)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)，[@ohos.app.ability.autoFillManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
 
 ### 安装命令
 

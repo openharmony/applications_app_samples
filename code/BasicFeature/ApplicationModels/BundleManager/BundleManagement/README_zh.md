@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[@ohos.bundle.bundleManager](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleManager.d.ts)，[@ohos.bundle.defaultAppManager](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.defaultAppManager.d.ts)，[@ohos.bundle.overlay](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.overlay.d.ts)
+本示例使用[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-bundleManager.md)，[@ohos.bundle.defaultAppManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-defaultAppManager.md)，[@ohos.bundle.overlay](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-overlay.md)
 等接口，展示了向开发者如何调用包管理提供的public接口，验证其功能。
 
 ### 效果预览

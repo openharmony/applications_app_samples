@@ -3,7 +3,7 @@
 ### 介绍
 
 此Sample展示
-[空间音频API](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.audio.d.ts) 的用法，相关API包括:
+[空间音频API](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-audio-kit/js-apis-audio-sys.md) 的用法，相关API包括:
 1. isSpatializationSupported(): 查询系统是否支持空间音频， 
 2. isHeadTrackingSupported()：查询系统是否支持头动跟踪，
 3. isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor)：查询设备是否支持空间音频，
@@ -68,7 +68,7 @@ entry/src/main/ets/
 
 4.本示例需要使用系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
-5.本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”，再将“apl”字段信息改为“system_core”。
+5.本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”，再将“apl”字段信息改为“system_core”。
 
 ### 下载
 
