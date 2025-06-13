@@ -15,7 +15,6 @@
 
 // [Start HiLog_CPP_Callback]
 #include "napi/native_api.h"
-static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
 // [StartExclude HiLog_CPP_Callback]
 // [Start HiLog_CPP_Header]
 #include "hilog/log.h"
@@ -35,12 +34,12 @@ void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain
 static napi_value HiLogTest(napi_env env, napi_callback_info info)
 {
     OH_LOG_SetCallback(MyHiLog);
-    HiLog::Info(LABEL, "hello world");
 // [StartExclude HiLog_CPP_Callback]
 // [Start HiLog_CPP_Log_Error]
     OH_LOG_ERROR(LOG_APP, "Failed to test");
 // [End HiLog_CPP_Log_Error]
 // [EndExclude HiLog_CPP_Callback]
+    return {};
 }
 // [End HiLog_CPP_Callback]
 EXTERN_C_START
