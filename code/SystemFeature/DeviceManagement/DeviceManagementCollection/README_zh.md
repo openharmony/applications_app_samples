@@ -202,6 +202,8 @@ DeviceManagementCollection
 
 7.允许应用设置SettingsData中设备级配置数据表和用户级配置数据表：[ohos.permission.MANAGE_SETTINGS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_settings)
 
+8.允许系统应用注入输入事件：[ohos.permission.INJECT_INPUT_EVENT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissioninject_input_event)
+
 ### 依赖
 
 不涉及。

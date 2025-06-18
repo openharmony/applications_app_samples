@@ -73,6 +73,9 @@
       },
       {
         "name": "ohos.permission.MANAGE_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.INJECT_INPUT_EVENT"
       }
     ]
   }
