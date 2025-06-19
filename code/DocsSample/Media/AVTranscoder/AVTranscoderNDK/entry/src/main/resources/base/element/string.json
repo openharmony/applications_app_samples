@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "视频转码C++示例"
+    },
+    {
+      "name": "AVTranscoder_start",
+      "value": "启动转码"
+    },
+    {
+      "name": "AVTranscoder_pause",
+      "value": "暂停转码"
+    },
+    {
+      "name": "AVTranscoder_resume",
+      "value": "恢复转码"
+    }
+  ]
+}
