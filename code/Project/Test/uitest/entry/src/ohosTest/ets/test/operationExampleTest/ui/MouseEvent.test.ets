@@ -13,12 +13,20 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
+import { describe, it, expect, TestType, beforeAll, Size, Level } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, MouseButton } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@ohos.base';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
+
+const waitUiReadyMs : number = 1000;
+const TestTag = 'UiTest_API16';
+
+async function startAbility(bundleName: string, abilityName: string) {
+  await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`);
+}
 
 export default function MouseEventTest() {
   describe('MouseEventTest', () => {
@@ -56,9 +64,13 @@ export default function MouseEventTest() {
     it('testMouseDoubleClick_left', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let button = await driver.findComponent(ON.id('mouse_test'));
-      let point = await button.getBoundsCenter();
-      await driver.mouseDoubleClick(point, MouseButton.MOUSE_BUTTON_LEFT, 0, 0);
+      let Button = await driver.findComponent(ON.text('Click twice'))
+      if (Button == null) {
+        let scorll = await driver.findComponent(ON.type('Scroll'))
+        Button = await scorll.scrollSearch(ON.text('Click twice'))
+      }
+      let center = await Button.getBoundsCenter()
+      await driver.mouseDoubleClick(center, MouseButton.MOUSE_BUTTON_LEFT, 0, 0);
       let newButton = await driver.findComponent(ON.text('doubleClick'));
       let text = await newButton.getText();
       expect(text === 'doubleClick').assertTrue();
@@ -87,7 +99,6 @@ export default function MouseEventTest() {
 
 
     /**
-     * @tc.number:MouseEventTest_002
      * @tc.name: testMouseClick2
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标右键点击 功能
@@ -104,7 +115,6 @@ export default function MouseEventTest() {
     })
 
     /**
-     * @tc.number:MouseEventTest_003
      * @tc.name: testMouseClick3
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标中间点击 功能
@@ -122,7 +132,6 @@ export default function MouseEventTest() {
     })
 
     /**
-     * @tc.number:MouseEventTest_004
      * @tc.name: testMouseMoveTo
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动功能
@@ -141,7 +150,6 @@ export default function MouseEventTest() {
 
 
     /**
-     * @tc.number:MouseEventTest_005
      * @tc.name: testMouseScroll
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动功能
@@ -158,7 +166,6 @@ export default function MouseEventTest() {
     })
 
     /**
-     * @tc.number:MouseEventTest_005
      * @tc.name: testMouseScroll_with
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动与Ctrl + 删除键组合使用。
@@ -176,7 +183,6 @@ export default function MouseEventTest() {
     })
 
     /**
-     * @tc.number:MouseEventTest_005
     * @tc.name: testMouseScroll
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟移动鼠标光标 坐标点仅支持RK3568
@@ -195,19 +201,94 @@ export default function MouseEventTest() {
      * @tc.desc: 检测uitest 模拟移动鼠标光标 坐标点仅支持RK3568
      */
     it('testMouseDragTest', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create();
-      await driver.delayMs(WAIT_UI_READYMS);
-      let toMouseDragBtn = await driver.findComponent(ON.id('toMouseDrag'));
-      await toMouseDragBtn.click();
-      let appleBtn = await driver.findComponent(ON.id('apple'));
-      let appPoint = await appleBtn.getBoundsCenter();
-      await driver.mouseLongClick(appPoint, MouseButton.MOUSE_BUTTON_LEFT);
-      await driver.delayMs(WAIT_UI_READYMS);
-      await driver.mouseDrag(appPoint, {x: 500, y: 500});
-      await driver.delayMs(WAIT_UI_READYMS);
-      let appleBtn1 = await driver.findComponent(ON.id('apple'));
-      expect(appleBtn1=== null).assertTrue();
+      let driver = Driver.create()
+      await startAbility(bundleName, 'DemoAbility')
+      await driver.delayMs(waitUiReadyMs)
+      let button = await driver.findComponent(ON.id('jump'))
+      let center = await button.getBoundsCenter();
+      await driver.mouseLongClick(center, MouseButton.MOUSE_BUTTON_LEFT, 0, 2072, 3000)
+      await driver.delayMs(waitUiReadyMs)
+      let text1 = await driver.findComponent(ON.text('one'))
+      let text2 = await driver.findComponent(ON.text('two'))
+      let point1 = await text1.getBoundsCenter()
+      let point2 = await text2.getBoundsCenter()
+      await driver.mouseDrag(point1, point2, 600)
+      await driver.delayMs(2000)
+      let text = await driver.findComponent(ON.text('one').isBefore(ON.text('two')))
+      expect(text == null).assertTrue()
       done();
+    })
+
+    /*
+    * @tc.name: testNewMouseDrag
+    * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+    * @tc.desc: 检测uitest 鼠标拖拽操作, 该API从20开始支持使用。
+    */
+    it('testNewMouseDrag', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      console.log(TestTag, 'testNewMouseDrag start');
+      let driver = Driver.create()
+      await startAbility(bundleName, 'DemoAbility')
+      await driver.delayMs(waitUiReadyMs)
+      let button = await driver.findComponent(ON.id('jump'))
+      let center = await button.getBoundsCenter();
+      await driver.mouseLongClick(center, MouseButton.MOUSE_BUTTON_LEFT, 0, 2072, 3000)
+      console.log(TestTag, 'mouseLongClick successful');
+      await driver.delayMs(waitUiReadyMs)
+      let text1 = await driver.findComponent(ON.text('one'))
+      let text2 = await driver.findComponent(ON.text('two'))
+      let point1 = await text1.getBoundsCenter()
+      let point2 = await text2.getBoundsCenter()
+      await driver.mouseDrag(point1, point2, 600, 3000)
+      await driver.delayMs(2000)
+      let text = await driver.findComponent(ON.text('one').isBefore(ON.text('two')))
+      expect(text == null).assertTrue()
+      console.log(TestTag, 'testNewMouseDrag over');
+    })
+
+    /*
+    * @tc.name: testNewMouseLongClick
+    * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+    * @tc.desc: 检测uitest 鼠标长按操作, 该接口从20开始支持使用.
+    */
+    it('testNewMouseLongClick', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      console.log(TestTag, 'testNewMouseLongClick start');
+      let driver = Driver.create()
+      await startAbility(bundleName, 'DemoAbility')
+      await driver.delayMs(1000);
+      let Button = await driver.findComponent(ON.text('next page'))
+      let center = await Button.getBoundsCenter()
+      await driver.mouseLongClick(center, MouseButton.MOUSE_BUTTON_LEFT, 0, 0, 3000)
+      await driver.delayMs(waitUiReadyMs)
+      let newButton = await driver.findComponent(ON.text('longClick'))
+      let text = await newButton.getText()
+      expect(text == 'longClick').assertTrue()
+      console.log(TestTag, 'testNewMouseLongClick over');
+    })
+
+
+    /*
+    * @tc.number: uiTest_20025
+    * @tc.name: testDragBetween
+    * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+    * @tc.desc: 检测uitest拖拽操作, 该接口从20开始支持使用.
+    */
+    it('testDragBetween', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      console.log(TestTag, 'testDragBetween start');
+      await startAbility(bundleName, 'DemoAbility')
+      let driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let button = await driver.findComponent(ON.id('jump'))
+      await button.longClick()
+      await driver.delayMs(waitUiReadyMs)
+      let text1 = await driver.findComponent(ON.text('one'))
+      let text2 = await driver.findComponent(ON.text('two'))
+      let center1 = await text1.getBoundsCenter()
+      let center2 = await text2.getBoundsCenter()
+      await driver.dragBetween(center1, center2, 3000, 3000)
+      await driver.delayMs(waitUiReadyMs)
+      let text = await driver.findComponent(ON.text('one').isBefore(ON.text('two')))
+      expect(text == null).assertTrue()
+      console.log(TestTag, 'testDragBetween over');
     })
   })
 }

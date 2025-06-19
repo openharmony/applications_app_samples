@@ -13,9 +13,20 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType } from '@ohos/hypium';
-import { Driver } from '@kit.TestKit';
+import { describe, it, expect, TestType, Level, Size } from '@ohos/hypium';
+import { abilityDelegatorRegistry, Driver } from '@kit.TestKit';
+import { BusinessError } from '@ohos.base';
+import display from '@ohos.display';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+const delegator : AbilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName : string = abilityDelegatorRegistry.getArguments().bundleName;
+const waitUiReadyMs : number = 1000;
 const WAIT_UI_READYMS = 1000;
+
+async function startAbility(bundleName: string, abilityName: string) {
+  await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`);
+}
 export default function ScreenCapEventTest() {
   describe('ScreenCapEvent', () => {
 
@@ -36,7 +47,7 @@ export default function ScreenCapEventTest() {
 
     /**
      * @tc.number:ScreenCapEventTest_001
-    * @tc.name: testScreenCap
+     * @tc.name: testScreenCap
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest screenCapture 指定大小截图功能
      */
@@ -47,6 +58,22 @@ export default function ScreenCapEventTest() {
       let success = await driver.screenCapture(savePath, {left: 0, top: 0, right: 100, bottom: 100});
       expect(success === true).assertTrue();
       done();
+    })
+
+    /**
+     * @tc.name: testScreenCapWithId
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 检测多屏下 uitest screenCapture 指定大小截图功能,
+     */
+    it('testScreenCapWithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      await startAbility(bundleName, 'DemoAbility')
+      let driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let disPlay = display.getDefaultDisplaySync();
+      await driver.delayMs(waitUiReadyMs)
+      let savePath = '/data/storage/el2/base/cache/1.png'
+      let success = await driver.screenCap(savePath, disPlay.id)
+      expect(success == true).assertTrue()
     })
   })
 }

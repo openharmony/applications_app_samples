@@ -111,6 +111,14 @@
     {
       "name": "test",
       "value": "测试内容"
+    },
+    {
+      "name": "DemoAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "DemoAbility_label",
+      "value": "label"
     }
   ]
 }

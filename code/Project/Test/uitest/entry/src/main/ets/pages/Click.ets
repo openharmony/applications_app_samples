@@ -45,11 +45,18 @@ struct Click {
             router.pushUrl({ url: 'pages/Third' });
           })
         )
+        Button() {
+          Text('LongClick')
+            .fontSize(25)
+            .fontWeight(FontWeight.Bold)
+        }
+        .type(ButtonType.Capsule)
+        .margin({ top: 20 })
         .gesture(
-        LongPressGesture({ repeat: false })
-          .onAction(() => {
-            router.pushUrl({ url: 'pages/Fourth' });
-          })
+          LongPressGesture({ repeat: false })
+            .onAction(() => {
+              router.pushUrl({ url: 'pages/Fourth' });
+            })
         )
       }
       .width('100%')

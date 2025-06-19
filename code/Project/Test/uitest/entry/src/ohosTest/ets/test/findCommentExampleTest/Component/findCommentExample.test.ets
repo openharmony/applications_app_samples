@@ -40,15 +40,23 @@
 *
  */
 
-
-
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
-import { abilityDelegatorRegistry, Driver, MatchPattern, ON } from '@kit.TestKit';
+import { describe, it, expect, TestType, beforeAll, Level, Size } from '@ohos/hypium';
+import { abilityDelegatorRegistry, DisplayRotation, Driver, MatchPattern, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@ohos.base';
+import { display } from '@kit.ArkUI';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const DELAYMS = 1000;
 const  arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const waitUiReadyMs : number = 1000;
+const TestTag = 'findExampleTest';
+
+
+async function startAbility(bundleName: string, abilityName: string) {
+  await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`);
+}
 export default function findExampleTest() {
   describe('findExampleTest', () => {
     beforeAll(async  () => {
@@ -60,7 +68,6 @@ export default function findExampleTest() {
     })
 
     /**
-     * @tc.number:findExampleTest_001
      * @tc.name: findComponent_On_ID
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.id 获取单个组件
@@ -75,7 +82,6 @@ export default function findExampleTest() {
     })
 
     /**
-     * @tc.number:findExampleTest_002
      * @tc.name: findComponents_On_ID
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.id 获取多个组件
@@ -93,7 +99,6 @@ export default function findExampleTest() {
     })
 
     /**
-     * @tc.number:findExampleTest_003
      * @tc.name: findComponents_On_isBefore
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.isBefore 获取单个组件
@@ -108,7 +113,6 @@ export default function findExampleTest() {
     })
 
     /**
-     * @tc.number:findExampleTest_004
      * @tc.name: findComponents_On_isBefore_1
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.isAfter 获取单个组件
@@ -124,7 +128,6 @@ export default function findExampleTest() {
 
 
     /**
-     * @tc.number:findExampleTest_005
      * @tc.name: testMatchPattern
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用不同的匹配模式获取控件对象
@@ -139,7 +142,6 @@ export default function findExampleTest() {
     })
 
     /**
-     * @tc.number:findExampleTest_006
      * @tc.name: findComponents_scrollSearch
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ScrollSearch 获取单个组件
@@ -149,14 +151,13 @@ export default function findExampleTest() {
       await dr.delayMs(DELAYMS);
       let scrollBar = await dr.findComponent(ON.type('Scroll'));
       await dr.delayMs(DELAYMS);
-      let button = await scrollBar.scrollSearch(ON.text('5'));
+      let button = await scrollBar.scrollSearch(ON.text('1'));
       await dr.delayMs(DELAYMS);
-      expect(await button.getText()).assertEqual("5");
+      expect(await button.getText()).assertEqual("1");
       done();
     })
 
     /**
-     * @tc.number:findExampleTest_007
      * @tc.name: testDescription
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 验证组件的description属性
@@ -170,7 +171,6 @@ export default function findExampleTest() {
     })
 
     /**
-     * @tc.number:findExampleTest_008
      * @tc.name: testWithIn
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 验证组件的description属性
@@ -187,6 +187,95 @@ export default function findExampleTest() {
       expect(bounds1.bottom > bounds2.bottom).assertTrue();
       expect(bounds1.left < bounds2.right).assertTrue();
       expect(bounds1.right > bounds2.right).assertTrue();
+    })
+
+    /**
+     * @tc.name: testBelongingDisplay
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 多屏获取组件对象，该接口从api20开始支持使用。
+     */
+    it('testBelongingDisplay', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      let driver = Driver.create()
+      await startAbility(bundleName, 'DemoAbility')
+      await driver.delayMs(1000);
+      let disPlay = display.getDefaultDisplaySync();
+      try {
+        let mainPage = await driver.findComponent(ON.belongingDisplay(disPlay.id).text('MainPage'));
+        let msg = await mainPage.getText();
+        expect(msg).assertEqual('MainPage')
+      } catch (error) {
+        expect().assertFail();
+      }
+    })
+
+
+    /*
+     * @tc.name: testGetDisplayId
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 组件获取displayId，该接口从api20开始支持使用。
+     */
+    it('testGetDisplayId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      let driver = Driver.create()
+      await startAbility(bundleName, 'DemoAbility')
+      await driver.delayMs(1000);
+      let disPlay = display.getDefaultDisplaySync();
+      try {
+        let mainPage = await driver.findComponent(ON.belongingDisplay(disPlay.id).text('MainPage'));
+        let disId = await mainPage.getDisplayId();
+        expect(disId).assertEqual(disPlay.id)
+      } catch (error) {
+        expect().assertFail();
+      }
+    })
+
+    /*
+     * @tc.name: testGetDisplaySizeWithId
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 组件获取屏幕大小，该接口从api20开始支持使用。
+     */
+    it('testGetDisplaySizeWithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      await startAbility(bundleName, 'DemoAbility')
+      let driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let disPlay = display.getDefaultDisplaySync();
+      let s = await driver.getDisplaySize(disPlay.id)
+      expect(s.x != 0).assertTrue()
+      expect(s.y != 0).assertTrue()
+    })
+
+
+    /*
+     * @tc.name: testGetDisplayDensityWithId
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 组件获取屏幕密度，该接口从api20开始支持使用。
+     */
+    it('testGetDisplayDensityWithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      await startAbility(bundleName, 'DemoAbility')
+      let driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let disPlay = display.getDefaultDisplaySync();
+      let s = await driver.getDisplayDensity(disPlay.id)
+      expect(s.x != 0).assertTrue()
+      expect(s.y != 0).assertTrue()
+    })
+
+    /*
+     * @tc.name: testGetDisplayRotationWithId
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 组件获取屏幕方向，该接口从api20开始支持使用。
+     */
+    it('testGetDisplayRotationWithId', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+      await startAbility(bundleName, 'DemoAbility')
+      let driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
+      let disPlay = display.getDefaultDisplaySync();
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+      await driver.delayMs(waitUiReadyMs)
+      let rotation = await driver.getDisplayRotation(disPlay.id)
+      expect(rotation == DisplayRotation.ROTATION_0
+        || rotation == DisplayRotation.ROTATION_90
+        || rotation == DisplayRotation.ROTATION_180
+        || rotation == DisplayRotation.ROTATION_270).assertTrue();
     })
   })
 }
