@@ -53,6 +53,7 @@ uitest
     * 例如本案例中需要检验是否可以有back键能力：通过driver.pressBack()。  
     * 检验是否可以定时1s后执行能力:通过driver.delayMs(1000)。  
     * 日志打印：建议用例名称中的包名和日志中的包名单独用常量表示，方便包名变更整改，例如：hilog.info(DOMAIN, TAG, BUNDLE + "StartAbility_001, begin")，日志打印格式[参考](https://gitee.com/openharmony/applications_app_samples/blob/master/CodeCommitChecklist.md#ui%E8%87%AA%E5%8A%A8%E5%8C%96%E7%94%A8%E4%BE%8B%E7%BC%96%E5%86%99%E8%A7%84%E8%8C%83)  。
+* 7）断言性能指标测试数据是否符合预期.
 * 8）结束事件done();
 
 

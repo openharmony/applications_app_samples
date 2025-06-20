@@ -21,7 +21,6 @@
     "mainElement": "TestAbility",
     "deviceTypes": [
       "default",
-      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,

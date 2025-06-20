@@ -30,7 +30,8 @@ import windowAttr from './operationExampleTest/window/WindowAttr.test';
 import monitorEventTest from './operationExampleTest/ui/MonitorEvent.test';
 import webOperateTest from './operationExampleTest/web/webOperate.test';
 import findWindowExampleTest from './findCommentExampleTest/window/findWindowExample.test';
-
+import otherEvent from './operationExampleTest/ui/OtherEvent.test'
+import wearAbleEventTest from './operationExampleTest/ui/WearAbleEvent.test'
 export default function testsuite() {
   basicExampleTest();
   findTest();
@@ -49,4 +50,6 @@ export default function testsuite() {
   windowAttr();
   monitorEventTest();
   webOperateTest();
+  wearAbleEventTest();
+  otherEvent()
 }

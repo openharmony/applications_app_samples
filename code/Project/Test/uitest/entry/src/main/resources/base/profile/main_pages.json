@@ -12,6 +12,9 @@
     "pages/Scroller",
     "pages/Drag",
     "pages/five",
-    "pages/Web"
+    "pages/Web",
+    "pages/wearList",
+    "pages/demoPage",
+    "pages/second"
   ]
 }

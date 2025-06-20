@@ -96,6 +96,19 @@ struct Mouse {
               });
             })
         )
+        Button() {
+          Text('Click twice')
+            .fontSize(25)
+            .fontWeight(FontWeight.Bold)
+        }
+        .type(ButtonType.Capsule)
+        .margin({ top: 20 })
+        .gesture(
+          TapGesture({ count: 2 })
+            .onAction(() => {
+              router.pushUrl({ url: 'pages/Third' });
+            })
+        )
         Column(){
           Scroll(this.scroller) {
             Flex({ direction: FlexDirection.Column }) {
