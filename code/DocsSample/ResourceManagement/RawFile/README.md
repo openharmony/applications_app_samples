@@ -68,5 +68,5 @@ git init
 git config core.sparsecheckout true
 echo code/DocsSample/ResourceManagement/RawFile/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
-git pull origin main
+git pull origin master
 ```
