@@ -259,6 +259,70 @@
     {
       "name": "5P1_MUSIC",
       "value": "5.1音乐示例"
+    },
+    {
+      "name": "KARAOKE",
+      "value": "k歌"
+    },
+    {
+      "name": "KARAOKE_DEMO_TITLE",
+      "value": "K歌功能演示"
+    },
+    {
+      "name": "KARAOKE_STATUS_PREFIX",
+      "value": "当前状态："
+    },
+    {
+      "name": "KARAOKE_NOT_INITIALIZED",
+      "value": "未初始化"
+    },
+    {
+      "name": "KARAOKE_INITIALIZED",
+      "value": "已初始化"
+    },
+    {
+      "name": "KARAOKE_INITIALIZATION_FAILED",
+      "value": "初始化失败"
+    },
+    {
+      "name": "KARAOKE_UNSUPPORTED_HARDWARE",
+      "value": "平台不支持硬返"
+    },
+    {
+      "name": "KARAOKE_DEVICE_UNSUPPORTED",
+      "value": "当前设备不支持"
+    },
+    {
+      "name": "KARAOKE_SCENE_UNSUPPORTED",
+      "value": "当前场景不支持"
+    },
+    {
+      "name": "KARAOKE_IDLE",
+      "value": "空闲中"
+    },
+    {
+      "name": "KARAOKE_RUNNING",
+      "value": "返听中"
+    },
+    {
+      "name": "KARAOKE_NO_INSTANCE",
+      "value": "未创建返听实例"
+    },
+    {
+      "name": "KARAOKE_INIT_BUTTON",
+      "value": "初始化"
+    },
+    {
+      "name": "KARAOKE_ENABLE_BUTTON",
+      "value": "开启返听"
+    },
+    {
+      "name": "KARAOKE_DISABLE_BUTTON",
+      "value": "停止返听"
+    },
+    {
+      "name": "KARAOKE_VOLUME_LABEL",
+      "value": "设置返听音量："
     }
   ]
 }
