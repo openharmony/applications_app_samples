@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例为媒体->Media Kit(媒体服务)->使用AVTranscoder实现视频转码(C/C++)的配套示例工程。 
+本示例为媒体->Media Kit(媒体服务)->[使用AVTranscoder实现视频转码(C/C++)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/media/using-ndk-avtranscoder-for-transcodering.md)的配套示例工程。 
 
 本示例以“开始转码-暂停转码-恢复转码-转码完成”的一次流程为示例，展示AVTranscoder视频转码相关功能。
 
