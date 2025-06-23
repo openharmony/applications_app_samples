@@ -8,8 +8,8 @@
 
 ### 效果预览
 
-| 首页                                                         | 依次点击按钮后结果图                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 首页                                                          | 依次点击按钮后结果图                                          |
+| ------------------------------------------------------------- | ------------------------------------------------------------- |
 | <img src="./screenshots/LazyImport1.png" style="zoom:50%;" /> | <img src="./screenshots/LazyImport2.png" style="zoom:50%;" /> |
 
 ### 使用说明
@@ -27,21 +27,21 @@ entry/src/
  │   │   ├── entryability
  │   │   ├── entrybackupability
  │   │   ├── pages
- │   │       ├── A.ets               
- │   │       ├── A_ns.ets  
- │   │       ├── B.ets  
- │   │       ├── C.ets  
- │   │       ├── fail_example.ets  
- │   │       ├── Index.ets         // 延迟加载
- │   │       ├── middle.ets  
- │   │       ├── mod1.ets  
- │   │       ├── mod2.ets  
+ │   │       ├── A.ets
+ │   │       ├── A_ns.ets
+ │   │       ├── B.ets
+ │   │       ├── C.ets
+ │   │       ├── fail_example.ets
+ │   │       ├── main.ets             // 延迟加载
+ │   │       ├── middle.ets
+ │   │       ├── mod1.ets
+ │   │       ├── mod2.ets
  │   ├── module.json5
  │   └── resources
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       ├── Ability.test.ets 
+ │   │       ├── Ability.test.ets
  │   │       ├── LazyImport.test.ets  // 自动化测试代码
  │   │       └── List.test
 ```
@@ -58,18 +58,18 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.57，镜像版本号：OpenHarmony_5.0.2.58。
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.34，镜像版本号：OpenHarmony_6.0.0.34。
 
-3.本示例需要使用DevEco Studio 5.0.1 Release (Build Version: 5.0.5.306, built on December 6, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0及以上版本才可编译运行。
 
 ### 下载
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/LazyImport > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```
