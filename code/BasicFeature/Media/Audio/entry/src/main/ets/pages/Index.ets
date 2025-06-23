@@ -115,7 +115,7 @@ struct Index {
 
         Row() {
           Column() {
-            Image($r('app.media.ic_Sound_select')).width(72).height(72).margin({ top: 24 });
+            Image($r('app.media.png01_Karaoke')).width(72).height(72).margin({ top: 24 });
             Text($r('app.string.KARAOKE')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
           }
           .id('karaoke_card')

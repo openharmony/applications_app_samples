@@ -23,7 +23,7 @@ const TAG = 'KaraokePage';
 @Component
 struct KaraokePage {
   @State audioLoopback: audio.AudioLoopback | undefined = undefined;
-  @State statusText: string = $r('app.string.KARAOKE_NOT_INITIALIZED');
+  @State statusText: Resource = $r('app.string.KARAOKE_NOT_INITIALIZED');
   @State volume: number = 50;
 
   // Initial loopback mode: hardware
@@ -149,7 +149,7 @@ struct KaraokePage {
     Column({ space: 20 }) {
       Text($r('app.string.KARAOKE_DEMO_TITLE')).fontSize(24).fontWeight(FontWeight.Bold).padding(16).id('karaoke_title')
 
-      Text($r('app.string.KARAOKE_STATUS_PREFIX') + this.statusText).fontSize(16).padding(8).id('karaoke_status_text')
+      Text(this.statusText).fontSize(16).padding(8).id('karaoke_status_text')
 
       Button($r('app.string.KARAOKE_INIT_BUTTON'))
         .onClick(() => this.initLoopback())
