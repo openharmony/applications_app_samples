@@ -10,8 +10,8 @@
 
 ### 效果预览
 
-| 执行结果图                                                   |
-| ------------------------------------------------------------ |
+| 执行结果图                                                       |
+| ---------------------------------------------------------------- |
 | <img src="./screenshots/DynamicImport.png" style="zoom: 50%;" /> |
 
 ### 使用说明
@@ -25,61 +25,73 @@
 ```
 entry/src/
  ├── main
+ │   ├── cpp
+ │   │   ├── types
+ │   │   │   ├── libentry
+ │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
+ │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
+ │   │   ├── CMakeLists.txt              // 配置CMake打包参数
+ │   │   ├── napi_init.cpp
  │   ├── ets
  │   │   ├── entryability
  │   │   ├── entrybackupability
  │   │   ├── pages
- │   │       ├── Index.ets               // 动态加载示例代码
+ │   │   │   ├── Index.ets               // 动态加载示例代码
+ │   │   │   └── Calc.ets
+ │   │   ├── utils
+ │   │       └── Calc.ets
+ │   │   ├── Calc.ets
  │   ├── module.json5
  │   └── resources
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       ├── Ability.test.ets 
+ │   │       ├── Ability.test.ets
  │   │       ├── DynamicImport.test.ets  // 自动化测试代码
  │   │       └── List.test.ets
- har1                                    // har1模块函数实现 
+ har1                                    // har1模块函数实现
  ├── src
  │   ├── main
  │   │   ├── ets
  │   │   │   ├── utils
- │   │   │   │   └── Calc.ets            
- │   │   │   └── components  
+ │   │   │   │   └── Calc.ets
+ │   │   │   └── components
  │   │   │   │   └── MainPage.ets
- har2                                    // har1模块函数实现 
+ ├── Index.ets
+ har2                                    // har2模块函数实现
  ├── src
  │   ├── main
  │   │   ├── ets
  │   │   │   ├── utils
- │   │   │   │   └── Calc.ets            
- │   │   │   └── components  
+ │   │   │   │   └── Calc.ets
+ │   │   │   └── components
  │   │   │   │   └── MainPage.ets
- ├── index.ets
- harlibrary                              // harlibrary模块函数实现 
+ ├── Index.ets
+ harlibrary                              // harlibrary模块函数实现
  ├── src
  │   ├── main
  │   │   ├── ets
  │   │   │   ├── utils
- │   │   │   │   └── Calc.ets            
- │   │   │   └── components  
+ │   │   │   │   └── Calc.ets
+ │   │   │   └── components
  │   │   │   │   └── MainPage.ets
- ├── index.ets
- myHar                                    // myHar模块函数实现 
+ ├── Index.ets
+ myHar                                    // myHar模块函数实现
  ├── src
  │   ├── main
- │   │   ├── ets          
- │   │   │   └── components  
+ │   │   ├── ets
+ │   │   │   └── components
  │   │   │   │   └── MainPage.ets
- ├── index.ets
- myHsp                                    // myHsp模块函数实现 
+ ├── Index.ets
+ myHsp                                    // myHsp模块函数实现
  ├── src
  │   ├── main
- │   │   ├── ets          
- │   │   │   ├── pages  
+ │   │   ├── ets
+ │   │   │   ├── pages
  │   │   │   │   └── Index.ets
  │   │   │   └── utils
- │   │   │   │   └── Calc.ets  
- ├── index.ets
+ │   │   │   │   └── Calc.ets
+ ├── Index.ets
 ```
 
 ### 相关权限
@@ -94,18 +106,18 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.57，镜像版本号：OpenHarmony_5.0.2.58。
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.34，镜像版本号：OpenHarmony_6.0.0.34。
 
-3.本示例需要使用DevEco Studio 5.0.1 Release (Build Version: 5.0.5.306, built on December 6, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0及以上版本才可编译运行。
 
 ### 下载
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicImport > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

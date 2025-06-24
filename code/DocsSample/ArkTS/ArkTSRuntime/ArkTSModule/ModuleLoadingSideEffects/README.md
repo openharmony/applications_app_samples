@@ -10,8 +10,8 @@
 
 ### 效果预览
 
-| 首页                                                         |
-| ------------------------------------------------------------ |
+| 首页                                                                       |
+| -------------------------------------------------------------------------- |
 | <img src="./screenshots/ModuleLoadingSideEffects.png" style="zoom:50%;" /> |
 
 ### 使用说明
@@ -29,19 +29,22 @@ entry/src/
  │   │   ├── entryability
  │   │   ├── entrybackupability
  │   │   ├── pages
- │   │       ├── LazyImportChangeExecutionOrder    // 延迟加载改变模块执行顺序
- │   │       ├── ModifyGlobalObject                // 修改全局对象
- │   │       ├── ModifyingGlobalVariables          // 修改内置全局变量或原型链
- │   │       ├── ModifyTheApplicationLevelArkUI    // 修改应用级ArkUI组件的状态变量信息
- │   │       ├── TopCodeModification               // 模块执行顶层代码
- │   │       └── Index.ets                         // 首页
+ │   │   |   ├── LazyImportChangeExecutionOrder    // 延迟加载改变模块执行顺序
+ │   │   |   ├── ModifyGlobalObject                // 修改全局对象
+ │   │   |   ├── ModifyingGlobalVariables          // 修改内置全局变量或原型链
+ │   │   |   ├── ModifyTheApplicationLevelArkUI    // 修改应用级ArkUI组件的状态变量信息
+ │   │   |   ├── TopCodeModification               // 模块执行顶层代码
+ │   │   |   └── Index.ets                         // 首页
+ │   │   ├── util
+ │   │       ├── CommonButton.ets
+ │   │       └── resource.ets
  │   ├── module.json5
  │   └── resources
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       ├── Ability.test.ets 
- │   │       ├── ModuleLoadingSideEffects.test.ets  // 自动化测试代码
+ │   │       ├── Ability.test.ets
+ │   │       ├── ModuleLoadingSideEffects.test.ets // 自动化测试代码
  │   │       └── List.test
 ```
 
@@ -57,18 +60,18 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.57，镜像版本号：OpenHarmony_5.0.2.58。
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.34，镜像版本号：OpenHarmony_6.0.0.34。
 
-3.本示例需要使用DevEco Studio 5.0.1 Release (Build Version: 5.0.5.306, built on December 6, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0及以上版本才可编译运行。
 
 ### 下载
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

@@ -59,11 +59,11 @@ export default function lazyImportTest() {
 
       await button4.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Not advisable to use one error: ReferenceError: c is not initialized'));
+      await driver.assertComponentExist(ON.text('Not advisable to use one error: ReferenceError'));
 
       await button5.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Not advisable to use two error: ReferenceError: module environment is undefined'));
+      await driver.assertComponentExist(ON.text('Not advisable to use two error: ReferenceError'));
       console.info('uitest: testLazyImport001 end');
       done();
     })

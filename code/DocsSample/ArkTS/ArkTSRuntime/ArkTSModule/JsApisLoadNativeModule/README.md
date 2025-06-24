@@ -8,8 +8,8 @@
 
 ### 效果预览
 
-| 首页                                                         | 点击HAP加载系统库模块按钮后                                  | 点击HAP加载Native库按钮后                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 首页                                                                      | 点击HAP加载系统库模块按钮后                                               | 点击HAP加载Native库按钮后                                                 |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | <img src="./screenshots/JsApisLoadNativeModule1.png" style="zoom:50%;" /> | <img src="./screenshots/JsApisLoadNativeModule2.png" style="zoom:50%;" /> | <img src="./screenshots/JsApisLoadNativeModule3.png" style="zoom:50%;" /> |
 
 ### 使用说明
@@ -33,13 +33,13 @@ entry/src/
  │   │   ├── entryability
  │   │   ├── entrybackupability
  │   │   ├── pages
- │   │       ├── Index.ets               // 同步方式动态加载native模块
+ │   │       ├── Index.ets                        // 同步方式动态加载native模块
  │   ├── module.json5
  │   └── resources
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       ├── Ability.test.ets 
+ │   │       ├── Ability.test.ets
  │   │       ├── JsApisLoadNativeModule.test.ets  // 自动化测试代码
  │   │       └── List.test
 ```
@@ -56,18 +56,18 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.57，镜像版本号：OpenHarmony_5.0.2.58。
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.34，镜像版本号：OpenHarmony_6.0.0.34。
 
-3.本示例需要使用DevEco Studio 5.0.1 Release (Build Version: 5.0.5.306, built on December 6, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0及以上版本才可编译运行。
 
 ### 下载
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

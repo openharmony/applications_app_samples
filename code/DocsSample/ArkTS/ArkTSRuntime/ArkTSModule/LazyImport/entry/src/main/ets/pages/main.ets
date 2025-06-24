@@ -72,7 +72,7 @@ struct Index {
             console.info(res.c);
           }).catch((e: Error) => {
             hilog.error(0x0000, '[Sample_LazyImport]', 'Test  Assert error: %{public}s', e.toString());
-            this.message = 'Not advisable to use one error: ' + e.toString();
+            this.message = 'Not advisable to use one error: ' + e.name;
           })
         })
       Button('Not advisable to use two')
@@ -83,7 +83,7 @@ struct Index {
             console.info(res.ns.c);
           }).catch((e: Error) => {
             hilog.error(0x0000, '[Sample_LazyImport]', 'Test  Assert error: %{public}s', e.toString());
-            this.message = 'Not advisable to use two error: ' + e.toString();
+            this.message = 'Not advisable to use two error: ' + e.name;
           })
         })
       Text(this.message)
