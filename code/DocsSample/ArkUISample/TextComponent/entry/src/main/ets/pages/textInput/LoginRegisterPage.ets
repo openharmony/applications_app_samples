@@ -38,7 +38,7 @@ export struct LoginRegisterPage {
               .onSubmit((enterKeyType) => {
                 console.info(enterKeyType + resource.resourceToString($r('app.string.LoginRegisterPage_textContent')));
               })
-            Button('Sign in')
+            Button($r('app.string.LoginRegisterPage_Button_3'))
               .width('100%')
           }
         }

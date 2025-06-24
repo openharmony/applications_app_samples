@@ -18,6 +18,10 @@ import { RoutableCard } from '../common/Card';
 import { Route } from '../common/Route';
 import { TextDestination, TEXT_ROUTE_PREFIX } from './text';
 import { TextInputDestination, INPUT_ROUTE_PREFIX } from './textInput';
+import { RichEditorDestination, RICH_EDITOR_ROUTE_PREFIX } from './richEditor';
+import { SymbolGlyphSpanDestination, SYMBOL_GLYPH_SPAN } from './symbol';
+import { PropertyStringDestination, PROPERTY_STRING_ROUTE_PREFIX } from './propertyString';
+import { NDKDestination, NDK_ROUTE_PREFIX } from './ndk';
 import resource from '../common/resource';
 
 const routes: Route[] = [
@@ -28,6 +32,22 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.pageIndex_TextInput')),
     name: INPUT_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_RichEditor')),
+    name: RICH_EDITOR_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_symbolGlyphSpan')),
+    name: SYMBOL_GLYPH_SPAN
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_PropertyString')),
+    name: PROPERTY_STRING_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_TextNDKUI')),
+    name: NDK_ROUTE_PREFIX
   }
 ];
 
@@ -37,6 +57,14 @@ function Destination(name: string) {
     TextDestination(name);
   } else if (name.startsWith(INPUT_ROUTE_PREFIX)) {
     TextInputDestination(name);
+  } else if (name.startsWith(RICH_EDITOR_ROUTE_PREFIX)) {
+    RichEditorDestination(name);
+  } else if (name.startsWith(SYMBOL_GLYPH_SPAN)) {
+    SymbolGlyphSpanDestination(name);
+  } else if (name.startsWith(PROPERTY_STRING_ROUTE_PREFIX)) {
+    PropertyStringDestination(name);
+  }else if (name.startsWith(NDK_ROUTE_PREFIX)) {
+    NDKDestination(name);
   }
 }
 

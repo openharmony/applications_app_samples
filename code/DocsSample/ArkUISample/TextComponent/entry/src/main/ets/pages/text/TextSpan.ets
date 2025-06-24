@@ -18,7 +18,7 @@ import { ComponentCard } from '../../common/Card';
 @Entry
 @Component
 export struct TextSpan {
-  @State onClickText: ResourceStr = 'I am Upper-span';
+  @State onClickText: ResourceStr = 'I am Upper-span2';
 
   build() {
     NavDestination() {

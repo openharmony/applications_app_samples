@@ -23,7 +23,7 @@ export struct CreateText {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CreatText_title_1') }) {
           // [Start create_a_text_in_one_way]
-          Text('This is a text string')
+          Text($r('app.string.CreateText_Text_1'))
           // [End create_a_text_in_one_way]
         }
 
