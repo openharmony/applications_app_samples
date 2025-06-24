@@ -7,6 +7,18 @@
     {
       "name": "entry_TestAbility",
       "value": "entry_TestAbility"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "users",
+      "value": "用户"
+    },
+    {
+      "name": "Local_IP",
+      "value": "本地IP"
     }
   ]
 }

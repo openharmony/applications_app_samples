@@ -26,12 +26,13 @@
 
 ### 工程目录
 ```
-entry/src/main/ets/MainAbility
+entry/src/main/ets/entryability
 |---app.ets
 |---model
-|   |---chatBox.ts                     // 聊天页面
-|   |---DataSource.ts                  // 数据获取
-|   |---Logger.ts                      // 日志工具
+|   |---chatBox.ets                     // 聊天页面
+|   |---DataSource.ets                  // 数据获取
+|   |---DataType.ets                    // 类型封装
+|   |---Logger.ets                      // 日志工具
 |---pages
 |   |---Index.ets                      // 监听消息页面
 |   |---Login.ets                      // 首页登录页面
@@ -43,17 +44,17 @@ entry/src/main/ets/MainAbility
 * 本示例分为三个模块
   * 输入对端IP模块 
     * 使用wifi.getIpInfo()方法获取IP地址，constructUDPSocketInstance方法创建一个UDPSocket对象
-    * 源码链接：[Login.ets](entry/src/main/ets/MainAbility/pages/Login.ets)，[Util.ets](entry/src/main/ets/MainAbility/Utils/Util.ets)
+    * 源码链接：[Login.ets](entry/src/main/ets/pages/Login.ets)，[Util.ets](entry/src/main/ets/utils/Util.ets)
     * 接[README_zh.md](README_zh.md)口参考：[@ohos.wifi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md)，[@ohos.net.socket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-socket.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
   
   * 创建房间模块
     * 点击创建房间按钮，弹出创建房间框，输入房间号，点击确定，进入聊天页面
-    * 源码链接：[Login.ets](entry/src/main/ets/MainAbility/pages/Login.ets)，[Util.ets](entry/src/main/ets/MainAbility/Utils/Util.ets)
+    * 源码链接：[Login.ets](entry/src/main/ets/pages/Login.ets)，[Util.ets](entry/src/main/ets/utils/Util.ets)
     * 接口参考：[@ohos.wifi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md)，[@ohos.net.socket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-socket.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
     
   * 聊天模块
     * bindOption方法监听消息，设置在线与离线
-    * 源码链接：[ChatBox.ets](entry/src/main/ets/MainAbility/model/ChatBox.ets)，[DataSource.ets](entry/src/main/ets/MainAbility/model/DataSource.ets)，[Index.ets](entry/src/main/ets/MainAbility/pages/Index.ets)
+    * 源码链接：[ChatBox.ets](entry/src/main/ets/model/ChatBox.ets)，[DataSource.ets](entry/src/main/ets/model/DataSource.ets)，[Index.ets](entry/src/main/ets/pages/Index.ets)
     * 接口参考：[@ohos.wifi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md)，[@ohos.net.socket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-socket.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
 
 #### 相关概念
@@ -74,9 +75,9 @@ UDP Socket是面向非连接的协议，它不与对方建立连接，而是直�
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例仅支持API9版本SDK，版本号：3.2.11.9 及以上。
+2.本示例已适配API version 14版本SDK，版本号：5.0.2.123。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上才可编译运行。
+3.本示例需要使用DevEco Studio NEXT Release (Build Version: 5.0.3.900, built on October 8, 2024)及以上版本才可编译运行。
 
 ### 下载
 

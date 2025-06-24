@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,47 +15,49 @@
 
 import wifi from '@ohos.wifi';
 import router from '@ohos.router';
-import { resolveIP } from '../Utils/Util'
+import { resolveIP } from '../utils/Util';
 import socket from '@ohos.net.socket';
-import Logger from '../model/Logger'
+import Logger from '../model/Logger';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AddrType } from '../model/DataType';
 
-const TAG: string = '[Login]'
+const TAG: string = '[Login]';
 
-let localAddr = {
+let localAddr:AddrType = {
   address: resolveIP(wifi.getIpInfo().ipAddress),
   family: 1,
   port: 0
 }
-let oppositeAddr = {
+let oppositeAddr:AddrType = {
   address: '',
   family: 1,
   port: 0
 }
-let loginCount = 0
+let loginCount = 0;
 
-let udp = socket.constructUDPSocketInstance()
-let callOnceForudpObj = 0
+let udp = socket.constructUDPSocketInstance();
+let callOnceForudpObj = 0;
 
 @Entry
 @Component
 struct Login {
-  @State login_feng: boolean = false
-  @State login_wen: boolean = false
-  @State user: string = ''
-  @State roomDialog: boolean = false
-  @State confirmDialog: boolean = false
-  @State ipDialog: boolean = true
-  @State warnDialog: boolean = false
-  @State warnText: string = ''
-  @State roomNumber: string = ''
-  @State receiveMsg: string = ''
+  @State login_feng: boolean = false;
+  @State login_wen: boolean = false;
+  @State user: string = '';
+  @State roomDialog: boolean = false;
+  @State confirmDialog: boolean = false;
+  @State ipDialog: boolean = true;
+  @State warnDialog: boolean = false;
+  @State warnText: string = '';
+  @State roomNumber: string = '';
+  @State receiveMsg: string = '';
 
   bindOption() {
     if (callOnceForudpObj == 0) {
       let bindOption = udp.bind(localAddr);
       bindOption.then(() => {
         Logger.info(TAG, 'bind success');
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         Logger.info(TAG, 'bind fail');
       })
       callOnceForudpObj = 1;
@@ -67,7 +69,7 @@ struct Login {
       let dataView = new DataView(buffer);
       Logger.info(TAG, `length = ${dataView.byteLength}`);
       let str = '';
-      for (let i = 0;i < dataView.byteLength; ++i) {
+      for (let i = 0; i < dataView.byteLength; ++i) {
         let c = String.fromCharCode(dataView.getUint8(i));
         if (c != '') {
           str += c;
@@ -80,8 +82,7 @@ struct Login {
           url: 'pages/Index',
           params: { address: oppositeAddr.address, port: oppositeAddr.port, loginCount: loginCount }
         })
-      }
-      else {
+      } else {
         this.receiveMsg = str;
         this.confirmDialog = true;
       }
@@ -137,9 +138,9 @@ struct Login {
                 udp.send({
                   data: 'ok',
                   address: oppositeAddr
-                }).then(function (data) {
+                }).then((data) => {
                   Logger.info(TAG, `send ${JSON.stringify(data)}`);
-                }).catch(function (err) {
+                }).catch((err: BusinessError) => {
                   Logger.info(TAG, `send ${JSON.stringify(err)}`);
                 })
                 router.clear()
@@ -185,6 +186,7 @@ struct Login {
               }
             ])
           TextInput({ placeholder: '请输入对端ip' })
+            .id('TextInput1')
             .width(200)
             .fontSize(25)
             .margin({ top: 10 })
@@ -250,9 +252,9 @@ struct Login {
                 udp.send({
                   data: this.roomNumber,
                   address: oppositeAddr
-                }).then(function (data) {
+                }).then((data) => {
                   Logger.info(TAG, `send success, data = ${JSON.stringify(data)}`);
-                }).catch(function (err) {
+                }).catch((err: BusinessError) => {
                   Logger.info(TAG, `send fail, err = ${JSON.stringify(err)}`);
                 })
                 this.roomDialog = false;

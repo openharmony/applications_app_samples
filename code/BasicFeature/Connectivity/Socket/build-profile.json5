@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,15 +15,30 @@
 
 {
   "app": {
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
-        "signingConfig": "default"
+        "signingConfig": "default",
+        "compileSdkVersion": 14,
+        "compatibleSdkVersion": 14,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
       }
     ],
-    "signingConfigs": []
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
   },
   "modules": [
     {
