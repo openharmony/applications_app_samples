@@ -32,14 +32,13 @@ adjustexternalmemory/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libadjustexternalmemory
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── adjustexternalmemoryability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -52,14 +51,13 @@ getheapstatistics/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetheapstatistics
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getheapstatisticsability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -72,14 +70,13 @@ getversion/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetversion
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getversionability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -112,14 +109,13 @@ memorypressurenotification/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libmemorypressurenotification
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── memorypressurenotificationability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -132,14 +128,13 @@ strictequals/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libstrictequals
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── strictequalsability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -173,7 +168,7 @@ strictequals/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -19,7 +19,7 @@
 
 ### 使用说明
 
-1. 在主界面，可以点击hello world，开始执行。
+1. 在主界面，可以点击Hello World，开始执行。
 2. 执行结果会即时反馈在屏幕中央,并在控制台打印log。
 
 ### 工程目录
@@ -70,7 +70,7 @@ entry/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/JSVMAPI/JsvmProcess > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/JSVMAPI/JsvmProcess > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -26,14 +26,13 @@ createdouble/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreatedouble
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createdoubleability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -46,14 +45,13 @@ createint32/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreateint32
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createint32ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -66,14 +64,13 @@ createint64/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreateint64
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createint64ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -86,14 +83,13 @@ createuint32/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreateuint32
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createuint32ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -106,14 +102,13 @@ getvaluedouble/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetvaluedouble
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getvaluedoubleability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -126,14 +121,13 @@ getvalueint32/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetvalueint32
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getvalueint32ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -146,14 +140,13 @@ getvalueint64/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetvalueint64
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getvalueint64ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -166,14 +159,14 @@ getvalueuint32/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetvalueuint32
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getvalueuint32ability
+ │   │   ├── getvalueuint32backupability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -207,7 +200,7 @@ getvalueuint32/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

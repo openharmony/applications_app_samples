@@ -46,14 +46,13 @@ createrangeerror/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreaterangeerror
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createrangeerrorability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -66,14 +65,13 @@ createsyntaxerror/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreatesyntaxerror
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createsyntaxerrorability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -86,13 +84,13 @@ createtypeerror/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreatetypeerror
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
+ │   │   ├── createtypeerrorability
  │   │   ├── entrybackupability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
@@ -106,14 +104,13 @@ getandclearlastexception/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetandclearlastexception
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getandclearlastexceptionability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -126,14 +123,13 @@ getlasterrorinfo/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetlasterrorinfo
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getlasterrorinfoability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -146,14 +142,13 @@ iserror/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libiserror
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── iserrorability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -166,14 +161,13 @@ isexceptionpending/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libisexceptionpending
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── isexceptionpendingability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -186,14 +180,13 @@ throwerror/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libthrowerror
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── throwerrorability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -206,14 +199,13 @@ throwrangeerror/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libthrowrangeerror
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── throwrangeerrorability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -226,14 +218,13 @@ throwsyntaxerror/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libthrowsyntaxerror
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── throwsyntaxerrorability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -246,14 +237,13 @@ throwtypeerror/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libthrowtypeerror
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── throwtypeerrorability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -287,7 +277,7 @@ throwtypeerror/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmError > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

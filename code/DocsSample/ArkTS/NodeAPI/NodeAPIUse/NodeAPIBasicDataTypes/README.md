@@ -10,8 +10,8 @@ ArkTS的Number类型是一个双精度64位二进制格式IEEE 754值。只有�
 
 ### 效果预览
 
-| 首页                                                         | 执行效果图                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 首页                                                                      | 执行效果图                                                                |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | <img src="./screenshots/NodeAPIBasicDataTypes1.png" style="zoom: 50%;" /> | <img src="./screenshots/NodeAPIBasicDataTypes2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
@@ -41,7 +41,7 @@ entry/src/
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       ├── Ability.test.ets 
+ │   │       ├── Ability.test.ets
  │   │       ├── NodeAPIBasicDataTypes.test.ets  // 自动化测试代码
  │   │       └── List.test.ets
 ```
@@ -66,10 +66,10 @@ entry/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

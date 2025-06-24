@@ -117,7 +117,7 @@ entry/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicImport > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/ArkTSRuntime/ArkTSModule/DynamicImport > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

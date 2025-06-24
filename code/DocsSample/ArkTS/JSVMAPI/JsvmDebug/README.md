@@ -31,14 +31,13 @@ aboutcodecache/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libaboutcodecache
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── aboutcodecacheability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -71,14 +70,13 @@ snapshot/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libsnapshot
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── snapshotability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -91,14 +89,13 @@ runtimetask/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libruntimetask
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── runtimetaskability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -132,7 +129,7 @@ runtimetask/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/JSVMAPI/JsvmDebug > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/JSVMAPI/JsvmDebug > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

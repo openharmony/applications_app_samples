@@ -26,14 +26,13 @@ createbigintint64/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreatebigintint64
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createbigintint64ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -46,14 +45,13 @@ createbigintuint64/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreatebigintuint64
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createbigintuint64ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -66,14 +64,13 @@ createbigintwords/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libcreatebigintwords
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── createbigintwordsability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -86,14 +83,13 @@ getvaluebigintint64/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetvaluebigintint64
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getvaluebigintint64ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -106,14 +102,13 @@ getvaluebigintuint64/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libgetvaluebigintuint64
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── getvaluebigintuint64ability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -167,7 +162,7 @@ getvaluebigintwords/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

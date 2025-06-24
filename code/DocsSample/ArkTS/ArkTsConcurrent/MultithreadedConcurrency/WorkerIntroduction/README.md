@@ -10,8 +10,8 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 ### 效果预览
 
-|                             首页                             |                      执行及结果即时反馈                      |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                  首页                                   |                           执行及结果即时反馈                            |
+| :---------------------------------------------------------------------: | :---------------------------------------------------------------------: |
 | <img src="./screenshots/WorkerIntroduction_1.png" style="zoom: 50%;" /> | <img src="./screenshots/WorkerIntroduction_2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
@@ -77,10 +77,10 @@ entry/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

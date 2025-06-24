@@ -8,8 +8,8 @@
 
 ### 效果预览
 
-| 首页                                                         | 执行结果图                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 首页                                                                  | 执行结果图                                                            |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | <img src="./screenshots/NodeApiLoadModule1.png" style="zoom: 67%;" /> | <img src="./screenshots/NodeApiLoadModule2.png" style="zoom: 67%;" /> |
 
 ### 使用说明
@@ -41,7 +41,7 @@ entry/src/
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       ├── Ability.test.ets 
+ │   │       ├── Ability.test.ets
  │   │       ├── NodeApiLoadModule.test.ets  // 自动化测试代码
  │   │       └── List.test.ets
 ```
@@ -66,10 +66,10 @@ entry/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/NodeAPI/NodeApiClassicUseCases/NodeApiLoadModule > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModule > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

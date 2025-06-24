@@ -27,8 +27,8 @@ Transferable对象（也称为NativeBinding对象）指的是一个JS对象，�
 
 ### 效果预览
 
-|                             首页                             |                      执行及结果即时反馈                      |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                   首页                                    |                            执行及结果即时反馈                             |
+| :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
 | <img src="./screenshots/CommunicationObjects_1.png" style="zoom: 50%;" /> | <img src="./screenshots/CommunicationObjects_2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
@@ -84,10 +84,10 @@ entry/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

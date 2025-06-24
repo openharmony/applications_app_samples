@@ -2,16 +2,16 @@
 
 ### 介绍
 
- Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在新创建的ArkTS基础运行时环境中使用。
+Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在新创建的ArkTS基础运行时环境中使用。
 
- 本工程展示了使用napi_load_module_with_info接口进行对不同内容的加载，代码详细描述可查如下链接。
+本工程展示了使用napi_load_module_with_info接口进行对不同内容的加载，代码详细描述可查如下链接。
 
 - [使用Node-API接口进行模块加载](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/napi/use-napi-load-module-with-info.md)
 
 ### 效果预览
 
-| 首页图                                                       | 执行结果图                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 首页图                                                                        | 执行结果图                                                                    |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | <img src="./screenshots/NodeApiLoadModuleWithInfo1.png" style="zoom: 50%;" /> | <img src="./screenshots/NodeApiLoadModuleWithInfo2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
@@ -49,7 +49,7 @@ entry/src/
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       ├── Ability.test.ets 
+ │   │       ├── Ability.test.ets
  │   │       ├── NodeApiLoadModuleWithInfo.test.ets  // 自动化测试代码
  │   │       └── List.test.ets
  har1/                                // HAR加载HAR模块名
@@ -77,10 +77,10 @@ entry/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/NodeAPI/NodeApiClassicUseCases/NodeApiLoadModuleWithInfo > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPILoadModuleWithInfo > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```
