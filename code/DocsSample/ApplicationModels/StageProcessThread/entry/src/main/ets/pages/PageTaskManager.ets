@@ -66,7 +66,12 @@ struct PageTaskManager {
             .fontSize(24)
             .fontWeight(FontWeight.Bold)
             .textAlign(TextAlign.Start)
-            .margin({ top: 12 , bottom: 11 , right: 24 , left: 24})
+            .margin({
+              top: 12,
+              bottom: 11,
+              right: 24,
+              left: 24
+            })
         }
       }
       .width('100%')
@@ -78,11 +83,16 @@ struct PageTaskManager {
       List({ initialIndex: 0 }) {
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.register_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -91,7 +101,12 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
 
           }
           .onClick(() => {
@@ -111,11 +126,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.obtain_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -124,30 +144,37 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
           }
           .onClick(() => {
             // 2.获取系统最近20个任务
-            missionManager.getMissionInfos('', 20, (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
-              hilog.info(DOMAIN_NUMBER, TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
-              hilog.info(DOMAIN_NUMBER, TAG, 'size = ' + missions.length);
-              hilog.info(DOMAIN_NUMBER, TAG, 'missions = ' + JSON.stringify(missions));
+            missionManager.getMissionInfos('', 20,
+              (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
+                hilog.info(DOMAIN_NUMBER, TAG, 'size = ' + missions.length);
+                hilog.info(DOMAIN_NUMBER, TAG, 'missions = ' + JSON.stringify(missions));
 
-              // 判断系统最近任务中是否包含etsclock
-              for (let i = 0;i < missions.length; i++) {
-                if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
-                  promptAction.showToast({
-                    message: $r('app.string.obtain_success_toast')
-                  });
-                  hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
-                  this.missionId = missions[i].missionId;
-                  return;
+                // 判断系统最近任务中是否包含etsclock
+                for (let i = 0; i < missions.length; i++) {
+                  if (missions[i].want.bundleName?.indexOf('clock') !== -1) {
+                    promptAction.showToast({
+                      message: $r('app.string.obtain_success_toast')
+                    });
+                    hilog.info(DOMAIN_NUMBER, TAG,
+                      `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
+                    this.missionId = missions[i].missionId;
+                    return;
+                  }
                 }
-              }
-              promptAction.showToast({
-                message: $r('app.string.obtain_failed_toast')
+                promptAction.showToast({
+                  message: $r('app.string.obtain_failed_toast')
+                });
               });
-            });
           })
         }
         .height(56)
@@ -157,11 +184,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.obtain_one_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -170,7 +202,12 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
           }
           .onClick(() => {
             // 3.获取单个任务的详细信息()
@@ -191,11 +228,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.obtain_snapshot_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -204,20 +246,26 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
 
           }
           .onClick(() => {
             // 4.获取任务快照
-            missionManager.getMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
-              if (error === null) {
-                promptAction.showToast({
-                  message: $r('app.string.obtain_snapshot_success_toast')
-                });
-              }
-              hilog.info(DOMAIN_NUMBER, TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
-              hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
-            })
+            missionManager.getMissionSnapShot('', this.missionId,
+              (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
+                if (error === null) {
+                  promptAction.showToast({
+                    message: $r('app.string.obtain_snapshot_success_toast')
+                  });
+                }
+                hilog.info(DOMAIN_NUMBER, TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
+                hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
+              })
           })
         }
         .height(56)
@@ -228,11 +276,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.obtain_low_snapshot_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -241,19 +294,26 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
           }
           .onClick(() => {
             // 5.获取低分辨任务快照
-            missionManager.getLowResolutionMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
-              if (error === null) {
-                promptAction.showToast({
-                  message: $r('app.string.obtain_low_snapshot_success_toast')
-                });
-              }
-              hilog.info(DOMAIN_NUMBER, TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
-              hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
-            })
+            missionManager.getLowResolutionMissionSnapShot('', this.missionId,
+              (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
+                if (error === null) {
+                  promptAction.showToast({
+                    message: $r('app.string.obtain_low_snapshot_success_toast')
+                  });
+                }
+                hilog.info(DOMAIN_NUMBER, TAG,
+                  'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
+                hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
+              })
           })
         }
         .height(56)
@@ -263,11 +323,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.lock_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -276,7 +341,12 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
           }
           .onClick(() => {
             // 6-1 加锁任务
@@ -295,11 +365,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.unlock_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -308,7 +383,12 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
 
           }
           .onClick(() => {
@@ -329,11 +409,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.front_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -342,7 +427,12 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
           }
           .onClick(() => {
             // 7.把任务切到前台
@@ -358,11 +448,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.delete_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -371,7 +466,12 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
           }
           .onClick(() => {
             // 8.删除单个任务
@@ -390,11 +490,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.delete_all_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -403,7 +508,12 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
           }
           .onClick(() => {
             // 9.删除全部任务
@@ -419,11 +529,16 @@ struct PageTaskManager {
 
         ListItem() {
           Row() {
-            Row(){
+            Row() {
               Text($r('app.string.unregister_button'))
                 .textAlign(TextAlign.Start)
                 .fontWeight(FontWeight.Medium)
-                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .margin({
+                  top: 13,
+                  bottom: 13,
+                  left: 0,
+                  right: 8
+                })
                 .fontSize(16)
                 .width(232)
                 .height(22)
@@ -432,7 +547,12 @@ struct PageTaskManager {
             .height(48)
             .width('100%')
             .borderRadius(24)
-            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+            .margin({
+              top: 4,
+              bottom: 4,
+              left: 12,
+              right: 84
+            })
           }
           .onClick(() => {
             // 10.解注册任务变化通知
