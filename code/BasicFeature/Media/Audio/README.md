@@ -17,9 +17,10 @@
 | 音频录制页面-<br>直播录制             | 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     | 空间音频页面                                           |
 |-----------------------------------------|----------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
 | ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
-| 音频k歌页面             | 
+
+| 音频k歌页面             |
 |-----------------------------------------|
-| ![Karaoke](screenshots/device/karaoke.jpeg)| 
+| ![Karaoke](screenshots/device/karaoke.jpeg)|
 
 使用说明
 
