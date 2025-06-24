@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import deviceInfo from '@ohos.deviceInfo';
 import inputMethodEngine from '@ohos.inputMethodEngine';
-import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
+import type InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 import display from '@ohos.display';
-import windowManager from '@ohos.window';
 import Log from './Log';
-import { BusinessError } from '@ohos.base';
-import { GetHardKeyValue } from './HardKeyUtils';
+import type { BusinessError } from '@ohos.base';
+import lazy { GetHardKeyValue } from './HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
-import { StyleConfiguration } from '../common/StyleConfiguration';
+import lazy { StyleConfiguration } from '../common/StyleConfiguration';
+
+export const DEVICE_TYPE: string = 'phone';
 
 interface DeviceSize {
   width: number;
@@ -95,6 +95,12 @@ export class InputHandler {
       AppStorage.setOrCreate('inputPattern', res.inputPattern);
       this.setInputInfo('EditorInfo：enterKeyType = ' + this.mEditorAttribute.enterKeyType + ';inputPattern = ' + this.mEditorAttribute.inputPattern);
     })
+  }
+
+  public onInputStop() {
+    this.mKbController = undefined;
+    this.mTextInputClient = undefined;
+    this.mEditorAttribute = undefined;
   }
 
   public hideKeyboardSelf(): void {
@@ -208,7 +214,7 @@ export class InputHandler {
     this.addLog('refreshInfo5');
     showText += this.inputInfo;
     this.addLog('refreshInfo6');
-    AppStorage.Set<string>('showLog', showText);
+    AppStorage.set<string>('showLog', showText);
     this.addLog('refreshInfo7');
     this.addLog('result is = ' + showText);
   }
@@ -254,8 +260,6 @@ export class KeyboardController {
     let dHeight = dis.height;
     let navigationbar_height = NAVIGATIONBAR_HEIGHT_DEFAULT;
     let keyHeightRate = KEYBOARD_HEIGHT_RATE_DEFAULT;
-    AppStorage.setOrCreate<number>('windowWidth', dis.width);
-    AppStorage.setOrCreate<number>('windowHeight', dis.height);
     let isLandscape = false;
     let isRkDevice = false;
     if (dis.width > dis.height) {
@@ -284,12 +288,11 @@ export class KeyboardController {
     let keyHeight = dHeight * keyHeightRate;
     this.barPosition = dHeight - keyHeight - navigationbar_height;
     this.inputHandle.addLog(`initWindow-dWidth = ${dWidth};dHeight = ${dHeight};keyboard height = ${keyHeight};;navibar height = navigationbar_height`);
-    this.inputHandle.addLog(`initWindow-deviceType = ${deviceInfo.deviceType}`);
     let panelInfo: inputMethodEngine.PanelInfo = {
       type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
       flag: inputMethodEngine.PanelFlag.FLG_FIXED
     }
-    let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
+    let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, DEVICE_TYPE);
     AppStorage.setOrCreate('inputStyle', inputStyle);
     InputMethodEngine.createPanel(this.mContext, panelInfo).then((panel: inputMethodEngine.Panel) => {
       this.panel = panel;
@@ -299,7 +302,7 @@ export class KeyboardController {
             this.inputHandle.addLog('loadContent finished');
           })
         })
-      })
+      });
     })
   }
 
@@ -308,6 +311,7 @@ export class KeyboardController {
     try {
       if (this.panel) {
         InputMethodEngine.destroyPanel(this.panel);
+        this.panel = undefined;
       }
     } catch (error) {
       this.inputHandle.addLog(`Failed to find the Panel. Cause: ${JSON.stringify(error)}`);
@@ -322,8 +326,6 @@ export class KeyboardController {
     let dHeight = dis.height;
     let navigationbar_height = dHeight * 0.07; // 有些产品导航栏高度为0，默认为0.07
     let keyHeightRate = KEYBOARD_HEIGHT_RATE_DEFAULT;
-    AppStorage.setOrCreate<number>('windowWidth', dis.width);
-    AppStorage.setOrCreate<number>('windowHeight', dis.height);
     let isLandscape = false;
     let isRkDevice = false;
     if (dis.width > dis.height) {
@@ -350,7 +352,7 @@ export class KeyboardController {
       keyHeightRate = KEYBOARD_HEIGHT_RATE_BIG;
     }
     let keyHeight = dHeight * keyHeightRate;
-    let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
+    let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, DEVICE_TYPE);
     AppStorage.setOrCreate('inputStyle', inputStyle);
     if (this.panel) {
       this.panel.resize(dWidth, keyHeight).then(() => {
@@ -373,11 +375,10 @@ export class KeyboardController {
       this.resizePanel();
     });
     InputMethodEngine.on('inputStart', (kbController: inputMethodEngine.KeyboardController, textInputClient: inputMethodEngine.InputClient) => {
-      this.inputHandle.addLog('keyboard inputStart');
       this.inputHandle.onInputStart(kbController, textInputClient);
     })
     InputMethodEngine.on('inputStop', () => {
-      this.inputHandle.addLog('keyboard inputStop');
+      this.inputHandle.onInputStop();
       this.onDestroy();
       this.mContext.destroy();
     });
@@ -400,11 +401,11 @@ export class KeyboardController {
       return result;
     });
 
-    this.mKeyboardDelegate.on('cursorContextChange', (x: number, y: number, height: number) => {
-      let cursorInfo: CursorInfo = { x: x, y: y, height: height }
-      this.inputHandle.setCursorInfo(cursorInfo);
-    });
     if (isDebug) {
+      this.mKeyboardDelegate.on('cursorContextChange', (x: number, y: number, height: number) => {
+        let cursorInfo: CursorInfo = { x: x, y: y, height: height }
+        this.inputHandle.setCursorInfo(cursorInfo);
+      });
       this.mKeyboardDelegate.on('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
         this.inputHandle.setSelectInfo('selectInfo: from(' + oldBegin + ',' + oldEnd + ') to (' + newBegin + ',' + newEnd + ')');
       });
@@ -544,6 +545,7 @@ export class KeyboardController {
 
   private unRegisterListener(): void {
     this.inputHandle.addLog('unRegisterListener');
+    InputMethodEngine.off('inputStart');
     InputMethodEngine.off('inputStop', () => {
       this.inputHandle.addLog('inputStop off');
     });

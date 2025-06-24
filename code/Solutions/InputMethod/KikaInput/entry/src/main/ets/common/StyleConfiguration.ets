@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import deviceInfo from '@ohos.deviceInfo';
+import { DEVICE_TYPE } from '../model/KeyboardController';
 
 export interface KeyStyle {
   deviceType?: string,
@@ -54,7 +54,7 @@ export class StyleConfiguration {
     if (isRkDevice === undefined) {
       isRkDevice = false;
     }
-    return StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType)
+    return StyleConfiguration.getInputStyle(isLandscape, isRkDevice, DEVICE_TYPE)
   }
 
   static getInputStyle(islandSpace: boolean, isRkDevice: boolean, deviceType: string): KeyStyle {

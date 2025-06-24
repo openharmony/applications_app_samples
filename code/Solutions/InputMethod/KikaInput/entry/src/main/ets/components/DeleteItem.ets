@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { InputHandler } from '../model/KeyboardController';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import lazy { InputHandler } from '../model/KeyboardController';
+import lazy { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_gray_pressed'))
