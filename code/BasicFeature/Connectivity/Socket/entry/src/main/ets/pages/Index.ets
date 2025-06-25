@@ -18,21 +18,23 @@ import router from '@ohos.router';
 import socket from '@ohos.net.socket';
 import Logger from '../model/Logger';
 import { ChatBox } from '../model/ChatBox';
-import { resolveIP } from '../Utils/Util';
+import { resolveIP } from '../utils/Util';
 import { ChatSource } from '../model/DataSource';
+import { AddrType } from '../model/DataType';
 import util from '@ohos.util';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let udp = socket.constructUDPSocketInstance()
-let callOnceForudpObj = 0
-const TAG: string = '[Index]'
+let udp = socket.constructUDPSocketInstance();
+let callOnceForudpObj = 0;
+const TAG: string = '[Index]';
 
-let localAddr = {
+let localAddr: AddrType = {
   address: resolveIP(wifi.getIpInfo().ipAddress),
   family: 1,
   port: 0
 }
 
-let oppositeAddr = {
+let oppositeAddr: AddrType = {
   address: '',
   family: 1,
   port: 0
@@ -41,17 +43,17 @@ let oppositeAddr = {
 @Entry
 @Component
 struct Index {
-  private address: string = <string> router.getParams()['address']
-  private port: number = <number> router.getParams()['port']
-  private loginCount: number = <number> router.getParams()['loginCount']
-  @State user: string = ''
-  @State userImg: Resource = $r('app.media.fengzi')
-  @State otherImg: Resource = $r('app.media.wenzi')
-  @State chats: ChatSource = new ChatSource()
-  @State loginState: boolean = true
-  @State message: string = ''
-  @State afterSend: boolean = false
-  @State onlineState: boolean = true
+  private address: string = (router.getParams() as Record<string, number | Object>).address as string;
+  private port: number = (router.getParams() as Record<string, number | Object>).port as number;
+  private loginCount: number = (router.getParams() as Record<string, number | Object>).loginCount as number;
+  @State user: string = '';
+  @State userImg: Resource = $r('app.media.fengzi');
+  @State otherImg: Resource = $r('app.media.wenzi');
+  @State chats: ChatSource = new ChatSource();
+  @State loginState: boolean = true;
+  @State message: string = '';
+  @State afterSend: boolean = false;
+  @State onlineState: boolean = true;
 
   aboutToAppear() {
     oppositeAddr.address = this.address;
@@ -74,7 +76,8 @@ struct Index {
       } else {
         Logger.info(TAG, `get socket state success, state: ${JSON.stringify(data)}`);
         if (data.isBound && !data.isClose) {
-          udp.off('message', () => {});
+          udp.off('message', () => {
+          });
           udp.close();
         }
       }
@@ -87,7 +90,7 @@ struct Index {
       let promise = udp.bind(localAddr);
       promise.then(() => {
         Logger.info(TAG, 'udp bind success');
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         Logger.info(TAG, `udp bind fail ${err}`);
       })
       callOnceForudpObj = 1
@@ -103,8 +106,7 @@ struct Index {
 
         if (str == 'online') {
           this.onlineState = true;
-        }
-        else if (str == 'offline') {
+        } else if (str == 'offline') {
           this.onlineState = false;
         } else if (str == 'exit') {
           udp.off('message', () => {
@@ -115,10 +117,11 @@ struct Index {
           Logger.info(TAG, 'receive udp exit 3');
         } else {
           Logger.info(TAG, `receive in Chat sucess`);
-          let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' + new Date().getMinutes();
-          Logger.info(TAG, `pre:this.chats=${JSON.stringify(this.chats['chatsArray'])}`);
+          let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' +
+          new Date().getMinutes();
+          Logger.info(TAG, `pre:this.chats=${JSON.stringify(this.chats.chatsArray)}`);
           this.chats.pushData(new ChatBox(false, str, date));
-          Logger.info(TAG, `after:this.chats=${JSON.stringify(this.chats['chatsArray'])}`);
+          Logger.info(TAG, `after:this.chats=${JSON.stringify(this.chats.chatsArray)}`);
         }
         str = '';
       } else {
@@ -147,24 +150,24 @@ struct Index {
         .backgroundColor('#ff50afea')
         .onClick(() => {
           if (!this.onlineState) {
-            this.chats['chatsArray'] = []
-            this.chats.notifyDataReload()
+            this.chats.chatsArray = [];
+            this.chats.notifyDataReload();
             udp.off('message', () => {
             })
-            router.back()
+            router.back();
           }
           udp.send({
             data: 'exit',
             address: oppositeAddr
           }).then(data => {
             Logger.info(TAG, `send sucess : ${data}`);
-            this.chats['chatsArray'] = [];
+            this.chats.chatsArray = [];
             this.chats.notifyDataReload();
             udp.off('message', () => {
             });
             udp.close();
             router.back();
-          }).catch(function (err) {
+          }).catch((err: BusinessError) => {
             Logger.info(TAG, `TAG,send : ${JSON.stringify(err)}`);
           })
         })
@@ -206,7 +209,7 @@ struct Index {
               address: oppositeAddr
             }).then(data => {
               Logger.info(TAG, `send sucess : ${data}`);
-            }).catch(function (err) {
+            }).catch((err: BusinessError) => {
               Logger.info(TAG, `TAG,send : ${JSON.stringify(err)}`);
             })
             this.bindOption();
@@ -222,7 +225,7 @@ struct Index {
               address: oppositeAddr
             }).then(data => {
               Logger.info(TAG, `send sucess : ${data}`);
-            }).catch(function (err) {
+            }).catch((err: BusinessError) => {
               Logger.info(TAG, `TAG,send : ${JSON.stringify(err)}`);
             })
           }
@@ -231,12 +234,12 @@ struct Index {
 
       Scroll() {
         Column() {
-          LazyForEach(this.chats, (item, index) => {
+          LazyForEach(this.chats, (item: ChatBox, index) => {
             if (item.isSend) {
               Row() {
                 Column() {
                   Text(item.date)
-                    .fontSize(15) //时间
+                    .fontSize(15)//时间
                     .width('100%')
                     .textAlign(TextAlign.End)
                   Text(item.message)
@@ -265,7 +268,7 @@ struct Index {
                 }.width('70%').margin({ left: 5 })
               }.margin({ top: 5, bottom: 10 }).alignSelf(ItemAlign.Start)
             }
-          }, item => item.message)
+          }, (item: ChatBox) => item.message)
         }
         .width('100%')
         .padding(5)
@@ -300,7 +303,8 @@ struct Index {
         .margin({ left: 2, right: 2 })
         .backgroundColor('#ffadf58e')
         .onClick(() => {
-          let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' + new Date().getMinutes();
+          let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' +
+          new Date().getMinutes();
           let sendMessage = new ChatBox(true, this.message, date);
           if (this.message !== '' && this.loginState && this.onlineState) {
             this.chats.pushData(sendMessage);
@@ -312,12 +316,12 @@ struct Index {
             }).then(data => {
               Logger.info(TAG, 'send sucess');
               Logger.info(TAG, `send ${data}`);
-              Logger.info(TAG, `this.chats=${JSON.stringify(this.chats['chatsArray'])}`);
+              Logger.info(TAG, `this.chats=${JSON.stringify(this.chats.chatsArray)}`);
               Logger.info(TAG, `(send)opposite_address=${oppositeAddr.address}`);
               Logger.info(TAG, `(send)opposite_port=${oppositeAddr.port}`);
               Logger.info(TAG, `(send)this.message=${this.message}`);
-              Logger.info(TAG, `this.chats=${JSON.stringify(this.chats['chatsArray'])}`);
-            }).catch(function (err) {
+              Logger.info(TAG, `this.chats=${JSON.stringify(this.chats.chatsArray)}`);
+            }).catch((err: BusinessError) => {
               Logger.info(TAG, `send ${JSON.stringify(err)}`);
             })
           }

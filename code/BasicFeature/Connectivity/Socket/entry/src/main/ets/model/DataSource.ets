@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,19 +13,19 @@
  * limitations under the License.
  */
 
-import { ChatBox } from '../model/ChatBox';
-import Logger from '../model/Logger';
+import { ChatBox } from './ChatBox';
+import Logger from './Logger';
 
-const TAG: string = '[DataSource]'
+const TAG: string = '[DataSource]';
 
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
 
   public totalCount(): number {
     return 0;
   }
 
-  public getData(index: number): ChatBox {
+  public getData(index: number): ChatBox | undefined {
     return undefined;
   }
 
@@ -76,7 +76,7 @@ class BasicDataSource implements IDataSource {
 }
 
 export class ChatSource extends BasicDataSource {
-  private chatsArray: Array<ChatBox> = []
+  public chatsArray: Array<ChatBox> = [];
 
   public totalCount(): number {
     return this.chatsArray.length;
