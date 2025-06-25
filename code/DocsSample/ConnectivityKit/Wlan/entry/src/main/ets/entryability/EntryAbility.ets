@@ -13,44 +13,52 @@
  * limitations under the License.
  */
 
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
+import hilog from '../model/Logger'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import type { Permissions } from '@ohos.abilityAccessCtrl';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    hilog.info('Ability onCreate')
+    const PERMISSIONS: Array<Permissions> = ['ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'];
+    try {
+      abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context, PERMISSIONS);
+    } catch (err) {
+      hilog.info(`catch err->${JSON.stringify(err)}`);
+    }
   }
 
-  onDestroy(): void {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  onDestroy() {
+    hilog.info('Ability onDestroy')
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err) => {
+  onWindowStageCreate(windowStage: Window.WindowStage) {
+    hilog.info('Ability onWindowStageCreate')
+    windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
+        hilog.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`)
+        return
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
-    });
+      hilog.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`)
+    })
   }
 
-  onWindowStageDestroy(): void {
+  onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    hilog.info('Ability onWindowStageDestroy')
   }
 
-  onForeground(): void {
+  onForeground() {
     // Ability has brought to foreground
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    hilog.info('Ability onForeground')
   }
 
-  onBackground(): void {
+  onBackground() {
     // Ability has back to background
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+    hilog.info('Ability onBackground')
   }
 }

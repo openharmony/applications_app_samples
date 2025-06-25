@@ -10,7 +10,147 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "P2P"
+      "value": "Wlan"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "eTSWLAN"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTSWLAN Ability"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "sure",
+      "value": "Sure"
+    },
+    {
+      "name": "wlan",
+      "value": "WLAN"
+    },
+    {
+      "name": "available_wlan",
+      "value": "Available WLAN"
+    },
+    {
+      "name": "wifi_List",
+      "value": "wifi_List"
+    },
+    {
+      "name": "connected",
+      "value": "connected"
+    },
+    {
+      "name": "ip_address",
+      "value": "IP address:"
+    },
+    {
+      "name": "gate_way",
+      "value": "Gateway:"
+    },
+    {
+      "name": "net_mask",
+      "value": "Netmask:"
+    },
+    {
+      "name": "primary_dns",
+      "value": "Primary Dns IP address:"
+    },
+    {
+      "name": "second_dns",
+      "value": "Second DNS IP address:"
+    },
+    {
+      "name": "server_ip",
+      "value": "DHCP server IP:"
+    },
+    {
+      "name": "lease_duration",
+      "value": "IP address lease duration:"
+    },
+    {
+      "name": "country_code",
+      "value": "Country code:"
+    },
+    {
+      "name": "infrastructure_feature",
+      "value": "Infrastructure Feature:"
+    },
+    {
+      "name": "ghz_feature",
+      "value": "5 GHz Feature:"
+    },
+    {
+      "name": "gas_anqp_feature",
+      "value": "GAS/ANQP Feature:"
+    },
+    {
+      "name": "wifi_direct",
+      "value": "WiFi-Direct Feature:"
+    },
+    {
+      "name": "soft_ap",
+      "value": "Soft AP Feature:"
+    },
+    {
+      "name": "wifi_aware",
+      "value": "WiFi Aware Feature:"
+    },
+    {
+      "name": "encryption",
+      "value": "encrypted"
+    },
+    {
+      "name": "open",
+      "value": "open"
+    },
+    {
+      "name": "location_permission",
+      "value": "Allow app to obtain device location information"
+    },
+    {
+      "name": "approximately_location_permission",
+      "value": "Allow app to obtain device ambiguous location information"
+    },
+    {
+      "name": "GET_WIFI_INFO",
+      "value": "Allow applications to obtain Wi Fi information"
+    },
+    {
+      "name": "SET_WIFI_INFO",
+      "value": "Allow applications to configure Wi Fi devices"
+    },
+    {
+      "name": "GET_WIFI_INFO_INTERNAL",
+      "value": "Allow system processes to obtain Wi Fi related parameters"
+    },
+    {
+      "name": "GET_WIFI_PEERS_MAC",
+      "value": "Allow applications to obtain the MAC address of peer Wi Fi devices"
+    },
+    {
+      "name": "GET_WIFI_LOCAL_MAC",
+      "value": "Allow applications to obtain the MAC address of local Wi Fi devices"
+    },
+    {
+      "name": "GET_WIFI_CONFIG",
+      "value": "Allow applications to obtain Wi Fi configuration information"
+    },
+    {
+      "name": "SET_WIFI_CONFIG",
+      "value": "Allow applications to configure Wi Fi information"
+    },
+    {
+      "name": "MANAGE_WIFI_CONNECTION",
+      "value": "Allow applications to manage Wi Fi connections"
+    },
+    {
+      "name": "MANAGE_WIFI_HOTSPOT",
+      "value": "Allow applications to turn on or off Wi Fi hotspots"
     }
   ]
 }
