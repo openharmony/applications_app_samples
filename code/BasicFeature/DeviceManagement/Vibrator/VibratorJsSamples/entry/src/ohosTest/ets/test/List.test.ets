@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 import abilityTest from './Ability.test';
+import vibratorSample from './VibratorSample.test';
 
 export default function testsuite() {
   abilityTest();
+  vibratorSample();
 }

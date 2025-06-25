@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本样例展示了vibrator模块js接口的使用样例，包含time，preset，file，pattern四种形式的振动，订阅去订阅外设热插拔事件、获取设备上马达信息等接口功能
+本样例展示了vibrator模块js接口的使用样例，包含time、preset、file、pattern四种形式的振动,订阅去订阅外设热插拔事件、获取设备上马达信息等接口功能
 
 
 
@@ -45,19 +45,19 @@ entry
 
 ### 具体实现
 
-time，preset，file，pattern四种形式的振动，订阅去订阅外设热插拔事件、获取设备上马达信息等的功能接口封装在index，源码参考：[index.ets](./entry/src/main/ets/pages/index.ets)
+time、preset、file、pattern四种形式的振动，订阅去订阅外设热插拔事件、获取设备上马达信息等的功能接口封装在index，源码参考：[index.ets](./entry/src/main/ets/pages/index.ets)
 
-* file文件形式振动：使用Vibrator.startVibration接口的file形式来实现文件形式振动的下发。
-* preset文件形式振动：先使用窗口框选择Vibrator模块提供的effectId，然后使用Vibrator.startVibration接口使用preset形式来实现预置效果串形式振动的下发。
-* time文件形式振动：使用Vibrator.startVibration接口的time形式来下发指定时间形式的振动。
-* pattern文件形式振动：使用Vibrator.startVibration接口的pattern形式来实现ContinuousEvent和TransientEvent事件形式振动的下发。
-* 停止振动：使用Vibrator.stopVibration来停止振动。
-* 订阅去订阅外设热插拔事件，通过Vibrator.on和Vibrator.off来实现对扩设备热插拔事件订阅。
-* 获取设备上马达信息列表：通过Vibrator.getVibratorInfoSync接口来实现对本设备及扩展设备上马达列表的获取
+* file文件形式振动：使用Vibrator.startVibration接口的file形式来实现文件形式振动的下发；
+* preset文件形式振动：先使用窗口框选择Vibrator模块提供的effectId，然后使用Vibrator.startVibration接口使用preset形式来实现预置效果串形式振动的下发；
+* time文件形式振动：使用Vibrator.startVibration接口的time形式来下发指定时间形式的振动；
+* pattern文件形式振动：使用Vibrator.startVibration接口的pattern形式来实现ContinuousEvent和TransientEvent事件形式振动的下发；
+* 停止振动：使用Vibrator.stopVibration来停止振动；
+* 订阅去订阅外设热插拔事件，通过Vibrator.on和Vibrator.off来实现对扩设备热插拔事件订阅；
+* 获取设备上马达信息列表：通过Vibrator.getVibratorInfoSync接口来实现对本设备及扩展设备上马达列表的获取；
 
 ### 相关权限
 
-附上使用到权限和链接，示例如下：
+附上使用到的权限和链接，示例如下：
 
 [ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionvibrate)
 
@@ -69,7 +69,7 @@ time，preset，file，pattern四种形式的振动，订阅去订阅外设热�
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568;
 
-2.本示例为Stage模型，仅支持API20版本SDK，SDK版本号(API Version 20 Beta),镜像版本号(4.1Beta)
+2.本示例为Stage模型，仅支持API20版本SDK，SDK版本号(API Version 20 Beta)，镜像版本号(6.0Beta);
 
 3.本示例需要使用DevEco Studio 5.0.4 Release (Build Version: 5.0.11.100, built on March 28, 2025)及以上版本才可编译运行。
 

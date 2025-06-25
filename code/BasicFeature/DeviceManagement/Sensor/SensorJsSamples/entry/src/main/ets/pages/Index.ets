@@ -50,41 +50,42 @@ class Logger {
   private domain: number = 0xC02701;
   private prefix: string = '[Sample_Vibrator]'
   private format: string = '%{public}, %{public}'
+
   debug(...args: string[]) {
     hilog.debug(this.domain, this.prefix, this.format, args)
   }
+
   info(...args: string[]) {
     hilog.info(this.domain, this.prefix, this.format, args)
   }
+
   error(...args: string[]) {
     hilog.error(this.domain, this.prefix, this.format, args)
   }
 }
+
 const logger = new Logger();
 
 @Entry
 @Component
 struct SensorList {
-  @State
-  private sensorItems: string[] = [];
+  @State private sensorItems: string[] = [];
   private sampleRate: number = 200000000;
   private uiContext: UIContext = this.getUIContext();
   private promptAction: PromptAction = this.uiContext.getPromptAction();
   dialogControllerList: CustomDialogController | null = null;
   selectedSensorId: number = 0;
-  @State
-  private realSensorName: string = '';
-  @State
-  private deviceId: number = 0;
+  scroller: Scroller = new Scroller;
+  @State private realSensorName: string = '';
+  @State private deviceId: number = 0;
   private strDeviceId: string = '';
   private sensors = new Map<string, number>();
-  @State
-  private callbackContent:string = '';
-  @State
-  private SensorListByDevice:string = '';
-  SensorListByDeviceList: sensor.Sensor[] = [];
-  private supportSensorIdList: (number|undefined)[] = [1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 256,
+  @State private callbackContent: string = '';
+  @State private sensorListByDevice: string = '';
+  sensorListByDeviceList: sensor.Sensor[] = [];
+  private supportSensorIdList: (number | undefined)[] = [1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 256,
     257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 277, 278, 279, 280, 281, 282];
+
   private checkDeviceId(): CheckRet {
     if (!this.strDeviceId.length) {
       return { ok: false, ret: -1 };
@@ -116,7 +117,7 @@ struct SensorList {
     return result;
   }
 
-  onPageShow(): void {
+  aboutToAppear(): void {
     let traceCount = 0;
     logger.info(TAG + 'getSensorList in');
     try {
@@ -138,12 +139,37 @@ struct SensorList {
     }
     logger.info(TAG + 'getSensorList left');
   }
+
   build() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+      Scroll(this.scroller) {
+        Column() {
+          Text(`${this.callbackContent}`)
+            .fontSize(14)
+            .margin({ top: 15 })
+            .id('callbackText')
+
+          Text(`${this.sensorListByDevice}`)
+            .fontSize(14)
+            .id('deviceText')
+        }
+      }
+      .width('96%')
+      .height('20%')
+      .backgroundColor('#F1F1F1')
+      .borderRadius(10)
+      .borderColor($r('sys.color.popup_border_color'))
+
       TextInput({ placeholder: 'Please select sensor type', text: this.realSensorName })
         .placeholderColor('rgb(0,0,225)')
-        .placeholderFont({ size: 20, weight: 100, family: 'cursive', style: FontStyle.Italic })
+        .placeholderFont({
+          size: 18,
+          weight: 100,
+          family: 'cursive',
+          style: FontStyle.Italic
+        })
         .caretColor(Color.Blue)
+        .id('sensor_type_selector')
         .height(50)
         .type(InputType.Normal)
         .fontSize(20)
@@ -153,7 +179,10 @@ struct SensorList {
         .fontColor(Color.Black)
         .enableKeyboardOnFocus(false)
         .textAlign(TextAlign.Center)
-        .borderStyle(BorderStyle.Solid).borderWidth(1).borderColor('rgb(0,0,225)').borderRadius(10)
+        .borderStyle(BorderStyle.Solid)
+        .borderWidth(1)
+        .borderColor('rgb(0,0,225)')
+        .borderRadius(10)
         .focusable(false)
         .onClick(() => {
           TextPickerDialog.show({
@@ -165,14 +194,19 @@ struct SensorList {
             onCancel: () => {
               logger.info(TAG, 'TextPickerDialog onCancel');
             }
-          });
+          })
         })
         .width('80%')
-        .margin({top: 10})
+        .margin({ top: 10 })
 
       TextInput({ placeholder: 'deviceId' })
         .placeholderColor('rgb(0,0,225)')
-        .placeholderFont({ size: 20, weight: 100, family: 'cursive', style: FontStyle.Italic })
+        .placeholderFont({
+          size: 18,
+          weight: 100,
+          family: 'cursive',
+          style: FontStyle.Italic
+        })
         .caretColor(Color.Blue)
         .height(50)
         .type(InputType.Number)
@@ -184,10 +218,11 @@ struct SensorList {
         .textAlign(TextAlign.Center)
         .onChange((value: string) => {
           this.deviceId = parseInt(value)
-        }).width('100%')
-        .margin({top: 10})
+        })
+        .width('100%')
+        .margin({ top: 10 })
 
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center}) {
+      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
         Button($r('app.string.subscribe')).onClick(() => {
           try {
             logger.info(TAG + this.realSensorName + 'subscribe in')
@@ -195,26 +230,26 @@ struct SensorList {
               logger.info('This is not support, please change other sensorId!');
               return
             }
-            if(this.sensors.get(this.realSensorName) == 278) {
-              logger.info(TAG + this.sensors.get(this.realSensorName) +  'on in');
+            if (this.sensors.get(this.realSensorName) == 278) {
+              logger.info(TAG + this.sensors.get(this.realSensorName) + 'on in');
               let atManager = AbilityAccessCtrl.createAtManager();
               let context = getContext(this) as common.UIAbilityContext;
-              atManager.requestPermissionsFromUser(context, ['ohos.permission.READ_HEALTH_DATA'], (err, data)=>{
+              atManager.requestPermissionsFromUser(context, ['ohos.permission.READ_HEALTH_DATA'], (err, data) => {
                 if (err) {
-                  logger.info(TAG + 'grant READ_HEALTH_DATA failed:' + JSON.stringify(data));
+                  logger.error(TAG + 'grant READ_HEALTH_DATA failed:' + JSON.stringify(data));
                   return;
                 }
                 logger.info(TAG + 'data:' + JSON.stringify(data));
                 logger.info(TAG + 'data permissions:' + data.permissions);
                 logger.info(TAG + 'data authResults:' + data.authResults);
                 sensor.getSingleSensor(this.sensors.get(this.realSensorName), (err, data) => {
-                  if(err) {
+                  if (err) {
                     logger.error(TAG + JSON.stringify(err));
                     return;
                   }
-                  if(data) {
+                  if (data) {
                     const userOption = this.getUserOption();
-                    sensor.on(this.sensors.get(this.realSensorName), (data:sensor.Response)=>{
+                    sensor.on(this.sensors.get(this.realSensorName), (data: sensor.Response) => {
                       logger.info(TAG + 'PEDOMETER: ' + JSON.stringify(data));
                       this.callbackContent = JSON.stringify(data);
                     }, userOption)
@@ -225,11 +260,9 @@ struct SensorList {
               });
             } else { //普通sensor
               logger.info('before')
-              let countSame:number = 0;
-              let timestamp:number = 0;
-              let countSame2:number = 0;
-              let timestamp2:number = 0;
-              sensor.on(this.sensors.get(this.realSensorName), ((data:sensor.Response) => {
+              let countSame: number = 0;
+              let timestamp: number = 0;
+              sensor.on(this.sensors.get(this.realSensorName), ((data: sensor.Response) => {
                 logger.info(TAG + 'callback: ' + JSON.stringify(data));
                 this.callbackContent = JSON.stringify(data)
                 if (data.timestamp - timestamp == 0) {
@@ -237,42 +270,45 @@ struct SensorList {
                   logger.info(TAG + 'callbackcountSame: ' + JSON.stringify(data));
                 }
                 timestamp = data.timestamp;
-              }), {'interval': this.sampleRate});
+              }), { 'interval': this.sampleRate });
               logger.info('left')
 
             }
-          }catch(e) {
-            logger.info(TAG + 'subscribe exception in,msg:' + JSON.stringify(e))
-            logger.info(TAG + 'unSubscribe exception in,code:' + e.code + 'msg:' + e.message)
+          } catch (e) {
+            logger.error(TAG + 'subscribe exception in,msg:' + JSON.stringify(e))
+            logger.error(TAG + 'unSubscribe exception in,code:' + e.code + 'msg:' + e.message)
           }
         })
+          .id('subscribeId')
 
         Button($r('app.string.unSubscribe')).onClick(() => {
           logger.info(TAG + 'unSubscribe in');
           try {
             sensor.off(this.sensors.get(this.realSensorName));
-          }catch(e) {
-            logger.info(TAG + 'unSubscribe exception in,msg:' + JSON.stringify(e));
+          } catch (e) {
+            logger.error(TAG + 'unSubscribe exception in,msg:' + JSON.stringify(e));
           }
           this.callbackContent = '';
         })
+          .id('unSubscribeId')
 
         Button($r('app.string.getSensorListByDeviceSync'))
           .onClick(() => {
             logger.info(TAG + 'getSensorListByDeviceSync in');
             try {
               let sensorInfoList = sensor.getSensorListByDeviceSync();
-              this.SensorListByDevice = 'sensorInfoList:' + JSON.stringify(sensorInfoList);
-              this.SensorListByDeviceList = sensorInfoList;
+              this.sensorListByDevice = 'sensorInfoList:' + JSON.stringify(sensorInfoList);
+              this.sensorListByDeviceList = sensorInfoList;
               logger.info(TAG + 'unSubscribe exception in,msg:' + JSON.stringify(sensorInfoList))
             } catch (err) {
               logger.error('Error occurred: ' + JSON.stringify(err));
             }
           })
+          .id('getSensorListByDeviceId')
 
         Button($r('app.string.getSingleSensorByDeviceSync'))
           .onClick(() => {
-            if (!this.SensorListByDevice.length) {
+            if (!this.sensorListByDevice.length) {
               this.promptAction.showToast({
                 message: 'Please click getSensorListByDeviceSync.',
                 duration: 2000
@@ -284,7 +320,7 @@ struct SensorList {
               builder: SelectDialog({
                 title: 'select SensorId',
                 selectedIndex: this.selectedSensorId,
-                radioContent: this.SensorListByDeviceList.map((sensorInfo: sensor.Sensor) => {
+                radioContent: this.sensorListByDeviceList.map((sensorInfo: sensor.Sensor) => {
                   return {
                     title: `${sensorInfo.sensorName}_${sensorInfo.sensorId}`,
                     action: async () => {
@@ -293,7 +329,7 @@ struct SensorList {
                         const checkRet = this.checkDeviceId();
                         const data = sensor.getSingleSensorByDeviceSync(this.selectedSensorId,
                           checkRet.ok ? checkRet.ret : undefined);
-                        this.SensorListByDevice = 'sensorInfoList:' + JSON.stringify(data);
+                        this.sensorListByDevice = 'sensorInfoList:' + JSON.stringify(data);
                       } catch (error) {
                         logger.error('Error occurred: ' + JSON.stringify(error));
                       }
@@ -304,8 +340,12 @@ struct SensorList {
             })
             this.dialogControllerList.open();
           })
+          .id('getSingleDeviceId')
 
-        Button($r('app.string.on')).fontSize(16).fontWeight(FontWeight.Bold).width('100%')
+        Button($r('app.string.on'))
+          .fontSize(16)
+          .fontWeight(FontWeight.Bold)
+          .width('80%')
           .onClick(() => {
             logger.info("sensor.on('SensorStatusChange')");
             try {
@@ -316,8 +356,12 @@ struct SensorList {
               logger.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
             }
           })
+          .id('onSensorStatusId')
 
-        Button($r('app.string.off')).fontSize(16).fontWeight(FontWeight.Bold).width('100%')
+        Button($r('app.string.off'))
+          .fontSize(16)
+          .fontWeight(FontWeight.Bold)
+          .width('80%')
           .onClick(() => {
             try {
               sensor.off('sensorStatusChange', this.sensorStatusChangeCallback);
@@ -327,21 +371,18 @@ struct SensorList {
               logger.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
             }
           })
+          .id('offSensorStatusId')
 
         Button($r('app.string.clean'))
           .onClick(() => {
-            this.SensorListByDevice = '';
+            this.sensorListByDevice = '';
           })
+          .id('cleanId')
 
-      }.margin({top: 20})
-
-      Text(`${this.callbackContent}`)
-        .fontSize(20)
-        .margin({ top: 20 })
-
-      Text(`${this.SensorListByDevice}`)
-        .fontSize(20)
-        .margin({ top: 20 })
+      }
+      .margin({ top: 20 })
+      .width('100%')
+      .height('70%')
     }
     .height('100%')
     .width('100%')
