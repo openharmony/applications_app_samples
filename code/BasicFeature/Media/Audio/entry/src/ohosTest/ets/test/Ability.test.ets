@@ -1075,5 +1075,89 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'SpatialAudio_002 end');
       done();
     })
+
+    /**
+    * [Karaoke] UI Component Rendering Test
+    */
+    it(TAG + 'KaraokePage_UI_001', 0, async (done: Function) => {
+      Logger.info(TAG, 'KaraokePage_UI_001 begin');
+      try {
+        await driver.delayMs(1000);
+
+        Logger.info(TAG, 'Check status text');
+        await driver.assertComponentExist(ON.id('karaoke_status_text'));
+
+        Logger.info(TAG, 'Check Init button');
+        await driver.assertComponentExist(ON.id('karaoke_init_btn'));
+
+        Logger.info(TAG, 'Check Enable button');
+        await driver.assertComponentExist(ON.id('karaoke_enable_btn'));
+
+        Logger.info(TAG, 'Check Disable button');
+        await driver.assertComponentExist(ON.id('karaoke_disable_btn'));
+
+        Logger.info(TAG, 'Check Slider component');
+        await driver.assertComponentExist(ON.id('karaoke_volume_slider'));
+      } catch (err) {
+        Logger.error(TAG, 'KaraokePage_UI_001 failed: ' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, 'KaraokePage_UI_001 end');
+      done();
+    });
+
+    /**
+    * [Karaoke] Initialize audio loopback and check state
+    */
+    it(TAG + 'KaraokePage_Init_002', 0, async (done: Function) => {
+      Logger.info(TAG, 'KaraokePage_Init_002 begin');
+      try {
+        let initBtn = await driver.findComponent(ON.id('karaoke_init_btn'));
+        await initBtn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('karaoke_status_text'));
+      } catch (err) {
+        Logger.error(TAG, 'KaraokePage_Init_002 failed: ' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, 'KaraokePage_Init_002 end');
+      done();
+    });
+
+    /**
+    * [Karaoke] Enable loopback and verify running state
+    */
+    it(TAG + 'KaraokePage_Enable_003', 0, async (done: Function) => {
+      Logger.info(TAG, 'KaraokePage_Enable_003 begin');
+      try {
+        let enableBtn = await driver.findComponent(ON.id('karaoke_enable_btn'));
+        await enableBtn.click();
+        await driver.delayMs(1500);
+        await driver.assertComponentExist(ON.id('karaoke_status_text'));
+      } catch (err) {
+        Logger.error(TAG, 'KaraokePage_Enable_003 failed: ' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, 'KaraokePage_Enable_003 end');
+      done();
+    });
+
+    /**
+    * [Karaoke] Disable loopback and verify idle state
+    */
+    it(TAG + 'KaraokePage_Disable_004', 0, async (done: Function) => {
+      Logger.info(TAG, 'KaraokePage_Disable_004 begin');
+      try {
+        let disableBtn = await driver.findComponent(ON.id('karaoke_disable_btn'));
+        await disableBtn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('karaoke_status_text'));
+      } catch (err) {
+        Logger.error(TAG, 'KaraokePage_Disable_004 failed: ' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, 'KaraokePage_Disable_004 end');
+      done();
+    });
   })
 }

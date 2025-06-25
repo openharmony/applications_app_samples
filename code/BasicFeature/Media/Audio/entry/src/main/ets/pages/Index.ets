@@ -18,100 +18,124 @@ import router from '@ohos.router';
 @Component
 struct Index {
   build() {
-    Column() {
-      Row() {
-        Column() {
-          Image($r('app.media.png01_findxhdpi')).width(72).height(72).margin({ top: 36 });
-          Text($r('app.string.SelectOutputDevice')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
-        }
-        .id('select_output_device_card')
-        .backgroundColor(Color.White)
-        .margin({ right: 12 })
-        .width(174)
-        .height(188)
-        .borderRadius(30)
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/PreferOutputDevice' });
-        });
+    Scroll() {
+      Column() {
+        Row() {
+          Column() {
+            Image($r('app.media.png01_findxhdpi')).width(72).height(72).margin({ top: 24 });
+            Text($r('app.string.SelectOutputDevice')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .id('select_output_device_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            await router.pushUrl({ url: 'pages/PreferOutputDevice' });
+          });
 
-        Column() {
-          Image($r('app.media.png01_audioxhdpi')).width(72).height(72).margin({ top: 36 });
-          Text($r('app.string.AudioFocus')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          Column() {
+            Image($r('app.media.png01_audioxhdpi')).width(72).height(72).margin({ top: 24 });
+            Text($r('app.string.AudioFocus')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .id('audio_focus_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            await router.pushUrl({ url: 'pages/Focus' });
+          });
         }
-        .id('audio_focus_card')
-        .backgroundColor(Color.White)
-        .borderRadius(30)
-        .width(174)
-        .height(188)
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/Focus' });
-        });
+        .justifyContent(FlexAlign.SpaceBetween)
+
+        Row() {
+          Column() {
+            Image($r('app.media.png01_Soundeffectsxhdpi')).width(72).height(72).margin({ top: 24 });
+            Text($r('app.string.AudioEffectManager')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .id('audio_effect_manager_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            await router.pushUrl({ url: 'pages/PresetEffect' });
+          });
+
+          Column() {
+            Image($r('app.media.png01_Recordingxxxhdpi')).width(72).height(72).margin({ top: 24 });
+            Text($r('app.string.AUDIO_CAPTURER')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .id('audio_capturer_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            await router.pushUrl({ url: 'pages/NormalCapturer' });
+          });
+        }
+        .justifyContent(FlexAlign.SpaceBetween)
+
+        Row() {
+          Column() {
+            Image($r('app.media.ic_Sound_select')).width(72).height(72).margin({ top: 24 });
+            Text($r('app.string.AVVOLUME_PANEL')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .id('audio_volume_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            await router.pushUrl({ url: 'pages/VolumePanel' });
+          });
+
+          Column() {
+            Image($r('app.media.ic_index_spatial')).width(72).height(72).margin({ top: 24 });
+            Text($r('app.string.SPATIAL_AUDIO')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .id('spatial_audio_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            await router.pushUrl({ url: 'pages/SpatialAudio' });
+          });
+        }
+        .justifyContent(FlexAlign.SpaceBetween)
+
+        Row() {
+          Column() {
+            Image($r('app.media.png01_Karaoke')).width(72).height(72).margin({ top: 24 });
+            Text($r('app.string.KARAOKE')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .id('karaoke_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            await router.pushUrl({ url: 'pages/Karaoke' });
+          });
+
+          Blank().width('45%').height('25%');
+        }
+        .justifyContent(FlexAlign.SpaceBetween)
       }
-      .margin({ top: 32 })
-      .justifyContent(FlexAlign.SpaceBetween)
-
-      Row() {
-        Column() {
-          Image($r('app.media.png01_Soundeffectsxhdpi')).width(72).height(72).margin({ top: 36 });
-          Text($r('app.string.AudioEffectManager')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
-        }
-        .id('audio_effect_manager_card')
-        .backgroundColor(Color.White)
-        .borderRadius(30)
-        .margin({ right: 12 })
-        .width(174)
-        .height(188)
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/PresetEffect' });
-        })
-
-        Column() {
-          Image($r('app.media.png01_Recordingxxxhdpi')).width(72).height(72).margin({ top: 36 });
-          Text($r('app.string.AUDIO_CAPTURER')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
-        }
-        .id('audio_capturer_card')
-        .backgroundColor(Color.White)
-        .borderRadius(30)
-        .width(174)
-        .height(188)
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/NormalCapturer' });
-        });
-      }
-      .margin({ top: 12 })
-      .justifyContent(FlexAlign.SpaceBetween)
-
-      Row() {
-        Column() {
-          Image($r('app.media.ic_Sound_select')).width(72).height(72).margin({ top: 36 });
-          Text($r('app.string.AVVOLUME_PANEL')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
-        }
-        .id('audio_volume_card')
-        .backgroundColor(Color.White)
-        .borderRadius(30)
-        .margin({ right: 12 })
-        .width(174)
-        .height(188)
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/VolumePanel' });
-        })
-
-        Column() {
-          Image($r('app.media.ic_index_spatial')).width(72).height(72).margin({ top: 36 });
-          Text($r('app.string.SPATIAL_AUDIO')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
-        }
-        .id('spatial_audio_card')
-        .backgroundColor(Color.White)
-        .borderRadius(30)
-        .width(174)
-        .height(188)
-        .onClick(async () => {
-          await router.pushUrl({ url: 'pages/SpatialAudio'});
-        });
+      .padding(12)
     }
-    .margin({ top: 12 })
-    .justifyContent(FlexAlign.SpaceBetween);
-  }
-  .height('100%').width('100%').backgroundColor('#F1F3F5');
+    .height('100%')
+    .width('100%')
+    .backgroundColor('#F1F3F5');
   }
 }

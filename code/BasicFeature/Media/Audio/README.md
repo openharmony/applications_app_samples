@@ -18,6 +18,10 @@
 |-----------------------------------------|----------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
 | ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
 
+| 音频k歌页面             |
+|-----------------------------------------|
+| ![Karaoke](screenshots/device/karaoke.jpeg)|
+
 使用说明
 
 注意：6，7，8是连续的串行操作，不是并行的。空间音频需要在具体路径上添加pcm文件。
@@ -77,7 +81,11 @@ hdc file send 5p1.pcm data/app/el2/100/base/com.samples.audio/haps/entry/files/
 49. 在空间音频页面，当设备支持空间音频且空间音频开关已开启时，点击“5.0音乐示例”播放器，开始播放AudioVivid音源
 50. 在空间音频页面，当设备支持空间音频且空间音频开关被打开时，出现弹窗提示“空间音频已开启”
 51. 在空间音频页面，当设备支持空间音频且空间音频开关被关闭时，出现弹窗提示“空间音频已关闭”
-
+52. 在主界面点击“k歌”按钮，进入k歌页面
+53. 在k歌页面，点击初始化按钮，创建AudioLoopback实例，在不支持平台会显示“平台不支持硬返”，支持平台会显示“已初始化”。
+54. 在k歌页面，点击开启返听按钮，开启耳返，在设备不支持的时候会显示“当前设备不支持”，场景不支持的时候会显示“当前场景不支持”，开启耳返成功会显示“返听中”。
+55. 在k歌页面，点击关闭耳返按钮，关闭耳返。
+56. 在k歌页面，滑动音量条，调整耳返音量。
 
 ### 工程目录
 
@@ -94,6 +102,7 @@ entry/src/main/ets/
 |---|---LiveCapturer.ets                    //音频录制-直播录制
 |---|---VolumePanel.ets                     //音量组件页面
 |---|---SpatialAudio.ets                    //空间音频页面
+|---|---Karaoke.ets                         //k歌页面
 library/
 |---Logger.ts                               //日志打印封装
 ```
@@ -164,7 +173,14 @@ library/
     * 调用isSpatializationEnabledForCurrentDevice()接口查询当前发声设备空间音频开关状态
     * 调用on("spatializationEnabledChangeForCurrentDevice")接口订阅当前发声设备空间音频空间音频开关状态变化事件
     * 调用off("spatializationEnabledChangeForCurrentDevice")接口取消订阅当前发声设备空间音频空间音频开关状态变化事件
-
+* k歌功能都封装在Karaoke,源码参考：[Karaoke.ets](entry/src/main/ets/pages/Karaoke.ets)
+    * 调用audio.getAudioManager().getStreamManager().isAudioLoopbackSupported(mode)查询当前平台是否支持返听能力。
+    * 调用audio.createAudioLoopback(mode)创建AudioLoopback实例。
+    * 调用getStatus方法，查询当前返听状态。
+    * 调用setVolume方法，设置音频返听音量。
+    * 调用enable方法，启用或禁用音频返听功能。
+    * 调用on("statusChange")接口订阅当前返听状态变化事件
+    * 调用off("statusChange")接口取消订阅返听状态变化事件
 ### 相关权限
 
 音频录制涉及的权限包括：

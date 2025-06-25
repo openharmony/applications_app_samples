@@ -9,6 +9,7 @@
     "pages/ParallelCapturer",
     "pages/LiveCapturer",
     "pages/VolumePanel",
-    "pages/SpatialAudio"
+    "pages/SpatialAudio",
+    "pages/Karaoke"
   ]
 }
