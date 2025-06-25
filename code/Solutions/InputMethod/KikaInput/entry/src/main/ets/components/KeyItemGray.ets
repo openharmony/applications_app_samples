@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { MenuKey, MenuType } from '../model/KeyboardKeyData';
+import lazy { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import lazy { MenuKey, MenuType } from '../model/KeyboardKeyData';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_gray_pressed'))

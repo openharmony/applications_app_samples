@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import type Want from '@ohos.app.ability.Want';
 import Log from '../model/Log';
-import { KeyboardController } from '../model/KeyboardController';
+import lazy { KeyboardController } from '../model/KeyboardController';
 
 const TAG: string = 'ServiceExtAbility->';
 

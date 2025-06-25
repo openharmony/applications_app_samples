@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import { DeleteItem } from './DeleteItem';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { KeyItem } from './KeyItem';
-import { KeyItemGray } from './KeyItemGray';
-import { MenuKey, numberSourceListData, sourceListType } from '../model/KeyboardKeyData';
-import { SpaceItem } from './SpaceItem';
-import { ReturnItem } from './ReturnItem';
+import lazy { DeleteItem } from './DeleteItem';
+import lazy { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import lazy { KeyItem } from './KeyItem';
+import lazy { KeyItemGray } from './KeyItemGray';
+import lazy { MenuKey, numberSourceListData, sourceListType } from '../model/KeyboardKeyData';
+import lazy { SpaceItem } from './SpaceItem';
+import lazy { ReturnItem } from './ReturnItem';
 
 // 数字键盘
 @Component

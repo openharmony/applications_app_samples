@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { DeleteItem } from './DeleteItem';
-import { MenuKey, KeyState, keySourceListType, keySourceListData } from '../model/KeyboardKeyData';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { KeyItem } from './KeyItem';
-import { KeyItemGray } from './KeyItemGray';
-import { KeyItemNumber } from './KeyItemNumber';
-import { SpaceItem } from './SpaceItem';
-import { ReturnItem } from './ReturnItem';
+import lazy { DeleteItem } from './DeleteItem';
+import lazy { MenuKey, KeyState, keySourceListType, keySourceListData } from '../model/KeyboardKeyData';
+import lazy { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import lazy { KeyItem } from './KeyItem';
+import lazy { KeyItemGray } from './KeyItemGray';
+import lazy { KeyItemNumber } from './KeyItemNumber';
+import lazy { SpaceItem } from './SpaceItem';
+import lazy { ReturnItem } from './ReturnItem';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_gray_pressed'))

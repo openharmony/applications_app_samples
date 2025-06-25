@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { InputHandler } from '../model/KeyboardController';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import lazy { InputHandler } from '../model/KeyboardController';
+import lazy { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
 enum EntryKey {
   Send = 'Send',
@@ -33,7 +33,7 @@ enum EntryKey {
 // 返回组件
 @Component
 export struct ReturnItem {
-  @StorageLink('enterKeyType') enterKeyType: EnterKeyType = EnterKeyType.Done
+  @StorageLink('enterKeyType') enterKeyType: EnterKeyType = EnterKeyType.Done;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   private returnWidth: Resource | undefined = undefined;
 

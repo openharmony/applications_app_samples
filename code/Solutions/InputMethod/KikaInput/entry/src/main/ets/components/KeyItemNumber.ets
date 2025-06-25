@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import deviceInfo from '@ohos.deviceInfo';
-import { InputHandler } from '../model/KeyboardController';
-import { KeyState, keySourceListType } from '../model/KeyboardKeyData';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import lazy { InputHandler } from '../model/KeyboardController';
+import lazy { KeyState, keySourceListType } from '../model/KeyboardKeyData';
+import lazy { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_normal_pressed'))
@@ -35,7 +34,7 @@ export struct KeyItemNumber {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      if (AppStorage.get<boolean>('isLandscape') && deviceInfo.deviceType === 'phone' && this.keyValue) {
+      if (AppStorage.get<boolean>('isLandscape') && this.keyValue) {
         Stack({ alignContent: Alignment.TopEnd }) {
           Text(this.keyState === KeyState.LOWER_CASE ? this.keyValue.content : this.keyValue.upperContent)
             .fontSize(this.inputStyle.en_fontSize)

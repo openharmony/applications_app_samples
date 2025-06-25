@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import deviceInfo from '@ohos.deviceInfo';
+
 import Log from '../model/Log';
-import { InputHandler } from '../model/KeyboardController';
-import {
+import lazy { InputHandler, DEVICE_TYPE } from '../model/KeyboardController';
+import lazy {
   MenuType,
   keySourceListData,
   numberSourceListData,
@@ -23,13 +23,12 @@ import {
   keySourceListType,
   sourceListType
 } from '../model/KeyboardKeyData';
-import { KeyMenu } from '../components/KeyMenu';
-import { NumberMenu } from '../components/NumberMenu';
-import { StyleConfiguration, KeyStyle } from '../common/StyleConfiguration';
-import { SymbolMenu } from '../components/SymbolMenu';
-import { TopMenu } from '../components/TopMenu';
+import lazy { KeyMenu } from '../components/KeyMenu';
+import lazy { NumberMenu } from '../components/NumberMenu';
+import lazy { StyleConfiguration, KeyStyle } from '../common/StyleConfiguration';
+import lazy { SymbolMenu } from '../components/SymbolMenu';
+import lazy { TopMenu } from '../components/TopMenu';
 
-const DEVICE_TYPE: string = deviceInfo.deviceType;
 const TAG: string = 'index->';
 
 @Entry
@@ -42,7 +41,7 @@ struct Index {
   @StorageLink('inputPattern') @Watch('inputPatternChange') inputPattern: InputType = InputType.Normal
   @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false;
   @StorageLink('isRkDevice') isRkDevice: boolean = true;
-  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE);
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   onBackPress(): boolean {
     Log.showInfo(TAG, 'kikaInput onBackPress');

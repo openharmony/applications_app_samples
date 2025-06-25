@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { InputHandler } from '../model/KeyboardController';
+import lazy { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import lazy { InputHandler } from '../model/KeyboardController';
 
 @Preview
 @Component
