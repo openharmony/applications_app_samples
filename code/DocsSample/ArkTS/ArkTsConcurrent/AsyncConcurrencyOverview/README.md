@@ -10,8 +10,8 @@ Promise和async/await提供异步并发能力，是标准的JS异步语法。异
 
 ### 效果预览
 
-|                             首页                             |                      执行及结果即时反馈                      |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                     首页                                     |                              执行及结果即时反馈                              |
+| :--------------------------------------------------------------------------: | :--------------------------------------------------------------------------: |
 | <img src="./screenshots/AsyncConcurrencyOverview_1.png" style="zoom:33%;" /> | <img src="./screenshots/AsyncConcurrencyOverview_2.png" style="zoom:33%;" /> |
 
 ### 使用说明
@@ -57,10 +57,10 @@ entry/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

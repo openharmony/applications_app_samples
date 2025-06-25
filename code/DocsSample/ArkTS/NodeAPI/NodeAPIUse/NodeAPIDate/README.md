@@ -8,8 +8,8 @@ Node-API中date相关接口用于处理ArkTS Date对象，并在Node-API模块�
 
 ### 效果预览
 
-| 首页                                                         | 执行结果图                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 首页                                                            | 执行结果图                                                      |
+| --------------------------------------------------------------- | --------------------------------------------------------------- |
 | <img src="./screenshots/NodeAPIDate1.png" style="zoom: 50%;" /> | <img src="./screenshots/NodeAPIDate2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
@@ -39,7 +39,7 @@ entry/src/
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       ├── Ability.test.ets 
+ │   │       ├── Ability.test.ets
  │   │       ├── NodeAPIDate.test.ets  // 自动化测试代码
  │   │       └── List.test.ets
 ```
@@ -64,10 +64,10 @@ entry/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIDate > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIDate > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

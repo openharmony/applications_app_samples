@@ -10,8 +10,8 @@
 
 ### 效果预览
 
-|                                  首页                                  |                              执行及结果即时反馈                               |
-|:--------------------------------------------------------------------:|:--------------------------------------------------------------------:|
+|                                 首页                                 |                          执行及结果即时反馈                          |
+| :------------------------------------------------------------------: | :------------------------------------------------------------------: |
 | <img src="./screenshots/JsvmAboutPromise_1.png" style="zoom:33%;" /> | <img src="./screenshots/JsvmAboutPromise_2.png" style="zoom:33%;" /> |
 
 ### 使用说明
@@ -46,14 +46,13 @@ resolvereject/src/
  ├── main
  │   ├── cpp
  │   │   ├── types
- │   │   │   ├── libentry
+ │   │   │   ├── libresolvereject
  │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
  │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关联
  │   │   ├── CMakeLists.txt              // 配置CMake打包参数
  │   │   ├── hello.cpp                   // 实现Native侧的runTest接口
  │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
+ │   │   ├── resolverejectability
  │   │   ├── pages
  │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
  │   ├── module.json5
@@ -87,7 +86,7 @@ resolvereject/src/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise > .git/info/sparse-checkout
+echo code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
