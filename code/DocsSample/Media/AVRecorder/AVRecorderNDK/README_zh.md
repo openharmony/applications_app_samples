@@ -46,13 +46,13 @@ entry/src/main          # AVRecorder demo业务代码
 
 ## 相关权限
 
-ohos.permission.MICROPHONE
-ohos.permission.INTERNET
-ohos.permission.CAMERA
-ohos.permission.MEDIA_LOCATION
-ohos.permission.KEEP_BACKGROUND_RUNNING
-ohos.permission.READ_MEDIA
-ohos.permission.WRITE_MEDIA
+ohos.permission.MICROPHONE<br>
+ohos.permission.INTERNET<br>
+ohos.permission.CAMERA<br>
+ohos.permission.MEDIA_LOCATION<br>
+ohos.permission.KEEP_BACKGROUND_RUNNING<br>
+ohos.permission.READ_MEDIA<br>
+ohos.permission.WRITE_MEDIA<br>
 
 ## 依赖
 
