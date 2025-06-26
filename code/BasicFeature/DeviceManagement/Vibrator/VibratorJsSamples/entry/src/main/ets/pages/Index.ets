@@ -25,16 +25,20 @@ class Logger {
   private domain: number = 0xC02701;
   private prefix: string = '[Sample_Vibrator]'
   private format: string = '%{public}, %{public}'
+
   debug(...args: string[]) {
     hilog.debug(this.domain, this.prefix, this.format, args)
   }
+
   info(...args: string[]) {
     hilog.info(this.domain, this.prefix, this.format, args)
   }
+
   error(...args: string[]) {
     hilog.error(this.domain, this.prefix, this.format, args)
   }
 }
+
 const logger = new Logger();
 
 @Entry
@@ -84,9 +88,25 @@ struct Index {
     logger.info('Vibrator plunged info:', JSON.stringify(data));
     logger.info('on is end');
   };
+  scroller: Scroller = new Scroller;
+  @State private callbackContent: string = '';
 
   build() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+      Scroll(this.scroller) {
+        Column() {
+          Text(`${this.callbackContent}`)
+            .fontSize(14)
+            .margin({ top: 15 })
+            .id('callbackText')
+        }
+      }
+      .width('96%')
+      .height('20%')
+      .backgroundColor('#F1F1F1')
+      .borderRadius(10)
+      .borderColor($r('sys.color.popup_border_color'))
+
       TextInput({ placeholder: 'Please select effectId', text: this.realEffectId })
         .placeholderColor('rgb(0,0,225)')
         .placeholderFont({
@@ -110,6 +130,7 @@ struct Index {
         .borderColor('rgb(0,0,225)')
         .borderRadius(10)
         .focusable(false)
+        .id('Please select effectId')
         .onClick(() => {
           TextPickerDialog.show({
             range: this.effectId,
@@ -189,13 +210,15 @@ struct Index {
                   });
                 }
                 this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+                this.callbackContent = 'Click the file button successfully';
+                hilog.info(0xF811, 'Sample_Vibrator', 'Click the file button successfully');
               } catch (e) {
                 logger.error(TAG + 'Exception:', e);
               }
 
             })
 
-          Button($r('app.string.preset') + this.realEffectId)
+          Button('preset:' + this.realEffectId)
             .onClick(() => {
               try {
                 // 查询是否支持'haptic.clock.timer'
@@ -234,7 +257,10 @@ struct Index {
                 let e: BusinessError = error as BusinessError;
                 logger.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              this.callbackContent = 'Click the preset button successfully'
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the preset button successfully');
             })
+            .id('preset')
 
           Button($r('app.string.time'))
             .onClick(() => {
@@ -257,11 +283,13 @@ struct Index {
               } catch (e) {
                 logger.error(TAG + 'Exception:', e);
               }
+              this.callbackContent = 'Click the time button successfully';
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the time button successfully');
             })
 
           Button($r('app.string.addTransientEvent'))
             .onClick(() => {
-              let builder:vibrator.VibratorPatternBuilder = new vibrator.VibratorPatternBuilder();
+              let builder: vibrator.VibratorPatternBuilder = new vibrator.VibratorPatternBuilder();
               try {
                 let param: vibrator.TransientParam = {
                   intensity: 80,
@@ -295,11 +323,13 @@ struct Index {
                 let e: BusinessError = error as BusinessError;
                 logger.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              this.callbackContent = 'Click the addTransientEvent button successfully';
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the addTransientEvent button successfully');
             })
 
           Button($r('app.string.addContinuousEvent'))
             .onClick(() => {
-              let builder:vibrator.VibratorPatternBuilder = new vibrator.VibratorPatternBuilder();
+              let builder: vibrator.VibratorPatternBuilder = new vibrator.VibratorPatternBuilder();
               try {
                 // VibratorCurvePoint参数最少设置4个，最大设置16个
                 let pointsMe: vibrator.VibratorCurvePoint[] = [
@@ -348,6 +378,8 @@ struct Index {
                 let e: BusinessError = error as BusinessError;
                 logger.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              this.callbackContent = 'Click the addContinuousEvent button successfully';
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the addContinuousEvent button successfully');
             })
 
           Button($r('app.string.stopVibration'))
@@ -364,6 +396,8 @@ struct Index {
               } catch (error) {
                 logger.error('stopVibration Error:', error.code, error.message);
               }
+              this.callbackContent = 'Click the stopVibration button successfully'
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the stopVibration button successfully');
             })
 
           Button($r('app.string.on'))
@@ -373,6 +407,8 @@ struct Index {
               } catch (err) {
                 logger.error('Error in GetVibratorList:', err);
               }
+              this.callbackContent = 'Click the on button successfully'
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the on button successfully');
             })
 
           Button($r('app.string.off'))
@@ -382,6 +418,8 @@ struct Index {
               } catch (err) {
                 logger.error("Error in GetVibratorList:", err);
               }
+              this.callbackContent = 'Click the off button successfully';
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the off button successfully');
             })
 
           Button($r('app.string.getVibratorInfoSync'))
@@ -396,6 +434,8 @@ struct Index {
                 logger.error('Error in GetVibratorList:', err);
               }
               logger.info('getVibratorInfoSync end');
+              this.callbackContent = 'Click the getVibratorInfoSync button successfully';
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the getVibratorInfoSync button successfully');
             })
 
           Text(`${this.VibratorStateChangeCallback}`)

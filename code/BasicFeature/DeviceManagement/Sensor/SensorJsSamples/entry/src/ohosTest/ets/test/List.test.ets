@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 import abilityTest from './Ability.test';
+import sensorSampleTest from './SensorSample.test';
 
 export default function testsuite() {
   abilityTest();
+  sensorSampleTest();
 }
