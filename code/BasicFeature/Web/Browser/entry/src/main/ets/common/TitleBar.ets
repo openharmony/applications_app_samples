@@ -101,7 +101,8 @@ export struct TabletTitle {
               this.browser.Refresh();
               break;
             case 4:
-              this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl($rawfile('pad.html'));
+              this.browser.webControllerArray[this.browser.tabArrayIndex]?.controller
+                .loadUrl($rawfile('pad.html'));
               break;
           }
         })
@@ -120,7 +121,8 @@ export struct TabletTitle {
         .onSubmit((enterKey: EnterKeyType) => {
           Logger.info(TAG, `onSubmit`)
           if (this.addr.length !== 0) {
-            this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl(`https://${this.addr}`);
+            this.browser.webControllerArray[this.browser.tabArrayIndex]?.controller
+              .loadUrl(`https://${this.addr}`);
             this.addr = '';
           }
         })
@@ -216,19 +218,20 @@ export struct WebTab {
   testObj = {
     test: (addr) => {
       Logger.info(TAG, `addr= ${this.browser.tabArrayIndex}`);
-      this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl(`https://${addr}`);
+      this.browser.webControllerArray[this.browser.tabArrayIndex]?.controller.loadUrl(`https://${addr}`);
     },
     searchWord: (word: string) => {
       Logger.info(`search word= ${word}`);
       let code = encodeURI(word);
-      this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl(`https://www.bing.com/search?q=${code}`);
+      this.browser.webControllerArray[this.browser.tabArrayIndex]?.controller
+        .loadUrl(`https://www.bing.com/search?q=${code}`);
     }
   }
 
   aboutToAppear() {
     webview.once('webInited', () => {
       try {
-        this.userAgent = this.browser.webControllerArray[this.browser.tabArrayIndex].controller.getUserAgent();
+        this.userAgent = this.browser.webControllerArray[this.browser.tabArrayIndex]?.controller.getUserAgent();
         Logger.info(`getUserAgent successed, detail: ${this.userAgent}`);
       } catch (error) {
         Logger.error(`getUserAgent failed, error info: ${this.userAgent}`);
