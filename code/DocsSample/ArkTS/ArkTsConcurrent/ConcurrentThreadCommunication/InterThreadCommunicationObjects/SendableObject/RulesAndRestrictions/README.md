@@ -6,13 +6,13 @@
 
 ### 效果预览
 
-|                             首页                             |                      执行及结果即时反馈                      |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                   首页                                    |                            执行及结果即时反馈                             |
+| :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
 | <img src="./screenshots/RulesAndRestrictions_1.png" style="zoom: 50%;" /> | <img src="./screenshots/RulesAndRestrictions_2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
 
-1. 在主界面，点击Hello World执行程序
+1. 在主界面中，点击任意功能按钮可跳转至相应页面，随后点击界面显示的文本字符串即可触发程序执行。
 2. 执行结果会即时反馈在屏幕中央,并在控制台打印log。
 
 ### 工程目录
@@ -21,6 +21,7 @@
 achievenon/src/
  ├── main
  │   ├── ets
+ │   │   ├── achievenonability
  │   │   ├── pages
  │   │       ├── Index.ets             // 非Sendable class只能实现非Sendable interface和Sendable装饰器修饰类型时仅支持修饰函数类型
  │   ├── module.json5
@@ -32,6 +33,7 @@ achievenon/src/
 arrowfunctions/src/
  ├── main
  │   ├── ets
+ │   │   ├── arrowfunctionsability
  │   │   ├── pages
  │   │       ├── Index.ets             // 箭头函数不支持共享
  │   ├── module.json5
@@ -43,6 +45,7 @@ arrowfunctions/src/
 cannotbeused/src/
  ├── main
  │   ├── ets
+ │   │   ├── cannotbeusedability
  │   │   ├── pages
  │   │       ├── Index.ets             // Sendable class和Sendable function不能使用除了@Sendable的其它装饰器
  │   ├── module.json5
@@ -54,6 +57,7 @@ cannotbeused/src/
 inheritedfromnon/src/
  ├── main
  │   ├── ets
+ │   │   ├── inheritedfromnonability
  │   │   ├── pages
  │   │       ├── Index.ets             // 非Sendable class只能继承自非Sendable class
  │   ├── module.json5
@@ -65,6 +69,8 @@ inheritedfromnon/src/
 inheritonly/src/
  ├── main
  │   ├── ets
+ │   │   ├── entryability
+ │   │   ├── entrybackupability
  │   │   ├── pages
  │   │       ├── Index.ets             // Sendable class只能继承自Sendable class
  │   ├── module.json5
@@ -76,6 +82,7 @@ inheritonly/src/
 nocalculationsupport/src/
  ├── main
  │   ├── ets
+ │   │   ├── nocalculationsupportability
  │   │   ├── pages
  │   │       ├── Index.ets             // Sendable class/interface的成员变量不支持使用计算属性名
  │   ├── module.json5
@@ -87,6 +94,7 @@ nocalculationsupport/src/
 notallowedInside/src/
  ├── main
  │   ├── ets
+ │   │   ├── notallowedinsideability
  │   │   ├── pages
  │   │       ├── Index.ets             // Sendable class的内部不允许使用当前模块内上下文环境中定义的变量
  │   ├── module.json5
@@ -98,6 +106,7 @@ notallowedInside/src/
 objectliterals/src/
  ├── main
  │   ├── ets
+ │   │   ├── objectliteralsability
  │   │   ├── pages
  │   │       ├── Index.ets             // 不能使用对象字面量/数组字面量初始化Sendable类型
  │   ├── module.json5
@@ -109,6 +118,7 @@ objectliterals/src/
 templatetype/src/
  ├── main
  │   ├── ets
+ │   │   ├── templatetypeability
  │   │   ├── pages
  │   │       ├── Index.ets             // 泛型类中的Sendable class，collections.Array/Map/Set的模板类型必须是Sendable类型
  │   ├── module.json5
@@ -120,6 +130,7 @@ templatetype/src/
 typecannot/src/
  ├── main
  │   ├── ets
+ │   │   ├── typecannotability
  │   │   ├── pages
  │   │       ├── Index.ets             // 非Sendable类型不可以as成Sendable类型
  │   ├── module.json5
@@ -131,6 +142,7 @@ typecannot/src/
 variablenotsupported/src/
  ├── main
  │   ├── ets
+ │   │   ├── variablenotsupportedability
  │   │   ├── pages
  │   │       ├── Index.ets             // Sendable class/interface的成员变量不支持使用!断言
  │   ├── module.json5
@@ -142,6 +154,7 @@ variablenotsupported/src/
 variablesupport/src/
  ├── main
  │   ├── ets
+ │   │   ├── variablesupportability
  │   │   ├── pages
  │   │       ├── Index.ets             // Sendable class/interface成员变量必须是Sendable支持的数据类型
  │   ├── module.json5
@@ -172,10 +185,10 @@ variablesupport/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

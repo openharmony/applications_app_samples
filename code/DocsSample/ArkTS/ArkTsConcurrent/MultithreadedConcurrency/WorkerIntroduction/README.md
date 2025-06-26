@@ -10,13 +10,13 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 ### 效果预览
 
-|                             首页                             |                      执行及结果即时反馈                      |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                  首页                                   |                           执行及结果即时反馈                            |
+| :---------------------------------------------------------------------: | :---------------------------------------------------------------------: |
 | <img src="./screenshots/WorkerIntroduction_1.png" style="zoom: 50%;" /> | <img src="./screenshots/WorkerIntroduction_2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
 
-1. 在主界面，点击任意按钮进行跳转，点击Hello World执行程序
+1. 在主界面，点击任意按钮进行跳转，点击Hello World执行程序。
 2. 执行结果会即时反馈在屏幕中央,并在控制台打印log。
 
 ### 工程目录
@@ -77,10 +77,10 @@ entry/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

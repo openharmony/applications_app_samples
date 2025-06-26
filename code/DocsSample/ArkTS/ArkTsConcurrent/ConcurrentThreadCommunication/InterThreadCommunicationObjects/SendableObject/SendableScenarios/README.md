@@ -13,15 +13,15 @@ Sendable对象可以在不同并发实例间通过引用传递。通过引用传
 
 ### 效果预览
 
-|                         bigdata模块                          |                     crossconcurrency模块                     |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                              bigdata模块                               |                          crossconcurrency模块                          |
+| :--------------------------------------------------------------------: | :--------------------------------------------------------------------: |
 | <img src="./screenshots/SendableScenarios_1.png" style="zoom: 50%;" /> | <img src="./screenshots/SendableScenarios_2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
 
-1. 运行bigdata模块，分别点击Listener task和Data processing task执行程序
+1. 运行bigdata模块，分别点击Listener task和Data processing task执行程序。
 2. 执行结果会即时反馈在屏幕中,并在控制台打印log。
-3. 运行crossconcurrency模块，点击Hello World执行程序
+3. 运行crossconcurrency模块，点击Hello World执行程序。
 4. 执行结果会即时反馈在屏幕中,并在控制台打印log。
 
 ### 工程目录
@@ -76,10 +76,10 @@ bigdata/src/
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

@@ -12,13 +12,13 @@
 
 ### 效果预览
 
-|                             首页                             |                           执行结果                           |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                    首页                                     |                                  执行结果                                   |
+| :-------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
 | <img src="./screenshots/NativeInterthreadShared_1.png" style="zoom:33%;" /> | <img src="./screenshots/NativeInterthreadShared_2.png" style="zoom:33%;" /> |
 
 ### 使用说明
 
-1. 在主界面，可以点击hello world，开始执行。
+1. 在主界面，可以点击Hello World，开始执行。
 2. 执行结果会即时反馈在屏幕中央。
 
 ### 工程目录
@@ -69,10 +69,10 @@ entry/src
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```
