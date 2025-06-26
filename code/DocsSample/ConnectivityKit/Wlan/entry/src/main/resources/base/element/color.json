@@ -3,6 +3,58 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "index_bg",
+      "value": "#F5F5F5"
+    },
+    {
+      "name": "button_color",
+      "value": "#0D9FFB"
+    },
+    {
+      "name": "button_color1",
+      "value": "#007AFF"
+    },
+    {
+      "name": "button_color2",
+      "value": "#D7ECF1"
+    },
+    {
+      "name": "title_black_color",
+      "value": "#182431"
+    },
+    {
+      "name": "cyan",
+      "value": "#70919F"
+    },
+    {
+      "name": "spring",
+      "value": "#F5FFFA"
+    },
+    {
+      "name": "moon",
+      "value": "#D7ECF1"
+    },
+    {
+      "name": "main_blue",
+      "value": "#007DFF"
+    },
+    {
+      "name": "index_background",
+      "value": "#E8E7EB"
+    },
+    {
+      "name": "intput_background",
+      "value": "#D9B612"
+    },
+    {
+      "name": "input_background",
+      "value": "#D9B612"
+    },
+    {
+      "name": "text_color",
+      "value": "#8F8F8F"
     }
   ]
 }

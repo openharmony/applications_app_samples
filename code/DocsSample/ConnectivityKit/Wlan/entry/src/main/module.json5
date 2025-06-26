@@ -18,7 +18,7 @@
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
-    "mainElement": "EntryAbility",
+    "mainElement": "MainAbility",
     "deviceTypes": [
       "default",
       "tablet"
@@ -26,16 +26,48 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_WIFI_INFO",
+        "reason": "$string:GET_WIFI_INFO",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        },
+      },
+      {
+        "name": "ohos.permission.SET_WIFI_INFO",
+        "reason": "$string:SET_WIFI_INFO",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_PEERS_MAC",
+        "reason": "$string:GET_WIFI_PEERS_MAC",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+    ],
     "abilities": [
       {
-        "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "name": "EntryAbility",
         "description": "$string:EntryAbility_desc",
-        "icon": "$media:layered_image",
+        "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
+        "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-        "exported": true,
+        "visible": true,
         "skills": [
           {
             "entities": [
@@ -44,27 +76,6 @@
             "actions": [
               "action.system.home"
             ]
-          }
-        ]
-      }
-    ],
-    "requestPermissions": [
-      {
-        // Add the permission for nfc tag operations.
-        "name": "ohos.permission.GET_WIFI_INFO",
-        "reason": "$string:app_name"
-      }
-    ],
-    "extensionAbilities": [
-      {
-        "name": "EntryBackupAbility",
-        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
-        "type": "backup",
-        "exported": false,
-        "metadata": [
-          {
-            "name": "ohos.extension.backup",
-            "resource": "$profile:backup_config"
           }
         ]
       }

@@ -1,5 +1,4 @@
 /node_modules
-/oh_modules
 /local.properties
 /.idea
 **/build
@@ -8,5 +7,7 @@
 /.clangd
 /.clang-format
 /.clang-tidy
-**/.test
-/.appanalyzer
+/package-lock.json
+/entry/package-lock.json
+**/oh_modules
+**/oh-package-lock.json5

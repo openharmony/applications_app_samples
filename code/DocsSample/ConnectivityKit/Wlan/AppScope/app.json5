@@ -15,11 +15,12 @@
 
 {
   "app": {
-    "bundleName": "com.samples.wlanproject",
-    "vendor": "example",
+    "bundleName": "com.samples.wlan",
+    "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
-    "label": "$string:app_name"
+    "label": "$string:app_name",
+    "distributedNotificationEnabled": true
   }
 }

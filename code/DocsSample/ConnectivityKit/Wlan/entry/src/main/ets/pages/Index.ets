@@ -13,61 +13,62 @@
  * limitations under the License.
  */
 
-import P2PManager from '../entryability/p2pability';
-import P2PConnectManager from '../entryability/p2pConnect';
-import { wifiManager } from '@kit.ConnectivityKit';
+import hilog from '../model/Logger';
+import { TitleBar } from '../component/TitleBar';
+import router from '@ohos.router'
+
+const TAG = 'Index';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'p2p sample';
-  scroller: Scroller = new Scroller();
-
   build() {
-    Column() {
-      Text(this.message)
-      Button('create group').onClick(async () => {
-        try {
-          // 创建P2P群组
-          await P2PManager.create();
-          let devices = await wifiManager.getLinkedInfo();
-          if (Array.isArray(devices)) {
-            this.message = JSON.stringify(devices, null, 2);
-          } else {
-            this.message = typeof devices === 'object' ? JSON.stringify(devices, null, 2) : String(devices);
-          }
+    Column({ space: 5 }) {
+      TitleBar()
+        Text($r('app.string.wifi_List'))
+          .fontColor(Color.Black)
+          .fontSize(20)
+          .layoutWeight(1)
+          .constraintSize({ minHeight: 50 })
+          .padding({ left: 15 })
+          .borderRadius(5)
+          .width('100%')
+          // .fontColor($r('app.color.text_color'))
+          .backgroundColor($r('app.color.button_color2'))
+          .onClick(() => {
+            router.pushUrl({ url: 'pages/AvailableWifi' })
+          })
 
-        } catch (error) {
-          console.error('Error creating P2P group or getting peer devices:', error);
-          this.message = 'Failed to create P2P group or get peer devices.';
-        }
-      })
-        .width('30%')
-        .margin('5')
+        Text($r('app.string.wifi_Connect'))
+          .fontColor(Color.Black)
+          .fontSize(20)
+          .layoutWeight(1)
+          .constraintSize({ minHeight: 50 })
+          .padding({ left: 15 })
+          .borderRadius(5)
+          .width('100%')
+            // .fontColor($r('app.color.text_color'))
+          .backgroundColor($r('app.color.text_color'))
+          .onClick(() => {
+            router.pushUrl({ url: 'pages/WifiConnect' })
+          })
 
-      Button('connect').onClick(async () => {
-        try {
-          // 执行p2p连接
-          await P2PConnectManager.connect();
-          this.message = P2PConnectManager.message;
-        } catch (error) {
-          console.error('Error creating P2P group or getting peer devices:', error);
-          this.message = 'Failed to connect.';
-        }
-      })
-        .width('30%')
-        .margin('5')
-
-      Button('delete group').onClick(() => {
-        // 删除p2p群组
-        P2PManager.delete();
-        let devices = wifiManager.getLinkedInfo();
-        this.message = JSON.stringify(devices, null, 2);
-      })
-        .width('30%')
-        .margin('5')
-    }
-    .height('100%')
-    .width('100%')
+        Text($r('app.string.p2p_test'))
+          .fontColor(Color.Black)
+          .fontSize(20)
+          .layoutWeight(1)
+          .constraintSize({ minHeight: 50 })
+          .padding({ left: 15 })
+          .borderRadius(5)
+          .width('100%')
+            // .fontColor($r('app.color.text_color'))
+          .backgroundColor($r('app.color.index_background'))
+          .onClick(() => {
+            router.pushUrl({ url: 'pages/P2pTest' })
+          })
+      }
+      .width('100%')
+      .height('8%')
+      .backgroundColor($r('app.color.index_bg'))
   }
 }
