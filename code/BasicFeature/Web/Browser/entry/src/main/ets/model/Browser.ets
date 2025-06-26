@@ -111,22 +111,22 @@ export class Browser {
 
   loadUrl(addr: string) {
     addr = "https://" + addr;
-    this.webControllerArray[this.tabArrayIndex].controller.loadUrl(addr);
+    this.webControllerArray[this.tabArrayIndex]?.controller.loadUrl(addr);
   }
 
   Back() {
-    if (this.webControllerArray[this.tabArrayIndex].controller.accessBackward()) {
-      this.webControllerArray[this.tabArrayIndex].controller.backward()
+    if (this.webControllerArray[this.tabArrayIndex]?.controller.accessBackward()) {
+      this.webControllerArray[this.tabArrayIndex]?.controller.backward();
     }
   }
 
   Forward() {
-    if (this.webControllerArray[this.tabArrayIndex].controller.accessForward()) {
-      this.webControllerArray[this.tabArrayIndex].controller.forward()
+    if (this.webControllerArray[this.tabArrayIndex]?.controller.accessForward()) {
+      this.webControllerArray[this.tabArrayIndex]?.controller.forward();
     }
   }
 
   Refresh() {
-    this.webControllerArray[this.tabArrayIndex].controller.refresh()
+    this.webControllerArray[this.tabArrayIndex]?.controller.refresh();
   }
 }
