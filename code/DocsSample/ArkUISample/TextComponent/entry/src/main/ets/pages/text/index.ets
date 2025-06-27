@@ -21,6 +21,8 @@ import { TextAddEvent } from './TextAddEvent';
 import { TextHotSearch } from './TextHotSearch';
 import { TextSpan } from './TextSpan';
 import resource from '../../common/resource';
+import { SelectMenu } from './SelectMenu';
+import { AIMenu } from './AIMenu';
 
 export const TEXT_ROUTE_PREFIX: string = 'text';
 
@@ -46,6 +48,16 @@ const routes: Route[] = [
     description: $r('app.string.TextAddEvent_description')
   },
   {
+    name: `${TEXT_ROUTE_PREFIX}/SelectMenu`,
+    title: resource.resourceToString($r('app.string.SetSelectionMenu_title')),
+    description: $r('app.string.SetSelectionMenu_description')
+  },
+  {
+    name: `${TEXT_ROUTE_PREFIX}/AIMenu`,
+    title: resource.resourceToString($r('app.string.SetUpAIMenu_title')),
+    description: $r('app.string.SetUpAIMenu_description')
+  },
+  {
     name: `${TEXT_ROUTE_PREFIX}/TextHotSearch`,
     title: resource.resourceToString($r('app.string.TextHotSearch_title')),
     description: $r('app.string.TextHotSearch_description')
@@ -65,6 +77,10 @@ export function TextDestination(name: string) {
   } else if (name === routes[3].name) {
     TextAddEvent();
   } else if (name === routes[4].name) {
+    SelectMenu();
+  } else if (name === routes[5].name) {
+    AIMenu();
+  } else if (name === routes[6].name) {
     TextHotSearch();
   }
 }
@@ -91,7 +107,7 @@ struct TextExample {
       .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
-    .title('Text', {
+    .title('Text/Span', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })

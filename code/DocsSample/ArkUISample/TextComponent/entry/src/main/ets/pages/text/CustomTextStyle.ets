@@ -61,22 +61,36 @@ export struct CustomTextStyle {
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
-              Text($r('app.string.CustomTextStyle_textContent_1') +
-                'I am an extra long text, with ellipses displayed for any excess。')
+              Text($r('app.string.CustomTextStyle_textContent_1'))
                 .width(250)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                 .maxLines(1)
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
-              Text($r('app.string.CustomTextStyle_textContent_2') +
-                'When the text overflows its dimensions,the text will scroll for displaying.')
+              Text($r('app.string.CustomTextStyle_textContent_2'))
                 .width(250)
                 .textOverflow({ overflow: TextOverflow.MARQUEE })
                 .maxLines(1)
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
+              Text($r('app.string.CustomTextStyle_textContent_8'))
+                .width(250)
+                .textOverflow({ overflow: TextOverflow.MARQUEE })
+                .maxLines(1)
+                .fontSize(12)
+                .border({ width: 1 })
+                .padding(10)
+                .marqueeOptions({
+                  start: true,
+                  fromStart: true,
+                  step: 6,
+                  loop: -1,
+                  delay: 0,
+                  fadeout: false,
+                  marqueeStartPolicy: MarqueeStartPolicy.DEFAULT
+                })
               // [End custom_text_overflow]
             }
           }
@@ -243,7 +257,7 @@ export struct CustomTextStyle {
         }
         .width('100%')
         .padding({ left: 12, right: 12 })
-      }
+      }.id('scroll_')
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CustomTextStyle_title'))

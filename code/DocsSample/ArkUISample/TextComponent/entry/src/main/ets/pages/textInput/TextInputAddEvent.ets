@@ -20,6 +20,8 @@ import { ComponentCard } from '../../common/Card';
 export struct TextInputAddEvent {
   @State eventText: ResourceStr = $r('app.string.TextInputAddEvent_textContent_1');
   @State inputValue: ResourceStr = $r('app.string.TextInputAddEvent_textContent_2');
+  controller: TextInputController = new TextInputController();
+  passwordState: boolean = false;
 
   build() {
     NavDestination() {
@@ -29,9 +31,47 @@ export struct TextInputAddEvent {
             Text(this.eventText)
             Text(this.inputValue)
             // [Start add_text_input_event]
-            TextInput()
+            TextInput({
+              text: $r('app.string.TextInputAddEvent_textContent_2'),
+              placeholder: 'input your word...',
+              controller: this.controller
+            })
+              .type(InputType.Password)
+              .showPassword(this.passwordState)
               .onChange((value: string) => {
-                this.inputValue = value;
+                // 文本内容发生变化时触发该回调
+                this.inputValue = 'onChange is triggering: ' + value;
+              })
+              .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
+                // 按下输入法回车键时触发该回调
+                this.eventText = 'onSubmit is triggering: ' + enterKey + ' ' + event.text;
+              })
+              .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+                // 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调
+                this.eventText = 'onTextSelectionChange is triggering: ' + selectionStart + ' ' + selectionEnd;
+              })
+              .onSecurityStateChange((isShowPassword: boolean) => {
+                // 密码显隐状态切换时，触发该回调
+                this.eventText = 'onSecurityStateChange is triggering: ' + isShowPassword
+                this.passwordState = isShowPassword;
+              })
+              .onWillInsert((info: InsertValue) => {
+                // 在将要输入时，触发该回调
+                this.eventText = 'onWillInsert is triggering: ' + info.insertValue + ' ' + info.insertOffset;
+                return true;
+              })
+              .onDidInsert((info: InsertValue) => {
+                // 在输入完成时，触发该回调
+                this.eventText = 'onDidInsert is triggering: ' + info.insertValue + ' ' + info.insertOffset
+              })
+              .onWillDelete((info: DeleteValue) => {
+                // 在将要删除时，触发该回调
+                this.eventText = 'onWillDelete is triggering: ' + info.deleteValue + ' ' + info.deleteOffset
+                return true;
+              })
+              .onDidDelete((info: DeleteValue) => {
+                // 在删除完成时，触发该回调
+                this.eventText = 'onDidDelete is triggering: ' + info.deleteValue + ' ' + info.deleteOffset
               })
               .onFocus(() => {
                 this.eventText = $r('app.string.TextInputAddEvent_textContent_3');

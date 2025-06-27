@@ -20,26 +20,74 @@ import { ComponentCard } from '../../common/Card';
 export struct SetTextInputType {
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-        ComponentCard({ title: $r('app.string.SetTextInputType_title_1') }) {
-          // [Start set_normal_input_type]
-          TextInput()
-            .id('Normal')
-            .type(InputType.Normal)
-          // [End set_normal_input_type]
+      Scroll() {
+        Grid() {
+          GridItem() {
+            ComponentCard({ title: $r('app.string.SetTextInputType_title_1') }) {
+              TextInput()
+                .id('Normal')
+                .type(InputType.Normal)
+            }
+          }.width('33%')
+          GridItem() {
+            ComponentCard({ title: $r('app.string.SetTextInputType_title_2') }) {
+              // [Start set_password_input_type]
+              TextInput()
+                .id('Password')
+                .type(InputType.Password)
+              // [End set_password_input_type]
+            }
+          }.width('33%')
+          GridItem() {
+            ComponentCard({ title: $r('app.string.SetTextInputType_title_3') }) {
+              // [Start set_email_input_type]
+              TextInput()
+                .id('Email')
+                .type(InputType.Email)
+              // [End set_email_input_type]
+            }
+          }.width('33%')
+          GridItem() {
+            ComponentCard({ title: $r('app.string.SetTextInputType_title_4') }) {
+              // [Start set_number_input_type]
+              TextInput()
+                .id('Number')
+                .type(InputType.Number)
+              // [End set_number_input_type]
+            }
+          }.width('33%')
+          GridItem() {
+            ComponentCard({ title: $r('app.string.SetTextInputType_title_5') }) {
+              // [Start set_phonenumber_input_type]
+              TextInput()
+                .id('PhoneNumber')
+                .type(InputType.PhoneNumber)
+              // [End set_phonenumber_input_type]
+            }
+          }.width('33%')
+          GridItem() {
+            ComponentCard({ title: $r('app.string.SetTextInputType_title_6') }) {
+              // [Start set_number_decimal_input_type]
+              TextInput()
+                .id('NUMBER_DECIMAL')
+                .type(InputType.NUMBER_DECIMAL)
+              // [End set_number_decimal_input_type]
+            }
+          }.width('33%')
+          GridItem() {
+            ComponentCard({ title: $r('app.string.SetTextInputType_title_7') }) {
+              // [Start set_url_input_type]
+              TextInput()
+                .id('URL')
+                .type(InputType.URL)
+              // [End set_url_input_type]
+            }
+          }.width('33%')
         }
-
-        ComponentCard({ title: $r('app.string.SetTextInputType_title_2') }) {
-          // [Start set_password_input_type]
-          TextInput()
-            .id('Password')
-            .type(InputType.Password)
-          // [End set_password_input_type]
-        }
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
+        .width('100%')
+        .height('100%')
+        .padding({ left: 12, right: 12 })
+      }.id('scroll_')
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.SetTextInputType_title'))

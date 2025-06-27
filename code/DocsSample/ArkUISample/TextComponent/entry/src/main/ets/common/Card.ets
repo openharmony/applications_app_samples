@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Component
 export struct CompletedRoutableCard {
   @Prop
@@ -104,8 +104,7 @@ export struct RoutableCard {
 @Component
 export struct ComponentCard {
   @Prop
-  @Require
-  title: ResourceStr;
+  title?: ResourceStr;
   @BuilderParam content: () => void;
   @Prop
   description?: ResourceStr;
@@ -115,9 +114,10 @@ export struct ComponentCard {
       Text(this.title)
         .fontSize(14)
         .fontColor('#666')
-      Row({ space: 12}) {
+      Row({ space: 12 }) {
         this.content();
       }
+
       if (this.description) {
         Text(this.description)
           .backgroundColor('#eee')

@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "module description"
+      "value": "模块描述"
     },
     {
       "name": "EntryAbility_desc",
@@ -14,11 +14,23 @@
     },
     {
       "name": "pageIndex_Text",
-      "value": "文本显示/Text"
+      "value": "文本显示(Text/Span)"
     },
     {
       "name": "pageIndex_TextInput",
-      "value": "文本输入/TextInput"
+      "value": "文本输入(TextInput/TextArea)"
+    },
+    {
+      "name": "pageIndex_RichEditor",
+      "value": "富文本(RichEditor)"
+    },
+    {
+      "name": "pageIndex_PropertyString",
+      "value": "属性字符串（StyledString/MutableStyledString）"
+    },
+    {
+      "name": "pageIndex_TextNDKUI",
+      "value": "使用文本(NDK)"
     },
     {
       "name": "CreatText_title",
@@ -54,7 +66,7 @@
     },
     {
       "name": "TextSpan_description",
-      "value": "Span只能作为Text和RichEditor组件的子组件显示文本内容，可以在一个Text内添加多个Span来显示一段信息。"
+      "value": "Span只能作为Text和RichEditor组件的子组件显示文本内容，可以在一个Text内添加多个Span来显示一段信息"
     },
     {
       "name": "TextSpan_textContent_1",
@@ -82,11 +94,11 @@
     },
     {
       "name": "CreatText_description",
-      "value": "示例使用string字符串和引用Resource资源两种方式来创建文本。"
+      "value": "示例使用string字符串和引用Resource资源两种方式来创建文本"
     },
     {
       "name": "CreatText_description_1",
-      "value": "资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json。"
+      "value": "资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json"
     },
     {
       "name": "CustomTextStyle_title",
@@ -130,19 +142,19 @@
     },
     {
       "name": "CustomTextStyle_description",
-      "value": "示例中展示对文本的对齐、文本超长处理、文本行高、装饰线等属性进行设置的自定义文本样式。"
+      "value": "示例中展示对文本的对齐、文本超长处理、文本行高、装饰线等属性进行设置的自定义文本样式"
     },
     {
       "name": "CustomTextStyle_description_1",
-      "value": "textOverflow需配合maxLines一起使用（默认情况下文本自动折行）。"
+      "value": "textOverflow需配合maxLines一起使用（默认情况下文本自动折行）。从API version 18开始，文本超长时设置跑马灯的方式展示时，支持设置跑马灯的配置项，比如开关、步长、循环次数、方向等"
     },
     {
       "name": "CustomTextStyle_textContent_1",
-      "value": "我是超长文本，超出的部分显示省略号。"
+      "value": "我是超长文本，超出的部分显示省略号 I am an extra long text, with ellipses displayed for any excess。"
     },
     {
       "name": "CustomTextStyle_textContent_2",
-      "value": "当文本溢出其尺寸时，文本将滚动显示。"
+      "value": "当文本溢出其尺寸时，文本将滚动显示 When the text overflows its dimensions,the text will scroll for displaying."
     },
     {
       "name": "CustomTextStyle_textContent_3",
@@ -165,6 +177,10 @@
       "value": "这是一段可复制文本。"
     },
     {
+      "name": "CustomTextStyle_textContent_8",
+      "value": "当文本溢出其尺寸时，文本将滚动显示，支持设置跑马灯配置项 When the text overflows its dimensions, the text will scroll for displaying."
+    },
+    {
       "name": "TextAlign_Start",
       "value": "左对齐"
     },
@@ -181,8 +197,36 @@
       "value": "添加事件"
     },
     {
+      "name": "SetSelectionMenu_title",
+      "value": "设置选中菜单"
+    },
+    {
+      "name": "SelectionMenu_title",
+      "value": "选中菜单"
+    },
+    {
+      "name": "SelectionMenu_description",
+      "value": "输入框中的文字被选中时会弹出包含剪切、复制、翻译、搜索的菜单"
+    },
+    {
+      "name": "SetSelectionMenu_description",
+      "value": "设置Text被选中时，会弹出包含复制、翻译、搜索以及自定义的菜单"
+    },
+    {
+      "name": "SetSelectionMenu_textContent_1",
+      "value": "Text组件需要设置copyOption属性才可以被选中"
+    },
+    {
+      "name": "SetSelectionMenu_textContent_2",
+      "value": "Text组件通过设置bindSelectionMenu属性绑定自定义选择菜单"
+    },
+    {
+      "name": "SetSelectionMenu_textContent_3",
+      "value": "Text组件通过设置editMenuOptions属性扩展自定义选择菜单，可以设置扩展项的文本内容、图标以及回调方法"
+    },
+    {
       "name": "TextAddEvent_description",
-      "value": "Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作。"
+      "value": "Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作"
     },
     {
       "name": "TextAddEvent_textContent_1",
@@ -202,7 +246,7 @@
     },
     {
       "name": "TextHotSearch_description",
-      "value": "示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果。"
+      "value": "示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果"
     },
     {
       "name": "TextHotSearch_textContent_1",
@@ -242,7 +286,7 @@
     },
     {
       "name": "CreatTextInput_description",
-      "value": "示例通过接口创建文本输入框，其中TextInput为单行输入框、TextArea为多行输入框。"
+      "value": "示例通过接口创建文本输入框，其中TextInput为单行输入框、TextArea为多行输入框"
     },
     {
       "name": "CreatTextInput_description_1",
@@ -263,6 +307,26 @@
     {
       "name": "SetTextInputType_title_2",
       "value": "密码输入模式"
+    },
+    {
+      "name": "SetTextInputType_title_3",
+      "value": "邮箱地址输入模式"
+    },
+    {
+      "name": "SetTextInputType_title_4",
+      "value": "纯数字输入模式"
+    },
+    {
+      "name": "SetTextInputType_title_5",
+      "value": "电话号码输入模式"
+    },
+    {
+      "name": "SetTextInputType_title_6",
+      "value": "带小数点的数字输入模式"
+    },
+    {
+      "name": "SetTextInputType_title_7",
+      "value": "带URL的输入模式"
     },
     {
       "name": "SetTextInputType_description",
@@ -286,7 +350,7 @@
     },
     {
       "name": "CustomTextInputStyle_description",
-      "value": "示例对输入框的提示文本、文本内容和背景颜色进行展示，更丰富的样式可以结合通用属性实现。"
+      "value": "示例对输入框的提示文本、文本内容和背景颜色进行展示，更丰富的样式可以结合通用属性实现"
     },
     {
       "name": "CustomTextInputStyle_textContent_1",
@@ -306,7 +370,7 @@
     },
     {
       "name": "TextInputAddEvent_description",
-      "value": "文本框主要用于获取用户输入的信息，把信息处理成数据进行上传，绑定onChange事件可以获取输入框内改变的内容。用户也可以使用通用事件来进行相应的交互操作。"
+      "value": "文本框主要用于获取用户输入的信息，把信息处理成数据进行上传，绑定onChange事件可以获取输入框内改变的内容。用户也可以使用通用事件来进行相应的交互操作"
     },
     {
       "name": "TextInputAddEvent_textContent_1",
@@ -326,7 +390,7 @@
     },
     {
       "name": "LoginRegisterPage_description",
-      "value": "示例模仿用户在登录/注册页面，进行登录或注册。"
+      "value": "示例模仿用户在登录/注册页面，进行登录或注册"
     },
     {
       "name": "LoginRegisterPage_textContent",
@@ -334,11 +398,831 @@
     },
     {
       "name": "KeyboardAvoidance_title",
-      "value": "键盘避让示例"
+      "value": "键盘避让"
+    },
+    {
+      "name": "CursorAvoidance_title",
+      "value": "光标避让"
+    },
+    {
+      "name": "CursorAvoidance_description",
+      "value": "keyBoardAvoidMode枚举中的OFFSET和RESIZE在键盘抬起后，不支持二次避让。如果想要支持光标位置在点击或者通过接口设置变化后发生二次避让，可以考虑使用OFFSET_WITH_CARET和RESIZE_CARET替换原有的OFFSET和RESIZE模式。\n对于滚动容器更推荐使用RESIZE_WITH_CARET，非滚动容器应该使用OFFSET_WITH_CARET。"
     },
     {
       "name": "KeyboardAvoidance_description",
-      "value": "示例中键盘抬起后，具有滚动能力的容器组件在横竖屏切换时，才会生效键盘避让。"
+      "value": "示例中键盘抬起后，具有滚动能力的容器组件在横竖屏切换时，才会生效键盘避让"
+    },
+    {
+      "name": "SelectMenu_textContent_1",
+      "value": "这是一段文本，用来展示选中菜单"
+    },
+    {
+      "name": "SelectMenu_textContent_2",
+      "value": "自定义选择菜单弹出时触发该回调"
+    },
+    {
+      "name": "SelectMenu_textContent_3",
+      "value": "自定义选择菜单关闭时触发该回调"
+    },
+    {
+      "name": "SetUpAIMenu_title",
+      "value": "设置AI菜单"
+    },
+    {
+      "name": "SetUpAIMenu_description",
+      "value": "Text组件通过enableDataDetector和dataDetectorConfig属性实现AI菜单的显示"
+    },
+    {
+      "name": "Auto_Fill",
+      "value": "自动填充"
+    },
+    {
+      "name": "Auto_Fill_description",
+      "value": "输入框可以通过contentType属性设置自动填充类型"
+    },
+    {
+      "name": "Auto_Fill_PlaceHolder",
+      "value": "输入你的邮箱..."
+    },
+    {
+      "name": "Set_Omission_Property",
+      "value": "设置省略属性"
+    },
+    {
+      "name": "Set_Omission_Property_description",
+      "value": "输入框可以通过ellipsisMode属性设置省略位置"
+    },
+    {
+      "name": "Set_Omission_Property_textContent",
+      "value": "这是一段文本，用来展示省略模式"
+    },
+    {
+      "name": "Create_RichEditor_Component_title",
+      "value": "创建RichEditor组件"
+    },
+    {
+      "name": "Create_RichEditor_Component_title_1",
+      "value": "创建使用属性字符串构建的RichEditor组件"
+    },
+    {
+      "name": "Create_RichEditor_Component_title_2",
+      "value": "创建不使用属性字符串构建的RichEditor组件"
+    },
+    {
+      "name": "Create_RichEditor_Component_description",
+      "value": "开发者可以创建使用属性字符串和不使用属性字符串构建的RichEditor组件"
+    },
+    {
+      "name": "Set_Attributes_title",
+      "value": "设置属性"
+    },
+    {
+      "name": "Set_Attributes_title_1",
+      "value": "设置自定义选择菜单"
+    },
+    {
+      "name": "Set_Attributes_title_1_desc",
+      "value": "通过bindSelectionMenu设置自定义选择菜单"
+    },
+    {
+      "name": "Set_Attributes_title_2",
+      "value": "设置输入框光标、手柄颜色"
+    },
+    {
+      "name": "Set_Attributes_title_2_desc",
+      "value": "通过caretColor设置输入框光标、手柄颜色"
+    },
+    {
+      "name": "Set_Attributes_title_3",
+      "value": "设置无输入时的提示文本"
+    },
+    {
+      "name": "Set_Attributes_title_3_desc",
+      "value": "通过placeholder设置无输入时的提示文本"
+    },
+    {
+      "name": "Set_Attributes_title_4",
+      "value": "设置最大行数"
+    },
+    {
+      "name": "Set_Attributes_title_4_desc",
+      "value": "通过maxLines设置富文本可显示的最大行数"
+    },
+    {
+      "name": "Set_Attributes_title_5",
+      "value": "设置最大长度"
+    },
+    {
+      "name": "Set_Attributes_title_5_desc",
+      "value": "通过maxLength设置富文本的最大输入字符数"
+    },
+    {
+      "name": "Set_Attributes_title_6",
+      "value": "默认选中菜单"
+    },
+    {
+      "name": "Set_Attributes_title_6_desc",
+      "value": "富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单"
+    },
+    {
+      "name": "Add_Event_title",
+      "value": "添加事件"
+    },
+    {
+      "name": "Add_Event_title_1",
+      "value": "添加组件初始化完成后可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_1_desc",
+      "value": "通过onReady来添加组件初始化完成后可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_2",
+      "value": "添加组件内容选择区域或编辑状态下光标位置改变时可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_2_desc",
+      "value": "通过onSelectionChange来添加组件内容选择区域或编辑状态下光标位置改变时可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_3",
+      "value": "添加组件内容选择区域或编辑状态下光标位置改变时可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_3_desc",
+      "value": "通过onWillChange添加图文变化前可触发的回调,通过onDidChange添加图文变化后可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_4",
+      "value": "添加输入法输入内容前和完成输入后可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_4_desc",
+      "value": "在添加输入法输入内容前，可以通过aboutToIMEInput触发回调。在输入法完成输入后，可以通过onDidIMEInput触发回调"
+    },
+    {
+      "name": "Add_Event_title_5",
+      "value": "添加完成粘贴前可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_5_desc",
+      "value": "通过onPaste回调，来添加粘贴前要处理的流程"
+    },
+    {
+      "name": "Add_Event_title_6",
+      "value": "添加完成剪切前可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_6_desc",
+      "value": "通过onCut回调，来添加剪切前要处理的流程"
+    },
+    {
+      "name": "Add_Event_title_7",
+      "value": "添加完成复制前可触发的回调"
+    },
+    {
+      "name": "Add_Event_title_7_desc",
+      "value": "通过onCopy回调，来添加复制前要处理的流程"
+    },
+    {
+      "name": "Set_User_PresetText_Styles_title",
+      "value": "设置用户预设的文本样式"
+    },
+    {
+      "name": "Set_User_PresetText_Styles_desc",
+      "value": "通过setTypingStyle设置用户预设的文本样式"
+    },
+    {
+      "name": "Backplane_Highlighting_title",
+      "value": "设置组件内的内容选中时部分背板高亮"
+    },
+    {
+      "name": "Backplane_Highlighting_desc",
+      "value": "通过setSelection设置组件内的内容选中时部分背板高亮"
+    },
+    {
+      "name": "Add_TextContent_title",
+      "value": "添加文本内容"
+    },
+    {
+      "name": "Add_TextContent_desc",
+      "value": "除了直接在组件内输入内容，也可以通过addTextSpan添加文本内容"
+    },
+    {
+      "name": "Add_ImageContent_title",
+      "value": "添加图片内容"
+    },
+    {
+      "name": "Add_ImageContent_desc",
+      "value": "通过addImageSpan添加图片内容"
+    },
+    {
+      "name": "Add_Builder_DecoratorContent_title",
+      "value": "添加@Builder装饰器修饰的内容"
+    },
+    {
+      "name": "Add_Builder_DecoratorContent_desc",
+      "value": "通过addBuilderSpan添加@Builder装饰器修饰的内容"
+    },
+    {
+      "name": "Add_SymbolSpanContent_title",
+      "value": "添加SymbolSpan内容"
+    },
+    {
+      "name": "Add_SymbolSpanContent_desc",
+      "value": "可通过addSymbolSpan添加Symbol内容。此接口可用于特殊符号添加与展示，例如在编辑学术论文时，此接口可用于添加各种数学符号"
+    },
+    {
+      "name": "Get_GraphicInfo_In_Component_title",
+      "value": "获取组件内图文信息"
+    },
+    {
+      "name": "Get_GraphicInfo_In_Component_desc",
+      "value": "可通过getSpans获取组件内所有图文内容的信息，包括图文的内容、id、样式、位置等信息。获取内容位置信息后，可对指定范围内容进行样式的更新"
+    },
+    {
+      "name": "Create_Apply_StyledString_MutableStyledString_title",
+      "value": "创建并应用StyledString和MutableStyledString"
+    },
+    {
+      "name": "Create_Apply_StyledString_MutableStyledString_desc",
+      "value": "可以通过TextController提供的setStyledString方法，将属性字符串附加到文本组件，并推荐在onPageShow或者文本组件的onAppear回调中触发绑定"
+    },
+    {
+      "name": "pageIndex_StyledString",
+      "value": "属性字符串 StyledString/MutableStyledString"
+    },
+    {
+      "name": "CreatStyledString_title",
+      "value": "创建并应用StyledString和MutableStyledString"
+    },
+    {
+      "name": "CreatStyledString_description",
+      "value": "可以通过TextController提供的setStyledString方法，将属性字符串附加到文本组件，并推荐在onPageShow或者文本组件的onAppear回调中触发绑定。"
+    },
+    {
+      "name": "StyledStringStyle_title",
+      "value": "设置文本样式"
+    },
+    {
+      "name": "StyledStringStyle_description",
+      "value": "属性字符串目前提供了多种Style对象，包括TextStyle、TextShadowStyle、DecorationStyle、BaselineOffsetStyle、LineHeightStyle、LetterSpacingStyle，用于设置文本的各类样式。"
+    },
+    {
+      "name": "StyledStringStyle_title_1",
+      "value": "创建及应用文本字体样式对象（TextStyle）"
+    },
+    {
+      "name": "StyledStringStyle_title_2",
+      "value": "创建及应用文本阴影对象（TextShadowStyle）"
+    },
+    {
+      "name": "StyledStringStyle_title_3",
+      "value": "创建及应用文本装饰线对象（DecorationStyle）"
+    },
+    {
+      "name": "StyledStringStyle_title_4",
+      "value": "创建及应用文本基线偏移量对象（BaselineOffsetStyle）"
+    },
+    {
+      "name": "StyledStringStyle_title_5",
+      "value": "创建及应用文本行高对象（LineHeightStyle）"
+    },
+    {
+      "name": "StyledStringStyle_title_6",
+      "value": "创建及应用文本字符间距对象（LetterSpacingStyle）"
+    },
+    {
+      "name": "StyledStringParagraphStyle_title",
+      "value": "设置段落样式"
+    },
+    {
+      "name": "StyledStringParagraphStyle_description",
+      "value": "可通过ParagraphStyle设置段落样式布局。"
+    },
+    {
+      "name": "StyledStringImageAttachment_title",
+      "value": "通过ImageAttachment来添加图片"
+    },
+    {
+      "name": "StyledStringImageAttachment_description",
+      "value": "将图片和文本附加到同一个MutableStyledString对象上，并实现图文混排。"
+    },
+    {
+      "name": "TStyledStringGestureStyle_title",
+      "value": "设置事件"
+    },
+    {
+      "name": "StyledStringGestureStyle_description",
+      "value": "除了初始化属性字符串对象即初始样式对象，亦可通过setStyle接口再叠加新样式或更新已有样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。"
+    },
+    {
+      "name": "StyledStringHtml_title",
+      "value": "格式转换"
+    },
+    {
+      "name": "StyledStringHtml_description",
+      "value": "可以通过toHtml、fromHtml接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：<p>、<span>、<img>。"
+    },
+    {
+      "name": "StyledStringSceneExample_title",
+      "value": "场景示例"
+    },
+    {
+      "name": "StyledStringSceneExample_description",
+      "value": "通过ParagraphStyle、LineHeightStyle、TextStyle对象展示了会员过期提示的效果。"
+    },
+    {
+      "name": "pageIndex_symbolGlyphSpan",
+      "value": "图标小符号(SymbolGlyph/SymbolSpan)"
+    },
+    {
+      "name": "CreatSymbolGlyph_title",
+      "value": "创建图标"
+    },
+    {
+      "name": "CreatSymbolGlyph_description",
+      "value": "SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置的Symbol资源名。"
+    },
+    {
+      "name": "SymbolGlyphSpanAddToText_title",
+      "value": "添加到文本中"
+    },
+    {
+      "name": "SymbolGlyphSpanAddToText_description",
+      "value": "SymbolSpan可作为Text的子组件用于显示图标小符号。可以在一个Text组件内添加多个SymbolSpan，从而展示一串连续的图标。"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_title",
+      "value": "自定义图标动效"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_description",
+      "value": "相较于effectStrategy属性在启动时即触发动效，可以通过以下两种方式来控制动效的播放状态，以及选择更多样化的动效策略。"
+    },
+    {
+      "name": "SymbolGlyphSpanAddEvent_title",
+      "value": "添加事件"
+    },
+    {
+      "name": "SymbolGlyphSpanAddEvent_description",
+      "value": "SymbolGlyph组件可以添加通用事件，例如绑定onClick、onTouch等事件来响应操作。"
+    },
+    {
+      "name": "SymbolGlyphSpanSceneExample_title",
+      "value": "场景示例"
+    },
+    {
+      "name": "SymbolGlyphSpanSceneExample_description",
+      "value": "该示例通过symbolEffect、fontSize、fontColor属性展示了播放列表的效果。"
+    },
+    {
+      "name": "SymbolGlyphSpanAddToText_title_1",
+      "value": "创建SymbolSpan"
+    },
+    {
+      "name": "SymbolGlyphSpanAddToText_title_2",
+      "value": "通过fontSize属性设置SymbolSpan的大小"
+    },
+    {
+      "name": "SymbolGlyphSpanAddToText_title_3",
+      "value": "通过fontWeight属性设置SymbolSpan组件的粗细"
+    },
+    {
+      "name": "SymbolGlyphSpanAddToText_title_4",
+      "value": "通过fontColor属性设置SymbolSpan的颜色"
+    },
+    {
+      "name": "SymbolGlyphSpanAddToText_title_5",
+      "value": "通过renderingStrategy属性设置SymbolSpan的渲染策略"
+    },
+    {
+      "name": "SymbolGlyphSpanAddToText_title_6",
+      "value": "通过effectStrategy属性设置SymbolSpan的动效策略"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_title_1",
+      "value": "通过设置SymbolEffect属性，可以同时配置SymbolGlyph的动效策略和播放状态"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_title_2",
+      "value": "通过设置SymbolEffect属性，可以同时指定SymbolGlyph的动画效果策略及其播放触发条件"
+    },
+    {
+      "name": "ListenTextBoxEvents_NDK_title",
+      "value": "输入框文本事件监听"
+    },
+    {
+      "name": "ListenTextBoxEvents_NDK_desc",
+      "value": "输入框包含多种交互行为，开发者可注册事件监听并获取状态"
+    },
+    {
+      "name": "TextDrawingDisplay_NDK_title",
+      "value": "Text组件的文本绘制与显示"
+    },
+    {
+      "name": "TextDrawingDisplay_NDK_desc",
+      "value": "Text组件提供了接口NODE_TEXT_CONTENT_WITH_STYLED_STRING，可以直接渲染方舟文本引擎生成的文本"
+    },
+    {
+      "name": "StyledStringHtml_Button_1",
+      "value": "添加属性字符串"
+    },
+    {
+      "name": "StyledStringHtml_Button_2",
+      "value": "toHtml"
+    },
+    {
+      "name": "StyledStringHtml_Button_3",
+      "value": "fromHtml"
+    },
+    {
+      "name": "StyledStringImageAttachment_Button_1",
+      "value": "点击查看商品卡片"
+    },
+    {
+      "name": "StyledStringParagraphStyle_Button_1",
+      "value": "change"
+    },
+    {
+      "name": "StyledStringSceneExample_Button_1",
+      "value": "限时4.88元 立即续费"
+    },
+    {
+      "name": "AddBuilderDecoratorContent_Button_1",
+      "value": "addBuilderSpan"
+    },
+    {
+      "name": "AddImageContent_Button_1",
+      "value": "addImageSpan"
+    },
+    {
+      "name": "AddSymbolSpanContent_Button_1",
+      "value": "addSymbolSpan"
+    },
+    {
+      "name": "AddTextContent_Button_1",
+      "value": "addTextSpan"
+    },
+    {
+      "name": "BackplaneHighlighting_Button_1",
+      "value": "setSelection(0,2)"
+    },
+    {
+      "name": "GetGraphicInfoInComponent_Button_1",
+      "value": "getSpans"
+    },
+    {
+      "name": "SetUserPresetTextStyles_Button_1",
+      "value": "setTypingStyle"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_Button_1",
+      "value": "关闭"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_Button_2",
+      "value": "播放"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_Button_3",
+      "value": "trigger"
+    },
+    {
+      "name": "CursorAvoidance_Button_1",
+      "value": "CaretPosition++: "
+    },
+    {
+      "name": "CursorAvoidance_Button_2",
+      "value": "CaretPosition--: "
+    },
+    {
+      "name": "CursorAvoidance_Button_3",
+      "value": "SetCaretPosition: "
+    },
+    {
+      "name": "LoginRegisterPage_Button_3",
+      "value": "Sign in"
+    },
+    {
+      "name": "CreateApply_Text_1",
+      "value": "运动45分钟"
+    },
+    {
+      "name": "CreateApply_Text_2",
+      "value": "运动35分钟"
+    },
+    {
+      "name": "StyledStringHtml_Text_1",
+      "value": "属性字符串"
+    },
+    {
+      "name": "StyledStringImageAttachment_Text_1",
+      "value": "\n品牌相纸 高清冲印30张\n限时直降5.15元 限量增送"
+    },
+    {
+      "name": "StyledStringImageAttachment_Text_2",
+      "value": "\n￥16.21 3000+人好评"
+    },
+    {
+      "name": "StyledStringParagraphStyle_Text_1",
+      "value": "段落标题\n正文第一段落开始0123456789正文第一段落结束。"
+    },
+    {
+      "name": "StyledStringSceneExample_Text_1",
+      "value": "您的豪华钻石已过期1天\n续费可继续享受会员专属权益"
+    },
+    {
+      "name": "StyledStringSceneExample_Text_2",
+      "value": "\n￥4.88￥15"
+    },
+    {
+      "name": "StyledStringSceneExample_Text_3",
+      "value": "\n02时06分后将失去该优惠"
+    },
+    {
+      "name": "StyledStringStyle_Text_1",
+      "value": "运动35分钟 目标达成"
+    },
+    {
+      "name": "StyledStringStyle_Text_2",
+      "value": "运动35分钟"
+    },
+    {
+      "name": "StyledStringStyle_Text_3",
+      "value": "运动35分钟"
+    },
+    {
+      "name": "StyledStringStyle_Text_4",
+      "value": "运动35分钟"
+    },
+    {
+      "name": "StyledStringStyle_Text_5",
+      "value": "运动35分钟\n顶顶顶\n得到"
+    },
+    {
+      "name": "StyledStringStyle_Text_6",
+      "value": "运动35分钟"
+    },
+    {
+      "name": "AddBuilderDecoratorContent_Text_1",
+      "value": "文本文档.txt"
+    },
+    {
+      "name": "AddBuilderDecoratorContent_Text_2",
+      "value": "123.45KB"
+    },
+    {
+      "name": "AddBuilderDecoratorContent_Text_3",
+      "value": "点击按钮在此处添加builderspan。"
+    },
+    {
+      "name": "AddEvent_Text_1",
+      "value": "onReady回调内容是组件内预置文本。"
+    },
+    {
+      "name": "AddEvent_Text_2",
+      "value": "改变内容选择区域或编辑状态下的光标位置，触发onSelectionChange回调。"
+    },
+    {
+      "name": "AddEvent_Text_3",
+      "value": "触发了onSelectionChange回调，起始范围信息为：("
+    },
+    {
+      "name": "AddEvent_Text_4",
+      "value": "查看回调内容："
+    },
+    {
+      "name": "AddEvent_Text_5",
+      "value": "组件内图文变化前，触发回调。\n图文变化后，触发回调。"
+    },
+    {
+      "name": "AddEvent_Text_6",
+      "value": "组件内图文变化前，触发回调：\n"
+    },
+    {
+      "name": "AddEvent_Text_7",
+      "value": "\n图文变化后，触发回调：\nrangeBefore:"
+    },
+    {
+      "name": "AddEvent_Text_8",
+      "value": "输入法输入内容前，触发回调。\n输入法完成输入后，触发回调。"
+    },
+    {
+      "name": "AddEvent_Text_9",
+      "value": "输入法输入内容前，触发aboutToIMEInput回调：\n"
+    },
+    {
+      "name": "AddEvent_Text_10",
+      "value": "输入法完成输入后，触发onDidIMEInput回调：\n"
+    },
+    {
+      "name": "AddEvent_Text_11",
+      "value": "对此处文本进行复制粘贴操作可触发对应回调。"
+    },
+    {
+      "name": "AddEvent_Text_12",
+      "value": "触发onPaste回调\n"
+    },
+    {
+      "name": "AddEvent_Text_13",
+      "value": "对此处文本进行复制粘贴操作可触发对应回调。"
+    },
+    {
+      "name": "AddEvent_Text_14",
+      "value": "触发onCut回调\n"
+    },
+    {
+      "name": "AddEvent_Text_15",
+      "value": "对此处文本进行复制粘贴操作可触发对应回调。"
+    },
+    {
+      "name": "AddEvent_Text_16",
+      "value": "触发onCopy回调\n"
+    },
+    {
+      "name": "AddImageContent_Text_1",
+      "value": "点击按钮在此处添加image。"
+    },
+    {
+      "name": "AddSymbolSpanContent_Text_1",
+      "value": "点击按钮在此处添加symbol。"
+    },
+    {
+      "name": "AddTextContent_Text_1",
+      "value": "点击按钮在此处添加text。"
+    },
+    {
+      "name": "AddTextContent_Text_2",
+      "value": "新添加一段文字。"
+    },
+    {
+      "name": "BackplaneHighlighting_Text_1",
+      "value": "点击按钮在此处选中0-2位置的文本。"
+    },
+    {
+      "name": "CreateRichEditor_Text_1",
+      "value": "创建使用属性字符串构建的RichEditor组件。"
+    },
+    {
+      "name": "CreateRichEditor_Text_2",
+      "value": "创建不使用属性字符串构建的RichEditor组件。"
+    },
+    {
+      "name": "GetGraphicInfoInComponent_Text_1",
+      "value": "点击按钮获取此处span信息。"
+    },
+    {
+      "name": "GetGraphicInfoInComponent_Text_2",
+      "value": "查看getSpans返回值："
+    },
+    {
+      "name": "SetAttributes_Text_1",
+      "value": "剪切"
+    },
+    {
+      "name": "SetAttributes_Text_2",
+      "value": "复制"
+    },
+    {
+      "name": "SetAttributes_Text_3",
+      "value": "粘贴"
+    },
+    {
+      "name": "SetAttributes_Text_4",
+      "value": "组件设置了自定义菜单，长按可触发。"
+    },
+    {
+      "name": "SetAttributes_Text_5",
+      "value": "组件设置了光标手柄颜色。"
+    },
+    {
+      "name": "SetAttributes_Text_6",
+      "value": "此处为提示文本..."
+    },
+    {
+      "name": "SetAttributes_Text_7",
+      "value": "组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行"
+    },
+    {
+      "name": "SetAttributes_Text_8",
+      "value": "组件设置了最大字符数：7"
+    },
+    {
+      "name": "SetAttributes_Text_9",
+      "value": "这是一段文本,用来展示选中菜单"
+    },
+    {
+      "name": "SetUserPresetTextStyles_Text_1",
+      "value": "点击按钮，改变预设文本样式。"
+    },
+    {
+      "name": "SymbolAddToText_Text_1",
+      "value": "单色"
+    },
+    {
+      "name": "SymbolAddToText_Text_2",
+      "value": "多色"
+    },
+    {
+      "name": "SymbolAddToText_Text_3",
+      "value": "分层"
+    },
+    {
+      "name": "SymbolAddToText_Text_4",
+      "value": "无动效"
+    },
+    {
+      "name": "SymbolAddToText_Text_5",
+      "value": "整体缩放动效"
+    },
+    {
+      "name": "SymbolAddToText_Text_6",
+      "value": "层级动效"
+    },
+    {
+      "name": "SymbolCustomIconAnimation_Text_1",
+      "value": "可变颜色动效"
+    },
+    {
+      "name": "SymbolCustomIconAnimation_Text_2",
+      "value": "弹跳动效"
+    },
+    {
+      "name": "SymbolSceneExample_Text_1",
+      "value": "顺序播放"
+    },
+    {
+      "name": "SymbolSceneExample_Text_2",
+      "value": "单曲循环"
+    },
+    {
+      "name": "SymbolSceneExample_Text_3",
+      "value": "随机播放"
+    },
+    {
+      "name": "SymbolSceneExample_Text_4",
+      "value": "当前播放列表"
+    },
+    {
+      "name": "SymbolSceneExample_Text_5",
+      "value": "歌曲一"
+    },
+    {
+      "name": "SymbolSceneExample_Text_6",
+      "value": "歌曲二"
+    },
+    {
+      "name": "SymbolSceneExample_Text_7",
+      "value": "歌曲三"
+    },
+    {
+      "name": "SymbolSceneExample_Text_8",
+      "value": "歌曲四"
+    },
+    {
+      "name": "SymbolSceneExample_Text_9",
+      "value": "歌曲五"
+    },
+    {
+      "name": "SymbolSceneExample_Text_10",
+      "value": "歌曲六"
+    },
+    {
+      "name": "SymbolSceneExample_Text_11",
+      "value": "歌曲七"
+    },
+    {
+      "name": "SymbolSceneExample_Text_12",
+      "value": "关闭"
+    },
+    {
+      "name": "AIMenu_Text_1",
+      "value": "电话号码：(86) (755) ********  \n \n 链接：www.********.com \n \n 邮箱：***@example.com\n \n 地址：XX省XX市XX区XXXX \n \n 时间：XX年XX月XX日XXXX"
+    },
+    {
+      "name": "CreateText_Text_1",
+      "value": "我是一段文本"
+    },
+    {
+      "name": "SelectMenu_Text_1",
+      "value": "拦截 id: customMenu2 start:"
+    },
+    {
+      "name": "SelectMenu_Text_2",
+      "value": "拦截 COPY start:"
+    },
+    {
+      "name": "SelectMenu_Text_3",
+      "value": "不拦截 SELECT_ALL start:"
+    },
+    {
+      "name": "SelectMenu_Text_4",
+      "value": "自定义选择菜单弹出时触发该回调"
+    },
+    {
+      "name": "SelectMenu_Text_5",
+      "value": "自定义选择菜单关闭时触发该回调"
     }
   ]
 }

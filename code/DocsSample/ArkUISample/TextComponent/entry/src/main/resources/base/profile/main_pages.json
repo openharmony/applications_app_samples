@@ -1,5 +1,12 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/propertyString/CreateApply",
+    "pages/propertyString/StyledStringStyle",
+    "pages/propertyString/StyledStringParagraphStyle",
+    "pages/propertyString/StyledStringImageAttachment",
+    "pages/propertyString/StyledStringGestureStyle",
+    "pages/propertyString/StyledStringHtml",
+    "pages/propertyString/StyledStringSceneExample"
   ]
 }
