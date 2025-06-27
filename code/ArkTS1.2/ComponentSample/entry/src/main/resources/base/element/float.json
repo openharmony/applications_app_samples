@@ -1,0 +1,60 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "dynamicattributes_float_1",
+      "value": "1vp"
+    },
+    {
+      "name": "dynamicattributes_float_5",
+      "value": "5vp"
+    },
+    {
+      "name": "dynamicattributes_float_10",
+      "value": "10vp"
+    },
+    {
+      "name": "dynamicattributes_float_12",
+      "value": "12vp"
+    },
+    {
+      "name": "dynamicattributes_float_15",
+      "value": "15vp"
+    },
+    {
+      "name": "dynamicattributes_float_20",
+      "value": "20vp"
+    },
+    {
+      "name": "dynamicattributes_float_25",
+      "value": "25vp"
+    },
+    {
+      "name": "dynamicattributes_float_30",
+      "value": "30vp"
+    },
+    {
+      "name": "dynamicattributes_float_50",
+      "value": "50vp"
+    },
+    {
+      "name": "dynamicattributes_float_60",
+      "value": "60vp"
+    },
+    {
+      "name": "dynamicattributes_float_90",
+      "value": "90"
+    },
+    {
+      "name": "dynamicattributes_float_100",
+      "value": "100vp"
+    },
+    {
+      "name": "dynamicattributes_float_160",
+      "value": "160vp"
+    }
+  ]
+}

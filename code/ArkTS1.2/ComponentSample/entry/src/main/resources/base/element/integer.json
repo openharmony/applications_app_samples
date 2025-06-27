@@ -1,0 +1,256 @@
+{
+  "integer": [
+    {
+      "name": "customcalendarpickerdialog_train_image_size",
+      "value": 20
+    },
+    {
+      "name": "customcalendarpickerdialog_check_button_height",
+      "value": 40
+    },
+    {
+      "name": "customcalendarpickerdialog_card_padding",
+      "value": 16
+    },
+    {
+      "name": "customcalendarpickerdialog_text_height",
+      "value": 40
+    },
+    {
+      "name": "customcalendarpickerdialog_month_text",
+      "value": 240
+    },
+    {
+      "name": "highlyloadedcomponentrender_list_padding_left",
+      "value": 10
+    },
+    {
+      "name": "highlyloadedcomponentrender_list_padding_right",
+      "value": 10
+    },
+    {
+      "name": "highlyloadedcomponentrender_column_padding_bottom",
+      "value": 12
+    },
+    {
+      "name": "highlyloadedcomponentrender_year_height",
+      "value": 40
+    },
+    {
+      "name": "highlyloadedcomponentrender_month_font_size",
+      "value": 25
+    },
+    {
+      "name": "highlyloadedcomponentrender_month_height",
+      "value": 40
+    },
+    {
+      "name": "highlyloadedcomponentrender_month_width",
+      "value": 350
+    },
+    {
+      "name": "highlyloadedcomponentrender_month_margin_top",
+      "value": 5
+    },
+    {
+      "name": "highlyloadedcomponentrender_week_font_size",
+      "value": 20
+    },
+    {
+      "name": "highlyloadedcomponentrender_year_font_size",
+      "value": 20
+    },
+    {
+      "name": "highlyloadedcomponentrender_week_height",
+      "value": 30
+    },
+    {
+      "name": "highlyloadedcomponentrender_week_width",
+      "value": 50
+    },
+    {
+      "name": "highlyloadedcomponentrender_week_border_radius",
+      "value": 10
+    },
+    {
+      "name": "highlyloadedcomponentrender_day_font_size",
+      "value": 20
+    },
+    {
+      "name": "highlyloadedcomponentrender_day_lunar_font_size",
+      "value": 15
+    },
+    {
+      "name": "highlyloadedcomponentrender_day_height",
+      "value": 50
+    },
+    {
+      "name": "highlyloadedcomponentrender_day_width",
+      "value": 50
+    },
+    {
+      "name": "highlyloadedcomponentrender_day_border_radius",
+      "value": 10
+    },
+    {
+      "name": "customreusablepool_title_view_padding_left_side",
+      "value": 20
+    },{
+      "name": "customreusablepool_title_view_padding_right_side",
+      "value": 20
+    },{
+      "name": "customreusablepool_title_view_padding_left",
+      "value": 10
+    },{
+      "name": "customreusablepool_title_view_padding_right",
+      "value": 10
+    },{
+      "name": "customreusablepool_title_view_list_height",
+      "value": 30
+    },{
+      "name": "customreusablepool_home_button_margin_top",
+      "value": 20
+    },{
+      "name": "customreusablepool_item_name_margin_top",
+      "value": 10
+    },{
+      "name": "customreusablepool_flow_item_comp_border_radius",
+      "value": 10
+    },{
+      "name": "customreusablepool_flow_item_comp_name_font_size",
+      "value": 14
+    },{
+      "name": "customreusablepool_flow_item_comp_des_font_size",
+      "value": 12
+    },{
+      "name": "customreusablepool_flow_swiper_height",
+      "value": 200
+    },{
+      "name": "customreusablepool_flow_columns_Gap",
+      "value": 10
+    },{
+      "name": "customreusablepool_flow_rows_Gap",
+      "value": 5
+    },
+    {
+      "name": "calendar_switch_size_forty",
+      "value":40
+    },
+    {
+      "name": "calendar_switch_size_ten",
+      "value":10
+    },
+    {
+      "name": "calendar_switch_size_twenty_five",
+      "value":25
+    },
+    {
+      "name": "calendar_switch_size_three",
+      "value":3
+    },
+    {
+      "name": "calendar_switch_size_four",
+      "value":4
+    },
+    {
+      "name": "calendar_switch_size_seven",
+      "value":7
+    },
+    {
+      "name": "calendar_switch_margin_left",
+      "value":6
+    },
+    {
+      "name": "calendar_switch_margin_bottom",
+      "value":5
+    },
+    {
+      "name": "calendar_switch_margin_size_twelve",
+      "value":12
+    },
+    {
+      "name": "calendar_switch_size_fifteen",
+      "value": 15
+    },
+    {
+      "name": "calendar_switch_columns_gap",
+      "value": 0
+    },
+    {
+      "name": "calendar_switch_rows_gap",
+      "value": 10
+    },
+    {
+      "name": "calendar_switch_size_thirty_five",
+      "value": 35
+    },
+    {
+      "name": "calendar_switch_size_fourteen",
+      "value": 14
+    },
+    {
+      "name": "calendar_switch_border_radius",
+      "value": 20
+    },
+    {
+      "name": "calendar_switch_zero",
+      "value": 0
+    },
+    {
+      "name": "calendar_switch_size_eighteen",
+      "value": 18
+    },
+    {
+      "name": "calendar_switch_size_twenty",
+      "value": 20
+    },
+    {
+      "name": "calendar_switch_size_thirty",
+      "value": 30
+    },
+    {
+      "name": "calendar_switch_size_forty_six",
+      "value": 46
+    },
+    {
+      "name": "calendar_switch_size_one",
+      "value": 1
+    },
+    {
+      "name": "calendar_switch_size_forty_eight",
+      "value": 48
+    },
+    {
+      "name": "calendar_switch_size_eighty",
+      "value": 80
+    },
+    {
+      "name": "calendar_switch_size_ninety",
+      "value": 90
+    },
+    {
+      "name": "calendar_switch_size_hundred",
+      "value": 100
+    },
+    {
+      "name": "calendar_switch_size_sixteen",
+      "value": 16
+    },
+    {
+      "name": "calendar_switch_size_twenty_two",
+      "value": 22
+    },
+    {
+      "name": "calendar_switch_size_eight",
+      "value": 8
+    },
+    {
+      "name": "calendar_switch_size_sixty",
+      "value": 60
+    },
+    {
+      "name": "calendar_switch_two_hundred_fifty",
+      "value": 250
+    }
+  ]
+}

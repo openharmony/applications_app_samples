@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CameraSample"
+    },
+    {
+      "name": "Comment_text",
+      "value": "这里风景很好"
+    },
+    {
+      "name": "TextInput_placeholder",
+      "value": "输入评论"
+    },
+    {
+      "name": "Comment_publish",
+      "value": "发布"
+    }
+  ]
+}
