@@ -60,60 +60,63 @@ static napi_value Add(napi_env env, napi_callback_info info)
 static napi_value SyncFenceWait(napi_env env, napi_callback_info info)
 {
     bool result = OH_NativeFence_Wait(INVALID_FD, TIMEOUT_MS);
-    DRAWING_LOGI("get result %{public}d", result);
     bool isValid = OH_NativeFence_IsValid(INVALID_FD);
-    DRAWING_LOGI("input fenceFd is:  %{public}d", isValid);
 
     std::atomic<bool> signaled(false);
     sigset_t mask;
     sigemptyset(&mask);
     sigaddset(&mask, SIGINT); // Monitor SIGINT signal (Ctrl C)
-    sigaddset(&mask, SIGTERM); // Monitor SIGTERM signal (kill command)
+    sigaddset(&mask, SIGURG); // Generated when urgent data or out of band data arrives at the socket
     sigprocmask(SIG_BLOCK, &mask, NULL);
     int sfd = signalfd(-1, &mask, 0);
-    DRAWING_LOGI("input fenceFd is:  %{public}d", sfd);
     if (sfd == -1) {
-        perror("signalfd failed");
+        perror("SyncFenceWait signalfd failed");
         exit(1);
     }
     isValid = OH_NativeFence_IsValid(sfd);
-    DRAWING_LOGI("input fenceFd is:  %{public}d", isValid);
     std::thread waitThread([&]() {
         bool result2 = false;
         auto startTime = std::chrono::steady_clock::now();
         result2 = OH_NativeFence_Wait(sfd, TIMEOUT_MS);
         auto endTime = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count();
-        DRAWING_LOGI("get result2 %{public}d,   cost_time: %{public}d", result2, duration);
+        if (result2) {
+            DRAWING_LOGI("SyncFenceWait has an event occurring result2 %{public}d, cost_time: %{public}d",
+                result2, duration);
+        } else {
+            DRAWING_LOGI("SyncFenceWait timeout with no event occurrence result2 %{public}d, cost_time: %{public}d",
+                result2, duration);
+        }
         signaled.store(true);
     });
     std::this_thread::sleep_for(std::chrono::seconds(3)); // 3 means main thread sleep 3 seconds.
     pid_t target_pid = getpid();
-    int ret = kill(target_pid, SIGINT);
+    int ret = kill(target_pid, SIGURG);
     if (ret < 0) {
-        DRAWING_LOGI("kill failed: %{public}d", strerror(errno));
+        DRAWING_LOGI("SyncFenceWait kill failed: %{public}d", strerror(errno));
     }
     // Waiting for waitThread to complete
     waitThread.join();
-    // checks the signaled variable to ensure that OH_NativeFence_Wait has returned
-    DRAWING_LOGI("get signaled.load() %{public}d", signaled.load());
     OH_NativeFence_Close(sfd);
+    napi_value funcResult = nullptr;
+    napi_create_int32(env, result ? 1 : 0, &funcResult);
+
+    return funcResult;
 }
 
 static napi_value SyncFenceWaitForever(napi_env env, napi_callback_info info)
 {
     bool result = OH_NativeFence_WaitForever(INVALID_FD);
-    DRAWING_LOGI("get result %{public}d", result);
 
     std::atomic<bool> signaled(false);
     sigset_t mask;
     sigemptyset(&mask);
     sigaddset(&mask, SIGINT); // Monitor SIGINT signal (Ctrl C)
-    sigaddset(&mask, SIGTERM); // Monitor SIGTERM signal (kill command)
+    sigaddset(&mask, SIGURG); // Generated when urgent data or out of band data arrives at the socket
     sigprocmask(SIG_BLOCK, &mask, NULL);
     int sfd = signalfd(-1, &mask, 0);
     if (sfd == -1) {
-        perror("signalfd failed");
+        perror("SyncFenceWaitForever signalfd failed");
         exit(1);
     }
     std::thread waitThread([&]() {
@@ -122,20 +125,28 @@ static napi_value SyncFenceWaitForever(napi_env env, napi_callback_info info)
         result2 = OH_NativeFence_WaitForever(sfd);
         auto endTime = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count();
-        DRAWING_LOGI("get result2 %{public}d,   cost_time: %{public}d", result2, duration);
+        if (result2) {
+            DRAWING_LOGI("SyncFenceWaitForever has an event occurring result2 %{public}d, cost_time: %{public}d",
+                result2, duration);
+        } else {
+            DRAWING_LOGI("SyncFenceWaitForever timeout with no event occurrence"
+                "result2 %{public}d, cost_time: %{public}d", result2, duration);
+        }
         signaled.store(true);
     });
-    std::this_thread::sleep_for(std::chrono::seconds(3)); // 3 means main thread sleep 3 seconds.
+    std::this_thread::sleep_for(std::chrono::seconds(2)); // 2 means main thread sleep 2 seconds.
     pid_t target_pid = getpid();
-    int ret = kill(target_pid, SIGINT);
+    int ret = kill(target_pid, SIGURG);
     if (ret < 0) {
-        DRAWING_LOGI("kill failed: %{public}d", strerror(errno));
+        DRAWING_LOGI("SyncFenceWaitForever kill failed: %{public}d", strerror(errno));
     }
     // Waiting for waitThread to complete
     waitThread.join();
-    // checks the signaled variable to ensure that OH_NativeFence_Wait has returned
-    DRAWING_LOGI("get signaled.load() %{public}d", signaled.load());
     OH_NativeFence_Close(sfd);
+    napi_value funcResult = nullptr;
+    napi_create_int32(env, result ? 1 : 0, &funcResult);
+
+    return funcResult;
 }
 
 // EXTERN_C_START

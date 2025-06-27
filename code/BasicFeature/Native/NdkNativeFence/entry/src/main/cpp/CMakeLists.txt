@@ -2,14 +2,14 @@
 cmake_minimum_required(VERSION 3.5.0)
 project(456)
 
-set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+set(NATIVEFENCE_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 if(DEFINED PACKAGE_FIND_FILE)
     include(${PACKAGE_FIND_FILE})
 endif()
 
-include_directories(${NATIVERENDER_ROOT_PATH}
-                    ${NATIVERENDER_ROOT_PATH}/include)
+include_directories(${NATIVEFENCE_ROOT_PATH}
+                    ${NATIVEFENCE_ROOT_PATH}/include)
 
 add_library(entry SHARED napi_init.cpp)
 

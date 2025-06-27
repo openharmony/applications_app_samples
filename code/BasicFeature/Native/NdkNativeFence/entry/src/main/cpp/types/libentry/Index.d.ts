@@ -14,5 +14,5 @@
  */
 
 export const add: (a: number, b: number) => number;
-export const syncFence_wait: () => void;
-export const syncFence_waitForever: () => void;
+export const syncFence_wait: () => number;
+export const syncFence_waitForever: () => number;
