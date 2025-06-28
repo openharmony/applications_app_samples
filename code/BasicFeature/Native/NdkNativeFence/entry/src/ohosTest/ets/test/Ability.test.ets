@@ -60,7 +60,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('SyncFenceWait'));
       let syncFenceBtn1 = await driver.findComponent(ON.text('SyncFenceWait'));
       // 点击'syncFenceWait'按钮
-      // await syncFenceBtn1.click(); 注释掉，因为点击按钮后，会直接退出应用(接口调用后，会直接退出应用，所以这里不进行点击操作)
+      await syncFenceBtn1.click();
       await driver.delayMs(1000);
     })
 
@@ -83,7 +83,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('SyncFenceWaitForever'));
       let syncFenceBtn2 = await driver.findComponent(ON.text('SyncFenceWaitForever'));
       // 点击'syncFenceWaitForever'按钮
-      // await syncFenceBtn2.click(); 注释掉，因为点击按钮后，会直接退出应用(接口调用后，会直接退出应用，所以这里不进行点击操作)
+      await syncFenceBtn2.click();
       await driver.delayMs(1000);
       hilog.info(0x0001, TAG, 'syncFenceWaitForever_001 end');
     })
