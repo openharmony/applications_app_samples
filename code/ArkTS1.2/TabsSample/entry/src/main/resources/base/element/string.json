@@ -1,0 +1,200 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "TabsSample"
+    },
+    {
+      "name": "background_blur_main",
+      "value": "背景模糊"
+    },
+    {
+      "name": "background_blur_discover",
+      "value": "折叠面板案例"
+    },
+    {
+      "name": "background_blur_hot",
+      "value": "主页瀑布流实现案例"
+    },
+    {
+      "name": "background_blur_my",
+      "value": "我的"
+    },
+    {
+      "name": "functional_scenes_page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "functional_scenes_difficulty",
+      "value": "难度 "
+    },
+    {
+      "name": "functional_scenes_tab_title_data_Native",
+      "value": "Native"
+    },
+    {
+      "name": "functional_scenes_tab_title_data_arkui",
+      "value": "UI布局"
+    },
+    {
+      "name": "functional_scenes_tab_title_data_other",
+      "value": "其他"
+    },
+    {
+      "name": "functional_scenes_tab_title_data_tripartite_library",
+      "value": "三方库"
+    },
+    {
+      "name": "functional_scenes_tab_title_data_dynamic_effect",
+      "value": "动效"
+    },
+    {
+      "name": "functional_scenes_main_page_top_borderRadius",
+      "value": "8"
+    },
+    {
+      "name": "functional_scenes_main_page_list_borderRadius",
+      "value": "8"
+    },
+    {
+      "name": "functional_scenes_main_page_padding1",
+      "value": "10"
+    },
+    {
+      "name": "functional_scenes_main_page_padding2",
+      "value": "12"
+    },
+    {
+      "name": "functional_scenes_main_page_padding3",
+      "value": "16"
+    },
+    {
+      "name": "functional_scenes_main_page_padding4",
+      "value": "18"
+    },
+    {
+      "name": "functional_scenes_main_page_padding5",
+      "value": "8"
+    },
+    {
+      "name": "functional_scenes_main_page_padding6",
+      "value": "10"
+    },
+    {
+      "name": "functional_scenes_main_page_padding_list_bottom",
+      "value": "350"
+    },
+    {
+      "name": "functional_scenes_main_page_swiper_height",
+      "value": "200"
+    },
+    {
+      "name": "functional_scenes_main_page_text_height",
+      "value": "18"
+    },
+    {
+      "name": "functional_scenes_main_page_text_width",
+      "value": "25"
+    },
+    {
+      "name": "functional_scenes_main_page_text_font_size",
+      "value": "12"
+    },
+    {
+      "name": "functional_scenes_main_page_margin1",
+      "value": "10"
+    },
+    {
+      "name": "functional_scenes_main_page_margin2",
+      "value": "12"
+    },
+    {
+      "name": "functional_scenes_main_page_tab_text_underline",
+      "value": "2"
+    },
+    {
+      "name": "functional_scenes_main_page_water_flow_gap",
+      "value": "6"
+    },
+    {
+      "name": "functional_scenes_item_gap_half",
+      "value": "4"
+    },
+    {
+      "name": "functional_scenes_network_message",
+      "value": "此功能需联网使用"
+    },
+    {
+      "name": "functional_scenes_readme",
+      "value": "查看源码"
+    },
+    {
+      "name": "functional_scenes_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "custom_tab_home",
+      "value": "首页"
+    },
+    {
+      "name": "custom_tab_news",
+      "value": "新品"
+    },
+    {
+      "name": "custom_tab_friend",
+      "value": "商城"
+    },
+    {
+      "name": "custom_news",
+      "value": "新闻"
+    },
+    {
+      "name": "custom_friend",
+      "value": "朋友圈"
+    },
+    {
+      "name": "custom_video",
+      "value": "视频"
+    },
+    {
+      "name": "custom_tab_mine",
+      "value": "我的"
+    },
+    {
+      "name": "custom_return",
+      "value": " ← 返回"
+    },
+    {
+      "name": "custom_detail",
+      "value": "详情内容"
+    },
+    {
+      "name": "custom_tab_bar",
+      "value": "自定义TabBar页签案例"
+    },
+    {
+      "name": "custom_tab_Content",
+      "value": "tabContent内容可以在tabBar上显示并响应滑动事件案例"
+    },
+    {
+      "name": "custom_store",
+      "value": "商城界面，仅供Tabs展示。"
+    },
+    {
+      "name": "custom_my",
+      "value": "我的界面，仅供Tabs展示。"
+    },
+    {
+      "name": "custom_home",
+      "value": "我的首页，仅供Tabs展示。"
+    }
+  ]
+}

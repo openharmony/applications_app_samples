@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/tabBar/TabBar",
+    "pages/tabContentOverFlow/TabContentOverFlow",
+    "pages/functionalScenes/FunctionalScenes",
+    "pages/collapsemenu/CollapseMenuSection",
+    "pages/collapsemenu/Concent"
+  ]
+}

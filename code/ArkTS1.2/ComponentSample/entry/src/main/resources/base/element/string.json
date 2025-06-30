@@ -1,0 +1,215 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "componentSampleTest"
+    },
+    {
+      "name": "customcalendarpickerdialog_departure",
+      "value": "北京"
+    },
+    {
+      "name": "customcalendarpickerdialog_destination",
+      "value": "上海"
+    },
+    {
+      "name": "customcalendarpickerdialog_check_ticket",
+      "value": "检查车票"
+    },
+    {
+      "name": "customcalendarpickerdialog_departure_date",
+      "value": "出发日期"
+    },
+    {
+      "name": "customcalendarpickerdialog_button_text",
+      "value": "仅演示，可自行实现业务功能"
+    },
+    {
+      "name": "customcalendarpickerdialog_week_width",
+      "value": "14.3%"
+    },
+    {
+      "name": "customcalendarpickerdialog_calendar_height",
+      "value": "90%"
+    },
+    {
+      "name": "ohos_id_text_size_body2",
+      "value": "14"
+    },
+    {
+      "name": "ohos_id_corner_radius_default_l",
+      "value": "16"
+    },
+    {
+      "name": "ohos_id_corner_radius_default_m",
+      "value": "12"
+    },
+    {
+      "name": "ohos_id_text_size_headline",
+      "value": "20"
+    },
+    {
+      "name": "ohos_id_text_size_body1",
+      "value": "14"
+    },
+    {
+      "name": "percent_100",
+      "value": "100%"
+    },
+    {
+      "name": "dynamicattributes_shopping_cart",
+      "value": "购物车"
+    },{
+      "name": "dynamicattributes_store_name",
+      "value": "xxx旗舰店"
+    },
+    {
+      "name": "dynamicattributes_commodity_name",
+      "value": "商品"
+    },
+    {
+      "name": "dynamicattributes_commodity_model",
+      "value": "商品型号"
+    },
+    {
+      "name": "dynamicattributes_commodity_price",
+      "value": "¥300"
+    },
+    {
+      "name": "dynamicattributes_text",
+      "value": "文本"
+    },
+    {
+      "name": "dynamicattributes_text_one",
+      "value": "文本1"
+    },
+    {
+      "name": "dynamicattributes_text_two",
+      "value": "文本2"
+    },
+    {
+      "name": "dynamicattributes_text_three",
+      "value": "文本3"
+    },
+    {
+      "name": "dynamicattributes_full_reduction",
+      "value": "每满300减40"
+    },
+    {
+      "name": "dynamicattributes_sold",
+      "value": "已售88"
+    },
+    {
+      "name": "dynamicattributes_coupon_collection",
+      "value": "领券"
+    },
+    {
+      "name": "dynamicattributes_buy_now",
+      "value": "立即购买"
+    },
+    {
+      "name": "dynamicattributes_add_cart",
+      "value": "加入购物车"
+    },
+    {
+      "name": "dynamicattributes_settlement",
+      "value": "结算"
+    },
+    {
+      "name": "dynamicattributes_only_show",
+      "value": "此样式仅为案例展示"
+    },
+    {
+      "name": "dynamicattributes_text_proportion",
+      "value": "40%"
+    },
+    {
+      "name": "dynamicattributes_image_proportion",
+      "value": "60%"
+    },
+    {
+      "name": "dynamicattributes_max_size",
+      "value": "100%"
+    },
+    {
+      "name": "dynamicattributes_list_height",
+      "value": "calc(100% - 50vp)"
+    },
+    {
+      "name": "customreusablepool_percent_100",
+      "value": "100%"
+    },
+    {
+      "name": "customreusablepool_percent_60",
+      "value": "60%"
+    },
+    {
+      "name": "customreusablepool_button_normal",
+      "value": "常规复用"
+    },
+    {
+      "name": "customreusablepool_button_custom",
+      "value": "全局自定义组件复用池"
+    },
+    {
+      "name": "customreusablepool_water_flow_background_color",
+      "value": "#FAEEE0"
+    },
+    {
+      "name": "calendar_switch_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "calendar_switch_size_twenty_three",
+      "value": "23%"
+    },
+    {
+      "name": "calendar_switch_size_twenty_five",
+      "value": "25%"
+    },
+    {
+      "name": "calendar_switch_button_style",
+      "value": "20fp"
+    },
+    {
+      "name": "calendar_switch_describe",
+      "value": "说明"
+    },
+    {
+      "name": "secondarylinkage_secondary_link",
+      "value": "二级联动"
+    },
+    {
+      "name": "secondarylinkage_secondary_link_desc",
+      "value": "当前界面主要展示了通过选择一个列表（一级列表），来更新另一个列表（二级列表）的选项的效果"
+    },
+    {
+      "name": "secondarylinkage_nomore",
+      "value": "没有更多了"
+    },
+    {
+      "name": "example1",
+      "value": "列表二级联动"
+    },
+    {
+      "name": "example2",
+      "value": "自定义日历选择器"
+    },
+    {
+      "name": "example3",
+      "value": "跨文件样式复用和组件复用"
+    },
+    {
+      "name": "example4",
+      "value": "合理处理高负载组件的渲染文章示例代码"
+    }
+  ]
+}
