@@ -19,9 +19,9 @@ Sendable对象可以在不同并发实例间通过引用传递。通过引用传
 
 ### 使用说明
 
-1. 运行bigdata模块，分别点击Listener task和Data processing task执行程序
+1. 运行bigdata模块，分别点击Listener task和Data processing task执行程序。
 2. 执行结果会即时反馈在屏幕中,并在控制台打印log。
-3. 运行crossconcurrency模块，点击Hello World执行程序
+3. 运行crossconcurrency模块，点击Hello World执行程序。
 4. 执行结果会即时反馈在屏幕中,并在控制台打印log。
 
 ### 工程目录
