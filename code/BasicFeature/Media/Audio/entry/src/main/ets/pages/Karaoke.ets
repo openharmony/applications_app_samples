@@ -171,8 +171,8 @@ struct KaraokePage {
       Slider({
         value: this.volume,
         min: 0,
-        max: 100,
-        step: 1,
+        max: 1,
+        step: 0.1,
         style: SliderStyle.OutSet
       })
       .width('80%')
