@@ -59,10 +59,10 @@ struct ListExpandSafeArea {
       .height('88%')
       .width('93%')
       .padding({ top: '5%' })
-      .expandSafeArea(this.expand ? [SafeAreaType.SYSTEM] : [], this.expand ? [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM] : [])
     }
     .height('100%')
     .width('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
+    .expandSafeArea(this.expand ? [SafeAreaType.SYSTEM] : [], this.expand ? [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM] : [])
   }
 }
