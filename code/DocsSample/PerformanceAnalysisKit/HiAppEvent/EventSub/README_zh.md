@@ -38,7 +38,7 @@
 
 #### 使用说明
 
-请先按照工程目录添加json相关文件，否则编译无法通过
+请先按照工程目录添加三方库文件jsoncpp相关文件，否则编译无法通过；jsoncpp官方下载地址为https://github.com/open-source-parsers/jsoncpp，下载完成后在文件夹内运行python脚本“amalgamate.py”（需要有python环境），脚本运行完成后将生成名为“dist”的文件夹，打开后即可得到jsoncpp.cpp，json.h和json-forward.h三个文件。
 
 ##### 1.订阅应用事件（ArkTS）使用说明
 
