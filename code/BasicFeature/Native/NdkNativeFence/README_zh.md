@@ -15,6 +15,8 @@
 
 2. **运行应用**：打开应用后，您将看到屏幕上显示SyncFenceWait和SyncFenceWaitForever按钮。
 
+3. **测试功能**：点击SyncFenceWait按钮，查找“SyncFenceWait”关键字，观察日志输出；然后点击SyncFenceWaitForever按钮，查找“SyncFenceWaitForever”关键字，再次观察日志输出。
+
 ### 工程目录
 ```
 ├──entry/src/main
@@ -39,7 +41,7 @@
 
 1. **调用SyncFenceWait接口**：(1)在接口SyncFenceWait中，调用OH_NativeFence_Wait接口，传入非法fenceFd。（2）利用signalfd函数创建信号，在waitThread线程中调用OH_NativeFence_Wait接口阻塞fenceFd。（3）3s后在主线程中使用kill函数模拟信号触发。（4）观察OH_NativeFence_Wait接口是否解除阻塞。
 
-1. **调用SyncFenceWaitForever接口**：(1)在接口SyncFenceWaitForever中，调用OH_NativeFence_WaitForever接口，传入非法fenceFd。（2）利用signalfd函数创建信号，在waitThread线程中调用OH_NativeFence_WaitForever接口阻塞fenceFd。（3）3s后在主线程中使用kill函数模拟信号触发。（4）观察OH_NativeFence_WaitForever接口是否解除阻塞。
+1. **调用SyncFenceWaitForever接口**：(1)在接口SyncFenceWaitForever中，调用OH_NativeFence_WaitForever接口，传入非法fenceFd。（2）利用signalfd函数创建信号，在waitThread线程中调用OH_NativeFence_WaitForever接口阻塞fenceFd。（3）2s后在主线程中使用kill函数模拟信号触发。（4）观察OH_NativeFence_WaitForever接口是否解除阻塞。
 
 | 接口名 | 描述 |
 | -------- | -------- |
