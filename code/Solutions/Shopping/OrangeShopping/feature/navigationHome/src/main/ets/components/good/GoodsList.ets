@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -56,7 +56,7 @@ export struct GoodsList {
         }) {
           Column() {
 
-            // 方案二：使用router跳转页面，配合共享元素动画
+            // 方案二：使用nav跳转页面，配合共享元素动画
             Image(item.uri)
               .id('goods' + item.id)
               .width('70%')
@@ -64,7 +64,7 @@ export struct GoodsList {
               .clip(true)
               .objectFit(ImageFit.Contain)
               .margin({ bottom: 12 })
-              .sharedTransition('goods' + item.id, { duration: 600, curve: Curve.Linear, delay: 100 })
+              .geometryTransition('goods' + item.id, { follow: true })
 
             Column() {
               Text(item.title)
@@ -112,13 +112,15 @@ export struct GoodsList {
           .padding(12)
           .backgroundColor($r('app.color.white'))
 
-          // 方案二：使用正常router跳转，配合共享元素动画
+          // 方案二：使用nav跳转，配合共享元素动画
           .onClick(() => {
             // 动态加载组件
-            DynamicLoader.getInstance().fire('DetailPage').then(()=>{
-              this.active = true;
-              this.pageStack.pushPathByName('DetailPage', item);
-            })
+            this.getUIContext()?.animateTo({ duration: 600, curve: Curve.Linear }, () => {
+              DynamicLoader.getInstance().fire('DetailPage').then(() => {
+                this.active = true;
+                this.pageStack.pushPathByName('DetailPage', item, false);
+              })
+            });
           })
         }
       }, (item: Info | ProductDataModel): string => item.id.toString())
