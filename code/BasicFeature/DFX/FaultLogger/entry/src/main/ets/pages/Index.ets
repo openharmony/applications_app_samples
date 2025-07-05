@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,64 +13,48 @@
  * limitations under the License.
  */
 
-import faultLogger from '@ohos.faultLogger'
-import Logger from '../model/Logger'
-import { TitleBar } from '../common/TitleBar'
-import { FaultDialog } from '../common/FaultDialog'
+import Logger from '../model/Logger';
+import { TitleBar } from '../common/TitleBar';
+import { FaultDialog } from '../common/FaultDialog';
+import PreferencesManager from '../common/PreferencesManager';
 
-const TAG: string = 'Index'
-const DIVIDER: string = '\n---------------------------------------------------\n'
+const TAG: string = 'Index';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'FaultLog'
+  @State message: string = 'FaultLog';
   private operates: Resource[] = [$r('app.string.create_fault'), $r('app.string.catch_js_fault'),
-  $r('app.string.catch_cpp_fault'), $r('app.string.catch_app_freeze_fault'), $r('app.string.catch_all_fault')]
-  private faultDialogController: CustomDialogController = null
+  $r('app.string.catch_cpp_fault'), $r('app.string.catch_app_freeze_fault'), $r('app.string.catch_all_fault')];
+  private faultDialogController: CustomDialogController | null = null;
+  private preferencesManager = new PreferencesManager();
 
-  async catchFaultLog(faultType) {
-    let value = await faultLogger.query(faultType)
-    if (value) {
-      let len = value.length
-      // 未获取到异常日志
-      if (len === 0) {
-        this.message = 'No exception log was obtained'
-        return
-      }
-      this.message = `faultLogger num:${len} `
-      for (let i = 0; i < len; i++) {
-        this.message += `${DIVIDER}Log pid: ${value[i].pid}\nLog type:${value[i].type}\n Log reason: ${value[i].reason}\n`
-        + `Log module: ${value[i].module}\nLog text:\n ${value[i].fullLog.substring(0, 200)}`
-      }
-    }
-  }
-
-  handleOperate(index) {
+  handleOperate(index: number) {
     switch (index) {
       case 0:
         if (this.faultDialogController === null) {
           this.faultDialogController = new CustomDialogController({
             builder: FaultDialog(),
-            autoCancel: true })
+            autoCancel: true
+          });
         }
-        this.faultDialogController.open()
-        break
+        this.faultDialogController.open();
+        break;
       case 1:
-        Logger.info(TAG, 'catch JS_CRASH')
-        this.catchFaultLog(faultLogger.FaultType.JS_CRASH)
+        Logger.info(TAG, 'catch JS_CRASH');
+        this.message = this.preferencesManager.getFaultMessage('crashMsg');
         break
       case 2:
-        Logger.info(TAG, 'catch CPP_CRASH')
-        this.catchFaultLog(faultLogger.FaultType.CPP_CRASH)
+        Logger.info(TAG, 'catch CPP_CRASH');
+        this.message = this.preferencesManager.getFaultMessage('crashMsg');
         break
       case 3:
-        Logger.info(TAG, 'catch APP_FREEZE')
-        this.catchFaultLog(faultLogger.FaultType.APP_FREEZE)
+        Logger.info(TAG, 'catch APP_FREEZE');
+        this.message = this.preferencesManager.getFaultMessage('freezeMsg');
         break
       case 4:
         Logger.info(TAG, 'catch NO_SPECIFIC')
-        this.catchFaultLog(faultLogger.FaultType.NO_SPECIFIC)
+        this.message = this.preferencesManager.getAllFaultMessage();
         break
       default:
         break
@@ -95,16 +79,16 @@ struct Index {
 
       Scroll() {
         Column() {
-          ForEach(this.operates, (item, index) => {
+          ForEach(this.operates, (item: Resource, index) => {
             Button(item)
-              .id(item)
+              .id(item.id.toString())
               .type(ButtonType.Capsule)
               .size({ width: '90%', height: 60 })
               .margin({ top: 10 })
               .onClick(() => {
                 this.handleOperate(index)
               })
-          }, item => JSON.stringify(item))
+          }, (item: Resource) => JSON.stringify(item))
         }
         .width('100%')
         .padding({ bottom: '8%' })

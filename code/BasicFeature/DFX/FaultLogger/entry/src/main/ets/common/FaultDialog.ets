@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,52 +13,45 @@
  * limitations under the License.
  */
 
-import promptAction from '@ohos.promptAction'
-import router from '@ohos.router'
-import faultLogger from '@ohos.faultLogger'
-import Logger from '../model/Logger'
+import promptAction from '@ohos.promptAction';
+import testNapi from 'libentry.so';
+import Logger from '../model/Logger';
 
-const INDEX: number = 0 // 初始索引值
-const DURATION: number = 100 // 定时器时间
+const INDEX: number = 0; // 初始索引值
+const DURATION: number = 100; // 定时器时间
 
 @Preview
 @CustomDialog
 export struct FaultDialog {
-  private controller: CustomDialogController
-  private faultTypes: string[] = ['JS_CRASH', 'CPP_CRASH', 'FREEZE_CRASH']
-  @State selectIndex: number = INDEX
+  private controller: CustomDialogController;
+  private faultTypes: string[] = ['JS_CRASH', 'CPP_CRASH', 'FREEZE_CRASH'];
+  @State selectIndex: number = INDEX;
 
   addFaultLog() {
     switch (this.selectIndex) {
       case 0:
-        promptAction.showToast({ message: $r('app.string.js_crash_building') })
+        promptAction.showToast({ message: $r('app.string.js_crash_building') });
         setTimeout(() => {
-          let tempList = ['0', '1']
-          Logger.info(tempList[3].toString())
-        }, DURATION)
-        break
+          let tempList = ['0', '1'];
+          Logger.info(tempList[3].toString());
+        }, DURATION);
+        break;
       case 1:
-        promptAction.showToast({ message: $r('app.string.cpp_crash_building') })
-        setTimeout(() => {
-          // 此处是为了构造cpp_crash，故意写的有问题的接口调用，因此添加了@ts-ignore
-          let module = 'ohos.samples.faultlogger'
-          //@ts-ignore
-          faultLogger.addFaultLog(0, faultLogger.FaultType.CPP_CRASH, module, 'faultloggertestsummary02')
-          router.back()
-        }, DURATION)
-        break
+        promptAction.showToast({ message: $r('app.string.cpp_crash_building') });
+        testNapi.add(2, 3);
+        break;
       case 2:
-        promptAction.showToast({ message: $r('app.string.app_freeze_building') })
+        promptAction.showToast({ message: $r('app.string.app_freeze_building') });
         setTimeout(() => {
-          let index = 0 // 循环初始值
+          let index = 0; // 循环初始值
           while (true) {
-            index++
-            this.selectIndex = index % 2
+            index++;
+            this.selectIndex = index % 2;
           }
-        }, DURATION)
-        break
+        }, DURATION);
+        break;
       default:
-        break
+        break;
     }
   }
 
@@ -70,7 +63,7 @@ export struct FaultDialog {
         .fontSize(22)
 
       Column() {
-        ForEach(this.faultTypes, (item, index) => {
+        ForEach(this.faultTypes, (item: string, index) => {
           Row() {
             Image(this.selectIndex === index ? $r('app.media.checked') : $r('app.media.uncheck'))
               .height(30).width(30)
@@ -86,7 +79,7 @@ export struct FaultDialog {
           .onClick(() => {
             this.selectIndex = index
           })
-        }, item => item)
+        }, (item: string) => item)
 
         Row() {
           Button() {

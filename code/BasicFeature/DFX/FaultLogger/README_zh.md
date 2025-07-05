@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用了[@ohos.faultLogger](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-faultLogger.md)接口，展示了在eTS中如何获取应用故障相关信息。
+本示例使用了[@ohos.hiviewdfx.hiAppEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)接口，展示了在eTS中如何获取应用故障相关信息。
 
 ### 效果预览
 |首页|
@@ -18,6 +18,7 @@
 entry/src/main/ets/
 |---common
 |   |---FaultDialog.ets                    // 异常构造弹窗
+|   |---PreferencesManager.ets             // 首选项工具类
 |   |---TitleBar.ets                       // title
 |---model
 |   |---Logger                             // 日志工具
@@ -26,12 +27,12 @@ entry/src/main/ets/
 ```
 
 ### 具体实现
-+ 创造应用故障场景，故障类型枚举值参考[FaultType](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-faultLogger.md)，源码参考[FaultDialog.ets](entry/src/main/ets/common/FaultDialog.ets)：
++ 创造应用故障场景，故障类型枚举值参考[FaultType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventevent)，源码参考[FaultDialog.ets](entry/src/main/ets/common/FaultDialog.ets)：
     + js_crash故障：通过数组访问越界构造;
-    + cpp_crash故障：通过调用不存在的Api接口构造;
+    + cpp_crash故障：通过调用空指针NAPI接口构造;
     + freeze_crash故障：通过代码产生死循环构造;
 + 获取上述异常故障日志,源码参考[Index.ets](entry/src/main/ets/pages/Index.ets)：
-    + 获取异常故障日志：使用faultLogger.query接口获取异常日志信息。
+    + 获取异常故障日志：使用hiAppEvent.addWatcher接口获取异常日志信息。
 
 ### 相关权限
 
@@ -43,11 +44,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：RK3568;
+1. 本示例仅支持标准系统上运行，支持设备：RK3568；
 
-2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9
+2. 本示例已适配API version 12版本SDK，版本号：5.0.0.71；
 
-3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上版本才可编译运行。
+3. 本示例需要使用DevEco Studio 4.1.3.700 (Build Version: 4.1.3.700 构建 2024年3月19日)及以上版本才可编译运行。
 
 ### 下载
 如需单独下载本工程，执行如下命令：
