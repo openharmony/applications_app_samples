@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,6 +15,7 @@
 
 import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 const TAG: string = 'Index'
 const AUDIO: string = 'audio'
@@ -26,7 +27,7 @@ const VIDEO_ABILITY_NAME: string = "VideoAbility"
 @Entry
 @Component
 struct Index {
-  private context: common.UIAbilityContext = null
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext
 
   build() {
     Row() {
@@ -40,7 +41,7 @@ struct Index {
               abilityName: AUDIO_ABILITY_NAME
             }).then(() => {
               Logger.info(TAG, 'start audio ability success')
-            }).catch((error) => {
+            }).catch((error: BusinessError) => {
               Logger.error(TAG, 'start audio ability failed, error: ' + JSON.stringify(error))
             })
           })
@@ -55,7 +56,7 @@ struct Index {
               abilityName: VIDEO_ABILITY_NAME
             }).then(() => {
               Logger.info(TAG, 'start video ability success')
-            }).catch((error) => {
+            }).catch((error: BusinessError) => {
               Logger.error(TAG, 'start video ability failed, error: ' + JSON.stringify(error))
             })
           })
