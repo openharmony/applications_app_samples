@@ -62,18 +62,6 @@ let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
 let transliterator = i18n.Transliterator.getInstance('Any-Latn');
 let text = resourceToString($r('app.string.CountryWordChina'));
 let translatedText: string = transliterator.transform(text); // translatedText = 'zhōng guó'
-let wordArray =
-  [resourceToString($r('app.string.CountryWordChina')), resourceToString($r('app.string.CountryWordGermany')),
-    resourceToString($r('app.string.CountryWordUSA')), resourceToString($r('app.string.CountryWordFrance'))]
-// [StartExclude get_transliteration]
-let transRes: string[] = [];
-// [EndExclude get_transliteration]
-for (let i = 0; i < wordArray.length; i++) {
-  let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
-  // [StartExclude get_transliteration]
-  transRes.push(res);
-  // [EndExclude get_transliteration]
-}
 
 // 汉语音译去声调
 let toneLessTransliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
