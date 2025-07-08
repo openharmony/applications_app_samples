@@ -47,6 +47,19 @@ const std::string END_EVENT = "end";
 const std::int32_t AUDIO_BITRATE = 200000;
 const std::int32_t VIDEO_BITRATE = 3000000;
 
+typedef enum {
+    /* prepared states */
+    TRANSCODER_PREPARED = 1,
+    /* started states */
+    TRANSCODER_STARTED = 2,
+    /* paused states */
+    TRANSCODER_PAUSED = 3,
+    /* stopped states */
+    TRANSCODER_CANCELLED = 4,
+    /* completed states */
+    TRANSCODER_COMPLETED = 5,
+} AVTranscoderState;
+
 typedef struct NdkAVTransCoderUser {
     using StateChangeFunc = std::function<void()>;
     NdkAVTransCoderUser();
@@ -61,7 +74,7 @@ typedef struct NdkAVTransCoderUser {
 
     OH_AVTranscoder *transcoder = nullptr;
     int32_t errorCode = AV_ERR_OK;
-    OH_AVTranscoder_State transCoderState = AVTRANSCODER_PREPARED;
+    int32_t transCoderState = -1;
     int avTranscoderProgress = 0;
     int inStartStateCount = 0;
 } NdkAVTransCoderUser;
@@ -72,7 +85,6 @@ typedef struct NdkAVTransCoderContext {
     NdkAVTransCoderUser *transcoderUser = nullptr;
     OH_AVTranscoder *transcoder = nullptr;
     OH_AVTranscoder_Config *config = nullptr;
-    OH_AVTranscoder_State transCoderState = AVTRANSCODER_PREPARED;
 } NdkAVTransCoderContext;
 static NdkAVTransCoderContext g_ctx;
 
@@ -82,53 +94,69 @@ void NdkAVTransCoderUser::OnProgressUpdateCb(OH_AVTranscoder *transcoder, int pr
     this->avTranscoderProgress = progress;
 }
 
+static void AvTranscoderRelease(OH_AVTranscoder *transcoder)
+{
+    if (transcoder != nullptr) {
+        OH_AVErrCode errCode = OH_AVTranscoder_Release(transcoder);
+        LOG("OH_AVTranscoder_Release errCode:%{public}d", errCode);
+    }
+    if (g_ctx.transcoder != nullptr) {
+        g_ctx.transcoder = nullptr;
+    }
+    if (g_ctx.config != nullptr) {
+        OH_AVErrCode errCode = OH_AVTranscoderConfig_Release(g_ctx.config);
+        g_ctx.config = nullptr;
+        LOG("OH_AVTranscoderConfig_Release errCode:%{public}d", errCode);
+    }
+}
+
 void NdkAVTransCoderUser::OnErrorCb(OH_AVTranscoder *transcoder, int32_t errorCode, const char *errorMsg)
 {
     LOG("NdkAVTransCoderUser OnErrorCb errorCode: %{public}d ,errorMsg: %{public}s", errorCode,
         errorMsg == nullptr ? "unknown" : errorMsg);
     this->errorCode = errorCode;
+    AvTranscoderRelease(transcoder);
 }
 
 void NdkAVTransCoderUser::OnStateChangeCb(OH_AVTranscoder *transcoder, OH_AVTranscoder_State state)
 {
-    this->transCoderState = state;
     if (transcoder == nullptr) {
         return;
     }
     int32_t ret = -1;
     switch (state) {
         case AVTRANSCODER_PREPARED: {
-            this->transCoderState = AVTRANSCODER_PREPARED;
-            if (this->stateChangeFuncs_.count(AVTRANSCODER_PREPARED) > 0) {
-                this->stateChangeFuncs_[AVTRANSCODER_PREPARED]();
+            this->transCoderState = TRANSCODER_PREPARED;
+            if (this->stateChangeFuncs_.count(TRANSCODER_PREPARED) > 0) {
+                this->stateChangeFuncs_[TRANSCODER_PREPARED]();
             }
             break;
         }
         case AVTRANSCODER_STARTED: {
-            this->transCoderState = AVTRANSCODER_STARTED;
-            if (this->stateChangeFuncs_.count(AVTRANSCODER_STARTED) > 0) {
-                this->stateChangeFuncs_[AVTRANSCODER_STARTED]();
+            this->transCoderState = TRANSCODER_STARTED;
+            if (this->stateChangeFuncs_.count(TRANSCODER_STARTED) > 0) {
+                this->stateChangeFuncs_[TRANSCODER_STARTED]();
             }
             break;
         }
         case AVTRANSCODER_PAUSED: {
-            this->transCoderState = AVTRANSCODER_PAUSED;
-            if (this->stateChangeFuncs_.count(AVTRANSCODER_PAUSED) > 0) {
-                this->stateChangeFuncs_[AVTRANSCODER_PAUSED]();
+            this->transCoderState = TRANSCODER_PAUSED;
+            if (this->stateChangeFuncs_.count(TRANSCODER_PAUSED) > 0) {
+                this->stateChangeFuncs_[TRANSCODER_PAUSED]();
             }
             break;
         }
         case AVTRANSCODER_CANCELLED: {
-            this->transCoderState = AVTRANSCODER_CANCELLED;
-            if (this->stateChangeFuncs_.count(AVTRANSCODER_CANCELLED) > 0) {
-                this->stateChangeFuncs_[AVTRANSCODER_CANCELLED]();
+            this->transCoderState = TRANSCODER_CANCELLED;
+            if (this->stateChangeFuncs_.count(TRANSCODER_CANCELLED) > 0) {
+                this->stateChangeFuncs_[TRANSCODER_CANCELLED]();
             }
             break;
         }
         case AVTRANSCODER_COMPLETED: {
-            this->transCoderState = AVTRANSCODER_COMPLETED;
-            if (this->stateChangeFuncs_.count(AVTRANSCODER_COMPLETED) > 0) {
-                this->stateChangeFuncs_[AVTRANSCODER_COMPLETED]();
+            this->transCoderState = TRANSCODER_COMPLETED;
+            if (this->stateChangeFuncs_.count(TRANSCODER_COMPLETED) > 0) {
+                this->stateChangeFuncs_[TRANSCODER_COMPLETED]();
             }
             break;
         }
@@ -172,6 +200,24 @@ static void AvTranscoderProgressUpdateCbImpl(OH_AVTranscoder *transcoder, int pr
     ndkAVTransCoderUser->OnProgressUpdateCb(transcoder, progress);
 }
 
+static void AvTranscoderStateChangeFuncs(NdkAVTransCoderUser *transcoderUser)
+{
+    transcoderUser->stateChangeFuncs_ = {
+        {TRANSCODER_PREPARED, [transcoderUser]() {
+            // 状态为AVTRANSCODER_PREPARED时开始转码
+            OH_AVErrCode errCode = OH_AVTranscoder_Start(transcoderUser->transcoder);
+            transcoderUser->errorCode = errCode;
+            LOG("OH_AVTranscoder_Start errCode:%{public}d", errCode);
+        }},
+        {TRANSCODER_STARTED, []() { LOG("AvTranscoderStateChange: TRANSCODER_STARTED"); }},
+        {TRANSCODER_PAUSED, []() { LOG("AvTranscoderStateChange: TRANSCODER_PAUSED"); }},
+        {TRANSCODER_CANCELLED, []() { LOG("AvTranscoderStateChange: TRANSCODER_CANCELLED"); }},
+        {TRANSCODER_COMPLETED, [transcoderUser]() {
+            // AVTRANSCODER_COMPLETED时释放资源
+            AvTranscoderRelease(transcoderUser->transcoder);
+        }}};
+}
+
 static OH_AVTranscoder_Config *createDefaultTransCoderConfig(int32_t dstFd)
 {
     OH_AVTranscoder_Config *config = OH_AVTranscoderConfig_Create();
@@ -206,24 +252,21 @@ static napi_value OHAvTranscoderNdkPlay(napi_env env, napi_callback_info info)
     g_ctx.transcoder = transcoder;
     g_ctx.config = createDefaultTransCoderConfig(dstFd);
 
-    OH_AVTranscoderConfig_SetSrcFD(g_ctx.config, srcFd, srcOffset, length); // 设置转码源视频FD
+    OH_AVErrCode errCode = OH_AVTranscoderConfig_SetSrcFD(g_ctx.config, srcFd, srcOffset, length); // 设置转码源视频FD
     OH_AVTranscoder_SetStateCallback(transcoder, AvTranscoderStateChangeCbImpl, transcoderUser); // 设置状态回调
     OH_AVTranscoder_SetErrorCallback(transcoder, AvTranscoderErrorCbImpl, transcoderUser); // 设置错误码回调
     OH_AVTranscoder_SetProgressUpdateCallback(transcoder, AvTranscoderProgressUpdateCbImpl, transcoderUser); // 设置进度值回调
     g_ctx.transcoderUser = transcoderUser;
-    transcoderUser->stateChangeFuncs_ = {{AVTRANSCODER_PREPARED, [transcoderUser]() {
-                                            // 状态为AVTRANSCODER_PREPARED时开始转码
-                                            OH_AVErrCode errCode = OH_AVTranscoder_Start(transcoderUser->transcoder);
-                                            transcoderUser->errorCode = errCode;
-                                            LOG("OH_AVTranscoder_Start errCode:%{public}d", errCode);
-                                        }}};
-    OH_AVErrCode errCode = AV_ERR_OK;
-    if (errCode == AV_ERR_OK) {
-        errCode = OH_AVTranscoder_Prepare(transcoder, g_ctx.config);
-    } else {
+    AvTranscoderStateChangeFuncs(transcoderUser);
+    if (errCode != AV_ERR_OK) {
         backParam = errCode;
+        LOG("Transcoder setSrcFD failed, ret %{public}d", backParam);
     }
-    LOG("Transcoder OHAvTranscoderConfigSetDstVideoType ret %{public}d", backParam);
+    errCode = OH_AVTranscoder_Prepare(transcoder, g_ctx.config);
+    if (errCode != AV_ERR_OK) {
+        backParam = errCode;
+        LOG("Transcoder prepare failed, ret %{public}d", backParam);
+    }
     napi_create_int32(env, backParam, &result);
     return result;
 }
