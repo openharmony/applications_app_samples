@@ -20,9 +20,8 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "phone",
-      "tablet",
-      "2in1"
+      "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -57,7 +56,7 @@
       {
         // 添加nfc卡模拟的权限。
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        "reason": "$string:app_name",
+        "reason": "$string:app_name"
       }
     ],
     // [End front_hce_swipe]
@@ -72,7 +71,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ]
   }
