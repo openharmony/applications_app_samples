@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import promptAction from '@ohos.promptAction'
-import hilog from '../model/Logger'
+import promptAction from '@ohos.promptAction';
+import hilog from '../model/Logger';
 import wifi from '@ohos.wifiManager';
-import { P2pView } from '../Component/p2pView'
+import { P2pView } from '../component/P2pView';
 
-const TAG = 'availableP2p'
+const TAG = 'availableP2p';
 
 /**
  * available p2p page of WiFi test

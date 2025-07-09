@@ -17,6 +17,7 @@
 3.输出预期日志，功能启动
 
 ### 工程目录
+```
 entry/src/main/ets/   # HCE应用前台刷卡
 |---entryability
 |   |---EntryAbility.ets
@@ -72,10 +73,10 @@ entry1/src/main/ets/  # HCE应用后台刷卡
 
 如需单独下载本工程，执行如下命令：
 
-````
+```
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ConnectivityKit/NFC/HCECardSimulationDevelopment/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```

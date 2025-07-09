@@ -65,7 +65,7 @@
       {
         // 添加nfc卡模拟的权限。
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        "reason": "$string:app_name",
+        "reason": "$string:app_name"
       }
     ],
     // [End back_hce_swipe]
@@ -80,7 +80,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ]
   }
