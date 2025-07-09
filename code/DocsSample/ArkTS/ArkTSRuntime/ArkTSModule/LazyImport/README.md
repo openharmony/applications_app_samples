@@ -15,7 +15,7 @@
 ### 使用说明
 
 1. 运行Index主界面。
-2. 页面中Text组件呈现LazyImport效果，依次点击五个button，Text依次现实显示‘Call a success result: a = mod1 a executed’，‘‘Call b success result: b = mod1 b executed’, ‘‘Call c success result: c = mod2 c executed’, ‘Not advisable to use one error: ReferenceError: c is not initialized’, ‘Not advisable to use two error: ReferenceError: module environment is undefined’。
+2. 页面中Text组件呈现LazyImport效果，依次点击五个button，Text依次现实显示‘Call a success result: a = mod1 a executed’，‘‘Call b success result: b = mod1 b executed’, ‘‘Call c success result: c = mod2 c executed’, ‘Not advisable to use one error: ReferenceError’, ‘Not advisable to use two error: ReferenceError’。
 3. 运行测试用例LazyImport.test.ets文件对页面代码进行测试可以全部通过。
 
 ### 工程目录
