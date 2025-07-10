@@ -179,3 +179,10 @@ void Demuxer::LogCodecConfigDetails(const SampleInfo &info)
 
 int32_t Demuxer::GetVideoTrackId() { return videoTrackId_; }
 int32_t Demuxer::GetAudioTrackId() { return audioTrackId_; }
+
+int32_t Demuxer::Seek(int64_t position)
+{
+    int32_t ret = OH_AVDemuxer_SeekToTime(demuxer_, position, SEEK_MODE_NEXT_SYNC);
+    CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Seek failed");
+    return AVCODEC_SAMPLE_ERR_OK;
+}

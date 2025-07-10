@@ -119,7 +119,7 @@ static void StartAsyncWork(napi_env env, AsyncCallbackInfo* asyncInfo)
 {
     napi_value resourceName;
     napi_create_string_latin1(env, "recorder", NAPI_AUTO_LENGTH, &resourceName);
-    napi_create_async_work(env, nullptr, resourceName, 
+    napi_create_async_work(env, nullptr, resourceName,
         [](napi_env env, void* data) { NativeInit(data); },
         [](napi_env env, napi_status status, void* data) { DealCallBack(env, data); },
         asyncInfo, &asyncInfo->asyncWork);
