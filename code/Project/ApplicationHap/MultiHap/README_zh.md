@@ -10,31 +10,19 @@
   
 
 ### 效果预览
-|主页|音频HAP|视频HAP|
-|---|---|---|
-|![](screenshots/device/home.jpg)|![](screenshots/device/audio.jpg)|![](screenshots/device/video.jpg)|
+|主页|音频HAP| 视频HAP                                       |
+|---|---|---------------------------------------------|
+|![](screenshots/device/home.jpg)|![](screenshots/device/audio.jpg)| ![](screenshots/device/video.jpg) |
 
 使用说明：
 
-1.第一步：选择entry模块，运行生成entry模块的hap包
+1.第一步：使用Deveco Studio打开工程，在Run->Edit Configurations->Applications中找到entry，在右侧选中Deploy Multi Hap，勾选Deploy Multi Hap Packages，并在下拉菜单拦中勾选audioFeature、videoFeature、entry，点击Apply
 
-2.第二步：安装audioFeature和videoFeature的hap包：打开cmd执行hdc install hdc-path。例如audioFeature模块中hdc-path为：绝对路径/audioFeature/build/default/outputs/default/entry/audioFeature-entry-default-signed.hap
+2.第二步：Run Configurations中选择entry，点击Run 'entry'，在设备上安装运行
 
-3.第三步：安装完三个模块hap包后重新运行entry模块
+3.第三步：点击桌面MultiHap图标，进入应用：点击audio，进入audio播放页面，点击PlayAudio按钮，播放音频
 
-4.第四步：安装应用，点击桌面MultiHap图标，进入应用：点击audio，进入audio播放页面，点击PlayAudio按钮，播放音频
-
-5.第五步：点击video，进入video播放页面，可点击播放按钮播放视频
-
-注意：多Hap应用的安装不能经过ide，需要手动执行一下命令
-```
-hdc uninstall com.samples.multihap
-hdc install -r ".\audioFeature\build\default\outputs\default\audioFeature-entry-default-signed.hap"
-hdc install -r ".\videoFeature\build\default\outputs\default\videoFeature-entry-default-signed.hap"
-hdc install .\entry\build\default\outputs\default\entry-default-signed.hap
-hdc install .\entry\build\default\outputs\ohosTest\entry-ohosTest-signed.hap
-hdc shell aa test -b com.samples.multihap -m entry_test -s unittest OpenHarmonyTestRunner -s class ActsAbilityTest -s timeout 100000
-```
+4.第四步：点击video，进入video播放页面，可点击播放按钮播放视频
 
 ### 工程目录
 
@@ -94,9 +82,9 @@ feature：应用的特性模块，一个应用中可以包含一个或者多个f
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
+2.本示例已适配API version 15 版本SDK
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 5.0.3 Release (Build Version: 5.0.9.300, built on March 13, 2025)及以上版本才可编译运行。
 
 ### 下载
 
