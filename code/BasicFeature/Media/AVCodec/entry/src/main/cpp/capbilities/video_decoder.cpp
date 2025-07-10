@@ -29,6 +29,9 @@ OH_AVCodec *VideoDecoder::GetCodecByCategory(const char *mime, bool isEncoder, O
 {
     OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(mime, isEncoder, category);
     CHECK_AND_RETURN_RET_LOG(capability != nullptr, nullptr, "Capability is nullptr");
+    /**
+     * OH_AVCapability_IsHardware(capability);
+     */
     const char *codecName = OH_AVCapability_GetName(capability);
     return OH_VideoDecoder_CreateByName(codecName);
 }
@@ -181,6 +184,7 @@ int32_t VideoDecoder::FreeOutputBuffer(uint32_t bufferIndex, bool render, int64_
 int32_t VideoDecoder::Release()
 {
     if (decoder_ != nullptr) {
+        OH_VideoDecoder_Stop(decoder_);
         OH_VideoDecoder_Destroy(decoder_);
         decoder_ = nullptr;
     }

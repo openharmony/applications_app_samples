@@ -243,6 +243,9 @@ int32_t Player::Start()
     isStarted_ = true;
     int32_t ret = AVCODEC_SAMPLE_ERR_OK;
     
+    ret = demuxer_->Seek(0);
+    CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, AVCODEC_SAMPLE_ERR_ERROR, "Seek Error");
+    
     if (videoDecContext_) {
         ret = StartVideoDecoder();
         if (ret != AVCODEC_SAMPLE_ERR_OK) {
@@ -559,8 +562,8 @@ bool Player::CalculateSyncParameters(CodecBufferInfo& bufferInfo, int64_t frameP
     
     AVCODEC_SAMPLE_LOGI("VD bufferInfo.bufferIndex: %{public}li", bufferInfo.bufferIndex);
     AVCODEC_SAMPLE_LOGI(
-        "VD audioPlayedTime: %{public}li, videoPlayedTime: %{public}li, nowTimeStamp_:{public}ld, "
-        "audioTimeStamp_ :{public}ld, waitTimeUs :{public}ld, anchordiff :%{public}ld",
+        "VD audioPlayedTime: %{public}li, videoPlayedTime: %{public}li, nowTimeStamp_:%{public}ld, "
+        "audioTimeStamp_ :%{public}ld, waitTimeUs :%{public}ld, anchordiff :%{public}ld",
         audioPlayedTime, videoPlayedTime, nowTimeStamp, audioTimeStamp, waitTimeUs, anchorDiff);
     dropFrame = false;
     // video buffer is too late, drop it

@@ -34,6 +34,7 @@ public:
     int32_t Release();
     int32_t GetVideoTrackId();
     int32_t GetAudioTrackId();
+    int32_t Seek(int64_t position);
     
 private:
     int32_t GetTrackInfo(std::shared_ptr<OH_AVFormat> sourceFormat, SampleInfo &info);
