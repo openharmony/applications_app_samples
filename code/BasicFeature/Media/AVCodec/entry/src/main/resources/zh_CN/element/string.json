@@ -14,7 +14,11 @@
     },
     {
       "name": "reason",
-      "value": "label"
+      "value": "允许应用使用麦克风"
+    },
+    {
+      "name": "camera_reason",
+      "value": "允许应用使用相机"
     },
     {
       "name": "playing",

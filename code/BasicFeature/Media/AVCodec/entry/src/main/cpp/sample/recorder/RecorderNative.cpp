@@ -133,7 +133,17 @@ napi_value RecorderNative::Init(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
     SampleInfo sampleInfo = ParseSampleInfo(env, args);
-    
+
+    //音频
+    sampleInfo.audioCodecMime = OH_AVCODEC_MIMETYPE_AUDIO_AAC;
+    sampleInfo.audioSampleForamt = OH_BitsPerSample::SAMPLE_S16LE;
+    sampleInfo.audioSampleRate = 48000; // sample rate 48000
+    sampleInfo.audioChannelCount = 2; // channel count 2
+    sampleInfo.audioBitRate = 32000; // bit rate 32000
+    sampleInfo.audioChannelLayout = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
+    sampleInfo.audioMaxInputSize = sampleInfo.audioSampleRate * sampleInfo.audioChannelCount *
+                                   sizeof(short) * 0.02; // 0.02 is 20ms
+
     napi_value promise;
     napi_deferred deferred;
     napi_create_promise(env, &deferred, &promise);

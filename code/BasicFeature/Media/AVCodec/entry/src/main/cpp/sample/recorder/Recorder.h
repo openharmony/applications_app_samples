@@ -23,8 +23,10 @@
 #include <thread>
 #include <unistd.h>
 #include "video_encoder.h"
+#include "audio_encoder.h"
 #include "muxer.h"
 #include "sample_info.h"
+#include "audio_capturer.h"
 
 class Recorder {
 public:
@@ -43,20 +45,32 @@ public:
 
 private:
     void EncOutputThread();
+    void AudioEncInputThread();
+    void AudioEncOutputThread();
     void Release();
     void StartRelease();
     int32_t WaitForDone();
 
+    int32_t CreateAudioEncoder();
+    int32_t CreateVideoEncoder();
+
     std::unique_ptr<VideoEncoder> videoEncoder_ = nullptr;
+    std::unique_ptr<AudioEncoder> audioEncoder_ = nullptr;
     std::unique_ptr<Muxer> muxer_ = nullptr;
 
     std::mutex mutex_;
     std::atomic<bool> isStarted_{false};
+    int32_t isFirstFrame_ = true;
     std::unique_ptr<std::thread> encOutputThread_ = nullptr;
+    std::unique_ptr<std::thread> audioEncInputThread_ = nullptr;
+    std::unique_ptr<std::thread> audioEncOutputThread_ = nullptr;
     std::unique_ptr<std::thread> releaseThread_ = nullptr;
     std::condition_variable doneCond_;
     SampleInfo sampleInfo_;
     CodecUserData *encContext_ = nullptr;
+    CodecUserData *audioEncContext_ = nullptr;
+
+    std::unique_ptr<AudioCapturer> audioCapturer_ = nullptr;
 };
 
 #endif // VIDEO_CODEC_SAMPLE_RECODER_H

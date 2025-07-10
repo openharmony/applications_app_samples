@@ -635,6 +635,7 @@ bool Player::ProcessVideoWithAudio(CodecBufferInfo& bufferInfo,
 
 void Player::VideoDecOutputThread()
 {
+    isVideoDone = false;
     sampleInfo_.frameInterval = MICROSECOND_TO_S / sampleInfo_.frameRate;
     int64_t perSinkTimeThreshold = MS_TO_S / sampleInfo_.frameRate * MS_TO_S; // max per sink time
     while (true) {
@@ -671,11 +672,13 @@ void Player::VideoDecOutputThread()
     isVideoDone.store(true);
     lock.unlock();
     doneCond_.notify_all();
+    isVideoDone = true;
     StartRelease();
 }
 
 void Player::AudioDecInputThread()
 {
+    isAudioDone = false;
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder input thread out");
         std::unique_lock<std::mutex> lock(audioDecContext_->inputMutex);
@@ -698,6 +701,7 @@ void Player::AudioDecInputThread()
 
         CHECK_AND_BREAK_LOG(!(bufferInfo.attr.flags & AVCODEC_BUFFER_FLAGS_EOS), "Catch EOS, thread out");
     }
+    isAudioDone = true;
 }
 
 bool Player::ProcessAudioOutput(CodecBufferInfo &bufferInfo)
@@ -727,6 +731,7 @@ bool Player::ProcessAudioOutput(CodecBufferInfo &bufferInfo)
 
 void Player::AudioDecOutputThread()
 {
+    isAudioDone = false;
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Decoder output thread out");
         std::unique_lock<std::mutex> lock(audioDecContext_->outputMutex);
