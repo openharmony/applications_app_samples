@@ -21,7 +21,7 @@ AVCodec 部件示例 Sample，基于 API12 构建，提供视频播放（含音�
 |------|-------------------------|
 | mp4  | HEVC(H.265)、 AVC(H.264) |
 
-注意，目前仅支持视频录制，未集成音频能力，更多格式[参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/avcodec/avcodec-support-formats.md#avcodec%E6%94%AF%E6%8C%81%E7%9A%84%E6%A0%BC%E5%BC%8F)
+更多格式[参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/avcodec/avcodec-support-formats.md#avcodec%E6%94%AF%E6%8C%81%E7%9A%84%E6%A0%BC%E5%BC%8F)
 
 ### 效果预览
 
@@ -72,7 +72,9 @@ video-codec-sample/entry/src/main/
 ├── cpp                                # Native层
 │   ├── capbilities                    # 能力接口和实现
 │   │   ├── include                    # 能力接口
+│   │   ├── audio_capturer.cpp         # 音频采集实现
 │   │   ├── audio_decoder.cpp          # 音频解码实现
+│   │   ├── audio_encoder.cpp          # 音频编码实现
 │   │   ├── demuxer.cpp                # 解封装实现
 │   │   ├── muxer.cpp                  # 封装实现
 │   │   ├── video_decoder.cpp          # 视频解码实现
@@ -544,6 +546,7 @@ SystemCapability.Multimedia.AVSession.ExtendedDisplayCast.
 ### 相关权限
 
 #### [ohos.permission.CAMERA](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioncamera)
+#### [ohos.permission.MICROPHONE](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmicrophone)
 
 ### 依赖
 
