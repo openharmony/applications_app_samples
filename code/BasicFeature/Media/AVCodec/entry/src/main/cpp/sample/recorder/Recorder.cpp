@@ -183,7 +183,6 @@ void Recorder::Release()
     if (muxer_ != nullptr) {
         muxer_->Release();
         muxer_.reset();
-        AVCODEC_SAMPLE_LOGI("Muxer release successful");
     }
     if (videoEncoder_ != nullptr) {
         videoEncoder_->Stop();
@@ -193,18 +192,15 @@ void Recorder::Release()
         }
         videoEncoder_->Release();
         videoEncoder_.reset();
-        AVCODEC_SAMPLE_LOGI("Video encoder release successful");
     }
     if (audioEncoder_ != nullptr) {
         audioEncoder_->Stop();
         audioEncoder_->Release();
         audioEncoder_.reset();
-        AVCODEC_SAMPLE_LOGI("Audio encoder release successful");
     }
     if (audioCapturer_ != nullptr) {
         audioCapturer_->AudioCapturerRelease();
         audioCapturer_.reset();
-        AVCODEC_SAMPLE_LOGI("Audio Capturer release successful");
     }
     if (audioEncContext_ != nullptr) {
         delete audioEncContext_;
@@ -242,7 +238,8 @@ int32_t Recorder::Stop()
     return WaitForDone();
 }
 
-int32_t Recorder::CreateVideoEncoder() {
+int32_t Recorder::CreateVideoEncoder()
+{
     int32_t ret = videoEncoder_->Create(sampleInfo_.videoCodecMime);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Create video encoder failed");
 
@@ -253,7 +250,8 @@ int32_t Recorder::CreateVideoEncoder() {
     return AVCODEC_SAMPLE_ERR_OK;
 }
 
-int32_t Recorder::CreateAudioEncoder() {
+int32_t Recorder::CreateAudioEncoder()
+{
     int32_t ret = audioEncoder_->Create(sampleInfo_.audioCodecMime);
     CHECK_AND_RETURN_RET_LOG(ret == AVCODEC_SAMPLE_ERR_OK, ret, "Create audio encoder(%{public}s) failed",
                              sampleInfo_.audioCodecMime.c_str());
@@ -266,7 +264,8 @@ int32_t Recorder::CreateAudioEncoder() {
     return AVCODEC_SAMPLE_ERR_OK;
 }
 
-void Recorder::AudioEncInputThread() {
+void Recorder::AudioEncInputThread()
+{
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Encoder input thread out");
         std::unique_lock<std::mutex> lock(audioEncContext_->inputMutex);
@@ -302,7 +301,8 @@ void Recorder::AudioEncInputThread() {
     }
 }
 
-void Recorder::AudioEncOutputThread() {
+void Recorder::AudioEncOutputThread()
+{
     while (true) {
         CHECK_AND_BREAK_LOG(isStarted_, "Work done, thread out");
         std::unique_lock<std::mutex> lock(audioEncContext_->outputMutex);

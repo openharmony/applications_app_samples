@@ -163,7 +163,7 @@ public:
 
     // Create cache
     std::vector<char> cache;
-    int32_t remainlen = 0; 
+    int32_t remainlen = 0;
 
     void ClearCache()
     {
