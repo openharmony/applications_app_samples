@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,35 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router'
-import mediaQuery from '@ohos.mediaquery'
-import { TitleBar } from '../common/TitleBar'
-import { newsList, getNew } from '../model/New'
-import { NewView } from '../common/NewView'
-import Logger from '../model/Logger'
-import { NewsType } from '../model/DataModel'
 
-const TAG = 'MainIndex'
-const INDEXPAGE_BGCOLOR = '#F5F5F5'
+import router from '@ohos.router';
+import mediaQuery from '@ohos.mediaquery';
+import { TitleBar } from '../common/TitleBar';
+import { newsList, getNew } from '../model/New';
+import { NewView } from '../common/NewView';
+import Logger from '../model/Logger';
+import { NewsItem, NewsContentItem } from '../model/New';
+
+const TAG = 'MainIndex';
 
 @Entry
 @Component
 struct Index {
-  private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
-  @State currentNew: NewsType = getNew(0)
-  @State isLand: boolean = false
+  private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)');
+  @State currentNew: NewsContentItem | undefined = getNew(0);
+  @State isLand: boolean = false;
 
-  onLand(mediaQueryResult) {
-    Logger.info(`${TAG} onLand: mediaQueryResult.matches=${mediaQueryResult.matches}`)
+  onLand(mediaQueryResult: mediaQuery.MediaQueryResult) {
+    Logger.info(`${TAG} onLand: mediaQueryResult.matches=${mediaQueryResult.matches}`);
     if (mediaQueryResult.matches) {
-      this.isLand = true
+      this.isLand = true;
     } else {
-      this.isLand = false
+      this.isLand = false;
     }
   }
 
   aboutToAppear() {
-    this.listener.on('change', this.onLand.bind(this))
+    this.listener.on('change', (mediaQueryResult) => this.onLand(mediaQueryResult));
   }
 
   build() {
@@ -48,7 +48,7 @@ struct Index {
       Column() {
         TitleBar()
         List() {
-          ForEach(newsList, (item, index) => {
+          ForEach(newsList, (item: NewsItem, index) => {
             ListItem() {
               Column() {
                 Text(item.title)
@@ -68,14 +68,18 @@ struct Index {
             }
             .onClick(() => {
               if (!this.isLand) {
-                router.push({
-                  params: { title: item.title, newId: item.newId },
-                  url: 'pages/New' })
+                router.pushUrl({
+                  url: 'pages/New',
+                  params: {
+                    title: item.title,
+                    newId: item.newId
+                  }
+                }, router.RouterMode.Standard)
               } else {
-                this.currentNew = getNew(item.newId)
+                this.currentNew = getNew(item.newId);
               }
             })
-          }, item => JSON.stringify(item))
+          }, (item: NewsContentItem) => JSON.stringify(item))
         }
         .width('100%')
         .height('100%')

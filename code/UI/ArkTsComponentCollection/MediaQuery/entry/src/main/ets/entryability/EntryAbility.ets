@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,47 +14,48 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window'
-import Logger from '../model/Logger'
+import Window from '@ohos.window';
+import Logger from '../model/Logger';
+import { AbilityConstant } from '@kit.AbilityKit';
 
-const TAG = 'EntryAbility'
+const TAG = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info(TAG, 'Ability onCreate')
-    Logger.info(TAG, `want param: ${JSON.stringify(want)}`)
-    Logger.info(TAG, `launchParam:${JSON.stringify(launchParam)}`)
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    Logger.info(TAG, 'Ability onCreate');
+    Logger.info(TAG, `want param: ${JSON.stringify(want)}`);
+    Logger.info(TAG, `launchParam:${JSON.stringify(launchParam)}`);
   }
 
   onDestroy() {
-    Logger.info(TAG, 'Ability onDestroy')
+    Logger.info(TAG, 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, 'Ability onWindowStageCreate')
+    Logger.info(TAG, 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
-        return
+        Logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        return;
       }
-      Logger.info(TAG, `Succeeded in loading the content. Data: ${JSON.stringify(data)}`)
+      Logger.info(TAG, `Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
     })
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info(TAG, 'Ability onWindowStageDestroy')
+    Logger.info(TAG, 'Ability onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info(TAG, 'Ability onForeground')
+    Logger.info(TAG, 'Ability onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info(TAG, 'Ability onBackground')
+    Logger.info(TAG, 'Ability onBackground');
   }
 }

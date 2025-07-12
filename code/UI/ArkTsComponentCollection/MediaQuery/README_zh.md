@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本实例展示如何使用媒体查询，通过[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-mediaquery.md) 接口完成在不同设备上显示不同的界面效果。
+本实例展示如何使用媒体查询，通过[@ohos.mediaquery](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-mediaquery.md) 接口完成在不同设备上显示不同的界面效果。
 
 ### 效果预览
 
@@ -25,9 +25,9 @@ entry/src/main/ets/
 |   |---TitleWithBack.ets              // 详情页面标题组件
 |---entryAbility
 |---model
-|   |---DataModel.ts                   // 数据类型
-|   |---Logger.ts                      // 日志工具
-|   |---New.ts                         // 虚拟数据
+|   |---DataModel.ets                  // 数据类型
+|   |---Logger.ets                     // 日志工具
+|   |---New.ets                        // 虚拟数据
 |---pages
 |   |---Index.ets                      // 首页
 |   |---New.ets                        // 详情页面
@@ -50,9 +50,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+2.本示例已适配API version 14版本SDK，版本号：5.0.2.301。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio NEXT Release (Build Version: 5.0.3.900, built on October 8, 2024)及以上版本才可编译运行。
 
 ### 下载
 
