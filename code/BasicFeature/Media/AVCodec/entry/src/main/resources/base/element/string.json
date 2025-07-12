@@ -18,7 +18,11 @@
     },
     {
       "name": "reason",
-      "value": "label"
+      "value": "allows an app to use the microphone"
+    },
+    {
+      "name": "camera_reason",
+      "value": "allows an app to use the camera"
     },
     {
       "name": "playing",

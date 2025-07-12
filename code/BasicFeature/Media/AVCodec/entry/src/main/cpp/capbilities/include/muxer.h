@@ -30,13 +30,17 @@ public:
     int32_t Create(int32_t fd);
     int32_t Config(SampleInfo &sampleInfo);
     int32_t Start();
-    int32_t WriteSample(OH_AVBuffer *buffer, OH_AVCodecBufferAttr &attr);
+    int32_t WriteSample(int32_t trackId, OH_AVBuffer *buffer, OH_AVCodecBufferAttr &attr);
     int32_t Stop();
     int32_t Release();
+    int32_t GetVideoTrackId();
+    int32_t GetAudioTrackId();
 
 private:
     OH_AVMuxer *muxer_ = nullptr;
     int32_t videoTrackId_ = -1;
+    int32_t audioTrackId_ = -1;
+    std::mutex writeMutex_;
 };
 
 #endif // MUXER_H

@@ -66,7 +66,12 @@ struct SampleInfo {
     int32_t audioSampleRate = 0;
     int32_t audioChannelCount = 0;
     int64_t audioChannelLayout = 0;
-    
+    int32_t audioBitRate = 0;
+    uint8_t audioCodecConfig[100] = { 0 };
+    size_t audioCodecSize = 0;
+    int32_t audioMaxInputSize = 0;
+    OH_AVFormat *audioFormat;
+
     int32_t isHDRVivid = 0;
     int32_t hevcProfile = HEVC_PROFILE_MAIN;
     OH_ColorPrimary primary = COLOR_PRIMARY_BT2020;
@@ -154,6 +159,38 @@ public:
             auto emptyQueue = queue<CodecBufferInfo>();
             outputBufferInfoQueue.swap(emptyQueue);
         }
+    }
+
+    // Create cache
+    std::vector<char> cache;
+    int32_t remainlen = 0;
+
+    void ClearCache()
+    {
+        cache.clear();
+        remainlen = 0;
+    }
+
+    void WriteCache(void *buffer, int32_t bufferLen)
+    {
+        if (bufferLen + remainlen > cache.size()) {
+            cache.resize(remainlen + bufferLen);
+        }
+        std::memcpy(cache.data() + remainlen, buffer, bufferLen);
+        remainlen += bufferLen;
+    }
+
+    bool ReadCache(void *buffer, int32_t bufferLen)
+    {
+        if (remainlen < bufferLen) {
+            return false;
+        }
+        std::memcpy(buffer, cache.data(), bufferLen);
+        remainlen = remainlen - bufferLen;
+        if (remainlen > 0) {
+            std::memmove(cache.data(), cache.data() + bufferLen, remainlen);
+        }
+        return true;
     }
 };
 

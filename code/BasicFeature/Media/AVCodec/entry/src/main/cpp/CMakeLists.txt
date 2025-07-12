@@ -34,6 +34,8 @@ add_library(recorder SHARED sample/recorder/RecorderNative.cpp
                             sample/recorder/Recorder.cpp
                             capbilities/muxer.cpp
                             capbilities/video_encoder.cpp
+                            capbilities/audio_capturer.cpp
+                            capbilities/audio_encoder.cpp
                             common/sample_callback.cpp
 )
 

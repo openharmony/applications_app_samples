@@ -26,7 +26,7 @@ function requestPre() {
   let atManager = abilityAccessCtrl.createAtManager();
   try {
     atManager.requestPermissionsFromUser(globalThis.context,
-      ['ohos.permission.CAMERA',])
+      ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
       .then((data) => {
         Logger.info('requestPre() data: ' + JSON.stringify(data));
       }).catch((err: BusinessError) => {
