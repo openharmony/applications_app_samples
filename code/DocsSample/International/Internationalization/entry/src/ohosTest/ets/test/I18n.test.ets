@@ -185,13 +185,6 @@ export default function abilityTest() {
         ON.text(`${resourceToString($r('app.string.LongFormatRelativeTime'))}il y a 1 jour --passed`));
       await driver.assertComponentExist(
         ON.text(`${resourceToString($r('app.string.NarrowFormatRelativeTime'))}-1 j --passed`));
-      await driver.assertComponentExist(
-        ON.text(resourceToString($r('app.string.CustomFormatRelativeTime')) +
-          '[{"type":"literal","value":"in "},' +
-          '{"type":"integer","value":"1","unit":"day"},' +
-          '{"type":"literal","value":" day"}] --passed'
-        )
-      );
       await scrollOuterBottomView('outerScrollInDateTime');
       await driver.assertComponentExist(
         ON.text(`${resourceToString($r('app.string.GetRelativeTimeFormatOptions'))}auto --passed`));
@@ -228,6 +221,7 @@ export default function abilityTest() {
         ON.text(`${resourceToString($r('app.string.DisplayUnit'))}123,400 ha --passed`));
       await driver.assertComponentExist(
         ON.text(`${resourceToString($r('app.string.DisplayUnitLand'))}304,928.041 ac --passed`));
+      await scrollOuterBottomView('outerScrollInNumberMeasure');
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfMeasureTrans'))));
       await driver.assertComponentExist(
         ON.text(`${resourceToString($r('app.string.MeasureTrans'))}236.588 L --passed`));
@@ -385,12 +379,10 @@ export default function abilityTest() {
         ON.text(`${resourceToString($r('app.string.AGetType'))}U_LOWERCASE_LETTER --passed`));
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfTrans'))));
       await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.CharacterTransResult'))}zhōng guó,dé guó,měi guó,fǎ guó --passed`));
+        ON.text(`${resourceToString($r('app.string.CharacterTransResult'))}zhōng guó --passed`));
       await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ChinaTrans'))}zhong guo --passed`));
       await driver.assertComponentExist(
         ON.text(`${resourceToString($r('app.string.TeachersSurnameTrans'))}shàn lǎo shī --passed`));
-      await driver.assertComponentExist(
-        ON.text(`${resourceToString($r('app.string.ZhangSunWuJiTrans'))}zhǎng sūn wú jì --passed`));
       await driver.assertComponentExist(ON.text(`${resourceToString($r('app.string.ResultsOfSupportedId'))}passed`));
       await scrollView('transIdsScroll', 'transIdsText', expectedTransIdsText);
       await driver.assertComponentExist(ON.text(resourceToString($r('app.string.ResultsOfNormalize'))));

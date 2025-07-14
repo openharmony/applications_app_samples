@@ -66,26 +66,16 @@ let day: number = calendar.get('date'); // day = 17
 
 // 比较日历和指定日期相差的天数
 let daysDifference: number = calendar.compareDays(new Date(2023, 10, 15)); // daysDifference = -3
-calendar.compareDays(new Date(2023, 10, 15)); // -3
-// [End check_and_set_date]
-
-// [Start get_lunar_date]
-// 获取公历对应的农历日期
-let calendarCh: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese');
-
-// 将公历信息设置到calendar对象
-calendarCh.setTime(new Date(2023, 6, 25, 8, 0, 0));
-
 let calendarChinese: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese');
 // 将公历日期设置到calendar对象，时间日期为2023.07.25 08:00:00
 calendarChinese.setTime(new Date(2023, 6, 25, 8, 0, 0));
+// [End check_and_set_date]
+
+// [Start get_lunar_date]
 // 获取农历年月日
 let yearChinese: number = calendarChinese.get('year'); // year = 40，指干支纪年40，范围1-60
 let monthChinese: number = calendarChinese.get('month'); // month = 5，指6月
 let dayChinese: number = calendarChinese.get('date'); // day = 8，指8日
-calendarCh.get('year'); // 返回干支纪年40，范围1-60
-calendarCh.get('month'); // 结果为5，指6月
-calendarCh.get('date'); // 8日
 // [End get_lunar_date]
 
 const expectedTimezone = 'Asia/Shanghai';

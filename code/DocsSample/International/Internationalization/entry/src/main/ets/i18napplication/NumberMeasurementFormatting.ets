@@ -96,8 +96,6 @@ let options: intl.NumberOptions = {
 let numberRangeFormat: intl.NumberFormat = new intl.NumberFormat('es-ES', options);
 let integerFormattedRange: string = numberRangeFormat.formatRange(2, 8); // integerFormattedRange = '2-8 €'
 let fractionFormattedRange: string = numberRangeFormat.formatRange(2.9, 3.1); // fractionFormattedRange = '~3 €'
-let numberFormat4 = new intl.NumberFormat('zh-CN', { style: 'percent' });
-let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
 // [End format_numbers]
 
 // [Start currency_and_unit_formatting]
@@ -127,8 +125,6 @@ let unitUsageFormat: intl.NumberFormat = new intl.NumberFormat('en-GB',
     unitUsage: 'area-land-agricult'
   });
 let unitUsageNumber = unitUsageFormat.format(123400); // unitUsageNumber = '304,928.041 ac'
-let numberFormat8 = new intl.NumberFormat('en-GB', { style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult' });
-let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,928.041 ac
 // [End currency_and_unit_formatting]
 
 /**********************************************************************************************************************
@@ -235,9 +231,9 @@ struct NumberMeasurementFormatting {
           }.alignItems(HorizontalAlign.Start)
         }
       }
+      .id('outerScrollInNumberMeasure')
       .height('100%')
       .width('100%')
       .alignItems(HorizontalAlign.Start)
-
   }
 }
