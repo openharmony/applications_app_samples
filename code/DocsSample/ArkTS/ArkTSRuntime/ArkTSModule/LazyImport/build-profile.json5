@@ -25,6 +25,9 @@
         "targetSdkVersion": 20,
         "runtimeOS": "OpenHarmony",
         "buildOption": {
+          "arkOptions": {
+            "reExportCheckMode": "compatible"
+          },
           "strictMode": {
             "caseSensitiveCheck": true,
             "useNormalizedOHMUrl": true

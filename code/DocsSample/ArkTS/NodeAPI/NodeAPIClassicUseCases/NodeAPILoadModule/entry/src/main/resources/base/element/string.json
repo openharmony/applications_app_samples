@@ -19,6 +19,34 @@
     {
       "name": "loadModuleFile",
       "value": "Call loadModuleFile"
+    },
+    {
+      "name": "loadEtsDirModule",
+      "value": "Call loadEtsDirModule"
+    },
+    {
+      "name": "loadHarModule",
+      "value": "Call loadHarModule"
+    },
+    {
+      "name": "loadHspModule",
+      "value": "Call loadHspModule"
+    },
+    {
+      "name": "loadFarHarModule",
+      "value": "Call loadFarHarModule"
+    },
+    {
+      "name": "loadOhpmModule",
+      "value": "Call loadOhpmModule"
+    },
+    {
+      "name": "loadNativeModule",
+      "value": "Call loadNativeModule"
+    },
+    {
+      "name": "har1LodeHar2",
+      "value": "Call har1LodeHar2"
     }
   ]
 }

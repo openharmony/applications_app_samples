@@ -4,13 +4,13 @@
 
 本工程主要对比了延迟加载与普通加载的区别，并展示延迟加载的错误使用方法。该工程中展示的代码详细描述可查如下链接部分。
 
-- [延迟加载](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/arkts-utils/arkts-lazy-import.md)
+- [延迟加载](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/arkts-lazy-import.md)
 
 ### 效果预览
 
 | 首页                                                          | 依次点击按钮后结果图                                          |
 | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| <img src="./screenshots/LazyImport1.png" style="zoom:50%;" /> | <img src="./screenshots/LazyImport2.png" style="zoom:50%;" /> |
+| <img src="./screenshots/LazyImport1.png" style="zoom:50%;" width="360; /> | <img src="./screenshots/LazyImport2.png" style="zoom:50%;" width="360; /> |
 
 ### 使用说明
 
@@ -21,29 +21,38 @@
 ### 工程目录
 
 ```
-entry/src/
- ├── main
- │   ├── ets
- │   │   ├── entryability
- │   │   ├── entrybackupability
- │   │   ├── pages
- │   │       ├── A.ets
- │   │       ├── A_ns.ets
- │   │       ├── B.ets
- │   │       ├── C.ets
- │   │       ├── fail_example.ets
- │   │       ├── main.ets             // 延迟加载
- │   │       ├── middle.ets
- │   │       ├── mod1.ets
- │   │       ├── mod2.ets
- │   ├── module.json5
- │   └── resources
- ├── ohosTest
- │   ├── ets
- │   │   └── test
- │   │       ├── Ability.test.ets
- │   │       ├── LazyImport.test.ets  // 自动化测试代码
- │   │       └── List.test
+entry/
+└── src/
+    ├── main/
+    │   ├── ets/
+    │   │   ├── entryability/
+    │   │   ├── entrybackupability/
+    │   │   ├── pages/
+    │   │   │   ├── 1.ets
+    │   │   │   ├── A.ets
+    │   │   │   ├── A_ns.ets
+    │   │   │   ├── B.ets
+    │   │   │   ├── C.ets
+    │   │   │   ├── fail_example.ets
+    │   │   │   ├── index.ets
+    │   │   │   ├── innerinner.ets
+    │   │   │   ├── main.ets
+    │   │   │   ├── middle.ets
+    │   │   │   ├── mod1.ets
+    │   │   │   ├── mod2.ets
+    │   │   │   └── outter.ets
+    │   │   ├── util/
+    │   │   ├── resources/
+    │   │   └── module.json5
+    │   └── mock/
+    └── ohosTest/
+        ├── ets/
+        │   └── test/
+        │       ├── Ability.test.ets
+        │       ├── LazyImport.test.ets
+        │       └── List.test.ets
+        ├── module.json5
+        └── test/
 ```
 
 ### 相关权限
@@ -70,6 +79,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTS/ArkTSRuntime/ArkTSModule/LazyImport > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

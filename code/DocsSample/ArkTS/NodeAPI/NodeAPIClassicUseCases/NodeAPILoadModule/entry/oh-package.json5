@@ -22,6 +22,17 @@
   "license": "",
   "dependencies": {
     "libentry.so": "file:./src/main/cpp/types/libentry",
-    "libentry1.so": "file:./src/main/cpp/types/libentry1"
+    "libentry1.so": "file:./src/main/cpp/types/libentry1",
+    "libentry2.so": "file:./src/main/cpp/types/libentry2",
+    "libentry3.so": "file:./src/main/cpp/types/libentry3",
+    "libentry4.so": "file:./src/main/cpp/types/libentry4",
+    "libentry6.so": "file:./src/main/cpp/types/libentry6",
+    "libentry7.so": "file:./src/main/cpp/types/libentry7",
+    "libentry8.so": "file:./src/main/cpp/types/libentry8",
+    "library": "file:../library",
+    "har1": "file:../har1",
+    "sharedlibrary": "file:../sharedlibrary",
+    "@ohos/hypium": "1.0.16",
+    "@ohos/axios": "2.2.4"
   }
 }
