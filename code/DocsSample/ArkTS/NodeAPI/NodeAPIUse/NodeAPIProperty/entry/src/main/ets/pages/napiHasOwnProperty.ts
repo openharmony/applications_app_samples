@@ -20,7 +20,7 @@ import testNapi from 'libentry.so';
 export function napiHasOwnProperty() {
   let myObj = { 'myProperty': 1 };
   let inheritedObj = { 'inheritedProperty': 2 };
-  // 这里的Object.setPrototypeOf方法在DevEco Studio 4.1.0.400及其以上版本不支持，需在ts使用
+  // The Object.setPrototypeOf method is not supported in DevEco Studio 4.1.0.400 and later versions, and must be used in TypeScript (TS).
   Object.setPrototypeOf(myObj, inheritedObj);
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property my: %{public}s',
     testNapi.napiHasOwnProperty(myObj, 'myProperty'));

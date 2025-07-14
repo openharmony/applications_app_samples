@@ -25,8 +25,8 @@ export function napiDeleteProperty() {
   let obj: Obj = { first: 1 };
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property first: %{public}s',
     testNapi.deleteProperty(obj, 'first'));
-  //设置新的属性为不可配置
-  //这里的Object.defineProperty方法在DevEco Studio 4.1.0.400及其以上版本不支持，需在ts使用
+  // Set the new property as non-configurable
+  // The Object.defineProperty method is not supported in DevEco Studio 4.1.0.400 and above versions, and needs to be used in TS (TypeScript)
   Object.defineProperty(obj, 'config', {
     configurable: false,
     value: 'value'

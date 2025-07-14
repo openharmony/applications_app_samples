@@ -17,8 +17,10 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 import nativeModule from 'libentry1.so';
 
+// [Start callback_call_interface]
 let num1: number = 123;
 let num2: number = 456;
+// [StartExclude callback_call_interface]
 
 @Entry
 @Component
@@ -33,18 +35,22 @@ struct Index {
         Button($r('app.string.AsyncWorkPromise'))
           .margin(3)
           .onClick(() => {
+            // [Start promise_call_interface]
             testNapi.asyncWork(1024).then((result) => {
               hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
               this.message = 'result is ' + result.toString();
             });
+            // [End promise_call_interface]
           })
         Button($r('app.string.AsyncWorkCallback'))
           .margin(3)
           .onClick(() => {
+            // [EndExclude callback_call_interface]
             nativeModule.asyncWork(num1, num2, (result) => {
               hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
               this.message = 'result is ' + result.toString();
             });
+            // [End callback_call_interface]
           })
       }
       .width('100%')
