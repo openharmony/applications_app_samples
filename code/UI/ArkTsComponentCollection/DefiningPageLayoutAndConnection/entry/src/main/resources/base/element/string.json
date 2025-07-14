@@ -11,6 +11,26 @@
     {
       "name": "EntryAbility_label",
       "value": "Healthy Diet"
+    },
+    {
+      "name": "Category_Vegetable",
+      "value": "Vegetable"
+    },
+    {
+      "name": "Category_Fruit",
+      "value": "Fruit"
+    },
+    {
+      "name": "Category_Nut",
+      "value": "Nut"
+    },
+    {
+      "name": "Category_Seafood",
+      "value": "Seafood"
+    },
+    {
+      "name": "Category_Dessert",
+      "value": "Dessert"
     }
   ]
 }
