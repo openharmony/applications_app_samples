@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ModulePrinciple"
+    },
+    {
+      "name": "Native_module_example",
+      "value": "Native模块示例"
+    }
+  ]
+}

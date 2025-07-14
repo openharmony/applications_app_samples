@@ -45,7 +45,7 @@ struct Index {
           }
 
           parentworker.onerror = (err: ErrorEvent) => {
-            console.info(resource.resourceToString($r('app.string.recommend3')) + err);
+            console.error(resource.resourceToString($r('app.string.recommend3')) + err);
           }
 
           parentworker.postMessage(resource.resourceToString($r('app.string.recommend4')));

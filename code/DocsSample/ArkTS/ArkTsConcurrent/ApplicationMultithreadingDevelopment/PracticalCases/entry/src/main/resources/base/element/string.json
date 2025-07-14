@@ -25,6 +25,10 @@
       "value": "使用Sendable进行大容量数据库操作"
     },
     {
+      "name": "Complex_class_instance_object_using_sendable",
+      "value": "复杂类实例对象使用Sendable进行大容量数据库操作"
+    },
+    {
       "name": "Concurrent_loading_modules_guide",
       "value": "业务模块并发加载场景"
     },

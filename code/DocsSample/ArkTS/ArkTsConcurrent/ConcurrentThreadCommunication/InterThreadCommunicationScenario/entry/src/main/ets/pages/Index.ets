@@ -49,6 +49,10 @@ struct Index {
           buttonName: resource.resourceToString($r('app.string.IndependentTime_consuming_task')),
           buttonUrl: 'managers/IndependentTimeConsumingTask'
         });
+        CommonButton({
+          buttonName: resource.resourceToString($r('app.string.Worker_postMessage_sendable')),
+          buttonUrl: 'managers/WorkerPostMessageSendable'
+        });
       }
       .padding('20vp')
       .width('100%')
