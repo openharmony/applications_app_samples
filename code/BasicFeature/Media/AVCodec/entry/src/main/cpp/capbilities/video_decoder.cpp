@@ -29,9 +29,6 @@ OH_AVCodec *VideoDecoder::GetCodecByCategory(const char *mime, bool isEncoder, O
 {
     OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(mime, isEncoder, category);
     CHECK_AND_RETURN_RET_LOG(capability != nullptr, nullptr, "Capability is nullptr");
-    /**
-     * OH_AVCapability_IsHardware(capability);
-     */
     const char *codecName = OH_AVCapability_GetName(capability);
     return OH_VideoDecoder_CreateByName(codecName);
 }
