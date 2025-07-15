@@ -326,6 +326,22 @@ void PluginManager::DispatchTouchEvent(OH_NativeXComponent* component, void* win
     } else {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "XComponent_Native", "touch fail");
     }
+
+    int32_t size = 0;
+    OH_NativeXComponent_HistoricalPoint *points = nullptr;
+
+    if (OH_NativeXComponent_GetHistoricalPoints(component, window, &size, &points) ==
+        OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "XComponent_Native", "HistoricalPoints size=%{public}d",
+                     size);
+        for (auto i = 0; i < size; i++) {
+            auto point = points[i];
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "XComponent_Native",
+                         "HistoricalPoint %{public}d Info : id=%{public}d, x=%{public}f, y=%{public}f, "
+                         "type=%{public}d, timeStamp=%{public}lld, sourceTool=%{public}d",
+                         i, point.id, point.x, point.y, point.type, point.timeStamp, point.sourceTool);
+        }
+    }
 }
 void PluginManager::OnSurfaceChanged(OH_NativeXComponent* component, void* window)
 {
