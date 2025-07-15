@@ -31,6 +31,18 @@
     {
       "name": "Task_pool",
       "value": "TaskPool简介"
+    },
+    {
+      "name": "Notes",
+      "value": "TaskPool注意事项"
+    },
+    {
+      "name": "Instruction",
+      "value": "装饰器说明"
+    },
+    {
+      "name": "instruction_desc",
+      "value": "由于@Concurrent标记的函数不能访问闭包，因此函数内部不能调用当前文件的其他函数"
     }
   ]
 }

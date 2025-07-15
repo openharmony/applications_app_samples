@@ -1,5 +1,5 @@
   /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,12 +30,27 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
 })
 // [End promise_async_operation]
 // [EndExclude promise_then_catch_handling]
-
+  /*
+   * Promise对象创建后，可以使用then方法和catch方法指定fulfilled状态和rejected状态的回调函数。
+   * then方法可接受两个参数，一个处理fulfilled状态的函数，另一个处理rejected状态的函数。
+   *
+   * 只传一个参数则表示当Promise对象状态变为fulfilled时，then方法会自动调用这个回调函数，并将Promise对象的结果作为参数传递给它。
+   * 使用catch方法注册一个回调函数，用于处理“失败”的结果，即捕获Promise的状态改变为rejected状态或操作失败抛出的异常。
+   */
+  // 使用 then 方法定义成功和失败的回调
   promise.then((result: number) => {
-  console.info(`Random number is ${result}`);
-}).catch((error: BusinessError) => {
-  console.error(error.message);
-});
+    console.info(`Succesed number is ${result}`); // 成功时执行
+  }, (error: BusinessError) => {
+    console.error(error.message); // 失败时执行
+  }
+  );
+
+  // 使用 then 方法定义成功的回调，catch 方法定义失败的回调
+  promise.then((result: number) => {
+    console.info(`Random number is ${result}`); // 成功时执行
+  }).catch((error: BusinessError) => {
+    console.error(error.message); // 失败时执行
+  });
 // [End promise_then_catch_handling]
 
 /*

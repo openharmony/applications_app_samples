@@ -47,17 +47,17 @@ function testFunc() {
   // let a = new TestA('aaa');
   // 直接访问同文件定义的TestB的成员nameStr，TestB飘红报错：
   // Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>
-  // console.info('TestB name is: ' + TestB.nameStr);
+  // console.info(`TestB name is: ${TestB.nameStr}`);
 
   // case2：在并发函数中调用定义在Test.ets文件并导入当前文件的类或函数
 
   // 输出结果：res1 is: 2
-  console.info('res1 is: ' + testAdd(1));
-  let tmpStr = new MyTestA('TEST A');
+  console.info(`res1 is: ${testAdd(1)}`);
+  const tmpStr = new MyTestA('TEST A');
   // 输出结果：res2 is: TEST A
-  console.info('res2 is: ' + tmpStr.name);
+  console.info(`res2 is: ${tmpStr.name}`);
   // 输出结果：res3 is: MyTestB
-  console.info('res3 is: ' + MyTestB.nameStr);
+  console.info(`res3 is: ${MyTestB.nameStr}`);
 }
 
 
@@ -77,7 +77,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          let task = new taskpool.Task(testFunc);
+          const task = new taskpool.Task(testFunc);
           taskpool.execute(task).then(() => {
             console.info('taskpool: execute task success!');
           }).catch((e:BusinessError) => {

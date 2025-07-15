@@ -8,17 +8,17 @@ Actor并发模型作为基于消息通信并发模型的典型代表，不需要
 
 当前ArkTS提供了TaskPool和Worker两种并发能力，TaskPool和Worker都基于Actor并发模型实现。
 
-Actor并发模型和内存共享并发模型的具体对比请见[多线程并发模型](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/arkts-utils/multi-thread-concurrency-overview.md#多线程并发模型)。
+Actor并发模型和内存共享并发模型的具体对比请见[多线程并发模型](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/multi-thread-concurrency-overview.md#多线程并发模型)。
 
 该工程中展示的代码详细描述可查如下链接：
 
-- [多线程并发概述](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/arkts-utils/multi-thread-concurrency-overview.md)
+- [多线程并发概述](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/multi-thread-concurrency-overview.md)
 
 ### 效果预览
 
-|                                        首页                                         |                                 执行及结果即时反馈                                  |
-| :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
-| <img src="./screenshots/MultiThreadConcurrencyOverview_1.png" style="zoom: 33%;" /> | <img src="./screenshots/MultiThreadConcurrencyOverview_2.png" style="zoom: 33%;" /> |
+|                             首页                              |                          执行及结果即时反馈                          |
+|:-----------------------------------------------------------:|:-----------------------------------------------------------:|
+| <img src="./screenshots/Multi_1.jpeg" style="zoom: 33%;" /> | <img src="./screenshots/Multi_2.jpeg" style="zoom: 33%;" /> |
 
 ### 使用说明
 
@@ -34,6 +34,7 @@ entry/src/
  │   │   ├── entryability
  │   │   ├── entrybackupability
  │   │   ├── pages
+ │   │       ├── Cale.ets                // 多线程并发概述示例代码(内存共享模型)
  │   │       ├── Index.ets               // 多线程并发概述示例代码
  │   ├── module.json5
  │   └── resources
@@ -55,9 +56,9 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.57，镜像版本号：OpenHarmony_5.0.2.58。
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.40，镜像版本号：OpenHarmony_6.0.0.40。
 
-3.本示例需要使用DevEco Studio 5.0.1 Release (Build Version: 5.0.5.306, built on December 6, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 5.1.1 Release (Build Version: 5.1.1.820, built on June 28, 2025)及以上版本才可编译运行。
 
 ### 下载
 
@@ -67,6 +68,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -20,22 +20,22 @@ import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function testPromise(args1: number, args2: number): Promise<number> {
-  return new Promise<number>((testFuncA, testFuncB) => {
-    testFuncA(args1 + args2);
+  return new Promise<number>((resolve, reject) => {
+    resolve(args1 + args2);
   });
 }
 
 @Concurrent
 async function testPromise1(args1: number, args2: number): Promise<number> {
-  return new Promise<number>((testFuncA, testFuncB) => {
-    testFuncA(args1 + args2);
+  return new Promise<number>((resolve, reject) => {
+    resolve(args1 + args2);
   });
 }
 
 @Concurrent
 async function testPromise2(args1: number, args2: number): Promise<number> {
-  return await new Promise<number>((testFuncA, testFuncB) => {
-    testFuncA(args1 + args2);
+  return await new Promise<number>((resolve, reject) => {
+    resolve(args1 + args2);
   });
 }
 
@@ -59,42 +59,42 @@ async function testPromise5(): Promise<string> {
 }
 
 async function testConcurrentFunc() {
-  let task1: taskpool.Task = new taskpool.Task(testPromise, 1, 2);
-  let task2: taskpool.Task = new taskpool.Task(testPromise1, 1, 2);
-  let task3: taskpool.Task = new taskpool.Task(testPromise2, 1, 2);
-  let task4: taskpool.Task = new taskpool.Task(testPromise3);
-  let task5: taskpool.Task = new taskpool.Task(testPromise4);
-  let task6: taskpool.Task = new taskpool.Task(testPromise5);
+  const task1: taskpool.Task = new taskpool.Task(testPromise, 1, 2);
+  const task2: taskpool.Task = new taskpool.Task(testPromise1, 1, 2);
+  const task3: taskpool.Task = new taskpool.Task(testPromise2, 1, 2);
+  const task4: taskpool.Task = new taskpool.Task(testPromise3);
+  const task5: taskpool.Task = new taskpool.Task(testPromise4);
+  const task6: taskpool.Task = new taskpool.Task(testPromise5);
 
   taskpool.execute(task1).then((d: object) => {
-    console.info('task1 res is: ' + d);
+    console.info(`task1 res is: ${d}`); // 输出结果：task1 res is: 3
   }).catch((e: object) => {
-    console.info('task1 catch e: ' + e);
+    console.error(`task1 catch e: ${e}`);
   })
   taskpool.execute(task2).then((d: object) => {
-    console.info('task2 res is: ' + d);
+    console.info(`task2 res is: ${d}`);
   }).catch((e: object) => {
-    console.info('task2 catch e: ' + e);
+    console.error(`task2 catch e: ${e}`); // 输出结果：task2 catch e: Error: Can't return Promise in pending state
   })
   taskpool.execute(task3).then((d: object) => {
-    console.info('task3 res is: ' + d);
+    console.info(`task3 res is: ${d}`); // 输出结果：task3 res is: 3
   }).catch((e: object) => {
-    console.info('task3 catch e: ' + e);
+    console.error(`task3 catch e: ${e}`);
   })
   taskpool.execute(task4).then((d: object) => {
-    console.info('task4 res is: ' + d);
+    console.info(`task4 res is: ${d}`); // 输出结果：task4 res is: 1
   }).catch((e: object) => {
-    console.info('task4 catch e: ' + e);
+    console.error(`task4 catch e: ${e}`);
   })
   taskpool.execute(task5).then((d: object) => {
-    console.info('task5 res is: ' + d);
+    console.info(`task5 res is: ${d}`); // 输出结果：task5 res is: 1
   }).catch((e: object) => {
-    console.info('task5 catch e: ' + e);
+    console.error(`task5 catch e: ${e}`);
   })
   taskpool.execute(task6).then((d: object) => {
-    console.info('task6 res is: ' + d);
+    console.info(`task6 res is: ${d}`); // 输出结果：task6 res is: Promise setTimeout after resolve
   }).catch((e: object) => {
-    console.info('task6 catch e: ' + e);
+    console.error(`task6 catch e: ${e}`);
   })
 }
 

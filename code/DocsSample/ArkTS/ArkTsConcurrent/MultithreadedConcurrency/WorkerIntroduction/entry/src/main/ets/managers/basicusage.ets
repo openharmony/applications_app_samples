@@ -41,23 +41,23 @@ struct Index {
             console.info('workerInstance onmessage is: ', data);
           }
 
-          // 注册onerror回调，当Worker在执行过程中发生异常时被调用，在宿主线程执行
-          workerInstance.onerror = (err: ErrorEvent) => {
-            console.error('workerInstance onerror message is: ' + err.message);
+          // 注册onAllErrors回调，可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常，在宿主线程执行
+          workerInstance.onAllErrors = (err: ErrorEvent) => {
+            console.error('workerInstance onAllErrors message is: ' + err.message);
           }
 
-          // 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在宿主线程执行
+          // 注册onmessageerror回调，当Worker对象接收到无法序列化的消息时被调用，在宿主线程执行
           workerInstance.onmessageerror = () => {
             console.error('workerInstance onmessageerror');
           }
 
           // 注册onexit回调，当Worker销毁时被调用，在宿主线程执行
           workerInstance.onexit = (e: number) => {
-            // 当Worker正常退出时code为0，异常退出时code为1
+            // 如果Worker正常退出，code为0；如果异常退出，code为1
             console.info('workerInstance onexit code is: ', e);
           }
 
-          // 向Worker线程发送消息
+          // 发送消息给Worker线程
           workerInstance.postMessage('1');
           this.message = 'success';
         })

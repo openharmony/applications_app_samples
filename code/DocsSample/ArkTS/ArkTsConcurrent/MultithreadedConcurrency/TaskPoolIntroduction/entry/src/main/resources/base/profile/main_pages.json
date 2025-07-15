@@ -4,6 +4,8 @@
     "managers/generaluse",
     "managers/customclasses",
     "managers/asynchronousfunctions",
-    "managers/returnpromise"
+    "managers/returnpromise",
+    "managers/notes",
+    "managers/instruction"
   ]
 }

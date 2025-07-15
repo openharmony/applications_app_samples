@@ -94,6 +94,35 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('success'));
       await driver.pressBack();
       done();
+    it('testNotes', 0, async (done: Function) => {
+      console.log('uitest: testNotes begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Notes'))));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Hello World'));
+      await driver.delayMs(1000);
+      const button = await driver.findComponent(ON.id('notes button'));
+      await button.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('notes success'));
+      await driver.pressBack();
+      done();
+    })
+    it('testInstruction', 0, async (done: Function) => {
+      console.log('uitest: testInstruction begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Instruction'))));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(resource.resourceToString($r('app.string.instruction_desc'))));
+      await driver.pressBack();
+      done();
+    })
     })
   })
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,6 +43,18 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('success'));
       done();
+
+      await driver.delayMs(1000);
+      const text2 = await driver.findComponent(ON.id('button2'));
+      await text2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('success2'));
+
+      await driver.delayMs(1000);
+      const text3 = await driver.findComponent(ON.id('button3'));
+      await text3.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('cale success'));
     })
   })
 }

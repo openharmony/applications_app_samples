@@ -42,24 +42,24 @@ function testPromiseError2() {
 }
 
 async function testConcurrentFunc() {
-  let task1: taskpool.Task = new taskpool.Task(testPromiseError);
-  let task2: taskpool.Task = new taskpool.Task(testPromiseError1);
-  let task3: taskpool.Task = new taskpool.Task(testPromiseError2);
+  const task1: taskpool.Task = new taskpool.Task(testPromiseError);
+  const task2: taskpool.Task = new taskpool.Task(testPromiseError1);
+  const task3: taskpool.Task = new taskpool.Task(testPromiseError2);
 
-  taskpool.execute(task1).then((d:object)=>{
-    console.info('task1 res is: ' + d);
-  }).catch((e:object)=>{
-    console.info('task1 catch e: ' + e);
+  taskpool.execute(task1).then((d: object) => {
+    console.info(`task1 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task1 catch e: ${e}`); // task1 catch e: Error: testPromise Error
   })
-  taskpool.execute(task2).then((d:object)=>{
-    console.info('task2 res is: ' + d);
-  }).catch((e:object)=>{
-    console.info('task2 catch e: ' + e);
+  taskpool.execute(task2).then((d: object) => {
+    console.info(`task2 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task2 catch e: ${e}`); // task2 catch e: testPromiseError1 Error msg
   })
-  taskpool.execute(task3).then((d:object)=>{
-    console.info('task3 res is: ' + d);
-  }).catch((e:object)=>{
-    console.info('task3 catch e: ' + e);
+  taskpool.execute(task3).then((d: object) => {
+    console.info(`task3 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task3 catch e: ${e}`); // task3 catch e: testPromiseError2 Error msg
   })
 }
 

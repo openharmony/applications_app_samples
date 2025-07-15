@@ -5,6 +5,7 @@
     "managers/recommend",
     "managers/notrecommendedone",
     "managers/notrecommendedtwo",
-    "managers/basicusage"
+    "managers/basicusage",
+    "managers/stageRules"
   ]
 }
