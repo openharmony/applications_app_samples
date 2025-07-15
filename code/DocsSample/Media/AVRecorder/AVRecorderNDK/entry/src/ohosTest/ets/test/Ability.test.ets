@@ -19,6 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import Base from '@ohos.base';
 import { Driver, ON } from '@ohos.UiTest';
 import fs from '@ohos.file.fs';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = 'abilityTest';
 const domain: number = 0x0000;

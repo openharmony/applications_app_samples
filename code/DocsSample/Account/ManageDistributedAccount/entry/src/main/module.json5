@@ -27,7 +27,7 @@
     "installationFree": false,
     "pages": "$profile:main_pages",
     "requestPermissions": [{
-      "name": "ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS",
+      "name": "ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS"
     }],
     "abilities": [
       {
@@ -62,7 +62,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ]
   }

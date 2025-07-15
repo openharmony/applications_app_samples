@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,20 +13,20 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import hilog from '@ohos.hilog';
+import { describe, it, expect } from '@ohos/hypium';
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
-    it('assertContain',0, function () {
+    it('assertContain',0, () => {
       hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
       hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc'
-      let b = 'b'
+      let a = 'abc';
+      let b = 'b';
 
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+      expect(a).assertContain(b);
+      expect(a).assertEqual(a);
     })
   })
 }

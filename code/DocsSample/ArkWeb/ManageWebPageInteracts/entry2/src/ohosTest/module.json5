@@ -18,9 +18,7 @@
     "name": "entry2_test",
     "type": "feature",
     "deviceTypes": [
-      "phone",
-      "2in1",
-      "car"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false

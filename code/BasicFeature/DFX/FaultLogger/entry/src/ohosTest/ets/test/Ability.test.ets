@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,6 +14,7 @@
  */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
@@ -21,15 +22,19 @@ import { logger } from '../util/Logger';
 const TAG: string = 'Sample_FaultLogger';
 const BUNDLE: string = 'FaultLogger_';
 const NO_EXCEPTION: string = 'No exception log was obtained';
+let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+function getString(resource: Resource) {
+  return delegator.getAppContext().resourceManager.getStringSync(resource);
+}
 
 export default function abilityTest() {
-  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   let driver: Driver = Driver.create();
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // 打开应用
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
-      let want = {
+      let want: Want = {
         bundleName: "ohos.samples.faultlogger",
         abilityName: "EntryAbility"
       };
@@ -37,7 +42,7 @@ export default function abilityTest() {
         logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       })
       await driver.delayMs(1000);
-      await delegator.getCurrentTopAbility().then((Ability)=>{
+      await delegator.getCurrentTopAbility().then((Ability) => {
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
@@ -46,7 +51,7 @@ export default function abilityTest() {
     })
 
     // 检查构造异常的弹窗是否正常
-    it(BUNDLE + 'CrashDialog_001', 0, async function (done) {
+    it(BUNDLE + 'CrashDialog_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}CrashDialog_001 begin`);
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(getString($r('app.string.create_fault'))));
@@ -63,7 +68,7 @@ export default function abilityTest() {
     })
 
     // 获取JS_crash
-    it(BUNDLE + 'GetJsCrash_001', 0, async function (done) {
+    it(BUNDLE + 'GetJsCrash_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}GetJsCrash_001 begin`);
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(getString($r('app.string.catch_js_fault'))));
@@ -80,7 +85,7 @@ export default function abilityTest() {
     })
 
     // 获取CPP_crash
-    it(BUNDLE + 'GetCppCrash_001', 0, async function (done) {
+    it(BUNDLE + 'GetCppCrash_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}GetCppCrash_001 begin`);
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(getString($r('app.string.catch_cpp_fault'))));
@@ -97,7 +102,7 @@ export default function abilityTest() {
     })
 
     // 获取APP_FREEZE异常
-    it(BUNDLE + 'GetAppFreeze_001', 0, async function (done) {
+    it(BUNDLE + 'GetAppFreeze_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}GetAppFreeze_001 begin`);
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(getString($r('app.string.catch_app_freeze_fault'))));
@@ -114,7 +119,7 @@ export default function abilityTest() {
     })
 
     // 获取NO_SPECIFIC异常
-    it(BUNDLE + 'GetNoSpecific_001', 0, async function (done) {
+    it(BUNDLE + 'GetNoSpecific_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}_GetNoSpecific_001 begin`);
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.text(getString($r('app.string.catch_all_fault'))));
@@ -129,9 +134,5 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}_GetNoSpecific_001 end`);
       done();
     })
-
-    function getString(resource: Resource) {
-      return delegator.getAppContext().resourceManager.getStringSync(resource);
-    }
   })
 }

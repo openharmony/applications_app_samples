@@ -16,6 +16,7 @@ import hilog from '@ohos.hilog';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = 'Sample_Vibrator';
 const DOMAIN = 0xF811;

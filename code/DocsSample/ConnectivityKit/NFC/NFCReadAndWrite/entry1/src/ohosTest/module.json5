@@ -18,7 +18,7 @@
     "name": "entry1_test",
     "type": "feature",
     "deviceTypes": [
-      "car"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false

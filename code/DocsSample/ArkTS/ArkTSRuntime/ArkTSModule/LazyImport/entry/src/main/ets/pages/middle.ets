@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { c } from './A'; // 不推荐用法
+import { a } from './A'; // 不推荐用法
 import { ns } from './A_ns'; // 不推荐用法
 
 
-export { c, ns };
+export { a, ns };

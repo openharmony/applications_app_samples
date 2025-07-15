@@ -27,16 +27,16 @@
     "installationFree": false,
     "pages": "$profile:main_pages",
     "requestPermissions": [{
-        "name": "ohos.permission.MANAGE_USER_IDM",
+        "name": "ohos.permission.MANAGE_USER_IDM"
       },
       {
-        "name": "ohos.permission.ACCESS_PIN_AUTH",
+        "name": "ohos.permission.ACCESS_PIN_AUTH"
       },
       {
-        "name": "ohos.permission.ACCESS_USER_AUTH_INTERNAL",
+        "name": "ohos.permission.ACCESS_USER_AUTH_INTERNAL"
       },
       {
-        "name": "ohos.permission.USE_USER_IDM",
+        "name": "ohos.permission.USE_USER_IDM"
       }
     ],
     "abilities": [

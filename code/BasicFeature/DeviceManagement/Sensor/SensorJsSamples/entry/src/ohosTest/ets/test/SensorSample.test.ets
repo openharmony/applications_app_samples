@@ -16,6 +16,7 @@ import hilog from '@ohos.hilog';
 import { Driver, ON, Component } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = 'Sample_Sensor';
 const DOMAIN = 0xF811;

@@ -27,13 +27,13 @@
     "installationFree": false,
     "pages": "$profile:main_pages",
     "requestPermissions": [{
-        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
+        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
       },
       {
-        "name": "ohos.permission.GET_DOMAIN_ACCOUNTS",
+        "name": "ohos.permission.GET_DOMAIN_ACCOUNTS"
       },
       {
-        "name": "ohos.permission.ACCESS_USER_AUTH_INTERNAL",
+        "name": "ohos.permission.ACCESS_USER_AUTH_INTERNAL"
       }],
     "abilities": [
       {
@@ -68,7 +68,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ]
   }

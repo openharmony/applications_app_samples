@@ -23,6 +23,7 @@
         "compileSdkVersion": 19,
         //指定HarmonyOS应用/服务兼容的最低版本
         "compatibleSdkVersion": 19,
+        "targetSdkVersion": 19,
         //指定HarmonyOS应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
         "runtimeOS": "OpenHarmony",
       }

@@ -27,10 +27,10 @@
     "installationFree": false,
     "pages": "$profile:main_pages",
     "requestPermissions": [{
-        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
+        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
       },
       {
-        "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION",
+        "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION"
       }],
     "abilities": [
       {
@@ -65,7 +65,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ]
   }

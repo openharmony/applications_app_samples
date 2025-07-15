@@ -56,7 +56,7 @@ export default function IndexTest() {
       //已进入测试界面
       let button2 = await driver.findComponent(ON.text('twice', MatchPattern.CONTAINS));
       await button2.doubleClick();
-      await sleep(1000);
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.pressBack();
       console.info('uitest: testSingleGestureTap end');
@@ -79,7 +79,7 @@ export default function IndexTest() {
       //已进入测试界面
       let button2 = await driver.findComponent(ON.text('Long', MatchPattern.CONTAINS));
       await button2.longClick();
-      await sleep(1000);
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.pressBack();
       console.info('uitest: testSingleGestureLong end');
@@ -100,7 +100,7 @@ export default function IndexTest() {
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.gesture_Index_GestureJudge_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
-      await sleep(1000);
+      await driver.delayMs(1000);
       await driver.pressBack();
       console.info('uitest: testSingleGestureJudge end');
       done();
@@ -122,7 +122,7 @@ export default function IndexTest() {
       //已进入测试界面
       let button = await driver.findComponent(ON.text('show', MatchPattern.CONTAINS));
       await button.click();
-      await sleep(1000);
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.pressBack();
       console.info('uitest: testSingleGestureTouch end');
