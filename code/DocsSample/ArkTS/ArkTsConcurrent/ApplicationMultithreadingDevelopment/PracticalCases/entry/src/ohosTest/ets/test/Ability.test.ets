@@ -79,6 +79,24 @@ export default function abilityTest() {
       done();
     })
     /**
+     * 点击按钮，进入复杂类实例对象使用Sendable进行大容量数据库操作页面，点击Hello World执行
+     */
+    it('testUsingSendableComplex', 0, async (done: Function) => {
+      console.log('uitest: testUsingSendableComplex begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Complex_class_instance_object_using_sendable'))));
+      await text.click();
+      await driver.delayMs(1000);
+      const text1 = await driver.findComponent(ON.text('Hello World'));
+      await text1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('success'));
+      console.log('uitest: testUsingSendableComplex end');
+      await driver.pressBack();
+      done();
+    })
+    /**
      * 点击按钮，进入业务模块并发加载场景页面，点击calculate add,show history,countdown执行
      */
     it('testConcurrentLoadingModulesGuide', 0, async (done: Function) => {

@@ -34,7 +34,7 @@ workerPort.onmessage = (e: MessageEvents) => {
   }
 
   childworker.onerror = (err: ErrorEvent) => {
-    console.info(resource.resourceToString($r('app.string.Not_one_parentworker_worker5')) + err);
+    console.error(resource.resourceToString($r('app.string.Not_one_parentworker_worker5')) + err);
   }
 
   childworker.postMessage(resource.resourceToString($r('app.string.Not_one_parentworker_worker6')));

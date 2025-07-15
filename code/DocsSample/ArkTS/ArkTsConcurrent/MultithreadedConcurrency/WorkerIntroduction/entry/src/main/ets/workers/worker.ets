@@ -29,11 +29,11 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 // 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在Worker线程执行
 workerPort.onmessageerror = () => {
-  console.info('workerPort onmessageerror');
+  console.error('workerPort onmessageerror');
 }
 
 // 注册onerror回调，当Worker在执行过程中发生异常被调用，在Worker线程执行
 workerPort.onerror = (err: ErrorEvent) => {
-  console.info('workerPort onerror err is: ', err.message);
+  console.error('workerPort onerror err is: ', err.message);
 }
 // [End register_callback_function]

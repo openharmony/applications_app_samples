@@ -37,6 +37,10 @@
       "value": "使用TaskPool执行独立的耗时任务"
     },
     {
+      "name": "Worker_postMessage_sendable",
+      "value": "多级Worker间高性能消息通信"
+    },
+    {
       "name": "Loading_pictures",
       "value": "子线程任务已执行完，共加载图片: "
     }

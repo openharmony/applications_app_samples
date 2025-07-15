@@ -43,12 +43,12 @@ struct Index {
 
           // 注册onerror回调，当Worker在执行过程中发生异常时被调用，在宿主线程执行
           workerInstance.onerror = (err: ErrorEvent) => {
-            console.info('workerInstance onerror message is: ' + err.message);
+            console.error('workerInstance onerror message is: ' + err.message);
           }
 
           // 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在宿主线程执行
           workerInstance.onmessageerror = () => {
-            console.info('workerInstance onmessageerror');
+            console.error('workerInstance onmessageerror');
           }
 
           // 注册onexit回调，当Worker销毁时被调用，在宿主线程执行

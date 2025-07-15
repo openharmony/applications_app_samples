@@ -39,6 +39,10 @@ struct Index {
           buttonUrl: 'managers/UsingSendable'
         });
         CommonButton({
+          buttonName: resource.resourceToString($r('app.string.Complex_class_instance_object_using_sendable')),
+          buttonUrl: 'managers/ComplexClassInstanceObjectUsingSendable'
+        });
+        CommonButton({
           buttonName: resource.resourceToString($r('app.string.Concurrent_loading_modules_guide')),
           buttonUrl: 'managers/ConcurrentLoadingModulesGuide'
         });
