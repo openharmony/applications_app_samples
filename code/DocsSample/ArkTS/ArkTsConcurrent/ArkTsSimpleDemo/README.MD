@@ -2,14 +2,14 @@
 
 ### Introduction
 
-This example uses the [ArkTS Guide Document]（ https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/arkts-utils ）The development examples of various scenarios in the project are presented to help developers better understand the various capabilities provided by ArkTS and make reasonable use of them. The detailed description of the code displayed in this project can be found in the following link:
+This example uses the [ArkTS Guide Document]（ https://gitcode.com/openharmony/docs/tree/master/en/application-dev/arkts-utils ）The development examples of various scenarios in the project are presented to help developers better understand the various capabilities provided by ArkTS and make reasonable use of them. The detailed description of the code displayed in this project can be found in the following link:
 
-1. [Shared module development guidance](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/arkts-sendable-module.md).
-2. [CPU intensive task development guidance(TaskPool and Worker)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/cpu-intensive-task-development.md).
-3. [I/O intensive task development guide(TaskPool)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/io-intensive-task-development.md).
-4. [Single I/O task development guidance(Promise and async/await)](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.1-Release/zh-cn/application-dev/arkts-utils/single-io-development.md).
-5. [Synchronous task development guidance(TaskPool and Worker)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/sync-task-development.md).
-6. [Overview of Asynchronous Concurrency(Promise and async/await)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/async-concurrency-overview.md).
+1. [Shared module development guidance](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/arkts-sendable-module.md)
+2. [CPU intensive task development guidance(TaskPool and Worker)](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/cpu-intensive-task-development.md)
+3. [I/O intensive task development guide(TaskPool)](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/io-intensive-task-development.md)
+4. [Single I/O task development guidance(Promise and async/await)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-4.1-Release/en/application-dev/arkts-utils/single-io-development.md)
+5. [Synchronous task development guidance(TaskPool and Worker)](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/sync-task-development.md)
+6. [Overview of Asynchronous Concurrency(Promise and async/await)](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/async-concurrency-overview.md)
 
 ### Effect preview
 

@@ -2,14 +2,14 @@
 
 ### 介绍
 
-本示例通过使用[ArkTS指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/arkts-utils)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkTS提供的各项能力并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例通过使用[ArkTS指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/arkts-utils)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkTS提供的各项能力并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [共享模块开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/arkts-sendable-module.md)。
-2. [CPU密集型任务开发指导 (TaskPool和Worker)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/cpu-intensive-task-development.md)。
-3. [I/O密集型任务开发指导 (TaskPool)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/io-intensive-task-development.md)。
-4. [单次I/O任务开发指导 (Promise和async/await)](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.1-Release/zh-cn/application-dev/arkts-utils/single-io-development.md)。
-5. [同步任务开发指导 (TaskPool和Worker)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/sync-task-development.md)。
-6. [异步并发概述 (Promise和async/await)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/async-concurrency-overview.md)。
+1. [共享模块开发指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/arkts-sendable-module.md)
+2. [CPU密集型任务开发指导 (TaskPool和Worker)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/cpu-intensive-task-development.md)
+3. [I/O密集型任务开发指导 (TaskPool)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/io-intensive-task-development.md)
+4. [单次I/O任务开发指导 (Promise和async/await)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-4.1-Release/zh-cn/application-dev/arkts-utils/single-io-development.md)
+5. [同步任务开发指导 (TaskPool和Worker)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/sync-task-development.md)
+6. [异步并发概述 (Promise和async/await)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/arkts-utils/async-concurrency-overview.md)
 
 ### 效果预览
 
