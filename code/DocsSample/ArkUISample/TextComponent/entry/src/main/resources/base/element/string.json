@@ -717,6 +717,10 @@
       "value": "除了初始化属性字符串对象即初始样式对象，亦可通过setStyle接口再叠加新样式或更新已有样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。"
     },
     {
+      "name": "StyledStringGestureStyle_button_content",
+      "value": "响应属性字符串事件改变背景色"
+    },
+    {
       "name": "StyledStringHtml_title",
       "value": "格式转换"
     },
