@@ -44,7 +44,7 @@ struct Index {
             console.info(resource.resourceToString($r('app.string.Not_recommended2')));
           }
 
-          parentworker.onerror = (err: ErrorEvent) => {
+          parentworker.onAllErrors = (err: ErrorEvent) => {
             console.error(resource.resourceToString($r('app.string.Not_recommended3')) + err);
           }
 

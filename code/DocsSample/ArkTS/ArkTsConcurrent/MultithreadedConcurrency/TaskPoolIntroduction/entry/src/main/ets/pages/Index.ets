@@ -32,6 +32,14 @@ struct Index {
           .fontSize('25fp')
           .textAlign(TextAlign.Center)
         CommonButton({
+          buttonName: resource.resourceToString($r('app.string.Notes')),
+          buttonUrl: 'managers/notes'
+        });
+        CommonButton({
+          buttonName: resource.resourceToString($r('app.string.Instruction')),
+          buttonUrl: 'managers/instruction'
+        });
+        CommonButton({
           buttonName: resource.resourceToString($r('app.string.General_use')),
           buttonUrl: 'managers/generaluse'
         });

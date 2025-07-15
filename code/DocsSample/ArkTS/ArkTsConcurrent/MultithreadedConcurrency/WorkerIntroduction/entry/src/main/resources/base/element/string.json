@@ -163,6 +163,10 @@
     {
       "name": "Not_recommended4",
       "value": "主线程发送消息给父Worker"
+    },
+    {
+      "name": "stageRules",
+      "value": "Stage模型下的文件路径规则"
     }
   ]
 }

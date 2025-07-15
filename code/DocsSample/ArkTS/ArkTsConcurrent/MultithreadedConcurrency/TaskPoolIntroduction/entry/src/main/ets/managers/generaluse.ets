@@ -25,10 +25,10 @@ function add(num1: number, num2: number): number {
 
 async function concurrentFunc(): Promise<void> {
   try {
-    let task: taskpool.Task = new taskpool.Task(add, 1, 2);
-    console.info('taskpool res is: ' + await taskpool.execute(task));
+    const task: taskpool.Task = new taskpool.Task(add, 1, 2);
+    console.info(`taskpool res is: ${await taskpool.execute(task)}`); // 输出结果：taskpool res is: 3
   } catch (e) {
-    console.error('taskpool execute error is: ' + e);
+    console.error(`taskpool execute error is: ${e}`);
   }
 }
 
