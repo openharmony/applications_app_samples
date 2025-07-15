@@ -13,18 +13,22 @@
  * limitations under the License.
  */
 
-// export lazy var v;                  // 编译器提示报错：应用编译报错
-// export lazy default function f(){}; // 编译器提示报错：应用编译报错
-// export lazy default function(){};   // 编译器提示报错：应用编译报错
-// export lazy default 42;             // 编译器提示报错：应用编译报错
-// export lazy { x };                    // 编译器提示报错：应用编译报错
-// export lazy { x as v };               // 编译器提示报错：应用编译报错
-// export lazy { x } from 'mod';         // 编译器提示报错：应用编译报错
-// export lazy { x as v } from 'mod';    // 编译器提示报错：应用编译报错
-// export lazy * from 'mod';           // 编译器提示报错：应用编译报错
+/*
+// [Start wrong_example]
+export lazy var v;                  // 编译器提示报错：应用编译报错
+export lazy default function f(){}; // 编译器提示报错：应用编译报错
+export lazy default function(){};   // 编译器提示报错：应用编译报错
+export lazy default 42;             // 编译器提示报错：应用编译报错
+export lazy { x };                    // 编译器提示报错：应用编译报错
+export lazy { x as v };               // 编译器提示报错：应用编译报错
+export lazy { x } from 'mod';         // 编译器提示报错：应用编译报错
+export lazy { x as v } from 'mod';    // 编译器提示报错：应用编译报错
+export lazy * from 'mod';           // 编译器提示报错：应用编译报错
 
-// import lazy v from 'mod';           // 编译器提示报错：应用编译报错
-// import lazy * as ns from 'mod';     // 编译器提示报错：应用编译报错
-//
-// import lazy type { obj } from './mod';    // 不支持，编译器、应用编译报错
-// import type lazy { obj } from './mod';    // 不支持，编译器、应用编译报错
+import lazy v from 'mod';           // 编译器提示报错：应用编译报错
+import lazy * as ns from 'mod';     // 编译器提示报错：应用编译报错
+
+import lazy type { obj } from './mod';    // 不支持，编译器、应用编译报错
+import type lazy { obj } from './mod';    // 不支持，编译器、应用编译报错
+// [End wrong_example]
+* */

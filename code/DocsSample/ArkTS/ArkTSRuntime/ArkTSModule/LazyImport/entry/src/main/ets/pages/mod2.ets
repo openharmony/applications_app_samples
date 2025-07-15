@@ -15,6 +15,5 @@
 
 // [Start export_module_variable_02]
 export let c = 'mod2 c executed';
-
 console.info(c);
 // [End export_module_variable_02]

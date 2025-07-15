@@ -20,9 +20,9 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 14,
-        "compatibleSdkVersion": 14,
-        "targetSdkVersion": 14,
+        "compileSdkVersion": 20,
+        "compatibleSdkVersion": 20,
+        "targetSdkVersion": 20,
         "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {
@@ -53,6 +53,42 @@
           ]
         }
       ]
+    },
+    {
+      "name": "library",
+      "srcPath": "./library",
+    },
+    {
+      "name": "sharedlibrary",
+      "srcPath": "./sharedlibrary",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "native",
+      "srcPath": "./native",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "har2",
+      "srcPath": "./har2"
+    },
+    {
+      "name": "har1",
+      "srcPath": "./har1",
     }
   ]
 }

@@ -13,8 +13,13 @@
  * limitations under the License.
  */
 
-// [Start export_variable_b]
+// [Start import_export_variable_c]
 import lazy { c } from './C'; // 从'C'内获取c对象，标记为延迟加载
-
 export { c };
-// [End export_variable_b]
+// [End import_export_variable_c]
+
+// [Start export_func]
+export function func() {
+  return 20;
+}
+// [End export_func]

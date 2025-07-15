@@ -21,6 +21,13 @@
       "runtimeOnly" : {
         "sources": [
           "./src/main/ets/Test.ets"
+        ],
+        "packages": [
+          "library",
+          "sharedlibrary",
+          "@ohos/hypium",
+          "@ohos/axios",
+          "libentry7.so"
         ]
       }
     },

@@ -15,6 +15,5 @@
 
 // [Start export_variable_c]
 let c = 'c';
-
 export { c };
 // [End export_variable_c]

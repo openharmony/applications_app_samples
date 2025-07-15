@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/DirectImport/DefaultImport/test",
+    "pages/DirectImport/NamedImport/test",
+    "pages/DirectImport/NamespaceImport/test",
+    "pages/DynamicImport/DirectImport/test",
+    "pages/DynamicImport/IndirectImport/test2",
+    "pages/IndirectImport/ExportNamedAndImport/test2",
+    "pages/IndirectImport/ExportNamespaceAndImport/test2"
+  ]
+}
