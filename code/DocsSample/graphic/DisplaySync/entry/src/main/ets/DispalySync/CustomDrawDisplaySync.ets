@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 // [Start display_sync_by_ui_import_module]
-import { displaySync } from '@kit.ArkGraphics2D';
+import { displaySync } from "@kit.ArkGraphics2D";
 // [End display_sync_by_ui_import_module]
-import { router } from '@kit.ArkUI';
+import { router } from "@kit.ArkUI";
 
 // [Start display_sync_by_ui_complete_example]
 // [Start display_sync_create_object]
