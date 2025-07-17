@@ -16,7 +16,6 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 import { CommonButton } from '../util/CommonButton';
-import resource from '../util/resource';
 
 const DOMAIN = 0x0000;
 

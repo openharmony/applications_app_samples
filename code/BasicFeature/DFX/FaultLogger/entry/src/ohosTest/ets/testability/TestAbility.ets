@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,14 +19,15 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { Hypium } from '@ohos/hypium';
 import { logger } from '../util/Logger';
+import { AbilityConstant, Want } from '@kit.AbilityKit';
 
 const TAG: string = 'TestAbility';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam): void {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, `TestAbility onCreate, want param: ${JSON.stringify(want)},launchParam: ${JSON.stringify(launchParam)}`);
-    var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     logger.info(TAG, 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }

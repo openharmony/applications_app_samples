@@ -19,7 +19,7 @@ import hilog from '@ohos.hilog';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import window from '@ohos.window';
-import { AbilityConstant } from '@kit.AbilityKit';
+import { AbilityConstant, Want } from '@kit.AbilityKit';
 
 export default class TestAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

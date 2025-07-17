@@ -54,7 +54,7 @@
       {
         // 添加nfc标记操作的权限。
         "name": "ohos.permission.NFC_TAG",
-        "reason": "$string:app_name",
+        "reason": "$string:app_name"
       }
     ],
     // [End front_get_nfc_tag]
@@ -69,7 +69,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ]
   }

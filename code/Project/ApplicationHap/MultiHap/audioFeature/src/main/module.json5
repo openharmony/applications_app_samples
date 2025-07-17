@@ -17,7 +17,7 @@
   "module": {
     "name": "audioFeature",
     "type": "feature",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntry": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:audio_desc",
     "mainElement": "AudioAbility",
     "deviceTypes": [
@@ -36,7 +36,7 @@
         "label": "$string:audio_ability_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true
+        "exported": true
       }
     ]
   }

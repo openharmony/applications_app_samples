@@ -17,7 +17,7 @@
   "module": {
     "name": "videoFeature",
     "type": "feature",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntry": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:video_desc",
     "mainElement": "VideoAbility",
     "deviceTypes": [
@@ -42,7 +42,7 @@
         "label": "$string:video_ability_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true,
+        "exported": true,
       }
     ]
   }

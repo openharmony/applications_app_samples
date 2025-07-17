@@ -10,7 +10,7 @@
 
 | 首页                                                          | 依次点击按钮后结果图                                          |
 | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| <img src="./screenshots/LazyImport1.png" style="zoom:50%;" width="360; /> | <img src="./screenshots/LazyImport2.png" style="zoom:50%;" width="360; /> |
+| <img src="./screenshots/LazyImport1.png" style="zoom:50%;" width="360;" /> | <img src="./screenshots/LazyImport2.png" style="zoom:50%;" width="360;" /> |
 
 ### 使用说明
 

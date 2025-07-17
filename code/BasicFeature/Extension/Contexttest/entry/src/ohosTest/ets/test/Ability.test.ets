@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -47,7 +47,7 @@ export default function abilityTest() {
      * inputmethod访问其配置groupId为test1的宿主应用的共享沙箱成功
      */
     it('Extension_Course_Test_AbilityContext_0100', 0, async (done: Function) => {
-      await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.SharedFileSuccess'))))
+      await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.AccessSuccess'))))
         .then(async (data) => {
           await data.click();
         })
@@ -69,7 +69,7 @@ export default function abilityTest() {
      * inputmethod访问其配置groupId为test1的宿主应用的共享沙箱失败
      */
     it('Extension_Course_Test_AbilityContext_0200', 0, async (done: Function) => {
-      await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.SharedFileFail'))))
+      await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.AccessFail'))))
         .then(async (data) => {
           await data.click();
         })
