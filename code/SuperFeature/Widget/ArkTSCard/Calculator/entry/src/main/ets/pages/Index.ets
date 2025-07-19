@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Logger from '../model/Logger';
+
 let storage = new LocalStorage()
 
 @Entry(storage)
@@ -150,23 +152,23 @@ struct Index {
   }
 
   aboutToAppear() {
-    console.error("ArkTSForm aboutToAppear");
+    Logger.error("ArkTSForm aboutToAppear");
   }
 
   aboutToDisappear() {
-    console.error("ArkTSForm aboutToDisappear");
+    Logger.error("ArkTSForm aboutToDisappear");
   }
 
   onPageShow() {
-    console.error("ArkTSForm onPageShow");
+    Logger.error("ArkTSForm onPageShow");
   }
 
   onPageHide() {
-    console.error("ArkTSForm onPageHide")
+    Logger.error("ArkTSForm onPageHide");
   }
 
   onBackPress() {
-    console.error("ArkTSForm onBackPress")
+    Logger.error("ArkTSForm onBackPress");
   }
 
   onInputValue = (value: string) => {
@@ -398,7 +400,8 @@ const OPERATORLEVELS: Record<string, number> = {
 }
 
 const OPERATORHANDLERS: Record<string, Function> = {
-  '+': (firstOperand: string, secondOperand: string) => (Number.parseFloat(firstOperand) + Number.parseFloat(secondOperand)).toFixed(
+  '+': (firstOperand: string, secondOperand: string) => (Number.parseFloat(firstOperand) +
+  Number.parseFloat(secondOperand)).toFixed(
     getFloatNum(Number(firstOperand), Number(secondOperand), '+')),
   '-': (firstOperand: number, secondOperand: number) => (firstOperand - secondOperand).toFixed(
     getFloatNum(firstOperand, secondOperand, '-')),

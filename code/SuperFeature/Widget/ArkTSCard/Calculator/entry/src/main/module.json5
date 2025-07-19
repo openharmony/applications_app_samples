@@ -28,7 +28,7 @@
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
@@ -50,7 +50,7 @@
     "extensionAbilities": [
       {
         "name": "EntryFormAbility",
-        "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
+        "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
         "label": "$string:EntryFormAbility_label",
         "description": "$string:EntryFormAbility_desc",
         "type": "form",
