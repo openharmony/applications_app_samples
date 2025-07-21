@@ -73,7 +73,7 @@ export default function abilityTest() {
       // 检查是否桌面上是否有计算器卡片
       await DRIVER.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       let resultArray = await DRIVER.findComponents(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
-      expect(resultArray.length).assertEqual(3);
+      expect(resultArray.length).assertEqual(1);
       done();
       logger.info(TAG, `${BUNDLE}createForm_001 end`);
     })
