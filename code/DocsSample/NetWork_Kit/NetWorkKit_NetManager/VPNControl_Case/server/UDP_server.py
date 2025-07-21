@@ -33,7 +33,7 @@ while True:
     # 直接打印原始字节数据
     print(f"Received: {data}")
 
-    # 如果你需要解码为字符串并且确定数据是有效的文本
+    # 如果需要解码为字符串并且确定数据是有效的文本
     try:
         print(f"Decoded data: {data.decode('utf-8')}")
     except UnicodeDecodeError:

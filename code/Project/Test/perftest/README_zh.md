@@ -12,7 +12,7 @@
 使用说明
 - 将perftest目录下的项目工程整体导入到DevEco Studio开发工具中。
 - 查看ohosTest目录下的测试代码实现。
-- 在DevEco Studio中执行测试用例代码查看执行效果，执行方式请[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453)  
+- 在DevEco Studio中执行测试用例代码查看执行效果，执行方式请[参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/application-test/arkxtest-guidelines.md)  
 
 ### 工程目录
 

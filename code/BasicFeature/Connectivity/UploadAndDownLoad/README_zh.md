@@ -45,7 +45,7 @@
 
 点击**上传**按钮会使用post方式访问百度，并在空白处显示返回的响应header内容。
 
-以上功能需要在src/main/resources/base/profile/network_config.json中配置domains和digest，只有你配置的证书信息通过验证，上传和下载才可以正常响应；否则将无法正常访问百度，会通过toast提示上传或者下载失败，日志中会有具体错误信息。如果你要访问的服务器根证书不在系统中，你需要把它的根证书放到src/main/resources/resfile目录下。
+以上功能需要在src/main/resources/base/profile/network_config.json中配置domains和digest，只有配置的证书信息通过验证，上传和下载才可以正常响应；否则将无法正常访问百度，会通过toast提示上传或者下载失败，日志中会有具体错误信息。如果要访问的服务器根证书不在系统中，需要把它的根证书放到src/main/resources/resfile目录下。
 
 如示例中访问百度，则digest需要取百度服务器的证书生成：
 
@@ -109,7 +109,7 @@ UploadAndDownload
     
   * 证书锁定模块
     
-    * 使用[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md)中API 12接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现通过get或者post方式访问指定的网页，点击按钮后会在空白处显示返回的响应header内容。你需要提前在src/main/resources/base/profile/network_config.json中配置domains和digest，只有你配置的证书信息通过验证，上传和下载才可以正常响应。如果你要访问的服务器根证书不在系统中，你需要把它的根证书放在src/main/resources/resfile目录下。
+    * 使用[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md)中API 12接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现通过get或者post方式访问指定的网页，点击按钮后会在空白处显示返回的响应header内容。需要提前在src/main/resources/base/profile/network_config.json中配置domains和digest，只有配置的证书信息通过验证，上传和下载才可以正常响应。如果要访问的服务器根证书不在系统中，需要把它的根证书放在src/main/resources/resfile目录下。
     
     * 源码链接，[CertLock.ets](./entry/src/main/ets/pages/CertLock.ets)
     
