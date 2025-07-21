@@ -88,7 +88,7 @@ static napi_value EscapableHandleScopeTest(napi_env env, napi_callback_info info
 // [End napi_open_close_escapable_handle_scope]
 
 // [Start napi_create_delete_reference]
-// 创建一个指向napi_ref类型的指针，用于存储创建的引用。在调用napi_create_reference函数之前，你需要分配一个napi_ref类型的变量，并将其地址传递给result位置的参数
+// 创建一个指向napi_ref类型的指针，用于存储创建的引用。在调用napi_create_reference函数之前，需要分配一个napi_ref类型的变量，并将其地址传递给result位置的参数
 napi_ref g_ref;
 
 void Finalizer(napi_env env, void *data, void *hint)

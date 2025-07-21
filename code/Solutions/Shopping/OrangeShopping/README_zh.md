@@ -243,7 +243,7 @@ Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.c
 7.本示例所配置的权限ohos.permission.CAPTURE_SCREEN为system_core级别(
 相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
 查看)，需要手动配置对应级别的权限签名(
-具体操作可查看[自动化签名方案](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V3/ohos-auto-configuring-signature-information-0000001271659465-V3)。
+具体操作可查看[自动化签名方案](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md)。
 
 ### 下载
 

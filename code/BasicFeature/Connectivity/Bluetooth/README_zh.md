@@ -94,7 +94,7 @@ advertiser/src/main/ets/
 1. 本示例仅支持标准系统上运行。
 2. 本示例为Stage模型，从API version 10开始支持。SDK版本号：4.0.10.18。
 3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)编译运行。
-4. 本示例所配置的权限包含system_basic级别（相关权限级别可通过[权限定义列表]([OpenAtom OpenHarmony](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)查看），需要手动配置对应级别的权限签名或者使用ACL使能（具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)）。
+4. 本示例所配置的权限包含system_basic级别（相关权限级别可通过[权限定义列表]([OpenAtom OpenHarmony](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)查看），需要手动配置对应级别的权限签名或者使用ACL使能（具体操作可查看[自动化签名方案](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md)）。
 
 ### 下载
 

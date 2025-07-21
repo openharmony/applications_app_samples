@@ -526,11 +526,11 @@ Position表示的是音频帧，一个音频帧包括左右声道的采样点交
 
 ![img_6.png](screenshots/img_6.png)
 
-根据你的SDK version找到Local\OpenHarmony\Sdk\13\ets\api\device-define文件夹(此例为13)的default.json
+根据SDK version找到Local\OpenHarmony\Sdk\13\ets\api\device-define文件夹(此例为13)的default.json
 
 ![img_7.png](screenshots/img_7.png)
 
-这个就是你“default”类型的设备的system capability的要求
+这个就是“default”类型的设备的system capability的要求
 
 此例，缺这两个：
 
