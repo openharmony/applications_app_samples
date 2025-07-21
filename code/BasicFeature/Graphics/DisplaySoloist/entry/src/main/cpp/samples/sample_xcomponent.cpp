@@ -469,7 +469,6 @@ void SampleXComponent::Export(napi_env env, napi_value exports)
         {"unregister", nullptr, SampleXComponent::NapiUnregister, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"destroy", nullptr, SampleXComponent::NapiDestroy, nullptr, nullptr, nullptr, napi_default, nullptr}};
 
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         SAMPLE_LOGE("Export: napi_define_properties failed");
     }
