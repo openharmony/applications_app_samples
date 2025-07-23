@@ -20,6 +20,7 @@ import connection from '@ohos.net.connection';
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
 import { logger, TOAST_BOTTOM } from '@ohos/uploaddownload';
+import fs from '@ohos.file.fs';
 
 const TAG: string = 'CertLockSample';
 
@@ -126,6 +127,8 @@ struct CertLock {
 
   async uploadTask() {
     logger.debug(TAG, 'uploadTask');
+    let file = fs.openSync(getContext().cacheDir + '/testUpload.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    fs.closeSync(file);
     let attachments: Array<request.agent.FormItem> = [];
     let attachment: request.agent.FormItem = {
       name: 'test',
