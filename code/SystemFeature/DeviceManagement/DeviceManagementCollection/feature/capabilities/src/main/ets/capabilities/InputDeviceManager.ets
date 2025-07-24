@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Fujian Newland Auto-ID Tech.Co.,Ltd.
+ * Copyright (c) 2023-2025 Fujian Newland Auto-ID Tech.Co.,Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { InputDeviceInfo } from '../model/InputDeviceInfo'
-import { getDeviceList } from '../util/InputDeviceUtil'
-import { InputDeviceDataDialog } from '../components/devicemanager/InputDeviceDataDialog'
-import InputDevice from '../util/InputDeviceUtil'
+import { InputDeviceInfo } from '../model/InputDeviceInfo';
+import { getDeviceList } from '../util/InputDeviceUtil';
+import { InputDeviceDataDialog } from '../components/devicemanager/InputDeviceDataDialog';
+import InputDevice from '../util/InputDeviceUtil';
 
 @Component
 struct InputDeviceList {
   mIsShowIcon: boolean = false;
   mIsShowStyle: boolean = false;
-  @Link mInputDevices: InputDeviceInfo[]
+  @Link mInputDevices: InputDeviceInfo[];
   onClickItem: (deviceInfo: InputDeviceInfo) => void = () => {};
 
   @Builder CustomDivider() {
@@ -93,7 +93,7 @@ struct InputDeviceList {
             this.onClickItem(item)
           }
         })
-      }, (item: InputDeviceInfo) => item.id.toString())
+      }, (item: InputDeviceInfo) => JSON.stringify(item))
     }
     .padding(px2vp(24))
     .backgroundColor($r('sys.color.ohos_id_color_list_card_bg'))
