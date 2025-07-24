@@ -2,8 +2,8 @@
 
 ### 介绍
 
-本示例通过使用[页面级的状态变量](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/arkts-localstorage.md/)
-和[应用级的状态变量](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/arkts-appstorage.md/)
+本示例通过使用[页面级的状态变量](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/ui/state-management/arkts-localstorage.md)
+和[应用级的状态变量](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/ui/state-management/arkts-appstorage.md)
 来实现应用的状态管理。
 
 ### 效果预览
@@ -136,7 +136,7 @@ entry/src/main/ets/
 * 数组类型：使用@State声明一个数组arrayTypeData状态变量，数据元素为new ArrayDataType()，通过arrayTypeData.push()方法来新增元素数据，arrayTypeData.splice()方法删除元素，更新指定new ArrayDataType()来实现更新某一个元素数据。
 * 类对象类型：使用@Observerd声明一个属性类ChildClass，然后声明一个对象类ParentClass，并将对象的其中一个属性类型设置为属性类，使用@State声明一个类对象数据状态变量classObjectData，更新对象可以通过new ParentClass()生成一个对象并赋值来实现，更新对象属性可以通过this.classOjectData.attribute++来实现，更新对象属性的属性可以通过@ObjectLink声明一个状态变量并更新此状态变量的对象属性来实现。
 * 只更新所绑定的组件：使用@State和Private声明一个titleName和content状态变量，通过点击事件修改这两个状态变量。
-* 单、双向同步：父组件使用@State声明一个状态变量circleColor并作为参数给子组件A和子组件B，子组件A通过@Prop接收，子组件B通过@Link来接收，通过点击事件中的this.circleColor = COLOR_DATA.PINK来更改颜色。
+* 单、双向同步：父组件使用@State声明一个状态变量circleColor并作为参数给子组件A和子组件B，子组件A通过@Prop接收，子组件B通过@Link来接收，通过点击事件中的this.circleColor = ColorData.PINK来更改颜色。
 * 子组件同步父组件部分内容：父组件中使用@State声明一个数组状态变量parentData，@Observed声明数组元素的类，父组件向子组件传递parentData的某一个元素数据，子组件通过@ObjectLink来接收，父组件通过this.childObject.attributeType = value来修改元素数据，子组件同步更新，子组件同样通过this.childObjectData.attributeType = value来修改子组件的数据，父组件同步更新。
 * 爷孙组件之间状态同步：爷组件通过@State声明一个控制圆形颜色的状态变量circleColor和控制当前Select组件Index的状态变量currentSelectIndex，逐层传递给子组件给孙组件，通过@Link接收，爷组件通过onSelect事件来修改circleColor和currentSelectIndex，孙组件同样通过onSelect事件来修改circleColor和currentSelectIndex，然后爷组件通过@Provide声明一个控制圆形颜色的状态变量consumeCircleColor和控制当前Select组件Index的状态变量currentSelectIndex，孙组件通过@Consume来接收，爷组件通过onSelect事件来修改circleColor和currentSelectIndex，孙组件同样通过onSelect事件来修改circleColor和currentSelectIndex。
 * 兄弟组件之间状态同步：父组件通过@State声明一个控制圆形颜色的状态变量circleColor和控制当前Select组件Index的状态变量currentSelectIndex，传递给子组件A和子组件B，两者通过@Link接收，子组件A通过onSelect事件来修改circleColor和currentSelectIndex，子组件B同样通过onSelect事件来修改circleColor和currentSelectIndex；然后父组件通过@Provide声明一个控制圆形颜色的状态变量consumeCircleColor和控制当前Select组件Index的状态变量currentSelectIndex，子组件A和子组件B通过@Consume来接收，子组件A通过onSelect事件来修改circleColor和currentSelectIndex，，子组件B同样通过onSelect事件来修改circleColor和currentSelectIndex。
@@ -155,9 +155,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 9版本SDK，版本号：4.0.5.2。
+2.本示例已适配API version 14版本SDK，版本号：5.0.2.123。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
+3.本示例需要使用DevEco Studio 5.0.4 Releasse (Build Version: 5.0.11.100, built on March 28, 2025)才可编译运行。
 
 ### 下载
 

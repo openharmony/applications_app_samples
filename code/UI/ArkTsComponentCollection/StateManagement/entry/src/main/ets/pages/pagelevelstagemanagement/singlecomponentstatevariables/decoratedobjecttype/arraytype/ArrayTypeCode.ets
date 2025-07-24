@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -51,14 +51,14 @@ export struct ArrayTypeCode {
           ListItem() {
             ArrayDataItem({ arrayDataItem: item, itemIndex: index })
           }
-        }, item => JSON.stringify(item))
+        }, (item: ArrayDataType) => JSON.stringify(item))
       }
       .width('100%')
       .height('40%')
       .backgroundColor($r('app.color.component_background_pink'))
       .padding({ left: 10, right: 10 })
       // 功能按钮区
-      ForEach(ARRAY_TYPE_BTN, (item:Resource, index:number) => {
+      ForEach(ARRAY_TYPE_BTN, (item: Resource, index:number) => {
         Button(item)
           .id(`arrayTypeBtn${index}`)
           .width('100%')
@@ -70,7 +70,7 @@ export struct ArrayTypeCode {
           .onClick(() => {
             this.handleButtonClick(index)
           })
-      }, item => JSON.stringify(item))
+      }, (item: Resource) => JSON.stringify(item))
     }
     .padding(10)
     .border({ radius: $r('app.float.component_radius'), color: Color.Grey, width: $r('app.float.border_width') })
@@ -114,8 +114,8 @@ export struct ArrayTypeCode {
 // 数组Item内容组件
 @Component
 struct ArrayDataItem {
-  private arrayDataItem: ArrayDataType;
-  private itemIndex: number;
+  private arrayDataItem: ArrayDataType = new ArrayDataType(0,'',0);
+  private itemIndex: number = 0;
 
   build() {
     Column() {

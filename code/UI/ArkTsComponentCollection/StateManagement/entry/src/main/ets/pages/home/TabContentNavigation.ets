@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,7 +28,7 @@ import { SecondLevelCategory, ThirdLevelCategory, FourthLevelCategory } from './
 export struct TabContentNavigation {
   private categories: ThirdLevelCategory[] | SecondLevelCategory[] = [];
 
-  hasSecondLevelCategory(category): boolean {
+  hasSecondLevelCategory(category: ESObject): boolean {
     return category && category.tag ? false : true;
   }
 
@@ -94,14 +94,14 @@ export struct TabContentNavigation {
 @Component
 struct ThirdLevelNavigation {
   @State isUnfold: boolean = false;
-  private thirdLevelCategory: ThirdLevelCategory;
-  private ThirdLevelNavigationIndex: number;
-  private secondLevelCategoryIndex: number;
+  private thirdLevelCategory?: ThirdLevelCategory;
+  private ThirdLevelNavigationIndex?: number;
+  private secondLevelCategoryIndex?: number;
 
   build() {
     Column() {
       Row() {
-        Text(this.thirdLevelCategory.title)
+        Text(this.thirdLevelCategory?.title)
           .fontSize(16)
           .margin({ left: 16 })
           .fontFamily('HarmonyHeiTi-Medium')
@@ -109,7 +109,7 @@ struct ThirdLevelNavigation {
 
         Blank()
 
-        if (this.thirdLevelCategory.childNodes) {
+        if (this.thirdLevelCategory?.childNodes) {
           Image(this.isUnfold ? $r('app.media.ic_down_arrow') : $r('app.media.ic_right_arrow'))
             .width(this.isUnfold ? 24 : 12)
             .height(this.isUnfold ? 12 : 24)
@@ -119,7 +119,7 @@ struct ThirdLevelNavigation {
       .height(56)
       .width('100%')
       .onClick(() => {
-        if (this.thirdLevelCategory.childNodes === undefined) {
+        if (this.thirdLevelCategory && this.thirdLevelCategory.childNodes === undefined) {
           // Click to jump to the corresponding page
           router.push({
             url: this.thirdLevelCategory.url
@@ -131,7 +131,7 @@ struct ThirdLevelNavigation {
 
       // Click to expand the fourth-level category
       if (this.isUnfold) {
-        ForEach(this.thirdLevelCategory.childNodes, (fourthLevelCategory: FourthLevelCategory) => {
+        ForEach(this.thirdLevelCategory?.childNodes, (fourthLevelCategory: FourthLevelCategory) => {
           Column() {
             Divider()
               .height(1)
@@ -141,7 +141,7 @@ struct ThirdLevelNavigation {
 
             FourthLevelNavigation({ fourthLevelCategory: fourthLevelCategory })
           }
-        }, item => JSON.stringify(item))
+        }, (item: FourthLevelCategory) => JSON.stringify(item))
       }
     }
     // 整体字符串折行会被识别出来，导致功能异常，只能放在单独一行，1和0分别为首页标题层级index
@@ -151,11 +151,11 @@ struct ThirdLevelNavigation {
 
 @Component
 struct FourthLevelNavigation {
-  private fourthLevelCategory: FourthLevelCategory;
+  private fourthLevelCategory?: FourthLevelCategory;
 
   build() {
     Row() {
-      Text(this.fourthLevelCategory.title)
+      Text(this.fourthLevelCategory?.title)
         .fontSize(16)
         .layoutWeight(1)
         .margin({ left: 42 })
@@ -168,9 +168,11 @@ struct FourthLevelNavigation {
     .width('100%')
     .onClick(() => {
       // Click to jump to the corresponding page
-      router.push({
-        url: this.fourthLevelCategory.url
-      });
+      if(this.fourthLevelCategory) {
+        router.pushUrl({
+          url: this.fourthLevelCategory.url
+        });
+      }
     })
   }
 }

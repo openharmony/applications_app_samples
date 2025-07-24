@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,17 +17,17 @@ import { ChildCompProp } from './ComponentProp';
 import { ViewCodeText } from '../../../../../commoncomponents/ViewCodeText';
 
 // 初始化圆形的可设置颜色
-export const COLOR_DATA = {
-  GREY: '#eebebeba',
-  BLUE: '#4A90E2',
-  PINK: '#8DF8BEBE',
-  RED: '#FFF30823',
+export enum ColorData {
+  GREY = '#eebebeba',
+  BLUE = '#4A90E2',
+  PINK = '#8DF8BEBE',
+  RED = '#FFF30823'
 }
 
 @Component
 export struct UniAndBidirectionSyncCode {
   // 初始化圆形颜色的状态变量
-  @State circleColor: string = COLOR_DATA.GREY;
+  @State circleColor: string = ColorData.GREY;
 
   build() {
     Column({ space: 10 }) {
@@ -60,7 +60,7 @@ export struct UniAndBidirectionSyncCode {
         .type(ButtonType.Capsule)
         .backgroundColor($r('app.color.button_background_color'))
         .onClick(() => {
-          this.circleColor = COLOR_DATA.PINK;
+          this.circleColor = ColorData.PINK;
         })
       }
       // 单向同步子组件

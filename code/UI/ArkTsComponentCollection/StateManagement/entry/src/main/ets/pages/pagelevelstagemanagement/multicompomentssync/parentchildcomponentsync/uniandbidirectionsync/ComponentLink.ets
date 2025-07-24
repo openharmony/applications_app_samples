@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { COLOR_DATA } from './UniAndBidirectionSyncCode';
+import { ColorData } from './UniAndBidirectionSyncCode';
 import { ViewCodeText } from '../../../../../commoncomponents/ViewCodeText';
 
 @Component
@@ -53,7 +53,7 @@ export struct ChildCompLink {
       .backgroundColor($r('app.color.button_background_color'))
       .onClick(() => {
         // 点击更新子组件@Link声明的变量，此子组件更新，父组件以及@Prop声明的子组件变量同步
-        this.circleColor = COLOR_DATA.RED;
+        this.circleColor = ColorData.RED;
       })
     }
     .padding(10)

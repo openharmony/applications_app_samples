@@ -34,7 +34,7 @@ ComponentProp.ets</font>
  * limitations under the License. 
  */</span>
 
-<span class="s1">import </span><span class="s2">{ </span><span class="s1">COLOR_DATA </span><span class="s2">} </span><span class="s1">from </span><span class="s3">'./UniAndBidirectionSyncCode'</span>
+<span class="s1">import </span><span class="s2">{ </span><span class="s1">ColorData </span><span class="s2">} </span><span class="s1">from </span><span class="s3">'./UniAndBidirectionSyncCode'</span>
 <span class="s1">import </span><span class="s2">{ </span><span class="s1">ViewCodeText </span><span class="s2">} </span><span class="s1">from </span><span class="s3">'../../../../../commoncomponents/ViewCodeText'</span>
 
 <span class="s4">@</span><span class="s1">Component</span>
@@ -73,7 +73,7 @@ ComponentProp.ets</font>
       <span class="s5">.</span><span class="s1">backgroundColor</span><span class="s6">(</span><span class="s1">$r</span><span class="s6">(</span><span class="s3">'app.color.button_background_color'</span><span class="s6">))</span>
       <span class="s5">.</span><span class="s1">onClick</span><span class="s6">(() </span><span class="s5">=&gt; </span><span class="s2">{</span>
         <span class="s0">// 点击更新子组件@Prop声明的变量，此子组件更新，父组件以及@Link声明的子组件变量不同步</span>
-        <span class="s1">this</span><span class="s5">.</span><span class="s1">circleColor </span><span class="s5">= </span><span class="s1">COLOR_DATA</span><span class="s5">.</span><span class="s1">BLUE</span><span class="s5">;</span>
+        <span class="s1">this</span><span class="s5">.</span><span class="s1">circleColor </span><span class="s5">= </span><span class="s1">ColorData</span><span class="s5">.</span><span class="s1">BLUE</span><span class="s5">;</span>
       <span class="s2">}</span><span class="s6">)</span>
     <span class="s2">}</span>
     <span class="s5">.</span><span class="s1">padding</span><span class="s6">(</span><span class="s7">10</span><span class="s6">)</span>
