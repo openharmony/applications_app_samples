@@ -55,7 +55,7 @@
         "icon": "$media:icon",
         "description": "$string:description_datashareextability",
         "type": "dataShare",
-        "uri": "datashare://com.samples.widgetupdatebyproxy.DataShare",
+        "uri": "datashare://com.samples.widgetupdatebyproxy",
         "exported": true,
         "metadata": [
           {
