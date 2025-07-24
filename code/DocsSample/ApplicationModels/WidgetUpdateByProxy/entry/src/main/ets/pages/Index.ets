@@ -43,7 +43,7 @@ struct Index {
   }
 
   publishProcessData(): void {
-    let uri = ('datashareproxy://com.samples.widgetupdatebyproxy.DataShare');
+    let uri = ('datashareproxy://com.samples.widgetupdatebyproxy');
 
     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
     try {
@@ -144,13 +144,14 @@ struct Index {
       'cityId': '111',
       'type': 'Snow'
     }
-    let uri = ('datashare:///com.samples.widgetupdatebyproxy.DataShare');
+    let uri = ('datashare://com.samples.widgetupdatebyproxy');
     try {
       dataShare.createDataShareHelper(context, uri, { isProxy: true })
         .then((data: dataShare.DataShareHelper) => {
           dataShareHelper = data;
           if (dataShareHelper !== undefined) {
             // 插入一条数据
+            hilog.info(DOMAIN_NUMBER, TAG, 'createDataShareHelper succeed');
             (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket, (err: BusinessError, data: number) => {
               if (err !== undefined) {
                 hilog.error(DOMAIN_NUMBER, TAG, 'insert error: code:' + JSON.stringify(err) + data);
