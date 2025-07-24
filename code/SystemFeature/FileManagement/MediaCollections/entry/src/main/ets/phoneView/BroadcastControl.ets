@@ -127,8 +127,11 @@ export struct BroadcastControl {
               .width('81%')
               .trackColor(Color.Gray)
               .onChange((value: number) => {
-                this.currentTime = this.myMedia.totalDuration * value / 100
-                this.myMedia.seek(this.currentTime)
+                if (this.myMedia.totalDuration !== 0) {
+                  this.currentTime = this.myMedia.totalDuration * value / 100;
+                  this.myMedia.seek(this.currentTime);
+                  Logger.info(TAG, 'seek TAG1 time is:' + this.currentTime);
+                }
               })
             Text(this.myMedia ? getTimeString(this.myMedia.totalDuration) : '00:00')
               .fontSize(12)
