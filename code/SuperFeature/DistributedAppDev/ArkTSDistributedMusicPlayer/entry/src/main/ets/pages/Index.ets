@@ -335,6 +335,11 @@ interface Params {
   };
 
   selectedIndexChange = (selectedIndex: number) => {
+    Logger.info(TAG, `selectedIndexChanged selectedIndex: ${selectedIndex}`);
+    if (selectedIndex >= this.deviceLists.length) {
+      Logger.error(TAG, `selectedIndex out of the deviceLists, deviceLists len = ${this.deviceLists.length}`);
+      return;
+    }
     Logger.info(TAG, `this.deviceLists[selectedIndex]:${JSON.stringify(this.deviceLists[selectedIndex])}`);
     Logger.info(TAG, `deviceId:${JSON.stringify(this.deviceLists[selectedIndex].deviceId)}`);
     if (this.context !== null && selectedIndex === 0) {
