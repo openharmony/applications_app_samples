@@ -38,7 +38,7 @@ UniAndBidirectionSyncCode.ets</font>
 <span class="s1">import </span><span class="s2">{ </span><span class="s1">ViewCodeText </span><span class="s2">} </span><span class="s1">from </span><span class="s3">'../../../../../commoncomponents/ViewCodeText'</span>
 
 <span class="s0">// 初始化圆形的可设置颜色</span>
-<span class="s1">export const COLOR_DATA </span><span class="s4">= </span><span class="s2">{</span>
+<span class="s1">export const ColorData </span><span class="s4">= </span><span class="s2">{</span>
   <span class="s1">GREY</span><span class="s4">: </span><span class="s3">'#eebebeba'</span><span class="s4">,</span>
   <span class="s1">BLUE</span><span class="s4">: </span><span class="s3">'#4A90E2'</span><span class="s4">,</span>
   <span class="s1">PINK</span><span class="s4">: </span><span class="s3">'#8DF8BEBE'</span><span class="s4">,</span>
@@ -48,7 +48,7 @@ UniAndBidirectionSyncCode.ets</font>
 <span class="s5">@</span><span class="s1">Component</span>
 <span class="s1">export struct UniAndBidirectionSyncCode </span><span class="s2">{</span>
   <span class="s0">// 初始化圆形颜色的状态变量</span>
-  <span class="s5">@</span><span class="s1">State circleColor</span><span class="s4">: </span><span class="s1">string </span><span class="s4">= </span><span class="s1">COLOR_DATA</span><span class="s4">.</span><span class="s1">GREY</span><span class="s4">;</span>
+  <span class="s5">@</span><span class="s1">State circleColor</span><span class="s4">: </span><span class="s1">string </span><span class="s4">= </span><span class="s1">ColorData</span><span class="s4">.</span><span class="s1">GREY</span><span class="s4">;</span>
 
   <span class="s1">build</span><span class="s6">() </span><span class="s2">{</span>
     <span class="s1">Column</span><span class="s6">(</span><span class="s2">{ </span><span class="s1">space</span><span class="s4">: </span><span class="s7">10 </span><span class="s2">}</span><span class="s6">) </span><span class="s2">{</span>
@@ -81,7 +81,7 @@ UniAndBidirectionSyncCode.ets</font>
         <span class="s4">.</span><span class="s1">type</span><span class="s6">(</span><span class="s1">ButtonType</span><span class="s4">.</span><span class="s1">Capsule</span><span class="s6">)</span>
         <span class="s4">.</span><span class="s1">backgroundColor</span><span class="s6">(</span><span class="s1">$r</span><span class="s6">(</span><span class="s3">'app.color.button_background_color'</span><span class="s6">))</span>
         <span class="s4">.</span><span class="s1">onClick</span><span class="s6">(() </span><span class="s4">=&gt; </span><span class="s2">{</span>
-          <span class="s1">this</span><span class="s4">.</span><span class="s1">circleColor </span><span class="s4">= </span><span class="s1">COLOR_DATA</span><span class="s4">.</span><span class="s1">PINK</span><span class="s4">;</span>
+          <span class="s1">this</span><span class="s4">.</span><span class="s1">circleColor </span><span class="s4">= </span><span class="s1">ColorData</span><span class="s4">.</span><span class="s1">PINK</span><span class="s4">;</span>
         <span class="s2">}</span><span class="s6">)</span>
       <span class="s2">}</span>
       <span class="s0">// 单向同步子组件</span>

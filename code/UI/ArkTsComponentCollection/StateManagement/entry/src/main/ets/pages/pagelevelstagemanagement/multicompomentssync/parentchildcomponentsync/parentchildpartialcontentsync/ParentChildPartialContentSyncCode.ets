@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -60,7 +60,7 @@ export struct ParentChildPartialContentSyncCode {
           .onClick(() => {
             this.syncIndex = index;
           })
-        }, item => JSON.stringify(item))
+        }, (item: ClassObject) => JSON.stringify(item))
       }
       .width('100%')
       .backgroundColor($r('app.color.component_background_pink'))
@@ -77,7 +77,7 @@ export struct ParentChildPartialContentSyncCode {
 // 展示数组中单个元素的子组件
 @Component
 struct ParentCompDataItem {
-  private index: number;
+  private index: number = 0;
   @Prop syncIndex: number;
   // 使用@ObjectLink修饰，与父组件中元素同步
   @ObjectLink childObject: ClassObject;

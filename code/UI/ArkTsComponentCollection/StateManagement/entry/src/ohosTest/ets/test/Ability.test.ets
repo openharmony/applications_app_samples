@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -67,33 +67,33 @@ async function clickSelectIDAndSelectText(toggleId: string, selectText: string) 
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
+    beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
     });
-    beforeEach(function () {
+    beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
     });
-    afterEach(function () {
+    afterEach(() => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
     });
-    afterAll(function () {
+    afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     });
-    it('assertContain', 0, function () {
+    it('assertContain', 0, () => {
 
       Logger.info("Sample_StateManagement test start")
       /**
        * 打开应用
        */
-      it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+      it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
         Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
         let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         try {
@@ -113,7 +113,7 @@ export default function abilityTest() {
       /**
        * 打开折叠层
        */
-      it(BUNDLE + 'FolderLayerFunction_001', 0, async function () {
+      it(BUNDLE + 'FolderLayerFunction_001', 0, async () => {
         let testName = 'FolderLayerFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -139,7 +139,7 @@ export default function abilityTest() {
       /**
        * 测试基础类型状态管理
        */
-      it(BUNDLE + 'BaseTypeFunction_001', 0, async function () {
+      it(BUNDLE + 'BaseTypeFunction_001', 0, async () => {
         let testName = 'BaseTypeFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -184,7 +184,7 @@ export default function abilityTest() {
       /**
        * 测试数组类型状态管理
        */
-      it(BUNDLE + 'ArrayTypeFunction_001', 0, async function () {
+      it(BUNDLE + 'ArrayTypeFunction_001', 0, async () => {
         let testName = 'ArrayTypeFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -248,7 +248,7 @@ export default function abilityTest() {
       /**
        * 测试类对象类型状态管理
        */
-      it(BUNDLE + 'ObjectTypeFunction_001', 0, async function () {
+      it(BUNDLE + 'ObjectTypeFunction_001', 0, async () => {
         let testName = 'ObjectTypeFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -306,7 +306,7 @@ export default function abilityTest() {
       /**
        * 测试只更新所绑定的组件
        */
-      it(BUNDLE + 'UpdateBindComponentFunction_001', 0, async function () {
+      it(BUNDLE + 'UpdateBindComponentFunction_001', 0, async () => {
         let testName = 'UpdateBindComponentFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -350,7 +350,7 @@ export default function abilityTest() {
       /**
        * 测试单、双向同步
        */
-      it(BUNDLE + 'SingleBindFunction_001', 0, async function () {
+      it(BUNDLE + 'SingleBindFunction_001', 0, async () => {
         let testName = 'SingleBindFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -402,7 +402,7 @@ export default function abilityTest() {
       /**
        * 测试子组件同步父组件的内容
        */
-      it(BUNDLE + 'ChildParentFunction_001', 0, async function () {
+      it(BUNDLE + 'ChildParentFunction_001', 0, async () => {
         let testName = 'ChildParentFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -476,7 +476,7 @@ export default function abilityTest() {
       /**
        * 测试爷孙组件之间状态同步
        */
-      it(BUNDLE + 'DeepBindFunction_001', 0, async function () {
+      it(BUNDLE + 'DeepBindFunction_001', 0, async () => {
         let testName = 'DeepBindFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -549,7 +549,7 @@ export default function abilityTest() {
       /**
        * 测试兄弟组件之间状态同步
        */
-      it(BUNDLE + 'BrotherBindFunction_001', 0, async function () {
+      it(BUNDLE + 'BrotherBindFunction_001', 0, async () => {
         let testName = 'BrotherBindFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -622,7 +622,7 @@ export default function abilityTest() {
       /**
        * 应用内全局数据与UI之间的状态同步
        */
-      it(BUNDLE + 'GlobalSynFunction_001', 0, async function () {
+      it(BUNDLE + 'GlobalSynFunction_001', 0, async () => {
         let testName = 'GlobalSynFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 
@@ -718,7 +718,7 @@ export default function abilityTest() {
       /**
        * 应用内全局数据与UI之间的状态同步
        */
-      it(BUNDLE + 'AbilitySynFunction_001', 0, async function () {
+      it(BUNDLE + 'AbilitySynFunction_001', 0, async () => {
         let testName = 'AbilitySynFunction'
         Logger.info(TAG, BUNDLE + testName + ' begin')
 

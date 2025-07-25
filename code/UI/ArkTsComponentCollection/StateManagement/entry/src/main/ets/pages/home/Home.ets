@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,7 +31,7 @@ struct Home {
           TabContentNavigation({ categories: item.childNodes })
         }
         .tabBar(this.CustomTabBar(item, index))
-      }, item => JSON.stringify(item))
+      }, (item: FirstLevelCategory) => JSON.stringify(item))
     }
     .vertical(this.curBp === 'sm' ? false : true)
     // 大型设备tabbar的高度为40%，小型设备的高度为56vp

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -84,7 +84,7 @@ export struct ClassObjectTypeCode {
         .fontColor($r('app.color.button_text_color'))
         .fontSize($r('app.float.button_text_size'))
         .type(ButtonType.Capsule)
-        .buttonStyle()
+        .buttonStyle(ButtonStyleMode.EMPHASIZED)
       Button($r('app.string.class_type_update_attribute'))
         .onClick(() => {
           // 点击更新对象的属性
@@ -94,7 +94,7 @@ export struct ClassObjectTypeCode {
         .fontColor($r('app.color.button_text_color'))
         .fontSize($r('app.float.button_text_size'))
         .type(ButtonType.Capsule)
-        .buttonStyle()
+        .buttonStyle(ButtonStyleMode.EMPHASIZED)
       Button($r('app.string.class_type_update_child_attribute'))
         .onClick(() => {
           // 点击更新对象属性的属性
@@ -104,7 +104,7 @@ export struct ClassObjectTypeCode {
         .fontColor($r('app.color.button_text_color'))
         .fontSize($r('app.float.button_text_size'))
         .type(ButtonType.Capsule)
-        .buttonStyle()
+        .buttonStyle(ButtonStyleMode.EMPHASIZED)
     }
     .width('100%')
     .padding(10)
