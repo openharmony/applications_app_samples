@@ -62,7 +62,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td width="170" x:str><a href="code/UI/VerifyCode">验证码布局</a></td>
   <td width="170" x:str><a href="code/UI/WindowStartIcon">启动页实现案例</a></td>
-  <td></td>
+  <td width="170" x:str><a href="code/UI/NdkBuildOnMultiThread">使用NDK多线程创建UI组件</a></td>
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
