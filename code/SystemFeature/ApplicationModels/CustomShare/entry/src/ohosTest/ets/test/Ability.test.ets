@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -73,7 +73,7 @@ export default function abilityTest() {
     it(BUNDLE + 'ShareLinkFunction_001', 0, async () => {
       let resourceManager = ability.context.resourceManager;
       hilog.info(DOMAIN, TAG, BUNDLE + 'ShareLinkFunction_001 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       // 点击文本+链接分享按钮
       hilog.info(DOMAIN, TAG, BUNDLE + 'ShareLinkFunction_001 clickShareLinkButton');
@@ -135,7 +135,7 @@ export default function abilityTest() {
     it(BUNDLE + 'ShareFileFunction_001', 0, async () => {
       let resourceManager = ability.context.resourceManager;
       hilog.info(DOMAIN, TAG, BUNDLE + 'ShareFileFunction_001 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       // 点击应用内文件分享按钮
       hilog.info(DOMAIN, TAG, BUNDLE + 'ShareFileFunction_001 clickShareFileButton');
@@ -197,7 +197,7 @@ export default function abilityTest() {
     it(BUNDLE + 'ShareOtherFunction_001', 0, async () => {
       let resourceManager = ability.context.resourceManager;
       hilog.info(DOMAIN, TAG, BUNDLE + 'ShareOtherFunction_001 begin');
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       // 点击应用内文件分享按钮
       hilog.info(DOMAIN, TAG, BUNDLE + 'ShareOtherFunction_001 clickShareOtherButton');
