@@ -86,6 +86,16 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/SM2')
         })
+      Button($r('app.string.enc_des_cbc_nopadding'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          this.goToSample('pages/DESCBCNoPadding')
+        })  
       Button($r('app.string.call_cpp_enc_dec'))
         .padding('12vp')
         .height('40vp')

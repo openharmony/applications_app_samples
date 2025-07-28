@@ -143,6 +143,24 @@ export default function encryptionDecryptionTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Call C/C++ Result: 0'));
       console.info('uitest: testEncryptionDecryption006 end');
+      })
+
+    /**
+     * 点击按钮，加解密DES/CBC/NoPadding
+     */
+    it('testEncryptionDecryption007', 0, async () => {
+      console.info('uitest: testEncryptionDecryption007 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('DES/CBC/NoPadding'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('Call DES/CBC/NoPadding'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('DES/CBC/NoPadding Result: Success'));
+      console.info('uitest: testEncryptionDecryption007 end');
+      await driver.pressBack();
       await driver.pressBack();
     })
   })
