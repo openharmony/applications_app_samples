@@ -74,22 +74,23 @@ struct Index {
                     // [StartExclude ark_napi_resolve_reject_deferred]
                     this.result = 'napiDeferredFail';
                     // [EndExclude ark_napi_resolve_reject_deferred]
+                  }).then(() => {
+                    // Promise状态为false时设置reject，返回结果在catch函数中获得
+                    let promiseFail: Promise<string> =
+                      testNapi.resolveRejectDeferred('success', 'fail', false) as Promise<string>;
+                    promiseFail.then((res) => {
+                      hilog.info(0x0000, 'Node-API', 'get_resolve_deferred resolve %{public}s', res)
+                      // [StartExclude ark_napi_resolve_reject_deferred]
+                      this.result = 'napiDeferredSuccess';
+                      // [EndExclude ark_napi_resolve_reject_deferred]
+                    }).catch((err: Error) => {
+                      hilog.info(0x0000, 'Node-API', 'get_resolve_deferred reject %{public}s', err)
+                      // [StartExclude ark_napi_resolve_reject_deferred]
+                      this.result = 'napiDeferredFail';
+                      // [EndExclude ark_napi_resolve_reject_deferred]
+                    })
+                    // [End ark_napi_resolve_reject_deferred]
                   })
-                  // Promise状态为false时设置reject，返回结果在catch函数中获得
-                  let promiseFail: Promise<string> =
-                    testNapi.resolveRejectDeferred('success', 'fail', false) as Promise<string>;
-                  promiseFail.then((res) => {
-                    hilog.info(0x0000, 'Node-API', 'get_resolve_deferred resolve %{public}s', res)
-                    // [StartExclude ark_napi_resolve_reject_deferred]
-                    this.result = 'napiDeferredSuccess';
-                    // [EndExclude ark_napi_resolve_reject_deferred]
-                  }).catch((err: Error) => {
-                    hilog.info(0x0000, 'Node-API', 'get_resolve_deferred reject %{public}s', err)
-                    // [StartExclude ark_napi_resolve_reject_deferred]
-                    this.result = 'napiDeferredFail';
-                    // [EndExclude ark_napi_resolve_reject_deferred]
-                  })
-                  // [End ark_napi_resolve_reject_deferred]
                 }
               })
           }

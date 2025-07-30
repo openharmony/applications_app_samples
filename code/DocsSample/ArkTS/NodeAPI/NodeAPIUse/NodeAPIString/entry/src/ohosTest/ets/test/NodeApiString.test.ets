@@ -22,6 +22,8 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
 
+const testDelayMs = 1000;
+
 export default function nodeAPIStringTest() {
   describe('nodeAPIStringTest', () => {
     /**
@@ -34,26 +36,106 @@ export default function nodeAPIStringTest() {
       };
       await delegator.startAbility(want);
       const driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(testDelayMs);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
       console.info('get top ability');
-      await driver.delayMs(1000);
+      await driver.delayMs(testDelayMs);
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 
     /**
-     * 点击按钮,调用Node-API关于string的方法
+     * 点击按钮，调用getValueStringUtf8相关函数
      */
-    it('testNodeAPIString001', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIString001 begin');
+    it('testGetValueStringUtf8', 0, async (done: Function) => {
+      console.info('uitest: testGetValueStringUtf8 begin');
       const driver = Driver.create();
-      await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('1.napiString'));
-      await driver.delayMs(1000);
+      await driver.delayMs(testDelayMs);
+      const text = await driver.findComponent(ON.text('1. getValueStringUtf8'));
+      await driver.delayMs(testDelayMs);
       await text.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Result: napiStringSuccess'));
-      console.info('uitest: testNodeAPIString001 end');
+      await driver.delayMs(testDelayMs);
+      await driver.assertComponentExist(ON.text('Result: getValueStringUtf8 tested'));
+      console.info('uitest: testGetValueStringUtf8 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，调用createStringUtf8相关函数
+     */
+    it('testCreateStringUtf8', 0, async (done: Function) => {
+      console.info('uitest: testCreateStringUtf8 begin');
+      const driver = Driver.create();
+      await driver.delayMs(testDelayMs);
+      const text = await driver.findComponent(ON.text('2. createStringUtf8'));
+      await driver.delayMs(testDelayMs);
+      await text.click();
+      await driver.delayMs(testDelayMs);
+      await driver.assertComponentExist(ON.text('Result: createStringUtf8 tested'));
+      console.info('uitest: testCreateStringUtf8 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，调用getValueStringUtf16相关函数
+     */
+    it('testGetValueStringUtf16', 0, async (done: Function) => {
+      console.info('uitest: testGetValueStringUtf16 begin');
+      const driver = Driver.create();
+      await driver.delayMs(testDelayMs);
+      const text = await driver.findComponent(ON.text('3. getValueStringUtf16'));
+      await driver.delayMs(testDelayMs);
+      await text.click();
+      await driver.delayMs(testDelayMs);
+      await driver.assertComponentExist(ON.text('Result: getValueStringUtf16 tested'));
+      console.info('uitest: testGetValueStringUtf16 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，调用createStringUtf16相关函数
+     */
+    it('testCreateStringUtf16', 0, async (done: Function) => {
+      console.info('uitest: testCreateStringUtf16 begin');
+      const driver = Driver.create();
+      await driver.delayMs(testDelayMs);
+      const text = await driver.findComponent(ON.text('4. createStringUtf16'));
+      await driver.delayMs(testDelayMs);
+      await text.click();
+      await driver.delayMs(testDelayMs);
+      await driver.assertComponentExist(ON.text('Result: createStringUtf16 tested'));
+      console.info('uitest: testCreateStringUtf16 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，调用getValueStringLatin1相关函数
+     */
+    it('testGetValueStringLatin1', 0, async (done: Function) => {
+      console.info('uitest: testGetValueStringLatin1 begin');
+      const driver = Driver.create();
+      await driver.delayMs(testDelayMs);
+      const text = await driver.findComponent(ON.text('5. getValueStringLatin1'));
+      await driver.delayMs(testDelayMs);
+      await text.click();
+      await driver.delayMs(testDelayMs);
+      await driver.assertComponentExist(ON.text('Result: getValueStringLatin1 tested'));
+      console.info('uitest: testGetValueStringLatin1 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，调用createStringLatin1相关函数
+     */
+    it('testCreateStringLatin1', 0, async (done: Function) => {
+      console.info('uitest: testCreateStringLatin1 begin');
+      const driver = Driver.create();
+      await driver.delayMs(testDelayMs);
+      const text = await driver.findComponent(ON.text('6. createStringLatin1'));
+      await driver.delayMs(testDelayMs);
+      await text.click();
+      await driver.delayMs(testDelayMs);
+      await driver.assertComponentExist(ON.text('Result: createStringLatin1 tested'));
+      console.info('uitest: testCreateStringLatin1 end');
       done();
     })
   })
