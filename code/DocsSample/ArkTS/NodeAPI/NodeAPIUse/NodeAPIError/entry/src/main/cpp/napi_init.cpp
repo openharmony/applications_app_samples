@@ -47,7 +47,7 @@ static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
 
 // [Start napi_create_type_error]
 // napi_create_type_error
-static napi_value CreatTypeError(napi_env env, napi_callback_info info)
+static napi_value CreateTypeError(napi_env env, napi_callback_info info)
 {
     // 构造errorCode和errorMessage
     napi_value errorCode = nullptr;
@@ -63,7 +63,7 @@ static napi_value CreatTypeError(napi_env env, napi_callback_info info)
 
 // [Start napi_create_range_error]
 // napi_create_range_error
-static napi_value CreatRangeError(napi_env env, napi_callback_info info)
+static napi_value CreateRangeError(napi_env env, napi_callback_info info)
 {
     // 构造errorCode和errorMessage
     napi_value errorCode = nullptr;
@@ -291,8 +291,8 @@ static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         {"getLastErrorInfo", nullptr, GetLastErrorInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"creatTypeError", nullptr, CreatTypeError, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"creatRangeError", nullptr, CreatRangeError, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"createTypeError", nullptr, CreateTypeError, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"createRangeError", nullptr, CreateRangeError, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"napiThrow", nullptr, NapiThrow, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"napiThrowErrorMessage", nullptr, NapiThrowErrorMessage, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"napiThrowError", nullptr, NapiThrowError, nullptr, nullptr, nullptr, napi_default, nullptr},
