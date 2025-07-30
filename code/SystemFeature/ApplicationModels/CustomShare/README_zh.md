@@ -107,7 +107,7 @@ entry中测试[Share.test.ets](./entry/src/ohosTest/ets/test/Share.test.ets)需�
   
 2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release)，镜像版本号(4.0 Release)。
 
-3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(5.0 Release)及以上版本才可编译运行。
 
 4.本示例使用的screenshot API属于SystemAPI，需要使用Full SDK 手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 

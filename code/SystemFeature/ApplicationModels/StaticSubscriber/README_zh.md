@@ -75,7 +75,7 @@ entry/src/main/ets/
 
 2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
-3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(5.0 Release)及以上版本才可编译运行。
 
 4.静态订阅仅支持系统应用，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/determine-application-mode.md)，把配置文件中的“apl”字段信息改为“system_core”。
 
@@ -84,8 +84,6 @@ entry/src/main/ets/
 6.实现静态订阅的应用需要经过性能功耗团队评审符合功耗要求，如果您希望在调试阶段尝试使用该功能，可修改系统配置文件/system/etc/app/install_list_capability.json,将待调试应用的包名添加至json文件中。
 
 7.修改系统配置文件可以参考[静态订阅公共事件](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/basic-services/common-event/common-event-static-subscription.md)。
-
-8.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400 构建 2023年8月2日)及以上版本才可编译运行。
 
 ### 下载
 
