@@ -5,6 +5,7 @@
     "pages/AESGCMNoPadding",
     "pages/RSAECBOAEPSHA256",
     "pages/RSAECBPKCS1_V1_5",
+    "pages/DESCBCNoPadding",
     "pages/SM2"
   ]
 }

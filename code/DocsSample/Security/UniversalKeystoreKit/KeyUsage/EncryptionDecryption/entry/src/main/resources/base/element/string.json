@@ -33,6 +33,10 @@
       "value": "Call SM2"
     },
     {
+      "name": "des_cbc_nopadding",
+      "value": "Call DES/CBC/NoPadding"
+    },
+    {
       "name": "call_cpp",
       "value": "Call C/C++"
     },
@@ -55,6 +59,10 @@
     {
       "name": "enc_sm2",
       "value": "SM2"
+    },
+    {
+      "name": "enc_des_cbc_nopadding",
+      "value": "DES/CBC/NoPadding"
     },
     {
       "name": "call_cpp_enc_dec",
