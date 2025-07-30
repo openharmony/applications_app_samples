@@ -1,4 +1,4 @@
-# XComponent
+# ArkTSXComponent
 
 ### 介绍
 
