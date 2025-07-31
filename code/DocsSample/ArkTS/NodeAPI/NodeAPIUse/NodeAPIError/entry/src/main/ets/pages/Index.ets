@@ -78,7 +78,7 @@ struct Index {
                     // [StartExclude ark_napi_create_type_error]
                     this.result = 'napiCreateTypeErrorSuccess';
                     // [EndExclude ark_napi_create_type_error]
-                    throw testNapi.creatTypeError();
+                    throw testNapi.createTypeError();
                   } catch (error) { // napi_create_type_error
                     hilog.error(0x0000, 'testTag',
                       'Test Node-API napi_create_type_error errorCode: %{public}s, errorMessage %{public}s', error.code,
@@ -95,7 +95,7 @@ struct Index {
                     // [StartExclude ark_napi_create_range_error]
                     this.result = 'napiCreateRangeErrorSuccess';
                     // [EndExclude ark_napi_create_range_error]
-                    throw testNapi.creatRangeError();
+                    throw testNapi.createRangeError();
                   } catch (error) {
                     hilog.error(0x0000, 'testTag',
                       'Test Node-API napi_create_range_error errorCode: %{public}s, errorMessage: %{public}s',
