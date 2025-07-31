@@ -18,11 +18,11 @@ export const getLastErrorInfo: (str: string) => string; // napi_get_last_error_i
 // [End napi_get_last_error_info_api]
 
 // [Start napi_create_type_error_api]
-export const creatTypeError: () => Error; // napi_create_type_error
+export const createTypeError: () => Error; // napi_create_type_error
 // [End napi_create_type_error_api]
 
 // [Start napi_create_range_error_api]
-export const creatRangeError: () => Error; // napi_create_range_error
+export const createRangeError: () => Error; // napi_create_range_error
 // [End napi_create_range_error_api]
 
 // [Start napi_create_error_api]
