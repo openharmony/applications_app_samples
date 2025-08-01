@@ -2,7 +2,7 @@
 
 ### 介绍
 
-应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。本项目的构建依据[HTTP数据请求](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/network/http-request.md)示例代码，构建了一个HTTP数据请求的示例应用，它实现了通过按钮实现request接口开发步骤、requestInStream接口开发步骤的功能，使用了[@ohos.net.http](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-connection.md)接口。
+应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。本项目的构建依据[HTTP数据请求](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/http-request.md)示例代码，构建了一个HTTP数据请求的示例应用，它实现了通过按钮实现request接口开发步骤、requestInStream接口开发步骤的功能，使用了[@ohos.net.http](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)接口。
 
 **注意：**本示例需要用户输入一个实际的URL，方能获得通过的结果。
 
@@ -79,7 +79,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ### 依赖
 
@@ -99,6 +99,6 @@ entry/src/main/ets/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本项目的构建依据[MDNS](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/network/net-mdns.md)示例代码,MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、移除、发现、解析等能力。
+本项目的构建依据[MDNS](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/net-mdns.md)示例代码,MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、移除、发现、解析等能力。
 
 - 本地服务：局域网内服务的提供方，比如打印机、扫描器等。
 
@@ -11,7 +11,7 @@ MDNS管理的典型场景有：
 - 管理本地服务，通过对本地服务的创建，删除和解析等管理本地服务。
 - 发现本地服务，通过DiscoveryService对象，对指定类型的本地服务状态变化进行监听。
 
-使用了[@ohos.net.mdns](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-connection.md)接口。
+使用了[@ohos.net.mdns](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-mdns.md)接口。
 
 本应用支持在同一设备或不同设备的局域网环境中运行。在单一设备中，客户端可以注册本地服务，同时作为服务端发现局域网中的服务；在多设备环境下，一台设备充当客户端注册服务，另一台设备充当服务端进行服务发现。
 
@@ -114,6 +114,6 @@ entry/src/main/ets/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

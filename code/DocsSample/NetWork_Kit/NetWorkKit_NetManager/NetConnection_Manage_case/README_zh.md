@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例依照指南 系统->网络->Network Kit（网络服务）->Network Kit网络管理能力->[网络连接管理](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/network/net-connection-manager.md)进行编写。网络连接管理提供管理网络一些基础能力，包括WiFi/蜂窝/Ethernet等多网络连接优先级管理、网络质量评估、订阅默认/指定网络连接状态变化、查询网络连接信息等功能。本项目展示了一个网络连接管理的示例应用，它实现了通过按钮控制网络连接、获取已连接网络、获取默认网络以及获取默认网络的IP地址的功能，使用了`@ohos.net.connection`接口。
+本示例依照指南 系统->网络->Network Kit（网络服务）->[管理网络连接](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/net-connection-manager.md)进行编写。网络连接管理提供管理网络一些基础能力，包括WiFi/蜂窝/Ethernet等多网络连接优先级管理、网络质量评估、订阅默认/指定网络连接状态变化、查询网络连接信息等功能。本项目展示了一个网络连接管理的示例应用，它实现了通过按钮控制网络连接、获取已连接网络、获取默认网络以及获取默认网络的IP地址的功能，使用了[@ohos.net.connection](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-connection.md)接口。
 
 ### 效果预览
 
@@ -61,9 +61,9 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
-[ohos.permission.GET_NETWORK_INFO](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
+[ohos.permission.GET_NETWORK_INFO](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 ### 依赖
 
@@ -85,6 +85,6 @@ entry/src/main/ets/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Manage_case/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

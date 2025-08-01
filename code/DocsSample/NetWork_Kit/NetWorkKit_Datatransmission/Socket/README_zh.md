@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例依据指南《开发->系统->网络->Network Kit》（网络服务->Network Kit数据传输能力->[Socket连接](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/network/socket-connection.md)）进行编写。
+本项目的构建依据[socket连接](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/socket-connection.md)示例代码，提供了TCP、UDP、多播、本地Socket和TLS的Socket连接示例。使用了[@ohos.net.socket](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-socket.md)接口。
 
 Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。
 
@@ -182,9 +182,9 @@ entry/src/main/
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
-[ ohos.permission.GET_WIFI_INFO](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_wifi_info)
+[ ohos.permission.GET_WIFI_INFO](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_wifi_info)
 
 ### 依赖
 
@@ -211,6 +211,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
