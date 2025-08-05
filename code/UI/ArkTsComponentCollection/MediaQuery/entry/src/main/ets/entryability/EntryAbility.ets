@@ -16,7 +16,7 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
 import Logger from '../model/Logger';
-import { AbilityConstant } from '@kit.AbilityKit';
+import { AbilityConstant, Want } from '@kit.AbilityKit';
 
 const TAG = 'EntryAbility';
 
