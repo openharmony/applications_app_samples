@@ -6,24 +6,19 @@
 
 ### 效果图预览
 
-<img src="./figures/mainPage.png" width="200">
-
-<img src="./figures/build_on_multi_thread.png" width="200">
-
-<img src="./figures/build_on_ui_thread.png" width="200">
+![build_on_multi_thread](figures/build_on_multi_thread.gif)
 
 **使用说明**
 
-1. 点击CreatePageOnMultiThread按钮，触发多线程创建UI页面；
-2. 点击CreatePageOnUIThread按钮，触发在UI线程创建UI页面。
+1. 点击CreatePageOnMultiThread按钮，多线程创建UI页面；
+2. 点击CreatePageOnUIThread按钮，在UI线程创建UI页面作为对比。
 
 ### 实现思路
 
-场景一：点击CreatePageOnMultiThread按钮，跳转到多线程创建的UI页面，页面内的UI组件在非UI线程创建；
-
-场景二：点击CreatePageOnUIThread按钮，跳转到UI线程创建的UI页面，页面内的UI组件在UI线程创建。
+点击CreatePageOnMultiThread按钮，跳转到多线程创建的UI页面，页面内的UI组件在多线程并行创建。
 
 1. CAPIComponent自定义组件用于挂载通过Native接口创建的组件树。源码参考[Page.ets](./entry/src/main/ets/pages/Page.ets)，根据isOnUIThread的状态分别调用CreateNodeTreeOnUIThread在UI线程创建组件和CreateNodeTreeOnMultiThread在多线程创建组件。
+
 ```ts
 import { NodeContent, router } from '@kit.ArkUI';
 import entry from 'libentry.so';
@@ -35,41 +30,46 @@ struct CAPIComponent {
 
   aboutToAppear(): void {
     if (this.isOnUIThread) {
-      // 调用C-API接口在UI线程创建组件
+      // 调用Native接口在UI线程创建组件。
       entry.CreateNodeTreeOnUIThread(this.rootSlot, this.getUIContext());
     } else {
-      // 调用C-API接口多线程创建组件
+      // 调用Native接口多线程创建组件。
       entry.CreateNodeTreeOnMultiThread(this.rootSlot, this.getUIContext());
     }
   }
 
   aboutToDisappear(): void {
-    // 释放已创建的C-API组件
+    // 释放已创建的Native组件。
     entry.DisposeNodeTree(this.rootSlot);
   }
 
   build() {
     Column() {
-      // C-API组件挂载点
+      // Native组件树挂载点。
       ContentSlot(this.rootSlot)
     }
     .width('100%')
   }
 }
 ```
-2. CreateNodeTreeOnMultiThread是对ArkTs暴露的native接口，此接口负责多线程创建UI组件。示例中把页面中的每个卡片拆分为一个子任务，分别调用OH_ArkUI_PostAsyncUITask接口在非UI线程创建卡片对应的UI组件树。源码参考[NodeCreator.cpp](./entry/src/main/cpp/node/NodeCreator.cpp)
+
+2. CreateNodeTreeOnMultiThread是对ArkTs侧暴露的native接口，此接口负责多线程创建UI组件。示例中把页面中的每个卡片拆分为一个子任务，调用OH_ArkUI_PostAsyncUITask接口在非UI线程创建卡片对应的UI组件树。源码参考[NodeCreator.cpp](./entry/src/main/cpp/node/NodeCreator.cpp)
+
 ```cpp
 napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value args[2] = { nullptr, nullptr };
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
+    // 获取ArkTs侧组件挂载点。
     ArkUI_NodeContentHandle contentHandle;
     int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_ERROR(LOG_APP, "OH_ArkUI_GetNodeContentFromNapiValue Failed %{public}d", result);
         return nullptr;
     }
+
+    // 获取上下文对象指针。
     ArkUI_ContextHandle contextHandle;
     result = OH_ArkUI_GetContextFromNapiValue(env, args[1], &contextHandle);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -78,28 +78,32 @@ napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info) {
         return nullptr;
     }
     
+    // 创建native侧组件树根节点。
     auto scrollNode = std::make_shared<ArkUIScrollNode>();
     scrollNode->SetScrollBarDisplayMode(ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF);
+
+    // 将native侧组件树根节点挂载到UI主树上。
     result = OH_ArkUI_NodeContent_AddNode(contentHandle, scrollNode->GetHandle());
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_ERROR(LOG_APP, "OH_ArkUI_NodeContent_AddNode Failed %{public}d", result);
         delete contextHandle;
         return nullptr;
     }
+    // 保存native侧组件树。
     g_nodeMap[contentHandle] = scrollNode;
     
     auto columnNode = std::make_shared<ArkUIColumnNode>();
     scrollNode->AddChild(columnNode);
     
     for (int32_t i=0;i<g_cardTypeInfos.size();i++) {
-        //UI线程创建子树根节点，保证scroll的子节点顺序
+        // UI线程创建子树根节点，保证scroll的子节点顺序。
         auto columnItem = std::make_shared<ArkUIColumnNode>();
         columnItem->SetMargin(NODE_MARGIN, 0, NODE_MARGIN, 0);
         columnNode->AddChild(columnItem);
         AsyncData* asyncData = new AsyncData();
         asyncData->parent = columnItem;
         asyncData->cardInfo = g_cardTypeInfos[i];
-        // 在非UI线程创建组件树，创建完成后回到主线程挂载到主树上
+        // 在非UI线程创建组件树，创建完成后回到主线程挂载到UI主树上。
         result = OH_ArkUI_PostAsyncUITask(contextHandle, asyncData, CreateCardNodeTree, MountNodeTree);
         if (result != ARKUI_ERROR_CODE_NO_ERROR) {
             OH_LOG_ERROR(LOG_APP, "OH_ArkUI_PostAsyncUITask Failed %{public}d", result);
@@ -140,6 +144,7 @@ void MountNodeTree(void *asyncUITaskData) {
     }
     auto parent = asyncData->parent;
     auto child = asyncData->child;
+    // 把组件树挂载到UI主树上。
     parent->AddChild(child);
     delete asyncData;
 }
