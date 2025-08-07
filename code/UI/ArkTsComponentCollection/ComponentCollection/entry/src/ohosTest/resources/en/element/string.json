@@ -1688,7 +1688,7 @@
     },
     {
       "name": "text_timer_timeformatthree",
-      "value": "DD-HH-mm-ss.SSS"
+      "value": "HH-mm-ss.SSS"
     },
     {
       "name": "text_clock",
