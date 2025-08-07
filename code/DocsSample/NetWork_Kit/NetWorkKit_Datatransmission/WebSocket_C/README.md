@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例依照指南 开发->系统->网络->Network Kit（网络服务->Network Kit数据传输能力->[WebSocket连接（C/C++）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/network/native-websocket-guidelines.md)进行编写。
+本示例依照指南 开发->系统->网络->Network Kit（网络服务）->[使用WebSocket访问网络(C/C++)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/native-websocket-guidelines.md)进行编写。
 本示例主要展示了WebSocket模块可以建立服务器与客户端的双向连接的相关基础功能。通过在源文件中将相关接口封装，再在ArkTS层对封装的接口进行调用，以实现建立与WebSocket服务器的连接、发送消息给WebSocket服务器、关闭WebSocket连接。
 
 ### 效果预览
@@ -49,7 +49,7 @@ entry/src/main/
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ### 依赖
 
@@ -74,6 +74,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_C > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

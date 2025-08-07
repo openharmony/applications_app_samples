@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例依照指南 开发->系统->网络->Network Kit（网络服务->Network Kit数据传输能力->[流量管理](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/network/net-statistics.md)进行编写，在此调用了示例中的所有非系统接口部分。
+本示例依照指南 开发->系统->网络->Network Kit（网络服务）->管理网络->[统计网络流量消耗](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/net-statistics.md)进行编写，在此调用了示例中的所有非系统接口部分。
 
 流量管理提供了基于物理网络的数据流量统计能力，支持基于网卡/UID 的流量统计。
 
@@ -74,9 +74,9 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
-[ohos.permission.GET_NETWORK_INFO](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
+[ohos.permission.GET_NETWORK_INFO](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 ### 依赖
 
@@ -97,6 +97,6 @@ entry/src/main/ets/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

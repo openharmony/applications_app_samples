@@ -2,7 +2,7 @@
 
 ### 介绍
 
-VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专用网络的技术。整个 VPN 网络的任意两个节点之间的连接并没有传统专网所需的端到端的物理链路，而是架构在公用网络服务商所提供的网络平台（如 Internet）之上的逻辑网络，用户数据在逻辑链路中传输。本项目展示了一个管理的示例应用，它实现了通过按钮实现建立VPN 网络隧道、保护建立的 UDP 隧道以及建立一个 VPN 网络等功能，使用了[@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-connection.md)接口。
+VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专用网络的技术。整个 VPN 网络的任意两个节点之间的连接并没有传统专网所需的端到端的物理链路，而是架构在公用网络服务商所提供的网络平台（如 Internet）之上的逻辑网络，用户数据在逻辑链路中传输。本项目展示了一个管理的示例应用，它实现了通过按钮实现建立VPN 网络隧道、保护建立的 UDP 隧道以及建立一个 VPN 网络等功能，使用了[@ohos.net.vpn](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-vpn.md)、[@ohos.net.vpnExtension](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-vpnExtension.md)和[@ohos.app.ability.VpnExtensionAbility](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-VpnExtensionAbility.md)接口。
 
 ### 效果预览
 
@@ -103,7 +103,7 @@ entry/src/main/cpp/
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ### 依赖
 
@@ -123,6 +123,6 @@ entry/src/main/cpp/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
