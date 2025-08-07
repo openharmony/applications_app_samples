@@ -23,7 +23,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   deviceId: "",
-  bundleName: "com.example.myvpndemo",
+  bundleName: "com.example.testvpnclient",
   abilityName: "MyVpnExtAbility",
 };
 
