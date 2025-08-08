@@ -949,6 +949,14 @@
       "value": "与长列表的处理类似，循环渲染适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用数据懒加载方式实现按需迭代加载数据，从而提升列表性能。"
     },
     {
+      "name": "GridCalculator_title",
+      "value": "计算器的按键布局"
+    },
+    {
+      "name": "GridCalculator_description",
+      "value": "实现不同大小的网格组成不均匀分布的网格布局场景"
+    },
+    {
       "name": "ArcListCrown_set",
       "value": "设置"
     },

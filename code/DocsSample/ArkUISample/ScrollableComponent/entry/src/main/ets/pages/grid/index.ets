@@ -22,6 +22,7 @@ import { ScrollPosition } from './ScrollPositionGrid';
 import { GridSideToSide } from './GridSideToSide';
 import { GridScrollbar } from './GridScrollbar';
 import { LongGrid } from './LongGrid';
+import { GridCalculator } from './GridCalculator';
 import resource from '../../common/resource';
 
 export const GRID_ROUTE_PREFIX: string = 'grid';
@@ -61,6 +62,11 @@ const routes: Route[] = [
     name: `${GRID_ROUTE_PREFIX}/LongGrid`,
     title: resource.resourceToString($r('app.string.LongGrid_title')),
     description: $r('app.string.LongGrid_description')
+  },
+  {
+    name: `${GRID_ROUTE_PREFIX}/GridCalculator`,
+    title: resource.resourceToString($r('app.string.GridCalculator_title')),
+    description: $r('app.string.GridCalculator_description')
   }
 ];
 
@@ -82,6 +88,8 @@ export function gridDestination(name: string) {
     GridScrollbar();
   } else if (name === routes[6].name) {
     LongGrid();
+  } else if (name === routes[7].name) {
+    GridCalculator();
   }
 }
 
