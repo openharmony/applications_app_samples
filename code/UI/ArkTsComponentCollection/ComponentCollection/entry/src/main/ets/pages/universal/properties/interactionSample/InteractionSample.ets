@@ -386,7 +386,7 @@ struct Interaction {
                 }.width('100%')
 
                 Button($r('app.string.interaction_showcustompopup'))
-                  .margin({ bottom: 30 })
+                  .margin({ bottom: 60 })
                   .onClick(() => {
                     this.handleCustomPopup = true;
                   })
@@ -402,8 +402,9 @@ struct Interaction {
                   }).id('test_customButton')
               }.cardStyle()
             }.width('100%')
-            .padding(12)
+            .padding({ left: 12, right: 12, bottom: 12 })
           }
+          .height('80%')
         }.tabBar(this.tabbarTitle($r('app.string.popup_window'), 1))
 
         TabContent() {
@@ -537,7 +538,7 @@ struct Interaction {
               }
               .width(200)
               .height(200)
-              .backgroundColor(Color.Green)
+              .backgroundColor(Color.Gray)
               .hoverEffect(this.mHoverEffect)
             }.cardStyle()
 

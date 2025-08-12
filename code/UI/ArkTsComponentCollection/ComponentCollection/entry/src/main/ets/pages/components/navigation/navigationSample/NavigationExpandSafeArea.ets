@@ -41,10 +41,11 @@ struct NavigationExpandSafeArea {
         .borderRadius(24)
         .height('88%')
         .width('93%')
-        .expandSafeArea(this.expand ? [SafeAreaType.SYSTEM] : [SafeAreaType.CUTOUT], this.expand ? [SafeAreaEdge.BOTTOM] : [SafeAreaEdge.START])
     }
     .height('100%')
     .width('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
+    .expandSafeArea(this.expand ? [SafeAreaType.SYSTEM] : [SafeAreaType.CUTOUT],
+      this.expand ? [SafeAreaEdge.BOTTOM] : [SafeAreaEdge.START])
   }
 }
