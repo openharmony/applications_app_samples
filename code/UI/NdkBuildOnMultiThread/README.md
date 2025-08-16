@@ -154,6 +154,8 @@ void MountNodeTree(void *asyncUITaskData) {
 
 本示例使用了多线程native接口在非UI线程创建UI组件，减少了UI线程组件创建布局耗时，优化了页面跳转响应时延。
 
+参考[使用SmartPerf-Host分析应用性能](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/performance/performance-optimization-using-smartperf-host.md)文档，抓取trace对比分别使用UI线程和多线程创建组件时的性能。
+
 - 使用UI线程创建UI组件
 
 ![build_on_ui_thread_trace](figures/build_on_ui_thread_trace.png)
@@ -161,6 +163,9 @@ void MountNodeTree(void *asyncUITaskData) {
 - 使用多线程创建UI组件
 
 ![build_on_multi_thread_trace](figures/build_on_multi_thread_trace.png)
+
+trace中aboutToAppear段的耗时为UI线程组件创建的耗时。
+从DispatchTouchEvent开始下一帧到OnVsyncEvent结束的耗时为UI线程组件创建布局的耗时。基于上述分析生成如下性能对比表格。
 
 |  | UI线程创建 | 多线程创建 | 优化比例 |
 | -------- | -------- | -------- | -------- |
@@ -196,6 +201,8 @@ void MountNodeTree(void *asyncUITaskData) {
 ### 参考资料
 
 [接入ArkTS页面](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/ui/ndk-access-the-arkts-page.md)
+
+[使用SmartPerf-Host分析应用性能](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/performance/performance-optimization-using-smartperf-host.md)
 
 ### 相关权限
 
