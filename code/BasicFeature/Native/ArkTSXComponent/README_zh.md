@@ -38,6 +38,10 @@ SurfaceId获取方法，Surface生命周期回调使用，NativeWindow创建等�
 │  │  │  ├──egl_core.h
 │  │  │  ├──plugin_render.cpp
 │  │  │  └──plugin_render.h
+|  |  ├──types						//定义接口文件
+│  │  │  ├──libnativerender
+│  │  │  │  ├──Index.d.ts
+│  │  │  │  ├──oh-package.json5
 │  ├──ets                           // ets代码区
 │  │  ├──entryability
 │  │  │  └──EntryAbility.ts         // 程序入口类
