@@ -1,25 +1,27 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/ygb/.ohos/config/openharmony/default_NativeXComponent_vettAfdtjXzJupm970gSS6vIj2Id7Ze2ciVtUQXR8Rg=.cer",
-          "storePassword": "0000001BEC892530464D6962B4D77B1E79E860C5875717DE664123F7D2E55BEC70B43186A43D9DD1956329",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BE98DB5A9C0AF95C89DF9A44792F28CBCC21C552EABE1D78459C56AC35BB46E34BEED2E591E1202",
-          "profile": "C:/Users/ygb/.ohos/config/openharmony/default_NativeXComponent_vettAfdtjXzJupm970gSS6vIj2Id7Ze2ciVtUQXR8Rg=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/ygb/.ohos/config/openharmony/default_NativeXComponent_vettAfdtjXzJupm970gSS6vIj2Id7Ze2ciVtUQXR8Rg=.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 12,
-        "compatibleSdkVersion": 12,
+        "compileSdkVersion": 20,
+        "compatibleSdkVersion": 20,
         "runtimeOS": "OpenHarmony",
       }
     ],

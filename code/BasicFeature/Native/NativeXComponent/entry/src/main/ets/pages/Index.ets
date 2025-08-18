@@ -70,7 +70,7 @@ struct Index {
         .caretColor(Color.Blue)
         .width(400)
         .height(40)
-        .margin(20)
+        .margin(10)
         .fontSize(14)
         .fontColor(Color.Black)
         .onChange((value: string) => {
@@ -89,7 +89,13 @@ struct Index {
 
       Button('创建/销毁').onClick(() => {
         this.isShow = !this.isShow;
-      })
+      }).width("50%")
+        .margin({
+          top: 10,
+          bottom: 10,
+          left: 12,
+          right: 12
+        })
 
       Column() {
         Text('期望帧率设置：')
@@ -141,13 +147,32 @@ struct Index {
           native.setNeedSoftKeyboard(this.myNodeController.xComponentId, this.needSoftKeyboard);
           this.text = this.needSoftKeyboard ? '单指点击XComponent软键盘不消失' : '单指点击XComponent软键盘消失'
         })
+        .width("50%")
+        .margin({
+          top: 10,
+          bottom: 10,
+          left: 12,
+          right: 12
+        })
       Button("Initialize")
         .onClick(()=>{
           native.initialize(this.myNodeController.xComponentId)
         })
+        .width("50%")
+        .margin({
+          top: 10,
+          left: 12,
+          right: 12
+        })
       Button("Finalize")
         .onClick(()=>{
           native.finalize(this.myNodeController.xComponentId)
+        })
+        .width("50%")
+        .margin({
+          top: 10,
+          left: 12,
+          right: 12
         })
     }
     .width('100%')
