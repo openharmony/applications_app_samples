@@ -44,12 +44,14 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('单指点击XComponent软键盘消失'));
       await driver.assertComponentExist(ON.text('创建/销毁'));
       await driver.assertComponentExist(ON.text('needSoftKeyboard=',MatchPattern.STARTS_WITH));
+      await driver.assertComponentExist(ON.text('Initialize'));
+      await driver.assertComponentExist(ON.text('Finalize'));
       done();
       console.info(TAG, 'StartAbility_001 end');
     })
 
     /**
-     * 点击按钮，按钮
+     * 点击按钮，XComponent组件销毁，再次点击按钮，XComponent组件创建
      */
     it('DrawShape_001', 2, async (done: Function) => {
       console.info(TAG, 'CreateFiles_001 begin');
@@ -77,6 +79,9 @@ export default function abilityTest() {
       console.info(TAG, 'DrawShape_001 end');
     })
 
+    /**
+     * 点击XComponent组件区域，绘制内容颜色改变
+     */
     it('DrawShape_002', 2, async (done: Function) => {
       console.info(TAG, 'DrawShape_002 begin');
       let driver = Driver.create();
@@ -97,6 +102,9 @@ export default function abilityTest() {
       console.info(TAG, 'DrawShape_002 end');
     })
 
+    /**
+     * 点击min对应滑动条，设置最小帧率为120
+     */
     it('SetExpectedFrameRate_001 ', 2, async (done: Function) => {
       console.info(TAG, 'SetExpectedFrameRate_001 start');
       let driver = await Driver.create();
@@ -122,6 +130,9 @@ export default function abilityTest() {
       console.info(TAG, 'SetExpectedFrameRate_001 end');
     })
 
+    /**
+     * 点击max对应滑动条，设置最大帧率为240
+     */
     it('SetExpectedFrameRate_002 ', 2, async (done: Function) => {
       console.info(TAG, 'SetExpectedFrameRate_002 start');
       let driver = await Driver.create();
@@ -147,6 +158,9 @@ export default function abilityTest() {
       console.info(TAG, 'SetExpectedFrameRate_002 end');
     })
 
+    /**
+     * 点击expected对应滑动条，设置期望帧率为120
+     */
     it('SetExpectedFrameRate_003 ', 2, async (done: Function) => {
       console.info(TAG, 'SetExpectedFrameRate_003 start');
       let driver = await Driver.create();
