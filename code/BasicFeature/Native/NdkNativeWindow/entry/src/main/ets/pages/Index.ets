@@ -19,7 +19,7 @@ const TAG = '[Sample_NativeWindowAPI]';
 @Entry
 @Component
 struct Index {
-  @State msg: string = 'OnFrameAvailable count:'
+  @State msg: string = 'OnFrameAvailable count:';
   @State frameAvailableCount: number = 0;
   @State producerCacheBufferCount: number = 0;
   @State cacheBufferCount: number = 3;
@@ -84,7 +84,7 @@ struct Index {
         .onClick(() => {
           this.debounceClick(() => {
             if (this.nativeWindowContext) {
-              console.log(TAG, "Produce Buffer");
+              console.info(TAG, "Produce Buffer");
               if (this.nativeWindowContext.ProduceBuffer() == 0) {
                 this.frameFlushedCount++;
               }
@@ -111,7 +111,7 @@ struct Index {
           .margin({ bottom: 24 })
           .onClick(() => {
             if (this.nativeWindowContext) {
-              console.log(TAG, "Consumer Buffer");
+              console.info(TAG, "Consumer Buffer");
               if (this.nativeWindowContext.ConsumerBuffer() == 0) {
                 this.frameConsumerCount++;
               }
@@ -126,7 +126,7 @@ struct Index {
         .margin({ bottom: 24 })
         .onClick(() => {
           if (this.nativeWindowContext) {
-            console.log(TAG, "GetAvailableCount");
+            console.info(TAG, "GetAvailableCount");
             this.frameAvailableCount = this.nativeWindowContext.GetAvailableCount();
           }
         })
