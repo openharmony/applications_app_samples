@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import XComponentContext from "../interface/XComponentContext"
+import XComponentContext from "../interface/XComponentContext";
 
 @Entry
 @Component
@@ -47,7 +47,7 @@ struct Index {
             this.currentStatus = "index";
           })
           .onDestroy(() => {
-            console.log('onDestroy');
+            console.info('onDestroy');
           })
           .id("xcomponent")
 

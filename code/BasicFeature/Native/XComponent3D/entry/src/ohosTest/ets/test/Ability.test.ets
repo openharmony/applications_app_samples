@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { it, beforeAll, afterAll, expect, describe } from '@ohos/hypium'
-import { Driver, ON, } from '@ohos.UiTest'
+import { it, beforeAll, afterAll, expect, describe } from '@ohos/hypium';
+import { Driver, ON, } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import delegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
@@ -22,7 +22,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import Logger from 'ets/util/Logger';
 
-const TAG = '{Sample_AppXComponent3D]'
+const TAG = '{Sample_AppXComponent3D]';
 const BUNDLE_NAME = 'com.samples.xcomponent3d';
 const ABILITY_NAME = 'EntryAbility';
 const DOMAIN = '0xE629';
@@ -45,7 +45,7 @@ export default function abilityTest() {
         abilityName: ABILITY_NAME
       };
       delegator.startAbility(want, (err) => {
-        Logger.info(TAG, `${BUNDLE_NAME} startAbility end err ${JSON.stringify(err)}`)
+        Logger.info(TAG, `${BUNDLE_NAME} startAbility end err ${JSON.stringify(err)}`);
       });
       await driver.delayMs(5000);
       await delegator.getCurrentTopAbility().then((Ability) => {
@@ -59,10 +59,10 @@ export default function abilityTest() {
       let abilityDelegator = delegatorRegistry.getAbilityDelegator();
       let pkillCmd = 'aa force-stop com.samples.xcomponent3d';
       abilityDelegator.executeShellCommand(pkillCmd, (err, data) => {
-        console.log('Acts_CleanTempFiles pkillCmd err: '
+        console.info('Acts_CleanTempFiles pkillCmd err: '
           + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       })
-      lockAbilityTerminateSelf()
+      lockAbilityTerminateSelf();
     })
 
     /**

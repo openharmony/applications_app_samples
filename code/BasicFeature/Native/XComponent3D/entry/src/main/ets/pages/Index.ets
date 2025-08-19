@@ -18,10 +18,10 @@ import { animate, changeShape } from "libnativerender.so"
 @Entry
 @Component
 struct Index {
-  @State xcOpacity: number = 1
-  @State xcRotate: number = 0
-  @State currentIndex: number = 0
-  private intervalID: number = 0
+  @State xcOpacity: number = 1;
+  @State xcRotate: number = 0;
+  @State currentIndex: number = 0;
+  private intervalID: number = 0;
 
   onPageShow() {
     this.intervalID = setInterval(() => {
@@ -51,8 +51,8 @@ struct Index {
       .height('7.2%')
 
       Flex() {
-        this.TabBuilder("DrawCube", 0)
-        this.TabBuilder("DrawTransform", 1)
+        this.TabBuilder("DrawCube", 0);
+        this.TabBuilder("DrawTransform", 1);
       }
       .width('100%')
       .height('7.2%')
@@ -86,9 +86,9 @@ struct Index {
         })
         .opacity(this.currentIndex === targetIndex ? 1 : 0.6)
         .onClick(() => {
-          console.log("Button Click")
-          this.currentIndex = targetIndex
-          changeShape(targetIndex)
+          console.info("Button Click");
+          this.currentIndex = targetIndex;
+          changeShape(targetIndex);
         })
 
       Divider()
@@ -107,9 +107,9 @@ struct Index {
     .height(50)
     .justifyContent(FlexAlign.Center)
     .onClick(() => {
-      console.log("Button Click")
-      this.currentIndex = targetIndex
-      changeShape(targetIndex)
+      console.info("Button Click");
+      this.currentIndex = targetIndex;
+      changeShape(targetIndex);
     })
   }
 }
