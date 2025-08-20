@@ -26,13 +26,13 @@ entry/src/main/ets/
 
 ### 依赖
 
+不涉及。
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
 2.本示例为Stage模型，支持API18版本SDK，SDK版本号（API Version 18 Release）。
-
 
 ### 下载
 
