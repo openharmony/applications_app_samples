@@ -142,7 +142,7 @@ struct Interaction {
     Row({ space: 20 }) {
       Image($r("app.media.icon")).width(24).height(24)
       Text('Content').fontSize(20).fontColor(Color.White)
-    }.width(140).height(40).padding(10)
+    }.width(120).height(40).padding(10)
   }
 
   @Builder menuBuilder() {
@@ -387,6 +387,7 @@ struct Interaction {
 
                 Button($r('app.string.interaction_showcustompopup'))
                   .margin({ bottom: 60 })
+                  .fontSize(10)
                   .onClick(() => {
                     this.handleCustomPopup = true;
                   })
