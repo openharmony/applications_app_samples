@@ -5,6 +5,10 @@
 
 ### 效果预览
 
+| 应用内拉起卡片管理按钮                         |   添加卡片到桌面按钮                    | 添加卡片到桌面                    |
+|----------------------------|------------------------------------|------------------------------------|
+| ![](screenshots/openFormManagerButton.jpg) | ![](screenshots/addFormByButton.jpg) | ![](screenshots/addFormToDeskTop.jpg) |
+
 ### 工程目录
 
 ```
