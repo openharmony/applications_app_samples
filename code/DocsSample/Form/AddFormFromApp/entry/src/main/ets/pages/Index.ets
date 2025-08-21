@@ -11,10 +11,10 @@ struct Index {
     Row() {
       Column() {
         //添加拉起卡片管理页面按钮，点击按钮后调用openFormManager方法，拉起卡片管理页面1··
-        Button('拉起卡片管理页面')
+        Button($r('app.string.open_form_manager_button'))
           .onClick(() => {
             const want: Want = {
-              bundleName: 'com.example.myapplication',
+              bundleName: "com.samples.myapplication",
               abilityName: 'EntryFormAbility',
               parameters: {
                 'ohos.extra.param.key.form_dimension': 2,
@@ -26,6 +26,7 @@ struct Index {
               formProvider.openFormManager(want);
               Prompt.showToast({ message: "暂不对外开放" })
             } catch (error) {
+              Prompt.showToast({message: (error as BusinessError).message});
               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
             }
           })

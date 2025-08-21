@@ -12,13 +12,20 @@
 ### 工程目录
 
 ```
-entry/src/main/ets/
-├── entryability
-│   └── EntryAbility.ets
-└── pages
-    └── Index.ets             // 拉起卡片管理界面
-
+entry/src/main/ets/                 
+|---entryability
+|   └---EntryAbility.ets
+|---entryformability
+|   └---EntryFormAbility.ets                       
+└---pages
+    └---Index.ets                      // 代码实现
+└---widget
+    └---pages
+        └---WidgetCard.ets
 ```
+
+
+
 
 ### 具体实现 
 桌面提供统一的卡片管理页面。应用通过[formProvider](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formProvider.md)模块提供的[openFormManager](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)接口，能够拉起卡片管理页面，触发卡片添加至桌面操作，点击“添加至桌面”，实现卡片添加至桌面的功能。
@@ -34,9 +41,7 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行，支持设备：RK3568。
-
-2.本示例为Stage模型，支持API18版本SDK，SDK版本号（API Version 18 Release）。
+1.本示例为Stage模型，支持API18版本SDK，SDK版本号（API Version 18 Release）。
 
 ### 下载
 

@@ -27,6 +27,10 @@
     {
       "name": "widget_display_name",
       "value": "widget"
+    },
+    {
+      "name":"open_form_manager_button",
+      "value":"拉起卡片管理界面"
     }
   ]
 }
