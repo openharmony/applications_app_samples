@@ -24,7 +24,6 @@ struct Index {
             };
             try {
               formProvider.openFormManager(want);
-              Prompt.showToast({ message: "暂不对外开放" })
             } catch (error) {
               Prompt.showToast({message: (error as BusinessError).message});
               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
