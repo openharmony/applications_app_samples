@@ -17,7 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 import Logger from '../util/Logger'
 import window from '@ohos.window';
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
-import { AbilityConstant } from '@kit.AbilityKit';
+import { AbilityConstant, Want } from '@kit.AbilityKit';
 
 const TAG: string = 'MainAbility'
 

@@ -1580,7 +1580,7 @@
     },
     {
       "name": "hover_region",
-      "value": "Hover the mouse over the green area to observe the effect"
+      "value": "Hover the mouse over the gray area to observe the effect"
     },
     {
       "name": "multistatus_region",

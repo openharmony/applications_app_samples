@@ -1477,7 +1477,7 @@
     },
     {
       "name": "hover_region",
-      "value": "鼠标悬浮在绿色区域内，观察效果"
+      "value": "鼠标悬浮在灰色区域内，观察效果"
     },
     {
       "name": "multistatus_region",
