@@ -41,7 +41,7 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例为Stage模型，支持API18版本SDK，SDK版本号（API Version 18 Release）。
+1.本示例为Stage模型，支持API19版本SDK，SDK版本号（API Version 19 Release）。
 
 ### 下载
 
