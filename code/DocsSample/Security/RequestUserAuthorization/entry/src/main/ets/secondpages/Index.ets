@@ -13,14 +13,32 @@
  * limitations under the License.
  */
 
-import { common, Want } from '@kit.AbilityKit';
+import { Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [Start second_request_permission]
+import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// [StartExclude second_request_permission]
 @Entry
 @Component
 struct Index {
   build() {
     Column() {
+      Button('再次授权')
+        .margin(20)
+        .onClick(() => {
+          // [EndExclude second_request_permission]
+          let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+          let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+          atManager.requestPermissionOnSetting(context, ['ohos.permission.APPROXIMATELY_LOCATION']).then((data: Array<abilityAccessCtrl.GrantStatus>) => {
+            console.info(`requestPermissionOnSetting success, result: ${data}`);
+          }).catch((err: BusinessError) => {
+            console.error(`requestPermissionOnSetting fail, code: ${err.code}, message: ${err.message}`);
+          });
+          // [End second_request_permission]
+        })
+
       Button($r('app.string.return_entryability'))
         .onClick(() => {
           let context = getContext(this) as common.UIAbilityContext;
@@ -39,6 +57,6 @@ struct Index {
     }
     .width('100%')
     .height('100%')
-    .justifyContent(FlexAlign.SpaceEvenly)
+    .justifyContent(FlexAlign.Center)
   }
 }

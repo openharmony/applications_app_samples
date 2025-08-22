@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start request_permission_json]
 {
   "module": {
+    // [StartExclude request_permission_json]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -71,6 +73,7 @@
         ]
       }
     ],
+    // [EndExclude request_permission_json]
     "requestPermissions": [
       {
         "name": "ohos.permission.APPROXIMATELY_LOCATION",
@@ -95,3 +98,4 @@
     ]
   }
 }
+// [End request_permission_json]
