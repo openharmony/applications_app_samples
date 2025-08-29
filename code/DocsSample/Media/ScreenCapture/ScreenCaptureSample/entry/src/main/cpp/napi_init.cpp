@@ -187,6 +187,7 @@ static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info)
     OH_AVScreenCapture_SkipPrivacyMode(g_avCapture,
         &windowIdsExclude[0], static_cast<int32_t>(windowIdsExclude.size()));
     OH_AVScreenCapture_ReleaseContentFilter(contentFilter);
+    contentFilter = nullptr;
     // 可选，排除指定窗口/指定音频类型 end
     int result = OH_AVScreenCapture_Init(g_avCapture, config_);
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
@@ -198,6 +199,7 @@ static napi_value StartScreenCapture_01(napi_env env, napi_callback_info info)
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
         OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started failed %{public}d", result);
         OH_AVScreenCapture_Release(g_avCapture);
+        g_avCapture = nullptr;
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
@@ -243,6 +245,7 @@ static napi_value StartScreenCapture_02(napi_env env, napi_callback_info info)
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
         OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started failed %{public}d", result);
         OH_AVScreenCapture_Release(g_avCapture);
+        g_avCapture = nullptr;
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
 
@@ -372,6 +375,7 @@ int GetInputSurface()
     if (result != AV_SCREEN_CAPTURE_ERR_OK) {
         OH_LOG_ERROR(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started failed %{public}d", result);
         OH_AVScreenCapture_Release(g_avCapture);
+        g_avCapture = nullptr;
         return result;
     }
     OH_LOG_INFO(LOG_APP, "==ScreenCaptureSample== ScreenCapture Started %{public}d", result);
@@ -438,6 +442,7 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
             OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_Release: %{public}d", result);
         }
         OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
+        g_avCapture = nullptr;
         m_scSaveFileIsRunning = false;
     } else {
         result = OH_AVScreenCapture_StopScreenCapture(g_avCapture);
@@ -449,6 +454,7 @@ static napi_value StopScreenCapture(napi_env env, napi_callback_info info)
             OH_LOG_ERROR(LOG_APP, "StopScreenCapture OH_AVScreenCapture_Release: %{public}d", result);
         }
         OH_LOG_INFO(LOG_APP, "OH_AVScreenCapture_Release success");
+        g_avCapture = nullptr;
         CloseFile();
         m_isRunning = false;
     }
