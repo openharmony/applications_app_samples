@@ -26,9 +26,23 @@ struct KaraokePage {
   @State statusText: Resource = $r('app.string.KARAOKE_NOT_INITIALIZED');
   @State volume: number = 50;
 
+  private reverbPresetNameMap = new Map<audio.AudioLoopbackReverbPreset, Resource>([
+    [audio.AudioLoopbackReverbPreset.ORIGINAL, $r('app.string.ORIGINAL')],
+    [audio.AudioLoopbackReverbPreset.KTV, $r('app.string.KTV')],
+    [audio.AudioLoopbackReverbPreset.THEATER, $r('app.string.THEATER')],
+    [audio.AudioLoopbackReverbPreset.CONCERT, $r('app.string.CONCERT')],
+  ]);
+  
+  private equalizerPresetNameMap = new Map<audio.AudioLoopbackEqualizerPreset, string>([
+    [audio.AudioLoopbackEqualizerPreset.FLAT, '平坦'],
+    [audio.AudioLoopbackEqualizerPreset.FULL, '饱满'],
+    [audio.AudioLoopbackEqualizerPreset.BRIGHT, '明亮'],
+  ]);
+
   // Initial loopback mode: hardware
   @State mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
-
+  @State currentReverbPreset: audio.AudioLoopbackReverbPreset = audio.AudioLoopbackReverbPreset.THEATER;
+  @State currentEqualizerPreset: audio.AudioLoopbackEqualizerPreset = audio.AudioLoopbackEqualizerPreset.FULL;
   // Audio loopback status change callback
   private statusChangeCallback = (status: audio.AudioLoopbackStatus) => {
     if (status == audio.AudioLoopbackStatus.UNAVAILABLE_DEVICE) {
@@ -61,12 +75,12 @@ struct KaraokePage {
     let isSupported = audio.getAudioManager().getStreamManager().isAudioLoopbackSupported(this.mode);
     if (isSupported) {
       audio.createAudioLoopback(this.mode).then((loopback) => {
-        Logger.info('Invoke createAudioLoopback succeeded.');
+        Logger.info('createAudioLoopback succeeded.');
         this.audioLoopback = loopback;
         this.statusText = $r('app.string.KARAOKE_INITIALIZED');
         this.showStatusText();
       }).catch((err: BusinessError) => {
-        Logger.error(`Invoke createAudioLoopback failed, code is ${err.code}, message is ${err.message}.`);
+        Logger.error(`createAudioLoopback failed, code is ${err.code}, message is ${err.message}.`);
         this.statusText = $r('app.string.KARAOKE_INITIALIZATION_FAILED');
         this.showStatusText();
       });
@@ -86,7 +100,7 @@ struct KaraokePage {
           this.audioLoopback.on('statusChange', this.statusChangeCallback);
           let success = await this.audioLoopback.enable(true);
           if (success) {
-            Logger.info('Invoke enable succeeded');
+            Logger.info('enable succeeded');
           } else {
             status = await this.audioLoopback.getStatus();
             this.statusChangeCallback(status);
@@ -95,7 +109,7 @@ struct KaraokePage {
           this.statusChangeCallback(status);
         }
       } catch (err) {
-        Logger.error(`Invoke enable failed, code is ${err.code}, message is ${err.message}.`);
+        Logger.error(`enable failed, code is ${err.code}, message is ${err.message}.`);
       }
     } else {
       this.statusText = $r('app.string.KARAOKE_NO_INSTANCE');
@@ -112,7 +126,7 @@ struct KaraokePage {
           let success = await this.audioLoopback.enable(false);
           this.statusText = $r('app.string.KARAOKE_IDLE');
           if (success) {
-            Logger.info('Invoke disable succeeded');
+            Logger.info('disable succeeded');
             this.audioLoopback.off('statusChange', this.statusChangeCallback);
           } else {
             status = await this.audioLoopback.getStatus();
@@ -122,7 +136,7 @@ struct KaraokePage {
           this.statusChangeCallback(status);
         }
       } catch (err) {
-        Logger.error(`Invoke disable failed, code is ${err.code}, message is ${err.message}.`);
+        Logger.error(`disable failed, code is ${err.code}, message is ${err.message}.`);
       }
     } else {
       this.statusText = $r('app.string.KARAOKE_NO_INSTANCE');
@@ -136,15 +150,44 @@ struct KaraokePage {
     if (this.audioLoopback !== undefined) {
       try {
         await this.audioLoopback.setVolume(this.volume);
-        Logger.info(`Invoke setVolume ${this.volume} succeeded.`);
+        Logger.info(`setVolume ${this.volume} succeeded.`);
       } catch (err) {
-        Logger.error(`Invoke setVolume failed, code is ${err.code}, message is ${err.message}.`);
+        Logger.error(`setVolume failed, code is ${err.code}, message is ${err.message}.`);
       }
     } else {
       Logger.error('Audio loopback not created.');
     }
   }
 
+  // Set audio loopback ReverbPreset
+  setReverbPreset(preset: audio.AudioLoopbackReverbPreset): void {
+    if (this.audioLoopback !== undefined) {
+      try {
+        this.audioLoopback.setReverbPreset(preset);
+        Logger.info(`setReverbPreset( ${preset} succeeded.`);
+        this.currentReverbPreset = this.audioLoopback.getReverbPreset();
+      } catch (err) {
+        Logger.error(`setReverbPreset( failed, code is ${err.code}, message is ${err.message}.`);
+      }
+    } else {
+      Logger.error('Audio loopback not created.');
+    }
+  }
+
+  // Set audio loopback EqualizerPreset
+  setEqualizerPreset(preset: audio.AudioLoopbackEqualizerPreset): void {
+    if (this.audioLoopback !== undefined) {
+      try {
+        this.audioLoopback.setEqualizerPreset(preset);
+        Logger.info(`setEqualizerPreset ${preset} succeeded.`);
+        this.currentEqualizerPreset = this.audioLoopback.getEqualizerPreset();
+      } catch (err) {
+        Logger.error(`setEqualizerPreset failed, code is ${err.code}, message is ${err.message}.`);
+      }
+    } else {
+      Logger.error('Audio loopback not created.');
+    }
+  }
   build() {
     Column({ space: 20 }) {
       Text($r('app.string.KARAOKE_DEMO_TITLE')).fontSize(24).fontWeight(FontWeight.Bold).padding(16).id('karaoke_title')
@@ -172,12 +215,41 @@ struct KaraokePage {
         value: this.volume,
         min: 0,
         max: 1,
-        step: 0.1,
+        step: 0.01,
         style: SliderStyle.OutSet
       })
       .width('80%')
       .onChange((val: number) => this.setVolume(val))
       .id('karaoke_volume_slider')
+      Text($r('app.string.Reverb')).fontSize(16).margin({ top: 24 }).id('karaoke_reverb_label').margin(5)
+      Row() {
+        ForEach(Array.from(this.reverbPresetNameMap.entries()), (item: [number, string]) => {
+          Button(item[1])
+          .width('22%')
+          .height(40)
+          .fontSize(12)
+          .fontColor('#FFF')
+          .backgroundColor(item[0] === this.currentReverbPreset ? '#0A59F7' : '#888')
+          .onClick(()=>this.setReverbPreset(item[0]))
+          .margin(5)
+          .borderRadius(8)
+        })
+      }
+      Text($r('app.string.Equalizer')).fontSize(16).margin({ top: 24 }).id('karaoke_equalizer_label')
+      Row() {
+        ForEach(Array.from(this.equalizerPresetNameMap.entries()), (item: [number, string]) => {
+          Button(item[1])
+          .width('22%')
+          .height(40)
+          .fontSize(12)
+          .fontColor('#FFF')
+          .backgroundColor(item[0] === this.currentEqualizerPreset ? '#0A59F7' : '#888')
+          .onClick(()=>this.setEqualizerPreset(item[0]))
+          .margin(5)
+          .borderRadius(8)
+        })
+
+      }
     }
     .padding(20)
     .width('100%')

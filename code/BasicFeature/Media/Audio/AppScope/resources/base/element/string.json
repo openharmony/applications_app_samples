@@ -323,6 +323,42 @@
     {
       "name": "KARAOKE_VOLUME_LABEL",
       "value": "设置返听音量："
+    },
+    {
+      "name": "ORIGINAL",
+      "value": "原始"
+    },
+    {
+      "name": "KTV",
+      "value": "KTV"
+    },
+    {
+      "name": "THEATER",
+      "value": "剧院"
+    },
+    {
+      "name": "CONCERT",
+      "value": "音乐会"
+    },
+    {
+      "name": "FLAT",
+      "value": "平坦"
+    },
+    {
+      "name": "FULL",
+      "value": "饱满"
+    },
+    {
+      "name": "BRIGHT",
+      "value": "明亮"
+    },
+    {
+      "name": "Reverb",
+      "value": "混响："
+    },
+    {
+      "name": "Equalizer",
+      "value": "均衡器："
     }
   ]
 }
