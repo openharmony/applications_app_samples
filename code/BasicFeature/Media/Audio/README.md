@@ -10,17 +10,17 @@
 |--------------------------------------|-----------------------------------------|------------------------------------------------------|
 | ![Index](screenshots/device/index.png)|![PreferOutputDevice](screenshots/device/preferoutputdevice.jpeg) | ![Focus](screenshots/device/focus.jpeg) |
 
-| 音效管理页面-<br>预置音效查询                                    | 音效管理页面-<br>实时音效设置             | 音频录制页面-<br>普通录制             | 音频录制页面-<br>并行录制             |
-|-----------------------------------------|----------------------------------------|----------------------------------------|----------------------------------------|
-| ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) | ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) |
+| 音效管理页面-<br>预置音效查询                                    | 音效管理页面-<br>实时音效设置             | 音频录制页面-<br>普通录制             |
+|-----------------------------------------|----------------------------------------|----------------------------------------|
+| ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) |
 
-| 音频录制页面-<br>直播录制             | 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     |
-|-----------------------------------------|----------------------------------------------------|---------------------------------------------------------------------|
-| ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) |
+| 音频录制页面-<br>并行录制             | 音频录制页面-<br>直播录制             | 音量组件页面                                             |
+|----------------------------------------|-----------------------------------------|----------------------------------------------------|
+| ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) | ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) |
 
-| 空间音频页面                                           | 音频k歌页面             |
-|-----------------------------------------|---------------------------------------------------------------------|
-| ![SpatialAudio](screenshots/device/SpatialAudio.jpg) | ![Karaoke](screenshots/device/karaoke.jpeg)|
+|  音量组件页面-<br>音量面板                                                     |空间音频页面                                           | 音频k歌页面             |
+|---------------------------------------------------------------------|-----------------------------------------|---------------------------------------------------------------------|
+| ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) | ![Karaoke](screenshots/device/karaoke.jpeg)|
 
 使用说明
 
@@ -86,6 +86,8 @@ hdc file send 5p1.pcm data/app/el2/100/base/com.samples.audio/haps/entry/files/
 54. 在k歌页面，点击开启返听按钮，开启耳返，在设备不支持的时候会显示“当前设备不支持”，场景不支持的时候会显示“当前场景不支持”，开启耳返成功会显示“返听中”。
 55. 在k歌页面，点击关闭耳返按钮，关闭耳返。
 56. 在k歌页面，滑动音量条，调整耳返音量。
+57. 在k歌界面，点击混响模式按钮，选择对应的混响模式。
+58. 在k歌界面，点击均衡器类型按钮，选择对应的均衡器类型。
 
 ### 工程目录
 

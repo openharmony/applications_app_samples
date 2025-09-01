@@ -16,6 +16,7 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 import Logger from '../../../ohosTest/ets/utils/Logger';
 const TAG = 'KaraokePage';
 
@@ -189,69 +190,84 @@ struct KaraokePage {
     }
   }
   build() {
-    Column({ space: 20 }) {
-      Text($r('app.string.KARAOKE_DEMO_TITLE')).fontSize(24).fontWeight(FontWeight.Bold).padding(16).id('karaoke_title')
-
-      Text(this.statusText).fontSize(16).padding(8).id('karaoke_status_text')
-
-      Button($r('app.string.KARAOKE_INIT_BUTTON'))
-        .onClick(() => this.initLoopback())
-        .width('80%').margin(8)
-        .id('karaoke_init_btn')
-
-      Button($r('app.string.KARAOKE_ENABLE_BUTTON'))
-        .onClick(() => this.enableLoopback())
-        .width('80%').margin(8)
-        .id('karaoke_enable_btn')
-
-      Button($r('app.string.KARAOKE_DISABLE_BUTTON'))
-        .onClick(() => this.disableLoopback())
-        .width('80%').margin(8)
-        .id('karaoke_disable_btn')
-
-      Text($r('app.string.KARAOKE_VOLUME_LABEL')).fontSize(16).margin({ top: 24 }).id('karaoke_volume_label')
-
-      Slider({
-        value: this.volume,
-        min: 0,
-        max: 1,
-        step: 0.01,
-        style: SliderStyle.OutSet
-      })
-      .width('80%')
-      .onChange((val: number) => this.setVolume(val))
-      .id('karaoke_volume_slider')
-      Text($r('app.string.Reverb')).fontSize(16).margin({ top: 24 }).id('karaoke_reverb_label').margin(5)
-      Row() {
-        ForEach(Array.from(this.reverbPresetNameMap.entries()), (item: [number, string]) => {
-          Button(item[1])
-          .width('22%')
-          .height(40)
-          .fontSize(12)
-          .fontColor('#FFF')
-          .backgroundColor(item[0] === this.currentReverbPreset ? '#0A59F7' : '#888')
-          .onClick(()=>this.setReverbPreset(item[0]))
-          .margin(5)
-          .borderRadius(8)
+    Column() {
+        Row() {
+          Navigation() {
+          }
+          .hideBackButton(false)
+          .titleMode(NavigationTitleMode.Mini)
+          .mode(NavigationMode.Stack)
+        }
+        .height(56)
+        .width(360)
+        .id('karaoke_back_btn')
+        .onClick(async () => {
+          await router.replaceUrl({ url: 'pages/Index' });
         })
-      }
-      Text($r('app.string.Equalizer')).fontSize(16).margin({ top: 24 }).id('karaoke_equalizer_label')
-      Row() {
-        ForEach(Array.from(this.equalizerPresetNameMap.entries()), (item: [number, string]) => {
-          Button(item[1])
-          .width('22%')
-          .height(40)
-          .fontSize(12)
-          .fontColor('#FFF')
-          .backgroundColor(item[0] === this.currentEqualizerPreset ? '#0A59F7' : '#888')
-          .onClick(()=>this.setEqualizerPreset(item[0]))
-          .margin(5)
-          .borderRadius(8)
-        })
+      Column({ space: 10 }) {
+      
+        Text($r('app.string.KARAOKE_DEMO_TITLE')).fontSize(24).fontWeight(FontWeight.Bold).padding(16).id('karaoke_title')
 
+        Text(this.statusText).fontSize(16).padding(8).id('karaoke_status_text')
+
+        Button($r('app.string.KARAOKE_INIT_BUTTON'))
+          .onClick(() => this.initLoopback())
+          .width('80%').margin(8)
+          .id('karaoke_init_btn')
+
+        Button($r('app.string.KARAOKE_ENABLE_BUTTON'))
+          .onClick(() => this.enableLoopback())
+          .width('80%').margin(8)
+          .id('karaoke_enable_btn')
+
+        Button($r('app.string.KARAOKE_DISABLE_BUTTON'))
+          .onClick(() => this.disableLoopback())
+          .width('80%').margin(8)
+          .id('karaoke_disable_btn')
+
+        Text($r('app.string.KARAOKE_VOLUME_LABEL')).fontSize(16).margin({ top: 24 }).id('karaoke_volume_label')
+
+        Slider({
+          value: this.volume,
+          min: 0,
+          max: 1,
+          step: 0.01,
+          style: SliderStyle.OutSet
+        })
+        .width('80%')
+        .onChange((val: number) => this.setVolume(val))
+        .id('karaoke_volume_slider')
+        Text($r('app.string.Reverb')).fontSize(16).margin({ top: 24 }).id('karaoke_reverb_label').margin(5)
+        Row() {
+          ForEach(Array.from(this.reverbPresetNameMap.entries()), (item: [number, string]) => {
+            Button(item[1])
+            .width('22%')
+            .height(40)
+            .fontSize(12)
+            .fontColor('#FFF')
+            .backgroundColor(item[0] === this.currentReverbPreset ? '#0A59F7' : '#888')
+            .onClick(()=>this.setReverbPreset(item[0]))
+            .margin(5)
+            .borderRadius(8)
+          })
+        }
+        Text($r('app.string.Equalizer')).fontSize(16).margin({ top: 24 }).id('karaoke_equalizer_label')
+        Row() {
+          ForEach(Array.from(this.equalizerPresetNameMap.entries()), (item: [number, string]) => {
+            Button(item[1])
+            .width('22%')
+            .height(40)
+            .fontSize(12)
+            .fontColor('#FFF')
+            .backgroundColor(item[0] === this.currentEqualizerPreset ? '#0A59F7' : '#888')
+            .onClick(()=>this.setEqualizerPreset(item[0]))
+            .margin(5)
+            .borderRadius(8)
+          })
+
+        }
       }
-    }
-    .padding(20)
+    }.padding(10)
     .width('100%')
     .height('100%')
     .backgroundColor('#F9F9F9')

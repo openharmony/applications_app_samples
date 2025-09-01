@@ -1174,10 +1174,14 @@ export default function abilityTest() {
         await disableBtn.click();
         await driver.delayMs(1000);
         await driver.assertComponentExist(ON.id('karaoke_status_text'));
+        let backComponent = await driver.findComponent(ON.id('karaoke_back_btn'));
+        await backComponent.click();
+        await driver.delayMs(500);
       } catch (err) {
         Logger.error(TAG, 'KaraokePage_Disable_004 failed: ' + JSON.stringify(err));
         expect(false).assertTrue();
       }
+      
       Logger.info(TAG, 'KaraokePage_Disable_004 end');
       done();
     });
