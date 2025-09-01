@@ -14,13 +14,13 @@
 |-----------------------------------------|----------------------------------------|----------------------------------------|----------------------------------------|
 | ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) | ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) |
 
-| 音频录制页面-<br>直播录制             | 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     | 空间音频页面                                           |
-|-----------------------------------------|----------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
-| ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
+| 音频录制页面-<br>直播录制             | 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     |
+|-----------------------------------------|----------------------------------------------------|---------------------------------------------------------------------|
+| ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) |
 
-| 音频k歌页面             |
-|-----------------------------------------|
-| ![Karaoke](screenshots/device/karaoke.jpeg)|
+| 空间音频页面                                           | 音频k歌页面             |
+|-----------------------------------------|---------------------------------------------------------------------|
+| ![SpatialAudio](screenshots/device/SpatialAudio.jpg) | ![Karaoke](screenshots/device/karaoke.jpeg)|
 
 使用说明
 
