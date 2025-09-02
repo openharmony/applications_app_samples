@@ -181,8 +181,13 @@ library/
     * 调用getStatus方法，查询当前返听状态。
     * 调用setVolume方法，设置音频返听音量。
     * 调用enable方法，启用或禁用音频返听功能。
-    * 调用on("statusChange")接口订阅当前返听状态变化事件
-    * 调用off("statusChange")接口取消订阅返听状态变化事件
+    * 调用on("statusChange")接口订阅当前返听状态变化事件。
+    * 调用off("statusChange")接口取消订阅返听状态变化事件。
+    * 调用setReverbPreset方法,设置音频返听的混响模式。
+    * 调用getReverbPreset方法,获取音频返听当前的混响模式。
+    * 调用setEqualizerPreset方法,设置音频返听的均衡器类型。
+    * 调用getEqualizerPreset方法,获取音频返听当前的均衡器类型。
+
 ### 相关权限
 
 音频录制涉及的权限包括：
