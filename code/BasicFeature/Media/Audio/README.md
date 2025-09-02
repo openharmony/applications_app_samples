@@ -10,17 +10,17 @@
 |--------------------------------------|-----------------------------------------|------------------------------------------------------|
 | ![Index](screenshots/device/index.png)|![PreferOutputDevice](screenshots/device/preferoutputdevice.jpeg) | ![Focus](screenshots/device/focus.jpeg) |
 
-| 音效管理页面-<br>预置音效查询                                    | 音效管理页面-<br>实时音效设置             | 音频录制页面-<br>普通录制             | 音频录制页面-<br>并行录制             |
-|-----------------------------------------|----------------------------------------|----------------------------------------|----------------------------------------|
-| ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) | ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) |
+| 音效管理页面-<br>预置音效查询                                    | 音效管理页面-<br>实时音效设置             | 音频录制页面-<br>普通录制             |
+|-----------------------------------------|----------------------------------------|----------------------------------------|
+| ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) |
 
-| 音频录制页面-<br>直播录制             | 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     | 空间音频页面                                           |
-|-----------------------------------------|----------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
-| ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
+| 音频录制页面-<br>并行录制             | 音频录制页面-<br>直播录制             | 音量组件页面                                             |
+|----------------------------------------|-----------------------------------------|----------------------------------------------------|
+| ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) | ![LiveCapturer](screenshots/device/live_capturerpng.jpg)| ![VolumePanel](screenshots/device/VolumePanel.png) |
 
-| 音频k歌页面             |
-|-----------------------------------------|
-| ![Karaoke](screenshots/device/karaoke.jpeg)|
+|  音量组件页面-<br>音量面板                                                     |空间音频页面                                           | 音频k歌页面             |
+|---------------------------------------------------------------------|-----------------------------------------|---------------------------------------------------------------------|
+| ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) | ![Karaoke](screenshots/device/karaoke.jpeg)|
 
 使用说明
 
@@ -86,6 +86,8 @@ hdc file send 5p1.pcm data/app/el2/100/base/com.samples.audio/haps/entry/files/
 54. 在k歌页面，点击开启返听按钮，开启耳返，在设备不支持的时候会显示“当前设备不支持”，场景不支持的时候会显示“当前场景不支持”，开启耳返成功会显示“返听中”。
 55. 在k歌页面，点击关闭耳返按钮，关闭耳返。
 56. 在k歌页面，滑动音量条，调整耳返音量。
+57. 在k歌界面，点击混响模式按钮，选择对应的混响模式。
+58. 在k歌界面，点击均衡器类型按钮，选择对应的均衡器类型。
 
 ### 工程目录
 
@@ -179,8 +181,13 @@ library/
     * 调用getStatus方法，查询当前返听状态。
     * 调用setVolume方法，设置音频返听音量。
     * 调用enable方法，启用或禁用音频返听功能。
-    * 调用on("statusChange")接口订阅当前返听状态变化事件
-    * 调用off("statusChange")接口取消订阅返听状态变化事件
+    * 调用on("statusChange")接口订阅当前返听状态变化事件。
+    * 调用off("statusChange")接口取消订阅返听状态变化事件。
+    * 调用setReverbPreset方法,设置音频返听的混响模式。
+    * 调用getReverbPreset方法,获取音频返听当前的混响模式。
+    * 调用setEqualizerPreset方法,设置音频返听的均衡器类型。
+    * 调用getEqualizerPreset方法,获取音频返听当前的均衡器类型。
+
 ### 相关权限
 
 音频录制涉及的权限包括：
@@ -198,8 +205,8 @@ library/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例仅支持API20版本SDK，SDK版本号(API Version 20 Release),镜像版本号(6.0Release)；
-3. 本示例需要使用DevEco Studio 版本号(5.0Release)才可编译运行；
+2. 本示例仅支持API21版本SDK，SDK版本号(API Version 21 Release),镜像版本号(6.0Release)；
+3. 本示例需要使用DevEco Studio 版本号(6.0Release)才可编译运行；
 
 ### 下载
 

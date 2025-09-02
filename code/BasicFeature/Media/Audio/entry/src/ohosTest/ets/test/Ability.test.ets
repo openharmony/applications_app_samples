@@ -1077,6 +1077,28 @@ export default function abilityTest() {
     })
 
     /**
+     * [Index]
+     * back tp homepage
+     * Display  entry card
+     * Click karaoke_card
+     */
+    it(BUNDLE + 'IndexShow_005', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'IndexShow_005 begin');
+      try {
+        await driver.delayMs(500);
+        Logger.info(TAG, BUNDLE + 'karaoke_card');
+        await driver.assertComponentExist(ON.id('karaoke_card'));
+        let karaokeCardComponent = await driver.findComponent(ON.id('karaoke_card'));
+        await karaokeCardComponent.click();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'IndexShow_005 err:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'IndexShow_005 end');
+      done();
+    })
+
+    /**
     * [Karaoke] UI Component Rendering Test
     */
     it(TAG + 'KaraokePage_UI_001', 0, async (done: Function) => {
@@ -1152,10 +1174,14 @@ export default function abilityTest() {
         await disableBtn.click();
         await driver.delayMs(1000);
         await driver.assertComponentExist(ON.id('karaoke_status_text'));
+        let backComponent = await driver.findComponent(ON.id('karaoke_back_btn'));
+        await backComponent.click();
+        await driver.delayMs(500);
       } catch (err) {
         Logger.error(TAG, 'KaraokePage_Disable_004 failed: ' + JSON.stringify(err));
         expect(false).assertTrue();
       }
+      
       Logger.info(TAG, 'KaraokePage_Disable_004 end');
       done();
     });
