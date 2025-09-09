@@ -34,8 +34,11 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
 
 void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
 {
-    (void)component;
-    (void)window;
+    uint64_t width = 0;
+    uint64_t height = 0;
+    int32_t ret = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
+    OHNativeWindow* nativeWindow = (NativeWindow*) (window);
+    NativeRender::GetInstance()->SetNativeWindow(nativeWindow, width, height);
 }
 
 void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
