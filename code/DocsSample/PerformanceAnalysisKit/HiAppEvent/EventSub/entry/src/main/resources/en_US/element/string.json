@@ -13,6 +13,10 @@
       "value": "EventSub"
     },
     {
+      "name": "WatchAppCrash_Button",
+      "value": "WatchAppCrash ArkTS&C++"
+    },
+    {
       "name": "WriteEventArkTS_Button",
       "value": "writeEvent ArkTS"
     },

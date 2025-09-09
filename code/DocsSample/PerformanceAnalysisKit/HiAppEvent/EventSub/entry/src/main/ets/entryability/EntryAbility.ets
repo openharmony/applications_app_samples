@@ -25,43 +25,67 @@ import testNapi from 'libentry.so';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    // [Start AppEvent_ArkTS_Add_Watcher]
-    // 添加按钮事件观察者
+    // [Start AppEvent_Crash_ArkTS_Add_Watcher]
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: 'appEventWatcher',
-      // 开发者可以订阅感兴趣的应用事件，此处是订阅了按钮事件
-      appEventFilters: [{
-        domain: 'button'
-      }],
-      // 开发者可以设置订阅回调触发的条件，此处是设置为事件打点数量满足1个
-      triggerCondition: {
-        row: 1
-      },
-      // 开发者可以自行实现订阅回调函数，以便对订阅获取到的事件打点数据进行自定义处理
-      onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
-        // 返回的holder对象为null，表示订阅过程发生异常，因此在记录错误日志后直接返回
-        if (holder == null) {
-          hilog.error(0x0000, 'testTag', `HiAppEvent holder is null`);
-          return;
+      name: 'AppCrashWatcher',
+      // 订阅过滤条件，这里是订阅了系统事件中的崩溃事件
+      appEventFilters: [
+        {
+          domain: hiAppEvent.domain.OS,
+          names: [hiAppEvent.event.APP_CRASH]
         }
-        hilog.info(0x0000, 'testTag', `HiAppEvent onTrigger: curRow=%{public}d, curSize=%{public}d`, curRow, curSize);
-        let eventPkg: hiAppEvent.AppEventPackage | null = null;
-        // 根据设置阈值大小（默认为512KB）去获取订阅事件包，直到将订阅数据全部取出
-        // 返回的事件包对象为null，表示当前订阅数据已被全部取出，此次订阅回调触发结束
-        while ((eventPkg = holder.takeNext()) != null) {
-          // 开发者可以对事件包中的事件打点数据进行自定义处理，此处是将事件打点数据打印在日志中
-          hilog.info(0x0000, 'testTag', `readEvent ArkTS Success`);
-          hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.packageId=%{public}d`, eventPkg.packageId);
-          hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.row=%{public}d`, eventPkg.row);
-          hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.size=%{public}d`, eventPkg.size);
-          for (const eventInfo of eventPkg.data) {
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.info=%{public}s`, eventInfo);
+      ],
+      // 实现onReceive回调，监听到事件后实时回调
+      onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
+        hilog.info(0x0000, 'testTag', 'AppEvent HiAppEvent succeed to read event with onReceive callback from ArkTS');
+        hilog.info(0x0000, 'testTag', `domain=${domain}`);
+        for (const eventGroup of appEventGroups) {
+          hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventName=${eventGroup.name}`);
+          for (const eventInfo of eventGroup.appEventInfos) {
+            // 开发者可以获取到崩溃事件发生的时间戳
+            hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventInfo.params.time=${JSON.stringify(eventInfo.params['time'])}`);
+            // 开发者可以获取到崩溃应用的包名
+            hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventInfo.params.bundle_name=${JSON.stringify(eventInfo.params['bundle_name'])}`);
+            // 开发者可以获取到崩溃事件发生时的故障日志文件
+            hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
           }
         }
       }
     });
-    // [End AppEvent_ArkTS_Add_Watcher]
+    // [End AppEvent_Crash_ArkTS_Add_Watcher]
+    // [Start AppEvent_Click_ArkTS_Add_Watcher]
+    hiAppEvent.addWatcher({
+      // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
+      name: 'ButtonClickWatcher',
+      // 开发者可以订阅感兴趣的应用事件，此处是订阅了按钮事件
+      appEventFilters: [{ domain: 'button' }],
+      // 开发者可以设置订阅回调触发的条件，此处是设置为事件打点数量满足1个
+      triggerCondition: { row: 1 },
+      // 开发者可以自行实现订阅回调函数，以便对订阅获取到的事件打点数据进行自定义处理
+      onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
+        // 如果返回的holder对象为null，表示订阅过程发生异常。因此，在记录错误日志后直接返回
+        if (holder == null) {
+          hilog.error(0x0000, 'testTag', 'AppEvent HiAppEvent holder is null');
+          return;
+        }
+        hilog.info(0x0000, 'testTag', 'AppEvent HiAppEvent succeed to read event with onTrigger callback from ArkTS.');
+        hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent onTrigger: curRow=%{public}d, curSize=%{public}d`, curRow, curSize);
+        let eventPkg: hiAppEvent.AppEventPackage | null = null;
+        // 根据设置阈值大小（默认为1条事件）去获取订阅事件包，直到将订阅数据全部取出
+        // 返回的事件包对象为null，表示当前订阅数据已被全部取出，此次订阅回调触发结束
+        while ((eventPkg = holder.takeNext()) != null) {
+          // 开发者可以对事件包中的事件打点数据进行自定义处理，此处是将事件打点数据打印在日志中
+          hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventPkg.packageId=%{public}d`, eventPkg.packageId);
+          hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventPkg.row=%{public}d`, eventPkg.row);
+          hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventPkg.size=%{public}d`, eventPkg.size);
+          for (const eventInfo of eventPkg.data) {
+            hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventPkg.info=%{public}s`, eventInfo);
+          }
+        }
+      }
+    });
+    // [End AppEvent_Click_ArkTS_Add_Watcher]
     // [Start Crash&FreezeEvent_ArkTS_Add_Event]
     // 开发者完成参数键值对赋值
     let params: Record<string, hiAppEvent.ParamType> = {
@@ -317,6 +341,13 @@ export default class EntryAbility extends UIAbility {
     // 调用C++观察者
     testNapi.registerWatcher();
     // [End EventSub_Call_Capi_Function]
+    // [Start AppEvent_Call_Capi_Function]
+    // 在onCreate()函数中添加C API接口调用
+    // 启动时，注册崩溃事件观察者
+    testNapi.registerWatcherCrash();
+    // 启动时，注册按钮点击事件观察者
+    testNapi.registerWatcherClick();
+    // [End AppEvent_Call_Capi_Function]
   }
 
   onDestroy(): void {
