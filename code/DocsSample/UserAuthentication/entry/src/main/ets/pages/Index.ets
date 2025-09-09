@@ -43,6 +43,20 @@ async function waiting(times: number): Promise<void> {
   return new Promise<void>(resolve => setTimeout(resolve, times));
 }
 
+function getRandData(): Uint8Array | null {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  let randData: Uint8Array | null = null;
+  let retryCount = 0;
+  while (retryCount < 3) {
+    randData = rand?.generateRandomSync(len)?.data;
+    if (randData) {
+      break;
+    }
+    retryCount++;
+  }
+  return randData;
+}
 
 enum PageIndex {
   QUERY_CAPABILITY = 0, // 能力查询页面的索引值
@@ -180,9 +194,11 @@ struct Index {
   // [StartExclude authentication_example4]
   initiatingUserAuthentication1() {
     try {
-      const rand = cryptoFramework.createRandom();
-      const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data; // 设置认证参数
+      const randData = getRandData();
+      if(!randData){
+        return;
+      }
+      // 设置认证参数
       const authParam: userAuth.AuthParam = {
         challenge: randData,
         authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE, userAuth.UserAuthType.FINGERPRINT],
@@ -217,9 +233,10 @@ struct Index {
       reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
     };
     try {
-      const rand = cryptoFramework.createRandom();
-      const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      const randData = getRandData();
+      if (!randData) {
+        return;
+      }
       const authParam: userAuth.AuthParam = {
         challenge: randData,
         authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE, userAuth.UserAuthType.FINGERPRINT],
@@ -255,9 +272,10 @@ struct Index {
       reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
     };
     try {
-      const rand = cryptoFramework.createRandom();
-      const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      const randData = getRandData();
+      if(!randData){
+        return;
+      }
       const authParam: userAuth.AuthParam = {
         challenge: randData,
         authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE, userAuth.UserAuthType.FINGERPRINT],
@@ -289,9 +307,10 @@ struct Index {
   initiatingUserAuthentication4() {
     // 设置认证参数
     try {
-      const rand = cryptoFramework.createRandom();
-      const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      const randData = getRandData();
+      if(!randData){
+        return;
+      }
       const authParam: userAuth.AuthParam = {
         challenge: randData,
         authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE, userAuth.UserAuthType.FINGERPRINT],
@@ -365,9 +384,10 @@ struct Index {
    * */
   cancelingUserAuthentication() {
     try {
-      const rand = cryptoFramework.createRandom();
-      const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      const randData = getRandData();
+      if(!randData){
+        return;
+      }
       // 设置认证参数
       const authParam: userAuth.AuthParam = {
         challenge: randData,
@@ -450,9 +470,10 @@ struct Index {
    * */
   applyingCustomAuthentication() {
     try {
-      const rand = cryptoFramework.createRandom();
-      const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      const randData = getRandData();
+      if(!randData){
+        return;
+      }
       const authParam: userAuth.AuthParam = {
         challenge: randData,
         authType: [userAuth.UserAuthType.FACE],
@@ -499,9 +520,10 @@ struct Index {
       reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
     };
     try {
-      const rand = cryptoFramework.createRandom();
-      const len: number = 16;
-      const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+      const randData = getRandData();
+      if(!randData){
+        return;
+      }
       const authParam: userAuth.AuthParam = {
         challenge: randData,
         authType: [userAuth.UserAuthType.FACE],
