@@ -6,7 +6,7 @@
 
 该工程中的展示的代码详细描述可查如下链接：
 
-- [事件上报](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-event-reporting.md)
+- [事件上报](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-event-reporting.md)
 
 ###  效果预览
 
@@ -19,7 +19,7 @@
 1.在应用侧主界面，从上至下依次点击按钮；
 2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"No filters"，搜索内容设置为"testTag"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
-```
+```text
 // 点击addProcessorTest，无输出
 
 // 点击userIdTest
@@ -34,7 +34,7 @@ HiAppEvent success to write event
 
 ###  工程目录
 
-```
+```text
 entry/src/main/ets/
 └─pages
     └─---Index.ets						 // 首页
@@ -66,10 +66,10 @@ entry/src/main/ets/
 
 如需单独下载本工程，执行如下命令：
 
-```
+```text
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

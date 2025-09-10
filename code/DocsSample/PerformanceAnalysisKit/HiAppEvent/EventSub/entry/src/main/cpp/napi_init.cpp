@@ -31,21 +31,7 @@ static HiAppEvent_Watcher *eventWatcherR;
 // [Start EventSub_onTrigger_ptr]
 static HiAppEvent_Watcher *eventWatcherT;
 // [End EventSub_onTrigger_ptr]
-// [Start AppEvent_OnReceive]
-static void OnReceiveDottingEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
-{
-    if (strcmp(appEventGroups[i].appEventInfos[j].domain, "button") == 0 &&
-        strcmp(appEventGroups[i].appEventInfos[j].name, "click") == 0) {
-        Json::Value params;
-        Json::Reader reader(Json::Features::strictMode());
-        if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
-            auto time = params["click_time"].asInt64();
-            OH_LOG_INFO(LogType::LOG_APP, "readEvent C++ Success");
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.click_time=%{public}lld", time);
-        }
-    }
-}
-// [End AppEvent_OnReceive]
+
 // [Start CrashEvent_OnReceive]
 static void OnReceiveCrashEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
@@ -260,6 +246,109 @@ static void OnReceiveTimeOutEvent(const struct HiAppEvent_AppEventGroup *appEven
     }
 }
 // [End TimeOutEvent_OnReceive]
+// [Start AppEvent_Crash_C++_Add_Watcher]
+// 定义变量，用来缓存创建的观察者的指针。
+static HiAppEvent_Watcher *eventWatcherR1;
+
+static void OnReceive1(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
+{
+    OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent succeed to read events with onReceive callback form C API \n");
+    for (int i = 0; i < groupLen; ++i) {
+        for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.domain=%{public}s",
+                appEventGroups[i].appEventInfos[j].domain);
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.name=%{public}s",
+                appEventGroups[i].appEventInfos[j].name);
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.eventType=%{public}d",
+                appEventGroups[i].appEventInfos[j].type);
+            if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) != 0 ||
+                strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_APP_CRASH) != 0) {
+                continue;
+            }
+            Json::Value params;
+            Json::Reader reader(Json::Features::strictMode());
+            Json::FastWriter writer;
+            if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
+                // 开发者可以获取到崩溃事件发生的时间戳
+                OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.params.time=%{public}lld",
+                    params["time"].asInt64());
+                // 开发者可以获取到崩溃应用的包名
+                OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.params.bundle_name=%{public}s",
+                    params["bundle_name"].asString().c_str());
+                auto external_log = writer.write(params["external_log"]);
+                // 开发者可以获取到崩溃事件发生时的故障日志文件
+                OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.params.external_log=%{public}s",
+                    external_log.c_str());
+            }
+        }
+    }
+}
+static napi_value RegisterWatcherCrash(napi_env env, napi_callback_info info)
+{
+    // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
+    eventWatcherR1 = OH_HiAppEvent_CreateWatcher("AppCrashWatcher1");
+    // 设置订阅的事件名称为EVENT_APP_CRASH，即崩溃事件。
+    const char *names[] = {EVENT_APP_CRASH};
+    // 开发者订阅感兴趣的事件，此处订阅了系统事件。
+    OH_HiAppEvent_SetAppEventFilter(eventWatcherR1, DOMAIN_OS, 0, names, 1);
+    // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive1回调。
+    OH_HiAppEvent_SetWatcherOnReceive(eventWatcherR1, OnReceive1);
+    // 使观察者开始监听订阅的事件。
+    OH_HiAppEvent_AddWatcher(eventWatcherR1);
+    return {};
+}
+// [End AppEvent_Crash_C++_Add_Watcher]
+// [Start AppEvent_Click_C++_Add_Watcher]
+// 定义变量，用来缓存创建的观察者的指针。
+static HiAppEvent_Watcher *eventWatcherT1;
+// 开发者可以自行实现获取已监听到事件的回调函数，其中events指针指向内容仅在该函数内有效。
+static void OnTake1(const char *const *events, uint32_t eventLen)
+{
+    Json::Reader reader(Json::Features::strictMode());
+    OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent succeed to read events with onTrigger callback form C API \n");
+    for (int i = 0; i < eventLen; ++i) {
+        OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo=%{public}s", events[i]);
+        Json::Value eventInfo;
+        if (reader.parse(events[i], eventInfo)) {
+            auto domain = eventInfo["domain_"].asString();
+            auto name = eventInfo["name_"].asString();
+            auto type = eventInfo["type_"].asInt();
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.domain=%{public}s", domain.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.name=%{public}s", name.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.eventType=%{public}d", type);
+            if (domain == "button" && name == "click") {
+                auto clickTime = eventInfo["clickTime"].asInt64();
+                OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.params.clickTime=%{public}lld", clickTime);
+            }
+        }
+    }
+}
+
+// 开发者可以自行实现订阅回调函数，以便对获取到的事件打点数据进行自定义处理。
+static void OnTrigger1(int row, int size)
+{
+    // 接收回调后，获取指定数量的已接收事件。
+    OH_HiAppEvent_TakeWatcherData(eventWatcherT1, row, OnTake1);
+}
+
+static napi_value RegisterWatcherClick(napi_env env, napi_callback_info info)
+{
+    // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
+    eventWatcherT1 = OH_HiAppEvent_CreateWatcher("ButtonClickWatcher1");
+    // 设置订阅的事件名称为click。
+    const char *names[] = {"click"};
+    // 开发者订阅感兴趣的应用事件，此处订阅了button相关事件。
+    OH_HiAppEvent_SetAppEventFilter(eventWatcherT1, "button", 0, names, 1);
+    // 开发者设置已实现的回调函数，需OH_HiAppEvent_SetTriggerCondition设置的条件满足方可触发。
+    OH_HiAppEvent_SetWatcherOnTrigger(eventWatcherT1, OnTrigger1);
+    // 开发者可以设置订阅触发回调的条件，此处是设置新增事件打点数量为1个时，触发onTrigger回调。
+    OH_HiAppEvent_SetTriggerCondition(eventWatcherT1, 1, 0, 0);
+    // 使观察者开始监听订阅的事件。
+    OH_HiAppEvent_AddWatcher(eventWatcherT1);
+    return {};
+}
+// [End AppEvent_Click_C++_Add_Watcher]
+
 // [Start EventSub_OnReceive_All]
 static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
 {
@@ -272,8 +361,7 @@ static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup 
                         appEventGroups[i].appEventInfos[j].name);
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d",
                         appEventGroups[i].appEventInfos[j].type);
-            // 处理打点事件
-            OnReceiveDottingEvent(appEventGroups, i, j);
+
             // 处理崩溃事件
             OnReceiveCrashEvent(appEventGroups, i, j);
             // 处理卡死事件
@@ -288,15 +376,7 @@ static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup 
     }
 }
 // [End EventSub_OnReceive_All]
-// [Start AppEvent_OnTrigger]
-static void OnTriggerDottingEvent(std::string domain, std::string name, Json::Value eventInfo)
-{
-    if (domain == "button" && name == "click") {
-        auto clickTime = eventInfo["click_time"].asInt64();
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.click_time=%{public}lld", clickTime);
-    }
-}
-// [End AppEvent_OnTrigger]
+
 // [Start CrashEvent_OnTrigger]
 static void OnTriggerCrashEvent(std::string domain, std::string name, Json::Value eventInfo, Json::FastWriter writer)
 {
@@ -449,8 +529,7 @@ static void OnTake(const char *const *events, uint32_t eventLen)
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", domain.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", name.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", type);
-            // 处理打点事件
-            OnTriggerDottingEvent(domain, name, eventInfo);
+
             // 处理崩溃事件
             OnTriggerCrashEvent(domain, name, eventInfo, writer);
             // 处理卡死事件
@@ -501,36 +580,50 @@ static napi_value RegisterWatcher(napi_env env, napi_callback_info info)
 }
 // [End EventSub_RegisterWatcher_All]
 // [Start EventSub_RemoveWatcher_All]
+// [Start AppEvent_C++_RemoveWatcher]
 static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
 {
     // 使观察者停止监听事件
+    // [StartExclude AppEvent_C++_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(eventWatcherT);
     OH_HiAppEvent_RemoveWatcher(eventWatcherR);
+    // [EndExclude AppEvent_C++_RemoveWatcher]
+    OH_HiAppEvent_RemoveWatcher(eventWatcherT1);
+    OH_HiAppEvent_RemoveWatcher(eventWatcherR1);
     return {};
 }
+// [End AppEvent_C++_RemoveWatcher]
 // [End EventSub_RemoveWatcher_All]
 // [Start EventSub_DestroyWatcher_All]
+// [Start AppEvent_C++_DestroyWatcher]
 static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
 {
     // 销毁创建的观察者，并置appEventWatcher为nullptr。
+    // [StartExclude AppEvent_C++_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(eventWatcherT);
     OH_HiAppEvent_DestroyWatcher(eventWatcherR);
     eventWatcherT = nullptr;
     eventWatcherR = nullptr;
+    // [EndExclude AppEvent_C++_DestroyWatcher]
+    OH_HiAppEvent_DestroyWatcher(eventWatcherT1);
+    OH_HiAppEvent_DestroyWatcher(eventWatcherR1);
+    eventWatcherT1 = nullptr;
+    eventWatcherR1 = nullptr;
     return {};
 }
+// [End AppEvent_C++_DestroyWatcher]
 // [End EventSub_DestroyWatcher_All]
-// [Start AppEvent_WriteAppEvent]
+// [Start AppEvent_Click_C++_WriteAppEvent]
 static napi_value WriteAppEvent(napi_env env, napi_callback_info info)
 {
     auto params = OH_HiAppEvent_CreateParamList();
-    OH_HiAppEvent_AddInt64Param(params, "click_time", time(nullptr));
+    OH_HiAppEvent_AddInt64Param(params, "clickTime", time(nullptr));
     OH_HiAppEvent_Write("button", "click", EventType::BEHAVIOR, params);
     OH_HiAppEvent_DestroyParamList(params);
     OH_LOG_INFO(LogType::LOG_APP, "writeEvent C++ success");
     return {};
 }
-// [End AppEvent_WriteAppEvent]
+// [End AppEvent_Click_C++_WriteAppEvent]
 // [Start AsanEvent_AddressTest]
 static napi_value AddressTest(napi_env env, napi_callback_info info)
 {
@@ -544,16 +637,22 @@ static napi_value AddressTest(napi_env env, napi_callback_info info)
 }
 // [End AsanEvent_AddressTest]
 // [Start EventSub_Init_All]
+// [Start AppEvent_C++_Init]
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
+        // [StartExclude AppEvent_C++_Init]
         {"registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"writeAppEvent", nullptr, WriteAppEvent, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"addressTest", nullptr, AddressTest, nullptr, nullptr, nullptr, napi_default, nullptr}
+        {"addressTest", nullptr, AddressTest, nullptr, nullptr, nullptr, napi_default, nullptr},
+        // [EndExclude AppEvent_C++_Init]
+        { "registerWatcherCrash", nullptr, RegisterWatcherCrash, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "registerWatcherClick", nullptr, RegisterWatcherClick, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "writeAppEvent", nullptr, WriteAppEvent, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
+// [End AppEvent_C++_Init]
 // [End EventSub_Init_All]
 static napi_module demoModule = {
     .nm_version = 1,

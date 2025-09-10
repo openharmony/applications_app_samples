@@ -15,6 +15,10 @@
 
 // [Start EventSub_Index.d.ts_All]
 export const registerWatcher: () => void;
-export const writeAppEvent: () => void;
 export const addressTest: () => void;
+// [Start AppEvent_C++_Index.d.ts]
+export const registerWatcherCrash: () => void;
+export const registerWatcherClick: () => void;
+export const writeAppEvent: () => void;
+// [End AppEvent_C++_Index.d.ts]
 // [End EventSub_Index.d.ts_All]

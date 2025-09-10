@@ -31,9 +31,9 @@ struct Index {
   build() {
     Row() {
       Column() {
-        // [Start AppEvent_ArkTS_Button]
-        Button($r('app.string.WriteEventArkTS_Button'))
-          // [StartExclude AppEvent_ArkTS_Button]
+        // [Start AppEvent_Crash_Button]
+        Button($r('app.string.WatchAppCrash_Button'))
+          // [StartExclude AppEvent_Crash_Button]
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -41,7 +41,23 @@ struct Index {
           .backgroundColor('#0D9FFB')
           .width('80%')
           .height('5%')
-          // [EndExclude AppEvent_ArkTS_Button]
+            // [EndExclude AppEvent_Crash_Button]
+          .onClick(() => {
+            // 在按钮点击函数中构造一个crash场景，触发崩溃事件
+            let result: object = JSON.parse('');
+          })
+        // [End AppEvent_Crash_Button]
+        // [Start AppEvent_Click_ArkTS_Button]
+        Button($r('app.string.WriteEventArkTS_Button'))
+          // [StartExclude AppEvent_Click_ArkTS_Button]
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          // [EndExclude AppEvent_Click_ArkTS_Button]
           .onClick(() => {
             // 在按钮点击函数中进行事件打点，以记录按钮点击事件
             let eventParams: Record<string, number> = {'clickTime': 100};
@@ -61,7 +77,7 @@ struct Index {
               hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
             });
           })
-        // [End AppEvent_ArkTS_Button]
+        // [End AppEvent_Click_ArkTS_Button]
         // [Start CrashEvent_Button]
         Button($r('app.string.Crash_Button'))
           .type(ButtonType.Capsule)
