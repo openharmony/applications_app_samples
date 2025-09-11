@@ -15,7 +15,7 @@
 1. 安装编译生成的hap包，并打开应用。
 3. 点击XComponent组件区域（页面中蓝色五角星所在区域）改变五角星颜色。
 3. 点击“单指点击XComponent软键盘消失”对应区域，软键盘拉起；点击XComponent组件区域，软键盘消失。
-4. 点击needSoftKeyboard=false 按钮，点击“单指点击XComponent软键盘消失”对应区域，软键盘拉起；点击XComponent组件区域，软键盘不消失。
+4. 点击needSoftKeyboard=false 按钮，点击“单指点击XComponent软键盘不消失”对应区域，软键盘拉起；点击XComponent组件区域，软键盘不消失。
 5. 拖动期望帧率设置下的滑动条，可以控制期望帧率，具体通过打印日志的速度来衡量，日志检索"OnFrameCallback count"关键字。
 
 
