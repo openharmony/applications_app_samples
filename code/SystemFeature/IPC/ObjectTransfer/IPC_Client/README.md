@@ -273,7 +273,7 @@ entry/src/main/ets/
 由于Service Ability（服务端所在应用）只能被系统应用调用，所以IPC通信机制在单框架上不对普通应用开放，故服务端需要申请系统应用权限。
 (服务端需提供ohos-sdk-full)
 
-4.1、配置权限：在服务端entry下的module中配置如下权限：[module.json5](IPC_Service/entry/src/main/module.json5),参考第38-45行。
+4.1、配置权限：在服务端entry下的module中配置如下权限：[module.json5](../IPC_Service/entry/src/main/module.json5),参考第38-45行。
   ```
   "extensionAbilities": [
   //配置IpcServiceExtAbility能力
