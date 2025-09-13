@@ -13,39 +13,32 @@
 * limitations under the License.
 */
 
-import testNapi from 'libentry.so';
-import { webview } from '@kit.ArkWeb';
-import { resourceManager } from '@kit.LocalizationKit';
-
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  mycontroller: webview.WebviewController = new webview.WebviewController("scheme-handler");
-
-
   build() {
-    Row() {
-      Column() {
-        Button($r('app.string.go_back')).onClick( event => {
-          this.mycontroller.backward();
-        })
-
-
-        Web({ src: $rawfile("test.html"), controller: this.mycontroller})
-          .javaScriptAccess(true)
-          .width('100%')
-          .height('100%')
-          .databaseAccess(true)
-          .fileAccess(false)
-          .domStorageAccess(true)
-          .cacheMode(CacheMode.Default)
-          .onPageBegin( event => {
-            testNapi.initResourceManager(getContext().resourceManager);
+    Column({ space: 10 }) {
+      Button('SchemeHandlerArkts')
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/SchemeHandlerArkts',
           })
-      }
-      .width('100%')
-    }
-    .height('100%')
+          .catch((error: BusinessError) => {
+            console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+          })
+        })
+      Button('SchemeHandlerNdk')
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/SchemeHandlerNdk',
+          })
+          .catch((error: BusinessError) => {
+            console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+          })
+        })
+    }.height('100%')
+    .width('100%')
   }
 }
