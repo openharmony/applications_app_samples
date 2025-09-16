@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "background_blur_selected_text_color",
+      "value": "#1297D8"
+    },
+    {
+      "name": "background_blur_tabs_bar_background_color",
+      "value": "#FFE9E9E9"
+    }
+  ]
+}

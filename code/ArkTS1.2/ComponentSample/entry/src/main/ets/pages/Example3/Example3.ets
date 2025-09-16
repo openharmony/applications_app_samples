@@ -27,7 +27,7 @@ import {
   memo,
   __memo_context_type,
   __memo_id_type
-} from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement'
 import {
   Text,
   TextAttribute,
@@ -36,11 +36,10 @@ import {
   Button,
   ButtonAttribute,
   ClickEvent,
-  UserView,
   Row,
   TextAlign,
   Entry
-} from '@ohos.arkui.component'; // TextAttribute should be insert by ui-plugins
+} from '@ohos.arkui.component';
 import {
   State,
   Link,
@@ -48,7 +47,7 @@ import {
   MutableState,
   stateOf,
   observableProxy
-} from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import { Context, UIContext } from '@ohos.arkui.UIContext';
 import { ShoppingCart } from './view/ShoppingCart';
@@ -56,10 +55,6 @@ import { ShoppingCart } from './view/ShoppingCart';
 @Entry
 @Component
 struct Example3Test {
-  aboutToAppear() {
-
-  }
-
   build() {
     Column() {
       Row() {
@@ -71,17 +66,5 @@ struct Example3Test {
 
       ShoppingCart();
     }
-  }
-}
-
-export class ComExampleTrivialApplication extends UserView {
-  getBuilder() {
-    hilog.info(0x0000, 'testTag', 'getBuilder');
-    let wrapper = @memo() =>
-    {
-      hilog.info(0x0000, 'testTag', 'Example3Test');
-      Example3Test(undefined);
-    }
-    return wrapper;
   }
 }

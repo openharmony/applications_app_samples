@@ -23,49 +23,39 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
-import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, UserView, Row, TextAlign, Visibility,
-  List, WordBreak,ListItem,TextInput, InputType,TextOverflow, Image, HorizontalAlign,Tabs,$r,TabContent, Progress, ProgressType} from '@ohos.arkui.component'  // TextAttribute should be insert by ui-plugins
-import { State, Link, StateDecoratedVariable, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
-import hilog from '@ohos.hilog'
+import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
+import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Row, TextAlign, Visibility, Entry,
+  List, WordBreak,ListItem,TextInput, InputType,TextOverflow, Image, HorizontalAlign,Tabs,$r,TabContent, Progress, ProgressType} from '@ohos.arkui.component';
+import { State, Link, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import {globalContext}  from '../entryability/GlobalContext';
-import { Context,UIContext} from '@ohos.arkui.UIContext'
+import { Context,UIContext} from '@ohos.arkui.UIContext';
 
+@Entry
 @Component
 struct MyStateSample {
   private context :common.UIAbilityContext = globalContext.getAbilityContext();
   build() {
     Column() {
-      Button($r('app.string.example4'))
-        .onClick((e: ClickEvent)=>{
-          this.getUIContext().getRouter().pushUrl({url:'pages/Example4/Example4'})
-        }).fontSize(18).margin(15).width('100%')
-      Button($r('app.string.example3'))
-        .onClick((e: ClickEvent)=>{
-          this.getUIContext().getRouter().pushUrl({url:'pages/Example3/Example3'})
-        }).fontSize(20).width('100%')
-      Button($r('app.string.example2'))
-        .onClick((e: ClickEvent)=>{
-          this.getUIContext().getRouter().pushUrl({url:'pages/Example2/Example2'})
-        }).fontSize(20).margin(15).width('100%')
       Button($r('app.string.example1'))
         .onClick((e: ClickEvent)=>{
-          this.getUIContext().getRouter().pushUrl({url:'pages/Example1/Example1'})
+          this.getUIContext().getRouter().pushUrl({url:'pages/SecondaryLinkage/SecondaryLinkage'})
+        }).fontSize(18).margin(15).width('100%')
+      Button($r('app.string.example2'))
+        .onClick((e: ClickEvent)=>{
+          this.getUIContext().getRouter().pushUrl({url:'pages/CustomCalendar/CustomCalendar'})
+        }).fontSize(20).width('100%')
+      Button($r('app.string.example3'))
+        .onClick((e: ClickEvent)=>{
+          this.getUIContext().getRouter().pushUrl({url:'pages/DynamicAttributes/DynamicAttributes'})
+        }).fontSize(20).margin(15).width('100%')
+      Button($r('app.string.example4'))
+        .onClick((e: ClickEvent)=>{
+          this.getUIContext().getRouter().pushUrl({url:'pages/HighlyLoaded/HighlyLoaded'})
         }).fontSize(20).width('100%')
     }
     .padding(15)
     .width('100%')
-  }
-}
-
-export class ComExampleTrivialApplication extends UserView {
-  getBuilder() {
-    hilog.info(0x0000, 'testTag', 'getBuilder');
-    let wrapper = @memo () => {
-      hilog.info(0x0000, 'testTag', 'MyStateSample');
-      MyStateSample(undefined)
-    }
-    return wrapper;
   }
 }

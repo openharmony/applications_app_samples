@@ -32,7 +32,6 @@ import {
   Button,
   ButtonAttribute,
   ClickEvent,
-  UserView,
   AttributeModifier,
   RowAttribute,
   ImageAttribute,

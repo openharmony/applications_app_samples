@@ -1,5 +1,10 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/CustomCalendar/CustomCalendar",
+    "pages/DynamicAttributes/DynamicAttributes",
+    "pages/HighlyLoaded/HighlyLoaded",
+    "pages/SecondaryLinkage/SecondaryLinkage",
+    "pages/DynamicAttributes/view/Details"
   ]
 }

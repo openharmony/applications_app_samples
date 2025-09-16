@@ -27,7 +27,7 @@ import {
   memo,
   __memo_context_type,
   __memo_id_type
-} from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement';
 import {
   Text,
   TextAttribute,
@@ -36,9 +36,8 @@ import {
   Button,
   ButtonAttribute,
   ClickEvent,
-  UserView,
   Entry
-} from '@ohos.arkui.component'; // TextAttribute should be insert by ui-plugins
+} from '@ohos.arkui.component';
 
 import {
   State,
@@ -47,7 +46,7 @@ import {
   MutableState,
   stateOf,
   observableProxy
-} from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 
 const SATURDAY: number = 6; // 日历表上周六对应的序列号，从周日开始算起，取值0~6

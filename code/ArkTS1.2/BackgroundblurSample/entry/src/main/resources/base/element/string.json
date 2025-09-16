@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "BackgroundBlur"
+    },
+    {
+      "name": "background_blur_main",
+      "value": "背景模糊"
+    },
+    {
+      "name": "background_blur_discover",
+      "value": "折叠面板"
+    },
+    {
+      "name": "background_blur_hot",
+      "value": "瀑布流"
+    },
+    {
+      "name": "background_blur_my",
+      "value": "我的"
+    }
+  ]
+}

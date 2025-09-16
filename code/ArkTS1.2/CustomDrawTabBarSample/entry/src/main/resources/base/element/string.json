@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CustomDrawTabBar"
+    },
+    {
+      "name": "custom_tab_home",
+      "value": "首页"
+    },
+    {
+      "name": "custom_tab_news",
+      "value": "新品"
+    },
+    {
+      "name": "custom_tab_friend",
+      "value": "商城"
+    },
+    {
+      "name": "custom_tab_mine",
+      "value": "我的"
+    }
+  ]
+}

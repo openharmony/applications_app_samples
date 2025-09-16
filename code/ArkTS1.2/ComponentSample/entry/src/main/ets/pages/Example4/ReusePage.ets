@@ -30,7 +30,7 @@ import {
   memo,
   __memo_context_type,
   __memo_id_type
-} from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement'
 import {
   Text,
   TextAttribute,
@@ -39,7 +39,6 @@ import {
   Button,
   ButtonAttribute,
   ClickEvent,
-  UserView,
   Flex,
   ItemAlign,
   ForEach,
@@ -61,7 +60,7 @@ import {
   Scroller,
   ExpectedFrameRateRange,
   ListItem
-} from '@ohos.arkui.component'; // TextAttribute should be insert by ui-plugins
+} from '@ohos.arkui.component';
 import {
   State,
   Link,
@@ -69,7 +68,7 @@ import {
   MutableState,
   stateOf,
   observableProxy
-} from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement';
 import { Context, UIContext } from '@ohos.arkui.UIContext';
 
 const MONDAY = '一';

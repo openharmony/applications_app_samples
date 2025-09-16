@@ -27,10 +27,9 @@ import {
   IDataSource,
   DataChangeListener,
   Component,
-  UserView,
   Builder,Resource,$r,Row
-} from '@ohos.arkui.component'; // TextAttribute should be insert by ui-plugins
-import { State, Link, StorageLink, Watch } from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+} from '@ohos.arkui.component';
+import { State, Link, StorageLink, Watch } from '@ohos.arkui.stateManagement';
 
 export interface Month {
   month: string; // 具体年月

@@ -32,7 +32,6 @@ import {
   Button,
   ButtonAttribute,
   ClickEvent,
-  UserView,
   IDataSource,
   DataChangeListener
 } from '@ohos.arkui.component';
