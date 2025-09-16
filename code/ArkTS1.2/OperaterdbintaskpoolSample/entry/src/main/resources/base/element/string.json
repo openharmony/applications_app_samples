@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "OperaterdbintaskpoolSample"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_edit_button_text",
+      "value": "编辑"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_delete_button_text",
+      "value": "删除"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_phone",
+      "value": "号码"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_video",
+      "value": "视频通话"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_email",
+      "value": "邮箱"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_address",
+      "value": "地址"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_name_prompt_text",
+      "value": "请输入姓名"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_phone_prompt_text",
+      "value": "请输入电话"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_email_prompt_text",
+      "value": "请输入邮箱"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_address_prompt_text",
+      "value": "请输入地址"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_name",
+      "value": "姓名"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_phone",
+      "value": "电话"
+    }
+  ]
+}

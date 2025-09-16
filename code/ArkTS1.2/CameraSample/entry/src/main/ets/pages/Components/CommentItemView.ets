@@ -15,11 +15,33 @@
 
 import { Comment } from '../model/CommentModel';
 import { ImageListView } from './ImageListView';
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
-import { Margin, Padding, HorizontalAlign, Resource, TextInput, Color, RelativeContainer, Padding, ResourceStr, CustomDialogController, Image, $r, ImageAttribute, Text, Row, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, UserView, Image, FlexAlign, HorizontalAlign, FlexDirection, Flex, ItemAlign } from '@ohos.arkui.component'  // TextAttribute should be insert by ui-plugins
-import { Link, StorageLink, State, StateDecoratedVariable, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement' // should be insert by ui-plugins Extend,
-import hilog from '@ohos.hilog'
-import { ImageListView } from './ImageListView'
+import {
+  __memo_context_type,
+  __memo_id_type,
+  Link,
+  memo,
+  MutableState,
+  observableProxy,
+  State,
+  stateOf,
+  StorageLink
+} from '@ohos.arkui.stateManagement';
+import {
+  $r,
+  Button,
+  ButtonAttribute,
+  ClickEvent,
+  Column,
+  Component,
+  HorizontalAlign,
+  Image,
+  ImageAttribute,
+  Margin,
+  Row,
+  Text,
+  TextAttribute,
+} from '@ohos.arkui.component';
+
 @Component
 export struct CommentView {
   private comment: Comment = new Comment();

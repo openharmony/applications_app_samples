@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_background_color_green",
+      "value": "#FF2F9117"
+    }
+  ]
+}
