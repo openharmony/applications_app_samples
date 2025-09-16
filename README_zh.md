@@ -576,7 +576,7 @@
   <td height="54" align="center" rowspan="3" style='height:40.50pt' x:str><strong>工程能力</strong></td>
   <td x:str><strong>应用程序包</strong></td>
   <td x:str><a href="code/Project/ApplicationHap/MultiHap">多HAP</a></td>
-  <td ></td>
+  <td x:str><a href="code/Project/ApplicationHap/CallHapInHsp/">HSP调用HAP指导</a></td>
   <td ></td>
   <td ></td>
  </tr>
