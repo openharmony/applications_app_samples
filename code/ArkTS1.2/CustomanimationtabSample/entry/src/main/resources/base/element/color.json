@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "custom_animation_tab_skeleton_color_medium",
+      "value": "#FFF2F3F4"
+    },
+    {
+      "name": "custom_animation_tab_skeleton_color_light",
+      "value": "#FFECECEC"
+    }
+  ]
+}

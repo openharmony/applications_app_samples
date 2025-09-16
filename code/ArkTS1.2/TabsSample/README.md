@@ -5,7 +5,6 @@
 1. 主页嵌套场景，使用tabContent嵌套；
 2. 实现预加载；
 3. 主页使用自定义tabbar；
-4. 主页数据加载使用网络数据，轮播图片和列表信息；
 
 ### 效果预览
 
@@ -96,6 +95,6 @@ entry/src/main/ets/
 git init
 git config core.sparsecheckout true
 echo code/ArkTS1.2/TabsSample/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull
 ```

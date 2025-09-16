@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { DataChangeListener, IDataSource } from '@ohos.arkui.component'
+import { DataChangeListener, IDataSource } from '@ohos.arkui.component';
 
 /**
  * 首页tabBar信息

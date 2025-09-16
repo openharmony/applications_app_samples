@@ -1,0 +1,60 @@
+{
+  "float": [
+    {
+      "name": "custom_animation_tab_list_select_font_size",
+      "value": "18"
+    },
+    {
+      "name": "custom_animation_tab_list_unselect_font_size",
+      "value": "17"
+    },
+    {
+      "name": "custom_animation_tab_ske_large_border_radius",
+      "value": "8vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_small_border_radius",
+      "value": "8vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_xs_border_radius",
+      "value": "4vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_lg_topic_width",
+      "value": "58vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_topic_height",
+      "value": "16vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_action_area_height",
+      "value": "20vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_card_height",
+      "value": "102vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_card_title_height",
+      "value": "20vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_card_text_height",
+      "value": "20vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_image_height",
+      "value": "80vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_md_padding_margin",
+      "value": "12vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_row_height",
+      "value": "40vp"
+    }
+  ]
+}

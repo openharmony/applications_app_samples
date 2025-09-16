@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { SceneModuleInfo } from './SceneModuleInfo'
-import { DataChangeListener, IDataSource } from '@ohos.arkui.component'
+import { SceneModuleInfo } from './SceneModuleInfo';
+import { DataChangeListener, IDataSource } from '@ohos.arkui.component';
 /**
  * 实现IDataSource接口的对象，用于瀑布流组件加载数据
  */
@@ -120,7 +120,6 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    * 增加数据
    */
   public add1stItem(): void {
-    this.dataArray.splice(0, 0, this.dataArray[this.dataArray.length]);
     this.notifyDataAdd(0);
   }
 
@@ -145,7 +144,6 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    * 删除第一个元素
    */
   public delete1stItem(): void {
-    this.dataArray.splice(0, 1);
     this.notifyDataDelete(0);
   }
 
@@ -153,7 +151,6 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    * 删除第二个元素
    */
   public delete2ndItem(): void {
-    this.dataArray.splice(1, 1);
     this.notifyDataDelete(1);
   }
 
@@ -161,7 +158,6 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    * 删除最后一个元素
    */
   public deleteLastItem(): void {
-    this.dataArray.splice(-1, 1);
     this.notifyDataDelete(this.dataArray.length);
   }
 
