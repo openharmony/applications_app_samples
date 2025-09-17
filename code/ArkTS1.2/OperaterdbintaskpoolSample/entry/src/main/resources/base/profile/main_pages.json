@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/view/OperateRDBInTaskPool",
+    "pages/view/AddressBookDetail",
+    "pages/view/AddressBookEdit"
+  ]
+}

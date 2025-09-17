@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "router_back",
+      "value": "←"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "DownloadSample"
+    },
+    {
+      "name": "text_download",
+      "value": "已下载"
+    },
+    {
+      "name": "multiple_files_download_transfer_list",
+      "value": "传输列表"
+    },
+    {
+      "name": "multiple_files_download_queue",
+      "value": "下载队列  "
+    },
+    {
+      "name": "multiple_files_download_list",
+      "value": "下载列表"
+    },
+    {
+      "name": "multiple_files_download_album_backup",
+      "value": "下载历史"
+    },
+    {
+      "name": "multiple_files_download_history_text_downloaded",
+      "value": "已下载"
+    }
+  ]
+}
