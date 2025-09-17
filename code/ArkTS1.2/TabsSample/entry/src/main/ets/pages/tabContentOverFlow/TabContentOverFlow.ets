@@ -13,16 +13,63 @@
  * limitations under the License.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
-import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, UserView, Entry, Tabs, TabContent, SubTabBarStyle,
-  Row, ForEach, Position, Builder, Margin, BarMode, OnTabsAnimationStartCallback, TabsAnimationEvent, TabsOptions,animateTo,Alignment,
-  Color, FlexAlign, $r, Image, SizeOptions, Position, AnimateParam, Flex,FlexDirection,FlexAlign,ItemAlign,VideoController, TranslateOptions, SeekMode, VoidCallback, PlaybackInfo, PreparedInfo,
-  Video,$rawfile, GestureType, PanGesture, GestureEvent, RelativeContainer, Color, HitTestMode, Visibility} from '@ohos.arkui.component'  // TextAttribute should be insert by ui-plugins
-import { State, Link, StateDecoratedVariable, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
-import {Callback} from '@ohos.arkui.component'
-import hilog from '@ohos.hilog'
-import { UIContext, Router } from '@ohos.arkui.UIContext'
-import router from '@ohos.router'
+import {
+  __memo_context_type,
+  __memo_id_type,
+  Link,
+  memo,
+  MutableState,
+  observableProxy,
+  State,
+  stateOf
+} from '@ohos.arkui.stateManagement';
+import {
+  $r,
+  Alignment,
+  animateTo,
+  BarMode,
+  Builder,
+  Button,
+  ButtonAttribute,
+  Callback,
+  ClickEvent,
+  Color,
+  Column,
+  Component,
+  Entry,
+  Flex,
+  FlexAlign,
+  FlexDirection,
+  ForEach,
+  GestureEvent,
+  GestureType,
+  HitTestMode,
+  Image,
+  ItemAlign,
+  Margin,
+  OnTabsAnimationStartCallback,
+  PanGesture,
+  PlaybackInfo,
+  Position,
+  PreparedInfo,
+  RelativeContainer,
+  Row,
+  SeekMode,
+  TabContent,
+  Tabs,
+  TabsAnimationEvent,
+  TabsOptions,
+  Text,
+  TextAttribute,
+  TranslateOptions,
+  Video,
+  VideoController,
+  Visibility,
+  VoidCallback
+} from '@ohos.arkui.component';
+import hilog from '@ohos.hilog';
+import { Router, UIContext } from '@ohos.arkui.UIContext';
+import router from '@ohos.router';
 
 @Entry
 @Component
@@ -51,16 +98,13 @@ export struct TabContentOverFlowComponent {
     this.getUIContext()?.animateTo({
       duration: 300,
     }, () => {
-      hilog.info(0x0000, 'testTag', 'animateTo动画触发');
       this.isTouch = true;
     });
   }
 
   @Builder
   videoTabContent() {
-    /**
-     * TODO: 高性能知识点: 界面嵌套带来了渲染和计算的大量开销，造成性能的衰退。使用扁平化布局优化嵌套层级，建议采用相对布局RelativeContainer进行扁平化布局，有效减少容器的嵌套层级，减少组件的创建时间。
-     */
+    // 界面嵌套带来了渲染和计算的大量开销，造成性能的衰退。使用扁平化布局优化嵌套层级，建议采用相对布局RelativeContainer进行扁平化布局，有效减少容器的嵌套层级，减少组件的创建时间。
     Column() {
       Row() {
         Text(' ← 返回')
@@ -70,6 +114,7 @@ export struct TabContentOverFlowComponent {
       .onClick((e: ClickEvent) => {
         this.getUIContext().getRouter().back();
       })
+
       Video({
         src: $r('app.media.tabcontentoverflow_play_video'),
         controller: this.videoController
@@ -78,35 +123,34 @@ export struct TabContentOverFlowComponent {
         .width('100%')
         .autoPlay(false)
         .controls(false)
-          .onPrepared((event: PreparedInfo) => {
-            if (event !== undefined) {
-              this.totalTime = event.duration;
-            }
-          } as Callback<PreparedInfo>)
-          .onFinish(() => {
-            this.isPlay = false;
-          } as VoidCallback)
-          .onUpdate((event: PlaybackInfo) => {
-            hilog.info(0x0000, 'testTag', '更新:'+event.time);
-            if (event !== undefined) {
-              if (!this.isTouch) {
-                if (!this.isSeek) {
-                  // 当没有进行拖动进度条时，进度条根据播放进度进行变化。
-                  this.offsetX =
-                    event.time / this.totalTime * (this.screenW - 30);
-                  this.positionX = this.offsetX;
-                } else {
-                  this.isSeek = false;
-                }
+        .onPrepared((event: PreparedInfo) => {
+          if (event !== undefined) {
+            this.totalTime = event.duration;
+          }
+        } as Callback<PreparedInfo>)
+        .onFinish(() => {
+          this.isPlay = false;
+        } as VoidCallback)
+        .onUpdate((event: PlaybackInfo) => {
+          if (event !== undefined) {
+            if (!this.isTouch) {
+              if (!this.isSeek) {
+                // 当没有进行拖动进度条时，进度条根据播放进度进行变化。
+                this.offsetX =
+                  event.time / this.totalTime * (this.screenW - 30);
+                this.positionX = this.offsetX;
+              } else {
+                this.isSeek = false;
               }
             }
-          } as Callback<PlaybackInfo>)
+          }
+        } as Callback<PlaybackInfo>)
         .id('video')
       // 播放按钮
       Image($r('app.media.tabcontentoverflow_play'))
         .width(50)
         .height(50)
-        .position({x: '45%', y: '45%'} as Position)
+        .position({ x: '45%', y: '45%' } as Position)
         .id('image')
         .onClick((e: ClickEvent) => {
           if (this.isPlay) {
@@ -138,19 +182,14 @@ export struct TabContentOverFlowComponent {
         .id('totalTimeText')
         .fontColor('#ffffffff')
         .visibility(this.isTouch ? Visibility.Visible : Visibility.Hidden)
-      // TODO: 知识点：使用三个Text组件来模拟播放进度条，第一个text位置不变，宽度不变。第二个text根据this.offsetX来变换宽度。第三个text根据this.offsetX来translate该组件在x轴的位置。
+      // 使用三个Text组件来模拟播放进度条，第一个text位置不变，宽度不变。第二个text根据this.offsetX来变换宽度。第三个text根据this.offsetX来translate该组件在x轴的位置。
       RelativeContainer() {
         Text()
           .width(this.screenW - 30)
-          .height(this.isTouch ? 20 :
-            5)
-          .borderRadius(this.isTouch ? 0 :
-            5)
+          .height(this.isTouch ? 20 : 5)
+          .borderRadius(this.isTouch ? 0 : 5)
           .backgroundColor('#804e4c4d')
-          .translate({
-            y: this.isTouch ? -15 :
-              0
-          } as TranslateOptions)
+          .translate({ y: this.isTouch ? -15 : 0 } as TranslateOptions)
           .id('text1')
           .margin({
             top: 8,
@@ -158,14 +197,10 @@ export struct TabContentOverFlowComponent {
           } as Margin)
         Text()
           .width(this.offsetX)
-          .height(this.isTouch ? 20 :
-            5)
-          .borderRadius(this.isTouch ? 0 :
-            5)
+          .height(this.isTouch ? 20 : 5)
+          .borderRadius(this.isTouch ? 0 : 5)
           .backgroundColor('#999999')
-          .translate({
-            y: this.isTouch ? -15 : 0
-          } as TranslateOptions)
+          .translate({ y: this.isTouch ? -15 : 0 } as TranslateOptions)
           .id('text2')
         Text()
           .width(20)
@@ -181,27 +216,22 @@ export struct TabContentOverFlowComponent {
           } as Margin)
       }
       .id('RelativeContainer')
-      .margin({
-        top: 30,
-      } as Margin)
+      .margin({ top: 30 } as Margin)
       .width(this.screenW)
       .height(70)
       // 左右拖动触发该手势事件
       .gesture(
         PanGesture()
           .onActionStart((event: GestureEvent) => {
-            hilog.info(0x0000, 'testTag', 'onActionStart触摸准备');
             this.dragAnimation();
             this.isTextButtonVisible = false;
             this.isSeek = true;
           })/**
-           * TODO: 性能知识点: onActionUpdate是系统高频回调函数，避免在函数中进行冗余或耗时操作，例如应该减少或避免在函数打印日志，会有较大的性能损耗。
-           * 合理使用系统接口，避免冗余操作: README.md
+           * 性能知识点: onActionUpdate是系统高频回调函数，避免在函数中进行冗余或耗时操作，例如应该减少或避免在函数打印日志，会有较大的性能损耗。
            */
           .onActionUpdate((event: GestureEvent) => {
             let playTime =
-              Math.floor(this.offsetX / (this.screenW - 30) *
-              this.totalTime);
+              Math.floor(this.offsetX / (this.screenW - 30) * this.totalTime);
             this.offsetX = this.positionX + event.offsetX;
             if (this.offsetX <= 0) {
               this.offsetX = 0;
@@ -216,7 +246,6 @@ export struct TabContentOverFlowComponent {
             }
           })
           .onActionEnd((event: GestureEvent) => {
-            hilog.info(0x0000, 'testTag', 'onActionEnd触摸结束');
             if (this.positionX === this.offsetX) { // 进度条未发生改变
               this.isSeek = false;
             } else {
@@ -236,7 +265,7 @@ export struct TabContentOverFlowComponent {
 
   build() {
     Column() {
-      // TODO: 知识点：将barHeight设置为0，预留60vp给自定义tabBar，TabContent的高度则可以使用calc(100% - 60vp)获取。
+      // 将barHeight设置为0，预留60vp给自定义tabBar，TabContent的高度则可以使用calc(100% - 60vp)获取。
       Tabs({ index: this.index } as TabsOptions) {
         TabContent() {
           Text($r('app.string.custom_home'))
@@ -267,12 +296,12 @@ export struct TabContentOverFlowComponent {
         .height('calc(100% - 60vp)')
         .width('100%')
       }
-      // TODO: 知识点：将zIndex设置为2，TabContent将在tabBar之上，显示的效果就是TabContent外溢的部分在tabBar上。
+      // 将zIndex设置为2，TabContent将在tabBar之上，显示的效果就是TabContent外溢的部分在tabBar上。
       .zIndex(2)
       .scrollable(false)
       .barHeight(1)
       .animationDuration(100)
-      // TODO: 知识点：hitTestBehavior属性可以实现在复杂的多层级场景下，一些组件能够响应手势和事件，而一些组件不能响应手势和事件。HitTestMode.Transparent的效果为，自身响应触摸测试，不会阻塞兄弟节点的触摸测试。
+      // hitTestBehavior属性可以实现在复杂的多层级场景下，一些组件能够响应手势和事件，而一些组件不能响应手势和事件。HitTestMode.Transparent的效果为，自身响应触摸测试，不会阻塞兄弟节点的触摸测试。
       .hitTestBehavior(HitTestMode.Transparent)
       .id('tabs')
 
@@ -285,24 +314,22 @@ export struct TabContentOverFlowComponent {
               .height(30)
             Text(item)
               .fontSize(12)
-              .fontColor(this.index === index ? '#e40d0d' :
-                '#FFFFFFFF')
+              .fontColor(this.index === index ? '#e40d0d' : '#FFFFFFFF')
           }
           .width(50)
           .margin({ top: 10 } as Margin)
           // 为将底部视图扩展到非安全区域，可将原本60vp的高度设置为100vp。
           .height(100)
           .onClick((e: ClickEvent) => {
-            hilog.info(0x0000, 'testTag', 'tabs点击');
             this.index = index;
           })
         })
       }
       .width('100%')
       .backgroundColor('#FF000000')
-      .margin({top: '-60vp'} as Margin)
+      .margin({ top: '-60vp' } as Margin)
       .justifyContent(FlexAlign.SpaceAround)
-      .id('tabbar')
+      .id('tabBar')
     }
   }
 }

@@ -14,7 +14,7 @@
  */
 
 import { UIContext } from '@ohos.arkui.UIContext'
-import { Text,  List, ListItem, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, UserView, $r,
+import { Text,  List, ListItem, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, $r,
   Image, Margin, Blank, Row, Builder, Alignment, ForEach, Padding, Color, Divider, Tabs, TabContent, BuilderParam, JSON,
   LazyForEach, ListItemGroup, Entry, Canvas, CanvasRenderingContext2D, RenderingContextSettings,FlexAlign
 } from '@ohos.arkui.component';

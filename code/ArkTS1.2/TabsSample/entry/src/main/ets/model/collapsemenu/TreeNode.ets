@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { Observed } from '@ohos.arkui.stateManagement'
+
 @Observed
 export class TreeNode {
   public expand: boolean = false;

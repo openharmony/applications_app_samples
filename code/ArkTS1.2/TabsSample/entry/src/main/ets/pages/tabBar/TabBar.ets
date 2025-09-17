@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
-import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, UserView, Entry, Tabs, TabContent, SubTabBarStyle,
+import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
+import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Entry, Tabs, TabContent, SubTabBarStyle,
   Row, ForEach, Position, Builder, Margin, BarMode, OnTabsAnimationStartCallback, TabsAnimationEvent, TabsOptions,
-  Color, FlexAlign, $r, Image, SizeOptions, Position, AnimateParam, Flex,FlexDirection,FlexAlign,ItemAlign} from '@ohos.arkui.component'  // TextAttribute should be insert by ui-plugins
-import { State, Link, StateDecoratedVariable, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement' // should be insert by ui-plugins
-import hilog from '@ohos.hilog'
-import { UIContext, Router } from '@ohos.arkui.UIContext'
-import router from '@ohos.router'
+  Color, FlexAlign, $r, Image, SizeOptions, Position, AnimateParam, Flex,FlexDirection,FlexAlign,ItemAlign} from '@ohos.arkui.component';
+import { State, Link, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import hilog from '@ohos.hilog';
+import { UIContext, Router } from '@ohos.arkui.UIContext';
+import router from '@ohos.router';
 
 @Entry
 @Component
@@ -53,7 +53,7 @@ export struct TabViewComponent {
         }
         .width(52)
         .height(52)
-        // TODO：知识点：通过设置borderRadius以及margin的top值实现圆弧外轮廓效果。
+        // 通过设置borderRadius以及margin的top值实现圆弧外轮廓效果。
         .borderRadius(24)
         .margin({ top: -15 } as Margin)
         .backgroundColor(Color.White)
@@ -66,16 +66,12 @@ export struct TabViewComponent {
           .size({
             width: 28,
             height: 28
-          } as SizeOptions)// TODO：知识点：通过offset控制图片的纵向偏移。
+          } as SizeOptions)// 通过offset控制图片的纵向偏移。
           .offset({
             y: (this.selectedIndex === index &&
               this.selectedIndex !== 2) ?
               -3 : 0
-          } as Position)// TODO：知识点：组件的某些通用属性变化时，可以通过属性动画animation实现过渡效果。本示例的动画效果是tabBar的图片向上偏移一小段距离
-          .animation({
-            duration: 400,
-            iterations: 1,
-          } as AnimateParam)
+          } as Position)// 组件的某些通用属性变化时，可以通过属性动画animation实现过渡效果。本示例的动画效果是tabBar的图片向上偏移一小段距离
       }
       Text(item)
         .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
@@ -106,25 +102,21 @@ export struct TabViewComponent {
             .fontSize(26)
             .padding(20)
         }
-
         // 新闻模块，可根据开发者实际业务替换TabContent中的布局
         TabContent() {
           Text($r('app.string.custom_news'))
             .fontSize(26)
         }
-
         // 视频模块，可根据开发者实际业务替换TabContent中的布局
         TabContent() {
           Text($r('app.string.custom_video'))
             .fontSize(26)
         }
-
         // 朋友圈模块，可根据开发者实际业务替换TabContent中的布局
         TabContent() {
           Text($r('app.string.custom_friend'))
             .fontSize(26)
         }
-
         // 我的模块，可根据开发者实际业务替换TabContent中的布局
         TabContent() {
           Text($r('app.string.custom_tab_mine'))
@@ -139,11 +131,7 @@ export struct TabViewComponent {
       .onAnimationStart((index: number, targetIndex: number) => {
         this.selectedIndex = targetIndex;
       } as OnTabsAnimationStartCallback)
-      /**
-       * 自定义TabBar组件
-       * selectedIndex: 配置起始的页签索引
-       * tabsInfo: tab数据源，类型为TabBarInfo
-       */
+
       Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
         ForEach(this.tabArray, (item: string, tabBarIndex: number) => {
           // 单独一个TabBar组件

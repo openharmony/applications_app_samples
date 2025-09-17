@@ -17,16 +17,36 @@
 import { Constants } from '../../constants/Constants';
 import { ArticleSource } from '../../model/collapsemenu/BasicDataSource';
 import { TreeNode } from '../../model/collapsemenu/TreeNode';
-import { Text, List, ListItem, Column, LazyForEach, Button, Image, Row, ForEach,
-         ButtonAttribute, ClickEvent, Component, BuilderParam, Padding, $r,
-         BarState, NestedScrollOptions, NestedScrollMode, Color, JSON, Alignment,
-         ListItemGroup, Divider, Builder, Margin, Blank, Entry
-          } from '@ohos.arkui.component'
-import { Provide, State, ObjectLink, Consume } from '@ohos.arkui.stateManagement'
+import {
+  $r,
+  Alignment,
+  Blank,
+  Builder,
+  Button,
+  ButtonAttribute,
+  ClickEvent,
+  Color,
+  Column,
+  Component,
+  Divider,
+  Entry,
+  ForEach,
+  Image,
+  JSON,
+  LazyForEach,
+  List,
+  ListItem,
+  ListItemGroup,
+  Margin,
+  Padding,
+  Row,
+  Text
+} from '@ohos.arkui.component'
+import { Consume, ObjectLink, Provide, State } from '@ohos.arkui.stateManagement';
 import { ARTICLENODE_DATAS } from '../../model/constantsData'
 import { ARTICLE_DATA1 } from '../../model/collapsemenu/MockXrData';
-import hilog from '@ohos.hilog'
-import { UIContext } from '@ohos.arkui.UIContext'
+import hilog from '@ohos.hilog';
+import { UIContext } from '@ohos.arkui.UIContext';
 
 /**
  * 功能描述：
@@ -60,16 +80,18 @@ export struct CollapseMenuSection {
       .onClick((e: ClickEvent) => {
         this.getUIContext().getRouter().back();
       })
-    List({ space: 10 }) {
-      LazyForEach(this.articleSource, (item: TreeNode, index: number) => {
-        if (item.children?.length) {
+
+      List({ space: 10 }) {
+        LazyForEach(this.articleSource, (item: TreeNode, index: number) => {
           ListItemGroup() {
             ListItem() {
               this.articleHeaderBuilder(item)
             }
             .onClick((e: ClickEvent) => {
-              item.expand = !item.expand;
-              this.articleSource.updateData(index, item);
+              if (item.children?.length) {
+                item.expand = !item.expand;
+                this.articleSource.updateData(index, item);
+              }
             })
 
             if (item.expand && item.children) {
@@ -86,40 +108,26 @@ export struct CollapseMenuSection {
             top: 4
           } as Padding)
           .align(Alignment.TopStart)
-
-        } else {
-          ListItem() {
-            this.articleItemBuilder(item);
-          }
-          .width('100%')
-          .borderRadius(12)
-          .backgroundColor(Color.White)
-          .padding({
-            left: 12,
-            right: 12,
-            bottom: 4,
-            top: 4
-          } as Padding)
-          .align(Alignment.TopStart)
-        }
-      }, (itemj: TreeNode ,index: number ) => {return itemj.title + itemj.expand + index})
+        }, (item: TreeNode, index: number) => {
+          return item.title + item.expand + index.toString()
+        })
+      }
+      .width('100%')
+      .padding({
+        left: 12,
+        right: 12,
+        bottom: 12
+      } as Padding)
+      .backgroundColor('#F3F3F3')
     }
-    .width('100%')
-    .padding({
-      left: 12,
-      right: 12,
-      bottom: 12
-    } as Padding)
-    .backgroundColor('#F3F3F3')
   }
-}
 
   @Builder
   articleItemBuilder(articleNode: TreeNode) {
     Column() {
       Row() {
         Text(articleNode.title)
-          .fontSize($r('app.integer.collapse_menu_text_font_size'))
+          .fontSize(16)
           .layoutWeight(1)
           .align(Alignment.Start)
           .fontFamily('HarmonyHeiTi-Medium')
@@ -129,9 +137,6 @@ export struct CollapseMenuSection {
       .height(48)
       .width('100%')
       .onClick((e: ClickEvent) => {
-        if (articleNode.url) {
-
-        }
       })
     }
   }
@@ -139,17 +144,31 @@ export struct CollapseMenuSection {
   @Builder
   articleHeaderBuilder(articleNode: TreeNode) {
     Row() {
-      Text(articleNode.title)
-        .fontSize($r('app.integer.collapse_menu_text_font_size'))
-        .fontFamily('HarmonyHeiTi-Medium')
-        .fontColor($r('app.color.font_color_dark'))
-      Blank()
-      Image(articleNode.expand ? $r('app.media.ic_down_arrow') : $r('app.media.ic_right_arrow'))
-        .width(articleNode.expand  ? 24 :
-        12)
-        .height(articleNode.expand  ? 12 :
-        24)
-        .margin({ right: 6} as Margin)
+      if (articleNode.children?.length) {
+        Text(articleNode.title)
+          .fontSize(16)
+          .fontFamily('HarmonyHeiTi-Medium')
+          .fontColor($r('app.color.font_color_dark'))
+        Blank()
+        Image(articleNode.expand ? $r('app.media.ic_down_arrow') : $r('app.media.ic_right_arrow'))
+          .width(articleNode.expand ? 24 : 12)
+          .height(articleNode.expand ? 12 : 24)
+          .margin({ right: 6 } as Margin)
+      } else {
+        Row() {
+          Text(articleNode.title)
+            .fontSize(16)
+            .layoutWeight(1)
+            .align(Alignment.Start)
+            .fontFamily('HarmonyHeiTi-Medium')
+            .fontColor($r('app.color.font_color_dark'))
+          Blank()
+        }
+        .height(48)
+        .width('100%')
+        .onClick((e: ClickEvent) => {
+        })
+      }
     }
     .height(56)
     .width('100%')
@@ -173,7 +192,6 @@ export struct CollapseMenuSection {
       articleGroupIndex: parentIndex
     })
   }
-
 }
 
 
@@ -183,6 +201,7 @@ struct ArticleItem {
   count: number = 0;
   @State articleSource: ArticleSource<TreeNode> = {} as ArticleSource<TreeNode>;
   articleGroupIndex: number = -1;
+
   build() {
     ListItem() {
       Column() {
@@ -197,14 +216,12 @@ struct ArticleItem {
                 children: this.articleNode.children,
               } as TreeNode)
             }
-            .onClick((e: ClickEvent) => {
-
-            })
           } else {
             this.articleItemBuilder(this.articleNode);
           }
         }
         .width('100%')
+
         Divider()
           .height(1)
           .opacity(0.2)
@@ -218,7 +235,7 @@ struct ArticleItem {
     Column() {
       Row() {
         Text(articleNode.title)
-          .fontSize($r('app.integer.collapse_menu_text_font_size'))
+          .fontSize(16)
           .layoutWeight(1)
           .align(Alignment.Start)
           .fontFamily('HarmonyHeiTi-Medium')
@@ -229,7 +246,7 @@ struct ArticleItem {
       .width('100%')
       .onClick((e: ClickEvent) => {
         if (articleNode.url) {
-          this.getUIContext().getRouter().pushUrl({url: 'pages/collapsemenu/Concent'});
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/collapsemenu/Concent' });
         }
       })
     }
@@ -239,16 +256,16 @@ struct ArticleItem {
   articleHeaderBuilder(articleNode: TreeNode) {
     Row() {
       Text(articleNode.title)
-        .fontSize($r('app.integer.collapse_menu_text_font_size'))
+        .fontSize(16)
         .fontFamily('HarmonyHeiTi-Medium')
         .fontColor($r('app.color.font_color_dark'))
       Blank()
       Image(articleNode.expand ? $r('app.media.ic_down_arrow') : $r('app.media.ic_right_arrow'))
-        .width(articleNode.expand  ? 24 :
+        .width(articleNode.expand ? 24 :
           12)
-        .height(articleNode.expand  ? 12 :
+        .height(articleNode.expand ? 12 :
           24)
-        .margin({ right: 6} as Margin)
+        .margin({ right: 6 } as Margin)
     }
     .height(56)
     .width('100%')

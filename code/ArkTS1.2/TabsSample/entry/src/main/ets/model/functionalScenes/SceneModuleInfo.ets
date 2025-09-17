@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ResourceStr } from '@ohos.arkui.component'
+import { ResourceStr } from '@ohos.arkui.component';
 /**
  *  首页瀑布流列表信息
  */

@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
-import { Margin, Column, Component, Entry, UserView } from '@ohos.arkui.component';  // TextAttribute should be insert by ui-plugins
-import { Text,  List, ListItem, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, UserView, $r,FlexAlign,
+import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
+import { Margin, Column, Component, Entry } from '@ohos.arkui.component';
+import { Text,  List, ListItem, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, $r,FlexAlign,
   Image, Margin, Blank, Row, Builder, Alignment, ForEach, Padding, Color, Divider, Tabs, TabContent, BuilderParam, JSON,
   LazyForEach, ListItemGroup, Entry, Canvas, CanvasRenderingContext2D, RenderingContextSettings
-} from '@ohos.arkui.component';  // TextAttribute should be insert by ui-plugins
+} from '@ohos.arkui.component';
 import hilog from '@ohos.hilog';
 import camera from '@ohos.multimedia.camera';
-import { UIContext } from '@ohos.arkui.UIContext'
+import { UIContext } from '@ohos.arkui.UIContext';
 
 @Entry
 @Component
@@ -54,14 +54,5 @@ struct MyStateSample {
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')
-  }
-}
-
-export class ComExampleTrivialApplication extends UserView {
-  getBuilder() {
-    let wrapper = @memo () => {
-      MyStateSample(undefined)
-    }
-    return wrapper
   }
 }

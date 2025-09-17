@@ -7,18 +7,6 @@
     {
       "name": "font_color_dark",
       "value": "#000000"
-    },
-    {
-      "name": "helper_bindsheet_bgc",
-      "value": "#303643"
-    },
-    {
-      "name": "background_blur_selected_text_color",
-      "value": "#FFEC0707"
-    },
-    {
-      "name": "background_blur_tabs_bar_background_color",
-      "value": "#FFE9E9E9"
     }
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CustomanimationtabSample"
+    },
+    {
+      "name": "custom_animation_tab_button_text",
+      "value": "修改背景条颜色"
+    }
+  ]
+}

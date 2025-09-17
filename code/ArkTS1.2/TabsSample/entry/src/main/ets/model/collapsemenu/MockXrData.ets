@@ -128,5 +128,4 @@ export const ARTICLE_DATA1: TreeNode[] = [
       }
     ]
   }
-
 ]
