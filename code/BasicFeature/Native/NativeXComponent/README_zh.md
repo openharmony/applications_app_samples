@@ -5,7 +5,7 @@
 
 示例二：使用ArkTS声明式方法创建XComponent，并使用NativeXComponent相关接口
 
-示例三使用自定义节点创建XComponent，并使用SurfaceHolder相关接口
+示例三：使用自定义节点创建XComponent，并使用SurfaceHolder相关接口
 
 ### 工程目录
 
