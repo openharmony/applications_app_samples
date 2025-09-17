@@ -24,10 +24,10 @@ class MyNodeController extends NodeController {
   public detachButton: typeNode.Button | undefined = undefined;
   makeNode(uiContext: UIContext): FrameNode | null {
     this.node = new FrameNode(uiContext);
-    this.column = typeNode.createNode(uiContext, "Column")
+    this.column = typeNode.createNode(uiContext, 'Column')
     this.column.initialize()
-      .width("100%")
-      .height("100%")
+      .width('100%')
+      .height('100%')
       try {
         this.node.appendChild(this.column);
       } catch (error) {
@@ -105,7 +105,7 @@ export struct PageThree {
 
       Button('创建/销毁').onClick(() => {
         this.isShow = !this.isShow;
-      }).width("50%")
+      }).width('50%')
         .margin({
           top: 10,
           bottom: 10,
@@ -163,24 +163,24 @@ export struct PageThree {
           native.setNeedSoftKeyboard(this.myNodeController.xComponentId, this.needSoftKeyboard);
           this.text = this.needSoftKeyboard ? '单指点击XComponent软键盘不消失' : '单指点击XComponent软键盘消失'
         })
-        .width("50%")
+        .width('50%')
         .margin({
           top: 10,
           bottom: 10,
           left: 12,
           right: 12
         })
-      Button("Initialize")
+      Button('Initialize')
         .onClick(()=>{
           native.initialize(this.myNodeController.xComponentId)
         })
-        .width("50%")
+        .width('50%')
         .margin({
           top: 10,
           left: 12,
           right: 12
         })
-      Button("Finalize")
+      Button('Finalize')
         .onClick(()=>{
           native.finalize(this.myNodeController.xComponentId)
         })

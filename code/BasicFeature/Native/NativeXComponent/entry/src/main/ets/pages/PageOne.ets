@@ -57,7 +57,7 @@ export struct PageOne {
             hasChangeColor = nativeNode.getStatus().hasChangeColor;
             }
             if (hasChangeColor) {
-            this.currentStatus = "change color";
+            this.currentStatus = 'change color';
             }
         })
         .margin({

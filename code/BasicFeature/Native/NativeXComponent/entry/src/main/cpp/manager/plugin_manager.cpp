@@ -14,7 +14,6 @@
  */
 
 #include "plugin_manager.h"
-
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <cstdint>
 #include <cstdio>

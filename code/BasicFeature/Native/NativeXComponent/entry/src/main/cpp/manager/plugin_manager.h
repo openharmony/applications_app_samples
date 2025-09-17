@@ -58,7 +58,6 @@ public:
     static napi_value Finalize(napi_env env, napi_callback_info info);
     static napi_value DrawStar(napi_env env, napi_callback_info info);
 
-
     // CApi XComponent
     void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
     void OnSurfaceDestroyed(OH_NativeXComponent* component, void* window);

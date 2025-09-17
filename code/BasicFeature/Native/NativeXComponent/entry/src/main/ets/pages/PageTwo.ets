@@ -21,7 +21,7 @@ export function PageTwoBuilder(name: string, param: Object){
 }
 @Component
 export struct PageTwo {
-  @State currentStatus: string = "init";
+  @State currentStatus: string = 'init';
   private xComponentContext: XComponentContext | undefined = undefined;
 
   build() {
@@ -48,12 +48,12 @@ export struct PageTwo {
             })
             .onLoad((xComponentContext) => {
                 this.xComponentContext = xComponentContext as XComponentContext;
-                this.currentStatus = "index";
+                this.currentStatus = 'index';
             })
             .onDestroy(() => {
                 console.info('onDestroy');
             })
-            .id("xcomponent")
+            .id('xcomponent')
 
             Text(this.currentStatus)
             .fontSize('24fp')
@@ -65,7 +65,7 @@ export struct PageTwo {
             hasChangeColor = this.xComponentContext.getStatus().hasChangeColor;
             }
             if (hasChangeColor) {
-            this.currentStatus = "change color";
+            this.currentStatus = 'change color';
             }
         })
         .margin({
