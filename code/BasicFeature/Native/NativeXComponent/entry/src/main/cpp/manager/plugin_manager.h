@@ -87,7 +87,6 @@ public:
     static std::unordered_map<void *, OH_ArkUI_SurfaceCallback *> callbackMap_;
     static std::unordered_map<void *, OH_ArkUI_SurfaceHolder *> surfaceHolderMap_;
     static ArkUI_AccessibilityProvider *provider_;
-
 };
 } // namespace NativeXComponentSample
 #endif // NATIVE_XCOMPONENT_PLUGIN_MANAGER_H

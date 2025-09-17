@@ -22,10 +22,10 @@ export function PageOneBuilder(name: string, param: Object){
 }
 @Component
 export struct PageOne {
-  @State currentStatus: string = "init";
+  @State currentStatus: string = 'init';
   private nodeContent: NodeContent = new NodeContent();
   aboutToAppear():void{
-    nativeNode.createNativeNode(this.nodeContent,"ygb");
+    nativeNode.createNativeNode(this.nodeContent,'CreatNativeNode');
   }
 
   build() {
@@ -80,7 +80,7 @@ export struct PageOne {
                     hasDraw = nativeNode.getStatus().hasDraw;
                 }
                 if (hasDraw) {
-                    this.currentStatus = "draw star";
+                    this.currentStatus = 'draw star';
                 }
             })
             .width('53.6%')

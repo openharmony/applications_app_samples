@@ -383,8 +383,9 @@ void PluginManager::DispatchTouchEvent(OH_NativeXComponent* component, void* win
                      "type=%{public}d, force=%{public}f, tiltX=%{public}f, tiltY=%{public}f, toolType=%{public}d",
                      touchEvent_.x, touchEvent_.y, touchEvent_.screenX,
                      touchEvent_.screenY, touchEvent_.type, touchEvent_.force, tiltX, tiltY, toolType);
-        if (touchEvent_.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP)
+        if (touchEvent_.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP) {
             eglcore_->ChangeColor(hasChangeColor_);
+        }
     } else {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "XComponent_Native", "touch fail");
     }

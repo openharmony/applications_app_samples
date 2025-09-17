@@ -89,7 +89,7 @@ export struct PageTwo {
                     hasDraw = this.xComponentContext.getStatus().hasDraw;
                 }
                 if (hasDraw) {
-                    this.currentStatus = "draw star";
+                    this.currentStatus = 'draw star';
                 }
                 }
             })

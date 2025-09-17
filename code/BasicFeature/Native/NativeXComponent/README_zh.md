@@ -1,7 +1,7 @@
 # Native XComponent
 本示例包含三个小示例。
 
-示例一：使用NDK接口创建XComponent，并使用NativeXComponent相关接口
+示例一：使用NDK的接口创建XComponent，并使用NativeXComponent相关接口
 
 示例二：使用ArkTS声明式方法创建XComponent，并使用NativeXComponent相关接口
 

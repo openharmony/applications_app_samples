@@ -16,12 +16,12 @@ import native from 'libnativerender.so';
 import { FrameNode, NodeController, typeNode, UIContext } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
-  xComponent: typeNode.XComponent | undefined = undefined;
-  xComponentId: string = 'xcp' + (new Date().getTime());
-  node: FrameNode | undefined = undefined;
-  column: typeNode.Column | undefined = undefined;
-  attachButton: typeNode.Button | undefined = undefined;
-  detachButton: typeNode.Button | undefined = undefined;
+  public xComponent: typeNode.XComponent | undefined = undefined;
+  public xComponentId: string = 'xcp' + (new Date().getTime());
+  public node: FrameNode | undefined = undefined;
+  public column: typeNode.Column | undefined = undefined;
+  public attachButton: typeNode.Button | undefined = undefined;
+  public detachButton: typeNode.Button | undefined = undefined;
   makeNode(uiContext: UIContext): FrameNode | null {
     this.node = new FrameNode(uiContext);
     this.column = typeNode.createNode(uiContext, "Column")
@@ -31,7 +31,7 @@ class MyNodeController extends NodeController {
       try {
         this.node.appendChild(this.column);
       } catch (error) {
-        console.error("Fail to append child: ", error);
+        console.error('Fail to append child: ', error);
       }
     
     this.xComponent = typeNode.createNode(uiContext, 'XComponent', { type: XComponentType.SURFACE });
@@ -43,7 +43,7 @@ class MyNodeController extends NodeController {
     try {
         this.column.appendChild(this.xComponent);
       } catch (error) {
-        console.error("Fail to append child: ", error);
+        console.error('Fail to append child: ', error);
       }
 
     return this.node;
@@ -54,7 +54,7 @@ class MyNodeController extends NodeController {
     try {
         this.node?.removeChild(this.xComponent);
       } catch (error) {
-        console.error("Fail to remove child: ", error);
+        console.error('Fail to remove child: ', error);
       }
     this.xComponent?.dispose();
   }
@@ -184,7 +184,7 @@ export struct PageThree {
         .onClick(()=>{
           native.finalize(this.myNodeController.xComponentId)
         })
-        .width("50%")
+        .width('50%')
         .margin({
           top: 10,
           left: 12,
