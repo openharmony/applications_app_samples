@@ -16,7 +16,7 @@
 export default interface XComponentContext {
   drawPatternX(): void;
 
-  getStatus(): XComponentContextStatus;
+  getStatusX(): XComponentContextStatus;
 };
 
 type XComponentContextStatus = {

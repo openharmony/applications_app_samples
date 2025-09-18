@@ -21,7 +21,7 @@ const TAG = '[Sample_Native_XComponent]';
 
 export default function abilityTest1() {
 
-  describe('ActsAbilityTest', () => {
+  describe('ActsAbilityTest1', () => {
     /**
      * 打开应用
      */

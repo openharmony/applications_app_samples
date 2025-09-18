@@ -61,8 +61,8 @@ export struct PageTwo {
         }
         .onClick(() => {
             let hasChangeColor: boolean = false;
-            if (this.xComponentContext && this.xComponentContext.getStatus()) {
-            hasChangeColor = this.xComponentContext.getStatus().hasChangeColor;
+            if (this.xComponentContext && this.xComponentContext.getStatusX()) {
+            hasChangeColor = this.xComponentContext.getStatusX().hasChangeColor;
             }
             if (hasChangeColor) {
             this.currentStatus = 'change color';
@@ -85,8 +85,8 @@ export struct PageTwo {
                 if (this.xComponentContext) {
                 this.xComponentContext.drawPatternX();
                 let hasDraw: boolean = false;
-                if (this.xComponentContext.getStatus()) {
-                    hasDraw = this.xComponentContext.getStatus().hasDraw;
+                if (this.xComponentContext.getStatusX()) {
+                    hasDraw = this.xComponentContext.getStatusX().hasDraw;
                 }
                 if (hasDraw) {
                     this.currentStatus = 'draw star';

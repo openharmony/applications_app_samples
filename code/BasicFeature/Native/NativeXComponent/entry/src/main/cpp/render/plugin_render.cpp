@@ -245,7 +245,7 @@ void PluginRender::Export(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         {"drawPatternX", nullptr, PluginRender::NapiDrawPattern, nullptr, nullptr,
          nullptr, napi_default, nullptr},
-        {"getStatus", nullptr, PluginRender::TestGetXComponentStatus, nullptr, nullptr,
+        {"getStatusX", nullptr, PluginRender::TestGetXComponentStatus, nullptr, nullptr,
          nullptr, napi_default, nullptr}};
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "Export: napi_define_properties failed");

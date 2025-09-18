@@ -21,7 +21,7 @@ const TAG = '[Sample_Native_XComponent]';
 
 export default function abilityTest2() {
 
-  describe('ActsAbilityTest', () => {
+  describe('ActsAbilityTest2', () => {
     /**
      * 打开应用
      */
@@ -49,7 +49,7 @@ export default function abilityTest2() {
       done();
       console.info(TAG, 'StartAbility_001 end');
     })
-    
+
     /**
      * 点击按钮，绘制图形，之后点击XComponent改变颜色
      */

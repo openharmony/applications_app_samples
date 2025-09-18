@@ -19,9 +19,9 @@ import { Driver, MatchPattern, ON, MouseButton } from '@ohos.UiTest';
 
 const TAG = '[Sample_Native_XComponent]';
 
-export default function abilityTest() {
+export default function abilityTest3() {
 
-  describe('ActsAbilityTest', () => {
+  describe('ActsAbilityTest3', () => {
     /**
      * 打开应用
      */
@@ -40,7 +40,12 @@ export default function abilityTest() {
       }
       await driver.delayMs(1000);
       // 判断XComponent onLoad回调执行成功
-     
+      await driver.assertComponentExist(ON.text('自定义节点'));
+      let drawStarBtn = await driver.findComponent(ON.text('自定义节点'));
+      await drawStarBtn.click();
+      await driver.assertComponentExist(ON.text('点击此处进入'));
+      drawStarBtn = await driver.findComponent(ON.text('点击此处进入'));
+      await drawStarBtn.click();
       done();
       console.info(TAG, 'StartAbility_001 end');
     })
