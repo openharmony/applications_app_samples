@@ -22,7 +22,9 @@
 // [StartExclude ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
 #include <native_drawing/drawing_color.h>
 // [EndExclude ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
+// [Start ndk_graphics_draw_include_native_drawing_canvas]
 #include <native_drawing/drawing_canvas.h>
+// [End ndk_graphics_draw_include_native_drawing_canvas]
 // [End ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
 #include <native_drawing/drawing_pen.h>
 #include <native_drawing/drawing_brush.h>

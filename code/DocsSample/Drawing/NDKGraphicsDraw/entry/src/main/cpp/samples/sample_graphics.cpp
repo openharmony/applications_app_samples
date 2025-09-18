@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
+// [Start ndk_graphics_draw_include_pixelmap_native]
 #include <multimedia/image_framework/image/pixelmap_native.h>
+// [End ndk_graphics_draw_include_pixelmap_native]
 #include <native_drawing/drawing_text_typography.h>
 #include <native_display_soloist/native_display_soloist.h>
 #include <native_drawing/drawing_rect.h>
@@ -21,12 +23,16 @@
 #include <native_drawing/drawing_region.h>
 #include <native_drawing/drawing_round_rect.h>
 #include <native_drawing/drawing_sampling_options.h>
+// [Start ndk_graphics_draw_include_drawing_pixel_map]
 #include <native_drawing/drawing_pixel_map.h>
+// [End ndk_graphics_draw_include_drawing_pixel_map]
 #include <native_drawing/drawing_text_blob.h>
 #include <native_drawing/drawing_shader_effect.h>
 // [Start ndk_graphics_draw_include_native_drawing_surface_and_gpu_context]
 #include <native_drawing/drawing_gpu_context.h>
+// [Start ndk_graphics_draw_include_native_drawing_surface]
 #include <native_drawing/drawing_surface.h>
+// [End ndk_graphics_draw_include_native_drawing_surface]
 // [End ndk_graphics_draw_include_native_drawing_surface_and_gpu_context]
 #include <native_drawing/drawing_path_effect.h>
 #include <native_drawing/drawing_color_filter.h>
@@ -1103,6 +1109,7 @@ void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
     OH_PixelmapNative *pixelMapNative = nullptr;
     OH_PixelmapNative_CreatePixelmap(pixels, bufferSize, createOps, &pixelMapNative);
     OH_Drawing_PixelMap *pixelMap = OH_Drawing_PixelMapGetFromOhPixelMapNative(pixelMapNative);
+    // [Start ndk_graphics_draw_image_to_canvas]
     // PixelMap中像素的截取区域
     OH_Drawing_Rect *src = OH_Drawing_RectCreate(0, 0, 600, 400);
     // 画布中显示的区域
@@ -1112,6 +1119,7 @@ void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
         OH_Drawing_FilterMode::FILTER_MODE_LINEAR, OH_Drawing_MipmapMode::MIPMAP_MODE_LINEAR);
     // 绘制PixelMap
     OH_Drawing_CanvasDrawPixelMapRect(canvas, pixelMap, src, dst, samplingOptions);
+    // [End ndk_graphics_draw_image_to_canvas]
     OH_PixelmapNative_Release(pixelMapNative);
     delete[] pixels;
     // [End ndk_graphics_draw_image]
