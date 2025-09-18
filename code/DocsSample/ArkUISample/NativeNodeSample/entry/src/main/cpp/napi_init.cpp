@@ -208,7 +208,7 @@ static napi_value GetNativeNodeAttribute(napi_env env, napi_callback_info info)
         resultStr = ss.str();
         napi_create_string_utf8(env, resultStr.c_str(), resultStr.length(), &result);
         return result;
-    } 
+    }
     bool hasValue = false;
     if (item->size > 0) {
         for (size_t i = 0; i < item->size; i++) {
