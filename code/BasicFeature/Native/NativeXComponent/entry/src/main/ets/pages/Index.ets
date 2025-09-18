@@ -24,7 +24,7 @@ struct Index {
       Tabs() {
         TabContent() {
           Column() {
-            Button('测试样例一', { stateEffect: true, type: ButtonType.Capsule })
+            Button('点击此处进入', { stateEffect: true, type: ButtonType.Capsule })
               .width('80%')
               .height(40)
               .margin(20)
@@ -37,10 +37,10 @@ struct Index {
           .height('100%')
           .justifyContent(FlexAlign.Start)
         }
-        .tabBar('样例一')
+        .tabBar('NDK接口')
         TabContent() {
           Column() {
-            Button('测试样例二', { stateEffect: true, type: ButtonType.Capsule })
+            Button('点击此处进入', { stateEffect: true, type: ButtonType.Capsule })
               .width('80%')
               .height(40)
               .margin(20)
@@ -53,10 +53,10 @@ struct Index {
           .height('100%')
           .justifyContent(FlexAlign.Start)
         }
-        .tabBar('样例二')
+        .tabBar('ArkTS声明式')
         TabContent() {
           Column() {
-            Button('测试样例三', { stateEffect: true, type: ButtonType.Capsule })
+            Button('点击此处进入', { stateEffect: true, type: ButtonType.Capsule })
               .width('80%')
               .height(40)
               .margin(20)
@@ -69,7 +69,7 @@ struct Index {
           .height('100%')
           .justifyContent(FlexAlign.Start)
         }
-        .tabBar('样例三')
+        .tabBar('自定义节点')
       }
     }.title('XComponent')
   }

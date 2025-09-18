@@ -154,7 +154,7 @@ export struct PageThree {
           native.setFrameRate(this.myNodeController.xComponentId, this.minRate, this.maxRate, this.expected)
         }).width('100%')
           .id('expectedSlider')
-      }.backgroundColor("#F0FAFF")
+      }.backgroundColor('#F0FAFF')
 
       Button(this.needSoftKeyboardState)
         .onClick(() => {

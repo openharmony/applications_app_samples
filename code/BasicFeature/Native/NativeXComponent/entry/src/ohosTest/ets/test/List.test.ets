@@ -13,8 +13,12 @@
  * limitations under the License.
  */
 
-import abilityTest from './XComponentAbility.test'
+import abilityTest from './XComponentAbility1.test'
+import abilityTest from './XComponentAbility2.test'
+import abilityTest from './XComponentAbility3.test'
 
 export default function testsuite() {
-  abilityTest()
+  abilityTest1()
+  abilityTest2()
+  abilityTest3()
 }

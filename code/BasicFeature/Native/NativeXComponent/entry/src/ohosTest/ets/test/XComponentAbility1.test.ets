@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,11 +15,11 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, it, expect } from '@ohos/hypium';
-import { Driver, ON } from '@ohos.UiTest';
+import { Driver, MatchPattern, ON, MouseButton } from '@ohos.UiTest';
 
-const TAG = '[Sample_NDK_XComponent]';
+const TAG = '[Sample_Native_XComponent]';
 
-export default function abilityTest() {
+export default function abilityTest1() {
 
   describe('ActsAbilityTest', () => {
     /**
@@ -31,7 +31,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.ndkxcomponent',
+          bundleName: 'com.example.nativexcomponent',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -39,7 +39,13 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw Star'));
+      // 判断XComponent onLoad回调执行成功
+      await driver.assertComponentExist(ON.text('NDK接口'));
+      let drawStarBtn = await driver.findComponent(ON.text('NDK接口'));
+      await drawStarBtn.click();
+      await driver.assertComponentExist(ON.text('点击此处进入'));
+      drawStarBtn = await driver.findComponent(ON.text('点击此处进入'));
+      await drawStarBtn.click();
       done();
       console.info(TAG, 'StartAbility_001 end');
     })
@@ -50,8 +56,6 @@ export default function abilityTest() {
     it('DrawShape_001', 2, async () => {
       console.info(TAG, 'CreateFiles_001 begin');
       let driver = Driver.create();
-      // 判断XComponent onLoad回调执行成功
-      await driver.assertComponentExist(ON.text('index'));
       // 判断是否有按键
       await driver.assertComponentExist(ON.text('Draw Star'));
       let drawStarBtn = await driver.findComponent(ON.text('Draw Star'));
@@ -62,7 +66,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('draw star'));
 
       // 判断是否有XComponent组件
-      let xcomponent = await driver.findComponent(ON.id('xcomponent'));
+      let xcomponent = await driver.findComponent(ON.id('ndkxcomponent'));
       // 点击XComponent组件
       await xcomponent.click();
       await driver.delayMs(1000);
