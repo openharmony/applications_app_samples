@@ -194,6 +194,21 @@ static napi_value GetNativeNodeAttribute(napi_env env, napi_callback_info info)
         return result;
     }
     std::stringstream ss;
+    std::string resultStr;
+    if (nodeType == ARKUI_NODE_SLIDER &&
+        (attributeType == NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR ||
+         attributeType == NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR ||
+         attributeType == NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR)) {
+        auto colorStop = static_cast<ArkUI_ColorStop *>(item->object);
+        if (colorStop) {
+            for (int i = 0; i < colorStop->size; ++i) {
+                ss << "color:" << std::hex << colorStop->colors[i] << " stop: " << colorStop->stops[i] << std::endl;
+            }
+        }
+        resultStr = ss.str();
+        napi_create_string_utf8(env, resultStr.c_str(), resultStr.length(), &result);
+        return result;
+    } 
     bool hasValue = false;
     if (item->size > 0) {
         for (size_t i = 0; i < item->size; i++) {
@@ -218,7 +233,8 @@ static napi_value GetNativeNodeAttribute(napi_env env, napi_callback_info info)
     if (!hasValue) {
         ss << "-1";
     }
-    std::string resultStr = ss.str();
+    
+    resultStr = ss.str();
     napi_create_string_utf8(env, resultStr.c_str(), resultStr.length(), &result);
     return result;
 }

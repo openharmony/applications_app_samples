@@ -34,6 +34,9 @@ function getNodeType(type: string) : number {
     case 'CALENDAR_PICKER':
       ret = 16;
       break;
+    case 'SLIDER':
+      ret = 17;
+      break;
     case 'IMAGE_ANIMATOR':
       ret = 19;
       break;
@@ -48,6 +51,7 @@ function getNodeType(type: string) : number {
 
 const SUCC_TAG = '创建成功';
 const FAIL_TAG = '创建失败';
+const CREATE_TAG = '请创建节点';
 
 @Entry
 @Component
@@ -69,6 +73,7 @@ struct Index {
       MenuItem({ content: 'CALENDAR_PICKER'}).width('50%').onChange(()=> { this.curNodeType = 'CALENDAR_PICKER' })
       MenuItem({ content: 'IMAGE_ANIMATOR'}).width('50%').onChange(()=> { this.curNodeType = 'IMAGE_ANIMATOR' })
       MenuItem({ content: 'IMAGE'}).width('50%').onChange(()=> { this.curNodeType = 'IMAGE' })
+      MenuItem({ content: 'SLIDER'}).width('50%').onChange(()=> { this.curNodeType = 'SLIDER' })
     }
   }
 
@@ -80,6 +85,18 @@ struct Index {
       MenuItem({ content: 'CALENDAR_PICKER', builder: ():void=>this.SubMenu_TIME_PICKER() }).width('50%')
       MenuItem({ content: 'IMAGE_ANIMATOR', builder: ():void=>this.SubMenu_TIME_PICKER() }).width('50%')
       MenuItem({ content: 'IMAGE', builder: ():void=>this.SubMenu_IMAGE() }).width('50%')
+      MenuItem({ content: 'BLOCK_LINEAR_GRADIENT_COLOR' }).width('50%').onChange(()=> {
+        this.attributeType = 'BLOCK_LINEAR_GRADIENT_COLOR'
+        this.attributeTypeId = 17016
+      })
+      MenuItem({ content: 'TRACK_LINEAR_GRADIENT_COLOR' }).width('50%').onChange(()=> {
+        this.attributeType = 'TRACK_LINEAR_GRADIENT_COLOR'
+        this.attributeTypeId = 17017
+      })
+      MenuItem({ content: 'SELECTED_LINEAR_GRADIENT_COLOR' }).width('50%').onChange(()=> {
+        this.attributeType = 'SELECTED_LINEAR_GRADIENT_COLOR'
+        this.attributeTypeId = 17018
+      })
     }
   }
   // add image attributeType
@@ -377,6 +394,7 @@ struct Index {
                 this.nodeId = testNapi.resetNativeNodeAttribute(this.nodeId, getNodeType(this.curNodeType),
                   this.attributeTypeId)
                 this.nodeStatus = (this.nodeId == -1) ? FAIL_TAG : SUCC_TAG;
+                console.log("----- resetNativeNodeAttribute",this.nodeId)
               })
             Button('清理')
               .width('30%')
@@ -385,7 +403,9 @@ struct Index {
                 testNapi.removeOldNode(this.nodeId);
                 this.nodeId = -1;
                 this.nodeStatus = FAIL_TAG;
+                this.attributeType = '未设置';
               })
+
           }
 
         }
@@ -399,9 +419,6 @@ struct Index {
           Text(`当前属性类型: ${this.attributeType}`)
             .fontSize(14)
             .margin(10)
-          Text(`返回值: ${this.resultValue}`)
-            .fontSize(14)
-            .margin(5)
           Text(`返回错误码: ${this.curAttrStatus}`)
             .fontSize(14)
             .margin(5)
@@ -429,6 +446,8 @@ struct Index {
                 this.curAttrStatus = -1;
                 this.curAttrStatus = testNapi.setNativeNodeAttribute(this.nodeId, getNodeType(this.curNodeType),
                   this.attributeTypeId, this.attributeValue);
+                console.log("----- setNativeNodeAttribute ",this.nodeId, getNodeType(this.curNodeType),
+                  this.attributeTypeId, this.attributeValue)
               }
             )
           Button('获取属性值')
@@ -438,8 +457,12 @@ struct Index {
               () => {
                 this.resultValue = testNapi.getNativeNodeAttribute(this.nodeId, getNodeType(this.curNodeType),
                   this.attributeTypeId);
+                console.log("-----getNativeNodeAttribute:",this.resultValue)
               }
             )
+          Text(`返回值: ${this.resultValue}`)
+            .fontSize(14)
+            .margin(5)
         }
         .width('50%')
       }
@@ -451,6 +474,7 @@ struct Index {
         libraryname: "entry"
       }).onAppear(()=> {
       })
+        .position({x:10,y:300})
       .width('60%')
       .height('40%')
     }
