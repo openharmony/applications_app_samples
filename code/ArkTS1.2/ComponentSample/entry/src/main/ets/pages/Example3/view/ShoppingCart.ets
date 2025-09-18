@@ -32,7 +32,6 @@ import {
   Button,
   ButtonAttribute,
   ClickEvent,
-  UserView,
   PixelMap,
   ResourceStr,
   DrawableDescriptor,

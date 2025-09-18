@@ -28,7 +28,7 @@ import {
   memo,
   __memo_context_type,
   __memo_id_type
-} from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement';
 import {
   WordBreak,
   TextOverflow,
@@ -59,11 +59,10 @@ import {
   Button,
   ButtonAttribute,
   ClickEvent,
-  UserView,
   Image,
   Row,
   CalendarPickerDialog,$r
-} from '@ohos.arkui.component'; // TextAttribute should be insert by ui-plugins
+} from '@ohos.arkui.component';
 import {
   State,
   StateDecoratedVariable,
@@ -71,7 +70,7 @@ import {
   stateOf,
   observableProxy,
   Watch
-} from '@ohos.arkui.stateManagement';// should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 
 const TAG_LIST_LENGTH = 12; // TagList长度

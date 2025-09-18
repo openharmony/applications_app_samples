@@ -30,7 +30,7 @@ import {
   memo,
   __memo_context_type,
   __memo_id_type
-} from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+} from '@ohos.arkui.stateManagement';
 import {
   Text,
   TextAttribute,
@@ -40,7 +40,6 @@ import {
   Button,
   ButtonAttribute,
   ClickEvent,
-  UserView,
   List,
   ListItem,
   Image,
@@ -69,8 +68,8 @@ import {
   Span,
   ItemAlign,
   Margin
-} from '@ohos.arkui.component'; // TextAttribute should be insert by ui-plugins
-import { State, Link, StorageLink, Consume } from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+} from '@ohos.arkui.component';
+import { State, Link, StorageLink, Consume } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import { Context, UIContext } from '@ohos.arkui.UIContext';
 import { Month, MonthDataSource } from '../components/MonthDataSource';

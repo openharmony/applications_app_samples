@@ -23,9 +23,9 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
-import {IDataSource,DataChangeListener,Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, UserView ,Image,Row} from '@ohos.arkui.component';  // TextAttribute should be insert by ui-plugins
-import { State, StateDecoratedVariable, MutableState, stateOf, observableProxy ,Provide} from '@ohos.arkui.stateManagement'; // should be insert by ui-plugins
+import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
+import {IDataSource,DataChangeListener,Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Image, Row} from '@ohos.arkui.component';
+import { State, StateDecoratedVariable, MutableState, stateOf, observableProxy, Provide} from '@ohos.arkui.stateManagement';
 const CONTENT_PER_TAG = 10; // 每个TAG对应多少个元素
 /**
  * 代表自定义类型数据的接口。
