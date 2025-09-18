@@ -1,11 +1,11 @@
 # Native XComponent
 本示例包含三个小示例。
 
-示例一：在native侧使用ArkUI NDK API创建XComponent组件进行自定义绘制
+示例一：使用NDK接口创建XComponent，并使用NativeXComponent相关接口
 
-示例二：使用Native XComponent接口来获取NativeWindow实例
+示例二：使用ArkTS声明式方法创建XComponent，并使用NativeXComponent相关接口
 
-示例三：使用ArkUI NDK API创建XComponent组件进行自定义绘制
+示例三：使用自定义节点创建XComponent，并使用SurfaceHolder相关接口
 
 ### 工程目录
 
