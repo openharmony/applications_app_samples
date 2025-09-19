@@ -1122,7 +1122,9 @@ void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
     // [End ndk_graphics_draw_image_to_canvas]
     OH_PixelmapNative_Release(pixelMapNative);
     delete[] pixels;
-    // [End ndk_graphics_draw_image]
+    // [Start ndk_graphics_draw_pixelmap_clear]
+    OH_Drawing_CanvasClear(canvas, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
+    // [End ndk_graphics_draw_pixelmap_clear]
 }
 
 void SampleGraphics::DrawBaseText(OH_Drawing_Canvas *canvas)
