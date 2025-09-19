@@ -445,8 +445,6 @@ struct Index {
                 this.curAttrStatus = -1;
                 this.curAttrStatus = testNapi.setNativeNodeAttribute(this.nodeId, getNodeType(this.curNodeType),
                   this.attributeTypeId, this.attributeValue);
-                console.log("----- setNativeNodeAttribute ",this.nodeId, getNodeType(this.curNodeType),
-                  this.attributeTypeId, this.attributeValue)
               }
             )
           Button('获取属性值')
@@ -456,7 +454,6 @@ struct Index {
               () => {
                 this.resultValue = testNapi.getNativeNodeAttribute(this.nodeId, getNodeType(this.curNodeType),
                   this.attributeTypeId);
-                console.log("-----getNativeNodeAttribute:",this.resultValue)
               }
             )
           Text(`返回值: ${this.resultValue}`)
