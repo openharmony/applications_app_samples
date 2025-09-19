@@ -394,7 +394,6 @@ struct Index {
                 this.nodeId = testNapi.resetNativeNodeAttribute(this.nodeId, getNodeType(this.curNodeType),
                   this.attributeTypeId)
                 this.nodeStatus = (this.nodeId == -1) ? FAIL_TAG : SUCC_TAG;
-                console.log("----- resetNativeNodeAttribute",this.nodeId)
               })
             Button('清理')
               .width('30%')
