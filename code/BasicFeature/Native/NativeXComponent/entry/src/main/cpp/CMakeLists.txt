@@ -1,21 +1,29 @@
 # the minimum version of CMake.
-cmake_minimum_required(VERSION 3.5.0)
-project(LCNXComponent2)
+cmake_minimum_required(VERSION 3.4.1)
+project(XComponent)
 
 set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+add_definitions(-DOHOS_PLATFORM)
 
 if(DEFINED PACKAGE_FIND_FILE)
     include(${PACKAGE_FIND_FILE})
 endif()
 
-include_directories(${NATIVERENDER_ROOT_PATH}
-                    ${NATIVERENDER_ROOT_PATH}/render
-                    ${NATIVERENDER_ROOT_PATH}/manager)
+include_directories(
+    ${NATIVERENDER_ROOT_PATH}
+    ${NATIVERENDER_ROOT_PATH}/include
+    ${NATIVERENDER_ROOT_PATH}/render
+    ${NATIVERENDER_ROOT_PATH}/manager
+)
 
 add_library(nativerender SHARED
-            render/EGLRender.cpp
-            manager/plugin_manager.cpp
-            napi_init.cpp)
+    render/EGLRender.cpp
+    render/egl_core.cpp
+    render/plugin_render.cpp
+    manager/plugin_manager.cpp
+    napi_init.cpp
+)
+
 find_library(
     # Sets the name of the path variable.
     EGL-lib
@@ -64,4 +72,5 @@ find_library(
     uv
 )
 
-target_link_libraries(nativerender PUBLIC ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
+target_link_libraries(nativerender PUBLIC
+    ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
