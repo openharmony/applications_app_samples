@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -46,7 +47,7 @@ import {
   Text,
   TextAlign
 } from '@ohos.arkui.component';
-import { Link, State, Watch, Prop } from '@ohos.arkui.stateManagement';
+import { Link, State, Watch, PropRef } from '@ohos.arkui.stateManagement';
 /**
  * 周视图子组件
  */
@@ -60,7 +61,7 @@ export struct WeekViewItem {
   // 当前选中的日期，格式'year-month-date'
   @Link @Watch('OnChangeSelectDate') currentSelectDate: string;
   // 表示周视图第几周
-  @Prop @Watch('updateWeekData') weekNum: number;
+  @PropRef @Watch('updateWeekData') weekNum: number;
   private month: number = Constants.TODAY_MONTH;
   // 自定义日历样式
   calendarStyle: CalendarStyle = {} as CalendarStyle;

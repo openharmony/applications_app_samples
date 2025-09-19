@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -38,7 +39,7 @@ import {
   RelativeContainer,
   Color
 } from '@ohos.arkui.component';
-import { State, Link, Watch, Prop } from '@ohos.arkui.stateManagement';
+import { State, Link, Watch, PropRef } from '@ohos.arkui.stateManagement';
 import componentUtils from '@ohos.arkui.componentUtils';
 import inspector from '@ohos.arkui.inspector';
 import hilog from '@ohos.hilog';
@@ -57,7 +58,7 @@ export struct TabsRaisedCircle {
   // 选项数据集合
   @Link tabsMenu: TabMenusInterfaceIRequired[];
   // Tabs 高度
-  @Prop tabHeight: number = 60;
+  @PropRef tabHeight: number = 60;
   // 图片宽高
   @State imageWH: number = 33;
   // 动画执行时长
@@ -69,9 +70,9 @@ export struct TabsRaisedCircle {
   // 选中中间球 -- id
   @State selectBodyId: string = `ball`;
   // 选中球填充色
-  @Prop tabsSelectBgColor: string = 'rgba(92, 187, 183,1)';
+  @PropRef tabsSelectBgColor: string = 'rgba(92, 187, 183,1)';
   // 背景色
-  @Prop tabsBgColor: Color = Color.White;
+  @PropRef tabsBgColor: Color = Color.White;
   // 凸圆信息
   @State chamfer: ChamferInfo | undefined = undefined;
   // 每个选项 id 的前缀

@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -51,9 +52,9 @@ import {
 
 export interface Month {
   month: string; // 具体年月
-  num: number; // 月份
-  days: number[]; // 该月日期
-  year: number; // 年份
+  num: int; // 月份
+  days: int[]; // 该月日期
+  year: int; // 年份
 }
 
 /**
@@ -80,7 +81,7 @@ export class MonthDataSource implements IDataSource<Month> {
    * @returns {CustomDataType} 返回指定索引数据。
    */
   public getData(index: number): Month {
-    return this.dataArray[index];
+    return this.dataArray[index.toInt()];
   }
 
   public setData(index: number, data: Month[]) {

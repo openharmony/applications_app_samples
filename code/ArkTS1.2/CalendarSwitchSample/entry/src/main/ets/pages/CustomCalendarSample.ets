@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -59,7 +60,7 @@ import {
   Text,
   TextAlign,animateTo
 } from '@ohos.arkui.component';
-import { Link, Prop, State, Watch } from '@ohos.arkui.stateManagement';
+import { Link, PropRef, State, Watch } from '@ohos.arkui.stateManagement';
 import common from '@ohos.app.ability.common';
 import { UIContext } from '@ohos.arkui.UIContext';
 
@@ -168,7 +169,7 @@ export struct CustomCalendarSamplePage {
   yearMonthTitle() {
     Row() {
       Text(`${this.currentShowYear}年 ${this.tabSelectedIndex === CalendarViewType.YEAR ? '' :
-      MONTHS[this.currentShowMonth-1]}`)
+      MONTHS[(this.currentShowMonth-1).toInt()]}`)
         .fontSize(FONT_SIZE * TEXT_SCALING)
         .fontWeight(FONT_WEIGHT_FIVE_HUNDRED)
     }
@@ -280,7 +281,7 @@ export struct CustomCalendarSamplePage {
         TabContent() {
           Column() {
             CustomCalendar({
-              CalendarViewType: CalendarViewType.YEAR,
+              calendarViewType: CalendarViewType.YEAR,
               onMonthClick: (year: number, month: number) => {
                 if (this.tabController) {
                   // 刷新年月信息标题
@@ -306,8 +307,8 @@ export struct CustomCalendarSamplePage {
         TabContent() {
           Column() {
             CustomCalendar({
-              CalendarViewType: CalendarViewType.MONTH,
-              CalendarStyle: {
+              calendarViewType: CalendarViewType.MONTH,
+              calendarStyle: {
                 backgroundColor: Color.Red,
                 monthDayColor: Color.Black,
                 noMonthDayColor: Color.Gray,
@@ -337,8 +338,8 @@ export struct CustomCalendarSamplePage {
         TabContent() {
           Column() {
             CustomCalendar({
-              CalendarViewType: CalendarViewType.WEEK,
-              CalendarStyle: {
+              calendarViewType: CalendarViewType.WEEK,
+              calendarStyle: {
                 backgroundColor: Color.Red,
                 monthDayColor: Color.Black,
               },

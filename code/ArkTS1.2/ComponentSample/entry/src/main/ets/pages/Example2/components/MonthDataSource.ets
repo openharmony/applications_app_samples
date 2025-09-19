@@ -61,7 +61,7 @@ export class MonthDataSource implements IDataSource<Month> {
    * @returns {CustomDataType} 返回指定索引数据。
    */
   public getData(index: number): Month {
-    return this.dataArray[index];
+    return this.dataArray[index.toInt()];
   }
 
   /**

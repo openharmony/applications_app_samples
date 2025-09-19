@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -89,9 +90,6 @@ export struct FileDownloadItem {
       if (this.downloadFailCount > 0 && this.downloadFailCount === this.downloadCount) {
         // 如果是任务全部下载失败，重置isStartAllDownload为false的情况，重置downloadFailCount
         this.downloadFailCount = 0;
-      } else {
-        // 暂停下载
-        this.pauseDownload();
       }
     }
   }
@@ -107,18 +105,12 @@ export struct FileDownloadItem {
         overwrite: true, // 下载过程中路径已存在时的解决方案选择。true表示覆盖已存在的文件
         method: 'GET', // HTTP标准方法。下载时，使用GET或POST。
         saveas: './', // 这里'./'表示下载至应用当前缓存路径下。
-        mode: request.agent.Mode.BACKGROUND, // 任务模式设置后台任务。
-        gauge: true, // 后台任务的过程进度通知策略，仅应用于后台任务。true表示发出每个进度已完成或失败的通知。
-        retry: false, // 默认为true，如果没有网络或者网络不满足时，会自动暂停waiting，等网络满足时进行一次重试。设置为false时，没网直接走失败回调
       } as request.agent.Config) as Promise<request.agent.Task>)
         .then((task: request.agent.Task) => {
           this.downloadTask = task as request.agent.Task;
           // 注册下载任务相关回调
           task.on('completed', this.completedCallback); // 下载任务完成回调
-          task.on('failed', this.failedCallback); // 下载任务失败回调
           task.on('progress', this.progressCallback); // 下载进度更新回调
-          task.on('pause', this.pauseCallback); // 暂停任务回调
-          task.on('resume', this.resumeCallback); // 重新启动任务回调
 
           // 启动下载任务。本例在每个FileDownloadItem中使用task.start方法启动各自的下载任务。
           task.start((err: BusinessError | null) => {
@@ -129,9 +121,6 @@ export struct FileDownloadItem {
             }
           });
         });
-    } else {
-      // 任务已存在时，继续下载
-      this.resumeDownload();
     }
   }
 
@@ -153,21 +142,6 @@ export struct FileDownloadItem {
       this.getFileStatusAndTime(1);
     } catch(err:Error) {
       hilog.error(0x0000, 'TAGhttp,err: ', String(err.message));
-    }
-  }
-
-  // 下载任务失败回调。任务下载失败一般是由于网络不好，底层重试也失败后进入该下载失败回调。如果网络没问题，建议重新下载再试。
-  private failedCallback: (progress: request.agent.Progress) => void   = (progress: request.agent.Progress) => {
-    try {
-      this.state = '下载失败';
-      this.getFileStatusAndTime(2)
-      // 当所有任务下载失败时，'全部暂停'状态重置为'全部开始'。
-      this.downloadFailCount++;
-      if (this.downloadFailCount === this.downloadCount) {
-        this.isStartAllDownload = false;
-      }
-    } catch(err:Error) {
-      hilog.error(0x0000, 'TAGhttp,err: ', String(err.message))
     }
   }
 
@@ -213,88 +187,6 @@ export struct FileDownloadItem {
       this.sCurrentDownloadSize = String(progress.processed / BYTE_CONVERSION).split('.')[0] as string + 'kb';
     } catch(err:Error) {
       hilog.error(0x0000, 'TAGhttp,err: ', String(err.message))
-    }
-  }
-
-  // 暂停任务回调
-  private pauseCallback: (progress: request.agent.Progress) => void  = (progress: request.agent.Progress) => {
-    try {
-      this.state = '已暂停';
-      // 切换下载状态图标
-      this.downloading = false;
-    } catch(err:Error) {
-      hilog.error(0x0000, 'TAGhttp,err: ', String(err.message))
-    }
-  }
-
-  // 暂停下载任务
-  pauseDownload(): void {
-    if (this.downloadTask) {
-      // 使用request.agent.show，根据任务id可查询任务的详细信息。本处用于查询下载任务状态
-      request.agent.show(this.downloadTask!.tid,
-        (err: BusinessError<void>|null, taskInfo: request.agent.TaskInfo|undefined) => {
-        if (err && err.code !== 0) {
-          hilog.error(0x0000, 'TAGhttp',  `Failed to show with error message: ${err.message}, error code: ${err.code}`);
-          return;
-        }
-        if (taskInfo == undefined) {
-          return;
-        }
-        // 判断当前下载任务状态是否满足暂停条件。
-        if (this.downloadTask && (taskInfo.progress.state === request.agent.State.WAITING ||
-          taskInfo.progress.state === request.agent.State.RUNNING ||
-          taskInfo.progress.state === request.agent.State.RETRYING)) {
-          this.downloadTask!.pause().then(() => {
-            // 暂停任务成功
-          }).catch((err: Error) => {
-            hilog.error(0x0000, 'TAGhttp', `Failed to pause with error message: ${err.message}, error code: ${err.code}`);
-          });
-        } else {
-          if (this.downloadTask) {
-            // 不满足暂停任务条件
-            hilog.error(0x0000, 'TAGhttp', `Not meeting the pause task conditions,current task state: ${taskInfo.progress.state}`);
-          }
-        }
-      });
-    }
-  }
-
-  // 重新启动任务回调。如果下载url文件的服务器不支持分片传输，则文件将重新下载。如果服务器支持分片传输，则会基于之前暂停时的下载进度继续下载。
-  private resumeCallback: (progress: request.agent.Progress) => void  = (progress: request.agent.Progress) => {
-    try {
-      this.state = '下载中';
-      // 切换下载状态图标
-      this.downloading = true;
-    } catch(err:Error) {
-      hilog.error(0x0000, 'TAGhttp err: ', String(err.message));
-    }
-  }
-
-  // 重新启动下载任务
-  resumeDownload(): void {
-    if (this.downloadTask) {
-      // 查询任务状态
-      request.agent.show(this.downloadTask!.tid,
-        (err: BusinessError<void>|null, taskInfo: request.agent.TaskInfo|undefined) => {
-        if (err && err.code !== 0) {
-          hilog.error(0x0000, 'TAGhttp', `Failed to show with error message: ${err.message}, error code: ${err.code}`);
-          return;
-        }
-        if(taskInfo == undefined) {
-          return;
-        }
-        // 判断如果任务是暂停状态，则重新启动下载任务
-        if (this.downloadTask && taskInfo.progress.state === request.agent.State.PAUSED) {
-          // 使用task.resume可以重新启动任务，可恢复暂停的后台任务。
-          this.downloadTask!.resume((err: BusinessError<void>|null) => {
-            if (err && err.code !== 0) {
-              hilog.error(0x0000, 'TAGhttp', `Failed to resume with error message: ${err.message}, error code: ${err.code}`);
-              return;
-            }
-            // 重新启动下载任务成功
-          });
-        }
-      });
     }
   }
 

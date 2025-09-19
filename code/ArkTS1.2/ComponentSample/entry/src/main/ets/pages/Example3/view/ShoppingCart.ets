@@ -34,7 +34,6 @@ import {
   ClickEvent,
   PixelMap,
   ResourceStr,
-  DrawableDescriptor,
   Row,
   Checkbox,
   Stack,
@@ -56,7 +55,6 @@ import {
 } from '@ohos.arkui.component';
 import {
   State,
-  StateDecoratedVariable,
   MutableState,
   stateOf,
   observableProxy,

@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -31,7 +32,7 @@ export function mockData(): Array<NewsCommentModel> {
   const commentList: Array<NewsCommentModel> = new Array<NewsCommentModel>();
   commentList.push(new NewsCommentModel(
     '1', $r('app.media.news_image_1'), '你若安好便是晴天', '', '', '国足加油！国足必胜！', '2024-11-01 23:00:00')
-  ;
+  );
   commentList.push(new NewsCommentModel(
     '2', $r('app.media.news_image_2'), '天要下雨娘要嫁人', '', '', '来点信心，加油加油~', '2024-11-01 23:00:00')
   );

@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -29,7 +30,7 @@ import {
   memo,
   MutableState,
   observableProxy,
-  Prop,
+  PropRef,
   State,
   stateOf
 } from '@ohos.arkui.stateManagement';
@@ -44,7 +45,6 @@ import {
   Color,
   Column,
   Component,
-  DrawableDescriptor,
   FontWeight,
   ForEach,
   LazyForEach,
@@ -115,7 +115,7 @@ export struct ShoppingCart {
 
 @Component
 struct ShoppingInfo {
-  @Prop item: string = ' ';
+  @PropRef item: string = ' ';
 
   build() {
     Column() {

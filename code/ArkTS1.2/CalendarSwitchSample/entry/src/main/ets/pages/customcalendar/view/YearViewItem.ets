@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -45,7 +46,7 @@ import {
   Text,
   TextAlign,Canvas,GridItem,Grid
 } from '@ohos.arkui.component';
-import { Link, State, Watch, Prop } from '@ohos.arkui.stateManagement';
+import { Link, State, Watch, PropRef } from '@ohos.arkui.stateManagement';
 /**
  * 年视图子组件
  */
@@ -53,7 +54,7 @@ import { Link, State, Watch, Prop } from '@ohos.arkui.stateManagement';
 export struct YearViewItem {
   // 年视图离屏画布列表
   @State yearViewList: Array<OffscreenCanvas> = new Array<OffscreenCanvas>();
-  @Prop @Watch('updateYearData') year: number;
+  @PropRef @Watch('updateYearData') year: number;
   // 年视图月份点击回调
   onMonthClick: (year: number, month: number) => void = () => {
   };
@@ -89,8 +90,8 @@ export struct YearViewItem {
               // 画月
               monthItem.offContext.font = Constants.YEAR_VIEW_MONTH_FONT;
               monthItem.offContext.fillStyle = Color.Black;
-              monthItem.offContext.fillText(Constants.MONTHS[monthItem.month-1], Constants.YEAR_VIEW_INIT_THREE,
-                Constants.YEAR_VIEW_MONTH_HEIGHT);
+              monthItem.offContext.fillText(Constants.MONTHS[(monthItem.month-1).toInt()], 
+				Constants.YEAR_VIEW_INIT_THREE, Constants.YEAR_VIEW_MONTH_HEIGHT);
               // 水平偏移
               let horizontalOffset = Constants.YEAR_VIEW_INIT_THREE;
               // 画星期

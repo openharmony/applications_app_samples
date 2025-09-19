@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -46,7 +47,7 @@ import {
   State,
   Observed,
   MutableState,
-  Prop
+  PropRef
 } from '@ohos.arkui.stateManagement';
 
 /**
@@ -64,7 +65,7 @@ import {
 @Component
 export struct CustomCalendar {
   // 自定义日历类型
-  @Prop calendarViewType: CalendarViewType = CalendarViewType.MONTH;
+  @PropRef calendarViewType: CalendarViewType = CalendarViewType.MONTH;
   // 自定义日历样式
   calendarStyle: CalendarStyle = {} as CalendarStyle;
   // 年、月、周视图切换场景的相关设置

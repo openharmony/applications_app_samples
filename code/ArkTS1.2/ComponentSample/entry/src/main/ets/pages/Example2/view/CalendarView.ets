@@ -170,7 +170,7 @@ export struct CalendarView {
         Row() {
           Text(`${this.dateModel.month}月${this.dateModel.day}日`)
             .fontSize(20)
-          Text(`星期${this.week[this.dateModel.week]}`)
+          Text(`星期${this.week[this.dateModel.week.toInt()]}`)
             .fontSize(20)
         }
         .id('calender_click')

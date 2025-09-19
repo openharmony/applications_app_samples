@@ -1,3 +1,4 @@
+'use static';
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +27,7 @@ import router from '@ohos.router';
 @Component
 export struct TabViewComponent {
   // 配置起始的页签索引
-  @State selectedIndex: number = 0;
+  @State selectedIndex: int = 0;
   // 初始化Tab控制器
   @State tabArray: string[] = ['首页', '新闻',
     '视频', '朋友圈', '我的'];
@@ -40,7 +41,7 @@ export struct TabViewComponent {
   @State fontColor: string = '#182431';
   @State selectedFontColor: string = '#007DFF';
 
-  @Builder tabBuilder(item: string, index: number) {
+  @Builder tabBuilder(item: string, index: int) {
     Column() {
       if (index === 2) {
         Column() {
@@ -59,7 +60,7 @@ export struct TabViewComponent {
         .backgroundColor(Color.White)
         .justifyContent(FlexAlign.Center)
       } else {
-        Image(this.selectedIndex === index ? $r(this.imageClickArray[index]) : $r(this.imageArray[index]))
+        Image(this.selectedIndex === index ? $r(this.imageClickArray[index.toInt()]) : $r(this.imageArray[index.toInt()]))
           .width(24)
           .height(24)
           .margin({ bottom: 4 } as Margin)
@@ -129,13 +130,13 @@ export struct TabViewComponent {
       .backgroundColor('#ffdbd9d9')
       .barHeight(1)
       .onAnimationStart((index: number, targetIndex: number) => {
-        this.selectedIndex = targetIndex;
+        this.selectedIndex = targetIndex.toInt();
       } as OnTabsAnimationStartCallback)
 
       Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
         ForEach(this.tabArray, (item: string, tabBarIndex: number) => {
           // 单独一个TabBar组件
-          this.tabBuilder(item, tabBarIndex)
+          this.tabBuilder(item, tabBarIndex.toInt())
         })
       }
     }

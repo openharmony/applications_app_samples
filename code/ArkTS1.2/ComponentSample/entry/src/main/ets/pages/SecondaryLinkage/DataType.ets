@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -65,7 +66,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    * 获取数组长度。
    * @returns {number} 返回数组长度。
    */
-  public totalCount(): double {
+  public totalCount(): number {
     return 0;
   }
 
@@ -74,8 +75,8 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    * @param {number} index - 索引值。
    * @returns {CustomDataType} 返回指定索引数据。
    */
-  public getData(index: double): CustomDataType {
-    return this.originDataArray[index];
+  public getData(index: number): CustomDataType {
+    return this.originDataArray[index.toInt()];
   }
 
   /**
@@ -105,7 +106,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    * 通知LazyForEach组件需要在index对应索引处添加子组件。
    * @param {number} index - 索引值。
    */
-  notifyDataAdd(index: double): void {
+  notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     })
@@ -115,7 +116,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    * 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件。
    * @param {number} index - 索引值。
    */
-  notifyDataChange(index: double): void {
+  notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
     })
@@ -125,7 +126,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    * 通知LazyForEach组件需要在index对应索引处删除该子组件
    * @param {number} index - 索引值。
    */
-  notifyDataDelete(index: double): void {
+  notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
     })
@@ -136,7 +137,7 @@ class BasicDataSource implements IDataSource<CustomDataType> {
    * @param {number} from - 起始值。
    * @param {number} to - 终点值。
    */
-  notifyDataMove(from: double, to: double): void {
+  notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
     })
@@ -156,7 +157,7 @@ export class MyDataSource extends BasicDataSource {
    * 获取数组长度。
    * @returns {number} 返回数组长度。
    */
-  public totalCount(): double {
+  public totalCount(): number {
     return this.dataArray.length;
   }
 
@@ -165,8 +166,8 @@ export class MyDataSource extends BasicDataSource {
    * @param {number} index - 索引值。
    * @returns {CustomDataType} 返回指定索引数据。
    */
-  public getData(index: double): CustomDataType {
-    return this.dataArray[index];
+  public getData(index: number): CustomDataType {
+    return this.dataArray[index.toInt()];
   }
 
   /**
@@ -174,7 +175,7 @@ export class MyDataSource extends BasicDataSource {
    * @param {number} index - 索引值。
    * @param {CustomDataType} data - 修改后的值。
    */
-  public addData(index: double, data: CustomDataType): void {
+  public addData(index: number, data: CustomDataType): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
   }

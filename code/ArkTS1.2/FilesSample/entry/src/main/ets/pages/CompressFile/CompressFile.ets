@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -55,7 +56,7 @@ import {
   MutableState,
   stateOf,
   observableProxy,
-  Prop
+  PropRef
 } from '@ohos.arkui.stateManagement';
 import zlib from '@ohos.zlib';
 import common from '@ohos.app.ability.common';
@@ -185,9 +186,9 @@ export struct CompressFileViewComponent {
 @Component
 struct CompressFileList {
   // 文件列表
-  @Prop fileNames: Array<string> = new Array<string>();
+  @PropRef fileNames: Array<string> = new Array<string>();
   // 文件图标
-  @Prop iconName: string = '';
+  @PropRef iconName: string = '';
 
   build() {
     Column() {

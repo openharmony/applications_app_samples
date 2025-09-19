@@ -23,7 +23,7 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { CustomDataType, MyDataSource, ListIndexPosition, ComponentStyle } from './DataType';
+import { CustomDataType, MyDataSource, ListIndexPosition, ComponentStyle } from './DataType1';
 import {
   memo,
   __memo_context_type,
@@ -65,7 +65,6 @@ import {
 } from '@ohos.arkui.component';
 import {
   State,
-  StateDecoratedVariable,
   MutableState,
   stateOf,
   observableProxy,
@@ -266,7 +265,7 @@ export struct SecondaryLinkExample {
    * @returns {number} 二级列表索引值
    */
   findItemIndex(index: number): number {
-    return this.records[index];
+    return this.records[index.toInt()];
   }
 
   /**

@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -106,15 +107,15 @@ export struct CalendarView {
   @State flag: boolean = false;
   @State contentData: MonthDataSource = new MonthDataSource(); // 列表数据
   nowDate: Date = new Date();
-  currentMonth: number = this.nowDate.getMonth() + 1; // 当前月份
-  currentDay: number = this.nowDate.getDate(); // 当前日
-  currentYear: number = this.nowDate.getFullYear(); // 当前年份
-  currentWeekDay: number = new Date(this.currentYear, this.currentMonth - 1, this.currentDay).getDay(); // 当前周几
+  currentMonth: int = this.nowDate.getMonth().toInt() + 1; // 当前月份
+  currentDay: int = this.nowDate.getDate().toInt(); // 当前日
+  currentYear: int = this.nowDate.getFullYear().toInt(); // 当前年份
+  currentWeekDay: int = new Date(this.currentYear, this.currentMonth - 1, this.currentDay).getDay().toInt(); // 当前周几
   private scroller: Scroller = new Scroller(); // 二级列表Scroller对象
-  @State nextMonth: number = 1; // 初始化下一个月月份
-  @State nextYear: number = 1; // 初始化下一个月年份
-  @State nextMonthDay: number[] = new Array<number>(); // 初始化下一个月的日期排列数组
-  @State currentMonthDay: number[] = new Array<number>(); // 初始化当前月的日期排列数组
+  @State nextMonth: int = 1; // 初始化下一个月月份
+  @State nextYear: int = 1; // 初始化下一个月年份
+  @State nextMonthDay: int[] = new Array<int>(); // 初始化下一个月的日期排列数组
+  @State currentMonthDay: int[] = new Array<int>(); // 初始化当前月的日期排列数组
 
   // 获取当前日期
   aboutToAppear(): void {
@@ -171,7 +172,7 @@ export struct CalendarView {
         Row() {
           Text(`${this.dateModel.month}月${this.dateModel.day}日`)
             .fontSize(20)
-          Text(`星期${this.week[this.dateModel.week]}`)
+          Text(`星期${this.week[this.dateModel.week.toInt()]}`)
             .fontSize(20)
         }
         .id('calender_click')
@@ -221,7 +222,7 @@ export struct CalendarView {
                   .textAlign(TextAlign.Center)
                   .id('id_highly_loaded_component_render_title')
                 // 日期信息
-                ForEach(monthItem.days, (day: number, index: number) => {
+                ForEach(monthItem.days, (day: int, index: number) => {
                   Text() {
                     Span(JSON.stringify(day))
                       .fontSize(20)
@@ -238,19 +239,19 @@ export struct CalendarView {
                   .onClick((e: ClickEvent) => {
                     if (day >= this.currentDay || monthItem.num > this.currentMonth ||
                       Number(monthItem.month.substring(0, 4)) > this.currentYear) {
-                      let weekIndex = monthItem.days.indexOf(day) % WEEK_NUMBER; // 将当前日转换成星期显示
+                      let weekIndex = monthItem.days.indexOf(day.toInt()) % WEEK_NUMBER; // 将当前日转换成星期显示
                       let dateModelTmp: DateModel = new DateModel(0, 0, 0, 0);
-                      dateModelTmp.day = day;
+                      dateModelTmp.day = day.toInt();
                       dateModelTmp.week = weekIndex;
                       dateModelTmp.month = monthItem.num;
-                      dateModelTmp.year = Number(monthItem.month.substring(0, 4));
+                      dateModelTmp.year = Number(monthItem.month.substring(0, 4)).toInt();
                       this.dateModel = dateModelTmp;
                       if (this.flag == true) {
                         this.flag = false;
                       }
                     }
                   })
-                }, (day: number, index: number) => index.toString())
+                }, (day: int, index: number) => index.toString())
               }.width('100%')
             }
           }, (monthItem: Month, index: number) => index.toString())

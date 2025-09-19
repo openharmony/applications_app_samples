@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -184,9 +185,9 @@ export struct MultipleFilesDownloadComponent {
 
         Row() {
           // 已开始下载且有任务时为全部暂停，否则为全部开始
-          Text(this.isStartAllDownload && this.downloadCount > NO_TASK ? '全部暂停' : '全部开始')
+          Text('开始下载')
             .fontSize(20)
-            .fontColor('#418AF3')
+            .fontColor(this.isStartAllDownload && this.downloadCount > NO_TASK ? '#999' : '#418AF3')
             .textAlign(TextAlign.End)
             .width('100%')
             .id('download')
