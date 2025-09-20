@@ -16,9 +16,9 @@
 #include "manager.h"
 #include <hilog/log.h>
 
+
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
+static napi_value Init(napi_env env, napi_value exports) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "Init begins");
     if ((env == nullptr) || (exports == nullptr)) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "env or exports is null");
@@ -28,6 +28,8 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         {"createNativeSwiperNode", nullptr, Manager::CreateNativeSwiperNode, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"createNativeTextNode", nullptr, Manager::CreateNativeTextNode, nullptr, nullptr, nullptr, napi_default,
+         nullptr}
         // 参考Swiper新增其他createNative方法和Maker类
     };
 
@@ -38,7 +40,6 @@ static napi_value Init(napi_env env, napi_value exports)
     return exports;
 }
 EXTERN_C_END
-
 static napi_module demoModule = {
     .nm_version = 1,
     .nm_flags = 0,

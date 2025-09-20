@@ -7,7 +7,7 @@ set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
-add_library(entry SHARED napi_init.cpp manager.cpp baseUtils.cpp SwiperMaker.cpp)
+add_library(entry SHARED napi_init.cpp manager.cpp baseUtils.cpp SwiperMaker.cpp TextMaker.cpp)
 
 find_library(hilog-lib hilog_ndk.z)
 
@@ -17,3 +17,4 @@ find_library(libnapi-lib ace_napi.z)
 
 
 target_link_libraries(entry PUBLIC ${hilog-lib} ${libace-lib} ${libnapi-lib})
+target_link_libraries(entry PUBLIC ${libace-lib} libace_napi.z.so libnative_drawing.so libhilog_ndk.z.so)
