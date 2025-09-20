@@ -26,13 +26,12 @@ using EventCallback = std::function<void(ArkUI_NodeEvent*)>;
 class NodeManager {
 public:
     ~NodeManager();
-    void BuildAccessibilitySection(NodeManager* self, ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle text);
     ArkUI_NodeHandle BuildEmbeddedComponentSection(NodeManager* self, ArkUI_NativeNodeAPI_1* nodeApi);
-    void BuildTextSection(NodeManager* self, ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle text);
     static NodeManager& GetInstance();
     void SetXComponent(OH_NativeXComponent* xComponent);
     void CreateNativeNode();
-
+    ArkUI_NodeHandle BuildTextNode(ArkUI_NativeNodeAPI_1* nodeApi, const char* content);
+    ArkUI_NodeHandle BuildTextNodeWithoutAccessibilityFocus(ArkUI_NativeNodeAPI_1* nodeApi, const char* content);
     void CreateAccessibilityState();
     void SetAccessibilityDisabled(bool isDisabled);
     bool IsAccessibilityDisabled();
@@ -41,6 +40,7 @@ public:
     void SetAccessibilityCheckedState(int32_t checkedState);
     int32_t GetAccessibilityCheckedState();
     void DisposeAccessibilityState();
+    ArkUI_NodeHandle BuildColumnNode(ArkUI_NativeNodeAPI_1* nodeApi);
 
     void CreateAccessibilityValue();
     void DisposeAccessibilityValue();
@@ -81,7 +81,19 @@ public:
     uint32_t GetAccessibilityRole(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle node);
     void GetUniqueId(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle node);
     void SetEmbeddedComponentWant(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle node);
-    void SetOnAccessibilityActions(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle node);
+
+    void CreateAccessibilityCheckedSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilitySelectedSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityValueSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityNodeIdSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityGroupSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityModeSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityTextSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityDescriptionSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityIdSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityActionsSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateAccessibilityRoleSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
+    void CreateUniqueIdSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent);
 
 private:
     NodeManager() = default;

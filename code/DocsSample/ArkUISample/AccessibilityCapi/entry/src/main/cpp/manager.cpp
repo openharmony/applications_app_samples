@@ -36,65 +36,234 @@ constexpr int WANT_STR_COPY_LEN = 5;
 constexpr int WANT_URI_BUF_LEN = 10;
 constexpr int WANT_URI_COPY_LEN = 5;
 constexpr int EMBEDDED_COMPONENT_WIDTH = 480;
+constexpr float BUTTON_WIDTH_PX = 200.0f;
+constexpr float BUTTON_HEIGHT_PX = 50.0f;
+constexpr float BUTTON_MARGIN_PX = 5.0f;
+constexpr int EVENT_ID = 11111;
+constexpr const char* SAMPLE_TEXT = "Hello Accessibility Sample";
 
-void NodeManager::BuildAccessibilitySection(NodeManager* self, ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle text)
+void NodeManager::CreateAccessibilitySelectedSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
 {
-    // 创建无障碍状态对象
-    self->CreateAccessibilityState();
-    // 设置无障碍状态为禁用
-    self->SetAccessibilityDisabled(false);
-    // 检查并打印无障碍禁用状态
-    bool disabled = self->IsAccessibilityDisabled();
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "1. 通过 OH_ArkUI_AccessibilityState_SetSelected 设置无障碍状态:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle column = BuildColumnNode(nodeApi);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, "Hello Accessibility Sample(non-selected)");
+    ArkUI_NodeHandle text3 = BuildTextNode(nodeApi, "Hello Accessibility Sample(selected)");
+    this->CreateAccessibilityState();
+    this->SetAccessibilityDisabled(false);
+    bool disabled = this->IsAccessibilityDisabled();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "IsAccessibilityDisabled: disabled=%{public}d",
         disabled);
-    // 设置无障碍状态为选中
-    self->SetAccessibilitySelected(true);
-    // 检查并打印无障碍选中状态
-    bool selected = self->IsAccessibilitySelected();
+    this->SetAccessibilitySelected(true);
+    bool selected = this->IsAccessibilitySelected();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "IsAccessibilitySelected: selected=%{public}d",
         selected);
-    // 设置无障碍状态为已勾选
-    self->SetAccessibilityCheckedState(ARKUI_ACCESSIBILITY_CHECKED);
-    // 获取并打印无障碍勾选状态
-    int32_t checkedState = self->GetAccessibilityCheckedState();
+    ArkUI_AttributeItem accessibilityItem = { .object = this->accessibilityState_ };
+    nodeApi->setAttribute(text3, NODE_ACCESSIBILITY_STATE, &accessibilityItem);
+    this->SetAccessibilitySelected(false);
+    accessibilityItem = { .object = this->accessibilityState_ };
+    nodeApi->setAttribute(text2, NODE_ACCESSIBILITY_STATE, &accessibilityItem);
+    nodeApi->addChild(column, text2);
+    nodeApi->addChild(column, text3);
+    nodeApi->addChild(parent, column);
+}
+
+void NodeManager::CreateAccessibilityCheckedSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "2. 通过 OH_ArkUI_AccessibilityState_SetCheckedState 设置无障碍状态:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle column = BuildColumnNode(nodeApi);
+    ArkUI_NodeHandle checkbox = nodeApi->createNode(ARKUI_NODE_CHECKBOX);
+    ArkUI_NodeHandle checkbox2 = nodeApi->createNode(ARKUI_NODE_CHECKBOX);
+    this->CreateAccessibilityState();
+    this->SetAccessibilityDisabled(false);
+    bool disabled = this->IsAccessibilityDisabled();
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "IsAccessibilityDisabled: disabled=%{public}d",
+        disabled);
+    this->SetAccessibilityCheckedState(ARKUI_ACCESSIBILITY_UNCHECKED);
+    int32_t checkedState = this->GetAccessibilityCheckedState();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityCheckedState: state=%{public}d",
         checkedState);
-    // 将无障碍状态设置给Text组件
-    ArkUI_AttributeItem accessibilityItem = { .object = self->accessibilityState_ };
-    nodeApi->setAttribute(text, NODE_ACCESSIBILITY_STATE, &accessibilityItem);
+    ArkUI_AttributeItem accessibilityItem = { .object = this->accessibilityState_ };
+    nodeApi->setAttribute(parent, NODE_ACCESSIBILITY_STATE, &accessibilityItem);
+    this->SetAccessibilityCheckedState(ARKUI_ACCESSIBILITY_CHECKED);
+    accessibilityItem = { .object = this->accessibilityState_ };
+    nodeApi->setAttribute(checkbox2, NODE_ACCESSIBILITY_STATE, &accessibilityItem);
+    nodeApi->addChild(column, checkbox);
+    nodeApi->addChild(column, checkbox2);
+    nodeApi->addChild(parent, column);
+}
 
-    // 创建无障碍值对象
-    self->CreateAccessibilityValue();
-    // 设置无障碍值的范围
-    self->SetAccessibilityValueMin(ACCESSIBILITY_VALUE_MIN);
-    int32_t valueMin = self->GetAccessibilityValueMin();
+void NodeManager::CreateAccessibilityValueSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "3. 通过 NODE_ACCESSIBILITY_VALUE 设置无障碍信息属性:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, SAMPLE_TEXT);
+    this->CreateAccessibilityValue();
+    this->SetAccessibilityValueMin(ACCESSIBILITY_VALUE_MIN);
+    int32_t valueMin = this->GetAccessibilityValueMin();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityValueMin: min=%{public}d", valueMin);
-    self->SetAccessibilityValueMax(ACCESSIBILITY_VALUE_MAX);
-    int32_t valueMax = self->GetAccessibilityValueMax();
+    this->SetAccessibilityValueMax(ACCESSIBILITY_VALUE_MAX);
+    int32_t valueMax = this->GetAccessibilityValueMax();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityValueMax: max=%{public}d", valueMax);
-    self->SetAccessibilityValueCurrent(ACCESSIBILITY_VALUE_CURRENT);
-    int32_t valueCurrent = self->GetAccessibilityValueCurrent();
+    this->SetAccessibilityValueCurrent(ACCESSIBILITY_VALUE_CURRENT);
+    int32_t valueCurrent = this->GetAccessibilityValueCurrent();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityValueCurrent: current=%{public}d",
         valueCurrent);
-    self->SetAccessibilityValueText(ACCESSIBILITY_VALUE_TEXT);
-    const char* valueText = self->GetAccessibilityValueText();
+    this->SetAccessibilityValueText(ACCESSIBILITY_VALUE_TEXT);
+    const char* valueText = this->GetAccessibilityValueText();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityValueText: text=%{public}s",
         valueText);
-    // 设置无障碍范围值
-    self->SetAccessibilityRangeMin(ACCESSIBILITY_RANGE_MIN);
-    int32_t rangeMin = self->GetAccessibilityRangeMin();
+    this->SetAccessibilityRangeMin(ACCESSIBILITY_RANGE_MIN);
+    int32_t rangeMin = this->GetAccessibilityRangeMin();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityRangeMin: min=%{public}d", rangeMin);
-    self->SetAccessibilityRangeMax(ACCESSIBILITY_RANGE_MAX);
-    int32_t rangeMax = self->GetAccessibilityValueMax();
-    rangeMax = self->GetAccessibilityRangeMax();
+    this->SetAccessibilityRangeMax(ACCESSIBILITY_RANGE_MAX);
+    int32_t rangeMax = this->GetAccessibilityValueMax();
+    rangeMax = this->GetAccessibilityRangeMax();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityRangeMax: max=%{public}d", rangeMax);
-    self->SetAccessibilityRangeCurrent(ACCESSIBILITY_RANGE_CURRENT);
-    int32_t rangeCurrent = self->GetAccessibilityRangeCurrent();
+    this->SetAccessibilityRangeCurrent(ACCESSIBILITY_RANGE_CURRENT);
+    int32_t rangeCurrent = this->GetAccessibilityRangeCurrent();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityRangeCurrent: current=%{public}d",
         rangeCurrent);
-    // 将无障碍值设置给Text组件
-    ArkUI_AttributeItem accessibilityValueItem = { .object = self->accessibilityValue_ };
-    nodeApi->setAttribute(text, NODE_ACCESSIBILITY_VALUE, &accessibilityValueItem);
+    ArkUI_AttributeItem accessibilityValueItem = { .object = this->accessibilityValue_ };
+    nodeApi->setAttribute(text2, NODE_ACCESSIBILITY_VALUE, &accessibilityValueItem);
+    nodeApi->addChild(parent, text2);
+}
+
+void NodeManager::CreateAccessibilityNodeIdSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi, "4. 通过 NODE_ID 获取无障碍节点ID:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, SAMPLE_TEXT);
+    this->SetNodeId(nodeApi, text2, "test node id");
+    const char* nodeId = this->GetNodeId(nodeApi, text2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetNodeId: id=%{public}s", nodeId);
+    nodeApi->addChild(parent, text2);
+}
+
+void NodeManager::CreateAccessibilityGroupSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "5. 通过 NODE_ACCESSIBILITY_GROUP 设置无障碍分组:");
+    ArkUI_NodeHandle column = BuildColumnNode(nodeApi);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, "column子节点1");
+    ArkUI_NodeHandle text3 = BuildTextNode(nodeApi, "column子节点2");
+    this->SetAccessibilityGroup(nodeApi, column, true);
+    bool isGroup = this->GetAccessibilityGroup(nodeApi, column);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityGroup: isGroup=%{public}d", isGroup);
+    nodeApi->addChild(column, text2);
+    nodeApi->addChild(column, text3);
+    nodeApi->addChild(parent, text1);
+    nodeApi->addChild(parent, column);
+}
+
+void NodeManager::CreateAccessibilityModeSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "6. 通过 NODE_ACCESSIBILITY_MODE 设置无障碍辅助服务模式(ACCESSIBILITY_MODE):");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, "Hello Accessibility Sample(DISABLED, 不可被无障碍辅助服务所识别)");
+    this->SetAccessibilityMode(nodeApi, text2, ARKUI_ACCESSIBILITY_MODE_DISABLED);
+    ArkUI_AccessibilityMode mode = this->GetAccessibilityMode(nodeApi, text2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityMode: mode=%{public}d", mode);
+    nodeApi->addChild(parent, text2);
+}
+
+
+void NodeManager::CreateAccessibilityTextSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "7. 通过 NODE_ACCESSIBILITY_TEXT 设置无障碍文本:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, SAMPLE_TEXT);
+    this->SetAccessibilityText(nodeApi, text2, "This is a text");
+    const char* accessibilityText = this->GetAccessibilityText(nodeApi, text2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityText: text=%{public}s",
+        accessibilityText);
+    nodeApi->addChild(parent, text2);
+}
+
+void NodeManager::CreateAccessibilityDescriptionSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "8. 通过 NODE_ACCESSIBILITY_DESCRIPTION 设置无障碍描述:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, SAMPLE_TEXT);
+    this->SetAccessibilityDescription(nodeApi, text2, "This is accessibility description");
+    const char* description = this->GetAccessibilityDescription(nodeApi, text2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityDescription: description=%{public}s",
+        description);
+    nodeApi->addChild(parent, text2);
+}
+
+void NodeManager::CreateAccessibilityIdSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "9. 通过 NODE_ACCESSIBILITY_ID 获取无障碍ID:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, SAMPLE_TEXT);
+    int accessibilityId = this->GetAccessibilityId(nodeApi, text2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityId: id=%{public}d", accessibilityId);
+    nodeApi->addChild(parent, text2);
+}
+
+void NodeManager::CreateAccessibilityActionsSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi, "10. 设置无障碍支持操作事件:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle button = nodeApi->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_NumberValue button_widthValue[] = {BUTTON_WIDTH_PX};
+    ArkUI_AttributeItem button_widthItem = {button_widthValue, 1};
+    ArkUI_NumberValue button_heightValue1[] = {BUTTON_HEIGHT_PX};
+    ArkUI_AttributeItem button_heightItem = {button_heightValue1, 1};
+    ArkUI_NumberValue marginValue[] = {BUTTON_MARGIN_PX};
+    ArkUI_AttributeItem marginItem = {marginValue, 1};
+    nodeApi->setAttribute(button, NODE_WIDTH, &button_widthItem);
+    nodeApi->setAttribute(button, NODE_HEIGHT, &button_heightItem);
+    nodeApi->setAttribute(button, NODE_MARGIN, &marginItem);
+    this->SetAccessibilityActions(nodeApi, button);
+    nodeApi->registerNodeEvent(button, NODE_ON_CLICK, 0, nullptr);
+    nodeApi->registerNodeEvent(button, NODE_ON_ACCESSIBILITY_ACTIONS, EVENT_ID, nullptr);
+    nodeApi->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
+        auto eventId = OH_ArkUI_NodeEvent_GetTargetId(event);
+        if (eventId == EVENT_ID) {
+            auto componentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
+            auto actionType = componentEvent->data[0].u32;
+            switch (actionType) {
+                case ARKUI_ACCESSIBILITY_ACTION_CLICK:
+                    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "ARKUI_ACCESSIBILITY_ACTION_CLICK");
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+    nodeApi->addChild(parent, button);
+}
+
+void NodeManager::CreateAccessibilityRoleSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "11. 通过 NODE_ACCESSIBILITY_ROLE 设置无障碍组件类型:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, SAMPLE_TEXT);
+    this->SetAccessibilityRole(nodeApi, text2, ARKUI_NODE_TEXT);
+    uint32_t role = this->GetAccessibilityRole(nodeApi, text2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityRole: role=%{public}u", role);
+    nodeApi->addChild(parent, text2);
+}
+
+void NodeManager::CreateUniqueIdSection(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle parent)
+{
+    ArkUI_NodeHandle text1 = BuildTextNodeWithoutAccessibilityFocus(nodeApi,
+        "12. 通过 NODE_UNIQUE_ID 获取唯一ID:");
+    nodeApi->addChild(parent, text1);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, SAMPLE_TEXT);
+    this->GetUniqueId(nodeApi, text2);
+    nodeApi->addChild(parent, text2);
 }
 
 ArkUI_NodeHandle NodeManager::BuildEmbeddedComponentSection(NodeManager* self, ArkUI_NativeNodeAPI_1* nodeApi)
@@ -119,49 +288,6 @@ ArkUI_NodeHandle NodeManager::BuildEmbeddedComponentSection(NodeManager* self, A
     return embeddedNode;
 }
 
-void NodeManager::BuildTextSection(NodeManager* self, ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle text)
-{
-    // 设置节点ID
-    self->SetNodeId(nodeApi, text, "test node id");
-    const char* nodeId = self->GetNodeId(nodeApi, text);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetNodeId: id=%{public}s", nodeId);
-    // 设置无障碍组
-    self->SetAccessibilityGroup(nodeApi, text, false);
-    bool isGroup = self->GetAccessibilityGroup(nodeApi, text);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityGroup: isGroup=%{public}d", isGroup);
-    // 设置无障碍模式
-    self->SetAccessibilityMode(nodeApi, text, ARKUI_ACCESSIBILITY_MODE_AUTO);
-    ArkUI_AccessibilityMode mode = self->GetAccessibilityMode(nodeApi, text);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityMode: mode=%{public}d", mode);
-    // 设置无障碍文本
-    self->SetAccessibilityText(nodeApi, text, "This is a text");
-    const char* accessibilityText = self->GetAccessibilityText(nodeApi, text);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityText: text=%{public}s",
-        accessibilityText);
-    // 设置无障碍描述
-    self->SetAccessibilityDescription(nodeApi, text, "This is accessibility description");
-    const char* description = self->GetAccessibilityDescription(nodeApi, text);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityDescription: description=%{public}s",
-        description);
-    // 获取无障碍ID
-    int accessibilityId = self->GetAccessibilityId(nodeApi, text);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityId: id=%{public}d", accessibilityId);
-    // 设置无障碍操作
-    self->SetAccessibilityActions(nodeApi, text);
-    uint32_t actions = self->GetAccessibilityActions(nodeApi, text);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityActions: actions=%{public}u",
-        actions);
-    // 设置无障碍角色
-    self->SetAccessibilityRole(nodeApi, text, ARKUI_NODE_TEXT);
-    // 获取并打印无障碍角色
-    uint32_t role = self->GetAccessibilityRole(nodeApi, text);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GetAccessibilityRole: role=%{public}u", role);
-    // 获取唯一ID
-    self->GetUniqueId(nodeApi, text);
-    // 设置无障碍操作回调
-    self->SetOnAccessibilityActions(nodeApi, text);
-}
-
 NodeManager &NodeManager::GetInstance()
 {
     static NodeManager instance;
@@ -181,11 +307,39 @@ void NodeManager::CreateNativeNode()
         return;
     }
     // 创建一个Column容器组件
-    ArkUI_NodeHandle column = nodeApi->createNode(ARKUI_NODE_COLUMN);
-    ArkUI_NumberValue colWidth[] = {{.f32 = COL_WIDTH_PX}};
-    ArkUI_AttributeItem widthItem = { colWidth, sizeof(colWidth) / sizeof(ArkUI_NumberValue) };
-    nodeApi->setAttribute(column, NODE_WIDTH, &widthItem);
+    ArkUI_NodeHandle column = BuildColumnNode(nodeApi);
     // 创建Text组件
+    ArkUI_NodeHandle text = BuildTextNode(nodeApi, SAMPLE_TEXT);
+
+    auto scrollNode = nodeApi->createNode(ARKUI_NODE_SCROLL);
+    nodeApi->addChild(scrollNode, column);
+
+    CreateAccessibilitySelectedSection(nodeApi, column);
+    CreateAccessibilityCheckedSection(nodeApi, column);
+    ArkUI_NodeHandle embeddedNode = BuildEmbeddedComponentSection(this, nodeApi);
+    CreateAccessibilityValueSection(nodeApi, column);
+    CreateAccessibilityNodeIdSection(nodeApi, column);
+    CreateAccessibilityGroupSection(nodeApi, column);
+    CreateAccessibilityModeSection(nodeApi, column);
+    CreateAccessibilityTextSection(nodeApi, column);
+    CreateAccessibilityDescriptionSection(nodeApi, column);
+    CreateAccessibilityIdSection(nodeApi, column);
+    CreateAccessibilityActionsSection(nodeApi, column);
+    CreateAccessibilityRoleSection(nodeApi, column);
+    CreateUniqueIdSection(nodeApi, column);
+    ArkUI_NodeHandle text2 = BuildTextNode(nodeApi, "嵌入式组件:");
+    nodeApi->addChild(column, text2);
+    nodeApi->addChild(column, embeddedNode);
+
+    // 将嵌入式组件添加到列容器
+    nodeApi->addChild(column, embeddedNode);
+    // Column作为XComponent子组件
+    OH_NativeXComponent_AttachNativeRootNode(xComponent_, scrollNode);
+}
+
+ArkUI_NodeHandle NodeManager::BuildTextNodeWithoutAccessibilityFocus(ArkUI_NativeNodeAPI_1* nodeApi,
+    const char* content)
+{
     ArkUI_NodeHandle text = nodeApi->createNode(ARKUI_NODE_TEXT);
     ArkUI_NumberValue textWidth[] = {{.f32 = TEXT_WIDTH_PX}};
     ArkUI_AttributeItem textWidthItem = { textWidth, sizeof(textWidth) / sizeof(ArkUI_NumberValue) };
@@ -193,25 +347,32 @@ void NodeManager::CreateNativeNode()
     ArkUI_NumberValue textHeight[] = {{.f32 = TEXT_HEIGHT_PX}};
     ArkUI_AttributeItem textHeightItem = { textHeight, sizeof(textHeight) / sizeof(ArkUI_NumberValue) };
     nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
-    ArkUI_NumberValue borderWidth[] = {{.f32 = BORDER_WIDTH_PX}};
-    ArkUI_AttributeItem borderWidthItem = { borderWidth, sizeof(borderWidth) / sizeof(ArkUI_NumberValue) };
-    nodeApi->setAttribute(text, NODE_BORDER_WIDTH, &borderWidthItem);
-    ArkUI_AttributeItem valueItem = {.string = "Hello World!"};
+    ArkUI_AttributeItem valueItem = {.string = content};
     nodeApi->setAttribute(text, NODE_TEXT_CONTENT, &valueItem);
+    this->SetAccessibilityMode(nodeApi, text, ARKUI_ACCESSIBILITY_MODE_DISABLED);
+    return text;
+}
+ArkUI_NodeHandle NodeManager::BuildTextNode(ArkUI_NativeNodeAPI_1* nodeApi, const char* content)
+{
+    ArkUI_NodeHandle text = nodeApi->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NumberValue textWidth[] = {{.f32 = TEXT_WIDTH_PX}};
+    ArkUI_AttributeItem textWidthItem = { textWidth, sizeof(textWidth) / sizeof(ArkUI_NumberValue) };
+    nodeApi->setAttribute(text, NODE_WIDTH, &textWidthItem);
+    ArkUI_NumberValue textHeight[] = {{.f32 = TEXT_HEIGHT_PX}};
+    ArkUI_AttributeItem textHeightItem = { textHeight, sizeof(textHeight) / sizeof(ArkUI_NumberValue) };
+    nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+    ArkUI_AttributeItem valueItem = {.string = content};
+    nodeApi->setAttribute(text, NODE_TEXT_CONTENT, &valueItem);
+    return text;
+}
 
-    // 无障碍属性设置
-    BuildAccessibilitySection(this, nodeApi, text);
-    // 嵌入式组件初始化
-    ArkUI_NodeHandle embeddedNode = BuildEmbeddedComponentSection(this, nodeApi);
-    // 文本无障碍属性与事件设置
-    BuildTextSection(this, nodeApi, text);
-
-    // Text作为Column子组件
-    nodeApi->addChild(column, text);
-    // 将嵌入式组件添加到列容器
-    nodeApi->addChild(column, embeddedNode);
-    // Column作为XComponent子组件
-    OH_NativeXComponent_AttachNativeRootNode(xComponent_, column);
+ArkUI_NodeHandle NodeManager::BuildColumnNode(ArkUI_NativeNodeAPI_1* nodeApi)
+{
+    ArkUI_NodeHandle column = nodeApi->createNode(ARKUI_NODE_COLUMN);
+    ArkUI_NumberValue colWidth[] = {{.f32 = COL_WIDTH_PX}};
+    ArkUI_AttributeItem widthItem = { colWidth, sizeof(colWidth) / sizeof(ArkUI_NumberValue) };
+    nodeApi->setAttribute(column, NODE_WIDTH, &widthItem);
+    return column;
 }
 
 NodeManager::~NodeManager()
@@ -582,7 +743,7 @@ const char* NodeManager::GetAccessibilityText(ArkUI_NativeNodeAPI_1* nodeApi, Ar
 void NodeManager::SetAccessibilityActions(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle node)
 {
     if (nodeApi && node) {
-        ArkUI_NumberValue value[] = {{ .u32 = ARKUI_ACCESSIBILITY_ACTION_COPY}};
+        ArkUI_NumberValue value[] = {{ .u32 = ARKUI_ACCESSIBILITY_ACTION_CLICK}};
         ArkUI_AttributeItem item = { value, sizeof(value) / sizeof(ArkUI_NumberValue) };
         nodeApi->setAttribute(node, NODE_ACCESSIBILITY_ACTIONS, &item);
     }
@@ -641,13 +802,6 @@ void NodeManager::SetEmbeddedComponentWant(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI
         AbilityBase_Want* want = OH_AbilityBase_CreateWant(element);
         ArkUI_AttributeItem itemObjWant = {.object = want};
         nodeApi->setAttribute(node, NODE_EMBEDDED_COMPONENT_WANT, &itemObjWant);
-    }
-}
-
-void NodeManager::SetOnAccessibilityActions(ArkUI_NativeNodeAPI_1* nodeApi, ArkUI_NodeHandle node)
-{
-    if (nodeApi && node) {
-        nodeApi->registerNodeEvent(node, NODE_ON_ACCESSIBILITY_ACTIONS, 0, node);
     }
 }
 }
