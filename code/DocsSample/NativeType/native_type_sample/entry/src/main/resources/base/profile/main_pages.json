@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/page_swiper"
+    "pages/page_swiper",
+    "pages/page_text"
   ]
 }
