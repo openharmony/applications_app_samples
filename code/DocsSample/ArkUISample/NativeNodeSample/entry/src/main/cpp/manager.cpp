@@ -53,7 +53,12 @@ AttributeScope attributeArray[] = {
     { ARKUI_NODE_CALENDAR_PICKER, NODE_CALENDAR_PICKER_HINT_RADIUS, NODE_CALENDAR_PICKER_MARK_TODAY },
     { ARKUI_NODE_IMAGE_ANIMATOR, NODE_IMAGE_ANIMATOR_IMAGES, NODE_IMAGE_ANIMATOR_ITERATION },
     { ARKUI_NODE_IMAGE, NODE_IMAGE_SRC, NODE_IMAGE_ORIENTATION },
+    { ARKUI_NODE_SLIDER, NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR, NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR },
 };
+
+uint32_t g_colors[] = {0xFFFEBB62, 0xffFFA0A4};
+float g_stops[] = {0, 1.0};
+static ArkUI_ColorStop linerGrand[] = {{g_colors, g_stops, 2}};
 
 static ArkUI_NumberValue timePickerValue1[] = { { .i32 = 1 } };
 static ArkUI_NumberValue textPickerValue1[] = { { .i32 = ARKUI_TEXTPICKER_RANGETYPE_SINGLE } };
@@ -122,6 +127,10 @@ static std::map<int32_t, ArkUI_AttributeItem> attributeValueMap = {
     { NODE_IMAGE_ENABLE_ANALYZER, { enableAnalyzer, 1, nullptr, nullptr } },
     { NODE_IMAGE_MATCH_TEXT_DIRECTION, { matchDirection, 1, nullptr, nullptr } },
     { NODE_IMAGE_SOURCE_SIZE, { sourceSize, 2, nullptr, nullptr } },
+    // ARKUI_NODE_SLIDER
+    { NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR, {nullptr, 0, nullptr, linerGrand} },
+    { NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR, {nullptr, 0, nullptr, linerGrand} },
+    { NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR, {nullptr, 0, nullptr, linerGrand} },
 };
 
 int32_t NodeManager::AddNativeNode(ArkUI_NodeHandle newNode, int32_t nodeType)
@@ -255,9 +264,16 @@ int32_t NodeManager::SetNativeNodeAttribute(int32_t nodeId, int32_t nodeType, in
         ArkUI_AttributeItem valueCopyItem = { value, sizeof(value) / sizeof(ArkUI_NumberValue) };
         nodeApi->setAttribute(node, NODE_IMAGE_COPY_OPTION, &valueCopyItem);
     }
+    if (attributeValueMap.count(attributeType)) {
+        attributeItem = attributeValueMap[attributeType];
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode",
+                     "----- SetNativeNodeAttribute default SetNativeNodeAttribute, type:%{public}d, ret:%{public}d",
+                     attributeType, ret);
+        ret = nodeApi->setAttribute(node, (ArkUI_NodeAttributeType)attributeType, &(attributeValueMap[attributeType]));
+    } else {
     // set other attribute type
     ret = nodeApi->setAttribute(node, (ArkUI_NodeAttributeType)attributeType, &attributeItem);
-
+    }
     if (attributeType == NODE_IMAGE_ORIENTATION) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode",
             "NODE_IMAGE orientation SetNativeNodeAttribute, type:%{public}d, ret:%{public}d, item_value:%{public}d",
@@ -270,6 +286,11 @@ int32_t NodeManager::SetNativeNodeAttribute(int32_t nodeId, int32_t nodeType, in
         OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode",
             "NODE_IMAGE match direction SetNativeNodeAttribute, type:%{public}d, ret:%{public}d, item_value:%{public}d",
             attributeType, ret, attributeItem.value[0].i32);
+    } else if (attributeType == NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR ||
+                    attributeType == NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR ||
+                    attributeType == NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode",
+            "NODE_SLIDER SetNativeNodeAttribute, type:%{public}d, ret:%{public}d", attributeType, ret);
     } else {
         OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode",
             "NODE_IMAGE default SetNativeNodeAttribute, type:%{public}d, ret:%{public}d, item_value:%{public}d",
@@ -424,8 +445,8 @@ const ArkUI_AttributeItem* NodeManager::GetNativeNodeAttribute(int32_t nodeId, i
             attributeType, attributeItem->size, attributeItem->value[0].i32, attributeItem->value[1].i32);
     } else {
         OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode",
-            "NODE_IMAGE hdr brightness GetAttribute, type:%{public}d, size:%{public}d, value:%{public}d", attributeType,
-            attributeItem->size, attributeItem->value[0].i32);
+                     "NODE_IMAGE hdr brightness GetAttribute, type:%{public}d, size:%{public}d, value:%{public}d",
+                     attributeType, attributeItem->size, attributeItem->value[0].i32);
     }
     return attributeItem;
 }
@@ -452,6 +473,10 @@ void NodeManager::BindEventByType(ArkUI_NodeHandle newNode, int32_t nodeType, Ev
             break;
         case ARKUI_NODE_IMAGE_ANIMATOR:
             BindEventFunc(newNode, NODE_IMAGE_ANIMATOR_EVENT_ON_START, NODE_IMAGE_ANIMATOR_EVENT_ON_FINISH, operation);
+            break;
+        case ARKUI_NODE_SLIDER:
+            BindEventFunc(newNode, NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR, NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR,
+                operation);
             break;
         default:
             break;
