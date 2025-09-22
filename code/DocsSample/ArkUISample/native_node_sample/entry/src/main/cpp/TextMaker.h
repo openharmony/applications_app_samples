@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef NATIVE_TYPE_SAMPLE_SWIPERMAKER_H
-#define NATIVE_TYPE_SAMPLE_SWIPERMAKER_H
+#ifndef TEXT_MAKER_H
+#define TEXT_MAKER_H
 
 #include "manager.h"
 

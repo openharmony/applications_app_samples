@@ -28,6 +28,8 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         {"createNativeTextNode", nullptr, Manager::CreateNativeTextNode, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"createSwiperNativeNode", nullptr, Manager::CreateSwiperNativeNode, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
         // 参考新增其他createNative方法和Maker类
     };
 

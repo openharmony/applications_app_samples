@@ -14,3 +14,4 @@
  */
 
 export const createNativeTextNode: (content: Object) =>void;
+export const createSwiperNativeNode: (content: Object) =>void;
