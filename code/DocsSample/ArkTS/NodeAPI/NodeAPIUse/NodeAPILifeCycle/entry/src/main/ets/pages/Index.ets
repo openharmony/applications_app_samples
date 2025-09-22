@@ -89,6 +89,8 @@ struct Index {
                   // [Start ark_napi_create_delete_reference]
                   // napi_add_finalizer
                   try {
+                    hilog.info(0x0000, 'testTag', 'Test Node-API addFinalizer: %{public}s',
+                      JSON.stringify(testNapi.addFinalizer()));
                     hilog.info(0x0000, 'testTag', 'Test Node-API createReference: %{public}s',
                       JSON.stringify(testNapi.createReference()));
                     hilog.info(0x0000, 'testTag', 'Test Node-API useReference: %{public}s',
