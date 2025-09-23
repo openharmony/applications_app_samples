@@ -139,7 +139,11 @@ public:
         api_->setAttribute(waterFlow_, NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE, &item);
     }
 
-    void SetLayoutMode(int32_t mode) { Utils::SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_LAYOUT_MODE, mode); }
+    void SetLayoutMode(ArkUI_WaterFlowLayoutMode mode)
+    {
+        Utils::SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_LAYOUT_MODE, mode);
+    }
+    
     void SetSyncLoad(bool enabled)
     {
         Utils::SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_SYNC_LOAD, enabled ? 1 : 0);

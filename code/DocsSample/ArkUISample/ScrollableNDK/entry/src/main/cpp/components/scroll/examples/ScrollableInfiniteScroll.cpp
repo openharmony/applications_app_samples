@@ -42,10 +42,6 @@ constexpr uint32_t K_COLOR_GREEN = 0xFF008000U;
 
 constexpr float K_TEXT_SIZE = 100.0f;
 
-// 方向/滚动条
-constexpr int32_t K_AXIS_VERTICAL = static_cast<int32_t>(ARKUI_SCROLL_DIRECTION_VERTICAL);
-constexpr int32_t K_SCROLLBAR_OFF = static_cast<int32_t>(ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF);
-
 // 其他行为参数
 constexpr float K_FRICTION = 0.9f;
 constexpr float K_FLING_LIMIT = 12000.0f;
@@ -309,8 +305,8 @@ static void SetupScroll()
     gScroll->SetHeightPercent(K_HEIGHT_PERCENT_FULL);
     gScroll->SetBackgroundColor(K_PAGE_BG);
 
-    gScroll->SetScrollDirection(K_AXIS_VERTICAL);
-    gScroll->SetScrollBarDisplayMode(K_SCROLLBAR_OFF);
+    gScroll->SetDirection(ARKUI_SCROLL_DIRECTION_VERTICAL);
+    gScroll->SetScrollBarDisplayMode(ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF);
     gScroll->SetScrollBarWidth(2.0f);
     gScroll->SetScrollBarColor(0x66000000U);
     gScroll->SetScrollBarMargin(0.0f, 0.0f, 0.0f, 0.0f);
@@ -322,7 +318,8 @@ static void SetupScroll()
     gScroll->SetBackToTopEnabled(false);
     gScroll->SetFadingEdge(0.0f);
     gScroll->SetFlingSpeedLimit(K_FLING_LIMIT);
-    gScroll->SetEdgeEffect(ARKUI_EDGE_EFFECT_SPRING);
+    gScroll->SetEdgeEffect(ARKUI_EDGE_EFFECT_SPRING, true,
+                           static_cast<ArkUI_EffectEdge>(ARKUI_EFFECT_EDGE_START | ARKUI_EFFECT_EDGE_END));
 }
 
 static void SetupRootAndPages()

@@ -61,6 +61,22 @@ public:
         }
     }
 
+    SectionOption GetSection(ArkUI_WaterFlowSectionOption *opts, int32_t index)
+    {
+        SectionOption s{};
+        if (opts == nullptr) {
+            return s;
+        }
+
+        s.itemsCount = OH_ArkUI_WaterFlowSectionOption_GetItemCount(opts, index);
+        s.crossCount = OH_ArkUI_WaterFlowSectionOption_GetCrossCount(opts, index);
+        s.columnsGap = OH_ArkUI_WaterFlowSectionOption_GetColumnGap(opts, index);
+        s.rowsGap = OH_ArkUI_WaterFlowSectionOption_GetRowGap(opts, index);
+        s.margin = OH_ArkUI_WaterFlowSectionOption_GetMargin(opts, index);
+
+        return s;
+    }
+
     ArkUI_WaterFlowSectionOption *GetSectionOptions() const { return sectionOptions_; }
 
 private:
