@@ -20,9 +20,10 @@
 #include <vector>
 
 #include <arkui/native_node.h>
+#include <arkui/native_type.h>
 
-#include "common/NativeNodeUtils.h"
-#include "components/grid/GridItemAdapter.h"
+#include "common/ArkUINode.h"
+#include "common/ArkUINodeAdapter.h"
 #include "components/grid/GridNode.h"
 
 namespace ScrollableNDK::Examples {
@@ -30,18 +31,29 @@ namespace ScrollableNDK::Examples {
 // ===== 常量 =====
 namespace {
 constexpr float K_GRID_HEIGHT = 200.0f;
-constexpr char K_ROWS_TEMPLATE[] = "1fr 1fr"; // 仅设行模板 → 横向可滚
+constexpr char K_ROWS_TEMPLATE[] = "1fr 1fr";
+constexpr char K_COLUMNS_TEMPLATE[] = "1fr 1fr 1fr 1fr";
 constexpr float K_COLUMNS_GAP = 10.0f;
 constexpr float K_ROWS_GAP = 15.0f;
-constexpr float K_ITEM_WIDTH_PERCENT = 0.25f; // 每项 25% 宽
+constexpr float K_ITEM_WIDTH_PERCENT = 0.25f;
 constexpr uint32_t K_ITEM_BG_COLOR = 0xFFF1F3F5U;
 
+constexpr uint32_t K_GRID_CACHED_COUNT = 16;
+constexpr bool K_GRID_SYNC_LOAD = true;
+constexpr ArkUI_FocusWrapMode K_FOCUS_WRAP_MODE = ARKUI_FOCUS_WRAP_MODE_DEFAULT;
+
 constexpr const char *K_SERVICES[] = {"Live Streaming", "Imported", "Categories", "Recharge", "Membership",
-                                      "Claim Coupon",   "Lottery",  "Favorites",  "Points",   "More"};
+                                      "Claim Coupon",   "Lottery",  "Favorites",  "Points",   "More",
+                                      "Orders",         "Cart",     "Address",    "Customer", "Settings",
+                                      "Help Center",    "Feedback", "History",    "Messages", "Notifications",
+                                      "Downloads",      "Uploads",  "Ranking",    "Search"};
 constexpr size_t K_SERVICES_COUNT = sizeof(K_SERVICES) / sizeof(K_SERVICES[0]);
 } // namespace
 
-/** 生成示例数据 */
+/**
+ * 创建服务数据
+ * @return 服务字符串向量
+ */
 static std::vector<std::string> MakeServicesData()
 {
     std::vector<std::string> out;
@@ -52,60 +64,99 @@ static std::vector<std::string> MakeServicesData()
     return out;
 }
 
-/** 构建 Grid 适配器回调 */
-static GridItemAdapterCallbacks MakeGridCallbacks(const std::shared_ptr<GridItemAdapter> &adapter)
+// ---------- 配置 Grid 外观/交互 ----------
+static void ConfigureGrid(const std::shared_ptr<GridNode> &grid)
 {
-    GridItemAdapterCallbacks cb{};
-
-    cb.getTotalCount = [adapter]() -> int32_t { return static_cast<int32_t>(adapter->GetData().size()); };
-
-    cb.getStableId = [adapter](int32_t i) -> uint64_t {
-        return static_cast<uint64_t>(std::hash<std::string>{}(adapter->GetData()[i]));
-    };
-
-    cb.onCreate = [](ArkUI_NativeNodeAPI_1 *api, int32_t /*index*/) -> ArkUI_NodeHandle {
-        ArkUI_NodeHandle text = api->createNode(ARKUI_NODE_TEXT);
-        ArkUI_NodeHandle item = api->createNode(ARKUI_NODE_GRID_ITEM);
-        api->addChild(item, text);
-        return item;
-    };
-
-    cb.onBind = [adapter](ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index) {
-        SetAttrF32(api, item, NODE_WIDTH_PERCENT, K_ITEM_WIDTH_PERCENT);
-        SetAttrU32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
-
-        ArkUI_NodeHandle text = api->getFirstChild(item);
-        if (text) {
-            const std::string &s = adapter->GetData()[index];
-            SetTextContent(api, text, s.c_str());
-        }
-    };
-
-    return cb;
+    grid->SetWidthPercent(1.0f);
+    grid->SetHeight(K_GRID_HEIGHT);
+    grid->SetDefaultScrollStyle(); // 统一滚动视觉/交互
+    grid->SetRowsTemplate(K_ROWS_TEMPLATE);
+    grid->SetCachedCount(K_GRID_CACHED_COUNT);
+    grid->SetFocusWrapMode(K_FOCUS_WRAP_MODE);
+    grid->SetSyncLoad(K_GRID_SYNC_LOAD);
+    grid->SetColumnsGap(K_COLUMNS_GAP);
+    grid->SetRowsGap(K_ROWS_GAP);
 }
 
-// ===== NAPI 入口 =====
+// ---------- 适配器回调（创建/绑定） ----------
+static ArkUI_NodeHandle GridCreateItem(ArkUI_NativeNodeAPI_1 *api)
+{
+    ArkUI_NodeHandle text = api->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle item = api->createNode(ARKUI_NODE_GRID_ITEM);
+    api->addChild(item, text);
+    return item;
+}
+
+static void GridBindItem(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index,
+                         const std::shared_ptr<std::vector<std::string>> &data)
+{
+    Utils::SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, K_ITEM_WIDTH_PERCENT);
+    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
+
+    ArkUI_NodeHandle text = api->getFirstChild(item);
+    if (!text) {
+        return;
+    }
+
+    const int32_t n = static_cast<int32_t>(data->size());
+    const char *s = (index >= 0 && index < n) ? (*data)[static_cast<size_t>(index)].c_str() : "<invalid>";
+    Utils::SetTextContent(api, text, s);
+}
+
+// ---------- 构建 Adapter ----------
+static std::shared_ptr<ArkUINodeAdapter> MakeGridAdapter(const std::shared_ptr<std::vector<std::string>> &data)
+{
+    auto adapter = std::make_shared<ArkUINodeAdapter>();
+    adapter->EnsurePlaceholderTypeOr(static_cast<int32_t>(ARKUI_NODE_GRID_ITEM));
+
+    ArkUINodeAdapter::Callbacks cb{};
+    cb.getTotalCount = [data]() -> int32_t { return static_cast<int32_t>(data->size()); };
+    cb.getStableId = [data](int32_t i) -> uint64_t {
+        const int32_t n = static_cast<int32_t>(data->size());
+        if (i >= 0 && i < n) {
+            return static_cast<uint64_t>(std::hash<std::string>{}((*data)[static_cast<size_t>(i)]));
+        }
+        return static_cast<uint64_t>(i); // 越界兜底
+    };
+    cb.onCreate = [](ArkUI_NativeNodeAPI_1 *api, int32_t /*index*/) -> ArkUI_NodeHandle { return GridCreateItem(api); };
+    cb.onBind = [data](ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index) {
+        GridBindItem(api, item, index, data);
+    };
+
+    adapter->SetCallbacks(cb);
+    return adapter;
+}
+
+// ---------- 整体构建 GridNode ----------
+static std::shared_ptr<GridNode> BuildGrid()
+{
+    auto grid = std::make_shared<GridNode>();
+    ConfigureGrid(grid);
+
+    auto data = std::make_shared<std::vector<std::string>>(MakeServicesData());
+    auto adapter = MakeGridAdapter(data);
+    grid->SetLazyAdapter(adapter);
+
+    // keep alive（与原逻辑一致）
+    GetKeepAliveContainer<GridNode>().emplace_back(grid);
+    return grid;
+}
+
+/**
+ * NAPI入口函数
+ * @param env NAPI环境
+ * @param info 回调信息
+ * @return NAPI值
+ */
 napi_value ScrollableGridImpl::NAPI(napi_env env, napi_callback_info info)
 {
-    ArkUI_NodeContentHandle content = ScrollableNDK::GetContentFromArg(env, info);
-    if (!content) {
+    ArkUI_NodeContentHandle content = Utils::GetNodeContentFromNapi(env, info);
+    if (content == nullptr) {
         return nullptr;
     }
 
-    auto gridNode = std::make_shared<ScrollableNDK::ArkUIGridNode>();
-    gridNode->SetWidthPercent(1.0f);
-    gridNode->SetHeight(K_GRID_HEIGHT);
-    gridNode->SetRowsTemplate(K_ROWS_TEMPLATE);
-    gridNode->SetColumnsGap(K_COLUMNS_GAP);
-    gridNode->SetRowsGap(K_ROWS_GAP);
-
-    auto adapter = std::make_shared<ScrollableNDK::GridItemAdapter>();
-    adapter->SetData(MakeServicesData());
-    adapter->SetCallbacks(MakeGridCallbacks(adapter));
-    gridNode->SetLazyAdapter(adapter);
-
-    ScrollableNDK::AddNodeToContent(content, gridNode->Get());
-    ScrollableNDK::KeepAliveVec<ScrollableNDK::ArkUIGridNode>().emplace_back(gridNode);
+    auto gridNode = BuildGrid();
+    Utils::AddNodeToContent(content, gridNode->GetHandle());
     return nullptr;
 }
 

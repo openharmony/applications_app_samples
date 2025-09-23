@@ -27,21 +27,45 @@ entry/src/main
 |   |   CMakeLists.txt
 |   |   napi_init.cpp
 |   |   
-|   +---common
-|   |       NativeNodeUtils.h
+|   +---common                                   公共
+|   |       ArkUIConstants.h
+|   |       ArkUINode.h
+|   |       ArkUINodeAdapter.h
+|   |       ArkUIScrollEvent.h
+|   |       ArkUIUtils.h
 |   |       
 |   +---components
-|   |   +---grid                        // 网格
-|   |   |   |   GridItemAdapter.h
+|   |   +---grid                                  网格
 |   |   |   |   GridNode.h
 |   |   |   |   
 |   |   |   \---examples
 |   |   |           ScrollableGrid.cpp
 |   |   |           ScrollableGrid.h
 |   |   |           
-|   |   \---waterflow                   // 瀑布流
-|   |       |   FlowItemAdapter.h
-|   |       |   WaterFlow.h
+|   |   +---list                                   列表
+|   |   |   |   ListItemGroupNode.h
+|   |   |   |   ListItemSwipe.h
+|   |   |   |   ListNode.h
+|   |   |   |   
+|   |   |   \---examples
+|   |   |           AlphabetIndexedList.cpp
+|   |   |           AlphabetIndexedList.h
+|   |   |           
+|   |   +---refresh                                 刷新
+|   |   |   |   RefreshNode.h
+|   |   |   |   
+|   |   |   \---examples
+|   |   |           RefreshList.cpp
+|   |   |           RefreshList.h
+|   |   |           
+|   |   +---scroll                                  滚动
+|   |   |   |   ScrollNode.h
+|   |   |   |   
+|   |   |   \---examples
+|   |   |           ScrollableInfiniteScroll.cpp
+|   |   |           ScrollableInfiniteScroll.h
+|   |   |           
+|   |   \---waterflow                                瀑布流
 |   |       |   WaterFlowNode.h
 |   |       |   WaterFlowSection.h
 |   |       |   
@@ -73,10 +97,23 @@ entry/src/main
 |       |       Index.ets
 |       |       ScrollableGrid.ets
 |       |       
+|       +---list
+|       |       AlphabetIndexedList.ets
+|       |       Index.ets
+|       |       
+|       +---refresh
+|       |       Index.ets
+|       |       RefreshList.ets
+|       |       
+|       +---scroll
+|       |       Index.ets
+|       |       ScrollableInfiniteScroll.ets
+|       |       
 |       \---waterflow
 |               Index.ets
+|               WaterFlowDataSource.ets
 |               WaterFlowInfiniteScrollingEarly.ets
-|
+|               
 ```
 
 ### 相关权限
@@ -91,9 +128,9 @@ entry/src/main
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API19版本full-SDK，版本号：5.1.1.208，镜像版本号：OpenHarmony_5.1.1 Release。
+2.本示例为Stage模型，支持API20版本full-SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0 Release。
 
-3.本示例需要使用DevEco Studio 5.1.1 Release (Build Version: 5.1.1.830, built on August 4, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 beta5 (Build Version: 6.0.0.848, built on September 12, 2025)及以上版本才可编译运行。
 
 ### 下载
 
