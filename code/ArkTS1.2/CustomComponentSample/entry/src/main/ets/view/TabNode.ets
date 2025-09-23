@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -55,10 +56,20 @@ import hilog from '@ohos.hilog';
 const REUSE_VIEW_TYPE_SWIPER: string = 'reuse_type_swiper_';
 const REUSE_VIEW_TYPE_ITEM: string = 'reuse_type_';
 
+@Builder
+export function thisSwiperBuilder() {
+  swiperBuilder();
+}
+
+@Builder
+export function thisFlowItemBuilder() {
+  flowItemBuilder();
+}
+
 // 瀑布流子组件WrappedBuilder对象
-let flowItemWrapper: WrappedBuilder<CustomBuilder> = wrapBuilder<CustomBuilder>(flowItemBuilder);
+let flowItemWrapper: WrappedBuilder<CustomBuilder> = wrapBuilder<CustomBuilder>(thisFlowItemBuilder);
 // 瀑布流轮播图WrappedBuilder对象
-let swiperWrapper: WrappedBuilder<CustomBuilder> = wrapBuilder<CustomBuilder>(swiperBuilder);
+let swiperWrapper: WrappedBuilder<CustomBuilder> = wrapBuilder<CustomBuilder>(thisSwiperBuilder);
 
 // 自定义组件复用池页面
 @Component

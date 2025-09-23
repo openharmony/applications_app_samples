@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -87,10 +88,10 @@ const YEAR: string = '年';
 export struct ReusePage {
   @State contentData: MonthDataSource = new MonthDataSource(); // 列表数据
   nowDate: Date = new Date();
-  currentMonth: number = this.nowDate.getMonth() + 1; // 当前月份
-  currentDay: number = this.nowDate.getDate(); // 当前日
-  currentYear: number = this.nowDate.getFullYear(); // 当前年份
-  currentWeekDay: number = new Date(this.currentYear, this.currentMonth - 1, this.currentDay).getDay(); // 当前周几
+  currentMonth: int = this.nowDate.getMonth().toInt() + 1; // 当前月份
+  currentDay: int = this.nowDate.getDate().toInt(); // 当前日
+  currentYear: int = this.nowDate.getFullYear().toInt(); // 当前年份
+  currentWeekDay: int = new Date(this.currentYear, this.currentMonth - 1, this.currentDay).getDay().toInt(); // 当前周几
   private scroller: Scroller = new Scroller(); // 二级列表Scroller对象
 
   // 初始化日历中一年的数据
@@ -98,7 +99,7 @@ export struct ReusePage {
     for (let k = this.currentYear; k < 2035; ++k) {
       for (let i = 1; i <= 12; i++) {
         // 获取每个月的日数据
-        const monthDays: number[] = getMonthDate(i, k);
+        const monthDays: int[] = getMonthDate(i, k);
         const month: Month = {
           month: i + MONTH,
           num: i,
@@ -155,9 +156,9 @@ struct ItemView {
     days: [],
     year: 0
   } as Month;
-  private currentMonth: number = 0;
-  private currentYear: number = 0; // 当前年份
-  private currentDay: number = 0;
+  private currentMonth: int = 0;
+  private currentYear: int = 0; // 当前年份
+  private currentDay: int = 0;
 
   // 组件被复用时调用的生命周期方法
   aboutToReuse(params: Record<string, Month>) {
@@ -190,7 +191,7 @@ struct ItemView {
           .layoutWeight(1)
       }, (weekday: string) => weekday)
       // 日期信息
-      ForEach(this.monthItem.days, (day: number, index: number) => {
+      ForEach(this.monthItem.days, (day: int, index: number) => {
         Text() {
           Span(JSON.stringify(day))
             .fontSize(20)
@@ -205,7 +206,7 @@ struct ItemView {
           this.monthItem.year === this.currentYear ?
         $r('app.color.ohos_id_color_palette9') : Color.Transparent)
         .layoutWeight(1)
-      }, (day: number, index: number) => index.toString())
+      }, (day: int, index: number) => index.toString())
     }
     .alignSelf(ItemAlign.Start)
     .backgroundColor(Color.Transparent)

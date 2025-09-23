@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -40,9 +41,10 @@ import {
   RenderingContextSettings,
   CanvasRenderingContext2D,
   Canvas,
-  Color
+  Color,
+  ClickEvent
 } from '@ohos.arkui.component';
-import { State, Link, Watch, Prop } from '@ohos.arkui.stateManagement';
+import { State, Link, Watch, PropRef } from '@ohos.arkui.stateManagement';
 import { AnimatorResult, SimpleAnimatorOptions } from '@ohos.animator'
 import inspector from '@ohos.arkui.inspector';
 import hilog from '@ohos.hilog';
@@ -59,7 +61,7 @@ export struct TabsConcaveCircle {
   // 选项数据集合
   @Link tabsMenu: TabMenusInterfaceIRequired[];
   // Tabs 高度
-  @Prop tabHeight: number = 60;
+  @PropRef tabHeight: number = 60;
   // 图片宽高
   @State imageWH: number = 0;
   // 动画执行时长
@@ -67,11 +69,11 @@ export struct TabsConcaveCircle {
   // 图片选中偏移量
   @State imageOffsetY: number = 21;
   // 背景色
-  @Prop tabsBgColor: string = 'rgb(255, 255, 255)';
+  @PropRef tabsBgColor: string = 'rgb(255, 255, 255)';
   // 当前凹槽位置
   @State animationPositionX: number = 0;
   // 选中球填充色
-  @Prop tabsSelectBgColor: Color | number | string | Resource = 'rgba(92, 187, 183,1)';
+  @PropRef tabsSelectBgColor: Color | number | string | Resource = 'rgba(92, 187, 183,1)';
   // 凹陷出凸起的悬浮球信息
   @State circleInfo: ConcaveCircle | undefined = undefined;
   // 获取第一份
@@ -195,7 +197,7 @@ export struct TabsConcaveCircle {
               .textAlign(TextAlign.Center)
               .width('100%')
           }
-          .onClick(() => {
+          .onClick((e: ClickEvent) => {
             this.getUIContext()?.animateTo({
               duration: this.animateTime
             }, () => {

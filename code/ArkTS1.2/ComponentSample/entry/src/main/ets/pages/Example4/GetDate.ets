@@ -42,7 +42,6 @@ import {
 import {
   State,
   Link,
-  StateDecoratedVariable,
   MutableState,
   stateOf,
   observableProxy

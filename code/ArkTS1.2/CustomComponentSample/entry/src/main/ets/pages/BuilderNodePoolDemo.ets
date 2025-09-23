@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -93,8 +94,8 @@ export struct BuilderNodePoolDemoComponent {
             }
             this.swiperController.changeIndex(index, true);
             // 设置标题为选中状态
-            this.arrayTitle[index].isSelected = true;
-            this.arrayTitle[this.selectIndex].isSelected = false;
+            this.arrayTitle[index.toInt()].isSelected = true;
+            this.arrayTitle[this.selectIndex.toInt()].isSelected = false;
             this.selectIndex = index;
             this.arrayTitle = [...this.arrayTitle];
           })

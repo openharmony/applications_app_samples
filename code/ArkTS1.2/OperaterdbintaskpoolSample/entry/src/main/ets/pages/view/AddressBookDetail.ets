@@ -30,7 +30,7 @@ import { Entry, Text, TextAttribute, Column, Component, Button, ClickEvent, Row,
   Stack, Radio, Slider, $r, Builder, Blank, Color, ImageFit,
   TextInput, InputType, Placement, ItemAlign, Divider, Margin, Padding, FontWeight
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy, Prop, Watch } from '@ohos.arkui.stateManagement';
+import { State, MutableState, stateOf, observableProxy,  Watch } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';

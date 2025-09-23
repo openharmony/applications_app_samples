@@ -1,3 +1,4 @@
+'use static';
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -48,12 +49,12 @@ import { Comment } from '../model/CommentModel';
 import common from '@ohos.app.ability.common';
 import { PromptAction, UIContext } from '@ohos.arkui.UIContext';
 import { Constants } from '../constants/Constants';
-import { BusinessError } from '@ohos.base';
+import { BusinessError, RecordData } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import image from '@ohos.multimedia.image';
 
 @Component
-export struct Navigation {
+export struct CommentInputAndCameraCapture {
   @Link items: Array<Comment>;
   @State commentContent: string = ''
   @State imagePath: string = '';
@@ -79,7 +80,7 @@ export struct Navigation {
           // 设置启动参数
           'supportMultiMode': false, // 禁用多选模式（单张图片）
           'callBundleName': context.abilityInfo.bundleName // 传递调用方包名
-        } as Record<String, Object>
+        } as Record<String, RecordData>
       };
       // 启动Ability并等待结果（异步操作）
       context.startAbilityForResult(
@@ -94,7 +95,7 @@ export struct Navigation {
           }
           if (result && result.resultCode === 0) {
             // 从结果中获取参数对象
-            const param: Record<string, Object> | undefined = result.want?.parameters as Record<string, Object>;
+            const param: Record<string, RecordData> | undefined = result.want?.parameters as Record<string, RecordData>;
             // 确保参数存在
             if (param !== undefined) {
               // 获取相机返回的图片URI（类型断言为字符串）

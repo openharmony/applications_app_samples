@@ -23,38 +23,32 @@
  *
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
+import {IDataSource,DataChangeListener,Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Image, Row} from '@ohos.arkui.component';
+import { State, MutableState, stateOf, observableProxy, Provide} from '@ohos.arkui.stateManagement';
+const CONTENT_PER_TAG = 10; // 每个TAG对应多少个元素
+/**
+ * 代表自定义类型数据的接口。
+ *
+ * @interface
+ * @property {string} desc - 描述。
+ * @property {string} tag - 类别。
+ */
+export interface CustomDataType {
+  desc: string,
+  tag: string,
+}
 
-import {
-  memo,
-  __memo_context_type,
-  __memo_id_type
-} from '@ohos.arkui.stateManagement';
-import {
-  Text,
-  TextAttribute,
-  Column,
-  Component,
-  Button,
-  ButtonAttribute,
-  ClickEvent,
-  Entry,
-  IDataSource,
-  DataChangeListener
-} from '@ohos.arkui.component';
-import {
-  State,
-  Link,
-  StateDecoratedVariable,
-  MutableState,
-  stateOf,
-  observableProxy
-} from '@ohos.arkui.stateManagement';
-
-export interface Month {
-  month: string; // 具体年月
-  num: number; // 月份
-  days: number[]; // 该月日期
-  year: number; // 年份
+/**
+ * 一级列表可视区域的起始索引和终点索引。
+ *
+ * @interface
+ * @property {number} start - 可视区域起点索引。
+ * @property {number} end - 可视区域终点索引。
+ */
+export interface ListIndexPosition {
+  start: number,
+  end: number
 }
 
 /**
@@ -63,16 +57,16 @@ export interface Month {
  * @class
  * @implements {IDataSource}
  */
-export class MonthDataSource implements IDataSource<Month> {
-  private listeners: DataChangeListener[] = [];
-  public dataArray: Month[] = new Array<Month>();
+class BasicDataSource implements IDataSource<CustomDataType> {
+  private listeners: DataChangeListener[] = Array<DataChangeListener>();
+  private originDataArray: CustomDataType[] =  Array<CustomDataType>();
 
   /**
    * 获取数组长度。
    * @returns {number} 返回数组长度。
    */
-  public totalCount(): number {
-    return this.dataArray.length;
+  public totalCount(): double {
+    return 0;
   }
 
   /**
@@ -80,12 +74,8 @@ export class MonthDataSource implements IDataSource<Month> {
    * @param {number} index - 索引值。
    * @returns {CustomDataType} 返回指定索引数据。
    */
-  public getData(index: number): Month {
-    return this.dataArray[index];
-  }
-
-  public setData(index: number, data: Month[]) {
-
+  public getData(index: double): CustomDataType {
+    return this.originDataArray[index.toInt()];
   }
 
   /**
@@ -94,6 +84,7 @@ export class MonthDataSource implements IDataSource<Month> {
    */
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
       this.listeners.push(listener);
     }
   }
@@ -105,21 +96,16 @@ export class MonthDataSource implements IDataSource<Month> {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
+      console.info('remove listener');
       this.listeners.splice(pos, 1);
     }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
   }
 
   /**
    * 通知LazyForEach组件需要在index对应索引处添加子组件。
    * @param {number} index - 索引值。
    */
-  notifyDataAdd(index: number): void {
+  notifyDataAdd(index: double): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     })
@@ -129,7 +115,7 @@ export class MonthDataSource implements IDataSource<Month> {
    * 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件。
    * @param {number} index - 索引值。
    */
-  notifyDataChange(index: number): void {
+  notifyDataChange(index: double): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
     })
@@ -139,7 +125,7 @@ export class MonthDataSource implements IDataSource<Month> {
    * 通知LazyForEach组件需要在index对应索引处删除该子组件
    * @param {number} index - 索引值。
    */
-  notifyDataDelete(index: number): void {
+  notifyDataDelete(index: double): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
     })
@@ -150,10 +136,37 @@ export class MonthDataSource implements IDataSource<Month> {
    * @param {number} from - 起始值。
    * @param {number} to - 终点值。
    */
-  notifyDataMove(from: number, to: number): void {
+  notifyDataMove(from: double, to: double): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
     })
+  }
+}
+
+/**
+ * 继承自BasicDataSource的子类，重写了方法。
+ *
+ * @class
+ * @extends {BasicDataSource}
+ */
+export class MyDataSource extends BasicDataSource {
+  public dataArray: CustomDataType[] =  Array<CustomDataType>();
+
+  /**
+   * 获取数组长度。
+   * @returns {number} 返回数组长度。
+   */
+  public totalCount(): double {
+    return this.dataArray.length;
+  }
+
+  /**
+   * 获取指定索引数据。
+   * @param {number} index - 索引值。
+   * @returns {CustomDataType} 返回指定索引数据。
+   */
+  public getData(index: double): CustomDataType {
+    return this.dataArray[index.toInt()];
   }
 
   /**
@@ -161,7 +174,7 @@ export class MonthDataSource implements IDataSource<Month> {
    * @param {number} index - 索引值。
    * @param {CustomDataType} data - 修改后的值。
    */
-  public addData(index: number, data: Month): void {
+  public addData(index: double, data: CustomDataType): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
@@ -170,8 +183,24 @@ export class MonthDataSource implements IDataSource<Month> {
    * 添加数据。
    * @param {CustomDataType} data - 需要添加的数据。
    */
-  public pushData(data: Month): void {
-    this.dataArray.push(data);
+  public pushData(data: CustomDataType[]): void {
+    if (Array.isArray(data)) {
+      for (let i = 0; i < CONTENT_PER_TAG; ++i) {
+        this.dataArray.push(data[i]);
+      }
+    }
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
+
+// 常量数据
+export enum ComponentStyle {
+  ITEM_GUTTER = 12,
+  TAG_TEXT_HEIGHT= 75,
+  SUB_ITEM_GUTTER= 7,
+  SUB_ITEM_HEIGHT= 96,
+  SUB_ITEM_TEXT_WIDTH_TITLE= 56,
+  SUB_ITEM_TEXT_HEIGHT= 12,
+  SUB_ITEM_TEXT_WIDTH_BODY= 120,
+  BOTTOM_TOAST_TEXT_MAX_HEIGHT= 200
+};

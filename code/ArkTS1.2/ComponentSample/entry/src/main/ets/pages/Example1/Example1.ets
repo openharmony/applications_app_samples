@@ -43,14 +43,13 @@ import {
 import {
   State,
   Link,
-  StateDecoratedVariable,
   MutableState,
   stateOf,
   observableProxy
 } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog'
 import { Context,UIContext} from '@ohos.arkui.UIContext'
-import { SecondaryLinkExample } from './SecondaryLinkExample';
+import { SecondaryLinkExample } from './SecondaryLinkExample1';
 
 @Entry
 @Component
