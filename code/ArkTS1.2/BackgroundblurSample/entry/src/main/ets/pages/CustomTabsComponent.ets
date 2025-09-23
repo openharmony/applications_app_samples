@@ -57,7 +57,7 @@ import {
   Text,
   ThemeColorMode
 } from '@ohos.arkui.component'
-import { Consume, Link, ObjectLink, Prop, Provide, State, StorageLink } from '@ohos.arkui.stateManagement'
+import { Consume, Link, ObjectLink, PropRef, Provide, State, StorageLink } from '@ohos.arkui.stateManagement'
 import { UIContext } from '@ohos.arkui.UIContext';
 
 /**
