@@ -1122,6 +1122,7 @@ void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
     // [End ndk_graphics_draw_image_to_canvas]
     OH_PixelmapNative_Release(pixelMapNative);
     delete[] pixels;
+    // [End ndk_graphics_draw_image]
 }
 
 void SampleGraphics::DrawBaseText(OH_Drawing_Canvas *canvas)
