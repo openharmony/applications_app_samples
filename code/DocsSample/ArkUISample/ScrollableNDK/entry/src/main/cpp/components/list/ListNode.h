@@ -45,13 +45,29 @@ public:
     // 组件事件数据数组索引常量
     static constexpr int32_t K_SCROLL_INDEX_FIRST_DATA_INDEX = 0;
     static constexpr int32_t K_SCROLL_INDEX_LAST_DATA_INDEX = 3;
+
     static constexpr int32_t K_VISIBLE_CHANGE_FIRST_CHILD_DATA_INDEX = 0;
     static constexpr int32_t K_VISIBLE_CHANGE_START_AREA_DATA_INDEX = 1;
     static constexpr int32_t K_VISIBLE_CHANGE_START_INDEX_DATA_INDEX = 2;
     static constexpr int32_t K_VISIBLE_CHANGE_LAST_CHILD_DATA_INDEX = 3;
     static constexpr int32_t K_VISIBLE_CHANGE_END_AREA_DATA_INDEX = 4;
     static constexpr int32_t K_VISIBLE_CHANGE_END_INDEX_DATA_INDEX = 5;
+
     static constexpr int32_t K_SCROLL_FRAME_BEGIN_DATA_INDEX = 0;
+
+    // —— 可视内容变化事件数据 —— //
+    struct VisibleContentChange {
+        int32_t firstChildIndex = -1; // 可视区域首个“子组件”（item/header/footer）索引
+        ArkUI_ListItemGroupArea startArea = ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE; // 起点区
+        int32_t startItemIndex = -1;                                            // 若起点不是 item，则为 -1
+
+        int32_t lastChildIndex = -1; // 可视区域最后一个“子组件”索引
+        ArkUI_ListItemGroupArea endArea = ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE; // 终点区
+        int32_t endItemIndex = -1;                                            // 若终点不是 item，则为 -1
+
+        bool StartOnItem() const { return startArea == ARKUI_LIST_ITEM_SWIPE_AREA_ITEM && startItemIndex >= 0; }
+        bool EndOnItem() const { return endArea == ARKUI_LIST_ITEM_SWIPE_AREA_ITEM && endItemIndex >= 0; }
+    };
 
 public:
     ListNode()
@@ -104,7 +120,6 @@ public:
     void SetItemSpacing(float spacing) { Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_LIST_SPACE, spacing); }
 
     void SetScrollBarState(bool visible) { SetScrollBarVisible(visible); }
-
     void SetSpace(float spacing) { SetItemSpacing(spacing); }
 
     void SetNestedScrollMode(int32_t mode)
@@ -117,7 +132,18 @@ public:
     // ========================================
     void ScrollToIndex(int32_t index)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_LIST_SCROLL_TO_INDEX, index);
+        ScrollToIndex(index, false, ARKUI_SCROLL_ALIGNMENT_START);
+    }
+    
+    void ScrollToIndex(int32_t index, bool smooth, ArkUI_ScrollAlignment align)
+    {
+        ArkUI_NumberValue v[3];
+        v[0].i32 = index;                          // value[0]
+        v[1].i32 = smooth ? 1 : 0;                 // value[1] (optional)
+        v[2].i32 = static_cast<int32_t>(align);    // value[2] (optional)
+    
+        ArkUI_AttributeItem it{v, 3};
+        nodeApi_->setAttribute(GetHandle(), NODE_LIST_SCROLL_TO_INDEX, &it);
     }
 
     void ScrollToIndexInGroup(int32_t groupIndex, int32_t itemIndex)
@@ -144,18 +170,18 @@ public:
     }
 
     // —— 扩展属性 —— //
-    void SetDirection(int axis /*ArkUI_Axis*/)
+    void SetDirection(ArkUI_Axis axis)
     {
         ArkUI_NumberValue v0{};
-        v0.i32 = axis;
+        v0.i32 = static_cast<int32_t>(axis);
         ArkUI_AttributeItem it{&v0, 1};
         nodeApi_->setAttribute(GetHandle(), NODE_LIST_DIRECTION, &it);
     }
 
-    void SetSticky(int sticky /*ArkUI_StickyStyle*/)
+    void SetSticky(ArkUI_StickyStyle sticky)
     {
         ArkUI_NumberValue v0{};
-        v0.i32 = sticky;
+        v0.i32 = static_cast<int32_t>(sticky);
         ArkUI_AttributeItem it{&v0, 1};
         nodeApi_->setAttribute(GetHandle(), NODE_LIST_STICKY, &it);
     }
@@ -184,10 +210,10 @@ public:
         nodeApi_->setAttribute(GetHandle(), NODE_LIST_DIVIDER, &it);
     }
 
-    void SetAlignListItem(int align /*ArkUI_ListItemAlignment*/)
+    void SetAlignListItem(ArkUI_ListItemAlignment align)
     {
         ArkUI_NumberValue v0{};
-        v0.i32 = align;
+        v0.i32 = static_cast<int32_t>(align);
         ArkUI_AttributeItem it{&v0, 1};
         nodeApi_->setAttribute(GetHandle(), NODE_LIST_ALIGN_LIST_ITEM, &it);
     }
@@ -272,8 +298,8 @@ public:
         }
     }
 
-    void RegisterOnVisibleContentChange(
-        const std::function<void(int32_t, int32_t, int32_t, int32_t, int32_t, int32_t)> &callback)
+    // 可视区域变化
+    void RegisterOnVisibleContentChange(const std::function<void(const VisibleContentChange &)> &callback)
     {
         onVisibleChangeCallback_ = callback;
         if (!isVisibleChangeEventRegistered_) {
@@ -354,55 +380,135 @@ private:
             childrenMainSizeOption_ = nullptr;
         }
     }
-    void HandleSpecificListEvent(int32_t eventType, ArkUI_NodeComponentEvent *componentEvent)
+    
+    void OnScrollIndexEvt(const ArkUI_NodeComponentEvent* ev)
+    {
+        if (!onScrollIndexCallback_) { return; }
+        const int32_t firstIndex = ev->data[K_SCROLL_INDEX_FIRST_DATA_INDEX].i32;
+        const int32_t lastIndex  = ev->data[K_SCROLL_INDEX_LAST_DATA_INDEX].i32;
+        onScrollIndexCallback_(firstIndex, lastIndex);
+    }
+    
+    void OnVisibleChangeEvt(const ArkUI_NodeComponentEvent* ev)
+    {
+        if (!onVisibleChangeCallback_) { return; }
+        VisibleContentChange v{};
+        v.firstChildIndex = ev->data[K_VISIBLE_CHANGE_FIRST_CHILD_DATA_INDEX].i32;
+        v.startArea       = static_cast<ArkUI_ListItemGroupArea>(ev->data[K_VISIBLE_CHANGE_START_AREA_DATA_INDEX].i32);
+        v.startItemIndex  = ev->data[K_VISIBLE_CHANGE_START_INDEX_DATA_INDEX].i32;
+        v.lastChildIndex  = ev->data[K_VISIBLE_CHANGE_LAST_CHILD_DATA_INDEX].i32;
+        v.endArea         = static_cast<ArkUI_ListItemGroupArea>(ev->data[K_VISIBLE_CHANGE_END_AREA_DATA_INDEX].i32);
+        v.endItemIndex    = ev->data[K_VISIBLE_CHANGE_END_INDEX_DATA_INDEX].i32;
+        onVisibleChangeCallback_(v);
+    }
+    
+    void OnReachEndEvt()
+    {
+        if (onReachEndCallback_) { onReachEndCallback_(); }
+    }
+    
+    void OnScrollFrameBeginEvt(const ArkUI_NodeComponentEvent* ev)
+    {
+        if (onScrollFrameBeginCallback_) {
+            onScrollFrameBeginCallback_(ev->data[K_SCROLL_FRAME_BEGIN_DATA_INDEX].f32);
+        }
+    }
+    
+    void OnWillScrollEvt()
+    {
+        if (onWillScrollCallback_) { onWillScrollCallback_(); }
+    }
+    
+    void OnDidScrollEvt()
+    {
+        if (onDidScrollCallback_) { onDidScrollCallback_(); }
+    }
+
+    void HandleSpecificListEvent(int32_t eventType, ArkUI_NodeComponentEvent* ev)
     {
         switch (eventType) {
-            case NODE_LIST_ON_SCROLL_INDEX: {
-                int32_t firstIndex = componentEvent->data[K_SCROLL_INDEX_FIRST_DATA_INDEX].i32;
-                int32_t lastIndex = componentEvent->data[K_SCROLL_INDEX_LAST_DATA_INDEX].i32;
-                if (onScrollIndexCallback_) {
-                    onScrollIndexCallback_(firstIndex, lastIndex);
-                }
+            case NODE_LIST_ON_SCROLL_INDEX:
+                OnScrollIndexEvt(ev);
                 break;
-            }
-            case NODE_LIST_ON_SCROLL_VISIBLE_CONTENT_CHANGE: {
-                if (onVisibleChangeCallback_) {
-                    onVisibleChangeCallback_(componentEvent->data[K_VISIBLE_CHANGE_FIRST_CHILD_DATA_INDEX].i32,
-                                             componentEvent->data[K_VISIBLE_CHANGE_START_AREA_DATA_INDEX].i32,
-                                             componentEvent->data[K_VISIBLE_CHANGE_START_INDEX_DATA_INDEX].i32,
-                                             componentEvent->data[K_VISIBLE_CHANGE_LAST_CHILD_DATA_INDEX].i32,
-                                             componentEvent->data[K_VISIBLE_CHANGE_END_AREA_DATA_INDEX].i32,
-                                             componentEvent->data[K_VISIBLE_CHANGE_END_INDEX_DATA_INDEX].i32);
-                }
+            case NODE_LIST_ON_SCROLL_VISIBLE_CONTENT_CHANGE:
+                OnVisibleChangeEvt(ev);
                 break;
-            }
-            case NODE_SCROLL_EVENT_ON_REACH_END: {
-                if (onReachEndCallback_) {
-                    onReachEndCallback_();
-                }
+            case NODE_SCROLL_EVENT_ON_REACH_END:
+                OnReachEndEvt();
                 break;
-            }
-            case NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN: {
-                if (onScrollFrameBeginCallback_) {
-                    onScrollFrameBeginCallback_(componentEvent->data[K_SCROLL_FRAME_BEGIN_DATA_INDEX].f32);
-                }
+            case NODE_SCROLL_EVENT_ON_SCROLL_FRAME_BEGIN:
+                OnScrollFrameBeginEvt(ev);
                 break;
-            }
-            case NODE_LIST_ON_WILL_SCROLL: {
-                if (onWillScrollCallback_) {
-                    onWillScrollCallback_();
-                }
+            case NODE_LIST_ON_WILL_SCROLL:
+                OnWillScrollEvt();
                 break;
-            }
-            case NODE_LIST_ON_DID_SCROLL: {
-                if (onDidScrollCallback_) {
-                    onDidScrollCallback_();
-                }
+            case NODE_LIST_ON_DID_SCROLL:
+                OnDidScrollEvt();
                 break;
-            }
             default:
                 break;
         }
+    }
+
+    ArkUI_ListChildrenMainSize *EnsureChildrenMainSizeOption()
+    {
+        if (!childrenMainSizeOption_) {
+            auto *opt = OH_ArkUI_ListChildrenMainSizeOption_Create();
+            SetChildrenMainSizeOption(opt);
+        }
+        return childrenMainSizeOption_;
+    }
+
+    void ChildrenMainSizeSetDefault(float mainSize)
+    {
+        auto *opt = EnsureChildrenMainSizeOption();
+        if (!opt) {
+            return;
+        }
+        OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize(opt, mainSize);
+    }
+
+    float ChildrenMainSizeGetDefault() const
+    {
+        if (!childrenMainSizeOption_) {
+            return 0.0f;
+        }
+        return OH_ArkUI_ListChildrenMainSizeOption_GetDefaultMainSize(childrenMainSizeOption_);
+    }
+
+    void ChildrenMainSizeResize(int32_t size)
+    {
+        auto *opt = EnsureChildrenMainSizeOption();
+        if (!opt) {
+            return;
+        }
+        OH_ArkUI_ListChildrenMainSizeOption_Resize(opt, size);
+    }
+
+    void ChildrenMainSizeSplice(int32_t index, int32_t deleteCount, int32_t addCount)
+    {
+        auto *opt = EnsureChildrenMainSizeOption();
+        if (!opt) {
+            return;
+        }
+        OH_ArkUI_ListChildrenMainSizeOption_Splice(opt, index, deleteCount, addCount);
+    }
+
+    void ChildrenMainSizeUpdate(int32_t index, float mainSize)
+    {
+        auto *opt = EnsureChildrenMainSizeOption();
+        if (!opt) {
+            return;
+        }
+        OH_ArkUI_ListChildrenMainSizeOption_UpdateSize(opt, index, mainSize);
+    }
+
+    float ChildrenMainSizeGet(int32_t index) const
+    {
+        if (!childrenMainSizeOption_) {
+            return 0.0f;
+        }
+        return OH_ArkUI_ListChildrenMainSizeOption_GetMainSize(childrenMainSizeOption_, index);
     }
 
 private:
@@ -412,7 +518,7 @@ private:
 
     // 事件回调函数
     std::function<void(int32_t, int32_t)> onScrollIndexCallback_;
-    std::function<void(int32_t, int32_t, int32_t, int32_t, int32_t, int32_t)> onVisibleChangeCallback_;
+    std::function<void(const VisibleContentChange &)> onVisibleChangeCallback_;
     std::function<void()> onReachEndCallback_;
     std::function<void(float)> onScrollFrameBeginCallback_;
     std::function<void()> onWillScrollCallback_;

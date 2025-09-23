@@ -231,12 +231,12 @@ static ArkUI_NodeHandle CreateListItem(ArkUI_NativeNodeAPI_1 *api)
  * @param item 列表项节点句柄
  * @param txt 文本内容
  */
-static int BindAsNormal(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, const char *txt)
+static void BindAsNormal(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, const char *txt)
 {
     ArkUI_NodeHandle text = api->getFirstChild(item);
     if (!text) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG, "BindAsNormal getFirstChild null");
-        return 0;
+        return;
     }
 
     // 背景放在 item 上
@@ -250,7 +250,6 @@ static int BindAsNormal(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, const
     Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, K_ROW_HEIGHT);
     Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_ROW_HEIGHT);
     Utils::SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
-    return 0;
 }
 
 /**
@@ -258,12 +257,12 @@ static int BindAsNormal(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, const
  * @param api 原生节点API接口
  * @param item 列表项节点句柄
  */
-static int BindAsFooter(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item)
+static void BindAsFooter(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item)
 {
     ArkUI_NodeHandle text = api->getFirstChild(item);
     if (!text) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG, "BindAsFooter getFirstChild null");
-        return 0;
+        return;
     }
 
     Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
@@ -274,8 +273,6 @@ static int BindAsFooter(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item)
     Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, K_FOOTER_HEIGHT);
     Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_FOOTER_HEIGHT);
     Utils::SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
-
-    return 0;
 }
 
 /**
@@ -316,26 +313,14 @@ static NodeAdapterCallbacks MakeCallbacks(const std::shared_ptr<RefreshListState
 
         const int items = st->ItemsCount();
         if (st->showLoadingFooter && index == items) {
-            const int rc = BindAsFooter(api, item);
-            if (rc != 0) {
-                OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG,
-                             "BindAsFooter failed rc=%{public}d idx=%{public}d", rc, index);
-            }
+            BindAsFooter(api, item);
             return;
         }
         if (index >= 0 && index < items) {
-            const int rc = BindAsNormal(api, item, st->data[static_cast<size_t>(index)].c_str());
-            if (rc != 0) {
-                OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG,
-                             "BindAsNormal failed rc=%{public}d idx=%{public}d", rc, index);
-            }
+            BindAsNormal(api, item, st->data[static_cast<size_t>(index)].c_str());
             return;
         }
-        const int rc = BindAsNormal(api, item, "<invalid>");
-        if (rc != 0) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG,
-                         "BindAsNormal failed rc=%{public}d idx=%{public}d", rc, index);
-        }
+        BindAsNormal(api, item, "<invalid>");
     };
 
     return cb;
@@ -478,12 +463,13 @@ static void OnVisibleChangeCore(const std::shared_ptr<RefreshListState> &st,
     st->loading = false;
 }
 
-inline void WireVisibleChange(const std::shared_ptr<RefreshListState> &st,
-                              const std::shared_ptr<ListNode> &list)
+inline void WireVisibleChange(const std::shared_ptr<RefreshListState> &st, const std::shared_ptr<ListNode> &list)
 {
-    list->RegisterOnVisibleContentChange([st, list](int32_t, int32_t, int32_t, int32_t, int32_t, int32_t endIdx) {
-        OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG,
-                     "OnVisibleContentChange endIdxInGroup=%{public}d", endIdx);
+    using V = ScrollableNDK::ListNode::VisibleContentChange;
+    list->RegisterOnVisibleContentChange([st, list](const V &ev) {
+        const int32_t endIdx = ev.EndOnItem() ? ev.endItemIndex : -1;
+        OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "OnVisibleContentChange endIdxInGroup=%{public}d",
+                     endIdx);
         OnVisibleChangeCore(st, list, endIdx);
     });
 }

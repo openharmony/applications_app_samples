@@ -260,7 +260,7 @@ static void SetupNodeAndAdapter()
     gNode->SetGaps(K_COLUMN_GAP, K_ROW_GAP);
     gNode->SetCachedCount(K_CACHED_ITEM_COUNT);
     gNode->SetItemConstraintSize(K_ITEM_MAIN_MIN, K_ITEM_MAIN_MAX);
-    gNode->SetLayoutMode(K_LAYOUT_MODE_WATER_FLOW);
+    gNode->SetLayoutMode(ARKUI_WATER_FLOW_LAYOUT_MODE_SLIDING_WINDOW);
     gNode->SetSyncLoad(K_SYNC_LOAD);
 
     SetupSection();
