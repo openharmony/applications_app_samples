@@ -29,6 +29,8 @@ struct MenuIndex {
       { title: 'text', url: 'pages/page_text' },
       { title: 'accessibility', url: 'pages/page_accessibility' },
       { title: 'embedded component', url: 'pages/page_embedded_component' },
+      { title: 'Animation', url: 'pages/page_animation' },
+      { title: 'Visual Effects', url: 'pages/page_visual_effects' },
     ];
 
   build() {

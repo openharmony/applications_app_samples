@@ -17,6 +17,47 @@
 #include "manager.h"
 
 EXTERN_C_START
+napi_property_descriptor desc[] = {
+    {"createNativeNaviNode", nullptr, Manager::CreateNativeNaviNode, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
+    {"createNativeAccessibilityNode", nullptr, Manager::CreateNativeAccessibilityNode, nullptr, nullptr, nullptr,
+        napi_default, nullptr},
+    {"createNativeEmbeddedComponentNode", nullptr, Manager::CreateNativeEmbeddedComponentNode, nullptr, nullptr,
+        nullptr, napi_default, nullptr},
+    // 参考Navigation新增其他createNative方法和Context类
+    {"createAnimationCenter", nullptr, createAnimationCenter,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createAnimationOpacity", nullptr, createAnimationOpacity,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createAnimationTranslate", nullptr, createAnimationTranslate,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createAnimationFit", nullptr, createAnimationFit,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createAnimationGeometry", nullptr, createAnimationGeometry,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsScale", nullptr, createVisualEffectsScale,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsBlur", nullptr, createVisualEffectsBlur,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsShape", nullptr, createVisualEffectsShape,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsShadow", nullptr, createVisualEffectsShadow,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsSepia", nullptr, createVisualEffectsSepia,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsMask", nullptr, createVisualEffectsMask,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsCont", nullptr, createVisualEffectsCont,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsAngle", nullptr, createVisualEffectsAngle,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsStyle", nullptr, createVisualEffectsStyle,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createVisualEffectsGroup", nullptr, createVisualEffectsGroup,
+        nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"destroyNativeRoot", nullptr, DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr},
+};
+
 static napi_value Init(napi_env env, napi_value exports)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "Init begins");
@@ -24,16 +65,6 @@ static napi_value Init(napi_env env, napi_value exports)
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "env or exports is null");
         return nullptr;
     }
-    
-    napi_property_descriptor desc[] = {
-        {"createNativeNaviNode", nullptr, Manager::CreateNativeNaviNode, nullptr, nullptr, nullptr, napi_default,
-         nullptr},
-        {"createNativeAccessibilityNode", nullptr, Manager::CreateNativeAccessibilityNode, nullptr, nullptr, nullptr,
-            napi_default, nullptr},
-        {"createNativeEmbeddedComponentNode", nullptr, Manager::CreateNativeEmbeddedComponentNode, nullptr, nullptr,
-            nullptr, napi_default, nullptr},
-        // 参考Navigation新增其他createNative方法和Context类
-    };
     
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");

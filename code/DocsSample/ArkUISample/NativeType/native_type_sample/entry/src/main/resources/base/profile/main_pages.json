@@ -4,6 +4,16 @@
     "pages/page_swiper",
     "pages/page_text",
     "pages/page_accessibility",
-    "pages/page_embedded_component"
+    "pages/page_embedded_component",
+    "pages/page_animation",
+    "pages/animation/AnimationIndexEdge",
+    "pages/animation/AnimationIndexFit",
+    "pages/animation/AnimationIndexCurve",
+    "pages/animation/AnimationIndexMode",
+    "pages/animation/AnimationIndexOption",
+    "pages/page_visual_effects",
+    "pages/visualEffects/VisualEffectsIndexScale",
+    "pages/visualEffects/VisualEffectsIndexBlur",
+    "pages/visualEffects/VisualEffectsIndexShape"
   ]
 }

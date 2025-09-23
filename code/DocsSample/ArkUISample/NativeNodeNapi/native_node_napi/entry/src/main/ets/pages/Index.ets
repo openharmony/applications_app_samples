@@ -29,6 +29,8 @@ struct MenuIndex {
       { title: 'add your router', url: 'pages/page_navigation' },
       { title: 'accessibility', url: 'pages/page_accessibility' },
       { title: 'embedded component', url: 'pages/page_embedded_component' },
+      { title: 'Animation', url: 'pages/page_animation' },
+      { title: 'Visual Effects', url: 'pages/page_visual_effects' },
     ];
 
   build() {
