@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.example.native_type_sample",
+    "bundleName": "com.example.native_node_sample",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

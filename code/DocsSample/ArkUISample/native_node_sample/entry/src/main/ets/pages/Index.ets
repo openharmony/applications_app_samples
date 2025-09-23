@@ -26,6 +26,7 @@ struct MenuIndex {
   private items: ListCategories[] =
     [
       { title: 'Text', url: 'pages/page_text' },
+      { title: 'Swiper', url: 'pages/page_swiper' },
       { title: 'add your router', url: '' },
     ];
 
