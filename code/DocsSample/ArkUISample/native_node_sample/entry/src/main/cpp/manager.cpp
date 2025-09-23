@@ -21,6 +21,7 @@
 #include "ScrollMaker.h"
 #include "RefreshMaker.h"
 #include "ListMaker.h"
+#include "PublicEvent.h"
 #include "baseUtils.h"
 #include "napi/native_api.h"
 #include <arkui/native_interface.h>
@@ -129,4 +130,11 @@ napi_value Manager::CreateListNativeNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateListNativeNode",
                             []() -> ArkUI_NodeHandle { return ListMaker::CreateNativeNode(); });
+}
+
+napi_value Manager::CreatePublicNativeNode(napi_env env, napi_callback_info info)
+{
+        return CreateNativeNode(
+            env, info, "CreatePublicNativeNode",
+            []() -> ArkUI_NodeHandle { return PublicMaker::CreateNativeNode(); });
 }

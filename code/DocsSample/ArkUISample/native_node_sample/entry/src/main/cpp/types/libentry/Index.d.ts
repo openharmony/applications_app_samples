@@ -20,3 +20,4 @@ export const createGridNativeNode: (content: Object) => void;
 export const createScrollNativeNode: (content: Object) => void;
 export const createRefreshNativeNode: (content: Object) => void;
 export const createListNativeNode: (content: Object) => void;
+export const CreatePublicNativeNode: (content: Object) =>void;

@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例展示了如何创建文本、输入框、文本域、Grid、滑动容器等组件，配置其样式、属性与事件，还含 UI 任务、反色设置等功能，构建文本页面。
+本示例展示了如何创建文本、输入框、文本域、Grid、滑动容器等组件，配置其样式、属性与事件，还含 UI 任务、反色设置，可见区域变化监听等功能，构建文本页面。
 
 ## 效果预览
 <table>
@@ -15,6 +15,7 @@
     <th>Scroll</th>
     <th>Refresh</th>
     <th>List</th>
+    <th>Public</th>
   </tr>
   <tr>
     <td><img src="./screenshot/index.jpeg"></td>
@@ -25,6 +26,7 @@
     <td><img src="./screenshot/scroll.jpeg"></td>
     <td><img src="./screenshot/refresh.jpeg"></td>
     <td><img src="./screenshot/list.jpeg"></td>
+    <td><img src="./screenshot/native-node-public.jpg"></td>
   </tr>
 </table>
 
@@ -33,6 +35,7 @@
 2. 进入首页，可选择不同模块页面。
 3. 点击Text选择框进入Text组件的CAPI接口展示界面；
 4. 点击Swiper选择框进入Swiper组件的CAPI接口展示界面；
+5. 点击Public选择框进入通用属性的CAPI接口展示界面；
 
 
 ## 工程目录
@@ -54,6 +57,8 @@ entry/src/main/cpp/
 ├── manager.cpp 
 ├── manager.h
 ├── napi_init.cpp
+├── PublicEvent.cpp
+├── PublicEvent.h
 ├── RefreshMaker.cpp
 ├── RefreshMaker.h
 ├── ScrollEvent.h
@@ -85,7 +90,8 @@ entry/src/main/ets/
     ├── page_scroll.ets    (Scroll页面)
     ├── page_swiper.ets    (Swiper页面)
     ├── page_text.ets      (文本界面)
-    └── page_waterflow.ets (WaterFlow界面)
+    ├──page_waterflow.ets (WaterFlow界面)
+    └── page_public_event.ets (通用属性界面)
 
 entry/src/main/resources/
 ├── base
@@ -105,6 +111,11 @@ entry/src/main/resources/
 │   └── element
 │       └── color.json
 └── rawfile
+
+entry/src/ohosTest/ets/test
+├── Ability.test.ets
+├── List.test.ets
+└── Public.test.ets (通用属性测试用例)
 ```
 
 ## 相关权限

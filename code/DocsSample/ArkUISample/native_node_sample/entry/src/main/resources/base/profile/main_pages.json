@@ -7,6 +7,7 @@
     "pages/page_grid",
     "pages/page_scroll",
     "pages/page_refresh",
-    "pages/page_list"
+    "pages/page_list",
+    "pages/page_public_event"
   ]
 }
