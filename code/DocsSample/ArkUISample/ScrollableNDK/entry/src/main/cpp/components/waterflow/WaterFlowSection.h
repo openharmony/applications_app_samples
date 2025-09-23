@@ -20,18 +20,16 @@
 
 namespace ScrollableNDK {
 
-/** 瀑布流 Section 结构 */
 struct SectionOption {
     int32_t itemsCount = 0;
     int32_t crossCount = 1;
     float columnsGap = 0.0f;
     float rowsGap = 0.0f;
     ArkUI_Margin margin{0, 0, 0, 0}; // {top, right, bottom, left}
-    float (*onGetItemMainSizeByIndex)(int32_t itemIndex) = nullptr;
+    float (*onGetItemMainSizeByIndex)(int32_t) = nullptr;
     void *userData = nullptr;
 };
 
-/** ArkUI WaterFlow 的 Section 轻封装 */
 class WaterFlowSection {
 public:
     WaterFlowSection() : sectionOptions_(OH_ArkUI_WaterFlowSectionOption_Create()) {}
@@ -42,9 +40,13 @@ public:
         sectionOptions_ = nullptr;
     }
 
+    void Resize(int32_t size) { OH_ArkUI_WaterFlowSectionOption_SetSize(sectionOptions_, size); }
+
+    int32_t Size() const { return OH_ArkUI_WaterFlowSectionOption_GetSize(sectionOptions_); }
+
     void SetSection(ArkUI_WaterFlowSectionOption *opts, int32_t index, const SectionOption &s)
     {
-        if (!opts) {
+        if (opts == nullptr) {
             return;
         }
         OH_ArkUI_WaterFlowSectionOption_SetItemCount(opts, index, s.itemsCount);
@@ -53,8 +55,7 @@ public:
         OH_ArkUI_WaterFlowSectionOption_SetRowGap(opts, index, s.rowsGap);
         OH_ArkUI_WaterFlowSectionOption_SetMargin(opts, index, s.margin.top, s.margin.right, s.margin.bottom,
                                                   s.margin.left);
-
-        if (s.onGetItemMainSizeByIndex) {
+        if (s.onGetItemMainSizeByIndex != nullptr) {
             OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex(opts, index,
                                                                                    s.onGetItemMainSizeByIndex);
         }

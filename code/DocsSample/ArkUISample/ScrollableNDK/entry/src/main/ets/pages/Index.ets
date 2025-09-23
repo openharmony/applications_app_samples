@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
-
 import { LengthMetrics } from '@kit.ArkUI';
 import { Route } from '../common/Route';
 import { RoutableCard } from '../common/Card';
 import resource from '../common/Resource';
-import { waterFlowDestination, WATER_FLOW_ROUTE_PREFIX } from './waterflow/Index';
-import { gridDestination, GRID_ROUTE_PREFIX } from './grid/Index';
+import { WATER_FLOW_ROUTE_PREFIX, waterFlowDestination } from './waterflow/Index';
+import { GRID_ROUTE_PREFIX, gridDestination } from './grid/Index';
+import { List_ROUTE_PREFIX as LIST_ROUTE_PREFIX, listDestination } from './list/Index';
+import { REFRESH_ROUTE_PREFIX, refreshDestination } from './refresh/Index';
+import { SCROLL_ROUTE_PREFIX, scrollDestination } from './scroll/Index';
 
 const routes: Route[] = [
   {
@@ -30,6 +32,18 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.pageIndex_Grid')),
     name: GRID_ROUTE_PREFIX
   },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_List')),
+    name: LIST_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_Refresh')),
+    name: REFRESH_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_Scroll')),
+    name: SCROLL_ROUTE_PREFIX
+  },
 ];
 
 @Builder
@@ -38,6 +52,12 @@ function destination(name: string) {
     waterFlowDestination(name);
   } else if (name.startsWith(GRID_ROUTE_PREFIX)) {
     gridDestination(name);
+  } else if (name.startsWith(LIST_ROUTE_PREFIX)) {
+    listDestination(name);
+  } else if (name.startsWith(REFRESH_ROUTE_PREFIX)) {
+    refreshDestination(name);
+  } else if (name.startsWith(SCROLL_ROUTE_PREFIX)) {
+    scrollDestination(name);
   }
 }
 

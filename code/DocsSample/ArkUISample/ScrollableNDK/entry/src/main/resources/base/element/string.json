@@ -17,8 +17,12 @@
       "value": "列表/List"
     },
     {
-      "name": "pageIndex_ArcList",
-      "value": "弧形列表/ArcList"
+      "name": "pageIndex_Refresh",
+      "value": "刷新/Refresh"
+    },
+    {
+      "name": "pageIndex_Scroll",
+      "value": "滚动/Scroll"
     },
     {
       "name": "pageIndex_Grid",
@@ -983,6 +987,30 @@
     {
       "name": "ArcListStyles_light",
       "value": "显示和亮度"
+    },
+    {
+      "name": "ScrollableInfiniteScroll_title",
+      "value": "无限滚动"
+    },
+    {
+      "name": "ScrollableInfiniteScroll_description",
+      "value": "适用于阅读/内容浏览：整屏翻页、无限回环、首尾无缝衔接、手势丝滑、可调阻尼与吸附。"
+    },
+    {
+      "name": "RefreshList_title",
+      "value": "下拉刷新"
+    },
+    {
+      "name": "RefreshList_description",
+      "value": "适用于消息流/内容流：下拉触发更新，触底继续加载，保持列表数据实时性。"
+    },
+    {
+      "name": "AlphabetIndexedList_title",
+      "value": "字母索引列表"
+    },
+    {
+      "name": "AlphabetIndexedList_description",
+      "value": "适用于通讯录/分类浏览：按字母分组展示，侧边索引快速跳转，滚动时索引高亮同步。"
     }
   ]
 }

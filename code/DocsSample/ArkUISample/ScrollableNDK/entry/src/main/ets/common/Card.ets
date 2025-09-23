@@ -52,7 +52,7 @@ export struct Card {
   @Prop
   verticalAlign: VerticalAlign = VerticalAlign.Center;
   @BuilderParam
-  content: () => void = this.defaultContent;  // 使用 @Builder 方法引用
+  content: () => void = this.defaultContent; // 使用 @Builder 方法引用
 
   @Builder
   defaultContent() {
@@ -112,7 +112,7 @@ export struct ComponentCard {
   @Require
   title: ResourceStr = '';
   @BuilderParam
-  content: () => void = this.defaultContent;  // 使用 @Builder 方法引用
+  content: () => void = this.defaultContent; // 使用 @Builder 方法引用
   @Prop
   description?: ResourceStr;
 
@@ -126,9 +126,10 @@ export struct ComponentCard {
       Text(this.title)
         .fontSize(14)
         .fontColor('#666')
-      Row({ space: 12}) {
+      Row({ space: 12 }) {
         this.content();
       }
+
       if (this.description) {
         Text(this.description)
           .backgroundColor('#eee')

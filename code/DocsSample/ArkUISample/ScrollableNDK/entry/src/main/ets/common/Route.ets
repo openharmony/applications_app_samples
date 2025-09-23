@@ -14,7 +14,7 @@
  */
 
 export interface Route {
-  title: string ;
+  title: string;
   name: string;
   items?: Route[];
   description?: ResourceStr;
