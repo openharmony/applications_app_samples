@@ -15,3 +15,8 @@
 
 export const createNativeTextNode: (content: Object) =>void;
 export const createSwiperNativeNode: (content: Object) =>void;
+export const createWaterFlowNativeNode: (content: Object) => void;
+export const createGridNativeNode: (content: Object) => void;
+export const createScrollNativeNode: (content: Object) => void;
+export const createRefreshNativeNode: (content: Object) => void;
+export const createListNativeNode: (content: Object) => void;

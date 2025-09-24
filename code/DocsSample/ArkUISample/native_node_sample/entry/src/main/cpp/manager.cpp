@@ -14,8 +14,13 @@
  */
 
 #include "manager.h"
+#include "GridMaker.h"
 #include "TextMaker.h"
 #include "SwiperMaker.h"
+#include "WaterFlowMaker.h"
+#include "ScrollMaker.h"
+#include "RefreshMaker.h"
+#include "ListMaker.h"
 #include "baseUtils.h"
 #include "napi/native_api.h"
 #include <arkui/native_interface.h>
@@ -25,66 +30,103 @@
 #include <hilog/log.h>
 
 namespace ConstIde {
-    const uint32_t NUMBER_0 = 0;
-    const uint32_t NUMBER_1 = 1;
-    const uint32_t NUMBER_2 = 2;
-    const uint32_t MARGIN_NUMBER_30 = 30;
-}
+const uint32_t NUMBER_0 = 0;
+const uint32_t NUMBER_1 = 1;
+const uint32_t NUMBER_2 = 2;
+const uint32_t MARGIN_NUMBER_30 = 30;
+constexpr const char *K_LOG_DOMAIN = "Manager";
+} // namespace ConstIde
 
 Manager Manager::manager_;
-ArkUI_NativeNodeAPI_1 *Manager::nodeAPI_ = reinterpret_cast<ArkUI_NativeNodeAPI_1*>(
+ArkUI_NativeNodeAPI_1 *Manager::nodeAPI_ = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
     OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
 
-napi_value Manager::CreateSwiperNativeNode(napi_env env, napi_callback_info info)
+template <class MakeNodeFn>
+static napi_value CreateNativeNode(napi_env env, napi_callback_info info, const char *who, MakeNodeFn makeNodeFn)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, ConstIde::K_LOG_DOMAIN, "%{public}s BEGIN", who);
+
     if ((env == nullptr) || (info == nullptr)) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode env or info is null");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, ConstIde::K_LOG_DOMAIN, "%{public}s env or info is null",
+                     who);
         return nullptr;
     }
-    size_t argCnt = ConstIde::NUMBER_1;
+    
+    size_t argc = ConstIde::NUMBER_1;
     napi_value args[ConstIde::NUMBER_1] = {nullptr};
-    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
+    napi_status st = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    if (st != napi_ok || argc < ConstIde::NUMBER_1) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, ConstIde::K_LOG_DOMAIN, "%{public}s napi_get_cb_info failed",
+                     who);
+        return nullptr;
     }
 
     ArkUI_NodeContentHandle nodeContentHandle = nullptr;
-
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "OH_ArkUI_GetBasicNodeAPI after");
-    if (nodeAPI_ != nullptr) {
-        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
-            ArkUI_NodeHandle testNode = SwiperMaker::createSwiperPage();
-            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
-        }
+    if (nodeContentHandle == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, ConstIde::K_LOG_DOMAIN,
+                     "%{public}s nodeContentHandle is null", who);
+        return nullptr;
     }
+
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, ConstIde::K_LOG_DOMAIN, "%{public}s after GetNodeContent", who);
+
+    // 可选：保留对 nodeAPI_ 的健壮性检查（与你现有代码一致）
+    if (Manager::nodeAPI_ == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, ConstIde::K_LOG_DOMAIN, "%{public}s nodeAPI_ is null", who);
+        return nullptr;
+    }
+
+    // 构建具体节点 & 挂载
+    ArkUI_NodeHandle page = makeNodeFn();
+    if (page == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, ConstIde::K_LOG_DOMAIN, "%{public}s makeNodeFn return null",
+                     who);
+        return nullptr;
+    }
+
+    OH_ArkUI_NodeContent_AddNode(nodeContentHandle, page);
     return nullptr;
+}
+
+napi_value Manager::CreateSwiperNativeNode(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(env, info, "CreateSwiperNativeNode",
+                            []() -> ArkUI_NodeHandle { return SwiperMaker::createSwiperPage(); });
 }
 
 napi_value Manager::CreateNativeTextNode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");
-    if ((env == nullptr) || (info == nullptr)) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode env or info is null");
-        return nullptr;
-    }
-    size_t argCnt = ConstIde::NUMBER_1;
-    napi_value args[ConstIde::NUMBER_1] = {nullptr};
-    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
-    }
+    return CreateNativeNode(env, info, "CreateNativeTextNode",
+                            []() -> ArkUI_NodeHandle { return TextMaker::createTextPage(); });
+}
 
-    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+napi_value Manager::CreateWaterFlowNativeNode(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(env, info, "CreateWaterFlowNativeNode",
+                            []() -> ArkUI_NodeHandle { return WaterFlowMaker::createWaterFlowPage(); });
+}
 
-    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+napi_value Manager::CreateGridNativeNode(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(env, info, "CreateGridNativeNode",
+                            []() -> ArkUI_NodeHandle { return GridMaker::createGridPage(); });
+}
 
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "OH_ArkUI_GetBasicNodeAPI after");
-    if (nodeAPI_ != nullptr) {
-        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
-            ArkUI_NodeHandle testNode = TextMaker::createTextPage();
-            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
-        }
-    }
-    return nullptr;
+napi_value Manager::CreateScrollNativeNode(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(env, info, "CreateScrollNativeNode",
+                            []() -> ArkUI_NodeHandle { return ScrollMaker::createScrollPage(); });
+}
+
+napi_value Manager::CreateRefreshNativeNode(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(env, info, "CreateRefreshNativeNode",
+                            []() -> ArkUI_NodeHandle { return RefreshMaker::createRefreshPage(); });
+}
+
+napi_value Manager::CreateListNativeNode(napi_env env, napi_callback_info info)
+{
+    return CreateNativeNode(env, info, "CreateListNativeNode",
+                            []() -> ArkUI_NodeHandle { return ListMaker::createListPage(); });
 }

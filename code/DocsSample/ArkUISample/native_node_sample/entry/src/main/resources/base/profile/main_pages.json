@@ -2,6 +2,11 @@
   "src": [
     "pages/Index",
     "pages/page_text",
-    "pages/page_swiper"
+    "pages/page_swiper",
+    "pages/page_waterflow",
+    "pages/page_grid",
+    "pages/page_scroll",
+    "pages/page_refresh",
+    "pages/page_list"
   ]
 }
