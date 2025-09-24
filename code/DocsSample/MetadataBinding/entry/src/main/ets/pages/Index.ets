@@ -8,7 +8,7 @@ struct Index {
   screenShotCallback: Callback<number> = (event: number) => {
     if (event == 1) {
       let appLink = this.getAppLink()
-      console.info("jjy:appLink:" + appLink)
+      console.info('appLink:' + appLink)
       metadataBinding.submitMetadata(appLink);
     }
   }
@@ -52,7 +52,7 @@ struct Index {
   }
 
   getAppLink(): string {
-    let appLink: string = "https://item.taobao.com/item.htm?id=721605694708&linkOrigin=hxb_link";
+    let appLink: string = 'test.link';
     return appLink;
   }
 
