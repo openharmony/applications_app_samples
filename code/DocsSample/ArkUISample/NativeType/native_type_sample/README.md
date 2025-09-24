@@ -1,30 +1,34 @@
-# Native_node_Sample
+# Native_type_Sample
 
 ## 介绍
 
-本示例展示了如何创建文本、输入框、文本域等组件，配置其样式、属性与事件设置等功能，构建文本页面。
+本示例展示了如何创建文本、输入框、文本域、滑动容器等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
 
 ## 效果预览
 
-| 预览                                      | 
-| -------------------------------------------- | 
-<img src="./screenshots/nativeType.png" width="300" />
+| 首页 | Text页面                                              | Swiper页面                                              |
+| ---- | ----------------------------------------------------- | ------------------------------------------------------- |
+|      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> |
 
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；
-2. 首页面会出现对应text选择框，点击选择框进入text界面；
+2. 进入首页，可选择不同模块页面。
+3. 点击Text选择框进入Text组件的CAPI接口展示界面；
+4. 点击Swiper选择框进入Swiper组件的CAPI接口展示界面；
 
 
 ## 工程目录
 
 ```
-StyledStringNDK
+native_type_sample
 entry/src/main/ets/
 └── pages
     ├── Index.ets (获取导航页面)
-    ├── page_text.ets (文本界面)
     ├── page_accessibility.ets (无障碍界面)
-    └── page_embedded_component.ets (嵌入式组件界面)
+    ├── page_embedded_component.ets (嵌入式组件界面)
+    ├── page_swiper.ets (滑动容器页面)
+    └── page_text.ets (文本界面)
+
 entry/src/main/
 ├── cpp
 │   ├── types
@@ -37,6 +41,8 @@ entry/src/main/
 |   ├── .......
 |   ├── baseUtils.cpp
 |   ├── baseUtils.h
+|   ├── SwiperMaker.cpp
+|   ├── SwiperMaker.h
 |   ├── TextMaker.cpp
 │   ├── TextMaker.h
 |   ├── AccessibilityMaker.cpp
@@ -72,10 +78,10 @@ entry/src/main/
 
 如需单独下载本工程，执行如下命令：
 
-```
+```bash
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/NativeType/native_node_sample > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/NativeType/native_type_sample > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
