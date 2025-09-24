@@ -105,6 +105,10 @@
       "value": "Customize"
     },
     {
+      "name": "exampleTab5",
+      "value": "Perceive and adjust"
+    },
+    {
       "name": "credentialQueries",
       "value": "Query credentials"
     },
@@ -147,6 +151,10 @@
     {
       "name": "descriptionContent6",
       "value": "Toggle custom authentication"
+    },
+    {
+      "name": "descriptionContent7",
+      "value": "Adjust the authentication process, obtain the prompts for pulling up and exiting the control during the authentication process, as well as every failed authentication attempt made by the user during the authentication process."
     },
     {
       "name": "example6",
