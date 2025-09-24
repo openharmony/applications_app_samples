@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -28,12 +29,12 @@
  * 设置项的数据类
  */
 export class DateModel {
-  public day: number;
-  public week: number;
-  public month: number;
-  public year: number;
+  public day: int;
+  public week: int;
+  public month: int;
+  public year: int;
 
-  constructor(day: number, week: number, month: number, year: number) {
+  constructor(day: int, week: int, month: int, year: int) {
     this.day = day;
     this.week = week;
     this.month = month;

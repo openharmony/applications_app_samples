@@ -1,3 +1,4 @@
+'use static';
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +21,6 @@ import { Text,  List, ListItem, TextAttribute, Column, Component, Button, Button
   LazyForEach, ListItemGroup, Entry, Canvas, CanvasRenderingContext2D, RenderingContextSettings
 } from '@ohos.arkui.component';
 import hilog from '@ohos.hilog';
-import camera from '@ohos.multimedia.camera';
 import { UIContext } from '@ohos.arkui.UIContext';
 
 @Entry

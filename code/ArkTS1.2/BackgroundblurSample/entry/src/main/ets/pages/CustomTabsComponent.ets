@@ -1,3 +1,4 @@
+'use static';
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,7 +57,7 @@ import {
   Text,
   ThemeColorMode
 } from '@ohos.arkui.component'
-import { Consume, Link, ObjectLink, Prop, Provide, State, StorageLink } from '@ohos.arkui.stateManagement'
+import { Consume, Link, ObjectLink, PropRef, Provide, State, StorageLink } from '@ohos.arkui.stateManagement'
 import { UIContext } from '@ohos.arkui.UIContext';
 
 /**
@@ -144,7 +145,7 @@ export struct CustomTabsComponent {
 @Component
 struct TabItem {
   tabInfo?: TabInfo = new TabInfo(0, 'textTest', $r('app.media.layered_image'), $r('app.media.layered_image'));
-  @Prop tabBarIndex: number = 0;
+  @PropRef tabBarIndex: number = 0;
   @Link selectedIndex: number;
 
   build() {
@@ -177,17 +178,17 @@ export struct MainContentBlur {
   LIST_IMAGE: ResourceStr[] = [$r('app.media.background_pic_1'), $r('app.media.background_pic_2'),
     $r('app.media.background_pic_3'), $r('app.media.background_pic_4')] as ResourceStr[];
   // 数据演示用
-  arr: number[] = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10] as number[];
+  arr: int[] = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10] as int[];
 
   build() {
     List() {
-      ForEach(this.arr, (item: number, index: number) => {
+      ForEach(this.arr, (item: int, index: number) => {
         ListItem() {
-          Image(this.LIST_IMAGE[item % this.LIST_IMAGE.length] as ResourceStr)
+          Image(this.LIST_IMAGE[(item % this.LIST_IMAGE.length).toInt()] as ResourceStr)
             .width('100%')// 高度演示用
             .height(200)
         }
-      }, (item: number, index: number) => index.toString())
+      }, (item: int, index: number) => index.toString())
     }
     .width('100%')
     .height('100%')

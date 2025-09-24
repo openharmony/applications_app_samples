@@ -10,12 +10,12 @@
 
 | 多文件下载监听案例                                                    |
 |--------------------------------------------------------------|
-| ![Alt text](entry/src/main/resources/base/media/sample1.png) |
+| ![Alt text](entry/src/main/resources/base/media/download_sample.png) |
 
 使用说明
 
 在多文件下载监听案例。 
-* 点击全部开始进行下载。
+* 点击开始下载进行下载。
 
 
 

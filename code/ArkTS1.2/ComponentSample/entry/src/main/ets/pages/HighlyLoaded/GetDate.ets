@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -48,20 +49,20 @@ import {
 } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 
-const SATURDAY: number = 6; // 日历表上周六对应的序列号，从周日开始算起，取值0~6
+const SATURDAY: int = 6; // 日历表上周六对应的序列号，从周日开始算起，取值0~6
 
 /*
  * 根据指定年份和月份获取该月在日历表上的日期排布数据
- * @param {number} specifiedMonth - 指定月份
- * @param {number} specifiedYear - 指定年份
+ * @param {int} specifiedMonth - 指定月份
+ * @param {int} specifiedYear - 指定年份
 //  */
-export function getMonthDate(specifiedMonth: number, specifiedYear: number): number[] {
-  let currentFirstWeekDay: number = 0; // 初始化指定月的第一天是周几
-  let currentLastWeekDay: number = 0; // 初始化指定月的最后一天是周几
-  let currentAllDay: number[] = []; // 初始化指定月的日期排列数组
-  let totalDays = new Date(specifiedYear, specifiedMonth, 0).getDate(); // 初始化指定月总天数
-  currentFirstWeekDay = new Date(specifiedYear, specifiedMonth - 1, 1).getDay(); // 获取指定月的第一天是周几
-  currentLastWeekDay = new Date(specifiedYear, specifiedMonth - 1, totalDays).getDay(); // 获取指定月的最后一天是周几
+export function getMonthDate(specifiedMonth: int, specifiedYear: int): int[] {
+  let currentFirstWeekDay: int = 0; // 初始化指定月的第一天是周几
+  let currentLastWeekDay: int = 0; // 初始化指定月的最后一天是周几
+  let currentAllDay: int[] = []; // 初始化指定月的日期排列数组
+  let totalDays = new Date(specifiedYear, specifiedMonth, 0).getDate().toInt(); // 初始化指定月总天数
+  currentFirstWeekDay = new Date(specifiedYear, specifiedMonth - 1, 1).getDay().toInt(); // 获取指定月的第一天是周几
+  currentLastWeekDay = new Date(specifiedYear, specifiedMonth - 1, totalDays).getDay().toInt(); // 获取指定月的最后一天是周几
   // 将月份中显示上个月日期的内容置0
   for (let item = 0; item < currentFirstWeekDay; item++) {
     currentAllDay.push(0);

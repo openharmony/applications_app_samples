@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -59,15 +60,15 @@ struct MyStateSample {
   build() {
     Scroll() {
       Column() {
-        Button('BigFileCopyView')
+        Button('大文件拷贝案例')
           .onClick((e: ClickEvent) => {
             this.getUIContext().getRouter().pushUrl({ url: "pages/BigFileCopy/BigFileCopyView" })
           }).fontSize(20).margin(15).width("100%")
-        Button('CompressFileView')
+        Button('文件压缩案例')
           .onClick((e: ClickEvent) => {
             this.getUIContext().getRouter().pushUrl({ url: "pages/CompressFile/CompressFile" })
           }).fontSize(20).margin(15).width("100%")
-        Button('DecompressFileView')
+        Button('文件解压案例')
           .onClick((e: ClickEvent) => {
             this.getUIContext().getRouter().pushUrl({ url: "pages/DecompressFile/DecompressFileViewComponent" })
           }).fontSize(18).margin(15).width("100%")

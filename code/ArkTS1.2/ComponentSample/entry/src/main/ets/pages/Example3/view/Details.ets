@@ -43,7 +43,7 @@ import {
   SafeAreaEdge,
   SafeAreaType
 } from '@ohos.arkui.component';
-import { State, StateDecoratedVariable, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import { State, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import { BarType, BottomBar, CommonText } from '../common/CommonText';
 

@@ -14,6 +14,9 @@
  */
 
 #include "components/grid/examples/ScrollableGrid.h"
+#include "components/list/examples/AlphabetIndexedList.h"
+#include "components/refresh/examples/RefreshList.h"
+#include "components/scroll/examples/ScrollableInfiniteScroll.h"
 #include "components/waterflow/examples/WaterFlowInfiniteScrollingEarly.h"
 #include "napi/native_api.h"
 
@@ -23,11 +26,22 @@ static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         // —— WaterFlow 示例 —— //
-        {"WaterFlowInfiniteScrollingEarly", nullptr, ScrollableNDK::Examples::WaterFlowInfiniteScrollingEarlyImpl::NAPI,
-         nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"WaterFlowInfiniteScrollingEarly", nullptr, Examples::WaterFlowInfiniteScrollingEarlyImpl::NAPI, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
 
         // —— Grid 示例 —— //
-        {"ScrollableGrid", nullptr, ScrollableNDK::Examples::ScrollableGridImpl::NAPI, nullptr, nullptr, nullptr,
+        {"ScrollableGrid", nullptr, Examples::ScrollableGridImpl::NAPI, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+
+        // —— List 示例 —— //
+        {"AlphabetIndexedList", nullptr, Examples::AlphabetIndexedListImpl::NAPI, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+
+        // —— Refresh 示例 —— //
+        {"RefreshList", nullptr, Examples::RefreshListImpl::NAPI, nullptr, nullptr, nullptr, napi_default, nullptr},
+
+        // —— Refresh 示例 —— //
+        {"ScrollableInfiniteScroll", nullptr, Examples::ScrollableInfiniteScrollImpl::NAPI, nullptr, nullptr, nullptr,
          napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

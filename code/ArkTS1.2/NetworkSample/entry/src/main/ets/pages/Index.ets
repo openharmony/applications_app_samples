@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -55,7 +56,6 @@ import {
   observableProxy
 } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
-import camera from '@ohos.multimedia.camera';
 import request from '@ohos.request';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
@@ -123,9 +123,6 @@ struct MyStateSample {
       overwrite: true, // 下载过程中路径已存在时的解决方案选择。true表示覆盖已存在的文件
       method: 'GET', // HTTP标准方法。下载时，使用GET或POST。
       saveas: './', // 这里'./'表示下载至应用当前缓存路径下。
-      mode: request.agent.Mode.BACKGROUND, // 任务模式设置后台任务。
-      gauge: true, // 后台任务的过程进度通知策略，仅应用于后台任务。true表示发出每个进度已完成或失败的通知。
-      retry: false, // 默认为true，如果没有网络或者网络不满足时，会自动暂停waiting，等网络满足时进行一次重试。设置为false时，没网直接走失败回调
     } as request.agent.Config;
     (request.agent.create(context, config) as Promise<request.agent.Task>)
       .then((task: request.agent.Task) => {
@@ -139,17 +136,6 @@ struct MyStateSample {
           }
           hilog.info(0x0000, 'testTag', `下载完成 ${taskNo}`);
         });
-        task.on('failed', (progress: request.agent.Progress) => {
-          hilog.info(0x0000, 'testTag', `下载失败`);
-        }); // 下载任务失败回调
-
-        task.on('resume', (progress: request.agent.Progress) => {
-          hilog.info(0x0000, 'testTag', `重新启动`);
-        }); // 重新启动任务回调
-
-        task.on('pause', (progress: request.agent.Progress) => {
-          hilog.info(0x0000, 'testTag', `暂停`);
-        }); // 暂停任务回调
 
         task.on('progress', (progress: request.agent.Progress) => {
           hilog.info(0x0000, 'testTag', JSON.stringify(progress));
