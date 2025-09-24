@@ -29,7 +29,7 @@ import { Entry, Text, TextAttribute, Column, Component, Button, ButtonAttribute,
   TextAlign, SafeAreaEdge, TextOverflow, Image ,FlexAlign, SafeAreaType, $r, Builder, Color,
   TextInput, Divider, JSON, Margin, Navigation, FontWeight, ResourceStr, InputType
 } from '@ohos.arkui.component';
-import { State, MutableState, stateOf, observableProxy, Prop, Watch } from '@ohos.arkui.stateManagement';
+import { State, MutableState, stateOf, observableProxy,  Watch } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';

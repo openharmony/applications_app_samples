@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -91,10 +92,10 @@ const CONTENT_PER_TAG = 10; // 每个TAG对应多少个元素
 @Component
 export struct SecondaryLinkExample {
   private tagIndexPosition: ListIndexPosition = { start: 0, end: 0 } as ListIndexPosition; // 一级列表可视区域的起始索引和终点索引
-  @State @Watch('onIndexChange') currentTagIndex: number = 0; // 一级列表焦点索引值
+  @State @Watch('onIndexChange') currentTagIndex: int = 0; // 一级列表焦点索引值
   private tagLists: Array<string> = new Array<string>(); // 一级列表数据
   @State contentData: MyDataSource = new MyDataSource(); // 二级列表数据
-  private records: Array<number> = new Array<number>(); // 二级列表分组count数量
+  private records: Array<int> = new Array<int>(); // 二级列表分组count数量
   // 知识点: 1.级联列表分别绑定不同的Scroller对象，通过调用Scroller对象方法实现控制列表滚动
   private classifyScroller: Scroller = new Scroller(); // 一级列表Scroller对象
   private scroller: Scroller = new Scroller(); // 二级列表Scroller对象
@@ -169,7 +170,7 @@ export struct SecondaryLinkExample {
         // 性能知识点:onScrollIndex事件在列表滚动时频繁执行，在回调中需要尽量减少耗时和冗余操作，例如减少不必要的日志打印
         .onScrollIndex((start: number): void => {
           // 知识点: 4.滑动二级列表触发组件滚动事件后，返回列表可视区域的第一个item对应的索引值，当前通过二级列表索引获取一级列表索引，操作一级列表Scroller对象使列表滚动到指定位置
-          const currentClassIndex = this.findClassIndex(start);
+          const currentClassIndex = this.findClassIndex(start.toInt());
           if (currentClassIndex !== this.currentTagIndex && this.isClickTagList !== true) {
             this.currentTagIndex = currentClassIndex;
             this.classifyScroller.scrollToIndex(currentClassIndex, true);
@@ -249,8 +250,8 @@ export struct SecondaryLinkExample {
         })
         .onClick((e: ClickEvent): void => {
           // 知识点: 3.点击一级列表后，通过一级列表索引获取二级列表索引，分别操作不同的Scroller对象使列表滚动到指定位置
-          this.currentTagIndex = index;
-          const itemIndex = this.findItemIndex(index);
+          this.currentTagIndex = index.toInt();
+          const itemIndex = this.findItemIndex(index.toInt());
           this.scroller.scrollToIndex(itemIndex, true);
         })
         .backgroundColor(this.currentTagIndex === index ? '#ffffffff' : '#ffe3e3e3')
@@ -261,20 +262,20 @@ export struct SecondaryLinkExample {
   /**
    * 根据一级列表索引值获取二级列表索引值
    *
-   * @param {number} index - 一级列表索引值
-   * @returns {number} 二级列表索引值
+   * @param {int} index - 一级列表索引值
+   * @returns {int} 二级列表索引值
    */
-  findItemIndex(index: number): number {
+  findItemIndex(index: int): int {
     return this.records[index];
   }
 
   /**
    * 根据二级列表索引值获取对应一级列表索引
    *
-   * @param {number} index - 二级列表索引值
-   * @returns {number} 一级列表索引值
+   * @param {int} index - 二级列表索引值
+   * @returns {int} 一级列表索引值
    */
-  findClassIndex(index: number): number {
+  findClassIndex(index: int): int {
     let classIndex = 0;
     for (let i = 0; i < this.records.length; i++) {
       if (index >= this.records[i] && index < this.records[i + 1]) {
@@ -293,12 +294,12 @@ export struct SecondaryLinkExample {
     const start = this.tagIndexPosition.start;
     const end = this.tagIndexPosition.end;
     if ((this.currentTagIndex === end || this.currentTagIndex === end - 1)) {
-      let leftScrollCount: number = this.currentTagIndex + 1;
+      let leftScrollCount: int = this.currentTagIndex + 1;
       leftScrollCount = leftScrollCount >= this.tagLists.length - 1 ? this.tagLists.length - 1 : leftScrollCount;
       this.classifyScroller.scrollToIndex(leftScrollCount, true); // 使获焦item向上滚动
     }
     if (this.currentTagIndex === start || this.currentTagIndex === start + 1) {
-      let rightScrollCount: number = this.currentTagIndex - 1;
+      let rightScrollCount: int = this.currentTagIndex - 1;
       rightScrollCount = rightScrollCount <= 0 ? 0 : rightScrollCount;
       this.classifyScroller.scrollToIndex(rightScrollCount, true); // 使获焦item向下滚动
     }

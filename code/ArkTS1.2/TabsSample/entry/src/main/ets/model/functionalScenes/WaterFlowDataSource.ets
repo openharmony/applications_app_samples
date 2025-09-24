@@ -1,3 +1,4 @@
+'use static';
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +35,7 @@ export class WaterFlowDataSource<SceneModuleInfo> implements IDataSource<SceneMo
    * @returns
    */
   public getData(index: number): SceneModuleInfo {
-    return this.dataArray[index];
+    return this.dataArray[index.toInt()];
   }
 
   /**

@@ -1,3 +1,4 @@
+'use static';
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,11 +21,11 @@ import { DataChangeListener, IDataSource } from '@ohos.arkui.component';
  */
 export class TabDataModel {
   // tabId用户切换tabContent
-  public id: number = 0;
+  public id: int = 0;
   // tab类别
   public navData: string | undefined = undefined;
 
-  constructor(id: number, navData: string) {
+  constructor(id: int, navData: string) {
     this.navData = navData;
     this.id = id;
   }
@@ -51,7 +52,7 @@ class BasicDataSource implements IDataSource<TabDataModel> {
   }
 
   public getData(index: number): TabDataModel {
-    return this.originDataArray[index];
+    return this.originDataArray[index.toInt()];
   }
 
   /**
@@ -87,7 +88,7 @@ class BasicDataSource implements IDataSource<TabDataModel> {
   /**
    * 通知LazyForEach组件需要在index对应索引处添加子组件
    */
-  notifyDataAdd(index: number): void {
+  notifyDataAdd(index: int): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     })
@@ -96,7 +97,7 @@ class BasicDataSource implements IDataSource<TabDataModel> {
   /**
    * 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
    */
-  notifyDataChange(index: number): void {
+  notifyDataChange(index: int): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
     })
@@ -105,7 +106,7 @@ class BasicDataSource implements IDataSource<TabDataModel> {
   /**
    * 通知LazyForEach组件需要在index对应索引处删除该子组件
    */
-  notifyDataDelete(index: number): void {
+  notifyDataDelete(index: int): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
     })
@@ -132,14 +133,14 @@ export class TabDataSource extends BasicDataSource {
    * @returns
    */
   public getData(index: number): TabDataModel {
-    return this.dataArray[index];
+    return this.dataArray[index.toInt()];
   }
 
   /**
    * 在指定索引位置增加一个元素
    * @param index
    */
-  public addData(index: number, data: TabDataModel): void {
+  public addData(index: int, data: TabDataModel): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
   }

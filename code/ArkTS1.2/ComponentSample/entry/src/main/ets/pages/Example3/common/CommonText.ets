@@ -47,7 +47,6 @@ import {
 import {
   State,
   Consume,
-  StateDecoratedVariable,
   MutableState,
   stateOf,
   observableProxy

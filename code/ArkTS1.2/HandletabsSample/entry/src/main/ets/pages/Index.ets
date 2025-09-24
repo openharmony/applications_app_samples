@@ -1,3 +1,4 @@
+'use static';
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement'
+import { memo, __memo_context_type, __memo_id_type } from '@ohos.arkui.stateManagement';
 import { Text, TextAttribute, Column, Component, Button, ButtonAttribute, ClickEvent, Entry, Tabs, TabContent,
   CustomBuilder, ComponentContent, SubTabBarStyle, BottomTabBarStyle, Resource, TabBarOptions, JSON, Flex, FlexDirection,
   FlexAlign, ItemAlign, Divider, TabsOptions, Row, ForEach, Position, Builder, Margin, BarMode,
-  OnTabsAnimationStartCallback,TabsAnimationEvent} from '@ohos.arkui.component'
-import { State, Link, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement'
-import hilog from '@ohos.hilog'
-import { UIContext, Router } from '@ohos.arkui.UIContext'
-import router from '@ohos.router'
+  OnTabsAnimationStartCallback,TabsAnimationEvent} from '@ohos.arkui.component';
+import { State, Link, MutableState, stateOf, observableProxy } from '@ohos.arkui.stateManagement';
+import hilog from '@ohos.hilog';
+import { UIContext, Router } from '@ohos.arkui.UIContext';
+import router from '@ohos.router';
 
 @Entry
 @Component

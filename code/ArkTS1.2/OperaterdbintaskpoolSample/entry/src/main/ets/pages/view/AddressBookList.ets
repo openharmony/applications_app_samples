@@ -31,7 +31,7 @@ import { Entry, Text, TextAttribute, Column, Component, Button, ButtonAttribute,
   Scroll ,Scroller, BarState, $r, Builder, Blank, Color, ImageFit, TextInput, InputType, Placement, ItemAlign, Divider,
   JSON, DialogAlignment, SearchController, Margin, NavPathStack, Navigation, Alignment
 } from '@ohos.arkui.component';
-import { State, Link, MutableState, stateOf, observableProxy, Prop, Watch } from '@ohos.arkui.stateManagement';
+import { State, Link, MutableState, stateOf, observableProxy,  Watch } from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';

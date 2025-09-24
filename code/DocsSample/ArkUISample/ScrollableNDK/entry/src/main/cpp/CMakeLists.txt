@@ -1,5 +1,5 @@
 # the minimum version of CMake.
-cmake_minimum_required(VERSION 3.5.0)
+cmake_minimum_required(VERSION 3.28.0)
 project(ScrollableNDK)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -13,11 +13,13 @@ endif()
 include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
-add_library(entry SHARED
-    napi_init.cpp
-    components/grid/examples/ScrollableGrid.cpp
-    components/waterflow/examples/WaterFlowInfiniteScrollingEarly.cpp
+file(GLOB_RECURSE ENTRY_SOURCES CONFIGURE_DEPENDS
+    "${NATIVERENDER_ROOT_PATH}/napi_init.cpp"
+    "${NATIVERENDER_ROOT_PATH}/common/*.cpp"
+    "${NATIVERENDER_ROOT_PATH}/components/**/*.cpp"
 )
+
+add_library(entry SHARED ${ENTRY_SOURCES})
 
 find_library(
     # Sets the name of the path variable.

@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -42,13 +43,13 @@ class EntryAbility extends UIAbility {
       windowStage.loadContent('pages/Index', (err: BusinessError<void> | null): void => {
         hilog.info(0x0000, 'testTag', 'loadContent entering');
         if (err && err.code) {
-          hilog.error(0x0000, 'testTag', 'loadContent error');
+          hilog.info(0x0000, 'testTag', 'loadContent error');
           return;
         }
         hilog.info(0x0000, 'testTag', 'loadContent ok');
       });
     } catch (e: Error) {
-      hilog.error(0x0000, 'testTag', 'loadContent catch error：-----------' + e.message);
+      hilog.info(0x0000, 'testTag', 'loadContent catch error：-----------' + e.message);
     }
   }
 }
