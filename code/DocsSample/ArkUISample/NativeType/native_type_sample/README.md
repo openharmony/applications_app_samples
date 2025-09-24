@@ -22,7 +22,9 @@ StyledStringNDK
 entry/src/main/ets/
 └── pages
     ├── Index.ets (获取导航页面)
-    └── page_text.ets (文本界面)
+    ├── page_text.ets (文本界面)
+    ├── page_accessibility.ets (无障碍界面)
+    └── page_embedded_component.ets (嵌入式组件界面)
 entry/src/main/
 ├── cpp
 │   ├── types
@@ -36,7 +38,11 @@ entry/src/main/
 |   ├── baseUtils.cpp
 |   ├── baseUtils.h
 |   ├── TextMaker.cpp
-│   └── TextMaker.h
+│   ├── TextMaker.h
+|   ├── AccessibilityMaker.cpp
+│   ├── AccessibilityMaker.h
+|   ├── EmbeddedComponentMaker.cpp
+│   └── EmbeddedComponentMaker.h
 └── resources
     ├── base
     │   ├── element

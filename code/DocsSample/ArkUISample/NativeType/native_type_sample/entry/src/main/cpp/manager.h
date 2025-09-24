@@ -33,6 +33,8 @@ public:
 
     static napi_value CreateNativeSwiperNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeTextNode(napi_env env, napi_callback_info info);
+    static napi_value CreateNativeAccessibilityNode(napi_env env, napi_callback_info info);
+    static napi_value CreateNativeEmbeddedComponentNode(napi_env env, napi_callback_info info);
 
 private:
     static Manager manager_;

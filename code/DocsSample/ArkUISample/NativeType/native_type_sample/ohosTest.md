@@ -11,3 +11,7 @@
 
 | 基础 Text 样式展示       | 应用加载完成 | 1.查看第一段文本                                         | 1.宽 200vp 高 30vp 带边框，斜体 600 字重，超长跑马灯、不可复制 | 否       | 验证通过 |
 | TextInput 输入功能     | 应用加载完成 | 1.点击输入框尝试输入                         | 1.支持输入，第一个样式内联，第二个带清除按钮  | 否       | 验证通过 |
+
+| EmbeddedComponent OnErrorCallback回调成功 | 执行 hdc shell param set persist.sys.abilityms.multi_process_model false 后重启，应用位于首页 | 1.点击首页embedded component按钮 | EmbeddedComponent onError回调被触发，打印日志{OnErrorCallback:        code=100018, name=start_ability_fail, message=Start ui extension ability failed, please check the want of UIextensionAbility.} | 否 | 验证通过 |
+| EmbeddedComponent OnTerminatedCallback回调成功 | 执行 hdc shell param set persist.sys.abilityms.multi_process_model true 后重启，应用位于首页 | 1.点击首页embedded component按钮 | EmbeddedComponent onError回调被触发，打印日志{OnTerminatedCallback: code=0} | 否 | 验证通过 |
+| 文本无障碍属性设置 | 应用位于首页 | 1.点击首页Accessibility按钮 | 观测Get日志设置属性值与Set函数一致 | 否 | 验证通过 |

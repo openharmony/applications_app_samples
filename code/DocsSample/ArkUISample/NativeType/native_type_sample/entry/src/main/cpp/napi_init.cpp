@@ -29,7 +29,11 @@ static napi_value Init(napi_env env, napi_value exports) {
         {"createNativeSwiperNode", nullptr, Manager::CreateNativeSwiperNode, nullptr, nullptr, nullptr, napi_default,
          nullptr},
         {"createNativeTextNode", nullptr, Manager::CreateNativeTextNode, nullptr, nullptr, nullptr, napi_default,
-         nullptr}
+         nullptr},
+        {"createNativeAccessibilityNode", nullptr, Manager::CreateNativeAccessibilityNode, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"createNativeEmbeddedComponentNode", nullptr, Manager::CreateNativeEmbeddedComponentNode, nullptr, nullptr,
+            nullptr, napi_default, nullptr},
         // 参考Swiper新增其他createNative方法和Maker类
     };
 

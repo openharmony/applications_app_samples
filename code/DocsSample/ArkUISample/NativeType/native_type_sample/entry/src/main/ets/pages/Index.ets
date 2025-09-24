@@ -27,6 +27,8 @@ struct MenuIndex {
     [
       { title: 'Swiper', url: 'pages/page_swiper' }, 
       { title: 'text', url: 'pages/page_text' },
+      { title: 'accessibility', url: 'pages/page_accessibility' },
+      { title: 'embedded component', url: 'pages/page_embedded_component' },
     ];
 
   build() {

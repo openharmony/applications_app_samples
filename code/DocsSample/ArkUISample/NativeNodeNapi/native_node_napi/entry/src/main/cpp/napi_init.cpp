@@ -28,6 +28,10 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         {"createNativeNaviNode", nullptr, Manager::CreateNativeNaviNode, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"createNativeAccessibilityNode", nullptr, Manager::CreateNativeAccessibilityNode, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"createNativeEmbeddedComponentNode", nullptr, Manager::CreateNativeEmbeddedComponentNode, nullptr, nullptr,
+            nullptr, napi_default, nullptr},
         // 参考Navigation新增其他createNative方法和Context类
     };
     

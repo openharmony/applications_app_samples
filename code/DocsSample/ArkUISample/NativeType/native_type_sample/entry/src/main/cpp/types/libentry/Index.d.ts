@@ -15,3 +15,5 @@
 
 export const createNativeSwiperNode: (content: Object) =>void;
 export const createNativeTextNode: (content: Object) =>void;
+export const createNativeAccessibilityNode: (content: Object) => void;
+export const createNativeEmbeddedComponentNode: (content: Object) => void;
