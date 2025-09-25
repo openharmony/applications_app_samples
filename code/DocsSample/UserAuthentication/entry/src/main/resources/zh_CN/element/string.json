@@ -105,6 +105,10 @@
       "value": "自定义"
     },
     {
+      "name": "exampleTab5",
+      "value": "调整和控制"
+    },
+    {
       "name": "credentialQueries",
       "value": "查询凭据"
     },
@@ -147,6 +151,10 @@
     {
       "name": "descriptionContent6",
       "value": "切换自定义认证"
+    },
+    {
+      "name": "descriptionContent7",
+      "value": "通过skipLockedBiometricAuth参数调整认证过程，通过on(type: 'authTip', callback: AuthTipCallback)获取认证过程中控件的拉起和退出提示，以及认证过程中用户的每一次认证失败尝试。"
     },
     {
       "name": "example6",

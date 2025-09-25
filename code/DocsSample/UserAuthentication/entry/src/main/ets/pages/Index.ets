@@ -60,12 +60,14 @@ function getRandData(): Uint8Array | null {
 
 enum PageIndex {
   QUERY_CAPABILITY = 0, // 能力查询页面的索引值
-  EXAMPLE_TAB_1 = 1, // 实例1页面的索引值
-  EXAMPLE_TAB_2 = 2, // 实例2页面的索引值
-  EXAMPLE_TAB_3 = 3, // 实例3页面的索引值
-  EXAMPLE_TAB_4 = 4, // 实例4页面的索引值
-  CREDENTIAL_QUERIES = 5, // 能力查询页面的索引值
-  SIMULATION_VALIDATION = 6 // 模拟认证页面的索引值
+  EXAMPLE_TAB_1 = 1, // 实例1、2页面的索引值
+  EXAMPLE_TAB_2 = 2, // 实例3、4页面的索引值
+  EXAMPLE_TAB_3 = 3, // 取消页面的索引值
+  PERCEIVE_ADJUST = 4, // 感知和调整认证过程页面的索引值
+  EXAMPLE_TAB_4 = 5, // 自定义页面的索引值
+  CREDENTIAL_QUERIES = 6, // 查询凭据页面的索引值
+  SIMULATION_VALIDATION = 7, // 模拟认证页面的索引值
+
 };
 
 enum ResultIndex {
@@ -76,7 +78,8 @@ enum ResultIndex {
   EXAMPLE_4 = 4, // 实例4结果的索引值
   CANCEL = 5, // 实例5结果的索引值
   CUSTOMIZE = 6, // 实例6结果的索引值
-  QUERY_CREDENTIALS = 7 // 能力查询结果的索引值
+  QUERY_CREDENTIALS = 7, // 能力查询结果的索引值
+  PERCEIVE_ADJUST = 8 // 感知和调整认证过程的索引值
 };
 
 @Entry
@@ -410,6 +413,59 @@ struct Index {
   }
 
   // [End cancel_authentication]
+
+  // [Start perceive-adjust-authentication-process]
+  /*
+   * perceive-adjust-authentication-process.md
+   * 感知和调整认证过程
+   * */
+  perceiveAndAdjustAuthentication() {
+    try {
+      const randData = getRandData();
+      if (!randData) {
+        return;
+      }
+      // 设置认证参数
+      const authParam: userAuth.AuthParam = {
+        challenge: randData,
+        authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE, userAuth.UserAuthType.FINGERPRINT],
+        authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+        skipLockedBiometricAuth: true
+      };
+      // 配置认证界面
+      const widgetParam: userAuth.WidgetParam = {
+        title: resourceToString($r('app.string.title')),
+      };
+      // 获取认证对象
+      const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+      Logger.info('get userAuth instance success');
+      // 订阅认证过程中的提示信息。
+      userAuthInstance.on('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
+        Logger.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
+        this.result[ResultIndex.PERCEIVE_ADJUST] = (`${authTipInfo.tipType}`);
+      });
+      // 开始认证
+      userAuthInstance.start();
+      // [StartExclude perceive-adjust-authentication-process]
+      let DELAY_TIME: number = 3000; // 停止3秒
+      waiting(DELAY_TIME).then(() => {
+        // [EndExclude perceive-adjust-authentication-process]
+        // 取消订阅认证过程中的提示信息。
+        userAuthInstance.off('authTip');
+        Logger.info('off authTip success');
+        // 取消认证
+        userAuthInstance.cancel();
+        Logger.info('auth cancel success');
+        // [StartExclude perceive-adjust-authentication-process]
+      });
+      // [EndExclude perceive-adjust-authentication-process]
+    } catch (error) {
+      const err: BusinessError = error as BusinessError;
+      Logger.error(`auth catch error. Code is ${err?.code as number}, message is ${err?.message}`);
+    }
+  }
+  // [End perceive-adjust-authentication-process]
+
   // [Start custom_authentication]
   handleCustomAuthResult(userAuthInstance: userAuth.UserAuthInstance, exampleNumber: number) {
     // [StartExclude custom_authentication]
@@ -659,6 +715,22 @@ struct Index {
 
         TabContent() {
           Column() {
+            Text($r('app.string.descriptionContent7'))
+              .width('70%')
+              .textAlign(TextAlign.Center)
+              .fontSize($r('app.float.size_20'))
+            Button($r('app.string.example6'))
+              .onClick(async () => {
+                this.perceiveAndAdjustAuthentication();
+              })
+            Text(this.result[ResultIndex.PERCEIVE_ADJUST])
+              .fontSize($r('app.float.size_40'))
+              .textAlign(TextAlign.Center)
+          }
+        }.tabBar(this.tabBuilder($r('app.string.exampleTab5'), PageIndex.PERCEIVE_ADJUST, 'exampleTab5'))
+
+        TabContent() {
+          Column() {
             Text($r('app.string.descriptionContent6'))
               .width('70%')
               .textAlign(TextAlign.Center)
@@ -750,7 +822,7 @@ struct Index {
       .vertical(false)
       .barMode(BarMode.Fixed)
       .barWidth('90%')
-      .barHeight('5%')
+      .barHeight('10%')
       .onChange((index: number) => {
         this.currentIndex = index;
       })
