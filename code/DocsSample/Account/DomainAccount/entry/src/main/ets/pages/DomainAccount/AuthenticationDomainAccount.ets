@@ -34,8 +34,8 @@ struct AuthenticationDomainAccount {
     // [Start define_the_callback_for_the_authentication_result]
     let callback: osAccount.IUserAuthCallback = {
       onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
-        console.log('auth resultCode = ' + resultCode);
-        console.log('auth authResult = ' + JSON.stringify(authResult));
+        console.info('auth resultCode = ' + resultCode);
+        console.info('auth authResult = ' + JSON.stringify(authResult));
         // [StartExclude define_the_callback_for_the_authentication_result]
         if(resultCode == 0) {
           this.message = 'Successfully authenticated domain account using password';
@@ -50,8 +50,9 @@ struct AuthenticationDomainAccount {
     // [Start perform_password_authentication]
     try {
       osAccount.DomainAccountManager.auth(domainAccountInfo, credential, callback);
-    } catch (err) {
-      console.error('auth exception = ' + JSON.stringify(err));
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`auth exception = ${err.message}`);
     }
     // [End perform_password_authentication]
   }
@@ -60,8 +61,8 @@ struct AuthenticationDomainAccount {
     // [Start define_the_callback_object_of_the_authentication_result]
     let callback: osAccount.IUserAuthCallback = {
       onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
-        console.log('authWithPopup resultCode = ' + resultCode);
-        console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
+        console.info('authWithPopup resultCode = ' + resultCode);
+        console.info('authWithPopup authResult = ' + JSON.stringify(authResult));
         // [StartExclude define_the_callback_object_of_the_authentication_result]
         if(resultCode == 0) {
           this.message = 'Successfully authenticated domain account using popup';
@@ -77,8 +78,9 @@ struct AuthenticationDomainAccount {
     // [Start call_operation_to_authenticate_the_current_domain_account]
     try {
       osAccount.DomainAccountManager.authWithPopup(callback)
-    } catch (err) {
-      console.error('authWithPopup exception = ' + JSON.stringify(err));
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`authWithPopup exception = ${err.message}`);
       // [StartExclude call_operation_to_authenticate_the_current_domain_account]
       this.message = 'Exception occurred during popup authentication: ' + JSON.stringify(err);
       // [EndExclude call_operation_to_authenticate_the_current_domain_account]
