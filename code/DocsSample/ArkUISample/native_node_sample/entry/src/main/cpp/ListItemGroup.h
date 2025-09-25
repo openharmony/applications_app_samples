@@ -20,7 +20,7 @@
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 
-#include "ArkUINode.h"
+#include "ScrollableNode.h"
 #include "ArkUINodeAdapter.h"
 
 /** 轻量封装：分组节点，仅提供示例所需 API */

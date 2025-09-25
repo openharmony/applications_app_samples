@@ -22,7 +22,7 @@ class TextMaker {
 public:
     TextMaker(){};
     ~TextMaker(){};
-    static ArkUI_NodeHandle createTextPage();
+    static ArkUI_NodeHandle CreateNativeNode();
 };
 
 #endif // NATIVE_TYPE_SAMPLE_SWIPERMAKER_H

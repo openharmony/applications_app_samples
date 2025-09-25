@@ -20,15 +20,15 @@
 
 #include <arkui/native_node.h>
 
-#include "ArkUINode.h"
-#include "ScrollUtils.h"
-#include "ScrollEvent.h"
+#include "ScrollableNode.h"
+#include "ScrollableUtils.h"
+#include "ScrollableEvent.h"
 #include "ArkUINodeAdapter.h"
 
 class GridMaker : public BaseNode {
 public:
-    static ArkUI_NodeHandle createGridPage();
-    
+    static ArkUI_NodeHandle CreateNativeNode();
+
     GridMaker()
         : BaseNode(NodeApiInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_GRID)),
           nodeApi_(NodeApiInstance::GetInstance()->GetNativeNodeAPI())
@@ -50,9 +50,15 @@ public:
     // ========================================
     // 尺寸设置接口
     // ========================================
-    void SetGridSize(float width, float height) { SetSize(width, height); }
+    void SetGridSize(float width, float height)
+    {
+        SetSize(width, height);
+    }
 
-    void SetGridSizePercent(float widthPercent, float heightPercent) { SetSizePercent(widthPercent, heightPercent); }
+    void SetGridSizePercent(float widthPercent, float heightPercent)
+    {
+        SetSizePercent(widthPercent, heightPercent);
+    }
 
     // ========================================
     // 模板和间距设置
@@ -67,9 +73,15 @@ public:
         Utils::SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_COLUMN_TEMPLATE, columnsTemplate);
     }
 
-    void SetColumnsGap(float gap) { Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_COLUMN_GAP, gap); }
+    void SetColumnsGap(float gap)
+    {
+        Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_COLUMN_GAP, gap);
+    }
 
-    void SetRowsGap(float gap) { Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_ROW_GAP, gap); }
+    void SetRowsGap(float gap)
+    {
+        Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_ROW_GAP, gap);
+    }
 
     // ========================================
     // 行为和性能设置
@@ -89,7 +101,10 @@ public:
         Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_SYNC_LOAD, enabled ? 1 : 0);
     }
 
-    void SetDefaultScrollStyle() { Utils::SetDefaultScrollStyle(nodeApi_, GetHandle()); }
+    void SetDefaultScrollStyle()
+    {
+        Utils::SetDefaultScrollStyle(nodeApi_, GetHandle());
+    }
 
     // ========================================
     // 适配器设置
@@ -105,7 +120,10 @@ public:
     }
 
 protected:
-    void OnNodeEvent(ArkUI_NodeEvent *event) override { BaseNode::OnNodeEvent(event); }
+    void OnNodeEvent(ArkUI_NodeEvent *event) override
+    {
+        BaseNode::OnNodeEvent(event);
+    }
 
 private:
     ArkUI_NativeNodeAPI_1 *nodeApi_ = nullptr;

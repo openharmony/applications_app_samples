@@ -1193,7 +1193,7 @@ void setUIVal(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text7);
 }
 
-ArkUI_NodeHandle TextMaker::createTextPage()
+ArkUI_NodeHandle TextMaker::CreateNativeNode()
 {
     ArkUI_NodeHandle scroll = Manager::nodeAPI_->createNode(ARKUI_NODE_SCROLL);
     ArkUI_NodeHandle textContainer = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);

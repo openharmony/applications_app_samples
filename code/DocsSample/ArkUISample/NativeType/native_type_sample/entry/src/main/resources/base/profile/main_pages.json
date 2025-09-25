@@ -14,6 +14,11 @@
     "pages/page_visual_effects",
     "pages/visualEffects/VisualEffectsIndexScale",
     "pages/visualEffects/VisualEffectsIndexBlur",
-    "pages/visualEffects/VisualEffectsIndexShape"
+    "pages/visualEffects/VisualEffectsIndexShape",
+    "pages/page_waterflow",
+    "pages/page_grid",
+    "pages/page_scroll",
+    "pages/page_refresh",
+    "pages/page_list"
   ]
 }

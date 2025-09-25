@@ -735,7 +735,7 @@ void SwiperMaker::SetSwiperAttribute(ArkUI_NodeHandle &swiper)
     SetSwiperEvent(swiper);
 }
 
-ArkUI_NodeHandle SwiperMaker::createSwiperPage()
+ArkUI_NodeHandle SwiperMaker::CreateNativeNode()
 {
     static ArkUI_NodeHandle swiper1 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
     static ArkUI_NodeHandle swiper2 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);

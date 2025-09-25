@@ -19,8 +19,8 @@
 
 #include <arkui/native_type.h>
 
-#include "ArkUINode.h"
-#include "ScrollUtils.h"
+#include "ScrollableNode.h"
+#include "ScrollableUtils.h"
 #include "ArkUINodeAdapter.h"
 #include "WaterFlowMaker.h"
 #include "WaterFlowSection.h"
@@ -297,7 +297,7 @@ static ArkUI_NodeHandle BuildWaterFlow()
     return gNode->GetWaterFlow();
 }
 
-ArkUI_NodeHandle WaterFlowMaker::createWaterFlowPage()
+ArkUI_NodeHandle WaterFlowMaker::CreateNativeNode()
 {
     ArkUI_NativeNodeAPI_1 *api = nullptr;
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);

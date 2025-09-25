@@ -22,7 +22,7 @@
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 
-#include "ArkUINode.h"
+#include "ScrollableNode.h"
 #include "ArkUINodeAdapter.h"
 #include "GridMaker.h"
 
@@ -132,7 +132,7 @@ static std::shared_ptr<GridMaker> BuildGrid()
     return grid;
 }
 
-ArkUI_NodeHandle GridMaker::createGridPage()
+ArkUI_NodeHandle GridMaker::CreateNativeNode()
 {
     ArkUI_NativeNodeAPI_1 *api = nullptr;
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);

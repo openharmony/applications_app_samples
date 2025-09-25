@@ -24,7 +24,7 @@
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 
-#include "ScrollUtils.h"
+#include "ScrollableUtils.h"
 
 /**
  * 通用 NodeAdapter 封装

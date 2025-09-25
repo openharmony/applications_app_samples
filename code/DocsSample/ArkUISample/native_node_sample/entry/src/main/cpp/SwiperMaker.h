@@ -67,7 +67,7 @@ public:
     
     static void SetSwiperEvent(ArkUI_NodeHandle &swiper);
     
-    static ArkUI_NodeHandle createSwiperPage();
+    static ArkUI_NodeHandle CreateNativeNode();
 
     struct UserCallback {
         std::function<void(void *event)> callback;

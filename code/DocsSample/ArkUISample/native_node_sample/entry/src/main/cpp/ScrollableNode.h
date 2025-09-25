@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef ARKUINODE_H
-#define ARKUINODE_H
+#ifndef SCROLL_NODE_H
+#define SCROLL_NODE_H
 
 #include <functional>
 #include <list>
@@ -26,7 +26,7 @@
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
 
-#include "ScrollUtils.h"
+#include "ScrollableUtils.h"
 
 class NodeApiInstance {
 public:
@@ -171,4 +171,4 @@ template <typename T> inline std::vector<std::shared_ptr<T>> &GetKeepAliveContai
     return keepAliveContainer;
 }
 
-#endif // COMMON_ARKUINODE_H
+#endif // COMMON_SCROLL_NODE_H

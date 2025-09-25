@@ -16,8 +16,8 @@
 #include <cmath>
 #include <cstdint>
 
-#include "ArkUINode.h"
-#include "ScrollUtils.h"
+#include "ScrollableNode.h"
+#include "ScrollableUtils.h"
 #include "ScrollMaker.h"
 
 #include <hilog/log.h>
@@ -363,7 +363,7 @@ static ArkUI_NodeHandle Build()
     return gScroll->GetScroll();
 }
 
-ArkUI_NodeHandle ScrollMaker::createScrollPage()
+ArkUI_NodeHandle ScrollMaker::CreateNativeNode()
 {
     ArkUI_NativeNodeAPI_1 *api = nullptr;
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);
