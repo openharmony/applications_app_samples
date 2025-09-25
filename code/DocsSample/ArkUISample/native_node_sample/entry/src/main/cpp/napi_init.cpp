@@ -30,6 +30,16 @@ static napi_value Init(napi_env env, napi_value exports)
          nullptr},
         {"createSwiperNativeNode", nullptr, Manager::CreateSwiperNativeNode, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"createWaterFlowNativeNode", nullptr, Manager::CreateWaterFlowNativeNode, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"createGridNativeNode", nullptr, Manager::CreateGridNativeNode, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"createScrollNativeNode", nullptr, Manager::CreateScrollNativeNode, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"createRefreshNativeNode", nullptr, Manager::CreateRefreshNativeNode, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"createListNativeNode", nullptr, Manager::CreateListNativeNode, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
         // 参考新增其他createNative方法和Maker类
     };
 

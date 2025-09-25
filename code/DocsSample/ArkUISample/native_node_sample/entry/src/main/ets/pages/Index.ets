@@ -27,6 +27,11 @@ struct MenuIndex {
     [
       { title: 'Text', url: 'pages/page_text' },
       { title: 'Swiper', url: 'pages/page_swiper' },
+      { title: 'WaterFlow', url: 'pages/page_waterflow' },
+      { title: 'Grid', url: 'pages/page_grid' },
+      { title: 'Scroll', url: 'pages/page_scroll' },
+      { title: 'Refresh', url: 'pages/page_refresh' },
+      { title: 'List', url: 'pages/page_list' },
       { title: 'add your router', url: '' },
     ];
 

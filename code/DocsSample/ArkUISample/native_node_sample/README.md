@@ -2,13 +2,32 @@
 
 ## 介绍
 
-本示例展示了如何创建文本、输入框、文本域等组件，配置其样式、属性与事件，还含 UI 任务、反色设置等功能，构建文本页面。
+本示例展示了如何创建文本、输入框、文本域、Grid等组件，配置其样式、属性与事件，还含 UI 任务、反色设置等功能，构建文本页面。
 
 ## 效果预览
+<table>
+  <tr>
+    <th>首页</th>
+    <th>Text</th>
+    <th>Swiper</th>
+    <th>WaterFlow</th>
+    <th>Grid</th>
+    <th>Scroll</th>
+    <th>Refresh</th>
+    <th>List</th>
+  </tr>
+  <tr>
+    <td><img src="./screenshot/index.jpeg"></td>
+    <td><img src="./screenshot/text.jpeg"></td>
+    <td><img src="./screenshot/swiper.jpeg"></td>
+    <td><img src="./screenshot/waterflow.jpeg"></td>
+    <td><img src="./screenshot/grid.jpeg"></td>
+    <td><img src="./screenshot/scroll.jpeg"></td>
+    <td><img src="./screenshot/refresh.jpeg"></td>
+    <td><img src="./screenshot/list.jpeg"></td>
+  </tr>
+</table>
 
-| 预览                                      | 
-| -------------------------------------------- | 
-<img src="./screenshot/nativeNode.png" width="300" />
 
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；
@@ -18,31 +37,73 @@
 ## 工程目录
 
 ```
-StyledStringNDK
+native_node_sample
+entry/src/main/cpp/
+├── ArkUINode.h
+├── ArkUINodeAdapter.h
+├── baseUtils.cpp
+├── baseUtils.h
+├── CMakeLists.txt (CMake脚本)
+├── GridMaker.cpp
+├── GridMaker.h
+├── ListItemGroup.h
+├── ListItemSwipe.h
+├── ListMaker.cpp
+├── ListMaker.h
+├── manager.cpp 
+├── manager.h
+├── napi_init.cpp
+├── RefreshMaker.cpp
+├── RefreshMaker.h
+├── ScrollEvent.h
+├── ScrollMaker.cpp
+├── ScrollMaker.h
+├── ScrollUtils.cpp
+├── ScrollUtils.h
+├── SwiperMaker.cpp
+├── SwiperMaker.h
+├── TextMaker.cpp
+├── TextMaker.h
+├── WaterFlowMaker.cpp
+├── WaterFlowMaker.h
+└── WaterFlowSection.h
+    └── types/libentry
+        ├── Index.d.ts (函数对应的js映射)
+        └── oh-package.json5
+
 entry/src/main/ets/
+├── entryability
+│   └── EntryAbility.ets
+├── entrybackupability
+│   └── EntryBackupAbility.ets
 └── pages
-    ├── Index.ets (获取导航页面)
-    └── page_text.ets (文本界面)
-entry/src/main/
-├── cpp
-│   ├── types
-│   │   └── libentry
-│   │       └── Index.d.ts (函数对应的js映射)
-│   ├── CMakeLists.txt (CMake脚本)
-|   ├── manager.cpp 
-|   ├── manager.h
-│   ├── napi_init.cpp
-|   ├── baseUtils.cpp
-|   ├── baseUtils.h
-|   ├── TextMaker.cpp
-│   └── TextMaker.h
-└── resources
-    ├── base
-    │   ├── element
-    │   │   ├── color.json
-    │   │   ├── float.json
-    │   │   └── string.json
-    │   └── media
+    ├── Index.ets          (获取导航页面)
+    ├── page_grid.ets      (Grid页面)
+    ├── page_list.ets      (List页面)
+    ├── page_refresh.ets   (Refresh页面)
+    ├── page_scroll.ets    (Scroll页面)
+    ├── page_swiper.ets    (Swiper页面)
+    ├── page_text.ets      (文本界面)
+    └── page_waterflow.ets (WaterFlow界面)
+
+entry/src/main/resources/
+├── base
+│   ├── element
+│   │   ├── color.json
+│   │   ├── float.json
+│   │   └── string.json
+│   ├── media
+│   │   ├── background.png
+│   │   ├── foreground.png
+│   │   ├── layered_image.json
+│   │   └── startIcon.png
+│   └── profile
+│       ├── backup_config.json
+│       └── main_pages.json
+├── dark
+│   └── element
+│       └── color.json
+└── rawfile
 ```
 
 ## 相关权限
