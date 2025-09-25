@@ -14,3 +14,5 @@
  */
 
 export const createNativeNaviNode: (content: Object) =>void;
+export const createNativeAccessibilityNode: (content: Object) => void;
+export const createNativeEmbeddedComponentNode: (content: Object) => void;
