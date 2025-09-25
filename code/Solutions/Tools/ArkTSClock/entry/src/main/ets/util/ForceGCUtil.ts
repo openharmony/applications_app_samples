@@ -15,8 +15,12 @@
 
 import Logger from '../model/Logger';
 
+declare class ArkTools {
+  static hintGC(): void;
+}
+
 export function forceGC() {
   Logger.info('forceGCUtil', 'forceGC');
   // @ts-ignore
-  ArkTools.forceFullGC();
+  ArkTools.hintGC();
 }
