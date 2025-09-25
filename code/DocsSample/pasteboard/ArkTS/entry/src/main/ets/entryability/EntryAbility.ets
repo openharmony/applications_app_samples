@@ -14,79 +14,9 @@
  */
 
 // [Start oh_jsvm_get_arraybuffer_info]
-// [StartExclude oh_jsvm_get_arraybuffer_info]
-//1.导入pasteboard,unifiedDataChannel和uniformTypeDescriptor模块。
-// [EndExclude oh_jsvm_get_arraybuffer_info]
-
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 import {unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-
-// [StartExclude oh_jsvm_get_arraybuffer_info]
-//2.构造一条PlainText数据,并书写获取延时数据的函数。
-// [EndExclude oh_jsvm_get_arraybuffer_info]
-let plainTextData = new unifiedDataChannel.UnifiedData();
-let GetDelayPlainText = ((dataType:string) => {
-  let plainText = new unifiedDataChannel.PlainText();
-  plainText.details = {
-    Key: 'delayPlaintext',
-    Value: 'delayPlaintext',
-  };
-  plainText.textContent = 'delayTextContent';
-  plainText.abstract = 'delayTextContent';
-  plainTextData.addRecord(plainText);
-  return plainTextData;
-});
-// [StartExclude oh_jsvm_get_arraybuffer_info]
-//3.向系统剪贴板中存入一条PlainText数据。
-// [EndExclude oh_jsvm_get_arraybuffer_info]
-let SetDelayPlainText = () => {
-  plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
-  // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
-  plainTextData.properties.getDelayData = GetDelayPlainText;
-  pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
-    // 存入成功，处理正常场景
-  }).catch((error: BusinessError) => {
-    // 处理异常场景
-  });
-}
-// [StartExclude oh_jsvm_get_arraybuffer_info]
-//4.从系统剪贴板中读取这条text数据。
-// [EndExclude oh_jsvm_get_arraybuffer_info]
-let GetPlainTextUnifiedData = (() => {
-  pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
-    let outputData = data;
-    let records = outputData.getRecords();
-    if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-      let record = records[0] as unifiedDataChannel.PlainText;
-      console.info('GetPlainText success, type:' + records[0].getType() );
-      //注意：用户复制的数据内容属于敏感信息，禁止应用程序使用日志明文打印从剪贴板获取到的数据内容。
-    } else {
-      console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
-    }
-  }).catch((error: BusinessError) => {
-    //处理异常场景
-  })
-})
-// [StartExclude oh_jsvm_get_arraybuffer_info]
-//5.应用设置本应用剪贴板数据的可粘贴范围。
-// [EndExclude oh_jsvm_get_arraybuffer_info]
-const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-  systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
-  console.info('Set app share options success.');
-} catch (err) {
-  //处理异常场景
-}
-// [StartExclude oh_jsvm_get_arraybuffer_info]
-//6.应用删除本应用设置的剪贴板数据可粘贴范围配置。
-// [EndExclude oh_jsvm_get_arraybuffer_info]
-try {
-  systemPasteboard.removeAppShareOptions();
-  console.info('Remove app share options success.');
-} catch (err) {
-  //处理异常场景
-}
 
 // [StartExclude oh_jsvm_get_arraybuffer_info]
 //使用基础数据类型进行复制粘贴
@@ -101,18 +31,12 @@ export default class EntryAbility extends UIAbility {
     let systemPasteboard = pasteboard.getSystemPasteboard();
     await systemPasteboard.setData(pasteData);
     //从系统剪贴板中读取数据
-    systemPasteboard.getData().then((data) => {
-      let outputData = data;
-      // 从剪贴板数据中获取条目数量
-      let recordCount = outputData.getRecordCount();
-      // 从剪贴板数据中获取对应条目信息
-      for (let i = 0; i < recordCount; i++) {
-        let record = outputData.getRecord(i).toPlainText();
-        console.info('Get data success, record:' + record);
-      }
-    }).catch((error: BusinessError) => {
-      // 处理异常场景
-    })
+    let data = await systemPasteboard.getData();
+    let recordCount = data.getRecordCount();
+    for (let i = 0; i < recordCount; i++) {
+      let record = data.getRecord(i).toPlainText();
+      console.info('Get data success, record:' + record);
+    }
   }
 }
 
@@ -129,7 +53,7 @@ let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformD
 let data = new unifiedDataChannel.UnifiedData();
 data.addRecord(record);
 // 2.向系统剪贴板中存入一条PlainText数据
-//const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setUnifiedData(data).then((data: void) => {
   console.info('Succeeded in setting UnifiedData.');
   // 存入成功，处理正常场景
@@ -150,4 +74,58 @@ systemPasteboard.getUnifiedData().then((data) => {
   console.error('Failed to get UnifiedData. Cause: ' + err.message);
   // 处理异常场景
 });
+
+// [StartExclude oh_jsvm_get_arraybuffer_info]
+// 使用基于PasteData级别的延迟复制粘贴（不建议使用）
+// [EndExclude oh_jsvm_get_arraybuffer_info]
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let GetDelayPlainText = ((dataType:string) => {
+  let plainText = new unifiedDataChannel.PlainText();
+  plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+  };
+  plainText.textContent = 'delayTextContent';
+  plainText.abstract = 'delayTextContent';
+  plainTextData.addRecord(plainText);
+  return plainTextData;
+});
+let SetDelayPlainText = () => {
+  plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
+  // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
+  plainTextData.properties.getDelayData = GetDelayPlainText;
+  pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
+    // 存入成功，处理正常场景
+  }).catch((error: BusinessError) => {
+    // 处理异常场景
+  });
+}
+let GetPlainTextUnifiedData = (() => {
+  pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
+    let outputData = data;
+    let records = outputData.getRecords();
+    if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+      let record = records[0] as unifiedDataChannel.PlainText;
+      console.info('GetPlainText success, type:' + records[0].getType() );
+      //注意：用户复制的数据内容属于敏感信息，禁止应用程序使用日志明文打印从剪贴板获取到的数据内容。
+    } else {
+      console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+    }
+  }).catch((error: BusinessError) => {
+    //处理异常场景
+  })
+})
+//const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+  systemPasteboard.setAppShareOptions(pasteboard.ShareOption.LOCALDEVICE);
+  console.info('Set app share options success.');
+} catch (err) {
+  //处理异常场景
+}
+try {
+  systemPasteboard.removeAppShareOptions();
+  console.info('Remove app share options success.');
+} catch (err) {
+  //处理异常场景
+}
 // [End oh_jsvm_get_arraybuffer_info]

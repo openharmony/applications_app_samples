@@ -54,9 +54,13 @@ static void pasteboard_test_set()
 
     // 2. 创建OH_UdmfRecord对象，并向OH_UdmfRecord中添加文本类型数据
     OH_UdsPlainText* plainText = OH_UdsPlainText_Create();
-    OH_UdsPlainText_SetContent(plainText, "Hello world!");
+    if (plainText != nullptr) {
+        OH_UdsPlainText_SetContent(plainText, "Hello world!");
+    }
     OH_UdsHtml* udsHtml = OH_UdsHtml_Create();
-    OH_UdsHtml_SetContent(udsHtml, "hello world");
+    if (udsHtml != nullptr) {
+        OH_UdsHtml_SetContent(udsHtml, "hello world");
+    }
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     OH_UdmfRecord_AddPlainText(record, plainText);
 
@@ -102,7 +106,7 @@ static void pasteboard_test_get()
 // 1. 获取数据时触发的提供剪贴板数据的回调函数。
 void* GetDataCallback(void* context, const char* type) {
     // 纯文本类型
-    if (strcmp(type, UDMF_META_PLAIN_TEXT) == 0) {
+    if (memcmp(type, UDMF_META_PLAIN_TEXT, sizeof(UDMF_META_PLAIN_TEXT) - 1) == 0) {
         // 创建纯文本类型的Uds对象。
         OH_UdsPlainText* udsText = OH_UdsPlainText_Create();
         // 设置纯文本内容。
@@ -133,6 +137,9 @@ static void pasteboard_test_time()
 
     // 4. 创建OH_UdmfRecord对象。
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
+    if (record == nullptr) {
+        return;
+    }
 
     // 5. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
     OH_UdmfRecordProvider* provider = OH_UdmfRecordProvider_Create();
@@ -144,11 +151,16 @@ static void pasteboard_test_time()
 
     // 7. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
     OH_UdmfData* setData = OH_UdmfData_Create();
-    OH_UdmfData_AddRecord(setData, record);
+    if (setData != nullptr) {
+        OH_UdmfData_AddRecord(setData, record);
+    }
 
     // 8. 创建OH_Pasteboard对象，将数据写入剪贴板中。
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
-    OH_Pasteboard_SetData(pasteboard, setData);
+    if (setData != nullptr) {
+        OH_Pasteboard_SetData(pasteboard, setData);
+    }
+
 
     // 9. 记录当前的剪贴板数据变化次数。
     uint32_t changeCount = OH_Pasteboard_GetChangeCount(pasteboard);
