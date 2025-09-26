@@ -32,7 +32,7 @@ export struct RefreshList {
     .backgroundColor($r('sys.color.comp_background_focus'))
     .title($r('app.string.RefreshList_title'))
     .onAppear(() => {
-      entry.RefreshList(this.slot);
+      entry.CreateRefreshList(this.slot);
     })
   }
 }

@@ -93,7 +93,7 @@ public:
         if (count <= 0) {
             return;
         }
-        if (!Utils::IsValidIndex(index, GetTotalItemCount())) {
+        if (!IsValidIndex(index, GetTotalItemCount())) {
             return;
         }
         OH_ArkUI_NodeAdapter_RemoveItem(adapterHandle_, index, count);
@@ -107,7 +107,7 @@ protected:
     static void OnStaticEvent(ArkUI_NodeAdapterEvent *event)
     {
         auto *self = reinterpret_cast<ArkUINodeAdapter *>(OH_ArkUI_NodeAdapterEvent_GetUserData(event));
-        if (Utils::IsNotNull(self)) {
+        if (IsNotNull(self)) {
             self->OnEvent(event);
         }
     }
@@ -202,7 +202,7 @@ private:
         const int32_t index = OH_ArkUI_NodeAdapterEvent_GetItemIndex(event);
         uint64_t nodeId = static_cast<uint64_t>(index);
 
-        if (Utils::IsValidIndex(index, GetTotalItemCount()) && callbacks_.getStableId) {
+        if (IsValidIndex(index, GetTotalItemCount()) && callbacks_.getStableId) {
             nodeId = callbacks_.getStableId(index);
         }
         OH_ArkUI_NodeAdapterEvent_SetNodeId(event, nodeId);
@@ -213,7 +213,7 @@ private:
         const int32_t index = OH_ArkUI_NodeAdapterEvent_GetItemIndex(event);
         ArkUI_NodeHandle item = PopFromCacheOrCreate(index);
 
-        if (callbacks_.onBind && Utils::IsValidIndex(index, GetTotalItemCount())) {
+        if (callbacks_.onBind && IsValidIndex(index, GetTotalItemCount())) {
             callbacks_.onBind(nodeApi_, item, index);
         }
         OH_ArkUI_NodeAdapterEvent_SetItem(event, item);
@@ -222,7 +222,7 @@ private:
     void HandleRemoveNodeFromAdapter(ArkUI_NodeAdapterEvent *event)
     {
         ArkUI_NodeHandle node = OH_ArkUI_NodeAdapterEvent_GetRemovedNode(event);
-        if (!Utils::IsNotNull(node)) {
+        if (!IsNotNull(node)) {
             return;
         }
 

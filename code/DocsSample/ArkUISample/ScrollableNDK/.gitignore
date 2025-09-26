@@ -11,3 +11,5 @@
 **/.test
 /.appanalyzer
 log.txt
+*-lock.json5
+**/*-lock.json5

@@ -28,24 +28,22 @@
 
 #include <hilog/log.h>
 #ifndef LOG_TAG
-#define LOG_TAG "RefreshList"
+#define LOG_TAG "Refresh"
 #endif
 
 #include "common/ArkUINode.h"
 #include "common/ArkUINodeAdapter.h"
-#include "components/list/ListItemGroupNode.h"
-#include "components/list/ListNode.h"
-#include "components/refresh/RefreshNode.h"
-#include "components/refresh/examples/RefreshList.h"
+#include "components/refresh/Refresh.h"
+#include "components/list/List.h"
+#include "components/list/ListItemSwipe.h"
+#include "components/list/ListItemGroup.h"
 
-namespace ScrollableNDK::Examples {
-
-// ================= 业务常量（示例） =================
+// ================= 业务常量 =================
 namespace {
 
 constexpr uint32_t K_COLOR_PAGE_BG = 0xFFF1F3F5U;
 constexpr uint32_t K_ITEM_BG_COLOR = 0xFFFFFFFFU;
-constexpr const char* K_LOADING_TEXT = "加载中…";
+constexpr const char *K_LOADING_TEXT = "加载中…";
 constexpr float K_ITEM_FONT_SIZE = 16.0f;
 
 constexpr int K_INIT_COUNT = 10;
@@ -80,11 +78,10 @@ constexpr int64_t K_FOOTER_STABLE_ID = -16;
 namespace {
 constexpr int RET_OK = 0;
 
-inline bool Ok(int rc, const char* what)
+inline bool Ok(int rc, const char *what)
 {
     if (rc != RET_OK) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG,
-                     "%{public}s failed rc=%{public}d", what, rc);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG, "%{public}s failed rc=%{public}d", what, rc);
         return false;
     }
     return true;
@@ -103,10 +100,19 @@ struct RefreshListState {
     int lastTriggeredTot = -1;
     bool loading = false;
 
-    bool NoMore() const { return total >= K_MAX_ITEMS; }
+    bool NoMore() const
+    {
+        return total >= K_MAX_ITEMS;
+    }
 
-    int ItemsCount() const { return static_cast<int>(data.size()); }
-    int RenderCount() const { return ItemsCount() + (showLoadingFooter ? 1 : 0); }
+    int ItemsCount() const
+    {
+        return static_cast<int>(data.size());
+    }
+    int RenderCount() const
+    {
+        return ItemsCount() + (showLoadingFooter ? 1 : 0);
+    }
 };
 
 } // namespace
@@ -182,8 +188,8 @@ static void AppendTailBatch(const std::shared_ptr<RefreshListState> &st, int add
     st->adapter->InsertRange(base, addClamped);
 
     st->total += addClamped;
-    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG,
-                 "AppendTailBatch add=%{public}d total=%{public}d", addClamped, st->total);
+    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "AppendTailBatch add=%{public}d total=%{public}d", addClamped,
+                 st->total);
 
     if (hadFooter) {
         ToggleLoadingFooter(st, true);
@@ -217,11 +223,11 @@ static ArkUI_NodeHandle CreateListItem(ArkUI_NativeNodeAPI_1 *api)
         return nullptr;
     }
 
-    Utils::SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, 1.0f);
-    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
+    SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
 
     // 让文本也占满宽度
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
     return item;
 }
 
@@ -240,16 +246,16 @@ static void BindAsNormal(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, cons
     }
 
     // 背景放在 item 上
-    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
+    SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
 
     // 文本占满宽度
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
 
-    Utils::SetTextContent(api, text, txt);
-    Utils::SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
-    Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, K_ROW_HEIGHT);
-    Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_ROW_HEIGHT);
-    Utils::SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
+    SetTextContent(api, text, txt);
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
+    SetAttributeFloat32(api, text, NODE_HEIGHT, K_ROW_HEIGHT);
+    SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_ROW_HEIGHT);
+    SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
 }
 
 /**
@@ -265,14 +271,14 @@ static void BindAsFooter(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item)
         return;
     }
 
-    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
 
-    Utils::SetTextContent(api, text, K_LOADING_TEXT);
-    Utils::SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
-    Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, K_FOOTER_HEIGHT);
-    Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_FOOTER_HEIGHT);
-    Utils::SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
+    SetTextContent(api, text, K_LOADING_TEXT);
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
+    SetAttributeFloat32(api, text, NODE_HEIGHT, K_FOOTER_HEIGHT);
+    SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_FOOTER_HEIGHT);
+    SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
 }
 
 /**
@@ -284,9 +290,7 @@ static NodeAdapterCallbacks MakeCallbacks(const std::shared_ptr<RefreshListState
 {
     NodeAdapterCallbacks cb{};
 
-    cb.getTotalCount = [st]() -> int32_t {
-        return st ? st->RenderCount() : 0;
-    };
+    cb.getTotalCount = [st]() -> int32_t { return st ? st->RenderCount() : 0; };
 
     cb.getStableId = [st](int32_t i) -> uint64_t {
         if (!st) {
@@ -302,9 +306,7 @@ static NodeAdapterCallbacks MakeCallbacks(const std::shared_ptr<RefreshListState
         return static_cast<uint64_t>(i);
     };
 
-    cb.onCreate = [](ArkUI_NativeNodeAPI_1 *api, int32_t /*index*/) -> ArkUI_NodeHandle {
-        return CreateListItem(api);
-    };
+    cb.onCreate = [](ArkUI_NativeNodeAPI_1 *api, int32_t /*index*/) -> ArkUI_NodeHandle { return CreateListItem(api); };
 
     cb.onBind = [st](ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index) {
         if (!st) {
@@ -354,11 +356,11 @@ static std::shared_ptr<BaseNode> MakeRoot()
     std::shared_ptr<BaseNode> root = std::make_shared<BaseNode>(h);
     root->SetWidthPercent(K_WIDTH_PERCENT_FULL);
     root->SetHeightPercent(K_HEIGHT_PERCENT_FULL);
-    Utils::SetAttributeUInt32(api, root->GetHandle(), NODE_BACKGROUND_COLOR, K_COLOR_PAGE_BG);
+    SetAttributeUInt32(api, root->GetHandle(), NODE_BACKGROUND_COLOR, K_COLOR_PAGE_BG);
     return root;
 }
 
-static void ConfigureList(const std::shared_ptr<ListNode> &list)
+static void ConfigureList(const std::shared_ptr<List> &list)
 {
     list->SetWidthPercent(K_WIDTH_PERCENT_FULL);
     list->SetHeightPercent(K_HEIGHT_PERCENT_FULL);
@@ -367,7 +369,7 @@ static void ConfigureList(const std::shared_ptr<ListNode> &list)
     list->SetEdgeEffectSpring(K_LIST_EDGE_SPRING);
     list->SetScrollBarState(K_LIST_SCROLLBAR_VISIBLE);
     list->SetSpace(K_LIST_SPACE);
-    list->SetNestedScrollMode(ListNode::K_NESTED_SCROLL_PARENT_FIRST);
+    list->SetNestedScrollMode(List::kNestedScrollParentFirst);
 }
 
 /**
@@ -375,9 +377,9 @@ static void ConfigureList(const std::shared_ptr<ListNode> &list)
  * @param group 列表项组节点
  * @return 列表节点智能指针
  */
-inline std::shared_ptr<ListNode> MakeList(const std::shared_ptr<ListItemGroupNode> &group)
+inline std::shared_ptr<List> MakeList(const std::shared_ptr<ListItemGroupNode> &group)
 {
-    std::shared_ptr<ListNode> list = std::make_shared<ListNode>();
+    std::shared_ptr<List> list = std::make_shared<List>();
     ConfigureList(list);
     list->AddChild(std::static_pointer_cast<BaseNode>(group));
     return list;
@@ -388,9 +390,9 @@ inline std::shared_ptr<ListNode> MakeList(const std::shared_ptr<ListItemGroupNod
  * @param list 列表节点
  * @return 刷新节点智能指针
  */
-static std::shared_ptr<RefreshNode> MakeRefresh(const std::shared_ptr<ListNode> &list)
+static std::shared_ptr<Refresh> MakeRefresh(const std::shared_ptr<List> &list)
 {
-    std::shared_ptr<RefreshNode> refresh = std::make_shared<RefreshNode>();
+    std::shared_ptr<Refresh> refresh = std::make_shared<Refresh>();
     refresh->AttachChild(list);
     refresh->SetTransparentBackground();
     refresh->SetPullToRefresh(true);
@@ -401,7 +403,7 @@ static std::shared_ptr<RefreshNode> MakeRefresh(const std::shared_ptr<ListNode> 
 }
 
 // 触底加载
-static void WireReachEnd(const std::shared_ptr<RefreshListState> &st, const std::shared_ptr<ListNode> &list)
+static void WireReachEnd(const std::shared_ptr<RefreshListState> &st, const std::shared_ptr<List> &list)
 {
     list->RegisterOnReachEnd([st, list]() {
         OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "OnReachEnd triggered");
@@ -426,8 +428,7 @@ static void WireReachEnd(const std::shared_ptr<RefreshListState> &st, const std:
     });
 }
 
-static void OnVisibleChangeCore(const std::shared_ptr<RefreshListState> &st,
-                                const std::shared_ptr<ListNode> &list,
+static void OnVisibleChangeCore(const std::shared_ptr<RefreshListState> &st, const std::shared_ptr<List> &list,
                                 int32_t endIdxInGroup)
 {
     if (!st) {
@@ -463,9 +464,9 @@ static void OnVisibleChangeCore(const std::shared_ptr<RefreshListState> &st,
     st->loading = false;
 }
 
-inline void WireVisibleChange(const std::shared_ptr<RefreshListState> &st, const std::shared_ptr<ListNode> &list)
+inline void WireVisibleChange(const std::shared_ptr<RefreshListState> &st, const std::shared_ptr<List> &list)
 {
-    using V = ScrollableNDK::ListNode::VisibleContentChange;
+    using V = List::VisibleContentChange;
     list->RegisterOnVisibleContentChange([st, list](const V &ev) {
         const int32_t endIdx = ev.EndOnItem() ? ev.endItemIndex : -1;
         OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "OnVisibleContentChange endIdxInGroup=%{public}d",
@@ -495,16 +496,14 @@ static void PrependNewData(const std::shared_ptr<RefreshListState> &st)
         ToggleLoadingFooter(st, true);
     }
 
-    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG,
-                 "OnRefresh prepend=%{public}d total=%{public}d",
+    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "OnRefresh prepend=%{public}d total=%{public}d",
                  K_REFRESH_PREPEND_COUNT, st->total);
 }
 
 /**
  * 刷新行为
  */
-static void WireRefreshBehavior(const std::shared_ptr<RefreshListState> &st,
-                                const std::shared_ptr<RefreshNode> &refresh)
+static void WireRefreshBehavior(const std::shared_ptr<RefreshListState> &st, const std::shared_ptr<Refresh> &refresh)
 {
     static std::atomic_bool sRefreshing{false};
 
@@ -527,7 +526,7 @@ static void WireRefreshBehavior(const std::shared_ptr<RefreshListState> &st,
             static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - t0).count());
         const int delay = std::max(0, K_MIN_REFRESH_MS - elapsedMs);
 
-        Utils::PostDelayedTask(delay, [refresh]() {
+        PostDelayedTask(delay, [refresh]() {
             refresh->SetRefreshing(false);
             OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "OnRefresh complete");
         });
@@ -536,7 +535,7 @@ static void WireRefreshBehavior(const std::shared_ptr<RefreshListState> &st,
     });
 }
 
-inline void WireRefreshLogs(const std::shared_ptr<RefreshNode> &refresh)
+inline void WireRefreshLogs(const std::shared_ptr<Refresh> &refresh)
 {
     refresh->RegisterOnOffsetChange([](float offsetVp) {
         OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "OnOffsetChange offsetVp=%{public}f", offsetVp);
@@ -556,10 +555,10 @@ static std::shared_ptr<BaseNode> Build()
 
     // 分组 + 列表
     std::shared_ptr<ListItemGroupNode> group = std::make_shared<ListItemGroupNode>();
-    std::shared_ptr<ListNode> list = MakeList(group);
+    std::shared_ptr<List> list = MakeList(group);
 
     // 刷新容器
-    std::shared_ptr<RefreshNode> refresh = MakeRefresh(list);
+    std::shared_ptr<Refresh> refresh = MakeRefresh(list);
 
     // 状态
     std::shared_ptr<RefreshListState> st = std::make_shared<RefreshListState>();
@@ -584,28 +583,36 @@ static std::shared_ptr<BaseNode> Build()
 
     // keep alive
     GetKeepAliveContainer<BaseNode>().emplace_back(root);
-    GetKeepAliveContainer<RefreshNode>().emplace_back(refresh);
-    GetKeepAliveContainer<ListNode>().emplace_back(list);
+    GetKeepAliveContainer<Refresh>().emplace_back(refresh);
+    GetKeepAliveContainer<List>().emplace_back(list);
     GetKeepAliveContainer<ListItemGroupNode>().emplace_back(group);
     static std::vector<std::shared_ptr<RefreshListState>> g_states;
     g_states.emplace_back(st);
 
     return root;
 }
-
 } // namespace
 
-// ================= NAPI 入口 =================
-napi_value RefreshListImpl::NAPI(napi_env env, napi_callback_info info)
+ArkUI_NodeHandle Refresh::CreateRefreshList()
 {
-    ArkUI_NodeContentHandle content = Utils::GetNodeContentFromNapi(env, info);
-    if (content == nullptr) {
+    ArkUI_NativeNodeAPI_1 *api = nullptr;
+    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);
+    if (api == nullptr) {
         return nullptr;
     }
 
-    std::shared_ptr<BaseNode> root = Build();
-    Utils::AddNodeToContent(content, root->GetHandle());
-    return nullptr;
-}
+    ArkUI_NodeHandle page = api->createNode(ARKUI_NODE_COLUMN);
+    if (page == nullptr) {
+        return nullptr;
+    }
+    SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
 
-} // namespace ScrollableNDK::Examples
+    std::shared_ptr<BaseNode> root = Build();
+    if (root && root->GetHandle() != nullptr) {
+        SetAttributeFloat32(api, root->GetHandle(), NODE_LAYOUT_WEIGHT, 1.0f);
+        api->addChild(page, root->GetHandle());
+    }
+
+    return page;
+}

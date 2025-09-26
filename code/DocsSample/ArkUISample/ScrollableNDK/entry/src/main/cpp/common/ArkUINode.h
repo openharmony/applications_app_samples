@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_COMMON_ARKUINODE_H
-#define SCROLLABLENDK_COMMON_ARKUINODE_H
+#ifndef SCROLLABLE_COMMON_ARKUINODE_H
+#define SCROLLABLE_COMMON_ARKUINODE_H
 
 #include <functional>
 #include <list>
 #include <memory>
+#include <algorithm>
 
 #include <arkui/native_interface.h>
 #include <arkui/native_node.h>
@@ -27,11 +28,6 @@
 
 #include "ArkUIUtils.h"
 
-namespace ScrollableNDK {
-
-/**
- * @brief ArkUI_NativeNodeAPI_1 单例访问器
- */
 class NodeApiInstance {
 public:
     static NodeApiInstance *GetInstance()
@@ -39,25 +35,28 @@ public:
         static NodeApiInstance instance;
         return &instance;
     }
-
-    ArkUI_NativeNodeAPI_1 *GetNativeNodeAPI() const { return nodeApi_; }
+    ArkUI_NativeNodeAPI_1 *GetNativeNodeAPI() const
+    {
+        return nodeApi_;
+    }
 
 private:
-    NodeApiInstance() { OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeApi_); }
-
+    NodeApiInstance()
+    {
+        OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeApi_);
+    }
     ArkUI_NativeNodeAPI_1 *nodeApi_ = nullptr;
+
+    NodeApiInstance(const NodeApiInstance &) = delete;
+    NodeApiInstance &operator=(const NodeApiInstance &) = delete;
 };
 
-/**
- * @brief Node 基础封装：通用属性设置、子节点管理、基础事件处理
- * @note 该类只包含纯粹的UI属性和通用功能，不包含任何业务逻辑
- */
 class BaseNode : public std::enable_shared_from_this<BaseNode> {
 public:
     explicit BaseNode(ArkUI_NodeHandle handle)
         : nodeApi_(NodeApiInstance::GetInstance()->GetNativeNodeAPI()), nodeHandle_(handle)
     {
-        if (!Utils::IsNotNull(nodeApi_) || !Utils::IsNotNull(nodeHandle_)) {
+        if (!IsNotNull(nodeApi_) || !IsNotNull(nodeHandle_)) {
             return;
         }
         RegisterClickEvent();
@@ -70,11 +69,17 @@ public:
         nodeHandle_ = nullptr;
     }
 
-    ArkUI_NodeHandle GetHandle() const { return nodeHandle_; }
+    BaseNode(const BaseNode &) = delete;
+    BaseNode &operator=(const BaseNode &) = delete;
+
+    ArkUI_NodeHandle GetHandle() const
+    {
+        return nodeHandle_;
+    }
 
     void AddChild(const std::shared_ptr<BaseNode> &child)
     {
-        if (!Utils::IsNotNull(child)) {
+        if (!IsNotNull(child)) {
             return;
         }
         children_.push_back(child);
@@ -83,7 +88,7 @@ public:
 
     void RemoveChild(const std::shared_ptr<BaseNode> &child)
     {
-        if (!Utils::IsNotNull(child)) {
+        if (!IsNotNull(child)) {
             return;
         }
         auto it = std::find(children_.begin(), children_.end(), child);
@@ -93,50 +98,61 @@ public:
         }
     }
 
-    // ========================================
-    // 通用属性设置接口
-    // ========================================
+    // ---------------- 通用属性 ----------------
 
-    void SetWidth(float width) { Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH, width); }
-
-    void SetHeight(float height) { Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_HEIGHT, height); }
-
+    void SetWidth(float width)
+    {
+        SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH, width);
+    }
+    void SetHeight(float height)
+    {
+        SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_HEIGHT, height);
+    }
     void SetWidthPercent(float percent)
     {
-        Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH_PERCENT, percent);
+        SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH_PERCENT, percent);
     }
-
     void SetHeightPercent(float percent)
     {
-        Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_HEIGHT_PERCENT, percent);
+        SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_HEIGHT_PERCENT, percent);
     }
-
-    void SetSize(float width, float height) { Utils::SetSize(nodeApi_, nodeHandle_, width, height); }
-
-    void SetSizePercent(float widthPercent, float heightPercent)
+    void SetSize(float w, float h)
     {
-        Utils::SetSizePercent(nodeApi_, nodeHandle_, widthPercent, heightPercent);
+        ::SetSize(nodeApi_, nodeHandle_, w, h);
+    }
+    void SetSizePercent(float wp, float hp)
+    {
+        ::SetSizePercent(nodeApi_, nodeHandle_, wp, hp);
+    }
+    void SetFullSize()
+    {
+        ::SetFullSize(nodeApi_, nodeHandle_);
     }
 
-    void SetFullSize() { Utils::SetFullSize(nodeApi_, nodeHandle_); }
+    void SetBackgroundColor(uint32_t color)
+    {
+        ::SetBackgroundColor(nodeApi_, nodeHandle_, color);
+    }
 
-    void SetBackgroundColor(uint32_t color) { Utils::SetBackgroundColor(nodeApi_, nodeHandle_, color); }
-
-    void SetTransparentBackground() { Utils::SetTransparentBackground(nodeApi_, nodeHandle_); }
+    virtual void SetTransparentBackground() final
+    {
+        ::SetTransparentBackground(nodeApi_, nodeHandle_);
+    }
 
     void SetOpacity(float opacity)
     {
-        if (!Utils::ValidateApiAndNode(nodeApi_, nodeHandle_, "BaseNode::SetOpacity")) {
+        if (!ValidateApiAndNode(nodeApi_, nodeHandle_, "BaseNode::SetOpacity")) {
             return;
         }
-        Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_OPACITY, opacity);
+        SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_OPACITY, opacity);
     }
 
-    // ========================================
-    // 事件处理接口
-    // ========================================
+    // ---------------- 事件 ----------------
 
-    void RegisterOnClick(const std::function<void(ArkUI_NodeEvent *)> &callback) { onClickCallback_ = callback; }
+    void RegisterOnClick(const std::function<void(ArkUI_NodeEvent *)> &callback)
+    {
+        onClickCallback_ = callback;
+    }
 
 protected:
     virtual void OnNodeEvent(ArkUI_NodeEvent *event)
@@ -149,7 +165,7 @@ protected:
     static void StaticEventReceiver(ArkUI_NodeEvent *event)
     {
         auto *self = reinterpret_cast<BaseNode *>(OH_ArkUI_NodeEvent_GetUserData(event));
-        if (Utils::IsNotNull(self)) {
+        if (IsNotNull(self)) {
             self->OnNodeEvent(event);
         }
     }
@@ -157,7 +173,7 @@ protected:
 private:
     void RegisterClickEvent()
     {
-        if (Utils::IsNotNull(nodeApi_) && Utils::IsNotNull(nodeHandle_)) {
+        if (IsNotNull(nodeApi_) && IsNotNull(nodeHandle_)) {
             nodeApi_->registerNodeEvent(nodeHandle_, NODE_ON_CLICK, 0, this);
             hasClickEventRegistered_ = true;
         }
@@ -165,13 +181,16 @@ private:
 
     void UnregisterClickEvent()
     {
-        if (Utils::IsNotNull(nodeApi_) && Utils::IsNotNull(nodeHandle_) && hasClickEventRegistered_) {
+        if (IsNotNull(nodeApi_) && IsNotNull(nodeHandle_) && hasClickEventRegistered_) {
             nodeApi_->unregisterNodeEvent(nodeHandle_, NODE_ON_CLICK);
             hasClickEventRegistered_ = false;
         }
     }
 
-    void ClearChildren() { children_.clear(); }
+    void ClearChildren()
+    {
+        children_.clear();
+    }
 
 protected:
     ArkUI_NativeNodeAPI_1 *nodeApi_ = nullptr;
@@ -181,15 +200,11 @@ protected:
     bool hasClickEventRegistered_ = false;
 };
 
-// ========================================
-// 保活容器模板 - 用于管理共享指针的生命周期
-// ========================================
+// 保活容器
 template <typename T> inline std::vector<std::shared_ptr<T>> &GetKeepAliveContainer()
 {
     static std::vector<std::shared_ptr<T>> keepAliveContainer;
     return keepAliveContainer;
 }
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_COMMON_ARKUINODE_H
+#endif // SCROLLABLE_COMMON_ARKUINODE_H

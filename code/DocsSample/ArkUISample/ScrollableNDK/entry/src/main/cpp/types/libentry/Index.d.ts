@@ -15,12 +15,12 @@
 
 import { NodeContent } from '@kit.ArkUI';
 
-export const WaterFlowInfiniteScrollingEarly: (content: NodeContent) => void;
+export const CreateWaterFlowInfiniteScrollingEarly: (content: NodeContent) => void;
 
-export const ScrollableGrid: (content: NodeContent) => void;
+export const CreateScrollableGrid: (content: NodeContent) => void;
 
-export const AlphabetIndexedList: (content: NodeContent) => void;
+export const CreateAlphabetIndexedList: (content: NodeContent) => void;
 
-export const RefreshList: (content: NodeContent) => void;
+export const CreateRefreshList: (content: NodeContent) => void;
 
-export const ScrollableInfiniteScroll: (content: NodeContent) => void;
+export const CreateScrollableInfiniteScroll: (content: NodeContent) => void;

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_REFRESH_NODE_H
-#define SCROLLABLENDK_REFRESH_NODE_H
+#ifndef SCROLLABLE_COMPONENTS_REFRESH_H
+#define SCROLLABLE_COMPONENTS_REFRESH_H
 
 #include <functional>
 #include <memory>
@@ -24,19 +24,14 @@
 
 #include "common/ArkUINode.h"
 
-namespace ScrollableNDK {
+inline constexpr int32_t K_REFRESH_OFFSET_DATA_INDEX = 0;
+inline constexpr int32_t K_REFRESH_STATE_DATA_INDEX = 0;
 
-namespace {
-constexpr int32_t K_REFRESH_OFFSET_DATA_INDEX = 0;
-constexpr int32_t K_REFRESH_STATE_DATA_INDEX = 0;
-} // namespace
-
-/**
- * ArkUI Refresh 节点轻封装
- */
-class RefreshNode : public BaseNode {
+class Refresh : public BaseNode {
 public:
-    RefreshNode()
+    static ArkUI_NodeHandle CreateRefreshList();
+
+    Refresh()
         : BaseNode(NodeApiInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_REFRESH)),
           registrar_(nodeApi_, GetHandle())
     {
@@ -91,15 +86,6 @@ public:
         nodeApi_->setAttribute(GetHandle(), NODE_REFRESH_MAX_PULL_DOWN_DISTANCE, &item);
     }
 
-    void SetBackgroundColor(uint32_t argb)
-    {
-        ArkUI_NumberValue v[]{{.u32 = argb}};
-        ArkUI_AttributeItem item{v, 1};
-        nodeApi_->setAttribute(GetHandle(), NODE_BACKGROUND_COLOR, &item);
-    }
-
-    void SetTransparentBackground() { SetBackgroundColor(0x00000000U); }
-
     void AttachChild(const std::shared_ptr<BaseNode> &child)
     {
         if (child != nullptr) {
@@ -127,44 +113,41 @@ public:
     }
 
 private:
-    // ===== 事件桥 =====
     static void StaticEvent(ArkUI_NodeEvent *ev)
     {
-        if (ev == nullptr)
+        if (ev == nullptr) {
             return;
-        auto *self = reinterpret_cast<RefreshNode *>(OH_ArkUI_NodeEvent_GetUserData(ev));
-        if (self == nullptr)
+        }
+        auto *self = reinterpret_cast<Refresh *>(OH_ArkUI_NodeEvent_GetUserData(ev));
+        if (self == nullptr) {
             return;
+        }
         self->OnNodeEvent(ev);
     }
 
     void OnNodeEvent(ArkUI_NodeEvent *ev) override
     {
-        int32_t type = OH_ArkUI_NodeEvent_GetEventType(ev);
+        const int32_t type = OH_ArkUI_NodeEvent_GetEventType(ev);
         ArkUI_NodeComponentEvent *ce = OH_ArkUI_NodeEvent_GetNodeComponentEvent(ev);
 
         switch (type) {
-            case NODE_REFRESH_ON_REFRESH: {
+            case NODE_REFRESH_ON_REFRESH:
                 if (onRefresh_) {
                     onRefresh_();
                 }
                 break;
-            }
-            case NODE_REFRESH_ON_OFFSET_CHANGE: {
+            case NODE_REFRESH_ON_OFFSET_CHANGE:
                 if (ce != nullptr && onOffsetChange_) {
                     onOffsetChange_(ce->data[K_REFRESH_OFFSET_DATA_INDEX].f32);
                 }
                 break;
-            }
-            case NODE_REFRESH_STATE_CHANGE: {
+            case NODE_REFRESH_STATE_CHANGE:
                 if (ce != nullptr && onStateChange_) {
                     onStateChange_(ce->data[K_REFRESH_STATE_DATA_INDEX].i32);
                 }
                 break;
-            }
-            default: {
+            default:
                 break;
-            }
         }
     }
 
@@ -174,9 +157,7 @@ private:
     std::function<void(float)> onOffsetChange_;
     std::function<void(int32_t)> onStateChange_;
 
-    Utils::NodeEventRegistrar registrar_;
+    NodeEventRegistrar registrar_;
 };
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_REFRESH_NODE_H
+#endif // SCROLLABLE_COMPONENTS_REFRESH_H

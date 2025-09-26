@@ -34,8 +34,6 @@
 #define LOG_TAG "ScrollUtils"
 #endif
 
-namespace Utils {
-
 // ==============================
 // 判空 / 校验
 // ==============================
@@ -203,7 +201,5 @@ public:
 private:
     ArkUI_NodeAdapterHandle adapterHandle_ = nullptr;
 };
-
-} // namespace Utils
 
 #endif // SCROLL_UTILS_H

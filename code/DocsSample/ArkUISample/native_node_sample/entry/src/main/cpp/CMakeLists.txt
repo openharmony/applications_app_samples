@@ -14,7 +14,6 @@ include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
 file(GLOB_RECURSE ENTRY_SOURCES CONFIGURE_DEPENDS
-    "${NATIVERENDER_ROOT_PATH}/napi_init.cpp"
     "${NATIVERENDER_ROOT_PATH}/*.cpp"
 )
 

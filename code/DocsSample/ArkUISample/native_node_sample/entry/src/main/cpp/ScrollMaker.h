@@ -59,9 +59,9 @@ public:
     }
 
     // ===== 通用布局/外观 =====
-    void SetWidthPercent(float percent) { Utils::SetAttributeFloat32(api_, scroll_, NODE_WIDTH_PERCENT, percent); }
-    void SetHeightPercent(float percent) { Utils::SetAttributeFloat32(api_, scroll_, NODE_HEIGHT_PERCENT, percent); }
-    void SetBackgroundColor(uint32_t color) { Utils::SetAttributeUInt32(api_, scroll_, NODE_BACKGROUND_COLOR, color); }
+    void SetWidthPercent(float percent) { SetAttributeFloat32(api_, scroll_, NODE_WIDTH_PERCENT, percent); }
+    void SetHeightPercent(float percent) { SetAttributeFloat32(api_, scroll_, NODE_HEIGHT_PERCENT, percent); }
+    void SetBackgroundColor(uint32_t color) { SetAttributeUInt32(api_, scroll_, NODE_BACKGROUND_COLOR, color); }
 
     void SetDirection(ArkUI_ScrollDirection direction)
     {
@@ -110,7 +110,7 @@ public:
         api_->setAttribute(scroll_, NODE_SCROLL_ENABLE_SCROLL_INTERACTION, &it);
     }
 
-    void SetFriction(float friction) { Utils::SetAttributeFloat32(api_, scroll_, NODE_SCROLL_FRICTION, friction); }
+    void SetFriction(float friction) { SetAttributeFloat32(api_, scroll_, NODE_SCROLL_FRICTION, friction); }
 
     void SetNestedMode(ArkUI_ScrollNestedMode mode)
     {

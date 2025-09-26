@@ -15,7 +15,6 @@
 
 import { CompletedRoutableCard } from '../../common/Card';
 import { Route } from '../../common/Route';
-import resource from '../../common/Resource';
 import { ScrollableInfiniteScroll } from './ScrollableInfiniteScroll';
 
 export const SCROLL_ROUTE_PREFIX: string = 'scroll';
@@ -23,7 +22,7 @@ export const SCROLL_ROUTE_PREFIX: string = 'scroll';
 const routes: Route[] = [
   {
     name: `${SCROLL_ROUTE_PREFIX}/ScrollableInfiniteScroll`,
-    title: resource.resourceToString($r('app.string.ScrollableInfiniteScroll_title')),
+    title: $r('app.string.ScrollableInfiniteScroll_title'),
     description: $r('app.string.ScrollableInfiniteScroll_description')
   },
 ];

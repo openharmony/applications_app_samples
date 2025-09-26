@@ -27,8 +27,9 @@ export struct ScrollableGrid {
         ContentSlot(this.root)
       }.width('100%')
     }
+    .title($r('app.string.ScrollableGrid_title'))
     .onAppear(() => {
-      entry.ScrollableGrid(this.root);
+      entry.CreateScrollableGrid(this.root);
     })
   }
 }

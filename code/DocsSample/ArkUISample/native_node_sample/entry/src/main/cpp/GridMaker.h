@@ -33,7 +33,7 @@ public:
         : BaseNode(NodeApiInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_GRID)),
           nodeApi_(NodeApiInstance::GetInstance()->GetNativeNodeAPI())
     {
-        if (!Utils::IsNotNull(nodeApi_) || !Utils::IsNotNull(GetHandle())) {
+        if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
             return;
         }
 
@@ -65,22 +65,22 @@ public:
     // ========================================
     void SetRowsTemplate(const char *rowsTemplate)
     {
-        Utils::SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_ROW_TEMPLATE, rowsTemplate);
+        SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_ROW_TEMPLATE, rowsTemplate);
     }
 
     void SetColumnsTemplate(const char *columnsTemplate)
     {
-        Utils::SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_COLUMN_TEMPLATE, columnsTemplate);
+        SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_COLUMN_TEMPLATE, columnsTemplate);
     }
 
     void SetColumnsGap(float gap)
     {
-        Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_COLUMN_GAP, gap);
+        SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_COLUMN_GAP, gap);
     }
 
     void SetRowsGap(float gap)
     {
-        Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_ROW_GAP, gap);
+        SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_ROW_GAP, gap);
     }
 
     // ========================================
@@ -88,22 +88,22 @@ public:
     // ========================================
     void SetCachedCount(uint32_t count)
     {
-        Utils::SetAttributeUInt32(nodeApi_, GetHandle(), NODE_GRID_CACHED_COUNT, count);
+        SetAttributeUInt32(nodeApi_, GetHandle(), NODE_GRID_CACHED_COUNT, count);
     }
 
     void SetFocusWrapMode(ArkUI_FocusWrapMode mode)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_FOCUS_WRAP_MODE, static_cast<int32_t>(mode));
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_FOCUS_WRAP_MODE, static_cast<int32_t>(mode));
     }
 
     void SetSyncLoad(bool enabled)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_SYNC_LOAD, enabled ? 1 : 0);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_SYNC_LOAD, enabled ? 1 : 0);
     }
 
     void SetDefaultScrollStyle()
     {
-        Utils::SetDefaultScrollStyle(nodeApi_, GetHandle());
+        ::SetDefaultScrollStyle(nodeApi_, GetHandle());
     }
 
     // ========================================
@@ -111,7 +111,7 @@ public:
     // ========================================
     void SetLazyAdapter(const std::shared_ptr<ArkUINodeAdapter> &adapter)
     {
-        if (!Utils::IsNotNull(adapter)) {
+        if (!IsNotNull(adapter)) {
             return;
         }
         ArkUI_AttributeItem item{nullptr, 0, nullptr, adapter->GetAdapter()};

@@ -15,20 +15,15 @@
 
 #include <cmath>
 #include <cstdint>
-#include <vector>
 
 #include "common/ArkUINode.h"
-#include "common/ArkUIConstants.h"
 #include "common/ArkUIUtils.h"
-#include "components/scroll/ScrollNode.h"
-#include "components/scroll/examples/ScrollableInfiniteScroll.h"
+#include "components/scroll/Scroll.h"
 
 #include <hilog/log.h>
 #ifndef LOG_TAG
 #define LOG_TAG "ScrollableInfiniteScroll"
 #endif
-
-namespace ScrollableNDK::Examples {
 
 // ===== 业务常量 =====
 namespace {
@@ -46,6 +41,8 @@ constexpr float K_TEXT_SIZE = 100.0f;
 constexpr float K_FRICTION = 0.9f;
 constexpr float K_FLING_LIMIT = 12000.0f;
 
+constexpr unsigned int K_LOG_DOMAIN = 0xFF00;
+
 // 事件数据数组索引常量
 constexpr int32_t K_PRIMARY_DELTA_DATA_INDEX = 0;
 constexpr int32_t K_SECONDARY_DELTA_DATA_INDEX = 1;
@@ -55,7 +52,7 @@ constexpr int32_t K_AREA_HEIGHT_PRIMARY_DATA_INDEX = 7;
 
 // ===== 全局状态 =====
 static ArkUI_NativeNodeAPI_1 *gApi{nullptr};
-static std::shared_ptr<ArkUIScrollNode> gScroll;
+static std::shared_ptr<Scroll> gScroll;
 static ArkUI_NodeHandle gRoot{nullptr};
 static ArkUI_NodeHandle gPageTop{nullptr};
 static ArkUI_NodeHandle gPageMid{nullptr};
@@ -78,13 +75,13 @@ static ArkUI_NodeHandle CreatePage(uint32_t bg, const char *label)
     }
 
     ArkUI_NodeHandle page = gApi->createNode(ARKUI_NODE_STACK);
-    Utils::SetAttributeFloat32(gApi, page, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
-    Utils::SetAttributeFloat32(gApi, page, NODE_HEIGHT_PERCENT, K_HEIGHT_PERCENT_FULL);
-    Utils::SetAttributeUInt32(gApi, page, NODE_BACKGROUND_COLOR, bg);
+    SetAttributeFloat32(gApi, page, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
+    SetAttributeFloat32(gApi, page, NODE_HEIGHT_PERCENT, K_HEIGHT_PERCENT_FULL);
+    SetAttributeUInt32(gApi, page, NODE_BACKGROUND_COLOR, bg);
 
     ArkUI_NodeHandle text = gApi->createNode(ARKUI_NODE_TEXT);
-    Utils::SetTextContent(gApi, text, label);
-    Utils::SetAttributeFloat32(gApi, text, NODE_FONT_SIZE, K_TEXT_SIZE);
+    SetTextContent(gApi, text, label);
+    SetAttributeFloat32(gApi, text, NODE_FONT_SIZE, K_TEXT_SIZE);
 
     gApi->addChild(page, text);
     return page;
@@ -129,7 +126,10 @@ static void SyncAllTranslate()
 }
 
 // ===== 事件读取辅助 =====
-static inline float ReadDeltaPrimary(ArkUI_NodeComponentEvent *ce) { return ce->data[K_PRIMARY_DELTA_DATA_INDEX].f32; }
+static inline float ReadDeltaPrimary(ArkUI_NodeComponentEvent *ce)
+{
+    return ce->data[K_PRIMARY_DELTA_DATA_INDEX].f32;
+}
 static inline float ReadDeltaSecondary(ArkUI_NodeComponentEvent *ce)
 {
     return ce->data[K_SECONDARY_DELTA_DATA_INDEX].f32;
@@ -205,7 +205,7 @@ static void OnScroll(ArkUI_NodeComponentEvent *ce)
 
 static void OnSimpleLog(const char *tag)
 {
-    OH_LOG_Print(LOG_APP, LOG_DEBUG, Constants::K_LOG_DOMAIN, LOG_TAG, "%{public}s", tag);
+    OH_LOG_Print(LOG_APP, LOG_DEBUG, K_LOG_DOMAIN, LOG_TAG, "%{public}s", tag);
 }
 
 static bool HandleCoreScrollEvents(int32_t type, ArkUI_NodeComponentEvent *ce)
@@ -299,7 +299,7 @@ static void HandleNodeEvent(ArkUI_NodeEvent *ev)
 // ===== 组装构建 =====
 static void SetupScroll()
 {
-    gScroll = std::make_shared<ArkUIScrollNode>();
+    gScroll = std::make_shared<Scroll>();
 
     gScroll->SetWidthPercent(K_WIDTH_PERCENT_FULL);
     gScroll->SetHeightPercent(K_HEIGHT_PERCENT_FULL);
@@ -325,8 +325,8 @@ static void SetupScroll()
 static void SetupRootAndPages()
 {
     gRoot = gApi->createNode(ARKUI_NODE_STACK);
-    Utils::SetAttributeFloat32(gApi, gRoot, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
-    Utils::SetAttributeFloat32(gApi, gRoot, NODE_HEIGHT_PERCENT, K_HEIGHT_PERCENT_FULL);
+    SetAttributeFloat32(gApi, gRoot, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
+    SetAttributeFloat32(gApi, gRoot, NODE_HEIGHT_PERCENT, K_HEIGHT_PERCENT_FULL);
 
     gPageTop = CreatePage(K_COLOR_BROWN, "3");
     gPageMid = CreatePage(K_COLOR_BLUE, "1");
@@ -354,7 +354,7 @@ static ArkUI_NodeHandle Build()
 {
     gApi = NodeApiInstance::GetInstance()->GetNativeNodeAPI();
     if (gApi == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG, "GetNativeNodeAPI failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "GetNativeNodeAPI failed");
         return nullptr;
     }
 
@@ -366,24 +366,26 @@ static ArkUI_NodeHandle Build()
     return gScroll->GetScroll();
 }
 
-// ===== NAPI 入口 =====
-napi_value ScrollableInfiniteScrollImpl::NAPI(napi_env env, napi_callback_info info)
+ArkUI_NodeHandle Scroll::CreateScrollableInfiniteScroll()
 {
-    ArkUI_NodeContentHandle content = Utils::GetNodeContentFromNapi(env, info);
-    if (content == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG, "GetNodeContentFromNapi failed");
+    ArkUI_NativeNodeAPI_1 *api = nullptr;
+    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);
+    if (api == nullptr) {
         return nullptr;
     }
 
-    ArkUI_NodeHandle node = Build();
-    if (node == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG, "Build node failed");
+    ArkUI_NodeHandle page = api->createNode(ARKUI_NODE_COLUMN);
+    if (page == nullptr) {
         return nullptr;
     }
+    SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
 
-    Utils::AddNodeToContent(content, node);
-    GetKeepAliveContainer<ArkUIScrollNode>().emplace_back(gScroll);
-    return nullptr;
+    ArkUI_NodeHandle scroll = Build();
+    if (scroll != nullptr) {
+        SetAttributeFloat32(api, scroll, NODE_LAYOUT_WEIGHT, 1.0f);
+        api->addChild(page, scroll);
+    }
+
+    return page;
 }
-
-} // namespace ScrollableNDK::Examples

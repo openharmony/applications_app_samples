@@ -50,7 +50,7 @@ public:
     explicit BaseNode(ArkUI_NodeHandle handle)
         : nodeApi_(NodeApiInstance::GetInstance()->GetNativeNodeAPI()), nodeHandle_(handle)
     {
-        if (!Utils::IsNotNull(nodeApi_) || !Utils::IsNotNull(nodeHandle_)) {
+        if (!IsNotNull(nodeApi_) || !IsNotNull(nodeHandle_)) {
             return;
         }
         RegisterClickEvent();
@@ -70,7 +70,7 @@ public:
 
     void AddChild(const std::shared_ptr<BaseNode> &child)
     {
-        if (!Utils::IsNotNull(child)) {
+        if (!IsNotNull(child)) {
             return;
         }
         children_.push_back(child);
@@ -79,7 +79,7 @@ public:
 
     void RemoveChild(const std::shared_ptr<BaseNode> &child)
     {
-        if (!Utils::IsNotNull(child)) {
+        if (!IsNotNull(child)) {
             return;
         }
         auto it = std::find(children_.begin(), children_.end(), child);
@@ -91,30 +91,30 @@ public:
 
     // ---------------- 通用属性 ----------------
 
-    void SetWidth(float width) { Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH, width); }
-    void SetHeight(float height) { Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_HEIGHT, height); }
+    void SetWidth(float width) { SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH, width); }
+    void SetHeight(float height) { SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_HEIGHT, height); }
     void SetWidthPercent(float percent)
     {
-        Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH_PERCENT, percent);
+        SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_WIDTH_PERCENT, percent);
     }
     void SetHeightPercent(float percent)
     {
-        Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_HEIGHT_PERCENT, percent);
+        SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_HEIGHT_PERCENT, percent);
     }
-    void SetSize(float w, float h) { Utils::SetSize(nodeApi_, nodeHandle_, w, h); }
-    void SetSizePercent(float wp, float hp) { Utils::SetSizePercent(nodeApi_, nodeHandle_, wp, hp); }
-    void SetFullSize() { Utils::SetFullSize(nodeApi_, nodeHandle_); }
+    void SetSize(float w, float h) { ::SetSize(nodeApi_, nodeHandle_, w, h); }
+    void SetSizePercent(float wp, float hp) { ::SetSizePercent(nodeApi_, nodeHandle_, wp, hp); }
+    void SetFullSize() { ::SetFullSize(nodeApi_, nodeHandle_); }
 
-    void SetBackgroundColor(uint32_t color) { Utils::SetBackgroundColor(nodeApi_, nodeHandle_, color); }
+    void SetBackgroundColor(uint32_t color) { ::SetBackgroundColor(nodeApi_, nodeHandle_, color); }
 
-    virtual void SetTransparentBackground() final { Utils::SetTransparentBackground(nodeApi_, nodeHandle_); }
+    virtual void SetTransparentBackground() final { ::SetTransparentBackground(nodeApi_, nodeHandle_); }
 
     void SetOpacity(float opacity)
     {
-        if (!Utils::ValidateApiAndNode(nodeApi_, nodeHandle_, "BaseNode::SetOpacity")) {
+        if (!ValidateApiAndNode(nodeApi_, nodeHandle_, "BaseNode::SetOpacity")) {
             return;
         }
-        Utils::SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_OPACITY, opacity);
+        SetAttributeFloat32(nodeApi_, nodeHandle_, NODE_OPACITY, opacity);
     }
 
     // ---------------- 事件 ----------------
@@ -132,7 +132,7 @@ protected:
     static void StaticEventReceiver(ArkUI_NodeEvent *event)
     {
         auto *self = reinterpret_cast<BaseNode *>(OH_ArkUI_NodeEvent_GetUserData(event));
-        if (Utils::IsNotNull(self)) {
+        if (IsNotNull(self)) {
             self->OnNodeEvent(event);
         }
     }
@@ -140,7 +140,7 @@ protected:
 private:
     void RegisterClickEvent()
     {
-        if (Utils::IsNotNull(nodeApi_) && Utils::IsNotNull(nodeHandle_)) {
+        if (IsNotNull(nodeApi_) && IsNotNull(nodeHandle_)) {
             nodeApi_->registerNodeEvent(nodeHandle_, NODE_ON_CLICK, 0, this);
             hasClickEventRegistered_ = true;
         }
@@ -148,7 +148,7 @@ private:
 
     void UnregisterClickEvent()
     {
-        if (Utils::IsNotNull(nodeApi_) && Utils::IsNotNull(nodeHandle_) && hasClickEventRegistered_) {
+        if (IsNotNull(nodeApi_) && IsNotNull(nodeHandle_) && hasClickEventRegistered_) {
             nodeApi_->unregisterNodeEvent(nodeHandle_, NODE_ON_CLICK);
             hasClickEventRegistered_ = false;
         }

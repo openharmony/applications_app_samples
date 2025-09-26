@@ -75,7 +75,7 @@ public:
         : BaseNode(NodeApiInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_LIST)),
           nodeApi_(NodeApiInstance::GetInstance()->GetNativeNodeAPI())
     {
-        if (!Utils::IsNotNull(nodeApi_) || !Utils::IsNotNull(GetHandle())) {
+        if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
             return;
         }
 
@@ -88,7 +88,7 @@ public:
     {
         scrollEventGuard_.Release();
 
-        if (!Utils::IsNotNull(nodeApi_)) {
+        if (!IsNotNull(nodeApi_)) {
             return;
         }
         UnregisterSpecificEvents();
@@ -101,29 +101,29 @@ public:
     // ========================================
     void SetClipContent(bool clipEnabled)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_CLIP_CONTENT, clipEnabled ? 1 : 0);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_CLIP_CONTENT, clipEnabled ? 1 : 0);
     }
 
     void SetEdgeEffectSpring(bool springEnabled)
     {
         int32_t effectValue = springEnabled ? ARKUI_EDGE_EFFECT_SPRING : ARKUI_EDGE_EFFECT_NONE;
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_EDGE_EFFECT, effectValue);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_EDGE_EFFECT, effectValue);
     }
 
     void SetScrollBarVisible(bool visible)
     {
         int32_t displayMode = visible ? ARKUI_SCROLL_BAR_DISPLAY_MODE_ON : ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF;
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_BAR_DISPLAY_MODE, displayMode);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_BAR_DISPLAY_MODE, displayMode);
     }
 
-    void SetItemSpacing(float spacing) { Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_LIST_SPACE, spacing); }
+    void SetItemSpacing(float spacing) { SetAttributeFloat32(nodeApi_, GetHandle(), NODE_LIST_SPACE, spacing); }
 
     void SetScrollBarState(bool visible) { SetScrollBarVisible(visible); }
     void SetSpace(float spacing) { SetItemSpacing(spacing); }
 
     void SetNestedScrollMode(int32_t mode)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_NESTED_SCROLL, mode);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_NESTED_SCROLL, mode);
     }
 
     // ========================================
@@ -154,7 +154,7 @@ public:
     // ========================================
     void SetLazyAdapter(const std::shared_ptr<ArkUINodeAdapter> &adapter)
     {
-        if (!Utils::IsNotNull(adapter)) {
+        if (!IsNotNull(adapter)) {
             nodeApi_->resetAttribute(GetHandle(), NODE_LIST_NODE_ADAPTER);
             listAdapter_.reset();
             return;
@@ -335,7 +335,7 @@ protected:
         BaseNode::OnNodeEvent(event);
 
         ArkUI_NodeComponentEvent *componentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
-        if (!Utils::IsNotNull(componentEvent)) {
+        if (!IsNotNull(componentEvent)) {
             return;
         }
 
@@ -362,7 +362,7 @@ private:
 
     void ResetListAdapter()
     {
-        if (Utils::IsNotNull(listAdapter_)) {
+        if (IsNotNull(listAdapter_)) {
             nodeApi_->resetAttribute(GetHandle(), NODE_LIST_NODE_ADAPTER);
             listAdapter_.reset();
         }
@@ -370,7 +370,7 @@ private:
 
     void CleanupChildrenMainSizeOption()
     {
-        if (Utils::IsNotNull(childrenMainSizeOption_)) {
+        if (IsNotNull(childrenMainSizeOption_)) {
             nodeApi_->resetAttribute(GetHandle(), NODE_LIST_CHILDREN_MAIN_SIZE);
             OH_ArkUI_ListChildrenMainSizeOption_Dispose(childrenMainSizeOption_);
             childrenMainSizeOption_ = nullptr;

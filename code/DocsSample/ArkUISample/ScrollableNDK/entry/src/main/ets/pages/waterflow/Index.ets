@@ -15,7 +15,6 @@
 
 import { CompletedRoutableCard } from '../../common/Card';
 import { Route } from '../../common/Route';
-import resource from '../../common/Resource';
 import { WaterFlowInfiniteScrollingEarly } from './WaterFlowInfiniteScrollingEarly';
 
 export const WATER_FLOW_ROUTE_PREFIX: string = 'waterFlow';
@@ -23,7 +22,7 @@ export const WATER_FLOW_ROUTE_PREFIX: string = 'waterFlow';
 const routes: Route[] = [
   {
     name: `${WATER_FLOW_ROUTE_PREFIX}/WaterFlowInfiniteScrollingEarly`,
-    title: resource.resourceToString($r('app.string.WaterFlowInfiniteScrollingEarly_title')),
+    title: $r('app.string.WaterFlowInfiniteScrollingEarly_title'),
     description: $r('app.string.WaterFlowInfiniteScrollingEarly_description')
   }
 ];

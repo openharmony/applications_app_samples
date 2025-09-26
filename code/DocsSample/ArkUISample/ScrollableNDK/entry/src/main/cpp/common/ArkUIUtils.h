@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_COMMON_ARKUIUTILS_H
-#define SCROLLABLENDK_COMMON_ARKUIUTILS_H
+#ifndef SCROLLABLE_COMMON_ARKUIUTILS_H
+#define SCROLLABLE_COMMON_ARKUIUTILS_H
 
 #include <cstdint>
 #include <functional>
@@ -34,25 +34,20 @@
 #define LOG_TAG "ArkUIUtils"
 #endif
 
-namespace ScrollableNDK::Utils {
-
 // ==============================
 // 判空 / 校验
 // ==============================
-template <typename T>
-inline bool IsNotNull(const T *ptr)
+template <typename T> inline bool IsNotNull(const T *ptr)
 {
     return ptr != nullptr;
 }
 
-template <typename T>
-inline bool IsNotNull(const std::shared_ptr<T> &ptr)
+template <typename T> inline bool IsNotNull(const std::shared_ptr<T> &ptr)
 {
     return ptr != nullptr;
 }
 
-template <typename T>
-inline bool IsNotNull(T *ptr)
+template <typename T> inline bool IsNotNull(T *ptr)
 {
     return ptr != nullptr;
 }
@@ -64,12 +59,9 @@ inline bool IsValidIndex(int32_t index, int32_t count)
 
 inline bool IsValidRange(int32_t start, int32_t end, int32_t count);
 
-bool ValidateApiAndNode(ArkUI_NativeNodeAPI_1 *api,
-                        ArkUI_NodeHandle node,
-                        const char *functionName = nullptr);
+bool ValidateApiAndNode(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, const char *functionName = nullptr);
 
-template <typename T, std::size_t N>
-constexpr int ArrSize(const T (&arr)[N]) noexcept
+template <typename T, std::size_t N> constexpr int ArrSize(const T (&arr)[N]) noexcept
 {
     return static_cast<int>(N);
 }
@@ -79,12 +71,15 @@ constexpr int ArrSize(const T (&arr)[N]) noexcept
 // ==============================
 
 struct Padding {
-    float top {0.f};
-    float right {0.f};
-    float bottom {0.f};
-    float left {0.f};
+    float top{0.f};
+    float right{0.f};
+    float bottom{0.f};
+    float left{0.f};
 
-    static Padding All(float v) { return Padding{v, v, v, v}; }
+    static Padding All(float v)
+    {
+        return Padding{v, v, v, v};
+    }
     static Padding Symmetric(float vertical, float horizontal)
     {
         return Padding{vertical, horizontal, vertical, horizontal};
@@ -97,10 +92,7 @@ struct Padding {
 
 void SetSize(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, float width, float height);
 
-void SetSizePercent(ArkUI_NativeNodeAPI_1 *api,
-                    ArkUI_NodeHandle node,
-                    float widthPercent,
-                    float heightPercent);
+void SetSizePercent(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, float widthPercent, float heightPercent);
 
 void SetFullSize(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node);
 
@@ -113,24 +105,14 @@ void SetPadding(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, const Padding
 // ==============================
 // 通用属性设置
 // ==============================
-void SetAttributeFloat32(ArkUI_NativeNodeAPI_1 *api,
-                         ArkUI_NodeHandle node,
-                         ArkUI_NodeAttributeType attr,
-                         float value);
+void SetAttributeFloat32(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, ArkUI_NodeAttributeType attr, float value);
 
-void SetAttributeUInt32(ArkUI_NativeNodeAPI_1 *api,
-                        ArkUI_NodeHandle node,
-                        ArkUI_NodeAttributeType attr,
+void SetAttributeUInt32(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, ArkUI_NodeAttributeType attr,
                         uint32_t value);
 
-void SetAttributeInt32(ArkUI_NativeNodeAPI_1 *api,
-                       ArkUI_NodeHandle node,
-                       ArkUI_NodeAttributeType attr,
-                       int32_t value);
+void SetAttributeInt32(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, ArkUI_NodeAttributeType attr, int32_t value);
 
-void SetAttributeString(ArkUI_NativeNodeAPI_1 *api,
-                        ArkUI_NodeHandle node,
-                        ArkUI_NodeAttributeType attr,
+void SetAttributeString(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, ArkUI_NodeAttributeType attr,
                         const char *value);
 
 // ==============================
@@ -138,10 +120,7 @@ void SetAttributeString(ArkUI_NativeNodeAPI_1 *api,
 // ==============================
 ArkUI_NodeHandle CreateTextNode(ArkUI_NativeNodeAPI_1 *api, const char *text);
 
-void SetTextStyle(ArkUI_NativeNodeAPI_1 *api,
-                  ArkUI_NodeHandle textNode,
-                  float fontSize,
-                  uint32_t fontColor,
+void SetTextStyle(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle textNode, float fontSize, uint32_t fontColor,
                   int32_t textAlign);
 
 void SetTextContent(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle textNode, const char *text);
@@ -149,11 +128,7 @@ void SetTextContent(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle textNode, const
 // ==============================
 // 滚动相关
 // ==============================
-void SetScrollBarStyle(ArkUI_NativeNodeAPI_1 *api,
-                       ArkUI_NodeHandle node,
-                       bool visible,
-                       float width,
-                       uint32_t color);
+void SetScrollBarStyle(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, bool visible, float width, uint32_t color);
 
 void SetDefaultScrollStyle(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node);
 
@@ -195,15 +170,11 @@ private:
 // ==============================
 class AdapterEventRegistrar {
 public:
-    AdapterEventRegistrar(ArkUI_NodeAdapterHandle adapter,
-                          void *userData,
-                          void (*callback)(ArkUI_NodeAdapterEvent *));
+    AdapterEventRegistrar(ArkUI_NodeAdapterHandle adapter, void *userData, void (*callback)(ArkUI_NodeAdapterEvent *));
     ~AdapterEventRegistrar();
 
 private:
     ArkUI_NodeAdapterHandle adapterHandle_ = nullptr;
 };
 
-} // namespace ScrollableNDK::Utils
-
-#endif // SCROLLABLENDK_COMMON_ARKUIUTILS_H
+#endif // SCROLLABLE_COMMON_ARKUIUTILS_H

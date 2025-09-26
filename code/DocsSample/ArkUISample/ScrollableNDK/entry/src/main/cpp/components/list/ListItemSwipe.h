@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_COMPONENTS_LIST_LISTITEMSWIPE_H
-#define SCROLLABLENDK_COMPONENTS_LIST_LISTITEMSWIPE_H
+#ifndef SCROLLABLE_COMPONENTS_LIST_ITEM_SWIPE_H
+#define SCROLLABLE_COMPONENTS_LIST_ITEM_SWIPE_H
 
 #include <functional>
 
@@ -26,14 +26,14 @@
 #define LOG_TAG "ListItemSwipe"
 #endif
 
-namespace ScrollableNDK {
-
 /**
  * 轻量封装：为 ARKUI_NODE_LIST_ITEM 配置 Swipe Action（左右动作区、阈值、回调等）
  */
 class ListItemSwipe {
 public:
-    explicit ListItemSwipe(ArkUI_NativeNodeAPI_1 *api) : api_(api) {}
+    explicit ListItemSwipe(ArkUI_NativeNodeAPI_1 *api) : api_(api)
+    {
+    }
     ~ListItemSwipe()
     {
         if (option_) {
@@ -54,8 +54,9 @@ public:
     ListItemSwipe &BuildStartArea(const std::function<ArkUI_NodeHandle(ArkUI_NativeNodeAPI_1 *)> &builder)
     {
         EnsureOption();
-        if (!startItem_)
+        if (!startItem_) {
             startItem_ = OH_ArkUI_ListItemSwipeActionItem_Create();
+        }
         ArkUI_NodeHandle node = builder ? builder(api_) : nullptr;
         OH_ArkUI_ListItemSwipeActionItem_SetContent(startItem_, node);
         OH_ArkUI_ListItemSwipeActionOption_SetStart(option_, startItem_);
@@ -65,8 +66,9 @@ public:
     ListItemSwipe &BuildEndArea(const std::function<ArkUI_NodeHandle(ArkUI_NativeNodeAPI_1 *)> &builder)
     {
         EnsureOption();
-        if (!endItem_)
+        if (!endItem_) {
             endItem_ = OH_ArkUI_ListItemSwipeActionItem_Create();
+        }
         ArkUI_NodeHandle node = builder ? builder(api_) : nullptr;
         OH_ArkUI_ListItemSwipeActionItem_SetContent(endItem_, node);
         OH_ArkUI_ListItemSwipeActionOption_SetEnd(option_, endItem_);
@@ -77,20 +79,29 @@ public:
     ListItemSwipe &SetActionAreaDistance(float distance)
     {
         EnsureStartEnd();
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(startItem_, distance);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance(endItem_, distance);
+        }
         return *this;
     }
 
     float GetActionAreaDistanceStart() const
     {
-        return startItem_ ? OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(startItem_) : -1.0f;
+        if (startItem_) {
+            return OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(startItem_);
+        }
+        return -1.0f;
     }
+
     float GetActionAreaDistanceEnd() const
     {
-        return endItem_ ? OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(endItem_) : -1.0f;
+        if (endItem_) {
+            return OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance(endItem_);
+        }
+        return -1.0f;
     }
 
     // ====== 进入/退出/触发/状态变化 ======
@@ -98,10 +109,12 @@ public:
     {
         EnsureStartEnd();
         enter_ = cb;
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(startItem_, &ThunkEnter);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea(endItem_, &ThunkEnter);
+        }
         return *this;
     }
 
@@ -109,10 +122,12 @@ public:
     {
         EnsureStartEnd();
         exit_ = cb;
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(startItem_, &ThunkExit);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea(endItem_, &ThunkExit);
+        }
         return *this;
     }
 
@@ -120,10 +135,12 @@ public:
     {
         EnsureStartEnd();
         action_ = cb;
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnAction(startItem_, &ThunkAction);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnAction(endItem_, &ThunkAction);
+        }
         return *this;
     }
 
@@ -131,10 +148,12 @@ public:
     {
         EnsureStartEnd();
         state_ = cb;
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(startItem_, &ThunkState);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange(endItem_, &ThunkState);
+        }
         return *this;
     }
 
@@ -142,10 +161,12 @@ public:
     {
         EnsureStartEnd();
         enterUD_ = cb;
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(startItem_, this, &ThunkEnterUD);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionAreaWithUserData(endItem_, this, &ThunkEnterUD);
+        }
         return *this;
     }
 
@@ -153,10 +174,12 @@ public:
     {
         EnsureStartEnd();
         exitUD_ = cb;
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(startItem_, this, &ThunkExitUD);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionAreaWithUserData(endItem_, this, &ThunkExitUD);
+        }
         return *this;
     }
 
@@ -164,10 +187,12 @@ public:
     {
         EnsureStartEnd();
         actionUD_ = cb;
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(startItem_, this, &ThunkActionUD);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnActionWithUserData(endItem_, this, &ThunkActionUD);
+        }
         return *this;
     }
 
@@ -175,10 +200,12 @@ public:
     {
         EnsureStartEnd();
         stateUD_ = cb;
-        if (startItem_)
+        if (startItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData(startItem_, this, &ThunkStateUD);
-        if (endItem_)
+        }
+        if (endItem_) {
             OH_ArkUI_ListItemSwipeActionItem_SetOnStateChangeWithUserData(endItem_, this, &ThunkStateUD);
+        }
         return *this;
     }
 
@@ -190,7 +217,14 @@ public:
                                                          static_cast<ArkUI_ListItemSwipeEdgeEffect>(edgeEffect));
         return *this;
     }
-    int GetEdgeEffect() const { return option_ ? OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(option_) : -1; }
+
+    int GetEdgeEffect() const
+    {
+        if (option_) {
+            return OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(option_);
+        }
+        return -1;
+    }
 
     ListItemSwipe &OnOffsetChange(const std::function<void(float)> &cb)
     {
@@ -211,8 +245,9 @@ public:
     // ====== 挂载到指定 LIST_ITEM 节点 ======
     void AttachToListItem(ArkUI_NodeHandle listItem)
     {
-        if (!api_ || !listItem)
+        if (!api_ || !listItem) {
             return;
+        }
         EnsureOption();
         ArkUI_AttributeItem it{nullptr, 0, nullptr, option_};
         api_->setAttribute(listItem, NODE_LIST_ITEM_SWIPE_ACTION, &it);
@@ -225,52 +260,78 @@ public:
 private:
     void EnsureOption()
     {
-        if (!option_)
+        if (!option_) {
             option_ = OH_ArkUI_ListItemSwipeActionOption_Create();
+        }
     }
+
     void EnsureStartEnd()
     {
         EnsureOption();
-        if (!startItem_)
+        if (!startItem_) {
             startItem_ = OH_ArkUI_ListItemSwipeActionItem_Create();
-        if (!endItem_)
+        }
+        if (!endItem_) {
             endItem_ = OH_ArkUI_ListItemSwipeActionItem_Create();
+        }
         OH_ArkUI_ListItemSwipeActionOption_SetStart(option_, startItem_);
         OH_ArkUI_ListItemSwipeActionOption_SetEnd(option_, endItem_);
     }
 
-    static void ThunkEnter() {}
-    static void ThunkExit() {}
-    static void ThunkAction() {}
-    static void ThunkState(ArkUI_ListItemSwipeActionState state) { (void)state; }
-    static void ThunkOffset(float offset) { (void)offset; }
+    static void ThunkEnter()
+    {
+    }
+    static void ThunkExit()
+    {
+    }
+    static void ThunkAction()
+    {
+    }
+    static void ThunkState(ArkUI_ListItemSwipeActionState state)
+    {
+        (void)state;
+    }
+    static void ThunkOffset(float offset)
+    {
+        (void)offset;
+    }
 
     static void ThunkEnterUD(void *ud)
     {
-        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->enterUD_)
+        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->enterUD_) {
             self->enterUD_(ud);
+        }
     }
+
     static void ThunkExitUD(void *ud)
     {
-        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->exitUD_)
+        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->exitUD_) {
             self->exitUD_(ud);
+        }
     }
+
     static void ThunkActionUD(void *ud)
     {
-        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->actionUD_)
+        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->actionUD_) {
             self->actionUD_(ud);
+        }
     }
+
     static void ThunkStateUD(ArkUI_ListItemSwipeActionState state, void *ud)
     {
-        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->stateUD_)
+        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->stateUD_) {
             self->stateUD_(static_cast<int>(state), ud);
-        if (auto *self2 = static_cast<ListItemSwipe *>(ud); self2 && self2->state_)
+        }
+        if (auto *self2 = static_cast<ListItemSwipe *>(ud); self2 && self2->state_) {
             self2->state_(static_cast<int>(state));
+        }
     }
+
     static void ThunkOffsetUD(float offset, void *ud)
     {
-        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->offsetUD_)
+        if (auto *self = static_cast<ListItemSwipe *>(ud); self && self->offsetUD_) {
             self->offsetUD_(offset, ud);
+        }
     }
 
 private:
@@ -295,6 +356,4 @@ private:
     std::function<void(float, void *)> offsetUD_;
 };
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_COMPONENTS_LIST_LISTITEMSWIPE_H
+#endif // SCROLLABLE_COMPONENTS_LIST_ITEM_SWIPE_H

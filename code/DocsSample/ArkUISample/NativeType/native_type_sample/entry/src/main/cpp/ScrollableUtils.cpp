@@ -19,8 +19,6 @@
 #include <chrono>
 #include <thread>
 
-namespace Utils {
-
 // ------------------------------
 // 常量
 // ------------------------------
@@ -425,5 +423,3 @@ AdapterEventRegistrar::~AdapterEventRegistrar()
         OH_ArkUI_NodeAdapter_UnregisterEventReceiver(adapterHandle_);
     }
 }
-
-} // namespace Utils

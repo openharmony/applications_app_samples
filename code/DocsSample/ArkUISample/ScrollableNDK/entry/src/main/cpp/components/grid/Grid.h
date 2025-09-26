@@ -13,27 +13,27 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_GRID_NODE_H
-#define SCROLLABLENDK_GRID_NODE_H
+#ifndef SCROLLABLE_COMPONENTS_GRID_H
+#define SCROLLABLE_COMPONENTS_GRID_H
 
 #include <memory>
 
 #include <arkui/native_node.h>
 
-#include "common/ArkUINode.h"
 #include "common/ArkUIUtils.h"
-#include "common/ArkUIScrollEvent.h"
+#include "common/ArkUIScrollEvents.h"
+#include "common/ArkUINode.h"
 #include "common/ArkUINodeAdapter.h"
 
-namespace ScrollableNDK {
-
-class GridNode : public BaseNode {
+class Grid : public BaseNode {
 public:
-    GridNode()
+    static ArkUI_NodeHandle CreateScrollableGrid();
+
+    Grid()
         : BaseNode(NodeApiInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_GRID)),
           nodeApi_(NodeApiInstance::GetInstance()->GetNativeNodeAPI())
     {
-        if (!Utils::IsNotNull(nodeApi_) || !Utils::IsNotNull(GetHandle())) {
+        if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
             return;
         }
 
@@ -41,7 +41,7 @@ public:
         scrollEventGuard_.Bind(nodeApi_, GetHandle(), this, SCROLL_EVT_ALL);
     }
 
-    ~GridNode() override
+    ~Grid() override
     {
         scrollEventGuard_.Release();
         nodeAdapter_.reset();
@@ -50,53 +50,68 @@ public:
     // ========================================
     // 尺寸设置接口
     // ========================================
-    void SetGridSize(float width, float height) { SetSize(width, height); }
+    void SetGridSize(float width, float height)
+    {
+        SetSize(width, height);
+    }
 
-    void SetGridSizePercent(float widthPercent, float heightPercent) { SetSizePercent(widthPercent, heightPercent); }
+    void SetGridSizePercent(float widthPercent, float heightPercent)
+    {
+        SetSizePercent(widthPercent, heightPercent);
+    }
 
     // ========================================
     // 模板和间距设置
     // ========================================
     void SetRowsTemplate(const char *rowsTemplate)
     {
-        Utils::SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_ROW_TEMPLATE, rowsTemplate);
+        SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_ROW_TEMPLATE, rowsTemplate);
     }
 
     void SetColumnsTemplate(const char *columnsTemplate)
     {
-        Utils::SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_COLUMN_TEMPLATE, columnsTemplate);
+        SetAttributeString(nodeApi_, GetHandle(), NODE_GRID_COLUMN_TEMPLATE, columnsTemplate);
     }
 
-    void SetColumnsGap(float gap) { Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_COLUMN_GAP, gap); }
+    void SetColumnsGap(float gap)
+    {
+        SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_COLUMN_GAP, gap);
+    }
 
-    void SetRowsGap(float gap) { Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_ROW_GAP, gap); }
+    void SetRowsGap(float gap)
+    {
+        SetAttributeFloat32(nodeApi_, GetHandle(), NODE_GRID_ROW_GAP, gap);
+    }
 
     // ========================================
     // 行为和性能设置
     // ========================================
     void SetCachedCount(uint32_t count)
     {
-        Utils::SetAttributeUInt32(nodeApi_, GetHandle(), NODE_GRID_CACHED_COUNT, count);
+        SetAttributeUInt32(nodeApi_, GetHandle(), NODE_GRID_CACHED_COUNT, count);
     }
 
     void SetFocusWrapMode(ArkUI_FocusWrapMode mode)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_FOCUS_WRAP_MODE, static_cast<int32_t>(mode));
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_FOCUS_WRAP_MODE, static_cast<int32_t>(mode));
     }
 
     void SetSyncLoad(bool enabled)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_SYNC_LOAD, enabled ? 1 : 0);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_GRID_SYNC_LOAD, enabled ? 1 : 0);
     }
 
-    void SetDefaultScrollStyle() { Utils::SetDefaultScrollStyle(nodeApi_, GetHandle()); }
+    void SetDefaultScrollStyle()
+    {
+        ::SetDefaultScrollStyle(nodeApi_, GetHandle());
+    }
 
     // ========================================
     // 适配器设置
     // ========================================
     void SetLazyAdapter(const std::shared_ptr<ArkUINodeAdapter> &adapter)
     {
-        if (!Utils::IsNotNull(adapter)) {
+        if (!IsNotNull(adapter)) {
             return;
         }
         ArkUI_AttributeItem item{nullptr, 0, nullptr, adapter->GetAdapter()};
@@ -105,7 +120,10 @@ public:
     }
 
 protected:
-    void OnNodeEvent(ArkUI_NodeEvent *event) override { BaseNode::OnNodeEvent(event); }
+    void OnNodeEvent(ArkUI_NodeEvent *event) override
+    {
+        BaseNode::OnNodeEvent(event);
+    }
 
 private:
     ArkUI_NativeNodeAPI_1 *nodeApi_ = nullptr;
@@ -113,6 +131,4 @@ private:
     ScrollEventGuard scrollEventGuard_;
 };
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_GRID_NODE_H
+#endif // SCROLLABLE_COMPONENTS_GRID_H

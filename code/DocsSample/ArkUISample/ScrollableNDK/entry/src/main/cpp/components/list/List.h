@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_COMPONENTS_LIST_LISTNODE_H
-#define SCROLLABLENDK_COMPONENTS_LIST_LISTNODE_H
+#ifndef SCROLLABLE_COMPONENTS_LIST_H
+#define SCROLLABLE_COMPONENTS_LIST_H
 
 #include <functional>
 #include <memory>
@@ -24,36 +24,40 @@
 #include <hilog/log.h>
 
 #include "common/ArkUINode.h"
-#include "common/ArkUIConstants.h"
 #include "common/ArkUIUtils.h"
-#include "common/ArkUIScrollEvent.h"
 #include "common/ArkUINodeAdapter.h"
+#include "common/ArkUIScrollEvents.h"
+#include "components/list/List.h"
+#include "components/list/ListItemSwipe.h"
+#include "components/list/ListItemGroup.h"
 
 #ifndef LOG_TAG
-#define LOG_TAG "ListNode"
+#define LOG_TAG "List"
 #endif
 
-namespace ScrollableNDK {
-
-class ListNode : public BaseNode {
+class List : public BaseNode {
 public:
+    static ArkUI_NodeHandle CreateAlphabetIndexedList();
+
     // 嵌套滚动模式常量
-    static constexpr int32_t K_NESTED_SCROLL_PARENT_FIRST = 0;
-    static constexpr int32_t K_NESTED_SCROLL_CHILD_FIRST = 1;
-    static constexpr int32_t K_NESTED_SCROLL_SELF_FIRST = 2;
+    static constexpr int32_t kNestedScrollParentFirst = 0;
+    static constexpr int32_t kNestedScrollChildFirst = 1;
+    static constexpr int32_t kNestedScrollSelfFirst = 2;
 
     // 组件事件数据数组索引常量
-    static constexpr int32_t K_SCROLL_INDEX_FIRST_DATA_INDEX = 0;
-    static constexpr int32_t K_SCROLL_INDEX_LAST_DATA_INDEX = 3;
+    static constexpr int32_t kScrollIndexFirstDataIndex = 0;
+    static constexpr int32_t kScrollIndexLastDataIndex = 3;
 
-    static constexpr int32_t K_VISIBLE_CHANGE_FIRST_CHILD_DATA_INDEX = 0;
-    static constexpr int32_t K_VISIBLE_CHANGE_START_AREA_DATA_INDEX = 1;
-    static constexpr int32_t K_VISIBLE_CHANGE_START_INDEX_DATA_INDEX = 2;
-    static constexpr int32_t K_VISIBLE_CHANGE_LAST_CHILD_DATA_INDEX = 3;
-    static constexpr int32_t K_VISIBLE_CHANGE_END_AREA_DATA_INDEX = 4;
-    static constexpr int32_t K_VISIBLE_CHANGE_END_INDEX_DATA_INDEX = 5;
+    static constexpr int32_t kVisibleChangeFirstChildDataIndex = 0;
+    static constexpr int32_t kVisibleChangeStartAreaDataIndex = 1;
+    static constexpr int32_t kVisibleChangeStartIndexDataIndex = 2;
+    static constexpr int32_t kVisibleChangeLastChildDataIndex = 3;
+    static constexpr int32_t kVisibleChangeEndAreaDataIndex = 4;
+    static constexpr int32_t kVisibleChangeEndIndexDataIndex = 5;
 
-    static constexpr int32_t K_SCROLL_FRAME_BEGIN_DATA_INDEX = 0;
+    static constexpr int32_t kScrollFrameBeginDataIndex = 0;
+
+    static constexpr uint32_t kColorTransparent = 0x00000000U;
 
     // —— 可视内容变化事件数据 —— //
     struct VisibleContentChange {
@@ -65,29 +69,35 @@ public:
         ArkUI_ListItemGroupArea endArea = ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE; // 终点区
         int32_t endItemIndex = -1;                                            // 若终点不是 item，则为 -1
 
-        bool StartOnItem() const { return startArea == ARKUI_LIST_ITEM_SWIPE_AREA_ITEM && startItemIndex >= 0; }
-        bool EndOnItem() const { return endArea == ARKUI_LIST_ITEM_SWIPE_AREA_ITEM && endItemIndex >= 0; }
+        bool StartOnItem() const
+        {
+            return startArea == ARKUI_LIST_ITEM_SWIPE_AREA_ITEM && startItemIndex >= 0;
+        }
+        bool EndOnItem() const
+        {
+            return endArea == ARKUI_LIST_ITEM_SWIPE_AREA_ITEM && endItemIndex >= 0;
+        }
     };
 
 public:
-    ListNode()
+    List()
         : BaseNode(NodeApiInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_LIST)),
           nodeApi_(NodeApiInstance::GetInstance()->GetNativeNodeAPI())
     {
-        if (!Utils::IsNotNull(nodeApi_) || !Utils::IsNotNull(GetHandle())) {
+        if (!IsNotNull(nodeApi_) || !IsNotNull(GetHandle())) {
             return;
         }
 
-        nodeApi_->addNodeEventReceiver(GetHandle(), &ListNode::StaticEventReceiver);
+        nodeApi_->addNodeEventReceiver(GetHandle(), &List::StaticEventReceiver);
         const uint32_t scrollEventMask = SCROLL_EVT_FRAME_BEGIN | SCROLL_EVT_REACH_END;
         scrollEventGuard_.Bind(nodeApi_, GetHandle(), this, scrollEventMask);
     }
 
-    ~ListNode() override
+    ~List() override
     {
         scrollEventGuard_.Release();
 
-        if (!Utils::IsNotNull(nodeApi_)) {
+        if (!IsNotNull(nodeApi_)) {
             return;
         }
         UnregisterSpecificEvents();
@@ -98,33 +108,40 @@ public:
     // ========================================
     // 通用属性设置接口
     // ========================================
-    void SetTransparentBackground() { SetBackgroundColor(Constants::K_COLOR_TRANSPARENT); }
-
     void SetClipContent(bool clipEnabled)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_CLIP_CONTENT, clipEnabled ? 1 : 0);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_CLIP_CONTENT, clipEnabled ? 1 : 0);
     }
 
     void SetEdgeEffectSpring(bool springEnabled)
     {
         int32_t effectValue = springEnabled ? ARKUI_EDGE_EFFECT_SPRING : ARKUI_EDGE_EFFECT_NONE;
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_EDGE_EFFECT, effectValue);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_EDGE_EFFECT, effectValue);
     }
 
     void SetScrollBarVisible(bool visible)
     {
         int32_t displayMode = visible ? ARKUI_SCROLL_BAR_DISPLAY_MODE_ON : ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF;
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_BAR_DISPLAY_MODE, displayMode);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_BAR_DISPLAY_MODE, displayMode);
     }
 
-    void SetItemSpacing(float spacing) { Utils::SetAttributeFloat32(nodeApi_, GetHandle(), NODE_LIST_SPACE, spacing); }
+    void SetItemSpacing(float spacing)
+    {
+        SetAttributeFloat32(nodeApi_, GetHandle(), NODE_LIST_SPACE, spacing);
+    }
 
-    void SetScrollBarState(bool visible) { SetScrollBarVisible(visible); }
-    void SetSpace(float spacing) { SetItemSpacing(spacing); }
+    void SetScrollBarState(bool visible)
+    {
+        SetScrollBarVisible(visible);
+    }
+    void SetSpace(float spacing)
+    {
+        SetItemSpacing(spacing);
+    }
 
     void SetNestedScrollMode(int32_t mode)
     {
-        Utils::SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_NESTED_SCROLL, mode);
+        SetAttributeInt32(nodeApi_, GetHandle(), NODE_SCROLL_NESTED_SCROLL, mode);
     }
 
     // ========================================
@@ -134,14 +151,14 @@ public:
     {
         ScrollToIndex(index, false, ARKUI_SCROLL_ALIGNMENT_START);
     }
-    
+
     void ScrollToIndex(int32_t index, bool smooth, ArkUI_ScrollAlignment align)
     {
         ArkUI_NumberValue v[3];
-        v[0].i32 = index;                          // value[0]
-        v[1].i32 = smooth ? 1 : 0;                 // value[1] (optional)
-        v[2].i32 = static_cast<int32_t>(align);    // value[2] (optional)
-    
+        v[0].i32 = index;                       // value[0]
+        v[1].i32 = smooth ? 1 : 0;              // value[1] (optional)
+        v[2].i32 = static_cast<int32_t>(align); // value[2] (optional)
+
         ArkUI_AttributeItem it{v, 3};
         nodeApi_->setAttribute(GetHandle(), NODE_LIST_SCROLL_TO_INDEX, &it);
     }
@@ -158,7 +175,7 @@ public:
     // ========================================
     void SetLazyAdapter(const std::shared_ptr<ArkUINodeAdapter> &adapter)
     {
-        if (!Utils::IsNotNull(adapter)) {
+        if (!IsNotNull(adapter)) {
             nodeApi_->resetAttribute(GetHandle(), NODE_LIST_NODE_ADAPTER);
             listAdapter_.reset();
             return;
@@ -326,7 +343,10 @@ public:
         }
     }
 
-    void RegisterOnReachEnd(const std::function<void()> &callback) { onReachEndCallback_ = callback; }
+    void RegisterOnReachEnd(const std::function<void()> &callback)
+    {
+        onReachEndCallback_ = callback;
+    }
 
     void RegisterOnScrollFrameBegin(const std::function<void(float)> &callback)
     {
@@ -339,7 +359,7 @@ protected:
         BaseNode::OnNodeEvent(event);
 
         ArkUI_NodeComponentEvent *componentEvent = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event);
-        if (!Utils::IsNotNull(componentEvent)) {
+        if (!IsNotNull(componentEvent)) {
             return;
         }
 
@@ -366,7 +386,7 @@ private:
 
     void ResetListAdapter()
     {
-        if (Utils::IsNotNull(listAdapter_)) {
+        if (IsNotNull(listAdapter_)) {
             nodeApi_->resetAttribute(GetHandle(), NODE_LIST_NODE_ADAPTER);
             listAdapter_.reset();
         }
@@ -374,57 +394,67 @@ private:
 
     void CleanupChildrenMainSizeOption()
     {
-        if (Utils::IsNotNull(childrenMainSizeOption_)) {
+        if (IsNotNull(childrenMainSizeOption_)) {
             nodeApi_->resetAttribute(GetHandle(), NODE_LIST_CHILDREN_MAIN_SIZE);
             OH_ArkUI_ListChildrenMainSizeOption_Dispose(childrenMainSizeOption_);
             childrenMainSizeOption_ = nullptr;
         }
     }
-    
-    void OnScrollIndexEvt(const ArkUI_NodeComponentEvent* ev)
+
+    void OnScrollIndexEvt(const ArkUI_NodeComponentEvent *ev)
     {
-        if (!onScrollIndexCallback_) { return; }
-        const int32_t firstIndex = ev->data[K_SCROLL_INDEX_FIRST_DATA_INDEX].i32;
-        const int32_t lastIndex  = ev->data[K_SCROLL_INDEX_LAST_DATA_INDEX].i32;
+        if (!onScrollIndexCallback_) {
+            return;
+        }
+        const int32_t firstIndex = ev->data[kScrollIndexFirstDataIndex].i32;
+        const int32_t lastIndex = ev->data[kScrollIndexLastDataIndex].i32;
         onScrollIndexCallback_(firstIndex, lastIndex);
     }
-    
-    void OnVisibleChangeEvt(const ArkUI_NodeComponentEvent* ev)
+
+    void OnVisibleChangeEvt(const ArkUI_NodeComponentEvent *ev)
     {
-        if (!onVisibleChangeCallback_) { return; }
+        if (!onVisibleChangeCallback_) {
+            return;
+        }
         VisibleContentChange v{};
-        v.firstChildIndex = ev->data[K_VISIBLE_CHANGE_FIRST_CHILD_DATA_INDEX].i32;
-        v.startArea       = static_cast<ArkUI_ListItemGroupArea>(ev->data[K_VISIBLE_CHANGE_START_AREA_DATA_INDEX].i32);
-        v.startItemIndex  = ev->data[K_VISIBLE_CHANGE_START_INDEX_DATA_INDEX].i32;
-        v.lastChildIndex  = ev->data[K_VISIBLE_CHANGE_LAST_CHILD_DATA_INDEX].i32;
-        v.endArea         = static_cast<ArkUI_ListItemGroupArea>(ev->data[K_VISIBLE_CHANGE_END_AREA_DATA_INDEX].i32);
-        v.endItemIndex    = ev->data[K_VISIBLE_CHANGE_END_INDEX_DATA_INDEX].i32;
+        v.firstChildIndex = ev->data[kVisibleChangeFirstChildDataIndex].i32;
+        v.startArea = static_cast<ArkUI_ListItemGroupArea>(ev->data[kVisibleChangeStartAreaDataIndex].i32);
+        v.startItemIndex = ev->data[kVisibleChangeStartIndexDataIndex].i32;
+        v.lastChildIndex = ev->data[kVisibleChangeLastChildDataIndex].i32;
+        v.endArea = static_cast<ArkUI_ListItemGroupArea>(ev->data[kVisibleChangeEndAreaDataIndex].i32);
+        v.endItemIndex = ev->data[kVisibleChangeEndIndexDataIndex].i32;
         onVisibleChangeCallback_(v);
     }
-    
+
     void OnReachEndEvt()
     {
-        if (onReachEndCallback_) { onReachEndCallback_(); }
-    }
-    
-    void OnScrollFrameBeginEvt(const ArkUI_NodeComponentEvent* ev)
-    {
-        if (onScrollFrameBeginCallback_) {
-            onScrollFrameBeginCallback_(ev->data[K_SCROLL_FRAME_BEGIN_DATA_INDEX].f32);
+        if (onReachEndCallback_) {
+            onReachEndCallback_();
         }
     }
-    
-    void OnWillScrollEvt()
+
+    void OnScrollFrameBeginEvt(const ArkUI_NodeComponentEvent *ev)
     {
-        if (onWillScrollCallback_) { onWillScrollCallback_(); }
-    }
-    
-    void OnDidScrollEvt()
-    {
-        if (onDidScrollCallback_) { onDidScrollCallback_(); }
+        if (onScrollFrameBeginCallback_) {
+            onScrollFrameBeginCallback_(ev->data[kScrollFrameBeginDataIndex].f32);
+        }
     }
 
-    void HandleSpecificListEvent(int32_t eventType, ArkUI_NodeComponentEvent* ev)
+    void OnWillScrollEvt()
+    {
+        if (onWillScrollCallback_) {
+            onWillScrollCallback_();
+        }
+    }
+
+    void OnDidScrollEvt()
+    {
+        if (onDidScrollCallback_) {
+            onDidScrollCallback_();
+        }
+    }
+
+    void HandleSpecificListEvent(int32_t eventType, ArkUI_NodeComponentEvent *ev)
     {
         switch (eventType) {
             case NODE_LIST_ON_SCROLL_INDEX:
@@ -533,6 +563,4 @@ private:
     ScrollEventGuard scrollEventGuard_;
 };
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_COMPONENTS_LIST_LISTNODE_H
+#endif // SCROLLABLE_COMPONENTS_LIST_H

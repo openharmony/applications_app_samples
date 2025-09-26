@@ -157,7 +157,7 @@ private:
     std::function<void(float)> onOffsetChange_;
     std::function<void(int32_t)> onStateChange_;
 
-    Utils::NodeEventRegistrar registrar_;
+    NodeEventRegistrar registrar_;
 };
 
 #endif // REFRESH_MAKER_H

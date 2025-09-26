@@ -81,8 +81,8 @@ static ArkUI_NodeHandle GridCreateItem(ArkUI_NativeNodeAPI_1 *api)
 static void GridBindItem(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index,
                          const std::shared_ptr<std::vector<std::string>> &data)
 {
-    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
-    Utils::SetAttributeFloat32(api, item, NODE_HEIGHT, K_ITEM_HEIGHT);
+    SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
+    SetAttributeFloat32(api, item, NODE_HEIGHT, K_ITEM_HEIGHT);
 
     ArkUI_NodeHandle text = api->getFirstChild(item);
     if (!text) {
@@ -91,7 +91,7 @@ static void GridBindItem(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int3
 
     const int32_t n = static_cast<int32_t>(data->size());
     const char *s = (index >= 0 && index < n) ? (*data)[static_cast<size_t>(index)].c_str() : "<invalid>";
-    Utils::SetTextContent(api, text, s);
+    SetTextContent(api, text, s);
 }
 
 // ---------- 构建 Adapter ----------
@@ -145,13 +145,13 @@ ArkUI_NodeHandle GridMaker::CreateNativeNode()
     if (page == nullptr) {
         return nullptr;
     }
-    Utils::SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
-    Utils::SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
 
     // 构建 Grid
     std::shared_ptr<GridMaker> grid = BuildGrid();
     if (grid && grid->GetHandle() != nullptr) {
-        Utils::SetAttributeFloat32(api, grid->GetHandle(), NODE_LAYOUT_WEIGHT, 1.0f);
+        SetAttributeFloat32(api, grid->GetHandle(), NODE_LAYOUT_WEIGHT, 1.0f);
         api->addChild(page, grid->GetHandle());
     }
 

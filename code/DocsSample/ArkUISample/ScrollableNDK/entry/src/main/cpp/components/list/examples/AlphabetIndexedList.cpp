@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-#include "components/list/examples/AlphabetIndexedList.h"
-
 #include <cstring>
 #include <memory>
 #include <string>
-#include <vector>
-#include <unordered_map>
 #include <utility>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
 
 #include <arkui/native_node.h>
 #include <arkui/native_node_napi.h>
@@ -28,26 +27,20 @@
 #include <hilog/log.h>
 #include <napi/native_api.h>
 
-#include "common/ArkUIConstants.h"
-#include "common/ArkUIUtils.h"
-
 #ifndef LOG_TAG
 #define LOG_TAG "AlphabetIndexedList"
 #endif
 
 #include "common/ArkUINode.h"
 #include "common/ArkUINodeAdapter.h"
-#include "components/list/ListNode.h"
-#include "components/list/ListItemGroupNode.h"
+#include "components/list/List.h"
+#include "components/list/ListItemGroup.h"
 #include "components/list/ListItemSwipe.h"
 
-namespace ScrollableNDK {
-
-// ===== 常量定义（统一魔法值） =====
+/** ======================== 常量配置：布局/样式/文案 ======================== */
 namespace {
 constexpr int K_ALPHABET_COUNT = 26;
 constexpr int K_INDEX_ITEM_HEIGHT = 22;
-constexpr int32_t K_GROUP_FIRST_ITEM_INDEX = 0;
 constexpr int32_t K_FIRST_GROUP_INDEX = 0;
 
 constexpr float K_LIST_WIDTH_PERCENT = 0.82f;
@@ -58,9 +51,7 @@ constexpr float K_ITEM_FONT_SIZE = 16.0f;
 constexpr float K_INDEX_FONT_SIZE = 14.0f;
 constexpr float K_ROW_HEIGHT = 80.0f;
 
-constexpr float K_DELETE_HEIGHT = 64.0f;
 constexpr float K_DELETE_WIDTH = 88.0f;
-constexpr float K_SWIPE_ACTION_DISTANCE = 96.0f;
 
 constexpr float K_INDEX_BAR_WIDTH = 56.0f;
 constexpr float K_INDEX_BAR_PAD_TOP = 0.0f;
@@ -87,9 +78,10 @@ constexpr int K_EDGE_EFFECT_NONE = 0;
 constexpr const char *K_DELETE_TEXT = "Delete";
 constexpr const char *K_FOOTER_TEXT = "—— 已到底 ——";
 constexpr const char *K_INVALID_TEXT = "<invalid>";
+
+constexpr unsigned int K_LOG_DOMAIN = 0xFF00;
 } // namespace
 
-// ===== 数据源 =====
 static const char *const NAMES_A[] = {"Alice", "Andrew", "Amy", "Aaron", "安娜", "安琪", "爱华", "阿明"};
 static const char *const NAMES_B[] = {"Ben", "Bella", "Brian", "Brandon", "博文", "斌", "白雪", "彬彬"};
 static const char *const NAMES_C[] = {"Chris", "Charlotte", "Cindy", "Caleb", "晨曦", "承泽", "楚怡", "春燕"};
@@ -123,36 +115,37 @@ struct GroupNames {
     int size;
 };
 
-static const GroupNames GROUPS[] = {
-    {'A', NAMES_A, Utils::ArrSize(NAMES_A)}, {'B', NAMES_B, Utils::ArrSize(NAMES_B)},
-    {'C', NAMES_C, Utils::ArrSize(NAMES_C)}, {'D', NAMES_D, Utils::ArrSize(NAMES_D)},
-    {'E', NAMES_E, Utils::ArrSize(NAMES_E)}, {'F', NAMES_F, Utils::ArrSize(NAMES_F)},
-    {'G', NAMES_G, Utils::ArrSize(NAMES_G)}, {'H', NAMES_H, Utils::ArrSize(NAMES_H)},
-    {'I', NAMES_I, Utils::ArrSize(NAMES_I)}, {'J', NAMES_J, Utils::ArrSize(NAMES_J)},
-    {'K', NAMES_K, Utils::ArrSize(NAMES_K)}, {'L', NAMES_L, Utils::ArrSize(NAMES_L)},
-    {'M', NAMES_M, Utils::ArrSize(NAMES_M)}, {'N', NAMES_N, Utils::ArrSize(NAMES_N)},
-    {'O', NAMES_O, Utils::ArrSize(NAMES_O)}, {'P', NAMES_P, Utils::ArrSize(NAMES_P)},
-    {'Q', NAMES_Q, Utils::ArrSize(NAMES_Q)}, {'R', NAMES_R, Utils::ArrSize(NAMES_R)},
-    {'S', NAMES_S, Utils::ArrSize(NAMES_S)}, {'T', NAMES_T, Utils::ArrSize(NAMES_T)},
-    {'U', NAMES_U, Utils::ArrSize(NAMES_U)}, {'V', NAMES_V, Utils::ArrSize(NAMES_V)},
-    {'W', NAMES_W, Utils::ArrSize(NAMES_W)}, {'X', NAMES_X, Utils::ArrSize(NAMES_X)},
-    {'Y', NAMES_Y, Utils::ArrSize(NAMES_Y)}, {'Z', NAMES_Z, Utils::ArrSize(NAMES_Z)}
-};
+static const GroupNames g_groups[] = {
+    {'A', NAMES_A, ArrSize(NAMES_A)}, {'B', NAMES_B, ArrSize(NAMES_B)}, {'C', NAMES_C, ArrSize(NAMES_C)},
+    {'D', NAMES_D, ArrSize(NAMES_D)}, {'E', NAMES_E, ArrSize(NAMES_E)}, {'F', NAMES_F, ArrSize(NAMES_F)},
+    {'G', NAMES_G, ArrSize(NAMES_G)}, {'H', NAMES_H, ArrSize(NAMES_H)}, {'I', NAMES_I, ArrSize(NAMES_I)},
+    {'J', NAMES_J, ArrSize(NAMES_J)}, {'K', NAMES_K, ArrSize(NAMES_K)}, {'L', NAMES_L, ArrSize(NAMES_L)},
+    {'M', NAMES_M, ArrSize(NAMES_M)}, {'N', NAMES_N, ArrSize(NAMES_N)}, {'O', NAMES_O, ArrSize(NAMES_O)},
+    {'P', NAMES_P, ArrSize(NAMES_P)}, {'Q', NAMES_Q, ArrSize(NAMES_Q)}, {'R', NAMES_R, ArrSize(NAMES_R)},
+    {'S', NAMES_S, ArrSize(NAMES_S)}, {'T', NAMES_T, ArrSize(NAMES_T)}, {'U', NAMES_U, ArrSize(NAMES_U)},
+    {'V', NAMES_V, ArrSize(NAMES_V)}, {'W', NAMES_W, ArrSize(NAMES_W)}, {'X', NAMES_X, ArrSize(NAMES_X)},
+    {'Y', NAMES_Y, ArrSize(NAMES_Y)}, {'Z', NAMES_Z, ArrSize(NAMES_Z)}};
 
-// ===== 交互上下文 =====
 struct ClickCtx {
-    ArkUI_NativeNodeAPI_1 *api { nullptr };
+    ArkUI_NativeNodeAPI_1 *api{nullptr};
     std::shared_ptr<std::vector<std::string>> items;
     std::weak_ptr<ArkUINodeAdapter> adapter;
-    int index { -1 };
-    uint64_t stableId { 0 };
-    ArkUI_NodeHandle itemHandle { nullptr };
+    int index{-1};
+    uint64_t stableId{0};
+    ArkUI_NodeHandle itemHandle{nullptr};
 };
 
 static std::unordered_map<ArkUI_NodeHandle, std::shared_ptr<ClickCtx>> s_btnCtx;
 static std::unordered_map<ArkUI_NodeHandle, ArkUI_NodeHandle> s_itemToDeleteBtn;
 
-// ===== 工具函数 =====
+struct ItemCtx {
+    std::shared_ptr<std::vector<std::string>> items;
+    std::weak_ptr<ArkUINodeAdapter> adapter;
+    int index{-1};
+    uint64_t stableId{0};
+};
+static std::unordered_map<ArkUI_NodeHandle, ItemCtx> s_itemCtx;
+
 static int FindIndexByStableId(const std::vector<std::string> &items, uint64_t sid)
 {
     const int n = static_cast<int>(items.size());
@@ -180,81 +173,193 @@ static int ClampFallbackIndex(int fallback, int n)
     return idx;
 }
 
-// ===== 静态事件处理 =====
+static int ResolveDeleteIndex(const ItemCtx &cur, const std::vector<std::string> &vec)
+{
+    const int n = static_cast<int>(vec.size());
+    if (n <= 0) {
+        return -1;
+    }
+
+    if (cur.stableId != 0) {
+        const int idx = FindIndexByStableId(vec, cur.stableId);
+        if (idx >= 0) {
+            return idx;
+        }
+    }
+
+    if (cur.index >= 0 && cur.index < n) {
+        const uint64_t sidAt = static_cast<uint64_t>(std::hash<std::string>{}(vec[static_cast<size_t>(cur.index)]));
+        if (sidAt == cur.stableId || cur.stableId == 0) {
+            return cur.index;
+        }
+    }
+
+    if (cur.stableId != 0) {
+        const int s = std::max(0, cur.index - 2);
+        const int e = std::min(n - 1, cur.index + 2);
+        for (int i = s; i <= e; ++i) {
+            const uint64_t sid = static_cast<uint64_t>(std::hash<std::string>{}(vec[static_cast<size_t>(i)]));
+            if (sid == cur.stableId) {
+                return i;
+            }
+        }
+    }
+
+    return ClampFallbackIndex(cur.index, n);
+}
+
+static void DetachItemCtx(ItemCtx &cur)
+{
+    cur.items.reset();
+    cur.index = -1;
+    cur.stableId = 0;
+}
+
+static void EraseAndNotify(std::shared_ptr<std::vector<std::string>> &holdItems, int idx,
+                           const std::weak_ptr<ArkUINodeAdapter> &adapterWeak)
+{
+    auto &vecRef = *holdItems;
+    if (idx >= 0 && idx < static_cast<int>(vecRef.size())) {
+        vecRef.erase(vecRef.begin() + idx);
+    }
+    if (auto ad = adapterWeak.lock()) {
+        ad->RemoveRange(idx, 1); // 触发 UI 回收/重绑
+    }
+}
+
+static ArkUI_NativeNodeAPI_1 *FindApiFromItem(ArkUI_NodeHandle item)
+{
+    auto itBtn = s_itemToDeleteBtn.find(item);
+    if (itBtn == s_itemToDeleteBtn.end()) {
+        return nullptr;
+    }
+    auto itCtx = s_btnCtx.find(itBtn->second);
+    if (itCtx == s_btnCtx.end() || !itCtx->second) {
+        return nullptr;
+    }
+    return itCtx->second->api;
+}
+
+static void CollapseTailVisualIfNeeded(ArkUI_NodeHandle item, int erasedIdx, int prevSize, ArkUI_NativeNodeAPI_1 *api)
+{
+    if (!api || !item) {
+        return;
+    }
+    if (prevSize <= 0 || erasedIdx != prevSize - 1) {
+        return;
+    }
+    ArkUI_NodeHandle text = api->getFirstChild(item);
+    if (text) {
+        SetTextContent(api, text, "");
+        SetAttributeFloat32(api, text, NODE_HEIGHT, 0.0f);
+        SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, 0.0f);
+    }
+    SetAttributeFloat32(api, item, NODE_HEIGHT, 0.0f);
+}
+
+static void LogDeleteOutcome(const std::string &del, int idx, int newSize, bool wasLast)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, K_LOG_DOMAIN, LOG_TAG, "DeleteByItem: [%s] at idx=%d, newSize=%d (last=%s)",
+                 del.c_str(), idx, newSize, wasLast ? "yes" : "no");
+}
+
+static bool DeleteByItem(ArkUI_NodeHandle item)
+{
+    auto it = s_itemCtx.find(item);
+    if (it == s_itemCtx.end()) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "DeleteByItem: no ctx for item=%p", item);
+        return false;
+    }
+
+    ItemCtx &cur = it->second;
+    if (!cur.items) {
+        OH_LOG_Print(LOG_APP, LOG_WARN, K_LOG_DOMAIN, LOG_TAG, "DeleteByItem: ignored (already consumed) item=%p",
+                     item);
+        return false;
+    }
+
+    auto &vec = *cur.items;
+    const int prevSize = static_cast<int>(vec.size());
+    if (prevSize <= 0) {
+        OH_LOG_Print(LOG_APP, LOG_WARN, K_LOG_DOMAIN, LOG_TAG, "DeleteByItem: empty vector");
+        return false;
+    }
+
+    const int idx = ResolveDeleteIndex(cur, vec);
+    if (idx < 0 || idx >= prevSize) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "DeleteByItem: invalid idx (bind=%d size=%d sid=%llu)",
+                     cur.index, prevSize, static_cast<unsigned long long>(cur.stableId));
+        return false;
+    }
+
+    const std::string del = vec[static_cast<size_t>(idx)];
+    std::shared_ptr<std::vector<std::string>> holdItems = cur.items;
+    auto adapterWeak = cur.adapter;
+
+    DetachItemCtx(cur);
+    EraseAndNotify(holdItems, idx, adapterWeak);
+    CollapseTailVisualIfNeeded(item, idx, prevSize, FindApiFromItem(item));
+    LogDeleteOutcome(del, idx, static_cast<int>(holdItems->size()), idx == prevSize - 1);
+    return true;
+}
+
 static void StaticDeleteBtnEvent(ArkUI_NodeEvent *ev)
 {
     if (ev == nullptr) {
         return;
     }
-    if (OH_ArkUI_NodeEvent_GetEventType(ev) != NODE_ON_CLICK) {
+
+    const int et = OH_ArkUI_NodeEvent_GetEventType(ev);
+    if (et != NODE_ON_CLICK && et != NODE_ON_CLICK_EVENT) {
         return;
     }
 
-    ClickCtx *ctx = reinterpret_cast<ClickCtx *>(OH_ArkUI_NodeEvent_GetUserData(ev));
-    if (ctx == nullptr || ctx->api == nullptr) {
-        return;
-    }
-    std::shared_ptr<std::vector<std::string>> items = ctx->items;
-    if (!items) {
+    auto *ctx = reinterpret_cast<ClickCtx *>(OH_ArkUI_NodeEvent_GetUserData(ev));
+    if (ctx == nullptr) {
         return;
     }
 
-    int idx = FindIndexByStableId(*items, ctx->stableId);
-    if (idx < 0) {
-        idx = ClampFallbackIndex(ctx->index, static_cast<int>(items->size()));
-        if (idx < 0) {
-            return;
-        }
+    if (!DeleteByItem(ctx->itemHandle)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "StaticDeleteBtnEvent: DeleteByItem failed (item=%p)",
+                     ctx->itemHandle);
     }
-
-    const int n = static_cast<int>(items->size());
-    if (idx < 0 || idx >= n) {
-        OH_LOG_Print(LOG_APP, LOG_WARN, Constants::K_LOG_DOMAIN, LOG_TAG, "Delete skip: invalid idx=%d", idx);
-        return;
-    }
-
-    items->erase(items->begin() + idx);
-    if (auto ad = ctx->adapter.lock()) {
-        ad->RemoveRange(idx, 1);
-    }
-    OH_LOG_Print(LOG_APP, LOG_INFO, Constants::K_LOG_DOMAIN, LOG_TAG, "Deleted item at index=%d", idx);
 }
 
-// ===== 视图构造工具 =====
 static std::shared_ptr<BaseNode> MakeText(const char *s, float h, uint32_t bg)
 {
     ArkUI_NativeNodeAPI_1 *api = NodeApiInstance::GetInstance()->GetNativeNodeAPI();
     ArkUI_NodeHandle text = api->createNode(ARKUI_NODE_TEXT);
     std::shared_ptr<BaseNode> node = std::make_shared<BaseNode>(text);
 
-    Utils::SetTextContent(api, text, s);
-    Utils::SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, K_FULL_PERCENT);
-    Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, h);
-    Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, h);
-    Utils::SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
-    Utils::SetAttributeUInt32(api, text, NODE_BACKGROUND_COLOR, bg);
+    SetTextContent(api, text, s);
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, K_FULL_PERCENT);
+    SetAttributeFloat32(api, text, NODE_HEIGHT, h);
+    SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, h);
+    SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
+    SetAttributeUInt32(api, text, NODE_BACKGROUND_COLOR, bg);
     return node;
 }
 
 static void SetIndexTextStyle(ArkUI_NodeHandle text, int h, bool active)
 {
     ArkUI_NativeNodeAPI_1 *api = NodeApiInstance::GetInstance()->GetNativeNodeAPI();
-    Utils::SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_INDEX_FONT_SIZE);
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, K_FULL_PERCENT);
-    Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, static_cast<float>(h));
-    Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, static_cast<float>(h));
-    Utils::SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
-    Utils::SetAttributeUInt32(api, text, NODE_FONT_COLOR, active ? K_COLOR_INDEX_ACTIVE : K_COLOR_INDEX_INACTIVE);
-    Utils::SetAttributeUInt32(api, text, NODE_BACKGROUND_COLOR,
-                              active ? K_COLOR_INDEX_ACTIVE_BG : K_COLOR_INDEX_INACTIVE_BG);
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_INDEX_FONT_SIZE);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, K_FULL_PERCENT);
+    SetAttributeFloat32(api, text, NODE_HEIGHT, static_cast<float>(h));
+    SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, static_cast<float>(h));
+    SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
+    SetAttributeUInt32(api, text, NODE_FONT_COLOR, active ? K_COLOR_INDEX_ACTIVE : K_COLOR_INDEX_INACTIVE);
+    SetAttributeUInt32(api, text, NODE_BACKGROUND_COLOR, active ? K_COLOR_INDEX_ACTIVE_BG : K_COLOR_INDEX_INACTIVE_BG);
 }
 
 struct IndexState {
     std::vector<std::shared_ptr<BaseNode>> letters;
     int selected;
     std::vector<bool> groupVisible;
-    IndexState() : selected(-1) {}
+    IndexState() : selected(-1)
+    {
+    }
 };
 
 static void UpdateIndexHighlight(const std::shared_ptr<IndexState> &st, int idx)
@@ -278,9 +383,8 @@ static void UpdateIndexHighlight(const std::shared_ptr<IndexState> &st, int idx)
     }
 }
 
-static std::shared_ptr<BaseNode> BuildRightIndexColumn(
-    const std::shared_ptr<ListNode> &list,
-    const std::shared_ptr<IndexState> &st)
+static std::shared_ptr<BaseNode> BuildRightIndexColumn(const std::shared_ptr<List> &list,
+                                                       const std::shared_ptr<IndexState> &st)
 {
     ArkUI_NativeNodeAPI_1 *api = NodeApiInstance::GetInstance()->GetNativeNodeAPI();
     ArkUI_NodeHandle colHandle = api->createNode(ARKUI_NODE_COLUMN);
@@ -288,13 +392,9 @@ static std::shared_ptr<BaseNode> BuildRightIndexColumn(
 
     col->SetWidth(K_INDEX_BAR_WIDTH);
     col->SetHeightPercent(K_FULL_PERCENT);
-    
-    Utils::SetPadding(api, col->GetHandle(),
-        Utils::Padding::Only(
-            K_INDEX_BAR_PAD_TOP,
-            K_INDEX_BAR_PAD_RIGHT,
-            K_INDEX_BAR_PAD_BOTTOM,
-            K_INDEX_BAR_PAD_LEFT));
+
+    SetPadding(api, col->GetHandle(),
+               Padding::Only(K_INDEX_BAR_PAD_TOP, K_INDEX_BAR_PAD_RIGHT, K_INDEX_BAR_PAD_BOTTOM, K_INDEX_BAR_PAD_LEFT));
 
     st->letters.reserve(K_ALPHABET_COUNT);
     for (int i = 0; i < K_ALPHABET_COUNT; ++i) {
@@ -305,7 +405,7 @@ static std::shared_ptr<BaseNode> BuildRightIndexColumn(
         ArkUI_NodeHandle textHandle = api->createNode(ARKUI_NODE_TEXT);
         std::shared_ptr<BaseNode> t = std::make_shared<BaseNode>(textHandle);
 
-        Utils::SetTextContent(api, textHandle, label);
+        SetTextContent(api, textHandle, label);
         SetIndexTextStyle(textHandle, K_INDEX_ITEM_HEIGHT, false);
 
         int group = i;
@@ -320,75 +420,93 @@ static std::shared_ptr<BaseNode> BuildRightIndexColumn(
     return col;
 }
 
-static std::shared_ptr<ListNode> ApplyListSafeProps()
+static std::shared_ptr<List> ApplyListSafeProps()
 {
-    std::shared_ptr<ListNode> list = std::make_shared<ListNode>();
+    std::shared_ptr<List> list = std::make_shared<List>();
     list->SetWidthPercent(K_LIST_WIDTH_PERCENT);
     list->SetHeightPercent(K_FULL_PERCENT);
     list->SetScrollBarState(true);
     list->SetClipContent(true);
     list->SetSpace(K_LIST_SPACE);
-    list->SetNestedScrollMode(ListNode::K_NESTED_SCROLL_PARENT_FIRST);
+    list->SetNestedScrollMode(List::kNestedScrollParentFirst);
     return list;
 }
 
 static ArkUI_NodeHandle CreateDeleteButton(ArkUI_NativeNodeAPI_1 *api)
 {
-    ArkUI_NodeHandle t = api->createNode(ARKUI_NODE_TEXT);
-    Utils::SetTextContent(api, t, K_DELETE_TEXT);
-    Utils::SetAttributeFloat32(api, t, NODE_FONT_SIZE, K_INDEX_FONT_SIZE);
-    Utils::SetAttributeFloat32(api, t, NODE_HEIGHT, K_DELETE_HEIGHT);
-    Utils::SetAttributeFloat32(api, t, NODE_TEXT_LINE_HEIGHT, K_DELETE_HEIGHT);
-    Utils::SetAttributeInt32(api, t, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
-    Utils::SetAttributeUInt32(api, t, NODE_BACKGROUND_COLOR, K_COLOR_DELETE_BG);
-    Utils::SetAttributeUInt32(api, t, NODE_FONT_COLOR, K_COLOR_WHITE);
-    Utils::SetAttributeFloat32(api, t, NODE_WIDTH, K_DELETE_WIDTH);
-    return t;
+    ArkUI_NodeHandle btn = api->createNode(ARKUI_NODE_BUTTON);
+
+    ArkUI_NodeHandle text = api->createNode(ARKUI_NODE_TEXT);
+    SetTextContent(api, text, K_DELETE_TEXT);
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_INDEX_FONT_SIZE);
+    SetAttributeUInt32(api, text, NODE_FONT_COLOR, K_COLOR_WHITE);
+
+    ArkUI_NumberValue ta = {.i32 = ARKUI_TEXT_ALIGNMENT_CENTER};
+    ArkUI_AttributeItem taItem = {&ta, 1};
+    api->setAttribute(text, NODE_TEXT_ALIGN, &taItem);
+
+    ArkUI_NumberValue hitValChild = {.i32 = ARKUI_HIT_TEST_MODE_TRANSPARENT};
+    ArkUI_AttributeItem hitItemChild = {&hitValChild, 1};
+    api->setAttribute(text, NODE_HIT_TEST_BEHAVIOR, &hitItemChild);
+
+    api->addChild(btn, text);
+
+    SetAttributeFloat32(api, btn, NODE_WIDTH, K_DELETE_WIDTH);
+    SetAttributeFloat32(api, btn, NODE_HEIGHT, K_ROW_HEIGHT);
+    SetAttributeUInt32(api, btn, NODE_BACKGROUND_COLOR, K_COLOR_DELETE_BG);
+
+    ArkUI_NumberValue alignSelf = {.i32 = ARKUI_ITEM_ALIGNMENT_STRETCH};
+    ArkUI_AttributeItem alignSelfItem = {&alignSelf, 1};
+    api->setAttribute(btn, NODE_ALIGN_SELF, &alignSelfItem);
+
+    ArkUI_NumberValue buttonTypeValue = {.i32 = ARKUI_BUTTON_TYPE_NORMAL};
+    ArkUI_AttributeItem buttonTypeItem = {&buttonTypeValue, 1};
+    api->setAttribute(btn, NODE_BUTTON_TYPE, &buttonTypeItem);
+
+    ArkUI_NumberValue hitVal = {.i32 = ARKUI_HIT_TEST_MODE_BLOCK};
+    ArkUI_AttributeItem hitItem = {&hitVal, 1};
+    api->setAttribute(btn, NODE_HIT_TEST_BEHAVIOR, &hitItem);
+
+    return btn;
 }
 
 static void SetupSwipeForListItem(ArkUI_NodeHandle item, ArkUI_NativeNodeAPI_1 *api,
                                   const std::shared_ptr<std::vector<std::string>> &items,
                                   const std::weak_ptr<ArkUINodeAdapter> &adapterWeak)
 {
-    ArkUI_NodeHandle deleteBtnHandle = nullptr;
-    auto makeDeleteBtn = [&deleteBtnHandle](ArkUI_NativeNodeAPI_1 *apiInner) -> ArkUI_NodeHandle {
-        deleteBtnHandle = CreateDeleteButton(apiInner);
-        return deleteBtnHandle;
-    };
-
     static std::vector<std::unique_ptr<ListItemSwipe>> s_swipeKeep;
-
     std::unique_ptr<ListItemSwipe> swipe = std::make_unique<ListItemSwipe>(api);
-    swipe->BuildEndArea(makeDeleteBtn)
-        .SetActionAreaDistance(K_SWIPE_ACTION_DISTANCE)
-        .SetEdgeEffect(K_EDGE_EFFECT_NONE)
-        .OnEnter([] {})
-        .OnExit([] {})
-        .OnAction([] {})
-        .OnStateChange([](int /*st*/) {})
-        .OnOffsetChange([](float /*off*/) {})
-        .OnEnterWithUserData([](void *) {})
-        .OnExitWithUserData([](void *) {})
-        .OnActionWithUserData([](void *) {})
-        .OnStateChangeWithUserData([](int /*st*/, void *) {})
-        .OnOffsetChangeWithUserData([](float /*off*/, void *) {});
 
-    swipe->AttachToListItem(item);
-    s_swipeKeep.emplace_back(std::move(swipe));
+    auto makeDeleteBtn = [items, adapterWeak, item](ArkUI_NativeNodeAPI_1 *apiInner) -> ArkUI_NodeHandle {
+        ArkUI_NodeHandle btn = CreateDeleteButton(apiInner);
+        if (!btn) {
+            return nullptr;
+        }
 
-    if (deleteBtnHandle != nullptr) {
         std::shared_ptr<ClickCtx> ctx = std::make_shared<ClickCtx>();
-        ctx->api = api;
+        ctx->api = apiInner;
         ctx->items = items;
         ctx->adapter = adapterWeak;
         ctx->itemHandle = item;
+        ctx->index = -1;
+        ctx->stableId = 0;
 
-        s_btnCtx[deleteBtnHandle] = ctx;
-        s_itemToDeleteBtn[item] = deleteBtnHandle;
+        s_itemToDeleteBtn[item] = btn;
+        s_btnCtx[btn] = ctx;
 
-        api->addNodeEventReceiver(deleteBtnHandle, &StaticDeleteBtnEvent);
-        api->registerNodeEvent(deleteBtnHandle, NODE_ON_CLICK, 0, ctx.get());
-    }
+        apiInner->addNodeEventReceiver(btn, &StaticDeleteBtnEvent);
+        apiInner->registerNodeEvent(btn, NODE_ON_CLICK, 0, ctx.get());
+        apiInner->registerNodeEvent(btn, NODE_ON_CLICK_EVENT, 0, ctx.get());
+        return btn;
+    };
+
+    swipe->BuildEndArea(makeDeleteBtn)
+        .SetActionAreaDistance(K_DELETE_WIDTH)
+        .SetEdgeEffect(K_EDGE_EFFECT_NONE)
+        .OnActionWithUserData([item](void *) { DeleteByItem(item); });
+
+    swipe->AttachToListItem(item);
+    s_swipeKeep.emplace_back(std::move(swipe));
 }
 
 static ArkUI_NodeHandle CreateListItemWithSwipe(ArkUI_NativeNodeAPI_1 *api,
@@ -399,61 +517,69 @@ static ArkUI_NodeHandle CreateListItemWithSwipe(ArkUI_NativeNodeAPI_1 *api,
     ArkUI_NodeHandle item = api->createNode(ARKUI_NODE_LIST_ITEM);
     api->addChild(item, text);
 
-    Utils::SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, K_FULL_PERCENT);
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, K_FULL_PERCENT);
+    SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, K_FULL_PERCENT);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, K_FULL_PERCENT);
 
     SetupSwipeForListItem(item, api, items, adapterWeak);
     return item;
 }
 
 static void BindListItemContent(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index,
-                                const std::shared_ptr<std::vector<std::string>> &items)
+                                const std::shared_ptr<std::vector<std::string>> &items,
+                                const std::weak_ptr<ArkUINodeAdapter> &adapterWeak)
 {
-    if (!Utils::ValidateApiAndNode(api, item, "BindListItemContent")) {
+    if (!ValidateApiAndNode(api, item, "BindListItemContent")) {
         return;
     }
-    if (!Utils::IsNotNull(items)) {
+    if (!IsNotNull(items)) {
         return;
     }
 
     ArkUI_NodeHandle text = api->getFirstChild(item);
-    if (!Utils::IsNotNull(text)) {
+    if (!IsNotNull(text)) {
         return;
     }
 
     const int32_t n = static_cast<int32_t>(items->size());
-    const bool valid = Utils::IsValidIndex(index, n);
+    const bool valid = IsValidIndex(index, n);
     const char *content = valid ? (*items)[static_cast<size_t>(index)].c_str() : K_INVALID_TEXT;
 
-    Utils::SetTextContent(api, text, content);
-    Utils::SetBackgroundColor(api, item, K_COLOR_WHITE);
-    Utils::SetTextStyle(api, text, K_ITEM_FONT_SIZE, K_COLOR_BLACK, ARKUI_TEXT_ALIGNMENT_CENTER);
-    Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, K_ROW_HEIGHT);
-    Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_ROW_HEIGHT);
+    SetTextContent(api, text, content);
+    SetBackgroundColor(api, item, K_COLOR_WHITE);
+    SetTextStyle(api, text, K_ITEM_FONT_SIZE, K_COLOR_BLACK, ARKUI_TEXT_ALIGNMENT_CENTER);
+    SetAttributeFloat32(api, text, NODE_HEIGHT, K_ROW_HEIGHT);
+    SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_ROW_HEIGHT);
 
-    // 更新删除按钮上下文
+    // 更新上下文：保证删除时能稳定位中目标项
     auto itBtn = s_itemToDeleteBtn.find(item);
-    if (itBtn == s_itemToDeleteBtn.end()) {
-        return;
-    }
-    auto itCtx = s_btnCtx.find(itBtn->second);
-    if (itCtx == s_btnCtx.end() || !itCtx->second) {
-        return;
+    if (itBtn != s_itemToDeleteBtn.end()) {
+        auto itCtx = s_btnCtx.find(itBtn->second);
+        if (itCtx != s_btnCtx.end() && itCtx->second) {
+            ClickCtx &ctx = *itCtx->second;
+            ctx.index = index;
+            ctx.items = items;
+            ctx.adapter = adapterWeak;
+            ctx.stableId =
+                valid ? static_cast<uint64_t>(std::hash<std::string>{}((*items)[static_cast<size_t>(index)])) : 0ULL;
+        }
     }
 
-    ClickCtx &ctx = *itCtx->second;
-    ctx.index = index;
-    if (valid) {
-        ctx.stableId = static_cast<uint64_t>(std::hash<std::string>{}((*items)[static_cast<size_t>(index)]));
-    }
+    // 保存条目上下文
+    ItemCtx &ic = s_itemCtx[item];
+    ic.items = items;
+    ic.adapter = adapterWeak;
+    ic.index = index;
+    ic.stableId = valid ? static_cast<uint64_t>(std::hash<std::string>{}((*items)[static_cast<size_t>(index)])) : 0ULL;
+
+    OH_LOG_Print(LOG_APP, LOG_DEBUG, K_LOG_DOMAIN, LOG_TAG,
+                 "BindListItemContent: item=%p index=%d/%d content=%s stableId=%llu", item, index, n, content,
+                 static_cast<unsigned long long>(ic.stableId));
 }
 
 static NodeAdapterCallbacks CreateGroupCallbacks(const std::shared_ptr<std::vector<std::string>> &items)
 {
     NodeAdapterCallbacks cb{};
-    cb.getTotalCount = [items]() -> int32_t {
-        return static_cast<int32_t>(items->size());
-    };
+    cb.getTotalCount = [items]() -> int32_t { return static_cast<int32_t>(items->size()); };
     cb.getStableId = [items](int32_t i) -> uint64_t {
         const int32_t n = static_cast<int32_t>(items->size());
         if (i >= 0 && i < n) {
@@ -474,9 +600,10 @@ static std::shared_ptr<std::vector<std::string>> CreateGroupItemsData(const Grou
     return items;
 }
 
+/** 组头/组尾：头为字母，footer 显示“已到底” */
 static void SetupGroupHeaderAndFooter(std::shared_ptr<ListItemGroupNode> &group, const GroupNames &gn, bool isLast)
 {
-    char title[16] {};
+    char title[16]{};
     title[0] = gn.letter;
     title[1] = '\0';
 
@@ -489,6 +616,7 @@ static void SetupGroupHeaderAndFooter(std::shared_ptr<ListItemGroupNode> &group,
     }
 }
 
+/** 为组创建 Adapter 回调：onCreate 生成可滑动条目，onBind 写入文案与上下文 */
 static NodeAdapterCallbacks CreateGroupAdapterCallbacks(const std::shared_ptr<std::vector<std::string>> &items,
                                                         std::shared_ptr<ArkUINodeAdapter> adapter)
 {
@@ -496,11 +624,14 @@ static NodeAdapterCallbacks CreateGroupAdapterCallbacks(const std::shared_ptr<st
 
     cb.onCreate = [items, adapterWeak = std::weak_ptr<ArkUINodeAdapter>(adapter)](
                       ArkUI_NativeNodeAPI_1 *api, int32_t /*index*/) -> ArkUI_NodeHandle {
+        OH_LOG_Print(LOG_APP, LOG_DEBUG, K_LOG_DOMAIN, LOG_TAG, "Creating list item");
         return CreateListItemWithSwipe(api, items, adapterWeak);
     };
 
-    cb.onBind = [items](ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index) {
-        BindListItemContent(api, item, index, items);
+    cb.onBind = [items, adapterWeak = std::weak_ptr<ArkUINodeAdapter>(adapter)](ArkUI_NativeNodeAPI_1 *api,
+                                                                                ArkUI_NodeHandle item, int32_t index) {
+        OH_LOG_Print(LOG_APP, LOG_DEBUG, K_LOG_DOMAIN, LOG_TAG, "Binding item at index=%d", index);
+        BindListItemContent(api, item, index, items, adapterWeak);
     };
 
     return cb;
@@ -509,7 +640,7 @@ static NodeAdapterCallbacks CreateGroupAdapterCallbacks(const std::shared_ptr<st
 static std::shared_ptr<ListItemGroupNode> BuildGroup(int gIndex, bool isLast,
                                                      const std::shared_ptr<IndexState> & /*st*/)
 {
-    const GroupNames &gn = GROUPS[static_cast<size_t>(gIndex)];
+    const GroupNames &gn = g_groups[static_cast<size_t>(gIndex)];
     std::shared_ptr<ListItemGroupNode> group = std::make_shared<ListItemGroupNode>();
 
     SetupGroupHeaderAndFooter(group, gn, isLast);
@@ -524,10 +655,8 @@ static std::shared_ptr<ListItemGroupNode> BuildGroup(int gIndex, bool isLast,
     return group;
 }
 
-/**
- * 创建按字母索引的懒加载列表
- */
-std::shared_ptr<BaseNode> CreateLazyTextListExample()
+/** 创建根布局：左侧列表 + 右侧索引条；支持滚动联动索引高亮与触底高亮 */
+std::shared_ptr<BaseNode> CreateAlphabetIndexedListExample()
 {
     ArkUI_NativeNodeAPI_1 *api = NodeApiInstance::GetInstance()->GetNativeNodeAPI();
     ArkUI_NodeHandle rootHandle = api->createNode(ARKUI_NODE_ROW);
@@ -536,7 +665,7 @@ std::shared_ptr<BaseNode> CreateLazyTextListExample()
     root->SetWidthPercent(K_FULL_PERCENT);
     root->SetHeightPercent(K_FULL_PERCENT);
 
-    std::shared_ptr<ListNode> list = ApplyListSafeProps();
+    std::shared_ptr<List> list = ApplyListSafeProps();
     std::shared_ptr<IndexState> st = std::make_shared<IndexState>();
     st->groupVisible.assign(K_ALPHABET_COUNT, false);
 
@@ -547,9 +676,24 @@ std::shared_ptr<BaseNode> CreateLazyTextListExample()
     }
 
     std::shared_ptr<BaseNode> right = BuildRightIndexColumn(list, st);
-    list->RegisterOnScrollIndex([st](int32_t first, int32_t /*last*/) {
-        UpdateIndexHighlight(st, first);
+    list->RegisterOnScrollIndex([st](int32_t first, int32_t last) {
+        int idx = first;
+        if (last == K_ALPHABET_COUNT - 1) {
+            idx = last;
+        }
+        if (idx < 0) {
+            return;
+        }
+        if (idx >= K_ALPHABET_COUNT) {
+            idx = K_ALPHABET_COUNT - 1;
+        }
+        UpdateIndexHighlight(st, idx);
     });
+
+    // 触底时强制高亮最后一组
+    list->RegisterOnReachEnd([st]() { UpdateIndexHighlight(st, K_ALPHABET_COUNT - 1); });
+
+    // 初始高亮 A 组
     UpdateIndexHighlight(st, K_FIRST_GROUP_INDEX);
 
     root->AddChild(list);
@@ -560,32 +704,26 @@ std::shared_ptr<BaseNode> CreateLazyTextListExample()
     return root;
 }
 
-} // namespace ScrollableNDK
-
-namespace ScrollableNDK::Examples {
-
-/**
- * NAPI入口函数
- */
-napi_value AlphabetIndexedListImpl::NAPI(napi_env env, napi_callback_info info)
+ArkUI_NodeHandle List::CreateAlphabetIndexedList()
 {
-    size_t argc = 1;
-    napi_value arg0 = nullptr;
-
-    napi_get_cb_info(env, info, &argc, &arg0, nullptr, nullptr);
-    if (argc < 1) {
+    ArkUI_NativeNodeAPI_1 *api = nullptr;
+    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);
+    if (api == nullptr) {
         return nullptr;
     }
 
-    ArkUI_NodeContentHandle content = nullptr;
-    OH_ArkUI_GetNodeContentFromNapiValue(env, arg0, &content);
-    if (content == nullptr) {
+    ArkUI_NodeHandle page = api->createNode(ARKUI_NODE_COLUMN);
+    if (page == nullptr) {
         return nullptr;
     }
 
-    std::shared_ptr<BaseNode> root = CreateLazyTextListExample();
-    OH_ArkUI_NodeContent_AddNode(content, root->GetHandle());
-    return nullptr;
+    SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
+
+    std::shared_ptr<BaseNode> root = CreateAlphabetIndexedListExample();
+    if (root && root->GetHandle() != nullptr) {
+        SetAttributeFloat32(api, root->GetHandle(), NODE_LAYOUT_WEIGHT, 1.0f);
+        api->addChild(page, root->GetHandle());
+    }
+    return page;
 }
-
-} // namespace ScrollableNDK::Examples

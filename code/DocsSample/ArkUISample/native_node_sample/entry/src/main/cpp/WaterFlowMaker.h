@@ -43,6 +43,7 @@ constexpr int32_t K_DEFAULT_FADING_EDGE = 12;
 // 单分组索引
 constexpr int32_t K_SINGLE_SECTION_INDEX = 0;
 
+// ---- 新增：单分组配置结构体 ----
 struct SingleSectionParams {
     int32_t itemCount = 0;
     int32_t crossCount = 1;
@@ -83,9 +84,15 @@ public:
     }
 
     // ---- Size ----
-    void SetWidth(float width) { Utils::SetAttributeFloat32(api_, waterFlow_, NODE_WIDTH, width); }
+    void SetWidth(float width)
+    {
+        SetAttributeFloat32(api_, waterFlow_, NODE_WIDTH, width);
+    }
 
-    void SetHeight(float height) { Utils::SetAttributeFloat32(api_, waterFlow_, NODE_HEIGHT, height); }
+    void SetHeight(float height)
+    {
+        SetAttributeFloat32(api_, waterFlow_, NODE_HEIGHT, height);
+    }
 
     // ---- Adapter ----
     void SetLazyAdapter(const std::shared_ptr<ArkUINodeAdapter> &adapter)
@@ -136,14 +143,14 @@ public:
 
     void SetGaps(float colGap, float rowGap)
     {
-        Utils::SetAttributeFloat32(api_, waterFlow_, NODE_WATER_FLOW_COLUMN_GAP, colGap);
-        Utils::SetAttributeFloat32(api_, waterFlow_, NODE_WATER_FLOW_ROW_GAP, rowGap);
+        SetAttributeFloat32(api_, waterFlow_, NODE_WATER_FLOW_COLUMN_GAP, colGap);
+        SetAttributeFloat32(api_, waterFlow_, NODE_WATER_FLOW_ROW_GAP, rowGap);
     }
 
     // ---- Cache / scroll / mode ----
     void SetCachedCount(int32_t count)
     {
-        Utils::SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_CACHED_COUNT, count);
+        SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_CACHED_COUNT, count);
     }
 
     void SetFooter(ArkUI_NodeHandle footer)
@@ -168,44 +175,53 @@ public:
 
     void SetLayoutMode(ArkUI_WaterFlowLayoutMode mode)
     {
-        Utils::SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_LAYOUT_MODE, static_cast<int32_t>(mode));
+        SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_LAYOUT_MODE, static_cast<int32_t>(mode));
     }
 
     void SetSyncLoad(bool enabled)
     {
-        Utils::SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_SYNC_LOAD, enabled ? 1 : 0);
+        SetAttributeInt32(api_, waterFlow_, NODE_WATER_FLOW_SYNC_LOAD, enabled ? 1 : 0);
     }
 
-    void SetScrollFriction(float f) { Utils::SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_FRICTION, f); }
+    void SetScrollFriction(float f)
+    {
+        SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_FRICTION, f);
+    }
 
     void SetFlingSpeedLimit(float limit)
     {
-        Utils::SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_FLING_SPEED_LIMIT, limit);
+        SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_FLING_SPEED_LIMIT, limit);
     }
 
     // ---- 通用滚动外观/行为预设 ----
     void SetScrollCommon()
     {
         // 滚动条外观
-        Utils::SetAttributeInt32(api_, waterFlow_, NODE_SCROLL_BAR_DISPLAY_MODE,
-                                 static_cast<int>(ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO));
-        Utils::SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_BAR_WIDTH, K_DEFAULT_SCROLL_BAR_WIDTH);
-        Utils::SetAttributeUInt32(api_, waterFlow_, NODE_SCROLL_BAR_COLOR, K_DEFAULT_SCROLL_BAR_COLOR);
+        SetAttributeInt32(api_, waterFlow_, NODE_SCROLL_BAR_DISPLAY_MODE,
+                          static_cast<int>(ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO));
+        SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_BAR_WIDTH, K_DEFAULT_SCROLL_BAR_WIDTH);
+        SetAttributeUInt32(api_, waterFlow_, NODE_SCROLL_BAR_COLOR, K_DEFAULT_SCROLL_BAR_COLOR);
 
         // 交互与摩擦
-        Utils::SetAttributeInt32(api_, waterFlow_, NODE_SCROLL_ENABLE_SCROLL_INTERACTION, 1);
-        Utils::SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_FRICTION, K_DEFAULT_SCROLL_FRICTION);
-        Utils::SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_FLING_SPEED_LIMIT, K_DEFAULT_FLING_SPEED_LIMIT);
+        SetAttributeInt32(api_, waterFlow_, NODE_SCROLL_ENABLE_SCROLL_INTERACTION, 1);
+        SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_FRICTION, K_DEFAULT_SCROLL_FRICTION);
+        SetAttributeFloat32(api_, waterFlow_, NODE_SCROLL_FLING_SPEED_LIMIT, K_DEFAULT_FLING_SPEED_LIMIT);
 
         // 嵌套滚动策略 & 渐隐边缘
-        Utils::SetAttributeInt32(api_, waterFlow_, NODE_SCROLL_NESTED_SCROLL,
-                                 static_cast<int>(ARKUI_SCROLL_NESTED_MODE_SELF_FIRST));
-        Utils::SetAttributeInt32(api_, waterFlow_, NODE_SCROLL_FADING_EDGE, K_DEFAULT_FADING_EDGE);
+        SetAttributeInt32(api_, waterFlow_, NODE_SCROLL_NESTED_SCROLL,
+                          static_cast<int>(ARKUI_SCROLL_NESTED_MODE_SELF_FIRST));
+        SetAttributeInt32(api_, waterFlow_, NODE_SCROLL_FADING_EDGE, K_DEFAULT_FADING_EDGE);
     }
 
-    ArkUI_NodeHandle GetWaterFlow() const { return waterFlow_; }
+    ArkUI_NodeHandle GetWaterFlow() const
+    {
+        return waterFlow_;
+    }
 
-    std::shared_ptr<WaterFlowSection> GetWaterFlowSection() const { return section_; }
+    std::shared_ptr<WaterFlowSection> GetWaterFlowSection() const
+    {
+        return section_;
+    }
 
     void SetSingleSection(const SingleSectionParams &p)
     {
@@ -225,7 +241,10 @@ public:
     }
 
 private:
-    static void StaticEvent(ArkUI_NodeEvent *ev) { (void)ev; }
+    static void StaticEvent(ArkUI_NodeEvent *ev)
+    {
+        (void)ev;
+    }
 
     static bool ValidateSingleSectionParams(const SingleSectionParams &p)
     {
