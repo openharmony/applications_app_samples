@@ -3,6 +3,23 @@
     "pages/Index",
     "pages/page_navigation",
     "pages/page_accessibility",
-    "pages/page_embedded_component"
+    "pages/page_embedded_component",
+    "pages/page_animation",
+    "pages/animation/AnimationIndexCenter",
+    "pages/animation/AnimationIndexOpacity",
+    "pages/animation/AnimationIndexTranslate",
+    "pages/animation/AnimationIndexRenderFit",
+    "pages/animation/AnimationIndexGeometry",
+    "pages/page_visual_effects",
+    "pages/visualEffects/VisualEffectsIndexScale",
+    "pages/visualEffects/VisualEffectsIndexBlur",
+    "pages/visualEffects/VisualEffectsIndexShape",
+    "pages/visualEffects/VisualEffectsIndexShadow",
+    "pages/visualEffects/VisualEffectsIndexSepia",
+    "pages/visualEffects/VisualEffectsIndexMask",
+    "pages/visualEffects/VisualEffectsIndexCont",
+    "pages/visualEffects/VisualEffectsIndexAngle",
+    "pages/visualEffects/VisualEffectsIndexStyle",
+    "pages/visualEffects/VisualEffectsIndexGroup"
   ]
 }

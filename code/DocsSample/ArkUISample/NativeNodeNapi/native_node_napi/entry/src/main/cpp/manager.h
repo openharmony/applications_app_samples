@@ -16,6 +16,7 @@
 #ifndef NATIVE_NODE_NAPI_SAMPLE_MANAGER_H
 #define NATIVE_NODE_NAPI_SAMPLE_MANAGER_H
 
+#include "ArkUIBaseNode.h"
 #include <arkui/native_interface.h>
 #include <arkui/native_node.h>
 #include <arkui/native_node_napi.h>
@@ -25,11 +26,50 @@
 #include <js_native_api_types.h>
 #include <napi/native_api.h>
 
+napi_value createAnimationCenter(napi_env env, napi_callback_info info);
+napi_value createAnimationOpacity(napi_env env, napi_callback_info info);
+napi_value createAnimationTranslate(napi_env env, napi_callback_info info);
+napi_value createAnimationFit(napi_env env, napi_callback_info info);
+napi_value createAnimationGeometry(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsScale(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsBlur(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsShape(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsShadow(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsSepia(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsMask(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsCont(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsAngle(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsStyle(napi_env env, napi_callback_info info);
+napi_value createVisualEffectsGroup(napi_env env, napi_callback_info info);
+napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
+
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 class Manager {
 public:
     static ArkUI_NativeNodeAPI_1 *nodeAPI_;
     ~Manager(){};
+    
+    static Manager *GetInstance()
+    {
+        static Manager nativeEntry;
+        return &nativeEntry;
+    }
+
+    void SetContentHandle(ArkUI_NodeContentHandle handle)
+    {
+        handle_ = handle;
+    }
+
+    void SetRootNode(const std::shared_ptr<NativeModule::ArkUIBaseNode> &baseNode)
+    {
+        root_ = baseNode;
+        OH_ArkUI_NodeContent_AddNode(handle_, root_->GetHandle());
+    }
+    void DisposeRootNode()
+    {
+        OH_ArkUI_NodeContent_RemoveNode(handle_, root_->GetHandle());
+        root_.reset();
+    }
     
     static napi_value CreateNativeNaviNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeAccessibilityNode(napi_env env, napi_callback_info info);
@@ -37,6 +77,8 @@ public:
 
 private:
     static Manager manager_;
+    std::shared_ptr<NativeModule::ArkUIBaseNode> root_;
+    ArkUI_NodeContentHandle handle_;
 };
 
 #endif // NATIVE_NODE_NAPI_SAMPLE_MANAGER_H

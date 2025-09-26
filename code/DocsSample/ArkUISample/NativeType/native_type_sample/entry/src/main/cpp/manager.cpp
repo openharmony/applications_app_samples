@@ -14,6 +14,8 @@
  */
 
 #include "manager.h"
+#include "ArkUIAnimationNode.h"
+#include "ArkUIVisualEffectsNode.h"
 #include "SwiperMaker.h"
 #include "TextMaker.h"
 #include "AccessibilityMaker.h"
@@ -142,5 +144,138 @@ napi_value Manager::CreateNativeEmbeddedComponentNode(napi_env env, napi_callbac
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
         }
     }
+}
+
+napi_value createAnimationCenter(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::CreateAnimationCenter();
+    Manager::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value createAnimationOpacity(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::CreateAnimationOpacity();
+    Manager::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value createAnimationTranslate(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::CreateAnimeteto();
+    Manager::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value createAnimationFit(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::CreateAnimator();
+    Manager::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value createAnimationGeometry(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::CreateTransitionEffect();
+    Manager::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value createVisualEffectsScale(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::CreateVisualEffectsScale();
+    Manager::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value createVisualEffectsBlur(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::CreateVisualEffectsBlur();
+    Manager::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value createVisualEffectsShape(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    Manager::GetInstance()->SetContentHandle(contentHandle);
+    
+    auto column = NativeModule::CreateVisualEffectsShape();
+    Manager::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
+{
+    Manager::GetInstance()->DisposeRootNode();
     return nullptr;
 }

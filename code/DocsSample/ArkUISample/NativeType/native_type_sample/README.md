@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例展示了如何创建文本、输入框、文本域、滑动容器等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
+本示例展示了如何创建文本、输入框、文本域、滑动容器、视效、动效等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
 
 ## 效果预览
 
@@ -27,6 +27,8 @@ entry/src/main/ets/
     ├── page_accessibility.ets (无障碍界面)
     ├── page_embedded_component.ets (嵌入式组件界面)
     ├── page_swiper.ets (滑动容器页面)
+    ├── page_animation.ets (动效界面)
+    ├── page_visual_effects.ets (视效界面)
     └── page_text.ets (文本界面)
 
 entry/src/main/
@@ -34,6 +36,15 @@ entry/src/main/
 │   ├── types
 │   │   └── libentry
 │   │       └── Index.d.ts (函数对应的js映射)
+│   ├── ArkUIAnimationNode.h
+│   ├── ArkUIBaseNode.h
+│   ├── ArkUIButtonNode.h
+│   ├── ArkUIColumnNode.h
+│   ├── ArkUINode.h
+│   ├── ArkUINumber.h
+│   ├── ArkUITextNode.h
+│   ├── ArkUIVisualEffectsNode.h
+│   ├── NativeModule.h
 │   ├── CMakeLists.txt (CMake脚本)
 |   ├── manager.cpp 
 |   ├── manager.h
