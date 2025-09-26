@@ -111,94 +111,17 @@ struct Index {
   }
 
   // [End obtain_supported_capabilities]
-  // 用于处理示例1，示例2，示例3和示例4的部分操作
-  // [Start authentication_example1]
-  // [Start authentication_example2]
-  // [Start authentication_example3]
-  // [Start authentication_example4]
-  handleAuthResult(userAuthInstance: userAuth.UserAuthInstance, exampleNumber: number) {
-    // [StartExclude authentication_example1]
-    // [StartExclude authentication_example2]
-    // [StartExclude authentication_example3]
-    // [StartExclude authentication_example4]
-    try {
-      // [EndExclude authentication_example1]
-      // [EndExclude authentication_example2]
-      // [EndExclude authentication_example3]
-      // [EndExclude authentication_example4]
-      // userAuthInstance.on异常抛出层
-      userAuthInstance.on('result', {
-        onResult: (result: userAuth.UserAuthResult) => {
-          // [StartExclude authentication_example1]
-          // [StartExclude authentication_example2]
-          // [StartExclude authentication_example3]
-          // [StartExclude authentication_example4]
-          this.result[exampleNumber] = (`${result.result}`);
-          try {
-            // onResult异常抛出层
-            try {
-              // JSON.stringify异常抛出层
-              // [EndExclude authentication_example1]
-              // [EndExclude authentication_example2]
-              // [EndExclude authentication_example3]
-              // [EndExclude authentication_example4]
-              Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
-              // [StartExclude authentication_example1]
-              // [StartExclude authentication_example2]
-              // [StartExclude authentication_example3]
-              // [StartExclude authentication_example4]
-            } catch (error) {
-              const err: BusinessError = error as BusinessError;
-              Logger.error(`JSON stringify catch error. Code is ${err?.code}, message is ${err?.message}`);
-            }
-            // [EndExclude authentication_example1]
-            // [EndExclude authentication_example2]
-            // [EndExclude authentication_example3]
-            // [EndExclude authentication_example4]
-            userAuthInstance.off('result'); // 认证完成后取消订阅
-            // [StartExclude authentication_example1]
-            // [StartExclude authentication_example2]
-            // [StartExclude authentication_example3]
-            // [StartExclude authentication_example4]
-          } catch (error) {
-            const err: BusinessError = error as BusinessError;
-            Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
-          }
-          // [EndExclude authentication_example1]
-          // [EndExclude authentication_example2]
-          // [EndExclude authentication_example3]
-          // [EndExclude authentication_example4]
-        }
-      });
-      // 启动认证
-      userAuthInstance.start();
-      Logger.info('auth start success');
-      // [StartExclude authentication_example1]
-      // [StartExclude authentication_example2]
-      // [StartExclude authentication_example3]
-      // [StartExclude authentication_example4]
-    } catch (error) {
-      const err: BusinessError = error as BusinessError;
-      Logger.error(`userAuthInstance.on catch error. Code: ${err?.code}, Message: ${err?.message}`);
-    }
-    // [EndExclude authentication_example1]
-    // [EndExclude authentication_example2]
-    // [EndExclude authentication_example3]
-    // [EndExclude authentication_example4]
-  }
 
   /*
    * start-authentication.md
    * 示例1：
    * 发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证，获取认证结果
    * */
-  // [StartExclude authentication_example2]
-  // [StartExclude authentication_example3]
-  // [StartExclude authentication_example4]
+  // [Start authentication_example1]
   initiatingUserAuthentication1() {
     try {
       const randData = getRandData();
-      if(!randData){
+      if (!randData) {
         return;
       }
       // 设置认证参数
@@ -215,20 +138,36 @@ struct Index {
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
       Logger.info('get userAuth instance success');
       // 订阅认证结果
-      this.handleAuthResult(userAuthInstance, ResultIndex.EXAMPLE_1);
+      userAuthInstance.on('result', {
+        onResult: (result: userAuth.UserAuthResult) => {
+          try {
+            Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+            this.result[ResultIndex.EXAMPLE_1] = (`${result.result}`);
+            // 认证完成后取消订阅
+            userAuthInstance.off('result');
+          } catch (error) {
+            const err: BusinessError = error as BusinessError;
+            Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
+          }
+        }
+      });
+      // 启动认证
+      userAuthInstance.start();
+      Logger.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
-  // [EndExclude authentication_example2]
   // [End authentication_example1]
+
   /*
    * start-authentication.md
    * 示例2：
    * 发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果
    * */
+  // [Start authentication_example2]
   initiatingUserAuthentication2() {
     // 设置认证参数
     let reuseUnlockResult: userAuth.ReuseUnlockResult = {
@@ -254,20 +193,36 @@ struct Index {
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
       Logger.info('get userAuth instance success');
       // 订阅认证结果
-      this.handleAuthResult(userAuthInstance, ResultIndex.EXAMPLE_2);
+      userAuthInstance.on('result', {
+        onResult: (result: userAuth.UserAuthResult) => {
+          try {
+            Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+            this.result[ResultIndex.EXAMPLE_2] = (`${result.result}`);
+            // 认证完成后取消订阅
+            userAuthInstance.off('result');
+          } catch (error) {
+            const err: BusinessError = error as BusinessError;
+            Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
+          }
+        }
+      });
+      // 启动认证
+      userAuthInstance.start();
+      Logger.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
-  // [EndExclude authentication_example3]
   // [End authentication_example2]
+
   /*
    * start-authentication.md
    * 示例3：
    * 发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证 + 任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果：
    * */
+  // [Start authentication_example3]
   initiatingUserAuthentication3() {
     // 设置认证参数
     let reuseUnlockResult: userAuth.ReuseUnlockResult = {
@@ -276,7 +231,7 @@ struct Index {
     };
     try {
       const randData = getRandData();
-      if(!randData){
+      if (!randData) {
         return;
       }
       const authParam: userAuth.AuthParam = {
@@ -293,25 +248,41 @@ struct Index {
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
       Logger.info('get userAuth instance success');
       // 订阅认证结果
-      this.handleAuthResult(userAuthInstance, ResultIndex.EXAMPLE_3);
+      userAuthInstance.on('result', {
+        onResult: (result: userAuth.UserAuthResult) => {
+          try {
+            Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+            this.result[ResultIndex.EXAMPLE_3] = (`${result.result}`);
+            // 认证完成后取消订阅
+            userAuthInstance.off('result');
+          } catch (error) {
+            const err: BusinessError = error as BusinessError;
+            Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
+          }
+        }
+      });
+      // 启动认证
+      userAuthInstance.start();
+      Logger.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
-  // [EndExclude authentication_example4]
   // [End authentication_example3]
+
   /*
    * start-authentication.md
    * 示例4：
    * 以模应用方式进行用户身份认证
    * */
+  // [Start authentication_example4]
   initiatingUserAuthentication4() {
     // 设置认证参数
     try {
       const randData = getRandData();
-      if(!randData){
+      if (!randData) {
         return;
       }
       const authParam: userAuth.AuthParam = {
@@ -322,13 +293,28 @@ struct Index {
       // 配置认证界面
       const widgetParam: userAuth.WidgetParam = {
         title: resourceToString($r('app.string.title')),
-        uiContext: getContext(),
+        uiContext: this.getUIContext().getHostContext()
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
       Logger.info('get userAuth instance success');
       // 订阅认证结果
-      this.handleAuthResult(userAuthInstance, ResultIndex.EXAMPLE_4);
+      userAuthInstance.on('result', {
+        onResult: (result: userAuth.UserAuthResult) => {
+          try {
+            Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+            this.result[ResultIndex.EXAMPLE_4] = (`${result.result}`);
+            // 认证完成后取消订阅
+            userAuthInstance.off('result');
+          } catch (error) {
+            const err: BusinessError = error as BusinessError;
+            Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
+          }
+        }
+      });
+      // 启动认证
+      userAuthInstance.start();
+      Logger.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -336,6 +322,7 @@ struct Index {
   }
 
   // [End authentication_example4]
+
   // [Start cancel_authentication]
   handleAuthResultAndCanceling(userAuthInstance: userAuth.UserAuthInstance, exampleNumber: number) {
     // [StartExclude cancel_authentication]
@@ -343,17 +330,11 @@ struct Index {
       // userAuthInstance.on异常抛出层
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
-          this.result[exampleNumber] = (`${result.result}`);
           try {
-            // onResult异常抛出层
-            try {
-              // JSON.stringify异常抛出层
-              Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
-            } catch (error) {
-              const err: BusinessError = error as BusinessError;
-              Logger.error(`JSON stringify catch error. Code is ${err?.code}, message is ${err?.message}`);
-            }
-            userAuthInstance.off('result'); // 认证完成后取消订阅
+            Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+            this.result[exampleNumber] = (`${result.result}`);
+            // 认证完成后取消订阅
+            userAuthInstance.off('result');
           } catch (error) {
             const err: BusinessError = error as BusinessError;
             Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
@@ -388,7 +369,7 @@ struct Index {
   cancelingUserAuthentication() {
     try {
       const randData = getRandData();
-      if(!randData){
+      if (!randData) {
         return;
       }
       // 设置认证参数
@@ -414,11 +395,11 @@ struct Index {
 
   // [End cancel_authentication]
 
-  // [Start perceive-adjust-authentication-process]
   /*
    * perceive-adjust-authentication-process.md
    * 感知和调整认证过程
    * */
+  // [Start perceive-adjust-authentication-process]
   perceiveAndAdjustAuthentication() {
     try {
       const randData = getRandData();
@@ -441,8 +422,15 @@ struct Index {
       Logger.info('get userAuth instance success');
       // 订阅认证过程中的提示信息。
       userAuthInstance.on('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
-        Logger.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
-        this.result[ResultIndex.PERCEIVE_ADJUST] = (`${authTipInfo.tipType}`);
+        try {
+          Logger.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
+          this.result[ResultIndex.PERCEIVE_ADJUST] = (`${authTipInfo.tipType}`);
+          // 认证完成后取消订阅
+          userAuthInstance.off('result');
+        } catch (error) {
+          const err: BusinessError = error as BusinessError;
+          Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
+        }
       });
       // 开始认证
       userAuthInstance.start();
@@ -464,13 +452,14 @@ struct Index {
       Logger.error(`auth catch error. Code is ${err?.code as number}, message is ${err?.message}`);
     }
   }
+
   // [End perceive-adjust-authentication-process]
 
   // [Start custom_authentication]
   handleCustomAuthResult(userAuthInstance: userAuth.UserAuthInstance, exampleNumber: number) {
     // [StartExclude custom_authentication]
     try {
-    // [EndExclude custom_authentication]
+      // [EndExclude custom_authentication]
       // userAuthInstance.on异常抛出层
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
@@ -527,7 +516,7 @@ struct Index {
   applyingCustomAuthentication() {
     try {
       const randData = getRandData();
-      if(!randData){
+      if (!randData) {
         return;
       }
       const authParam: userAuth.AuthParam = {
@@ -550,6 +539,7 @@ struct Index {
       Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
     }
   }
+
   // [End custom_authentication]
 
   /*
@@ -577,7 +567,7 @@ struct Index {
     };
     try {
       const randData = getRandData();
-      if(!randData){
+      if (!randData) {
         return;
       }
       const authParam: userAuth.AuthParam = {
