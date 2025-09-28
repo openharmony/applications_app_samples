@@ -9,3 +9,4 @@
 | ArrayBuffer对象       | 位于ArrayBufferObject.ets       | 点击Hello World | 1秒后页面显示“success” | 是       | Pass     |
 | SharedArrayBuffer对象 | 位于SharedArrayBufferObject.ets | 点击Hello World | 1秒后页面显示“success” | 是       | Pass     |
 | Transferable对象      | 位于TransferabledObject.ets     | 点击Hello World | 1秒后页面显示“success” | 是       | Pass     |
+| 高性能容器类对象       | 位于ContainerObject.ets         | 点击Hello World | 1秒后页面显示“success” | 是       | Pass     |
