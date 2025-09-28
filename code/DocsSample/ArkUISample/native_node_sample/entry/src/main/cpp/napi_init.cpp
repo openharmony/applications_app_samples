@@ -14,6 +14,7 @@
  */
 
 #include "manager.h"
+#include "form_manager.h"
 #include <hilog/log.h>
 
 EXTERN_C_START
@@ -44,6 +45,18 @@ static napi_value Init(napi_env env, napi_value exports)
          nullptr },
         {"createNativeNodexc", nullptr, Manager::createNativeXComponentNode, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"createFormPage", nullptr, NativeNode::Form::TransTool::CreateFormPage, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"createFormNode", nullptr, NativeNode::Form::TransTool::CreateFormNode, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"setFormAttribute", nullptr, NativeNode::Form::TransTool::SetFormAttribute, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"getFormAttribute", nullptr, NativeNode::Form::TransTool::GetFormAttribute, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"resetFormAttribute", nullptr, NativeNode::Form::TransTool::ResetFormAttribute, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"removeFormNode", nullptr, NativeNode::Form::TransTool::RemoveFormNode, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
         // 参考新增其他createNative方法和Maker类
     };
 
