@@ -6,15 +6,16 @@
 
 ## 效果预览
 
-| 首页 | Text页面                                              | Swiper页面                                              |
-| ---- | ----------------------------------------------------- | ------------------------------------------------------- |
-|      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> |
+| 首页 | Text页面                                              | Swiper页面                                              | Public页面                                              |
+| ---- | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+|      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> | <img src="./screenshots/page_public.jpg" width="300"/> |
 
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；
 2. 进入首页，可选择不同模块页面。
 3. 点击Text选择框进入Text组件的CAPI接口展示界面；
 4. 点击Swiper选择框进入Swiper组件的CAPI接口展示界面；
+5. 点击Public选择框进入通用属性的CAPI接口展示界面。
 
 
 ## 工程目录
@@ -26,6 +27,7 @@ entry/src/main/ets/
     ├── Index.ets (获取导航页面)
     ├── page_accessibility.ets (无障碍界面)
     ├── page_embedded_component.ets (嵌入式组件界面)
+    ├── page_public_event.ets (通用属性页面)
     ├── page_swiper.ets (滑动容器页面)
     ├── page_animation.ets (动效界面)
     ├── page_visual_effects.ets (视效界面)
@@ -52,6 +54,8 @@ entry/src/main/
 |   ├── .......
 |   ├── baseUtils.cpp
 |   ├── baseUtils.h
+|   ├── PublicEvent.cpp
+|   ├── PublicEvent.h
 |   ├── SwiperMaker.cpp
 |   ├── SwiperMaker.h
 |   ├── TextMaker.cpp
