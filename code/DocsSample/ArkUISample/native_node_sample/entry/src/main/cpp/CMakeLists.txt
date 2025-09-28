@@ -16,8 +16,6 @@ include_directories(${NATIVERENDER_ROOT_PATH}
 file(GLOB_RECURSE ENTRY_SOURCES CONFIGURE_DEPENDS
     "${NATIVERENDER_ROOT_PATH}/napi_init.cpp"
     "${NATIVERENDER_ROOT_PATH}/*.cpp"
-    "${NATIVERENDER_ROOT_PATH}/common/*.cpp"
-    "${NATIVERENDER_ROOT_PATH}/components/**/*.cpp"
 )
 
 add_library(entry SHARED ${ENTRY_SOURCES})
@@ -34,4 +32,5 @@ target_link_libraries(entry PUBLIC
     libace_napi.z.so
     libhilog_ndk.z.so
     libnative_drawing.so
+    libability_base_want.so
 )

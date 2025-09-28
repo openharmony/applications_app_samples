@@ -23,9 +23,9 @@
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 
-#include "ArkUINode.h"
-#include "ScrollUtils.h"
-#include "ScrollEvent.h"
+#include "ScrollableNode.h"
+#include "ScrollableUtils.h"
+#include "ScrollableEvent.h"
 
 /**
  * @brief ArkUI Scroll 节点轻封装
@@ -40,7 +40,7 @@ public:
     void SetOnWillScroll(OnWillScroll cb) { onWill_ = std::move(cb); }
     void SetOnDidScroll(OnDidScroll cb) { onDid_ = std::move(cb); }
     
-    static ArkUI_NodeHandle createScrollPage();
+    static ArkUI_NodeHandle CreateNativeNode();
 
 public:
     ScrollMaker()

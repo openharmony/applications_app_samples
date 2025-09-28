@@ -26,13 +26,13 @@
 #include <hilog/log.h>
 #include <napi/native_api.h>
 
-#include "ScrollUtils.h"
+#include "ScrollableUtils.h"
 
 #ifndef LOG_TAG
 #define LOG_TAG "ListMaker"
 #endif
 
-#include "ArkUINode.h"
+#include "ScrollableNode.h"
 #include "ArkUINodeAdapter.h"
 #include "ListMaker.h"
 #include "ListItemGroup.h"
@@ -593,7 +593,7 @@ std::shared_ptr<BaseNode> CreateLazyTextListExample()
     return root;
 }
 
-ArkUI_NodeHandle ListMaker::createListPage()
+ArkUI_NodeHandle ListMaker::CreateNativeNode()
 {
     ArkUI_NativeNodeAPI_1 *api = nullptr;
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);

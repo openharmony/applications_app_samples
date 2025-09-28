@@ -92,41 +92,41 @@ static napi_value CreateNativeNode(napi_env env, napi_callback_info info, const 
 napi_value Manager::CreateSwiperNativeNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateSwiperNativeNode",
-                            []() -> ArkUI_NodeHandle { return SwiperMaker::createSwiperPage(); });
+                            []() -> ArkUI_NodeHandle { return SwiperMaker::CreateNativeNode(); });
 }
 
 napi_value Manager::CreateNativeTextNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateNativeTextNode",
-                            []() -> ArkUI_NodeHandle { return TextMaker::createTextPage(); });
+                            []() -> ArkUI_NodeHandle { return TextMaker::CreateNativeNode(); });
 }
 
 napi_value Manager::CreateWaterFlowNativeNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateWaterFlowNativeNode",
-                            []() -> ArkUI_NodeHandle { return WaterFlowMaker::createWaterFlowPage(); });
+                            []() -> ArkUI_NodeHandle { return WaterFlowMaker::CreateNativeNode(); });
 }
 
 napi_value Manager::CreateGridNativeNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateGridNativeNode",
-                            []() -> ArkUI_NodeHandle { return GridMaker::createGridPage(); });
+                            []() -> ArkUI_NodeHandle { return GridMaker::CreateNativeNode(); });
 }
 
 napi_value Manager::CreateScrollNativeNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateScrollNativeNode",
-                            []() -> ArkUI_NodeHandle { return ScrollMaker::createScrollPage(); });
+                            []() -> ArkUI_NodeHandle { return ScrollMaker::CreateNativeNode(); });
 }
 
 napi_value Manager::CreateRefreshNativeNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateRefreshNativeNode",
-                            []() -> ArkUI_NodeHandle { return RefreshMaker::createRefreshPage(); });
+                            []() -> ArkUI_NodeHandle { return RefreshMaker::CreateNativeNode(); });
 }
 
 napi_value Manager::CreateListNativeNode(napi_env env, napi_callback_info info)
 {
     return CreateNativeNode(env, info, "CreateListNativeNode",
-                            []() -> ArkUI_NodeHandle { return ListMaker::createListPage(); });
+                            []() -> ArkUI_NodeHandle { return ListMaker::CreateNativeNode(); });
 }

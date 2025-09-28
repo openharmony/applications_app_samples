@@ -31,8 +31,7 @@ struct MenuIndex {
       { title: 'Grid', url: 'pages/page_grid' },
       { title: 'Scroll', url: 'pages/page_scroll' },
       { title: 'Refresh', url: 'pages/page_refresh' },
-      { title: 'List', url: 'pages/page_list' },
-      { title: 'add your router', url: '' },
+      { title: 'List', url: 'pages/page_list' }
     ];
 
   build() {

@@ -25,12 +25,17 @@ interface ListCategories {
 struct MenuIndex {
   private items: ListCategories[] =
     [
-      { title: 'Swiper', url: 'pages/page_swiper' }, 
-      { title: 'text', url: 'pages/page_text' },
+      { title: 'Swiper', url: 'pages/page_swiper' },
+      { title: 'Text', url: 'pages/page_text' },
       { title: 'accessibility', url: 'pages/page_accessibility' },
       { title: 'embedded component', url: 'pages/page_embedded_component' },
       { title: 'Animation', url: 'pages/page_animation' },
       { title: 'Visual Effects', url: 'pages/page_visual_effects' },
+      { title: 'WaterFlow', url: 'pages/page_waterflow' },
+      { title: 'Grid', url: 'pages/page_grid' },
+      { title: 'Scroll', url: 'pages/page_scroll' },
+      { title: 'Refresh', url: 'pages/page_refresh' },
+      { title: 'List', url: 'pages/page_list' },
     ];
 
   build() {

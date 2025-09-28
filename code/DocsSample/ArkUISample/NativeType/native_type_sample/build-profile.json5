@@ -27,7 +27,8 @@
             "caseSensitiveCheck": true,
             "useNormalizedOHMUrl": true
           }
-        }
+        },
+        "targetSdkVersion": 20
       }
     ],
     "buildModeSet": [

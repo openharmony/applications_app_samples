@@ -24,9 +24,9 @@
 
 #include "ArkUINodeAdapter.h"
 #include "WaterFlowSection.h"
-#include "ArkUINode.h"
-#include "ScrollUtils.h"
-#include "ScrollEvent.h"
+#include "ScrollableNode.h"
+#include "ScrollableUtils.h"
+#include "ScrollableEvent.h"
 
 #ifndef LOG_TAG
 #define LOG_TAG "WaterFlowMaker"
@@ -60,7 +60,7 @@ struct SingleSectionParams {
 
 class WaterFlowMaker {
 public:
-    static ArkUI_NodeHandle createWaterFlowPage();
+    static ArkUI_NodeHandle CreateNativeNode();
 
     WaterFlowMaker()
     {

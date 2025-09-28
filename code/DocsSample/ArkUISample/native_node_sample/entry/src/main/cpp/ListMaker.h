@@ -23,9 +23,9 @@
 #include <arkui/native_type.h>
 #include <hilog/log.h>
 
-#include "ArkUINode.h"
-#include "ScrollUtils.h"
-#include "ScrollEvent.h"
+#include "ScrollableNode.h"
+#include "ScrollableUtils.h"
+#include "ScrollableEvent.h"
 #include "ArkUINodeAdapter.h"
 
 #ifndef LOG_TAG
@@ -34,7 +34,7 @@
 
 class ListMaker : public BaseNode {
 public:
-    static ArkUI_NodeHandle createListPage();
+    static ArkUI_NodeHandle CreateNativeNode();
 
     // 嵌套滚动模式常量
     static constexpr int32_t kNestedScrollParentFirst = 0;

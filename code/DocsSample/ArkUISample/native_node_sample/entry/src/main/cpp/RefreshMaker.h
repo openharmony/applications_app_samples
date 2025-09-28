@@ -22,14 +22,14 @@
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 
-#include "ArkUINode.h"
+#include "ScrollableNode.h"
 
 inline constexpr int32_t K_REFRESH_OFFSET_DATA_INDEX = 0;
 inline constexpr int32_t K_REFRESH_STATE_DATA_INDEX  = 0;
 
 class RefreshMaker : public BaseNode {
 public:
-    static ArkUI_NodeHandle createRefreshPage();
+    static ArkUI_NodeHandle CreateNativeNode();
 
     RefreshMaker()
         : BaseNode(NodeApiInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_REFRESH)),

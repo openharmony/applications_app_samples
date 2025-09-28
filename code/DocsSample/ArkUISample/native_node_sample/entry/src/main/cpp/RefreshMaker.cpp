@@ -32,7 +32,7 @@
 #define LOG_TAG "RefreshMaker"
 #endif
 
-#include "ArkUINode.h"
+#include "ScrollableNode.h"
 #include "ArkUINodeAdapter.h"
 #include "ListItemGroup.h"
 #include "ListItemSwipe.h"
@@ -592,7 +592,7 @@ static std::shared_ptr<BaseNode> Build()
 }
 } // namespace
 
-ArkUI_NodeHandle RefreshMaker::createRefreshPage()
+ArkUI_NodeHandle RefreshMaker::CreateNativeNode()
 {
     ArkUI_NativeNodeAPI_1 *api = nullptr;
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api);
