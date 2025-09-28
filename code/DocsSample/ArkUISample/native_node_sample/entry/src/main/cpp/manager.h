@@ -24,11 +24,13 @@
 #include <js_native_api.h>
 #include <js_native_api_types.h>
 #include <napi/native_api.h>
+#include <string>
 
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 class Manager {
 public:
     static ArkUI_NativeNodeAPI_1 *nodeAPI_;
+    static ArkUI_NativeNodeAPI_1 *XnodeAPI;
     ~Manager(){};
 
     static napi_value CreateNativeTextNode(napi_env env, napi_callback_info info);
@@ -39,6 +41,7 @@ public:
     static napi_value CreateRefreshNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateListNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreatePublicNativeNode(napi_env env, napi_callback_info info);
+    static napi_value createNativeXComponentNode(napi_env env, napi_callback_info info);
 
 private:
     static Manager manager_;

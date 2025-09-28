@@ -34,6 +34,7 @@ struct MenuIndex {
       { title: 'Refresh', url: 'pages/page_refresh', id: '' },
       { title: 'List', url: 'pages/page_list', id: '' },
       { title: 'Public', url: 'pages/page_public_event', id: 'Public' },
+      { title: 'XComponent', url: 'pages/page_xcomponent', id: '' },
     ];
 
   build() {
