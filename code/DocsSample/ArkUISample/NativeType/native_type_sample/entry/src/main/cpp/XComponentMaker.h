@@ -23,7 +23,7 @@ public:
     XComponentMaker(){};
     ~XComponentMaker(){};
     
-    static ArkUI_NodeHandle CreateNodeHandle(const std::string &tag);  
+    static ArkUI_NodeHandle CreateNodeHandle(const std::string &tag);
 };
 
 #endif
