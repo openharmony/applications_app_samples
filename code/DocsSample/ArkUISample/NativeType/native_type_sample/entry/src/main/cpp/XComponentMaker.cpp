@@ -34,6 +34,8 @@
 #define VALUEU u32
 #define VALUEI i32
 #define XC_TWO 2
+#define XC_TEN 10
+#define XC_FORTY 40
 static void xOnEventReceive(ArkUI_NodeEvent *event)
 {
     if (event == nullptr) {
@@ -92,9 +94,9 @@ ArkUI_NodeHandle XComponentMaker::CreateNodeHandle(const std::string &tag)
     ArkUI_AttributeItem item = {value, 1};
     ArkUI_AttributeItem content = {.string = tag.c_str()};
     Manager::XnodeAPI->setAttribute(column, NODE_WIDTH_PERCENT, &item);
-    value[0].VALUEF = 40;
+    value[0].VALUEF = XC_FORTY;
     Manager::XnodeAPI->setAttribute(column, NODE_HEIGHT, &item);
-    value[0].VALUEF = 10;
+    value[0].VALUEF = XC_TEN;
     Manager::XnodeAPI->setAttribute(column, NODE_MARGIN, &item);
     Manager::XnodeAPI->setAttribute(column, NODE_ID, &content);
     ArkUI_NodeHandle text = Manager::XnodeAPI->createNode(ARKUI_NODE_TEXT);
