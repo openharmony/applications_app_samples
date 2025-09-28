@@ -2,7 +2,7 @@
 
 ### 介绍
 
-企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能。本示例依照开发指南[MDM Kit（企业设备管理）](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/mdm/Readme-CN.md)进行编写。本示例涉及使用接口：@ohos.enterprise.adminManager中的[disableAdmin](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-adminmanager#adminmanagerdisableadmin)接口，@ohos.enterprise.restrictions中的[setDisallowedPolicy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-restrictions#restrictionssetdisallowedpolicy)、[getDisallowedPolicy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-restrictions#restrictionsgetdisallowedpolicy)接口，以及@ohos.enterprise.deviceControl中的[operateDevice](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-devicecontrol#devicecontroloperatedevice)接口。
+企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能。本示例依照开发指南[MDM Kit（企业设备管理）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/mdm/Readme-CN.md)进行编写。本示例涉及使用接口：@ohos.enterprise.adminManager中的[disableAdmin](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-adminmanager#adminmanagerdisableadmin)接口，@ohos.enterprise.restrictions中的[setDisallowedPolicy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-restrictions#restrictionssetdisallowedpolicy)、[getDisallowedPolicy](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-restrictions#restrictionsgetdisallowedpolicy)接口，以及@ohos.enterprise.deviceControl中的[operateDevice](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-devicecontrol#devicecontroloperatedevice)接口。
 
 ### 效果预览
 
@@ -44,7 +44,7 @@ entry/src/main/ets/
 
 * 该示例通过EnterpriseAdminExtensionAbility实现了禁用/启用设备Wi-Fi功能和设备重启功能。adminManager中的disableAdmin方法用于根据bundleName将企业设备管理拓展能力解除激活。deviceControl中的operateDevice可以根据传入的operate参数值（在本示例中为reboot）来控制设备。restrictions中的setDisallowedPolicy可以根据传入的feature参数值（在本示例中为wifi）来配置通用限制类策略。
   各个接口的调用均在EnterpriseAdminExtensionAbility中完成，EnterpriseAdminExtensionAbility和UIAbility之间采用CES（Common Event Service，公共事件服务）订阅事件的方式进行通信。
-* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)，[@ohos.enterprise.adminManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)，[@ohos.app.ability.Want](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md)，[@ohos.enterprise.deviceControl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-deviceControl.md)，[@ohos.enterprise.restrictions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md)
+* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)，[@ohos.enterprise.adminManager](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)，[@ohos.app.ability.Want](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md)，[@ohos.enterprise.deviceControl](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-deviceControl.md)，[@ohos.enterprise.restrictions](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-mdm-kit/js-apis-enterprise-restrictions.md)
 
 ### 相关权限
 
@@ -71,6 +71,6 @@ entry/src/main/ets/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
