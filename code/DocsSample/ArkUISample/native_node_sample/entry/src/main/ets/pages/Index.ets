@@ -17,7 +17,8 @@ import { router } from '@kit.ArkUI';
 
 interface ListCategories {
   title: string,
-  url: string
+  url: string,
+  id: string
 }
 
 @Entry
@@ -25,13 +26,14 @@ interface ListCategories {
 struct MenuIndex {
   private items: ListCategories[] =
     [
-      { title: 'Text', url: 'pages/page_text' },
-      { title: 'Swiper', url: 'pages/page_swiper' },
-      { title: 'WaterFlow', url: 'pages/page_waterflow' },
-      { title: 'Grid', url: 'pages/page_grid' },
-      { title: 'Scroll', url: 'pages/page_scroll' },
-      { title: 'Refresh', url: 'pages/page_refresh' },
-      { title: 'List', url: 'pages/page_list' }
+      { title: 'Text', url: 'pages/page_text', id: '' },
+      { title: 'Swiper', url: 'pages/page_swiper', id: '' },
+      { title: 'WaterFlow', url: 'pages/page_waterflow', id: '' },
+      { title: 'Grid', url: 'pages/page_grid', id: '' },
+      { title: 'Scroll', url: 'pages/page_scroll', id: '' },
+      { title: 'Refresh', url: 'pages/page_refresh', id: '' },
+      { title: 'List', url: 'pages/page_list', id: '' },
+      { title: 'Public', url: 'pages/page_public_event', id: 'Public' },
     ];
 
   build() {
@@ -55,6 +57,7 @@ struct MenuIndex {
                   .width('50%')
                   .padding($r('sys.float.padding_level10'))
                 Text('>')
+                  .id(item.id)
                   .fontSize('25vp')
                   .fontColor(Color.Black)
                   .textAlign(TextAlign.End)

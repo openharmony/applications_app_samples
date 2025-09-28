@@ -38,6 +38,7 @@ public:
     static napi_value CreateScrollNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateRefreshNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateListNativeNode(napi_env env, napi_callback_info info);
+    static napi_value CreatePublicNativeNode(napi_env env, napi_callback_info info);
 
 private:
     static Manager manager_;
