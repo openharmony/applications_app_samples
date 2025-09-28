@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import nativeNode from 'libentry.so';
-import { NodeContent } from '@ohos.arkui.node'
+import { NodeContent } from '@ohos.arkui.node';
 
 class Params {
   public insert: boolean = false
