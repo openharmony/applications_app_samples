@@ -24,6 +24,7 @@
 #include <js_native_api.h>
 #include <js_native_api_types.h>
 #include <napi/native_api.h>
+#include <string>
 
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 napi_value createAnimationCenter(napi_env env, napi_callback_info info);
@@ -39,6 +40,7 @@ napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
 class Manager {
 public:
     static ArkUI_NativeNodeAPI_1 *nodeAPI_;
+    static ArkUI_NativeNodeAPI_1 *XnodeAPI;
     ~Manager(){};
     static Manager *GetInstance()
     {
@@ -64,6 +66,7 @@ public:
 
     static napi_value CreateNativeSwiperNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeTextNode(napi_env env, napi_callback_info info);
+    static napi_value createNativeXComponentNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeAccessibilityNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeEmbeddedComponentNode(napi_env env, napi_callback_info info);
     static napi_value CreateWaterFlowNativeNode(napi_env env, napi_callback_info info);

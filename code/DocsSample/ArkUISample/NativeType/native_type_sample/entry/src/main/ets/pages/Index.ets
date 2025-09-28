@@ -25,8 +25,9 @@ interface ListCategories {
 struct MenuIndex {
   private items: ListCategories[] =
     [
-      { title: 'Swiper', url: 'pages/page_swiper' },
+      { title: 'Swiper', url: 'pages/page_swiper' }, 
       { title: 'Text', url: 'pages/page_text' },
+      { title: 'XComponent', url: 'pages/page_xcomponent'},
       { title: 'accessibility', url: 'pages/page_accessibility' },
       { title: 'embedded component', url: 'pages/page_embedded_component' },
       { title: 'Animation', url: 'pages/page_animation' },

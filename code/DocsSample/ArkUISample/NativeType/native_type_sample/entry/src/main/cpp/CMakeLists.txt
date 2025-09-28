@@ -22,12 +22,18 @@ file(GLOB_RECURSE ENTRY_SOURCES CONFIGURE_DEPENDS
 
 add_library(entry SHARED ${ENTRY_SOURCES})
 
+
+
 find_library(
     # Sets the name of the path variable.
     hilog-lib
     libace-lib
     libnapi-lib
     ace_napi.z
+    EGL-lib
+    EGL
+    GLES-lib
+    GLESv3
 )
 target_link_libraries(entry PUBLIC
     libace_ndk.z.so
@@ -36,3 +42,7 @@ target_link_libraries(entry PUBLIC
     libnative_drawing.so
     libability_base_want.so
 )
+target_link_libraries(entry PUBLIC ${hilog-lib} ${libace-lib} ${libnapi-lib})
+target_link_libraries(entry PUBLIC ${libace-lib} libace_napi.z.so libnative_drawing.so libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC ${EGL-lib} ${GLES-lib} libace_napi.z.so libhilog_ndk.z.so libace_ndk.z.so libnative_window.so)
+target_link_libraries(entry PUBLIC ${libace-lib} libace_napi.z.so libnative_drawing.so libhilog_ndk.z.so libability_base_want.so)
