@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/page_swiper",
     "pages/page_text",
+    "pages/page_xcomponent",
     "pages/page_accessibility",
     "pages/page_embedded_component",
     "pages/page_animation",

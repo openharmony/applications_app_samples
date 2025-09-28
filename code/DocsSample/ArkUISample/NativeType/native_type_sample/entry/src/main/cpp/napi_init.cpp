@@ -35,6 +35,8 @@ napi_property_descriptor desc[] = {
     {"createVisualEffectsBlur", nullptr, createVisualEffectsBlur, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"createVisualEffectsShape", nullptr, createVisualEffectsShape, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"destroyNativeRoot", nullptr, DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createNativeNodexc", nullptr, Manager::createNativeXComponentNode, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
     {"createWaterFlowNativeNode", nullptr, Manager::CreateWaterFlowNativeNode, nullptr, nullptr, nullptr, napi_default,
      nullptr},
     {"createGridNativeNode", nullptr, Manager::CreateGridNativeNode, nullptr, nullptr, nullptr, napi_default, nullptr},

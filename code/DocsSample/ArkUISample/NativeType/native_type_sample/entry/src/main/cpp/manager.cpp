@@ -26,12 +26,15 @@
 #include "RefreshMaker.h"
 #include "ScrollMaker.h"
 #include "baseUtils.h"
+#include "XComponentMaker.h"
 #include "napi/native_api.h"
 #include <arkui/native_interface.h>
 #include <arkui/native_node.h>
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
+#include <ace/xcomponent/native_interface_xcomponent.h>
 #include <hilog/log.h>
+#include <string>
 
 namespace ConstIde {
     const uint32_t NUMBER_0 = 0;
@@ -418,5 +421,65 @@ napi_value Manager::CreateListNativeNode(napi_env env, napi_callback_info info)
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
         }
     }
+    return nullptr;
+}
+
+ArkUI_NativeNodeAPI_1 *Manager::XnodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+
+napi_value Manager::createNativeXComponentNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode env or info is null");
+        return nullptr;
+    }
+    
+    size_t argc = 2;
+    napi_value args[2] = {nullptr, nullptr};
+    if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
+    }
+    
+    if (argc != 1 + 1) {
+        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        return nullptr;
+    }
+    ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
+    int32_t ret = OH_ArkUI_NodeContent_SetUserData(nodeContentHandle_,
+                                                   new int32_t(123));
+    void *userDataNull =
+        OH_ArkUI_NodeContent_GetUserData(nodeContentHandle_); // 非法获取，返回空指针
+    
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle_);
+    
+    if (XnodeAPI == nullptr) {
+        return nullptr;
+    }
+    if (XnodeAPI->createNode == nullptr || XnodeAPI->addChild == nullptr) {
+        return nullptr;
+    }
+    auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
+        ArkUI_NodeContentHandle handle = OH_ArkUI_NodeContentEvent_GetNodeContentHandle(event);
+        std::string *userData = reinterpret_cast<std::string *>(OH_ArkUI_NodeContent_GetUserData(handle));
+        if (OH_ArkUI_NodeContentEvent_GetEventType(event) == NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
+            ArkUI_NodeHandle testNode;
+            if (userData) {
+                testNode = XComponentMaker::CreateNodeHandle(*userData);
+            } else {
+                testNode = XComponentMaker::CreateNodeHandle("noUserData");
+            }
+            OH_ArkUI_NodeContent_InsertNode(handle, testNode, 0); // 接口使用示例
+            OH_ArkUI_NodeContent_RemoveNode(handle, testNode);
+            OH_ArkUI_NodeContent_AddNode(handle, testNode);
+        } else {
+            if (userData) {
+                delete userData;
+                userData = nullptr;
+            }
+        }
+    };
+    OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
+
     return nullptr;
 }
