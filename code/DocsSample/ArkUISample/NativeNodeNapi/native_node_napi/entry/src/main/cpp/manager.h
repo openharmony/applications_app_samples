@@ -72,6 +72,8 @@ public:
     }
     
     static napi_value CreateNativeNaviNode(napi_env env, napi_callback_info info);
+    static napi_value ProcessDrawable(napi_env env, napi_callback_info info);
+    static napi_value ProcessDrawable2(napi_env env, napi_callback_info info);
     static napi_value CreateNativeAccessibilityNode(napi_env env, napi_callback_info info);
     static napi_value CreateNativeEmbeddedComponentNode(napi_env env, napi_callback_info info);
 
