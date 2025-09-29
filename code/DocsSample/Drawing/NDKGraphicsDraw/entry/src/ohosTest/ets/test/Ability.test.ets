@@ -342,10 +342,34 @@ export default function abilityTest() {
       await strokeTextButton.click();
       await driver.delayMs(DELAY_SHORT);
 
+      let chineseStrokeTextStr = getString($r('app.string.ChineseStrokeText'));
+      await driver.assertComponentExist(ON.text(chineseStrokeTextStr));
+      let chineseStrokeTextButton = await driver.findComponent(ON.text(chineseStrokeTextStr));
+      await chineseStrokeTextButton.click();
+      await driver.delayMs(DELAY_SHORT);
+
       let gradientTextStr = getString($r('app.string.GradientText'));
       await driver.assertComponentExist(ON.text(gradientTextStr));
       let gradientTextButton = await driver.findComponent(ON.text(gradientTextStr));
       await gradientTextButton.click();
+      await driver.delayMs(DELAY_SHORT);
+
+      let themeTextStr = getString($r('app.string.ThemeText'));
+      await driver.assertComponentExist(ON.text(themeTextStr));
+      let themeTextButton = await driver.findComponent(ON.text(themeTextStr));
+      await themeTextButton.click();
+      await driver.delayMs(DELAY_SHORT);
+
+      let singleTextStr = getString($r('app.string.SingleText'));
+      await driver.assertComponentExist(ON.text(singleTextStr));
+      let singleTextButton = await driver.findComponent(ON.text(singleTextStr));
+      await singleTextButton.click();
+      await driver.delayMs(DELAY_SHORT);
+
+      let featureTextStr = getString($r('app.string.FeatureText'));
+      await driver.assertComponentExist(ON.text(featureTextStr));
+      let featureTextButton = await driver.findComponent(ON.text(featureTextStr));
+      await featureTextButton.click();
       await driver.delayMs(DELAY_SHORT);
 
       await driver.pressBack();

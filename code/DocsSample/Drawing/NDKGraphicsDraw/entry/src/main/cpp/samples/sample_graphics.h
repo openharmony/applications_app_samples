@@ -82,7 +82,11 @@ public:
     void DrawPixelMap(OH_Drawing_Canvas *canvas);
     void DrawBaseText(OH_Drawing_Canvas *canvas);
     void DrawStrokeText(OH_Drawing_Canvas *canvas);
+    void DrawChineseStrokeText(OH_Drawing_Canvas *canvas);
     void DrawGradientText(OH_Drawing_Canvas *canvas);
+    void DrawThemeText(OH_Drawing_Canvas *canvas);
+    void DrawSingleText(OH_Drawing_Canvas *canvas);
+    void DrawFeatureText(OH_Drawing_Canvas *canvas);
     // 创建画布及绘图结果显示
     void Prepare();
     void Create();

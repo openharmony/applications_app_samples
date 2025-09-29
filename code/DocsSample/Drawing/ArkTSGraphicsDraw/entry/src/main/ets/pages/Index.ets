@@ -32,6 +32,8 @@ export const VALUE_900 = adaptationUtil.getWidth(900);
 export const VALUE_1000 = adaptationUtil.getWidth(1000);
 export const VALUE_1800 = adaptationUtil.getWidth(1800);
 
+export const STROKE_SAMPLE = "你好";
+
 interface Item {
   text: string;
 }

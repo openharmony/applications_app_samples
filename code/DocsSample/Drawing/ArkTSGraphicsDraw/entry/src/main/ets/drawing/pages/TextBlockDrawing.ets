@@ -16,6 +16,7 @@
 import { UIContext, NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 import { VALUE_100, VALUE_200, VALUE_300, VALUE_900 } from '../../pages/Index';
+import { STROKE_SAMPLE } from '../../pages/Index';
 
 function drawBaseText(canvas: drawing.Canvas) {
   // [Start arkts_graphics_draw_base_text]
@@ -55,6 +56,43 @@ function drawStrokeText(canvas: drawing.Canvas) {
   // [End arkts_graphics_draw_stroke_text]
 }
 
+function drawChineseStrokeText(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_chinese_stroke_text]
+
+  // 创建画刷
+  let brush = new drawing.Brush();
+  // 创建画笔
+  let pen = new drawing.Pen();
+  // 设置抗锯齿
+  brush.setAntiAlias(true);
+  // 设置描边颜色
+  brush.setColor(0xFF, 0xFF,  0xFF, 0xFF);
+
+  pen.setAntiAlias(true);
+  // 设置描边线宽
+  pen.setStrokeWidth(3.0);
+  // 设置描边颜色
+  pen.setColor(0xFF, 0xFF,  0x00, 0x00);
+
+  // 创建字型对象
+  const font = new drawing.Font();
+  // 设置字体大小
+  font.setSize(100);
+  // 添加画笔描边效果
+  canvas.attachPen(pen);
+  // 创建字块对象
+  const textBlob = drawing.TextBlob.makeFromString(STROKE_SAMPLE, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+  // 绘制字块
+  canvas.drawTextBlob(textBlob, VALUE_200,  VALUE_300);
+  // 去除描边效果
+  canvas.detachPen(); 
+
+  canvas.attachBrush(brush);
+  canvas.drawTextBlob(textBlob, VALUE_200, VALUE_300);
+  canvas.detachBrush();
+  // [End arkts_graphics_draw_chinese_stroke_text]
+}
+
 function drawGradientText(canvas: drawing.Canvas) {
   // [Start arkts_graphics_draw_gradient_text]
   let startPt: common2D.Point = { x: VALUE_100, y: VALUE_100 };
@@ -79,6 +117,61 @@ function drawGradientText(canvas: drawing.Canvas) {
   // 去除填充效果
   canvas.detachBrush();
   // [End arkts_graphics_draw_gradient_text]
+}
+
+function drawThemeText(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_theme_text]
+  // 创建线性渐变着色器
+  const font = new drawing.Font();
+  // 设置文字大小
+  font.setSize(100);
+  // 设置跟随主题字体
+  font.setThemeFontFollowed(true);
+  // 创建字块对象
+  const textBlob = drawing.TextBlob.makeFromString('Hello World', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+  // 绘制字块
+  canvas.drawTextBlob(textBlob, VALUE_200, VALUE_300);
+  // [End arkts_graphics_draw_theme_text]
+}
+
+function drawSingleText(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_single_text]
+  // 创建字型对象
+  const font = new drawing.Font();
+  // 设置文字大小
+  font.setSize(100);
+  let startX = 100;
+  let startY = 100;
+  let text = ['H', 'e', 'l', 'l', 'o'];
+  for (let s of text) {
+    // 单字绘制
+    canvas.drawSingleCharacter(s, font, startX, startY);
+    // 测量单个字符的宽度
+    let textWidth = font.measureSingleCharacter(s);
+    startX += textWidth;
+  }
+  // [End arkts_graphics_draw_single_text]
+}
+
+function drawFeatureText(canvas: drawing.Canvas) {
+  // [Start arkts_graphics_draw_feature_text]
+  // 创建字型对象
+  const font = new drawing.Font();
+  // 设置文字大小
+  font.setSize(100);
+  let startX = 100;
+  let startY = 100;
+  let text = ['a', '2', '+', 'b', '2'];
+  // 创建字体特征对象数组
+  let fontFeatures: drawing.FontFeature[] = [{name: 'frac', value: 1}];
+  for (let s of text) {
+    // 单字绘制
+    canvas.drawSingleCharacterWithFeatures(s, font, startX, startY, fontFeatures);
+    // 测量单个字符的宽度
+    let textWidth = font.measureSingleCharacterWithFeatures(s, fontFeatures);
+    startX += textWidth;
+  }
+  // [End arkts_graphics_draw_feature_text]
 }
 
 // 自定义RenderNode
@@ -118,7 +211,11 @@ class MyNodeController extends NodeController {
     // 添加绘制函数
     this.myRenderNode.addDrawFunction(drawBaseText);
     this.myRenderNode.addDrawFunction(drawStrokeText);
+    this.myRenderNode.addDrawFunction(drawChineseStrokeText);
     this.myRenderNode.addDrawFunction(drawGradientText);
+    this.myRenderNode.addDrawFunction(drawThemeText);
+    this.myRenderNode.addDrawFunction(drawSingleText);
+    this.myRenderNode.addDrawFunction(drawFeatureText);
   }
 
   makeNode(uiContext: UIContext): FrameNode {
@@ -166,9 +263,31 @@ struct TextBlobDrawing {
             .onClick(() => {
               this.nodeController.setDrawIndex(1); // 点击绘制描边文字
             });
+          Button($r('app.string.ChineseStrokeText'))
+            .onClick(() => {
+              this.nodeController.setDrawIndex(2); // 点击绘制中文描边文字
+            });
+        }
+        .justifyContent(FlexAlign.SpaceEvenly)
+        .width('100%')
+        .height('8%')
+
+        Row() {
           Button($r('app.string.GradientText'))
             .onClick(() => {
-              this.nodeController.setDrawIndex(2); // 点击绘制渐变文字
+              this.nodeController.setDrawIndex(3); // 点击绘制渐变文字
+            });
+          Button($r('app.string.ThemeText'))
+            .onClick(() => {
+              this.nodeController.setDrawIndex(4); // 点击绘制主题字体
+            });
+          Button($r('app.string.SingleText'))
+            .onClick(() => {
+              this.nodeController.setDrawIndex(5); // 点击绘制单字
+            });
+          Button($r('app.string.FeatureText'))
+            .onClick(() => {
+              this.nodeController.setDrawIndex(6); // 点击绘制字体特征
             });
         }
         .justifyContent(FlexAlign.SpaceEvenly)

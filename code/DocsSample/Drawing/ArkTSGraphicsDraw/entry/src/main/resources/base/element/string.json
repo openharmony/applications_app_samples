@@ -77,7 +77,7 @@
       "value": "描边效果"
     },
     {
-      "name": "MixedMode",
+      "name": "RenderNode",
       "value": "混合模式"
     },
     {
@@ -107,6 +107,10 @@
     {
       "name": "MaskFilter",
       "value": "蒙版滤波器"
+    },
+    {
+      "name": "MixedMode",
+      "value": "混合模式"
     },
     {
       "name": "Point",
@@ -155,6 +159,22 @@
     {
       "name": "GradientText",
       "value": "文字渐变"
+    },
+    {
+      "name": "ThemeText",
+      "value": "主题文字"
+    },
+    {
+      "name": "SingleText",
+      "value": "单字"
+    },
+    {
+      "name": "FeatureText",
+      "value": "特征字体"
+    },
+    {
+      "name": "ChineseStrokeText",
+      "value": "中文文字描边"
     }
   ]
 }

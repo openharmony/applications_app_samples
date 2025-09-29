@@ -769,10 +769,10 @@ void SampleGraphics::DrawColorFilter(OH_Drawing_Canvas *canvas)
     OH_Drawing_BrushSetColor(brush, 0xffff0000);
     // 设置颜色矩阵
     const float matrix[20] = {
-    1, 0, 0, 0, 0,
-    0, 1, 0, 0, 0,
-    0, 0, 0.5f, 0.5f, 0,
-    0, 0, 0.5f, 0.5f, 0
+        1, 0, 0, 0, 0,
+        0, 1, 0, 0, 0,
+        0, 0, 0.5f, 0.5f, 0,
+        0, 0, 0.5f, 0.5f, 0
     };
     
     // 创建滤波器颜色
@@ -1077,6 +1077,7 @@ void SampleGraphics::DrawRoundRect(OH_Drawing_Canvas *canvas)
 void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
 {
     // [Start ndk_graphics_draw_image]
+    // [Start ndk_graphics_draw_image_pixel_map]
     // 图片宽高分别为 600 * 400
     uint32_t width = 600;
     uint32_t height = 400;
@@ -1108,7 +1109,10 @@ void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
     // 创建OH_PixelmapNative对象
     OH_PixelmapNative *pixelMapNative = nullptr;
     OH_PixelmapNative_CreatePixelmap(pixels, bufferSize, createOps, &pixelMapNative);
+    // [End ndk_graphics_draw_image_pixel_map]
+    // [Start ndk_graphics_draw_create_pixel_map]
     OH_Drawing_PixelMap *pixelMap = OH_Drawing_PixelMapGetFromOhPixelMapNative(pixelMapNative);
+    // [End ndk_graphics_draw_create_pixel_map]
     // [Start ndk_graphics_draw_image_to_canvas]
     // PixelMap中像素的截取区域
     OH_Drawing_Rect *src = OH_Drawing_RectCreate(0, 0, 600, 400);
@@ -1120,8 +1124,10 @@ void SampleGraphics::DrawPixelMap(OH_Drawing_Canvas *canvas)
     // 绘制PixelMap
     OH_Drawing_CanvasDrawPixelMapRect(canvas, pixelMap, src, dst, samplingOptions);
     // [End ndk_graphics_draw_image_to_canvas]
+    // [Start ndk_graphics_draw_release_pixelmap]
     OH_PixelmapNative_Release(pixelMapNative);
     delete[] pixels;
+    // [End ndk_graphics_draw_release_pixelmap]
     // [End ndk_graphics_draw_image]
 }
 
@@ -1178,6 +1184,49 @@ void SampleGraphics::DrawStrokeText(OH_Drawing_Canvas *canvas)
     // [End ndk_graphics_draw_stroke_text]
 }
 
+void SampleGraphics::DrawChineseStrokeText(OH_Drawing_Canvas *canvas)
+{
+    // [Start ndk_graphics_draw_chinese_stroke_text]
+    // 创建画刷
+    OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
+    // 创建画笔
+    OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
+    // 设置画刷抗锯齿
+    OH_Drawing_BrushSetAntiAlias(brush, true);
+    // 设置画刷描边颜色
+    OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
+    // 设置画笔抗锯齿
+    OH_Drawing_PenSetAntiAlias(pen, true);
+    // 设置描边线宽为3
+    OH_Drawing_PenSetWidth(pen, 3);
+    // 设置画笔描边颜色
+    OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
+    // 设置画笔描边效果
+    OH_Drawing_CanvasAttachPen(canvas, pen);
+    // 创建字型对象
+    OH_Drawing_Font *font = OH_Drawing_FontCreate();
+    // 设置字体大小
+    OH_Drawing_FontSetTextSize(font, value150_);
+    const char *str = "你好";
+    // 创建字块对象
+    OH_Drawing_TextBlob *textBlob =
+        OH_Drawing_TextBlobCreateFromString(str, font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
+    // 绘制字块
+    OH_Drawing_CanvasDrawTextBlob(canvas, textBlob, value200_, value800_);
+    // 去除描边效果
+    OH_Drawing_CanvasDetachPen(canvas);
+    // 设置画刷描边效果
+    OH_Drawing_CanvasAttachBrush(canvas, brush);
+    OH_Drawing_CanvasDrawTextBlob(canvas, textBlob, value200_, value800_);
+
+    // 销毁各类对象
+    OH_Drawing_TextBlobDestroy(textBlob);
+    OH_Drawing_FontDestroy(font);
+    OH_Drawing_PenDestroy(pen);
+    OH_Drawing_BrushDestroy(brush);
+    // [End ndk_graphics_draw_chinese_stroke_text]
+}
+
 void SampleGraphics::DrawGradientText(OH_Drawing_Canvas *canvas)
 {
     // [Start ndk_graphics_draw_gradient_text]
@@ -1217,6 +1266,82 @@ void SampleGraphics::DrawGradientText(OH_Drawing_Canvas *canvas)
     // [End ndk_graphics_draw_gradient_text]
 }
 
+void SampleGraphics::DrawThemeText(OH_Drawing_Canvas *canvas)
+{
+    // [Start ndk_graphics_draw_theme_text]
+    // 创建字型对象
+    OH_Drawing_Font *font = OH_Drawing_FontCreate();
+    // 设置文字大小
+    OH_Drawing_FontSetTextSize(font, value100_);
+    // 设置跟随主题字体
+    OH_Drawing_FontSetThemeFontFollowed(font, true);
+    // 需要绘制的文字
+    const char *str = "Hello World";
+    // 创建字块对象
+    OH_Drawing_TextBlob *textBlob =
+        OH_Drawing_TextBlobCreateFromString(str, font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
+    // 绘制字块
+    OH_Drawing_CanvasDrawTextBlob(canvas, textBlob, value200_, value800_);
+    // 释放字块对象
+    OH_Drawing_TextBlobDestroy(textBlob);
+    // 释放字型对象
+    OH_Drawing_FontDestroy(font);
+    // [End ndk_graphics_draw_theme_text]
+}
+
+void SampleGraphics::DrawSingleText(OH_Drawing_Canvas *canvas)
+{
+    // [Start ndk_graphics_draw_single_text]
+    // 创建字型对象
+    OH_Drawing_Font *font = OH_Drawing_FontCreate();
+    // 设置文字大小
+    OH_Drawing_FontSetTextSize(font, value100_);
+    float startX = 100;
+    float startY = 100;
+    int strLen = 5;
+    const char* str = "Hello";
+    for (int i = 0; i < strLen; ++i) {
+        // 单字绘制
+        OH_Drawing_CanvasDrawSingleCharacter(canvas, &str[i], font, startX, startY);
+        float textWidth = 0.f;
+        // 测量单个字符的宽度
+        OH_Drawing_FontMeasureSingleCharacter(font, &str[i], &textWidth);
+        startX += textWidth;
+    }
+    // 释放字型对象
+    OH_Drawing_FontDestroy(font);
+    // [End ndk_graphics_draw_single_text]
+}
+
+void SampleGraphics::DrawFeatureText(OH_Drawing_Canvas *canvas)
+{
+    // [Start ndk_graphics_draw_feature_text]
+    // 创建字型对象
+    OH_Drawing_Font *font = OH_Drawing_FontCreate();
+    // 设置文字大小
+    OH_Drawing_FontSetTextSize(font, value100_);
+    // 创建字体特征对象
+    OH_Drawing_FontFeatures* features = OH_Drawing_FontFeaturesCreate();
+    OH_Drawing_FontFeaturesAddFeature(features, "frac", 1);
+    float startX = 100;
+    float startY = 100;
+    int strLen = 5;
+    const char* str = "a2+b2";
+    for (int i = 0; i < strLen; ++i) {
+        // 单字绘制
+        OH_Drawing_CanvasDrawSingleCharacterWithFeatures(canvas, &str[i], font, startX, startY, features);
+        float textWidth = 0.f;
+        // 测量单个字符的宽度
+        OH_Drawing_FontMeasureSingleCharacterWithFeatures(font, &str[i], features, &textWidth);
+        startX += textWidth;
+    }
+    // 释放字体特征对象
+    OH_Drawing_FontFeaturesDestroy(features);
+    // 释放字型对象
+    OH_Drawing_FontDestroy(font);
+    // [End ndk_graphics_draw_feature_text]
+}
+
 void SampleGraphics::InitDrawFunction(std::string id)
 {
     if (strcmp(id.c_str(), "canvasGetResultXComponent") == 0) {
@@ -1254,7 +1379,11 @@ void SampleGraphics::InitDrawFunction(std::string id)
     } else if (strcmp(id.c_str(), "textBlockDrawingXComponent") == 0) {
         this->drawFunctionMap_.insert({"BaseText", &SampleGraphics::DrawBaseText});
         this->drawFunctionMap_.insert({"StrokeText", &SampleGraphics::DrawStrokeText});
+        this->drawFunctionMap_.insert({"ChineseStrokeText", &SampleGraphics::DrawChineseStrokeText});
         this->drawFunctionMap_.insert({"GradientText", &SampleGraphics::DrawGradientText});
+        this->drawFunctionMap_.insert({"ThemeText", &SampleGraphics::DrawThemeText});
+        this->drawFunctionMap_.insert({"SingleText", &SampleGraphics::DrawSingleText});
+        this->drawFunctionMap_.insert({"FeatureText", &SampleGraphics::DrawFeatureText});
     }
 }
 

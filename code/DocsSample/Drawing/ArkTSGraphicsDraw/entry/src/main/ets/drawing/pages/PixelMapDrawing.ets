@@ -21,13 +21,13 @@ import { VALUE_100, VALUE_200 } from '../../pages/Index';
 let pixelMap: image.PixelMap;
 
 function drawImage(canvas: drawing.Canvas) {
-  // Start arkts_graphics_draw_image]
+  // [Start arkts_graphics_draw_image]
   // 图片宽高
   let width = 600;
   let height = 400;
   // 字节长度，RGBA_8888每个像素占4字节
-  let bytelength = width * height * 4;
-  const color: ArrayBuffer = new ArrayBuffer(bytelength);
+  let byteLength = width * height * 4;
+  const color: ArrayBuffer = new ArrayBuffer(byteLength);
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
     // 遍历并编辑每个像素，从而形成红绿蓝相间的条纹
@@ -49,9 +49,11 @@ function drawImage(canvas: drawing.Canvas) {
     { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: height, width: width } };
   // 创建PixelMap
   pixelMap = image.createPixelMapSync(color, opts);
+  // [End arkts_graphics_draw_image]
+  // [Start arkts_graphics_draw_image_pixel_map]
   // 为了使图片完全显示，修改绘制起点参数为（0，0）
   canvas.drawImage(pixelMap, 0, 0);
-  // End arkts_graphics_draw_image]
+  // [End arkts_graphics_draw_image_pixel_map]
 }
 
 function editPixel(canvas: drawing.Canvas) {

@@ -23,7 +23,9 @@ target_link_libraries(entry PUBLIC
                       EGL
                       # [End ndk_graphics_draw_cmake_EGL]
                       GLESv3
+                      # [Start ndk_graphics_draw_cmake_hilog]
                       libhilog_ndk.z.so
+                      # [End ndk_graphics_draw_cmake_hilog]
                       libace_napi.z.so
                       # [Start ndk_graphics_draw_cmake_drawing]
                       libnative_drawing.so
