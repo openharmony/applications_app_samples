@@ -42,6 +42,8 @@ static napi_value Init(napi_env env, napi_value exports)
          nullptr},
         {"CreatePublicNativeNode", nullptr, Manager::CreatePublicNativeNode, nullptr, nullptr, nullptr, napi_default,
          nullptr },
+        {"createNativeNodexc", nullptr, Manager::createNativeXComponentNode, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
         // 参考新增其他createNative方法和Maker类
     };
 

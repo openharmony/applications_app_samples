@@ -13,3 +13,4 @@
 | 通用属性给组件设置背景色功能 | 应用位于首页 | 1.点击首页Public按钮 | 1.设置了背景色的组件<br/>2.获取到设置的背景色参数 | 是 | 验证通过 |
 | 通用属性给组件设置enabled功能 | 应用位于首页 | 1.点击首页Public按钮 | 1.第二个Column组件中两个Button，其中一个设置了enabled为true，另一个设置为false<br/>2.获取到设置的enabled属性参数 | 是 | 验证通过 |
 | 通用属性给组件设置zIndex功能 | 应用位于首页 | 1.点击首页Public按钮 | 1.第三个Column组件中三个Text，分别设置了不同的zIndex属性的值<br/>2.获取到设置的zIndex的值 | 是 | 验证通过 |
+| 验证XComponent创建成功 | 应用位于首页 | 1.点击首页XComponent按钮 | 1.包含两个XComponent显示框 | 否 | 验证通过 |

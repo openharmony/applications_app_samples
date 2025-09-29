@@ -16,6 +16,7 @@
     <th>Refresh</th>
     <th>List</th>
     <th>Public</th>
+    <th>XComponent</th>
   </tr>
   <tr>
     <td><img src="./screenshot/index.jpeg"></td>
@@ -27,6 +28,7 @@
     <td><img src="./screenshot/refresh.jpeg"></td>
     <td><img src="./screenshot/list.jpeg"></td>
     <td><img src="./screenshot/native-node-public.jpg"></td>
+    <td><img src="./screenshot/xcomponent.jpeg"></td>
   </tr>
 </table>
 
@@ -72,7 +74,9 @@ entry/src/main/cpp/
 ├── TextMaker.h
 ├── WaterFlowMaker.cpp
 ├── WaterFlowMaker.h
-└── WaterFlowSection.h
+├── WaterFlowSection.h
+├── XComponentMaker.cpp
+└── XComponentMaker.h
     └── types/libentry
         ├── Index.d.ts (函数对应的js映射)
         └── oh-package.json5
@@ -91,6 +95,7 @@ entry/src/main/ets/
     ├── page_swiper.ets    (Swiper页面)
     ├── page_text.ets      (文本界面)
     ├──page_waterflow.ets (WaterFlow界面)
+    ├──page_xcomponent.ets (XComponent界面)
     └── page_public_event.ets (通用属性界面)
 
 entry/src/main/resources/
