@@ -33,7 +33,7 @@ import {Entry,Text,TextAttribute,Column,Component,
   Button,ButtonAttribute,ClickEvent,Row,TextAlign,Visibility,List,ListItem,ForEach,TextOverflow,
   Image,HorizontalAlign,Progress,ProgressType,FlexAlign,SafeAreaType,JSON,$r,Margin,TextDecorationType
 } from '@ohos.arkui.component';
-import {State,Link,MutableState,stateOf,observableProxy,Prop,Watch} from '@ohos.arkui.stateManagement';
+import {State,Link,MutableState,stateOf,observableProxy,PropRef,Watch} from '@ohos.arkui.stateManagement';
 import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
@@ -47,7 +47,7 @@ export struct FileDownloadItem {
   // 下载任务状态
   @State state: string = '';
   // 监听是否全部开始下载
-  @Prop @Watch('onDownLoadUpdated') isStartAllDownload: boolean;
+  @PropRef @Watch('onDownLoadUpdated') isStartAllDownload: boolean;
   // 下载任务对象初始化。用于下载失败和下载过程中暂停和重新启动下载。
   private downloadTask: request.agent.Task | undefined;
   // 待下载任务数量
@@ -67,7 +67,7 @@ export struct FileDownloadItem {
   // 当前已下载数据量。类型数值
   @State nCurrentDownloadSize: number = 0;
   // 下载文件数据
-  @Prop fileDataInfo: downloadFilesData;
+  @PropRef fileDataInfo: downloadFilesData;
   // 下载历史列表
   @Link historyArray: downloadFilesData[];
   // 下载列表
