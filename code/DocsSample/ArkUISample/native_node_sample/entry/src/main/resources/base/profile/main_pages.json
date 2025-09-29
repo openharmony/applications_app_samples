@@ -9,6 +9,7 @@
     "pages/page_refresh",
     "pages/page_list",
     "pages/page_xcomponent",
-    "pages/page_public_event"
+    "pages/page_public_event",
+    "pages/page_imagespan"
   ]
 }
