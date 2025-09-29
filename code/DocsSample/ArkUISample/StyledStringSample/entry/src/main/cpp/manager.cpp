@@ -33,7 +33,6 @@ constexpr int32_t TEXT_HEIGHT = 100;             // 文本组件高度
 constexpr float BORDER_WIDTH = 1.0f;             // 边框宽度
 constexpr int32_t PLACEHOLDER_WIDTH = 100;       // 占位符宽度
 constexpr int32_t PLACEHOLDER_HEIGHT = 100;      // 占位符高度
-constexpr size_t SERIALIZE_BUFFER_SIZE = 1024;   // 序列化缓冲区大小
 constexpr uint32_t TEXT_COLOR_GRAY = 0xFF707070; // 第一段文本颜色（灰色）
 constexpr uint32_t TEXT_COLOR_BLUE = 0xFF2787D9; // 第二段文本颜色（蓝色）
 
@@ -68,42 +67,6 @@ static ArkUI_NodeHandle CreateStyledText(ArkUI_NativeNodeAPI_1 *nodeApi)
     nodeApi->setAttribute(text, NODE_BORDER_WIDTH, &borderWidthItem);
 
     return text;
-}
-
-// 处理StyledString的序列化、反序列化与HTML转换
-static void HandleStyledStringSerialize(ArkUI_StyledString *styledString)
-{
-    // 1. 序列化
-    ArkUI_StyledString_Descriptor *descriptor = OH_ArkUI_StyledString_Descriptor_Create();
-    uint8_t buffer[SERIALIZE_BUFFER_SIZE] = {0};
-    size_t resultSize = 0;
-    int32_t marshalResult =
-        OH_ArkUI_MarshallStyledStringDescriptor(buffer, SERIALIZE_BUFFER_SIZE, descriptor, &resultSize);
-    if (marshalResult != ARKUI_ERROR_CODE_NO_ERROR) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, "manager", "序列化成功%{public}d", marshalResult);
-    } else if (marshalResult == ARKUI_ERROR_CODE_PARAM_INVALID) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, "manager", "无效字符串");
-    } else {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, "manager", "%{public}d", marshalResult);
-    }
-    OH_ArkUI_StyledString_Descriptor_Destroy(descriptor);
-
-    // 2. 反序列化
-    ArkUI_StyledString_Descriptor *unmarshalDescriptor = OH_ArkUI_StyledString_Descriptor_Create();
-    if (unmarshalDescriptor != nullptr) {
-        int32_t unmarshalResult =
-            OH_ArkUI_UnmarshallStyledStringDescriptor(buffer, SERIALIZE_BUFFER_SIZE, unmarshalDescriptor);
-        if (unmarshalResult == ARKUI_ERROR_CODE_NO_ERROR) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, "manager", "反序列化成功%{public}d", unmarshalResult);
-        } else if (unmarshalResult == ARKUI_ERROR_CODE_PARAM_ERROR) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, "manager", "函数参数异常%{public}d", unmarshalResult);
-        }
-
-        // 3. 转换为HTML
-        const char *htmlContent = OH_ArkUI_ConvertToHtml(unmarshalDescriptor);
-        OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, "manager", "%{public}s", htmlContent);
-        OH_ArkUI_StyledString_Descriptor_Destroy(unmarshalDescriptor);
-    }
 }
 
 void NodeManager::CreateNativeNode()
@@ -153,9 +116,6 @@ void NodeManager::CreateNativeNode()
     OH_ArkUI_StyledString_AddText(styledString, "World!");
     OH_ArkUI_StyledString_PopTextStyle(styledString);
     OH_Drawing_DestroyTextStyle(worldTextStyle);
-
-    // 处理序列化、反序列化与HTML转换
-    HandleStyledStringSerialize(styledString);
 
     // 排版与设置属性
     OH_Drawing_Typography *typography = OH_ArkUI_StyledString_CreateTypography(styledString);
