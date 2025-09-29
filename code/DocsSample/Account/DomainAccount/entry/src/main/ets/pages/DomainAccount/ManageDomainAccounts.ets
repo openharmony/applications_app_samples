@@ -36,14 +36,19 @@ struct ManageDomainAccounts {
     // [End define_the_domain_account_information_to_be_determined]
 
     // [Start call_the_hasaccount_operation]
-    let isAccountExisted: boolean = await osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
+    osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((isAccountExisted: boolean)=>{
+      console.info('execute hasAccount successfully, isAccountExisted:' + JSON.stringify(isAccountExisted));
+      // [StartExclude call_the_hasaccount_operation]
+      if(isAccountExisted) {
+        this.message = 'Domain account already exists';
+      } else {
+        this.message = 'Domain account does not exist';
+      }
+      // [EndExclude call_the_hasaccount_operation]
+    }).catch((err: BusinessError)=>{
+      console.error(`execute hasAccount code is ${err.code}, message is ${err.message}`);
+    });
     // [End call_the_hasaccount_operation]
-    console.log('domainAccount isAccountExisted:' + isAccountExisted);
-    if(isAccountExisted) {
-      this.message = 'Domain account already exists';
-    } else {
-      this.message = 'Domain account does not exist';
-    }
   }
 
   private async createDomainAccount(): Promise<void> {
@@ -58,14 +63,15 @@ struct ManageDomainAccounts {
     try {
       osAccountMgr.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
         (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-          console.log('createOsAccountForDomain err:' + JSON.stringify(err));
-          console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+          console.info('createOsAccountForDomain err:' + JSON.stringify(err));
+          console.info('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
           // [StartExclude create_a_domain_account]
           this.message = 'Account creation information: ' + JSON.stringify(osAccountInfo.localName);
           // [EndExclude create_a_domain_account]
         });
     } catch (e) {
-      console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
+      const err = e as BusinessError;
+      console.error(`createOsAccountForDomain exception: code is ${e.code}, message is ${e.message}`);
       // [StartExclude create_a_domain_account]
       this.message = 'Account creation failed: ' + JSON.stringify(e);
       // [EndExclude create_a_domain_account]
@@ -82,8 +88,9 @@ struct ManageDomainAccounts {
     let localId: number = 0;
     try {
       localId = await osAccountMgr.getOsAccountLocalIdForDomain(domainInfo);
-    } catch (err) {
-      console.error('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`getOsAccountLocalIdForDomain exception: code is ${err.code}, message is ${err.message}`);
       // [StartExclude obtain_the_system_account_id_based_on_the_domain_account_information]
       this.message = 'Failed to get account deletion information: ' + JSON.stringify(err);
       // [EndExclude obtain_the_system_account_id_based_on_the_domain_account_information]
@@ -93,19 +100,20 @@ struct ManageDomainAccounts {
     try {
       osAccountMgr.removeOsAccount(localId, (err: BusinessError)=>{
         if (err) {
-          console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+          console.error(`removeOsAccount failed, code is ${err.code}, message is ${err.message}`);
           // [StartExclude delete_the_domain_account]
           this.message = 'Failed to delete account: ' + JSON.stringify(err);
           // [EndExclude delete_the_domain_account]
         } else {
-          console.log('removeOsAccount successfully');
+          console.info('removeOsAccount successfully');
           // [StartExclude delete_the_domain_account]
           this.message = 'Successfully deleted account';
           // [EndExclude delete_the_domain_account]
         }
       });
-    } catch (err) {
-      console.error('removeOsAccount exception: ' + JSON.stringify(err));
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`removeOsAccount exception: code is ${err.code}, message is ${err.message}`);
     }
     // [End delete_the_domain_account]
 
@@ -123,19 +131,20 @@ struct ManageDomainAccounts {
       osAccount.DomainAccountManager.getAccountInfo(options,
         (err: BusinessError, result: osAccount.DomainAccountInfo) => {
           if (err) {
-            console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+            console.error(`call getAccountInfo failed, code is ${err.code}, message is ${err.message}`);
             // [StartExclude query_the_domain_account_information]
             this.message = 'Query failed: ' + JSON.stringify(err);
             // [EndExclude query_the_domain_account_information]
           } else {
-            console.log('getAccountInfo result: ' + result);
+            console.info('getAccountInfo result: ' + result);
             // [StartExclude query_the_domain_account_information]
             this.message = 'Queried account information: ' + JSON.stringify(result.accountName);
             // [EndExclude query_the_domain_account_information]
           }
         });
-    } catch (err) {
-      console.error('getAccountInfo exception = ' + JSON.stringify(err));
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`getAccountInfo exception = code is ${err.code}, message is ${err.message}`);
       // [StartExclude query_the_domain_account_information]
       this.message = 'Failed to query account information: ' + JSON.stringify(err);
       // [EndExclude query_the_domain_account_information]
