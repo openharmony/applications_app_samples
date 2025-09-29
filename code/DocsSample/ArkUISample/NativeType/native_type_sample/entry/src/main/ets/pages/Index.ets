@@ -37,6 +37,7 @@ struct MenuIndex {
       { title: 'Scroll', url: 'pages/page_scroll' },
       { title: 'Refresh', url: 'pages/page_refresh' },
       { title: 'List', url: 'pages/page_list' },
+      { title: 'Public', url: 'pages/page_public_event' },
     ];
 
   build() {

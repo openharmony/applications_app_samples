@@ -45,6 +45,8 @@ napi_property_descriptor desc[] = {
     {"createRefreshNativeNode", nullptr, Manager::CreateRefreshNativeNode, nullptr, nullptr, nullptr, napi_default,
      nullptr},
     {"createListNativeNode", nullptr, Manager::CreateListNativeNode, nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"createPublicNativeNode", nullptr, Manager::createPublicNativeNode, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
 };
 static napi_value Init(napi_env env, napi_value exports) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "Init begins");
