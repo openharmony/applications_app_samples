@@ -33,3 +33,21 @@ export const createScrollNativeNode: (content: Object) => void;
 export const createRefreshNativeNode: (content: Object) => void;
 export const createListNativeNode: (content: Object) => void;
 export const createPublicNativeNode: (content: Object) => void;
+export const createProgress: () =>void;
+export const createTextPickerWithCustomContent: (type: number) =>void;
+export const setProgressType: (type: number) =>void;
+export const createDatePicker: (type: number) =>void;
+export const createCalendarPicker: (type: number) =>void;
+export const createImageSize: (fit: number, size: number) =>void;
+export const setImageProperties: (repeat: number, interpolation: number, mode: number) =>void;
+export const setProgressLinearStyleOption: (scanEffect: boolean,
+  smoothEffect: boolean, strokeWidth: number, strokeRadius: number) =>void;
+export const createImageAnimatorFromDrawableDescriptor: (width: number,
+  height: number, top: number, left: number, duration: number) =>void;
+export const createImageAnimatorFromString: (width: number,
+  height: number, top: number, left: number, duration: number) =>void;
+export const getProgressLinearStyleOptionAndDestroy: () =>string;
+export const getImageAnimatorFrameInfo: () =>string;
+export const setContentHandle: (content: Object) =>void;
+export const setUpTextCrossLanguage: (isCross: boolean) =>void;
+export const clearNodes: () =>void;
