@@ -21,7 +21,7 @@
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 #include <database/udmf/udmf.h>
-#include <database/hilog/log.h>
+#include <hilog/log.h>
 #include <sstream>
 
 #define DEFAULT_WIDTH 200.0
