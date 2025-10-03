@@ -42,6 +42,12 @@ struct MenuIndex {
       { title: 'CheckboxShape', url: 'pages/page_checkbox_shape' },
       { title: 'HoverModeAreaType', url: 'pages/page_hovermode_areatype' },
       { title: 'Public', url: 'pages/page_public_event' },
+      { title: 'Progress', url: 'pages/page_progress' },
+      { title: 'DatePicker', url: 'pages/page_date_picker' },
+      { title: 'Image', url: 'pages/page_image' },
+      { title: 'TextPicker', url: 'pages/page_text_picker' },
+      { title: 'CalendarPicker', url: 'pages/page_calendar_picker' },
+      { title: 'ImageAnimator', url: 'pages/page_image_animator' },
     ];
 
   build() {
