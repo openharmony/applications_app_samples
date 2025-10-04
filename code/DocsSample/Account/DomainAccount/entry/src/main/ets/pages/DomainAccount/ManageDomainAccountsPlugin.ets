@@ -153,8 +153,9 @@ struct ManageDomainAccountsPlugin {
       // [StartExclude call_the_api_to_register_the_plug_in]
       this.message = 'Successfully registered plugin';
       // [EndExclude call_the_api_to_register_the_plug_in]
-    } catch (err) {
-      console.error('registerPlugin err: ' + JSON.stringify(err));
+    } catch catch (e) {
+      const err = e as BusinessError;
+      console.error(`registerPlugin err: code is ${err.code}, message is ${err.message}`);
       // [StartExclude call_the_api_to_register_the_plug_in]
       this.message = 'Failed to register plugin:  ' + JSON.stringify(err);
       // [EndExclude call_the_api_to_register_the_plug_in]
@@ -166,12 +167,13 @@ struct ManageDomainAccountsPlugin {
     // [Start call_the_api_to_log_out_the_plug_in]
     try {
       osAccount.DomainAccountManager.unregisterPlugin();
-      console.log('unregisterPlugin success.');
+      console.info('unregisterPlugin success.');
       // [StartExclude call_the_api_to_log_out_the_plug_in]
       this.message = 'unregisterPlugin success';
       // [EndExclude call_the_api_to_log_out_the_plug_in]
-    } catch(err) {
-      console.error('unregisterPlugin err:' + JSON.stringify(err));
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`unregisterPlugin failed, code is ${err.code}, message is ${err.message}`);
       // [StartExclude call_the_api_to_log_out_the_plug_in]
       this.message = 'Failed to unregister plugin: ' + JSON.stringify(err);
       // [EndExclude call_the_api_to_log_out_the_plug_in]

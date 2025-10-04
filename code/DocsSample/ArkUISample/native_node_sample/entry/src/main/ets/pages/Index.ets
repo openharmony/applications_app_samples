@@ -35,7 +35,8 @@ struct MenuIndex {
       { title: 'List', url: 'pages/page_list', id: '' },
       { title: 'Public', url: 'pages/page_public_event', id: 'Public' },
       { title: 'XComponent', url: 'pages/page_xcomponent', id: '' },
-      { title: 'Form', url: 'pages/page_form', id: '' }
+      { title: 'Form', url: 'pages/page_form', id: '' },
+      { title: 'ImageSpan', url: 'pages/page_imagespan', id: '' },
     ];
 
   build() {

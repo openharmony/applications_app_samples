@@ -67,6 +67,59 @@ napi_value Manager::CreateNativeNaviNode(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+napi_value Manager::ProcessDrawable(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    // 获取JS层传入的参数
+    napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    if (status != napi_ok || argc < 1) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "获取参数失败");
+        return nullptr;
+    }
+    napi_value resourceValue = args[0];  // 这是ArkTS侧传入的Resource对象
+    // 核心接口：将napi_value转换为DrawableDescriptor
+    ArkUI_DrawableDescriptor* drawable = nullptr;
+    int32_t res = OH_ArkUI_GetDrawableDescriptorFromNapiValue(env, resourceValue, &drawable);
+    // 处理转换结果
+    if (res != ArkUI_ErrorCode::ARKUI_ERROR_CODE_NO_ERROR) {
+        // 转换失败：根据错误码处理（参数无效等）
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "Failed to get drawable descriptor");
+        napi_throw_error(env, nullptr, "Failed to get drawable descriptor");
+        return nullptr;
+    }
+    // 返回处理结果给JS层
+    napi_value result;
+    napi_create_int32(env, res, &result);
+    return result;
+}
+
+napi_value Manager::ProcessDrawable2(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    // 获取JS层传入的参数
+    napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    if (status != napi_ok || argc < 1) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "获取参数失败");
+        return nullptr;
+    }
+    napi_value resourceValue = args[0];  // 这是ArkTS侧传入的Resource对象
+    // 核心接口：将napi_value转换为DrawableDescriptor
+    ArkUI_DrawableDescriptor* drawable = nullptr;
+    int32_t res = OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue (env, resourceValue, &drawable);
+    // 3. 处理转换结果
+    if (res != ArkUI_ErrorCode::ARKUI_ERROR_CODE_NO_ERROR) {
+        // 转换失败：根据错误码处理（参数无效等）
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "Failed to get drawable descriptor");
+        return nullptr;
+    }
+    // 返回处理结果给JS层
+    napi_value result;
+    napi_create_int32(env, res, &result);
+    return result;
+}
+
 napi_value Manager::CreateNativeAccessibilityNode(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");

@@ -2,20 +2,37 @@
 
 ## 介绍
 
-本示例展示了如何创建文本、输入框、文本域、滑动容器、视效、动效等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
+本示例展示了如何创建文本、输入框、文本域、滑动容器、视效、动效、进度条、日期选择器、日历选择器、文本选择器、图片等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
 
 ## 效果预览
 
-| 首页 | Text页面                                              | Swiper页面                                              |
-| ---- | ----------------------------------------------------- | ------------------------------------------------------- |
-|      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> |
+| 首页 | Text页面                                              | Swiper页面                                              | Public页面                                              |
+| ---- | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+|      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> | <img src="./screenshots/page_public.jpg" width="300"/> |
 
+| Progress页面                                         | CalendarPicker页面                                              |
+| ---------------------------------------------------- | ------------------------------------------------------- |
+| <img src="./screenshots/progress.png" width="300" /> | <img src="./screenshots/calendarPicker.png" width="300" /> |
+
+| DatePicker页面                                         | Image页面                                              |
+| ---------------------------------------------------- | ------------------------------------------------------- |
+| <img src="./screenshots/datePicker.png" width="300" /> | <img src="./screenshots/image.png" width="300" /> |
+
+| ImageAnimator                                         | TextPicker                                              |
+| ---------------------------------------------------- | ------------------------------------------------------- |
+| <img src="./screenshots/imageAnimator.png" width="300" /> | <img src="./screenshots/textPicker.png" width="300" /> |
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；
 2. 进入首页，可选择不同模块页面。
 3. 点击Text选择框进入Text组件的CAPI接口展示界面；
 4. 点击Swiper选择框进入Swiper组件的CAPI接口展示界面；
-
+5. 点击Public选择框进入通用属性的CAPI接口展示界面。
+6. 点击Progress选择框进入Progress组件的CAPI接口展示界面；
+7. 点击Datepicker选择框进入Datepicker组件的CAPI接口展示界面；
+8. 点击TextPicker选择框进入TextPicker组件的CAPI接口展示界面；
+9. 点击CalendarPicker选择框进入CalendarPicker组件的CAPI接口展示界面；
+10. 点击Image选择框进入Image组件的CAPI接口展示界面；
+11. 点击ImageAnimator选择框进入ImageAnimator组件的CAPI接口展示界面；
 
 ## 工程目录
 
@@ -26,9 +43,16 @@ entry/src/main/ets/
     ├── Index.ets (获取导航页面)
     ├── page_accessibility.ets (无障碍界面)
     ├── page_embedded_component.ets (嵌入式组件界面)
+    ├── page_public_event.ets (通用属性页面)
     ├── page_swiper.ets (滑动容器页面)
     ├── page_animation.ets (动效界面)
     ├── page_visual_effects.ets (视效界面)
+    ├── page_progress.ets (进度条页面)
+    ├── page_calendar_picker.ets (日历选择器页面)
+    ├── page_date_picker.ets (日期选择器页面)
+    ├── page_image.ets (图片页面)
+    ├── page_image_animator.ets (图片帧页面)
+    ├── page_text_picker.ets (文本选择器页面)
     └── page_text.ets (文本界面)
 
 entry/src/main/
@@ -52,12 +76,16 @@ entry/src/main/
 |   ├── .......
 |   ├── baseUtils.cpp
 |   ├── baseUtils.h
+|   ├── PublicEvent.cpp
+|   ├── PublicEvent.h
 |   ├── SwiperMaker.cpp
 |   ├── SwiperMaker.h
 |   ├── TextMaker.cpp
 │   ├── TextMaker.h
 |   ├── AccessibilityMaker.cpp
 │   ├── AccessibilityMaker.h
+|   ├── NodeManager.cpp
+│   ├── NodeManager.h
 |   ├── EmbeddedComponentMaker.cpp
 │   └── EmbeddedComponentMaker.h
 └── resources

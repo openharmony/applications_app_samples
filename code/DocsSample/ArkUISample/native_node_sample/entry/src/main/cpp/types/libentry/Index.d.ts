@@ -28,3 +28,9 @@ export const setFormAttribute: (nodeId: number, nodeType: number, attributeType:
 export const getFormAttribute: (nodeId: number, nodeType: number, attributeType: number) => string;
 export const resetFormAttribute: (nodeId: number, nodeType: number, attributeType: number) => number;
 export const removeFormNode: (nodeId: number) => void;
+export const createImageSpanPage: (content: Object) =>void;
+export const createImageSpanNode: (nodeType: number) => number;
+export const removeImageSpanNode: (nodeId: number) => void;
+export const setImageSpanAttribute: (nodeId: number, nodeType: number, attributeType: number) => number;
+export const getImageSpanAttribute: (nodeId: number, nodeType: number, attributeType: number) => string;
+export const resetImageSpanAttribute: (nodeId: number, nodeType: number, attributeType: number) => number;

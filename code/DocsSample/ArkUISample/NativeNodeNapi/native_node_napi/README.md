@@ -2,13 +2,14 @@
 
 ## 介绍
 
-本示例展示了如何通过调用CAPI提供的相关方法来获取navigation组件等组件的相关属性和信息。
+本示例展示了如何通过调用CAPI提供的相关方法来获取navigation组件等组件的相关属性和信息，以及将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。。
 
 ## 效果预览
 
 | 首页 | navigation页面                                           |
 | ---- | -------------------------------------------------------- |
 |      | <img src='.\screenshots\page_navigation.jpeg' width=300> |
+|      | <img src='.\screenshots\mappingDescriptor.jpeg' width=300> |
 
 ## 使用说明
 
@@ -25,6 +26,7 @@ entry/src/main/ets/
 └── pages
     ├── Index.ets (获取导航页面)
     └── page_navigation.ets (获取导航页面)
+    └── GetDrawableDescriptor.ets (映射DrawableDescriptor页面)
 entry/src/main/
 ├── cpp
 │   ├── types

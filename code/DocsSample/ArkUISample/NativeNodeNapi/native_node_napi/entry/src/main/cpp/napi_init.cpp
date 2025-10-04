@@ -56,6 +56,8 @@ napi_property_descriptor desc[] = {
     {"createVisualEffectsGroup", nullptr, createVisualEffectsGroup,
         nullptr, nullptr, nullptr, napi_default, nullptr},
     {"destroyNativeRoot", nullptr, DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr},
+    { "processDrawable", nullptr, Manager::ProcessDrawable, nullptr, nullptr, nullptr, napi_default, nullptr },
+    { "processDrawable2", nullptr, Manager::ProcessDrawable2, nullptr, nullptr, nullptr, napi_default, nullptr },
 };
 
 static napi_value Init(napi_env env, napi_value exports)
@@ -65,7 +67,7 @@ static napi_value Init(napi_env env, napi_value exports)
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "env or exports is null");
         return nullptr;
     }
-    
+
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
         return nullptr;

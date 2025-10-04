@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include "imagespan_manager.h"
 #include "manager.h"
 #include "form_manager.h"
 #include <hilog/log.h>
@@ -58,6 +59,18 @@ static napi_value Init(napi_env env, napi_value exports)
         {"removeFormNode", nullptr, NativeNode::Form::TransTool::RemoveFormNode, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         // 参考新增其他createNative方法和Maker类
+        {"createImageSpanPage", nullptr, NativeNode::ImageSpan::TransTool::CreateImageSpanPage, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"createImageSpanNode", nullptr, NativeNode::ImageSpan::TransTool::CreateImageSpanNode, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"removeImageSpanNode", nullptr, NativeNode::ImageSpan::TransTool::RemoveImageSpanNode, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"setImageSpanAttribute", nullptr, NativeNode::ImageSpan::TransTool::SetImageSpanAttribute, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"resetImageSpanAttribute", nullptr, NativeNode::ImageSpan::TransTool::ResetImageSpanAttribute, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+        {"getImageSpanAttribute", nullptr, NativeNode::ImageSpan::TransTool::GetImageSpanAttribute, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
     };
 
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {

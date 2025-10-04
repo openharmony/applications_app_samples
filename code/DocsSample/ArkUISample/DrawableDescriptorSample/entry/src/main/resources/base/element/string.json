@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Index_label_func_sample",
+      "value": "DrawableDescriptor功能示例"
+    },
+    {
+      "name": "Index_label_load_fail",
+      "value": "加载图片失败，请检查资源文件"
+    },
+    {
+      "name": "Index_label_set_duration",
+      "value": "设置duration"
+    },
+    {
+      "name": "Index_label_set_iteration",
+      "value": "设置iteration"
+    },
+    {
+      "name": "Index_label_check_picture",
+      "value": "提示: 请确保资源文件存在于rawfile目录"
+    },
+    {
+      "name": "Index_button_setting",
+      "value": "设置"
+    }
+  ]
+}

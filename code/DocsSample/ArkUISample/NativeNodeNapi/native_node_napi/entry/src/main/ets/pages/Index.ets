@@ -27,6 +27,7 @@ struct MenuIndex {
     [
       { title: 'Navigation', url: 'pages/page_navigation' },
       { title: 'add your router', url: 'pages/page_navigation' },
+      { title: 'Mapping DrawableDescriptor', url: 'pages/GetDrawableDescriptor' },
       { title: 'accessibility', url: 'pages/page_accessibility' },
       { title: 'embedded component', url: 'pages/page_embedded_component' },
       { title: 'Animation', url: 'pages/page_animation' },

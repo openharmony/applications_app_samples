@@ -16,7 +16,6 @@
 // [Start import_system_account_module]
 import { osAccount } from '@kit.BasicServicesKit';
 // [End import_system_account_module]
-import account_osAccount from "@ohos.account.osAccount";
 
 function strToUint8Arr(str: string): Uint8Array {
   const buffer: number[] = [];
@@ -47,39 +46,48 @@ struct SystemAccount {
 
   private async addCred(): Promise<void> {
     try {
-      this.cid = await account_osAccount.getAccountManager().getForegroundOsAccountLocalId();
+      this.cid = await osAccount.getAccountManager().getForegroundOsAccountLocalId();
       // [Start create_credential_management_object]
-      let userIDM = new account_osAccount.UserIdentityManager();
+      let userIDM: osAccount.UserIdentityManager = new osAccount.UserIdentityManager();
       // [End create_credential_management_object]
-      let password: Uint8Array = new Uint8Array([0x31, 0x32, 0x33, 0x34, 0x35, 0x36]);
+      // [Start define_pin_inputer_pinData]
+      let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]);
+      // [StartExclude define_pin_inputer_pinData]
       if (this.textPassword != '') {
-        password = strToUint8Arr(this.textPassword);
+        pinData = strToUint8Arr(this.textPassword);
       }
-      let PINAuth = new account_osAccount.PINAuth();
+      // [EndExclude define_pin_inputer_pinData]
+      let inputer: osAccount.IInputer = {
+        onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
+          callback.onSetData(authSubType, pinData);
+        }
+      }
+      // [End define_pin_inputer_pinData]
       // [Start define_pin_credential_information]
-      let credentialInfo :account_osAccount.CredentialInfo = {
+      let credentialInfo :osAccount.CredentialInfo = {
         // [StartExclude define_pin_credential_information]
         accountId: this.cid,
         // [EndExclude define_pin_credential_information]
-        credType:account_osAccount.AuthType.PIN,
-        credSubType:account_osAccount.AuthSubType.PIN_SIX,
-        token:new Uint8Array([])
+        credType:osAccount.AuthType.PIN,
+        credSubType:osAccount.AuthSubType.PIN_SIX,
+        token:new Uint8Array([0])
       }
       // [End define_pin_credential_information]
+      // [Start call_the_api_to_register_the_inputer]
+      let PINAuth: osAccount.PINAuth = new osAccount.PINAuth();
+      // [StartExclude call_the_api_to_register_the_inputer]
       PINAuth.unregisterInputer();
-      PINAuth.registerInputer({
-        onGetData:(authSubType, callback)=>{
-          callback.onSetData(account_osAccount.AuthSubType.PIN_SIX, password);
-        }
-      })
+      // [EndExclude call_the_api_to_register_the_inputer]
+      PINAuth.registerInputer(inputer)
+      // [End call_the_api_to_register_the_inputer]
       userIDM.closeSession(this.cid);
       userIDM.openSession(this.cid).then((data)=>{
-        console.log('openSession info: ' + JSON.stringify(data));
+        console.info('openSession info: ' + JSON.stringify(data));
         // [Start call_the_api_to_add_the_specified_credentials]
         userIDM.addCredential(credentialInfo,{
           onResult: (err, extraInfo)=>{
-            console.log('addCredential result: ' + JSON.stringify(err));
-            console.log('edential info: ' + JSON.stringify(extraInfo));
+            console.info('addCredential result: ' + JSON.stringify(err));
+            console.info('edential info: ' + JSON.stringify(extraInfo));
             // [StartExclude call_the_api_to_add_the_specified_credentials]
             if (err == 0) {
               this.message = 'PIN code entry successful';
@@ -102,29 +110,29 @@ struct SystemAccount {
 
   private async auth(): Promise<void> {
     try {
-      let userIDM = new account_osAccount.UserIdentityManager();
-      let userAuth = new account_osAccount.UserAuth();
-      let PINAuth = new account_osAccount.PINAuth();
-      let password: Uint8Array = new Uint8Array([0x31, 0x32, 0x33, 0x34, 0x35, 0x36]);
+      let userIDM = new osAccount.UserIdentityManager();
+      let PINAuth = new osAccount.PINAuth();
+      let password: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]);
       if (this.textPassword != '') {
         password = strToUint8Arr(this.textPassword);
       }
       PINAuth.unregisterInputer();
       PINAuth.registerInputer({
         onGetData:(authSubType, callback)=>{
-          callback.onSetData(account_osAccount.AuthSubType.PIN_SIX, password);
+          callback.onSetData(osAccount.AuthSubType.PIN_SIX, password);
         }
       })
       userIDM.closeSession(this.cid);
       userIDM.openSession(this.cid).then((data)=>{
-        console.log('openSession info: ' + JSON.stringify(data));
+        console.info('openSession info: ' + JSON.stringify(data));
         let authType: osAccount.AuthType = osAccount.AuthType.PIN;
         let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
         // [Start call_the_auth_operation_for_authentication]
+        let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
         userAuth.auth(data, authType, authTrustLevel, {
           onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-            console.log('pin auth result = ' + result);
-            console.log('pin auth extraInfo = ' + JSON.stringify(extraInfo));
+            console.info('pin auth result = ' + result);
+            console.info('pin auth extraInfo = ' + JSON.stringify(extraInfo));
             let authToken = extraInfo.token;
             // [StartExclude call_the_auth_operation_for_authentication]
             if(result == 0) {
@@ -161,32 +169,32 @@ struct SystemAccount {
     }
     // [End define_fingerprint_credential_information]
     try {
-      let userIDM = new account_osAccount.UserIdentityManager();
-      let userAuth = new account_osAccount.UserAuth();
-      let PINAuth = new account_osAccount.PINAuth();
-      let password: Uint8Array = new Uint8Array([0x31, 0x32, 0x33, 0x34, 0x35, 0x36]);
+      let userIDM = new osAccount.UserIdentityManager();
+      let userAuth = new osAccount.UserAuth();
+      let PINAuth = new osAccount.PINAuth();
+      let password: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]);
       PINAuth.unregisterInputer();
       PINAuth.registerInputer({
         onGetData:(authSubType, callback)=>{
-          callback.onSetData(account_osAccount.AuthSubType.PIN_SIX, password);
+          callback.onSetData(osAccount.AuthSubType.PIN_SIX, password);
         }
       })
       userIDM.closeSession(this.cid);
       userIDM.openSession(this.cid).then((data)=>{
-        console.log('openSession info: ' + JSON.stringify(data));
+        console.info('openSession info: ' + JSON.stringify(data));
         let authType: osAccount.AuthType = osAccount.AuthType.PIN;
         let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
         userAuth.auth(data, authType, authTrustLevel, {
           onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-            console.log('pin auth result = ' + result);
-            console.log('pin auth extraInfo = ' + JSON.stringify(extraInfo));
+            console.info('pin auth result = ' + result);
+            console.info('pin auth extraInfo = ' + JSON.stringify(extraInfo));
             faceCredInfo.token = extraInfo.token;
             fingerprintCredInfo.token = extraInfo.token;
             // [Start input_facial_credential_information]
             userIDM.addCredential(faceCredInfo, {
               onResult: (code: number, result: osAccount.RequestResult) => {
-                console.log('add face credential, resultCode: ' + code);
-                console.log('add face credential, request result: ' + result);
+                console.info('add face credential, resultCode: ' + code);
+                console.info('add face credential, request result: ' + result);
                 // [StartExclude input_facial_credential_information]
                 if(code == 0) {
                   this.message = 'Successfully entered facial credentials';
@@ -200,8 +208,8 @@ struct SystemAccount {
             // [Start enter_the_fingerprint_credentials]
             userIDM.addCredential(fingerprintCredInfo, {
               onResult: (code: number, result: osAccount.RequestResult) => {
-                console.log('add fingerprint credential, resultCode: ' + code);
-                console.log('add fingerprint credential, request result: ' + result);
+                console.info('add fingerprint credential, resultCode: ' + code);
+                console.info('add fingerprint credential, request result: ' + result);
                 // [StartExclude enter_the_fingerprint_credentials]
                 if(code == 0) {
                   this.message += 'Successfully entered fingerprint credentials';
@@ -225,26 +233,26 @@ struct SystemAccount {
 
   private async biologyAuth(): Promise<void> {
     try {
-      let userIDM = new account_osAccount.UserIdentityManager();
-      let userAuth = new account_osAccount.UserAuth();
-      let PINAuth = new account_osAccount.PINAuth();
-      let password: Uint8Array = new Uint8Array([0x31, 0x32, 0x33, 0x34, 0x35, 0x36]);
+      let userIDM = new osAccount.UserIdentityManager();
+      let PINAuth = new osAccount.PINAuth();
+      let password: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]);
       PINAuth.unregisterInputer();
       PINAuth.registerInputer({
         onGetData:(authSubType, callback)=>{
-          callback.onSetData(account_osAccount.AuthSubType.PIN_SIX, password);
+          callback.onSetData(osAccount.AuthSubType.PIN_SIX, password);
         }
       })
       userIDM.closeSession(this.cid);
       userIDM.openSession(this.cid).then((data)=>{
-        console.log('openSession info: ' + JSON.stringify(data));
+        console.info('openSession info: ' + JSON.stringify(data));
         let authType: osAccount.AuthType = osAccount.AuthType.FACE;
         let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
         // [Start call_the_auth_operation_for_face_authentication]
+        let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
         userAuth.auth(data, authType, authTrustLevel, {
           onResult: (result: number, extraInfo: osAccount.AuthResult) => {
-            console.log('face auth result = ' + result);
-            console.log('face auth extraInfo = ' + JSON.stringify(extraInfo));
+            console.info('face auth result = ' + result);
+            console.info('face auth extraInfo = ' + JSON.stringify(extraInfo));
             // [StartExclude call_the_auth_operation_for_face_authentication]
             if(result == 0) {
               this.message = 'Successfully authenticated biometric credentials';
@@ -265,10 +273,10 @@ struct SystemAccount {
   }
 
   private async updateCred(): Promise<void> {
-    let userIDM = new account_osAccount.UserIdentityManager();
-    let userAuth = new account_osAccount.UserAuth();
-    let PINAuth = new account_osAccount.PINAuth();
-    let oldPassword: Uint8Array = new Uint8Array([0x31, 0x32, 0x33, 0x34, 0x35, 0x36]);
+    let userIDM = new osAccount.UserIdentityManager();
+    let userAuth = new osAccount.UserAuth();
+    let PINAuth = new osAccount.PINAuth();
+    let oldPassword: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]);
     if (this.oldTextPassword != '') {
       oldPassword = strToUint8Arr(this.oldTextPassword);
     }
@@ -277,41 +285,41 @@ struct SystemAccount {
       password = strToUint8Arr(this.textPassword);
     }
     // [Start define_the_credential_information_to_be_updated]
-    let credentialInfo :account_osAccount.CredentialInfo = {
+    let credentialInfo :osAccount.CredentialInfo = {
       // [StartExclude define_the_credential_information_to_be_updated]
       accountId:this.cid,
       // [EndExclude define_the_credential_information_to_be_updated]
-      credType:account_osAccount.AuthType.PIN,
-      credSubType:account_osAccount.AuthSubType.PIN_SIX,
-      token:new Uint8Array([])
+      credType:osAccount.AuthType.PIN,
+      credSubType:osAccount.AuthSubType.PIN_SIX,
+      token:new Uint8Array([1, 2, 3, 4, 5])
     }
     // [End define_the_credential_information_to_be_updated]
     PINAuth.unregisterInputer();
     PINAuth.registerInputer({
       onGetData:(authSubType, callback)=>{
-        callback.onSetData(account_osAccount.AuthSubType.PIN_SIX, oldPassword);
+        callback.onSetData(osAccount.AuthSubType.PIN_SIX, oldPassword);
       }
     })
     userIDM.openSession(this.cid).then((data)=>{
-      console.log('openSession info: ' + JSON.stringify(data));
-      userAuth.authUser(this.cid, data, account_osAccount.AuthType.PIN,
-        account_osAccount.AuthTrustLevel.ATL1, {
+      console.info('openSession info: ' + JSON.stringify(data));
+      userAuth.authUser(this.cid, data, osAccount.AuthType.PIN,
+        osAccount.AuthTrustLevel.ATL1, {
         onResult:(err, authResult)=>{
-          console.log('authUser err: ' + JSON.stringify(err));
-          console.log('authUser info: ' + JSON.stringify(authResult));
-          console.log('authUser info.userId: ' + authResult.accountId);
+          console.info('authUser err: ' + JSON.stringify(err));
+          console.info('authUser info: ' + JSON.stringify(authResult));
+          console.info('authUser info.userId: ' + authResult.accountId);
           credentialInfo.token = authResult.token;
           PINAuth.unregisterInputer();
           PINAuth.registerInputer({
             onGetData:(subType, callback) =>{
-              callback.onSetData(account_osAccount.AuthSubType.PIN_SIX, password)
+              callback.onSetData(osAccount.AuthSubType.PIN_SIX, password)
             }
           })
           // [Start update_your_credentials]
           userIDM.updateCredential(credentialInfo, {
             onResult:(result: number, extraInfo: osAccount.RequestResult)=>{
-              console.log('updateCredential result: ' + JSON.stringify(result));
-              console.log('updateCredential extraInfo: ' + JSON.stringify(extraInfo));
+              console.info('updateCredential result: ' + JSON.stringify(result));
+              console.info('updateCredential extraInfo: ' + JSON.stringify(extraInfo));
               // [StartExclude update_your_credentials]
               if(result == 0) {
                 this.message = 'Successfully updated PIN code credentials';
@@ -333,11 +341,11 @@ struct SystemAccount {
   }
 
   private async getCred(): Promise<void> {
-    let userIDM = new account_osAccount.UserIdentityManager();
+    let userIDM = new osAccount.UserIdentityManager();
     try {
       userIDM.getAuthInfo((err, data)=>{
-        console.log('getAuthInfo err: ' + JSON.stringify(err));
-        console.log('getAuthInfo data: ' + JSON.stringify(data));
+        console.info('getAuthInfo err: ' + JSON.stringify(err));
+        console.info('getAuthInfo data: ' + JSON.stringify(data));
         this.message = 'Query information length: ' + data.length;
       })
       // [Start obtain_credential_information_of_the_specified_type]
@@ -351,9 +359,9 @@ struct SystemAccount {
   }
 
   private async deleteBiologyCred(): Promise<void> {
-    let userIDM = new account_osAccount.UserIdentityManager();
-    let userAuth = new account_osAccount.UserAuth();
-    let PINAuth = new account_osAccount.PINAuth();
+    let userIDM = new osAccount.UserIdentityManager();
+    let userAuth = new osAccount.UserAuth();
+    let PINAuth = new osAccount.PINAuth();
     // [Start obtain_the_credential_information_of_the_fingerprint_type]
     let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
     let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
@@ -366,25 +374,25 @@ struct SystemAccount {
     PINAuth.unregisterInputer();
     PINAuth.registerInputer({
       onGetData:(authSubType, callback)=>{
-        callback.onSetData(account_osAccount.AuthSubType.PIN_SIX,
+        callback.onSetData(osAccount.AuthSubType.PIN_SIX,
           new Uint8Array([0x31, 0x31, 0x31, 0x31, 0x31, 0x31]));
       }
     })
     userIDM.closeSession(this.cid)
     userIDM.openSession(this.cid).then((data)=>{
-      console.log('openSession info: ' + JSON.stringify(data));
-      userAuth.authUser(this.cid, data, account_osAccount.AuthType.PIN,
-        account_osAccount.AuthTrustLevel.ATL1, {
+      console.info('openSession info: ' + JSON.stringify(data));
+      userAuth.authUser(this.cid, data, osAccount.AuthType.PIN,
+        osAccount.AuthTrustLevel.ATL1, {
         onResult:(err, authResult)=>{
-          console.log('authUser err: ' + JSON.stringify(err));
-          console.log('authUser info: ' + JSON.stringify(authResult));
-          console.log('authUser info.userId: ' + authResult.accountId);
+          console.info('authUser err: ' + JSON.stringify(err));
+          console.info('authUser info: ' + JSON.stringify(authResult));
+          console.info('authUser info.userId: ' + authResult.accountId);
           try {
             // [Start delete_specified_credentials]
             userIDM.delCred(credentialId, authResult.token, {
               onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-                console.log('delCred result = ' + result);
-                console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
+                console.info('delCred result = ' + result);
+                console.info('delCred extraInfo = ' + JSON.stringify(extraInfo));
                 // [StartExclude delete_specified_credentials]
                 if(result == 0) {
                   this.message = 'Successfully deleted credentials';
@@ -414,9 +422,9 @@ struct SystemAccount {
   }
 
   private async deleteCred(): Promise<void> {
-    let userIDM = new account_osAccount.UserIdentityManager();
-    let userAuth = new account_osAccount.UserAuth();
-    let PINAuth = new account_osAccount.PINAuth();
+    let userIDM = new osAccount.UserIdentityManager();
+    let userAuth = new osAccount.UserAuth();
+    let PINAuth = new osAccount.PINAuth();
     let password: Uint8Array = new Uint8Array([0x31, 0x31, 0x31, 0x31, 0x31, 0x31]);
     if (this.textPassword != '') {
       password = strToUint8Arr(this.textPassword);
@@ -424,24 +432,24 @@ struct SystemAccount {
     PINAuth.unregisterInputer();
     PINAuth.registerInputer({
       onGetData:(authSubType, callback)=>{
-        callback.onSetData(account_osAccount.AuthSubType.PIN_SIX, password);
+        callback.onSetData(osAccount.AuthSubType.PIN_SIX, password);
       }
     })
     userIDM.closeSession(this.cid)
     userIDM.openSession(this.cid).then((data)=>{
-      console.log('openSession info: ' + JSON.stringify(data));
-      userAuth.authUser(this.cid, data, account_osAccount.AuthType.PIN,
-        account_osAccount.AuthTrustLevel.ATL1, {
+      console.info('openSession info: ' + JSON.stringify(data));
+      userAuth.authUser(this.cid, data, osAccount.AuthType.PIN,
+        osAccount.AuthTrustLevel.ATL1, {
         onResult:(err, authResult)=>{
-          console.log('authUser err: ' + JSON.stringify(err));
-          console.log('authUser info: ' + JSON.stringify(authResult));
-          console.log('authUser info.userId: ' + authResult.accountId);
-          console.log('authUser info.token: ' + authResult.token);
+          console.info('authUser err: ' + JSON.stringify(err));
+          console.info('authUser info: ' + JSON.stringify(authResult));
+          console.info('authUser info.userId: ' + authResult.accountId);
+          console.info('authUser info.token: ' + authResult.token);
           try {
             userIDM.delUser(authResult.token, {
               onResult: (result: number, extraInfo: osAccount.RequestResult) => {
-                console.log('delUser result = ' + result);
-                console.log('delUser extraInfo = ' + JSON.stringify(extraInfo));
+                console.info('delUser result = ' + result);
+                console.info('delUser extraInfo = ' + JSON.stringify(extraInfo));
                 if(result == 0) {
                   this.message = 'Successfully deleted PIN code credentials';
                 } else {
