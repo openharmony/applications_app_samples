@@ -12,8 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { DrawableDescriptor } from "@kit.ArkUI";
 
 export const createNativeNaviNode: (content: Object) =>void;
+export const processDrawable: (a: DrawableDescriptor) => number;
+export const processDrawable2: (a: DrawableDescriptor) => number;
 export const createNativeAccessibilityNode: (content: Object) => void;
 export const createNativeEmbeddedComponentNode: (content: Object) => void;
 export const createAnimationCenter: (content: Object) => void;

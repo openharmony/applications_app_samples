@@ -37,9 +37,9 @@ struct Index {
 
     // [Start bind_the_current_system_account_to_the_specified_distributed_account]
     await distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
-      console.log('setOsAccountDistributedInfo successfully');
+      console.info('setOsAccountDistributedInfo successfully');
     }).catch((err: BusinessError) => {
-      console.error('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+      console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
       // [StartExclude bind_the_current_system_account_to_the_specified_distributed_account]
       this.message = 'Failed to bind distributed account: ' + JSON.stringify(err);
       // [EndExclude bind_the_current_system_account_to_the_specified_distributed_account]
@@ -48,12 +48,12 @@ struct Index {
 
     // [Start view_the_login_information_of_distributed_account]
     distributedAccountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
-      console.log('distributed information: ' + JSON.stringify(data));
+      console.info('distributed information: ' + JSON.stringify(data));
       // [StartExclude view_the_login_information_of_distributed_account]
       this.message = 'Bind distributed account: ' + data.name;
       // [EndExclude view_the_login_information_of_distributed_account]
     }).catch((err: BusinessError) => {
-      console.error('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+      console.error(`getOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
       // [StartExclude view_the_login_information_of_distributed_account]
       this.message = 'Failed to get distributed account: ' + JSON.stringify(err);
       // [EndExclude view_the_login_information_of_distributed_account]
@@ -72,12 +72,12 @@ struct Index {
 
     // [Start unbind_the_specified_distributed_account_from_the_current_system_account]
     distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
-      console.log('setOsAccountDistributedInfo successfully');
+      console.info('setOsAccountDistributedInfo successfully');
       // [StartExclude unbind_the_specified_distributed_account_from_the_current_system_account]
       this.message = 'Successfully unbound distributed account'
       // [EndExclude unbind_the_specified_distributed_account_from_the_current_system_account]
     }).catch((err: BusinessError) => {
-      console.error('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+      console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
       // [StartExclude unbind_the_specified_distributed_account_from_the_current_system_account]
       this.message = 'Failed to unbind distributed account'
       // [EndExclude unbind_the_specified_distributed_account_from_the_current_system_account]
@@ -97,9 +97,9 @@ struct Index {
 
     // [Start bind_the_specified_distributed_account_to_the_current_system_account]
     await distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
-      console.log('setOsAccountDistributedInfoByLocalId successfully');
+      console.info('setOsAccountDistributedInfoByLocalId successfully');
     }).catch((err: BusinessError) => {
-      console.error('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+      console.error(`setOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
       // [StartExclude bind_the_specified_distributed_account_to_the_current_system_account]
       this.message = 'Failed to bind distributed account on the specified system account: ' + JSON.stringify(err);
       // [EndExclude bind_the_specified_distributed_account_to_the_current_system_account]
@@ -109,12 +109,12 @@ struct Index {
     // [Start view_the_login_information_of_a_distributed_account]
     distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId)
       .then((data: distributedAccount.DistributedInfo) => {
-      console.log('distributed information: ' + JSON.stringify(data));
+      console.info('distributed information: ' + JSON.stringify(data));
       // [StartExclude view_the_login_information_of_a_distributed_account]
       this.message = 'Bind distributed account on the specified system account: ' + data.name;
       // [EndExclude view_the_login_information_of_a_distributed_account]
     }).catch((err: BusinessError) => {
-      console.error('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+      console.error(`getOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
       // [StartExclude view_the_login_information_of_a_distributed_account]
       this.message = 'Failed to get distributed account on the specified system account: ' + JSON.stringify(err);
       // [EndExclude view_the_login_information_of_a_distributed_account]
@@ -134,12 +134,12 @@ struct Index {
 
     // [Start unbind_the_specified_distributed_account_from_the_target_system_account]
     distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
-      console.log('setOsAccountDistributedInfoByLocalId successfully');
+      console.info('setOsAccountDistributedInfoByLocalId successfully');
       // [StartExclude unbind_the_specified_distributed_account_from_the_target_system_account]
       this.message = 'Successfully logged out and unbound distributed account on the specified system account'
       // [EndExclude unbind_the_specified_distributed_account_from_the_target_system_account]
     }).catch((err: BusinessError) => {
-      console.error('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+      console.error(`setOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
       // [StartExclude unbind_the_specified_distributed_account_from_the_target_system_account]
       this.message = 'Failed to log out and unbind distributed account on the specified system account'
       // [EndExclude unbind_the_specified_distributed_account_from_the_target_system_account]

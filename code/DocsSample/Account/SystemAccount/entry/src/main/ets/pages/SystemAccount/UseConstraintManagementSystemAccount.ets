@@ -35,12 +35,12 @@ struct UseConstraintManagementSystemAccount {
     // [Start system_account_constraint]
     try {
       accountManager.setOsAccountConstraints(localId, constraint, true);
-      console.log('setOsAccountConstraints successfully');
+      console.info('setOsAccountConstraints successfully');
       // [StartExclude system_account_constraint]
       this.message = 'Successfully set the constraint list for the specified system account';
       // [EndExclude system_account_constraint]
     } catch (err) {
-      console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+      console.error(`setOsAccountConstraints failed, error: code is ${err.code}, message is ${err.message}`);
       // [StartExclude system_account_constraint]
       this.message = 'Failed to set the constraint list for the specified system account';
       // [EndExclude system_account_constraint]
@@ -54,15 +54,16 @@ struct UseConstraintManagementSystemAccount {
     let constraint: string = 'constraint.wifi.set';
     // [End specify_the_system_account_id_and_constraint_name]
     // [Start check_whether_the_specified_constraint_is_enabled]
-    let isEnabled: boolean = await accountManager.isOsAccountConstraintEnabled(localId, constraint);
-    if (isEnabled) {
-      // your business logic
-      // [StartExclude check_whether_the_specified_constraint_is_enabled]
-      this.message = 'Set the constraint list for the specified system account';
-    } else {
-      this.message = 'Can not set the constraint list for the specified system account';
-      // [EndExclude check_whether_the_specified_constraint_is_enabled]
-    }
+    accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
+      if (isEnabled) {
+        // your business logic
+        // [StartExclude check_whether_the_specified_constraint_is_enabled]
+        this.message = 'Set the constraint list for the specified system account';
+      } else {
+        this.message = 'Can not set the constraint list for the specified system account';
+        // [EndExclude check_whether_the_specified_constraint_is_enabled]
+      }
+    });
     // [End check_whether_the_specified_constraint_is_enabled]
   }
 

@@ -11,6 +11,42 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "GetDrawableDescriptor_label",
+      "value": "映射 Drawable 示例"
+    },
+    {
+      "name": "GetDrawableDescriptor_label2",
+      "value": "ArkTS侧创建的DrawableDescriptor映射到Native侧"
+    },
+    {
+      "name": "GetDrawableDescriptor_button1",
+      "value": "方式1:GetDrawableDescriptorFromNapiValue"
+    },
+    {
+      "name": "GetDrawableDescriptor_result1",
+      "value": "测试结果：方式1映射DrawableDescriptor成功"
+    },
+    {
+      "name": "GetDrawableDescriptor_result2",
+      "value": "测试结果：方式1映射DrawableDescriptor失败"
+    },
+    {
+      "name": "GetDrawableDescriptor_button2",
+      "value": "方式2:GetDrawableDescriptorFromResourceNapiValue"
+    },
+    {
+      "name": "GetDrawableDescriptor_result3",
+      "value": "测试结果：方式2映射DrawableDescriptor成功"
+    },
+    {
+      "name": "GetDrawableDescriptor_result4",
+      "value": "测试结果：方式2映射DrawableDescriptor失败"
+    },
+    {
+      "name": "GetDrawableDescriptor_result0",
+      "value": "测试结果："
     }
   ]
 }

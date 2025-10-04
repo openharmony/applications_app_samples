@@ -37,6 +37,13 @@ struct MenuIndex {
       { title: 'Scroll', url: 'pages/page_scroll' },
       { title: 'Refresh', url: 'pages/page_refresh' },
       { title: 'List', url: 'pages/page_list' },
+      { title: 'Public', url: 'pages/page_public_event' },
+      { title: 'Progress', url: 'pages/page_progress' },
+      { title: 'DatePicker', url: 'pages/page_date_picker' },
+      { title: 'Image', url: 'pages/page_image' },
+      { title: 'TextPicker', url: 'pages/page_text_picker' },
+      { title: 'CalendarPicker', url: 'pages/page_calendar_picker' },
+      { title: 'ImageAnimator', url: 'pages/page_image_animator' },
     ];
 
   build() {

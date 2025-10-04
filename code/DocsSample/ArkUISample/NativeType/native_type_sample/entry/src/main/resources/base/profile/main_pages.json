@@ -20,6 +20,13 @@
     "pages/page_grid",
     "pages/page_scroll",
     "pages/page_refresh",
-    "pages/page_list"
+    "pages/page_list",
+    "pages/page_public_event",
+    "pages/page_progress",
+    "pages/page_text_picker",
+    "pages/page_date_picker",
+    "pages/page_image",
+    "pages/page_calendar_picker",
+    "pages/page_image_animator"
   ]
 }

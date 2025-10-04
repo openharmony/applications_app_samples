@@ -36,18 +36,17 @@ struct Index {
     };
     // [End parameter_preparation]
     // [Start create_an_app_account_based_on_the_name_and_options]
-    try {
-      await appAccountManager.createAccount(name, options);
-      console.log('createAccount successfully');
+    appAccountManager.createAccount(name, options).then(()=>{
+      console.info('createAccount successfully');
       // [StartExclude create_an_app_account_based_on_the_name_and_options]
       this.message = 'Account creation successful';
       // [EndExclude create_an_app_account_based_on_the_name_and_options]
-    } catch (err) {
-      console.error('createAccount failed, error: ' + JSON.stringify(err));
+    }).catch((err: BusinessError)=>{
+       console.error(`createAccount failed, error: code is ${err.code}, message is ${err.message}`);
       // [StartExclude create_an_app_account_based_on_the_name_and_options]
       this.message = 'Account creation failed: ' + JSON.stringify(err);
       // [EndExclude create_an_app_account_based_on_the_name_and_options]
-    }
+    });
     // [End create_an_app_account_based_on_the_name_and_options]
   }
 
@@ -59,7 +58,7 @@ struct Index {
       this.message = 'Query account result: ' + data[0].name;
       // [EndExclude query_the_account_list]
     }).catch((err: BusinessError) => {
-      console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
+      console.error(`getAllAccounts failed, code is ${err.code}, message is ${err.message}`);
       // [StartExclude query_the_account_list]
       this.message = 'Query account failed: ' + JSON.stringify(err);
       // [EndExclude query_the_account_list]
@@ -76,9 +75,9 @@ struct Index {
 
     // [Start set_the_credentials_for_your_account]
     await appAccountManager.setCredential(name, credentialType, credential).then(() => {
-      console.log('setCredential successfully');
+      console.info('setCredential successfully');
     }).catch((err: BusinessError) => {
-      console.error('setCredential failed: ' + JSON.stringify(err));
+      console.error(`setCredential failed: code is ${err.code}, message is ${err.message}`);
       // [StartExclude set_the_credentials_for_your_account]
       this.message = 'Failed to set account credentials: ' + JSON.stringify(err);
       // [EndExclude set_the_credentials_for_your_account]
@@ -87,12 +86,12 @@ struct Index {
 
     // [Start obtain_the_credentials_for_your_account]
     appAccountManager.getCredential(name, credentialType).then((data: string) => {
-      console.log('getCredential successfully, data: ' + data);
+      console.info('getCredential successfully, data: ' + data);
       // [StartExclude obtain_the_credentials_for_your_account]
       this.message = 'Successfully set account credentials: ' + data;
       // [EndExclude obtain_the_credentials_for_your_account]
     }).catch((err: BusinessError) => {
-      console.error('getCredential failed, error: ' + JSON.stringify(err));
+      console.error(`getCredential failed, code is ${err.code}, message is ${err.message}`);
       // [StartExclude obtain_the_credentials_for_your_account]
       this.message = 'Failed to query account credentials: ' + JSON.stringify(err);
       // [EndExclude obtain_the_credentials_for_your_account]
@@ -108,9 +107,9 @@ struct Index {
     // [End prepare_parameters_specify_the_account_name_and_custom_key_values]
     // [Start set_up_custom_data_for_your_account]
     await appAccountManager.setCustomData(name, key, value).then(() => {
-      console.log('setCustomData successfully');
+      console.info('setCustomData successfully');
     }).catch((err: BusinessError) => {
-      console.error('setCustomData failed: ' + JSON.stringify(err));
+      console.error(`setCustomData failed: code is ${err.code}, message is ${err.message}`);
       // [StartExclude set_up_custom_data_for_your_account]
       this.message = 'Failed to set custom account credentials: ' + JSON.stringify(err);
       // [EndExclude set_up_custom_data_for_your_account]
@@ -118,12 +117,12 @@ struct Index {
     // [End set_up_custom_data_for_your_account]
     // [Start obtain_the_custom_data_of_the_account]
     appAccountManager.getCustomData(name, key).then((data: string) => {
-      console.log('getCustomData successfully, data: ' + data);
+      console.info('getCustomData successfully, data: ' + data);
       // [StartExclude obtain_the_custom_data_of_the_account]
       this.message = 'Successfully set custom account credentials, ' + key + ' is ' + data;
       // [EndExclude obtain_the_custom_data_of_the_account]
     }).catch((err: BusinessError) => {
-      console.error('getCustomData failed, error: ' + JSON.stringify(err));
+      console.error(`getCustomData failed, code is ${err.code}, message is ${err.message}`);
       // [StartExclude obtain_the_custom_data_of_the_account]
       this.message = 'Failed to query custom account credentials: ' + JSON.stringify(err);
       // [EndExclude obtain_the_custom_data_of_the_account]
@@ -140,9 +139,9 @@ struct Index {
     // [End prepare_parameters_to_specify_the_account_name_account_owner_authorization_type_and_authorization_token]
     // [Start set_the_authorization_token_for_the_specified_authorization_type]
     await appAccountManager.setAuthToken(name, authType, token).then(() => {
-      console.log('setAuthToken successfully');
+      console.info('setAuthToken successfully');
     }).catch((err: BusinessError) => {
-      console.error('setAuthToken failed: ' + JSON.stringify(err));
+      console.error(`setAuthToken failed: code is ${err.code}, message is ${err.message}`);
       // [StartExclude set_the_authorization_token_for_the_specified_authorization_type]
       this.message = 'Failed to store account authorization token: ' + JSON.stringify(err);
       // [EndExclude set_the_authorization_token_for_the_specified_authorization_type]
@@ -150,12 +149,12 @@ struct Index {
     // [End set_the_authorization_token_for_the_specified_authorization_type]
     // [Start obtain_an_authorization_token_for_the_specified_authorization_type]
     await appAccountManager.getAuthToken(name, owner, authType).then((data: string) => {
-      console.log('getAuthToken successfully, data: ' + data);
+      console.info('getAuthToken successfully, data: ' + data);
       // [StartExclude obtain_an_authorization_token_for_the_specified_authorization_type]
       this.message = 'Successfully stored account authorization token: ' + data;
       // [EndExclude obtain_an_authorization_token_for_the_specified_authorization_type]
     }).catch((err: BusinessError) => {
-      console.error('getAuthToken failed, error: ' + JSON.stringify(err));
+      console.error(`getAuthToken failed, code is ${err.code}, message is ${err.message}`);
       // [StartExclude obtain_an_authorization_token_for_the_specified_authorization_type]
       this.message = 'Failed to get account authorization token: ' + JSON.stringify(err);
       // [EndExclude obtain_an_authorization_token_for_the_specified_authorization_type]
@@ -167,12 +166,12 @@ struct Index {
     // [Start delete_account]
     let name: string = 'ZhangSan';
     appAccountManager.removeAccount(name).then(() => {
-      console.log('removeAccount successfully');
+      console.info('removeAccount successfully');
       // [StartExclude delete_account]
       this.message = 'removeAccount successfully';
       // [EndExclude delete_account]
     }).catch((err: BusinessError) => {
-      console.error('removeAccount failed, error: ' + JSON.stringify(err));
+      console.error(`removeAccount failed, code is ${err.code}, message is ${err.message}`);
       // [StartExclude delete_account]
       this.message = 'Account removal failed: ' + JSON.stringify(err);
       // [EndExclude delete_account]

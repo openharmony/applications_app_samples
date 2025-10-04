@@ -33,8 +33,8 @@ struct ManageSystemAccounts {
     let type: osAccount.OsAccountType = osAccount.OsAccountType.NORMAL;
 
     accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-      console.log('createOsAccount err:' + JSON.stringify(err));
-      console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
+      console.info(`createOsAccount code is ${err.code}, message is ${err.message}`);
+      console.info('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
       // [StartExclude specify_nickname_and_type_information_to_create_system_account]
       if (!err) {
         this.message = 'Account creation successful. Account name: ' + JSON.stringify(osAccountInfo.localName);
@@ -50,8 +50,8 @@ struct ManageSystemAccounts {
   private async findAllOsAccount(): Promise<void> {
     // [Start query_the_full_account]
     accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
-      console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
-      console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
+      console.info(`queryAllCreatedOsAccounts code is ${err.code}, message is ${err.message}`);
+      console.info('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
       // [StartExclude query_the_full_account]
       if (!err) {
         this.message = 'Query account successful. Account name:' + JSON.stringify(accountArr[0].localName);
@@ -67,8 +67,8 @@ struct ManageSystemAccounts {
     // [Start query_information_of_the_specified_account]
     let localId: number = 100;
     accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
-      console.log('queryOsAccountById err:' + JSON.stringify(err));
-      console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
+      console.info(`queryOsAccountById code is ${err.code}, message is ${err.message}`);
+      console.info('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
       // [StartExclude query_information_of_the_specified_account]
       if (!err) {
         this.message = 'Query account successful. Account name for account 100: ' + JSON.stringify(accountInfo.localName);
@@ -92,7 +92,7 @@ struct ManageSystemAccounts {
       '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
 
     accountManager.setOsAccountProfilePhoto(localId, newPhoto, (err: BusinessError)=>{
-      console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
+      console.info(`setOsAccountProfilePhoto code is ${err.code}, message is ${err.message}`);
       // [StartExclude change_system_account_avatar]
       if(!err) {
         this.message = 'Successfully updated system account avatar'
@@ -113,12 +113,12 @@ struct ManageSystemAccounts {
     let newName: string = 'Tom';
     accountManager.setOsAccountName(localId, newName, (err: BusinessError) => {
       if (err) {
-        console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
+        console.error(`setOsAccountName failed, code is ${err.code}, message is ${err.message}`);
         // [StartExclude change_system_account_name]
         this.message = 'Failed to modify system account name: ' + JSON.stringify(err);
         // [EndExclude change_system_account_name]
       } else {
-        console.log('setOsAccountName successfully');
+        console.info('setOsAccountName successfully');
         // [StartExclude change_system_account_name]
         this.message = 'Successfully modified system account name';
         // [EndExclude change_system_account_name]
@@ -140,7 +140,7 @@ struct ManageSystemAccounts {
         this.message = 'Failed to activate system account: ' + err.code;
         // [EndExclude activate_system_account]
       } else {
-        console.log('activateOsAccount successfully');
+        console.info('activateOsAccount successfully');
         // [StartExclude activate_system_account]
         this.message = 'Successfully activated system account'
         // [EndExclude activate_system_account]
@@ -155,12 +155,12 @@ struct ManageSystemAccounts {
     localId = this.createLocalId;
     accountManager.removeOsAccount(localId, (err: BusinessError)=>{
       if (err) {
-        console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
+        console.error(`removeOsAccount failed, code is ${err.code}, message is ${err.message}`);
         // [StartExclude delete_the_specified_account]
         this.message = 'Failed to delete system account: ' + JSON.stringify(err);
         // [EndExclude delete_the_specified_account]
       } else {
-        console.log('removeOsAccount successfully');
+        console.info('removeOsAccount successfully');
         // [StartExclude delete_the_specified_account]
         this.message = 'Successfully deleted system account'
         // [EndExclude delete_the_specified_account]
