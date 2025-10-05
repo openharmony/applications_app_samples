@@ -9,6 +9,9 @@
 | 首页 | Text页面                                              | Swiper页面                                              | Public页面                                              |
 | ---- | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 |      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> | <img src="./screenshots/page_public.jpg" width="300"/> |
+| Button页面                                           | Slider页面                                           |HoverMode AreaType页面            |Checkbox ShapeType页面                    |
+|----------------------------------------------------|----------------------------------------------------| ------------------------------------------------------- |------------------------------------------------------- |
+| <img src="./screenshots/button.jpeg" width="300"/> | <img src="./screenshots/slider.jpeg" width="300"/> | <img src="./screenshots/hovermode.jpeg" width="300"/> |<img src="./screenshots/checkbox_shape_circle.jpeg" width="300"/> |
 
 | Progress页面                                         | CalendarPicker页面                                              |
 | ---------------------------------------------------- | ------------------------------------------------------- |
@@ -33,6 +36,11 @@
 9. 点击CalendarPicker选择框进入CalendarPicker组件的CAPI接口展示界面；
 10. 点击Image选择框进入Image组件的CAPI接口展示界面；
 11. 点击ImageAnimator选择框进入ImageAnimator组件的CAPI接口展示界面；
+12. 点击Button选择框进入Button组件的CAPI接口展示界面；
+13. 点击Slider选择框进入Slider组件的CAPI接口展示界面； 
+14. 点击CheckboxShape选择框进入checkbox组件的CAPI接口展示界面； 
+15. 点击HoverModeAreaType选择框进入HoverModeArea组件的CAPI接口展示界面；
+
 
 ## 工程目录
 
@@ -46,7 +54,11 @@ entry/src/main/ets/
     ├── page_public_event.ets (通用属性页面)
     ├── page_swiper.ets (滑动容器页面)
     ├── page_animation.ets (动效界面)
+    ├── page_button.ets (按钮界面)
     ├── page_visual_effects.ets (视效界面)
+    ├── page_slider.ets (滑块界面)
+    ├── page_checkbox_shape.ets (复选框形状界面)
+    ├── page_hovermode_areatype.ets (悬停模式区域类型界面)
     ├── page_progress.ets (进度条页面)
     ├── page_calendar_picker.ets (日历选择器页面)
     ├── page_date_picker.ets (日期选择器页面)
@@ -78,8 +90,12 @@ entry/src/main/
 |   ├── baseUtils.h
 |   ├── PublicEvent.cpp
 |   ├── PublicEvent.h
+|   ├── ButtonMaker.cpp
+|   ├── ButtonMaker.h
 |   ├── SwiperMaker.cpp
 |   ├── SwiperMaker.h
+|   ├── SliderMaker.cpp
+|   ├── SliderMaker.h
 |   ├── TextMaker.cpp
 │   ├── TextMaker.h
 |   ├── AccessibilityMaker.cpp
@@ -87,7 +103,11 @@ entry/src/main/
 |   ├── NodeManager.cpp
 │   ├── NodeManager.h
 |   ├── EmbeddedComponentMaker.cpp
-│   └── EmbeddedComponentMaker.h
+│   ├── EmbeddedComponentMaker.h
+|   ├── CheckboxShapeMaker.cpp
+│   ├── CheckboxShapeMaker.h
+|   ├── HoverModeAreaTypeMaker.cpp
+│   └── HoverModeAreaTypeMaker.h
 └── resources
     ├── base
     │   ├── element

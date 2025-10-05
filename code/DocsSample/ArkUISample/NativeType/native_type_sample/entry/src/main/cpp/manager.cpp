@@ -16,6 +16,8 @@
 #include "manager.h"
 #include "ArkUIAnimationNode.h"
 #include "ArkUIVisualEffectsNode.h"
+#include "ButtonMaker.h"
+#include "SliderMaker.h"
 #include "SwiperMaker.h"
 #include "TextMaker.h"
 #include "AccessibilityMaker.h"
@@ -26,6 +28,8 @@
 #include "RefreshMaker.h"
 #include "ScrollMaker.h"
 #include "PublicEvent.h"
+#include "CheckboxShapeMaker.h"
+#include "HoverModeAreaTypeMaker.h"
 #include "baseUtils.h"
 #include "XComponentMaker.h"
 #include "napi/native_api.h"
@@ -41,6 +45,8 @@ namespace ConstIde {
     const uint32_t NUMBER_0 = 0;
     const uint32_t NUMBER_1 = 1;
     const uint32_t NUMBER_2 = 2;
+    const uint32_t NUMBER_3 = 3;
+    const uint32_t NUMBER_4 = 4;
     const uint32_t MARGIN_NUMBER_30 = 30;
 }
 
@@ -483,6 +489,128 @@ napi_value Manager::createNativeXComponentNode(napi_env env, napi_callback_info 
     };
     OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
 
+    return nullptr;
+}
+
+napi_value Manager::CreateNativeCheckboxShapePage(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_2;
+    napi_value args[ConstIde::NUMBER_2] = {nullptr, 0};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
+    }
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    int32_t type;
+    napi_get_value_int32(env, args[1], &type);
+
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "OH_ArkUI_GetBasicNodeAPI after");
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = CheckboxShapeMaker::SetCheckboxProperties(type);
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::CreateHoverModeAreaTypePage(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode env or info is null");
+        return nullptr;
+    }
+
+    size_t argCnt = ConstIde::NUMBER_2;
+    napi_value args[ConstIde::NUMBER_2] = {nullptr, 0};
+
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    int32_t type;
+    napi_get_value_int32(env, args[1], &type);
+
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "OH_ArkUI_GetBasicNodeAPI after");
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = HoverModeAreaTypeMaker::SetHoverModeAreaType(type);
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::CreateNativeButtonNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_2;
+    napi_value args[ConstIde::NUMBER_2] = {nullptr, 0};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+
+    int32_t type = ConstIde::NUMBER_0;
+    napi_get_value_int32(env, args[ConstIde::NUMBER_1], &type);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "OH_ArkUI_GetBasicNodeAPI after");
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = ButtonMaker::SetButtonProperties(type);
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
+    return nullptr;
+}
+
+napi_value Manager::CreateNativeSliderNode(napi_env env, napi_callback_info info)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode BEGIN");
+    if ((env == nullptr) || (info == nullptr)) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode env or info is null");
+        return nullptr;
+    }
+    size_t argCnt = ConstIde::NUMBER_4;
+    napi_value args[ConstIde::NUMBER_4] = {nullptr, 0, 0, 0};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
+    }
+
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[ConstIde::NUMBER_0], &nodeContentHandle);
+    int32_t blockStyle = ConstIde::NUMBER_0;
+    napi_get_value_int32(env, args[ConstIde::NUMBER_1], &blockStyle);
+    int32_t direction = ConstIde::NUMBER_0;
+    napi_get_value_int32(env, args[ConstIde::NUMBER_2], &direction);
+    int32_t style = ConstIde::NUMBER_0;
+    napi_get_value_int32(env, args[ConstIde::NUMBER_3], &style);
+    
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "OH_ArkUI_GetBasicNodeAPI after");
+    if (nodeAPI_ != nullptr) {
+        if (nodeAPI_->createNode != nullptr && nodeAPI_->addChild != nullptr) {
+            ArkUI_NodeHandle testNode = SliderMaker::SetSliderProperties(blockStyle, direction, style);
+            OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
+        }
+    }
     return nullptr;
 }
 

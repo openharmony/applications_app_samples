@@ -20,6 +20,7 @@
 #include <arkui/native_node.h>
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
+#include <arkui/native_dialog.h>
 #include <hilog/log.h>
 #include <js_native_api.h>
 #include <js_native_api_types.h>
@@ -74,6 +75,10 @@ public:
     static napi_value CreateScrollNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateRefreshNativeNode(napi_env env, napi_callback_info info);
     static napi_value CreateListNativeNode(napi_env env, napi_callback_info info);
+    static napi_value CreateNativeButtonNode(napi_env env, napi_callback_info info);
+    static napi_value CreateNativeSliderNode(napi_env env, napi_callback_info info);
+    static napi_value CreateNativeCheckboxShapePage(napi_env env, napi_callback_info info);
+    static napi_value CreateHoverModeAreaTypePage(napi_env env, napi_callback_info info);
     static napi_value createPublicNativeNode(napi_env env, napi_callback_info info);
 
 private:
