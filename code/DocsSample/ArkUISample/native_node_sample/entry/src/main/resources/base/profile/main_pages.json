@@ -10,6 +10,7 @@
     "pages/page_list",
     "pages/page_xcomponent",
     "pages/page_public_event",
+    "pages/page_form",
     "pages/page_imagespan"
   ]
 }

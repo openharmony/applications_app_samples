@@ -14,6 +14,7 @@
     <th>Grid</th>
     <th>Scroll</th>
     <th>Refresh</th>
+    <th>Form</th>
     <th>List</th>
     <th>Public</th>
     <th>XComponent</th>
@@ -27,6 +28,7 @@
     <td><img src="./screenshot/grid.jpeg"></td>
     <td><img src="./screenshot/scroll.jpeg"></td>
     <td><img src="./screenshot/refresh.jpeg"></td>
+    <td><img src="./screenshot/form.jpeg"></td>
     <td><img src="./screenshot/list.jpeg"></td>
     <td><img src="./screenshot/native-node-public.jpg"></td>
     <td><img src="./screenshot/xcomponent.jpeg"></td>
@@ -40,6 +42,7 @@
 3. 点击Text选择框进入Text组件的CAPI接口展示界面；
 4. 点击Swiper选择框进入Swiper组件的CAPI接口展示界面；
 5. 点击Public选择框进入通用属性的CAPI接口展示界面；
+6. 点击Form选择框进入表单组件的CAPI接口展示界面；
 
 
 ## 工程目录
@@ -52,6 +55,8 @@ entry/src/main/cpp/
 ├── baseUtils.cpp
 ├── baseUtils.h
 ├── CMakeLists.txt (CMake脚本)
+├── form_manager.cpp
+├── form_manager.h
 ├── GridMaker.cpp
 ├── GridMaker.h
 ├── imagespan_manager.cpp
@@ -92,6 +97,7 @@ entry/src/main/ets/
 │   └── EntryBackupAbility.ets
 └── pages
     ├── Index.ets          (获取导航页面)
+    ├── page_form.ets      (Form页面)
     ├── page_grid.ets      (Grid页面)
     ├── page_imagespan.ets (imagespan页面)
     ├── page_list.ets      (List页面)
