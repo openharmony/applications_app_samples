@@ -89,12 +89,12 @@ void StartDataLoadingSecond(ArkUI_DragEvent* dragEvent)
         bool resultUdmf = OH_UdmfData_HasType(data, UDMF_META_GENERAL_FILE);
         if (resultUdmf) {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                "NODE_ON_DROP has UDMF_META_IMAGE");
+                "NODE_ON_DROP has UDMF_META_GENERAL_FILE");
             unsigned int recordsCount = 0;
             OH_UdmfRecord **records = OH_UdmfData_GetRecords(data, &recordsCount);
             // 获取records中的元素
             int returnStatus;
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "recordsCount= %{public}d",
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "recordsCount = %{public}d",
                 recordsCount);
             for (int i = 0; i < recordsCount; i++) {
                 // 从OH_UdmfRecord中获取文件类型数据
@@ -102,7 +102,7 @@ void StartDataLoadingSecond(ArkUI_DragEvent* dragEvent)
                 returnStatus = OH_UdmfRecord_GetFileUri(records[i], imageValue);
                 const char *fileUri = OH_UdsFileUri_GetFileUri(imageValue);
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                    "returnStatus=%{public}d fileUri=%{public}s", returnStatus, fileUri);
+                    "returnStatus = %{public}d fileUri = %{public}s", returnStatus, fileUri);
                 // 使用结束后销毁指针
                 OH_UdsFileUri_Destroy(imageValue);
             }
@@ -117,6 +117,7 @@ void StartDataLoadingSecond(ArkUI_DragEvent* dragEvent)
     OH_ArkUI_DragEvent_StartDataLoading(dragEvent, params, key, UDMF_KEY_BUFFER_LEN);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
         "OH_ArkUI_DragEvent_StartDataLoading key = %{public}s", key);
+    OH_UdmfGetDataParams_Destroy(params);
 }
 
 void GetSecondDragResult(ArkUI_DragEvent* dragEvent)
@@ -273,6 +274,7 @@ void SecondModule(ArkUI_NodeHandle &root)
     auto dragText = nodeAPI->createNode(ARKUI_NODE_TEXT);
     SetTextAttribute(dragText, "请长按拖拽图像", TEXT_FONT_SIZE_15, SIZE_140, SIZE_20);
     dragImage = nodeAPI->createNode(ARKUI_NODE_IMAGE);
+    SetId(dragImage, "dragImage");
     SetCommonAttribute(dragImage, SIZE_140, SIZE_140, DEFAULT_BG_COLOR, BLANK_5);
     SetImageSrc(dragImage, "/resources/seagull.png");
     OH_ArkUI_SetNodeDraggable(dragImage, true);
@@ -289,6 +291,7 @@ void SecondModule(ArkUI_NodeHandle &root)
     auto dropText = nodeAPI->createNode(ARKUI_NODE_TEXT);
     SetTextAttribute(dropText, "拖拽落入区域", TEXT_FONT_SIZE_15, SIZE_140, SIZE_20);
     dropImage = nodeAPI->createNode(ARKUI_NODE_IMAGE);
+    SetId(dropImage, "dropImage");
     SetCommonAttribute(dropImage, SIZE_140, SIZE_140, DEFAULT_BG_COLOR, BLANK_5);
     SetBorderWidth(dropImage, BORDER_WIDTH_1);
     OH_ArkUI_SetNodeDraggable(dropImage, false);

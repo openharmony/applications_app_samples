@@ -372,6 +372,7 @@ void DragAreaFirst(ArkUI_NodeHandle &column1)
     nodeAPI->addChild(dragRow1, dragColumn);
     
     dragText1 = nodeAPI->createNode(ARKUI_NODE_TEXT);
+    SetId(dragText1, "dragText_1");
     SetText(dragText1, "drag me", TEXT_FONT_SIZE_20);
     nodeAPI->registerNodeEvent(dragText1, NODE_ON_PRE_DRAG, 1, nullptr);
     nodeAPI->registerNodeEvent(dragText1, NODE_ON_DRAG_START, 1, nullptr);
@@ -385,6 +386,7 @@ void DragAreaFirst(ArkUI_NodeHandle &column1)
     auto unDropTitle = nodeAPI->createNode(ARKUI_NODE_TEXT);
     SetTextAttribute(unDropTitle, "不可拖拽落入区域", TEXT_FONT_SIZE_15, SIZE_140, SIZE_20);
     auto unDropArea = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetId(unDropArea, "unDropArea_1");
     SetCommonAttribute(unDropArea, SIZE_140, SIZE_50, DEFAULT_BG_COLOR, BLANK_5);
     SetBorderWidth(unDropArea, BORDER_WIDTH_1);
     SetColumnJustifyContent(unDropArea, ARKUI_FLEX_ALIGNMENT_CENTER);
@@ -407,6 +409,7 @@ void DropAreaFirst1(ArkUI_NodeHandle &dragRow2)
     SetText(dropTitle1, "拖拽落入区域", TEXT_FONT_SIZE_15);
     
     dropArea1 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetId(dropArea1, "dropArea1_1");
     SetCommonAttribute(dropArea1, SIZE_140, SIZE_200, DEFAULT_BG_COLOR, BLANK_5);
     SetBorderWidth(dropArea1, BORDER_WIDTH_1);
     SetColumnJustifyContent(dropArea1, ARKUI_FLEX_ALIGNMENT_SPACE_AROUND);
@@ -425,6 +428,7 @@ void DropAreaFirst1(ArkUI_NodeHandle &dragRow2)
     nodeAPI->addChild(dropColumn1, dropArea1);
     
     auto unDropArea1 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetId(unDropArea1, "unDropArea1_1");
     SetCommonAttribute(unDropArea1, SIZE_120, SIZE_70, DEFAULT_BG_COLOR, BLANK_5);
     SetBorderWidth(unDropArea1, BORDER_WIDTH_1);
     SetColumnJustifyContent(unDropArea1, ARKUI_FLEX_ALIGNMENT_CENTER);
@@ -446,6 +450,7 @@ void DropAreaFirst2(ArkUI_NodeHandle &dragRow2)
     auto dropTitle2 = nodeAPI->createNode(ARKUI_NODE_TEXT);
     SetText(dropTitle2, "拖拽落入区域", TEXT_FONT_SIZE_15);
     dropArea2 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetId(dropArea2, "dropArea2_1");
     SetCommonAttribute(dropArea2, SIZE_140, SIZE_200, DEFAULT_BG_COLOR, BLANK_5);
     SetBorderWidth(dropArea2, BORDER_WIDTH_1);
     SetColumnJustifyContent(dropArea2, ARKUI_FLEX_ALIGNMENT_SPACE_AROUND);
@@ -464,6 +469,7 @@ void DropAreaFirst2(ArkUI_NodeHandle &dragRow2)
     nodeAPI->addChild(dropColumn2, dropArea2);
     
     auto unDropArea2 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetId(unDropArea2, "unDropArea2_1");
     SetCommonAttribute(unDropArea2, SIZE_120, SIZE_70, DEFAULT_BG_COLOR, BLANK_5);
     SetBorderWidth(unDropArea2, BORDER_WIDTH_1);
     SetColumnJustifyContent(unDropArea2, ARKUI_FLEX_ALIGNMENT_CENTER);
@@ -506,6 +512,7 @@ void FirstModule(ArkUI_NodeHandle &root)
     DisplayInfo(column1);
     
     auto resetButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    SetId(resetButton, "reset");
     SetButtonLabel(resetButton, "复位");
     nodeAPI->registerNodeEvent(resetButton, NODE_ON_CLICK_EVENT, 1, nullptr);
     nodeAPI->addNodeEventReceiver(resetButton, [](ArkUI_NodeEvent *event) {
