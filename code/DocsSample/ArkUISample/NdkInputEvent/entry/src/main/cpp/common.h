@@ -258,6 +258,15 @@ void SetButtonLabel(ArkUI_NodeHandle &node, const char *label)
     nodeAPI->setAttribute(node, NODE_BUTTON_LABEL, &NODE_Button_SRC_Item);
 }
 
+void SetId(ArkUI_NodeHandle &node, const char *id)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_AttributeItem idItem = {.string = id};
+    nodeAPI->setAttribute(node, NODE_ID, &idItem);
+}
+
 } // namespace NativeXComponentSample
 
 #endif // DRAGANDDROP_COMMON_H
