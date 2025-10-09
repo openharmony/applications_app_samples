@@ -6,6 +6,10 @@
 
 普通对象跨线程时通过拷贝形式传递，两个线程的对象内容一致，但是指向各自线程的隔离内存区间，被分配在各自线程的虚拟机本地堆（LocalHeap）。例如Ecmascript262规范定义的Object、Array、Map等对象是通过这种方式实现跨并发实例通信的。
 
+#### 高性能容器类对象
+
+高性能容器类对象在跨线程传递时，通过序列化的形式，确保两个线程的内容一致，但各自指向线程的隔离内存区间。目前序列化支持的容器类型包括TreeSet。
+
 #### ArrayBuffer对象
 
 ArrayBuffer内部包含一块Native内存，该ArrayBuffer的JS对象壳被分配在虚拟机本地堆（LocalHeap）。与普通对象一样，需要经过序列化与反序列化拷贝传递，但是Native内存有两种传输方式：拷贝和转移。
@@ -18,9 +22,11 @@ SharedArrayBuffer内部包含一块Native内存，其JS对象壳被分配在虚�
 
 Transferable对象（也称为NativeBinding对象）指的是一个JS对象，绑定了一个C++对象，且主体功能由C++提供，其JS对象壳被分配在虚拟机本地堆（LocalHeap）。跨线程传输时可以直接复用同一个C++对象，相比于JS对象的拷贝模式，传输效率较高。因此，可共享或转移的NativeBinding对象也被称为Transferable对象。
 
+
 该工程中展示的代码详细描述可查如下链接：
 
 - [普通对象](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/arkts-utils/normal-object.md)
+- [高性能容器类对象](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/arkts-utils/container-object.md)
 - [ArrayBuffer对象](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/arkts-utils/arraybuffer-object.md)
 - [SharedArrayBuffer对象](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/arkts-utils/shared-arraybuffer-object.md)
 - [Transferable对象（NativeBinding对象）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/arkts-utils/transferabled-object.md)
@@ -46,6 +52,7 @@ entry/src/
  │   │   ├── entrybackupability
  │   │   ├── managers
  │   │       ├── ArrayBufferObject.ets       // ArrayBuffer对象示例代码
+ │   │       ├── ContainerObject.ets         // 容器对象示例代码
  │   │       ├── NormalObject.ets            // 普通对象示例代码
  │   │       ├── pixelMapTest.ets            // Transferable对象示例代码
  │   │       ├── SharedArrayBufferObject.ets // SharedArrayBuffer对象示例代码

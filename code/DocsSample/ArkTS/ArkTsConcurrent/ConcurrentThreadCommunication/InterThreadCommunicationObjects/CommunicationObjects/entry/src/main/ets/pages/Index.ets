@@ -47,6 +47,10 @@ struct Index {
           buttonName: resource.resourceToString($r('app.string.Transferabled_Object')),
           buttonUrl: 'managers/TransferabledObject'
         });
+        CommonButton({
+          buttonName: resource.resourceToString($r('app.string.Container_Object')),
+          buttonUrl: 'managers/ContainerObject'
+        });
       }
       .padding('20vp')
       .width('100%')

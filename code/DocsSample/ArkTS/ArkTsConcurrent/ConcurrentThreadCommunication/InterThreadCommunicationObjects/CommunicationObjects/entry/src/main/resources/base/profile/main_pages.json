@@ -4,6 +4,7 @@
     "managers/NormalObject",
     "managers/ArrayBufferObject",
     "managers/SharedArrayBufferObject",
-    "managers/TransferabledObject"
+    "managers/TransferabledObject",
+    "managers/ContainerObject"
   ]
 }

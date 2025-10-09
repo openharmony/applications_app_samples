@@ -31,6 +31,10 @@
     {
       "name": "Transferabled_Object",
       "value": "Transferable对象"
+    },
+    {
+      "name": "Container_Object",
+      "value": "高性能容器类对象"
     }
   ]
 }
