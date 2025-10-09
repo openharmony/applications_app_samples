@@ -153,7 +153,7 @@ struct ManageDomainAccountsPlugin {
       // [StartExclude call_the_api_to_register_the_plug_in]
       this.message = 'Successfully registered plugin';
       // [EndExclude call_the_api_to_register_the_plug_in]
-    } catch catch (e) {
+    } catch (e) {
       const err = e as BusinessError;
       console.error(`registerPlugin err: code is ${err.code}, message is ${err.message}`);
       // [StartExclude call_the_api_to_register_the_plug_in]

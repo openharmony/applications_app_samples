@@ -14,7 +14,7 @@
  */
 
 // [Start import_system_account_module]
-import { osAccount } from '@kit.BasicServicesKit';
+import { osAccount, BusinessError } from '@kit.BasicServicesKit';
 // [End import_system_account_module]
 import { router } from '@kit.ArkUI';
 
@@ -39,7 +39,8 @@ struct UseConstraintManagementSystemAccount {
       // [StartExclude system_account_constraint]
       this.message = 'Successfully set the constraint list for the specified system account';
       // [EndExclude system_account_constraint]
-    } catch (err) {
+    } catch (e) {
+      const err = e as BusinessError;
       console.error(`setOsAccountConstraints failed, error: code is ${err.code}, message is ${err.message}`);
       // [StartExclude system_account_constraint]
       this.message = 'Failed to set the constraint list for the specified system account';
