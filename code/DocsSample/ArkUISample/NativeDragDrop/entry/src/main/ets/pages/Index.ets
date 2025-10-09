@@ -63,16 +63,11 @@ struct Index {
       title()
       Scroll() {
         Column({space: 10}) {
-          // Text('Native实现：')
-
           NativeDragDropExample()
-
-          // Text('上述内容为Native实现。')
-          // Text('ArkUI构建详情……')
         }
-        // .margin(10)
         .alignItems(HorizontalAlign.Start)
       }
+      .id('scroll')
       .layoutWeight(1)
     }
     .width('100%')

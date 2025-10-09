@@ -33,7 +33,7 @@ void DragStatusListener(ArkUI_DragAndDropInfo *info, void *userData)
     auto dragStatus = OH_ArkUI_DragAndDropInfo_GetDragStatus(info);
     auto dragEvent = OH_ArkUI_DragAndDropInfo_GetDragEvent(info);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "DragStatusListener called");
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "dragStatus = %{public}d, dragEvent = %{public}s",
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "dragStatus = %{public}d, &dragEvent = %{public}p",
                  dragStatus, dragEvent);
 }
 
@@ -197,12 +197,14 @@ void ThirdModule(ArkUI_NodeHandle &root)
     nodeAPI->addChild(column3, dragRow);
 
     dragButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    SetId(dragButton, "dragBt3");
     SetCommonAttribute(dragButton, SIZE_70, SIZE_50, 0xFFFF0000, BLANK_20);
     SetButtonLabel(dragButton, "拖起");
     nodeAPI->registerNodeEvent(dragButton, NODE_ON_TOUCH_INTERCEPT, 1, nullptr);
     nodeAPI->addChild(dragRow, dragButton);
 
     dropButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    SetId(dropButton, "dropBt3");
     SetCommonAttribute(dropButton, SIZE_140, SIZE_50, 0xFFFF0000, BLANK_20);
     SetButtonLabel(dropButton, "拖拽至此处");
     nodeAPI->registerNodeEvent(dropButton, NODE_ON_DROP, 1, nullptr);

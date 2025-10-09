@@ -19,23 +19,20 @@
 #include "common.h"
 #include "container.h"
 #include <arkui/drag_and_drop.h>
-#include <arkui/native_interface.h>
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 #include <database/udmf/udmf_meta.h>
 #include <hilog/log.h>
-#include <sys/socket.h>
 namespace NativeXComponentSample {
 
 ArkUI_NodeHandle button4_1 = nullptr;
 ArkUI_NodeHandle button4_2 = nullptr;
 
-void SetTextDataLoadParams(ArkUI_DragEvent* dragEvent)
+void SetTextDataLoadParams()
 {
     // 异步传输拖拽数据
     OH_UdmfDataLoadParams *dataLoadParams = OH_UdmfDataLoadParams_Create();
     OH_UdmfDataLoadInfo *info = OH_UdmfDataLoadInfo_Create();
-    OH_UdmfDataLoadInfo_SetType(info, "general.image");
     OH_UdmfDataLoadInfo_SetRecordCount(info, 1);
     OH_UdmfDataLoadParams_SetDataLoadInfo(dataLoadParams, info);
     OH_Udmf_DataLoadHandler dataLoadHandler = [](OH_UdmfDataLoadInfo *acceptableInfo) {
@@ -57,14 +54,12 @@ void SetTextDataLoadParams(ArkUI_DragEvent* dragEvent)
         return data4;
     };
     OH_UdmfDataLoadParams_SetLoadHandler(dataLoadParams, dataLoadHandler);
-    ArkUI_ErrorCode errorCode1 = OH_ArkUI_DragEvent_SetDataLoadParams(dragEvent, dataLoadParams);
+    OH_ArkUI_DragAction_SetDataLoadParams(action, dataLoadParams);
 }
 
 void StartDataLoadingForth(ArkUI_DragEvent* dragEvent)
 {
     // 异步流程
-    int returnValue;
-
     OH_Udmf_DataProgressListener dataProgressListener = [](OH_Udmf_ProgressInfo *progressInfo,
         OH_UdmfData *data) {
         int32_t progress = OH_UdmfProgressInfo_GetProgress(progressInfo);
@@ -74,7 +69,7 @@ void StartDataLoadingForth(ArkUI_DragEvent* dragEvent)
         bool resultUdmf = OH_UdmfData_HasType(data, UDMF_META_PLAIN_TEXT);
         if (resultUdmf) {
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                "NODE_ON_DROP has UDMF_META_IMAGE");
+                "NODE_ON_DROP has UDMF_META_PLAIN_TEXT");
             unsigned int recordsCount = 0;
             OH_UdmfRecord **records = OH_UdmfData_GetRecords(data, &recordsCount);
             // 获取records中的元素
@@ -87,7 +82,7 @@ void StartDataLoadingForth(ArkUI_DragEvent* dragEvent)
                 returnStatus = OH_UdmfRecord_GetPlainText(records[i], plainTextValue);
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                     "dragTest OH_UdmfRecord_GetPlainText "
-                    "returnStatus= %{public}d",
+                    "returnStatus = %{public}d",
                     returnStatus);
                 auto getAbstract = OH_UdsPlainText_GetAbstract(plainTextValue);
                 auto getContent = OH_UdsPlainText_GetContent(plainTextValue);
@@ -126,7 +121,6 @@ void RegisterNodeEventForthReceiver1()
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
             "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
 
-        auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
         switch (eventType) {
             case NODE_ON_TOUCH_INTERCEPT: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_TOUCH_INTERCEPT EventReceiver");
@@ -134,14 +128,14 @@ void RegisterNodeEventForthReceiver1()
                 auto context = OH_ArkUI_GetContextByNode(button4_1);
                 action = OH_ArkUI_CreateDragActionWithContext(context);
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                    "OH_ArkUI_CreateDragActionWithNode returnValue = %{public}p", action);
+                    "OH_ArkUI_CreateDragActionWithContext returnValue = %{public}p", action);
                 std::vector<OH_PixelmapNative *> pixelVector;
                 // 设置pixelMap
                 SetPixelMap(pixelVector);
                 // 设置DragPreviewOption
                 SetDragPreviewOption();
                 PrintDragActionInfos();
-                SetTextDataLoadParams(dragEvent);
+                SetTextDataLoadParams();
                 // startDrag
                 int returnValue = OH_ArkUI_StartDrag(action);
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
@@ -204,12 +198,14 @@ void ForthModule(ArkUI_NodeHandle &root)
     nodeAPI->addChild(column4, row4);
 
     button4_1 = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    SetId(button4_1, "dragBt4");
     SetCommonAttribute(button4_1, SIZE_70, SIZE_50, 0xFFFF0000, BLANK_20);
     SetButtonLabel(button4_1, "拖起");
     nodeAPI->registerNodeEvent(button4_1, NODE_ON_TOUCH_INTERCEPT, 1, nullptr);
     nodeAPI->addChild(row4, button4_1);
 
     button4_2 = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    SetId(button4_2, "dropBt4");
     SetCommonAttribute(button4_2, SIZE_140, SIZE_50, 0xFFFF0000, BLANK_20);
     SetButtonLabel(button4_2, "拖拽至此处");
     nodeAPI->registerNodeEvent(button4_2, NODE_ON_DROP, 1, nullptr);
