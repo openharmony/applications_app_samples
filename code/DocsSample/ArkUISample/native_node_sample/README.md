@@ -43,7 +43,7 @@
 4. 点击Swiper选择框进入Swiper组件的CAPI接口展示界面；
 5. 点击Public选择框进入通用属性的CAPI接口展示界面；
 6. 点击Form选择框进入表单组件的CAPI接口展示界面；
-
+7. 点击ImageSpan选择框进入ImageSpan组件的CAPI接口展示界面；属性值设置为“none”时，图片效果以代码默认值展示。
 
 ## 工程目录
 

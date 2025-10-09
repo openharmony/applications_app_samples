@@ -50,6 +50,9 @@ public:
     int32_t CreateNativeNode(int32_t nodeType);
     void RemoveOldNode(int32_t nodeId);
     int32_t SetNativeNodeAttribute(int32_t nodeId, int32_t nodeType, int32_t attributeType);
+    int32_t SetNativeNodeAttribute(int32_t nodeId, int32_t nodeType, int32_t attributeType, int32_t value);
+    int32_t SetNativeNodeAttribute(int32_t nodeId, int32_t nodeType,
+        int32_t attributeType, const std::vector<float>& values);
     int32_t ResetNativeNodeAttribute(int32_t nodeId, int32_t nodeType, int32_t attributeType);
     const ArkUI_AttributeItem* GetNativeNodeAttribute(int32_t nodeId, int32_t nodeType, int32_t attributeType);
     

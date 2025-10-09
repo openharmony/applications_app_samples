@@ -62,6 +62,7 @@ struct Index {
   @State curNodeType: string = '未设置';
   @State attributeType: string = '未设置';
   @State attributeTypeId: number = -1;
+  @State attributeValue: string = '-1';
   @State resultValue: string = '-1';
   @State curAttrStatus: number = -1;
   private nodeContent = new NodeContent();
@@ -197,6 +198,38 @@ struct Index {
       MenuItem({ content: 'SYNC_LOAD' }).width('50%').onChange(()=> {
         this.attributeType = 'SYNC_LOAD'
         this.attributeTypeId = 4012
+      })
+      MenuItem({ content: 'SOURCE_SIZE' }).width('50%').onChange(()=> {
+        this.attributeType = 'SOURCE_SIZE'
+        this.attributeTypeId = 4013
+      })
+      MenuItem({ content: 'IMAGE_MATRIX' }).width('50%').onChange(()=> {
+        this.attributeType = 'IMAGE_MATRIX'
+        this.attributeTypeId = 4014
+      })
+      MenuItem({ content: 'MATCH_TEXT_DIRECTION' }).width('50%').onChange(()=> {
+        this.attributeType = 'MATCH_TEXT_DIRECTION'
+        this.attributeTypeId = 4015
+      })
+      MenuItem({ content: 'COPY_OPTION' }).width('50%').onChange(()=> {
+        this.attributeType = 'COPY_OPTION'
+        this.attributeTypeId = 4016
+      })
+      MenuItem({ content: 'ENABLE_ANALYZER' }).width('50%').onChange(()=> {
+        this.attributeType = 'ENABLE_ANALYZER'
+        this.attributeTypeId = 4017
+      })
+      MenuItem({ content: 'DYNAMIC_RANGE_MODE' }).width('50%').onChange(()=> {
+        this.attributeType = 'DYNAMIC_RANGE_MODE'
+        this.attributeTypeId = 4018
+      })
+      MenuItem({ content: 'HDR_BRIGHTNESS' }).width('50%').onChange(()=> {
+        this.attributeType = 'HDR_BRIGHTNESS'
+        this.attributeTypeId = 4019
+      })
+      MenuItem({ content: 'ORIENTATION' }).width('50%').onChange(()=> {
+        this.attributeType = 'ORIENTATION'
+        this.attributeTypeId = 4020
       })
     }
   }
@@ -508,7 +541,20 @@ struct Index {
           Text(`返回属性值: ${this.resultValue}`)
             .fontSize(14)
             .margin(5)
-
+          Row() {
+            Text('属性值:')
+              .alignSelf(ItemAlign.End)
+              .fontSize(14)
+            TextInput({ placeholder: '请输入属性值', text: this.attributeValue })
+              .width('60%')
+              .height(40)
+              .onChange((value: string) => {
+                this.attributeValue = value;
+              })
+          }
+          .width('100%')
+          .margin(20)
+          .justifyContent(FlexAlign.End)
 
           Button('设置属性值')
             .width('50%')
@@ -518,7 +564,7 @@ struct Index {
               () => {
                 this.curAttrStatus = -1;
                 this.curAttrStatus = napiAgent.setImageSpanAttribute(this.nodeId, getNodeType(this.curNodeType),
-                  this.attributeTypeId);
+                  this.attributeTypeId, this.attributeValue);
                 console.log('-----setNativeNodeAttribute,attributeTypeId:' + this.attributeTypeId +
                   ' ,curAttrStatus:' + this.curAttrStatus);
               }
