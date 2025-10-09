@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_SCROLL_NODE_H
-#define SCROLLABLENDK_SCROLL_NODE_H
+#ifndef SCROLLABLE_COMPONENTS_SCROLL_H
+#define SCROLLABLE_COMPONENTS_SCROLL_H
 
 #include <cstdint>
 #include <functional>
@@ -25,25 +25,34 @@
 
 #include "common/ArkUINode.h"
 #include "common/ArkUIUtils.h"
-#include "common/ArkUIScrollEvent.h"
-
-namespace ScrollableNDK {
+#include "common/ArkUIScrollEvents.h"
 
 /**
  * @brief ArkUI Scroll 节点轻封装
  */
-class ArkUIScrollNode {
+class Scroll {
 public:
     using OnScrollState = std::function<void(ArkUI_ScrollState state)>;
     using OnWillScroll = std::function<void(float dx, float dy, ArkUI_ScrollState state, ArkUI_ScrollSource src)>;
     using OnDidScroll = std::function<void(float dx, float dy, ArkUI_ScrollState state)>;
 
-    void SetOnScrollStateChanged(OnScrollState cb) { onState_ = std::move(cb); }
-    void SetOnWillScroll(OnWillScroll cb) { onWill_ = std::move(cb); }
-    void SetOnDidScroll(OnDidScroll cb) { onDid_ = std::move(cb); }
+    void SetOnScrollStateChanged(OnScrollState cb)
+    {
+        onState_ = std::move(cb);
+    }
+    void SetOnWillScroll(OnWillScroll cb)
+    {
+        onWill_ = std::move(cb);
+    }
+    void SetOnDidScroll(OnDidScroll cb)
+    {
+        onDid_ = std::move(cb);
+    }
+
+    static ArkUI_NodeHandle CreateScrollableInfiniteScroll();
 
 public:
-    ArkUIScrollNode()
+    Scroll()
     {
         OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, api_);
         scroll_ = api_->createNode(ARKUI_NODE_SCROLL);
@@ -51,7 +60,7 @@ public:
         scrollGuard_.Bind(api_, scroll_, this, SCROLL_EVT_ALL);
     }
 
-    ~ArkUIScrollNode()
+    ~Scroll()
     {
         scrollGuard_.Release();
         scroll_ = nullptr;
@@ -59,9 +68,18 @@ public:
     }
 
     // ===== 通用布局/外观 =====
-    void SetWidthPercent(float percent) { Utils::SetAttributeFloat32(api_, scroll_, NODE_WIDTH_PERCENT, percent); }
-    void SetHeightPercent(float percent) { Utils::SetAttributeFloat32(api_, scroll_, NODE_HEIGHT_PERCENT, percent); }
-    void SetBackgroundColor(uint32_t color) { Utils::SetAttributeUInt32(api_, scroll_, NODE_BACKGROUND_COLOR, color); }
+    void SetWidthPercent(float percent)
+    {
+        SetAttributeFloat32(api_, scroll_, NODE_WIDTH_PERCENT, percent);
+    }
+    void SetHeightPercent(float percent)
+    {
+        SetAttributeFloat32(api_, scroll_, NODE_HEIGHT_PERCENT, percent);
+    }
+    void SetBackgroundColor(uint32_t color)
+    {
+        SetAttributeUInt32(api_, scroll_, NODE_BACKGROUND_COLOR, color);
+    }
 
     void SetDirection(ArkUI_ScrollDirection direction)
     {
@@ -110,7 +128,10 @@ public:
         api_->setAttribute(scroll_, NODE_SCROLL_ENABLE_SCROLL_INTERACTION, &it);
     }
 
-    void SetFriction(float friction) { Utils::SetAttributeFloat32(api_, scroll_, NODE_SCROLL_FRICTION, friction); }
+    void SetFriction(float friction)
+    {
+        SetAttributeFloat32(api_, scroll_, NODE_SCROLL_FRICTION, friction);
+    }
 
     void SetNestedMode(ArkUI_ScrollNestedMode mode)
     {
@@ -237,7 +258,10 @@ public:
         }
     }
 
-    ArkUI_NodeHandle GetScroll() const { return scroll_; }
+    ArkUI_NodeHandle GetScroll() const
+    {
+        return scroll_;
+    }
 
 private:
     inline void HandleScrollStateChanged(const ArkUI_NodeComponentEvent *comp)
@@ -299,7 +323,7 @@ private:
         if (!ev) {
             return;
         }
-        auto *self = reinterpret_cast<ArkUIScrollNode *>(OH_ArkUI_NodeEvent_GetUserData(ev));
+        auto *self = reinterpret_cast<Scroll *>(OH_ArkUI_NodeEvent_GetUserData(ev));
         if (!self) {
             return;
         }
@@ -339,7 +363,4 @@ private:
     OnWillScroll onWill_{};
     OnDidScroll onDid_{};
 };
-
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_SCROLL_NODE_H
+#endif // SCROLLABLE_COMPONENTS_SCROLL_H

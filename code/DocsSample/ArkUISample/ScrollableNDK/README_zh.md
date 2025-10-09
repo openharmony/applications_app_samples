@@ -6,9 +6,24 @@
 
 ### 效果预览
 
-| 首页                                  | 列表类组件目录                            | 列表中显示数据示例                            |
-|-------------------------------------|------------------------------------|------------------------------------|
-| ![](screenshots/device/image1.jpeg) | ![](screenshots/device/image2.jpeg) | ![](screenshots/device/image3.jpeg) |
+<table>
+  <tr>
+    <th>首页</th>
+    <th>WaterFlow</th>
+    <th>Grid</th>
+    <th>Scroll</th>
+    <th>Refresh</th>
+    <th>List</th>
+  </tr>
+  <tr>
+    <td><img src="./screenshots/index.jpeg"></td>
+    <td><img src="./screenshots/waterflow01.jpeg"></td>
+    <td><img src="./screenshots/grid01.jpeg"></td>
+    <td><img src="./screenshots/scroll01.jpeg"></td>
+    <td><img src="./screenshots/refresh01.jpeg"></td>
+    <td><img src="./screenshots/list01.jpeg"></td>
+  </tr>
+</table>
 
 ### 使用说明
 
@@ -130,7 +145,7 @@ entry/src/main
 
 2.本示例为Stage模型，支持API20版本full-SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0 Release。
 
-3.本示例需要使用DevEco Studio 6.0.0 beta5 (Build Version: 6.0.0.848, built on September 12, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 
 ### 下载
 

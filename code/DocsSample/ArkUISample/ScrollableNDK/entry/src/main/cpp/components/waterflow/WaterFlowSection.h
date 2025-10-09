@@ -13,12 +13,10 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_WATERFLOW_SECTION_H
-#define SCROLLABLENDK_WATERFLOW_SECTION_H
+#ifndef SCROLLABLE_COMPONENTS_WATERFLOW_SECTION_H
+#define SCROLLABLE_COMPONENTS_WATERFLOW_SECTION_H
 
 #include <arkui/native_node.h>
-
-namespace ScrollableNDK {
 
 struct SectionOption {
     int32_t itemsCount = 0;
@@ -32,7 +30,9 @@ struct SectionOption {
 
 class WaterFlowSection {
 public:
-    WaterFlowSection() : sectionOptions_(OH_ArkUI_WaterFlowSectionOption_Create()) {}
+    WaterFlowSection() : sectionOptions_(OH_ArkUI_WaterFlowSectionOption_Create())
+    {
+    }
 
     ~WaterFlowSection()
     {
@@ -40,9 +40,15 @@ public:
         sectionOptions_ = nullptr;
     }
 
-    void Resize(int32_t size) { OH_ArkUI_WaterFlowSectionOption_SetSize(sectionOptions_, size); }
+    void Resize(int32_t size)
+    {
+        OH_ArkUI_WaterFlowSectionOption_SetSize(sectionOptions_, size);
+    }
 
-    int32_t Size() const { return OH_ArkUI_WaterFlowSectionOption_GetSize(sectionOptions_); }
+    int32_t Size() const
+    {
+        return OH_ArkUI_WaterFlowSectionOption_GetSize(sectionOptions_);
+    }
 
     void SetSection(ArkUI_WaterFlowSectionOption *opts, int32_t index, const SectionOption &s)
     {
@@ -77,12 +83,13 @@ public:
         return s;
     }
 
-    ArkUI_WaterFlowSectionOption *GetSectionOptions() const { return sectionOptions_; }
+    ArkUI_WaterFlowSectionOption *GetSectionOptions() const
+    {
+        return sectionOptions_;
+    }
 
 private:
     ArkUI_WaterFlowSectionOption *sectionOptions_ = nullptr;
 };
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_WATERFLOW_SECTION_H
+#endif // SCROLLABLE_COMPONENTS_WATERFLOW_SECTION_H

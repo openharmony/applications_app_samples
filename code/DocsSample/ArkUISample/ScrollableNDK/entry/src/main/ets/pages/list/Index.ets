@@ -16,14 +16,13 @@
 import { CompletedRoutableCard } from '../../common/Card';
 import { AlphabetIndexedList } from './AlphabetIndexedList';
 import { Route } from '../../common/Route';
-import resource from '../../common/Resource';
 
 export const List_ROUTE_PREFIX: string = 'list';
 
 const routes: Route[] = [
   {
     name: `${List_ROUTE_PREFIX}/AlphabetIndexedList`,
-    title: resource.resourceToString($r('app.string.AlphabetIndexedList_title')),
+    title: $r('app.string.AlphabetIndexedList_title'),
     description: $r('app.string.AlphabetIndexedList_description')
   },
 ];

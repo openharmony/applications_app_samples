@@ -10,3 +10,5 @@
 /.clang-tidy
 **/.test
 /.appanalyzer
+*-lock.json5
+**/*-lock.json5

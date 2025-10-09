@@ -13,13 +13,11 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_COMMON_ARKUISCROLLEVENT_H
-#define SCROLLABLENDK_COMMON_ARKUISCROLLEVENT_H
+#ifndef SCROLLABLE_COMMON_ARKUISCROLLEVENTS_H
+#define SCROLLABLE_COMMON_ARKUISCROLLEVENTS_H
 
 #include <cstdint>
 #include <arkui/native_node.h>
-
-namespace ScrollableNDK {
 
 /**
  * 滚动事件掩码
@@ -129,6 +127,4 @@ private:
     bool armed_ = false;
 };
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_COMMON_ARKUISCROLLEVENT_H
+#endif // SCROLLABLE_COMMON_ARKUISCROLLEVENTS_H

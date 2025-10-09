@@ -14,13 +14,10 @@
  */
 
 #include "ArkUIUtils.h"
-#include "ArkUIConstants.h"
 
 #include <array>
 #include <chrono>
 #include <thread>
-
-namespace ScrollableNDK::Utils {
 
 // ------------------------------
 // 常量
@@ -34,8 +31,18 @@ constexpr int K_EDGE_LEFT = 3;
 
 constexpr int K_ENABLED = 1;
 
+constexpr float K_PERCENT_FULL = 1.0f;
+
+constexpr uint32_t K_COLOR_TRANSPARENT = 0x00000000U;
+constexpr float K_DEFAULT_SCROLL_BAR_WIDTH = 4.0f;
+constexpr uint32_t K_DEFAULT_SCROLL_BAR_COLOR = 0x66000000U;
+constexpr float K_DEFAULT_SCROLL_FRICTION = 0.015f;
+constexpr int32_t K_DEFAULT_FADING_EDGE = 12;
+
 // 属性数组的最大容量（替代魔法值 8）
 constexpr int K_MAX_ATTR_VALUES = 8;
+
+constexpr unsigned int K_LOG_DOMAIN = 0xFF00;
 
 struct NodeAttrTarget {
     ArkUI_NativeNodeAPI_1 *api;
@@ -62,21 +69,17 @@ bool IsValidRange(int32_t start, int32_t end, int32_t count)
     return true;
 }
 
-bool ValidateApiAndNode(ArkUI_NativeNodeAPI_1* api,
-                        ArkUI_NodeHandle node,
-                        const char* functionName)
+bool ValidateApiAndNode(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, const char *functionName)
 {
     if (!IsNotNull(api)) {
         if (functionName != nullptr) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG,
-                         "%{public}s: api is null", functionName);
+            OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "%{public}s: api is null", functionName);
         }
         return false;
     }
     if (!IsNotNull(node)) {
         if (functionName != nullptr) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG,
-                         "%{public}s: node is null", functionName);
+            OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "%{public}s: node is null", functionName);
         }
         return false;
     }
@@ -86,58 +89,54 @@ bool ValidateApiAndNode(ArkUI_NativeNodeAPI_1* api,
 // ------------------------------
 // 通用属性设置
 // ------------------------------
-void SetAttributeFloat32(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node,
-                         ArkUI_NodeAttributeType attr, float value)
+void SetAttributeFloat32(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, ArkUI_NodeAttributeType attr, float value)
 {
     if (!ValidateApiAndNode(api, node, "SetAttributeFloat32")) {
         return;
     }
-    ArkUI_NumberValue numberValue {};
+    ArkUI_NumberValue numberValue{};
     numberValue.f32 = value;
 
-    ArkUI_AttributeItem item { &numberValue, 1 };
+    ArkUI_AttributeItem item{&numberValue, 1};
     api->setAttribute(node, attr, &item);
 }
 
-void SetAttributeUInt32(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node,
-                        ArkUI_NodeAttributeType attr, uint32_t value)
+void SetAttributeUInt32(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, ArkUI_NodeAttributeType attr, uint32_t value)
 {
     if (!ValidateApiAndNode(api, node, "SetAttributeUInt32")) {
         return;
     }
-    ArkUI_NumberValue numberValue {};
+    ArkUI_NumberValue numberValue{};
     numberValue.u32 = value;
 
-    ArkUI_AttributeItem item { &numberValue, 1 };
+    ArkUI_AttributeItem item{&numberValue, 1};
     api->setAttribute(node, attr, &item);
 }
 
-void SetAttributeInt32(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node,
-                       ArkUI_NodeAttributeType attr, int32_t value)
+void SetAttributeInt32(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, ArkUI_NodeAttributeType attr, int32_t value)
 {
     if (!ValidateApiAndNode(api, node, "SetAttributeInt32")) {
         return;
     }
-    ArkUI_NumberValue numberValue {};
+    ArkUI_NumberValue numberValue{};
     numberValue.i32 = value;
 
-    ArkUI_AttributeItem item { &numberValue, 1 };
+    ArkUI_AttributeItem item{&numberValue, 1};
     api->setAttribute(node, attr, &item);
 }
 
-void SetAttributeString(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node,
-                        ArkUI_NodeAttributeType attr, const char* value)
+void SetAttributeString(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, ArkUI_NodeAttributeType attr,
+                        const char *value)
 {
     if (!ValidateApiAndNode(api, node, "SetAttributeString")) {
         return;
     }
     if (!IsNotNull(value)) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG,
-                     "SetAttributeString: value is null");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "SetAttributeString: value is null");
         return;
     }
 
-    ArkUI_AttributeItem item { nullptr, 0, value };
+    ArkUI_AttributeItem item{nullptr, 0, value};
     api->setAttribute(node, attr, &item);
 }
 
@@ -148,7 +147,7 @@ static void ApplyFloatArrayAttribute(const NodeAttrTarget &target, const float *
         return;
     }
     if (values == nullptr || count <= 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG, "%{public}s: invalid values",
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "%{public}s: invalid values",
                      target.debugName ? target.debugName : "ApplyFloatArrayAttribute");
         return;
     }
@@ -156,7 +155,7 @@ static void ApplyFloatArrayAttribute(const NodeAttrTarget &target, const float *
     std::array<ArkUI_NumberValue, K_MAX_ATTR_VALUES> buf{};
     int capped = count;
     if (capped > static_cast<int>(buf.size())) {
-        OH_LOG_Print(LOG_APP, LOG_WARN, Constants::K_LOG_DOMAIN, LOG_TAG, "%{public}s: count too large=%{public}d",
+        OH_LOG_Print(LOG_APP, LOG_WARN, K_LOG_DOMAIN, LOG_TAG, "%{public}s: count too large=%{public}d",
                      target.debugName ? target.debugName : "ApplyFloatArrayAttribute", count);
         capped = static_cast<int>(buf.size());
     }
@@ -171,49 +170,43 @@ static void ApplyFloatArrayAttribute(const NodeAttrTarget &target, const float *
 // ------------------------------
 // 尺寸 / 背景
 // ------------------------------
-void SetSize(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node, float width, float height)
+void SetSize(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, float width, float height)
 {
     SetAttributeFloat32(api, node, NODE_WIDTH, width);
     SetAttributeFloat32(api, node, NODE_HEIGHT, height);
 }
 
-void SetSizePercent(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node,
-                    float widthPercent, float heightPercent)
+void SetSizePercent(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, float widthPercent, float heightPercent)
 {
     SetAttributeFloat32(api, node, NODE_WIDTH_PERCENT, widthPercent);
     SetAttributeFloat32(api, node, NODE_HEIGHT_PERCENT, heightPercent);
 }
 
-void SetFullSize(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node)
+void SetFullSize(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node)
 {
-    SetSizePercent(api, node, Constants::K_PERCENT_FULL, Constants::K_PERCENT_FULL);
+    SetSizePercent(api, node, K_PERCENT_FULL, K_PERCENT_FULL);
 }
 
-void SetBackgroundColor(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node, uint32_t color)
+void SetBackgroundColor(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, uint32_t color)
 {
     SetAttributeUInt32(api, node, NODE_BACKGROUND_COLOR, color);
 }
 
-void SetTransparentBackground(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node)
+void SetTransparentBackground(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node)
 {
-    SetBackgroundColor(api, node, Constants::K_COLOR_TRANSPARENT);
+    SetBackgroundColor(api, node, K_COLOR_TRANSPARENT);
 }
 
 void SetPadding(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, const Padding &padding)
 {
-    const float vals[K_EDGES] = {
-        padding.top,
-        padding.right,
-        padding.bottom,
-        padding.left
-    };
+    const float vals[K_EDGES] = {padding.top, padding.right, padding.bottom, padding.left};
     ApplyFloatArrayAttribute(NodeAttrTarget{api, node, NODE_PADDING, "SetPadding"}, vals, K_EDGES);
 }
 
 // ------------------------------
 // 文本
 // ------------------------------
-ArkUI_NodeHandle CreateTextNode(ArkUI_NativeNodeAPI_1* api, const char* text)
+ArkUI_NodeHandle CreateTextNode(ArkUI_NativeNodeAPI_1 *api, const char *text)
 {
     if (!IsNotNull(api) || !IsNotNull(text)) {
         return nullptr;
@@ -228,8 +221,8 @@ ArkUI_NodeHandle CreateTextNode(ArkUI_NativeNodeAPI_1* api, const char* text)
     return textNode;
 }
 
-void SetTextStyle(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle textNode,
-                  float fontSize, uint32_t fontColor, int32_t textAlign)
+void SetTextStyle(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle textNode, float fontSize, uint32_t fontColor,
+                  int32_t textAlign)
 {
     if (!ValidateApiAndNode(api, textNode, "SetTextStyle")) {
         return;
@@ -239,7 +232,7 @@ void SetTextStyle(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle textNode,
     SetAttributeInt32(api, textNode, NODE_TEXT_ALIGN, textAlign);
 }
 
-void SetTextContent(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle textNode, const char* text)
+void SetTextContent(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle textNode, const char *text)
 {
     SetAttributeString(api, textNode, NODE_TEXT_CONTENT, text);
 }
@@ -247,15 +240,13 @@ void SetTextContent(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle textNode, const
 // ------------------------------
 // 滚动
 // ------------------------------
-void SetScrollBarStyle(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node,
-                       bool visible, float width, uint32_t color)
+void SetScrollBarStyle(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node, bool visible, float width, uint32_t color)
 {
     if (!ValidateApiAndNode(api, node, "SetScrollBarStyle")) {
         return;
     }
 
-    int32_t displayMode = visible ? ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO
-                                  : ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF;
+    int32_t displayMode = visible ? ARKUI_SCROLL_BAR_DISPLAY_MODE_AUTO : ARKUI_SCROLL_BAR_DISPLAY_MODE_OFF;
     SetAttributeInt32(api, node, NODE_SCROLL_BAR_DISPLAY_MODE, displayMode);
     if (visible) {
         SetAttributeFloat32(api, node, NODE_SCROLL_BAR_WIDTH, width);
@@ -263,19 +254,17 @@ void SetScrollBarStyle(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node,
     }
 }
 
-void SetDefaultScrollStyle(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node)
+void SetDefaultScrollStyle(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node)
 {
     if (!ValidateApiAndNode(api, node, "SetDefaultScrollStyle")) {
         return;
     }
-    SetScrollBarStyle(api, node, true,
-                      Constants::K_DEFAULT_SCROLL_BAR_WIDTH,
-                      Constants::K_DEFAULT_SCROLL_BAR_COLOR);
+    SetScrollBarStyle(api, node, true, K_DEFAULT_SCROLL_BAR_WIDTH, K_DEFAULT_SCROLL_BAR_COLOR);
     SetAttributeInt32(api, node, NODE_SCROLL_EDGE_EFFECT, ARKUI_EDGE_EFFECT_SPRING);
     SetAttributeInt32(api, node, NODE_SCROLL_ENABLE_SCROLL_INTERACTION, K_ENABLED);
-    SetAttributeFloat32(api, node, NODE_SCROLL_FRICTION, Constants::K_DEFAULT_SCROLL_FRICTION);
+    SetAttributeFloat32(api, node, NODE_SCROLL_FRICTION, K_DEFAULT_SCROLL_FRICTION);
     SetAttributeInt32(api, node, NODE_SCROLL_NESTED_SCROLL, ARKUI_SCROLL_NESTED_MODE_SELF_FIRST);
-    SetAttributeInt32(api, node, NODE_SCROLL_FADING_EDGE, Constants::K_DEFAULT_FADING_EDGE);
+    SetAttributeInt32(api, node, NODE_SCROLL_FADING_EDGE, K_DEFAULT_FADING_EDGE);
 }
 
 // ------------------------------
@@ -370,12 +359,11 @@ void AddNodeToContent(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node)
 // ------------------------------
 // NodeEventRegistrar
 // ------------------------------
-NodeEventRegistrar::NodeEventRegistrar(ArkUI_NativeNodeAPI_1* api, ArkUI_NodeHandle node)
+NodeEventRegistrar::NodeEventRegistrar(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle node)
     : nodeApi_(api), nodeHandle_(node)
 {
     if (!ValidateApiAndNode(api, node, "NodeEventRegistrar::Constructor")) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG,
-                     "NodeEventRegistrar: invalid api or node");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "NodeEventRegistrar: invalid api or node");
     }
 }
 
@@ -390,7 +378,7 @@ NodeEventRegistrar::~NodeEventRegistrar()
     registeredEventTypes_.clear();
 }
 
-void NodeEventRegistrar::RegisterEvent(ArkUI_NodeEventType eventType, void* userData)
+void NodeEventRegistrar::RegisterEvent(ArkUI_NodeEventType eventType, void *userData)
 {
     if (!ValidateApiAndNode(nodeApi_, nodeHandle_, "NodeEventRegistrar::RegisterEvent")) {
         return;
@@ -399,8 +387,7 @@ void NodeEventRegistrar::RegisterEvent(ArkUI_NodeEventType eventType, void* user
     registeredEventTypes_.push_back(eventType);
 }
 
-void NodeEventRegistrar::RegisterMultipleEvents(std::initializer_list<ArkUI_NodeEventType> eventTypes,
-                                                void* userData)
+void NodeEventRegistrar::RegisterMultipleEvents(std::initializer_list<ArkUI_NodeEventType> eventTypes, void *userData)
 {
     for (ArkUI_NodeEventType eventType : eventTypes) {
         RegisterEvent(eventType, userData);
@@ -410,25 +397,22 @@ void NodeEventRegistrar::RegisterMultipleEvents(std::initializer_list<ArkUI_Node
 // ------------------------------
 // AdapterEventRegistrar
 // ------------------------------
-AdapterEventRegistrar::AdapterEventRegistrar(ArkUI_NodeAdapterHandle adapter,
-                                             void* userData,
-                                             void (*callback)(ArkUI_NodeAdapterEvent*))
+AdapterEventRegistrar::AdapterEventRegistrar(ArkUI_NodeAdapterHandle adapter, void *userData,
+                                             void (*callback)(ArkUI_NodeAdapterEvent *))
     : adapterHandle_(adapter)
 {
     if (!IsNotNull(adapterHandle_)) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG,
-                     "AdapterEventRegistrar: adapter is null");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "AdapterEventRegistrar: adapter is null");
         return;
     }
     if (!IsNotNull(callback)) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG,
-                     "AdapterEventRegistrar: callback is null");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG, "AdapterEventRegistrar: callback is null");
         return;
     }
 
     int32_t result = OH_ArkUI_NodeAdapter_RegisterEventReceiver(adapterHandle_, userData, callback);
     if (result != 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, Constants::K_LOG_DOMAIN, LOG_TAG,
+        OH_LOG_Print(LOG_APP, LOG_ERROR, K_LOG_DOMAIN, LOG_TAG,
                      "AdapterEventRegistrar: failed to register event receiver, result=%{public}d", result);
     }
 }
@@ -439,5 +423,3 @@ AdapterEventRegistrar::~AdapterEventRegistrar()
         OH_ArkUI_NodeAdapter_UnregisterEventReceiver(adapterHandle_);
     }
 }
-
-} // namespace ScrollableNDK::Utils

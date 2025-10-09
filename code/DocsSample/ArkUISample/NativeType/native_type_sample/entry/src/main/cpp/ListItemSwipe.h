@@ -31,7 +31,9 @@
  */
 class ListItemSwipe {
 public:
-    explicit ListItemSwipe(ArkUI_NativeNodeAPI_1 *api) : api_(api) {}
+    explicit ListItemSwipe(ArkUI_NativeNodeAPI_1 *api) : api_(api)
+    {
+    }
     ~ListItemSwipe()
     {
         if (option_) {
@@ -211,8 +213,8 @@ public:
     ListItemSwipe &SetEdgeEffect(int edgeEffect /*ArkUI_ListItemSwipeEdgeEffect*/)
     {
         EnsureOption();
-        OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect(
-            option_, static_cast<ArkUI_ListItemSwipeEdgeEffect>(edgeEffect));
+        OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect(option_,
+                                                         static_cast<ArkUI_ListItemSwipeEdgeEffect>(edgeEffect));
         return *this;
     }
 
@@ -276,11 +278,23 @@ private:
         OH_ArkUI_ListItemSwipeActionOption_SetEnd(option_, endItem_);
     }
 
-    static void ThunkEnter() {}
-    static void ThunkExit() {}
-    static void ThunkAction() {}
-    static void ThunkState(ArkUI_ListItemSwipeActionState state) { (void)state; }
-    static void ThunkOffset(float offset) { (void)offset; }
+    static void ThunkEnter()
+    {
+    }
+    static void ThunkExit()
+    {
+    }
+    static void ThunkAction()
+    {
+    }
+    static void ThunkState(ArkUI_ListItemSwipeActionState state)
+    {
+        (void)state;
+    }
+    static void ThunkOffset(float offset)
+    {
+        (void)offset;
+    }
 
     static void ThunkEnterUD(void *ud)
     {

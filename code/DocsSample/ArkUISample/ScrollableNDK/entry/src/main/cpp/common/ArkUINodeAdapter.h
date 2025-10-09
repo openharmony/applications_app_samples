@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_COMMON_ARKUINODEADAPTER_H
-#define SCROLLABLENDK_COMMON_ARKUINODEADAPTER_H
+#ifndef SCROLLABLE_COMMON_ARKUINODEADAPTER_H
+#define SCROLLABLE_COMMON_ARKUINODEADAPTER_H
 
 #include <cstdint>
 #include <functional>
@@ -25,8 +25,6 @@
 #include <arkui/native_type.h>
 
 #include "ArkUIUtils.h"
-
-namespace ScrollableNDK {
 
 /**
  * 通用 NodeAdapter 封装
@@ -43,7 +41,10 @@ class ArkUINodeAdapter {
 public:
     using Callbacks = NodeAdapterCallbacks;
 
-    ArkUINodeAdapter() : placeholderNodeType_(K_INVALID_NODE_TYPE) { InitializeApiAndAdapter(); }
+    ArkUINodeAdapter() : placeholderNodeType_(K_INVALID_NODE_TYPE)
+    {
+        InitializeApiAndAdapter();
+    }
 
     explicit ArkUINodeAdapter(int32_t placeholderNodeType) : placeholderNodeType_(placeholderNodeType)
     {
@@ -58,9 +59,15 @@ public:
         adapterHandle_ = nullptr;
     }
 
-    ArkUI_NodeAdapterHandle GetAdapter() const { return adapterHandle_; }
+    ArkUI_NodeAdapterHandle GetAdapter() const
+    {
+        return adapterHandle_;
+    }
 
-    void SetPlaceholderType(int32_t placeholderNodeType) { placeholderNodeType_ = placeholderNodeType; }
+    void SetPlaceholderType(int32_t placeholderNodeType)
+    {
+        placeholderNodeType_ = placeholderNodeType;
+    }
 
     void EnsurePlaceholderTypeOr(int32_t fallbackNodeType)
     {
@@ -78,7 +85,10 @@ public:
     // ========================================
     // 数据变动通知接口
     // ========================================
-    void ReloadAllItems() { OH_ArkUI_NodeAdapter_ReloadAllItems(adapterHandle_); }
+    void ReloadAllItems()
+    {
+        OH_ArkUI_NodeAdapter_ReloadAllItems(adapterHandle_);
+    }
 
     void InsertRange(int32_t index, int32_t count)
     {
@@ -95,11 +105,31 @@ public:
         if (count <= 0) {
             return;
         }
-        if (!Utils::IsValidIndex(index, GetTotalItemCount())) {
+        if (!IsValidIndex(index, GetTotalItemCount())) {
             return;
         }
         OH_ArkUI_NodeAdapter_RemoveItem(adapterHandle_, index, count);
         SynchronizeItemCount(GetTotalItemCount());
+    }
+    
+    void NotifyItemRangeChanged(int32_t startIndex, int32_t count)
+    {
+        if (count <= 0) {
+            return;
+        }
+        int32_t totalCount = GetTotalItemCount();
+        if (!IsValidIndex(startIndex, totalCount)) {
+            return;
+        }
+        
+        int32_t actualCount = std::min(count, totalCount - startIndex);
+        OH_ArkUI_NodeAdapter_RemoveItem(adapterHandle_, startIndex, actualCount);
+        OH_ArkUI_NodeAdapter_InsertItem(adapterHandle_, startIndex, actualCount);
+    }
+    
+    void ReloadItem(int32_t index)
+    {
+        NotifyItemRangeChanged(index, 1);
     }
 
 protected:
@@ -109,7 +139,7 @@ protected:
     static void OnStaticEvent(ArkUI_NodeAdapterEvent *event)
     {
         auto *self = reinterpret_cast<ArkUINodeAdapter *>(OH_ArkUI_NodeAdapterEvent_GetUserData(event));
-        if (Utils::IsNotNull(self)) {
+        if (IsNotNull(self)) {
             self->OnEvent(event);
         }
     }
@@ -205,7 +235,7 @@ private:
         const int32_t index = OH_ArkUI_NodeAdapterEvent_GetItemIndex(event);
         uint64_t nodeId = static_cast<uint64_t>(index);
 
-        if (Utils::IsValidIndex(index, GetTotalItemCount()) && callbacks_.getStableId) {
+        if (IsValidIndex(index, GetTotalItemCount()) && callbacks_.getStableId) {
             nodeId = callbacks_.getStableId(index);
         }
         OH_ArkUI_NodeAdapterEvent_SetNodeId(event, nodeId);
@@ -216,7 +246,7 @@ private:
         const int32_t index = OH_ArkUI_NodeAdapterEvent_GetItemIndex(event);
         ArkUI_NodeHandle item = PopFromCacheOrCreate(index);
 
-        if (callbacks_.onBind && Utils::IsValidIndex(index, GetTotalItemCount())) {
+        if (callbacks_.onBind && IsValidIndex(index, GetTotalItemCount())) {
             callbacks_.onBind(nodeApi_, item, index);
         }
         OH_ArkUI_NodeAdapterEvent_SetItem(event, item);
@@ -225,7 +255,7 @@ private:
     void HandleRemoveNodeFromAdapter(ArkUI_NodeAdapterEvent *event)
     {
         ArkUI_NodeHandle node = OH_ArkUI_NodeAdapterEvent_GetRemovedNode(event);
-        if (!Utils::IsNotNull(node)) {
+        if (!IsNotNull(node)) {
             return;
         }
 
@@ -243,6 +273,4 @@ private:
     int32_t placeholderNodeType_ = K_INVALID_NODE_TYPE;
 };
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_COMMON_ARKUINODEADAPTER_H
+#endif // SCROLLABLE_COMMON_ARKUINODEADAPTER_H

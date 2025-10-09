@@ -19,7 +19,8 @@ export struct CompletedRoutableCard {
   symbol: Resource = $r('sys.symbol.label');
   @Prop
   @Require
-  title: string = '';
+  title: ResourceStr = '';
+
   @Prop
   @Require
   description: ResourceStr = '';
@@ -126,6 +127,7 @@ export struct ComponentCard {
       Text(this.title)
         .fontSize(14)
         .fontColor('#666')
+
       Row({ space: 12 }) {
         this.content();
       }

@@ -16,14 +16,13 @@
 import { CompletedRoutableCard } from '../../common/Card';
 import { RefreshList } from './RefreshList';
 import { Route } from '../../common/Route';
-import resource from '../../common/Resource';
 
 export const REFRESH_ROUTE_PREFIX: string = 'refresh';
 
 const routes: Route[] = [
   {
     name: `${REFRESH_ROUTE_PREFIX}/RefreshList`,
-    title: resource.resourceToString($r('app.string.RefreshList_title')),
+    title: $r('app.string.RefreshList_title'),
     description: $r('app.string.RefreshList_description')
   },
 ];

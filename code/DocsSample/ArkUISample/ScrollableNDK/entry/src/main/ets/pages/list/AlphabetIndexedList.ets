@@ -32,7 +32,7 @@ export struct AlphabetIndexedList {
     .backgroundColor($r('sys.color.comp_background_focus'))
     .title($r('app.string.AlphabetIndexedList_title'))
     .onAppear(() => {
-      entry.AlphabetIndexedList(this.slot);
+      entry.CreateAlphabetIndexedList(this.slot);
     })
   }
 }

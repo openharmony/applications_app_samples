@@ -1,7 +1,6 @@
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -16,7 +15,6 @@
 import { LengthMetrics } from '@kit.ArkUI';
 import { Route } from '../common/Route';
 import { RoutableCard } from '../common/Card';
-import resource from '../common/Resource';
 import { WATER_FLOW_ROUTE_PREFIX, waterFlowDestination } from './waterflow/Index';
 import { GRID_ROUTE_PREFIX, gridDestination } from './grid/Index';
 import { List_ROUTE_PREFIX as LIST_ROUTE_PREFIX, listDestination } from './list/Index';
@@ -24,26 +22,11 @@ import { REFRESH_ROUTE_PREFIX, refreshDestination } from './refresh/Index';
 import { SCROLL_ROUTE_PREFIX, scrollDestination } from './scroll/Index';
 
 const routes: Route[] = [
-  {
-    title: resource.resourceToString($r('app.string.pageIndex_WaterFlow')),
-    name: WATER_FLOW_ROUTE_PREFIX
-  },
-  {
-    title: resource.resourceToString($r('app.string.pageIndex_Grid')),
-    name: GRID_ROUTE_PREFIX
-  },
-  {
-    title: resource.resourceToString($r('app.string.pageIndex_List')),
-    name: LIST_ROUTE_PREFIX
-  },
-  {
-    title: resource.resourceToString($r('app.string.pageIndex_Refresh')),
-    name: REFRESH_ROUTE_PREFIX
-  },
-  {
-    title: resource.resourceToString($r('app.string.pageIndex_Scroll')),
-    name: SCROLL_ROUTE_PREFIX
-  },
+  { title: $r('app.string.pageIndex_WaterFlow'), name: WATER_FLOW_ROUTE_PREFIX },
+  { title: $r('app.string.pageIndex_Grid'),      name: GRID_ROUTE_PREFIX },
+  { title: $r('app.string.pageIndex_List'),      name: LIST_ROUTE_PREFIX },
+  { title: $r('app.string.pageIndex_Refresh'),   name: REFRESH_ROUTE_PREFIX },
+  { title: $r('app.string.pageIndex_Scroll'),    name: SCROLL_ROUTE_PREFIX },
 ];
 
 @Builder
@@ -64,35 +47,12 @@ function destination(name: string) {
 @Entry
 @Component
 struct Index {
-  @State condition: string = '';
   @Provide pathStack: NavPathStack = new NavPathStack();
-
-  getFilteredRoutes(): Route[] {
-    if (!this.condition) {
-      return routes;
-    }
-    return routes.filter((route: Route) => {
-      return route.title.includes(this.condition);
-    })
-  }
-
-  @LocalBuilder
-  Title() {
-    Column() {
-      Search({ value: this.condition })
-        .onChange(value => {
-          this.condition = value;
-        })
-        .margin({ start: LengthMetrics.vp(16), end: LengthMetrics.vp(16) })
-    }
-    .justifyContent(FlexAlign.Center)
-    .height('100%')
-  }
 
   build() {
     Navigation(this.pathStack) {
       List({ space: 12 }) {
-        ForEach(this.getFilteredRoutes(), (route: Route) => {
+        ForEach(routes, (route: Route) => {
           ListItem() {
             RoutableCard({ title: route.title })
           }
@@ -103,15 +63,11 @@ struct Index {
         })
       }
       .padding({ start: LengthMetrics.vp(16), end: LengthMetrics.vp(16) })
-      .contentStartOffset(56)
       .height('100%')
       .width('100%')
     }
     .backgroundColor($r('sys.color.comp_background_focus'))
-    .title({ builder: this.Title, height: 56 }, {
-      backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
-      barStyle: BarStyle.STACK
-    })
+    .title($r('app.string.app_name'))
     .navDestination(destination)
   }
 }

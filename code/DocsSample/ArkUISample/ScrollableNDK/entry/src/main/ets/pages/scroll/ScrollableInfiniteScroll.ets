@@ -15,6 +15,6 @@ export struct ScrollableInfiniteScroll {
       .padding({ left: 12, right: 12 })
     }
     .title($r('app.string.ScrollableInfiniteScroll_title'))
-    .onAppear(() => entry.ScrollableInfiniteScroll(this.rootSlot))
+    .onAppear(() => entry.CreateScrollableInfiniteScroll(this.rootSlot))
   }
 }

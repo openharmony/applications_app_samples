@@ -75,13 +75,13 @@ static ArkUI_NodeHandle CreatePage(uint32_t bg, const char *label)
     }
 
     ArkUI_NodeHandle page = gApi->createNode(ARKUI_NODE_STACK);
-    Utils::SetAttributeFloat32(gApi, page, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
-    Utils::SetAttributeFloat32(gApi, page, NODE_HEIGHT_PERCENT, K_HEIGHT_PERCENT_FULL);
-    Utils::SetAttributeUInt32(gApi, page, NODE_BACKGROUND_COLOR, bg);
+    SetAttributeFloat32(gApi, page, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
+    SetAttributeFloat32(gApi, page, NODE_HEIGHT_PERCENT, K_HEIGHT_PERCENT_FULL);
+    SetAttributeUInt32(gApi, page, NODE_BACKGROUND_COLOR, bg);
 
     ArkUI_NodeHandle text = gApi->createNode(ARKUI_NODE_TEXT);
-    Utils::SetTextContent(gApi, text, label);
-    Utils::SetAttributeFloat32(gApi, text, NODE_FONT_SIZE, K_TEXT_SIZE);
+    SetTextContent(gApi, text, label);
+    SetAttributeFloat32(gApi, text, NODE_FONT_SIZE, K_TEXT_SIZE);
 
     gApi->addChild(page, text);
     return page;
@@ -126,7 +126,10 @@ static void SyncAllTranslate()
 }
 
 // ===== 事件读取辅助 =====
-static inline float ReadDeltaPrimary(ArkUI_NodeComponentEvent *ce) { return ce->data[K_PRIMARY_DELTA_DATA_INDEX].f32; }
+static inline float ReadDeltaPrimary(ArkUI_NodeComponentEvent *ce)
+{
+    return ce->data[K_PRIMARY_DELTA_DATA_INDEX].f32;
+}
 static inline float ReadDeltaSecondary(ArkUI_NodeComponentEvent *ce)
 {
     return ce->data[K_SECONDARY_DELTA_DATA_INDEX].f32;
@@ -322,8 +325,8 @@ static void SetupScroll()
 static void SetupRootAndPages()
 {
     gRoot = gApi->createNode(ARKUI_NODE_STACK);
-    Utils::SetAttributeFloat32(gApi, gRoot, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
-    Utils::SetAttributeFloat32(gApi, gRoot, NODE_HEIGHT_PERCENT, K_HEIGHT_PERCENT_FULL);
+    SetAttributeFloat32(gApi, gRoot, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
+    SetAttributeFloat32(gApi, gRoot, NODE_HEIGHT_PERCENT, K_HEIGHT_PERCENT_FULL);
 
     gPageTop = CreatePage(K_COLOR_BROWN, "3");
     gPageMid = CreatePage(K_COLOR_BLUE, "1");
@@ -370,17 +373,17 @@ ArkUI_NodeHandle ScrollMaker::CreateNativeNode()
     if (api == nullptr) {
         return nullptr;
     }
-    
+
     ArkUI_NodeHandle page = api->createNode(ARKUI_NODE_COLUMN);
     if (page == nullptr) {
         return nullptr;
     }
-    Utils::SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
-    Utils::SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
-    
+    SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
+
     ArkUI_NodeHandle scroll = Build();
     if (scroll != nullptr) {
-        Utils::SetAttributeFloat32(api, scroll, NODE_LAYOUT_WEIGHT, 1.0f);
+        SetAttributeFloat32(api, scroll, NODE_LAYOUT_WEIGHT, 1.0f);
         api->addChild(page, scroll);
     }
 

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef SCROLLABLENDK_COMPONENTS_LIST_LISTITEMGROUPNODE_H
-#define SCROLLABLENDK_COMPONENTS_LIST_LISTITEMGROUPNODE_H
+#ifndef SCROLLABLE_COMPONENTS_LIST_LISTITEMGROUP_H
+#define SCROLLABLE_COMPONENTS_LIST_LISTITEMGROUP_H
 
 #include <memory>
 #include <arkui/native_node.h>
@@ -22,8 +22,6 @@
 
 #include "common/ArkUINode.h"
 #include "common/ArkUINodeAdapter.h"
-
-namespace ScrollableNDK {
 
 /** 轻量封装：分组节点，仅提供示例所需 API */
 class ListItemGroupNode : public BaseNode {
@@ -36,8 +34,9 @@ public:
 
     ~ListItemGroupNode() override
     {
-        if (!api_)
+        if (!api_) {
             return;
+        }
 
         // 清空 adapter
         if (adapter_) {
@@ -111,6 +110,4 @@ private:
     std::shared_ptr<BaseNode> footer_;
 };
 
-} // namespace ScrollableNDK
-
-#endif // SCROLLABLENDK_COMPONENTS_LIST_LISTITEMGROUPNODE_H
+#endif // SCROLLABLE_COMPONENTS_LIST_LISTITEMGROUP_H

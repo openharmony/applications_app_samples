@@ -121,8 +121,8 @@ static inline void BindText(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle flowIte
         return;
     }
 
-    Utils::SetTextContent(api, text, gItems[static_cast<size_t>(index)].c_str());
-    Utils::SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_FONT_SIZE);
+    SetTextContent(api, text, gItems[static_cast<size_t>(index)].c_str());
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_FONT_SIZE);
 }
 
 /**
@@ -176,7 +176,10 @@ static void MaybeAppendOnTail(int32_t index)
     g_auto.appending = false;
 }
 
-static int32_t AdapterGetTotalCount() { return static_cast<int32_t>(gItems.size()); }
+static int32_t AdapterGetTotalCount()
+{
+    return static_cast<int32_t>(gItems.size());
+}
 
 static uint64_t AdapterGetStableId(int32_t i)
 {
@@ -198,9 +201,9 @@ static ArkUI_NodeHandle AdapterOnCreate(ArkUI_NativeNodeAPI_1 *api, int32_t /*in
 
 static void AdapterOnBind(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index)
 {
-    Utils::SetAttributeFloat32(api, item, NODE_HEIGHT, MainSizeByIndex(index));
-    Utils::SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
-    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, ColorByIndex(index));
+    SetAttributeFloat32(api, item, NODE_HEIGHT, MainSizeByIndex(index));
+    SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, K_WIDTH_PERCENT_FULL);
+    SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, ColorByIndex(index));
     BindText(api, item, index);
     MaybeAppendOnTail(index);
 }
@@ -225,13 +228,13 @@ static ArkUI_NodeHandle CreateFooter()
     }
 
     ArkUI_NodeHandle text = api->createNode(ARKUI_NODE_TEXT);
-    Utils::SetTextContent(api, text, "到底啦…");
-    Utils::SetAttributeFloat32(api, text, NODE_FONT_SIZE, 14.0f);
+    SetTextContent(api, text, "到底啦…");
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, 14.0f);
 
     ArkUI_NodeHandle footer = api->createNode(ARKUI_NODE_FLOW_ITEM);
-    Utils::SetAttributeFloat32(api, footer, NODE_WIDTH_PERCENT, 1.0f);
-    Utils::SetAttributeFloat32(api, footer, NODE_HEIGHT, 48.0f);
-    Utils::SetAttributeUInt32(api, footer, NODE_BACKGROUND_COLOR, 0x11000000U);
+    SetAttributeFloat32(api, footer, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, footer, NODE_HEIGHT, 48.0f);
+    SetAttributeUInt32(api, footer, NODE_BACKGROUND_COLOR, 0x11000000U);
     api->addChild(footer, text);
     return footer;
 }
@@ -309,13 +312,13 @@ ArkUI_NodeHandle WaterFlowMaker::CreateNativeNode()
     if (!page) {
         return nullptr;
     }
-    Utils::SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
-    Utils::SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
 
     ArkUI_NodeHandle waterflow = BuildWaterFlow();
     if (waterflow) {
-        Utils::SetAttributeFloat32(api, waterflow, NODE_WIDTH_PERCENT, 1.0f);
-        Utils::SetAttributeFloat32(api, waterflow, NODE_LAYOUT_WEIGHT, 1.0f);
+        SetAttributeFloat32(api, waterflow, NODE_WIDTH_PERCENT, 1.0f);
+        SetAttributeFloat32(api, waterflow, NODE_LAYOUT_WEIGHT, 1.0f);
 
         api->addChild(page, waterflow);
     }

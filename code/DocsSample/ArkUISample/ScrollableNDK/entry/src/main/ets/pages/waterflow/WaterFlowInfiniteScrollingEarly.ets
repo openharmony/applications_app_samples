@@ -30,6 +30,6 @@ export struct WaterFlowInfiniteScrollingEarly {
       .padding({ left: 12, right: 12 })
     }
     .title($r('app.string.WaterFlowInfiniteScrollingEarly_title'))
-    .onAppear(() => entry.WaterFlowInfiniteScrollingEarly(this.rootSlot))
+    .onAppear(() => entry.CreateWaterFlowInfiniteScrollingEarly(this.rootSlot))
   }
 }

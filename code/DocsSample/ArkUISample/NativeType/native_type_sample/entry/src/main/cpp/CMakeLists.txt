@@ -14,15 +14,10 @@ include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
 file(GLOB_RECURSE ENTRY_SOURCES CONFIGURE_DEPENDS
-    "${NATIVERENDER_ROOT_PATH}/napi_init.cpp"
     "${NATIVERENDER_ROOT_PATH}/*.cpp"
-    "${NATIVERENDER_ROOT_PATH}/common/*.cpp"
-    "${NATIVERENDER_ROOT_PATH}/components/**/*.cpp"
 )
 
 add_library(entry SHARED ${ENTRY_SOURCES})
-
-find_library(hilog-lib hilog_ndk.z)
 
 find_library(
     # Sets the name of the path variable.

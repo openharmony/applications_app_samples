@@ -15,7 +15,6 @@
 
 import { CompletedRoutableCard } from '../../common/Card';
 import { Route } from '../../common/Route';
-import resource from '../../common/Resource';
 import { ScrollableGrid } from './ScrollableGrid';
 
 export const GRID_ROUTE_PREFIX: string = 'grid';
@@ -23,7 +22,7 @@ export const GRID_ROUTE_PREFIX: string = 'grid';
 const routes: Route[] = [
   {
     name: `${GRID_ROUTE_PREFIX}/ScrollableGrid`,
-    title: resource.resourceToString($r('app.string.ScrollableGrid_title')),
+    title: $r('app.string.ScrollableGrid_title'),
     description: $r('app.string.ScrollableGrid_description')
   },
 ];

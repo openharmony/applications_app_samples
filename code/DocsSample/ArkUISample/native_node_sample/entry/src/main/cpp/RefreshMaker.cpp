@@ -43,7 +43,7 @@ namespace {
 
 constexpr uint32_t K_COLOR_PAGE_BG = 0xFFF1F3F5U;
 constexpr uint32_t K_ITEM_BG_COLOR = 0xFFFFFFFFU;
-constexpr const char* K_LOADING_TEXT = "加载中…";
+constexpr const char *K_LOADING_TEXT = "加载中…";
 constexpr float K_ITEM_FONT_SIZE = 16.0f;
 
 constexpr int K_INIT_COUNT = 10;
@@ -78,11 +78,10 @@ constexpr int64_t K_FOOTER_STABLE_ID = -16;
 namespace {
 constexpr int RET_OK = 0;
 
-inline bool Ok(int rc, const char* what)
+inline bool Ok(int rc, const char *what)
 {
     if (rc != RET_OK) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG,
-                     "%{public}s failed rc=%{public}d", what, rc);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, LOG_TAG, "%{public}s failed rc=%{public}d", what, rc);
         return false;
     }
     return true;
@@ -101,10 +100,19 @@ struct RefreshListState {
     int lastTriggeredTot = -1;
     bool loading = false;
 
-    bool NoMore() const { return total >= K_MAX_ITEMS; }
+    bool NoMore() const
+    {
+        return total >= K_MAX_ITEMS;
+    }
 
-    int ItemsCount() const { return static_cast<int>(data.size()); }
-    int RenderCount() const { return ItemsCount() + (showLoadingFooter ? 1 : 0); }
+    int ItemsCount() const
+    {
+        return static_cast<int>(data.size());
+    }
+    int RenderCount() const
+    {
+        return ItemsCount() + (showLoadingFooter ? 1 : 0);
+    }
 };
 
 } // namespace
@@ -180,8 +188,8 @@ static void AppendTailBatch(const std::shared_ptr<RefreshListState> &st, int add
     st->adapter->InsertRange(base, addClamped);
 
     st->total += addClamped;
-    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG,
-                 "AppendTailBatch add=%{public}d total=%{public}d", addClamped, st->total);
+    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "AppendTailBatch add=%{public}d total=%{public}d", addClamped,
+                 st->total);
 
     if (hadFooter) {
         ToggleLoadingFooter(st, true);
@@ -215,11 +223,11 @@ static ArkUI_NodeHandle CreateListItem(ArkUI_NativeNodeAPI_1 *api)
         return nullptr;
     }
 
-    Utils::SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, 1.0f);
-    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
+    SetAttributeFloat32(api, item, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
 
     // 让文本也占满宽度
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
     return item;
 }
 
@@ -238,16 +246,16 @@ static void BindAsNormal(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, cons
     }
 
     // 背景放在 item 上
-    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
+    SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
 
     // 文本占满宽度
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
 
-    Utils::SetTextContent(api, text, txt);
-    Utils::SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
-    Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, K_ROW_HEIGHT);
-    Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_ROW_HEIGHT);
-    Utils::SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
+    SetTextContent(api, text, txt);
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
+    SetAttributeFloat32(api, text, NODE_HEIGHT, K_ROW_HEIGHT);
+    SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_ROW_HEIGHT);
+    SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
 }
 
 /**
@@ -263,14 +271,14 @@ static void BindAsFooter(ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item)
         return;
     }
 
-    Utils::SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
-    Utils::SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeUInt32(api, item, NODE_BACKGROUND_COLOR, K_ITEM_BG_COLOR);
+    SetAttributeFloat32(api, text, NODE_WIDTH_PERCENT, 1.0f);
 
-    Utils::SetTextContent(api, text, K_LOADING_TEXT);
-    Utils::SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
-    Utils::SetAttributeFloat32(api, text, NODE_HEIGHT, K_FOOTER_HEIGHT);
-    Utils::SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_FOOTER_HEIGHT);
-    Utils::SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
+    SetTextContent(api, text, K_LOADING_TEXT);
+    SetAttributeFloat32(api, text, NODE_FONT_SIZE, K_ITEM_FONT_SIZE);
+    SetAttributeFloat32(api, text, NODE_HEIGHT, K_FOOTER_HEIGHT);
+    SetAttributeFloat32(api, text, NODE_TEXT_LINE_HEIGHT, K_FOOTER_HEIGHT);
+    SetAttributeInt32(api, text, NODE_TEXT_ALIGN, ARKUI_TEXT_ALIGNMENT_CENTER);
 }
 
 /**
@@ -282,9 +290,7 @@ static NodeAdapterCallbacks MakeCallbacks(const std::shared_ptr<RefreshListState
 {
     NodeAdapterCallbacks cb{};
 
-    cb.getTotalCount = [st]() -> int32_t {
-        return st ? st->RenderCount() : 0;
-    };
+    cb.getTotalCount = [st]() -> int32_t { return st ? st->RenderCount() : 0; };
 
     cb.getStableId = [st](int32_t i) -> uint64_t {
         if (!st) {
@@ -300,9 +306,7 @@ static NodeAdapterCallbacks MakeCallbacks(const std::shared_ptr<RefreshListState
         return static_cast<uint64_t>(i);
     };
 
-    cb.onCreate = [](ArkUI_NativeNodeAPI_1 *api, int32_t /*index*/) -> ArkUI_NodeHandle {
-        return CreateListItem(api);
-    };
+    cb.onCreate = [](ArkUI_NativeNodeAPI_1 *api, int32_t /*index*/) -> ArkUI_NodeHandle { return CreateListItem(api); };
 
     cb.onBind = [st](ArkUI_NativeNodeAPI_1 *api, ArkUI_NodeHandle item, int32_t index) {
         if (!st) {
@@ -352,7 +356,7 @@ static std::shared_ptr<BaseNode> MakeRoot()
     std::shared_ptr<BaseNode> root = std::make_shared<BaseNode>(h);
     root->SetWidthPercent(K_WIDTH_PERCENT_FULL);
     root->SetHeightPercent(K_HEIGHT_PERCENT_FULL);
-    Utils::SetAttributeUInt32(api, root->GetHandle(), NODE_BACKGROUND_COLOR, K_COLOR_PAGE_BG);
+    SetAttributeUInt32(api, root->GetHandle(), NODE_BACKGROUND_COLOR, K_COLOR_PAGE_BG);
     return root;
 }
 
@@ -424,8 +428,7 @@ static void WireReachEnd(const std::shared_ptr<RefreshListState> &st, const std:
     });
 }
 
-static void OnVisibleChangeCore(const std::shared_ptr<RefreshListState> &st,
-                                const std::shared_ptr<ListMaker> &list,
+static void OnVisibleChangeCore(const std::shared_ptr<RefreshListState> &st, const std::shared_ptr<ListMaker> &list,
                                 int32_t endIdxInGroup)
 {
     if (!st) {
@@ -493,8 +496,7 @@ static void PrependNewData(const std::shared_ptr<RefreshListState> &st)
         ToggleLoadingFooter(st, true);
     }
 
-    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG,
-                 "OnRefresh prepend=%{public}d total=%{public}d",
+    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "OnRefresh prepend=%{public}d total=%{public}d",
                  K_REFRESH_PREPEND_COUNT, st->total);
 }
 
@@ -525,7 +527,7 @@ static void WireRefreshBehavior(const std::shared_ptr<RefreshListState> &st,
             static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now() - t0).count());
         const int delay = std::max(0, K_MIN_REFRESH_MS - elapsedMs);
 
-        Utils::PostDelayedTask(delay, [refresh]() {
+        PostDelayedTask(delay, [refresh]() {
             refresh->SetRefreshing(false);
             OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, LOG_TAG, "OnRefresh complete");
         });
@@ -599,17 +601,17 @@ ArkUI_NodeHandle RefreshMaker::CreateNativeNode()
     if (api == nullptr) {
         return nullptr;
     }
-    
+
     ArkUI_NodeHandle page = api->createNode(ARKUI_NODE_COLUMN);
     if (page == nullptr) {
         return nullptr;
     }
-    Utils::SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
-    Utils::SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
-    
+    SetAttributeFloat32(api, page, NODE_WIDTH_PERCENT, 1.0f);
+    SetAttributeFloat32(api, page, NODE_HEIGHT_PERCENT, 1.0f);
+
     std::shared_ptr<BaseNode> root = Build();
     if (root && root->GetHandle() != nullptr) {
-        Utils::SetAttributeFloat32(api, root->GetHandle(), NODE_LAYOUT_WEIGHT, 1.0f);
+        SetAttributeFloat32(api, root->GetHandle(), NODE_LAYOUT_WEIGHT, 1.0f);
         api->addChild(page, root->GetHandle());
     }
 
