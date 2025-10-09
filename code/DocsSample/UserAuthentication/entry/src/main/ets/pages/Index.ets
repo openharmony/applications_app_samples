@@ -28,7 +28,7 @@ function resourceToString(resource: Resource): string {
     result = getContext().resourceManager.getStringSync(resource);
   } catch (error) {
     const err: BusinessError = error as BusinessError;
-    Logger.error(`catch error. Code is ${err?.code}, message is ${err?.message}`);
+    Logger.error(`catch error, code is ${err?.code}, message is ${err?.message}`);
   }
   if (result === '' || result === undefined) {
     return 'undefined';
@@ -105,7 +105,7 @@ struct Index {
       return true;
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`current auth trust level is not supported. Code is ${err?.code}, message is ${err?.message}`);
+      Logger.error(`current auth trust level is not supported, code is ${err?.code}, message is ${err?.message}`);
       return false;
     }
   }
@@ -143,7 +143,7 @@ struct Index {
           try {
             Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
             this.result[ResultIndex.EXAMPLE_1] = (`${result.result}`);
-            // 认证完成后取消订阅
+            // 可在认证结束或其他业务需要场景，取消订阅认证结果。
             userAuthInstance.off('result');
           } catch (error) {
             const err: BusinessError = error as BusinessError;
@@ -156,7 +156,7 @@ struct Index {
       Logger.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+      Logger.error(`auth catch error, code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
@@ -198,7 +198,7 @@ struct Index {
           try {
             Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
             this.result[ResultIndex.EXAMPLE_2] = (`${result.result}`);
-            // 认证完成后取消订阅
+            // 可在认证结束或其他业务需要场景，取消订阅认证结果。
             userAuthInstance.off('result');
           } catch (error) {
             const err: BusinessError = error as BusinessError;
@@ -211,7 +211,7 @@ struct Index {
       Logger.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+      Logger.error(`auth catch error, code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
@@ -253,7 +253,7 @@ struct Index {
           try {
             Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
             this.result[ResultIndex.EXAMPLE_3] = (`${result.result}`);
-            // 认证完成后取消订阅
+            // 可在认证结束或其他业务需要场景，取消订阅认证结果。
             userAuthInstance.off('result');
           } catch (error) {
             const err: BusinessError = error as BusinessError;
@@ -266,7 +266,7 @@ struct Index {
       Logger.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+      Logger.error(`auth catch error, code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
@@ -304,7 +304,7 @@ struct Index {
           try {
             Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
             this.result[ResultIndex.EXAMPLE_4] = (`${result.result}`);
-            // 认证完成后取消订阅
+            // 可在认证结束或其他业务需要场景，取消订阅认证结果。
             userAuthInstance.off('result');
           } catch (error) {
             const err: BusinessError = error as BusinessError;
@@ -317,7 +317,7 @@ struct Index {
       Logger.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+      Logger.error(`auth catch error, code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
@@ -349,8 +349,8 @@ struct Index {
       // 使用等待函数模拟等待用户认证
       let DELAY_TIME: number = 3000; // 停止3秒
       waiting(DELAY_TIME).then(() => {
-        // 延迟后取消认证
         // [EndExclude cancel_authentication]
+        // 取消认证
         userAuthInstance.cancel();
         Logger.info('auth cancel success');
         // [StartExclude cancel_authentication]
@@ -385,11 +385,10 @@ struct Index {
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
       Logger.info('get userAuth instance success');
-      // 使用 Promise 来监听认证结果
       this.handleAuthResultAndCanceling(userAuthInstance, ResultIndex.CANCEL);
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`auth catch error. Code is ${err?.code as number}, message is ${err?.message}`);
+      Logger.error(`auth catch error, code is ${err?.code as number}, message is ${err?.message}`);
     }
   }
 
@@ -449,7 +448,7 @@ struct Index {
       // [EndExclude perceive-adjust-authentication-process]
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`auth catch error. Code is ${err?.code as number}, message is ${err?.message}`);
+      Logger.error(`auth catch error, code is ${err?.code as number}, message is ${err?.message}`);
     }
   }
 
@@ -460,7 +459,6 @@ struct Index {
     // [StartExclude custom_authentication]
     try {
       // [EndExclude custom_authentication]
-      // userAuthInstance.on异常抛出层
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
           // [StartExclude custom_authentication]
@@ -474,14 +472,13 @@ struct Index {
               // [StartExclude custom_authentication]
             } catch (error) {
               const err: BusinessError = error as BusinessError;
-              Logger.error(`JSON stringify catch error. Code is ${err?.code}, message is ${err?.message}`);
+              Logger.error(`JSON stringify catch error, code is ${err?.code}, message is ${err?.message}`);
             }
             userAuthInstance.off('result'); // 认证完成后取消订阅
             // [EndExclude custom_authentication]
             if (result.result == userAuth.UserAuthResultCode.CANCELED_FROM_WIDGET ||
               result.result == userAuth.UserAuthResultCode.NOT_ENROLLED) {
               // 请开发者自行完成拉起自定义认证界面的实现
-              // 此处拉起类似于支付宝输入密码支付的界面
               // [StartExclude custom_authentication]
               promptAction.showToast({
                 message: resourceToString($r('app.string.dialogOfCustom')), // 显示文本
@@ -523,11 +520,11 @@ struct Index {
         challenge: randData,
         authType: [userAuth.UserAuthType.FACE],
         authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-      }; // 配置认证界面需设置navigationButtonText
+      };
+      // 配置自定义认证，需设置导航键文本
       const widgetParam: userAuth.WidgetParam = {
         title: resourceToString($r('app.string.title')),
-        navigationButtonText: resourceToString($r('app.string.navigationButtonText')),
-        // 该参数仅在单指纹、单人脸场景下支持，该密码并非系统密码，而是应用自己设置的密码
+        navigationButtonText: resourceToString($r('app.string.navigationButtonText'))
       };
       // 获取认证对象
       const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -536,7 +533,7 @@ struct Index {
       this.handleCustomAuthResult(userAuthInstance, ResultIndex.CUSTOMIZE);
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+      Logger.error(`auth catch error, code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
@@ -575,7 +572,8 @@ struct Index {
         authType: [userAuth.UserAuthType.FACE],
         authTrustLevel: userAuth.AuthTrustLevel.ATL3,
         reuseUnlockResult: reuseUnlockResult
-      }; // 配置认证界面需设置navigationButtonText
+      };
+      // 配置自定义认证，需设置导航键文本
       const widgetParam: userAuth.WidgetParam = {
         title: resourceToString($r('app.string.title')),
         navigationButtonText: resourceToString($r('app.string.navigationButtonText')),
@@ -588,7 +586,7 @@ struct Index {
       this.handleCustomAuthResult(userAuthInstance, ResultIndex.CUSTOMIZE);
     } catch (error) {
       const err: BusinessError = error as BusinessError;
-      Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+      Logger.error(`auth catch error, code is ${err?.code}, message is ${err?.message}`);
     }
   }
 
