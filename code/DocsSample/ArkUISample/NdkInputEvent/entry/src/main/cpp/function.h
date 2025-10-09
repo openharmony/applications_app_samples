@@ -383,9 +383,10 @@ void KeyEventOperator(ArkUI_UIInputEvent* inputEvent)
 void BtEventReceiver(ArkUI_NodeHandle& button)
 {
     nodeAPI->registerNodeEvent(button, NODE_TOUCH_EVENT, 1, &button);
-    nodeAPI->registerNodeEvent(button, NODE_ON_AXIS, 1, nullptr);
+    nodeAPI->registerNodeEvent(button, NODE_ON_AXIS, 1, &button);
     nodeAPI->registerNodeEvent(button, NODE_ON_MOUSE, 1, &button);
-    nodeAPI->registerNodeEvent(button, NODE_ON_HOVER_EVENT, 1, nullptr);
+    nodeAPI->registerNodeEvent(button, NODE_ON_HOVER_EVENT, 1, &button);
+    nodeAPI->registerNodeEvent(button, NODE_ON_KEY_EVENT, 1, &button);
     nodeAPI->addNodeEventReceiver(button, [](ArkUI_NodeEvent *event) {
         auto *inputEvent = OH_ArkUI_NodeEvent_GetInputEvent(event);
         auto eventType = OH_ArkUI_UIInputEvent_GetType(inputEvent);
@@ -427,6 +428,7 @@ void BtEventReceiver(ArkUI_NodeHandle& button)
 void FirstModule(ArkUI_NodeHandle &root)
 {
     column1 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetId(column1, "bg");
     SetWidthPercent(column1, 1);
     SetHeightPercent(column1, 1);
     SetColumnJustifyContent(column1, ARKUI_FLEX_ALIGNMENT_START);
@@ -435,6 +437,7 @@ void FirstModule(ArkUI_NodeHandle &root)
     BgEventReceiver(column1);
     
     static auto button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    SetId(button, "bt");
     SetButtonLabel(button, "输入事件测试按键");
     SetWidthPercent(button, 1);
     SetHeight(button, SIZE_200);
@@ -450,9 +453,11 @@ void FirstModule(ArkUI_NodeHandle &root)
     nodeAPI->addChild(column1, blank);
     
     titleText = nodeAPI->createNode(ARKUI_NODE_TEXT);
+    SetId(titleText, "title");
     nodeAPI->addChild(column1, titleText);
     
     infoText = nodeAPI->createNode(ARKUI_NODE_TEXT);
+    SetId(infoText, "info");
     nodeAPI->addChild(column1, infoText);
     
     nodeAPI->addChild(root, column1);

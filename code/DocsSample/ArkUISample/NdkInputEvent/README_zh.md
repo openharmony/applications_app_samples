@@ -13,7 +13,7 @@
 
 ### 使用说明
 
-1. 在首页可以查看多种输入事件PI的使用示例，包括单点或多点触摸事件、鼠标事件、轴事件、焦点轴事件的示例。
+1. 在首页可以查看多种输入事件API的使用示例，包括单点或多点触摸事件、鼠标事件、轴事件、焦点轴事件的示例。
 
 2. 通过自动测试框架可进行测试及维护。
 
@@ -60,6 +60,6 @@ entry/src/main/ets/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUISample/NdkInputEvent > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
