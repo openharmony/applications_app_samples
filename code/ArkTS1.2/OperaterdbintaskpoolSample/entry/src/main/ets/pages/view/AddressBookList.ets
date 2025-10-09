@@ -1,3 +1,4 @@
+'use static';
 /**
  *
  * Copyright (c) 2025 Huawei Device Co., Ltd.
@@ -53,21 +54,19 @@ export struct AddressBookList {
         initialIndex: CommonConstants.INITIAL_INDEX,
         scroller: this.scroller
       }) {
-        Column(){
-          ForEach(this.dataArray, (contact: Contact) => {
-            ListItem() {
-              ItemComponent({ name: contact.name })
-            }.margin({left: 15, right: 15} as Margin)
-            .onClick((): void => {
-              let options: router.RouterOptions = {
-                url: 'pages/view/AddressBookDetail',
-                params: new RouterParams('编辑联系人', contact)
-              } as router.RouterOptions;
-              this.getUIContext().getRouter().pushUrl(options);
-            })
-            Divider().strokeWidth('100%').height(1).color('#d9d9d9').margin({left: 15, right: 15} as Margin)
-          }, (item: Contact) => item.name)
-        }.width('100%')
+        ForEach(this.dataArray, (contact: Contact) => {
+          ListItem() {
+            ItemComponent({ name: contact.name })
+          }.margin({left: 15, right: 15} as Margin)
+          .onClick((): void => {
+            let options: router.RouterOptions = {
+              url: 'pages/view/AddressBookDetail',
+              params: new RouterParams('编辑联系人', contact)
+            } as router.RouterOptions;
+            this.getUIContext().getRouter().pushUrl(options);
+          })
+          Divider().strokeWidth('100%').height(1).color('#d9d9d9').margin({left: 15, right: 15} as Margin)
+        }, (item: Contact) => item.name)
       }
       .id('address_book_list')
       .width(CommonConstants.FULL_PERCENT)
