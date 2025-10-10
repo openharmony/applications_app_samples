@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "getUserDownloadDirExample",
+      "value": "获取用户Download目录沙箱路径"
+    },
+    {
+      "name": "ScanUserDownloadDirPathExample",
+      "value": "查看Download目录下的文件"
+    },
+    {
+      "name": "WriteUserDownloadDirPathExample",
+      "value": "保存temp.txt到Download目录"
+    },
+    {
+      "name": "GetUserDownloadDirPathExample",
+      "value": "获取用户Download目录沙箱路径"
+    },
+    {
+      "name": "GetUserDesktopDirPathExample",
+      "value": "获取用户Desktop目录沙箱路径"
+    },
+    {
+      "name": "GetUserDocumentDirPathExample",
+      "value": "获取用户Document目录沙箱路径"
+    },
+    {
+      "name": "reason",
+      "value": "testNdkEnvironmentSample"
+    }
+  ]
+}
