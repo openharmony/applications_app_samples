@@ -48,6 +48,7 @@ const FAIL_TAG = 'failed';
 @Entry
 @Component
 struct Index {
+  @State status: number = Visibility.Visible;
   @State nodeId: number = -1;
   @State nodeStatus: string = '';
   @State curNodeType: string = '';
@@ -84,12 +85,18 @@ struct Index {
   SubMenuAttributeType() {
     Menu() {
       MenuItem({ content: 'TOGGLE', builder: (): void => this.SubMenu_TOGGLE() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'BUTTON', builder: (): void => this.SubMenu_BUTTON() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'CHECKBOX', builder: (): void => this.SubMenu_CHECKBOX() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'SLIDER', builder: (): void => this.SubMenu_SLIDER() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'RADIO', builder: (): void => this.SubMenu_RADIO() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'CHECKBOX_GROUP', builder: (): void => this.SubMenu_CHECKBOX_GROUP() }).width('50%')
-    }
+        .onChange(()=> { this.status = Visibility.None })
+    }.visibility(this.status)
   }
 
   @Builder
@@ -343,6 +350,7 @@ struct Index {
             .width('50%')
             .margin({ left: 10 })
             .bindMenu(this.SubMenuAttributeType)
+            .onClick(()=> { this.status = Visibility.Visible })
           Text($r('app.string.current_attribute_type', `${this.attributeType}`))
             .fontSize(14)
             .margin(10)
