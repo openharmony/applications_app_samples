@@ -294,10 +294,11 @@ struct ImageSize {
             .width('50%')
             .bindMenu(this.SubMenuObjectFit)
         }
+        .padding({bottom: 10})
         Row() {
           Button($r('app.string.Select_image_interpolation_mode'))
             .height(50)
-            .width('33%')
+            .width('50%')
             .onClick(() => {
               ImageNapi.createImageSize(ArkUIObjectFit.ARKUI_OBJECT_FIT_CONTAIN, ArkUIImageSize.ARKUI_IMAGE_SIZE_AUTO);
               this.imageRenderMode = ArkUIImageRenderMode.ARKUI_IMAGE_RENDER_MODE_ORIGINAL;
@@ -306,16 +307,19 @@ struct ImageSize {
             .bindMenu(this.SubMenuImageInterpolation)
           Button($r('app.string.Select_image_rendering_mode'))
             .height(50)
-            .width('33%')
+            .width('50%')
             .bindMenu(this.SubMenuMode)
+        }
+        .padding({bottom: 10})
+        Row() {
           Button($r('app.string.Select_background_overlay_mode'))
             .height(50)
-            .width('33%')
             .onClick(() => {
               ImageNapi.createImageSize(ArkUIObjectFit.ARKUI_OBJECT_FIT_NONE, ArkUIImageSize.ARKUI_IMAGE_SIZE_AUTO);
             })
             .bindMenu(this.SubMenuImageRepeat)
         }
+        .padding({bottom: 10})
         Column() {
           ContentSlot(this.nodeContent)
         }
