@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+ // [Start oh_jsvm_get_arraybuffer_info]
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 import {unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { isNeedGetPermissionFromUser } from '../entryability/EntryAbility'
