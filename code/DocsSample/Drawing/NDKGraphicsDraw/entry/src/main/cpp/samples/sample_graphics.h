@@ -22,7 +22,9 @@
 // [StartExclude ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
 #include <native_drawing/drawing_color.h>
 // [EndExclude ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
+// [Start ndk_graphics_draw_include_native_drawing_canvas]
 #include <native_drawing/drawing_canvas.h>
+// [End ndk_graphics_draw_include_native_drawing_canvas]
 // [End ndk_graphics_draw_include_native_drawing_canvas_and_bitmap]
 #include <native_drawing/drawing_pen.h>
 #include <native_drawing/drawing_brush.h>
@@ -80,7 +82,11 @@ public:
     void DrawPixelMap(OH_Drawing_Canvas *canvas);
     void DrawBaseText(OH_Drawing_Canvas *canvas);
     void DrawStrokeText(OH_Drawing_Canvas *canvas);
+    void DrawChineseStrokeText(OH_Drawing_Canvas *canvas);
     void DrawGradientText(OH_Drawing_Canvas *canvas);
+    void DrawThemeText(OH_Drawing_Canvas *canvas);
+    void DrawSingleText(OH_Drawing_Canvas *canvas);
+    void DrawFeatureText(OH_Drawing_Canvas *canvas);
     // 创建画布及绘图结果显示
     void Prepare();
     void Create();

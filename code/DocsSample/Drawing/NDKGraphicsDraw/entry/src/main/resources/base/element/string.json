@@ -153,8 +153,24 @@
       "value": "文字描边"
     },
     {
+      "name": "ChineseStrokeText",
+      "value": "中文文字描边"
+    },
+    {
       "name": "GradientText",
       "value": "文字渐变"
+    },
+    {
+      "name": "ThemeText",
+      "value": "主题字体"
+    },
+    {
+      "name": "SingleText",
+      "value": "单字"
+    },
+    {
+      "name": "FeatureText",
+      "value": "特征字体"
     }
   ]
 }

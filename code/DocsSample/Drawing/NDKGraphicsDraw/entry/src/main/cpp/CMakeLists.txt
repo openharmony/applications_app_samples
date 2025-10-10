@@ -19,14 +19,22 @@ add_library(entry SHARED
     utils/adaptation_util.cpp
     )
 target_link_libraries(entry PUBLIC
+                      # [Start ndk_graphics_draw_cmake_EGL]
                       EGL
+                      # [End ndk_graphics_draw_cmake_EGL]
                       GLESv3
+                      # [Start ndk_graphics_draw_cmake_hilog]
                       libhilog_ndk.z.so
+                      # [End ndk_graphics_draw_cmake_hilog]
                       libace_napi.z.so
+                      # [Start ndk_graphics_draw_cmake_drawing]
                       libnative_drawing.so
+                      # [End ndk_graphics_draw_cmake_drawing]
                       libnative_window.so
                       libace_ndk.z.so
                       libnative_display_soloist.so
+                      # [Start ndk_graphics_draw_cmake_pixelmap]
                       libpixelmap.so
+                      # [End ndk_graphics_draw_cmake_pixelmap]
                       libnative_display_manager.so
                       )

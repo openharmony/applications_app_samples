@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start arkts_graphics_draw_import_ui_and_graphics2d]
 import { DrawContext, FrameNode, NodeController, RenderNode, UIContext } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+// [End arkts_graphics_draw_import_ui_and_graphics2d]
 import {
   VALUE_100,
   VALUE_200,
@@ -55,6 +57,31 @@ function drawMixedMode(canvas: drawing.Canvas) {
   canvas.detachBrush();
   // [End arkts_graphics_draw_mixed_mode]
 }
+
+// [Start arkts_graphics_draw_render_node]
+function drawRenderNode(canvas: drawing.Canvas) {
+  canvas.saveLayer(null, null);
+  const brushCircle = new drawing.Brush();
+  const colorCircle: common2D.Color = {alpha: 255, red: 0, green: 0, blue: 255};
+  brushCircle.setColor(colorCircle);
+  canvas.attachBrush(brushCircle);
+  canvas.drawCircle(500, 500, 200);
+  const brush = new drawing.Brush();
+  //  设置混合模式
+  brush.setBlendMode(drawing.BlendMode.SRC_IN);
+  canvas.saveLayer(null, brush);
+
+  const brushRect = new drawing.Brush();
+  const colorRect: common2D.Color = {alpha: 255, red: 255, green: 255, blue: 0};
+  brushRect.setColor(colorRect);
+  canvas.attachBrush(brushRect);
+  const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+  canvas.drawRect(rect);
+  canvas.restore();
+  canvas.restore();
+  canvas.detachBrush();
+}
+// [End arkts_graphics_draw_render_node]
 
 function drawPathEffect(canvas: drawing.Canvas) {
   // [Start arkts_graphics_draw_path_effect]
@@ -282,7 +309,7 @@ class MyNodeController extends NodeController {
   constructor() {
     super();
     // 添加绘制函数
-    this.myRenderNode.addDrawFunction(drawMixedMode);
+    this.myRenderNode.addDrawFunction(drawRenderNode);
     this.myRenderNode.addDrawFunction(drawPathEffect);
     this.myRenderNode.addDrawFunction(drawLinearGradient);
     this.myRenderNode.addDrawFunction(drawPathGradient);
@@ -290,6 +317,7 @@ class MyNodeController extends NodeController {
     this.myRenderNode.addDrawFunction(drawColorFilter);
     this.myRenderNode.addDrawFunction(drawImageFilter);
     this.myRenderNode.addDrawFunction(drawMaskFilter);
+    this.myRenderNode.addDrawFunction(drawMixedMode);
   }
 
   makeNode(uiContext: UIContext): FrameNode {
@@ -300,7 +328,7 @@ class MyNodeController extends NodeController {
 
     const renderNode = this.rootNode.getRenderNode();
     if (renderNode !== null) {
-      this.myRenderNode.backgroundColor = 0xff000000; // 黑色背景
+      this.myRenderNode.backgroundColor = 0xffffffff; // 白色背景
       this.myRenderNode.frame = {
         x: 0,
         y: 0,
@@ -318,12 +346,7 @@ class MyNodeController extends NodeController {
   // 暴露设置绘制函数下标的方法
   setDrawIndex(index: number) {
     this.myRenderNode.setDrawIndex(index);
-    if (index === 0) {
-      this.myRenderNode.backgroundColor = 0xff000000; // 混合模式效果需要使用黑色背景展示
-    } else {
-      this.myRenderNode.backgroundColor = 0xffffffff; // 其余模式使用白色背景
-    }
-
+    this.myRenderNode.backgroundColor = 0xffffffff; // 其余模式使用白色背景
   }
 }
 
@@ -340,7 +363,7 @@ struct ComplexEffect {
           .width('100%')
           .height('70%');
         Row() {
-          Button($r('app.string.MixedMode'))
+          Button($r('app.string.RenderNode'))
             .onClick(() => {
               this.nodeController.setDrawIndex(0); // 点击绘制混合模式
             });

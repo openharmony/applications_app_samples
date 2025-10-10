@@ -37,6 +37,11 @@ struct CanvasGetResult {
               this.xComponentContext.draw('CanvasGet', 'Point');
             }
           })
+      }
+      .justifyContent(FlexAlign.SpaceEvenly)
+      .width('100%')
+      .height('8%')
+      Row() {
         Button($r('app.string.CanvasGetByCPU'))
           .onClick((): void => {
             if (this.xComponentContext) {

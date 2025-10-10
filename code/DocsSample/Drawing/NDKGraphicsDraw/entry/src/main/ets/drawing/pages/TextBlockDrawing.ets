@@ -28,7 +28,7 @@ struct TextBlockDrawing {
         })
         .backgroundColor(Color.White)
         .width('100%')
-        .height('70%')
+        .height('80%')
       Row() {
         Button($r('app.string.BaseText'))
           .onClick((): void => {
@@ -42,16 +42,45 @@ struct TextBlockDrawing {
               this.xComponentContext.draw('CanvasGet', 'StrokeText');
             }
           })
+        Button($r('app.string.ChineseStrokeText'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'ChineseStrokeText');
+            }
+          })
+      }
+      .justifyContent(FlexAlign.SpaceEvenly)
+      .width('100%')
+      .height('7%')
+      Row() {
         Button($r('app.string.GradientText'))
           .onClick((): void => {
             if (this.xComponentContext) {
               this.xComponentContext.draw('CanvasGet', 'GradientText');
             }
           })
+        Button($r('app.string.ThemeText'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'ThemeText');
+            }
+          })
+        Button($r('app.string.SingleText'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'SingleText');
+            }
+          })
+        Button($r('app.string.FeatureText'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'FeatureText');
+            }
+          })
       }
       .justifyContent(FlexAlign.SpaceEvenly)
       .width('100%')
-      .height('8%')
+      .height('7%')
     }
   }
 }

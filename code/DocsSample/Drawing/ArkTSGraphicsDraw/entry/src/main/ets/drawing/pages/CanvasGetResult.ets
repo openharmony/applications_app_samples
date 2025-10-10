@@ -13,21 +13,29 @@
  * limitations under the License.
  */
 
+// 1. 导入依赖的相关文件
+// [Start arkts_graphics_draw_import_ui_and_graphics2d]
+// [Start arkts_graphics_draw_import_ui]
 import { UIContext, NodeController, FrameNode, RenderNode, DrawContext} from '@kit.ArkUI';
+// [End arkts_graphics_draw_import_ui]
 import { image } from '@kit.ImageKit';
 import { taskpool } from '@kit.ArkTS';
+// [Start arkts_graphics_draw_import_graphics2d]
 import { drawing } from '@kit.ArkGraphics2D';
+// [End arkts_graphics_draw_import_graphics2d]
+// [End arkts_graphics_draw_import_ui_and_graphics2d]
 
 // [Start arkts_graphics_draw_direct_canvas_api]
-// 1. 自定义 RenderNode
+// 2. 自定义 RenderNode
 class MyRenderNodeDirectDisplay extends RenderNode {
+  // [Start arkts_graphics_draw_direct_canvas_api_rewrite]
   async draw(context: DrawContext) {
     const canvas = context.canvas;
     if (canvas === null) {
       console.error('Canvas is null.');
       return;
     }
-    // 3. 自定义的绘制相关操作
+    // 4. 自定义的绘制相关操作
     const brush = new drawing.Brush();
     if (brush === null) {
       console.error('Brush is null.');
@@ -38,9 +46,12 @@ class MyRenderNodeDirectDisplay extends RenderNode {
       canvas.drawRect({left: 0, right: 300, top: 0, bottom: 300});
     }
   }
+  // [End arkts_graphics_draw_direct_canvas_api_rewrite]
 }
+// [End arkts_graphics_draw_direct_canvas_api]
 
-// 2. 自定义 NodeController
+// [Start arkts_graphics_draw_direct_canvas_api_node_control]
+// 3. 自定义 NodeController
 class MyNodeControllerDirectDisplay extends NodeController {
   private rootNode: FrameNode | null = null;
   private myRenderNode = new MyRenderNodeDirectDisplay();
@@ -62,10 +73,10 @@ class MyNodeControllerDirectDisplay extends NodeController {
     return this.rootNode;
   }
 }
-// [End arkts_graphics_draw_direct_canvas_api]
+// [End arkts_graphics_draw_direct_canvas_api_node_control]
 
 // [Start arkts_graphics_draw_indirect_canvas_api]
-// 1. 自定义RenderNode
+// 2. 自定义RenderNode
 export class MyRenderNodeIndirectDisplay extends RenderNode {
   private pixelMap: image.PixelMap | null = null;
   setPixelMap(pixelMap: image.PixelMap) {
@@ -75,16 +86,16 @@ export class MyRenderNodeIndirectDisplay extends RenderNode {
   async draw(context: DrawContext) {
     const canvas = context.canvas;
     if (this.pixelMap != null) {
-      // 4.1 利用3中创建的PixelMap构造离屏Canvas
+      // 5.1 利用4中创建的PixelMap构造离屏Canvas
       const canvas_ = new drawing.Canvas(this.pixelMap);
 
-      // 4.2 离屏绘制
+      // 5.2 离屏绘制
       const brush = new drawing.Brush();
       brush.setColor({ alpha: 255, red: 0, green: 0, blue: 255 });
       canvas_.attachBrush(brush);
       canvas_.drawRect({ left: 150, right: 575, top: 0, bottom: 600 });
 
-      // 4.3 将离屏Canvas的绘制结果交给RenderNode
+      // 5.3 将离屏Canvas的绘制结果交给RenderNode
       canvas.drawImage(this.pixelMap, 0, 0);
     }
   }
@@ -92,18 +103,19 @@ export class MyRenderNodeIndirectDisplay extends RenderNode {
 
 @Concurrent
 async function createPixelMapAsync() {
-  const color : ArrayBuffer = new ArrayBuffer(4000000);  // 40000为需要创建的像素buffer大小，取值为：height * width *4
+  // 4000000为需要创建的像素buffer大小，取值为：height * width *4
+  const color : ArrayBuffer = new ArrayBuffer(4000000);
   let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 1000, width: 1000 } };
   const pixel = await image.createPixelMap(color, opts);
   return pixel;
 }
 
-// 2. 自定义NodeController
+// 3. 自定义NodeController
 export class MyNodeControllerIndirectDisplay extends NodeController {
   private rootNode: FrameNode | null = null;
   private myRenderNode = new MyRenderNodeIndirectDisplay();
 
-  // 3. 在MyNodeController的aboutToAppear中创建PixeMap
+  // 4. 在MyNodeController的aboutToAppear中创建PixeMap
   aboutToAppear(): void {
     let task = new taskpool.Task(createPixelMapAsync);
     taskpool.execute(task).then((pixel:Object)=>{
@@ -145,7 +157,7 @@ struct RenderTest {
       Column() {
         Column(){
           Text($r('app.string.DirectCanvas'))
-          // 直接画布
+          // 直接上屏显示画布
           NodeContainer(this.myNodeController_1)
             .width('100%')
             .height('40%')
