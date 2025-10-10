@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 
-
+// [Start input_case_input_KeyboardControler]
 import deviceInfo from '@ohos.deviceInfo';
-import inputMethodEngine from '@ohos.inputMethodEngine';
-import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
-import display from '@ohos.display';
+import { inputMethodEngine, InputMethodExtensionContext, InputMethodSubtype } from '@kit.IMEKit';
+import { display } from '@kit.ArkUI';
 import windowManager from '@ohos.window';
 import Log from './Log';
 import { BusinessError } from '@ohos.base';
 import { GetHardKeyValue } from './HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { StyleConfiguration } from '../common/StyleConfiguration';
+
 
 interface DeviceSize {
   width: number;
@@ -171,11 +171,13 @@ export class InputHandler {
   public insertText(text: string): void {
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
-      this.mTextInputClient.insertText(text);
+      this.mTextInputClient.insertTextSync(text);
 
       let indexCursor: number = 0;
       indexCursor = this.mTextInputClient.getTextIndexAtCursorSync();
-      this.intputText = this.mTextInputClient.getForwardSync(indexCursor);
+      if (indexCursor >= 0) {
+        this.intputText = this.mTextInputClient.getForwardSync(indexCursor);
+      }
       this.intputText = this.intputText + text;
 
       //设置预上屏数据
@@ -510,6 +512,20 @@ class KeyboardController {
       this.inputHandle.addLog('keyboard inputStart');
       this.inputHandle.onInputStart(kbController, textInputClient);
     })
+
+    // 设置监听子类型事件，改变输入法应用界面
+    InputMethodEngine.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
+      this.inputHandle.addLog('GJ setSubtype inputMethodSubtype:' + inputMethodSubtype.id);
+      if(inputMethodSubtype.id == 'InputMethodExtAbility') {
+        AppStorage.setOrCreate('subtypeChange', 0);
+        this.inputHandle.addLog('GJ setSubtype subtypeChange:' + AppStorage.get('subtypeChange'));
+      }
+      if(inputMethodSubtype.id == 'InputMethodExtAbility1') {
+        AppStorage.setOrCreate('subtypeChange', 1);
+        this.inputHandle.addLog('GJ setSubtype subtypeChange:' + AppStorage.get('subtypeChange'));
+      }
+    });
+
     InputMethodEngine.on('inputStop', () => {
       this.inputHandle.addLog('keyboard inputStop');
       this.onDestroy();
@@ -704,3 +720,4 @@ class KeyboardController {
 }
 
 export const keyboardController: KeyboardController = new KeyboardController();
+// [End input_case_input_KeyboardControler]

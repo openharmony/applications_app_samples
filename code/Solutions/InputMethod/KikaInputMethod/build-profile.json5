@@ -21,8 +21,13 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 12,
-        "compatibleSdkVersion": 12,
+        "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": ["arm64-v8a", "x86_64"]
+          },
+        }
+        "compileSdkVersion": 22,
+        "compatibleSdkVersion": 22,
         "runtimeOS": "OpenHarmony"
       }
     ]
