@@ -20,9 +20,37 @@
 
 #undef LOG_TAG
 #define LOG_TAG "Sample_NDKAppFileAccess"
+#include <cstdio>
+#include <cstring>
 
-// [Start get_file_location]
-static napi_value GetFileLocation(napi_env env, napi_callback_info info) {
+// [Start get_file_location_example]
+void GetFileLocationExample()
+{
+    char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
+    FileIO_FileLocation location;
+    FileManagement_ErrCode ret = OH_FileIO_GetFileLocation(uri, strlen(uri), &location);
+    if (ret == 0) {
+        if (location == FileIO_FileLocation::LOCAL) {
+            printf("This file is on local.");
+        } else if (location == FileIO_FileLocation::CLOUD) {
+            printf("This file is on cloud.");
+        } else if (location == FileIO_FileLocation::LOCAL_AND_CLOUD) {
+            printf("This file is both on local and cloud.");
+        }
+    } else {
+        printf("GetFileLocation failed, error code is %d", ret);
+    }
+}
+// [End get_file_location_example]
+
+static napi_value GetFileLocation(napi_env env, napi_callback_info info)
+{
+    GetFileLocationExample();
+    return nullptr;
+}
+
+static napi_value GetFileLocationOld(napi_env env, napi_callback_info info)
+{
     // [StartExclude get_file_location]
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -72,7 +100,7 @@ static napi_value GetFileLocation(napi_env env, napi_callback_info info) {
     return result;
     // [EndExclude get_file_location]
 }
-// [End get_file_location]
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {

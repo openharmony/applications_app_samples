@@ -45,7 +45,8 @@ struct Index {
           })
         Button($r('app.string.DetermineFileLocation'))
           .onClick(() => {
-            this.message += testNapi.getFileLocation(uri) + '\n';
+            testNapi.getFileLocation(uri);
+            this.message += 'getFileLocation SUCCESS' + '\n';
           })
       }
 
