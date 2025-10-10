@@ -20,6 +20,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <hilog/log.h>
+#include <iomanip>
 #include <napi/native_api.h>
 #include <sstream>
 
@@ -47,7 +48,7 @@ struct AttributeScope {
 
 AttributeScope g_attributeArray[] = {
     {ARKUI_NODE_IMAGE_SPAN, NODE_IMAGE_SPAN_SRC, NODE_IMAGE_SPAN_BASELINE_OFFSET},
-    {ARKUI_NODE_IMAGE, NODE_BACKGROUND_IMAGE, NODE_IMAGE_SYNC_LOAD},
+    {ARKUI_NODE_IMAGE, NODE_BACKGROUND_IMAGE, NODE_IMAGE_ORIENTATION},
     {ARKUI_NODE_LOADING_PROGRESS, NODE_LOADING_PROGRESS_COLOR, NODE_LOADING_PROGRESS_ENABLE_LOADING},
     {ARKUI_NODE_PROGRESS, NODE_PROGRESS_VALUE, NODE_PROGRESS_LINEAR_STYLE},
     {ARKUI_NODE_DATE_PICKER, NODE_DATE_PICKER_LUNAR, NODE_DATE_PICKER_CAN_LOOP},
@@ -57,6 +58,17 @@ AttributeScope g_attributeArray[] = {
     {ARKUI_NODE_IMAGE_ANIMATOR, NODE_IMAGE_ANIMATOR_IMAGES, NODE_IMAGE_ANIMATOR_ITERATION},
 };
 
+static ArkUI_NumberValue hdrBrightness[] = { { .f32 = 1.0 } };
+static ArkUI_NumberValue orientation[] = { { .i32 = ARKUI_ORIENTATION_RIGHT } };
+static ArkUI_NumberValue copyOption[] = { { .i32 = ARKUI_COPY_OPTIONS_IN_APP } };
+static ArkUI_NumberValue imageMatrix[MATRIX_ARRAY_SIZE] = { { .f32 = 5.0f }, { .f32 = 0.0f }, { .f32 = 0.0f },
+    { .f32 = 0.0f }, { .f32 = 0.0f }, { .f32 = 1.0f }, { .f32 = 0.0f }, { .f32 = 0.0f }, { .f32 = 0.0f },
+    { .f32 = 0.0f }, { .f32 = 1.0f }, { .f32 = 0.0f }, { .f32 = 0.0f }, { .f32 = 50.0f },
+    { .f32 = 0.0f }, { .f32 = 1.0f } };
+static ArkUI_NumberValue dynamicRangeMode[] = { { .i32 = 1 } };
+static ArkUI_NumberValue enableAnalyzer[] = { { .i32 = 1 } };
+static ArkUI_NumberValue matchDirection[] = { { .i32 = 1 } };
+static ArkUI_NumberValue sourceSize[] = { { .i32 = 80 }, { .i32 = 90 } }; // 80, 90 means image width height
 static ArkUI_NumberValue commonValue1[] = {{.i32 = 1}};
 static ArkUI_NumberValue commonValue2[] = {{.f32 = 10.0f}};
 static ArkUI_NumberValue textPickerValue1[] = {{.i32 = ARKUI_TEXTPICKER_RANGETYPE_SINGLE}};
@@ -119,6 +131,14 @@ static std::map<int32_t, ArkUI_AttributeItem> attributeValueMap = {
     {NODE_IMAGE_FILL_COLOR, {imageValue10, 1, nullptr, nullptr}},
     {NODE_IMAGE_RESIZABLE, {imageValue5, 4, nullptr, nullptr}},
     {NODE_IMAGE_SYNC_LOAD, {commonValue1, 1, nullptr, nullptr}},
+    {NODE_IMAGE_HDR_BRIGHTNESS, {hdrBrightness, 1, nullptr, nullptr}},
+    {NODE_IMAGE_ORIENTATION, {orientation, 1, nullptr, nullptr}},
+    {NODE_IMAGE_IMAGE_MATRIX, {imageMatrix, MATRIX_ARRAY_SIZE, nullptr, nullptr}},
+    {NODE_IMAGE_COPY_OPTION, {copyOption, 1, nullptr, nullptr}},
+    {NODE_IMAGE_DYNAMIC_RANGE_MODE, {dynamicRangeMode, 1, nullptr, nullptr}},
+    {NODE_IMAGE_ENABLE_ANALYZER, {enableAnalyzer, 1, nullptr, nullptr}},
+    {NODE_IMAGE_MATCH_TEXT_DIRECTION, {matchDirection, 1, nullptr, nullptr}},
+    {NODE_IMAGE_SOURCE_SIZE, {sourceSize, 2, nullptr, nullptr}},
     // ARKUI_NODE_LOADING_PROGRESS
     {NODE_LOADING_PROGRESS_COLOR, {loadProcessValue1, 1, nullptr, nullptr}},
     {NODE_LOADING_PROGRESS_ENABLE_LOADING, {commonValue1, 1, nullptr, nullptr}},
@@ -263,12 +283,21 @@ int32_t NodeManager::CreateNativeNode(int32_t nodeType)
 
     ArkUI_NodeHandle newNode = nodeApi->createNode((ArkUI_NodeType)nodeType);
     if (nodeType == ARKUI_NODE_IMAGE || nodeType == ARKUI_NODE_IMAGE_SPAN) {
+        ArkUI_AttributeItem srcItem = {};
+        srcItem.string = "resource://base/media/startIcon2.png";
+        nodeApi->setAttribute(newNode, NODE_IMAGE_SRC, &srcItem);
         ArkUI_NumberValue valueWidth[] = { { .f32 = 200 } };
         ArkUI_AttributeItem itemWidth = { valueWidth, sizeof(valueWidth) / sizeof(ArkUI_NumberValue) };
         nodeApi->setAttribute(newNode, NODE_WIDTH, &itemWidth);
         ArkUI_NumberValue valueHeight[] = { { .f32 = 200 } };
         ArkUI_AttributeItem itemHeight = { valueHeight, sizeof(valueHeight) / sizeof(ArkUI_NumberValue) };
         nodeApi->setAttribute(newNode, NODE_HEIGHT, &itemHeight);
+        ArkUI_NumberValue hdrBrightness[] = {{.f32 = 0.1}}; // 0.1 means hdr brightness value
+        ArkUI_AttributeItem valueItem = {hdrBrightness, sizeof(hdrBrightness) / sizeof(ArkUI_NumberValue)};
+        nodeApi->setAttribute(newNode, NODE_IMAGE_HDR_BRIGHTNESS, &valueItem);
+        ArkUI_NumberValue dynamicMode[] = {{.i32 = 2}}; // 2 means dynamic range mode
+        ArkUI_AttributeItem valueItemRangeMode = {dynamicMode, sizeof(dynamicMode) / sizeof(ArkUI_NumberValue)};
+        nodeApi->setAttribute(newNode, NODE_IMAGE_DYNAMIC_RANGE_MODE, &valueItemRangeMode);
     }
 
     int32_t newNodeId = AddNativeNode(newNode, nodeType);
@@ -333,9 +362,106 @@ int32_t NodeManager::SetNativeNodeAttribute(int32_t nodeId, int32_t nodeType, in
             attributeItem.object = (void*)(&frame);
         }
     }
+    if (attributeType == NODE_IMAGE_IMAGE_MATRIX) {
+        int32_t objectFitValue = ArkUI_ObjectFit::ARKUI_OBJECT_FIT_NONE_MATRIX;
+        ArkUI_NumberValue valueObject[] = { { .i32 = objectFitValue } };
+        ArkUI_AttributeItem valueItem = { valueObject, sizeof(valueObject) / sizeof(ArkUI_NumberValue) };
+        nodeApi->setAttribute(node, NODE_IMAGE_OBJECT_FIT, &valueItem);
+    }
     ret = nodeApi->setAttribute(node, (ArkUI_NodeAttributeType)attributeType, &attributeItem);
     OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
         "NodeManager", "-----SetNativeNodeAttribute, type:%{public}d, ret:%{public}d", attributeType, ret);
+    return ret;
+}
+
+int32_t NodeManager::SetNativeNodeAttribute(int32_t nodeId, int32_t nodeType, int32_t attributeType, int32_t value)
+{
+    int32_t ret = -1;
+    if (!IsValidAttributeType(nodeType, attributeType)) {
+        return ARKUI_ERROR_CODE_PARAM_INVALID;
+    }
+    ArkUI_NativeNodeAPI_1* nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1*>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+    ArkUI_NodeHandle node = GetNativeNode(nodeId).nodeHandle;
+    if (nodeApi == nullptr || node == nullptr) {
+        return ARKUI_ERROR_CODE_PARAM_INVALID;
+    }
+
+    ArkUI_NumberValue itemValue[] = { { .i32 = value } };
+    ArkUI_AttributeItem attributeItem = { itemValue, sizeof(itemValue) / sizeof(ArkUI_NumberValue) };
+    // set NODE_IMAGE_COPY_OPTION, attribute value is ARKUI_COPY_OPTIONS_LOCAL_DEVICE
+    if (attributeType == NODE_IMAGE_COPY_OPTION) {
+        int32_t copyValue = ArkUI_CopyOptions::ARKUI_COPY_OPTIONS_LOCAL_DEVICE;
+        ArkUI_NumberValue value[] = { { .i32 = copyValue } };
+        ArkUI_AttributeItem valueCopyItem = { value, sizeof(value) / sizeof(ArkUI_NumberValue) };
+        nodeApi->setAttribute(node, NODE_IMAGE_COPY_OPTION, &valueCopyItem);
+    }
+    // set other attribute type
+    ret = nodeApi->setAttribute(node, (ArkUI_NodeAttributeType)attributeType, &attributeItem);
+    if (ret != 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode", "NODE_IMAGE SetAttribute failed");
+        return -1;
+    }
+    return ret;
+}
+
+// When the user inputs multiple values, attribute setting
+int32_t NodeManager::SetNativeNodeAttribute(
+    int32_t nodeId, int32_t nodeType, int32_t attributeType, const std::vector<float>& value)
+{
+    int32_t ret = -1;
+    if (!IsValidAttributeType(nodeType, attributeType)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode", "NODE_IMAGE IsValidAttributeType");
+        return ARKUI_ERROR_CODE_PARAM_INVALID;
+    }
+    ArkUI_NativeNodeAPI_1* nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1*>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+    ArkUI_NodeHandle node = GetNativeNode(nodeId).nodeHandle;
+    if (nodeApi == nullptr || node == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "NativeNode", "NODE_IMAGE nodeApi or node is nullptr");
+        return ARKUI_ERROR_CODE_PARAM_INVALID;
+    }
+    // The following attributes do not support input with more than 2 parameters
+    if (value.size() <= 0 || (value.size() >= 2 && (attributeType == NODE_IMAGE_COPY_OPTION ||
+        attributeType == NODE_IMAGE_ENABLE_ANALYZER || attributeType == NODE_IMAGE_ORIENTATION))) {
+        return ARKUI_ERROR_CODE_PARAM_INVALID;
+    }
+    // The following NODE_IMAGE_SOURCE_SIZE attributes do not support input with more than 3 parameters
+    if (value.size() >= 3 && attributeType == NODE_IMAGE_SOURCE_SIZE) { // 3 means three elements
+        return ARKUI_ERROR_CODE_PARAM_INVALID;
+    }
+
+    // set attribute type is NODE_IMAGE_IMAGE_MATRIX, must set NODE_IMAGE_OBJECT_FIT to ARKUI_OBJECT_FIT_NONE_MATRIX
+    if (attributeType == NODE_IMAGE_IMAGE_MATRIX) {
+        if (value.size() < MATRIX_ARRAY_SIZE) {
+            return ARKUI_ERROR_CODE_PARAM_INVALID;
+        }
+        int32_t objectFitValue = ArkUI_ObjectFit::ARKUI_OBJECT_FIT_NONE_MATRIX;
+        ArkUI_NumberValue valueObject[] = { { .i32 = objectFitValue } };
+        ArkUI_AttributeItem valueItem = { valueObject, sizeof(valueObject) / sizeof(ArkUI_NumberValue) };
+        nodeApi->setAttribute(node, NODE_IMAGE_OBJECT_FIT, &valueItem);
+        ArkUI_NumberValue valueMatrix[100] = {};
+        for (int i = 0; i < value.size(); ++i) {
+            valueMatrix[i].f32 = value[i];
+        }
+        ArkUI_AttributeItem valueItemMatrix = { valueMatrix, sizeof(valueMatrix) / sizeof(ArkUI_NumberValue) };
+        ret = nodeApi->setAttribute(node, NODE_IMAGE_IMAGE_MATRIX, &valueItemMatrix);
+    }
+    // set attribute type is NODE_IMAGE_SOURCE_SIZE
+    if (attributeType == NODE_IMAGE_SOURCE_SIZE) {
+        ArkUI_NumberValue valueSourceSize[] = { { .i32 = static_cast<int32_t>(value[0]) },
+            { .i32 = static_cast<int32_t>(value[1]) } };
+        ArkUI_AttributeItem valueItemSourceSize = { valueSourceSize,
+            sizeof(valueSourceSize) / sizeof(ArkUI_NumberValue) };
+        ret = nodeApi->setAttribute(node, (ArkUI_NodeAttributeType)attributeType, &valueItemSourceSize);
+    }
+    // set attribute type is NODE_IMAGE_HDR_BRIGHTNESS
+    if (attributeType == NODE_IMAGE_HDR_BRIGHTNESS) {
+        ArkUI_NumberValue valueHdrBrightness[] = { {.f32 = value[0]} };
+        ArkUI_AttributeItem valueItemHdr = { valueHdrBrightness,
+            sizeof(valueHdrBrightness) / sizeof(ArkUI_NumberValue) };
+        ret = nodeApi->setAttribute(node, (ArkUI_NodeAttributeType)attributeType, &valueItemHdr);
+    }
     return ret;
 }
 
@@ -371,6 +497,11 @@ const ArkUI_AttributeItem* NodeManager::GetNativeNodeAttribute(int32_t nodeId, i
     }
     // call get attribute interface with attribute type
     const ArkUI_AttributeItem* attributeItem = nodeApi->getAttribute(node, (ArkUI_NodeAttributeType)attributeType);
+    if (attributeItem == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "NodeManager",
+            "----- GetNativeNodeAttribute is failed , type:%{public}d", attributeType);
+        return nullptr;
+    }
     OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "NodeManager",
         "----- GetAttribute, type:%{public}d, size:%{public}d, value:%{public}d, str:%{public}s", attributeType,
         attributeItem->size, attributeItem->value[0].i32, attributeItem->string);
@@ -507,6 +638,67 @@ napi_value TransTool::RemoveImageSpanNode(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+static std::vector<float> ParseFloatValues(const std::string& value)
+{
+    std::vector<float> floatValues;
+    std::stringstream ss(value);
+    std::string item;
+    while (std::getline(ss, item, '/')) {
+        if (!item.empty()) {
+            try {
+                float floatValue = std::stof(item);
+                floatValues.push_back(floatValue);
+            } catch (const std::exception&) {
+                continue;
+            }
+        }
+    }
+    return floatValues;
+}
+
+static int32_t HandleStringAttribute(int32_t nodeId, int32_t nodeType, int32_t attributeType, const std::string& value)
+{
+    std::vector<float> floatValues;
+    size_t slashCount = std::count(value.begin(), value.end(), '/');
+    if (slashCount > 0) {
+        floatValues = ParseFloatValues(value);
+        if (!floatValues.empty()) {
+            return NodeManager::GetInstance().SetNativeNodeAttribute(
+                nodeId, nodeType, attributeType, floatValues);
+        }
+    }
+    if (value.find('.') != std::string::npos) {
+        try {
+            float floatValue = std::stof(value);
+            floatValues.push_back(floatValue);
+            return NodeManager::GetInstance().SetNativeNodeAttribute(
+                nodeId, nodeType, attributeType, floatValues);
+        } catch (const std::exception&) {
+            return -1;
+        }
+    }
+
+    try {
+        // case-insensitive contains check for "none", if it's found, call default value
+        std::string lowerValue = value;
+        std::transform(lowerValue.begin(), lowerValue.end(), lowerValue.begin(),
+            [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+        if (lowerValue.find("none") != std::string::npos) {
+            return NodeManager::GetInstance().SetNativeNodeAttribute(
+                nodeId, nodeType, attributeType);
+        }
+        int32_t intValue = std::stoi(value);
+        if (intValue < 0) {
+            return NodeManager::GetInstance().SetNativeNodeAttribute(
+                nodeId, nodeType, attributeType);
+        }
+        return NodeManager::GetInstance().SetNativeNodeAttribute(
+            nodeId, nodeType, attributeType, intValue);
+    } catch (const std::exception&) {
+        return -1;
+    }
+}
+
 napi_value TransTool::SetImageSpanAttribute(napi_env env, napi_callback_info info)
 {
     size_t argc = 4; // 4 means four arguments are expected
@@ -519,12 +711,22 @@ napi_value TransTool::SetImageSpanAttribute(napi_env env, napi_callback_info inf
     int32_t attributeType;
     napi_get_value_int32(env, args[2], &attributeType); // 2 means the third argument
 
+    napi_valuetype valueType;
+    napi_typeof(env, args[3], &valueType); // 3 means the fourth argument
     int32_t ret = -1;
-    try {
-        ret = NodeManager::GetInstance().SetNativeNodeAttribute(nodeId, nodeType, attributeType);
-    } catch (const std::exception&) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "NodeManager", "-----SetNativeNodeAttribute exception");
+    if (valueType != napi_string) {
+        napi_value result;
+        napi_create_int32(env, ret, &result);
+        return result;
     }
+
+    size_t valueLen;
+    napi_get_value_string_utf8(env, args[3], nullptr, 0, &valueLen); // 3 means the fourth argument
+
+    std::string value(valueLen + 1, '\0');
+    napi_get_value_string_utf8(env, args[3], &value[0], valueLen + 1, nullptr); // 3 means the fourth argument
+
+    ret = HandleStringAttribute(nodeId, nodeType, attributeType, value);
 
     napi_value result;
     napi_create_int32(env, ret, &result);
@@ -551,40 +753,60 @@ napi_value TransTool::ResetImageSpanAttribute(napi_env env, napi_callback_info i
     return result;
 }
 
-napi_value TransTool::GetImageSpanAttribute(napi_env env, napi_callback_info info)
+napi_value CreateNapiResult(napi_env env, int32_t value)
+{
+    napi_value result;
+    napi_create_int32(env, value, &result);
+    return result;
+}
+
+napi_value CreateNapiString(napi_env env, const std::string& str)
+{
+    napi_value result;
+    napi_create_string_utf8(env, str.c_str(), str.length(), &result);
+    return result;
+}
+
+static bool ParseGetArgs(napi_env env, napi_callback_info info,
+    int32_t& nodeId, int32_t& nodeType, int32_t& attributeType)
 {
     size_t argc = 3; // 3 means three arguments are expected
-    napi_value args[3] = {nullptr}; // 3 means three arguments are expected
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int32_t nodeId = -1;
-    napi_get_value_int32(env, args[0], &nodeId);
-    int32_t nodeType = -1;
-    napi_get_value_int32(env, args[1], &nodeType);
-    int32_t attributeType = -1;
-    napi_get_value_int32(env, args[2], &attributeType); // 2 means the third argument
-    napi_value result;
-    if (nodeType < 0 || attributeType < 0) {
-        napi_create_int32(env, -1, &result);
-        return result;
+    napi_value args[3] = { nullptr, nullptr, nullptr }; // 3 means three arguments are expected
+    napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    if (status != napi_ok || argc < 3) { // 3 means three arguments are expected
+        return false;
     }
-    const ArkUI_AttributeItem* item = NodeManager::GetInstance().GetNativeNodeAttribute(nodeId,
-        nodeType, attributeType);
+    if (napi_get_value_int32(env, args[0], &nodeId) != napi_ok ||
+        napi_get_value_int32(env, args[1], &nodeType) != napi_ok ||
+        napi_get_value_int32(env, args[2], &attributeType) != napi_ok) { // 2 means the third argument
+        return false;
+    }
+    return nodeType >= 0 && attributeType >= 0;
+}
+
+static std::string AttributeItemToString(const ArkUI_AttributeItem* item, int32_t attributeType)
+{
     if (item == nullptr) {
-        napi_create_int32(env, -1, &result);
-        return result;
+        return "-1";
     }
+    const bool isFloatAttribute = (attributeType == NODE_IMAGE_HDR_BRIGHTNESS ||
+        attributeType == NODE_IMAGE_IMAGE_MATRIX);
     std::stringstream ss;
     bool hasValue = false;
-    if (item->size > 0) {
+    if (item->size > 0 && item->value != nullptr) {
         for (size_t i = 0; i < item->size; i++) {
             if (hasValue) {
                 ss << "/";
             }
-            ss << static_cast<int32_t>(item->value[i].i32);
+            if (isFloatAttribute) {
+                ss << std::fixed << std::setprecision(2) << item->value[i].f32; // 2 means two decimal places
+            } else {
+                ss << item->value[i].i32;
+            }
             hasValue = true;
         }
     }
-    if (item->string != nullptr) {
+    if (item->string != nullptr && item->string[0] != '\0') {
         if (hasValue) {
             ss << "/";
         }
@@ -594,8 +816,22 @@ napi_value TransTool::GetImageSpanAttribute(napi_env env, napi_callback_info inf
     if (!hasValue) {
         ss << "-1";
     }
-    std::string resultStr = ss.str();
-    napi_create_string_utf8(env, resultStr.c_str(), resultStr.length(), &result);
-    return result;
+    return ss.str();
+}
+
+napi_value TransTool::GetImageSpanAttribute(napi_env env, napi_callback_info info)
+{
+    int32_t nodeId = -1;
+    int32_t nodeType = -1;
+    int32_t attributeType = -1;
+    if (!ParseGetArgs(env, info, nodeId, nodeType, attributeType)) {
+        return CreateNapiResult(env, -1);
+    }
+    const ArkUI_AttributeItem* item = NodeManager::GetInstance().GetNativeNodeAttribute(
+        nodeId, nodeType, attributeType);
+    if (item == nullptr) {
+        return CreateNapiResult(env, -1);
+    }
+    return CreateNapiString(env, AttributeItemToString(item, attributeType));
 }
 } // namespace NativeNode::Manager
