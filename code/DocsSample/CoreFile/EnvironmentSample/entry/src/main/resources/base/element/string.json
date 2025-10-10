@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "getUserDirExample",
+      "value": "获取公共目录路径"
+    },
+    {
+      "name": "readUserDownloadDirExample",
+      "value": "访问 Download 目录下的文件"
+    },
+    {
+      "name": "writeUserDownloadDirExample",
+      "value": "保存文件到 Download 目录"
+    },
+    {
+      "name": "reason",
+      "value": "testEnvironmentSample"
+    }
+  ]
+}
