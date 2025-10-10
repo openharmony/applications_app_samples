@@ -8,6 +8,8 @@
 
 2. [使用剪贴板进行延迟复制粘贴](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)。
 
+3. [申请访问剪贴板权限](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
+
 ## 工程目录
 
 ```
