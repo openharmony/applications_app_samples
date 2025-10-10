@@ -341,12 +341,19 @@ struct Index {
       MenuItem({ content: 'ARKUI_IMMERSIVE_MODE_DEFAULT' }).width('50%').onChange(()=> {
         this.nodeType = CustomDialogAttributeType.Immersive_Mode;
         this.nodeValue = 0;
-        this.totalInfo += 'ARKUI_IMMERSIVE_MODE_DEFAULT\n';
-        testNapi2.setCustomDialog(this.nodeType, this.nodeValue);
-
         const result : number = testNapi2.setCustomDialog(this.nodeType, this.nodeValue);
         if (result === 0){
           this.totalInfo += 'ARKUI_IMMERSIVE_MODE_DEFAULT\n';
+        }else{
+          this.totalInfo += 'Failed to SetImmersiveMode\n';
+        }
+      })
+      MenuItem({ content: 'ARKUI_IMMERSIVE_MODE_EXTEND' }).width('50%').onChange(()=> {
+        this.nodeType = CustomDialogAttributeType.Immersive_Mode;
+        this.nodeValue = 1;
+        const result : number = testNapi2.setCustomDialog(this.nodeType, this.nodeValue);
+        if (result === 0){
+          this.totalInfo += 'ARKUI_IMMERSIVE_MODE_EXTEND\n';
         }else{
           this.totalInfo += 'Failed to SetImmersiveMode\n';
         }

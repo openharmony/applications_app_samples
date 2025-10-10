@@ -59,7 +59,7 @@ enum CustomDialogSettingType {
 
 enum ControllerAttributeType {
     NATIVE_BACKGROUND_COLOR = 1,           // 背景颜色
-    NATIVE_CORNER_RADIUS,                 // 圆角半径
+    NATIVE_CORNER_RADIUS,                  // 圆角半径
     NATIVE_BORDER_COLORS,                  // 边框颜色
     NATIVE_BORDER_STYLE,                   // 边框样式
     NATIVE_BACKBOARD_SHADOW,               // 背板阴影
@@ -309,7 +309,7 @@ int32_t SetDialogBorderColors(uint32_t nodeValue)
     ret = OH_ArkUI_CustomDialog_SetBorderColor(g_dialogOption, nodeValue, nodeValue, nodeValue, nodeValue);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
-            "SetDialogBasicStyle SetBorderColor failed, ret = %{public}d", ret);
+            "OH_ArkUI_CustomDialog_SetBorderColor failed, ret = %{public}d", ret);
     }
     return ret;
 }
@@ -355,7 +355,7 @@ int32_t SetDialogBackgroundBlurStyle(uint32_t nodeValue)
     ret = OH_ArkUI_CustomDialog_SetBackgroundBlurStyle(g_dialogOption, (ArkUI_BlurStyle)nodeValue);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
-            "SetBorderWidth failed, ret = %{public}d", ret);
+            "OH_ArkUI_CustomDialog_SetBackgroundBlurStyle failed, ret = %{public}d", ret);
     }
     return ret;
 }
@@ -446,7 +446,7 @@ int32_t SetDialogKeyboardAvoidMode(uint32_t nodeValue)
     ret = OH_ArkUI_CustomDialog_SetKeyboardAvoidMode(g_dialogOption, (ArkUI_KeyboardAvoidMode)nodeValue);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
-            "SetupHoverAndKeyboardModes OH_ArkUI_CustomDialog_SetKeyboardAvoidMode failed, ret = %{public}d", ret);
+            "OH_ArkUI_CustomDialog_SetKeyboardAvoidMode failed, ret = %{public}d", ret);
     }
     return ret;
 }
@@ -700,20 +700,20 @@ void SetDialogBasicStyle(ArkUI_CustomDialogOptions* controller)
         ARKUI_LENGTH_METRIC_UNIT_VP);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
-            "SetBorderWidth failed, ret = %{public}d", ret);
+            "OH_ArkUI_CustomDialog_SetBorderWidth failed, ret = %{public}d", ret);
     }
 
      // 设置宽度
     ret = OH_ArkUI_CustomDialog_SetWidth(controller, PARAM_300, ARKUI_LENGTH_METRIC_UNIT_VP);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
-            "SetWidth failed, ret = %{public}d", ret);
+            "OH_ArkUI_CustomDialog_SetWidth failed, ret = %{public}d", ret);
     }
     // 设置高度
     ret = OH_ArkUI_CustomDialog_SetHeight(controller, PARAM_200, ARKUI_LENGTH_METRIC_UNIT_VP);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
-            "SetHeight failed, ret = %{public}d", ret);
+            "OH_ArkUI_CustomDialog_SetHeight failed, ret = %{public}d", ret);
     }
 }
 
@@ -950,21 +950,21 @@ void RegisterDialogControllerCallbacks()
     ret = g_dialogAPI3->registerOnDidAppear(globalCustomDialog, nullptr, OnDidAppear);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
-            "registerOnWillAppear failed, ret = %{public}d", ret);
+            "registerOnDidAppear failed, ret = %{public}d", ret);
     }
 
     // 注册消失前回调
     ret = g_dialogAPI3->registerOnWillDisappear(globalCustomDialog, nullptr, OnWillDisappear);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
-            "registerOnWillAppear failed, ret = %{public}d", ret);
+            "registerOnWillDisappear failed, ret = %{public}d", ret);
     }
 
     // 注册消失后回调
     ret = g_dialogAPI3->registerOnDidDisappear(globalCustomDialog, nullptr, OnDidDisappear);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
-            "registerOnWillAppear failed, ret = %{public}d", ret);
+            "registerOnDidDisappear failed, ret = %{public}d", ret);
     }
 }
 
@@ -1116,7 +1116,7 @@ int32_t SetNativeDialogEnableHoverMode(uint32_t nodeValue)
     ret = g_dialogAPI3->enableHoverMode(globalCustomDialog, nodeValue);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
-            "enableHoverMode enableHoverMode failed, ret = %{public}d ", ret);
+            "enableHoverMode failed, ret = %{public}d ", ret);
     }
     return ret;
 }
@@ -1146,7 +1146,7 @@ int32_t SetNativeDialogHoverModeArea(uint32_t nodeValue)
     ret = g_dialogAPI3->setHoverModeArea(globalCustomDialog, static_cast<ArkUI_HoverModeAreaType>(nodeValue));
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
-            "SetDialogInteractionProperties setHoverModeArea failed, ret = %{public}d ", ret);
+            "setHoverModeArea failed, ret = %{public}d ", ret);
     }
     return ret;
 }
@@ -1496,7 +1496,28 @@ int32_t SetNativeDialogLevelOrder(uint32_t nodeValue)
 
 static bool CloseNativeDialogEventCallback(int32_t reason)
 {
-    if (reason == DIALOG_DISMISS_TOUCH_OUTSIDE) {
+    if (reason == DIALOG_DISMISS_BACK_PRESS) {
+        ArkUI_NativeDialogAPI_1 *dialogAPI = nullptr;
+        OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_DIALOG, ArkUI_NativeDialogAPI_1, dialogAPI);
+        if (globalCustomDialog) {
+            dialogAPI->close(globalCustomDialog);
+        }
+        return true;
+    } else if (reason == DIALOG_DISMISS_TOUCH_OUTSIDE) {
+        ArkUI_NativeDialogAPI_1 *dialogAPI = nullptr;
+        OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_DIALOG, ArkUI_NativeDialogAPI_1, dialogAPI);
+        if (globalCustomDialog) {
+            dialogAPI->close(globalCustomDialog);
+        }
+        return true;
+    } else if (reason == DIALOG_DISMISS_CLOSE_BUTTON) {
+        ArkUI_NativeDialogAPI_1 *dialogAPI = nullptr;
+        OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_DIALOG, ArkUI_NativeDialogAPI_1, dialogAPI);
+        if (globalCustomDialog) {
+            dialogAPI->close(globalCustomDialog);
+        }
+        return true;
+    } else if (reason == DIALOG_DISMISS_SLIDE_DOWN) {
         ArkUI_NativeDialogAPI_1 *dialogAPI = nullptr;
         OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_DIALOG, ArkUI_NativeDialogAPI_1, dialogAPI);
         if (globalCustomDialog) {
