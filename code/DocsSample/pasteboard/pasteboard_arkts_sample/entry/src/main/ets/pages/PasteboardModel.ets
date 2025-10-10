@@ -14,6 +14,7 @@
  */
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 import {unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+import { isNeedGetPermissionFromUser } from '../entryability/EntryAbility'
 
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 export namespace PasteboardModel {
@@ -26,6 +27,11 @@ export namespace PasteboardModel {
     let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
     // 将数据写入系统剪贴板
     await systemPasteboard.setData(pasteData);
+    // 增加权限校验逻辑
+    if (!(await isNeedGetPermissionFromUser())) {
+      console.warn("当前应用未获得剪贴板权限，无法读取剪贴板数据");
+      return;
+    }
     //从系统剪贴板中读取数据
     let data = await systemPasteboard.getData();
     let recordCount = data.getRecordCount();

@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "READ_PASTEBOARD_reason",
+      "value": "用户申请读取权限"
     }
   ]
 }

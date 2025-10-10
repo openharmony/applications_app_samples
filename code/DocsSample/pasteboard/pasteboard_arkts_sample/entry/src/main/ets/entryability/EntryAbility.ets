@@ -65,17 +65,7 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
 systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
   if (patterns.sort().join('')==data.sort().join('')) {
     console.info('All needed patterns detected, next get data');
-    try {
-      let result: pasteboard.PasteData = systemPasteboard.getDataSync();
-      console.info('Succeeded in getting PasteData.');
-      if (!result) {
-        // 格式不匹配，则不访问剪贴板
-      } else {
-        // 执行判断口令逻辑，如果是本应用口令，建议使用cleardata清除剪贴板口令内容
-      }
-    } catch (err) {
-      console.error('Failed to get PasteData. Cause:' + err.message);
-    };
+    // 执行判断口令逻辑，如果是本应用口令，进行获取数据操作后，建议使用cleardata清除剪贴板口令内容
   } else {
     console.info("Not all needed patterns detected, no need to get data.");
   }
