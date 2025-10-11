@@ -14,7 +14,7 @@
  */
 
 // [Start import_the_system_account_module]
-import { osAccount } from '@kit.BasicServicesKit';
+import { osAccount, BusinessError } from '@kit.BasicServicesKit';
 // [End import_the_system_account_module]
 import { router } from '@kit.ArkUI';
 
