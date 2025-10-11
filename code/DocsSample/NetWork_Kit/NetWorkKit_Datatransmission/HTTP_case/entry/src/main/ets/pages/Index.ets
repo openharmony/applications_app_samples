@@ -13,15 +13,20 @@
  * limitations under the License.
  */
 
+// [Start HTTP_case_module_import_data_request]
+// [Start HTTP_case_module_import_transfer_request]
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import Logger from '../common/Logger';
+import { common } from '@kit.AbilityKit';
+// [End HTTP_case_module_import_data_request]
+// [End HTTP_case_module_import_transfer_request]
+
 import { ComponentId } from '../common/CommonConstant';
 import { promptAction } from '@kit.ArkUI';
 
 // 常量定义
 const LOG_TAG: string = '[Sample_HttpRequestDemo]';
-const TARGET_URL: string = '';
+const EXAMPLE_URL: string = 'https://...';
 
 @Entry
 @Component
@@ -73,21 +78,30 @@ struct HttpRequestDemo {
   // 封装普通的 HTTP 请求逻辑
   private sendHttpRequest(): void {
     this.normalReqResult = $r('app.string.testing');
+
+    // [Start HTTP_case_create_http_method]
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // 每一个httpRequest对应一个HTTP请求任务，不可复用。
     let httpRequest = http.createHttp();
+    // [End HTTP_case_create_http_method]
 
-    // 订阅HTTP响应头
+    // [Start HTTP_case_http_request_on_method]
+    // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
+    // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。
     httpRequest.on('headersReceive', (header) => {
-      Logger.info(`${LOG_TAG} header: ${JSON.stringify(header)}`);
+      console.info(`${LOG_TAG} header: ${JSON.stringify(header)}`);
     });
+    // [End HTTP_case_http_request_on_method]
 
+    // [Start HTTP_case_http_request_request_method]
     httpRequest.request(
       // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
-      TARGET_URL,
+      'EXAMPLE_URL',
       {
-        method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
+        method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET，用于从服务器获取数据，而POST方法用于向服务器上传数据。
         // 开发者根据自身业务需要添加header字段
         header: {
-          'contentType': 'application/json'
+          'Content-Type': 'application/json'
         },
         // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
         extraData: 'data to send',
@@ -98,29 +112,50 @@ struct HttpRequestDemo {
         readTimeout: 60000, // 可选，默认为60000ms
         usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
         usingProxy: false, // 可选，默认不使用网络代理，自API 10开始支持该属性
-        // caPath:'/path/to/cacert.pem', // 可选，默认使用系统预制证书，自API 10开始支持该属性
-        // clientCert: { // 可选，默认不使用客户端证书，自API 11开始支持该属性
-        //   certPath: '/path/to/client.pem', // 默认不使用客户端证书，自API 11开始支持该属性
-        //   keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性
-        //   certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
-        //   keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
-        // },
-        multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
+        caPath:'/path/to/cacert.pem', // 可选，默认使用系统预制证书，自API 10开始支持该属性
+        clientCert: { // 可选，默认不使用客户端证书，自API 11开始支持该属性
+          certPath: '/path/to/client.pem', // 默认不使用客户端证书，自API 11开始支持该属性
+          keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性
+          certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
+          keyPassword: 'passwordToKey' // 可选，输入key文件的密码，自API 11开始支持该属性
+        },
+        // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效,自API 11开始支持该属性
+        // 该属性用于支持向服务器上传二进制数据，根据上传的具体数据类型进行选择。
+        multiFormDataList: [
           {
             name: 'Part1', // 数据名，自API 11开始支持该属性
-            contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
+            contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
             data: 'Example data', // 可选，数据内容，自API 11开始支持该属性
             remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性
           }, {
           name: 'Part2', // 数据名，自API 11开始支持该属性
-          contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
+          contentType: 'text/plain', // 数据类型，自API 11开始支持该属性，上传的数据类型为普通文本文件。
           // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-          filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
+          filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
           remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性
-        }
+          }, {
+            name: 'Part3', // 数据名，自API 11开始支持该属性。
+            contentType: 'image/png', // 数据类型，自API 11开始支持该属性，上传的数据类型为png格式的图片。
+            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.png。
+            filePath: `${context.filesDir}/fileName.png`, // 可选，传入文件路径，自API 11开始支持该属性。
+            remoteFileName: 'fileName.png' // 可选，自API 11开始支持该属性。
+          }, {
+            name: 'Part4', // 数据名，自API 11开始支持该属性。
+            contentType: 'audio/mpeg', // 数据类型，自API 11开始支持该属性，上传的数据类型为mpeg格式的音频。
+            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mpeg。
+            filePath: `${context.filesDir}/fileName.mpeg`, // 可选，传入文件路径，自API 11开始支持该属性。
+            remoteFileName: 'fileName.mpeg' // 可选，自API 11开始支持该属性。
+          }, {
+            name: 'Part5', // 数据名，自API 11开始支持该属性。
+            contentType: 'video/mp4', // 数据类型，自API 11开始支持该属性，上传的数据类型为mp4格式的视频。
+            // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.mp4。
+            filePath: `${context.filesDir}/fileName.mp4`, // 可选，传入文件路径，自API 11开始支持该属性。
+            remoteFileName: 'fileName.mp4' // 可选，自API 11开始支持该属性。
+          }
         ]
       }, (err: BusinessError, data: http.HttpResponse) => {
       if (!err) {
+        // [StartExclude HTTP_case_http_request_request_method]
         // 请求成功，处理响应结果
         this.normalReqResult = $r('app.string.httpSendSuccess');
         promptAction.showToast({
@@ -128,42 +163,62 @@ struct HttpRequestDemo {
           duration: 4000, // 持续时间
           bottom: 300 // 与底间隔
         });
-        Logger.info(`${LOG_TAG} Result: ${JSON.stringify(data.result)}`);
-        Logger.info(`${LOG_TAG} code: ${JSON.stringify(data.responseCode)}`);
-        Logger.info(`${LOG_TAG} header: ${JSON.stringify(data.header)}`);
-        Logger.info(`${LOG_TAG} cookies: ${JSON.stringify(data.cookies)}`);
-
+        // [EndExclude HTTP_case_http_request_request_method]
+        // data.result为HTTP响应内容，可根据业务需要进行解析。
+        console.info(`${LOG_TAG} Result: ${JSON.stringify(data.result)}`);
+        console.info(`${LOG_TAG} code: ${JSON.stringify(data.responseCode)}`);
+        // data.header为HTTP响应头，可根据业务需要进行解析。
+        console.info(`${LOG_TAG} header: ${JSON.stringify(data.header)}`);
+        console.info(`${LOG_TAG} cookies: ${JSON.stringify(data.cookies)}`);
+        // 当该请求使用完毕时，调用destroy方法主动销毁。
         httpRequest.destroy();
       } else {
+        // [StartExclude HTTP_case_http_request_request_method]
         this.normalReqResult = 'error:' + JSON.stringify(err);
         promptAction.showToast({
           message: this.normalReqResult,
           duration: 4000, // 持续时间
           bottom: 300 // 与底间隔
         });
+        // [EndExclude HTTP_case_http_request_request_method]
         // 请求失败，处理错误
-        Logger.error(`${LOG_TAG} error: ${JSON.stringify(err)}`);
-        // 取消订阅HTTP响应头事件
-        httpRequest.off('headersReceive');
+        console.error(`${LOG_TAG} error: ${JSON.stringify(err)}`);
 
+        // [Start HTTP_case_http_request_off_method]
+        // 取消订阅HTTP响应头事件
+        // 在不需要该回调信息时，需要取消订阅HTTP响应头事件，该方法调用的时机，可以参考步骤4中的示例代码。
+        httpRequest.off('headersReceive');
+        // [End HTTP_case_http_request_off_method]
+
+        // [Start HTTP_case_http_request_destroy_method]
         // 当该请求使用完毕时，调用destroy方法主动销毁
+        // 当该请求使用完毕时，调用destroy方法主动销毁，该方法调用的时机，可以参考步骤4中的示例代码。
         httpRequest.destroy();
+        // [End HTTP_case_http_request_destroy_method]
       }
     }
     );
+    // [End HTTP_case_http_request_request_method]
   }
   // [End request_interface_development]
+
 
   // [Start request_in_stream_interface_development]
   // 封装流式 HTTP 请求逻辑
   private sendStreamHttpRequest(): void {
     this.streamReqResult = $r('app.string.testing');
+    // [Start request_in_stream_create_http_method]
+    // 每一个httpRequest对应一个HTTP请求任务，不可复用。
     let httpRequest = http.createHttp();
+    // [End request_in_stream_create_http_method]
+
+    // [Start request_in_stream_data_receive]
+    // 用于订阅HTTP流式响应数据接收事件。
     let res = new ArrayBuffer(0);
 
     // 订阅HTTP响应头事件
     httpRequest.on('headersReceive', (header: Object) => {
-      Logger.info(`${LOG_TAG} header: ${JSON.stringify(header)}`);
+      console.info(`${LOG_TAG} header: ${JSON.stringify(header)}`);
     });
 
     // 订阅HTTP流式响应数据接收事件
@@ -173,69 +228,96 @@ struct HttpRequestDemo {
       resView.set(new Uint8Array(res));
       resView.set(new Uint8Array(data), res.byteLength);
       res = newRes;
-      Logger.info(`${LOG_TAG} res length: ${res.byteLength}`);
+      console.info(`${LOG_TAG} res length: ${res.byteLength}`);
     });
 
-    // 订阅HTTP流式响应数据接收完毕事件
+    // 用于订阅HTTP流式响应数据接收完毕事件。
     httpRequest.on('dataEnd', () => {
-      Logger.info(`${LOG_TAG} No more data in response, data receive end`);
+      console.info(`${LOG_TAG} No more data in response, data receive end`);
     });
 
-    class Data {
-      public receiveSize: number = 0;
-      public totalSize: number = 0;
-    }
-
-    // 订阅HTTP流式响应数据接收进度事见
-    httpRequest.on('dataReceiveProgress', (data: Data) => {
-      Logger.info(`${LOG_TAG} dataReceiveProgress receiveSize: ${data.receiveSize},totalSize: ${data.totalSize}`);
+    // 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
+    httpRequest.on('dataReceiveProgress', (data: http.DataReceiveProgressInfo) => {
+      console.info('dataReceiveProgress receiveSize:' + data.receiveSize + ', totalSize:' + data.totalSize);
     });
 
+    // 订阅HTTP流式响应数据发送进度事件，向服务器上传数据时，可以通过该回调获取数据上传进度。
+    httpRequest.on('dataSendProgress', (data: http.DataSendProgressInfo) => {
+      console.info('dataSendProgress receiveSize:' + data.sendSize + ', totalSize:' + data.totalSize);
+    });
+    // [End request_in_stream_data_receive]
+
+    // [Start request_in_stream_get_server_data]
     let streamInfo: http.HttpRequestOptions = {
-      method: http.RequestMethod.POST, // 使用POST请求
+      method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET，用于向服务器获取数据，而POST方法用于向服务器上传数据。
+      // 开发者根据自身业务需要添加header字段。
       header: {
-        'contentType': 'application/json'
+        'Content-Type': 'application/json'
       },
+      // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定。
       extraData: 'data to send', // 请求体内容
-      expectDataType: http.HttpDataType.STRING, // 指定返回数据的类型
-      usingCache: true, // 使用缓存
-      priority: 1, // 请求优先级
-      connectTimeout: 60000, // 连接超时
-      readTimeout: 60000, // 读取超时
-      usingProtocol: http.HttpProtocol.HTTP1_1 // 协议类型
+      expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型。
+      usingCache: true,  // 可选，默认为true。
+      priority: 1, // 可选，默认为1。
+      connectTimeout: 60000, // 可选，默认为60000ms。
+      readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止。
+      usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定。
     };
 
-    // 发送流式请求
-    httpRequest.requestInStream(TARGET_URL, streamInfo)
+    // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
+    httpRequest.requestInStream('EXAMPLE_URL', streamInfo)
       .then((data: number) => {
+
+        // [StartExclude request_in_stream_get_server_data]
         this.streamReqResult = $r('app.string.testSuccess'); // 测试通过
         promptAction.showToast({
           message: this.streamReqResult,
           duration: 4000, // 持续时间
           bottom: 300 // 与底间隔
         });
-        Logger.info(`${LOG_TAG} requestInStream OK!`);
-        Logger.info(`${LOG_TAG} ResponseCode : ${JSON.stringify(data)}`);
+        // [EndExclude request_in_stream_get_server_data]
 
+        console.info(`${LOG_TAG} requestInStream OK!`);
+        console.info(`${LOG_TAG} ResponseCode : ${JSON.stringify(data)}`);
+
+        // 取消订阅步骤3中订阅的事件，并调用destroy方法主动销毁。
+        this.destroyRequest(httpRequest);
+        // [StartExclude request_in_stream_get_server_data]
         // 取消订阅事件
         httpRequest.off('headersReceive');
-        httpRequest.off('dataReceive');
-        httpRequest.off('dataReceiveProgress');
-        httpRequest.off('dataEnd');
+        // [EndExclude request_in_stream_get_server_data]
       })
       .catch((err: Error) => {
+
+        // [StartExclude request_in_stream_get_server_data]
         this.streamReqResult = 'error:' + JSON.stringify(err); // 测试失败
         promptAction.showToast({
           message: this.streamReqResult,
           duration: 4000, // 持续时间
           bottom: 300 // 与底间隔
         });
-        Logger.error(`${LOG_TAG} requestInStream ERROR : err = ${JSON.stringify(err)}`);
+        // [EndExclude request_in_stream_get_server_data]
+        
+        console.error(`${LOG_TAG} requestInStream ERROR : err = ${JSON.stringify(err)}`);
+        // 取消订阅步骤3中订阅的事件，并调用destroy方法主动销毁。
+        this.destroyRequest(httpRequest);
       })
-      .finally(() => {
-        // 销毁请求对象
-        httpRequest.destroy();
-      });
+      // [End  request_in_stream_get_server_data]
   }
   // [End request_in_stream_interface_development]
+
+  // [Start request_in_stream_destroy_request_method]
+  public destroyRequest(httpRequest: http.HttpRequest) {
+    // 取消订阅HTTP流式响应数据接收事件。
+    httpRequest.off('dataReceive');
+    // 取消订阅HTTP流式响应数据发送进度事件。
+    httpRequest.off('dataSendProgress');
+    // 取消订阅HTTP流式响应数据接收进度事件。
+    httpRequest.off('dataReceiveProgress');
+    // 取消订阅HTTP流式响应数据接收完毕事件。
+    httpRequest.off('dataEnd');
+    // 当该请求使用完毕时，调用destroy方法主动销毁。
+    httpRequest.destroy();
+  }
+  // [End  request_in_stream_destroy_request_method]
 }
