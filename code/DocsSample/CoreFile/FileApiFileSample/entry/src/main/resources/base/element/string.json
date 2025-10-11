@@ -1,0 +1,51 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "createFile",
+      "value": "新建并读写一个文件"
+    },
+    {
+      "name": "readWriteFile",
+      "value": "读取文件内容并写入到另一个文件"
+    },
+    {
+      "name": "readWriteFileWithStream",
+      "value": "以流的形式读写文件"
+    },
+    {
+      "name": "getListFile",
+      "value": "查看文件列表"
+    },
+    {
+      "name": "copyFileWithReadable",
+      "value": "使用文件流暂停模式拷贝文件"
+    },
+    {
+      "name": "copyFileWithData",
+      "value": "使用文件流流动模式拷贝文件"
+    },
+    {
+      "name": "hashFileWithStream",
+      "value": "使用文件哈希流"
+    },
+    {
+      "name": "setSecurityLabel",
+      "value": "设置分布式文件数据等级"
+    }
+
+
+
+  ]
+}
