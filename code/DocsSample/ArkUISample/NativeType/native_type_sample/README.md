@@ -65,7 +65,8 @@ entry/src/main/ets/
     ├── page_image.ets (图片页面)
     ├── page_image_animator.ets (图片帧页面)
     ├── page_text_picker.ets (文本选择器页面)
-    └── page_text.ets (文本界面)
+    ├── page_text.ets (文本界面)
+    └── page_xcomponent.ets (XComponent界面)
 
 entry/src/main/
 ├── cpp
@@ -96,6 +97,8 @@ entry/src/main/
 |   ├── SwiperMaker.h
 |   ├── SliderMaker.cpp
 |   ├── SliderMaker.h
+|   ├── XComponentMaker.cpp
+│   ├── XComponentMaker.h
 |   ├── TextMaker.cpp
 │   ├── TextMaker.h
 |   ├── AccessibilityMaker.cpp

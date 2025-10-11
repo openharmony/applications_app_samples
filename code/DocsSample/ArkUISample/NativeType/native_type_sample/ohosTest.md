@@ -25,7 +25,6 @@
 | Chebox形状设置为方形功能     | 应用位于首页 | 1.点击首页CheckboxShape按钮 2.点击菜单CheckboxShape，选择ArkUI_CHECKBOX_SHAPE_SQUARE               | 1.圆形样式checkbox，可点击进行复选                        | 否       | 验证通过 |
 | 设置悬停模式下显示区域的类型为屏幕上半部分区域    | 应用位于首页 | 1.点击首页HoverModeAreaType按钮 2.点击菜单HoverModeAreaType，选择ARKUI_HOVER_MODE_AREA_TYPE_TOP    | 1.悬停模式下显示区域的类型为屏幕上半部分区域  | 否       | 验证通过 |
 | 设置悬停模式下显示区域的类型为屏幕下半部分区域    | 应用位于首页 | 1.点击首页HoverModeAreaType按钮 2.点击菜单HoverModeAreaType，选择ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM | 1.悬停模式下显示区域的类型为屏幕下半部分区域  | 否       | 验证通过 |
-
 | EmbeddedComponent OnErrorCallback回调成功 | 执行 hdc shell param set persist.sys.abilityms.multi_process_model false 后重启，应用位于首页 | 1.点击首页embedded component按钮 | EmbeddedComponent onError回调被触发，打印日志{OnErrorCallback:        code=100018, name=start_ability_fail, message=Start ui extension ability failed, please check the want of UIextensionAbility.} | 否 | 验证通过 |
 | EmbeddedComponent OnTerminatedCallback回调成功 | 执行 hdc shell param set persist.sys.abilityms.multi_process_model true 后重启，应用位于首页 | 1.点击首页embedded component按钮 | EmbeddedComponent onError回调被触发，打印日志{OnTerminatedCallback: code=0} | 否 | 验证通过 |
 | 文本无障碍属性设置 | 应用位于首页 | 1.点击首页Accessibility按钮 | 观测Get日志设置属性值与Set函数一致 | 否 | 验证通过 |
@@ -33,3 +32,4 @@
 | 多态样式属性设置 | 应用位于首页 | 1.点击首页Public按钮 <br/>2.向下滑动，寻找标记为normal和effective的两个按钮 | 点击effective的按钮后，按钮样式发生变化，再次点击，按钮样式还原。 | 否 | 验证通过 |
 | 截图属性设置 | 应用位于首页 | 1.点击首页Public按钮 <br/>2.向下滑动，寻找标记为截图的按钮 | 点击截图按钮后，打印出ComponentSnapshot相关日志。 | 否 | 验证通过 |
 | ArkUI_HitTestMode属性设置 | 应用位于首页 | 1.点击首页Public按钮 <br/>2.向下滑动，寻找标记为ARKUI_HIT_TEST_MODE_DEFAULT的Text | 有四个分别设置了不同ArkUI_HitTestMode参数的背景色为黄色的Text，下方为设置ARKUI_HIT_TEST_MODE_DEFAULT的红色Text堆叠在设置为ARKUI_HIT_TEST_MODE_TRANSPARENT的绿色文本组件上，同时有设置ARKUI_HIT_TEST_MODE_DEFAULT的蓝色Text。 | 否 | 验证通过 |
+| 验证XComponent创建成功 | 应用位于首页 | 1.点击首页XComponent按钮 | 1.包含两个XComponent显示框 | 否 | 验证通过 |
