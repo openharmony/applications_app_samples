@@ -14,7 +14,7 @@
  */
 
 // [Start example_container_obj]
-import { taskpool, TreeSet} from '@kit.ArkTS';
+import { taskpool, TreeSet } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Sendable
