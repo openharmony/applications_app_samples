@@ -57,6 +57,7 @@ const FAIL_TAG = '创建失败';
 @Entry
 @Component
 struct Index {
+  @State status: number = Visibility.Visible;
   @State nodeId: number = -1;
   @State nodeStatus: string = FAIL_TAG;
   @State curNodeType: string = '未设置';
@@ -91,15 +92,24 @@ struct Index {
   SubMenuAttributeType() {
     Menu() {
       MenuItem({ content: 'IMAGE_SPAN', builder: ():void=>this.SubMenu_IMAGE_SPAN() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'IMAGE', builder: ():void=>this.SubMenu_IMAGE() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'LOADING_PROGRESS', builder: ():void=>this.SubMenu_LOADING_PROGRESS() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'PROGRESS', builder: ():void=>this.SubMenu_PROGRESS() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'DATE_PICKER', builder: ():void=>this.SubMenu_DATE_PICKER() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'TIME_PICKER', builder: ():void=>this.SubMenu_TIME_PICKER() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'TEXT_PICKER', builder: ():void=>this.SubMenu_TEXT_PICKER() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'CALENDAR_PICKER', builder: ():void=>this.SubMenu_CALENDAR_PICKER() }).width('50%')
+        .onChange(()=> { this.status = Visibility.None })
       MenuItem({ content: 'IMAGE_ANIMATOR', builder: ():void=>this.SubMenu_IMAGE_ANIMATOR() }).width('50%')
-    }
+        .onChange(()=> { this.status = Visibility.None })
+    }.visibility(this.status)
   }
 
   @Builder
@@ -535,6 +545,7 @@ struct Index {
             .width('50%')
             .margin({ left: 10 })
             .bindMenu(this.SubMenuAttributeType)
+            .onClick(()=> { this.status = Visibility.Visible })
           Text(`当前属性类型: ${this.attributeType}`)
             .fontSize(14)
             .margin(10)
