@@ -9,9 +9,10 @@
 | 首页 | Text页面                                              | Swiper页面                                              | Public页面                                              |
 | ---- | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 |      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> | <img src="./screenshots/page_public.jpg" width="300"/> |
-| Button页面                                           | Slider页面                                           |HoverMode AreaType页面            |Checkbox ShapeType页面                    |
-|----------------------------------------------------|----------------------------------------------------| ------------------------------------------------------- |------------------------------------------------------- |
-| <img src="./screenshots/button.jpeg" width="300"/> | <img src="./screenshots/slider.jpeg" width="300"/> | <img src="./screenshots/hovermode.jpeg" width="300"/> |<img src="./screenshots/checkbox_shape_circle.jpeg" width="300"/> |
+
+| Button页面                                           | Slider页面                                             | ShapeType页面                                             |
+| ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
+| <img src="./screenshots/button.jpeg" width="300" /> | <img src="./screenshots/slider.jpeg" width="300" /> | <img src="./screenshots/checkbox_shape_circle.jpeg" width="300" /> |
 
 | Progress页面                                         | CalendarPicker页面                                              |
 | ---------------------------------------------------- | ------------------------------------------------------- |

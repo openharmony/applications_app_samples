@@ -10,22 +10,22 @@
 | swiper设置自定义数字导航栏功能 | 应用位于首页 | 1.点击首页Swiper按钮                                         | 1.第三个swiper左上角显示数字导航栏，左侧数字为1/14，其中数字1为红色，14为灰色，swiper内容为“0” | 否       | 验证通过 |
 | 基础 Text 样式展示       | 应用加载完成 | 1.查看第一段文本                                         | 1.宽 200vp 高 30vp 带边框，斜体 600 字重，超长跑马灯、不可复制 | 否       | 验证通过 |
 | TextInput 输入功能     | 应用加载完成 | 1.点击输入框尝试输入                         | 1.支持输入，第一个样式内联，第二个带清除按钮  | 否       | 验证通过 |
-| 基础 Button 样式展示         | 应用位于首页 | 1.点击首页Button按钮 2.点击ButtonType按钮 3.选择ARKUI_BUTTON_TYPE_NORMAL                           | 1.button为普通按钮                      | 否       | 验证通过 |
-| 基础 Button 样式展示         | 应用位于首页 | 1.点击首页Button按钮 2.点击ButtonType按钮 3.选择ARKUI_BUTTON_TYPE_CAPSULE                          | 1.button为胶囊型按钮                     | 否       | 验证通过 |
-| 基础 Button 样式展示         | 应用位于首页 | 1.点击首页Button按钮 2.点击ButtonType按钮 3.选择ARKUI_BUTTON_TYPE_CIRCLE                           | 1.button为圆形按钮                      | 否       | 验证通过 |
-| 基础 Button 样式展示         | 应用位于首页 | 1.点击首页Button按钮 2.点击ButtonType按钮 3.选择ARKUI_BUTTON_ROUNDED_RECTANGLE                     | 1.button为圆角矩形按钮                   | 否       | 验证通过 |
-| slider设置BlockStyle属性功能 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderBlockStyle按钮 3.选择ARKUI_SLIDER_BLOCK_STYLE_DEFAULT             | 1.slider使用默认圆形滑块                  | 否       | 验证通过 |
-| slider设置BlockStyle属性功能 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderBlockStyle按钮 3.选择ARKUI_SLIDER_BLOCK_STYLE_IMAGE               | 1.slider使用图片资源作为滑块               | 否       | 验证通过 |
-| slider设置BlockStyle属性功能 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderBlockStyle按钮 3.选择ARKUI_SLIDER_BLOCK_STYLE_SHAPE               | 1.slider使用自定义形状作为滑块，示例中为矩形   | 否       | 验证通过 |
-| slider设置Style属性功能 | 应用位于首页 | 1.点击首页Slider按钮  2.点击SliderStyle按钮 3.选择ARKUI_SLIDER_STYLE_OUT_SET                       | 1.slider滑块在滑轨上                           | 否       | 验证通过 |
-| slider设置Style属性功能 | 应用位于首页 | 1.点击首页Slider按钮  2.点击SliderStyle按钮 3.选择ARKUI_SLIDER_STYLE_IN_SET                        | 1.slider滑块在滑轨内                                  | 否       | 验证通过 |
-| slider设置Style属性功能 | 应用位于首页 | 1.点击首页Slider按钮  2.点击SliderStyle按钮 3.选择ARKUI_SLIDER_STYLE_NONE                          | 1.slider无滑块                                        | 否       | 验证通过 |
-| slider设置DirectionType属性功能 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderDirection按钮 3.选择ARKUI_SLIDER_DIRECTION_VERTICAL       | 1.slider方向变为为纵向                                       | 否       | 验证通过 |
-| Chebox形状设置为圆形功能     | 应用位于首页 | 1.点击首页CheckboxShape按钮 2.点击菜单CheckboxShape，选择ArkUI_CHECKBOX_SHAPE_CIRCLE               | 1.圆形样式checkbox，可点击进行复选                        | 否       | 验证通过 |
-| Chebox形状设置为方形功能     | 应用位于首页 | 1.点击首页CheckboxShape按钮 2.点击菜单CheckboxShape，选择ArkUI_CHECKBOX_SHAPE_SQUARE               | 1.圆形样式checkbox，可点击进行复选                        | 否       | 验证通过 |
-| 设置悬停模式下显示区域的类型为屏幕上半部分区域    | 应用位于首页 | 1.点击首页HoverModeAreaType按钮 2.点击菜单HoverModeAreaType，选择ARKUI_HOVER_MODE_AREA_TYPE_TOP    | 1.悬停模式下显示区域的类型为屏幕上半部分区域  | 否       | 验证通过 |
-| 设置悬停模式下显示区域的类型为屏幕下半部分区域    | 应用位于首页 | 1.点击首页HoverModeAreaType按钮 2.点击菜单HoverModeAreaType，选择ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM | 1.悬停模式下显示区域的类型为屏幕下半部分区域  | 否       | 验证通过 |
-
+| Button普通样式展示 | 应用位于首页 | 1.点击首页Button按钮 2.点击ButtonType按钮 3.选择ARKUI_BUTTON_TYPE_NORMAL | Button为普通按钮 | 否 | 验证通过 |
+| Button胶囊样式展示 | 应用位于首页 | 1.点击首页Button按钮 2.点击ButtonType按钮 3.选择ARKUI_BUTTON_TYPE_CAPSULE | Button为胶囊型按钮 | 否 | 验证通过 |
+| Button圆形样式展示 | 应用位于首页 | 1.点击首页Button按钮 2.点击ButtonType按钮 3.选择ARKUI_BUTTON_TYPE_CIRCLE | Button为圆形按钮 | 否 | 验证通过 |
+| Button圆角矩形展示 | 应用位于首页 | 1.点击首页Button按钮 2.点击ButtonType按钮 3.选择ARKUI_BUTTON_ROUNDED_RECTANGLE | Button为圆角矩形按钮 | 否 | 验证通过 |
+| Slider默认圆形滑块展示 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderBlockStyle按钮 3.选择ARKUI_SLIDER_BLOCK_STYLE_DEFAULT | Slider使用默认圆形滑块 | 否 | 验证通过 |
+| Slider图片资源滑块展示 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderBlockStyle按钮 3.选择ARKUI_SLIDER_BLOCK_STYLE_IMAGE | Slider使用图片资源作为滑块 | 否 | 验证通过 |
+| Slider自定义形状滑块展示 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderBlockStyle按钮 3.选择ARKUI_SLIDER_BLOCK_STYLE_SHAPE | Slider使用自定义形状作为滑块，示例中为矩形 | 否 | 验证通过 |
+| Slider设置滑块在滑轨上 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderStyle按钮 3.选择ARKUI_SLIDER_STYLE_OUT_SET | Slider滑块在滑轨上 | 否 | 验证通过 |
+| Slider设置滑块在滑轨内 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderStyle按钮 3.选择ARKUI_SLIDER_STYLE_IN_SET | Slider滑块在滑轨内 | 否 | 验证通过 |
+| Slider设置无滑块 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderStyle按钮 3.选择ARKUI_SLIDER_STYLE_NONE | Slider无滑块 | 否 | 验证通过 |
+| Slider设置方向为纵向 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderDirection按钮 3.选择ARKUI_SLIDER_DIRECTION_VERTICAL | Slider方向变为为纵向 | 否 | 验证通过 |
+| Slider设置方向为横向 | 应用位于首页 | 1.点击首页Slider按钮 2.点击SliderDirection按钮 3.ARKUI_SLIDER_DIRECTION_HORIZONTAL | Slider方向变为为横向 | 否 | 验证通过 |
+| Checkbox圆形样式展示 | 应用位于首页 | 1.点击首页CheckboxShape按钮 2.点击菜单CheckboxShape，选择ArkUI_CHECKBOX_SHAPE_CIRCLE | 圆形样式Checkbox，可点击进行复选 | 否 | 验证通过 |
+| Checkbox方形样式展示 | 应用位于首页 | 1.点击首页CheckboxShape按钮 2.点击菜单CheckboxShape，选择ArkUI_CHECKBOX_SHAPE_SQUARE | 方形样式Checkbox，可点击进行复选 | 否 | 验证通过 |
+| 设置悬停模式下显示区域的类型为屏幕上半部分区域(仅在折叠屏使用) | 应用位于首页 | 1.点击首页HoverModeAreaType按钮 2.点击菜单HoverModeAreaType，选择ARKUI_HOVER_MODE_AREA_TYPE_TOP | 悬停模式下显示区域的类型为屏幕上半部分区域 | 否 | 验证通过 |
+| 设置悬停模式下显示区域的类型为屏幕下半部分区域(仅在折叠屏使用) | 应用位于首页 | 1.点击首页HoverModeAreaType按钮 2.点击菜单HoverModeAreaType，选择ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM | 悬停模式下显示区域的类型为屏幕下半部分区域 | 否 | 验证通过 |
 | EmbeddedComponent OnErrorCallback回调成功 | 执行 hdc shell param set persist.sys.abilityms.multi_process_model false 后重启，应用位于首页 | 1.点击首页embedded component按钮 | EmbeddedComponent onError回调被触发，打印日志{OnErrorCallback:        code=100018, name=start_ability_fail, message=Start ui extension ability failed, please check the want of UIextensionAbility.} | 否 | 验证通过 |
 | EmbeddedComponent OnTerminatedCallback回调成功 | 执行 hdc shell param set persist.sys.abilityms.multi_process_model true 后重启，应用位于首页 | 1.点击首页embedded component按钮 | EmbeddedComponent onError回调被触发，打印日志{OnTerminatedCallback: code=0} | 否 | 验证通过 |
 | 文本无障碍属性设置 | 应用位于首页 | 1.点击首页Accessibility按钮 | 观测Get日志设置属性值与Set函数一致 | 否 | 验证通过 |
