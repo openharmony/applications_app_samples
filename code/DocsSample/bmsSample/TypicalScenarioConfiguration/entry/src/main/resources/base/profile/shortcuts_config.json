@@ -1,0 +1,34 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "id_test1",
+      "label": "$string:add",
+      "icon": "$media:add_icon",
+      "wants": [
+        {
+          "bundleName": "com.ohos.hello",
+          "moduleName": "entry",
+          "abilityName": "EntryAbility1",
+          "parameters": {
+            "testKey": "testValue"
+          }
+        }
+      ]
+    },
+    {
+      "shortcutId": "id_test2",
+      "label": "$string:share",
+      "icon": "$media:share_icon",
+      "wants": [
+        {
+          "bundleName": "com.ohos.hello",
+          "moduleName": "entry",
+          "abilityName": "EntryAbility",
+          "parameters": {
+            "testKey": "testValue"
+          }
+        }
+      ]
+    }
+  ]
+}
