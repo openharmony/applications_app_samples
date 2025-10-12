@@ -38,7 +38,6 @@ target_link_libraries(entry PUBLIC
     libability_base_want.so
     libpixelmap.so
 )
-target_link_libraries(entry PUBLIC ${libace-lib} ${libnapi-lib})
-target_link_libraries(entry PUBLIC ${libace-lib} libace_napi.z.so libnative_drawing.so libhilog_ndk.z.so libpixelmap.so)
-target_link_libraries(entry PUBLIC ${EGL-lib} ${GLES-lib} libace_napi.z.so libhilog_ndk.z.so libace_ndk.z.so libnative_window.so)
-target_link_libraries(entry PUBLIC ${libace-lib} libace_napi.z.so libnative_drawing.so libhilog_ndk.z.so libability_base_want.so libpixelmap.so)
+target_link_libraries(entry PUBLIC ${libnapi-lib})
+target_link_libraries(entry PUBLIC ${EGL-lib} ${GLES-lib} libnative_window.so)
+target_link_libraries(entry PUBLIC ${libace-lib})
