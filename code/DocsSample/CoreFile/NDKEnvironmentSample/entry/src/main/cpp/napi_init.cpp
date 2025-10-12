@@ -35,10 +35,10 @@ void GetUserDownloadDirExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        printf("Download Path=%s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Download Path=%{public}s", downloadPath);
         free(downloadPath);
     } else {
-        printf("GetDownloadPath failed, error code is %d", ret);
+        OH_LOG_ERROR(LOG_APP, "GetDownloadPath fail, error code is %{public}d", ret);
     }
 }
 // [End get_user_download_dir_example]
@@ -127,10 +127,10 @@ void GetUserDownloadDirPathExample()
     char *downloadPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
     if (ret == 0) {
-        printf("Download Path=%s", downloadPath);
+        OH_LOG_INFO(LOG_APP, "Download Path=%{public}s", downloadPath);
         free(downloadPath);
     } else {
-        printf("GetDownloadPath failed, error code is %d", ret);
+        OH_LOG_ERROR(LOG_APP, "GetDownloadPath fail, error code is %{public}d", ret);
     }
 }
 // [End get_user_download_dir_path_example]
@@ -147,10 +147,10 @@ void GetUserDesktopDirPathExample()
     char *desktopPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDesktopDir(&desktopPath);
     if (ret == 0) {
-        printf("Desktop Path=%s", desktopPath);
+        OH_LOG_INFO(LOG_APP, "Desktop Path=%{public}s", desktopPath);
         free(desktopPath);
     } else {
-        printf("GetDesktopPath failed, error code is %d", ret);
+        OH_LOG_ERROR(LOG_APP, "GetDesktopPath fail, error code is %{public}d", ret);
     }
 }
 // [End get_user_desktop_dir_path_example]
@@ -166,10 +166,10 @@ void GetUserDocumentDirPathExample()
     char *documentPath = nullptr;
     FileManagement_ErrCode ret = OH_Environment_GetUserDocumentDir(&documentPath);
     if (ret == 0) {
-        printf("Document Path=%s", documentPath);
+        OH_LOG_INFO(LOG_APP, "Document Path=%{public}s", documentPath);
         free(documentPath);
     } else {
-        printf("GetDocumentPath failed, error code is %d", ret);
+        OH_LOG_ERROR(LOG_APP, "GetDocumentPath fail, error code is %{public}d", ret);
     }
 }
 // [End get_user_document_dir_path_example]
