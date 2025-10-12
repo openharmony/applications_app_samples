@@ -36,7 +36,7 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
     }
     // 授权成功
   }).catch((err: BusinessError) => {
-    console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to request permissions from user, code: ${err.code}, message: ${err.message}`);
   })
 }
 
@@ -44,7 +44,7 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
 @Component
 struct Index {
   aboutToAppear() {
-    const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+    const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     reqPermissionsFromUser(permissions, context);
   }
 
