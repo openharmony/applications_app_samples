@@ -20,7 +20,7 @@
 #include <hilog/log.h>
 
 #include "container.h"
-#include "native_interface_focus.h"
+#include "arkui/native_interface_focus.h"
 
 
 namespace NativeXComponentSample {
