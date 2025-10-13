@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start websocket_defining_function_types]
 export const Connect: (url: string) => boolean;
 export const Send: (data: string) => number;
 export const Close: () => number;
+// [End websocket_defining_function_types]

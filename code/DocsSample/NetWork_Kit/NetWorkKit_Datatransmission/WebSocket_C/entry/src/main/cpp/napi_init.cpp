@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
+// [Start websocket_build_project]
+// [Start websocket_c_module_import]
 #include "napi/native_api.h"
 #include "network/netstack/net_websocket.h"
 #include "network/netstack/net_websocket_type.h"
+// [End websocket_c_module_import]
 #include "hilog/log.h"
 
 #include <cstring>
@@ -25,7 +28,7 @@
 #define LOG_DOMAIN 0x3200 // 全局domain宏，标识业务领域
 #define LOG_TAG "WSDEMO"  // 全局tag宏，标识模块日志tag
 
-// [Start websocket_build_project]
+
 // WebSocket客户端全局变量
 static struct WebSocket *g_client = nullptr;
 
@@ -96,7 +99,7 @@ static napi_value ConnectWebsocket(napi_env env, napi_callback_info info)
     napi_get_boolean(env, connectRet == 0, &result);
     return result;
 }
-// [End websocket_build_project]
+
 
 static napi_value SendMessage(napi_env env, napi_callback_info info)
 {
@@ -148,7 +151,9 @@ static napi_value CloseWebsocket(napi_env env, napi_callback_info info)
     napi_create_int32(env, ret, &result);
     return result;
 }
+// [End websocket_build_project]
 
+// [Start websocket_extern_c]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -161,7 +166,9 @@ static napi_value Init(napi_env env, napi_value exports)
     return exports;
 }
 EXTERN_C_END
+// [End websocket_extern_c]
 
+// [Start websocket_napi_module]
 static napi_module demoModule = {
     .nm_version = 1,
     .nm_flags = 0,
@@ -173,3 +180,4 @@ static napi_module demoModule = {
 };
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+// [End websocket_napi_module]
