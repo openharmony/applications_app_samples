@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "grant_net_firewall",
+      "value": "grant net firewall"
+    },
+    {
+      "name": "for_specific_IP",
+      "value": "for specific IP"
+    },
+    {
+      "name": "networking_for_domain_names",
+      "value": "networking for domain names"
+    },
+    {
+      "name": "network_firewall",
+      "value": "Network firewall example"
+    },
+    {
+      "name": "specific_IP_success",
+      "value": "specific IP success"
+    },
+    {
+      "name": "domain_names_networking_success",
+      "value": "domain names networking success"
+    }
+  ]
+}

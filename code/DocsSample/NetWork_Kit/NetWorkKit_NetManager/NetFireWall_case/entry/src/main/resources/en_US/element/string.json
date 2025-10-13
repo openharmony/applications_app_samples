@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "net_netfirewall"
+    },
+    {
+      "name": "networking_for_domain_names",
+      "value": "Interception for domain name network access control"
+    },
+    {
+      "name": "for_specific_IP",
+      "value": "Access control for specific IP networking"
+    },
+    {
+      "name": "grant_net_firewall",
+      "value": "Firewall Permissions"
+    },
+    {
+      "name": "network_firewall",
+      "value": "Network firewall example"
+    },
+    {
+      "name": "specific_IP_success",
+      "value": "The firewall rule is successfully added for the specific IP network access mode"
+    },
+    {
+      "name": "domain_names_networking_success",
+      "value": "The firewall rule is successfully added for the domain name network access mode"
+    }
+  ]
+}
