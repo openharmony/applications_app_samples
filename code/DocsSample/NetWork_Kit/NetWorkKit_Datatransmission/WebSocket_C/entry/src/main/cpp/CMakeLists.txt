@@ -12,4 +12,6 @@ include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
 add_library(entry SHARED napi_init.cpp)
+// [Start WebSocket_C_CMAKE_LIST_module_import]
 target_link_libraries(entry PUBLIC libace_napi.z.so libnet_websocket.so PUBLIC libhilog_ndk.z.so)
+// [End WebSocket_C_CMAKE_LIST_module_import]
