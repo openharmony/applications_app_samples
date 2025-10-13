@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages1/Index",
+    "pages2/Index",
+    "pages3/Index",
+    "pages4/Index"
+  ]
+}
