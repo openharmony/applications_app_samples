@@ -111,7 +111,7 @@ static void pasteboard_test_get()
             OH_UdsPlainText_Destroy(plainText);
             OH_UdmfData_Destroy(udmfData);
         } else {
-            OH_LOG_INFO(LOG_APP,"No Permission READ_PASTEBOARD");
+            OH_LOG_ERROR(LOG_APP,"No Permission READ_PASTEBOARD");
         };
     }
     OH_Pasteboard_Destroy(pasteboard);
@@ -186,7 +186,16 @@ static void pasteboard_test_time()
     // [start pasteboard_timelapse_Record5]
     // 10. 从剪贴板获取OH_UdmfData。
     int status = -1;
+    bool hasPermission = OH_AT_CheckSelfPermission("ohos.permission.READ_PASTEBOARD");
+    if (!hasPermission) {
+        OH_LOG_ERROR(LOG_APP,"No Permission READ_PASTEBOARD");
+        return;
+    };
     OH_UdmfData* getData = OH_Pasteboard_GetData(pasteboard, &status);
+    if (getData == nullptr) {
+        // 处理错误情况，清理资源
+        OH_LOG_ERROR(LOG_APP,"Failed to get data from pasteboard, status: %d\n", status);
+    }
 
     // 11. 获取OH_UdmfData中的所有OH_UdmfRecord。
     unsigned int recordCount = 0;
@@ -253,6 +262,3 @@ static void pasteboard_test_time()
     OH_Pasteboard_Destroy(pasteboard);
     // [End pasteboard_timelapse_Record7]
 }
-
-
-

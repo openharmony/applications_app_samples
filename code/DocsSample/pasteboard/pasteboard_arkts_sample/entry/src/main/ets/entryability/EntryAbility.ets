@@ -23,10 +23,9 @@ const permissions: Array<Permissions> = ['ohos.permission.READ_PASTEBOARD'];
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 const patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
 let dataPreferences: preferences.Preferences | null = null;
-let changeCount = 0;
 
 // 校验当前应用是否需要向用户申请剪贴板权限
-async function isNeedGetPermissionFromUser(): Promise<boolean> {
+export async function isNeedGetPermissionFromUser(): Promise<boolean> {
   try {
     let hasData: boolean = await systemPasteboard.hasData();
     if (!hasData) {
@@ -36,11 +35,17 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
     // 获取剪贴板的内容变化次数
     let result : number = systemPasteboard.getChangeCount();
     console.info('Succeeded in getting the ChangeCount. Result: ${result}');
-    if (result == changeCount) {
+    // 从 Preferences 中读取上次保存的 changeCount
+    let storedChangeCount: number = dataPreferences ? Number(dataPreferences.getSync('pasteboardChangeCount', 0)) : 0;
+    if (result === storedChangeCount) {
       // 剪贴板无数据变化，无需申请权限
       return false;
     }
-    changeCount = result;
+    // 更新 Preferences 中的 changeCount
+    if (dataPreferences) {
+      dataPreferences.putSync('pasteboardChangeCount', result);
+      dataPreferences.flushSync(); // 确保数据写入持久化存储
+    }
   } catch (err) {
     console.error('Failed to get the ChangeCount. Cause: ${err.message}');
     return false;
@@ -48,6 +53,13 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
 
   // 查询剪贴板是否存在应用所需数据类型
   try {
+    // (可选)涉及口令等应用自身特殊复制内容的，使用detectPatterns过滤口令格式
+    let data: Array<pasteboard.Pattern> = await systemPasteboard.detectPatterns(patterns);
+    if (patterns.sort().join('') != data.sort().join('')) {
+      console.info("Not all needed patterns detected, no need to get data.");
+      return false;
+    }
+    // (可选)判断是否有应用需要的数据类型
     let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
     console.info('Succeeded in checking the DataType. Result: ${result}');
     if (!result) {
@@ -60,16 +72,6 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
   };
   return true;
 }
-
-// 涉及口令等应用自身特殊复制内容的，使用detectPatterns过滤口令格式
-systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
-  if (patterns.sort().join('')==data.sort().join('')) {
-    console.info('All needed patterns detected, next get data');
-    // 执行判断口令逻辑，如果是本应用口令，进行获取数据操作后，建议使用cleardata清除剪贴板口令内容
-  } else {
-    console.info("Not all needed patterns detected, no need to get data.");
-  }
-});
 
 // 拉起弹窗
 function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
@@ -101,7 +103,9 @@ export default class EntryAbility extends UIAbility {
     dataPreferences = preferences.getPreferencesSync(this.context, options);
     if (!dataPreferences.hasSync('pasteboardChangeCount')) {
       let changeCount: number = systemPasteboard.getChangeCount();
+      // 保存当前 changeCount 到 Preferences
       dataPreferences.putSync('pasteboardChangeCount', changeCount);
+      dataPreferences.flushSync(); // 确保数据写入持久化存储
     }
     windowStage.loadContent('pages/Index', (err, data) => {
       reqPermissionsFromUser(permissions, this.context);

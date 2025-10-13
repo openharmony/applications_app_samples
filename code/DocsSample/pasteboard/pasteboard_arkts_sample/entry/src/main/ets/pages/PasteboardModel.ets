@@ -130,7 +130,6 @@ export namespace PasteboardModel {
     })
     // [End pasteboard_timelaps_PasteData4]
     // [start pasteboard_timelaps_PasteData5]
-    const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
     try {
       systemPasteboard.setAppShareOptions(pasteboard.ShareOption.LOCALDEVICE);
       console.info('Set app share options success.');
