@@ -13,14 +13,17 @@
  * limitations under the License.
  */
 
+// [Start MDNS_case_module_import_Local_service]
+// [Start MDNS_case_module_import]
+// 从@kit.NetworkKit中导入mdns命名空间。
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import Logger from '../common/Logger';
+import { common } from '@kit.AbilityKit';
+// [End MDNS_case_module_import]
+// [End MDNS_case_module_import_Local_service]
+
 import { serviceOperateStatus } from '../common/ServiceOperateStatus';
 import { ComponentId } from '../common/ComponentId';
-
-// 创建Context对象
-let context = getContext(this) as Context;
 
 // 定义设备信息的接口
 interface DeviceInfo {
@@ -40,51 +43,6 @@ struct MdnsServiceDemo {
   @State removeServiceStatus: string = resourceToString($r('app.string.not_removed')); // 移除本地服务状态展示
   @State discoveryStatus: string = resourceToString($r('app.string.not_started')); // mDNS服务发现状态展示
   @State discoveredDevices: Array<DeviceInfo> = []; // 保存发现的设备信息
-  private localServiceInfo: mdns.LocalServiceInfo = {
-    serviceType: '_print._tcp',
-    serviceName: 'servicename',
-    port: 5555,
-    host: {
-      address: '127.0.0.1'
-    },
-    serviceAttribute: [{ key: '111', value: [1] }]
-  };
-
-  private onDiscoveryStart(data: mdns.DiscoveryEventInfo): void {
-    Logger.info(`Discovery Started: ${JSON.stringify(data)}`);
-  }
-
-  private onDiscoveryStop(data: mdns.DiscoveryEventInfo): void {
-    Logger.info(`Discovery Stopped: ${JSON.stringify(data)}`);
-  }
-
-  private onServiceFound(data: mdns.LocalServiceInfo): void {
-    Logger.info(`Service Found: ${JSON.stringify(data)}`);
-    // 检查设备是否已经存在于列表中，避免重复推送
-    const deviceExists = this.discoveredDevices.some((device) => device.text === JSON.stringify(data));
-    if (!deviceExists) {
-      // 只有在设备未存在的情况下，才会推送
-      mdns.resolveLocalService(context, data).then((resolvedData) => {
-        Logger.info(`Resolved Service: ${JSON.stringify(resolvedData)}`);
-        // 推送新的设备信息到列表
-        this.discoveredDevices.push({ id: Date.now().toString(), text: JSON.stringify(resolvedData) });
-      }).catch((err: BusinessError) => {
-        Logger.error(`Error resolving service: ${JSON.stringify(err)}`);
-      });
-    } else {
-      Logger.info('Service already exists, skipping push.');
-    }
-  }
-
-  private onServiceLost(data: mdns.LocalServiceInfo): void {
-    Logger.info(`Service Lost: ${JSON.stringify(data)}`);
-    const index = this.discoveredDevices.findIndex(
-      (device) => device.text === JSON.stringify(data)
-    );
-    if (index !== -1) {
-      this.discoveredDevices.splice(index, 1);
-    }
-  }
 
   build() {
     Column() {
@@ -209,88 +167,200 @@ struct MdnsServiceDemo {
     .justifyContent(FlexAlign.Center);
   }
 
-  // [Start manage_local_services]
+  // [Start MDNS_add_local_service]
+  // 建立LocalService对象。
+  private localServiceInfo: mdns.LocalServiceInfo = {
+    serviceType: '_print._tcp',
+    serviceName: 'servicename',
+    port: 5555,
+    host: {
+      address: '127.0.0.1'
+    },
+    serviceAttribute: [{ key: '111', value: [1] }]
+  };
+  // [StartExclude MDNS_add_local_service]
   private addLocalService(): void {
     this.addServiceStatus = serviceOperateStatus.ADDING;
+    // [EndExclude MDNS_add_local_service]
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // addLocalService添加本地服务。
     mdns.addLocalService(context, this.localServiceInfo).then((data) => {
+      // [StartExclude MDNS_add_local_service]
       this.addServiceStatus = serviceOperateStatus.ADD_SUCCESS;
-      Logger.info(`Local Service Added: ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
+      // [EndExclude MDNS_add_local_service]
+      console.info(`Local Service Added: ${JSON.stringify(data)}`);
+    })
+    // [StartExclude MDNS_add_local_service]
+    .catch((err: BusinessError) => {
       this.addServiceStatus = serviceOperateStatus.ADD_FAIL;
-      Logger.error(`Error adding local service: ${JSON.stringify(err)}`);
+      console.error(`Error adding local service: ${JSON.stringify(err)}`);
     });
   }
+  // [EndExclude MDNS_add_local_service]
+  // [End MDNS_add_local_service]
 
   private resolveLocalService(): void {
     this.resolveServiceStatus = serviceOperateStatus.RESOLVING;
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // [Start MDNS_resolve_local_service]
+    // resolveLocalService解析本地服务对象（非必要，根据需求使用）。
     mdns.resolveLocalService(context, this.localServiceInfo).then((data) => {
+      // [StartExclude MDNS_resolve_local_service]
       this.resolveServiceStatus = serviceOperateStatus.RESOLVE_SUCCESS;
-      Logger.info(`Resolved Local Service: ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
+      // [EndExclude  MDNS_resolve_local_service]
+      console.info(`Resolved Local Service: ${JSON.stringify(data)}`);
+    })
+    // [End MDNS_resolve_local_service]
+    .catch((err: BusinessError) => {
       this.resolveServiceStatus = serviceOperateStatus.RESOLVE_FAIL;
-      Logger.error(`Error resolving local service: ${JSON.stringify(err)}`);
+      console.error(`Error resolving local service: ${JSON.stringify(err)}`);
     });
   }
 
+  
+  
   private removeLocalService(): void {
     this.removeServiceStatus = serviceOperateStatus.REMOVING;
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // [Start MDNS_remove_local_service]
+    // removeLocalService移除本地服务。
     mdns.removeLocalService(context, this.localServiceInfo).then((data) => {
+      // [StartExclude MDNS_remove_local_service]
       this.removeServiceStatus = serviceOperateStatus.REMOVE_SUCCESS;
-      Logger.info(`Local Service Removed: ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
+      // [EndExclude  MDNS_remove_local_service]
+      console.info(`Local Service Removed: ${JSON.stringify(data)}`);
+    })
+    // [End MDNS_remove_local_service]
+    .catch((err: BusinessError) => {
       this.removeServiceStatus = serviceOperateStatus.REMOVE_FAIL;
-      Logger.error(`Error removing local service: ${JSON.stringify(err)}`);
+      console.error(`Error removing local service: ${JSON.stringify(err)}`);
     });
   }
-  // [End manage_local_services]
-
-  // [Start discover_local_services]
+  
   private async startServiceDiscovery(): Promise<void> {
+    // [Start create_discovery_service_object]
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    
+    // [StartExclude create_discovery_service_object]
     this.discoveryStatus = serviceOperateStatus.DISCOVERY_STARTING;
     if (!context) {
       this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL3;
-      Logger.error('Context is undefined or null.');
+      console.error('Context is undefined or null.');
       return;
     }
-
+    // [EndExclude  create_discovery_service_object]
+    // 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务。
     let serviceType = '_print._tcp';
     let discoveryService = mdns.createDiscoveryService(context, serviceType);
+    // [End create_discovery_service_object]
+
     if (!discoveryService) {
       this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL2;
-      Logger.error('Failed to create discovery service.');
+      console.error('Failed to create discovery service.');
       return;
     }
 
-    discoveryService.on('discoveryStart', (data) => this.onDiscoveryStart(data));
-    discoveryService.on('discoveryStop', (data) => this.onDiscoveryStop(data));
-    discoveryService.on('serviceFound', (data) => this.onServiceFound(data));
-    discoveryService.on('serviceLost', (data) => this.onServiceLost(data));
+    // [Start discovery_service_on_method]
+    // 订阅MDNS服务发现相关状态变化。
+    discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
+      console.info(JSON.stringify(data));
+    });
+    discoveryService.on('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
+      console.info(JSON.stringify(data));
+    });
+    discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
+      console.info(JSON.stringify(data));
+      // [StartExclude discovery_service_on_method]
+      this.onServiceFound(data);
+      // [EndExclude discovery_service_on_method]
+    });
+    discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
+      console.info(JSON.stringify(data));
+      // [StartExclude discovery_service_on_method]
+      this.onServiceLost(data);
+      // [EndExclude discovery_service_on_method]
+    });
+    // [End discovery_service_on_method]
 
     try {
+      // [Start start_searching_MDNS_method]
+      // 启动搜索局域网内的MDNS服务。
       discoveryService.startSearchingMDNS();
+      // [End start_searching_MDNS_method]
       this.discoveryStatus = serviceOperateStatus.DISCOVERY_STARTED;
     } catch (error) {
       this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL1;
-      Logger.error(`Error starting mDNS service discovery: ${JSON.stringify(error)}`);
+      console.error(`Error starting mDNS service discovery: ${JSON.stringify(error)}`);
     }
   }
 
   private async stopServiceDiscovery(): Promise<void> {
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     this.discoveryStatus = serviceOperateStatus.STOPPING;
     let serviceType = '_print._tcp';
     let discoveryService = mdns.createDiscoveryService(context, serviceType);
 
     try {
+      // [Start stop_searching_MDNS_method]
+      // 停止搜索局域网内的MDNS服务。
       discoveryService.stopSearchingMDNS();
-      discoveryService.off('discoveryStart', (data) => this.onDiscoveryStart(data));
-      discoveryService.off('discoveryStop', (data) => this.onDiscoveryStop(data));
-      discoveryService.off('serviceFound', (data) => this.onServiceFound(data));
-      discoveryService.off('serviceLost', (data) => this.onServiceLost(data));
+      // [End stop_searching_MDNS_method]
+
+      // [Start discovery_service_off_method]
+      // 取消订阅的MDNS服务。
+      discoveryService.off('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
+        console.info(JSON.stringify(data));
+      });
+      discoveryService.off('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
+        console.info(JSON.stringify(data));
+      });
+      discoveryService.off('serviceFound', (data: mdns.LocalServiceInfo) => {
+        console.info(JSON.stringify(data));
+        // [StartExclude discovery_service_off_method]
+        this.onServiceFound(data);
+        // [EndExclude discovery_service_off_method]
+      });
+      discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
+        console.info(JSON.stringify(data));
+        // [StartExclude discovery_service_off_method]
+        this.onServiceLost(data);
+        // [EndExclude discovery_service_off_method]
+      });
+      // [End discovery_service_off_method]
+
       this.discoveryStatus = serviceOperateStatus.STOPPED;
     } catch (err) {
       this.discoveryStatus = serviceOperateStatus.STOP_FAIL;
-      Logger.info(`Error stopping mDNS service discovery: ${JSON.stringify(err)}`);
+      console.info(`Error stopping mDNS service discovery: ${JSON.stringify(err)}`);
     }
   }
-  // [End discover_local_services]
+
+  private onServiceFound(data: mdns.LocalServiceInfo): void {
+    console.info(`Service Found: ${JSON.stringify(data)}`);
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // 检查设备是否已经存在于列表中，避免重复推送
+    const deviceExists = this.discoveredDevices.some((device) => device.text === JSON.stringify(data));
+    if (!deviceExists) {
+      // 只有在设备未存在的情况下，才会推送
+      mdns.resolveLocalService(context, data).then((resolvedData) => {
+        console.info(`Resolved Service: ${JSON.stringify(resolvedData)}`);
+        // 推送新的设备信息到列表
+        this.discoveredDevices.push({ id: Date.now().toString(), text: JSON.stringify(resolvedData) });
+      }).catch((err: BusinessError) => {
+        console.error(`Error resolving service: ${JSON.stringify(err)}`);
+      });
+    } else {
+      console.info('Service already exists, skipping push.');
+    }
+  }
+
+  private onServiceLost(data: mdns.LocalServiceInfo): void {
+    console.info(`Service Lost: ${JSON.stringify(data)}`);
+    const index = this.discoveredDevices.findIndex(
+      (device) => device.text === JSON.stringify(data)
+    );
+    if (index !== -1) {
+      this.discoveredDevices.splice(index, 1);
+    }
+  }
 }
