@@ -13,19 +13,22 @@
  * limitations under the License.
  */
 
-// [Start oh_jsvm_get_arraybuffer_info]
 #include "napi/native_api.h"
-#include <cstdio>
 #include <cstring>
+// [start pasteboard_native2]
+#include <cstdio>
+// [start pasteboard_timelapse_Record1]
 #include <database/pasteboard/oh_pasteboard.h>
 #include <database/udmf/udmf.h>
 #include <database/udmf/uds.h>
+// [End pasteboard_native2]
 #include <database/udmf/udmf_meta.h>
+// [End pasteboard_timelapse_Record1]
 #include <hilog/log.h>
 #include <accesstoken/ability_access_control.h>
 #undef LOG_TAG
 #define LOG_TAG "MY_LOG"
-
+// [ start pasteboard_native3]
 // 定义剪贴板数据内容变更时的通知回调函数
 static void Pasteboard_Notify_impl2(void* context, Pasteboard_NotifyType type)
 {
@@ -36,9 +39,10 @@ static void Pasteboard_Finalize_impl2(void* context)
 {
     OH_LOG_INFO(LOG_APP,"callback: Pasteboard_Finalize");
 }
-
+// [End pasteboard_native3]
 static void pasteboard_test_observer()
 {
+    // [ start pasteboard_native4]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     // 2. 创建一个剪贴板数据变更观察者实例
@@ -47,9 +51,11 @@ static void pasteboard_test_observer()
     OH_PasteboardObserver_SetData(observer, (void* )pasteboard, Pasteboard_Notify_impl2, Pasteboard_Finalize_impl2);
     // 4. 设置对剪贴板本端数据变化的订阅
     OH_Pasteboard_Subscribe(pasteboard, NOTIFY_LOCAL_DATA_CHANGE, observer);
+    // [End pasteboard_native4]
 }
 static void pasteboard_test_set()
 {
+    // [ start pasteboard_native5]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
 
@@ -77,9 +83,11 @@ static void pasteboard_test_set()
     OH_UdmfRecord_Destroy(record);
     OH_UdmfData_Destroy(data);
     OH_Pasteboard_Destroy(pasteboard);
+    // [End pasteboard_native5]
 }
 static void pasteboard_test_get()
 {
+    // [ start pasteboard_native6]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     // 2. 判断剪贴板中是否有文本类型数据
@@ -107,8 +115,10 @@ static void pasteboard_test_get()
         };
     }
     OH_Pasteboard_Destroy(pasteboard);
+    // [ start pasteboard_native6]
 }
-
+// [start pasteboard_timelapse_Record2]
+// [End pasteboard_native2]
 // 1. 获取数据时触发的提供剪贴板数据的回调函数。
 void* GetDataCallback(void* context, const char* type) {
     // 纯文本类型
@@ -133,14 +143,17 @@ void* GetDataCallback(void* context, const char* type) {
 void ProviderFinalizeCallback(void* context) {
     OH_LOG_INFO(LOG_APP,"OH_UdmfRecordProvider finalize.");
 }
+// [End pasteboard_timelapse_Record2]
+// [start pasteboard_timelapse_Record3]
 // 3. 定义应用退出时调用延迟同步接口触发的回调函数。
 void SyncCallback(int errorCode)
 {
     // 继续退出
 }
+// [End pasteboard_timelapse_Record3]
 static void pasteboard_test_time()
 {
-
+    // [start pasteboard_timelapse_Record4]
     // 4. 创建OH_UdmfRecord对象。
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     if (record == nullptr) {
@@ -167,10 +180,10 @@ static void pasteboard_test_time()
         OH_Pasteboard_SetData(pasteboard, setData);
     }
 
-
     // 9. 记录当前的剪贴板数据变化次数。
     uint32_t changeCount = OH_Pasteboard_GetChangeCount(pasteboard);
-
+    // [End pasteboard_timelapse_Record4]
+    // [start pasteboard_timelapse_Record5]
     // 10. 从剪贴板获取OH_UdmfData。
     int status = -1;
     OH_UdmfData* getData = OH_Pasteboard_GetData(pasteboard, &status);
@@ -217,8 +230,20 @@ static void pasteboard_test_time()
             }
         }
     }
-
+    // [End pasteboard_timelapse_Record5]
+    // [start pasteboard_timelapse_Record6]
     // 15. 查询剪贴板内的数据是否变化。
+    uint32_t newChangeCount = OH_Pasteboard_GetChangeCount(pasteboard);
+    if (newChangeCount == changeCount) {
+        // 16. 通知剪贴板获取全量数据。
+        OH_Pasteboard_SyncDelayedDataAsync(pasteboard, SyncCallback);
+        // 需要等待SyncCallback回调完成再继续退出
+    } else {
+        // 继续退出
+    }
+    // [End pasteboard_timelapse_Record6]
+    // 17. 查询剪贴板内的数据是否变化。
+    // [start pasteboard_timelapse_Record7]
     OH_UdsPlainText_Destroy(udsText);
     OH_UdsHtml_Destroy(udsHtml);
     OH_UdmfRecordProvider_Destroy(provider);
@@ -226,7 +251,8 @@ static void pasteboard_test_time()
     OH_UdmfData_Destroy(setData);
     OH_UdmfData_Destroy(getData);
     OH_Pasteboard_Destroy(pasteboard);
+    // [End pasteboard_timelapse_Record7]
 }
-// [End oh_jsvm_get_arraybuffer_info]
+
 
 

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start oh_jsvm_get_arraybuffer_info]
+// [Start  pasteboard_permission]
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 import { UIAbility,abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
@@ -110,6 +110,4 @@ export default class EntryAbility extends UIAbility {
   }
   // ...
 }
-// [End oh_jsvm_get_arraybuffer_info]
-
-
+// [End  pasteboard_permission]

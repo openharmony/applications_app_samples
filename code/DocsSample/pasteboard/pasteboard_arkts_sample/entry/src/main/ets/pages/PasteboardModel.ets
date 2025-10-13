@@ -12,17 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
- // [Start oh_jsvm_get_arraybuffer_info]
+// [start pasteboard_timelaps_PasteData1]
+// [start pasteboard_usedata]
+// [start pasteboard_useudc]
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
+// [StartExclude pasteboard_usedata]
 import {unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
-import { isNeedGetPermissionFromUser } from '../entryability/EntryAbility'
+// [End pasteboard_timelaps_PasteData1]
+// [StartExclude pasteboard_useudc]
+import { isNeedGetPermissionFromUser } from '../entryability/EntryAbility';
 
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 export namespace PasteboardModel {
-  // [StartExclude oh_jsvm_get_arraybuffer_info]
   // 使用基础数据类型进行复制粘贴
-  // [EndExclude oh_jsvm_get_arraybuffer_info]
+  // [EndExclude pasteboard_usedata]
   async function handlePlainData () {
     let text = "test";
     // 创建一条纯文本类型的剪贴板内容对象
@@ -42,10 +45,10 @@ export namespace PasteboardModel {
       console.info('Get data success, record:' + record);
     }
   }
+  // [End pasteboard_usedata]
 
-  // [StartExclude oh_jsvm_get_arraybuffer_info]
   // 使用统一数据类型进行复制粘贴
-  // [EndExclude oh_jsvm_get_arraybuffer_info]
+  // [EndExclude pasteboard_useudc]
   // 1.构造一条PlainText数据
   async function handleUniformData () {
     let plainText : uniformDataStruct.PlainText = {
@@ -58,7 +61,6 @@ export namespace PasteboardModel {
     let data = new unifiedDataChannel.UnifiedData();
     data.addRecord(record);
     // 2.向系统剪贴板中存入一条PlainText数据
-    //const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
     systemPasteboard.setUnifiedData(data).then((data: void) => {
       console.info('Succeeded in setting UnifiedData.');
       // 存入成功，处理正常场景
@@ -79,13 +81,12 @@ export namespace PasteboardModel {
       console.error('Failed to get UnifiedData. Cause: ' + err.message);
       // 处理异常场景
     });
-
   }
+  // [End pasteboard_useudc]
 
-  // [StartExclude oh_jsvm_get_arraybuffer_info]
   // 使用基于PasteData级别的延迟复制粘贴（不建议使用）
-  // [EndExclude oh_jsvm_get_arraybuffer_info]
   async function PasteDatatimelate () {
+    // [start pasteboard_timelaps_PasteData2]
     let plainTextData = new unifiedDataChannel.UnifiedData();
     let GetDelayPlainText = ((dataType:string) => {
       let plainText = new unifiedDataChannel.PlainText();
@@ -98,6 +99,8 @@ export namespace PasteboardModel {
       plainTextData.addRecord(plainText);
       return plainTextData;
     });
+    // [End pasteboard_timelaps_PasteData2]
+    // [start pasteboard_timelaps_PasteData3]
     let SetDelayPlainText = () => {
       plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
       // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
@@ -108,6 +111,8 @@ export namespace PasteboardModel {
         // 处理异常场景
       });
     }
+    // [End pasteboard_timelaps_PasteData3]
+    // [start pasteboard_timelaps_PasteData4]
     let GetPlainTextUnifiedData = (() => {
       pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
         let outputData = data;
@@ -123,6 +128,8 @@ export namespace PasteboardModel {
         //处理异常场景
       })
     })
+    // [End pasteboard_timelaps_PasteData4]
+    // [start pasteboard_timelaps_PasteData5]
     const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
     try {
       systemPasteboard.setAppShareOptions(pasteboard.ShareOption.LOCALDEVICE);
@@ -130,12 +137,14 @@ export namespace PasteboardModel {
     } catch (err) {
       //处理异常场景
     }
+    // [End pasteboard_timelaps_PasteData5]
+    // [start pasteboard_timelaps_PasteData6]
     try {
       systemPasteboard.removeAppShareOptions();
       console.info('Remove app share options success.');
     } catch (err) {
       //处理异常场景
     }
+    // [End pasteboard_timelaps_PasteData6]
   }
 }
-// [End oh_jsvm_get_arraybuffer_info]

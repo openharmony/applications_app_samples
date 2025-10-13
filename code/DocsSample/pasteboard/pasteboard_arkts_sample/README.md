@@ -25,6 +25,7 @@ entry/src/main/ets/
 ## 相关权限
 
 1.使用[安全控件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/pastebutton.md)访问剪贴板内容的应用。
+
 2.申请ohos.permission.READ_PASTEBOARD允许应用访问剪贴板。
 
 ## 依赖
