@@ -152,7 +152,9 @@ struct ManageSystemAccounts {
   private async deleteOsAccount(): Promise<void> {
     // [Start delete_the_specified_account]
     let localId: number = 101;
+    // [StartExclude delete_the_specified_account]
     localId = this.createLocalId;
+    // [EndExclude delete_the_specified_account]
     accountManager.removeOsAccount(localId, (err: BusinessError)=>{
       if (err) {
         console.error(`removeOsAccount failed, code is ${err.code}, message is ${err.message}`);

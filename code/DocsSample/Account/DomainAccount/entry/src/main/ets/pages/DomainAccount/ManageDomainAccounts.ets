@@ -63,7 +63,7 @@ struct ManageDomainAccounts {
     try {
       osAccountMgr.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
         (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-          console.info('createOsAccountForDomain err:' + JSON.stringify(err));
+          console.error(`createOsAccountForDomain exception: code is ${err.code}, message is ${err.message}`);
           console.info('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
           // [StartExclude create_a_domain_account]
           this.message = 'Account creation information: ' + JSON.stringify(osAccountInfo.localName);

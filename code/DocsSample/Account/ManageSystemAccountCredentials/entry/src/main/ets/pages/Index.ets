@@ -71,18 +71,18 @@ struct SystemAccount {
         credType:osAccount.AuthType.PIN,
         credSubType:osAccount.AuthSubType.PIN_SIX,
         token:new Uint8Array([0])
-      }
+      };
       // [End define_pin_credential_information]
       // [Start call_the_api_to_register_the_inputer]
       let PINAuth: osAccount.PINAuth = new osAccount.PINAuth();
       // [StartExclude call_the_api_to_register_the_inputer]
       PINAuth.unregisterInputer();
       // [EndExclude call_the_api_to_register_the_inputer]
-      PINAuth.registerInputer(inputer)
+      PINAuth.registerInputer(inputer);
       // [End call_the_api_to_register_the_inputer]
       userIDM.closeSession(this.cid);
-      userIDM.openSession(this.cid).then((data)=>{
-        console.info('openSession info: ' + JSON.stringify(data));
+      userIDM.openSession(this.cid).then((challenge)=>{
+        console.info('openSession info: ' + JSON.stringify(challenge));
         // [Start call_the_api_to_add_the_specified_credentials]
         userIDM.addCredential(credentialInfo,{
           onResult: (err, extraInfo)=>{
@@ -123,13 +123,15 @@ struct SystemAccount {
         }
       })
       userIDM.closeSession(this.cid);
-      userIDM.openSession(this.cid).then((data)=>{
-        console.info('openSession info: ' + JSON.stringify(data));
+      userIDM.openSession(this.cid).then((challenge)=>{
+        console.info('openSession info: ' + JSON.stringify(challenge));
+        // [Start define_parameters_pin_type_and_level_to_auth]
         let authType: osAccount.AuthType = osAccount.AuthType.PIN;
         let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
+        // [End define_parameters_pin_type_and_level_to_auth]
         // [Start call_the_auth_operation_for_authentication]
         let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
-        userAuth.auth(data, authType, authTrustLevel, {
+        userAuth.auth(challenge, authType, authTrustLevel, {
           onResult: (result: number, extraInfo: osAccount.AuthResult) => {
             console.info('pin auth result = ' + result);
             console.info('pin auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -180,11 +182,11 @@ struct SystemAccount {
         }
       })
       userIDM.closeSession(this.cid);
-      userIDM.openSession(this.cid).then((data)=>{
-        console.info('openSession info: ' + JSON.stringify(data));
+      userIDM.openSession(this.cid).then((challenge)=>{
+        console.info('openSession info: ' + JSON.stringify(challenge));
         let authType: osAccount.AuthType = osAccount.AuthType.PIN;
         let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
-        userAuth.auth(data, authType, authTrustLevel, {
+        userAuth.auth(challenge, authType, authTrustLevel, {
           onResult: (result: number, extraInfo: osAccount.AuthResult) => {
             console.info('pin auth result = ' + result);
             console.info('pin auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -243,13 +245,15 @@ struct SystemAccount {
         }
       })
       userIDM.closeSession(this.cid);
-      userIDM.openSession(this.cid).then((data)=>{
-        console.info('openSession info: ' + JSON.stringify(data));
+      userIDM.openSession(this.cid).then((challenge)=>{
+        console.info('openSession info: ' + JSON.stringify(challenge));
+        // [Start define_parameters_face_type_and_level_to_auth]
         let authType: osAccount.AuthType = osAccount.AuthType.FACE;
         let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
+        // [End define_parameters_face_type_and_level_to_auth]
         // [Start call_the_auth_operation_for_face_authentication]
         let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
-        userAuth.auth(data, authType, authTrustLevel, {
+        userAuth.auth(challenge, authType, authTrustLevel, {
           onResult: (result: number, extraInfo: osAccount.AuthResult) => {
             console.info('face auth result = ' + result);
             console.info('face auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -292,7 +296,7 @@ struct SystemAccount {
       credType:osAccount.AuthType.PIN,
       credSubType:osAccount.AuthSubType.PIN_SIX,
       token:new Uint8Array([1, 2, 3, 4, 5])
-    }
+    };
     // [End define_the_credential_information_to_be_updated]
     PINAuth.unregisterInputer();
     PINAuth.registerInputer({
@@ -300,9 +304,9 @@ struct SystemAccount {
         callback.onSetData(osAccount.AuthSubType.PIN_SIX, oldPassword);
       }
     })
-    userIDM.openSession(this.cid).then((data)=>{
-      console.info('openSession info: ' + JSON.stringify(data));
-      userAuth.authUser(this.cid, data, osAccount.AuthType.PIN,
+    userIDM.openSession(this.cid).then((challenge)=>{
+      console.info('openSession info: ' + JSON.stringify(challenge));
+      userAuth.authUser(this.cid, challenge, osAccount.AuthType.PIN,
         osAccount.AuthTrustLevel.ATL1, {
         onResult:(err, authResult)=>{
           console.info('authUser err: ' + JSON.stringify(err));
@@ -364,7 +368,7 @@ struct SystemAccount {
     let PINAuth = new osAccount.PINAuth();
     // [Start obtain_the_credential_information_of_the_fingerprint_type]
     let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-    let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
+    let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
     let credInfoList: osAccount.EnrolledCredInfo[] = 
       await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
     if (credInfoList.length != 0) {
@@ -377,11 +381,11 @@ struct SystemAccount {
         callback.onSetData(osAccount.AuthSubType.PIN_SIX,
           new Uint8Array([0x31, 0x31, 0x31, 0x31, 0x31, 0x31]));
       }
-    })
-    userIDM.closeSession(this.cid)
-    userIDM.openSession(this.cid).then((data)=>{
-      console.info('openSession info: ' + JSON.stringify(data));
-      userAuth.authUser(this.cid, data, osAccount.AuthType.PIN,
+    });
+    userIDM.closeSession(this.cid);
+    userIDM.openSession(this.cid).then((challenge)=>{
+      console.info('openSession info: ' + JSON.stringify(challenge));
+      userAuth.authUser(this.cid, challenge, osAccount.AuthType.PIN,
         osAccount.AuthTrustLevel.ATL1, {
         onResult:(err, authResult)=>{
           console.info('authUser err: ' + JSON.stringify(err));
@@ -436,9 +440,9 @@ struct SystemAccount {
       }
     })
     userIDM.closeSession(this.cid)
-    userIDM.openSession(this.cid).then((data)=>{
-      console.info('openSession info: ' + JSON.stringify(data));
-      userAuth.authUser(this.cid, data, osAccount.AuthType.PIN,
+    userIDM.openSession(this.cid).then((challenge)=>{
+      console.info('openSession info: ' + JSON.stringify(challenge));
+      userAuth.authUser(this.cid, challenge, osAccount.AuthType.PIN,
         osAccount.AuthTrustLevel.ATL1, {
         onResult:(err, authResult)=>{
           console.info('authUser err: ' + JSON.stringify(err));
