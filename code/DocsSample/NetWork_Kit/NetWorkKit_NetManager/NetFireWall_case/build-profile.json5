@@ -1,19 +1,5 @@
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/lenovo/.ohos/config/openharmony/default_net_netfirewall_fbZ07nJAv33iXNFRKNSxsg-pIlia5YRNyPH2hk-20aY=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A3A9C5B873B736A33036125A3FD5371389F92BD8893892DF311921079526B36B02BA1563FCBE4",
-          "profile": "C:/Users/lenovo/.ohos/config/openharmony/default_net_netfirewall_fbZ07nJAv33iXNFRKNSxsg-pIlia5YRNyPH2hk-20aY=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/lenovo/.ohos/config/openharmony/default_net_netfirewall_fbZ07nJAv33iXNFRKNSxsg-pIlia5YRNyPH2hk-20aY=.p12",
-          "storePassword": "0000001AD35D61DC76AE146DC5831CF290A89091B4D10A782D353C4435766061130A7A2F5E3C81ACDA14"
-        }
-      }
-    ],
     "products": [
       {
         "name": "default",
