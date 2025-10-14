@@ -46,7 +46,6 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_create_double(env, value0 + value1, &sum);
 
     return sum;
-
 }
 
 // [Start native-bundle-guidelines_003]
@@ -64,7 +63,6 @@ static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info inf
     napi_value fingerprint;
     napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
     napi_set_named_property(env, result, "fingerprint", fingerprint);
-
     // 最后为了防止内存泄漏，手动释放
     free(nativeApplicationInfo.bundleName);
     free(nativeApplicationInfo.fingerprint);
@@ -157,48 +155,37 @@ static napi_value GetModuleMetadata(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "no metadata found");
         return nullptr;
     }
-
     napi_value result;
     napi_create_array(env, &result);
-
     for (size_t i = 0; i < moduleCount; i++) {
         napi_value moduleObj;
         napi_create_object(env, &moduleObj);
-
         // Native接口获取的模块名转为js对象里的moduleName属性
         napi_value moduleName;
         napi_create_string_utf8(env, modules[i].moduleName, NAPI_AUTO_LENGTH, &moduleName);
         napi_set_named_property(env, moduleObj, "moduleName", moduleName);
-
         napi_value metadataArray;
         napi_create_array(env, &metadataArray);
-
         for (size_t j = 0; j < modules[i].metadataArraySize; j++) {
             napi_value metadataObj;
             napi_create_object(env, &metadataObj);
-
             napi_value name;
             napi_value value;
             napi_value resource;
-
             napi_create_string_utf8(env, modules[i].metadataArray[j].name, NAPI_AUTO_LENGTH, &name);
             napi_create_string_utf8(env, modules[i].metadataArray[j].value, NAPI_AUTO_LENGTH, &value);
             napi_create_string_utf8(env, modules[i].metadataArray[j].resource, NAPI_AUTO_LENGTH, &resource);
-
             // Native接口获取的元数据名称转为js对象里的name属性
             napi_set_named_property(env, metadataObj, "name", name);
             // Native接口获取的元数据值名称转为js对象里的value属性
             napi_set_named_property(env, metadataObj, "value", value);
             // Native接口获取的元数据资源转为js对象里的resource属性
             napi_set_named_property(env, metadataObj, "resource", resource);
-
             napi_set_element(env, metadataArray, j, metadataObj);
         }
-
         napi_set_named_property(env, moduleObj, "metadata", metadataArray);
         napi_set_element(env, result, i, moduleObj);
     }
-
     // 最后为了防止内存泄漏，手动释放
     for (size_t i = 0; i < moduleCount; i++) {
         free(modules[i].moduleName);
@@ -217,14 +204,12 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
     size_t argc = 1;
     napi_value args[1];
     napi_status status;
-
     // 获取传入的参数
     status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     if (status != napi_ok || argc < 1) {
         napi_throw_error(env, nullptr, "Invalid arguments. Expected fileType string.");
         return nullptr;
     }
-
     // 检查参数类型是否为字符串
     napi_valuetype valuetype;
     status = napi_typeof(env, args[0], &valuetype);
@@ -232,42 +217,32 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
         napi_throw_error(env, nullptr, "Argument must be a string");
         return nullptr;
     }
-
     // 获取字符串参数
     char fileType[256] = {0}; // 假设文件类型不会超过255个字符
-    size_t str_len;
-    status = napi_get_value_string_utf8(env, args[0], fileType, sizeof(fileType) - 1, &str_len);
+    size_t strLen;
+    status = napi_get_value_string_utf8(env, args[0], fileType, sizeof(fileType) - 1, &strLen);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Failed to get fileType string");
         return nullptr;
     }
-
     size_t infosCount = 0;
     OH_NativeBundle_AbilityResourceInfo *infos = nullptr;
-
     // 调用Native接口获取组件资源信息，使用传入的fileType，该接口从API version 21开始支持
     BundleManager_ErrorCode ret = OH_NativeBundle_GetAbilityResourceInfo(fileType, &infos, &infosCount);
-
     if (ret == BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED) {
         napi_throw_error(env, nullptr, "BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED");
         return nullptr;
     }
-
     if (infos == nullptr || infosCount == 0) {
         napi_throw_error(env, nullptr, "no metadata found");
         return nullptr;
     }
-
     napi_value result;
     napi_create_array(env, &result);
-
     for (size_t i = 0; i < infosCount; i++) {
-
         auto temp = (OH_NativeBundle_AbilityResourceInfo *)((char *)infos + OH_NativeBundle_GetSize() * i);
-
         napi_value infoObj;
         napi_create_object(env, &infoObj);
-
         // 1. 添加Default App
         bool IsDefaultApp = true;
         // 该接口从API version 21开始支持
@@ -275,7 +250,6 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
         napi_value defaultAppValue;
         napi_get_boolean(env, IsDefaultApp, &defaultAppValue);
         napi_set_named_property(env, infoObj, "IsDefaultApp", defaultAppValue);
-
         // 2. 添加App Index
         int appIndex = -1;
         // 该接口从API version 21开始支持
@@ -283,7 +257,6 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
         napi_value appIndexValue;
         napi_create_int32(env, appIndex, &appIndexValue);
         napi_set_named_property(env, infoObj, "appIndex", appIndexValue);
-
         // 3. 添加Label
         char *label = nullptr;
         // 该接口从API version 21开始支持
@@ -296,7 +269,6 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
             napi_get_null(env, &labelValue);
         }
         napi_set_named_property(env, infoObj, "label", labelValue);
-
         // 4. 添加Bundle Name
         char *bundleName = nullptr;
         // 该接口从API version 21开始支持
@@ -309,7 +281,6 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
             napi_get_null(env, &bundleNameValue);
         }
         napi_set_named_property(env, infoObj, "bundleName", bundleNameValue);
-
         // 5. 添加Module Name
         char *moduleName = nullptr;
         // 该接口从API version 21开始支持
@@ -322,7 +293,6 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
             napi_get_null(env, &moduleNameValue);
         }
         napi_set_named_property(env, infoObj, "moduleName", moduleNameValue);
-
         // 6. 添加Ability Name
         char *abilityName = nullptr;
         // 该接口从API version 21开始支持
@@ -335,7 +305,6 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
             napi_get_null(env, &abilityNameValue);
         }
         napi_set_named_property(env, infoObj, "abilityName", abilityNameValue);
-
         // 7. 获取ArkUI_DrawableDescriptor对象
         ArkUI_DrawableDescriptor *rawDrawable = nullptr;
         // 该接口从API version 21开始支持
@@ -343,13 +312,10 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
         if (rawDrawable) {
             //使用ArkUI_DrawableDescriptor对象绘制图标
         }
-
         napi_set_element(env, result, i, infoObj);
     }
-
     // 释放内存，该接口从API version 21开始支持
     OH_AbilityResourceInfo_Destroy(infos, infosCount);
-
     return result;
 }
 // [End native-bundle-guidelines_003]
