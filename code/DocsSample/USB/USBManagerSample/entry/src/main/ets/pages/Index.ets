@@ -16,7 +16,7 @@
 // [Start head]
 // 导入usbManager模块
 import { usbManager } from '@kit.BasicServicesKit';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { JSON } from '@kit.ArkTS';
 
 // [End head]
@@ -43,11 +43,11 @@ struct Index {
     deviceList结构示例
     [
       {
-        name: "1-1",
-        serial: "",
-        manufacturerName: "",
-        productName: "",
-        version: "",
+        name: '1-1',
+        serial: '',
+        manufacturerName: '',
+        productName: '',
+        version: '',
         vendorId: 7531,
         productId: 2,
         clazz: 9,
@@ -62,7 +62,7 @@ struct Index {
             isRemoteWakeup: true,
             isSelfPowered: true,
             maxPower: 0,
-            name: "1-1",
+            name: '1-1',
             interfaces: [
               {
                 id: 0,
@@ -70,7 +70,7 @@ struct Index {
                 clazz: 9,
                 subClass: 0,
                 alternateSetting: 0,
-                name: "1-1",
+                name: '1-1',
                 endpoints: [
                   {
                     address: 129,
@@ -90,18 +90,18 @@ struct Index {
       }
     ]
     */
-    // [End getDevices]
     this.deviceList_ = deviceList;
+    // [End getDevices]
   }
 
   private requestRight() {
+    // [Start requestRight]
     if (this.deviceList_ === undefined || this.deviceList_.length === 0) {
       console.error('deviceList is empty');
       this.logInfo_ += '\n[ERROR] deviceList is empty';
       return;
     }
     let deviceList: usbManager.USBDevice[] = this.deviceList_;
-    // [Start requestRight]
     let deviceName: string = deviceList[0].name;
     // 申请操作指定的device的操作权限。
     usbManager.requestRight(deviceName).then((hasRight: boolean) => {
@@ -115,13 +115,13 @@ struct Index {
   }
 
   private connectDevice() {
+    // [Start connectDevice]
     if (this.deviceList_ === undefined || this.deviceList_.length === 0) {
       console.error('deviceList_ is empty');
       this.logInfo_ += '\n[ERROR] deviceList is empty';
       return;
     }
     let deviceList: usbManager.USBDevice[] = this.deviceList_;
-    // [Start connectDevice]
     if (!usbManager.hasRight(deviceList[0].name)) {
       console.error('permission denied');
       this.logInfo_ += '\n[ERROR] permission denied';
@@ -140,12 +140,15 @@ struct Index {
     interface1为设备配置中的一个接口。
     */
     usbManager.claimInterface(pipe, interface1, true);
-    // [End connectDevice]
     this.pipe_ = pipe;
     this.interface_ = interface1;
+    console.info('open device success');
+    this.logInfo_ += '\n[INFO] open device success';
+    // [End connectDevice]
   }
 
   private bulkTransfer() {
+    // [Start bulkTransfer]
     if (this.pipe_ === undefined || this.interface_ === undefined) {
       console.error('pipe_ or interface_ is null');
       this.logInfo_ += '\n[ERROR] pipe_ or interface_ is null';
@@ -153,13 +156,12 @@ struct Index {
     }
     let pipe: usbManager.USBDevicePipe = this.pipe_;
     let interface1: usbManager.USBInterface = this.interface_;
-    // [Start bulkTransfer]
     /*
     读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
     （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
     */
-    let inEndpoint: usbManager.USBEndpoint = interface1.endpoints[2];
-    let outEndpoint: usbManager.USBEndpoint = interface1.endpoints[1];
+    let inEndpoint: usbManager.USBEndpoint = interface1.endpoints[1];
+    let outEndpoint: usbManager.USBEndpoint = interface1.endpoints[0];
     let dataUint8Array: Uint8Array = new Uint8Array(1024);
     if (inEndpoint !== undefined && inEndpoint.direction === 0x80) {
       usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength: number) => {
@@ -195,13 +197,13 @@ struct Index {
   }
 
   private controlTransfer() {
+    // [Start controlTransfer]
     if (this.pipe_ === undefined) {
       console.error('pipe_ is null');
       this.logInfo_ += '\n[ERROR] pipe_ is null';
       return;
     }
     let pipe: usbManager.USBDevicePipe = this.pipe_;
-    // [Start controlTransfer]
     /*
     构造控制传输参数
     */
@@ -222,13 +224,13 @@ struct Index {
   }
 
   private interruptTransfer() {
+    // [Start interruptTransfer_getEndpoint]
     if (this.deviceList_ === undefined || this.deviceList_.length === 0) {
       console.error('deviceList_ is empty');
       this.logInfo_ += '\n[ERROR] deviceList_ is empty';
       return;
     }
     let usbDevice: usbManager.USBDevice = this.deviceList_[0];
-    // [Start interruptTransfer_getEndpoint]
     if (!usbManager.hasRight(usbDevice.name)) {
       console.error('permission denied');
       this.logInfo_ += '\n[ERROR] permission denied';
@@ -309,18 +311,17 @@ struct Index {
       console.error(`release failed: ${error}`);
       this.logInfo_ += '\n[ERROR] release failed: ' + JSON.stringify(error);
     }
-
     // [End interruptTransfer_release]
   }
 
   private isochronousTransfer() {
+    // [Start isochronousTransfer_getEndpoint]
     if (this.deviceList_ === undefined || this.deviceList_.length === 0) {
       console.error('deviceList_ is empty');
       this.logInfo_ += '\n[ERROR] deviceList_ is empty';
       return;
     }
     let usbDevice: usbManager.USBDevice = this.deviceList_[0];
-    // [Start isochronousTransfer_getEndpoint]
     if (!usbManager.hasRight(usbDevice.name)) {
       console.error('permission denied');
       this.logInfo_ += '\n[ERROR] permission denied';
@@ -416,6 +417,7 @@ struct Index {
   }
 
   private closePipe() {
+    // [Start closePipe]
     if (this.pipe_ === undefined || this.interface_ === undefined) {
       console.error('pipe_ or interface_ is null');
       this.logInfo_ += '\n[ERROR] pipe_ or interface_ is null';
@@ -423,12 +425,13 @@ struct Index {
     }
     let pipe: usbManager.USBDevicePipe = this.pipe_;
     let interface1: usbManager.USBInterface = this.interface_;
-    // [Start closePipe]
     usbManager.releaseInterface(pipe, interface1);
     usbManager.closePipe(pipe);
-    // [End closePipe]
     this.pipe_ = undefined;
     this.interface_ = undefined;
+    console.info('close device success');
+    this.logInfo_ += '\n[INFO] close device success';
+    // [End closePipe]
   }
 
   build() {
