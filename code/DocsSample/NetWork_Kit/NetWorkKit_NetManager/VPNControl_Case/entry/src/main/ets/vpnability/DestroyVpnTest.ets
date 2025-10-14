@@ -16,11 +16,15 @@
 // [Start destroy_vpn_ability]
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 import { vpnExtension } from '@kit.NetworkKit';
-
+// [StartExclude destroy_vpn_ability]
+import { common } from '@kit.AbilityKit';
+// [EndExclude destroy_vpn_ability]
 export class VpnTest extends VpnExtensionAbility {
   public vpnId: string = 'test_vpn_id';
   public vpnConnection: vpnExtension.VpnConnection | undefined;
-
+  // [StartExclude destroy_vpn_ability]
+  public context = getContext(this) as common.VpnExtensionContext;
+  // [EndExclude destroy_vpn_ability]
   destroy() {
     // [StartExclude destroy_vpn_ability]
     try {

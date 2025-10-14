@@ -16,10 +16,14 @@
 // [Start get_vpn_id_ability]
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 import { vpnExtension } from '@kit.NetworkKit';
-
+// [StartExclude get_vpn_id_ability]
+import { common } from '@kit.AbilityKit';
+// [EndExclude get_vpn_id_ability]
 export class VpnTest extends VpnExtensionAbility {
   public vpnId: string = '';
-
+  // [StartExclude get_vpn_id_ability]
+  public context = getContext(this) as common.VpnExtensionContext;
+  // [EndExclude get_vpn_id_ability]
   getVpnId() {
     // [StartExclude get_vpn_id_ability]
     try {
