@@ -135,7 +135,7 @@ static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info)
 static napi_value IsDebugMode(napi_env env, napi_callback_info info)
 {
     bool isDebug = false;
-    // 调用Native接口获取应用DebugMode的信息
+    // 调用Native接口获取应用DebugMode的信息 该接口从API version 20开始支持
     bool isSuccess = OH_NativeBundle_IsDebugMode(&isDebug);
     // 调用Native接口失败抛出异常
     if (isSuccess == false) {
@@ -151,7 +151,7 @@ static napi_value IsDebugMode(napi_env env, napi_callback_info info)
 static napi_value GetModuleMetadata(napi_env env, napi_callback_info info)
 {
     size_t moduleCount = 0;
-    // 调用Native接口获取应用元数据的信息
+    // 调用Native接口获取应用元数据的信息 该接口从API version 20开始支持
     OH_NativeBundle_ModuleMetadata* modules = OH_NativeBundle_GetModuleMetadata(&moduleCount);
     if (modules == nullptr || moduleCount == 0) {
         napi_throw_error(env, nullptr, "no metadata found");
@@ -245,7 +245,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
     size_t infosCount = 0;
     OH_NativeBundle_AbilityResourceInfo *infos = nullptr;
 
-    // 调用Native接口获取组件资源信息，使用传入的fileType
+    // 调用Native接口获取组件资源信息，使用传入的fileType，该接口从API version 21开始支持
     BundleManager_ErrorCode ret = OH_NativeBundle_GetAbilityResourceInfo(fileType, &infos, &infosCount);
 
     if (ret == BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED) {
@@ -270,6 +270,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
 
         // 1. 添加Default App
         bool IsDefaultApp = true;
+        // 该接口从API version 21开始支持
         OH_NativeBundle_CheckDefaultApp(temp, &IsDefaultApp);
         napi_value defaultAppValue;
         napi_get_boolean(env, IsDefaultApp, &defaultAppValue);
@@ -277,6 +278,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
 
         // 2. 添加App Index
         int appIndex = -1;
+        // 该接口从API version 21开始支持
         OH_NativeBundle_GetAppIndex(temp, &appIndex);
         napi_value appIndexValue;
         napi_create_int32(env, appIndex, &appIndexValue);
@@ -284,6 +286,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
 
         // 3. 添加Label
         char *label = nullptr;
+        // 该接口从API version 21开始支持
         OH_NativeBundle_GetLabel(temp, &label);
         napi_value labelValue;
         if (label) {
@@ -296,6 +299,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
 
         // 4. 添加Bundle Name
         char *bundleName = nullptr;
+        // 该接口从API version 21开始支持
         OH_NativeBundle_GetBundleName(temp, &bundleName);
         napi_value bundleNameValue;
         if (bundleName) {
@@ -308,6 +312,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
 
         // 5. 添加Module Name
         char *moduleName = nullptr;
+        // 该接口从API version 21开始支持
         OH_NativeBundle_GetModuleName(temp, &moduleName);
         napi_value moduleNameValue;
         if (moduleName) {
@@ -320,6 +325,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
 
         // 6. 添加Ability Name
         char *abilityName = nullptr;
+        // 该接口从API version 21开始支持
         OH_NativeBundle_GetAbilityName(temp, &abilityName);
         napi_value abilityNameValue;
         if (abilityName) {
@@ -332,6 +338,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
 
         // 7. 获取ArkUI_DrawableDescriptor对象
         ArkUI_DrawableDescriptor *rawDrawable = nullptr;
+        // 该接口从API version 21开始支持
         OH_NativeBundle_GetDrawableDescriptor(temp, &rawDrawable);
         if (rawDrawable) {
             //使用ArkUI_DrawableDescriptor对象绘制图标
@@ -340,7 +347,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
         napi_set_element(env, result, i, infoObj);
     }
 
-    // 释放内存
+    // 释放内存，该接口从API version 21开始支持
     OH_AbilityResourceInfo_Destroy(infos, infosCount);
 
     return result;
