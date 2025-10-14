@@ -60,16 +60,16 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* Example1(主页瀑布流案例)，源码参考：[Example1](entry/src/main/ets/pages/functionalScenes/FunctionalScenes.ets)
+* 主页瀑布流案例，源码参考：entry/src/main/ets/pages/functionalScenes/FunctionalScenes.ets
   * 构造懒加载数据源类型。
   * 通过LazyForEach循环构造列表数据。
-* Example2(折叠面板案例)，源码参考：[Example2](entry/src/main/ets/pages/collapsemenu/CollapseMenuSection.ets)
+* 折叠面板案例，源码参考：entry/src/main/ets/pages/collapsemenu/CollapseMenuSection.ets
   * 构造懒加载数据源类型。
   * 使用LazyForEach构造列表数据。
   * 通过点击事件更改expand的值，调用updateData方法通知监听器重新渲染页面，从而实现展开与折叠效果。
-* Example3(自定义TabBar页签案例)，源码参考：[Example3](entry/src/main/ets/pages/tabBar/TabBar.ets)
+* 自定义TabBar页签案例，源码参考：entry/src/main/ets/pages/tabBar/TabBar.ets
   * 创建自定义组件做为TabBar的内容区。
-* Example4(TabContent内容可以在TabBar上显示并响应滑动事件案例)，源码参考：[Example4](entry/src/main/ets/pages/tabContentOverFlow/TabContentOverFlow.ets)
+* TabContent内容可以在TabBar上显示并响应滑动事件案例，源码参考：entry/src/main/ets/pages/tabContentOverFlow/TabContentOverFlow.ets
   * TabContent加载Video组件。
   * 使用自定义进度条并添加PanGesture手势，实现在自定义TabBar上拖动进度条更改视频播放进度的功能。
 
@@ -84,8 +84,8 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：Phone;
-2. 本示例为Stage模型，支持API20版本SDK，SDK版本号(API Version 20),镜像版本号(6.0.0.31)。
-3. 本示例需要使用DevEco Studio 版本号(6.0.0.6)版本才可编译运行。
+2. 本示例为Stage模型，支持API20版本SDK，SDK版本号(API Version 20)。
+3. 本示例需要使用DevEco Studio 版本号(6.0.0.43)版本才可编译运行。
 
 ### 下载
 
