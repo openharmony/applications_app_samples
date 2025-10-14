@@ -1,0 +1,55 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/lenovo/.ohos/config/openharmony/default_eap_jkrzRcrKpMpEa8MXWoWfT2FmrjvE5fqv6JrCjH9Wpp8=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B7181DBB32ED97681CB32ABAB23F85C031A832B28B55CA1F0D35624A0CF38D8DE3425573CE5D41E",
+          "profile": "C:/Users/lenovo/.ohos/config/openharmony/default_eap_jkrzRcrKpMpEa8MXWoWfT2FmrjvE5fqv6JrCjH9Wpp8=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/lenovo/.ohos/config/openharmony/default_eap_jkrzRcrKpMpEa8MXWoWfT2FmrjvE5fqv6JrCjH9Wpp8=.p12",
+          "storePassword": "0000001BB182C302AD946699DC775A8246F9A09EF7BD0709EFB6DB200AA9149CEED212640681D87B50E929"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 20,
+        "compatibleSdkVersion": 20,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ],
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
