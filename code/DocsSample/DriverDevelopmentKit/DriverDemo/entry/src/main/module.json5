@@ -1,0 +1,85 @@
+// [Start driver_service_step7]
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // 此处为扩展外设相关权限，必须配置。
+      }
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "DriverExtAbility",
+        "icon": "$media:startIcon",
+        "description": "driver",
+        "type": "driver",
+        "exported": true,
+        "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
+        "metadata": [
+          {
+            "name": "bus", // 必填项，所属总线。
+            "value": "USB"
+          },
+          {
+            "name": "desc", // 选填项，必要的驱动描述。
+            "value": "the sample of driverExtensionAbility"
+          },
+          {
+            "name": "vendor", // 选填项，驱动厂商名称。
+            "value": "string"
+          },
+          {
+            "name": "vid", // 支持 USB vendor id 列表，填写16进制，此处为4817的16进制。
+            "value": "0x12D1"
+          },
+          {
+            "name": "pid", // 支持的 USB product id 列表，填写16进制，此处为4258的16进制。
+            "value": "0x10A2"
+          },
+          {
+            "name": "launchOnBind", // 选填项，延迟拉起驱动。此处“true”表示延迟拉起，“false”表示即时拉起，配置错误或不配置，默认为“false”。
+            "value": "true"
+          },
+          {
+            "name": "ohos.permission.ACCESS_DDK_ALLOWED", // 选填项，允许应用访问。此处“true”表示允许访问，“false”表示不允许访问，配置错误或不配置，默认为“false”。
+            "value": "true"
+          }
+        ]
+      }
+    ]
+  }
+}
+// [End driver_service_step7]
