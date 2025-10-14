@@ -54,6 +54,15 @@ function getNodeType(type: string) : number {
 const SUCC_TAG = '创建成功';
 const FAIL_TAG = '创建失败';
 
+@Extend(Text)
+function style(textAlign: TextAlign) {
+  .textAlign(textAlign)
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+}
+
 @Entry
 @Component
 struct Index {
@@ -63,7 +72,7 @@ struct Index {
   @State curNodeType: string = '未设置';
   @State attributeType: string = '未设置';
   @State attributeTypeId: number = -1;
-  @State attributeValue: string = '-1';
+  @State attributeValue: string = 'none';
   @State resultValue: string = '-1';
   @State curAttrStatus: number = -1;
   private nodeContent = new NodeContent();
@@ -497,80 +506,61 @@ struct Index {
 
   build() {
     Column() {
-      Text('native_node功能示例')
+      Text($r('app.string.native_node_example'))
         .fontSize(24)
         .margin(10)
         .fontWeight(FontWeight.Bold)
         .height('10%')
-      Row() {
-        Column() {
-          Button('选择节点类型:')
-            .width('50%')
-            .margin({ left: 10 })
+
+        Row() {
+          Button($r('app.string.select_node_type'))
+            .width('30%')
+            .margin(10)
             .bindMenu(this.SubMenuNodeType)
-          Text(`current type: ${this.curNodeType}`)
-            .fontSize(14)
+          Button($r('app.string.create'))
+            .width('25%')
             .margin(10)
-          Text(`current status: ${this.nodeStatus}`)
-            .fontSize(14)
+            .onClick(() => {
+              // 先将之前创建的节点清理
+              napiAgent.removeImageSpanNode(this.nodeId);
+              this.nodeId = -1;
+              // 创建新节点
+              this.nodeId = napiAgent.createImageSpanNode(getNodeType(this.curNodeType))
+              this.nodeStatus = (this.nodeId == -1) ? FAIL_TAG : SUCC_TAG;
+            })
+          Button($r('app.string.remove'))
+            .width('25%')
             .margin(10)
-
-          Row() {
-            Button('创建')
-              .width('30%')
-              .margin(10)
-              .onClick(() => {
-                // 先将之前创建的节点清理
-                napiAgent.removeImageSpanNode(this.nodeId);
-                this.nodeId = -1;
-                // 创建新节点
-                this.nodeId = napiAgent.createImageSpanNode(getNodeType(this.curNodeType))
-                this.nodeStatus = (this.nodeId == -1) ? FAIL_TAG : SUCC_TAG;
-              })
-            Button('清理')
-              .width('30%')
-              .margin(10)
-              .onClick(() => {
-                napiAgent.removeImageSpanNode(this.nodeId);
-                this.nodeId = -1;
-                this.nodeStatus = FAIL_TAG;
-              })
-          }
-
+            .onClick(() => {
+              napiAgent.removeImageSpanNode(this.nodeId);
+              this.nodeId = -1;
+              this.nodeStatus = FAIL_TAG;
+            })
         }
-        .width('50%')
 
-        Column() {
-          Button('选择节点属性:')
-            .width('50%')
-            .margin({ left: 10 })
+        Row() {
+          Text($r('app.string.current_type', `${this.curNodeType}`))
+            .style(TextAlign.Start)
+            .width('46%')
+            .fontSize(10)
+            .margin(5)
+          Text($r('app.string.current_status', `${this.nodeStatus}`))
+            .style(TextAlign.Start)
+            .width('46%')
+            .fontSize(11)
+            .margin(5)
+        }
+
+        Row() {
+          Button($r('app.string.select_node_attribute'))
             .bindMenu(this.SubMenuAttributeType)
-            .onClick(()=> { this.status = Visibility.Visible })
-          Text(`当前属性类型: ${this.attributeType}`)
-            .fontSize(14)
-            .margin(10)
-          Text(`返回属性值: ${this.resultValue}`)
-            .fontSize(14)
-            .margin(5)
-          Row() {
-            Text('属性值:')
-              .alignSelf(ItemAlign.End)
-              .fontSize(14)
-            TextInput({ placeholder: '请输入属性值', text: this.attributeValue })
-              .width('60%')
-              .height(40)
-              .onChange((value: string) => {
-                this.attributeValue = value;
-              })
-          }
-          .width('100%')
-          .margin(20)
-          .justifyContent(FlexAlign.End)
-
-          Button('设置属性值')
-            .width('50%')
-            .margin(5)
+            .fontSize(10)
+            .onClick(() => {
+              this.status = Visibility.Visible
+            })
+          Button($r('app.string.set_attribute_value'))
             .alignSelf(ItemAlign.End)
+            .fontSize(10)
             .onClick(
               () => {
                 this.curAttrStatus = -1;
@@ -580,10 +570,9 @@ struct Index {
                   ' ,curAttrStatus:' + this.curAttrStatus);
               }
             )
-          Button('获取属性值')
-            .width('50%')
-            .margin(5)
+          Button($r('app.string.get_attribute_value'))
             .alignSelf(ItemAlign.End)
+            .fontSize(10)
             .onClick(
               () => {
                 this.resultValue = napiAgent.getImageSpanAttribute(this.nodeId, getNodeType(this.curNodeType),
@@ -592,9 +581,8 @@ struct Index {
                   ' ,attributeValue:' + this.resultValue);
               }
             )
-          Button('重置属性值')
-            .width('50%')
-            .margin(5)
+          Button($r('app.string.reset_attribute_value'))
+            .fontSize(10)
             .alignSelf(ItemAlign.End)
             .onClick(() => {
               // 重置新节点
@@ -602,17 +590,50 @@ struct Index {
                 this.attributeTypeId)
             })
         }
-        .width('50%')
-      }
-      .height('30%')
 
-      // 组件显示在界面下半部分
-      Column() {
-        ContentSlot(this.nodeContent)
+        Row() {
+          Text($r('app.string.current_attribute_type', `${this.attributeType}`))
+            .style(TextAlign.Start)
+            .fontSize(11)
+            .margin(5)
+            .width('93%')
+        }
+
+        Row() {
+          Text($r('app.string.response', `${this.resultValue}`))
+            .style(TextAlign.Start)
+            .fontSize(11)
+            .margin(5)
+            .width('93%')
+        }
+
+        Row() {
+          Text($r('app.string.attribute_value'))
+            .alignSelf(ItemAlign.Center)
+            .fontSize(15)
+            .height(20)
+          TextInput({ placeholder: $r('app.string.please_input_attribute_value'), text: this.attributeValue })
+            .width('85%')
+            .height(35)
+            .borderRadius(0)
+            .onChange((value: string) => {
+              this.attributeValue = value;
+            })
+        }
+        .margin(10)
+
+
+        // 组件显示在界面下半部分
+        Column() {
+          ContentSlot(this.nodeContent)
+        }
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
+        .width('92%')
+        .height('45%')
+        .margin({ left: 0 })
+        .border({ width: 1 })
+        .position({ x: '2%', y: '53%' })
       }
-      .margin(10)
-      .width('60%')
-      .height('60%')
     }
-  }
 }
