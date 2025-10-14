@@ -34,19 +34,19 @@ struct Index {
             this.message = 'Welcome';
             hilog.info(DOMAIN, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
             let appInfo = testNapi.getCurrentApplicationInfo();
-            console.info("bundleNDK getCurrentApplicationInfo success, data is " + JSON.stringify(appInfo));
+            console.info("bundleNative getCurrentApplicationInfo success, data is " + JSON.stringify(appInfo));
             let appId = testNapi.getAppId();
-            console.info("bundleNDK getAppId success, appId is " + appId);
+            console.info("bundleNative getAppId success, appId is " + appId);
             let appIdentifier = testNapi.getAppIdentifier();
-            console.info("bundleNDK getAppIdentifier success, appIdentifier is " + appIdentifier);
+            console.info("bundleNative getAppIdentifier success, appIdentifier is " + appIdentifier);
             let mainElement = testNapi.getMainElementName();
-            console.info("bundleNDK getMainElementName success, data is " + JSON.stringify(mainElement));
+            console.info("bundleNative getMainElementName success, data is " + JSON.stringify(mainElement));
             let deviceType = testNapi.getCompatibleDeviceType();
-            console.info("bundleNDK getCompatibleDeviceType success, deviceType is " + deviceType);
+            console.info("bundleNative getCompatibleDeviceType success, deviceType is " + deviceType);
             let isDebugMode = testNapi.isDebugMode();
-            console.info("bundleNDK isDebugMode success, isDebugMode is " + isDebugMode);
+            console.info("bundleNative isDebugMode success, isDebugMode is " + isDebugMode);
             let moduleMetadata = testNapi.getModuleMetadata();
-            console.info("bundleNDK getModuleMetadata success, data is " + JSON.stringify(moduleMetadata));
+            console.info("bundleNative getModuleMetadata success, data is " + JSON.stringify(moduleMetadata));
           })
       }
       .width('100%')

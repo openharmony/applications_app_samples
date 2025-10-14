@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过调用包管理提供的NDK的接口，获取应用信息。
+本示例通过调用包管理提供的native的接口，获取应用信息。
 
 ### 效果预览
 无
@@ -25,9 +25,9 @@ entry/src/
 |                 |---entryability/EntryAbility.ets   // 应用启动加载的入口ability
 |                 |---entrybackupability/EntryBackupAbility.ets  // extensionAbility
 |                 |---pages/index.ets                 // 调用so暴露的接口能力，并打印获取内容
-|             |---cpp/                                 // NDK调用逻辑，和暴露so的接口能力
+|             |---cpp/                                 // native接口调用逻辑，和暴露so的接口能力
 |                 |---/types
-|                      |---/libentry/Index.d.ts       // NDK接口暴露的能力接口
+|                      |---/libentry/Index.d.ts       // native接口暴露的能力接口
 |                      |---napi_init.cpp              // 调用native的接口实现和定义
 ```
 
