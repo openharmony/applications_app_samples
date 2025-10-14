@@ -29,6 +29,10 @@
       "value": "ReadFiles"
     },
     {
+      "name": "downloadSaveFileButton",
+      "value": "Download"
+    },
+    {
       "name": "saveAudioFilesButton",
       "value": "SaveAudioFiles"
     }
