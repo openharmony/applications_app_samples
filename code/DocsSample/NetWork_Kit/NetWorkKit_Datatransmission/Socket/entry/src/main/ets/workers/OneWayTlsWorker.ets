@@ -14,13 +14,12 @@
  */
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
-import socket from '@ohos.net.socket';
 import fs from '@ohos.file.fs';
+// [Start one_way_tls_worker_import]
+import socket from '@ohos.net.socket';
 import { BusinessError } from '@kit.BasicServicesKit';
-
+// [End one_way_tls_worker_import]
 const workerPort = worker.workerPort; // 获取 workerPort 实例
-
-let tlsSocket: socket.TLSSocket | null = null; // 确保全局 TLS 连接实例
 
 // 连接服务器
 interface LocalAddress {
@@ -74,10 +73,12 @@ function handleMessage(message: TlsOneWayMessage) {
         sendMessageToServer(message.message);
       }
       break;
+    case 'disConnect':
+      closeConnection();
+      break;
   }
 }
 
-// [Start one-way_authentication_via_tls_socket]
 // 读取 CA 证书
 function loadCA(fileUri: string) {
   try {
@@ -93,61 +94,112 @@ function loadCA(fileUri: string) {
   }
 }
 
+// [Start tls_worker_bind_the_server]
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+// [StartExclude tls_worker_bind_the_server]
+// [Start create_tls_worker_object]
+// 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
+let tlsOneWaySocket: socket.TLSSocket | null = null;
+// [StartExclude create_tls_worker_object]
 function connectToServer(serverIp: string, serverPort: number, ca: string) {
-  if (tlsSocket) {
+  if (tlsOneWaySocket) {
     workerPort.postMessage({ type: 'connectFailure', status: 'Socket already connected' });
     return;
   }
+  // [EndExclude create_tls_worker_object]
+  tlsOneWaySocket = socket.constructTLSSocketInstance();  // One way authentication
+  // [End create_tls_worker_object]
 
-  tlsSocket = socket.constructTLSSocketInstance();
-
-  let localAddress: LocalAddress = { address: '0.0.0.0', family: 1 };
-  tlsSocket!.bind(localAddress).then(() => {
+  let ipAddress: LocalAddress = { address: '0.0.0.0', family: 1 };
+  // [EndExclude tls_worker_bind_the_server]
+  // 绑定本地IP地址和端口。
+  tlsOneWaySocket!.bind(ipAddress).then(() => {
+    console.info('bind success');
+    // [StartExclude tls_worker_bind_the_server]
     let serverAddress: ServerAddress = { address: serverIp, port: serverPort, family: 1 };
     let opt: CA = { ca: [ca] };
-
-    tlsSocket!.connect({ address: serverAddress, secureOptions: opt })
-      .then(() => {
-        workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
-
-        // 监听服务器消息
-        tlsSocket!.on('message', (data) => {
-          let receivedMsg = buf2String(data.message);
-          workerPort.postMessage({ type: 'serverMessage', message: receivedMsg });
-        });
-
-        tlsSocket!.on('close', () => {
-          tlsSocket = null; // 连接关闭后，清除 tlsSocket
-          workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
-        });
-
-      })
-      .catch((e: BusinessError) => {
-        tlsSocket = null;
-        workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
-      });
+    // [EndExclude tls_worker_bind_the_server]
+    /// 订阅TLS Socket相关的订阅事件
+    tlsOneWaySocket!.on('message', (value: SocketInfo) => {
+      console.info('on message');
+      let buffer = value.message;
+      let dataView = new DataView(buffer);
+      let str = '';
+      for (let i = 0; i < dataView.byteLength; ++i) {
+        str += String.fromCharCode(dataView.getUint8(i));
+      }
+      console.info('on connect received:' + str);
+    });
+    tlsOneWaySocket!.on('connect', () => {
+      console.info('on connect');
+    });
+    tlsOneWaySocket!.on('close', () => {
+      console.info('on close');
+      // [StartExclude tls_worker_bind_the_server]
+      tlsOneWaySocket = null; // 连接关闭后，清除 tlsSocket
+      workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
+      // [EndExclude tls_worker_bind_the_server]
+    });
+    // [StartExclude tls_worker_bind_the_server]
+    tlsOneWaySocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {
+      console.info('connect successfully');
+      workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
+    }).catch((e: BusinessError) => {
+      tlsOneWaySocket = null;
+      workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
+    });
+    // [EndExclude tls_worker_bind_the_server]
   }).catch((e: BusinessError) => {
-    tlsSocket = null;
+    console.error('bind fail');
+    // [StartExclude tls_worker_bind_the_server]
+    tlsOneWaySocket = null;
     workerPort.postMessage({ type: 'connectFailure', status: `Failed to bind socket: ${e.message}` });
+    // [EndExclude tls_worker_bind_the_server]
   });
+  // [StartExclude tls_worker_bind_the_server]
 }
 
-// 发送消息到服务器
 function sendMessageToServer(message: string) {
-  if (!tlsSocket) {
+  if (!tlsOneWaySocket) {
     workerPort.postMessage({ type: 'sendMessageFailure', message: 'TLS connection is not established.' });
     return;
   }
-
-  tlsSocket.send(message + '\r\n')
-    .then(() => {
-      workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
-    })
-    .catch((e: Error) => {
-      workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
-    });
+  // [EndExclude tls_worker_bind_the_server]
+  // 建立连接，连接建立成功后，可以发送数据。
+  tlsOneWaySocket.send(message + '\r\n').then(() => {
+    console.info('send successfully');
+    workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
+  }).catch((e: BusinessError) => {
+    console.error('send failed ' + JSON.stringify(e));
+    workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
+  });
+  // [End tls_worker_bind_the_server]
 }
-// [End one-way_authentication_via_tls_socket]
+
+// 关闭连接
+function closeConnection() {
+  if (!tlsOneWaySocket) {
+    return;
+  }
+  // [Start tls_worker_close_the_server]
+  // 连接使用完毕后，主动关闭，并取消相关事件的订阅。
+  tlsOneWaySocket!.close((err: BusinessError) => {
+    if (err) {
+      console.error('close callback error = ' + err);
+      workerPort.postMessage({ type: 'Close connection failed' });
+    } else {
+      console.info('close success');
+      workerPort.postMessage({ type: 'Connection closed' });
+    }
+    tlsOneWaySocket!.off('message');
+    tlsOneWaySocket!.off('connect');
+    tlsOneWaySocket!.off('close');
+  });
+  // [End tls_worker_close_the_server]
+}
 
 // ArrayBuffer 转 utf8 字符串
 function buf2String(buf: ArrayBuffer): string {

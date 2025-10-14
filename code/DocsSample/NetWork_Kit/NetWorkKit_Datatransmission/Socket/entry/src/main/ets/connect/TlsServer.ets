@@ -141,14 +141,26 @@ struct TLS_Server {
       }
       .padding(10)
 
-      // 启动服务器按钮
-      Button($r('app.string.Start_Server'))
-        .onClick(() => {
-          this.startServer();
-        })
-        .enabled(this.canStartServer)
-        .width(150)
-        .fontSize(14)
+      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+        // 启动服务器按钮
+        Button($r('app.string.Start_Server'))
+          .onClick(() => {
+            this.startServer();
+          })
+          .enabled(this.canStartServer)
+          .width(150)
+          .fontSize(14)
+
+        // 停止服务
+        Button($r('app.string.Stop_Server'))
+          .onClick(() => {
+            this.stopServer();
+          })
+          .enabled(this.canStartServer)
+          .width(150)
+          .fontSize(14)
+      }
+      .padding(10)
 
       // 消息历史展示区
       TextArea({ text: this.msgHistory })
@@ -278,6 +290,23 @@ struct TLS_Server {
         this.msgHistory += `Message sent: ${response.message}\n`;
       } else if (response.type === 'connectionClosed') {
         this.msgHistory += `Connection closed: ${response.message}\n`;
+      }
+    };
+  }
+
+  // 停止服务
+  stopServer() {
+    workerPort.postMessage({
+      type: 'stopServer',
+    });
+
+    workerPort.onmessage = (e: MessageEvents) => {
+      const response: TlsServerMessage = e.data;
+      if (response.type === 'The service is stopped successfully') {
+        this.msgHistory += 'The service is stopped successfully\n';
+        this.tlsServerRunning = true;
+      } else if (response.type === 'Stopping the service failed\n') {
+        this.msgHistory += 'Stopping the service failed';
       }
     };
   }

@@ -14,13 +14,17 @@
  */
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import { socket } from '@kit.NetworkKit';
 import { TcpMessage } from '../connect/TcpClient';
+// [Start tcp_server_worker_import]
+import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End tcp_server_worker_import]
 import Logger from '../common/Logger';
 
-
+// [Start tcp_server_worker_tcpServer]
+// 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+// [End tcp_server_worker_tcpServer]
 let client: socket.TCPSocketConnection | null = null; // 保存客户端连接
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -43,8 +47,9 @@ function handleMessage(message: TcpMessage) {
   }
 }
 
-// [Start application_transmits_data_via_tcp_socket_server]
 function startServer(tcpMessage: TcpMessage) {
+  // [Start tcp_server_worker_ipAddress]
+  // 绑定本地IP地址和端口，进行监听。
   let ipAddress: socket.NetAddress = {} as socket.NetAddress;
   ipAddress.address = tcpMessage.serverIp!; // 服务端IP
   ipAddress.port = tcpMessage.serverPort; // 端口号
@@ -55,15 +60,20 @@ function startServer(tcpMessage: TcpMessage) {
     Logger.info('listen fail');
     workerPort.postMessage({ type: 'listen fail' });
   });
+  // [End tcp_server_worker_ipAddress]
 
+  // [Start tcp_server_worker_socketInfo]
   class SocketInfo {
     public message: ArrayBuffer = new ArrayBuffer(1);
     public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
   }
 
   tcpServer.on('connect', (client_: socket.TCPSocketConnection) => {
+    // [StartExclude tcp_server_worker_socketInfo]
     Logger.info('client connected');
     workerPort.postMessage({ type: 'client connected' });
+    // [EndExclude tcp_server_worker_socketInfo]
+
     // 保存客户端连接
     client = client_;
 
@@ -80,19 +90,26 @@ function startServer(tcpMessage: TcpMessage) {
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      Logger.info('received message--:' + str);
+      console.log('received message--:' + str);
+      console.log('received address--:' + value.remoteInfo.address);
+      console.log('received family--:' + value.remoteInfo.family);
+      console.log('received port--:' + value.remoteInfo.port);
+      console.log('received size--:' + value.remoteInfo.size);
       workerPort.postMessage({ type: 'received message--', message: str });
     });
   });
-
+  // [StartExclude tcp_server_worker_socketInfo]
+  // [Start tcp_server_worker_setTimeout]
   // 设置连接超时（例如 30 秒后取消连接）
   setTimeout(() => {
     tcpServer.off('connect');
   }, 30 * 1000);
+  // [End tcp_server_worker_setTimeout]
 }
 
 function sendMessage(tcpMessage: TcpMessage) {
   if (client) {
+    // [EndExclude tcp_server_worker_socketInfo]
     let tcpSendOptions: socket.TCPSendOptions = {} as socket.TCPSendOptions;
     tcpSendOptions.data = tcpMessage.message!;
 
@@ -104,15 +121,16 @@ function sendMessage(tcpMessage: TcpMessage) {
       Logger.error('send fail: ' + JSON.stringify(err));
       workerPort.postMessage({ type: 'send fail', message: JSON.stringify(err) });
     });
+    // [StartExclude tcp_server_worker_socketInfo]
   } else {
     Logger.info('No client connected');
     workerPort.postMessage({ type: 'No client connected' });
-
   }
 }
 
 function disConnect() {
   if (client) {
+    // [EndExclude tcp_server_worker_socketInfo]
     client.close().then(() => {
       Logger.info('close success');
       workerPort.postMessage({ type: 'close success' });
@@ -126,13 +144,14 @@ function disConnect() {
       client?.off('message');
       client?.off('close');
     }, 10 * 1000);
+    // [End tcp_server_worker_socketInfo]
+
   } else {
     Logger.info('No client to close');
     workerPort.postMessage({ type: 'No client to close' });
 
   }
 }
-// [End application_transmits_data_via_tcp_socket_server]
 
 /**
  * Defines the event handler to be called when the worker thread receives a message sent by the host thread.

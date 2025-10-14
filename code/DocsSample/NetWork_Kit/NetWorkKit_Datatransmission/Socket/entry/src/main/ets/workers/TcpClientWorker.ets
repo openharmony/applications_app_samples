@@ -15,13 +15,18 @@
 
 import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 import { TcpMessage } from '../connect/TcpClient'
+// [Start tcp_client_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End tcp_client_worker_import]
 import Logger from '../common/Logger';
 
 const workerPort = worker.workerPort; // 获取 workerPort 实例
 
+// [Start tcp_client_worker_tcpClient]
+// 创建一个TCPSocket连接，返回一个TCPSocket对象。
 let tcpClient: socket.TCPSocket = socket.constructTCPSocketInstance();
+// [End tcp_client_worker_tcpClient]
 
 function handleMessage(message: TcpMessage) {
   switch (message.type) {
@@ -48,8 +53,8 @@ function sendMessage(tcpMessage: TcpMessage) {
     return;
   }
 
-  // [Start client_applies_tcp_protocol_for_communication]
   // 绑定本地服务器地址
+  // [Start tcp_client_worker_socketInfo]
   class SocketInfo {
     public message: ArrayBuffer = new ArrayBuffer(1);
     public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
@@ -73,9 +78,12 @@ function sendMessage(tcpMessage: TcpMessage) {
   tcpClient.on('close', () => {
     Logger.info('on close');
   });
+  // [End tcp_client_worker_socketInfo]
 
+
+  // [Start tcp_client_worker_ipAddress]
+  // 绑定本地IP地址和端口。
   let ipAddress: socket.NetAddress = {} as socket.NetAddress;
-
   ipAddress.address = tcpMessage.clientIp!;
   ipAddress.port = tcpMessage.clientPort;
   tcpClient.bind(ipAddress, (err: BusinessError) => {
@@ -85,6 +93,7 @@ function sendMessage(tcpMessage: TcpMessage) {
     }
     Logger.info('bind success');
 
+  // bind成功后，连接到指定的IP地址和端口。
     let netAddress: socket.NetAddress = {
       address: tcpMessage.serverIp!,
       port: tcpMessage.serverPort!
@@ -107,17 +116,27 @@ function sendMessage(tcpMessage: TcpMessage) {
       });
     })
   })
+  // [End tcp_client_worker_ipAddress]
 }
 
+// [Start tcp_client_worker_disConnect]
 function disConnect() {
-  tcpClient.close().then(() => {
-    workerPort.postMessage({ type: 'Connection closed' });
-    Logger.info('Connection closed');
-  }).catch(() => {
-    workerPort.postMessage({ type: 'Close connection failed' });
-  });
+  // 连接使用完毕后，主动关闭。取消相关事件的订阅。
+  setTimeout(() => {
+    tcpClient.close().then(() => {
+      workerPort.postMessage({ type: 'Connection closed' });
+      console.log('close success');
+    }).catch((err: BusinessError) => {
+      workerPort.postMessage({ type: 'Close connection failed' });
+      console.error('close fail');
+    });
+    tcpClient.off('message');
+    tcpClient.off('connect');
+    tcpClient.off('close');
+  }, 30 * 1000);
 }
-  // [End client_applies_tcp_protocol_for_communication]
+// [End tcp_client_worker_disConnect]
+
 /**
  * Defines the event handler to be called when the worker thread receives a message sent by the host thread.
  * The event handler is executed in the worker thread.

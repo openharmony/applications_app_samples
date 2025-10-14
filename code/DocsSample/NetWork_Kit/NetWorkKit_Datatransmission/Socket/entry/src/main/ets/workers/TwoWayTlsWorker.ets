@@ -14,9 +14,11 @@
  */
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
+// [Start two_way_tls_worker_import]
 import socket from '@ohos.net.socket';
-import fs from '@ohos.file.fs';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End two_way_tls_worker_import]
+import fs from '@ohos.file.fs';
 
 // 获取 workerPort 实例
 const workerPort = worker.workerPort;
@@ -46,9 +48,6 @@ interface TlsTwoWayMessage {
   certContent?: string; // 从文件中读取的证书内容
   privateKeyContent?: string; // 从文件中读取的私钥内容
 }
-
-// 共享变量
-let tlsSocket: socket.TLSSocket | null = null;
 
 // 监听主线程消息
 workerPort.onmessage = (e: MessageEvents) => {
@@ -105,45 +104,76 @@ function loadFile(fileUri: string) {
   }
 }
 
+// [Start two-way_constructTLSSocketInstance]
+// 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
+let tlsSocket: socket.TLSSocket | null = null;
+// [StartExclude two-way_constructTLSSocketInstance]
 function connectToServer(serverIp: string, serverPort: number, ca: string, cert: string, privateKey: string) {
   if (tlsSocket) {
     workerPort.postMessage({ type: 'connectFailure', message: 'Socket already connected' });
     return;
   }
-
+  // [EndExclude two-way_constructTLSSocketInstance]
   tlsSocket = socket.constructTLSSocketInstance();
+  // [End two-way_constructTLSSocketInstance]
 
-  let localAddress: LocalAddress = { address: '0.0.0.0', family: 1 };
-  tlsSocket.bind(localAddress).then(() => {
+  let ipAddress: LocalAddress = { address: '0.0.0.0', family: 1 };
+  // [Start two-way_bindTlsSocket]
+  class SocketInfo {
+    public message: ArrayBuffer = new ArrayBuffer(1);
+    public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+  }
+  // 绑定本地IP地址和端口。
+  tlsSocket.bind(ipAddress).then(() => {
+    console.info('bind success');
+    // [StartExclude two-way_bindTlsSocket]
     let serverAddress: ServerAddress = { address: serverIp, port: serverPort, family: 1 };
     let opt: socket.TLSSecureOptions = {
       ca: [ca],
       cert: cert,
       key: privateKey
     };
+    // [EndExclude two-way_bindTlsSocket]
+    // 监听消息
+    // 确保bind成功后，再订阅TLS Socket相关的订阅事件
+    tlsSocket!.on('message', (value: SocketInfo) => {
+      console.log('on message');
+      let buffer = value.message;
+      let dataView = new DataView(buffer);
+      let str = '';
+      for (let i = 0; i < dataView.byteLength; ++i) {
+        str += String.fromCharCode(dataView.getUint8(i));
+      }
+      console.log('on connect received:' + str);
+    });
 
+    tlsSocket!.on('connect', () => {
+      console.log('on connect');
+    });
+    // 监听连接关闭
+    tlsSocket!.on('close', () => {
+      console.info('on close');
+      // [StartExclude two-way_bindTlsSocket]
+      tlsSocket = null; // 清理连接
+      workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
+      // [EndExclude two-way_bindTlsSocket]
+    });
+    // [StartExclude two-way_bindTlsSocket]
     tlsSocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {
       workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
-
-      // 监听消息
-      tlsSocket!.on('message', (data) => {
-        let receivedMsg = buf2String(data.message);
-        workerPort.postMessage({ type: 'serverMessage', message: receivedMsg });
-      });
-
-      // 监听连接关闭
-      tlsSocket!.on('close', () => {
-        tlsSocket = null; // 清理连接
-        workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
-      });
     }).catch((e: BusinessError) => {
       tlsSocket = null;
       workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
     });
+    // [EndExclude two-way_bindTlsSocket]
   }).catch((e: BusinessError) => {
+    console.error('bind fail');
+    // [StartExclude two-way_bindTlsSocket]
     tlsSocket = null;
     workerPort.postMessage({ type: 'connectFailure', status: `Failed to bind socket: ${e.message}` });
+    // [EndExclude two-way_bindTlsSocket]
   });
+  // [StartExclude two-way_bindTlsSocket]
 }
 
 // 发送消息到服务器
@@ -152,12 +182,32 @@ function sendMessageToServer(message: string) {
     workerPort.postMessage({ type: 'sendMessageFailure', message: 'TLS connection is not established.' });
     return;
   }
-
+  // [EndExclude two-way_bindTlsSocket]
   tlsSocket.send(message + '\r\n').then(() => {
+    console.info('send successfully');
+    // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
-  }).catch((e: Error) => {
+    // [Start two-way_closeTlsSocket]
+    // 连接使用完毕后，主动关闭，并取消相关事件的订阅。
+    tlsSocket!.close((err: BusinessError) => {
+      if (err) {
+        console.error('close callback error = ' + err);
+      } else {
+        console.log('close success');
+      }
+      tlsSocket!.off('message');
+      tlsSocket!.off('connect');
+      tlsSocket!.off('close');
+    });
+    // [End two-way_closeTlsSocket]
+    // [EndExclude two-way_bindTlsSocket]
+  }).catch((e: BusinessError) => {
+    console.error('send failed ' + JSON.stringify(e));
+    // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
+    // [EndExclude two-way_bindTlsSocket]
   });
+  // [End two-way_bindTlsSocket]
 }
 // [End two-way_authentication_via_tls_socket]
 

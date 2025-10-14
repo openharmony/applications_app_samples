@@ -14,9 +14,11 @@
  */
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
-import socket from '@ohos.net.socket';
 import fs from '@ohos.file.fs';
+// [Start tcp_to_tls_server_import]
+import socket from '@ohos.net.socket';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End tcp_to_tls_server_import]
 
 const workerPort = worker.workerPort;
 
@@ -35,7 +37,7 @@ interface TlsTwoWayMessage {
   content?: string; // General file load return content (optional)
 }
 
-let tcpSocket: socket.TCPSocket | null = null;
+
 let tlsSocket: socket.TLSSocket | null = null;
 
 interface ServerAddress {
@@ -71,6 +73,10 @@ function handleMessage(message: TlsTwoWayMessage) {
       if (message.message) {
         sendMessageToServer(message.message);
       }
+    case 'closeServer':
+      if (message.message) {
+        closeServer();
+      }
       break;
   }
 }
@@ -97,54 +103,90 @@ function loadFile(fileUri: string) {
   }
 }
 
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+// [Start tcp_to_tls_server_create_object]
+// 创建一个TCPSocket连接，返回一个TCPSocket对象。
+let tcpSocket: socket.TCPSocket | null = null;
+// [StartExclude tcp_to_tls_server_create_object]
 // Connect to the server and perform TLS upgrade
 function connectToServer(serverIp: string, serverPort: number, ca: string, cert: string, privateKey: string) {
   if (tcpSocket) {
     workerPort.postMessage({ type: 'connectFailure', message: 'TCP already connected' });
     return;
   }
-
+  // [EndExclude tcp_to_tls_server_create_object]
   tcpSocket = socket.constructTCPSocketInstance();
+  // [End tcp_to_tls_server_create_object]
 
   let serverAddress: ServerAddress = { address: serverIp, port: serverPort, family: 1 };
-  let tcpConnectOptions: socket.TCPConnectOptions = { address: serverAddress, timeout: 6000 }; // Set timeout to 6s
-
-  tcpSocket.connect(tcpConnectOptions).then(() => {
+  let tcpConnect: socket.TCPConnectOptions = { address: serverAddress, timeout: 6000 }; // Set timeout to 6s
+  // [Start tcp_Upgrade_to_tls_server]
+  // 如果需要绑定特定的端口，可通过bind接口实现
+  tcpSocket.connect(tcpConnect).then(() => {
+    console.info('connect success');
+    // [StartExclude tcp_Upgrade_to_tls_server]
     workerPort.postMessage({ type: 'connectSuccess', message: 'TCP connection successful' });
-
-    // Upgrade to TLS
+    // [EndExclude tcp_Upgrade_to_tls_server]
+    // 确保TCPSocket已连接后，将其升级为TLSSocket连接。
     tlsSocket = socket.constructTLSSocketInstance(tcpSocket);
-
-    let secureOptions: SecureOptions = {
+    // 订阅TLSSocket相关的订阅事件。
+    tlsSocket.on('message', (value: SocketInfo) => {
+      console.info('tls on message');
+      let buffer = value.message;
+      let dataView = new DataView(buffer);
+      let str = '';
+      for (let i = 0; i < dataView.byteLength; ++i) {
+        str += String.fromCharCode(dataView.getUint8(i));
+      }
+      console.info('tls on connect received:' + str);
+    });
+    tlsSocket.on('connect', () => {
+      console.info('tls on connect');
+    });
+    tlsSocket!.on('close', () => {
+      console.info('tls on close');
+      // [StartExclude tcp_Upgrade_to_tls_server]
+      workerPort.postMessage({ type: 'connectionClosed', message: 'TLS connection closed' });
+      // [EndExclude tcp_Upgrade_to_tls_server]
+    });
+    // [StartExclude tcp_Upgrade_to_tls_server]
+    let tlsSecureOption: SecureOptions = {
       ca: [ca],
       cert: cert,
       key: privateKey,
     };
-
-    tlsSocket.connect({
-      secureOptions,
+    let tlsTwoWayConnectOption: socket.TLSConnectOptions = {
+      secureOptions: tlsSecureOption,
       address: {
         address: serverIp,
         port: serverPort,
         family: 1,
       },
-    }).then(() => {
+    };
+    // [EndExclude tcp_Upgrade_to_tls_server]
+    // 建立TLSSocket连接。
+    tlsSocket.connect(tlsTwoWayConnectOption).then(() => {
+      console.info('tls connect success');
+      // [StartExclude tcp_Upgrade_to_tls_server]
       workerPort.postMessage({ type: 'tlsConnectSuccess', message: 'TLS mutual authentication connection successful' });
-
-      tlsSocket!.on('message', (data) => {
-        let receivedMsg = buf2String(data.message);
-        workerPort.postMessage({ type: 'serverMessage', message: receivedMsg });
-      });
-
-      tlsSocket!.on('close', () => {
-        workerPort.postMessage({ type: 'connectionClosed', message: 'TLS connection closed' });
-      });
+      // [EndExclude tcp_Upgrade_to_tls_server]
     }).catch((e: BusinessError) => {
+      console.info('tls connect fail');
+      // [StartExclude tcp_Upgrade_to_tls_server]
       workerPort.postMessage({ type: 'tlsConnectFailure', message: `TLS connection failed: ${e.message}` });
+      // [EndExclude tcp_Upgrade_to_tls_server]
     });
   }).catch((e: BusinessError) => {
+    console.error('connect fail');
+    // [StartExclude tcp_Upgrade_to_tls_server]
     workerPort.postMessage({ type: 'connectFailure', message: `TCP connection failed: ${e.message}` });
+    // [EndExclude tcp_Upgrade_to_tls_server]
   });
+  // [End tcp_Upgrade_to_tls_server]
 }
 
 // Send message to the server
@@ -153,7 +195,6 @@ function sendMessageToServer(message: string) {
     workerPort.postMessage({ type: 'sendMessageFailure', message: 'TLS connection not established' });
     return;
   }
-
   tlsSocket.send(message + '\r\n').then(() => {
     workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
   }).catch((e: Error) => {
@@ -161,6 +202,28 @@ function sendMessageToServer(message: string) {
   });
 }
 // [End two-way_authentication_by_upgrading_tcp_socket_to_tls_socket]
+
+function closeServer() {
+  if (!tlsSocket) {
+    workerPort.postMessage({ type: 'closeFailure', message: 'TLS connection close failed' });
+    return;
+  }
+  // [Start tls_server_close]
+  // 连接使用完毕后，主动关闭。取消相关事件的订阅。
+  tlsSocket!.close((err: BusinessError) => {
+    if (err) {
+      workerPort.postMessage({ type: 'closeFailure', message: 'TLS connection close failed' });
+      console.error('tls close callback error = ' + err);
+    } else {
+      console.info('tls close success');
+      workerPort.postMessage({ type: 'closeSuccess', message: 'TLS connection close success' });
+    }
+    tlsSocket!.off('message');
+    tlsSocket!.off('connect');
+    tlsSocket!.off('close');
+  });
+  // [End tls_server_close]
+}
 
 function buf2String(buf: ArrayBuffer): string {
   let msgArray = new Uint8Array(buf);

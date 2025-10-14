@@ -15,7 +15,9 @@
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 import Logger from '../common/Logger';
+// [Start multicast_worker_import]
 import { socket } from '@kit.NetworkKit';
+// [End multicast_worker_import]
 import { Message } from '../connect/Multicast'
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -38,51 +40,68 @@ function postMessage(arg0: Message) {
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
-// [Start application_transmits_data_via_multicast_socket]
-function startMulticast(data: MulticastData) {
+function startMulticast(data: socket.NetAddress) {
+  // [Start multicast_worker_multicast]
+  // 创建Multicast对象。
   let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+  // [End multicast_worker_multicast]
 
+  // [Start multicast_worker_multicastConfig]
   // 这里构造一个对象用于加入多播组
-  const multicastConfig: MulticastData = {
+  let addr : socket.NetAddress = {
     address: data.address,
     port: data.port,
     family: data.family
   };
 
-  multicast.addMembership(multicastConfig).then(() => {
+  multicast.addMembership(addr).then(() => {
     postMessage({ type: 'multicastStatus', status: 'Joined multicast group' });
     Logger.info(`Multicast: Joined group ${data.address}:${data.port}`);
   }).catch((err: BusinessError) => {
     postMessage({ type: 'multicastStatus', status: 'Failed to join multicast group' });
     Logger.error(`Multicast: Failed to join group ${data.address}:${data.port} - ${JSON.stringify(err)}`);
   });
-
-  multicast.on('message', (value: MulticastMessageEvent) => {
-    let str = '';
-    let buffer = value.message;
-    for (let i = 0; i < buffer.byteLength; ++i) {
-      str += String.fromCharCode(new DataView(buffer).getUint8(i));
+  // [End multicast_worker_multicastConfig]
+  // [Start multicast_worker_on_message]
+  // 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String。
+  class SocketInfo {
+    public message: ArrayBuffer = new ArrayBuffer(1);
+    public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+  }
+  multicast.on('message', (data: SocketInfo) => {
+     console.info('接收的数据: ' + JSON.stringify(data))
+    const uintArray = new Uint8Array(data.message)
+    let str = ''
+    for (let i = 0; i < uintArray.length; ++i) {
+      str += String.fromCharCode(uintArray[i])
     }
+    console.info(str)
     postMessage({ type: 'multicastMessage', status: 'Message received', message: str });
-    Logger.info(`Multicast: Received message: ${str}`);
   });
-
+  // [End multicast_worker_on_message]
+  // [Start multicast_worker_send]
   // 发送一条多播消息
-  multicast.send({ data: 'Hello multicast group!', address: multicastConfig }).then(() => {
+  multicast.send({ data: 'Hello multicast group!', address: addr }).then(() => {
     Logger.info('Multicast: Message sent successfully');
   }).catch((err: BusinessError) => {
     Logger.error(`Multicast: Failed to send message - ${JSON.stringify(err)}`);
   });
+  // [End multicast_worker_send]
 
   // 设定一定时间后退出多播组
   setTimeout(() => {
+    // [Start multicast_worker_off_message]
     multicast.off('message');
-    multicast.dropMembership(multicastConfig).then(() => {
+    // [End multicast_worker_off_message]
+
+    // [Start multicast_worker_dropMembership]
+    multicast.dropMembership(addr).then(() => {
       postMessage({ type: 'multicastStatus', status: 'Dropped multicast membership' });
       Logger.info('Multicast: Dropped membership successfully');
     }).catch((err: BusinessError) => {
       Logger.error(`Multicast: Failed to drop membership - ${JSON.stringify(err)}`);
     });
+    // [End multicast_worker_dropMembership]
   }, MULTICAST_MESSAGE_SEND_INTERVAL);
 }
 
@@ -96,7 +115,7 @@ workerPort.onmessage = (e: MessageEvents) => {
   const message: Message = e.data;
 
   if (message.type === 'startMulticast' && message.message) {
-    const multicastData = JSON.parse(message.message) as MulticastData;
+    const multicastData = JSON.parse(message.message) as socket.NetAddress;
     startMulticast(multicastData);
   }
 };
