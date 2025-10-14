@@ -35,7 +35,7 @@
 
 ### 相关权限
 
-无
+网络权限: ohos.permission.INTERNET
 
 ### 依赖
 

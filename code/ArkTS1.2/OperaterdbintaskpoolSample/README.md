@@ -62,8 +62,8 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：Phone;
-2. 本示例为Stage模型，支持API20版本SDK，SDK版本号(API Version 20),镜像版本号(6.0.0.31)。
-3. 本示例需要使用DevEco Studio 版本号(6.0.0.6)版本才可编译运行。
+2. 本示例为Stage模型，支持API20版本SDK，SDK版本号(API Version 20)。
+3. 本示例需要使用DevEco Studio 版本号(6.0.0.43)版本才可编译运行。
 
 ### 下载
 
