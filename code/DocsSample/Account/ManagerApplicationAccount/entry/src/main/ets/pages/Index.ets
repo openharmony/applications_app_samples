@@ -53,7 +53,7 @@ struct Index {
   private async getAccounts(): Promise<void> {
     // [Start query_the_account_list]
     appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
-      console.debug('getAllAccounts successfully, data: ' + JSON.stringify(data));
+      console.info('getAllAccounts successfully, data: ' + JSON.stringify(data));
       // [StartExclude query_the_account_list]
       this.message = 'Query account result: ' + data[0].name;
       // [EndExclude query_the_account_list]

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "empty",
+      "value": ""
+    },
+    {
+      "name": "hello_har",
+      "value": ""
+    }
+  ]
+}

@@ -33,3 +33,4 @@
 | 多态样式属性设置 | 应用位于首页 | 1.点击首页Public按钮 <br/>2.向下滑动，寻找标记为normal和effective的两个按钮 | 点击effective的按钮后，按钮样式发生变化，再次点击，按钮样式还原。 | 否 | 验证通过 |
 | 截图属性设置 | 应用位于首页 | 1.点击首页Public按钮 <br/>2.向下滑动，寻找标记为截图的按钮 | 点击截图按钮后，打印出ComponentSnapshot相关日志。 | 否 | 验证通过 |
 | ArkUI_HitTestMode属性设置 | 应用位于首页 | 1.点击首页Public按钮 <br/>2.向下滑动，寻找标记为ARKUI_HIT_TEST_MODE_DEFAULT的Text | 有四个分别设置了不同ArkUI_HitTestMode参数的背景色为黄色的Text，下方为设置ARKUI_HIT_TEST_MODE_DEFAULT的红色Text堆叠在设置为ARKUI_HIT_TEST_MODE_TRANSPARENT的绿色文本组件上，同时有设置ARKUI_HIT_TEST_MODE_DEFAULT的蓝色Text。 | 否 | 验证通过 |
+| 验证XComponent创建成功 | 应用位于首页 | 1.点击首页XComponent按钮 | 1.包含两个XComponent显示框 | 否 | 验证通过 |

@@ -1,0 +1,12 @@
+{
+  "routerMap": [
+    {
+      "name": "library_menu",
+      "pageSourceFile": "src/main/ets/pages/library_menu.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is library_menu"
+      }
+    }
+  ]
+}
