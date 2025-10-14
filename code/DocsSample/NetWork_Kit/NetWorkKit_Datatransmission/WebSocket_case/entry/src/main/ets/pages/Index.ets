@@ -13,12 +13,17 @@
  * limitations under the License.
  */
 
+// [Start WebSocket_full_client_instance]
+// [Start WebSocket_case_module_import]
 import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import Logger from '../common/Logger';
+// [End WebSocket_case_module_import]
+// [StartExclude WebSocket_full_client_instance]
 
 const LOG_TAG = '[Sample_WebSocketDemo]';
+// [EndExclude WebSocket_full_client_instance]
 const DEFAULT_IP_ADDRESS = 'wss://echo.websocket.org'; // WebSocket地址
+// [StartExclude WebSocket_full_client_instance]
 const BUTTON_HEIGHT = 50; // 按钮高度
 const BUTTON_RADIUS = 5; // 按钮边缘角度
 const BUTTON_FONT_SIZE = 20; // 按钮字体大小
@@ -103,7 +108,7 @@ struct WebSocketDemo {
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 
-// [Start websocket_development_steps]
+
   // 连接WebSocket
   connectWebSocket() {
     this.connectionStatus = 'Connecting...';
@@ -113,90 +118,116 @@ struct WebSocketDemo {
       this.connectionStatus = 'WebSocket is already connected';
       return;
     }
-
+    // [EndExclude WebSocket_full_client_instance]
     this.ws = webSocket.createWebSocket();
-
+    // [Start websocket_open_message_close_error_methods]
     this.ws.on('open', (err: BusinessError, value: Object) => {
+      // [StartExclude WebSocket_full_client_instance]
       if (!err) {
         this.connectionStatus = 'Connected';
         this.isConnect = true;
-        Logger.info(`${LOG_TAG} WebSocket connected: ` + JSON.stringify(value));
+        console.info(`${LOG_TAG} WebSocket connected: ` + JSON.stringify(value));
       } else {
         this.connectionStatus = 'Connection failed';
-        Logger.error(`${LOG_TAG} WebSocket connection failed: ` + JSON.stringify(err));
+        console.error(`${LOG_TAG} WebSocket connection failed: ` + JSON.stringify(err));
       }
+      // [EndExclude WebSocket_full_client_instance]
     });
 
     this.ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
+      // [StartExclude WebSocket_full_client_instance]
       if (err) {
-        Logger.error(`${LOG_TAG} Error receiving message: ` + JSON.stringify(err));
+        console.error(`${LOG_TAG} Error receiving message: ` + JSON.stringify(err));
         return;
       }
-      Logger.info('Received message: ' + value);
+      // [EndExclude WebSocket_full_client_instance]
+      console.info('Received message: ' + value);
 
       if (value === 'bye') {
         this.ws!.close((err: BusinessError) => {
           if (!err) {
+            // [StartExclude WebSocket_full_client_instance]
             this.closeConnectionResult = 'Connection closed successfully';
             this.connectionStatus = 'Not connected';
-            Logger.info(`${LOG_TAG} WebSocket closed successfully`);
+            // [EndExclude WebSocket_full_client_instance]
+            console.info(`${LOG_TAG} WebSocket closed successfully`);
           } else {
+            // [StartExclude WebSocket_full_client_instance]
             this.closeConnectionResult = 'Connection closing failed';
-            Logger.error(`${LOG_TAG} WebSocket closing failed: ` + JSON.stringify(err));
+            // [EndExclude WebSocket_full_client_instance]
+            console.error(`${LOG_TAG} WebSocket closing failed: ` + JSON.stringify(err));
           }
         });
       }
     })
 
     this.ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
+      // [StartExclude WebSocket_full_client_instance]
       if (!err) {
         this.connectionStatus = 'Disconnected';
-        Logger.info('Connection closed: code = ' + value.code + ', reason ='  + value.reason);
+        // [EndExclude WebSocket_full_client_instance]
+        console.info('Connection closed: code = ' + value.code + ', reason ='  + value.reason);
+        // [StartExclude WebSocket_full_client_instance]
         this.ws = null;
       } else {
-        Logger.error('Error while closing connection: ' + JSON.stringify(err));
+        console.error('Error while closing connection: ' + JSON.stringify(err));
       }
+      // [EndExclude WebSocket_full_client_instance]
     });
 
     this.ws.on('error', (err: BusinessError) => {
+      // [StartExclude WebSocket_full_client_instance]
       this.connectionStatus = 'Error';
-      Logger.error('WebSocket error: ' + JSON.stringify(err));
+      // [EndExclude WebSocket_full_client_instance]
+      console.error('WebSocket error: ' + JSON.stringify(err));
     });
+    // [End websocket_open_message_close_error_methods]
 
+
+    // [Start webSocket_case_object_connect]
     this.ws.connect(DEFAULT_IP_ADDRESS, (err: BusinessError) => {
       if (!err) {
+        console.info('Connected successfully');
       } else {
         this.connectionStatus = 'Connection failed';
-        Logger.error(`${LOG_TAG} WebSocket connection failed: ` + JSON.stringify(err));
+        console.error(`${LOG_TAG} WebSocket connection failed: ` + JSON.stringify(err));
       }
     });
+    // [End webSocket_case_object_connect]
+    // [End WebSocket_full_client_instance]
   }
 
   // 发送消息
+  // [Start webSocket_case_send_message]
   sendMessage() {
-    if (!this.ws) {
+    if (!this.ws || this.connectionStatus !== 'Connected') {
       this.sendMessageResult = 'WebSocket not connected';
-      Logger.error(`${LOG_TAG} WebSocket not connected`);
+      console.error(`${LOG_TAG} WebSocket not connected`);
       return;
     }
 
     const message = 'Hello, WebSocket!';
     this.ws.send(message, (err: BusinessError) => {
       if (!err) {
+        // [StartExclude webSocket_case_send_message]
         this.sendMessageResult = 'Message sent successfully';
-        Logger.info(`${LOG_TAG} Message sent successfully: ${message}`);
+        // [EndExclude webSocket_case_send_message]
+        console.info(`${LOG_TAG} Message sent successfully: ${message}`);
       } else {
+        // [StartExclude webSocket_case_send_message]
         this.sendMessageResult = 'Message sending failed';
-        Logger.error(`${LOG_TAG} Message sending failed: ` + JSON.stringify(err));
+        // [EndExclude webSocket_case_send_message]
+        console.error(`${LOG_TAG} Message sending failed: ` + JSON.stringify(err));
       }
     });
   }
+  // [End webSocket_case_send_message]
 
   // 关闭WebSocket连接
   closeWebSocket() {
-    if (!this.ws) {
+    if (!this.ws || this.connectionStatus !== 'Connected') {
       this.closeConnectionResult = 'WebSocket not connected';
-      Logger.error(`${LOG_TAG} WebSocket not connected`);
+      console.error(`${LOG_TAG} WebSocket not connected`);
       return;
     }
 
@@ -204,10 +235,10 @@ struct WebSocketDemo {
       if (!err) {
         this.closeConnectionResult = 'Connection closed successfully';
         this.connectionStatus = 'Not connected';
-        Logger.info(`${LOG_TAG} WebSocket closed successfully`);
+        console.info(`${LOG_TAG} WebSocket closed successfully`);
       } else {
         this.closeConnectionResult = 'Connection closing failed';
-        Logger.error(`${LOG_TAG} WebSocket closing failed: ` + JSON.stringify(err));
+        console.error(`${LOG_TAG} WebSocket closing failed: ` + JSON.stringify(err));
       }
     });
     this.ws.off('open');
@@ -215,6 +246,5 @@ struct WebSocketDemo {
     this.ws.off('error');
     this.ws = null;
   }
-  // [End websocket_development_steps]
 }
 
