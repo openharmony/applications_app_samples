@@ -26,7 +26,6 @@ import { promptAction } from '@kit.ArkUI';
 
 // 常量定义
 const LOG_TAG: string = '[Sample_HttpRequestDemo]';
-const EXAMPLE_URL: string = 'https://...';
 
 @Entry
 @Component
@@ -78,7 +77,6 @@ struct HttpRequestDemo {
   // 封装普通的 HTTP 请求逻辑
   private sendHttpRequest(): void {
     this.normalReqResult = $r('app.string.testing');
-
     // [Start HTTP_case_create_http_method]
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 每一个httpRequest对应一个HTTP请求任务，不可复用。
@@ -267,7 +265,6 @@ struct HttpRequestDemo {
     // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定。
     httpRequest.requestInStream('EXAMPLE_URL', streamInfo)
       .then((data: number) => {
-
         // [StartExclude request_in_stream_get_server_data]
         this.streamReqResult = $r('app.string.testSuccess'); // 测试通过
         promptAction.showToast({
@@ -276,10 +273,8 @@ struct HttpRequestDemo {
           bottom: 300 // 与底间隔
         });
         // [EndExclude request_in_stream_get_server_data]
-
         console.info(`${LOG_TAG} requestInStream OK!`);
         console.info(`${LOG_TAG} ResponseCode : ${JSON.stringify(data)}`);
-
         // 取消订阅步骤3中订阅的事件，并调用destroy方法主动销毁。
         this.destroyRequest(httpRequest);
         // [StartExclude request_in_stream_get_server_data]
@@ -288,7 +283,6 @@ struct HttpRequestDemo {
         // [EndExclude request_in_stream_get_server_data]
       })
       .catch((err: Error) => {
-
         // [StartExclude request_in_stream_get_server_data]
         this.streamReqResult = 'error:' + JSON.stringify(err); // 测试失败
         promptAction.showToast({
@@ -302,7 +296,7 @@ struct HttpRequestDemo {
         // 取消订阅步骤3中订阅的事件，并调用destroy方法主动销毁。
         this.destroyRequest(httpRequest);
       })
-      // [End  request_in_stream_get_server_data]
+      // [End request_in_stream_get_server_data]
   }
   // [End request_in_stream_interface_development]
 
