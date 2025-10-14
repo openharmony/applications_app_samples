@@ -7,7 +7,7 @@
 2. [USB串口配置管理](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/usb/usbSerial/usbSerial-configuration.md)。
 
 ### 效果预览
-![Index](screenshots/serial.jpg) 
+![Index](screenshots/serial.jpeg)
 
 使用说明
 

@@ -10,7 +10,7 @@
 5. [实时传输](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/usb/usbManager/usbHost/isochronousTransfer.md)。
 
 ### 效果预览
-![Index](screenshots/usb.jpg) 
+![Index](screenshots/usb.jpeg) 
 
 使用说明
 

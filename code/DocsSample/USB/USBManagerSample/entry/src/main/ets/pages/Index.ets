@@ -160,35 +160,37 @@ struct Index {
     */
     let inEndpoint: usbManager.USBEndpoint = interface1.endpoints[2];
     let outEndpoint: usbManager.USBEndpoint = interface1.endpoints[1];
-    if (inEndpoint.direction !== 0x80 || outEndpoint.direction !== 0) {
-      return;
-    }
     let dataUint8Array: Uint8Array = new Uint8Array(1024);
-    usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength: number) => {
-      if (dataLength >= 0) {
-        console.info(`usb readData result Length : ${dataLength}`);
-        this.logInfo_ += '\n[INFO] usb readData result Length: ' + JSON.stringify(dataLength);
-      } else {
-        console.error('usb readData failed');
-        this.logInfo_ += '\n[ERROR] usb readData failed';
-      }
-    }).catch((error: BusinessError) => {
-      console.error(`usb readData error : ${error}`);
-      this.logInfo_ += '\n[ERROR] usb readData error: ' + JSON.stringify(error);
-    });
+    if (inEndpoint !== undefined && inEndpoint.direction === 0x80) {
+      usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength: number) => {
+        if (dataLength >= 0) {
+          console.info(`usb readData result Length : ${dataLength}`);
+          this.logInfo_ += '\n[INFO] usb readData result Length: ' + JSON.stringify(dataLength);
+        } else {
+          console.error('usb readData failed');
+          this.logInfo_ += '\n[ERROR] usb readData failed';
+        }
+      }).catch((error: BusinessError) => {
+        console.error(`usb readData error : ${error}`);
+        this.logInfo_ += '\n[ERROR] usb readData error: ' + JSON.stringify(error);
+      });
+    }
+
     // 发送数据，在device信息中选取对应数据发送的endpoint来做数据传输。（endpoint.direction == 0）
-    usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength: number) => {
-      if (dataLength >= 0) {
-        console.info(`usb writeData result write length : ${dataLength}`);
-        this.logInfo_ += '\n[INFO] usb writeData result write length: ' + JSON.stringify(dataLength);
-      } else {
-        console.error('usb writeData failed');
-        this.logInfo_ += '\n[ERROR] usb writeData failed';
-      }
-    }).catch((error: BusinessError) => {
-      console.error(`usb writeData error : ${error}`);
-      this.logInfo_ += '\n[ERROR] usb writeData error: ' + JSON.stringify(error);
-    });
+    if (outEndpoint !== undefined && outEndpoint.direction === 0) {
+      usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength: number) => {
+        if (dataLength >= 0) {
+          console.info(`usb writeData result write length : ${dataLength}`);
+          this.logInfo_ += '\n[INFO] usb writeData result write length: ' + JSON.stringify(dataLength);
+        } else {
+          console.error('usb writeData failed');
+          this.logInfo_ += '\n[ERROR] usb writeData failed';
+        }
+      }).catch((error: BusinessError) => {
+        console.error(`usb writeData error : ${error}`);
+        this.logInfo_ += '\n[ERROR] usb writeData error: ' + JSON.stringify(error);
+      });
+    }
     // [End bulkTransfer]
   }
 
