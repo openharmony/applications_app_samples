@@ -11,6 +11,58 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "dialog_controller",
+      "value": "CustomDialogController_CAPI对接示例"
+    },
+    {
+      "name": "custom_dialog",
+      "value": "OpenCustomDialog_CAPI对接示例"
+    },
+    {
+      "name": "exit_app",
+      "value": "退出应用"
+    },
+    {
+      "name": "close_app",
+      "value": "关闭应用"
+    },
+    {
+      "name": "configure_popup_properties",
+      "value": "配置弹窗属性"
+    },
+    {
+      "name": "set_properties",
+      "value": "设置属性"
+    },
+    {
+      "name": "reset_properties",
+      "value": "重置属性"
+    },
+    {
+      "name": "please_input_attribute_value",
+      "value": "Close modal → Set keyboard avoidance"
+    },
+    {
+      "name": "dialog_state",
+      "value": "弹框状态： "
+    },
+    {
+      "name": "settings_result",
+      "value": "属性设置结果： "
+    },
+    {
+      "name": "open_dialog",
+      "value": "点此打开弹窗"
+    },
+    {
+      "name": "open_custom_dialog",
+      "value": "OpenCustomDialog_CAPI对接示例"
+    },
+    {
+      "name": "return_dialog",
+      "value": "<-"
     }
   ]
 }

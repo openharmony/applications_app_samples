@@ -15,7 +15,6 @@
 
 import router from '@ohos.router';
 import testNapi2 from 'libnativerender.so';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 
 @Entry
@@ -25,30 +24,30 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button('CustomDialogController_CAPI对接示例')
+        Button($r('app.string.dialog_controller'))
           .height(50)
-          .width('50%')
+          .width('85%')
           .margin({ top: 20, bottom: 10 })
           .onClick(() => {
             router.push({
-              url: 'pages/Index_API',
+              url: 'pages/IndexController',
             })
           })
-        Button('OpenCustomDialog_CAPI对接示例')
+        Button($r('app.string.custom_dialog'))
           .height(50)
-          .width('50%')
+          .width('85%')
           .margin({ top: 20, bottom: 10 })
           .onClick(() => {
             router.push({
-              url: 'pages/Index_func',
+              url: 'pages/IndexCustomDialog',
             })
           })
-        Text('退出应用')
+        Text($r('app.string.exit_app'))
           .fontSize(20)
           .fontColor(0xCCCCCC)
           .width('100%')
           .margin({ left: 10 })
-        Button('关闭应用')
+        Button($r('app.string.close_app'))
           .fontSize(18)
           .width(240)
           .onClick(() => {
