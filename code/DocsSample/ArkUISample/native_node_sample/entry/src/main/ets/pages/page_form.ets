@@ -45,6 +45,15 @@ function getNodeType(type: string): number {
 const SUCC_TAG = 'success';
 const FAIL_TAG = 'failed';
 
+@Extend(Text)
+function style(textAlign: TextAlign) {
+  .textAlign(textAlign)
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+}
+
 @Entry
 @Component
 struct Index {
@@ -306,80 +315,54 @@ struct Index {
         .margin(10)
         .fontWeight(FontWeight.Bold)
         .height('10%')
-      Row() {
-        Column() {
+        Row() {
           Button($r('app.string.select_node_type'))
-            .width('50%')
-            .margin({ left: 10 })
+            .width('30%')
+            .margin(10)
             .bindMenu(this.SubMenuNodeType)
-          Text($r('app.string.current_type', `${this.curNodeType}`))
-            .fontSize(14)
+          Button($r('app.string.create'))
+            .width('25%')
             .margin(10)
-          Text($r('app.string.current_status', `${this.nodeStatus}`))
-            .fontSize(14)
+            .onClick(() => {
+              Napi.removeFormNode(this.nodeId);
+              this.nodeId = -1;
+
+              this.nodeId = Napi.createFormNode(getNodeType(this.curNodeType), this.nativeCallback);
+              this.nodeStatus = (this.nodeId == -1) ? FAIL_TAG : SUCC_TAG;
+            })
+          Button($r('app.string.remove'))
+            .width('25%')
             .margin(10)
-
-          Row() {
-            Button($r('app.string.create'))
-              .width('30%')
-              .margin(10)
-              .onClick(() => {
-                Napi.removeFormNode(this.nodeId);
-                this.nodeId = -1;
-
-                this.nodeId = Napi.createFormNode(getNodeType(this.curNodeType), this.nativeCallback);
-                this.nodeStatus = (this.nodeId == -1) ? FAIL_TAG : SUCC_TAG;
-              })
-            Button($r('app.string.remove'))
-              .width('30%')
-              .margin(10)
-              .onClick(() => {
-                Napi.removeFormNode(this.nodeId);
-                this.nodeId = -1;
-                this.nodeStatus = FAIL_TAG;
-              })
-          }
+            .onClick(() => {
+              Napi.removeFormNode(this.nodeId);
+              this.nodeId = -1;
+              this.nodeStatus = FAIL_TAG;
+            })
         }
-        .width('50%')
 
-        Column() {
-          Text(`event: ${this.result}`)
-            .fontSize(14)
-            .margin(10)
+        Row() {
+          Text($r('app.string.current_type', `${this.curNodeType}`))
+            .style(TextAlign.Start)
+            .fontSize(10)
+            .margin(5)
+            .width('48%')
+          Text($r('app.string.current_status', `${this.nodeStatus}`))
+            .style(TextAlign.Start)
+            .fontSize(11)
+            .margin(5)
+            .width('48%')
+        }
+
+        Row() {
           Button($r('app.string.select_node_attribute'))
-            .width('50%')
-            .margin({ left: 10 })
             .bindMenu(this.SubMenuAttributeType)
-            .onClick(()=> { this.status = Visibility.Visible })
-          Text($r('app.string.current_attribute_type', `${this.attributeType}`))
-            .fontSize(14)
-            .margin(10)
-          Text($r('app.string.response', `${this.resultValue}`))
-            .fontSize(14)
-            .margin(5)
-          Text($r('app.string.return_error_num', `${this.curAttrStatus}`))
-            .fontSize(14)
-            .margin(5)
-
-          Row() {
-            Text($r('app.string.attribute_value'))
-              .alignSelf(ItemAlign.End)
-              .fontSize(14)
-            TextInput({ placeholder: $r('app.string.please_input_attribute_value'), text: this.attributeValue })
-              .width('60%')
-              .height(40)
-              .onChange((value: string) => {
-                this.attributeValue = value;
-              })
-          }
-          .width('100%')
-          .margin(20)
-          .justifyContent(FlexAlign.End)
-
+            .fontSize(10)
+            .onClick(() => {
+              this.status = Visibility.Visible
+            })
           Button($r('app.string.set_attribute_value'))
-            .width('50%')
-            .margin(5)
             .alignSelf(ItemAlign.End)
+            .fontSize(10)
             .onClick(
               () => {
                 this.curAttrStatus = -1;
@@ -388,9 +371,8 @@ struct Index {
               }
             )
           Button($r('app.string.get_attribute_value'))
-            .width('50%')
-            .margin(5)
             .alignSelf(ItemAlign.End)
+            .fontSize(10)
             .onClick(
               () => {
                 this.resultValue = Napi.getFormAttribute(this.nodeId, getNodeType(this.curNodeType),
@@ -398,8 +380,7 @@ struct Index {
               }
             )
           Button($r('app.string.reset_attribute_value'))
-            .width('50%')
-            .margin(5)
+            .fontSize(11)
             .alignSelf(ItemAlign.End)
             .onClick(() => {
               this.curAttrStatus = -1;
@@ -407,16 +388,54 @@ struct Index {
                 this.attributeTypeId);
             })
         }
-        .width('50%')
+        Row() {
+          Text($r('app.string.current_attribute_type', `${this.attributeType}`))
+            .style(TextAlign.Start)
+            .fontSize(11)
+            .margin(5)
+            .width('95%')
+        }
+      Row() {
+        Text($r('app.string.response', `${this.resultValue}`))
+          .style(TextAlign.Start)
+          .fontSize(11)
+          .margin(5)
+          .width('95%')
       }
-      .height('30%')
+      Row() {
+        Text(`event: ${this.result}`)
+          .style(TextAlign.Start)
+          .width('95%')
+          .fontSize(15)
+          .margin(5)
+      }
+
+      Row() {
+        Text($r('app.string.attribute_value'))
+          .alignSelf(ItemAlign.Center)
+          .fontSize(15)
+          .height(20)
+        TextInput({ placeholder: $r('app.string.please_input_attribute_value'), text: this.attributeValue })
+          .width('85%')
+          .height(35)
+          .borderRadius(0)
+          .onChange((value: string) => {
+            this.attributeValue = value;
+          })
+
+      }
+      .margin(10)
 
       Column() {
         ContentSlot(this.nodeContent)
       }
-      .margin(10)
-      .width('60%')
-      .height('60%')
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+      .width('95%')
+      .height('42%')
+      .margin({ left: 0 })
+      .border({ width: 1 })
+      .position({x:'3%',y:'58%'})
     }
   }
 }
