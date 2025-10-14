@@ -16,6 +16,8 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
+const ASSET_SUCCESS: number = 0;
+
 @Entry
 @Component
 struct Index {
@@ -30,38 +32,145 @@ struct Index {
       Button('AddAsset')
         .width('70%')
         .onClick(() => {
-          hilog.info(0x0000, 'testTag', 'GenerateKey %{public}s', testNapi.AddAsset()) // 新增
-          this.message = 'AddAsset success';
+          let ret = testNapi.AddAsset();
+          hilog.info(0x0000, 'testTag', 'AddAsset %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'AddAsset success';
+          } else {
+            this.message = 'AddAsset failed';
+          }
         })
-      Button('RemoveAsset')
+      Button('QueryAssetPlaintext')
         .width('70%')
         .onClick(() => {
-          hilog.info(0x0000, 'testTag', 'GenerateKey %{public}s', testNapi.RemoveAsset()) // 删除
-          this.message = 'RemoveAsset success';
+          let ret = testNapi.QueryAssetPlaintext();
+          hilog.info(0x0000, 'testTag', 'QueryAssetPlaintext %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'QueryAssetPlaintext success';
+          } else {
+            this.message = 'QueryAssetPlaintext failed';
+          }
+        })
+      Button('QueryAssetAttribute')
+        .width('70%')
+        .onClick(() => {
+          let ret = testNapi.QueryAssetAttribute();
+          hilog.info(0x0000, 'testTag', 'QueryAssetAttribute %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'QueryAssetAttribute success';
+          } else {
+            this.message = 'QueryAssetAttribute failed';
+          }
+        })
+      Button('QueryBatchAssetAttributes')
+        .width('70%')
+        .onClick(() => {
+          let ret = testNapi.BatchQuery();
+          hilog.info(0x0000, 'testTag', 'QueryBatchAssetAttributes %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'QueryBatchAssetAttributes success';
+          } else {
+            this.message = 'QueryBatchAssetAttributes failed';
+          }
         })
       Button('UpdateAsset')
         .width('70%')
         .onClick(() => {
-          hilog.info(0x0000, 'testTag', 'GenerateKey %{public}s', testNapi.UpdateAsset()) //更新
-          this.message = 'UpdateAsset success';
+          let ret = testNapi.UpdateAsset();
+          hilog.info(0x0000, 'testTag', 'UpdateAsset %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'UpdateAsset success';
+          } else {
+            this.message = 'UpdateAsset failed';
+          }
         })
-      Button('QueryAsset')
+      Button('RemoveAsset')
         .width('70%')
         .onClick(() => {
-          hilog.info(0x0000, 'testTag', 'GenerateKey %{public}s', testNapi.QueryAsset())
-          this.message = 'QueryAsset success';
+          let ret = testNapi.RemoveAsset();
+          hilog.info(0x0000, 'testTag', 'RemoveAsset %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'RemoveAsset success';
+          } else {
+            this.message = 'RemoveAsset failed';
+          }
         })
-      Button('QueryAttributes')
+      Button('AddGroupAsset')
         .width('70%')
         .onClick(() => {
-          hilog.info(0x0000, 'testTag', 'GenerateKey %{public}s', testNapi.QueryAttributes())
-          this.message = 'QueryAttributes success';
+          let ret = testNapi.AddGroupAsset();
+          hilog.info(0x0000, 'testTag', 'AddGroupAsset %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'AddGroupAsset success';
+          } else {
+            this.message = 'AddGroupAsset failed';
+          }
         })
-      Button('BatchQuery')
+      Button('QueryGroupAssetPlaintext')
         .width('70%')
         .onClick(() => {
-          hilog.info(0x0000, 'testTag', 'GenerateKey %{public}s', testNapi.BatchQuery()) // 更新前进行查询成功 更新后会失败
-          this.message = 'BatchQuery success';
+          let ret = testNapi.QueryGroupPlaintext();
+          hilog.info(0x0000, 'testTag', 'QueryGroupAssetPlaintext %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'QueryGroupAssetPlaintext success';
+          } else {
+            this.message = 'QueryGroupAssetPlaintext failed';
+          }
+        })
+      Button('QueryGroupAssetAttribute')
+        .width('70%')
+        .onClick(() => {
+          let ret = testNapi.QueryGroupAttribute();
+          hilog.info(0x0000, 'testTag', 'QueryGroupAssetAttribute %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'QueryGroupAssetAttribute success';
+          } else {
+            this.message = 'QueryGroupAssetAttribute failed';
+          }
+        })
+      Button('UpdateGroupAsset')
+        .width('70%')
+        .onClick(() => {
+          let ret = testNapi.UpdateGroupAsset();
+          hilog.info(0x0000, 'testTag', 'UpdateGroupAsset %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'UpdateGroupAsset success';
+          } else {
+            this.message = 'UpdateGroupAsset failed';
+          }
+        })
+      Button('RemoveGroupAsset')
+        .width('70%')
+        .onClick(() => {
+          let ret = testNapi.RemoveGroupAsset();
+          hilog.info(0x0000, 'testTag', 'RemoveGroupAsset %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'RemoveGroupAsset success';
+          } else {
+            this.message = 'RemoveGroupAsset failed';
+          }
+        })
+      Button('AddSyncAsset')
+        .width('70%')
+        .onClick(() => {
+          let ret = testNapi.AddSyncAsset();
+          hilog.info(0x0000, 'testTag', 'AddSyncAsset %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'AddSyncAsset success';
+          } else {
+            this.message = 'AddSyncAsset failed';
+          }
+        })
+      Button('QuerySyncResult')
+        .width('70%')
+        .onClick(() => {
+          let ret = testNapi.QuerySyncResult();
+          hilog.info(0x0000, 'testTag', 'QuerySyncResult %{public}s', ret);
+          if (ret === ASSET_SUCCESS) {
+            this.message = 'QuerySyncResult success';
+          } else {
+            this.message = 'QuerySyncResult failed';
+          }
         })
     }
     .height('100%')

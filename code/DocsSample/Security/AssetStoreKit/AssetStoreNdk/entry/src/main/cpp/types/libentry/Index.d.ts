@@ -13,14 +13,28 @@
  * limitations under the License.
  */
 
-export const AddAsset: () => string;
+export const AddAsset: () => number;
 
-export const RemoveAsset: () => string;
+export const RemoveAsset: () => number;
 
-export const UpdateAsset: () => string;
+export const UpdateAsset: () => number;
 
-export const QueryAsset: () => string;
+export const QueryAssetPlaintext: () => number;
 
-export const QueryAttributes: () => string;
+export const QueryAssetAttribute: () => number;
 
-export const BatchQuery: () => string;
+export const BatchQuery: () => number;
+
+export const AddGroupAsset: () => number;
+
+export const RemoveGroupAsset: () => number;
+
+export const UpdateGroupAsset: () => number;
+
+export const QueryGroupPlaintext: () => number;
+
+export const QueryGroupAttribute: () => number;
+
+export const AddSyncAsset: () => number;
+
+export const QuerySyncResult: () => number;

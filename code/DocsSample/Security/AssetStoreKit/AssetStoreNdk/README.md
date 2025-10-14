@@ -1,15 +1,17 @@
-# Asset Store Kit开发指导(C/C++)
+https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AssetStoreKit# Asset Store Kit开发指导(C/C++)
 
 ### 介绍
 
 Asset Store Kit（关键资产存储开发套件）包含了关键资产存储服务（ASSET）开放的接口能力集合，提供了用户短敏感数据的安全存储及管理能力。其中，短敏感数据可以是密码类（账号/密码）、Token类（应用凭据）、关键明文（如银行卡号）等长度较短的用户敏感数据。
 
-本示例主要展示了Asset Store Kit开发指导(C/C++)中新增关键资产、删除关键资产、更新关键资产、查询关键资产场景。该工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
+本示例主要展示了Asset Store Kit开发指导(C/C++)中新增关键资产、删除关键资产、更新关键资产、查询关键资产等场景。该工程中展示的代码详细描述可查如下链接中业务扩展场景介绍部分。
 
-- [新增关键资产(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-add.md)
-- [删除关键资产(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-remove.md)
-- [更新关键资产(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-update.md)
-- [查询关键资产(C/C++)](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-query.md)
+- [新增关键资产(C/C++)](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-add.md)
+- [删除关键资产(C/C++)](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-remove.md)
+- [更新关键资产(C/C++)](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-update.md)
+- [查询关键资产(C/C++)](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-query.md)
+- [管理群组关键资产(C/C++)](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-group-access-control.md)
+- [同步（备份恢复）关键资产(C/C++)](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AssetStoreKit/asset-native-sync.md)
 
 ### 效果预览
 
@@ -33,12 +35,12 @@ entry/src/
  │   │       ├── libentry
  │   │       |   ├── index.d.ts
  │   │   ├── CMakeLists.txt
- │   │   ├── napi_init.cpp
+ │   │   ├── napi_init.cpp               // Asset Store Kit开发指导(C/C++)示例代码
  │   ├── ets
  │   │   ├── entryability
  │   │   ├── entrybackupability
  │   │   ├── pages
- │   │       ├── Index.ets               // Asset Store Kit开发指导(C/C++)示例代码
+ │   │       ├── Index.ets
  │   ├── module.json5
  │   └── resources
  ├── ohosTest
@@ -61,9 +63,9 @@ entry/src/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2.57，镜像版本号：OpenHarmony_5.0.2.58。
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47。
 
-3.本示例需要使用DevEco Studio 5.0.1 Release (Build Version: 5.0.5.306, built on December 6, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 
 ### 下载
 
