@@ -48,6 +48,7 @@ struct Index {
     if (this.portList_ === undefined || this.portList_.length === 0) {
       console.error('usbSerial portList is empty');
       this.logInfo_ += '\n[ERROR] usbSerial portList is empty';
+      return;
     }
     let portList: serialManager.SerialPort[] = this.portList_;
     let portId: number = portList[0].portId;
@@ -200,7 +201,7 @@ struct Index {
               this.logInfo_ = value;
             })
         }.height('100%').width('100%')
-      }.height('60%')
+      }.height('40%')
 
       Row() {
         Button('获取设备列表', { type: ButtonType.Normal, stateEffect: true })

@@ -122,7 +122,7 @@ struct Index {
       return;
     }
     let deviceList: usbManager.USBDevice[] = this.deviceList_;
-    if (!usbManager.hasRight(deviceList[0].name)) {
+    if (!usbManager.hasRight(deviceList[0]?.name)) {
       console.error('permission denied');
       this.logInfo_ += '\n[ERROR] permission denied';
       return;
@@ -134,7 +134,7 @@ struct Index {
       this.logInfo_ += '\n[ERROR] invalid interface';
       return;
     }
-    let interface1: usbManager.USBInterface = deviceList[0].configs[0].interfaces[0];
+    let interface1: usbManager.USBInterface = deviceList?.[0]?.configs?.[0]?.interfaces?.[0];
     /*
      打开对应接口，在设备信息（deviceList）中选取对应的interface。
     interface1为设备配置中的一个接口。
@@ -160,8 +160,8 @@ struct Index {
     读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
     （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
     */
-    let inEndpoint: usbManager.USBEndpoint = interface1.endpoints[1];
-    let outEndpoint: usbManager.USBEndpoint = interface1.endpoints[0];
+    let inEndpoint: usbManager.USBEndpoint = interface1.endpoints?.[1];
+    let outEndpoint: usbManager.USBEndpoint = interface1.endpoints?.[0];
     let dataUint8Array: Uint8Array = new Uint8Array(1024);
     if (inEndpoint !== undefined && inEndpoint.direction === 0x80) {
       usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength: number) => {
@@ -242,11 +242,11 @@ struct Index {
     let usbInterface: usbManager.USBInterface | undefined = undefined;
     let usbEndpoints: usbManager.USBEndpoint[] = [];
     let usbEndpoint: usbManager.USBEndpoint | undefined = undefined;
-    for (let i = 0; i < usbConfigs.length; i++) {
-      usbInterfaces = usbConfigs[i].interfaces;
-      for (let j = 0; j < usbInterfaces.length; j++) {
-        usbEndpoints = usbInterfaces[j].endpoints;
-        usbEndpoint = usbEndpoints.find((value) => {
+    for (let i = 0; i < usbConfigs?.length; i++) {
+      usbInterfaces = usbConfigs[i]?.interfaces;
+      for (let j = 0; j < usbInterfaces?.length; j++) {
+        usbEndpoints = usbInterfaces[j]?.endpoints;
+        usbEndpoint = usbEndpoints?.find((value) => {
           return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
         })
         if (usbEndpoint !== undefined) {
@@ -333,11 +333,11 @@ struct Index {
     let usbInterface: usbManager.USBInterface | undefined = undefined;
     let usbEndpoints: usbManager.USBEndpoint[] = [];
     let usbEndpoint: usbManager.USBEndpoint | undefined = undefined;
-    for (let i = 0; i < usbConfigs.length; i++) {
-      usbInterfaces = usbConfigs[i].interfaces;
-      for (let j = 0; j < usbInterfaces.length; j++) {
-        usbEndpoints = usbInterfaces[j].endpoints;
-        usbEndpoint = usbEndpoints.find((value) => {
+    for (let i = 0; i < usbConfigs?.length; i++) {
+      usbInterfaces = usbConfigs[i]?.interfaces;
+      for (let j = 0; j < usbInterfaces?.length; j++) {
+        usbEndpoints = usbInterfaces[j]?.endpoints;
+        usbEndpoint = usbEndpoints?.find((value) => {
           // direction为请求方向，0表示写入数据，128表示读取数据
           return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS;
         })
