@@ -200,7 +200,8 @@ static napi_value GetModuleMetadata(napi_env env, napi_callback_info info)
     return result;
 }
 
-static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) {
+static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1];
     napi_status status;
@@ -244,12 +245,12 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info) 
         napi_value infoObj;
         napi_create_object(env, &infoObj);
         // 1. 添加Default App
-        bool IsDefaultApp = true;
+        bool isDefaultApp = true;
         // 该接口从API version 21开始支持
-        OH_NativeBundle_CheckDefaultApp(temp, &IsDefaultApp);
+        OH_NativeBundle_CheckDefaultApp(temp, &isDefaultApp);
         napi_value defaultAppValue;
-        napi_get_boolean(env, IsDefaultApp, &defaultAppValue);
-        napi_set_named_property(env, infoObj, "IsDefaultApp", defaultAppValue);
+        napi_get_boolean(env, isDefaultApp, &defaultAppValue);
+        napi_set_named_property(env, infoObj, "isDefaultApp", defaultAppValue);
         // 2. 添加App Index
         int appIndex = -1;
         // 该接口从API version 21开始支持
