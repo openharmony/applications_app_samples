@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "net_netfirewall"
+    },
+    {
+      "name": "for_specific_IP",
+      "value": "针对特定IP联网访问控制"
+    },
+    {
+      "name": "networking_for_domain_names",
+      "value": "针对域名联网访问控制支持拦截"
+    },
+    {
+      "name": "grant_net_firewall",
+      "value": "防火墙权限"
+    },
+    {
+      "name": "network_firewall",
+      "value": "网络防火墙示例"
+    },
+    {
+      "name": "specific_IP_success",
+      "value": "特定IP联网访问方式的添加防火墙规则成功"
+    },
+    {
+      "name": "domain_names_networking_success",
+      "value": "域名联网访问方式的添加防火墙规则成功"
+    }
+  ]
+}
