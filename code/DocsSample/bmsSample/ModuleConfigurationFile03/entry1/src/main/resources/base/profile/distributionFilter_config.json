@@ -1,0 +1,31 @@
+{
+  "distributionFilter": {
+    "screenShape": {
+      "policy": "include",
+      "value": [
+        "circle",
+        "rect"
+      ]
+    },
+    "screenWindow": {
+      "policy": "include",
+      "value": [
+        "454*454",
+        "466*466"
+      ]
+    },
+    "screenDensity": {
+      "policy": "exclude",
+      "value": [
+        "ldpi",
+        "xldpi"
+      ]
+    },
+    "countryCode": {
+      "policy": "include",
+      "value": [
+        "CN"
+      ]
+    }
+  }
+}
