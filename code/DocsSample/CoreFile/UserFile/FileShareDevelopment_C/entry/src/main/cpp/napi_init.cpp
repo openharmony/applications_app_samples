@@ -21,20 +21,20 @@
 static napi_value NAPI_OH_FileShare_PersistPermission(napi_env env, napi_callback_info info)
 {
     // [Start persist_permission_example]
-    static const uint32_t POLICY_NUM = 2;
+    static const uint32_t policyNum = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
-    FileShare_PolicyInfo policy[POLICY_NUM] = {
+    FileShare_PolicyInfo policy[policyNum] = {
         {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
         {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
     FileShare_PolicyErrorResult* result = nullptr;
     uint32_t resultNum = 0;
     napi_value napiResult;
     std::string resultStr;
-    auto ret = OH_FileShare_PersistPermission(policy, POLICY_NUM, &result, &resultNum);
+    auto ret = OH_FileShare_PersistPermission(policy, policyNum, &result, &resultNum);
     if (ret != ERR_OK) {
         if (ret == ERR_EPERM && result != nullptr) {
-            for(uint32_t i = 0; i < resultNum; i++) {
+            for (uint32_t i = 0; i < resultNum; i++) {
                 std::cout << "error uri: " <<  result[i].uri << std::endl;
                 std::cout << "error code: " <<  result[i].code << std::endl;
                 std::cout << "error message: " << result[i].message << std::endl;
@@ -63,10 +63,10 @@ static napi_value NAPI_OH_FileShare_PersistPermission(napi_env env, napi_callbac
 
 static napi_value NAPI_OH_FileShare_ActivatePermission(napi_env env, napi_callback_info info)
 {
-    static const uint32_t POLICY_NUM = 2;
+    static const uint32_t policyNum = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
-    FileShare_PolicyInfo policy[POLICY_NUM] = {
+    FileShare_PolicyInfo policy[policyNum] = {
         {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
         {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
     FileShare_PolicyErrorResult* result = nullptr;
@@ -74,10 +74,10 @@ static napi_value NAPI_OH_FileShare_ActivatePermission(napi_env env, napi_callba
     napi_value napiResult;
     std::string resultStr;
     // [Start activate_permission_example]
-    auto ret = OH_FileShare_ActivatePermission(policy, POLICY_NUM, &result, &resultNum);
+    auto ret = OH_FileShare_ActivatePermission(policy, policyNum, &result, &resultNum);
     if (ret != ERR_OK) {
         if (ret == ERR_EPERM && result != nullptr) {
-            for(uint32_t i = 0; i < resultNum; i++) {
+            for (uint32_t i = 0; i < resultNum; i++) {
                 std::cout << "error uri: " <<  result[i].uri << std::endl;
                 std::cout << "error code: " <<  result[i].code << std::endl;
                 std::cout << "error message: " << result[i].message << std::endl;
@@ -106,10 +106,10 @@ static napi_value NAPI_OH_FileShare_ActivatePermission(napi_env env, napi_callba
 
 static napi_value NAPI_OH_FileShare_DeactivatePermission(napi_env env, napi_callback_info info)
 {
-    static const uint32_t POLICY_NUM = 2;
+    static const uint32_t policyNum = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
-    FileShare_PolicyInfo policy[POLICY_NUM] = {
+    FileShare_PolicyInfo policy[policyNum] = {
         {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
         {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
     FileShare_PolicyErrorResult* result = nullptr;
@@ -117,10 +117,10 @@ static napi_value NAPI_OH_FileShare_DeactivatePermission(napi_env env, napi_call
     napi_value napiResult;
     std::string resultStr;
     // [Start deactivate_permission_example]
-    auto ret = OH_FileShare_DeactivatePermission(policy, POLICY_NUM, &result, &resultNum);
+    auto ret = OH_FileShare_DeactivatePermission(policy, policyNum, &result, &resultNum);
     if (ret != ERR_OK) {
         if (ret == ERR_EPERM && result != nullptr) {
-            for(uint32_t i = 0; i < resultNum; i++) {
+            for (uint32_t i = 0; i < resultNum; i++) {
                 std::cout << "error uri: " <<  result[i].uri << std::endl;
                 std::cout << "error code: " <<  result[i].code << std::endl;
                 std::cout << "error message: " << result[i].message << std::endl;
@@ -149,10 +149,10 @@ static napi_value NAPI_OH_FileShare_DeactivatePermission(napi_env env, napi_call
 
 static napi_value NAPI_OH_FileShare_RevokePermission(napi_env env, napi_callback_info info)
 {
-    static const uint32_t POLICY_NUM = 2;
+    static const uint32_t policyNum = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
-    FileShare_PolicyInfo policy[POLICY_NUM] = {
+    FileShare_PolicyInfo policy[policyNum] = {
         {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
         {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
     FileShare_PolicyErrorResult* result = nullptr;
@@ -160,10 +160,10 @@ static napi_value NAPI_OH_FileShare_RevokePermission(napi_env env, napi_callback
     napi_value napiResult;
     std::string resultStr;
     // [Start revoke_permission_example]
-    auto ret = OH_FileShare_RevokePermission(policy, POLICY_NUM, &result, &resultNum);
+    auto ret = OH_FileShare_RevokePermission(policy, policyNum, &result, &resultNum);
     if (ret != ERR_OK) {
         if (ret == ERR_EPERM && result != nullptr) {
-            for(uint32_t i = 0; i < resultNum; i++) {
+            for (uint32_t i = 0; i < resultNum; i++) {
                 std::cout << "error uri: " <<  result[i].uri << std::endl;
                 std::cout << "error code: " <<  result[i].code << std::endl;
                 std::cout << "error message: " << result[i].message << std::endl;
@@ -192,11 +192,10 @@ static napi_value NAPI_OH_FileShare_RevokePermission(napi_env env, napi_callback
 
 static napi_value NAPI_OH_FileShare_CheckPersistentPermission(napi_env env, napi_callback_info info)
 {
-    
-    static const uint32_t POLICY_NUM = 2;
+    static const uint32_t policyNum = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
-    FileShare_PolicyInfo policy[POLICY_NUM] = {
+    FileShare_PolicyInfo policy[policyNum] = {
         {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
         {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
     uint32_t resultNum = 0;
@@ -204,10 +203,10 @@ static napi_value NAPI_OH_FileShare_CheckPersistentPermission(napi_env env, napi
     std::string resultStr;
     // [Start check_persistent_permission_example]
     bool *result = nullptr;
-    auto ret = OH_FileShare_CheckPersistentPermission(policy, POLICY_NUM, &result, &resultNum);
+    auto ret = OH_FileShare_CheckPersistentPermission(policy, policyNum, &result, &resultNum);
     if (ret != ERR_OK) {
         if (ret == ERR_EPERM && result != nullptr) {
-            for(uint32_t i = 0; i < resultNum && resultNum <= POLICY_NUM; i++) {
+            for (uint32_t i = 0; i < resultNum && resultNum <= policyNum; i++) {
                 std::cout << "uri: " <<  policy[i].uri << std::endl;
                 std::cout << "result: " <<  result[i] << std::endl;
                 // [StartExclude check_persistent_permission_example]
@@ -235,11 +234,16 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        { "OH_FileShare_PersistPermission", nullptr, NAPI_OH_FileShare_PersistPermission, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "OH_FileShare_ActivatePermission", nullptr, NAPI_OH_FileShare_ActivatePermission, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "OH_FileShare_DeactivatePermission", nullptr, NAPI_OH_FileShare_DeactivatePermission, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "OH_FileShare_RevokePermission", nullptr, NAPI_OH_FileShare_RevokePermission, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "OH_FileShare_CheckPersistentPermission", nullptr, NAPI_OH_FileShare_CheckPersistentPermission, nullptr, nullptr, nullptr, napi_default, nullptr }
+        { "OH_FileShare_PersistPermission", nullptr, NAPI_OH_FileShare_PersistPermission, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "OH_FileShare_ActivatePermission", nullptr, NAPI_OH_FileShare_ActivatePermission, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "OH_FileShare_DeactivatePermission", nullptr, NAPI_OH_FileShare_DeactivatePermission, nullptr, nullptr,
+            nullptr, napi_default, nullptr },
+        { "OH_FileShare_RevokePermission", nullptr, NAPI_OH_FileShare_RevokePermission, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "OH_FileShare_CheckPersistentPermission", nullptr, NAPI_OH_FileShare_CheckPersistentPermission, nullptr,
+            nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
