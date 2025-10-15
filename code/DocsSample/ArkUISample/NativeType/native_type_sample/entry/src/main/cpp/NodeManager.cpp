@@ -42,6 +42,21 @@ void NodeManager::SetContentHandle(ArkUI_NodeContentHandle contentHandle)
     contentHandle_ = contentHandle;
 }
 
+//设置进度条的值
+void NodeManager::SetProgressValue(float value)
+{
+    ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+    if (nodeApi == nullptr) {
+        return;
+    }
+    if (nodes_["progress"] != nullptr) {
+        ArkUI_NumberValue value1[] = {{.f32 = value}};
+        ArkUI_AttributeItem item1 = {value1, sizeof(value1) / sizeof(ArkUI_NumberValue)};
+        nodeApi->setAttribute(nodes_["progress"], NODE_PROGRESS_VALUE, &item1);
+    }
+}
+
 //设置进度条的类型
 void NodeManager::SetProgressType(int32_t type)
 {
@@ -592,6 +607,36 @@ void SetImageAnimatorAndColumn(ArkUI_NativeNodeAPI_1 *nodeApi,
     nodeApi->setAttribute(imageAnimator, NODE_HEIGHT, &heightItem);
 }
 
+void SetImageAnimator(ArkUI_NativeNodeAPI_1 *nodeApi, ArkUI_NodeHandle column, ArkUI_NodeHandle imageAnimator)
+{
+    ArkUI_NumberValue fixedSize[] = {{.f32 = 10.0f}};
+    ArkUI_AttributeItem item = {fixedSize, sizeof(fixedSize) / sizeof(ArkUI_NumberValue)};
+    fixedSize[0].i32 = 0;
+    SetImageAnimatorAndColumn(nodeApi, column, imageAnimator);
+    nodeApi->setAttribute(imageAnimator, NODE_IMAGE_ANIMATOR_FIXED_SIZE, &item);
+
+    ArkUI_NumberValue start[] = {{.f32 = 10.0f}};
+    ArkUI_AttributeItem item1 = {start, sizeof(start) / sizeof(ArkUI_NumberValue)};
+    start[0].i32 = ARKUI_ANIMATION_STATUS_RUNNING;
+    SetImageAnimatorAndColumn(nodeApi, column, imageAnimator);
+    nodeApi->setAttribute(imageAnimator, NODE_IMAGE_ANIMATOR_STATE, &item1);
+
+    ArkUI_NumberValue loop_Playback[] = {{.f32 = 10.0f}};
+    ArkUI_AttributeItem item2 = {loop_Playback, sizeof(loop_Playback) / sizeof(ArkUI_NumberValue)};
+    loop_Playback[0].i32 = -1;
+    SetImageAnimatorAndColumn(nodeApi, column, imageAnimator);
+    nodeApi->setAttribute(imageAnimator, NODE_IMAGE_ANIMATOR_ITERATION, &item2);
+}
+
+void SetFrameInfoSize(int32_t width,
+    int32_t height, int32_t top, int32_t left, ArkUI_ImageAnimatorFrameInfo* info)
+{
+    OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(info, width);
+    OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(info, height);
+    OH_ArkUI_ImageAnimatorFrameInfo_SetTop(info, top);
+    OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(info, left);
+}
+
 void NodeManager::CreateImageAnimatorFromString(int32_t width,
     int32_t height, int32_t top, int32_t left, int32_t duration)
 {
@@ -618,42 +663,46 @@ void NodeManager::CreateImageAnimatorFromString(int32_t width,
     nodes_["imageAnimator_column"] = column;
     ArkUI_NodeHandle imageAnimator = nodeApi->createNode(ARKUI_NODE_IMAGE_ANIMATOR);
     auto node = OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString("resources/base/media/test.gif");
+    auto node1 = OH_ArkUI_ImageAnimatorFrameInfo_CreateFromString("resources/base/media/test1.gif");
     if (node != nullptr) {
         int id = g_imageNextId++;
         g_ImageAnimator[id] = node;
     }
     ArkUI_AttributeItem frameInfo = {0};
-    OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(node, width);
-    OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(node, height);
-    OH_ArkUI_ImageAnimatorFrameInfo_SetTop(node, top);
-    OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(node, left);
+    SetFrameInfoSize(width, height, top, left, node);
     OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(node, duration);
-    ArkUI_ImageAnimatorFrameInfo* array[] = { node };
-    frameInfo.size = 1;
+    SetFrameInfoSize(width, height, top, left, node1);
+    OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(node1, duration);
+    ArkUI_ImageAnimatorFrameInfo* array[] = { node, node1};
+    frameInfo.size = NUM_2;
     frameInfo.object = array;
-    
-    ArkUI_NumberValue attr[] = {{.f32 = 10.0f}};
-    ArkUI_AttributeItem item = {attr, sizeof(attr) / sizeof(ArkUI_NumberValue)};
-    attr[0].i32 = 0;
-    SetImageAnimatorAndColumn(nodeApi, column, imageAnimator);
-    nodeApi->setAttribute(imageAnimator, NODE_IMAGE_ANIMATOR_FIXED_SIZE, &item);
     nodeApi->setAttribute(imageAnimator, NODE_IMAGE_ANIMATOR_IMAGES, &frameInfo);
-    
+    SetImageAnimator(nodeApi, column, imageAnimator);
+    OH_ArkUI_ImageAnimatorFrameInfo_Dispose(node1);
     nodeApi->addChild(column, imageAnimator);
     OH_ArkUI_NodeContent_AddNode(contentHandle_, column);
 }
 
-ArkUI_DrawableDescriptor* NodeManager::CreateDescriptor()
+ArkUI_DrawableDescriptor* NodeManager::CreateDescriptor(bool isBlack)
 {
     OH_PixelmapNativeHandle pixelMap = nullptr;
     ArkUI_DrawableDescriptor* descriptor = nullptr;
 
     uint8_t data[NUM_96];
-    for (auto i = 0; i < NUM_96; i = i + NUM_4) {
-        data[i] = uint8_t(NUM_0);
-        data[i + NUM_1] = uint8_t(NUM_0);
-        data[i + NUM_2] = uint8_t(NUM_0);
-        data[i + NUM_3] = uint8_t(NUM_255);
+    if (!isBlack) {
+        for (auto i = 0; i < NUM_96; i = i + NUM_4) {
+            data[i] = uint8_t(NUM_0);
+            data[i + NUM_1] = uint8_t(NUM_255);
+            data[i + NUM_2] = uint8_t(NUM_255);
+            data[i + NUM_3] = uint8_t(NUM_255);
+        }
+    } else {
+        for (auto i = 0; i < NUM_96; i = i + NUM_4) {
+            data[i] = uint8_t(NUM_0);
+            data[i + NUM_1] = uint8_t(NUM_0);
+            data[i + NUM_2] = uint8_t(NUM_0);
+            data[i + NUM_3] = uint8_t(NUM_255);
+        }
     }
 
     uint8_t data1[NUM_96];
@@ -695,28 +744,26 @@ void NodeManager::CreateImageAnimatorFromDrawableDescriptor(int32_t width,
     }
     ArkUI_NodeHandle column = nodeApi->createNode(ARKUI_NODE_COLUMN);
     nodes_["imageAnimator_column"] = column;
-    auto descriptor = CreateDescriptor();
-    auto node = OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(descriptor);
-    if (node != nullptr) {
+    auto descriptorBlack = CreateDescriptor(true);
+    auto descriptorYellow = CreateDescriptor(false);
+    auto nodeBlack = OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(descriptorBlack);
+    auto nodeYellow = OH_ArkUI_ImageAnimatorFrameInfo_CreateFromDrawableDescriptor(descriptorYellow);
+    if (nodeBlack != nullptr) {
         int id = g_imageNextId++;
-        g_ImageAnimator[id] = node;
+        g_ImageAnimator[id] = nodeBlack;
     }
     ArkUI_AttributeItem frameInfo = {0};
-    OH_ArkUI_ImageAnimatorFrameInfo_SetWidth(node, width);
-    OH_ArkUI_ImageAnimatorFrameInfo_SetHeight(node, height);
-    OH_ArkUI_ImageAnimatorFrameInfo_SetTop(node, top);
-    OH_ArkUI_ImageAnimatorFrameInfo_SetLeft(node, left);
-    OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(node, duration);
-    ArkUI_ImageAnimatorFrameInfo* array[] = { node };
-    frameInfo.size = 1;
+    SetFrameInfoSize(width, height, top, left, nodeBlack);
+    OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(nodeBlack, duration);
+    SetFrameInfoSize(width, height, top, left, nodeYellow);
+    OH_ArkUI_ImageAnimatorFrameInfo_SetDuration(nodeYellow, duration);
+    ArkUI_ImageAnimatorFrameInfo* array[] = { nodeBlack, nodeYellow };
+    frameInfo.size = NUM_2;
     frameInfo.object = array;
     ArkUI_NodeHandle imageAnimator = nodeApi->createNode(ARKUI_NODE_IMAGE_ANIMATOR);
-    ArkUI_NumberValue attr[] = {{.f32 = 10.0f}};
-    ArkUI_AttributeItem item = {attr, sizeof(attr) / sizeof(ArkUI_NumberValue)};
-    attr[0].i32 = 0;
-    SetImageAnimatorAndColumn(nodeApi, column, imageAnimator);
-    nodeApi->setAttribute(imageAnimator, NODE_IMAGE_ANIMATOR_FIXED_SIZE, &item);
     nodeApi->setAttribute(imageAnimator, NODE_IMAGE_ANIMATOR_IMAGES, &frameInfo);
+    SetImageAnimator(nodeApi, column, imageAnimator);
+    OH_ArkUI_ImageAnimatorFrameInfo_Dispose(nodeYellow);
     nodeApi->addChild(column, imageAnimator);
     OH_ArkUI_NodeContent_AddNode(contentHandle_, column);
 }

@@ -131,6 +131,18 @@ static napi_value SetProgressType(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+static napi_value SetProgressValue(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value argv[1];
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+
+    int32_t value;
+    napi_get_value_int32(env, argv[0], &value);
+    NodeManager::GetInstance().SetProgressValue(value);
+    return nullptr;
+}
+
 static napi_value CreateDatePicker(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -258,6 +270,7 @@ napi_property_descriptor desc[] = {
     {"createTextPickerWithCustomContent", nullptr, CreateTextPickerWithCustomContent, nullptr, nullptr,
      nullptr, napi_default, nullptr},
     {"setProgressType", nullptr, SetProgressType, nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"setProgressValue", nullptr, SetProgressValue, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"setImageProperties", nullptr, SetImageProperties, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"createDatePicker", nullptr, CreateDatePicker, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"createCalendarPicker", nullptr, CreateCalendarPicker, nullptr, nullptr, nullptr, napi_default, nullptr},

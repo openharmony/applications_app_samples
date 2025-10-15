@@ -25,7 +25,7 @@ struct Index {
   @State imageHeight: number = 100;
   @State imageTop: number = 100;
   @State imageLeft: number = 100;
-  @State imageDuration: number = 100;
+  @State imageDuration: number = 1000;
   @Builder
   SubMenuMode() {
     Menu() {

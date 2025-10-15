@@ -14,17 +14,13 @@
 | ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
 | <img src="./screenshots/button.jpeg" width="300" /> | <img src="./screenshots/slider.jpeg" width="300" /> | <img src="./screenshots/checkbox_shape_circle.jpeg" width="300" /> |
 
-| Progress页面                                         | CalendarPicker页面                                              |
-| ---------------------------------------------------- | ------------------------------------------------------- |
-| <img src="./screenshots/progress.png" width="300" /> | <img src="./screenshots/calendarPicker.png" width="300" /> |
+| Progress页面                                                | CalendarPicker页面                                              | DatePicker页面                                         |
+|-----------------------------------------------------------| ------------------------------------------------------- | ---------------------------------------------------- |
+| <img src="./screenshots/page_progress.png" width="300" /> | <img src="./screenshots/page_calendarPicker.png" width="300" /> | <img src="./screenshots/datePicker.png" width="300" /> |
 
-| DatePicker页面                                         | Image页面                                              |
-| ---------------------------------------------------- | ------------------------------------------------------- |
-| <img src="./screenshots/datePicker.png" width="300" /> | <img src="./screenshots/image.png" width="300" /> |
-
-| ImageAnimator                                         | TextPicker                                              |
-| ---------------------------------------------------- | ------------------------------------------------------- |
-| <img src="./screenshots/imageAnimator.png" width="300" /> | <img src="./screenshots/textPicker.png" width="300" /> |
+| ImageAnimator                                         | TextPicker                                                  | Image页面                                                |
+| ---------------------------------------------------- |-------------------------------------------------------------|--------------------------------------------------------|
+| <img src="./screenshots/page_imageAnimator.png" width="300" /> | <img src="./screenshots/page_textPicker.png" width="300" /> | <img src="./screenshots/page_image.png" width="300" /> |
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；
 2. 进入首页，可选择不同模块页面。
