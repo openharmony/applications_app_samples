@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-// [Start index_ImageClassification]
+// [Start index_image_classification]
 import modelPredict from './model';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -36,8 +36,8 @@ struct Index {
   @State maxIndex: number = 0;
   @State maxArray: Array<number> = [];
   @State maxIndexArray: Array<number> = [];
-  // [StartExclude index_ImageClassification1]
-  @State labelsNameMmap: string[] = [
+  // [StartExclude index_image_classification]
+  @State labelsNameMap: string[] = [
     'Herd', 'Safari', 'Bangle', 'Cushion', 'Countertop',
     'Prom', 'Branch', 'Sports', 'Sky', 'Community',
     'Wheel', 'Cola', 'Tuxedo', 'Flowerpot', 'Team',
@@ -122,7 +122,8 @@ struct Index {
     'Shell', 'Wreath', 'Roof', 'Cookie', 'Canoe'];
 
   aboutToAppear() {
-    abilityAccessCtrl.createAtManager().requestPermissionsFromUser(getContext(this), PERMISSIONS).then((data) => {
+    abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.getUIContext().getHostContext(),
+      PERMISSIONS).then((data) => {
       if (data.authResults[0] === 0) {
         hilog.info(0xFF00, 'MindSporeLiteArkTSDemo', '%{public}s', 'request permission success');
       } else {
@@ -133,13 +134,13 @@ struct Index {
         `request permission failed, error message: ${(err as BusinessError).message}`);
     });
   }
-  // [EndExclude index_ImageClassification1]
+  // [EndExclude index_image_classification]
 
   build() {
     Row() {
       Column() {
         Text(this.modelPredict)
-        // [StartExclude index_ImageClassification2]
+        // [StartExclude index_image_classification]
           .focusable(true)
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
@@ -148,30 +149,30 @@ struct Index {
         Image(this.uris[0]).width(320).height(540).margin(15)
         //显示分类最大值
         if (this.max) {
-          Text(this.labelsNameMmap[this.maxIndexArray[0]] +
+          Text(this.labelsNameMap[this.maxIndexArray[0]] +
             ': ' +
           (this.maxArray[0] / 100).toString() +
             '%\n' +
-          this.labelsNameMmap[this.maxIndexArray[1]] +
+          this.labelsNameMap[this.maxIndexArray[1]] +
             ': ' +
           (this.maxArray[1] / 100).toString() +
             '%\n' +
-          this.labelsNameMmap[this.maxIndexArray[2]] +
+          this.labelsNameMap[this.maxIndexArray[2]] +
             ': ' +
           (this.maxArray[2] / 100).toString() +
             '%\n' +
-          this.labelsNameMmap[this.maxIndexArray[3]] +
+          this.labelsNameMap[this.maxIndexArray[3]] +
             ': ' +
           (this.maxArray[3] / 100).toString() +
             '%').focusable(true).fontSize(20)
         }
-        // [EndExclude index_ImageClassification2]
+        // [EndExclude index_image_classification]
         Button() {
           Text('photo')
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
         }
-        // [StartExclude index_ImageClassification3]
+        // [StartExclude index_image_classification]
         .type(ButtonType.Capsule)
         .margin({
           top: 20
@@ -179,7 +180,7 @@ struct Index {
         .backgroundColor('#0D9FFB')
         .width('40%')
         .height('5%')
-        // [EndExclude index_ImageClassification3]
+        // [EndExclude index_image_classification]
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
           if (resMgr === null || resMgr === undefined){
@@ -188,7 +189,7 @@ struct Index {
           }
           resMgr?.getRawFileContent(this.modelName).then(modelBuffer => {
 
-            //获取相册图片
+            // 获取相册图片
             // 1.创建图片文件选择实例
             let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
 
@@ -295,7 +296,7 @@ struct Index {
                             }
                             hilog.info(0xFF00, 'MindSporeLiteArkTSDemo', '%{public}s', `MS_LITE_LOG: ${printStr}`);
 
-                            // 取分类最大值top5
+                            // 取分类占比的最大值top5
                             this.max = 0;
                             this.maxIndex = 0;
                             this.maxArray = [];
@@ -311,9 +312,9 @@ struct Index {
                                   this.maxIndex = m;
                                 }
                               }
-                              this.maxArray.push(Math.round(this.max * 10000))
-                              this.maxIndexArray.push(this.maxIndex)
-                              // filter函数 数组过滤函数
+                              this.maxArray.push(Math.round(this.max * 10000));
+                              this.maxIndexArray.push(this.maxIndex);
+                              // filter数组过滤函数
                               newArray = newArray.filter(value => value !== this.max)
                             }
                             hilog.info(0xFF00, 'MindSporeLiteArkTSDemo', '%{public}s',
@@ -333,7 +334,7 @@ struct Index {
                 })
 
                 // 5.关闭文件
-                fileIo.closeSync(file)
+                fileIo.closeSync(file);
               } catch (err) {
                 hilog.error(0xFF00, 'MindSporeLiteArkTSDemo', '%{public}s',
                   `MS_LITE_ERR: uri: open file fd failed. ${err}`);
@@ -347,4 +348,4 @@ struct Index {
     .height('100%')
   }
 }
-// [End index_ImageClassification]
+// [End index_image_classification]
