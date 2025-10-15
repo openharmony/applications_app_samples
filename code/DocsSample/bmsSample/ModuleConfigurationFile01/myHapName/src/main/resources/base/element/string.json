@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "description_main_ability",
+      "value": "description_main_ability"
+    },
+    {
+      "name": "orientation",
+      "value": "landscape"
+    },
+    {
+      "name": "form_description",
+      "value": "form_description"
+    },
+    {
+      "name": "extension_name",
+      "value": "extension_name"
+    }
+  ]
+}

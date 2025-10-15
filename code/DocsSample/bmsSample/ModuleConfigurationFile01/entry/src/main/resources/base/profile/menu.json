@@ -1,0 +1,29 @@
+{
+  "fileContextMenu": [
+    {
+      "abilityName": "EntryAbility",
+      "menuItem": "$string:module_desc",
+      "menuHandler": "openCompress",
+      "menuContext": [
+        {
+          "menuKind": 0
+        },
+        {
+          "menuKind": 1,
+          "menuRule": "both",
+          "fileSupportType": [
+            ".rar",
+            ".zip"
+          ]
+        },
+        {
+          "menuKind": 2,
+          "menuRule": "single"
+        },
+        {
+          "menuKind": 3
+        }
+      ]
+    }
+  ]
+}

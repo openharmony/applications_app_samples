@@ -1,0 +1,19 @@
+{
+  "crossAppSharedConfig": [
+    {
+      "uri": "datashareproxy://com.example.example/key1",
+      "value": "SHARED_CONFIG_DEMO1",
+      "allowList": [
+        "6917573629901742292"
+      ]
+    },
+    {
+      "uri": "datashareproxy://com.example.example/key2",
+      "value": "SHARED_CONFIG_DEMO2",
+      "allowList": [
+        "6917573298752100864",
+        "6917573298752100864"
+      ]
+    }
+  ]
+}

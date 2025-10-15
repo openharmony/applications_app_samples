@@ -1,0 +1,19 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "id_test1",
+      "label": "$string:shortcut",
+      "icon": "$media:aa_icon",
+      "wants": [
+        {
+          "bundleName": "com.ohos.hello",
+          "moduleName": "entry",
+          "abilityName": "EntryAbility",
+          "parameters": {
+            "testKey": "testValue"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "myHapName",
+    "type": "feature",
+    // [Start module_deviceTypes]
+    "deviceTypes": [
+      "tv",
+      "tablet"
+    ],
+    // [End module_deviceTypes]
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    // [Start module_testRunner]
+    "testRunner": {
+      "name": "myTestRunnerName",
+      "srcPath": "etc/test/TestRunner.ts"
+    },
+    // [End module_testRunner]
+    // [Start module_dependencies]
+    "dependencies": [
+      {
+        "bundleName":"com.share.library",
+        "moduleName": "library",
+        "versionCode": 10001
+      }
+    ],
+    // [End module_dependencies]
+    // [Start module_proxyData]
+    "proxyData": [
+      {
+        "uri":"datashareproxy://ohos.app.hap.myapplication/event/Meeting",
+        "requiredReadPermission": "ohos.permission.SYSTEM_FLOAT_WINDOW",
+        "requiredWritePermission": "ohos.permission.SYSTEM_FLOAT_WINDOW",
+        "metadata": {
+          "name": "datashare_metadata",
+          "resource": "$profile:datashare"
+        }
+      }
+    ],
+    // [Start module_proxyData]
+    // [Start module_abilities]
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "launchType": "singleton",
+        "description": "$string:description_main_ability",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "permissions": [],
+        "metadata": [],
+        "exported": true,
+        "continuable": true,
+        "skills": [
+          {
+            "actions": [
+              "ohos.want.action.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ],
+            "uris": []
+          }
+        ],
+        "backgroundModes": [
+          "dataTransfer"
+        ],
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:red",
+        "removeMissionAfterTerminate": true,
+        "orientation": "$string:orientation",
+        "supportWindowMode": [
+          "fullscreen",
+          "split",
+          "floating"
+        ],
+        "maxWindowRatio": 3.5,
+        "minWindowRatio": 0.5,
+        "maxWindowWidth": 2560,
+        "minWindowWidth": 1400,
+        "maxWindowHeight": 300,
+        "minWindowHeight": 200,
+        "excludeFromMissions": false,
+        "preferMultiWindowOrientation": "default",
+        "isolationProcess": false,
+        "continueType": [
+          "continueType1",
+          "continueType2"
+        ],
+        "continueBundleName": [
+          "com.example.myapplication1",
+          "com.example.myapplication2"
+        ],
+        "process": ":processTag"
+      }
+    ],
+    // [End module_abilities]
+    // [Start module_extensionAbilities]
+    "extensionAbilities": [
+      {
+        "name": "FormName",
+        "srcEntry": "./ets/form/MyForm.ets",
+        "icon": "$media:icon",
+        "label" : "$string:extension_name",
+        "description": "$string:form_description",
+        "type": "form",
+        "permissions": ["ohos.permission.ACCESS_BLUETOOTH"],
+        "exported": true,
+        "uri":"scheme://authority/path/query",
+        "skills": [{
+          "actions": [],
+          "entities": [],
+          "uris": [],
+          "permissions": []
+        }],
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config",
+          }
+        ],
+        "extensionProcessMode": "instance",
+        "dataGroupIds": [
+          "testGroupId1"
+        ]
+      }
+    ],
+    // [End module_extensionAbilities]
+  }
+}
