@@ -20,11 +20,17 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "phone"
+      "default",
+      "2in1"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_ABILITY_INFO"
+      }
+    ],
     "abilities": [
       {
         "name": "EntryAbility",

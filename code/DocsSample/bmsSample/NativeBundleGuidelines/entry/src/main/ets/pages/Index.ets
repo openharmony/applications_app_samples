@@ -47,6 +47,9 @@ struct Index {
             console.info("bundleNative isDebugMode success, isDebugMode is " + isDebugMode);
             let moduleMetadata = testNapi.getModuleMetadata();
             console.info("bundleNative getModuleMetadata success, data is " + JSON.stringify(moduleMetadata));
+            let fileType: string = '.png';
+            let abilityResourceInfo = testNapi.getAbilityResourceInfo(fileType);
+            console.info("bundleNative getAbilityResourceInfo success, data is " + JSON.stringify(abilityResourceInfo));
           })
       }
       .width('100%')
