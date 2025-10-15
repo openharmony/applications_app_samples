@@ -216,7 +216,6 @@ static void AddAppIndex(napi_env env,
     napi_value &infoObj,
     OH_NativeBundle_AbilityResourceInfo* temp)
 {
-    
     int appIndex = -1;
     // 该接口从API version 21开始支持
     OH_NativeBundle_GetAppIndex(temp, &appIndex);
@@ -309,17 +308,17 @@ static void AssemblyAbilityResourceInfo(napi_env env,
     OH_NativeBundle_AbilityResourceInfo* temp)
 {
     // 1. 添加Default App
-    AddDefaultApp(env,infoObj,temp);
+    AddDefaultApp(env, infoObj, temp);
     // 2. 添加App Index
-    AddAppIndex(env,infoObj,temp);
+    AddAppIndex(env, infoObj, temp);
     // 3. 添加Label
-    AddLabel(env,infoObj,temp);
+    AddLabel(env, infoObj, temp);
     // 4. 添加Bundle Name
-    AddBundleName(env,infoObj,temp);
+    AddBundleName(env, infoObj, temp);
     // 5. 添加Module Name
-    AddModuleName(env,infoObj,temp);
+    AddModuleName(env, infoObj, temp);
     // 6. 添加Ability Name
-    AddAbilityName(env,infoObj,temp);
+    AddAbilityName(env, infoObj, temp);
     // 7. 获取ArkUI_DrawableDescriptor对象
     GetDrawableDescriptor(temp);
 }
@@ -368,7 +367,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info)
         auto temp = (OH_NativeBundle_AbilityResourceInfo *)((char *)infos + OH_NativeBundle_GetSize() * i);
         napi_value infoObj;
         napi_create_object(env, &infoObj);
-        AssemblyAbilityResourceInfo(env,infoObj,temp);
+        AssemblyAbilityResourceInfo(env, infoObj, temp);
         napi_set_element(env, result, i, infoObj);
     }
     // 释放内存，该接口从API version 21开始支持
