@@ -23,54 +23,49 @@ const BUTTON_RADIUS = 5; // 按钮的圆角半径
 const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
 
 // [Start eap_case_reply_custom_eapData]
-// [Start eap_case_reg_custom_eap_handler]
+// [Start eap_case_unreg_custom_eapHandler]
 let netType = 1;
 let eapCode= 1; // eap request
 let eapType= 25; // EAP_PEAP
 let result = 1;
 let eapData = (eapData:eap.EapData):void => {
   console.info('rsp result',JSON.stringify(eapData));
-  // [StartExclude eap_case_reg_custom_eap_handler]
+  // [StartExclude eap_case_unreg_custom_eapHandler]
   try{
     eap.replyCustomEapData(result, eapData);
     console.info('replyCustomEapData success');
   } catch (err) {
     console.error('errCode: ' + err.code + ' , errMessage: ' + err.message);
   }
-  // [EndExclude eap_case_reg_custom_eap_handler]
+  // [EndExclude eap_case_unreg_custom_eapHandler]
 }
-
+// [StartExclude eap_case_unreg_custom_eapHandler]
 function serverReplyCustomEapData() {
   try{
     eap.regCustomEapHandler(netType, eapCode, eapType, eapData);
     console.info('regCustomEapHandler success');
     // [StartExclude eap_case_reply_custom_eapData]
-    // [StartExclude eap_case_reg_custom_eap_handler]
     promptAction.showToast({
       message: '报文发送成功',
       duration: 4000, // 持续时间
       bottom: 300 // 与底间隔
     });
-    // [EndExclude eap_case_reg_custom_eap_handler]
     // [EndExclude eap_case_reply_custom_eapData]
   } catch (err) {
     console.error('errCode: ' + err.code + 'errMessage: ' + err.message);
     // [StartExclude eap_case_reply_custom_eapData]
-    // [StartExclude eap_case_reg_custom_eap_handler]
     promptAction.showToast({
       message: 'errCode: ' + err.code + 'errMessage: ' + err.message,
       duration: 4000, // 持续时间
       bottom: 300 // 与底间隔
     });
-    // [EndExclude eap_case_reg_custom_eap_handler]
     // [EndExclude eap_case_reply_custom_eapData]
   }
-  // [Start eap_case_reg_custom_eap_handler]
   // [End eap_case_reply_custom_eapData]
 }
 
 function unregCustomEapHandler() {
-  // [Start eap_case_unreg_custom_eapHandler]
+  // [EndExclude eap_case_unreg_custom_eapHandler]
   try {
     eap.unregCustomEapHandler(netType, eapCode, eapType, eapData);
     console.info('unregCustomEapHandler success');
