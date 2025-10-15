@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/CertManagerDialogGuidelines",
-    "pages/CertManagerGuidelines"
+    "pages/CertManagerGuidelines",
+    "pages/CertManagerCACertsGuidelines"
   ]
 }

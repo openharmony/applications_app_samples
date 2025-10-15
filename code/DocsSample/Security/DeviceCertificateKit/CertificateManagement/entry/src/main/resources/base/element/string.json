@@ -29,12 +29,36 @@
       "value": "CertManagerDialogGuidelines"
     },
     {
+      "name": "certManagerCACertsGuidelines",
+      "value": "CertManagerCACertsGuidelines"
+    },
+    {
       "name": "call_certManagerGuidelines",
       "value": "Call CertManagerGuidelines"
     },
     {
       "name": "call_certManagerDialogGuidelines",
       "value": "Call CertManagerDialogGuidelines"
+    },
+    {
+      "name": "call_installUserCADialog",
+      "value": "Call InstallUserCADialog"
+    },
+    {
+      "name": "call_uninstallUserCADialog",
+      "value": "Call UninstallUserCADialog"
+    },
+    {
+      "name": "call_certDetailDialog",
+      "value": "Call CertDetailDialog"
+    },
+    {
+      "name": "call_userCASample",
+      "value": "Call UserCaSample"
+    },
+    {
+      "name": "call_getUserCAPathSample",
+      "value": "Call GetUserCaPathSample"
     }
   ]
 }

@@ -12,30 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start certificate_management_dialog_box_development_guide]
-import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+import {
+  installUserCADialogSample,
+  uninstallUserCADialogSample,
+  certDetailDialogSample
+} from '../samples/CertManagerCaDialogSample';
+import { certificateManagerDialogSample } from '../samples/CertManagerDialogSample';
 
-async function certificateManagerDialogSample() {
-  /* context为应用的上下文信息，由调用方自行获取，此处仅为示例 */
-  let context: common.Context = getContext();
-  /* pageType为页面类型，此处赋值PAGE_MAIN，即拉起证书管理主界面 */
-  let pageType: certificateManagerDialog.CertificateDialogPageType =
-    certificateManagerDialog.CertificateDialogPageType.PAGE_MAIN;
-  try {
-    certificateManagerDialog.openCertificateManagerDialog(context, pageType).then(() => {
-      console.info('Succeeded in opening certificate manager dialog.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to open certificate manager dialog. Code: ${err.code}, message: ${err.message}`);
-    })
-  } catch (error) {
-    console.error(`Failed to open certificate manager dialog. Code: ${error.code}, message: ${error.message}`);
-  }
-}
-
-
-// [End certificate_management_dialog_box_development_guide]
 @Entry
 @Component
 struct Index {
@@ -51,6 +34,24 @@ struct Index {
         .onClick(() => {
           certificateManagerDialogSample();
           this.message = 'CertManagerDialogGuidelines Success';
+        })
+      Button($r('app.string.call_installUserCADialog'))
+        .width('70%')
+        .onClick(() => {
+          installUserCADialogSample();
+          this.message = 'installUserCADialogSample Success';
+        })
+      Button($r('app.string.call_uninstallUserCADialog'))
+        .width('70%')
+        .onClick(() => {
+          uninstallUserCADialogSample();
+          this.message = 'uninstallUserCADialogSample Success';
+        })
+      Button($r('app.string.call_certDetailDialog'))
+        .width('70%')
+        .onClick(() => {
+          certDetailDialogSample();
+          this.message = 'certDetailDialogSample Success';
         })
     }
     .height('100%')

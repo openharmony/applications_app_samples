@@ -46,6 +46,11 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/CertManagerDialogGuidelines')
         })
+      Button($r('app.string.certManagerCACertsGuidelines'))
+        .width('70%')
+        .onClick(() => {
+          this.goToSample('pages/CertManagerCACertsGuidelines')
+        })
     }
     .height('100%')
     .width('100%')
