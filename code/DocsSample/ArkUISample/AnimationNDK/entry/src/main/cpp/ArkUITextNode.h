@@ -95,8 +95,7 @@ public:
         int iteration = 0,
         const ArkUI_ExpectedFrameRateRange& expectedFrameRateRange = { 0, 0, 0 })
     {
-        SetTextContent("KeyframeAnimateto{ dur index 1:" + std::to_string(durationIndex1)
-            + ";  dur index 2:" + std::to_string(durationIndex2)
+        SetTextContent("KeyframeAnimateto{ dur index:" + std::to_string(durationIndex1)
             + ";  delay:" + std::to_string(delay)
             + ";  iteration:" + std::to_string(iteration)
             + ";  expectedFrameRateRange:[ max:" +

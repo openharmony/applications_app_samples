@@ -27,19 +27,6 @@ std::shared_ptr<ArkUIColumnNode> g_keyframe_column2 = nullptr;
 std::shared_ptr<ArkUIBaseNode> CreateAnimationCenter()
 {
     auto column = std::make_shared<ArkUIColumnNode>();
-    auto textNodeTransformCenter = std::make_shared<ArkUITextNode>();
-    textNodeTransformCenter->SetTextContent("transformCenter");
-    textNodeTransformCenter->SetWidth(MIDDLE_LENGTH);
-    textNodeTransformCenter->SetHeight(SMALL_LENGTH);
-    auto columnTransformCenter = std::make_shared<ArkUIColumnNode>();
-    columnTransformCenter->SetWidth(MIDDLE_LENGTH);
-    columnTransformCenter->SetHeight(MIDDLE_LENGTH);
-    columnTransformCenter->SetBackgroundColor(COLOR_PINK);
-    columnTransformCenter->SetRotateTransition();
-    columnTransformCenter->SetTransformCenter(NUMBER_20);
-    column->AddChild(textNodeTransformCenter);
-    column->AddChild(columnTransformCenter);
-
     auto textNodeTransition = std::make_shared<ArkUITextNode>();
     textNodeTransition->SetTextContent("NODE_TRANSITION");
     textNodeTransition->SetWidth(MIDDLE_LENGTH);
@@ -62,6 +49,19 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimationCenter()
     columnTransition->SetTransition(options);
     column->AddChild(textNodeTransition);
     column->AddChild(columnTransition);
+
+    auto textNodeTransformCenter = std::make_shared<ArkUITextNode>();
+    textNodeTransformCenter->SetTextContent("transformCenter");
+    textNodeTransformCenter->SetWidth(MIDDLE_LENGTH);
+    textNodeTransformCenter->SetHeight(SMALL_LENGTH);
+    auto columnTransformCenter = std::make_shared<ArkUIColumnNode>();
+    columnTransformCenter->SetWidth(MIDDLE_LENGTH);
+    columnTransformCenter->SetHeight(MIDDLE_LENGTH);
+    columnTransformCenter->SetBackgroundColor(COLOR_PINK);
+    columnTransformCenter->SetRotateTransition();
+    columnTransformCenter->SetTransformCenter(NUMBER_20);
+    column->AddChild(textNodeTransformCenter);
+    column->AddChild(columnTransformCenter);
     
     return column;
 }
