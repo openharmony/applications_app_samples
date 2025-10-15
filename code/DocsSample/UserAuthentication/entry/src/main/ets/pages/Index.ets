@@ -25,7 +25,7 @@ import Logger from '../common/Logger';
 function resourceToString(resource: Resource): string {
   let result: string = '';
   try {
-    result = getContext().resourceManager.getStringSync(resource);
+    result = (AppStorage.get<Context>('pageContext') as Context)?.resourceManager.getStringSync(resource.id);
   } catch (error) {
     const err: BusinessError = error as BusinessError;
     Logger.error(`catch error, code is ${err?.code}, message is ${err?.message}`);
@@ -480,7 +480,7 @@ struct Index {
               result.result == userAuth.UserAuthResultCode.NOT_ENROLLED) {
               // 请开发者自行完成拉起自定义认证界面的实现
               // [StartExclude custom_authentication]
-              promptAction.showToast({
+              (AppStorage.get<UIContext>('UIContext') as UIContext)?.getPromptAction().showToast({
                 message: resourceToString($r('app.string.dialogOfCustom')), // 显示文本
                 duration: 3000, // 显示时长3000ms
                 bottom: 300     // 距离底部的距离300vp
