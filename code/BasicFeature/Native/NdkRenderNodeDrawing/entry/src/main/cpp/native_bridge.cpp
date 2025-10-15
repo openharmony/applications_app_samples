@@ -49,8 +49,7 @@ enum DrawType {
 
 const int FONT_COUNT = 2;
 const char *TEXT_DEMO = "Hello, OpenHarmony! 你好，鸿蒙！";
-const char *g_paths[FONT_COUNT] = {"system/fonts/NotoSansBengaliUI-Bold.ttf",
-    "system/fonts/NotoSansDevanagariUI-Regular.ttf"};
+const char *g_paths[FONT_COUNT] = {"system/fonts/NotoSans_KR_Bold.otf"};
 
 static void NativeOnDrawPath(OH_Drawing_Canvas *canvas, int32_t width, int32_t height)
 {
