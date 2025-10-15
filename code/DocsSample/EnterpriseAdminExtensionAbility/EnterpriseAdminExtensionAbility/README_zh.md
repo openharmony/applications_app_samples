@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility的创建与使用（仅对系统应用开放）
+# EnterpriseAdminExtensionAbility的创建与使用
 
 ### 介绍
 
@@ -60,9 +60,9 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1. 本示例已适配API version 18版本SDK，版本号：5.1.0.59。
+1. 本示例已适配API version 20版本SDK，版本号：6.0.0.47。
 
-2. 本示例需要使用DevEco Studio 5.1.0 Canary1 (Build Version: 5.1.0.230 构建 2025年1月10日)及以上版本才可编译运行。
+2. 本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858 构建 2025年9月24日)及以上版本才可编译运行。
 
 ### 下载
 

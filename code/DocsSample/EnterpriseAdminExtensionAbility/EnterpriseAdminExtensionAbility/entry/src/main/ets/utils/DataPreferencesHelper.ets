@@ -41,7 +41,11 @@ export class DataPreferencesHelper {
   get(key: string, defaultValue: string): string {
     let activeStatus: string = defaultValue;
     if (this.preferences != null) {
-      activeStatus = this.preferences.getSync(key, defaultValue) as string;
+      try {
+        activeStatus = this.preferences.getSync(key, defaultValue) as string;
+      } catch (err) {
+        Logger.error('get data failed!');
+      }
     }
     return activeStatus;
   }

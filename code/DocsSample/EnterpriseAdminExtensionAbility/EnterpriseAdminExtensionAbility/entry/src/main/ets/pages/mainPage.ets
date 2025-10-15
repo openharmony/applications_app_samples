@@ -45,13 +45,17 @@ struct MainPage {
   private promptAction = this.getUIContext().getPromptAction() as PromptAction;
 
   aboutToAppear(): void {
-    if (this.dataPreferenceHelper == null) {
-      this.dataPreferenceHelper = new DataPreferencesHelper(this.context.getApplicationContext());
-    }
-    let activeStatus = this.dataPreferenceHelper.get(DataPreferencesHelper.EXTRA_ACTIVE_STATUS, '');
-    if (activeStatus.length != 0) {
-      this.activeStatus = activeStatus;
-      this.isFirstActivated = false;
+    try {
+      if (this.dataPreferenceHelper == null) {
+        this.dataPreferenceHelper = new DataPreferencesHelper(this.context.getApplicationContext());
+      }
+      let activeStatus = this.dataPreferenceHelper.get(DataPreferencesHelper.EXTRA_ACTIVE_STATUS, '');
+      if (activeStatus.length != 0) {
+        this.activeStatus = activeStatus;
+        this.isFirstActivated = false;
+      }
+    } catch (err) {
+      Logger.error('getApplicationContext failed!');
     }
     this.handleResult();
     this.emitEvent(CommonEventValue.EVENT_QUERY_WIFI_STATUS);
@@ -59,10 +63,14 @@ struct MainPage {
 
   private isNeedToShowToast(action: () => void) {
     if (this.isFirstActivated) {
-      this.promptAction.showToast({
-        message: $r('app.string.please_use_hdc_active_device'),
-        duration: 2000
-      });
+      try {
+        this.promptAction.showToast({
+          message: $r('app.string.please_use_hdc_active_device'),
+          duration: 2000
+        });
+      } catch (err) {
+        Logger.error('showToast failed!');
+      }
     } else {
       action();
     }

@@ -48,6 +48,7 @@
         ]
       }
     ],
+    // [Start extension_abilities]
     "extensionAbilities": [
       {
         "name": "EnterpriseAdminAbility",
@@ -56,16 +57,23 @@
         "srcEntry": "./ets/enterpriseadminability/EnterpriseAdminAbility.ets"
       }
     ],
+    // [End extension_abilities]
+    // [Start request_permissions]
     "requestPermissions": [
+      // [StartExclude request_permissions]
       {
         "name": "ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN"
       },
+      // [EndExclude request_permissions]
       {
         "name": "ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS"
       },
+      // [StartExclude request_permissions]
       {
         "name": "ohos.permission.ENTERPRISE_OPERATE_DEVICE"
       }
-    ]
+      // [EndExclude request_permissions]
+    ],
+    // [End request_permissions]
   }
 }
