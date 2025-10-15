@@ -59,6 +59,7 @@ struct Index {
                 })
                 .width(100)
             }
+            .padding({bottom: 5})
             Row() {
               Text($r('app.string.ImageAnimator_height'))
               TextInput()
@@ -68,6 +69,7 @@ struct Index {
                 })
                 .width(100)
             }
+            .padding({bottom: 5})
             Row() {
               Text($r('app.string.ImageAnimator_top'))
               TextInput()
@@ -77,6 +79,7 @@ struct Index {
                 })
                 .width(100)
             }
+            .padding({bottom: 5})
             Row() {
               Text($r('app.string.ImageAnimator_left'))
               TextInput()
@@ -86,6 +89,7 @@ struct Index {
                 })
                 .width(100)
             }
+            .padding({bottom: 5})
             Row() {
               Text($r('app.string.ImageAnimator_duration'))
               TextInput()
@@ -95,6 +99,7 @@ struct Index {
                 })
                 .width(100)
             }
+            .padding({bottom: 5})
             Button($r('app.string.Creat_imageAnimator'))
               .height(50)
               .width('50%')

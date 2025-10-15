@@ -53,10 +53,13 @@ struct calendarPicker {
   build() {
     Row() {
       Column() {
-        Button($r('app.string.Set_alignment_mode'))
-          .height(50)
-          .width('50%')
-          .bindMenu(this.SubMenuCalendarType)
+        Row() {
+          Button($r('app.string.Set_alignment_mode'))
+            .height(50)
+            .width('50%')
+            .bindMenu(this.SubMenuCalendarType)
+        }
+        .padding({bottom: 10})
         Column() {
           ContentSlot(this.nodeContent)
         }

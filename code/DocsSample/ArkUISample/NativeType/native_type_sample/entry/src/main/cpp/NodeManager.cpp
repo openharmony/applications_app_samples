@@ -264,7 +264,7 @@ void NodeManager::CreateImageSize(int32_t objectFit, int32_t imageSize)
     }
     
     ArkUI_NodeHandle column = nodeApi->createNode(ARKUI_NODE_COLUMN);
-    ArkUI_NumberValue colWidth[] = {{.f32 = 500.f}};
+    ArkUI_NumberValue colWidth[] = {{.f32 = 350.f}};
     ArkUI_AttributeItem widthItem = {.value = colWidth, .size = 1};
     nodeApi->setAttribute(column, NODE_WIDTH, &widthItem);
     ArkUI_NumberValue textHeight[] = {{.f32 = 400.f}};
@@ -307,7 +307,7 @@ void NodeManager::CreateImageSize(int32_t objectFit, int32_t imageSize)
 
 void SetImageColumn(ArkUI_NativeNodeAPI_1 *nodeApi, ArkUI_NodeHandle column)
 {
-    ArkUI_NumberValue colWidth[] = {{.f32 = 500.f}};
+    ArkUI_NumberValue colWidth[] = {{.f32 = 350.f}};
     ArkUI_AttributeItem widthItem = {.value = colWidth, .size = 1};
     nodeApi->setAttribute(column, NODE_WIDTH, &widthItem);
     ArkUI_NumberValue Height[] = {{.f32 = 400.f}};
@@ -578,10 +578,10 @@ void NodeManager::CreateProgress()
 void SetImageAnimatorAndColumn(ArkUI_NativeNodeAPI_1 *nodeApi,
     ArkUI_NodeHandle column, ArkUI_NodeHandle imageAnimator)
 {
-    ArkUI_NumberValue colWidth[] = {{.f32 = 500}};
+    ArkUI_NumberValue colWidth[] = {{.f32 = 350}};
     ArkUI_AttributeItem widthItem = {.value = colWidth, .size = 1};
     nodeApi->setAttribute(column, NODE_WIDTH, &widthItem);
-    ArkUI_NumberValue textHeight[] = {{.f32 = 500}};
+    ArkUI_NumberValue textHeight[] = {{.f32 = 400}};
     ArkUI_AttributeItem heightItem = {.value = textHeight, .size = 1};
     nodeApi->setAttribute(column, NODE_HEIGHT, &heightItem);
     ArkUI_NumberValue borderWidth[] = {{.f32 = 1}};

@@ -83,15 +83,21 @@ struct secondIndex {
   build() {
     Row() {
       Column() {
-        Button($r('app.string.Select_textPicker_type'))
-          .height(50)
-          .width('50%')
-          .bindMenu(this.SubMenuModeType)
-        if (this.isInit) {
-          Button($r('app.string.Set_crossLanguage'))
+        Row() {
+          Button($r('app.string.Select_textPicker_type'))
             .height(50)
             .width('50%')
-            .bindMenu(this.CrossLanguageOption)
+            .bindMenu(this.SubMenuModeType)
+        }
+        .padding({bottom: 10})
+        if (this.isInit) {
+          Row() {
+            Button($r('app.string.Set_crossLanguage'))
+              .height(50)
+              .width('50%')
+              .bindMenu(this.CrossLanguageOption)
+          }
+          .padding({bottom: 10})
         }
         Column() {
           ContentSlot(this.nodeContent)
