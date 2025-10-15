@@ -54,9 +54,9 @@ export async function isNeedGetPermissionFromUser(): Promise<boolean> {
   // 查询剪贴板是否存在应用所需数据类型
   try {
     // (可选)涉及口令等应用自身特殊复制内容的，使用detectPatterns过滤口令格式
-    let data: Array<pasteboard.Pattern> = await systemPasteboard.detectPatterns(patterns);
+    let data: pasteboard.Pattern[]  = await systemPasteboard.detectPatterns(patterns);
     if (patterns.sort().join('') != data.sort().join('')) {
-      console.info("Not all needed patterns detected, no need to get data.");
+      console.info('Not all needed patterns detected, no need to get data.');
       return false;
     }
     // (可选)判断是否有应用需要的数据类型
@@ -76,7 +76,7 @@ export async function isNeedGetPermissionFromUser(): Promise<boolean> {
 // 拉起弹窗
 function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
   if (!isNeedGetPermissionFromUser()) {
-    console.info("No neded to bring up the permission pop-up window");
+    console.info('No neded to bring up the permission pop-up window');
     return;
   }
   let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();

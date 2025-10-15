@@ -34,7 +34,7 @@ export namespace PasteboardModel {
     await systemPasteboard.setData(pasteData);
     // 增加权限校验逻辑
     if (!(await isNeedGetPermissionFromUser())) {
-      console.warn("当前应用未获得剪贴板权限，无法读取剪贴板数据");
+      console.warn('当前应用未获得剪贴板权限，无法读取剪贴板数据');
       return;
     }
     //从系统剪贴板中读取数据
@@ -70,7 +70,7 @@ export namespace PasteboardModel {
     });
     // 3.从系统剪贴板中读取这条text数据
     systemPasteboard.getUnifiedData().then((data) => {
-      let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+      let records: unifiedDataChannel.UnifiedRecord[] = data.getRecords();
       for (let j = 0; j < records.length; j++) {
         if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
           let text = records[j].getValue() as uniformDataStruct.PlainText;
@@ -85,10 +85,10 @@ export namespace PasteboardModel {
   // [End pasteboard_useudc]
 
   // 使用基于PasteData级别的延迟复制粘贴（不建议使用）
-  async function PasteDatatimelate () {
+  async function pasteDatatimelate () {
     // [start pasteboard_timelaps_PasteData2]
     let plainTextData = new unifiedDataChannel.UnifiedData();
-    let GetDelayPlainText = ((dataType:string) => {
+    let getDelayPlainText = ((dataType:string) => {
       let plainText = new unifiedDataChannel.PlainText();
       plainText.details = {
         Key: 'delayPlaintext',
@@ -104,7 +104,7 @@ export namespace PasteboardModel {
     let SetDelayPlainText = () => {
       plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
       // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
-      plainTextData.properties.getDelayData = GetDelayPlainText;
+      plainTextData.properties.getDelayData = getDelayPlainText;
       pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
         // 存入成功，处理正常场景
       }).catch((error: BusinessError) => {
@@ -113,7 +113,7 @@ export namespace PasteboardModel {
     }
     // [End pasteboard_timelaps_PasteData3]
     // [start pasteboard_timelaps_PasteData4]
-    let GetPlainTextUnifiedData = (() => {
+    let getPlainTextUnifiedData = (() => {
       pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
         let outputData = data;
         let records = outputData.getRecords();
