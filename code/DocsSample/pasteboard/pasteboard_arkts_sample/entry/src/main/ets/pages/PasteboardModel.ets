@@ -101,7 +101,7 @@ export namespace PasteboardModel {
     });
     // [End pasteboard_timelaps_PasteData2]
     // [start pasteboard_timelaps_PasteData3]
-    let SetDelayPlainText = () => {
+    let setDelayPlainText = () => {
       plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
       // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
       plainTextData.properties.getDelayData = getDelayPlainText;
