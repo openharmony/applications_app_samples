@@ -27,7 +27,7 @@ export namespace PasteboardModel {
   // 使用基础数据类型进行复制粘贴
   // [EndExclude pasteboard_usedata]
   async function handlePlainData () {
-    let text = "test";
+    let text = 'test';
     // 创建一条纯文本类型的剪贴板内容对象
     let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
     // 将数据写入系统剪贴板

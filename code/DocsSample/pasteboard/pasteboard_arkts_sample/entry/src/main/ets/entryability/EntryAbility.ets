@@ -19,9 +19,9 @@ import { UIAbility,abilityAccessCtrl, common, Permissions } from '@kit.AbilityKi
 import { window } from '@kit.ArkUI';
 import { preferences } from '@kit.ArkData';
 
-const permissions: Array<Permissions> = ['ohos.permission.READ_PASTEBOARD'];
+const permissions: Permissions[] = ['ohos.permission.READ_PASTEBOARD'];
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-const patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
+const patterns: pasteboard.Pattern[] = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
 let dataPreferences: preferences.Preferences | null = null;
 
 // 校验当前应用是否需要向用户申请剪贴板权限
@@ -74,7 +74,7 @@ export async function isNeedGetPermissionFromUser(): Promise<boolean> {
 }
 
 // 拉起弹窗
-function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
+function reqPermissionsFromUser(permissions: Permissions[], context: common.UIAbilityContext): void {
   if (!isNeedGetPermissionFromUser()) {
     console.info('No neded to bring up the permission pop-up window');
     return;
@@ -82,7 +82,7 @@ function reqPermissionsFromUser(permissions: Array<Permissions>, context: common
   let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
   // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗。
   atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-    let grantStatus: Array<number> = data.authResults;
+    let grantStatus: number[] = data.authResults;
     for (const status of grantStatus) {
       if (status === 0) {
         // 用户授权，可以继续访问目标操作。
