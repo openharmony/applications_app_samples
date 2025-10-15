@@ -1,0 +1,90 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// [Start module_hnpPackages]
+{
+  "module": {
+    // [StartExclude module_hnpPackages]
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "tablet"
+    ],
+    //这里配置保证编译通过，实际开发过程请参考：https://gitcode.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md
+    // [EndExclude module_hnpPackages]
+    "hnpPackages": [
+      {
+        "package": "hnpsample.hnp",
+        "type": "public"
+      }
+    ],
+    // [StartExclude module_hnpPackages]
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    // [Start module_definePermissions]
+    "definePermissions": [
+      {
+        "name": "ohos.permission.ACCESS_BLUETOOTH",
+        "grantMode": "system_grant",
+        "availableLevel": "system_core",
+        "provisionEnable": true,
+        "distributedSceneEnable": false,
+        "label": "$string:EntryAbility_label"
+      }
+    ],
+    // [End module_definePermissions]
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
+      }
+    ]
+  },
+  // [EndExclude module_hnpPackages]
+}
+// [End module_hnpPackages]
