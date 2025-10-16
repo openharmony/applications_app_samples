@@ -14,7 +14,9 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+// [Start richEditor_eventPaste]
 import { pasteboard } from '@kit.BasicServicesKit';
+// [End richEditor_eventPaste]
 import resource from '../../common/resource';
 
 @Component
@@ -46,10 +48,13 @@ struct event1 {
 
 @Component
 struct event2 {
+  // [Start richEditor_eventSelectChange]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  controller1: RichEditorController = new RichEditorController();
-  options1: RichEditorOptions = { controller: this.controller1 };
+
+  infoShowController: RichEditorController = new RichEditorController();
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
+  // [End richEditor_eventSelectChange]
 
   build() {
     Column() {
@@ -58,6 +63,7 @@ struct event2 {
         description: $r('app.string.Add_Event_title_2_desc'),
       }) {
         Column({ space: 3 }) {
+          // [Start richEditor_eventSelectChange]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_2')), {
@@ -68,7 +74,7 @@ struct event2 {
               })
             })
             .onSelectionChange((value: RichEditorRange) => {
-              this.controller1.addTextSpan('\n' + resource.resourceToString($r('app.string.AddEvent_Text_3')) +
+              this.infoShowController.addTextSpan('\n' + resource.resourceToString($r('app.string.AddEvent_Text_3')) +
               value.start + ',' + value.end + ')', {
                 style: {
                   fontColor: Color.Gray,
@@ -79,9 +85,10 @@ struct event2 {
             .width(300)
             .height(50)
           Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300)
-          RichEditor(this.options1)
+          RichEditor(this.infoShowOptions)
             .width(300)
             .height(70)
+          // [End richEditor_eventSelectChange]
         }
       }
     }
@@ -90,10 +97,13 @@ struct event2 {
 
 @Component
 struct event3 {
+  // [Start richEditor_eventChange]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  controller1: RichEditorController = new RichEditorController();
-  options1: RichEditorOptions = { controller: this.controller1 };
+
+  infoShowController: RichEditorController = new RichEditorController();
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
+  // [StartExclude richEditor_eventChange]
 
   build() {
     Column() {
@@ -102,6 +112,7 @@ struct event3 {
         description: $r('app.string.Add_Event_title_3_desc')
       }) {
         Column({ space: 3 }) {
+          // [EndExclude richEditor_eventChange]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_5')), {
@@ -112,7 +123,7 @@ struct event3 {
               })
             })
             .onWillChange((value: RichEditorChangeValue) => {
-              this.controller1.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_6')) +
+              this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_6')) +
               JSON.stringify(value), {
                 style: {
                   fontColor: Color.Gray,
@@ -122,7 +133,7 @@ struct event3 {
               return true;
             })
             .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
-              this.controller1.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_7')) +
+              this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_7')) +
               JSON.stringify(rangeBefore) + '\nrangeAfter：' + JSON.stringify(rangeBefore), {
                 style: {
                   fontColor: Color.Gray,
@@ -133,9 +144,10 @@ struct event3 {
             .width(300)
             .height(50)
           Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300)
-          RichEditor(this.options1)
+          RichEditor(this.infoShowOptions)
             .width(300)
             .height(70)
+            // [End richEditor_eventChange]
         }
       }
     }
@@ -144,10 +156,13 @@ struct event3 {
 
 @Component
 struct event4 {
+  // [Start richEditor_eventInput]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  controller1: RichEditorController = new RichEditorController();
-  options1: RichEditorOptions = { controller: this.controller1 };
+
+  infoShowController: RichEditorController = new RichEditorController();
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
+  // [StartExclude richEditor_eventInput]
 
   build() {
     Column() {
@@ -156,6 +171,7 @@ struct event4 {
         description: $r('app.string.Add_Event_title_4_desc'),
       }) {
         Column({ space: 3 }) {
+          // [EndExclude richEditor_eventInput]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_8')), {
@@ -166,7 +182,7 @@ struct event4 {
               })
             })
             .aboutToIMEInput((value: RichEditorInsertValue) => {
-              this.controller1.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_9')) +
+              this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_9')) +
               JSON.stringify(value), {
                 style: {
                   fontColor: Color.Gray,
@@ -176,7 +192,7 @@ struct event4 {
               return true;
             })
             .onDidIMEInput((value: TextRange) => {
-              this.controller1.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_10')) +
+              this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_10')) +
               JSON.stringify(value), {
                 style: {
                   fontColor: Color.Gray,
@@ -187,21 +203,23 @@ struct event4 {
             .width(300)
             .height(50)
           Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300)
-          RichEditor(this.options1)
+          RichEditor(this.infoShowOptions)
             .width(300)
             .height(70)
+            // [End richEditor_eventInput]
         }
       }
     }
   }
 }
 
+// [Start richEditor_eventPaste]
 @Component
-struct event5 {
+struct on_cut_copy_paste {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  controller1: RichEditorController = new RichEditorController();
-  options1: RichEditorOptions = { controller: this.controller1 };
+  infoShowController: RichEditorController = new RichEditorController();
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
 
   PopDataFromPasteboard() {
     let selection = this.controller.getSelection();
@@ -250,7 +268,7 @@ struct event5 {
                 { style: { fontColor: Color.Black, fontSize: 15 } })
             })
             .onPaste((event) => {
-              this.controller1.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_12')),
+              this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_12')),
                 { style: { fontColor: Color.Gray, fontSize: 10 } })
               if (event != undefined && event.preventDefault) {
                 event.preventDefault();
@@ -261,7 +279,7 @@ struct event5 {
             .width(300)
             .height(50)
           Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300)
-          RichEditor(this.options1)
+          RichEditor(this.infoShowOptions)
             .width(300)
             .height(70)
         }.width('100%').alignItems(HorizontalAlign.Start)
@@ -269,13 +287,17 @@ struct event5 {
     }
   }
 }
+// [End richEditor_eventPaste]
 
 @Component
 struct event6 {
+  // [Start richEditor_eventCut]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  controller1: RichEditorController = new RichEditorController();
-  options1: RichEditorOptions = { controller: this.controller1 };
+
+  infoShowController: RichEditorController = new RichEditorController();
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
+  // [StartExclude richEditor_eventCut]
 
   build() {
     Column() {
@@ -284,6 +306,7 @@ struct event6 {
         description: $r('app.string.Add_Event_title_6_desc')
       }) {
         Column({ space: 3 }) {
+          // [EndExclude richEditor_eventCut]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_13')), {
@@ -294,7 +317,7 @@ struct event6 {
               })
             })
             .onCut(() => {
-              this.controller1.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_14')), {
+              this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_14')), {
                 style: {
                   fontColor: Color.Gray,
                   fontSize: 10
@@ -302,11 +325,11 @@ struct event6 {
               })
             })
             .width(300)
-            .height(50)
-          Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300)
-          RichEditor(this.options1)
+            .height(70)
+          RichEditor(this.infoShowOptions)
             .width(300)
             .height(70)
+            // [End richEditor_eventCut]
         }
       }
     }
@@ -315,10 +338,13 @@ struct event6 {
 
 @Component
 struct event7 {
+  // [Start richEditor_eventCopy]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  controller1: RichEditorController = new RichEditorController();
-  options1: RichEditorOptions = { controller: this.controller1 };
+
+  infoShowController: RichEditorController = new RichEditorController();
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
+  // [End richEditor_eventCopy]
 
   build() {
     Column() {
@@ -327,6 +353,7 @@ struct event7 {
         description: $r('app.string.Add_Event_title_7')
       }) {
         Column({ space: 3 }) {
+          // [Start richEditor_eventCopy]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_15')), {
@@ -337,7 +364,7 @@ struct event7 {
               })
             })
             .onCopy(() => {
-              this.controller1.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_16')), {
+              this.infoShowController.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_16')), {
                 style: {
                   fontColor: Color.Gray,
                   fontSize: 10
@@ -346,10 +373,10 @@ struct event7 {
             })
             .width(300)
             .height(50)
-          Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300)
-          RichEditor(this.options1)
+          RichEditor(this.infoShowOptions)
             .width(300)
             .height(70)
+            // [End richEditor_eventCopy]
         }
       }
     }
@@ -369,7 +396,7 @@ export struct AddEvent {
           event2();
           event3();
           event4();
-          event5();
+          on_cut_copy_paste();
           event6();
           event7();
           // tmp();

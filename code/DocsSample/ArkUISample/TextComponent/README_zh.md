@@ -55,6 +55,8 @@ entry/src/main/ets/
 |   |       |---AddTextContent.ets
 |   |       |---BackplaneHighlighting.ets
 |   |       |---CreateRichEditor.ets
+|   |       |---DisableMenuItem.ets
+|   |       |---DisableSystemServiceMenu.ets
 |   |       |---GetGraphicInfoInComponent.ets
 |   |       |---index.ets
 |   |       |---SetAttributes.ets

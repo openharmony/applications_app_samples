@@ -19,13 +19,16 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct SetUserPresetTextStyles {
+  // [Start richEditor_setTypingStyle]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [End richEditor_setTypingStyle]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
+          // [Start richEditor_setTypingStyle]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.SetUserPresetTextStyles_Text_1')), {
@@ -54,6 +57,7 @@ export struct SetUserPresetTextStyles {
                 }
               })
             })
+          // [End richEditor_setTypingStyle]
         }
       }
       .width('100%')

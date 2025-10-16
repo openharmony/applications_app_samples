@@ -758,10 +758,28 @@ export default function IndexTest() {
       let richEditor5 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       str = await getResourceString($r('app.string.Set_Attributes_title_6'));
       let richEditor6 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      str = await getResourceString($r('app.string.Set_Attributes_title_9'));
+      let richEditor9 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      str = await getResourceString($r('app.string.Set_Attributes_title_10'));
+      let richEditor10 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(richEditor3 === null).assertFalse();
       expect(richEditor4 === null).assertFalse();
       expect(richEditor5 === null).assertFalse();
       expect(richEditor6 === null).assertFalse();
+      expect(richEditor9 === null).assertFalse();
+      expect(richEditor10 === null).assertFalse();
+
+      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
+      await driver.waitForIdle(500, 500);
+      str = await getResourceString($r('app.string.Set_Attributes_title_11'));
+      let richEditor11 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      str = await getResourceString($r('app.string.Set_Attributes_title_12'));
+      let richEditor12 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      str = await getResourceString($r('app.string.Set_Attributes_title_13'));
+      let richEditor13 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(richEditor11 === null).assertFalse();
+      expect(richEditor12 === null).assertFalse();
+      expect(richEditor13 === null).assertFalse();
       await driver.waitForIdle(500, 500);
       await driver.pressBack();
       await driver.delayMs(1000);

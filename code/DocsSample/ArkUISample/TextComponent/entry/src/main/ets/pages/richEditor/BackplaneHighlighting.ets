@@ -19,13 +19,16 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct BackplaneHighlighting {
+  // [Start richEditor_selection]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [End richEditor_selection]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
+          // [Start richEditor_selection]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
@@ -45,6 +48,7 @@ export struct BackplaneHighlighting {
             .onClick(() => {
               this.controller.setSelection(0, 2)
             })
+            // [End richEditor_selection]
         }
       }
       .width('100%')

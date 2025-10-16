@@ -19,17 +19,20 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct GetGraphicInfoInComponent {
+  // [Start richEditor_getSpans]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  controller1: RichEditorController = new RichEditorController();
-  options1: RichEditorOptions = { controller: this.controller1 }
+  infoShowController: RichEditorController = new RichEditorController();
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController }
+  // 创建两个富文本组件
+  // [StartExclude richEditor_getSpans]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
           Column({ space: 3 }) {
-            // 创建两个富文本组件
+            // [EndExclude richEditor_getSpans]
             RichEditor(this.options)
               .onReady(() => {
                 this.controller.addTextSpan(
@@ -43,7 +46,7 @@ export struct GetGraphicInfoInComponent {
               .width(300)
               .height(50)
             Text($r('app.string.GetGraphicInfoInComponent_Text_1')).fontSize(10).fontColor(Color.Gray).width(300)
-            RichEditor(this.options1)
+            RichEditor(this.infoShowOptions)
               .width(300)
               .height(50)
             Button($r('app.string.GetGraphicInfoInComponent_Button_1'), {
@@ -52,13 +55,14 @@ export struct GetGraphicInfoInComponent {
               .height(30)
               .fontSize(13)
               .onClick(() => {
-                this.controller1.addTextSpan(JSON.stringify(this.controller.getSpans()), {
+                this.infoShowController.addTextSpan(JSON.stringify(this.controller.getSpans()), {
                   style: {
                     fontColor: Color.Gray,
                     fontSize: 10
                   }
                 })
               })
+            // [End richEditor_getSpans]
           }
         }
       }

@@ -19,6 +19,7 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct AddBuilderDecoratorContent {
+  // [Start richEditor_addBuilder]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
   private myBuilder: CustomBuilder = undefined
@@ -35,7 +36,7 @@ export struct AddBuilderDecoratorContent {
     .borderRadius('20')
     .width(220)
   }
-
+  // [StartExclude richEditor_addBuilder]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -51,6 +52,7 @@ export struct AddBuilderDecoratorContent {
                   }
                 })
               })
+            // [EndExclude richEditor_addBuilder]
             Button($r('app.string.AddBuilderDecoratorContent_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
             })
@@ -62,6 +64,7 @@ export struct AddBuilderDecoratorContent {
                 }
                 this.controller.addBuilderSpan(this.myBuilder)
               })
+              // [End richEditor_addBuilder]
           }
         }
       }

@@ -19,13 +19,16 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct AddSymbolSpanContent {
+  // [Start richEditor_addSymbol]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [StartExclude richEditor_addSymbol]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
+          // [EndExclude richEditor_addSymbol]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddSymbolSpanContent_Text_1')), {
@@ -49,6 +52,7 @@ export struct AddSymbolSpanContent {
                 }
               })
             })
+          // [End richEditor_addSymbol]
         }
       }
       .width('100%')

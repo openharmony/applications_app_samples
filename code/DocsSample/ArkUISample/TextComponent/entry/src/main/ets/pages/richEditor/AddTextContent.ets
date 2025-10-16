@@ -16,6 +16,7 @@
 import { ComponentCard } from '../../common/Card';
 import resource from '../../common/resource';
 
+// [Start richEditor_addText]
 @Entry
 @Component
 export struct AddTextContent {
@@ -23,7 +24,9 @@ export struct AddTextContent {
   options: RichEditorOptions = { controller: this.controller };
 
   build() {
+    // [StartExclude richEditor_addText]
     NavDestination() {
+    // [EndExclude richEditor_addText]
       Column({ space: 12 }) {
         ComponentCard() {
           RichEditor(this.options)
@@ -51,10 +54,13 @@ export struct AddTextContent {
             })
         }
       }
+    // [StartExclude richEditor_addText]
       .width('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Add_TextContent_title'))
+    // [EndExclude richEditor_addText]
   }
 }
+// [End richEditor_addText]

@@ -19,13 +19,16 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct AddImageContent {
+  // [Start richEditor_addImage]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [StartExclude richEditor_addImage]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
+          // [EndExclude richEditor_addImage]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddImageContent_Text_1')), {
@@ -49,6 +52,7 @@ export struct AddImageContent {
                 }
               })
             })
+            // [End richEditor_addImage]
         }
       }
       .width('100%')
