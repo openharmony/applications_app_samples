@@ -310,11 +310,21 @@ struct Index {
 
   build() {
     Column() {
-      Text($r('app.string.native_node_example'))
-        .fontSize(24)
-        .margin(10)
-        .fontWeight(FontWeight.Bold)
-        .height('10%')
+        Row() {
+            Button($r('app.string.return_node'))
+              .height(25)
+              .width('10%')
+              .onClick(() => {
+                this.getUIContext().getRouter().pushUrl({
+                  url: 'pages/Index',
+                })
+              })
+            Text($r('app.string.native_node_example'))
+              .fontSize(24)
+              .margin(10)
+              .fontWeight(FontWeight.Bold)
+              .height('10%')
+        }
         Row() {
           Button($r('app.string.select_node_type'))
             .width('30%')

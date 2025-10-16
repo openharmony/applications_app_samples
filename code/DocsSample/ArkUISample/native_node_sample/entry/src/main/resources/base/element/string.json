@@ -83,6 +83,10 @@
     {
       "name": "reset_attribute_value",
       "value": "重置属性值"
+    },
+    {
+      "name": "return_node",
+      "value": "<-"
     }
   ]
 }
