@@ -1,0 +1,71 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\lichen\\.ohos\\config\\default_Motion_1KIu3EZbRLHzSmDUlx56Z8CzCQeXObw6tU7myK7SCAg=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B61EE5112B06DD27B9732EBA20FD7E0F09D504CCE6AF18E8D249D8D8FDF859E286558EBC0842E08",
+          "profile": "C:\\Users\\lichen\\.ohos\\config\\default_Motion_1KIu3EZbRLHzSmDUlx56Z8CzCQeXObw6tU7myK7SCAg=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\lichen\\.ohos\\config\\default_Motion_1KIu3EZbRLHzSmDUlx56Z8CzCQeXObw6tU7myK7SCAg=.p12",
+          "storePassword": "0000001BD8C4401A29ECFE436B9334BE1F8158C5340AB268076EC74450ED51A4B6254A4890A1918B18D5BF"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "5.1.1(19)",
+        "compatibleSdkVersion": "5.1.1(19)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
