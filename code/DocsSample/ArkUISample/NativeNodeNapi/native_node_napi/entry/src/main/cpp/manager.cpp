@@ -171,6 +171,7 @@ napi_value Manager::CreateNativeEmbeddedComponentNode(napi_env env, napi_callbac
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle, testNode);
         }
     }
+    return nullptr;
 }
 
 napi_value createAnimationCenter(napi_env env, napi_callback_info info)
