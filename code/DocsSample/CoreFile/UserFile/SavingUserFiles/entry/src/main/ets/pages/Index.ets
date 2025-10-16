@@ -13,27 +13,20 @@
  * limitations under the License.
  */
 
-// [Start import_interface_fileio]
+// [Start import_interface_picker]
+import { fileUri, picker } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-import { fileIo as fs, picker } from '@kit.CoreFileKit';
-import Logger from '..//common//Logger';
-// [End import_interface_fileio]
-
-// 确保 getContext(this) 返回结果为 UIAbilityContext
-let context = getContext(this) as common.Context;
-
-function resourceToString(resource: Resource): string {
-  return getContext().resourceManager.getStringSync(resource);
-}
+// [End import_interface_picker]
 
 @Entry
 @Component
 struct Index {
-  @State uris: string[] = [];
   @State text: string = '';
   @State documentResult: string = '';
   @State result: string = '';
+  @State downloadResult: string = '';
   @State uri_image: string = '';
   @State uri: string = '';
   @State documentUris: string[] = [];
@@ -102,6 +95,28 @@ struct Index {
         .fontSize($r('app.float.size_50')) // 文本字体大小为50
         .fontWeight(FontWeight.Bold) // 文本字体加粗
         .margin({ top: $r('app.float.size_20') }) // 文本上边距为20
+      // Download按钮
+      Button($r('app.string.downloadSaveFileButton'))
+        .width('80%') // 按钮宽度占屏幕宽度80%
+        .height('10%') // 按钮高度占屏幕高度10%
+        .fontSize($r('app.float.size_25')) // 按钮字体大小为25
+        .borderRadius($r('app.float.size_25')) // 按钮圆角半径为25
+        .backgroundColor($r('app.color.whiteColor')) // 按钮背景颜色为白色
+        .shadow({
+          radius: $r('app.float.size_10'), // 阴影半径为10
+          color: $r('app.color.grayColor'), // 阴影颜色为灰色
+          offsetX: $r('app.float.size_15'), // 阴影水平偏移量为15
+          offsetY: $r('app.float.size_15') // 阴影垂直偏移量为15
+        })
+        .fontColor($r('app.color.blackColor')) // 按钮字体颜色为黑色
+        .onClick(() => {
+          this.downLoad();
+        })
+      // 显示downloadResult。
+      Text(this.downloadResult)
+        .fontSize($r('app.float.size_50')) // 文本字体大小为50
+        .fontWeight(FontWeight.Bold) // 文本字体加粗
+        .margin({ top: $r('app.float.size_20') }) // 文本上边距为20
     }
     .width('100%') // 外层列布局宽度占满屏幕
     .height('100%') // 外层列布局高度占满屏幕
@@ -111,101 +126,165 @@ struct Index {
   }
 
   saveDocumentFile() {
-    // [Start document_save_options]
-    const documentSaveOptions = new picker.DocumentSaveOptions();
-    documentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
-    documentSaveOptions.fileSuffixChoices = [resourceToString($r('app.string.document')), '.pdf'];
-    // [End document_save_options]
+    try {
+      // [Start document_save_options]
+      const documentSaveOptions = new picker.DocumentSaveOptions();
+      documentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
+      documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf'];
+      // [End document_save_options]
 
-    // [Start save_file_picker]
-    const context = getContext(this) as common.Context;
-    const documentViewPicker = new picker.DocumentViewPicker(context);
-    documentViewPicker.save(documentSaveOptions).then((documentSaveResult: string[]) => {
-      this.uris = documentSaveResult;
-      Logger.info('documentViewPicker.save to file succeed and uris are:' + this.uris);
-      // [StartExclude save_file_picker]
-      if (this.uris.length > 0) {
-        this.writeDocumentFile(this.uris[0]);
-      }
-      // [EndExclude save_file_picker]
-    }).catch((err: BusinessError) => {
-      Logger.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
-    });
-    // [End save_file_picker]
+      // [Start save_file_picker]
+      let uris: string[] = [];
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      const documentViewPicker = new picker.DocumentViewPicker(context);
+      documentViewPicker.save(documentSaveOptions).then((documentSaveResult: string[]) => {
+        uris = documentSaveResult;
+        console.info('documentViewPicker.save to file succeed and uris are:' + uris);
+        // [StartExclude save_file_picker]
+          this.writeDocumentFile(uris);
+        // [EndExclude save_file_picker]
+      }).catch((err: BusinessError) => {
+        console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+      });
+      // [End save_file_picker]
+    }catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
+    }
   }
 
-  writeDocumentFile(uri: string) {
-    // [Start document_open_mode]
-    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
-    Logger.info('file fd: ' + file.fd);
-    // [End document_open_mode]
-
-    // [Start document_writesync]
-    let writeLen: number = fs.writeSync(file.fd, 'hello, world');
-    Logger.info('write data to file succeed and size is:' + writeLen);
-    fs.closeSync(file);
-    // [End document_writesync]
+  writeDocumentFile(uris: string[]) {
+    try {
+      // [Start document_open_mode]
+      if (uris.length > 0) {
+        let uri: string = uris[0];
+        let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+        console.info('file fd: ' + file.fd);
+        // [Start document_writesync]
+        let writeLen: number = fs.writeSync(file.fd, 'hello, world');
+        console.info('write data to file succeed and size is:' + writeLen);
+        fs.closeSync(file);
+        // [End document_writesync]
+      }
+      // [End document_open_mode]
+    }catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
+    }
   }
 
   selectDocumentFiles() {
-    const documentSelectOptions = new picker.DocumentSelectOptions();
-    const context = getContext(this) as common.Context;
-    const documentViewPicker = new picker.DocumentViewPicker(context);
-    documentViewPicker.select(documentSelectOptions).then((documentSelectResult: string[]) => {
-      this.documentUris = documentSelectResult;
-      Logger.info('documentViewPicker.select to file succeed and uris are:' + this.documentUris);
-      if (this.documentUris.length > 0) {
-        this.readDocumentFile(this.documentUris[0]);
-      }
-    }).catch((err: BusinessError) => {
-      Logger.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-    });
+    try {
+      const documentSelectOptions = new picker.DocumentSelectOptions();
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      const documentViewPicker = new picker.DocumentViewPicker(context);
+      documentViewPicker.select(documentSelectOptions).then((documentSelectResult: string[]) => {
+        this.documentUris = documentSelectResult;
+        console.info('documentViewPicker.select to file succeed and uris are:' + this.documentUris);
+        if (this.documentUris.length > 0) {
+          this.readDocumentFile(this.documentUris[0]);
+        }
+      }).catch((err: BusinessError) => {
+        console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (error) {
+        let err: BusinessError = error as BusinessError;
+        console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
+    }
   }
 
   readDocumentFile(uri: string) {
-    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
-    Logger.info('file fd: ' + file.fd);
-    let buffer = new ArrayBuffer(4096); // 创建一个 4096 字节的缓冲区
-    let readLen = fs.readSync(file.fd, buffer);
-    Logger.info('readSync data to file succeed and buffer size is:' + readLen);
-    this.documentResult = 'Successfully read the file';
-    fs.closeSync(file);
+    try {
+      let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+      console.info('file fd: ' + file.fd);
+      let buffer = new ArrayBuffer(4096); // 创建一个 4096 字节的缓冲区
+      let readLen = fs.readSync(file.fd, buffer);
+      console.info('readSync data to file succeed and buffer size is:' + readLen);
+      this.documentResult = 'Successfully read the file';
+      fs.closeSync(file);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
+    }
   }
 
   saveAudioFile() {
-    // [Start audio_save_options]
-    const audioSaveOptions = new picker.AudioSaveOptions();
-    audioSaveOptions.newFileNames = ['AudioViewPicker03.mp3']; // 保存文件名（可选）
-    // [End audio_save_options]
+    try {
+      // [Start audio_save_options]
+      const audioSaveOptions = new picker.AudioSaveOptions();
+      audioSaveOptions.newFileNames = ['AudioViewPicker03.mp3']; // 保存文件名（可选）
+      // [End audio_save_options]
 
-    // [Start audio_save_file]
-    const context = getContext(this) as common.Context;
-    const audioViewPicker = new picker.AudioViewPicker(context);
-    audioViewPicker.save(audioSaveOptions).then((audioSelectResult: string[]) => {
-      this.uri = audioSelectResult[0];
-      Logger.info('audioViewPicker.save to file succeed and uri is:' + this.uri);
-      this.writeAudioFile();
-    }).catch((err: BusinessError) => {
-      Logger.error(`Invoke audioViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
-    });
-    // [Start audio_save_file]
+      // [Start audio_save_file]
+      let uris: string[] = [];
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      const audioViewPicker = new picker.AudioViewPicker(context);
+      audioViewPicker.save(audioSaveOptions).then((audioSelectResult: string[]) => {
+        uris = audioSelectResult;
+        console.info('audioViewPicker.save to file succeed and uri is:' + uris);
+        // [StartExclude audio_save_file]
+        this.writeAudioFile(uris);
+        // [EndExclude audio_save_file]
+      }).catch((err: BusinessError) => {
+        console.error(`Invoke audioViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+      });
+      // [Start audio_save_file]
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
+    }
   }
 
-  writeAudioFile() {
-    if (!this.uri) {
-      Logger.error('URI is empty, cannot write file');
-      return;
-    }
-    // [Start audio_open_mode]
-    let file = fs.openSync(this.uri, fs.OpenMode.READ_WRITE);
-    Logger.info('file fd: ' + file.fd);
-    // [End audio_open_mode]
+  writeAudioFile(uris: string[]) {
+    try {
+      // [Start audio_open_mode]
+      if (uris.length > 0) {
+        let uri: string = uris[0];
+        //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
+        let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+        console.info('file fd: ' + file.fd);
+        // [End audio_open_mode]
 
-    // [Start audio_write_sync]
-    let writeLen = fs.writeSync(file.fd, 'hello, world');
-    Logger.info('write data to file succeed and size is:' + writeLen);
-    fs.closeSync(file);
-    // [End audio_write_sync]
-    this.result = 'Successfully saved audio files';
+        // [Start audio_write_sync]
+        let writeLen = fs.writeSync(file.fd, 'hello, world');
+        console.info('write data to file succeed and size is:' + writeLen);
+        fs.closeSync(file);
+        // [End audio_write_sync]
+      }
+      this.result = 'Successfully saved audio files';
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
+    }
+  }
+
+  downLoad() {
+    try {
+      // [Start download_save_file]
+      let uri: string = '';
+      // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      const documentViewPicker = new picker.DocumentViewPicker(context);
+      // [Start download_save_options]
+      const documentSaveOptions = new picker.DocumentSaveOptions();
+      // 配置保存的模式为DOWNLOAD，若配置了DOWNLOAD模式，此时配置的其他documentSaveOptions参数将不会生效。
+      documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD;
+      // [End download_save_options]
+      documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+        uri = documentSaveResult[0];
+        console.info('documentViewPicker.save succeed and uri is:' + uri);
+        const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
+        const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+        fs.writeSync(file.fd, 'Hello World!');
+        fs.closeSync(file.fd);
+      }).catch((err: BusinessError) => {
+        console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+      })
+      // [Start download_save_file]
+      this.downloadResult = 'Successfully download';
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
+    }
   }
 }

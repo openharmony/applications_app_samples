@@ -21,6 +21,10 @@
       "value": "SelectDocumentFile"
     },
     {
+      "name": "saveDocumentFileButton",
+      "value": "SaveDocumentFile"
+    },
+    {
       "name": "selectAudioFileButton",
       "value": "SelectAudioFile"
     }
