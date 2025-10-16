@@ -1,0 +1,57 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\m30051540\\.ohos\\config\\default_VectorStore_laPXU4fasq1sVH60R02IauL2cNh8oPQoY7zfhcvepGo=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B5EBC1194F9B93B6B92986A5B3284FE266F713D0DB1A26FFE79F5D2DE5863350F4ED6698BD34229",
+          "profile": "C:\\Users\\m30051540\\.ohos\\config\\default_VectorStore_laPXU4fasq1sVH60R02IauL2cNh8oPQoY7zfhcvepGo=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\m30051540\\.ohos\\config\\default_VectorStore_laPXU4fasq1sVH60R02IauL2cNh8oPQoY7zfhcvepGo=.p12",
+          "storePassword": "0000001B36AC162C64F4D64F2841577714465C9D6785EF605BFE69BB9336A0127C18CC67CC3EEDCDD6B0F9"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "6.0.0(20)",
+        "compatibleSdkVersion": "6.0.0(20)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "nativeCompiler": "BiSheng",
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
