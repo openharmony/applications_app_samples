@@ -26,8 +26,8 @@ import { DataPreferencesHelper } from '../utils/DataPreferencesHelper';
 import { deviceControl } from '@kit.MDMKit';
 // [Start enterprise_admin_extension_ability]
 import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
-// [EndExclude set_disallowed_policy_wifi]
 // [StartExclude enterprise_admin_extension_ability]
+// [EndExclude set_disallowed_policy_wifi]
 import { Want } from '@kit.AbilityKit';
 // [StartExclude set_disallowed_policy_wifi]
 import Logger from '../common/Logger';
@@ -165,17 +165,21 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   // 设备管理器应用激活回调方法，应用可在此回调函数中进行初始化策略设置。
   onAdminEnabled() {
     console.info('onAdminEnabled');
+    // [StartExclude enterprise_admin_extension_ability]
     this.sendResult(CommonEventValue.STATUS_ACTIVE, this.getStringByResource($r('app.string.activated')));
     this.dataPreferenceHelper?.save(DataPreferencesHelper.EXTRA_ACTIVE_STATUS,
       this.getStringByResource($r('app.string.activated')));
+    // [EndExclude enterprise_admin_extension_ability]
   }
 
   // 设备管理器应用去激活回调方法，应用可在此回调函数中通知企业管理员设备已脱管。
   onAdminDisabled() {
     console.info('onAdminDisabled');
+    // [StartExclude enterprise_admin_extension_ability]
     this.sendResult(CommonEventValue.STATUS_ACTIVE, this.getStringByResource($r('app.string.no_active')));
     this.dataPreferenceHelper?.save(DataPreferencesHelper.EXTRA_ACTIVE_STATUS,
       this.getStringByResource($r('app.string.no_active')));
+    // [EndExclude enterprise_admin_extension_ability]
   }
 
   // 应用安装回调方法，应用可在此回调函数中进行事件上报，通知企业管理员。
