@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-
 interface ListCategories {
   title:string,
   url:string
@@ -44,7 +42,7 @@ struct AnimationIndex {
             .fontSize(10)
             .padding(1)
             .onClick(() => {
-              router.pushUrl({ url: item.url });
+              this.getUIContext().getRouter().pushUrl({ url: item.url });
             })
         }
       })
@@ -92,7 +90,7 @@ struct AnimationIndex {
                 .fontSize(15)
                 .labelStyle({ maxLines: 10 })
                 .onClick(() => {
-                  router.pushUrl({ url: item.url });
+                  this.getUIContext().getRouter().pushUrl({ url: item.url });
                 })
             }
           })
