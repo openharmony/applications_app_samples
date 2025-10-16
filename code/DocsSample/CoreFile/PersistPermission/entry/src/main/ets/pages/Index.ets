@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { persistPermissionExample } from '../persistpermission/PersistPermission'
-import { revokePermissionExample } from '../persistpermission/PersistPermission'
-import { activatePermissionExample } from '../persistpermission/PersistPermission'
+import { persistPermissionExample } from '../persistpermission/PersistPermission';
+import { revokePermissionExample } from '../persistpermission/PersistPermission';
+import { activatePermissionExample } from '../persistpermission/PersistPermission';
 
 @Entry
 @Component
