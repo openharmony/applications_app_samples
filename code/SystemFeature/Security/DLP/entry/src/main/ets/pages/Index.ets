@@ -16,6 +16,8 @@
 import picker from '@ohos.file.picker';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { MediaFileUri, FileInfoType } from '../feature/FileManager';
 import Want from '@ohos.app.ability.Want';
 import Logger from '../util/Logger';
@@ -31,6 +33,7 @@ let context: common.UIAbilityContext = getContext(this) as common.UIAbilityConte
 @Component
 struct FilePicker {
   @State uri: string = '';
+  @State result: string = '';
   // 文件名
   @State fileName: string = '';
   @State mediaFileUri: MediaFileUri = new MediaFileUri();
@@ -177,6 +180,240 @@ struct FilePicker {
     });
   }
 
+  openFile(filePath: string): fs.File | undefined {
+    let file : fs.File | undefined = undefined;
+    try {
+      file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+    } catch (error) {
+      Logger.error(`OpenSync failed. Code: ${error.code}, message : ${error.message}`);
+    }
+    return file;
+  }
+
+  prepareForOpenDlpFile() {
+    let file = this.openFile(this.uri);
+    if (!file) {
+      return;
+    }
+    this.openDlpFile(this.uri, this.fileName, file.fd);
+    
+  }
+
+  // 2，打开Dlp文件
+  openDlpFile(dlpUri: string, fileName: string, fd: number) {
+    let want:Want = {
+      "action": "ohos.want.action.viewData",
+      "uri": dlpUri,
+      "parameters" : {
+        "fileName": {
+          "name": fileName
+        },
+        "keyFd": {
+          "type": "FD",
+          "value": fd
+        }
+      }
+    }
+
+    let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+
+    try {
+      console.log('openDLPFile:' + JSON.stringify(want));
+      console.log('openDLPFile: delegator:' + JSON.stringify(context));
+      context.startAbility(want);
+      this.result = 'openDLPFile startAbility succeed';
+    } catch (err) {
+      console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
+      this.result = 'openDLPFile startAbility failed' + (err as BusinessError).code;
+      return;
+    }
+  }
+
+
+  //3 生成DLP文件
+  generateDlpFiles() {
+    try {
+      let fileUri: string = this.uri;
+      let fileName: string = this.fileName;
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let want: Want = {
+        'uri': fileUri,
+        'parameters': {
+          'displayName': fileName
+        }
+      };// 请求参数
+      dlpPermission.startDLPManagerForResult(context, want).then((res: dlpPermission.DLPManagerResult) => {
+        this.result = 'startDLPManagerForResult result.resultCode:' + res.resultCode;
+        console.info('startDLPManagerForResult res.resultCode:' + res.resultCode);
+        console.info('startDLPManagerForResult res.want:' + JSON.stringify(res.want));
+      });
+    } catch (err) {
+      this.result = 'startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message;
+      console.error('startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
+    }
+  }
+
+  // 4 查询当前应用是否在沙箱中
+  isInSandbox() {
+    dlpPermission.isInSandbox().then((data) => {
+      this.result = 'isInSandbox result: ' + JSON.stringify(data);
+      console.log('isInSandbox result: ' + JSON.stringify(data));
+    }).catch((err:BusinessError) => {
+      this.result = 'isInSandbox error: ' + JSON.stringify(err);
+      console.log('isInSandbox error: ' + JSON.stringify(err));
+    });
+  }
+
+  // 5 查询当前编辑的文件权限
+  getDLPPermissionInfo() {
+    dlpPermission.getDLPPermissionInfo().then((data) => {
+      this.result = 'getDLPPermissionInfo result: ' + JSON.stringify(data);
+      console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
+    }).catch((err:BusinessError) => {
+      this.result = 'getDLPPermissionInfo error: ' + JSON.stringify(err);
+      console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
+    });
+  }
+
+  //6 获取当前可支持DLP方案的文件拓展名类型列表
+  getDLPSupportedFileTypes() {
+    dlpPermission.getDLPSupportedFileTypes((err, result) => {
+      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
+      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
+      this.result = 'getDLPSupportedFileTypes result: ' + JSON.stringify(result);
+    });
+  }
+
+  //7 判断当前打开文件是否是DLP文件
+  isCurrentDlpFile() {
+    let file = this.openFile(this.uri);
+    if(!file) {
+      this.result = '请打开一个文件！';
+      return;
+    }
+    dlpPermission.isDLPFile(file.fd).then((res) => {
+      this.result = 'isDLPFile result: ' + JSON.stringify(res);
+      console.info('res', res);
+    }).catch((err:BusinessError) => {
+      this.result = 'isDLPFile error: ' + (err as BusinessError).code + (err as BusinessError).message;
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    }).finally(() => {
+        fs.closeSync(file);
+    });
+  }
+
+  // 8 订阅、取消订阅DLP打开事件。
+  event(info: dlpPermission.AccessedDLPFileInfo) {
+    console.info('openDlpFile event', info.uri, info.lastOpenTime);
+  }
+
+  unSubscribe() {
+    try {
+      dlpPermission.off('openDLPFile', this.event); // 取消订阅
+      this.result = "unSubscribe result: 已取消注册";
+    } catch (err) {
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      this.result = "unSubscribe error: 取消注册失败";
+    }
+  }
+  
+  subscribe() {
+    try {
+      dlpPermission.on('openDLPFile', this.event); // 订阅
+      this.result = "subscribe result: 已注册";
+    } catch (err) {
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      this.result = "subscribe error: 注册失败";
+    }
+  }
+
+  // 9 获取DLP文件打开记录
+  getDLPFileAccessRecords() {
+    dlpPermission.getDLPFileAccessRecords().then((res) => {
+      this.result = 'getDLPFileAccessRecords result: ' + JSON.stringify(res);
+      console.info('res', JSON.stringify(res));
+    }).catch((err: BusinessError) => {
+      this.result = 'getDLPFileAccessRecords error: ' + (err as BusinessError).code + (err as BusinessError).message;
+      console.error('error: ', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    });
+  }
+
+  // 10 获取DLP文件保留沙箱记录
+  getRetentionSandboxList() {
+    dlpPermission.getRetentionSandboxList().then((res) => {
+      this.result = 'getRetentionSandboxList result: ' + JSON.stringify(res);
+      console.info('res', JSON.stringify(res));
+    }).catch((err: BusinessError) => {
+      this.result = 'getRetentionSandboxList error' + (err as BusinessError).code + (err as BusinessError).message;
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    });
+  }
+
+  // 11 设置沙箱应用配置
+  setSandboxAppConfig() {
+    dlpPermission.setSandboxAppConfig('configInfo').then(() => {
+      this.result = 'setSandboxAppConfig result: 设置沙箱应用配置信息成功';
+      console.info('res', "设置沙箱应用配置信息成功");
+    }).catch((err: BusinessError) => {
+      this.result = 'setSandboxAppConfig error: ' + (err as BusinessError).code + (err as BusinessError).message;
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    });
+  }
+
+  // 12 清理沙箱应用配置信息
+  cleanSandboxAppConfig() {
+    dlpPermission.cleanSandboxAppConfig().then(() => {
+      this.result = 'cleanSandboxAppConfig result: 清理沙箱成功';
+      console.info('res', "清理沙箱成功");
+    }).catch((err: BusinessError) => {
+      this.result = 'cleanSandboxAppConfig error: ' + (err as BusinessError).code + (err as BusinessError).message;
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    });
+  }
+
+  // 13 获取DLP文件保留沙箱记录
+  getSandboxAppConfig() {
+    dlpPermission.getSandboxAppConfig().then((res) => {
+      this.result = 'getSandboxAppConfig result: ' + JSON.stringify(res);
+      console.info('res', JSON.stringify(res));
+    }).catch((err: BusinessError) => {
+      this.result = 'getSandboxAppConfig error: ' + (err as BusinessError).code + (err as BusinessError).message;
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    });
+  }
+
+  // 14 以无边框形式打开DLP权限管理应用。
+  startDLPManagerForResult() {
+    try {
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let want:Want = {
+        "uri": this.uri,
+        "parameters" : {
+          "displayName": this.fileName
+        }
+      }; // 请求参数
+      dlpPermission.startDLPManagerForResult(context, want).then((res) => {
+        this.result = 'startDLPManagerForResult resultCode: ' + res.resultCode;
+        console.info('res.resultCode', res.resultCode);
+        console.info('res.want', JSON.stringify(res.want));
+      }); // 打开DLP权限管理应用
+    } catch (err) {
+      this.result = 'startDLPManagerForResult error' + err.code + err.message;
+      console.error('error', err.code, err.message); // 失败报错
+    }
+  }
+
+  // 15 查询当前系统是否提供DLP特性
+  isDLPFeature() {
+    dlpPermission.isDLPFeatureProvided().then((res) => {
+      this.result = 'isDLPFeatureProvided result: ' + JSON.stringify(res.valueOf());
+      console.info('res', JSON.stringify(res.valueOf()));
+    }).catch((err: BusinessError) => {
+      this.result = 'isDLPFeatureProvided error: ' + (err as BusinessError).code + (err as BusinessError).message;
+      console.error('error: ', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    });
+  }
+
   build() {
     Column() {
       Row() {
@@ -191,7 +428,8 @@ struct FilePicker {
             .height(25)
             .id('newFile')
             .onClick(() => {
-              this.callFilePickerSaveFile();
+              // 使用默认预览打开文件
+              this.prepareForOpenDlpFile();
             })
           Image($r('app.media.ic_folder'))
             .width(25)
@@ -199,12 +437,142 @@ struct FilePicker {
             .id('folder')
             .margin({ left: 30 })
             .onClick(() => {
+              // 读入文件的基本信息
               this.callFilePickerSelectFile();
             })
         }
       }.justifyContent(FlexAlign.SpaceBetween)
       .width('100%')
-
+      Row() {
+        Text("3, 生成DLP文件")
+          .id("generateDlpFiles")
+          .width(50)
+          .backgroundColor(Color.Blue)
+          .onClick(() => {
+            this.generateDlpFiles();
+        })
+        Text("")
+          .width(10)
+        Text("4, 是否在沙箱中")
+            .id("isInSandBox")
+            .width(50)
+            .backgroundColor(Color.Green)
+            .onClick(() => {
+              this.isInSandbox();
+        })
+        Text("")
+          .width(10)
+        Text("5, 查询当前编辑的文件权限")
+            .id("getDLPPermissionInfo")
+            .width(50)
+            .backgroundColor(Color.Pink)
+            .onClick(() => {
+              this.getDLPPermissionInfo();
+        })
+        Text("")
+          .width(10)
+        Text("6, 查看支持加密的文件类型")
+            .id("getDLPSupportedFileTypes")
+            .width(50)
+            .backgroundColor(Color.Gray)
+            .onClick(() => {
+              this.getDLPSupportedFileTypes();
+        })
+        Text("")
+          .width(10)
+        Text("7, 判断当前打开文件是否是DLP文件")
+          .id("isCurrentDlpFile")
+          .width(50)
+          .backgroundColor(Color.Red)
+          .onClick(() => {
+            this.isCurrentDlpFile();
+        })
+      }
+      Row() {
+        Text("8, 订阅DLP打开事件")
+          .id("subscribe")
+          .width(50)
+          .backgroundColor(Color.Gray)
+          .onClick(() => {
+            this.subscribe();
+        })
+        Text("")
+          .width(5)
+        Text("8, 取消订阅DLP打开事件")
+            .id("unSubscribe")
+            .width(50)
+            .backgroundColor(Color.Gray)
+            .onClick(() => {
+              this.unSubscribe();
+        })
+        Text("")
+          .width(10)
+        Text("9, 获取DLP文件打开记录")
+            .id("getDLPFileAccessRecords")
+            .width(50)
+            .backgroundColor(Color.Pink)
+            .onClick(() => {
+              this.getDLPFileAccessRecords();
+        })
+        Text("")
+          .width(10)
+        Text("10, 获取DLP文件保留沙箱记录")
+            .id("getRetentionSandboxList")
+            .width(50)
+            .backgroundColor(Color.Orange)
+            .onClick(() => {
+              this.getRetentionSandboxList();
+        })
+        Text("")
+          .width(10)
+        Text("11, 设置沙箱应用配置信息")
+          .id("setSandboxAppConfig")
+          .width(50)
+          .backgroundColor(Color. Blue)
+          .onClick(() => {
+            this.setSandboxAppConfig();
+        })
+      }
+      Row() {
+        Text("12, 清理沙箱应用配置信息")
+          .id("cleanSandboxAppConfig")
+          .width(50)
+          .backgroundColor(Color.Green)
+          .onClick(() => {
+            this.cleanSandboxAppConfig();
+        })
+        Text("")
+          .width(10)
+        Text("13, 查询沙箱应用配置信息")
+            .id("getSandboxAppConfig")
+            .width(50)
+            .backgroundColor(Color.Pink)
+            .onClick(() => {
+              this.getSandboxAppConfig();
+        })
+        Text("")
+          .width(10)
+        Text("14, 以无边框形式打开DLP权限管理应用")
+            .id("startDLPManagerForResult")
+            .width(50)
+            .backgroundColor(Color.Red)
+            .onClick(() => {
+              this.startDLPManagerForResult();
+        })
+        Text("")
+          .width(10)
+        Text("15, 查询提供DLP特性")
+            .id("isDLPFeature")
+            .width(50)
+            .backgroundColor(Color.Orange)
+            .onClick(() => {
+              this.isDLPFeature();
+        })
+      }
+      Row() {
+        Text("运行结果: " + `${this.result}`)
+      }
+      
       // 文件列表
       List({ space: 12, initialIndex: 0 }) {
         ForEach(this.fileInfos, (item: FileInfoType, index: number) => {
