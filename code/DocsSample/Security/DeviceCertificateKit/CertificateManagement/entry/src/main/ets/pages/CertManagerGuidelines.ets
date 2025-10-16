@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start certificate_management_development_guidance]
-
 import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
@@ -21,6 +20,7 @@ import { util } from '@kit.ArkTS';
 async function privateCredSample() {
   /* 安装的凭据数据需要业务赋值，本例数据非凭据数据。 */
   let keystoreBase64Str = 'MIIMJgIBAzCCC+AGCSqGSIb3DQEHAaCCC9EEggvNMIILyTCCBW4GCSqGSIb3DQEH' +
+    // [StartExclude certificate_management_development_guidance]
     'AaCCBV8EggVbMIIFVzCCBVMGCyqGSIb3DQEMCgECoIIE+jCCBPYwKAYKKoZIhvcN' +
     'AQwBAzAaBBS2gH25w0SEH0TmlWqYocuX+yvMWgICBAAEggTIeKcWRUDw7Kw+NBfX' +
     'i1zKhSkLCO+i8G1V196WpUltnabmANcsZfbC0ehw+7XZxn3UKEUXT0/Zm6vi3Oci' +
@@ -84,6 +84,7 @@ async function privateCredSample() {
     'RRZMvqGtzg6LlVCsfo1oCNTipmNwtB4agMttpvX1zOjrwkkIcvOtSrkK7Pc1l29y' +
     'DEjGqFTHk9T3cFrpFgi1/PmytuTC1P0x6eY8OmfMNfX9gbYU/7j7Tw/CLdBX36Rf' +
     'Hk0BQU/+dlBmg3WQBr8t8SdGfjLExS/0Jn9GMD0wITAJBgUrDgMCGgUABBQze1zR' +
+    // [EndExclude certificate_management_development_guidance]
     'G615kxCjeS6uixCHuij3pgQUhHiChcSeohRPrVkVPSPmYr9tjAYCAgQA';
   /* 凭据数据转换为Uint8Array，凭据数据为der格式 */
   let keystore: Uint8Array = new util.Base64Helper().decodeSync(keystoreBase64Str);
@@ -157,7 +158,6 @@ async function privateCredSample() {
     console.error(`Failed to uninstall private certificate. Code: ${e.code}, message: ${e.message}`);
   }
 }
-
 // [End certificate_management_development_guidance]
 
 @Entry
