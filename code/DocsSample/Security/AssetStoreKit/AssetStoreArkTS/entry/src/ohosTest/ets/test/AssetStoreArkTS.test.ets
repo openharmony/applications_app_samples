@@ -47,25 +47,25 @@ export default function assetStoreArkTSTest() {
     it('testAssetStoreArkTS001', 0, async () => {
       console.info('uitest: testAssetStoreArkTS001 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Add Critical Asset'));
+      const button1 = await driver.findComponent(ON.text('Add Asset'));
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Add Critical Asset Success'));
+      await driver.assertComponentExist(ON.text('Succeeded in adding Asset'));
       console.info('uitest: testAssetStoreArkTS001 end');
     })
 
     /**
-     * 点击按钮，添加关键资产
+     * 点击按钮，添加需要用户认证的关键资产
      */
     it('testAssetStoreArkTS002', 0, async () => {
       console.info('uitest: testAssetStoreArkTS002 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Add Critical Asset Auth'));
+      const button1 = await driver.findComponent(ON.text('Add User-Auth Asset'));
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Add Critical Asset Auth Success'));
+      await driver.assertComponentExist(ON.text('Succeeded in adding user-auth Asset'));
       console.info('uitest: testAssetStoreArkTS002 end');
     })
 
@@ -75,19 +75,19 @@ export default function assetStoreArkTSTest() {
     it('testAssetStoreArkTS003', 0, async () => {
       console.info('uitest: testAssetStoreArkTS003 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Update Critical Asset'));
-      const button2 = await driver.findComponent(ON.text('QueryAll Critical Asset'));
-      const button3 = await driver.findComponent(ON.text('QueryAttributes Critical Asset'));
-      const button4 = await driver.findComponent(ON.text('QueryList Critical Asset'));
+      const button1 = await driver.findComponent(ON.text('Update Asset'));
+      const button2 = await driver.findComponent(ON.text('Query Asset Plaintext'));
+      const button3 = await driver.findComponent(ON.text('Query Asset Attribute'));
+      const button4 = await driver.findComponent(ON.text('Query Batch Asset Attributes'));
       await button1.click();
       await button2.click();
       await button3.click();
       await button4.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Update Critical Asset Success'));
-      await driver.assertComponentExist(ON.text('QueryAll Critical Asset Success'));
-      await driver.assertComponentExist(ON.text('QueryAttributes Critical Asset Success'));
-      await driver.assertComponentExist(ON.text('QueryList Critical Asset Success'));
+      await driver.assertComponentExist(ON.text('Succeeded in updating Asset'));
+      await driver.assertComponentExist(ON.text('Succeeded in querying Asset plaintext'));
+      await driver.assertComponentExist(ON.text('Succeeded in querying Asset attribute'));
+      await driver.assertComponentExist(ON.text('Succeeded in querying batch Asset attributes'));
       console.info('uitest: testAssetStoreArkTS003 end');
     })
 
@@ -97,14 +97,62 @@ export default function assetStoreArkTSTest() {
     it('testAssetStoreArkTS004', 0, async () => {
       console.info('uitest: testAssetStoreArkTS004 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Remove Critical Asset'));
-      const button2 = await driver.findComponent(ON.text('Remove Critical Asset Second'));
+      const button1 = await driver.findComponent(ON.text('Remove Asset'));
+      const button2 = await driver.findComponent(ON.text('Remove User-Auth Asset'));
       await button1.click();
       await button2.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Remove Critical Asset Success'));
-      await driver.assertComponentExist(ON.text('Remove Critical Asset Second Success'));
+      await driver.assertComponentExist(ON.text('Succeeded in removing Asset'));
+      await driver.assertComponentExist(ON.text('Succeeded in removing user-auth Asset'));
       console.info('uitest: testAssetStoreArkTS004 end');
+    })
+
+    /**
+     * 点击按钮，新增群组关键资产
+     */
+    it('testAssetStoreArkTS005', 0, async () => {
+      console.info('uitest: testAssetStoreArkTS005 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Add Group Asset'));
+      const button2 = await driver.findComponent(ON.text('Query Group Asset Plaintext'));
+      const button3 = await driver.findComponent(ON.text('Query Group Asset Attribute'));
+      const button4 = await driver.findComponent(ON.text('Update Group Asset'));
+      const button5 = await driver.findComponent(ON.text('Remove Group Asset'));
+      await button1.click();
+      await driver.delayMs(1000);
+      await button2.click();
+      await button3.click();
+      await button4.click();
+      await driver.delayMs(1000);
+      await button5.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Succeeded in adding Asset to the group'));
+      await driver.assertComponentExist(ON.text('Succeeded in querying group Asset plaintext'));
+      await driver.assertComponentExist(ON.text('Succeeded in querying group Asset attribute'));
+      await driver.assertComponentExist(ON.text('Succeeded in updating Asset in the group'));
+      await driver.assertComponentExist(ON.text('Succeeded in removing Asset from the group'));
+      console.info('uitest: testAssetStoreArkTS005 end');
+    })
+
+    /**
+     * 点击按钮，管理同步关键资产
+     */
+    it('testAssetStoreArkTS006', 0, async () => {
+      console.info('uitest: testAssetStoreArkTS006 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Add Sync Asset'));
+      const button2 = await driver.findComponent(ON.text('Query Sync Result'));
+      const button3 = await driver.findComponent(ON.text('Succeeded in removing Asset')); // 删除同步关键资产。
+      await button1.click();
+      await driver.delayMs(1000);
+      await button2.click();
+      await driver.delayMs(1000);
+      await button3.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Succeeded in adding Asset with sync'));
+      await driver.assertComponentExist(ON.text('Succeeded in querying sync result'));
+      await driver.assertComponentExist(ON.text('Succeeded in removing Asset'));
+      console.info('uitest: testAssetStoreArkTS006 end');
       await driver.pressBack();
     })
   })
