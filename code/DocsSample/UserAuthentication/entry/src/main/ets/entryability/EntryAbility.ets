@@ -18,6 +18,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { JSON } from '@kit.ArkTS';
 import { window } from '@kit.ArkUI';
 import Logger from '../common/Logger';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const DOMAIN: number = Logger.getDomain();
 const PREFIX: string = Logger.getPrefix();
@@ -35,7 +36,20 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, PREFIX, FORMAT, 'Ability onWindowStageCreate');
-
+    AppStorage.setOrCreate('pageContext', this.context);
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      try {
+        if (err.code) {
+          hilog.error(DOMAIN, PREFIX, `Failed to obtain the main window. Cause: ${FORMAT}`,
+            JSON.stringify(err.message) ?? '');
+          return;
+        }
+        AppStorage.setOrCreate('UIContext', data.getUIContext());
+      } catch (error) {
+        hilog.error(DOMAIN, PREFIX, `Failed to get UIContext. Cause: ${FORMAT}`,
+          JSON.stringify(error.message) ?? '');
+      }
+    })
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
         hilog.error(DOMAIN, PREFIX, `Failed to load the content. Cause: ${FORMAT}`,
