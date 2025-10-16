@@ -90,7 +90,7 @@ class RemoteDeviceModel {
     JSON.stringify(this.localDevice));
   }
 
-  // [Start get_available_deviceList]
+  // [Start get_available_device_list]
   getTrustedDeviceList(): void {
     if (typeof (this.deviceManager) == 'undefined') {
       logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
@@ -103,9 +103,9 @@ class RemoteDeviceModel {
     logger.info('[DeviceManager.RemoteDeviceModel] getTrustedDeviceList begin');
     try {
       this.trustedDeviceList = this.deviceManager.getAvailableDeviceListSync();
-      // [StartExclude get_available_deviceList]
+      // [StartExclude get_available_device_list]
       AppStorage.setOrCreate('trustedDeviceList', this.trustedDeviceList);
-      // [EndExclude get_available_deviceList]
+      // [EndExclude get_available_device_list]
     } catch (error) {
       logger.error('[DeviceManager.RemoteDeviceModel] getTrustedDeviceList error: ${error}' + error.toString());
       promptAction.showToast({
@@ -113,7 +113,7 @@ class RemoteDeviceModel {
       });
     }
   }
-  // [End get_available_deviceList]
+  // [End get_available_device_list]
 
   deviceStateChangeActionOnline(device: distributedDeviceManager.DeviceBasicInfo): void {
     this.trustedDeviceList[this.trustedDeviceList.length] = device;
