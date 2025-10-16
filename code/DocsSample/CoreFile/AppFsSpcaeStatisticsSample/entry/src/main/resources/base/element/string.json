@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SavingUserFiles"
+    },
+    {
+      "name": "reason_MICROPHONE",
+      "value": "reason_MICROPHONE"
+    },
+    {
+      "name": "document",
+      "value": "文档|.txt"
+    },
+    {
+      "name": "getFreeSizeButton",
+      "value": "getFreeSize"
+    },
+    {
+      "name": "getCurrentBundleStatsButton",
+      "value": "getCurrentBundleStats"
+    },
+    {
+      "name": "getTotalSizeSyncButton",
+      "value": "getTotalSizeSync"
+    },
+    {
+      "name": "getFreeSizeSyncButton",
+      "value": "getFreeSizeSync"
+    },
+    {
+      "name": "storageGetFreeSizeButton",
+      "value": "storageGetFreeSize"
+    },
+    {
+      "name": "getTotalSizeButton",
+      "value": "getTotalSize"
+    }
+  ]
+}
