@@ -14,7 +14,7 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import logger from '../common/Logger';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
 import router from '@ohos.router';
@@ -32,11 +32,11 @@ class optionsType {
 struct Index {
   @State isShowLoading: boolean = false;
   @State indexWidth: string = '100%';
-  @StorageLink('localDevice') localDevice: deviceManager.DeviceBasicInfo | undefined = undefined;
-  @StorageLink('trustedDeviceList') trustedDeviceList: Array<deviceManager.DeviceBasicInfo> =
-  new Array<deviceManager.DeviceBasicInfo>();
-  @StorageLink('discoverDeviceList') discoverDeviceList: Array<deviceManager.DeviceBasicInfo> =
-  new Array<deviceManager.DeviceBasicInfo>();
+  @StorageLink('localDevice') localDevice: distributedDeviceManager.DeviceBasicInfo | undefined = undefined;
+  @StorageLink('trustedDeviceList') trustedDeviceList: Array<distributedDeviceManager.DeviceBasicInfo> =
+  new Array<distributedDeviceManager.DeviceBasicInfo>();
+  @StorageLink('discoverDeviceList') discoverDeviceList: Array<distributedDeviceManager.DeviceBasicInfo> =
+  new Array<distributedDeviceManager.DeviceBasicInfo>();
   @State isSupportRange: boolean = false;
   @State isAllowDiscovered: boolean = true;
   @State isLocalDeviceActive: boolean = false;
@@ -67,10 +67,12 @@ struct Index {
   }
 
   async aboutToAppear() {
+    // [Start permissions_user_grant]
     let atManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.DISTRIBUTED_DATASYNC'])
       .then(async (data) => {
         logger.info(`data: ${JSON.stringify(data)}`);
+        // [StartExclude permissions_user_grant]
         await remoteDeviceModel.createDeviceManager();
         try {
           logger.info(`local deviceType:` + deviceInfo.deviceType);
@@ -94,10 +96,12 @@ struct Index {
         } catch (error) {
           logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
         }
+        // [EndExclude permissions_user_grant]
       })
       .catch((err: BusinessError) => {
         logger.error(`requestPermissionsFromUser error: ${JSON.stringify(err)}`);
     });
+    // [End permissions_user_grant]
   }
 
   build() {
@@ -172,7 +176,7 @@ struct Index {
             }.width('100%')
 
             List() {
-              ForEach(this.trustedDeviceList, (item: deviceManager.DeviceBasicInfo, index: number) => {
+              ForEach(this.trustedDeviceList, (item: distributedDeviceManager.DeviceBasicInfo, index: number) => {
                 ListItem() {
                   Column() {
                     ListDeviceView({ deviceInfo: item, visible: Visibility.Visible })
@@ -182,7 +186,7 @@ struct Index {
                       .visibility(index == this.trustedDeviceList.length - 1 ? Visibility.None : Visibility.Visible)
                   }
                 }
-              }, (item: deviceManager.DeviceBasicInfo) => JSON.stringify(item))
+              }, (item: distributedDeviceManager.DeviceBasicInfo) => JSON.stringify(item))
             }
             .width('100%')
             .borderRadius(24)
@@ -261,7 +265,7 @@ struct Index {
             .alignItems(HorizontalAlign.Center)
 
             List() {
-              ForEach(this.discoverDeviceList, (item: deviceManager.DeviceBasicInfo, index: number) => {
+              ForEach(this.discoverDeviceList, (item: distributedDeviceManager.DeviceBasicInfo, index: number) => {
                 ListItem() {
                   Column() {
                     ListDeviceView({ deviceInfo: item })
@@ -274,7 +278,7 @@ struct Index {
                 .onClick(() => {
                   remoteDeviceModel.authenticateDevice(item);
                 })
-              }, (item: deviceManager.DeviceBasicInfo) => JSON.stringify(item))
+              }, (item: distributedDeviceManager.DeviceBasicInfo) => JSON.stringify(item))
             }
             .visibility(this.discoverDeviceList.length == 0 ? Visibility.None : Visibility.Visible)
             .width('100%')
