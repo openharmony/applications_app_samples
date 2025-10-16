@@ -40,7 +40,11 @@ struct DrawablePage {
   // 从资源加载图片并转换为PixelMap
   async loadImageFromResource() {
     try {
-      const resMgr = getContext().resourceManager;
+      if (!this.getUIContext() || !this.getUIContext().getHostContext()) {
+        return;
+      }
+      const context = this.getUIContext().getHostContext();
+      const resMgr = context!.resourceManager;
       const imageData = await resMgr.getRawFileContent('startIcon.png');
 
       // 创建图像解码器
@@ -59,7 +63,11 @@ struct DrawablePage {
 
   async loadImageArrayFromResource() {
     try {
-      const resMgr = getContext().resourceManager;
+      if (!this.getUIContext() || !this.getUIContext().getHostContext()) {
+        return;
+      }
+      const context = this.getUIContext().getHostContext();
+      const resMgr = context!.resourceManager;
       const imageData = await resMgr.getRawFileContent('test.jpg');
 
       // 创建图像解码器
