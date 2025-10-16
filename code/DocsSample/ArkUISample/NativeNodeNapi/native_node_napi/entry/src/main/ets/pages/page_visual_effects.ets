@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-
-interface ListCategories {
+interface ListCategoriesTwo {
   title:string,
   url:string
 }
@@ -25,7 +23,7 @@ interface ListCategories {
 struct VisualEffectsIndex {
   @State message: string = 'CApi';
   @State isShow: boolean = false;
-  private items : ListCategories[] = [
+  private items : ListCategoriesTwo[] = [
     {title:'NODE_TRANSLATE，NODE_SCALE，NODE_ROTATE',url:'pages/visualEffects/VisualEffectsIndexScale'},
     {title:'NODE_BRIGHTNESS,NODE_SATURATION,NODE_BLUR',url:'pages/visualEffects/VisualEffectsIndexBlur'},
     {title:'NODE_LINEAR_GRADIENT,NODE_OPACITY,NODE_CLIP',url:'pages/visualEffects/VisualEffectsIndexShape'},
@@ -42,7 +40,7 @@ struct VisualEffectsIndex {
 
   @Builder cApiMenu() {
     Grid() {
-      ForEach(this.items, (item: ListCategories) => {
+      ForEach(this.items, (item: ListCategoriesTwo) => {
         GridItem() {
           Button(item.title)
             .key(item.title)
@@ -51,7 +49,7 @@ struct VisualEffectsIndex {
             .fontSize(10)
             .padding(1)
             .onClick(() => {
-              router.pushUrl({ url: item.url });
+              this.getUIContext().getRouter().pushUrl({ url: item.url });
             })
         }
       })
@@ -93,13 +91,13 @@ struct VisualEffectsIndex {
         }
 
         List({ space: '20vp' }) {
-          ForEach(this.items, (item: ListCategories) => {
+          ForEach(this.items, (item: ListCategoriesTwo) => {
             ListItem() {
               Button(item.title)
                 .fontSize(15)
                 .labelStyle({ maxLines: 10 })
                 .onClick(() => {
-                  router.pushUrl({ url: item.url });
+                  this.getUIContext().getRouter().pushUrl({ url: item.url });
                 })
             }
           })
