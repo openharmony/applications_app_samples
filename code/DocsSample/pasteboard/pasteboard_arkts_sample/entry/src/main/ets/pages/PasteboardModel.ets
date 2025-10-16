@@ -106,8 +106,10 @@ export namespace PasteboardModel {
       // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
       plainTextData.properties.getDelayData = getDelayPlainText;
       pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
+        console.info('Succeeded in set PlainText.');
         // 存入成功，处理正常场景
       }).catch((error: BusinessError) => {
+        console.error('Failed to set PlainText. Cause: ' + err.message);
         // 处理异常场景
       });
     }
@@ -125,6 +127,7 @@ export namespace PasteboardModel {
           console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
         }
       }).catch((error: BusinessError) => {
+        console.error('Failed to get PlainTextUnifiedData. Cause: ' + err.message);
         //处理异常场景
       })
     })
@@ -134,6 +137,7 @@ export namespace PasteboardModel {
       systemPasteboard.setAppShareOptions(pasteboard.ShareOption.LOCALDEVICE);
       console.info('Set app share options success.');
     } catch (err) {
+      console.error('Failed to gSet app share options. Cause: ' + err.message);
       //处理异常场景
     }
     // [End pasteboard_timelaps_PasteData5]
@@ -142,6 +146,7 @@ export namespace PasteboardModel {
       systemPasteboard.removeAppShareOptions();
       console.info('Remove app share options success.');
     } catch (err) {
+      console.error('Failed to Remove app share options. Cause: ' + err.message);
       //处理异常场景
     }
     // [End pasteboard_timelaps_PasteData6]
