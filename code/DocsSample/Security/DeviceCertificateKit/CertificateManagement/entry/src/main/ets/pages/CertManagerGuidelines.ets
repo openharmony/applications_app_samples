@@ -96,7 +96,7 @@ async function privateCredSample() {
     /* 安装应用证书凭据。 */
     const res: certificateManager.CMResult = await certificateManager.installPrivateCertificate(keystore, keystorePwd, 'testPriCredential');
     appKeyUri = (res.uri != undefined) ? res.uri : '';
-    console.error(`installPrivateCertificate appKeyUri: ${appKeyUri}`);
+    console.info(`InstallPrivateCertificate success appKeyUri: ${appKeyUri}`);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`Failed to install private certificate. Code: ${e.code}, message: ${e.message}`);
