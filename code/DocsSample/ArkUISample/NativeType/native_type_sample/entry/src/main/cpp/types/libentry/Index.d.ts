@@ -40,6 +40,7 @@ export const createPublicNativeNode: (content: Object) => void;
 export const createProgress: () =>void;
 export const createTextPickerWithCustomContent: (type: number) =>void;
 export const setProgressType: (type: number) =>void;
+export const setProgressValue: (value: number) =>void;
 export const createDatePicker: (type: number) =>void;
 export const createCalendarPicker: (type: number) =>void;
 export const createImageSize: (fit: number, size: number) =>void;

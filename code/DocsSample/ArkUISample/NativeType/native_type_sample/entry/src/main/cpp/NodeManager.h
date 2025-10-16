@@ -32,6 +32,7 @@ public:
     void CreateProgress();
     void CreateTextPickerWithCustomContent(int32_t type);
     void SetProgressType(int32_t type);
+    void SetProgressValue(float value);
     void SetProgressLinearStyleOption(bool scanEffect, bool smoothEffect, int32_t strokeWidth, int32_t strokeRadius);
     std::string GetProgressLinearStyleOptionAndDestroy();
     std::string GetImageAnimatorFrameInfo();
@@ -43,7 +44,7 @@ public:
     void AddTextPicker(int32_t type, ArkUI_NativeNodeAPI_1 *nodeApi, ArkUI_NodeHandle &column);
     void SetUpTextCrossLanguage(bool isCross);
     void CreateImageAnimatorFromString(int32_t width, int32_t height, int32_t top, int32_t left, int32_t duration);
-    ArkUI_DrawableDescriptor* CreateDescriptor();
+    ArkUI_DrawableDescriptor* CreateDescriptor(bool isBlack);
     void CreateImageAnimatorFromDrawableDescriptor(int32_t width,
         int32_t height, int32_t top, int32_t left, int32_t duration);
     void ClearNodes();

@@ -37,6 +37,7 @@ struct Index {
   @State progressType: string = '未设置';
   @State status: string = '';
   @State styleOption: string = '';
+  @State progressValue: number = 0;
   @State customStyle: LinearProgressStyle = {
     scanEffect: true,
     smoothEffect: true,
@@ -72,12 +73,12 @@ struct Index {
           Column() {
             Row() {
               Text($r('app.string.Smooth_effect'))
-              Toggle({ type: ToggleType.Switch, isOn: false })
+              Toggle({ type: ToggleType.Switch, isOn: true })
                 .onChange((isOn) => {
                   this.customStyle.smoothEffect  = isOn;
                 })
               Text($r('app.string.Scan_effect'))
-              Toggle({ type: ToggleType.Switch, isOn: false })
+              Toggle({ type: ToggleType.Switch, isOn: true })
                 .onChange((isOn) => {
                   this.customStyle.scanEffect = isOn;
                 })
@@ -138,6 +139,23 @@ struct Index {
         Text('styleOption:   '+this.styleOption)
           .fontSize(14)
           .margin(10)
+        Row() {
+          Text($r('app.string.Input_progress_value'))
+          TextInput()
+            .type(InputType.Number)
+            .onChange((value) => {
+              this.progressValue = parseInt(value);
+            })
+            .width(100)
+        }
+        .padding({bottom: 5})
+        Button($r('app.string.Set_progress_value'))
+          .height(50)
+          .width('50%')
+          .onClick(() => {
+            ProgressNapi.setProgressValue(this.progressValue);
+          })
+          .margin({ bottom: 10 })
         ContentSlot(this.nodeContent)
       }
       .width('100%')

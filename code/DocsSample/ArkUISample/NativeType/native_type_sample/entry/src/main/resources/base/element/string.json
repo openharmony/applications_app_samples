@@ -58,7 +58,7 @@
     },
     {
       "name": "ImageAnimator_duration",
-      "value": "持续时间"
+      "value": "持续时间(ms)"
     },
     {
       "name": "Creat_imageAnimator",
@@ -103,6 +103,14 @@
     {
       "name": "Set_crossLanguage",
       "value": "设置CrossLanguage并获取结果"
+    },
+    {
+      "name": "Set_progress_value",
+      "value": "设置进度条值"
+    },
+    {
+      "name": "Input_progress_value",
+      "value": "输入进度条值:"
     }
   ]
 }
