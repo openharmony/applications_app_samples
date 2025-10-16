@@ -15,7 +15,10 @@
  
 // [Start EventSub_EntryAbility_Header]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hiAppEvent, hilog, hidebug } from '@kit.PerformanceAnalysisKit';
+// [Start AppEvent_Crash_Click_ArkTS_Header]
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+// [End AppEvent_Crash_Click_ArkTS_Header]
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 // [End EventSub_EntryAbility_Header]
@@ -38,17 +41,17 @@ export default class EntryAbility extends UIAbility {
       ],
       // 实现onReceive回调，监听到事件后实时回调
       onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
-        hilog.info(0x0000, 'testTag', 'AppEvent HiAppEvent succeed to read event with onReceive callback from ArkTS');
+        hilog.info(0x0000, 'testTag', 'AppEvents HiAppEvent success to read event with onReceive callback from ArkTS');
         hilog.info(0x0000, 'testTag', `domain=${domain}`);
         for (const eventGroup of appEventGroups) {
-          hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventName=${eventGroup.name}`);
+          hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent eventName=${eventGroup.name}`);
           for (const eventInfo of eventGroup.appEventInfos) {
             // 开发者可以获取到崩溃事件发生的时间戳
-            hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventInfo.params.time=${JSON.stringify(eventInfo.params['time'])}`);
+            hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent eventInfo.params.time=${JSON.stringify(eventInfo.params['time'])}`);
             // 开发者可以获取到崩溃应用的包名
-            hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventInfo.params.bundle_name=${JSON.stringify(eventInfo.params['bundle_name'])}`);
+            hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent eventInfo.params.bundle_name=${JSON.stringify(eventInfo.params['bundle_name'])}`);
             // 开发者可以获取到崩溃事件发生时的故障日志文件
-            hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
+            hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
           }
         }
       }
@@ -66,21 +69,21 @@ export default class EntryAbility extends UIAbility {
       onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
         // 如果返回的holder对象为null，表示订阅过程发生异常。因此，在记录错误日志后直接返回
         if (holder == null) {
-          hilog.error(0x0000, 'testTag', 'AppEvent HiAppEvent holder is null');
+          hilog.error(0x0000, 'testTag', 'AppEvents HiAppEvent holder is null');
           return;
         }
-        hilog.info(0x0000, 'testTag', 'AppEvent HiAppEvent succeed to read event with onTrigger callback from ArkTS.');
-        hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent onTrigger: curRow=%{public}d, curSize=%{public}d`, curRow, curSize);
+        hilog.info(0x0000, 'testTag', 'AppEvents HiAppEvent success to read event with onTrigger callback from ArkTS');
+        hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent onTrigger: curRow=%{public}d, curSize=%{public}d`, curRow, curSize);
         let eventPkg: hiAppEvent.AppEventPackage | null = null;
         // 根据设置阈值大小（默认为1条事件）去获取订阅事件包，直到将订阅数据全部取出
         // 返回的事件包对象为null，表示当前订阅数据已被全部取出，此次订阅回调触发结束
         while ((eventPkg = holder.takeNext()) != null) {
           // 开发者可以对事件包中的事件打点数据进行自定义处理，此处是将事件打点数据打印在日志中
-          hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventPkg.packageId=%{public}d`, eventPkg.packageId);
-          hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventPkg.row=%{public}d`, eventPkg.row);
-          hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventPkg.size=%{public}d`, eventPkg.size);
+          hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent eventPkg.packageId=%{public}d`, eventPkg.packageId);
+          hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent eventPkg.row=%{public}d`, eventPkg.row);
+          hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent eventPkg.size=%{public}d`, eventPkg.size);
           for (const eventInfo of eventPkg.data) {
-            hilog.info(0x0000, 'testTag', `AppEvent HiAppEvent eventPkg.info=%{public}s`, eventInfo);
+            hilog.info(0x0000, 'testTag', `AppEvents HiAppEvent eventPkg.info=%{public}s`, eventInfo);
           }
         }
       }

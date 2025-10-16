@@ -32,8 +32,7 @@ struct Index {
     Row() {
       Column() {
         // [Start AppEvent_Crash_Button]
-        Button($r('app.string.WatchAppCrash_Button'))
-          // [StartExclude AppEvent_Crash_Button]
+        Button('WatchAppCrash ArkTS&C++')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -41,15 +40,13 @@ struct Index {
           .backgroundColor('#0D9FFB')
           .width('80%')
           .height('5%')
-            // [EndExclude AppEvent_Crash_Button]
           .onClick(() => {
             // 在按钮点击函数中构造一个crash场景，触发崩溃事件
             let result: object = JSON.parse('');
           })
         // [End AppEvent_Crash_Button]
         // [Start AppEvent_Click_ArkTS_Button]
-        Button($r('app.string.WriteEventArkTS_Button'))
-          // [StartExclude AppEvent_Click_ArkTS_Button]
+        Button('writeEvent ArkTS')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -57,7 +54,6 @@ struct Index {
           .backgroundColor('#0D9FFB')
           .width('80%')
           .height('5%')
-          // [EndExclude AppEvent_Click_ArkTS_Button]
           .onClick(() => {
             // 在按钮点击函数中进行事件打点，以记录按钮点击事件
             let eventParams: Record<string, number> = {'clickTime': 100};
@@ -72,9 +68,9 @@ struct Index {
               params: eventParams,
             };
             hiAppEvent.write(eventInfo).then(() => {
-              hilog.info(0x0000, 'testTag', `writeEvent ArkTS success`);
+              hilog.info(0x0000, 'testTag', `AppEvents writeEvent ArkTS success`);
             }).catch((err: BusinessError) => {
-              hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
+              hilog.error(0x0000, 'testTag', `AppEvents HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
             });
           })
         // [End AppEvent_Click_ArkTS_Button]
@@ -129,8 +125,7 @@ struct Index {
 
       Column() {
         // [Start AppEvent_CPP_Button]
-        Button($r('app.string.WriteEventCPP_Button'))
-          // [StartExclude AppEvent_CPP_Button]
+        Button('writeEvent C++')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -138,7 +133,6 @@ struct Index {
           .backgroundColor('#0D9FFB')
           .width('80%')
           .height('5%')
-          // [EndExclude AppEvent_CPP_Button]
           .onClick(() => {
             testNapi.writeAppEvent();
           })

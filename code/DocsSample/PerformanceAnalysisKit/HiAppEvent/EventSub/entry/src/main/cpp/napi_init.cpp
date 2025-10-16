@@ -252,14 +252,14 @@ static HiAppEvent_Watcher *eventWatcherR1;
 
 static void OnReceive1(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
 {
-    OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent succeed to read events with onReceive callback form C API \n");
+    OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent success to read events with onReceive callback form C API \n");
     for (int i = 0; i < groupLen; ++i) {
         for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
-            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.domain=%{public}s",
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.domain=%{public}s",
                 appEventGroups[i].appEventInfos[j].domain);
-            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.name=%{public}s",
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.name=%{public}s",
                 appEventGroups[i].appEventInfos[j].name);
-            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.eventType=%{public}d",
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.eventType=%{public}d",
                 appEventGroups[i].appEventInfos[j].type);
             if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) != 0 ||
                 strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_APP_CRASH) != 0) {
@@ -270,14 +270,14 @@ static void OnReceive1(const char *domain, const struct HiAppEvent_AppEventGroup
             Json::FastWriter writer;
             if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
                 // 开发者可以获取到崩溃事件发生的时间戳
-                OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.params.time=%{public}lld",
+                OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.params.time=%{public}lld",
                     params["time"].asInt64());
                 // 开发者可以获取到崩溃应用的包名
-                OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.params.bundle_name=%{public}s",
+                OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.params.bundle_name=%{public}s",
                     params["bundle_name"].asString().c_str());
                 auto external_log = writer.write(params["external_log"]);
                 // 开发者可以获取到崩溃事件发生时的故障日志文件
-                OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.params.external_log=%{public}s",
+                OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.params.external_log=%{public}s",
                     external_log.c_str());
             }
         }
@@ -305,20 +305,21 @@ static HiAppEvent_Watcher *eventWatcherT1;
 static void OnTake1(const char *const *events, uint32_t eventLen)
 {
     Json::Reader reader(Json::Features::strictMode());
-    OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent succeed to read events with onTrigger callback form C API \n");
+    OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent success to read events with onTrigger callback form C API \n");
     for (int i = 0; i < eventLen; ++i) {
-        OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo=%{public}s", events[i]);
+        OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo=%{public}s", events[i]);
         Json::Value eventInfo;
         if (reader.parse(events[i], eventInfo)) {
             auto domain = eventInfo["domain_"].asString();
             auto name = eventInfo["name_"].asString();
             auto type = eventInfo["type_"].asInt();
-            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.domain=%{public}s", domain.c_str());
-            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.name=%{public}s", name.c_str());
-            OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.eventType=%{public}d", type);
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.domain=%{public}s", domain.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.name=%{public}s", name.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.eventType=%{public}d", type);
             if (domain == "button" && name == "click") {
                 auto clickTime = eventInfo["clickTime"].asInt64();
-                OH_LOG_INFO(LogType::LOG_APP, "AppEvent HiAppEvent eventInfo.params.clickTime=%{public}lld", clickTime);
+                OH_LOG_INFO(LogType::LOG_APP, "AppEvents HiAppEvent eventInfo.params.clickTime=%{public}lld",
+                    clickTime);
             }
         }
     }
@@ -598,7 +599,7 @@ static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
 // [Start AppEvent_C++_DestroyWatcher]
 static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
 {
-    // 销毁创建的观察者，并置appEventWatcher为nullptr。
+    // 销毁创建的观察者，并置eventWatcher为nullptr。
     // [StartExclude AppEvent_C++_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(eventWatcherT);
     OH_HiAppEvent_DestroyWatcher(eventWatcherR);

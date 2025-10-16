@@ -20,12 +20,12 @@ import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 @Entry
 @Component
 struct Index {
-  processorId: number = -1 // 初始化processorId为-1
+  processorId: number = -1; // 初始化processorId为-1
 
   build() {
     Row() {
       Column() {
-        Button($r('app.string.AddProcessorTest_Button'))
+        Button('addProcessorTest')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -56,7 +56,7 @@ struct Index {
           })
         // [StartExclude EventEsc_Header_And_Add_Processor]
         // [Start Button_Add_ID]
-        Button($r('app.string.UserIdTest_Button'))
+        Button('userIdTest')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -74,7 +74,7 @@ struct Index {
           })
         // [End Button_Add_ID]
         // [Start Button_Add_Property]
-        Button($r('app.string.UserPropertyTest_Button'))
+        Button('userPropertyTest')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -92,7 +92,7 @@ struct Index {
           })
         // [End Button_Add_Property]
         // [Start Button_Add_Event]
-        Button($r('app.string.WriteTest_Button'))
+        Button('writeTest')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -121,7 +121,7 @@ struct Index {
           })
         // [End Button_Add_Event]
         // [Start Button_Remove_Processor]
-        Button($r('app.string.RemoveProcessorTest_Button'))
+        Button('removeProcessorTest')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -130,7 +130,7 @@ struct Index {
           .width('60%')
           .height('5%')
           .onClick(() => {
-            // 在按钮点击函数中进行数据处理者移除
+            // 在按钮点击函数中移除数据处理者
             hiAppEvent.removeProcessor(this.processorId);
           })
         // [End Button_Remove_Processor]
