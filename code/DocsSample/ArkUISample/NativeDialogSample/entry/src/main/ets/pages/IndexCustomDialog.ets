@@ -418,17 +418,15 @@ struct Index {
     Column() {
       Row() {
         Button($r('app.string.return_dialog'))
-          .height(25)
-          .width('10%')
+          .height(20)
+          .width('20%')
           .onClick(() => {
-            this.getUIContext().getRouter().pushUrl({
-              url: 'pages/Index',
-            })
+            this.getUIContext().getRouter().back();
           })
         Text($r('app.string.open_custom_dialog'))
           .fontColor(0x0000FF)
           .height('10%')
-          .fontSize(15)
+          .fontSize(10)
           .margin(10)
           .fontWeight(FontWeight.Bold)
       }
