@@ -29,7 +29,7 @@ struct MenuIndex {
       { title: 'Text', url: 'pages/page_text', id: '' },
       { title: 'Swiper', url: 'pages/page_swiper', id: '' },
       { title: 'WaterFlow', url: 'pages/page_waterflow', id: '' },
-      { title: 'Grid', url: 'pages/page_grid', id: '' },
+      { title: 'Grid', url: 'pages/PageGrid', id: '' },
       { title: 'Scroll', url: 'pages/page_scroll', id: '' },
       { title: 'Refresh', url: 'pages/page_refresh', id: '' },
       { title: 'List', url: 'pages/page_list', id: '' },
