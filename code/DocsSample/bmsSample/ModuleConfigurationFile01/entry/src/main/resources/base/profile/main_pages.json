@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/pageTwo",
+    "pages/pageOne"
+  ],
+  "window": {
+    "designWidth": 720,
+    "autoDesignWidth": false
+  }
+}

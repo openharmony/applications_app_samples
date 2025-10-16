@@ -1,0 +1,155 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// [Start module_all]
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "tv",
+      "tablet"
+    ],
+
+    "deliveryWithInstall": true,
+    // [Start module_pages]
+    "pages": "$profile:main_pages",
+    // [End module_pages]
+    "appStartup": "$profile:app_startup_config",
+    // [Start module_metadata]
+    "metadata": [
+      // [StartExclude module_metadata]
+      {
+        "name": "string",
+        "value": "string",
+        "resource": "$profile:distributionFilter_config"
+      },
+      // [EndExclude module_metadata]
+      // [StartExclude module_all]
+      {
+        "name": "module_metadata",
+        "value": "a test demo for module metadata",
+        "resource": "$profile:shortcuts_config"
+      }
+      // [EndExclude module_all]
+    ],
+    // [End module_metadata]
+    // [Start module_abilities_metadata]
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        // [StartExclude module_abilities_metadata]
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindow": "$profile:start_window",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          // [Start module_abilities_skills]
+          // [StartExclude module_all]
+          {
+            "actions": [
+              "ohos.want.action.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ],
+            "uris": [
+              {
+                "scheme":"http",
+                "host":"example.com",
+                "port":"80",
+                "path":"path",
+                "type": "text/*",
+                "linkFeature": "Login"
+              }
+            ],
+            "permissions": [],
+            "domainVerify": false
+          },
+          // [EndExclude module_all]
+          // [End module_abilities_skills]
+          // [EndExclude module_abilities_metadata]
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ],
+        // [StartExclude module_all]
+        "metadata": [
+          {
+            "name": "ohos.ability.shortcuts",
+            "resource": "$profile:shortcuts_config"
+          }
+        ],
+        // [StartExclude module_abilities_metadata]
+        // [EndExclude module_all]
+        "continueType": [
+          "continueType1"
+        ],
+        "continueBundleName": [
+          "com.example.myapplication1",
+          "com.example.myapplication2"
+        ],
+        // [EndExclude module_abilities_metadata]
+      }
+    ],
+    // [End module_abilities_metadata]
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.ACCESS_BLUETOOTH",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      }
+    ],
+    "querySchemes": [
+      "app1Scheme",
+      "app2Scheme"
+    ],
+    "routerMap": "$profile:router_map",
+    // [Start module_appEnvironments]
+    "appEnvironments": [
+      {
+        "name": "name1",
+        "value": "value1"
+      }
+    ],
+    // [End module_appEnvironments]
+    // [Start module_fileContextMenu]
+    "fileContextMenu": "$profile:menu",
+    // [End module_fileContextMenu]
+    "crossAppSharedConfig": "$profile:shared_config",
+    // [StartExclude module_all]
+    // [Start module_systemTheme]
+    "systemTheme": "$profile:theme_config",
+    // [End module_systemTheme]
+    // [EndExclude module_all]
+  }
+}
+// [End module_all]

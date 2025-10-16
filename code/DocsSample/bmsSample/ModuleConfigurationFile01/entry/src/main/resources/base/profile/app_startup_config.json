@@ -1,0 +1,7 @@
+{
+  "startupTasks": [
+  ],
+  "appPreloadHintStartupTasks": [
+  ],
+  "configEntry": "./ets/entryability/EntryAbility.ets"
+}
