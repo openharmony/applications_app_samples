@@ -212,11 +212,15 @@ function closeServer() {
   // 连接使用完毕后，主动关闭。取消相关事件的订阅。
   tlsSocket!.close((err: BusinessError) => {
     if (err) {
+      // [StartExclude tls_server_close]
       workerPort.postMessage({ type: 'closeFailure', message: 'TLS connection close failed' });
+      // [EndExclude tls_server_close]
       console.error('tls close callback error = ' + err);
     } else {
       console.info('tls close success');
+      // [StartExclude tls_server_close]
       workerPort.postMessage({ type: 'closeSuccess', message: 'TLS connection close success' });
+      // [EndExclude tls_server_close]
     }
     tlsSocket!.off('message');
     tlsSocket!.off('connect');

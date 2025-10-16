@@ -134,7 +134,6 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
       key: privateKey
     };
     // [EndExclude two-way_bindTlsSocket]
-    // 监听消息
     // 确保bind成功后，再订阅TLS Socket相关的订阅事件
     tlsSocket!.on('message', (value: SocketInfo) => {
       console.log('on message');

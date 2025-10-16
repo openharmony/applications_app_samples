@@ -14,7 +14,6 @@
  */
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import Logger from '../common/Logger';
 // [Start multicast_worker_import]
 import { socket } from '@kit.NetworkKit';
 // [End multicast_worker_import]
@@ -47,19 +46,27 @@ function startMulticast(data: socket.NetAddress) {
   // [End multicast_worker_multicast]
 
   // [Start multicast_worker_multicastConfig]
-  // 这里构造一个对象用于加入多播组
+  // [StartExclude multicast_worker_multicastConfig]
+  // 构造一个对象用于加入多播组
   let addr : socket.NetAddress = {
     address: data.address,
     port: data.port,
     family: data.family
   };
-
+  // [EndExclude multicast_worker_multicastConfig]
+  // 加入多播组。
   multicast.addMembership(addr).then(() => {
+    // [StartExclude multicast_worker_multicastConfig]
     postMessage({ type: 'multicastStatus', status: 'Joined multicast group' });
-    Logger.info(`Multicast: Joined group ${data.address}:${data.port}`);
+    console.info(`Multicast: Joined group ${data.address}:${data.port}`);
+    // [EndExclude multicast_worker_multicastConfig]
+    console.info('addMembership success');
   }).catch((err: BusinessError) => {
+    // [StartExclude multicast_worker_multicastConfig]
     postMessage({ type: 'multicastStatus', status: 'Failed to join multicast group' });
-    Logger.error(`Multicast: Failed to join group ${data.address}:${data.port} - ${JSON.stringify(err)}`);
+    console.error(`Multicast: Failed to join group ${data.address}:${data.port} - ${JSON.stringify(err)}`);
+    // [EndExclude multicast_worker_multicastConfig]
+    console.error('addMembership fail');
   });
   // [End multicast_worker_multicastConfig]
   // [Start multicast_worker_on_message]
@@ -76,30 +83,35 @@ function startMulticast(data: socket.NetAddress) {
       str += String.fromCharCode(uintArray[i])
     }
     console.info(str)
+    // [StartExclude multicast_worker_on_message]
     postMessage({ type: 'multicastMessage', status: 'Message received', message: str });
+    // [EndExclude multicast_worker_on_message]
   });
   // [End multicast_worker_on_message]
   // [Start multicast_worker_send]
   // 发送一条多播消息
   multicast.send({ data: 'Hello multicast group!', address: addr }).then(() => {
-    Logger.info('Multicast: Message sent successfully');
+    console.info('Multicast: Message sent successfully');
   }).catch((err: BusinessError) => {
-    Logger.error(`Multicast: Failed to send message - ${JSON.stringify(err)}`);
+    console.error(`Multicast: Failed to send message - ${JSON.stringify(err)}`);
   });
   // [End multicast_worker_send]
 
   // 设定一定时间后退出多播组
   setTimeout(() => {
     // [Start multicast_worker_off_message]
+    // 关闭消息的监听。
     multicast.off('message');
     // [End multicast_worker_off_message]
 
     // [Start multicast_worker_dropMembership]
     multicast.dropMembership(addr).then(() => {
+      // [StartExclude multicast_worker_dropMembership]
       postMessage({ type: 'multicastStatus', status: 'Dropped multicast membership' });
-      Logger.info('Multicast: Dropped membership successfully');
+      // [StartExclude multicast_worker_dropMembership]
+      console.info('Multicast: Dropped membership successfully');
     }).catch((err: BusinessError) => {
-      Logger.error(`Multicast: Failed to drop membership - ${JSON.stringify(err)}`);
+      console.error(`Multicast: Failed to drop membership - ${JSON.stringify(err)}`);
     });
     // [End multicast_worker_dropMembership]
   }, MULTICAST_MESSAGE_SEND_INTERVAL);

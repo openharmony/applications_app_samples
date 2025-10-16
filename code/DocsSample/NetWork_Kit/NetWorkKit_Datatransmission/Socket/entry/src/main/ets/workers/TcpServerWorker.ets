@@ -19,7 +19,6 @@ import { TcpMessage } from '../connect/TcpClient';
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End tcp_server_worker_import]
-import Logger from '../common/Logger';
 
 // [Start tcp_server_worker_tcpServer]
 // 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
@@ -50,15 +49,21 @@ function handleMessage(message: TcpMessage) {
 function startServer(tcpMessage: TcpMessage) {
   // [Start tcp_server_worker_ipAddress]
   // 绑定本地IP地址和端口，进行监听。
+  // [StartExclude tcp_server_worker_ipAddress]
   let ipAddress: socket.NetAddress = {} as socket.NetAddress;
   ipAddress.address = tcpMessage.serverIp!; // 服务端IP
   ipAddress.port = tcpMessage.serverPort; // 端口号
+  // [EndExclude tcp_server_worker_ipAddress]
   tcpServer.listen(ipAddress).then(() => {
-    Logger.info('listen success');
+    console.info('listen success');
+    // [StartExclude tcp_server_worker_ipAddress]
     workerPort.postMessage({ type: 'listen success' });
+    // [EndExclude tcp_server_worker_ipAddress]
   }).catch(() => {
-    Logger.info('listen fail');
+    console.info('listen fail');
+    // [StartExclude tcp_server_worker_ipAddress]
     workerPort.postMessage({ type: 'listen fail' });
+    // [EndExclude tcp_server_worker_ipAddress]
   });
   // [End tcp_server_worker_ipAddress]
 
@@ -67,20 +72,22 @@ function startServer(tcpMessage: TcpMessage) {
     public message: ArrayBuffer = new ArrayBuffer(1);
     public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
   }
-
-  tcpServer.on('connect', (client_: socket.TCPSocketConnection) => {
+  // 订阅TCPSocketServer的connect事件
+  // 客户端与服务端建立连接后，返回一个TCPSocketConnection对象，用于与客户端通信。
+  tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
     // [StartExclude tcp_server_worker_socketInfo]
-    Logger.info('client connected');
+    console.info('client connected');
     workerPort.postMessage({ type: 'client connected' });
+    // 保存客户端连接
+    client = client;
     // [EndExclude tcp_server_worker_socketInfo]
 
-    // 保存客户端连接
-    client = client_;
-
-    // 订阅客户端连接的事件
+    // client即为建立连接后获取到的连接对象，可以通过该对象订阅TCPSocketConnection相关的事件。
     client.on('close', () => {
-      Logger.info('client on close success');
+      console.info('client on close success');
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'client on close success' });
+      // [EndExclude tcp_server_worker_socketInfo]
     });
 
     client.on('message', (value: SocketInfo) => {
@@ -95,7 +102,9 @@ function startServer(tcpMessage: TcpMessage) {
       console.log('received family--:' + value.remoteInfo.family);
       console.log('received port--:' + value.remoteInfo.port);
       console.log('received size--:' + value.remoteInfo.size);
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'received message--', message: str });
+      // [EndExclude tcp_server_worker_socketInfo]
     });
   });
   // [StartExclude tcp_server_worker_socketInfo]
@@ -114,16 +123,19 @@ function sendMessage(tcpMessage: TcpMessage) {
     tcpSendOptions.data = tcpMessage.message!;
 
     client.send(tcpSendOptions).then(() => {
-      Logger.info('send success');
+      console.info('send success');
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'send success', message: tcpMessage.message });
-
+      // [EndExclude tcp_server_worker_socketInfo]
     }).catch((err: Object) => {
-      Logger.error('send fail: ' + JSON.stringify(err));
+      console.error('send fail: ' + JSON.stringify(err));
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'send fail', message: JSON.stringify(err) });
+      // [EndExclude tcp_server_worker_socketInfo]
     });
     // [StartExclude tcp_server_worker_socketInfo]
   } else {
-    Logger.info('No client connected');
+    console.info('No client connected');
     workerPort.postMessage({ type: 'No client connected' });
   }
 }
@@ -132,11 +144,15 @@ function disConnect() {
   if (client) {
     // [EndExclude tcp_server_worker_socketInfo]
     client.close().then(() => {
-      Logger.info('close success');
+      console.info('close success');
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'close success' });
+      // [EndExclude tcp_server_worker_socketInfo]
     }).catch((err: BusinessError) => {
-      Logger.info('close fail');
+      console.info('close fail');
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'close fail', message: JSON.stringify(err) });
+      // [EndExclude tcp_server_worker_socketInfo]
     });
 
     // 取消事件订阅，设置关闭连接超时（例如 10 秒后取消关闭连接）
@@ -147,7 +163,7 @@ function disConnect() {
     // [End tcp_server_worker_socketInfo]
 
   } else {
-    Logger.info('No client to close');
+    console.info('No client to close');
     workerPort.postMessage({ type: 'No client to close' });
 
   }

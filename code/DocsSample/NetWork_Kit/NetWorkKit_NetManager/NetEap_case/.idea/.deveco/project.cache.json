@@ -1,0 +1,16 @@
+{
+	"CommonInfo":{
+		"project.ide.version":"5.1.1.830",
+		"current.select.product":"default",
+		"current.select.buildMode":"",
+		"crossplatform.projectType":""
+	},
+	"BuildOptions":{
+		"SELECT_BUILD_PRODUCT":"default",
+		"BUNDLE_NAME":"com.example.eap",
+		"BUILD_PATH":{
+			"OUTPUT_PATH":"D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\build\\outputs\\default"
+		},
+		"SELECT_BUILD_MODE":""
+	}
+}

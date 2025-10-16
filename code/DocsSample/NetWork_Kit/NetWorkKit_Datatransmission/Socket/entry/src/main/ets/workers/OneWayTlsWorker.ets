@@ -171,10 +171,14 @@ function sendMessageToServer(message: string) {
   // 建立连接，连接建立成功后，可以发送数据。
   tlsOneWaySocket.send(message + '\r\n').then(() => {
     console.info('send successfully');
+    // [StartExclude tls_worker_bind_the_server]
     workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
+    // [EndExclude tls_worker_bind_the_server]
   }).catch((e: BusinessError) => {
     console.error('send failed ' + JSON.stringify(e));
+    // [StartExclude tls_worker_bind_the_server]
     workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
+    // [EndExclude tls_worker_bind_the_server]
   });
   // [End tls_worker_bind_the_server]
 }
@@ -189,10 +193,14 @@ function closeConnection() {
   tlsOneWaySocket!.close((err: BusinessError) => {
     if (err) {
       console.error('close callback error = ' + err);
+      // [StartExclude tls_worker_close_the_server]
       workerPort.postMessage({ type: 'Close connection failed' });
+      // [EndExclude tls_worker_close_the_server]
     } else {
       console.info('close success');
+      // [StartExclude tls_worker_close_the_server]
       workerPort.postMessage({ type: 'Connection closed' });
+      // [EndExclude tls_worker_close_the_server]
     }
     tlsOneWaySocket!.off('message');
     tlsOneWaySocket!.off('connect');

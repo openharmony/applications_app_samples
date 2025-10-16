@@ -18,7 +18,6 @@ import { MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
 // [End local_socket_worker_import]
-import Logger from '../common/Logger';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -51,12 +50,17 @@ function stringToArrayBuffer(str: string): ArrayBuffer {
   return buf;
 }
 
+// [Start local_socket_worker_client]
+// 创建一个LocalSocket连接，返回一个LocalSocket对象。
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+// [End local_socket_worker_client]
 
 // 启动本地 Socket 客户端
 function startLocalSocket(address: string, timeout: number, closeTime: number): void {
-  // [Start local_socket_worker_client]
-  let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-  // [End local_socket_worker_client]
+  // // [Start local_socket_worker_client]
+  // // 创建一个LocalSocket连接，返回一个LocalSocket对象。
+  // let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+  // // [End local_socket_worker_client]
 
   // [Start local_socket_worker_on_message]
   client.on('message', (value: socket.LocalSocketMessageInfo) => {
@@ -65,38 +69,42 @@ function startLocalSocket(address: string, timeout: number, closeTime: number): 
     for (let i = 0; i < uintArray.length; i++) {
       messageView += String.fromCharCode(uintArray[i]);
     }
-    Logger.info(`Client received: ${messageView}`);
+    console.info('total receive: ' + JSON.stringify(value));
+    console.info('message information: ' + messageView);
   });
 
   client.on('connect', () => {
-    // [StartExclude local_socket_worker_on_message_part_one]
+    // [StartExclude local_socket_worker_on_message]
     workerPort.postMessage({ type: 'clientStatus', status: 'Connected' });
-    // [EndExclude local_socket_worker_on_message_part_one]
-    Logger.info('Client connected');
+    // [EndExclude local_socket_worker_on_message]
+    console.info('Client connected');
   });
 
   client.on('close', () => {
-    // [StartExclude local_socket_worker_on_message_part_two]
+    // [StartExclude local_socket_worker_on_message]
     workerPort.postMessage({ type: 'clientStatus', status: 'Closed' });
-    // [EndExclude local_socket_worker_on_message_part_two]
-    Logger.info('Client closed');
+    // [EndExclude local_socket_worker_on_message]
+    console.info('Client closed');
   });
   // [End local_socket_worker_on_message]
 
-  // [Start local_socket_worker_sendOpt]
   let sendOpt: socket.LocalSendOptions = {
     data: 'Hello world!'
   };
-
-  client.connect({ address: { address }, timeout }).then(() => {
-    Logger.info(`connect success`);
+  let connectOpt: socket.LocalConnectOptions = {
+    address: { address },
+    timeout: timeout
+  }
+  // [Start local_socket_worker_sendOpt]
+  client.connect(connectOpt).then(() => {
+    console.info(`connect success`);
     client.send(sendOpt).then(() => {
-      Logger.info(`send success`);
+      console.info(`send success`);
     }).catch((err: Object) => {
-      Logger.info(`send failed: ` + JSON.stringify(err));
+      console.info(`send failed: ` + JSON.stringify(err));
     });
   }).catch((err: Object) => {
-    Logger.info(`connect fail: ` + JSON.stringify(err));
+    console.info(`connect fail: ` + JSON.stringify(err));
   });
   // [End local_socket_worker_sendOpt]
 
@@ -113,14 +121,20 @@ function startLocalSocketServer(address: string): void {
   // 创建一个LocalSocketServer连接，返回一个LocalSocketServer对象。
   let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
   // [End local_socket_server_create]
-
+  let listenAddr: socket.LocalAddress = {
+    address: address
+  }
   // [Start local_socket_worker_server_listen]
-  server.listen({ address }).then(() => {
+  server.listen(listenAddr).then(() => {
+    // [StartExclude local_socket_worker_server_listen]
     workerPort.postMessage({ type: 'serverStatus', status: 'Listening' });
-    Logger.info(`Server listening on ${address}`);
+    // [EndExclude local_socket_worker_server_listen]
+    console.info(`Server listening on ${address}`);
   }).catch((err: object) => {
+    // [StartExclude local_socket_worker_server_listen]
     workerPort.postMessage({ type: 'serverStatus', status: 'Listen Failed' });
-    Logger.error(`Server listen error: ${JSON.stringify(err)}`);
+    // [EndExclude local_socket_worker_server_listen]
+    console.error(`Server listen error: ${JSON.stringify(err)}`);
   });
   // [End local_socket_worker_server_listen]
 
@@ -129,18 +143,16 @@ function startLocalSocketServer(address: string): void {
   server.on('connect', (connection: socket.LocalSocketConnection) => {
     // 订阅LocalSocketConnection相关的事件。
     connection.on('error', (err: Object) => {
-      console.log('on error success');
+      console.info('on error success');
     });
-
     connection.on('message', (value: socket.LocalSocketMessageInfo) => {
       const uintArray = new Uint8Array(value.message);
       let messageView = '';
       for (let i = 0; i < uintArray.length; i++) {
         messageView += String.fromCharCode(uintArray[i]);
       }
-      Logger.info(`Server received: ${messageView}`);
+      console.info(`Server received: ${messageView}`);
     });
-
     connection.on('error', (err: Object) => {
       console.error('err:' + JSON.stringify(err));
     })
@@ -150,15 +162,27 @@ function startLocalSocketServer(address: string): void {
       data: 'Hello world!'
     };
     connection.send(sendOpt).then(() => {
-      Logger.info('Server send success');
+      console.info('Server send success');
     }).catch((err: object) => {
-      Logger.error(`Server send failed: ${JSON.stringify(err)}`);
+      console.error(`Server send failed: ${JSON.stringify(err)}`);
     });
+
+    // [StartExclude local_socket_worker_server_connection]
     setTimeout(() => {
-      // 取消事件订阅
-      connection.close();
-      Logger.info('Connection close by server.');
+      // [EndExclude local_socket_worker_server_connection]
+      // 关闭与客户端的连接。
+      connection.close().then(() => {
+        console.log('close success');
+      }).catch((err: Object) => {
+        console.error('close failed: ' + JSON.stringify(err));
+      });
+
+      // 取消LocalSocketConnection相关的事件订阅。
+      connection.off('message');
+      connection.off('error');
+      // [StartExclude local_socket_worker_server_connection]
     }, 10000); // 设置一个合理的超时关闭
+    // [EndExclude local_socket_worker_server_connection]
   });
   // [End local_socket_worker_server_connection]
 
@@ -167,10 +191,10 @@ function startLocalSocketServer(address: string): void {
   // 在关闭服务器连接时取消事件订阅
   setTimeout(() => {
     // [Start local_socket_worker_server_off]
-    // 取消事件订阅
+    // 取消LocalSocketServer相关的事件订阅。
     server.off('connect');
     server.off('error');
     // [End local_socket_worker_server_off]
-    Logger.info('Server events unsubscribed.');
+    console.info('Server events unsubscribed.');
   }, 30000); // 设置一个合理的超时关闭（例如30秒后关闭服务器）
 }

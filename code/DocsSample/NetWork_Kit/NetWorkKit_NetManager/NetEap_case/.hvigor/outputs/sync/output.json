@@ -1,0 +1,187 @@
+{
+  "ohos-module-entry": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+          "SOURCE_MAP_DIR": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\source_map\\default"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      },
+      "ohosTest": {
+        "SOURCE_ROOT": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\src\\ohosTest",
+        "RESOURCES_PATH": [
+          "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\src\\ohosTest\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\outputs\\ohosTest",
+          "INTERMEDIA_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\loader_out\\ohosTest",
+          "JS_LITE_ASSETS_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
+          "RES_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\res\\ohosTest",
+          "RES_PROFILE_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
+          "MANIFEST_JSON": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\manifest\\ohosTest",
+          "OUTPUT_METADATA_JSON": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json",
+          "SOURCE_MAP_DIR": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry\\build\\default\\intermediates\\source_map\\ohosTest"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "strictMode": {
+          "caseSensitiveCheck": true,
+          "useNormalizedOHMUrl": true
+        },
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": false,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    },
+    "BUILD_CACHE_DIR": ""
+  },
+  "ohos-project": {
+    "SELECT_PRODUCT_NAME": "default",
+    "MODULE_BUILD_DIR": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\build",
+    "BUNDLE_NAME": "com.example.eap",
+    "BUILD_PATH": {
+      "OUTPUT_PATH": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\build\\outputs\\default"
+    },
+    "MODULES": [
+      {
+        "name": "entry",
+        "srcPath": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case\\entry",
+        "targets": [
+          {
+            "name": "default",
+            "applyToProducts": [
+              "default"
+            ]
+          }
+        ],
+        "belongProjectPath": "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case"
+      }
+    ],
+    "PROFILE_OPT": {
+      "app": {
+        "signingConfigs": [
+          {
+            "name": "default",
+            "material": {
+              "certpath": "C:/Users/lenovo/.ohos/config/openharmony/default_eap_jkrzRcrKpMpEa8MXWoWfT2FmrjvE5fqv6JrCjH9Wpp8=.cer",
+              "keyAlias": "debugKey",
+              "keyPassword": "0000001B7181DBB32ED97681CB32ABAB23F85C031A832B28B55CA1F0D35624A0CF38D8DE3425573CE5D41E",
+              "profile": "C:/Users/lenovo/.ohos/config/openharmony/default_eap_jkrzRcrKpMpEa8MXWoWfT2FmrjvE5fqv6JrCjH9Wpp8=.p7b",
+              "signAlg": "SHA256withECDSA",
+              "storeFile": "C:/Users/lenovo/.ohos/config/openharmony/default_eap_jkrzRcrKpMpEa8MXWoWfT2FmrjvE5fqv6JrCjH9Wpp8=.p12",
+              "storePassword": "0000001BB182C302AD946699DC775A8246F9A09EF7BD0709EFB6DB200AA9149CEED212640681D87B50E929"
+            }
+          }
+        ],
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "compileSdkVersion": 20,
+            "compatibleSdkVersion": 20,
+            "runtimeOS": "OpenHarmony",
+            "buildOption": {
+              "strictMode": {
+                "caseSensitiveCheck": true,
+                "useNormalizedOHMUrl": true
+              }
+            }
+          }
+        ],
+        "buildModeSet": [
+          {
+            "name": "debug"
+          },
+          {
+            "name": "release"
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "entry",
+          "srcPath": "./entry",
+          "targets": [
+            {
+              "name": "default",
+              "applyToProducts": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "CONFIG_PROPERTIES": {
+      "enableSignTask": true,
+      "skipNativeIncremental": false,
+      "hvigor.keepDependency": true
+    },
+    "OVERALL_PROJECT_PATHS": [
+      "D:\\work\\network-Kit\\all_project_pj_1011\\applications_app_samples_network_1011\\code\\DocsSample\\NetWork_Kit\\NetWorkKit_NetManager\\NetEap_case"
+    ],
+    "BUILD_CACHE_DIR": ""
+  },
+  "version": 1
+}
