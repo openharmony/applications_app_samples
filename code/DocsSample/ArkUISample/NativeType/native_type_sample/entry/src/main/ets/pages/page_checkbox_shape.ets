@@ -36,11 +36,17 @@ struct Index {
 
   build() {
     Column() {
-      Button('CheckboxShape')
+      Button($r('app.string.set_checkbox_shape'))
         .height(50)
-        .width('50%')
+        .width('40%')
         .bindMenu(this.SubMenuModeType)
         .margin({ top: 40, bottom: 10 })
+      Button($r('app.string.return_to_home_screen'))
+        .height(50)
+        .width('40%')
+        .onClick(() => {
+          this.getUIContext().getRouter().back();
+        })
       Blank()
         .height(200)
       ContentSlot(this.currentNodeContent)

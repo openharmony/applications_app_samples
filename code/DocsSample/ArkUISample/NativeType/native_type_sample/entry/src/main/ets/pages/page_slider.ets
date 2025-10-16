@@ -101,21 +101,28 @@ struct thirdIndex {
   build() {
     Column() {
       Column() {
-        Button('SliderBlockStyle')
+        Button($r('app.string.set_slider_block_style'))
           .height(50)
           .width('40%')
           .bindMenu(this.SubMenuSliderBlockStyle)
-          .margin({ top: 20, bottom: 10 })
-        Button('SliderDirection')
+          .margin({ top: 10, bottom: 10 })
+        Button($r('app.string.set_slider_direction'))
           .height(50)
           .width('40%')
           .bindMenu(this.SubMenuSliderDirection)
-          .margin({ top: 20, bottom: 10 })
-        Button('SliderStyle')
+          .margin({ top: 10, bottom: 10 })
+        Button($r('app.string.set_slider_style'))
           .height(50)
           .width('40%')
           .bindMenu(this.SubMenuSliderStyle)
-          .margin({ top: 20, bottom: 10 })
+          .margin({ top: 10, bottom: 10 })
+        Button($r('app.string.return_to_home_screen'))
+          .height(50)
+          .width('40%')
+          .margin({ top: 10, bottom: 10 })
+          .onClick(() => {
+            this.getUIContext().getRouter().back();
+          })
         ContentSlot(this.nodeContent)
       }
       .width('100%')

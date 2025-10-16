@@ -40,11 +40,17 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button('ButtonType')
+        Button($r('app.string.set_button_type'))
           .height(50)
-          .width('50%')
+          .width('40%')
           .bindMenu(this.SubMenuModeType)
           .margin({ top: 40, bottom: 10 })
+        Button($r('app.string.return_to_home_screen'))
+          .height(50)
+          .width('40%')
+          .onClick(() => {
+            this.getUIContext().getRouter().back();
+          })
         Column() {
           ContentSlot(this.nodeContent)
         }
