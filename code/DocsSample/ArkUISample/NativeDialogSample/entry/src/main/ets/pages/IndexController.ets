@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 import testNapi2 from 'libnativerender.so';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { common } from '@kit.AbilityKit';
 
 enum ControllerAttributeType {
   Native_Background_Color = 1, // 背景颜色
@@ -55,6 +53,7 @@ struct Index {
   @State isCreateKey: boolean = false; // 是否创建键盘
   @State stateInfos: string = '';
   @State printDefaultText: boolean = false; // 是否打印默认文本
+  @Provide place: string = '';
 
   @Builder
   SubMenuAttributeType() {
@@ -64,11 +63,21 @@ struct Index {
         this.nodeType = ControllerAttributeType.Native_Background_Color;
         this.nodeValue = 0xFFFFFFFF;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        if (result === 0){
+          this.totalInfo += 'Set the background color to white\n';
+        }else{
+          this.totalInfo += 'Failed to set background color\n';
+        }
       })
       MenuItem({ content: '圆角半径: 15' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Corner_Radius;
         this.nodeValue = 15;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        if (result === 0){
+          this.totalInfo += 'Set the corner radius: 15\n';
+        }else{
+          this.totalInfo += 'Failed to set border radius\n';
+        }
       })
       // 设置自定义弹窗对齐方式
       MenuItem({ content: '设置弹窗对齐方式' }).width('50%').onChange(() => {
@@ -76,7 +85,7 @@ struct Index {
         this.nodeType = ControllerAttributeType.Native_Content_Alignment;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'ARKUI_ALIGNMENT_TOP\n';
+          this.totalInfo += 'Top center\n';
         } else {
           this.totalInfo += 'Failed to set contentAlignment\n';
         }
@@ -89,7 +98,7 @@ struct Index {
         if (result === 0) {
           this.totalInfo += 'ARKUI_ALIGNMENT_CENTER\n';
         } else {
-          this.totalInfo += 'Failed to ResetContentAlignment\n';
+          this.totalInfo += 'Failed to reset content alignment\n';
         }
       })
       // 设置自定义弹窗是否开启模态样式的弹窗
@@ -104,18 +113,18 @@ struct Index {
         if (result === 0) {
           this.totalInfo += 'Set the overlay color to red\n';
         } else {
-          this.totalInfo += 'Failed to setMask\n';
+          this.totalInfo += 'Failed to set mask\n';
         }
       })
       // 设置弹窗宽度占栅格宽度的个数
       MenuItem({ content: '设置弹窗宽度占栅格宽度的个数' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Column_Count;
-        this.nodeValue = 100;
+        this.nodeValue = 20;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
           this.totalInfo += 'Set the number of grid widths that the popup occupies to 20\n';
         } else {
-          this.totalInfo += 'Failed to setGridColumnCount\n';
+          this.totalInfo += 'Failed to set grid column count\n';
         }
       })
       // 弹窗容器样式是否可以自定义
@@ -127,25 +136,35 @@ struct Index {
         this.nodeType = ControllerAttributeType.Native_Custom_Animation;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Apply custom transition effects to the modal\n';
+          this.totalInfo += 'Not actually displayed\n';
         } else {
-          this.totalInfo += 'Failed to enableCustomAnimation\n';
+          this.totalInfo += 'Failed to enable custom animation\n';
         }
       })
 
-      // 当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册了该回调函数，弹窗不会立即关闭，而是由用户决定是否关闭。 未涉及
-      MenuItem({ content: '触发系统定义的返回操作失效' }).width('50%').onChange(() => {
+      // 当触发系统定义的返回操作、键盘ESC关闭交互操作时，如果注册了该回调函数，弹窗不会立即关闭，而是由用户决定是否关闭。
+      MenuItem({ content: '系统返回操作关闭弹窗' }).width('50%').onChange(() => {
         this.nodeValue = 1;
         this.nodeType = ControllerAttributeType.Native_Register_OnWill_Dismiss;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'System-defined back navigation trigger fails to work\n';
+          this.totalInfo += 'The system-defined back operation closes the dialog\n';
         } else {
           this.totalInfo += 'Failed to registerOnWillDismiss\n';
         }
       })
       // 注册系统关闭自定义弹窗的监听事件
-      MenuItem({ content: '注册系统关闭自定义弹窗的监听事件', builder: (): void => this.SubMenu_Register_OnWill_Dismiss_With_User_Data() }).width('50%')
+      MenuItem({ content: '注册系统关闭自定义弹窗的监听事件' }).width('50%').onChange(() => {
+        this.nodeValue = 1;
+        this.nodeType = ControllerAttributeType.Native_Register_OnWill_Dismiss_With_User_Data;
+        this.totalInfo += 'true\n';
+        const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        if (result === 0) {
+          this.totalInfo += 'The system-defined back operation does not close the dialog\n';
+        } else {
+          this.totalInfo += 'Failed to registerOnWillDismiss\n';
+        }
+      })
       // 设置弹窗的显示层级。
       MenuItem({ content: '设置弹窗的显示层级', builder: (): void => this.SubMenu_Native_Level_Mode() }).width('50%')
       // 设置弹窗显示层级页面下的节点id
@@ -156,7 +175,7 @@ struct Index {
         if (result === 0) {
           this.totalInfo += 'Sets the level uniqueId to 0 for a custom dialog box\n';
         } else {
-          this.totalInfo += 'Failed to setLevelUniqueId\n';
+          this.totalInfo += 'Failed to set level unique id\n';
         }
       })
       // 设置嵌入式弹窗蒙层的显示区域
@@ -167,7 +186,7 @@ struct Index {
         if (result === 0) {
           this.totalInfo += 'ARKUI_IMMERSIVE_MODE_DEFAULT\n';
         } else {
-          this.totalInfo += 'Failed to setImmersiveMode\n';
+          this.totalInfo += 'Failed to set immersive mode\n';
         }
       })
       //设置自定义弹窗显示的顺序
@@ -178,48 +197,78 @@ struct Index {
         if (result === 0) {
           this.totalInfo += 'Set the display order of the custom dialog box to 0\n';
         } else {
-          this.totalInfo += 'Failed to setLevelOrder\n';
+          this.totalInfo += 'Failed to set level order\n';
         }
       })
       // 设置自定义弹窗的边框颜色
       MenuItem({ content: '边框颜色：黄色' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Border_Colors;
         this.nodeValue = 0xFFFFFF00;
-        testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        if (result === 0){
+          this.totalInfo += 'Set border color to yellow\n';
+        }else{
+          this.totalInfo += 'Failed to set border color\n';
+        }
       })
       // 设置自定义弹窗的边框样式
       MenuItem({ content: '边框样式：点状' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Border_Style;
         this.nodeValue = 2;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
-        if (result === 0) {
-          this.totalInfo += 'Set the border style to dotted\n';
-        } else {
-          this.totalInfo += 'Failed to setBorderStyle\n';
+        if (result === 0){
+          this.totalInfo += 'Set border style to dotted\n';
+        }else{
+          this.totalInfo += 'Failed to set border style\n';
         }
       })
       // 设置自定义弹窗的背板阴影
       MenuItem({ content: '背板阴影' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Backboard_Shadow;
         this.nodeValue = 0;
-        testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        if (result === 0){
+          this.totalInfo += 'ARKUI_SHADOW_STYLE_OUTER_DEFAULT_LG\n';
+        }else{
+          this.totalInfo += 'Failed to set shadow\n';
+        }
       })
       // 设置自定义弹窗的背板阴影
       MenuItem({ content: '自定义背板阴影' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Backboard_CustomShadow;
         this.nodeValue = 0;
-        testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        if (result === 0){
+          this.totalInfo += 'Set custom backboard shadow\n';
+        }else{
+          this.totalInfo += 'Failed to set custom backboard shadow\n';
+        }
       })
       // 设置自定义弹窗的背板模糊材质
       MenuItem({ content: '背板模糊材质' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Background_Blur_Style;
         this.nodeValue = 0;
-        testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        if (result === 0){
+          this.totalInfo += 'ARKUI_BLUR_STYLE_COMPONENT_ULTRA_THICK\n';
+        }else{
+          this.totalInfo += 'Failed to set background blur style\n';
+        }
       })
       // 设置自定义弹窗避让键盘模式
-      MenuItem({ content: '弹窗避让键盘模式', builder: (): void => this.SubMenu_Keyboard_Avoid_Mode() }).width('50%')
+      MenuItem({ content: '弹窗避让键盘模式' }).width('50%').onChange(() => {
+        this.nodeType = ControllerAttributeType.Native_Keyboard_Avoid_Mode;
+        this.nodeValue = 1;
+        this.isCreateKey = true;
+        const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
+        if (result === 0) {
+          this.totalInfo += 'Do not avoid keyboard mode\n';
+        } else {
+          this.totalInfo += 'Failed to set avoid keyboard mode\n';
+        }
+      })
       // 设置自定义弹窗是否响应悬停态
-      MenuItem({ content: '是否响应悬停态' }).width('50%').onChange(() => {
+      MenuItem({ content: '响应悬停' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Hover_Mode_Enabled;
         this.nodeValue = 1;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
@@ -239,9 +288,9 @@ struct Index {
         this.nodeValue = 1;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Sets the background blur effect for a custom dialog box\n';
+          this.totalInfo += 'Set background blur effect for the dialog\n';
         } else {
-          this.totalInfo += 'Failed to SetBackgroundBlurStyleOptions\n';
+          this.totalInfo += 'Failed to background blur effect\n';
         }
       })
       // 设置自定义弹窗的背景效果参数
@@ -250,9 +299,9 @@ struct Index {
         this.nodeValue = 1;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Sets the background effect parameters for a custom dialog box\n';
+          this.totalInfo += 'Set background effect for the dialog\n';
         } else {
-          this.totalInfo += 'Failed to SetBackgroundEffect\n';
+          this.totalInfo += 'Failed to background effect\n';
         }
       })
     }
@@ -264,23 +313,23 @@ struct Index {
       MenuItem({ content: '上半屏' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Hover_Mode_Area;
         this.nodeValue = 0;
-        const result: number = testNapi2.setCustomDialog(this.nodeType, this.nodeValue);
+        const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Effective only on foldable screens\n';
+          this.totalInfo += 'Popup defaults to upper screen area in hover state\n';
         } else {
-          this.totalInfo += 'Failed to SetHoverModeEnabled\n';
+          this.totalInfo += 'Failed to set hover mode\n';
         }
       })
     }
     Menu() {
-      MenuItem({ content: '上半屏' }).width('50%').onChange(() => {
+      MenuItem({ content: '下半屏' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Hover_Mode_Area;
         this.nodeValue = 1;
-        const result: number = testNapi2.setCustomDialog(this.nodeType, this.nodeValue);
+        const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Effective only on foldable screens\n';
+          this.totalInfo += 'Popup defaults to lower screen area in hover state\n';
         } else {
-          this.totalInfo += 'Failed to SetHoverModeEnabled\n';
+          this.totalInfo += 'Failed to set hover mode\n';
         }
       })
     }
@@ -292,11 +341,12 @@ struct Index {
       MenuItem({ content: '是' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Focusable;
         this.nodeValue = 1;
+        this.isCreateKey = true;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
           this.totalInfo += 'Focus acquisition succeeded\n';
         } else {
-          this.totalInfo += 'Failed to SetFocusable\n';
+          this.totalInfo += 'Failed to set focusable\n';
         }
       })
     }
@@ -304,11 +354,12 @@ struct Index {
       MenuItem({ content: '否' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Focusable;
         this.nodeValue = 0;
+        this.isCreateKey = true;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Failed to acquire focus\n';
+          this.totalInfo += 'Disable focus acquisition\n';
         } else {
-          this.totalInfo += 'Failed to SetFocusable\n';
+          this.totalInfo += 'Failed to set focusable\n';
         }
       })
     }
@@ -322,9 +373,9 @@ struct Index {
         this.nodeType = ControllerAttributeType.Native_Modal_Mode;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Open Modal\n';
+          this.totalInfo += 'Set the dialog to modal mode\n';
         } else {
-          this.totalInfo += 'Failed to Open Modal\n';
+          this.totalInfo += 'Failed to set the dialog to modal mode\n';
         }
       })
     }
@@ -334,9 +385,9 @@ struct Index {
         this.nodeType = ControllerAttributeType.Native_Modal_Mode;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Close Modal\n';
+          this.totalInfo += 'Set the dialog to non-modal mode\n';
         } else {
-          this.totalInfo += 'Failed to Close Modal\n';
+          this.totalInfo += 'Failed to set the dialog to non-modal mode failed\n';
         }
       })
     }
@@ -348,16 +399,12 @@ struct Index {
       MenuItem({ content: '是' }).width('50%').onChange(() => {
         this.nodeValue = 1;
         this.nodeType = ControllerAttributeType.Native_Auto_Cancel;
-        this.totalInfo += 'true\n';
-        testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
-
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
           this.totalInfo += 'Enable closing the modal via overlay click\n';
         } else {
-          this.totalInfo += 'Failed to setAutoCancel\n';
+          this.totalInfo += 'Failed to set auto cancel\n';
         }
-
       })
     }
     Menu() {
@@ -368,7 +415,7 @@ struct Index {
         if (result === 0) {
           this.totalInfo += 'Disable closing the modal via overlay click\n';
         } else {
-          this.totalInfo += 'Failed to setAutoCancel\n';
+          this.totalInfo += 'Failed to set auto cancel\n';
         }
       })
     }
@@ -382,9 +429,9 @@ struct Index {
         this.nodeType = ControllerAttributeType.Native_Custom_Style;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'Modal container style customization\n';
+          this.totalInfo += 'Customize the pop-up container style to have no border\n';
         } else {
-          this.totalInfo += 'Failed to setCustomStyle\n';
+          this.totalInfo += 'Failed to set custom style\n';
         }
       })
     }
@@ -394,22 +441,10 @@ struct Index {
         this.nodeType = ControllerAttributeType.Native_Custom_Style;
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
-          this.totalInfo += 'No customization of the modal container styles\n';
+          this.totalInfo += 'Customize the pop-up container style to have border\n';
         } else {
-          this.totalInfo += 'Failed to setCustomStyle\n';
+          this.totalInfo += 'Failed to set custom style\n';
         }
-      })
-    }
-  }
-
-  @Builder
-  SubMenu_Keyboard_Avoid_Mode() {
-    Menu() {
-      MenuItem({ content: '不避让' }).width('50%').onChange(() => {
-        this.nodeType = ControllerAttributeType.Native_Keyboard_Avoid_Mode;
-        this.nodeValue = 1;
-        testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
-        this.isCreateKey = true;
       })
     }
   }
@@ -420,13 +455,11 @@ struct Index {
       MenuItem({ content: 'ARKUI_LEVEL_MODE_OVERLAY' }).width('50%').onChange(() => {
         this.nodeType = ControllerAttributeType.Native_Level_Mode;
         this.nodeValue = 0;
-        this.totalInfo += 'ARKUI_LEVEL_MODE_OVERLAY\n';
-        testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         const result: number = testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
         if (result === 0) {
           this.totalInfo += 'ARKUI_LEVEL_MODE_OVERLAY\n';
         } else {
-          this.totalInfo += 'Failed to setLevelMode\n';
+          this.totalInfo += 'Failed to set level mode\n';
         }
       })
       MenuItem({ content: 'ARKUI_LEVEL_MODE_EMBEDDED' }).width('50%').onChange(() => {
@@ -436,20 +469,8 @@ struct Index {
         if (result === 0) {
           this.totalInfo += 'ARKUI_LEVEL_MODE_EMBEDDED\n';
         } else {
-          this.totalInfo += 'Failed to setLevelMode\n';
+          this.totalInfo += 'Failed to set level mode\n';
         }
-      })
-    }
-  }
-
-  @Builder
-  SubMenu_Register_OnWill_Dismiss_With_User_Data() {
-    Menu() {
-      MenuItem({ content: '是' }).width('50%').onChange(() => {
-        this.nodeValue = 1;
-        this.nodeType = ControllerAttributeType.Native_Register_OnWill_Dismiss_With_User_Data;
-        this.totalInfo += 'true\n';
-        testNapi2.setNativeDialog(this.nodeType, this.nodeValue);
       })
     }
   }
@@ -464,20 +485,30 @@ struct Index {
 
   build() {
     Column() {
-      Text('CustomDialogController_CAPI对接示例')
-        .fontColor(0x0000FF)
-        .height('10%')
-        .fontSize(24)
-        .margin(10)
-        .fontWeight(FontWeight.Bold)
+      Row() {
+        Button($r('app.string.return_dialog'))
+          .height(25)
+          .width('10%')
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({
+              url: 'pages/Index',
+            })
+          })
+        Text($r('app.string.dialog_controller'))
+          .fontColor(0x0000FF)
+          .height('10%')
+          .fontSize(15)
+          .margin(10)
+          .fontWeight(FontWeight.Bold)
+      }
       Column({ space: 10 }) {
-        Text('配置弹窗属性')
+        Text($r('app.string.configure_popup_properties'))
           .fontSize(20)
           .fontColor(0xCCCCCC)
           .width('100%')
           .margin({ left: 10 })
         Row() {
-          Button('设置属性')
+          Button($r('app.string.set_properties'))
             .width('30%')
             .margin(10)
             .bindMenu(this.SubMenuAttributeType)
@@ -490,36 +521,51 @@ struct Index {
                 this.printDefaultText = true;
               }
             })
-          Button('重置属性')
+          Button($r('app.string.reset_properties'))
             .width('30%')
             .margin(10)
             .onClick(() => {
               testNapi2.resetDialogController();
               this.totalInfo = ' ';
+              this.isCreateKey = false;
               this.printDefaultText = false;
             })
             .margin({ left: 70 })
         }
-        Text('属性设置结果： \n' + this.totalInfo)
+        TextInput({ placeholder: $r('app.string.please_input_attribute_value') })
+          .placeholderColor(Color.Red)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .type(InputType.Password)
+          .maxLength(15)
+          .showPasswordIcon(true)
+          .visibility(this.isCreateKey?Visibility.Visible:Visibility.Hidden)
+        Text($r('app.string.dialog_state'))
           .fontSize(15)
           .fontColor(0xCCCCCC)
-          .height(40)
           .width('100%')
+          .height(5)
           .margin({ left: 10 })
-        Text('弹框状态： \n' + this.stateInfos)
-          .fontSize(20)
+        Text(this.place + this.stateInfos)
+          .fontSize(15)
+          .height(10)
           .fontColor(0xCCCCCC)
           .width('100%')
-          .margin({ left: 400 })
-        TextInput({ placeholder: 'input your password...' })
-          .width('95%')
-          .height(40)
-          .margin(20)
-          .type(InputType.Password)
-          .maxLength(9)
-          .showPasswordIcon(true)
-          .visibility(this.isCreateKey ? Visibility.Visible : Visibility.Hidden)
-        Button('点此打开弹窗')
+          .margin({ left: 10 })
+        Text($r('app.string.settings_result'))
+          .fontSize(15)
+          .fontColor(0xCCCCCC)
+          .height(5)
+          .width('100%')
+          .margin({ left: 10 })
+        Text(this.place+ this.totalInfo)
+          .fontSize(15)
+          .fontColor(0xCCCCCC)
+          .height(5)
+          .width('100%')
+          .margin({ left: 10 })
+        Button($r('app.string.open_dialog'))
           .width('40%')
           .height('10%')
           .margin(150)

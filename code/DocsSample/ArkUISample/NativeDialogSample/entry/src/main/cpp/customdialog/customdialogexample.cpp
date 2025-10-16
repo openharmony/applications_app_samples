@@ -463,6 +463,12 @@ int32_t SetDialogHoverModeEnabled(uint32_t nodeValue)
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
             "OH_ArkUI_CustomDialog_SetHoverModeEnabled failed, ret = %{public}d", ret);
     }
+    // 设置悬停态下弹窗默认展示区域
+    ret = OH_ArkUI_CustomDialog_SetHoverModeArea(g_dialogOption, ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM);
+    if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
+            "OH_ArkUI_CustomDialog_SetHoverModeArea failed, ret = %{public}d", ret);
+    }
     return ret;
 }
 
@@ -472,6 +478,12 @@ int32_t SetDialogHoverModeArea(uint32_t nodeValue)
         return ARKUI_ERROR_CODE_PARAM_INVALID;
     }
     int32_t ret = 0;
+    // 设置弹窗是否响应悬停态。
+    ret = OH_ArkUI_CustomDialog_SetHoverModeEnabled(g_dialogOption, true);
+    if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogTest",
+            "OH_ArkUI_CustomDialog_SetHoverModeEnabled failed, ret = %{public}d", ret);
+    }
     // 设置悬停态下弹窗默认展示区域
     ret = OH_ArkUI_CustomDialog_SetHoverModeArea(g_dialogOption, (ArkUI_HoverModeAreaType)nodeValue);
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
@@ -1118,6 +1130,11 @@ int32_t SetNativeDialogEnableHoverMode(uint32_t nodeValue)
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
             "enableHoverMode failed, ret = %{public}d ", ret);
     }
+    ret = g_dialogAPI3->setHoverModeArea(globalCustomDialog, ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM);
+    if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
+            "setHoverModeArea failed, ret = %{public}d ", ret);
+    }
     return ret;
 }
 
@@ -1141,8 +1158,12 @@ int32_t SetNativeDialogHoverModeArea(uint32_t nodeValue)
     if (!g_dialogAPI3 || !globalCustomDialog) {
         return ARKUI_ERROR_CODE_PARAM_INVALID;
     }
-    int32_t ret = 0;
-
+    // 设置弹窗是否响应悬停态
+    int32_t ret = g_dialogAPI3->enableHoverMode(globalCustomDialog, true);
+    if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
+            "enableHoverMode failed, ret = %{public}d ", ret);
+    }
     ret = g_dialogAPI3->setHoverModeArea(globalCustomDialog, static_cast<ArkUI_HoverModeAreaType>(nodeValue));
     if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",

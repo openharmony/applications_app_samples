@@ -24,8 +24,8 @@ native_type_sample
 entry/src/main/ets/
 └── pages
     ├── Index.ets (获取导航页面)
-    ├── Index_API.ets (CustomDialogController_CAPI对接示例界面)
-    └── Index_func.ets (OpenCustomDialog_CAPI对接示例界面)
+    ├── IndexController.ets (CustomDialogController_CAPI对接示例界面)
+    └── IndexCustomDialog.ets (OpenCustomDialog_CAPI对接示例界面)
 entry/src/main/
 ├── cpp
 │   ├── types

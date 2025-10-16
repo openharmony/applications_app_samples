@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/Index_func",
-    "pages/Index_API"
+    "pages/IndexCustomDialog",
+    "pages/IndexController"
   ]
 }
