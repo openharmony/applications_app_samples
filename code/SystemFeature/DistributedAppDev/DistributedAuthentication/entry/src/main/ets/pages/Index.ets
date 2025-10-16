@@ -67,10 +67,12 @@ struct Index {
   }
 
   async aboutToAppear() {
+    // [Start permissions_user_grant]
     let atManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.DISTRIBUTED_DATASYNC'])
       .then(async (data) => {
         logger.info(`data: ${JSON.stringify(data)}`);
+        // [StartExclude permissions_user_grant]
         await remoteDeviceModel.createDeviceManager();
         try {
           logger.info(`local deviceType:` + deviceInfo.deviceType);
@@ -94,10 +96,12 @@ struct Index {
         } catch (error) {
           logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
         }
+        // [EndExclude permissions_user_grant]
       })
       .catch((err: BusinessError) => {
         logger.error(`requestPermissionsFromUser error: ${JSON.stringify(err)}`);
     });
+    // [End permissions_user_grant]
   }
 
   build() {
