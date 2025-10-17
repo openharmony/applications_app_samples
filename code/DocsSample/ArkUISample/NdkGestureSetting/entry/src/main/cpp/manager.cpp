@@ -64,9 +64,9 @@ void SetTextAttribute(ArkUI_NodeHandle &node, const char *str)
     if (!nodeAPI) {
         return;
     }
-    ArkUI_NumberValue widthValue[] = {200};
+    ArkUI_NumberValue widthValue[] = {150};
     ArkUI_AttributeItem widthItem = {widthValue, 1};
-    ArkUI_NumberValue heightValue[] = {150};
+    ArkUI_NumberValue heightValue[] = {120};
     ArkUI_AttributeItem heightItem = {heightValue, 1};
     ArkUI_NumberValue colorValue[] = {{.u32 = 0xFF2FF3FF}};
     ArkUI_AttributeItem colorItem = {colorValue, 1};
@@ -117,14 +117,43 @@ void Manager::CreateNode(ArkUI_NodeHandle &textShow2)
     manager_.textShow2_ = textShow2;
 }
 
+void Manager::SetClearButtonAttribute(ArkUI_NodeHandle &node)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_NumberValue widthValue[] = {100};
+    ArkUI_AttributeItem widthItem = {widthValue, 1};
+    ArkUI_NumberValue heightValue[] = {50};
+    ArkUI_AttributeItem heightItem = {heightValue, 1};
+    ArkUI_AttributeItem text_valueItem = {.string = "Clear output"};
+    nodeAPI->setAttribute(node, NODE_WIDTH, &widthItem);
+    nodeAPI->setAttribute(node, NODE_HEIGHT, &heightItem);
+    nodeAPI->setAttribute(node, NODE_BUTTON_LABEL, &text_valueItem);
+    if (!gestureApi) {
+        return;
+    }
+    auto tapGesture = gestureApi->createTapGesture(1, 1);
+    // 给手势绑定回调
+    gestureApi->setGestureEventTarget(
+        tapGesture, GESTURE_EVENT_ACTION_ACCEPT, node, [](ArkUI_GestureEvent *event, void *extraParams) {
+            ArkUI_AttributeItem valueItem = {.string = ""};
+            nodeAPI->setAttribute(manager_.textShow2_, NODE_TEXT_CONTENT, &valueItem);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest", "column1 tapGesture is called");
+        });
+    // 将手势绑定到组件上
+    gestureApi->addGestureToNode(node, tapGesture, ArkUI_GesturePriority::NORMAL,
+                                 ArkUI_GestureMask::NORMAL_GESTURE_MASK);
+}
+
 void SetRowAttribute(ArkUI_NodeHandle &node)
 {
     if (!nodeAPI) {
         return;
     }
-    ArkUI_NumberValue widthValue[] = {400};
+    ArkUI_NumberValue widthValue[] = {300};
     ArkUI_AttributeItem widthItem = {widthValue, 1};
-    ArkUI_NumberValue heightValue[] = {150};
+    ArkUI_NumberValue heightValue[] = {120};
     ArkUI_AttributeItem heightItem = {heightValue, 1};
     ArkUI_NumberValue colorValue[] = {{.u32 = 0xFF2FF3FF}};
     ArkUI_AttributeItem colorItem = {colorValue, 1};
@@ -415,12 +444,13 @@ void Manager::CreateGestureGroup(ArkUI_NodeHandle &column, ArkUI_GroupGestureMod
                          "velocityX %{public}f, velocityY %{public}f, velocity %{public}f",
                          action, childSize, actionType, offsetX, offsetY, velocityX, velocityY, velocity);
         });
+    auto tapGesture = gestureApi->createTapGestureWithDistanceThreshold(1, 1, 10);
     // 给手势组添加子手势
-    gestureApi->addChildGesture(group, longPressGesture);
-    // 给手势组删除子手势
-    gestureApi->removeChildGesture(group, longPressGesture);
+    gestureApi->addChildGesture(group, tapGesture);
     gestureApi->addChildGesture(group, longPressGesture);
     gestureApi->addChildGesture(group, panGesture);
+    // 给手势组删除子手势
+    gestureApi->removeChildGesture(group, tapGesture);
     // 将手势绑定到组件上
     gestureApi->addGestureToNode(column, group, ArkUI_GesturePriority::NORMAL, ArkUI_GestureMask::NORMAL_GESTURE_MASK);
 }
@@ -444,21 +474,25 @@ void Manager::CreateGestureWithMask(ArkUI_NodeHandle &column, ArkUI_GestureMask 
 }
 
 // 设置手势绑定的优先级
-void Manager::CreateGestureWithPriority(ArkUI_NodeHandle &column, ArkUI_GesturePriority priority)
+void Manager::CreateGestureWithPriority(ArkUI_NodeHandle &node, ArkUI_GesturePriority priority)
 {
     if (!gestureApi) {
         return;
     }
+    nodeAPI->registerNodeEvent(node, NODE_ON_CLICK_EVENT, 0, nullptr);
+    nodeAPI->addNodeEventReceiver(node, [](ArkUI_NodeEvent *event) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest", "node onClick is called");
+    });
     auto tapGesture = gestureApi->createTapGesture(1, 1);
     // 给手势绑定回调
     gestureApi->setGestureEventTarget(
-        tapGesture, GESTURE_EVENT_ACTION_ACCEPT, column, [](ArkUI_GestureEvent *event, void *extraParams) {
+        tapGesture, GESTURE_EVENT_ACTION_ACCEPT, node, [](ArkUI_GestureEvent *event, void *extraParams) {
             ArkUI_AttributeItem valueItem = {.string = "tapGesture is called"};
             nodeAPI->setAttribute(manager_.textShow2_, NODE_TEXT_CONTENT, &valueItem);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest", "column1 tapGesture is called");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest", "node tapGesture is called");
         });
     // 将手势绑定到组件上
-    gestureApi->addGestureToNode(column, tapGesture, priority, ArkUI_GestureMask::NORMAL_GESTURE_MASK);
+    gestureApi->addGestureToNode(node, tapGesture, priority, ArkUI_GestureMask::NORMAL_GESTURE_MASK);
 }
 
 // 绑定多种手势组成的手势组
@@ -531,15 +565,27 @@ void Manager::SetGestureJudgeBegin(ArkUI_NodeHandle node)
         auto event = OH_ArkUI_GestureInterruptInfo_GetGestureEvent(info);
         auto offsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
         auto recognizer = OH_ArkUI_GestureInterruptInfo_GetRecognizer(info);
-        auto type = OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(info);
+        auto systemRecognizerType = OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(info);
+        auto type = gestureApi->getGestureType(recognizer);
         int fingers = 0;
         OH_ArkUI_GetGestureParam_FingerCount(recognizer, &fingers);
         bool limitFingerCount = false;
         OH_ArkUI_GetGestureParam_limitFingerCount(recognizer, &limitFingerCount);
+        char *tag = (char *)malloc(sizeof(char) * NUM_2);
+        if (!tag) {
+            return;
+        }
+        tag[0] = '\0';
+        int result = 0;
+        OH_ArkUI_GetGestureTag(recognizer, tag, NUM_2, &result);
+        if (tag[0] == '\0') {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest",
+                "onGestureJudgeBeginCallback gesture tag is empty");
+        }
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest",
             "onGestureJudgeBeginCallback isSystem %{public}d offsetX %{public}f fingers %{public}d "
-            "limitFingerCount %{public}d",
-            isSystem, offsetX, fingers, limitFingerCount);
+            "limitFingerCount %{public}d tag %{public}s systemRecognizerType %{public}d",
+            isSystem, offsetX, fingers, limitFingerCount, tag, systemRecognizerType);
         ArkUI_TouchRecognizerHandleArray recognizers;
         int recognizerSize = 0;
         // 获取本次手势响应链中的触摸事件数组
@@ -768,7 +814,7 @@ void CreateGestureGroupByMode(ArkUI_NodeHandle list)
 // 给每个Text绑定对应的手势和回调，通过日志观测行为
 void BindingGesture(napi_env env, napi_value arg, OH_NativeXComponent *component)
 {
-    float columnWidth = 400;
+    float columnWidth = 300;
     float columnHeight = 800;
     unsigned int columnColor = 0xFEF5F5F5;
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -776,6 +822,9 @@ void BindingGesture(napi_env env, napi_value arg, OH_NativeXComponent *component
     auto textShow2 = nodeAPI->createNode(ARKUI_NODE_TEXT);
     Manager::CreateNode(textShow2);
     nodeAPI->addChild(column, textShow2);
+    auto buttonClear = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    Manager::SetClearButtonAttribute(buttonClear);
+    nodeAPI->addChild(column, buttonClear);
     auto list = nodeAPI->createNode(ARKUI_NODE_LIST);
     columnHeight = COLUMN_SIZE;
     SetColumnAttribute(list, columnWidth, columnHeight, columnColor);
