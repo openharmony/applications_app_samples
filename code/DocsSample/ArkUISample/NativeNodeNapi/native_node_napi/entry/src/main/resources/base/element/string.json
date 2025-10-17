@@ -47,6 +47,10 @@
     {
       "name": "GetDrawableDescriptor_result0",
       "value": "测试结果："
+    },
+    {
+      "name": "GetDrawableDescriptor_return",
+      "value": " 返回主页 "
     }
   ]
 }

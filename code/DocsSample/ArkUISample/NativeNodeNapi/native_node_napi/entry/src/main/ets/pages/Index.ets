@@ -27,7 +27,7 @@ struct MenuIndex {
     [
       { title: 'Navigation', url: 'pages/page_navigation' },
       { title: 'add your router', url: 'pages/page_navigation' },
-      { title: 'Mapping DrawableDescriptor', url: 'pages/GetDrawableDescriptor' },
+      { title: 'Mapping DrawableDescriptor', url: 'pages/page_getDrawableDescriptor' },
       { title: 'accessibility', url: 'pages/page_accessibility' },
       { title: 'embedded component', url: 'pages/page_embedded_component' },
       { title: 'Animation', url: 'pages/page_animation' },
@@ -52,7 +52,7 @@ struct MenuIndex {
                   .fontColor(Color.Black)
                   .textAlign(TextAlign.Start)
                   .height('100%')
-                  .width('50%')
+                  .width('70%')
                   .padding($r('sys.float.padding_level10'))
                 Text('>')
                   .fontSize('25vp')
@@ -60,7 +60,7 @@ struct MenuIndex {
                   .textAlign(TextAlign.End)
                   .fontColor(Color.Gray)
                   .height('100%')
-                  .width('50%')
+                  .width('30%')
                   .padding($r('sys.float.padding_level10'))
               }
               .width('100%')
