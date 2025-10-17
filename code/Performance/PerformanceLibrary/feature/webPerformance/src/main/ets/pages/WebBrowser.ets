@@ -25,14 +25,14 @@ export struct WebBrowser {
   build() {
     Row() {
       Column({ space: 20 }) {
-        Web({ src: 'https://www.openharmony.cn/mainPlay', controller: this.controller })
+        Web({ src: 'https://www.openharmony.cn/HomePage', controller: this.controller })
           .domStorageAccess(true)
           .onPageEnd((event) => {
             if(event) {
               Logger.info("WebPerformance onPageEnd");
               if(this.getRouter === 'InitializedWeb') {
                 // 预加载下一页
-                this.controller.prefetchPage('https://www.openharmony.cn/download');
+                this.controller.prefetchPage('https://www.openharmony.cn/developer/developmentExample');
               }
             }
           })
@@ -40,7 +40,7 @@ export struct WebBrowser {
           .onClick(() => {
             Logger.info("webPerformance nextPage");
             // 跳转网页
-            this.controller.loadUrl('https://www.openharmony.cn/download');
+            this.controller.loadUrl('https://www.openharmony.cn/developer/developmentExample');
           })
           .width($r('app.string.web_button_width'))
           .height($r('app.string.web_button_height'))
