@@ -39,6 +39,7 @@
         "exported": true,
         // [EndExclude layered_image_002]
         "icon": "$media:icon",
+        // 需要在entry/src/main/resources/base/element/string.json配置name为EntryAbility_label的资源，已存在可以忽略
         "label": "$string:EntryAbility_label",
         "skills": [
           {

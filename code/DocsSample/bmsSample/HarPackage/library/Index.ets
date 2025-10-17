@@ -14,11 +14,14 @@
  */
 
 // [Start har_package_003]
+// library/Index.ets
 export { MainPage } from './src/main/ets/components/mainpage/MainPage';
 // [End har_package_003]
 // [Start har_package_005]
+// library/Index.ets
 export { Log, func, func2 } from './src/main/ets/test';
 // [End har_package_005]
 // [Start har_package_006]
+// library/Index.ets
 export { nativeAdd } from './src/main/ets/utils/nativeTest';
 // [End har_package_006]

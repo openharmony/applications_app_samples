@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start integrated_hsp_002]
 {
   "app": {
     "signingConfigs": [
@@ -26,14 +26,15 @@
         "runtimeOS": "HarmonyOS",
         "buildOption": {
           "strictMode": {
+            // [StartExclude integrated_hsp_002]
             "caseSensitiveCheck": true,
-            // [Start integrated_hsp_002]
+            // [EndExclude integrated_hsp_002]
             "useNormalizedOHMUrl": true,
-            // [End integrated_hsp_002]
           }
         }
       }
     ],
+    // [StartExclude integrated_hsp_002]
     "buildModeSet": [
       {
         "name": "debug",
@@ -42,7 +43,9 @@
         "name": "release"
       }
     ]
+    // [EndExclude integrated_hsp_002]
   },
+  // [StartExclude integrated_hsp_002]
   "modules": [
     {
       "name": "entry",
@@ -69,4 +72,6 @@
       ]
     }
   ]
+  // [EndExclude integrated_hsp_002]
 }
+// [End integrated_hsp_002]

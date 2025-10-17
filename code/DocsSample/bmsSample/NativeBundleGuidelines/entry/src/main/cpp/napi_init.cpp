@@ -14,12 +14,12 @@
  */
 
 // [Start native-bundle-guidelines_002]
-//napi依赖头文件
+// napi依赖头文件
 #include "napi/native_api.h"
-//native接口依赖头文件
+// native接口依赖头文件
 #include "bundle/ability_resource_info.h"
 #include "bundle/native_interface_bundle.h"
-//free()函数依赖的基础库
+// free()函数依赖的基础库
 #include <cstdlib>
 // [End native-bundle-guidelines_002]
 
@@ -133,7 +133,7 @@ static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info)
 static napi_value IsDebugMode(napi_env env, napi_callback_info info)
 {
     bool isDebug = false;
-    // 调用Native接口获取应用DebugMode的信息 该接口从API version 20开始支持
+    // 调用Native接口获取应用DebugMode的信息，该接口从API version 20开始支持
     bool isSuccess = OH_NativeBundle_IsDebugMode(&isDebug);
     // 调用Native接口失败抛出异常
     if (isSuccess == false) {
@@ -149,7 +149,7 @@ static napi_value IsDebugMode(napi_env env, napi_callback_info info)
 static napi_value GetModuleMetadata(napi_env env, napi_callback_info info)
 {
     size_t moduleCount = 0;
-    // 调用Native接口获取应用元数据的信息 该接口从API version 20开始支持
+    // 调用Native接口获取应用元数据的信息，该接口从API version 20开始支持
     OH_NativeBundle_ModuleMetadata* modules = OH_NativeBundle_GetModuleMetadata(&moduleCount);
     if (modules == nullptr || moduleCount == 0) {
         napi_throw_error(env, nullptr, "no metadata found");
@@ -382,23 +382,23 @@ static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr },
-        // 新增方法 getCurrentApplicationInfo
+        // 新增方法getCurrentApplicationInfo
         { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr,
             nullptr, nullptr, napi_default, nullptr},
-        // 新增方法 getAppId
+        // 新增方法getAppId
         { "getAppId", nullptr, GetAppId, nullptr, nullptr, nullptr, napi_default, nullptr},
-        // 新增方法 getAppIdentifier
+        // 新增方法getAppIdentifier
         { "getAppIdentifier", nullptr, GetAppIdentifier, nullptr, nullptr, nullptr, napi_default, nullptr},
-        // 新增方法 getMainElementName
+        // 新增方法getMainElementName
         { "getMainElementName", nullptr, GetMainElementName, nullptr, nullptr, nullptr, napi_default, nullptr},
-        // 新增方法 getCompatibleDeviceType
+        // 新增方法getCompatibleDeviceType
         { "getCompatibleDeviceType", nullptr, GetCompatibleDeviceType, nullptr,
             nullptr, nullptr, napi_default, nullptr},
-        // 新增方法 isDebugMode
+        // 新增方法isDebugMode
         { "isDebugMode", nullptr, IsDebugMode, nullptr, nullptr, nullptr, napi_default, nullptr},
-        // 新增方法 getModuleMetadata
+        // 新增方法getModuleMetadata
         { "getModuleMetadata", nullptr, GetModuleMetadata, nullptr, nullptr, nullptr, napi_default, nullptr},
-        // 新增方法 getAbilityResourceInfo
+        // 新增方法getAbilityResourceInfo
         { "getAbilityResourceInfo", nullptr, GetAbilityResourceInfo, nullptr, nullptr, nullptr, napi_default, nullptr}
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

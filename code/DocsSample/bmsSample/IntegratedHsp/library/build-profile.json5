@@ -12,18 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start integrated_hsp_001]
+// library/build-profile.json5
 {
   "apiType": "stageMode",
+  // [StartExclude integrated_hsp_001]
   "buildOption": {
   },
+  // [EndExclude integrated_hsp_001]
   "buildOptionSet": [
     {
+      // [StartExclude integrated_hsp_001]
       "name": "release",
+      // [EndExclude integrated_hsp_001]
       "arkOptions": {
-        // [Start integrated_hsp_001]
         "integratedHsp": true,
-        // [End integrated_hsp_001]
+        // [StartExclude integrated_hsp_001]
         "obfuscation": {
           "ruleOptions": {
             "enable": false,
@@ -35,10 +39,11 @@
             "./consumer-rules.txt"
           ]
         }
+        // [EndExclude integrated_hsp_001]
       },
-
     },
   ],
+  // [StartExclude integrated_hsp_001]
   "targets": [
     {
       "name": "default"
@@ -47,4 +52,6 @@
       "name": "ohosTest"
     }
   ]
+  // [EndExclude integrated_hsp_001]
 }
+// [End integrated_hsp_001]

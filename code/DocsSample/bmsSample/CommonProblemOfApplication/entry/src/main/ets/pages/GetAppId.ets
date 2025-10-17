@@ -14,7 +14,6 @@
  */
 
 // [Start get_app_id]
-// 获取应用签名的唯一标识appId
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 

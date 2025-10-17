@@ -14,6 +14,7 @@
  */
 
 // [Start har_package_007]
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeAdd(a: number, b: number): number {

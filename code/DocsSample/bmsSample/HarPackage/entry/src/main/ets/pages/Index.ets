@@ -14,11 +14,17 @@
  */
 
 // [Start har_package_010]
-// [Start har_package_011]
-// [Start har_package_012]
+// entry/src/main/ets/pages/Index.ets
 import { Log, func } from 'library';
+// [StartExclude har_package_010]
+// [Start har_package_011]
+// entry/src/main/ets/pages/Index.ets
 import { nativeAdd } from 'library';
-
+// [StartExclude har_package_011]
+// [Start har_package_012]
+// entry/src/main/ets/pages/Index.ets
+// [EndExclude har_package_010]
+// [EndExclude har_package_011]
 @Entry
 @Component
 struct Index {

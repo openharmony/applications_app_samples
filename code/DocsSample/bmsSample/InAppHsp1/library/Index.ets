@@ -14,16 +14,29 @@
  */
 
 // [Start in_app_hsp_010]
+// library/index.ets
+// [StartExclude in_app_hsp_010]
 // [Start in_app_hsp_004]
+// library/index.ets
+// [EndExclude in_app_hsp_010]
 export { Log, add, minus } from './src/main/ets/utils/test';
+// [StartExclude in_app_hsp_010]
 // [End in_app_hsp_004]
 // [Start in_app_hsp_002]
+// library/index.ets
+// [EndExclude in_app_hsp_010]
 export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
+// [StartExclude in_app_hsp_010]
 // [End in_app_hsp_002]
 // [Start in_app_hsp_009]
+// library/index.ets
+// [EndExclude in_app_hsp_010]
 export { ResManager } from './src/main/ets/ResManager';
+// [StartExclude in_app_hsp_010]
 // [End in_app_hsp_009]
 // [Start in_app_hsp_006]
+// library/index.ets
+// [EndExclude in_app_hsp_010]
 export { nativeMulti } from './src/main/ets/utils/nativeTest';
 // [End in_app_hsp_006]
 // [End in_app_hsp_010]

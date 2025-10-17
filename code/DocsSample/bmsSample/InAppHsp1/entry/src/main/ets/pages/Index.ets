@@ -14,6 +14,7 @@
  */
 
 // [Start in_app_hsp_011]
+// entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from "@kit.BasicServicesKit";
 import { application} from '@kit.AbilityKit';

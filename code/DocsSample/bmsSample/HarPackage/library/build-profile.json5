@@ -13,14 +13,17 @@
  * limitations under the License.
  */
 
+// [Start har_package_013]
 {
   "apiType": "stageMode",
   "buildOption": {
+    // [StartExclude har_package_013]
     "externalNativeOptions": {
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "",
       "cppFlags": ""
     },
+    // [EndExclude har_package_013]
   },
   "buildOptionSet": [
     {
@@ -28,9 +31,7 @@
       "arkOptions": {
         "obfuscation": {
           "ruleOptions": {
-            // [Start har_package_013]
             "enable": true,
-            // [End har_package_013]
             "files": [
               "./obfuscation-rules.txt"
             ]
@@ -40,20 +41,25 @@
           ]
         }
       },
+      // [StartExclude har_package_013]
       "nativeLib": {
         "debugSymbol": {
           "strip": true,
           "exclude": []
         }
       }
+      // [EndExclude har_package_013]
     },
   ],
   "targets": [
     {
       "name": "default"
     },
+    // [StartExclude har_package_013]
     {
       "name": "ohosTest"
     }
+    // [EndExclude har_package_013]
   ]
 }
+// [End har_package_013]

@@ -14,6 +14,7 @@
  */
 
 // [Start in_app_hsp_005]
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeMulti(a: number, b: number): number {

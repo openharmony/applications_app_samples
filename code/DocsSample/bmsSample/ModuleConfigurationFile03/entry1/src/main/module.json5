@@ -14,8 +14,11 @@
  */
 
 // [Start module_distributionFilter_01]
+// entry1支持的设备类型
+// [Start module_distributionFilter_metadata]
 {
   "module": {
+    // [StartExclude module_distributionFilter_metadata]
     "name": "entry1",
     "type": "entry",
     "deviceTypes": [
@@ -23,14 +26,14 @@
       "tablet"
     ],
     // [StartExclude module_distributionFilter_01]
-    // [Start module_distributionFilter_metadata]
+    // [EndExclude module_distributionFilter_metadata]
     "metadata": [
       {
         "name": "ohos.module.distribution",
         "resource": "$profile:distributionFilter_config",
       }
     ],
-    // [End module_distributionFilter_metadata]
+    // [StartExclude module_distributionFilter_metadata]
     "description": "$string:module_desc",
     "mainElement": "Entry1Ability",
     "deliveryWithInstall": true,
@@ -73,6 +76,8 @@
       }
     ]
   },
+  // [EndExclude module_distributionFilter_metadata]
   // [EndExclude module_distributionFilter_01]
 }
+// [End module_distributionFilter_metadata]
 // [End module_distributionFilter_01]

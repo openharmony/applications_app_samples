@@ -14,6 +14,7 @@
  */
 
 // [Start in_app_hsp_008]
+// library/src/main/ets/ResManager.ets
 export class ResManager{
   static getPic(): Resource{
     return $r('app.media.pic');

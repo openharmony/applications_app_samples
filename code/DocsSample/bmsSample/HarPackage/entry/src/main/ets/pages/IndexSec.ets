@@ -14,6 +14,7 @@
  */
 
 // [Start har_package_009]
+// entry/src/main/ets/pages/IndexSec.ets
 import { MainPage } from 'library';
 
 @Entry
