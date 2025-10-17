@@ -27,7 +27,6 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 // [StartExclude vector_TS_getStore]
 
 export async function getVectorStore() {
-  console.error(`mmy getVectorStore start`);
   // [Start vector_TS_isVectorSupported]
   // 判断当前系统是否支持向量数据库
   let ret = relationalStore.isVectorSupported();
@@ -52,7 +51,7 @@ export async function getVectorStore() {
   try {
     // 使用参数绑定
     const vectorValue: Float32Array = Float32Array.from([1.2, 2.3]);
-    await store!.execute("insert into test VALUES(?, ?);", 0, [0, vectorValue]);
+    await store!.execute('insert into test VALUES(?, ?);', 0, [0, vectorValue]);
     // 不使用参数绑定
     await store!.execute("insert into test VALUES(1, '[1.3, 2.4]');", 0, undefined);
   } catch (err) {
@@ -65,7 +64,7 @@ export async function getVectorStore() {
   try {
     // 使用参数绑定
     const vectorValue1: Float32Array = Float32Array.from([2.1, 3.2]);
-    await store!.execute("update test set repr = ? where id = ?", 0, [vectorValue1, 0]);
+    await store!.execute('update test set repr = ? where id = ?', 0, [vectorValue1, 0]);
     // 不使用参数绑定
     await store!.execute("update test set repr = '[5.1, 6.1]' where id = 0", 0, undefined);
   } catch (err) {
@@ -75,9 +74,9 @@ export async function getVectorStore() {
   // 删除数据
   try {
     // 使用参数绑定
-    await store!.execute("delete from test where id = ?", 0, [0]);
+    await store!.execute('delete from test where id = ?', 0, [0]);
     // 不使用参数绑定
-    await store!.execute("delete from test where id = 0", 0, undefined);
+    await store!.execute('delete from test where id = 0', 0, undefined);
   } catch (err) {
     console.error(`execute delete failed, code is ${err.code}, message is ${err.message}`);
   }
@@ -87,7 +86,7 @@ export async function getVectorStore() {
   // 单表查询
   try {
     // 使用参数绑定
-    const QUERY_SQL = "select id, repr <-> ? as distance from test where id > ? order by repr <-> ? limit 5;";
+    const QUERY_SQL = 'select id, repr <-> ? as distance from test where id > ? order by repr <-> ? limit 5;';
     const vectorValue2: Float32Array = Float32Array.from([6.2, 7.3]);
     let resultSet = await store!.querySql(QUERY_SQL, [vectorValue2, 0, vectorValue2]);
     while (resultSet!.goToNextRow()) {
@@ -107,9 +106,9 @@ export async function getVectorStore() {
   // 子查询
   try {
     // 创建第二张表
-    let CREATE_SQL = "CREATE TABLE IF NOT EXISTS test1(id text PRIMARY KEY);";
+    let CREATE_SQL = 'CREATE TABLE IF NOT EXISTS test1(id text PRIMARY KEY);';
     await store!.execute(CREATE_SQL);
-    let resultSet = await store!.querySql("select * from test where id in (select id from test1);");
+    let resultSet = await store!.querySql('select * from test where id in (select id from test1);');
     resultSet!.close();
   } catch (err) {
     console.error(`query failed, code is ${err.code}, message is ${err.message}`);
@@ -137,8 +136,8 @@ export async function getVectorStore() {
   // 视图查询
   try {
     // 创建视图
-    await store!.execute("CREATE VIEW v1 as select * from test where id > 0;");
-    let resultSet = await store!.querySql("select * from v1;");
+    await store!.execute('CREATE VIEW v1 as select * from test where id > 0;');
+    let resultSet = await store!.querySql('select * from v1;');
     resultSet!.close();
   } catch (err) {
     console.error(`query failed, code is ${err.code}, message is ${err.message}`);
@@ -149,9 +148,9 @@ export async function getVectorStore() {
   // 基础用法
   try {
     // 创建的索引名称为diskann_l2_idx，索引列为repr，类型为gsdiskann，距离度量类型为L2
-    await store!.execute("CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(repr L2);");
+    await store!.execute('CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(repr L2);');
     // 删除表test中的diskann_l2_idx索引
-    await store!.execute("DROP INDEX test.diskann_l2_idx;");
+    await store!.execute('DROP INDEX test.diskann_l2_idx;');
   } catch (err) {
     console.error(`create index failed, code is ${err.code}, message is ${err.message}`);
   }
@@ -159,7 +158,7 @@ export async function getVectorStore() {
   // 扩展语法
   try {
     // 设置QUEUE_SIZE为20，OUT_DEGREE为50
-    await store!.execute("CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(repr L2) WITH (queue_size=20, out_degree=50);");
+    await store!.execute('CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(repr L2) WITH (queue_size=20, out_degree=50);');
   } catch (err) {
     console.error(`create ext index failed, code is ${err.code}, message is ${err.message}`);
   }

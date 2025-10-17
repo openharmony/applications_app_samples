@@ -1,5 +1,4 @@
 #include "napi/native_api.h"
-#include <sstream>
 
 // [Start vector_include]
 #include <hilog/log.h>
@@ -7,14 +6,6 @@
 #include <database/rdb/oh_cursor.h>
 #include <database/rdb/relational_store.h>
 // [End vector_include]
-
-template <typename... Args> void debugLog(Args... args)
-{
-    std::ostringstream oss;
-    std::initializer_list<int>{(oss << args << "--", 0)...};
-    std::string format = oss.str();
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "AKI", "mmy log -- %{public}s", oss.str().c_str());
-}
 
 void VectorQuery(OH_Rdb_Store *store_)
 {
@@ -50,7 +41,7 @@ void VectorQuery(OH_Rdb_Store *store_)
     
     // 子查询，创建第二张表
     OH_Rdb_ExecuteV2(store_, "CREATE TABLE IF NOT EXISTS test1(id text PRIMARY KEY);", nullptr, nullptr);
-    cursor = OH_Rdb_ExecuteQueryV2(store_,"select * from test where id in (select id from test1);", nullptr);
+    cursor = OH_Rdb_ExecuteQueryV2(store_, "select * from test where id in (select id from test1);", nullptr);
     if (cursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         return;
@@ -124,7 +115,6 @@ void VectorCRUD(OH_Rdb_Store *store_)
 
 void VectorStoreTest()
 {
-    debugLog("mmy VectorNDKCRUD");
     // [Start vector_OH_Rdb_GetSupportedDbType]
     int numType = 0;
     // 如果numType为2则支持向量数据库，为1则不支持向量数据库
@@ -183,7 +173,7 @@ void VectorStoreTest()
     // [Start vector_OH_Rdb_ExecuteV2_data_aging]
     // 每隔五分钟执行写操作后，会触发数据老化任务
     OH_Rdb_ExecuteV2(store_,"CREATE TABLE test2(rec_time integer not null) WITH "
-        "(time_col = 'rec_time', interval = '5 minute');",nullptr, nullptr);
+        "(time_col = 'rec_time', interval = '5 minute');", nullptr, nullptr);
     // [End vector_OH_Rdb_ExecuteV2_data_aging]
 
     // [Start vector_OH_Rdb_ExecuteV2_data_compression]
