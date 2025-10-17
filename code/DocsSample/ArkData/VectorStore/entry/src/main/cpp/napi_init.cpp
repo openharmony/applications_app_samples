@@ -145,6 +145,9 @@ void VectorStoreTest()
     OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
     // [End vector_OH_Rdb_Store]
 
+    // 执行向量数据库的增删改查
+    VectorCRUD(store_);
+
     // [Start vector_OH_Rdb_ExecuteV2_create_view]
     OH_Rdb_ExecuteV2(store_, "CREATE VIEW v1 as select * from test where id > 0;", nullptr, nullptr);
     OH_Cursor *cursor1 = OH_Rdb_ExecuteQueryV2(store_, "select * from v1;", nullptr);
@@ -154,9 +157,6 @@ void VectorStoreTest()
     }
     cursor1->destroy(cursor1);
     // [End vector_OH_Rdb_ExecuteV2_create_view]
-
-    // 执行向量数据库的增删改查
-    VectorCRUD(store_);
 
     // [Start vector_OH_Rdb_ExecuteV2_create_index]
     // 基础用法，创建的索引名称为diskann_l2_idx，索引列为repr，类型为gsdiskann，距离度量类型为L2

@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start vector_TS_isVectorSupported]
 import { relationalStore } from '@kit.ArkData'; // 导入模块
 import { BusinessError } from '@kit.BasicServicesKit';
-
+// [StartExclude vector_TS_isVectorSupported]
 
 // [Start vector_TS_getStore]
 let store: relationalStore.RdbStore | undefined = undefined;
@@ -27,7 +28,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 // [StartExclude vector_TS_getStore]
 
 export async function getVectorStore() {
-  // [Start vector_TS_isVectorSupported]
+  // [EndExclude vector_TS_isVectorSupported]
   // 判断当前系统是否支持向量数据库
   let ret = relationalStore.isVectorSupported();
   if (!ret) {
