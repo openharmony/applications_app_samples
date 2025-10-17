@@ -59,7 +59,8 @@ class RemoteDeviceModel {
       // [EndExclude create_device_manager]
       logger.info(`[DeviceManager.RemoteDeviceModel] createDeviceManager callback returned,
       value= ${JSON.stringify(this.deviceManager)}`);
-    } catch (error) {
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
       logger.error(`[DeviceManager.RemoteDeviceModel] createDeviceManager throw error,
       error=${error} message=${error.message}`);
     }
@@ -106,7 +107,8 @@ class RemoteDeviceModel {
       // [StartExclude get_available_device_list]
       AppStorage.setOrCreate('trustedDeviceList', this.trustedDeviceList);
       // [EndExclude get_available_device_list]
-    } catch (error) {
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
       logger.error('[DeviceManager.RemoteDeviceModel] getTrustedDeviceList error: ${error}' + error.toString());
       promptAction.showToast({
         message: 'getTrustedDeviceList failed'
@@ -162,28 +164,33 @@ class RemoteDeviceModel {
     // [StartExclude device_state_change]
     let self = this;
     // [EndExclude device_state_change]
-    this.deviceManager.on('deviceStateChange', (data: dataType) => {
-      if (data == null) {
-        return;
-      }
-      logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
-      switch (data.action) {
-        case distributedDeviceManager.DeviceStateChange.AVAILABLE:
-          logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange ONLINE');
-          // [StartExclude device_state_change]
-          self.deviceStateChangeActionOnline(data.device!);
-          // [EndExclude device_state_change]
-          break;
-        case distributedDeviceManager.DeviceStateChange.UNAVAILABLE:
-          logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange OFFLINE');
-          // [StartExclude device_state_change]
-          self.deviceStateChangeActionOffline(data.device!);
-          // [EndExclude device_state_change]
-          break;
-        default:
-          break;
-      }
-    })
+    try {
+      this.deviceManager.on('deviceStateChange', (data: dataType) => {
+        if (data == null) {
+          return;
+        }
+        logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
+        switch (data.action) {
+          case distributedDeviceManager.DeviceStateChange.AVAILABLE:
+            logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange ONLINE');
+            // [StartExclude device_state_change]
+            self.deviceStateChangeActionOnline(data.device!);
+            // [EndExclude device_state_change]
+            break;
+          case distributedDeviceManager.DeviceStateChange.UNAVAILABLE:
+            logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange OFFLINE');
+            // [StartExclude device_state_change]
+            self.deviceStateChangeActionOffline(data.device!);
+            // [EndExclude device_state_change]
+            break;
+          default:
+            break;
+        }
+      })
+    } catch(err) {
+      let e: BusinessError = err as BusinessError;
+      logger.error('[DeviceManager.RemoteDeviceModel] deviceStateChange failed err: ' + e.toString());
+    }
   }
   // [End device_state_change]
 
@@ -281,7 +288,8 @@ class RemoteDeviceModel {
       } else {
         this.deviceManager.startDiscovering(discoverParam, filterOptions);
       }
-    } catch (e) {
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
       logger.error('[DeviceManager.RemoteDeviceModel] startDeviceDiscovery failed err: ' + e.toString());
     }
   }
@@ -354,7 +362,8 @@ class RemoteDeviceModel {
           }
           logger.info('[DeviceManager.RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data));
         })
-      } catch (e) {
+      } catch (err) {
+        let e: BusinessError = err as BusinessError;
         logger.error('[DeviceManager.RemoteDeviceModel] authenticateDevice failed err: ' + e.toString());
       }
     }
