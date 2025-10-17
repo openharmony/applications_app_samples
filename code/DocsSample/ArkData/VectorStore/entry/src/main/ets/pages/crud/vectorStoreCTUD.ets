@@ -28,14 +28,14 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 export async function getVectorStore() {
   console.error(`mmy getVectorStore start`);
-  // [Start vector_TS_isSupported]
+  // [Start vector_TS_isVectorSupported]
   // 判断当前系统是否支持向量数据库
   let ret = relationalStore.isVectorSupported();
   if (!ret) {
     console.error(`vectorDB is not supported.`);
     return;
   }
-  // [End vector_TS_isSupported]
+  // [End vector_TS_isVectorSupported]
   // [EndExclude  vector_TS_getStore]
   relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
     store = rdbStore;
@@ -168,7 +168,7 @@ export async function getVectorStore() {
   // [Start vector_TS_execute_gsdiskann]
   try {
     // 手动触发异步删除整理，对向量数据库下所有gsdiskann执行磁盘碎片回收
-    await store!.execute("PRAGMA DISKANN_ASYNC_COLLECTING;");
+    await store!.execute('PRAGMA DISKANN_ASYNC_COLLECTING;');
   } catch (err) {
     console.error(`diskann async collecting failed, code is ${err.code}, message is ${err.message}`);
   }
