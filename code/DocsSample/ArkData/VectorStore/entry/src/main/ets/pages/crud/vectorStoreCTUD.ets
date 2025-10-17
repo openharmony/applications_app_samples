@@ -36,6 +36,7 @@ export async function getVectorStore() {
     return;
   }
   // [End vector_TS_isVectorSupported]
+  
   // [EndExclude  vector_TS_getStore]
   relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
     store = rdbStore;
@@ -173,6 +174,15 @@ export async function getVectorStore() {
     console.error(`diskann async collecting failed, code is ${err.code}, message is ${err.message}`);
   }
   // [End vector_TS_execute_gsdiskann]
+
+  // [Start vector_TS_execute_auto_dataAging]
+  try {
+     // 每隔五分钟执行写操作后，会触发数据老化任务
+     await store!.execute("CREATE TABLE test2(rec_time integer not null) WITH (time_col = 'rec_time', interval = '5 minute');");
+   } catch (err) {
+     console.error(`configure data aging failed, code is ${err.code}, message is ${err.message}`);
+   }
+  // [End vector_TS_execute_auto_dataAging]
 
   // [Start vector_TS_execute_dataAging]
   try {
