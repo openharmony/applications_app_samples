@@ -14,8 +14,20 @@
  */
 
 // [Start module_all]
+// [Start module_metadata]
+// [Start module_abilities_skills]
+// [Start module_systemTheme]
+// [Start module_fileContextMenu]
+// [Start module_appEnvironments]
+// [Start module_abilities_metadata]
 {
+  // [StartExclude module_abilities_skills]
   "module": {
+    // [StartExclude module_abilities_metadata]
+    // [StartExclude module_appEnvironments]
+    // [StartExclude module_systemTheme]
+    // [StartExclude module_fileContextMenu]
+    // [StartExclude module_metadata]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -24,13 +36,12 @@
       "tv",
       "tablet"
     ],
-
     "deliveryWithInstall": true,
     // [Start module_pages]
     "pages": "$profile:main_pages",
     // [End module_pages]
     "appStartup": "$profile:app_startup_config",
-    // [Start module_metadata]
+    // [EndExclude module_metadata]
     "metadata": [
       // [StartExclude module_metadata]
       {
@@ -47,10 +58,12 @@
       }
       // [EndExclude module_all]
     ],
-    // [End module_metadata]
-    // [Start module_abilities_metadata]
+    // [StartExclude module_metadata]
+    // [EndExclude module_abilities_metadata]
+    // [EndExclude module_abilities_skills]
     "abilities": [
       {
+        // [StartExclude module_abilities_skills]
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         // [StartExclude module_abilities_metadata]
@@ -61,8 +74,8 @@
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
+        // [EndExclude module_abilities_skills]
         "skills": [
-          // [Start module_abilities_skills]
           // [StartExclude module_all]
           {
             "actions": [
@@ -84,8 +97,8 @@
             "permissions": [],
             "domainVerify": false
           },
+          // [StartExclude module_abilities_skills]
           // [EndExclude module_all]
-          // [End module_abilities_skills]
           // [EndExclude module_abilities_metadata]
           {
             "entities": [
@@ -95,7 +108,9 @@
               "ohos.want.action.home"
             ]
           }
+          // [EndExclude module_abilities_skills]
         ],
+        // [StartExclude module_abilities_skills]
         // [StartExclude module_all]
         "metadata": [
           {
@@ -114,8 +129,10 @@
         ],
         // [EndExclude module_abilities_metadata]
       }
+      // [EndExclude module_abilities_skills]
     ],
-    // [End module_abilities_metadata]
+    // [StartExclude module_abilities_skills]
+    // [StartExclude module_abilities_metadata]
     "requestPermissions": [
       {
         "name": "ohos.permission.ACCESS_BLUETOOTH",
@@ -133,23 +150,33 @@
       "app2Scheme"
     ],
     "routerMap": "$profile:router_map",
-    // [Start module_appEnvironments]
+    // [EndExclude module_appEnvironments]
     "appEnvironments": [
       {
         "name": "name1",
         "value": "value1"
       }
     ],
-    // [End module_appEnvironments]
-    // [Start module_fileContextMenu]
+    // [StartExclude module_appEnvironments]
+    // [EndExclude module_fileContextMenu]
     "fileContextMenu": "$profile:menu",
-    // [End module_fileContextMenu]
+    // [StartExclude module_fileContextMenu]
     "crossAppSharedConfig": "$profile:shared_config",
     // [StartExclude module_all]
-    // [Start module_systemTheme]
-    "systemTheme": "$profile:theme_config",
-    // [End module_systemTheme]
+    // [EndExclude module_systemTheme]
+    "systemTheme": "$profile:theme_config", // 通过profile下的资源文件配置
+    // [EndExclude module_metadata]
     // [EndExclude module_all]
+    // [EndExclude module_fileContextMenu]
+    // [EndExclude module_appEnvironments]
+    // [EndExclude module_abilities_metadata]
   }
+  // [EndExclude module_abilities_skills]
 }
+// [End module_abilities_metadata]
+// [End module_appEnvironments]
+// [End module_fileContextMenu]
+// [End module_systemTheme]
+// [End module_abilities_skills]
+// [End module_metadata]
 // [End module_all]

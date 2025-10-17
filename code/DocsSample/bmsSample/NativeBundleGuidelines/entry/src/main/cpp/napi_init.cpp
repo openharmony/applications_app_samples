@@ -199,7 +199,9 @@ static napi_value GetModuleMetadata(napi_env env, napi_callback_info info)
     free(modules);
     return result;
 }
+// [End native-bundle-guidelines_003]
 
+// [Start native-bundle-guidelines_006]
 static void AddDefaultApp(napi_env env,
     napi_value &infoObj,
     OH_NativeBundle_AbilityResourceInfo* temp)
@@ -374,7 +376,7 @@ static napi_value GetAbilityResourceInfo(napi_env env, napi_callback_info info)
     OH_AbilityResourceInfo_Destroy(infos, infosCount);
     return result;
 }
-// [End native-bundle-guidelines_003]
+// [End native-bundle-guidelines_006]
 
 // [Start native-bundle-guidelines_004]
 EXTERN_C_START
