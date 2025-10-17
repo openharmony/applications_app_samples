@@ -52,7 +52,7 @@ int FillInputTensor(OH_AI_TensorHandle input, std::vector<float> input_data)
         return OH_AI_STATUS_LITE_ERROR;
     }
 }
-// [Start napi_image_classification_FillInputTensor]
+// [End napi_image_classification_FillInputTensor]
 
 // [Start napi_image_classification_ReadModelFile]
 void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::string &modelName, size_t *modelSize)
