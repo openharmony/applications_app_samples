@@ -60,8 +60,9 @@ class RemoteDeviceModel {
       logger.info(`[DeviceManager.RemoteDeviceModel] createDeviceManager callback returned,
       value= ${JSON.stringify(this.deviceManager)}`);
     } catch (error) {
+      let e: BusinessError = error as BusinessError;
       logger.error(`[DeviceManager.RemoteDeviceModel] createDeviceManager throw error,
-      error=${error} message=${error.message}`);
+      error=${e} message=${e.message}`);
     }
     logger.info('[DeviceManager.RemoteDeviceModel] distributedDeviceManager.createDeviceManager end');
   }
@@ -106,7 +107,8 @@ class RemoteDeviceModel {
       // [StartExclude get_available_device_list]
       AppStorage.setOrCreate('trustedDeviceList', this.trustedDeviceList);
       // [EndExclude get_available_device_list]
-    } catch (error) {
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
       logger.error('[DeviceManager.RemoteDeviceModel] getTrustedDeviceList error: ${error}' + error.toString());
       promptAction.showToast({
         message: 'getTrustedDeviceList failed'
@@ -162,7 +164,8 @@ class RemoteDeviceModel {
     // [StartExclude device_state_change]
     let self = this;
     // [EndExclude device_state_change]
-    this.deviceManager.on('deviceStateChange', (data: dataType) => {
+    try {
+      this.deviceManager.on('deviceStateChange', (data: dataType) => {
       if (data == null) {
         return;
       }
@@ -182,8 +185,12 @@ class RemoteDeviceModel {
           break;
         default:
           break;
-      }
-    })
+        }
+      })
+    } catch(err) {
+      let e: BusinessError = err as BusinessError;
+      logger.error('[DeviceManager.RemoteDeviceModel] deviceStateChange failed err: ' + e.toString());
+    }
   }
   // [End device_state_change]
 
@@ -281,7 +288,8 @@ class RemoteDeviceModel {
       } else {
         this.deviceManager.startDiscovering(discoverParam, filterOptions);
       }
-    } catch (e) {
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
       logger.error('[DeviceManager.RemoteDeviceModel] startDeviceDiscovery failed err: ' + e.toString());
     }
   }
@@ -354,7 +362,8 @@ class RemoteDeviceModel {
           }
           logger.info('[DeviceManager.RemoteDeviceModel] authenticateDevice succeed:' + JSON.stringify(data));
         })
-      } catch (e) {
+      } catch (err) {
+        let e: BusinessError = err as BusinessError;
         logger.error('[DeviceManager.RemoteDeviceModel] authenticateDevice failed err: ' + e.toString());
       }
     }
