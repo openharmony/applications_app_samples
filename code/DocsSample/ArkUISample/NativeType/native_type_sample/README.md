@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例展示了如何创建文本、输入框、文本域、滑动容器、视效、动效、进度条、日期选择器、日历选择器、文本选择器、图片等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
+本示例基于[NativeNode](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)、[NativeTypeNapi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-type-h.md)展示了如何创建文本、输入框、文本域、滑动容器、视效、动效、进度条、日期选择器、日历选择器、文本选择器、图片等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
 
 ## 效果预览
 
@@ -37,7 +37,8 @@
 13. 点击Slider选择框进入Slider组件的CAPI接口展示界面； 
 14. 点击CheckboxShape选择框进入checkbox组件的CAPI接口展示界面； 
 15. 点击HoverModeAreaType选择框进入HoverModeArea组件的CAPI接口展示界面；
-
+16. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看；
+17. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看；
 
 ## 工程目录
 

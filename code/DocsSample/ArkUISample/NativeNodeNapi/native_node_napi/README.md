@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例展示了如何通过调用CAPI提供的相关方法来获取navigation组件等组件的相关属性和信息，以及将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。。
+本示例基于[NativeNode](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)、[NativeNodeNapi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-napi-h.md)展示了如何通过调用CAPI提供的相关方法来获取、设置navigation组件等组件的相关属性和信息，以及将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。。
 
 ## 效果预览
 
@@ -16,7 +16,8 @@
 1. 安装编译生成的hap包，并打开应用；
 2. 进入首页，可选择不同模块页面。
 3. 点击navigation选择框进入navigation组件相关的CAPI接口展示界面，通过点击不同的按钮来触发不同的事件，具体结果在log中查看；
-
+4. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看；
+5. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看；
 
 ## 工程目录
 
@@ -25,7 +26,9 @@ native_type_sample
 entry/src/main/ets/
 └── pages
     ├── Index.ets (获取导航页面)
-    └── page_navigation.ets (获取导航页面)
+    ├── page_navigation.ets (获取导航页面)
+    ├── page_accessibility.ets (无障碍界面)
+    ├── page_embedded_component.ets (嵌入式组件界面)
     └── GetDrawableDescriptor.ets (映射DrawableDescriptor页面)
 entry/src/main/
 ├── cpp
@@ -37,6 +40,10 @@ entry/src/main/
 |   ├── manager.h
 │   ├── napi_init.cpp
 |   ├── .......
+|   ├── AccessibilityMaker.h
+|   ├── AccessibilityMaker.cpp
+|   ├── EmbeddedComponentMaker,cpp
+|   ├── EmbeddedComponentMaker.h
 |   ├── NavigationContext.cpp
 │   └── NavigationContext.h
 └── resources
