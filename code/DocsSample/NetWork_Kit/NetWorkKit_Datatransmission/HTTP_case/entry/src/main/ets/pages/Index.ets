@@ -14,12 +14,10 @@
  */
 
 // [Start HTTP_case_module_import_data_request]
-// [Start HTTP_case_module_import_transfer_request]
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 // [End HTTP_case_module_import_data_request]
-// [End HTTP_case_module_import_transfer_request]
 
 import { ComponentId } from '../common/CommonConstant';
 import { promptAction } from '@kit.ArkUI';
@@ -87,7 +85,7 @@ struct HttpRequestDemo {
     // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
     // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。
     httpRequest.on('headersReceive', (header) => {
-      console.info(`${LOG_TAG} header: ${JSON.stringify(header)}`);
+      console.info(`header: ${JSON.stringify(header)}`);
     });
     // [End HTTP_case_http_request_on_method]
 
@@ -163,11 +161,11 @@ struct HttpRequestDemo {
         });
         // [EndExclude HTTP_case_http_request_request_method]
         // data.result为HTTP响应内容，可根据业务需要进行解析。
-        console.info(`${LOG_TAG} Result: ${JSON.stringify(data.result)}`);
-        console.info(`${LOG_TAG} code: ${JSON.stringify(data.responseCode)}`);
+        console.info(`Result: ${JSON.stringify(data.result)}`);
+        console.info(`code: ${JSON.stringify(data.responseCode)}`);
         // data.header为HTTP响应头，可根据业务需要进行解析。
-        console.info(`${LOG_TAG} header: ${JSON.stringify(data.header)}`);
-        console.info(`${LOG_TAG} cookies: ${JSON.stringify(data.cookies)}`);
+        console.info(`header: ${JSON.stringify(data.header)}`);
+        console.info(`cookies: ${JSON.stringify(data.cookies)}`);
         // 当该请求使用完毕时，调用destroy方法主动销毁。
         httpRequest.destroy();
       } else {
@@ -179,20 +177,11 @@ struct HttpRequestDemo {
           bottom: 300 // 与底间隔
         });
         // [EndExclude HTTP_case_http_request_request_method]
-        // 请求失败，处理错误
-        console.error(`${LOG_TAG} error: ${JSON.stringify(err)}`);
-
-        // [Start HTTP_case_http_request_off_method]
+        console.error(`error: ${JSON.stringify(err)}`);
         // 取消订阅HTTP响应头事件
-        // 在不需要该回调信息时，需要取消订阅HTTP响应头事件，该方法调用的时机，可以参考步骤4中的示例代码。
         httpRequest.off('headersReceive');
-        // [End HTTP_case_http_request_off_method]
-
-        // [Start HTTP_case_http_request_destroy_method]
         // 当该请求使用完毕时，调用destroy方法主动销毁
-        // 当该请求使用完毕时，调用destroy方法主动销毁，该方法调用的时机，可以参考步骤4中的示例代码。
         httpRequest.destroy();
-        // [End HTTP_case_http_request_destroy_method]
       }
     }
     );
@@ -213,12 +202,12 @@ struct HttpRequestDemo {
     // [Start request_in_stream_data_receive]
     // 用于订阅HTTP流式响应数据接收事件。
     let res = new ArrayBuffer(0);
-
+    // [StartExclude request_in_stream_data_receive]
     // 订阅HTTP响应头事件
     httpRequest.on('headersReceive', (header: Object) => {
-      console.info(`${LOG_TAG} header: ${JSON.stringify(header)}`);
+      console.info(`header: ${JSON.stringify(header)}`);
     });
-
+    // [EndExclude request_in_stream_data_receive]
     // 订阅HTTP流式响应数据接收事件
     httpRequest.on('dataReceive', (data: ArrayBuffer) => {
       const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
@@ -226,12 +215,12 @@ struct HttpRequestDemo {
       resView.set(new Uint8Array(res));
       resView.set(new Uint8Array(data), res.byteLength);
       res = newRes;
-      console.info(`${LOG_TAG} res length: ${res.byteLength}`);
+      console.info(`res length: ${res.byteLength}`);
     });
 
     // 用于订阅HTTP流式响应数据接收完毕事件。
     httpRequest.on('dataEnd', () => {
-      console.info(`${LOG_TAG} No more data in response, data receive end`);
+      console.info(`No more data in response, data receive end`);
     });
 
     // 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
@@ -273,16 +262,15 @@ struct HttpRequestDemo {
           bottom: 300 // 与底间隔
         });
         // [EndExclude request_in_stream_get_server_data]
-        console.info(`${LOG_TAG} requestInStream OK!`);
-        console.info(`${LOG_TAG} ResponseCode : ${JSON.stringify(data)}`);
+        console.info(`requestInStream OK!`);
+        console.info(`ResponseCode : ${JSON.stringify(data)}`);
         // 取消订阅步骤3中订阅的事件，并调用destroy方法主动销毁。
         this.destroyRequest(httpRequest);
         // [StartExclude request_in_stream_get_server_data]
         // 取消订阅事件
         httpRequest.off('headersReceive');
         // [EndExclude request_in_stream_get_server_data]
-      })
-      .catch((err: Error) => {
+      }).catch((err: Error) => {
         // [StartExclude request_in_stream_get_server_data]
         this.streamReqResult = 'error:' + JSON.stringify(err); // 测试失败
         promptAction.showToast({
@@ -291,8 +279,7 @@ struct HttpRequestDemo {
           bottom: 300 // 与底间隔
         });
         // [EndExclude request_in_stream_get_server_data]
-        
-        console.error(`${LOG_TAG} requestInStream ERROR : err = ${JSON.stringify(err)}`);
+        console.error(`requestInStream ERROR : err = ${JSON.stringify(err)}`);
         // 取消订阅步骤3中订阅的事件，并调用destroy方法主动销毁。
         this.destroyRequest(httpRequest);
       })
