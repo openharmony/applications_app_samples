@@ -315,9 +315,7 @@ struct Index {
               .height(25)
               .width('10%')
               .onClick(() => {
-                this.getUIContext().getRouter().pushUrl({
-                  url: 'pages/Index',
-                })
+                this.getUIContext().getRouter().back();
               })
             Text($r('app.string.native_node_example'))
               .fontSize(24)
