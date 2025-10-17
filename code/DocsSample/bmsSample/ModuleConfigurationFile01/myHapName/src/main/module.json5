@@ -12,29 +12,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start module_deviceTypes]
+// [Start module_abilities]
+// [Start module_extensionAbilities]
+// [Start module_proxyData]
+// [Start module_dependencies]
+// [Start module_testRunner]
 {
+  // [StartExclude module_abilities]
+  // [StartExclude module_extensionAbilities]
   "module": {
+    // [StartExclude module_testRunner]
+    // [StartExclude module_proxyData]
+    // [StartExclude module_dependencies]
     "name": "myHapName",
     "type": "feature",
-    // [Start module_deviceTypes]
     "deviceTypes": [
       "tv",
       "tablet"
     ],
-    // [End module_deviceTypes]
+    // [StartExclude module_deviceTypes]
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    // [Start module_testRunner]
+    // [EndExclude module_testRunner]
     "testRunner": {
       "name": "myTestRunnerName",
       "srcPath": "etc/test/TestRunner.ts"
     },
-    // [End module_testRunner]
-    // [Start module_dependencies]
+    // [StartExclude module_testRunner]
+    // [EndExclude module_dependencies]
     "dependencies": [
       {
         "bundleName":"com.share.library",
@@ -42,8 +51,8 @@
         "versionCode": 10001
       }
     ],
-    // [End module_dependencies]
-    // [Start module_proxyData]
+    // [StartExclude module_dependencies]
+    // [EndExclude module_proxyData]
     "proxyData": [
       {
         "uri":"datashareproxy://ohos.app.hap.myapplication/event/Meeting",
@@ -55,8 +64,8 @@
         }
       }
     ],
-    // [Start module_proxyData]
-    // [Start module_abilities]
+    // [StartExclude module_proxyData]
+    // [EndExclude module_abilities]
     "abilities": [
       {
         "name": "EntryAbility",
@@ -112,8 +121,8 @@
         "process": ":processTag"
       }
     ],
-    // [End module_abilities]
-    // [Start module_extensionAbilities]
+    // [StartExclude module_abilities]
+    // [EndExclude module_extensionAbilities]
     "extensionAbilities": [
       {
         "name": "FormName",
@@ -143,6 +152,18 @@
         ]
       }
     ],
-    // [End module_extensionAbilities]
+    // [EndExclude module_testRunner]
+    // [EndExclude module_dependencies]
+    // [EndExclude module_proxyData]
+    // [EndExclude module_deviceTypes]
+    // [StartExclude module_extensionAbilities]
   }
+  // [EndExclude module_abilities]
+  // [EndExclude module_extensionAbilities]
 }
+// [End module_testRunner]
+// [End module_dependencies]
+// [End module_proxyData]
+// [End module_extensionAbilities]
+// [End module_abilities]
+// [Start module_deviceTypes]
