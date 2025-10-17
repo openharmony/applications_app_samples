@@ -59,10 +59,10 @@ class RemoteDeviceModel {
       // [EndExclude create_device_manager]
       logger.info(`[DeviceManager.RemoteDeviceModel] createDeviceManager callback returned,
       value= ${JSON.stringify(this.deviceManager)}`);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
       logger.error(`[DeviceManager.RemoteDeviceModel] createDeviceManager throw error,
-      error=${e} message=${e.message}`);
+      error=${error} message=${error.message}`);
     }
     logger.info('[DeviceManager.RemoteDeviceModel] distributedDeviceManager.createDeviceManager end');
   }
