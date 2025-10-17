@@ -29,7 +29,7 @@ export default function abilityTest() {
      * 打开应用，依次点击页面中按钮
      */
     it('AppTestExample', 0, async (done: Function) => {
-      console.info("uitest: TestUiExample begin");
+      console.info('uitest: TestUiExample begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -61,7 +61,7 @@ export default function abilityTest() {
       expect(content3).assertEqual('stationary getStatus');
 
       done();
-      console.info("uitest: TestUiExample end");
+      console.info('uitest: TestUiExample end');
     })
   })
 }

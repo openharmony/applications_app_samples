@@ -26,20 +26,20 @@ struct Index {
   private subscribe() {
     // [Start user_status_parameter]
     let callback : Callback<userStatus.UserClassification> = (data : userStatus.UserClassification) => {
-      console.info('callback succeeded, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
+      console.info('callback succeeded, ageGroup:' + data.ageGroup + ', confidence:' + data.confidence);
     };
     // [End user_status_parameter]
 
     // [Start user_status_subscribe]
     try {
       userStatus.on('userAgeGroupDetected', callback);
-      console.info("on succeeded");
+      console.info('on succeeded');
       // [StartExclude user_status_subscribe]
       this.message = 'userStatus subscribe';
       // [EndExclude user_status_subscribe]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Failed on and err code is " + error.code);
+      console.error('Failed on and err code is ' + error.code);
       // [StartExclude user_status_subscribe]
       this.message = 'userStatus subscribe';
       // [EndExclude user_status_subscribe]
@@ -51,13 +51,13 @@ struct Index {
     // [Start user_status_unsubscribe]
     try {
       userStatus.off('userAgeGroupDetected');
-      console.info("off succeeded");
+      console.info('off succeeded');
       // [StartExclude user_status_unsubscribe]
       this.message = 'userStatus unsubscribe';
       // [EndExclude user_status_unsubscribe]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Failed off and err code is " + error.code);
+      console.error('Failed off and err code is ' + error.code);
       // [StartExclude user_status_unsubscribe]
       this.message = 'userStatus unsubscribe';
       // [EndExclude user_status_unsubscribe]

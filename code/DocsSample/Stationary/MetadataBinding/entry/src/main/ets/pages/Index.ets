@@ -33,13 +33,13 @@ struct Index {
     // [Start metadata_binding_subscribe]
     try {
       metadataBinding.on('operationSubmitMetadata', bundleName, callback);
-      console.info("on succeeded");
+      console.info('on succeeded');
       // [StartExclude metadata_binding_subscribe]
       this.message = 'metadataBinding subscribe';
       // [EndExclude metadata_binding_subscribe]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Register event error and err code is " + error.code);
+      console.error('Register event error and err code is ' + error.code);
       // [StartExclude metadata_binding_subscribe]
       this.message = 'metadataBinding subscribe';
       // [EndExclude metadata_binding_subscribe]
@@ -49,7 +49,7 @@ struct Index {
 
   private submitData() {
     // [Start metadata_binding_submit]
-    let metadata: string = "";
+    let metadata: string = '';
     try {
       metadataBinding.submitMetadata(metadata);
       // [StartExclude metadata_binding_submit]
@@ -57,7 +57,7 @@ struct Index {
       // [EndExclude metadata_binding_submit]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Submit metadata error and err code is " + error.code);
+      console.error('Submit metadata error and err code is ' + error.code);
       // [StartExclude metadata_binding_submit]
       this.message = 'metadataBinding submitData';
       // [EndExclude metadata_binding_submit]
@@ -69,13 +69,13 @@ struct Index {
     // [Start metadata_binding_unsubscribe]
     try {
       metadataBinding.off('operationSubmitMetadata', bundleName, callback);
-      console.info("off succeeded");
+      console.info('off succeeded');
       // [StartExclude metadata_binding_unsubscribe]
       this.message = 'metadataBinding unsubscribe';
       // [EndExclude metadata_binding_unsubscribe]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Unregister event error and err code is " + error.code);
+      console.error('Unregister event error and err code is ' + error.code);
       // [StartExclude metadata_binding_unsubscribe]
       this.message = 'metadataBinding unsubscribe';
       // [EndExclude metadata_binding_unsubscribe]

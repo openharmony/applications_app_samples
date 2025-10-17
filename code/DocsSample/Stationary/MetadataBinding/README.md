@@ -2,7 +2,7 @@
 
 ### 介绍
 
-1.MetadataBinding（记忆链接）指由第三方应用提供[鸿蒙App Linking链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/applinking-introduction)，系统将当前用户浏览的内容与鸿蒙App Linking链接进行关联并保存的功能。
+1.MetadataBinding（记忆链接）指由第三方应用提供[App Linking链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/applinking-introduction)，系统将当前用户浏览的内容与App Linking链接进行关联并保存的功能。
 
 详细的接口介绍请参考[MetadataBinding接口](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md)。
 

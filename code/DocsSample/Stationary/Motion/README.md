@@ -47,7 +47,7 @@ entry/src/
 
 ### 相关权限
 
-使用motion模块获取用户操作手时，需要权限：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE，
+使用motion模块获取用户操作手或握持手时，需要权限：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE，
 具体申请方式请参考[声明权限](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/declare-permissions.md)。
 
 ### 依赖

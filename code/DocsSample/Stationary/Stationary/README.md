@@ -2,7 +2,7 @@
 
 ### 介绍
 
-1.当应用需要获取当前设备状态时，可以调用Stationary模块，例如：需要判断当前设备处于绝对静止状态或者相对静止状态。
+1.当应用需要获取当前设备状态时，可以调用Stationary模块。
 
 详细的接口介绍请参考[Stationary接口](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md)。
 
@@ -56,7 +56,7 @@ entry/src/
 
 3.本示例需要使用DevEco Studio 版本号(4.0 Release)版本才可编译运行。
 
-4.设备需要支持加速度传感器；目前只提供了算法框架，如需相对静止和绝对静止能力，则具体算法需要开发者实现。
+4.设备需要支持加速度传感器；目前只提供了算法框架，如需具体能力，则算法需要开发者实现。
 
 ### 下载
 

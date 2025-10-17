@@ -15,21 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\lichen\\.ohos\\config\\default_Stationary_c5cEY-ITJdqb2Thdi6rv7gHAHbhQqWeBE1x3-Yq3JnA=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A68FAA7DDEE60A798605F4B7F80BDC61B1698FCBBBE0306A098758E13B06A73FFCF3C25F295B8",
-          "profile": "C:\\Users\\lichen\\.ohos\\config\\default_Stationary_c5cEY-ITJdqb2Thdi6rv7gHAHbhQqWeBE1x3-Yq3JnA=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\lichen\\.ohos\\config\\default_Stationary_c5cEY-ITJdqb2Thdi6rv7gHAHbhQqWeBE1x3-Yq3JnA=.p12",
-          "storePassword": "0000001AAED9633F83CC166F2EF055F0A9007C17814C8AF1987A447E473AE1AD400C39D372712167C707"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",

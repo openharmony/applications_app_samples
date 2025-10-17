@@ -33,13 +33,13 @@ struct Index {
     // [Start motion_subscribe_operating]
     try {
       motion.on('operatingHandChanged', callback);
-      console.info("on succeeded");
+      console.info('on succeeded');
       // [StartExclude motion_subscribe_operating]
       this.message = 'motion subscribeOperating';
       // [EndExclude motion_subscribe_operating]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Failed on and err code is " + error.code);
+      console.error('Failed on and err code is ' + error.code);
       // [StartExclude motion_subscribe_operating]
       this.message = 'motion subscribeOperating';
       // [EndExclude motion_subscribe_operating]
@@ -51,13 +51,13 @@ struct Index {
     // [Start motion_unsubscribe_operating]
     try {
       motion.off('operatingHandChanged');
-      console.info("off succeeded");
+      console.info('off succeeded');
       // [StartExclude motion_unsubscribe_operating]
       this.message = 'motion unsubscribeOperating';
       // [EndExclude motion_unsubscribe_operating]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Failed off and err code is " + error.code);
+      console.error('Failed off and err code is ' + error.code);
       // [StartExclude motion_unsubscribe_operating]
       this.message = 'motion unsubscribeOperating';
       // [EndExclude motion_unsubscribe_operating]
@@ -75,7 +75,7 @@ struct Index {
       // [EndExclude motion_get_operating]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Failed get and err code is " + error.code);
+      console.error('Failed get and err code is ' + error.code);
       // [StartExclude motion_get_operating]
       this.message = 'motion getOperating';
       // [EndExclude motion_get_operating]
@@ -93,13 +93,13 @@ struct Index {
     // [Start motion_subscribe_holding]
     try {
       motion.on('holdingHandChanged', callback);
-      console.info("on succeeded");
+      console.info('on succeeded');
       // [StartExclude motion_subscribe_holding]
       this.message = 'motion subscribeHolding';
       // [EndExclude motion_subscribe_holding]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Failed on and err code is " + error.code);
+      console.error('Failed on and err code is ' + error.code);
       // [StartExclude motion_subscribe_holding]
       this.message = 'motion subscribeHolding';
       // [EndExclude motion_subscribe_holding]
@@ -111,13 +111,13 @@ struct Index {
     // [Start motion_unsubscribe_holding]
     try {
       motion.off('holdingHandChanged');
-      console.info("off succeeded");
+      console.info('off succeeded');
       // [StartExclude motion_unsubscribe_holding]
       this.message = 'motion unsubscribeHolding';
       // [EndExclude motion_unsubscribe_holding]
     } catch (err) {
       let error = err as BusinessError;
-      console.error("Failed off and err code is " + error.code);
+      console.error('Failed off and err code is ' + error.code);
       // [StartExclude motion_unsubscribe_holding]
       this.message = 'motion unsubscribeHolding';
       // [EndExclude motion_unsubscribe_holding]
