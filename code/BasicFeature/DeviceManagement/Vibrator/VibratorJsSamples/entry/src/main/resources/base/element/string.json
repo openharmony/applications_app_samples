@@ -47,6 +47,18 @@
     {
       "name": "getVibratorInfoSync",
       "value": "getVibratorInfoSync"
+    },
+    {
+      "name": "getVibratorInfoSyncByDeviceId",
+      "value": "getVibratorInfoSyncByDeviceId"
+    },
+    {
+      "name": "getEffectInfoSync",
+      "value": "getEffectInfoSync"
+    },
+    {
+      "name": "isHdHapticSupported",
+      "value": "isHdHapticSupported"
     }
   ]
 }

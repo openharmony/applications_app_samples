@@ -22,17 +22,13 @@
       "default",
       "tablet"
     ],
+// [Start vibrator_js_permission_example]
     "requestPermissions": [
       {
-        "name": "ohos.permission.VIBRATE",
-        "usedScene": {
-          "abilities": [
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
+        "name": "ohos.permission.VIBRATE"
       }
     ],
+// [End vibrator_js_permission_example]
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",

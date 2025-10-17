@@ -22,11 +22,13 @@
       "default",
       "tablet"
     ],
+// [Start sensor_js_permission_example]
     "requestPermissions": [
       {
         "name":"ohos.permission.ACCELEROMETER"
       }
     ],
+// [End sensor_js_permission_example]
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
