@@ -14,9 +14,21 @@
 
 1. 工程启动后，通过文本输入，设置属性值。
 
-2. 在"设置duration"和"设置iteration"文本输入框中，分别输入属性值。
+2. 在"设置duration"和"设置iteration"文本输入框中，分别输入属性值，其中duration为动图播放的播放时长，iteration为动图播放的次数。
 
-3. 分别点击"设置"，查看已设置的属性值。
+3. 分别点击"设置"，查看已设置属性值的显示效果。
+
+4. 工程启动后，会自动加载图片并触发对OH_ArkUI_DrawableDescriptor_GetStaticPixelMap、OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray、OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize这几个接口的调用，若接口成功调用可以在DevEco Studio开发环境中的日志界面看到如下相关日志信息：
+```
+"GetStaticPixelMap success"
+"GetAnimatedPixelMapArray success"
+"GetAnimatedPixelMapArraySize success"
+```
+
+5. 退出工程后，会自动调用OH_ArkUI_DrawableDescriptor_Dispose接口，若接口成功调用可以在DevEco Studio开发环境中的日志界面看到如下相关日志信息：
+```
+"Dispose success"
+```
 
 ### 工程目录
 ```

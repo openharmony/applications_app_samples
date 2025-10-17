@@ -14,27 +14,27 @@
     },
     {
       "name": "Index_label_func_sample",
-      "value": "DrawableDescriptor¹¦ÄÜÊ¾Àı"
+      "value": "DrawableDescriptoråŠŸèƒ½ç¤ºä¾‹"
     },
     {
       "name": "Index_label_load_fail",
-      "value": "¼ÓÔØÍ¼Æ¬Ê§°Ü£¬Çë¼ì²é×ÊÔ´ÎÄ¼ş"
+      "value": "åŠ è½½å›¾ç‰‡å¤±è´¥ï¼Œè¯·æ£€æŸ¥èµ„æºæ–‡ä»¶"
     },
     {
       "name": "Index_label_set_duration",
-      "value": "ÉèÖÃduration"
+      "value": "è®¾ç½®duration"
     },
     {
       "name": "Index_label_set_iteration",
-      "value": "ÉèÖÃiteration"
+      "value": "è®¾ç½®iteration"
     },
     {
       "name": "Index_label_check_picture",
-      "value": "ÌáÊ¾: ÇëÈ·±£×ÊÔ´ÎÄ¼ş´æÔÚÓÚrawfileÄ¿Â¼"
+      "value": "æç¤º:è¯·ç¡®ä¿èµ„æºæ–‡ä»¶å­˜åœ¨äºrawfileç›®å½•"
     },
     {
       "name": "Index_button_setting",
-      "value": "ÉèÖÃ"
+      "value": "è®¾ç½®"
     }
   ]
 }
