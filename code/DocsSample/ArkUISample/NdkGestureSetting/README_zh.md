@@ -9,7 +9,7 @@
 
 | 首页                                 |
 |------------------------------------|
-|<img src="screenshots/device/image1.png" width="360;">|
+|<img src="screenshots/device/image1.jpeg" width="360;">|
 
 ### 使用说明
 

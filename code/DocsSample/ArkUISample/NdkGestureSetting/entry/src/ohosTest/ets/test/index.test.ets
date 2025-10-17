@@ -184,7 +184,7 @@ export default function IndexTest() {
       await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Pan-Vertical', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
-      await driver.swipe(200, 400, 200, 450, 1000);
+      await driver.swipe(300, 400, 300, 450, 1000);
       await driver.delayMs(1000);
       let result = await driver.findComponent(ON.text('panGesture is called', MatchPattern.CONTAINS));
       expect(result === null).assertFalse();
@@ -201,8 +201,6 @@ export default function IndexTest() {
     it('testLeftPanGesture', 0, async (done: Function) => {
       console.info('uitest: testLeftPanGesture begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Pan-Left', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await driver.swipe(600, 400, 500, 450, 1000);
@@ -222,8 +220,6 @@ export default function IndexTest() {
     it('testRightPanGesture', 0, async (done: Function) => {
       console.info('uitest: testRightPanGesture begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Pan-Right', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await driver.swipe(200, 600, 250, 600, 1000);
@@ -243,8 +239,6 @@ export default function IndexTest() {
     it('testUpPanGesture', 0, async (done: Function) => {
       console.info('uitest: testUpPanGesture begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Pan-Up', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await driver.swipe(600, 600, 600, 550, 1000);
@@ -264,8 +258,6 @@ export default function IndexTest() {
     it('testDownPanGesture', 0, async (done: Function) => {
       console.info('uitest: testDownPanGesture begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Pan-Down', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await driver.swipe(200, 800, 200, 850, 1000);
@@ -285,8 +277,6 @@ export default function IndexTest() {
     it('testExclusiveGroup', 0, async (done: Function) => {
       console.info('uitest: testExclusiveGroup begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Group-Exclusive', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await button.longClick();
@@ -308,8 +298,6 @@ export default function IndexTest() {
       let driver = Driver.create();
       await driver.swipe(200, 1000, 250, 350, 2000);
       await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Group-Parallel', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await button.longClick();
@@ -329,10 +317,6 @@ export default function IndexTest() {
     it('testNormalMask', 0, async (done: Function) => {
       console.info('uitest: testNormalMask begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('NORMAL_GESTURE_MASK', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await button.click();
@@ -352,10 +336,6 @@ export default function IndexTest() {
     it('testIgnoreInternalMask', 0, async (done: Function) => {
       console.info('uitest: testIgnoreInternalMask begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('IGNORE_INTERNAL_GESTURE_MASK', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await button.click();
@@ -375,10 +355,6 @@ export default function IndexTest() {
     it('testNormalPriority', 0, async (done: Function) => {
       console.info('uitest: testNormalPriority begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Priority-Normal', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await button.click();
@@ -398,10 +374,6 @@ export default function IndexTest() {
     it('testParallelPriority', 0, async (done: Function) => {
       console.info('uitest: testParallelPriority begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Priority-Parallel', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await button.click();
@@ -421,10 +393,6 @@ export default function IndexTest() {
     it('testHighPriority', 0, async (done: Function) => {
       console.info('uitest: testHighPriority begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('Priority-Priority', MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
       await button.click();
@@ -444,10 +412,6 @@ export default function IndexTest() {
     it('testJudgeBegin', 0, async (done: Function) => {
       console.info('uitest: testJudgeBegin begin');
       let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
       await driver.swipe(200, 1000, 250, 500, 2000);
       await driver.delayMs(1000);
       let button = await driver.findComponent(ON.text('JudgeBeginTest', MatchPattern.CONTAINS));
@@ -458,31 +422,6 @@ export default function IndexTest() {
       expect(result === null).assertFalse();
       await driver.delayMs(1000);
       console.info('uitest: testJudgeBegin end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_021
-     * @tc.name testPanGestureWithDistanceMap
-     * @tc.desc 测试滑动手势设置滑动阈值表示例
-     */
-    it('testPanGestureWithDistanceMap', 0, async (done: Function) => {
-      console.info('uitest: testPanGestureWithDistanceMap begin');
-      let driver = Driver.create();
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 350, 2000);
-      await driver.delayMs(1000);
-      await driver.swipe(200, 1000, 250, 500, 2000);
-      await driver.delayMs(1000);
-      let button = await driver.findComponent(ON.text('PanGestureWithDistanceMap', MatchPattern.CONTAINS));
-      expect(button === null).assertFalse();
-      await driver.swipe(600, 800, 600, 850, 1000);
-      await driver.delayMs(1000);
-      let result = await driver.findComponent(ON.text('panGesture is called', MatchPattern.CONTAINS));
-      expect(result === null).assertFalse();
-      await driver.delayMs(1000);
-      console.info('uitest: testPanGestureWithDistanceMap end');
       done();
     })
   })

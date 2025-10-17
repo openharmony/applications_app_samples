@@ -45,7 +45,7 @@ struct NativeDragDropExample {
         type: XComponentType.NODE,
         libraryname: 'nativeNode'
       })
-        .height(1150)
+        .height(1450)
         .onAppear(() => {
           nativeNode.createNativeNode('dragAndDrop', this.getUIContext());
         })

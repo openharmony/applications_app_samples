@@ -13,7 +13,7 @@
 
 ### 使用说明
 
-1. 在首页可以查看多种拖拽API的使用示例，包括通用拖拽、通用异步拖拽、主动发起拖拽、主动发起拖拽（异步加载）的示例。
+1. 在首页可以查看多种拖拽API的使用示例，包括通用拖拽、通用异步拖拽、延迟拖拽、主动发起拖拽、主动发起拖拽（异步加载）的示例。
 
 2. 通过自动测试框架可进行测试及维护。
 
@@ -26,14 +26,15 @@ entry/src/main/ets/
 |     |---common.h
 |     |---container.cpp
 |     |---container.h
+|     |---fifthmodule.h                    // 主动发起拖拽（异步加载）示例代码
 |     |---firstmodule.h                    // 通用拖拽示例代码
-|     |---forthmodule.h                    // 主动发起拖拽（异步加载）示例代码
+|     |---forthmodule.h                    // 主动发起拖拽示例代码
 |     |---init.cpp
 |     |---manager.cpp                       // 各模块示例入口
 |     |---manager.h                         // manager头文件
 |     |---napi_init.cpp
 |     |---secondmodule.h                    // 异步拖拽示例代码
-|     |---thirdmodule.h                    // 主动发起拖拽示例代码
+|     |---thirdmodule.h                    // 延迟处理拖拽示例代码
 |---ets
 |   |---pages
 |   |   |---Index.ets                       // 应用主页面

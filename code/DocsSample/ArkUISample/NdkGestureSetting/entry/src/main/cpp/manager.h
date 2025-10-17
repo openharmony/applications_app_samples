@@ -45,6 +45,7 @@ public:
 
     void Export(napi_env env, napi_value exports);
     static void CreateNode(ArkUI_NodeHandle& textShow2);
+    static void SetClearButtonAttribute(ArkUI_NodeHandle &node);
     static void SetTapGesture(ArkUI_NodeHandle &column);
     static void SetPanGestureWithDirection(ArkUI_NodeHandle &column, ArkUI_GestureDirection direction);
     static void SetLongPressGesture(ArkUI_NodeHandle &column);

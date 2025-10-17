@@ -19,6 +19,7 @@
 #include "common.h"
 #include "container.h"
 #include <arkui/drag_and_drop.h>
+#include <arkui/native_key_event.h>
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 #include <database/udmf/udmf_meta.h>
@@ -70,15 +71,6 @@ void PrintDragStartInfos(ArkUI_DragEvent* dragEvent)
     SetText(isRemoteText1, g_ss.str().c_str());
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
         "OH_ArkUI_DragEvent_IsRemote returnValue = %{public}d", isRemote);
-    uint64_t modifierKeys = ARKUI_MODIFIER_KEY_CTRL;
-    int32_t modifierKeyState = OH_ArkUI_DragEvent_GetModifierKeyStates(dragEvent, &modifierKeys);
-    g_ss.str("");
-    if (modifierKeyState == 0) {
-        g_ss << "modifierKeyState: false";
-    } else if (modifierKeyState == 1) {
-        g_ss << "modifierKeyState: true";
-    }
-    SetText(modifierKeyStateText1, g_ss.str().c_str());
 }
 
 void SetData(ArkUI_DragEvent* dragEvent)
@@ -95,14 +87,19 @@ void SetData(ArkUI_DragEvent* dragEvent)
 
 void GetDragMoveInfos(ArkUI_DragEvent* dragEvent)
 {
+    // 预览图尺寸
+    float previewRectWidth = OH_ArkUI_DragEvent_GetPreviewRectWidth(dragEvent);
+    float previewRectHeight = OH_ArkUI_DragEvent_GetPreviewRectHeight(dragEvent);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_MOVE previewRectWidth = %{public}f; previewRectHeight = %{public}f",
+        previewRectWidth, previewRectHeight);
     float previewTouchPointX = OH_ArkUI_DragEvent_GetPreviewTouchPointX(dragEvent);
     float previewTouchPointY = OH_ArkUI_DragEvent_GetPreviewTouchPointY(dragEvent);
     g_ss.str("");
     g_ss << "previewTouchPointX/Y: " << previewTouchPointX << "/" << previewTouchPointY;
     SetText(previewTouchPointText1, g_ss.str().c_str());
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE GetPreviewTouchPointX pos = %{public}f; ",
-        "GetPreviewTouchPointY pos = %{public}f",
+        "NODE_ON_MOVE previewTouchPointX = %{public}f; previewTouchPointY = %{public}f",
         previewTouchPointX, previewTouchPointY);
     float touchPointXToWindow = OH_ArkUI_DragEvent_GetTouchPointXToWindow(dragEvent);
     float touchPointYToWindow = OH_ArkUI_DragEvent_GetTouchPointYToWindow(dragEvent);
@@ -110,7 +107,7 @@ void GetDragMoveInfos(ArkUI_DragEvent* dragEvent)
     g_ss << "touchPointX/YToWindow: " << touchPointXToWindow << "/" << touchPointYToWindow;
     SetText(touchPointToWindowText1, g_ss.str().c_str());
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE GetTouchPointXToWindow pos = %{public}f; GetTouchPointYToWindow pos = %{public}f",
+        "NODE_ON_MOVE touchPointXToWindow = %{public}f; touchPointYToWindow = %{public}f",
         touchPointXToWindow, touchPointYToWindow);
     float touchPointXToDisplay = OH_ArkUI_DragEvent_GetTouchPointXToDisplay(dragEvent);
     float touchPointYToDisplay = OH_ArkUI_DragEvent_GetTouchPointYToDisplay(dragEvent);
@@ -118,7 +115,7 @@ void GetDragMoveInfos(ArkUI_DragEvent* dragEvent)
     g_ss << "touchPointX/YToDisplay: " << touchPointXToDisplay << "/" << touchPointYToDisplay;
     SetText(touchPointToDisplayText1, g_ss.str().c_str());
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE GetTouchPointXToDisplay pos = %{public}f; GetTouchPointYToDisplay pos = %{public}f",
+        "NODE_ON_MOVE touchPointXToDisplay = %{public}f; touchPointYToDisplay = %{public}f",
         touchPointXToDisplay, touchPointYToDisplay);
     float touchPointXToGlobalDisplay = OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay(dragEvent);
     float touchPointYToGlobalDisplay = OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay(dragEvent);
@@ -126,8 +123,7 @@ void GetDragMoveInfos(ArkUI_DragEvent* dragEvent)
     g_ss << "touchPointX/YToGlobalDisplay: " << touchPointXToDisplay << "/" << touchPointYToDisplay;
     SetText(touchPointToGlobalDisplayText1, g_ss.str().c_str());
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE GetTouchPointXToGlobalDisplay pos = %{public}f; ",
-        "GetTouchPointYToGlobalDisplay pos = %{public}f",
+        "NODE_ON_MOVE touchPointXToGlobalDisplay = %{public}f; touchPointYToGlobalDisplay = %{public}f",
         touchPointXToGlobalDisplay, touchPointYToGlobalDisplay);
     float velocityX = OH_ArkUI_DragEvent_GetVelocityX(dragEvent);
     float velocityY = OH_ArkUI_DragEvent_GetVelocityY(dragEvent);
@@ -136,9 +132,7 @@ void GetDragMoveInfos(ArkUI_DragEvent* dragEvent)
     g_ss << "velocityX: " << velocityX << "  velocityY: " << velocityY << "  velocity: " << velocity;
     SetText(velocityText1, g_ss.str().c_str());
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE GetVelocityX vx = %{public}f; ",
-        "GetVelocityY vy = %{public}f; ",
-        "GetVelocity v = %{public}f",
+        "NODE_ON_MOVE velocityX = %{public}f; velocityY = %{public}f; velocity = %{public}f",
         velocityX, velocityY, velocity);
 }
 
@@ -221,12 +215,6 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_START EventReceiver");
                 PrintDragStartInfos(dragEvent);
                 SetData(dragEvent);
-                // 预览图尺寸
-                float previewRectWidth = OH_ArkUI_DragEvent_GetPreviewRectWidth(dragEvent);
-                float previewRectHeight = OH_ArkUI_DragEvent_GetPreviewRectHeight(dragEvent);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                    "NODE_ON_DRAG_START previewRectWidth = %{public}f; previewRectHeight = %{public}f",
-                    previewRectWidth, previewRectHeight);
                 break;
             }
             case NODE_ON_DRAG_END: {
@@ -267,6 +255,7 @@ void RegisterNodeEventFirstReceiver2(ArkUI_NodeHandle node)
         auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
         switch (eventType) {
             case NODE_ON_DROP: {
+                OH_ArkUI_DragEvent_SetSuggestedDropOperation(dragEvent, ARKUI_DROP_OPERATION_COPY);
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP EventReceiver");
                 GetDragData(dragEvent);
                 break;
@@ -294,6 +283,37 @@ void RegisterNodeEventFirstReceiver2(ArkUI_NodeHandle node)
     });
 }
 
+void RegisterKeyEventReceiver()
+{
+    if (!nodeAPI) {
+        return;
+    }
+
+    nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
+        auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
+        if (eventType != NODE_ON_KEY_EVENT) {
+            return;
+        }
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "RegisterKeyEventReceiver called");
+        auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
+        auto *inputEvent = OH_ArkUI_NodeEvent_GetInputEvent(event);
+        auto type = OH_ArkUI_KeyEvent_GetType(inputEvent);
+        uint64_t modifierKeys = ARKUI_MODIFIER_KEY_CTRL;
+        int32_t modifierKeyState = OH_ArkUI_DragEvent_GetModifierKeyStates(dragEvent, &modifierKeys);
+        g_ss.str("");
+        if (type == ARKUI_KEY_EVENT_DOWN) {
+            if (modifierKeyState == 0) {
+                g_ss << "modifierKeyState: false";
+            } else {
+                g_ss << "modifierKeyState: true";
+            }
+        } else if (type == ARKUI_KEY_EVENT_UP) {
+            g_ss << "modifierKeyState: false";
+        }
+        SetText(modifierKeyStateText1, g_ss.str().c_str());
+    });
+}
+
 void DisplayInfo(ArkUI_NodeHandle &column1)
 {
     displayIdText1 = nodeAPI->createNode(ARKUI_NODE_TEXT);
@@ -309,7 +329,7 @@ void DisplayInfo(ArkUI_NodeHandle &column1)
     nodeAPI->addChild(column1, isRemoteText1);
     
     modifierKeyStateText1 = nodeAPI->createNode(ARKUI_NODE_TEXT);
-    SetText(modifierKeyStateText1, "modifierKeyState: ");
+    SetText(modifierKeyStateText1, "modifierKeyState: (首次需按Tab键激活)");
     nodeAPI->addChild(column1, modifierKeyStateText1);
     
     previewTouchPointText1 = nodeAPI->createNode(ARKUI_NODE_TEXT);
@@ -339,10 +359,29 @@ void DisplayInfo(ArkUI_NodeHandle &column1)
 
 void SetPreviewOption(ArkUI_NodeHandle &node)
 {
+    // 创建pixelMap
+    uint8_t data[960000];
+    size_t dataSize = 960000;
+    for (int i = 0; i < dataSize; i++) {
+    data[i] = i + 1;
+    }
+    // 创建参数结构体实例，并设置参数
+    OH_Pixelmap_InitializationOptions *createOpts;
+    OH_PixelmapInitializationOptions_Create(&createOpts);
+    OH_PixelmapInitializationOptions_SetWidth(createOpts, SIZE_200);
+    OH_PixelmapInitializationOptions_SetHeight(createOpts, SIZE_200);
+    OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_BGRA_8888);
+    OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNKNOWN);
+    // 设置自定义跟手图
+    OH_PixelmapNative *pixelmap = nullptr;
+    OH_PixelmapNative_CreatePixelmap(data, dataSize, createOpts, &pixelmap);
+    OH_PixelmapNative_Opacity(pixelmap, DEFAULT_OPACITY);
+    OH_ArkUI_SetNodeDragPreview(node, pixelmap);
+    // 设置跟手图选项
     auto *previewOptionsText = OH_ArkUI_CreateDragPreviewOption();
     OH_ArkUI_DragPreviewOption_SetScaleMode(previewOptionsText, ARKUI_DRAG_PREVIEW_SCALE_DISABLED);
     OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled(previewOptionsText, true);
-    OH_ArkUI_DragPreviewOption_SetBadgeNumber(previewOptionsText, -1);
+    OH_ArkUI_DragPreviewOption_SetBadgeNumber(previewOptionsText, DRAG_COUNT);
     OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled(previewOptionsText, true);
     OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled(previewOptionsText, true);
     int returnValue = OH_ArkUI_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled(previewOptionsText, true);
@@ -391,6 +430,7 @@ void DragAreaFirst(ArkUI_NodeHandle &column1)
     SetBorderWidth(unDropArea, BORDER_WIDTH_1);
     SetColumnJustifyContent(unDropArea, ARKUI_FLEX_ALIGNMENT_CENTER);
     OH_ArkUI_DisallowNodeAnyDropDataTypes(unDropArea);
+    context = OH_ArkUI_GetContextByNode(unDropArea);
     OH_ArkUI_EnableDropDisallowedBadge(context, true);
     auto unDropText1 = nodeAPI->createNode(ARKUI_NODE_TEXT);
     SetText(unDropText1, "", TEXT_FONT_SIZE_20);
@@ -429,7 +469,7 @@ void DropAreaFirst1(ArkUI_NodeHandle &dragRow2)
     
     auto unDropArea1 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     SetId(unDropArea1, "unDropArea1_1");
-    SetCommonAttribute(unDropArea1, SIZE_120, SIZE_70, DEFAULT_BG_COLOR, BLANK_5);
+    SetCommonAttribute(unDropArea1, SIZE_120, SIZE_80, DEFAULT_BG_COLOR, BLANK_5);
     SetBorderWidth(unDropArea1, BORDER_WIDTH_1);
     SetColumnJustifyContent(unDropArea1, ARKUI_FLEX_ALIGNMENT_CENTER);
     SetColumnAlignItem(unDropArea1, ARKUI_HORIZONTAL_ALIGNMENT_CENTER);
@@ -470,12 +510,11 @@ void DropAreaFirst2(ArkUI_NodeHandle &dragRow2)
     
     auto unDropArea2 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     SetId(unDropArea2, "unDropArea2_1");
-    SetCommonAttribute(unDropArea2, SIZE_120, SIZE_70, DEFAULT_BG_COLOR, BLANK_5);
+    SetCommonAttribute(unDropArea2, SIZE_120, SIZE_80, DEFAULT_BG_COLOR, BLANK_5);
     SetBorderWidth(unDropArea2, BORDER_WIDTH_1);
     SetColumnJustifyContent(unDropArea2, ARKUI_FLEX_ALIGNMENT_CENTER);
     SetColumnAlignItem(unDropArea2, ARKUI_HORIZONTAL_ALIGNMENT_CENTER);
-    OH_ArkUI_DisallowNodeAnyDropDataTypes(unDropArea2);
-    const char* types[] = {"general.file"};
+    const char* types[] = { UDMF_META_TEXT };
     OH_ArkUI_SetNodeAllowedDropDataTypes(unDropArea2, types, 1);
     nodeAPI->registerNodeEvent(unDropArea2, NODE_ON_DROP, 1, nullptr);
     auto unDropText2 = nodeAPI->createNode(ARKUI_NODE_TEXT);
@@ -489,11 +528,13 @@ void DropAreaFirst2(ArkUI_NodeHandle &dragRow2)
 void FirstModule(ArkUI_NodeHandle &root)
 {
     auto column1 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetWidthPercent(column1, 1);
     SetColumnJustifyContent(column1, ARKUI_FLEX_ALIGNMENT_START);
     SetColumnAlignItem(column1, ARKUI_HORIZONTAL_ALIGNMENT_START);
     SetPadding(column1, BLANK_10);
     SetBorderWidth(column1, BORDER_WIDTH_1);
     SetBorderStyle(column1, ARKUI_BORDER_STYLE_DASHED, DEFAULT_RADIUS);
+    nodeAPI->registerNodeEvent(column1, NODE_ON_KEY_EVENT, 1, nullptr);
     
     auto title = nodeAPI->createNode(ARKUI_NODE_TEXT);
     SetTextAttribute(title, "通用拖拽示例：", TEXT_FONT_SIZE_15, SIZE_140, SIZE_20);
@@ -527,6 +568,7 @@ void FirstModule(ArkUI_NodeHandle &root)
     RegisterNodeEventFirstReceiver1(dragText1);
     RegisterNodeEventFirstReceiver2(dropArea1);
     RegisterNodeEventFirstReceiver2(dropArea2);
+    RegisterKeyEventReceiver();
 }
 
 } // namespace NativeXComponentSample

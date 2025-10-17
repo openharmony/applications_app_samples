@@ -32,10 +32,11 @@
 #define DEFAULT_MARGIN 5.0
 #define DEFAULT_BORDER_COLOR 0xFF000000
 #define DEFAULT_RADIUS 10.0
+#define DEFAULT_OPACITY 0.1
 
 #define SIZE_20 20
 #define SIZE_50 50
-#define SIZE_70 70
+#define SIZE_80 80
 #define SIZE_120 120
 #define SIZE_140 140
 #define SIZE_170 170
@@ -46,9 +47,12 @@
 #define BLANK_10 10.0
 #define BLANK_20 20.0
 
+#define DRAG_COUNT 10
 #define DEFAULT_TEXT_FONT_SIZE 12
 #define TEXT_FONT_SIZE_15 15
 #define TEXT_FONT_SIZE_20 20
+
+#define POINT_POS 200
 
 #define MAX_LENGTH 128
 
@@ -77,6 +81,16 @@ void SetWidth(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH)
     nodeAPI->setAttribute(node, NODE_WIDTH, &widthItem);
 }
 
+void SetWidthPercent(ArkUI_NodeHandle &node, float width = 1)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_NumberValue widthValue[] = {width};
+    ArkUI_AttributeItem widthItem = {widthValue, 1};
+    nodeAPI->setAttribute(node, NODE_WIDTH_PERCENT, &widthItem);
+}
+
 void SetHeight(ArkUI_NodeHandle &node, float height = DEFAULT_HEIGHT)
 {
     if (!nodeAPI) {
@@ -85,6 +99,16 @@ void SetHeight(ArkUI_NodeHandle &node, float height = DEFAULT_HEIGHT)
     ArkUI_NumberValue heightValue[] = {height};
     ArkUI_AttributeItem heightItem = {heightValue, 1};
     nodeAPI->setAttribute(node, NODE_HEIGHT, &heightItem);
+}
+
+void SetHeightPercent(ArkUI_NodeHandle &node, float height = 1)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_NumberValue heightValue[] = {height};
+    ArkUI_AttributeItem heightItem = {heightValue, 1};
+    nodeAPI->setAttribute(node, NODE_HEIGHT_PERCENT, &heightItem);
 }
 
 void SetBackgroundColor(ArkUI_NodeHandle &node, uint32_t color = DEFAULT_BG_COLOR)
@@ -288,14 +312,14 @@ void SetDragPreviewOption()
 void PrintDragActionInfos()
 {
     // 设置pointerId
-    int returnValue = OH_ArkUI_DragAction_SetPointerId(action, 0); // -1 0 10
+    int returnValue = OH_ArkUI_DragAction_SetPointerId(action, 0);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
         "OH_ArkUI_DragAction_SetPointerId returnValue = %{public}d", returnValue);
     // 设置touchPoint
-    returnValue = OH_ArkUI_DragAction_SetTouchPointX(action, 200); // -1 0 200
+    returnValue = OH_ArkUI_DragAction_SetTouchPointX(action, POINT_POS);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
         "OH_ArkUI_DragAction_SetTouchPointX returnValue = %{public}d", returnValue);
-    returnValue = OH_ArkUI_DragAction_SetTouchPointY(action, 200); // -1 0 200
+    returnValue = OH_ArkUI_DragAction_SetTouchPointY(action, POINT_POS);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
         "OH_ArkUI_DragAction_SetTouchPointY returnValue = %{public}d", returnValue);
 }

@@ -30,16 +30,8 @@ namespace NativeXComponentSample {
 
 ArkUI_NodeHandle dragImage = nullptr;
 ArkUI_NodeHandle dropImage = nullptr;
-ArkUI_NodeHandle displayIdText2 = nullptr;
-ArkUI_NodeHandle bundleNameText2 = nullptr;
-ArkUI_NodeHandle isRemoteText2 = nullptr;
-ArkUI_NodeHandle previewTouchPointText2 = nullptr;
-ArkUI_NodeHandle touchPointToWindowText2 = nullptr;
-ArkUI_NodeHandle touchPointToDisplayText2 = nullptr;
-ArkUI_NodeHandle touchPointToGlobalDisplayText2 = nullptr;
-ArkUI_NodeHandle velocityText2 = nullptr;
 
-void SetImageDataLoadParams(ArkUI_DragEvent* dragEvent)
+void SetImageDataLoadParams1(ArkUI_DragEvent* dragEvent)
 {
     // 异步传输拖拽数据
     OH_UdmfDataLoadParams *dataLoadParams = OH_UdmfDataLoadParams_Create();
@@ -62,7 +54,7 @@ void SetImageDataLoadParams(ArkUI_DragEvent* dragEvent)
     OH_ArkUI_DragEvent_SetDataLoadParams(dragEvent, dataLoadParams);
 }
 
-void StartDataLoadingSecond(ArkUI_DragEvent* dragEvent)
+void StartDataLoadingSecond1(ArkUI_DragEvent* dragEvent)
 {
     // 异步流程
     int32_t count = 0;
@@ -120,7 +112,7 @@ void StartDataLoadingSecond(ArkUI_DragEvent* dragEvent)
     OH_UdmfGetDataParams_Destroy(params);
 }
 
-void GetSecondDragResult(ArkUI_DragEvent* dragEvent)
+void GetSecondDragResult1(ArkUI_DragEvent* dragEvent)
 {
     ArkUI_DragResult result;
     OH_ArkUI_DragEvent_GetDragResult(dragEvent, &result);
@@ -154,18 +146,12 @@ void RegisterNodeEventSecondReceiver1(ArkUI_NodeHandle &dragNode)
             }
             case NODE_ON_DRAG_START: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_START EventReceiver");
-                SetImageDataLoadParams(dragEvent);
-                // 预览图尺寸
-                float previewRectWidth = OH_ArkUI_DragEvent_GetPreviewRectWidth(dragEvent);
-                float previewRectHeight = OH_ArkUI_DragEvent_GetPreviewRectHeight(dragEvent);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                    "NODE_ON_DRAG_START previewRectWidth = %{public}f; previewRectHeight = %{public}f",
-                    previewRectWidth, previewRectHeight);
+                SetImageDataLoadParams1(dragEvent);
                 break;
             }
             case NODE_ON_DRAG_END: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_END EventReceiver");
-                GetSecondDragResult(dragEvent);
+                GetSecondDragResult1(dragEvent);
                 break;
             }
             default: {
@@ -198,7 +184,7 @@ void RegisterNodeEventSecondReceiver2(ArkUI_NodeHandle &dropNode)
                 OH_ArkUI_DragEvent_RequestDragEndPending(dragEvent, &g_requestIdentify);
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
                     "OH_ArkUI_DragEvent_RequestDragEndPending called");
-                StartDataLoadingSecond(dragEvent);
+                StartDataLoadingSecond1(dragEvent);
                 break;
             }
             case NODE_ON_DRAG_ENTER: {
@@ -253,21 +239,22 @@ void SecondButtonModule(ArkUI_NodeHandle &column)
 
 void SecondModule(ArkUI_NodeHandle &root)
 {
-    auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
-    SetColumnJustifyContent(column, ARKUI_FLEX_ALIGNMENT_START);
-    SetColumnAlignItem(column, ARKUI_HORIZONTAL_ALIGNMENT_START);
-    SetPadding(column, BLANK_10);
-    SetBorderWidth(column, BORDER_WIDTH_1);
-    SetBorderStyle(column, ARKUI_BORDER_STYLE_DASHED, DEFAULT_RADIUS);
+    auto column2 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetWidthPercent(column2, 1);
+    SetColumnJustifyContent(column2, ARKUI_FLEX_ALIGNMENT_START);
+    SetColumnAlignItem(column2, ARKUI_HORIZONTAL_ALIGNMENT_START);
+    SetPadding(column2, BLANK_10);
+    SetBorderWidth(column2, BORDER_WIDTH_1);
+    SetBorderStyle(column2, ARKUI_BORDER_STYLE_DASHED, DEFAULT_RADIUS);
 
     auto title = nodeAPI->createNode(ARKUI_NODE_TEXT);
     SetTextAttribute(title, "异步拖拽示例：", TEXT_FONT_SIZE_15, SIZE_140, SIZE_20);
-    nodeAPI->addChild(column, title);
+    nodeAPI->addChild(column2, title);
 
     auto dragRow = nodeAPI->createNode(ARKUI_NODE_ROW);
     SetRowAlignItem(dragRow, ARKUI_VERTICAL_ALIGNMENT_TOP);
 
-    nodeAPI->addChild(column, dragRow);
+    nodeAPI->addChild(column2, dragRow);
 
     // 拖拽图像
     auto dragColumn = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -305,9 +292,9 @@ void SecondModule(ArkUI_NodeHandle &root)
 
     nodeAPI->addChild(dragRow, dropColumn);
 
-    SecondButtonModule(column);
+    SecondButtonModule(column2);
 
-    nodeAPI->addChild(root, column);
+    nodeAPI->addChild(root, column2);
 
     RegisterNodeEventSecondReceiver1(dragImage);
     RegisterNodeEventSecondReceiver2(dropImage);

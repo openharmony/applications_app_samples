@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
+#include "thirdmodule.h"
 #include "common.h"
 #include "firstmodule.h"
 #include "secondmodule.h"
-#include "thirdmodule.h"
 #include "forthmodule.h"
+#include "fifthmodule.h"
 #include "napi/native_api.h"
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <arkui/native_animate.h>
@@ -34,7 +35,6 @@
 #include <string>
 
 #include <arkui/drag_and_drop.h>
-#include <database/udmf/udmf_meta.h>
 
 #include "manager.h"
 
@@ -88,6 +88,12 @@ void SampleEntry(napi_env env, napi_value arg, OH_NativeXComponent *component)
     nodeAPI->addChild(column, blank3);
     
     ForthModule(column);
+    
+    auto blank4 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetHeight(blank4, BLANK_10);
+    nodeAPI->addChild(column, blank4);
+    
+    FifthModule(column);
     
     OH_NativeXComponent_AttachNativeRootNode(component, column);
 }
