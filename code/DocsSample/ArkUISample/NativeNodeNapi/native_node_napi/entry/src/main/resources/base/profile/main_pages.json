@@ -2,7 +2,7 @@
   "src": [
     "pages/Index",
     "pages/page_navigation",
-    "pages/GetDrawableDescriptor",
+    "pages/page_getDrawableDescriptor",
     "pages/page_accessibility",
     "pages/page_embedded_component",
     "pages/page_animation",

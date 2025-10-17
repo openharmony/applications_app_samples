@@ -24,6 +24,10 @@ struct Index {
   build() {
     Row() {
       Column() {
+        Button($r('app.string.GetDrawableDescriptor_return')).onClick(() => {
+          this.getUIContext().getRouter().back()
+        })
+
         Text($r('app.string.GetDrawableDescriptor_label'))
           .fontSize(20)
           .margin(20)
