@@ -14,6 +14,7 @@
  */
 
 // [Start in_app_hsp_001]
+// library/src/main/ets/components/MyTitleBar.ets
 @Component
 export struct MyTitleBar {
   build() {

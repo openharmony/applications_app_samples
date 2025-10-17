@@ -14,9 +14,11 @@
  */
 
 // [Start module_hnpPackages]
+// [Start module_definePermissions]
 {
   "module": {
     // [StartExclude module_hnpPackages]
+    // [StartExclude module_definePermissions]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -36,7 +38,7 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    // [Start module_definePermissions]
+    // [EndExclude module_definePermissions]
     "definePermissions": [
       {
         "name": "ohos.permission.ACCESS_BLUETOOTH",
@@ -47,7 +49,7 @@
         "label": "$string:EntryAbility_label"
       }
     ],
-    // [End module_definePermissions]
+    // [StartExclude module_definePermissions]
     "abilities": [
       {
         "name": "EntryAbility",
@@ -84,7 +86,9 @@
         ],
       }
     ]
+    // [EndExclude module_definePermissions]
+    // [EndExclude module_hnpPackages]
   },
-  // [EndExclude module_hnpPackages]
 }
+// [End module_definePermissions]
 // [End module_hnpPackages]

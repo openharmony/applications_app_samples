@@ -34,6 +34,7 @@ struct Index {
             hilog.info(DOMAIN, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
           })
         // [Start in_app_hsp_007]
+        // library/src/main/ets/pages/Index.ets
         // 正确用例
         Image($r('app.media.example'))
           .id('example')

@@ -14,6 +14,7 @@
  */
 
 // [Start har_package_002]
+// library/src/main/ets/components/mainpage/MainPage.ets
 @Component
 export struct MainPage {
   @State message: string = 'HAR MainPage';

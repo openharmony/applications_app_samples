@@ -12,21 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start har_package_014]
 {
   "module": {
     "name": "library",
     "type": "har",
     "deviceTypes": [
-      "default"
+      "default",
+      "tablet",
+      "2in1"
     ],
-    // [Start har_package_013]
     "metadata": [
       {
         "name": "UseTsHar",
         "value": "true"
       }
     ]
-    // [End har_package_013]
   }
 }
+// [End har_package_014]

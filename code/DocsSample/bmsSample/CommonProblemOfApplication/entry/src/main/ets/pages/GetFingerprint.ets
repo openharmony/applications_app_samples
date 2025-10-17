@@ -14,7 +14,6 @@
  */
 
 // [Start get_fingerprint]
-// 获取应用签名的指纹信息
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 

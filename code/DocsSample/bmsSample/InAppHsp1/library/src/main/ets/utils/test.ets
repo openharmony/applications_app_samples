@@ -14,6 +14,7 @@
  */
 
 // [Start in_app_hsp_003]
+// library/src/main/ets/utils/test.ets
 export class Log {
   static info(msg: string): void {
     console.info(msg);

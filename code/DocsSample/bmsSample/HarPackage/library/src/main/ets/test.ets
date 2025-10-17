@@ -14,6 +14,7 @@
  */
 
 // [Start har_package_004]
+// library/src/main/ets/test.ets
 export class Log {
   static info(msg: string) {
     console.info(msg);
