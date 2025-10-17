@@ -1,0 +1,20 @@
+{
+  "float": [
+    {
+      "name": "size_5",
+      "value": "5"
+    },
+    {
+      "name": "size_10",
+      "value": "10"
+    },
+    {
+      "name": "size_15",
+      "value": "15"
+    },
+    {
+      "name": "size_20",
+      "value": "20"
+    }
+  ]
+}

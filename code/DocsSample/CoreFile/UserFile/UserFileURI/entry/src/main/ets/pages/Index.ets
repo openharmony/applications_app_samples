@@ -13,37 +13,51 @@
  * limitations under the License.
  */
 
+// [Start copy_file_uri_example ]
+// [Start function_example]
 // [Start import_user_fileAccess]
 // [Start import_get_uri_assets]
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-import { dataSharePredicates } from '@kit.ArkData';
-import { fileAccess, fileIo as fs, picker } from '@kit.CoreFileKit';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
+// [StartExclude import_get_uri_assets]
 import { Want } from '@kit.AbilityKit';
-import Logger from '../common/Logger';
-
-// context 是EntryAbility 传过来的context
-let context = getContext(this) as common.UIAbilityContext;
-// [End import_user_fileAccess]
+// [EndExclude import_get_uri_assets]
+import { common } from '@kit.AbilityKit';
+// [StartExclude import_get_uri_assets]
+import { fileAccess} from '@kit.CoreFileKit';
+// [EndExclude import_get_uri_assets]
+// [StartExclude copy_file_uri_example]
+// [StartExclude function_example]
+import { dataSharePredicates } from '@kit.ArkData';
+// [StartExclude import_get_uri_assets]
+import { fileIo as fs} from '@kit.CoreFileKit';
+import { picker } from '@kit.CoreFileKit';
+// [EndExclude import_get_uri_assets]
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 // 定义一个uri数组，用于接收PhotoViewPicker选择图片返回的uri
 let uris: string[] = [];
+// [EndExclude function_example]
+// [EndExclude copy_file_uri_example]
 
+// context 是EntryAbility 传过来的context
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+// [End import_user_fileAccess]
+
+// [StartExclude copy_file_uri_example]
+// [StartExclude function_example]
 // [StartExclude import_get_uri_assets]
 async function getFileAccessAbilityInfo() {
   let wantInfos: Want[] = [];
   try {
     wantInfos = await fileAccess.getFileAccessAbilityInfo();
-    Logger.info('getFileAccessAbilityInfo data ' + JSON.stringify(wantInfos));
+    console.info('getFileAccessAbilityInfo data ' + JSON.stringify(wantInfos));
   } catch (err) {
     let error: BusinessError = err as BusinessError;
-    Logger.error('getFileAccessAbilityInfo failed, errCode:' + error.code + ', errMessage:' + error.message);
+    console.error('getFileAccessAbilityInfo failed, errCode:' + error.code + ', errMessage:' + error.message);
   }
 }
 // [EndExclude import_get_uri_assets]
 
-// [Start ]
 // 调用PhotoViewPicker.select选择图片
 async function photoPickerGetUri() {
   try {
@@ -54,10 +68,11 @@ async function photoPickerGetUri() {
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     // 等待用户选择图片
     let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
-    Logger.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(photoSelectResult));
+    console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     uris = photoSelectResult.photoUris;
   } catch (err) {
-    Logger.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+    let err: BusinessError = error as BusinessError;
+    console.error(`PhotoViewPicker failed with err, code is ${err.code}, message is ${err.message}`);
   }
 }
 
@@ -100,12 +115,95 @@ async function uriGetAssets(): Promise<string> {
     }
     // [EndExclude import_get_uri_assets]
   } catch (error) {
-    console.error('uriGetAssets failed with err: ' + JSON.stringify(error));
+    console.error(`uriGetAssets failed with err, code is ${error.code}, message is ${error.message}`);
     return 'ReadMediaUriFail';
   }
   return 'ReadMediaUriFail';
 }
 // [End import_get_uri_assets]
+// [EndExclude function_example]
+async function documentURIExample() {
+  let fileAccessHelper: fileAccess.FileAccessHelper;
+  // wantInfos 从getFileAccessAbilityInfo()获取
+  let wantInfos: Want[] = [
+    {
+    bundleName: 'com.ohos.UserFile.ExternalFileManager',
+    abilityName: 'FileExtensionAbility',
+    },
+  ];
+  try {
+    fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
+    if (!fileAccessHelper) {
+      console.error('createFileAccessHelper interface returns an undefined object');
+    }
+    // 以内置存储目录为例
+    // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+    // 开发者应根据自己实际获取的uri进行开发
+    let sourceUri: string = 'file://docs/storage/Users/currentUser/Download';
+    let displayName: string = 'test1.txt';
+    let fileUri: string;
+    try {
+      // 创建文件返回该文件的uri
+      fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
+      if (!fileUri) {
+        console.error('createFile return undefined object');
+      }
+      console.info('createFile success, fileUri: ' + JSON.stringify(fileUri));
+      // 将刚创建的文件进行重命名，返回新文件的uri
+      let renameUri = await fileAccessHelper.rename(fileUri, 'renameFile.txt');
+      console.info('rename success, renameUri: ' + JSON.stringify(renameUri));
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error('createFile failed, errCode:' + error.code + ', errMessage:' + error.message);
+    }
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
+  }
+}
+// [End function_example]
+// [EndExclude copy_file_uri_example]
+async function copyingFileByUriExample() {
+  let fileAccessHelper: fileAccess.FileAccessHelper;
+  // wantInfos 从getFileAccessAbilityInfo()获取
+  let wantInfos: Want[] = [
+    {
+    bundleName: 'com.ohos.UserFile.ExternalFileManager',
+    abilityName: 'FileExtensionAbility',
+    },
+  ];
+  try {
+    fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
+    if (!fileAccessHelper) {
+      console.error('createFileAccessHelper interface returns an undefined object');
+    }
+    // 以内置存储目录为例
+    // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+    // 开发者应根据自己实际获取的uri进行开发
+    let sourceUri: string = 'file://docs/storage/Users/currentUser/Download/renameFile.txt';
+    // 将文件复制到的位置uri
+    let destUri: string = 'file://docs/storage/Users/currentUser/Documents';
+    // 如果文件名冲突，要使用的文件名
+    let displayName: string = 'file.txt';
+    // 存放返回的uri
+    let fileUri: string;
+    try {
+      // 复制文件返回该文件的uri
+      fileUri = await fileAccessHelper.copyFile(sourceUri, destUri, displayName);
+      if (!fileUri) {
+        console.error('copyFile return undefined object');
+      }
+        console.info('copyFile success, fileUri: ' + JSON.stringify(fileUri));
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error('copyFile failed, errCode:' + error.code + ', errMessage:' + error.message);
+    }
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
+  }
+}
+// [End copy_file_uri_example]
 
 @Entry
 @Component
@@ -133,7 +231,7 @@ struct Index {
           .fontColor($r('app.color.blackColor')) // 按钮字体颜色为黑色
           .onClick(() => {
             this.uriMessage = ''; // 重置消息为默认值
-            this.documentURIExample(); // 调用方法处理文档URI
+            documentURIExample(); // 调用方法处理文档URI
           })
         // 读取图片uri按钮
         Button($r('app.string.readMediaUriButton'))
@@ -157,7 +255,7 @@ struct Index {
               // 然后获取图片资源信息
               this.uriMessage = await uriGetAssets();
             } catch (error) {
-              Logger.error('Error:', error); // 日志记录错误信息
+              console.error('Error:', error); // 日志记录错误信息
               this.uriMessage = 'Error: ' + error.message; // 显示错误信息
             }
           })
@@ -177,7 +275,7 @@ struct Index {
           .fontColor($r('app.color.blackColor')) // 按钮字体颜色为黑色
           .onClick(() => {
             this.uriMessage = ''; // 重置消息为默认值
-            this.copyingFileByUriExample(); // 调用方法处理文件复制
+            copyingFileByUriExample(); // 调用方法处理文件复制
           })
         Text(this.uriMessage)
           .fontSize($r('app.float.size_50')) // 文本字体大小为50
@@ -198,7 +296,7 @@ struct Index {
           })
           .fontColor($r('app.color.blackColor')) // 按钮字体颜色为黑色
           .onClick(() => {
-            this.documentURIExample();
+            documentURIExample();
             this.selectDocumentFiles();
           })
         Text(this.result)
@@ -214,114 +312,27 @@ struct Index {
     .backgroundColor($r('app.color.lightGrayColor')) // 背景颜色为浅灰色
   }
 
-  // [Start function_example]
-  async documentURIExample() {
-    let fileAccessHelper: fileAccess.FileAccessHelper;
-    // wantInfos 从getFileAccessAbilityInfo()获取
-    let wantInfos: Want[] = [
-      {
-        bundleName: 'com.ohos.UserFile.ExternalFileManager',
-        abilityName: 'FileExtensionAbility',
-      },
-    ];
-    try {
-      fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
-      if (!fileAccessHelper) {
-        Logger.error('createFileAccessHelper interface returns an undefined object');
-      }
-      // 以内置存储目录为例
-      // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
-      // 开发者应根据自己实际获取的uri进行开发
-      let sourceUri: string = 'file://docs/storage/Users/currentUser/Download';
-      let displayName: string = 'test1.txt';
-      let fileUri: string;
-      try {
-        // 创建文件返回该文件的uri
-        fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-        if (!fileUri) {
-          Logger.error('createFile return undefined object');
-        }
-        Logger.info('createFile success, fileUri: ' + JSON.stringify(fileUri));
-        // 将刚创建的文件进行重命名，返回新文件的uri
-        let renameUri = await fileAccessHelper.rename(fileUri, 'renameFile.txt');
-        Logger.info('rename success, renameUri: ' + JSON.stringify(renameUri));
-        this.uriMessage = 'ReadDocumentUriSuccess';
-      } catch (err) {
-        let error: BusinessError = err as BusinessError;
-        Logger.error('createFile failed, errCode:' + error.code + ', errMessage:' + error.message);
-      }
-    } catch (err) {
-      let error: BusinessError = err as BusinessError;
-      Logger.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
-    }
-  }
-  // [Start function_example]
- 
-  // [Start copy_file_uri_example ]
-  async copyingFileByUriExample() {
-    let fileAccessHelper: fileAccess.FileAccessHelper;
-    // wantInfos 从getFileAccessAbilityInfo()获取
-    let wantInfos: Want[] = [
-      {
-        bundleName: 'com.ohos.UserFile.ExternalFileManager',
-        abilityName: 'FileExtensionAbility',
-      },
-    ];
-    try {
-      fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
-      if (!fileAccessHelper) {
-        Logger.error('createFileAccessHelper interface returns an undefined object');
-      }
-      // 以内置存储目录为例
-      // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
-      // 开发者应根据自己实际获取的uri进行开发
-      let sourceUri: string = 'file://docs/storage/Users/currentUser/Download/renameFile.txt';
-      // 将文件复制到的位置uri
-      let destUri: string = 'file://docs/storage/Users/currentUser/Documents';
-      // 如果文件名冲突，要使用的文件名
-      let displayName: string = 'file.txt';
-      // 存放返回的uri
-      let fileUri: string;
-      try {
-        // 复制文件返回该文件的uri
-        fileUri = await fileAccessHelper.copyFile(sourceUri, destUri, displayName);
-        if (!fileUri) {
-          Logger.error('copyFile return undefined object');
-        }
-        Logger.info('copyFile success, fileUri: ' + JSON.stringify(fileUri));
-        this.uriMessage = 'CopyAFileSuccess';
-      } catch (err) {
-        let error: BusinessError = err as BusinessError;
-        Logger.error('copyFile failed, errCode:' + error.code + ', errMessage:' + error.message);
-      }
-    } catch (err) {
-      let error: BusinessError = err as BusinessError;
-      Logger.error('createFileAccessHelper failed, errCode:' + error.code + ', errMessage:' + error.message);
-    }
-  }
-  // [End copy_file_uri_example]
-
   selectDocumentFiles() {
     const documentSelectOptions = new picker.DocumentSelectOptions();
     const context = getContext(this) as common.Context;
     const documentViewPicker = new picker.DocumentViewPicker(context);
     documentViewPicker.select(documentSelectOptions).then((documentSelectResult: string[]) => {
       this.documentUris = documentSelectResult;
-      Logger.info('documentViewPicker.select to file succeed and uris are:' + this.documentUris);
+      console.info('documentViewPicker.select to file succeed and uris are:' + this.documentUris);
       if (this.documentUris.length > 0) {
         this.readDocumentFile(this.documentUris[0]);
       }
     }).catch((err: BusinessError) => {
-      Logger.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+      console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
     });
   }
 
   readDocumentFile(uri: string) {
     let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
-    Logger.info('file fd: ' + file.fd);
+    console.info('file fd: ' + file.fd);
     let buffer = new ArrayBuffer(4096); // 分配一个大小为4096字节的缓冲区
     let readLen = fs.readSync(file.fd, buffer); // 读取文件内容
-    Logger.info('readSync data to file succeed and buffer size is:' + readLen);
+    console.info('readSync data to file succeed and buffer size is:' + readLen);
     this.result = 'readSync data to file succeed and buffer size is:' + readLen;
     fs.closeSync(file);
   }

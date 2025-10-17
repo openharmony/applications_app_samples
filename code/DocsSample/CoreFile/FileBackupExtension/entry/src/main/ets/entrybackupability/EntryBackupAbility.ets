@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start backup_sample]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
@@ -25,3 +26,4 @@ export default class EntryBackupAbility extends BackupExtensionAbility {
     hilog.info(0x0000, 'testTag', 'onRestore ok %{public}s', JSON.stringify(bundleVersion));
   }
 }
+// [End backup_sample]
