@@ -129,18 +129,17 @@ static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
         if (content == nullptr) {
             OH_LOG_INFO(LOG_APP, "Failed to get content from plain text.");
         }
-        // 6. 使用完销毁指针
+        napi_value result;
+        napi_create_string_utf8(env, content, strlen(content), &result);
+        // 5. 使用完销毁指针
         OH_UdsPlainText_Destroy(plainText);
-        OH_UdmfData_Destroy(udmfData);
         OH_UdmfRecord_Destroy(record);
+        return result;
     } else {
         OH_LOG_INFO(LOG_APP, "No plain text data in pasteboard.");
     }
     OH_Pasteboard_Destroy(pasteboard);
     // [ start pasteboard_native6]
-    napi_value result;
-    napi_get_undefined(env, &result);
-    return result;
 }
 // [start pasteboard_timelapse_Record2]
 // [End pasteboard_native2]
@@ -181,17 +180,14 @@ OH_Pasteboard* CreateAndSetPasteboardData()
     // [start pasteboard_timelapse_Record4]
     // 4. 创建OH_UdmfRecord对象。
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
-    if (record == nullptr) {
-        OH_LOG_INFO(LOG_APP, "Create UdmfRecord fail");
-    }
-
     // 5. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
     OH_UdmfRecordProvider* provider = OH_UdmfRecordProvider_Create();
     OH_UdmfRecordProvider_SetData(provider, (void*)record, GetDataCallback, ProviderFinalizeCallback);
 
     // 6. 将provider绑定到record，并设置支持的数据类型。
-    const char* types[2] = { UDMF_META_PLAIN_TEXT, UDMF_META_HTML };
-    OH_UdmfRecord_SetProvider(record, types, 2, provider);
+    #define TYPE_COUNT 2
+    const char* types[TYPE_COUNT] = { UDMF_META_PLAIN_TEXT, UDMF_META_HTML };
+    OH_UdmfRecord_SetProvider(record, types, TYPE_COUNT, provider);
 
     // 7. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
     OH_UdmfData* setData = OH_UdmfData_Create();

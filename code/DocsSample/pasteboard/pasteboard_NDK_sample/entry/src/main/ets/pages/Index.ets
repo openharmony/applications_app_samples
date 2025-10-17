@@ -39,11 +39,6 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
       // 剪贴板无数据变化，无需申请权限
       return false;
     }
-    // 更新 Preferences 中的 changeCount
-    if (dataPreferences) {
-      dataPreferences.putSync('pasteboardChangeCount', result);
-      dataPreferences.flushSync(); // 确保数据写入持久化存储
-    }
   } catch (err) {
     console.error('Failed to get the ChangeCount. Cause: ${err.message}');
     return false;
@@ -74,14 +69,11 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
 @Component
 struct Index {
   @State data: string = '';
+  @State text: string = '';
 
   build() {
     Row() {
       Column() {
-        TextArea().width(300)
-          .onChange((value) => {
-            this.data = value;
-          })
         Button('复制')
           .fontSize(20)
           .fontWeight(FontWeight.Normal)
@@ -92,6 +84,10 @@ struct Index {
           .backgroundColor('#f32dc400')
           .onClick(() => {
             let ret = testNapi.pasteboard_test_set(this.data);
+          })
+        TextArea().width(300)
+          .onChange((value) => {
+            this.data = value;
           })
         Button('粘贴')
           .fontSize(20)
@@ -105,6 +101,7 @@ struct Index {
             const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             if (!isNeedGetPermissionFromUser()) {
               console.info("No neded to bring up the permission pop-up window");
+              this.text = testNapi.pasteboard_test_get();
               return;
             }
             let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -114,7 +111,16 @@ struct Index {
               for (const status of grantStatus) {
                 if (status === 0) {
                   // 用户授权，可以继续访问目标操作。
-                  let ret = testNapi.pasteboard_test_get();
+                  this.text = testNapi.pasteboard_test_get();
+                  // 获取当前 ChangeCount
+                  let currentChangeCount: number = systemPasteboard.getChangeCount();
+                  console.info('Current ChangeCount: ' + currentChangeCount);
+                  // 更新 Preferences 中的 ChangeCount
+                  if (dataPreferences) {
+                    dataPreferences.putSync('pasteboardChangeCount', currentChangeCount);
+                    dataPreferences.flushSync(); // 确保数据写入持久化存储
+                    console.info('ChangeCount has been updated to: ' + currentChangeCount);
+                  }
                 } else {
                   // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限。
                   return;
@@ -125,6 +131,8 @@ struct Index {
               console.error('Failed to request permissions from user. ');
             })
           })
+        Text(this.text){
+        }.baselineOffset(5)
       }
       .width('100%')
     }

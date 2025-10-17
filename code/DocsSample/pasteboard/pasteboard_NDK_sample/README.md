@@ -24,7 +24,7 @@ entry/src/main
  │   ├── pages
  │       ├── Index.ets             // UI页面
  ├── resources
- │   └── module.json5              // 配置权限
+ │   └── module.json5              // 声明所需的权限
 
 ```
 

@@ -14,4 +14,4 @@
  */
 
 export const pasteboard_test_set: (text: string) => void;
-export const pasteboard_test_get: () => void;
+export const pasteboard_test_get: () => string;
