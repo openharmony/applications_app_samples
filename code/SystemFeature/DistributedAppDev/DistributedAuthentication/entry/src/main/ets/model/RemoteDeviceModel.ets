@@ -166,25 +166,25 @@ class RemoteDeviceModel {
     // [EndExclude device_state_change]
     try {
       this.deviceManager.on('deviceStateChange', (data: dataType) => {
-      if (data == null) {
-        return;
-      }
-      logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
-      switch (data.action) {
-        case distributedDeviceManager.DeviceStateChange.AVAILABLE:
-          logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange ONLINE');
-          // [StartExclude device_state_change]
-          self.deviceStateChangeActionOnline(data.device!);
-          // [EndExclude device_state_change]
-          break;
-        case distributedDeviceManager.DeviceStateChange.UNAVAILABLE:
-          logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange OFFLINE');
-          // [StartExclude device_state_change]
-          self.deviceStateChangeActionOffline(data.device!);
-          // [EndExclude device_state_change]
-          break;
-        default:
-          break;
+        if (data == null) {
+          return;
+        }
+        logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange data=' + JSON.stringify(data));
+        switch (data.action) {
+          case distributedDeviceManager.DeviceStateChange.AVAILABLE:
+            logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange ONLINE');
+            // [StartExclude device_state_change]
+            self.deviceStateChangeActionOnline(data.device!);
+            // [EndExclude device_state_change]
+            break;
+          case distributedDeviceManager.DeviceStateChange.UNAVAILABLE:
+            logger.info('[DeviceManager.RemoteDeviceModel] deviceStateChange OFFLINE');
+            // [StartExclude device_state_change]
+            self.deviceStateChangeActionOffline(data.device!);
+            // [EndExclude device_state_change]
+            break;
+          default:
+            break;
         }
       })
     } catch(err) {
