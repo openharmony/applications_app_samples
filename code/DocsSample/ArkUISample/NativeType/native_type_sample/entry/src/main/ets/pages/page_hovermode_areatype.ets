@@ -44,11 +44,17 @@ struct Index {
 
   build() {
     Column() {
-      Button('HoverModeAreaType')
+      Button($r('app.string.set_hover_mode_area_type'))
         .height(50)
         .width('50%')
         .bindMenu(this.SubMenuModeType)
         .margin({ top: 40, bottom: 10 })
+        Button($r('app.string.return_to_home_screen'))
+        .height(50)
+        .width('50%')
+        .onClick(() => {
+          this.getUIContext().getRouter().back();
+        })
       ContentSlot(this.currentNodeContent)
     }
     .width('100%')

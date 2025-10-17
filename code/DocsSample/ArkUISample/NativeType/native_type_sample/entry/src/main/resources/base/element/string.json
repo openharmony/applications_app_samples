@@ -13,6 +13,34 @@
       "value": "native_type_sample"
     },
     {
+      "name": "set_hover_mode_area_type",
+      "value": "HoverModeAreaType"
+    },
+    {
+      "name": "set_button_type",
+      "value": "ButtonType"
+    },
+    {
+      "name": "set_slider_block_style",
+      "value": "SliderBlockStyle"
+    },
+    {
+      "name": "set_slider_direction",
+      "value": "SliderDirection"
+    },
+    {
+      "name": "set_slider_style",
+      "value": "SliderStyle"
+    },
+    {
+      "name": "set_checkbox_shape",
+      "value": "CheckboxShape"
+    },
+    {
+      "name": "return_to_home_screen",
+      "value": "返回"
+    },
+    {
       "name": "Set_alignment_mode",
       "value": "设置对齐方式"
     },
