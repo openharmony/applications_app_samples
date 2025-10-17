@@ -156,6 +156,13 @@ struct Index {
             ProgressNapi.setProgressValue(this.progressValue);
           })
           .margin({ bottom: 10 })
+        Button($r('app.string.Back'))
+          .height(50)
+          .width('50%')
+          .onClick(() => {
+            this.getUIContext().getRouter().back();
+          })
+          .margin({ bottom: 10 })
         ContentSlot(this.nodeContent)
       }
       .width('100%')

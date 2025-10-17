@@ -19,7 +19,6 @@ import { NodeContent } from '@kit.ArkUI';
 @Component
 struct Index {
   private nodeContent: Content = new NodeContent();
-  @State status: string = '';
   @State styleOption: string = '';
   @State imageWidth: number = 100;
   @State imageHeight: number = 100;
@@ -100,24 +99,29 @@ struct Index {
                 .width(100)
             }
             .padding({bottom: 5})
-            Button($r('app.string.Creat_imageAnimator'))
-              .height(50)
-              .width('50%')
-              .margin({ left: 10 })
-              .bindMenu(this.SubMenuMode())
-            Text(this.status)
-              .fontSize(14)
-              .margin(10)
+            Row() {
+              Button($r('app.string.Creat_imageAnimator'))
+                .height(50)
+                .width('50%')
+                .bindMenu(this.SubMenuMode())
+              Button($r('app.string.Get_frameInfo'))
+                .height(50)
+                .width('50%')
+                .onClick(() => {
+                  this.styleOption = AnimatorNapi.getImageAnimatorFrameInfo();
+                })
+            }
           }
         }
         Text(this.styleOption)
-        Button($r('app.string.Get_frameInfo'))
+          .margin({ top: 5, bottom: 5 })
+        Button($r('app.string.Back'))
           .height(50)
           .width('50%')
           .onClick(() => {
-            this.styleOption = AnimatorNapi.getImageAnimatorFrameInfo();
+            this.getUIContext().getRouter().back();
           })
-          .margin({ top: 5, bottom: 5 })
+          .margin({ bottom: 5 })
         ContentSlot(this.nodeContent)
       }
       .width('100%')

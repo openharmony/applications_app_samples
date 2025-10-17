@@ -22,11 +22,11 @@
     },
     {
       "name": "Select_image_coverage_mode",
-      "value": "选择图片的覆盖方式IMAGE_SIZE"
+      "value": "选择图片的宽高样式IMAGE_SIZE"
     },
     {
       "name": "Select_image_adaptation_mode",
-      "value": "选择图片适应方式ObjectFit"
+      "value": "选择图片填充效果ObjectFit"
     },
     {
       "name": "Select_image_interpolation_mode",
@@ -111,6 +111,10 @@
     {
       "name": "Input_progress_value",
       "value": "输入进度条值:"
+    },
+    {
+      "name": "Back",
+      "value": "返回上级"
     }
   ]
 }
