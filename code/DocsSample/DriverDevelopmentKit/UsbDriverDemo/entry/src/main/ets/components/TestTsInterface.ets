@@ -17,8 +17,8 @@ import { bundleManager } from '@kit.AbilityKit';
 
 @Component
 export struct TestTsInterface {
-  @State tokenId: number = -1
-  @State data: string = ''
+  @State tokenId: number = -1;
+  @State data: string = '';
 
   queryTokenId() {
     try {
@@ -29,16 +29,16 @@ export struct TestTsInterface {
       })
 
     } catch (err) {
-      console.info('getBundleInfoForSelf failed')
+      console.info('getBundleInfoForSelf failed');
     }
   }
 
   build() {
     Row() {
       Column() {
-        Button('获取当前应用TokenId')
+        Button($r('app.string.get_token'))
           .onClick(() => {
-            this.queryTokenId()
+            this.queryTokenId();
           })
         Text(`${this.tokenId}`)
           .fontSize(50)

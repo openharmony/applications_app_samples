@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 
-
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import RpcTool from '../tool/RpcTool'
-import { preferences } from '@kit.ArkData'
+import RpcTool from '../tool/RpcTool';
+import { preferences } from '@kit.ArkData';
 
-const DIRECT_KEY = 'direction'
+const DIRECT_KEY = 'direction';
 class Region {
-  public direction?: string
-  public val?: string
-  public img?: string
+  public direction?: string;
+  public val?: string;
+  public img?: string;
 }
 
 @Component
@@ -31,24 +30,24 @@ export struct RegionComponent {
     [{ direction: '向上', val: 'top', img: 'pic_handwriting_upxhdpi.png' },
       { direction: '向下', val: 'down', img: 'pic_handwriting_downxhdpi.png' }],
     [{ direction: '向左', val: 'left', img: 'pic_handwriting_leftxhdpi.png' },
-      { direction: '向右', val: 'right', img: 'pic_handwriting_rightxhdpi.png' }]]
-  private titleList = ['上下旋转', '左右旋转']
+      { direction: '向右', val: 'right', img: 'pic_handwriting_rightxhdpi.png' }]];
+  private titleList = ['上下旋转', '左右旋转'];
   private previewRegionImg = [$rawfile('pic_scale_set_leftxhdpi.png'),
                               $rawfile('pic_scale_set_downxhdpi.png'),
                               $rawfile('pic_scale_set_rightxhdpi.png'),
-                              $rawfile('pic_scale_set_upxhdpi.png')]
-  @State private currDirection: string = 'left'
-  @State private currDirectionNumber: number = 0
+                              $rawfile('pic_scale_set_upxhdpi.png')];
+  @State private currDirection: string = 'left';
+  @State private currDirectionNumber: number = 0;
   private keyPreference: preferences.Preferences | null = null;
 
   setDirection(directionVal: string) {
-    let angle = 0
+    let angle = 0;
     if (directionVal == 'right') {
-      angle = 180
+      angle = 180;
     } else if (directionVal == 'top') {
-      angle = 270
+      angle = 270;
     } else if (directionVal == 'down') {
-      angle = 90
+      angle = 90;
     }
     hilog.info(0, 'testTag ui', 'set direction angle:' + angle);
     let direction = angle / 90;
@@ -56,8 +55,8 @@ export struct RegionComponent {
       this.keyPreference.putSync(DIRECT_KEY, direction);
       this.keyPreference.flushSync();
     }
-    this.currDirectionNumber = direction
-    RpcTool.getInstance().setDirection(angle / 90)
+    this.currDirectionNumber = direction;
+    RpcTool.getInstance().setDirection(angle / 90);
   }
 
   getDirection() {
@@ -66,23 +65,25 @@ export struct RegionComponent {
       hilog.info(0, 'testTag', `RegionComponent getDirection, filePath: ${filePath}`);
       this.keyPreference = preferences.getPreferencesSync(getContext(this), {name: 'keyInfo'});
     }
-    let direction = this.keyPreference?.getSync(DIRECT_KEY, 0)
+    let direction = this.keyPreference?.getSync(DIRECT_KEY, 0);
     switch (direction) {
       case 0:
-        this.currDirection = 'left'
-        this.currDirectionNumber = 0
+        this.currDirection = 'left';
+        this.currDirectionNumber = 0;
         break;
       case 1:
-        this.currDirection = 'down'
-        this.currDirectionNumber = 1
+        this.currDirection = 'down';
+        this.currDirectionNumber = 1;
         break;
       case 2:
-        this.currDirection = 'right'
-        this.currDirectionNumber = 2
+        this.currDirection = 'right';
+        this.currDirectionNumber = 2;
         break;
       case 3:
-        this.currDirection = 'up'
-        this.currDirectionNumber = 3
+        this.currDirection = 'up';
+        this.currDirectionNumber = 3;
+        break;
+      default:
         break;
     }
   }
@@ -140,13 +141,13 @@ export struct RegionComponent {
 
       // 按钮
       Row() {
-        Button('区域设置')
+        Button($r('app.string.set_region'))
           .width(150)
           .margin({ right: 40 })
-        Button('自动矫正')
+        Button($r('app.string.auto_correction'))
           .width(150)
           .margin({ right: 40 })
-        Button('默认全屏映射')
+        Button($r('app.string.fullscreen_mapping'))
           .width(150)
       }.justifyContent(FlexAlign.SpaceBetween)
       .visibility(Visibility.None)

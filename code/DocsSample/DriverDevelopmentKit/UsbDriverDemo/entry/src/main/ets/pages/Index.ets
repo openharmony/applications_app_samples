@@ -23,19 +23,19 @@ import RpcTool from '../tool/RpcTool'
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { prompt } from '@kit.ArkUI';
 
-const IMAGE_WIDTH_HEIGHT: number = 60 // 图片宽高
-const IMAGE_INTERVAL: number = 30 // 图片与图片间距
-const IMAGE_TEXT_INTERVAL: number = 10 // 图片和文本间距
-const MARGIN_LEFT_RIGHT: number = 20 // 顶部菜单栏与屏幕边缘间隔
-const MARGIN_TOP_BOTTOM: number = 20 // 菜单栏上下间距
+const IMAGE_WIDTH_HEIGHT: number = 60; // 图片宽高
+const IMAGE_INTERVAL: number = 30; // 图片与图片间距
+const IMAGE_TEXT_INTERVAL: number = 10; // 图片和文本间距
+const MARGIN_LEFT_RIGHT: number = 20; // 顶部菜单栏与屏幕边缘间隔
+const MARGIN_TOP_BOTTOM: number = 20; // 菜单栏上下间距
 
 @Preview
 @Entry
 @Component
 struct Index {
-  @State vendorId: string = "";
-  @State productId: string = "";
-  @State description: string = "";
+  @State vendorId: string = '';
+  @State productId: string = '';
+  @State description: string = '';
   @State currentIndex: number = 0;
   @State connectStatus: boolean = false;
   saveMessage : string = `save config success`;
@@ -47,21 +47,21 @@ struct Index {
     ['关于', $rawfile('ic_about_normal.svg'), $rawfile('ic_about_select.svg')],
     ['保存', $rawfile('ic_save_normal.svg'), $rawfile('ic_save_normal.svg')],
     ['tokenID', $rawfile('ic_pen_set_normal.svg'), $rawfile('ic_pen_set_select.svg')],
-  ]
+  ];
   private bottomMenu = [['退出', $rawfile('ic_quit_normal.svg'), $rawfile('ic_quit_normal.svg')]];
   private controller: TabsController = new TabsController();
   private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
 
   async aboutToAppear() {
-    hilog.info(0, 'testTag ui', 'aboutToAppear enter')
+    hilog.info(0, 'testTag ui', 'aboutToAppear enter');
     RpcTool.getInstance().init((vendorId: string, productId: string, description: string) => {
-      this.bindCallback(vendorId, productId, description)
+      this.bindCallback(vendorId, productId, description);
     })
-    RpcTool.getInstance().bindDevice()
+    RpcTool.getInstance().bindDevice();
   }
 
   bindCallback(vendorId: string, productId: string, description: string) {
-    hilog.info(0, 'testTag ui', `bindCallback vendorId: ${vendorId} productId:${productId}`)
+    hilog.info(0, 'testTag ui', `bindCallback vendorId: ${vendorId} productId:${productId}`);
     this.vendorId = vendorId;
     this.productId = productId;
     this.description = description;
@@ -74,9 +74,9 @@ struct Index {
 
   getSaveMessage() {
     if(!this.vendorId || this.vendorId.length == 0) {
-      return '当前设备未连接'
+      return '当前设备未连接';
     } else {
-      return `save config success`
+      return `save config success`;
     }
   }
 
@@ -97,7 +97,7 @@ struct Index {
               .justifyContent(FlexAlign.Center)
               .onClick(() => {
                 if (item[0] == '保存') {
-                  prompt.showToast({ message: this.getSaveMessage(), bottom: 100, duration: 1800 })
+                  prompt.showToast({ message: this.getSaveMessage(), bottom: 100, duration: 1800 });
                 } else {
                   this.currentIndex = index;
                 }
@@ -144,9 +144,6 @@ struct Index {
           // 主内容区域
           Row() {
             Tabs({ controller: this.controller, index: this.currentIndex }) {
-              //TabContent() {
-              //  PensComponent()
-              //}
 
               TabContent() {
                 KeyPressComponent()
@@ -176,7 +173,7 @@ struct Index {
       .height('100%')
       .alignItems(HorizontalAlign.Center)
 
-      Text(this.connectStatus ? '设备已连接' : '设备未连接')
+      Text(this.connectStatus ? $r('app.string.device_connect') : $r('app.string.device_disconnect'))
         .fontColor(this.connectStatus ? Color.Black : Color.Red)
         .margin({ right: 30, bottom: 20 })
         .fontSize(14)

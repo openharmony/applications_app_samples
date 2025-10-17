@@ -1,18 +1,6 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "storeFile": "D:/develop/workspace/applications_app_samples/code/DocsSample/DriverDevelopmentKit/UsbDriverDemo/sign/OpenHarmony.p12",
-          "storePassword": "00000016E5928CE226A260DC0439F7EC540E073C01FF1C57312B921B5822FA47EEAED58A738B",
-          "keyAlias": "oh-app1-key-v1",
-          "keyPassword": "0000001620C02630269D6598F61D0291F816918DCB79398FF91515571A68C950314B0B010962",
-          "signAlg": "SHA256withECDSA",
-          "profile": "D:/develop/workspace/applications_app_samples/code/DocsSample/DriverDevelopmentKit/UsbDriverDemo/sign/app1-profile.p7b",
-          "certpath": "D:/develop/workspace/applications_app_samples/code/DocsSample/DriverDevelopmentKit/UsbDriverDemo/sign/my.cer"
-        }
-      }
     ],
     "products": [
       {

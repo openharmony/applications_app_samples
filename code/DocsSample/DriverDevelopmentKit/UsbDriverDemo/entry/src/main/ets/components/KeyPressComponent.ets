@@ -86,7 +86,7 @@ const MENU_KEY_LIST: MenuKey[] = [
 @Component
 @Preview
 export struct KeyPressComponent {
-  @State private keyInfo: string[] = ['开启手写应用', '关闭手写应用', '上翻', '下翻']
+  @State private keyInfo: string[] = ['开启手写应用', '关闭手写应用', '上翻', '下翻'];
   private keyPreference: preferences.Preferences | null = null;
 
   aboutToAppear() {
@@ -95,10 +95,10 @@ export struct KeyPressComponent {
     this.keyPreference = preferences.getPreferencesSync(getContext(this), {name: 'keyInfo'});
     STORAGE_KEY.forEach((value, index) => {
       if(this.keyPreference) {
-        let storageKeyCode = this.keyPreference.getSync(value.key, value.default)
-        let searchInfo = MENU_KEY_LIST.filter(key => (key.code == storageKeyCode))
+        let storageKeyCode = this.keyPreference.getSync(value.key, value.default);
+        let searchInfo = MENU_KEY_LIST.filter(key => (key.code == storageKeyCode));
         if (searchInfo.length != 0) {
-          this.keyInfo[index] = `${searchInfo[0].note}: ${searchInfo[0].value}`
+          this.keyInfo[index] = `${searchInfo[0].note}: ${searchInfo[0].value}`;
         }
       }
     })
@@ -111,12 +111,12 @@ export struct KeyPressComponent {
         MenuItem({ content: `${item.note}:${item.value}` })
           .onClick(() => {
             hilog.info(0, 'testTag', `set key btn ${item.note}: ${item.value}`);
-            this.keyInfo[keyIndex] = `${item.note}: ${item.value}`
+            this.keyInfo[keyIndex] = `${item.note}: ${item.value}`;
             if(this.keyPreference) {
-              this.keyPreference.putSync(STORAGE_KEY[keyIndex].key, item.code)
-              this.keyPreference.flushSync()
+              this.keyPreference.putSync(STORAGE_KEY[keyIndex].key, item.code);
+              this.keyPreference.flushSync();
               if(item.code) {
-                RpcTool.getInstance().setKeyValue(keyIndex, item.code)
+                RpcTool.getInstance().setKeyValue(keyIndex, item.code);
               }
             }
           })

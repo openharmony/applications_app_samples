@@ -39,7 +39,7 @@ export struct PensComponent {
               .height(10)
               .borderRadius(10)
               .backgroundColor('#0A59F7')
-            Text('右键').margin({ left: 10 })
+            Text($r('app.string.right')).margin({ left: 10 })
           }.margin({ bottom: 90 })
 
           Row() {
@@ -52,7 +52,7 @@ export struct PensComponent {
               .height(10)
               .borderRadius(10)
               .backgroundColor('#0A59F7')
-            Text('左键').margin({ left: 10 })
+            Text($r('app.string.left')).margin({ left: 10 })
           }
           .margin({ bottom: 50 })
         }
@@ -65,13 +65,13 @@ export struct PensComponent {
               .backgroundColor(Color.White)
               .height('100%')
               .width('100%')
-            Text('笔记效果体验区')
+            Text($r('app.string.pen_try'))
               .fontColor(Color.Gray)
               .fontSize(30)
           }.layoutWeight(1)
           .margin({ bottom: 30, top: 30, right: 30, left: 50 })
 
-          Button('清除笔迹')
+          Button($r('app.string.clear'))
             .width(150)
             .margin({ bottom: 15 })
         }.layoutWeight(1)

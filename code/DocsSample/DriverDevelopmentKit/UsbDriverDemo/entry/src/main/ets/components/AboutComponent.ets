@@ -24,7 +24,7 @@ export struct AboutComponent {
   build() {
     Column() {
       Row() {
-        Text('关于')
+        Text($r('app.string.about'))
       }.height(60)
 
       Row() {

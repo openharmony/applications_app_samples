@@ -127,7 +127,7 @@ void DataParser::ConvertAbs(uint32_t &absX, uint32_t &absY)
             temp = absY;
             absY = (static_cast<float>(absX) / g_absXMax * g_absYMax);
             absX = (static_cast<float>(g_absYMax - temp) / g_absYMax * g_absXMax);
-        case 0: // 手写板 0度
+            break;
         default:
             break;
     }

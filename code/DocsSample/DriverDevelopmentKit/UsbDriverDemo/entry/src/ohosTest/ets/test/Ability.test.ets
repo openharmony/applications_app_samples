@@ -27,24 +27,24 @@ export default function abilityTest() {
     })
     it('testConnectState', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      console.info("uitest: TestUiExample begin");
+      console.info('uitest: TestUiExample begin');
       // 初始化Driver对象
       const driver = Driver.create();
       const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-      console.info("uitest: bundleName=", bundleName);
+      console.info('uitest: bundleName=', bundleName);
       // 指定被测应用包名、ability名，请开发者替换为被测应用包名和ability名
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
-      }
+      };
       // 拉起被测应用
       await delegator.startAbility(want);
-      console.info("uitest: startAbility");
+      console.info('uitest: startAbility');
       // 等待应用拉起完成
       await driver.waitForIdle(500,1000);
       // 确认当前应用顶部Ability为指定的ability
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info("get top ability");
+      console.info('get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
 
       // 依据指定文本“设备未连接”查找目标控件
