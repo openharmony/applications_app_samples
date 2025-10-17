@@ -679,6 +679,19 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSGraphicsDraw/screenshot/canvas.jpeg" desc="Provided by code/DocsSample/Drawing/ArkTSGraphicsDraw"/>
 				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSGraphicsDraw/screenshot/effect.jpeg" desc="Provided by code/DocsSample/Drawing/ArkTSGraphicsDraw"/>
 				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSGraphicsDraw/screenshot/shape.jpeg" desc="Provided by code/DocsSample/Drawing/ArkTSGraphicsDraw"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeWindow/screenshots/device/ChangeColor.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeWindow"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeWindow"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeWindow"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeWindow/screenshots/device/ProduceBuffer.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeWindow"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeWindow/screenshots/device/AttachBuffer.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeWindow"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeWindow/screenshots/device/DetachBuffer.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeWindow"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeWindow/screenshots/device/scaledown.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeWindow"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeWindow/screenshots/device/scalefit.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeWindow"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeImage/screenshots/GradientAnimation.jpg" desc="Provided by code/DocsSample/graphic/NdkNativeImage/screenshots/GradientAnimation.jpg"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeImage/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/graphic/NdkNativeImage/entry/src/main/resources/base/media/startIcon.png"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeImage/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/graphic/NdkNativeImage/entry/src/main/resources/base/media/foreground.png"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeImage/entry/src/main/resources/base/media/background.png" desc="Provided by code/DocsSample/graphic/NdkNativeImage/entry/src/main/resources/base/media/background.png"/>
+				<filteritem type="filepath" name="code/DocsSample/graphic/NdkNativeImage/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/graphic/NdkNativeImage/AppScope/resources/base/media/app_icon.png"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyDerivation/screenshots/Cpp_2.png" desc="Provided by code/DocsSample/Security"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyDerivation/screenshots/Cpp_1.png" desc="Provided by code/DocsSample/Security"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyDerivation/screenshots/PBKDF2_1.png" desc="Provided by code/DocsSample/Security"/>
