@@ -31,17 +31,17 @@
 #define LOG_TAG "MY_LOG"
 // [ start pasteboard_native3]
 // 定义剪贴板数据内容变更时的通知回调函数
-static void Pasteboard_Notify_impl2(void* context, Pasteboard_NotifyType type)
+static void PasteboardNotifyImpl2(void* context, Pasteboard_NotifyType type)
 {
-    OH_LOG_INFO(LOG_APP,"Pasteboard_NotifyType, type: %d", type);
+    OH_LOG_INFO(LOG_APP, "Pasteboard_NotifyType, type: %d", type);
 }
 // 定义剪贴板数据变更观察者对象销毁时的通知回调函数
-static void Pasteboard_Finalize_impl2(void* context)
+static void PasteboardFinalizeImpl2(void* context)
 {
-    OH_LOG_INFO(LOG_APP,"callback: Pasteboard_Finalize");
+    OH_LOG_INFO(LOG_APP, "callback: Pasteboard_Finalize");
 }
 // [End pasteboard_native3]
-static void pasteboard_test_observer()
+static void PasteboardTestObserver()
 {
     // [ start pasteboard_native4]
     // 1. 创建一个剪贴板实例
@@ -49,7 +49,7 @@ static void pasteboard_test_observer()
     // 2. 创建一个剪贴板数据变更观察者实例
     OH_PasteboardObserver* observer = OH_PasteboardObserver_Create();
     // 3. 将两个回调函数设置到观察者实例
-    OH_PasteboardObserver_SetData(observer, (void* )pasteboard, Pasteboard_Notify_impl2, Pasteboard_Finalize_impl2);
+    OH_PasteboardObserver_SetData(observer, (void*)pasteboard, PasteboardNotifyImpl2, PasteboardFinalizeImpl2);
     // 4. 设置对剪贴板本端数据变化的订阅
     OH_Pasteboard_Subscribe(pasteboard, NOTIFY_LOCAL_DATA_CHANGE, observer);
     // [End pasteboard_native4]
@@ -126,14 +126,14 @@ static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
         };
         OH_UdmfRecord_GetPlainText(record, plainText);
         const char* content = OH_UdsPlainText_GetContent(plainText);
-        if (content == nullptr){
+        if (content == nullptr) {
             OH_LOG_INFO(LOG_APP, "Failed to get content from plain text.");
         }
         // 6. 使用完销毁指针
         OH_UdsPlainText_Destroy(plainText);
         OH_UdmfData_Destroy(udmfData);
         OH_UdmfRecord_Destroy(record);
-    }else {
+    } else {
         OH_LOG_INFO(LOG_APP, "No plain text data in pasteboard.");
     }
     OH_Pasteboard_Destroy(pasteboard);
@@ -145,7 +145,8 @@ static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
 // [start pasteboard_timelapse_Record2]
 // [End pasteboard_native2]
 // 1. 获取数据时触发的提供剪贴板数据的回调函数。
-void* GetDataCallback(void* context, const char* type) {
+void* GetDataCallback(void* context, const char* type)
+{
     // 纯文本类型
     if (memcmp(type, UDMF_META_PLAIN_TEXT, sizeof(UDMF_META_PLAIN_TEXT) - 1) == 0) {
         // 创建纯文本类型的Uds对象。
@@ -153,9 +154,7 @@ void* GetDataCallback(void* context, const char* type) {
         // 设置纯文本内容。
         OH_UdsPlainText_SetContent(udsText, "hello world");
         return udsText;
-    }
-    // HTML类型
-    else if (strcmp(type, UDMF_META_HTML) == 0) {
+    } else if (strcmp(type, UDMF_META_HTML) == 0) {
         // 创建HTML类型的Uds对象。
         OH_UdsHtml* udsHtml = OH_UdsHtml_Create();
         // 设置HTML内容。
@@ -165,8 +164,9 @@ void* GetDataCallback(void* context, const char* type) {
     return nullptr;
 }
 // 2. OH_UdmfRecordProvider销毁时触发的回调函数。
-void ProviderFinalizeCallback(void* context) {
-    OH_LOG_INFO(LOG_APP,"OH_UdmfRecordProvider finalize.");
+void ProviderFinalizeCallback(void* context)
+{
+    OH_LOG_INFO(LOG_APP, "OH_UdmfRecordProvider finalize.");
 }
 // [End pasteboard_timelapse_Record2]
 // [start pasteboard_timelapse_Record3]
@@ -176,13 +176,13 @@ void SyncCallback(int errorCode)
     // 继续退出
 }
 // [End pasteboard_timelapse_Record3]
-static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
+OH_Pasteboard* CreateAndSetPasteboardData()
 {
     // [start pasteboard_timelapse_Record4]
     // 4. 创建OH_UdmfRecord对象。
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     if (record == nullptr) {
-        OH_LOG_INFO(LOG_APP,"Create UdmfRecord fail");
+        OH_LOG_INFO(LOG_APP, "Create UdmfRecord fail");
     }
 
     // 5. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
@@ -204,21 +204,29 @@ static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
     if (setData != nullptr) {
         OH_Pasteboard_SetData(pasteboard, setData);
     }
-
+    OH_UdmfRecordProvider_Destroy(provider);
+    OH_UdmfRecord_Destroy(record);
+    OH_UdmfData_Destroy(setData);
+    // [End pasteboard_timelapse_Record4]
+    return pasteboard;
+}
+static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
+{
+    OH_Pasteboard* pasteboard = CreateAndSetPasteboardData();
+    // [start pasteboard_timelapse_Record5]
     // 9. 记录当前的剪贴板数据变化次数。
     uint32_t changeCount = OH_Pasteboard_GetChangeCount(pasteboard);
-    // [End pasteboard_timelapse_Record4]
-    // [start pasteboard_timelapse_Record5]
+
     // 10. 从剪贴板获取OH_UdmfData。
     int status = -1;
     bool hasPermission = OH_AT_CheckSelfPermission("ohos.permission.READ_PASTEBOARD");
     if (!hasPermission) {
-        OH_LOG_ERROR(LOG_APP,"No Permission READ_PASTEBOARD");
+        OH_LOG_ERROR(LOG_APP, "No Permission READ_PASTEBOARD");
     };
     OH_UdmfData* getData = OH_Pasteboard_GetData(pasteboard, &status);
     if (getData == nullptr) {
         // 处理错误情况，清理资源
-        OH_LOG_ERROR(LOG_APP,"Failed to get data from pasteboard, status: %d\n", status);
+        OH_LOG_ERROR(LOG_APP, "Failed to get data from pasteboard, status: %d\n", status);
     }
 
     // 11. 获取OH_UdmfData中的所有OH_UdmfRecord。
@@ -244,21 +252,19 @@ static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
                 // 创建纯文本类型的Uds对象
                 udsText = OH_UdsPlainText_Create();
                 if (udsText != nullptr) {
-                 // 从record中获取纯文本类型的Uds对象
-                 OH_UdmfRecord_GetPlainText(record, udsText);
-                 // 从Uds对象中获取内容
-                 const char* content = OH_UdsPlainText_GetContent(udsText);
+                    // 从record中获取纯文本类型的Uds对象
+                    OH_UdmfRecord_GetPlainText(record, udsText);
+                    // 从Uds对象中获取内容
+                    const char* content = OH_UdsPlainText_GetContent(udsText);
                 }
-            }
-            // HTML类型
-            else if (strcmp(recordType, UDMF_META_HTML) == 0) {
+            } else if (strcmp(recordType, UDMF_META_HTML) == 0) {
                 // 创建HTML类型的Uds对象
                 udsHtml = OH_UdsHtml_Create();
                 if (udsHtml != nullptr) {
-                 // 从record中获取HTML类型的Uds对象
-                 OH_UdmfRecord_GetHtml(record, udsHtml);
-                 // 从Uds对象中获取内容
-                 const char* content = OH_UdsHtml_GetContent(udsHtml);
+                    // 从record中获取HTML类型的Uds对象
+                    OH_UdmfRecord_GetHtml(record, udsHtml);
+                    // 从Uds对象中获取内容
+                    const char* content = OH_UdsHtml_GetContent(udsHtml);
                 }
             }
         }
@@ -267,21 +273,12 @@ static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
     // [start pasteboard_timelapse_Record6]
     // 15. 查询剪贴板内的数据是否变化。
     uint32_t newChangeCount = OH_Pasteboard_GetChangeCount(pasteboard);
-    if (newChangeCount == changeCount) {
-        // 16. 通知剪贴板获取全量数据。
-        //OH_Pasteboard_SyncDelayedDataAsync(pasteboard, SyncCallback);
-        // 需要等待SyncCallback回调完成再继续退出
-    } else {
-        // 继续退出
-    }
+    // 16. 如果newChangeCount == changeCount通知剪贴板获取全量数据，需要等待SyncCallback回调完成再继续退出
     // [End pasteboard_timelapse_Record6]
     // 17. 查询剪贴板内的数据是否变化。
     // [start pasteboard_timelapse_Record7]
     OH_UdsPlainText_Destroy(udsText);
     OH_UdsHtml_Destroy(udsHtml);
-    OH_UdmfRecordProvider_Destroy(provider);
-    OH_UdmfRecord_Destroy(record);
-    OH_UdmfData_Destroy(setData);
     OH_UdmfData_Destroy(getData);
     OH_Pasteboard_Destroy(pasteboard);
     // [End pasteboard_timelapse_Record7]

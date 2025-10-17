@@ -14,7 +14,7 @@ entry/src/main
  │── cpp
  │   ├── types
  │       ├── libentry
- │           ├── Index.d.ts
+ │           ├── Index.d.t
  │           ├── oh-package.json5
  │   ├── CMakeLists.txt            // 添加动态链接库
  │   ├── napi_init.cpp             // 开发步骤示例代码
@@ -22,9 +22,9 @@ entry/src/main
  │   ├── entryability
  │   ├── entrybackupability
  │   ├── pages
- │       ├── Index.ets
+ │       ├── Index.ets             // UI页面
  ├── resources
- │   └── module.json5               //添加权限
+ │   └── module.json5              // 配置权限
 
 ```
 
