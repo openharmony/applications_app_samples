@@ -13,14 +13,12 @@
  * limitations under the License.
  */
 
-// [Start MDNS_case_module_import_Local_service]
 // [Start MDNS_case_module_import]
 // 从@kit.NetworkKit中导入mdns命名空间。
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 // [End MDNS_case_module_import]
-// [End MDNS_case_module_import_Local_service]
 
 import { serviceOperateStatus } from '../common/ServiceOperateStatus';
 import { ComponentId } from '../common/ComponentId';
@@ -204,7 +202,7 @@ struct MdnsServiceDemo {
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // [Start MDNS_resolve_local_service]
     // resolveLocalService解析本地服务对象（非必要，根据需求使用）。
-    mdns.resolveLocalService(context, this.localServiceInfo).then((data) => {
+    mdns.resolveLocalService(context, this.localServiceInfo).then((data: mdns.LocalServiceInfo) => {
       // [StartExclude MDNS_resolve_local_service]
       this.resolveServiceStatus = serviceOperateStatus.RESOLVE_SUCCESS;
       // [EndExclude  MDNS_resolve_local_service]
@@ -224,7 +222,7 @@ struct MdnsServiceDemo {
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // [Start MDNS_remove_local_service]
     // removeLocalService移除本地服务。
-    mdns.removeLocalService(context, this.localServiceInfo).then((data) => {
+    mdns.removeLocalService(context, this.localServiceInfo).then((data: mdns.LocalServiceInfo) => {
       // [StartExclude MDNS_remove_local_service]
       this.removeServiceStatus = serviceOperateStatus.REMOVE_SUCCESS;
       // [EndExclude  MDNS_remove_local_service]
