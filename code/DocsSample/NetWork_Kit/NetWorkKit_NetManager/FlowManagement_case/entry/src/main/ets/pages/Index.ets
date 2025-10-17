@@ -274,7 +274,9 @@ struct NetworkStatisticsDemo {
   getUidRxBytes() {
     // [Start flow_management_getUidRxBytes_and_getUidTxBytes]
     // 获取指定应用实时下行流量数据。
+    // [StartExclude flow_management_getUidRxBytes_and_getUidTxBytes]
     let UID = getContext(this).applicationInfo.uid
+    // [EndExclude flow_management_getUidRxBytes_and_getUidTxBytes]
     statistics.getUidRxBytes(UID).then((stats: number) => {
       console.info(JSON.stringify(stats));
       // [StartExclude flow_management_getUidRxBytes_and_getUidTxBytes]
@@ -290,7 +292,9 @@ struct NetworkStatisticsDemo {
   getUidTxBytes() {
     // [EndExclude flow_management_getUidRxBytes_and_getUidTxBytes]
     // 获取指定应用实时上行流量数据。
+    // [StartExclude flow_management_getUidRxBytes_and_getUidTxBytes]
     let UID = getContext(this).applicationInfo.uid
+    // [EndExclude flow_management_getUidRxBytes_and_getUidTxBytes]
     statistics.getUidTxBytes(UID).then((stats: number) => {
       console.info(JSON.stringify(stats));
       // [StartExclude flow_management_getUidRxBytes_and_getUidTxBytes]
@@ -310,8 +314,8 @@ struct NetworkStatisticsDemo {
     // [Start flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
     // 获取指定socket实时下行流量数据。
     let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-    // bind或connect方法调用。
     // [StartExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
+    // bind或connect方法调用。
     let bindAddr: socket.NetAddress = {
       address: '0.0.0.0'
     }
@@ -325,8 +329,8 @@ struct NetworkStatisticsDemo {
       timeout: 6000
     }
     tcp.connect(tcpconnectoptions)
-    // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
     // 获取TCPSocket的文件描述符。bind或connect方法调用成功后，才可调用此方法。
+    // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
     tcp.getSocketFd().then((sockfd: number) => {
       statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
         console.info(JSON.stringify(stats));
@@ -363,8 +367,9 @@ struct NetworkStatisticsDemo {
       timeout: 6000
     }
     tcp.connect(tcpconnectoptions)
-    // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
     // 获取TCPSocket的文件描述符。bind或connect方法调用成功后，才可调用此方法。
+    // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
+    // 获取指定socket实时上行流量数据。
     tcp.getSocketFd().then((sockfd: number) => {
       statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
         console.info(JSON.stringify(stats));
