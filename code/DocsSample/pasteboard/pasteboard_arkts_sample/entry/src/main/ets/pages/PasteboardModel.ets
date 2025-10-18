@@ -84,7 +84,7 @@ export namespace testJs {
   }
   // [End pasteboard_useudc]
 
-  // 使用基于PasteData级别的延迟复制粘贴（不建议使用）
+  // 使用基于PasteData级别的延迟复制粘贴（不建议使用，会影响粘贴体验和成功率）
   export async function pasteDatatimelate () {
     // [start pasteboard_timelaps_PasteData2]
     let plainTextData = new unifiedDataChannel.UnifiedData();
