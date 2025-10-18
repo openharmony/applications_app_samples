@@ -38,4 +38,4 @@
 | 添加卡片                              | 桌面存在app                    | 长按app，点击服务卡片选项。右滑选择"JS UI widget development"描述卡片，并点击“添加到桌面”。                                       | 页面中成功添加<开发基于JS UI的卡片>的卡片                                                                                            | 是 | Pass |
 | JS卡片内容刷新                        | 桌面上已有一张卡片           | 等待30min后观察卡片显示                                                                                      | title从“titleOnCreate”刷新为“titleOnUpdate”;文字内容从“detailOnCreat”刷新为“detailOnUpdate”                                     | 否       | Pass |
 |                                       |                                |                                                                                                     |                                                                                                                     |          |          |
-
+注意：其中根据卡片状态刷新不同内容功能在真机上可以实现，在RK3568开发板上测试不了
