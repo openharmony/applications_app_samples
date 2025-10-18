@@ -11,6 +11,66 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "baud_rates",
+      "value": "波特率:"
+    },
+    {
+      "name": "data_bits",
+      "value": "数据位:"
+    },
+    {
+      "name": "stop_bits",
+      "value": "停止位:"
+    },
+    {
+      "name": "parity_bits",
+      "value": "校验位:"
+    },
+    {
+      "name": "flow_controls",
+      "value": "软件流控:"
+    },
+    {
+      "name": "close_serial",
+      "value": "关闭串口"
+    },
+    {
+      "name": "open_serial",
+      "value": "打开串口"
+    },
+    {
+      "name": "timeout",
+      "value": "超时时间:"
+    },
+    {
+      "name": "millisecond",
+      "value": "毫秒"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "temperature",
+      "value": "温度:"
+    },
+    {
+      "name": "close_read",
+      "value": "关闭读取"
+    },
+    {
+      "name": "read_temperature",
+      "value": "读取温度"
+    },
+    {
+      "name": "device_connect",
+      "value": "设备已连接"
+    },
+    {
+      "name": "device_disconnect",
+      "value": "设备未连接"
     }
   ]
 }

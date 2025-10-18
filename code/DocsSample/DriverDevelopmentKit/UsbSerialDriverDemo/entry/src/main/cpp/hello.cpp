@@ -18,30 +18,25 @@
 #include <cerrno>
 #include <cstdint>
 #include <cstdlib>
-#include <chrono>
 #include <hilog/log.h>
 #include <string>
 #include <usb_serial/usb_serial_types.h>
 
 #define LOG_TAG "thermometer [NATIVE]"
-uint8_t writeCommand[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A};
+uint8_t g_writeCommand[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A};
+const int NUM_TWO = 2;
+const int NUM_EIGHT = 8;
+const int NUM_SIXTEEN = 16;
+const int NUM_THIRTY_TWO = 32;
+const int NUM_BAUDRATE = 9600;
 
-template <typename Func, typename ResultType = decltype(std::declval<Func>()())>
-ResultType TrackTime(Func &&func, const char *desc = "") {
-    auto start = std::chrono::high_resolution_clock::now();
-    ResultType result = func();
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration_ms = std::chrono::duration<double, std::milli>(end - start);
-    OH_LOG_INFO(LOG_APP, "Function [%{public}s] took [%{public}.2f]ms with result [%{public}d]", desc,
-                duration_ms.count());
-    return result;
-}
-
-uint32_t StartWork() {
+uint32_t StartWork()
+{
     // 打开 USB 串口设备
     UsbSerial_Device *serial = nullptr;
+    uint32_t bInterfaceNum = 0x00;
     // 打开deviceId和bInterfacenum指定的USB串口设备
-    uint32_t ret = OH_UsbSerial_Open(DataParser::GetInstance().GetDeviceID(), bInterfacenum, &serial);
+    uint32_t ret = OH_UsbSerial_Open(DataParser::GetInstance().GetDeviceID(), bInterfaceNum, &serial);
     if (ret != USB_SERIAL_DDK_SUCCESS) {
         OH_UsbSerial_Close(&serial);
         OH_LOG_ERROR(LOG_APP, "Failed to open USB serial device: %{public}d", ret);
@@ -51,7 +46,7 @@ uint32_t StartWork() {
     DataParser::GetInstance().SetSerialObject(serial);
     // 分配并初始化 UsbSerial_Params 结构体
     struct UsbSerial_Params *serialParams = (struct UsbSerial_Params *)malloc(sizeof(struct UsbSerial_Params));
-    if (serialParams == NULL) {
+    if (serialParams == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Failed to allocate memory for UsbSerial_Params");
         OH_UsbSerial_Close(&serial);
         return ENOMEM;
@@ -93,47 +88,52 @@ uint32_t StartWork() {
     return ret;
 }
 
-static napi_value Config(napi_env env, napi_callback_info info) {
-    size_t argc = 2;
+static napi_value Config(napi_env env, napi_callback_info info)
+{
+    size_t argc = NUM_TWO;
     napi_status status;
-    napi_value args[2];
+    napi_value args[NUM_TWO];
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    if (argc < 2) {
+    if (argc < NUM_TWO) {
         OH_LOG_ERROR(LOG_APP, "argc is invalid");
         return nullptr;
     }
 
     uint32_t key = 0;
-    size_t str_len;
-    char *utf8_buf;
+    size_t strLen;
+    char *utf8Buf;
     status = napi_get_value_uint32(env, args[0], &key);
     if (status != napi_ok) {
         OH_LOG_INFO(LOG_APP, "First argument must be a number\n");
         return nullptr;
     }
 
-    status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &str_len);
+    status = napi_get_value_string_utf8(env, args[1], nullptr, 0, &strLen);
     if (status != napi_ok) {
         OH_LOG_INFO(LOG_APP, "Second argument must be a string\n");
         return nullptr;
     }
-
-    utf8_buf = (char *)malloc(str_len + 1);
-    if (utf8_buf == NULL) {
+    
+    if (strLen < 0 || strLen > INT16_MAX) {
+        OH_LOG_INFO(LOG_APP, "Invalid string length\n");
+        return nullptr;
+    }
+    utf8Buf = (char *)malloc(strLen + 1);
+    if (utf8Buf == nullptr) {
         OH_LOG_INFO(LOG_APP, "Failed to allocate memory for string\n");
         return nullptr;
     }
 
-    status = napi_get_value_string_utf8(env, args[1], utf8_buf, str_len + 1, &str_len);
+    status = napi_get_value_string_utf8(env, args[1], utf8Buf, strLen + 1, &strLen);
     if (status != napi_ok) {
-        free(utf8_buf);
+        free(utf8Buf);
         OH_LOG_INFO(LOG_APP, "Failed to get string value\n");
         return nullptr;
     }
-    utf8_buf[str_len] = '\0';
-    DataParser::GetInstance().UpdateKeyCodeMap(key, utf8_buf);
-    if (utf8_buf != nullptr) {
-        free(utf8_buf);
+    utf8Buf[strLen] = '\0';
+    DataParser::GetInstance().UpdateKeyCodeMap(key, utf8Buf);
+    if (utf8Buf != nullptr) {
+        free(utf8Buf);
     }
     uint32_t ret;
 
@@ -145,7 +145,8 @@ static napi_value Config(napi_env env, napi_callback_info info) {
     return result;
 }
 
-static napi_value ReadTemperature(napi_env env, napi_callback_info info) {
+static napi_value ReadTemperature(napi_env env, napi_callback_info info)
+{
     OH_LOG_INFO(LOG_APP, "enter ReadTemperature\n");
     // 调用
     uint8_t dataBuff[8];
@@ -156,11 +157,11 @@ static napi_value ReadTemperature(napi_env env, napi_callback_info info) {
         OH_LOG_INFO(LOG_APP, "fd is null\n");
     };
 
-    auto ret = OH_UsbSerial_Write(DataParser::GetInstance().GetSerialObject(), writeCommand, sizeof(writeCommand),
+    auto ret = OH_UsbSerial_Write(DataParser::GetInstance().GetSerialObject(), g_writeCommand, sizeof(g_writeCommand),
                                   &bytesWritten);
     if (ret != USB_SERIAL_DDK_SUCCESS) {
         OH_LOG_INFO(LOG_APP, "write command fail,Actual bytes written = %{public}d", bytesWritten);
-        TrackTime([&]() { return OH_UsbSerial_Close(&serial); }, "OH_UsbSerial_Close");
+        OH_UsbSerial_Close(&serial);
         napi_value result = nullptr;
         napi_create_uint32(env, ret, &result);
         return result;
@@ -168,7 +169,7 @@ static napi_value ReadTemperature(napi_env env, napi_callback_info info) {
     ret = OH_UsbSerial_Read(serial, dataBuff, sizeof(dataBuff), &bytesRead);
     if (ret != USB_SERIAL_DDK_SUCCESS) {
         OH_LOG_INFO(LOG_APP, "read temperature data fail Actual bytes read= %{public}d\n", bytesRead);
-        TrackTime([&]() { return OH_UsbSerial_Close(&serial); }, "OH_UsbSerial_Close");
+        OH_UsbSerial_Close(&serial);
         napi_value result = nullptr;
         napi_create_uint32(env, ret, &result);
         return result;
@@ -179,7 +180,8 @@ static napi_value ReadTemperature(napi_env env, napi_callback_info info) {
     return result;
 }
 
-static napi_value ReleaseResource(napi_env env, napi_callback_info info) {
+static napi_value ReleaseResource(napi_env env, napi_callback_info info)
+{
     OH_LOG_INFO(LOG_APP, "enter ReleaseResource\n");
     UsbSerial_Device *serial = DataParser::GetInstance().GetSerialObject();
     if (serial != nullptr) {
@@ -191,7 +193,7 @@ static napi_value ReleaseResource(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 
-void test()
+void Test()
 {
     // 1.初始化DDK。
     // 使用 usb_serial_api.h 的 OH_UsbSerial_Init 初始化DDK。
@@ -206,26 +208,27 @@ void test()
     
     // [Start driver_serial_step2]
     UsbSerial_Device *dev = NULL;
-    uint64_t deviceId = 4294967301;
+    uint64_t deviceId = 1;
     uint8_t interfaceIndex = 0;
     // 打开deviceId和interfaceIndex指定的USB串口设备
     OH_UsbSerial_Open(deviceId, interfaceIndex, &dev);
     // [End driver_serial_step2]
     
     // 3.设置USB串口设备的参数。
-    // 使用 usb_serial_api.h 的 OH_UsbSerial_SetParams 接口设置串口参数，或者直接调用 OH_UsbSerial_SetBaudRate 设置波特率，使用 OH_UsbSerial_SetTimeout 设置读取数据的超时时间。
+    // 使用 usb_serial_api.h 的 OH_UsbSerial_SetParams 接口设置串口参数，或者直接调用 OH_UsbSerial_SetBaudRate 设置波特率，
+    // 使用 OH_UsbSerial_SetTimeout 设置读取数据的超时时间。
     
     // [Start driver_serial_step3]
     UsbSerial_Params params;
-    params.baudRate = 9600;
-    params.nDataBits = 8;
+    params.baudRate = NUM_BAUDRATE;
+    params.nDataBits = NUM_EIGHT;
     params.nStopBits = 1;
     params.parity = 0;
     // 设置串口参数
     OH_UsbSerial_SetParams(dev, &params);
     
     // 设置波特率
-    uint32_t baudRate = 9600;
+    uint32_t baudRate = NUM_BAUDRATE;
     OH_UsbSerial_SetBaudRate(dev, baudRate);
     
     // 设置超时时间
@@ -234,7 +237,8 @@ void test()
     // [End driver_serial_step3]
     
     // 4.设置流控、清空缓冲区。
-    //使用 usb_serial_api.h 的 OH_UsbSerial_SetFlowControl 设置流控方式，使用 OH_UsbSerial_Flush 清空缓冲区，使用 OH_UsbSerial_FlushInput 清空输入缓冲区，使用 OH_UsbSerial_FlushOutput 清空输出缓冲区。
+    //使用 usb_serial_api.h 的 OH_UsbSerial_SetFlowControl 设置流控方式，使用 OH_UsbSerial_Flush 清空缓冲区，
+    //使用 OH_UsbSerial_FlushInput 清空输入缓冲区，使用 OH_UsbSerial_FlushOutput 清空输出缓冲区。
     
     // [Start driver_serial_step4]
     // 设置软件流控
@@ -256,7 +260,7 @@ void test()
     // [Start driver_serial_step5]
     uint32_t bytesWritten = 0;
     // 测试设备读取指令，具体指令根据设备协议而定
-    uint8_t writeBuff[8] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0xA};
+    uint8_t writeBuff[NUM_EIGHT] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0xA};
     // 发送数据
     OH_UsbSerial_Write(dev, writeBuff, sizeof(writeBuff), &bytesWritten);
     
@@ -283,14 +287,13 @@ void test()
     // [End driver_serial_step7]
 }
 
-static napi_value UsbSerialInit(napi_env env, napi_callback_info info) {
-
+static napi_value UsbSerialInit(napi_env env, napi_callback_info info)
+{
     napi_value result = nullptr;
     size_t argc = 1;
     napi_status status;
     napi_value args[1];
     status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
     if (status != napi_ok || argc != 1) {
         OH_LOG_ERROR(LOG_APP, "argc is invalid");
         return nullptr;
@@ -302,22 +305,18 @@ static napi_value UsbSerialInit(napi_env env, napi_callback_info info) {
         OH_LOG_ERROR(LOG_APP, nullptr, "Failed to get uint32 value");
         return nullptr;
     }
-
     OH_LOG_INFO(LOG_APP, "deviceId = %{public}d\n", deviceId);
 
-    uint32_t busNum = ((deviceId & 0xFFFF0000) >> 16);
+    uint32_t busNum = ((deviceId & 0xFFFF0000) >> NUM_SIXTEEN);
     OH_LOG_INFO(LOG_APP, "busNum = %{public}d\n", busNum);
     uint32_t deviceNum = deviceId & 0xFFFF;
     OH_LOG_INFO(LOG_APP, "deviceNum = %{public}d\n", deviceNum);
-
-    uint64_t deviceId1 = ((uint64_t)busNum << 32) | deviceNum;
-
+    uint64_t deviceId1 = (static_cast<uint64_t>(busNum) << NUM_THIRTY_TWO) | deviceNum;
     OH_LOG_INFO(LOG_APP, "deviceId1 = %{public}d\n", deviceId1);
 
     std::string devStr = std::to_string(deviceId1);
     OH_LOG_INFO(LOG_APP, "devStr = %{public}s\n", devStr.c_str());
-
-    DataParser::GetInstance().UpdateKeyCodeMap(KEY_DEVICEID, (char *)devStr.c_str());
+    DataParser::GetInstance().UpdateKeyCodeMap(KEY_DEVICEID, const_cast<char*>(devStr.c_str()));
     
     // 初始化USB Serial DDK
     uint32_t ret = OH_UsbSerial_Init();
@@ -327,7 +326,8 @@ static napi_value UsbSerialInit(napi_env env, napi_callback_info info) {
     return result;
 }
 
-static napi_value Close(napi_env env, napi_callback_info info) {
+static napi_value Close(napi_env env, napi_callback_info info)
+{
     UsbSerial_Device *serial = DataParser::GetInstance().GetSerialObject();
     OH_LOG_INFO(LOG_APP, "enter Close\n");
     uint32_t ret = OH_UsbSerial_Close(&serial);
@@ -338,7 +338,8 @@ static napi_value Close(napi_env env, napi_callback_info info) {
     return result;
 }
 
-static napi_value SetTimeOut(napi_env env, napi_callback_info info) {
+static napi_value SetTimeOut(napi_env env, napi_callback_info info)
+{
     OH_LOG_INFO(LOG_APP, "enter SetTimeOut\n");
     size_t argc = 1;
     napi_value args[1];
@@ -356,7 +357,8 @@ static napi_value SetTimeOut(napi_env env, napi_callback_info info) {
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"config", nullptr, Config, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"readTemperature", nullptr, ReadTemperature, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -379,4 +381,7 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
+    napi_module_register(&demoModule);
+}

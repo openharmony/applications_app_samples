@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 {
   "app": {
     "products": [
@@ -19,18 +34,6 @@
       }
     ],
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "storeFile": "D:/develop/workspace_ts/UsbSerialDriverDemo/sign/OpenHarmony.p12",
-          "storePassword": "00000016B8A16B33EE00D81E9646EA52F7F20DC781D9650A0D8B458D185F9835AA7EA6BA3900",
-          "keyAlias": "oh-app1-key-v1",
-          "keyPassword": "00000016D6E611099723F9D9538C6B8E74FB966DA3F3A75267D44859A47FE666124CFC7C5F1C",
-          "signAlg": "SHA256withECDSA",
-          "profile": "D:/develop/workspace_ts/UsbSerialDriverDemo/sign/app1-profile.p7b",
-          "certpath": "D:/develop/workspace_ts/UsbSerialDriverDemo/sign/app1.cer"
-        }
-      }
     ]
   },
   "modules": [

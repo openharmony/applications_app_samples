@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import RpcTool from "../tool/RpcTool";
+import RpcTool from '../tool/RpcTool';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { promptAction } from "@kit.ArkUI";
-import { SerialPortStatusManager } from "../tool/SerialPortStatusManager";
-import { TemperatureStatusManager } from "../tool/TemperatureStatusManager";
+import { promptAction } from '@kit.ArkUI';
+import { SerialPortStatusManager } from '../tool/SerialPortStatusManager';
+import { TemperatureStatusManager } from '../tool/TemperatureStatusManager';
 
 const TEXT_HEIGHT: number = 60;
-const KeyValuePairs = new Map<number, string>();
+const keyValuePairs = new Map<number, string>();
 
 interface Options {
   value: string;
@@ -63,7 +63,7 @@ export struct SerialPortComponent {
   }
 
   bindStatusChange(vendorId: string, productId: string) {
-    hilog.info(0, 'testTag ui', `bindStatusChange vendorId: ${vendorId} productId:${productId}`)
+    hilog.info(0, 'testTag ui', `bindStatusChange vendorId: ${vendorId} productId:${productId}`);
     if (vendorId.length == 0 || productId.length == 0) {
       this.connectStatus = false;
     } else {
@@ -74,7 +74,7 @@ export struct SerialPortComponent {
   build() {
     Column({ space: 10 }) {
       Row({ space: 10 }) {
-        Text('波特率:')
+        Text($r('app.string.baud_rates'))
           .padding({ left: 10 })
         Select(this.baudRates)
           .selected(this.baudRateIndex)
@@ -93,7 +93,7 @@ export struct SerialPortComponent {
       .height(TEXT_HEIGHT)
 
       Row({ space: 10 }) {
-        Text('数据位:')
+        Text($r('app.string.data_bits'))
           .padding({ left: 10 })
         Select(this.dataBits)
           .selected(this.dataBitIndex)
@@ -112,7 +112,7 @@ export struct SerialPortComponent {
       .height(TEXT_HEIGHT)
 
       Row({ space: 10 }) {
-        Text('停止位:')
+        Text($r('app.string.stop_bits'))
           .padding({ left: 10 })
         Select(this.stopBits)
           .selected(this.stopBitIndex)
@@ -131,7 +131,7 @@ export struct SerialPortComponent {
       .height(TEXT_HEIGHT)
 
       Row({ space: 10 }) {
-        Text('校验位:')
+        Text($r('app.string.parity_bits'))
           .padding({ left: 10 })
         Select(this.parityBits)
           .selected(this.parityBitIndex)
@@ -150,7 +150,7 @@ export struct SerialPortComponent {
       .height(TEXT_HEIGHT)
 
       Row({ space: 10 }) {
-        Text('软件流控:')
+        Text($r('app.string.flow_controls'))
           .padding({ left: 10 })
         Select(this.flowControls)
           .selected(this.flowControlIndex)
@@ -168,7 +168,7 @@ export struct SerialPortComponent {
       .height(TEXT_HEIGHT)
 
       Row() {
-        Button(this.isSerialPortStatus ? '关闭串口' : '打开串口')
+        Button(this.isSerialPortStatus ? $r('app.string.close_serial') : $r('app.string.open_serial'))
           .enabled(this.connectStatus)
           .width('40%')
           .backgroundColor(this.isSerialPortStatus ? 'red' : '')
@@ -178,7 +178,7 @@ export struct SerialPortComponent {
               this.isSerialPortStatus = !this.isSerialPortStatus;
               if (this.isSerialPortStatus) {
                 SerialPortStatusManager.notify(this.isSerialPortStatus);
-                hilog.info(0, 'testTag ui', "Open serial port successfully.");
+                hilog.info(0, 'testTag ui', 'Open serial port successfully.');
                 this.issueParameters();
               } else {
                 TemperatureStatusManager.subscribe(this.onReadTemperatureStatusChange)
@@ -186,16 +186,16 @@ export struct SerialPortComponent {
                   this.isSerialPortStatus = true;
                   SerialPortStatusManager.notify(this.isSerialPortStatus);
                   promptAction.showToast({ message: '正在读取温度，无法关闭串口.', duration: 2000 });
-                  hilog.info(0, 'testTag ui', "Reading temperature, unable to close serial port.");
+                  hilog.info(0, 'testTag ui', 'Reading temperature, unable to close serial port.');
                 } else {
                   SerialPortStatusManager.notify(this.isSerialPortStatus);
-                  hilog.info(0, 'testTag ui', "Close serial port");
+                  hilog.info(0, 'testTag ui', 'Close serial port');
                   RpcTool.getInstance().closeConnection();
                 }
               }
             } else {
               promptAction.showToast({ message: '有未选择的选项.', duration: 2000 });
-              hilog.info(0, 'testTag ui', "There are options not selected.");
+              hilog.info(0, 'testTag ui', 'There are options not selected.');
             }
           })
       }
@@ -209,11 +209,11 @@ export struct SerialPortComponent {
 
   //下发波特率参数
   private issueParameters() {
-    KeyValuePairs.set(this.baudRateIndex, this.baudRateValue)
-    KeyValuePairs.set(this.dataBitIndex, this.dataBitValue)
-    KeyValuePairs.set(this.stopBitIndex, this.stopBitValue)
-    KeyValuePairs.set(this.parityBitIndex, this.parityBitValue)
-    KeyValuePairs.set(this.flowControlIndex, this.flowControlValue)
-    RpcTool.getInstance().setKeyValue(KeyValuePairs);
+    keyValuePairs.set(this.baudRateIndex, this.baudRateValue);
+    keyValuePairs.set(this.dataBitIndex, this.dataBitValue);
+    keyValuePairs.set(this.stopBitIndex, this.stopBitValue);
+    keyValuePairs.set(this.parityBitIndex, this.parityBitValue);
+    keyValuePairs.set(this.flowControlIndex, this.flowControlValue);
+    RpcTool.getInstance().setKeyValue(keyValuePairs);
   }
 }

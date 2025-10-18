@@ -18,7 +18,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { deviceManager } from '@kit.DriverDevelopmentKit';
 import { Index } from '../pages/Index';
 import { SerialPortComponent } from '../components/SerialPortComponent';
-import GlobalContext from './GlobalContext'
+import GlobalContext from './GlobalContext';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const REQUEST_CODE_KEY_VALUE = 1; //与扩展外设驱动端约定请求码,配置串口
@@ -28,8 +28,8 @@ const REQUEST_CODE_CLOSE_CONNECTION = 4; //与扩展外设驱动端约定请求�
 const REQUEST_CODE_READ_DATA = 5; //与扩展外设驱动端约定请求码，读取数据
 const REQUEST_CODE_SETTIMEOUT_DATA = 6; // 与扩展外设客户端约定请求码，设置超时时间
 
-const VENDOR_ID: number = 9390 // 24AE
-const PRODUCT_ID_LIST = [29987] // 1871
+const VENDOR_ID: number = 9390; // 24AE
+const PRODUCT_ID_LIST = [29987]; // 1871
 
 export async function sleep(ms: number) {
   return new Promise<number>(res => setTimeout(res, ms));
@@ -39,14 +39,14 @@ class MyDeathRecipient {
   private rpcTool: RpcTool;
 
   constructor(rpc: RpcTool) {
-    hilog.info(0, 'testTag ui', "MyDeathRecipient constructor");
+    hilog.info(0, 'testTag ui', 'MyDeathRecipient constructor');
     this.rpcTool = rpc;
   }
 
   onRemoteDied() {
-    hilog.info(0, 'testTag ui', "MyDeathRecipient onRemoteDied");
-    this.rpcTool.resetStatus()
-    this.rpcTool.bindStateChanged()
+    hilog.info(0, 'testTag ui', 'MyDeathRecipient onRemoteDied');
+    this.rpcTool.resetStatus();
+    this.rpcTool.bindStateChanged();
   }
 }
 
@@ -54,15 +54,15 @@ export default class RpcTool {
   private deviceId: number = -1;
   private vendorId: number = 0;
   private productId: number = 0;
-  private description: string = "";
-  private message: string = "";
+  private description: string = '';
+  private message: string = '';
   private bindState: boolean = false;
   private remote: rpc.RemoteObject | null = null;
   private isQuerying: boolean = false;
   private isBinding: boolean = false;
   private indexUI?: Index;
   private connectStatusChanged = false;
-  static instance: RpcTool;
+  private static instance: RpcTool;
   private msg: number = 0;
   private serialPortComponent?: SerialPortComponent;
 
@@ -73,31 +73,31 @@ export default class RpcTool {
   }
 
   public static getInstance(): RpcTool {
-    if (!GlobalContext.getContext().hasObject("prcToolInstance")) {
-      GlobalContext.getContext().setObject("prcToolInstance", new RpcTool());
+    if (!GlobalContext.getContext().hasObject('prcToolInstance')) {
+      GlobalContext.getContext().setObject('prcToolInstance', new RpcTool());
     }
-    return GlobalContext.getContext().getObject("prcToolInstance") as RpcTool;
+    return GlobalContext.getContext().getObject('prcToolInstance') as RpcTool;
   }
 
   //查询方法
   private query() {
     hilog.info(0, 'testTag ui', 'query enter');
     if (this.isBinding || this.bindState) {
-      hilog.info(0, 'testTag ui', 'has bind. device id:' + this.deviceId)
-      return
-    }
-    if (this.deviceId != -1) {
-      hilog.info(0, 'testTag ui', 'has query. device id:' + this.deviceId)
+      hilog.info(0, 'testTag ui', 'has bind. device id:' + this.deviceId);
       return;
     }
-    this.isQuerying = true
+    if (this.deviceId != -1) {
+      hilog.info(0, 'testTag ui', 'has query. device id:' + this.deviceId);
+      return;
+    }
+    this.isQuerying = true;
     try {
-      let devices: Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+      let devices: deviceManager.Device[] = deviceManager.queryDevices(deviceManager.BusType.USB);
       for (let item of devices) {
         let device = item as deviceManager.USBDevice;
-        hilog.info(0, 'testTag ui', 'querydevice id:' + device.deviceId + ',bustype:' + device.busType
-          + ',vid:' + device.vendorId + ',pid:' + device.productId + ', des:' + device.description);
-        let index = PRODUCT_ID_LIST.indexOf(device.productId)
+        hilog.info(0, 'testTag ui', 'querydevice id:' + device.deviceId + ',bustype:' + device.busType +
+          ',vid:' + device.vendorId + ',pid:' + device.productId + ', des:' + device.description);
+        let index = PRODUCT_ID_LIST.indexOf(device.productId);
         if (index >= 0) {
           this.deviceId = device.deviceId;
           this.vendorId = device.vendorId;
@@ -110,21 +110,21 @@ export default class RpcTool {
       hilog.error(0, 'testTag ui', `Failed to query device. Code is ${error.code}, message is ${error.message}`);
     }
     this.message = this.deviceId.toString();
-    this.isQuerying = false
+    this.isQuerying = false;
   }
 
   async bindStateChanged() {
     hilog.info(0, 'testTag ui', 'bindStateChanged enter');
-    this.bindState == false
-    this.remote = null
-    this.deviceId = -1
-    this.vendorId = 0
-    this.productId = 0
-    this.description = ""
-    this.indexUI?.bindCallback(this.getVendorId(), this.getProductId(), this.description)
-    this.serialPortComponent?.bindStatusChange(this.getVendorId(), this.getProductId())
-    await sleep(1500)
-    await this.bindDevice()
+    this.bindState == false;
+    this.remote = null;
+    this.deviceId = -1;
+    this.vendorId = 0;
+    this.productId = 0;
+    this.description = '';
+    this.indexUI?.bindCallback(this.getVendorId(), this.getProductId(), this.description);
+    this.serialPortComponent?.bindStatusChange(this.getVendorId(), this.getProductId());
+    await sleep(1500);
+    await this.bindDevice();
   }
 
   //绑定方法
@@ -135,12 +135,12 @@ export default class RpcTool {
       return;
     }
     if (this.remote != null) {
-      hilog.info(0, 'testTag ui', 'has bind device. device id:' + this.deviceId)
+      hilog.info(0, 'testTag ui', 'has bind device. device id:' + this.deviceId);
       return;
     }
 
     if (this.isBinding) {
-      hilog.info(0, 'testTag ui', 'is binding now')
+      hilog.info(0, 'testTag ui', 'is binding now');
       return;
     }
     this.isBinding = true;
@@ -151,7 +151,7 @@ export default class RpcTool {
           hilog.error(0, 'testTag ui', 'Device is disconnected:' + data);
           this.bindState = false; //若设备在绑定过程中，设备断连，需要重新绑定
           this.isBinding = false;
-          this.bindStateChanged()
+          this.bindStateChanged();
         });
 
       hilog.info(0, 'testTag ui', 'bindDevice success:' + data.deviceId);
@@ -166,7 +166,6 @@ export default class RpcTool {
       let deathRecipient = new MyDeathRecipient(this);
       this.remote.registerDeathRecipient(deathRecipient, 0);
       this.bindState = true;
-      // this.isQuerying = false;
       this.isBinding = false;
       hilog.info(0, 'testTag ui', 'create remote success');
     } catch (error) {
@@ -178,11 +177,11 @@ export default class RpcTool {
 
   //初始化
   init(indexUI: Index) {
-    this.indexUI = indexUI
+    this.indexUI = indexUI;
   }
 
   initSerialPortComponent(serialPortComponent: SerialPortComponent) {
-    this.serialPortComponent = serialPortComponent
+    this.serialPortComponent = serialPortComponent;
   }
 
   //绑定设备(包含了query和bind)
@@ -195,28 +194,28 @@ export default class RpcTool {
     while (this.remote == null) {
       this.query();
       await this.bind();
-      await sleep(1500)
+      await sleep(1500);
       hilog.info(0, 'testTag ui', 'timeOut');
     }
-    this.indexUI?.bindCallback(this.getVendorId(), this.getProductId(), this.description)
-    this.serialPortComponent?.bindStatusChange(this.getVendorId(), this.getProductId())
+    this.indexUI?.bindCallback(this.getVendorId(), this.getProductId(), this.description);
+    this.serialPortComponent?.bindStatusChange(this.getVendorId(), this.getProductId());
     // await this.queryConnectStatus()
-    hilog.info(0, 'testTag ui', `vendorId:${this.vendorId} productId:${this.productId} descprtion:${this.description}`)
+    hilog.info(0, 'testTag ui', `vendorId:${this.vendorId} productId:${this.productId} descprtion:${this.description}`);
   }
 
   getVendorId() {
     if (this.vendorId == 0) {
-      return ""
+      return '';
     } else {
-      return `0x${this.vendorId.toString(16).toUpperCase()}`
+      return `0x${this.vendorId.toString(16).toUpperCase()}`;
     }
   }
 
   getProductId() {
     if (this.productId == 0) {
-      return ""
+      return '';
     } else {
-      return `0x${this.productId.toString(16).toUpperCase()}`
+      return `0x${this.productId.toString(16).toUpperCase()}`;
     }
   }
 
@@ -238,7 +237,6 @@ export default class RpcTool {
           hilog.info(0, 'testTag ui', 'Device is disconnected');
         }
       });
-      // await deviceManager.unbindDevice(this.deviceId)
     } catch (error) {
       hilog.error(0, 'testTag ui', 'bindDevice fail. Code:' + error + ', message:' + error.message);
       this.bindState = true;
@@ -263,7 +261,6 @@ export default class RpcTool {
     this.remote.sendMessageRequest(REQUEST_CODE_KEY_VALUE, dataSend, reply, option).then((ret) => {
       hilog.info(0, 'testTag ui', 'sendMessageRequest success');
       this.msg = reply.readInt();
-      // this.indexUI?.msgCallback(this.msg);
       hilog.info(0, 'testTag ui', `setKeyValue ret:${ret}`);
     }).catch(() => {
       hilog.info(0, 'testTag ui', `setKeyValue sendMessageRequest failed`);
@@ -279,7 +276,7 @@ export default class RpcTool {
         this.bindStateChanged();
         break;
       }
-      await sleep(3000)
+      await sleep(3000);
     }
   }
 
@@ -289,7 +286,7 @@ export default class RpcTool {
     let reply = rpc.MessageSequence.create();
     hilog.info(0, 'testTag ui', `getConnectStatus`);
     if (this.remote == null) {
-      hilog.error(0, 'testTag ui', `the remote is null`)
+      hilog.error(0, 'testTag ui', `the remote is null`);
       return;
     }
     try {
@@ -310,7 +307,7 @@ export default class RpcTool {
     let reply = rpc.MessageSequence.create();
     hilog.info(0, 'testTag ui', `closeConnection`);
     if (this.remote == null) {
-      hilog.error(0, 'testTag ui', 'the remote is null')
+      hilog.error(0, 'testTag ui', 'the remote is null');
       return;
     }
     try {
@@ -333,7 +330,7 @@ export default class RpcTool {
     let reply = rpc.MessageSequence.create();
     hilog.info(0, 'testTag ui', `enter showTemperature`);
     if (this.remote == null) {
-      hilog.error(0, 'testTag ui', 'the remote is null')
+      hilog.error(0, 'testTag ui', 'the remote is null');
       return undefined;
     }
     try {
@@ -341,7 +338,7 @@ export default class RpcTool {
       hilog.info(0, 'testTag ui', `Temperature display successfully`);
       let result = reply.readDouble();
       hilog.info(0, 'testTag ui', `Temperature data:${result}`);
-      this.indexUI?.temperatureCallback(result.toString())
+      this.indexUI?.temperatureCallback(result.toString());
       return result.toString();
     } catch (error) {
       hilog.info(0, 'testTag ui', `Temperature display failed. Code is ${error.code}, message is ${error.message}`);
@@ -357,7 +354,7 @@ export default class RpcTool {
     hilog.info(0, 'testTag ui', `enter setTimeOut`);
     dataSend.writeInt(timeOut);
     if (this.remote == null) {
-      hilog.error(0, 'testTag ui', 'the remote is null')
+      hilog.error(0, 'testTag ui', 'the remote is null');
       return;
     }
     try {

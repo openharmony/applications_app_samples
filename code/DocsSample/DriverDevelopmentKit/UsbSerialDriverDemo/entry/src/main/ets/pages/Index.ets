@@ -16,48 +16,48 @@
 import { SerialPortComponent } from '../components/SerialPortComponent';
 import { TempShowComponent } from '../components/TempShowComponent';
 import { common } from '@kit.AbilityKit';
-import RpcTool from '../tool/RpcTool'
+import RpcTool from '../tool/RpcTool';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { prompt } from '@kit.ArkUI';
 
-const IMAGE_WIDTH_HEIGHT: number = 60 // 图片宽高
-const IMAGE_INTERVAL: number = 60 // 图片与图片间距
-const IMAGE_TEXT_INTERVAL: number = 10 // 图片和文本间距
-const MARGIN_LEFT_RIGHT: number = 20 // 顶部菜单栏与屏幕边缘间隔
-const MARGIN_TOP_BOTTOM: number = 20 // 菜单栏上下间距
+const IMAGE_WIDTH_HEIGHT: number = 60; // 图片宽高
+const IMAGE_INTERVAL: number = 60; // 图片与图片间距
+const IMAGE_TEXT_INTERVAL: number = 10; // 图片和文本间距
+const MARGIN_LEFT_RIGHT: number = 20; // 顶部菜单栏与屏幕边缘间隔
+const MARGIN_TOP_BOTTOM: number = 20; // 菜单栏上下间距
 
 @Preview
 @Entry
 @Component
 struct Index {
-  @State vendorId: string = "";
-  @State productId: string = "";
-  @State description: string = "";
+  @State vendorId: string = '';
+  @State productId: string = '';
+  @State description: string = '';
   @State currentIndex: number = 0;
   @State connectStatus: boolean = false;
   saveMessage: string = `save config success`;
-  @State temperatureData: string = "";
+  @State temperatureData: string = '';
   @State msg: number = 0;
   @State code: number = 0;
   private topMenu = [
     ['串口设置', $rawfile('ic_keyboard_set_normal.svg'), $rawfile('ic_keyboard_set_select.svg')],
     ['温度显示', $rawfile('ic_about_normal.svg'), $rawfile('ic_about_select.svg')]
-  ]
+  ];
   private bottomMenu = [['退出', $rawfile('ic_quit_normal.svg'), $rawfile('ic_quit_normal.svg')]];
   private controller: TabsController = new TabsController();
   private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
 
   async aboutToAppear() {
-    RpcTool.getInstance().init(this)
-    RpcTool.getInstance().bindDevice()
+    RpcTool.getInstance().init(this);
+    RpcTool.getInstance().bindDevice();
   }
 
   async aboutToDisappear() {
-    await RpcTool.getInstance().unbindDevice()
+    await RpcTool.getInstance().unbindDevice();
   }
 
   bindCallback(vendorId: string, productId: string, description: string) {
-    hilog.info(0, 'testTag ui', `bindCallback vendorId: ${vendorId} productId:${productId}`)
+    hilog.info(0, 'testTag ui', `bindCallback vendorId: ${vendorId} productId:${productId}`);
     this.vendorId = vendorId;
     this.productId = productId;
     this.description = description;
@@ -69,23 +69,23 @@ struct Index {
   }
 
   temperatureCallback(temperatureData: string) {
-    hilog.info(0, 'testTag ui', `bindCallback temperature: ${temperatureData}`)
-    if (temperatureData != "401") {
+    hilog.info(0, 'testTag ui', `bindCallback temperature: ${temperatureData}`);
+    if (temperatureData != '401') {
       this.temperatureData = temperatureData;
     }
   }
 
   //设置超时时间 驱动端返回的code
   timeoutCallback(code: number) {
-    hilog.info(0, 'testTag ui', `timeoutCallback code: ${code}`)
+    hilog.info(0, 'testTag ui', `timeoutCallback code: ${code}`);
     this.code = code;
   }
 
   getSaveMessage() {
     if (!this.vendorId || this.vendorId.length == 0) {
-      return '当前设备未连接'
+      return '当前设备未连接';
     } else {
-      return `save config success`
+      return `save config success`;
     }
   }
 
@@ -107,7 +107,7 @@ struct Index {
               .justifyContent(FlexAlign.Center)
               .onClick(() => {
                 if (item[0] == '保存') {
-                  prompt.showToast({ message: this.getSaveMessage(), bottom: 100, duration: 1800 })
+                  prompt.showToast({ message: this.getSaveMessage(), bottom: 100, duration: 1800 });
                 } else {
                   this.currentIndex = index;
                 }
@@ -174,7 +174,7 @@ struct Index {
       .height('100%')
       .alignItems(HorizontalAlign.Center)
 
-      Text(this.connectStatus ? '设备已连接' : '设备未连接')
+      Text(this.connectStatus ? $r('app.string.device_connect') : $r('app.string.device_disconnect'))
         .fontColor(this.connectStatus ? Color.Black : Color.Red)
         .margin({ right: 30, bottom: 20 })
         .fontSize(14)

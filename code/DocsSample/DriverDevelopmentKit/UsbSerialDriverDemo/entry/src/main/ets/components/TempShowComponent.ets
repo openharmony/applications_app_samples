@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import RpcTool from "../tool/RpcTool";
+import RpcTool from '../tool/RpcTool';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { SerialPortStatusManager } from "../tool/SerialPortStatusManager";
-import { TemperatureStatusManager } from "../tool/TemperatureStatusManager";
-import { promptAction } from "@kit.ArkUI";
+import { SerialPortStatusManager } from '../tool/SerialPortStatusManager';
+import { TemperatureStatusManager } from '../tool/TemperatureStatusManager';
+import { promptAction } from '@kit.ArkUI';
 
 @Component
 export struct TempShowComponent {
@@ -42,7 +42,7 @@ export struct TempShowComponent {
     Column({ space: 60 }) {
       //超时时间模块
       Row({ space: 8 }) {
-        Text(`超时时间:`)
+        Text($r('app.string.timeout'))
           .padding({ left: 10 })
         TextInput({ text: this.timeoutData })
           .width(`160`)
@@ -51,8 +51,8 @@ export struct TempShowComponent {
             this.timeoutData = value;
             hilog.info(0, 'testTag ui', `timeoutData value:${this.timeoutData}`);
           })
-        Text('毫秒')
-        Button(`设置`)
+        Text($r('app.string.millisecond'))
+        Button($r('app.string.setting'))
           .width(`100`)
           .onClick(async () => {
             let setTimeout: number = parseFloat(this.timeoutData);
@@ -69,7 +69,7 @@ export struct TempShowComponent {
 
       //温度读取模块
       Row({ space: 24 }) {
-        Text('温度:')
+        Text($r('app.string.temperature'))
           .padding({ left: 10 })
 
         Column({ space: 5 }) {
@@ -88,7 +88,7 @@ export struct TempShowComponent {
         }
 
         Text('℃')
-        Button(this.readButtonStatus ? '关闭读取' : '读取温度')
+        Button(this.readButtonStatus ? $r('app.string.close_read') : $r('app.string.read_temperature'))
           .backgroundColor(this.readButtonStatus ? 'red' : '')
           .onClick(() => {
             SerialPortStatusManager.subscribe(this.onSerialPortStatusChange);

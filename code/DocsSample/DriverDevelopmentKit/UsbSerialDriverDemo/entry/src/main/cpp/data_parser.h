@@ -34,9 +34,7 @@ enum ParityCode {
     EVEN,
 };
 
-const uint32_t bInterfacenum = 0x00;
-
-const uint32_t temperatureBase = 10;
+const uint32_t TEMPERATURE_BASE = 10;
 
 class DataParser {
 public:
