@@ -206,10 +206,49 @@ OH_Pasteboard* CreateAndSetPasteboardData()
     // [End pasteboard_timelapse_Record4]
     return pasteboard;
 }
+// [start pasteboard_timelapse_Record5]
+void ProcessRecordType(OH_UdmfRecord* record, const char* recordType)
+{
+    OH_UdsPlainText* udsText = nullptr;
+    OH_UdsHtml* udsHtml = nullptr;
+    if (strcmp(recordType, UDMF_META_PLAIN_TEXT) == 0) {
+        // 创建纯文本类型的Uds对象
+        udsText = OH_UdsPlainText_Create();
+        if (udsText != nullptr) {
+            // 从record中获取纯文本类型的Uds对象
+            OH_UdmfRecord_GetPlainText(record, udsText);
+            // 从Uds对象中获取内容
+            const char* content = OH_UdsPlainText_GetContent(udsText);
+        } else if (strcmp(recordType, UDMF_META_HTML) == 0) {
+            // 创建HTML类型的Uds对象
+            udsHtml = OH_UdsHtml_Create();
+            if (udsHtml != nullptr) {
+                // 从record中获取HTML类型的Uds对象
+                OH_UdmfRecord_GetHtml(record, udsHtml);
+                // 从Uds对象中获取内容
+                const char* content = OH_UdsHtml_GetContent(udsHtml);
+            }
+        }
+    }
+}
+void ProcessRecord(OH_UdmfRecord* record)
+{
+    // 13. 查询OH_UdmfRecord中的数据类型。
+    unsigned typeCount = 0;
+    char** recordTypes = OH_UdmfRecord_GetTypes(record, &typeCount);
+
+    // 14. 遍历数据类型。
+    for (unsigned int typeIndex = 0; typeIndex < typeCount; ++typeIndex) {
+        const char* recordType = recordTypes[typeIndex];
+        ProcessRecordType(record, recordType);
+    }
+}
+// [StartExclude pasteboard_timelapse_Record5]
+
 static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
 {
     OH_Pasteboard* pasteboard = CreateAndSetPasteboardData();
-    // [start pasteboard_timelapse_Record5]
+    // [EndExclude pasteboard_timelapse_Record5]
     // 9. 记录当前的剪贴板数据变化次数。
     uint32_t changeCount = OH_Pasteboard_GetChangeCount(pasteboard);
 
@@ -234,36 +273,7 @@ static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
     // 12. 遍历OH_UdmfRecord。
     for (unsigned int recordIndex = 0; recordIndex < recordCount; ++recordIndex) {
         OH_UdmfRecord* record = getRecords[recordIndex];
-
-        // 13. 查询OH_UdmfRecord中的数据类型。
-        unsigned typeCount = 0;
-        char** recordTypes = OH_UdmfRecord_GetTypes(record, &typeCount);
-
-        // 14. 遍历数据类型。
-        for (unsigned int typeIndex = 0; typeIndex < typeCount; ++typeIndex) {
-            char* recordType = recordTypes[typeIndex];
-
-            // 纯文本类型
-            if (strcmp(recordType, UDMF_META_PLAIN_TEXT) == 0) {
-                // 创建纯文本类型的Uds对象
-                udsText = OH_UdsPlainText_Create();
-                if (udsText != nullptr) {
-                    // 从record中获取纯文本类型的Uds对象
-                    OH_UdmfRecord_GetPlainText(record, udsText);
-                    // 从Uds对象中获取内容
-                    const char* content = OH_UdsPlainText_GetContent(udsText);
-                }
-            } else if (strcmp(recordType, UDMF_META_HTML) == 0) {
-                // 创建HTML类型的Uds对象
-                udsHtml = OH_UdsHtml_Create();
-                if (udsHtml != nullptr) {
-                    // 从record中获取HTML类型的Uds对象
-                    OH_UdmfRecord_GetHtml(record, udsHtml);
-                    // 从Uds对象中获取内容
-                    const char* content = OH_UdsHtml_GetContent(udsHtml);
-                }
-            }
-        }
+        ProcessRecord(record);
     }
     // [End pasteboard_timelapse_Record5]
     // [start pasteboard_timelapse_Record6]

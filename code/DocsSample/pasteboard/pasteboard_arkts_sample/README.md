@@ -15,10 +15,10 @@
 ```
 entry/src/main/ets/
 |---entryAbility
-|   |---EntryAbility.ets             // 申请权限
+|   |---EntryAbility.ets
 |---entrybackupability
 |---pages|
-|   |---Index.ets
+|   |---Index.ets               // UI界面
 |   |---PasteboardModel.ets          // 开发步骤示例代码
 ```
 

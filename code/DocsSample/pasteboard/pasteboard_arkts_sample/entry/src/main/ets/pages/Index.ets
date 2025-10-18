@@ -13,26 +13,154 @@
  * limitations under the License.
  */
 
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { testJs } from './PasteboardModel';
+import { BusinessError, pasteboard} from '@kit.BasicServicesKit';
+import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
+import { preferences } from '@kit.ArkData';
+
+const permissions: Permissions[] = ['ohos.permission.READ_PASTEBOARD'];
+const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+const patterns: pasteboard.Pattern[] = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
+let dataPreferences: preferences.Preferences | null = null;
+const LOG_DOMAIN = 0x1C04;
+const LOG_TAG = "PBDEMO"
+
+async function isNeedGetPermissionFromUser(): Promise<boolean> {
+  try {
+    let hasData: boolean = await systemPasteboard.hasData();
+    if (!hasData) {
+      // 剪贴板不存在数据，无需申请权限
+      return false;
+    }
+    // 获取剪贴板的内容变化次数
+    let result : number = systemPasteboard.getChangeCount();
+    console.info('Succeeded in getting the ChangeCount. Result: ${result}');
+    // 从 Preferences 中读取上次保存的 changeCount
+    let storedChangeCount: number = dataPreferences ? Number(dataPreferences.getSync('pasteboardChangeCount', 0)) : 0;
+    if (result === storedChangeCount) {
+      // 剪贴板无数据变化，无需申请权限
+      return false;
+    }
+  } catch (err) {
+    console.error('Failed to get the ChangeCount. Cause: ${err.message}');
+    return false;
+  };
+
+  // 查询剪贴板是否存在应用所需数据类型
+  try {
+    // (可选)涉及口令等应用自身特殊复制内容的，使用detectPatterns过滤口令格式
+    let data: pasteboard.Pattern[]  = await systemPasteboard.detectPatterns(patterns);
+    if (patterns.sort().join('') != data.sort().join('')) {
+      console.info('Not all needed patterns detected, no need to get data.');
+      return false;
+    }
+    // (可选)判断是否有应用需要的数据类型
+    let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
+    console.info('Succeeded in checking the DataType. Result: ${result}');
+    if (!result) {
+      // 剪贴板不存在应用所需数据类型，无需申请权限
+      return false;
+    }
+  } catch (err) {
+    console.error('Failed to check the DataType. Cause:' + err.message);
+    return false;
+  };
+  return true;
+}
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
+  @State data: string = '';
+  @State text: string = '';
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  scroller:Scroller = new Scroller();
+
+  printLog(content: string): void {
+    hilog.info(LOG_DOMAIN, LOG_TAG, content);
+    this.controller.addTextSpan(content);
+    this.scroller.scrollEdge(Edge.End);
+  }
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+    Row() {
+      Column() {
+        Button('复制')
+          .fontSize(20)
+          .fontWeight(FontWeight.Normal)
+          .type(ButtonType.Capsule)
+          .margin({ top: 4, left: 4 })
+          .width('210')
+          .height('30')
+          .backgroundColor('#f32dc400')
+          .onClick(() => {
+            testJs.setPlainData(this.data);
+          })
+        TextArea().width(300)
+          .onChange((value) => {
+            this.data = value;
+          })
+        Button('粘贴')
+          .fontSize(20)
+          .fontWeight(FontWeight.Normal)
+          .type(ButtonType.Capsule)
+          .margin({ top: 4, left: 4 })
+          .width('210')
+          .height('30')
+          .backgroundColor('#f32dc400')
+          .onClick(() => {
+            const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            if (!isNeedGetPermissionFromUser()) {
+              console.info("No neded to bring up the permission pop-up window");
+              testJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
+                .then((ret) => {
+                  this.text = ret;
+                })
+                .catch(() => {
+                  this.printLog('get failed.');
+                });
+              return;
+            }
+            let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+            // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗。
+            atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+              let grantStatus: number[] = data.authResults;
+              for (const status of grantStatus) {
+                if (status === 0) {
+                  // 用户授权，可以继续访问目标操作。
+                  testJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
+                    .then((ret) => {
+                      this.text = ret;
+                    })
+                    .catch(() => {
+                      this.printLog('get failed.');
+                    });
+                  // 获取当前 ChangeCount
+                  let currentChangeCount: number = systemPasteboard.getChangeCount();
+                  console.info('Current ChangeCount: ' + currentChangeCount);
+                  // 更新 Preferences 中的 ChangeCount
+                  if (dataPreferences) {
+                    dataPreferences.putSync('pasteboardChangeCount', currentChangeCount);
+                    dataPreferences.flushSync(); // 确保数据写入持久化存储
+                    console.info('ChangeCount has been updated to: ' + currentChangeCount);
+                  }
+                } else {
+                  // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限。
+                  return;
+                }
+              }
+              // 授权成功。
+            }).catch((err: BusinessError) => {
+              console.error('Failed to request permissions from user. ');
+            })
+          })
+        Text(this.text){
+        }.baselineOffset(5)
+      }
+      .width('100%')
     }
     .height('100%')
-    .width('100%')
   }
 }

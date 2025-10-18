@@ -20,37 +20,37 @@ import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 import {unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 // [End pasteboard_timelaps_PasteData1]
 // [StartExclude pasteboard_useudc]
-import { isNeedGetPermissionFromUser } from '../entryability/EntryAbility';
-
+// [EndExclude pasteboard_usedata]
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-export namespace PasteboardModel {
+// [StartExclude pasteboard_usedata]
+export namespace testJs {
   // 使用基础数据类型进行复制粘贴
-  // [EndExclude pasteboard_usedata]
-  async function handlePlainData () {
-    let text = 'test';
-    // 创建一条纯文本类型的剪贴板内容对象
-    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
-    // 将数据写入系统剪贴板
+  export async function setPlainData(content: string): Promise<void> {
+    // [EndExclude pasteboard_usedata]
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, content);
     await systemPasteboard.setData(pasteData);
-    // 增加权限校验逻辑
-    if (!(await isNeedGetPermissionFromUser())) {
-      console.warn('当前应用未获得剪贴板权限，无法读取剪贴板数据');
-      return;
-    }
+    // [StartExclude pasteboard_usedata]
+  }
+
+  export async function getPlainData(type: string): Promise<string>  {
+    // [EndExclude pasteboard_usedata]
     //从系统剪贴板中读取数据
     let data = await systemPasteboard.getData();
     let recordCount = data.getRecordCount();
+    let result = '';
     for (let i = 0; i < recordCount; i++) {
       let record = data.getRecord(i).toPlainText();
       console.info('Get data success, record:' + record);
+      result = record;
     }
+    // [End pasteboard_usedata]
+    return result;
   }
-  // [End pasteboard_usedata]
 
   // 使用统一数据类型进行复制粘贴
   // [EndExclude pasteboard_useudc]
   // 1.构造一条PlainText数据
-  async function handleUniformData () {
+  export async function handleUniformData () {
     let plainText : uniformDataStruct.PlainText = {
       uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
       textContent : 'PLAINTEXT_CONTENT',
@@ -85,7 +85,7 @@ export namespace PasteboardModel {
   // [End pasteboard_useudc]
 
   // 使用基于PasteData级别的延迟复制粘贴（不建议使用）
-  async function pasteDatatimelate () {
+  export async function pasteDatatimelate () {
     // [start pasteboard_timelaps_PasteData2]
     let plainTextData = new unifiedDataChannel.UnifiedData();
     let getDelayPlainText = ((dataType:string) => {
@@ -109,7 +109,7 @@ export namespace PasteboardModel {
         console.info('Succeeded in set PlainText.');
         // 存入成功，处理正常场景
       }).catch((error: BusinessError) => {
-        console.error('Failed to set PlainText. Cause: ' + err.message);
+        console.error('Failed to set PlainText. Cause: ' + error.message);
         // 处理异常场景
       });
     }
@@ -127,7 +127,7 @@ export namespace PasteboardModel {
           console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
         }
       }).catch((error: BusinessError) => {
-        console.error('Failed to get PlainTextUnifiedData. Cause: ' + err.message);
+        console.error('Failed to get PlainTextUnifiedData. Cause: ' + error.message);
         //处理异常场景
       })
     })
