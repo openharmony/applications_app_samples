@@ -85,3 +85,4 @@ class BackupExt extends BackupExtensionAbility {
   // [EndExclude on_backup_restore]
 }
 // [End on_backup_restore]
+// [End on_release]
