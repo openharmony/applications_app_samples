@@ -36,6 +36,7 @@ function resourceToString(resource: Resource): string {
 struct SocketDemo {
   @State clientStatus: string = 'Not Started'; // 客户端状态
   @State serverStatus: string = 'Not Started'; // 服务端状态
+  @State closeServerStatus: string = 'Not Started'; // 服务端状态
 
   aboutToDisappear(): void {
     workerPort.terminate();
@@ -57,6 +58,11 @@ struct SocketDemo {
         .margin({ bottom: COMPONENT_MARGIN })
         .id('clientStatus')
 
+      Text(`${resourceToString($r('app.string.clos_Server_Status'))}${this.closeServerStatus}`)
+        .fontSize(BUTTON_FONT_SIZE)
+        .margin({ bottom: COMPONENT_MARGIN })
+        .id('closeServerStatus')
+
       Button($r('app.string.Start_Local_Socket_Server'))
         .onClick(() => {
           this.startLocalSocketServer(); // 让 Worker 线程执行服务器逻辑
@@ -73,6 +79,19 @@ struct SocketDemo {
       Button($r('app.string.Start_Local_Socket_Communication'))
         .onClick(() => {
           this.startLocalSocket(); // 让 Worker 线程执行客户端逻辑
+        })
+        .width('80%')
+        .height(BUTTON_HEIGHT)
+        .margin({ top: COMPONENT_MARGIN })
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(BUTTON_FONT_SIZE)
+        .borderRadius(BUTTON_BORDER_RADIUS)
+        .id('Start_Local_Socket_Communication')
+
+      Button($r('app.string.close_socket_Server'))
+        .onClick(() => {
+          this.closeLocalSocketServer();
         })
         .width('80%')
         .height(BUTTON_HEIGHT)
@@ -131,6 +150,22 @@ struct SocketDemo {
 
     workerPort.onerror = (e: ErrorEvent) => {
       Logger.error(`Error from Worker: ${e}`);
+    };
+  }
+
+  closeLocalSocketServer() {
+    // 发送消息到 Worker 线程执行服务器监听
+    workerPort.postMessage({
+      type: 'closeLocalSocketServer',
+    });
+
+    // 监听 Worker 返回的结果
+    workerPort.onmessage = (e: MessageEvents) => {
+      if (e.data.type === 'success') {
+        this.closeServerStatus = 'close success';
+      } else if (e.data.type === 'fail'){
+        this.closeServerStatus = 'close fail';
+      }
     };
   }
 }

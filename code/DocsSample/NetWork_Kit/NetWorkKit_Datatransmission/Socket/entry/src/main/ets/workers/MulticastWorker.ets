@@ -45,15 +45,13 @@ function startMulticast(data: socket.NetAddress) {
   let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
   // [End multicast_worker_multicast]
 
-  // [Start multicast_worker_multicastConfig]
-  // [StartExclude multicast_worker_multicastConfig]
   // 构造一个对象用于加入多播组
   let addr : socket.NetAddress = {
     address: data.address,
     port: data.port,
     family: data.family
   };
-  // [EndExclude multicast_worker_multicastConfig]
+  // [Start multicast_worker_multicastConfig]
   // 加入多播组。
   multicast.addMembership(addr).then(() => {
     // [StartExclude multicast_worker_multicastConfig]
@@ -69,6 +67,7 @@ function startMulticast(data: socket.NetAddress) {
     console.error('addMembership fail');
   });
   // [End multicast_worker_multicastConfig]
+
   // [Start multicast_worker_on_message]
   // 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String。
   class SocketInfo {
@@ -88,6 +87,7 @@ function startMulticast(data: socket.NetAddress) {
     // [EndExclude multicast_worker_on_message]
   });
   // [End multicast_worker_on_message]
+
   // [Start multicast_worker_send]
   // 发送一条多播消息
   multicast.send({ data: 'Hello multicast group!', address: addr }).then(() => {
@@ -105,6 +105,7 @@ function startMulticast(data: socket.NetAddress) {
     // [End multicast_worker_off_message]
 
     // [Start multicast_worker_dropMembership]
+    // 退出多播组。
     multicast.dropMembership(addr).then(() => {
       // [StartExclude multicast_worker_dropMembership]
       postMessage({ type: 'multicastStatus', status: 'Dropped multicast membership' });

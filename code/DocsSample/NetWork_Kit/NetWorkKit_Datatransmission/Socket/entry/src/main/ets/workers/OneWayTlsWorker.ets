@@ -94,25 +94,18 @@ function loadCA(fileUri: string) {
   }
 }
 
+// [Start create_tls_worker_object]
+// 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
+let tlsOneWaySocket: socket.TLSSocket = socket.constructTLSSocketInstance();  // One way authentication
+// [StartExclude create_tls_worker_object]
+
 // [Start tls_worker_bind_the_server]
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
   remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 // [StartExclude tls_worker_bind_the_server]
-// [Start create_tls_worker_object]
-// 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
-let tlsOneWaySocket: socket.TLSSocket | null = null;
-// [StartExclude create_tls_worker_object]
 function connectToServer(serverIp: string, serverPort: number, ca: string) {
-  if (tlsOneWaySocket) {
-    workerPort.postMessage({ type: 'connectFailure', status: 'Socket already connected' });
-    return;
-  }
-  // [EndExclude create_tls_worker_object]
-  tlsOneWaySocket = socket.constructTLSSocketInstance();  // One way authentication
-  // [End create_tls_worker_object]
-
   let ipAddress: LocalAddress = { address: '0.0.0.0', family: 1 };
   // [EndExclude tls_worker_bind_the_server]
   // 绑定本地IP地址和端口。
@@ -139,7 +132,6 @@ function connectToServer(serverIp: string, serverPort: number, ca: string) {
     tlsOneWaySocket!.on('close', () => {
       console.info('on close');
       // [StartExclude tls_worker_bind_the_server]
-      tlsOneWaySocket = null; // 连接关闭后，清除 tlsSocket
       workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
       // [EndExclude tls_worker_bind_the_server]
     });
@@ -148,14 +140,12 @@ function connectToServer(serverIp: string, serverPort: number, ca: string) {
       console.info('connect successfully');
       workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
     }).catch((e: BusinessError) => {
-      tlsOneWaySocket = null;
       workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
     });
     // [EndExclude tls_worker_bind_the_server]
   }).catch((e: BusinessError) => {
     console.error('bind fail');
     // [StartExclude tls_worker_bind_the_server]
-    tlsOneWaySocket = null;
     workerPort.postMessage({ type: 'connectFailure', status: `Failed to bind socket: ${e.message}` });
     // [EndExclude tls_worker_bind_the_server]
   });

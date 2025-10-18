@@ -110,18 +110,11 @@ class SocketInfo {
 }
 // [Start tcp_to_tls_server_create_object]
 // 创建一个TCPSocket连接，返回一个TCPSocket对象。
-let tcpSocket: socket.TCPSocket | null = null;
-// [StartExclude tcp_to_tls_server_create_object]
+let tcpSocket: socket.TCPSocket = socket.constructTCPSocketInstance();
+// [End tcp_to_tls_server_create_object]
+
 // Connect to the server and perform TLS upgrade
 function connectToServer(serverIp: string, serverPort: number, ca: string, cert: string, privateKey: string) {
-  if (tcpSocket) {
-    workerPort.postMessage({ type: 'connectFailure', message: 'TCP already connected' });
-    return;
-  }
-  // [EndExclude tcp_to_tls_server_create_object]
-  tcpSocket = socket.constructTCPSocketInstance();
-  // [End tcp_to_tls_server_create_object]
-
   let serverAddress: ServerAddress = { address: serverIp, port: serverPort, family: 1 };
   let tcpConnect: socket.TCPConnectOptions = { address: serverAddress, timeout: 6000 }; // Set timeout to 6s
   // [Start tcp_Upgrade_to_tls_server]

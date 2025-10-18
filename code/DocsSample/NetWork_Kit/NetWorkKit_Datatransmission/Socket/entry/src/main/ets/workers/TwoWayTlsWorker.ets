@@ -78,7 +78,6 @@ function handleMessage(message: TlsTwoWayMessage) {
   }
 }
 
-// [Start two-way_authentication_via_tls_socket]
 // 读取文件并返回内容
 function loadFile(fileUri: string) {
   try {
@@ -106,17 +105,10 @@ function loadFile(fileUri: string) {
 
 // [Start two-way_constructTLSSocketInstance]
 // 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
-let tlsSocket: socket.TLSSocket | null = null;
-// [StartExclude two-way_constructTLSSocketInstance]
-function connectToServer(serverIp: string, serverPort: number, ca: string, cert: string, privateKey: string) {
-  if (tlsSocket) {
-    workerPort.postMessage({ type: 'connectFailure', message: 'Socket already connected' });
-    return;
-  }
-  // [EndExclude two-way_constructTLSSocketInstance]
-  tlsSocket = socket.constructTLSSocketInstance();
-  // [End two-way_constructTLSSocketInstance]
+let tlsSocket: socket.TLSSocket | null = socket.constructTLSSocketInstance();
+// [End two-way_constructTLSSocketInstance]
 
+function connectToServer(serverIp: string, serverPort: number, ca: string, cert: string, privateKey: string) {
   let ipAddress: LocalAddress = { address: '0.0.0.0', family: 1 };
   // [Start two-way_bindTlsSocket]
   class SocketInfo {
@@ -124,7 +116,7 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
     public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
   }
   // 绑定本地IP地址和端口。
-  tlsSocket.bind(ipAddress).then(() => {
+  tlsSocket!.bind(ipAddress).then(() => {
     console.info('bind success');
     // [StartExclude two-way_bindTlsSocket]
     let serverAddress: ServerAddress = { address: serverIp, port: serverPort, family: 1 };
@@ -153,7 +145,6 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
     tlsSocket!.on('close', () => {
       console.info('on close');
       // [StartExclude two-way_bindTlsSocket]
-      tlsSocket = null; // 清理连接
       workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
       // [EndExclude two-way_bindTlsSocket]
     });
@@ -161,14 +152,12 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
     tlsSocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {
       workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
     }).catch((e: BusinessError) => {
-      tlsSocket = null;
       workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
     });
     // [EndExclude two-way_bindTlsSocket]
   }).catch((e: BusinessError) => {
     console.error('bind fail');
     // [StartExclude two-way_bindTlsSocket]
-    tlsSocket = null;
     workerPort.postMessage({ type: 'connectFailure', status: `Failed to bind socket: ${e.message}` });
     // [EndExclude two-way_bindTlsSocket]
   });
@@ -182,7 +171,7 @@ function sendMessageToServer(message: string) {
     return;
   }
   // [EndExclude two-way_bindTlsSocket]
-  tlsSocket.send(message + '\r\n').then(() => {
+  tlsSocket.send('message').then(() => {
     console.info('send successfully');
     // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
@@ -208,7 +197,6 @@ function sendMessageToServer(message: string) {
   });
   // [End two-way_bindTlsSocket]
 }
-// [End two-way_authentication_via_tls_socket]
 
 // ArrayBuffer 转 utf8 字符串
 function buf2String(buf: ArrayBuffer): string {

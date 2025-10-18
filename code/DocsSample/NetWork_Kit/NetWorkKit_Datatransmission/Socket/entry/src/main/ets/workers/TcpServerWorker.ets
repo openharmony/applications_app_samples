@@ -47,13 +47,11 @@ function handleMessage(message: TcpMessage) {
 }
 
 function startServer(tcpMessage: TcpMessage) {
-  // [Start tcp_server_worker_ipAddress]
-  // 绑定本地IP地址和端口，进行监听。
-  // [StartExclude tcp_server_worker_ipAddress]
   let ipAddress: socket.NetAddress = {} as socket.NetAddress;
   ipAddress.address = tcpMessage.serverIp!; // 服务端IP
   ipAddress.port = tcpMessage.serverPort; // 端口号
-  // [EndExclude tcp_server_worker_ipAddress]
+  // [Start tcp_server_worker_ipAddress]
+  // 绑定本地IP地址和端口，进行监听。
   tcpServer.listen(ipAddress).then(() => {
     console.info('listen success');
     // [StartExclude tcp_server_worker_ipAddress]

@@ -150,7 +150,7 @@ function closeConnection() {
       tlsServer.close();
       // 取消订阅tlsServer的相关事件
       tlsServer.off('connect');
-      // [End tlsServer_start_connect]
+      // [End tlsServer_off_connect]
       workerPort.postMessage({ type: 'The service is stopped successfully', message: 'The service is stopped successfully' });
     } catch (err) {
       workerPort.postMessage({ type: 'Stopping the service failed', message: 'Stopping the service failed' });
