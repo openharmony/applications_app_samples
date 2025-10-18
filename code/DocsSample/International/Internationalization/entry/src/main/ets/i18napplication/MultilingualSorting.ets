@@ -21,72 +21,6 @@ import { i18n, intl } from '@kit.LocalizationKit';
 // [End import_module]
 
 /**********************************************************************************************************************
- * 本地习惯排序开发参考步骤
- * 1. 导入模块
- *  import { intl } from '@kit.LocalizationKit';
- * 2. 创建collator排序对象
- *  let collator = new intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
- * 3. 比较字符串
- *  let compareResult = collator.compare(first: string, second: string);
- *  // compareResult 为负数，表示第一个参数排在第二个参数之前
- *  // compareResult 为0，表示第一个参数与第二个参数排序不分先后
- *  // compareResult 为正数，表示第一个参数排在第二个参数之后
- *********************************************************************************************************************/
-// [Start local_custom_sorting]
-// 创建排序对象
-let options: intl.CollatorOptions = {
-  localeMatcher: 'lookup',
-  usage: 'sort',
-  sensitivity: 'case' // 区分大小写
-};
-let collator = new intl.Collator('zh-CN', options);
-
-// 区分大小写排序
-let enArray = ['app', 'App', 'Apple', 'ANIMAL', 'animal', 'apple', 'APPLE'];
-enArray.sort((a, b) => {
-  return collator.compare(a, b);
-})
-console.log('result: ', enArray); // animal ANIMAL app App apple Apple APPLE
-
-// 中文拼音排序
-let zhArray = [resourceToString($r('app.string.Apple')), resourceToString($r('app.string.Pear')),
-  resourceToString($r('app.string.Banana')), resourceToString($r('app.string.Pomegranate')),
-  resourceToString($r('app.string.Sugarcane')), resourceToString($r('app.string.Grapes')),
-  resourceToString($r('app.string.Orange'))];
-zhArray.sort((a, b) => {
-  return collator.compare(a, b);
-})
-console.log('result: ', zhArray); // 甘蔗,橘子,梨,苹果,葡萄,石榴,香蕉
-
-// 按笔画排序
-options = {
-  localeMatcher: 'lookup',
-  usage: 'sort',
-  collation: 'stroke'
-};
-collator = new intl.Collator('zh-CN', options);
-let zhStrokeArray = [resourceToString($r('app.string.Apple')), resourceToString($r('app.string.Pear')),
-  resourceToString($r('app.string.Banana')), resourceToString($r('app.string.Pomegranate')),
-  resourceToString($r('app.string.Sugarcane')), resourceToString($r('app.string.Grapes')),
-  resourceToString($r('app.string.Orange'))];
-zhStrokeArray.sort((a, b) => {
-  return collator.compare(a, b);
-})
-console.log('result: ', zhStrokeArray); // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
-
-// 搜索匹配的字符串
-options = {
-  usage: 'search',
-  sensitivity: 'base'
-};
-collator = new intl.Collator('tr', options);
-let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
-let s = 'türkiye';
-let matches = sourceArray.filter(item => collator.compare(item, s) === 0);
-console.log(matches.toString()); // Türkiye,TüRkiye
-// [End local_custom_sorting]
-
-/**********************************************************************************************************************
  * 创建索引开发参考步骤
  * 1. 导入模块
  *  import { i18n } from '@kit.LocalizationKit';
@@ -98,19 +32,18 @@ console.log(matches.toString()); // Türkiye,TüRkiye
 // [Start create_index]
 // 创建索引开发实例
 // 创建索引
-let indexUtil = i18n.getInstance('zh-CN');
-let indexList = indexUtil.getIndexList(); // ['...', 'A', 'B', 'C', 'D', 'E' ... 'X', 'Y', 'Z', '...']
+let indexUtil: i18n.IndexUtil = i18n.getInstance('zh-CN');
+let indexList = indexUtil.getIndexList(); // indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…']
+
 // 多语言index混排
 indexUtil.addLocale('ru-RU');
-// …,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,…,А,Б,В,Г,Д,Е,Ж,З,И,Й,К,Л,М,Н,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ы,Э,Ю,Я,…
+// indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…', 'А', 'Б', 'В', ... 'Э', 'Ю', 'Я', '…']
 indexList = indexUtil.getIndexList();
-indexUtil.getIndex(resourceToString($r('app.string.NiHao'))); // N
+
+// 获取字符串的索引值
+let index = indexUtil.getIndex('你好'); // index = 'N'
 // [End create_index]
 
-const expectedEnglishSort = 'animal ANIMAL app App apple Apple APPLE';
-const expectedChineseSort = resourceToString($r('app.string.ExpectedChineseSort'));
-const expectedChineseStrokeSort = resourceToString($r('app.string.ExpectedChineseStrokeSort'));
-const expectedMatchResult = 'Türkiye,TüRkiye';
 const expectedIndexList = ['…', 'A', 'B', 'C', 'Б', 'Г', 'Д', 'Ю', 'Я', '…'];
 const expectedIndex = 'N';
 
@@ -126,17 +59,6 @@ struct MultilingualSorting {
   build() {
     Column() {
       TitleBar({ hasBackPress: true, title: $r('app.string.MultilingualSorting') })
-      Text($r('app.string.ResultsOfLocalSort'))
-        .textStyle()
-        .fontWeight(FontWeight.Bold)
-      Text(assertEqual(enArray.join(' '), expectedEnglishSort, $r('app.string.ResultOfEnglishSort')))
-        .textStyle()
-      Text(assertEqual(zhArray.join(','), expectedChineseSort, $r('app.string.ResultOfChineseSort')))
-        .textStyle()
-      Text(assertEqual(zhStrokeArray.join(','), expectedChineseStrokeSort, $r('app.string.ResultOfChineseStrokeSort')))
-        .textStyle()
-      Text(assertEqual(matches.toString(), expectedMatchResult, $r('app.string.ResultOfSearchMatch')))
-        .textStyle()
       Text($r('app.string.ResultsOfCreateIndex'))
         .textStyle()
         .fontWeight(FontWeight.Bold)
@@ -147,7 +69,7 @@ struct MultilingualSorting {
           .textStyle()
       }.direction(Direction.Ltr)
 
-      Text(assertEqual(indexUtil.getIndex(resourceToString($r('app.string.NiHao'))), expectedIndex,
+      Text(assertEqual(index, expectedIndex,
         $r('app.string.ResultOfIndex')))
         .textStyle()
     }
