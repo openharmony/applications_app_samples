@@ -12,11 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start obtain_create_text_all]
 #include "manager.h"
 #include <sstream>
 #include <arkui/native_interface.h>
 #include <arkui/styled_string.h>
+// [StartExclude obtain_create_text_all]
 #include <hilog/log.h>
+// [EndExclude obtain_create_text_all]
 #include <native_drawing/drawing_font_collection.h>
 #include <native_drawing/drawing_text_declaration.h>
 
@@ -24,6 +27,7 @@ namespace NativeNode::Manager {
 constexpr int32_t NUM_10 = 10;
 constexpr int32_t NUM_28 = 28;
 constexpr int32_t NUM_400 = 400;
+// [StartExclude obtain_create_text_all]
 NodeManager &NodeManager::GetInstance()
 {
     static NodeManager instance;
@@ -32,21 +36,27 @@ NodeManager &NodeManager::GetInstance()
 
 void NodeManager::SetXComponent(OH_NativeXComponent *xComponent) { xComponent_ = xComponent; }
 
+// [EndExclude obtain_create_text_all]
 void NodeManager::CreateNativeNode()
 {
+    // [StartExclude obtain_create_text_all]
     if (!xComponent_) {
         return;
     }
+    // [EndExclude obtain_create_text_all]
+    // [Start obtain_create_text]
     ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
     if (nodeApi == nullptr) {
         return;
     }
+    // [StartExclude obtain_create_text]
     // 创建一个Column容器组件
     ArkUI_NodeHandle column = nodeApi->createNode(ARKUI_NODE_COLUMN);
     ArkUI_NumberValue colWidth[] = {{.f32 = 300}};
     ArkUI_AttributeItem widthItem = {.value = colWidth, .size = 1};
     nodeApi->setAttribute(column, NODE_WIDTH, &widthItem);
+    // [EndExclude obtain_create_text]
     // 创建Text组件
     ArkUI_NodeHandle text = nodeApi->createNode(ARKUI_NODE_TEXT);
     ArkUI_NumberValue textWidth[] = {{.f32 = 300}};
@@ -55,17 +65,22 @@ void NodeManager::CreateNativeNode()
     ArkUI_NumberValue textHeight[] = {{.f32 = 100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = 1};
     nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+    // [End obtain_create_text]
     ArkUI_NumberValue borderWidth[] = {{.f32 = 1}};
     ArkUI_AttributeItem borderWidthItem = {.value = borderWidth, .size = 1};
     nodeApi->setAttribute(text, NODE_BORDER_WIDTH, &borderWidthItem);
     
     // OH_Drawing_开头的API是字体引擎提供的，typographyStyle表示段落样式。
+    // [Start obtain_create_text_typographyStyle]
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextAlign(typographyStyle, OH_Drawing_TextAlign::TEXT_ALIGN_CENTER);
     OH_Drawing_SetTypographyTextMaxLines(typographyStyle, NUM_10);
+    // [End obtain_create_text_typographyStyle]
     // 创建 ArkUI_StyledString。
+    // [Start obtain_create_text_styledString]
     ArkUI_StyledString *styledString = OH_ArkUI_StyledString_Create(typographyStyle, OH_Drawing_CreateFontCollection());
     // 创建文本样式，设置字体和颜色。
+    // [Start obtain_create_text_placeholder]
     OH_Drawing_TextStyle *textStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleFontSize(textStyle, NUM_28);
     OH_Drawing_SetTextStyleColor(textStyle, OH_Drawing_ColorSetArgb(0xFF, 0x70, 0x70, 0x70));
@@ -73,9 +88,11 @@ void NodeManager::CreateNativeNode()
     OH_ArkUI_StyledString_PushTextStyle(styledString, textStyle);
     OH_ArkUI_StyledString_AddText(styledString, "Hello");
     OH_ArkUI_StyledString_PopTextStyle(styledString);
+    // [StartExclude obtain_create_text_styledString]
     // 添加占位，此区域内不会绘制文字，可以在此位置挂载Image组件实现图文混排。
     OH_Drawing_PlaceholderSpan placeHolder{.width = 100, .height = 100};
     OH_ArkUI_StyledString_AddPlaceholder(styledString, &placeHolder);
+    // [EndExclude obtain_create_text_styledString]
     // 设置不同样式的文字
     OH_Drawing_TextStyle *worldTextStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleFontSize(worldTextStyle, NUM_28);
@@ -83,14 +100,20 @@ void NodeManager::CreateNativeNode()
     OH_ArkUI_StyledString_PushTextStyle(styledString, worldTextStyle);
     OH_ArkUI_StyledString_AddText(styledString, "World!");
     OH_ArkUI_StyledString_PopTextStyle(styledString);
+    // [End obtain_create_text_placeholder]
+    // [End obtain_create_text_styledString]
     // 依赖StyledString对象创建字体引擎的Typography，此时它已经包含了设置的文本及其样式。
+    // [Start obtain_create_text_typography]
     OH_Drawing_Typography *typography = OH_ArkUI_StyledString_CreateTypography(styledString);
     // 字体引擎布局方法，需传入一个宽度，此宽度需与Text组件宽度匹配。
     // 布局宽度 = Text组件宽度 - (左padding + 右padding)
     OH_Drawing_TypographyLayout(typography, NUM_400);
+    // [End obtain_create_text_typography]
+    // [Start obtain_create_text_attributeItem]
     ArkUI_AttributeItem styledStringItem = {.object = styledString};
     // 布局完成后，通过NODE_TEXT_CONTENT_WITH_STYLED_STRING设置给Text组件。
     nodeApi->setAttribute(text, NODE_TEXT_CONTENT_WITH_STYLED_STRING, &styledStringItem);
+    // [End obtain_create_text_attributeItem]
 
     // 资源释放，应用侧可以自由决定何时释放。
     OH_ArkUI_StyledString_Destroy(styledString);
@@ -100,3 +123,4 @@ void NodeManager::CreateNativeNode()
     OH_NativeXComponent_AttachNativeRootNode(xComponent_, column);
 }
 } // namespace NativeNode::Manager
+// [End obtain_create_text_all]
