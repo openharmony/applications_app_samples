@@ -40,6 +40,7 @@
 | 是否获取焦点示例验证 | 应用位于首页 | 1.点击  CustomDialogController_CAPI对接示例按钮<br/>2.点击  设置属性按钮<br/>3.点击  是否开启模态样式弹窗  选择否<br/>4.点击  是否获取焦点  选择 否。<br/>5.点击  点此打开弹窗按钮   查看验证结果<br/>6.点击  弹框中Close Dialog 按钮<br/>7.点击  重置属性按钮 | 点击输入框 打开键盘 点击弹框内区域 键盘不回收 | 是 | Pass |
 | 设置弹窗的背景模糊效果示例验证 | 应用位于首页 | 1.点击  CustomDialogController_CAPI对接示例按钮<br/>2.点击  设置属性按钮<br/>3.点击  设置弹窗的背景模糊效果。<br/>4.点击  点此打开弹窗按钮   查看验证结果<br/>5.点击  弹框中Close Dialog 按钮<br/>6.点击  重置属性按钮 | 设置自定义弹窗的背景效果参数 | 是 | Pass |
 | 设置自定义弹窗的背景效果参数示例验证 | 应用位于首页 | 1.点击  CustomDialogController_CAPI对接示例按钮<br/>2.点击  设置属性按钮<br/>3.点击  设置自定义弹窗的背景效果参数。<br/>4.点击  点此打开弹窗按钮   查看验证结果<br/>5.点击  弹框中Close Dialog 按钮<br/>6.点击  重置属性按钮 | 弹框内部颜色有变化 | 是 | Pass |
+| <-按钮 示例验证 | 应用位于首页 | 1.点击  CustomDialogController_CAPI对接示例按钮<br/>2.点击 <- 按钮 | 返回上一层 | 是 | Pass |
 | 弹框创建/打开/关闭示例验证 | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击  点此打开弹窗按钮   查看验证结果<br/>3.点击  弹框中Close Dialog 按钮<br/>4.点击  重置属性按钮 | 弹框创建、打开、关闭成功 | 是 | Pass |
 | 应用退出示例验证 | 应用位于首页 | 1.点击   关闭应用按钮 | 应用退出 | 是 | Pass |
 | 设置弹窗的显示层示例验证 | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击 设置属性按钮<br/>3.点击 设置弹窗的显示层级  是  /  否 <br/>4.点击 点此打开弹窗按钮   查看验证结果<br/>5.点击 弹框中Close Dialog 按钮<br/>6.点击 重置属性按钮 | 属性设置结果显示<br/>ARKUI_LEVEL_MODE_OVERLAY  /  ARKUI_LEVEL_MODE_EMBEDDED | 是 | Pass |
@@ -62,6 +63,7 @@
 | 弹框状态示例验证 | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击  点此打开弹窗按钮   查看验证结果<br/>3.点击  弹框中Close Dialog 按钮<br/>4.点击  重置属性按钮 | 弹框状态显示<br/>DIALOG_UNINITIALIZED<br/>DIALOG_INITIALIZED<br/>DIALOG_APPEARING<br/>DIALOG_DISAPPEARED | 是 | Pass |
 | 背景模糊效果示例验证 | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击  设置属性按钮<br/>3.点击  背景模糊效果。<br/>4.点击  点此打开弹窗按钮   查看验证结果<br/>5.点击  弹框中Close Dialog 按钮<br/>6.点击  重置属性按钮 | 弹框内变为深色 | 是 | Pass |
 | 背景效果参数示例验证 | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击  设置属性按钮<br/>3.点击  背景效果参数。<br/>4.点击  点此打开弹窗按钮   查看验证结果<br/>5.点击  弹框中Close Dialog 按钮<br/>6.点击  重置属性按钮 | 弹框内变为深色                                               | 是 | Pass |
+| <-按钮 示例验证 | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击 <- 按钮 | 返回上一层 | 是 | Pass |
 
 
 
