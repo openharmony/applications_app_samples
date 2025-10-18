@@ -310,19 +310,23 @@ struct Index {
 
   build() {
     Column() {
-        Row() {
-            Button($r('app.string.return_node'))
-              .height(25)
-              .width('10%')
-              .onClick(() => {
-                this.getUIContext().getRouter().back();
-              })
-            Text($r('app.string.native_node_example'))
-              .fontSize(24)
-              .margin(10)
-              .fontWeight(FontWeight.Bold)
-              .height('10%')
-        }
+       Button($r('app.string.return_node'))
+        .height('5%')
+        .width('15%')
+        .fontSize(15)
+        .fontColor(Color.Black)
+        .position({ x: '2%', y: '4%' })
+        .backgroundColor(Color.White)
+        .borderColor(Color.Black)
+        .borderWidth(3)
+        .onClick(() => {
+          this.getUIContext().getRouter().back();
+        })
+        Text($r('app.string.native_node_example'))
+          .fontSize(20)
+          .margin(10)
+          .fontWeight(FontWeight.Bold)
+          .height('10%')
         Row() {
           Button($r('app.string.select_node_type'))
             .width('30%')
