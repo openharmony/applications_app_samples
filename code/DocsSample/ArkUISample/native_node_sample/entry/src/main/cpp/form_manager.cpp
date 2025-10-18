@@ -467,7 +467,7 @@ static bool GetArrayValue(int32_t nodeType, int32_t attributeType, const ArkUI_A
 {
     bool hasValue = false;
     if (IsSliderLinerColor(nodeType, attributeType)) {
-        hasValue = GetSliderLinerColor( (ArkUI_AttributeItem*) item, ss);
+        hasValue = GetSliderLinerColor((ArkUI_AttributeItem*)item, ss);
     } else {
         for (size_t i = 0; i < ((ArkUI_AttributeItem*)item)->size; i++) {
             if (hasValue) {
