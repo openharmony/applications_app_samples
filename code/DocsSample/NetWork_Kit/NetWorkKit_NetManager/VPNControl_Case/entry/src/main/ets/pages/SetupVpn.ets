@@ -142,10 +142,10 @@ export default struct allNetworksBtn {
     }
 
     // 使用上述配置创建 VPN 配置对象
-    let config = new Config(tunIp, blockedAppName);
+    let vpnConfig = new Config(tunIp, blockedAppName);
 
     // 创建 VPN 连接并应用配置
-    vpnConnection.create(config).then((data) => {
+    vpnConnection.create(vpnConfig).then((data) => {
       console.info('vpn create ' + JSON.stringify(data));
       // [StartExclude vpn_config_parameters]
       gTunFd = data;  // 获取到的虚拟网络接口文件描述符

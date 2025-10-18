@@ -19,7 +19,6 @@ import { vpnExtension } from '@kit.NetworkKit';
 // [StartExclude start_vpn_extension_ability]
 import vpn_client from 'libentry.so';
 import { showToast } from '../common/ShowToast';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentId } from '../common/CommonConstant'; // 引入枚举
 import TitleBar from '../common/component';
 import NotificationOperations from '../notification/NotificationOperations';
@@ -162,7 +161,9 @@ struct StartVpn {
         // [EndExclude start_vpn_extension_ability]
         Button($r('app.string.start_vpnExt'))
           .onClick(() => {
+            // [StartExclude start_vpn_extension_ability]
             try {
+              // [EndExclude start_vpn_extension_ability]
               vpnExtension.startVpnExtensionAbility(want)
               // [StartExclude start_vpn_extension_ability]
                 .then(() => {
@@ -170,14 +171,12 @@ struct StartVpn {
                   console.info('developTag', '%{public}s', 'start vpnExt Success');
                   this.flag = 'Pass';
                 })
-              // [EndExclude start_vpn_extension_ability]
             } catch (err) {
-              // [StartExclude start_vpn_extension_ability]
               showToast('start vpnExt Fail: ' + JSON.stringify(err), BUTTON_SUCCESS_MESSAGE);
               this.flag = 'Error';
-              // [EndExclude start_vpn_extension_ability]
               console.error('developTag', 'start vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
             }
+            // [EndExclude start_vpn_extension_ability]
           })
           .width('70%')
           // [StartExclude start_vpn_extension_ability]
