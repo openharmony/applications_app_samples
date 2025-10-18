@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [start module_atomicService]
+// [Start module_atomicService]
 {
   "module": {
     // [StartExclude module_atomicService]
