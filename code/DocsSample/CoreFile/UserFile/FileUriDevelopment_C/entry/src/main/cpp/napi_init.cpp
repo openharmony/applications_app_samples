@@ -160,7 +160,7 @@ static napi_value NAPI_Global_OH_FileUri_GetFullDirectoryUriExample(napi_env env
     }
     return result;
 }
-// [Start get_full_directory_uri]
+// [End get_full_directory_uri]
 
 // [Start is_valid_uri_example]
 static napi_value NAPI_Global_OH_FileUri_IsValidUriExample(napi_env env, napi_callback_info info)
