@@ -81,7 +81,12 @@ entry/src/main/ets/
     ├── page_image_animator.ets (图片帧页面)
     ├── page_text_picker.ets (文本选择器页面)
     ├── page_text.ets (文本界面)
-    └── page_xcomponent.ets (XComponent界面)
+    ├── page_xcomponent.ets (XComponent界面)
+    ├── PageGrid.ets       (Grid页面)
+    └── grid
+         ├── PageGridNormal.ets (普通Grid页面)
+         ├── PageGridIrregularIndexes.ets (可滚动Grid设置跨行跨列节点页面)
+         └── PageGridGetRectByIndex.ets (固定行列Grid页面)
 
 entry/src/main/
 ├── cpp
@@ -125,7 +130,13 @@ entry/src/main/
 |   ├── CheckboxShapeMaker.cpp
 │   ├── CheckboxShapeMaker.h
 |   ├── HoverModeAreaTypeMaker.cpp
-│   └── HoverModeAreaTypeMaker.h
+│   ├── HoverModeAreaTypeMaker.h
+│   ├── GridIrregularIndexesMaker.cpp
+│   ├── GridIrregularIndexesMaker.h
+│   ├── GridMaker.cpp
+│   ├── GridMaker.h
+│   ├── GridRectByIndexMaker.cpp
+│   └── GridRectByIndexMaker.h
 └── resources
     ├── base
     │   ├── element
