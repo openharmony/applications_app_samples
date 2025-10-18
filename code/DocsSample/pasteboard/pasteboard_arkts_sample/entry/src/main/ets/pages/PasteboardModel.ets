@@ -23,7 +23,7 @@ import {unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@ki
 // [EndExclude pasteboard_usedata]
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 // [StartExclude pasteboard_usedata]
-export namespace testJs {
+export namespace TestJs {
   // 使用基础数据类型进行复制粘贴
   export async function setPlainData(content: string): Promise<void> {
     // [EndExclude pasteboard_usedata]

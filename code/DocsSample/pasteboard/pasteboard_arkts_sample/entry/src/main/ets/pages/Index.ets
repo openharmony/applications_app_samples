@@ -14,18 +14,21 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { testJs } from './PasteboardModel';
+import { TestJs } from './PasteboardModel';
+// [start pasteboard_permission]
 import { BusinessError, pasteboard} from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
+
 
 const permissions: Permissions[] = ['ohos.permission.READ_PASTEBOARD'];
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 const patterns: pasteboard.Pattern[] = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
 let dataPreferences: preferences.Preferences | null = null;
+// [StartExclude pasteboard_permission]
 const LOG_DOMAIN = 0x1C04;
 const LOG_TAG = "PBDEMO"
-
+// [EndExclude pasteboard_permission]
 async function isNeedGetPermissionFromUser(): Promise<boolean> {
   try {
     let hasData: boolean = await systemPasteboard.hasData();
@@ -69,6 +72,7 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
   return true;
 }
 
+// [StartExclude pasteboard_permission]
 @Entry
 @Component
 struct Index {
@@ -96,7 +100,7 @@ struct Index {
           .height('30')
           .backgroundColor('#f32dc400')
           .onClick(() => {
-            testJs.setPlainData(this.data);
+            TestJs.setPlainData(this.data);
           })
         TextArea().width(300)
           .onChange((value) => {
@@ -111,16 +115,19 @@ struct Index {
           .height('30')
           .backgroundColor('#f32dc400')
           .onClick(() => {
+            // [EndExclude pasteboard_permission]
             const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             if (!isNeedGetPermissionFromUser()) {
-              console.info("No neded to bring up the permission pop-up window");
-              testJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
+              console.info('No neded to bring up the permission pop-up window');
+              // [StartExclude pasteboard_permission]
+              TestJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
                 .then((ret) => {
                   this.text = ret;
                 })
                 .catch(() => {
                   this.printLog('get failed.');
                 });
+              // [EndExclude pasteboard_permission]
               return;
             }
             let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -130,13 +137,15 @@ struct Index {
               for (const status of grantStatus) {
                 if (status === 0) {
                   // 用户授权，可以继续访问目标操作。
-                  testJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
+                  // [StartExclude pasteboard_permission]
+                  TestJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
                     .then((ret) => {
                       this.text = ret;
                     })
                     .catch(() => {
                       this.printLog('get failed.');
                     });
+                  // [EndExclude pasteboard_permission]
                   // 获取当前 ChangeCount
                   let currentChangeCount: number = systemPasteboard.getChangeCount();
                   console.info('Current ChangeCount: ' + currentChangeCount);
@@ -155,6 +164,7 @@ struct Index {
             }).catch((err: BusinessError) => {
               console.error('Failed to request permissions from user. ');
             })
+            // [End pasteboard_permission]
           })
         Text(this.text){
         }.baselineOffset(5)
