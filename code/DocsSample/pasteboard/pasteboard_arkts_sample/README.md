@@ -10,6 +10,20 @@
 
 3. [申请访问剪贴板权限](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
 
+## 效果预览
+
+| 主页 |
+|-------|
+| ![image](screenshots/UI.PNG) |
+
+### 使用说明
+
+1. 在主界面，可以点击文本框进行输入。
+
+2. 输入文本后点击复制按钮进行剪贴板数据写入。
+
+3. 首次点击粘贴会弹出申请授权弹框，需进行授权后会在粘贴下方展示复制的内容。
+
 ## 工程目录
 
 ```
