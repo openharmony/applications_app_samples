@@ -28,6 +28,10 @@ namespace NativeNode::Form {
 constexpr uint32_t MATRIX_ARRAY_SIZE = 16;
 napi_ref g_callbackRef = nullptr;
 napi_env g_env = nullptr;
+uint32_t g_colors[] = {0xFFFEBB62, 0xffFFA0A4};
+float g_stops[] = {0, 1.0};
+static ArkUI_ColorStop linerGrand[] = {{g_colors, g_stops, 2}};
+
 NodeManager& NodeManager::GetInstance()
 {
     static NodeManager instance;
@@ -51,7 +55,7 @@ AttributeScope g_attributeArray[] = {
     {ARKUI_NODE_TOGGLE, NODE_TOGGLE_SELECTED_COLOR, NODE_TOGGLE_UNSELECTED_COLOR},
     {ARKUI_NODE_BUTTON, NODE_BUTTON_LABEL, NODE_BUTTON_MAX_FONT_SCALE},
     {ARKUI_NODE_CHECKBOX, NODE_CHECKBOX_SELECT, NODE_CHECKBOX_GROUP},
-    {ARKUI_NODE_SLIDER, NODE_SLIDER_BLOCK_COLOR, NODE_SLIDER_SUFFIX},
+    {ARKUI_NODE_SLIDER, NODE_SLIDER_BLOCK_COLOR, NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR},
     {ARKUI_NODE_RADIO, NODE_RADIO_CHECKED, NODE_RADIO_GROUP},
     {ARKUI_NODE_CHECKBOX_GROUP, NODE_CHECKBOX_GROUP_NAME, NODE_CHECKBOX_GROUP_SHAPE},
 };
@@ -129,6 +133,9 @@ static std::map<int32_t, ArkUI_AttributeItem> attributeValueMap = {
     {NODE_SLIDER_BLOCK_COLOR, {sliderPickerValue, 1, "SLIDER", nullptr}},
     {NODE_SLIDER_TRACK_COLOR, {sliderPickerValue, 1, "SLIDER", nullptr}},
     {NODE_SLIDER_SELECTED_COLOR, {sliderPickerValue7, 1, "SLIDER", nullptr}},
+    { NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR, {nullptr, 0, nullptr, linerGrand} },
+    { NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR, {nullptr, 0, nullptr, linerGrand} },
+    { NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR, {nullptr, 0, nullptr, linerGrand} },
     {NODE_SLIDER_SHOW_STEPS, {sliderPickerValue6, 1, "SLIDER", nullptr}},
     {NODE_SLIDER_BLOCK_STYLE, {sliderPickerValue2, 1, "SLIDER", nullptr}},
     {NODE_SLIDER_VALUE, {sliderPickerValue9, 1, "SLIDER", nullptr}},
@@ -429,6 +436,50 @@ void NodeManager::BindEventFunc(ArkUI_NodeHandle newNode, int32_t begin, int32_t
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "NodeManager", "-----UNBIND_EVENT finish");
     }
 }
+static bool IsSliderLinerColor(int32_t nodeType, int32_t attributeType)
+{
+    if (nodeType == ARKUI_NODE_SLIDER &&
+        (attributeType == NODE_SLIDER_BLOCK_LINEAR_GRADIENT_COLOR ||
+         attributeType == NODE_SLIDER_TRACK_LINEAR_GRADIENT_COLOR ||
+         attributeType == NODE_SLIDER_SELECTED_LINEAR_GRADIENT_COLOR)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+static bool GetSliderLinerColor(ArkUI_AttributeItem* item, std::stringstream &ss)
+{
+    bool hasValue = false;
+    auto colorStop = static_cast<ArkUI_ColorStop *>(item->object);
+    if (colorStop) {
+        for (int i = 0; i < colorStop->size; ++i) {
+            ss << " color: " << std::hex << colorStop->colors[i] << " stop: " << colorStop->stops[i];
+            hasValue = true;
+        }
+    }
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "NodeManager", "-----GetSliderLinerColor  finish");
+    return hasValue;
+}
+
+static bool GetArrayValue(int32_t nodeType, int32_t attributeType, const ArkUI_AttributeItem* item,
+                          std::stringstream &ss)
+{
+    bool hasValue = false;
+    if (IsSliderLinerColor(nodeType, attributeType)) {
+        hasValue = GetSliderLinerColor( (ArkUI_AttributeItem*) item, ss);
+    } else {
+        for (size_t i = 0; i < ((ArkUI_AttributeItem*)item)->size; i++) {
+            if (hasValue) {
+                ss << "/";
+            }
+            ss << static_cast<int32_t>(item->value[i].i32);
+            hasValue = true;
+        }
+    }
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "NodeManager", "-----GetArrayValue  finish");
+    return hasValue;
+}
 
 napi_value TransTool::CreateFormPage(napi_env env, napi_callback_info info)
 {
@@ -602,13 +653,7 @@ napi_value TransTool::GetFormAttribute(napi_env env, napi_callback_info info)
     std::stringstream ss;
     bool hasValue = false;
     if (item->size > 0) {
-        for (size_t i = 0; i < item->size; i++) {
-            if (hasValue) {
-                ss << "/";
-            }
-            ss << static_cast<int32_t>(item->value[i].i32);
-            hasValue = true;
-        }
+        hasValue = GetArrayValue(nodeType, attributeType, item, ss);
     }
     if (item->string != nullptr) {
         if (hasValue) {
