@@ -50,7 +50,9 @@ export default struct defaultNetSyncBtn {
     let netHandle = connection.getDefaultNetSync();
     if (!netHandle || netHandle.netId === 0) {
       console.error('getDefaultNetSync fail');
+      // [StartExclude NetConnection_manage_case_default_net_sync]
       this.defaultNetSync = 'getDefaultNetSync fail';
+      // [EndExclude NetConnection_manage_case_default_net_sync]
     } else {
       console.info('default network: ' + JSON.stringify(netHandle));
       // 获取netHandle对应网络的能力信息。
@@ -65,11 +67,15 @@ export default struct defaultNetSyncBtn {
         if (cap?.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
           // 网络连通性验证成功，当前默认网络可以访问互联网。
           console.info('default network is validated');
+          // [StartExclude NetConnection_manage_case_default_net_sync]
           this.defaultNetSync = 'default network is validated';
+          // [EndExclude NetConnection_manage_case_default_net_sync]
         } else {
           // 网络连通性验证失败，当前默认网络不可以访问互联网。
           console.info('default network is not validated');
+          // [StartExclude NetConnection_manage_case_default_net_sync]
           this.defaultNetSync = 'default network is not validated';
+          // [EndExclude NetConnection_manage_case_default_net_sync]
         }
       }
     }

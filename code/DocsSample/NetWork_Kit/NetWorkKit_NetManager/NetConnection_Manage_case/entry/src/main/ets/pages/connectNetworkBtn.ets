@@ -24,14 +24,26 @@ const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
 const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
+// [Start notification_network_create_NetConnection]
+let netSpecifier: connection.NetSpecifier = {
+  netCapabilities: {
+    // 假设当前默认网络是蜂窝网络连接，需要创建WIFI网络连接，可指定网络类型为WIFI
+    bearerTypes: [connection.NetBearType.BEARER_WIFI],
+    // 指定网络能力为Internet
+    networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET],
+  }
+};
 
+// 指定超时时间为10s(默认值为0)
+let TIMEOUT = 10 * NETWORK_CONNECTION_TIMEOUT;
+
+// 创建NetConnection对象
+let conn = connection.createNetConnection(netSpecifier, TIMEOUT);
+// [End notification_network_create_NetConnection]
 @Component
 export default struct connectNetworkBtn {
   @Link connectStatus: string;
   @Link disconnectStatus: string;
-  // [Start notification_network_create_NetConnection]
-  private conn: connection.NetConnection | null = null;
-  // [StartExclude notification_network_create_NetConnection]
 
   build() {
     Column() {
@@ -61,33 +73,11 @@ export default struct connectNetworkBtn {
     }
   }
 
-  // [Start notification_of_network_status_change]
   // 连接并接收指定网络的状态变化通知
   connectNetwork() {
-    if (this.conn) {
-      console.info('Network connection already established.');
-      return; // 如果已有连接，直接返回
-    };
-    // [EndExclude notification_network_create_NetConnection]
-    let netSpecifier: connection.NetSpecifier = {
-      netCapabilities: {
-        // 假设当前默认网络是蜂窝网络连接，需要创建WIFI网络连接，可指定网络类型为WIFI
-        bearerTypes: [connection.NetBearType.BEARER_WIFI],
-        // 指定网络能力为Internet
-        networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET],
-      }
-    };
-
-    // 指定超时时间为10s(默认值为0)
-    let TIMEOUT = 10 * NETWORK_CONNECTION_TIMEOUT;
-
-    // 创建NetConnection对象
-    this.conn = connection.createNetConnection(netSpecifier, TIMEOUT);
-    // [End notification_network_create_NetConnection]
-
     // [Start notification_network_register]
-    // 订阅指定网络状态变化的通知。
-    this.conn.register((err: BusinessError, data: void) => {
+    // 订阅连接状态变化
+    conn.register((err: BusinessError, data: void) => {
       // [StartExclude notification_network_register]
       if (err) {
         // [EndExclude notification_network_register]
@@ -102,7 +92,7 @@ export default struct connectNetworkBtn {
 
     // [Start notification_network_netAvailable_netUnavailable]
     // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
-    this.conn.on('netAvailable', (data: connection.NetHandle) => {
+    conn.on('netAvailable', (data: connection.NetHandle) => {
       console.info('Network available, NetId is ' + data.netId);
       // [StartExclude notification_network_netAvailable_netUnavailable]
       this.connectStatus = `Network available, NetId: ${data.netId}`;
@@ -110,7 +100,7 @@ export default struct connectNetworkBtn {
     });
 
     // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
-    this.conn.on('netUnavailable', (data: void) => {
+    conn.on('netUnavailable', (data: void) => {
       console.info('Network unavailable, data is ' + JSON.stringify(data));
       // [StartExclude notification_network_netAvailable_netUnavailable]
       this.connectStatus = 'Network unavailable';
@@ -122,23 +112,18 @@ export default struct connectNetworkBtn {
 
   // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅
   disconnectNetwork() {
-    if (this.conn) {
-      // [Start notification_network_unregister]
-      // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
-      this.conn.unregister((err: BusinessError, data: void) => {
-        // [StartExclude notification_network_unregister]
-        if (err) {
-          console.error('Error occurred during unsubscription:', JSON.stringify(err));
-        }
-        // [EndExclude notification_network_unregister]
-      });
-      // [End notification_network_unregister]
-      this.conn = null;
-      this.disconnectStatus = 'Network disconnected';
-      console.info('Network connection disconnected.');
-    } else {
-      console.info('No active network connection.');
-    }
+    // [Start notification_network_unregister]
+    // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
+    conn.unregister((err: BusinessError, data: void) => {
+      // [StartExclude notification_network_unregister]
+      if (err) {
+        console.error('Error occurred during unsubscription:', JSON.stringify(err));
+      } else {
+        this.disconnectStatus = 'Network disconnected';
+        console.info('Network connection disconnected.');
+      }
+      // [EndExclude notification_network_unregister]
+    });
+    // [End notification_network_unregister]
   }
-  // [End notification_of_network_status_change]
 }
