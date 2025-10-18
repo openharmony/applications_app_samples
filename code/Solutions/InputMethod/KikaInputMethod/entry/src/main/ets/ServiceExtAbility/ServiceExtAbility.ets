@@ -12,10 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+
+// [Start input_case_module_import_InputMethodExtensionAbility]
+
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import Log from '../model/Log';
 import { keyboardController } from '../model/KeyboardController';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 const TAG: string = 'ServiceExtAbility->';
 
@@ -34,3 +37,4 @@ export default class ServiceExtAbility extends InputMethodExtensionAbility {
     Log.showInfo(TAG, `kikaInput-new: ${message}`);
   }
 }
+// [End input_case_module_import_InputMethodExtensionAbility]
