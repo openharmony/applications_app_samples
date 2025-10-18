@@ -77,8 +77,10 @@ export struct OnFocusBlur {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude focus_dynamic_reflect]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Focus_OnFocusBlur_title'))
+    // [EndExclude focus_dynamic_reflect]
   }
 }
 // [End focus_dynamic_reflect]

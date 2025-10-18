@@ -28,7 +28,7 @@ export struct FocusableExample {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-
+        // $r('app.string.Focus_Focusable_text')需要替换为开发者需要的字符串资源文件
         Text($r('app.string.Focus_Focusable_text'))
           .fontSize(14)
           .fontColor('#666')
@@ -100,14 +100,15 @@ export struct FocusableExample {
             this.textEnabled = !this.textEnabled;
           }
         })
-
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude dynamic_focus_control_manage]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Focus_Focusable_title'))
+    // [EndExclude dynamic_focus_control_manage]
   }
 }
 // [End dynamic_focus_control_manage]
