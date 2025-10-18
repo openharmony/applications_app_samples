@@ -55,8 +55,10 @@
             ]
           }
         ]
+        // [EndExclude typical_scenario_configuration]
       }
     ],
+    // [StartExclude typical_scenario_configuration]
     "extensionAbilities": [
       {
         "type": "backup",
@@ -71,7 +73,7 @@
         ],
       }
     ]
+    // [EndExclude typical_scenario_configuration]
   },
-  // [EndExclude typical_scenario_configuration]
 }
 // [End typical_scenario_configuration]
