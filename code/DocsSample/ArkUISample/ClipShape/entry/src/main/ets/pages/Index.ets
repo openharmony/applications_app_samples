@@ -33,15 +33,20 @@ struct Index {
   }
 
   build() {
-    Column() {
-      Text('裁剪圆形')
-      ClipShapeExampleA()
-      Text('裁剪椭圆形')
-      ClipShapeExampleB()
-      Text('裁剪矩形')
-      ClipShapeExampleC()
-      Text('裁剪不规则形状')
-      ClipShapeExampleD()
+    Scroll() {
+      Column(){
+        Text('裁剪圆形')
+        ClipShapeExampleA()
+        Text('裁剪椭圆形')
+        ClipShapeExampleB()
+        Text('裁剪矩形')
+        ClipShapeExampleC()
+        Text('裁剪不规则形状')
+        ClipShapeExampleD()
+      }
+
     }.width('100%')
+    .scrollBar(BarState.Off)
+
   }
 }
