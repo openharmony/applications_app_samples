@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "get_str",
+      "value": "获取"
+    },
+    {
+      "name": "str_data",
+      "value": "数据"
+    },
+    {
+      "name": "set_led",
+      "value": "设置键盘背光灯："
+    },
+    {
+      "name": "read_block",
+      "value": "Read(阻塞)"
+    },
+    {
+      "name": "read_nonblock",
+      "value": "Read(非阻塞)"
+    },
+    {
+      "name": "str_set",
+      "value": "设置"
+    },
+    {
+      "name": "device_connect",
+      "value": "设备已连接"
+    },
+    {
+      "name": "device_disconnect",
+      "value": "设备未连接"
+    }
+  ]
+}
