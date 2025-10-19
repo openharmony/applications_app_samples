@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start attrAnimateToDemo2]
 import { curves } from '@kit.ArkUI';
 
 @Entry
@@ -65,3 +67,5 @@ struct attrAnimateToDemo2 {
     .justifyContent(FlexAlign.Center)
   }
 }
+
+// [End attrAnimateToDemo2]
