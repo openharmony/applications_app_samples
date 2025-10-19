@@ -7,7 +7,7 @@
 
 1.[线性布局 (Column)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-layout-development-linear.md)。
 2.[图片](https://developer.huawei.com/consumer/cn/doc/atomic-ascf/components-image)
-3.[圆形裁剪](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-clip-shape)
+3.[形状裁剪](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-clip-shape)
 
 ### 效果预览
 

@@ -6,7 +6,7 @@
 本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
 1.[线性布局 (Column)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-layout-development-linear.md)。
-2.[文本组件](https://developer.huawei.com/consumer/cn/doc/atomic-ascf/components-text)
+2.[文本显示 (Text/Span)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-common-components-text-display.md)
 
 ### 效果预览
 
