@@ -6,8 +6,8 @@
 本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
 1.[线性布局 (Column)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-layout-development-linear.md)。
-2.[图片](https://developer.huawei.com/consumer/cn/doc/atomic-ascf/components-image)
-3.[形状裁剪](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-clip-shape)
+2.[图片](https://docs.openharmony.cn/pages/v4.1/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md)
+3.[形状裁剪](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md)
 
 ### 效果预览
 
