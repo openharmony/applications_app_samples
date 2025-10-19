@@ -65,6 +65,7 @@ public:
 private:
     void SetConfigAndGetValue();
     void GetBufferMapPlanes(NativeWindowBuffer *buffer);
+    void SetBufferColorSpace(NativeWindowBuffer *buffer);
     OHNativeWindow *nativeWindow_;
     OHNativeWindow *nativeWindowCache_;
     OH_NativeImage *image_;
@@ -79,6 +80,7 @@ private:
     std::queue<NativeWindowBuffer *> bufferCache_;
     std::queue<NativeWindowBuffer *> bufferAttached_;
     bool isAutoConsumer_;
+    bool isSingleBufferMode_ = false;
 };
 }
 #endif // NdkNativeWindow_NativeImageAdaptor_H
