@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start bindContentCover_demo]
 import { curves } from '@kit.ArkUI';
+import resource from '../../../common/resource';
 
 interface PersonList {
   name: string,
@@ -23,10 +25,10 @@ interface PersonList {
 @Component
 struct BindContentCoverDemo {
   private personList: Array<PersonList> = [
-    { name: 'wang**', cardnum: '1234***********789' },
-    { name: 'song*', cardnum: '2345***********789' },
-    { name: 'xu**', cardnum: '3456***********789' },
-    { name: 'tang*', cardnum: '4567***********789' }
+    { name: resource.resourceToString($r('app.string.Person_example1')), cardnum: '1234***********789' },
+    { name: resource.resourceToString($r('app.string.Person_example2')), cardnum: '2345***********789' },
+    { name: resource.resourceToString($r('app.string.Person_example3')), cardnum: '3456***********789' },
+    { name: resource.resourceToString($r('app.string.Person_example4')), cardnum: '4567***********789' }
   ];
   // 半模态转场控制变量
   @State isSheetShow: boolean = false;
@@ -37,7 +39,7 @@ struct BindContentCoverDemo {
   MyContentCoverBuilder() {
     Column() {
       Row() {
-        Text($r('app.string.bindSheetCmd_label1'))
+        Text($r('app.string.MyContentCoverBuilder_text1'))
           .fontSize(20)
           .fontColor(Color.White)
           .width('100%')
@@ -47,7 +49,7 @@ struct BindContentCoverDemo {
       .backgroundColor(0x007dfe)
 
       Row() {
-        Text($r('app.string.bindSheetCmd_label2'))
+        Text($r('app.string.MyContentCoverBuilder_text2'))
           .fontSize(16)
           .fontColor(0x333333)
           .margin({ top: 10 })
@@ -89,7 +91,7 @@ struct BindContentCoverDemo {
             .alignItems(HorizontalAlign.Start)
 
             Column() {
-              Text($r('app.string.bindSheetCmd_label3'))
+              Text($r('app.string.MyContentCoverBuilder_text3'))
                 .fontColor(0x007dfe)
                 .fontSize(16)
             }
@@ -203,3 +205,4 @@ struct BindContentCoverDemo {
     .backgroundColor('#30aaaaaa')
   }
 }
+// [End bindContentCover_demo]
