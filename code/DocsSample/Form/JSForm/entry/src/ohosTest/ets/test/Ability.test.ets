@@ -18,8 +18,8 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON, Component, Point, On } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_JSForm]'
-const DOMAIN = 0xF811
+const TAG = '[Sample_JSForm]';
+const DOMAIN = 0xF811;
 const DELAYTIME01 = 500;
 const DELAYTIME02 = 2000;
 
@@ -43,10 +43,6 @@ async function getCenterPoint(comp: Component, offset: number): Promise<Point> {
   return point;
 }
 
-// Sliding coordinate
-// const START_SLIDING_X = 890;
-// const FINISH_SLIDING_X = 250;
-// const SLIDING_COORDINATE_Y = 1822;
 const START_SLIDING_X = 839;
 const FINISH_SLIDING_X = 250;
 const SLIDING_COORDINATE_Y = 1422;
@@ -63,7 +59,7 @@ async function addForm(point: Point, index:number) {
   await driver.delayMs(DELAYTIME02);
   for (let i = 0; i < index; i++) {
     await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME02);
-    hilog.info(DOMAIN, TAG, `滑动了${i+1}次`);
+    hilog.info(DOMAIN, TAG, `swipernumber:${i+1}`);
     await driver.delayMs(DELAYTIME01);
   }
   // 点击添加至桌面
@@ -105,39 +101,41 @@ export default function abilityTest() {
     /**
      * 添加具有事件的卡片
      */
-    it('JSForm_addform_001', 0, async () => {
+    it('JSForm_addform_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'JSForm_addform_001 test start');
       await driver.delayMs(DELAYTIME01);
       await driver.pressBack();
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
-      await driver.assertComponentExist(ON.text('JS卡片').within(ON.type('GridItem')))
-      let formEditDemoIcon: Component = await driver.findComponent(ON.text('JS卡片').within(ON.type('GridItem')));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')))
+      let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point, 0);
       // 找到卡片是否存在
       await driver.delayMs(DELAYTIME02);
       await driver.assertComponentExist(ON.type('FormComponent'))
       hilog.info(DOMAIN, TAG, 'JSForm_addform_001 test end');
+      done();
     });
 
     /**
      * 添加卡片
      */
-    it('JSForm_addform_002', 0, async () => {
+    it('JSForm_addform_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'JSForm_addform_002 test start');
       await driver.delayMs(DELAYTIME01);
       await driver.pressBack();
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
-      await driver.assertComponentExist(ON.text('JS卡片').within(ON.type('GridItem')))
-      let formEditDemoIcon: Component = await driver.findComponent(ON.text('JS卡片').within(ON.type('GridItem')));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')))
+      let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point, 1);
       // 找到卡片是否存在
       await driver.delayMs(DELAYTIME02);
       await driver.assertComponentExist(ON.type('FormComponent'))
       hilog.info(DOMAIN, TAG, 'JSForm_addform_002 test end');
+      done();
     });
   })
 }

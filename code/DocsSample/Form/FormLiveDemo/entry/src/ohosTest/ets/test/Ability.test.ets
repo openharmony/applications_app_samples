@@ -18,8 +18,8 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON, Component, Point } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_FormLiveDemo]'
-const DOMAIN = 0xF811
+const TAG = '[Sample_FormLiveDemo]';
+const DOMAIN = 0xF811;
 const DELAYTIME01 = 500;
 const DELAYTIME02 = 2000;
 
@@ -103,10 +103,10 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, 'FormLiveDemo_liveform_001 test start');
       // 找到卡片是否存在
       await driver.delayMs(DELAYTIME02);
-      await driver.assertComponentExist(ON.text('点击触发互动卡片动效').within(ON.type('FormComponent'))).then(()=>{
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.liveform_click'))).within(ON.type('FormComponent'))).then(()=>{
         hilog.info(DOMAIN, TAG, 'FormLiveDemo_liveform_001 find component');
       })
-      let formComponent: Component = await driver.findComponent(ON.text('点击触发互动卡片动效').within(ON.type('FormComponent')));
+      let formComponent: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.liveform_click'))).within(ON.type('FormComponent')));
       let point: Point = await getCenterPoint(formComponent, 0);
       await driver.click(point.x, point.y);
       await driver.delayMs(DELAYTIME02);
