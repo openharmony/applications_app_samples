@@ -42,8 +42,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('取消监听音量按键上的监听'));
-      await driver.assertComponentExist(ON.text('取消监听音量按键下的监听'));
+      await driver.assertComponentExist(ON.text('Cancel monitoring on the volume button'));
+      await driver.assertComponentExist(ON.text('Cancel monitoring under the volume button'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
@@ -65,8 +65,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('取消监听音量按键上的监听'));
-      let button = await driver.findComponent(ON.text('取消监听音量按键上的监听'));
+      await driver.assertComponentExist(ON.text('Cancel monitoring on the volume button'));
+      let button = await driver.findComponent(ON.text('Cancel monitoring on the volume button'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -90,8 +90,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('取消监听音量按键上的监听'));
-      let button = await driver.findComponent(ON.text('取消监听音量按键上的监听'));
+      await driver.assertComponentExist(ON.text('Cancel monitoring on the volume button'));
+      let button = await driver.findComponent(ON.text('Cancel monitoring on the volume button'));
       await button.click();
       await driver.delayMs(1000);
       done();
