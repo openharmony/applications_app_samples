@@ -337,7 +337,7 @@ static napi_value ReadKeyboardState(napi_env env, napi_callback_info info)
             ret = OH_Hid_ReadTimeout(DataParser::GetInstance().getHidObject(), dataBuff, sizeof(dataBuff),
                                      CONST_TIMEOUT, &bytesRead);
         }
-        // [Start driver_hid_report_step4_2]
+        // [End driver_hid_report_step4_2]
 
         if (ret != HID_DDK_SUCCESS) {
             OH_LOG_ERROR(LOG_APP, "OH_Hid_ReadTimeout or OH_Hid_Read  failed. ret: %{public}u", ret);
