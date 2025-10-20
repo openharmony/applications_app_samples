@@ -15,7 +15,7 @@
 import { Type } from '@kit.ArkUI';
 // [Start DataModel]
 class Sample {
-  data: number = 0;
+  private data: number = 0;
 }
 @ObservedV2
 class Info {
