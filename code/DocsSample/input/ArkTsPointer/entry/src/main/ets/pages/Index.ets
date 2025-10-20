@@ -59,7 +59,7 @@ struct Index {
 
             // 3.应用退出全屏播放
             // 4.调用鼠标光标显示接口显示光标
-        Text("Click to display cursor")
+        Text("Click to display pointer")
           .onClick(() => {
             try {
               pointer.setPointerVisible(true, (error: Error) => {
@@ -91,7 +91,7 @@ struct Index {
         // [End pointer_visible]
 
         // [Start pointer_style]
-        Text("Click to set the mouse cursor style to the color picker style")
+        Text("Click to set the mouse pointer style to the color picker style")
           .onClick(() => {
             // 1.开发者使能取色功能
             // 2.调用窗口实例获取对应的窗口id
@@ -133,7 +133,7 @@ struct Index {
         // [EndExclude pointer_style]
 
 
-        Text("Click to set the mouse cursor style to default style")
+        Text("Click to set the mouse pointer style to default style")
           .onClick(() => {
             // 4.取色结束
             window.getLastWindow(this.getUIContext().getHostContext(),

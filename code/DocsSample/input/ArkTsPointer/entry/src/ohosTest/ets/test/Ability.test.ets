@@ -41,9 +41,9 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Click to hide cursor'));
-      await driver.assertComponentExist(ON.text('Click to display cursor'));
-      await driver.assertComponentExist(ON.text('Click to set the mouse cursor style to the color picker style'));
+      await driver.assertComponentExist(ON.text('Click to hide pointer'));
+      await driver.assertComponentExist(ON.text('Click to display pointer'));
+      await driver.assertComponentExist(ON.text('Click to set the mouse pointer style to the color picker style'));
       await driver.assertComponentExist(ON.text('点击设置设置鼠标光标样式为默认样式'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
@@ -66,8 +66,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Click to hide cursor'));
-      let button = await driver.findComponent(ON.text('Click to hide cursor'));
+      await driver.assertComponentExist(ON.text('Click to hide pointer'));
+      let button = await driver.findComponent(ON.text('Click to hide pointer'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -91,8 +91,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Click to display cursor'));
-      let button = await driver.findComponent(ON.text('Click to display cursor'));
+      await driver.assertComponentExist(ON.text('Click to display pointer'));
+      let button = await driver.findComponent(ON.text('Click to display pointer'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -116,8 +116,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Click to set the mouse cursor style to the color picker style'));
-      let button = await driver.findComponent(ON.text('Click to set the mouse cursor style to the color picker style'));
+      await driver.assertComponentExist(ON.text('Click to set the mouse pointer style to the color picker style'));
+      let button = await driver.findComponent(ON.text('Click to set the mouse pointer style to the color picker style'));
       await button.click();
       await driver.delayMs(1000);
       done();
