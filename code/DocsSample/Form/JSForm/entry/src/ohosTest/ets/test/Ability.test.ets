@@ -95,7 +95,7 @@ export default function abilityTest() {
       let formComponent: Component = await driver.findComponent(ON.type('FormComponent'));
       if(formComponent != null){
         let point1: Point = await getCenterPoint(formComponent, 0);
-        await onRemoveForm(point1)
+        await onRemoveForm(point1);
       }
     });
     /**
@@ -107,13 +107,13 @@ export default function abilityTest() {
       await driver.pressBack();
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point, 0);
       // 找到卡片是否存在
       await driver.delayMs(DELAYTIME02);
-      await driver.assertComponentExist(ON.type('FormComponent'))
+      await driver.assertComponentExist(ON.type('FormComponent'));
       hilog.info(DOMAIN, TAG, 'JSForm_addform_001 test end');
       done();
     });
@@ -127,13 +127,13 @@ export default function abilityTest() {
       await driver.pressBack();
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point, 1);
       // 找到卡片是否存在
       await driver.delayMs(DELAYTIME02);
-      await driver.assertComponentExist(ON.type('FormComponent'))
+      await driver.assertComponentExist(ON.type('FormComponent'));
       hilog.info(DOMAIN, TAG, 'JSForm_addform_002 test end');
       done();
     });
