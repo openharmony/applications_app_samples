@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,13 +26,14 @@ export struct DisableMenuItem {
 
   aboutToAppear(): void {
     // 禁用搜索和翻译菜单
-    TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE])
+    TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE]);
   }
 
   aboutToDisappear(): void {
     // 恢复系统服务菜单
-    TextMenuController.disableMenuItems([])
+    TextMenuController.disableMenuItems([]);
   }
+
   // [End richEditor_disableMenu]
 
   build() {
@@ -43,7 +43,7 @@ export struct DisableMenuItem {
           // [Start richEditor_disableMenu]
           RichEditor(this.options)
             .onReady(() => {
-              this.controller.addTextSpan('这是一个RichEditor', {
+              this.controller.addTextSpan($r('app.string.Demo_richEditor'), {
                 style: {
                   fontSize: 30
                 }
@@ -56,16 +56,16 @@ export struct DisableMenuItem {
                 return menuItems;
               },
               onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-                return false
+                return false;
               }
-            })
+            });
           // [End richEditor_disableMenu]
         }
       }
       .width('100%')
-      .padding({ left: 12, right: 12 })
+      .padding({ left: 12, right: 12 });
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.Disable_Menu_Item_title'))
+    .title($r('app.string.Disable_Menu_Item_title'));
   }
 }

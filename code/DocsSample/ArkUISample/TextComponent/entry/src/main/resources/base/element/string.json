@@ -649,6 +649,34 @@
       "value": "文字被选中时弹出的菜单不包含搜索和翻译菜单"
     },
     {
+      "name": "Demo_richEditor",
+      "value": "这是一个RichEditor"
+    },
+    {
+      "name": "Demo_oneText",
+      "value": "一段预置的文本"
+    },
+    {
+      "name": "Demo_SetStyledStringButton",
+      "value": "多装饰线文本"
+    },
+    {
+      "name": "Demo_styledString",
+      "value": "设置富文本多装饰线"
+    },
+    {
+      "name": "Demo_verticalAlignString",
+      "value": "这是一段富文本，展示了文本垂直居中的效果。"
+    },
+    {
+      "name": "Demo_autoSpacingString",
+      "value": "中西文Auto Spacing自动间距"
+    },
+    {
+      "name": "Demo_autoSpacingButton",
+      "value": "开启中西文自动间距"
+    },
+    {
       "name": "Backplane_Highlighting_title",
       "value": "设置组件内的内容选中时部分背板高亮"
     },

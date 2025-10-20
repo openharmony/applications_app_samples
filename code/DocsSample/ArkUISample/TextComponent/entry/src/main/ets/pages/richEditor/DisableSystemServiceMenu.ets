@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,6 +33,7 @@ export struct DisableSystemServiceMenu {
     // 页面消失恢复系统服务菜单
     TextMenuController.disableSystemServiceMenuItems(false);
   }
+
   // [End richEditor_disableSystemMenu]
 
   build() {
@@ -42,13 +42,13 @@ export struct DisableSystemServiceMenu {
         ComponentCard() {
           // [Start richEditor_disableSystemMenu]
           RichEditor(this.options).onReady(() => {
-            this.controller.addTextSpan('这是一个RichEditor',
+            this.controller.addTextSpan($r('app.string.Demo_richEditor'),
               {
                 style:
                 {
                   fontSize: 30
                 }
-              })
+              });
           })
             .height(60)
             .editMenuOptions({
@@ -59,14 +59,14 @@ export struct DisableSystemServiceMenu {
               onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
                 return false;
               }
-            })
+            });
           // [End richEditor_disableSystemMenu]
         }
       }
       .width('100%')
-      .padding({ left: 12, right: 12 })
+      .padding({ left: 12, right: 12 });
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.Disable_SystemService_Menu_title'))
+    .title($r('app.string.Disable_SystemService_Menu_title'));
   }
 }

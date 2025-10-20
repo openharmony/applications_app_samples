@@ -142,11 +142,11 @@ struct event3 {
               })
             })
             .width(300)
-            .height(50)
-          Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300)
+            .height(50);
+          Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300);
           RichEditor(this.infoShowOptions)
             .width(300)
-            .height(70)
+            .height(70);
             // [End richEditor_eventChange]
         }
       }
@@ -236,7 +236,7 @@ struct on_cut_copy_paste {
         return;
       }
       if (start != end) {
-        this.controller.deleteSpans({ start: start, end: end })
+        this.controller.deleteSpans({ start: start, end: end });
       }
       let count = data.getRecordCount();
       for (let i = 0; i < count; i++) {
@@ -251,8 +251,8 @@ struct on_cut_copy_paste {
           moveOffset += element.plainText.length;
         }
       }
-      this.controller.setCaretOffset(start + moveOffset)
-    })
+      this.controller.setCaretOffset(start + moveOffset);
+    });
   }
 
   build() {
@@ -277,12 +277,12 @@ struct on_cut_copy_paste {
               this.PopDataFromPasteboard()
             })
             .width(300)
-            .height(50)
-          Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300)
+            .height(50);
+          Text(resource.resourceToString($r('app.string.AddEvent_Text_4'))).fontSize(10).fontColor(Color.Gray).width(300);
           RichEditor(this.infoShowOptions)
             .width(300)
-            .height(70)
-        }.width('100%').alignItems(HorizontalAlign.Start)
+            .height(70);
+        }.width('100%').alignItems(HorizontalAlign.Start);
       }
     }
   }
@@ -372,10 +372,10 @@ struct event7 {
               })
             })
             .width(300)
-            .height(50)
+            .height(50);
           RichEditor(this.infoShowOptions)
             .width(300)
-            .height(70)
+            .height(70);
             // [End richEditor_eventCopy]
         }
       }

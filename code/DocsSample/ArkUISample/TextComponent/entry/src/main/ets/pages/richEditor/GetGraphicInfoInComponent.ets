@@ -23,7 +23,7 @@ export struct GetGraphicInfoInComponent {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
   infoShowController: RichEditorController = new RichEditorController();
-  infoShowOptions: RichEditorOptions = { controller: this.infoShowController }
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
   // 创建两个富文本组件
   // [StartExclude richEditor_getSpans]
 
@@ -41,17 +41,17 @@ export struct GetGraphicInfoInComponent {
                     fontColor: Color.Black,
                     fontSize: 15
                   }
-                })
+                });
               })
               .width(300)
-              .height(50)
-            Text($r('app.string.GetGraphicInfoInComponent_Text_1')).fontSize(10).fontColor(Color.Gray).width(300)
+              .height(50);
+            Text($r('app.string.GetGraphicInfoInComponent_Text_1')).fontSize(10).fontColor(Color.Gray).width(300);
             RichEditor(this.infoShowOptions)
               .width(300)
-              .height(50)
+              .height(50);
             Button($r('app.string.GetGraphicInfoInComponent_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
-            })
+              })
               .height(30)
               .fontSize(13)
               .onClick(() => {
@@ -61,15 +61,15 @@ export struct GetGraphicInfoInComponent {
                     fontSize: 10
                   }
                 })
-              })
+              });
             // [End richEditor_getSpans]
           }
         }
       }
       .width('100%')
-      .padding({ left: 12, right: 12 })
+      .padding({ left: 12, right: 12 });
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.Get_GraphicInfo_In_Component_title'))
+    .title($r('app.string.Get_GraphicInfo_In_Component_title'));
   }
 }
