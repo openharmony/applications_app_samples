@@ -15,6 +15,7 @@
 
 // [Start OverlayManager_Demo3]
 import { ComponentContent, LevelOrder, OverlayManager } from '@kit.ArkUI';
+import resource from '../../common/resource';
 
 class Params {
   public text: string = '';
@@ -32,8 +33,8 @@ function builderTopText(params: Params) {
       Text(params.text)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-    }.width(300).height(200).padding(5).backgroundColor('#F7F7F7').alignContent(Alignment.Top)
-  }.offset(params.offset)
+    }.width(300).height(200).padding(5).backgroundColor('#F7F7F7').alignContent(Alignment.Top);
+  }.offset(params.offset);
 }
 
 @Builder
@@ -43,8 +44,8 @@ function builderNormalText(params: Params) {
       Text(params.text)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-    }.width(300).height(400).padding(5).backgroundColor('#D5D5D5').alignContent(Alignment.Top)
-  }.offset(params.offset)
+    }.width(300).height(400).padding(5).backgroundColor('#D5D5D5').alignContent(Alignment.Top);
+  }.offset(params.offset);
 }
 
 @Entry
@@ -63,38 +64,38 @@ export struct OverlayManagerDemo3 {
       // [EndExclude OverlayManager_Demo3]
       Row() {
         Column({ space: 5 }) {
-          Button('点击打开置顶弹窗')
+          Button($r('app.string.Demo3_topDialogButton'))
             .onClick(() => {
               let componentContent = new ComponentContent(
                 this.ctx, wrapBuilder<[Params]>(builderTopText),
-                new Params('我是置顶弹窗', this.componentOffset)
+                new Params(resource.resourceToString($r('app.string.Demo3_topDialog')), this.componentOffset)
               );
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100000));
-            })
-          Button('点击打开普通弹窗')
+            });
+          Button($r('app.string.Demo3_normalDialogButton'))
             .onClick(() => {
               let componentContent = new ComponentContent(
                 this.ctx, wrapBuilder<[Params]>(builderNormalText),
-                new Params('我是普通弹窗', this.componentOffset)
+                new Params(resource.resourceToString($r('app.string.Demo3_normalDialog')), this.componentOffset)
               );
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(0));
-            })
-          Button('点击移除弹窗').onClick(()=>{
+            });
+          Button($r('app.string.Demo3_removeDialogButton')).onClick(()=>{
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray.splice(this.arrayIndex, 1);
               this.overlayManager.removeComponentContent(componentContent.pop());
             } else {
-              console.info('arrayIndex有误');
+              console.info('arrayIndex error');
             }
-          })
-        }.width('100%')
+            });
+        }.width('100%');
       }
     // [StartExclude OverlayManager_Demo3]
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.OverlayManager_demo3_title'))
+    .title($r('app.string.OverlayManager_demo3_title'));
     // [EndExclude OverlayManager_Demo3]
   }
 }

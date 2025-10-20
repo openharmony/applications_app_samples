@@ -64,22 +64,22 @@ struct OverlayManagerList {
       List({ space: 12 }) {
         ForEach(routes, (route: Route) => {
           ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
+            CompletedRoutableCard({ title: route.title, description: route.description });
           }
           .width('100%')
           .onClick(() => {
-            this.pathStack.pushPath({ name: route.name })
+            this.pathStack.pushPath({ name: route.name });
           })
         })
       }
       .contentStartOffset(20)
-      .padding({ left: 16, right: 16 })
+      .padding({ left: 16, right: 16 });
     }
     .backgroundColor('#f1f3f5')
     .title('', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    .title('设置浮层')
+    .title($r('app.string.OverlayManager_demo1_title'));
   }
 }

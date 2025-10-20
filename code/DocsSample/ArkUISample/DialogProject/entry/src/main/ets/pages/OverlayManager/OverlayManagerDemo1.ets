@@ -15,6 +15,7 @@
 
 // [Start OverlayManager_Demo]
 import { ComponentContent, OverlayManager } from '@kit.ArkUI';
+import resource from '../../common/resource';
 
 class Params {
   public text: string = '';
@@ -31,8 +32,8 @@ function builderText(params: Params) {
   Column() {
     Text(params.text)
       .fontSize(30)
-      .fontWeight(FontWeight.Bold)
-  }.offset(params.offset)
+      .fontWeight(FontWeight.Bold);
+  }.offset(params.offset);
 }
 
 function initOverlayNode(uiContext: UIContext): OverlayManager {
@@ -58,62 +59,73 @@ export struct OverlayManagerDemo1 {
     NavDestination() {
       // [EndExclude OverlayManager_Demo]
       Column({ space: 10 }) {
-        Button('递增componentContentIndex: ' + this.componentContentIndex).onClick(() => {
+        Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button1')) + this.componentContentIndex)
+          .onClick(() => {
           ++this.componentContentIndex;
-        })
-        Button('递减componentContentIndex: ' + this.componentContentIndex).onClick(() => {
+          });
+        Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button2')) + this.componentContentIndex)
+          .onClick(() => {
           --this.componentContentIndex;
-        })
-        Button('增加ComponentContent' + this.contentArray.length).onClick(() => {
+          });
+        Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button3')) + this.contentArray.length)
+          .onClick(() => {
           let componentContent = new ComponentContent(
             this.uiContext, wrapBuilder<[Params]>(builderText),
             new Params(this.message + (this.contentArray.length), this.componentOffset)
           );
           this.contentArray.push(componentContent);
           this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
-        })
-        Button('递增arrayIndex: ' + this.arrayIndex).onClick(() => {
+          });
+        Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button4')) + this.arrayIndex)
+          .onClick(() => {
           ++this.arrayIndex;
-        })
-        Button('递减arrayIndex: ' + this.arrayIndex).onClick(() => {
+          });
+        Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button5')) + this.arrayIndex)
+          .onClick(() => {
           --this.arrayIndex;
-        })
-        Button('删除ComponentContent' + this.arrayIndex).onClick(() => {
+          });
+        Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button6')) + this.arrayIndex)
+          .onClick(() => {
           if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
             let componentContent = this.contentArray.splice(this.arrayIndex, 1);
             this.overlayNode.removeComponentContent(componentContent.pop());
           } else {
-            console.info('arrayIndex有误');
+            console.info('arrayIndex error');
           }
-        })
-        Button('显示ComponentContent' + this.arrayIndex).onClick(() => {
+          });
+        Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button7')) + this.arrayIndex)
+          .onClick(() => {
           if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
             let componentContent = this.contentArray[this.arrayIndex];
             this.overlayNode.showComponentContent(componentContent);
           } else {
-            console.info('arrayIndex有误');
+            console.info('arrayIndex error');
           }
-        })
-        Button('隐藏ComponentContent' + this.arrayIndex).onClick(() => {
+          });
+        Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button8')) + this.arrayIndex)
+          .onClick(() => {
           if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
             let componentContent = this.contentArray[this.arrayIndex];
             this.overlayNode.hideComponentContent(componentContent);
           } else {
-            console.info('arrayIndex有误');
+            console.info('arrayIndex error');
           }
-        })
-        Button('显示所有ComponentContent').onClick(() => {
+        });
+        Button($r('app.string.OverlayManager_demo1_button9'))
+          .onClick(() => {
           this.overlayNode.showAllComponentContents();
-        })
-        Button('隐藏所有ComponentContent').onClick(() => {
+          });
+        Button($r('app.string.OverlayManager_demo1_button10'))
+          .onClick(() => {
           this.overlayNode.hideAllComponentContents();
-        })
+          });
 
-        Button('跳转页面').onClick(() => {
+        Button($r('app.string.OverlayManager_demo1_button11'))
+          .onClick(() => {
           this.getUIContext().getRouter().pushUrl({
             url: 'pages/OverlayManager_ROUTE_PREFIX'
-          })
-        })
+          });
+          });
       }
       .width('100%')
       .height('100%')
