@@ -20,6 +20,8 @@
     "pages/bindSheet/template10/Index",
     "pages/bindSheetCmd/template1/Index",
     "pages/bindSheetCmd/template2/Index",
-    "pages/bindSheetCmd/template3/Index"
+    "pages/bindSheetCmd/template3/Index",
+    "pages/bindSheet/template11/Index",
+    "pages/bindSheet/template12/Index"
   ]
 }
