@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本工程主要实现了对以下指南文档中 [简单文本绘制与显示](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/graphics/simple-text-arkts.md) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源，以及除基本文字、排版属性之外，针对应用中不同文本的设计，开发者可能需要设置使用不同的绘制样式或能力，以凸显对应文本的独特表现或风格，此时可以结合使用多种绘制样式进行文本的渲染。
+本工程主要实现了对以下指南文档中 [简单文本绘制与显示](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/graphics/simple-text-arkts.md) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源，以及除基本文字、排版属性之外，针对应用中不同文本的设计，开发者可能需要设置使用不同的绘制样式或能力，以凸显对应文本的独特表现或风格，此时可以结合使用多种绘制样式进行文本的渲染。
 
 ## 效果预览
 
@@ -47,8 +47,8 @@ ArkTSDrawing
 ## 约束与限制
 
 1. 本示例支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API14版本SDK，版本号：5.0.2.123。
-3. 本示例已支持DevEco Studio 5.0.2 Release (构建版本：5.0.7.210，构建 2025年5月6日)编译运行。
+2. 本示例支持API14版本SDK，版本号：6.0.0(20)。
+3. 本示例已支持DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年9月25日)编译运行。
 
 ## 下载
 
@@ -58,6 +58,6 @@ ArkTSDrawing
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/graphic/ArkGraphics2D/SimpleTextDrawing/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

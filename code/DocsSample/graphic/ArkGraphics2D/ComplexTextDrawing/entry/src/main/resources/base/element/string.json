@@ -13,16 +13,36 @@
       "value": "ComplexTextDrawing"
     },
     {
-      "name": "Button_label1",
-      "value": "Draw complex text"
+      "name": "ComplexStyle_Button_example1",
+      "value": "Example1 (Decoration, FontFeature)"
     },
     {
-      "name": "Button_label2",
-      "value": "Multilingual text"
+      "name": "ComplexStyle_Button_example2",
+      "value": "Example2 (FontVariation, TextShadow, Placeholder)"
     },
     {
-      "name": "Button_label3",
-      "value": "Multi-line text"
+      "name": "ComplexStyle_Button_example3",
+      "value": "Example3 (VerticalAlign)"
+    },
+    {
+      "name": "ComplexStyle_Button_example4",
+      "value": "Example4 (BadgeType)"
+    },
+    {
+      "name": "ComplexStyle_Button_example5",
+      "value": "Example5 (TextHighContrast)"
+    },
+    {
+      "name": "Button_page_Multilanguage",
+      "value": "Multilanguage-text page"
+    },
+    {
+      "name": "Button_page_Complexstyle",
+      "value": "Complex-text page"
+    },
+    {
+      "name": "Button_page_Multiline",
+      "value": "Multiline-text page"
     }
   ]
 }
