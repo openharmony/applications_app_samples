@@ -17,7 +17,7 @@
 @Entry
 @Component
 struct CanvasComponentTextBorder {
-  drawText: string = "Hello World"
+  drawText: string = 'Hello World'
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 

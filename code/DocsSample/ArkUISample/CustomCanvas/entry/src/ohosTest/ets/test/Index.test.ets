@@ -221,7 +221,7 @@ export default function IndexTest() {
     /**
      * @tc.number CanvasComponentOtherMethods_010
      * @tc.name testCanvasComponentOtherMethods
-     * @tc.desc 测试画布组件常用方法其他方法是否成功
+     * @tc.desc 测试画布组件常用方法其他功能是否成功
      */
     it('testCanvasComponentOtherMethods', 0, async (done: Function) => {
       console.info('CanvasComponentOtherMethodsTest: testCanvasComponentOtherMethods begin');

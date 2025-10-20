@@ -28,12 +28,12 @@ struct CanvasComponentText {
         .onReady(() => {
           // 文本填充
           this.context.font = '50px bolder sans-serif';
-          this.context.fillText("Hello World!", 50, 100);
+          this.context.fillText('Hello World!', 50, 100);
           // 文本描边
           this.context.strokeStyle = "#ff0000"
           this.context.lineWidth = 2
           this.context.font = '50px bolder sans-serif';
-          this.context.strokeText("Hello World!", 50, 150);
+          this.context.strokeText('Hello World!', 50, 150);
         })
       // [End canvasComponentText_start]
     }
