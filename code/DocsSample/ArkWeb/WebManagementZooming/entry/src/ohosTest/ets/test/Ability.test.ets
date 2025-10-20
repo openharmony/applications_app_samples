@@ -150,7 +150,8 @@ export default function abilityTest() {
       console.info('src: ' + src);
       expect(src).assertContain('www.example.com');
       console.info('uitest: processweb_ControlZoomByInput_001 end');
-
+      await driver.pressBack();
+      await driver.delayMs(1000);
       done();
     })
 
