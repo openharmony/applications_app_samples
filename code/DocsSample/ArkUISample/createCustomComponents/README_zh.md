@@ -1,0 +1,84 @@
+# ArkUI使用支持交互事件指南文档示例
+
+### 介绍
+
+本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+
+1. [创建自定义组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-create-custom-components.md)
+
+### 效果预览
+
+| 首页                         |                            
+|----------------------------|
+| ![](screenshots/image.PNG) |
+
+### 使用说明
+
+1. 在主界面，可以点击对应卡片，选择需要参考的组件示例。
+
+2. 展示了如何在build方法里创建自定义组件，并在创建自定义组件的过程中，根据装饰器的规则来初始化自定义组件的参数。
+
+3. 父组件中的函数传递给子组件，并在子组件中调用。
+
+4. 自定义组件通过“.”链式调用设置通用样式。
+
+5. 通过自动测试框架可进行测试及维护。
+
+### 工程目录
+```
+entry/src/main/ets/
+|---entryability
+|   |---component                              
+│   │       │   ├── Eight.ets     
+│   │       │   ├── Five.ets      
+│   │       │   ├── Four.ets      
+│   │       │   ├── MyComponentBuild.ets  
+│   │       │   ├── MyComponentStyle.ets  
+│   │       │   ├── Nine.ets     
+│   │       │   ├── One.ets       
+│   │       │   ├── ParameterSpecification.ets  
+│   │       │   ├── ParentComponent.ets   
+│   │       │   ├── ParentFunction.ets    
+│   │       │   ├── Seven.ets     
+│   │       │   ├── Six.ets       
+│   │       │   ├── StaticCodeV1.ets      
+│   │       │   ├── StaticCodeV2.ets      
+│   │       │   ├── Ten.ets       
+│   │       │   ├── Three.ets     
+│   │       │   └── Two.ets                
+|---pages
+|   |---Index.ets                       // 应用主页面
+|---managementoverview
+|   |---stateManagementOverview.ets        
+entry/src/ohosTest/
+|---ets
+|   |---index.test.ets                  // 示例代码测试代码
+```
+
+### 相关权限
+
+不涉及。
+
+### 依赖
+
+不涉及。
+
+### 约束与限制
+
+1.本示例仅支持标准系统上运行, 支持设备：RK3568。
+
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0.47。
+
+3.本示例需要使用DevEco Studio NEXT Developer Preview2 (Build Version: 6.0.0.47， built on December 12, 2025)及以上版本才可编译运行。
+
+### 下载
+
+如需单独下载本工程，执行如下命令：
+
+````
+git init
+git config core.sparsecheckout true
+echo code/DocsSample/ArkUIDocSample/EventProject > .git/info/sparse-checkout
+git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git pull origin master
+````
