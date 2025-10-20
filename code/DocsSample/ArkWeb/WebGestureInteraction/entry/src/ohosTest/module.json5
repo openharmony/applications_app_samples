@@ -1,0 +1,18 @@
+{
+  "module": {
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"  // 允许应用访问互联网
+      }
+    ],
+    "name": "entry_test",
+    "type": "feature",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false
+  }
+}
