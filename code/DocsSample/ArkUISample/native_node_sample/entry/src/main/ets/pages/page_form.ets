@@ -254,16 +254,16 @@ struct Index {
         this.attributeTypeId = 17015;
       })
       MenuItem({ content: 'BLOCK_LINEAR_GRADIENT_COLOR' }).width('50%').onChange(() => {
-        this.attributeType = 'BLOCK_LINEAR_GRADIENT_COLOR'
-        this.attributeTypeId = 17016
+        this.attributeType = 'BLOCK_LINEAR_GRADIENT_COLOR';
+        this.attributeTypeId = 17016;
       })
       MenuItem({ content: 'TRACK_LINEAR_GRADIENT_COLOR' }).width('50%').onChange(() => {
-        this.attributeType = 'TRACK_LINEAR_GRADIENT_COLOR'
-        this.attributeTypeId = 17017
+        this.attributeType = 'TRACK_LINEAR_GRADIENT_COLOR';
+        this.attributeTypeId = 17017;
       })
       MenuItem({ content: 'SELECTED_LINEAR_GRADIENT_COLOR' }).width('50%').onChange(() => {
-        this.attributeType = 'SELECTED_LINEAR_GRADIENT_COLOR'
-        this.attributeTypeId = 17018
+        this.attributeType = 'SELECTED_LINEAR_GRADIENT_COLOR';
+        this.attributeTypeId = 17018;
       })
     }
   }
