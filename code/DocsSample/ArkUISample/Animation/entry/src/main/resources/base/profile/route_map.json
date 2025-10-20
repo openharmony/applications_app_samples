@@ -1,0 +1,14 @@
+{
+  "routerMap": [
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/shareTransition/template4/PageOne.ets",
+      "buildFunction": "PageOneBuilder"
+    },
+    {
+      "name": "PageTwo",
+      "pageSourceFile": "src/main/ets/pages/shareTransition/template4/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    }
+  ]
+}

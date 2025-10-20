@@ -26,7 +26,9 @@ import { AnimateToImmediatelyTest } from './AnimateToImmediately.test';
 import { RotationTest } from './Rotation.test';
 import { AnimatablePropertyTest } from './AnimatableProperty.test';
 import { ComponentTest } from './Component.test';
-
+import { AnimationBlurTest } from './AnimationBlur.test';
+import { TraditionalCurveTest } from './TraditionalCurve.test';
+import { SpringCurveTest } from './SpringCurve.test';
 
 export default function testsuite() {
   AnimateToTest();
@@ -43,4 +45,7 @@ export default function testsuite() {
   RotationTest();
   AnimatablePropertyTest();
   ComponentTest();
+  AnimationBlurTest();
+  TraditionalCurveTest();
+  SpringCurveTest();
 }
