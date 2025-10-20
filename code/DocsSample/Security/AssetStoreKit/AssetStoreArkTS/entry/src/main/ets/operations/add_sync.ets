@@ -14,14 +14,10 @@
  */
 
 // [Start add_sync_asset]
-// [Start query_sync_result]
 import { asset } from '@kit.AssetStoreKit';
-// [StartExclude query_sync_result]
 import { util } from '@kit.ArkTS';
-// [EndExclude query_sync_result]
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// [StartExclude query_sync_result]
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
   return textEncoder.encodeInto(str);
@@ -50,19 +46,4 @@ export async function addSyncAsset(): Promise<string> {
   }
   return result;
 }
-// [EndExclude query_sync_result]
 // [End add_sync_asset]
-
-export async function querySyncResult(): Promise<string> {
-  let result: string = '';
-  let query: asset.AssetMap = new Map();
-  await asset.querySyncResult(query).then((res: asset.SyncResult) => {
-    console.info(`Succeeded in querying sync result: ${JSON.stringify(res)}`);
-    result = 'Succeeded in querying sync result';
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to query sync result of Asset. Code is ${err.code}, message is ${err.message}`);
-    result = 'Failed to query sync result of Asset';
-  });
-  return result;
-}
-// [End query_sync_result]
