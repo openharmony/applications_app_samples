@@ -27,13 +27,16 @@
 ## 工程目录
 
 ```
-entry/src/main/ets/
-|---entryAbility
-|   |---EntryAbility.ets
-|---entrybackupability
-|---pages|
-|   |---Index.ets               // UI界面
-|   |---PasteboardModel.ets          // 开发步骤示例代码
+entry/src/main
+ │── ets
+ │   ├── entryability
+ │   ├── entrybackupability
+ │   ├── pages
+ │       ├── Index.ets            // UI页面
+ │       ├── PasteboardModel.ets  // 开发步骤示例代码
+ ├── resources
+ │   └── module.json5              // 声明所需的权限
+
 ```
 
 ## 相关权限
