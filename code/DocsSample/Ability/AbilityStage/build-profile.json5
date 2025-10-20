@@ -1,0 +1,56 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\lenovo\\.ohos\\config\\default_AbilityStage_zXYJeEs2bL4h_3ZL2xkhaW_5Ufg00WptgwpCUbvErHg=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B532A54B4E9DD9C5E84DE1820E4D14E50F05748B83095F665689AC76DA53F6A37070315C3A7ACBE",
+          "profile": "C:\\Users\\lenovo\\.ohos\\config\\default_AbilityStage_zXYJeEs2bL4h_3ZL2xkhaW_5Ufg00WptgwpCUbvErHg=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\lenovo\\.ohos\\config\\default_AbilityStage_zXYJeEs2bL4h_3ZL2xkhaW_5Ufg00WptgwpCUbvErHg=.p12",
+          "storePassword": "0000001B50FDCB06DD3217A618568745F6932658744BE1624F4BEE64CD690AF4E062B5E786072A43EBA414"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "6.0.0(20)",
+        "compatibleSdkVersion": "6.0.0(20)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
