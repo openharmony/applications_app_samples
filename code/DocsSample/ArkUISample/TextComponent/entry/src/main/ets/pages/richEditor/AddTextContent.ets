@@ -26,35 +26,37 @@ export struct AddTextContent {
   build() {
     // [StartExclude richEditor_addText]
     NavDestination() {
-    // [EndExclude richEditor_addText]
       Column({ space: 12 }) {
         ComponentCard() {
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 3 }) {
+            // [EndExclude richEditor_addText]
+            RichEditor(this.options)
+              .onReady(() => {
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_1')), {
+                  style: {
+                    fontColor: Color.Black,
+                    fontSize: 15
+                  }
+                })
               })
+              .border({ width: 1, color: Color.Gray })
+              .constraintSize({
+                maxHeight: 100
+              })
+              .width(300)
+              .margin(10)
+            Button($r('app.string.AddTextContent_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .border({ width: 1, color: Color.Gray })
-            .constraintSize({
-              maxHeight: 100
-            })
-            .width(300)
-            .margin(10)
-          Button($r('app.string.AddTextContent_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_2')))
-            })
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_2')))
+              })
+            // [StartExclude richEditor_addText]
+          }
         }
       }
-    // [StartExclude richEditor_addText]
       .width('100%')
       .padding({ left: 12, right: 12 })
     }

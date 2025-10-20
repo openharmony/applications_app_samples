@@ -321,48 +321,50 @@ struct DecorationOptions {
         title: $r('app.string.Set_Attributes_title_10'),
         description: $r('app.string.Set_Attributes_title_10_desc')
       }) {
-        // [Start richEditor_decorationOptions]
-        RichEditor({ controller: this.styledStringController })
-        Button('多装饰线文本')
-          .fontSize(20)
-          .onClick(() => {
-            let mutString: MutableStyledString = new MutableStyledString('设置富文本多装饰线', [
-              {
-                start: 0,
-                length: 9,
-                styledKey: StyledStringKey.FONT,
-                styledValue: new TextStyle({ fontSize: LengthMetrics.vp(25) })
-              },
-              {
-                start: 0,
-                length: 5,
-                styledKey: StyledStringKey.DECORATION,
-                styledValue: new DecorationStyle(
-                  {
-                    type: TextDecorationType.Underline,
-                  },
-                  {
-                    // 开启多装饰线
-                    enableMultiType: true
-                  })
-              },
-              {
-                start: 2,
-                length: 4,
-                styledKey: StyledStringKey.DECORATION,
-                styledValue: new DecorationStyle(
-                  {
-                    type: TextDecorationType.LineThrough,
-                  },
-                  {
-                    // 开启多装饰线
-                    enableMultiType: true
-                  })
-              }
-            ])
-            this.styledStringController.setStyledString(mutString);
-          })
-        // [End richEditor_decorationOptions]
+        Column({ space: 3 }) {
+          // [Start richEditor_decorationOptions]
+          RichEditor({ controller: this.styledStringController })
+          Button('多装饰线文本')
+            .fontSize(20)
+            .onClick(() => {
+              let mutString: MutableStyledString = new MutableStyledString('设置富文本多装饰线', [
+                {
+                  start: 0,
+                  length: 9,
+                  styledKey: StyledStringKey.FONT,
+                  styledValue: new TextStyle({ fontSize: LengthMetrics.vp(25) })
+                },
+                {
+                  start: 0,
+                  length: 5,
+                  styledKey: StyledStringKey.DECORATION,
+                  styledValue: new DecorationStyle(
+                    {
+                      type: TextDecorationType.Underline,
+                    },
+                    {
+                      // 开启多装饰线
+                      enableMultiType: true
+                    })
+                },
+                {
+                  start: 2,
+                  length: 4,
+                  styledKey: StyledStringKey.DECORATION,
+                  styledValue: new DecorationStyle(
+                    {
+                      type: TextDecorationType.LineThrough,
+                    },
+                    {
+                      // 开启多装饰线
+                      enableMultiType: true
+                    })
+                }
+              ])
+              this.styledStringController.setStyledString(mutString);
+            })
+          // [End richEditor_decorationOptions]
+        }
       }
     }
   }
@@ -414,6 +416,8 @@ struct EnableAutoSpacing {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
   // [End richEditor_enableAutoSpacing]
+  @State
+  enableAutoSpace:boolean = false;
 
   build() {
     Column() {
@@ -421,20 +425,27 @@ struct EnableAutoSpacing {
         title: $r('app.string.Set_Attributes_title_12'),
         description: $r('app.string.Set_Attributes_title_12_desc')
       }) {
-        // [Start richEditor_enableAutoSpacing]
-        RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addTextSpan('中西文Auto Spacing自动间距',
-              {
-                style:
+        Column({ space: 3 }) {
+          // [Start richEditor_enableAutoSpacing]
+          RichEditor(this.options)
+            .onReady(() => {
+              this.controller.addTextSpan('中西文Auto Spacing自动间距',
                 {
-                  fontColor: Color.Orange,
-                  fontSize: 20
-                }
-              })
-          })
-          .enableAutoSpacing(true)
-        // [End richEditor_enableAutoSpacing]
+                  style:
+                  {
+                    fontColor: Color.Orange,
+                    fontSize: 20
+                  }
+                })
+            })
+            .enableAutoSpacing(this.enableAutoSpace)
+          // [End richEditor_enableAutoSpacing]
+          Button("开启中西文自动间距")
+            .fontSize(20)
+            .onClick(() => {
+              this.enableAutoSpace = true;
+            })
+        }
       }
     }
   }

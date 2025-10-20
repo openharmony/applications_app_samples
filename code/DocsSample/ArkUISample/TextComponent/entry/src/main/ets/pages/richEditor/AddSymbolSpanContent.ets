@@ -28,31 +28,33 @@ export struct AddSymbolSpanContent {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          // [EndExclude richEditor_addSymbol]
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.AddSymbolSpanContent_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 3 }) {
+            // [EndExclude richEditor_addSymbol]
+            RichEditor(this.options)
+              .onReady(() => {
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddSymbolSpanContent_Text_1')), {
+                  style: {
+                    fontColor: Color.Black,
+                    fontSize: 15
+                  }
+                })
               })
+              .width(300)
+              .height(100)
+            Button($r('app.string.AddSymbolSpanContent_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .width(300)
-            .height(100)
-          Button($r('app.string.AddSymbolSpanContent_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.addSymbolSpan($r('sys.symbol.basketball_fill'), {
-                style: {
-                  fontSize: 30
-                }
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                this.controller.addSymbolSpan($r('sys.symbol.basketball_fill'), {
+                  style: {
+                    fontSize: 30
+                  }
+                })
               })
-            })
-          // [End richEditor_addSymbol]
+            // [End richEditor_addSymbol]
+          }
         }
       }
       .width('100%')

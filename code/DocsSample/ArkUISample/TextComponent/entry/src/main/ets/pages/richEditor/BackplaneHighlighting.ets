@@ -28,27 +28,29 @@ export struct BackplaneHighlighting {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          // [Start richEditor_selection]
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 3 }) {
+            // [Start richEditor_selection]
+            RichEditor(this.options)
+              .onReady(() => {
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
+                  style: {
+                    fontColor: Color.Black,
+                    fontSize: 15
+                  }
+                })
               })
+              .width(300)
+              .height(60)
+            Button($r('app.string.BackplaneHighlighting_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .width(300)
-            .height(60)
-          Button($r('app.string.BackplaneHighlighting_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.setSelection(0, 2)
-            })
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                this.controller.setSelection(0, 2)
+              })
             // [End richEditor_selection]
+          }
         }
       }
       .width('100%')

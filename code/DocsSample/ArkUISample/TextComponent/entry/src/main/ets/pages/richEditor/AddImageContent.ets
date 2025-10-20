@@ -28,31 +28,33 @@ export struct AddImageContent {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          // [EndExclude richEditor_addImage]
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.AddImageContent_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 10 }) {
+            // [EndExclude richEditor_addImage]
+            RichEditor(this.options)
+              .onReady(() => {
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddImageContent_Text_1')), {
+                  style: {
+                    fontColor: Color.Black,
+                    fontSize: 15
+                  }
+                })
               })
+              .width(300)
+              .height(100)
+            Button($r('app.string.AddImageContent_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .width(300)
-            .height(100)
-          Button($r('app.string.AddImageContent_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.addImageSpan($r('app.media.startIcon'), {
-                imageStyle: {
-                  size: ['57px', '57px']
-                }
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                this.controller.addImageSpan($r('app.media.startIcon'), {
+                  imageStyle: {
+                    size: ['57px', '57px']
+                  }
+                })
               })
-            })
             // [End richEditor_addImage]
+          }
         }
       }
       .width('100%')

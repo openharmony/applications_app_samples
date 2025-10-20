@@ -28,36 +28,39 @@ export struct SetUserPresetTextStyles {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          // [Start richEditor_setTypingStyle]
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.SetUserPresetTextStyles_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 3 }) {
+            // [Start richEditor_setTypingStyle]
+            RichEditor(this.options)
+              .onReady(() => {
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.SetUserPresetTextStyles_Text_1')),
+                  {
+                    style: {
+                      fontColor: Color.Black,
+                      fontSize: 15
+                    }
+                  })
               })
+              .width(300)
+              .height(60)
+            Button($r('app.string.SetUserPresetTextStyles_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .width(300)
-            .height(60)
-          Button($r('app.string.SetUserPresetTextStyles_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.setTypingStyle({
-                fontWeight: 'medium',
-                fontColor: Color.Pink,
-                fontSize: 15,
-                fontStyle: FontStyle.Italic,
-                decoration: {
-                  type: TextDecorationType.Underline,
-                  color: Color.Gray
-                }
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                this.controller.setTypingStyle({
+                  fontWeight: 'medium',
+                  fontColor: Color.Pink,
+                  fontSize: 15,
+                  fontStyle: FontStyle.Italic,
+                  decoration: {
+                    type: TextDecorationType.Underline,
+                    color: Color.Gray
+                  }
+                })
               })
-            })
-          // [End richEditor_setTypingStyle]
+            // [End richEditor_setTypingStyle]
+          }
         }
       }
       .width('100%')
