@@ -32,7 +32,7 @@ class Model {
 @Component
 struct PropDemo {
   // 初始化Model数据（第一层value为"Hello"，第二层info.value为"World"）
-  @Prop title: Model = new Model("Hello", new Info("World"));
+  @Prop title: Model = new Model('Hello', new Info('World'));
 
   build() {
     // [StartExclude prop_three_start]

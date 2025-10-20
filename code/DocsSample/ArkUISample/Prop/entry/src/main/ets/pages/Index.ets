@@ -100,7 +100,7 @@ struct Index {
       Column({ space: 2 }) {
         ForEach(this.ary,(item:Ary)=>{
           Button(item.name)
-            .onClick(() => router.pushUrl({ url: item.path }))
+            .onClick(() => this.getUIContext().getRouter().pushUrl({ url: item.path }))
         },(item:Ary)=>item.name)
       }
       .width('100%')

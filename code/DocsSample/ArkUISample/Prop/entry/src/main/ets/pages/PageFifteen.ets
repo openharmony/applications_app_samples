@@ -15,7 +15,7 @@
 
 // [Start prop_fifteen_start]
 class Score {
-  value: number;
+  public value: number;
   constructor(value: number) {
     this.value = value;
   }

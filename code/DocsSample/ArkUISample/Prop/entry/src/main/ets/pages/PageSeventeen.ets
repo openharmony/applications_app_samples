@@ -41,22 +41,15 @@ struct NestedDisplay {
   build() {
     Column({ space: 20 }) {
       // 显示第一层属性：title.value
-<<<<<<< HEAD
-      Text(`title.value（第一层）：${this.title.value}`)
-=======
+
       Text(`title.value [the first layer]：${this.title.value}`)
->>>>>>> f030e8b08 (Prop)
         .fontSize(18)
         .padding(10)
         .backgroundColor('#F5F5F5')
         .borderRadius(6);
 
       // 显示第二层属性：title.info.value
-<<<<<<< HEAD
-      Text(`title.info.value（第二层）：${this.title.info.value}`)
-=======
       Text(`title.info.value [the second layer]：${this.title.info.value}`)
->>>>>>> f030e8b08 (Prop)
         .fontSize(18)
         .padding(10)
         .backgroundColor('#E8F4F8')
@@ -65,11 +58,7 @@ struct NestedDisplay {
       // 按钮区域：修改不同层级的属性
       Column({ space: 10 }) {
         // 按钮1：修改第一层属性（@Prop 可观察到）
-<<<<<<< HEAD
-        Button('修改 title.value 为 "Hi"')
-=======
         Button('change title.value to "Hi"')
->>>>>>> f030e8b08 (Prop)
           .onClick(() => {
             // [Start prop_seventeen_start]
             this.title.value = 'Hi'; // 第一层属性变化，UI 会更新
@@ -77,11 +66,7 @@ struct NestedDisplay {
           });
 
         // 按钮2：修改第二层属性（@Prop 观察不到，UI 不更新）
-<<<<<<< HEAD
-        Button('修改 title.info.value 为 "ArkUI"')
-=======
         Button('change title.info.value to "ArkUI"')
->>>>>>> f030e8b08 (Prop)
           .onClick(() => {
             // [Start prop_seventeen_start]
             this.title.info.value = 'ArkUI'; // 第二层属性变化，@Prop 无反应
@@ -89,11 +74,7 @@ struct NestedDisplay {
           });
 
         // 按钮3：重新赋值整个 Model（强制更新所有属性）
-<<<<<<< HEAD
-        Button('重新赋值 Model（触发全更新）')
-=======
         Button('Reassign Model')
->>>>>>> f030e8b08 (Prop)
           .onClick(() => {
             // 重新创建 Model 对象（改变引用），@Prop 会观察到并更新所有属性
             this.title = new Model(

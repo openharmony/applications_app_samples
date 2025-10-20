@@ -37,15 +37,15 @@ class Father {
 struct ObservedDemo {
   // 初始化嵌套对象（使用@State管理，与UI绑定）
   @State father: Father = new Father(
-    "父亲的名字",
-    new Son("儿子的标题")
+    '父亲的名字',
+    new Son('儿子的标题')
   );
 
   build() {
       Column() {
         // 展示Father和Son的数据
         Column({ space: 15 }) {
-          Text("嵌套对象数据展示")
+          Text('嵌套对象数据展示')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
             .margin(20);
@@ -63,23 +63,15 @@ struct ObservedDemo {
         // 操作按钮：修改数据
         Row({ space: 20 }) {
           // 按钮1：修改Father的name（第一层属性）
-<<<<<<< HEAD
-          Button("修改父亲的名字")
-=======
-          Button("change the father's name")
->>>>>>> f030e8b08 (Prop)
+          Button('change the father's name')
             .onClick(() => {
-              this.father.name = "新的父亲名字"; // 直接修改，@Observed会触发更新
+              this.father.name = '新的父亲名字'; // 直接修改，@Observed会触发更新
             });
 
           // 按钮2：修改Son的title（嵌套的第二层属性）
-<<<<<<< HEAD
-          Button("修改儿子的标题")
-=======
-          Button("modify the son's title")
->>>>>>> f030e8b08 (Prop)
+          Button('modify the son's title')
             .onClick(() => {
-              this.father.son.title = "新的儿子标题"; // 深层修改，@Observed会触发更新
+              this.father.son.title = '新的儿子标题'; // 深层修改，@Observed会触发更新
             });
         }
       }

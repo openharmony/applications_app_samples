@@ -63,7 +63,7 @@ struct Zoo {
             if (this.animal instanceof Animals) {
               this.animal.name = 'Dog';
             } else {
-              console.info('num is undefined, cannot change property');
+
             }
           })
 

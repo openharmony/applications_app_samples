@@ -102,7 +102,7 @@ struct Library {
             if (this.allBooks.length > 0) {
               this.allBooks.shift();
             } else {
-              console.info('length <= 0');
+
             }
           })
         Button('Mark read for everyone')
