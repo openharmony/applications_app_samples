@@ -23,7 +23,8 @@ std::string g_value = "";
 napi_ref g_callback_ref = nullptr;
 napi_env g_env = nullptr;
 
-napi_value OnChange(napi_env env, napi_callback_info info) {
+napi_value OnChange(napi_env env, napi_callback_info info)
+{
     g_env = env;
     size_t argc = 1;
     napi_value args[1];
@@ -33,7 +34,8 @@ napi_value OnChange(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 
-void NotifyValueChange() {
+void NotifyValueChange()
+{
     if (g_callback_ref == nullptr || g_env == nullptr) {
         return;
     }
