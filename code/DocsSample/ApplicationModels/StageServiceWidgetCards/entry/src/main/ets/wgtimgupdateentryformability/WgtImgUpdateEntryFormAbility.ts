@@ -14,13 +14,15 @@
  */
 
 // [Start local_file_refresh]
-// [Start network_file_refresh]
 import { Want } from '@kit.AbilityKit';
+// [Start network_file_refresh]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [StartExclude local_file_refresh]
 import { http } from '@kit.NetworkKit';
+// [EndExclude local_file_refresh]
 
 const TAG: string = 'WgtImgUpdateEntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -135,4 +137,4 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
   // [EndExclude network_file_refresh]
 }
 // [End local_file_refresh]
-
+// [End network_file_refresh]
