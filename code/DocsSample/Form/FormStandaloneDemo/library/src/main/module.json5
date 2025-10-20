@@ -1,0 +1,14 @@
+// [Start standalone_config]
+{
+  "module": {
+    "name": "library",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "formExtensionModule": "entry"
+  }
+}
+// [End standalone_config]
