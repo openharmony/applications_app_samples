@@ -26,7 +26,7 @@ export struct DefaultAndTopToastExample {
       Column({ space: 10 }) {
         TextInput()
         Button() {
-          Text('DEFAULT类型Toast')
+          Text($r('app.string.DefaultAndTopToast_defaultToast'))
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
@@ -34,7 +34,7 @@ export struct DefaultAndTopToastExample {
         .width('100%')
         .onClick(() => {
           this.getUIContext().getPromptAction().showToast({
-            message: 'ok，我是DEFAULT toast',
+            message: $r('app.string.DefaultAndTopToast_defaultToastMessage'),
             duration: 2000,
             showMode: promptAction.ToastShowMode.DEFAULT,
             bottom: 80
@@ -43,7 +43,7 @@ export struct DefaultAndTopToastExample {
 
         Blank().height(200);
         Button() {
-          Text('TOPMOST类型Toast')
+          Text($r('app.string.DefaultAndTopToast_topToast'))
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
@@ -51,7 +51,7 @@ export struct DefaultAndTopToastExample {
         .width('100%')
         .onClick(() => {
           this.getUIContext().getPromptAction().showToast({
-            message: 'ok，我是TOP_MOST toast',
+            message: $r('app.string.DefaultAndTopToast_topToastMessage'),
             duration: 2000,
             showMode: promptAction.ToastShowMode.TOP_MOST,
             bottom: 85
