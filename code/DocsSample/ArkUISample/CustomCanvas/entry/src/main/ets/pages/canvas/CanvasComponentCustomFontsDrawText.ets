@@ -30,7 +30,7 @@ struct CustomFont {
         .onReady(() => {
           //加载自定义字体
           let fontCollection = text.FontCollection.getGlobalInstance();
-          fontCollection.loadFontSync('customFont', $rawfile("customFont.ttf"));
+          fontCollection.loadFontSync('customFont', $rawfile('customFont.ttf'));
           this.context.font = '30vp customFont'
           this.context.fillText('Hello World!', 20, 50)
           this.context.strokeText('Hello World!', 20, 100)
