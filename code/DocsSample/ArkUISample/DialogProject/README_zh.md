@@ -55,6 +55,11 @@ entry/src/main/ets/
 |   |---opencustomdialog                      //不依赖UI组件的全局自定义弹出框
 |   |       |---Index.ets
 |   |       |---openCustomDialog.ets
+|   |---OverlayManager                        //设置浮层
+|   |       |---Index.ets
+|   |       |---OverlayManagerDemo1.ets
+|   |       |---OverlayManagerDemo2.ets
+|   |       |---OverlayManagerDemo3.ets
 |   |---popup                                 //气泡提示
 |   |       |---ButtonPopup.ets
 |   |       |---CustomPopup.ets
