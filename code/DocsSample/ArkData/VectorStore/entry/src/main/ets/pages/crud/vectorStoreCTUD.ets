@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start vector_TS_isVectorSupported]
 import { relationalStore } from '@kit.ArkData'; // 导入模块
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -36,7 +37,7 @@ export async function getVectorStore() {
     return;
   }
   // [End vector_TS_isVectorSupported]
-  
+
   // [EndExclude  vector_TS_getStore]
   relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
     store = rdbStore;
