@@ -12,17 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// [Start get_all_registered_networks]
 // [Start get_net_capabilities_and_get_connection_properties]
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
-// [StartExclude get_all_registered_networks]
 // [StartExclude get_net_capabilities_and_get_connection_properties]
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
-const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
+const TEXT_MARGIN_TOP_L = 10; // 长文本的上边距
 
 // [Start construct_singleton_object]
 // 构造单例对象
@@ -75,17 +72,13 @@ export default struct allNetworksBtn {
   // 获取所有注册的网络
   // [EndExclude get_net_capabilities_and_get_connection_properties]
   getAllNetworks() {
-    // [EndExclude get_all_registered_networks]
-    // 调用getAllNets方法，获取所有处于连接状态的网络列表
+    // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)。
     connection.getAllNets().then((data: connection.NetHandle[]) => {
       console.info('getAllNets get data: ' + JSON.stringify(data));
       if (data) {
-        // [StartExclude get_all_registered_networks]
         // [StartExclude get_net_capabilities_and_get_connection_properties]
         this.allNetworksStatus = 'Retrieved successfully';
-        // [EndExclude get_all_registered_networks]
         GlobalContext.getContext().netList = data;
-        // [StartExclude get_all_registered_networks]
         // [EndExclude get_net_capabilities_and_get_connection_properties]
         let itemNumber: Set<connection.NetHandle> = new Set(data);
         let dataNumber = Array.from(itemNumber.values());
@@ -101,9 +94,7 @@ export default struct allNetworksBtn {
           });
         }
       }
-      // [EndExclude get_all_registered_networks]
     });
-    // [End get_all_registered_networks]
   }
   // [End get_net_capabilities_and_get_connection_properties]
 }

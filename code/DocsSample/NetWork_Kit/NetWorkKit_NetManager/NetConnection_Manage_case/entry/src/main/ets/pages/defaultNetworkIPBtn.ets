@@ -22,7 +22,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
-const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
+const TEXT_MARGIN_TOP_L = 10; // 长文本的上边距
 
 @Component
 export default struct defaultNetworkIPBtn {

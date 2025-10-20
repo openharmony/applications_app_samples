@@ -13,12 +13,10 @@
  * limitations under the License.
  */
 
-// [Start original_network_connection_uses_socket]
-// [Start monitor_default_network_change]
+// [Start net_Connection_create_connection_import]
 import { connection, socket } from '@kit.NetworkKit';
-// [StartExclude monitor_default_network_change]
 import { BusinessError } from '@kit.BasicServicesKit';
-// [StartExclude original_network_connection_uses_socket]
+// [End net_Connection_create_connection_import]
 
 import { promptAction } from '@kit.ArkUI';
 import connectNetworkBtn from './connectNetworkBtn';
@@ -26,31 +24,30 @@ import allNetworksBtn from './allNetworksBtn';
 import defaultNetworkBtn from './defaultNetworkBtn';
 import defaultNetworkIPBtn from './defaultNetworkIPBtn';
 import defaultNetSyncBtn from './defaultNetSyncBtn';
+import getAllNets from './getAllNets';
 
 const NETWORK_CONNECTION_TIMEOUT = 1000; // 网络连接超时
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
 const TEXT_FONT_SIZE = 18; // 文本的字体大小
-const TEXT_MARGIN_TOP = 10; // 文本的上边距
-const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
-
-// [EndExclude original_network_connection_uses_socket]
-// 创建socket对象。
-let sock: socket.TCPSocket = socket.constructTCPSocketInstance();
-// [StartExclude original_network_connection_uses_socket]
+const TEXT_MARGIN_TOP = 5; // 文本的上边距
+const TEXT_MARGIN_TOP_L = 10; // 长文本的上边距
 
 // 监控默认网络变化
 async function test() {
-  // [EndExclude monitor_default_network_change]
+  // [Start monitor_default_network_change]
   const netConnection = connection.createNetConnection();
-  // 监听默认网络改变。
+  /* 监听默认网络改变 */
   netConnection.on('netAvailable', (data: connection.NetHandle) => {
     console.info(JSON.stringify(data));
   });
   // [End monitor_default_network_change]
 }
-// [EndExclude original_network_connection_uses_socket]
+
+// [Start original_network_connection_uses_socket]
+// 创建socket对象。
+let sock: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 // 原网络连接使用Socket模块建立连接
 async function useSocket() {
@@ -64,11 +61,10 @@ async function useSocket() {
     timeout: 6000 // 连接超时时间
   };
 
-  // 建立socket连接。
+  /* 建立socket连接 */
   sock.connect(tcpConnectOptions, (err: BusinessError) => {
     if (err) {
       console.error('connect fail: '+JSON.stringify(err));
-      console.error('connect fail');
       // [StartExclude original_network_connection_uses_socket]
       promptAction.showToast({
         message: 'Connect fail!',
@@ -154,6 +150,7 @@ struct NetworkConnectionPage {
   @State defaultNetworkStatus: string = 'Not retrieved';
   @State defaultNetworkIPStatus: string = 'Not retrieved';
   @State defaultNetSync: string = 'Not retrieved';
+  @State getAllNetsStatus: string = 'Not retrieved';
 
   private conn: connection.NetConnection | null = null;
 
@@ -186,6 +183,12 @@ struct NetworkConnectionPage {
         .margin({ top: TEXT_MARGIN_TOP })
         .id('allNetworksStatus')
 
+      Text('查询所有网络连接信息' + ':' + this.getAllNetsStatus)
+        .fontSize(TEXT_FONT_SIZE)
+        .fontColor(Color.Black)
+        .margin({ top: TEXT_MARGIN_TOP })
+        .id('allNetworksStatus')
+
       Text(resourceToString($r('app.string.defaultNetworkStatus')) + ':' + this.defaultNetworkStatus)
         .fontSize(TEXT_FONT_SIZE)
         .fontColor(Color.Black)
@@ -198,7 +201,7 @@ struct NetworkConnectionPage {
         .margin({ top: TEXT_MARGIN_TOP })
         .id('defaultNetworkIPStatus')
 
-      Text(resourceToString($r('app.string.JudgeDefaultNetwork'))+ ':' + this.defaultNetSync)
+      Text(resourceToString($r('app.string.JudgeDefaultNetwork')) + ':' + this.defaultNetSync)
         .fontSize(TEXT_FONT_SIZE)
         .fontColor(Color.Black)
         .margin({ top: TEXT_MARGIN_TOP })
@@ -220,7 +223,10 @@ struct NetworkConnectionPage {
         .id('SocketConnect_Network')
 
       // 获取所有注册的网络
-      allNetworksBtn({allNetworksStatus: this.allNetworksStatus});
+      allNetworksBtn({ allNetworksStatus: this.allNetworksStatus });
+
+      // 查询所有网络连接信息
+      getAllNets({ getAllNetsStatus: this.getAllNetsStatus });
 
       // 获取默认网络信息
       defaultNetworkBtn({ defaultNetworkStatus: this.defaultNetworkStatus })
