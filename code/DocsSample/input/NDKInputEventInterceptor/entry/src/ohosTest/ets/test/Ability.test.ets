@@ -1,17 +1,17 @@
 /*
-* Copyright (C) 2025 Huawei Device Co., Ltd.
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, it, expect } from '@ohos/hypium';
@@ -19,8 +19,8 @@ import { Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_NDKInputEventInterceptorAPI]';
-const DOMAIN = 0xF811
-const BUNDLE = 'NDKInputEventInterceptorAPI_'
+const DOMAIN = 0xF811;
+const BUNDLE = 'NDKInputEventInterceptorAPI_';
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -28,7 +28,7 @@ export default function abilityTest() {
      * 打开应用
      */
     it('NDKInputEventInterceptorAPI_StartAbility_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "StartAbility_001, begin")
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -37,7 +37,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
@@ -53,7 +53,7 @@ export default function abilityTest() {
      * 添加按键事件拦截
      */
     it('NDKInputEventInterceptorAPI_addKeyEventInterceptor_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "addKeyEventInterceptor_001, begin")
+      hilog.info(DOMAIN, TAG, BUNDLE + 'addKeyEventInterceptor_001, begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -62,7 +62,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `addKeyEventInterceptor_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `addKeyEventInterceptor_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
@@ -78,7 +78,7 @@ export default function abilityTest() {
      * 移除按键事件拦截
      */
     it('NDKInputEventInterceptorAPI_removeKeyEventInterceptor_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "removeKeyEventInterceptor_001, begin")
+      hilog.info(DOMAIN, TAG, BUNDLE + 'removeKeyEventInterceptor_001, begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -87,7 +87,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `removeKeyEventInterceptor_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `removeKeyEventInterceptor_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
@@ -103,7 +103,7 @@ export default function abilityTest() {
      * 添加输入事件拦截
      */
     it('NDKInputEventInterceptorAPI_addEventInterceptor_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "addEventInterceptor_001, begin")
+      hilog.info(DOMAIN, TAG, BUNDLE + 'addEventInterceptor_001, begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -112,7 +112,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `addEventInterceptor_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `addEventInterceptor_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
@@ -128,7 +128,7 @@ export default function abilityTest() {
      * 添加输入事件拦截
      */
     it('NDKInputEventInterceptorAPI_removeEventInterceptor_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "removeEventInterceptor_001, begin")
+      hilog.info(DOMAIN, TAG, BUNDLE + 'removeEventInterceptor_001, begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -137,7 +137,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `removeEventInterceptor_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `removeEventInterceptor_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);

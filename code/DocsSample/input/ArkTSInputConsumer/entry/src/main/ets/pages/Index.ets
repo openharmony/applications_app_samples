@@ -1,17 +1,17 @@
 /*
-* Copyright (C) 2025 Huawei Device Co., Ltd.
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 // [Start input_monitor]
 import { inputConsumer, KeyEvent } from '@kit.InputKit';
@@ -60,7 +60,7 @@ struct TestDemo14 {
   build() {
     Column() {
       Row() {
-        Button('取消监听音量按键上的监听')
+        Button('Cancel monitoring on the volume button')
           .onClick(() => {
             try {
               // 取消指定回调函数
@@ -75,7 +75,7 @@ struct TestDemo14 {
       .margin({ top: 20, bottom: 50 })
 
       Row() {
-        Button('取消监听音量按键下的监听')
+        Button('Cancel monitoring under the volume button')
           .onClick(() => {
             try {
               // 取消指定回调函数

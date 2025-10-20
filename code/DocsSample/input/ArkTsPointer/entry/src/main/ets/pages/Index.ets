@@ -1,17 +1,17 @@
 /*
-* Copyright (C) 2025 Huawei Device Co., Ltd.
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -24,7 +24,7 @@ struct Index {
     RelativeContainer() {
       Column() {
         // [Start pointer_visible]
-        Text("点击隐藏光标")
+        Text("Click to hide the cursor")
           .onClick(() => {
             // 1.应用切换到全屏播放
             // 2.调用鼠标光标隐藏接口隐藏光标
@@ -59,7 +59,7 @@ struct Index {
 
             // 3.应用退出全屏播放
             // 4.调用鼠标光标显示接口显示光标
-        Text("点击显示光标")
+        Text("Click to display cursor")
           .onClick(() => {
             try {
               pointer.setPointerVisible(true, (error: Error) => {
@@ -91,7 +91,7 @@ struct Index {
         // [End pointer_visible]
 
         // [Start pointer_style]
-        Text("点击设置鼠标光标样式为取色器样式")
+        Text("Click to set the mouse cursor style to the color picker style")
           .onClick(() => {
             // 1.开发者使能取色功能
             // 2.调用窗口实例获取对应的窗口id
@@ -133,7 +133,7 @@ struct Index {
         // [EndExclude pointer_style]
 
 
-        Text("点击设置鼠标光标样式为默认样式")
+        Text("Click to set the mouse cursor style to default style")
           .onClick(() => {
             // 4.取色结束
             window.getLastWindow(this.getUIContext().getHostContext(),
