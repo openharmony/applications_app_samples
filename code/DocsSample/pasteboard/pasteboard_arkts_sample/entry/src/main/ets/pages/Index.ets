@@ -15,7 +15,7 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { TestJs } from './PasteboardModel';
-// [start pasteboard_permission]
+// [Start pasteboard_permission]
 import { BusinessError, pasteboard} from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
