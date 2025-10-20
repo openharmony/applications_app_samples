@@ -119,15 +119,6 @@ struct Index {
             const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             if (!isNeedGetPermissionFromUser()) {
               console.info('No neded to bring up the permission pop-up window');
-              // [StartExclude pasteboard_permission]
-              TestJs.getPlainData(pasteboard.MIMETYPE_TEXT_PLAIN)
-                .then((ret) => {
-                  this.text = ret;
-                })
-                .catch(() => {
-                  this.printLog('get failed.');
-                });
-              // [EndExclude pasteboard_permission]
               return;
             }
             let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();

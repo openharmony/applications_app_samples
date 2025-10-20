@@ -101,7 +101,6 @@ struct Index {
             const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
             if (!isNeedGetPermissionFromUser()) {
               console.info("No neded to bring up the permission pop-up window");
-              this.text = testNapi.pasteboard_test_get();
               return;
             }
             let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
