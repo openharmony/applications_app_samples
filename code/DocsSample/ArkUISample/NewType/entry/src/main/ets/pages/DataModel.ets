@@ -20,6 +20,6 @@ class Sample {
 @ObservedV2
 class Info {
   @Type(Sample)
-  @Trace sample: Sample = new Sample(); // 正确用法
+  @Trace public sample: Sample = new Sample(); // 正确用法
 }
 // [End DataModel]
