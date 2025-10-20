@@ -23,7 +23,8 @@ std::string g_value = "";
 napi_ref g_callback_ref = nullptr;
 napi_env g_env = nullptr;
 
-napi_value OnChange(napi_env env, napi_callback_info info) {
+napi_value OnChange(napi_env env, napi_callback_info info)
+{
     g_env = env;
     size_t argc = 1;
     napi_value args[1];
@@ -33,7 +34,8 @@ napi_value OnChange(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 
-void NotifyValueChange() {
+void NotifyValueChange()
+{
     if (g_callback_ref == nullptr || g_env == nullptr) {
         return;
     }
@@ -83,7 +85,7 @@ static napi_value AddKeyEventMonitor(napi_env env, napi_callback_info info)
     Input_Result ret = OH_Input_AddKeyEventMonitor(OnKeyEventCallback);
     // [StartExclude key_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "添加按键事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "添加按键事件监听失败，返回码为" + std::to_string(ret);
@@ -99,7 +101,7 @@ static napi_value RemoveKeyEventMonitor(napi_env env, napi_callback_info info)
     Input_Result ret = OH_Input_RemoveKeyEventMonitor(OnKeyEventCallback);
     // [StartExclude key_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "移除按键事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "移除按键事件监听失败，返回码为" + std::to_string(ret);
@@ -153,7 +155,7 @@ static napi_value AddMouseEventMonitor(napi_env env, napi_callback_info info)
     Input_Result ret = OH_Input_AddMouseEventMonitor(OnMouseEventCallback);
     // [StartExclude mouse_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "填加鼠标事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "填加鼠标事件监听失败，返回码为" + std::to_string(ret);
@@ -169,7 +171,7 @@ static napi_value RemoveMouseEventMonitor(napi_env env, napi_callback_info info)
     Input_Result ret = OH_Input_RemoveMouseEventMonitor(OnMouseEventCallback);
     // [StartExclude mouse_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "移除鼠标事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "移除鼠标事件监听失败，返回码为" + std::to_string(ret);
@@ -216,7 +218,7 @@ static napi_value AddTouchEventMonitor(napi_env env, napi_callback_info info)
     Input_Result ret = OH_Input_AddTouchEventMonitor(OnTouchEventCallback);
     // [StartExclude touch_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "填加触摸事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "填加触摸事件监听失败，返回码为" + std::to_string(ret);
@@ -232,7 +234,7 @@ static napi_value RemoveTouchEventMonitor(napi_env env, napi_callback_info info)
     // [StartExclude touch_event_monitor]
     Input_Result ret = OH_Input_RemoveTouchEventMonitor(OnTouchEventCallback);
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "移除触摸事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "移除触摸事件监听失败，返回码为" + std::to_string(ret);
@@ -383,7 +385,7 @@ static napi_value AddAxisEventMonitorForAll(napi_env env, napi_callback_info inf
     Input_Result ret = OH_Input_AddAxisEventMonitorForAll(OnAllAxisEventCallback);
     // [StartExclude axis_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "添加轴事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "添加轴事件监听失败，返回码为" + std::to_string(ret);
@@ -399,7 +401,7 @@ static napi_value RemoveAxisEventMonitorForAll(napi_env env, napi_callback_info 
     Input_Result ret = OH_Input_RemoveAxisEventMonitorForAll(OnAllAxisEventCallback);
     // [StartExclude axis_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "移除轴事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "移除轴事件监听失败，返回码为" + std::to_string(ret);
@@ -415,7 +417,7 @@ static napi_value AddPinchAxisEventMonitor(napi_env env, napi_callback_info info
     Input_Result ret = OH_Input_AddAxisEventMonitor(AXIS_EVENT_TYPE_PINCH, OnPinchAxisEventCallback);
     // [StartExclude axis_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "添加捏合轴事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "添加捏合轴事件监听失败，返回码为" + std::to_string(ret);
@@ -431,7 +433,7 @@ static napi_value RemovePinchAxisEventMonitor(napi_env env, napi_callback_info i
     Input_Result ret = OH_Input_RemoveAxisEventMonitor(AXIS_EVENT_TYPE_PINCH, OnPinchAxisEventCallback);
     // [StartExclude axis_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "移除捏合轴事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "移除捏合轴事件监听失败，返回码为" + std::to_string(ret);
@@ -447,7 +449,7 @@ static napi_value AddScrollAxisEventMonitor(napi_env env, napi_callback_info inf
     Input_Result ret = OH_Input_AddAxisEventMonitor(AXIS_EVENT_TYPE_SCROLL, OnScrollAxisEventCallback);
     // [StartExclude axis_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "添加滚轮轴事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "添加滚轮轴事件监听失败，返回码为" + std::to_string(ret);
@@ -463,7 +465,7 @@ static napi_value RemoveScrollAxisEventMonitor(napi_env env, napi_callback_info 
     Input_Result ret =  OH_Input_RemoveAxisEventMonitor(AXIS_EVENT_TYPE_SCROLL, OnScrollAxisEventCallback);
     // [StartExclude axis_event_monitor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "移除滚轮事件监听成功，返回码为" + std::to_string(ret);
     } else {
         message = "移除滚轮事件监听失败，返回码为" + std::to_string(ret);
@@ -483,15 +485,23 @@ static napi_value Init(napi_env env, napi_value exports)
         { "addKeyEventMonitor", nullptr, AddKeyEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "removeKeyEventMonitor", nullptr, RemoveKeyEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "addMouseEventMonitor", nullptr, AddMouseEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "removeMouseEventMonitor", nullptr, RemoveMouseEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "removeMouseEventMonitor", nullptr, RemoveMouseEventMonitor, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
         { "addTouchEventMonitor", nullptr, AddTouchEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "removeTouchEventMonitor", nullptr, RemoveTouchEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "addAxisEventMonitorForAll", nullptr, AddAxisEventMonitorForAll, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "removeAxisEventMonitorForAll", nullptr, RemoveAxisEventMonitorForAll, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "addPinchAxisEventMonitor", nullptr, AddPinchAxisEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "removePinchAxisEventMonitor", nullptr, RemovePinchAxisEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "addScrollAxisEventMonitor", nullptr, AddScrollAxisEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "removeScrollAxisEventMonitor", nullptr, RemoveScrollAxisEventMonitor, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "removeTouchEventMonitor", nullptr, RemoveTouchEventMonitor, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "addAxisEventMonitorForAll", nullptr, AddAxisEventMonitorForAll, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "removeAxisEventMonitorForAll", nullptr, RemoveAxisEventMonitorForAll, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "addPinchAxisEventMonitor", nullptr, AddPinchAxisEventMonitor, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "removePinchAxisEventMonitor", nullptr, RemovePinchAxisEventMonitor, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "addScrollAxisEventMonitor", nullptr, AddScrollAxisEventMonitor, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "removeScrollAxisEventMonitor", nullptr, RemoveScrollAxisEventMonitor, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

@@ -83,7 +83,7 @@ static napi_value AddKeyEventInterceptor(napi_env env, napi_callback_info info)
     Input_Result ret = OH_Input_AddKeyEventInterceptor(OnKeyEventCallback, nullptr);
     // [StartExclude key_event_interceptor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "添加按键事件拦截成功，返回码为" + std::to_string(ret);
     } else {
         message = "添加按键事件拦截失败，返回码为" + std::to_string(ret);
@@ -99,7 +99,7 @@ static napi_value RemoveKeyEventInterceptor(napi_env env, napi_callback_info inf
     Input_Result ret = OH_Input_RemoveKeyEventInterceptor();
     // [StartExclude key_event_interceptor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "移除按键事件拦截成功，返回码为" + std::to_string(ret);
     } else {
         message = "移除按键事件拦截失败，返回码为" + std::to_string(ret);
@@ -240,7 +240,7 @@ void OnAxisEventCallback(const Input_AxisEvent* axisEvent)
 Input_InterceptorEventCallback g_eventCallback;
 
 static napi_value AddEventInterceptor(napi_env env, napi_callback_info info)
-{   
+{
     //设置鼠标事件回调函数
     g_eventCallback.mouseCallback = OnMouseEventCallback;
     //设置触摸事件回调函数
@@ -250,7 +250,7 @@ static napi_value AddEventInterceptor(napi_env env, napi_callback_info info)
     Input_Result ret = OH_Input_AddInputEventInterceptor(&g_eventCallback, nullptr);
     // [StartExclude input_event_interceptor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "填加输入事件拦截成功，返回码为" + std::to_string(ret);
     } else {
         message = "填加输入事件拦截失败，返回码为" + std::to_string(ret);
@@ -266,7 +266,7 @@ static napi_value RemoveEventInterceptor(napi_env env, napi_callback_info info)
     Input_Result ret = OH_Input_RemoveInputEventInterceptor();
     // [StartExclude input_event_interceptor]
     std::string message = "";
-    if(ret == INPUT_SUCCESS) {
+    if (ret == INPUT_SUCCESS) {
         message = "移除输入拦截成功，返回码为" + std::to_string(ret);
     } else {
         message = "移除输入拦截失败，返回码为" + std::to_string(ret);
@@ -275,7 +275,6 @@ static napi_value RemoveEventInterceptor(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
     return result;
     // [EndExclude input_event_interceptor]
-    
 }
 // [End input_event_interceptor]
 
@@ -285,7 +284,8 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         { "onChange", nullptr, OnChange, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "addKeyEventInterceptor", nullptr, AddKeyEventInterceptor, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "removeKeyEventInterceptor", nullptr, RemoveKeyEventInterceptor, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "removeKeyEventInterceptor", nullptr, RemoveKeyEventInterceptor, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
         { "addEventInterceptor", nullptr, AddEventInterceptor, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "removeEventInterceptor", nullptr, RemoveEventInterceptor, nullptr, nullptr, nullptr, napi_default, nullptr },
     };
