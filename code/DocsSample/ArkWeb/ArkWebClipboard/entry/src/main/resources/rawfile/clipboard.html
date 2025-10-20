@@ -1,0 +1,83 @@
+<!--clipboard.html-->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard API demo</title>
+    <style>
+        #output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 50px;
+        }
+        .button-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Clipboard API demo</h1>
+<div class="button-group">
+    <button id="copyTextButton">复制文本</button>
+    <button id="copyHtmlButton">复制HTML</button>
+</div>
+
+<div class="button-group">
+    <button id="pasteTextButton">粘贴文本</button>
+    <button id="pasteHtmlButton">粘贴HTML</button>
+    <button id="clearOutputButton">清空输入框</button>
+</div>
+
+<div id="result"></div>
+<div id="output" contenteditable="true"></div>
+
+<script>
+    const textContent = '这是一些文本内容';
+    const htmlContent = `<strong><em>这是一些 HTML 内容</em></strong>`;
+    // writeText()接口
+    async function copyText() {
+        await navigator.clipboard.writeText(textContent);
+        document.getElementById('result').innerText = '文本已复制到剪贴板！';
+    }
+    // write()接口
+    async function copyHtml() {
+        const clipboardItem = new ClipboardItem({
+            'text/html': new Blob([htmlContent], { type: 'text/html' })
+        });
+        await navigator.clipboard.write([clipboardItem]);
+        document.getElementById('result').innerText = 'HTML 已复制到剪贴板！';
+    }
+    // readText()接口
+    async function pasteText() {
+        const text = await navigator.clipboard.readText();
+        document.getElementById('output').innerText = text;
+    }
+    // read()接口
+    async function pasteHtml() {
+        const items = await navigator.clipboard.read();
+        for (const item of items) {
+            const types = item.types;
+            if (types.includes('text/html')) {
+                const blob = await item.getType('text/html');
+                const html = await blob.text();
+                document.getElementById('output').innerHTML = html;
+                return;
+            }
+        }
+        document.getElementById('result').innerText = '剪贴板中没有 HTML 内容。';
+    }
+    function clearOutput() {
+        document.getElementById('result').innerText = ' ';
+        document.getElementById('output').innerHTML = '';
+    }
+    // 事件监听
+    document.getElementById('copyTextButton').addEventListener('click', copyText);
+    document.getElementById('copyHtmlButton').addEventListener('click', copyHtml);
+    document.getElementById('pasteTextButton').addEventListener('click', pasteText);
+    document.getElementById('pasteHtmlButton').addEventListener('click', pasteHtml);
+    document.getElementById('clearOutputButton').addEventListener('click', clearOutput);
+</script>
+</body>
+</html>
