@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, beforeAll } from '@ohos/hypium';
+import { describe, it, expect, beforeAll, TestType, Level, Size,  } from '@ohos/hypium';
 // 导入测试依赖kit
 import { abilityDelegatorRegistry, Driver, ON, MatchPattern } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
+// import { Size, } from '@kit.ArkUI';
 
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -42,8 +43,11 @@ export default function IndexTest() {
      * @tc.number PageOneTest
      * @tc.name PageOneTest
      * @tc.desc 测试PageOne是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageOneTest', 0, async (done: Function) => {
+    it('PageOneTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageOneTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageOne', MatchPattern.CONTAINS));
@@ -63,8 +67,11 @@ export default function IndexTest() {
      * @tc.number PageTwoTest
      * @tc.name PageTwoTest
      * @tc.desc 测试PageTwo是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageTwoTest', 0, async (done: Function) => {
+    it('PageTwoTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageOneTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageTwo', MatchPattern.CONTAINS));
@@ -84,8 +91,11 @@ export default function IndexTest() {
      * @tc.number PageThreeTest
      * @tc.name PageThreeTest
      * @tc.desc 测试PageThree是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageThreeTest', 0, async (done: Function) => {
+    it('PageThreeTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageThreeTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageThree', MatchPattern.CONTAINS));
@@ -101,8 +111,11 @@ export default function IndexTest() {
      * @tc.number PageFourTest
      * @tc.name PageFourTest
      * @tc.desc 测试PageFour是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageFourTest', 0, async (done: Function) => {
+    it('PageFourTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageOneTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageFour', MatchPattern.CONTAINS));
@@ -118,8 +131,11 @@ export default function IndexTest() {
      * @tc.number PageFiveTest
      * @tc.name PageFiveTest
      * @tc.desc 测试PageFive是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageFiveTest', 0, async (done: Function) => {
+    it('PageFiveTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageFiveTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageFive', MatchPattern.CONTAINS));
@@ -135,8 +151,11 @@ export default function IndexTest() {
      * @tc.number PageSixTest
      * @tc.name PageSixTest
      * @tc.desc 测试PageSix是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageSixTest', 0, async (done: Function) => {
+    it('PageSixTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageSixTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageSix', MatchPattern.CONTAINS));
@@ -151,6 +170,7 @@ export default function IndexTest() {
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageSixTest end');
       done();
     })
@@ -159,8 +179,11 @@ export default function IndexTest() {
      * @tc.number PageSevenTest
      * @tc.name PageSevenTest
      * @tc.desc 测试PageSeven是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageSevenTest', 0, async (done: Function) => {
+    it('PageSevenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageSevenTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageSeven', MatchPattern.CONTAINS));
@@ -175,6 +198,7 @@ export default function IndexTest() {
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageSevenTest end');
       done();
     })
@@ -183,22 +207,26 @@ export default function IndexTest() {
      * @tc.number PageEightTest
      * @tc.name PageEightTest
      * @tc.desc 测试PageEight是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageEightTest', 0, async (done: Function) => {
+    it('PageEightTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageEightTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageEight', MatchPattern.CONTAINS));
       expect(button1 === null).assertFalse();
       await button1.click();
       await driver.delayMs(1000);
-      let button2 = await driver.findComponent(ON.text('修改儿子的标题', MatchPattern.CONTAINS));
+      let button2 = await driver.findComponent(ON.text('modify the son\'s title', MatchPattern.CONTAINS));
       expect(button2 === null).assertFalse();
       await button2.click();
       await driver.delayMs(1000);
-      let button3 = await driver.findComponent(ON.text('修改父亲的名字', MatchPattern.CONTAINS));
+      let button3 = await driver.findComponent(ON.text('change the father\'s name', MatchPattern.CONTAINS));
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageEightTest end');
       done();
     })
@@ -207,8 +235,11 @@ export default function IndexTest() {
      * @tc.number PageNineTest
      * @tc.name PageNineTest
      * @tc.desc 测试PageNine是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageNineTest', 0, async (done: Function) => {
+    it('PageNineTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageNineTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageNine', MatchPattern.CONTAINS));
@@ -223,16 +254,20 @@ export default function IndexTest() {
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageNineTest end');
       done();
     })
 
     /**
-     * @tc.number PageNineTest
-     * @tc.name PageNineTest
-     * @tc.desc 测试PageNine是否显示正常
+     * @tc.number PageTenTest
+     * @tc.name PageTenTest
+     * @tc.desc 测试PageTen是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageTenTest', 0, async (done: Function) => {
+    it('PageTenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageTenTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageTen', MatchPattern.CONTAINS));
@@ -247,16 +282,20 @@ export default function IndexTest() {
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageTenTest end');
       done();
     })
 
     /**
-     * @tc.number PageTenTest
-     * @tc.name PageTenTest
-     * @tc.desc 测试PageTen是否显示正常
+     * @tc.number PageElevenTest
+     * @tc.name PageElevenTest
+     * @tc.desc 测试PageEleven是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageElevenTest', 0, async (done: Function) => {
+    it('PageElevenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageElevenTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageEleven', MatchPattern.CONTAINS));
@@ -271,6 +310,7 @@ export default function IndexTest() {
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageElevenTest end');
       done();
     })
@@ -279,8 +319,11 @@ export default function IndexTest() {
      * @tc.number PageTwelveTest
      * @tc.name PageTwelveTest
      * @tc.desc 测试PageTwelve是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageTwelveTest', 0, async (done: Function) => {
+    it('PageTwelveTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageTwelveTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageTwelve', MatchPattern.CONTAINS));
@@ -295,6 +338,7 @@ export default function IndexTest() {
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageTwelveTest end');
       done();
     })
@@ -303,8 +347,11 @@ export default function IndexTest() {
      * @tc.number PageThirteenTest
      * @tc.name PageThirteenTest
      * @tc.desc 测试PageThirteen是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageThirteenTest', 0, async (done: Function) => {
+    it('PageThirteenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageThirteenTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageThirteen', MatchPattern.CONTAINS));
@@ -319,6 +366,7 @@ export default function IndexTest() {
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageThirteenTest end');
       done();
     })
@@ -327,14 +375,18 @@ export default function IndexTest() {
      * @tc.number PageFourteenTest
      * @tc.name PageThirteenTest
      * @tc.desc 测试PageThirteen是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageFourteenTest', 0, async (done: Function) => {
+    it('PageFourteenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageFourteenTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageFourteen', MatchPattern.CONTAINS));
       expect(button1 === null).assertFalse();
       await button1.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageFourteenTest end');
       done();
     })
@@ -343,8 +395,11 @@ export default function IndexTest() {
      * @tc.number PageFifteenTest
      * @tc.name PageFifteenTest
      * @tc.desc 测试PageFifteen是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageFifteenTest', 0, async (done: Function) => {
+    it('PageFifteenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageThirteenTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageFifteen', MatchPattern.CONTAINS));
@@ -359,6 +414,7 @@ export default function IndexTest() {
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageFifteenTest end');
       done();
     })
@@ -367,8 +423,11 @@ export default function IndexTest() {
      * @tc.number PageSixteenTest
      * @tc.name PageSixteenTest
      * @tc.desc 测试PageSixteen是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageSixteen', 0, async (done: Function) => {
+    it('PageSixteenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageSixteen begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageSixteen', MatchPattern.CONTAINS));
@@ -380,6 +439,7 @@ export default function IndexTest() {
       await button2.click();
       await driver.delayMs(1000);
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageSixteen end');
       done();
     })
@@ -387,22 +447,26 @@ export default function IndexTest() {
      * @tc.number PageSeventeenTest
      * @tc.name PageSeventeenTest
      * @tc.desc 测试PageSeventeen是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageSeventeenTest', 0, async (done: Function) => {
+    it('PageSeventeenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest: PageSeventeenTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageSeventeen', MatchPattern.CONTAINS));
       expect(button1 === null).assertFalse();
       await button1.click();
       await driver.delayMs(1000);
-      let button2 = await driver.findComponent(ON.text('修改 title.info.value 为 "ArkUI"', MatchPattern.CONTAINS));
+      let button2 = await driver.findComponent(ON.text('change title.info.value to "ArkUI"', MatchPattern.CONTAINS));
       expect(button2 === null).assertFalse();
       await button2.click();
       await driver.delayMs(1000);
-      let button3 = await driver.findComponent(ON.text('重新赋值 Model（触发全更新）', MatchPattern.CONTAINS));
+      let button3 = await driver.findComponent(ON.text('Reassign Model', MatchPattern.CONTAINS));
       expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest: PageSeventeenTest end');
       done();
     })
@@ -411,22 +475,26 @@ export default function IndexTest() {
      * @tc.number PageEighteenTest
      * @tc.name PageEighteenTest
      * @tc.desc 测试PageEighteen是否显示正常
+     * @tc.level : Level1
+     * @tc.size : MediumTest
+     * @tc.type : Function
      */
-    it('PageEighteenTest', 0, async (done: Function) => {
+    it('PageEighteenTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       console.info('uitest:PageEighteenTest begin');
       let driver = Driver.create();
       let button1 = await driver.findComponent(ON.text('PageEighteen', MatchPattern.CONTAINS));
       expect(button1 === null).assertFalse();
       await button1.click();
       await driver.delayMs(1000);
-      let button10 = await driver.findComponent(ON.text('第一项改为 "2"', MatchPattern.CONTAINS));
+      let button10 = await driver.findComponent(ON.text('change to "2"', MatchPattern.CONTAINS));
       expect(button10 === null).assertFalse();
       await button10.click();
       await driver.delayMs(1000);
-      let button2 = await driver.findComponent(ON.text('第一项改为 "2"', MatchPattern.CONTAINS));
+      let button2 = await driver.findComponent(ON.text('insert "3"', MatchPattern.CONTAINS));
       expect(button2 === null).assertFalse();
       await button2.click();
       await driver.delayMs(1000);
+      await driver.pressBack();
       console.info('uitest:PageEighteenTest end');
       done();
     })

@@ -47,7 +47,11 @@ struct DataDisplay {
             Column({ space: 8 }) {
               // 遍历数组展示每一项
               ForEach(this.title, (item: string, index: number) => {
+<<<<<<< HEAD
                 Text(`第 ${index + 1} 项: ${item}`)
+=======
+                Text(`The ${index + 1} is: ${item}`)
+>>>>>>> f030e8b08 (Prop)
                   .fontSize(14)
                   .padding(5)
                   .backgroundColor('#E8F4F8')
@@ -67,11 +71,16 @@ struct DataDisplay {
           // 按钮容器 Row：用链式方法设置换行
           Row({ space: 5 }) {
             // 按钮1：赋值为 ["1"]
+<<<<<<< HEAD
             Button('赋值为 ["1"]')
+=======
+            Button('assign ["1"]')
+>>>>>>> f030e8b08 (Prop)
               .fontSize(8)
               .onClick(() => this.title = ['1']);
 
             // 按钮2：第一项改为 "2"
+<<<<<<< HEAD
             Button('第一项改为 "2"')
               .fontSize(8)
               .onClick(() => this.title.length > 0 && (this.title[0] = '2'));
@@ -81,6 +90,17 @@ struct DataDisplay {
               .onClick(() => this.title.push('3'));
             // 按钮3：删除最后一项
             Button('删除最后一项')
+=======
+            Button('change to "2"')
+              .fontSize(8)
+              .onClick(() => this.title.length > 0 && (this.title[0] = '2'));
+            // 按钮4：新增 "3"
+            Button('insert "3"')
+              .fontSize(8)
+              .onClick(() => this.title.push('3'));
+            // 按钮3：删除最后一项
+            Button('delete')
+>>>>>>> f030e8b08 (Prop)
               .fontSize(8)
               .onClick(() => this.title.pop());
 
