@@ -121,8 +121,7 @@ void ArkTsThread::CallFunc()
     this->cond.notify_all();
 }
 
-namespace
-{
+namespace {
     ArkTsThread *g_thread;
 }
 // [EndExclide main_handle_child_start_callback]

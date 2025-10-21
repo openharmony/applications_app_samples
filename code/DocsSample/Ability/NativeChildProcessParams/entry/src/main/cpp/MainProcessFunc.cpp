@@ -32,10 +32,13 @@ void StartNativeChildProcess()
     // ...
     NativeChildProcess_Args args;
     // 设置entryParams，支持传输的最大数据量为150KB
+    const size_t testParamLen = sizeof("testParam") - 1;
     const size_t entryParamsSize = 10;
     args.entryParams = (char *)malloc(sizeof(char) * entryParamsSize);
-    (void)strncpy(args.entryParams, "testParam", sizeof(("testParam") - 1));
-    args.entryParams[sizeof("testParam") - 1] = '\0'; // 确保字符串以null结尾
+    if (args.entryParams != nullptr) {
+        (void)strlcpy(args.entryParams, "testParam", testParamLen);
+        args.entryParams[testParamLen] = '\0';
+    }
 
     // 插入节点到链表头节点中
     args.fdList.head = (NativeChildProcess_Fd *)malloc(sizeof(NativeChildProcess_Fd));

@@ -18,7 +18,6 @@
 #include <AbilityKit/native_child_process.h>
 // [End create_native_child_param_header]
 extern "C" {
-
 /**
  * 子进程的入口函数，实现子进程的业务逻辑
  * 函数名称可以自定义，在主进程调用OH_Ability_StartNativeChildProcess方法时指定，此示例中为Main
