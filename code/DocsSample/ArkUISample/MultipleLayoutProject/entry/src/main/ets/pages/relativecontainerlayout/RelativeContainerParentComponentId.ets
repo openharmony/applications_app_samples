@@ -37,7 +37,7 @@ struct RelativeContainerParentComponentId {
       .height(100)
       .backgroundColor('#a3cf62')
       .alignRules(alignRus)
-      .id("row1")
+      .id('row1')
 
       Row() {
         Text('row2')

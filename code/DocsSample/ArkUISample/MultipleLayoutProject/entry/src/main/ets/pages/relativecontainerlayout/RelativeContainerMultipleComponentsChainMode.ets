@@ -31,7 +31,7 @@ struct RelativeContainerMultipleComponentsChainMode {
           right: { anchor: 'row2', align: HorizontalAlign.Start },
           top: { anchor: '__container__', align: VerticalAlign.Top }
         })
-        .id("row1")
+        .id('row1')
         .chainMode(Axis.Horizontal, ChainStyle.SPREAD)
 
         Row() {
