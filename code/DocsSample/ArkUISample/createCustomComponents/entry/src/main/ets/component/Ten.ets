@@ -30,9 +30,9 @@ struct Ten {
     ForEach(this.arr.filter((item, index) => index >= 2).sort(),
     (item:number) => {
       // ...
-    })
+    });
     // [StartExclude filter sort]
-  }
+  };
   // [EndExclude filter sort]
   // [ End filter ]
   build() {

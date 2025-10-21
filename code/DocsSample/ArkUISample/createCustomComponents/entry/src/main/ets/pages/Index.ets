@@ -1,5 +1,3 @@
-import { router } from '@kit.ArkUI'
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +12,8 @@ import { router } from '@kit.ArkUI'
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { router } from '@kit.ArkUI'
+
 class createRouter{
   pageName:string
   routerName:string

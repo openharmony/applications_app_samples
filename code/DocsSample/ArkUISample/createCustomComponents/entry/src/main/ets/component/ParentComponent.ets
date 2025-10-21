@@ -37,6 +37,7 @@ struct ParentComponentUI {
         Text('ArkUI message')
         HelloComponent({ message: 'Hello World!' });
         Divider()
+        // 字符串资源文件需要开发者自行添加
         HelloComponent({ message: $r('app.string.Hello_The_world') });
       }
   }

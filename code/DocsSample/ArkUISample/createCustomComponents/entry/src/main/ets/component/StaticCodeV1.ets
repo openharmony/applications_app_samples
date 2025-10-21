@@ -24,6 +24,7 @@ struct MyComponentCodeV1 {
   // [StartExclude code V1]
   build() {
       Column(){
+        // 字符串资源文件需要开发者自行添加
         Text(MyComponentCodeV1.a === '' ? $r('app.string.static_code') : MyComponentCodeV1.a)
       }
       .width('100%')
