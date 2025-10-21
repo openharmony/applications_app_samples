@@ -24,17 +24,17 @@ struct RelativeContainerComponentGuideLine {
           .height(100)
           .backgroundColor('#a3cf62')
           .alignRules({
-            left: { anchor: "guideline1", align: HorizontalAlign.End },
-            top: { anchor: "guideline2", align: VerticalAlign.Top }
+            left: { anchor: 'guideline1', align: HorizontalAlign.End },
+            top: { anchor: 'guideline2', align: VerticalAlign.Top }
           })
-          .id("row1")
+          .id('row1')
       }
       .width(300)
       .height(300)
       .margin({ left: 50 })
-      .border({ width: 2, color: "#6699FF" })
-      .guideLine([{ id: "guideline1", direction: Axis.Vertical, position: { start: 50 } },
-        { id: "guideline2", direction: Axis.Horizontal, position: { start: 50 } }])
+      .border({ width: 2, color: '#6699FF' })
+      .guideLine([{ id: 'guideline1', direction: Axis.Vertical, position: { start: 50 } },
+        { id: 'guideline2', direction: Axis.Horizontal, position: { start: 50 } }])
     }
     .height('100%')
   }

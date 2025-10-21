@@ -34,9 +34,9 @@ struct StackLayoutSceneExample {
       }.width('100%').height('100%')
 
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-        Text('联系人').fontSize(16)
-        Text('设置').fontSize(16)
-        Text('短信').fontSize(16)
+        Text($r('app.string.contacts')).fontSize(16)
+        Text($r('app.string.setting')).fontSize(16)
+        Text($r('app.string.text_message')).fontSize(16)
       }
       .width('50%')
       .height(50)

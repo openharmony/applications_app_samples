@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-let AlignRus: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
+let alignRus: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
   'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
   'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
 }
-let AlignRue: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
+let alignRue: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
   'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
   'right': { 'anchor': '__container__', 'align': HorizontalAlign.End }
 }
 let marginLeft: Record<string, number> = { 'left': 20 }
-let BWC: Record<string, number | string> = { 'width': 2, 'color': '#6699FF' }
+let bwc: Record<string, number | string> = { 'width': 2, 'color': '#6699FF' }
 
 @Entry
 @Component
@@ -36,7 +36,7 @@ struct RelativeContainerParentComponentId {
       .width(100)
       .height(100)
       .backgroundColor('#a3cf62')
-      .alignRules(AlignRus)
+      .alignRules(alignRus)
       .id("row1")
 
       Row() {
@@ -46,10 +46,10 @@ struct RelativeContainerParentComponentId {
       .width(100)
       .height(100)
       .backgroundColor('#00ae9d')
-      .alignRules(AlignRue)
-      .id("row2")
+      .alignRules(alignRue)
+      .id('row2')
     }.width(300).height(300)
     .margin(marginLeft)
-    .border(BWC)
+    .border(bwc)
   }
 }

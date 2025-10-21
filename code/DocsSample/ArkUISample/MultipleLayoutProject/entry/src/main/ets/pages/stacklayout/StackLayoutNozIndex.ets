@@ -19,15 +19,15 @@ struct StackLayoutNozIndex {
   build() {
     Stack({ alignContent: Alignment.BottomStart }) {
       Column() {
-        Text('Stack子元素1').textAlign(TextAlign.End).fontSize(20)
+        Text($r('app.string.stack_num1')).textAlign(TextAlign.End).fontSize(20)
       }.width(100).height(100).backgroundColor(0xffd306)
 
       Column() {
-        Text('Stack子元素2').fontSize(20)
+        Text($r('app.string.stack_num2')).fontSize(20)
       }.width(150).height(150).backgroundColor(Color.Pink)
 
       Column() {
-        Text('Stack子元素3').fontSize(20)
+        Text($r('app.string.stack_num3')).fontSize(20)
       }.width(200).height(200).backgroundColor(Color.Grey)
     }.width(350).height(350).backgroundColor(0xe0e0e0)
   }

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-let MTop:Record<string,number> = { 'top': 50 }
+let mTop:Record<string,number> = { 'top': 50 }
 
 @Entry
 @Component
@@ -23,7 +23,7 @@ struct StackLayoutExample {
         Column(){}.width('90%').height('100%').backgroundColor('#ff58b87c')
         Text('text').width('60%').height('60%').backgroundColor('#ffc3f6aa')
         Button('button').width('30%').height('30%').backgroundColor('#ff8ff3eb').fontColor('#000')
-      }.width('100%').height(150).margin(MTop)
+      }.width('100%').height(150).margin(mTop)
     }
   }
 }

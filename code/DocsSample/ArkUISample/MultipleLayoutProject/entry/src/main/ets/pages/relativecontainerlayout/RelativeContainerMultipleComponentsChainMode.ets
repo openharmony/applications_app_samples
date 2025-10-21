@@ -27,9 +27,9 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#a3cf62')
         .alignRules({
-          left: { anchor: "__container__", align: HorizontalAlign.Start },
-          right: { anchor: "row2", align: HorizontalAlign.Start },
-          top: { anchor: "__container__", align: VerticalAlign.Top }
+          left: { anchor: '__container__', align: HorizontalAlign.Start },
+          right: { anchor: 'row2', align: HorizontalAlign.Start },
+          top: { anchor: '__container__', align: VerticalAlign.Top }
         })
         .id("row1")
         .chainMode(Axis.Horizontal, ChainStyle.SPREAD)
@@ -42,11 +42,11 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#00ae9d')
         .alignRules({
-          left: { anchor: "row1", align: HorizontalAlign.End },
-          right: { anchor: "row3", align: HorizontalAlign.Start },
-          top: { anchor: "row1", align: VerticalAlign.Top }
+          left: { anchor: 'row1', align: HorizontalAlign.End },
+          right: { anchor: 'row3', align: HorizontalAlign.Start },
+          top: { anchor: 'row1', align: VerticalAlign.Top }
         })
-        .id("row2")
+        .id('row2')
 
         Row() {
           Text('row3')
@@ -56,11 +56,11 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#0a59f7')
         .alignRules({
-          left: { anchor: "row2", align: HorizontalAlign.End },
-          right: { anchor: "__container__", align: HorizontalAlign.End },
-          top: { anchor: "row1", align: VerticalAlign.Top }
+          left: { anchor: 'row2', align: HorizontalAlign.End },
+          right: { anchor: '__container__', align: HorizontalAlign.End },
+          top: { anchor: 'row1', align: VerticalAlign.Top }
         })
-        .id("row3")
+        .id('row3')
 
         Row() {
           Text('row4')
@@ -70,11 +70,11 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#a3cf62')
         .alignRules({
-          left: { anchor: "__container__", align: HorizontalAlign.Start },
-          right: { anchor: "row5", align: HorizontalAlign.Start },
-          center: { anchor: "__container__", align: VerticalAlign.Center }
+          left: { anchor: '__container__', align: HorizontalAlign.Start },
+          right: { anchor: 'row5', align: HorizontalAlign.Start },
+          center: { anchor: '__container__', align: VerticalAlign.Center }
         })
-        .id("row4")
+        .id('row4')
         .chainMode(Axis.Horizontal, ChainStyle.SPREAD_INSIDE)
 
         Row() {
@@ -85,11 +85,11 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#00ae9d')
         .alignRules({
-          left: { anchor: "row4", align: HorizontalAlign.End },
-          right: { anchor: "row6", align: HorizontalAlign.Start },
-          top: { anchor: "row4", align: VerticalAlign.Top }
+          left: { anchor: 'row4', align: HorizontalAlign.End },
+          right: { anchor: 'row6', align: HorizontalAlign.Start },
+          top: { anchor: 'row4', align: VerticalAlign.Top }
         })
-        .id("row5")
+        .id('row5')
 
         Row() {
           Text('row6')
@@ -99,11 +99,11 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#0a59f7')
         .alignRules({
-          left: { anchor: "row5", align: HorizontalAlign.End },
-          right: { anchor: "__container__", align: HorizontalAlign.End },
-          top: { anchor: "row4", align: VerticalAlign.Top }
+          left: { anchor: 'row5', align: HorizontalAlign.End },
+          right: { anchor: '__container__', align: HorizontalAlign.End },
+          top: { anchor: 'row4', align: VerticalAlign.Top }
         })
-        .id("row6")
+        .id('row6')
 
         Row() {
           Text('row7')
@@ -113,11 +113,11 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#a3cf62')
         .alignRules({
-          left: { anchor: "__container__", align: HorizontalAlign.Start },
-          right: { anchor: "row8", align: HorizontalAlign.Start },
-          bottom: { anchor: "__container__", align: VerticalAlign.Bottom }
+          left: { anchor: '__container__', align: HorizontalAlign.Start },
+          right: { anchor: 'row8', align: HorizontalAlign.Start },
+          bottom: { anchor: '__container__', align: VerticalAlign.Bottom }
         })
-        .id("row7")
+        .id('row7')
         .chainMode(Axis.Horizontal, ChainStyle.PACKED)
 
         Row() {
@@ -128,11 +128,11 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#00ae9d')
         .alignRules({
-          left: { anchor: "row7", align: HorizontalAlign.End },
-          right: { anchor: "row9", align: HorizontalAlign.Start },
-          top: { anchor: "row7", align: VerticalAlign.Top }
+          left: { anchor: 'row7', align: HorizontalAlign.End },
+          right: { anchor: 'row9', align: HorizontalAlign.Start },
+          top: { anchor: 'row7', align: VerticalAlign.Top }
         })
-        .id("row8")
+        .id('row8')
 
         Row() {
           Text('row9')
@@ -142,15 +142,15 @@ struct RelativeContainerMultipleComponentsChainMode {
         .height(80)
         .backgroundColor('#0a59f7')
         .alignRules({
-          left: { anchor: "row8", align: HorizontalAlign.End },
-          right: { anchor: "__container__", align: HorizontalAlign.End },
-          top: { anchor: "row7", align: VerticalAlign.Top }
+          left: { anchor: 'row8', align: HorizontalAlign.End },
+          right: { anchor: '__container__', align: HorizontalAlign.End },
+          top: { anchor: 'row7', align: VerticalAlign.Top }
         })
-        .id("row9")
+        .id('row9')
       }
       .width(300).height(300)
       .margin({ left: 50 })
-      .border({ width: 2, color: "#6699FF" })
+      .border({ width: 2, color: '#6699FF' })
     }
     .height('100%')
   }
