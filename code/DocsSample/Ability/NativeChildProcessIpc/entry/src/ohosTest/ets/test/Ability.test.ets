@@ -56,7 +56,7 @@ export default function abilityTest() {
 
       try {
         console.log(`${tag}, it begin`);
-        let ret: Number = testNapi.StartNativeChildProcess("libmainprocesssample.so");
+        let ret: Number = testNapi.startNativeChildProcess("libmainprocesssample.so");
         console.info(`${tag}: ret` + ret);
         if (ret == 16010004) {
           console.info(`${tag}: multi process model disable`);
@@ -78,7 +78,7 @@ export default function abilityTest() {
         await sleep(600);
 
         console.info(`${tag}: Test restart native child process`);
-        expect(0).assertEqual(testNapi.StartNativeChildProcess("libmainprocesssample.so"));
+        expect(0).assertEqual(testNapi.startNativeChildProcess("libmainprocesssample.so"));
         expect(1).assertEqual(testNapi.requestExitChildProcess(0));
         await sleep(600);
       } catch (err) {
@@ -100,7 +100,7 @@ export default function abilityTest() {
       let tag = `ACTS_NativeStartChildProcess_0200`;
       console.log(`${tag}, it begin`);
 
-        let ret: Number = testNapi.TestChildProcess();
+        let ret: Number = testNapi.testChildProcess();
         console.info(`${tag}: ret` + ret);
         if (ret == 16010004) {
           console.info(`${tag}: multi process model disable`);

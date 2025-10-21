@@ -123,7 +123,7 @@ void ArkTsThread::CallFunc()
 
 namespace
 {
-ArkTsThread *g_thread;
+    ArkTsThread *g_thread;
 }
 // [EndExclide main_handle_child_start_callback]
 // [EndExclide main_process_launch_native_child]
@@ -183,7 +183,8 @@ static napi_value ChildProcessAdd(napi_env env, napi_callback_info info)
         napi_get_value_int32(env, args[1], &value1);
 
         resultChildProcess = g_ipcProxyPnt->Add(value0, value1);
-        OH_LOG_INFO(LOG_APP, "Main process - ChildProcessAdd %{public}d+%{public}d=%{public}d", value0, value1, resultChildProcess);
+        OH_LOG_INFO(LOG_APP, "Main process - ChildProcessAdd %{public}d+%{public}d=%{public}d", value0, value1,
+                    resultChildProcess);
     } else {
         OH_LOG_ERROR(LOG_APP, "Main process - Child process not started");
     }
@@ -260,9 +261,9 @@ static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         {"ChildProcessAdd", nullptr, ChildProcessAdd, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"StartNativeChildProcess", nullptr, StartNativeChildProcess, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"startNativeChildProcess", nullptr, StartNativeChildProcess, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"RequestExitChildProcess", nullptr, RequestExitChildProcess, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"TestChildProcess", nullptr, TestChildProcess, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"testChildProcess", nullptr, TestChildProcess, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

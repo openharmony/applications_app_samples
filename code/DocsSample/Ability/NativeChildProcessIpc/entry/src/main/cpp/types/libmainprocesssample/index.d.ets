@@ -16,6 +16,6 @@
 
 
 export const childProcessAdd: (a: number, b: number) => number;
-export const StartNativeChildProcess: (libName: String) => number;
+export const startNativeChildProcess: (libName: String) => number;
 export const requestExitChildProcess: (a: number) => number;
-export const TestChildProcess: () => number;
+export const testChildProcess: () => number;

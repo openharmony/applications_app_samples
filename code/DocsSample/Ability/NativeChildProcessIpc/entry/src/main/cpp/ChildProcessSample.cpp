@@ -55,15 +55,14 @@ int IpcCapiStubTest::OnRemoteRequest(uint32_t code, const OHIPCParcel *data, OHI
     return OH_IPC_SUCCESS;
 }
 
-IpcCapiStubTest ipcStubObj;
+IpcCapiStubTest g_ipcStubObj;
 
 extern "C" {
-
 OHIPCRemoteStub *NativeChildProcess_OnConnect()
 {
     // ipcRemoteStub指向子进程实现的ipc stub对象，用于接收来自主进程的IPC消息并响应
     // 子进程根据业务逻辑控制其生命周期
-    return ipcStubObj.GetRemoteStub();
+    return g_ipcStubObj.GetRemoteStub();
 }
 
 void NativeChildProcessMainProc()

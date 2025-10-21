@@ -23,9 +23,9 @@
 #include <js_native_api_types.h>
 #include <node_api.h>
 
-int32_t result = -1;
+int32_t g_result = -1;
 // [EndExclide main_process_launch_native_child]
-int32_t FD_NAME_MAX_LENGTH = 4;
+int32_t g_fdNameMaxLength = 4;
 
 void StartNativeChildProcess()
 {
@@ -40,8 +40,9 @@ void StartNativeChildProcess()
     // 插入节点到链表头节点中
     args.fdList.head = (NativeChildProcess_Fd *)malloc(sizeof(NativeChildProcess_Fd));
     // fd关键字，最多不超过20个字符
-    args.fdList.head->fdName = (char *)malloc(sizeof(char) * FD_NAME_MAX_LENGTH);
-    (void)strncpy(args.fdList.head->fdName, "fd1", 3);
+    args.fdList.head->fdName = (char *)malloc(sizeof(char) * g_fdNameMaxLength);
+    (void)strncpy(args.fdList.head->fdName, "fd1", sizeof("fd") - 1);
+    args.fdList.head->fdName[sizeof("fd") - 1] = '\0'; // 确保字符串以null结尾
     // 获取fd逻辑
     int32_t fd = open("/data/storage/el2/base/haps/entry/files/test.txt", O_RDWR | O_CREAT, 0644);
     args.fdList.head->fd = fd;
@@ -61,7 +62,7 @@ void StartNativeChildProcess()
 
     // 其他逻辑
 // [StartExclude main_process_launch_native_child]
-    result = ret;
+    g_result = ret;
 // [EndExclide main_process_launch_native_child]
 
     // 释放NativeChildProcess_Args中的内存空间防止内存泄漏
@@ -72,7 +73,7 @@ static napi_value TestChildProcess(napi_env env, napi_callback_info info)
 {
     StartNativeChildProcess();
     napi_value napiRet;
-    napi_create_int32(env, result, &napiRet);
+    napi_create_int32(env, g_result, &napiRet);
     return napiRet;
 }
 
