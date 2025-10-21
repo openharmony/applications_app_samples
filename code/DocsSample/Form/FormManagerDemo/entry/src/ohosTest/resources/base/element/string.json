@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "add_form_to_desktop",
+      "value": "服务卡片"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加至桌面"
+    },
+    {
+      "name": "add_card_to_desktop",
+      "value": "添加应用卡片到桌面"
+    }
+  ]
+}

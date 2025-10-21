@@ -1,0 +1,175 @@
+{
+  "ohos-module-entry": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+          "SOURCE_MAP_DIR": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\source_map\\default"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      },
+      "ohosTest": {
+        "SOURCE_ROOT": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\src\\ohosTest",
+        "RESOURCES_PATH": [
+          "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\src\\ohosTest\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\outputs\\ohosTest",
+          "INTERMEDIA_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\loader_out\\ohosTest",
+          "JS_LITE_ASSETS_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
+          "RES_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\res\\ohosTest",
+          "RES_PROFILE_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
+          "MANIFEST_JSON": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\manifest\\ohosTest",
+          "OUTPUT_METADATA_JSON": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json",
+          "SOURCE_MAP_DIR": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry\\build\\default\\intermediates\\source_map\\ohosTest"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "strictMode": {
+          "caseSensitiveCheck": true,
+          "useNormalizedOHMUrl": true
+        },
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": false,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    },
+    "BUILD_CACHE_DIR": ""
+  },
+  "ohos-project": {
+    "SELECT_PRODUCT_NAME": "default",
+    "MODULE_BUILD_DIR": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\build",
+    "BUNDLE_NAME": "com.samples.formmanagerdemo",
+    "BUILD_PATH": {
+      "OUTPUT_PATH": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\build\\outputs\\default"
+    },
+    "MODULES": [
+      {
+        "name": "entry",
+        "srcPath": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo\\entry",
+        "targets": [
+          {
+            "name": "default",
+            "applyToProducts": [
+              "default"
+            ]
+          }
+        ],
+        "belongProjectPath": "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo"
+      }
+    ],
+    "PROFILE_OPT": {
+      "app": {
+        "signingConfigs": [],
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "targetSdkVersion": 20,
+            "compileSdkVersion": 20,
+            "compatibleSdkVersion": 20,
+            "runtimeOS": "OpenHarmony",
+            "buildOption": {
+              "strictMode": {
+                "caseSensitiveCheck": true,
+                "useNormalizedOHMUrl": true
+              }
+            }
+          }
+        ],
+        "buildModeSet": [
+          {
+            "name": "debug"
+          },
+          {
+            "name": "release"
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "entry",
+          "srcPath": "./entry",
+          "targets": [
+            {
+              "name": "default",
+              "applyToProducts": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "CONFIG_PROPERTIES": {
+      "enableSignTask": true,
+      "skipNativeIncremental": false,
+      "hvigor.keepDependency": true
+    },
+    "OVERALL_PROJECT_PATHS": [
+      "D:\\Code-Sample\\MyCode\\form-formmanager-xxy\\code\\DocsSample\\Form\\FormManagerDemo"
+    ],
+    "BUILD_CACHE_DIR": ""
+  },
+  "version": 1
+}
