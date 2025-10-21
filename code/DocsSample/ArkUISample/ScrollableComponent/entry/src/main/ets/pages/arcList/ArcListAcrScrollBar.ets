@@ -20,19 +20,38 @@ import {
   ArcListItemAttribute,
   LengthMetrics,
   ArcScrollBar,
+  ComponentContent,
 } from '@kit.ArkUI';
 import { ComponentCard } from '../../common/Card';
+
+@Builder
+function customHeader() {
+  Column() {
+    Text($r('app.string.ArcListCrown_set'))
+      .fontColor('#FFFFFFFF')
+      .fontSize('19fp')
+  }
+}
 
 @Entry
 @Component
 export struct ArcListAcrScrollBar {
+  // [Start create_arcListScroller_start]
   private arcListScroller: Scroller = new Scroller();
+  // [End create_arcListScroller_start]
+
+
+  context: UIContext = this.getUIContext();
+  arcListHeader: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(customHeader));
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ArcListAcrScrollBar_title') }) {
-          ArcList({ scroller: this.arcListScroller }) {
+          // [Start bind_arcList_start]
+          // 将arcListScroller用于初始化ArcList组件的scroller参数，完成arcListScroller与弧形列表的绑定。
+          ArcList({ scroller: this.arcListScroller, header: this.arcListHeader }) {
+            // [StartExclude bind_arcList_start]
             ArcListItem() {
               Row() {
                 Image($r('app.media.wlan')).width('99px').height('99px')
@@ -119,14 +138,20 @@ export struct ArcListAcrScrollBar {
             .width('414px')
             .height('129px')
             .backgroundColor('#26FFFFFF')
+
+            // [EndExclude bind_arcList_start]
           }
+          // [End bind_arcList_start]
           .width('466px')
           .height('466px')
           .space(LengthMetrics.px(10))
           .borderRadius('233px')
           .backgroundColor(Color.Black)
 
+          // [Start bind_arcScrollBar_start]
+          // 将arcListScroller用于初始化ArcScrollBar组件的scroller参数，完成arcListScroller与滚动条的绑定。
           ArcScrollBar({ scroller: this.arcListScroller })
+          // [End bind_arcScrollBar_start]
         }
       }
       .width('100%')

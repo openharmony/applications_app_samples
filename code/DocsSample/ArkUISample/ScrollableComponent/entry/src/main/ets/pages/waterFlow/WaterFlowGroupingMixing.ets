@@ -37,7 +37,7 @@ struct ReusableFlowItem {
     }
   }
 }
-
+// [Start waterFlowGroupingMixing_start]
 @Entry
 @Component
 export struct WaterFlowGroupingMixing {
@@ -47,15 +47,30 @@ export struct WaterFlowGroupingMixing {
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(100);
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
-  @State columns: number = 2;
-  @State waterflowScale: number = 1;
-  @State imageScale: number = 1;
-  @State waterFlowOpacity: number = 1;
-  @State waterflowSnapshot: image.PixelMap | undefined = undefined;
-  private columnChanged: boolean = false;
-  private oldColumn: number = this.columns;
-  private pinchTime: number = 0;
   private gridItems: number[] = [];
+  @State sections: WaterFlowSections = new WaterFlowSections();
+  sectionMargin: Margin = {
+    top: 10,
+    left: 5,
+    bottom: 10,
+    right: 5
+  };
+  oneColumnSection: SectionOptions = {
+    itemsCount: 1,
+    crossCount: 1,
+    columnsGap: 5,
+    rowsGap: 10,
+    margin: this.sectionMargin,
+  };
+  twoColumnSection: SectionOptions = {
+    itemsCount: 98,
+    crossCount: 2,
+  };
+  // 使用分组瀑布流时无法通过footer设置尾部组件，可以保留一个固定的分组作为footer
+  lastSection: SectionOptions = {
+    itemsCount: 1,
+    crossCount: 1,
+  };
 
   // 计算FlowItem宽/高
   getSize() {
@@ -72,59 +87,26 @@ export struct WaterFlowGroupingMixing {
   }
 
   aboutToAppear() {
-    // 读取上次最后切换到到列数
-    let lastCount = AppStorage.get<number>('columnsCount');
-    if (typeof lastCount != 'undefined') {
-      this.columns = lastCount;
-    }
     this.setItemSizeArray();
     for (let i = 0; i < 15; ++i) {
       this.gridItems.push(i);
     }
-  }
-
-  // 根据缩放阈值改变列数，触发WaterFlow重新布局
-  changeColumns(scale: number) {
-    if (scale > (this.columns / (this.columns - 0.5)) && this.columns > 1) {
-      this.columns--;
-      this.columnChanged = true;
-    } else if (scale < 1 && this.columns < 4) {
-      this.columns++;
-      this.columnChanged = true;
-    }
-  }
-
-  @Builder
-  itemFoot() {
-    Row() {
-      LoadingProgress()
-        .color(Color.Blue).height(50).aspectRatio(1).width('20%')
-      Text(`正在加载`)
-        .fontSize(20)
-        .width('30%')
-        .height(50)
-        .align(Alignment.Center)
-        .margin({ top: 2 })
-    }.width('100%').justifyContent(FlexAlign.Center)
+    // 所有分组的itemCount之和需要和WaterFlow下数据源的子节点总数相等，否则无法正常布局
+    let sectionOptions: SectionOptions[] = [this.oneColumnSection, this.twoColumnSection, this.lastSection];
+    this.sections.splice(0, 0, sectionOptions);
   }
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-        ComponentCard({ title: $r('app.string.WaterFlowGroupingMixing_title') }) {
-          List({ space: 10 }) {
-            ListItem() {
-              Text('List').fontSize(14).height(16).margin(3)
-            }
-
-            ListItem() {
-              Column() {
-                Text('Grid in ListItem').fontSize(12).height(16).margin(3)
-
+      ComponentCard({ title: $r('app.string.WaterFlowGroupingMixing_title') }) {
+        WaterFlow({ layoutMode: WaterFlowLayoutMode.SLIDING_WINDOW, sections: this.sections }) {
+          LazyForEach(this.dataSource, (item: number) => {
+            FlowItem() {
+              if (item === 0) {
                 Grid() {
                   ForEach(this.gridItems, (day: number) => {
                     GridItem() {
-                      Text('GridItem').fontSize(10).height(16)
+                      Text('GridItem').fontSize(14).height(16)
                     }.backgroundColor(0xFFC0CB)
                   }, (day: number) => day.toString())
                 }
@@ -133,48 +115,32 @@ export struct WaterFlowGroupingMixing {
                 .columnsGap(5)
                 .columnsTemplate('1fr '.repeat(5))
                 .rowsTemplate('1fr '.repeat(3))
-                .width('95%')
-              }.borderWidth(3)
+              } else {
+                ReusableFlowItem({ item: item })
+              }
             }
-
-            ListItem() {
-              Column() {
-                Text('WaterFlow in ListItem').fontSize(14).height(16).margin(3)
-                WaterFlow({ layoutMode: WaterFlowLayoutMode.SLIDING_WINDOW }) {
-                  LazyForEach(this.dataSource, (item: number) => {
-                    FlowItem() {
-                      ReusableFlowItem({ item: item })
-                    }
-                    .width('100%')
-                    .aspectRatio(this.columns === 2 ? this.itemHeightArray[item % 100] / this.itemWidthArray[item % 100] : 0)
-                    .backgroundColor(this.colors[item % 5])
-                  }, (item: string) => item)
-                }
-                .columnsTemplate('1fr '.repeat(this.columns))
-                .backgroundColor(0xFAEEE0)
-                .height('100%')
-                .layoutWeight(1)
-                // 即将触底时提前增加数据
-                .onScrollIndex((first: number, last: number) => {
-                  if (last + 20 >= this.dataSource.totalCount()) {
-                    setTimeout(() => {
-                      this.dataSource.addNewItems(100);
-                    }, 1000)
-                  }
-                })
-                .width('95%')
-              }.borderWidth(3)
-            }
-          }.borderWidth(3)
-          .width('98%')
-          .alignListItem(ListItemAlign.Center).scrollBar(BarState.Off)
+            .width('100%')
+            .aspectRatio(item != 0 ? this.itemHeightArray[item % 100] / this.itemWidthArray[item % 100] : 0)
+            .backgroundColor(item != 0 ? this.colors[item % 5] : Color.White)
+          }, (item: string) => item)
         }
+        .backgroundColor(0xFAEEE0)
+        .height('100%')
+        // 即将触底时提前增加数据
+        .onScrollIndex((first: number, last: number) => {
+          if (last + 20 >= this.dataSource.totalCount()) {
+            setTimeout(() => {
+              this.dataSource.addNewItems(100);
+              // 增加数据后同步调整对应分组的itemCount
+              this.twoColumnSection.itemsCount += 100;
+              this.sections.update(1, this.twoColumnSection);
+            }, 1000);
+          }
+        })
+        .margin(10)
       }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
-    }
-    .backgroundColor('#f1f2f3')
+    }.backgroundColor('#f1f2f3')
     .title($r('app.string.WaterFlowGroupingMixing_title'))
   }
 }
+// [End waterFlowGroupingMixing_start]

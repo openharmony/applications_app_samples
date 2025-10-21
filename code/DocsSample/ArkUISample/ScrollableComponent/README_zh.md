@@ -37,6 +37,7 @@ entry/src/main/ets/
 |   |       |---ArcListArcIndexerBar.ets
 |   |       |---arcListBuiltInScrollerBar.ets
 |   |       |---ArcListContents.ets
+|   |       |---ArcListCreate.ets
 |   |       |---ArcListCrown.ets
 |   |       |---ArcListShow.ets
 |   |       |---ArcListSideSlip.ets
