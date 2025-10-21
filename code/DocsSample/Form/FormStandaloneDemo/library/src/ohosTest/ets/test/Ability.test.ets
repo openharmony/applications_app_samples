@@ -14,7 +14,7 @@
  */
 
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON, Component, Point } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';

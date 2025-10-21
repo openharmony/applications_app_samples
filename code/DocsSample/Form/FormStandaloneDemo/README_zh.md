@@ -114,13 +114,8 @@
 
 ### 具体实现
 
-可参考服务卡片开发指南如下三个章节：
+桌面提供统一的卡片管理页面。应用通过[formProvider](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formProvider.md)模块提供的[openFormManager](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)接口，能够拉起卡片管理页面，触发卡片添加至桌面操作，点击“添加至桌面”，实现卡片添加至桌面的功能, 桌面中的卡片点击Button控制Image的显示和消失；
 
-[卡片页面能力说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-overview.md)
-
-[卡片使用动效能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-animation.md)
-
-[卡片使用自定义绘制能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-custom-drawing.md)
 
 ### 相关权限
 
@@ -134,9 +129,9 @@
 
 1.  本示例支持标准系统上运行，支持设备：RK3568；
 
-2.  本示例支持API14版本SDK，版本号：5.0.2.57；
+2.  本示例支持API20版本SDK，版本号：6.0.0.47；
 
-3.  本示例已支持使DevEco Studio 5.0.1 Release (构建版本：5.0.5.306，构建 2024年12月12日)编译运行；
+3.  本示例已支持使DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年9月24日)编译运行；
 
 4.  高等级APL特殊签名说明：无；
 
@@ -147,7 +142,7 @@
 ```shell
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Form/ArkTSCardDocsSample/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/Form/Formstandalone/ > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
