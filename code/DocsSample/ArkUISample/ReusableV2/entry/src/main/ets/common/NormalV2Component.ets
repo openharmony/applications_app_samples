@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 //[Start NormalV2Component]
-import { ReusableV2Component } from "./ReusableV2Component1";
+import { ReusableV2Component } from './ReusableV2Component1';
 @ComponentV2
 export  struct NormalV2Component {
   @Require @Param condition: boolean;

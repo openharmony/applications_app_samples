@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 //[Start Reset_the_internal_state_variables_of_the_component_before_reuse]
-import { ReusableV2Component2 } from "../common/ReusableV2Component2";
+import { ReusableV2Component2 } from '../common/ReusableV2Component2';
 @ObservedV2
 export class Info {
   @Trace age: number = 25;

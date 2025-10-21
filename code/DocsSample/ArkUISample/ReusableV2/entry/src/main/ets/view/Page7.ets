@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 //[Start Use_in_if_component]
-import { ReusableV2Component4 } from "../common/ReusableV2Component4";
+import { ReusableV2Component4 } from '../common/ReusableV2Component4';
 @ObservedV2
 export class Info2 {
   @Trace age: number;

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 //[Start ReusableV2Component2]
-import { info, Info } from "../view/Page5";
+import { info, Info } from '../view/Page5';
 @ReusableV2
 @ComponentV2
 export  struct ReusableV2Component2 {

@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 //[Start Reset_the_internal_state_variables_of_the_component_before_reuse1]
-import { ReusableV2Component3 } from "../common/ReusableV2Component3";
+import { ReusableV2Component3 } from '../common/ReusableV2Component3';
 @ObservedV2
 export class Info1 {
-  @Trace age: number;
+  @Trace private age: number;
   constructor(age: number) {
     this.age = age;
   }
