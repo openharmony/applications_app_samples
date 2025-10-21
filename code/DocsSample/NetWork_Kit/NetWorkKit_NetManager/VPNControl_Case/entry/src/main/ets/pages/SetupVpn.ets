@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-// [Start vpn_config_parameters]
+// [Start vpn_config_import]
 import { vpnExtension } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
-// [StartExclude vpn_config_parameters]
+// [End vpn_config_import]
 import { ComponentId } from '../common/CommonConstant'; // 引入枚举
 import { BusinessError } from '@kit.BasicServicesKit';
 import { showToast } from '../common/ShowToast';
@@ -28,9 +28,10 @@ const buttonMargin = 16;
 let gTunFd = -1;
 let gTunnelFd = -1;
 let notificationOperations: NotificationOperations = new NotificationOperations(getContext(this));
-// [EndExclude vpn_config_parameters]
+
 let tunIp: string = '10.0.0.5';  // 示例地址，代表客户端设备在虚拟网络中的地址
 let blockedAppName: string = 'com.example.baidumyapplication'; // 示例
+// [Start vpn_config_parameters]
 let context = getContext(this) as common.VpnExtensionContext;
 let vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
 
@@ -54,7 +55,6 @@ export default struct allNetworksBtn {
 
   SetupVpn() {
     console.info('developTag', '%{public}s', 'vpn SetupVpn');
-    // [EndExclude vpn_config_parameters]
 
     // 定义 Address 类，表示 IP 地址和地址族
     class Address {
@@ -143,7 +143,7 @@ export default struct allNetworksBtn {
 
     // 使用上述配置创建 VPN 配置对象
     let vpnConfig = new Config(tunIp, blockedAppName);
-
+    // [EndExclude vpn_config_parameters]
     // 创建 VPN 连接并应用配置
     vpnConnection.create(vpnConfig).then((data) => {
       console.info('vpn create ' + JSON.stringify(data));
@@ -167,6 +167,7 @@ export default struct allNetworksBtn {
       console.error('developTag', 'vpn start Fail %{public}s', JSON.stringify(err) ?? '');
       this.flag = 'Error';  // 设置状态为失败
     });
+    // [EndExclude vpn_config_parameters]
   }
-  // [EndExclude vpn_config_parameters]
+  // [End vpn_config_parameters]
 }
