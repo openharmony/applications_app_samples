@@ -383,7 +383,7 @@ void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
         "touch info: max_touch_points_number = %{public}d", OH_MAX_TOUCH_POINTS_NUMBER);
     bool isshowSample = 0;
-    if (isshowSample == 1){
+    if (isshowSample == 1) {
         // 仅展示使用方法
         ShowSample(component);
     }
@@ -391,33 +391,33 @@ void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
 
 void SampleCallback(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targettimestamp)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallback","SampleCallback");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallback", "SampleCallback");
 }
 
 void SampleInputeventCallback(OH_NativeXComponent *component, ArkUI_UIInputEvent *event, ArkUI_UIInputEvent_Type type)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInputeventCallback","SampleInputeventCallback");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInputeventCallback", "SampleInputeventCallback");
 }
 
 HitTestMode SampleInterceptCallback(OH_NativeXComponent *component, ArkUI_UIInputEvent *event)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInterceptCallback","SampleInterceptCallback");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInterceptCallback", "SampleInterceptCallback");
 }
 
 void SampleSurfaceShowCallback(OH_NativeXComponent *component, void* window)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleSurfaceShowCallback","SampleSurfaceShowCallback");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleSurfaceShowCallback", "SampleSurfaceShowCallback");
 }
 
 bool SampleCallbackWithResult(OH_NativeXComponent *component, void* window)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallbackWithResult","SampleCallbackWithResult");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallbackWithResult", "SampleCallbackWithResult");
     return false;
 }
 
 void SampleAnalyzer(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleAnalyzer","SampleAnalyzer");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleAnalyzer", "SampleAnalyzer");
 }
 
 void myContentHandler(ArkUI_NodeContentEvent* event) {
@@ -445,7 +445,7 @@ void PluginRender::ShowSample(OH_NativeXComponent* component)
     OH_NativeXComponent_RegisterKeyEventCallbackWithResult(component, SampleCallbackWithResult);
     ArkUI_NodeHandle node;
     void* userData;
-    OH_ArkUI_XComponent_StartImageAnalyzer(node, userData,SampleAnalyzer);
+    OH_ArkUI_XComponent_StartImageAnalyzer(node, userData, SampleAnalyzer);
     OH_ArkUI_XComponent_StopImageAnalyzer(node);
     ArkUI_NodeContentCallback callback1 = myContentHandler;
 }
