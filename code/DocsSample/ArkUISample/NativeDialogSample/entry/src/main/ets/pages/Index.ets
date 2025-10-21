@@ -16,6 +16,7 @@
 import router from '@ohos.router';
 import testNapi2 from 'libnativerender.so';
 import { common } from '@kit.AbilityKit';
+import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -41,6 +42,13 @@ struct Index {
             router.push({
               url: 'pages/IndexCustomDialog',
             })
+          })
+        Button($r('app.string.dialog_demo'))
+          .height(50)
+          .width('85%')
+          .margin({ top: 20, bottom: 10 })
+          .onClick(() => {
+            router.push({url: 'pages/DialogDemo'});
           })
         Text($r('app.string.exit_app'))
           .fontSize(20)

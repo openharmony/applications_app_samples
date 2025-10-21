@@ -21,6 +21,22 @@
       "value": "OpenCustomDialog_CAPI对接示例"
     },
     {
+      "name": "dialog_demo",
+      "value": "dialog demo"
+    },
+    {
+      "name": "dialog_controller_demo",
+      "value": "DialogController demo"
+    },
+    {
+      "name": "dialog_option_demo",
+      "value": "DialogOption demo"
+    },
+    {
+      "name": "dialog_lifecycle_demo",
+      "value": "Dialog lifecycle demo"
+    },
+    {
       "name": "exit_app",
       "value": "退出应用"
     },
