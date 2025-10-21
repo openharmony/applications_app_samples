@@ -190,15 +190,7 @@ struct FilePicker {
     return file;
   }
 
-  prepareForOpenDlpFile() {
-    let file = this.openFile(this.uri);
-    if (!file) {
-      return;
-    }
-    this.openDlpFile(this.uri, this.fileName, file.fd);
-    
-  }
-
+  // [Start dlp_prepareForOpenDlpFile]
   // 2，打开Dlp文件
   openDlpFile(dlpUri: string, fileName: string, fd: number) {
     let want:Want = {
@@ -229,7 +221,18 @@ struct FilePicker {
     }
   }
 
+  prepareForOpenDlpFile() {
+    let file = this.openFile(this.uri);
+    if (!file) {
+      return;
+    }
+    this.openDlpFile(this.uri, this.fileName, file.fd);
+    
+  }
+  // [End dlp_prepareForOpenDlpFile]
 
+
+  // [Start dlp_generateDlpFiles]
   //3 生成DLP文件
   generateDlpFiles() {
     try {
@@ -252,7 +255,9 @@ struct FilePicker {
       console.error('startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
     }
   }
+  // [End dlp_generateDlpFiles]
 
+  // [Start dlp_isInSandBox]
   // 4 查询当前应用是否在沙箱中
   isInSandbox() {
     dlpPermission.isInSandbox().then((data) => {
@@ -263,7 +268,9 @@ struct FilePicker {
       console.log('isInSandbox error: ' + JSON.stringify(err));
     });
   }
+  // [End dlp_isInSandBox]
 
+  // [Start dlp_getDLPPermissionInfo]
   // 5 查询当前编辑的文件权限
   getDLPPermissionInfo() {
     dlpPermission.getDLPPermissionInfo().then((data) => {
@@ -274,7 +281,9 @@ struct FilePicker {
       console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
     });
   }
+  // [End dlp_getDLPPermissionInfo]
 
+  // [Start dlp_getDLPSupportedFileTypes]
   //6 获取当前可支持DLP方案的文件拓展名类型列表
   getDLPSupportedFileTypes() {
     dlpPermission.getDLPSupportedFileTypes((err, result) => {
@@ -283,7 +292,9 @@ struct FilePicker {
       this.result = 'getDLPSupportedFileTypes result: ' + JSON.stringify(result);
     });
   }
+  // [End dlp_getDLPSupportedFileTypes]
 
+  // [Start dlp_isCurrentDlpFile]
   //7 判断当前打开文件是否是DLP文件
   isCurrentDlpFile() {
     let file = this.openFile(this.uri);
@@ -301,7 +312,9 @@ struct FilePicker {
         fs.closeSync(file);
     });
   }
+  // [End dlp_isCurrentDlpFile]
 
+  // [Start dlp_subscribe]
   // 8 订阅、取消订阅DLP打开事件。
   event(info: dlpPermission.AccessedDLPFileInfo) {
     console.info('openDlpFile event', info.uri, info.lastOpenTime);
@@ -326,7 +339,9 @@ struct FilePicker {
       this.result = "subscribe error: 注册失败";
     }
   }
+  // [End dlp_subscribe]
 
+  // [Start dlp_getDLPFileAccessRecords]
   // 9 获取DLP文件打开记录
   getDLPFileAccessRecords() {
     dlpPermission.getDLPFileAccessRecords().then((res) => {
@@ -337,7 +352,9 @@ struct FilePicker {
       console.error('error: ', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
     });
   }
+  // [End dlp_getDLPFileAccessRecords]
 
+  // [Start dlp_getRetentionSandboxList]
   // 10 获取DLP文件保留沙箱记录
   getRetentionSandboxList() {
     dlpPermission.getRetentionSandboxList().then((res) => {
@@ -348,7 +365,9 @@ struct FilePicker {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
     });
   }
+  // [End dlp_getRetentionSandboxList]
 
+  // [Start dlp_setSandboxAppConfig]
   // 11 设置沙箱应用配置
   setSandboxAppConfig() {
     dlpPermission.setSandboxAppConfig('configInfo').then(() => {
@@ -359,7 +378,9 @@ struct FilePicker {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
     });
   }
+  // [End dlp_setSandboxAppConfig]
 
+  // [Start dlp_cleanSandboxAppConfig]
   // 12 清理沙箱应用配置信息
   cleanSandboxAppConfig() {
     dlpPermission.cleanSandboxAppConfig().then(() => {
@@ -370,7 +391,9 @@ struct FilePicker {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
     });
   }
+  // [End dlp_cleanSandboxAppConfig]
 
+  // [Start dlp_getSandboxAppConfig]
   // 13 获取DLP文件保留沙箱记录
   getSandboxAppConfig() {
     dlpPermission.getSandboxAppConfig().then((res) => {
@@ -381,7 +404,9 @@ struct FilePicker {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
     });
   }
+  // [End dlp_getSandboxAppConfig]
 
+  // [Start dlp_startDLPManagerForResult]
   // 14 以无边框形式打开DLP权限管理应用。
   startDLPManagerForResult() {
     try {
@@ -402,7 +427,9 @@ struct FilePicker {
       console.error('error', err.code, err.message); // 失败报错
     }
   }
+  // [End dlp_startDLPManagerForResult]
 
+  // [Start dlp_isDLPFeature]
   // 15 查询当前系统是否提供DLP特性
   isDLPFeature() {
     dlpPermission.isDLPFeatureProvided().then((res) => {
@@ -413,6 +440,7 @@ struct FilePicker {
       console.error('error: ', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
     });
   }
+  // [End dlp_isDLPFeature]
 
   build() {
     Column() {
