@@ -18,9 +18,9 @@ import { startupManager } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  @State message: string = "手动模式";
-  @State startParams1: Array<string> = ["StartupTask_006"];
-  @State startParams2: Array<string> = ["libentry_006"];
+  @State message: string = '手动模式';
+  @State startParams1: Array<string> = ['StartupTask_006'];
+  @State startParams2: Array<string> = ['libentry_00'];
 
   build() {
     RelativeContainer() {
@@ -29,10 +29,10 @@ struct Index {
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          if (!startupManager.isStartupTaskInitialized("StartupTask_006") ) { // 判断是否已经完成初始化
+          if (!startupManager.isStartupTaskInitialized('StartupTask_006') ) { // 判断是否已经完成初始化
             startupManager.run(this.startParams1)
           }
-          if (!startupManager.isStartupTaskInitialized("libentry_006") ) {
+          if (!startupManager.isStartupTaskInitialized('libentry_006') ) {
             startupManager.run(this.startParams2)
           }
         })
