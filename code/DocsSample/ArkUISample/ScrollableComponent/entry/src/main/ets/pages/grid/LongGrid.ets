@@ -37,18 +37,26 @@ export struct LongGrid {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.LongGrid_title') }) {
           Column({ space: 5 }) {
+            // [Start long_list]
             Grid(this.scroller) {
               LazyForEach(this.numbers, (day: string) => {
                 GridItem() {
+                  // [StartExclude long_list]
                   Text(day)
                     .fontSize(16)
                     .backgroundColor(0xF9CF93)
                     .width('100%')
                     .height(80)
                     .textAlign(TextAlign.Center)
+                  // [EndExclude long_list]
                 }
-              }, (index: number) => index.toString())
+              }
+                // [StartExclude long_list]
+              , (index: number) => index.toString())
+              // [EndExclude long_list]
             }
+            .cachedCount(3)
+            // [End long_list]
             .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
             .columnsGap(10)
             .rowsGap(20)

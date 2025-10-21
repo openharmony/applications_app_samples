@@ -16,8 +16,9 @@
 import { ComponentCard } from '../../common/Card';
 // [Start define_the_data_to_be_done]
 import { util } from '@kit.ArkTS';
-
-
+import { UIContext } from '@kit.ArkUI';
+import common from '@ohos.app.ability.common';
+  // [Start build_the_overall_list_layout_and_list_items]
 export class ToDo {
   public key: string = util.generateRandomUUID(true);
   public name: string;
@@ -28,7 +29,6 @@ export class ToDo {
 }
 // [End define_the_data_to_be_done]
 
-// [Start build_the_overall_list_layout_and_list_items]
 @Component
 export struct ToDoListItem {
   @Link isEditMode: boolean;
@@ -75,14 +75,27 @@ export struct AddListItem {
   // [EndExclude build_list_layouts_and_list_items]
   @Watch('onEditModeChange') @State isEditMode: boolean = false
   @State selectedItems: ToDo[] = []
-  private availableThings: string[] = ['Reading', 'Exercise', 'Travel', 'Listening Music', 'Watching Films', 'Singing'];
-
+    private availableThings: string [] = [];
+    aboutToAppear(): void {
+      const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      const Reading = context.resourceManager.getStringByNameSync('Reading')
+      this.availableThings.push(Reading)
+      const Exercise = context.resourceManager.getStringByNameSync('Exercise')
+      this.availableThings.push(Exercise)
+      const Travel = context.resourceManager.getStringByNameSync('Travel')
+      this.availableThings.push(Travel)
+      const Listening_Music = context.resourceManager.getStringByNameSync('Listening_Music')
+      this.availableThings.push(Listening_Music)
+      const Watching_Films = context.resourceManager.getStringByNameSync('Watching_Films')
+      this.availableThings.push(Watching_Films)
+      const Singing = context.resourceManager.getStringByNameSync('Singing')
+      this.availableThings.push(Singing)
+    }
   onEditModeChange() {
     if (!this.isEditMode) {
       this.selectedItems = [];
     }
   }
-
   build() {
     // [StartExclude build_list_layouts_and_list_items]
     NavDestination() {

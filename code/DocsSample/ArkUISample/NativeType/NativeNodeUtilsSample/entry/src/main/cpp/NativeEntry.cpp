@@ -274,7 +274,7 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
     }
     return list;
 }
-
+// [Start Interface_entrance_mounting_file]
 napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -302,7 +302,7 @@ napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
     NativeEntry::GetInstance()->ClearNode();
     return nullptr;
 }
-
+// [End Interface_entrance_mounting_file]
 napi_value GetContext(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;

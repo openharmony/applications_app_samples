@@ -1,0 +1,55 @@
+//
+// Created on 2025/10/21.
+//
+// Node APIs are not fully supported. To solve the compilation error of the interface cannot be found,
+// please include "napi/native_api.h".
+   
+    // [Start Use_grouped_lists]
+// ArkUIListItemGroupNode.h 
+
+#ifndef MYAPPLICATION_ARKUILISTITEMGROUPNODE_H 
+#define MYAPPLICATION_ARKUILISTITEMGROUPNODE_H 
+#include "ArkUINode.h" 
+#include "ArkUIListItemAdapter.h" 
+namespace NativeModule{ 
+class ArkUIListItemGroupNode : public ArkUINode { 
+public: 
+    ArkUIListItemGroupNode() 
+        : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST_ITEM_GROUP)) {} 
+    void SetHeader(std::shared_ptr<ArkUINode> node) { 
+        if (node) { 
+            ArkUI_AttributeItem Item = {.object = node->GetHandle()}; 
+            nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER, &Item); 
+        } else { 
+            nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_HEADER); 
+        } 
+    } 
+    void SetFooter(std::shared_ptr<ArkUINode> node) { 
+        if (node) { 
+            ArkUI_AttributeItem Item = {.object= node->GetHandle()}; 
+            nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER, &Item); 
+        } else { 
+            nativeModule_->resetAttribute(handle_, NODE_LIST_ITEM_GROUP_SET_FOOTER); 
+        } 
+    } 
+    std::shared_ptr<ArkUINode> GetHeader() const { 
+        return header_; 
+    }
+    std::shared_ptr<ArkUINode> GetFooter() const { 
+        return footer_; 
+    }
+    //引入懒加载模块。 
+    void SetLazyAdapter(const std::shared_ptr<ArkUIListItemAdapter> &adapter) { 
+        assert(handle_); 
+        ArkUI_AttributeItem item{nullptr,0, nullptr, adapter->GetHandle()}; 
+        nativeModule_->setAttribute(handle_, NODE_LIST_ITEM_GROUP_NODE_ADAPTER, &item); 
+        adapter_ = adapter; 
+    } 
+private: 
+    std::shared_ptr<ArkUINode> header_; 
+    std::shared_ptr<ArkUINode> footer_; 
+    std::shared_ptr<ArkUIListItemAdapter> adapter_; 
+}; 
+}// namespace NativeModule 
+#endif//MYAPPLICATION_ARKUILISTITEMGROUPNODE_H
+ // [End Use_grouped_lists]

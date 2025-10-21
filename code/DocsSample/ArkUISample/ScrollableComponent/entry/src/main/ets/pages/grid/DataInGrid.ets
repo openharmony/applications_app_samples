@@ -14,13 +14,23 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-
 // [Start build_a_office_services_grid_of_foreach]
+import common from '@ohos.app.ability.common';
 @Entry
 @Component
 export struct DataInGrid {
-  @State services: Array<string> = ['Meeting', 'Voting', 'Check-in', 'Printing'];
-
+  @State services: Array<string> = [];
+  aboutToAppear(): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const Meeting = context.resourceManager.getStringByNameSync('Meeting')
+    this.services.push(Meeting)
+    const Check_in = context.resourceManager.getStringByNameSync('Check_in')
+    this.services.push(Check_in)
+    const Voting = context.resourceManager.getStringByNameSync('Voting')
+    this.services.push(Voting)
+    const Printing = context.resourceManager.getStringByNameSync('Printing')
+    this.services.push(Printing)
+  }
   build() {
     // [StartExclude build_a_office_services_grid_of_foreach]
     NavDestination() {
@@ -32,22 +42,22 @@ export struct DataInGrid {
           // [Start build_a_office_services_grid]
           Grid() {
             GridItem() {
-              Text('Meeting')
+              Text($r('app.string.Meeting'))
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
 
             GridItem() {
-              Text('Check-in')
+              Text($r('app.string.Check_in'))
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
 
             GridItem() {
-              Text('Voting')
+              Text($r('app.string.Voting'))
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
 
             GridItem() {
-              Text('Printing')
+              Text($r('app.string.Printing'))
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
           }

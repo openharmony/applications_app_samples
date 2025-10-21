@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
+//[Start List_item_data_structure]
 import { curves } from '@kit.ArkUI';
+//[StartExclude List_item_data_structure]
 import { ComponentCard } from '../../common/Card';
 
+// [EndExclude List_item_data_structure]
 interface ItemInfo {
   index: number,
   name: string,
@@ -27,10 +30,12 @@ interface ItemGroupInfo extends ItemInfo {
   children: ItemInfo[]
 }
 
+//[End List_item_data_structure]
 
 @Entry
 @Component
 export struct CollapseAndExpand {
+  //[Start List_item_data_structure]
   @State routes: ItemGroupInfo[] = [
     {
       index: 0,
@@ -100,10 +105,10 @@ export struct CollapseAndExpand {
       children: []
     },
   ];
-
   @State expandedItems: boolean[] = Array(this.routes.length).fill(false);
   @State selection: string | null = null;
 
+  //[Start List_item_data_structure]
   @Builder
   ListItemGroupHeader(itemGroup: ItemGroupInfo) {
     Row() {
@@ -127,10 +132,14 @@ export struct CollapseAndExpand {
       }
     })
   }
+
+  //[End List_item_data_structure]
   build() {
+    //[StartExclude List_item_data_structure]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CollapseAndExpand_title') }) {
+          // [EndExclude List_item_data_structure]
           Column() {
             List({ space: 10 }) {
               ForEach(this.routes, (itemGroup: ItemGroupInfo) => {
@@ -172,13 +181,16 @@ export struct CollapseAndExpand {
           .justifyContent(FlexAlign.Start)
           .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
         }
+
+        //[End List_item_data_structure]
       }
+      //[StartExclude List_item_data_structure]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [EndExclude List_item_data_structure]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CollapseAndExpand_title'))
   }
-
 }

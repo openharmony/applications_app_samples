@@ -20,7 +20,9 @@ import { ComponentCard } from '../../common/Card';
 @Component
 export struct GridScrollbar {
   numbers: GridDataSource = new GridDataSource([]);
+  // [Start Add_external_scrollbar]
   scroller: Scroller = new Scroller();
+  // [StartExclude Add_external_scrollbar]
   @State gridPosition: number = 0; //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
 
   aboutToAppear() {
@@ -32,13 +34,16 @@ export struct GridScrollbar {
     }
     this.numbers = new GridDataSource(list);
   }
-
+  // [EndExclude Add_external_scrollbar]
   build() {
+    // [StartExclude Add_external_scrollbar]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.GridScrollbar_title') }) {
           Row({ space: 5 }) {
+            // [EndExclude Add_external_scrollbar]
             Grid(this.scroller) {
+              // [StartExclude Add_external_scrollbar]
               LazyForEach(this.numbers, (day: string) => {
                 GridItem() {
                   Text()
@@ -49,7 +54,9 @@ export struct GridScrollbar {
                     .textAlign(TextAlign.Center)
                 }
               }, (index: number) => index.toString())
+              // [EndExclude Add_external_scrollbar]
             }
+            // [StartExclude Add_external_scrollbar]
             .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
             .columnsGap(10)
             .rowsGap(10)
@@ -57,7 +64,7 @@ export struct GridScrollbar {
             .enableScrollInteraction(true)
             .supportAnimation(false)
             .multiSelectable(false)
-            .edgeEffect(EdgeEffect.Spring)
+            .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true, effectEdge: EffectEdge.START })
             .scrollBar(BarState.Off)
             .scrollBarColor(Color.Grey)
             .scrollBarWidth(4)
@@ -65,8 +72,10 @@ export struct GridScrollbar {
             .backgroundColor(0xFAEEE0)
             .height(300)
             .margin({left:10})
+            // [EndExclude Add_external_scrollbar]
             ScrollBar({ scroller: this.scroller }).height(300)
-
+            // [End Add_external_scrollbar]
+            // [StartExclude Add_external_scrollbar]
           }.width('100%').margin({ top: 5 })
         }
       }
@@ -74,6 +83,7 @@ export struct GridScrollbar {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [EndExclude Add_external_scrollbar]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.GridScrollbar_title'))
   }

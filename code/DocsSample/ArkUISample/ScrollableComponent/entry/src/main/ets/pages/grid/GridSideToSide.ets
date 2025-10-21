@@ -42,8 +42,10 @@ export struct GridSideToSide {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.GridSideToSide_title') }) {
+          // [Start Control_scrolling_position]
           Column(){
             Grid(this.scroller) {
+              // [StartExclude Control_scrolling_position]
               LazyForEach(this.numbers, (day: string) => {
                 GridItem() {
                   Text(day)
@@ -54,14 +56,16 @@ export struct GridSideToSide {
                     .textAlign(TextAlign.Center)
                 }
               }, (index: number) => index.toString())
+              // [EndExclude Control_scrolling_position]
             }
             .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
+            // [StartExclude Control_scrolling_position]
             .columnsGap(10)
             .rowsGap(10)
             .width('90%')
             .height(300)
             .scrollBar(BarState.Off)
-
+            // [EndExclude Control_scrolling_position]
             Row({ space: 20 }) {
               Button('上一页')
                 .onClick(() => {
@@ -78,6 +82,7 @@ export struct GridSideToSide {
                 })
             }
           }
+          // [Start Control_scrolling_position]
         }
       }
       .width('100%')

@@ -14,13 +14,14 @@
  */
 
 import { ComponentCard } from '../../common/Card'
+// [Start Listitem_data_structure]
 // 消息类型定义
 interface Message {
   id: number
   content: string
   sender: string
 }
-
+// [End Listitem_data_structure]
 @Entry
 @Component
 export struct ListChatRoom {
@@ -51,6 +52,7 @@ export struct ListChatRoom {
       this.inputText = ''
     }
   }
+  // [Start Construct_list_structure]
   // 消息列表数据
   @State messages: Message[] = [
     { id: 1, content: '欢迎来到直播间！', sender: '系统' },
@@ -61,9 +63,11 @@ export struct ListChatRoom {
   @State inputText: string = ''
 
   build() {
+    // [StartExclude Construct_list_structure]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ListChatRoom_title') }) {
+          // [EndExclude Construct_list_structure]
           Column() {
             // 聊天消息区域
             List({ space: 10 }) {
@@ -98,6 +102,7 @@ export struct ListChatRoom {
           }
           .width('100%')
           .height('100%')
+          // [StartExclude Construct_list_structure]
         }
       }
       .width('100%')
@@ -106,5 +111,7 @@ export struct ListChatRoom {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ListChatRoom_title'))
+    // [EndExclude Construct_list_structure]
   }
+  // [End Construct_list_structure]
 }

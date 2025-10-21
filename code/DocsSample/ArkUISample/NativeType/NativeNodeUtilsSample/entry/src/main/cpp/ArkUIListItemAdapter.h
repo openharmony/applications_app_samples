@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Lazy_loading_of_text_list]
 // ArkUIListItemAdapter
 // 用于文本列表懒加载功能代码。
 #ifndef MYAPPLICATION_ARKUILISTITEMADAPTER_H
@@ -58,7 +59,7 @@ namespace NativeModule {
         }
 
         ArkUI_NodeAdapterHandle GetHandle() const { return handle_; }
-
+    // [Start RemoveItem]
         void RemoveItem(int32_t index)
         {
             // 删除第index个数据。
@@ -69,7 +70,7 @@ namespace NativeModule {
             // 更新新的数量。
             OH_ArkUI_NodeAdapter_SetTotalNodeCount(handle_, data_.size());
         }
-
+    // [End RemoveItem]
         void InsertItem(int32_t index, const std::string &value)
         {
             data_.insert(data_.begin() + index, value);
@@ -208,3 +209,4 @@ namespace NativeModule {
 } // namespace NativeModule
 
 #endif // MYAPPLICATION_ARKUILISTITEMADAPTER_H
+ // [End Lazy_loading_of_text_list]

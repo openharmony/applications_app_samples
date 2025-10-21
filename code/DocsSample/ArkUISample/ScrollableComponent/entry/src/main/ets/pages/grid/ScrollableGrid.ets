@@ -14,18 +14,43 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-
 // [Start build_scrollable_horizontally_grid_layouts]
+import common from '@ohos.app.ability.common';
 @Entry
 @Component
 export struct ScrollableGrid {
-  @State services: Array<string> = ['Live Streaming', 'Imported', 'Categories', 'Recharge',
-    'Membership', 'Claim Coupon', 'Lottery', 'Favorites', 'Points', 'More'];
-
+  @State services: Array<string> = [];
+  aboutToAppear(): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const Live_Streaming = context.resourceManager.getStringByNameSync('Live_Streaming')
+    this.services.push(Live_Streaming)
+    const Imported = context.resourceManager.getStringByNameSync('Imported')
+    this.services.push(Imported)
+    const Categories = context.resourceManager.getStringByNameSync('Categories')
+    this.services.push(Categories)
+    const Recharge = context.resourceManager.getStringByNameSync('Recharge')
+    this.services.push(Recharge)
+    const Membership = context.resourceManager.getStringByNameSync('Membership')
+    this.services.push(Membership)
+    const Claim_Coupon = context.resourceManager.getStringByNameSync('Claim_Coupon')
+    this.services.push(Claim_Coupon)
+    const Lottery = context.resourceManager.getStringByNameSync('Lottery')
+    this.services.push(Lottery)
+    const Favorites = context.resourceManager.getStringByNameSync('Favorites')
+    this.services.push(Favorites)
+    const Points = context.resourceManager.getStringByNameSync('Points')
+    this.services.push(Points)
+    const More = context.resourceManager.getStringByNameSync('More')
+    this.services.push(More)
+  }
   build() {
+    // [StartExclude build_scrollable_horizontally_grid_layouts]
     NavDestination() {
+      // [EndExclude build_scrollable_horizontally_grid_layouts]
       Column({ space: 12 }) {
+        // [StartExclude build_scrollable_horizontally_grid_layouts]
         ComponentCard({ title: $r('app.string.ScrollableGrid_titleHorizontal') }) {
+          // [EndExclude build_scrollable_horizontally_grid_layouts]
           Grid() {
             ForEach(this.services, (service: string) => {
               GridItem() {
@@ -39,14 +64,18 @@ export struct ScrollableGrid {
           // [EndExclude build_scrollable_horizontally_grid_layouts]
           .rowsGap(15)
           .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
+          // [StartExclude build_scrollable_horizontally_grid_layouts]
         }
+        // [EndExclude build_scrollable_horizontally_grid_layouts]
       }
-      // [End build_scrollable_horizontally_grid_layouts]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude build_scrollable_horizontally_grid_layouts]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ScrollableGrid_title'))
+    // [EndExclude build_scrollable_horizontally_grid_layouts]
   }
 }
+// [End build_scrollable_horizontally_grid_layouts]

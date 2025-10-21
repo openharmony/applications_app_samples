@@ -14,8 +14,10 @@
  */
 
 import { util } from '@kit.ArkTS';
+import { UIContext } from '@kit.ArkUI';
 
 // [Start structural_references]
+import common from '@ohos.app.ability.common';
 export class ToDo {
   public key: string = util.generateRandomUUID(true);
   public name: string;
@@ -40,15 +42,21 @@ export struct ToDoListItem {
         .fontSize(16)
         .width('80%')
         .margin({ left: 20 })
+      // [StartExclude enter_edit_mode]
       if (this.isEditMode) {
         Checkbox()
-          .onChange((value: boolean) => {
-            if (value) {
-              this.selectedItems.push(new ToDo(this.toDoItem.name));
-              this.isEditMode = true;
+          .onChange((isSelected) => {
+            if (isSelected) {
+              this.selectedItems.push(new ToDo(this.toDoItem.name)); // this.selectedItems为勾选时，记录选中的列表项，可根据实际场景构造
+            } else {
+              let index = this.selectedItems.indexOf(new ToDo(this.toDoItem.name));
+              if (index !== -1) {
+                this.selectedItems.splice(index, 1); // 取消勾选时，则将此项从selectedItems中删除
+              }
             }
           })
       }
+      // [EndExclude enter_edit_mode]
     }
     .backgroundColor('#FFF1F3F5')
     .width('100%')
@@ -73,13 +81,27 @@ export struct DeleteListItem {
   @State arr: number[] = [0, 1, 2, 3];
   @State toDoData: ToDo[] = [];
   @Watch('onEditModeChange') @State isEditMode: boolean = false;
-  @State selectedItems: ToDo[] = [];
-  private availableThings: string[] = ['Reading', 'Exercise', 'Travel', 'Listening Music', 'Watching Films', 'Singing'];
+  @State selectedItems: ToDo[] = []
+  private availableThings: string [] = [];
 
   public deleteToDoData() {
     this.toDoData = [];
   }
-
+  aboutToAppear(): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const Reading = context.resourceManager.getStringByNameSync('Reading')
+    this.availableThings.push(Reading)
+    const Exercise = context.resourceManager.getStringByNameSync('Exercise')
+    this.availableThings.push(Exercise)
+    const Travel = context.resourceManager.getStringByNameSync('Travel')
+    this.availableThings.push(Travel)
+    const Listening_Music = context.resourceManager.getStringByNameSync('Listening_Music')
+    this.availableThings.push(Listening_Music)
+    const Watching_Films = context.resourceManager.getStringByNameSync('Watching_Films')
+    this.availableThings.push(Watching_Films)
+    const Singing = context.resourceManager.getStringByNameSync('Singing')
+    this.availableThings.push(Singing)
+  }
   onEditModeChange() {
     if (!this.isEditMode) {
       this.selectedItems = [];

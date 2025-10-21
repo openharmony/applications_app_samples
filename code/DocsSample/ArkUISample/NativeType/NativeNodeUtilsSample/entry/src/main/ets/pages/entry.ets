@@ -36,6 +36,7 @@ struct Index {
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
         Button(this.message)
+          .id('Button')
           .onClick(() => {
             this.isShow = !this.isShow;
             if (this.isShow) {
