@@ -17,6 +17,30 @@
       "value": "progress"
     },
     {
+      "name": "Create_Progress",
+      "value": "创建进度条"
+    },
+    {
+      "name": "Create_Progress_desc",
+      "value": "其中，value用于设置初始进度值，total用于设置进度总长度，type用于设置Progress样式。"
+    },
+    {
+      "name": "Progress_Style",
+      "value": "设置进度条样式"
+    },
+    {
+      "name": "Progress_Example",
+      "value": "场景示例"
+    },
+    {
+      "name": "Progress_Example_desc",
+      "value": "更新当前进度值，如应用安装进度条，可通过点击Button增加progressValue，value属性将progressValue设置给Progress组件，进度条组件即会触发刷新，更新当前进度。\n\n"
+    },
+    {
+      "name": "Progress_Style_desc",
+      "value": "Progress有5种可选类型，通过ProgressType可以设置进度条样式。ProgressType类型包括：ProgressType.Linear（线性样式）、 ProgressType.Ring（环形无刻度样式）、ProgressType.ScaleRing（环形有刻度样式）、ProgressType.Eclipse（圆形样式）和ProgressType.Capsule（胶囊样式）。"
+    },
+    {
       "name": "Linear_Progress",
       "value": "Linear Progress"
     },
