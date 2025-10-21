@@ -2,7 +2,7 @@
 
 ### 介绍
 
-UIServiceExtensionAbility组件是OpenHarmony中带用户界面（UI）的扩展服务组件。系统应用可以通过该组件实现具有特定功能、带UI的服务能力，并将其UI服务开放给其他第三方应用调用。
+UIServiceExtensionAbility组件是OpenHarmony中提供用户界面（UI）的扩展。系统应用可以通过该组件实现特定功能的UI服务，并将其开放给其他第三方应用调用。
 
 ### 效果预览
  不涉及。
