@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start build function ]
+// [ Start build_function ]
 @Entry
 @Component
 struct MyComponent {
@@ -32,4 +32,4 @@ struct ChildComponentBuildFunction {
     Image($r('app.media.startIcon'))
   }
 }
-// [ End build function ]
+// [ End build_function ]

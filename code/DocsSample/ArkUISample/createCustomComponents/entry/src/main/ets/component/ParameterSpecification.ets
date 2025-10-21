@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start Parameter specification ]
+// [ Start Parameter_specification ]
 @Component
 struct MyComponentSpecification {
   private countDownFrom: number = 0;
   private color: Color = Color.Blue;
 
   build() {
-    // [StartExclude test]
+    // [StartExclude test_specification]
     Text('test')
       .backgroundColor(this.color)
-    // [EndExclude test]
+    // [EndExclude test_specification]
   }
 }
 
@@ -38,4 +38,4 @@ struct ParentComponentParameter {
     }
   }
 }
-// [ End Parameter specification ]
+// [ End Parameter_specification ]

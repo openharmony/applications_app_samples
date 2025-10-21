@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 @Entry
-  // [ Start struct ]
+  // [ Start Component_data_structure ]
 @Component
 struct MyComponentStruct {
-  // [StartExclude struct]
+  // [StartExclude Component_data_structure]
   build() {
   }
-  // [EndExclude struct]
+  // [EndExclude Component_data_structure]
 }
-// [ End struct ]
+// [ End Component_data_structure ]

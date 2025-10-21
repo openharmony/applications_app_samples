@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start Entry ]
+// [ Start Entry_UI_page ]
 @Entry
 @Component
 struct MyComponentEntry {
-  // [StartExclude Entry]
+  // [StartExclude Entry_UI_page]
   build() {
 
   }
-  // [EndExclude Entry]
+  // [EndExclude Entry_UI_page]
 }
-// [ End Entry ]
+// [ End Entry_UI_page ]

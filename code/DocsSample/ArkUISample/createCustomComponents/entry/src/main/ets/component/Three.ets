@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 @Entry
-  // [ Start build ]
+  // [ Start Declarative_UI_description ]
 @Component
 struct MyComponentBuildFunction {
   build() {
   }
 }
-// [ End build ]
+// [ End Declarative_UI_description ]

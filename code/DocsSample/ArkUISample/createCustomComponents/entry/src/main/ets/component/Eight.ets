@@ -16,7 +16,7 @@
 @Component
 struct Eight {
   expression: number = 0;
-  // [ Start switch ]
+  // [ Start switch_syntax ]
   build() {
     Column() {
       // 正例：使用if
@@ -29,5 +29,5 @@ struct Eight {
       }
     }
   }
-  // [ End switch ]
+  // [ End switch_syntax ]
 }

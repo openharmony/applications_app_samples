@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start HelloComponent Hello ]
+// [ Start HelloComponent_Hello ]
 @Component
 struct HelloComponent {
   @State message: string | Resource = 'Hello, World!';
@@ -27,8 +27,8 @@ struct HelloComponent {
     }
   }
 }
-// [ End HelloComponent Hello ]
-// [ Start ArkUI message ]
+// [ End HelloComponent_Hello ]
+// [ Start ArkUI_message ]
 @Entry
 @Component
 struct ParentComponentUI {
@@ -42,5 +42,5 @@ struct ParentComponentUI {
       }
   }
 }
-// [ End ArkUI message ]
+// [ End ArkUI_message ]
 

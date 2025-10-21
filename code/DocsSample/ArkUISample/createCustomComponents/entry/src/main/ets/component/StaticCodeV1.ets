@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 @Entry
-// [ Start Static code V1 ]
+// [ Start Static_code_V1 ]
 @Component
 struct MyComponentCodeV1 {
   static a: string = '';
@@ -21,7 +21,7 @@ struct MyComponentCodeV1 {
   static {
     this.a = 'hello world';
   };
-  // [StartExclude code V1]
+  // [StartExclude code_V1]
   build() {
       Column(){
         // 字符串资源文件需要开发者自行添加
@@ -30,8 +30,8 @@ struct MyComponentCodeV1 {
       .width('100%')
       .height('100%')
   }
-  // [EndExclude code V1]
+  // [EndExclude code_V1]
 }
-// [ End Static code V1 ]
+// [ End Static_code_V1 ]
 
 

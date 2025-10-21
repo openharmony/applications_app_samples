@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 @Entry
-  // [ Start Builder ]
+  // [ Start Builder_decoration ]
 @Component
 struct ParentComponent {
   doSomeCalculations() {
@@ -36,4 +36,4 @@ struct ParentComponent {
     }
   }
 }
-// [ End Builder ]
+// [ End Builder_decoration ]

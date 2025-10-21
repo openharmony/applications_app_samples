@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start routeName ]
+// [ Start routeName_myPage ]
 @Entry({ routeName : 'myPage' })
 @Component
 struct MyComponentRouteName {
-  // [StartExclude routeName]
+  // [StartExclude routeName_myPage]
   build() {
 
   }
-  // [EndExclude routeName]
+  // [EndExclude routeName_myPage]
 }
-// [ End routeName ]
+// [ End routeName_myPage ]

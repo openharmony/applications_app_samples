@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 @Entry
-  // [ Start Reusable ]
+  // [ Start Reusable_MyComponent ]
 @Reusable
 @Component
 struct MyComponentReusable {
-  // [StartExclude Reusable]
+  // [StartExclude Reusable_MyComponent]
   build() {
 
   }
-  // [EndExclude Reusable]
+  // [EndExclude Reusable_MyComponent]
 }
-// [ End Reusable ]
+// [ End Reusable_MyComponent ]

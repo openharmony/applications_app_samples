@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 @Entry
-  // [ Start freezeWhenInactive ]
+  // [ Start freezeWhenInactive_Component ]
 @Component({ freezeWhenInactive: true })
 struct MyComponentFreezeWhenInactive {
-  // [StartExclude freezeWhenInactive]
+  // [StartExclude freezeWhenInactive_build]
   build() {
 
   }
-  // [EndExclude freezeWhenInactive]
+  // [EndExclude freezeWhenInactive_build]
 }
-// [ End freezeWhenInactive ]
+// [ End freezeWhenInactive_Component ]

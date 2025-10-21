@@ -12,19 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start state management overview ]
+// [ Start state_management_overview ]
 @Component
 struct MyComponentOverview {
   @State count: number = 0;
   increaseBy: number = 1;
 
   build() {
-    // [StartExclude management]
+    // [StartExclude management_overview]
     Column(){
       Text(`Count: ${this.count}`)
       Text(`increaseBy: ${this.increaseBy}`)
     }
-    // [EndExclude management]
+    // [EndExclude management_overview]
   }
 }
 
@@ -40,4 +40,4 @@ struct Parent {
 
   }
 }
-// [ End state management overview ]
+// [ End state_management_overview ]

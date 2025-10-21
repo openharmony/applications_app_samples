@@ -16,7 +16,7 @@
 @Component
 struct Nine {
   @State aVar: number = 0;
-  // [ Start if ]
+  // [ Start if_component ]
   build() {
     Column() {
       // 正例：使用if判断
@@ -27,5 +27,5 @@ struct Nine {
       }
     }
   }
-  // [ End if ]
+  // [ End if_component ]
 }

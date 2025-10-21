@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 @Entry
-// [ Start Static code V2 ]
+// [ Start Static_code_V2 ]
 @ComponentV2
 struct MyComponentV2 {
   static a: string = '';
@@ -21,7 +21,7 @@ struct MyComponentV2 {
   static {
     this.a = 'hello world';
   };
-  // [StartExclude code V2]
+  // [StartExclude code_V2]
   build() {
       Column(){
         Text(MyComponentV2.a)
@@ -29,6 +29,6 @@ struct MyComponentV2 {
       .width('100%')
       .height('100%')
   }
-  // [EndExclude code V2]
+  // [EndExclude code_V2]
 }
-// [ End Static code V2 ]
+// [ End Static_code_V2 ]

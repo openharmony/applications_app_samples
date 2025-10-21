@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start Custom style ]
+// [ Start Custom_style ]
 @Component
 struct ChildComponentCustom {
   build() {
@@ -31,4 +31,4 @@ struct MyComponentStyle {
       }
   }
 }
-// [ End Custom style ]
+// [ End Custom_style ]

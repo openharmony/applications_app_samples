@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start Function passing ]
+// [ Start Function_passing ]
 @Entry
 @Component
 struct ParentFunction {
@@ -46,4 +46,4 @@ struct Son {
     .height(56)
   }
 }
-// [ End Function passing ]
+// [ End Function_passing ]

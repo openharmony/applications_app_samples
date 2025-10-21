@@ -16,25 +16,16 @@
 @Component
 struct Ten {
   @State arr: number[] = [0,1,2,3];
-  // [ Start filter ]
-  // 反例
-//   @State arr : Array<...> = [ ... ];
-//   ForEach(this.arr.sort().filter(...),
-//   item => {
-//   // ...
-// })
-// 正确的执行方式为：filter返回一个新数组，后面的sort方法才不会改变原数组this.arr
-  // [StartExclude filter]
   For(){
-    // [EndExclude filter]
+    // [ Start filter_New_array ]
+    // 正确的执行方式为：filter返回一个新数组，后面的sort方法才不会改变原数组this.arr
     ForEach(this.arr.filter((item, index) => index >= 2).sort(),
     (item:number) => {
       // ...
     });
-    // [StartExclude filter sort]
+    // [ End filter_New_array ]
   };
-  // [EndExclude filter sort]
-  // [ End filter ]
+
   build() {
     RelativeContainer() {
     }
