@@ -26,7 +26,7 @@ struct WebComponent {
       Button('getRenderProcessMode')
         .onClick(() => {
           let mode = webview.WebviewController.getRenderProcessMode();
-          console.log("getRenderProcessMode: " + mode);
+          console.log('getRenderProcessMode: ' + mode);
         })
       Button('setRenderProcessMode')
         .onClick(() => {

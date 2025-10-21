@@ -1,8 +1,0 @@
-{
-  "src": [
-    "pages/Index",
-    "pages/DistinguishTwoGesture",
-    "pages/ReturnLastWebPage",
-    "pages/SetUserAgent"
-  ]
-}

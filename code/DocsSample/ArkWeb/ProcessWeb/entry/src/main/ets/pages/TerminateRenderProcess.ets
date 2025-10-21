@@ -25,7 +25,7 @@ struct WebComponent {
       Button('terminateRenderProcess')
         .onClick(() => {
           let result = this.controller.terminateRenderProcess();
-          console.log("terminateRenderProcess result: " + result);
+          console.log('terminateRenderProcess result: ' + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }

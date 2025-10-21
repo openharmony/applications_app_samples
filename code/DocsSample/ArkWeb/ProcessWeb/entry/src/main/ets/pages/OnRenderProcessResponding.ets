@@ -24,7 +24,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .onRenderProcessResponding(() => {
-          console.log("onRenderProcessResponding again");
+          console.log('onRenderProcessResponding again');
         })
     }
   }

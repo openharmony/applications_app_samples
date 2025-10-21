@@ -24,8 +24,8 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .onRenderProcessNotResponding((data) => {
-          console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
-            ", [process]=" + data.pid + ", [reason]=" + data.reason);
+          console.log('onRenderProcessNotResponding: [jsStack]= ' + data.jsStack +
+            ', [process]=' + data.pid + ', [reason]=' + data.reason);
         })
     }
   }

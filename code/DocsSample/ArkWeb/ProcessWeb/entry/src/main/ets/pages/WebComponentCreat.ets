@@ -23,8 +23,8 @@ struct WebComponent {
 
   build() {
     Column() {
-      Web({ src: 'www.example.com', controller: this.controller1, sharedRenderProcessToken: "111" })
-      Web({ src: 'www.w3.org', controller: this.controller2, sharedRenderProcessToken: "111" })
+      Web({ src: 'www.example.com', controller: this.controller1, sharedRenderProcessToken: '111' })
+      Web({ src: 'www.w3.org', controller: this.controller2, sharedRenderProcessToken: '111' })
     }
   }
 }

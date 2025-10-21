@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web_component_process.md 和 https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-router-flash-optimization.md示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+本工程主要实现了对以下指南文档中 [ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web_component_process.md#ohospermissioninternet) 和 [ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-router-flash-optimization.md#ohospermissioninternet) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 ## setRenderProcessMode
 
@@ -21,7 +21,7 @@
 
 ### 介绍
 
-1. 本示例通过terminateRenderProcess来主动关闭渲染进程。若渲染进程尚未启动或已销毁，此操作将不会产生任何影响。此外，销毁渲染进程将同时影响所有与之关联的其他实例。
+1. 本示例通过terminateRenderProcess来主动关闭渲染进程。若渲染进程尚未启动或已销毁，此操作将不会产生任何影响。此外，销毁渲染进程将同时影响所有与之关联的其它实例。
 
 ### 效果预览
 ![img_3.png](screenshots/img_3.png)

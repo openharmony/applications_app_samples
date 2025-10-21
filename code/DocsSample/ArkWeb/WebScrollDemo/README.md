@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-content-scrolling.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+本工程主要实现了对以下指南文档中 [ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-content-scrolling.md#ohospermissioninternet) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 ### 使用说明
 
@@ -12,7 +12,7 @@
 
 ### 介绍
 
-1. 在指定时间内，将页面滚动到指定的绝对位置
+1. 在指定时间内，将页面滚动到指定位置
 
 ### 效果预览
 <img src="screenshots/scrollTo_ArkTS_one.gif" width="250"/>
@@ -51,7 +51,7 @@
 
 ### 介绍
 
-1. 将页面滚动到绝对坐标位置。
+1. 将页面滚动到指定坐标位置。
 
 ### 效果预览
 <img src="screenshots/scrollTo_js_four.gif" width="250"/>
