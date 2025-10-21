@@ -38,11 +38,11 @@ struct Index {
             // 传入资源管理对象，以及访问的rawfile文件夹名称
             let rawFileList: Array<String> = testNapi.getFileList(this.resMgr, '');
             this.rawfileListMsg = 'FileList = ' + rawFileList;
-            console.log(this.rawfileListMsg);
+            console.info(this.rawfileListMsg);
 
             let ret: boolean = testNapi.isRawDir(this.resMgr, 'subrawfile');
             this.retMsg = 'isRawDir = ' + ret;
-            console.log(this.retMsg);
+            console.info(this.retMsg);
 
             // 传入资源管理对象，以及访问的rawfile文件夹名称
             let rawfileArray: Uint8Array = testNapi.getRawFileContent(this.resMgr, 'rawfile1.txt');
@@ -50,13 +50,13 @@ struct Index {
             let textDecoder: util.TextDecoder = new util.TextDecoder();
             let rawfileContent: string = textDecoder.decodeToString(rawfileArray);
             this.rawfileContentMsg = 'RawFileContent = ' + rawfileContent;
-            console.log(this.rawfileContentMsg);
+            console.info(this.rawfileContentMsg);
 
             // 传入资源管理对象，以及访问的rawfile文件名称
             let rawfileDescriptor: resourceManager.RawFileDescriptor =
               testNapi.getRawFileDescriptor(this.resMgr, 'rawfile1.txt');
             this.rawfileDescriptorMsg = 'RawFileDescriptor.length = ' + rawfileDescriptor.length;
-            console.log(this.rawfileDescriptorMsg);
+            console.info(this.rawfileDescriptorMsg);
           })
         Text(this.rawfileListMsg).id('get_file_list').fontSize(30);
         Text(this.retMsg).id('is_raw_dir').fontSize(30);

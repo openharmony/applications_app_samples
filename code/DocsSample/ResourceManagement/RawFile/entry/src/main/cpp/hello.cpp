@@ -14,12 +14,7 @@
  */
 
 // [Start includes]
-#include <js_native_api.h>
-#include <js_native_api_types.h>
-#include <string>
-#include <vector>
-#include <cstdlib>
-#include "napi/native_api.h"
+#include "hello.h"
 #include "rawfile/raw_file_manager.h"
 #include "rawfile/raw_file.h"
 #include "rawfile/raw_dir.h"
