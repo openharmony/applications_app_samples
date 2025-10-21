@@ -1,1 +1,0 @@
-export const runDemo: (a: Object) => string;
