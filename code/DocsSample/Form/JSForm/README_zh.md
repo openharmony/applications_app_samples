@@ -1,7 +1,18 @@
 # JS卡片开发指导（Stage模型）
 
-#### 使用说明
+#### 介绍
 
+本示例展示了在一个Stage模型中，开发基于JS UI的卡片指导。
+
+本示例参考[JS卡片开发指导（Stage模型）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/form/js-ui-widget-development.md)。
+
+### 效果预览
+
+| 卡片页面                          |
+|-------------------------------|
+| ![image](screenshot/jsform.png) |
+
+使用说明
 1.开发卡片页面
 
 1）长按应用图标并点击<卡片>；
@@ -14,14 +25,7 @@
 
 2）选择第二张卡片后点击添加至桌面；
 
-### 效果预览
-
-| 卡片页面                          |
-|-------------------------------|
-| ![image](screenshot/jsform.png) |
-
-使用说明
-FormExtensionAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
+注：FormExtensionAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
 
 ### 工程目录
 

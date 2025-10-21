@@ -130,7 +130,7 @@ struct MyLiveFormPage {
         this.runAnimation();
       })
 
-    Button('强制取消动效')
+    Button($r('app.string.button_cancel'))
       .backgroundColor(Color.Grey)
       .onClick(() => {
         if (!this.formId) {

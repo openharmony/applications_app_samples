@@ -20,7 +20,7 @@ struct WidgetCard {
   build() {
     Row() {
       Column() {
-        Text('点击触发互动卡片动效')
+        Text($r('app.string.liveform_click1'))
           .fontSize($r('app.float.font_size'))
           .fontWeight(FontWeight.Medium)
           .fontColor($r('sys.color.font_primary'))

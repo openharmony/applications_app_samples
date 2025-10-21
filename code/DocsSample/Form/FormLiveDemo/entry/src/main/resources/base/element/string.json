@@ -35,6 +35,14 @@
     {
       "name": "button_two",
       "value": "更换成：\"message two\""
+    },
+    {
+      "name": "liveform_click1",
+      "value": "点击触发互动卡片动效"
+    },
+    {
+      "name": "button_cancel",
+      "value": "强制取消动效"
     }
   ]
 }

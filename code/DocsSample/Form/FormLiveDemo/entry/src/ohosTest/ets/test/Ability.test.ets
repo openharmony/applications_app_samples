@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON, Component, Point } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
@@ -73,7 +73,7 @@ export default function abilityTest() {
       await driver.pressBack();
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
-      await driver.assertComponentExist(ON.text('FormLiveDemo').within(ON.type('GridItem')))
+      await driver.assertComponentExist(ON.text('FormLiveDemo').within(ON.type('GridItem')));
       let formEditDemoIcon: Component = await driver.findComponent(ON.text('FormLiveDemo').within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point);
