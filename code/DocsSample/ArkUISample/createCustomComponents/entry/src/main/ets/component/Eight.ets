@@ -19,18 +19,6 @@ struct Eight {
   // [ Start switch ]
   build() {
     Column() {
-      // 反例：不允许使用switch语法
-      // switch (expression) {
-      //   case 1:
-      //     Text('...')
-      //     break;
-      //   case 2:
-      //     Image('...')
-      //     break;
-      //   default:
-      //     Text('...')
-      //     break;
-      // }
       // 正例：使用if
       if(this.expression == 1) {
         Text('...')

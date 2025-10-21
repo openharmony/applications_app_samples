@@ -14,41 +14,41 @@
  */
 import { router } from '@kit.ArkUI'
 
-class createRouter{
-  pageName:string
-  routerName:string
+class CreateRouter{
+ public  pageName:string
+ public  routerName:string
   constructor(pageName:string,routerName:string){
     this.pageName = pageName
     this.routerName = routerName
   }
 };
-const createRouterList:createRouter[] = [
-  new createRouter('ParentComponentPage','component/ParentComponent'),
-  new createRouter('ParameterSpecificationPage','component/ParameterSpecification'),
-  new createRouter('ParentFunctionPage','component/ParentFunction'),
-  new createRouter('MyComponentBuildPage','component/MyComponentBuild'),
-  new createRouter('MyComponentStylePage','component/MyComponentStyle'),
-  new createRouter('StaticCodeV1Page','component/StaticCodeV1'),
-  new createRouter('StaticCodeV2Page','component/StaticCodeV2'),
-  new createRouter('stateManagementOverviewPage','managementoverview/stateManagementOverview'),
-  new createRouter('OnePage','component/One'),
-  new createRouter('TwoPage','component/Two'),
-  new createRouter('ThreePage','component/Three'),
-  new createRouter('FourPage','component/Four'),
-  new createRouter('FivePage','component/Five'),
-  new createRouter('SixPage','component/Six'),
-  new createRouter('SevenPage','component/Seven'),
-  new createRouter('EightPage','component/Eight'),
-  new createRouter('NinePage','component/Nine'),
-  new createRouter('TenPage','component/Ten'),
+const CreateRouterList:CreateRouter[] = [
+  new CreateRouter('ParentComponentPage','component/ParentComponent'),
+  new CreateRouter('ParameterSpecificationPage','component/ParameterSpecification'),
+  new CreateRouter('ParentFunctionPage','component/ParentFunction'),
+  new CreateRouter('MyComponentBuildPage','component/MyComponentBuild'),
+  new CreateRouter('MyComponentStylePage','component/MyComponentStyle'),
+  new CreateRouter('StaticCodeV1Page','component/StaticCodeV1'),
+  new CreateRouter('StaticCodeV2Page','component/StaticCodeV2'),
+  new CreateRouter('stateManagementOverviewPage','managementoverview/stateManagementOverview'),
+  new CreateRouter('OnePage','component/One'),
+  new CreateRouter('TwoPage','component/Two'),
+  new CreateRouter('ThreePage','component/Three'),
+  new CreateRouter('FourPage','component/Four'),
+  new CreateRouter('FivePage','component/Five'),
+  new CreateRouter('SixPage','component/Six'),
+  new CreateRouter('SevenPage','component/Seven'),
+  new CreateRouter('EightPage','component/Eight'),
+  new CreateRouter('NinePage','component/Nine'),
+  new CreateRouter('TenPage','component/Ten'),
 ];
 @Entry
 @Component
 struct Index {
-  @State createNavigationListIndex:createRouter[] = createRouterList;
+  @State createNavigationListIndex:CreateRouter[] = CreateRouterList;
   build() {
       List({space:3}){
-        ForEach(this.createNavigationListIndex, (item:createRouter) => {
+        ForEach(this.createNavigationListIndex, (item:CreateRouter) => {
           ListItem(){
             Text(item.pageName)
               .textAlign(TextAlign.Center)
@@ -62,7 +62,7 @@ struct Index {
               })
               })
           }
-        }, (item:createRouter, index:number) => JSON.stringify(item))
+        }, (item:CreateRouter, index:number) => JSON.stringify(item))
       }
       .alignListItem(ListItemAlign.Center)
       .height('auto')

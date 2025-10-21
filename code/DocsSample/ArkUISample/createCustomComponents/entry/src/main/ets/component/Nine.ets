@@ -19,9 +19,6 @@ struct Nine {
   // [ Start if ]
   build() {
     Column() {
-      // 反例：不允许使用表达式
-      // (this.aVar > 10) ? Text('...') : Image('...')
-
       // 正例：使用if判断
       if(this.aVar > 10) {
         Text('...')

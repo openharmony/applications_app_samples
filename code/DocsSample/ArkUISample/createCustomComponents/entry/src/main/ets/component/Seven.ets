@@ -29,8 +29,6 @@ struct ParentComponent {
 
   build() {
     Column() {
-      // 反例：不能调用没有用@Builder装饰的方法
-      // this.doSomeCalculations();
       // 正例：可以调用
       this.doSomeRender();
       // 正例：参数可以为调用TS方法的返回值
