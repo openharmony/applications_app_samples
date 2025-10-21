@@ -55,7 +55,7 @@ void NotifyValueChange()
     napi_call_function(g_env, global, callback, 1, &event, nullptr);
 }
 
-// [StartExclude key_event_monitor]
+// [Start key_event_monitor]
 struct KeyEvent {
     int32_t action;
     int32_t keyCode;
@@ -231,8 +231,8 @@ static napi_value AddTouchEventMonitor(napi_env env, napi_callback_info info)
 
 static napi_value RemoveTouchEventMonitor(napi_env env, napi_callback_info info)
 {
-    // [StartExclude touch_event_monitor]
     Input_Result ret = OH_Input_RemoveTouchEventMonitor(OnTouchEventCallback);
+    // [StartExclude touch_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
         message = "移除触摸事件监听成功，返回码为" + std::to_string(ret);
