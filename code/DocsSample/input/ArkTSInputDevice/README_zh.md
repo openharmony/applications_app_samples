@@ -28,7 +28,7 @@ ArkTSInputDevice
  ├── ohosTest
  │   ├── ets
  │   │   └── test
- │   │       └── Ability.test.ets   // 自动化测试代码
+ │   │       └── InputDeviceAbility.test.ets   // 自动化测试代码
 ```
 
 ## 相关权限

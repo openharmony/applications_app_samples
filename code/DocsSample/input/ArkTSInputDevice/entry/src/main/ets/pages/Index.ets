@@ -15,24 +15,28 @@
 
 // [Start input_device]
 import { inputDevice } from '@kit.InputKit';
+import hilog from '@ohos.hilog';
+
+const DOMAIN = 0x0000;
 
 @Entry
 @Component
 struct Index {
   @State isPhysicalKeyboardExist: boolean = false;
-  @State message:string = "点击获取设备列表并监听设备热拔插";
+  @State message: string = "点击获取设备列表并监听设备热拔插";
+
   // [StartExclude input_device]
   // 结果展示
   @Builder
   ResultDisplay() {
     Column() {
-        Text(`当前物理键盘连接状态为：${this.isPhysicalKeyboardExist}`)
-          .fontSize(14)
-          .width('100%')
-          .wordBreak(WordBreak.BREAK_ALL)
-          .fontWeight(FontWeight.Medium)
-          .textAlign(TextAlign.Center)
-          .padding(12)
+      Text(`当前物理键盘连接状态为：${this.isPhysicalKeyboardExist}`)
+        .fontSize(14)
+        .width('100%')
+        .wordBreak(WordBreak.BREAK_ALL)
+        .fontWeight(FontWeight.Medium)
+        .textAlign(TextAlign.Center)
+        .padding(12)
     }
     .width('100%')
     .backgroundColor('#F5F5F5')
@@ -40,6 +44,7 @@ struct Index {
     .margin({ top: 20, bottom: 20 })
     .padding(0)
   }
+
   // [EndExclude  input_device]
 
   build() {
@@ -65,9 +70,9 @@ struct Index {
               });
               // 2.监听设备热插拔
               inputDevice.on("change", (data) => {
-                console.info(`Device event info: ${JSON.stringify(data)}`);
+                hilog.info(DOMAIN, 'InputDevice', `Device event info: %{public}s`, JSON.stringify(data));
                 inputDevice.getKeyboardType(data.deviceId).then((type) => {
-                  console.info("The keyboard type is: " + type);
+                  hilog.info(DOMAIN, 'InputDevice', 'The keyboard type is: %{public}d', type);
                   if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
                     // 物理键盘已插入
                     this.isPhysicalKeyboardExist = true;
@@ -79,7 +84,8 @@ struct Index {
               });
               this.message = "开启设备监听成功"
             } catch (error) {
-              console.error(`Execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+              hilog.error(DOMAIN, 'InputDevice', `Execute failed, error: %{public}s`,
+                JSON.stringify(error, ["code", "message"]));
               this.message = `开启设备监听成功失败，点击重试。错误信息为${JSON.stringify(error, ["code", "message"])}`
             }
           })
@@ -97,7 +103,7 @@ struct Index {
           .backgroundColor('#F7F9FC')
           .borderRadius(4)
           .padding(8)
-         // [EndExclude  input_device]
+        // [EndExclude  input_device]
       }
       // [StartExclude input_device]
       .height('100%')
@@ -105,8 +111,10 @@ struct Index {
       .alignItems(HorizontalAlign.Center)
       .position({ left: '10%', right: '10%' })
       .margin({ bottom: 200 })
+
       // [EndExclude  input_device]
     }
   }
 }
+
 // [End input_device]

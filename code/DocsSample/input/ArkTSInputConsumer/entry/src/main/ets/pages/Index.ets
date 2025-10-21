@@ -15,7 +15,10 @@
 
 // [Start input_monitor]
 import { inputConsumer, KeyEvent } from '@kit.InputKit';
+import hilog from '@ohos.hilog';
 import { KeyCode } from '@kit.InputKit';
+
+const DOMAIN = 0x0000;
 
 @Entry
 @Component
@@ -53,7 +56,8 @@ struct TestDemo14 {
       inputConsumer.on('keyPressed', options1, this.volumeUpCallBackFunc);
       inputConsumer.on('keyPressed', options2, this.volumeDownCallBackFunc);
     } catch (error) {
-      console.error(`Subscribe execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+      hilog.error(DOMAIN, 'InputMonitor', `Subscribe execute failed, error: %{public}s`,
+        JSON.stringify(error, ["code", "message"]));
     }
   }
 
@@ -67,7 +71,8 @@ struct TestDemo14 {
               inputConsumer.off('keyPressed', this.volumeUpCallBackFunc);
               this.getUIContext().getPromptAction().showToast({ message: '取消监听音量按键上的监听事件成功！' })
             } catch (error) {
-              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+              hilog.error(DOMAIN, 'InputMonitor', `Unsubscribe execute failed, error: %{public}s`,
+                JSON.stringify(error, ["code", "message"]));
             }
           })
       }.width('100%')
@@ -82,7 +87,8 @@ struct TestDemo14 {
               inputConsumer.off('keyPressed', this.volumeDownCallBackFunc);
               this.getUIContext().getPromptAction().showToast({ message: '取消监听音量按键下的监听事件成功！' })
             } catch (error) {
-              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+              hilog.error(DOMAIN, 'InputMonitor', `Unsubscribe execute failed, error: %{public}s`,
+                JSON.stringify(error, ["code", "message"]));
             }
           })
       }.width('100%')
@@ -97,4 +103,5 @@ struct TestDemo14 {
     }.width('100%').height('100%')
   }
 }
+
 // [End input_monitor]

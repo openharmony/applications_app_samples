@@ -16,6 +16,9 @@
 import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
+import hilog from '@ohos.hilog';
+
+const DOMAIN = 0x0000;
 
 @Entry
 @Component
@@ -31,14 +34,15 @@ struct Index {
             try {
               pointer.setPointerVisible(false, (error: Error) => {
                 if (error) {
-                  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+                  hilog.error(DOMAIN, 'Pointer', `Set pointer visible failed, error: %{public}s`,
+                    JSON.stringify(error, ["code", "message"]));
                   return;
                 }
-                console.info(`Set pointer visible success.`);
+                hilog.info(DOMAIN, 'Pointer', 'Set pointer visible success.');
               });
             } catch (error) {
-              console.error(`The mouse pointer hide attributes is failed. ${JSON.stringify(error,
-                ["code", "message"])}`);
+              hilog.error(DOMAIN, 'Pointer', `The mouse pointer hide attributes is failed. %{public}s`,
+                JSON.stringify(error, ["code", "message"]));
             }
           })
           // [StartExclude pointer_visible]
@@ -57,20 +61,22 @@ struct Index {
           .padding(8)
         // [EndExclude pointer_visible]
 
-            // 3.应用退出全屏播放
-            // 4.调用鼠标光标显示接口显示光标
+        // 3.应用退出全屏播放
+        // 4.调用鼠标光标显示接口显示光标
         Text("Click to display pointer")
           .onClick(() => {
             try {
               pointer.setPointerVisible(true, (error: Error) => {
                 if (error) {
-                  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+                  hilog.error(DOMAIN, 'Pointer', `Set pointer visible failed, error: %{public}s`,
+                    JSON.stringify(error, ["code", "message"]));
                   return;
                 }
-                console.info(`Set pointer visible success.`);
+                hilog.info(DOMAIN, 'Pointer', 'Set pointer visible success.');
               });
             } catch (error) {
-              console.error(`Set pointer visible failed, ${JSON.stringify(error, ["code", "message"])}`);
+              hilog.error(DOMAIN, 'Pointer', `Set pointer visible failed, error: %{public}s`,
+                JSON.stringify(error, ["code", "message"]));
             }
           })
           // [StartExclude pointer_visible]
@@ -98,21 +104,23 @@ struct Index {
             window.getLastWindow(this.getUIContext().getHostContext(),
               (error: BusinessError, windowClass: window.Window) => {
                 if (error.code) {
-                  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+                  hilog.error(DOMAIN, 'Pointer', 'Failed to obtain the top window. Cause: %{public}s',
+                    JSON.stringify(error));
                   return;
                 }
                 let windowId = windowClass.getWindowProperties().id;
                 if (windowId < 0) {
-                  console.info(`Invalid windowId`);
+                  hilog.info(DOMAIN, 'Pointer', 'Invalid windowId');
                   return;
                 }
                 try {
                   // 3.设置鼠标光标样式为取色器样式
                   pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
-                    console.info(`Successfully set mouse pointer style`);
+                    hilog.info(DOMAIN, 'Pointer', 'Successfully set mouse pointer style');
                   });
                 } catch (error) {
-                  console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${error.message}`);
+                  hilog.error(DOMAIN, 'Pointer', `Failed to set the pointer style, error=%{public}s, msg=%{public}s`,
+                    JSON.stringify(error), error.message);
                 }
               });
           })
@@ -139,21 +147,23 @@ struct Index {
             window.getLastWindow(this.getUIContext().getHostContext(),
               (error: BusinessError, windowClass: window.Window) => {
                 if (error.code) {
-                  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+                  hilog.error(DOMAIN, 'Pointer', 'Failed to obtain the top window. Cause: %{public}s',
+                    JSON.stringify(error));
                   return;
                 }
                 let windowId = windowClass.getWindowProperties().id;
                 if (windowId < 0) {
-                  console.info(`Invalid windowId`);
+                  hilog.info(DOMAIN, 'Pointer', 'Invalid windowId');
                   return;
                 }
                 try {
                   // 5.设置鼠标光标样式为默认样式
                   pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
-                    console.info(`Successfully set mouse pointer style`);
+                    hilog.info(DOMAIN, 'Pointer', 'Successfully set mouse pointer style');
                   });
                 } catch (error) {
-                  console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${error.message}`);
+                  hilog.error(DOMAIN, 'Pointer', `Failed to set the pointer style, error=%{public}s, msg=%{public}s`,
+                    JSON.stringify(error), error.message);
                 }
               });
           })
