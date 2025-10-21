@@ -37,7 +37,6 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_create_double(env, value0 + value1, &sum);
 
     return sum;
-
 }
 
 EXTERN_C_START
