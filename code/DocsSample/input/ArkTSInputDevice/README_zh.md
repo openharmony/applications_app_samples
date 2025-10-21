@@ -31,6 +31,11 @@ ArkTSInputDevice
  │   │       └── InputDeviceAbility.test.ets   // 自动化测试代码
 ```
 
+### 具体实现
+
+1. 在[Index.ets](entry/src/main/ets/pages/Index.ets)文件中，获取设备列表以及监听设备热插拔。
+2. 在[InputDeviceAbility.test.ets](entry/src/ohosTest/ets/test/InputDeviceAbility.test.ets)文件中，通过自动化对获取设备列表以及监听设备热插拔进行测试。
+
 ## 相关权限
 
 无。

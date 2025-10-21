@@ -34,6 +34,11 @@ ArkTSInputConsumer
  │   │       └── Ability.test.ets   // 自动化测试代码
 ```
 
+### 具体实现
+
+1. 在[Index.ets](entry/src/main/ets/pages/Index.ets)文件中，通过点击按钮取消监听音量按键上/下的监听。
+2. 在[Ability.test.ets](entry/src/ohosTest/ets/test/Ability.test.ets)文件中，通过自动化对取消音量上/下键的监听测试。
+
 ## 相关权限
 
 无。
