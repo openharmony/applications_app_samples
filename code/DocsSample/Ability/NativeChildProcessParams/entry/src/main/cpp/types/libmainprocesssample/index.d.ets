@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export const TestChildProcess: () => number;
+export const testChildProcess: () => number;

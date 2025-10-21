@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-
-
 #ifndef NATIVECHILDPROCESS_MAINPROCESSSAMPLE_H
 #define NATIVECHILDPROCESS_MAINPROCESSSAMPLE_H
 

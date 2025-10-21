@@ -36,17 +36,16 @@ static ChildProcess g_childProcess;
 static IpcProxy *g_ipcProxyPnt = nullptr;
 static std::vector<IpcProxy *> g_ipcProxyPntObjects;
 static std::promise<int> *g_promiseStartProcess = nullptr;
-int32_t result = -1;
+int32_t g_result = -1;
 
 extern "C" {
-
 OHIPCRemoteStub *NativeChildProcess_OnConnect()
 {
     OH_LOG_INFO(LOG_APP, "Child process - OnConnect");
     return g_childProcess.GetIpcStub();
 }
 
-void NativeChildProcess_MainProc()
+void NativeChildProcessMainProc()
 {
     OH_LOG_INFO(LOG_APP, "Child process - MainProc started");
     g_childProcess.MainProc();
@@ -124,7 +123,7 @@ void ArkTsThread::CallFunc()
 
 namespace
 {
-ArkTsThread *thread;
+ArkTsThread *g_thread;
 }
 // [EndExclide main_handle_child_start_callback]
 // [EndExclide main_process_launch_native_child]
@@ -167,13 +166,13 @@ void CreateNativeChildProcess()
         // 子进程未能正常启动时的异常处理
         // ...
     }
-    result = ret;
+    g_result = ret;
 }
 // [End main_process_launch_native_child]
 
 static napi_value ChildProcessAdd(napi_env env, napi_callback_info info)
 {
-    int32_t result = INT32_MIN;
+    int32_t resultChildProcess = INT32_MIN;
     if (g_ipcProxyPnt != nullptr) {
         size_t argc = 2;
         napi_value args[2] = {nullptr};
@@ -183,14 +182,14 @@ static napi_value ChildProcessAdd(napi_env env, napi_callback_info info)
         int32_t value1;
         napi_get_value_int32(env, args[1], &value1);
 
-        result = g_ipcProxyPnt->Add(value0, value1);
-        OH_LOG_INFO(LOG_APP, "Main process - ChildProcessAdd %{public}d+%{public}d=%{public}d", value0, value1, result);
+        resultChildProcess = g_ipcProxyPnt->Add(value0, value1);
+        OH_LOG_INFO(LOG_APP, "Main process - ChildProcessAdd %{public}d+%{public}d=%{public}d", value0, value1, resultChildProcess);
     } else {
         OH_LOG_ERROR(LOG_APP, "Main process - Child process not started");
     }
 
     napi_value sumNapi;
-    napi_create_int32(env, result, &sumNapi);
+    napi_create_int32(env, resultChildProcess, &sumNapi);
     return sumNapi;
 }
 
@@ -252,7 +251,7 @@ static napi_value TestChildProcess(napi_env env, napi_callback_info info)
 {
     CreateNativeChildProcess();
     napi_value napiRet;
-    napi_create_int32(env, result, &napiRet);
+    napi_create_int32(env, g_result, &napiRet);
     return napiRet;
 }
 

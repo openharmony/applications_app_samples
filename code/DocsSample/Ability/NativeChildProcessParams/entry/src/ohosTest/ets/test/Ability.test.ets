@@ -63,7 +63,7 @@ export default function abilityTest() {
     it('SUB_Ability_AbilityRuntime_NativeStartChildProcess_0300', Level.LEVEL0, async (done: Function) => {
       let tag = `SUB_Ability_AbilityRuntime_NativeStartChildProcess_0300`;
       console.log(`${tag}, it begin`);
-      let ret: Number = testNapi.TestChildProcess();
+      let ret: Number = testNapi.testChildProcess();
       console.info(`${tag}: ret` + ret);
       if (ret == 16010004) {
         console.info(`${tag}: multi process model disable`);

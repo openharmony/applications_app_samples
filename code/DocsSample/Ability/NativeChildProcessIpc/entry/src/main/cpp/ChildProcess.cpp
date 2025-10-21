@@ -41,7 +41,7 @@ bool ChildProcess::RequestExitChildProcess(int32_t exitCode)
     // mock child proces crash generate signal
     if (exitCode > 0) {
         int *ptr = nullptr;
-        *ptr = 3;
+        *ptr = 1;
         return true;
     }
     processCondVar_.notify_all();

@@ -28,45 +28,45 @@ class IpcCapiStubTest {
 public:
     explicit IpcCapiStubTest();
     ~IpcCapiStubTest();
-    OHIPCRemoteStub* GetRemoteStub();
-    static int OnRemoteRequest(uint32_t code, const OHIPCParcel *data,  OHIPCParcel *reply, void  *userData);
+    OHIPCRemoteStub *GetRemoteStub();
+    static int OnRemoteRequest(uint32_t code, const OHIPCParcel *data, OHIPCParcel *reply, void *userData);
+
 private:
     OHIPCRemoteStub *stub_{nullptr};
-}; 
+};
 
-IpcCapiStubTest::IpcCapiStubTest() {
+IpcCapiStubTest::IpcCapiStubTest()
+{
     // 创建stub对象
-    stub_ = OH_IPCRemoteStub_Create("testIpc",  &IpcCapiStubTest::OnRemoteRequest,
-        nullptr, this);
+    stub_ = OH_IPCRemoteStub_Create("testIpc", &IpcCapiStubTest::OnRemoteRequest, nullptr, this);
 }
 
-IpcCapiStubTest::~IpcCapiStubTest() {
+IpcCapiStubTest::~IpcCapiStubTest()
+{
     if (stub_ != nullptr) {
         OH_IPCRemoteStub_Destroy(stub_);
     }
 }
 
-OHIPCRemoteStub* IpcCapiStubTest::GetRemoteStub() {
-    return stub_;
-}
+OHIPCRemoteStub *IpcCapiStubTest::GetRemoteStub() { return stub_; }
 
-int IpcCapiStubTest::OnRemoteRequest(uint32_t code, const OHIPCParcel *data,  OHIPCParcel *reply, void  *userData) {
+int IpcCapiStubTest::OnRemoteRequest(uint32_t code, const OHIPCParcel *data, OHIPCParcel *reply, void *userData)
+{
     return OH_IPC_SUCCESS;
 }
-
 
 IpcCapiStubTest ipcStubObj;
 
 extern "C" {
 
-OHIPCRemoteStub* NativeChildProcess_OnConnect()
+OHIPCRemoteStub *NativeChildProcess_OnConnect()
 {
     // ipcRemoteStub指向子进程实现的ipc stub对象，用于接收来自主进程的IPC消息并响应
     // 子进程根据业务逻辑控制其生命周期
     return ipcStubObj.GetRemoteStub();
 }
 
-void NativeChildProcess_MainProc()
+void NativeChildProcessMainProc()
 {
     // 相当于子进程的Main函数，实现子进程的业务逻辑
     // ...

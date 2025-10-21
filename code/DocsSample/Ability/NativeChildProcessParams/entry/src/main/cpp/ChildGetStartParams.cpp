@@ -20,7 +20,6 @@
 #include <thread>
 
 extern "C" {
-
 void ThreadFunc()
 {
     // 获取子进程的启动参数
