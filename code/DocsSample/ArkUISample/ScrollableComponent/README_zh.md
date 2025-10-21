@@ -19,7 +19,7 @@
 
 ### 使用说明
 
-1. 在主界面，可以点击对应卡片，选择需要参考的组件示例。
+1. 在主界面，可以点击对应页面，选择需要参考的组件示例。
 
 2. 在组件目录选择详细的示例参考。
 
@@ -78,6 +78,7 @@ entry/src/main/ets/
 |   |       |---LongList.ets
 |   |       |---ResponsiveScrollPositionList.ets
 |   |       |---StickyHeaderList.ets
+|   |       |---SupportSlidingHand.ets
 |   |       |---SwipeListItem.ets
 |   |       |---TaggedListItems.ets
 |   |---swiper                               //轮播
@@ -121,6 +122,24 @@ entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                       // 示例代码测试代码
 ```
+### 具体实现
+
+1. 初始化List，可设置space（列表项间距）控制项间距离。
+2. 每个ListItem内通过容器组件（如Row/Column）组合内容（如头像 + 文字）。
+3. 配置divider添加分隔线（设置粗细、颜色、左右边距），并通过scrollBar(BarState.Auto)开启按需显示的滚动条。
+4. 固定List的高度，确保超出时触发滚动。
+5. 定义数据源（如TodoItem模型类，含id/title/isCompleted等属性，id用于ForEach的唯一 key）。
+6. 在List内用ForEach遍历数据源，每个循环项生成ListItem，并绑定数据（如文字显示title，复选框关联isCompleted）。
+7. 添加交互逻辑（如 “删除” 按钮触发数组filter移除对应项，“新增” 按钮触发数组push添加新项）。
+8. 配置divider和scrollBar，保证列表样式和滚动功能。
+9. 定义分组数据源（如GroupData接口，含groupName（分组标题）和items（组内子项数组））。
+10. 弧形列表 (ArcList)（圆形屏幕推荐使用） 
+    固定List的高度，确保超出时触发滚动。
+    使用弧形列表可以通过在ArcList组件中按垂直方向线性排列子组件ArcListItem，可以为弧形列表中的每一项提供独立视图。此外，可以使用循环渲染来迭代一组列表项，或结合任意数量的单个视图与ForEach结构，构建复杂的弧形列表。ArcList组件支持多种渲染控制方式，包括条件渲染、循环渲染和懒加载，以生成子组件。
+    定义数据源（如TodoItem模型类，含id/title/isCompleted等属性，id用于ForEach的唯一 key）。
+11. 创建瀑布流（WaterFlow）
+    在List内用ForEach遍历数据源，每个循环项生成ListItem，并绑定数据（如文字显示title，复选框关联isCompleted）。
+    ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组件支持条件渲染、循环渲染和懒加载等方式生成子组件
 
 ### 相关权限
 
@@ -145,7 +164,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/ScrollableComponent > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/ScrollableComponent > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

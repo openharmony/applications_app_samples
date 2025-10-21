@@ -21,7 +21,6 @@
 #include <js_native_api_types.h>
 
 namespace NativeModule {
-
     napi_value CreateNativeRoot(napi_env env, napi_callback_info info);
     napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info);
     napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info);

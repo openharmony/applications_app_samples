@@ -24,7 +24,6 @@
 #include "NativeModule.h"
 
 namespace NativeModule {
-
     class ArkUIBaseNode {
     public:
         explicit ArkUIBaseNode(ArkUI_NodeHandle handle)

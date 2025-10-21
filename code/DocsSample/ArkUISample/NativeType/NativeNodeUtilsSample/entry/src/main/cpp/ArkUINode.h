@@ -26,7 +26,6 @@
 #include <string>
 
 namespace NativeModule {
-
 void CallBack(uint64_t nanoTimeLeft, uint32_t frameCount, void *userData)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "PostCallback",
