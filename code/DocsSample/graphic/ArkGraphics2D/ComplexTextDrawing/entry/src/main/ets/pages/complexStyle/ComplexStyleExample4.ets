@@ -1,6 +1,20 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { NodeController, FrameNode, RenderNode, DrawContext, UIContext } from '@kit.ArkUI'
-import { drawing, text, common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
+import { text } from '@kit.ArkGraphics2D'
 
 // 创建一个MyRenderNode类，并绘制文本。
 class MyRenderNode extends RenderNode {
@@ -39,11 +53,11 @@ class MyRenderNode extends RenderNode {
     // 设置待排版文本要应用的样式
     paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
-    paragraphBuilder.addText("The chemical formula for water: H");
+    paragraphBuilder.addText('The chemical formula for water: H');
     paragraphBuilder.pushStyle(subScriptStyle);
-    paragraphBuilder.addText("2");
+    paragraphBuilder.addText('2');
     paragraphBuilder.pushStyle(myTextStyle);
-    paragraphBuilder.addText("o");
+    paragraphBuilder.addText('o');
 
     // 生成段落
     let paragraph = paragraphBuilder.build();
@@ -125,7 +139,7 @@ struct Font08 {
         NodeContainer(myNodeController)
           .height('100%')
           .width('100%')
-        Text("Test for superscript and subscript")
+        Text('Test for superscript and subscript')
           .onAppear(() => {
             performTask();
           })
