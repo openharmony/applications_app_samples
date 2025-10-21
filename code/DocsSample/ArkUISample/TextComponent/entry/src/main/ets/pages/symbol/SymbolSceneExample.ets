@@ -16,6 +16,8 @@
 import { ComponentCard } from '../../common/Card';
 import resource from '../../common/resource';
 
+// [Start symbol_glyph_span_scene_example]
+// xxx.ets
 @Entry
 @Component
 export struct SymbolGlyphSpanSceneExample {
@@ -31,10 +33,11 @@ export struct SymbolGlyphSpanSceneExample {
   @State fontColorValue1: ResourceColor = '#E8E8E8';
 
   build() {
+    // [StartExclude symbol_glyph_span_scene_example]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SymbolGlyphSpanSceneExample_title') }) {
-          // [Start symbol_glyph_span_scene_example]
+          // [EndExclude symbol_glyph_span_scene_example]
           Column({ space: 10 }) {
             Row() {
               Text() {
@@ -42,13 +45,18 @@ export struct SymbolGlyphSpanSceneExample {
                   .fontSize(20)
                   .fontWeight(FontWeight.Bolder)
                 Span('(101)')
-              }.id('text1')
+              }
+              // [StartExclude symbol_glyph_span_scene_example]
+              .id('text1')
+              // [EndExclude symbol_glyph_span_scene_example]
             }
 
             Row() {
               Row({ space: 5 }) {
                 SymbolGlyph(this.symbolSources[this.symbolSourcesIndex])
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph1')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
                   .fontSize(20)
                   .fontColor([this.fontColorValue])
@@ -74,19 +82,28 @@ export struct SymbolGlyphSpanSceneExample {
                   SymbolSpan($r('sys.symbol.arrow_down_circle_badge_vip_circle_filled'))
                     .fontColor([this.fontColorValue])
                     .fontSize(20)
-                }.id('text2')
+                }
+                // [StartExclude symbol_glyph_span_scene_example]
+                .id('text2')
+                // [EndExclude symbol_glyph_span_scene_example]
 
                 Text() {
                   SymbolSpan($r('sys.symbol.heart_badge_plus'))
                     .fontColor([this.fontColorValue])
                     .fontSize(20)
-                }.id('text3')
+                }
+                // [StartExclude symbol_glyph_span_scene_example]
+                .id('text3')
+                // [EndExclude symbol_glyph_span_scene_example]
 
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_trash'))
                     .fontColor([this.fontColorValue])
                     .fontSize(20)
-                }.id('text4')
+                }
+                // [StartExclude symbol_glyph_span_scene_example]
+                .id('text4')
+                // [EndExclude symbol_glyph_span_scene_example]
               }
               .width('25%')
             }
@@ -99,11 +116,15 @@ export struct SymbolGlyphSpanSceneExample {
 
               Row({ space: 5 }) {
                 SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph2')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
                 SymbolGlyph($r('sys.symbol.trash'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph3')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
               }
@@ -117,11 +138,15 @@ export struct SymbolGlyphSpanSceneExample {
 
               Row({ space: 5 }) {
                 SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph4')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
                 SymbolGlyph($r('sys.symbol.trash'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph5')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
               }
@@ -135,11 +160,15 @@ export struct SymbolGlyphSpanSceneExample {
 
               Row({ space: 5 }) {
                 SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph6')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
                 SymbolGlyph($r('sys.symbol.trash'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph7')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
               }
@@ -153,11 +182,15 @@ export struct SymbolGlyphSpanSceneExample {
 
               Row({ space: 5 }) {
                 SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph8')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
                 SymbolGlyph($r('sys.symbol.trash'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph9')
+                  // [EndExclude symbol_glyph_span_scene_example]s
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
               }
@@ -171,11 +204,15 @@ export struct SymbolGlyphSpanSceneExample {
 
               Row({ space: 5 }) {
                 SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph10')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
                 SymbolGlyph($r('sys.symbol.trash'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph11')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
               }
@@ -189,11 +226,15 @@ export struct SymbolGlyphSpanSceneExample {
 
               Row({ space: 5 }) {
                 SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph12')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
                 SymbolGlyph($r('sys.symbol.trash'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph13')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
               }
@@ -207,11 +248,15 @@ export struct SymbolGlyphSpanSceneExample {
 
               Row({ space: 5 }) {
                 SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph14')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
                 SymbolGlyph($r('sys.symbol.trash'))
+                // [StartExclude symbol_glyph_span_scene_example]
                   .id('symbolGlyph15')
+                  // [EndExclude symbol_glyph_span_scene_example]
                   .fontColor([this.fontColorValue])
                   .fontSize(20)
               }
@@ -231,14 +276,18 @@ export struct SymbolGlyphSpanSceneExample {
             left: 10,
             top: 10
           })
-          // [End symbol_glyph_span_scene_example]
+          // [StartExclude symbol_glyph_span_scene_example]
         }
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [EndExclude symbol_glyph_span_scene_example]
     }
+    // [StartExclude symbol_glyph_span_scene_example]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.SymbolGlyphSpanSceneExample_title'))
+    // [EndExclude symbol_glyph_span_scene_example]
   }
 }
+// [End symbol_glyph_span_scene_example]

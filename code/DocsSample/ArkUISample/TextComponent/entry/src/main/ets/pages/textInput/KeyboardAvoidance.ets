@@ -16,6 +16,7 @@
 import { ComponentCard } from '../../common/Card';
 
 // [Start keyboard_avoid]
+// xxx.ets
 @Entry
 @Component
 export struct KeyboardAvoidance {

@@ -29,6 +29,10 @@
       "value": "属性字符串（StyledString/MutableStyledString）"
     },
     {
+      "name": "pageIndex_TextImageMixedLayout",
+      "value": "图文混排"
+    },
+    {
       "name": "pageIndex_TextNDKUI",
       "value": "使用文本(NDK)"
     },
@@ -205,8 +209,16 @@
       "value": "选中菜单"
     },
     {
+      "name": "ProhibitSelectionMenu_title",
+      "value": "禁用系统服务类菜单"
+    },
+    {
       "name": "SelectionMenu_description",
       "value": "输入框中的文字被选中时会弹出包含剪切、复制、翻译、搜索的菜单"
+    },
+    {
+      "name": "ProhibitSelectionMenu_description",
+      "value": "从API version 20开始，支持使用disableSystemServiceMenuItems方法屏蔽文本选择菜单中的所有系统服务菜单项。"
     },
     {
       "name": "SetSelectionMenu_description",
@@ -277,12 +289,32 @@
       "value": "创建输入框"
     },
     {
+      "name": "ProhibitSelectMenu_title_1",
+      "value": "disableSystemServiceMenuItems"
+    },
+    {
+      "name": "ProhibitSelectMenu_title_2",
+      "value": "disableMenuItems"
+    },
+    {
+      "name": "ProhibitSelectMenu_description_1",
+      "value": "从API version 20开始，支持使用disableSystemServiceMenuItems方法屏蔽文本选择菜单中的所有系统服务菜单项。"
+    },
+    {
+      "name": "ProhibitSelectMenu_description_2",
+      "value": "从API version 20开始，支持使用disableMenuItems方法屏蔽文本选择菜单中指定的系统服务菜单项。"
+    },
+    {
       "name": "CreatTextInput_title_1",
       "value": "单行输入框"
     },
     {
       "name": "CreatTextInput_title_2",
       "value": "多行输入框"
+    },
+    {
+      "name": "CreatTextInput_title_3",
+      "value": "搜索框。"
     },
     {
       "name": "CreatTextInput_description",
@@ -445,12 +477,24 @@
       "value": "输入你的邮箱..."
     },
     {
-      "name": "Set_Omission_Property",
-      "value": "设置省略属性"
+      "name": "Set_Text_Margin",
+      "value": "设置文本行间距"
+    },
+    {
+      "name": "Set_Text_Margin_description",
+      "value": "从API version 20开始，支持通过lineSpacing设置文本的行间距。如果不配置LineSpacingOptions时，首行上方和尾行下方默认会有行间距。如果onlyBetweenLines设置为true时，行间距仅适用于行与行之间，首行上方无额外行间距。"
+    },
+    {
+      "name": "Set_Property",
+      "value": "设置属性"
     },
     {
       "name": "Set_Omission_Property_description",
       "value": "输入框可以通过ellipsisMode属性设置省略位置"
+    },
+    {
+      "name": "Set_Stroke_Property_description",
+      "value": "从API version 20开始，输入框可以通过strokeWidth和strokeColor属性设置文本的描边宽度及颜色。"
     },
     {
       "name": "Set_Omission_Property_textContent",
@@ -717,10 +761,6 @@
       "value": "除了初始化属性字符串对象即初始样式对象，亦可通过setStyle接口再叠加新样式或更新已有样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。"
     },
     {
-      "name": "StyledStringGestureStyle_button_content",
-      "value": "响应属性字符串事件改变背景色"
-    },
-    {
       "name": "StyledStringHtml_title",
       "value": "格式转换"
     },
@@ -763,6 +803,14 @@
     {
       "name": "SymbolGlyphSpanCustomIconAnimation_description",
       "value": "相较于effectStrategy属性在启动时即触发动效，可以通过以下两种方式来控制动效的播放状态，以及选择更多样化的动效策略。"
+    },
+    {
+      "name": "SymbolShadowAndColor_title",
+      "value": "设置阴影和渐变色"
+    },
+    {
+      "name": "SymbolShadowAndColor_description",
+      "value": ""
     },
     {
       "name": "SymbolGlyphSpanAddEvent_title",
@@ -811,6 +859,22 @@
     {
       "name": "SymbolGlyphSpanCustomIconAnimation_title_2",
       "value": "通过设置SymbolEffect属性，可以同时指定SymbolGlyph的动画效果策略及其播放触发条件"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_title_3",
+      "value": "从API version 20开始，支持通过设置SymbolEffect属性为ReplaceSymbolEffect，设置ReplaceEffectType为ReplaceEffectType.SLASH_OVERLAY，可以指定SymbolGlyph的禁用动画效果及其播放触发条件。"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_title_4",
+      "value": "从API version 20开始，支持通过设置SymbolEffect属性为ReplaceSymbolEffect，设置ReplaceEffectType为ReplaceEffectType.CROSS_FADE，可以指定SymbolGlyph的快速替换动画效果及其播放触发条件。"
+    },
+    {
+      "name": "SymbolShadowAndColor_title_1",
+      "value": "从API version 20开始，支持通过symbolShadow接口实现了symbolGlyph组件显示阴影效果。"
+    },
+    {
+      "name": "SymbolShadowAndColor_title_2",
+      "value": "从API version 20开始，支持通过shaderStyle接口实现了symbolGlyph组件显示渐变色效果。"
     },
     {
       "name": "ListenTextBoxEvents_NDK_title",
@@ -1153,6 +1217,14 @@
       "value": "弹跳动效"
     },
     {
+      "name": "SymbolCustomIconAnimation_Text_3",
+      "value": "禁用动效"
+    },
+    {
+      "name": "SymbolCustomIconAnimation_Text_4",
+      "value": "快速替换动效"
+    },
+    {
       "name": "SymbolSceneExample_Text_1",
       "value": "顺序播放"
     },
@@ -1227,6 +1299,22 @@
     {
       "name": "SelectMenu_Text_5",
       "value": "自定义选择菜单关闭时触发该回调"
+    },
+    {
+      "name": "TextImage_MixedLayout_Text_1",
+      "value": "使用Span和ImageSpan实现图文混排"
+    },
+    {
+      "name": "TextImage_MixedLayout_Text_2",
+      "value": "使用属性字符串实现图文混排"
+    },
+    {
+      "name": "TextImage_MixedLayout_Component_desc",
+      "value": "通过Text组件设置textVerticalAlign属性和ImageSpan设置verticalAlign为ImageSpanAlignment.FOLLOW_PARAGRAPH，实现商品价格优惠信息展示的应用场景。"
+    },
+    {
+      "name": "TextImage_MixedLayout_Attribute_desc",
+      "value": "通过ImageAttachment添加图片，TextStyle设置多种文本样式，实现商品详情信息展示的应用场景。"
     }
   ]
 }

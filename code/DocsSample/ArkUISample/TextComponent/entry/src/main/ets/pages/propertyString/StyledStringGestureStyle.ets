@@ -104,18 +104,9 @@ class MyCustomSpan extends CustomSpan {
 @Component
 export struct StyledStringGestureStyle {
   customSpan3: MyCustomSpan = new MyCustomSpan('99VIP88%off', 200, 40, 30);
-  customSpanStyledString: MutableStyledString = new MutableStyledString(this.customSpan3);
+  textStyle: MutableStyledString = new MutableStyledString('123');
   textController: TextController = new TextController();
   isPageShow: boolean = true;
-  @State backgroundColor1: ResourceColor | undefined = undefined;
-  gestureStyleAttr: GestureStyle = new GestureStyle({
-    onClick: () => {
-      this.backgroundColor1 = Color.Green;
-    },
-    onLongPress: () => {
-      this.backgroundColor1 = Color.Grey;
-    }
-  });
 
   aboutToAppear() {
     gUIContext = this.getUIContext();
@@ -126,13 +117,7 @@ export struct StyledStringGestureStyle {
       return;
     }
     this.isPageShow = false;
-    this.customSpanStyledString.setStyle({
-      start: 0,
-      length: 1,
-      styledKey: StyledStringKey.GESTURE,
-      styledValue: this.gestureStyleAttr
-    })
-    this.textController.setStyledString(this.customSpanStyledString);
+    this.textController.setStyledString(new StyledString(this.customSpan3));
   }
 
   build() {
@@ -142,7 +127,6 @@ export struct StyledStringGestureStyle {
           // [Start styled_string_gesture_style]
           Row() {
             Column() {
-              Button($r('app.string.StyledStringGestureStyle_button_content')).backgroundColor(this.backgroundColor1).width('80%').margin(10)
               Text(undefined, { controller: this.textController })
                 .id('text1')
                 .copyOption(CopyOptions.InApp)

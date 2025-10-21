@@ -14,22 +14,22 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct SetOmissionProperty {
+export struct SetTextMargin {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        ComponentCard({ description: $r('app.string.Set_Omission_Property_description') }) {
-          // [Start set_omission_property]
-          TextInput({ text: $r('app.string.Set_Omission_Property_textContent') })
-            .textOverflow(TextOverflow.Ellipsis)
-            .ellipsisMode(EllipsisMode.END)
-            .style(TextInputStyle.Inline)
-            .fontSize(30)
-            .margin(30)
-          // [End set_omission_property]
+        ComponentCard({ description: $r('app.string.Set_Text_Margin_description') }) {
+          // [Start SetTextMargin]
+          TextArea({
+            text: 'The line spacing of this TextArea is set to 20_px, and the spacing is effective only between the lines.'
+          })
+            .fontSize(22)
+            .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
+          // [End SetTextMargin]
         }
       }
       .width('100%')
@@ -37,6 +37,6 @@ export struct SetOmissionProperty {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.Set_Omission_Property'))
+    .title($r('app.string.Set_Property'))
   }
 }

@@ -41,6 +41,13 @@ export struct CreatTextInput {
             // [End create_text_area_example]
           }
         }
+
+        ComponentCard({ title: $r('app.string.CreatTextInput_title_3') }) {
+          // [Start create_text_input]
+          Search()
+            .searchButton('搜索')
+          // [End create_text_input]
+        }
       }
       .width('100%')
       .height('100%')
