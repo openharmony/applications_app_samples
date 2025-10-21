@@ -106,6 +106,13 @@ struct Index {
       children: [
         { name: 'template1/Index', label: $r('app.string.stepperIndex_text21') },
       ]
+    }, {
+      name: 'routerToNavigation',
+      label: 'RouterToNavigation',
+      children: [
+        { name: 'router/Index', label: $r('app.string.routerToNavigation_text1') },
+        { name: 'navigation/Index', label: $r('app.string.routerToNavigation_text2') },
+      ]
     }
   ];
   @State selection: string | null = null;

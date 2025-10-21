@@ -71,6 +71,14 @@
       "name": "navPath-pageOne",
       "pageSourceFile": "src/main/ets/pages/navPathStackExtend/template1/PageOne.ets",
       "buildFunction": "PageOneBuilder"
+    },
+    {
+      "name": "navigation_pageOne",
+      "pageSourceFile": "src/main/ets/pages/routerToNavigation/navigation/pageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
     }
   ]
 }

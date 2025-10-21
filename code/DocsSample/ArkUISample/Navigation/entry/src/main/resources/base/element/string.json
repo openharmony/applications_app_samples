@@ -125,6 +125,27 @@
     }, {
       "name": "stepperIndex_text24",
       "value": "返回"
+    }, {
+      "name": "routerToNavigation_text1",
+      "value": "Router页面跳转示例"
+    }, {
+      "name": "routerToNavigation_text2",
+      "value": "Navigation页面跳转示例"
+    }, {
+      "name": "routerToNavigation_router_text1",
+      "value": "方法1：通过@Provide和@Consume传递给子页面"
+    }, {
+      "name": "routerToNavigation_router_text2",
+      "value": "方法2：子页面通过OnReady回调获取"
+    }, {
+      "name": "routerToNavigation_router_text3",
+      "value": "方法3：通过全局的AppStorage接口设置获取"
+    }, {
+      "name": "routerToNavigation_router_text4",
+      "value": "方法4：通过自定义组件查询接口获取"
+    }, {
+      "name": "routerToNavigation_nav_text1",
+      "value": "回到首页"
     }
   ]
 }

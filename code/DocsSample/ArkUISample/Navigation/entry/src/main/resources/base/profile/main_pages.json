@@ -26,6 +26,14 @@
     "pages/observer/template2/Index",
     "pages/observer/template3/Index",
     "pages/observer/template4/Index",
-    "pages/navPathStackExtend/template1/Index"
+    "pages/navPathStackExtend/template1/Index",
+    "pages/routerToNavigation/router/Index",
+    "pages/routerToNavigation/router/pageOne",
+    "pages/routerToNavigation/router/router1",
+    "pages/routerToNavigation/router/router2",
+    "pages/routerToNavigation/router/router3",
+    "pages/routerToNavigation/router/router4",
+    "pages/routerToNavigation/navigation/Index",
+    "pages/routerToNavigation/navigation/pageOne"
   ]
 }
