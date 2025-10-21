@@ -21,12 +21,10 @@ let storageEventCall = new LocalStorage();
 @Component
 struct WidgetEventCallCard {
   @LocalStorageProp('formId') formId: string = '12400633174999288';
-  private funA: string = '按钮A';
-  private funB: string = '按钮B';
 
   build() {
     RelativeContainer() {
-      Button(this.funA)
+      Button($r('app.string.ButtonA_label'))
         .id('funA__')
         .fontSize(14)
         .fontWeight(FontWeight.Bold)
@@ -47,7 +45,7 @@ struct WidgetEventCallCard {
           });
         })
 
-      Button(this.funB)
+      Button($r('app.string.ButtonB_label'))
         .id('funB__')
         .fontSize(14)
         .fontWeight(FontWeight.Bold)
