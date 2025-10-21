@@ -47,7 +47,7 @@ export default function abilityTest() {
       const driver = Driver.create();
       await driver.pressBack();
       await driver.delayMs(3000);
-      done()
+      done();
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
