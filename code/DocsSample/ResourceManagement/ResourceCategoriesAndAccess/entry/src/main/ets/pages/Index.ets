@@ -29,8 +29,8 @@ struct Index {
   rawfile: string = '[library].icon.png';
   // [EndExclude config_resource]
   // [StartExclude hsp_resource]
-  @State englishString: string = "";
-  @State germanString: string = "";
+  @State englishString: string = '';
+  @State japaneseString: string = '';
   // [EndExclude hsp_resource]
 
   build() {
@@ -122,7 +122,7 @@ struct Index {
           .id('config_resource_two')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Text(this.germanString)
+        Text(this.japaneseString)
           .id('config_resource_three')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
@@ -138,9 +138,9 @@ struct Index {
   getString(): string {
     let resMgr = this.getUIContext().getHostContext()?.resourceManager;
     if (!resMgr) {
-      return "";
+      return '';
     }
-    let currentLanguageString: string = "";
+    let currentLanguageString: string = '';
     try {
       let resId = $r('app.string.greetings').id;
 
@@ -149,14 +149,14 @@ struct Index {
 
       //获取符合当前系统颜色模式、分辨率等配置的英文资源
       let overrideConfig = resMgr.getOverrideConfiguration();
-      overrideConfig.locale = "en_US"; //指定资源的语言为英语，地区为美国
+      overrideConfig.locale = 'en_US'; //指定资源的语言为英语，地区为美国
       let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
       this.englishString = overrideResMgr.getStringSync(resId);
 
       //获取符合当前系统颜色模式、分辨率等配置的日文资源
-      overrideConfig.locale = "ja_JP"; //指定资源的语言为日文，地区为日本
+      overrideConfig.locale = 'ja_JP'; //指定资源的语言为日文，地区为日本
       overrideResMgr.updateOverrideConfiguration(overrideConfig); //等效于resMgr.updateOverrideConfiguration(overrideConfig)
-      this.germanString = overrideResMgr.getStringSync(resId);
+      this.japaneseString = overrideResMgr.getStringSync(resId);
     } catch (err) {
       const code = (err as BusinessError).code;
       const message = (err as BusinessError).message;
