@@ -53,10 +53,10 @@ export default function abilityTest() {
         // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
         let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
         await abilityDelegatorRegistry.startAbility(want);
-        done()
+        done();
       }catch(e){
-        expect(false).assertTrue()
-        done()
+        expect(false).assertTrue();
+        done();
       }
     })
   })

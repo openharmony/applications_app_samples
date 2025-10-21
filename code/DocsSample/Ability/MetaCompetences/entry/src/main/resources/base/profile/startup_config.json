@@ -35,6 +35,7 @@
       "srcEntry": "./ets/startup/StartupTask_004.ets",
       "runOnThread": "taskPool",
       "waitOnMainThread": false,
+      "schedulerPhase": "preAbilityStageLoad",
       "matchRules": {
         "uris": [
           "test://com.example.startupdemo/notification"

@@ -19,8 +19,8 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
-  bundleName: "com.samples.MetaCompetences",
-  abilityName: "EntryAbility",
+  bundleName: 'com.samples.MetaCompetences',
+  abilityName: 'EntryAbility',
 }
 
 function sleep(time: number) {
@@ -54,10 +54,10 @@ export default function abilityTest() {
         // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
         let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
         await abilityDelegatorRegistry.startAbility(want);
-        done()
+        done();
       }catch(e){
-        expect(false).assertTrue()
-        done()
+        expect(false).assertTrue();
+        done();
       }
     })
   })
