@@ -416,20 +416,12 @@ struct Index {
 
   build() {
     Column() {
-      Row() {
-        Button($r('app.string.return_dialog'))
-          .height(20)
-          .width('20%')
-          .onClick(() => {
-            this.getUIContext().getRouter().back();
-          })
         Text($r('app.string.open_custom_dialog'))
           .fontColor(0x0000FF)
           .height('10%')
-          .fontSize(10)
+          .fontSize(15)
           .margin(10)
           .fontWeight(FontWeight.Bold)
-      }
       Column({ space: 10 }) {
         Text($r('app.string.configure_popup_properties'))
           .fontSize(20)
@@ -508,11 +500,14 @@ struct Index {
               this.printDefaultText = true;
             }
           })
-      }.margin({
-        top: 27,
-        left: 12,
-        right: 12
-      })
+        Button($r('app.string.return_dialog'))
+          .width('40%')
+          .height('8%')
+          .margin({top: -130})
+          .onClick(() => {
+            this.getUIContext().getRouter().back();
+          })
+      }
       .height('100%')
       .width('100%')
     }
