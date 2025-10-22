@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
+import Logger from '../../../ohosTest/ets/util/Logger'
 
 @Entry
 @Component
@@ -25,7 +26,7 @@ struct Index {
             url: 'pages/SetRenderProcessMode',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -35,7 +36,7 @@ struct Index {
             url: 'pages/TerminateRenderProcess',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -45,7 +46,7 @@ struct Index {
             url: 'pages/OnRenderExited',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -55,7 +56,7 @@ struct Index {
             url: 'pages/OnRenderProcessNotResponding',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -65,7 +66,7 @@ struct Index {
             url: 'pages/OnRenderProcessResponding',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -75,7 +76,7 @@ struct Index {
             url: 'pages/WebComponentCreat',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -85,7 +86,7 @@ struct Index {
             url: 'pages/FixingPageFlickering',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')

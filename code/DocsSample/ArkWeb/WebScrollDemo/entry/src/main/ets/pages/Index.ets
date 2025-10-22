@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
+import Logger from '../../../ohosTest/ets/util/Logger'
 
 @Entry
 @Component
@@ -25,7 +26,7 @@ struct Index {
             url: 'pages/WebScrollDemo',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')
