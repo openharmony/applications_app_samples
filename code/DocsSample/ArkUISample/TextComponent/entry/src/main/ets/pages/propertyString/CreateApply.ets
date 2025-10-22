@@ -14,7 +14,7 @@
  */
 
 import resource from '../../common/resource';
-
+// [Start createStyledString_start]
 @Entry
 @Component
 struct styled_string_demo1 {
@@ -41,3 +41,4 @@ struct styled_string_demo1 {
     .width('100%')
   }
 }
+// [End createStyledString_start]
