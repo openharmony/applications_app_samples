@@ -19,7 +19,6 @@ import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let applicationContext = this.context.getApplicationContext();
-    //...
   }
 }
 // [End application_context_start]

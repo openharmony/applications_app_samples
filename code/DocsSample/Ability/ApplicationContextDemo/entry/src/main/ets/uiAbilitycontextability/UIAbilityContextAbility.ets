@@ -20,7 +20,6 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 获取UIAbility实例的上下文
     let context = this.context;
-    // ...
   }
 }
 // [End ui_ability_context_start]

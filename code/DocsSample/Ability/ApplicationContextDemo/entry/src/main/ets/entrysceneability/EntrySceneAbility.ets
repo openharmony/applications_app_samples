@@ -22,7 +22,6 @@ export default class EntryAbility extends UIAbility {
     let resourceManager = this.context.getApplicationContext().resourceManager;
     // 获取applicationInfo（当前应用信息）
     let applicationInfo = this.context.getApplicationContext().applicationInfo;
-    //...
   }
 }
 // [End scene_entry_ability_start]

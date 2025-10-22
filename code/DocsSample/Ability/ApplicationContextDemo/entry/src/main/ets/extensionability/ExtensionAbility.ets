@@ -20,7 +20,6 @@ import { Want } from '@kit.AbilityKit';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
     let formExtensionContext = this.context;
-    // ...
     let dataObj1: Record<string, string> = {
       'temperature': '11c',
       'time': '11:00'

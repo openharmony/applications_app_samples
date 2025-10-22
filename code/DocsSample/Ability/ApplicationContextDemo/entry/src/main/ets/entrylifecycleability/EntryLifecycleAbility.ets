@@ -83,7 +83,6 @@ export default class LifecycleAbility extends UIAbility {
 
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
-  //...
   onDestroy(): void {
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
