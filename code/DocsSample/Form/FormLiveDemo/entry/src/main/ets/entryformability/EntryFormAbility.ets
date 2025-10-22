@@ -15,19 +15,19 @@
 
 // [Start liveform_EntryFormAbility]
 // entry/src/main/ets/entryformability/EntryFormAbility.ets
-import {
-  formInfo,
-  formProvider,
-  FormExtensionAbility,
-} from '@kit.FormKit';
+import { formInfo, formProvider, FormExtensionAbility } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Constants } from '../common/Constants';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = 'EntryFormAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryFormAbility extends FormExtensionAbility {
   async onFormEvent(formId: string, message: string) {
     let shortMessage: string = JSON.parse(message)['message'];
 
-    // 当接收的 message 为 requestOverflow，触发互动卡片动效
+    // 当接收的message为requestOverflow，触发互动卡片动效
     if (shortMessage === 'requestOverflow') {
       let formRect: formInfo.Rect = await formProvider.getFormRect(formId);
       this.requestOverflow(formId, formRect.width, formRect.height);
@@ -37,7 +37,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   private requestOverflow(formId: string, formWidth: number, formHeight: number): void {
     if (formWidth <= 0 || formHeight <= 0) {
-      console.log('requestOverflow failed, form size is not correct.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'requestOverflow failed, form size is not correct.');
       return;
     }
 
@@ -58,12 +58,12 @@ export default class EntryFormAbility extends FormExtensionAbility {
         // 指定是否使用系统提供的默认切换动效
         useDefaultAnimation: true,
       }).then(() => {
-        console.log('requestOverflow requestOverflow succeed');
+        hilog.info(DOMAIN_NUMBER, TAG, 'requestOverflow requestOverflow succeed');
       }).catch((error: BusinessError) => {
-        console.log(`requestOverflow requestOverflow catch error` + `, code: ${error.code}, message: ${error.message}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `requestOverflow requestOverflow catch error` + `, code: ${error.code}, message: ${error.message}`);
       })
     } catch (e) {
-      console.log(`requestOverflow call requestOverflow catch error` + `, code: ${e.code}, message: ${e.message}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `requestOverflow call requestOverflow catch error` + `, code: ${e.code}, message: ${e.message}`);
     }
   }
 }

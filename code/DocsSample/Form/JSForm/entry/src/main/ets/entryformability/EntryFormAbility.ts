@@ -14,6 +14,7 @@
  */
 
 // [Start JSForm_EntryFormAbility_import]
+// [Start JSForm_EntryFormAbility_onFormEvent]
 import { Want } from '@kit.AbilityKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -25,6 +26,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 // [Start JSForm_EntryFormAbility_FormExtensionAbility]
 export default class EntryFormAbility extends FormExtensionAbility {
+  // [StartExclude JSForm_EntryFormAbility_onFormEvent]
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
     // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
@@ -56,7 +58,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
     //...
   }
-  // [Start JSForm_EntryFormAbility_onFormEvent]
+  // [EndExclude JSForm_EntryFormAbility_onFormEvent]
   onFormEvent(formId: string, message: string): void {
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
@@ -69,7 +71,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     }
     // [EndExclude JSForm_EntryFormAbility_FormExtensionAbility]
   }
-  // [End JSForm_EntryFormAbility_onFormEvent]
+  // [StartExclude JSForm_EntryFormAbility_onFormEvent]
   onRemoveForm(formId: string): void {
     // 删除卡片实例数据
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
@@ -79,5 +81,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
     return formInfo.FormState.READY;
   }
 }
+// [EndExclude JSForm_EntryFormAbility_onFormEvent]
 // [End JSForm_EntryFormAbility_FormExtensionAbility]
-
+// [End JSForm_EntryFormAbility_onFormEvent]

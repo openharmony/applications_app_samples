@@ -39,7 +39,7 @@ struct MyLiveFormPage {
   aboutToAppear(): void {
     this.uiContext = this.getUIContext();
     if (!this.uiContext) {
-      console.warn('no uiContext');
+      console.error('no uiContext');
       return;
     }
     this.initParams();
