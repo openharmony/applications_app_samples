@@ -13,35 +13,35 @@
 ### 1. [相对布局 (RelativeContainer)]
 ### 效果预览
 
-| 首页                                 | RelativeContainerParentComponentId示例 
+| 列表                                 |  示例 
 |------------------------------------|--------------------------------------|
 | ![](screenshots/device/image1.png) | ![](screenshots/device/image2.png)   |
 
 ### 2. [层叠布局 (Stack)]
 ### 效果预览
 
-| 首页                                    | StackLayoutExample示例               
+| 列表                                    | 示例               
 |---------------------------------------|------------------------------------|
 | ![](screenshots/device/image1.png) | ![](screenshots/device/image3.png) |
 
 ### 3. [线性布局 (Row/Column)]
 ### 效果预览
 
-| 首页                                 | ColumnLayoutExample示例              
+| 列表                                 |  示例              
 |------------------------------------|------------------------------------|
 | ![](screenshots/device/image4.png) | ![](screenshots/device/image5.png) |
 
 ### 4. [弹性布局 (Flex)]
 ### 效果预览
 
-| 首页                                 | FlexDirectionRow示例              
+| 列表                                 | 示例              
 |------------------------------------|------------------------------------|
 | ![](screenshots/device/image6.png) | ![](screenshots/device/image7.png) |
 
 ### 5. [栅格布局 (GridRow/GridCol)]
 ### 效果预览
 
-| 首页                                 | FlexDirectionRow示例                 
+| 列表                                 | 示例                 
 |------------------------------------|------------------------------------|
 | ![](screenshots/device/image8.png) | ![](screenshots/device/image9.png) |
 

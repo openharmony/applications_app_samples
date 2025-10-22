@@ -40,7 +40,7 @@ struct GridLayoutReference {
         GridCol({ span: 1 }) { // 所有子组件占一列。
           Row() {
             Text(`${index}`)
-          }.width("100%").height('50vp')
+          }.width('100%').height('50vp')
         }.backgroundColor(color)
       })
     }
