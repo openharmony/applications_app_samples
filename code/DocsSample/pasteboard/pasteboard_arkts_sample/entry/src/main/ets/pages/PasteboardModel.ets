@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [start pasteboard_timelaps_PasteData1]
-// [start pasteboard_usedata]
-// [start pasteboard_useudc]
+
+// [Start pasteboard_timelaps_PasteData1]
+// [Start pasteboard_usedata]
+// [Start pasteboard_useudc]
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 // [StartExclude pasteboard_usedata]
 import {unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
@@ -86,7 +87,7 @@ export namespace TestJs {
 
   // 使用基于PasteData级别的延迟复制粘贴（不建议使用，会影响粘贴体验和成功率）
   export async function pasteDatatimelate () {
-    // [start pasteboard_timelaps_PasteData2]
+    // [Start pasteboard_timelaps_PasteData2]
     let plainTextData = new unifiedDataChannel.UnifiedData();
     let getDelayPlainText = ((dataType:string) => {
       let plainText = new unifiedDataChannel.PlainText();
@@ -100,7 +101,7 @@ export namespace TestJs {
       return plainTextData;
     });
     // [End pasteboard_timelaps_PasteData2]
-    // [start pasteboard_timelaps_PasteData3]
+    // [Start pasteboard_timelaps_PasteData3]
     let setDelayPlainText = () => {
       plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
       // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
@@ -114,7 +115,7 @@ export namespace TestJs {
       });
     }
     // [End pasteboard_timelaps_PasteData3]
-    // [start pasteboard_timelaps_PasteData4]
+    // [Start pasteboard_timelaps_PasteData4]
     let getPlainTextUnifiedData = (() => {
       pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
         let outputData = data;
@@ -132,7 +133,7 @@ export namespace TestJs {
       })
     })
     // [End pasteboard_timelaps_PasteData4]
-    // [start pasteboard_timelaps_PasteData5]
+    // [Start pasteboard_timelaps_PasteData5]
     try {
       systemPasteboard.setAppShareOptions(pasteboard.ShareOption.LOCALDEVICE);
       console.info('Set app share options success.');
@@ -141,7 +142,7 @@ export namespace TestJs {
       //处理异常场景
     }
     // [End pasteboard_timelaps_PasteData5]
-    // [start pasteboard_timelaps_PasteData6]
+    // [Start pasteboard_timelaps_PasteData6]
     try {
       systemPasteboard.removeAppShareOptions();
       console.info('Remove app share options success.');

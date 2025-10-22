@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "EntryAbility_desc",
+      "value": "服务卡片的UIAbility组件实例"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "JS卡片"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "卡片扩展业务逻辑模块"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "卡片"
+    },
+    {
+      "name": "JSCardFormAbility_desc",
+      "value": "开发基于JS UI的卡片"
+    },
+    {
+      "name": "JSCardFormAbility_label",
+      "value": "JS卡片"
+    },
+    {
+      "name": "JSCardEntryAbility_desc",
+      "value": "开发基于JS UI的卡片"
+    },
+    {
+      "name": "JSCardEntryAbility_label",
+      "value": "JS 卡片"
+    }
+  ]
+}

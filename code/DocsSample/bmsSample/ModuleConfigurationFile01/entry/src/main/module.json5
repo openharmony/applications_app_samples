@@ -20,9 +20,11 @@
 // [Start module_fileContextMenu]
 // [Start module_appEnvironments]
 // [Start module_abilities_metadata]
+// [Start module_pages]
 {
   // [StartExclude module_abilities_skills]
   "module": {
+    // [StartExclude module_pages]
     // [StartExclude module_abilities_metadata]
     // [StartExclude module_appEnvironments]
     // [StartExclude module_systemTheme]
@@ -37,9 +39,9 @@
       "tablet"
     ],
     "deliveryWithInstall": true,
-    // [Start module_pages]
-    "pages": "$profile:main_pages",
-    // [End module_pages]
+    // [EndExclude module_pages]
+    "pages": "$profile:main_pages", // 通过profile下的资源文件配置
+    // [StartExclude module_pages]
     "appStartup": "$profile:app_startup_config",
     // [EndExclude module_metadata]
     "metadata": [
@@ -159,7 +161,7 @@
     ],
     // [StartExclude module_appEnvironments]
     // [EndExclude module_fileContextMenu]
-    "fileContextMenu": "$profile:menu",
+    "fileContextMenu": "$profile:menu", // 通过profile下的资源文件配置
     // [StartExclude module_fileContextMenu]
     "crossAppSharedConfig": "$profile:shared_config",
     // [StartExclude module_all]
@@ -170,9 +172,11 @@
     // [EndExclude module_fileContextMenu]
     // [EndExclude module_appEnvironments]
     // [EndExclude module_abilities_metadata]
+    // [EndExclude module_pages]
   }
   // [EndExclude module_abilities_skills]
 }
+// [End module_pages]
 // [End module_abilities_metadata]
 // [End module_appEnvironments]
 // [End module_fileContextMenu]

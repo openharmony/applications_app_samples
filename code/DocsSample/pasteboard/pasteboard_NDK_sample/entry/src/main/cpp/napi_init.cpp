@@ -16,9 +16,9 @@
 #include "napi/native_api.h"
 #include <cstring>
 #include <database/pasteboard/oh_pasteboard_err_code.h>
-// [start pasteboard_native2]
+// [Start pasteboard_native2]
 #include <cstdio>
-// [start pasteboard_timelapse_Record1]
+// [Start pasteboard_timelapse_Record1]
 #include <database/pasteboard/oh_pasteboard.h>
 #include <database/udmf/udmf.h>
 #include <database/udmf/uds.h>
@@ -29,7 +29,7 @@
 #include <accesstoken/ability_access_control.h>
 #undef LOG_TAG
 #define LOG_TAG "MY_LOG"
-// [ start pasteboard_native3]
+// [Start pasteboard_native3]
 // 定义剪贴板数据内容变更时的通知回调函数
 static void PasteboardNotifyImpl2(void* context, Pasteboard_NotifyType type)
 {
@@ -43,7 +43,7 @@ static void PasteboardFinalizeImpl2(void* context)
 // [End pasteboard_native3]
 static void PasteboardTestObserver()
 {
-    // [ start pasteboard_native4]
+    // [Start pasteboard_native4]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     // 2. 创建一个剪贴板数据变更观察者实例
@@ -64,7 +64,7 @@ static napi_value NAPI_Pasteboard_set(napi_env env, napi_callback_info info)
     size_t value0Size;
     status = napi_get_value_string_utf8(env, args[0], text, sizeof(text), &value0Size);
 
-    // [ start pasteboard_native5]
+    // [Start pasteboard_native5]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     if (pasteboard == nullptr) {
@@ -99,7 +99,7 @@ static napi_value NAPI_Pasteboard_set(napi_env env, napi_callback_info info)
 }
 static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
 {
-    // [ start pasteboard_native6]
+    // [Start pasteboard_native6]
     // 1. 创建一个剪贴板实例
     OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
     if (pasteboard == nullptr) {
@@ -139,10 +139,9 @@ static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "No plain text data in pasteboard.");
     }
     OH_Pasteboard_Destroy(pasteboard);
-    // [ start pasteboard_native6]
+    // [End pasteboard_native6]
 }
-// [start pasteboard_timelapse_Record2]
-// [End pasteboard_native2]
+// [Start pasteboard_timelapse_Record2]
 // 1. 获取数据时触发的提供剪贴板数据的回调函数。
 void* GetDataCallback(void* context, const char* type)
 {
@@ -168,7 +167,7 @@ void ProviderFinalizeCallback(void* context)
     OH_LOG_INFO(LOG_APP, "OH_UdmfRecordProvider finalize.");
 }
 // [End pasteboard_timelapse_Record2]
-// [start pasteboard_timelapse_Record3]
+// [Start pasteboard_timelapse_Record3]
 // 3. 定义应用退出时调用延迟同步接口触发的回调函数。
 void SyncCallback(int errorCode)
 {
@@ -177,7 +176,7 @@ void SyncCallback(int errorCode)
 // [End pasteboard_timelapse_Record3]
 OH_Pasteboard* CreateAndSetPasteboardData()
 {
-    // [start pasteboard_timelapse_Record4]
+    // [Start pasteboard_timelapse_Record4]
     // 4. 创建OH_UdmfRecord对象。
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     // 5. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
@@ -206,7 +205,7 @@ OH_Pasteboard* CreateAndSetPasteboardData()
     // [End pasteboard_timelapse_Record4]
     return pasteboard;
 }
-// [start pasteboard_timelapse_Record5]
+// [Start pasteboard_timelapse_Record5]
 void ProcessRecordType(OH_UdmfRecord* record, const char* recordType)
 {
     OH_UdsPlainText* udsText = nullptr;
@@ -276,13 +275,13 @@ static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
         ProcessRecord(record);
     }
     // [End pasteboard_timelapse_Record5]
-    // [start pasteboard_timelapse_Record6]
+    // [Start pasteboard_timelapse_Record6]
     // 15. 查询剪贴板内的数据是否变化。
     uint32_t newChangeCount = OH_Pasteboard_GetChangeCount(pasteboard);
     // 16. 如果newChangeCount == changeCount通知剪贴板获取全量数据，需要等待SyncCallback回调完成再继续退出
     // [End pasteboard_timelapse_Record6]
     // 17. 查询剪贴板内的数据是否变化。
-    // [start pasteboard_timelapse_Record7]
+    // [Start pasteboard_timelapse_Record7]
     OH_UdsPlainText_Destroy(udsText);
     OH_UdsHtml_Destroy(udsHtml);
     OH_UdmfData_Destroy(getData);
