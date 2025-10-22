@@ -43,9 +43,12 @@ void StartNativeChildProcess()
     // 插入节点到链表头节点中
     args.fdList.head = (NativeChildProcess_Fd *)malloc(sizeof(NativeChildProcess_Fd));
     // fd关键字，最多不超过20个字符
+    const size_t fd1Len = sizeof("fd1") - 1;
     args.fdList.head->fdName = (char *)malloc(sizeof(char) * g_fdNameMaxLength);
-    (void)strncpy(args.fdList.head->fdName, "fd1", sizeof("fd") - 1);
-    args.fdList.head->fdName[sizeof("fd") - 1] = '\0'; // 确保字符串以null结尾
+    if (args.fdList.head->fdName != nullptr) {
+        memcpy(args.fdList.head->fdName, "fd1", fd1Len);
+        args.fdList.head->fdName[fd1Len] = '\0';
+    }
     // 获取fd逻辑
     int32_t fd = open("/data/storage/el2/base/haps/entry/files/test.txt", O_RDWR | O_CREAT, 0644);
     args.fdList.head->fd = fd;

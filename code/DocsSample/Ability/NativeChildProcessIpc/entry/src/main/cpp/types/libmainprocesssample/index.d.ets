@@ -13,9 +13,4 @@
  * limitations under the License.
  */
 
-
-
-export const childProcessAdd: (a: number, b: number) => number;
-export const startNativeChildProcess: (libName: String) => number;
-export const requestExitChildProcess: (a: number) => number;
 export const testChildProcess: () => number;

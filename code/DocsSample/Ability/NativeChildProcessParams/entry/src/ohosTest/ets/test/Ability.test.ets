@@ -53,15 +53,15 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number SUB_Ability_AbilityRuntime_NativeStartChildProcess_0300
-     * @tc.name testStartNativeChildProcess003
+     * @tc.number SUB_Ability_AbilityRuntime_NativeStartChildProcess_0200
+     * @tc.name testStartNativeChildProcess002
      * @tc.desc To verify the function of creating a subprocess by StartNativeChildProcess
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('SUB_Ability_AbilityRuntime_NativeStartChildProcess_0300', Level.LEVEL0, async (done: Function) => {
-      let tag = `SUB_Ability_AbilityRuntime_NativeStartChildProcess_0300`;
+    it('SUB_Ability_AbilityRuntime_NativeStartChildProcess_0200', Level.LEVEL0, async (done: Function) => {
+      let tag = `SUB_Ability_AbilityRuntime_NativeStartChildProcess_0200`;
       console.log(`${tag}, it begin`);
       let ret: Number = testNapi.testChildProcess();
       console.info(`${tag}: ret` + ret);

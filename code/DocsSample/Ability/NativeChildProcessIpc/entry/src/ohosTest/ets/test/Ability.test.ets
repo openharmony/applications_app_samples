@@ -16,10 +16,6 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
 import testNapi from 'libmainprocesssample.so';
 
-function sleep(time: number) {
-  return new Promise<void>((resolve) => setTimeout(resolve, time));
-}
-
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -52,52 +48,6 @@ export default function abilityTest() {
      */
     it('SUB_Ability_AbilityRuntime_NativeStartChildProcess_0100', Level.LEVEL0, async (done: Function) => {
       let tag = `ACTS_NativeStartChildProcess_0100`;
-      console.log(`${tag}, it begin`);
-
-      try {
-        console.log(`${tag}, it begin`);
-        let ret: Number = testNapi.startNativeChildProcess("libmainprocesssample.so");
-        console.info(`${tag}: ret` + ret);
-        if (ret == 16010004) {
-          console.info(`${tag}: multi process model disable`);
-          expect(16010004).assertEqual(ret);
-          return;
-        } else if (ret == 801) {
-          console.info(`${tag}: Native child process disable`);
-          expect(801).assertEqual(ret);
-          return;
-        }
-
-        expect(0).assertEqual(ret);
-
-        console.info(`${tag}: Test ipc call for native child process`);
-        let a = 123;
-        let b = 456;
-        expect(a + b).assertEqual(testNapi.childProcessAdd(a, b));
-        expect(1).assertEqual(testNapi.requestExitChildProcess(0));
-        await sleep(600);
-
-        console.info(`${tag}: Test restart native child process`);
-        expect(0).assertEqual(testNapi.startNativeChildProcess("libmainprocesssample.so"));
-        expect(1).assertEqual(testNapi.requestExitChildProcess(0));
-        await sleep(600);
-      } catch (err) {
-        console.error(`${tag} error: ${JSON.stringify(err)}`);
-      } finally {
-        done();
-      }
-    })
-
-    /**
-     * @tc.number SUB_Ability_AbilityRuntime_NativeStartChildProcess_0200
-     * @tc.name testStartNativeChildProcess002
-     * @tc.desc To verify the function of creating a subprocess by StartNativeChildProcess
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 1
-     */
-    it('SUB_Ability_AbilityRuntime_NativeStartChildProcess_0200', Level.LEVEL0, async (done: Function) => {
-      let tag = `ACTS_NativeStartChildProcess_0200`;
       console.log(`${tag}, it begin`);
 
         let ret: Number = testNapi.testChildProcess();

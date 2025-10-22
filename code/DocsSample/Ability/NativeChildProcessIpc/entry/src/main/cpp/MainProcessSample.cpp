@@ -169,84 +169,6 @@ void CreateNativeChildProcess()
 }
 // [End main_process_launch_native_child]
 
-static napi_value ChildProcessAdd(napi_env env, napi_callback_info info)
-{
-    int32_t resultChildProcess = INT32_MIN;
-    if (g_ipcProxyPnt != nullptr) {
-        size_t argc = 2;
-        napi_value args[2] = {nullptr};
-        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-        int32_t value0;
-        napi_get_value_int32(env, args[0], &value0);
-        int32_t value1;
-        napi_get_value_int32(env, args[1], &value1);
-
-        resultChildProcess = g_ipcProxyPnt->Add(value0, value1);
-        OH_LOG_INFO(LOG_APP, "Main process - ChildProcessAdd %{public}d+%{public}d=%{public}d", value0, value1,
-                    resultChildProcess);
-    } else {
-        OH_LOG_ERROR(LOG_APP, "Main process - Child process not started");
-    }
-
-    napi_value sumNapi;
-    napi_create_int32(env, resultChildProcess, &sumNapi);
-    return sumNapi;
-}
-
-static napi_value StartNativeChildProcess(napi_env env, napi_callback_info info)
-{
-    std::promise<int> promise;
-    g_promiseStartProcess = &promise;
-
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    char libName[64];
-    size_t nameLen;
-    napi_get_value_string_utf8(env, args[0], libName, sizeof(libName), &nameLen);
-
-    int32_t ret = OH_Ability_CreateNativeChildProcess(libName, OnNativeChildProcessStarted);
-    OH_LOG_INFO(LOG_APP, "Main process - StartNativeChildProcess Lib:%{public}s ret:%{public}d", libName, ret);
-
-    if (ret == NCP_NO_ERROR) {
-        auto future = promise.get_future();
-        OH_LOG_INFO(LOG_APP, "Main process - Wait for call back");
-        ret = future.get();
-    }
-
-    g_promiseStartProcess = nullptr;
-    napi_value napiRet;
-    napi_create_int32(env, ret, &napiRet);
-    return napiRet;
-}
-
-static napi_value RequestExitChildProcess(napi_env env, napi_callback_info info)
-{
-    int32_t ret = 0;
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int32_t value0;
-    napi_get_value_int32(env, args[0], &value0);
-    if (g_ipcProxyPnt != nullptr && g_ipcProxyPnt->RequestExitChildProcess(value0)) {
-        ret = 1;
-        delete g_ipcProxyPnt;
-        g_ipcProxyPnt = nullptr;
-        OH_LOG_INFO(LOG_APP, "Main process - RequestExitChildProcess successed");
-
-        g_ipcProxyPntObjects.pop_back();
-        if (!g_ipcProxyPntObjects.empty()) {
-            OH_LOG_INFO(LOG_APP, "Main process - RequestExitChildProcess get g_ipcProxyPnt");
-            g_ipcProxyPnt = g_ipcProxyPntObjects.back();
-        }
-    }
-
-    napi_value napiRet;
-    napi_create_int32(env, ret, &napiRet);
-    return napiRet;
-}
-
 static napi_value TestChildProcess(napi_env env, napi_callback_info info)
 {
     CreateNativeChildProcess();
@@ -259,9 +181,6 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        {"ChildProcessAdd", nullptr, ChildProcessAdd, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"startNativeChildProcess", nullptr, StartNativeChildProcess, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"RequestExitChildProcess", nullptr, RequestExitChildProcess, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testChildProcess", nullptr, TestChildProcess, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-#ifndef NATIVECHILDPROCESS_MAINPROCESSSAMPLE_H
-#define NATIVECHILDPROCESS_MAINPROCESSSAMPLE_H
+#ifndef NATIVECHILDPROCESS_MAINPROCESSFUNC_H
+#define NATIVECHILDPROCESS_MAINPROCESSFUNC_H
 
 #include <IPCKit/ipc_cparcel.h>
-class MainProcessSample {
+class MainProcessFunc {
     static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remoteProxy);
     void CreateNativeChildProcess();
 };
 
-#endif //NATIVECHILDPROCESS_MAINPROCESSSAMPLE_H
+#endif //NATIVECHILDPROCESS_MAINPROCESSFUNC_H
