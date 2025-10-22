@@ -55,7 +55,7 @@ entry/src/
 
 ### 约束与限制
 
-1.本示例已适配API version 12及以上版本SDK。
+1.本示例已适配API version 20及以上版本SDK。
 
 ### 下载
 
@@ -65,6 +65,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUISample/ArktsNewOnce/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

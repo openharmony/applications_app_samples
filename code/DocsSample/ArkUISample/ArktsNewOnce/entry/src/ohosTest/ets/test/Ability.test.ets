@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Level, Size } from '@ohos/hypium';
 import Want from '@ohos.app.ability.Want';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
@@ -21,6 +20,8 @@ import { router } from '@kit.ArkUI';
 import { Driver, ON, Component, Point, On } from '@ohos.UiTest';
 
 let driver = Driver.create();
+
+const DELAY_TIME01 = 1000; //异步等待1秒
 
 async function sleep(time: number): Promise<void> {
   return new Promise((re, je) => {
@@ -83,19 +84,19 @@ export default function abilityTest() {
         let changeLocalNumCom :Component = await driver.findComponent(ON.text("changeLocalNum"));
         let coordinate1 = await getCenterPoint(changeLocalNumCom,0);
         await driver.click(coordinate1.x,coordinate1.y);
-        await sleep(1000);
+        await sleep(DELAY_TIME01);
         let changeLocalInfoCom :Component = await driver.findComponent(ON.text("changeLocalInfo"));
         let coordinate2 = await getCenterPoint(changeLocalInfoCom,0);
         await driver.click(coordinate2.x,coordinate2.y);
-        await sleep(1000);
+        await sleep(DELAY_TIME01);
         let changeOnceParamNumCom :Component = await driver.findComponent(ON.text("changeOnceParamNum"));
         let coordinate3 = await getCenterPoint(changeOnceParamNumCom,0);
         await driver.click(coordinate3.x,coordinate3.y);
-        await sleep(1000);
+        await sleep(DELAY_TIME01);
         let changeParamInfoCom :Component = await driver.findComponent(ON.text("changeParamInfo"));
         let coordinate4 = await getCenterPoint(changeParamInfoCom,0);
         await driver.click(coordinate4.x,coordinate4.y);
-        await sleep(1000);
+        await sleep(DELAY_TIME01);
         done();
       })
 
@@ -110,11 +111,11 @@ export default function abilityTest() {
     it('SUB_ARKUI_DECORATOR_ONCE_0200',
       TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
       router.push({url:"pages/MyComponent"});
-        await sleep(1000);
+        await sleep(DELAY_TIME01);
         let changeMessageCom :Component = await driver.findComponent(ON.text("change message"));
         let coordinate1 = await getCenterPoint(changeMessageCom,0);
         await driver.click(coordinate1.x,coordinate1.y);
-        await sleep(1000);
+        await sleep(DELAY_TIME01);
         done();
       })
   })

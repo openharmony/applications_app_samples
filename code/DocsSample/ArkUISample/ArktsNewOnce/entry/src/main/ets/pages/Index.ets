@@ -49,20 +49,20 @@ struct Index {
 
   build() {
     Column() {
-      Text(`Parent localNum: ${this.localNum}`)
-      Text(`Parent localInfo: ${this.localInfo.name}`)
+      Text(`Parent localNum: ${this.localNum}`);
+      Text(`Parent localInfo: ${this.localInfo.name}`);
       Button('changeLocalNum')
         .onClick(() => {
           this.localNum++;
-        })
+        });
       Button('changeLocalInfo')
         .onClick(() => {
           this.localInfo = new Info('Cindy');
-        })
+        });
       Child({
         onceParamNum: this.localNum,
         onceParamInfo: this.localInfo
-      })
+      });
     }
   }
 }

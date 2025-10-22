@@ -20,7 +20,7 @@ struct ChildComponent {
 
   build() {
     Column() {
-      Text(`onceParam: ${this.onceParam}`)
+      Text(`onceParam: ${this.onceParam}`);
     }
   }
 }
@@ -43,12 +43,12 @@ struct MyComponent {
 
   build() {
     Column() {
-      Text(`Parent message: ${this.message}`)
+      Text(`Parent message: ${this.message}`);
       Button('change message')
         .onClick(() => {
           this.message = 'Hello Tomorrow';
-        })
-      ChildComponent({ onceParam: this.message })
+        });
+      ChildComponent({ onceParam: this.message });
     }
   }
   // [EndExclide once_param_componentV2_pair]
