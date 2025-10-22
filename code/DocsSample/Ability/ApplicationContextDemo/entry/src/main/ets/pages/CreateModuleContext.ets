@@ -45,7 +45,7 @@ struct Page_Context {
                 console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
                 if (data !== null) {
                   this.getUIContext().getPromptAction().showToast({
-                    message: ('成功获取Context')
+                    message: $r('app.string.success_message')
                   });
                 }
               })
