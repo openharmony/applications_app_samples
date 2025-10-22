@@ -35,6 +35,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
     hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.IDENTITY_KEY] as string);
+
     // ...
     // 卡片使用方创建卡片时触发，提供方需要返回卡片数据绑定类
     let obj: Record<string, string> = {
