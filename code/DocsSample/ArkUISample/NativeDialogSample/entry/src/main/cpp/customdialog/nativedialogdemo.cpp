@@ -191,7 +191,7 @@ napi_value BuildDemoPage(napi_env env, napi_callback_info info)
     // 将napi_value转为NodeContentHandle
     OH_ArkUI_GetNodeContentFromNapiValue(env, args, &contentHandle);
     MainViewMethod(contentHandle);
-    return result;    
+    return result;
 }
 
 } // namespace Dialog_Controller_Demo
@@ -246,9 +246,10 @@ ArkUI_NodeHandle CreateDialogContent()
 
 // 触发dialogOptions弹窗
 // [Start open_dialogOption]
-int32_t id = 0;
-void OpenDialogCallBack(int32_t dialogId) {
-    id = dialogId;
+int32_t g_id = 0;
+void OpenDialogCallBack(int32_t dialogId)
+{
+    g_id = dialogId;
 }
 
 void OpenCustomDialog()
@@ -261,7 +262,7 @@ void OpenCustomDialog()
     OH_ArkUI_CustomDialog_SetBackgroundColor(dialogOptions, 0xffffffff);
     OH_ArkUI_CustomDialog_SetModalMode(dialogOptions, false);
     OH_ArkUI_CustomDialog_SetAutoCancel(dialogOptions, true);
-    OH_ArkUI_CustomDialog_SetBorderStyle(dialogOptions, ARKUI_BORDER_STYLE_SOLID, 
+    OH_ArkUI_CustomDialog_SetBorderStyle(dialogOptions, ARKUI_BORDER_STYLE_SOLID,
                                          ARKUI_BORDER_STYLE_SOLID, ARKUI_BORDER_STYLE_SOLID, ARKUI_BORDER_STYLE_SOLID);
     OH_ArkUI_CustomDialog_OpenDialog(dialogOptions, OpenDialogCallBack);
 }
@@ -270,7 +271,7 @@ void OpenCustomDialog()
 // [Start close_option]
 void CloseCustomDialog()
 {
-    OH_ArkUI_CustomDialog_CloseDialog(id);
+    OH_ArkUI_CustomDialog_CloseDialog(g_id);
 }
 // [End close_option]
 
@@ -536,7 +537,7 @@ napi_value BuildDemoPage(napi_env env, napi_callback_info info)
     napi_value result;
     napi_get_undefined(env, &result); // 返回undefined表示void
     
-    ArkUI_NodeContentHandle contentHandle; 
+    ArkUI_NodeContentHandle contentHandle;
     // 将napi_value转为NodeContentHandle
     OH_ArkUI_GetNodeContentFromNapiValue(env, args, &contentHandle);
     MainViewMethod(contentHandle);

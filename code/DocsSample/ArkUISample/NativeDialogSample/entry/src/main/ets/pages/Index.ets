@@ -16,7 +16,6 @@
 import router from '@ohos.router';
 import testNapi2 from 'libnativerender.so';
 import { common } from '@kit.AbilityKit';
-import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
