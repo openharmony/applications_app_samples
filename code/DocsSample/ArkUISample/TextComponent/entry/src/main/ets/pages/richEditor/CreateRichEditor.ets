@@ -29,6 +29,7 @@ export struct CreateRichEditor {
   });
   // 定义字体样式对象
 
+  // $r('app.string.xxx')需要替换为开发者所需的字符串
   mutableStyledString: MutableStyledString =
     new MutableStyledString(resource.resourceToString($r('app.string.CreateRichEditor_Text_1')),
     [{
@@ -59,6 +60,7 @@ export struct CreateRichEditor {
         }
 
         // [EndExclude richEditor_create_span]
+        // $r('app.string.xxx')需要替换为开发者所需的字符串
         ComponentCard({
           title: $r('app.string.Create_RichEditor_Component_title_2'),
         }) {

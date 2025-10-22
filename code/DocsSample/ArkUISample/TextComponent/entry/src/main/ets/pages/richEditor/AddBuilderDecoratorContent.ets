@@ -29,6 +29,7 @@ export struct AddBuilderDecoratorContent {
     Row() {
       Image($r('app.media.startIcon')).width(50).height(50).margin(16)
       Column() {
+        // $r('app.string.XXX')需要替换为开发者所需的字符串
         Text($r('app.string.AddBuilderDecoratorContent_Text_1')).fontWeight(FontWeight.Bold).fontSize(16)
         Text($r('app.string.AddBuilderDecoratorContent_Text_2')).fontColor('#8a8a8a').fontSize(12)
       }.alignItems(HorizontalAlign.Start)

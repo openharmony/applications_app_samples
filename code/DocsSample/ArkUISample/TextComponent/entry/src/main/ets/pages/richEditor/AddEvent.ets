@@ -64,6 +64,7 @@ struct event2 {
       }) {
         Column({ space: 3 }) {
           // [Start richEditor_eventSelectChange]
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_2')), {
@@ -113,6 +114,7 @@ struct event3 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventChange]
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_5')), {
@@ -172,6 +174,7 @@ struct event4 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventInput]
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_8')), {
@@ -257,6 +260,7 @@ struct on_cut_copy_paste {
 
   build() {
     Column() {
+      // $r('app.string.xxx')需要替换为开发者所需的字符串
       ComponentCard({
         title: $r('app.string.Add_Event_title_5'),
         description: $r('app.string.Add_Event_title_5_desc')
@@ -307,6 +311,7 @@ struct event6 {
       }) {
         Column({ space: 3 }) {
           // [EndExclude richEditor_eventCut]
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_13')), {
@@ -354,6 +359,7 @@ struct event7 {
       }) {
         Column({ space: 3 }) {
           // [Start richEditor_eventCopy]
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan(resource.resourceToString($r('app.string.AddEvent_Text_15')), {

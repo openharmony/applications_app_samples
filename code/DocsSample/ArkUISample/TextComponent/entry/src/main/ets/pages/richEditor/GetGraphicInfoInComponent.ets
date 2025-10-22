@@ -45,6 +45,7 @@ export struct GetGraphicInfoInComponent {
               })
               .width(300)
               .height(50);
+            // $r('app.string.xxx')需要替换为开发者所需的字符串
             Text($r('app.string.GetGraphicInfoInComponent_Text_1')).fontSize(10).fontColor(Color.Gray).width(300);
             RichEditor(this.infoShowOptions)
               .width(300)

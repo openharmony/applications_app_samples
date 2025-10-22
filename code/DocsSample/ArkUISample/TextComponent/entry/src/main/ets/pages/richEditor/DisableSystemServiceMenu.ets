@@ -41,6 +41,7 @@ export struct DisableSystemServiceMenu {
       Column({ space: 12 }) {
         ComponentCard() {
           // [Start richEditor_disableSystemMenu]
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options).onReady(() => {
             this.controller.addTextSpan($r('app.string.Demo_richEditor'),
               {

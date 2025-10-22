@@ -76,6 +76,7 @@ struct BindSelectionMenu {
 
   build() {
     Column() {
+      // $r('app.string.xxx')需要替换为开发者所需的字符串
       ComponentCard({
         title: $r('app.string.Set_Attributes_title_1'),
         description: $r('app.string.Set_Attributes_title_1_desc'),
@@ -149,6 +150,7 @@ struct attr2 {
         description: $r('app.string.Set_Attributes_title_2_desc')
       }) {
         // [Start richEditor_color]
+        // $r('app.string.xxx')需要替换为开发者所需的字符串
         RichEditor(this.options)
           .onReady(() => {
             this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_5')), {
@@ -181,6 +183,7 @@ struct attr3 {
         description: $r('app.string.Set_Attributes_title_3_desc')
       }) {
         // [EndExclude richEditor_placeholder]
+        // $r('app.string.xxx')需要替换为开发者所需的字符串
         RichEditor(this.options)
           .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_6')), {
             fontColor: Color.Gray,
@@ -213,6 +216,7 @@ struct attr4 {
         description: $r('app.string.Set_Attributes_title_4_desc')
       }) {
         // [Start richEditor_maxLines]
+        // $r('app.string.xxx')需要替换为开发者所需的字符串
         RichEditor(this.options)
           .onReady(() => {
             this.controller.addTextSpan(resource.resourceToString($r('app.string.SetAttributes_Text_7')),
@@ -244,6 +248,7 @@ struct attr5 {
         description: $r('app.string.Set_Attributes_title_5_desc')
       }) {
         // [EndExclude richEditor_maxLength]
+        // $r('app.string.xxx')需要替换为开发者所需的字符串
         RichEditor(this.options)
           .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_8')))
           .maxLength(7);
@@ -286,6 +291,7 @@ struct Decoration {
 
   build() {
     Column() {
+      // $r('app.string.xxx')需要替换为开发者所需的字符串
       ComponentCard({
         title: $r('app.string.Set_Attributes_title_9'),
         description: $r('app.string.Set_Attributes_title_9_desc')
@@ -323,6 +329,7 @@ struct DecorationOptions {
         Column({ space: 3 }) {
           // [Start richEditor_decorationOptions]
           RichEditor({ controller: this.styledStringController });
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           Button($r('app.string.Demo_SetStyledStringButton'))
             .fontSize(20)
             .onClick(() => {
@@ -386,11 +393,13 @@ struct SetTextVerticalAlign {
         // [Start richEditor_textVerticalAlign]
         RichEditor(this.options)
           .onReady(() => {
+            // $r('app.media.xxx')需要替换为开发者所需的图标
             this.controller.addImageSpan($r('app.media.startIcon'), {
               imageStyle: {
                 size: [100, 100]
               }
             });
+            // $r('app.string.xxx')需要替换为开发者所需的字符串
             this.controller.addTextSpan($r('app.string.Demo_verticalAlignString'), {
               style: {
                 fontColor: Color.Pink,
@@ -427,6 +436,7 @@ struct EnableAutoSpacing {
       }) {
         Column({ space: 3 }) {
           // [Start richEditor_enableAutoSpacing]
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options)
             .onReady(() => {
               this.controller.addTextSpan($r('app.string.Demo_autoSpacingString'),
@@ -466,6 +476,7 @@ struct PrepareMenu {
       TextMenuItemId.AI_WRITER
     ]
     const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)));
+    // $r('app.media.xxx')需要替换为开发者所需的图标
     let item1: TextMenuItem = {
       content: 'create1',
       icon: $r('app.media.startIcon'),
@@ -498,6 +509,7 @@ struct PrepareMenu {
   }
 
   onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.xxx')需要替换为开发者所需的图标
     let item1: TextMenuItem = {
       content: 'prepare1_' + this.endIndex,
       icon: $r('app.media.startIcon'),
@@ -515,6 +527,7 @@ struct PrepareMenu {
 
   build() {
     Column() {
+      // $r('app.string.xxx')需要替换为开发者所需的字符串
       ComponentCard({
         title: $r('app.string.Set_Attributes_title_13'),
         description: $r('app.string.Set_Attributes_title_13_desc')

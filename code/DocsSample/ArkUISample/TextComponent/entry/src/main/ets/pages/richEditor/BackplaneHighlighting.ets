@@ -30,6 +30,7 @@ export struct BackplaneHighlighting {
         ComponentCard() {
           Column({ space: 3 }) {
             // [Start richEditor_selection]
+            // $r('app.string.xxx')需要替换为开发者所需的字符串
             RichEditor(this.options)
               .onReady(() => {
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
