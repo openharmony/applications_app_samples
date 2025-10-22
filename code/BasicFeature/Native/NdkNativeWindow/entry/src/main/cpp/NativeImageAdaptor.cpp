@@ -132,6 +132,10 @@ bool NativeImageAdaptor::Export(napi_env env, napi_value exports)
          nullptr},
         {"ChangeIsAutoConsumer", nullptr, NativeImageAdaptor::NapiOnChangeIsAutoConsumer, nullptr, nullptr, nullptr,
          napi_default, nullptr},
+        {"AcquireLatestBuffer", nullptr, NativeImageAdaptor::NapiOnAcquireLatestBuffer, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"PreAllocBuffer", nullptr, NativeImageAdaptor::NapiOnPreAllocBuffer, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
 
@@ -461,6 +465,36 @@ int32_t NativeImageAdaptor::ConsumerBuffer(uint32_t value, OHNativeWindow *InNat
     return GSERROR_OK;
 }
 
+int32_t NativeImageAdaptor::AcquireLatestBuffer(uint32_t value, OHNativeWindow *InNativeWindow)
+{
+    std::lock_guard<std::mutex> lockGuard(opMutex_);
+    NativeWindowBuffer *buffer = nullptr;
+    int fenceFd = -1;
+    int ret = OH_NativeImage_AcquireLatestNativeWindowBuffer(image_, &buffer, &fenceFd);
+    if (ret != 0) {
+        LOGE("OH_NativeImage_AcquireLatestNativeWindowBuffer fail, ret:%{public}d", ret);
+        return GSERROR_FAILD;
+    }
+    ret = OH_NativeImage_ReleaseNativeWindowBuffer(image_, buffer, fenceFd);
+    if (ret != 0) {
+        LOGE("OH_NativeImage_AcquireLatestNativeWindowBuffer fail, ret:%{public}d", ret);
+        return GSERROR_FAILD;
+    }
+    availableBufferCount_--;
+    return GSERROR_OK;
+}
+
+int32_t NativeImageAdaptor::PreAllocBuffer(uint32_t value, OHNativeWindow *InNativeWindow)
+{
+    std::lock_guard<std::mutex> lockGuard(opMutex_);
+    int ret = OH_NativeWindow_PreAllocBuffers(InNativeWindow, 3);
+    if (ret != 0) {
+        LOGE("OH_NativeWindow_PreAllocBuffers fail, ret:%{public}d", ret);
+        return GSERROR_FAILD;
+    }
+    return GSERROR_OK;
+}
+
 void NativeImageAdaptor::OnFrameAvailable(void *context)
 {
     NativeImageAdaptor::GetInstance()->DealCallback(context);
@@ -568,6 +602,24 @@ napi_value NativeImageAdaptor::NapiOnConsumerBuffer(napi_env env, napi_callback_
     napi_value val = nullptr;
     int32_t ret = NativeImageAdaptor::GetInstance()->
         ConsumerBuffer(0x00, NativeImageAdaptor::GetInstance()->nativeWindow_);
+    (void)napi_create_int32(env, ret, &val);
+    return val;
+}
+
+napi_value NativeImageAdaptor::NapiOnAcquireLatestBuffer(napi_env env, napi_callback_info info)
+{
+    napi_value val = nullptr;
+    int32_t ret = NativeImageAdaptor::GetInstance()->
+        AcquireLatestBuffer(0x00, NativeImageAdaptor::GetInstance()->nativeWindow_);
+    (void)napi_create_int32(env, ret, &val);
+    return val;
+}
+
+napi_value NativeImageAdaptor::NapiOnPreAllocBuffer(napi_env env, napi_callback_info info)
+{
+    napi_value val = nullptr;
+    int32_t ret = NativeImageAdaptor::GetInstance()->
+        PreAllocBuffer(0x00, NativeImageAdaptor::GetInstance()->nativeWindow_);
     (void)napi_create_int32(env, ret, &val);
     return val;
 }
