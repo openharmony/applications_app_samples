@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start arkts_multi_language_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -32,7 +33,7 @@ class MyRenderNode extends RenderNode {
       },
       fontSize: 50,
       // 设置语言偏好为简体中文
-      locale: "zh-Hans"
+      locale: 'zh-Hans'
     };
 
     let myParagraphStyle: text.ParagraphStyle = {
@@ -134,3 +135,4 @@ struct Font08 {
     }
   }
 }
+// [End arkts_multi_language_text]

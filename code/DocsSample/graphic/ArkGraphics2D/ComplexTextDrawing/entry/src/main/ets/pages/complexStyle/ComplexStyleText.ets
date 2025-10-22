@@ -23,7 +23,7 @@ struct ComplexText {
         Text(this.message)
           .fontSize(25)
 
-        Button($r("app.string.ComplexStyle_Button_example1"))
+        Button($r('app.string.ComplexStyle_Button_example1'))
           .fontSize('12fp')
           .fontWeight(500)
           .margin({ bottom: 24, left: 5 })
@@ -34,7 +34,7 @@ struct ComplexText {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-        Button($r("app.string.ComplexStyle_Button_example2"))
+        Button($r('app.string.ComplexStyle_Button_example2'))
           .fontSize('12fp')
           .fontWeight(500)
           .margin({ bottom: 24, left: 5 })
@@ -45,7 +45,7 @@ struct ComplexText {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-        Button($r("app.string.ComplexStyle_Button_example3"))
+        Button($r('app.string.ComplexStyle_Button_example3'))
           .fontSize('12fp')
           .fontWeight(500)
           .margin({ bottom: 24, left: 5 })
@@ -56,7 +56,7 @@ struct ComplexText {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-        Button($r("app.string.ComplexStyle_Button_example4"))
+        Button($r('app.string.ComplexStyle_Button_example4'))
           .fontSize('12fp')
           .fontWeight(500)
           .margin({ bottom: 24, left: 5 })

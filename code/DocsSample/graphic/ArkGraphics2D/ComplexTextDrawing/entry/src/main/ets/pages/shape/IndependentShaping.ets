@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// [Start arkts_independent_shaping_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -42,7 +58,7 @@ function drawText(canvas: drawing.Canvas) {
   let fontCollection = text.FontCollection.getGlobalInstance();
   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
   // 添加文本
-  paragraphBuilder.addText("Hello World");
+  paragraphBuilder.addText('Hello World');
   // 生成行
   let lineTypeSet: text.LineTypeset = paragraphBuilder.buildLineTypeset()
   let textLine: text.TextLine = lineTypeSet.createLine(0, 11);
@@ -70,6 +86,7 @@ function drawText(canvas: drawing.Canvas) {
     // 自定义绘制一串具有相同属性的一系列连续字形
     canvas.drawTextBlob(textBlob, 20, 100);
   }
+  // [End arkts_independent_shaping_text]
 }
 
 // 创建一个MyRenderNode类，并绘制文本。
@@ -110,5 +127,6 @@ class MyNodeController extends NodeController {
     return this.rootNode
   }
 }
+// [End arkts_independent_shaping_text]
 
 

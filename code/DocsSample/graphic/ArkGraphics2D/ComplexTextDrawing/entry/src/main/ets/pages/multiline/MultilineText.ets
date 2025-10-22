@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start arkts_multi_line_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -32,7 +33,7 @@ class MyRenderNode extends RenderNode {
       },
       fontSize: 50,
       // 当wordBreak为text.WordBreak.BREAK_HYPHEN时，需要为段落设置语言偏好，段落会在不同语言偏好下呈现不同的文本断词效果
-      locale: "en-gb"
+      locale: 'en-gb'
     };
 
     let myParagraphStyle: text.ParagraphStyle = {
@@ -53,7 +54,7 @@ class MyRenderNode extends RenderNode {
       'Hello World Hello World Hello World Hello World Hello World Hello World Hello World Hello World ' +
       'Hello World Hello World Hello World Hello World Hello World ');
     // 当wordBreak为text.WordBreak.BREAK_HYPHEN时，替换文本内容为：
-    // paragraphBuilder.addText("Modern embedded systems require robust communication protocols and efficient memory ' +
+    // paragraphBuilder.addText('Modern embedded systems require robust communication protocols and efficient memory ' +
     //   'management strategies. Developers often face challenges in optimizing performance while maintaining ' +
     //   'modularity and portability. By leveraging a layered architecture and structured logging, applications can ' +
     //   'detect anomalies and respond quickly to faults. This approach enhances reliability, especially in ' +
@@ -149,3 +150,4 @@ struct Font08 {
     }
   }
 }
+// [End arkts_multi_line_text]

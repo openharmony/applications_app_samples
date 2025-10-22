@@ -25,7 +25,7 @@ struct Index {
         Text(this.message)
           .fontSize(25)
 
-        Button($r("app.string.Button_page_Multilanguage"))
+        Button($r('app.string.Button_page_Multilanguage'))
           .fontSize('12fp')
           .fontWeight(500)
           .margin({ bottom: 24, left: 5 })
@@ -36,7 +36,7 @@ struct Index {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-        Button($r("app.string.Button_page_Multiline"))
+        Button($r('app.string.Button_page_Multiline'))
           .fontSize('12fp')
           .fontWeight(500)
           .margin({ bottom: 24, left: 5 })
@@ -47,7 +47,7 @@ struct Index {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-        Button($r("app.string.Button_page_Complexstyle"))
+        Button($r('app.string.Button_page_Complexstyle'))
           .fontSize('12fp')
           .fontWeight(500)
           .margin({ bottom: 24, left: 5 })
@@ -58,7 +58,7 @@ struct Index {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-        Button($r("app.string.IndependentShaping"))
+        Button($r('app.string.IndependentShaping'))
           .fontSize('12fp')
           .fontWeight(500)
           .margin({ bottom: 24, left: 5 })

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start arkts_complex_style_example2_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { drawing } from '@kit.ArkGraphics2D'
@@ -173,3 +174,4 @@ struct Font08 {
     }
   }
 }
+// [End arkts_complex_style_example2_text]
