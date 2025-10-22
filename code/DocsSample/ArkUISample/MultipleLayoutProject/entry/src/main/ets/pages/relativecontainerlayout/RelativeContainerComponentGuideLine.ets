@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start RelativeContainerComponentGuideLine_start]
 @Entry
 @Component
 struct RelativeContainerComponentGuideLine {
@@ -39,3 +39,4 @@ struct RelativeContainerComponentGuideLine {
     .height('100%')
   }
 }
+// [End RelativeContainerComponentGuideLine_start]

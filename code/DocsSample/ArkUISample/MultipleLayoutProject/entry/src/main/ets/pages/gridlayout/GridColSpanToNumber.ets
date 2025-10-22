@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridColSpanToNumber_start]
+// xxx.ets
 @Entry
 @Component
 struct GridColSpanToNumber {
@@ -33,3 +34,4 @@ struct GridColSpanToNumber {
     }
   }
 }
+// [End GridColSpanToNumber_start]

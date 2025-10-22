@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridLayoutColumnsToFour_start]
+// xxx.ets
 @Entry
 @Component
 struct GridLayoutColumnsToFour {
@@ -38,3 +39,4 @@ struct GridLayoutColumnsToFour {
     .width('90%')
   }
 }
+// [End GridLayoutColumnsToFour_start]

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start RelativeContainerMultipleComponentsChainMode_start]
 @Entry
 @Component
 struct RelativeContainerMultipleComponentsChainMode {
@@ -155,3 +155,4 @@ struct RelativeContainerMultipleComponentsChainMode {
     .height('100%')
   }
 }
+// [End RelativeContainerMultipleComponentsChainMode_start]

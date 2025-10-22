@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start BlankExample_start]
 @Entry
 @Component
 struct BlankExample {
@@ -26,3 +26,4 @@ struct BlankExample {
     }.backgroundColor(0xEFEFEF).padding(20).width('100%')
   }
 }
+// [End BlankExample_start]

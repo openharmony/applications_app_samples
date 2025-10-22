@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start StackLayoutAlignContent_start]
+// xxx.ets
 @Entry
 @Component
 struct StackLayoutAlignContent {
@@ -24,3 +25,4 @@ struct StackLayoutAlignContent {
     }.width('100%').height(150).margin({ top: 5 })
   }
 }
+// [End StackLayoutAlignContent_start]

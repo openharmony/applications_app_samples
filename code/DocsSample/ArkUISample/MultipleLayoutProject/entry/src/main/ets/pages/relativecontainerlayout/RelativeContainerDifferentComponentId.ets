@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start RelativeContainerDifferentComponentId_start]
 @Entry
 @Component
 struct RelativeContainerDifferentComponentId {
@@ -79,3 +79,4 @@ struct RelativeContainerDifferentComponentId {
     .height('100%')
   }
 }
+// [End RelativeContainerDifferentComponentId_start]

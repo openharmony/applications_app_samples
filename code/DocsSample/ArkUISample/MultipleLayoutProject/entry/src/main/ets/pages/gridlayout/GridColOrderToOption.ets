@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridColOrderToOption_start]
 @Entry
 @Component
 struct GridColOrderToOption {
@@ -84,3 +84,4 @@ struct GridColOrderToOption {
     }
   }
 }
+// [End GridColOrderToOption_start]

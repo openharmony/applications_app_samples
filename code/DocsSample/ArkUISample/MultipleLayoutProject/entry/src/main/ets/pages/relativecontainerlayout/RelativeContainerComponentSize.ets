@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start RelativeContainerComponentSize_start]
 @Entry
 @Component
 struct RelativeContainerComponentSize {
@@ -104,3 +104,4 @@ struct RelativeContainerComponentSize {
     .height('100%')
   }
 }
+// [End RelativeContainerComponentSize_start]

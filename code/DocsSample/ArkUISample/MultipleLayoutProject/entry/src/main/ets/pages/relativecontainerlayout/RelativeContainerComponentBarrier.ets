@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start testRelativeContainerComponentBarrier_start]
 @Entry
 @Component
 struct testRelativeContainerComponentBarrier {
@@ -104,3 +104,4 @@ struct testRelativeContainerComponentBarrier {
     .height('100%')
   }
 }
+// [End testRelativeContainerComponentBarrier_start]

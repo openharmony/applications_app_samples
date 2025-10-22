@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridLayoutColumns_start]
+// xxx.ets
 @Entry
 @Component
 struct GridLayoutColumns {
@@ -32,3 +33,4 @@ struct GridLayoutColumns {
     }
   }
 }
+// [End GridLayoutColumns_start]

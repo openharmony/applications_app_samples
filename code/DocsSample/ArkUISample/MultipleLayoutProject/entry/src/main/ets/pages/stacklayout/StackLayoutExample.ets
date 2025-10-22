@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+//[Start StackLayoutExample_start]
+// xxx.ets
 let mTop:Record<string,number> = { 'top': 50 }
 
 @Entry
@@ -27,3 +29,4 @@ struct StackLayoutExample {
     }
   }
 }
+// [End StackLayoutExample_start]

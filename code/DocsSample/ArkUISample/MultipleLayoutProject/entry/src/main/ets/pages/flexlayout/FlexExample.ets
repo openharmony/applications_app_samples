@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start FlexExample_start]
 @Entry
 @Component
 struct FlexExample {
@@ -36,3 +36,4 @@ struct FlexExample {
     }.width('100%')
   }
 }
+// [End FlexExample_start]

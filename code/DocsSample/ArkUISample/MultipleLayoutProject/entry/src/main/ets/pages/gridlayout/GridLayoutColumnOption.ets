@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridLayoutColumnOption_start]
 @Entry
 @Component
 struct GridLayoutColumnOption {
@@ -40,3 +40,4 @@ struct GridLayoutColumnOption {
     .border({ color: 'rgb(39,135,217)', width: 2 })
   }
 }
+// [End GridLayoutColumnOption_start]

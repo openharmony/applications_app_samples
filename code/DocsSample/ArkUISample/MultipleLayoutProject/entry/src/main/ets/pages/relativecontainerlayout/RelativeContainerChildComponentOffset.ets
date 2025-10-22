@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start RelativeContainerChildComponentOffset_start]
 @Entry
 @Component
 struct RelativeContainerChildComponentOffset {
@@ -126,3 +126,4 @@ struct RelativeContainerChildComponentOffset {
     .height('100%')
   }
 }
+// [End RelativeContainerChildComponentOffset_start]

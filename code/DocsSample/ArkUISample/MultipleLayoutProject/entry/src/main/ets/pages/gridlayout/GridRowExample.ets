@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridRowExample_start]
 @Entry
 @Component
 struct GridRowExample {
@@ -47,3 +47,4 @@ struct GridRowExample {
     }.width('100%').height(300)
   }
 }
+// [End GridRowExample_start]

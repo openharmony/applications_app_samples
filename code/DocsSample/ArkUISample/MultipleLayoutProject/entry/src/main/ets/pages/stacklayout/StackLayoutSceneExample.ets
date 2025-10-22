@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start StackLayoutSceneExample_start]
 @Entry
 @Component
 struct StackLayoutSceneExample {
@@ -46,3 +46,4 @@ struct StackLayoutSceneExample {
     }.width('100%').height('100%').backgroundColor('#CFD0CF')
   }
 }
+// [End StackLayoutSceneExample_start]

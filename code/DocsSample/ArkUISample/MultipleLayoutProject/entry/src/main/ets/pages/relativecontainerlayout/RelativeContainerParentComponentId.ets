@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start RelativeContainerParentComponentId_start]
 let alignRus: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
   'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
   'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
@@ -53,3 +53,4 @@ struct RelativeContainerParentComponentId {
     .border(bwc)
   }
 }
+// [End RelativeContainerParentComponentId_start]

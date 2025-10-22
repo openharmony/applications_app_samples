@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridColOffsetToNumber_start]
 @Entry
 @Component
 struct GridColOffsetToNumber {
@@ -33,3 +33,4 @@ struct GridColOffsetToNumber {
     }
   }
 }
+// [End GridColOffsetToNumber_start]
