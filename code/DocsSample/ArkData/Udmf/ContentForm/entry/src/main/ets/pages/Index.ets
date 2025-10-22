@@ -18,6 +18,7 @@
 // 1. 导入需要的模块
 // [EndExclude components_based_on_uniform_data_structure]
 import { ContentFormCard, FormType, uniformDataStruct } from '@kit.ArkData';
+import hilog from '@ohos.hilog';
 
 @Entry
 @Component
@@ -52,7 +53,7 @@ struct Index {
         appName: 'com.test.demo'
       };
     } catch (err) {
-      console.error('Init data error');
+      hilog.error(0xFF00, '[Sample_Udmf]', 'Init data error');
     }
   }
 
@@ -75,7 +76,7 @@ struct Index {
           formWidth: 220,
           formHeight: 100,
           handleOnClick: () => {
-            console.info('Clicked card');
+            hilog.info(0xFF00, '[Sample_Udmf]', 'Clicked card');
           }
         })
       }

@@ -15,11 +15,13 @@
 
 // [Start import_module]
 import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
+import hilog from '@ohos.hilog';
 // [End import_module]
 
 // [Start import_unifiedData_object_module]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+
 // [End import_unifiedData_object_module]
 
 export function insertUnifiedData() {
@@ -73,14 +75,15 @@ export function insertUnifiedData() {
   try {
     unifiedDataChannel.insertData(options, unifiedData, (err, key) => {
       if (err === undefined) {
-        console.info(`Succeeded in inserting data. key = ${key}`);
+        hilog.info(0xFF00, '[Sample_Udmf]', `Succeeded in inserting data. key = ${key}`);
       } else {
-        console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+        hilog.error(0xFF00, '[Sample_Udmf]', `Succeeded in inserting data. key = ${key})`);
       }
     });
   } catch (e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`Insert data throws an exception. code is ${error.code},message is ${error.message} `);
+    hilog.error(0xFF00, '[Sample_Udmf]',
+      `Insert data throws an exception. code is ${error.code},message is ${error.message}`);
   }
   // [End unified_data_channels_insert_data]
 }
@@ -115,14 +118,15 @@ export function updateUnifiedData() {
   try {
     unifiedDataChannel.updateData(optionsUpdate, unifiedDataUpdate, (err) => {
       if (err === undefined) {
-        console.info('Succeeded in updating data.');
+        hilog.info(0xFF00, '[Sample_Udmf]', `Succeeded in updating data.`);
       } else {
-        console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+        hilog.error(0xFF00, '[Sample_Udmf]', `Failed to update data. code is ${err.code},message is ${err.message}`);
       }
     });
   } catch (e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`Update data throws an exception. code is ${error.code},message is ${error.message} `);
+    hilog.error(0xFF00, '[Sample_Udmf]',
+      `Update data throws an exception. code is ${error.code},message is ${error.message}`);
   }
   // [End unified_data_channels_update_data]
 }
@@ -139,33 +143,34 @@ export function deleteUnifiedData() {
   try {
     unifiedDataChannel.deleteData(optionsDelete, (err, data) => {
       if (err === undefined) {
-        console.info(`Succeeded in deleting data. size = ${data.length}`);
+        hilog.info(0xFF00, '[Sample_Udmf]', `Succeeded in deleting data. size = ${data.length}`);
         for (let i = 0; i < data.length; i++) {
           let records = data[i].getRecords();
           for (let j = 0; j < records.length; j++) {
             let types = records[j].getTypes();
-            // [StartExclude unified_data_channels_delete_data]
+            // [Start unified_data_channels_delete_data]
             // 根据业务需要从记录中获取样式数据
             // [EndExclude unified_data_channels_delete_data]
             if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
               let text =
                 records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
-              console.info(`${i + 1}.${text.textContent}`);
+              hilog.info(0xFF00, '[Sample_Udmf]', `${i + 1}.${text.textContent}`);
             }
             if (types.includes(uniformTypeDescriptor.UniformDataType.HTML)) {
               let html =
                 records[j].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
-              console.info(`${i + 1}.${html.htmlContent}`);
+              hilog.info(0xFF00, '[Sample_Udmf]', `${i + 1}.${html.htmlContent}`);
             }
           }
         }
       } else {
-        console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+        hilog.error(0xFF00, '[Sample_Udmf]', `Failed to delete data. code is ${err.code},message is ${err.message}`);
       }
     });
   } catch (e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`Delete data throws an exception. code is ${error.code},message is ${error.message} `);
+    hilog.error(0xFF00, '[Sample_Udmf]',
+      `Delete data throws an exception. code is ${error.code},message is ${error.message}`);
   }
   // [End unified_data_channels_delete_data]
 }
@@ -182,7 +187,7 @@ export function queryUnifiedData() {
   try {
     unifiedDataChannel.queryData(options, (err, data) => {
       if (err === undefined) {
-        console.info(`Succeeded in querying data. size = ${data.length}`);
+        hilog.info(0xFF00, '[Sample_Udmf]', `Succeeded in querying data. size = ${data.length}`);
         for (let i = 0; i < data.length; i++) {
           let records = data[i].getRecords();
           for (let j = 0; j < records.length; j++) {
@@ -193,23 +198,23 @@ export function queryUnifiedData() {
             if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
               let text =
                 records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
-              console.info(`${i + 1}.${text.textContent}`);
+              hilog.info(0xFF00, '[Sample_Udmf]', `${i + 1}.${text.textContent}`);
             }
             if (types.includes(uniformTypeDescriptor.UniformDataType.HTML)) {
               let html =
                 records[j].getEntry(uniformTypeDescriptor.UniformDataType.HTML) as uniformDataStruct.HTML;
-              console.info(`${i + 1}.${html.htmlContent}`);
+              hilog.info(0xFF00, '[Sample_Udmf]', `${i + 1}.${html.htmlContent}`);
             }
           }
         }
       } else {
-        console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+        hilog.error(0xFF00, '[Sample_Udmf]', `Failed to query data. code is ${err.code},message is ${err.message}`);
       }
     });
   } catch (e) {
     let error: BusinessError = e as BusinessError;
-    console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
+    hilog.error(0xFF00, '[Sample_Udmf]',
+      `Query data throws an exception. code is ${error.code},message is ${error.message}`);
   }
   // [End unified_data_channels_query_data]
 }
-

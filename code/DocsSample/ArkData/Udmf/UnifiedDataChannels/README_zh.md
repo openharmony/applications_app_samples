@@ -1,4 +1,4 @@
-# 标准化数据通路实现数据共享 (ArkTS)指南文档示例
+# 标准化数据指南文档示例
 
 ### 介绍
 
@@ -8,17 +8,17 @@
 
 | 桌面                                |
 |-----------------------------------|
-| ![img.png](screenshots/image.png) |
+| ![image.PNG](screenshots/image.PNG) |
 
 ### 使用说明
 
-1. 在主界面，点击insertData接口按钮插入数据，打印成功日志。
+1. 在主界面，点击insertData接口按钮插入数据，在控制台打印成功日志。
 
-2. 在主界面，点击updateData接口按钮插入数据，打印失败日志（示例传入无效key值）。
+2. 在主界面，点击updateData接口按钮插入数据，在控制台打印失败日志（传入无效key值）。
 
-3. 在主界面，点击deleteData接口按钮插入数据，打印成功日志。
+3. 在主界面，点击deleteData接口按钮插入数据，在控制台打印成功日志。
 
-4. 在主界面，点击queryData接口按钮插入数据，打印成功日志。
+4. 在主界面，点击queryData接口按钮插入数据，在控制台打印成功日志。
 
 ### 工程目录
 ```
@@ -27,9 +27,16 @@ entry/src/
 |       |---ets/
 |           |---entryability/EntryAbility.ets   // 应用启动加载的入口ability
 |           |---entrybackupability/EntryBackupAbility.ets  // extensionAbility。
-|           |---pages/index.ets                 // entry主应用入口页面
-|           |---pages/UdmfInterface.ets                 // 标准化数据通路相关接口封装
+|           |---pages/index.ets                 // entry主应用入口页面及接口调用实现
 ```
+
+### 具体实现
+
+* 主UI界面，功能包括数据记录的增、删、更新、查询，源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)。
+    * 数据提供方通过UDMF提供的insertData()接口添加数据记录。
+    * 使用updateData()更新上一步插入的统一数据对象。
+    * 使用deleteData()删除存储在UDMF公共数据通路中的统一数据对象。
+    * 使用queryData()查询存储在UDMF公共数据通路中的全量统一数据对象。
 
 ### 相关权限
 

@@ -2,13 +2,13 @@
 
 ### 介绍
 
-本示例通过标准化数据结构配置内容卡片控件。
+本示例通过标准化数据结构配置内容卡片控件。在需要展示内容（标题、描述、图片、应用信息）并在点击后跳转至对应来源时，可以使用内容卡片快速的展示信息。开发者只需要调用ContentFormCard接口，传入ContentForm数据、卡片宽高、点击事件回调函数即可获得良好的展示效果。
 
 ### 效果预览
 
 | 桌面                                |
 |-----------------------------------|
-| ![img.png](screenshots/image.png) |
+| ![image.PNG](screenshots/image.PNG) |
 
 ### 使用说明
 
@@ -23,8 +23,13 @@ entry/src/
 |       |---ets/
 |           |---entryability/EntryAbility.ets   // 应用启动加载的入口ability
 |           |---entrybackupability/EntryBackupAbility.ets  // extensionAbility。
-|           |---pages/index.ets                 // entry主应用入口页面
+|           |---pages/index.ets                 // entry主应用入口页面及接口调用实现
 ```
+
+### 具体实现
+
+* 主UI界面，功能包括使用内容卡片快速展示相关信息，源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)。
+    * 调用ContentFormCard接口，传入ContentForm数据即可获得良好的展示效果。
 
 ### 相关权限
 
