@@ -12,12 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start FormUpdate_page]
 import { formHost } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage = new LocalStorage();
-const TAG: string = 'EntryFormAbility';
-const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry(storage)
 @Component
@@ -46,7 +45,6 @@ struct Index {
           .onAcquired((form: FormCallbackInfo) => {
             console.log(`onAcquired: ${JSON.stringify(form)}`)
             this.formId = form.id.toString();
-            // this.formIds.add(this.formId);
           })
           .onRouter(() => {
             console.log(`onRouter`)
@@ -54,9 +52,11 @@ struct Index {
           .onError((error) => {
             console.error(`onError: ${JSON.stringify(error)}`)
           })
+        // [StartExclude FormUpdate_page]
         Text(`formId:${this.formId}`)
           .fontSize(25)
           .margin(10)
+        // [EndExclude FormUpdate_page]
         Button($r('app.string.button_update'))
           .onClick(() => {
             console.info(`click to check requestForm, formId: ${this.formId}`);
@@ -80,3 +80,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End FormUpdate_page]
