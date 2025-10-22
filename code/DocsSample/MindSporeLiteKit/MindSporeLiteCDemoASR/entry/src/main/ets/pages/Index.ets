@@ -67,14 +67,14 @@ struct Index {
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
           if (resMgr === undefined || resMgr === null) {
-            console.error('MS_LITE_ERR: get resourceManager failed.');
+            hilog.error(0xFF00, TAG, '%{public}s', `MS_LITE_ERR: get resourceManager failed.`);
             return
           }
           // 调用封装的runDemo函数
           hilog.info(0xFF00, TAG, '%{public}s', `MS_LITE_LOG: *** Start MSLite Demo ***`);
           let output = msliteNapi.runDemo(resMgr);
           if (output === null || output.length === 0) {
-            console.error('MS_LITE_ERR: runDemo failed.')
+            hilog.error(0xFF00, TAG, '%{public}s', `MS_LITE_ERR: runDemo failed.`);
             return
           }
           hilog.info(0xFF00, TAG, '%{public}s',
