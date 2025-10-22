@@ -45,6 +45,19 @@ entry/src/
 
 ```
 
+### 具体实现
+1.准备工程依赖：确保 Native 工程包含头文件#include <AbilityKit/native_child_process.h>，并依赖动态库libchild_process.so。
+
+2.子进程实现入口函数：在子进程代码（如ChildProcessSample.cpp）中，导出自定义入口函数（如Main），通过NativeChildProcess_Args接收entryParams参数和fdList文件描述符链表，实现业务逻辑。
+
+3.编译子进程动态库：修改CMakeLists.txt，将子进程代码编译为动态库（如libchildprocesssample.so），并链接libchild_process.so依赖。
+
+4.主进程构建传递参数：主进程中定义NativeChildProcess_Args，分配内存设置entryParams（如字符串 "testParam"），构建fdList链表（包含 fd 名称和通过open获取的文件描述符），并配置NativeChildProcess_Options（如隔离模式）。
+
+5.主进程启动子进程：调用OH_Ability_StartNativeChildProcess，传入子进程动态库名 + 入口函数（如 "libchildprocesssample.so:Main"）、参数、选项和 pid 指针，启动子进程并获取 pid。
+
+6.释放资源与配置依赖：主进程在子进程启动后（无论成功与否）释放entryParams和fdList的内存；修改主进程CMakeLists.txt，链接libchild_process.so确保编译通过。
+
 ### 相关权限
 
 不涉及。
