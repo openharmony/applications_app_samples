@@ -30,9 +30,9 @@ struct ComponentPage {
 
   build() {
     Column() {
-      Text("Hello World")
+      Text('Hello World')
         .fontSize(20)
-        .id("TEXT")
+        .id('TEXT')
       Button('content').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
@@ -50,21 +50,21 @@ struct ComponentPage {
       Button('getFilteredInspectorTreeById').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         try {
-          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["id", "src"]);
+          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ['id', 'src']);
           console.info(`result1: ${inspectorStr}`);
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
           console.info(`result2: ${inspectorStr}`);
-          inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["src"]);
+          inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ['src']);
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
           console.info(`result3: ${inspectorStr}`);
-        } catch(e) {
+        } catch (e) {
           console.error(`getFilteredInspectorTreeById error: ${e}`);
         }
       })
 
     }
     .width('100%')
-    .height('100%')
+      .height('100%')
   }
 }
 // [End uiContextTree_start]

@@ -33,28 +33,28 @@ struct ImageExample {
     }.height(320).width(360).padding({ right: 10, top: 10 })
   }
 
-  listener:inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID')
+  listener: inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID')
 
   aboutToAppear() {
-    let onLayoutComplete:()=>void=():void=>{
+    let onLayoutComplete: () => void = (): void => {
       // 补充待实现的功能
     }
-    let onDrawComplete:()=>void=():void=>{
+    let onDrawComplete: () => void = (): void => {
       // 补充待实现的功能
     }
-    let onDrawChildrenComplete:()=>void=():void=>{
+    let onDrawChildrenComplete: () => void = (): void => {
       // 补充待实现的功能
     }
-    let FuncLayout = onLayoutComplete // 绑定当前js对象
-    let FuncDraw = onDrawComplete // 绑定当前js对象
-    let FuncDrawChildren = onDrawChildrenComplete // 绑定当前js对象
-    let OffFuncLayout = onLayoutComplete // 绑定当前js对象
-    let OffFuncDraw = onDrawComplete // 绑定当前js对象
-    let OffFuncDrawChildren = onDrawChildrenComplete // 绑定当前js对象
+    let funcLayout = onLayoutComplete // 绑定当前js对象
+    let funcDraw = onDrawComplete // 绑定当前js对象
+    let funcDrawChildren = onDrawChildrenComplete // 绑定当前js对象
+    let offFuncLayout = onLayoutComplete // 绑定当前js对象
+    let offFuncDraw = onDrawComplete // 绑定当前js对象
+    let offFuncDrawChildren = onDrawChildrenComplete // 绑定当前js对象
 
-    this.listener.on('layout', FuncLayout)
-    this.listener.on('draw', FuncDraw)
-    this.listener.on('drawChildren', FuncDrawChildren)
+    this.listener.on('layout', funcLayout)
+    this.listener.on('draw', funcDraw)
+    this.listener.on('drawChildren', funcDrawChildren)
 
     // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用。
     // this.listener.off('layout', OffFuncLayout)
