@@ -99,7 +99,7 @@ struct StopVpn {
         Button($r('app.string.stop_vpnExt'))
           .onClick(() => {
             try {
-              console.info("btn end")
+              console.info('btn end')
               vpnExtension.stopVpnExtensionAbility(want)
               // [StartExclude stop_vpn_extension_ability]
                 .then(() => {
