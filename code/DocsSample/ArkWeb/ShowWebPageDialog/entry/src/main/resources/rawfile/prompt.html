@@ -1,0 +1,31 @@
+<!-- prompt.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button,label,input {
+        margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+result：<label id="promptLabel" for="prompt"></label><br/>
+<input type="text" id="prompt-message" placeholder="message for prompt"><br/>
+<input type="text" id="prompt-value" placeholder="default value for prompt"><br/>
+<button id="prompt" onclick="handlePrompt()">prompt</button><br/>
+<script>
+    function handlePrompt() {
+        let message = document.getElementById("prompt-message").value;
+        let defaultValue = document.getElementById("prompt-value").value;
+        let result = window.prompt(message ? message : 'prompt', defaultValue);
+        console.info(result);
+        document.getElementById("promptLabel").innerHTML=result;
+    }
+</script>
+</body>
+</html>
