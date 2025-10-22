@@ -19,7 +19,12 @@ struct FlexExample {
   build() {
     Column() {
       Column({ space: 5 }) {
-        Flex({ direction: FlexDirection.Row, wrap: FlexWrap.NoWrap, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Flex({
+          direction: FlexDirection.Row,
+          wrap: FlexWrap.NoWrap,
+          justifyContent: FlexAlign.SpaceBetween,
+          alignItems: ItemAlign.Center
+        }) {
           Text('1').width('30%').height(50).backgroundColor('#F5DEB3')
           Text('2').width('30%').height(50).backgroundColor('#D2B48C')
           Text('3').width('30%').height(50).backgroundColor('#F5DEB3')
