@@ -193,7 +193,7 @@ struct Index {
             }
           })
           .height(40)
-        Button(`dettach buffer`)
+        Button(`PreAllocBuffer`)
           .fontSize('14fp')
           .fontWeight(500)
           .margin({ bottom: 24 })
