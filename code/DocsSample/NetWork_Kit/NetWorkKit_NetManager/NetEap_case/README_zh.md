@@ -1,4 +1,4 @@
-# NetConnection_Manage_case(网络连接管理)
+# NetEap_case(扩展认证)
 
 ### 介绍
 
