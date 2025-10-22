@@ -69,7 +69,7 @@ export default struct defaultNetworkBtn {
             let bearerTypesNum = Array.from(bearerTypes.values());
             for (let item of bearerTypesNum) {
               if (item == 0) {
-                // 蜂窝网
+                // 蜂窝网络
                 console.info(JSON.stringify('BEARER_CELLULAR'));
               } else if (item == 1) {
                 // Wi-Fi网络

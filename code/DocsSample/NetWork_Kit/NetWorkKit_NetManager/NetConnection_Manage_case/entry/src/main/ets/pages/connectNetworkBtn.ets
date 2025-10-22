@@ -75,21 +75,6 @@ export default struct connectNetworkBtn {
 
   // 连接并接收指定网络的状态变化通知
   connectNetwork() {
-    // [Start notification_network_register]
-    // 订阅连接状态变化
-    conn.register((err: BusinessError, data: void) => {
-      // [StartExclude notification_network_register]
-      if (err) {
-        // [EndExclude notification_network_register]
-        console.error('Error occurred during connection:', JSON.stringify(err));
-        // [StartExclude notification_network_register]
-        this.connectStatus = 'Connection failed';
-        return;
-      }
-      // [EndExclude notification_network_register]
-    });
-    // [End notification_network_register]
-
     // [Start notification_network_netAvailable_netUnavailable]
     // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
     conn.on('netAvailable', (data: connection.NetHandle) => {
@@ -107,6 +92,21 @@ export default struct connectNetworkBtn {
       // [EndExclude notification_network_netAvailable_netUnavailable]
     });
     // [End notification_network_netAvailable_netUnavailable]
+
+    // [Start notification_network_register]
+    // 订阅连接状态变化
+    conn.register((err: BusinessError, data: void) => {
+      // [StartExclude notification_network_register]
+      if (err) {
+        // [EndExclude notification_network_register]
+        console.error('Error occurred during connection:', JSON.stringify(err));
+        // [StartExclude notification_network_register]
+        this.connectStatus = 'Connection failed';
+        return;
+      }
+      // [EndExclude notification_network_register]
+    });
+    // [End notification_network_register]
     console.info('Network connection attempt started');
   }
 

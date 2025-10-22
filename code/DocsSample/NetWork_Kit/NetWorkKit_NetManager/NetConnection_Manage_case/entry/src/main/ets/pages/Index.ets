@@ -35,7 +35,7 @@ const TEXT_MARGIN_TOP = 5; // 文本的上边距
 const TEXT_MARGIN_TOP_L = 10; // 长文本的上边距
 
 // 监控默认网络变化
-async function test() {
+function test() {
   // [Start monitor_default_network_change]
   const netConnection = connection.createNetConnection();
   /* 监听默认网络改变 */
@@ -50,7 +50,7 @@ async function test() {
 let sock: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 // 原网络连接使用Socket模块建立连接
-async function useSocket() {
+function useSocket() {
   let netAddress: socket.NetAddress = {
     address: '192.168.xx.xxx',
     port: 8080 // 端口号，默认设置为8080
@@ -87,7 +87,7 @@ async function useSocket() {
 // 通过socket发送数据。
 function socketSend(tcpSendOptions: socket.TCPSendOptions) {
   sock.send(tcpSendOptions).then(() => {
-    console.log('send success');
+    console.info('send success');
     // [StartExclude original_network_connection_uses_socket]
     promptAction.showToast({
       message: 'Connect and Send successfully!',
@@ -107,12 +107,12 @@ function socketSend(tcpSendOptions: socket.TCPSendOptions) {
   });
 }
 
-async function socketTest() {
+function socketTest() {
   const netConnection = connection.createNetConnection();
   // 网络切换会导致网络发生中断，原socket失效，故需重新建立socket。
-  netConnection.on('netAvailable', async (netHandle: connection.NetHandle) => {
+  netConnection.on('netAvailable', (netHandle: connection.NetHandle) => {
     console.info('default network changed123: ' + JSON.stringify(netHandle));
-    await sock.close();
+    sock.close();
     sock = socket.constructTCPSocketInstance();
     // 通过socket发送数据。
     useSocket();
