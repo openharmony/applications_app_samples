@@ -46,13 +46,13 @@ export struct SymbolShadowAndColor {
           ComponentCard({ title: $r('app.string.SymbolShadowAndColor_title_1') }) {
             // [Start shadow_color_1]
             Column() {
-              Text('阴影能力')
+              Text($r('app.string.SymbolShadowAndColor_Text_1'));
               SymbolGlyph($r('sys.symbol.ohos_wifi'))
                 .id('1')
                 .fontSize(96)
                 .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
                 .symbolShadow(this.options)
-              Button(!this.isActive ? '关闭' : '播放').onClick(() => {
+              Button(!this.isActive ? $r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_1') : $r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_2')).onClick(() => {
                 this.isActive = !this.isActive;
               })
             }
@@ -61,7 +61,7 @@ export struct SymbolShadowAndColor {
           ComponentCard({ title: $r('app.string.SymbolShadowAndColor_title_2') }) {
             // [Start shadow_color_2]
             Column() {
-              Text('径向渐变')
+              Text($r('app.string.SymbolShadowAndColor_Text_2'))
                 .id('2')
                 .fontSize(18)
                 .fontColor(0xCCCCCC)

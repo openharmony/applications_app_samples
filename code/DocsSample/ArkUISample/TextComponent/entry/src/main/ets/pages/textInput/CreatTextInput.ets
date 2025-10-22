@@ -45,7 +45,7 @@ export struct CreatTextInput {
         ComponentCard({ title: $r('app.string.CreatTextInput_title_3') }) {
           // [Start create_text_input]
           Search()
-            .searchButton('搜索')
+            .searchButton($r('app.string.Creat_TextInput_Content'))
           // [End create_text_input]
         }
       }

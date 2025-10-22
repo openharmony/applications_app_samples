@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-// xxx.ets
+
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
+import resource from '../../common/resource';
 
 @Entry
 @Component
@@ -64,7 +65,7 @@ export struct TextImageAttribute {
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
   //创建含段落样式的对象paragraphStyledString1
   paragraphStyledString1: MutableStyledString =
-    new MutableStyledString('\n高质量冲洗照片，高清冲印3/4/5/6寸包邮塑封，品质保证，', [
+    new MutableStyledString(resource.resourceToString($r('app.string.TextImageAttribute_Content_1')), [
       {
         start: 0,
         length: 28,
@@ -78,7 +79,7 @@ export struct TextImageAttribute {
         styledValue: this.lineHeightStyle1
       }
     ]);
-  paragraphStyledString2: MutableStyledString = new MutableStyledString('\n限时直降5.15元 限量增送', [
+  paragraphStyledString2: MutableStyledString = new MutableStyledString(resource.resourceToString($r('app.string.TextImageAttribute_Content_2')), [
     {
       start: 0,
       length: 5,
@@ -110,7 +111,7 @@ export struct TextImageAttribute {
       styledValue: new TextStyle({ fontColor: Color.Grey, fontSize: LengthMetrics.vp(14) })
     }
   ]);
-  paragraphStyledString3: MutableStyledString = new MutableStyledString('\n￥22.50 销量400万+', [
+  paragraphStyledString3: MutableStyledString = new MutableStyledString(resource.resourceToString($r('app.string.TextImageAttribute_Content_3')), [
     {
       start: 0,
       length: 15,
@@ -167,7 +168,7 @@ export struct TextImageAttribute {
             .borderRadius(5)
             .width(210)
 
-          Button('点击查看商品详情')
+          Button($r('app.string.textImageMixedLayout_content'))
             .onClick(() => {
               if (this.imagePixelMap !== undefined) {
                 this.mutableStr = new MutableStyledString(new ImageAttachment({

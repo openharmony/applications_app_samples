@@ -16,7 +16,6 @@
 import { ComponentCard } from '../../common/Card';
 
 // [Start keyboard_avoid]
-// xxx.ets
 @Entry
 @Component
 export struct KeyboardAvoidance {
@@ -34,6 +33,7 @@ export struct KeyboardAvoidance {
                 ForEach(this.placeHolderArr, (placeholder: string) => {
                   TextInput({ placeholder: 'TextInput ' + placeholder })
                     .margin(30)
+                    .id(placeholder)
                 })
               }
             }

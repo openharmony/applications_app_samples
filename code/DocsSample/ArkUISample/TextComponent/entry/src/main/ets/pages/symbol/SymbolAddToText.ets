@@ -130,7 +130,7 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_font_color]
             Row() {
               Column() {
-                Text("Black")
+                Text('Black')
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
@@ -173,7 +173,7 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_rendering_strategy]
             Row() {
               Column() {
-                Text('单色')
+                Text($r('app.string.SymbolAddToText_Text_1'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
@@ -186,7 +186,7 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                Text('多色')
+                Text($r('app.string.SymbolAddToText_Text_2'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
@@ -199,7 +199,7 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                Text('分层')
+                Text($r('app.string.SymbolAddToText_Text_3'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
@@ -219,7 +219,7 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_effect_strategy]
             Row() {
               Column() {
-                Text('无动效')
+                Text($r('app.string.SymbolAddToText_Text_4'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
@@ -231,7 +231,7 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                Text('整体缩放动效')
+                Text($r('app.string.SymbolAddToText_Text_5'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
@@ -243,7 +243,7 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                Text('层级动效')
+                Text($r('app.string.SymbolAddToText_Text_6'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)

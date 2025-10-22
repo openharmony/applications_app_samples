@@ -17,7 +17,6 @@ import { ComponentCard } from '../../common/Card';
 import resource from '../../common/resource';
 
 // [Start symbol_glyph_span_scene_example]
-// xxx.ets
 @Entry
 @Component
 export struct SymbolGlyphSpanSceneExample {

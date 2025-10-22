@@ -24,7 +24,11 @@ import { PropertyStringDestination, PROPERTY_STRING_ROUTE_PREFIX } from './prope
 import { NDKDestination, NDK_ROUTE_PREFIX } from './ndk';
 import resource from '../common/resource';
 import { TextImageMixedLayoutDestination, TEXT_IMAGE_MIXED_LAYOUT } from './textImageMixedLayout';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const TAG = '[Sample_Textcomponent]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Textcomponent_';
 const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.pageIndex_Text')),
@@ -112,7 +116,7 @@ struct Index {
           }
           .width('100%')
           .onClick(() => {
-            console.log("route name = " ,route.name);
+            hilog.info(DOMAIN, TAG, BUNDLE + "route.name" + route.name);
             this.pathStack.pushPath({ name: route.name });
           })
         })

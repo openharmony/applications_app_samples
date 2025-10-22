@@ -17,11 +17,15 @@ import { describe, it, expect, beforeAll, Level } from '@ohos/hypium';
 // 导入测试依赖kit
 import { abilityDelegatorRegistry, Driver, ON, MatchPattern, On, Component } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let want: Want;
+const TAG = '[Sample_Textcomponent]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Textcomponent_';
 
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager;
@@ -41,7 +45,7 @@ export default function IndexTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info('get top ability');
+      hilog.info(DOMAIN, TAG, BUNDLE + "get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 
@@ -398,6 +402,7 @@ export default function IndexTest() {
       done();
     })
 
+
     /**
      * @tc.number UiTest_009-1
      * @tc.name testSetTextInputType
@@ -464,7 +469,7 @@ export default function IndexTest() {
       await textInput4.inputText('123456789');
       await textInput5.inputText('+86 123-0123-0456');
       await textInput6.inputText('9.15');
-      // await textInput7.inputText('http://www.example.com');
+      await textInput7.inputText('http://www.example.com');
 
       await driver.pressBack();
       await driver.pressBack();
@@ -489,16 +494,11 @@ export default function IndexTest() {
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-
       let textInput7 = await driver.findComponent(ON.id('URL'));
-
       expect(textInput7 === null).assertFalse();
-
       await textInput7.inputText('http://www.example.com');
-
       await driver.pressBack();
       await driver.pressBack();
-
       console.info('uitest: testSetTextInputType3 end');
       done();
     })
@@ -519,7 +519,6 @@ export default function IndexTest() {
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-
       str = await getResourceString($r('app.string.CustomTextInputStyle_textContent_2'));
       let textInput = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(textInput === null).assertFalse();
@@ -605,6 +604,8 @@ export default function IndexTest() {
       await sampleButton.click();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.waitForIdle(2000, 2000);
+
       console.info('uitest: testTextInputAutoFill end');
       done();
     })
@@ -633,6 +634,13 @@ export default function IndexTest() {
       let selectMenuText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(selectMenuText === null).assertFalse();
 
+      str = await getResourceString($r('app.string.Set_stroke_Property_textContent'));
+      textInput = await driver.findComponent(ON.type('TextInput', MatchPattern.CONTAINS));
+      expect(textInput === null).assertFalse();
+      await textInput.click();
+      selectMenuText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(selectMenuText === null).assertFalse();
+
       await driver.pressBack();
       await driver.pressBack();
       console.info('uitest: testSetProperty end');
@@ -651,13 +659,21 @@ export default function IndexTest() {
       let buttonComponent = await driver.findComponent(ON.text('TextInput', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+
+      let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
+      let scrollCenter = await scrollComponent.getBoundsCenter();
+      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
+      await driver.waitForIdle(500, 500);
+
       let str = await getResourceString($r('app.string.KeyboardAvoidance_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
 
-      let textInput = await driver.findComponent(ON.type('TextInput'));
-      await textInput.inputText('textInput');
+      let symbolSpan1 = await driver.findComponent(ON.id('7'));
+      expect(symbolSpan1 === null).assertFalse();
+      await symbolSpan1.inputText('textInput');
+
       await driver.pressBack();
       await driver.pressBack();
       console.info('uitest: testKeyboardAvoidance end');
@@ -676,6 +692,7 @@ export default function IndexTest() {
       let buttonComponent = await driver.findComponent(ON.text('TextInput', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.waitForIdle(2000, 2000);
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
       let scrollCenter = await scrollComponent.getBoundsCenter();
       await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
@@ -684,46 +701,14 @@ export default function IndexTest() {
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-
       let TextArea = await driver.findComponent(ON.type('TextArea'));
       await TextArea.click();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.waitForIdle(2000, 2000);
+
+      await driver.pressBack();
       console.info('uitest: testCursorAvoidance end');
-      done();
-    })
-
-    /**
-     * @tc.number UiTest_017
-     * @tc.name testLoginRegisterPage
-     * @tc.desc 测试登录/注册场景示例
-     * @tc.level: Level 1
-     */
-    it('testLoginRegisterPage', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testLoginRegisterPage begin');
-      let driver = Driver.create();
-      let buttonComponent = await driver.findComponent(ON.text('TextInput', MatchPattern.CONTAINS));
-      expect(buttonComponent === null).assertFalse();
-      await buttonComponent.click();
-      let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
-      await driver.waitForIdle(500, 500);
-      let str = await getResourceString($r('app.string.LoginRegisterPage_title'));
-      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      expect(sampleButton === null).assertFalse();
-      await sampleButton.click();
-
-      let username = await driver.findComponent(ON.id('username'));
-      let password = await driver.findComponent(ON.id('password'));
-      expect(username === null).assertFalse();
-      expect(password === null).assertFalse();
-      await username.inputText('username');
-      await password.inputText('password');
-      await driver.pressBack();
-      await driver.pressBack();
-      await driver.pressBack();
-      console.info('uitest: testLoginRegisterPage end');
       done();
     })
 
@@ -1061,7 +1046,7 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testCreatSymbolGlyph', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testCreatSymbolGlyph begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testCreatSymbolGlyph begin");
       let driver = Driver.create();
       let buttonComponent = await driver.findComponent(ON.text('SymbolGlyph', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
@@ -1077,7 +1062,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.waitForIdle(2000, 2000);
       await driver.pressBack();
-      console.info('uitest: testCreatSymbolGlyph end');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testCreatSymbolGlyph end");
       done();
     })
 
@@ -1088,7 +1073,7 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testSymbolGlyphSpanAddToText', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testSymbolGlyphSpanAddToText begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolGlyphSpanAddToText begin");
       let driver = Driver.create();
       let buttonComponent = await driver.findComponent(ON.text('SymbolGlyph', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
@@ -1178,7 +1163,7 @@ export default function IndexTest() {
 
       await driver.pressBack();
       await driver.pressBack();
-      console.info('uitest: testSymbolGlyphSpanAddToText end');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolGlyphSpanAddToText end");
       done();
     })
 
@@ -1189,7 +1174,7 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testSymbolGlyphSpanCustomIconAnimation', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testSymbolGlyphSpanCustomIconAnimation begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolGlyphSpanCustomIconAnimation begin");
       let driver = Driver.create();
       await driver.waitForIdle(500, 500);
       let buttonComponent = await driver.findComponent(ON.text('SymbolGlyph', MatchPattern.CONTAINS));
@@ -1248,7 +1233,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.pressBack();
-      console.info('uitest: testSymbolGlyphSpanCustomIconAnimation end');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolGlyphSpanCustomIconAnimation end");
       done();
     })
 
@@ -1259,7 +1244,7 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testSymbolGlyphSpanAddEvent', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testSymbolGlyphSpanAddEvent begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolGlyphSpanAddEvent begin");
       let driver = Driver.create();
       await driver.waitForIdle(500, 500);
       let buttonComponent = await driver.findComponent(ON.text('SymbolGlyph', MatchPattern.CONTAINS));
@@ -1278,7 +1263,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.waitForIdle(2000, 2000);
       await driver.pressBack();
-      console.info('uitest: testSymbolGlyphSpanAddEvent end');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolGlyphSpanAddEvent end");
       done();
     })
 
@@ -1289,7 +1274,7 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testSymbolGlyphSpanSceneExample', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testSymbolGlyphSpanSceneExample begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolGlyphSpanSceneExample begin");
       let driver = Driver.create();
       await driver.waitForIdle(500, 500);
       let buttonComponent = await driver.findComponent(ON.text('SymbolGlyph', MatchPattern.CONTAINS));
@@ -1376,7 +1361,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.waitForIdle(2000, 2000);
       await driver.pressBack();
-      console.info('uitest: testSymbolGlyphSpanSceneExample end');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolGlyphSpanSceneExample end");
       done();
     })
 
@@ -1675,22 +1660,24 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testTextImageAttribute', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testTextImageAttribute begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testTextImageAttribute begin");
       let driver = Driver.create();
-      let buttonComponent = await driver.findComponent(ON.text('图文混排', MatchPattern.CONTAINS));
+      let str = await getResourceString($r('app.string.pageIndex_TextImageMixedLayout'));
+      let buttonComponent = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-      let str = await getResourceString($r('app.string.TextImage_MixedLayout_Text_2'));
+      str = await getResourceString($r('app.string.TextImage_MixedLayout_Text_2'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-      let sampleButton2 = await driver.findComponent(ON.text('点击查看商品详情', MatchPattern.CONTAINS));
+      str = await getResourceString($r('app.string.textImageMixedLayout_content'));
+      let sampleButton2 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton2 === null).assertFalse();
       await sampleButton2.click();
       await driver.pressBack();
       await driver.waitForIdle(2000, 2000);
       await driver.pressBack();
-      console.info('uitest: testTextImageAttribute end');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testTextImageAttribute end");
       done();
     })
 
@@ -1701,19 +1688,20 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testTextImageComponent', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testTextImageComponent begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testTextImageComponent begin");
       let driver = Driver.create();
-      let buttonComponent = await driver.findComponent(ON.text('图文混排', MatchPattern.CONTAINS));
+      let str = await getResourceString($r('app.string.pageIndex_TextImageMixedLayout'));
+      let buttonComponent = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-      let str = await getResourceString($r('app.string.TextImage_MixedLayout_Text_1'));
+      str = await getResourceString($r('app.string.TextImage_MixedLayout_Text_1'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
       await driver.pressBack();
       await driver.waitForIdle(2000, 2000);
       await driver.pressBack();
-      console.info('uitest: testTextImageComponent end');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testTextImageComponent end");
       done();
     })
 
@@ -1724,6 +1712,7 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testSymbolShadowAndColor', Level.LEVEL1, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolShadowAndColor begin");
       let driver = Driver.create();
       await driver.waitForIdle(500, 500);
       let buttonComponent = await driver.findComponent(ON.text('SymbolGlyph', MatchPattern.CONTAINS));
@@ -1733,7 +1722,6 @@ export default function IndexTest() {
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-
       str = await getResourceString($r('app.string.SymbolShadowAndColor_title_1'));
       let text1 = await driver.findComponent(ON.text(str));
       expect(text1 === null).assertFalse();
@@ -1745,17 +1733,119 @@ export default function IndexTest() {
       await button1.click();
       str = await getResourceString($r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_1'));
       expect(await button1.getText() === str).assertTrue();
-
       str = await getResourceString($r('app.string.SymbolShadowAndColor_title_2'));
       let text2 = await driver.findComponent(ON.text(str));
       expect(text2 === null).assertFalse();
+      await driver.pressBack();
+      await driver.waitForIdle(2000, 2000);
+      await driver.pressBack();
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSymbolShadowAndColor end");
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_045
+     * @tc.name testSetTextMargin
+     * @tc.desc 设置文本行间距
+     * @tc.level: Level 1
+     */
+    it('testSetTextMargin', Level.LEVEL1, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSetTextMargin begin");
+      let driver = Driver.create();
+      let buttonComponent = await driver.findComponent(ON.text('TextInput', MatchPattern.CONTAINS));
+      expect(buttonComponent === null).assertFalse();
+      await buttonComponent.click();
+      let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
+      let scrollCenter = await scrollComponent.getBoundsCenter();
+      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
+      await driver.waitForIdle(500, 500);
+      let str = await getResourceString($r('app.string.Set_Text_Margin'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+      str = await getResourceString($r('app.string.SetTextMargin_Content'));
+      let textInput = await driver.findComponent(ON.type('TextArea', MatchPattern.CONTAINS));
+      expect(textInput === null).assertFalse();
+      await textInput.click();
+      let selectMenuText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(selectMenuText === null).assertFalse();
+      await driver.pressBack();
+      await driver.pressBack();
+      console.info('uitest: testSetTextMargin end');
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testSetTextMargin end");
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_046
+     * @tc.name testProhibitSelectMenu
+     * @tc.desc 禁用系统服务类菜单
+     * @tc.level: Level 1
+     */
+    it('testProhibitSelectMenu', Level.LEVEL1, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testProhibitSelectMenu begin");
+      let driver = Driver.create();
+      let buttonComponent = await driver.findComponent(ON.text('TextInput', MatchPattern.CONTAINS));
+      expect(buttonComponent === null).assertFalse();
+      await buttonComponent.click();
+      let str = await getResourceString($r('app.string.ProhibitSelectionMenu_title'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+      await driver.waitForIdle(2000, 2000);
+      str = await getResourceString($r('app.string.ProhibitSelectMenu_title_1'));
+      sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+      await driver.waitForIdle(2000, 2000);
+      str = await getResourceString($r('app.string.ProhibitSelectMenu_content'));
+      let selectMenuText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(selectMenuText === null).assertFalse();
+      await driver.pressBack();
+      await driver.waitForIdle(3000, 4000);
+      await driver.pressBack();
+      await driver.waitForIdle(4000, 4000);
+      await driver.pressBack();
+      await driver.waitForIdle(4000, 4000);
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testProhibitSelectMenu end");
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_046_2
+     * @tc.name testProhibitSelectMenu
+     * @tc.desc 禁用系统服务类菜单
+     * @tc.level: Level 1
+     */
+    it('testProhibitSelectMenu2', Level.LEVEL1, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testProhibitSelectMenu2 begin");
+      let driver = Driver.create();
+      let buttonComponent = await driver.findComponent(ON.text('TextInput', MatchPattern.CONTAINS));
+      expect(buttonComponent === null).assertFalse();
+      await buttonComponent.click();
+      let str = await getResourceString($r('app.string.ProhibitSelectionMenu_title'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+
+      str = await getResourceString($r('app.string.ProhibitSelectMenu_title_2'));
+      sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+
+      str = await getResourceString($r('app.string.ProhibitSelectMenu_content'));
+      let selectMenuText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(selectMenuText === null).  assertFalse();
 
       await driver.pressBack();
       await driver.waitForIdle(2000, 2000);
       await driver.pressBack();
-      console.info('uitest: testSymbolShadowAndColor end');
+      await driver.waitForIdle(2000, 2000);
+      await driver.pressBack();
+      hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testProhibitSelectMenu2 end");
       done();
     })
+
 
   })
 }

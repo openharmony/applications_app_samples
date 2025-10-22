@@ -16,7 +16,6 @@
 import { ComponentCard } from '../../common/Card';
 
 // [Start cursor_avoid]
-// xxx.ets
 @Entry
 @Component
 export struct CursorAvoidance {

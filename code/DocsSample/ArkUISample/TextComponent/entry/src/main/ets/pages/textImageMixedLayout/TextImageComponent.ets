@@ -27,10 +27,10 @@ export struct TextImageComponent {
           .height(30)
           .borderRadius(5)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
-        Span('惊喜价 ￥1299')
+        Span($r('app.string.TextImage_MixedLayout_Content_1'))
           .fontSize(25)
           .fontColor(Color.Red)
-        Span('1599')
+        Span($r('app.string.TextImage_MixedLayout_Content_2'))
           .decoration({
             type: TextDecorationType.LineThrough,
             color: Color.Grey,

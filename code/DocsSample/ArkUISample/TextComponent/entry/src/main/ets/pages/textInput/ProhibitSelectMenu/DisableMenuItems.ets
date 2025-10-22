@@ -16,7 +16,6 @@
 // [Start DisableMenuItems]
 import { TextMenuController } from '@kit.ArkUI';
 
-// xxx.ets
 @Entry
 @Component
 export struct DisableMenuItems {
@@ -36,7 +35,7 @@ export struct DisableMenuItems {
       // [EndExclude DisableMenuItems]
       Row() {
         Column() {
-          TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          TextInput({ text: $r('app.string.ProhibitSelectMenu_content') })
             .height(60)
             .fontStyle(FontStyle.Italic)
             .fontWeight(FontWeight.Bold)

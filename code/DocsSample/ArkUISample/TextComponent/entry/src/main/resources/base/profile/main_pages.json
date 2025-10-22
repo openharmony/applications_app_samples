@@ -9,6 +9,8 @@
     "pages/propertyString/StyledStringHtml",
     "pages/propertyString/StyledStringSceneExample",
     "pages/textImageMixedLayout/TextImageAttribute",
-    "pages/textImageMixedLayout/TextImageComponent"
+    "pages/textImageMixedLayout/TextImageComponent",
+    "pages/textInput/ProhibitSelectMenu/DisableSystemServiceMenuItems",
+    "pages/textInput/ProhibitSelectMenu/DisableMenuItems"
   ]
 }

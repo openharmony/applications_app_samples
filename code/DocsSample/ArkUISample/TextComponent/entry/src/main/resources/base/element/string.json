@@ -33,6 +33,10 @@
       "value": "图文混排"
     },
     {
+      "name": "textImageMixedLayout_content",
+      "value": "点击查看商品详情"
+    },
+    {
       "name": "pageIndex_TextNDKUI",
       "value": "使用文本(NDK)"
     },
@@ -293,6 +297,10 @@
       "value": "disableSystemServiceMenuItems"
     },
     {
+      "name": "ProhibitSelectMenu_content",
+      "value": "这是一个TextInput，长按弹出文本选择菜单"
+    },
+    {
       "name": "ProhibitSelectMenu_title_2",
       "value": "disableMenuItems"
     },
@@ -481,6 +489,10 @@
       "value": "设置文本行间距"
     },
     {
+      "name": "SetTextMargin_Content",
+      "value": "The line spacing of this TextArea is set to 20_px, and the spacing is effective only between the lines."
+    },
+    {
       "name": "Set_Text_Margin_description",
       "value": "从API version 20开始，支持通过lineSpacing设置文本的行间距。如果不配置LineSpacingOptions时，首行上方和尾行下方默认会有行间距。如果onlyBetweenLines设置为true时，行间距仅适用于行与行之间，首行上方无额外行间距。"
     },
@@ -499,6 +511,10 @@
     {
       "name": "Set_Omission_Property_textContent",
       "value": "这是一段文本，用来展示省略模式"
+    },
+    {
+      "name": "Set_stroke_Property_textContent",
+      "value": "Text with stroke"
     },
     {
       "name": "Create_RichEditor_Component_title",
@@ -759,6 +775,10 @@
     {
       "name": "StyledStringGestureStyle_description",
       "value": "除了初始化属性字符串对象即初始样式对象，亦可通过setStyle接口再叠加新样式或更新已有样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。"
+    },
+    {
+      "name": "StyledStringGestureStyle_button_content",
+      "value": "响应属性字符串事件改变背景色"
     },
     {
       "name": "StyledStringHtml_title",
@@ -1269,6 +1289,14 @@
       "value": "歌曲七"
     },
     {
+      "name": "SymbolShadowAndColor_Text_1",
+      "value": "阴影能力"
+    },
+    {
+      "name": "SymbolShadowAndColor_Text_2",
+      "value": "径向渐变"
+    },
+    {
       "name": "SymbolSceneExample_Text_12",
       "value": "关闭"
     },
@@ -1315,6 +1343,30 @@
     {
       "name": "TextImage_MixedLayout_Attribute_desc",
       "value": "通过ImageAttachment添加图片，TextStyle设置多种文本样式，实现商品详情信息展示的应用场景。"
+    },
+    {
+      "name": "TextImage_MixedLayout_Content_1",
+      "value": "惊喜价 ￥1299"
+    },
+    {
+      "name": "TextImage_MixedLayout_Content_2",
+      "value": "1599"
+    },
+    {
+      "name": "Creat_TextInput_Content",
+      "value": "搜索"
+    },
+    {
+      "name": "TextImageAttribute_Content_1",
+      "value": "\n高质量冲洗照片，高清冲印3/4/5/6寸包邮塑封，品质保证，"
+    },
+    {
+      "name": "TextImageAttribute_Content_2",
+      "value": "\n限时直降5.15元 限量增送"
+    },
+    {
+      "name": "TextImageAttribute_Content_3",
+      "value": "\n￥22.50 销量400万+"
     }
   ]
 }

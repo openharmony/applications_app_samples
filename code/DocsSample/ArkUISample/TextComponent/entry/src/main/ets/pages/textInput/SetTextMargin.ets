@@ -37,6 +37,6 @@ export struct SetTextMargin {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.Set_Property'))
+    .title($r('app.string.Set_Text_Margin'))
   }
 }

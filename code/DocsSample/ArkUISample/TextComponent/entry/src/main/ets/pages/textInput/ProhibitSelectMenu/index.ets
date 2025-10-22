@@ -12,22 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CompletedRoutableCard } from "../../../common/Card";
-import resource from "../../../common/resource";
-import { Route } from "../../../common/Route";
-import { DisableMenuItems } from "./DisableMenuItems";
-import { DisableSystemServiceMenuItems } from "./DisableSystemServiceMenuItems";
+import { CompletedRoutableCard } from '../../../common/Card';
+import resource from '../../../common/resource';
+import { Route } from '../../../common/Route';
+import { DisableMenuItems } from './DisableMenuItems';
+import { DisableSystemServiceMenuItems } from './DisableSystemServiceMenuItems';
+import { router } from '@kit.ArkUI';
 
-export const INPUT_ROUTE_PREFIX: string = 'ProhibitSelectMenu';
-
+export const PROHIBIT_SELECT_MENU_ROUTE: string = 'textInput/ProhibitSelectMenu';
 const routes: Route[] = [
   {
-    name: `${INPUT_ROUTE_PREFIX}/DisableSystemServiceMenuItems`,
+    name: `${PROHIBIT_SELECT_MENU_ROUTE}/DisableSystemServiceMenuItems`,
     title: resource.resourceToString($r('app.string.ProhibitSelectMenu_title_1')),
     description: $r('app.string.ProhibitSelectMenu_description_1')
   },
   {
-    name: `${INPUT_ROUTE_PREFIX}/DisableMenuItems`,
+    name: `${PROHIBIT_SELECT_MENU_ROUTE}/DisableMenuItems`,
     title: resource.resourceToString($r('app.string.ProhibitSelectMenu_title_2')),
     description: $r('app.string.ProhibitSelectMenu_description_2')
   }
@@ -47,6 +47,16 @@ export function ProhibitSelectDestination(name: string) {
 export struct ProhibitSelectionMenu {
   @Consume pathStack: NavPathStack;
 
+  goToSample(url: string): void {
+    router.pushUrl({
+      url: url,
+    }, router.RouterMode.Single, (err) => {
+      if (err) {
+        return;
+      }
+    })
+  }
+
   build() {
     NavDestination() {
       Scroll() {
@@ -57,7 +67,7 @@ export struct ProhibitSelectionMenu {
             }
             .width('100%')
             .onClick(() => {
-              this.pathStack.pushPath({ name: route.name });
+              this.goToSample('pages/' + route.name);
             })
           })
         }
@@ -66,7 +76,7 @@ export struct ProhibitSelectionMenu {
       }.id('scroll_')
     }
     .backgroundColor('#f1f3f5')
-    .title('TextInput/TextArea', {
+    .title('app.string.ProhibitSelectionMenu_title', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })

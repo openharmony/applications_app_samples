@@ -91,7 +91,7 @@ export struct SetTextInputType {
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_7') }) {
               // [Start set_url_input_type_7]
-              TextInput({ text: 'https://www.example.com' })
+              TextInput()
               // [StartExclude set_url_input_type_7]
                 .id('URL')
                 // [EndExclude set_url_input_type_7]
