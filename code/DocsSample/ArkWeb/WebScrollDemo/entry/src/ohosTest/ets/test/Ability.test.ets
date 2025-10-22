@@ -16,7 +16,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
-const TAG = '[Sample_ProcessWeb]';
+const TAG = '[Sample_WebScrollDemo]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'ProcessWeb_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
