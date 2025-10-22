@@ -1,10 +1,9 @@
-# ArkUI指南文档示例
+# NdkGestureBlocking
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例基于[native_gesture.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-gesture-h.md)中的各接口进行构建，以帮助开发者更好地理解手势框架C-API的用法。
 
-1. [手势 (Gesture)开发指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/native__gesture_8h.md)。
 ### 效果预览
 
 | 首页                                 |
