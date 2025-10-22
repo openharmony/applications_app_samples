@@ -51,6 +51,17 @@ entry/src/main/
 1. 当前工程应用启动框架共包含6个启动任务，启动工程化会自动并发执行启动任务
 2. 001—004为自动任务，005.006为手动任务
 
+### 具体实现
+
+1. 在HAP的“resources/base/profile”路径下，新建启动框架配置文件。文件名可以自定义，本文以"startup_config.json"为例。
+2. 在module.json5配置文件的appStartup标签中，添加启动框架配置文件的索引。
+3. 在“ets/startup”路径下，创建启动参数配置文件。本例中的文件名为StartupConfig.ets。
+4. 在启动框架配置文件startup_config.json中，添加启动参数配置文件的相关信息。
+5. 在“ets/startup”路径下，依次创建启动任务文件。
+6. 在启动框架配置文件startup_config.json中，添加启动任务配置
+7. 创建so文件。
+8. 在启动框架配置文件startup_config.json中，添加预加载so任务配置。
+
 ### 相关权限
 
 不涉及。
