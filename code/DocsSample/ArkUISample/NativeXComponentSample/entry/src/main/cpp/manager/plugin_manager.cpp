@@ -631,7 +631,11 @@ napi_value PluginManager::Initialize(napi_env env, napi_callback_info info)
         return nullptr;
     }
     node = nodeHandleMap_[nodeId];
+    bool autoInitialize = 1;
+    OH_ArkUI_XComponent_SetAutoInitialize(node, autoInitialize);
     OH_ArkUI_XComponent_Initialize(node);
+    bool isInitialized;
+    OH_ArkUI_XComponent_IsInitialized(node, &isInitialized);
     auto holder = surfaceHolderMap_[node];
     EGLRender* render = reinterpret_cast<EGLRender*>(OH_ArkUI_SurfaceHolder_GetUserData(holder));
     render->DrawStar(true); // 绘制五角星

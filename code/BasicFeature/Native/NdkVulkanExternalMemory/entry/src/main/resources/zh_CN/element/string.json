@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "VideoRender"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VideoRender"
+    },
+    {
+      "name": "title",
+      "value": "渲染视频数据"
+    },
+    {
+      "name": "xcomponent_title",
+      "value": "基于XComponent渲染视频"
+    },
+    {
+      "name": "opengl_title",
+      "value": "基于OpenGL渲染视频"
+    },
+    {
+      "name": "vulkan_title",
+      "value": "基于Vulkan渲染视频"
+    },
+    {
+      "name": "play",
+      "value": "播放"
+    }
+  ]
+}

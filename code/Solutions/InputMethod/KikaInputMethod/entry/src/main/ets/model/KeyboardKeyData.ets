@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start input_case_input_KeyboardKeyData]
 export interface keySourceListType {
   title: string,
   content: string,
@@ -348,3 +348,4 @@ export let symbolSourceListData: sourceListType[] = [
     content: ']'
   }
 ]
+// [End input_case_input_KeyboardKeyData]

@@ -32,9 +32,9 @@
 
 1）回到主页，长按应用图标并点击<服务卡片>，选择卡片使用router事件跳转到指定UIAbility示例并点击添加到桌面；
 
-2）点击“功能A”按钮，在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起功能A页面；
+2）点击“FunA”按钮，在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起FunA页面；
 
-3）点击“功能B”按钮，在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起功能B页面；
+3）点击“FunB”按钮，在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起FunB页面；
 
 4）回到主页，长按应用图标并点击<服务卡片>，选择通过message事件刷新卡片示例并点击添加到桌面；
 

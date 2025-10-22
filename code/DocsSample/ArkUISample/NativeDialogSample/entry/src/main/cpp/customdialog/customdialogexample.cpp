@@ -798,7 +798,7 @@ bool CreateCustomDialog()
         OH_ArkUI_CustomDialog_GetState(reinterpret_cast<ArkUI_NativeDialogHandle>(g_dialogOption), &state);
         ShowDialogState(state);
         InitDialogOptions(g_dialogOption, column);
-        CreateStyledButton(nodeAPI, column, "close", MyOnClose);
+        CreateStyledButton(nodeAPI, column, "Close Dialog", MyOnClose);
         g_isOpenDialog = true;
         return true;
 }
@@ -822,7 +822,11 @@ int32_t CustomDialogTest::SetCustomDialogDialogAttribute(int32_t nodeType, uint3
 static void CloseApplication()
 {
     std::lock_guard<std::mutex> lock(g_dialogIdMutex);
-    OH_ArkUI_CustomDialog_DisposeOptions(g_dialogOption);
+    if (globalCustomDialog) {
+        g_dialogAPI3->nativeDialogAPI1.dispose(globalCustomDialog);
+    } else {
+        OH_ArkUI_CustomDialog_DisposeOptions(g_dialogOption);
+    }
 }
 
 napi_value CustomDialogTest::SetCustomDialog(napi_env env, napi_callback_info info)
@@ -1676,7 +1680,6 @@ static void HandleDialogCloseEvent()
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ControllerTest",
                 "HandleDialogCloseEvent close failed, ret = %{public}d ", ret);
         }
-        g_dialogAPI3->nativeDialogAPI1.dispose(globalCustomDialog);
         globalCustomDialog = nullptr;
         g_dialogAPI3 = nullptr;
         g_isOpenController = false;
@@ -1808,7 +1811,6 @@ napi_value CustomDialogTest::ResetDialogController(napi_env env, napi_callback_i
     if (globalCustomDialog || g_dialogAPI3) {
         g_dialogAPI3->nativeDialogAPI1.removeContent(globalCustomDialog);
         g_dialogAPI3->nativeDialogAPI1.close(globalCustomDialog);
-        g_dialogAPI3->nativeDialogAPI1.dispose(globalCustomDialog);
         globalCustomDialog = nullptr;
         g_dialogAPI3 = nullptr;
         g_isOpenController = false;
