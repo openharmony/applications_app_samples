@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start xcomponent_ts]
+// 函数声明，在cpp/types/libnativerender/Index.d.ts中定义
 type XComponentContextStatus = {
   hasDraw: boolean,
   hasChangeColor: boolean,
@@ -22,3 +24,4 @@ export const DrawPattern: (id: BigInt) => any;
 export const GetXComponentStatus: (id: BigInt) => XComponentContextStatus
 export const ChangeColor: (id: BigInt) => any;
 export const DestroySurface: (id: BigInt) => any;
+// [End xcomponent_ts]
