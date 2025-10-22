@@ -31,8 +31,7 @@ struct FixingPageFlickering {
         .height('100%')
         .onPageEnd(() => {
           // 页面加载完成时的回调
-          hilog.info(DOMAIN, TAG, BUNDLE, "Web page loaded completely")
-          console.info('Web page loaded completely');
+          hilog.info(DOMAIN, TAG, BUNDLE, 'Web page loaded completely')
         })
     }
     .width('100%')
