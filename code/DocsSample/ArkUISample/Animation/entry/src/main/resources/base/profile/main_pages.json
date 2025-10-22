@@ -38,6 +38,8 @@
     "pages/rotation/template1/Index",
     "pages/rotation/template2/Index",
     "pages/cohesion/template1/Index",
-    "pages/cohesion/template2/Index"
+    "pages/cohesion/template2/Index",
+    "pages/animatableProperty/template1/Index",
+    "pages/animatableProperty/template2/Index"
   ]
 }
