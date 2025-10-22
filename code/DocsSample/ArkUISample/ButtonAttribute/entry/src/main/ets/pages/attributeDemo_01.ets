@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start attribute]
+// [Start_attribute]
 import { MyButtonModifier } from '../Common/button_modifier_01';
 import { MyButtonModifier2 } from '../Common/button_modifier_02';
 import { MyButtonModifier3 } from '../Common/button_modifier_03';
@@ -61,4 +61,4 @@ struct attributeDemo_01 {
     .height('100%')
   }
 }
-// [End attribute]
+// [End_attribute]

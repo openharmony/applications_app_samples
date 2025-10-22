@@ -32,7 +32,7 @@ declare class CommonMethod<T> {
 }
 
 export class MyButtonModifier3 implements AttributeModifier<ButtonAttribute> {
-  private isDark2: boolean = false
+  public isDark2: boolean = false
 
   constructor(dark?: boolean) {
     this.isDark2 = dark ? dark : false
