@@ -17,12 +17,12 @@
 ### 目录结构
 
 ```
-ResourceCategoriesAndAccess/entry/src/
+entry/src/
 |---main
 │   |---ets
 │   │   |---pages
-│   │       |---Index.ets(构建页面，显示字符串、图标等资源)
-│   |---resources
+│   │       |---Index.ets                        // 构建页面，显示字符串、图标等资源
+│   |---resources                                // 资源文件目录
 │       |---base
 │       │   |---element
 │       │       |---color.json
@@ -40,11 +40,26 @@ ResourceCategoriesAndAccess/entry/src/
 │       |---zh_CN
 │       │   |---element
 │       │       |---string.json
+library/src/                                     // 模块
+|---main
+│   |---ets
+│   │   |---components
+│   │       |---MainPage.ets                     // 模块页面组件
+│   |---resources                                // 模块资源文件目录
+│       |---base
+│       │   |---element
+│       │       |---color.json
+│       │       |---float.json
+│       │       |---string.json
+│       │   |---media
+│       |---rawfile
 ```
 
 ### 具体实现
 
 - 获取文本的字符串内容、字体颜色、字体大小以及图标资源，显示在页面上，包括单HAP包应用资源、跨HAP/HSP包应用资源、系统资源。
+- 单HAP包应用资源可以通过\$r('app.type.name')获取资源，跨HAP/HSP包应用资源可以通过\$r('[模块名].type.name')获取资源，系统资源可以通过\$r('sys.type.name')获取资源。
+- 在ets目录下的index.ets文件中可以通过添加Text、Image组件来展示对应的资源。
 
 ### 相关权限
 

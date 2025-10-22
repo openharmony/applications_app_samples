@@ -15,7 +15,11 @@
 // [Start native_rawfile_guide_sample]
 import { util } from '@kit.ArkTS';
 import { resourceManager } from '@kit.LocalizationKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so'; // 导入so
+
+const DOMAIN = 0x0000;
+const TAG = '[Sample_rawfile]';
 
 @Entry
 @Component
@@ -38,11 +42,11 @@ struct Index {
             // 传入资源管理对象，以及访问的rawfile文件夹名称
             let rawFileList: Array<String> = testNapi.getFileList(this.resMgr, '');
             this.rawfileListMsg = 'FileList = ' + rawFileList;
-            console.info(this.rawfileListMsg);
+            hilog.info(DOMAIN, TAG, this.rawfileListMsg);
 
             let ret: boolean = testNapi.isRawDir(this.resMgr, 'subrawfile');
             this.retMsg = 'isRawDir = ' + ret;
-            console.info(this.retMsg);
+            hilog.info(DOMAIN, TAG, this.retMsg);
 
             // 传入资源管理对象，以及访问的rawfile文件夹名称
             let rawfileArray: Uint8Array = testNapi.getRawFileContent(this.resMgr, 'rawfile1.txt');
@@ -50,13 +54,13 @@ struct Index {
             let textDecoder: util.TextDecoder = new util.TextDecoder();
             let rawfileContent: string = textDecoder.decodeToString(rawfileArray);
             this.rawfileContentMsg = 'RawFileContent = ' + rawfileContent;
-            console.info(this.rawfileContentMsg);
+            hilog.info(DOMAIN, TAG, this.rawfileContentMsg);
 
             // 传入资源管理对象，以及访问的rawfile文件名称
             let rawfileDescriptor: resourceManager.RawFileDescriptor =
               testNapi.getRawFileDescriptor(this.resMgr, 'rawfile1.txt');
             this.rawfileDescriptorMsg = 'RawFileDescriptor.length = ' + rawfileDescriptor.length;
-            console.info(this.rawfileDescriptorMsg);
+            hilog.info(DOMAIN, TAG, this.rawfileDescriptorMsg);
           })
         Text(this.rawfileListMsg).id('get_file_list').fontSize(30);
         Text(this.retMsg).id('is_raw_dir').fontSize(30);
