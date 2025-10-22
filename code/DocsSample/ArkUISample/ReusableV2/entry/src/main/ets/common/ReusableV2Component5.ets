@@ -18,10 +18,8 @@
 export struct ReusableV2Component5 {
   @Local message: string = 'Hello World';
   aboutToRecycle() {
-    console.info('ReusableV2Component aboutToRecycle'); // 回收时被调用
   }
   aboutToReuse() {
-    console.info('ReusableV2Component aboutToReuse'); // 复用时被调用
   }
   build() {
     Column() {

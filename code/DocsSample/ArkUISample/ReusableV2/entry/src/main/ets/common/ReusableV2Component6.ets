@@ -17,13 +17,10 @@
 export struct ReusableV2Component6 {
   @Require @Param num: number;
   aboutToAppear() {
-    console.info('ReusableV2Component aboutToAppear');
   }
   aboutToRecycle() {
-    console.info('ReusableV2Component aboutToRecycle');
   }
   aboutToReuse() {
-    console.info('ReusableV2Component aboutToReuse');
   }
   build() {
     Column() {

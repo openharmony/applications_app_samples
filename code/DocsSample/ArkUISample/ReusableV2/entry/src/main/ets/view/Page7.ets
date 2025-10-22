@@ -16,7 +16,7 @@
 import { ReusableV2Component4 } from '../common/ReusableV2Component4';
 @ObservedV2
 export class Info2 {
-  @Trace age: number;
+  @Trace private  age: number;
   constructor(age: number) {
     this.age = age;
   }
@@ -29,7 +29,8 @@ struct Page7 {
 
   build() {
     Column() {
-      Button('回收/复用').onClick(()=>{this.condition=!this.condition;})
+      // $r('app.string.EntryAbility_title6')需要替换为开发者所需的字符串（图像、数字等）资源文件。
+      Button($('app.string.EntryAbility_title6')).onClick(()=>{this.condition=!this.condition;})
       if (this.condition) {
         ReusableV2Component4()
       }

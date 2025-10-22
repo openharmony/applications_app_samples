@@ -20,18 +20,14 @@ export  struct ReusableV2Component2 {
   @Local info: Info = info; // 仅做演示使用，并不建议@Local赋值全局变量
   @Monitor('info.age')
   onValChange() {
-    console.info('info.age change');
   }
   aboutToRecycle() {
-    console.info('aboutToRecycle');
     this.info.age++;
   }
   aboutToReuse() {
-    console.info('aboutToReuse');
     this.info.age++;
   }
   onRender(): string {
-    console.info('info.age onRender');
     return this.info.age.toString();
   }
   build() {

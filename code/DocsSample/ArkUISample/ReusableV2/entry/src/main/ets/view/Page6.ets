@@ -30,9 +30,10 @@ struct Page6 {
   @Local condition: boolean = true;
   build() {
     Column() {
-      Button('回收/复用').onClick(()=>{this.condition=!this.condition;})
+      // $r('app.string.EntryAbility_title6')需要替换为开发者所需的字符串（图像、数字等）资源文件。
+      Button($('app.string.EntryAbility_title6')).onClick(()=>{this.condition=!this.condition;})
       Column() {
-        Text('父组件变量')
+        Text($('app.string.EntryAbility_title12'))
         Text(`local: ${this.local}`).onClick(()=>{this.local++;})
         Text(`inheritProvider: ${this.inheritProvider}`).onClick(()=>{this.inheritProvider++;})
       }.borderWidth(2)

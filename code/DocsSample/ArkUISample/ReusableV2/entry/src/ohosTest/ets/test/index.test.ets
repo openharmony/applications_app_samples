@@ -12,14 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
 // 导入测试依赖kit
 import { abilityDelegatorRegistry, Driver, ON, MouseButton,MatchPattern, UiDirection } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { Point } from '@ohos.UiTest';
-
-
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();

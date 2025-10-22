@@ -59,7 +59,7 @@ struct ReusableV2Component1 {
 
 
 @Builder
-function ReusableV2Builder(param: number) {
+function reusableV2Builder(param: number) {
   ReusableV2Component1({ val: param })
 }
 //[End The_lifecycle_of_recycling_and_reuse]

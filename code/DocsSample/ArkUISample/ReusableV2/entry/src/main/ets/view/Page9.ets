@@ -28,7 +28,8 @@ struct Page9 {
 
   build() {
     Column() {
-      Button('改变condition').onClick(() => {
+      // $r('app.string.EntryAbility_title5')需要替换为开发者所需的字符串（图像、数字等）资源文件。
+      Button($('app.string.EntryAbility_title5')).onClick(() => {
         this.condition = !this.condition;
       })
       if (this.condition) {

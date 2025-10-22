@@ -1,4 +1,3 @@
-import { ReusableV2Component8 } from '../common/ReusableV2Component8';
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +13,7 @@ import { ReusableV2Component8 } from '../common/ReusableV2Component8';
  * limitations under the License.
  */
 // [Start Rep_each_list_Comp]
+import { ReusableV2Component8 } from '../common/ReusableV2Component8';
 @Entry
 @ComponentV2
 struct Page11 {
@@ -22,10 +22,11 @@ struct Page11 {
 
   build() {
     Column() {
-      Button('删除/创建Repeat').onClick(()=>{this.condition=!this.condition;})
-      Button('增加元素').onClick(()=>{this.simpleList.push(this.simpleList.length+1);})
-      Button('删除元素').onClick(()=>{this.simpleList.pop();})
-      Button('更改元素').onClick(()=>{this.simpleList[0]++;})
+      // $r('app.string.EntryAbility_title1')需要替换为开发者所需的字符串（图像、数字等）资源文件
+      Button($('app.string.EntryAbility_title1')).onClick(()=>{this.condition=!this.condition;})
+      Button($('app.string.EntryAbility_title2')).onClick(()=>{this.simpleList.push(this.simpleList.length+1);})
+      Button($('app.string.EntryAbility_title3')).onClick(()=>{this.simpleList.pop();})
+      Button($('app.string.EntryAbility_title4')).onClick(()=>{this.simpleList[0]++;})
       if (this.condition) {
         List({ space: 10 }) {
           Repeat(this.simpleList)

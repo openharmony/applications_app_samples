@@ -20,7 +20,6 @@ export struct ReusableV2Component4 {
   noDecoInfo: Info2 = new Info2(30); // 未加装饰器，被视作常量
   @Monitor('noDecoInfo.age')
   onAgeChange(monitor: IMonitor) {
-    console.info(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   aboutToRecycle() {
     this.noDecoInfo.age = 25;

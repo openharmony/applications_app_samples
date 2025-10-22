@@ -18,13 +18,10 @@
 export struct ReusableV2Component9 {
   @Require @Param num: number;
   aboutToAppear() {
-    console.info('ReusableV2Component aboutToAppear', this.num); // 创建时触发
   }
   aboutToRecycle() {
-    console.info('ReusableV2Component aboutToRecycle', this.num); // 回收时触发
   }
   aboutToReuse() {
-    console.info('ReusableV2Component aboutToReuse', this.num); // 复用时触发
   }
   build() {
     Column() {

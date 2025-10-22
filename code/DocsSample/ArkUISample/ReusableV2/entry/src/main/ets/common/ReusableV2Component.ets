@@ -16,16 +16,12 @@
 @ComponentV2
 export  struct ReusableV2Component {
   aboutToAppear() {
-    console.info('ReusableV2Component aboutToAppear called'); // 组件创建时调用
   }
   aboutToDisappear() {
-    console.info('ReusableV2Component aboutToDisappear called'); // 组件销毁时调用
   }
   aboutToRecycle() {
-    console.info('ReusableV2Component aboutToRecycle called'); // 组件回收时调用
   }
   aboutToReuse() {
-    console.info('ReusableV2Component aboutToReuse called'); // 组件复用时调用
   }
   build() {
     Column() {

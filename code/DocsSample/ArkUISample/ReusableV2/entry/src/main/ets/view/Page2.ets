@@ -30,7 +30,7 @@ struct ReusableV2Component {
   }
 }
 @Builder
-function V2ReusableBuilder() {
+function v2ReusableBuilder() {
   ReusableV2Component()
 }
 @Component

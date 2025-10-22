@@ -139,16 +139,14 @@ struct Index {
 struct ChildComponent {
   @Param @Require data: string;
   aboutToAppear(): void {
-    console.info('ChildComponent aboutToAppear', this.data);
   }
   aboutToDisappear(): void {
-    console.info('ChildComponent aboutToDisappear', this.data);
   }
   aboutToReuse(): void {
-    console.info('ChildComponent aboutToReuse', this.data); // 复用时触发
+
   }
   aboutToRecycle(): void {
-    console.info('ChildComponent aboutToRecycle', this.data); // 回收时触发
+
   }
   build() {
     Row() {
