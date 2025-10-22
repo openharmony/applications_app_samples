@@ -15,6 +15,11 @@
 
 // [Start web_full_screen]
 import { webview } from '@kit.ArkWeb';
+import hilog from '@ohos.hilog';
+
+const TAG = '[Sample_WebFullScreen]'
+const DOMAIN = 0xF811
+const BUNDLE = 'WebFullScreen_'
 
 @Entry
 @Component
@@ -37,12 +42,12 @@ struct ShortWebPage {
         controller: this.controller
       })
         .onFullScreenEnter((event) => {
-          console.info("onFullScreenEnter...");
+          hilog.info(DOMAIN, TAG, BUNDLE + "onFullScreenEnter...");
           // 当全屏的时候，isVisible标志位为false，组件状态为不可见，不参与布局、不进行占位
           this.isVisible = false;
         })
         .onFullScreenExit(() => {
-          console.info("onFullScreenExit...");
+          hilog.info(DOMAIN, TAG, BUNDLE + "onFullScreenExit...");
           // 当退出全屏的时候，isVisible标志位为true，组件状态为可见
           this.isVisible = true;
         })

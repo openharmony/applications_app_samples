@@ -15,6 +15,11 @@
 
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import hilog from '@ohos.hilog';
+
+const TAG = '[Sample_WebCreatePdf]'
+const DOMAIN = 0xF811
+const BUNDLE = 'WebCreatePdf_'
 
 @Entry
 @Component
@@ -29,7 +34,7 @@ struct Index {
             url: 'pages/WebCreatePdfCallback',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`)
             })
         })
       Button('createPdfPromise')
@@ -40,7 +45,7 @@ struct Index {
             url: 'pages/WebCreatePdfPromise',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')

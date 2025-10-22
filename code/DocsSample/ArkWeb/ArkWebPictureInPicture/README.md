@@ -4,7 +4,7 @@
 ### 介绍
 
 1. 本示例主要介绍Web画中画。借助Picture-in-Picture Web API，在网页上拉起一个浮动窗口播放视频，以便用户在浏览器其它网页或者与其它应用交互时通过画中画窗口继续观看视频。
-2. 本工程主要实现了对以下指南文档中[Web组件支持画中画](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-picture-in-picture.md)示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+2. 本工程主要实现了对以下指南文档中[Web组件支持画中画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-picture-in-picture.md)示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 #### 效果预览
 
@@ -36,20 +36,18 @@
 
 ### 具体实现
 
-* 本示例通过本地html文件演示Web组件支持画中画的功能，实际使用的时候记得替换成自己的视频地址。
-
-### 相关权限
-
-[ohos.permission.INTERNET](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
-
-# entry1:
+* Web组件提供画中画功能支持
+  * 应用侧正常加载web组件。
+  * 网页中实现[进入画中画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-picture-in-picture.md#%E8%BF%9B%E5%85%A5%E7%94%BB%E4%B8%AD%E7%94%BB),和[退出画中画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-picture-in-picture.md#%E9%80%80%E5%87%BA%E7%94%BB%E4%B8%AD%E7%94%BB)功能。
+  * 网页上[监听画中画事件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-picture-in-picture.md#%E7%9B%91%E5%90%AC%E7%94%BB%E4%B8%AD%E7%94%BB%E4%BA%8B%E4%BB%B6)。
+  
 ## Web组件支持视频沉浸式全屏播放
 
 ### 介绍
 
 1.Web组件提供了视频进入全屏和退出全屏的事件功能，应用可通过监听这些事件实现进入和退出沉浸式全屏模式。
 Web组件引用第三方H5页面加载的视频，当点击视频全屏时，视频仅扩展至整个Web组件区域，无法实现系统全屏显示。若要达到系统全屏的沉浸式视频播放效果，则需应用监听进入全屏的事件并调整页面其它组件的属性。
-2. 本工程主要实现了对以下指南文档中[Web组件支持视频沉浸式全屏播放](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-picture-in-picture.md)示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+2. 本工程主要实现了对以下指南文档中[Web组件支持视频沉浸式全屏播放](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web_full_screen.md)示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 #### 效果预览
 
@@ -84,7 +82,9 @@ Web组件引用第三方H5页面加载的视频，当点击视频全屏时，视
 
 ### 具体实现
 
-* Web组件可通过onFullScreenEnter和onFullScreenExit回调监听全屏按键的点击事件。可根据具体业务场景调整某些全局变量，例如组件的显隐状态、组件的margin属性等，以实现退出和进入沉浸式全屏模式的页面效果
+* Web组件支持视频沉浸式全屏播放
+  * Web组件可通过[onFullScreenEnter](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-events.md#onfullscreenenter9)和[onFullScreenExit](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-events.md#onfullscreenexit9)回调监听全屏按键的点击事件。onFullScreenEnter表示Web组件进入全屏模式，onFullScreenExit表示Web组件退出全屏模式。
+  * 监听这两个回调函数，拿到状态变化值。开发者可通过设置组件属性[visibility](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)的不同值，控制组件的显隐状态。
 
 ### 相关权限
 

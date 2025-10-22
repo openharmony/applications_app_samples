@@ -16,6 +16,11 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import hilog from '@ohos.hilog';
+
+const TAG = '[Sample_WebPictureInPicture]'
+const DOMAIN = 0xF811
+const BUNDLE = 'WebPictureInPicture_'
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -47,7 +52,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     it('testWebPictureInPicture001', 0, async (done: Function) => {
-      console.info('uitest: testWebPictureInPicture001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testWebPictureInPicture001 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
 
@@ -63,7 +68,7 @@ export default function abilityTest() {
       await button2.click();
       await driver.delayMs(1000);
 
-      console.info('uitest: testWebPictureInPicture001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testWebPictureInPicture001 end');
       done();
     })
   })

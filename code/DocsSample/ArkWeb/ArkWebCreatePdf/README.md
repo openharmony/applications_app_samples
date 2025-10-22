@@ -3,7 +3,7 @@
 ### 介绍
 
 1. 本示例通过Web组件的createPdf方法，为应用提供了保存前端页面为PDF的功能。
-2. 本工程主要实现了对以下指南文档中[使用Web组件保存前端页面为PDF](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-pdf-preview.md)示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+2. 本工程主要实现了对以下指南文档中[使用Web组件保存前端页面为PDF](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-createpdf.md)示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 ### callback方式保存PDF
 
@@ -26,7 +26,7 @@
 
 |                       保存结果                        |
 |:-------------------------------------------------:|
-| <img src="./screenshots/savePdfResult.png" width="360;" /> |
+| <img src="./screenshots/savePdfSuccess.png" width="360;" /> |
 
 
 ### Promise方式保存PDF
@@ -50,7 +50,7 @@
 
 |                       保存结果                        |
 |:-------------------------------------------------:|
-| <img src="./screenshots/savePdfResult.png" width="360;" /> |
+| <img src="./screenshots/savePdfSuccess.png" width="360;" /> |
 
 
 ### 工程目录
@@ -72,9 +72,14 @@
 ```
 
 ### 具体实现
-
-* 本示例通过通过createPdf生成实例后，调用pdfArrayBuffer方法获取二进制数据流，再使用fileIo方法将二进制数据流保存为PDF文件。用户可以将前端页面内容保存为PDF以便分享或保存。例如，生成报告、发票等，方便用户保存和传输。
-
+* 使用Web组件保存前端页面为PDF
+* callback方式保存PDF
+  * 通过callback方式调用[createPdf](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createpdf14)接口，获取到的result通过pdfArrayBuffer接口取得PDF二进制数据流。
+  * 再使用fileIo方法将二进制数据流保存为PDF文件。
+* Promise方式保存PDF
+  * 通过Promise方式调用[createPdf](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createpdf14-1)接口，获取到的result通过pdfArrayBuffer接口取得PDF二进制数据流。
+  * 再使用fileIo方法将二进制数据流保存为PDF文件。
+  
 ### 相关权限
 
 [ohos.permission.INTERNET](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
