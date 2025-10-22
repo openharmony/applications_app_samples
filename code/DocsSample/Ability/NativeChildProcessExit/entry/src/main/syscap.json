@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.MultimodalInput.Input.Core",
+                    "SystemCapability.Ability.AbilityRuntime.Core"
+                ]
+            }
+        ]
+    }
+}
