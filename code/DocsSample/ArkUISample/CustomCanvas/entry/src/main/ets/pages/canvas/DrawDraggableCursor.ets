@@ -16,14 +16,14 @@
 @Component
 struct CursorMoving {
   // 监听是否按下，刷新光标颜色
-  @State @Watch('drawCursor') isTouchDown: boolean = false
+  @State @Watch('drawCursor') isTouchDown: boolean = false;
   // 监听位置变化，刷新页面
   @State @Watch('drawCursor') cursorPosition: RectPosition = {
     x: 0,
     y: 0,
     width: 0,
     height: 0,
-  }
+  };
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private canvasContext: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private sw: number = 360; // Canvas固定宽度
@@ -31,7 +31,7 @@ struct CursorMoving {
   private cursorWH: number = 50; // 光标区域宽高
   private dashedLineW: number = 7; // 光标宽高
   private arcRadius: number = 6; // 光标中心圆半径
-  private isReadyMove: boolean = false
+  private isReadyMove: boolean = false;
   private touchPosition: Position = {
     x: 0,
     y: 0,
@@ -49,27 +49,27 @@ struct CursorMoving {
         .height(this.sh)
         .backgroundColor('#D5D5D5')
         .onReady(() => {
-          this.cursorPosition.x = (this.sw - this.cursorWH) / 2
-          this.cursorPosition.y = (this.sh - this.cursorWH) / 2
-          this.cursorPosition.width = this.cursorWH
-          this.cursorPosition.height = this.cursorWH
+          this.cursorPosition.x = (this.sw - this.cursorWH) / 2;
+          this.cursorPosition.y = (this.sh - this.cursorWH) / 2;
+          this.cursorPosition.width = this.cursorWH;
+          this.cursorPosition.height = this.cursorWH;
           this.cursorCenterPosition = {
             x: this.cursorPosition.x + this.cursorPosition.width / 2,
             y: this.cursorPosition.y + this.cursorPosition.height / 2
-          }
-          this.drawCursor()
+          };
+          this.drawCursor();
         })
         .onTouch(event => {
           if (event.type === TouchType.Down) {
             this.isReadyMove = this.isTouchCursorArea(event.touches[0]);
             if (this.isReadyMove) {
-              this.isTouchDown = true
+              this.isTouchDown = true;
             }
 
             this.touchPosition = {
               x: event.touches[0].displayX,
               y: event.touches[0].displayY
-            }
+            };
           } else if (event.type === TouchType.Move) {
             if (this.isReadyMove) {
               let moveX = event.changedTouches[0].displayX - this.touchPosition.x;
@@ -77,32 +77,32 @@ struct CursorMoving {
               this.touchPosition = {
                 x: event.changedTouches[0].displayX,
                 y: event.changedTouches[0].displayY
-              }
+              };
               this.cursorPosition.x += moveX;
               this.cursorPosition.y += moveY;
 
               this.cursorCenterPosition = {
                 x: this.cursorPosition.x + this.cursorPosition.width / 2,
                 y: this.cursorPosition.y + this.cursorPosition.height / 2
-              }
+              };
               // 光标区域中心点位置限制
               if (this.cursorCenterPosition.x < 0) {
-                this.cursorPosition.x = -this.cursorPosition.width / 2
+                this.cursorPosition.x = -this.cursorPosition.width / 2;
               }
               if (this.cursorCenterPosition.y < 0) {
-                this.cursorPosition.y = -this.cursorPosition.height / 2
+                this.cursorPosition.y = -this.cursorPosition.height / 2;
               }
               if (this.cursorCenterPosition.x > this.sw) {
-                this.cursorPosition.x = this.sw - this.cursorPosition.width / 2
+                this.cursorPosition.x = this.sw - this.cursorPosition.width / 2;
               }
               if (this.cursorCenterPosition.y > this.sh) {
-                this.cursorPosition.y = this.sh - this.cursorPosition.height / 2
+                this.cursorPosition.y = this.sh - this.cursorPosition.height / 2;
               }
             }
           } else {
-            this.isTouchDown = false
+            this.isTouchDown = false;
           }
-        })
+        });
     }
     .height('100%')
     .width('100%')
@@ -112,23 +112,23 @@ struct CursorMoving {
   // 绘制裁剪框
   drawCursor() {
     // 算出菱形四个点
-    let positionL: Position = { x: this.cursorPosition.x, y: this.cursorPosition.y + this.cursorPosition.height / 2 }
-    let positionT: Position = { x: this.cursorPosition.x + this.cursorPosition.width / 2, y: this.cursorPosition.y }
+    let positionL: Position = { x: this.cursorPosition.x, y: this.cursorPosition.y + this.cursorPosition.height / 2 };
+    let positionT: Position = { x: this.cursorPosition.x + this.cursorPosition.width / 2, y: this.cursorPosition.y };
     let positionR: Position = {
       x: this.cursorPosition.x + this.cursorPosition.width,
       y: this.cursorPosition.y + this.cursorPosition.height / 2
-    }
+    };
     let positionB: Position = {
       x: this.cursorPosition.x + this.cursorPosition.width / 2,
       y: this.cursorPosition.y + this.cursorPosition.height
-    }
-    let lineWidth = 2
+    };
+    let lineWidth = 2;
     this.canvasContext.clearRect(0, 0, this.sw, this.sh);
-    this.canvasContext.lineWidth = lineWidth
-    this.canvasContext.strokeStyle = this.isTouchDown ? '#ff1a5cae' : '#ffffffff'
+    this.canvasContext.lineWidth = lineWidth;
+    this.canvasContext.strokeStyle = this.isTouchDown ? '#ff1a5cae' : '#ffffffff';
 
     // 画出四角
-    this.canvasContext.beginPath()
+    this.canvasContext.beginPath();
     this.canvasContext.moveTo(positionL.x + this.dashedLineW, positionL.y - this.dashedLineW);
     this.canvasContext.lineTo(positionL.x, positionL.y);
     this.canvasContext.lineTo(positionL.x + this.dashedLineW, positionL.y + this.dashedLineW);
@@ -145,16 +145,16 @@ struct CursorMoving {
     this.canvasContext.lineTo(positionB.x, positionB.y);
     this.canvasContext.lineTo(positionB.x + this.dashedLineW, positionB.y - this.dashedLineW);
 
-    this.canvasContext.stroke()
+    this.canvasContext.stroke();
 
     // 画出中心圆
-    this.canvasContext.beginPath()
-    this.canvasContext.strokeStyle = this.isTouchDown ? '#ff1a5cae' : '#ff9ba59b'
-    this.canvasContext.fillStyle = this.isTouchDown ? '#ff1a5cae' : '#ff9ba59b'
+    this.canvasContext.beginPath();
+    this.canvasContext.strokeStyle = this.isTouchDown ? '#ff1a5cae' : '#ff9ba59b';
+    this.canvasContext.fillStyle = this.isTouchDown ? '#ff1a5cae' : '#ff9ba59b';
     this.canvasContext.arc(this.cursorPosition.x + this.cursorPosition.width / 2,
-      this.cursorPosition.y + this.cursorPosition.width / 2, this.arcRadius, 0, 2 * Math.PI)
-    this.canvasContext.fill()
-    this.canvasContext.stroke()
+      this.cursorPosition.y + this.cursorPosition.width / 2, this.arcRadius, 0, 2 * Math.PI);
+    this.canvasContext.fill();
+    this.canvasContext.stroke();
 
     // 画出四条线
     this.canvasContext.beginPath();
@@ -177,11 +177,11 @@ struct CursorMoving {
   // 判断点击位置是否在棱形中
   isTouchCursorArea(touch: TouchObject) {
     let tempLength = Math.sqrt((touch.x - this.cursorCenterPosition.x) * (touch.x - this.cursorCenterPosition.x) +
-      (touch.y - this.cursorCenterPosition.y) * (touch.y - this.cursorCenterPosition.y))
+      (touch.y - this.cursorCenterPosition.y) * (touch.y - this.cursorCenterPosition.y));
     if (tempLength < (this.cursorWH / 2 / 1.414)) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 }
 
@@ -190,9 +190,9 @@ export interface RectPosition {
   y: number;
   height: number;
   width: number;
-}
+};
 
 export interface Position {
   x: number;
   y: number;
-}
+};

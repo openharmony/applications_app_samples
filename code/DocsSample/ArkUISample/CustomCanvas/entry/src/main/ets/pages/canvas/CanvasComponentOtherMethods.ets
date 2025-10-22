@@ -27,7 +27,7 @@ struct CanvasComponentOtherMethods {
         .backgroundColor('#F5DC62')
         .onReady(() => {
           //创建一个径向渐变色的CanvasGradient对象
-          let grad = this.context.createRadialGradient(200, 200, 50, 200, 200, 200)
+          let grad = this.context.createRadialGradient(200, 200, 50, 200, 200, 200);
           //为CanvasGradient对象设置渐变断点值，包括偏移和颜色
           grad.addColorStop(0.0, '#E87361');
           grad.addColorStop(0.5, '#FFFFF0');

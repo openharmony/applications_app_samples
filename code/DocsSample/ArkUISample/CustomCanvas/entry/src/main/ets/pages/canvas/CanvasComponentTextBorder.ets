@@ -29,19 +29,19 @@ struct CanvasComponentTextBorder {
         .backgroundColor('#F5DC62')
         .onReady(() => {
           // 文本的水平对齐方式为'top'
-          this.context.textBaseline = 'top'
+          this.context.textBaseline = 'top';
           // 文本字号为30px，字体系列为monospace
-          this.context.font = '30px monospace'
-          let textWidth = this.context.measureText(this.drawText).width
-          let textHeight = this.context.measureText(this.drawText).height
-          this.context.fillText(this.drawText, 20, 100)
-          this.context.strokeRect(20, 100, textWidth, textHeight)
+          this.context.font = '30px monospace';
+          let textWidth = this.context.measureText(this.drawText).width;
+          let textHeight = this.context.measureText(this.drawText).height;
+          this.context.fillText(this.drawText, 20, 100);
+          this.context.strokeRect(20, 100, textWidth, textHeight);
           // 文本字体粗细为粗体，字号为60px，字体系列为sans-serif
-          this.context.font = 'bold 60px sans-serif'
-          textWidth = this.context.measureText(this.drawText).width
-          textHeight = this.context.measureText(this.drawText).height
-          this.context.fillText(this.drawText, 20, 150)
-          this.context.strokeRect(20, 150, textWidth, textHeight)
+          this.context.font = 'bold 60px sans-serif';
+          textWidth = this.context.measureText(this.drawText).width;
+          textHeight = this.context.measureText(this.drawText).height;
+          this.context.fillText(this.drawText, 20, 150);
+          this.context.strokeRect(20, 150, textWidth, textHeight);
         })
     }
     .width('100%')

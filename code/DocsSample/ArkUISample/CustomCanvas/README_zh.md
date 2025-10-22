@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui/arkts-drawing-customization-on-canvas.md)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
 1. [使用画布绘制自定义图形 (Canvas)]
 ### 效果预览
@@ -47,6 +47,10 @@ entry/src/ohosTest/
 |---ets
 |   |---Index.test.ets                       // 示例代码测试代码
 ```
+## 具体实现
+
+1. 使用画布绘制自定义图形 (Canvas)
+   Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制，绘制对象可以是基础形状、文本、图片等。
 
 ### 相关权限
 
@@ -60,7 +64,7 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API18版本full-SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
+2.本示例为Stage模型，支持API22版本full-SDK，版本号：6.0.2.55，镜像版本号：OpenHarmony_6.0.2 Release。
 
 3.本示例需要使用DevEco Studio 5.0.5 Release (Build Version: 5.0.13.200， built on May 13, 2025)及以上版本才可编译运行。
 
@@ -71,7 +75,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/CustomCanvas > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/CustomCanvas > .git/info/sparse-checkout
+git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

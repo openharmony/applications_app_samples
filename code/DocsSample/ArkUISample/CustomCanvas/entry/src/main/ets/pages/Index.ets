@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 interface listItem {
   router?: string;
@@ -87,7 +87,8 @@ struct Index {
 
   build() {
     Column() {
-      Text('使用画布绘制自定义图形')
+      // $r('app.string.Use_custom_Canvas')需要替换为开发者所需的资源文件
+      Text($r('app.string.Use_custom_Canvas'))
         .height('5%')
         .width('100%')
         .textAlign(TextAlign.Center)
@@ -108,7 +109,7 @@ struct Index {
               }
               .onClick(() => {
                 if (!!listitem.router) {
-                  router.pushUrl({ url: listitem.router })
+                  router.pushUrl({ url: listitem.router });
                 }
               })
             }

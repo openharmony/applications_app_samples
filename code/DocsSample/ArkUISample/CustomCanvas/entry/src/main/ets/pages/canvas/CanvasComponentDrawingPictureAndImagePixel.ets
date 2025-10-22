@@ -19,8 +19,8 @@ struct CanvasComponentDrawingPictureAndImagePixel {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
-  // "/common/images/1234.png"需要替换为开发者所需的图像资源文件
-  private img: ImageBitmap = new ImageBitmap('/common/images/1234.png');
+  // "/common/images/image.png"需要替换为开发者所需的图像资源文件
+  private img: ImageBitmap = new ImageBitmap('/common/images/image.png');
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -29,7 +29,7 @@ struct CanvasComponentDrawingPictureAndImagePixel {
         .height('100%')
         .backgroundColor('#F5DC62')
         .onReady(() => {
-          let offContext = this.offCanvas.getContext('2d', this.settings)
+          let offContext = this.offCanvas.getContext('2d', this.settings);
           // 使用drawImage接口将图片画在（0，0）为起点，宽高130的区域
           offContext.drawImage(this.img, 0, 0, 130, 130);
           // 使用getImageData接口，获得canvas组件区域中，（50，50）为起点，宽高130范围内的绘制内容

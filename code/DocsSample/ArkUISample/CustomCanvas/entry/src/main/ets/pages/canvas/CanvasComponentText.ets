@@ -30,8 +30,8 @@ struct CanvasComponentText {
           this.context.font = '50px bolder sans-serif';
           this.context.fillText('Hello World!', 50, 100);
           // 文本描边
-          this.context.strokeStyle = '#ff0000'
-          this.context.lineWidth = 2
+          this.context.strokeStyle = '#ff0000';
+          this.context.lineWidth = 2;
           this.context.font = '50px bolder sans-serif';
           this.context.strokeText('Hello World!', 50, 150);
         })
