@@ -14,12 +14,7 @@
  */
 
 // [Start includes]
-#include <js_native_api.h>
-#include <js_native_api_types.h>
-#include <string>
-#include <vector>
-#include <cstdlib>
-#include "napi/native_api.h"
+#include "hello.h"
 #include "rawfile/raw_file_manager.h"
 #include "rawfile/raw_file.h"
 #include "rawfile/raw_dir.h"
@@ -33,7 +28,7 @@ const char *TAG = "[Sample_rawfile]";
 
 // [Start example_get_file_list]
 // 示例一：获取rawfile文件列表 GetFileList
-static napi_value GetFileList(napi_env env, napi_callback_info info)
+napi_value GetFileList(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "NDKTest GetFileList Begin");
     size_t argc = 2;
@@ -105,7 +100,7 @@ napi_value CreateJsArrayValue(napi_env env, std::unique_ptr<uint8_t[]> &data, lo
     return result;
 }
 
-static napi_value GetRawFileContent(napi_env env, napi_callback_info info)
+napi_value GetRawFileContent(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetFileContent Begin");
     size_t argc = 2;
@@ -187,7 +182,7 @@ napi_value createJsFileDescriptor(napi_env env, RawFileDescriptor& descriptor)
     return result;
 }
 
-static napi_value GetRawFileDescriptor(napi_env env, napi_callback_info info)
+napi_value GetRawFileDescriptor(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "NDKTest GetRawFileDescriptor Begin");
     size_t argc = 2;
@@ -228,7 +223,7 @@ napi_value CreateJsBool(napi_env env, bool &bValue)
     return jsValue;
 }
 
-static napi_value IsRawDir(napi_env env, napi_callback_info info)
+napi_value IsRawDir(napi_env env, napi_callback_info info)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "NDKTest IsRawDir Begin");
     size_t argc = 2;
