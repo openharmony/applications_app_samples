@@ -89,7 +89,7 @@ function sendMessage(tcpMessage: TcpMessage) {
   // [EndExclude tcp_client_worker_ipAddress]
   tcpClient.bind(ipAddress, (err: BusinessError) => {
     if (err) {
-      console.info('bind fail');
+      console.error('bind fail');
       return;
     }
     console.info('bind success');
@@ -136,7 +136,7 @@ function disConnect() {
       // [StartExclude tcp_client_worker_disConnect]
       workerPort.postMessage({ type: 'Connection closed' });
       // [EndExclude tcp_client_worker_disConnect]
-      console.log('close success');
+      console.info('close success');
     }).catch((err: BusinessError) => {
       // [StartExclude tcp_client_worker_disConnect]
       workerPort.postMessage({ type: 'Close connection failed' });

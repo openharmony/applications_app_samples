@@ -85,11 +85,15 @@ function startLocalSocket(address: string, timeout: number, closeTime: number): 
   });
   // [End local_socket_worker_on_message]
 
+  let localAddress : socket.LocalAddress = {
+    address: address
+  }
+
   let sendOpt: socket.LocalSendOptions = {
     data: 'Hello world!'
   };
   let connectOpt: socket.LocalConnectOptions = {
-    address: { address },
+    address: localAddress,
     timeout: timeout
   }
   // [Start local_socket_worker_sendOpt]
@@ -141,7 +145,7 @@ function startLocalSocketServer(address: string): void {
   server.on('connect', (connection: socket.LocalSocketConnection) => {
     // 订阅LocalSocketConnection相关的事件。
     connection.on('error', (err: Object) => {
-      console.log('on error success');
+      console.info('on error success');
     });
 
     connection.on('message', (value: socket.LocalSocketMessageInfo) => {
@@ -172,7 +176,7 @@ function startLocalSocketServer(address: string): void {
       // [EndExclude local_socket_worker_server_connection]
       // 关闭与客户端的连接。
       connection.close().then(() => {
-        console.log('close success');
+        console.info('close success');
       }).catch((err: Object) => {
         console.error('close failed: ' + JSON.stringify(err));
       });
@@ -207,7 +211,7 @@ function closeLocalSocketServer(): void {
   client.off('connect');
   client.off('close');
   client.close().then(() => {
-    console.log('close client success')
+    console.info('close client success')
     // [StartExclude local_socket_worker_close_server]
     workerPort.postMessage({ type: 'success', message: `close socket service successfully` });
     // [EndExclude local_socket_worker_close_server]

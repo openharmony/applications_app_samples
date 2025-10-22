@@ -95,11 +95,11 @@ function startServer(tcpMessage: TcpMessage) {
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      console.log('received message--:' + str);
-      console.log('received address--:' + value.remoteInfo.address);
-      console.log('received family--:' + value.remoteInfo.family);
-      console.log('received port--:' + value.remoteInfo.port);
-      console.log('received size--:' + value.remoteInfo.size);
+      console.info('received message--:' + str);
+      console.info('received address--:' + value.remoteInfo.address);
+      console.info('received family--:' + value.remoteInfo.family);
+      console.info('received port--:' + value.remoteInfo.port);
+      console.info('received size--:' + value.remoteInfo.size);
       // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'received message--', message: str });
       // [EndExclude tcp_server_worker_socketInfo]
@@ -118,6 +118,7 @@ function sendMessage(tcpMessage: TcpMessage) {
   if (client) {
     // [EndExclude tcp_server_worker_socketInfo]
     let tcpSendOptions: socket.TCPSendOptions = {} as socket.TCPSendOptions;
+    // 用户可根据需要自行定义发送数据
     tcpSendOptions.data = tcpMessage.message!;
 
     client.send(tcpSendOptions).then(() => {

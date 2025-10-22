@@ -75,7 +75,7 @@ function startMulticast(data: socket.NetAddress) {
     public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
   }
   multicast.on('message', (data: SocketInfo) => {
-     console.info('接收的数据: ' + JSON.stringify(data))
+    console.info('接收的数据: ' + JSON.stringify(data))
     const uintArray = new Uint8Array(data.message)
     let str = ''
     for (let i = 0; i < uintArray.length; ++i) {

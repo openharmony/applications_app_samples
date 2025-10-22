@@ -15,7 +15,7 @@
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
 // [Start two_way_tls_worker_import]
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End two_way_tls_worker_import]
 import fs from '@ohos.file.fs';
@@ -103,6 +103,8 @@ function loadFile(fileUri: string) {
   }
 }
 
+let connectFlag: boolean = false;
+
 // [Start two-way_constructTLSSocketInstance]
 // 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
 let tlsSocket: socket.TLSSocket | null = socket.constructTLSSocketInstance();
@@ -128,28 +130,32 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
     // [EndExclude two-way_bindTlsSocket]
     // 确保bind成功后，再订阅TLS Socket相关的订阅事件
     tlsSocket!.on('message', (value: SocketInfo) => {
-      console.log('on message');
+      console.info('on message');
       let buffer = value.message;
       let dataView = new DataView(buffer);
       let str = '';
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      console.log('on connect received:' + str);
+      console.info('on connect received:' + str);
     });
 
     tlsSocket!.on('connect', () => {
-      console.log('on connect');
+      // [StartExclude two-way_bindTlsSocket]
+      connectFlag = true;    
+      // [EndExclude two-way_bindTlsSocket]
+      console.info('on connect');
     });
     // 监听连接关闭
-    tlsSocket!.on('close', () => {
+    tlsSocket!.on('close', () => { 
       console.info('on close');
       // [StartExclude two-way_bindTlsSocket]
+      connectFlag = false;
       workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
       // [EndExclude two-way_bindTlsSocket]
     });
     // [StartExclude two-way_bindTlsSocket]
-    tlsSocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {
+    tlsSocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {  
       workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
     }).catch((e: BusinessError) => {
       workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
@@ -166,7 +172,7 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
 
 // 发送消息到服务器
 function sendMessageToServer(message: string) {
-  if (!tlsSocket) {
+  if (!tlsSocket && connectFlag) {
     workerPort.postMessage({ type: 'sendMessageFailure', message: 'TLS connection is not established.' });
     return;
   }
@@ -181,7 +187,7 @@ function sendMessageToServer(message: string) {
       if (err) {
         console.error('close callback error = ' + err);
       } else {
-        console.log('close success');
+        console.info('close success');
       }
       tlsSocket!.off('message');
       tlsSocket!.off('connect');
