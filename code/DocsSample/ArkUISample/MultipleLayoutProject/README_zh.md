@@ -4,6 +4,11 @@
 
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
+1. [相对布局](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/arkts-layout-development-relative-layout.md)。
+2. [层叠布局](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/arkts-layout-development-stack-layout.md)。
+3. [线性布局](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/arkts-layout-development-linear.md)。
+4. [弹性布局](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/arkts-layout-development-flex-layout.md)。
+
 ### 1. [相对布局 (RelativeContainer)]
 ### 效果预览
 
@@ -24,6 +29,13 @@
 | 首页                                 | ColumnLayoutExample示例              
 |------------------------------------|------------------------------------|
 | ![](screenshots/device/image4.png) | ![](screenshots/device/image5.png) |
+
+### 4. [弹性布局 (Flex)]
+### 效果预览
+
+| 首页                                 | FlexDirectionRow示例              
+|------------------------------------|------------------------------------|
+| ![](screenshots/device/image6.png) | ![](screenshots/device/image7.png) |
 
 ### 使用说明
 
@@ -82,11 +94,45 @@ entry/src/main/ets/
 |   |       |---WidthExample.ets
 |   |       |---ScrollVerticalExample.ets
 |   |       |---ScrollHorizontalExample.ets
+|   |---flexlayout                             //弹性布局 (Flex)
+|   |       |---ColumnLayoutExample.ets
+|   |       |---RowLayoutExample.ets
+|   |       |---ColumnLayoutJustifyContentStart.ets
+|   |       |---ColumnLayoutJustifyContentCenter.ets
+|   |       |---ColumnLayoutJustifyContentEnd.ets
+|   |       |---ColumnLayoutJustifyContentSpaceBetween.ets
+|   |       |---ColumnLayoutJustifyContentSpaceAround.ets
+|   |       |---ColumnLayoutJustifyContentSpaceEvenly.ets
+|   |       |---RowLayoutJustifyContentStart.ets
+|   |       |---RowLayoutJustifyContentCenter.ets
+|   |       |---RowLayoutJustifyContentEnd.ets
+|   |       |---RowLayoutJustifyContentSpaceBetween.ets
+|   |       |---RowLayoutJustifyContentSpaceAround.ets
+|   |       |---RowLayoutJustifyContentSpaceEvenly.ets
+|   |       |---RowLayoutHorizontalAlignStart.ets
+|   |       |---RowLayoutHorizontalAlignCenter.ets
+|   |       |---RowLayoutHorizontalAlignEnd.ets
+|   |       |---RowLayoutVerticalAlignTop.ets
+|   |       |---RowLayoutVerticalAlignCenter.ets
+|   |       |---RowLayoutVerticalAlignBottom.ets
+|   |       |---BlankExample.ets
+|   |       |---LayoutWeightExample.ets
+|   |       |---WidthExample.ets
+|   |       |---ScrollVerticalExample.ets
+|   |       |---ScrollHorizontalExample.ets
+|   |       |---BlankExample.ets
+|   |       |---LayoutWeightExample.ets
+|   |       |---WidthExample.ets
+|   |       |---ScrollVerticalExample.ets
+|   |       |---ScrollHorizontalExample.ets
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
 |---ets
-|   |---Index.test.ets                       // 示例代码测试代码
+|   |---RelativeContainerLayout.test.ets           // 相对布局示例代码测试代码
+|   |---StackLayout.test.ets                       // 层叠布局示例代码测试代码
+|   |---LinearLayout.test.ets                      // 线性布局示例代码测试代码
+|   |---FlexLayout.test.ets                        // 弹性布局示例代码测试代码
 ```
 
 ### 相关权限

@@ -178,6 +178,126 @@ let demandList: listItem[] = [
     name: "ScrollHorizontalExample",
     router: "pages/linearlayout/ScrollHorizontalExample",
   },
+  {
+    name: "FlexDirectionRow",
+    router: "pages/flexlayout/FlexDirectionRow",
+  },
+  {
+    name: "FlexDirectionRowReverse",
+    router: "pages/flexlayout/FlexDirectionRowReverse",
+  },
+  {
+    name: "FlexDirectionColumn",
+    router: "pages/flexlayout/FlexDirectionColumn",
+  },
+  {
+    name: "FlexDirectionColumnReverse",
+    router: "pages/flexlayout/FlexDirectionColumnReverse",
+  },
+  {
+    name: "FlexWrapNoWrap",
+    router: "pages/flexlayout/FlexWrapNoWrap",
+  },
+  {
+    name: "FlexWrapWrap",
+    router: "pages/flexlayout/FlexWrapWrap",
+  },
+  {
+    name: "FlexWrapWrapReverse",
+    router: "pages/flexlayout/FlexWrapWrapReverse",
+  },
+  {
+    name: "FlexAlignStart",
+    router: "pages/flexlayout/FlexAlignStart",
+  },
+  {
+    name: "FlexAlignCenter",
+    router: "pages/flexlayout/FlexAlignCenter",
+  },
+  {
+    name: "FlexAlignEnd",
+    router: "pages/flexlayout/FlexAlignEnd",
+  },
+  {
+    name: "FlexAlignSpaceBetween",
+    router: "pages/flexlayout/FlexAlignSpaceBetween",
+  },
+  {
+    name: "FlexAlignSpaceAround",
+    router: "pages/flexlayout/FlexAlignSpaceAround",
+  },
+  {
+    name: "FlexAlignSpaceEvenly",
+    router: "pages/flexlayout/FlexAlignSpaceEvenly",
+  },
+  {
+    name: "FlexItemAlignAuto",
+    router: "pages/flexlayout/FlexItemAlignAuto",
+  },
+  {
+    name: "FlexItemAlignStart",
+    router: "pages/flexlayout/FlexItemAlignStart",
+  },
+  {
+    name: "FlexItemAlignCenter",
+    router: "pages/flexlayout/FlexItemAlignCenter",
+  },
+  {
+    name: "FlexItemAlignEnd",
+    router: "pages/flexlayout/FlexItemAlignEnd",
+  },
+  {
+    name: "FlexItemAlignStretch",
+    router: "pages/flexlayout/FlexItemAlignStretch",
+  },
+  {
+    name: "FlexItemAlignBaseline",
+    router: "pages/flexlayout/FlexItemAlignBaseline",
+  },
+  {
+    name: "FlexAlignSelf",
+    router: "pages/flexlayout/FlexAlignSelf",
+  },
+  {
+    name: "FlexAlignCenterFlexAlignStart",
+    router: "pages/flexlayout/FlexAlignCenterFlexAlignStart",
+  },
+  {
+    name: "FlexAlignCenterFlexAlignCenter",
+    router: "pages/flexlayout/FlexAlignCenterFlexAlignCenter",
+  },
+  {
+    name: "FlexAlignCenterFlexAlignEnd",
+    router: "pages/flexlayout/FlexAlignCenterFlexAlignEnd",
+  },
+  {
+    name: "FlexAlignCenterFlexAlignSpaceBetween",
+    router: "pages/flexlayout/FlexAlignCenterFlexAlignSpaceBetween",
+  },
+  {
+    name: "FlexAlignCenterFlexAlignSpaceAround",
+    router: "pages/flexlayout/FlexAlignCenterFlexAlignSpaceAround",
+  },
+  {
+    name: "FlexAlignCenterFlexAlignSpaceEvenly",
+    router: "pages/flexlayout/FlexAlignCenterFlexAlignSpaceEvenly",
+  },
+  {
+    name: "FlexBasis",
+    router: "pages/flexlayout/FlexBasis",
+  },
+  {
+    name: "FlexGrow",
+    router: "pages/flexlayout/FlexGrow",
+  },
+  {
+    name: "FlexShrink",
+    router: "pages/flexlayout/FlexShrink",
+  },
+  {
+    name: "FlexExample",
+    router: "pages/flexlayout/FlexExample",
+  }
 ]
 
 @Entry

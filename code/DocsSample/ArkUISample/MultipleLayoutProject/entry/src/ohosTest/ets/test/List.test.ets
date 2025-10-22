@@ -16,10 +16,12 @@ import abilityTest from './Ability.test';
 import RelativeContainerLayout from './RelativeContainerLayout.test';
 import StackLayout from './StackLayout.test';
 import LinearLayout from './LinearLayout.test';
+import FlexLayout from './FlexLayout.test';
 
 export default function testsuite() {
   abilityTest();
   RelativeContainerLayout();
   StackLayout();
   LinearLayout();
+  FlexLayout();
 }
