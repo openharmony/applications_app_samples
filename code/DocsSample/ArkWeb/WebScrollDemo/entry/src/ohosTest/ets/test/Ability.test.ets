@@ -15,13 +15,15 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import Logger from '../util/Logger';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+const LOAD_SUCCESS: string = 'Log information printing:';
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      console.info('uitest: ActsAbilityTest begin');
+      Logger.info(LOAD_SUCCESS + 'ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -29,7 +31,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      console.info('get top ability');
+      Logger.info(LOAD_SUCCESS + 'get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -53,14 +55,14 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     it('processweb_scrollTo_ArkTS_one_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_scrollTo_ArkTS_one_001 begin');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_ArkTS_one_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
       await button.click();
       await driver.delayMs(3000);
 
-      const button1 = await driver.findComponent(ON.text('向下滚动 ↓'));
+      const button1 = await driver.findComponent(ON.text('Scroll down ↓'));
       await button1.click();
       await driver.delayMs(100);
 
@@ -71,62 +73,62 @@ export default function abilityTest() {
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      console.info(`uitest: 获取到滚动位置文本: ${positionText}`);
+      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        console.info(`uitest: 解析出的Y坐标: ${yPosition}`);
+        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(0);
       } else {
         expect(positionText).assertContain('0');
       }
-      console.info('uitest: processweb_scrollTo_ArkTS_one_001 end');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_ArkTS_one_001 end');
 
       done();
     })
 
     it('processweb_scrollBy_js_two_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_scrollBy_js_two_001 begin');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollBy_js_two_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
       await button.click();
       await driver.delayMs(3000);
 
-      const button1 = await driver.findComponent(ON.text('向下滚动 ↓'));
+      const button1 = await driver.findComponent(ON.text('Scroll down ↓'));
       await button1.click();
       await driver.delayMs(100);
 
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      console.info(`uitest: 获取到滚动位置文本: ${positionText}`);
+      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        console.info(`uitest: 解析出的Y坐标: ${yPosition}`);
+        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(200);
       } else {
         expect(positionText).assertContain('200');
       }
-      console.info('uitest: processweb_scrollBy_js_two_001 end');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollBy_js_two_001 end');
 
       done();
     })
 
     it('processweb_scrollBy_js_three_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_scrollBy_js_three_001 begin');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollBy_js_three_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
       await button.click();
       await driver.delayMs(3000);
 
-      const button1 = await driver.findComponent(ON.text('跳转到页面特定位置：500px ↓'));
+      const button1 = await driver.findComponent(ON.text('Jump to a specific location：500px ↓'));
       await button1.click();
       await driver.delayMs(100);
 
@@ -137,113 +139,113 @@ export default function abilityTest() {
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      console.info(`uitest: 获取到滚动位置文本: ${positionText}`);
+      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        console.info(`uitest: 解析出的Y坐标: ${yPosition}`);
+        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(800);
       } else {
         expect(positionText).assertContain('800');
       }
-      console.info('uitest: processweb_scrollBy_js_three_001 end');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollBy_js_three_001 end');
 
       done();
     })
 
     it('processweb_scrollTo_js_four_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_scrollTo_js_four_001 begin');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_four_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
       await button.click();
       await driver.delayMs(3000);
 
-      const button1 = await driver.findComponent(ON.text('滚动到400px ↓'));
+      const button1 = await driver.findComponent(ON.text('Scroll to 400px ↓'));
       await button1.click();
       await driver.delayMs(100);
 
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      console.info(`uitest: 获取到滚动位置文本: ${positionText}`);
+      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        console.info(`uitest: 解析出的Y坐标: ${yPosition}`);
+        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(400);
       } else {
         expect(positionText).assertContain('400');
       }
-      console.info('uitest: processweb_scrollTo_js_four_001 end');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_four_001 end');
 
       done();
     })
 
     it('processweb_scrollTo_js_five_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_scrollTo_js_five_001 begin');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_five_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
       await button.click();
       await driver.delayMs(3000);
-      const button1 = await driver.findComponent(ON.text('向下滚动 ↓'));
+      const button1 = await driver.findComponent(ON.text('Scroll down ↓'));
       await button1.click();
       await driver.delayMs(100);
 
-      const button2 = await driver.findComponent(ON.text('返回顶部'));
+      const button2 = await driver.findComponent(ON.text('Back to top'));
       await button2.click();
       await driver.delayMs(100);
 
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      console.info(`uitest: 获取到滚动位置文本: ${positionText}`);
+      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        console.info(`uitest: 解析出的Y坐标: ${yPosition}`);
+        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(0);
       } else {
         expect(positionText).assertContain('0');
       }
-      console.info('uitest: processweb_scrollTo_js_five_001 end');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_five_001 end');
 
       done();
     })
 
     it('processweb_scrollTo_js_six_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_scrollTo_js_six_001 begin');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_six_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
       await button.click();
       await driver.delayMs(3000);
-      const button1 = await driver.findComponent(ON.text('跳转到页面特定位置：500px ↓'));
+      const button1 = await driver.findComponent(ON.text('Jump to a specific location：500px ↓'));
       await button1.click();
       await driver.delayMs(100);
 
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      console.info(`uitest: 获取到滚动位置文本: ${positionText}`);
+      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        console.info(`uitest: 解析出的Y坐标: ${yPosition}`);
+        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(500);
       } else {
         expect(positionText).assertContain('500');
       }
-      console.info('uitest: processweb_scrollTo_js_six_001 end');
+      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_six_001 end');
 
       done();
     })
