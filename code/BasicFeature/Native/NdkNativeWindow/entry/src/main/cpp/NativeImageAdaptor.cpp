@@ -432,7 +432,7 @@ int32_t NativeImageAdaptor::ConsumerBuffer(uint32_t value, OHNativeWindow *InNat
     std::lock_guard<std::mutex> lockGuard(opMutex_);
     if (isSingleBufferMode_) {
         OH_NativeBuffer_ColorSpace colorSpace;
-        int32_t retVal = OH_NativeImage_GetColorSpace(nativeImage, &colorSpace);
+        int32_t retVal = OH_NativeImage_GetColorSpace(image_, &colorSpace);
         if (retVal != 0) {
             LOGE("get colorSpace fail.");
         }

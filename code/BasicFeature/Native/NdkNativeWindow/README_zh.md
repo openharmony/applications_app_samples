@@ -90,6 +90,10 @@
 | OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHScalingModeV2 scalingMode)| 为OHNativeWindow设置显示模式|
 | OH_NativeImage_AcquireLatestNativeWindowBuffer(OH_NativeImage* image, OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd)| 获取生产者最近生产的buffer|
 | OH_NativeWindow_PreAllocBuffers(OHNativeWindow *window, uint32_t allocBufferCnt)| 通过NativeWindow提前申请buffer|
+| OH_NativeImage_CreateWithSingleBufferMode(uint32_t textureId, uint32_t textureTarget, bool singleBufferMode)| 使用纹理ID创建一个OH_NativeImage实例，该实例与OpenGL ES的纹理ID和纹理目标相关联，并选择是否设置单buffer模式|
+| OH_NativeImage_ReleaseTextImage(OH_NativeImage* image)| 解除SurfaceBuffer与纹理的绑定，将纹理恢复到未使用状态|
+| OH_NativeImage_GetColorSpace(OH_NativeImage* image, OH_NativeBuffer_ColorSpace* colorSpace)| 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关色彩空间|
+
 
 详细的接口说明请参考[NativeWindow](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)，[NativeImage](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)，[NativeBuffer](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/native-apis/_o_h___native_buffer.md)。
 
