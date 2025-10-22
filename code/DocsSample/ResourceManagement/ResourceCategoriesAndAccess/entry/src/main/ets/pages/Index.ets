@@ -39,7 +39,7 @@ struct Index {
         // [StartExclude config_resource]
         // [StartExclude hsp_resource]
         // [Start app_resource]
-        //通过$r('app.type.name')访问
+        // 通过$r('app.type.name')访问
         Text($r('app.string.string_hello'))
           .id('app_resource')
           .fontColor($r('app.color.color_emphasize'))
@@ -144,18 +144,19 @@ struct Index {
     try {
       let resId = $r('app.string.greetings').id;
 
-      //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
+      // 获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
       currentLanguageString = resMgr.getStringSync(resId);
 
-      //获取符合当前系统颜色模式、分辨率等配置的英文资源
+      // 获取符合当前系统颜色模式、分辨率等配置的英文资源
       let overrideConfig = resMgr.getOverrideConfiguration();
-      overrideConfig.locale = 'en_US'; //指定资源的语言为英语，地区为美国
+      overrideConfig.locale = 'en_US'; // 指定资源的语言为英语，地区为美国
       let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
       this.englishString = overrideResMgr.getStringSync(resId);
 
-      //获取符合当前系统颜色模式、分辨率等配置的日文资源
-      overrideConfig.locale = 'ja_JP'; //指定资源的语言为日文，地区为日本
-      overrideResMgr.updateOverrideConfiguration(overrideConfig); //等效于resMgr.updateOverrideConfiguration(overrideConfig)
+      // 获取符合当前系统颜色模式、分辨率等配置的日文资源
+      overrideConfig.locale = 'ja_JP'; // 指定资源的语言为日文，地区为日本
+      // 等效于resMgr.updateOverrideConfiguration(overrideConfig)
+      overrideResMgr.updateOverrideConfiguration(overrideConfig);
       this.japaneseString = overrideResMgr.getStringSync(resId);
     } catch (err) {
       const code = (err as BusinessError).code;
