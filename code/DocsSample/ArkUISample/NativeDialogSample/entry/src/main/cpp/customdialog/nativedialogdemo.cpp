@@ -255,7 +255,7 @@ void OpenDialogCallBack(int32_t dialogId)
 void OpenCustomDialog()
 {
     // [Start dialog_createOption]
-    auto contentNode = CreateDialogContent();
+    ArkUI_NodeHandle contentNode = CreateDialogContent();
     auto dialogOptions = OH_ArkUI_CustomDialog_CreateOptions(contentNode);
     // [End dialog_createOption]
     OH_ArkUI_CustomDialog_SetAlignment(dialogOptions, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
@@ -354,7 +354,7 @@ napi_value BuildDemoPage(napi_env env, napi_callback_info info)
     napi_value result;
     napi_get_undefined(env, &result); // 返回undefined表示void
     
-    ArkUI_NodeContentHandle contentHandle; 
+    ArkUI_NodeContentHandle contentHandle;
     // 将napi_value转为NodeContentHandle
     OH_ArkUI_GetNodeContentFromNapiValue(env, args, &contentHandle);
     MainViewMethod(contentHandle);
