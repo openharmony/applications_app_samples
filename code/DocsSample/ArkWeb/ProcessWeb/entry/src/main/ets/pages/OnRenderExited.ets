@@ -14,7 +14,10 @@
  */
 // [Start onRenderExited]
 import { webview } from '@kit.ArkWeb';
-
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_ProcessWeb]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'ProcessWeb_';
 @Entry
 @Component
 struct WebComponent {
@@ -25,7 +28,7 @@ struct WebComponent {
       Web({ src: 'chrome://crash/', controller: this.controller })
         .onRenderExited((event) => {
           if (event) {
-            console.log('reason:' + event.renderExitReason);
+            hilog.info(DOMAIN, TAG, BUNDLE, 'reason:' + event.renderExitReason);
           }
         })
     }

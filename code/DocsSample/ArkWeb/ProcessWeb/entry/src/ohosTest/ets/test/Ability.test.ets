@@ -16,15 +16,17 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
-import Logger from '../util/Logger';
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_ProcessWeb]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'ProcessWeb_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const LOAD_SUCCESS: string = 'Log information printing:';
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'ActsAbilityTest begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -32,7 +34,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      Logger.info(LOAD_SUCCESS + 'get top ability');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -56,7 +58,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     it('processweb_setRenderProcessMode_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_setRenderProcessMode_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_setRenderProcessMode_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('setRenderProcessModeButton'));
@@ -73,14 +75,14 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      Logger.info(LOAD_SUCCESS + 'src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      Logger.info(LOAD_SUCCESS + 'processweb_setRenderProcessMode_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_setRenderProcessMode_001 end');
       done();
     })
 
     it('processweb_terminateRenderProcess_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_terminateRenderProcess_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_terminateRenderProcess_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('terminateRenderProcessButton'));
@@ -93,14 +95,14 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      Logger.info(LOAD_SUCCESS + 'src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      Logger.info(LOAD_SUCCESS + 'processweb_terminateRenderProcess_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_terminateRenderProcess_001 end');
       done();
     })
 
     it('processweb_onRenderExited_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_onRenderExited_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_onRenderExited_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('onRenderExitedButton'));
@@ -109,14 +111,14 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      Logger.info(LOAD_SUCCESS + 'src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('chrome://crash/');
-      Logger.info(LOAD_SUCCESS + 'processweb_onRenderExited_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_onRenderExited_001 end');
       done();
     })
 
     it('processweb_onRenderProcessNotResponding_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_onRenderProcessNotResponding_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_onRenderProcessNotResponding_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('onRenderProcessNotRespondingButton'));
@@ -125,14 +127,14 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      Logger.info(LOAD_SUCCESS + 'src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      Logger.info(LOAD_SUCCESS + 'processweb_onRenderProcessNotResponding_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_onRenderProcessNotResponding_001 end');
       done();
     })
 
     it('processweb_onRenderProcessResponding_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_onRenderProcessResponding_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_onRenderProcessResponding_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('onRenderProcessRespondingButton'));
@@ -141,15 +143,15 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      Logger.info(LOAD_SUCCESS + 'src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      Logger.info(LOAD_SUCCESS + 'processweb_onRenderProcessResponding_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_onRenderProcessResponding_001 end');
 
       done();
     })
 
     it('processweb_WebComponentCreat_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_WebComponentCreat_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_WebComponentCreat_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebComponentCreatButton'));
@@ -158,15 +160,15 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      Logger.info(LOAD_SUCCESS + 'src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      Logger.info(LOAD_SUCCESS + 'processweb_WebComponentCreat_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_WebComponentCreat_001 end');
 
       done();
     })
 
     it('processweb_FixingPageFlickering_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_FixingPageFlickering_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_FixingPageFlickering_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('FixingPageFlickeringButton'));
@@ -175,9 +177,9 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      Logger.info(LOAD_SUCCESS + 'src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('xxx.html');
-      Logger.info(LOAD_SUCCESS + 'processweb_FixingPageFlickering_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_FixingPageFlickering_001 end');
 
       done();
     })

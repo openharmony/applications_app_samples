@@ -13,7 +13,10 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
-import Logger from '../../../ohosTest/ets/util/Logger'
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_ProcessWeb]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'ProcessWeb_';
 
 @Entry
 @Component
@@ -26,7 +29,7 @@ struct Index {
             url: 'pages/WebScrollDemo',
           })
             .catch((error: BusinessError) => {
-              Logger.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.info(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')

@@ -15,15 +15,17 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
-import Logger from '../util/Logger';
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_ProcessWeb]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'ProcessWeb_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const LOAD_SUCCESS: string = 'Log information printing:';
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'ActsAbilityTest begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -31,7 +33,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      Logger.info(LOAD_SUCCESS + 'get top ability');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -55,7 +57,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     it('processweb_scrollTo_ArkTS_one_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_ArkTS_one_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollTo_ArkTS_one_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
@@ -73,24 +75,24 @@ export default function abilityTest() {
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
+      hilog.info(DOMAIN, TAG, BUNDLE, `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
+        hilog.info(DOMAIN, TAG, BUNDLE, `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(0);
       } else {
         expect(positionText).assertContain('0');
       }
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_ArkTS_one_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollTo_ArkTS_one_001 end');
 
       done();
     })
 
     it('processweb_scrollBy_js_two_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollBy_js_two_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollBy_js_two_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
@@ -104,24 +106,24 @@ export default function abilityTest() {
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
+      hilog.info(DOMAIN, TAG, BUNDLE, `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
+        hilog.info(DOMAIN, TAG, BUNDLE, `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(200);
       } else {
         expect(positionText).assertContain('200');
       }
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollBy_js_two_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollBy_js_two_001 end');
 
       done();
     })
 
     it('processweb_scrollBy_js_three_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollBy_js_three_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollBy_js_three_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
@@ -139,24 +141,24 @@ export default function abilityTest() {
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
+      hilog.info(DOMAIN, TAG, BUNDLE, `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
+        hilog.info(DOMAIN, TAG, BUNDLE, `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(800);
       } else {
         expect(positionText).assertContain('800');
       }
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollBy_js_three_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollBy_js_three_001 end');
 
       done();
     })
 
     it('processweb_scrollTo_js_four_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_four_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollTo_js_four_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
@@ -170,24 +172,24 @@ export default function abilityTest() {
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
+      hilog.info(DOMAIN, TAG, BUNDLE, `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
+        hilog.info(DOMAIN, TAG, BUNDLE, `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(400);
       } else {
         expect(positionText).assertContain('400');
       }
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_four_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollTo_js_four_001 end');
 
       done();
     })
 
     it('processweb_scrollTo_js_five_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_five_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollTo_js_five_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
@@ -204,24 +206,24 @@ export default function abilityTest() {
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
+      hilog.info(DOMAIN, TAG, BUNDLE, `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
+        hilog.info(DOMAIN, TAG, BUNDLE, `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(0);
       } else {
         expect(positionText).assertContain('0');
       }
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_five_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollTo_js_five_001 end');
 
       done();
     })
 
     it('processweb_scrollTo_js_six_001', 0, async (done: Function) => {
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_six_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollTo_js_six_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('WebScrollDemoButton'));
@@ -234,18 +236,18 @@ export default function abilityTest() {
       // 查找显示滚动位置的文本组件text
       const scrollPositionText = await driver.findComponent(ON.id('scrollPositionText'));
       const positionText = await scrollPositionText.getText();
-      Logger.info(LOAD_SUCCESS + `positionText: ${positionText}`);
+      hilog.info(DOMAIN, TAG, BUNDLE, `positionText: ${positionText}`);
 
       // 从文本中提取数字
       const yPositionMatch = positionText.match(/Y:\s*(\d+)/);
       if (yPositionMatch && yPositionMatch[1]) {
         const yPosition = parseInt(yPositionMatch[1]);
-        Logger.info(LOAD_SUCCESS + `yPosition: ${yPosition}`);
+        hilog.info(DOMAIN, TAG, BUNDLE, `yPosition: ${yPosition}`);
         expect(yPosition).assertEqual(500);
       } else {
         expect(positionText).assertContain('500');
       }
-      Logger.info(LOAD_SUCCESS + 'processweb_scrollTo_js_six_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'processweb_scrollTo_js_six_001 end');
 
       done();
     })

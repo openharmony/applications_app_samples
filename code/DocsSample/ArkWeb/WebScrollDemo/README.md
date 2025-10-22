@@ -103,6 +103,14 @@ entry/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+
+1. 构建一个长页面的HTML字符串，用于展示滚动效果。
+2. 在ArkTS中，创建WebviewController，用于控制Web组件。
+3. 提供多个按钮，每个按钮触发一种滚动操作。
+4. 对于ArkTS侧的滚动控制，直接调用WebviewController的滚动方法。
+5. 对于JS侧的滚动控制，通过Wdocument.getElementById('对应按钮的id').addEventListener() 方法执行JavaScript代码。
+
 ### 相关权限
 
 若使用本地资源，不涉及权限；若使用网络资源，需在module.json中配置网络权限：
