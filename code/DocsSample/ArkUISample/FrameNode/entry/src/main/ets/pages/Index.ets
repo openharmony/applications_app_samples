@@ -14,80 +14,81 @@
  */
 
 import { router } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World';
   build() {
-    Column({space:10}){
+    Column({ space: 10 }){
       Button('ShowFrameNodeTree')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeTree'
+            url: 'pages/framenode/FrameNodeTree'
           })
         })
       Button('ShowFrameNodeMoveTo')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeMoveTo'
+            url: 'pages/framenode/FrameNodeMoveTo'
           })
         })
       Button('ShowFrameNodeCommon')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeCommon'
+            url: 'pages/framenode/FrameNodeCommon'
           })
         })
       Button('ShowFrameNodeDraw')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeDraw'
+            url: 'pages/framenode/FrameNodeDraw'
           })
         })
       Button('ShowFrameNodePosition')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodePosition'
+            url: 'pages/framenode/FrameNodePosition'
           })
         })
       Button('ShowFrameNodeTypeNode')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeTypeNode'
+            url: 'pages/framenode/FrameNodeTypeNode'
           })
         })
       Button('ShowFrameNodeDisposed')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeDisposed'
+            url: 'pages/framenode/FrameNodeDisposed'
           })
         })
       Button('ShowFrameNodeIsDisposed')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeIsDisposed'
+            url: 'pages/framenode/FrameNodeIsDisposed'
           })
         })
       Button('ShowFrameNodeLazyForEach')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeLazyForEach'
+            url: 'pages/framenode/FrameNodeLazyForEach'
           })
         })
       Button('ShowFrameNodeLazyForEachSelect')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeLazyForEachSelect'
+            url: 'pages/framenode/FrameNodeLazyForEachSelect'
           })
         })
       Button('ShowFrameNodeCanvas')
-        .onClick(()=>{
+        .onClick(() => {
           router.pushUrl({
-            url:'pages/framenode/FrameNodeCanvas'
+            url: 'pages/framenode/FrameNodeCanvas'
           })
         })
     }
     .height('100%')
-    .width('100%')
+      .width('100%')
   }
 }
