@@ -58,7 +58,9 @@ struct Index {
     console.log('diaoqijianpan');    
     // [Start input_case_input_immersiveMode]
     // 感知是否设置沉浸模式，如果是沉浸模式选择沉浸模式类型
+    // [Start input_case_input_immersiveModeeditorAttributeChanged]
     inputMethodEngine.getKeyboardDelegate().on("editorAttributeChanged", (attr : inputMethodEngine.EditorAttribute) => {
+      // [End input_case_input_immersiveModeeditorAttributeChanged]
       console.log('recv editorAttributeChanged, immersiveMode: ', JSON.stringify(attr.immersiveMode));
       if (attr.immersiveMode == 1) {
         this.panel?.setImmersiveMode(inputMethodEngine.ImmersiveMode.DARK_IMMERSIVE);

@@ -14,6 +14,7 @@
  */
 
 // [Start input_case_input_KeyboardControler]
+
 import deviceInfo from '@ohos.deviceInfo';
 import { inputMethodEngine, InputMethodExtensionContext, InputMethodSubtype } from '@kit.IMEKit';
 import { display } from '@kit.ArkUI';
@@ -354,6 +355,7 @@ export class InputHandler {
   }
 }
 
+// [Start input_case_input_KeyboardControler358]
 class KeyboardController {
   private barPosition: number = 0;
   private keyCodes: Array<number> = [];
@@ -513,6 +515,7 @@ class KeyboardController {
       this.inputHandle.onInputStart(kbController, textInputClient);
     })
 
+    // [Start input_case_input_KeyboardControllersetSubtype]
     // 设置监听子类型事件，改变输入法应用界面
     InputMethodEngine.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
       this.inputHandle.addLog('GJ setSubtype inputMethodSubtype:' + inputMethodSubtype.id);
@@ -525,6 +528,7 @@ class KeyboardController {
         this.inputHandle.addLog('GJ setSubtype subtypeChange:' + AppStorage.get('subtypeChange'));
       }
     });
+    // [End input_case_input_KeyboardControllersetSubtype]
 
     InputMethodEngine.on('inputStop', () => {
       this.inputHandle.addLog('keyboard inputStop');
@@ -720,4 +724,5 @@ class KeyboardController {
 }
 
 export const keyboardController: KeyboardController = new KeyboardController();
+// [End input_case_input_KeyboardControler358]
 // [End input_case_input_KeyboardControler]
