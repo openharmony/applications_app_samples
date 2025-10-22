@@ -96,6 +96,20 @@ entry/src/ohosTest/
 |   |---index.test.ets                               // 示例代码测试代码
 ```
 
+## 具体实现
+
+1. 富文本(RichEditor)/禁用系统服务菜单：richEditor组件长按后调出的菜单，通过设置屏蔽所有系统服务菜单。源码参考[DisableSystemServiceMenu.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/DisableSystemServiceMenu.ets)
+
+    * 定义一个组件，在组件的aboutToAppear方法中设置TextMenuController组件禁用系统服务菜单
+
+    * 在组件的aboutToDisappear方法中设置TextMenuController组件恢复系统服务菜单
+
+2. 富文本(RichEditor)/禁用搜索和翻译菜单：richEditor组件长按后调出的菜单，通过设置屏蔽禁用搜索和翻译菜单。源码参考[DisableMenuItem.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/DisableMenuItem.ets)
+
+   * 定义一个组件，在组件的aboutToAppear方法中设置TextMenuController组件禁用搜索和翻译两项菜单
+
+   * 在组件的aboutToDisappear方法中设置TextMenuController组件恢复搜索和翻译两项菜单
+
 ### 相关权限
 
 不涉及。

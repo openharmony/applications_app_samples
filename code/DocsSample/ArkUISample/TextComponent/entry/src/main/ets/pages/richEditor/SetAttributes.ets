@@ -67,7 +67,7 @@ export const defaultTheme: SelectionMenuTheme = {
 }
 
 @Component
-struct attr1 {
+struct BindSelectionMenu {
   // [Start richEditor_bindSelectionMenu]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
@@ -246,7 +246,6 @@ struct attr5 {
         // [EndExclude richEditor_maxLength]
         RichEditor(this.options)
           .placeholder(resource.resourceToString($r('app.string.SetAttributes_Text_8')))
-          .onReady(() => {})
           .maxLength(7);
           // [End richEditor_maxLength]
       }
@@ -550,7 +549,7 @@ export struct SetAttributes {
     NavDestination() {
       Scroll(this.scroller) {
         Column({ space: 12 }) {
-          attr1();
+          BindSelectionMenu();
           attr2();
           attr3();
           attr4();
