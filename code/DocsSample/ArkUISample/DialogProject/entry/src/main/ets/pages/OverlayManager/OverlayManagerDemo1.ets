@@ -59,6 +59,7 @@ export struct OverlayManagerDemo1 {
     NavDestination() {
       // [EndExclude OverlayManager_Demo]
       Column({ space: 10 }) {
+        // $r('app.string.XXX')需要替换为开发者所需的字符串
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button1')) + this.componentContentIndex)
           .onClick(() => {
           ++this.componentContentIndex;

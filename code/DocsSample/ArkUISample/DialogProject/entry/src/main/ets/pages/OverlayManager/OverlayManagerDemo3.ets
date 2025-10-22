@@ -64,6 +64,7 @@ export struct OverlayManagerDemo3 {
       // [EndExclude OverlayManager_Demo3]
       Row() {
         Column({ space: 5 }) {
+          // $r('app.string.XXX')需要替换为开发者所需的字符串
           Button($r('app.string.Demo3_topDialogButton'))
             .onClick(() => {
               let componentContent = new ComponentContent(
