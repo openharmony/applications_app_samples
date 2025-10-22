@@ -26,6 +26,7 @@ export struct DefaultAndTopToastExample {
       Column({ space: 10 }) {
         TextInput()
         Button() {
+          // $r('app.string.xxx')需要替换为开发者所需的字符串
           Text($r('app.string.DefaultAndTopToast_defaultToast'))
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
