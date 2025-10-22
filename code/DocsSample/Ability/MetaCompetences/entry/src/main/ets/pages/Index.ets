@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,7 @@ import { startupManager } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  @State message: string = '手动模式';
+  @State message: ResourceStr = $r('app.string.manual_mode');
   @State startParams1: Array<string> = ['StartupTask_006'];
   @State startParams2: Array<string> = ['libentry_00'];
 
@@ -30,10 +30,10 @@ struct Index {
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           if (!startupManager.isStartupTaskInitialized('StartupTask_006') ) { // 判断是否已经完成初始化
-            startupManager.run(this.startParams1)
+            startupManager.run(this.startParams1);
           }
           if (!startupManager.isStartupTaskInitialized('libentry_006') ) {
-            startupManager.run(this.startParams2)
+            startupManager.run(this.startParams2);
           }
         })
         .alignRules({

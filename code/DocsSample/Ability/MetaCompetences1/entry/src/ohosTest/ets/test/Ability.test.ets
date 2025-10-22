@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,8 +19,8 @@ import { Want } from '@kit.AbilityKit';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 let want: Want = {
-  bundleName: "com.samples.MetaCompetences1",
-  abilityName: "EntryAbility",
+  bundleName: 'com.samples.MetaCompetences1',
+  abilityName: 'EntryAbility',
 }
 
 function sleep(time: number) {
