@@ -20,9 +20,9 @@ import hilog from '@ohos.hilog';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
-const TAG = '[Sample_FormManagerDemo]'
-const DOMAIN = 0xF811
-const BUNDLE = 'FormManagerDemo_'
+const TAG = '[Sample_FormManagerDemo]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'FormManagerDemo_';
 const DELAYTIME01 = 500;
 const DELAYTIME02 = 2000;
 
@@ -83,7 +83,7 @@ export default function abilityTest() {
       await driver.delayMs(DELAYTIME02);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_card_to_desktop')))).then(()=>{
         hilog.info(DOMAIN, TAG, '_FormManager_001 find component');
-      })
+      });
       let formManager: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.add_card_to_desktop'))));
       let pointManager: Point = await getCenterPoint(formManager, 0);
       await driver.click(pointManager.x, pointManager.y);
@@ -92,7 +92,7 @@ export default function abilityTest() {
 
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_to_desktop'))).within(ON.type('Button'))).then(()=>{
         hilog.info(DOMAIN, TAG, '_FormManager_001 find component');
-      })
+      });
       let formComponent: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.add_to_desktop'))).within(ON.type('Button')));
       let point: Point = await getCenterPoint(formComponent, 0);
       await driver.click(point.x, point.y);
