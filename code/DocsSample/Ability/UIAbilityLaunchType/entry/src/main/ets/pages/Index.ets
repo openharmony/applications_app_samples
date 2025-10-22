@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,7 +33,7 @@ struct Index {
           this.message = 'Welcome';
         })
 
-      Button('启动单实例模式UIAbility')
+      Button($r('app.string.singletonAbility'))
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -51,7 +51,7 @@ struct Index {
           })
         })
 
-      Button('启动多实例模式UIAbility')
+      Button($r('app.string.multitonAbility'))
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -69,7 +69,7 @@ struct Index {
           })
         })
 
-      Button('启动指定实例模式UIAbility')
+      Button($r('app.string.specifiedAbility'))
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -81,7 +81,7 @@ struct Index {
             moduleName: 'entry', // moduleName非必选
             parameters: {
               // 自定义信息
-              instanceKey: "instanceKey"
+              instanceKey: 'instanceKey'
             }
           };
           context.startAbility(want).then(() => {

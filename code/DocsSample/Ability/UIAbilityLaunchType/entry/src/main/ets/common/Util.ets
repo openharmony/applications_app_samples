@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,8 +30,8 @@ interface  AbilityContext {
 }
 
 class  EventData {
-  public context: AbilityContext | null = null
-  public launchWant: Want | null = null
+  public context: AbilityContext | null = null;
+  public launchWant: Want | null = null;
 }
 
 let that = this;
@@ -55,15 +55,15 @@ export function startMode(wantParameters: Record<string, string|number>, ability
     bundleName: 'ohos.samples.startmode',
     abilityName: abilityName,
     parameters: wantParameters
-  }
+  };
   Logger.info(TAG, `${abilityName} contextCaller ${JSON.stringify(contextCaller)}`);
   try {
     contextCaller.startAbility(want);
-  }catch {
+  } catch {
     (err: Function) => {
       Logger.info(TAG, 'err is' + JSON.stringify(err));
     }
-  }
+  };
   Logger.info(TAG, `${abilityName} end`);
 }
 
@@ -74,7 +74,7 @@ export function totast() {
       secondaryButton: {
         value: 'ok',
         action: () => {
-          Logger.info(TAG, 'Callback when the second button is clicked')
+          Logger.info(TAG, 'Callback when the second button is clicked');
         }
       }
     }

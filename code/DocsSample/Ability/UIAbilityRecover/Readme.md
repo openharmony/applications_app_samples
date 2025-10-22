@@ -39,7 +39,7 @@ UIAbilityLaunchType/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/Ability/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -219,6 +219,38 @@
     {
       "name": "totast",
       "value": "The Ability instance already exists"
+    },
+    {
+      "name": "singletonAbility",
+      "value": "启动单实例模式UIAbility"
+    },
+    {
+      "name": "multitonAbility",
+      "value": "启动单实例模式UIAbility"
+    },
+    {
+      "name": "specifiedAbility",
+      "value": "启动单实例模式UIAbility"
+    },
+    {
+      "name": "single_display",
+      "value": "Singleton 演示效果"
+    },
+    {
+      "name": "multiton_display",
+      "value": "Multiton 演示效果"
+    },
+    {
+      "name": "new_doc",
+      "value": "新建一个文档"
+    },
+    {
+      "name": "old_doc",
+      "value": "已保存文档"
+    },
+    {
+      "name": "open_old_doc",
+      "value": "打开已保存文档"
     }
   ]
 }

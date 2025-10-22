@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,7 +40,7 @@ struct Page_StartModel {
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
         // [EndExclude Page_StartModel]
-        Button('新建一个文档')
+        Button($r('app.string.new_doc'))
         // [StartExclude Page_StartModel]
           .margin({top: 8})
           .width('60%')
@@ -62,11 +62,11 @@ struct Page_StartModel {
               hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting SpecifiedAbility.');
             }).catch((err: BusinessError) => {
               hilog.error(DOMAIN_NUMBER, TAG, `Failed to start SpecifiedAbility. Code is ${err.code}, message is ${err.message}`);
-            })
+            });
             this.KEY_NEW = this.KEY_NEW + 'a';
           })
-        // ...
-        Button('打开已保存文档')
+
+        Button($r('app.string.open_old_doc'))
         // [StartExclude Page_StartModel]
           .margin({top: 8})
           .width('60%')
@@ -88,10 +88,9 @@ struct Page_StartModel {
               hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting SpecifiedAbility.');
             }).catch((err: BusinessError) => {
               hilog.error(DOMAIN_NUMBER, TAG, `Failed to start SpecifiedAbility. Code is ${err.code}, message is ${err.message}`);
-            })
+            });
             this.KEY_NEW = this.KEY_NEW + 'a';
           })
-        // ...
       }
       .width('100%')
     }

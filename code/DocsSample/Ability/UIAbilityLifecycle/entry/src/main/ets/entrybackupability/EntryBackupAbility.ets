@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,28 +13,19 @@
  * limitations under the License.
  */
 
-// [Start onBackup_1]
-// [Start onBackup_2]
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [Startexcued onBackup_1]
 import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 const DOMAIN = 0x0000;
-// [Startexcued onBackup_1]
+
 export default class EntryBackupAbility extends BackupExtensionAbility {
-  // [Startexcued onBackup_1]
+
   async onBackup() {
     hilog.info(DOMAIN, 'testTag', 'onBackup ok');
     await Promise.resolve();
   }
-  // [Startexcued onBackup_1]
 
-  // [Startexcued onBackup_1]
-  // [Start onBackup_2]
   async onRestore(bundleVersion: BundleVersion) {
     hilog.info(DOMAIN, 'testTag', 'onRestore ok %{public}s', JSON.stringify(bundleVersion));
     await Promise.resolve();
   }
-  // [Startexcued onBackup_1]
 }
-// [end onBackup_2]
-// [end onBackup_1]

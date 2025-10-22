@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,7 +35,7 @@ export default class SingletonAbility extends UIAbility {
     this.context.eventHub.on('getAbilityData', this.getAbilityDataCallback = (data: Data): void => {
       data.context = that.context;
       data.launchWant = want;
-    })
+    });
   }
 
   onDestroy() {
@@ -55,17 +55,17 @@ export default class SingletonAbility extends UIAbility {
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    Logger.info(TAG, 'SingletonAbility onNewWant')
+    Logger.info(TAG, 'SingletonAbility onNewWant');
     if (want && want.parameters) {
       let eventData: emitter.EventData = {
         data: {
           'foodItemId': null
         }
-      }
+      };
       let innerEvent: emitter.InnerEvent = {
         eventId,
         priority: emitter.EventPriority.HIGH
-      }
+      };
       // If the obtained ID is equal to 0, it is assigned a value of 1 and passed to the front-end,
       // which retrieves the corresponding data based on this ID.
       if (want.parameters.foodItemId == 0) {
