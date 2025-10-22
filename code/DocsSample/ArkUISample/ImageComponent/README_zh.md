@@ -2,9 +2,9 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [显示图片 (Image)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-graphics-display.md)。
+1. [显示图片 (Image)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-graphics-display.md)。
 ### 效果预览
 
 | 首页                                 | 为图片添加滤镜效果                   |
@@ -31,6 +31,7 @@ entry/src/main/ets/
 |   |---SetImageRenderingMode.ets
 |   |---SetImageRepetitionStyle.ets
 |   |---SetImageZoomType.ets            //应用子页面     
+|   |---Shadow.ets           //  当前组件添加阴影效果
             
 |---pages
 |   |---Index.ets                      // 应用主页面
@@ -62,7 +63,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/ImageComponent > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/ImageComponent > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
