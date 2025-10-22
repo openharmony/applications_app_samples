@@ -34,7 +34,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
   onCreate(want: Want) {
     // [StartExclude vpn_control_case_extention_ability]
-    console.info(TAG, 'onCreate called');
+    console.info('onCreate called');
     super.onCreate(want);
     // 确保 context 有效
     if (this.context) {
@@ -44,20 +44,20 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
       console.error('Context is invalid, cannot create VpnConnection');
     }
     // [EndExclude vpn_control_case_extention_ability]
-    console.info(TAG, `xdw onCreate, want: ${want.abilityName}`);
+    console.info(`onCreate, want: ${want.abilityName}`);
     this.vpnConnection = vpnExtension.createVpnConnection(this.context);
-    console.info('wmw createVpnConnection success');
+    console.info('createVpnConnection success');
     this.CreateTunnel();
     this.Protect();
-    console.info('xdw step4');
+    console.info('step4');
   }
 
   onRequest(want: Want, startId: number) {
-    console.info(TAG, `xdw onRequest, want: ${want.abilityName}`);
+    console.info(`onRequest, want: ${want.abilityName}`);
   }
 
   onConnect(want: Want) {
-    console.info(TAG, `xdw onConnect, want: ${want.abilityName}`);
+    console.info(`onConnect, want: ${want.abilityName}`);
     // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
     let abilityName = want.parameters?.abilityName.toString();
     let bundleName = want.parameters?.bundleName.toString();
@@ -65,11 +65,11 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   }
 
   onDisconnect(want: Want) {
-    console.info(TAG, `xdw onDisconnect, want: ${want.abilityName}`);
+    console.info(`onDisconnect, want: ${want.abilityName}`);
   }
 
   onDestroy() {
-    console.info(TAG, `xdw onDestroy`);
+    console.info(`onDestroy`);
     this.Destroy();
   }
 
@@ -85,22 +85,22 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
   // 创建隧道的方法
   CreateTunnel() {
-    console.info('xdw step1');
+    console.info('step1');
     // 连接VPN服务器
     // [StartExclude vpn_control_case_extention_ability]
     gTunnelFd = vpn_client.udpConnect(this.vpnServerIp, 1194);
     if (gTunnelFd < 0) {
-      console.error(TAG, 'Failed to create UDP tunnel');
+      console.error('Failed to create UDP tunnel');
       return;
     }
-    console.info(TAG, `Tunnel created, FD: ${gTunnelFd}`);
+    console.info(`Tunnel created, FD: ${gTunnelFd}`);
     this.Protect();
     // [EndExclude vpn_control_case_extention_ability]
   }
 
   // 保护隧道的方法
   Protect() {
-    console.info('xdw step2');
+    console.info('step2');
     console.info('developTag', '%{public}s', 'vpn Protect');
     this.vpnConnection.protect(gTunnelFd).then(() => {
       console.info('developTag', '%{public}s', 'vpn Protect Success');
@@ -112,7 +112,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
   // 设置VPN网络配置的方法
   SetupVpn() {
-    console.info('xdw step3');
+    console.info('step3');
     console.info('developTag', '%{public}s', 'vpn SetupVpn');
 
     class Address {
