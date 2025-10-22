@@ -297,6 +297,82 @@ let demandList: listItem[] = [
   {
     name: 'FlexExample',
     router: 'pages/flexlayout/FlexExample',
+  },
+  {
+    name: 'GridLayoutReference',
+    router: 'pages/gridlayout/GridLayoutReference',
+  },
+  {
+    name: 'GridLayoutColumns',
+    router: 'pages/gridlayout/GridLayoutColumns',
+  },
+  {
+    name: 'GridLayoutColumnsToFour',
+    router: 'pages/gridlayout/GridLayoutColumnsToFour',
+  },
+  {
+    name: 'GridLayoutColumnsToEight',
+    router: 'pages/gridlayout/GridLayoutColumnsToEight',
+  },
+  {
+    name: 'GridLayoutColumnOption',
+    router: 'pages/gridlayout/GridLayoutColumnOption',
+  },
+  {
+    name: 'GridLayoutDirectionRow',
+    router: 'pages/gridlayout/GridLayoutDirectionRow',
+  },
+  {
+    name: 'GridLayoutDirectionRowReverse',
+    router: 'pages/gridlayout/GridLayoutDirectionRowReverse',
+  },
+  {
+    name: 'GridLayoutGutterToNumber',
+    router: 'pages/gridlayout/GridLayoutGutterToNumber',
+  },
+  {
+    name: 'GridLayoutGutterOption',
+    router: 'pages/gridlayout/GridLayoutGutterOption',
+  },
+  {
+    name: 'GridColSpan',
+    router: 'pages/gridlayout/GridColSpan',
+  },
+  {
+    name: 'GridColOffset',
+    router: 'pages/gridlayout/GridColOffset',
+  },
+  {
+    name: 'GridColOrder',
+    router: 'pages/gridlayout/GridColOrder',
+  },
+  {
+    name: 'GridColSpanToNumber',
+    router: 'pages/gridlayout/GridColSpanToNumber',
+  },
+  {
+    name: 'GridColSpanToOption',
+    router: 'pages/gridlayout/GridColSpanToOption',
+  },
+  {
+    name: 'GridColOffsetToNumber',
+    router: 'pages/gridlayout/GridColOffsetToNumber',
+  },
+  {
+    name: 'GridColOffsetToOption',
+    router: 'pages/gridlayout/GridColOffsetToOption',
+  },
+  {
+    name: 'GridColOrderToNumber',
+    router: 'pages/gridlayout/GridColOrderToNumber',
+  },
+  {
+    name: 'testGridColOrderToOption',
+    router: 'pages/gridlayout/testGridColOrderToOption',
+  },
+  {
+    name: 'GridRowExample',
+    router: 'pages/gridlayout/GridRowExample',
   }
 ]
 

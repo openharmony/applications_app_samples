@@ -8,6 +8,7 @@
 2. [层叠布局](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/arkts-layout-development-stack-layout.md)。
 3. [线性布局](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/arkts-layout-development-linear.md)。
 4. [弹性布局](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/arkts-layout-development-flex-layout.md)。
+5. [栅格布局](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/arkts-layout-development-grid-layout.md)。
 
 ### 1. [相对布局 (RelativeContainer)]
 ### 效果预览
@@ -36,6 +37,13 @@
 | 首页                                 | FlexDirectionRow示例              
 |------------------------------------|------------------------------------|
 | ![](screenshots/device/image6.png) | ![](screenshots/device/image7.png) |
+
+### 5. [栅格布局 (GridRow/GridCol)]
+### 效果预览
+
+| 首页                                 | FlexDirectionRow示例                 
+|------------------------------------|------------------------------------|
+| ![](screenshots/device/image8.png) | ![](screenshots/device/image9.png) |
 
 ### 使用说明
 
@@ -125,6 +133,26 @@ entry/src/main/ets/
 |   |       |---FlexGrow.ets
 |   |       |---FlexShrink.ets
 |   |       |---FlexExample.ets
+|   |---gridlayout                             //栅格布局 (GridRow/GridCol)
+|   |       |---GridLayoutReference.ets
+|   |       |---GridLayoutColumns.ets
+|   |       |---GridLayoutColumnsToFour.ets
+|   |       |---GridLayoutColumnsToEight.ets
+|   |       |---GridLayoutColumnOption.ets
+|   |       |---GridLayoutDirectionRow.ets
+|   |       |---GridLayoutDirectionRowReverse.ets
+|   |       |---GridLayoutGutterToNumber.ets
+|   |       |---GridLayoutGutterOption.ets
+|   |       |---GridColSpan.ets
+|   |       |---GridColOffset.ets
+|   |       |---GridColOrder.ets
+|   |       |---GridColSpanToNumber.ets
+|   |       |---GridColSpanToOption.ets
+|   |       |---GridColOffsetToNumber.ets
+|   |       |---GridColOffsetToOption.ets
+|   |       |---GridColOrderToNumber.ets
+|   |       |---GridColOrderToOption.ets
+|   |       |---GridRowExample.ets
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
@@ -133,6 +161,7 @@ entry/src/ohosTest/
 |   |---StackLayout.test.ets                       // 层叠布局示例代码测试代码
 |   |---LinearLayout.test.ets                      // 线性布局示例代码测试代码
 |   |---FlexLayout.test.ets                        // 弹性布局示例代码测试代码
+|   |---GridLayout.test.ets                        // 栅格布局示例代码测试代码
 ```
 
 ### 相关权限
@@ -158,7 +187,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/CustomCanvas > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/MultipleLayoutProject > .git/info/sparse-checkout
 git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

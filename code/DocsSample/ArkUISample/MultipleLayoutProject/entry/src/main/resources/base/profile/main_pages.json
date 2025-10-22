@@ -72,6 +72,26 @@
     "pages/flexlayout/FlexBasis",
     "pages/flexlayout/FlexGrow",
     "pages/flexlayout/FlexShrink",
-    "pages/flexlayout/FlexExample"
+    "pages/flexlayout/FlexExample",
+
+    "pages/gridlayout/GridLayoutReference",
+    "pages/gridlayout/GridLayoutColumns",
+    "pages/gridlayout/GridLayoutColumnsToFour",
+    "pages/gridlayout/GridLayoutColumnsToEight",
+    "pages/gridlayout/GridLayoutColumnOption",
+    "pages/gridlayout/GridLayoutDirectionRow",
+    "pages/gridlayout/GridLayoutDirectionRowReverse",
+    "pages/gridlayout/GridLayoutGutterToNumber",
+    "pages/gridlayout/GridLayoutGutterOption",
+    "pages/gridlayout/GridColSpan",
+    "pages/gridlayout/GridColOffset",
+    "pages/gridlayout/GridColOrder",
+    "pages/gridlayout/GridColSpanToNumber",
+    "pages/gridlayout/GridColSpanToOption",
+    "pages/gridlayout/GridColOffsetToNumber",
+    "pages/gridlayout/GridColOffsetToOption",
+    "pages/gridlayout/GridColOrderToNumber",
+    "pages/gridlayout/GridColOrderToOption",
+    "pages/gridlayout/GridRowExample"
   ]
 }

@@ -17,6 +17,7 @@ import RelativeContainerLayout from './RelativeContainerLayout.test';
 import StackLayout from './StackLayout.test';
 import LinearLayout from './LinearLayout.test';
 import FlexLayout from './FlexLayout.test';
+import GridLayout from './GridLayout.test';
 
 export default function testsuite() {
   abilityTest();
@@ -24,4 +25,5 @@ export default function testsuite() {
   StackLayout();
   LinearLayout();
   FlexLayout();
+  GridLayout();
 }

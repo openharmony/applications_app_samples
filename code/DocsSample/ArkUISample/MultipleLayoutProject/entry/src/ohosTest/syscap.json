@@ -1,8 +1,6 @@
 {
     "devices": {
-        "general": [
-            "phone"
-        ],
+        "general": [],
         "custom": [
             {
                 "xts": [
