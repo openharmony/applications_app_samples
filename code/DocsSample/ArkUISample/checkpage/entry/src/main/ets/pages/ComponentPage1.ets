@@ -18,14 +18,14 @@
 struct ComponentPage {
   build() {
     Column() {
-      Text("Hello World")
+      Text('Hello World')
         .fontSize(20)
-        .id("TEXT")
+        .id('TEXT')
         .onClick(() => {
           console.info(`Text is clicked`);
         })
       Button('getInspectorByKey').onClick(() => {
-        let result = getInspectorByKey("TEXT");
+        let result = getInspectorByKey('TEXT');
         console.info(`result is ${result}`);
       })
       Button('getInspectorTree').onClick(() => {
@@ -33,11 +33,11 @@ struct ComponentPage {
         console.info(`result is ${JSON.stringify(result)}`);
       })
       Button('sendEventByKey').onClick(() => {
-        sendEventByKey("TEXT", 10, "");
+        sendEventByKey('TEXT', 10, '');
       })
     }
     .width('100%')
-    .height('100%')
+      .height('100%')
   }
 }
 //[End componentIdentifier_start]
