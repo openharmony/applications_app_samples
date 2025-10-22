@@ -17,6 +17,7 @@
 @Component
 struct FlexBasis {
   build() {
+    //[Start FlexBasis_start]
     Flex() {
       Text('flexBasis("auto")')
         .flexBasis('auto')
@@ -39,5 +40,6 @@ struct FlexBasis {
         .height(100)
         .backgroundColor('#D2B48C')
     }.width('90%').height(120).padding(10).backgroundColor('#AFEEEE')
+    // [End FlexBasis_start]
   }
 }

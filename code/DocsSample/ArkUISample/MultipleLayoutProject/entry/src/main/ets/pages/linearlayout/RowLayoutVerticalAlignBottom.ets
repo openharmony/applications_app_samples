@@ -17,6 +17,7 @@
 @Component
 struct RowLayoutVerticalAlignBottom {
   build() {
+    //[Start RowLayoutVerticalAlignBottom_start]
     Row({}) {
       Column() {
       }.width('20%').height(30).backgroundColor(0xF5DEB3)
@@ -27,5 +28,6 @@ struct RowLayoutVerticalAlignBottom {
       Column() {
       }.width('20%').height(30).backgroundColor(0xF5DEB3)
     }.width('100%').height(200).alignItems(VerticalAlign.Bottom).backgroundColor('rgb(242,242,242)')
+    // [End RowLayoutVerticalAlignBottom_start]
   }
 }

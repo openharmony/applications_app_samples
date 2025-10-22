@@ -17,6 +17,7 @@
 @Component
 struct RowLayoutHorizontalAlignCenter {
   build() {
+    //[Start RowLayoutHorizontalAlignCenter_start]
     Column({}) {
       Column() {
       }.width('80%').height(50).backgroundColor(0xF5DEB3)
@@ -27,5 +28,6 @@ struct RowLayoutHorizontalAlignCenter {
       Column() {
       }.width('80%').height(50).backgroundColor(0xF5DEB3)
     }.width('100%').alignItems(HorizontalAlign.Center).backgroundColor('rgb(242,242,242)')
+    // [End RowLayoutHorizontalAlignCenter_start]
   }
 }

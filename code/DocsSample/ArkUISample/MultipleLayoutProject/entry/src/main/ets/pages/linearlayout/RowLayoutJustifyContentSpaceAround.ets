@@ -17,6 +17,7 @@
 @Component
 struct RowLayoutJustifyContentSpaceAround {
   build() {
+    //[Start RowLayoutJustifyContentSpaceAround_start]
     Row({}) {
       Column() {
       }.width('20%').height(30).backgroundColor(0xF5DEB3)
@@ -27,5 +28,6 @@ struct RowLayoutJustifyContentSpaceAround {
       Column() {
       }.width('20%').height(30).backgroundColor(0xF5DEB3)
     }.width('100%').height(200).backgroundColor('rgb(242,242,242)').justifyContent(FlexAlign.SpaceAround)
+    // [End RowLayoutJustifyContentSpaceAround_start]
   }
 }

@@ -17,6 +17,7 @@
 @Component
 struct FlexGrow {
   build() {
+    //[Start FlexGrow_start]
     Flex() {
       Text('flexGrow(2)')
         .flexGrow(2)
@@ -34,5 +35,6 @@ struct FlexGrow {
         .height(100)
         .backgroundColor('#F5DEB3')
     }.width(420).height(120).padding(10).backgroundColor('#AFEEEE')
+    // [End FlexGrow_start]
   }
 }

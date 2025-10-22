@@ -17,6 +17,7 @@
 @Component
 struct FlexWrapWrap {
   build() {
+    //[Start FlexWrapWrap_start]
     Flex({ wrap: FlexWrap.Wrap }) {
       Text('1').width('50%').height(50).backgroundColor('#F5DEB3')
       Text('2').width('50%').height(50).backgroundColor('#D2B48C')
@@ -25,5 +26,6 @@ struct FlexWrapWrap {
     .width('90%')
     .padding(10)
     .backgroundColor('#AFEEEE')
+    // [End FlexWrapWrap_start]
   }
 }

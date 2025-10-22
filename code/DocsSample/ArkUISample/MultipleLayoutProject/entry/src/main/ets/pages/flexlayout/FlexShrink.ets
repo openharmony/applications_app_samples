@@ -17,6 +17,7 @@
 @Component
 struct FlexShrink {
   build() {
+    //[Start FlexShrink_start]
     Flex({ direction: FlexDirection.Row }) {
       Text('flexShrink(3)')
         .flexShrink(3)
@@ -35,5 +36,6 @@ struct FlexShrink {
         .height(100)
         .backgroundColor('#F5DEB3')
     }.width(400).height(120).padding(10).backgroundColor('#AFEEEE')
+    // [End FlexShrink_start]
   }
 }

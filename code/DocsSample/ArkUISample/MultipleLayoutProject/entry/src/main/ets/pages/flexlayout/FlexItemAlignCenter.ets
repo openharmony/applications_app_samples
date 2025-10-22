@@ -17,6 +17,7 @@
 @Component
 struct FlexItemAlignCenter {
   build() {
+    //[Start FlexItemAlignCenter_start]
     Flex({ alignItems: ItemAlign.Center }) {
       Text('1').width('33%').height(30).backgroundColor('#F5DEB3')
       Text('2').width('33%').height(40).backgroundColor('#D2B48C')
@@ -25,5 +26,6 @@ struct FlexItemAlignCenter {
     .size({ width: '90%', height: 80 })
     .padding(10)
     .backgroundColor('#AFEEEE')
+    // [End FlexItemAlignCenter_start]
   }
 }

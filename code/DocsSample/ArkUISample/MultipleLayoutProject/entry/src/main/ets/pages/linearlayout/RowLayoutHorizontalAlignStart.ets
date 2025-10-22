@@ -17,6 +17,7 @@
 @Component
 struct RowLayoutHorizontalAlignStart {
   build() {
+    //[Start RowLayoutHorizontalAlignStart_start]
     Column({}) {
       Column() {
       }.width('80%').height(50).backgroundColor(0xF5DEB3)
@@ -27,5 +28,6 @@ struct RowLayoutHorizontalAlignStart {
       Column() {
       }.width('80%').height(50).backgroundColor(0xF5DEB3)
     }.width('100%').alignItems(HorizontalAlign.Start).backgroundColor('rgb(242,242,242)')
+    // [End RowLayoutHorizontalAlignStart_start]
   }
 }

@@ -17,6 +17,7 @@
 @Component
 struct StackLayoutNozIndex {
   build() {
+    //[Start StackLayoutNozIndex_start]
     Stack({ alignContent: Alignment.BottomStart }) {
       Column() {
         Text($r('app.string.stack_num1')).textAlign(TextAlign.End).fontSize(20)
@@ -30,5 +31,6 @@ struct StackLayoutNozIndex {
         Text($r('app.string.stack_num3')).fontSize(20)
       }.width(200).height(200).backgroundColor(Color.Grey)
     }.width(350).height(350).backgroundColor(0xe0e0e0)
+    // [End StackLayoutNozIndex_start]
   }
 }

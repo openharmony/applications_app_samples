@@ -17,6 +17,7 @@
 @Component
 struct FlexAlignSpaceBetween {
   build() {
+    //[Start FlexAlignSpaceBetween_start]
     Flex({ justifyContent: FlexAlign.SpaceBetween }) {
       Text('1').width('20%').height(50).backgroundColor('#F5DEB3')
       Text('2').width('20%').height(50).backgroundColor('#D2B48C')
@@ -25,5 +26,6 @@ struct FlexAlignSpaceBetween {
     .width('90%')
     .padding({ top: 10, bottom: 10 })
     .backgroundColor('#AFEEEE')
+    // [End FlexAlignSpaceBetween_start]
   }
 }

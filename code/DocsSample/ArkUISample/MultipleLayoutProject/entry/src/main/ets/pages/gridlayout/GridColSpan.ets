@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct GridColSpan {
-  //[Start grid_start]
+  //[Start gridSpan_start]
   gSpan: Record<string, number> = {
     'xs': 1,
     'sm': 2,
@@ -24,24 +24,24 @@ struct GridColSpan {
     'lg': 4
   }
 
-  // [End grid_start]
+  // [End gridSpan_start]
   build() {
-    //[Start grid_start]
-    // [StartExclude grid_start]
+    //[Start gridSpan_start]
+    // [StartExclude gridSpan_start]
     GridRow({ gutter: { x: 20, y: 50 } }) {
-      // [EndExclude grid_start]
+      // [EndExclude gridSpan_start]
       GridCol({ span: 2 }) {
-        // [StartExclude grid_start]
+        // [StartExclude gridSpan_start]
         Row() {
           Text('1')
         }.width('100%').height('50')
 
-        // [EndExclude grid_start]
+        // [EndExclude gridSpan_start]
       }
-      // [StartExclude grid_start]
+      // [StartExclude gridSpan_start]
       .backgroundColor('rgb(150,150,150)')
 
-      // [EndExclude grid_start]
+      // [EndExclude gridSpan_start]
       GridCol({
         span: {
           xs: 1,
@@ -50,44 +50,44 @@ struct GridColSpan {
           lg: 4
         }
       }) {
-        // [StartExclude grid_start]
+        // [StartExclude gridSpan_start]
         Row() {
           Text('2')
         }.width('100%').height('50')
 
-        // [EndExclude grid_start]
+        // [EndExclude gridSpan_start]
       }
-      // [StartExclude grid_start]
+      // [StartExclude gridSpan_start]
       .backgroundColor('rgb(213,213,213)')
 
-      // [EndExclude grid_start]
+      // [EndExclude gridSpan_start]
       GridCol() {
-        // [StartExclude grid_start]
+        // [StartExclude gridSpan_start]
         Row() {
           Text('3')
         }.width('100%').height('50')
 
-        // [EndExclude grid_start]
+        // [EndExclude gridSpan_start]
       }.span(2)
-      // [StartExclude grid_start]
+      // [StartExclude gridSpan_start]
       .backgroundColor('rgb(0,74,175)')
 
-      // [EndExclude grid_start]
+      // [EndExclude gridSpan_start]
       GridCol() {
-        // [StartExclude grid_start]
+        // [StartExclude gridSpan_start]
         Row() {
           Text('4')
         }.width('100%').height('50')
 
-        // [EndExclude grid_start]
+        // [EndExclude gridSpan_start]
       }.span(this.gSpan)
-      // [StartExclude grid_start]
+      // [StartExclude gridSpan_start]
       .backgroundColor('rgb(39,135,217)')
     }
     .height(200)
     .border({ color: 'rgb(39,135,217)', width: 2 })
 
-    // [EndExclude grid_start]
-    // [End grid_start]
+    // [EndExclude gridSpan_start]
+    // [End gridSpan_start]
   }
 }

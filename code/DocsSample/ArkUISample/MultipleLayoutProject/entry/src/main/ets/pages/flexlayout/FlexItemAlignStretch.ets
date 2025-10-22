@@ -17,6 +17,7 @@
 @Component
 struct FlexItemAlignStretch {
   build() {
+    //[Start FlexItemAlignStretch_start]
     Flex({ alignItems: ItemAlign.Stretch }) {
       Text('1').width('33%').backgroundColor('#F5DEB3')
       Text('2').width('33%').backgroundColor('#D2B48C')
@@ -25,5 +26,6 @@ struct FlexItemAlignStretch {
     .size({ width: '90%', height: 80 })
     .padding(10)
     .backgroundColor('#AFEEEE')
+    // [End FlexItemAlignStretch_start]
   }
 }

@@ -17,6 +17,7 @@
 @Component
 struct GridColOrderToNumber {
   build() {
+    //[Start GridColOrderToNumber_start]
     GridRow({ columns: 12 }) {
       GridCol({ order: 4, span: 1 }) {
         Row() {
@@ -42,5 +43,6 @@ struct GridColOrderToNumber {
         }.width('100%').height('50vp')
       }.backgroundColor('rgb(39,135,217)')
     }
+    // [End GridColOrderToNumber_start]
   }
 }

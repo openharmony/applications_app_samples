@@ -17,6 +17,7 @@
 @Component
 struct FlexAlignSelf {
   build() {
+    //[Start FlexAlignSelf_start]
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器组件设置子元素居中
       Text('alignSelf Start').width('25%').height(80)
         .alignSelf(ItemAlign.Start)
@@ -35,5 +36,6 @@ struct FlexAlignSelf {
         .backgroundColor('#F5DEB3')
 
     }.width('90%').height(220).backgroundColor('#AFEEEE')
+    // [End FlexAlignSelf_start]
   }
 }

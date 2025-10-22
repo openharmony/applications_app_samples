@@ -17,6 +17,7 @@
 @Component
 struct FlexWrapWrapReverse {
   build() {
+    //[Start FlexWrapWrapReverse_start]
     Flex({ wrap: FlexWrap.WrapReverse}) {
       Text('1').width('50%').height(50).backgroundColor('#F5DEB3')
       Text('2').width('50%').height(50).backgroundColor('#D2B48C')
@@ -25,5 +26,6 @@ struct FlexWrapWrapReverse {
     .width('90%')
     .padding(10)
     .backgroundColor('#AFEEEE')
+    // [End FlexWrapWrapReverse_start]
   }
 }

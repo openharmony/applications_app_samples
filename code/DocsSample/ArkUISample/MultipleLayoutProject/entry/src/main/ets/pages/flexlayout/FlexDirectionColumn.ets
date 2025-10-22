@@ -17,6 +17,7 @@
 @Component
 struct FlexDirectionColumn {
   build() {
+    //[Start FlexDirectionColumn_start]
     Flex({ direction: FlexDirection.Column }) {
       Text('1').width('100%').height(50).backgroundColor('#F5DEB3')
       Text('2').width('100%').height(50).backgroundColor('#D2B48C')
@@ -26,5 +27,6 @@ struct FlexDirectionColumn {
     .width('90%')
     .padding(10)
     .backgroundColor('#AFEEEE')
+    // [End FlexDirectionColumn_start]
   }
 }

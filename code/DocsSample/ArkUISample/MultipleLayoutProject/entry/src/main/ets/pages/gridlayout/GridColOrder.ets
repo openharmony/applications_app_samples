@@ -16,66 +16,66 @@
 @Entry
 @Component
 struct GridColOrder {
-  //[Start grid_start]
+  //[Start gridOrder_start]
   gOrder:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
 
-  // [End grid_start]
+  // [End gridOrder_start]
   build() {
-    //[Start grid_start]
-    // [StartExclude grid_start]
+    //[Start gridOrder_start]
+    // [StartExclude gridOrder_start]
     GridRow({ gutter: { x: 20, y: 50 } }) {
-      // [EndExclude grid_start]
+      // [EndExclude gridOrder_start]
       GridCol({ order: 2, span: 1  }) {
-        // [StartExclude grid_start]
+        // [StartExclude gridOrder_start]
         Row() {
           Text('1')
         }.width('100%').height('50')
 
-        // [EndExclude grid_start]
+        // [EndExclude gridOrder_start]
       }
-      // [StartExclude grid_start]
+      // [StartExclude gridOrder_start]
       .backgroundColor('rgb(150,150,150)')
 
-      // [EndExclude grid_start]
+      // [EndExclude gridOrder_start]
       GridCol({ order: { xs: 1, sm: 2, md: 3, lg: 4 }, span: 1 }) {
-        // [StartExclude grid_start]
+        // [StartExclude gridOrder_start]
         Row() {
           Text('2')
         }.width('100%').height('50')
 
-        // [EndExclude grid_start]
+        // [EndExclude gridOrder_start]
       }
-      // [StartExclude grid_start]
+      // [StartExclude gridOrder_start]
       .backgroundColor('rgb(213,213,213)')
 
-      // [EndExclude grid_start]
+      // [EndExclude gridOrder_start]
       GridCol({ span: 1 }) {
-        // [StartExclude grid_start]
+        // [StartExclude gridOrder_start]
         Row() {
           Text('3')
         }.width('100%').height('50')
 
-        // [EndExclude grid_start]
+        // [EndExclude gridOrder_start]
       }.order(2)
-      // [StartExclude grid_start]
+      // [StartExclude gridOrder_start]
       .backgroundColor('rgb(0,74,175)')
 
-      // [EndExclude grid_start]
+      // [EndExclude gridOrder_start]
       GridCol({ span: 1 }) {
-        // [StartExclude grid_start]
+        // [StartExclude gridOrder_start]
         Row() {
           Text('4')
         }.width('100%').height('50')
 
-        // [EndExclude grid_start]
+        // [EndExclude gridOrder_start]
       }.order(this.gOrder)
-      // [StartExclude grid_start]
+      // [StartExclude gridOrder_start]
       .backgroundColor('rgb(39,135,217)')
     }
     .height(200)
     .border({ color: 'rgb(39,135,217)', width: 2 })
 
-    // [EndExclude grid_start]
-    // [End grid_start]
+    // [EndExclude gridOrder_start]
+    // [End gridOrder_start]
   }
 }

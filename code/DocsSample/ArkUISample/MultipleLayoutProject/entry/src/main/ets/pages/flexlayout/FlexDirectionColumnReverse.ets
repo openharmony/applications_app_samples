@@ -17,6 +17,7 @@
 @Component
 struct FlexDirectionColumnReverse {
   build() {
+    //[Start FlexDirectionColumnReverse_start]
     Flex({ direction: FlexDirection.ColumnReverse }) {
       Text('1').width('100%').height(50).backgroundColor('#F5DEB3')
       Text('2').width('100%').height(50).backgroundColor('#D2B48C')
@@ -26,5 +27,6 @@ struct FlexDirectionColumnReverse {
     .width('90%')
     .padding(10)
     .backgroundColor('#AFEEEE')
+    // [End FlexDirectionColumnReverse_start]
   }
 }

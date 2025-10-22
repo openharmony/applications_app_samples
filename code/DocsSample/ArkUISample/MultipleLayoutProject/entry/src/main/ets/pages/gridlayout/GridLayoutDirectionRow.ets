@@ -20,7 +20,10 @@ struct GridLayoutDirectionRow {
     ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
       'rgb(255,192,0)'];
   build() {
+    //[Start GridLayoutDirectionRow_start]
     GridRow({ direction: GridRowDirection.Row }) {
+      /* ... */
+      //[StartExclude GridLayoutDirectionRow_start]
       ForEach(this.bgColors, (item: ResourceColor, index?: number | undefined) => {
         GridCol({ span: 1 }) {
           Row() {
@@ -28,7 +31,9 @@ struct GridLayoutDirectionRow {
           }.width('100%').height('50')
         }.backgroundColor(item)
       })
+      // [EndExclude GridLayoutDirectionRow_start]
     }
+    // [End GridLayoutDirectionRow_start]
     .height(200)
     .border({ color: 'rgb(39,135,217)', width: 2 })
   }

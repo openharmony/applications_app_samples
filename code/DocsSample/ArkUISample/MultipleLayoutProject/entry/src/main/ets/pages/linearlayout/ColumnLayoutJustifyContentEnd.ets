@@ -17,6 +17,7 @@
 @Component
 struct ColumnLayoutJustifyContentEnd {
   build() {
+    //[Start ColumnLayoutJustifyContentEnd_start]
     Column({}) {
       Column() {
       }.width('80%').height(50).backgroundColor(0xF5DEB3)
@@ -27,5 +28,6 @@ struct ColumnLayoutJustifyContentEnd {
       Column() {
       }.width('80%').height(50).backgroundColor(0xF5DEB3)
     }.width('100%').height(300).backgroundColor('rgb(242,242,242)').justifyContent(FlexAlign.End)
+    // [End ColumnLayoutJustifyContentEnd_start]
   }
 }

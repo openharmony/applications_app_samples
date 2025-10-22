@@ -17,6 +17,7 @@
 @Component
 struct FlexDirectionRow {
   build() {
+    //[Start FlexDirectionRow_start]
     Flex({ direction: FlexDirection.Row }) {
       Text('1').width('33%').height(50).backgroundColor('#F5DEB3')
       Text('2').width('33%').height(50).backgroundColor('#D2B48C')
@@ -26,5 +27,6 @@ struct FlexDirectionRow {
     .width('90%')
     .padding(10)
     .backgroundColor('#AFEEEE')
+    // [End FlexDirectionRow_start]
   }
 }
