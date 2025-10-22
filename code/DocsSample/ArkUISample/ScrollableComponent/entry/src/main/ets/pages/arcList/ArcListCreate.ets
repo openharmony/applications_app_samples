@@ -34,21 +34,21 @@ export struct ArcListCreate {
               ArcListItem() {
                 // [StartExclude arcList_create_start]
                 Row() {
-                  Text('第一个子组件').fontSize('38px').fontColor('#FFFFFFFF')
+                  Text($r('app.string.First_subassembly')).fontSize('38px').fontColor('#FFFFFFFF')
                 }
                 // [EndExclude arcList_create_start]
               }
               ArcListItem() {
                 // [StartExclude arcList_create_start]
                 Row() {
-                  Text('第二个子组件').fontSize('38px').fontColor('#FFFFFFFF')
+                  Text($r('app.string.Second_subassembly')).fontSize('38px').fontColor('#FFFFFFFF')
                 }
                 // [EndExclude arcList_create_start]
               }
               // [StartExclude arcList_create_start]
               ArcListItem() {
                 Row() {
-                  Text('第三个子组件').fontSize('38px').fontColor('#FFFFFFFF')
+                  Text($r('app.string.Third_subassembly')).fontSize('38px').fontColor('#FFFFFFFF')
                 }
               }
               // [EndExclude arcList_create_start]

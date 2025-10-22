@@ -34,7 +34,7 @@ class Contact {
 @Builder
 function buildText() {
   Column() {
-    Text('联系人')
+    Text($r('app.string.contacts'))
       .fontColor('#FFFFFF')
       .fontSize('19fp')
   }

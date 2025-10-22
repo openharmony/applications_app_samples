@@ -991,6 +991,22 @@
     {
       "name": "ArcListStyles_light",
       "value": "显示和亮度"
+    },
+    {
+      "name": "contacts",
+      "value": "联系人"
+    },
+    {
+      "name": "First_subassembly",
+      "value": "第一个子组件"
+    },
+    {
+      "name": "Second_subassembly",
+      "value": "第二个子组件"
+    },
+    {
+      "name": "Third_subassembly",
+      "value": "第三个子组件"
     }
   ]
 }

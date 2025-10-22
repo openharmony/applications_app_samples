@@ -32,7 +32,6 @@ function customHeader() {
       .fontSize('19fp')
   }
 }
-
 //[End create_customHeader_start]
 
 @Entry
@@ -41,7 +40,6 @@ export struct ArcListStyles {
   //[Start componentContent_start]
   context: UIContext = this.getUIContext();
   arcListHeader: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(customHeader));
-
   //[End componentContent_start]
 
   build() {
@@ -65,7 +63,6 @@ export struct ArcListStyles {
                     Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
                       .borderRadius('50px')
                   }
-
                   // [EndExclude arcListHeader_start]
                 }
                 // [StartExclude arcListHeader_start]
@@ -73,7 +70,6 @@ export struct ArcListStyles {
                 .width('414px')
                 .height('129px')
                 .backgroundColor('#26FFFFFF')
-
                 // [EndExclude arcListHeader_start]
 
                 ArcListItem() {
@@ -89,7 +85,6 @@ export struct ArcListStyles {
                     Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
                       .borderRadius('50px')
                   }
-
                   // [EndExclude arcListHeader_start]
                 }
                 // [StartExclude arcListHeader_start]
@@ -148,7 +143,6 @@ export struct ArcListStyles {
                 .width('414px')
                 .height('129px')
                 .backgroundColor('#26FFFFFF')
-
                 // [EndExclude arcListHeader_start]
               }
               //[End arcListHeader_start]
