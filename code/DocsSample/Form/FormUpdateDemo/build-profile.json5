@@ -1,0 +1,57 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "app": {
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 22,
+        "targetSdkVersion": 20,
+        "compatibleSdkVersion": 20,
+        "runtimeOS": "OpenHarmony"
+      }
+    ],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "storeFile": "D:/beixiangProject/card_samples/formupdatedemo2/signfile/OpenHarmony.p12",
+          "storePassword": "000000160FD3A3A86295D6FE05D222F8F8ECA511446BC4ECE1C40A32467E12C0A08863B4225B",
+          "keyAlias": "oh-app1-key-v1",
+          "keyPassword": "0000001627E0A2E0D7CF016ACDB7CCBAB18EB161CD112F2229D35E72409912124FC3D3BD7F4A",
+          "signAlg": "SHA256withECDSA",
+          "profile": "D:/beixiangProject/card_samples/formupdatedemo2/signfile/app-localuse.p7b",
+          "certpath": "D:/beixiangProject/card_samples/formupdatedemo2/signfile/app-localuse.cer"
+        }
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
