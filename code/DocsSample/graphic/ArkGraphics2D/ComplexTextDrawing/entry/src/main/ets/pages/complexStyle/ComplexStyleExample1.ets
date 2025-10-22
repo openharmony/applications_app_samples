@@ -47,7 +47,7 @@ class MyRenderNode extends RenderNode {
         green: 0,
         blue: 0
       },
-      fontSize: 300,
+      fontSize: 200,
       // 设置装饰线
       decoration: decorations,
       // 开启字体特征

@@ -31,7 +31,7 @@ class MyRenderNode extends RenderNode {
         green: 0,
         blue: 0
       },
-      fontSize: 150,
+      fontSize: 120,
       // 可变字体
       fontVariations: [{axis: 'wght', value: 555}],
       // 文本阴影

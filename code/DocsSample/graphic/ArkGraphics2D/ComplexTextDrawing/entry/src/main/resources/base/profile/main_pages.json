@@ -8,6 +8,7 @@
     "pages/complexStyle/ComplexStyleExample2",
     "pages/complexStyle/ComplexStyleExample3",
     "pages/complexStyle/ComplexStyleExample4",
-    "pages/complexStyle/ComplexStyleExample5"
+    "pages/complexStyle/ComplexStyleExample5",
+    "pages/shape/IndependentShaping"
   ]
 }

@@ -43,6 +43,10 @@
     {
       "name": "Button_page_Multiline",
       "value": "Multiline-text page"
+    },
+    {
+      "name": "IndependentShaping",
+      "value": "Shape page"
     }
   ]
 }

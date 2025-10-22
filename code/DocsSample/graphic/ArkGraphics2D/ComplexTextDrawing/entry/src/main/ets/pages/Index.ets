@@ -58,6 +58,17 @@ struct Index {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
+        Button($r("app.string.IndependentShaping"))
+          .fontSize('12fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, left: 5 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/shape/IndependentShaping' })
+          })
+          .width('60%')
+          .height('4%')
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
 
 
 

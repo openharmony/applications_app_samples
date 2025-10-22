@@ -94,50 +94,82 @@ export default function abilityTest() {
         console.info(TAG, `DrawComplexStyleTextTEST exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       await driver.assertComponentExist(ON.text('Complex-text page'));
 
       let drawTextBtn = await driver.findComponent(ON.text('Complex-text page'));
       // 点击'Complex-text page'按钮
       await drawTextBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
 
 
       let drawTextExample1 = await driver.findComponent(ON.text('Example1 (Decoration, FontFeature)'));
       // 点击'Example1 (Decoration, FontFeature)'按钮
       await drawTextExample1.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       await driver.pressBack();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
 
       let drawTextExample2 = await driver.findComponent(ON.text('Example2 (FontVariation, TextShadow, Placeholder)'));
       // 点击'Example2 (FontVariation, TextShadow, Placeholder)'按钮
       await drawTextExample2.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       await driver.pressBack();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
 
       let drawTextExample3 = await driver.findComponent(ON.text('Example3 (VerticalAlign)'));
       // 点击'Example3 (VerticalAlign)'按钮
       await drawTextExample3.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       await driver.pressBack();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
 
       let drawTextExample4 = await driver.findComponent(ON.text('Example4 (BadgeType)'));
       // 点击'Example4 (BadgeType)'按钮
       await drawTextExample4.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       await driver.pressBack();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
 
       let drawTextExample5 = await driver.findComponent(ON.text('Example5 (TextHighContrast)'));
       // 点击'Example5 (TextHighContrast)'按钮
       await drawTextExample5.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+
+      // 返回Index页面
       await driver.pressBack();
       await driver.delayMs(1000);
       console.info(TAG, 'DrawComplexStyleTextTEST end');
+    })
+
+    /**
+     * 点击按钮，绘制独立塑形文本
+     */
+    it('DrawShapeTextTEST', 2, async () => {
+      console.info(TAG, 'DrawShapeTextTEST_001 begin');
+      let driver = Driver.create();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.samples.drawing',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        console.info(TAG, `DrawShapeTextTEST exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Shape page'));
+      let drawTextBtn = await driver.findComponent(ON.text('Shape page'));
+      // 点击'Shape page'按钮
+      await drawTextBtn.click();
+      await driver.delayMs(1000);
+      // 返回上一级页面
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      console.info(TAG, 'DrawShapeTextTEST end');
     })
 
   })

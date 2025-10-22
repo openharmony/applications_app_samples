@@ -6,8 +6,8 @@
 
 ## 效果预览
 
-| ![](screenshots/Index.png) | ![](screenshots/Multilanguage-text_page.png) | ![](screenshots/Multiline-text_page.png)   | ![](screenshots/Complex-text_page.png) | ![](screenshots/Example1_Decoration_FontFeature.png) | ![](screenshots/Example2_FontVariation_TextShadow_Placeholder.png) | ![](screenshots/Example3_VerticalAlign.png) | ![](screenshots/Example4_BadgeType.png) | ![](screenshots/Example5_TextHighContrast.png) |
-|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+| ![](screenshots/Index.png) | ![](screenshots/Multilanguage-text_page.png) | ![](screenshots/Multiline-text_page.png)   | ![](screenshots/Complex-text_page.png) | ![](screenshots/Example1_Decoration_FontFeature.png) | ![](screenshots/Example2_FontVariation_TextShadow_Placeholder.png) | ![](screenshots/Example3_VerticalAlign.png) | ![](screenshots/Example4_BadgeType.png) | ![](screenshots/Example5_TextHighContrast.png) | ![](screenshots/Shape_Page.png) |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
 
 **使用方法：**
 
@@ -36,8 +36,10 @@ ArkTSDrawing
 │  │     ├─ Index.ets               // 主界面
 │  │     ├─ multilanguage
 │  │     │  └─ MultilanguageText.ets
-│  │     └─ multiline
-│  │        └─ MultilineText.ets
+│  │     ├─ multiline
+│  │     │  └─ MultilineText.ets
+│  │     └─ shape
+│  │        └─ IndependentShaping.ets
 |  ├──resources                     // 资源文件目录
 └─ ohosTest
    └──ets
