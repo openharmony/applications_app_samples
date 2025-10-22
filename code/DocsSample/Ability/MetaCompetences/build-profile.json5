@@ -15,6 +15,19 @@
 {
   "app": {
     "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\lenovo\\.ohos\\config\\default_MetaCompetences_I6hDHTgf0J3uxgmoK66LDamW_hbgzyQ7N-FCdlZqXF4=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B94E652A3C33D46C7EB88FFA806E80110293DED04C19D5DA775DD87C9119C72DBA29C8D44E45416",
+          "profile": "C:\\Users\\lenovo\\.ohos\\config\\default_MetaCompetences_I6hDHTgf0J3uxgmoK66LDamW_hbgzyQ7N-FCdlZqXF4=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\lenovo\\.ohos\\config\\default_MetaCompetences_I6hDHTgf0J3uxgmoK66LDamW_hbgzyQ7N-FCdlZqXF4=.p12",
+          "storePassword": "0000001B08A5BD3D101D795F7DC0DE26F616DB2D8B6E09E90002E1063AC810158339FEAE4C92BDEE701EC2"
+        }
+      }
     ],
     "products": [
       {
@@ -53,6 +66,34 @@
           ]
         }
       ]
+    },
+    {
+      "name": "hsp1",
+      "srcPath": "./hsp1",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "hsp2",
+      "srcPath": "./hsp2",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "har1",
+      "srcPath": "./har1",
     }
   ]
 }
