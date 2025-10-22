@@ -64,7 +64,7 @@ export default function abilityTest() {
       await button1.click();
       await driver.delayMs(100);
 
-      const button2 = await driver.findComponent(ON.text('1. scrollTo(0, 0) - 返回顶部'));
+      const button2 = await driver.findComponent(ON.text('1. scrollTo(0, 0)'));
       await button2.click();
       await driver.delayMs(100);
 

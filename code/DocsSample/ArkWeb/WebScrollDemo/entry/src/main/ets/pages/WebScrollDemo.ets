@@ -38,7 +38,7 @@ struct WebScrollDemo {
             router.back();
           })
 
-        Text('Web滚动控制演示')
+        Text('Web')
           .fontSize(20)
           .fontWeight(FontWeight.Medium)
           .margin({ left: 16 })
@@ -50,7 +50,7 @@ struct WebScrollDemo {
       .backgroundColor(Color.White)
 
       // 添加滚动位置显示（便于测试用例获取）
-      Text(`当前滚动位置: Y: ${this.currentScrollY}`)
+      Text(`Y: ${this.currentScrollY}`)
         .id('scrollPositionText')  // 添加id便于查找
         .fontSize(14)
         .fontColor('#666')
@@ -61,12 +61,12 @@ struct WebScrollDemo {
         .padding(2)
 
       // ArkTS侧控制按钮
-      Text('ArkTS侧控制')
+      Text('ArkTS')
         .fontSize(16)
         .fontWeight(FontWeight.Bold)
         .margin({ top: 10, bottom: 5 })
 
-      Button('1. scrollTo(0, 0) - 返回顶部')
+      Button('1. scrollTo(0, 0)')
         .width('90%')
         .height(40)
         .margin(5)
@@ -78,7 +78,7 @@ struct WebScrollDemo {
         })
 
       // JavaScript侧控制按钮
-      Text('JavaScript侧控制')
+      Text('JavaScript')
         .fontSize(16)
         .fontWeight(FontWeight.Bold)
         .margin({ top: 10, bottom: 5 })
