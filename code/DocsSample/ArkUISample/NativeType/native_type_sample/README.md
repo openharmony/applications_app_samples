@@ -10,9 +10,6 @@
 | ---- | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 |      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> | <img src="./screenshots/page_public.jpg" width="300"/> |
 
-| Button页面                                           | Slider页面                                             | ShapeType页面                                             |
-| ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
-| <img src="./screenshots/button.jpeg" width="300" /> | <img src="./screenshots/slider.jpeg" width="300" /> | <img src="./screenshots/checkbox_shape_circle.jpeg" width="300" /> |
 
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；
@@ -51,8 +48,20 @@
 |--------------------------------------------------------|
 | <img src="./screenshots/page_imageAnimator.png" width="300" /> |
 12. 点击Button选择框进入Button组件的CAPI接口展示界面；
-13. 点击Slider选择框进入Slider组件的CAPI接口展示界面； 
-14. 点击CheckboxShape选择框进入checkbox组件的CAPI接口展示界面； 
+
+| Button页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/button.jpeg" width="300" /> |
+13. 点击Slider选择框进入Slider组件的CAPI接口展示界面；
+
+| Slider页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/slider.jpeg" width="300" /> |
+14. 点击CheckboxShape选择框进入checkbox组件的CAPI接口展示界面；
+
+| CheckboxShape页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/checkbox_shape_circle.jpeg" width="300" /> |
 15. 点击HoverModeAreaType选择框进入HoverModeArea组件的CAPI接口展示界面；
 16. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看；
 17. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看；

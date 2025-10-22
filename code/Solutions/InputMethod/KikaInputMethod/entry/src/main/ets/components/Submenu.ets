@@ -73,7 +73,7 @@ export struct Submenu {
       console.log('GJ switchCurrentInputMethodSubtype error', JSON.stringify(error));
     }
   }
-  // [Start input_case_input_switchInputMethodgetInputMethods]
+  // [End input_case_input_switchInputMethodgetInputMethods]
 
   aboutToAppear(): void {
     this.inputList()
