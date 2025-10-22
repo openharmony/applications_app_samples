@@ -44,9 +44,10 @@ void StartNativeChildProcess()
     args.fdList.head = (NativeChildProcess_Fd *)malloc(sizeof(NativeChildProcess_Fd));
     // fd关键字，最多不超过20个字符
     const size_t fd1Len = sizeof("fd1") - 1;
+    const size_t fdNameSize = 10;
     args.fdList.head->fdName = (char *)malloc(sizeof(char) * g_fdNameMaxLength);
     if (args.fdList.head->fdName != nullptr) {
-        memcpy(args.fdList.head->fdName, "fd1", fd1Len);
+        (void)strlcpy(args.fdList.head->fdName, "fd1", fdNameSize);
         args.fdList.head->fdName[fd1Len] = '\0';
     }
     // 获取fd逻辑
