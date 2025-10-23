@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start tls_server_import]
-import  socket  from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End tls_server_import]
 import { MessageEvents, util, worker } from '@kit.ArkTS';
@@ -114,7 +114,7 @@ function handleClientConnection() {
       // [StartExclude tlsServer_connection_methods]
       workerPort.postMessage({ type: 'messageSent', message: 'Message sent successfully' });
       // [EndExclude tlsServer_connection_methods]
-    }).catch((err: Error) => {
+    }).catch((err: BusinessError) => {
       console.error('send fail');
       // [StartExclude tlsServer_connection_methods]
       workerPort.postMessage({ type: 'error', message: `Failed to send message: ${err.message}` });
@@ -126,7 +126,7 @@ function handleClientConnection() {
       // [StartExclude tlsServer_connection_methods]
       workerPort.postMessage({ type: 'connectionClosed', message: 'Connection closed successfully' });
       // [EndExclude tlsServer_connection_methods]
-    }).catch((err: Error) => {
+    }).catch((err: BusinessError) => {
       console.error('close fail');
       // [StartExclude tlsServer_connection_methods]
       workerPort.postMessage({ type: 'error', message: `Failed to close connection: ${err.message}` });
@@ -146,8 +146,8 @@ function closeConnection() {
   tlsServer.on('connect', (connection: socket.TLSSocketConnection) => {
     console.info('connection clientId: ' + connection.clientId);
     try{
-      // [Start tlsServer_off_connect]
       tlsServer.close();
+      // [Start tlsServer_off_connect]
       // 取消订阅tlsServer的相关事件
       tlsServer.off('connect');
       // [End tlsServer_off_connect]

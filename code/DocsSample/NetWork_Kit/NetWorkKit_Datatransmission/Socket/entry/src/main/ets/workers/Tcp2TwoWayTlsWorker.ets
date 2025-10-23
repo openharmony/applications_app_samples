@@ -16,7 +16,7 @@
 import { MessageEvents, util, worker } from '@kit.ArkTS';
 import fs from '@ohos.file.fs';
 // [Start tcp_to_tls_server_import]
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End tcp_to_tls_server_import]
 

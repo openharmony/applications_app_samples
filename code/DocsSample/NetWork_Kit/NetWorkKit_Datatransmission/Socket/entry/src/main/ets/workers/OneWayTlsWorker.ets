@@ -16,7 +16,7 @@
 import { MessageEvents, util, worker } from '@kit.ArkTS';
 import fs from '@ohos.file.fs';
 // [Start one_way_tls_worker_import]
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End one_way_tls_worker_import]
 const workerPort = worker.workerPort; // 获取 workerPort 实例
