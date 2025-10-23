@@ -42,7 +42,7 @@ struct onWillDismiss_Dismiss {
           // 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
           this.getUIContext().showAlertDialog(
             {
-              message: '是否选择关闭半模态',
+              message: $r('app.string.bindSheetCmd_label8'),
               autoCancel: true,
               alignment: DialogAlignment.Bottom,
               gridCount: 4,
@@ -74,4 +74,5 @@ struct onWillDismiss_Dismiss {
       })
   }
 }
+
 // [End onWillDismiss_Dismiss]

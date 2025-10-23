@@ -182,6 +182,18 @@
     }, {
       "name": "bindSheetCmd_label4",
       "value": "确认"
+    },{
+      "name": "bindSheetCmd_label8",
+      "value": "是否选择关闭半模态"
+    },{
+      "name": "bindSheetCmd_label9",
+      "value": "拉起半模态e"
+    },{
+      "name": "bindSheetCmd_label10",
+      "value": "enableHoverMode切换"
+    },{
+      "name": "bindSheetCmd_label11",
+      "value": "hoverModeArea切换"
     }
   ]
 }
