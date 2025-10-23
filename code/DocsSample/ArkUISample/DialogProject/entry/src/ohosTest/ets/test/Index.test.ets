@@ -144,7 +144,6 @@ export default function IndexTest() {
     })
 
     it('testOverlayManager', 0, async (done: Function) => {
-      console.info("uitest: testOverlayManager begin");
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager1')), MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();

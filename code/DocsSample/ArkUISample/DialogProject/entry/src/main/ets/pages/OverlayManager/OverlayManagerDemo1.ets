@@ -59,78 +59,72 @@ export struct OverlayManagerDemo1 {
     NavDestination() {
       // [EndExclude OverlayManager_Demo]
       Column({ space: 10 }) {
-        // $r('app.string.XXX')需要替换为开发者所需的字符串
+        // $r('app.string.XXX')需要替换为开发者所需的资源文件
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button1')) + this.componentContentIndex)
           .onClick(() => {
-          ++this.componentContentIndex;
+            ++this.componentContentIndex;
           });
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button2')) + this.componentContentIndex)
           .onClick(() => {
-          --this.componentContentIndex;
+            --this.componentContentIndex;
           });
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button3')) + this.contentArray.length)
           .onClick(() => {
-          let componentContent = new ComponentContent(
-            this.uiContext, wrapBuilder<[Params]>(builderText),
-            new Params(this.message + (this.contentArray.length), this.componentOffset)
-          );
-          this.contentArray.push(componentContent);
-          this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
+            let componentContent = new ComponentContent(
+              this.uiContext, wrapBuilder<[Params]>(builderText),
+              new Params(this.message + (this.contentArray.length), this.componentOffset)
+            );
+            this.contentArray.push(componentContent);
+            this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
           });
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button4')) + this.arrayIndex)
           .onClick(() => {
-          ++this.arrayIndex;
+            ++this.arrayIndex;
           });
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button5')) + this.arrayIndex)
           .onClick(() => {
-          --this.arrayIndex;
+            --this.arrayIndex;
           });
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button6')) + this.arrayIndex)
           .onClick(() => {
-          if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-            let componentContent = this.contentArray.splice(this.arrayIndex, 1);
-            this.overlayNode.removeComponentContent(componentContent.pop());
-          } else {
-            console.info('arrayIndex error');
-          }
+            if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+              let componentContent = this.contentArray.splice(this.arrayIndex, 1);
+              this.overlayNode.removeComponentContent(componentContent.pop());
+            }
           });
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button7')) + this.arrayIndex)
           .onClick(() => {
-          if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-            let componentContent = this.contentArray[this.arrayIndex];
-            this.overlayNode.showComponentContent(componentContent);
-          } else {
-            console.info('arrayIndex error');
-          }
+            if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+              let componentContent = this.contentArray[this.arrayIndex];
+              this.overlayNode.showComponentContent(componentContent);
+            }
           });
         Button(resource.resourceToString($r('app.string.OverlayManager_demo1_button8')) + this.arrayIndex)
           .onClick(() => {
-          if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-            let componentContent = this.contentArray[this.arrayIndex];
-            this.overlayNode.hideComponentContent(componentContent);
-          } else {
-            console.info('arrayIndex error');
-          }
-        });
+            if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+              let componentContent = this.contentArray[this.arrayIndex];
+              this.overlayNode.hideComponentContent(componentContent);
+            }
+          });
         Button($r('app.string.OverlayManager_demo1_button9'))
           .onClick(() => {
-          this.overlayNode.showAllComponentContents();
+            this.overlayNode.showAllComponentContents();
           });
         Button($r('app.string.OverlayManager_demo1_button10'))
           .onClick(() => {
-          this.overlayNode.hideAllComponentContents();
+            this.overlayNode.hideAllComponentContents();
           });
 
         Button($r('app.string.OverlayManager_demo1_button11'))
           .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({
-            url: 'pages/OverlayManager_ROUTE_PREFIX'
-          });
+            this.getUIContext().getRouter().pushUrl({
+              url: 'pages/OverlayManager_ROUTE_PREFIX'
+            });
           });
       }
       .width('100%')
       .height('100%')
-    // [StartExclude OverlayManager_Demo]
+      // [StartExclude OverlayManager_Demo]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.OverlayManager_demo1_title'))

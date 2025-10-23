@@ -20,6 +20,7 @@ import resource from '../../common/resource';
 class Params {
   public text: string = '';
   public offset: Position;
+
   constructor(text: string, offset: Position) {
     this.text = text;
     this.offset = offset;
@@ -29,22 +30,32 @@ class Params {
 @Builder
 function builderTopText(params: Params) {
   Column() {
-    Stack(){
+    Stack() {
       Text(params.text)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-    }.width(300).height(200).padding(5).backgroundColor('#F7F7F7').alignContent(Alignment.Top);
+    }
+    .width(300)
+    .height(200)
+    .padding(5)
+    .backgroundColor('#F7F7F7')
+    .alignContent(Alignment.Top);
   }.offset(params.offset);
 }
 
 @Builder
 function builderNormalText(params: Params) {
   Column() {
-    Stack(){
+    Stack() {
       Text(params.text)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-    }.width(300).height(400).padding(5).backgroundColor('#D5D5D5').alignContent(Alignment.Top);
+    }
+    .width(300)
+    .height(400)
+    .padding(5)
+    .backgroundColor('#D5D5D5')
+    .alignContent(Alignment.Top);
   }.offset(params.offset);
 }
 
@@ -56,7 +67,7 @@ export struct OverlayManagerDemo3 {
   @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
   @StorageLink('componentContentIndex') componentContentIndex: number = 0;
   @StorageLink('arrayIndex') arrayIndex: number = 0;
-  @StorageLink('componentOffset') componentOffset: Position = {x: 0, y: 80};
+  @StorageLink('componentOffset') componentOffset: Position = { x: 0, y: 80 };
 
   build() {
     // [StartExclude OverlayManager_Demo3]
@@ -64,7 +75,7 @@ export struct OverlayManagerDemo3 {
       // [EndExclude OverlayManager_Demo3]
       Row() {
         Column({ space: 5 }) {
-          // $r('app.string.XXX')需要替换为开发者所需的字符串
+          // $r('app.string.XXX')需要替换为开发者所需的资源文件
           Button($r('app.string.Demo3_topDialogButton'))
             .onClick(() => {
               let componentContent = new ComponentContent(
@@ -83,17 +94,15 @@ export struct OverlayManagerDemo3 {
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(0));
             });
-          Button($r('app.string.Demo3_removeDialogButton')).onClick(()=>{
+          Button($r('app.string.Demo3_removeDialogButton')).onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray.splice(this.arrayIndex, 1);
               this.overlayManager.removeComponentContent(componentContent.pop());
-            } else {
-              console.info('arrayIndex error');
             }
-            });
+          });
         }.width('100%');
       }
-    // [StartExclude OverlayManager_Demo3]
+      // [StartExclude OverlayManager_Demo3]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.OverlayManager_demo3_title'));
