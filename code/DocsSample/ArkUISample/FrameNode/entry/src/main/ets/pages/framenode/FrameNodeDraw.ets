@@ -17,8 +17,9 @@
 
 import { DrawContext, FrameNode, NodeController, Position, Size, UIContext, LayoutConstraint } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
+function getChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
   const size = child.getUserConfigSize();
   const width = Math.max(
     Math.min(constraint.maxSize.width, size.width.value),
@@ -42,7 +43,7 @@ class MyFrameNode extends FrameNode {
   public width: number = 100;
   public offsetY: number = 0;
   private space: number = 1;
-  uiContext: UIContext;
+  private uiContext: UIContext;
 
   constructor(uiContext: UIContext) {
     super(uiContext);
@@ -54,7 +55,7 @@ class MyFrameNode extends FrameNode {
     for (let i = 0; i < this.getChildrenCount(); i++) {
       let child = this.getChild(i);
       if (child) {
-        let childConstraint = GetChildLayoutConstraint(constraint, child);
+        let childConstraint = getChildLayoutConstraint(constraint, child);
         child.measure(childConstraint);
         let size = child.getMeasuredSize();
         sizeRes.height += size.height + this.space;
@@ -73,7 +74,7 @@ class MyFrameNode extends FrameNode {
           y: this.uiContext.vp2px(this.offsetY)
         });
         let layoutPosition = child.getLayoutPosition();
-        console.info('child position:' + JSON.stringify(layoutPosition));
+        hilog.info(0x0000, `child position: ${JSON.stringify(layoutPosition)}`, 'isClicked');
       }
     }
     this.setLayoutPosition(position);
@@ -148,4 +149,5 @@ struct Index {
     .height('100%')
   }
 }
+
 //[End frameNodeDraw_start]

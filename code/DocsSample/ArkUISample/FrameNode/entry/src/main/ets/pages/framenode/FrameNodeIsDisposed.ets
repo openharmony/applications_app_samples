@@ -21,7 +21,9 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
-    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Pink);
+    this.rootNode.commonAttribute.width(100)
+      .height(100)
+      .backgroundColor(Color.Pink);
 
     return this.rootNode;
   }
@@ -31,13 +33,12 @@ class MyNodeController extends NodeController {
     this.rootNode?.dispose();
   }
 
-  isDisposed() : string {
+  isDisposed(): string {
     if (this.rootNode !== null) {
       // 查询FrameNode是否解除引用
       if (this.rootNode.isDisposed()) {
         return 'frameNode isDisposed is true';
-      }
-      else {
+      } else {
         return 'frameNode isDisposed is false';
       }
     }
@@ -74,4 +75,5 @@ struct Index {
     .height('100%')
   }
 }
+
 //[End frameNodeDisposed_start]

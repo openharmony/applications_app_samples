@@ -15,6 +15,7 @@
 
 //[Start frameNodeLazyForEachSelect_start]
 import { NodeController, FrameNode, UIContext, BuilderNode, ExpandMode, LengthUnit } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TEST_TAG: string = 'FrameNode ';
 
@@ -34,7 +35,7 @@ class BasicDataSource implements IDataSource {
   // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
+      hilog.info(0x0000, 'add listener', 'registerDataChangeListener');
       this.listeners.push(listener);
     }
   }
@@ -43,7 +44,7 @@ class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener');
+      hilog.info(0x0000, 'remove listener', 'unregisterDataChangeListener');
       this.listeners.splice(pos, 1);
     }
   }
@@ -118,8 +119,9 @@ class MyDataSource extends BasicDataSource {
 }
 
 class Params {
-  data: MyDataSource | null = null;
-  scroller: Scroller | null = null;
+  public data: MyDataSource | null = null;
+  public scroller: Scroller | null = null;
+
   constructor(data: MyDataSource, scroller: Scroller) {
     this.data = data;
     this.scroller = scroller;
@@ -135,7 +137,7 @@ function buildData(params: Params) {
           Text(item)
             .fontSize(20)
             .onAppear(() => {
-              console.info(TEST_TAG + ' node appear: ' + item)
+              hilog.info(0x0000, `TEST_TAG node appear: ${item}`, 'item')
             })
             .backgroundColor(Color.Pink)
             .margin({
@@ -178,40 +180,44 @@ class MyNodeController extends NodeController {
   }
 
   getFirstChildIndexWithoutExpand() {
-    console.info(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
+    hilog.info(0x0000,
+      `${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`,
+      'getFirstChildIndexWithoutExpand');
   }
 
   getLastChildIndexWithoutExpand() {
-    console.info(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
+    hilog.info(0x0000,
+      `${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`,
+      'getLastChildIndexWithoutExpand');
   }
 
   getChildWithNotExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.NOT_EXPAND);
-    console.info(TEST_TAG + ' getChild(3, ExpandMode.NOT_EXPAND): ' + childNode!.getId());
+    hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.NOT_EXPAND): ${childNode!.getId()}`, 'getId');
     if (childNode!.getId() === 'N9') {
-      console.info(TEST_TAG + ' getChild(3, ExpandMode.NOT_EXPAND)  result: success.');
+      hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.NOT_EXPAND) result: success.`, 'success');
     } else {
-      console.info(TEST_TAG + ' getChild(3, ExpandMode.NOT_EXPAND)  result: fail.');
+      hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.NOT_EXPAND)  result: fail.`, 'fail');
     }
   }
 
   getChildWithExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.EXPAND);
-    console.info(TEST_TAG + ' getChild(3, ExpandMode.EXPAND): ' + childNode!.getId());
+    hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.EXPAND): childNode!.getId()`, 'getId');
     if (childNode!.getId() === 'N3') {
-      console.info(TEST_TAG + ' getChild(3, ExpandMode.EXPAND)  result: success.');
+      hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.EXPAND)  result: success.`, 'success');
     } else {
-      console.info(TEST_TAG + ' getChild(3, ExpandMode.EXPAND)  result: fail.');
+      hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.EXPAND)  result: fail.`, 'fail');
     }
   }
 
   getChildWithLazyExpand() {
     const childNode = this.rootNode!.getChild(3, ExpandMode.LAZY_EXPAND);
-    console.info(TEST_TAG + ' getChild(3, ExpandMode.LAZY_EXPAND): ' + childNode!.getId());
+    hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.LAZY_EXPAND): childNode!.getId()`, 'getId');
     if (childNode!.getId() === 'N3') {
-      console.info(TEST_TAG + ' getChild(3, ExpandMode.LAZY_EXPAND)  result: success.');
+      hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.LAZY_EXPAND) result: success.`, 'success');
     } else {
-      console.info(TEST_TAG + ' getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.');
+      hilog.info(0x0000, `${TEST_TAG} getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.`, 'fail');
     }
   }
 }
@@ -237,6 +243,7 @@ struct Index {
             .width(300)
             .height(100)
         }
+
         Button('getFirstChildIndexWithoutExpand')
           .width(300)
           .onClick(() => {
@@ -268,4 +275,5 @@ struct Index {
     .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
   }
 }
+
 //[End frameNodeLazyForEachSelect_start]

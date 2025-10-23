@@ -15,15 +15,16 @@
 
 //[Start frameNodeLazyForEach_start]
 import { FrameNode, NodeController, NodeAdapter, typeNode } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TEST_TAG: string = 'FrameNode';
 
 class MyNodeAdapter extends NodeAdapter {
   uiContext: UIContext
-  cachePool: Array<FrameNode> = new Array();
+  cachePool: FrameNode[] = new Array();
   changed: boolean = false
   reloadTimes: number = 0;
-  data: Array<string> = new Array();
+  data: string[] = new Array();
   hostNode?: FrameNode
 
   constructor(uiContext: UIContext, count: number) {
@@ -43,7 +44,7 @@ class MyNodeAdapter extends NodeAdapter {
 
   refreshData(): void {
     let items = this.getAllAvailableItems()
-    console.info(TEST_TAG + ' get All items:' + items.length);
+    hilog.info(0x0000, `TEST_TAG ' get All items:' + ${items.length}`, 'isCLicked');
     this.totalNodeCount -= 1;
     this.reloadAllItems();
   }
@@ -75,14 +76,14 @@ class MyNodeAdapter extends NodeAdapter {
     }
     this.insertItem(from, count);
     this.totalNodeCount += count;
-    console.info(TEST_TAG + ' after insert count:' + this.totalNodeCount);
+    hilog.info(0x0000, `TEST_TAG after insert count ${this.totalNodeCount}`, 'insertData');
   }
 
   removeData(from: number, count: number): void {
     let arr = this.data.splice(from, count);
     this.removeItem(from, count);
     this.totalNodeCount -= arr.length;
-    console.info(TEST_TAG + ' after remove count:' + this.totalNodeCount);
+    hilog.info(0x0000, `TEST_TAG after remove count: ${this.totalNodeCount}`, 'removeData');
   }
 
   moveData(from: number, to: number): void {
@@ -92,32 +93,32 @@ class MyNodeAdapter extends NodeAdapter {
   }
 
   onAttachToNode(target: FrameNode): void {
-    console.info(TEST_TAG + ' onAttachToNode id:' + target.getUniqueId());
+    hilog.info(0x0000, `TEST_TAG onAttachToNode id: ${target.getUniqueId()}`, 'onAttachToNode');
     this.hostNode = target;
   }
 
   onDetachFromNode(): void {
-    console.info(TEST_TAG + ' onDetachFromNode');
+    hilog.info(0x0000, 'TEST_TAG onDetachFromNode', 'onDetachFromNode');
   }
 
   onGetChildId(index: number): number {
-    console.info(TEST_TAG + ' onGetChildId:' + index);
+    hilog.info(0x0000, `TEST_TAG onGetChildId: ${index}`, 'onGetChildId');
     return index;
   }
 
   onCreateChild(index: number): FrameNode {
-    console.info(TEST_TAG + ' onCreateChild:' + index);
+    hilog.info(0x0000, `TEST_TAG + ' onCreateChild:' + ${index}`, 'onCreateChild');
     if (this.cachePool.length > 0) {
       let cacheNode = this.cachePool.pop();
       if (cacheNode !== undefined) {
-        console.info(TEST_TAG + ' onCreateChild reused id:' + cacheNode.getUniqueId());
+        hilog.info(0x0000, `TEST_TAG onCreateChild reused id: ${cacheNode.getUniqueId()}`, 'getUniqueId');
         let text = cacheNode?.getFirstChild();
         let textNode = text as typeNode.Text;
         textNode?.initialize(this.data[index]).fontSize(20);
         return cacheNode;
       }
     }
-    console.info(TEST_TAG + ' onCreateChild createNew');
+    hilog.info(0x0000, 'TEST_TAG onCreateChild createNew', 'createNew');
     let itemNode = typeNode.createNode(this.uiContext, 'ListItem');
     let textNode = typeNode.createNode(this.uiContext, 'Text');
     textNode.initialize(this.data[index]).fontSize(20);
@@ -126,10 +127,10 @@ class MyNodeAdapter extends NodeAdapter {
   }
 
   onDisposeChild(id: number, node: FrameNode): void {
-    console.info(TEST_TAG + ' onDisposeChild:' + id);
+    hilog.info(0x0000, `TEST_TAG onDisposeChild: ${id}`, 'onDisposeChild');
     if (this.cachePool.length < 10) {
       if (!this.cachePool.includes(node)) {
-        console.info(TEST_TAG + ' caching node id:' + node.getUniqueId());
+        hilog.info(0x0000, `TEST_TAG caching node id: ${node.getUniqueId()}`, 'getUniqueId');
         this.cachePool.push(node);
       }
     } else {
@@ -146,8 +147,8 @@ class MyNodeAdapter extends NodeAdapter {
 }
 
 class MyNodeAdapterController extends NodeController {
-  rootNode: FrameNode | null = null;
-  nodeAdapter: MyNodeAdapter | null = null;
+  private rootNode: FrameNode | null = null;
+  private nodeAdapter: MyNodeAdapter | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
@@ -208,4 +209,5 @@ struct Index {
     .width('100%')
   }
 }
+
 //[End frameNodeLazyForEach_start]

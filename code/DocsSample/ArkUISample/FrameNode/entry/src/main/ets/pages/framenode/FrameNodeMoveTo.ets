@@ -17,12 +17,12 @@
 import { FrameNode, NodeController, UIContext, typeNode } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
-  uiContext: UIContext | null = null;
-  rootNode: FrameNode | null = null;
-  rowNode: FrameNode | null = null;
-  stackNode1: FrameNode | null = null;
-  stackNode2: FrameNode | null = null;
-  stackNode3: FrameNode | null = null;
+  public uiContext: UIContext | null = null;
+  public rootNode: FrameNode | null = null;
+  public rowNode: FrameNode | null = null;
+  public stackNode1: FrameNode | null = null;
+  public stackNode2: FrameNode | null = null;
+  public stackNode3: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.uiContext = uiContext;
@@ -69,4 +69,5 @@ struct Index {
     .width('100%')
   }
 }
+
 //[End frameNodeMoveTo_start]

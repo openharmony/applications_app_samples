@@ -15,8 +15,9 @@
 
 //[Start frameNodeDisposed_start]
 import { NodeController, FrameNode, BuilderNode } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TEST_TAG: string = "FrameNode";
+const TEST_TAG: string = 'FrameNode';
 
 @Component
 struct TestComponent {
@@ -65,19 +66,20 @@ class MyNodeController extends NodeController {
 
   printUniqueId(): void {
     if (this.rootNode !== null && this.builderNode !== null) {
-      console.info(`${TEST_TAG} rootNode's uniqueId: ${this.rootNode.getUniqueId()}`);
+      hilog.info(0x0000, `${TEST_TAG} rootNode's uniqueId: ${this.rootNode.getUniqueId()}`, 'isClicked');
       const frameNode = this.builderNode.getFrameNode();
       if (frameNode) {
-        console.info(`${TEST_TAG} the uniqueId of builderNode's framenode: ${frameNode.getUniqueId()}`);
+        hilog.info(0x0000, `${TEST_TAG} the uniqueId of builderNode's framenode: ${frameNode.getUniqueId()}`,
+          'isClicked');
       } else {
-        console.info(`${TEST_TAG} builderNode's framenode is undefined`);
+        hilog.info(0x0000, `${TEST_TAG} builderNode's framenode is undefined`, 'isClicked');
       }
     }
   }
 
   disposeFrameNode(): void {
     if (this.rootNode !== null && this.builderNode !== null) {
-      console.info(`${TEST_TAG} disposeFrameNode`);
+      hilog.info(0x0000, `${TEST_TAG} disposeFrameNode`, 'isCLicked');
       this.rootNode.removeChild(this.builderNode.getFrameNode());
       this.builderNode.dispose();
 
@@ -111,4 +113,5 @@ struct Index {
     }
   }
 }
+
 //[End frameNodeDisposed_start]

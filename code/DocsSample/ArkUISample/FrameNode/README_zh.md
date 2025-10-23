@@ -22,27 +22,32 @@
 
 1. 在主界面，通过点击不同的按钮，创建需要的组件。
 
-2. 在操作节点树页面，通过点击不同的按钮，可以看到不同的效果。
+2. 在自定义组件节点树页面，通过点击不同的按钮，可以看到不同的效果。
 
-3. 在使用moveTo移动命令式节点页面，点击move，可以看到组件的移动变化。
+3. 在自定义组件节点移动页面，点击move，可以看到组件的移动变化。
 
-4. 在设置节点的通用属性和事件回调页面，点击修改节点通用属性-宽高文本下面的各个按钮，可以设置节点的通用属性，点击修改节点点击事件下的文本，可以在控制台查看打印信息。
+4. 在自定义组件通用属性页面，点击修改节点通用属性-宽高文本下面的各个按钮，可以设置节点的通用属性，点击修改节点点击事件下的文本，可以在控制台查看打印信息。
 
-5. 在自定义测量布局与绘制页面，点击“无效”按钮，可以查看左侧红色方框的变化，点击“更新布局”，可以查看右侧粉色方块的变化。
+5. 在自定义组件节点测量布局与绘制页面，点击“无效”按钮，可以查看左侧红色方框的变化，点击“更新布局”，可以查看右侧粉色方块的变化。
 
-6. 在获取节点位置信息页面，通过点击不同的按钮，可以在控制台看到FrameMode相对父组件的打印信息。
+6. 自定义组件节点位置页面，通过点击不同的按钮，可以在控制台看到FrameMode相对父组件的打印信息。
 
-7. 在通过typeNode创建具体类型的FrameNode节点页面，通过点击不同的按钮，可以在控制台看到FrameMode相对父组件的打印信息。
+7. 在自定义组件typeNode创建节点页面，通过点击不同的按钮，可以在控制台看到FrameMode相对父组件的打印信息。
 
-8. 在解除当前FrameNode对象对实体FrameNode节点的引用关系页面，通过“处理”按钮，可以解除当前FrameNode对象对FrameNode节点的引用关系。
+8. 在自定义组件节点解除页面，通过“处理”按钮，可以解除当前FrameNode对象对FrameNode节点的引用关系。
 
-9. 在查询当前FrameNode是否解除引用页面，通过点击“处理”和“已处理”按钮，通过文本“FrameNode 已处理为真”是否显示查看当前是否已解除引用页面。
+9. 在自定义组件节点查询解除页面，通过点击“处理”和“已处理”按钮，通过文本“FrameNode 已处理为真”是否显示查看当前是否已解除引用页面。
 
-10. 在FrameNode的数据懒加载页面，通过点击不同按钮，查看ListNode Adapter列表框中的数据变化。
+10. 在自定义组件节点懒加载页面，通过点击不同按钮，查看ListNode Adapter列表框中的数据变化。
 
-11. 在查询LazyForEach中的FrameNode节点信息页面，通过点击不同按钮，在控制台查看相应的日志输出。
+11. 在自定义组件节点懒加载查询页面，通过点击不同按钮，在控制台查看相应的日志输出。
 
-12. 在FrameNode画布页面，可以展示canvas的变换矩阵。
+12. 在自定义组件节点画布页面，可以展示canvas的变换矩阵。
+
+### 具体实现
+
+1. 先定义 MyNodeController 继承 NodeController，在 makeNode 中通过 new FrameNode(uiContext) 创建自定义根节点与子节点，设置宽高、背景色等属性并建立父子关系，还可创建 BuilderNode 挂载系统组件。
+2. 页面用 NodeContainer 承载节点，通过按钮触发增删改操作：调用 appendChild 新增节点，removeChild 删除节点，commonAttribute 修改宽高位置；也能调用 isModifiable 判断节点是否可改，通过 getPositionToWindow 等接口获取节点位置，重写 onDraw 实现自定义绘制，满足节点树动态管理需求。
 
 ### 工程目录
 ```
@@ -92,7 +97,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/FrameNode > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/FrameNode > .git/info/sparse-checkout
 git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

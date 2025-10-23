@@ -13,82 +13,105 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World';
+
   build() {
-    Column({ space: 10 }){
+    Column({ space: 10 }) {
       Button('ShowFrameNodeTree')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeTree'
           })
         })
       Button('ShowFrameNodeMoveTo')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeMoveTo'
           })
         })
       Button('ShowFrameNodeCommon')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeCommon'
           })
         })
       Button('ShowFrameNodeDraw')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeDraw'
           })
         })
       Button('ShowFrameNodePosition')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodePosition'
           })
         })
       Button('ShowFrameNodeTypeNode')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeTypeNode'
           })
         })
       Button('ShowFrameNodeDisposed')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeDisposed'
           })
         })
       Button('ShowFrameNodeIsDisposed')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeIsDisposed'
           })
         })
       Button('ShowFrameNodeLazyForEach')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeLazyForEach'
           })
         })
       Button('ShowFrameNodeLazyForEachSelect')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeLazyForEachSelect'
           })
         })
       Button('ShowFrameNodeCanvas')
         .onClick(() => {
+          const uiContext: UIContext = this.getUIContext();
+          const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/framenode/FrameNodeCanvas'
           })
         })
     }
     .height('100%')
-      .width('100%')
+    .width('100%')
   }
 }

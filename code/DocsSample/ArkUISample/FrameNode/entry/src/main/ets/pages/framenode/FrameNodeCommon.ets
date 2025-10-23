@@ -15,9 +15,10 @@
 
 //[Start frameNodeCommon_start]
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI'
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Params {
-  text: string = 'this is a text'
+  public text: string = 'this is a text'
 }
 
 @Builder
@@ -28,7 +29,7 @@ function buttonBuilder(params: Params) {
     .borderWidth(2)
     .backgroundColor(Color.Orange)
     .onClick((event: ClickEvent) => {
-      console.info(`Button ${JSON.stringify(event)}`);
+      hilog.info(0x0000, `Button ${JSON.stringify(event)}`, 'isClicked');
     })
 }
 
@@ -92,12 +93,13 @@ struct Index {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
       Column({ space: 10 }) {
+        // $r('app.media.Modify_Node_Common_Properties_Width_And_Height')需要替换为开发者所需的文本资源文件
         Text($r('app.string.Modify_Node_Common_Properties_Width_And_Height'))
         Button('modify ArkTS-FrameNode')
           .onClick(() => {
             // 获取到的是当前页面中的开发者创建的FrameNode对象，该节点可修改。即节点大小与位置。
-            console.info('Check the weather the node can be modified ' + this.myNodeController?.frameNode
-            ?.isModifiable());
+            hilog.info(0x0000, `Check the weather the node can be modified ${this.myNodeController?.frameNode
+            ?.isModifiable()}`, 'isClicked');
             this.myNodeController.modifyNode(this.myNodeController?.frameNode, { width: 150, height: 100 }, {
               x: 100,
               y: 0
@@ -106,9 +108,9 @@ struct Index {
         Button('modify FrameNode get by BuilderNode')
           .onClick(() => {
             // 获取到的是当前页面中的BuilderNode的根节点，该节点不可修改。即节点大小与位置未发生改变。
-            console.info('Check the weather the node can be modified ' +
-            this.myNodeController?.buttonNode?.getFrameNode()
-            ?.isModifiable());
+            hilog.info(0x0000, `Check the weather the node can be modified
+            ${this.myNodeController?.buttonNode?.getFrameNode()
+            ?.isModifiable()}`, 'isClicked');
             this.myNodeController.modifyNode(this.myNodeController?.buttonNode?.getFrameNode(), {
               width: 100,
               height: 100
@@ -117,8 +119,9 @@ struct Index {
         Button('modify proxyFrameNode get by search')
           .onClick(() => {
             // rootNode调用getParent()获取到的是当前页面中的NodeContainer节点，该节点不可修改。即节点大小与位置未发生改变。
-            console.info('Check the weather the node can be modified ' + this.myNodeController?.rootNode?.getParent()
-            ?.isModifiable());
+            hilog.info(0x0000,
+              `Check the weather the node can be modified ${this.myNodeController?.rootNode?.getParent()
+              ?.isModifiable()}`, 'isClicked');
             this.myNodeController.modifyNode(this.myNodeController?.rootNode?.getParent(), {
               width: 500,
               height: 500
@@ -136,29 +139,32 @@ struct Index {
       })
 
       Column({ space: 10 }) {
+        // $r('app.media.Modify_Node_Click_Event')需要替换为开发者所需的文本资源文件
         Text($r('app.string.Modify_Node_Click_Event'))
         Button('add click event to ArkTS-FrameNode')
           .onClick(() => {
             // 获取到的是当前页面中的开发者创建的FrameNode对象，该节点可增加点击事件。
             // 增加的点击事件参与事件竞争，即点击事件会在该节点被消费且不不再向父组件冒泡。
-            console.info('Check the weather the node can be modified ' + this.myNodeController?.rootNode?.getParent()
-            ?.isModifiable());
+            hilog.info(0x0000,
+              `Check the weather the node can be modified ${this.myNodeController?.rootNode?.getParent()
+              ?.isModifiable()}`, 'isClicked');
             this.myNodeController.addClickEvent(this.myNodeController?.frameNode)
           })
         Button('add click event to FrameNode get by BuilderNode')
           .onClick(() => {
             // 获取到的是当前页面中的BuilderNode的根节点，该类节点可增加点击事件。
             // 点击的时候优先回调通过系统组件接口设置的click事件回调，然后回调通过commonEvent增加的click监听。
-            console.info('Check the weather the node can be modified ' +
-            this.myNodeController?.buttonNode?.getFrameNode()
-            ?.isModifiable());
+            hilog.info(0x0000, `Check the weather the node can be modified
+            ${this.myNodeController?.buttonNode?.getFrameNode()
+            ?.isModifiable()}`, 'isClicked');
             this.myNodeController.addClickEvent(this.myNodeController?.buttonNode?.getFrameNode())
           })
         Button('add click event to proxyFrameNode get by search')
           .onClick(() => {
             // rootNode调用getParent()获取到的是当前页面中的NodeContainer节点，该类节点可增加点击事件。
-            console.info('Check the weather the node can be modified ' + this.myNodeController?.rootNode?.getParent()
-            ?.isModifiable());
+            hilog.info(0x0000,
+              `Check the weather the node can be modified ${this.myNodeController?.rootNode?.getParent()
+              ?.isModifiable()}`, 'isClicked');
             this.myNodeController.addClickEvent(this.myNodeController?.rootNode?.getParent());
           })
       }
@@ -174,7 +180,7 @@ struct Index {
         .width('100%')
         .height(100)
         .onClick((event: ClickEvent) => {
-          console.info(`NodeContainer ${JSON.stringify(event)}`);
+          hilog.info(0x0000, `NodeContainer ${JSON.stringify(event)}`, 'isClicked');
         })
     }
     .padding({
@@ -187,4 +193,5 @@ struct Index {
     .height('100%')
   }
 }
+
 //[End frameNodeCommon_start]

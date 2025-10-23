@@ -15,6 +15,7 @@
 
 //[Start frameNodeTypeNode_start]
 import { NodeController, FrameNode, UIContext, BuilderNode, typeNode } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Params {
   text: string = "";
@@ -36,7 +37,7 @@ function buildText(params: Params) {
       .margin({ top: 10 })
       .visibility(Visibility.Visible)
       .opacity(0.7)
-      .customProperty("key1", "value1")
+      .customProperty('key1', 'value1')
       .width(300)
   }
 }
@@ -49,7 +50,7 @@ class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private textNode: BuilderNode<[Params]> | null = null;
   public textTypeNode: typeNode.Text | null = null;
-  private message: string = "DEFAULT";
+  private message: string = 'DEFAULT';
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
@@ -63,10 +64,10 @@ class MyNodeController extends NodeController {
     this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     this.frameNode.appendChild(this.textNode.getFrameNode());
     this.textTypeNode = typeNode.createNode(uiContext, "Text");
-    this.textTypeNode.initialize("textTypeNode")
+    this.textTypeNode.initialize('textTypeNode')
       .fontSize(25)
       .visibility(Visibility.Visible)
-      .id("textTypeNode")
+      .id('textTypeNode')
     this.frameNode.appendChild(this.textTypeNode);
     return this.rootNode;
   }
@@ -81,62 +82,62 @@ class MyNodeController extends NodeController {
 
   getUserConfigBorderWidth(frameNode: FrameNode) {
     let userConfigBorderWidth = frameNode?.getUserConfigBorderWidth(); // 获取用户设置的边框宽度
-    console.info(`${TEST_TAG} ${JSON.stringify(userConfigBorderWidth)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(userConfigBorderWidth)}`, 'userConfigBorderWidth');
   }
 
   getUserConfigPadding(frameNode: FrameNode) {
     let userConfigPadding = frameNode?.getUserConfigPadding(); // 获取用户设置的内边距
-    console.info(`${TEST_TAG} ${JSON.stringify(userConfigPadding)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(userConfigPadding)}`, 'userConfigPadding');
   }
 
   getUserConfigMargin(frameNode: FrameNode) {
     let userConfigMargin = frameNode?.getUserConfigMargin(); // 获取用户设置的外边距
-    console.info(`${TEST_TAG} ${JSON.stringify(userConfigMargin)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(userConfigMargin)}`, 'userConfigMargin');
   }
 
   getUserConfigSize(frameNode: FrameNode) {
     let userConfigSize = frameNode?.getUserConfigSize(); // 获取用户设置的宽高
-    console.info(`${TEST_TAG} ${JSON.stringify(userConfigSize)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(userConfigSize)}`, 'userConfigSize');
   }
 
   getId(frameNode: FrameNode) {
     let id = frameNode?.getId(); // 获取用户设置的节点ID
-    console.info(`${TEST_TAG} ${id}`);
+    hilog.info(0x0000, `${TEST_TAG} ${id}`, 'getId');
   }
 
   getUniqueId(frameNode: FrameNode) {
     let uniqueId = frameNode?.getUniqueId(); // 获取系统分配的唯一标识的节点UniqueID
-    console.info(`${TEST_TAG} ${uniqueId}`);
+    hilog.info(0x0000, `${TEST_TAG} ${uniqueId}`, 'uniqueId');
   }
 
   getNodeType(frameNode: FrameNode) {
     let nodeType = frameNode?.getNodeType(); // 获取节点的类型
-    console.info(`${TEST_TAG} ${nodeType}`);
+    hilog.info(0x0000, `${TEST_TAG} ${nodeType}`, 'nodeType');
   }
 
   getOpacity(frameNode: FrameNode) {
     let opacity = frameNode?.getOpacity(); // 获取节点的不透明度
-    console.info(`${TEST_TAG} ${JSON.stringify(opacity)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(opacity)}`, 'opacity');
   }
 
   isVisible(frameNode: FrameNode) {
     let visible = frameNode?.isVisible(); // 获取节点是否可见
-    console.info(`${TEST_TAG} ${JSON.stringify(visible)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(visible)}`, 'visible');
   }
 
   isClipToFrame(frameNode: FrameNode) {
     let clipToFrame = frameNode?.isClipToFrame(); // 获取节点是否是剪裁到组件区域
-    console.info(`${TEST_TAG} ${JSON.stringify(clipToFrame)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(clipToFrame)}`, 'clipToFrame');
   }
 
   isAttached(frameNode: FrameNode) {
     let attached = frameNode?.isAttached(); // 获取节点是否被挂载到主节点树上
-    console.info(`${TEST_TAG} ${JSON.stringify(attached)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(attached)}`, 'attached');
   }
 
   getInspectorInfo(frameNode: FrameNode) {
     let inspectorInfo = frameNode?.getInspectorInfo(); // 获取节点的结构信息
-    console.info(`${TEST_TAG} ${JSON.stringify(inspectorInfo)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(inspectorInfo)}`, 'inspectorInfo');
   }
 }
 
@@ -313,7 +314,7 @@ struct Index {
             const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
             if (node) {
               const property = node.getCustomProperty("key1");
-              console.info(TEST_TAG, JSON.stringify(property));
+              hilog.info(0x0000, TEST_TAG, JSON.stringify(property));
             }
           }
         })
@@ -324,8 +325,9 @@ struct Index {
       top: 35,
       bottom: 35
     })
-    .width("100%")
-    .height("100%")
+    .width('100%')
+    .height('100%')
   }
 }
+
 //[End frameNodeTypeNode_start]

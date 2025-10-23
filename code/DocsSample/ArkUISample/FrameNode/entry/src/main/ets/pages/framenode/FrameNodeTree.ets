@@ -16,11 +16,12 @@
 //[Start frameNodeTree_start]
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TEST_TAG: string = 'FrameNode'
 
 class Params {
-  text: string = 'this is a text'
+  public text: string = 'this is a text'
 }
 
 @Builder
@@ -43,7 +44,7 @@ function buttonBuilder(params: Params) {
 class MyNodeController extends NodeController {
   public buttonNode: BuilderNode<[Params]> | null = null;
   public frameNode: FrameNode | null = null;
-  public childList: Array<FrameNode> = new Array<FrameNode>();
+  public childList: FrameNode[] = new Array<FrameNode>();
   public rootNode: FrameNode | null = null;
   private uiContext: UIContext | null = null;
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
@@ -79,8 +80,9 @@ class MyNodeController extends NodeController {
 
   operationFrameNodeWithFrameNode(frameNode: FrameNode | undefined | null) {
     if (frameNode) {
-      console.info(TEST_TAG + ' get ArkTSNode success.')
-      console.info(TEST_TAG + ' check rootNode whether is modifiable ' + frameNode.isModifiable());
+      hilog.info(0x0000, `${TEST_TAG} get ArkTSNode success.`, 'success')
+      hilog.info(0x0000, `${TEST_TAG} check rootNode whether is modifiable ${frameNode.isModifiable()}`,
+        'isModifiable');
     }
     if (this.uiContext) {
       let frameNode1 = new FrameNode(this.uiContext);
@@ -93,34 +95,34 @@ class MyNodeController extends NodeController {
         .position({ x: 120, y: 60 })
       try {
         frameNode?.appendChild(frameNode1);
-        console.info(TEST_TAG + ' appendChild success ');
+        hilog.info(0x0000, `${TEST_TAG} appendChild success`, 'success');
       } catch (err) {
-        console.error(TEST_TAG + ' appendChild fail :' + (err as BusinessError).code + ' : ' +
-        (err as BusinessError).message);
+        hilog.error(0x0000, `${TEST_TAG} appendChild fail :${(err as BusinessError).code}:
+        ${(err as BusinessError).message}`, 'appendChild error');
       }
       try {
         frameNode?.insertChildAfter(frameNode2, null);
-        console.info(TEST_TAG + ' insertChildAfter success ');
+        hilog.info(0x0000, `${TEST_TAG} insertChildAfter success `, 'success');
       } catch (err) {
-        console.error(TEST_TAG + ' insertChildAfter fail : ' + (err as BusinessError).code + ' : ' +
-        (err as BusinessError).message);
+        hilog.error(0x0000, `${TEST_TAG} insertChildAfter fail :${(err as BusinessError).code}:
+        ${(err as BusinessError).message}`, 'insertChildAfter error');
       }
       setTimeout(() => {
         try {
           frameNode?.removeChild(frameNode?.getChild(0))
-          console.info(TEST_TAG + ' removeChild success ');
+          hilog.info(0x0000, `${TEST_TAG} removeChild success`, 'success');
         } catch (err) {
-          console.error(TEST_TAG + ' removeChild fail : ' + (err as BusinessError).code + ' : ' +
-          (err as BusinessError).message);
+          hilog.error(0x0000, `${TEST_TAG} removeChild fail :${(err as BusinessError).code} :
+          ${(err as BusinessError).message}`, 'removeChild error');
         }
       }, 2000)
       setTimeout(() => {
         try {
           frameNode?.clearChildren();
-          console.info(TEST_TAG + ' clearChildren success ');
+          hilog.info(0x0000, `${TEST_TAG} clearChildren success `, 'success');
         } catch (err) {
-          console.error(TEST_TAG + ' clearChildren fail : ' + (err as BusinessError).code + ' : ' +
-          (err as BusinessError).message);
+          hilog.error(0x0000, `${TEST_TAG} clearChildren fail: (err as BusinessError).code:
+          ${(err as BusinessError).message}`, 'clearChildren error');
         }
       }, 4000)
     }
@@ -144,7 +146,7 @@ class MyNodeController extends NodeController {
     try {
       if (parent && child) {
         parent.appendChild(child);
-        console.info(TEST_TAG + ' appendChild success ');
+        hilog.info(0x0000, `${TEST_TAG} appendChild success`, 'success');
       }
     } catch (err) {
       console.error(TEST_TAG + ' appendChild fail : ' + (err as BusinessError).code + ' : ' +
@@ -165,7 +167,9 @@ struct Index {
       List({ space: 20, initialIndex: 0 }) {
         ListItem() {
           Column({ space: 5 }) {
+            // $r('app.media.Verify_The_Child_Node_Function_Of_FrameNode')需要替换为开发者所需的文本资源文件
             Text($r('app.string.Verify_The_Child_Node_Function_Of_FrameNode'))
+            // $r('app.media.Operate_On_Custom_FrameNode')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Operate_On_Custom_FrameNode'))
               .fontSize(16)
               .width(400)
@@ -173,6 +177,7 @@ struct Index {
                 // 对FrameNode节点进行增、删、改操作，正常实现。
                 this.myNodeController.operationFrameNodeWithFrameNode(this.myNodeController?.frameNode);
               })
+            // $r('app.media.Operate_On_Proxy_Nodes_In_BuilderNode')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode'))
               .fontSize(16)
               .width(400)
@@ -180,6 +185,7 @@ struct Index {
                 // 对BuilderNode代理节点进行增、删、改操作，捕获异常信息。
                 this.myNodeController.operationFrameNodeWithFrameNode(this.myNodeController?.buttonNode?.getFrameNode());
               })
+            // $r('app.media.Operate_On_Proxy_Nodes_In_System_Components')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Operate_On_Proxy_Nodes_In_System_Components'))
               .fontSize(16)
               .width(400)
@@ -192,7 +198,9 @@ struct Index {
 
         ListItem() {
           Column({ space: 5 }) {
+            // $r('app.media.Verify_Special_Scenarios_Of_FrameNode_Adding_Child_Nodes')需要替换为开发者所需的文本资源文件
             Text($r('app.string.Verify_Special_Scenarios_Of_FrameNode_Adding_Child_Nodes'))
+            // $r('app.media.Add_Proxy_Nodes_Of_BuilderNode')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Add_Proxy_Nodes_Of_BuilderNode'))
               .fontSize(16)
               .width(400)
@@ -201,6 +209,7 @@ struct Index {
                 buttonNode.build(wrapBuilder<[Params]>(buttonBuilder), { text: 'BUTTON' })
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode, buttonNode?.getFrameNode());
               })
+            // $r('app.media.Add_Proxy_Nodes_Of_System_Components')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Add_Proxy_Nodes_Of_System_Components'))
               .fontSize(16)
               .width(400)
@@ -208,6 +217,7 @@ struct Index {
                 this.myNodeController.checkAppendChild(this.myNodeController?.frameNode,
                   this.myNodeController?.rootNode?.getParent());
               })
+            // $r('app.media.Add_Custom_Nodes_With_Existing_Parent_Nodes')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Add_Custom_Nodes_With_Existing_Parent_Nodes'))
               .fontSize(16)
               .width(400)
@@ -220,7 +230,9 @@ struct Index {
 
         ListItem() {
           Column({ space: 5 }) {
+            // $r('app.media.Verify_Query_Function_Of_FrameNode')需要替换为开发者所需的文本资源文件
             Text($r('app.string.Verify_Query_Function_Of_FrameNode'))
+            // $r('app.media.Operate_On_Custom_FrameNode_Again')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Operate_On_Custom_FrameNode_Again'))
               .fontSize(16)
               .width(400)
@@ -232,6 +244,7 @@ struct Index {
                   this.result = this.myNodeController.testInterfaceAboutSearch(this.myNodeController?.frameNode);
                 }, 2000)
               })
+            // $r('app.media.Operate_On_Proxy_Nodes_In_BuilderNode_Again')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode_Again'))
               .fontSize(16)
               .width(400)
@@ -240,6 +253,7 @@ struct Index {
                 this.result =
                   this.myNodeController.testInterfaceAboutSearch(this.myNodeController?.buttonNode?.getFrameNode());
               })
+            // $r('app.media.Operate_On_Proxy_Nodes_In_System_Components_Again')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Operate_On_Proxy_Nodes_In_System_Components_Again'))
               .fontSize(16)
               .width(400)
@@ -281,4 +295,5 @@ struct Index {
     .height('100%')
   }
 }
+
 //[End frameNodeTree_start]

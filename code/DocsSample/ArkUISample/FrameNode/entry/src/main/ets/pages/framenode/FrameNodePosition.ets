@@ -15,6 +15,7 @@
 
 //[Start frameNodePosition_start]
 import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TEST_TAG: string = 'FrameNode'
 
@@ -31,40 +32,40 @@ class MyNodeController extends NodeController {
 
   getPositionToWindow() {
     let positionToWindow = this.rootNode?.getPositionToWindow(); // 获取FrameNode相对于窗口的位置偏移
-    console.info(`${TEST_TAG} ${JSON.stringify(positionToWindow)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(positionToWindow)}`, 'positionToWindow');
   }
 
   getPositionToParent() {
     let positionToParent = this.rootNode?.getPositionToParent(); // 获取FrameNode相对于父组件的位置偏移
-    console.info(`${TEST_TAG} ${JSON.stringify(positionToParent)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(positionToParent)}`, 'positionToParent');
   }
 
   getPositionToScreen() {
     let positionToScreen = this.rootNode?.getPositionToScreen(); // 获取FrameNode相对于屏幕的位置偏移
-    console.info(`${TEST_TAG} ${JSON.stringify(positionToScreen)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(positionToScreen)}`, 'positionToScreen');
   }
 
   getGlobalPositionOnDisplay() {
     let positionOnGlobalDisplay = this.rootNode?.getGlobalPositionOnDisplay(); // 获取FrameNode相对于全局屏幕的位置偏移
-    console.info(`${TEST_TAG} ${JSON.stringify(positionOnGlobalDisplay)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(positionOnGlobalDisplay)}`, 'positionOnGlobalDisplay');
   }
 
   getPositionToWindowWithTransform() {
     let positionToWindowWithTransform =
       this.rootNode?.getPositionToWindowWithTransform(); // 获取FrameNode相对于窗口带有绘制属性的位置偏移
-    console.info(`${TEST_TAG} ${JSON.stringify(positionToWindowWithTransform)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(positionToWindowWithTransform)}`, 'positionToWindowWithTransform');
   }
 
   getPositionToParentWithTransform() {
     let positionToParentWithTransform =
       this.rootNode?.getPositionToParentWithTransform(); // 获取FrameNode相对于父组件带有绘制属性的位置偏移
-    console.info(`${TEST_TAG} ${JSON.stringify(positionToParentWithTransform)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(positionToParentWithTransform)}`, 'positionToParentWithTransform');
   }
 
   getPositionToScreenWithTransform() {
     let positionToScreenWithTransform =
       this.rootNode?.getPositionToScreenWithTransform(); // 获取FrameNode相对于屏幕带有绘制属性的位置偏移
-    console.info(`${TEST_TAG} ${JSON.stringify(positionToScreenWithTransform)}`);
+    hilog.info(0x0000, `${TEST_TAG} ${JSON.stringify(positionToScreenWithTransform)}`, 'positionToScreenWithTransform');
   }
 }
 
@@ -133,4 +134,5 @@ struct Index {
     .height('100%')
   }
 }
+
 //[End frameNodePosition_start]
