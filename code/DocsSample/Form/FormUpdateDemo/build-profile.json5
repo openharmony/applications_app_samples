@@ -26,18 +26,6 @@
       }
     ],
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "storeFile": "D:/beixiangProject/card_samples/formupdatedemo2/signfile/OpenHarmony.p12",
-          "storePassword": "000000160FD3A3A86295D6FE05D222F8F8ECA511446BC4ECE1C40A32467E12C0A08863B4225B",
-          "keyAlias": "oh-app1-key-v1",
-          "keyPassword": "0000001627E0A2E0D7CF016ACDB7CCBAB18EB161CD112F2229D35E72409912124FC3D3BD7F4A",
-          "signAlg": "SHA256withECDSA",
-          "profile": "D:/beixiangProject/card_samples/formupdatedemo2/signfile/app-localuse.p7b",
-          "certpath": "D:/beixiangProject/card_samples/formupdatedemo2/signfile/app-localuse.cer"
-        }
-      }
     ]
   },
   "modules": [
