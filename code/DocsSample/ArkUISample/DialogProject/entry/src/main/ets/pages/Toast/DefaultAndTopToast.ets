@@ -26,7 +26,7 @@ export struct DefaultAndTopToastExample {
       Column({ space: 10 }) {
         TextInput()
         Button() {
-          // $r('app.string.xxx')需要替换为开发者所需的字符串
+          // $r('app.string.DefaultAndTopToast_defaultToast')需要替换为开发者所需的资源文件
           Text($r('app.string.DefaultAndTopToast_defaultToast'))
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
@@ -35,6 +35,7 @@ export struct DefaultAndTopToastExample {
         .width('100%')
         .onClick(() => {
           this.getUIContext().getPromptAction().showToast({
+            // $r('app.string.DefaultAndTopToast_defaultToastMessage')需要替换为开发者所需的资源文件
             message: $r('app.string.DefaultAndTopToast_defaultToastMessage'),
             duration: 2000,
             showMode: promptAction.ToastShowMode.DEFAULT,
@@ -44,6 +45,7 @@ export struct DefaultAndTopToastExample {
 
         Blank().height(200);
         Button() {
+          // $r('app.string.DefaultAndTopToast_topToast')需要替换为开发者所需的资源文件
           Text($r('app.string.DefaultAndTopToast_topToast'))
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
@@ -52,6 +54,7 @@ export struct DefaultAndTopToastExample {
         .width('100%')
         .onClick(() => {
           this.getUIContext().getPromptAction().showToast({
+            // $r('app.string.DefaultAndTopToast_topToastMessage')需要替换为开发者所需的资源文件
             message: $r('app.string.DefaultAndTopToast_topToastMessage'),
             duration: 2000,
             showMode: promptAction.ToastShowMode.TOP_MOST,
