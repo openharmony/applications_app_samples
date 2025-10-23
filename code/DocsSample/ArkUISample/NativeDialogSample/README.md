@@ -60,6 +60,8 @@ entry/src/main/
 
     * c++代码中使用napi的接口和方法实现一个按钮和一个弹窗，通过按钮控制弹窗的显示和关闭。
 
+    * 该示例相关文档页面[构建弹窗](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-build-pop-up-window.md)
+
 ## 相关权限
 
 不涉及
