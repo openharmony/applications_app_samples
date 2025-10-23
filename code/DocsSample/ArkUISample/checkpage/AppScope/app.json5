@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.sample.checkpage",
+    "bundleName": "com.samples.checkpage",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
