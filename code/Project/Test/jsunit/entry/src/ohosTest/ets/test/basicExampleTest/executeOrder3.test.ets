@@ -18,7 +18,7 @@ import { describe, xit, it, Level } from '@ohos/hypium';
 
 export default function describeExampleTest() {
   
-  describe('ExampleTest', () =>{
+  describe('order3_sample', () =>{
     xit('testExampleA',Level.LEVEL1, async (done: Function) => {
       console.info("unitTest: testExampleA begin");
       done();

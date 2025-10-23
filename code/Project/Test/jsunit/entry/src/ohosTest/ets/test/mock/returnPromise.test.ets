@@ -30,7 +30,7 @@ class ClassName {
   }
 }
 export default function mockPromiseTest() {
-  describe('mockPromiseTest', () => {
+  describe('returnPromise_sample', () => {
     it('testMockfunc', 0, async (done: Function) => {
       console.info("it1 begin");
       // 创建一个Mock能力的对象MockKit

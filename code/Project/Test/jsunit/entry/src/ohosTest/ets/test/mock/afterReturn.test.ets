@@ -29,7 +29,7 @@ class ClassName {
   }
 }
 export default function afterReturnTest() {
-  describe('afterReturnTest', () => {
+  describe('afterReturn_sample', () => {
     it('afterReturnTest', 0, () => {
       console.info("it1 begin");
       // 创建一个Mock能力的对象MockKit

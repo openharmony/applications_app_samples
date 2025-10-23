@@ -18,7 +18,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
-import getParamsData from '../test/ParamsData';
+import data from '../test/params.json'
 import Logger from '../util/Logger';
 import { window } from '@kit.ArkUI';
 
@@ -32,7 +32,6 @@ export default class TestAbility extends UIAbility {
         let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
         Logger.info(TAG, "start run testcase!!!");
         // 设置数据
-        let data = getParamsData();
         Hypium.setData(data);
         Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
     }

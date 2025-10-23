@@ -14,11 +14,11 @@
  */
 // [Start CPUMetri_sample]
 import { describe, it, expect, Level } from '@ohos/hypium';
-import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult } from '@kit.TestKit';
+import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult, abilityDelegatorRegistry } from '@kit.TestKit';
 import { Utils } from '../../../main/ets/utils/Utils'
 
 export default function PerfTestTest() {
-  describe('PerfTestTest', () => {
+  describe('PerfTestTest2', () => {
     it('testExample1', 0, async (done: Function) => {
       // [Start metricsDefine_sample]
       let metrics: Array<PerfMetric> = [ PerfMetric.DURATION, PerfMetric.CPU_USAGE ]; // 定义待测指标
@@ -40,7 +40,7 @@ export default function PerfTestTest() {
         metrics: metrics,
         actionCode: actionCode,
         resetCode: resetCode,
-        bundleName: "com.example.test", // 定义被测应用包名，请开发者替换为实际包名
+        bundleName: "com.samples.test.perftest", // 定义被测应用包名，请开发者替换为实际包名
         iterations: 10,  // 定义测试迭代次数
         timeout: 20000  // 定义代码段单次执行超时时间
       };

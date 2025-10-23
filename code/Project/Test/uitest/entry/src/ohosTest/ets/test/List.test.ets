@@ -18,7 +18,7 @@ import componentOperationTest from './findCommentExampleTest/Component/findComAn
 import findTest from './findCommentExampleTest/Component/findCommentExample.test';
 import click from './operationExampleTest/ui/clickEvent.test';
 import input from './operationExampleTest/ui/InputEvent.test';
-import screenCap from './operationExampleTest/ui/ScreenCapEvent.test';
+import screenCapEvent from './operationExampleTest/ui/ScreenCapEvent.test';
 import mouse from './operationExampleTest/ui/MouseEvent.test';
 import fling from './operationExampleTest/ui/FlingEvent.test';
 import swipe from './operationExampleTest/ui/SwipeEvent.test';
@@ -28,7 +28,7 @@ import scroller from './operationExampleTest/ui/ScrollerEvent.test';
 import moveWindow from './operationExampleTest/window/MoveToEvent.test';
 import reSizeWindow from './operationExampleTest/window/ReSizeWindow.test';
 import windowAttr from './operationExampleTest/window/WindowAttr.test';
-import finwWinAndOp from './operationExampleTest/window/finwWinAndOp.test';
+import FindWindowAndOp from './operationExampleTest/window/FindWindowAndOp.test';
 import monitorEventTest from './operationExampleTest/ui/MonitorEvent.test';
 import webOperateTest from './operationExampleTest/web/webOperate.test';
 import findWindowExampleTest from './findCommentExampleTest/window/findWindowExample.test';
@@ -52,7 +52,7 @@ export default function testsuite() {
   findWindowExampleTest();
   click();
   input();
-  screenCap();
+  inputText();
   mouse();
   fling();
   swipe();
@@ -62,17 +62,17 @@ export default function testsuite() {
   moveWindow();
   reSizeWindow();
   windowAttr();
-  finwWinAndOp();
+  FindWindowAndOp();
   monitorEventTest();
   webOperateTest();
   wearAbleEventTest();
   otherEvent();
   displayOp();
   eventObserver();
-  inputText();
   mouseAndKeyOp();
   penOp();
   screenCap();
+  screenCapEvent()
   touchPadOp();
   touchScreenEvent();
   waitForCom();

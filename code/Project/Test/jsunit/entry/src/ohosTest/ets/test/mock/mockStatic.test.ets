@@ -26,7 +26,7 @@ class ClassName {
 }
 
 export default function staticTest() {
-  describe('staticTest', () => {
+  describe('mockStatic_sample', () => {
     it('staticTest_001', 0, () => {
       let really_result = ClassName.method_1();
       expect(really_result).assertEqual('ClassName_method_1_call');

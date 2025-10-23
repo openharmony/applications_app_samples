@@ -19,7 +19,7 @@
   import { Driver } from '@kit.TestKit';
 
   export default function abilityTest() {
-    describe('penOperationTest', () => {
+    describe('penOp_sample', () => {
       // 模拟手写笔单击、双击、长按、滑动操作
       it('penOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
         let driver = Driver.create();

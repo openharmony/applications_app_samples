@@ -19,7 +19,7 @@
   import { Driver, PointerMatrix, UiDirection } from '@kit.TestKit';
 
   export default function abilityTest() {
-    describe('screenOperationTest', () => {
+    describe('touchScreen_sample', () => {
       /**
        * 基于坐标的触摸屏手指操作
        */

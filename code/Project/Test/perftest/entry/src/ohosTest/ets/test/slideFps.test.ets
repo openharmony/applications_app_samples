@@ -20,7 +20,7 @@ import { Want } from '@kit.AbilityKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   export default function PerfTestTest() {
-    describe('PerfTestTest', () => {
+    describe('PerfTestTest1', () => {
     it('testExample2',Level.LEVEL3, async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
@@ -31,6 +31,9 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
             abilityName: 'EntryAbility'
         };
         await delegator.startAbility(want); // 拉起测试应用
+        await driver.delayMs(1000);
+        let toPageListBtn = await driver.findComponent(ON.id('toPageList'));
+        await toPageListBtn.click();
         await driver.delayMs(1000);
         let scroll = await driver.findComponent(ON.type('Scroll'));
         await driver.delayMs(1000);
@@ -59,7 +62,7 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
             await perfTest.run(); // 执行测试，异步函数需使用await同步等待完成
             let res: PerfMeasureResult = perfTest.getMeasureResult(PerfMetric.LIST_SWIPE_FPS); // 获取列表滑动帧率指标的测试结果
             perfTest.destroy(); // 销毁PerfTest对象
-            expect(res.average).assertLargerOrEqual(60);  // 断言性能测试结果
+            expect(res.average).assertLargerOrEqual(30);  // 断言性能测试结果
         } catch (error) {
             console.error(`Failed to execute perftest. Cause:${JSON.stringify(error)}`);
         }

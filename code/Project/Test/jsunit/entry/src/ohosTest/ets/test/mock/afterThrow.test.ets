@@ -25,7 +25,7 @@ class ClassName {
   }
 }
 export default function afterThrowTest() {
-  describe('afterThrowTest', () => {
+  describe('afterThrow_sample', () => {
     it('testMockfunc', 0, () => {
       console.info("it1 begin");
       // 创建一个Mock能力的对象MockKit

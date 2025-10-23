@@ -20,7 +20,7 @@
   import { display } from '@kit.ArkUI';
 
   export default function abilityTest() {
-    describe('screenCaptureTest', () => {
+    describe('screenCap_sample', () => {
       /**
        * 截取指定区域的屏幕，并保存到指定路径
        */

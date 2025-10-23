@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-// [Start vertify_sample]
+// [Start verify_sample]
 import { describe, it, MockKit } from '@ohos/hypium';
 
 class ClassName {
@@ -29,7 +29,7 @@ class ClassName {
   }
 }
 export default function verifyTest() {
-  describe('verifyTest', () => {
+  describe('verify_sample', () => {
     it('testMockfunc', 0, () => {
       console.info("it1 begin");
       // 创建一个Mock能力的对象MockKit
@@ -53,4 +53,4 @@ export default function verifyTest() {
     })
   })
 }
-// [End vertify_sample]
+// [End verify_sample]

@@ -23,7 +23,7 @@
   const bundleName: string = 'com.uitestScene.acts'
   const abilityName: string = 'com.uitestScene.acts.MainAbility'
   export default function abilityTest() {
-    describe('ActsAbilityTest', () => {
+    describe('waitForComp_sample', () => {
       it('testWaitForComponent_static', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async (): Promise<void> => {
         let driver = Driver.create();
         // 拉起目标应用      

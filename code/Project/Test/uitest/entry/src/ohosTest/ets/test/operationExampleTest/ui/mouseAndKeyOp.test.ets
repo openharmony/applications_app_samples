@@ -20,7 +20,7 @@
   import { KeyCode } from '@ohos.multimodalInput.keyCode';
 
   export default function abilityTest() {
-    describe('KeyboardMouseTest', () => {
+    describe('mouseAndKey_sample', () => {
       // 模拟键盘按键输入、组合键输入
       it('keyBoardOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
         let driver = Driver.create();

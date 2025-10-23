@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-// [Start tonchPadOp_sample]
+// [Start touchPadOp_sample]
   import { describe, it, TestType, Size, Level, expect } from '@ohos/hypium';
   // 导入测试依赖kit
   import { Driver, UiDirection } from '@kit.TestKit';
   const DeviceErrorCode = 17000005;
 
   export default function abilityTest() {
-    describe('touchPadOperationTest', () => {
+    describe('touchPadOp_sample', () => {
       // PC/2in1场景，模拟触摸板三指上滑（界面返回桌面），三指下滑（界面恢复窗口）操作
       it('touchPadOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
         let driver = Driver.create();
@@ -37,4 +37,4 @@
       })
     })
   }
-// [End tonchPadOp_sample]
+// [End touchPadOp_sample]

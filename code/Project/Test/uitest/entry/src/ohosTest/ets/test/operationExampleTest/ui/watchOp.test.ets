@@ -20,7 +20,7 @@
   const CapabilityCode = 801;
 
   export default function abilityTest() {
-    describe('crownRotateTest', () => {
+    describe('watchOp_sample', () => {
       // 手表场景，模拟表冠顺/逆时针旋转
       it('crownRotate', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
         let driver = Driver.create();

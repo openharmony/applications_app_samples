@@ -25,6 +25,7 @@
        */
       it("componentSearchAndOperation", TestType.FUNCTION, async () => {
         let driver: Driver = Driver.create();
+        await driver.delayMs(1000);
         let button: Component = await driver.findComponent(ON.type('Button'));
         await button.click();
       })

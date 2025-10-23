@@ -20,7 +20,7 @@
   const DeviceErrorCode = 17000005;
 
   export default function abilityTest() {
-    describe('windowOperationTest', () => {
+    describe('findWindAndOp_sample', () => {
       // 根据指定条件查找活跃窗口，并对其进行窗口最小化操作
       it("windowSearchAndOperation", TestType.FUNCTION, async () => {
         let driver = Driver.create();

@@ -18,7 +18,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level
 
 export default function exampleTest() {
   
-  describe('ExampleTest', () =>{
+  describe('order1_sample', () =>{
     let testNumA : number = 1;
     let testNumB : number = 1;
     

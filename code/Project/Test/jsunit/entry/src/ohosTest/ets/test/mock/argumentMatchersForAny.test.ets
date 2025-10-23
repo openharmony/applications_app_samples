@@ -29,7 +29,7 @@ class ClassName {
   }
 }
 export default function argumentMatchersAnyTest() {
-  describe('argumentMatchersAnyTest', () => {
+  describe('argumentMatchersForAny_sample', () => {
     it('testMockfunc', 0, () => {
       console.info("it1 begin");
       // 创建一个Mock能力的对象MockKit

@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-// [Start vertifyTimes_sample]
+// [Start verifyTimes_sample]
 import { describe, it, MockKit, when } from '@ohos/hypium'
 
 class ClassName {
@@ -25,7 +25,7 @@ class ClassName {
   }
 }
 export default function verifyTimesTest() {
-  describe('verifyTimesTest', () => {
+  describe('verifyTimes_sample', () => {
     it('test_verify_times', 0, () => {
       // 创建一个Mock能力的对象MockKit
       let mocker: MockKit = new MockKit();
@@ -50,4 +50,4 @@ export default function verifyTimesTest() {
     })
   })
 }
-// [End vertifyTimes_sample]
+// [End verifyTimes_sample]

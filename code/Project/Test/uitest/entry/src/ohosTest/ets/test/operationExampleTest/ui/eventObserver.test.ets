@@ -19,7 +19,7 @@
   import { Driver, UIElementInfo } from '@kit.TestKit';
 
   export default function abilityTest() {
-    describe('observerTest', () => {
+    describe('eventObserver_sample', () => {
       // 监听Toast控件出现
       it("toastObserver", TestType.FUNCTION, async () => {
         let driver = Driver.create();

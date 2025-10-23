@@ -16,10 +16,10 @@
 // [Start displayOp_sample]
 import { describe, it, TestType, Size, Level } from '@ohos/hypium';
 // 导入测试依赖kit
-import { Driver, Point } from '@kit.TestKit';
+import { DisplayRotation, Driver, Point } from '@kit.TestKit';
 
 export default function abilityTest() {
-  describe('crownRotateTest', () => {
+  describe('displayOp_sample', () => {
     // 屏幕属性获取和屏幕操作
     it('displayOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
       let driver = Driver.create();
