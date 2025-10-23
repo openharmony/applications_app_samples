@@ -57,64 +57,64 @@ class MyRenderNode extends RenderNode {
 }
 
 // 创建一个MyRenderNode对象
-const textNode = new MyRenderNode()
+const textNode = new MyRenderNode();
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
   y: 0,
   width: 400,
   height: 600
-}
-textNode.pivot = { x: 0.2, y: 0.8 }
-textNode.scale = { x: 1, y: 1 }
+};
+textNode.pivot = { x: 0.2, y: 0.8 };
+textNode.scale = { x: 1, y: 1 };
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode {
-    this.rootNode = new FrameNode(uiContext)
+    this.rootNode = new FrameNode(uiContext);
     if (this.rootNode == null) {
-      return this.rootNode
+      return this.rootNode;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
       renderNode.frame = {
         x: 0,
         y: 0,
         width: 10,
         height: 500
-      }
-      renderNode.pivot = { x: 0.2, y: 0.8 }
+      };
+      renderNode.pivot = { x: 0.2, y: 0.8 };
     }
-    return this.rootNode
+    return this.rootNode;
   }
 
   addNode(node: RenderNode): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.appendChild(node)
+      renderNode.appendChild(node);
     }
   }
 
   clearNodes(): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.clearChildren()
+      renderNode.clearChildren();
     }
   }
 }
 
-let myNodeController: MyNodeController = new MyNodeController()
+let myNodeController: MyNodeController = new MyNodeController();
 
 async function performTask() {
-  myNodeController.clearNodes()
-  myNodeController.addNode(textNode)
+  myNodeController.clearNodes();
+  myNodeController.addNode(textNode);
 }
 
 @Entry

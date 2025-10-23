@@ -75,7 +75,7 @@ function drawText(canvas: drawing.Canvas) {
     let advances: Array<common2D.Point> = run.getAdvances({ start: 0, end: 0 });
 
     // 创建字形buffer，通过drawing接口进行字形独立绘制
-    let runBuffer: Array<drawing.TextBlobRunBuffer> = [];
+    let runBuffer: Array<drawing.TextBlobRunBuffer> = new Array();
     for (let i = 0; i < glyphs.length; i++) {
       runBuffer.push({ glyph: glyphs[i], positionX: x, positionY: y });
       x += advances[i].x + 10;
@@ -97,7 +97,7 @@ class MyRenderNode extends RenderNode {
 }
 
 // 创建一个MyRenderNode对象
-const textNode = new MyRenderNode()
+const textNode = new MyRenderNode();
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
@@ -110,11 +110,11 @@ class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode {
-    this.rootNode = new FrameNode(uiContext)
+    this.rootNode = new FrameNode(uiContext);
     if (this.rootNode == null) {
-      return this.rootNode
+      return this.rootNode;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
       renderNode.frame = {
         x: 0,
@@ -124,7 +124,7 @@ class MyNodeController extends NodeController {
       }
       renderNode.appendChild(textNode);
     }
-    return this.rootNode
+    return this.rootNode;
   }
 }
 // [End arkts_independent_shaping_text]

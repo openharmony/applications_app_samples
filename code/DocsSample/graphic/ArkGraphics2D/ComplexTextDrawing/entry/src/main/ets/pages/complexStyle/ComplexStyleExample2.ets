@@ -60,7 +60,7 @@ class MyRenderNode extends RenderNode {
       baselineOffset: 100
     };
     // 添加占位符
-    paragraphBuilder.addPlaceholder(myPlaceholderSpan)
+    paragraphBuilder.addPlaceholder(myPlaceholderSpan);
 
     // 更新文本样式
     paragraphBuilder.pushStyle(myTextStyle);
@@ -77,86 +77,86 @@ class MyRenderNode extends RenderNode {
     //获取全部占位符的数组
     let placeholderRects = paragraph.getRectsForPlaceholders();
     // 获取第一个占位符的左边界
-    let left = placeholderRects[0].rect.left
+    let left = placeholderRects[0].rect.left;
     // 获取第一个占位符的上边界
-    let top = placeholderRects[0].rect.top
+    let top = placeholderRects[0].rect.top;
     // 获取第一个占位符的右边界
-    let right = placeholderRects[0].rect.right
+    let right = placeholderRects[0].rect.right;
     // 获取第一个占位符的下边界
-    let bottom = placeholderRects[0].rect.bottom
-    let pen: drawing.Pen =  new drawing.Pen()
-    let penColor : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
-    pen.setColor(penColor)
-    canvas.attachPen(pen)
+    let bottom = placeholderRects[0].rect.bottom;
+    let pen: drawing.Pen =  new drawing.Pen();
+    let penColor : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 };
+    pen.setColor(penColor);
+    canvas.attachPen(pen);
     // 使用draw方法绘制占位符矩形框
-    canvas.drawRect(left,top,right,bottom)
+    canvas.drawRect(left,top,right,bottom);
   }
 }
 
 // 创建一个MyRenderNode对象
-const textNode = new MyRenderNode()
+const textNode = new MyRenderNode();
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
   y: 0,
   width: 400,
-  height: 600
-}
-textNode.pivot = { x: 0.2, y: 0.8 }
-textNode.scale = { x: 1, y: 1 }
+  height: 600,
+};
+textNode.pivot = { x: 0.2, y: 0.8 };
+textNode.scale = { x: 1, y: 1 };
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode {
-    this.rootNode = new FrameNode(uiContext)
+    this.rootNode = new FrameNode(uiContext);
     if (this.rootNode == null) {
-      return this.rootNode
+      return this.rootNode;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
       renderNode.frame = {
         x: 0,
         y: 0,
         width: 10,
         height: 500
-      }
+      };
     }
-    return this.rootNode
+    return this.rootNode;
   }
 
   addNode(node: RenderNode): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.appendChild(node)
+      renderNode.appendChild(node);
     }
   }
 
   clearNodes(): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.clearChildren()
+      renderNode.clearChildren();
     }
   }
 }
 
-let myNodeController: MyNodeController = new MyNodeController()
+let myNodeController: MyNodeController = new MyNodeController();
 
 async function performTask() {
-  myNodeController.clearNodes()
-  myNodeController.addNode(textNode)
+  myNodeController.clearNodes();
+  myNodeController.addNode(textNode);
 }
 
 @Entry
 @Component
 struct Font08 {
-  @State src: Resource = $r('app.media.startIcon')
+  @State src: Resource = $r('app.media.startIcon');
   build() {
     Column() {
       Row() {

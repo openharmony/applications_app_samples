@@ -69,9 +69,6 @@ struct Index {
           .height('4%')
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-
-
-
       }.width('100%')
     }.height('100%')
 
