@@ -124,8 +124,8 @@ void ArkTsThread::CallFunc()
 namespace {
     ArkTsThread *g_thread;
 }
-// [EndExclide main_handle_child_start_callback]
-// [EndExclide main_process_launch_native_child]
+// [EndExclude main_handle_child_start_callback]
+// [EndExclude main_process_launch_native_child]
 static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remoteProxy)
 {
     if (errCode != NCP_NO_ERROR) {
@@ -152,8 +152,8 @@ static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remotePro
     if (g_promiseStartProcess != nullptr) {
         g_promiseStartProcess->set_value(errCode);
     }
-    // [EndExclide main_handle_child_start_callback]
-    // [EndExclide main_process_launch_native_child]
+    // [EndExclude main_handle_child_start_callback]
+    // [EndExclude main_process_launch_native_child]
 }
 // [End main_handle_child_start_callback]
 

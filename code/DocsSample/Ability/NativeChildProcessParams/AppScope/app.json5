@@ -15,7 +15,7 @@
 
 {
   "app": {
-    "bundleName": "com.example.nativechildprocessparams",
+    "bundleName": "com.sample.nativechildprocessparams",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

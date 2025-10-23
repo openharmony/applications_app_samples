@@ -8,10 +8,13 @@
 2. 对IPCKit存在依赖；
 3. 创建的子进程会随着父进程的退出而退出，无法脱离父进程独立运行。
 
+### 效果展示
+
+不涉及。
+
 ### 测试代码说明
 
-1.SUB_Ability_AbilityRuntime_NativeStartChildProcess_0100：验证通过StartNativeChildProcess创建 Native 子进程的功能，包括检查启动返回值、子进程 IPC 通信（加法操作）、退出子进程及重启子进程的流程。
-2.SUB_Ability_AbilityRuntime_NativeStartChildProcess_0200：验证通过TestChildProcess创建 Native 子进程的功能，检查启动返回值，处理多进程模式禁用或子进程功能禁用的场景。
+1.SUB_Ability_AbilityRuntime_NativeStartChildProcess_0200：验证通过TestChildProcess创建 Native 子进程的功能，检查启动返回值，处理多进程模式禁用或子进程功能禁用的场景。
 
 ### 工程目录
 ```
@@ -56,18 +59,21 @@ entry/src/
 
 ```
 
+### 使用说明
+
+1. 依赖准备：需引入libipc_capi.so、libchild_process.so库及对应头文件。
+2. 子进程实现：导出NativeChildProcess_OnConnect（返回 IPC 通信的 Stub 对象）和NativeChildProcess_MainProc（业务入口），编译为动态库并链接libipc_capi.so。
+3. 主进程操作：调用OH_Ability_CreateNativeChildProcess启动子进程，通过回调OnNativeChildProcessStarted处理结果，保存OHIPCRemoteProxy用于 IPC，使用后需释放。
+4. 编译配置：主进程和子进程的CMakeLists.txt需分别链接依赖库，确保编译通过。
+
 ### 具体实现
-1.准备基础工程：基于现有 Native 应用开发工程，确保包含 IPC 和 AbilityKit 相关头文件（ipc_kit.h、native_child_process.h）。
 
-2.实现子进程核心函数：在子进程代码（如ChildProcessSample.cpp）中，实现导出函数NativeChildProcess_OnConnect（返回 IPC Stub 对象，处理主进程消息）和NativeChildProcess_MainProc（子进程业务逻辑入口）。
-
-3.编译子进程动态库：修改CMakeLists.txt，将子进程代码编译为动态库（如libchildprocesssample.so），并链接libipc_capi.so等依赖库。
-
-4.主进程实现启动回调：主进程中定义OnNativeChildProcessStarted回调函数，处理子进程启动结果（成功时保存OHIPCRemoteProxy用于 IPC 通信，失败时做异常处理）。
-
-5.主进程启动子进程：调用OH_Ability_CreateNativeChildProcess接口，传入子进程动态库名和回调函数，启动子进程（仅主进程可调用）。
-
-6.主进程配置编译依赖：修改主进程CMakeLists.txt，链接libipc_capi.so、libchild_process.so等依赖库，确保编译通过。
+1. 准备基础工程：基于现有 Native 应用开发工程，确保包含 IPC 和 AbilityKit 相关头文件（ipc_kit.h、native_child_process.h）。
+2. 实现子进程核心函数：在子进程代码（如ChildProcessSample.cpp）中，实现导出函数NativeChildProcess_OnConnect（返回 IPC Stub 对象，处理主进程消息）和NativeChildProcess_MainProc（子进程业务逻辑入口）。
+3. 编译子进程动态库：修改CMakeLists.txt，将子进程代码编译为动态库（如libchildprocesssample.so），并链接libipc_capi.so等依赖库。
+4. 主进程实现启动回调：主进程中定义OnNativeChildProcessStarted回调函数，处理子进程启动结果（成功时保存OHIPCRemoteProxy用于 IPC 通信，失败时做异常处理）。
+5. 主进程启动子进程：调用OH_Ability_CreateNativeChildProcess接口，传入子进程动态库名和回调函数，启动子进程（仅主进程可调用）。
+6. 主进程配置编译依赖：修改主进程CMakeLists.txt，链接libipc_capi.so、libchild_process.so等依赖库，确保编译通过。
 
 ### 相关权限
 

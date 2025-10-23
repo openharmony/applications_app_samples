@@ -18,7 +18,7 @@
 #include <IPCKit/ipc_kit.h>
 // [StartExclude child_process_must_method]
 #include <AbilityKit/native_child_process.h>
-// [EndExclide child_process_must_method]
+// [EndExclude child_process_must_method]
 // [End child_process_head_file]
 #include <IPCKit/ipc_cremote_object.h>
 #include <IPCKit/ipc_cparcel.h>

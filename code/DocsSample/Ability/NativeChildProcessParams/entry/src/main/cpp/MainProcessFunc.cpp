@@ -24,7 +24,7 @@
 #include <node_api.h>
 
 int32_t g_result = -1;
-// [EndExclide main_process_launch_native_child]
+// [EndExclude main_process_launch_native_child]
 int32_t g_fdNameMaxLength = 4;
 
 void StartNativeChildProcess()
@@ -70,7 +70,7 @@ void StartNativeChildProcess()
     // 其他逻辑
 // [StartExclude main_process_launch_native_child]
     g_result = ret;
-// [EndExclide main_process_launch_native_child]
+// [EndExclude main_process_launch_native_child]
 
     // 释放NativeChildProcess_Args中的内存空间防止内存泄漏
 }

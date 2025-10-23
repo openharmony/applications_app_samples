@@ -15,6 +15,9 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
 import testNapi from 'libmainprocesssample.so';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -46,23 +49,23 @@ export default function abilityTest() {
      * @tc.type Function
      * @tc.level Level 1
      */
-    it('SUB_Ability_AbilityRuntime_NativeStartChildProcess_0100', Level.LEVEL0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_NativeStartChildProcess_0100', Level.LEVEL1, async (done: Function) => {
       let tag = `ACTS_NativeStartChildProcess_0100`;
-      console.log(`${tag}, it begin`);
+      hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}` + 'it begin');
 
-        let ret: Number = testNapi.testChildProcess();
-        console.info(`${tag}: ret` + ret);
-        if (ret == 16010004) {
-          console.info(`${tag}: multi process model disable`);
-          expect(16010004).assertEqual(ret);
-          return;
-        } else if (ret == 801) {
-          console.info(`${tag}: Native child process disable`);
-          expect(801).assertEqual(ret);
-          return;
-        }
-        expect(0).assertEqual(ret);
-        done();
+      let ret: Number = testNapi.testChildProcess();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}: ret` + ret);
+      if (ret == 16010004) {
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}: multi process model disable`);
+        expect(16010004).assertEqual(ret);
+        return;
+      } else if (ret == 801) {
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}: Native child process disable`);
+        expect(801).assertEqual(ret);
+        return;
+      }
+      expect(0).assertEqual(ret);
+      done();
     })
   })
 }
