@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start FormEditDemo_FormEditSecPage]
+// entry/src/main/ets/pages/FormEditSecPage.ets
 @Entry
 @Component
 struct FormEditSecPage {
-  @State message: string = '卡片编辑二页';
+  @State message: string | ResourceStr = $r('app.string.button_three');
 
   build() {
     RelativeContainer() {
@@ -36,3 +37,4 @@ struct FormEditSecPage {
     .width('100%')
   }
 }
+// [End FormEditDemo_FormEditSecPage]

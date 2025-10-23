@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start FormEditDemo_ExtensionEvent]
+// entry/src/main/ets/model/ExtensionEvent.ets
 
 const TAG: string = 'FormEditDemo[ExtensionEvent] -->';
 const LOCAL: Record<string, string> = { 'formId': '', 'previewFormId': '', 'message': '' };
@@ -33,3 +35,4 @@ export class ExtensionEvent {
     this.startSecondPage();
   }
 }
+// [End FormEditDemo_ExtensionEvent]

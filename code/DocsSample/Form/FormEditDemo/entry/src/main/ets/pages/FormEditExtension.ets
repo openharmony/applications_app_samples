@@ -13,10 +13,16 @@
  * limitations under the License.
  */
 
+// [Start FormEditDemo_FormEditExtension]
+// entry/src/main/ets/pages/FormEditExtension.ets
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
 import { formBindingData, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { PreferencesUtil } from '../common/PreferencesUtil'
+import { FormData } from '../common/CommonData';
+import { preferences } from '@kit.ArkData';
+import FormEditExtensionContext from 'application/FormEditExtensionContext';
 
 const TAG: string = 'FormEditDemo[Extension] -->';
 let storage: LocalStorage = ExtensionEvent.getStorage();
@@ -24,28 +30,32 @@ let storage: LocalStorage = ExtensionEvent.getStorage();
 @Entry(storage)
 @Component
 struct FormEditExtension {
-  @State message1: string = 'message one';
-  @State message2: string = 'message two';
-  private formId: string | undefined = storage.get('formId')
-  private previewFormId: string | undefined = storage.get('previewFormId')
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-  private extensionEvent: ExtensionEvent | undefined = storage.get<ExtensionEvent>('extensionEvent');
+  context1 = this.getUIContext().getHostContext();
+  @State message1: string = this.context1!.resourceManager.getStringSync($r('app.string.button_one').id);
+  @State message2: string = this.context1!.resourceManager.getStringSync($r('app.string.button_two').id);
+  private formId: string = storage.get('formId') as string;
+  private previewFormId: string = storage.get('previewFormId') as string;
+  private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session') as UIExtensionContentSession;
+  private extensionEvent: ExtensionEvent = storage.get<ExtensionEvent>('extensionEvent') as ExtensionEvent;
+  private context: FormEditExtensionContext = storage.get<FormEditExtensionContext>('context') as FormEditExtensionContext;
   updateForm(message: string) {
+    if (!this.formId && !this.previewFormId) {
+      return;
+    }
     let param: Record<string, string> = {
       'message': message
     }
+    let util = PreferencesUtil.getInstance();
+    let preferences = util.getPreferences(this.context) as preferences.Preferences;
+    util.preferencesPut(preferences, this.formId, new FormData(this.formId, message));
     let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
-    if (!this.formId) {
-      console.error(TAG, 'formId is empty');
-      return;
-    }
     try {
       formProvider.updateForm(this.formId, obj, (error: BusinessError) => {
         if (error) {
           console.error(TAG, `callback error, code: ${error.code}, message: ${error.message})`);
           return;
         }
-        console.log(TAG, `formProvider updateForm success`);
+        console.info(TAG, `formProvider updateForm success`);
       });
     } catch (error) {
       console.error(TAG, `catch error, code: ${JSON.stringify(error)})`);
@@ -60,7 +70,7 @@ struct FormEditExtension {
           console.error(TAG, `callback error, code: ${error.code}, message: ${error.message})`);
           return;
         }
-        console.log(TAG, `formProvider updateForm success`);
+        console.info(TAG, `formProvider updateForm success`);
       });
     } catch (error) {
       console.error(TAG, `catch error, code: ${JSON.stringify(error)})`);
@@ -110,3 +120,4 @@ struct FormEditExtension {
     .width('100%')
   }
 }
+// [End FormEditDemo_FormEditExtension]

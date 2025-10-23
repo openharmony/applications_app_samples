@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start FormEditDemo_FormEditSecPageAbility]
+// entry/src/main/ets/entryformeditability/FormEditSecPageAbility.ets
 import { FormEditExtensionAbility } from '@kit.FormKit';
 import { Want, UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
 
-const TAG = 'FormEditExtensionAbility';
+const TAG = 'FormEditSecPageAbility';
 
 export default class FormEditSecPageAbility extends FormEditExtensionAbility {
   public storage: LocalStorage = new LocalStorage();
@@ -39,6 +40,7 @@ export default class FormEditSecPageAbility extends FormEditExtensionAbility {
     let extensionEvent: ExtensionEvent = new ExtensionEvent();
     this.storage.setOrCreate('extensionEvent', extensionEvent);
     this.storage.setOrCreate('session', session);
+    this.storage.setOrCreate('context', this.context);
 
     try {
       session.loadContent('pages/FormEditSecPage', this.storage);
@@ -53,3 +55,4 @@ export default class FormEditSecPageAbility extends FormEditExtensionAbility {
   }
 
 }
+// [End FormEditDemo_FormEditSecPageAbility]

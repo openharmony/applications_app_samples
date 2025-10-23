@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start FormEditDemo_EntryFormEditAbility]
+// entry/src/main/ets/entryformeditability/EntryFormEditAbility.ets
 import { FormEditExtensionAbility } from '@kit.FormKit';
 import { Want, UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
@@ -36,7 +37,9 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
   }
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     console.info(`${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
+    // 获取被编辑卡片的卡片ID
     const formId: string | undefined = want.parameters?.cardId as string;
+    // 获取预览卡片的卡片ID
     const previewFormId: string | undefined = want.parameters?.previewCardId as string;
 
     if (formId) {
@@ -50,6 +53,7 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     let extensionEvent: ExtensionEvent = new ExtensionEvent();
     extensionEvent.setStartSecondPage((): void => this.startSecondPage());
     storage.setOrCreate('extensionEvent', extensionEvent);
+    storage.setOrCreate('context', this.context);
     try {
       session.loadContent('pages/FormEditExtension', storage);
     } catch (e) {
@@ -64,6 +68,7 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     const secPageAbilityName: string = 'FormEditSecPageAbility';
     console.info(`${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
     try {
+      // 拉起二级编辑页
       this.context.startSecondPage({
         bundleName: bundleName,
         parameters: {
@@ -76,3 +81,4 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
     }
   }
 };
+// [End FormEditDemo_EntryFormEditAbility]
