@@ -16,7 +16,10 @@
 // [Start ui_ability_usage_start]
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const TAG = '[Page_UIAbilityComponentsBasicUsage]';
+const DOMAIN = 0xF811;
 @Entry
 @Component
 struct Page_UIAbilityComponentsBasicUsage {
@@ -34,17 +37,17 @@ struct Page_UIAbilityComponentsBasicUsage {
             context.terminateSelf((err: BusinessError) => {
               if (err.code) {
                 // 处理业务逻辑错误
-                console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}.`);
+                hilog.error(DOMAIN, TAG, `terminateSelf failed, code is ${err.code}, message is ${err.message}.`);
                 return;
               }
               // 执行正常业务
-              console.info(`terminateSelf succeed.`);
+              hilog.info(DOMAIN, TAG, `terminateSelf succeed.`);
             });
           } catch (err) {
             // 捕获同步的参数错误
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
-            console.error(`terminateSelf failed, code is ${code}, message is ${message}.`);
+            hilog.error(DOMAIN, TAG, `terminateSelf failed, code is ${code}, message is ${message}.`);
           }
         })
     }
