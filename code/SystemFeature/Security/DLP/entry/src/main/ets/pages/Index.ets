@@ -510,11 +510,14 @@ struct FilePicker {
     try {
       identifySensitiveContent.scanFile(filepath, policies).then(records => {
         console.info('scanFile finish');
+        this.result = 'scanFile finish';
       }).catch((err:Error) => {
         console.error('error message', err.message);
+        this.result = 'error message' + err.message;
       })
     } catch (err) {
       console.error('error message', err.message);
+      this.result = 'error message' + err.message;
     }
   }
   // [End dlp_scanSensitiveInfo]
