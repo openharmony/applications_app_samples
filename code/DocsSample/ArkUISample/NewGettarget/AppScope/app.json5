@@ -1,7 +1,7 @@
 {
   "app": {
-    "bundleName": "com.example.newgettarget",
-    "vendor": "example",
+    "bundleName": "com.samples.newgettarget",
+    "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:layered_image",

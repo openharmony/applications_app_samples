@@ -81,17 +81,17 @@ NewGettarget
 │     │  │  │  └─ EntryAbility.ets
 │     │  │  ├─ entrybackupability
 │     │  │  │  └─ EntryBackupAbility.ets
-│     │  │  ├─ model
+│     │  │  ├─ model         // 数据类型文件
 │     │  │  │  ├─ modelView1.ets
 │     │  │  │  └─ modelView2.ets
 │     │  │  ├─ pages
-│     │  │  │  └─ Index.ets
+│     │  │  │  └─ Index.ets  // 启动页
 │     │  │  └─ View
-│     │  │     ├─ Page1.ets
-│     │  │     ├─ Page2.ets
-│     │  │     ├─ Page3.ets
-│     │  │     ├─ Page4.ets
-│     │  │     └─ Page5.ets
+│     │  │     ├─ Page1.ets //更改getTarget获取的原始对象中的内容不会被观察到变化，也不会触发UI刷新
+│     │  │     ├─ Page2.ets //获取状态管理V1代理前的原始对象
+│     │  │     ├─ Page3.ets //使用UIUtils.getTarget接口可以获取代理前的原始对象
+│     │  │     ├─ Page4.ets //获取状态管理V2代理前的原始对象
+│     │  │     └─ Page5.ets //状态管理V2装饰器会为装饰的变量生成getter和setter方法
 │     │  ├─ module.json5
 │     │  └─ resources
 │     │     ├─ base
@@ -130,7 +130,7 @@ NewGettarget
 ├─ oh-package.json5
 ├─ ohosTest.md
 ├─ README_zh.md
-└─ screenshots
+└─ screenshots  // 截图
    └─ device
       ├─ iamge3.jpeg
       ├─ image1.jpeg
