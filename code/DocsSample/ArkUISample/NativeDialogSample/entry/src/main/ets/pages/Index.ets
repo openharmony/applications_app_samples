@@ -46,7 +46,7 @@ struct Index {
           .width('85%')
           .margin({ top: 20, bottom: 10 })
           .onClick(() => {
-            router.push({url: 'pages/DialogDemo'});
+            this.getUIContext().getRouter().pushUrl({url: 'pages/DialogDemo'});
           })
         Text($r('app.string.exit_app'))
           .fontSize(20)
