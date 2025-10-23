@@ -17,23 +17,25 @@
 import { FormEditExtensionAbility } from '@kit.FormKit';
 import { Want, UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'FormEditSecPageAbility';
+const DOMAIN = 0xFF00;
 
 export default class FormEditSecPageAbility extends FormEditExtensionAbility {
   public storage: LocalStorage = new LocalStorage();
 
   onCreate() {
-    console.info(TAG, `Ability onCreate`);
+    hilog.info(DOMAIN, TAG, `Ability onCreate`);
   }
   onForeground(): void {
-    console.info(TAG, `Ability onForeground`);
+    hilog.info(DOMAIN, TAG, `Ability onForeground`);
   }
   onBackground(): void {
-    console.info(TAG, `Ability onBackground`);
+    hilog.info(DOMAIN, TAG, `Ability onBackground`);
   }
   onDestroy(): void {
-    console.info(TAG, `Ability onDestroy`);
+    hilog.info(DOMAIN, TAG, `Ability onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -44,14 +46,14 @@ export default class FormEditSecPageAbility extends FormEditExtensionAbility {
 
     try {
       session.loadContent('pages/FormEditSecPage', this.storage);
-      console.info(TAG, `loadContent first edit page success`);
+      hilog.info(DOMAIN, TAG, `loadContent first edit page success`);
     } catch (e) {
-      console.error(TAG, `EntryFormEditAbility loadContent err, want: ${e?.message}`);
+      hilog.error(DOMAIN, TAG, `EntryFormEditAbility loadContent err, want: ${e?.message}`);
     }
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.info(TAG, `onSessionDestroy`);
+    hilog.info(DOMAIN, TAG, `onSessionDestroy`);
   }
 
 }

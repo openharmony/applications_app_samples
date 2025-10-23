@@ -17,6 +17,7 @@
 // entry/src/main/ets/pages/FormEditExtension.ets
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { formBindingData, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { PreferencesUtil } from '../common/PreferencesUtil'
@@ -26,6 +27,7 @@ import FormEditExtensionContext from 'application/FormEditExtensionContext';
 
 const TAG: string = 'FormEditDemo[Extension] -->';
 let storage: LocalStorage = ExtensionEvent.getStorage();
+const DOMAIN = 0xFF00;
 
 @Entry(storage)
 @Component
@@ -52,32 +54,32 @@ struct FormEditExtension {
     try {
       formProvider.updateForm(this.formId, obj, (error: BusinessError) => {
         if (error) {
-          console.error(TAG, `callback error, code: ${error.code}, message: ${error.message})`);
+          hilog.error(DOMAIN, TAG, `callback error, code: ${error.code}, message: ${error.message})`);
           return;
         }
-        console.info(TAG, `formProvider updateForm success`);
+        hilog.info(DOMAIN, TAG, `formProvider updateForm success`);
       });
     } catch (error) {
-      console.error(TAG, `catch error, code: ${JSON.stringify(error)})`);
+      hilog.error(DOMAIN, TAG, `catch error, code: ${JSON.stringify(error)})`);
     }
     if (!this.previewFormId) {
-      console.error(TAG, 'previewFormId is empty');
+      hilog.error(DOMAIN, TAG, 'previewFormId is empty');
       return;
     }
     try {
       formProvider.updateForm(this.previewFormId, obj, (error: BusinessError) => {
         if (error) {
-          console.error(TAG, `callback error, code: ${error.code}, message: ${error.message})`);
+          hilog.error(DOMAIN, TAG, `callback error, code: ${error.code}, message: ${error.message})`);
           return;
         }
-        console.info(TAG, `formProvider updateForm success`);
+        hilog.info(DOMAIN, TAG, `formProvider updateForm success`);
       });
     } catch (error) {
-      console.error(TAG, `catch error, code: ${JSON.stringify(error)})`);
+      hilog.error(DOMAIN, TAG, `catch error, code: ${JSON.stringify(error)})`);
     }
   }
   onPageShow() {
-    console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    hilog.info(DOMAIN, TAG, `${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
   }
   build() {
     Row() {
@@ -89,7 +91,7 @@ struct FormEditExtension {
             top: 20
           })
           .onClick(() => {
-            console.info(`${TAG} Button1 onClick ${storage.get('message')}`);
+            hilog.info(DOMAIN, TAG, `${TAG} Button1 onClick ${storage.get('message')}`);
             this.updateForm(this.message1);
             storage.setOrCreate('message', this.message1);
           })
@@ -100,7 +102,7 @@ struct FormEditExtension {
             top: 20
           })
           .onClick(() => {
-            console.info(`${TAG} Button2 onClick`);
+            hilog.info(DOMAIN, TAG, `${TAG} Button2 onClick`);
             this.updateForm(this.message2);
             storage.setOrCreate('message', this.message2);
           })
@@ -111,7 +113,7 @@ struct FormEditExtension {
             top: 20
           })
           .onClick(async () => {
-            console.info(`${TAG} Button onClick`);
+            hilog.info(DOMAIN, TAG, `${TAG} Button onClick`);
             this.extensionEvent?.startFormEditSecondPage();
           })
       }

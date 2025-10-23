@@ -18,7 +18,9 @@ import { formBindingData, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { PreferencesUtil } from '../common/PreferencesUtil';
 import { preferences } from '@kit.ArkData';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0xF811;
 const TAG: string = 'FormEdit -->';
 
 @Entry
@@ -33,10 +35,10 @@ struct FormEditIndex {
     let preferences = util.getPreferences(this.getUIContext().getHostContext() as Context) as preferences.Preferences;
     let formId: string = util.getValue(preferences) as string;
     if (!formId ) {
-      console.info(TAG, `1111111111`);
+      hilog.info(DOMAIN, TAG, `1111111111`);
       return;
     }
-    console.info(TAG, `doy: formId: ${formId}, message: ${message}`)
+    hilog.info(DOMAIN, TAG, `doy: formId: ${formId}, message: ${message}`)
     let param: Record<string, string> = {
       'message': message
     }
@@ -44,13 +46,13 @@ struct FormEditIndex {
     try {
       formProvider.updateForm(formId, obj, (error: BusinessError) => {
         if (error) {
-          console.error(TAG, `callback error, code: ${error.code}, message: ${error.message})`);
+          hilog.error(DOMAIN, TAG, `callback error, code: ${error.code}, message: ${error.message})`);
           return;
         }
-        console.info(TAG, `formProvider updateForm success`);
+        hilog.info(DOMAIN, TAG, `formProvider updateForm success`);
       });
     } catch (error) {
-      console.error(TAG, `catch error, code: ${JSON.stringify(error)})`);
+      hilog.error(DOMAIN, TAG, `catch error, code: ${JSON.stringify(error)})`);
     }
   }
 

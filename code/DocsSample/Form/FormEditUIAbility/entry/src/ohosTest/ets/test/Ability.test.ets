@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON, Component, Point } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_FormEditUIAbility]'
-const DOMAIN = 0xF811
-const BUNDLE = 'FormEditUIAbility_'
+const TAG = '[Sample_FormEditUIAbility]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'FormEditUIAbility_';
 const DELAYTIME01 = 500;
 const DELAYTIME02 = 2000;
 

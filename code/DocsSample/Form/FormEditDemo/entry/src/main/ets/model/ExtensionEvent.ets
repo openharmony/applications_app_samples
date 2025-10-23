@@ -14,9 +14,11 @@
  */
 // [Start FormEditDemo_ExtensionEvent]
 // entry/src/main/ets/model/ExtensionEvent.ets
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'FormEditDemo[ExtensionEvent] -->';
 const LOCAL: Record<string, string> = { 'formId': '', 'previewFormId': '', 'message': '' };
+const DOMAIN = 0xFF00;
 
 export class ExtensionEvent {
   private static storage = new LocalStorage(LOCAL);
@@ -24,14 +26,14 @@ export class ExtensionEvent {
     return ExtensionEvent.storage;
   }
   private startSecondPage: () => void = (): void => {
-    console.info(`${TAG} startSecondPage is empty!`);
+    hilog.info(DOMAIN, TAG, `${TAG} startSecondPage is empty!`);
   };
   public setStartSecondPage(startSecondPage: () => void) {
-    console.info(`${TAG} setStartSecondPage`);
+    hilog.info(DOMAIN, TAG, `${TAG} setStartSecondPage`);
     this.startSecondPage = startSecondPage;
   }
   public async startFormEditSecondPage() {
-    console.info(`${TAG} startFormEditSecondPage call`);
+    hilog.info(DOMAIN, TAG, `${TAG} startFormEditSecondPage call`);
     this.startSecondPage();
   }
 }

@@ -16,7 +16,9 @@
 // entry/src/main/ets/common/PreferencesUtil.ets
 import { preferences } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0xF811;
 const TAG: string = 'PreferencesUtil';
 const MY_STORE: string = 'myStore';
 const key: string = 'formID';
@@ -37,7 +39,7 @@ export class PreferencesUtil {
       return preferences.getPreferencesSync(context, { name: MY_STORE });
     } catch (error) {
       let err = error as BusinessError;
-      console.error(TAG, `getPreferences failed, error code=${err.code}, message=${err.message}`);
+      hilog.error(DOMAIN, TAG, `getPreferences failed, error code=${err.code}, message=${err.message}`);
       return undefined;
     }
   }
@@ -52,26 +54,26 @@ export class PreferencesUtil {
       preferences.flushSync();
     } catch (error) {
       let err = error as BusinessError;
-      console.error(TAG, `preferencesPut failed, error code=${err.code}, message=${err.message}`);
+      hilog.error(DOMAIN, TAG, `preferencesPut failed, error code=${err.code}, message=${err.message}`);
     }
   }
 
   removePreferencesFromCache(context: Context): void {
     preferences.removePreferencesFromCache(context, MY_STORE).catch((err: BusinessError) => {
-      console.error(TAG, `removePreferencesFromCache failed, error code=${err.code}, message=${err.message}`);
+      hilog.error(DOMAIN, TAG, `removePreferencesFromCache failed, error code=${err.code}, message=${err.message}`);
     });
   }
 
   getValue(preferences: preferences.Preferences): string | undefined {
     if (preferences === null) {
-      console.error(TAG, `preferences is null`);
+      hilog.error(DOMAIN, TAG, `preferences is null`);
       return undefined;
     }
     try {
       return preferences.getSync(key, '') as string
     } catch (error) {
       let err = error as BusinessError;
-      console.error(TAG, `getSync failed, error code=${err.code}, message=${err.message}`);
+      hilog.error(DOMAIN, TAG, `getSync failed, error code=${err.code}, message=${err.message}`);
       return undefined;
     }
   }
@@ -80,16 +82,16 @@ export class PreferencesUtil {
     try {
       let preferences = this.getPreferences(context);
       if (!preferences) {
-        console.error(TAG, `preferences is null`);
+        hilog.error(DOMAIN, TAG, `preferences is null`);
         return;
       }
       if (preferences.hasSync(key)) {
         preferences.deleteSync(key);
         preferences.flushSync();
-        console.info(TAG, `deleteSync done.`);
+        hilog.info(DOMAIN, TAG, `deleteSync done.`);
       }
     } catch (error) {
-      console.error(TAG, `Failed to get preferences. Code:${error.code}, message:${error.message}`);
+      hilog.error(DOMAIN, TAG, `Failed to get preferences. Code:${error.code}, message:${error.message}`);
     }
   }
 }
