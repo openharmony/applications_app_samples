@@ -54,7 +54,7 @@ struct Page_Context {
                 }
               })
               .catch((err: BusinessError) => {
-                hilog.error(DOMAIN, TAG,`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
+                hilog.error(DOMAIN, TAG, `CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
               });
           })
         }
