@@ -106,7 +106,6 @@ let callback = (value: SocketInfo) => {
 function handleClientConnection() {
   // [EndExclude tlsServer_connection_methods]
   tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-
     client.on('message', callback);
     // 发送数据。
     client.send('Hello, client!').then(() => {
@@ -143,17 +142,10 @@ function handleClientConnection() {
 
 // 停止服务
 function closeConnection() {
-  tlsServer.on('connect', (connection: socket.TLSSocketConnection) => {
-    console.info('connection clientId: ' + connection.clientId);
-    try{
-      tlsServer.close();
-      // [Start tlsServer_off_connect]
-      // 取消订阅tlsServer的相关事件
-      tlsServer.off('connect');
-      // [End tlsServer_off_connect]
-      workerPort.postMessage({ type: 'The service is stopped successfully', message: 'The service is stopped successfully' });
-    } catch (err) {
-      workerPort.postMessage({ type: 'Stopping the service failed', message: 'Stopping the service failed' });
-    }
-  });
+  // [Start tlsServer_off_connect]
+  tlsServer.close();
+  // 取消订阅tlsServer的相关事件
+  tlsServer.off('connect');
+  // [End tlsServer_off_connect]
+  workerPort.postMessage({ type: 'The service is stopped successfully', message: 'The service is stopped successfully' });
 }
