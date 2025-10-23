@@ -1,4 +1,4 @@
-# NetEap_case(扩展认证)
+# NetEap_case(Extended Authentication)
 
 ### 介绍
 
