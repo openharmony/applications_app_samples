@@ -303,9 +303,9 @@
   <td x:str><a href="code/DocsSample/DriverDevelopmentKit/UsbSerialDriverDemo">USB转串口类驱动样例</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/DocsSample/DriverDevelopmentKit/ScsiPeripheralDemo">SCSI协议类驱动样例</a>
-   <td x:str><a href="code/DocsSample/USB/USBManagerSample">USB设备管理</a>
-   <td x:str><a href="code/DocsSample/USB/USBManagerSerialSample">串口设备管理</a></td>
+  <td x:str><a href="code/DocsSample/DriverDevelopmentKit/ScsiPeripheralDemo">SCSI协议类驱动样例</a></td>
+  <td x:str><a href="code/DocsSample/USB/USBManagerSample">USB设备管理</a></td>
+  <td x:str><a href="code/DocsSample/USB/USBManagerSerialSample">串口设备管理</a></td>
   <td ></td>
   <td ></td>
  </tr>
