@@ -15,15 +15,18 @@
 // [Start lifecycle_ability_start]
 import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[LifecycleAbility]';
+const DOMAIN = 0xF811;
 
 export default class LifecycleAbility extends UIAbility {
   onCreate() {
     let applicationStateChangeCallback: ApplicationStateChangeCallback = {
       onApplicationForeground() {
-        console.info('applicationStateChangeCallback onApplicationForeground');
+        hilog.info(DOMAIN, TAG, 'applicationStateChangeCallback onApplicationForeground');
       },
       onApplicationBackground() {
-        console.info('applicationStateChangeCallback onApplicationBackground');
+        hilog.info(DOMAIN, TAG, 'applicationStateChangeCallback onApplicationBackground');
       }
     }
 
@@ -33,9 +36,9 @@ export default class LifecycleAbility extends UIAbility {
       // 2.通过applicationContext注册应用前后台状态监听
       applicationContext.on('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+      hilog.error(DOMAIN, TAG, `error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.info('Register applicationStateChangeCallback');
+    hilog.info(DOMAIN, TAG, 'Register applicationStateChangeCallback');
   }
 }
 // [End lifecycle_ability_start]
