@@ -64,18 +64,18 @@ function drawText(canvas: drawing.Canvas) {
   let textLine: text.TextLine = lineTypeSet.createLine(0, 11);
 
   // 获取塑形结果
-  let runs: Array<text.Run> = textLine.getGlyphRuns();
+  let runs: text.Run[] = textLine.getGlyphRuns();
   let x: number = 0;
   let y: number = 0;
   for (let index = 0; index < runs.length; index++) {
     const run = runs[index];
     // 绘制字形
-    let glyphs: Array<number> = run.getGlyphs();
+    let glyphs: number[] = run.getGlyphs();
     let font: drawing.Font = run.getFont();
-    let advances: Array<common2D.Point> = run.getAdvances({ start: 0, end: 0 });
+    let advances: common2D.Point[] = run.getAdvances({ start: 0, end: 0 });
 
     // 创建字形buffer，通过drawing接口进行字形独立绘制
-    let runBuffer: Array<drawing.TextBlobRunBuffer> = new Array();
+    let runBuffer: drawing.TextBlobRunBuffer[] = [];
     for (let i = 0; i < glyphs.length; i++) {
       runBuffer.push({ glyph: glyphs[i], positionX: x, positionY: y });
       x += advances[i].x + 10;
@@ -128,5 +128,3 @@ class MyNodeController extends NodeController {
   }
 }
 // [End arkts_independent_shaping_text]
-
-

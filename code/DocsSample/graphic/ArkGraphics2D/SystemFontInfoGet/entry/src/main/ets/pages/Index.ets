@@ -24,33 +24,46 @@ class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     // 创建画布canvas对象
     const canvas = context.canvas;
-    // 获取全局字体集实例
-    let fontCollection = text.FontCollection.getGlobalInstance(); //获取Arkui全局FC
     // 设置文本样式
+    // [Start arkts_use_and_change_system_font_step1]
     let textStyle1: text.TextStyle = {
       color: { alpha: 255, red: 255, green: 0, blue: 0 },
       fontSize: 100,
       fontFamilies: ['HarmonyOS Sans SC']
     };
+    // [End arkts_use_and_change_system_font_step1]
+
+    // [Start arkts_use_and_change_system_font_step2]
     let textStyle2: text.TextStyle = {
       color: { alpha: 255, red: 255, green: 0, blue: 0 },
       fontSize: 100,
       fontFamilies: ['HarmonyOS Sans TC']
     };
+    // [End arkts_use_and_change_system_font_step2]
+
+    // [Start arkts_use_and_change_system_font_step3]
     // 创建一个段落样式对象，以设置排版风格
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: textStyle1,
       align: 3,
       wordBreak: text.WordBreak.NORMAL
     };
+    // 获取全局字体集实例
+    let fontCollection = text.FontCollection.getGlobalInstance(); //获取Arkui全局FC
     // 创建一个段落生成器
     let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+    // [End arkts_use_and_change_system_font_step3]
+    
+    // [Start arkts_use_and_change_system_font_step4]
+    let str:string = '模块描述\n';
     // 添加第一种文本样式和对应文本内容
     ParagraphGraphBuilder.pushStyle(textStyle1);
-    ParagraphGraphBuilder.addText("模块描述\n");
+    ParagraphGraphBuilder.addText(str);
     // 添加第二种文本样式和对应文本内容
     ParagraphGraphBuilder.pushStyle(textStyle2);
-    ParagraphGraphBuilder.addText("模块描述\n");
+    ParagraphGraphBuilder.addText(str);
+    // [End arkts_use_and_change_system_font_step4]
+
     // 通过段落生成器生成段落
     let paragraph = ParagraphGraphBuilder.build();
     // 布局
@@ -114,33 +127,36 @@ struct RenderTest {
       .backgroundColor(Color.White)
 
       Row() {
-        Button($r("app.string.Button_label"))
+        Button($r('app.string.Button_label'))
           .width('60%')
           .height('6%')
           .margin(50)
           .onClick(() => {
             this.myNodeController.clearNodes();
             this.myNodeController.addNode(textNode);
+
+            // [Start arkts_system_font_info]
             let fontConfig = font.getUIFontConfig();
-            console.info("sysFontMfg::font-dir -----------" + String(fontConfig.fontDir.length));
+            console.info('sysFontMfg::font-dir -----------' + String(fontConfig.fontDir.length));
             for (let i = 0; i < fontConfig.fontDir.length; i++) {
               console.info(fontConfig.fontDir[i]);
             }
-            console.info("sysFontMfg::generic-------------" + String(fontConfig.generic.length));
+            console.info('ysFontMfg::generic-------------' + String(fontConfig.generic.length));
             for (let i = 0; i < fontConfig.generic.length; i++) {
-              console.info("sysFontMfg::family:" + fontConfig.generic[i].family);
+              console.info('sysFontMfg::family:' + fontConfig.generic[i].family);
               for (let j = 0; j < fontConfig.generic[i].alias.length; j++) {
-                console.info(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
+                console.info(fontConfig.generic[i].alias[j].name + ' ' + fontConfig.generic[i].alias[j].weight);
               }
             }
-            console.info("sysFontMfg::fallback------------" + String(fontConfig.fallbackGroups.length));
+            console.info('sysFontMfg::fallback------------' + String(fontConfig.fallbackGroups.length));
             for (let i = 0; i < fontConfig.fallbackGroups.length; i++) {
-              console.info("sysFontMfg::fontSetName:" + fontConfig.fallbackGroups[i].fontSetName);
+              console.info('sysFontMfg::fontSetName:' + fontConfig.fallbackGroups[i].fontSetName);
               for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j++) {
-                console.info("sysFontMfg::language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" +
+                console.info('sysFontMfg::language:' + fontConfig.fallbackGroups[i].fallback[j].language + ' family:' +
                   fontConfig.fallbackGroups[i].fallback[j].family);
               }
             }
+            // [End arkts_system_font_info]
           })
           .margin({ bottom: 40, left: 80 })
       }.width('100%')
