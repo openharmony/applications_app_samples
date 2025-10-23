@@ -8,6 +8,16 @@
 
 通过InsightIntentExecutor实现意图执行逻辑。
 
+### 效果图
+
+不涉及
+
+### 使用说明
+
+1. insightintent.json配置文件定义意图，声明意图执行器的代码路径、绑定的Ability组件等意图信息。
+2. 选择意图垂域、意图框架入口代码文件名以及意图配置。意图配置包含意图名称和绑定的Ability组件。
+3. 通过insightIntentDriver.execute(系统接口,需full_sdk)调用意图。
+
 ### 运行机制
 
 意图执行器实现需要继承InsightIntentExecutor，实现onExecuteInUIAbilityForegroundMode等方法。开发者响应意图执行通过onExecuteInUIAbilityForegroundMode等接口实现，在不同的意图执行模式下，接口的触发时机也不同。
@@ -45,16 +55,6 @@ entry/src/main
     └── rawfile                   # 原始资源文件（直接打包，不经过编译处理）
 
 ```
-
-### 效果图
-
-不涉及
-
-### 使用说明
-
-1. insightintent.json配置文件定义意图，声明意图执行器的代码路径、绑定的Ability组件等意图信息。
-2. 选择意图垂域、意图框架入口代码文件名以及意图配置。意图配置包含意图名称和绑定的Ability组件。
-3. 通过insightIntentDriver.execute(系统接口,需full_sdk)调用意图。
 
 ### 具体实现
 
