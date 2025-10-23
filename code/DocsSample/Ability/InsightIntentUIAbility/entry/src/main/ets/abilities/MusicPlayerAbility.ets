@@ -28,32 +28,32 @@ export default class MusicPlayerAbility extends UIAbility {
 
   // UIAbility创建时触发（后台/前台模式均会进入）
   onCreate(want: Want) {
-    hilog.info(DOMAIN, "testTag", `[MusicPlayerAbility] onCreate：${JSON.stringify(want)}`);
+    hilog.info(DOMAIN, 'testTag', `[MusicPlayerAbility] onCreate：${JSON.stringify(want)}`);
   }
 
   // 前台模式：窗口舞台创建时加载播放页面
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.windowStage = windowStage;
-    hilog.info(DOMAIN, "testTag", `[MusicPlayerAbility]`);
+    hilog.info(DOMAIN, 'testTag', `[MusicPlayerAbility]`);
 
     // 加载播放页面（路径对应pages目录下的PlayerPage）
     windowStage.loadContent('pages/PlayerPage', async (err) => {
       if (err.code) {
-        hilog.error(DOMAIN, "testTag",
+        hilog.error(DOMAIN, 'testTag',
           `[MusicPlayerAbility] ${err.message}`);
       } else {
-        hilog.info(DOMAIN, "testTag",
+        hilog.info(DOMAIN, 'testTag',
           `[MusicPlayerAbility] `);
       }
     });
   }
 
   onForeground(): void {
-    hilog.info(DOMAIN, "testTag", `[MusicPlayerAbility]`);
+    hilog.info(DOMAIN, 'testTag', `[MusicPlayerAbility]`);
   }
 
   // 后台模式：UIAbility退到后台时触发
   onBackground() {
-    hilog.info(DOMAIN, "testTag", `[MusicPlayerAbility]`);
+    hilog.info(DOMAIN, 'testTag', `[MusicPlayerAbility]`);
   }
 }

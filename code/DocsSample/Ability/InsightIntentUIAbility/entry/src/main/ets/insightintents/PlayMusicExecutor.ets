@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start play_music0100]
-// 本示例对应意图配置中的"srcEntry"字段对应的文件
+// 本示例对应意图配置中的'srcEntry'字段对应的文件
 import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 // [StartExclude play_music0100]
@@ -22,12 +22,12 @@ const DOMAIN = 0x0002;
 // [EndExclude play_music0100]
 
 export default class PlayMusicExecutor extends InsightIntentExecutor {
-  // 由于意图配置中"executeMode"配置了"foreground"前台模式执行，故需要实现该接口
+  // 由于意图配置中'executeMode'配置了'foreground'前台模式执行，故需要实现该接口
   async onExecuteInUIAbilityForegroundMode(intentName: string, params: Record<string, Object>,
     windowStage: window.WindowStage): Promise<insightIntent.ExecuteResult> {
     // 实现播放逻辑
     // [StartExclude play_music0100]
-    hilog.info(DOMAIN, "testTag", "[PlayMusicExecutor] onExecuteInUIAbilityForegroundMode run");
+    hilog.info(DOMAIN, 'testTag', '[PlayMusicExecutor] onExecuteInUIAbilityForegroundMode run');
     // [EndExclude play_music0100]
     const result: insightIntent.ExecuteResult = {
       code: 0
@@ -35,7 +35,7 @@ export default class PlayMusicExecutor extends InsightIntentExecutor {
     return Promise.resolve(result);
   }
 
-  // 由于意图配置中"executeMode"配置了"background"后台模式执行，故需要实现该接口
+  // 由于意图配置中'executeMode'配置了'background'后台模式执行，故需要实现该接口
   async onExecuteInUIAbilityBackgroundMode(intentName: string,
     params: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     // 后台控制逻辑

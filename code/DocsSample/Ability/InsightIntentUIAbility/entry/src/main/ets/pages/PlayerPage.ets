@@ -18,7 +18,7 @@ struct PlayerPage {
   build() {
     Column({ space: 20 }) {
       // 页面标题：验证前台模式页面加载成功
-      Text("PlayMusicPage（up）")
+      Text('PlayMusicPage（up）')
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
     }

@@ -28,12 +28,12 @@ const DOMAIN = 0x0003;
 const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
 
 let want: Want = {
-  bundleName: "com.samples.insightintentuiability", // 如com.example.targetapp
-  abilityName: "MusicPlayerAbility", // 如MainAbility
+  bundleName: 'com.samples.insightintentuiability', // 如com.example.targetapp
+  abilityName: 'MusicPlayerAbility', // 如MainAbility
   parameters: {
     intentName: 'PlayMusic', // 关键：指定意图名称，系统匹配执行器
     executeMode: 'foreground', // 匹配前台模式
-    songId: "test_song_001"
+    songId: 'test_song_001'
   }
 };
 
@@ -51,7 +51,7 @@ export default function abilityTest() {
           abilityName: 'MusicPlayerAbility',
           insightIntentName: 'PlayMusic',
           insightIntentParam: {
-            pageId:"1"
+            pageId:'1'
           },
           executeMode: insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND,
           displayId:1,
@@ -61,7 +61,7 @@ export default function abilityTest() {
         });
         done();
       } catch (error) {
-        hilog.error(DOMAIN, "testTag","error：", error);
+        hilog.error(DOMAIN, 'testTag','error：', error);
         expect(0).assertEqual(1);
         done();
       }
