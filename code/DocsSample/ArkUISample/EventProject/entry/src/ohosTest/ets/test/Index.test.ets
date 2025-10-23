@@ -15,7 +15,7 @@
 
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
 // 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern } from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, On } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import resource from '../../../main/ets/common/resource';
 
@@ -51,6 +51,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      //$r('app.string.singlegesture_Index_TapGesture_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_TapGesture_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -74,6 +75,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      //$r('app.string.singlegesture_Index_LongPress_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_LongPress_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -97,6 +99,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('GestureJudge', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      //$r('app.string.gesture_Index_GestureJudge_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.gesture_Index_GestureJudge_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -117,6 +120,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('TouchEvent', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      //$r('app.string.Touch_Index_ClickEvent_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Touch_Index_ClickEvent_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -129,6 +133,50 @@ export default function IndexTest() {
       done();
     })
 
+    /**
+     * @tc.number UiTest_005
+     * @tc.name testOnClickGesture
+     * @tc.desc 测试点击事件示例
+     */
+    it('testOnClickGesture', 0, async (done: Function) => {
+      console.info('uitest: testOnClickGesture begin');
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      //$r('app.string.singlegesture_Index_Click_title')需要替换为开发者所需的字符串资源文件
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_Click_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      console.info('uitest: testOnClickGesture end');
+      done();
+    })
 
+    /**
+     * @tc.number UiTest_006
+     * @tc.name testPanCombination
+     * @tc.desc 测试滑动事件示例
+     */
+    it('testPanCombination', 0, async (done: Function) => {
+      console.info('uitest: testPanCombination begin');
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      //$r('app.string.singlegesture_Index_Pancom_title')需要替换为开发者所需的字符串资源文件
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_Pancom_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      console.info('uitest: testPanCombination end');
+      done();
+    })
   })
 }

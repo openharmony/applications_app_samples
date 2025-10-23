@@ -2,15 +2,17 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)
+中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [触屏事件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-touch-screen-event.md)
-2. [键鼠事件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-device-input-event.md)
-3. [焦点事件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-focus-event.md)
-4. [拖拽事件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-drag-event.md)
-5. [单一手势](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-single-gesture.md)
-6. [组合手势](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-combined-gestures.md)
-7. [手势拦截](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-gesture-judge.md)
+1. [触屏事件](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-touch-screen-event.md)
+2. [键鼠事件](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-device-input-event.md)
+3. [焦点事件](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-focus-event.md)
+4. [拖拽事件](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-events-drag-event.md)
+5. [单一手势](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-single-gesture.md)
+6. [组合手势](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-combined-gestures.md)
+7. [手势拦截](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-gesture-events-gesture-judge.md)
+
 ### 效果预览
 
 | 首页                                 | 交互类组件目录                            | 单一手势示例                             |
@@ -28,6 +30,7 @@
 4. 通过自动测试框架可进行测试及维护。
 
 ### 工程目录
+
 ```
 entry/src/main/ets/
 |---entryability
@@ -64,6 +67,8 @@ entry/src/main/ets/
 |   |       |---RotationGesture.ets
 |   |       |---SwipeGesture.ets
 |   |       |---TapGesture.ets
+|   |       |---OnClickGesture.ets
+|   |       |---PanCombinationGesture.ets
 |   |---Touch                                //触屏事件
 |   |       |---ClickEvent.ets
 |   |       |---Index.ets
@@ -79,6 +84,19 @@ entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                       // 示例代码测试代码
 ```
+
+### 具体实现
+
+1、选择目标组件
+确定要在哪个 UI 组件上绑定手势（如 Column、Text、Image 等）。
+调用 .gesture() 方法
+使用 .gesture(Gesture) 方法将手势绑定到组件上。
+2、创建手势对象
+调用对应的手势构造函数，如 TapGesture()、PanGesture() 等，可传入参数配置行为。
+注册事件回调
+通过 .onAction()、.onActionStart()、.onActionUpdate()、.onActionEnd() 等方法监听手势状态变化。
+3、更新状态或执行逻辑
+在回调中修改 @State 变量、触发动画、调用函数等。
 
 ### 相关权限
 
@@ -103,7 +121,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/EventProject > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/EventProject > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
