@@ -9,7 +9,7 @@
 ### 使用说明
 1. 打开工程
 2. 进入entry/src/main/ets/entryability目录，查看EntryAbility文件
-3. onCreate()：首次创建UIAbility实例时，系统触发onCreate()回调。开发者可以在该回调中执行UIAbility整个生命周期中仅发生一次的启动逻辑。
+3. onCreate()：创建UIAbility实例时，系统触发onCreate()回调。开发者可以在该回调中执行UIAbility整个生命周期中仅发生一次的启动逻辑。
 4. onWindowStageCreate()：UIAbility实例创建完成之后，在进入前台之前，系统会创建一个WindowStage。WindowStage创建完成后会进入onWindowStageCreate()回调，开发者可以在该回调中进行UI加载、WindowStage的事件订阅。
 5. onForeground()：在UIAbility切换至前台时且UIAbility的UI可见之前，系统触发onForeground回调。开发者可以在该回调中申请系统需要的资源，或者重新申请在onBackground()中释放的资源。
 6. onBackground()：在UIAbility的UI完全不可见之后，系统触发onBackground回调，将UIAbility实例切换至后台状态。开发者可以在该回调中释放UI不可见时的无用资源，例如停止定位功能，以节省系统的资源消耗。
@@ -41,7 +41,7 @@ UIAbilityDemo/
 ### 具体实现
 
 * 本示例主要介绍UIAbility的生命周期方法，源码参考:[EntryAbility.ets](entry/src/main/ets/entryability/EntryAbility.ets)。
-    * onCreate()：首次创建UIAbility实例时，系统触发onCreate()回调。
+    * onCreate()：创建UIAbility实例时，系统触发onCreate()回调。
     * onWindowStageCreate()：UIAbility实例创建完成之后，在进入前台之前，系统会创建一个WindowStage。
     * onForeground()：在UIAbility切换至前台时且UIAbility的UI可见之前，系统触发onForeground回调。
     * onBackground()：在UIAbility的UI完全不可见之后，系统触发onBackground回调，将UIAbility实例切换至后台状态。
