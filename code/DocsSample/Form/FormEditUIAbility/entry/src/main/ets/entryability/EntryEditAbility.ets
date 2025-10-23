@@ -39,8 +39,7 @@ export default class EntryEditAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
 
-  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam)
-  {
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
     const formId: string = want.parameters?.formId as string;
     hilog.info(DOMAIN, 'testTag', 'onNewWant form id is' + formId);
     if (formId) {

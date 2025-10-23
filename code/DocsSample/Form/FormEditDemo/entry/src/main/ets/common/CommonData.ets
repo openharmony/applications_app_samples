@@ -14,8 +14,8 @@
  */
 // [Start FormEditDemo_CommonData]
 export class FormData {
-  formId: string = '';
-  text: string = 'Hello World';
+  private formId: string = '';
+  private text: string = 'Hello World';
 
   constructor(formId: string, text?: string) {
     this.formId = formId;
