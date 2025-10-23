@@ -27,7 +27,7 @@ struct Index {
     RelativeContainer() {
       Column() {
         // [Start pointer_visible]
-        Text("Click to hide the cursor")
+        Text("Click to hide pointer")
           .onClick(() => {
             // 1.应用切换到全屏播放
             // 2.调用鼠标光标隐藏接口隐藏光标

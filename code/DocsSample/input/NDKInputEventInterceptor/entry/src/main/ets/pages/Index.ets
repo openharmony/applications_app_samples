@@ -65,9 +65,14 @@ struct Index {
   }
 
   aboutToAppear(): void {
-    testNapi.onChange((event: testNapi.ValueChangeEvent) => {
-      this.result = event.value;
-    });
+    if (testNapi) {
+      testNapi.onChange((event: testNapi.ValueChangeEvent) => {
+        this.result = event.value;
+      });
+    } else {
+      hilog.error(DOMAIN, 'NDKInputEventIntercrptor', 'testNapi is undefined');
+      this.result = 'Native plugin failed to load';
+    }
   }
 
   build() {
@@ -84,29 +89,29 @@ struct Index {
         }
 
         this.ApiMethodItem(
-          "添加按键事件拦截",
+          "Add key event interceptor",
           () => {
             try {
-              this.result =testNapi.addKeyEventInterceptor() }
-            catch (e) {
-              this.result = `添加按键事件拦截异常：${JSON.stringify(e)}`
+              this.result = testNapi.addKeyEventInterceptor()
+            } catch (e) {
+              this.result = `Add key event interceptor, error：${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "移除按键事件拦截",
+          "Remove key event interceptor",
           () => {
             try {
-              this.result =testNapi.removeKeyEventInterceptor() }
-            catch (e) {
-              this.result = `移除按键事件拦截异常：${JSON.stringify(e)}`
+              this.result = testNapi.removeKeyEventInterceptor()
+            } catch (e) {
+              this.result = `Remove key event interceptor, error：${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "添加输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件",
+          "Add input event interceptor. Input event include: mouse event, touch event, and axis event",
           () => {
             try {
               this.result = `${testNapi.addEventInterceptor()}，30秒后自动取消输入事件拦截`
@@ -117,19 +122,18 @@ struct Index {
                   this.result = `自动移除输入事件拦截异常：${JSON.stringify(e)}`;
                 }
               }, 30000);
-            }
-            catch (e) {
+            } catch (e) {
               this.result = `添加输入事件拦截异常：${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "移除输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件",
+          "Remove input event interceptor. Input event include: mouse event, touch event, and axis event",
           () => {
             try {
-              this.result =testNapi.removeEventInterceptor() }
-            catch (e) {
+              this.result = testNapi.removeEventInterceptor()
+            } catch (e) {
               this.result = `移除输入事件拦截异常：${JSON.stringify(e)}`
             }
           }

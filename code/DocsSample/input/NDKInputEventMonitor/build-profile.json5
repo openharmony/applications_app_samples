@@ -15,7 +15,19 @@
 {
   "app": {
     "signingConfigs": [
-
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\isuser\\.ohos\\config\\default_NDKInputEventMonitor_iSp6EbvZPGxw3B9r1unGNHcBxHGFMYHJJ_QgCFVTxjc=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BE7D8A467719156A849587F67714ACC5C2E3E99FF9A44F1B306A129B5C3C839A6A869E119D84D0F",
+          "profile": "C:\\Users\\isuser\\.ohos\\config\\default_NDKInputEventMonitor_iSp6EbvZPGxw3B9r1unGNHcBxHGFMYHJJ_QgCFVTxjc=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\isuser\\.ohos\\config\\default_NDKInputEventMonitor_iSp6EbvZPGxw3B9r1unGNHcBxHGFMYHJJ_QgCFVTxjc=.p12",
+          "storePassword": "0000001B041DC4337174079994A0D27A2F9C315A841FA328831061AF69272F10B18CF133FFBB556F118C5D"
+        }
+      }
     ],
     "products": [
       {

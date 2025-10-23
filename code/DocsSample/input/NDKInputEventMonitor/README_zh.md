@@ -52,7 +52,7 @@ ohos.permission.INPUT_MONITORING
 
 ## 约束和限制
 
-1. 本示例支持标准系统上运行，支持设备：RK3568等。
+1. 本示例支持标准系统上运行，支持设备：Phone、Tablet。
 2. 本示例支持API20版本SDK，版本号：6.0.0.36。
 3. 本示例已支持使DevEco Studio 5.1.1 Release (构建版本：5.1.1.840，构建 2025年9月20日)编译运行。
 
