@@ -12,15 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start JSForm_JsCardFormAbility_onAddForm]
-// [Start JSForm_JsCardFormAbility_onRemoveForm]
-// [Start JSForm_JsCardFormAbility_onUpdateForm]
+// [Start JSForm_JsCardFormAbility_import]
+// entry/src/main/ets/jscardformability/JsCardFormAbility.ets
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { preferences } from '@kit.ArkData';
-
+// [End JSForm_JsCardFormAbility_import]
+// [Start JSForm_JsCardFormAbility_onAddForm]
+// [Start JSForm_JsCardFormAbility_onRemoveForm]
+// [Start JSForm_JsCardFormAbility_onUpdateForm]
 const TAG: string = 'JsCardFormAbility';
 // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
