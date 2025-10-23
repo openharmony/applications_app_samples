@@ -40,32 +40,71 @@ export default function CheckPage() {
     afterEach(async (done:Function) => {
       const driver = Driver.create();
       await driver.pressBack();
-      await driver.delayMs(3000);
+      await driver.delayMs(2000);
       done()
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it('checkPage1', 0, async (done:Function) => {
+
+    /**
+     * @tc.number ArkUI_CheckPage001
+     * @tc.name CheckPageTest_001
+     * @tc.desc 自定义组件节点操作节点树
+     * @tc.level: Level 1
+     */
+    it('CheckPageTest_001', 0, async (done:Function) => {
       const driver = Driver.create();
       const button = await driver.findComponent(ON.text('UIContext查询组件树和组件信息能力'));
       await button.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(500);
+      const button1 = await driver.findComponent(ON.text('content'));
+      await button1.click();
+      await driver.delayMs(500);
+      const button2 = await driver.findComponent(ON.text('isLayoutInspector'));
+      await button2.click();
+      await driver.delayMs(500);
+      const button3 = await driver.findComponent(ON.text('getFilteredInspectorTreeById'));
+      await button3.click();
+      await driver.delayMs(500);
       done()
     })
-    it('checkPage2', 0, async (done:Function) => {
+
+    /**
+     * @tc.number ArkUI_CheckPage002
+     * @tc.name CheckPageTest_002
+     * @tc.desc 自定义组件节点操作节点树
+     * @tc.level: Level 1
+     */
+    it('CheckPageTest_002', 0, async (done:Function) => {
       const driver = Driver.create();
       const button = await driver.findComponent(ON.text('布局回调的基本用法'));
       await button.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(500);
+      const button1 = await driver.findComponent(ON.text('getInspectorByKey'));
+      await button1.click();
+      await driver.delayMs(500);
+      const button2 = await driver.findComponent(ON.text('getInspectorTree'));
+      await button2.click();
+      await driver.delayMs(500);
+      const button3 = await driver.findComponent(ON.text('sendEventByKey'));
+      await button3.click();
+      await driver.delayMs(500);
       done()
     })
-    it('checkPage3', 0, async (done:Function) => {
+
+    /**
+     * @tc.number ArkUI_CheckPage003
+     * @tc.name CheckPageTest_003
+     * @tc.desc 自定义组件节点操作节点树
+     * @tc.level: Level 1
+     */
+    it('CheckPageTest_003', 0, async (done:Function) => {
       const driver = Driver.create();
       const button = await driver.findComponent(ON.text('组件标识属性的扩展能力'));
       await button.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(500);
       done()
     })
   })
