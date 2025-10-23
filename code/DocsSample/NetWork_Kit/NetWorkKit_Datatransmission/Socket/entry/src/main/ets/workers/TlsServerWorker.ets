@@ -85,8 +85,8 @@ function startTLSserver(message: TlsServerMessage) {
 
 // [Start tlsServer_connection_methods]
 class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+  public message: ArrayBuffer = new ArrayBuffer(1);
+  public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 let callback = (value: SocketInfo) => {
   let messageView = '';

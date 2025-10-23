@@ -105,8 +105,8 @@ function loadFile(fileUri: string) {
 
 
 class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+  public message: ArrayBuffer = new ArrayBuffer(1);
+  public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 // [Start tcp_to_tls_server_create_object]
 // 创建一个TCPSocket连接，返回一个TCPSocket对象。

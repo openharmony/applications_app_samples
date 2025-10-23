@@ -101,8 +101,8 @@ let tlsOneWaySocket: socket.TLSSocket = socket.constructTLSSocketInstance();  //
 
 // [Start tls_worker_bind_the_server]
 class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+  public message: ArrayBuffer = new ArrayBuffer(1);
+  public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
 }
 // [StartExclude tls_worker_bind_the_server]
 function connectToServer(serverIp: string, serverPort: number, ca: string) {
