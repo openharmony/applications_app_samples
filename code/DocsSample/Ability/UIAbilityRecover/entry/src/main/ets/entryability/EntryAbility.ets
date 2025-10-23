@@ -23,7 +23,7 @@ const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    console.info('[Demo] EntryAbility onCreate');
+    hilog.info(DOMAIN, 'EntryAbility', '[Demo] EntryAbility onCreate');
     this.context.setRestoreEnabled(true);
     // [StartExclude onCreate]
     if (want && want.parameters) {
@@ -35,7 +35,7 @@ export default class EntryAbility extends UIAbility {
   // [StartExclude onCreate]
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>): AbilityConstant.OnSaveResult {
     // 保存应用数据。
-    console.info('[Demo] EntryAbility onSaveState');
+    hilog.info(DOMAIN, 'EntryAbility', '[Demo] EntryAbility onSaveState');
     wantParam['myData'] = 'my1234567';
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }

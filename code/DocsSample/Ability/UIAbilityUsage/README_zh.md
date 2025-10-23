@@ -3,11 +3,20 @@
 ### 介绍
 本示例展示了UIAbility组件的基本用法包括：指定UIAbility的启动页面以及获取UIAbility的上下文UIAbilityContext。
 
+### 效果预览
+不涉及
+
 ### 使用说明
 
-1）进入首页，点击拉起UIAbilityB；
+1）启动应用，进入应用首页；
 
-2）点击FuncAbilityB，终止UIAbilityB；
+2）在应用首页创建“拉起UIAbilityB”按钮；
+
+3）获取UIAbility的上下文信息;
+
+4）点击拉起UIAbilityB按钮，跳转到UIAbilityB页面；
+
+5）点击FuncAbilityB，终止UIAbilityB；
 
 ### 工程目录
 ```
@@ -34,6 +43,13 @@ UIAbilityLaunchType/
 │   │       ├── Ability.test.ets
 │   │       └── List.test.ets
 ```
+### 具体实现
+
+* UIAbility组件的基本用法包括：指定UIAbility的启动页面以及获取UIAbility的上下文UIAbilityContext。
+    * UIAbility类拥有自身的上下文信息，该信息为UIAbilityContext类的实例，UIAbilityContext类拥有abilityInfo、currentHapModuleInfo等属性。
+    * 在UIAbility的onCreate()回调函数中可以通过this.context获取UIAbility实例的上下文信息，源码参考[EntryAbility](/entry/src/main/ets/entryability/EntryAbility.ets)。
+    * 也可以在页面中获取到UIAbility的上下文信息context，然后调用context的startAbility()方法启动一个UIAbility，源码参考[Index](/entry/src/main/ets/pages/Index.ets)。
+    * 当业务完成后，开发者如果想要终止当前UIAbility实例，可以通过调用terminateSelf()方法实现，源码参考[Index](/entry/src/main/ets/pages/Index.ets)。
 
 ### 相关权限
 不涉及

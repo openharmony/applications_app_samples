@@ -83,6 +83,14 @@ UIAbilityLaunchType/
 │   │       ├── Ability.test.ets
 │   │       └── List.test.ets
 ```
+### 具体实现
+
+* 本示例展示了启动UIAbility的三种启动模式：singleton、multiton、specified。
+    * singleton：创建SingletonAbility，源码参考[SingletonAbility](/entry/src/main/ets/singletonability)
+    * multiton：创建MultitonAbility，源码参考[MultitonAbility](/entry/src/main/ets/multitonability)
+    * specified：创建SpecifiedAbility，源码参考[SpecifiedAbility](/entry/src/main/ets/specifiedability)
+    * 在module.json5文件中配置各个Ability的信息，源码参考[module.json5](/entry/src/main/module.json5)。
+    * 调用startAbility()方法启动指定Ability，源码参考[Index](/entry/src/main/ets/pages/Index.ets)。
 
 ### 相关权限
 不涉及

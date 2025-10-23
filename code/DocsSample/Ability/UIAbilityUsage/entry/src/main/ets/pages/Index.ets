@@ -16,6 +16,9 @@
 // [Start Index]
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 @Entry
 @Component
@@ -51,7 +54,7 @@ struct Index {
           };
           this.context.startAbility(want, (err: BusinessError) => {
             if (err.code) {
-              console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}.`);
+              hilog.error(DOMAIN, 'Index', `Failed to startAbility. Code: ${err.code}, message: ${err.message}.`);
             }
           });
         })
