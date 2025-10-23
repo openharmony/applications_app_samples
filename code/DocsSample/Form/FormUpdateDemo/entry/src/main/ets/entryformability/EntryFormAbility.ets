@@ -13,16 +13,14 @@
  * limitations under the License.
  */
 
-// entry/src/main/ets/entryformability/EntryFormAbility.ts
+// entry/src/main/ets/entryformability/EntryFormAbility.ets
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { Configuration, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { preferences } from '@kit.ArkData';
 
 const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
-let storage = new LocalStorage();
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {

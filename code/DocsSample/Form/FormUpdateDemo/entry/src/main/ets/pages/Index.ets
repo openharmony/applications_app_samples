@@ -15,7 +15,10 @@
 // [Start FormUpdate_page]
 import { formHost } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const TAG: string = 'EntryFormAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
 let storage = new LocalStorage();
 
 @Entry(storage)
@@ -43,14 +46,14 @@ struct Index {
           .borderRadius(10)
           .borderWidth(1)
           .onAcquired((form: FormCallbackInfo) => {
-            console.log(`onAcquired: ${JSON.stringify(form)}`)
+            hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${JSON.stringify(form)}`)
             this.formId = form.id.toString();
           })
           .onRouter(() => {
-            console.log(`onRouter`)
+            hilog.info(DOMAIN_NUMBER, TAG, `onRouter`)
           })
           .onError((error) => {
-            console.error(`onError: ${JSON.stringify(error)}`)
+            hilog.error(DOMAIN_NUMBER, TAG, `onError: ${JSON.stringify(error)}`)
           })
         // [StartExclude FormUpdate_page]
         Text(`formId:${this.formId}`)
@@ -59,14 +62,14 @@ struct Index {
         // [EndExclude FormUpdate_page]
         Button($r('app.string.button_update'))
           .onClick(() => {
-            console.info(`click to check requestForm, formId: ${this.formId}`);
+            hilog.info(DOMAIN_NUMBER, TAG, `click to check requestForm, formId: ${this.formId}`);
             // formId需要为实际需要刷新的卡片ID
             if (this.formId != null) {
               formHost.requestForm(this.formId).then(() => {
-                console.info('EntryFormAbility requestForm success.');
+                hilog.info(DOMAIN_NUMBER, TAG, 'EntryFormAbility requestForm success.');
               }).catch((error: BusinessError) => {
-                console.error(`EntryFormAbility requestForm fail, code: ${error?.code}, message: ${error?.message}`);
-                console.error(`EntryFormAbility requestForm fail, code: ${this.formId}`);
+                hilog.error(DOMAIN_NUMBER, TAG, `EntryFormAbility requestForm fail, code: ${error?.code}, message: ${error?.message}`);
+                hilog.error(DOMAIN_NUMBER, TAG, `EntryFormAbility requestForm fail, code: ${this.formId}`);
               })
             }
           })
