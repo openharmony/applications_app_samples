@@ -86,7 +86,7 @@ export class PreferencesUtil {
       if (preferences.hasSync(key)) {
         preferences.deleteSync(key);
         preferences.flushSync();
-        console.info(TAG, `deleteSync done.`)
+        console.info(TAG, `deleteSync done.`);
       }
     } catch (error) {
       console.error(TAG, `Failed to get preferences. Code:${error.code}, message:${error.message}`);

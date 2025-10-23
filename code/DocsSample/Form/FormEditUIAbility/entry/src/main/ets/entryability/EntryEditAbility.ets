@@ -42,7 +42,7 @@ export default class EntryEditAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam)
   {
     const formId: string = want.parameters?.formId as string;
-    hilog.info(DOMAIN, 'testTag', 'onNewWant form id is' + formId)
+    hilog.info(DOMAIN, 'testTag', 'onNewWant form id is' + formId);
     if (formId) {
       // 初始化首选项数据库
       let util = PreferencesUtil.getInstance();
