@@ -304,8 +304,14 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/DocsSample/DriverDevelopmentKit/ScsiPeripheralDemo">SCSI协议类驱动样例</a></td>
+  <td x:str></td>
+  <td x:str></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>USB</strong></td>
   <td x:str><a href="code/DocsSample/USB/USBManagerSample">USB设备管理</a></td>
   <td x:str><a href="code/DocsSample/USB/USBManagerSerialSample">串口设备管理</a></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
 <td height="90" align="center" rowspan="26" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
