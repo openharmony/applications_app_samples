@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例展示了如何创建文本、输入框、文本域、Grid、滑动容器、Form表单类、信息选择图片类等组件，配置其样式、属性与事件，还含 UI 任务、反色设置，可见区域变化监听等功能，构建文本页面。该工程中展示的接口详细描述可查如下链接：
+本示例展示了如何创建文本、输入框、文本域、滚动容器、滑动容器、Form表单类、信息选择图片类等组件，配置其样式、属性与事件，还含 UI 任务、反色设置，可见区域变化监听等功能，构建文本页面。该工程中展示的接口详细描述可查如下链接：
 
 [native_node.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)
 
@@ -58,6 +58,11 @@
    d.点击“设置属性值”，进行属性设置；点击“获取属性值”，返回值文本框中可以显示当前属性值；点击“重置属性值”会进行属性重置<br/>
    e.创建DatePicker、TimePicker、TextPicker、CalendarPicker组件时，会自动触发相关事件注册，
    可以在DevEco Studio开发环境中的日志界面看到如下相关日志信息：
+8. 点击WaterFlow选择框进入WaterFlow组件的CAPI接口展示界面；
+9. 点击Scroll选择框进入Scroll组件的CAPI接口展示界面；
+10. 点击List选择框进入List组件的CAPI接口展示界面；
+11. 点击Grid选择框进入Grid组件的CAPI接口展示界面；
+12. 点击Refresh选择框进入Refresh组件的CAPI接口展示界面；
 ```
 "BIND_EVENT success"
 ```
