@@ -19,6 +19,7 @@ export default class GlobalContext extends AppStorage {
   static mainWin: window.Window | undefined = undefined;
   static mainWindowSize: window.Size | undefined = undefined;
 }
+
 /**
  * 窗口、屏幕相关信息管理类
  */
@@ -29,12 +30,12 @@ export class WindowManager {
   private orientationListener: mediaquery.MediaQueryListener;
 
   constructor(uiContext: UIContext) {
-    this.uiContext = uiContext
+    this.uiContext = uiContext;
     this.orientationListener = this.uiContext.getMediaQuery().matchMediaSync('(orientation: landscape)');
     this.orientationListener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
-      this.onPortrait(mediaQueryResult)
-    })
-    this.loadDisplayInfo()
+      this.onPortrait(mediaQueryResult);
+    });
+    this.loadDisplayInfo();
   }
 
   /**
@@ -43,7 +44,7 @@ export class WindowManager {
    */
   setMainWin(win: window.Window) {
     if (win == null) {
-      return
+      return;
     }
     GlobalContext.mainWin = win;
     win.on('windowSizeChange', (data: window.Size) => {
@@ -51,33 +52,33 @@ export class WindowManager {
         GlobalContext.mainWindowSize = data;
       } else {
         if (GlobalContext.mainWindowSize.width == data.width && GlobalContext.mainWindowSize.height == data.height) {
-          return
+          return;
         }
         GlobalContext.mainWindowSize = data;
       }
 
       let winWidth = this.getMainWindowWidth();
-      AppStorage.setOrCreate<number>('mainWinWidth', winWidth)
+      AppStorage.setOrCreate<number>('mainWinWidth', winWidth);
       let winHeight = this.getMainWindowHeight();
-      AppStorage.setOrCreate<number>('mainWinHeight', winHeight)
-      let context: UIAbility = new UIAbility()
-      context.context.eventHub.emit('windowSizeChange', winWidth, winHeight)
-    })
+      AppStorage.setOrCreate<number>('mainWinHeight', winHeight);
+      let context: UIAbility = new UIAbility();
+      context.context.eventHub.emit('windowSizeChange', winWidth, winHeight);
+    });
   }
 
   static getInstance(uiContext: UIContext): WindowManager {
     if (WindowManager.instance == null) {
       WindowManager.instance = new WindowManager(uiContext);
     }
-    return WindowManager.instance
+    return WindowManager.instance;
   }
 
   private onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches == AppStorage.get<boolean>('isLandscape')) {
-      return
+      return;
     }
-    AppStorage.setOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
-    this.loadDisplayInfo()
+    AppStorage.setOrCreate<boolean>('isLandscape', mediaQueryResult.matches);
+    this.loadDisplayInfo();
   }
 
   /**
@@ -86,42 +87,42 @@ export class WindowManager {
    */
   changeOrientation(ori: window.Orientation) {
     if (GlobalContext.mainWin != null) {
-      GlobalContext.mainWin.setPreferredOrientation(ori)
+      GlobalContext.mainWin.setPreferredOrientation(ori);
     }
   }
 
   private loadDisplayInfo() {
-    this.displayInfo = display.getDefaultDisplaySync()
-    AppStorage.setOrCreate<number>('displayWidth', this.getDisplayWidth())
-    AppStorage.setOrCreate<number>('displayHeight', this.getDisplayHeight())
+    this.displayInfo = display.getDefaultDisplaySync();
+    AppStorage.setOrCreate<number>('displayWidth', this.getDisplayWidth());
+    AppStorage.setOrCreate<number>('displayHeight', this.getDisplayHeight());
   }
 
   /**
    * 获取main窗口宽度，单位vp
    */
   getMainWindowWidth(): number {
-    return GlobalContext.mainWindowSize != null ? this.uiContext.px2vp(GlobalContext.mainWindowSize.width) : 0
+    return GlobalContext.mainWindowSize != null ? this.uiContext.px2vp(GlobalContext.mainWindowSize.width) : 0;
   }
 
   /**
    * 获取main窗口高度，单位vp
    */
   getMainWindowHeight(): number {
-    return GlobalContext.mainWindowSize != null ? this.uiContext.px2vp(GlobalContext.mainWindowSize.height) : 0
+    return GlobalContext.mainWindowSize != null ? this.uiContext.px2vp(GlobalContext.mainWindowSize.height) : 0;
   }
 
   /**
    * 获取屏幕宽度，单位vp
    */
   getDisplayWidth(): number {
-    return this.displayInfo != null ? this.uiContext.px2vp(this.displayInfo.width) : 0
+    return this.displayInfo != null ? this.uiContext.px2vp(this.displayInfo.width) : 0;
   }
 
   /**
    * 获取屏幕高度，单位vp
    */
   getDisplayHeight(): number {
-    return this.displayInfo != null ? this.uiContext.px2vp(this.displayInfo.height) : 0
+    return this.displayInfo != null ? this.uiContext.px2vp(this.displayInfo.height) : 0;
   }
 
   /**
@@ -130,11 +131,11 @@ export class WindowManager {
   release() {
     if (this.orientationListener) {
       this.orientationListener.off('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
-        this.onPortrait(mediaQueryResult)
-      })
+        this.onPortrait(mediaQueryResult);
+      });
     }
     if (GlobalContext.mainWin != null) {
-      GlobalContext.mainWin.off('windowSizeChange')
+      GlobalContext.mainWin.off('windowSizeChange');
     }
     WindowManager.instance = null;
   }
@@ -184,7 +185,7 @@ export struct TaskSwitchMainPage {
   @State taskViewOffsetX: number = 0;
   @State cardOffset: number = this.displayWidth / 4;
   lastCardOffset: number = this.cardOffset;
-  startTime: number | undefined = undefined
+  startTime: number | undefined = undefined;
 
   // 每个卡片初始位置
   aboutToAppear() {
@@ -196,8 +197,8 @@ export struct TaskSwitchMainPage {
   // 每个卡片位置
   getProgress(index: number): number {
     let progress = (this.cardOffset + this.cardPosition[index] - this.taskViewOffsetX +
-                    this.cardWidth / 2) / this.displayWidth;
-    return progress
+      this.cardWidth / 2) / this.displayWidth;
+    return progress;
   }
 
   build() {
@@ -206,7 +207,7 @@ export struct TaskSwitchMainPage {
       Column()
         .width('100%')
         .height('100%')
-        .backgroundColor(0xF0F0F0)
+        .backgroundColor(0xF0F0F0);
 
       // 滑动组件
       Scroll(this.scroller) {
@@ -231,11 +232,11 @@ export struct TaskSwitchMainPage {
               // 滑动动画
               .translate({ x: this.cardOffset })
               .animation({ curve: curves.springMotion() })
-              .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
+              .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1);
           }, (item: TaskData) => item.toString())
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))
-        .height('100%')
+        .height('100%');
       }
       .gesture(
         GestureGroup(GestureMode.Parallel,
@@ -252,7 +253,7 @@ export struct TaskSwitchMainPage {
             })
             .onActionEnd((event: GestureEvent | undefined) => {
               if (event) {
-                let time = 0
+                let time = 0;
                 if (this.startTime) {
                   time = event.timestamp - this.startTime;
                 }
@@ -287,7 +288,7 @@ export struct TaskSwitchMainPage {
             })
         ), GestureMask.IgnoreInternal)
       .scrollable(ScrollDirection.Horizontal)
-      .scrollBar(BarState.Off)
+      .scrollBar(BarState.Off);
 
       // 滑动到首尾位置
       Button('Move to first/last')
@@ -302,9 +303,9 @@ export struct TaskSwitchMainPage {
             this.cardOffset = this.displayWidth / 4 - (taskDataArr.length - 1) * this.displayWidth / 2;
           }
           this.lastCardOffset = this.cardOffset;
-        })
+        });
     }
     .width('100%')
-    .height('100%')
+    .height('100%');
   }
 }

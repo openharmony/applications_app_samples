@@ -239,6 +239,10 @@
     {
       "name": "component_temp_label2",
       "value": "示例2（List组件动态替换动效）"
+    },
+    {
+      "name": "AnimateIndex",
+      "value": "AnimateIndex"
     }
   ]
 }

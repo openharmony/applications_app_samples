@@ -18,14 +18,14 @@ import { ON } from '@ohos.UiTest';
 import resource from '../../../main/ets/common/resource';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 
 const driver = Driver.create();
-const BUNDLE = 'Animation_'
+const BUNDLE = 'Animation_';
 const TAG = '[Sample_Animation]';
-const DOMAIN = 0xF811
+const DOMAIN = 0xF811;
 
-let aimComponent: Component
+let aimComponent: Component;
 
 export function ComponentTest() {
   describe('Animation_ComponentTest', () => {
@@ -40,16 +40,16 @@ export function ComponentTest() {
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.component_label"))));
       await aimComponent.click();
       await driver.delayMs(1000);
-    })
+    });
 
     afterEach(async () => {
       aimComponent = await driver.findComponent(ON.text('AnimateIndex'));
       do {
         await driver.pressBack();
         aimComponent = await driver.findComponent(ON.text('AnimateIndex'));
-      } while (aimComponent == null)
+      } while (aimComponent == null);
       await driver.delayMs(1000);
-    })
+    });
 
     /*
      * @tc.number: Animation_ComponentTest_001
@@ -97,7 +97,7 @@ export function ComponentTest() {
       await driver.delayMs(1000);
 
       hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_001_end');
-    })
+    });
 
     /*
      * @tc.number: Animation_ComponentTest_002
@@ -138,7 +138,7 @@ export function ComponentTest() {
       const firstItem = await driver.findComponent(ON.text('3'));
 
       hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_end');
-    })
+    });
 
-  })
+  });
 }
