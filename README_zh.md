@@ -66,7 +66,7 @@
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="37" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="38" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityFeature">基础能力增强</a></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityRuntime">基础能力增强</a></td>
@@ -304,8 +304,8 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/DocsSample/DriverDevelopmentKit/ScsiPeripheralDemo">SCSI协议类驱动样例</a></td>
-  <td x:str></td>
-  <td x:str></td>
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>USB</strong></td>
