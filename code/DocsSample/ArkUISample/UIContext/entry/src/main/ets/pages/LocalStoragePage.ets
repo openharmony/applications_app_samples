@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start_LocalStoragePage]
 @Entry({useSharedStorage: true})
 @Component
 struct LocalStoragePage {
@@ -40,3 +40,4 @@ struct LocalStoragePage {
     .width('100%')
   }
 }
+// [End_LocalStoragePage]

@@ -19,7 +19,7 @@ import { display } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 export class PixelUtils {
-  public static uiContext : UIContext | undefined;
+  static uiContext : UIContext | undefined;
   static setUIContext(uiContext : UIContext) : void {
     PixelUtils.uiContext = uiContext;
   }

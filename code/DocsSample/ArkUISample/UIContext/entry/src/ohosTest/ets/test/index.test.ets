@@ -16,17 +16,12 @@
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let want: Want;
-
-async function getResourceString(resource: Resource): Promise<string> {
-  let manage = abilityDelegator.getAppContext().resourceManager;
-  let textString: string = await manage.getStringValue(resource);
-  return textString;
-}
+const DOMAIN = 0xF811;
 
 export default function IndexTest() {
   describe('IndexTest', () => {
@@ -40,16 +35,16 @@ export default function IndexTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info('get top ability');
+      hilog.info(DOMAIN,'get top ability','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 
     it('IndexTest_01', 0, async (done: Function) => {
-      console.info('uitest: attributeTest_01 begin');
+      hilog.info(DOMAIN,'uitest: IndexTest_01 begin','uitest: IndexTest_01 begin');
       let driver = Driver.create();
       let componentButton = await driver.findComponent(ON.text('getContext'));
       await componentButton.click();
-      console.info('uitest: already click');
+      hilog.info(DOMAIN,'uitest: already click','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-// [Start UIContext]
+// [Start_UIContext]
 import { ContextUtils } from '../Common/ContextUtils';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { Router } from '@kit.ArkUI';
 
-const DOMAIN = 0x0000;
+const DOMAIN = 0xF811;
 
 @Entry
 @Component
@@ -30,7 +30,7 @@ struct Index {
       let router1 = this.getUIContext().getRouter();
       AppStorage.setOrCreate<Router>('router', router1);
     } catch (e) {
-      console.log('e' + e);
+      hilog.info(DOMAIN, 'e', e);
     }
   }
 
@@ -50,4 +50,4 @@ struct Index {
     .width('100%')
   }
 }
-// [End UIContext]
+// [End_UIContext]

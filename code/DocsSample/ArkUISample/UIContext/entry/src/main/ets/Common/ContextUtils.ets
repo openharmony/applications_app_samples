@@ -14,7 +14,7 @@
  */
 
 export class ContextUtils {
-  public static context: Context | undefined;
+  static context: Context | undefined;
 
   static setContext(context: Context): void {
     ContextUtils.context = context;

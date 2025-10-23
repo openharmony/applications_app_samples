@@ -17,11 +17,12 @@ import { describe, beforeAll, beforeEach, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { Router, router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-
+const DOMAIN = 0xF811;
 
 export default function LocalStoragePageTest() {
   describe('LocalStoragePageTest', () => {
@@ -35,35 +36,34 @@ export default function LocalStoragePageTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info('get top ability');
+      hilog.info(DOMAIN, 'get top ability', 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      console.info('LocalStoragePage beforeEach start');
+      hilog.info(DOMAIN, 'LocalStoragePage beforeEach start', 'LocalStoragePage beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/LocalStoragePage',
       }
       try {
         const routerInstance = AppStorage.get<Router>("router") as Router
         let pages = routerInstance.getState();
-        console.info('get LocalStoragePage state pages:' + JSON.stringify(pages));
+        hilog.info(DOMAIN, 'get LocalStoragePage state pages', JSON.stringify(pages));
         if (!('LocalStoragePage' == pages.name)) {
-          console.info('get LocalStoragePage pages.name:' + JSON.stringify(pages.name));
+          hilog.info(DOMAIN, 'get LocalStoragePage state pages', JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
-          console.log('112233')
         }
       } catch (err) {
-        console.error('push LocalStoragePage page error:' + err);
+        hilog.error(DOMAIN, 'get LocalStoragePage state pages', err);
       }
-      console.info('LocalStoragePage beforeEach end');
+      hilog.info(DOMAIN, 'LocalStoragePage beforeEach end', 'LocalStoragePage beforeEach end');
     });
 
     it('LocalStoragePageTest_01', 0, async (done: Function) => {
-      console.info('uitest: LocalStoragePage begin');
+      hilog.info(DOMAIN, 'uitest: LocalStoragePage begin', 'uitest: LocalStoragePage begin');
       let driver = Driver.create();
       let componentText = await driver.findComponent(ON.id('LocalStoragePageHelloWorld'));
       await componentText.click();
-      console.info('uitest: already click');
+      hilog.info(DOMAIN, 'uitest: already click', 'uitest: already click');
       await driver.delayMs(2000);
       done();
     })

@@ -2,24 +2,10 @@
 
 ### 介绍
 
-本文主要介绍了多UI实例涉及的概念，以及使用UIContext的方法替换全局接口的原因，并提供了相应的替换方案。
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui)中各场景的开发示例，
+展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-基本概念
-1.UI实例： UI实例是用于管理用户界面的对象，主要负责组件、布局、动画以及交互事件等UI功能的管理。每个窗口对象都会创建并管理一个UI实例。
-
-2.UI上下文： UI上下文是指UI实例运行环境的抽象概念，UI功能在UI上下文中运行，其效果最终反映在相应的UI实例中。
-
-3.全局接口： ArkUI提供的一系列全局接口，这些接口在调用时无需显式指定UI实例或组件。它们会根据调用发生时所在的UI上下文，自动作用于相应的UI实例。
-
-UI上下文不明确
-
-UI上下文不明确是指调用ArkUI全局接口时，调用点无法明确指认UI实例的问题。
-
-当前的系统支持两种应用模型——FA模型和Stage模型。在FA模型中，每个UI实例拥有独立的ArkTS引擎，全局接口可以通过ArkTS引擎跟踪到对应的UI实例上，因此不存在UI上下文不明确的问题。
-
-在Stage模型中，一个ArkTS引擎中可运行多个ArkUI实例。全局接口通过分析调用链中的上下文信息来确定当前UI上下文，异步接口和非UI接口可能导致UI上下文跟踪失败。
-
-为了保证全局接口的相关功能正常，开发者应当使用UIContext的接口替换全局接口。
+1. [使用UI上下文接口操作界面（UIContext）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-global-interface.md)。
 
 ### 效果预览
 
@@ -53,6 +39,27 @@ entry/src/ohosTest/
 |   |---LocalStoragePage.test.ets
 ```
 
+### 具体实现
+
+一、像素单位转换接口的UIContext替换（支持多实例适配）
+1. 定义静态成员uiContext存储全局UIContext，通过setUIContext方法在UI实例就绪后赋值（如Ability的loadContent回调中）；
+2. 实现vp2px/fp2px/lpx2px方法：优先使用传入的uiContext或全局uiContext，若无效则vp2px通过display.getDefaultDisplaySync获取默认屏幕密度计算，fp2px/lpx2px返回undefined以保持行为一致；
+3. 调用uiContext.isAvailable()验证UIContext有效性，避免异常。
+
+二、Ability的Context获取（基于UIContext绑定）
+1. 定义静态成员context存储默认Ability Context，通过setContext方法在Ability onCreate时赋值（直接使用Ability的this.context）；
+2. 实现getContext方法：优先通过传入的uiContext.getHostContext()获取当前UI实例所属Ability的Context，无传入时返回默认context。
+
+三、LocalStorage的UIContext替换（页面级共享存储）
+1. 页面组件通过@Entry({useSharedStorage: true})启用共享LocalStorage，替代全局LocalStorage.getShared()；
+2. 通过uiContext.getSharedLocalStorage()获取当前UI实例关联的共享存储，支持setOrCreate/读取操作；
+3. 在Ability的onWindowStageCreate中，创建LocalStorage实例并传入windowStage.loadContent，确保页面初始化时获取到存储实例。
+
+四、多窗口UIContext管理（基于窗口获焦状态）
+1. 实现registerWindowCallback方法：为窗口注册windowEvent监听，当窗口触发WINDOW_ACTIVE（获焦）时，调用window.getUIContext()记录为activeUIContext；
+2. 实现vp2px方法：优先使用传入的uiContext或activeUIContext，无效时通过display.getDefaultDisplaySync获取密度计算；
+3. 提供unregisterWindowCallback方法，在窗口销毁前注销监听，避免内存泄漏。
+
 ### 相关权限
 
 不涉及。
@@ -76,7 +83,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/ScrollableComponent > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/UIContext > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
