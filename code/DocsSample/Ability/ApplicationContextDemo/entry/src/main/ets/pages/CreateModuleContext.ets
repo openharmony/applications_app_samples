@@ -16,6 +16,10 @@
 // [Start createModuleContext_start]
 import { common, application } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '[Page_Context]';
+const DOMAIN = 0xF811;
 
 let storageEventCall = new LocalStorage();
 
@@ -42,7 +46,7 @@ struct Page_Context {
             let moduleName2: string = 'entry';
             application.createModuleContext(this.context, moduleName2)
               .then((data: common.Context) => {
-                console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
+                hilog.info(DOMAIN, TAG, `CreateModuleContext success, data: ${JSON.stringify(data)}`);
                 if (data !== null) {
                   this.getUIContext().getPromptAction().showToast({
                     message: $r('app.string.success_message')
@@ -50,7 +54,7 @@ struct Page_Context {
                 }
               })
               .catch((err: BusinessError) => {
-                console.error(`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
+                hilog.error(DOMAIN, TAG,`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
               });
           })
         }
