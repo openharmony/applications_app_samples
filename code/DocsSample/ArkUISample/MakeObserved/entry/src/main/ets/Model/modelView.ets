@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start SendableData]
-// SendableData.ets
 @Sendable
 export class SendableData  {
   public name: string = 'Tom';

@@ -32,8 +32,10 @@ let test2JsonStr: string = JSON.stringify(test2);
 @Entry
 @ComponentV2
 struct Page7 {
-  message: Record<string, number> = UIUtils.makeObserved<Record<string, number>>(JSON.parse(testJsonStr) as Record<string, number>);
-  message2: Record<string, Info> = UIUtils.makeObserved<Record<string, Info>>(JSON.parse(test2JsonStr) as Record<string, Info>);
+  message: Record<string, number> = 
+        UIUtils.makeObserved<Record<string, number>>(JSON.parse(testJsonStr) as Record<string, number>);
+  message2: Record<string, Info> = 
+        UIUtils.makeObserved<Record<string, Info>>(JSON.parse(test2JsonStr) as Record<string, Info>);
 
   build() {
     Column() {
