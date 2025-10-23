@@ -19,6 +19,7 @@ import common from '@ohos.app.ability.common';
 // [Start dlp_include]
 import { dlpPermission } from '@kit.DataProtectionKit';
 // [End dlp_include]
+import { identifySensitiveContent } from '@kit.DataProtectionKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { MediaFileUri, FileInfoType } from '../feature/FileManager';
 import Want from '@ohos.app.ability.Want';
@@ -30,6 +31,25 @@ import { PreferencesManager } from '../feature/PreferencesManager';
 import { getResourceString } from '../util/ResourceUtils';
 
 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+
+interface Attribute {
+  attributeId: string;
+  attributeValues: Array<string>;
+  valueType: number;
+  opt: number;
+}
+
+interface Rule {
+  ruleId: string;
+  attributes: Array<Attribute>;
+}
+
+interface Policy {
+  rules: Array<Rule>;
+  policyId: string;
+  ruleConflictAlg: number;
+}
+
 
 @Entry
 @Component
@@ -447,6 +467,58 @@ struct FilePicker {
   }
   // [End dlp_isDLPFeature]
 
+  // [Start dlp_setDLPProtectPolicy]
+  // 16 设置企业应用防护策略
+  setDLPProtectPolicy() {
+    try {
+      let attributeValues: Array<string> = [ '1' ];
+      let attribute: Attribute = {
+        attributeId: 'DeviceHealthyStatus',
+        attributeValues: attributeValues,
+        valueType: 0,
+        opt: 2
+      }; // 属性信息。
+      let rule: Rule = {
+        ruleId: 'ruleId',
+        attributes: [ attribute ]
+      }; // 规则。
+      let policy: Policy = {
+        rules: [ rule ],
+        policyId: 'policyId',
+        ruleConflictAlg: 0
+      }; // 策略。
+      let enterprisePolicy: dlpPermission.EnterprisePolicy = {
+        policyString: JSON.stringify(policy)
+      };
+      dlpPermission.setEnterprisePolicy(enterprisePolicy);
+      console.info('set enterprise policy success');
+      this.result = 'set enterprise policy success';
+    } catch (err) {
+      console.error('error:' + err.code + err.message); // 失败报错。
+      this.result = 'error:' + err.code + err.message;
+    }
+  }
+  // [End dlp_setDLPProtectPolicy]
+
+  // [Start dlp_scanSensitiveInfo]
+  // 17 识别指定文件中的敏感内容
+  scanSensitiveInfo() {
+    let filepath = this.uri;
+    let policies: Array<identifySensitiveContent.Policy> = [
+      {"sensitiveLabel":"1", "keywords":[], "regex":""}
+    ];
+    try {
+      identifySensitiveContent.scanFile(filepath, policies).then(records => {
+        console.info('scanFile finish');
+      }).catch((err:Error) => {
+        console.error('error message', err.message);
+      })
+    } catch (err) {
+      console.error('error message', err.message);
+    }
+  }
+  // [End dlp_scanSensitiveInfo]
+
   build() {
     Column() {
       Row() {
@@ -600,6 +672,24 @@ struct FilePicker {
             .backgroundColor(Color.Orange)
             .onClick(() => {
               this.isDLPFeature();
+        })
+        Text('')
+          .width(10)
+        Text('16, 设置企业应用防护策略')
+            .id('setDLPProtectPolicy')
+            .width(50)
+            .backgroundColor(Color.Gray)
+            .onClick(() => {
+              this.setDLPProtectPolicy();
+        })
+        Text('')
+        .width(10)
+        Text('17, 识别指定文件中的敏感内容')
+            .id('scanSensitiveInfo')
+            .width(50)
+            .backgroundColor(Color.Green)
+            .onClick(() => {
+              this.scanSensitiveInfo();
         })
       }
       Row() {
