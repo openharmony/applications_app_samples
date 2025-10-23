@@ -302,7 +302,11 @@ struct FilePicker {
       return;
     }
     dlpPermission.isDLPFile(file.fd).then((res) => {
-      this.result = 'isDLPFile result: ' + JSON.stringify(res);
+      if (res.valueOf()) {
+        this.result = 'isDLPFile result: ' + JSON.stringify(res);
+      } else {
+        this.result = '请打开一个dlp文件! ';
+      }
       console.info('res', res);
     }).catch((err:BusinessError) => {
       this.result = 'isDLPFile error: ' + (err as BusinessError).code + (err as BusinessError).message;
