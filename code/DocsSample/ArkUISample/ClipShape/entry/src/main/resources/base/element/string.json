@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },{
+      "name": "EntryAbility_title1",
+      "value": "裁剪圆形"
+    },{
+      "name": "EntryAbility_title2",
+      "value": "裁剪椭圆形"
+    },{
+      "name": "EntryAbility_title3",
+      "value": "裁剪矩形"
+    },{
+      "name": "EntryAbility_title4",
+      "value": "裁剪不规则形状"
     }
   ]
 }

@@ -28,7 +28,7 @@ struct Index {
         // 输出当前设备的languageCode
         Text(this.languageCode)
         if (this.languageCode === 'zh'){
-          Text('当前语言是中文')
+          Text($('app.string.EntryAbility_title1'))
         }else {
           Text('Hello!')
         }

@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { PathShape } from '@kit.ArkUI'
-
+// [End ClipShapeExampleD]
+import { PathShape } from '@kit.ArkUI';
 @Component
 export  struct ClipShapeExampleD {
   build() {
     Column({ space: 15 }) {
       Row() {
+        // $r('app.media.background')需要替换为开发者所需的字符串（图像、数字等）资源文件
         Image($r('app.media.background'))
           .clipShape(new PathShape({ commands: 'M0 0 H400 V200 H0 Z' }))
           .width('500px').height('300px')
@@ -31,3 +31,4 @@ export  struct ClipShapeExampleD {
     .margin({ top: 15 })
   }
 }
+// [End ClipShapeExampleD]

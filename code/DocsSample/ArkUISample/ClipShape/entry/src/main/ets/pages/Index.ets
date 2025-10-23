@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,14 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-
+// [Start ClipShapeExample_index]
 import { ClipShapeExampleA } from '../Comm/ClipShapeExampleA';
 import { ClipShapeExampleB } from '../Comm/ClipShapeExampleB';
 import { ClipShapeExampleC } from '../Comm/ClipShapeExampleC';
 import { ClipShapeExampleD } from '../Comm/ClipShapeExampleD';
-
 @Entry
 @Component
 struct Index {
@@ -35,13 +31,14 @@ struct Index {
   build() {
     Scroll() {
       Column(){
-        Text('裁剪圆形')
+        // $r('app.string.EntryAbility_title1')需要替换为开发者所需的字符串（图像、数字等）资源文件
+        Text($('app.string.EntryAbility_title1'))
         ClipShapeExampleA()
-        Text('裁剪椭圆形')
+        Text($('app.string.EntryAbility_title2'))
         ClipShapeExampleB()
-        Text('裁剪矩形')
+        Text($('app.string.EntryAbility_title3'))
         ClipShapeExampleC()
-        Text('裁剪不规则形状')
+        Text($('app.string.EntryAbility_title4'))
         ClipShapeExampleD()
       }
 
@@ -50,3 +47,4 @@ struct Index {
 
   }
 }
+// [End ClipShapeExample_index]

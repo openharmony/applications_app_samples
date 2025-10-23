@@ -11,6 +11,9 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },{
+      "name": "EntryAbility_title1",
+      "value": "当前语言是中文"
     }
   ]
 }

@@ -12,19 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { CircleShape } from '@kit.ArkUI'
-
+// [Start ClipShapeExampleA]
+import { CircleShape } from '@kit.ArkUI';
 @Component
 export struct ClipShapeExampleA {
   build() {
     Column({ space: 15 }) {
-      // 用一个280px直径的圆对图片进行裁剪
+      // $r('app.media.background')需要替换为开发者所需的字符串（图像、数字等）资源文件
       Image($r('app.media.background'))
         .clipShape(new CircleShape({ width: '280px', height: '280px' }))
         .width('500px').height('280px')
-
-      // 用一个350px直径的圆对图片进行裁剪
       Image($r('app.media.background'))
         .clipShape(new CircleShape({ width: '350px', height: '350px' }))
         .width('500px').height('370px')
@@ -33,3 +30,4 @@ export struct ClipShapeExampleA {
     .margin({ top: 15 })
   }
 }
+// [End ClipShapeExampleA]

@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { EllipseShape } from '@kit.ArkUI'
-
+// [Start ClipShapeExampleB]
+import { EllipseShape } from '@kit.ArkUI';
 @Component
 export struct ClipShapeExampleB {
   build() {
     Column({ space: 15 }) {
+      // $r('app.media.background')需要替换为开发者所需的字符串（图像、数字等）资源文件
       Image($r('app.media.background'))
         .clipShape(new EllipseShape({ width: '280px', height: '200px' }))
         .width('500px').height('400px')
@@ -31,3 +31,4 @@ export struct ClipShapeExampleB {
     .margin({ top: 15 })
   }
 }
+// [End ClipShapeExampleB]
