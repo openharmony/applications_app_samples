@@ -1,4 +1,4 @@
-/*
+''/*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 // [Start observedObject_globalObservedObject]
 @ObservedV2
 class ObservedClass2 {
-  @Trace public name: string = "Tom";
+  @Trace public name: string = 'Tom';
 }
 let globalObservedObject: ObservedClass2 = new ObservedClass2(); // 不被代理
 let globalNumberList: number[] = [1, 2, 3]; // 不被代理
-let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // 不被代理
+let globalSampleMap: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]); // 不被代理
 let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // 不被代理
 let globalSampleDate: Date = new Date(); // 不被代理
 @Entry

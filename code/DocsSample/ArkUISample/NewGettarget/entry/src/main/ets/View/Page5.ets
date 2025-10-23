@@ -1,4 +1,4 @@
-/*
+''/*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,15 @@
 import { UIUtils } from '@kit.ArkUI';
 @Observed
 class ObservedClass {
- public name: string = "Tom";
+ public name: string = 'Tom';
 }
 class NonObservedClass {
-  public name: string = "Tom";
+  public name: string = 'Tom';
 }
 let observedClass: ObservedClass = new ObservedClass(); // 被代理
 let nonObservedClass: NonObservedClass = new NonObservedClass(); // 不被代理
 let globalNumberList: number[] = [1, 2, 3]; // 不被代理
-let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // 不被代理
+let globalSampleMap: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]); // 不被代理
 let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // 不被代理
 let globalSampleDate: Date = new Date(); // 不被代理
 @Entry

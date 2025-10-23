@@ -17,7 +17,7 @@ import { UIUtils } from '@kit.ArkUI';
 // let res = UIUtils.getTarget(2); // 非对象类型入参，错误用法
 @Observed
 class Info {
-  public name: string = "Tom";
+  public name: string = 'Tom';
 }
 let info: Info = new Info();
 let rawInfo: Info = UIUtils.getTarget(info); // 正确用法

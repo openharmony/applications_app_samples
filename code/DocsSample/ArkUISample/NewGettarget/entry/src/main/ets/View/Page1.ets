@@ -16,7 +16,7 @@
 import { UIUtils } from '@kit.ArkUI';
 @Observed
 class Info {
-  public name: string = "Tom";
+  public name: string = 'Tom';
 }
 @Entry
 @Component
@@ -29,13 +29,13 @@ struct Page1 {
       // $r('app.string.arkts_new_gettarget2') 需要替换为开发者所需的资源文件
       Button($r('app.string.arkts_new_gettarget2'))
         .onClick(() => {
-          this.info.name = "Alice"; // Text组件能够刷新
+          this.info.name = 'Alice'; // Text组件能够刷新
         })
       // $r('app.string.arkts_new_gettarget3') 需要替换为开发者所需的资源文件
       Button($r('app.string.arkts_new_gettarget3'))
         .onClick(() => {
           let rawInfo: Info = UIUtils.getTarget(this.info);
-          rawInfo.name = "Bob"; // Text组件不能刷新
+          rawInfo.name = 'Bob'; // Text组件不能刷新
         })
     }
   }

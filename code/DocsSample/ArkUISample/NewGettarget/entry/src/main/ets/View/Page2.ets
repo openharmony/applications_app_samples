@@ -15,10 +15,10 @@
 // [Start nonObservedObject_1]
 @Observed
 class ObservedClass1 {
-  public name: string = "Tom";
+  public name: string = 'Tom';
 }
 class NonObservedClass1 {
-  public name: string = "Tom";
+  public name: string = 'Tom';
 }
 let observedClass: ObservedClass1 = new ObservedClass1(); // 被代理
 let nonObservedClass: NonObservedClass1 = new NonObservedClass1(); // 不被代理
@@ -28,7 +28,7 @@ struct Page2 {
   @State observedObject: ObservedClass1 = observedClass; // 已被代理数据不会重复创建代理
   @State nonObservedObject: NonObservedClass1 = nonObservedClass; // 创建代理
   @State numberList: number[] = [1, 2, 3]; // Array类型创建代理
-  @State sampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // Map类型创建代理
+  @State sampleMap: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]); // Map类型创建代理
   @State sampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // Set类型创建代理
   @State sampleDate: Date = new Date(); // Date类型创建代理
 
