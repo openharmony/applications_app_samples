@@ -27,16 +27,16 @@
 ```
 entry/src/main/ets/
 |---Common
-|   |---ContextUtils.ets
-|   |---UIContext.ets
+|   |---ContextUtils.ets                    // 定义UIContext接口
+|   |---UIContext.ets                      //通过UIContext接口使用像素单位转换接口
 |---entryability
 |---pages
-|   |---Index.ets       
-|   |---LocalStoragePage.ets                     
+|   |---Index.ets                           // 传入UIContext调用getHostContext     
+|   |---LocalStoragePage.ets                  // 使用UIContext接口替换全局接口     
 entry/src/ohosTest/
 |---ets
-|   |---index.test.ets                      // 示例代码测试代码
-|   |---LocalStoragePage.test.ets
+|   |---index.test.ets                      // 对应页面测试代码
+|   |---LocalStoragePage.test.ets              // 对应页面测试代码
 ```
 
 ### 具体实现
