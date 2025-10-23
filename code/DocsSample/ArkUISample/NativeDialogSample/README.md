@@ -6,9 +6,9 @@
 
 ## 效果预览
 
-| 首页                                              | CustomDialogController_CAPI页面                                  |OpenCustomDialog_CAPI页面                                              |
-| ----------------------------------------------------- |--------------------------------------------------------------| ------------------------------------------------------- |
-| <img src="./screenshots/nativeDialog.png" width="300"/> | <img src="./screenshots/CustomDialogController.png" width="300"/> | <img src="./screenshots/OpenCustomDialog.png" width="300"/> |
+| 首页                                              | CustomDialogController_CAPI页面                                  |OpenCustomDialog_CAPI页面                                              |dialog demo页面                                              |
+| ----------------------------------------------------- |--------------------------------------------------------------| ------------------------------------------------------- |------------------------------------------------------- |
+| <img src="./screenshots/nativeDialog.png" width="300"/> | <img src="./screenshots/CustomDialogController.png" width="300"/> | <img src="./screenshots/OpenCustomDialog.png" width="300"/> | <img src="./screenshots/dialogDemo.png" width="300"/> |
 
 ## 使用说明
 
@@ -22,20 +22,27 @@
 ```
 native_type_sample
 entry/src/main/ets/
-└── pages
-    ├── Index.ets (获取导航页面)
-    ├── IndexController.ets (CustomDialogController_CAPI对接示例界面)
-    └── IndexCustomDialog.ets (OpenCustomDialog_CAPI对接示例界面)
+└───pages
+│   ├── DialogDemo.ets (dialog demo界面)
+│   ├── Index.ets (获取导航页面)
+│   ├── IndexController.ets (CustomDialogController_CAPI对接示例界面)
+│   └── IndexCustomDialog.ets (OpenCustomDialog_CAPI对接示例界面)
+└───common
+       └── resource.ets (资源字串处理工具类)
 entry/src/main/
 ├── cpp
 │   ├── types
 │   │   └── libentry
 │   │       └── Index.d.ts (函数对应的js映射)
-│   ├── common.h
+│   ├── common
+│   │    └── common.h
 │   ├── CMakeLists.txt (CMake脚本)
-|   ├── customdialogexample.cpp 
-|   ├── customdialogexample.h
-│   ├── napi_init.cpp
+│   └── napi_init.cpp
+└───customdialog
+│   ├── customdialogexample.cpp 
+│   ├── customdialogexample.h
+│   ├── nativedialogdemo.cpp
+│   ├── nativedialogdemo.h
 │   └── utils.h
 └── resources
     ├── base
@@ -45,6 +52,13 @@ entry/src/main/
     │   │   └── string.json
     │   └── media
 ```
+## 具体实现
+
+1. dialog demo页面：通过dialog demo按钮进入页面后，通过按钮触发c++相关代码，实现显示弹窗、关闭弹窗、弹窗生命周期演示示例。源码参考[nativedialogdemo.cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/NativeDialogSample/entry/src/main/cpp/customdialog/nativedialogdemo.cpp)
+
+    * 定义一个组件，该组件在页面中占位，通过napi接口传递handle给c++侧。
+
+    * c++代码中使用napi的接口和方法实现一个按钮和一个弹窗，通过按钮控制弹窗的显示和关闭。
 
 ## 相关权限
 
