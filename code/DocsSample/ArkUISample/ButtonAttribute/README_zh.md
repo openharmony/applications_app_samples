@@ -2,18 +2,9 @@
 
 ### 介绍
 
-声明式语法引入了@Styles和@Extend两个装饰器，可以解决复用相同自定义样式的问题，但是存在以下受限场景：
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1.@Styles和@Extend均是编译期处理，不支持跨文件的导出复用。
-2.@Styles仅能支持通用属性、事件，不支持组件特有的属性。
-3.@Styles虽然支持在多态样式下使用，但不支持传参，无法对外开放一些属性。
-4.@Extend虽然能支持特定组件的私有属性、事件，但同样不支持跨文件导出复用。
-5.@Styles、@Extend对于属性设置，无法支持业务逻辑编写，动态决定是否设置某些属性，只能通过三元表达式对所有可能设置的属性进行全量设置，设置大量属性时效率较低。
-为了解决上述问题，ArkUI引入了AttributeModifier机制，可以通过Modifier对象动态修改属性。能力对比如下：
-
-![](pictures/attributeModifier.png)
-
-可以看出，与@Styles和@Extend相比，AttributeModifier提供了更强的能力和灵活性，且在持续完善全量的属性和事件设置能力，因此推荐优先使用AttributeModifier。
+1. [属性修改器 (AttributeModifier)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-extension-attributeModifier.md)。
 
 ### 效果预览
 
@@ -102,7 +93,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/ScrollableComponent > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/ButtonAttribute > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
