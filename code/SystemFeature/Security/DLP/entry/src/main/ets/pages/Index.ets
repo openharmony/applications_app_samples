@@ -1,13 +1,13 @@
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -194,15 +194,15 @@ struct FilePicker {
   // 2，打开Dlp文件
   openDlpFile(dlpUri: string, fileName: string, fd: number) {
     let want:Want = {
-      "action": "ohos.want.action.viewData",
-      "uri": dlpUri,
-      "parameters" : {
-        "fileName": {
-          "name": fileName
+      'action': 'ohos.want.action.viewData',
+      'uri': dlpUri,
+      'parameters' : {
+        'fileName': {
+          'name': fileName
         },
-        "keyFd": {
-          "type": "FD",
-          "value": fd
+        'keyFd': {
+          'type': 'FD',
+          'value': fd
         }
       }
     }
@@ -326,20 +326,20 @@ struct FilePicker {
   unSubscribe() {
     try {
       dlpPermission.off('openDLPFile', this.event); // 取消订阅
-      this.result = "unSubscribe result: 已取消注册";
+      this.result = 'unSubscribe result: 已取消注册';
     } catch (err) {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-      this.result = "unSubscribe error: 取消注册失败";
+      this.result = 'unSubscribe error: 取消注册失败';
     }
   }
   
   subscribe() {
     try {
       dlpPermission.on('openDLPFile', this.event); // 订阅
-      this.result = "subscribe result: 已注册";
+      this.result = 'subscribe result: 已注册';
     } catch (err) {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-      this.result = "subscribe error: 注册失败";
+      this.result = 'subscribe error: 注册失败';
     }
   }
   // [End dlp_subscribe]
@@ -375,7 +375,7 @@ struct FilePicker {
   setSandboxAppConfig() {
     dlpPermission.setSandboxAppConfig('configInfo').then(() => {
       this.result = 'setSandboxAppConfig result: 设置沙箱应用配置信息成功';
-      console.info('res', "设置沙箱应用配置信息成功");
+      console.info('res', '设置沙箱应用配置信息成功');
     }).catch((err: BusinessError) => {
       this.result = 'setSandboxAppConfig error: ' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -388,7 +388,7 @@ struct FilePicker {
   cleanSandboxAppConfig() {
     dlpPermission.cleanSandboxAppConfig().then(() => {
       this.result = 'cleanSandboxAppConfig result: 清理沙箱成功';
-      console.info('res', "清理沙箱成功");
+      console.info('res', '清理沙箱成功');
     }).catch((err: BusinessError) => {
       this.result = 'cleanSandboxAppConfig error: ' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -415,9 +415,9 @@ struct FilePicker {
     try {
       let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
       let want:Want = {
-        "uri": this.uri,
-        "parameters" : {
-          "displayName": this.fileName
+        'uri': this.uri,
+        'parameters' : {
+          'displayName': this.fileName
         }
       }; // 请求参数
       dlpPermission.startDLPManagerForResult(context, want).then((res) => {
@@ -475,44 +475,44 @@ struct FilePicker {
       }.justifyContent(FlexAlign.SpaceBetween)
       .width('100%')
       Row() {
-        Text("3, 生成DLP文件")
-          .id("generateDlpFiles")
+        Text('3, 生成DLP文件')
+          .id('generateDlpFiles')
           .width(50)
           .backgroundColor(Color.Blue)
           .onClick(() => {
             this.generateDlpFiles();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("4, 是否在沙箱中")
-            .id("isInSandBox")
+        Text('4, 是否在沙箱中')
+            .id('isInSandBox')
             .width(50)
             .backgroundColor(Color.Green)
             .onClick(() => {
               this.isInSandbox();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("5, 查询当前编辑的文件权限")
-            .id("getDLPPermissionInfo")
+        Text('5, 查询当前编辑的文件权限')
+            .id('getDLPPermissionInfo')
             .width(50)
             .backgroundColor(Color.Pink)
             .onClick(() => {
               this.getDLPPermissionInfo();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("6, 查看支持加密的文件类型")
-            .id("getDLPSupportedFileTypes")
+        Text('6, 查看支持加密的文件类型')
+            .id('getDLPSupportedFileTypes')
             .width(50)
             .backgroundColor(Color.Gray)
             .onClick(() => {
               this.getDLPSupportedFileTypes();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("7, 判断当前打开文件是否是DLP文件")
-          .id("isCurrentDlpFile")
+        Text('7, 判断当前打开文件是否是DLP文件')
+          .id('isCurrentDlpFile')
           .width(50)
           .backgroundColor(Color.Red)
           .onClick(() => {
@@ -520,44 +520,44 @@ struct FilePicker {
         })
       }
       Row() {
-        Text("8, 订阅DLP打开事件")
-          .id("subscribe")
+        Text('8, 订阅DLP打开事件')
+          .id('subscribe')
           .width(50)
           .backgroundColor(Color.Gray)
           .onClick(() => {
             this.subscribe();
         })
-        Text("")
+        Text('')
           .width(5)
-        Text("8, 取消订阅DLP打开事件")
-            .id("unSubscribe")
+        Text('8, 取消订阅DLP打开事件')
+            .id('unSubscribe')
             .width(50)
             .backgroundColor(Color.Gray)
             .onClick(() => {
               this.unSubscribe();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("9, 获取DLP文件打开记录")
-            .id("getDLPFileAccessRecords")
+        Text('9, 获取DLP文件打开记录')
+            .id('getDLPFileAccessRecords')
             .width(50)
             .backgroundColor(Color.Pink)
             .onClick(() => {
               this.getDLPFileAccessRecords();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("10, 获取DLP文件保留沙箱记录")
-            .id("getRetentionSandboxList")
+        Text('10, 获取DLP文件保留沙箱记录')
+            .id('getRetentionSandboxList')
             .width(50)
             .backgroundColor(Color.Orange)
             .onClick(() => {
               this.getRetentionSandboxList();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("11, 设置沙箱应用配置信息")
-          .id("setSandboxAppConfig")
+        Text('11, 设置沙箱应用配置信息')
+          .id('setSandboxAppConfig')
           .width(50)
           .backgroundColor(Color. Blue)
           .onClick(() => {
@@ -565,35 +565,35 @@ struct FilePicker {
         })
       }
       Row() {
-        Text("12, 清理沙箱应用配置信息")
-          .id("cleanSandboxAppConfig")
+        Text('12, 清理沙箱应用配置信息')
+          .id('cleanSandboxAppConfig')
           .width(50)
           .backgroundColor(Color.Green)
           .onClick(() => {
             this.cleanSandboxAppConfig();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("13, 查询沙箱应用配置信息")
-            .id("getSandboxAppConfig")
+        Text('13, 查询沙箱应用配置信息')
+            .id('getSandboxAppConfig')
             .width(50)
             .backgroundColor(Color.Pink)
             .onClick(() => {
               this.getSandboxAppConfig();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("14, 以无边框形式打开DLP权限管理应用")
-            .id("startDLPManagerForResult")
+        Text('14, 以无边框形式打开DLP权限管理应用')
+            .id('startDLPManagerForResult')
             .width(50)
             .backgroundColor(Color.Red)
             .onClick(() => {
               this.startDLPManagerForResult();
         })
-        Text("")
+        Text('')
           .width(10)
-        Text("15, 查询提供DLP特性")
-            .id("isDLPFeature")
+        Text('15, 查询提供DLP特性')
+            .id('isDLPFeature')
             .width(50)
             .backgroundColor(Color.Orange)
             .onClick(() => {
@@ -601,7 +601,7 @@ struct FilePicker {
         })
       }
       Row() {
-        Text("运行结果: " + `${this.result}`)
+        Text('运行结果: ' + `${this.result}`)
       }
       
       // 文件列表
