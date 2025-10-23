@@ -43,8 +43,8 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('添加按键事件拦截'));
       await driver.assertComponentExist(ON.text('移除按键事件拦截'));
-      await driver.assertComponentExist(ON.text('添加输入事件拦截'));
-      await driver.assertComponentExist(ON.text('移除输入事件拦截'));
+      await driver.assertComponentExist(ON.text('添加输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件'));
+      await driver.assertComponentExist(ON.text('移除输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
@@ -116,8 +116,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加输入事件拦截'));
-      let button = await driver.findComponent(ON.text('添加输入事件拦截'));
+      await driver.assertComponentExist(ON.text('添加输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件'));
+      let button = await driver.findComponent(ON.text('添加输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -141,8 +141,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('移除输入事件拦截'));
-      let button = await driver.findComponent(ON.text('移除输入事件拦截'));
+      await driver.assertComponentExist(ON.text('移除输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件'));
+      let button = await driver.findComponent(ON.text('移除输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件'));
       await button.click();
       await driver.delayMs(1000);
       done();

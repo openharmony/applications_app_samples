@@ -106,10 +106,18 @@ struct Index {
         )
 
         this.ApiMethodItem(
-          "添加输入事件拦截",
+          "添加输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件",
           () => {
             try {
-              this.result =testNapi.addEventInterceptor() }
+              this.result = `${testNapi.addEventInterceptor()}，30秒后自动取消输入事件拦截`
+              setTimeout(() => {
+                try {
+                  this.result = testNapi.removeEventInterceptor()
+                } catch (e) {
+                  this.result = `自动移除输入事件拦截异常：${JSON.stringify(e)}`;
+                }
+              }, 30000);
+            }
             catch (e) {
               this.result = `添加输入事件拦截异常：${JSON.stringify(e)}`
             }
@@ -117,7 +125,7 @@ struct Index {
         )
 
         this.ApiMethodItem(
-          "移除输入事件拦截",
+          "移除输入事件拦截，输入事件包括：鼠标事件、触摸事件、轴事件",
           () => {
             try {
               this.result =testNapi.removeEventInterceptor() }

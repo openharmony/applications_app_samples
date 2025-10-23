@@ -44,7 +44,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('Click to hide pointer'));
       await driver.assertComponentExist(ON.text('Click to display pointer'));
       await driver.assertComponentExist(ON.text('Click to set the mouse pointer style to the color picker style'));
-      await driver.assertComponentExist(ON.text('点击设置设置鼠标光标样式为默认样式'));
+      await driver.assertComponentExist(ON.text('Click to set the mouse pointer style to default style'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
@@ -141,8 +141,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('点击设置设置鼠标光标样式为默认样式'));
-      let button = await driver.findComponent(ON.text('点击设置设置鼠标光标样式为默认样式'));
+      await driver.assertComponentExist(ON.text('Click to set the mouse pointer style to default style'));
+      let button = await driver.findComponent(ON.text('Click to set the mouse pointer style to default style'));
       await button.click();
       await driver.delayMs(1000);
       done();
