@@ -183,6 +183,11 @@
         document.getElementById('scrollInfo').textContent =
             `滚动位置: ${scrollY}px`;
     });
+
+    // 页面加载完成
+    window.addEventListener('load', function() {
+        console.log('页面加载完成');
+    });
 </script>
 </body>
 </html>
