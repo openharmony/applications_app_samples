@@ -26,7 +26,7 @@
 // [StartExclude register_native_child_process_exit]
 int32_t g_result1 = -1;
 int32_t g_result2 = -1;
-// [EndExclide register_native_child_process_exit]
+// [EndExclude register_native_child_process_exit]
 
 void OnNativeChildProcessExit(int32_t pid, int32_t signal)
 {
@@ -42,7 +42,7 @@ void RegisterNativeChildProcessExitCallback()
     }
     // [StartExclude register_native_child_process_exit]
     g_result1 = ret;
-    // [EndExclide register_native_child_process_exit]
+    // [EndExclude register_native_child_process_exit]
 }
 
 void UnregisterNativeChildProcessExitCallback()
@@ -54,7 +54,7 @@ void UnregisterNativeChildProcessExitCallback()
     }
     // [StartExclude register_native_child_process_exit]
     g_result2 = ret;
-    // [EndExclide register_native_child_process_exit]
+    // [EndExclude register_native_child_process_exit]
 }
 
 // [End register_native_child_process_exit]

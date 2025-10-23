@@ -17,6 +17,9 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level
 import testNapi from 'libmainprocesssample.so';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 function sleep(time: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, time));
@@ -63,9 +66,9 @@ export default function abilityTest() {
     it('SUB_Ability_AbilityRuntime_RegisterNativeChildProcessExitCallback_0100', Level.LEVEL1,
       async (done: Function) => {
         let tag = `SUB_Ability_AbilityRuntime_RegisterNativeChildProcessExitCallback_0100`;
-        console.log(`${tag}, it begin`);
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}` + 'it begin');
         let ret: Number = testNapi.testRegisterFunc();
-        console.info(`${tag}: ret` + ret);
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}: ret` + ret);
         expect(0).assertEqual(ret);
         done();
       })
@@ -81,11 +84,11 @@ export default function abilityTest() {
     it('SUB_Ability_AbilityRuntime_UnregisterNativeChildProcessExitCallback_0100', Level.LEVEL1,
       async (done: Function) => {
         let tag = `SUB_Ability_AbilityRuntime_UnregisterNativeChildProcessExitCallback_0100`;
-        console.log(`${tag}, it begin`);
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}` + 'it begin');
         let ret: Number = testNapi.testUnregisterFunc();
-        console.info(`${tag}: ret` + ret);
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}: ret` + ret);
         if (ret == 16010009) {
-          console.info(`The registered function is not executed`);
+          hilog.info(DOMAIN, 'testTag', '%{public}s', `The registered function is not executed`);
           expect(16010009).assertEqual(ret);
           return;
         }

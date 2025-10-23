@@ -7,10 +7,14 @@
 1. 支持父进程通过注册回调函数监听子进程，获取子进程异常退出信息，以便父进程做后续优化处理;
 2. 这里支持监听的子进程必须为OH_Ability_StartNativeChildProcess或startNativeChildProcess接口创建的子进程。
 
+### 效果展示
+
+不涉及。
+
 ### 测试代码说明
 
-1.SUB_Ability_AbilityRuntime_RegisterNativeChildProcessExitCallback_0100：验证注册 Native 子进程退出回调函数的功能，检查返回值是否正常。
-2.SUB_Ability_AbilityRuntime_UnregisterNativeChildProcessExitCallback_0100：验证注销 Native 子进程退出回调函数的功能，检查返回值是否正常。
+1. SUB_Ability_AbilityRuntime_RegisterNativeChildProcessExitCallback_0100：验证注册 Native 子进程退出回调函数的功能，检查返回值是否正常。
+2. SUB_Ability_AbilityRuntime_UnregisterNativeChildProcessExitCallback_0100：验证注销 Native 子进程退出回调函数的功能，检查返回值是否正常。
 
 ### 工程目录
 ```
@@ -39,6 +43,13 @@ entry/src/
             └── List.test.ets    // 测试套执行列表
 
 ```
+
+### 使用说明
+
+1. 依赖：引入libchild_process.so库及头文件<AbilityKit/native_child_process.h>，仅支持监听通过OH_Ability_StartNativeChildProcess接口创建的子进程。
+2. 回调函数实现：定义OH_Ability_OnNativeChildProcessExit类型的回调函数（如OnNativeChildProcessExit），通过参数pid和signal获取子进程 ID 及退出信号，实现日志记录等后续处理逻辑。
+3. 注册与解注册操作：调用OH_Ability_RegisterNativeChildProcessExitCallback注册回调，OH_Ability_UnregisterNativeChildProcessExitCallback解注册，通过返回值是否为NCP_NO_ERROR判断操作成败，失败时打印错误日志。
+4. 编译配置：在主进程的CMakeLists.txt中，通过target_link_libraries链接libchild_process.so依赖库，确保编译通过。
 
 ### 具体实现
 
