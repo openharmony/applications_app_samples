@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start SheetTransitionExample]
+
 @Entry
 @Component
 struct SheetTransitionExample {
@@ -23,14 +25,14 @@ struct SheetTransitionExample {
   @Builder
   myBuilder() {
     Column() {
-      Button($r('app.string.bindSheetCmd_label10'))
+      Button("enableHoverMode切换")
         .margin(10)
         .fontSize(20)
         .onClick(() => {
           this.enableHoverMode = !this.enableHoverMode;
         })
 
-      Button($r('app.string.bindSheetCmd_label11'))
+      Button("hoverModeArea切换")
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -51,7 +53,7 @@ struct SheetTransitionExample {
 
   build() {
     Column() {
-      Button($r('app.string.bindSheetCmd_label9'))
+      Button("拉起半模态")
         .onClick(() => {
           this.isShow = true;
         })
@@ -70,4 +72,5 @@ struct SheetTransitionExample {
     .height('100%')
   }
 }
+
 // [End SheetTransitionExample]

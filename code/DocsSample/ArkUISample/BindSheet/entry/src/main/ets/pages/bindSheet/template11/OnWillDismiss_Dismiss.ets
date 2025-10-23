@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start onWillDismiss_Dismiss]
+
 @Entry
 @Component
-struct onWillDismiss_Dismiss {
+struct OnWillDismiss_Dismiss {
   @State isShow: Boolean = false;
 
   @Builder
@@ -42,7 +44,7 @@ struct onWillDismiss_Dismiss {
           // 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
           this.getUIContext().showAlertDialog(
             {
-              message: $r('app.string.bindSheetCmd_label8'),
+              message: '是否选择关闭半模态',
               autoCancel: true,
               alignment: DialogAlignment.Bottom,
               gridCount: 4,
@@ -50,7 +52,6 @@ struct onWillDismiss_Dismiss {
               primaryButton: {
                 value: 'cancel',
                 action: () => {
-                  console.info('Callback when the cancel button is clicked');
                 }
               },
               secondaryButton: {
@@ -62,12 +63,8 @@ struct onWillDismiss_Dismiss {
                 action: () => {
                   // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
                   DismissSheetAction.dismiss();
-                  console.info('Callback when the ok button is clicked');
                 }
               },
-              cancel: () => {
-                console.info('AlertDialog Closed callbacks');
-              }
             }
           )
         })
