@@ -18,7 +18,7 @@ import { Want } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 const TAG = '[Sample_WebScrollDemo]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
+const BUNDLE = 'WebScrollDemo_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {

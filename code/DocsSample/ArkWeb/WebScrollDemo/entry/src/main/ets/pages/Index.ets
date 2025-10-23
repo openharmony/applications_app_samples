@@ -16,7 +16,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import hilog from '@ohos.hilog';
 const TAG = '[Sample_WebScrollDemo]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
+const BUNDLE = 'WebScrollDemo_';
 
 @Entry
 @Component
