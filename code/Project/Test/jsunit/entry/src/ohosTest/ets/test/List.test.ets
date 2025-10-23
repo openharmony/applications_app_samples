@@ -14,15 +14,34 @@
 */
 
 import basicTest from './basicExampleTest/basicExample.test';
-import  assert from  './assertExampleTest/assertExample.test';
+import executeOrder1 from './basicExampleTest/executeOrder1.test';
+import executeOrder2 from './basicExampleTest/executeOrder2.test';
+import executeOrder3 from './basicExampleTest/executeOrder3.test';
+import assert from  './assertExampleTest/assertExample.test';
 import param from './paramExampleTest/paramExample.test';
 import custom from './customExampleTest/customExample.test';
 import cover from './coverExampleTest/coverExample.test';
 import callBack from './callBackExampleTest/callBackExample.test';
 import customAssertTest from './customEexpect/customAssert.test';
 import resourceReferenceTest from './resourceReferenceTest/resourceReference.test';
+import dataDriver from './dataDriver/dataDriver.test';
+import afterReturn from './mock/afterReturn.test';
+import afterThrow from './mock/afterThrow.test';
+import argumentMatchersForAny from './mock/argumentMatchersForAny.test';
+import argumentMatchersForRegex from './mock/argumentMatchersForRegex.test';
+import argumentMatchersForString from './mock/argumentMatchersForString.test';
+import clearMock from './mock/clearMock.test';
+import ignoreMock from './mock/ignoreMock.test';
+import mockStatic from './mock/mockStatic.test';
+import returnPromise from './mock/returnPromise.test';
+import vertify from './mock/vertify.test';
+import vertifyTimes from './mock/vertifyTimes.test';
+
 export default function testsuite() {
   basicTest();
+  executeOrder1();
+  executeOrder2();
+  executeOrder3();
   assert();
   param();
   custom();
@@ -30,4 +49,16 @@ export default function testsuite() {
   callBack();
   customAssertTest();
   resourceReferenceTest();
+  dataDriver();
+  afterReturn();
+  afterThrow();
+  argumentMatchersForAny();
+  argumentMatchersForRegex();
+  argumentMatchersForString();
+  clearMock();
+  ignoreMock();
+  mockStatic();
+  returnPromise();
+  vertify();
+  vertifyTimes();
 }

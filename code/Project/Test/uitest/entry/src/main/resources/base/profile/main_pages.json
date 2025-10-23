@@ -15,6 +15,7 @@
     "pages/Web",
     "pages/wearList",
     "pages/demoPage",
-    "pages/second"
+    "pages/second",
+    "pages/clickToAfter"
   ]
 }

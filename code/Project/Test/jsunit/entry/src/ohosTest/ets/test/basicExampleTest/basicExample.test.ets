@@ -12,33 +12,37 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
-import { describe, it, expect } from '@ohos/hypium';
+// [Start basic_sample]
+import { describe, it, expect, Level, Size, TestType } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
 export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
-    it('testUiExample',0, async (done: Function) => {
-      console.info("uitest: TestUiExample begin");
-      //start tested ability
+  // 测试套名称为ActsAbilityTest
+    // 可根据此处设置的用例类型、用例规模、用例级别进行用例筛选
+    it('testExample',TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+    // 测试用例名称为testExample
+      console.info("unitTest: TestExample begin");
+      await sleep(500);
+      const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+      // 启动被测试Ability
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       }
       await delegator.startAbility(want);
-      await sleep(1000);
-      //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
-        console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
+      await sleep(500);
+      // 获取设备上前台显示的页面并断言检查
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
+      console.info("get top ability");
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       done();
     })
   })
 }
+// [End basic_sample]

@@ -42,312 +42,167 @@
 *
  */
 
+// [Start assert_sample]
+import { describe, it, expect, Level } from '@ohos/hypium';
 
-
-import { describe, it, expect, TestType } from '@ohos/hypium';
-export default function assertExampleTest() {
-  describe('assertExampleTest', () => {
-
-    /**
-     * @tc.number:basicExampleTest_001
-     * @tc.name: basicExampleTest
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue和expectvalue(0)的接近程度是否是expectValue(1)
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_001', TestType.FUNCTION, () => {
-      let a = 100
-      let b = 0.1
-      expect(a).assertClose(99, b)
+export default function exampleTest() {
+  describe('ExampleTest', () =>{
+    it('assertCloseTest', Level.LEVEL1, () => {
+      let a: number = 100;
+      let b: number = 0.1;
+      expect(a).assertClose(99, b);
     })
 
-    /**
-     * @tc.number:basicExampleTest_002
-     * @tc.name: basicExampleTest_002
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue是否是null
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_002', TestType.FUNCTION, () => {
-      expect(null).assertNull(); // true
-    })
-
-    /**
-     * @tc.number:basicExampleTest_003
-     * @tc.name: basicExampleTest_003
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验'abc'中是否包含'a'
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_003',TestType.FUNCTION, () => {
+    it('assertContain_1', Level.LEVEL1, () => {
       let a = "abc";
-      let b= "a"
-      expect(a).assertContain(b);
+      expect(a).assertContain('b');
     })
 
-    /**
-     * @tc.number:basicExampleTest_04
-     * @tc.name: basicExampleTest_04
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 抛出一个错误
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_04',TestType.FUNCTION, () => {
-      expect().not().assertFail(); // 默认用例失败，使用not pass 用例
+    it('assertContain_2', Level.LEVEL1, () => {
+      let a = [1, 2, 3];
+      expect(a).assertContain(1);
     })
 
+    it('assertEqualTest', Level.LEVEL1, () => {
+      expect(3).assertEqual(3);
+    })
 
-    /**
-     * @tc.number:basicExampleTest_05
-     * @tc.name: basicExampleTest_05
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue是否是false。
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_05',TestType.FUNCTION, () => {
+    it('assertFailTest', Level.LEVEL1, () => {
+      expect().assertFail(); // 用例失败
+    })
+
+    it('assertFalseTest', Level.LEVEL1, () => {
       expect(false).assertFalse();
     })
 
-    /**
-     * @tc.number:basicExampleTest_06
-     * @tc.name: basicExampleTest_06
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验10是否是Number类型
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_06',TestType.FUNCTION, () => {
-      expect(10).assertInstanceOf("Number");
+    it('assertTrueTest', Level.LEVEL1, () => {
+      expect(true).assertTrue();
     })
 
-    /**
-     * @tc.number:basicExampleTest_07
-     * @tc.name: basicExampleTest_07
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验5是否大于4
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_07',TestType.FUNCTION, () => {
-      expect(5).assertLarger(4);
+    it('assertInstanceOfTest', Level.LEVEL1, () => {
+      let a: string = 'strTest';
+      expect(a).assertInstanceOf('String');
     })
 
-    /**
-     * @tc.number:basicExampleTest_08
-     * @tc.name: basicExampleTest_08
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验1是否小于2
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_08',TestType.FUNCTION, () => {
-      expect(1).assertLess(2);
+    it('assertLargerTest', Level.LEVEL1, () => {
+      expect(3).assertLarger(2);
     })
 
-    /**
-     * @tc.number:basicExampleTest_09
-     * @tc.name: basicExampleTest_09
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验undefined是否是undefined
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_09',TestType.FUNCTION, () => {
+    it('assertLessTest', Level.LEVEL1, () => {
+      expect(2).assertLess(3);
+    })
+
+    it('assertNullTest', Level.LEVEL1, () => {
+      expect(null).assertNull();
+    })
+
+    it('assertThrowErrorTest', Level.LEVEL1, () => {
+      expect(() => {
+        throw new Error('test');
+      }).assertThrowError('test');
+    })
+
+    it('assertUndefinedTest', Level.LEVEL1, () => {
       expect(undefined).assertUndefined();
     })
 
-    /**
-     * @tc.number:basicExampleTest_010
-    * @tc.name: basicExampleTest_010
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验testThro方法抛出Error内容是否是"test"
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_010', TestType.FUNCTION, () => {
-      expect(testThro).assertThrowError("test");
-    });
-
-    /**
-     * @tc.number:basicExampleTest_011
-     * @tc.name: basicExampleTest_011
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue是否是true
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_011', TestType.FUNCTION, () => {
-      expect(true).assertTrue();
-    });
-
-    /**
-     * @tc.number:basicExampleTest_012
-     * @tc.name: basicExampleTest_012
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验"test1"是否等于"test1"
-     * @tc.version since1.0.0
-     */
-    it('basicExampleTest_012', TestType.FUNCTION, () => {
-      expect("test1").assertEqual("test1");
-    });
-
-    /**
-     * @tc.number:basicExampleTest_013
-     * @tc.name: basicExampleTest_013
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 判断promise是否处于Pending状态
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_013', TestType.FUNCTION, () => {
-      let p = new Promise<void>(() => {
-      });
-      expect(p).assertPromiseIsPending();
-    });
-
-    /**
-     * @tc.number:basicExampleTest_014
-     * @tc.name: basicExampleTest_014
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 判断promise是否处于Rejected状态
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_014', TestType.FUNCTION, () => {
-      let info : PromiseInfo = {
-        res: "no"
-      }
-      let p = Promise.reject<string>(info);
-      expect(p).assertPromiseIsRejected();
-    });
-
-    /**
-     * @tc.number:basicExampleTest_015
-     * @tc.name: basicExampleTest_015
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 判断promise是否处于Rejected状态，并且比较执行的结果值
-     * @tc.version since1.0.4
-     */
-    it("basicExampleTest_015", TestType.FUNCTION, () => {
-      let info : PromiseInfo = {
-        res: "reject value"
-      }
-      let p = Promise.reject(info)
-      expect(p).assertPromiseIsRejectedWith(info)
+    it('assertLargerOrEqualTest', Level.LEVEL1, () => {
+      expect(3).assertLargerOrEqual(3);
     })
 
-    /**
-     * @tc.number:basicExampleTest_016
-     * @tc.name: basicExampleTest_016
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 判断promise是否处于Rejected状态并有异常，同时比较异常的类型和message值
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_016', TestType.FUNCTION, () => {
-      let p1 = Promise.reject(new Error('number'));
-      expect(p1).assertPromiseIsRejectedWithError(Error);
-    });
+    it('assertLessOrEqualTest', Level.LEVEL1, () => {
+      expect(3).assertLessOrEqual(3);
+    })
 
-    /**
-     * @tc.number:basicExampleTest_017
-     * @tc.name: basicExampleTest_017
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 判断promise是否处于Resolved状态
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_017', TestType.FUNCTION, () => {
-      let info : PromiseInfo = {
-        res: "result value"
-      }
-      let p = Promise.resolve(info);
-      expect(p).assertPromiseIsResolved();
-    });
-
-
-    /**
-     * @tc.number:basicExampleTest_018
-     * @tc.name: basicExampleTest_018
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 判断promise是否处于Resolved状态，并且比较执行的结果值
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_018', TestType.FUNCTION, () => {
-      let info : PromiseInfo = {
-        res: "result value"
-      }
-      let p = Promise.resolve(info);
-      expect(p).assertPromiseIsResolvedWith(info);
-    });
-
-    /**
-     * @tc.number:basicExampleTest_019
-    * @tc.name: basicExampleTest_019
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue是否是一个NAN
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_019',TestType.FUNCTION, () => {
+    it('assertNaNTest', Level.LEVEL1, () => {
       expect(Number.NaN).assertNaN(); // true
     })
 
-    /**
-     * @tc.number:basicExampleTest_020
-    * @tc.name: basicExampleTest_020
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue是否等于Number.NEGATIVE_INFINITY
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_020',TestType.FUNCTION, () => {
+    it('assertNegUnlimitedTest', Level.LEVEL1, () => {
       expect(Number.NEGATIVE_INFINITY).assertNegUnlimited(); // true
     })
 
-    /**
-     * @tc.number:basicExampleTest_021
-    * @tc.name: basicExampleTest_021
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue是否等于Number.POSITIVE_INFINITY
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_021', TestType.FUNCTION, () => {
+    it('assertPosUnlimitedTest', Level.LEVEL1, () => {
       expect(Number.POSITIVE_INFINITY).assertPosUnlimited(); // true
     })
 
-    /**
-     * @tc.number:basicExampleTest_022
-    * @tc.name: basicExampleTest_022
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue是否大于等于expectvalue
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_022', TestType.FUNCTION, () => {
-      expect(1).assertLargerOrEqual(1)
+    it('deepEquals_null_true', Level.LEVEL1, () => {
+      expect(null).assertDeepEquals(null);
     })
 
-    /**
-     * @tc.number:basicExampleTest_023
-    * @tc.name: basicExampleTest_023
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验actualvalue是否小于等于expectvalue
-     * @tc.version since1.0.4
-     */
-    it('basicExampleTest_023',TestType.FUNCTION, () => {
-      expect(1).assertLessOrEqual(2);
-    })
-
-    /**
-     * @tc.number:basicExampleTest_024
-     * @tc.name: basicExampleTest_024
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检验对象a 与对象b是否有相同的对象属性
-     * @tc.version since1.0.4
-     */
-    it("basicExampleTest_024", TestType.FUNCTION, () => {
-      const a: SampleTest = {x:1};
-      const b: SampleTest = {x:1};
+    it('deepEquals_array_not_have_true', Level.LEVEL1, () => {
+      const a: Array<number> = [];
+      const b: Array<number> = [];
       expect(a).assertDeepEquals(b);
     })
-});
-}
-function testThro() {
-    throw new Error("test");
+
+    it('deepEquals_map_equal_length_success', Level.LEVEL1, () => {
+      const a: Map<number, number> = new Map();
+      const b: Map<number, number> = new Map();
+      a.set(1, 100);
+      a.set(2, 200);
+      b.set(1, 100);
+      b.set(2, 200);
+      expect(a).assertDeepEquals(b);
+    })
+
+    it("deepEquals_obj_success_1", Level.LEVEL1, () => {
+      const a: SampleTest = {x: 1};
+      const b: SampleTest = {x: 1};
+      expect(a).assertDeepEquals(b);
+    })
+
+    it("deepEquals_regExp_success_0", Level.LEVEL1, () => {
+      const a: RegExp = new RegExp("/test/");
+      const b: RegExp = new RegExp("/test/");
+      expect(a).assertDeepEquals(b);
+    })
+
+    it('assertPromiseIsPendingTest', Level.LEVEL1, async () => {
+      let p: Promise<void> = new Promise<void>(() => {});
+      await expect(p).assertPromiseIsPending();
+    })
+
+    it('assertPromiseIsRejectedTest', Level.LEVEL1, async () => {
+      let info: PromiseInfo = {res: "no"};
+      let p: Promise<PromiseInfo> = Promise.reject(info);
+      await expect(p).assertPromiseIsRejected();
+    })
+
+    it('assertPromiseIsRejectedWithTest', Level.LEVEL1, async () => {
+      let info: PromiseInfo = {res: "reject value"};
+      let p: Promise<PromiseInfo> = Promise.reject(info);
+      await expect(p).assertPromiseIsRejectedWith(info);
+    })
+
+    it('assertPromiseIsRejectedWithErrorTest', Level.LEVEL1, async () => {
+      let p1: Promise<TypeError> = Promise.reject(new TypeError('number'));
+      await expect(p1).assertPromiseIsRejectedWithError(TypeError);
+    })
+    
+    it('assertPromiseIsResolvedTest', Level.LEVEL1, async () => {
+      let info: PromiseInfo = {res: "result value"};
+      let p: Promise<PromiseInfo> = Promise.resolve(info);
+      await expect(p).assertPromiseIsResolved();
+    })
+
+    it('assertPromiseIsResolvedWithTest', Level.LEVEL1, async () => {
+      let info: PromiseInfo = {res: "result value"};
+      let p: Promise<PromiseInfo> = Promise.resolve(info);
+      await expect(p).assertPromiseIsResolvedWith(info);
+    })
+
+    it("test_message", Level.LEVEL1, () => {
+      expect(1).message('1 is not equal 2!').assertEqual(2); // fail
+    })
+  })
 }
 
 interface SampleTest {
   x: number;
 }
 
-interface PromiseInfo{
-  res : string;
+interface PromiseInfo {
+  res: string;
 }
+// [End assert_sample]

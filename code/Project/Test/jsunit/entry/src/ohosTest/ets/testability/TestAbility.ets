@@ -13,6 +13,7 @@
 * limitations under the License.
 */
 
+// [Start dataDriverAbility_sample]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { Hypium } from '@ohos/hypium';
@@ -35,6 +36,7 @@ export default class TestAbility extends UIAbility {
         Hypium.setData(data);
         Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
     }
+// [End dataDriverAbility_sample]
 
     onDestroy() {
         Logger.info('testTag', '%{public}s', 'TestAbility onDestroy');

@@ -14,6 +14,7 @@
 */
 
 import basicExampleTest from './basicExampleTest/basicExample.test';
+import componentOperationTest from './findCommentExampleTest/Component/findComAndOp.test';
 import findTest from './findCommentExampleTest/Component/findCommentExample.test';
 import click from './operationExampleTest/ui/clickEvent.test';
 import input from './operationExampleTest/ui/InputEvent.test';
@@ -27,13 +28,26 @@ import scroller from './operationExampleTest/ui/ScrollerEvent.test';
 import moveWindow from './operationExampleTest/window/MoveToEvent.test';
 import reSizeWindow from './operationExampleTest/window/ReSizeWindow.test';
 import windowAttr from './operationExampleTest/window/WindowAttr.test';
+import finwWinAndOp from './operationExampleTest/window/finwWinAndOp.test';
 import monitorEventTest from './operationExampleTest/ui/MonitorEvent.test';
 import webOperateTest from './operationExampleTest/web/webOperate.test';
 import findWindowExampleTest from './findCommentExampleTest/window/findWindowExample.test';
 import otherEvent from './operationExampleTest/ui/OtherEvent.test'
 import wearAbleEventTest from './operationExampleTest/ui/WearAbleEvent.test'
+import displayOp from './operationExampleTest/ui/displayOp.test';
+import eventObserver from './operationExampleTest/ui/eventObserver.test';
+import inputText from './operationExampleTest/ui/inputText.test';
+import mouseAndKeyOp from './operationExampleTest/ui/mouseAndKeyOp.test';
+import penOp from './operationExampleTest/ui/penOp.test';
+import screenCap from './operationExampleTest/ui/screenCap.test';
+import touchPadOp from './operationExampleTest/ui/touchPadOp.test';
+import touchScreenEvent from './operationExampleTest/ui/touchScreenEvent.test';
+import waitForCom from './operationExampleTest/ui/waitForCom.test';
+import watchOp from './operationExampleTest/ui/watchOp.test';
+
 export default function testsuite() {
   basicExampleTest();
+  componentOperationTest();
   findTest();
   findWindowExampleTest();
   click();
@@ -48,8 +62,19 @@ export default function testsuite() {
   moveWindow();
   reSizeWindow();
   windowAttr();
+  finwWinAndOp();
   monitorEventTest();
   webOperateTest();
   wearAbleEventTest();
-  otherEvent()
+  otherEvent();
+  displayOp();
+  eventObserver();
+  inputText();
+  mouseAndKeyOp();
+  penOp();
+  screenCap();
+  touchPadOp();
+  touchScreenEvent();
+  waitForCom();
+  watchOp();
 }

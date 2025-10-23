@@ -14,6 +14,10 @@
  */
 
 import perfTestTest from './PerfTest.test'
+import CPUMetri from './CPUMetri.test'
+import slideFps from './slideFps.test'
 export default function testsuite() {
-  perfTestTest()
+  perfTestTest();
+  CPUMetri();
+  slideFps();
 }

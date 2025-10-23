@@ -18,7 +18,7 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON } from '@ohos.UiTest'
 import { PerfMetric, PerfTest, PerfTestStrategy } from '@kit.TestKit';
 import { BusinessError, Callback } from '@kit.BasicServicesKit';
-import { PerfUtils } from '../../../main/ets/utils/PerfUtils';
+import { Utils } from '../../../main/ets/utils/Utils';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 
@@ -36,7 +36,7 @@ export default function PerfTestTest() {
     it('testPerfTestCalculate', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async (done: Function) => {
       let metrics: Array<PerfMetric> = [PerfMetric.DURATION, PerfMetric.CPU_LOAD, PerfMetric.CPU_USAGE, PerfMetric.MEMORY_RSS, PerfMetric.MEMORY_PSS]
       let actionCode = async (finish: Callback<boolean>) => {
-        PerfUtils.CalculateTest();
+        Utils.CalculateTest();
         finish(true)
       }
       let perfTestStrategy: PerfTestStrategy = {
