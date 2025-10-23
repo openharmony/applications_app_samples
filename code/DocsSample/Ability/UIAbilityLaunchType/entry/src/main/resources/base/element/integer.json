@@ -1,0 +1,140 @@
+{
+  "integer": [
+    {
+      "name": "margin_normal",
+      "value": 16
+    },
+    {
+      "name": "margin_normal_sm",
+      "value": 6
+    },
+    {
+      "name": "margin_normal_sm1",
+      "value": 12
+    },
+    {
+      "name": "margin_normal_sm2",
+      "value": 10
+    },
+    {
+      "name": "margin_normal_md",
+      "value": 24
+    },
+    {
+      "name": "margin_normal_md1",
+      "value": 20
+    },
+    {
+      "name": "margin_normal_md2",
+      "value": 26
+    },
+    {
+      "name": "margin_normal_md3",
+      "value": 25
+    },
+    {
+      "name": "margin_normal_md4",
+      "value": 18
+    },
+    {
+      "name": "margin_normal_lg",
+      "value": 32
+    },
+    {
+      "name": "height_normal",
+      "value": 40
+    },
+    {
+      "name": "height_normal1",
+      "value": 50
+    },
+    {
+      "name": "height_normal_sm",
+      "value": 26
+    },
+    {
+      "name": "height_normal_sm1",
+      "value": 20
+    },
+    {
+      "name": "height_normal_sm2",
+      "value": 6
+    },
+    {
+      "name": "height_normal_md",
+      "value": 64
+    },
+    {
+      "name": "height_normal_md1",
+      "value": 46
+    },
+    {
+      "name": "height_normal_lg",
+      "value": 280
+    },
+    {
+      "name": "height_normal_lg1",
+      "value": 200
+    },
+    {
+      "name": "height_normal_lg2",
+      "value": 330
+    },
+    {
+      "name": "width_normal",
+      "value": 40
+    },
+    {
+      "name": "width_normal_sm1",
+      "value": 20
+    },
+    {
+      "name": "width_normal_sm2",
+      "value": 6
+    },
+    {
+      "name": "font_size_normal",
+      "value": 18
+    },
+    {
+      "name": "font_size_normal_md",
+      "value": 26
+    },
+    {
+      "name": "font_size_normal_sm",
+      "value": 13
+    },
+    {
+      "name": "font_size_normal_sm1",
+      "value": 16
+    },
+    {
+      "name": "font_size_normal_md1",
+      "value": 22
+    },
+    {
+      "name": "font_size_normal_md2",
+      "value": 20
+    },
+    {
+      "name": "font_size_normal_lg",
+      "value": 65
+    },
+    {
+      "name": "padding_normal",
+      "value": 20
+    },
+    {
+      "name": "padding_normal_sm",
+      "value": 12
+    },
+    {
+      "name": "padding_normal_sm1",
+      "value": 10
+    },
+    {
+      "name": "padding_normal_sm2",
+      "value": 15
+    }
+  ]
+}
