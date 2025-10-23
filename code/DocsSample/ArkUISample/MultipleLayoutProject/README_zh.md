@@ -168,15 +168,15 @@ entry/src/ohosTest/
 
 1. 启动app进入主界面，选择相对布局列表、层叠布局列表、线性布局列表、弹性布局列表或者栅格布局列表，然后点击选择详细的示例参考
 
-2. 相对布局详细示例参考有设置参考边界、设置锚点、设置相对于锚点的对齐位置、子组件位置偏移、多种组件的对齐布局、组件尺寸、多个组件形成链等示例，源码参考示例目录[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/relativecontainerlayout/]
+2. 相对布局详细示例参考有设置参考边界、设置锚点、设置相对于锚点的对齐位置、子组件位置偏移、多种组件的对齐布局、组件尺寸、多个组件形成链等示例，源码参考示例场景[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/relativecontainerlayout/RelativeContainerParentComponentId.ets]
 
-3. 层叠布局详细示例参考有Z序控制、页面层叠、位置定位能力，其使用场景有广告、卡片层叠效果等示例，源码参考示例目录[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/stacklayout/]
+3. 层叠布局详细示例参考有Z序控制、页面层叠、位置定位能力，其使用场景有广告、卡片层叠效果等示例，源码参考示例场景[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/stacklayout/StackLayoutSceneExample.ets]
 
-4. 线性布局详细示例参考有布局子元素在排列方向上的间距、布局子元素在主轴上的排列方式、布局子元素在交叉轴上的对齐方式、自适应拉伸、自适应缩放、自适应延伸等示例，源码参考示例目录[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/linearlayout/]
+4. 线性布局详细示例参考有布局子元素在排列方向上的间距、布局子元素在主轴上的排列方式、布局子元素在交叉轴上的对齐方式、自适应拉伸、自适应缩放、自适应延伸等示例，源码参考示例场景[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/linearlayout/ColumnLayoutExample.ets]
 
-5. 弹性布局详细示例参考有布局方向、布局换行、主轴对齐方式、交叉轴对齐方、自适应拉伸等示例，源码参考示例目录[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/flexlayout/]
+5. 弹性布局详细示例参考有布局方向、布局换行、主轴对齐方式、交叉轴对齐方、自适应拉伸等示例，源码参考示例场景[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/flexlayout/FlexExample.ets ]
 
-6. 栅格布局详细示例参考有栅格容器断点、布局的总列数、排列方向、子组件间距、子组件GridCol、栅格组件的嵌套使用等示例，源码参考示例目录[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/gridlayout/]
+6. 栅格布局详细示例参考有栅格容器断点、布局的总列数、排列方向、子组件间距、子组件GridCol、栅格组件的嵌套使用等示例，源码参考示例场景[https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/MultipleLayoutProject/entry/src/main/ets/pages/gridlayout/GridRowExample.ets]
 
 ### 相关权限
 

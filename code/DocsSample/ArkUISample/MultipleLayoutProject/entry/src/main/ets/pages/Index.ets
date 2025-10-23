@@ -404,7 +404,7 @@ struct Index {
               }
               .onClick(() => {
                 if (!!listitem.router) {
-                  router.pushUrl({ url: listitem.router })
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router })
                 }
               })
             }

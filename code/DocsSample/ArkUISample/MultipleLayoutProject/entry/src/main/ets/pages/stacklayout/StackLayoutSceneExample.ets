@@ -34,8 +34,11 @@ struct StackLayoutSceneExample {
       }.width('100%').height('100%')
 
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+        //$r('app.string.contacts')需要替换为开发者所需的资源文件
         Text($r('app.string.contacts')).fontSize(16)
+        //$r('app.string.setting')需要替换为开发者所需的资源文件
         Text($r('app.string.setting')).fontSize(16)
+        //$r('app.string.text_message')需要替换为开发者所需的资源文件
         Text($r('app.string.text_message')).fontSize(16)
       }
       .width('50%')
