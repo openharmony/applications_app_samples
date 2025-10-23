@@ -13,36 +13,30 @@
  * limitations under the License.
  */
 
-// [Start router_index]
+// [Start jump_theme]
+// Theme.ets
 @Entry
 @Component
-struct Index {
-  pathStack: NavPathStack = new NavPathStack();
-
-  // 全局设置一个NavPathStack
-  aboutToAppear(): void {
-    AppStorage.setOrCreate("PathStack", this.pathStack);
-  }
+struct SetTheme {
+  @State message: string = 'Theme Page';
 
   build() {
-    Navigation(this.pathStack) {
-      // ...
-    }.title("Method 3: AppStorage")
-    .mode(NavigationMode.Stack)
-  }
-}
-
-// Navigation子页面
-@Component
-export struct PageOne {
-  // 子页面中获取全局的NavPathStack
-  pathStack: NavPathStack = AppStorage.get("PathStack") as NavPathStack;
-
-  build() {
-    NavDestination() {
-      // ...
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button('back to index', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.getUIContext().getRouter().back();
+          })
+      }
+      .width('100%')
     }
-    .title("PageOne")
+    .height('100%')
   }
 }
-// [End router_index]
+// [End jump_theme]

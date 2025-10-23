@@ -13,29 +13,26 @@
  * limitations under the License.
  */
 
-// [Start router_index]
-// 子页面中的自定义组件
-@Entry
+// [Start page_router_hsp1]
+import { router } from '@kit.ArkUI';
+// [End page_router_hsp1]
+
+// [Start page_router_hsp2]
+// library/src/main/ets/pages/Index.ets
+// library为新建共享包自定义的名字
+@Entry({ routeName: 'myPage' })
 @Component
-struct CustomNode {
-  pathStack: NavPathStack = new NavPathStack();
-
-  aboutToAppear() {
-    // query navigation info
-    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo;
-    if (navigationInfo !=  undefined) {
-      this.pathStack = navigationInfo.pathStack ;
-    }
-
-  }
-
+export struct MyComponent {
   build() {
     Row() {
-      Button('Method 4: queryNavigationInfo')
-        .onClick(() => {
-          this.pathStack.pushPath({ name: 'pageTwo' });
-        })
+      Column() {
+        Text('Library Page')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
     }
+    .height('100%')
   }
 }
-// [End router_index]
+// [End page_router_hsp2]

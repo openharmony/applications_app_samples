@@ -13,16 +13,5 @@
  * limitations under the License.
  */
 
-// [Start observer_comm]
-import { UIContext, uiObserver } from '@kit.ArkUI';
-
-function callbackFunc(info: uiObserver.RouterPageInfo) {
-  console.info("RouterPageInfo is : " + JSON.stringify(info));
-}
-
-// used in ability context.
-uiObserver.on('routerPageUpdate', this.context, callbackFunc);
-
-// used in UIContext.
-uiObserver.on('routerPageUpdate', this.getUIContext(), callbackFunc);
-// [End observer_comm]
+export const DOMAIN = 0xF811;
+export const TAG = '[Sample_ArkTSRouter]';

@@ -74,7 +74,7 @@
     },
     {
       "name": "navigation_pageOne",
-      "pageSourceFile": "src/main/ets/pages/routerToNavigation/navigation/pageOne.ets",
+      "pageSourceFile": "src/main/ets/pages/routerToNavigation/navigation/PageOne.ets",
       "buildFunction": "PageOneBuilder",
       "data": {
         "description": "this is pageOne"

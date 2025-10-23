@@ -14,13 +14,12 @@
  */
 
 // [Start nav_page_one]
-// PageOne.ets
-
 @Builder
 export function PageOneBuilder() {
   PageOne();
 }
 
+@Entry
 @Component
 export struct PageOne {
   pathStack: NavPathStack = new NavPathStack();
@@ -28,7 +27,8 @@ export struct PageOne {
   build() {
     NavDestination() {
       Column() {
-        Button('回到首页', { stateEffect: true, type: ButtonType.Capsule })
+        // $r('app.string.routerToNavigation_nav_text1_backHome')需要替换为开发者所需的资源文件
+        Button($r('app.string.routerToNavigation_nav_text1_backHome'), { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)

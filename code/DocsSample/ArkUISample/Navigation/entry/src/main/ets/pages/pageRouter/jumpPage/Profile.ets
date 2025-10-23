@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-// [Start router_page_one]
-// pageOne.ets
+// [Start jump_detail]
 @Entry
 @Component
-struct pageOne {
-  @State message: string = 'This is pageOne';
+struct Profile {
+  @State message: string = 'Profile Page';
 
   build() {
     Row() {
@@ -26,7 +25,7 @@ struct pageOne {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Button('router back to Index', { stateEffect: true, type: ButtonType.Capsule })
+        Button('back, exit the application', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
@@ -39,4 +38,4 @@ struct pageOne {
     .height('100%')
   }
 }
-// [End router_page_one]
+// [End jump_detail]

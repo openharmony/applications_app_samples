@@ -108,12 +108,26 @@ struct Index {
       ]
     }, {
       name: 'routerToNavigation',
-      label: 'RouterToNavigation',
+      label: $r('app.string.routerToNavigation_text'),
       children: [
         { name: 'router/Index', label: $r('app.string.routerToNavigation_text1') },
-        { name: 'navigation/Index', label: $r('app.string.routerToNavigation_text2') },
+        { name: 'navigation/Index', label: $r('app.string.routerToNavigation_text2') }
       ]
-    }
+    }, {
+    name: 'pageRouter',
+    label: $r('app.string.pageRouter_text'),
+    children: [
+      { name: 'jumpPage/Index', label: $r('app.string.pageRouter_jump_text1') },
+      { name: 'jumpPage/Login', label: $r('app.string.pageRouter_jump_text2') },
+      { name: 'jumpPage/Setting', label: $r('app.string.pageRouter_jump_text3') },
+      { name: 'jumpPage/SearchResult', label: $r('app.string.pageRouter_jump_text4') },
+      { name: 'jumpPage/IndexPara', label: $r('app.string.pageRouter_jump_text5') },
+      { name: 'jumpPage/BackHome', label: $r('app.string.pageRouter_jump_text6_pageBack') },
+      { name: 'lifeCycle/Index', label: $r('app.string.pageRouter_jump_text8_life') },
+      { name: 'pageTransition/ShowAlert', label: $r('app.string.pageRouter_jump_text9_alert') },
+      { name: 'pageTransition/ShowDialog', label: $r('app.string.pageRouter_jump_text9_dialog') }
+    ]
+  }
   ];
   @State selection: string | null = null;
 

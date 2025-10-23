@@ -19,13 +19,13 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { router } from '@kit.ArkUI';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+let resourceManager = delegator.getAppContext().resourceManager;
+const driver = Driver.create();
 const BUNDLE = 'Navigation_'
 const TAG = '[Sample_Navigation_]';
 const DOMAIN = 0xF811
-let resourceManager = delegator.getAppContext().resourceManager;
-const driver = Driver.create();
 
-let aimComponent : Component
+let aimComponent : Component;
 
 export function Navigation_RouteToNavTest() {
   describe('Navigation_RouteToNavTest', () => {
@@ -60,7 +60,7 @@ export function Navigation_RouteToNavTest() {
      */
     it(BUNDLE + 'RouteToNavTest_001', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_001_begin');
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_text1'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_text1')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -85,18 +85,18 @@ export function Navigation_RouteToNavTest() {
      */
     it(BUNDLE + 'RouteToNavTest_002', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_002_begin');
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_text1'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_text1')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_router_text1'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_router_text1')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       await driver.assertComponentExist(ON.text('Method 1: Navigation'));
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_002_end');
 
-      router.back();
+      await driver.pressBack();
     })
 
     /*
@@ -109,18 +109,18 @@ export function Navigation_RouteToNavTest() {
      */
     it(BUNDLE + 'RouteToNavTest_003', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_003_begin');
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_text1'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_text1')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_router_text2'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_router_text2')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       await driver.assertComponentExist(ON.text('Method 2: PageOne'));
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_003_end');
 
-      router.back();
+      await driver.pressBack();
     })
 
     /*
@@ -133,18 +133,18 @@ export function Navigation_RouteToNavTest() {
      */
     it(BUNDLE + 'RouteToNavTest_004', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_004_begin');
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_text1'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_text1')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_router_text3'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_router_text3')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       await driver.assertComponentExist(ON.text('Method 3: AppStorage'));
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_004_end');
 
-      router.back();
+      await driver.pressBack();
     })
 
     /*
@@ -157,18 +157,18 @@ export function Navigation_RouteToNavTest() {
      */
     it(BUNDLE + 'RouteToNavTest_005', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_005_begin');
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_text1'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_text1')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_router_text4'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_router_text4')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       await driver.assertComponentExist(ON.text('Method 4: queryNavigationInfo'));
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_005_end');
 
-      router.back();
+      await driver.pressBack();
     })
 
     /*
@@ -181,7 +181,7 @@ export function Navigation_RouteToNavTest() {
      */
     it(BUNDLE + 'RouteToNavTest_006', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_006_begin');
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_text2'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_text2')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -189,7 +189,7 @@ export function Navigation_RouteToNavTest() {
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.routerToNavigation_nav_text1'))));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_nav_text1')));
       await aimComponent.click();
       await driver.delayMs(1000);
 

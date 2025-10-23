@@ -16,6 +16,8 @@
 // [Start router_page_one]
 // Index.ets
 import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { DOMAIN, TAG } from '../../common/Common';
 
 @Entry
 @Component
@@ -35,13 +37,13 @@ struct Index {
           .margin(20)
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({
-              url: 'pages/routerToNavigation/router/pageOne' // 目标url
+              url: 'pages/routerToNavigation/router/PageOne' // 目标url
             }, router.RouterMode.Standard, (err) => {
               if (err) {
-                console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                hilog.error(DOMAIN, TAG, 'page ON_SHOWN:' + `Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                 return;
               }
-              console.info('Invoke pushUrl succeeded.');
+              hilog.info( DOMAIN, TAG, 'Invoke pushUrl succeeded.');
             })
           })
 
@@ -55,13 +57,13 @@ struct Index {
           .align(Alignment.Start)
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({
-              url: 'pages/routerToNavigation/router/router1' // 目标url
+              url: 'pages/routerToNavigation/router/Router1' // 目标url
             }, router.RouterMode.Standard, (err) => {
               if (err) {
-                console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                hilog.error(DOMAIN, TAG, `Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                 return;
               }
-              console.info('Invoke pushUrl succeeded.');
+              hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
             })
           })
 
@@ -72,13 +74,13 @@ struct Index {
           .align(Alignment.Start)
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({
-              url: 'pages/routerToNavigation/router/router2' // 目标url
+              url: 'pages/routerToNavigation/router/Router2' // 目标url
             }, router.RouterMode.Standard, (err) => {
               if (err) {
-                console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                hilog.error(DOMAIN, TAG, `Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                 return;
               }
-              console.info('Invoke pushUrl succeeded.');
+              hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
             })
           })
 
@@ -89,13 +91,13 @@ struct Index {
           .align(Alignment.Start)
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({
-              url: 'pages/routerToNavigation/router/router3' // 目标url
+              url: 'pages/routerToNavigation/router/Router3' // 目标url
             }, router.RouterMode.Standard, (err) => {
               if (err) {
-                console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                hilog.error(DOMAIN, TAG, `Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                 return;
               }
-              console.info('Invoke pushUrl succeeded.');
+              hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
             })
           })
 
@@ -106,13 +108,13 @@ struct Index {
           .align(Alignment.Start)
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({
-              url: 'pages/routerToNavigation/router/router4' // 目标url
+              url: 'pages/routerToNavigation/router/Router4' // 目标url
             }, router.RouterMode.Standard, (err) => {
               if (err) {
-                console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                hilog.error(DOMAIN, TAG, `Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                 return;
               }
-              console.info('Invoke pushUrl succeeded.');
+              hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
             })
           })
       }

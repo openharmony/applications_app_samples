@@ -11,7 +11,8 @@
 5. [NavPathStack派生类](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
 6. [Router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
 7. [Stepper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)
-8. [Router切换Navigation](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-extension-attributeUpdater.md)
+8. [Router切换Navigation](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-router-to-navigation.md)
+9. [页面路由 (@ohos.router)(不推荐)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-routing.md)
 
 ### 效果预览
 
@@ -82,6 +83,22 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |   |---template4
 |   |   |   |---Index.ets
+|   |---pageRouter                  // 页面路由
+|   |   |---backPage
+|   |   |   |---Home.ets
+|   |   |---jumpPage
+|   |   |   |---Index.ets
+|   |   |   |---IndexPara.ets
+|   |   |   |---BackHome.ets
+|   |   |   |---Login.ets
+|   |   |   |---Setting.ets
+|   |   |   |---SearchResule.ets
+|   |   |---lifeCycle
+|   |   |   |---Index.ets   
+|   |   |   |---Page.ets 
+|   |   |---pageTransition
+|   |   |   |---ShowAlert.ets   
+|   |   |   |---ShowDialog.ets 
 |   |---router                  // Router
 |   |   |---template1
 |   |   |   |---Index.ets
@@ -140,7 +157,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/Navigation > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/Navigation > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

@@ -13,48 +13,28 @@
  * limitations under the License.
  */
 
-
-// Index.ets
+// [Start router_index]
+// 子页面中的自定义组件
 @Entry
 @Component
-struct PageOne {
-  // [Start life_comm]
-  // 页面创建后挂树的回调
-  aboutToAppear(): void {
-  }
+struct CustomNode {
+  pathStack: NavPathStack = new NavPathStack();
 
-  // 页面销毁前下树的回调
-  aboutToDisappear(): void {
+  aboutToAppear() {
+    // query navigation info
+    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo;
+    if (navigationInfo !=  undefined) {
+      this.pathStack = navigationInfo.pathStack ;
+    }
   }
-
-  // 页面显示时的回调
-  onPageShow(): void {
-  }
-
-  // 页面隐藏时的回调
-  onPageHide(): void {
-  }
-  // [End life_comm]
 
   build() {
-    NavDestination() {
-      // ...
+    Row() {
+      Button('Method 4: queryNavigationInfo')
+        .onClick(() => {
+          this.pathStack.pushPath({ name: 'pageTwo' });
+        })
     }
-    .onWillAppear(() => {
-    })
-    .onAppear(() => {
-    })
-    .onWillShow(() => {
-    })
-    .onShown(() => {
-    })
-    .onWillHide(() => {
-    })
-    .onHidden(() => {
-    })
-    .onWillDisappear(() => {
-    })
-    .onDisAppear(() => {
-    })
   }
 }
+// [End router_index]
