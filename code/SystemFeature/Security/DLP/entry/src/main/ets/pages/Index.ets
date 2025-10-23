@@ -213,7 +213,6 @@ struct FilePicker {
       console.log('openDLPFile:' + JSON.stringify(want));
       console.log('openDLPFile: delegator:' + JSON.stringify(context));
       context.startAbility(want);
-      this.result = 'openDLPFile startAbility succeed';
     } catch (err) {
       console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
       this.result = 'openDLPFile startAbility failed' + (err as BusinessError).code;
