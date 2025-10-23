@@ -227,6 +227,18 @@
     {
       "name": "rotation_temp_label2",
       "value": "示例2（透明度变化的旋转屏动画）"
+    },
+    {
+      "name": "component_label",
+      "value": "组件动画"
+    },
+    {
+      "name": "component_temp_label1",
+      "value": "示例1（Scroll组件滑动动效）"
+    },
+    {
+      "name": "component_temp_label2",
+      "value": "示例2（List组件动态替换动效）"
     }
   ]
 }

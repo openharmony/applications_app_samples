@@ -46,38 +46,49 @@ struct AnimateIndex {
   @State routes: RouteGroup[] = [
     {
       name: "animateTo",
+      // $r('app.string.animate_to_label')需要替换为开发者所需的资源文件
       label: $r('app.string.animate_to_label'),
       children: [
+        // $r('app.string.animate_to_temp_label1')需要替换为开发者所需的资源文件
         { name: 'template1/Index', label: $r('app.string.animate_to_temp_label1') },
         { name: 'template2/Index', label: $r('app.string.animate_to_temp_label2') },
         { name: 'template3/Index', label: $r('app.string.animate_to_temp_label3') }
       ]
     },{
     name: "animation",
+    // $r("app.string.animation_label")需要替换为开发者所需的资源文件
     label: $r("app.string.animation_label"),
     children:[
+      // $r("app.string.temp1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.temp1") },
       { name: 'template2/Index', label: $r("app.string.animation_temp_label2") },
       { name: 'template3/Index', label: $r("app.string.animation_temp_label3") },
       { name: 'template4/Index', label: $r("app.string.animation_temp_label4") }
+
     ]
   }, {
     name: "cohesion",
+    // $r("app.string.cohesion_label")需要替换为开发者所需的资源文件
     label: $r("app.string.cohesion_label"),
     children:[
+      //  $r("app.string.cohesion_temp_label1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.cohesion_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.cohesion_temp_label2") }
     ]
   }, {
     name: "keyframeAnimateTo",
+    //  $r("app.string.keyframeAnimateTo_label")需要替换为开发者所需的资源文件
     label: $r("app.string.keyframeAnimateTo_label"),
     children:[
+      // $r("app.string.temp1") 需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.temp1") }
     ]
   }, {
     name: "pageTransition",
+    // $r("app.string.pageTransition_label")需要替换为开发者所需的资源文件
     label: $r("app.string.pageTransition_label"),
     children:[
+      //  $r("app.string.pageTransition_temp_label1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.pageTransition_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.pageTransition_temp_label2") },
       { name: 'template3/pageTransitionSrc1', label: $r("app.string.pageTransition_temp_label3") },
@@ -85,8 +96,10 @@ struct AnimateIndex {
     ]
   }, {
     name: "compTransition",
+    // $r("app.string.compTransition_label")需要替换为开发者所需的资源文件
     label: $r("app.string.compTransition_label"),
     children:[
+      // $r("app.string.compTransition_temp_label1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.compTransition_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.compTransition_temp_label2") },
       { name: 'template3/Index', label: $r("app.string.compTransition_temp_label3") },
@@ -95,20 +108,26 @@ struct AnimateIndex {
     ]
   }, {
     name: "shareTransition",
+    // $r("app.string.shareTransition_label")需要替换为开发者所需的资源文件
     label: $r("app.string.shareTransition_label"),
     children:[
+      // $r("app.string.temp1") 需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.temp1") }
     ]
   }, {
     name: "motionPath",
+    // $r("app.string.motionPath_label")需要替换为开发者所需的资源文件
     label: $r("app.string.motionPath_label"),
     children:[
+      // $r("app.string.temp1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.temp1") }
     ]
   }, {
     name: "particle",
+    // $r("app.string.particle_label")需要替换为开发者所需的资源文件
     label: $r("app.string.particle_label"),
     children:[
+      // $r("app.string.particle_temp_label1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.particle_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.particle_temp_label2") },
       { name: 'template3/Index', label: $r("app.string.particle_temp_label3") },
@@ -118,24 +137,39 @@ struct AnimateIndex {
     ]
   }, {
     name: "animator",
+    // $r("app.string.animator_label")需要替换为开发者所需的资源文件
     label: $r("app.string.animator_label"),
     children:[
+      // $r("app.string.animator_temp_label1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.animator_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.animator_temp_label2") },
       { name: 'template3/Index', label: $r("app.string.animator_temp_label3") }
     ]
   }, {
     name: "animateToImmediately",
+    // $r("app.string.animateToImmediately_label")需要替换为开发者所需的资源文件
     label: $r("app.string.animateToImmediately_label"),
     children:[
+      // $r("app.string.temp1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.temp1") }
     ]
   }, {
     name: "rotation",
+    // $r("app.string.rotation_label")需要替换为开发者所需的资源文件
     label: $r("app.string.rotation_label"),
     children:[
+      // $r("app.string.rotation_temp_label1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.rotation_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.rotation_temp_label2") }
+    ]
+  }, {
+    name: "component",
+    // $r("app.string.component_label")需要替换为开发者所需的资源文件
+    label: $r("app.string.component_label"),
+    children:[
+      // $r("app.string.component_temp_label1")需要替换为开发者所需的资源文件
+      { name: 'template1/Index', label: $r("app.string.component_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.component_temp_label2") },
     ]
   }
   ];
@@ -145,16 +179,20 @@ struct AnimateIndex {
   ListItemGroupHeader(route: RouteGroup) {
     Row() {
       Text(route.label)
+        // $r("app.string.ohos_id_color_text_primary")需要替换为开发者所需的资源文件
         .fontColor($r('sys.color.ohos_id_color_text_primary'))
         .fontWeight(FontWeight.Medium)
 
       Blank()
 
       Text(`${route.children.length}`)
+        // $r('sys.color.ohos_id_color_text_secondary')需要替换为开发者所需的资源文件
         .fontColor($r('sys.color.ohos_id_color_text_secondary'))
         .opacity(this.selection === route.name ? 0 : 1)
 
+      // $r('sys.media.ohos_ic_public_arrow_right')需要替换为开发者所需的资源文件
       Image($r('sys.media.ohos_ic_public_arrow_right'))
+         // $r('sys.color.ohos_id_color_fourth')需要替换为开发者所需的资源文件
         .fillColor($r('sys.color.ohos_id_color_fourth'))
         .height(24)
         .width(24)
@@ -201,7 +239,9 @@ struct AnimateIndex {
                   Row() {
                     Text(route.label).fontSize(16)
                     Blank()
+                    // $r('sys.media.ohos_ic_public_arrow_right')需要替换为开发者所需的资源文件
                     Image($r('sys.media.ohos_ic_public_arrow_right'))
+                       // $r('sys.color.ohos_id_color_fourth')需要替换为开发者所需的资源文件
                       .fillColor($r('sys.color.ohos_id_color_fourth'))
                       .height(24)
                       .width(24)
@@ -221,7 +261,7 @@ struct AnimateIndex {
                   .width('100%')
                   .onClick(() => {
                     const name = `pages/${routeGroup.name}/${route.name}`;
-                    router.pushUrl({url: name})
+                    this.getUIContext().getRouter().pushUrl({url:name})
                   })
                 }
                 .width('100%')
