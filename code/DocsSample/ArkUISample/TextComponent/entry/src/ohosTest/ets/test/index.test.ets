@@ -701,7 +701,6 @@ export default function IndexTest() {
      * @tc.level: Level 1
      */
     it('testCreateRichEditor', Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: testCreateRichEditor begin');
       let driver = Driver.create();
       let buttonComponent = await driver.findComponent(ON.text('RichEditor', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
@@ -720,7 +719,6 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.waitForIdle(2000, 2000);
       await driver.pressBack();
-      console.info('uitest: testCreateRichEditor end');
       done();
     })
 

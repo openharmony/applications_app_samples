@@ -277,7 +277,6 @@ struct on_cut_copy_paste {
               if (event != undefined && event.preventDefault) {
                 event.preventDefault();
               }
-              console.info('RichEditor onPaste')
               this.PopDataFromPasteboard()
             })
             .width(300)
