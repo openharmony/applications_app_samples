@@ -25,8 +25,9 @@ const TAG: string = 'FormEdit -->';
 @Component
 struct FormEditIndex {
   @State message: string = 'Hello World';
-  @State message1: string = '北京';
-  @State message2: string = '上海';
+  context1 = this.getUIContext().getHostContext();
+  @State message1: string = this.context1!.resourceManager.getStringSync($r('app.string.button_one').id);
+  @State message2: string = this.context1!.resourceManager.getStringSync($r('app.string.button_two').id);
   updateForm(message: string) {
     let util = PreferencesUtil.getInstance();
     let preferences = util.getPreferences(this.getUIContext().getHostContext() as Context) as preferences.Preferences;
