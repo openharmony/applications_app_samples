@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router } from '@kit.ArkUI';
+
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -22,20 +23,29 @@ struct Index {
   build() {
     RelativeContainer() {
       Column(){
+        // $r('app.media.text1')需要替换为开发者所需的文本资源文件
         Button($r('app.string.text1'))
           .onClick(()=>{
+            const uiContext: UIContext = this.getUIContext();
+            const router = uiContext.getRouter();
             router.pushUrl({
               url:'pages/ComponentPage'
             })
           })
+        // $r('app.media.text2')需要替换为开发者所需的文本资源文件
         Button($r('app.string.text2'))
           .onClick(()=>{
+            const uiContext: UIContext = this.getUIContext();
+            const router = uiContext.getRouter();
             router.pushUrl({
               url:'pages/ComponentPage1'
             })
           })
+        // $r('app.media.text3')需要替换为开发者所需的文本资源文件
         Button($r('app.string.text3'))
           .onClick(()=>{
+            const uiContext: UIContext = this.getUIContext();
+            const router = uiContext.getRouter();
             router.pushUrl({
               url:'pages/ImagePage'
             })

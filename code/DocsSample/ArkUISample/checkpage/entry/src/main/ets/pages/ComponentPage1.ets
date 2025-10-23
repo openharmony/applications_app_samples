@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 //[Start componentIdentifier_start]
 @Entry
 @Component
@@ -22,22 +24,23 @@ struct ComponentPage {
         .fontSize(20)
         .id('TEXT')
         .onClick(() => {
-          console.info(`Text is clicked`);
+          hilog.info(0x0000,`Text is clicked`, 'isClicked');
         })
       Button('getInspectorByKey').onClick(() => {
         let result = getInspectorByKey('TEXT');
-        console.info(`result is ${result}`);
+        hilog.info(0x0000,`result is ${result}`, 'result');
       })
       Button('getInspectorTree').onClick(() => {
         let result = getInspectorTree();
-        console.info(`result is ${JSON.stringify(result)}`);
+        hilog.info(0x0000,`result is ${JSON.stringify(result)}`, 'result');
       })
       Button('sendEventByKey').onClick(() => {
         sendEventByKey('TEXT', 10, '');
       })
     }
     .width('100%')
-      .height('100%')
+    .height('100%')
   }
 }
+
 //[End componentIdentifier_start]

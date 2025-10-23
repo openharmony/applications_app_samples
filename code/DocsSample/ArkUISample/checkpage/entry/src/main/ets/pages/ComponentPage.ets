@@ -14,12 +14,14 @@
  */
 // [Start uiContextTree_start]
 import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct ComponentPage {
   loopConsole(inspectorStr: string, i: string) {
-    console.info(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`);
+    hilog.info(0x0000, `InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`,
+      'InsTree');
     if (JSON.parse(inspectorStr).$children) {
       i += '-';
       for (let index = 0; index < JSON.parse(inspectorStr).$children.length; index++) {
@@ -36,14 +38,14 @@ struct ComponentPage {
       Button('content').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
-        console.info(`InsTree : ${inspectorStr}`);
+        hilog.info(0x0000,`InsTree : ${inspectorStr}`, 'InsTree');
         inspectorStr = JSON.stringify(JSON.parse(inspectorStr));
         this.loopConsole(inspectorStr, '-');
       })
       Button('isLayoutInspector').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['isLayoutInspector']);
-        console.info(`InsTree : ${inspectorStr}`);
+        hilog.info(0x0000,`InsTree : ${inspectorStr}`, 'InsTree');
         inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content);
         this.loopConsole(inspectorStr, '-');
       })
@@ -51,20 +53,21 @@ struct ComponentPage {
         const uiContext: UIContext = this.getUIContext();
         try {
           let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ['id', 'src']);
-          console.info(`result1: ${inspectorStr}`);
+          hilog.info(0x0000,`result1: ${inspectorStr}`, 'result1');
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
-          console.info(`result2: ${inspectorStr}`);
+          hilog.info(0x0000,`result2: ${inspectorStr}`, 'result2');
           inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ['src']);
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
-          console.info(`result3: ${inspectorStr}`);
+          hilog.info(0x0000,`result3: ${inspectorStr}`, 'result13');
         } catch (e) {
-          console.error(`getFilteredInspectorTreeById error: ${e}`);
+          hilog.error(0x0000, `getFilteredInspectorTreeById error: ${e}`, 'error');
         }
       })
 
     }
     .width('100%')
-      .height('100%')
+    .height('100%')
   }
 }
+
 // [End uiContextTree_start]
