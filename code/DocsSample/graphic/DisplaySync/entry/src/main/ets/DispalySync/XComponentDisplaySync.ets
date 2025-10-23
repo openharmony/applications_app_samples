@@ -14,7 +14,9 @@
  */
 // [Start display_sync_create_xcomponent]
 import XComponentContext from '../interface/XComponentContext';
+// [StartExclude display_sync_create_xcomponent]
 import { router } from '@kit.ArkUI';
+// [EndExclude display_sync_create_xcomponent]
 
 @Entry
 @Component
@@ -43,11 +45,10 @@ struct Index {
           .onLoad((xComponentContext) => {
             this.xComponentContext1 = xComponentContext as XComponentContext;
           }).width('640px')
+          // [StartExclude display_sync_create_xcomponent]
           .backgroundColor(Color.White)
-
-
+          // [EndExclude display_sync_create_xcomponent]
       }.height('40%')
-
 
       Row() {
         // [StartExclude display_sync_create_xcomponent]
@@ -68,10 +69,12 @@ struct Index {
           .onLoad((xComponentContext) => {
             this.xComponentContext2 = xComponentContext as XComponentContext;
           }).width('640px')
+          // [StartExclude display_sync_create_xcomponent]
           .backgroundColor(Color.White)
+          // [EndExclude display_sync_create_xcomponent]
       }.height('40%')
-      // [End display_sync_create_xcomponent]
 
+      // [StartExclude display_sync_create_xcomponent]
       // [Start display_sync_start_and_stop_per_frame_callback]
       Row() {
         Button('Start')
@@ -107,8 +110,8 @@ struct Index {
           .width('30%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
-        // [End display_sync_start_and_stop_per_frame_callback]
 
+        // [StartExclude display_sync_start_and_stop_per_frame_callback]
         Button('Back')
           .id('Back')
           .fontSize(14)
@@ -126,9 +129,13 @@ struct Index {
           .width('30%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+          // [EndExclude display_sync_start_and_stop_per_frame_callback]
       }
+      // [End display_sync_start_and_stop_per_frame_callback]
       .width('100%')
       .height('20%')
+      // [EndExclude display_sync_create_xcomponent]
     }
   }
 }
+// [End display_sync_create_xcomponent]

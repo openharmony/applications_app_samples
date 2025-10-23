@@ -79,7 +79,9 @@ struct AnimationToAnimationDemo {
           .animation({
             duration: 1200,
             iterations: 10,
+            // [StartExclude display_sync_property_animation]
             playMode: PlayMode.AlternateReverse,
+            // [EndExclude display_sync_property_animation]
             expectedFrameRateRange: {
               expected: 60,
               min: 0,
@@ -99,7 +101,9 @@ struct AnimationToAnimationDemo {
           .fontWeight(500)
           .margin({ bottom: 10, left: 5 })
           .fontColor(Color.White)
+          // [EndExclude display_sync_explicit_animation]
           .onClick(() => {
+            // [StartExclude display_sync_explicit_animation]
             this.isAnimation = !this.isAnimation;
             this.translateX3 = this.isAnimation ? 100 : -100;
             // [EndExclude display_sync_explicit_animation]
@@ -107,17 +111,21 @@ struct AnimationToAnimationDemo {
             this.uiContext?.animateTo({
               duration: 1200,
               iterations: 10,
+              // [StartExclude display_sync_explicit_animation]
               playMode: PlayMode.AlternateReverse,
+              // [EndExclude display_sync_explicit_animation]
               expectedFrameRateRange: {
                 expected: 30,
                 min: 0,
                 max: 120,
               },
             }, () => {
+              // [StartExclude display_sync_explicit_animation]
               this.translateX1 = this.isAnimation ? 100 : -100;
+              // [EndExclude display_sync_explicit_animation]
             })
-            // [End display_sync_explicit_animation]
 
+            // [StartExclude display_sync_explicit_animation]
             this.uiContext?.animateTo({
               duration: 1200,
               iterations: 10,
@@ -130,11 +138,14 @@ struct AnimationToAnimationDemo {
             }, () => {
               this.translateX2 = this.isAnimation ? 100 : -100;
             })
+            // [EndExclude display_sync_explicit_animation]
           })
+          // [End display_sync_explicit_animation]
           .width('40%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
+        // [StartExclude display_sync_by_property_animation_complete_example]
         Button('Back')
           .id('PropertyAnimationBack')
           .fontSize(14)
@@ -147,6 +158,7 @@ struct AnimationToAnimationDemo {
           .width('40%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+        // [EndExclude display_sync_by_property_animation_complete_example]
       }
       .width('100%')
       .justifyContent(FlexAlign.Center)
