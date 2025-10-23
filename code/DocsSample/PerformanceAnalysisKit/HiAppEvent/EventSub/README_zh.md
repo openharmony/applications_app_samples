@@ -90,6 +90,7 @@ AppEvent HiAppEvent eventPkg.packageId=0
 AppEvent HiAppEvent eventPkg.row=1
 AppEvent HiAppEvent eventPkg.size=120
 AppEvent HiAppEvent eventPkg.info={"domain_":"button","name_":"click","type_":4,"time_":1503514787492,"tz_":"","pid_":18178,"tid_":18178,"clickTime":100}
+AppEvents writeEvent ArkTS success
 ```
 
 注意：

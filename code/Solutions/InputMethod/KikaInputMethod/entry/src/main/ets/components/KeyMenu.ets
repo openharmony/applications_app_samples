@@ -21,6 +21,7 @@ import { KeyItemGray } from './KeyItemGray';
 import { KeyItemNumber } from './KeyItemNumber';
 import { SpaceItem } from './SpaceItem';
 import { ReturnItem } from './ReturnItem';
+import { inputMethodEngine } from '@kit.IMEKit';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_gray_pressed'))
@@ -39,6 +40,22 @@ export struct KeyMenu {
   private keyList: keySourceListType[] = keySourceListData;
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
   private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
+  @State styleMode: number = 1
+
+  // 如果是沉浸模式，设置新样式
+  aboutToAppear(): void {
+
+    inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr : inputMethodEngine.EditorAttribute) => {
+      console.log('zhelili')
+      if (attr.immersiveMode == 1) {
+        this.styleMode = 0
+        console.log('zhelili11', JSON.stringify(this.styleMode))
+      } else {
+        this.styleMode = 1
+      }
+    })
+  }
+
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -116,5 +133,6 @@ export struct KeyMenu {
       left: this.inputStyle.paddingLeftRight,
       right: this.inputStyle.paddingLeftRight
     })
+    .backgroundColor(this.styleMode == 1 ? '' : '#ffffff')
   }
 }

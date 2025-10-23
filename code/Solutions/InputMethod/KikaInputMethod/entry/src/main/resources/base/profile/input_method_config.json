@@ -1,0 +1,18 @@
+{
+  "subtypes": [
+    {
+      "icon": "$media:icon",
+      "id": "InputMethodExtAbility",
+      "label": "$string:entry_desc",
+      "locale": "en-US",
+      "mode": "lower"
+    },
+    {
+      "icon": "$media:icon",
+      "id": "InputMethodExtAbility1",
+      "label": "$string:MainAbility_label",
+      "locale": "zh-CN",
+      "mode": "lower"
+    }
+  ]
+}

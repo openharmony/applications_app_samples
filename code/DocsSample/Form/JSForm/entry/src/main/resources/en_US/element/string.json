@@ -1,0 +1,41 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Samples of stage service widget"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "UI entry ability of service widget"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "JScards"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "Form extension ability"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "cards"
+    },
+
+    {
+      "name": "JSCardFormAbility_desc",
+      "value": "JS UI widget development"
+    },
+    {
+      "name": "JSCardFormAbility_label",
+      "value": "JS card"
+    },
+    {
+      "name": "JSCardEntryAbility_desc",
+      "value": "JS UI widget development"
+    },
+    {
+      "name": "JSCardEntryAbility_label",
+      "value": "JS card"
+    }
+  ]
+}

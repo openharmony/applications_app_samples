@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "publishSharedConfig",
+      "value": "发布或修改配置项"
+    },
+    {
+      "name": "deleteSharedConfig",
+      "value": "删除配置项"
+    },
+    {
+      "name": "getSharedConfig",
+      "value": "获取配置项信息"
+    },
+    {
+      "name": "watchConfigChanges",
+      "value": "监听/取消监听配置变化"
+    }
+  ]
+}

@@ -127,6 +127,8 @@ public:
         OH_ArkUI_GuidelineOption_SetDirection(guideline, ARKUI_AXIS_HORIZONTAL, SECOND_GUIDELINE_INDEX);
         OH_ArkUI_GuidelineOption_SetPositionStart(guideline, DEFAULT_GUIDELINE_POSITION, FIRST_GUIDELINE_INDEX);
         OH_ArkUI_GuidelineOption_SetPositionStart(guideline, DEFAULT_GUIDELINE_POSITION, SECOND_GUIDELINE_INDEX);
+        OH_ArkUI_GuidelineOption_SetPositionEnd(guideline, DEFAULT_GUIDELINE_POSITION, FIRST_GUIDELINE_INDEX);
+        OH_ArkUI_GuidelineOption_SetPositionEnd(guideline, DEFAULT_GUIDELINE_POSITION, SECOND_GUIDELINE_INDEX);
         SetGuideline(guideline);
 
         auto alignRules = OH_ArkUI_AlignmentRuleOption_Create();
@@ -144,6 +146,8 @@ public:
         guidelineStyle += "\n";
         guidelineStyle += "PositionStart:" + std::to_string(
             OH_ArkUI_GuidelineOption_GetPositionStart(guideline, SECOND_GUIDELINE_INDEX));
+        guidelineStyle += "PositionEnd:" + std::to_string(
+            OH_ArkUI_GuidelineOption_GetPositionEnd(guideline, SECOND_GUIDELINE_INDEX));
         guidelineStyle += "\n";
         OH_ArkUI_GuidelineOption_Dispose(guideline);
         return guidelineStyle;

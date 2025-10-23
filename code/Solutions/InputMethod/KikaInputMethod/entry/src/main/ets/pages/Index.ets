@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+ // [Start input_case_input_index]
 import deviceInfo from '@ohos.deviceInfo';
 import Log from '../model/Log';
 import { EditView } from '../components/EditView';
@@ -31,6 +33,8 @@ import { StyleConfiguration, KeyStyle } from '../common/StyleConfiguration';
 import { SymbolMenu } from '../components/SymbolMenu';
 import { Submenu } from '../components/Submenu';
 import { TopMenu } from '../components/TopMenu';
+import { inputMethodEngine } from '@kit.IMEKit';
+
 
 const DEVICE_TYPE: string = deviceInfo.deviceType;
 const TAG: string = 'index->';
@@ -44,6 +48,27 @@ struct Index {
   @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false;
   @StorageLink('isRkDevice') isRkDevice: boolean = true;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE);
+  private panel: inputMethodEngine.Panel | undefined;
+  @StorageLink('subtypeChange') subtypeChange: number = 0;
+
+
+  aboutToAppear(): void {
+    console.log('aabb',JSON.stringify(this.submenuType));
+
+    console.log('diaoqijianpan');    
+    // [Start input_case_input_immersiveMode]
+    // 感知是否设置沉浸模式，如果是沉浸模式选择沉浸模式类型
+    // [Start input_case_input_immersiveModeeditorAttributeChanged]
+    inputMethodEngine.getKeyboardDelegate().on("editorAttributeChanged", (attr : inputMethodEngine.EditorAttribute) => {
+      // [End input_case_input_immersiveModeeditorAttributeChanged]
+      console.log('recv editorAttributeChanged, immersiveMode: ', JSON.stringify(attr.immersiveMode));
+      if (attr.immersiveMode == 1) {
+        this.panel?.setImmersiveMode(inputMethodEngine.ImmersiveMode.DARK_IMMERSIVE);
+        console.log('recv editorAttributeChanged, panel:', JSON.stringify(this.panel?.getImmersiveMode()));
+      }
+    })
+    // [End input_case_input_immersiveMode]
+  }
 
   onBackPress(): boolean {
     Log.showInfo(TAG, 'kikaInput onBackPress');
@@ -64,6 +89,8 @@ struct Index {
     AppStorage.set('inputStyle', StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE));
   }
 
+
+
   build() {
     Stack() {
       Column() {
@@ -77,7 +104,11 @@ struct Index {
             }
           } else {
             if (this.menuType === MenuType.NORMAL) {
-              KeyMenu()
+              if (this.subtypeChange == 0) {
+                KeyMenu()
+              } else {
+                NumberMenu()
+              }
             } else if (this.menuType === MenuType.NUMBER) {
               NumberMenu()
             } else {
@@ -96,3 +127,4 @@ struct Index {
     .backgroundColor(Color.White)
   }
 }
+// [End input_case_input_index]

@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例基于[NativeNode](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)、[NativeNodeNapi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-napi-h.md)展示了如何通过调用CAPI提供的相关方法来获取、设置navigation组件等组件的相关属性和信息，以及将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。。
+本示例基于[native_node.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)、[native_node_napi.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-napi-h.md)展示了如何通过调用CAPI提供的相关方法来获取、设置navigation组件等组件的相关属性和信息，以及将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。
 
 ## 效果预览
 
@@ -18,6 +18,10 @@
 3. 点击navigation选择框进入navigation组件相关的CAPI接口展示界面，通过点击不同的按钮来触发不同的事件，具体结果在log中查看；
 4. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看；
 5. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看；
+6. 点击Mapping DrawableDescriptor选择项进入DrawableDescriptor映射页面，通过点击按钮方式1:GetDrawableDescriptorFromNapiValue，来触发DrawableDescriptor的映射接口，若接口成功调用可以在DevEco Studio开发环境中的日志界面看到如下相关日志信息：
+```
+"success to get drawable descriptor"
+```
 
 ## 工程目录
 

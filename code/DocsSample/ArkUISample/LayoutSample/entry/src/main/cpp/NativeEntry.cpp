@@ -50,19 +50,25 @@ napi_value CreateNativeRootImpl(napi_env env, napi_callback_info info, CreateFun
     if (OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle) != 0) {
         return nullptr;
     }
-    /* 设置内容句柄 */
-    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
     /* 创建指定模块的Native组件 */
     auto node = createFunc();
     /* 设置根节点 */
-    NativeEntry::GetInstance()->SetRootNode(node);
+    NativeEntry::GetInstance()->SetRootNode(contentHandle, node);
     return nullptr;
 }
 
 napi_value DestroyNativeRootImpl(napi_env env, napi_callback_info info)
 {
-    /* 销毁根节点 */
-    NativeEntry::GetInstance()->DisposeRootNode();
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
+        return nullptr;
+    }
+    ArkUI_NodeContentHandle contentHandle;
+    if (OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle) != 0) {
+        return nullptr;
+    }
+    NativeEntry::GetInstance()->DisposeRootNode(contentHandle);
     return nullptr;
 }
 

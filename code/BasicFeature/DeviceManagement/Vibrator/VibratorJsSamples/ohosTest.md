@@ -15,3 +15,6 @@
 | 订阅扩展设备热插拔事件      | 无                            | 点击on按钮                  | 订阅正常       | 是    | Pass |
 | 去订阅扩展设备热插拔事件     | 无                            | 点击off按钮                 | 去订阅正常      | 是    | Pass |
 | 获取本设备及扩展设备马达信息列表 | 无                            | 点击getVibratorInfoSync按钮 | 马达信息列表获取正常 | 是    | Pass |
+| 获取指定设备马达信息列表 | 无                            | 点击getVibratorInfoSyncByDeviceId按钮 | 马达信息列表获取正常 | 是    | Pass |
+| 获取预置振动效果信息 | 无                            | 点击getEffectInfoSync按钮 | 弹出提示框 | 是    | Pass |
+| 查询是否支持高清振动 | 无                            | 点击isHdHapticSupported按钮 | 弹出提示框 | 是    | Pass |
