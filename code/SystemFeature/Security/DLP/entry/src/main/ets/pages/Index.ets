@@ -16,7 +16,9 @@
 import picker from '@ohos.file.picker';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+// [Start dlp_include]
 import { dlpPermission } from '@kit.DataProtectionKit';
+// [End dlp_include]
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { MediaFileUri, FileInfoType } from '../feature/FileManager';
 import Want from '@ohos.app.ability.Want';
