@@ -30,7 +30,7 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 
 8. 点击 `关闭VPN拓展程序` 按钮以停止 VPN 扩展能力。
 
-9. 点击 `getVpnId` 按钮以获取Vpn的Id。
+9. 点击 `getVpnId` 按钮，生成VPN Id。
  
 10. 点击 `destroy` 按钮,可断开VPN。
 
