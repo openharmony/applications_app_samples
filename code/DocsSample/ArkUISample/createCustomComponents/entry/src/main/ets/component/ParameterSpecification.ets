@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start Parameter_specification ]
+// [Start Parameter_specification]
 @Component
 struct MyComponentSpecification {
   private countDownFrom: number = 0;
@@ -38,4 +38,4 @@ struct ParentComponentParameter {
     }
   }
 }
-// [ End Parameter_specification ]
+// [End Parameter_specification]

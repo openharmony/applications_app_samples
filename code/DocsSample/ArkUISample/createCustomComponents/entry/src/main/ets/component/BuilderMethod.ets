@@ -13,13 +13,27 @@
  * limitations under the License.
  */
 @Entry
-  // [ Start freezeWhenInactive_Component ]
-@Component({ freezeWhenInactive: true })
-struct MyComponentFreezeWhenInactive {
-  // [StartExclude freezeWhenInactive_build]
-  build() {
-
+  // [Start Builder_decoration]
+@Component
+struct ParentComponent {
+  doSomeCalculations() {
   }
-  // [EndExclude freezeWhenInactive_build]
+
+  calcTextValue(): string {
+    return 'Hello World';
+  }
+
+  @Builder doSomeRender() {
+    Text(`Hello World`)
+  }
+
+  build() {
+    Column() {
+      // 正例：可以调用
+      this.doSomeRender();
+      // 正例：参数可以为调用TS方法的返回值
+      Text(this.calcTextValue())
+    }
+  }
 }
-// [ End freezeWhenInactive_Component ]
+// [End Builder_decoration]

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start HelloComponent_Hello ]
+// [Start HelloComponent_Hello]
 @Component
 struct HelloComponent {
   @State message: string | Resource = 'Hello, World!';
@@ -27,8 +27,8 @@ struct HelloComponent {
     }
   }
 }
-// [ End HelloComponent_Hello ]
-// [ Start ArkUI_message ]
+// [End HelloComponent_Hello]
+// [Start ArkUI_message]
 @Entry
 @Component
 struct ParentComponentUI {
@@ -37,10 +37,10 @@ struct ParentComponentUI {
         Text('ArkUI message')
         HelloComponent({ message: 'Hello World!' });
         Divider()
-        // 字符串资源文件需要开发者自行添加
+        // $r('app.string.Hello_The_world')需要替换为开发者所需的资源文件
         HelloComponent({ message: $r('app.string.Hello_The_world') });
       }
   }
 }
-// [ End ArkUI_message ]
+// [End ArkUI_message]
 

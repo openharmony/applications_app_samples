@@ -158,13 +158,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number OnePageTest
-     * @tc.name OnePageTest
-     * @tc.desc 测试OnePage是否显示正常
+     * @tc.number ComponentPageTest
+     * @tc.name ComponentPageTest
+     * @tc.desc 测试Component页面是否显示正常
      */
-    it('OnePageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('One', MatchPattern.CONTAINS));
+    it('ComponentPageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('Component', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -173,13 +172,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number TwoPageTest
-     * @tc.name TwoPageTest
-     * @tc.desc 测试TwoPage是否显示正常
+     * @tc.number FreezeWhenInactivePageTest
+     * @tc.name FreezeWhenInactivePageTest
+     * @tc.desc 测试FreezeWhenInactive页面是否显示正常
      */
-    it('TwoPageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Two', MatchPattern.CONTAINS));
+    it('FreezeWhenInactivePageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('FreezeWhenInactive', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -188,13 +186,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number ThreePageTest
-     * @tc.name ThreePageTest
-     * @tc.desc 测试ThreePage是否显示正常
+     * @tc.number BuildFunctionPageTest
+     * @tc.name BuildFunctionPageTest
+     * @tc.desc 测试BuildFunction页面是否显示正常
      */
-    it('ThreePageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Three', MatchPattern.CONTAINS));
+    it('BuildFunctionPageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('BuildFunction', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -203,13 +200,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number FourPageTest
-     * @tc.name FourPageTest
-     * @tc.desc 测试FourPage是否显示正常
+     * @tc.number EntryPageTest
+     * @tc.name EntryPageTest
+     * @tc.desc 测试Entry页面是否显示正常
      */
-    it('FourPageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Four', MatchPattern.CONTAINS));
+    it('EntryPageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('Entry', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -218,13 +214,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number FivePageTest
-     * @tc.name FivePageTest
-     * @tc.desc 测试FivePage是否显示正常
+     * @tc.number RouteNamePageTest
+     * @tc.name RouteNamePageTest
+     * @tc.desc 测试RouteName页面是否显示正常
      */
-    it('FivePageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Five', MatchPattern.CONTAINS));
+    it('RouteNamePageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('RouteName', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -233,13 +228,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number SixPageTest
-     * @tc.name SixPageTest
-     * @tc.desc 测试SixPage是否显示正常
+     * @tc.number ReusablePageTest
+     * @tc.name ReusablePageTest
+     * @tc.desc 测试Reusable页面是否显示正常
      */
-    it('SixPageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Six', MatchPattern.CONTAINS));
+    it('ReusablePageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('Reusable', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -248,13 +242,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number SevenPageTest
-     * @tc.name SevenPageTest
-     * @tc.desc 测试SevenPage是否显示正常
+     * @tc.number BuilderMethodPageTest
+     * @tc.name BuilderMethodPageTest
+     * @tc.desc 测试BuilderMethod页面是否显示正常
      */
-    it('SevenPageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Seven', MatchPattern.CONTAINS));
+    it('BuilderMethodPageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('BuilderMethod', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -263,13 +256,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number EightPageTest
-     * @tc.name EightPageTest
-     * @tc.desc 测试EightPage是否显示正常
+     * @tc.number IfPageTest
+     * @tc.name IfPageTest
+     * @tc.desc 测试If页面是否显示正常
      */
-    it('EightPageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Eight', MatchPattern.CONTAINS));
+    it('IfPageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('If', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -278,13 +270,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number NinePageTest
-     * @tc.name NinePageTest
-     * @tc.desc 测试NinePage是否显示正常
+     * @tc.number ModuleComponentPageTest
+     * @tc.name ModuleComponentPageTest
+     * @tc.desc 测试ModuleComponent页面是否显示正常
      */
-    it('NinePageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Nine', MatchPattern.CONTAINS));
+    it('ModuleComponentPageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('ModuleComponent', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
@@ -293,13 +284,12 @@ export default function IndexTest() {
     });
 
     /**
-     * @tc.number TenPageTest
-     * @tc.name TenPageTest
-     * @tc.desc 测试TenPage是否显示正常
+     * @tc.number ForEachFilterPageTest
+     * @tc.name ForEachFilterPageTest
+     * @tc.desc 测试ForEachFilter页面是否显示正常
      */
-    it('TenPageTest', 0, async (done: Function) => {
-   
-      let targetElement = await driver.findComponent(ON.text('Ten', MatchPattern.CONTAINS));
+    it('ForEachFilterPageTest', 0, async (done: Function) => {
+      let targetElement = await driver.findComponent(ON.text('ForEachFilter', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);

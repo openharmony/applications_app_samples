@@ -28,8 +28,8 @@ struct MyComponent {
 struct ChildComponentBuildFunction {
   build() {
     // 根节点唯一且必要，可为非容器组件
-    // 图片资源文件需要开发者自行添加
+    // $r('app.media.startIcon')需要替换为开发者所需的资源文件
     Image($r('app.media.startIcon'))
   }
 }
-// [ End build_function ]
+// [End build_function]

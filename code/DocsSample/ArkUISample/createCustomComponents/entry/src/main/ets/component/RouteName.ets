@@ -12,11 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@Entry
-  // [ Start Declarative_UI_description ]
+// [Start routeName_myPage]
+@Entry({ routeName : 'myPage' })
 @Component
-struct MyComponentBuildFunction {
+struct MyComponentRouteName {
+  // [StartExclude routeName_myPage]
   build() {
+    Column(){
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .height('100%')
   }
+  // [EndExclude routeName_myPage]
 }
-// [ End Declarative_UI_description ]
+// [End routeName_myPage]

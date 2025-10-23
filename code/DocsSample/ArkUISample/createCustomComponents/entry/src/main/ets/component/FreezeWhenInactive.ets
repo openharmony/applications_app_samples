@@ -13,19 +13,19 @@
  * limitations under the License.
  */
 @Entry
-@Component
-struct Nine {
-  @State aVar: number = 0;
-  // [ Start if_component ]
+  // [Start freezeWhenInactive_Component]
+@Component({ freezeWhenInactive: true })
+struct MyComponentFreezeWhenInactive {
+  // [StartExclude freezeWhenInactive_build]
   build() {
-    Column() {
-      // 正例：使用if判断
-      if(this.aVar > 10) {
-        Text('...')
-      } else {
-        Image('...')
-      }
+    Column(){
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
     }
+    .width('100%')
+    .height('100%')
   }
-  // [ End if_component ]
+  // [EndExclude freezeWhenInactive_build]
 }
+// [End freezeWhenInactive_Component]

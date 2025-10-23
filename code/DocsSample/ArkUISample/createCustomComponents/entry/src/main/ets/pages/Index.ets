@@ -22,7 +22,7 @@ class CreateRouter{
     this.routerName = routerName
   }
 };
-const CreateRouterList:CreateRouter[] = [
+const createRouterList:CreateRouter[] = [
   new CreateRouter('ParentComponentPage','component/ParentComponent'),
   new CreateRouter('ParameterSpecificationPage','component/ParameterSpecification'),
   new CreateRouter('ParentFunctionPage','component/ParentFunction'),
@@ -31,21 +31,21 @@ const CreateRouterList:CreateRouter[] = [
   new CreateRouter('StaticCodeV1Page','component/StaticCodeV1'),
   new CreateRouter('StaticCodeV2Page','component/StaticCodeV2'),
   new CreateRouter('stateManagementOverviewPage','managementoverview/stateManagementOverview'),
-  new CreateRouter('OnePage','component/One'),
-  new CreateRouter('TwoPage','component/Two'),
-  new CreateRouter('ThreePage','component/Three'),
-  new CreateRouter('FourPage','component/Four'),
-  new CreateRouter('FivePage','component/Five'),
-  new CreateRouter('SixPage','component/Six'),
-  new CreateRouter('SevenPage','component/Seven'),
-  new CreateRouter('EightPage','component/Eight'),
-  new CreateRouter('NinePage','component/Nine'),
-  new CreateRouter('TenPage','component/Ten'),
+  new CreateRouter('ComponentPage','component/Component'),
+  new CreateRouter('FreezeWhenInactivePage','component/FreezeWhenInactive'),
+  new CreateRouter('BuildFunctionPage','component/BuildFunction'),
+  new CreateRouter('EntryPage','component/Entry'),
+  new CreateRouter('RouteNamePage','component/RouteName'),
+  new CreateRouter('ReusablePage','component/Reusable'),
+  new CreateRouter('BuilderMethodPage','component/BuilderMethod'),
+  new CreateRouter('IfPage','component/If'),
+  new CreateRouter('ModuleComponentPage','component/ModuleComponent'),
+  new CreateRouter('ForEachFilterPage','component/ForEachFilter'),
 ];
 @Entry
 @Component
 struct Index {
-  @State createNavigationListIndex:CreateRouter[] = CreateRouterList;
+  @State createNavigationListIndex:CreateRouter[] = createRouterList;
   build() {
       List({space:3}){
         ForEach(this.createNavigationListIndex, (item:CreateRouter) => {
@@ -57,7 +57,7 @@ struct Index {
               .borderRadius(5)
               .backgroundColor('#f5f5f5')
               .onClick(() => {
-              router.pushUrl({
+              this.getUIContext().getRouter().pushUrl({
                 url: `${item.routerName}`,
               })
               })

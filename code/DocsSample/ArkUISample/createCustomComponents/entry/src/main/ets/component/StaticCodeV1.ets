@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 @Entry
-// [ Start Static_code_V1 ]
+// [Start Static_code_V1]
 @Component
 struct MyComponentCodeV1 {
   static a: string = '';
@@ -24,7 +24,7 @@ struct MyComponentCodeV1 {
   // [StartExclude code_V1]
   build() {
       Column(){
-        // 字符串资源文件需要开发者自行添加
+        // $r('app.string.static_code')需要替换为开发者所需的资源文件
         Text(MyComponentCodeV1.a === '' ? $r('app.string.static_code') : MyComponentCodeV1.a)
       }
       .width('100%')
@@ -32,6 +32,6 @@ struct MyComponentCodeV1 {
   }
   // [EndExclude code_V1]
 }
-// [ End Static_code_V1 ]
+// [End Static_code_V1]
 
 

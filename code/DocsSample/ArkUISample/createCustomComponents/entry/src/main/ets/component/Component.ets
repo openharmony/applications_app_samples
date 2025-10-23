@@ -13,12 +13,19 @@
  * limitations under the License.
  */
 @Entry
-  // [ Start Component_data_structure ]
+  // [Start Component_data_structure]
 @Component
 struct MyComponentStruct {
   // [StartExclude Component_data_structure]
   build() {
+    Column(){
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .height('100%')
   }
   // [EndExclude Component_data_structure]
 }
-// [ End Component_data_structure ]
+// [End Component_data_structure]

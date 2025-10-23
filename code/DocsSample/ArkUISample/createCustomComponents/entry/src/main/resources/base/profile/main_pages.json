@@ -9,15 +9,15 @@
     "component/StaticCodeV1",
     "component/StaticCodeV2",
     "managementoverview/stateManagementOverview",
-    "component/One",
-    "component/Two",
-    "component/Three",
-    "component/Four",
-    "component/Five",
-    "component/Six",
-    "component/Seven",
-    "component/Eight",
-    "component/Nine",
-    "component/Ten"
+    "component/Component",
+    "component/FreezeWhenInactive",
+    "component/BuildFunction",
+    "component/Entry",
+    "component/RouteName",
+    "component/Reusable",
+    "component/BuilderMethod",
+    "component/If",
+    "component/ModuleComponent",
+    "component/ForEachFilter"
   ]
 }

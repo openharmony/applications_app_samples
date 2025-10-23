@@ -13,27 +13,20 @@
  * limitations under the License.
  */
 @Entry
-  // [ Start Builder_decoration ]
+  // [Start Reusable_MyComponent]
+@Reusable
 @Component
-struct ParentComponent {
-  doSomeCalculations() {
-  }
-
-  calcTextValue(): string {
-    return 'Hello World';
-  }
-
-  @Builder doSomeRender() {
-    Text(`Hello World`)
-  }
-
+struct MyComponentReusable {
+  // [StartExclude Reusable_MyComponent]
   build() {
-    Column() {
-      // 正例：可以调用
-      this.doSomeRender();
-      // 正例：参数可以为调用TS方法的返回值
-      Text(this.calcTextValue())
+    Column(){
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
     }
+    .width('100%')
+    .height('100%')
   }
+  // [EndExclude Reusable_MyComponent]
 }
-// [ End Builder_decoration ]
+// [End Reusable_MyComponent]

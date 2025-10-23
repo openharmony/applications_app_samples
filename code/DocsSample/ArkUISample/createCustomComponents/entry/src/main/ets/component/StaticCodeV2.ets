@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 @Entry
-// [ Start Static_code_V2 ]
+// [Start Static_code_V2]
 @ComponentV2
 struct MyComponentV2 {
   static a: string = '';
@@ -31,4 +31,4 @@ struct MyComponentV2 {
   }
   // [EndExclude code_V2]
 }
-// [ End Static_code_V2 ]
+// [End Static_code_V2]

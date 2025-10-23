@@ -12,22 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Entry_UI_page
 @Entry
 @Component
-struct Eight {
-  expression: number = 0;
-  // [ Start switch_syntax ]
+struct MyComponentEntry {
+  // [StartExclude Entry_UI_page]
   build() {
-    Column() {
-      // 正例：使用if
-      if(this.expression == 1) {
-        Text('...')
-      } else if(this.expression == 2) {
-        Image('...')
-      } else {
-        Text('...')
-      }
+    Column(){
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
     }
+    .width('100%')
+    .height('100%')
   }
-  // [ End switch_syntax ]
+  // [EndExclude Entry_UI_page]
 }
+// [End Entry_UI_page]

@@ -8,9 +8,11 @@
 
 ### 效果预览
 
-| 首页                         |                            
-|----------------------------|
-| ![](screenshots/image.PNG) |
+
+| 首页                       | 状态变量                 |
+|--------------------------|----------------------|
+| ![](screenshots/img.png) | ![](screenshots/img_1.png) |
+
 
 ### 具体实现
 1. 组件示例卡片交互实现：先创建主界面入口组件，通过容器布局（如网格、行列布局）搭建组件示例卡片的展示结构。为每个卡片绑定点击事件，点击后可通过命名路由跳转（利用@Entry装饰器的routeName配置）或状态变量控制视图切换，直接定位到对应的组件示例详情页面，实现从入口到具体示例的快速访问。
@@ -35,23 +37,23 @@
 entry/src/main/ets/
 |---entryability
 |---component                              
-│   |--- Eight.ets     
-│   |--- Five.ets      
-│   |--- Four.ets      
-│   |--- MyComponentBuild.ets  
-│   |--- MyComponentStyle.ets  
-│   |--- Nine.ets     
-│   |--- One.ets       
-│   |--- ParameterSpecification.ets  
-│   |--- ParentComponent.ets   
-│   |--- ParentFunction.ets    
-│   |--- Seven.ets     
-│   |--- Six.ets       
+│   |--- BuilderMethod.ets     
+│   |--- BuildFunction.ets      
+│   |--- Component.ets      
+│   |--- Entry.ets  
+│   |--- ForEachFilter.ets  
+│   |--- FreezeWhenInactive.ets     
+│   |--- If.ets       
+│   |--- ModuleComponent.ets  
+│   |--- MyComponentBuild.ets   
+│   |--- MyComponentStyle.ets    
+│   |--- ParameterSpecification.ets     
+│   |--- ParentComponent.ets       
+│   |--- ParentFunction.ets       
+│   |--- Reusable.ets       
+│   |--- RouteName.ets       
 │   |--- StaticCodeV1.ets      
-│   |--- StaticCodeV2.ets      
-│   |--- Ten.ets       
-│   |--- Three.ets     
-│   |--- Two.ets                
+│   |--- StaticCodeV2.ets                    
 |---pages
 |   |---Index.ets                       // 应用主页面
 |---managementoverview

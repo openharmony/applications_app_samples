@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start state_management_overview ]
+// [Start state_management_overview]
 @Component
 struct MyComponentOverview {
   @State count: number = 0;
@@ -32,7 +32,6 @@ struct MyComponentOverview {
 @Component
 struct Parent {
   build() {
-
       Column() {
         // 从父组件初始化，覆盖本地定义的默认值
         MyComponentOverview({ count: 1, increaseBy: 2 })
@@ -40,4 +39,4 @@ struct Parent {
 
   }
 }
-// [ End state_management_overview ]
+// [End state_management_overview]

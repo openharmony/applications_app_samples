@@ -12,14 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start Entry_UI_page ]
 @Entry
 @Component
-struct MyComponentEntry {
-  // [StartExclude Entry_UI_page]
+struct If {
+  expression: number = 0;
+  // [Start switch_syntax]
   build() {
-
+    Column() {
+      // 正例：使用if
+      if(this.expression == 1) {
+        Text('...')
+      } else if(this.expression == 2) {
+        Image('...')
+      } else {
+        Text('...')
+      }
+    }
   }
-  // [EndExclude Entry_UI_page]
+  // [End switch_syntax]
 }
-// [ End Entry_UI_page ]

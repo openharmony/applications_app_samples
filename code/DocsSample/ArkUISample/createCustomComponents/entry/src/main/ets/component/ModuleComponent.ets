@@ -14,22 +14,18 @@
  */
 @Entry
 @Component
-struct Ten {
-  @State arr: number[] = [0,1,2,3];
-  For(){
-    // [ Start filter_New_array ]
-    // 正确的执行方式为：filter返回一个新数组，后面的sort方法才不会改变原数组this.arr
-    ForEach(this.arr.filter((item, index) => index >= 2).sort(),
-    (item:number) => {
-      // ...
-    });
-    // [ End filter_New_array ]
-  };
-
+struct ModuleComponent {
+  @State aVar: number = 0;
+  // [Start if_component]
   build() {
-    RelativeContainer() {
+    Column() {
+      // 正例：使用if判断
+      if(this.aVar > 10) {
+        Text('...')
+      } else {
+        Image('...')
+      }
     }
-    .height('100%')
-    .width('100%')
   }
+  // [End if_component]
 }
