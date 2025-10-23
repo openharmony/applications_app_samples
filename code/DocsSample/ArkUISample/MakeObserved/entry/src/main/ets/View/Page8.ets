@@ -31,12 +31,10 @@ struct Page8 {
 
   @Monitor('message.id')
   onStrChange(monitor: IMonitor) {
-    console.info(`name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   @Computed
   get ageId() {
-    console.info('---------Computed----------');
     return this.message.id + ' ' + this.message.age;
   }
 
