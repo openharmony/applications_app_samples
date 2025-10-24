@@ -79,12 +79,12 @@ struct ListenKeyboardHeightChange {
 
         Flex({ alignItems: ItemAlign.End }) {
           Row() {
-            Button("click")
+            Button('click')
               .margin(10)
               .fontSize(20)
               .width('45%')
 
-            Button("cancel")
+            Button('cancel')
               .margin(10)
               .fontSize(20)
               .width('45%')
