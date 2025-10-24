@@ -15,19 +15,6 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\isuser\\.ohos\\config\\default_ArkTSInputDevice_-DfYI34UcXgK5bCG1LS7-W7BI12mmK8ADfmLPfM0YLI=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B3D83214E5D66DF6334F38134D053B5A0523F0CF1BF40F97E548D51D4A41A422D9BD9C3AF5E6E42",
-          "profile": "C:\\Users\\isuser\\.ohos\\config\\default_ArkTSInputDevice_-DfYI34UcXgK5bCG1LS7-W7BI12mmK8ADfmLPfM0YLI=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\isuser\\.ohos\\config\\default_ArkTSInputDevice_-DfYI34UcXgK5bCG1LS7-W7BI12mmK8ADfmLPfM0YLI=.p12",
-          "storePassword": "0000001B29350BE6CAD064C75F79A72CF3EF14C2F82DA88F8C94638AA2F423D132802F9F41A3EDE43640BE"
-        }
-      }
     ],
     "products": [
       {
