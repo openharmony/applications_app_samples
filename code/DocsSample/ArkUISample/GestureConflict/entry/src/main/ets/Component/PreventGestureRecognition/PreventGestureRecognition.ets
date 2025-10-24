@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [ Start gestureRecognition]
+// [Start gestureRecognition]
 @Entry
 @ComponentV2
 struct Index {
@@ -229,4 +229,4 @@ struct Index {
     .height(this.currentHeight)
   };
 }
-//  [ End gestureRecognition]
+//  [End gestureRecognition]
