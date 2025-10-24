@@ -13,14 +13,12 @@
  * limitations under the License.
  */
 {
-  "module": {
-    "name": "entry_test",
-    "type": "feature",
-    "deviceTypes": [
-      "default",
-      "tablet"
-    ],
-    "deliveryWithInstall": true,
-    "installationFree": false
+  "app": {
+    "bundleName": "com.samples.binding",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:layered_image",
+    "label": "$string:app_name"
   }
 }

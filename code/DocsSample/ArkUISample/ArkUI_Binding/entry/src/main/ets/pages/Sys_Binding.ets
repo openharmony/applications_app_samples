@@ -13,6 +13,11 @@
  * limitations under the License.
  */
 // [Start ArkUI_Sys_binding]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = 'click show Menu';
+const DOMAIN = 0xFF00;
+
 @Entry
 @ComponentV2
 struct BindMenuInterface {
@@ -27,13 +32,13 @@ struct BindMenuInterface {
               {
                 value: 'Menu1',
                 action: () => {
-                  console.info('handle Menu1 click');
+                  hilog.info(DOMAIN, TAG, 'handle Menu1 click');
                 }
               },
               {
                 value: 'Menu2',
                 action: () => {
-                  console.info('handle Menu2 click');
+                  hilog.info(DOMAIN, TAG, 'handle Menu2 click');
                 }
               },
             ])

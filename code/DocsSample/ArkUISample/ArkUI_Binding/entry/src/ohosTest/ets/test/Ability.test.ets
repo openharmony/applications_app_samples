@@ -36,8 +36,12 @@ export default function abilityTest() {
     })
     afterAll(() => {
     })
+
     /**
-     * 自定义组件间双向绑定
+     * @tc.number ArkUI_testBinding001
+     * @tc.name Binding_binding_001
+     * @tc.desc 自定义组件间双向绑定
+     * @tc.level: Level 1
      */
     it('Binding_binding_001', 0, async (done: Function) => {
       await driver.delayMs(DELAYTIME01);
@@ -53,8 +57,12 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('10'));
       done();
     })
+
     /**
-     * 系统组件参数双向绑定
+     * @tc.number ArkUI_testBinding002
+     * @tc.name Binding_binding_002
+     * @tc.desc 测试系统组件参数双向绑定
+     * @tc.level: Level 1
      */
     it('Binding_binding_002', 0, async (done: Function) => {
       await driver.delayMs(DELAYTIME01);

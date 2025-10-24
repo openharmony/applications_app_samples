@@ -25,13 +25,13 @@ struct Index {
         .width('50%')
         .margin(30)
         .onClick(() => {
-          router.pushUrl({url:'pages/Binding_Star'})
+          this.getUIContext().getRouter().pushUrl({url:'pages/Binding_Star'})
         })
       Button($r('app.string.button2'))
         .width('50%')
         .margin(30)
         .onClick(() => {
-          router.pushUrl({url:'pages/Sys_Binding'})
+          this.getUIContext().getRouter().pushUrl({url:'pages/Sys_Binding'})
         })
     }
     .height('100%')
