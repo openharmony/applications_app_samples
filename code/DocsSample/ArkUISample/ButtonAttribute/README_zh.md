@@ -26,16 +26,16 @@
 ```
 entry/src/main/ets/
 |---Common
-|   |---button_modifier_01.ets
-|   |---button_modifier_02.ets
-|   |---button_modifier_03.ets
-|   |---button_modifier_04.ets
+|   |---ButtonModifier01.ets                   //定义ButtonModifier
+|   |---ButtonModifier02.ets                   //定义ButtonModifier
+|   |---ButtonModifier03.ets                   //定义ButtonModifier
+|   |---ButtonModifier04.ets                   //定义ButtonModifier
 |---entryability
 |---pages
-|   |---attributeDemo_01                            
+|   |---AttributeDemo01.ets                         // 按钮主题切换与多态样式                          
 entry/src/ohosTest/
 |---ets
-|   |---attribute.test.ets                       // 示例代码测试代码
+|   |---Attribute.test.ets                       // 对应页面测试代码
 ```
 ### 具体实现
 一、使用AttributeModifier实现按钮主题切换与多态样式：
