@@ -58,11 +58,9 @@ entry/src/main/ets/
 
 ## 约束和限制
 
-1. 不支持动效类组件的控件树实时刷新功能。
+1.本示例支持标准系统上运行, 支持设备：RK3568等。
 
-2. 支持获取组件的属性和样式，但不支持获取controller和Builder对象。
-
-3. 不支持获取组件的方法、事件。
+2.本示例需要使用DevEco Studio 6.0.0 Canary1 (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 
 ## 下载
 
