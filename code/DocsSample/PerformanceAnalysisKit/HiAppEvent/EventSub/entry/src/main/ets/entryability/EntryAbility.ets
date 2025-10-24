@@ -240,11 +240,11 @@ export default class EntryAbility extends UIAbility {
     // [End FreezeEvent_ArkTS_Add_Watcher]
     // [Start PssLeakEvent_ArkTS_Add_Watcher]
     // 完成参数键值对赋值
-    let params: Record<string, hiAppEvent.ParamType> = {
+    let pssParams: Record<string, hiAppEvent.ParamType> = {
       "test_data": 100,
     };
     // 设置资源泄漏事件的自定义参数
-    hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.RESOURCE_OVERLIMIT).then(() => {
+    hiAppEvent.setEventParam(pssParams, hiAppEvent.domain.OS, hiAppEvent.event.RESOURCE_OVERLIMIT).then(() => {
       hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);

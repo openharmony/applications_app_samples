@@ -28,6 +28,7 @@ import testNapi from 'libentry.so';
 struct Index {
   @State leakedArray: string[][] = [];
 
+  @State message: string = 'Start To Leak';
   build() {
     Row() {
       Column() {
@@ -105,23 +106,40 @@ struct Index {
                 this.leakedArray.push(new Array(1).fill("leak"));
               }
             })
-          // [End PssleakEvent_Button]
-          Button('js leak')
-            .type(ButtonType.Capsule)
-            .margin({
-              top: 20
-            })
-            .backgroundColor('#0D9FFB')
-            .width('80%')
-            .height('5%')
-            .onClick(() => {
-              for (let i = 0; i < 10000; i++) {
-                this.leakedArray.push(new Array(500000).fill(1));
-              }
-            })
-          // [End PssleakEventTS_Button]
-          // [Start TimeOutEvent_Button]
-          Button($r('app.string.TimeOut_Button'))
+        // [End PssleakEvent_Button]
+        Button('js leak')
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          .onClick(() => {
+            for (let i = 0; i < 10000; i++) {
+              this.leakedArray.push(new Array(500000).fill(1));
+            }
+          })
+        // [End PssleakEventTS_Button]
+        // [Start AppKillEvent_Button]
+        Button('start to leak')
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          .onClick(() => {
+            if (this.message != 'Leaking') {
+              this.message = 'Leaking';
+              hilog.info(0x0000, 'testTag', 'Start leaking');
+              testNapi.leak();
+            }
+          })
+        // [End AppKillEvent_Button]
+        // [Start TimeOutEvent_Button]
+        Button($r('app.string.TimeOut_Button'))
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -195,22 +213,6 @@ struct Index {
             testNapi.TestHiCollieTimerNdk();
           })
         // [End AppEvent_hicollie_timer_ndk_Button]
-        // [Start AppKillEvent_Button]
-        Button('start to leak')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            if (this.message != 'Leaking') {
-              this.message = 'Leaking';
-              testNapi.leak();
-            }
-          })
-        // [End AppKillEvent_Button]
       }
       .width('50%')
     }
