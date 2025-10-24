@@ -1,15 +1,15 @@
 {
   "string": [
     {
-      "name": "entry_desc",
+      "name": "module_desc",
       "value": "Create a scheduled reminder with countdown, calendar, alarm"
     },
     {
-      "name": "MainAbility_desc",
+      "name": "EntryAbility_desc",
       "value": "SystemCapability.Notification.ReminderAgent"
     },
     {
-      "name": "MainAbility_label",
+      "name": "EntryAbility_label",
       "value": "Background Agent Reminder"
     },
     {

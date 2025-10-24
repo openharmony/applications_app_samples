@@ -23,44 +23,20 @@ import { Reminder } from '../common/Reminder';
 import TimeConversion from './TimeConversion';
 import common from '@ohos.app.ability.common';
 import notificationManager from '@ohos.notificationManager';
-import { BusinessError, deviceInfo } from '@kit.BasicServicesKit';
-import { calendarManager } from '@kit.CalendarKit';
-import { calendarMgr } from '../MainAbility/MainAbility';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { promptAction } from '@kit.ArkUI';
 
-let deviceTypeInfo: string = deviceInfo.deviceType;
-let calendar: calendarManager.Calendar | undefined = undefined;
 const TAG: string = 'CalendarReminder';
 
 class CalendarReminder {
   public calendarReminders: Reminder[] = [];
 
   setCalendarReminder() {
-    let config: calendarManager.CalendarConfig = {
-      enableReminder: true,
-      color: '#aabbcc',
-    };
-
-    calendarMgr?.getCalendar(async (err: BusinessError, data: calendarManager.Calendar) => {
-      if (err) {
-        Logger.error(TAG, `Failed to get calendar.code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-      } else {
-        Logger.info(TAG, `Succeeded in getting calendar, data ->` + JSON.stringify(data));
-        calendar = data;
-        await calendar!.setConfig(config).then(() => {
-          Logger.info(TAG, `Succeeded in setting config, config -> ` + JSON.stringify(config));
-        }).catch((err: BusinessError) => {
-          Logger.error(TAG, `Failed to set config. code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-        });
-      }
-    });
   }
 
-  async setCalendar(date: DatePickerResult) {
-    let month = date.month! < 9 ? `0${date.month! + 1}` : `${date.month! + 1}`;
-    let day = date.day! < 10 ? `0${date.day}` : date.day;
+  async setCalendar(date: Date) {
     let context = getContext(this) as common.UIAbilityContext;
-    let selectCalendar: string = `${date.year}-${month}-${day}`;
+    let selectCalendar: string = `${date.getFullYear()}-${date.getUTCMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
     let isExistName = this.calendarReminders.find(element => element.reminderName === selectCalendar) !== undefined;
     if (!isExistName) {
       let reminder: Reminder = {
@@ -75,26 +51,28 @@ class CalendarReminder {
       }
       await reminderAgent.addNotificationSlot({ notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
       reminder.reminderName = selectCalendar
+      // [Start calendar_reminder]
       let calendar: reminderAgent.ReminderRequestCalendar = {
         reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
         dateTime: {
-          year: date.year!,
-          month: date.month! + 1,
-          day: date.day!,
-          hour: 0,
-          minute: 0,
+          year: date.getFullYear(),
+          month: date.getUTCMonth() + 1,
+          day: date.getDate(),
+          hour: date.getHours(),
+          minute: date.getMinutes(),
         },
         actionButton:
         [{
           title: context.resourceManager.getStringSync($r('app.string.calendar_close').id),
           type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
         }],
-        wantAgent: { pkgName: 'ohos.samples.reminderagentmanager', abilityName: 'MainAbility' },
+        wantAgent: { pkgName: 'com.example.reminderagentmanager', abilityName: 'EntryAbility' },
         ringDuration: Constant.REMINDER_DURATION,
         title: context.resourceManager.getStringSync($r('app.string.calendar').id),
         content: context.resourceManager.getStringSync($r('app.string.calendar_reach').id),
         slotType: notificationManager.SlotType.CONTENT_INFORMATION
       }
+      // [End calendar_reminder]
       Logger.info(TAG, `setCalendar this calendar is ${JSON.stringify(calendar)}}`);
       reminder.reminderRequestCalendar = calendar
       reminder.isStart = false
@@ -113,40 +91,12 @@ class CalendarReminder {
   async setToggle(isOn: boolean, index: number) {
     this.calendarReminders[index].isStart = isOn
     if (isOn) {
-      if (deviceTypeInfo === 'default') {
-        await reminderAgent.addNotificationSlot({ notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
-        let reminderId: number = await reminderAgent.publishReminder(
-          this.calendarReminders[index].reminderRequestCalendar!);
-        this.calendarReminders[index].reminderId = reminderId;
-      } else {
-        let context = getContext(this) as common.UIAbilityContext;
-        let year = this.calendarReminders[index].reminderRequestCalendar!.dateTime.year;
-        let month = this.calendarReminders[index].reminderRequestCalendar!.dateTime.month;
-        let day = this.calendarReminders[index].reminderRequestCalendar!.dateTime.day;
-        let dateHour = this.calendarReminders[index].reminderRequestCalendar!.dateTime.hour;
-        let dateMinute = this.calendarReminders[index].reminderRequestCalendar!.dateTime.minute;
-        let hour = dateHour < 10 ? `0${dateHour}` : dateHour;
-        let minute = dateMinute < 10 ? `0${dateMinute}` : dateMinute;
-        let selectDate = `${year}-${month}-${day} ${hour}:${minute}`;
-        Logger.info(TAG, `selectDate:${JSON.stringify(selectDate)}`);
-        let event: calendarManager.Event = {
-          type: calendarManager.EventType.NORMAL,
-          title: context.resourceManager.getStringSync($r('app.string.calendar').id),
-          description: context.resourceManager.getStringSync($r('app.string.calendar_reach').id),
-          reminderTime: [0],
-          startTime: Date.parse(selectDate),
-          endTime: Date.parse(selectDate) + 60 * 1000,
-        };
-        await calendar!.addEvent(event)
-          .then((data: number) => {
-            Logger.info(TAG, `Succeeded in adding event, id -> {data}`);
-            this.calendarReminders[index].reminderId = data;
-            Logger.info(TAG, `reminder.reminderId is` + JSON.stringify(this.calendarReminders[index].reminderId));
-          })
-          .catch((err: BusinessError) => {
-            Logger.error(TAG, `Failed to add event.code: ${err.code}, message: ${err.message}`);
-          });
-      }
+      await reminderAgent.addNotificationSlot({ notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
+      // [Start publish_reminder]
+      let reminderId: number = await reminderAgent.publishReminder(
+        this.calendarReminders[index].reminderRequestCalendar!);
+      this.calendarReminders[index].reminderId = reminderId;
+      // [End publish_reminder]
       if (this.calendarReminders[index].audioSrc) {
         let audioIndex: number = await AudioPlayer.getAudioID(
           this.calendarReminders[index].audioSrc, TimeConversion.dateToMillisecond(
@@ -194,22 +144,16 @@ class CalendarReminder {
       clearTimeout(this.calendarReminders[index].vibratorTimeouts)
       clearTimeout(this.calendarReminders[index].audioTimeouts)
       await PreferencesDataManager.putData('Calendar', this.calendarReminders);
-      if (deviceTypeInfo === 'default') {
-        await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId);
-      } else {
-        await calendar!.deleteEvent(this.calendarReminders[index].reminderId);
-      }
+      // [Start cancel_reminder]
+      await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId);
+      // [Start cancel_reminder]
       await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
     }
   }
 
   async openDialog(dialog: CustomDialogController, index: number) {
     try {
-      if (deviceTypeInfo === 'default') {
-        await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId);
-      } else {
-        await calendar!.deleteEvent(this.calendarReminders[index].reminderId);
-      }
+      await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId);
     } catch (err) {
       Logger.error(TAG, `openDialog this cancelReminder is not exist,err is ${JSON.stringify(err)}`)
     }
@@ -220,15 +164,9 @@ class CalendarReminder {
     try {
       clearTimeout(this.calendarReminders[index].vibratorTimeouts)
       clearTimeout(this.calendarReminders[index].audioTimeouts)
-      if (deviceTypeInfo === 'default') {
-        reminderAgent.cancelReminder(this.calendarReminders[index].reminderId).then(() => {
-          Logger.info(TAG, `deleteCalendar cancelReminder is succeed`);
-        })
-      } else {
-        calendar!.deleteEvent(this.calendarReminders[index].reminderId).then(() => {
-          Logger.info(TAG, `deleteCalendar cancelReminder is succeed`);
-        })
-      }
+      reminderAgent.cancelReminder(this.calendarReminders[index].reminderId).then(() => {
+        Logger.info(TAG, `deleteCalendar cancelReminder is succeed`);
+      })
       vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME).then(() => {
         Logger.info(TAG, `deleteCalendar stop vibrator is succeed`)
       })
