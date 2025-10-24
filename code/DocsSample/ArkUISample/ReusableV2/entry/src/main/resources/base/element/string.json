@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "reusablev2"
+    },
+    {
+      "name": "freeze_to_label",
+      "value": "自定义组件冻结功能"
+    },
+    {
+      "name": "freeze_to_label1",
+      "value": "示例1（页面路由）"
+    },
+    {
+      "name": "freeze_to_label2",
+      "value": "示例2（TabContent）"
+    },
+    {
+      "name": "freeze_to_label3",
+      "value": "示例3（Navigation）"
+    },
+    {
+      "name": "freeze_to_label4",
+      "value": "示例4（Repeat）"
+    },
+    {
+      "name": "freeze_to_label5",
+      "value": "示例5（仅子组件开启组件冻结）"
+    },
+    {
+      "name": "freeze_to_label6",
+      "value": "示例6（混用场景）"
+    }
+  ]
+}
