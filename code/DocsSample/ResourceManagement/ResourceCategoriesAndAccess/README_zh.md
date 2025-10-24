@@ -21,7 +21,8 @@ entry/src/
 |---main
 │   |---ets
 │   │   |---pages
-│   │       |---Index.ets                        // 构建页面，显示字符串、图标等资源
+│   │       |---Index.ets                        // 构建页面，显示单HAP包、系统资源
+│   │       |---Second.ets                       // 构建页面，显示跨HSP包资源
 │   |---resources                                // 资源文件目录
 │       |---base
 │       │   |---element
