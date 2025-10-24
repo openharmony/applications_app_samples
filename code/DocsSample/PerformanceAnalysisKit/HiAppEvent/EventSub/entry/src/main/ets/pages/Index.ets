@@ -88,6 +88,7 @@ struct Index {
             JSON.parse('');
           })
         // [End CrashEvent_Button]
+        // [Start PssleakEventTS_Button]
         // [Start PssleakEvent_Button]
         Button('pss leak')
             .type(ButtonType.Capsule)
@@ -105,6 +106,20 @@ struct Index {
               }
             })
           // [End PssleakEvent_Button]
+          Button('js leak')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              for (let i = 0; i < 10000; i++) {
+                this.leakedArray.push(new Array(500000).fill(1));
+              }
+            })
+          // [End PssleakEventTS_Button]
           // [Start TimeOutEvent_Button]
           Button($r('app.string.TimeOut_Button'))
           .type(ButtonType.Capsule)
@@ -181,7 +196,7 @@ struct Index {
           })
         // [End AppEvent_hicollie_timer_ndk_Button]
         // [Start AppKillEvent_Button]
-        Button('test leak')
+        Button('start to leak')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -190,8 +205,10 @@ struct Index {
           .width('80%')
           .height('5%')
           .onClick(() => {
-            // 按钮触发泄漏
-            testNapi.leak();
+            if (this.message != 'Leaking') {
+              this.message = 'Leaking';
+              testNapi.leak();
+            }
           })
         // [End AppKillEvent_Button]
       }

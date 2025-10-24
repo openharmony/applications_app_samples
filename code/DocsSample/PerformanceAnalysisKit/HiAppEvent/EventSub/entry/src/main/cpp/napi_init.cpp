@@ -14,27 +14,18 @@
  */
 
 // [Start EventSub_napi_Header]
-// [Start AppKillEvent_Header]
 #include "napi/native_api.h"
 #include "json/json.h"
 #include "hilog/log.h"
 #include "hiappevent/hiappevent.h"
 #include "hiappevent/hiappevent_event.h"
-
-// [StartExclude AppKillEvent_Header]
 // <Start AppEvent_Set_Timer_h>
 #include <unistd.h>
 #include "hicollie/hicollie.h"
 // <End AppEvent_Set_Timer_h>
-// [EndExclude AppKillEvent_Header]
-
-// [StartExclude EventSub_napi_Header]
-#include <thread>
-// [EndExclude EventSub_napi_Header]
 
 #undef LOG_TAG
 #define LOG_TAG "testTag"
-// [End AppKillEvent_Header]
 // [End EventSub_napi_Header]
 
 // 定义一变量，用来缓存创建的观察者的指针。
@@ -738,6 +729,7 @@ static napi_value RegisterWatcher(napi_env env, napi_callback_info info)
     return {};
 }
 // [End EventSub_RegisterWatcher_All]
+
 // [Start EventSub_RemoveWatcher_All]
 // [Start AppEvent_C++_RemoveWatcher]
 // [Start AsanEvent_RemoveWatcher]
@@ -756,11 +748,17 @@ static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
     OH_HiAppEvent_RemoveWatcher(eventWatcherT1);
     OH_HiAppEvent_RemoveWatcher(eventWatcherR1);
     // [EndExclude AsanEvent_RemoveWatcher]
+    // [StartExclude AppEvent_C++_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(sanitizerWatcherR);
     // [EndExclude PssLeakEvent_RemoveWatcher]
+    // [StartExclude AsanEvent_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(resouceLeakWatcherR);
     // [EndExclude AppKillEvent_RemoveWatcher]
+    // [StartExclude PssLeakEvent_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(appKillWatcherR);
+    // [EndExclude AsanEvent_RemoveWatcher]
+    // [EndExclude PssLeakEvent_RemoveWatcher]
+    // [EndExclude AppEvent_C++_RemoveWatcher]
     return {};
 }
 // [End AppKillEvent_RemoveWatcher]
@@ -789,15 +787,21 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
     OH_HiAppEvent_DestroyWatcher(eventWatcherR1);
     eventWatcherT1 = nullptr;
     eventWatcherR1 = nullptr;
+    // [StartExclude AppEvent_C++_DestroyWatcher]
     // [EndExclude AsanEvent_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(sanitizerWatcherR);
     sanitizerWatcherR = nullptr;
     // [EndExclude PssLeakEvent_DestroyWatcher]
+    // [StartExclude AsanEvent_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(resouceLeakWatcherR);
     resouceLeakWatcherR = nullptr;
     // [EndExclude AppKillEvent_DestroyWatcher]
+    // [StartExclude PssLeakEvent_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(appKillWatcherR);
     appKillWatcherR = nullptr;
+    // [EndExclude AppEvent_C++_DestroyWatcher]
+    // [EndExclude AsanEvent_DestroyWatcher]
+    // [EndExclude PssLeakEvent_DestroyWatcher]
     return {};
 }
 // [End AppKillEvent_DestroyWatcher]
@@ -827,6 +831,8 @@ static napi_value AddressSanitizerTest(napi_env env, napi_callback_info info)
 }
 // [End AsanEvent_AddressTest]
 // [Start AppKillEvent_NativeLeak]
+#include <thread>
+
 static void NativeLeak()
 {
     constexpr int leak_size_per_time = 500000;
@@ -1027,6 +1033,7 @@ static napi_value RegisterAppHicollieWatcherT(napi_env env, napi_callback_info i
 // [EndExclude AppEvent_C++_Init]
 
 // [Start AsanEvent_Init]
+// [Start AsanEventTS_Init]
 // [Start PssLeakEvent_Init]
 // [Start AppKillEvent_Init]
 static napi_value Init(napi_env env, napi_value exports)
@@ -1035,6 +1042,7 @@ static napi_value Init(napi_env env, napi_value exports)
         // [StartExclude AppKillEvent_Init]
         // [StartExclude PssLeakEvent_Init]
         // [StartExclude AsanEvent_Init]
+        // [StartExclude AsanEventTS_Init]
         // [StartExclude AppEvent_C++_Init]
         {"registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr},
         // [EndExclude AppEvent_C++_Init]
@@ -1052,25 +1060,33 @@ static napi_value Init(napi_env env, napi_value exports)
         { "RegisterAppHicollieWatcherT", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
             nullptr },
         // [End register_app_hicollie_watcher]
-        // [EndExclude AppEvent_C++_Init]
         // [EndExclude AsanEvent_Init]
         { "registerSanitizerReceiveWatcher", nullptr, RegisterSanitizerReceiveWatcher, nullptr, nullptr, nullptr,
             napi_default, nullptr },
+        // [EndExclude AsanEventTS_Init]
         { "addressSanitizerTest", nullptr, AddressSanitizerTest, nullptr, nullptr, nullptr, napi_default, nullptr},
         // [EndExclude PssLeakEvent_Init]
+        // [StartExclude AsanEventTS_Init]
+        // [StartExclude AsanEvent_Init]
         { "registerLeakReceiveWatcher", nullptr, RegisterLeakReceiveWatcher, nullptr, nullptr, nullptr,
             napi_default, nullptr },
+        // [StartExclude PssLeakEvent_Init]
         // [EndExclude AppKillEvent_Init]
         { "registerAppKillReceiveWatcher", nullptr, RegisterAppKillReceiveWatcher, nullptr, nullptr, nullptr,
             napi_default, nullptr },
         { "leak", nullptr, Leak, nullptr, nullptr, nullptr, napi_default, nullptr}
+        // [EndExclude AsanEvent_Init]
+        // [EndExclude AsanEventTS_Init]
+        // [EndExclude PssLeakEvent_Init]
+        // [EndExclude AppEvent_C++_Init]
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
 // [End AppKillEvent_Init]
 // [End PssLeakEvent_Init]
-// [End AppEvent_C++_Init]
+// [End AsanEventTS_Init]
+// [End AsanEvent_Init]
 // [End AppEvent_C++_Init]
 // [End EventSub_Init_All]
 static napi_module demoModule = {

@@ -15,7 +15,6 @@
 
 // [Start EventSub_Index.d.ts_All]
 export const registerWatcher: () => void;
-export const addressTest: () => void;
 // [Start AppEvent_C++_Index.d.ts]
 export const registerWatcherCrash: () => void;
 export const registerWatcherClick: () => void;
