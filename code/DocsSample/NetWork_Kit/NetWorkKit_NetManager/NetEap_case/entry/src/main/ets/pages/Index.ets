@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 19; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
@@ -28,7 +26,7 @@ struct Index {
       // 802.1X认证流程中加入自定义的安全校验
       Button($r('app.string.first_part'))
         .onClick(() => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/AccreditationProcess',
           });
         })
@@ -41,7 +39,7 @@ struct Index {
       // 使用eth接口发起802.1X认证流程
       Button($r('app.string.second_part'))
         .onClick(() => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/EthInterface',
           });
         })

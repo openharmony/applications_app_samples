@@ -16,6 +16,7 @@
 import { eap } from '@kit.NetworkKit';
 // [End eap_case_module_import]
 import { promptAction } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小
@@ -30,7 +31,7 @@ let eapType= 25; // EAP_PEAP
 let result = 1;
 
 let eapData = (eapData:eap.EapData):void => {
-  console.info('rsp result',JSON.stringify(eapData));
+  hilog.info(0x0000, 'testTag', 'rsp result',JSON.stringify(eapData));
   const newBuffer = new Uint8Array(eapData.bufferLen);
   newBuffer.set(eapData.eapBuffer, 0);
   let eapData2: eap.EapData = {
@@ -41,9 +42,9 @@ let eapData = (eapData:eap.EapData):void => {
   // [StartExclude eap_case_unreg_custom_eapHandler]
   try{
     eap.replyCustomEapData(result, eapData2);
-    console.info('replyCustomEapData success');
+    hilog.info(0x0000, 'testTag', 'replyCustomEapData success');
   } catch (err) {
-    console.error('errCode: ' + err.code + ' , errMessage: ' + err.message);
+    hilog.error(0x0000, 'testTag', 'errCode: ' + err.code + ' , errMessage: ' + err.message);
   }
   // [EndExclude eap_case_unreg_custom_eapHandler]
 }
@@ -51,7 +52,7 @@ let eapData = (eapData:eap.EapData):void => {
 function serverReplyCustomEapData() {
   try{
     eap.regCustomEapHandler(netType, eapCode, eapType, eapData);
-    console.info('regCustomEapHandler success');
+    hilog.info(0x0000, 'testTag', 'regCustomEapHandler success');
     // [StartExclude eap_case_reply_custom_eapData]
     promptAction.showToast({
       message: '报文发送成功',
@@ -60,7 +61,7 @@ function serverReplyCustomEapData() {
     });
     // [EndExclude eap_case_reply_custom_eapData]
   } catch (err) {
-    console.error('errCode: ' + err.code + 'errMessage: ' + err.message);
+    hilog.error(0x0000, 'testTag', 'errCode: ' + err.code + 'errMessage: ' + err.message);
     // [StartExclude eap_case_reply_custom_eapData]
     promptAction.showToast({
       message: 'errCode: ' + err.code + 'errMessage: ' + err.message,
@@ -76,7 +77,7 @@ function unregCustomEapHandler() {
   // [EndExclude eap_case_unreg_custom_eapHandler]
   try {
     eap.unregCustomEapHandler(netType, eapCode, eapType, eapData);
-    console.info('unregCustomEapHandler success');
+    hilog.info(0x0000, 'testTag', 'unregCustomEapHandler success');
     // [StartExclude eap_case_unreg_custom_eapHandler]
     promptAction.showToast({
       message: '取消订阅成功',
@@ -85,7 +86,7 @@ function unregCustomEapHandler() {
     });
     // [EndExclude eap_case_unreg_custom_eapHandler]
   } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    hilog.error(0x0000, 'testTag', 'errCode: ' + err.code + ', errMessage: ' + err.message);
     // [StartExclude eap_case_unreg_custom_eapHandler]
     promptAction.showToast({
       message: 'errCode: ' + err.code + ', errMessage: ' + err.message,

@@ -16,6 +16,7 @@
 import { eap } from '@kit.NetworkKit';
 // [Start eap_case_eth_module_import]
 import { promptAction } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小
@@ -49,7 +50,7 @@ function startEthEap() {
 
   try {
     eap.startEthEap(netId, profile);
-    console.info('startEthEap success');
+    hilog.info(0x0000, 'testTag', 'startEthEap success');
     // [StartExclude eap_case_start_eth_eap]
     promptAction.showToast({
       message: '认证成功',
@@ -65,7 +66,7 @@ function startEthEap() {
       bottom: 300 // 与底间隔
     });
     // [EndExclude eap_case_start_eth_eap]
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    hilog.error(0x0000, 'testTag', 'errCode: ' + err.code + ', errMessage: ' + err.message);
   }
   // [End eap_case_start_eth_eap]
 }
@@ -74,7 +75,7 @@ function logOffEthEap() {
   // [EndExclude eap_case_log_off_eth_eap]
   try{
     eap.logOffEthEap(netId);
-    console.error('logOffEthEap success');
+    hilog.error(0x0000, 'testTag', 'logOffEthEap success');
     // [StartExclude eap_case_log_off_eth_eap]
     promptAction.showToast({
       message: '退出认证成功',
@@ -90,7 +91,7 @@ function logOffEthEap() {
       bottom: 300 // 与底间隔
     });
     // [EndExclude eap_case_log_off_eth_eap]
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    hilog.error(0x0000, 'testTag', 'errCode: ' + err.code + ', errMessage: ' + err.message);
   }
   // [End eap_case_log_off_eth_eap]
 }
