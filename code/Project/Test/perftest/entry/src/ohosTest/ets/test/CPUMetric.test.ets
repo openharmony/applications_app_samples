@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start CPUMetri_sample]
+// [Start CPUMetric_sample]
 import { describe, it, expect, Level } from '@ohos/hypium';
 import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult, abilityDelegatorRegistry } from '@kit.TestKit';
 import { Utils } from '../../../main/ets/utils/Utils'
@@ -67,4 +67,4 @@ export default function PerfTestTest() {
     })
   })
 }
-// [End CPUMetri_sample]
+// [End CPUMetric_sample]

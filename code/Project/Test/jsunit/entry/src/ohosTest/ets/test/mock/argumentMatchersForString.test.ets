@@ -23,10 +23,6 @@ class ClassName {
   method_1(arg: string) {
     return '888888';
   }
-
-  method_2(arg: string) {
-    return '999999';
-  }
 }
 export default function argumentMatchersTest() {
   describe('argumentMatchersForString_sample', () => {

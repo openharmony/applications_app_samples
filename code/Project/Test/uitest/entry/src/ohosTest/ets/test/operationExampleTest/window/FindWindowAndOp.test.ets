@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-// [Start findWindAndOp_sample]
+// [Start findWindowAndOp_sample]
   import { describe, it, TestType, expect } from '@ohos/hypium';
   // 导入测试依赖kit
   import { Driver } from '@kit.TestKit';
   const DeviceErrorCode = 17000005;
 
   export default function abilityTest() {
-    describe('findWindAndOp_sample', () => {
+    describe('findWindowAndOp_sample', () => {
       // 根据指定条件查找活跃窗口，并对其进行窗口最小化操作
       it("windowSearchAndOperation", TestType.FUNCTION, async () => {
         let driver = Driver.create();
@@ -35,4 +35,4 @@
       })
     })
   }
-// [End findWindAndOp_sample]
+// [End findWindowAndOp_sample]

@@ -18,7 +18,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
-import data from '../test/params.json'
+import data from '../test/data.json'
 import Logger from '../util/Logger';
 import { window } from '@kit.ArkUI';
 
