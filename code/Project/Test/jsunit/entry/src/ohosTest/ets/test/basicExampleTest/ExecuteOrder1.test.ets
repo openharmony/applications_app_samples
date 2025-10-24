@@ -37,7 +37,7 @@ export default function exampleTest() {
   
     afterAll(() => {
       let expectValue : number = 5;
-      expect(testNumA).assertEqual(expect);
+      expect(testNumA).assertEqual(expectValue);
     })
      
     it('testExampleA',Level.LEVEL1, async (done: Function) => {
