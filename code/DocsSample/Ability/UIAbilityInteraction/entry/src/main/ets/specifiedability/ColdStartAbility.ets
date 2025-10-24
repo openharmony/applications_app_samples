@@ -22,8 +22,8 @@ const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = '[EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
-  funcAbilityWant: Want | undefined = undefined;
-  uiContext: UIContext | undefined = undefined;
+  private funcAbilityWant: Want | undefined = undefined;
+  private uiContext: UIContext | undefined = undefined;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 接收调用方UIAbility传过来的参数

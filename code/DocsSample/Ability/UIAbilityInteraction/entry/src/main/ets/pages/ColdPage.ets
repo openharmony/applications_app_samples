@@ -14,7 +14,6 @@
  */
 
 // [Start ColdPage]
-// Index.ets
 @Entry
 @Component
 struct ColdPage {

@@ -1,7 +1,7 @@
 # 启动应用内的UIAbility组件
 
 ### 介绍
-本示例主要介绍启动应用内的UIAbility组件的方式，UIAbility是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility，包括应用内的其他UIAbility、或者其他应用的UIAbility（例如启动三方支付UIAbility）。
+本示例主要介绍启动应用内的UIAbility组件的方式，UIAbility是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility。
 
 ### 效果预览
 首页

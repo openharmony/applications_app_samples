@@ -22,8 +22,8 @@ const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = '[CalleeAbility]';
 
 class MyParcelable {
-  num: number = 0;
-  str: string = '';
+  public num: number = 0;
+  public str: string = '';
 
   constructor(num: number, string: string) {
     this.num = num;
@@ -63,7 +63,7 @@ function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
 }
 
 export default class CalleeAbility extends UIAbility {
-  caller: Caller | undefined;
+  private caller: Caller | undefined;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {

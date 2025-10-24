@@ -14,7 +14,6 @@
  */
 
 // [Start Index]
-// Index.ets
 @Entry
 @Component
 struct Index {
