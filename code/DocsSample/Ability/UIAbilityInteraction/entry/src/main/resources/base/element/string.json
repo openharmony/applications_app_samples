@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Start_AbilityA",
+      "value": "拉起FuncAbilityA"
+    },
+    {
+      "name": "Stop_AbilityA",
+      "value": "终止FuncAbilityA"
+    },
+    {
+      "name": "Start_AbilityA_Result",
+      "value": "拉起FuncAbilityA With Result"
+    },
+    {
+      "name": "Stop_AbilityA_Result",
+      "value": "终止FuncAbilityA With Result"
+    },
+    {
+      "name": "Cold_Start_Page",
+      "value": "冷启动指定页面"
+    },
+    {
+      "name": "Hot_Start_Page",
+      "value": "热启动指定页面"
+    }
+  ]
+}
