@@ -4,7 +4,7 @@
 
 本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [不依赖UI组件的全局自定义弹出框 (openCustomDialog)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-uicontext-custom-dialog.md)。
+1. [不依赖UI组件的全局自定义弹出框 (openCustomDialog)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-uicontext-custom-dialog.md)。
 2. [基础自定义弹出框 (CustomDialog)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-common-components-custom-dialog.md)。
 3. [固定样式弹出框](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-fixes-style-dialog.md)。
 4. [菜单控制（Menu)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-popup-and-menu-components-menu.md)
@@ -55,6 +55,9 @@ entry/src/main/ets/
 |   |---opencustomdialog                      //不依赖UI组件的全局自定义弹出框
 |   |       |---Index.ets
 |   |       |---openCustomDialog.ets
+|   |       |---customDialogComponentWithTransition.ets
+|   |       |---customDialogWithKeyboardAvoidDistance.ets
+|   |       |---OpenDialogAndUpdate.ets
 |   |---popup                                 //气泡提示
 |   |       |---ButtonPopup.ets
 |   |       |---CustomPopup.ets
@@ -74,6 +77,10 @@ entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                       // 示例代码测试代码
 ```
+## 具体实现
+推荐使用UIContext中获取到的PromptAction对象提供的openCustomDialog接口在相对应用复杂的场景来实现自定义弹出框，相较于CustomDialogController优势点在于页面解耦，支持动态刷新。
+弹出框（openCustomDialog）默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。可以通过配置promptAction.BaseDialogOptions类型中的isModal属性来实现模态和非模态弹窗，详细说明可参考弹窗的种类。
+当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
 ### 相关权限
 
@@ -98,7 +105,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/DialogProject > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/DialogProject > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
