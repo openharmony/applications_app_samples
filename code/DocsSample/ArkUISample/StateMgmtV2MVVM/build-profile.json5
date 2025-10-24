@@ -16,12 +16,25 @@
 
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/lenovo/.ohos/config/openharmony/default_StateMgmtV2MVVM_hw-oOspHqpORcaHX3wNiFBhmAGkniUtyjqak5dhE9GI=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B41E5085D3DCFEA148A5C37E100B351F693DAAF4ACB44B92E9C4A2D17466EE3DF6DF1A2811A80D2",
+          "profile": "C:/Users/lenovo/.ohos/config/openharmony/default_StateMgmtV2MVVM_hw-oOspHqpORcaHX3wNiFBhmAGkniUtyjqak5dhE9GI=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/lenovo/.ohos/config/openharmony/default_StateMgmtV2MVVM_hw-oOspHqpORcaHX3wNiFBhmAGkniUtyjqak5dhE9GI=.p12",
+          "storePassword": "0000001B7DCD7ECB2FFC62ABC0398E888B7E0DF16A671A0FB766C4C4F2765DE2B57C87CE107577412389FB"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 12,
+        "compileSdkVersion": 22,
         "compatibleSdkVersion": 12,
         "targetSdkVersion": 12,
         "runtimeOS": "OpenHarmony",
