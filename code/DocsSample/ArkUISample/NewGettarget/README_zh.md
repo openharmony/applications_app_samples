@@ -14,9 +14,9 @@
 
 ### 效果预览
 
-| 不会触发UI刷新页面     | 不重复创建代理       | 使用UIUtils.getTarget接口可以获取代理前的原始对象1                    | 获取状态管理V2代理前的原始对象                                                     | 使用UIUtils.getTarget接口可以获取代理前的原始对象2|
-|----------------| -------------- | ----------------------- | ------------------------------------------------------------ | :------- |
-| ![image1](E:\NewGettarget\screenshots\device\image1.jpeg) | ![image2](E:\NewGettarget\screenshots\device\image2.jpeg) | ![iamge3](E:\NewGettarget\screenshots\device\iamge3.jpeg) | ![image4](E:\NewGettarget\screenshots\device\image4.jpeg) | ![image5](E:\NewGettarget\screenshots\device\image5.jpeg) |
+| 不会触发UI刷新页面                          | 不重复创建代理                             | 使用UIUtils.getTarget接口可以获取代理前的原始对象1  | 获取状态管理V2代理前的原始对象                    | 使用UIUtils.getTarget接口可以获取代理前的原始对象2  |
+|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|:------------------------------------|
+| ![](screenshots/device/image1.jpeg) | ![](screenshots/device/image2.jpeg) | ![](screenshots/device/image3.jpeg) | ![](screenshots/device/image4.jpeg) | ![](screenshots/device/image5.jpeg) |
 
 
 ### 使用说明
@@ -163,7 +163,7 @@ NewGettarget
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/BindSheet > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/NewGettarget > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
