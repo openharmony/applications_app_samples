@@ -22,11 +22,17 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 // [End EventSub_EntryAbility_Header]
+// [Start AsanEvent_Call_Capi_Function]
+// [Start PssLeakEvent_Call_Capi_Function]
+// [Start AppKillEvent_Call_Capi_Function]
 // [Start EventSub_Capi_Header]
 import testNapi from 'libentry.so';
 // [End EventSub_Capi_Header]
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // [StartExclude AppKillEvent_Call_Capi_Function]
+    // [StartExclude PssLeakEvent_Call_Capi_Function]
+    // [StartExclude AsanEvent_Call_Capi_Function]
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     // [Start AppEvent_Crash_ArkTS_Add_Watcher]
     hiAppEvent.addWatcher({
@@ -361,8 +367,24 @@ export default class EntryAbility extends UIAbility {
     testNapi.RegisterAppHicollieWatcherR();
     testNapi.RegisterAppHicollieWatcherT();
     // [End Register_AppHicollie_Watcher]
+    // [EndExclude AsanEvent_Call_Capi_Function]
+    // 启动时，注册系统事件观察者
+    testNapi.registerSanitizerReceiveWatcher();
+    // [EndExclude PssLeakEvent_Call_Capi_Function]
+    // 启动时，注册系统事件观察者
+    testNapi.registerLeakReceiveWatcher();
+    // [EndExclude AppKillEvent_Call_Capi_Function]
+    // 在onCreate()函数中新增接口调用
+    // 启动时，注册系统事件观察者
+    testNapi.registerAppKillReceiveWatcher();
+
+    // 在按钮操作或者启动时，触发泄漏
+    testNapi.leak();
   }
 
+  // [StartExclude AppKillEvent_Call_Capi_Function]
+  // [StartExclude PssLeakEvent_Call_Capi_Function]
+  // [StartExclude AsanEvent_Call_Capi_Function]
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
@@ -394,4 +416,10 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude PssLeakEvent_Call_Capi_Function]
+  // [EndExclude AsanEvent_Call_Capi_Function]
+  // [EndExclude AppKillEvent_Call_Capi_Function]
 };
+// [End PssLeakEvent_Call_Capi_Function]
+// [End AsanEvent_Call_Capi_Function]
+// [End AppKillEvent_Call_Capi_Function]

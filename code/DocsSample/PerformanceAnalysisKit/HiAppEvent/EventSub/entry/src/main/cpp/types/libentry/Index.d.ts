@@ -26,4 +26,15 @@ export const TestHiCollieTimerNdk: () => void;
 export const RegisterAppHicollieWatcherR: () => void;
 export const RegisterAppHicollieWatcherT: () => void;
 // [End test_hicollie_timer_Index.d.ts]
+// [Start AsanEvent_Index.d.ts]
+export const registerSanitizerReceiveWatcher: () => void;
+export const addressSanitizerTest: () => void;
+// [End AsanEvent_Index.d.ts]
+// [Start PssLeakEvent_Index.d.ts]
+export const registerLeakReceiveWatcher: () => void;
+// [End PssLeakEvent_Index.d.ts]
+// [Start AppKillEvent_Index.d.ts]
+export const registerAppKillReceiveWatcher: () => void;
+export const leak: () => void;
+// [End AppKillEvent_Index.d.ts]
 // [End EventSub_Index.d.ts_All]
