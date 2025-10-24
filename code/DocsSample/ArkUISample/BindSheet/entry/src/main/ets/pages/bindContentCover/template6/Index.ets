@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start bindContentCover_demo]
 import { curves } from '@kit.ArkUI';
+import resource from '../../../common/resource';
 
 interface PersonList {
   name: string,
@@ -23,10 +25,11 @@ interface PersonList {
 @Component
 struct BindContentCoverDemo {
   private personList: Array<PersonList> = [
-    { name: 'wang**', cardnum: '1234***********789' },
-    { name: 'song*', cardnum: '2345***********789' },
-    { name: 'xu**', cardnum: '3456***********789' },
-    { name: 'tang*', cardnum: '4567***********789' }
+    // $r('app.string.xxxx')需要替换为开发者所需的资源文件
+    { name: resource.resourceToString($r('app.string.Person_example1')), cardnum: '1234***********789' },
+    { name: resource.resourceToString($r('app.string.Person_example2')), cardnum: '2345***********789' },
+    { name: resource.resourceToString($r('app.string.Person_example3')), cardnum: '3456***********789' },
+    { name: resource.resourceToString($r('app.string.Person_example4')), cardnum: '4567***********789' }
   ];
   // 半模态转场控制变量
   @State isSheetShow: boolean = false;
@@ -36,8 +39,9 @@ struct BindContentCoverDemo {
   @Builder
   MyContentCoverBuilder() {
     Column() {
+      // $r('app.string.MyContentCoverBuilder_text1')需要替换为开发者所需的资源文件
       Row() {
-        Text($r('app.string.bindSheetCmd_label1'))
+        Text($r('app.string.MyContentCoverBuilder_text1'))
           .fontSize(20)
           .fontColor(Color.White)
           .width('100%')
@@ -47,7 +51,8 @@ struct BindContentCoverDemo {
       .backgroundColor(0x007dfe)
 
       Row() {
-        Text($r('app.string.bindSheetCmd_label2'))
+        // $r('app.string.MyContentCoverBuilder_text2')需要替换为开发者所需的资源文件
+        Text($r('app.string.MyContentCoverBuilder_text2'))
           .fontSize(16)
           .fontColor(0x333333)
           .margin({ top: 10 })
@@ -89,7 +94,8 @@ struct BindContentCoverDemo {
             .alignItems(HorizontalAlign.Start)
 
             Column() {
-              Text($r('app.string.bindSheetCmd_label3'))
+              // $r('app.string.MyContentCoverBuilder_text3')需要替换为开发者所需的资源文件
+              Text($r('app.string.MyContentCoverBuilder_text3'))
                 .fontColor(0x007dfe)
                 .fontSize(16)
             }
@@ -102,7 +108,7 @@ struct BindContentCoverDemo {
         })
       }
       .padding({ top: 20, bottom: 20 })
-
+      // $r('app.string.bindSheetCmd_label4')需要替换为开发者所需的资源文件
       Text($r('app.string.bindSheetCmd_label4'))
         .width('90%')
         .height(40)
@@ -121,6 +127,7 @@ struct BindContentCoverDemo {
   @Builder
   TripInfo() {
     Row() {
+      // $r('app.string.xxxx')需要替换为开发者所需的资源文件
       Column() {
         Text('00:25')
         Text($r('app.string.bindSheetCmd_label5'))
@@ -156,6 +163,7 @@ struct BindContentCoverDemo {
       .borderRadius(10)
 
       Column() {
+        // $r('app.string.MySheetBuilder_text1')需要替换为开发者所需的资源文件
         Text($r('app.string.MySheetBuilder_text1'))
           .fontSize(18)
           .fontColor(Color.Orange)
@@ -181,6 +189,7 @@ struct BindContentCoverDemo {
     Column() {
       Row() {
         this.TripInfo()
+        // $r('app.string.xxxx')需要替换为开发者所需的资源文件
         Text($r('app.string.MySheetBuilder_text2'))
           .fontColor(Color.Blue)
           .width('25%')
@@ -203,3 +212,4 @@ struct BindContentCoverDemo {
     .backgroundColor('#30aaaaaa')
   }
 }
+// [End bindContentCover_demo]
