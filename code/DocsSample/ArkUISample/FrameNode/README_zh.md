@@ -1,4 +1,4 @@
-# ArkUI使用NODE IMAGE指南文档示例
+# ArkUI使用Frame Node指南文档示例
 
 ### 介绍
 
