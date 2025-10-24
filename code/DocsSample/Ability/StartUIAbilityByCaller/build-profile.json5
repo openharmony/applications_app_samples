@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "storeFile": "D:/signature/OpenHarmony.p12",
-          "storePassword": "00000016F1C43DA6B9CDD6F91086D1721822C2892CC920349AE425F5DAEC8D10B08EC966A2D7",
-          "keyAlias": "oh-app1-key-v1",
-          "keyPassword": "000000164502BB6B8C5ECAC2536B2A356B2FD754B778A564E5AAEE3D55E89FD9AF46E5103F87",
-          "signAlg": "SHA256withECDSA",
-          "profile": "D:/signature/app-localuse.p7b",
-          "certpath": "D:/signature/app-localuse.cer"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
