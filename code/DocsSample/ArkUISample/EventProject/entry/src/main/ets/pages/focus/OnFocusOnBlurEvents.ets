@@ -27,17 +27,17 @@ export struct FocusAndBlurExample {
             .height(45)
             .margin(5)
             .onFocus(() => {
-              console.info("Button1 onFocus");
+              console.info('Button1 onFocus');
             })
             .onBlur(() => {
-              console.info("Button1 onBlur");
+              console.info('Button1 onBlur');
             })
         }
         .onFocus(() => {
-          console.info("Row1 onFocus");
+          console.info('Row1 onFocus');
         })
         .onBlur(() => {
-          console.info("Row1 onBlur");
+          console.info('Row1 onBlur');
         })
 
         Row() { // 父节点Row2
@@ -46,17 +46,17 @@ export struct FocusAndBlurExample {
             .height(45)
             .margin(5)
             .onFocus(() => {
-              console.info("Button2 onFocus");
+              console.info('Button2 onFocus');
             })
             .onBlur(() => {
-              console.info("Button2 onBlur");
+              console.info('Button2 onBlur');
             })
         }
         .onFocus(() => {
-          console.info("Row2 onFocus");
+          console.info('Row2 onFocus');
         })
         .onBlur(() => {
-          console.info("Row2 onBlur");
+          console.info('Row2 onBlur');
         })
       }.width('100%').margin({ top: 5 })
     }.width('100%')

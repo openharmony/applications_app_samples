@@ -535,6 +535,14 @@
     {
       "name": "Tab_Index_TabStop_description",
       "value": "标签暂停"
+    },
+     {
+      "name": "Focus_Event",
+      "value": "获焦信息"
+    },
+    {
+      "name": "Get_Focus",
+      "value": "获得焦点"
     }
   ]
 }

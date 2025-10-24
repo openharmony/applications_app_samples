@@ -17,8 +17,8 @@
 @Entry
 @Component
 export struct FocusOnclickExample {
-  @State count: number = 0
-  @State name: string = 'Button'
+  @State count: number = 0;
+  @State name: string = 'Button';
 
   build() {
     NavDestination() {
@@ -28,9 +28,9 @@ export struct FocusOnclickExample {
           .onClick(() => {
             this.count++
             if (this.count % 2 === 0) {
-              this.name = "count is even number"
+              this.name = 'count is even number';
             } else {
-              this.name = "count is odd number"
+              this.name = 'count is odd number';
             }
           }).height(60)
       }.height('100%').width('100%').justifyContent(FlexAlign.Center)

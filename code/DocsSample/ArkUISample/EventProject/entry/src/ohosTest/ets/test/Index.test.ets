@@ -129,6 +129,386 @@ export default function IndexTest() {
       done();
     })
 
+    /**
+     * @tc.number UiTest_005
+     * @tc.name testFocusActive
+     * @tc.desc 测试聚焦示例
+     */
+    it('testFocusActive', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.waitForComponent(ON.text('FocusEvent', MatchPattern.CONTAINS),1000);
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FocusActive_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2054);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
 
+    /**
+     * @tc.number UiTest_006
+     * @tc.name FocusOnClick
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testFocusOnClick', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FocusOnClick_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      let button = await driver.findComponent(ON.text('Button', MatchPattern.CONTAINS));
+      await button.click();
+      let button1 = await driver.findComponent(ON.text('count is odd number', MatchPattern.CONTAINS));
+      await button1.click();
+      let button2 = await driver.findComponent(ON.text('count is even number', MatchPattern.CONTAINS));
+      await button2.click();
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_007
+     * @tc.name FocusScopeId
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testFocusScopeId', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FocusScopeId_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.pressBack();
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_008
+     * @tc.name FocusScopePriorityPrevious
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testFocusScopePriorityPrevious', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FocusScopePriorityPrevious_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_009
+     * @tc.name FocusTransfer
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testFocusTransfer', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FocusTransfer_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      let button = await driver.findComponent(ON.text('button 1', MatchPattern.CONTAINS));
+      await button.click();
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_009
+     * @tc.name FocusTraversalGuidelines
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testFocusTraversalGuidelines', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FocusTraversalGuidelines_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2014);
+      await driver.triggerKey(2012);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_010
+     * @tc.name FrojectAreaFocusFlex
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testFrojectAreaFocusFlex', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FrojectAreaFocusFlex_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_011
+     * @tc.name NextFocus
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testNextFocus', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_NextFocus_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_012
+     * @tc.name OnFocusOnBlurEvents
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testOnFocusOnBlurEvents', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_OnFocusOnBlurEvents_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_013
+     * @tc.name ProjectionBasedFocus
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testProjectionBasedFocus', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_ProjectionBasedFocus_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_014
+     * @tc.name ProjectionBasedFocus
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testRequestFocus', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_RequestFocus_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_015
+     * @tc.name ScopeFocus
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testScopeFocus', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_ScopeFocus_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      let button = await driver.findComponent(ON.text('Button1', MatchPattern.CONTAINS));
+      await button.click();
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_016
+     * @tc.name TabIndex
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testTabIndex', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_TabIndex_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_017
+     * @tc.name TabIndexFocus
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testTabIndexFocus', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_TabIndexFocus_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2013);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_018
+     * @tc.name TabIndexFocus
+     * @tc.desc 测试焦点传递事件示例
+     */
+    it('testTabStop', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('FocusEvent', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_TabStop_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2016);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.triggerKey(2049);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
   })
 }

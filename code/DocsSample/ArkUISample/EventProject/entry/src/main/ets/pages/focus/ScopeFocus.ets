@@ -23,7 +23,7 @@ export struct ScopeFocusExample {
     NavDestination() {
       Column() {
         Column({ space: 5 }) {
-          Text("容器获焦").textAlign(TextAlign.Center)
+          Text('容器获焦').textAlign(TextAlign.Center)
         }
         .justifyContent(FlexAlign.Center)
         .width('80%')
@@ -39,7 +39,7 @@ export struct ScopeFocusExample {
           .margin(5)
           .onClick(() => {
             this.scopeFocusState = !this.scopeFocusState;
-            console.info("Button1 onFocus");
+            console.info('Button1 onFocus');
           })
         Button('Button2')
           .width(140)

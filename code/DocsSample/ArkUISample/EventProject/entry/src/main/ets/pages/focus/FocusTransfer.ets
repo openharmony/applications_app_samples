@@ -17,6 +17,7 @@
 @Entry
 export struct FocusTransferExample {
   @State logText: string = '\n';
+    context = this.getUIContext().getHostContext();
 
   addText(message: string) {
     this.logText += `${message}\n`;
@@ -27,35 +28,35 @@ export struct FocusTransferExample {
       Column() {
         Row() {
           Column() {
-            Button("button 1")
+            Button('button 1')
               .margin(20)
               .onClick(() => {
-                this.logText = '获焦信息：\n';
-                this.getUIContext().getFocusController().requestFocus("Row 2")
+                this.logText = this.context!.resourceManager.getStringSync($r('app.string.Focus_Event').id) + '：\n';
+                this.getUIContext().getFocusController().requestFocus('Row 2')
               })
           }
         }
 
         Column() {
           Row() {
-            Button("button 2")
+            Button('button 2')
               .margin(20)
               .onFocus(() => {
-                this.addText("Button 2 获得焦点");
+                this.addText('Button 2' + this.context!.resourceManager.getStringSync($r('app.string.Get_Focus').id));
               })
-            Button("button 3")
+            Button('button 3')
               .margin(20)
               .onFocus(() => {
-                this.addText("Button 3 获得焦点");
+                this.addText('Button 3' + this.context!.resourceManager.getStringSync($r('app.string.Get_Focus').id));
               })
           }
-          .id("Row 2")
+          .id('Row 2')
           .onFocus(() => {
-            this.addText("Row 2 获得焦点");
+            this.addText('Row 2' + this.context!.resourceManager.getStringSync($r('app.string.Get_Focus').id));
           })
         }
         .onFocus(() => {
-          this.addText("Column 2 获得焦点");
+          this.addText('Column 2' + this.context!.resourceManager.getStringSync($r('app.string.Get_Focus').id));
         })
 
         Scroll() {

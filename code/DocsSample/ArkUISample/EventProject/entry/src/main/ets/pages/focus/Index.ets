@@ -24,7 +24,6 @@ import { FocusScopePriority } from './FocusScopePriority';
 import { FocusStyle } from './FocusStyle';
 import { OnFocusBlur } from './onFocusBlur';
 import resource from '../../common/resource';
-
 import { FocusActiveExample } from './FocusActive';
 import { FocusOnclickExample } from './FocusOnClick';
 import { FocusScopeIdExample } from './FocusScopeId';
@@ -41,9 +40,9 @@ import { TabIndexExample } from './TabIndex';
 import { TabIndexFocusExample } from './TabIndexFocus';
 import { TabStopExample } from './TabStop';
 
-
 export const Focus_ROUTE_PREFIX: string = 'Focus_ROUTE_PREFIX';
 
+// [Start route_push]
 const routes: Route[] = [
   {
     name: `${Focus_ROUTE_PREFIX}/onFocusBlur`,
@@ -161,7 +160,7 @@ const routes: Route[] = [
     description: resource.resourceToString($r('app.string.Tab_Index_TabStop_description')),
   }
 ]
-
+// [End route_push]
 @Builder
 export function FocusDestination(name: string) {
   if (name === Focus_ROUTE_PREFIX) {
@@ -241,6 +240,7 @@ struct FocusExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    //$r('app.string.Focus_Index_title')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.Focus_Index_title'))
   }
 }

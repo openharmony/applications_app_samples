@@ -27,18 +27,18 @@ export struct FocusScopeIdExample {
             .margin(5)
             .fontColor(Color.White)
           Row({ space: 5 }) {
-            Button("Button1")
+            Button('Button1')
               .width(80)
               .height(40)
               .margin(5)
               .fontColor(Color.White)
-            Button("Button2")
+            Button('Button2')
               .width(80)
               .height(40)
               .margin(5)
               .fontColor(Color.White)
           }
-        }.focusScopeId("1", true, true)
+        }.focusScopeId('1', true, true)
         .borderWidth(2).borderColor(Color.Red).borderStyle(BorderStyle.Dashed)
 
         TextInput()
@@ -49,18 +49,18 @@ export struct FocusScopeIdExample {
             .margin(5)
             .fontColor(Color.White)
           Row({ space: 5 }) {
-            Button("Button3")
+            Button('Button3')
               .width(80)
               .height(40)
               .margin(5)
               .fontColor(Color.White)
-            Button("Button4")
+            Button('Button4')
               .width(80)
               .height(40)
               .margin(5)
               .fontColor(Color.White)
           }
-        }.focusScopeId("2", true, false)
+        }.focusScopeId('2', true, false)
         .borderWidth(2).borderColor(Color.Green).borderStyle(BorderStyle.Dashed)
 
         TextInput()

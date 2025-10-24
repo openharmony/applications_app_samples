@@ -21,12 +21,12 @@ export struct FocusLinerExample {
     NavDestination() {
     Column() {
       Column() {
-        Button("Column Button1")
+        Button('Column Button1')
           .width(150)
           .height(45)
           .fontColor(Color.White)
           .margin(10)
-        Button("Column Button2")
+        Button('Column Button2')
           .width(150)
           .height(45)
           .fontColor(Color.White)
@@ -35,12 +35,12 @@ export struct FocusLinerExample {
       .margin(10)
 
       Row() {
-        Button("Row Button1")
+        Button('Row Button1')
           .width(150)
           .height(45)
           .fontColor(Color.White)
           .margin(10)
-        Button("Row Button2")
+        Button('Row Button2')
           .width(150)
           .height(45)
           .fontColor(Color.White)

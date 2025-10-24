@@ -14,7 +14,7 @@
  */
 
 // [Start dynamic_focus_request]
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'；
 
 @Entry
 @Component
@@ -22,12 +22,12 @@ export struct RequestFocusExample {
   build() {
     NavDestination() {
       Column({ space: 30 }) {
-        Button("small black focus box")
+        Button('small black focus box')
           .focusBox({
             margin: new LengthMetrics(0),
             strokeColor: ColorMetrics.rgba(0, 0, 0),
           })
-        Button("large red focus box")
+        Button('large red focus box')
           .focusBox({
             margin: LengthMetrics.px(20),
             strokeColor: ColorMetrics.rgba(255, 0, 0),
