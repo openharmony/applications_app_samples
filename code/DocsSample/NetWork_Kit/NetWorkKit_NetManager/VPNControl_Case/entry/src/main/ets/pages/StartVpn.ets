@@ -23,6 +23,7 @@ import { ComponentId } from '../common/CommonConstant'; // 引入枚举
 import TitleBar from '../common/component';
 import NotificationOperations from '../notification/NotificationOperations';
 import SetupVpn from './SetupVpn';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 提取常量
 const LABEL_FONT_SIZE = 20; // 标签字体大小
@@ -62,24 +63,24 @@ struct StartVpn {
     g_tunnelFd = vpn_client.udpConnect(this.vpnServerIp, 8888);
     if (g_tunnelFd) {
       showToast('CreateTunnel Success', BUTTON_SUCCESS_MESSAGE);
-      console.info('developTag', '%{public}s', 'CreateTunnel Success');
+      hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'CreateTunnel Success');
       this.flag = 'Pass';
     } else {
       showToast('CreateTunnel Fail', BUTTON_SUCCESS_MESSAGE);
-      console.error('developTag', 'CreateTunnel Fail %{public}s', 'CreateTunnel Fail');
+       hilog.error(0x0000, 'testTag', 'developTag', 'CreateTunnel Fail %{public}s', 'CreateTunnel Fail');
       this.flag = 'Error';
     }
   }
 
   Protect() {
-    console.info('developTag', '%{public}s', 'vpn Protect');
+    hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Protect');
     this.vpnConnection.protect(g_tunnelFd).then(() => {
       showToast('vpn Protect Success', BUTTON_SUCCESS_MESSAGE);
-      console.info('developTag', '%{public}s', 'vpn Protect Success');
+      hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Protect Success');
       this.flag = 'Pass';
     }).catch((err: Error) => {
       showToast('vpn Protect Failed: ' + JSON.stringify(err), BUTTON_SUCCESS_MESSAGE);
-      console.error('developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
+      hilog.error(0x0000, 'testTag', 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
       this.flag = 'Error';
     });
   }
@@ -97,7 +98,7 @@ struct StartVpn {
           .id(this.flag)
           // [EndExclude start_vpn_extension_ability]
           .onClick(() => {
-            console.info('developTag', '%{public}s', 'vpn Client');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Client');
           })
         // [StartExclude start_vpn_extension_ability]
         Row() {
@@ -168,13 +169,13 @@ struct StartVpn {
               // [StartExclude start_vpn_extension_ability]
                 .then(() => {
                   showToast('start vpnExt Success', BUTTON_SUCCESS_MESSAGE);
-                  console.info('developTag', '%{public}s', 'start vpnExt Success');
+                  hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'start vpnExt Success');
                   this.flag = 'Pass';
                 })
             } catch (err) {
               showToast('start vpnExt Fail: ' + JSON.stringify(err), BUTTON_SUCCESS_MESSAGE);
               this.flag = 'Error';
-              console.error('developTag', 'start vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
+              hilog.error(0x0000, 'testTag', 'developTag', 'start vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
             }
             // [EndExclude start_vpn_extension_ability]
           })

@@ -22,6 +22,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { showToast } from '../common/ShowToast';
 import vpn_client from 'libentry.so';
 import NotificationOperations from '../notification/NotificationOperations';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const buttonFontSize = 25; // 按钮的字体大小
 const buttonMargin = 16;
@@ -54,7 +55,7 @@ export default struct allNetworksBtn {
   }
 
   SetupVpn() {
-    console.info('developTag', '%{public}s', 'vpn SetupVpn');
+    hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn SetupVpn');
 
     // 定义 Address 类，表示 IP 地址和地址族
     class Address {
@@ -146,15 +147,15 @@ export default struct allNetworksBtn {
     // [EndExclude vpn_config_parameters]
     // 创建 VPN 连接并应用配置
     vpnConnection.create(vpnConfig).then((data) => {
-      console.info('vpn create ' + JSON.stringify(data));
+      hilog.info(0x0000, 'testTag', 'vpn create ' + JSON.stringify(data));
       // [StartExclude vpn_config_parameters]
       gTunFd = data;  // 获取到的虚拟网络接口文件描述符
-      console.info('developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag', 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
 
       // 启动 VPN 连接，传入隧道文件描述符和虚拟网络接口文件描述符
       vpn_client.startVpn(gTunFd, gTunnelFd);
       showToast('VPN started successfully', 4000);
-      console.info('developTag', '%{public}s', 'vpn start Success');
+      hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn start Success');
       this.flag = 'Pass';  // 设置状态为成功
 
       notificationOperations.publishNotificationWithWantAgent();
@@ -164,7 +165,7 @@ export default struct allNetworksBtn {
       .catch((err: BusinessError) => {
       // 如果 VPN 创建失败，捕获异常并处理
       showToast('VPN start failed: ' + JSON.stringify(err), 4000);
-      console.error('developTag', 'vpn start Fail %{public}s', JSON.stringify(err) ?? '');
+      hilog.error(0x0000, 'testTag', 'developTag', 'vpn start Fail %{public}s', JSON.stringify(err) ?? '');
       this.flag = 'Error';  // 设置状态为失败
     });
     // [EndExclude vpn_config_parameters]

@@ -18,6 +18,7 @@ import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 import { vpnExtension } from '@kit.NetworkKit';
 // [StartExclude destroy_vpn_ability]
 import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [EndExclude destroy_vpn_ability]
 export class VpnTest extends VpnExtensionAbility {
   public vpnId: string = 'test_vpn_id';
@@ -30,7 +31,7 @@ export class VpnTest extends VpnExtensionAbility {
     try {
       // [EndExclude destroy_vpn_ability]
       this.vpnConnection = vpnExtension.createVpnConnection(this.context);
-      console.info('create success');
+      hilog.info(0x0000, 'testTag', 'create success');
       this.vpnConnection?.destroy(this.vpnId);
       // [StartExclude destroy_vpn_ability]
       return true;

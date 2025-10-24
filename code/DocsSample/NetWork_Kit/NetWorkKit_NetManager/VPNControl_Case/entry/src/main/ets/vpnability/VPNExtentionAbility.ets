@@ -19,6 +19,7 @@ import { Want } from '@kit.AbilityKit';
 // [StartExclude vpn_control_case_extention_ability]
 // vpn_client是一个C语言便携的so，比如import vpn_client from 'libvpn_client.so';
 import vpn_client from 'libentry.so';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [EndExclude vpn_control_case_extention_ability]
 
 const TAG: string = '[MyVpnExtAbility]';
@@ -34,30 +35,30 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
   onCreate(want: Want) {
     // [StartExclude vpn_control_case_extention_ability]
-    console.info('onCreate called');
+    hilog.info(0x0000, 'testTag', 'onCreate called');
     super.onCreate(want);
     // 确保 context 有效
     if (this.context) {
-      console.info('Context is valid, initializing VpnConnection');
+      hilog.info(0x0000, 'testTag', 'Context is valid, initializing VpnConnection');
       this.vpnConnection = vpnExtension.createVpnConnection(this.context);
     } else {
-      console.error('Context is invalid, cannot create VpnConnection');
+      hilog.error(0x0000, 'testTag', 'Context is invalid, cannot create VpnConnection');
     }
     // [EndExclude vpn_control_case_extention_ability]
-    console.info(`onCreate, want: ${want.abilityName}`);
+    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}`);
     this.vpnConnection = vpnExtension.createVpnConnection(this.context);
-    console.info('createVpnConnection success');
+    hilog.info(0x0000, 'testTag', 'createVpnConnection success');
     this.CreateTunnel();
     this.Protect();
-    console.info('step4');
+    hilog.info(0x0000, 'testTag', 'step4');
   }
 
   onRequest(want: Want, startId: number) {
-    console.info(`onRequest, want: ${want.abilityName}`);
+    hilog.info(0x0000, 'testTag', `onRequest, want: ${want.abilityName}`);
   }
 
   onConnect(want: Want) {
-    console.info(`onConnect, want: ${want.abilityName}`);
+    hilog.info(0x0000, 'testTag', `onConnect, want: ${want.abilityName}`);
     // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
     let abilityName = want.parameters?.abilityName.toString();
     let bundleName = want.parameters?.bundleName.toString();
@@ -65,55 +66,55 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   }
 
   onDisconnect(want: Want) {
-    console.info(`onDisconnect, want: ${want.abilityName}`);
+    hilog.info(0x0000, 'testTag', `onDisconnect, want: ${want.abilityName}`);
   }
 
   onDestroy() {
-    console.info(`onDestroy`);
+    hilog.info(0x0000, 'testTag', `onDestroy`);
     this.Destroy();
   }
 
   Destroy() {
-    console.info('developTag', '%{public}s', 'vpn Destroy');
+    hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Destroy');
     // 关闭VPN
     this.vpnConnection.destroy().then(() => {
-      console.info('developTag', '%{public}s', 'vpn Destroy Success');
+      hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Destroy Success');
     }).catch((err: Error) => {
-      console.error('developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
+      hilog.error(0x0000, 'testTag', 'developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
     });
   }
 
   // 创建隧道的方法
   CreateTunnel() {
-    console.info('step1');
+    hilog.info(0x0000, 'testTag', 'step1');
     // 连接VPN服务器
     // [StartExclude vpn_control_case_extention_ability]
     gTunnelFd = vpn_client.udpConnect(this.vpnServerIp, 1194);
     if (gTunnelFd < 0) {
-      console.error('Failed to create UDP tunnel');
+      hilog.error(0x0000, 'testTag', 'Failed to create UDP tunnel');
       return;
     }
-    console.info(`Tunnel created, FD: ${gTunnelFd}`);
+    hilog.info(0x0000, 'testTag', `Tunnel created, FD: ${gTunnelFd}`);
     this.Protect();
     // [EndExclude vpn_control_case_extention_ability]
   }
 
   // 保护隧道的方法
   Protect() {
-    console.info('step2');
-    console.info('developTag', '%{public}s', 'vpn Protect');
+    hilog.info(0x0000, 'testTag', 'step2');
+    hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Protect');
     this.vpnConnection.protect(gTunnelFd).then(() => {
-      console.info('developTag', '%{public}s', 'vpn Protect Success');
+      hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Protect Success');
       this.SetupVpn();
     }).catch((err: Error) => {
-      console.error('developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
+      hilog.error(0x0000, 'testTag', 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
     })
   }
 
   // 设置VPN网络配置的方法
   SetupVpn() {
-    console.info('step3');
-    console.info('developTag', '%{public}s', 'vpn SetupVpn');
+    hilog.info(0x0000, 'testTag', 'step3');
+    hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn SetupVpn');
 
     class Address {
       public address: string;
@@ -158,12 +159,12 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
       // [StartExclude vpn_control_case_extention_ability]
         .then((data) => {
           gTunFd = data;
-          console.error('developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
+          hilog.error(0x0000, 'testTag', 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
           vpn_client.startVpn(gTunFd, gTunnelFd);
         })
       // [EndExclude vpn_control_case_extention_ability]
     } catch (error) {
-      console.error('developTag', 'vpn setUp fail: %{public}s', JSON.stringify(error) ?? '');
+      hilog.error(0x0000, 'testTag', 'developTag', 'vpn setUp fail: %{public}s', JSON.stringify(error) ?? '');
     }
   }
 }

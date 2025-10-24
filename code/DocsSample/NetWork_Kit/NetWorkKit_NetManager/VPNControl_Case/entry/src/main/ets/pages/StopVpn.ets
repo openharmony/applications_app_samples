@@ -21,6 +21,7 @@ import vpn_client from 'libentry.so';
 import { showToast } from '../common/ShowToast';
 import { ComponentId } from '../common/CommonConstant';
 import TitleBar from '../common/component';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 常量提取
 const TOAST_DURATION = 2000; // Toast 显示时间
@@ -50,18 +51,18 @@ struct StopVpn {
   private vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(this.context);
 
   Destroy() {
-    console.info('developTag', '%{public}s', 'vpn Destroy');
+    hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Destroy');
     // [StartExclude stop_vpn_extension_ability_on_destroy]
     vpn_client.stopVpn(g_tunnelFd);
     // [EndExclude stop_vpn_extension_ability_on_destroy]
     this.vpnConnection.destroy().then(() => {
-      console.info('developTag', '%{public}s', 'vpn Destroy Success');
+      hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Destroy Success');
       // [StartExclude stop_vpn_extension_ability_on_destroy]
       showToast('vpn Destroy Success', TOAST_DURATION);
       this.flag = 'Pass';
       // [EndExclude stop_vpn_extension_ability_on_destroy]
     }).catch((err: Error) => {
-      console.error('developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
+       hilog.error(0x0000, 'testTag', 'developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
       // [StartExclude stop_vpn_extension_ability_on_destroy]
       showToast('vpn Destroy Failed: ' + JSON.stringify(err), TOAST_DURATION);
       this.flag = 'Error';
@@ -81,7 +82,7 @@ struct StopVpn {
           .fontSize(TITLE_FONT_SIZE)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            console.info('developTag', '%{public}s', 'vpn Client');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Client');
           })
         // [StartExclude stop_vpn_extension_ability]
         Button($r('app.string.stop_vpn'))
@@ -99,12 +100,12 @@ struct StopVpn {
         Button($r('app.string.stop_vpnExt'))
           .onClick(() => {
             try {
-              console.info('btn end')
+              hilog.info(0x0000, 'testTag', 'btn end')
               vpnExtension.stopVpnExtensionAbility(want)
               // [StartExclude stop_vpn_extension_ability]
                 .then(() => {
                   showToast('stop vpnExt Success', TOAST_DURATION);
-                  console.info('developTag', '%{public}s', 'stop vpnExt Success');
+                  hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'stop vpnExt Success');
                   this.flag = 'Pass';
                 });
               // [EndExclude stop_vpn_extension_ability]
