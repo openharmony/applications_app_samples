@@ -19,12 +19,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [End net_Connection_create_connection_import]
 
 import { promptAction } from '@kit.ArkUI';
-import connectNetworkBtn from './connectNetworkBtn';
-import allNetworksBtn from './allNetworksBtn';
-import defaultNetworkBtn from './defaultNetworkBtn';
-import defaultNetworkIPBtn from './defaultNetworkIPBtn';
-import defaultNetSyncBtn from './defaultNetSyncBtn';
-import getAllNets from './getAllNets';
+import connectNetworkBtn from './ConnectNetworkBtn';
+import allNetworksBtn from './AllNetworksBtn';
+import defaultNetworkBtn from './DefaultNetworkBtn';
+import defaultNetworkIPBtn from './DefaultNetworkIPBtn';
+import defaultNetSyncBtn from './DefaultNetSyncBtn';
+import getAllNets from './GetAllNets';
 
 const NETWORK_CONNECTION_TIMEOUT = 1000; // 网络连接超时
 const BUTTON_HEIGHT = 50; // 按钮的高度
