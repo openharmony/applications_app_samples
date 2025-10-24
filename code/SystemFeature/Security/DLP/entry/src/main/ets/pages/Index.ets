@@ -471,7 +471,7 @@ struct FilePicker {
   // 16 设置企业应用防护策略
   setDLPProtectPolicy() {
     try {
-      let attributeValues: Array<string> = [ '1' ];
+      let attributeValues: string[] = [ '1' ];
       let attribute: Attribute = {
         attributeId: 'DeviceHealthyStatus',
         attributeValues: attributeValues,
@@ -504,8 +504,8 @@ struct FilePicker {
   // 17 识别指定文件中的敏感内容
   scanSensitiveInfo() {
     let filepath = this.uri;
-    let policies: Array<identifySensitiveContent.Policy> = [
-      {"sensitiveLabel":"1", "keywords":[], "regex":""}
+    let policies: identifySensitiveContent.Policy[] = [
+      {'sensitiveLabel':'1', 'keywords':[], 'regex':''}
     ];
     try {
       identifySensitiveContent.scanFile(filepath, policies).then(records => {
