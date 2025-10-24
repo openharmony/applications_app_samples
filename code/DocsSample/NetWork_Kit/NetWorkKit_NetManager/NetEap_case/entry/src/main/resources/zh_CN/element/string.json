@@ -1,0 +1,53 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "message_type",
+      "value": "注册所需监听的EAP报文类型"
+    },
+
+    {
+      "name": "server_sends_message",
+      "value": "报文类型选择"
+    },
+    {
+      "name": "client_sends_message",
+      "value": "报文类型是由客户端发给服务器"
+    },
+    {
+      "name": "Uncustomize",
+      "value": "取消定制"
+    },
+    {
+      "name": "Start_authentication",
+      "value": "开始认证"
+    },
+    {
+      "name": "Withdrawal_of_certification",
+      "value": "退出认证"
+    },
+    {
+      "name": "first_part",
+      "value": "802.1X认证流程中加入自定义的安全校验"
+    },
+    {
+      "name": "second_part",
+      "value": "使用eth接口发起802.1X认证流程"
+    },
+    {
+      "name": "back_Btn",
+      "value": "返回"
+    }
+  ]
+}
