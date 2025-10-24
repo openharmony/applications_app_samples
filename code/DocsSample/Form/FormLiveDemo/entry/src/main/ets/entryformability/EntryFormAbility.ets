@@ -60,10 +60,12 @@ export default class EntryFormAbility extends FormExtensionAbility {
       }).then(() => {
         hilog.info(DOMAIN_NUMBER, TAG, 'requestOverflow requestOverflow succeed');
       }).catch((error: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, `requestOverflow requestOverflow catch error` + `, code: ${error.code}, message: ${error.message}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `requestOverflow requestOverflow catch error` + `,
+          code: ${error.code}, message: ${error.message}`);
       })
     } catch (e) {
-      hilog.info(DOMAIN_NUMBER, TAG, `requestOverflow call requestOverflow catch error` + `, code: ${e.code}, message: ${e.message}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `requestOverflow call requestOverflow catch error` + `,
+        code: ${e.code}, message: ${e.message}`);
     }
   }
 }

@@ -30,7 +30,8 @@ const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [StartExclude JSForm_JsCardFormAbility_onRemoveForm]
 // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
-let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
+let storeFormInfo =
+  async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
   // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
   let formInfo: Record<string, string | boolean | number> = {
     'formName': formName,
@@ -44,7 +45,8 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo,
+      err: ${JSON.stringify(err as BusinessError)}`);
   }
 }
 // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
@@ -57,7 +59,8 @@ let deleteFormInfo = async (formId: string, context: common.FormExtensionContext
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo,
+      err: ${JSON.stringify(err as BusinessError)}`);
   };
 };
 // [EndExclude JSForm_JsCardFormAbility_onAddForm]
