@@ -27,8 +27,9 @@ import testNapi from 'libentry.so';
 @Component
 struct Index {
   @State leakedArray: string[][] = [];
-
+  // [Start AppKillEvent_Button]
   @State message: string = 'Start To Leak';
+  // [End AppKillEvent_Button]
   build() {
     Row() {
       Column() {
