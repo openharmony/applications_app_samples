@@ -17,8 +17,8 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct ModalTransitionExample2 {
-  @State @Watch("isShow1Change") isShow: boolean = false;
-  @State @Watch("isShow2Change") isShow2: boolean = false;
+  @State @Watch('isShow1Change') isShow: boolean = false;
+  @State @Watch('isShow2Change') isShow2: boolean = false;
   @State isScale1: number = 1;
   @State isScale2: number = 1;
 
@@ -33,7 +33,7 @@ struct ModalTransitionExample2 {
   @Builder
   myBuilder2() {
     Column() {
-      Button("close modal 2")
+      Button('close modal 2')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -47,7 +47,7 @@ struct ModalTransitionExample2 {
   @Builder
   myBuilder() {
     Column() {
-      Button("transition modal 2")
+      Button('transition modal 2')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -69,7 +69,7 @@ struct ModalTransitionExample2 {
         }
       })
 
-      Button("close modal 1")
+      Button('close modal 1')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -85,7 +85,7 @@ struct ModalTransitionExample2 {
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
@@ -109,7 +109,7 @@ struct ModalTransitionExample2 {
         })
     }
     .justifyContent(FlexAlign.Center)
-    .backgroundColor("#ff49c8ab")
+    .backgroundColor('#ff49c8ab')
     .width('100%')
     .height('100%')
     .scale({ x: this.isScale1, y: this.isScale1 })

@@ -20,7 +20,7 @@ struct bindSheetExample4 {
   @Builder
   myBuilder() {
     Column() {
-      Button("CONTEXT")
+      Button('CONTEXT')
         .margin(10)
         .fontSize(20)
     }
@@ -28,7 +28,7 @@ struct bindSheetExample4 {
 
   build() {
     Column() {
-      Button("NoRegisterSpringback")
+      Button('NoRegisterSpringback')
         .onClick(() => {
           this.isShow = true;
         })
@@ -38,18 +38,16 @@ struct bindSheetExample4 {
           height: SheetSize.MEDIUM,
           blurStyle: BlurStyle.Thick,
           showClose: true,
-          title: { title: "title", subtitle: "subtitle" },
+          title: { title: 'title', subtitle: 'subtitle' },
           preferType: SheetType.CENTER,
 
-          onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-            if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss(); //注册dismiss行为
+          onWillDismiss: ((dismissSheetAction: DismissSheetAction) => {
+            if (dismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
+              dismissSheetAction.dismiss(); //注册dismiss行为
             }
           }),
 
           onWillSpringBackWhenDismiss: ((springBackAction: SpringBackAction) => {
-            //没有注册springBack，下拉半模态页面无回弹行为
-            //springBackAction.springBack();
           }),
         })
     }

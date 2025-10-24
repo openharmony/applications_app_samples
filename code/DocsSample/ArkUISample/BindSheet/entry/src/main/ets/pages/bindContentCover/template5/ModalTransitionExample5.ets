@@ -36,7 +36,7 @@ struct ModalTransitionExample5 {
   @Builder
   myBuilder() {
     Column() {
-      Button("Transition Modal 2")
+      Button('Transition Modal 2')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -64,7 +64,7 @@ struct ModalTransitionExample5 {
             }
           })
 
-      Button("Close Modal 1")
+      Button('Close Modal 1')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -78,7 +78,7 @@ struct ModalTransitionExample5 {
 
   build() {
     Column() {
-      Button("Transition Modal 1")
+      Button('Transition Modal 1')
         .onClick(() => {
           this.isShow = true;
         })

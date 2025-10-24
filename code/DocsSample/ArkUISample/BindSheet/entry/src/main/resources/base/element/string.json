@@ -194,6 +194,9 @@
     },{
       "name": "bindSheetCmd_label11",
       "value": "hoverModeArea切换"
+    },{
+      "name": "bindSheetCmd_label12",
+      "value": "是否选择关闭半模态"
     }
   ]
 }

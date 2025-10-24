@@ -22,11 +22,11 @@ struct SheetTransitionExample7 {
   @Builder
   myBuilder() {
     Column() {
-      Button("content1")
+      Button('content1')
         .margin(10)
         .fontSize(20)
 
-      Button("content2")
+      Button('content2')
         .margin(10)
         .fontSize(20)
     }
@@ -35,7 +35,7 @@ struct SheetTransitionExample7 {
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
@@ -43,7 +43,7 @@ struct SheetTransitionExample7 {
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          title: { title: "title", subtitle: "subtitle" },
+          title: { title: 'title', subtitle: 'subtitle' },
           radius: { topStart: LengthMetrics.vp(50), topEnd: LengthMetrics.vp(10) },
         })
     }

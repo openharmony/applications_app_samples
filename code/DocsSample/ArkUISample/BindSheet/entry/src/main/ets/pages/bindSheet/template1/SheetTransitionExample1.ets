@@ -21,21 +21,21 @@ struct SheetTransitionExample1 {
   @Builder
   myBuilder() {
     Column() {
-      Button("change height")
+      Button('change height')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
           this.sheetHeight = 500;
         })
 
-      Button("Set Illegal height")
+      Button('Set Illegal height')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
           this.sheetHeight = -1;
         })
 
-      Button("close modal 1")
+      Button('close modal 1')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -48,7 +48,7 @@ struct SheetTransitionExample1 {
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })

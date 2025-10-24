@@ -20,11 +20,11 @@ struct SheetTransitionExample2 {
   @Builder
   myBuilder() {
     Column() {
-      Button("content1")
+      Button('content1')
         .margin(10)
         .fontSize(20)
 
-      Button("content2")
+      Button('content2')
         .margin(10)
         .fontSize(20)
     }
@@ -33,7 +33,7 @@ struct SheetTransitionExample2 {
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
@@ -43,7 +43,7 @@ struct SheetTransitionExample2 {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
           blurStyle: BlurStyle.Thick,
           showClose: true,
-          title: { title: "title", subtitle: "subtitle" },
+          title: { title: 'title', subtitle: 'subtitle' },
         })
     }
     .justifyContent(FlexAlign.Start)

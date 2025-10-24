@@ -28,7 +28,7 @@ struct OnWillDismiss_Dismiss {
   }
 
   build() {
-    Button("OpenBindSheet")
+    Button('OpenBindSheet')
       .onClick(() => {
         this.isShow = true
       })
@@ -38,13 +38,13 @@ struct OnWillDismiss_Dismiss {
         blurStyle: BlurStyle.Thick,
         dragBar: true,
         detents: [SheetSize.MEDIUM, SheetSize.LARGE],
-        title: { title: "title", subtitle: "subtitle" },
+        title: { title: 'title', subtitle: 'subtitle' },
         enableOutsideInteractive: false,
-        onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
+        onWillDismiss: ((dismissSheetAction: DismissSheetAction) => {
           // 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
           this.getUIContext().showAlertDialog(
             {
-              message: '是否选择关闭半模态',
+              message: $r('app.string.bindContentCover_label2'),
               autoCancel: true,
               alignment: DialogAlignment.Bottom,
               gridCount: 4,
@@ -62,7 +62,7 @@ struct OnWillDismiss_Dismiss {
                 // 第三步：确认关闭半模态逻辑所在，此处为AlertDialog的Button回调
                 action: () => {
                   // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
-                  DismissSheetAction.dismiss();
+                  dismissSheetAction.dismiss();
                 }
               },
             }

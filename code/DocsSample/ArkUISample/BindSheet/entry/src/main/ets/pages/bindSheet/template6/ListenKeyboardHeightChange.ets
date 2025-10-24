@@ -99,7 +99,7 @@ struct ListenKeyboardHeightChange {
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
@@ -110,7 +110,7 @@ struct ListenKeyboardHeightChange {
           backgroundColor: Color.Gray,
           blurStyle: BlurStyle.Thick,
           showClose: true,
-          title: { title: "title", subtitle: "subtitle" },
+          title: { title: 'title', subtitle: 'subtitle' },
           keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY,
         })
     }

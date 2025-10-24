@@ -25,14 +25,14 @@ struct SheetTransitionExample {
   @Builder
   myBuilder() {
     Column() {
-      Button("enableHoverMode切换")
+      Button('enableHoverMode')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
           this.enableHoverMode = !this.enableHoverMode;
         })
 
-      Button("hoverModeArea切换")
+      Button('hoverModeArea')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -40,7 +40,7 @@ struct SheetTransitionExample {
             HoverModeAreaType.BOTTOM_SCREEN : HoverModeAreaType.TOP_SCREEN;
         })
 
-      Button("close modal")
+      Button('close modal')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -53,7 +53,7 @@ struct SheetTransitionExample {
 
   build() {
     Column() {
-      Button("拉起半模态")
+      Button($r('app.string.bindSheetCmd_label9'))
         .onClick(() => {
           this.isShow = true;
         })
