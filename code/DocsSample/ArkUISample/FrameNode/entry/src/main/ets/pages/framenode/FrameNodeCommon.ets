@@ -40,7 +40,7 @@ class MyNodeController extends NodeController {
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
 
   makeNode(uiContext: UIContext): FrameNode | null {
-    if (this.rootNode == null) {
+    if (this.rootNode === null) {
       this.rootNode = new FrameNode(uiContext);
       // 对rootNode进行属性修改，该节点为自定义的FrameNode节点，修改生效
       this.rootNode.commonAttribute
@@ -50,7 +50,7 @@ class MyNodeController extends NodeController {
         .backgroundColor(Color.Gray)
     }
 
-    if (this.frameNode == null) {
+    if (this.frameNode === null) {
       this.frameNode = new FrameNode(uiContext);
       // 对frameNode进行属性修改，该节点为自定义的FrameNode节点，修改生效
       this.frameNode.commonAttribute
@@ -60,7 +60,7 @@ class MyNodeController extends NodeController {
         .backgroundColor(Color.Pink);
       this.rootNode.appendChild(this.frameNode);
     }
-    if (this.buttonNode == null) {
+    if (this.buttonNode === null) {
       this.buttonNode = new BuilderNode<[Params]>(uiContext);
       this.buttonNode.build(this.wrapBuilder, { text: 'This is a Button' });
       // 对BuilderNode中获取的FrameNode进行属性修改，该节点非自定义的FrameNode节点，修改不生效

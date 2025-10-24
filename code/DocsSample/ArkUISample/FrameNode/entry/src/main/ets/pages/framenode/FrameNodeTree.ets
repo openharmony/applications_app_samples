@@ -51,7 +51,7 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.uiContext = uiContext;
-    if (this.rootNode == null) {
+    if (this.rootNode === null) {
       this.rootNode = new FrameNode(uiContext);
       this.rootNode.commonAttribute
         .width('50%')
@@ -60,7 +60,7 @@ class MyNodeController extends NodeController {
         .backgroundColor(Color.Gray)
     }
 
-    if (this.frameNode == null) {
+    if (this.frameNode === null) {
       this.frameNode = new FrameNode(uiContext);
       this.frameNode.commonAttribute
         .width('100%')
@@ -70,7 +70,7 @@ class MyNodeController extends NodeController {
         .backgroundColor(Color.Pink);
       this.rootNode.appendChild(this.frameNode);
     }
-    if (this.buttonNode == null) {
+    if (this.buttonNode === null) {
       this.buttonNode = new BuilderNode<[Params]>(uiContext);
       this.buttonNode.build(this.wrapBuilder, { text: 'This is a Button' })
       this.rootNode.appendChild(this.buttonNode.getFrameNode())
