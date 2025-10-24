@@ -9,9 +9,9 @@
 
 ## 效果预览
 
-| 首页                                              | CustomDialogController_CAPI页面                                  |OpenCustomDialog_CAPI页面                                              |dialog demo页面                                              |
-| ----------------------------------------------------- |--------------------------------------------------------------| ------------------------------------------------------- |------------------------------------------------------- |
-| <img src="./screenshots/nativeDialog.png" width="300"/> | <img src="./screenshots/CustomDialogController.png" width="300"/> | <img src="./screenshots/OpenCustomDialog.png" width="300"/> | <img src="./screenshots/dialogDemo.png" width="300"/> |
+| 首页                                                      | CustomDialogController_CAPI页面                                  |OpenCustomDialog_CAPI页面                                              | dialog demo页面                                         |
+|---------------------------------------------------------|--------------------------------------------------------------| ------------------------------------------------------- |-------------------------------------------------------|
+| <img src="./screenshots/NativeDialog.png" width="300"/> | <img src="./screenshots/CustomDialogController.png" width="300"/> | <img src="./screenshots/OpenCustomDialog.png" width="300"/> | <img src="./screenshots/DialogDemo.png" width="300"/> |
 
 ## 使用说明
 
