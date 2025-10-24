@@ -16,15 +16,15 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 @Component
 struct ChildOfParamComponent {
-  @Prop @Watch('onChange') child_val: number;
+  @Prop @Watch('onChange') childVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.child_val);
+    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.childVal);
   }
 
   build() {
     Column() {
-      Text(`Child Param： ${this.child_val}`);
+      Text(`Child Param： ${this.childVal}`);
     }
   }
 }
@@ -40,7 +40,7 @@ struct ParamComponent {
   build() {
     Column() {
       Text(`val： ${this.paramVal}`)
-      ChildOfParamComponent({ child_val: this.paramVal });
+      ChildOfParamComponent({ childVal: this.paramVal });
     }
   }
 }
