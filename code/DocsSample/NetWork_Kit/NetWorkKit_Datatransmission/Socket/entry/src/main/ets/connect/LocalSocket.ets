@@ -14,7 +14,7 @@
  */
 
 import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS'; // 引入 Worker
-import Logger from '../common/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 
 const BUTTON_HEIGHT = 50; // 按钮高度
@@ -127,7 +127,7 @@ struct SocketDemo {
     };
 
     workerPort.onerror = (e: ErrorEvent) => {
-      Logger.error(`Error from Worker: ${e}`);
+      hilog.error(0x0000, 'testTag', `Error from Worker: ${e}`);
     };
   }
 
@@ -149,7 +149,7 @@ struct SocketDemo {
     };
 
     workerPort.onerror = (e: ErrorEvent) => {
-      Logger.error(`Error from Worker: ${e}`);
+      hilog.error(0x0000, 'testTag', `Error from Worker: ${e}`);
     };
   }
 

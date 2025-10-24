@@ -14,7 +14,8 @@
  */
 
 import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
-import { TcpMessage } from '../connect/TcpClient'
+import { TcpMessage } from '../connect/TcpClient';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start tcp_client_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -43,7 +44,7 @@ function handleMessage(message: TcpMessage) {
 
 function sendMessage(tcpMessage: TcpMessage) {
   if (!tcpMessage.clientIp || !tcpMessage.clientPort || !tcpMessage.serverIp || !tcpMessage.serverPort) {
-    console.error('Some required fields are missing in worker.');
+    hilog.error(0x0000, 'testTag', 'Some required fields are missing in worker.');
     return;
   }
 
@@ -60,22 +61,22 @@ function sendMessage(tcpMessage: TcpMessage) {
   }
 
   tcpClient.on('message', (value: SocketInfo) => {
-    console.info('on message');
+    hilog.info(0x0000, 'testTag', 'on message');
     let buffer = value.message;
     let dataView = new DataView(buffer);
     let str = '';
     for (let i = 0; i < dataView.byteLength; ++i) {
       str += String.fromCharCode(dataView.getUint8(i));
     }
-    console.info('on connect received:' + str);
+    hilog.info(0x0000, 'testTag', 'on connect received:' + str);
   });
 
   tcpClient.on('connect', () => {
-    console.info('on connect');
+    hilog.info(0x0000, 'testTag', 'on connect');
   });
 
   tcpClient.on('close', () => {
-    console.info('on close');
+    hilog.info(0x0000, 'testTag', 'on close');
   });
   // [End tcp_client_worker_socketInfo]
 
@@ -89,10 +90,10 @@ function sendMessage(tcpMessage: TcpMessage) {
   // [EndExclude tcp_client_worker_ipAddress]
   tcpClient.bind(ipAddress, (err: BusinessError) => {
     if (err) {
-      console.error('bind fail');
+      hilog.error(0x0000, 'testTag', 'bind fail');
       return;
     }
-    console.info('bind success');
+    hilog.info(0x0000, 'testTag', 'bind success');
 
   // bind成功后，连接到指定的IP地址和端口。
     // [StartExclude tcp_client_worker_ipAddress]
@@ -106,23 +107,23 @@ function sendMessage(tcpMessage: TcpMessage) {
     };
     // [EndExclude tcp_client_worker_ipAddress]
     tcpClient.connect(tcpConnect).then(() => {
-      console.info('connect success');
+      hilog.info(0x0000, 'testTag', 'connect success');
       let tcpSendOptions: socket.TCPSendOptions = {
         data: tcpMessage.message!
       };
       tcpClient.send(tcpSendOptions).then(() => {
-        console.info('send success');
+        hilog.info(0x0000, 'testTag', 'send success');
         // [StartExclude tcp_client_worker_ipAddress]
         workerPort.postMessage({ type: 'sendMessageSuccess', message: tcpMessage.message });
         // [EndExclude tcp_client_worker_ipAddress]
       }).catch(() => {
-        console.info('send fail');
+        hilog.info(0x0000, 'testTag', 'send fail');
         // [StartExclude tcp_client_worker_ipAddress]
         workerPort.postMessage({ type: 'sendMessageFailure', message: 'Sending message failed.' });
         // [EndExclude tcp_client_worker_ipAddress]
       });
     }).catch((err: BusinessError) => {
-      console.error('connect fail');
+      hilog.error(0x0000, 'testTag', 'connect fail');
     });
   })
   // [End tcp_client_worker_ipAddress]
@@ -136,12 +137,12 @@ function disConnect() {
       // [StartExclude tcp_client_worker_disConnect]
       workerPort.postMessage({ type: 'Connection closed' });
       // [EndExclude tcp_client_worker_disConnect]
-      console.info('close success');
+      hilog.info(0x0000, 'testTag', 'close success');
     }).catch((err: BusinessError) => {
       // [StartExclude tcp_client_worker_disConnect]
       workerPort.postMessage({ type: 'Close connection failed' });
       // [EndExclude tcp_client_worker_disConnect]
-      console.error('close fail');
+      hilog.error(0x0000, 'testTag', 'close fail');
     });
     tcpClient.off('message');
     tcpClient.off('connect');

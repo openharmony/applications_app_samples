@@ -14,6 +14,7 @@
  */
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start two_way_tls_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -119,7 +120,7 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
   }
   // 绑定本地IP地址和端口。
   tlsSocket!.bind(ipAddress).then(() => {
-    console.info('bind success');
+    hilog.info(0x0000, 'testTag', 'bind success');
     // [StartExclude two-way_bindTlsSocket]
     let serverAddress: ServerAddress = { address: serverIp, port: serverPort, family: 1 };
     let opt: socket.TLSSecureOptions = {
@@ -130,25 +131,25 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
     // [EndExclude two-way_bindTlsSocket]
     // 确保bind成功后，再订阅TLS Socket相关的订阅事件
     tlsSocket!.on('message', (value: SocketInfo) => {
-      console.info('on message');
+      hilog.info(0x0000, 'testTag', 'on message');
       let buffer = value.message;
       let dataView = new DataView(buffer);
       let str = '';
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      console.info('on connect received:' + str);
+      hilog.info(0x0000, 'testTag', 'on connect received:' + str);
     });
 
     tlsSocket!.on('connect', () => {
       // [StartExclude two-way_bindTlsSocket]
       connectFlag = true;    
       // [EndExclude two-way_bindTlsSocket]
-      console.info('on connect');
+      hilog.info(0x0000, 'testTag', 'on connect');
     });
     // 监听连接关闭
     tlsSocket!.on('close', () => { 
-      console.info('on close');
+      hilog.info(0x0000, 'testTag', 'on close');
       // [StartExclude two-way_bindTlsSocket]
       connectFlag = false;
       workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
@@ -162,7 +163,7 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
     });
     // [EndExclude two-way_bindTlsSocket]
   }).catch((e: BusinessError) => {
-    console.error('bind fail');
+    hilog.error(0x0000, 'testTag', 'bind fail');
     // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'connectFailure', status: `Failed to bind socket: ${e.message}` });
     // [EndExclude two-way_bindTlsSocket]
@@ -177,17 +178,17 @@ function sendMessageToServer(message: string) {
     return;
   }
   // [EndExclude two-way_bindTlsSocket]
-  tlsSocket.send('message').then(() => {
-    console.info('send successfully');
+  tlsSocket!.send('message').then(() => {
+    hilog.info(0x0000, 'testTag', 'send successfully');
     // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
     // [Start two-way_closeTlsSocket]
     // 连接使用完毕后，主动关闭，并取消相关事件的订阅。
     tlsSocket!.close((err: BusinessError) => {
       if (err) {
-        console.error('close callback error = ' + err);
+        hilog.error(0x0000, 'testTag', 'close callback error = ' + err);
       } else {
-        console.info('close success');
+        hilog.info(0x0000, 'testTag', 'close success');
       }
       tlsSocket!.off('message');
       tlsSocket!.off('connect');
@@ -196,7 +197,7 @@ function sendMessageToServer(message: string) {
     // [End two-way_closeTlsSocket]
     // [EndExclude two-way_bindTlsSocket]
   }).catch((e: BusinessError) => {
-    console.error('send failed ' + JSON.stringify(e));
+    hilog.error(0x0000, 'testTag', 'send failed ' + JSON.stringify(e));
     // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
     // [EndExclude two-way_bindTlsSocket]

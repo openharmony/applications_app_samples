@@ -15,6 +15,7 @@
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
 import fs from '@ohos.file.fs';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start one_way_tls_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -110,41 +111,41 @@ function connectToServer(serverIp: string, serverPort: number, ca: string) {
   // [EndExclude tls_worker_bind_the_server]
   // 绑定本地IP地址和端口。
   tlsOneWaySocket!.bind(ipAddress).then(() => {
-    console.info('bind success');
+    hilog.info(0x0000, 'testTag', 'bind success');
     // [StartExclude tls_worker_bind_the_server]
     let serverAddress: ServerAddress = { address: serverIp, port: serverPort, family: 1 };
     let opt: CA = { ca: [ca] };
     // [EndExclude tls_worker_bind_the_server]
     /// 订阅TLS Socket相关的订阅事件
     tlsOneWaySocket!.on('message', (value: SocketInfo) => {
-      console.info('on message');
+      hilog.info(0x0000, 'testTag', 'on message');
       let buffer = value.message;
       let dataView = new DataView(buffer);
       let str = '';
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      console.info('on connect received:' + str);
+      hilog.info(0x0000, 'testTag', 'on connect received:' + str);
     });
     tlsOneWaySocket!.on('connect', () => {
-      console.info('on connect');
+      hilog.info(0x0000, 'testTag', 'on connect');
     });
     tlsOneWaySocket!.on('close', () => {
-      console.info('on close');
+      hilog.info(0x0000, 'testTag', 'on close');
       // [StartExclude tls_worker_bind_the_server]
       workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
       // [EndExclude tls_worker_bind_the_server]
     });
     // [StartExclude tls_worker_bind_the_server]
     tlsOneWaySocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {
-      console.info('connect successfully');
+      hilog.info(0x0000, 'testTag', 'connect successfully');
       workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
     }).catch((e: BusinessError) => {
       workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
     });
     // [EndExclude tls_worker_bind_the_server]
   }).catch((e: BusinessError) => {
-    console.error('bind fail');
+    hilog.error(0x0000, 'testTag', 'bind fail');
     // [StartExclude tls_worker_bind_the_server]
     workerPort.postMessage({ type: 'connectFailure', status: `Failed to bind socket: ${e.message}` });
     // [EndExclude tls_worker_bind_the_server]
@@ -160,12 +161,12 @@ function sendMessageToServer(message: string) {
   // [EndExclude tls_worker_bind_the_server]
   // 建立连接，连接建立成功后，可以发送数据。
   tlsOneWaySocket.send(message + '\r\n').then(() => {
-    console.info('send successfully');
+    hilog.info(0x0000, 'testTag', 'send successfully');
     // [StartExclude tls_worker_bind_the_server]
     workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
     // [EndExclude tls_worker_bind_the_server]
   }).catch((e: BusinessError) => {
-    console.error('send failed ' + JSON.stringify(e));
+    hilog.error(0x0000, 'testTag', 'send failed ' + JSON.stringify(e));
     // [StartExclude tls_worker_bind_the_server]
     workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
     // [EndExclude tls_worker_bind_the_server]
@@ -182,12 +183,12 @@ function closeConnection() {
   // 连接使用完毕后，主动关闭，并取消相关事件的订阅。
   tlsOneWaySocket!.close((err: BusinessError) => {
     if (err) {
-      console.error('close callback error = ' + err);
+      hilog.error(0x0000, 'testTag', 'close callback error = ' + err);
       // [StartExclude tls_worker_close_the_server]
       workerPort.postMessage({ type: 'Close connection failed' });
       // [EndExclude tls_worker_close_the_server]
     } else {
-      console.info('close success');
+      hilog.info(0x0000, 'testTag', 'close success');
       // [StartExclude tls_worker_close_the_server]
       workerPort.postMessage({ type: 'Connection closed' });
       // [EndExclude tls_worker_close_the_server]

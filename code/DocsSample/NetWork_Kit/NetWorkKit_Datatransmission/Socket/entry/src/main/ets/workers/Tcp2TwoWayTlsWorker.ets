@@ -15,6 +15,7 @@
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
 import fs from '@ohos.file.fs';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start tcp_to_tls_server_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -120,7 +121,7 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
   // [Start tcp_Upgrade_to_tls_server]
   // 如果需要绑定特定的端口，可通过bind接口实现
   tcpSocket.connect(tcpConnect).then(() => {
-    console.info('connect success');
+    hilog.info(0x0000, 'testTag', 'connect success');
     // [StartExclude tcp_Upgrade_to_tls_server]
     workerPort.postMessage({ type: 'connectSuccess', message: 'TCP connection successful' });
     // [EndExclude tcp_Upgrade_to_tls_server]
@@ -128,20 +129,20 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
     tlsSocket = socket.constructTLSSocketInstance(tcpSocket);
     // 订阅TLSSocket相关的订阅事件。
     tlsSocket.on('message', (value: SocketInfo) => {
-      console.info('tls on message');
+      hilog.info(0x0000, 'testTag', 'tls on message');
       let buffer = value.message;
       let dataView = new DataView(buffer);
       let str = '';
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      console.info('tls on connect received:' + str);
+      hilog.info(0x0000, 'testTag', 'tls on connect received:' + str);
     });
     tlsSocket.on('connect', () => {
-      console.info('tls on connect');
+      hilog.info(0x0000, 'testTag', 'tls on connect');
     });
     tlsSocket!.on('close', () => {
-      console.info('tls on close');
+      hilog.info(0x0000, 'testTag', 'tls on close');
       // [StartExclude tcp_Upgrade_to_tls_server]
       workerPort.postMessage({ type: 'connectionClosed', message: 'TLS connection closed' });
       // [EndExclude tcp_Upgrade_to_tls_server]
@@ -163,18 +164,18 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
     // [EndExclude tcp_Upgrade_to_tls_server]
     // 建立TLSSocket连接。
     tlsSocket.connect(tlsTwoWayConnectOption).then(() => {
-      console.info('tls connect success');
+      hilog.info(0x0000, 'testTag', 'tls connect success');
       // [StartExclude tcp_Upgrade_to_tls_server]
       workerPort.postMessage({ type: 'tlsConnectSuccess', message: 'TLS mutual authentication connection successful' });
       // [EndExclude tcp_Upgrade_to_tls_server]
     }).catch((e: BusinessError) => {
-      console.info('tls connect fail');
+      hilog.info(0x0000, 'testTag', 'tls connect fail');
       // [StartExclude tcp_Upgrade_to_tls_server]
       workerPort.postMessage({ type: 'tlsConnectFailure', message: `TLS connection failed: ${e.message}` });
       // [EndExclude tcp_Upgrade_to_tls_server]
     });
   }).catch((e: BusinessError) => {
-    console.error('connect fail');
+    hilog.error(0x0000, 'testTag', 'connect fail');
     // [StartExclude tcp_Upgrade_to_tls_server]
     workerPort.postMessage({ type: 'connectFailure', message: `TCP connection failed: ${e.message}` });
     // [EndExclude tcp_Upgrade_to_tls_server]
@@ -208,9 +209,9 @@ function closeServer() {
       // [StartExclude tls_server_close]
       workerPort.postMessage({ type: 'closeFailure', message: 'TLS connection close failed' });
       // [EndExclude tls_server_close]
-      console.error('tls close callback error = ' + err);
+      hilog.error(0x0000, 'testTag', 'tls close callback error = ' + err);
     } else {
-      console.info('tls close success');
+      hilog.info(0x0000, 'testTag', 'tls close success');
       // [StartExclude tls_server_close]
       workerPort.postMessage({ type: 'closeSuccess', message: 'TLS connection close success' });
       // [EndExclude tls_server_close]

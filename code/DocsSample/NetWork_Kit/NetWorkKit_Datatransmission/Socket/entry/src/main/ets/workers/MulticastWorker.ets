@@ -14,6 +14,7 @@
  */
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start multicast_worker_import]
 import { socket } from '@kit.NetworkKit';
 // [End multicast_worker_import]
@@ -56,15 +57,15 @@ function startMulticast(data: socket.NetAddress) {
   multicast.addMembership(addr).then(() => {
     // [StartExclude multicast_worker_multicastConfig]
     postMessage({ type: 'multicastStatus', status: 'Joined multicast group' });
-    console.info(`Multicast: Joined group ${data.address}:${data.port}`);
+    hilog.info(0x0000, 'testTag', `Multicast: Joined group ${data.address}:${data.port}`);
     // [EndExclude multicast_worker_multicastConfig]
-    console.info('addMembership success');
+    hilog.info(0x0000, 'testTag', 'addMembership success');
   }).catch((err: BusinessError) => {
     // [StartExclude multicast_worker_multicastConfig]
     postMessage({ type: 'multicastStatus', status: 'Failed to join multicast group' });
-    console.error(`Multicast: Failed to join group ${data.address}:${data.port} - ${JSON.stringify(err)}`);
+    hilog.error(0x0000, 'testTag', `Multicast: Failed to join group ${data.address}:${data.port} - ${JSON.stringify(err)}`);
     // [EndExclude multicast_worker_multicastConfig]
-    console.error('addMembership fail');
+    hilog.error(0x0000, 'testTag', 'addMembership fail');
   });
   // [End multicast_worker_multicastConfig]
 
@@ -75,13 +76,13 @@ function startMulticast(data: socket.NetAddress) {
     public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
   }
   multicast.on('message', (data: SocketInfo) => {
-    console.info('接收的数据: ' + JSON.stringify(data))
+    hilog.info(0x0000, 'testTag', '接收的数据: ' + JSON.stringify(data))
     const uintArray = new Uint8Array(data.message)
     let str = ''
     for (let i = 0; i < uintArray.length; ++i) {
       str += String.fromCharCode(uintArray[i])
     }
-    console.info(str)
+    hilog.info(0x0000, 'testTag', str)
     // [StartExclude multicast_worker_on_message]
     postMessage({ type: 'multicastMessage', status: 'Message received', message: str });
     // [EndExclude multicast_worker_on_message]
@@ -91,9 +92,9 @@ function startMulticast(data: socket.NetAddress) {
   // [Start multicast_worker_send]
   // 发送一条多播消息
   multicast.send({ data: 'Hello multicast group!', address: addr }).then(() => {
-    console.info('Multicast: Message sent successfully');
+    hilog.info(0x0000, 'testTag', 'Multicast: Message sent successfully');
   }).catch((err: BusinessError) => {
-    console.error(`Multicast: Failed to send message - ${JSON.stringify(err)}`);
+    hilog.error(0x0000, 'testTag', `Multicast: Failed to send message - ${JSON.stringify(err)}`);
   });
   // [End multicast_worker_send]
 
@@ -110,9 +111,9 @@ function startMulticast(data: socket.NetAddress) {
       // [StartExclude multicast_worker_dropMembership]
       postMessage({ type: 'multicastStatus', status: 'Dropped multicast membership' });
       // [StartExclude multicast_worker_dropMembership]
-      console.info('Multicast: Dropped membership successfully');
+      hilog.info(0x0000, 'testTag', 'Multicast: Dropped membership successfully');
     }).catch((err: BusinessError) => {
-      console.error(`Multicast: Failed to drop membership - ${JSON.stringify(err)}`);
+      hilog.error(0x0000, 'testTag', `Multicast: Failed to drop membership - ${JSON.stringify(err)}`);
     });
     // [End multicast_worker_dropMembership]
   }, MULTICAST_MESSAGE_SEND_INTERVAL);

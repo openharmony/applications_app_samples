@@ -17,6 +17,7 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End tls_server_import]
 import { MessageEvents, util, worker } from '@kit.ArkTS';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { TlsServerMessage } from '../connect/TlsServer';
 
 // [Start tls_server_instance]
@@ -66,13 +67,13 @@ function startTLSserver(message: TlsServerMessage) {
     };
     // [Start tlsServer_start_service]
     tlsServer.listen(tlsConnectOptions).then(() => {
-      console.info('listen callback success');
+      hilog.info(0x0000, 'testTag', 'listen callback success');
       // [StartExclude tlsServer_start_service]
       workerPort.postMessage({ type: 'serverStarted', status: 'TLS server started successfully' });
       handleClientConnection();
       // [EndExclude tlsServer_start_service]
     }).catch((err: BusinessError) => {
-      console.error('failed' + err);
+      hilog.error(0x0000, 'testTag', 'failed' + err);
       // [StartExclude tlsServer_start_service]
       workerPort.postMessage({ type: 'error', message: `Failed to start TLS server: ${err.message}` });
       // [EndExclude tlsServer_start_service]
@@ -96,8 +97,8 @@ let callback = (value: SocketInfo) => {
     let message = String.fromCharCode(messages);
     messageView += message;
   }
-  console.info('on message message: ' + JSON.stringify(messageView));
-  console.info('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  hilog.info(0x0000, 'testTag', 'on message message: ' + JSON.stringify(messageView));
+  hilog.info(0x0000, 'testTag', 'remoteInfo: ' + JSON.stringify(value.remoteInfo));
   // [StartExclude tlsServer_connection_methods]
   workerPort.postMessage({ type: 'clientMessage', message: messageView });
   // [EndExclude tlsServer_connection_methods]
@@ -109,24 +110,24 @@ function handleClientConnection() {
     client.on('message', callback);
     // 发送数据。
     client.send('Hello, client!').then(() => {
-      console.info('send success');
+      hilog.info(0x0000, 'testTag', 'send success');
       // [StartExclude tlsServer_connection_methods]
       workerPort.postMessage({ type: 'messageSent', message: 'Message sent successfully' });
       // [EndExclude tlsServer_connection_methods]
     }).catch((err: BusinessError) => {
-      console.error('send fail');
+      hilog.error(0x0000, 'testTag', 'send fail');
       // [StartExclude tlsServer_connection_methods]
       workerPort.postMessage({ type: 'error', message: `Failed to send message: ${err.message}` });
       // [EndExclude tlsServer_connection_methods]
     });
     // 断开连接。
     client.close().then(() => {
-      console.info('close success');
+      hilog.info(0x0000, 'testTag', 'close success');
       // [StartExclude tlsServer_connection_methods]
       workerPort.postMessage({ type: 'connectionClosed', message: 'Connection closed successfully' });
       // [EndExclude tlsServer_connection_methods]
     }).catch((err: BusinessError) => {
-      console.error('close fail');
+      hilog.error(0x0000, 'testTag', 'close fail');
       // [StartExclude tlsServer_connection_methods]
       workerPort.postMessage({ type: 'error', message: `Failed to close connection: ${err.message}` });
       // [EndExclude tlsServer_connection_methods]
