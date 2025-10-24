@@ -1,4 +1,4 @@
-# 键值型数据库Sample
+# 用户首选项Sample
 
 ### 介绍
 
@@ -39,7 +39,6 @@ entry/src/main/ets
     * 通过DeleteXMLPreferences或DeleteGSKVPreferences从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
 
 * 接口实现端，实现主UI界面按键功能，源码参考：[PreferencesInterface.ets](entry/src/main/ets/pages/PreferencesInterface.ets)。
-* entryability端，实现申请同步权限，源码参考：[EntryAbility.ets](entry/src/main/ets/entryability/EntryAbility.ets)。
 
 ### 约束与限制
 

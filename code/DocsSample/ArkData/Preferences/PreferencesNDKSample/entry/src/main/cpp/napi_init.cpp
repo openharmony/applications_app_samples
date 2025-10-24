@@ -24,7 +24,8 @@
 
 // [Start DataChangeObserverCallback]
 // 数据变更回调函数
-void DataChangeObserverCallback(void *context, const OH_PreferencesPair *pairs, uint32_t count) {
+void DataChangeObserverCallback(void *context, const OH_PreferencesPair *pairs, uint32_t count)
+{
     for (uint32_t i = 0; i < count; i++) {
         // 获取索引i对应的PreferenceValue
         const OH_PreferencesValue *pValue = OH_PreferencesPair_GetPreferencesValue(pairs, i);
@@ -58,10 +59,63 @@ void DataChangeObserverCallback(void *context, const OH_PreferencesPair *pairs, 
 }
 // [End DataChangeObserverCallback]
 
-void PreferencesTest()
+// [Start PreferencesCrudTest]
+void PreferencesCrudTest(OH_Preferences *preference)
 {
-    OH_LOG_ERROR(LOG_APP, "PreferencesTest start.");
-    // [Start PreferencesTest]
+    // 1. 对key_int、key_bool和key_string注册数据变更订阅。
+    const char *keys[] = {"key_int", "key_bool", "key_string"};
+    int ret = OH_Preferences_RegisterDataObserver(preference, nullptr, DataChangeObserverCallback, keys, 3);
+    if (ret != PREFERENCES_OK) {
+        (void)OH_Preferences_Close(preference);
+        // 错误处理
+    }
+    
+    // 2. 设置Preferences实例中的KV数据。
+    ret = OH_Preferences_SetInt(preference, keys[0], 0);
+    if (ret != PREFERENCES_OK) {
+        (void)OH_Preferences_Close(preference);
+        // 错误处理
+    }
+    ret = OH_Preferences_SetBool(preference, keys[1], true);
+    if (ret != PREFERENCES_OK) {
+        (void)OH_Preferences_Close(preference);
+        // 错误处理
+    }
+    ret = OH_Preferences_SetString(preference, keys[2], "string value");
+    if (ret != PREFERENCES_OK) {
+        (void)OH_Preferences_Close(preference);
+        // 错误处理
+    }
+    
+    // 3. 获取Preferences实例中的KV数据。
+    int intValue = 0;
+    ret = OH_Preferences_GetInt(preference, keys[0], &intValue);
+    if (ret == PREFERENCES_OK) {
+        // 业务逻辑
+    }
+    
+    bool boolValue = false;
+    ret = OH_Preferences_GetBool(preference, keys[1], &boolValue);
+    if (ret == PREFERENCES_OK) {
+        // 业务逻辑
+    }
+    
+    char *stringValue = nullptr;
+    uint32_t valueLen = 0;
+    ret = OH_Preferences_GetString(preference, keys[2], &stringValue, &valueLen);
+    if (ret == PREFERENCES_OK) {
+        // 业务逻辑
+        // 使用完OH_Preferences_GetString接口后，需要对字符串进行释放。
+        OH_Preferences_FreeString(stringValue);
+        stringValue = nullptr;
+    }
+}
+// [End PreferencesCrudTest]
+
+// [Start PreferencesOpenTest]
+void PreferencesOpenTest()
+{
+    OH_LOG_ERROR(LOG_APP, "PreferencesOpenCrudTest start.");
     // 1. 创建Preferences配置选项。
     OH_PreferencesOption *option = OH_PreferencesOption_Create();
     if (option == nullptr) {
@@ -85,7 +139,6 @@ void PreferencesTest()
         (void)OH_PreferencesOption_Destroy(option);
         // 错误处理
     }
-    
     // 设置Preferences配置选项的存储模式，需要注意的是，设置之前需要调用OH_Preferences_IsStorageTypeSupported接口判断当前平台是否支持需要选择的模式。
     bool isGskvSupported = false;
     ret = OH_Preferences_IsStorageTypeSupported(Preferences_StorageType::PREFERENCES_STORAGE_GSKV, &isGskvSupported);
@@ -106,7 +159,6 @@ void PreferencesTest()
             // 错误处理
         }
     }
-    
     // 2. 打开一个Preferences实例。
     int errCode = PREFERENCES_OK;
     OH_Preferences *preference = OH_Preferences_Open(option, &errCode);
@@ -116,66 +168,18 @@ void PreferencesTest()
     if (preference == nullptr || errCode != PREFERENCES_OK) {
         // 错误处理
     }
-    
-    // 3. 对key_int、key_bool和key_string注册数据变更订阅。
-    const char *keys[] = {"key_int", "key_bool", "key_string"};
-    ret = OH_Preferences_RegisterDataObserver(preference, nullptr, DataChangeObserverCallback, keys, 3);
-    if (ret != PREFERENCES_OK) {
-        (void)OH_Preferences_Close(preference);
-        // 错误处理
-    }
-    
-    // 4. 设置Preferences实例中的KV数据。
-    ret = OH_Preferences_SetInt(preference, keys[0], 0);
-    if (ret != PREFERENCES_OK) {
-        (void)OH_Preferences_Close(preference);
-        // 错误处理
-    }
-    ret = OH_Preferences_SetBool(preference, keys[1], true);
-    if (ret != PREFERENCES_OK) {
-        (void)OH_Preferences_Close(preference);
-        // 错误处理
-    }
-    ret = OH_Preferences_SetString(preference, keys[2], "string value");
-    if (ret != PREFERENCES_OK) {
-        (void)OH_Preferences_Close(preference);
-        // 错误处理
-    }
-    
-    // 5. 获取Preferences实例中的KV数据。
-    int intValue = 0;
-    ret = OH_Preferences_GetInt(preference, keys[0], &intValue);
-    if (ret == PREFERENCES_OK) {
-        // 业务逻辑
-    }
-    
-    bool boolValue = false;
-    ret = OH_Preferences_GetBool(preference, keys[1], &boolValue);
-    if (ret == PREFERENCES_OK) {
-        // 业务逻辑
-    }
-    
-    char *stringValue = nullptr;
-    uint32_t valueLen = 0;
-    ret = OH_Preferences_GetString(preference, keys[2], &stringValue, &valueLen);
-    if (ret == PREFERENCES_OK) {
-        // 业务逻辑
-        // 使用完OH_Preferences_GetString接口后，需要对字符串进行释放。
-        OH_Preferences_FreeString(stringValue);
-        stringValue = nullptr;
-    }
-    
-    // 6. 使用完Preferences实例后需要关闭实例，关闭后需要将指针置空。
+    // 3. 使用preference进行增删改查。
+    PreferencesCrudTest(preference);
+    // 4. 使用完Preferences实例后需要关闭实例，关闭后需要将指针置空。
     (void)OH_Preferences_Close(preference);
     preference = nullptr;
-    // [End PreferencesTest]
-    OH_LOG_ERROR(LOG_APP, "PreferencesTest end.");
+    OH_LOG_ERROR(LOG_APP, "PreferencesOpenCrudTest end.");
 }
-
+// [End PreferencesOpenCrudTest]
 
 static napi_value Add(napi_env env, napi_callback_info info)
 {
-    PreferencesTest();
+    PreferencesOpenTest();
     size_t argc = 2;
     napi_value args[2] = {nullptr};
 
@@ -195,9 +199,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
     napi_value sum;
     napi_create_double(env, value0 + value1, &sum);
-
     return sum;
-
 }
 
 EXTERN_C_START

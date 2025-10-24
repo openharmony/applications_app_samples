@@ -33,8 +33,8 @@ struct Index {
       }
       .type(ButtonType.Capsule)
       .margin({ top: 50 })
-      .width("90%")
-      .height("8%")
+      .width('90%')
+      .height('8%')
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         testNapi.add(2, 3);
