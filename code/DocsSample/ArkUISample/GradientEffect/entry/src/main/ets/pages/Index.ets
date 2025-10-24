@@ -23,22 +23,19 @@ build() {
      Text($r('app.string.Linear_Gradient_Effect')).backgroundColor(Color.Green)
    }.width('100%').height(50)
    .onClick(()=>{
-     router.pushUrl({url:'homePage/LinearGradientEffect'})
-     console.log('222huifei')
+     router.pushUrl({url:'homePage/LinearGradientEffect'});
    })
    Column(){
      Text($r('app.string.Direction_Gradient_Effect')).backgroundColor(Color.Green)
    }.width('100%').height(50)
    .onClick(()=>{
-     router.pushUrl({url:'homePage/DirectionGradientEffect'})
-     console.log('222huifei')
+     router.pushUrl({url:'homePage/DirectionGradientEffect'});
    })
    Column(){
      Text($r('app.string.Radial_Gradient_Effect')).backgroundColor(Color.Green)
    }.width('100%').height(50)
    .onClick(()=>{
-     router.pushUrl({url:'homePage/RadialGradientEffect'})
-     console.log('222huifei')
+     router.pushUrl({url:'homePage/RadialGradientEffect'});
    })
  }
 }

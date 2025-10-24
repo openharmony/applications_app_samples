@@ -16,7 +16,7 @@
 // [Start Radial_Gradient_Effect]
 @Entry
 @Component
-struct radialGradientDemo {
+struct RadialGradientDemo {
   build() {
     Grid() {
       GridItem() {

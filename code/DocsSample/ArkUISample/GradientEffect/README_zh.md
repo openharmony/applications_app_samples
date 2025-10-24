@@ -2,8 +2,12 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-color-effect)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例展示了[@Once：初始化同步一次](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-internationalization.md)UI国际化的使用方法：
 
+使用说明：
+1. 该工程可以选择在模拟器和开发板上运行。
+2. 点击构建，即可在生成的应用中点击对应的按钮，观察自定义占位节点的不同应用。
+3. 进入”DocsSample/ArkUISample/GradientEffect/entry/src/ohosTest/ets/test/index.test.ets“文件，可以对本项目进行UI的自动化测试。
 ### 效果预览
 
 | 首页                                 | 列表类组件目录                            | 列表中显示数据示例                            |
@@ -34,6 +38,15 @@ entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                 // 示例代码测试代码
 ```
+### 具体实现
+
+1. 选择需添加渐变的组件（如Column、Button），调用.linearGradient()方法。
+2. 配置angle参数（如 180° 表示从上到下，45° 表示从左上到右下），确定渐变方向。
+3. 在colors参数中设置两个颜色断点，格式为[[色值1, 比重1], [色值2, 比重2]]（例：[[0xf56c6c, 0.0], [0xffffff, 1.0]]，0.0 为起始点，1.0 为结束点）。
+4. 无需设置repeating（默认 false），确保渐变仅在组件内完整显示一次。
+5. 在组件的linearGradient配置中，设置repeating: true，启用重复渐变；
+6. 定义 2-3 个高对比度颜色（如红0xf56c6c、橙0xE6A23C），并将颜色断点的比重范围缩小（例：[[0xf56c6c, 0.0], [0xE6A23C, 0.3]]）。
+7. 调整angle为 0°（水平方向），让渐变沿横向循环。
 
 ### 相关权限
 
@@ -50,7 +63,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/GradientEffect > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/GradientEffect > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

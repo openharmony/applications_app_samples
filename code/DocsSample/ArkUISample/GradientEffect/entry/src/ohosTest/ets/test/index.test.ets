@@ -46,62 +46,49 @@ export default function IndexTest() {
       done();
     })
 
-    /*
-* @tc.number     : SUB_TESTLINEARGRADIENTEFFECT_0100
-* @tc.name       : testLinearGradientEffect001
-* @tc.desc       : test TESTLINEARGRADIENTEFFECT
-* @tc.size       : MediumTest
-* @tc.type       : Function
-* @tc.level      : Level 1
-*/
+    /**
+     * @tc.number UiTest_001
+     * @tc.name testLinearGradientEffect001
+     * @tc.desc 点击线性渐变效果
+     */
     it('testLinearGradientEffect001', Level.LEVEL1, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let str = await getResourceString($r('app.string.Linear_Gradient_Effect'));
       let openModel = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await openModel.click()
-      await driver.delayMs(1000)
+      await openModel.click();
+      await driver.delayMs(1000);
       await driver.pressBack();
-      console.log('testLinearGradientEffect001')
       done();
     })
-    /*
-* @tc.number     : SUB_TESTDIRECTIONGRADIENTEFFECT_0100
-* @tc.name       : testDirectionGradientEffect001
-* @tc.desc       : test TESTDIRECTIONGRADIENTEFFECT
-* @tc.size       : MediumTest
-* @tc.type       : Function
-* @tc.level      : Level 1
-*/
+    /**
+     * @tc.number UiTest_001
+     * @tc.name testDirectionGradientEffect001
+     * @tc.desc 点击角度渐变效果
+     */
     it('testDirectionGradientEffect001',Level.LEVEL1, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let str = await getResourceString($r('app.string.Direction_Gradient_Effect'));
       let openModel = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await openModel.click()
-      await driver.delayMs(1000)
+      await openModel.click();
+      await driver.delayMs(1000);
       await driver.pressBack();
-      console.log('testDirectionGradientEffect001')
       done();
     })
-    /*
-* @tc.number     : SUB_TESTRADIALGRADIENTEFFECT_0100
-* @tc.name       : testRadialGradientEffect001
-* @tc.desc       : test TESTRADIALGRADIENTEFFECT
-* @tc.size       : MediumTest
-* @tc.type       : Function
-* @tc.level      : Level 1
-*/
+    /**
+     * @tc.number UiTest_001
+     * @tc.name testRadialGradientEffect001
+     * @tc.desc 点击径向渐变效果
+     */
     it('testRadialGradientEffect001', Level.LEVEL1, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let str = await getResourceString($r('app.string.Radial_Gradient_Effect'));
       let openModel = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await openModel.click()
-      await driver.delayMs(1000)
+      await openModel.click();
+      await driver.delayMs(1000);
       await driver.pressBack();
-
-      console.log('testRadialGradientEffect001')
       done();
     })
   })
