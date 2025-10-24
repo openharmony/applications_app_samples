@@ -75,5 +75,4 @@ struct Index {
     .height('100%')
   }
 }
-
 //[End frameNodeDisposed_start]

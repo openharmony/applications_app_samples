@@ -329,5 +329,4 @@ struct Index {
     .height('100%')
   }
 }
-
 //[End frameNodeTypeNode_start]

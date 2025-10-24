@@ -69,5 +69,4 @@ struct Index {
     .width('100%')
   }
 }
-
 //[End frameNodeMoveTo_start]

@@ -275,5 +275,4 @@ struct Index {
     .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
   }
 }
-
 //[End frameNodeLazyForEachSelect_start]

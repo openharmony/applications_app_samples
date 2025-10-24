@@ -44,11 +44,6 @@
 
 12. 在自定义组件节点画布页面，可以展示canvas的变换矩阵。
 
-### 具体实现
-
-1. 先定义 MyNodeController 继承 NodeController，在 makeNode 中通过 new FrameNode(uiContext) 创建自定义根节点与子节点，设置宽高、背景色等属性并建立父子关系，还可创建 BuilderNode 挂载系统组件。
-2. 页面用 NodeContainer 承载节点，通过按钮触发增删改操作：调用 appendChild 新增节点，removeChild 删除节点，commonAttribute 修改宽高位置；也能调用 isModifiable 判断节点是否可改，通过 getPositionToWindow 等接口获取节点位置，重写 onDraw 实现自定义绘制，满足节点树动态管理需求。
-
 ### 工程目录
 ```
 
@@ -75,6 +70,11 @@ entry/src/ohosTest/
 |   |   |---|FrameNodeTest.test.ets
 |   |---index.test.ets                 // 示例代码测试代码
 ```
+
+### 具体实现
+
+1. 先定义 MyNodeController 继承 NodeController，在 makeNode 中通过 new FrameNode(uiContext) 创建自定义根节点与子节点，设置宽高、背景色等属性并建立父子关系，还可创建 BuilderNode 挂载系统组件。
+2. 页面用 NodeContainer 承载节点，通过按钮触发增删改操作：调用 appendChild 新增节点，removeChild 删除节点，commonAttribute 修改宽高位置；也能调用 isModifiable 判断节点是否可改，通过 getPositionToWindow 等接口获取节点位置，重写 onDraw 实现自定义绘制，满足节点树动态管理需求。
 
 ### 相关权限
 
