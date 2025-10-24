@@ -20,14 +20,6 @@ Studio中快速定位组件、修改属性和调试组件，以提高开发效�
 4. 点击按钮(布局回调的基本用法)进入ComponentPage1,通过点击不同的按钮来触发不同的事件，具体结果在log中查看；
 5. 点击按钮(组件标识属性的扩展能力)进入ImagePage，显示图片；
 
-## 具体实现
-
-1. 在 ArkTS 页面中，可借助 UIContext 与 inspector 接口实现组件树查询与布局监听。例如，先通过 getUIContext() 获取上下文，点击按钮调用
-   getFilteredInspectorTree 筛选组件属性，或用 getFilteredInspectorTreeById 精准查询指定 ID 组件（如示例中 “TEXT”
-   文本组件），并通过循环打印组件类型、ID 及子组件结构。
-2. 也能注册布局回调，像为图片组件创建 ComponentObserver，在 aboutToAppear 中监听
-   layout（布局完成）、draw（绘制完成）等事件，触发时执行自定义逻辑，同时支持通过 off 方法取消监听，快速实现组件调试与布局验证。
-
 ## 工程目录
 
 ```
@@ -47,6 +39,14 @@ entry/src/main/ets/
     │   └── media
     
 ```
+
+## 具体实现
+
+1. 在 ArkTS 页面中，可借助 UIContext 与 inspector 接口实现组件树查询与布局监听。例如，先通过 getUIContext() 获取上下文，点击按钮调用
+   getFilteredInspectorTree 筛选组件属性，或用 getFilteredInspectorTreeById 精准查询指定 ID 组件（如示例中 “TEXT”
+   文本组件），并通过循环打印组件类型、ID 及子组件结构。
+2. 也能注册布局回调，像为图片组件创建 ComponentObserver，在 aboutToAppear 中监听
+   layout（布局完成）、draw（绘制完成）等事件，触发时执行自定义逻辑，同时支持通过 off 方法取消监听，快速实现组件调试与布局验证。
 
 ## 相关权限
 
