@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start uiExtensionProvider_start]
 import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
 const TAG: string = '[UIExtAbility]'
@@ -47,3 +48,4 @@ export default class UIExtAbility extends UIExtensionAbility {
     console.log(TAG, `UIExtAbility onSessionDestroy`)
   }
 }
+// [End uiExtensionProvider_start]

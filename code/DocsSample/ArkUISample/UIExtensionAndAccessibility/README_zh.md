@@ -12,9 +12,9 @@
 
 ### 效果预览
 
-| 首页选项目录                                 | Isolated目录                            | Isolated示例                            |
-|------------------------------------|------------------------------------|------------------------------------|
-| ![](screenshots/device/image1.jpg) | ![](screenshots/device/image2.jpg) | ![](screenshots/device/image3.jpg) |
+| 首页选项目录                                 | Isolated目录                            | Isolated示例                            | Embedded示例                           
+|------------------------------------|------------------------------------|------------------------------------|--------------------------------------|
+| ![](screenshots/device/image1.jpg) | ![](screenshots/device/image2.jpg) | ![](screenshots/device/image3.jpg) | ![](screenshots/device/Embedded.png) |
 
 ### 使用说明
 

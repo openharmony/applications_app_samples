@@ -155,6 +155,10 @@
     {
       "name": "UniversalAttributesAccessibility_text10",
       "value": "文本4"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text11",
+      "value": "通过EmbeddedComponent拉起EmbeddedUIExtensionAbility"
     }
   ]
 }

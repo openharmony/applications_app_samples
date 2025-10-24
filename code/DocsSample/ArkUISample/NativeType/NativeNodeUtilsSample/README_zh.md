@@ -2,13 +2,15 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。通过该工程可以创建IMAGE组件并可以设置、获取、重置组件对应节点属性，对已创建的IMAGE组件进行销毁操作。该工程中代码详细描述可参考[显示图片 (Image)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-graphics-display.md)。
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。通过该工程可以创建IMAGE组件并可以设置、获取、重置组件对应节点属性，对已创建的IMAGE组件进行销毁操作。该工程中代码详细描述可参考：
+[显示图片 (Image)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-graphics-display.md)。
+
 
 ### 效果预览
 
-| 首页                               | 设置图像内容顺时针旋转90度显示                   |
-|------------------------------------|---------------------------------|
-| ![](screenshots/device/image1.png) |![](screenshots/device/result.png) |
+| 首页                                     | 设置图像内容顺时针旋转90度显示                   | 自定义绘制内容                       |自定义绘制前景背景|
+|----------------------------------------|---------------------------------|-------------------------------|-------------------------------|
+| ![](screenshots/NativeNode.png) |![](screenshots/device/result.png) | ![](screenshots/DrawPage.png) | ![](screenshots/NativeUI.png)
 
 ### 使用说明
 
@@ -26,18 +28,28 @@
 
 7. 点击“清理”，移除创建的组件节点。
 
+8. 点击“展示绘画页面”，查看绘画效果。
+
+9. 点击：“返回”，返回到主页面。
+
 ### 工程目录
 ```
 entry/src/main/cpp
 |---CMakeLists.txt                   // 编译脚本
 |---napi_init.cpp                      // 实现创建、设置、获取、重置组件属性
 |---manager.cpp                        // 管理组件节点
+|---NativeEntry.cpp                    // 多线程节点管理与自定义组件实现
+|---NativeEntry.h                      // 核心管理类声明
 |---types
     |---Index.d.ts                      // napi对外接口定义
 entry/src/main/ets/
 |---entryability
 |---pages
-|   |---Index.ets                      // 应用主页面
+|   |---entry.ets                      // 应用主页面
+|   |---drawPage         
+|   |   |---DrawPage.ets               // 自定义绘制页
+|   |---NativeUI         
+|   |   |---NativeUIPage.ets           // 自定义绘制背景前景              
 entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                 // 示例代码测试代码
@@ -49,6 +61,9 @@ entry/src/ohosTest/
 2. 在[Index.d.ts](entry%2Fsrc%2Fmain%2Fcpp%2Ftypes%2Flibentry%2FIndex.d.ts)文件中，定义napi对外接口。
 3. 在[napi_init.cpp](entry%2Fsrc%2Fmain%2Fcpp%2Fnapi_init.cpp)文件中，实现Index.d.ts中对外的接口。
 4. 在[manager.cpp](entry%2Fsrc%2Fmain%2Fcpp%2Fmanager.cpp)文件中，通过调用ArkUI的接口实现创建、设置、获取、重置组件属性。
+5. 在[NativeEntry.cpp](entry%2Fsrc%2Fmain%2Fcpp%2FNativeEntry.cpp)文件中，通过调用CreateDrawNode方法实现自定义绘制内容。
+5. 在[NativeEntry.cpp](entry%2Fsrc%2Fmain%2Fcpp%2FNativeEntry.cpp)文件中，通过调用CreateNativeRoot方法实现自定义绘制前景背景。
+5. 在[NativeEntry.cpp](entry%2Fsrc%2Fmain%2Fcpp%2FNativeEntry.cpp)文件中，通过调用CreateDrawNode方法实现隐藏自定义绘制前景背景。
 
 ### 相关权限
 
@@ -72,6 +87,6 @@ entry/src/ohosTest/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUIDocSample/NativeNodeSample > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

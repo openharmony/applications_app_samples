@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 import abilityTest from './Ability.test';
+import DrawPageTest from './drawPage/DrawPageTest.test';
+import NativeUIPageTest from './nativeUI/NativeUIPageTest.test';
 
 export default function testsuite() {
   abilityTest();
+  DrawPageTest();
+  NativeUIPageTest();
 }

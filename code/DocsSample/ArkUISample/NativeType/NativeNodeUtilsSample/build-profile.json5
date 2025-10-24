@@ -18,8 +18,9 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 20,
+        "compileSdkVersion": 22,
         "compatibleSdkVersion": 20,
+        "targetSdkVersion":20,
         "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {
@@ -38,6 +39,18 @@
       }
     ],
     "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/lenovo/.ohos/config/openharmony/default_NativeNodeUtilsSample_H4-X_SNGR0TzaNKqdfwZUO-stfDoCMtDcTIKgXY5T5Y=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A2BE2B9E5DC31C5DC5952275DAA9151753A64C18D64149648986C1A4097C9C360AF12853A728A",
+          "profile": "C:/Users/lenovo/.ohos/config/openharmony/default_NativeNodeUtilsSample_H4-X_SNGR0TzaNKqdfwZUO-stfDoCMtDcTIKgXY5T5Y=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/lenovo/.ohos/config/openharmony/default_NativeNodeUtilsSample_H4-X_SNGR0TzaNKqdfwZUO-stfDoCMtDcTIKgXY5T5Y=.p12",
+          "storePassword": "0000001A8A5250980E1EB255FD09E80499B825A490FDB110E708FC0120BF80C5FDDB5D086660B97C84F4"
+        }
+      }
     ]
   },
   "modules": [

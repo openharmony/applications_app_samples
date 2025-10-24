@@ -1,5 +1,7 @@
 {
   "src": [
-    "pages/entry"
+    "pages/entry",
+    "pages/drawPage/DrawPage",
+    "pages/nativeUI/NativeUIPage"
   ]
 }

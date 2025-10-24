@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start extension_start]
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
 let storage = LocalStorage.getShared()
@@ -41,3 +42,4 @@ struct Extension {
     }.width('100%').height('100%')
   }
 }
+// [End extension_start]
