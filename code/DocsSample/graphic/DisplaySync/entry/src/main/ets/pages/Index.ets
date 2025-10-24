@@ -26,7 +26,7 @@ struct Index {
         .fontWeight(500)
         .margin({ top: 200, left: 6 })
         .onClick((): void => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'DispalySync/PropertyAnimationDisplaySync'
           }, router.RouterMode.Standard, (err) => {
             if (err) {
@@ -48,7 +48,7 @@ struct Index {
         .fontWeight(500)
         .margin({ top: 20, left: 6 })
         .onClick((): void => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'DispalySync/CustomDrawDisplaySync'
           }, router.RouterMode.Standard, (err) => {
             if (err) {
@@ -69,7 +69,7 @@ struct Index {
         .fontWeight(500)
         .margin({ top: 20, left: 6 })
         .onClick((): void => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'DispalySync/XComponentDisplaySync'
           }, router.RouterMode.Single, (err) => {
             if (err) {

@@ -113,8 +113,7 @@ int FocusManager::RequestFocusAsync(const char* nodeId)
     ArkUI_NumberValue focusableValue[] = { { .i32 = 1 } };
     ArkUI_AttributeItem focusableItem = { focusableValue, 1 };
     g_nodeAPI->setAttribute(nodeHandle, NODE_FOCUSABLE, &focusableItem);
-
-    // 使用原生接口OH_ArkUI_FocusRequest请求焦点
+    
     ArkUI_NumberValue requetValue[] = { { .i32 = 1 } };
     ArkUI_AttributeItem requetItem = { requetValue, 1 };
     int result = g_nodeAPI->setAttribute(nodeHandle, NODE_FOCUS_STATUS, &requetItem);

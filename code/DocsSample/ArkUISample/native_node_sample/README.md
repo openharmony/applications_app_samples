@@ -2,7 +2,9 @@
 
 ## 介绍
 
-本示例展示了如何创建文本、输入框、文本域、Grid、滑动容器等组件，配置其样式、属性与事件，还含 UI 任务、反色设置，可见区域变化监听等功能，构建文本页面。
+本示例展示了如何创建文本、输入框、文本域、滚动容器、滑动容器、Form表单类、信息选择图片类等组件，配置其样式、属性与事件，还含 UI 任务、反色设置，可见区域变化监听等功能，构建文本页面。该工程中展示的接口详细描述可查如下链接：
+
+[native_node.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)
 
 ## 效果预览
 <table>
@@ -14,11 +16,11 @@
     <th>Grid</th>
     <th>Scroll</th>
     <th>Refresh</th>
-    <th>Form</th>
     <th>List</th>
     <th>Public</th>
     <th>XComponent</th>
-    <th>Imagespan</th>
+    <th>Form表单类</th>
+    <th>信息选择图片类</th>
   </tr>
   <tr>
     <td><img src="./screenshot/index.jpeg"></td>
@@ -28,10 +30,10 @@
     <td><img src="./screenshot/grid.jpeg"></td>
     <td><img src="./screenshot/scroll.jpeg"></td>
     <td><img src="./screenshot/refresh.jpeg"></td>
-    <td><img src="./screenshot/form.jpeg"></td>
     <td><img src="./screenshot/list.jpeg"></td>
     <td><img src="./screenshot/native-node-public.jpg"></td>
     <td><img src="./screenshot/xcomponent.jpeg"></td>
+    <td><img src="./screenshot/form.jpeg"></td>
     <td><img src="./screenshot/image_span.jpeg"></td>
   </tr>
 </table>
@@ -42,8 +44,28 @@
 3. 点击Text选择框进入Text组件的CAPI接口展示界面；
 4. 点击Swiper选择框进入Swiper组件的CAPI接口展示界面；
 5. 点击Public选择框进入通用属性的CAPI接口展示界面；
-6. 点击Form选择框进入表单组件的CAPI接口展示界面；
-7. 点击ImageSpan选择框进入ImageSpan组件的CAPI接口展示界面；属性值设置为“none”时，图片效果以代码默认值展示。
+6. 点击"Form表单类"选择框进入表单组件的CAPI接口展示界面;<br/>
+   a.点击“选择节点类型”按钮选择要创建的组件类型，如“TOGGLE”<br/>
+   b.点击"创建"按钮进行节点创建，当前状态会显示创建成功<br/>
+   c.点击下边“选择节点属性”，先选择对应节点类型，如“TOGGLE”，再选择要设置的属性类型<br/>
+   d.点击“设置属性值”，进行属性设置；点击“获取属性值”，返回值文本框中可以显示当前属性值；点击“重置属性值”会进行属性重置<br/>
+   e.点击“清理”清理已创建“TOGGLE”节点。
+7. 点击"信息选择图片类"选择框进入多个组件的CAPI接口展示界面；属性值设置为“none”时，图片效果以代码默认值展示。
+   "信息选择图片类"界面使用步骤如下：<br/>
+   a.点击“选择节点类型”按钮选择要创建的组件类型，如“IMAGE_SPAN”<br/>
+   b.点击"创建"按钮进行节点创建，当前状态会显示创建成功<br/>
+   c.点击下边“选择节点属性”，先选择对应节点类型，如“IMAGE_SPAN”，再选择要设置的属性类型<br/>
+   d.点击“设置属性值”，进行属性设置；点击“获取属性值”，返回值文本框中可以显示当前属性值；点击“重置属性值”会进行属性重置<br/>
+   e.创建DatePicker、TimePicker、TextPicker、CalendarPicker组件时，会自动触发相关事件注册，
+   可以在DevEco Studio开发环境中的日志界面看到如下相关日志信息：
+8. 点击WaterFlow选择框进入WaterFlow组件的CAPI接口展示界面；
+9. 点击Scroll选择框进入Scroll组件的CAPI接口展示界面；
+10. 点击List选择框进入List组件的CAPI接口展示界面；
+11. 点击Grid选择框进入Grid组件的CAPI接口展示界面；
+12. 点击Refresh选择框进入Refresh组件的CAPI接口展示界面；
+```
+"BIND_EVENT success"
+```
 
 ## 工程目录
 

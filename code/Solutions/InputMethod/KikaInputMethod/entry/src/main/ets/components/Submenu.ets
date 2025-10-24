@@ -51,6 +51,7 @@ export struct Submenu {
     console.log('onPageShow11', JSON.stringify(this.b));
   }
 
+  // [Start input_case_input_switchInputMethodgetInputMethods]
   async switchInputMethod(item: string) {
     this.a = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
     let currentInputMethod = inputMethod.getCurrentInputMethod(); // 获取当前输入法
@@ -72,6 +73,7 @@ export struct Submenu {
       console.log('GJ switchCurrentInputMethodSubtype error', JSON.stringify(error));
     }
   }
+  // [End input_case_input_switchInputMethodgetInputMethods]
 
   aboutToAppear(): void {
     this.inputList()

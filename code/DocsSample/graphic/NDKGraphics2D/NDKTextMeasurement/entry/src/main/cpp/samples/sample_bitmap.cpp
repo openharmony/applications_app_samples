@@ -167,7 +167,7 @@ void SampleBitMap::DrawText()
 
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_GetFontCollectionGlobalInstance();
     OH_Drawing_TextStyle *myTextStyle = OH_Drawing_CreateTextStyle();
-    
+
     // 设置其他文本样式
     OH_Drawing_SetTextStyleColor(myTextStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
     OH_Drawing_SetTextStyleFontSize(myTextStyle, 50.0);
@@ -183,13 +183,14 @@ void SampleBitMap::DrawText()
     OH_Drawing_TypographyHandlerAddText(handler, text);
     // 通过段落生成器生成段落
     OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
-    
+
     // 设置页面最大宽度
     double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
     // case1: 获取排版后最长行行宽
+// [Start c_text_metrics_get_all_case]
     double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
     DRAWING_LOGI("第%{public}d行 longestLine: %{public}f" ,longestLine);
 
@@ -220,6 +221,7 @@ void SampleBitMap::DrawText()
     OH_Drawing_LineMetrics lineMetric;
     OH_Drawing_TypographyGetLineMetricsAt(typography, 0, &lineMetric);
     DRAWING_LOGI("第1行 lineMetrics ascender: %{public}f" ,lineMetric.ascender);
+// [End c_text_metrics_get_all_case]
 }
 
 napi_value SampleBitMap::NapiDrawText(napi_env env, napi_callback_info info)

@@ -88,6 +88,7 @@ napi_value Manager::ProcessDrawable(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Failed to get drawable descriptor");
         return nullptr;
     }
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "success to get drawable descriptor");
     // 返回处理结果给JS层
     napi_value result;
     napi_create_int32(env, res, &result);
@@ -114,6 +115,7 @@ napi_value Manager::ProcessDrawable2(napi_env env, napi_callback_info info)
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "Failed to get drawable descriptor");
         return nullptr;
     }
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "success to get drawable descriptor");
     // 返回处理结果给JS层
     napi_value result;
     napi_create_int32(env, res, &result);

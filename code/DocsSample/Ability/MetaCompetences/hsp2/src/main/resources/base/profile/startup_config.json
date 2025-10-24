@@ -1,0 +1,19 @@
+{
+  "startupTasks": [
+    {
+      "name": "HSP2_Task_01",
+      "srcEntry": "./ets/startup/HSP2_Task_01.ets",
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false,
+      "excludeFromAutoStart": true
+    }
+  ],
+  "appPreloadHintStartupTasks": [
+    {
+      "name": "libhsp2_01",
+      "srcEntry": "libhsp2_01.so",
+      "runOnThread": "taskPool",
+      "excludeFromAutoStart": true
+    }
+  ]
+}

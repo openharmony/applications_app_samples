@@ -42,8 +42,10 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Cancel monitoring on the volume button'));
-      await driver.assertComponentExist(ON.text('Cancel monitoring under the volume button'));
+      await driver.assertComponentExist(ON.text('Add monitoring for Volume Up key'));
+      await driver.assertComponentExist(ON.text('Remove monitoring for Volume Up key'));
+      await driver.assertComponentExist(ON.text('Add monitoring for Volume Down key'));
+      await driver.assertComponentExist(ON.text('Remove monitoring for Volume Down key'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
@@ -65,8 +67,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Cancel monitoring on the volume button'));
-      let button = await driver.findComponent(ON.text('Cancel monitoring on the volume button'));
+      await driver.assertComponentExist(ON.text('Remove monitoring for Volume Up key'));
+      let button = await driver.findComponent(ON.text('Remove monitoring for Volume Up key'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -90,12 +92,62 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Cancel monitoring on the volume button'));
-      let button = await driver.findComponent(ON.text('Cancel monitoring on the volume button'));
+      await driver.assertComponentExist(ON.text('Remove monitoring for Volume Down key'));
+      let button = await driver.findComponent(ON.text('Remove monitoring for Volume Down key'));
       await button.click();
       await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'CancelMonitor_002 end')
+    })
+
+    /**
+     * 添加音量下键的监听
+     */
+    it('ArkTSInputConsumerAPI_on_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'AddMonitor_001, begin');
+      let driver = Driver.create();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.example.arktsinputconsumer',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        hilog.info(DOMAIN, TAG, BUNDLE + `CancelMonitor_001 exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Add monitoring for Volume Up key'));
+      let button = await driver.findComponent(ON.text('Add monitoring for Volume Up key'));
+      await button.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'AddMonitor_002 end')
+    })
+
+    /**
+     * 添加音量下键的监听
+     */
+    it('ArkTSInputConsumerAPI_on_002', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'AddMonitor_002, begin');
+      let driver = Driver.create();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.example.arktsinputconsumer',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        hilog.info(DOMAIN, TAG, BUNDLE + `CancelMonitor_001 exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Add monitoring for Volume Down key'));
+      let button = await driver.findComponent(ON.text('Add monitoring for Volume Down key'));
+      await button.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'AddMonitor_002 end')
     })
   })
 }

@@ -869,6 +869,14 @@
       "value": "手表设备上弧形列表在获焦的情况下可对旋转表冠做出响应，用户可通过旋转表冠的操作滑动列表，浏览列表项数据。"
     },
     {
+      "name": "ArcListCreate_title",
+      "value": "创建弧形列表"
+    },
+    {
+      "name": "ArcListCreate_description",
+      "value": "ArcList可通过调用以下接口来创建。"
+    },
+    {
       "name": "ArcListShow_title",
       "value": "在弧形列表中显示数据"
     },
