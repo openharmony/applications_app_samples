@@ -18,6 +18,9 @@ import { formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { promptAction } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 @Entry
 @Component
 struct Index {
@@ -42,7 +45,8 @@ struct Index {
               formProvider.openFormManager(want);
             } catch (error) {
               promptAction.openToast({message: (error as BusinessError).message});
-              console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+              hilog.info(DOMAIN, 'testTag', 'catch error ', 'code:', (error as BusinessError).code, 'message:',
+                (error as BusinessError).message);
             }
           })
           .margin({ top: 10, bottom: 10 })
