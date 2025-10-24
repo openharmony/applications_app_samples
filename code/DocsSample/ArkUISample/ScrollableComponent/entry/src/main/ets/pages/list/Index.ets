@@ -172,6 +172,7 @@ struct ListExample {
           .width('100%')
           .onClick(() => {
             this.pathStack.pushPath({ name: route.name });
+            console.log(route.name +'点击滑动离手事件')
           })
         })
       }
