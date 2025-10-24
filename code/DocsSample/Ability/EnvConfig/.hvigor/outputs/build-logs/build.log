@@ -1,0 +1,1536 @@
+[2025-10-23T16:24:11.432] [DEBUG] debug-file - env: nodejsVersion=v18.20.1
+[2025-10-23T16:24:11.515] [DEBUG] debug-file - env: daemon=true
+[2025-10-23T16:24:11.433] [DEBUG] debug-file - env: hvigor-config.json5 content = {
+  modelVersion: '6.0.0',
+  dependencies: {},
+  execution: {},
+  logging: {},
+  debugging: {},
+  nodeOptions: {}
+}
+[2025-10-23T16:24:12.055] [DEBUG] debug-file - java daemon tryConnect success
+[2025-10-23T16:24:12.096] [DEBUG] debug-file - session manager: set active socket. socketId=bQnzoK2rkXdLxRUVAAAB
+[2025-10-23T16:24:12.633] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-10-23T16:24:12.640] [DEBUG] debug-file - Hvigor init with startParameters:{
+  hvigorfileTypeCheck: false,
+  parallelExecution: true,
+  incrementalExecution: true,
+  printStackTrace: false,
+  daemon: true,
+  analyze: 0,
+  logLevel: Level { level: 20000, levelStr: 'INFO', colour: 'green' },
+  optimizationStrategy: 'memory',
+  hotCompile: undefined,
+  hotReloadBuild: undefined
+}
+[2025-10-23T16:24:12.641] [DEBUG] debug-file - Since current hvigor version 6.0.6 differs from last hvigor version 
+      undefined, delete file-cache.json and task-cache.json.
+[2025-10-23T16:24:12.641] [DEBUG] debug-file - Cache service initialization finished in 1 ms 
+[2025-10-23T16:24:12.642] [DEBUG] debug-file - hvigorfile, resolving D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigorfile.ts
+[2025-10-23T16:24:13.879] [DEBUG] debug-file - hvigorfile, require result:  { default: { plugins: [] } }
+[2025-10-23T16:24:13.879] [DEBUG] debug-file - hvigorfile, binding system plugins null
+[2025-10-23T16:24:13.998] [DEBUG] debug-file - Start initialize project's product build option map with build mode test.
+[2025-10-23T16:24:13.998] [DEBUG] debug-file - Picking option from product 'default' with build mode 'test'.
+[2025-10-23T16:24:13.999] [DEBUG] debug-file - Product 'default' build option initialized
+[2025-10-23T16:24:13.999] [DEBUG] debug-file - End initialize project's product build option map with build mode 'test'.
+[2025-10-23T16:24:14.000] [DEBUG] debug-file - Obtain build option for product 'default'in this build.
+[2025-10-23T16:24:14.007] [DEBUG] debug-file - No signingConfig found, initRemoteHspCache failed.
+[2025-10-23T16:24:14.009] [DEBUG] debug-file - Local scan or download HarmonyOS sdk components toolchains,ets,js,native,previewer
+[2025-10-23T16:24:14.011] [DEBUG] debug-file - Local scan or download hmscore sdk components toolchains,ets,native
+[2025-10-23T16:24:14.012] [DEBUG] debug-file - Start recording SDK configuration permission data.
+[2025-10-23T16:24:14.034] [DEBUG] debug-file - Sdk init in 26 ms 
+[2025-10-23T16:24:14.037] [DEBUG] debug-file - Project task initialization takes 3 ms 
+[2025-10-23T16:24:14.038] [DEBUG] debug-file - hvigorfile, binding custom plugins []
+[2025-10-23T16:24:14.038] [DEBUG] debug-file - hvigorfile, no custom plugins were found in D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigorfile.ts
+[2025-10-23T16:24:14.038] [DEBUG] debug-file - hvigorfile, resolve finished D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigorfile.ts
+[2025-10-23T16:24:14.038] [DEBUG] debug-file - hvigorfile, resolving D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\hvigorfile.ts
+[2025-10-23T16:24:14.042] [DEBUG] debug-file - hvigorfile, require result:  { default: { plugins: [] } }
+[2025-10-23T16:24:14.042] [DEBUG] debug-file - hvigorfile, binding system plugins null
+[2025-10-23T16:24:14.043] [DEBUG] debug-file - failed to load cangjie to dynamically generate schemas: Error: Cannot find module '@ohos/cangjie-build-support/index'
+Require stack:
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\factory\plugin-factory.js
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\index.js
+- D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigorfile.ts
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\configuration.js
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\cluster\worker-process-lifecycle.js
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\process\daemon-process-boot-script.js
+[2025-10-23T16:24:14.053] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=debug
+[2025-10-23T16:24:14.053] [DEBUG] debug-file - Target 'default' config initialized
+[2025-10-23T16:24:14.054] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-10-23T16:24:14.054] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-10-23T16:24:14.054] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-10-23T16:24:14.054] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-10-23T16:24:14.054] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=release
+[2025-10-23T16:24:14.054] [DEBUG] debug-file - Target 'default' config initialized
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=test
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Target 'default' config initialized
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-10-23T16:24:14.055] [DEBUG] debug-file - Obtain build option for module 'entry' target 'default'in this build.
+[2025-10-23T16:24:14.058] [DEBUG] debug-file - Module entry task initialization takes 3 ms 
+[2025-10-23T16:24:14.059] [DEBUG] debug-file - hvigorfile, binding custom plugins []
+[2025-10-23T16:24:14.059] [DEBUG] debug-file - hvigorfile, no custom plugins were found in D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\hvigorfile.ts
+[2025-10-23T16:24:14.059] [DEBUG] debug-file - hvigorfile, resolve finished D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\hvigorfile.ts
+[2025-10-23T16:24:14.074] [DEBUG] debug-file - hvigorfile, resolve hvigorfile dependencies in 16 ms 
+[2025-10-23T16:24:14.074] [DEBUG] debug-file - project has submodules:entry
+[2025-10-23T16:24:14.075] [DEBUG] debug-file - start to load updatedOhPackageInfo to the disk
+[2025-10-23T16:24:14.086] [DEBUG] debug-file - load to the disk finished
+[2025-10-23T16:24:14.087] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-10-23T16:24:14.093] [DEBUG] debug-file - Module EnvConfig Collected Dependency: 
+[2025-10-23T16:24:14.093] [DEBUG] debug-file - Module EnvConfig's total dependency: 0
+[2025-10-23T16:24:14.094] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-10-23T16:24:14.097] [DEBUG] debug-file - Module entry Collected Dependency: 
+[2025-10-23T16:24:14.097] [DEBUG] debug-file - Module entry's total dependency: 0
+[2025-10-23T16:24:14.099] [DEBUG] debug-file - Configuration phase cost:1 s 458 ms 
+[2025-10-23T16:24:14.101] [DEBUG] debug-file - Configuration task cost before running: 1 s 465 ms 
+[2025-10-23T16:24:14.101] [DEBUG] debug-file - Executing task :entry:clean
+[2025-10-23T16:24:14.101] [DEBUG] debug-file - clean: Worker pool is inactive.
+[2025-10-23T16:24:14.102] [DEBUG] debug-file - entry : clean cost memory 0.0937042236328125
+[2025-10-23T16:24:14.102] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 466 ms 
+[2025-10-23T16:24:14.102] [INFO] debug-file - Finished :entry:clean... after 1 ms 
+[2025-10-23T16:24:14.108] [DEBUG] debug-file - Executing task :entry:default@PreBuild
+[2025-10-23T16:24:14.109] [DEBUG] debug-file - Task 'entry:default@PreBuild' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.195] [DEBUG] debug-file - current product is not Atomic service.
+[2025-10-23T16:24:14.195] [DEBUG] debug-file - Use tool [win32: JAVA_HOME, CLASSPATH]
+ [
+  { JAVA_HOME: 'D:\\Program Files\\Huawei\\DevEco Studio\\jbr' },
+  { CLASSPATH: undefined }
+]
+[2025-10-23T16:24:14.195] [DEBUG] debug-file - Use tool [win32: NODE_HOME]
+ [
+  {
+    NODE_HOME: 'D:\\Program Files\\Huawei\\DevEco Studio\\tools\\node'
+  }
+]
+[2025-10-23T16:24:14.196] [DEBUG] debug-file - entry : default@PreBuild cost memory 6.694793701171875
+[2025-10-23T16:24:14.196] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 560 ms 
+[2025-10-23T16:24:14.198] [INFO] debug-file - Finished :entry:default@PreBuild... after 89 ms 
+[2025-10-23T16:24:14.199] [DEBUG] debug-file - Executing task :entry:default@CreateModuleInfo
+[2025-10-23T16:24:14.199] [DEBUG] debug-file - Task 'entry:default@CreateModuleInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.199] [DEBUG] debug-file - entry : default@CreateModuleInfo cost memory 0.042236328125
+[2025-10-23T16:24:14.199] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 564 ms 
+[2025-10-23T16:24:14.199] [INFO] debug-file - Finished :entry:default@CreateModuleInfo... after 1 ms 
+[2025-10-23T16:24:14.200] [DEBUG] debug-file - Executing task :entry:default@GenerateMetadata
+[2025-10-23T16:24:14.201] [DEBUG] debug-file - Task 'entry:default@GenerateMetadata' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.205] [DEBUG] debug-file - entry : default@GenerateMetadata cost memory 0.07495880126953125
+[2025-10-23T16:24:14.205] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 569 ms 
+[2025-10-23T16:24:14.205] [INFO] debug-file - Finished :entry:default@GenerateMetadata... after 5 ms 
+[2025-10-23T16:24:14.206] [DEBUG] debug-file - Executing task :entry:default@ConfigureCmake
+[2025-10-23T16:24:14.206] [DEBUG] debug-file - entry : default@ConfigureCmake cost memory 0.0161590576171875
+[2025-10-23T16:24:14.206] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 571 ms 
+[2025-10-23T16:24:14.207] [INFO] debug-file - Finished :entry:default@ConfigureCmake... after 1 ms 
+[2025-10-23T16:24:14.208] [DEBUG] debug-file - Executing task :entry:default@MergeProfile
+[2025-10-23T16:24:14.208] [DEBUG] debug-file - Task 'entry:default@MergeProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.209] [DEBUG] debug-file - Change app api release type with 'Release'
+[2025-10-23T16:24:14.209] [DEBUG] debug-file - Change app compile API version with '6.0.0.47'
+[2025-10-23T16:24:14.209] [DEBUG] debug-file - Change app target API version with '60000020'
+[2025-10-23T16:24:14.209] [DEBUG] debug-file - Change app minimum API version with '60000020'
+[2025-10-23T16:24:14.209] [DEBUG] debug-file - Use cli appEnvironment
+[2025-10-23T16:24:14.211] [DEBUG] debug-file - entry : default@MergeProfile cost memory 0.32424163818359375
+[2025-10-23T16:24:14.211] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 576 ms 
+[2025-10-23T16:24:14.211] [INFO] debug-file - Finished :entry:default@MergeProfile... after 4 ms 
+[2025-10-23T16:24:14.212] [DEBUG] debug-file - Executing task :entry:default@CreateBuildProfile
+[2025-10-23T16:24:14.213] [DEBUG] debug-file - Task 'entry:default@CreateBuildProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.214] [DEBUG] debug-file - entry : default@CreateBuildProfile cost memory 0.0795135498046875
+[2025-10-23T16:24:14.214] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 579 ms 
+[2025-10-23T16:24:14.214] [INFO] debug-file - Finished :entry:default@CreateBuildProfile... after 2 ms 
+[2025-10-23T16:24:14.215] [DEBUG] debug-file - Executing task :entry:default@PreCheckSyscap
+[2025-10-23T16:24:14.215] [DEBUG] debug-file - entry : default@PreCheckSyscap cost memory 0.01633453369140625
+[2025-10-23T16:24:14.215] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 580 ms 
+[2025-10-23T16:24:14.216] [INFO] debug-file - Finished :entry:default@PreCheckSyscap... after 1 ms 
+[2025-10-23T16:24:14.217] [DEBUG] debug-file - Executing task :entry:default@GeneratePkgContextInfo
+[2025-10-23T16:24:14.221] [DEBUG] debug-file - Task 'entry:default@GeneratePkgContextInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.223] [DEBUG] debug-file - entry : default@GeneratePkgContextInfo cost memory 0.5810165405273438
+[2025-10-23T16:24:14.223] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 587 ms 
+[2025-10-23T16:24:14.223] [INFO] debug-file - Finished :entry:default@GeneratePkgContextInfo... after 7 ms 
+[2025-10-23T16:24:14.227] [DEBUG] debug-file - Executing task :entry:default@ProcessIntegratedHsp
+[2025-10-23T16:24:14.228] [DEBUG] debug-file - entry : default@ProcessIntegratedHsp cost memory 0.03530120849609375
+[2025-10-23T16:24:14.228] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 592 ms 
+[2025-10-23T16:24:14.228] [INFO] debug-file - Finished :entry:default@ProcessIntegratedHsp... after 1 ms 
+[2025-10-23T16:24:14.229] [DEBUG] debug-file - Executing task :entry:default@BuildNativeWithCmake
+[2025-10-23T16:24:14.229] [DEBUG] debug-file - entry : default@BuildNativeWithCmake cost memory 0.017669677734375
+[2025-10-23T16:24:14.229] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 593 ms 
+[2025-10-23T16:24:14.229] [INFO] debug-file - Finished :entry:default@BuildNativeWithCmake... after 1 ms 
+[2025-10-23T16:24:14.230] [DEBUG] debug-file - Executing task :entry:default@MakePackInfo
+[2025-10-23T16:24:14.232] [DEBUG] debug-file - Module Pack Info:  {
+  summary: {
+    app: { bundleName: 'c***g', bundleType: 'app', version: [Object] },
+    modules: [ [Object] ]
+  },
+  packages: [
+    {
+      deviceType: [Array],
+      moduleType: 'entry',
+      deliveryWithInstall: true,
+      name: 'entry-default'
+    }
+  ]
+}
+[2025-10-23T16:24:14.234] [DEBUG] debug-file - entry : default@MakePackInfo cost memory 0.20659637451171875
+[2025-10-23T16:24:14.234] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 599 ms 
+[2025-10-23T16:24:14.235] [INFO] debug-file - Finished :entry:default@MakePackInfo... after 5 ms 
+[2025-10-23T16:24:14.236] [DEBUG] debug-file - Executing task :entry:default@SyscapTransform
+[2025-10-23T16:24:14.236] [DEBUG] debug-file - File: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\syscap.json' from 'sysCapJsonPath' is not exists, just ignore.
+[2025-10-23T16:24:14.237] [DEBUG] debug-file - Task 'entry:default@SyscapTransform' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.237] [DEBUG] debug-file - entry : default@SyscapTransform cost memory 0.30544281005859375
+[2025-10-23T16:24:14.237] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 602 ms 
+[2025-10-23T16:24:14.237] [INFO] debug-file - Finished :entry:default@SyscapTransform... after 2 ms 
+[2025-10-23T16:24:14.239] [DEBUG] debug-file - Executing task :entry:default@ProcessProfile
+[2025-10-23T16:24:14.240] [DEBUG] debug-file - Task 'entry:default@ProcessProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.241] [DEBUG] debug-file - [
+  'D:\\Program Files\\Huawei\\DevEco Studio\\tools\\node\\node.exe',
+  'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\bin\\ark\\ts2abc.js',
+  '--target-api-version',
+  '20'
+]
+[2025-10-23T16:24:14.355] [DEBUG] debug-file - 13.0.1.0
+[2025-10-23T16:24:14.359] [DEBUG] debug-file - No need to add fake ui ability because of not in preview process.
+[2025-10-23T16:24:14.360] [DEBUG] debug-file - entry : default@ProcessProfile cost memory 2.6505050659179688
+[2025-10-23T16:24:14.360] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 724 ms 
+[2025-10-23T16:24:14.360] [INFO] debug-file - Finished :entry:default@ProcessProfile... after 122 ms 
+[2025-10-23T16:24:14.361] [DEBUG] debug-file - Executing task :entry:default@ProcessRouterMap
+[2025-10-23T16:24:14.364] [DEBUG] debug-file - entry : default@ProcessRouterMap cost memory 0.11638641357421875
+[2025-10-23T16:24:14.364] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 728 ms 
+[2025-10-23T16:24:14.364] [INFO] debug-file - Finished :entry:default@ProcessRouterMap... after 3 ms 
+[2025-10-23T16:24:14.365] [DEBUG] debug-file - Executing task :entry:default@ProcessShareConfig
+[2025-10-23T16:24:14.366] [DEBUG] debug-file - entry : default@ProcessShareConfig cost memory 0.098907470703125
+[2025-10-23T16:24:14.367] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 731 ms 
+[2025-10-23T16:24:14.367] [INFO] debug-file - Finished :entry:default@ProcessShareConfig... after 2 ms 
+[2025-10-23T16:24:14.368] [DEBUG] debug-file - Executing task :entry:default@ProcessStartupConfig
+[2025-10-23T16:24:14.368] [DEBUG] debug-file - Task 'entry:default@ProcessStartupConfig' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.369] [DEBUG] debug-file - entry : default@ProcessStartupConfig cost memory 0.1161041259765625
+[2025-10-23T16:24:14.369] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 733 ms 
+[2025-10-23T16:24:14.369] [INFO] debug-file - Finished :entry:default@ProcessStartupConfig... after 2 ms 
+[2025-10-23T16:24:14.370] [DEBUG] debug-file - Executing task :entry:default@BuildNativeWithNinja
+[2025-10-23T16:24:14.371] [DEBUG] debug-file - entry : default@BuildNativeWithNinja cost memory 0.03290557861328125
+[2025-10-23T16:24:14.371] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 736 ms 
+[2025-10-23T16:24:14.371] [INFO] debug-file - Finished :entry:default@BuildNativeWithNinja... after 2 ms 
+[2025-10-23T16:24:14.372] [DEBUG] debug-file - restool module names: entry; moduleName=entry, taskName=default@ProcessResource
+[2025-10-23T16:24:14.374] [DEBUG] debug-file - Executing task :entry:default@ProcessResource
+[2025-10-23T16:24:14.374] [DEBUG] debug-file - Task 'entry:default@ProcessResource' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.376] [DEBUG] debug-file - entry : default@ProcessResource cost memory 0.1433258056640625
+[2025-10-23T16:24:14.377] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 741 ms 
+[2025-10-23T16:24:14.377] [INFO] debug-file - Finished :entry:default@ProcessResource... after 4 ms 
+[2025-10-23T16:24:14.379] [DEBUG] debug-file - Executing task :entry:default@GenerateLoaderJson
+[2025-10-23T16:24:14.379] [DEBUG] debug-file - Task 'entry:default@GenerateLoaderJson' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.384] [DEBUG] debug-file - entry : default@GenerateLoaderJson cost memory 0.4283294677734375
+[2025-10-23T16:24:14.384] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 748 ms 
+[2025-10-23T16:24:14.385] [INFO] debug-file - Finished :entry:default@GenerateLoaderJson... after 6 ms 
+[2025-10-23T16:24:14.385] [DEBUG] debug-file - Executing task :entry:default@ProcessLibs
+[2025-10-23T16:24:14.388] [DEBUG] debug-file - Worker dispatch failed, running processLibs on main thread.
+[2025-10-23T16:24:14.389] [DEBUG] debug-file - entry : default@ProcessLibs cost memory 0.31817626953125
+[2025-10-23T16:24:14.389] [DEBUG] debug-file - runTaskFromQueue task cost before running: 1 s 754 ms 
+[2025-10-23T16:24:14.390] [INFO] debug-file - Finished :entry:default@ProcessLibs... after 4 ms 
+[2025-10-23T16:24:14.391] [DEBUG] debug-file - restool module names: entry; moduleName=entry, taskName=default@CompileResource
+[2025-10-23T16:24:14.391] [DEBUG] debug-file - Executing task :entry:default@CompileResource
+[2025-10-23T16:24:14.396] [DEBUG] debug-file - Use tool [D:\Program Files\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\restool.exe]
+ [
+  'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\restool.exe',
+  '-l',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\default\\resConfig.json'
+]
+[2025-10-23T16:24:14.397] [DEBUG] debug-file - current process  memoryUsage: {
+  rss: 209907712,
+  heapTotal: 164720640,
+  heapUsed: 142321040,
+  external: 3121265,
+  arrayBuffers: 220101
+} os memoryUsage :19.532745361328125
+[2025-10-23T16:24:14.489] [DEBUG] debug-file - Info: Pack: normal pack mode
+
+[2025-10-23T16:24:14.526] [DEBUG] debug-file - Info: hardware concurrency count is : 24
+Info: thread count is : 24
+
+[2025-10-23T16:24:14.526] [DEBUG] debug-file - Info: thread pool is started
+
+[2025-10-23T16:24:14.527] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-10-23T16:24:14.532] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-10-23T16:24:14.532] [DEBUG] debug-file - Warning: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\media\background.png' is defined repeatedly.
+Warning: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\media\foreground.png' is defined repeatedly.
+Warning: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\media\layered_image.json' is defined repeatedly.
+
+[2025-10-23T16:24:14.533] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-10-23T16:24:14.539] [DEBUG] debug-file - 10-23 16:24:14.539 20736 19656 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+
+[2025-10-23T16:24:14.539] [DEBUG] debug-file - 10-23 16:24:14.539 20736 19656 E C01400/ImageTranscoderUtils: ImageFilter IN D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\background.png
+
+[2025-10-23T16:24:14.568] [DEBUG] debug-file - 10-23 16:24:14.568 20736 19656 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+10-23 16:24:14.568 20736 19656 E C01400/ImageTranscoderUtils: ImageFilter IN D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\foreground.png
+
+[2025-10-23T16:24:14.594] [DEBUG] debug-file - Info: can't scale media json file.
+
+[2025-10-23T16:24:14.595] [DEBUG] debug-file - Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\background.png
+Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\foreground.png
+Warning: D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\layered_image.json is not png format
+
+[2025-10-23T16:24:14.596] [DEBUG] debug-file - Info: restool resources compile success.
+
+[2025-10-23T16:24:14.596] [DEBUG] debug-file - Info: thread pool is stopped
+
+[2025-10-23T16:24:14.658] [DEBUG] debug-file - entry : default@CompileResource cost memory 0.6582260131835938
+[2025-10-23T16:24:14.659] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 23 ms 
+[2025-10-23T16:24:14.659] [INFO] debug-file - Finished :entry:default@CompileResource... after 268 ms 
+[2025-10-23T16:24:14.660] [DEBUG] debug-file - Executing task :entry:default@DoNativeStrip
+[2025-10-23T16:24:14.660] [DEBUG] debug-file - Task 'entry:default@DoNativeStrip' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.665] [DEBUG] debug-file - entry : default@DoNativeStrip cost memory -9.031440734863281
+[2025-10-23T16:24:14.665] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 29 ms 
+[2025-10-23T16:24:14.665] [INFO] debug-file - Finished :entry:default@DoNativeStrip... after 5 ms 
+[2025-10-23T16:24:14.666] [DEBUG] debug-file - Executing task :entry:default@CompileArkTS
+[2025-10-23T16:24:14.666] [DEBUG] debug-file - obfuscationOptions: undefined
+[2025-10-23T16:24:14.681] [DEBUG] debug-file - build config:
+[2025-10-23T16:24:14.681] [DEBUG] debug-file - {
+  moduleType: 'entry',
+  perf: 0,
+  targetName: '.default',
+  packageManagerType: 'ohpm',
+  localPropertiesPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\local.properties',
+  isPreview: false,
+  isOhosTest: false,
+  isLocalTest: false,
+  buildMode: 'Debug',
+  hotReloadBuild: undefined,
+  watchMode: 'false',
+  aceProfilePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile',
+  etsLoaderPath: 'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader',
+  modulePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+  testFrameworkPar: {
+    testMode: undefined,
+    coveragePathFilter: undefined,
+    coverageMode: undefined
+  },
+  needCoverageInsert: false,
+  debugLine: false,
+  projectTopDir: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig',
+  compileSdkVersion: 20,
+  compatibleSdkVersion: 20,
+  compatibleSdkVersionStage: undefined,
+  bundleName: 'c***g',
+  etsLoaderVersion: '6.0.0.47',
+  etsLoaderReleaseType: 'Release',
+  aotCompileMode: 'type',
+  apPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\modules.ap',
+  entryModuleName: 'entry',
+  entryModuleVersion: '1.0.0',
+  entryPackageName: 'entry',
+  allModuleNameHash: 'fecb693ac834a1bfc28574dd7a70176d',
+  externalApiPaths: [
+    'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\hms\\ets'
+  ],
+  compilerTypes: [],
+  isCrossplatform: false,
+  hvigorPluginFile: undefined,
+  compilePluginPath: undefined,
+  buildGeneratedProfilePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\generated\\profile\\default',
+  bundleType: 'app',
+  arkTSVersion: undefined,
+  apiVersion: 20,
+  needCompleteSourcesMap: false,
+  isFaMode: false,
+  strictMode: {
+    caseSensitiveCheck: true,
+    useNormalizedOHMUrl: true,
+    noExternalImportByPath: true
+  },
+  buildDir: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build',
+  deviceTypes: [ 'phone' ],
+  useNormalizedOHMUrl: true,
+  pkgContextInfo: {
+    '@ohos/hypium': {
+      packageName: '@ohos/hypium',
+      bundleName: '*****',
+      moduleName: '',
+      version: '1.0.24',
+      entryPath: 'index.js',
+      isSO: false,
+      dependencyAlias: ''
+    },
+    '@ohos/hamock': {
+      packageName: '@ohos/hamock',
+      bundleName: '*****',
+      moduleName: '',
+      version: '1.0.0',
+      entryPath: 'index.ets',
+      isSO: false,
+      dependencyAlias: ''
+    },
+    entry: {
+      packageName: 'entry',
+      bundleName: '*****',
+      moduleName: '',
+      version: '',
+      entryPath: 'src/main/',
+      isSO: false,
+      dependencyAlias: ''
+    }
+  },
+  ohPackagePathMap: {},
+  dependencyAliasMap: {},
+  permission: { requestPermissions: undefined, definePermissions: undefined },
+  integratedHsp: false,
+  projectArkOption: undefined,
+  sourceMapDir: undefined,
+  branchElimination: false,
+  transformLib: undefined,
+  caseSensitiveCheck: true,
+  tsImportSendable: false,
+  resolveConflictMode: true,
+  depName2RootPath: {},
+  depName2DepInfo: {},
+  rootPathSet: [
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+  ],
+  useNativeResolver: true,
+  shouldEmitJs: true,
+  useTscResolve: false,
+  singleFileEmit: false,
+  userProjectConfig: {
+    autoLazyImport: false,
+    allowEmptyBundleName: false,
+    reExportCheckMode: 'noCheck',
+    executionMode: 'memory',
+    usePathPlaceholder: false,
+    writeRollupCache: true,
+    isExpandImportEnabled: false,
+    expandImportExclude: '',
+    ignoreCrossplatformCheck: false,
+    isPreloadSoEnabled: false
+  },
+  skipOhModulesLint: false,
+  executionMode: 'memory',
+  autoLazyImport: false,
+  allowEmptyBundleName: false,
+  reExportCheckMode: 'noCheck',
+  usePathPlaceholder: false,
+  writeRollupCache: true,
+  isExpandImportEnabled: false,
+  expandImportExclude: '',
+  ignoreCrossplatformCheck: false,
+  isPreloadSoEnabled: false,
+  arkCompileCachePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule',
+  aceModuleJsonPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\default\\ark_module.json',
+  appResource: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\default\\ResourceTable.txt',
+  rawFileResource: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\default\\resources\\rawfile',
+  resourceTableHash: '5601ce2ca8bcaaedbb03c35632b8080a',
+  runtimeOS: 'HarmonyOS',
+  sdkInfo: 'false:20:6.0.0.47:Release',
+  aceModuleRoot: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\main\\ets',
+  compileMode: 'esmodule',
+  aceSuperVisualPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\main\\supervisual',
+  aceBuildJson: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\loader\\default\\loader.json',
+  cachePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule\\debug',
+  aceModuleBuild: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\loader_out\\default\\ets',
+  supportChunks: true,
+  declaredFilesPath: undefined,
+  shouldCollectDirectImportees: false,
+  isByteCodeHarOptimize: false,
+  expandImportPath: undefined,
+  pkgNameToPkgBriefInfo: {
+    entry: {
+      pkgRoot: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      originalSourceRoots: undefined,
+      sourceRoots: [Array],
+      pkgName: 'entry'
+    }
+  },
+  projectModel: {
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\main': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    },
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\src\\ohosTest\\ets': {
+      moduleName: 'entry_test',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    },
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\ohosTest': {
+      moduleName: 'entry_test',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    },
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    },
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig': {
+      moduleName: 'EnvConfig',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    }
+  },
+  pkgJsonFileHash: '5768198ec95a67a703b944a524411c54',
+  allModulePaths: [
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry'
+  ],
+  routerMap: {},
+  obfuscationOptions: undefined,
+  byteCodeHarToDependencyKeys: undefined,
+  compileBlockPkg: [],
+  mockParams: {
+    decorator: '@MockSetup',
+    packageName: '@ohos/hamock',
+    etsSourceRootPath: 'src/main/ets',
+    mockConfigPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\mock\\mock-config.json5',
+    mockConfigKey2ModuleInfo: {},
+    source2ModuleIdMap: {}
+  },
+  copyCodeResourceEnable: false,
+  copyCodeResourceExcludes: [],
+  copyCodeResourceIncludes: undefined,
+  uiTransformOptimization: false,
+  sdkPath: 'D:/Program Files/Huawei/DevEco Studio/sdk',
+  needPreloadSoFileSet: {},
+  preloadSoFilePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\preload\\default\\preload.json',
+  useSourceHash: false,
+  localModuleParamMap: {},
+  otherPaths: {
+    'entry/*': [
+      '..\\*',
+      '..\\..\\..\\build\\default\\generated\\profile\\default\\*'
+    ]
+  },
+  collectImportersConfig: undefined
+}
+[2025-10-23T16:24:14.681] [DEBUG] debug-file - Compile arkts with external api path: D:\Program Files\Huawei\DevEco Studio\sdk\default\hms\ets
+[2025-10-23T16:24:14.682] [DEBUG] debug-file - Since there is no instance or instance is terminated, create a new worker pool.
+[2025-10-23T16:24:14.683] [DEBUG] debug-file - Worker pool is initialized with config:  {
+  minPoolNum: 2,
+  maxPoolNum: undefined,
+  maxCoreSize: undefined,
+  cacheCapacity: undefined,
+  cacheTtl: undefined
+}
+[2025-10-23T16:24:14.683] [DEBUG] debug-file - Create  resident worker with id: 0.
+[2025-10-23T16:24:14.684] [DEBUG] debug-file - Create  resident worker with id: 1.
+[2025-10-23T16:24:14.686] [DEBUG] debug-file - default@CompileArkTS work[0] is submitted.
+[2025-10-23T16:24:14.686] [DEBUG] debug-file - default@CompileArkTS work[0] is pushed to ready queue.
+[2025-10-23T16:24:14.686] [DEBUG] debug-file - A work dispatched to worker[23] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[22] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[21] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[20] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[18] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[17] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[16] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[15] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[14] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[13] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[12] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[11] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[10] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[9] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[8] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[7] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[6] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - A work dispatched to worker[5] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.687] [DEBUG] debug-file - Create  resident worker with id: 4.
+[2025-10-23T16:24:14.688] [DEBUG] debug-file - default@CompileArkTS work[0] has been dispatched to worker[4].
+[2025-10-23T16:24:14.688] [DEBUG] debug-file - default@CompileArkTS work[0] is dispatched.
+[2025-10-23T16:24:14.688] [DEBUG] debug-file - entry : default@CompileArkTS cost memory 2.3959579467773438
+[2025-10-23T16:24:14.689] [DEBUG] debug-file - Executing task :entry:default@BuildJS
+[2025-10-23T16:24:14.692] [DEBUG] debug-file - entry : default@BuildJS cost memory 0.38945770263671875
+[2025-10-23T16:24:14.692] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 56 ms 
+[2025-10-23T16:24:14.692] [INFO] debug-file - Finished :entry:default@BuildJS... after 3 ms 
+[2025-10-23T16:24:14.693] [DEBUG] debug-file - Executing task :entry:default@CacheNativeLibs
+[2025-10-23T16:24:14.693] [DEBUG] debug-file - Task 'entry:default@CacheNativeLibs' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:14.693] [DEBUG] debug-file - default@CacheNativeLibs work[1] is submitted.
+[2025-10-23T16:24:14.694] [DEBUG] debug-file - default@CacheNativeLibs work[1] is pushed to ready queue.
+[2025-10-23T16:24:14.694] [DEBUG] debug-file - A work dispatched to worker[23] failed because unable to get work from ready queue.
+[2025-10-23T16:24:14.694] [DEBUG] debug-file - Create  resident worker with id: 22.
+[2025-10-23T16:24:14.694] [DEBUG] debug-file - default@CacheNativeLibs work[1] has been dispatched to worker[22].
+[2025-10-23T16:24:14.694] [DEBUG] debug-file - default@CacheNativeLibs work[1] is dispatched.
+[2025-10-23T16:24:14.694] [DEBUG] debug-file - entry : default@CacheNativeLibs cost memory 0.1642608642578125
+[2025-10-23T16:24:15.340] [DEBUG] debug-file - worker[22] has one work done.
+[2025-10-23T16:24:15.340] [DEBUG] debug-file - default@CacheNativeLibs work[1] done.
+[2025-10-23T16:24:15.340] [DEBUG] debug-file - A work dispatched to worker[22] failed because unable to get work from ready queue.
+[2025-10-23T16:24:15.340] [INFO] debug-file - Finished :entry:default@CacheNativeLibs... after 6 ms 
+[2025-10-23T16:24:19.025] [WARN] debug-file - [33mWARN: [33m[33mArkTS:WARN File: D:/tl/www/applications_app_samples_fyj/code/DocsSample/Ability/EnvConfig/entry/src/main/ets/EnvAbility/EnvAbility4.ets:22:5
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+
+[2025-10-23T16:24:19.025] [DEBUG] debug-file - Ark compile task finished.finished time is 196501393131400
+[2025-10-23T16:24:19.025] [DEBUG] debug-file - worker[4] has one work done.
+[2025-10-23T16:24:19.027] [DEBUG] debug-file - default@CompileArkTS work[0] done.
+[2025-10-23T16:24:19.027] [DEBUG] debug-file - A work dispatched to worker[4] failed because unable to get work from ready queue.
+[2025-10-23T16:24:19.028] [INFO] debug-file - Finished :entry:default@CompileArkTS... after 2 s 771 ms 
+[2025-10-23T16:24:19.029] [DEBUG] debug-file - Executing task :entry:default@GeneratePkgModuleJson
+[2025-10-23T16:24:19.029] [DEBUG] debug-file - File: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\preload\default\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-10-23T16:24:19.029] [DEBUG] debug-file - Task 'entry:default@GeneratePkgModuleJson' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.031] [DEBUG] debug-file - entry : default@GeneratePkgModuleJson cost memory 0.083404541015625
+[2025-10-23T16:24:19.031] [DEBUG] debug-file - runTaskFromQueue task cost before running: 6 s 395 ms 
+[2025-10-23T16:24:19.031] [INFO] debug-file - Finished :entry:default@GeneratePkgModuleJson... after 3 ms 
+[2025-10-23T16:24:19.032] [DEBUG] debug-file - Executing task :entry:default@ProcessCompiledResources
+[2025-10-23T16:24:19.032] [DEBUG] debug-file - File: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\preload\default\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-10-23T16:24:19.032] [DEBUG] debug-file - Task 'entry:default@ProcessCompiledResources' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.032] [DEBUG] debug-file - entry : default@ProcessCompiledResources cost memory 0.0702667236328125
+[2025-10-23T16:24:19.032] [DEBUG] debug-file - runTaskFromQueue task cost before running: 6 s 397 ms 
+[2025-10-23T16:24:19.032] [INFO] debug-file - Finished :entry:default@ProcessCompiledResources... after 1 ms 
+[2025-10-23T16:24:19.034] [DEBUG] debug-file - Executing task :entry:default@PackageHap
+[2025-10-23T16:24:19.036] [DEBUG] debug-file - Use tool [D:\Program Files\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\app_packing_tool.jar]
+ [
+  'java',
+  '-Dfile.encoding=GBK',
+  '-jar',
+  'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\lib\\app_packing_tool.jar',
+  '--mode',
+  'hap',
+  '--force',
+  'true',
+  '--lib-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\stripped_native_libs\\default',
+  '--json-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\package\\default\\module.json',
+  '--resources-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\default\\resources',
+  '--index-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\default\\resources.index',
+  '--pack-info-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\outputs\\default\\pack.info',
+  '--out-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\outputs\\default\\entry-default-unsigned.hap',
+  '--ets-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\loader_out\\default\\ets',
+  '--pkg-context-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\loader\\default\\pkgContextInfo.json'
+]
+[2025-10-23T16:24:19.061] [DEBUG] debug-file - java daemon socket received message:{"code":0,"message":"pack success"}
+[2025-10-23T16:24:19.064] [DEBUG] debug-file - entry : default@PackageHap cost memory 0.5784530639648438
+[2025-10-23T16:24:19.064] [DEBUG] debug-file - runTaskFromQueue task cost before running: 6 s 428 ms 
+[2025-10-23T16:24:19.064] [INFO] debug-file - Finished :entry:default@PackageHap... after 31 ms 
+[2025-10-23T16:24:19.065] [DEBUG] debug-file - Executing task :entry:default@PackingCheck
+[2025-10-23T16:24:19.069] [DEBUG] debug-file - entry : default@PackingCheck cost memory 0.3540496826171875
+[2025-10-23T16:24:19.069] [DEBUG] debug-file - runTaskFromQueue task cost before running: 6 s 433 ms 
+[2025-10-23T16:24:19.069] [INFO] debug-file - Finished :entry:default@PackingCheck... after 4 ms 
+[2025-10-23T16:24:19.071] [DEBUG] debug-file - Executing task :entry:default@SignHap
+[2025-10-23T16:24:19.071] [WARN] debug-file - Will skip sign 'hos_hap'. No signingConfigs profile is configured in current project.
+             If needed, configure the signingConfigs in D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5.
+[2025-10-23T16:24:19.072] [DEBUG] debug-file - entry : default@SignHap cost memory 0.06594085693359375
+[2025-10-23T16:24:19.072] [DEBUG] debug-file - runTaskFromQueue task cost before running: 6 s 436 ms 
+[2025-10-23T16:24:19.072] [INFO] debug-file - Finished :entry:default@SignHap... after 2 ms 
+[2025-10-23T16:24:19.073] [DEBUG] debug-file - Executing task :entry:default@CollectDebugSymbol
+[2025-10-23T16:24:19.074] [DEBUG] debug-file - entry : default@CollectDebugSymbol cost memory 0.119140625
+[2025-10-23T16:24:19.074] [DEBUG] debug-file - runTaskFromQueue task cost before running: 6 s 438 ms 
+[2025-10-23T16:24:19.074] [INFO] debug-file - Finished :entry:default@CollectDebugSymbol... after 1 ms 
+[2025-10-23T16:24:19.074] [DEBUG] debug-file - Executing task :entry:assembleHap
+[2025-10-23T16:24:19.074] [DEBUG] debug-file - entry : assembleHap cost memory 0.01442718505859375
+[2025-10-23T16:24:19.074] [DEBUG] debug-file - runTaskFromQueue task cost before running: 6 s 439 ms 
+[2025-10-23T16:24:19.074] [INFO] debug-file - Finished :entry:assembleHap... after 1 ms 
+[2025-10-23T16:24:19.083] [INFO] debug-file - BUILD SUCCESSFUL in 6 s 447 ms 
+[2025-10-23T16:24:19.084] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\app.json5 cache by regenerate.
+[2025-10-23T16:24:19.084] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\module.json5 cache by regenerate.
+[2025-10-23T16:24:19.084] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:19.085] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:19.085] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\profile\main_pages.json cache by regenerate.
+[2025-10-23T16:24:19.085] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigor\hvigor-config.json5 cache by regenerate.
+[2025-10-23T16:24:19.085] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\mock\mock-config.json5 cache by regenerate.
+[2025-10-23T16:24:19.085] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:19.085] [DEBUG] debug-file - Update task entry:default@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:19.085] [DEBUG] debug-file - Incremental task entry:default@PreBuild post-execution cost:3 ms .
+[2025-10-23T16:24:19.086] [DEBUG] debug-file - Update task entry:default@CreateModuleInfo output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\profile\default\ModuleInfo.ts cache.
+[2025-10-23T16:24:19.086] [DEBUG] debug-file - Incremental task entry:default@CreateModuleInfo post-execution cost:1 ms .
+[2025-10-23T16:24:19.086] [DEBUG] debug-file - Update task entry:default@GenerateMetadata input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\module.json5 cache by regenerate.
+[2025-10-23T16:24:19.086] [DEBUG] debug-file - Update task entry:default@GenerateMetadata output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\hap_metadata\default\output_metadata.json cache.
+[2025-10-23T16:24:19.086] [DEBUG] debug-file - Incremental task entry:default@GenerateMetadata post-execution cost:1 ms .
+[2025-10-23T16:24:19.087] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\app.json5 cache by regenerate.
+[2025-10-23T16:24:19.087] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:19.087] [DEBUG] debug-file - Update task entry:default@MergeProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\module.json5 cache by regenerate.
+[2025-10-23T16:24:19.087] [DEBUG] debug-file - Update task entry:default@MergeProfile output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\merge_profile\default\module.json cache.
+[2025-10-23T16:24:19.087] [DEBUG] debug-file - Update task entry:default@MergeProfile output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest cache.
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Incremental task entry:default@MergeProfile post-execution cost:2 ms .
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\app.json5 cache by regenerate.
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Update task entry:default@CreateBuildProfile output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\profile\default\BuildProfile.ets cache.
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Incremental task entry:default@CreateBuildProfile post-execution cost:1 ms .
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Update task entry:default@GeneratePkgContextInfo output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache.
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Incremental task entry:default@GeneratePkgContextInfo post-execution cost:1 ms .
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Update task entry:default@ProcessIntegratedHsp output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build\cache\default\integrated_hsp\integratedHspCache.json cache.
+[2025-10-23T16:24:19.088] [DEBUG] debug-file - Incremental task entry:default@ProcessIntegratedHsp post-execution cost:1 ms .
+[2025-10-23T16:24:19.089] [DEBUG] debug-file - Update task entry:default@MakePackInfo input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\app.json5 cache by regenerate.
+[2025-10-23T16:24:19.089] [DEBUG] debug-file - Update task entry:default@MakePackInfo input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\module.json5 cache by regenerate.
+[2025-10-23T16:24:19.089] [DEBUG] debug-file - Update task entry:default@MakePackInfo input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:19.089] [DEBUG] debug-file - Update task entry:default@MakePackInfo input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\profile\backup_config.json cache by regenerate.
+[2025-10-23T16:24:19.089] [DEBUG] debug-file - Update task entry:default@MakePackInfo output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\default\pack.info cache.
+[2025-10-23T16:24:19.089] [DEBUG] debug-file - Incremental task entry:default@MakePackInfo post-execution cost:1 ms .
+[2025-10-23T16:24:19.090] [DEBUG] debug-file - Update task entry:default@SyscapTransform input file:D:\Program Files\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\syscap_tool.exe cache by regenerate.
+[2025-10-23T16:24:19.090] [DEBUG] debug-file - Update task entry:default@SyscapTransform input file:D:\Program Files\Huawei\DevEco Studio\sdk\default\openharmony\ets\api\device-define cache by regenerate.
+[2025-10-23T16:24:19.090] [DEBUG] debug-file - Update task entry:default@SyscapTransform output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\syscap\default\rpcid.sc cache.
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Incremental task entry:default@SyscapTransform post-execution cost:2 ms .
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Update task entry:default@ProcessProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\merge_profile\default\module.json cache by regenerate.
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Update task entry:default@ProcessProfile output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\process_profile\default\module.json cache.
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Incremental task entry:default@ProcessProfile post-execution cost:1 ms .
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\module.json5 cache by regenerate.
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:19.091] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\router_map\default\temp-router-map.json cache.
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Update task entry:default@ProcessRouterMap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\router_map\default\loader-router-map.json cache.
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Incremental task entry:default@ProcessRouterMap post-execution cost:1 ms .
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\module.json5 cache by regenerate.
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Update task entry:default@ProcessShareConfig output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\share_config\default\temp-share-config.json cache.
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Incremental task entry:default@ProcessShareConfig post-execution cost:1 ms .
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Update task entry:default@ProcessStartupConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:19.092] [DEBUG] debug-file - Update task entry:default@ProcessStartupConfig output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\startup\default\startup_config.json cache.
+[2025-10-23T16:24:19.093] [DEBUG] debug-file - Incremental task entry:default@ProcessStartupConfig post-execution cost:1 ms .
+[2025-10-23T16:24:19.093] [DEBUG] debug-file - Update task entry:default@ProcessResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\resConfig.json cache.
+[2025-10-23T16:24:19.093] [DEBUG] debug-file - Update task entry:default@ProcessResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\opt-compression.json cache.
+[2025-10-23T16:24:19.093] [DEBUG] debug-file - Incremental task entry:default@ProcessResource post-execution cost:1 ms .
+[2025-10-23T16:24:19.093] [DEBUG] debug-file - Update task entry:default@GenerateLoaderJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\mock\mock-config.json5 cache by regenerate.
+[2025-10-23T16:24:19.093] [DEBUG] debug-file - Update task entry:default@GenerateLoaderJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:19.094] [DEBUG] debug-file - Update task entry:default@GenerateLoaderJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\router_map\default\temp-router-map.json cache by regenerate.
+[2025-10-23T16:24:19.094] [DEBUG] debug-file - Update task entry:default@GenerateLoaderJson output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\loader.json cache.
+[2025-10-23T16:24:19.094] [DEBUG] debug-file - Incremental task entry:default@GenerateLoaderJson post-execution cost:1 ms .
+[2025-10-23T16:24:19.094] [DEBUG] debug-file - Update task entry:default@ProcessLibs input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:19.094] [DEBUG] debug-file - Update task entry:default@ProcessLibs input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:19.094] [DEBUG] debug-file - Update task entry:default@ProcessLibs output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\libs\default cache.
+[2025-10-23T16:24:19.094] [DEBUG] debug-file - Incremental task entry:default@ProcessLibs post-execution cost:1 ms .
+[2025-10-23T16:24:19.095] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources cache by regenerate.
+[2025-10-23T16:24:19.096] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources cache by regenerate.
+[2025-10-23T16:24:19.097] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\process_profile\default\module.json cache by regenerate.
+[2025-10-23T16:24:19.097] [DEBUG] debug-file - Update task entry:default@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\resConfig.json cache by regenerate.
+[2025-10-23T16:24:19.097] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default cache.
+[2025-10-23T16:24:19.099] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\r\default\ResourceTable.h cache.
+[2025-10-23T16:24:19.099] [DEBUG] debug-file - Update task entry:default@CompileResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\r\default cache.
+[2025-10-23T16:24:19.099] [DEBUG] debug-file - Incremental task entry:default@CompileResource post-execution cost:5 ms .
+[2025-10-23T16:24:19.099] [DEBUG] debug-file - Update task entry:default@DoNativeStrip input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\libs\default cache by regenerate.
+[2025-10-23T16:24:19.099] [DEBUG] debug-file - Update task entry:default@DoNativeStrip output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\stripped_native_libs\default cache.
+[2025-10-23T16:24:19.099] [DEBUG] debug-file - Incremental task entry:default@DoNativeStrip post-execution cost:1 ms .
+[2025-10-23T16:24:19.100] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default cache by regenerate.
+[2025-10-23T16:24:19.101] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\resources\rawfile cache by regenerate.
+[2025-10-23T16:24:19.101] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\ResourceTable.txt cache by regenerate.
+[2025-10-23T16:24:19.101] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\ark_module.json cache by regenerate.
+[2025-10-23T16:24:19.101] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\resources\base\profile cache by regenerate.
+[2025-10-23T16:24:19.101] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\ets cache by regenerate.
+[2025-10-23T16:24:19.102] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:19.103] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\profile\default\BuildProfile.ets cache by regenerate.
+[2025-10-23T16:24:19.103] [DEBUG] debug-file - Update task entry:default@CompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\mock\mock-config.json5 cache by regenerate.
+[2025-10-23T16:24:19.103] [DEBUG] debug-file - Update task entry:default@CompileArkTS output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\default\ets cache.
+[2025-10-23T16:24:19.103] [DEBUG] debug-file - Incremental task entry:default@CompileArkTS post-execution cost:4 ms .
+[2025-10-23T16:24:19.104] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default cache by regenerate.
+[2025-10-23T16:24:19.104] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\resources\rawfile cache by regenerate.
+[2025-10-23T16:24:19.104] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\ResourceTable.txt cache by regenerate.
+[2025-10-23T16:24:19.104] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\ark_module.json cache by regenerate.
+[2025-10-23T16:24:19.104] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\resources\base\profile cache by regenerate.
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Update task entry:default@BuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Update task entry:default@BuildJS output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\default\js cache.
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Incremental task entry:default@BuildJS post-execution cost:2 ms .
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Update task entry:default@CacheNativeLibs input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\stripped_native_libs\default cache by regenerate.
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Update task entry:default@CacheNativeLibs input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\libs\default cache by regenerate.
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Update task entry:default@CacheNativeLibs output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\patch\default\base_native_libs.json cache.
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Incremental task entry:default@CacheNativeLibs post-execution cost:1 ms .
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Update task entry:default@GeneratePkgModuleJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\module.json cache by regenerate.
+[2025-10-23T16:24:19.105] [DEBUG] debug-file - Update task entry:default@GeneratePkgModuleJson output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\package\default\module.json cache.
+[2025-10-23T16:24:19.106] [DEBUG] debug-file - Incremental task entry:default@GeneratePkgModuleJson post-execution cost:1 ms .
+[2025-10-23T16:24:19.106] [DEBUG] debug-file - Incremental task entry:default@ProcessCompiledResources post-execution cost:1 ms .
+[2025-10-23T16:24:19.106] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\stripped_native_libs\default cache by regenerate.
+[2025-10-23T16:24:19.106] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\module.json cache by regenerate.
+[2025-10-23T16:24:19.106] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\resources cache by regenerate.
+[2025-10-23T16:24:19.107] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\default\resources.index cache by regenerate.
+[2025-10-23T16:24:19.107] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\default\pack.info cache by regenerate.
+[2025-10-23T16:24:19.107] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\default\ets cache by regenerate.
+[2025-10-23T16:24:19.107] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\default\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:19.107] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\default\ets\sourceMaps.map cache by regenerate.
+[2025-10-23T16:24:19.107] [DEBUG] debug-file - Update task entry:default@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\profile\default\BuildProfile.ets cache by regenerate.
+[2025-10-23T16:24:19.107] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\default\entry-default-unsigned.hap cache.
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\source_map\default\sourceMaps.map cache.
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Update task entry:default@PackageHap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\default\mapping\sourceMaps.map cache.
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Incremental task entry:default@PackageHap post-execution cost:3 ms .
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Update task entry:default@SignHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\default\entry-default-unsigned.hap cache by regenerate.
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Update task entry:default@SignHap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\default\entry-default-signed.hap cache.
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Incremental task entry:default@SignHap post-execution cost:1 ms .
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\default\ets\sourceMaps.map cache by regenerate.
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\libs\default cache by regenerate.
+[2025-10-23T16:24:19.108] [DEBUG] debug-file - Update task entry:default@CollectDebugSymbol output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\default\symbol cache.
+[2025-10-23T16:24:19.109] [DEBUG] debug-file - Incremental task entry:default@CollectDebugSymbol post-execution cost:1 ms .
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Cleanup worker 0.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Worker 0 has been cleaned up.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Current idle worker size: 3.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Current resident worker size: 4.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Cleanup worker 1.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Worker 1 has been cleaned up.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Current idle worker size: 2.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Current resident worker size: 4.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Cleanup worker 22.
+[2025-10-23T16:24:19.128] [DEBUG] debug-file - Worker 22 has been cleaned up.
+[2025-10-23T16:24:19.129] [DEBUG] debug-file - Current idle worker size: 1.
+[2025-10-23T16:24:19.129] [DEBUG] debug-file - Current resident worker size: 4.
+[2025-10-23T16:24:19.131] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-10-23T16:24:19.131] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-10-23T16:24:19.131] [DEBUG] debug-file - hvigor build process will be closed.
+[2025-10-23T16:24:19.131] [DEBUG] debug-file - java daemon socket close code:1000 reason:close by user
+[2025-10-23T16:24:19.135] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-10-23T16:24:19.135] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-10-23T16:24:19.136] [DEBUG] debug-file - worker[0] exits with exit code 1.
+[2025-10-23T16:24:19.136] [DEBUG] debug-file - worker[1] exits with exit code 1.
+[2025-10-23T16:24:19.141] [DEBUG] debug-file - worker[22] exits with exit code 1.
+[2025-10-23T16:24:19.399] [DEBUG] debug-file - session manager: set active socket. socketId=vp_653shgCDSjMHXAAAD
+[2025-10-23T16:24:19.404] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-10-23T16:24:19.409] [DEBUG] debug-file - Hvigor init with startParameters:{
+  hvigorfileTypeCheck: false,
+  parallelExecution: true,
+  incrementalExecution: true,
+  printStackTrace: false,
+  daemon: true,
+  analyze: 0,
+  logLevel: Level { level: 20000, levelStr: 'INFO', colour: 'green' },
+  optimizationStrategy: 'memory',
+  hotCompile: undefined,
+  hotReloadBuild: undefined
+}
+[2025-10-23T16:24:19.412] [DEBUG] debug-file - Cache service initialization finished in 3 ms 
+[2025-10-23T16:24:19.413] [DEBUG] debug-file - hvigorfile, resolving D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigorfile.ts
+[2025-10-23T16:24:19.416] [DEBUG] debug-file - hvigorfile, require result:  { default: { plugins: [] } }
+[2025-10-23T16:24:19.416] [DEBUG] debug-file - hvigorfile, binding system plugins null
+[2025-10-23T16:24:19.419] [DEBUG] debug-file - Start initialize project's product build option map with build mode test.
+[2025-10-23T16:24:19.419] [DEBUG] debug-file - Picking option from product 'default' with build mode 'test'.
+[2025-10-23T16:24:19.419] [DEBUG] debug-file - Product 'default' build option initialized
+[2025-10-23T16:24:19.419] [DEBUG] debug-file - End initialize project's product build option map with build mode 'test'.
+[2025-10-23T16:24:19.419] [DEBUG] debug-file - Obtain build option for product 'default'in this build.
+[2025-10-23T16:24:19.422] [DEBUG] debug-file - No signingConfig found, initRemoteHspCache failed.
+[2025-10-23T16:24:19.424] [DEBUG] debug-file - Start recording SDK configuration permission data.
+[2025-10-23T16:24:19.442] [DEBUG] debug-file - Sdk init in 20 ms 
+[2025-10-23T16:24:19.444] [DEBUG] debug-file - Project task initialization takes 2 ms 
+[2025-10-23T16:24:19.445] [DEBUG] debug-file - hvigorfile, binding custom plugins []
+[2025-10-23T16:24:19.445] [DEBUG] debug-file - hvigorfile, no custom plugins were found in D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigorfile.ts
+[2025-10-23T16:24:19.445] [DEBUG] debug-file - hvigorfile, resolve finished D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigorfile.ts
+[2025-10-23T16:24:19.445] [DEBUG] debug-file - hvigorfile, resolving D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\hvigorfile.ts
+[2025-10-23T16:24:19.448] [DEBUG] debug-file - hvigorfile, require result:  { default: { plugins: [] } }
+[2025-10-23T16:24:19.448] [DEBUG] debug-file - hvigorfile, binding system plugins null
+[2025-10-23T16:24:19.448] [DEBUG] debug-file - failed to load cangjie to dynamically generate schemas: Error: Cannot find module '@ohos/cangjie-build-support/index'
+Require stack:
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\factory\plugin-factory.js
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\index.js
+- D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigorfile.ts
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\configuration.js
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\cluster\worker-process-lifecycle.js
+- D:\Program Files\Huawei\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\process\daemon-process-boot-script.js
+[2025-10-23T16:24:19.450] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=debug
+[2025-10-23T16:24:19.450] [DEBUG] debug-file - Target 'default' config initialized
+[2025-10-23T16:24:19.450] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-10-23T16:24:19.450] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-10-23T16:24:19.450] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-10-23T16:24:19.450] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-10-23T16:24:19.450] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=release
+[2025-10-23T16:24:19.450] [DEBUG] debug-file - Target 'default' config initialized
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=test
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Target 'default' config initialized
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2025-10-23T16:24:19.451] [DEBUG] debug-file - Obtain build option for module 'entry' target 'ohosTest'in this build.
+[2025-10-23T16:24:19.452] [DEBUG] debug-file - Module entry task initialization takes 1 ms 
+[2025-10-23T16:24:19.452] [DEBUG] debug-file - hvigorfile, binding custom plugins []
+[2025-10-23T16:24:19.452] [DEBUG] debug-file - hvigorfile, no custom plugins were found in D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\hvigorfile.ts
+[2025-10-23T16:24:19.452] [DEBUG] debug-file - hvigorfile, resolve finished D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\hvigorfile.ts
+[2025-10-23T16:24:19.467] [DEBUG] debug-file - hvigorfile, resolve hvigorfile dependencies in 15 ms 
+[2025-10-23T16:24:19.467] [DEBUG] debug-file - project has submodules:entry
+[2025-10-23T16:24:19.468] [DEBUG] debug-file - start to load updatedOhPackageInfo to the disk
+[2025-10-23T16:24:19.480] [DEBUG] debug-file - load to the disk finished
+[2025-10-23T16:24:19.481] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-10-23T16:24:19.484] [DEBUG] debug-file - Module EnvConfig Collected Dependency: 
+[2025-10-23T16:24:19.484] [DEBUG] debug-file - Module EnvConfig's total dependency: 0
+[2025-10-23T16:24:19.484] [DEBUG] debug-file - Start to initialize dependency information.
+[2025-10-23T16:24:19.486] [DEBUG] debug-file - Module entry Collected Dependency: 
+[2025-10-23T16:24:19.486] [DEBUG] debug-file - Module entry's total dependency: 0
+[2025-10-23T16:24:19.489] [DEBUG] debug-file - Configuration phase cost:78 ms 
+[2025-10-23T16:24:19.490] [DEBUG] debug-file - Configuration task cost before running: 83 ms 
+[2025-10-23T16:24:19.492] [DEBUG] debug-file - Executing task :entry:ohosTest@PreBuild
+[2025-10-23T16:24:19.492] [DEBUG] debug-file - Task 'entry:ohosTest@PreBuild' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.498] [DEBUG] debug-file - current product is not Atomic service.
+[2025-10-23T16:24:19.498] [DEBUG] debug-file - Use tool [win32: JAVA_HOME, CLASSPATH]
+ [
+  { JAVA_HOME: 'D:\\Program Files\\Huawei\\DevEco Studio\\jbr' },
+  { CLASSPATH: undefined }
+]
+[2025-10-23T16:24:19.498] [DEBUG] debug-file - Use tool [win32: NODE_HOME]
+ [
+  {
+    NODE_HOME: 'D:\\Program Files\\Huawei\\DevEco Studio\\tools\\node'
+  }
+]
+[2025-10-23T16:24:19.498] [DEBUG] debug-file - entry : ohosTest@PreBuild cost memory 0.47557830810546875
+[2025-10-23T16:24:19.498] [DEBUG] debug-file - runTaskFromQueue task cost before running: 91 ms 
+[2025-10-23T16:24:19.499] [INFO] debug-file - Finished :entry:ohosTest@PreBuild... after 6 ms 
+[2025-10-23T16:24:19.500] [DEBUG] debug-file - Executing task :entry:ohosTest@CreateModuleInfo
+[2025-10-23T16:24:19.500] [DEBUG] debug-file - Task 'entry:ohosTest@CreateModuleInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.500] [DEBUG] debug-file - entry : ohosTest@CreateModuleInfo cost memory 0.0428924560546875
+[2025-10-23T16:24:19.500] [DEBUG] debug-file - runTaskFromQueue task cost before running: 94 ms 
+[2025-10-23T16:24:19.500] [INFO] debug-file - Finished :entry:ohosTest@CreateModuleInfo... after 1 ms 
+[2025-10-23T16:24:19.501] [DEBUG] debug-file - Executing task :entry:ohosTest@GenerateMetadata
+[2025-10-23T16:24:19.501] [DEBUG] debug-file - Task 'entry:ohosTest@GenerateMetadata' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.504] [DEBUG] debug-file - entry : ohosTest@GenerateMetadata cost memory 0.07283782958984375
+[2025-10-23T16:24:19.504] [DEBUG] debug-file - runTaskFromQueue task cost before running: 98 ms 
+[2025-10-23T16:24:19.504] [INFO] debug-file - Finished :entry:ohosTest@GenerateMetadata... after 4 ms 
+[2025-10-23T16:24:19.505] [DEBUG] debug-file - Executing task :entry:ohosTest@ConfigureCmake
+[2025-10-23T16:24:19.505] [DEBUG] debug-file - entry : ohosTest@ConfigureCmake cost memory 0.01618194580078125
+[2025-10-23T16:24:19.505] [DEBUG] debug-file - runTaskFromQueue task cost before running: 99 ms 
+[2025-10-23T16:24:19.506] [INFO] debug-file - Finished :entry:ohosTest@ConfigureCmake... after 1 ms 
+[2025-10-23T16:24:19.506] [DEBUG] debug-file - Executing task :entry:ohosTest@MergeProfile
+[2025-10-23T16:24:19.506] [DEBUG] debug-file - Task 'entry:ohosTest@MergeProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.507] [DEBUG] debug-file - Change app api release type with 'Release'
+[2025-10-23T16:24:19.507] [DEBUG] debug-file - Change app compile API version with '6.0.0.47'
+[2025-10-23T16:24:19.507] [DEBUG] debug-file - Change app target API version with '60000020'
+[2025-10-23T16:24:19.507] [DEBUG] debug-file - Change app minimum API version with '60000020'
+[2025-10-23T16:24:19.507] [DEBUG] debug-file - Use cli appEnvironment
+[2025-10-23T16:24:19.509] [DEBUG] debug-file - entry : ohosTest@MergeProfile cost memory 0.2834014892578125
+[2025-10-23T16:24:19.509] [DEBUG] debug-file - runTaskFromQueue task cost before running: 102 ms 
+[2025-10-23T16:24:19.509] [INFO] debug-file - Finished :entry:ohosTest@MergeProfile... after 3 ms 
+[2025-10-23T16:24:19.510] [DEBUG] debug-file - Executing task :entry:ohosTest@CreateBuildProfile
+[2025-10-23T16:24:19.510] [DEBUG] debug-file - Task 'entry:ohosTest@CreateBuildProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.512] [DEBUG] debug-file - entry : ohosTest@CreateBuildProfile cost memory 0.07511138916015625
+[2025-10-23T16:24:19.512] [DEBUG] debug-file - runTaskFromQueue task cost before running: 105 ms 
+[2025-10-23T16:24:19.512] [INFO] debug-file - Finished :entry:ohosTest@CreateBuildProfile... after 2 ms 
+[2025-10-23T16:24:19.513] [DEBUG] debug-file - Executing task :entry:ohosTest@PreCheckSyscap
+[2025-10-23T16:24:19.513] [DEBUG] debug-file - entry : ohosTest@PreCheckSyscap cost memory 0.016326904296875
+[2025-10-23T16:24:19.513] [DEBUG] debug-file - runTaskFromQueue task cost before running: 106 ms 
+[2025-10-23T16:24:19.513] [INFO] debug-file - Finished :entry:ohosTest@PreCheckSyscap... after 1 ms 
+[2025-10-23T16:24:19.513] [DEBUG] debug-file - Executing task :entry:ohosTest@GenerateOhosTestTemplate
+[2025-10-23T16:24:19.532] [DEBUG] debug-file - entry : ohosTest@GenerateOhosTestTemplate cost memory 0.7696533203125
+[2025-10-23T16:24:19.532] [DEBUG] debug-file - runTaskFromQueue task cost before running: 125 ms 
+[2025-10-23T16:24:19.532] [INFO] debug-file - Finished :entry:ohosTest@GenerateOhosTestTemplate... after 19 ms 
+[2025-10-23T16:24:19.533] [DEBUG] debug-file - Executing task :entry:ohosTest@GeneratePkgContextInfo
+[2025-10-23T16:24:19.536] [DEBUG] debug-file - Task 'entry:ohosTest@GeneratePkgContextInfo' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.537] [DEBUG] debug-file - entry : ohosTest@GeneratePkgContextInfo cost memory 0.5829620361328125
+[2025-10-23T16:24:19.537] [DEBUG] debug-file - runTaskFromQueue task cost before running: 131 ms 
+[2025-10-23T16:24:19.537] [INFO] debug-file - Finished :entry:ohosTest@GeneratePkgContextInfo... after 4 ms 
+[2025-10-23T16:24:19.540] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessIntegratedHsp
+[2025-10-23T16:24:19.540] [DEBUG] debug-file - entry : ohosTest@ProcessIntegratedHsp cost memory 0.03371429443359375
+[2025-10-23T16:24:19.540] [DEBUG] debug-file - runTaskFromQueue task cost before running: 133 ms 
+[2025-10-23T16:24:19.540] [INFO] debug-file - Finished :entry:ohosTest@ProcessIntegratedHsp... after 1 ms 
+[2025-10-23T16:24:19.541] [DEBUG] debug-file - Executing task :entry:ohosTest@BuildNativeWithCmake
+[2025-10-23T16:24:19.541] [DEBUG] debug-file - entry : ohosTest@BuildNativeWithCmake cost memory 0.01715850830078125
+[2025-10-23T16:24:19.541] [DEBUG] debug-file - runTaskFromQueue task cost before running: 135 ms 
+[2025-10-23T16:24:19.541] [INFO] debug-file - Finished :entry:ohosTest@BuildNativeWithCmake... after 1 ms 
+[2025-10-23T16:24:19.542] [DEBUG] debug-file - Executing task :entry:ohosTest@MakePackInfo
+[2025-10-23T16:24:19.542] [DEBUG] debug-file - Module Pack Info:  {
+  summary: {
+    app: { bundleName: 'c***g', bundleType: 'app', version: [Object] },
+    modules: [ [Object], [Object] ]
+  },
+  packages: [
+    {
+      deviceType: [Array],
+      moduleType: 'feature',
+      deliveryWithInstall: true,
+      name: 'entry-ohosTest'
+    }
+  ]
+}
+[2025-10-23T16:24:19.544] [DEBUG] debug-file - entry : ohosTest@MakePackInfo cost memory 0.1409759521484375
+[2025-10-23T16:24:19.544] [DEBUG] debug-file - runTaskFromQueue task cost before running: 138 ms 
+[2025-10-23T16:24:19.545] [INFO] debug-file - Finished :entry:ohosTest@MakePackInfo... after 3 ms 
+[2025-10-23T16:24:19.545] [DEBUG] debug-file - Executing task :entry:ohosTest@SyscapTransform
+[2025-10-23T16:24:19.545] [DEBUG] debug-file - File: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest\syscap.json' from 'sysCapJsonPath' is not exists, just ignore.
+[2025-10-23T16:24:19.546] [DEBUG] debug-file - Task 'entry:ohosTest@SyscapTransform' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.546] [DEBUG] debug-file - entry : ohosTest@SyscapTransform cost memory 0.05989837646484375
+[2025-10-23T16:24:19.546] [DEBUG] debug-file - runTaskFromQueue task cost before running: 139 ms 
+[2025-10-23T16:24:19.546] [INFO] debug-file - Finished :entry:ohosTest@SyscapTransform... after 1 ms 
+[2025-10-23T16:24:19.547] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessProfile
+[2025-10-23T16:24:19.547] [DEBUG] debug-file - Task 'entry:ohosTest@ProcessProfile' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.548] [DEBUG] debug-file - [
+  'D:\\Program Files\\Huawei\\DevEco Studio\\tools\\node\\node.exe',
+  'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\bin\\ark\\ts2abc.js',
+  '--target-api-version',
+  '20'
+]
+[2025-10-23T16:24:19.681] [DEBUG] debug-file - 13.0.1.0
+[2025-10-23T16:24:19.683] [DEBUG] debug-file - No need to add fake ui ability because of not in preview process.
+[2025-10-23T16:24:19.686] [DEBUG] debug-file - entry : ohosTest@ProcessProfile cost memory 0.4879150390625
+[2025-10-23T16:24:19.686] [DEBUG] debug-file - runTaskFromQueue task cost before running: 279 ms 
+[2025-10-23T16:24:19.686] [INFO] debug-file - Finished :entry:ohosTest@ProcessProfile... after 139 ms 
+[2025-10-23T16:24:19.687] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessRouterMap
+[2025-10-23T16:24:19.691] [DEBUG] debug-file - entry : ohosTest@ProcessRouterMap cost memory 0.11597442626953125
+[2025-10-23T16:24:19.691] [DEBUG] debug-file - runTaskFromQueue task cost before running: 285 ms 
+[2025-10-23T16:24:19.692] [INFO] debug-file - Finished :entry:ohosTest@ProcessRouterMap... after 5 ms 
+[2025-10-23T16:24:19.693] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessShareConfig
+[2025-10-23T16:24:19.695] [DEBUG] debug-file - entry : ohosTest@ProcessShareConfig cost memory 0.0975341796875
+[2025-10-23T16:24:19.695] [DEBUG] debug-file - runTaskFromQueue task cost before running: 288 ms 
+[2025-10-23T16:24:19.695] [INFO] debug-file - Finished :entry:ohosTest@ProcessShareConfig... after 2 ms 
+[2025-10-23T16:24:19.696] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessStartupConfig
+[2025-10-23T16:24:19.696] [DEBUG] debug-file - Task 'entry:ohosTest@ProcessStartupConfig' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.697] [DEBUG] debug-file - entry : ohosTest@ProcessStartupConfig cost memory 0.1141815185546875
+[2025-10-23T16:24:19.697] [DEBUG] debug-file - runTaskFromQueue task cost before running: 291 ms 
+[2025-10-23T16:24:19.698] [INFO] debug-file - Finished :entry:ohosTest@ProcessStartupConfig... after 2 ms 
+[2025-10-23T16:24:19.698] [DEBUG] debug-file - Executing task :entry:ohosTest@BuildNativeWithNinja
+[2025-10-23T16:24:19.700] [DEBUG] debug-file - entry : ohosTest@BuildNativeWithNinja cost memory 0.0328216552734375
+[2025-10-23T16:24:19.700] [DEBUG] debug-file - runTaskFromQueue task cost before running: 294 ms 
+[2025-10-23T16:24:19.700] [INFO] debug-file - Finished :entry:ohosTest@BuildNativeWithNinja... after 2 ms 
+[2025-10-23T16:24:19.701] [DEBUG] debug-file - restool module names: entry,entry_test; moduleName=entry, taskName=ohosTest@ProcessResource
+[2025-10-23T16:24:19.703] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessResource
+[2025-10-23T16:24:19.703] [DEBUG] debug-file - Task 'entry:ohosTest@ProcessResource' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.706] [DEBUG] debug-file - entry : ohosTest@ProcessResource cost memory 0.2725067138671875
+[2025-10-23T16:24:19.708] [DEBUG] debug-file - runTaskFromQueue task cost before running: 301 ms 
+[2025-10-23T16:24:19.711] [INFO] debug-file - Finished :entry:ohosTest@ProcessResource... after 5 ms 
+[2025-10-23T16:24:19.712] [DEBUG] debug-file - Executing task :entry:ohosTest@GenerateLoaderJson
+[2025-10-23T16:24:19.712] [DEBUG] debug-file - Task 'entry:ohosTest@GenerateLoaderJson' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:19.718] [DEBUG] debug-file - entry : ohosTest@GenerateLoaderJson cost memory 0.42572021484375
+[2025-10-23T16:24:19.718] [DEBUG] debug-file - runTaskFromQueue task cost before running: 311 ms 
+[2025-10-23T16:24:19.720] [INFO] debug-file - Finished :entry:ohosTest@GenerateLoaderJson... after 7 ms 
+[2025-10-23T16:24:19.721] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessLibs
+[2025-10-23T16:24:19.727] [DEBUG] debug-file - Worker dispatch failed, running processLibs on main thread.
+[2025-10-23T16:24:19.729] [DEBUG] debug-file - entry : ohosTest@ProcessLibs cost memory 0.3006744384765625
+[2025-10-23T16:24:19.729] [DEBUG] debug-file - runTaskFromQueue task cost before running: 323 ms 
+[2025-10-23T16:24:19.730] [INFO] debug-file - Finished :entry:ohosTest@ProcessLibs... after 9 ms 
+[2025-10-23T16:24:19.732] [DEBUG] debug-file - restool module names: entry,entry_test; moduleName=entry, taskName=ohosTest@CompileResource
+[2025-10-23T16:24:19.733] [DEBUG] debug-file - Executing task :entry:ohosTest@CompileResource
+[2025-10-23T16:24:19.740] [DEBUG] debug-file - Use tool [D:\Program Files\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\restool.exe]
+ [
+  'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\restool.exe',
+  '-l',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\ohosTest\\resConfig.json'
+]
+[2025-10-23T16:24:19.741] [DEBUG] debug-file - current process  memoryUsage: {
+  rss: 556228608,
+  heapTotal: 175206400,
+  heapUsed: 140399888,
+  external: 3233593,
+  arrayBuffers: 164513
+} os memoryUsage :19.835586547851562
+[2025-10-23T16:24:19.868] [DEBUG] debug-file - Info: Pack: normal pack mode
+
+[2025-10-23T16:24:19.902] [DEBUG] debug-file - Info: hardware concurrency count is : 24
+Info: thread count is : 24
+
+[2025-10-23T16:24:19.902] [DEBUG] debug-file - Info: thread pool is started
+
+[2025-10-23T16:24:19.904] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-10-23T16:24:19.908] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-10-23T16:24:19.908] [DEBUG] debug-file - Warning: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\media\background.png' is defined repeatedly.
+Warning: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\media\foreground.png' is defined repeatedly.
+Warning: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\media\layered_image.json' is defined repeatedly.
+
+[2025-10-23T16:24:19.910] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-10-23T16:24:19.912] [DEBUG] debug-file - Info: GenericCompiler::CompileFiles
+
+[2025-10-23T16:24:19.913] [DEBUG] debug-file - Warning: 'start_window_background' conflict, first declared.
+at D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources\base\element\color.json
+but declared again.
+at D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\src\ohosTest\resources\base\element\color.json
+
+[2025-10-23T16:24:19.916] [DEBUG] debug-file - 10-23 16:24:19.917 23064  7428 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+
+[2025-10-23T16:24:19.917] [DEBUG] debug-file - 10-23 16:24:19.917 23064  7428 E C01400/ImageTranscoderUtils: ImageFilter IN D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\background.png
+
+[2025-10-23T16:24:19.947] [DEBUG] debug-file - 10-23 16:24:19.947 23064  7428 E C01400/ImageTranscoderUtils: DecodeToRGBA IN
+10-23 16:24:19.947 23064  7428 E C01400/ImageTranscoderUtils: ImageFilter IN D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\foreground.png
+
+[2025-10-23T16:24:19.974] [DEBUG] debug-file - Info: can't scale media json file.
+
+[2025-10-23T16:24:19.974] [DEBUG] debug-file - Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\background.png
+Warning: The width or height of the png file referenced by the icon exceeds the limit (41 pixels)
+at D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\foreground.png
+Warning: D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources\base\media\layered_image.json is not png format
+
+[2025-10-23T16:24:19.975] [DEBUG] debug-file - Info: restool resources compile success.
+
+[2025-10-23T16:24:19.975] [DEBUG] debug-file - Info: thread pool is stopped
+
+[2025-10-23T16:24:20.032] [DEBUG] debug-file - entry : ohosTest@CompileResource cost memory -11.23590087890625
+[2025-10-23T16:24:20.032] [DEBUG] debug-file - runTaskFromQueue task cost before running: 626 ms 
+[2025-10-23T16:24:20.033] [INFO] debug-file - Finished :entry:ohosTest@CompileResource... after 300 ms 
+[2025-10-23T16:24:20.034] [DEBUG] debug-file - Executing task :entry:ohosTest@DoNativeStrip
+[2025-10-23T16:24:20.034] [DEBUG] debug-file - Task 'entry:ohosTest@DoNativeStrip' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:20.035] [DEBUG] debug-file - entry : ohosTest@DoNativeStrip cost memory 0.06870269775390625
+[2025-10-23T16:24:20.035] [DEBUG] debug-file - runTaskFromQueue task cost before running: 628 ms 
+[2025-10-23T16:24:20.035] [INFO] debug-file - Finished :entry:ohosTest@DoNativeStrip... after 2 ms 
+[2025-10-23T16:24:20.036] [DEBUG] debug-file - Executing task :entry:ohosTest@OhosTestCompileArkTS
+[2025-10-23T16:24:20.036] [DEBUG] debug-file - obfuscationOptions: undefined
+[2025-10-23T16:24:20.046] [DEBUG] debug-file - build config:
+[2025-10-23T16:24:20.047] [DEBUG] debug-file - {
+  moduleType: 'entry',
+  perf: 0,
+  targetName: '.ohosTest',
+  packageManagerType: 'ohpm',
+  localPropertiesPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\local.properties',
+  isPreview: false,
+  isOhosTest: true,
+  isLocalTest: false,
+  buildMode: 'Debug',
+  hotReloadBuild: undefined,
+  watchMode: 'false',
+  aceProfilePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile',
+  etsLoaderPath: 'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader',
+  modulePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+  testFrameworkPar: {
+    testMode: 'ohosTest',
+    coveragePathFilter: undefined,
+    coverageMode: undefined
+  },
+  needCoverageInsert: false,
+  debugLine: false,
+  projectTopDir: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig',
+  compileSdkVersion: 20,
+  compatibleSdkVersion: 20,
+  compatibleSdkVersionStage: undefined,
+  bundleName: 'c***g',
+  etsLoaderVersion: '6.0.0.47',
+  etsLoaderReleaseType: 'Release',
+  aotCompileMode: 'type',
+  apPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\modules.ap',
+  entryModuleName: 'entry',
+  entryModuleVersion: '1.0.0',
+  entryPackageName: 'entry',
+  allModuleNameHash: 'fecb693ac834a1bfc28574dd7a70176d',
+  externalApiPaths: [
+    'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\hms\\ets'
+  ],
+  compilerTypes: [],
+  isCrossplatform: false,
+  hvigorPluginFile: undefined,
+  compilePluginPath: undefined,
+  buildGeneratedProfilePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\generated\\profile\\ohosTest',
+  bundleType: 'app',
+  arkTSVersion: undefined,
+  apiVersion: 20,
+  needCompleteSourcesMap: true,
+  isFaMode: false,
+  strictMode: {
+    caseSensitiveCheck: true,
+    useNormalizedOHMUrl: true,
+    noExternalImportByPath: true
+  },
+  buildDir: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build',
+  deviceTypes: [ 'phone' ],
+  useNormalizedOHMUrl: true,
+  pkgContextInfo: {
+    '@ohos/hypium': {
+      packageName: '@ohos/hypium',
+      bundleName: '*****',
+      moduleName: '',
+      version: '1.0.24',
+      entryPath: 'index.js',
+      isSO: false,
+      dependencyAlias: ''
+    },
+    '@ohos/hamock': {
+      packageName: '@ohos/hamock',
+      bundleName: '*****',
+      moduleName: '',
+      version: '1.0.0',
+      entryPath: 'index.ets',
+      isSO: false,
+      dependencyAlias: ''
+    },
+    entry: {
+      packageName: 'entry',
+      bundleName: '*****',
+      moduleName: '',
+      version: '',
+      entryPath: 'build/default/intermediates/src/ohosTest/',
+      isSO: false,
+      dependencyAlias: ''
+    }
+  },
+  ohPackagePathMap: {},
+  dependencyAliasMap: {},
+  permission: { requestPermissions: undefined, definePermissions: undefined },
+  integratedHsp: false,
+  projectArkOption: undefined,
+  sourceMapDir: undefined,
+  branchElimination: false,
+  transformLib: undefined,
+  caseSensitiveCheck: true,
+  tsImportSendable: false,
+  resolveConflictMode: true,
+  depName2RootPath: {},
+  depName2DepInfo: {},
+  rootPathSet: [
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+  ],
+  useNativeResolver: true,
+  shouldEmitJs: true,
+  useTscResolve: false,
+  singleFileEmit: false,
+  userProjectConfig: {
+    autoLazyImport: false,
+    allowEmptyBundleName: false,
+    reExportCheckMode: 'noCheck',
+    executionMode: 'memory',
+    usePathPlaceholder: false,
+    writeRollupCache: true,
+    isExpandImportEnabled: false,
+    expandImportExclude: '',
+    ignoreCrossplatformCheck: false,
+    isPreloadSoEnabled: false
+  },
+  skipOhModulesLint: false,
+  executionMode: 'memory',
+  autoLazyImport: false,
+  allowEmptyBundleName: false,
+  reExportCheckMode: 'noCheck',
+  usePathPlaceholder: false,
+  writeRollupCache: true,
+  isExpandImportEnabled: false,
+  expandImportExclude: '',
+  ignoreCrossplatformCheck: false,
+  isPreloadSoEnabled: false,
+  arkCompileCachePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule',
+  aceModuleJsonPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\ohosTest\\ark_module.json',
+  appResource: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\ohosTest\\ResourceTable.txt',
+  rawFileResource: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\rawfile',
+  resourceTableHash: '95fef20412a4be23ea571f18c895575d',
+  runtimeOS: 'HarmonyOS',
+  sdkInfo: 'false:20:6.0.0.47:Release',
+  aceModuleRoot: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\src\\ohosTest\\ets',
+  compileMode: 'esmodule',
+  aceSuperVisualPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\ohosTest\\supervisual',
+  aceBuildJson: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\loader\\ohosTest\\loader.json',
+  cachePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule\\debug',
+  aceModuleBuild: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\ets',
+  supportChunks: false,
+  declaredFilesPath: undefined,
+  shouldCollectDirectImportees: false,
+  isByteCodeHarOptimize: false,
+  expandImportPath: undefined,
+  pkgNameToPkgBriefInfo: {
+    entry: {
+      pkgRoot: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      originalSourceRoots: undefined,
+      sourceRoots: [Array],
+      pkgName: 'entry'
+    }
+  },
+  projectModel: {
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\main': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    },
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\src\\ohosTest\\ets': {
+      moduleName: 'entry_test',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    },
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\ohosTest': {
+      moduleName: 'entry_test',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    },
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry': {
+      moduleName: 'entry',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    },
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig': {
+      moduleName: 'EnvConfig',
+      modulePkgPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig',
+      belongProjectPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig'
+    }
+  },
+  pkgJsonFileHash: '5768198ec95a67a703b944a524411c54',
+  allModulePaths: [
+    'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry'
+  ],
+  routerMap: {},
+  obfuscationOptions: undefined,
+  byteCodeHarToDependencyKeys: undefined,
+  compileBlockPkg: [],
+  mockParams: {
+    decorator: '@MockSetup',
+    packageName: '@ohos/hamock',
+    etsSourceRootPath: 'src/main/ets',
+    mockConfigPath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\src\\mock\\mock-config.json5',
+    mockConfigKey2ModuleInfo: {},
+    source2ModuleIdMap: {}
+  },
+  copyCodeResourceEnable: false,
+  copyCodeResourceExcludes: [],
+  copyCodeResourceIncludes: undefined,
+  uiTransformOptimization: false,
+  sdkPath: 'D:/Program Files/Huawei/DevEco Studio/sdk',
+  needPreloadSoFileSet: {},
+  preloadSoFilePath: 'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\preload\\ohosTest\\preload.json',
+  useSourceHash: false,
+  localModuleParamMap: {},
+  otherPaths: {
+    'entry/*': [
+      '..\\..\\..\\..\\..\\..\\src\\main\\*',
+      '..\\..\\..\\..\\generated\\profile\\ohosTest\\*'
+    ]
+  },
+  collectImportersConfig: undefined
+}
+[2025-10-23T16:24:20.047] [DEBUG] debug-file - Compile arkts with external api path: D:\Program Files\Huawei\DevEco Studio\sdk\default\hms\ets
+[2025-10-23T16:24:20.047] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[2] is submitted.
+[2025-10-23T16:24:20.047] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[2] is pushed to ready queue.
+[2025-10-23T16:24:20.047] [DEBUG] debug-file - A work dispatched to worker[23] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[22] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[21] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[20] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[19] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[18] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[17] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[16] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[15] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[14] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[13] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[12] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[11] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[10] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[9] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[8] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[7] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[6] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - A work dispatched to worker[5] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[2] has been dispatched to worker[4].
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[2] is dispatched.
+[2025-10-23T16:24:20.048] [DEBUG] debug-file - entry : ohosTest@OhosTestCompileArkTS cost memory 2.1664962768554688
+[2025-10-23T16:24:20.049] [DEBUG] debug-file - Executing task :entry:ohosTest@OhosTestBuildJS
+[2025-10-23T16:24:20.050] [DEBUG] debug-file - entry : ohosTest@OhosTestBuildJS cost memory 0.15966796875
+[2025-10-23T16:24:20.050] [DEBUG] debug-file - runTaskFromQueue task cost before running: 644 ms 
+[2025-10-23T16:24:20.050] [INFO] debug-file - Finished :entry:ohosTest@OhosTestBuildJS... after 2 ms 
+[2025-10-23T16:24:20.051] [DEBUG] debug-file - Executing task :entry:ohosTest@CacheNativeLibs
+[2025-10-23T16:24:20.051] [DEBUG] debug-file - Task 'entry:ohosTest@CacheNativeLibs' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:20.051] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[3] is submitted.
+[2025-10-23T16:24:20.051] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[3] is pushed to ready queue.
+[2025-10-23T16:24:20.051] [DEBUG] debug-file - A work dispatched to worker[23] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.051] [DEBUG] debug-file - Create  resident worker with id: 22.
+[2025-10-23T16:24:20.052] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[3] has been dispatched to worker[22].
+[2025-10-23T16:24:20.052] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[3] is dispatched.
+[2025-10-23T16:24:20.052] [DEBUG] debug-file - entry : ohosTest@CacheNativeLibs cost memory 0.16150665283203125
+[2025-10-23T16:24:20.654] [DEBUG] debug-file - worker[22] has one work done.
+[2025-10-23T16:24:20.654] [DEBUG] debug-file - ohosTest@CacheNativeLibs work[3] done.
+[2025-10-23T16:24:20.654] [DEBUG] debug-file - A work dispatched to worker[22] failed because unable to get work from ready queue.
+[2025-10-23T16:24:20.654] [INFO] debug-file - Finished :entry:ohosTest@CacheNativeLibs... after 5 ms 
+[2025-10-23T16:24:22.056] [DEBUG] debug-file - Ark compile task finished.finished time is 196504423946000
+[2025-10-23T16:24:22.056] [DEBUG] debug-file - worker[4] has one work done.
+[2025-10-23T16:24:22.057] [DEBUG] debug-file - ohosTest@OhosTestCompileArkTS work[2] done.
+[2025-10-23T16:24:22.057] [DEBUG] debug-file - A work dispatched to worker[4] failed because unable to get work from ready queue.
+[2025-10-23T16:24:22.059] [INFO] debug-file - Finished :entry:ohosTest@OhosTestCompileArkTS... after 2 s 20 ms 
+[2025-10-23T16:24:22.060] [DEBUG] debug-file - Executing task :entry:ohosTest@OhosTestCopyMockConfigJson
+[2025-10-23T16:24:22.060] [DEBUG] debug-file - Task 'entry:ohosTest@OhosTestCopyMockConfigJson' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:22.061] [DEBUG] debug-file - entry : ohosTest@OhosTestCopyMockConfigJson cost memory 0.10820770263671875
+[2025-10-23T16:24:22.061] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 655 ms 
+[2025-10-23T16:24:22.061] [INFO] debug-file - Finished :entry:ohosTest@OhosTestCopyMockConfigJson... after 2 ms 
+[2025-10-23T16:24:22.062] [DEBUG] debug-file - Executing task :entry:ohosTest@GeneratePkgModuleJson
+[2025-10-23T16:24:22.062] [DEBUG] debug-file - File: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\preload\ohosTest\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-10-23T16:24:22.062] [DEBUG] debug-file - Task 'entry:ohosTest@GeneratePkgModuleJson' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:22.064] [DEBUG] debug-file - entry : ohosTest@GeneratePkgModuleJson cost memory 0.082977294921875
+[2025-10-23T16:24:22.064] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 657 ms 
+[2025-10-23T16:24:22.064] [INFO] debug-file - Finished :entry:ohosTest@GeneratePkgModuleJson... after 2 ms 
+[2025-10-23T16:24:22.064] [DEBUG] debug-file - Executing task :entry:ohosTest@ProcessCompiledResources
+[2025-10-23T16:24:22.065] [DEBUG] debug-file - File: 'D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\preload\ohosTest\preload.json' from 'preloadSoJsonPath' is not exists, just ignore.
+[2025-10-23T16:24:22.065] [DEBUG] debug-file - Task 'entry:ohosTest@ProcessCompiledResources' cost while wrapping incremental declarations: 1 ms 
+[2025-10-23T16:24:22.065] [DEBUG] debug-file - entry : ohosTest@ProcessCompiledResources cost memory 0.0701446533203125
+[2025-10-23T16:24:22.065] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 658 ms 
+[2025-10-23T16:24:22.065] [INFO] debug-file - Finished :entry:ohosTest@ProcessCompiledResources... after 1 ms 
+[2025-10-23T16:24:22.066] [DEBUG] debug-file - Executing task :entry:ohosTest@PackageHap
+[2025-10-23T16:24:22.068] [DEBUG] debug-file - Use tool [D:\Program Files\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\app_packing_tool.jar]
+ [
+  'java',
+  '-Dfile.encoding=GBK',
+  '-jar',
+  'D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\toolchains\\lib\\app_packing_tool.jar',
+  '--mode',
+  'hap',
+  '--force',
+  'true',
+  '--lib-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\stripped_native_libs\\ohosTest',
+  '--json-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\package\\ohosTest\\module.json',
+  '--resources-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources',
+  '--index-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources.index',
+  '--pack-info-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\outputs\\ohosTest\\pack.info',
+  '--out-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\outputs\\ohosTest\\entry-ohosTest-unsigned.hap',
+  '--ets-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\ets',
+  '--pkg-context-path',
+  'D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\EnvConfig\\entry\\build\\default\\intermediates\\loader\\ohosTest\\pkgContextInfo.json'
+]
+[2025-10-23T16:24:22.095] [DEBUG] debug-file - java daemon socket received message:{"code":0,"message":"pack success"}
+[2025-10-23T16:24:22.098] [DEBUG] debug-file - entry : ohosTest@PackageHap cost memory 0.403839111328125
+[2025-10-23T16:24:22.099] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 692 ms 
+[2025-10-23T16:24:22.099] [INFO] debug-file - Finished :entry:ohosTest@PackageHap... after 33 ms 
+[2025-10-23T16:24:22.100] [DEBUG] debug-file - Executing task :entry:ohosTest@PackingCheck
+[2025-10-23T16:24:22.102] [DEBUG] debug-file - entry : ohosTest@PackingCheck cost memory 0.227630615234375
+[2025-10-23T16:24:22.102] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 695 ms 
+[2025-10-23T16:24:22.102] [INFO] debug-file - Finished :entry:ohosTest@PackingCheck... after 2 ms 
+[2025-10-23T16:24:22.103] [DEBUG] debug-file - Executing task :entry:ohosTest@SignHap
+[2025-10-23T16:24:22.103] [WARN] debug-file - Will skip sign 'hos_hap'. No signingConfigs profile is configured in current project.
+             If needed, configure the signingConfigs in D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5.
+[2025-10-23T16:24:22.104] [DEBUG] debug-file - entry : ohosTest@SignHap cost memory 0.065887451171875
+[2025-10-23T16:24:22.104] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 697 ms 
+[2025-10-23T16:24:22.104] [INFO] debug-file - Finished :entry:ohosTest@SignHap... after 1 ms 
+[2025-10-23T16:24:22.105] [DEBUG] debug-file - Executing task :entry:ohosTest@CollectDebugSymbol
+[2025-10-23T16:24:22.105] [DEBUG] debug-file - entry : ohosTest@CollectDebugSymbol cost memory 0.1195220947265625
+[2025-10-23T16:24:22.105] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 699 ms 
+[2025-10-23T16:24:22.106] [INFO] debug-file - Finished :entry:ohosTest@CollectDebugSymbol... after 1 ms 
+[2025-10-23T16:24:22.106] [DEBUG] debug-file - Executing task :entry:assembleHap
+[2025-10-23T16:24:22.106] [DEBUG] debug-file - entry : assembleHap cost memory 0.01427459716796875
+[2025-10-23T16:24:22.106] [DEBUG] debug-file - runTaskFromQueue task cost before running: 2 s 699 ms 
+[2025-10-23T16:24:22.106] [INFO] debug-file - Finished :entry:assembleHap... after 1 ms 
+[2025-10-23T16:24:22.113] [INFO] debug-file - BUILD SUCCESSFUL in 2 s 707 ms 
+[2025-10-23T16:24:22.114] [DEBUG] debug-file - Update task entry:ohosTest@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\app.json5 cache by regenerate.
+[2025-10-23T16:24:22.114] [DEBUG] debug-file - Update task entry:ohosTest@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-10-23T16:24:22.114] [DEBUG] debug-file - Update task entry:ohosTest@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:22.114] [DEBUG] debug-file - Update task entry:ohosTest@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:22.114] [DEBUG] debug-file - Update task entry:ohosTest@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\hvigor\hvigor-config.json5 cache by regenerate.
+[2025-10-23T16:24:22.114] [DEBUG] debug-file - Update task entry:ohosTest@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\mock\mock-config.json5 cache by regenerate.
+[2025-10-23T16:24:22.114] [DEBUG] debug-file - Update task entry:ohosTest@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Update task entry:ohosTest@PreBuild input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Incremental task entry:ohosTest@PreBuild post-execution cost:2 ms .
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Update task entry:ohosTest@CreateModuleInfo output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\profile\ohosTest\ModuleInfo.ts cache.
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Incremental task entry:ohosTest@CreateModuleInfo post-execution cost:1 ms .
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Update task entry:ohosTest@GenerateMetadata input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Update task entry:ohosTest@GenerateMetadata output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\hap_metadata\ohosTest\output_metadata.json cache.
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Incremental task entry:ohosTest@GenerateMetadata post-execution cost:1 ms .
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\app.json5 cache by regenerate.
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-10-23T16:24:22.115] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\merge_profile\ohosTest\module.json cache.
+[2025-10-23T16:24:22.116] [DEBUG] debug-file - Update task entry:ohosTest@MergeProfile output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest cache.
+[2025-10-23T16:24:22.117] [DEBUG] debug-file - Incremental task entry:ohosTest@MergeProfile post-execution cost:3 ms .
+[2025-10-23T16:24:22.118] [DEBUG] debug-file - Update task entry:ohosTest@CreateBuildProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\app.json5 cache by regenerate.
+[2025-10-23T16:24:22.118] [DEBUG] debug-file - Update task entry:ohosTest@CreateBuildProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:22.118] [DEBUG] debug-file - Update task entry:ohosTest@CreateBuildProfile output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\profile\ohosTest\BuildProfile.ets cache.
+[2025-10-23T16:24:22.118] [DEBUG] debug-file - Incremental task entry:ohosTest@CreateBuildProfile post-execution cost:1 ms .
+[2025-10-23T16:24:22.118] [DEBUG] debug-file - Update task entry:ohosTest@GenerateOhosTestTemplate output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\src\ohosTest cache.
+[2025-10-23T16:24:22.119] [DEBUG] debug-file - Incremental task entry:ohosTest@GenerateOhosTestTemplate post-execution cost:2 ms .
+[2025-10-23T16:24:22.119] [DEBUG] debug-file - Update task entry:ohosTest@GeneratePkgContextInfo output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache.
+[2025-10-23T16:24:22.119] [DEBUG] debug-file - Incremental task entry:ohosTest@GeneratePkgContextInfo post-execution cost:1 ms .
+[2025-10-23T16:24:22.119] [DEBUG] debug-file - Update task entry:ohosTest@ProcessIntegratedHsp output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build\cache\default\integrated_hsp\integratedHspCache.json cache.
+[2025-10-23T16:24:22.119] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessIntegratedHsp post-execution cost:1 ms .
+[2025-10-23T16:24:22.120] [DEBUG] debug-file - Update task entry:ohosTest@MakePackInfo input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\app.json5 cache by regenerate.
+[2025-10-23T16:24:22.120] [DEBUG] debug-file - Update task entry:ohosTest@MakePackInfo input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-10-23T16:24:22.120] [DEBUG] debug-file - Update task entry:ohosTest@MakePackInfo input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:22.120] [DEBUG] debug-file - Update task entry:ohosTest@MakePackInfo output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\ohosTest\pack.info cache.
+[2025-10-23T16:24:22.120] [DEBUG] debug-file - Incremental task entry:ohosTest@MakePackInfo post-execution cost:1 ms .
+[2025-10-23T16:24:22.120] [DEBUG] debug-file - Update task entry:ohosTest@SyscapTransform input file:D:\Program Files\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\syscap_tool.exe cache by regenerate.
+[2025-10-23T16:24:22.120] [DEBUG] debug-file - Update task entry:ohosTest@SyscapTransform input file:D:\Program Files\Huawei\DevEco Studio\sdk\default\openharmony\ets\api\device-define cache by regenerate.
+[2025-10-23T16:24:22.121] [DEBUG] debug-file - Update task entry:ohosTest@SyscapTransform output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\syscap\ohosTest\rpcid.sc cache.
+[2025-10-23T16:24:22.121] [DEBUG] debug-file - Incremental task entry:ohosTest@SyscapTransform post-execution cost:1 ms .
+[2025-10-23T16:24:22.121] [DEBUG] debug-file - Update task entry:ohosTest@ProcessProfile input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\merge_profile\ohosTest\module.json cache by regenerate.
+[2025-10-23T16:24:22.121] [DEBUG] debug-file - Update task entry:ohosTest@ProcessProfile output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\process_profile\ohosTest\module.json cache.
+[2025-10-23T16:24:22.121] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessProfile post-execution cost:1 ms .
+[2025-10-23T16:24:22.121] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:22.121] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\router_map\ohosTest\temp-router-map.json cache.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessRouterMap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\router_map\ohosTest\loader-router-map.json cache.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessRouterMap post-execution cost:1 ms .
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\oh-package.json5 cache by regenerate.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest\module.json5 cache by regenerate.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:22.122] [DEBUG] debug-file - Update task entry:ohosTest@ProcessShareConfig output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\share_config\ohosTest\temp-share-config.json cache.
+[2025-10-23T16:24:22.123] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessShareConfig post-execution cost:1 ms .
+[2025-10-23T16:24:22.123] [DEBUG] debug-file - Update task entry:ohosTest@ProcessStartupConfig input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:22.123] [DEBUG] debug-file - Update task entry:ohosTest@ProcessStartupConfig output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\startup\ohosTest\startup_config.json cache.
+[2025-10-23T16:24:22.123] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessStartupConfig post-execution cost:1 ms .
+[2025-10-23T16:24:22.123] [DEBUG] debug-file - Update task entry:ohosTest@ProcessResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resConfig.json cache.
+[2025-10-23T16:24:22.123] [DEBUG] debug-file - Update task entry:ohosTest@ProcessResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\opt-compression.json cache.
+[2025-10-23T16:24:22.123] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessResource post-execution cost:1 ms .
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Update task entry:ohosTest@GenerateLoaderJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\mock\mock-config.json5 cache by regenerate.
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Update task entry:ohosTest@GenerateLoaderJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Update task entry:ohosTest@GenerateLoaderJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\router_map\ohosTest\temp-router-map.json cache by regenerate.
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Update task entry:ohosTest@GenerateLoaderJson output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\loader.json cache.
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Incremental task entry:ohosTest@GenerateLoaderJson post-execution cost:1 ms .
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Update task entry:ohosTest@ProcessLibs input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Update task entry:ohosTest@ProcessLibs input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build-profile.json5 cache by regenerate.
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Update task entry:ohosTest@ProcessLibs output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\libs\ohosTest cache.
+[2025-10-23T16:24:22.124] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessLibs post-execution cost:1 ms .
+[2025-10-23T16:24:22.125] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\AppScope\resources cache by regenerate.
+[2025-10-23T16:24:22.125] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\process_profile\ohosTest\module.json cache by regenerate.
+[2025-10-23T16:24:22.126] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\resources cache by regenerate.
+[2025-10-23T16:24:22.127] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\src\ohosTest\resources cache by regenerate.
+[2025-10-23T16:24:22.127] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resConfig.json cache by regenerate.
+[2025-10-23T16:24:22.127] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest cache.
+[2025-10-23T16:24:22.129] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\r\ohosTest\ResourceTable.h cache.
+[2025-10-23T16:24:22.129] [DEBUG] debug-file - Update task entry:ohosTest@CompileResource output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\r\ohosTest cache.
+[2025-10-23T16:24:22.130] [DEBUG] debug-file - Incremental task entry:ohosTest@CompileResource post-execution cost:6 ms .
+[2025-10-23T16:24:22.130] [DEBUG] debug-file - Update task entry:ohosTest@DoNativeStrip input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\libs\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.130] [DEBUG] debug-file - Update task entry:ohosTest@DoNativeStrip output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\stripped_native_libs\ohosTest cache.
+[2025-10-23T16:24:22.130] [DEBUG] debug-file - Incremental task entry:ohosTest@DoNativeStrip post-execution cost:1 ms .
+[2025-10-23T16:24:22.131] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.131] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resources\rawfile cache by regenerate.
+[2025-10-23T16:24:22.131] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\ark_module.json cache by regenerate.
+[2025-10-23T16:24:22.131] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resources\base\profile cache by regenerate.
+[2025-10-23T16:24:22.132] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\src\ohosTest\ets cache by regenerate.
+[2025-10-23T16:24:22.132] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.133] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:22.133] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\profile\ohosTest\BuildProfile.ets cache by regenerate.
+[2025-10-23T16:24:22.133] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\mock\mock-config.json5 cache by regenerate.
+[2025-10-23T16:24:22.133] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\main\ets cache by regenerate.
+[2025-10-23T16:24:22.134] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCompileArkTS output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\ohosTest\ets cache.
+[2025-10-23T16:24:22.135] [DEBUG] debug-file - Incremental task entry:ohosTest@OhosTestCompileArkTS post-execution cost:5 ms .
+[2025-10-23T16:24:22.135] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.135] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resources\rawfile cache by regenerate.
+[2025-10-23T16:24:22.136] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\ark_module.json cache by regenerate.
+[2025-10-23T16:24:22.136] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resources\base\profile cache by regenerate.
+[2025-10-23T16:24:22.136] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\src\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.137] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:22.137] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestBuildJS output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\ohosTest\js cache.
+[2025-10-23T16:24:22.137] [DEBUG] debug-file - Incremental task entry:ohosTest@OhosTestBuildJS post-execution cost:3 ms .
+[2025-10-23T16:24:22.137] [DEBUG] debug-file - Update task entry:ohosTest@CacheNativeLibs input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\stripped_native_libs\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.137] [DEBUG] debug-file - Update task entry:ohosTest@CacheNativeLibs input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\libs\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.137] [DEBUG] debug-file - Update task entry:ohosTest@CacheNativeLibs output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\patch\ohosTest\base_native_libs.json cache.
+[2025-10-23T16:24:22.137] [DEBUG] debug-file - Incremental task entry:ohosTest@CacheNativeLibs post-execution cost:1 ms .
+[2025-10-23T16:24:22.137] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCopyMockConfigJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\mock-config.json cache by regenerate.
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Update task entry:ohosTest@OhosTestCopyMockConfigJson output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resources\rawfile\mock\mock-config.json cache.
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Incremental task entry:ohosTest@OhosTestCopyMockConfigJson post-execution cost:1 ms .
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Update task entry:ohosTest@GeneratePkgModuleJson input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\module.json cache by regenerate.
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Update task entry:ohosTest@GeneratePkgModuleJson output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\package\ohosTest\module.json cache.
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Incremental task entry:ohosTest@GeneratePkgModuleJson post-execution cost:1 ms .
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Incremental task entry:ohosTest@ProcessCompiledResources post-execution cost:1 ms .
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\stripped_native_libs\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\module.json cache by regenerate.
+[2025-10-23T16:24:22.138] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resources cache by regenerate.
+[2025-10-23T16:24:22.139] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\res\ohosTest\resources.index cache by regenerate.
+[2025-10-23T16:24:22.139] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\ohosTest\pack.info cache by regenerate.
+[2025-10-23T16:24:22.140] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\ohosTest\ets cache by regenerate.
+[2025-10-23T16:24:22.140] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader\ohosTest\pkgContextInfo.json cache by regenerate.
+[2025-10-23T16:24:22.140] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\ohosTest\ets\sourceMaps.map cache by regenerate.
+[2025-10-23T16:24:22.140] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\generated\profile\ohosTest\BuildProfile.ets cache by regenerate.
+[2025-10-23T16:24:22.140] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\ohosTest\entry-ohosTest-unsigned.hap cache.
+[2025-10-23T16:24:22.140] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\source_map\ohosTest\sourceMaps.map cache.
+[2025-10-23T16:24:22.140] [DEBUG] debug-file - Update task entry:ohosTest@PackageHap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\ohosTest\mapping\sourceMaps.map cache.
+[2025-10-23T16:24:22.140] [DEBUG] debug-file - Incremental task entry:ohosTest@PackageHap post-execution cost:3 ms .
+[2025-10-23T16:24:22.141] [DEBUG] debug-file - Update task entry:ohosTest@SignHap input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\ohosTest\entry-ohosTest-unsigned.hap cache by regenerate.
+[2025-10-23T16:24:22.141] [DEBUG] debug-file - Update task entry:ohosTest@SignHap output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\ohosTest\entry-ohosTest-signed.hap cache.
+[2025-10-23T16:24:22.141] [DEBUG] debug-file - Incremental task entry:ohosTest@SignHap post-execution cost:1 ms .
+[2025-10-23T16:24:22.141] [DEBUG] debug-file - Update task entry:ohosTest@CollectDebugSymbol input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\loader_out\ohosTest\ets\sourceMaps.map cache by regenerate.
+[2025-10-23T16:24:22.141] [DEBUG] debug-file - Update task entry:ohosTest@CollectDebugSymbol input file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\intermediates\libs\ohosTest cache by regenerate.
+[2025-10-23T16:24:22.141] [DEBUG] debug-file - Update task entry:ohosTest@CollectDebugSymbol output file:D:\tl\www\applications_app_samples_fyj\code\DocsSample\Ability\EnvConfig\entry\build\default\outputs\ohosTest\symbol cache.
+[2025-10-23T16:24:22.141] [DEBUG] debug-file - Incremental task entry:ohosTest@CollectDebugSymbol post-execution cost:1 ms .
+[2025-10-23T16:24:22.154] [DEBUG] debug-file - Cleanup worker 22.
+[2025-10-23T16:24:22.155] [DEBUG] debug-file - Worker 22 has been cleaned up.
+[2025-10-23T16:24:22.155] [DEBUG] debug-file - Current idle worker size: 1.
+[2025-10-23T16:24:22.155] [DEBUG] debug-file - Current resident worker size: 2.
+[2025-10-23T16:24:22.155] [DEBUG] debug-file - hvigor build process will be closed.
+[2025-10-23T16:24:22.155] [DEBUG] debug-file - java daemon socket close code:1000 reason:close by user
+[2025-10-23T16:24:22.159] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-10-23T16:24:22.160] [DEBUG] debug-file - session manager: send message to worker process.
+[2025-10-23T16:24:22.160] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-10-23T16:24:22.160] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2025-10-23T16:24:22.161] [DEBUG] debug-file - worker[22] exits with exit code 1.

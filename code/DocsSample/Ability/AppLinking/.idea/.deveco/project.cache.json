@@ -1,0 +1,16 @@
+{
+	"CommonInfo":{
+		"project.ide.version":"6.0.0.858",
+		"current.select.product":"default",
+		"current.select.buildMode":"",
+		"crossplatform.projectType":""
+	},
+	"BuildOptions":{
+		"SELECT_BUILD_PRODUCT":"default",
+		"BUNDLE_NAME":"com.example.applinking",
+		"BUILD_PATH":{
+			"OUTPUT_PATH":"D:\\tl\\www\\applications_app_samples_fyj\\code\\DocsSample\\Ability\\AppLinking\\build\\outputs\\default"
+		},
+		"SELECT_BUILD_MODE":""
+	}
+}

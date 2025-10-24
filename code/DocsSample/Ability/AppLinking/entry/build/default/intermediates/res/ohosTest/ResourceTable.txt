@@ -1,0 +1,16 @@
+string EntryAbility_desc 0x02000004
+string EntryAbility_label 0x02000005
+string TestAbility_desc 0x0200000c
+string TestAbility_label 0x0200000d
+string app_name 0x02000000
+string module_desc 0x02000006
+string module_test_desc 0x0200000e
+color start_window_background 0x02000007
+float page_text_font_size 0x02000008
+media background 0x02000001
+media foreground 0x02000002
+media layered_image 0x02000003
+media startIcon 0x02000009
+profile backup_config 0x0200000a
+profile main_pages 0x0200000b
+profile test_pages 0x0200000f
