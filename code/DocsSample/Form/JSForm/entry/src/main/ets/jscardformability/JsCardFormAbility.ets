@@ -20,6 +20,7 @@ import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKi
 import { BusinessError } from '@kit.BasicServicesKit';
 import { preferences } from '@kit.ArkData';
 // [End JSForm_JsCardFormAbility_import]
+// [Start JSForm_JsCardFormAbility_FormExtensionAbility]
 // [Start JSForm_JsCardFormAbility_onAddForm]
 // [Start JSForm_JsCardFormAbility_onRemoveForm]
 // [Start JSForm_JsCardFormAbility_onUpdateForm]
@@ -116,3 +117,4 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 // [End JSForm_JsCardFormAbility_onAddForm]
 // [End JSForm_JsCardFormAbility_onRemoveForm]
 // [End JSForm_JsCardFormAbility_onUpdateForm]
+// [End JSForm_JsCardFormAbility_FormExtensionAbility]
