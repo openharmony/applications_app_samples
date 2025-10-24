@@ -98,12 +98,14 @@ struct FilePicker {
   async onPageShow() {
     if (!this.isFlag) {
       Logger.info(`onPageShow start`);
+      hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'onPageShow start');
       await this.mediaFileUri.getAllFiles(context, this.dlpFileInfos);
     }
   }
 
   async onPageHide() {
     Logger.info(`onPageHide start`);
+    hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'onPageHide start');
     this.isFlag = false;
   }
 
@@ -116,14 +118,17 @@ struct FilePicker {
       let documentPicker = new picker.DocumentViewPicker();
       documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult) => {
         Logger.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
+        hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
         if (DocumentSaveResult !== null && DocumentSaveResult !== undefined) {
           this.uri = DocumentSaveResult[0];
           Logger.info(`save file uri: ${this.uri}`);
+          hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'save file uri: %{public}s', this.uri);
         }
         this.getFilenameByUri(this.uri);
       })
     } catch (err) {
       Logger.error('DocumentViewPicker failed with err: ' + err);
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'DocumentViewPicker failed with err: ' + err);
     }
   }
 
@@ -136,12 +141,14 @@ struct FilePicker {
       let documentPicker = new picker.DocumentViewPicker();
       documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult) => {
         Logger.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
+        hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
         let editFlag = false;
         if (DocumentSelectResult !== null && DocumentSelectResult !== undefined) {
           DocumentSelectResult.forEach((value) => {
             this.uri = value;
             editFlag = true;
             Logger.info(`select file uri: ${this.uri}`);
+            hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'select file uri: %{public}s', this.uri);
           })
         }
         if (editFlag) {
@@ -150,6 +157,7 @@ struct FilePicker {
       })
     } catch (err) {
       Logger.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'DocumentViewPicker failed with err: ' + JSON.stringify(err));
     }
   }
 
@@ -158,6 +166,7 @@ struct FilePicker {
     // 获取文件名称
     this.fileName = (myUri.split('/').pop()) as string;
     Logger.info('the fileName is' + this.fileName);
+    hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'the fileName is' + this.fileName);
     await this.onPageShow();
   }
 
@@ -204,6 +213,7 @@ struct FilePicker {
     };
     context.startAbility(want, (err: BusinessError) => {
       Logger.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
     });
   }
 
@@ -213,6 +223,7 @@ struct FilePicker {
       file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
     } catch (error) {
       Logger.error(`OpenSync failed. Code: ${error.code}, message : ${error.message}`);
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, `OpenSync failed. Code: ${error.code}, message : ${error.message}`);
     }
     return file;
   }
@@ -239,9 +250,12 @@ struct FilePicker {
     try {
       console.log('openDLPFile:' + JSON.stringify(want));
       console.log('openDLPFile: delegator:' + JSON.stringify(context));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'openDLPFile:' + JSON.stringify(want));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'openDLPFile: delegator:' + JSON.stringify(context));
       context.startAbility(want);
     } catch (err) {
-      console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
+      console.error('openDLPFile startAbility failed' + (err as BusinessError).code);
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'openDLPFile startAbility failed' + (err as BusinessError).code);
       this.result = 'openDLPFile startAbility failed' + (err as BusinessError).code;
       return;
     }
@@ -275,10 +289,13 @@ struct FilePicker {
         this.result = 'startDLPManagerForResult result.resultCode:' + res.resultCode;
         console.info('startDLPManagerForResult res.resultCode:' + res.resultCode);
         console.info('startDLPManagerForResult res.want:' + JSON.stringify(res.want));
+        hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'startDLPManagerForResult res.resultCode:' + res.resultCode);
+        hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'startDLPManagerForResult res.want:' + JSON.stringify(res.want));
       });
     } catch (err) {
       this.result = 'startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
     }
   }
   // [End dlp_generateDlpFiles]
@@ -289,9 +306,11 @@ struct FilePicker {
     dlpPermission.isInSandbox().then((data) => {
       this.result = 'isInSandbox result: ' + JSON.stringify(data);
       console.log('isInSandbox result: ' + JSON.stringify(data));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'isInSandbox result: ' + JSON.stringify(data));
     }).catch((err:BusinessError) => {
       this.result = 'isInSandbox error: ' + JSON.stringify(err);
-      console.log('isInSandbox error: ' + JSON.stringify(err));
+      console.error('isInSandbox error: ' + JSON.stringify(err));
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'isInSandbox error: ' + JSON.stringify(err));
     });
   }
   // [End dlp_isInSandBox]
@@ -302,9 +321,11 @@ struct FilePicker {
     dlpPermission.getDLPPermissionInfo().then((data) => {
       this.result = 'getDLPPermissionInfo result: ' + JSON.stringify(data);
       console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'getDLPPermissionInfo result: ' + JSON.stringify(data));
     }).catch((err:BusinessError) => {
       this.result = 'getDLPPermissionInfo error: ' + JSON.stringify(err);
-      console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
+      console.error('getDLPPermissionInfo: ' + JSON.stringify(err));
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'getDLPPermissionInfo error: ' + JSON.stringify(err));
     });
   }
   // [End dlp_getDLPPermissionInfo]
@@ -315,6 +336,8 @@ struct FilePicker {
     dlpPermission.getDLPSupportedFileTypes((err, result) => {
       console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
       console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'getDLPSupportedFileTypes: ' + JSON.stringify(err));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'getDLPSupportedFileTypes: ' + JSON.stringify(result));
       this.result = 'getDLPSupportedFileTypes result: ' + JSON.stringify(result);
     });
   }
@@ -335,9 +358,11 @@ struct FilePicker {
         this.result = '请打开一个dlp文件! ';
       }
       console.info('res', res);
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'res' + res);
     }).catch((err:BusinessError) => {
       this.result = 'isDLPFile error: ' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     }).finally(() => {
         fs.closeSync(file);
     });
@@ -348,14 +373,17 @@ struct FilePicker {
   // 8 订阅、取消订阅DLP打开事件。
   event(info: dlpPermission.AccessedDLPFileInfo) {
     console.info('openDlpFile event', info.uri, info.lastOpenTime);
+    hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'openDlpFile event' + info.uri + info.lastOpenTime);
   }
 
   unSubscribe() {
     try {
       dlpPermission.off('openDLPFile', this.event); // 取消订阅
       this.result = 'unSubscribe result: 已取消注册';
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'unSubscribe result: 已取消注册');
     } catch (err) {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
       this.result = 'unSubscribe error: 取消注册失败';
     }
   }
@@ -364,8 +392,10 @@ struct FilePicker {
     try {
       dlpPermission.on('openDLPFile', this.event); // 订阅
       this.result = 'subscribe result: 已注册';
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'subscribe result: 已注册');
     } catch (err) {
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
       this.result = 'subscribe error: 注册失败';
     }
   }
@@ -377,9 +407,11 @@ struct FilePicker {
     dlpPermission.getDLPFileAccessRecords().then((res) => {
       this.result = 'getDLPFileAccessRecords result: ' + JSON.stringify(res);
       console.info('res', JSON.stringify(res));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'res' + JSON.stringify(res));
     }).catch((err: BusinessError) => {
       this.result = 'getDLPFileAccessRecords error: ' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error: ', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     });
   }
   // [End dlp_getDLPFileAccessRecords]
@@ -390,9 +422,11 @@ struct FilePicker {
     dlpPermission.getRetentionSandboxList().then((res) => {
       this.result = 'getRetentionSandboxList result: ' + JSON.stringify(res);
       console.info('res', JSON.stringify(res));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'res' + JSON.stringify(res));
     }).catch((err: BusinessError) => {
       this.result = 'getRetentionSandboxList error' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     });
   }
   // [End dlp_getRetentionSandboxList]
@@ -403,9 +437,11 @@ struct FilePicker {
     dlpPermission.setSandboxAppConfig('configInfo').then(() => {
       this.result = 'setSandboxAppConfig result: 设置沙箱应用配置信息成功';
       console.info('res', '设置沙箱应用配置信息成功');
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'setSandboxAppConfig result: 设置沙箱应用配置信息成功');
     }).catch((err: BusinessError) => {
       this.result = 'setSandboxAppConfig error: ' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     });
   }
   // [End dlp_setSandboxAppConfig]
@@ -416,9 +452,11 @@ struct FilePicker {
     dlpPermission.cleanSandboxAppConfig().then(() => {
       this.result = 'cleanSandboxAppConfig result: 清理沙箱成功';
       console.info('res', '清理沙箱成功');
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'cleanSandboxAppConfig result: 清理沙箱成功');
     }).catch((err: BusinessError) => {
       this.result = 'cleanSandboxAppConfig error: ' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     });
   }
   // [End dlp_cleanSandboxAppConfig]
@@ -429,9 +467,11 @@ struct FilePicker {
     dlpPermission.getSandboxAppConfig().then((res) => {
       this.result = 'getSandboxAppConfig result: ' + JSON.stringify(res);
       console.info('res', JSON.stringify(res));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'getSandboxAppConfig result: ' + JSON.stringify(res));
     }).catch((err: BusinessError) => {
       this.result = 'getSandboxAppConfig error: ' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     });
   }
   // [End dlp_getSandboxAppConfig]
@@ -451,10 +491,13 @@ struct FilePicker {
         this.result = 'startDLPManagerForResult resultCode: ' + res.resultCode;
         console.info('res.resultCode', res.resultCode);
         console.info('res.want', JSON.stringify(res.want));
+        hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'res.resultCode' + res.resultCode);
+        hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'res.want' + JSON.stringify(res.want));
       }); // 打开DLP权限管理应用
     } catch (err) {
       this.result = 'startDLPManagerForResult error' + err.code + err.message;
       console.error('error', err.code, err.message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     }
   }
   // [End dlp_startDLPManagerForResult]
@@ -465,9 +508,11 @@ struct FilePicker {
     dlpPermission.isDLPFeatureProvided().then((res) => {
       this.result = 'isDLPFeatureProvided result: ' + JSON.stringify(res.valueOf());
       console.info('res', JSON.stringify(res.valueOf()));
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'isDLPFeatureProvided result: ' + JSON.stringify(res.valueOf()));
     }).catch((err: BusinessError) => {
       this.result = 'isDLPFeatureProvided error: ' + (err as BusinessError).code + (err as BusinessError).message;
       console.error('error: ', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     });
   }
   // [End dlp_isDLPFeature]
@@ -498,9 +543,11 @@ struct FilePicker {
       dlpPermission.setEnterprisePolicy(enterprisePolicy);
       console.info('set enterprise policy success');
       this.result = 'set enterprise policy success';
+      hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'set enterprise policy success');
     } catch (err) {
       console.error('error:' + err.code + err.message); // 失败报错。
       this.result = 'error:' + err.code + err.message;
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error' + (err as BusinessError).code + (err as BusinessError).message);
     }
   }
   // [End dlp_setDLPProtectPolicy]
@@ -516,13 +563,16 @@ struct FilePicker {
       identifySensitiveContent.scanFile(filepath, policies).then(records => {
         console.info('scanFile finish');
         this.result = 'scanFile finish';
+        hilog.log(HILOG_DLP_DOMAIN, HILOG_TAG, 'scanFile finish');
       }).catch((err:Error) => {
         console.error('error message', err.message);
         this.result = 'error message' + err.message;
+        hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error message' + err.message);
       })
     } catch (err) {
       console.error('error message', err.message);
       this.result = 'error message' + err.message;
+      hilog.error(HILOG_DLP_DOMAIN, HILOG_TAG, 'error message' + err.message);
     }
   }
   // [End dlp_scanSensitiveInfo]
