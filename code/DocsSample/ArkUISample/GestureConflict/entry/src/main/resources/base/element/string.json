@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Drag_instructions",
+      "value": "包括上下两层组件，上层组件绑定长按手势，下层组件绑定拖拽。其中上层组件下半区域绑定手势拦截，使该区域响应下层拖拽手势。"
+    },
+    {
+      "name": "Allow_dragging_prompt",
+      "value": "Drag 下半区蓝色区域，Image响应"
+    },
+    {
+      "name": "Stop_dragging_prompt",
+      "value": "LongPressGesture 长按上半区 红色区域，红色区域响应"
+    },
+    {
+      "name": "Playback_progress",
+      "value": "播放进度："
+    }
+  ]
+}
