@@ -12,7 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_EventDecorator]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'EventDecorator_';
 // [Start EventDecoratorTest2]
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_EventDecorator]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'EventDecorator_';
 @ComponentV2
 struct Child {
   @Param index: number = 0;
@@ -23,7 +31,7 @@ struct Child {
       Text(`Child index: ${this.index}`)
         .onClick(() => {
           this.changeIndex(20);
-          console.info(`after changeIndex ${this.index}`);
+          hilog.info(DOMAIN, TAG, BUNDLE, `after changeIndex ${this.index}`);
         })
     }
   }
@@ -39,7 +47,7 @@ struct Index {
         index: this.index,
         changeIndex: (val: number) => {
           this.index = val;
-          console.info(`in changeIndex ${this.index}`);
+          hilog.info(DOMAIN, TAG, BUNDLE, `in changeIndex ${this.index}`);
         }
       })
     }

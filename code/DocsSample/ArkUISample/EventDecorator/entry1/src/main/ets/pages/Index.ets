@@ -13,7 +13,10 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
-
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_EventDecorator]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'EventDecorator_';
 @Entry
 @Component
 struct Index3 {
@@ -25,7 +28,7 @@ struct Index3 {
             url: 'pages/EventDecoratorTest2',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 

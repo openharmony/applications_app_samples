@@ -1,14 +1,9 @@
-## @Event装饰器：规范组件输出
+# @Event装饰器：规范组件输出
 
-#### 介绍
+### 介绍
 
-本工程主要实现了对以下指南文档中 https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-event.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+本工程主要实现了对以下指南文档中 [@Event装饰器：规范组件输](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/ui/state-management/arkts-new-event.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在@ComponentV2装饰的自定义组件中使用@Event装饰器。
 
-#### 使用说明
-
-1. 此 Web 组件有页面展示
-
-### entry:
 ### 更改父组件中变量
 
 #### 介绍
@@ -16,25 +11,12 @@
 1. 使用@Event可以更改父组件中变量，当该变量作为子组件@Param变量的数据源时，该变化会同步回子组件的@Param变量。
 
 #### 效果预览
+
 <img src="screenshots/EventDecoratorTest1.gif" width="250">
 
 #### 使用说明
 
 1. 通过点击主页的EventDecoratorTest1Button按钮，跳转到EventDecoratorTest1页面，点击change to Title Two按钮change to Title One按钮，其title值会进行改变。
-
-### entry1:
-### 父组件将变化同步回子组件的过程是异步
-
-#### 介绍
-
-1. 使用@Event修改父组件的值是立刻生效的，但从父组件将变化同步回子组件的过程是异步的，即在调用完@Event的方法后，子组件内的值不会立刻变化。这是因为@Event将子组件值实际的变化能力交由父组件处理，在父组件实际决定如何处理后，将最终值在渲染之前同步回子组件。
-
-#### 效果预览
-<img src="screenshots/EventDecoratorTest2.gif" width="250">
-
-#### 使用说明
-
-1. 通过点击主页的EventDecoratorTest2Button按钮，跳转到EventDecoratorTest2页面，点击Text组件，其index也会进行改变。
 
 ### 工程目录
 
@@ -51,6 +33,23 @@ entry/src/main/
 |---|---ets
 |---|---|---tests
 |---|---|---|---Ability.test.ets            // 自动化测试用例
+```
+
+### 父组件将变化同步回子组件的过程是异步
+
+#### 介绍
+
+1. 使用@Event修改父组件的值是立刻生效的，但从父组件将变化同步回子组件的过程是异步的，即在调用完@Event的方法后，子组件内的值不会立刻变化。这是因为@Event将子组件值实际的变化能力交由父组件处理，在父组件实际决定如何处理后，将最终值在渲染之前同步回子组件。
+
+#### 效果预览
+
+<img src="screenshots/EventDecoratorTest2.gif" width="250">
+
+#### 使用说明
+
+1. 通过点击主页的EventDecoratorTest2Button按钮，跳转到EventDecoratorTest2页面，点击Text组件，其index也会进行改变。
+
+```
 entry1/src/main/
 |---ets
 |---|---entryability
@@ -65,9 +64,16 @@ entry1/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+
+1. 使用@Event可以更改父组件中变量，当该变量作为子组件@Param变量的数据源时，该变化会同步回子组件的@Param变量。
+2. 使用@Event修改父组件的值是立刻生效的，但从父组件将变化同步回子组件的过程是异步的，即在调用完@Event的方法后，子组件内的值不会立刻变化。这是因为@Event将子组件值实际的变化能力交由父组件处理，在父组件实际决定如何处理后，将最终值在渲染之前同步回子组件。
+3. 点击文字触发@Event函数事件改变子组件的值。
+4. 在调用changeIndex之后，父组件中index的值已经变化，但子组件中的index值还没有同步变化。
+5. 
 ### 相关权限
 
-不涉及
+不涉及。
 
 ### 依赖
 

@@ -15,13 +15,17 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_EventDecorator]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'EventDecorator_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      console.info('uitest: ActsAbilityTest begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -29,7 +33,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      console.info('get top ability');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -46,14 +50,20 @@ export default function abilityTest() {
       const driver = Driver.create();
       await driver.pressBack();
       await driver.delayMs(3000);
-      done()
+      done();
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
+    /**
+     * @tc.number UiTest_001
+     * @tc.name processweb_EventDecoratorTest1_001
+     * @tc.desc 测试更改父组件中变量场景示例
+     * @tc.level: Level 1
+     */
     it('processweb_EventDecoratorTest1_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_EventDecoratorTest1_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest1_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('EventDecoratorTest1Button'));
@@ -75,7 +85,7 @@ export default function abilityTest() {
       const text2 = await driver.findComponent(ON.type('Text'));
       const res2 = await text2.getText();
       expect(res2).assertEqual('Title One');
-      console.info('uitest: processweb_EventDecoratorTest1_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest1_001 end');
       done();
     })
   })
