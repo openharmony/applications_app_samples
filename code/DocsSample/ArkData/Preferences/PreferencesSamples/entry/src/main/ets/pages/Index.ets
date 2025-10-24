@@ -23,7 +23,7 @@ struct Index {
   @State text: string = 'The green button calls the interface, and the blue button sets the properties.';
 
   @State encryptSelect:number = 0
-  private encryptLst:string[] = ['false','true']
+  private encryptLst:string[] = ['false','true'];
 
   build() {
     Column({space:2}) {
