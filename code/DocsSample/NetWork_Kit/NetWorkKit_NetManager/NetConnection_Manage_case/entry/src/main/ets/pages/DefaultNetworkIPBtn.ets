@@ -25,7 +25,7 @@ const BUTTON_RADIUS = 5; // 按钮的圆角半径
 const TEXT_MARGIN_TOP_L = 10; // 长文本的上边距
 
 @Component
-export default struct defaultNetworkIPBtn {
+export default struct DefaultNetworkIPBtn {
   @Link defaultNetworkIPStatus: string;
 
   build() {

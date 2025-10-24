@@ -19,12 +19,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [End net_Connection_create_connection_import]
 
 import { promptAction } from '@kit.ArkUI';
-import connectNetworkBtn from './connectNetworkBtn';
-import allNetworksBtn from './allNetworksBtn';
-import defaultNetworkBtn from './defaultNetworkBtn';
-import defaultNetworkIPBtn from './defaultNetworkIPBtn';
-import defaultNetSyncBtn from './defaultNetSyncBtn';
-import getAllNets from './getAllNets';
+import ConnectNetworkBtn from './ConnectNetworkBtn';
+import AllNetworksBtn from './AllNetworksBtn';
+import DefaultNetworkBtn from './DefaultNetworkBtn';
+import DefaultNetworkIPBtn from './DefaultNetworkIPBtn';
+import DefaultNetSyncBtn from './DefaultNetSyncBtn';
+import GetAllNets from './GetAllNets';
 
 const NETWORK_CONNECTION_TIMEOUT = 1000; // 网络连接超时
 const BUTTON_HEIGHT = 50; // 按钮的高度
@@ -208,7 +208,7 @@ struct NetworkConnectionPage {
         .id('defaultNetworkIPStatus')
 
       // 连接断开网络
-      connectNetworkBtn({connectStatus: this.connectStatus, disconnectStatus: this.disconnectStatus});
+      ConnectNetworkBtn({connectStatus: this.connectStatus, disconnectStatus: this.disconnectStatus});
 
       Button($r('app.string.Reconnect_Network'))
         .onClick(() => {
@@ -223,19 +223,19 @@ struct NetworkConnectionPage {
         .id('SocketConnect_Network')
 
       // 获取所有注册的网络
-      allNetworksBtn({ allNetworksStatus: this.allNetworksStatus });
+      AllNetworksBtn({ allNetworksStatus: this.allNetworksStatus });
 
       // 查询所有网络连接信息
-      getAllNets({ getAllNetsStatus: this.getAllNetsStatus });
+      GetAllNets({ getAllNetsStatus: this.getAllNetsStatus });
 
       // 获取默认网络信息
-      defaultNetworkBtn({ defaultNetworkStatus: this.defaultNetworkStatus })
+      DefaultNetworkBtn({ defaultNetworkStatus: this.defaultNetworkStatus })
 
       // 获取默认网络IP
-      defaultNetworkIPBtn({ defaultNetworkIPStatus: this.defaultNetworkIPStatus })
+      DefaultNetworkIPBtn({ defaultNetworkIPStatus: this.defaultNetworkIPStatus })
 
       // 默认网络是否可以访问互联网
-      defaultNetSyncBtn({ defaultNetSync: this.defaultNetSync })
+      DefaultNetSyncBtn({ defaultNetSync: this.defaultNetSync })
     }
     .width('100%')
     .height('100%')

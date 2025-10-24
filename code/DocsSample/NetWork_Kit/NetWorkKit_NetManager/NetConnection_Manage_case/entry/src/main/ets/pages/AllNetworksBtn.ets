@@ -50,7 +50,7 @@ export class GlobalContext {
 // [End construct_singleton_object]
 
 @Component
-export default struct allNetworksBtn {
+export default struct AllNetworksBtn {
   @Link allNetworksStatus: string;
 
   build() {
@@ -65,7 +65,7 @@ export default struct allNetworksBtn {
         .fontColor(Color.White)
         .fontSize(BUTTON_FONT_SIZE)
         .borderRadius(BUTTON_RADIUS)
-        .id('Get_Connected_Network')
+        .id('Get_Connected_Network') 
     }
   }
 

@@ -48,7 +48,7 @@ export class GlobalContext {
 }
 
 @Component
-export default struct allNetworksBtn {
+export default struct AllNetworksBtn {
   @Link getAllNetsStatus: string;
 
   build() {

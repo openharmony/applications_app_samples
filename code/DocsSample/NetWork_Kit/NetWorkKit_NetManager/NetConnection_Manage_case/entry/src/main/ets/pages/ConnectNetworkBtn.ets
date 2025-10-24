@@ -41,7 +41,7 @@ let TIMEOUT = 10 * NETWORK_CONNECTION_TIMEOUT;
 let conn = connection.createNetConnection(netSpecifier, TIMEOUT);
 // [End notification_network_create_NetConnection]
 @Component
-export default struct connectNetworkBtn {
+export default struct ConnectNetworkBtn {
   @Link connectStatus: string;
   @Link disconnectStatus: string;
 
