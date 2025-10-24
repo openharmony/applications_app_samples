@@ -56,7 +56,6 @@ struct Index {
 
   // 页面展示
   build() {
-    //...
   }
 }
 // [End quick_start0]

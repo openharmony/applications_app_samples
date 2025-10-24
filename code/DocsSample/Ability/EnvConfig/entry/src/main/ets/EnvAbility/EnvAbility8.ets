@@ -25,7 +25,6 @@ export default class MyAbilityStage extends AbilityStage {
   onCreate(): void {
     systemLanguage = this.context.config.language; // Module首次加载时，获取系统当前语言
     hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage is ${systemLanguage}`);
-    //...
   }
 
   onConfigurationUpdate(newConfig: Configuration): void {
