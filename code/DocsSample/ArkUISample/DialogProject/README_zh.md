@@ -10,6 +10,7 @@
 4. [菜单控制（Menu)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-popup-and-menu-components-menu.md)
 5. [气泡提示 (Popup)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-popup-and-menu-components-popup.md)
 6. [即时反馈 (Toast)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-create-toast.md)
+7. [弹出框蒙层控制](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/ui/arkts-dialog-mask.md)
 ### 效果预览
 
 | 首页                                 | 弹窗类组件目录                            | 自定义弹窗示例                            |
@@ -49,6 +50,10 @@ entry/src/main/ets/
 |   |       |---ShowDialog.ets
 |   |       |---TextPickerDialog.ets
 |   |       |---TimePickerDialog.ets
+|   |---maskdialog                             //弹出框蒙层控制
+|   |       |---CustomDialogAnimation.ets
+|   |       |---CustomDialogControl.ets
+|   |       |---Index.ets
 |   |---Menu                                  //菜单
 |   |       |---CreateMenu.ets
 |   |       |---Index.ets
@@ -74,6 +79,8 @@ entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                       // 示例代码测试代码
 ```
+## 具体实现
+开发者对弹出框的定制不仅限于弹出框里的内容，对弹出框蒙层的定制需求也逐渐增加。本文介绍ArkUI弹出框的蒙层控制，包括点击蒙层时是否消失、蒙层区域、蒙层颜色和蒙层动画等特性。
 
 ### 相关权限
 
@@ -98,7 +105,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/DialogProject > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/DialogProject > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
