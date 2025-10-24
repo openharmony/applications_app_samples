@@ -357,10 +357,14 @@ export default class EntryAbility extends UIAbility {
     testNapi.registerWatcherClick();
     // [End AppEvent_Call_Capi_Function]
 
-    // [Start Register_AppHicollie_Watcher]
+    // [Start Register_AppHicollie_WatcherR]
+    // 在onCreate()函数中新增接口调用，启动时注册系统事件观察者R
     testNapi.RegisterAppHicollieWatcherR();
+    // [End Register_AppHicollie_WatcherR]
+    // [Start Register_AppHicollie_WatcherT]
+    // 在onCreate()函数中新增接口调用，启动时注册系统事件观察者T
     testNapi.RegisterAppHicollieWatcherT();
-    // [End Register_AppHicollie_Watcher]
+    // [End Register_AppHicollie_WatcherT]
   }
 
   onDestroy(): void {
