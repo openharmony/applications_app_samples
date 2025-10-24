@@ -113,6 +113,18 @@ export default class JsCardFormAbility extends FormExtensionAbility {
   }
   // [EndExclude JSForm_JsCardFormAbility_onAddForm]
   // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
+  // [Start JSForm_JsCardFormAbility_onFormEvent]
+  onFormEvent(formId: string, message: string): void {
+    // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
+    // 获取message事件中传递的detail参数
+    let msg: Record<string, string> = JSON.parse(message);
+    if (msg.detail === 'message detail') {
+      // 执行业务逻辑
+      hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
+    }
+  }
+  // [End JSForm_JsCardFormAbility_onFormEvent]
 }
 // [End JSForm_JsCardFormAbility_onAddForm]
 // [End JSForm_JsCardFormAbility_onRemoveForm]
