@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start uiContextInspector_start]
-import { inspector } from '@kit.ArkUI'
+import { inspector } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -33,28 +33,28 @@ struct ImageExample {
     }.height(320).width(360).padding({ right: 10, top: 10 })
   }
 
-  listener: inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID')
+  listener: inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID');
 
   aboutToAppear() {
     let onLayoutComplete: () => void = (): void => {
       // 补充待实现的功能
-    }
+    };
     let onDrawComplete: () => void = (): void => {
       // 补充待实现的功能
-    }
+    };
     let onDrawChildrenComplete: () => void = (): void => {
       // 补充待实现的功能
-    }
-    let funcLayout = onLayoutComplete // 绑定当前js对象
-    let funcDraw = onDrawComplete // 绑定当前js对象
-    let funcDrawChildren = onDrawChildrenComplete // 绑定当前js对象
-    let offFuncLayout = onLayoutComplete // 绑定当前js对象
-    let offFuncDraw = onDrawComplete // 绑定当前js对象
-    let offFuncDrawChildren = onDrawChildrenComplete // 绑定当前js对象
+    };
+    let funcLayout = onLayoutComplete; // 绑定当前js对象
+    let funcDraw = onDrawComplete; // 绑定当前js对象
+    let funcDrawChildren = onDrawChildrenComplete; // 绑定当前js对象
+    let offFuncLayout = onLayoutComplete; // 绑定当前js对象
+    let offFuncDraw = onDrawComplete; // 绑定当前js对象
+    let offFuncDrawChildren = onDrawChildrenComplete; // 绑定当前js对象
 
-    this.listener.on('layout', funcLayout)
-    this.listener.on('draw', funcDraw)
-    this.listener.on('drawChildren', funcDrawChildren)
+    this.listener.on('layout', funcLayout);
+    this.listener.on('draw', funcDraw);
+    this.listener.on('drawChildren', funcDrawChildren);
 
     // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用。
     // this.listener.off('layout', OffFuncLayout)

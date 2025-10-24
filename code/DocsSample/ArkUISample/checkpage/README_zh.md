@@ -1,3 +1,5 @@
+# ArkUI页面检查指南文档示例
+
 ## 介绍
 
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-inspector-overview.md)
