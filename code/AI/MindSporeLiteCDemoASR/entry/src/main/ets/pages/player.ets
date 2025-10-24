@@ -55,7 +55,7 @@ export default class AVPlayerDemo {
           console.info('MS_LITE_LOG: AVPlayer state playing called.');
           if (this.isSeek) {
             console.info('MS_LITE_LOG: AVPlayer start to seek.');
-            avPlayer.seek(0); // seek到音频末尾。
+            avPlayer.seek(0); // 将播放位置移动到音频的开始。
           } else {
             // 当播放模式不支持seek操作时继续播放到结尾。
             console.info('MS_LITE_LOG: AVPlayer wait to play end.');

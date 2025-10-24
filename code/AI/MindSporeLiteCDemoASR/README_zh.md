@@ -43,9 +43,15 @@ entry
 ### 具体实现
 
 * 本示例程序中使用的终端图像分类模型文件为[tiny-encoder.ms](entry\src\main\resources\rawfile\tiny-encoder.ms)、[tiny-decoder-main.ms](entry\src\main\resources\rawfile\tiny-decoder-main.ms)、[tiny-decoder-loop.ms](entry\src\main\resources\rawfile\tiny-decoder-loop.ms)。
+
 * 调用[MindSpore Lite Native API](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-mindspore-lite-kit/_mind_spore.md)实现推理。完整代码请参见mslite_napi.cpp。
+
+  说明：需要用户下载三方库，其中librosa来源是[LibrosaCpp](https://github.com/ewan-xu/LibrosaCpp)，libsamplerate来源是[libsamplerate](https://github.com/libsndfile/libsamplerate)，下载后置于[third_party](entry/src/main/cpp/third_party)目录下。AudioFile.h、base64.h、base64.cc来源是[whisper.axera](https://github.com/ml-inory/whisper.axera/tree/main/cpp/src)，下载后置于[src](entry/src/main/cpp/src)目录下。
+
 * 编写CMake脚本。链接MindSpore Lite动态库，完整代码请参见CMakeLists.txt。
+
 * 使用N-API将C++动态库封装成JS模块，在[index.d.ts](entry/src/main/cpp/types/libentry/index.d.ts) 定义JS接口`runDemo()` 。
+
 * 调用推理函数并处理结果。完整代码请参见Index.ets。
 
 ### 相关权限

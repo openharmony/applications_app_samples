@@ -16,6 +16,7 @@
 import msliteNapi from 'libentry.so'
 import AVPlayerDemo from './player';
 import { transverter, TransverterType, TransverterLanguage } from "@nutpi/chinese_transverter"
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = 'MindSporeLite';
 
@@ -64,10 +65,17 @@ struct Index {
         .height('5%')
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
-
+          if (resMgr === undefined || resMgr === null) {
+            hilog.error(0xFF00, TAG, '%{public}s', `MS_LITE_ERR: get resourceManager failed.`);
+            return
+          }
           // 调用c++的runDemo
           console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
           let output = msliteNapi.runDemo(resMgr);
+          if (output === null || output.length === 0) {
+            hilog.error(0xFF00, TAG, '%{public}s', `MS_LITE_ERR: runDemo failed.`);
+            return
+          }
           console.info('MS_LITE_LOG: output length = ', output.length, ';value = ', output.slice(0, 20));
           this.content = output;
           console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
