@@ -8,7 +8,7 @@
 
 | 首页                                                     |
 | -------------------------------------------------------- |
-| <img src="./brows/start.png" style="zoom:50%;" /> | 
+| <img src="./browse/start.png" style="zoom:50%;" /> | 
 
 使用说明：
 
