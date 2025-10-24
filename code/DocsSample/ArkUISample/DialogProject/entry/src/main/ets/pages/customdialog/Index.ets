@@ -22,6 +22,15 @@ import { DialogInteraction } from './DialogInteraction';
 import { DialogInteraction1 } from './DialogInteraction1';
 import { DialogStyle } from './DialogStyle';
 import { NestDialog } from './NestDialog';
+import { CreateCustomDialog1 } from './CreateCustomDialog1';
+import { DialogInteraction2 } from './DialogInteraction2';
+import { DialogInteraction3 } from './DialogInteraction3';
+import { DialogAnimation1 } from './DialogAnimation1';
+import { DialogStyle1 } from './DialogStyle1';
+import { NestDialog1 } from './NestDialog1';
+import { DialogWithPhysicalBack } from './DialogWithPhysicalBack';
+import { DialogAvoidSoftKeyboard } from './DialogAvoidSoftKeyboard';
+import { GetDialogStatus } from './GetDialogStatus';
 
 export const Custom_ROUTE_PREFIX: string = 'Custom_ROUTE_PREFIX';
 
@@ -55,6 +64,51 @@ const routes: Route[] = [
     name: `${Custom_ROUTE_PREFIX}/NestDialog`,
     title: resource.resourceToString($r('app.string.CustomDialog_nest')),
     description: $r('app.string.CustomDialog_nest_des'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/CreateCustomDialog1`,
+    title: resource.resourceToString($r('app.string.CreateCustomDialog1_title')),
+    description: $r('app.string.CreateCustomDialog1_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogInteraction2`,
+    title: resource.resourceToString($r('app.string.DialogInteraction2_title')),
+    description: $r('app.string.DialogInteraction2_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogInteraction3`,
+    title: resource.resourceToString($r('app.string.DialogInteraction3_title')),
+    description: $r('app.string.DialogInteraction3_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogAnimation1`,
+    title: resource.resourceToString($r('app.string.DialogAnimation1_title')),
+    description: $r('app.string.DialogAnimation1_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogStyle1`,
+    title: resource.resourceToString($r('app.string.DialogStyle1_title')),
+    description: $r('app.string.DialogStyle1_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/NestDialog1`,
+    title: resource.resourceToString($r('app.string.NestDialog1_title')),
+    description: $r('app.string.NestDialog1_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogWithPhysicalBack`,
+    title: resource.resourceToString($r('app.string.DialogWithPhysicalBack_title')),
+    description: $r('app.string.DialogWithPhysicalBack_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogAvoidSoftKeyboard`,
+    title: resource.resourceToString($r('app.string.DialogAvoidSoftKeyboard_title')),
+    description: $r('app.string.DialogAvoidSoftKeyboard_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/GetDialogStatus`,
+    title: resource.resourceToString($r('app.string.GetDialogStatus_title')),
+    description: $r('app.string.GetDialogStatus_desc'),
   }
 ]
 
@@ -74,6 +128,24 @@ export function CustomDestination(name: string) {
     DialogStyle();
   } else if (name === routes[5].name) {
     NestDialog();
+  } else if (name === routes[6].name) {
+    CreateCustomDialog1();
+  } else if (name === routes[7].name) {
+    DialogInteraction2();
+  } else if (name === routes[8].name) {
+    DialogInteraction3();
+  } else if (name === routes[9].name) {
+    DialogAnimation1();
+  } else if (name === routes[10].name) {
+    DialogStyle1();
+  } else if (name === routes[11].name) {
+    NestDialog1();
+  } else if (name === routes[12].name) {
+    DialogWithPhysicalBack();
+  } else if (name === routes[13].name) {
+    DialogAvoidSoftKeyboard();
+  } else if (name === routes[14].name) {
+    GetDialogStatus();
   }
 }
 
