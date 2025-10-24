@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import perfTestTest from './PerfTest.test'
-import CPUMetric from './CPUMetric.test'
-import slideFps from './slideFps.test'
+import perfTestTest from './PerfTest.test';
+import CPUMetric from './CPUMetric.test';
+import slideFps from './SlideFps.test';
 export default function testsuite() {
   perfTestTest();
   CPUMetric();

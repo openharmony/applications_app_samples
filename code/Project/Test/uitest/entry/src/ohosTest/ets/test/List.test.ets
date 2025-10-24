@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-import basicExampleTest from './basicExampleTest/basicExample.test';
-import componentOperationTest from './findCommentExampleTest/Component/findComAndOp.test';
+import basicExampleTest from './basicExampleTest/BasicExample.test';
+import componentOperationTest from './findCommentExampleTest/Component/FindComAndOp.test';
 import findTest from './findCommentExampleTest/Component/findCommentExample.test';
 import click from './operationExampleTest/ui/clickEvent.test';
 import input from './operationExampleTest/ui/InputEvent.test';
@@ -34,16 +34,16 @@ import webOperateTest from './operationExampleTest/web/webOperate.test';
 import findWindowExampleTest from './findCommentExampleTest/window/findWindowExample.test';
 import otherEvent from './operationExampleTest/ui/OtherEvent.test'
 import wearAbleEventTest from './operationExampleTest/ui/WearAbleEvent.test'
-import displayOp from './operationExampleTest/ui/displayOp.test';
-import eventObserver from './operationExampleTest/ui/eventObserver.test';
-import inputText from './operationExampleTest/ui/inputText.test';
-import mouseAndKeyOp from './operationExampleTest/ui/mouseAndKeyOp.test';
-import penOp from './operationExampleTest/ui/penOp.test';
-import screenCap from './operationExampleTest/ui/screenCap.test';
-import touchPadOp from './operationExampleTest/ui/touchPadOp.test';
-import touchScreenEvent from './operationExampleTest/ui/touchScreenEvent.test';
-import waitForCom from './operationExampleTest/ui/waitForCom.test';
-import watchOp from './operationExampleTest/ui/watchOp.test';
+import displayOp from './operationExampleTest/ui/DisplayOp.test';
+import eventObserver from './operationExampleTest/ui/EventObserver.test';
+import inputText from './operationExampleTest/ui/InputText.test';
+import mouseAndKeyOp from './operationExampleTest/ui/MouseAndKeyOp.test';
+import penOp from './operationExampleTest/ui/PenOp.test';
+import screenCap from './operationExampleTest/ui/ScreenCap.test';
+import touchPadOp from './operationExampleTest/ui/TouchPadOp.test';
+import touchScreenEvent from './operationExampleTest/ui/TouchScreenEvent.test';
+import waitForCom from './operationExampleTest/ui/WaitForCom.test';
+import watchOp from './operationExampleTest/ui/WatchOp.test';
 
 export default function testsuite() {
   basicExampleTest();

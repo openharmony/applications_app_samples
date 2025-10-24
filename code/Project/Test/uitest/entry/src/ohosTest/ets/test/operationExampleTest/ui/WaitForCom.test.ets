@@ -20,17 +20,16 @@
 
   const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   // 指定被测应用包名、ability名，请开发者替换为被测应用包名和ability名
-  const bundleName: string = 'com.uitestScene.acts'
-  const abilityName: string = 'com.uitestScene.acts.MainAbility'
+  const bundleName: string = 'com.uitestScene.acts';
+  const abilityName: string = 'com.uitestScene.acts.MainAbility';
   export default function abilityTest() {
     describe('waitForComp_sample', () => {
       it('testWaitForComponent_static', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async (): Promise<void> => {
         let driver = Driver.create();
         // 拉起目标应用      
         await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then(result => {
-          console.info(`UITestCase, start abilityFinished: ${result}`)
         }).catch((err: Error) => {
-            console.error(`UITestCase, start abilityFailed: ${err}`)
+            done();
         })
         // 通过等待目标应用首页上的指定控件出现，判断应用拉起完成
         let button = await driver.waitForComponent(ON.text('StartAbility Success!'), 1000);

@@ -31,7 +31,6 @@ class ClassName {
 export default function verifyTest() {
   describe('verify_sample', () => {
     it('testMockfunc', 0, () => {
-      console.info("it1 begin");
       // 创建一个Mock能力的对象MockKit
       let mocker: MockKit = new MockKit();
       // 初始化ClassName的对象claser

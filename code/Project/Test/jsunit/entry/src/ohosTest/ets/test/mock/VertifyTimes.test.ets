@@ -14,7 +14,7 @@
 */
 
 // [Start verifyTimes_sample]
-import { describe, it, MockKit, when } from '@ohos/hypium'
+import { describe, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {

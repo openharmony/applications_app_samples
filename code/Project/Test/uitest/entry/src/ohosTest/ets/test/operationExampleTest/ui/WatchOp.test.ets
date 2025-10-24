@@ -13,28 +13,27 @@
  * limitations under the License.
  */
 
-// [Start touchPadOp_sample]
+// [Start watchOp_sample]
   import { describe, it, TestType, Size, Level, expect } from '@ohos/hypium';
   // 导入测试依赖kit
-  import { Driver, UiDirection } from '@kit.TestKit';
-  const DeviceErrorCode = 17000005;
+  import { Driver } from '@kit.TestKit';
+  const CapabilityCode = 801;
 
   export default function abilityTest() {
-    describe('touchPadOp_sample', () => {
-      // PC/2in1场景，模拟触摸板三指上滑（界面返回桌面），三指下滑（界面恢复窗口）操作
-      it('touchPadOperation', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
+    describe('watchOp_sample', () => {
+      // 手表场景，模拟表冠顺/逆时针旋转
+      it('crownRotate', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async () => {
         let driver = Driver.create();
         try {
-          // 触摸板三指上滑返回桌面。
-          await driver.touchPadMultiFingerSwipe(3, UiDirection.UP);
-          // 触摸板三指下滑恢复窗口
-          await driver.touchPadMultiFingerSwipe(3, UiDirection.DOWN);
+          // 顺时针旋转50格，旋转速度为30格/秒
+          await driver.crownRotate(50, 30);
+          // 逆时针旋转20格，旋转速度为30格/秒
+          await driver.crownRotate(-20, 30);
         } catch (error) {
-          // 在不支持触摸板操作的设备上调用时，将抛出17000005错误码
-          console.log(`$ windowSearchAndOperation error is: ${JSON.stringify(error)}`);
-          expect(error.code).assertEqual(DeviceErrorCode);
+          // driver.crownRotate接口仅在智能表设备上生效，其他设备调用时将抛出801错误码
+          expect(error.code).assertEqual(CapabilityCode);
         }
       })
     })
   }
-// [End touchPadOp_sample]
+  // [End watchOp_sample]

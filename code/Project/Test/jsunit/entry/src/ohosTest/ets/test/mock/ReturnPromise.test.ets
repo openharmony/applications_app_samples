@@ -13,36 +13,39 @@
 * limitations under the License.
 */
 
-// [Start afterThrow_sample]
+// [Start returnPromise_sample]
 import { describe, expect, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {
   }
 
-  method_1(arg: string) {
-    return '888888';
+  async method_1(arg: string) {
+    return new Promise<string>((resolve: Function, reject: Function) => {
+      setTimeout(() => {
+        resolve('Data conversion');
+      }, 2000);
+    });
   }
 }
-export default function afterThrowTest() {
-  describe('afterThrow_sample', () => {
-    it('testMockfunc', 0, () => {
-      console.info("it1 begin");
+export default function mockPromiseTest() {
+  describe('returnPromise_sample', () => {
+    it('testMockfunc', 0, async (done: Function) => {
       // 创建一个Mock能力的对象MockKit
       let mocker: MockKit = new MockKit();
       // 初始化ClassName的对象claser
       let claser: ClassName = new ClassName();
-      // 进行Mock操作,对ClassName类的method_1函数进行Mock
+      // 进行Mock操作对ClassName类的method_1函数进行Mock
       let mockfunc: Function = mocker.mockFunc(claser, claser.method_1);
-      // 期望claser.method_1函数被Mock后, 以'test'为参数调用函数时抛出error xxx异常
-      when(mockfunc)('test').afterThrow('error xxx');
-      // 执行Mock后的函数，捕捉异常并使用assertEqual对比msg否符合预期
-      try {
-        claser.method_1('test');
-      } catch (e) {
-        expect(e).assertEqual('error xxx'); // 断言执行通过
-      }
+      // 期望claser.method_1函数被Mock后, 以'test'为参数调用函数时返回一个Promise对象
+      when(mockfunc)('test').afterReturn(new Promise<string>((resolve: Function, reject: Function) => {
+        resolve('success something');
+      }));
+      // 执行Mock后的函数，即对定义的Promise进行后续执行
+      let result = await claser.method_1('test');
+      expect(result).assertEqual("success something");// 断言执行通过
+      done();
     })
   })
 }
-// [End afterThrow_sample]
+// [End returnPromise_sample]

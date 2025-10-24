@@ -13,45 +13,33 @@
 * limitations under the License.
 */
 
-// [Start order1_sample]
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
+// [Start order2_sample]
+import { describe, beforeItSpecified, afterItSpecified, it, expect, Level } from '@ohos/hypium';
 
 export default function exampleTest() {
-  
-  describe('order1_sample', () =>{
-    let testNumA : number = 1;
-    let testNumB : number = 1;
     
-    beforeAll(() => {
-      testNumA++;
-    })
-  
-    beforeEach(() => {
-      testNumA++;
+  describe('order2_sample', () =>{
+   let testNumA : number = 1;
+   let testNumB : number = 1;
+
+   beforeItSpecified(['testExampleB'], () => {
       testNumB++;
     })
- 
-    afterEach(() => {
+   afterItSpecified(['testExampleA'], () => {
       testNumA++;
     })
-  
-    afterAll(() => {
-      expect(testNumA).assertEqual(5);
-    })
-     
+      
     it('testExampleA',Level.LEVEL1, async (done: Function) => {
-      console.info("unitTest: testExampleA begin");
-      expect(testNumA).assertEqual(3);
-      expect(testNumB).assertEqual(2);
+      expect(testNumA).assertEqual(1);
+      expect(testNumB).assertEqual(1);
       done();
     })
 
     it('testExampleB',Level.LEVEL1, async (done: Function) => {
-      console.info("unitTest: testExampleB begin");
-      expect(testNumA).assertEqual(5);
-      expect(testNumB).assertEqual(3);
+      expect(testNumA).assertEqual(2);
+      expect(testNumB).assertEqual(2);
       done();
     })
   })
 }
-// [End order1_sample]
+// [End order2_sample]

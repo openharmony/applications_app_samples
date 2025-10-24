@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-// [Start ignoreMock_sample]
+// [Start clearMock_sample]
 import { describe, expect, it, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
 
 class ClassName {
@@ -28,10 +28,9 @@ class ClassName {
     return '999999';
   }
 }
-export default function ignoreMockTest() {
-  describe('ignoreMock_sample', () => {
+export default function clearTest() {
+  describe('clearMock_sample', () => {
     it('testMockfunc', 0, () => {
-      console.info("it1 begin");
       // 创建一个Mock能力的对象MockKit
       let mocker: MockKit = new MockKit();
       // 初始化ClassName的对象claser
@@ -39,18 +38,19 @@ export default function ignoreMockTest() {
       // 进行Mock操作，对ClassName类的method_1和method_2两个函数进行Mock
       let func_1: Function = mocker.mockFunc(claser, claser.method_1);
       let func_2: Function = mocker.mockFunc(claser, claser.method_2);
-      // 期望claser.method_1函数被Mock后, 以number类型为入参时调用函数返回结果'4'
+      // 期望claser.method_1函数被Mock后, 以任何number类型为参数调用函数时返回结果'4'
       when(func_1)(ArgumentMatchers.anyNumber).afterReturn('4');
-      // 期望claser.method_2函数被Mock后, 以number类型为入参时调用函数返回结果'5'
+      // 期望claser.method_2函数被Mock后, 以任何number类型为参数调用函数时返回结果'5'
       when(func_2)(ArgumentMatchers.anyNumber).afterReturn('5');
       // 函数调用
-      expect(claser.method_1(123)).assertEqual("4");
-      expect(claser.method_2(456)).assertEqual("5");
-      // 现在对Mock后的两个函数的其中一个函数method_1进行还原处理
-      mocker.ignoreMock(claser, claser.method_1);
-      // 调用claser.method_1函数
+      expect(claser.method_1(123)).assertEqual('4');
+      expect(claser.method_2(123)).assertEqual('5');
+      // 还原obj上所有的Mock能力
+      mocker.clear(claser);
+      // 调用claser.method_1,claser.method_2函数，测试结果
       expect(claser.method_1(123)).assertEqual('888888');// 断言执行通过
+      expect(claser.method_2(123)).assertEqual('999999');// 断言执行通过
     })
   })
 }
-// [End ignoreMock_sample]
+// [End clearMock_sample]

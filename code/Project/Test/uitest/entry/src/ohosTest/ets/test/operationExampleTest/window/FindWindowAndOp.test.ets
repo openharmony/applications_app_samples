@@ -17,6 +17,7 @@
   import { describe, it, TestType, expect } from '@ohos/hypium';
   // 导入测试依赖kit
   import { Driver } from '@kit.TestKit';
+  // Error codes when the device is not supported.
   const DeviceErrorCode = 17000005;
 
   export default function abilityTest() {
@@ -29,7 +30,6 @@
           await window.minimize();
         } catch (error) {
           // 在不支持窗口操作的设备上调用minimize接口操作窗口时，将抛出17000005错误码
-          console.log(`$ windowSearchAndOperation error is: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(DeviceErrorCode);
         }
       })

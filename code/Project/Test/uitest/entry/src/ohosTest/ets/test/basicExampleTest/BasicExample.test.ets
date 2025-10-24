@@ -23,7 +23,6 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     it('testUiExample',Level.LEVEL3, async (done: Function) => {
-      console.info("uitest: TestUiExample begin");
       // 初始化Driver对象
       const driver = Driver.create();
       const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -38,7 +37,6 @@ export default function abilityTest() {
       await driver.waitForIdle(4000,5000);
       // 确认当前应用顶部Ability为指定的ability
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info("get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
 
       // 依据指定文本“Next”查找目标控件

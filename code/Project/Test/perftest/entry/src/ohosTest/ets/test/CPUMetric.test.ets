@@ -60,7 +60,6 @@ export default function PerfTestTest() {
         expect(res1.average).assertLessOrEqual(1000); // 断言性能测试结果
         expect(res2.average).assertLessOrEqual(30); // 断言性能测试结果
       } catch (error) {
-        console.error(`Failed to execute perftest. Cause:${JSON.stringify(error)}`);
         expect(false).assertTrue()
       }
       done()

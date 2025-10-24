@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-// [Start argumentMatchersForAny_sample]
-import { describe, expect, it, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
+// [Start afterReturn_sample]
+import { describe, expect, it, MockKit, when } from '@ohos/hypium';
 
 class ClassName {
   constructor() {
@@ -24,23 +24,22 @@ class ClassName {
     return '888888';
   }
 }
-export default function argumentMatchersAnyTest() {
-  describe('argumentMatchersForAny_sample', () => {
-    it('testMockfunc', 0, () => {
-      console.info("it1 begin");
+export default function afterReturnTest() {
+  describe('afterReturn_sample', () => {
+    it('afterReturnTest', 0, () => {
       // 创建一个Mock能力的对象MockKit
       let mocker: MockKit = new MockKit();
-      // 初始化ClassName的对象claser
+      // 初始化ClassName的对象claser，作为被Mock的对象实例
       let claser: ClassName = new ClassName();
       // 进行Mock操作，对ClassName类的method_1函数进行Mock
       let mockfunc: Function = mocker.mockFunc(claser, claser.method_1);
-      // 期望claser.method_1函数被Mock后, 参数为任一类型在被调用时均返回结果'1'
-      when(mockfunc)(ArgumentMatchers.any).afterReturn('1');
-      // 传入不同参数验证是否符合预期
-      expect(claser.method_1('test')).assertEqual('1'); // 断言执行通过
-      expect(claser.method_1("123")).assertEqual('1');// 断言执行通过
-      expect(claser.method_1("true")).assertEqual('1');// 断言执行通过
+      // 期望claser.method_1函数被Mock后, 以'testA'为入参时调用函数返回结果'1',以'testB''为入参时调用函数返回结果undefined
+      when(mockfunc)('testA').afterReturn('1');
+      when(mockfunc)('testB').afterReturnNothing();
+      // 对Mock后的函数进行断言，看是否符合预期。分别传入参数'testA'和'testB'时，应该返回自定义的预期结果1和undefined
+      expect(claser.method_1('testA')).assertEqual('1'); // 断言执行通过
+      expect(claser.method_1('testB')).assertUndefined(); // 断言执行通过
     })
   })
 }
-// [End argumentMatchersForAny_sample]
+// [End afterReturn_sample]

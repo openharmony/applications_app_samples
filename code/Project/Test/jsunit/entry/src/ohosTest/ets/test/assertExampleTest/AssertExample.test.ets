@@ -50,7 +50,8 @@ export default function exampleTest() {
     it('assertCloseTest', Level.LEVEL1, () => {
       let a: number = 100;
       let b: number = 0.1;
-      expect(a).assertClose(99, b);
+      let c: number = 99;
+      expect(a).assertClose(c, b);
     })
 
     it('assertContain_1', Level.LEVEL1, () => {

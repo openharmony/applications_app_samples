@@ -13,29 +13,29 @@
 * limitations under the License.
 */
 
-import basicTest from './basicExampleTest/basicExample.test';
-import executeOrder1 from './basicExampleTest/executeOrder1.test';
-import executeOrder2 from './basicExampleTest/executeOrder2.test';
-import executeOrder3 from './basicExampleTest/executeOrder3.test';
-import assert from  './assertExampleTest/assertExample.test';
+import basicTest from './basicExampleTest/BasicExample.test';
+import executeOrder1 from './basicExampleTest/ExecuteOrder1.test';
+import executeOrder2 from './basicExampleTest/ExecuteOrder2.test';
+import executeOrder3 from './basicExampleTest/ExecuteOrder3.test';
+import assert from  './assertExampleTest/AssertExample.test';
 import param from './paramExampleTest/paramExample.test';
 import custom from './customExampleTest/customExample.test';
 import cover from './coverExampleTest/coverExample.test';
 import callBack from './callBackExampleTest/callBackExample.test';
 import customAssertTest from './customEexpect/customAssert.test';
 import resourceReferenceTest from './resourceReferenceTest/resourceReference.test';
-import dataDriver from './dataDriver/dataDriver.test';
-import afterReturn from './mock/afterReturn.test';
-import afterThrow from './mock/afterThrow.test';
-import argumentMatchersForAny from './mock/argumentMatchersForAny.test';
-import argumentMatchersForRegex from './mock/argumentMatchersForRegex.test';
-import argumentMatchersForString from './mock/argumentMatchersForString.test';
-import clearMock from './mock/clearMock.test';
-import ignoreMock from './mock/ignoreMock.test';
-import mockStatic from './mock/mockStatic.test';
-import returnPromise from './mock/returnPromise.test';
-import vertify from './mock/vertify.test';
-import vertifyTimes from './mock/vertifyTimes.test';
+import dataDriver from './dataDriver/DataDriver.test';
+import afterReturn from './mock/AfterReturn.test';
+import afterThrow from './mock/AfterThrow.test';
+import argumentMatchersForAny from './mock/ArgumentMatchersForAny.test';
+import argumentMatchersForRegex from './mock/ArgumentMatchersForRegex.test';
+import argumentMatchersForString from './mock/ArgumentMatchersForString.test';
+import clearMock from './mock/ClearMock.test';
+import ignoreMock from './mock/IgnoreMock.test';
+import mockStatic from './mock/MockStatic.test';
+import returnPromise from './mock/ReturnPromise.test';
+import vertify from './mock/Vertify.test';
+import vertifyTimes from './mock/VertifyTimes.test';
 
 export default function testsuite() {
   basicTest();

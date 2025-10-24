@@ -13,24 +13,19 @@
 * limitations under the License.
 */
 
-// [Start dataDriver_sample]
- import { describe, it } from '@ohos/hypium';
+// [Start order3_sample]
+import { describe, xit, it, Level } from '@ohos/hypium';
 
- export default function abilityTest() {
-  describe('AbilityTest', () => {
-    it('testDataDriverAsync', 0, async (done: Function, data: ParmObj) => {
-      console.info('name: ' + data.name);
-      console.info('value: ' + data.value);
+export default function describeExampleTest() {
+  
+  describe('order3_sample', () =>{
+    xit('testExampleA',Level.LEVEL1, async (done: Function) => {
       done();
-    });
+    })
 
-    it('testDataDriver', 0, () => {
-      console.info('stress test');
+    it('testExampleB',Level.LEVEL1, async (done: Function) => {
+      done();
     })
   })
 }
- interface ParmObj {
-   name: string,
-   value: string
- }
-// [End dataDriver_sample]
+// [End order3_sample]

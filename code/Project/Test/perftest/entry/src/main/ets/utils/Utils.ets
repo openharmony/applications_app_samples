@@ -14,14 +14,15 @@
  */
 // [Start utils_sample]
 export class Utils {
-  static num: number = 0
+  static num: number = 0;
+  let maxNum = 10000;
   public static CalculateTest() {
-    for (let index = 0; index < 10000; index++) {
+    for (let index = 0; index < maxNum; index++) {
       Utils.num++;
     }
   }
   public static Reset() {
-    Utils.num = 0
+    Utils.num = 0;
   }
 }
 // [End utils_sample]

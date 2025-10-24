@@ -27,7 +27,6 @@ export default function abilityTest() {
     // 可根据此处设置的用例类型、用例规模、用例级别进行用例筛选
     it('testExample',TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
     // 测试用例名称为testExample
-      console.info("unitTest: TestExample begin");
       await sleep(500);
       const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
       // 启动被测试Ability
@@ -39,7 +38,6 @@ export default function abilityTest() {
       await sleep(500);
       // 获取设备上前台显示的页面并断言检查
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info("get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       done();
     })

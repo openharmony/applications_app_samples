@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-// [Start argumentMatchersForString_sample]
+// [Start argumentMatchersForRegex_sample]
 import { describe, expect, it, MockKit, when, ArgumentMatchers } from '@ohos/hypium';
 
 class ClassName {
@@ -24,22 +24,20 @@ class ClassName {
     return '888888';
   }
 }
-export default function argumentMatchersTest() {
-  describe('argumentMatchersForString_sample', () => {
+export default function matchRegexsTest() {
+  describe('argumentMatchersForRegex_sample', () => {
     it('testMockfunc', 0, () => {
-      console.info("it1 begin");
       // 创建一个Mock能力的对象MockKit
       let mocker: MockKit = new MockKit();
       // 初始化ClassName的对象claser
       let claser: ClassName = new ClassName();
-      // 进行Mock操作,对ClassName类的method_1函数进行Mock
+      // 进行Mock操作，对ClassName类的method_1函数进行Mock
       let mockfunc: Function = mocker.mockFunc(claser, claser.method_1);
-      // 期望claser.method_1函数被Mock后, 以任何string类型为参数调用函数时返回结果'1'
-      when(mockfunc)(ArgumentMatchers.anyString).afterReturn('1');
-      // 传入不同string类型参数，验证是否符合预期
+      // 期望claser.method_1函数被Mock后, 以"test"为入参调用函数时返回结果'1'
+      when(mockfunc)(ArgumentMatchers.matchRegexs(new RegExp("test"))).afterReturn('1');
+      // 传入test参数后验证是否符合预期
       expect(claser.method_1('test')).assertEqual('1'); // 断言执行通过
-      expect(claser.method_1('abc')).assertEqual('1'); // 断言执行通过
     })
   })
 }
-// [End argumentMatchersForString_sample]
+// [End argumentMatchersForRegex_sample]
