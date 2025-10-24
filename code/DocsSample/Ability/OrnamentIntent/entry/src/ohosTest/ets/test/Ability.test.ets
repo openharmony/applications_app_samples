@@ -17,6 +17,9 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level
 import { ArtistClassDef } from '../../../main/ets/insightintents/ArtistInformationImpl';
 import PlayMusicImpl from '../../../main/ets/insightintents/PlayMusicImpl';
 import ViewLogisticsImpl from '../../../main/ets/insightintents/ViewLogisticsImpl';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -50,22 +53,25 @@ export default function abilityTest() {
      */
     it('SUB_Ability_AbilityRunTime_InsightIntent_0010', Level.LEVEL1, async (done: Function) => {
       let caseName = 'SUB_Ability_AbilityRunTime_InsightIntent_0010';
-      console.log(`[${caseName}] create`);
+      hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}] create`);
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
       try {
-        let ArtistClassData :ArtistClassDef =new ArtistClassDef();
-        let PlayMusicData:PlayMusicImpl =new PlayMusicImpl();
-        let ViewLogisticsImplData:ViewLogisticsImpl =new ViewLogisticsImpl();
-        console.log(`[${caseName}]` + JSON.stringify(ArtistClassData));
-        console.log(`[${caseName}]` + JSON.stringify(PlayMusicData));
-        console.log(`[${caseName}]` + JSON.stringify(ViewLogisticsImplData));
+        let ArtistClassData: ArtistClassDef = new ArtistClassDef();
+        let PlayMusicData: PlayMusicImpl = new PlayMusicImpl();
+        let ViewLogisticsImplData: ViewLogisticsImpl = new ViewLogisticsImpl();
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}]` + JSON.stringify(ArtistClassData));
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}]` + JSON.stringify(PlayMusicData));
+        hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}]` + JSON.stringify(ViewLogisticsImplData));
         done();
       } catch (err) {
-        let error:Error = err as Error;
-        console.error(`[${caseName}]: error` + error.name + error.message);
+        let error: Error = err as Error;
+        hilog.error(DOMAIN, 'testTag', 'Failed to set colorMode. Cause: %{public}s', JSON.stringify(err));
+        hilog.error(DOMAIN, 'testTag', 'Cause: %{public}s', `[${caseName}]: error` + error.name + error.message);
         expect().assertFail();
         done();
       }
-      console.log(`[${caseName}]: end`)
+      ;
+      hilog.info(DOMAIN, 'testTag', '%{public}s', `[${caseName}]: end`);
     })
   })
 }

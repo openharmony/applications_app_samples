@@ -24,10 +24,10 @@ const LOG_TAG: string = 'testTag-EntryIntent';
   // @InsightIntentEntry装饰器中parameters中已描述ArtistClassDef意图实体信息，此处parameters可不写
 })
 export class ArtistClassDef implements insightIntent.IntentEntity {
-  entityId: string = '0x11';
-  country?: string = '';
-  city?: string = '';
-  name: string = '';
+  public entityId: string = '0x11';
+  public country?: string = '';
+  public city?: string = '';
+  public name: string = '';
 }
 
 // 使用@InsightIntentEntry装饰器定义意图
@@ -79,9 +79,9 @@ export class ArtistClassDef implements insightIntent.IntentEntity {
   }
 })
 export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
-  songName: string = '';
+  public songName: string = '';
   // 使用意图实体
-  artist?: ArtistClassDef;
+  public artist?: ArtistClassDef;
 
   onExecute(): Promise<insightIntent.IntentResult<string>> {
     hilog.info(0x0000, LOG_TAG, 'PlayMusicDemo executeMode %{public}s', JSON.stringify(this.executeMode));

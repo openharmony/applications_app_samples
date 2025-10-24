@@ -19,7 +19,7 @@ import { InsightIntentEntryExecutor, insightIntent, InsightIntentEntity, Insight
 
 // 意图执行返回值数据格式定义
 class PlayMusicResultDef {
-  msg?: string = '';
+  public msg?: string = '';
 }
 
 // 意图定义
@@ -35,26 +35,26 @@ class PlayMusicResultDef {
   abilityName: 'EntryAbility',
   executeMode: [insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND],
   parameters: {
-    "type": "object",
-    "description": "A schema for describing songs and their artists",
-    "properties": {
-      "songName": {
-        "type": "string",
-        "description": "The name of the song",
-        "minLength": 1
+    'type': 'object',
+    'description': 'A schema for describing songs and their artists',
+    'properties': {
+      'songName': {
+        'type': 'string',
+        'description': 'The name of the song',
+        'minLength': 1
       },
-      "singer": {
-        "type": "string",
-        "description": "The name of the singer",
-        "minLength": 1
+      'singer': {
+        'type': 'string',
+        'description': 'The name of the singer',
+        'minLength': 1
       }
     },
-    "required": ["songName"]
+    'required': ['songName']
   }
 })
 export default class PlayMusicImpl extends InsightIntentEntryExecutor<PlayMusicResultDef> {
-  songName: string = '';
-  singer?: string = '';
+  public songName: string = '';
+  public singer?: string = '';
 
   onExecute(): Promise<insightIntent.IntentResult<PlayMusicResultDef>> {
     // 执行音乐播放逻辑
@@ -63,8 +63,8 @@ export default class PlayMusicImpl extends InsightIntentEntryExecutor<PlayMusicR
       result: {
         msg: 'play music succeed'
       }
-    }
+    };
     return Promise.resolve(result);
-  }
+  };
 }
 // [End insight_intent_play_music]

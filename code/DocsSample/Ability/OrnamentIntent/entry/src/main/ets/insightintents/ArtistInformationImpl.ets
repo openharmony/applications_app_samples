@@ -43,9 +43,9 @@ import { insightIntent, InsightIntentEntity } from '@kit.AbilityKit';
   }
 })
 export class ArtistClassDef implements insightIntent.IntentEntity {
-  entityId: string = '0x11';
-  country?: string = '';
-  city?: string = '';
-  name: string = '';
+  public entityId: string = '0x11';
+  public country?: string = '';
+  public city?: string = '';
+  public name: string = '';
 }
 // [End insight_intent_artist_information]

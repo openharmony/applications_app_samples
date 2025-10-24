@@ -15,6 +15,9 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
 import PlayMusicDemo from '../../../main/ets/insightintents/UsePlayMusicIntents';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -48,18 +51,18 @@ export default function abilityTest() {
      */
     it('SUB_Ability_AbilityRunTime_InsightIntent_0020', Level.LEVEL1, async (done: Function) => {
       let caseName = 'SUB_Ability_AbilityRunTime_InsightIntent_0020';
-      console.log(`[${caseName}] create`);
+      hilog.info(DOMAIN, 'testTag', '%{public}s',`[${caseName}] create`);
       try {
         let PlayMusicDemoData:PlayMusicDemo = new PlayMusicDemo();
-        console.log(`[${caseName}]` + JSON.stringify(PlayMusicDemoData));
+        hilog.info(DOMAIN, 'testTag', '%{public}s',`[${caseName}]` + JSON.stringify(PlayMusicDemoData));
         done();
       } catch (err) {
         let error:Error = err as Error;
-        console.error(`[${caseName}]: error` + error.name + error.message);
+        hilog.error(DOMAIN, 'testTag', 'Cause: %{public}s',`[${caseName}]: error` + error.name + error.message);
         expect().assertFail();
         done();
       }
-      console.log(`[${caseName}]: end`)
+      hilog.info(DOMAIN, 'testTag', '%{public}s',`[${caseName}]: end`)
     })
   })
 }

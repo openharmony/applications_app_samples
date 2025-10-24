@@ -17,7 +17,7 @@
 import { InsightIntentEntryExecutor, insightIntent, InsightIntentEntry } from '@kit.AbilityKit';
 
 class ViewLogisticsResultDef {
-  msg?: string = '';
+  public msg?: string = '';
 }
 
 @InsightIntentEntry({
@@ -29,11 +29,11 @@ class ViewLogisticsResultDef {
   schema: 'ViewLogistics',
   icon: $r('app.media.playMusic'), // $r表示本地图标，需要在资源目录中定义
   abilityName: 'EntryAbility',
-  executeMode: [insightIntent.ExecuteMode.UI_ABILITY_BACKGROUND],
+  executeMode: [insightIntent.ExecuteMode.UI_ABILITY_BACKGROUND]
 })
 export default class ViewLogisticsImpl extends InsightIntentEntryExecutor<ViewLogisticsResultDef> {
-  trackingNo?: string = '';
-  entityId?: string = '';
+  public trackingNo?: string = '';
+  public entityId?: string = '';
 
   onExecute(): Promise<insightIntent.IntentResult<ViewLogisticsResultDef>> {
     // 执行查询快递逻辑
@@ -42,8 +42,8 @@ export default class ViewLogisticsImpl extends InsightIntentEntryExecutor<ViewLo
       result: {
         msg: 'the logistics is being delivered'
       }
-    }
+    };
     return Promise.resolve(result);
-  }
+  };
 }
 // [End insight_intent_view_logistics]
