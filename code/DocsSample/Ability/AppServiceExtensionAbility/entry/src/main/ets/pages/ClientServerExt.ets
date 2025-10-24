@@ -63,7 +63,6 @@ let options: common.ConnectOptions = {
 };
 
 // 调用connectAppServiceExtensionAbility相关代码
-//...
 
 @Entry
 @Component
