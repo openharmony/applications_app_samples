@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start arcListContentsTitle_start]
 import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
 import { util } from '@kit.ArkTS';
 import { ComponentCard } from '../../common/Card';
@@ -79,3 +79,4 @@ export struct ArcListContents {
     .title($r('app.string.ArcListContents_title'))
   }
 }
+// [End arcListContentsTitle_start]

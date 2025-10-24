@@ -37,6 +37,7 @@ entry/src/main/ets/
 |   |       |---ArcListArcIndexerBar.ets
 |   |       |---arcListBuiltInScrollerBar.ets
 |   |       |---ArcListContents.ets
+|   |       |---ArcListCreate.ets
 |   |       |---ArcListCrown.ets
 |   |       |---ArcListShow.ets
 |   |       |---ArcListSideSlip.ets
@@ -122,6 +123,13 @@ entry/src/ohosTest/
 |   |---index.test.ets                       // 示例代码测试代码
 ```
 
+## 具体实现
+
+1. 弧形列表 (ArcList)（圆形屏幕推荐使用）
+   使用弧形列表可以通过在ArcList组件中按垂直方向线性排列子组件ArcListItem，可以为弧形列表中的每一项提供独立视图。此外，可以使用循环渲染来迭代一组列表项，或结合任意数量的单个视图与ForEach结构，构建复杂的弧形列表。ArcList组件支持多种渲染控制方式，包括条件渲染、循环渲染和懒加载，以生成子组件。
+2. 创建瀑布流（WaterFlow）
+   ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组件支持条件渲染、循环渲染和懒加载等方式生成子组件
+
 ### 相关权限
 
 不涉及。
@@ -146,6 +154,6 @@ entry/src/ohosTest/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUIDocSample/ScrollableComponent > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

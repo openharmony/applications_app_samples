@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMetrics, } from '@kit.ArkUI';
 import { ComponentCard } from '../../common/Card';
+// [Start arcListShow_start]
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMetrics, } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -126,3 +126,4 @@ export struct ArcListShow {
     .title($r('app.string.ArcListShow_title'))
   }
 }
+// [End arcListShow_start]

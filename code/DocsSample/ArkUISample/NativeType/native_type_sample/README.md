@@ -65,6 +65,32 @@
 15. 点击HoverModeAreaType选择框进入HoverModeArea组件的CAPI接口展示界面；
 16. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看；
 17. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看；
+18. 点击WaterFlow选择框进入WaterFlow组件的CAPI接口展示界面；
+
+| WaterFlow页面                                            |
+|--------------------------------------------------------|
+| <img src="./screenshots/waterflow.jpeg" width="300" /> |
+
+19. 点击Refresh选择框进入Refresh组件的CAPI接口展示界面；
+
+| Refresh页面                                            |
+|------------------------------------------------------|
+| <img src="./screenshots/refresh.jpeg" width="300" /> |
+20. 点击List选择框进入List组件的CAPI接口展示界面；
+
+| List页面                                            |
+|---------------------------------------------------|
+| <img src="./screenshots/list.jpeg" width="300" /> |
+21. 点击Grid选择框进入Grid组件的CAPI接口展示界面；
+
+| Gird页面                                            |
+|---------------------------------------------------|
+| <img src="./screenshots/grid.jpeg" width="300" /> |
+22. 点击Scroll选择框进入Scroll组件的CAPI接口展示界面；
+
+| Scroll页面                                            |
+|-----------------------------------------------------|
+| <img src="./screenshots/scroll.jpeg" width="300" /> |
 
 ## 工程目录
 
