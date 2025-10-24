@@ -79,15 +79,15 @@ struct Index {
       // [EndExclude config_resource]
       Text(this.getString())
         .id('config_resource_one')
-        .fontSize(50)
+        .fontSize(30)
         .fontWeight(FontWeight.Bold)
       Text(this.englishString)
         .id('config_resource_two')
-        .fontSize(50)
+        .fontSize(30)
         .fontWeight(FontWeight.Bold)
       Text(this.japaneseString)
         .id('config_resource_three')
-        .fontSize(50)
+        .fontSize(30)
         .fontWeight(FontWeight.Bold)
       // [StartExclude config_resource]
 
