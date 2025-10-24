@@ -60,22 +60,22 @@ export default function FrameNodeTest() {
       const button = await driver.findComponent(ON.text('ShowFrameNodeTree'));
       await button.click();
       await driver.delayMs(500);
-      const button2 = await driver.findComponent(ON.text('对自定义FrameNode进行操作'))
+      const button2 = await driver.findComponent(ON.text('对自定义FrameNode进行操作'));
       await button2.click();
       await driver.delayMs(500);
-      const button3 = await driver.findComponent(ON.text('对BuilderNode中的代理节点进行操作'))
+      const button3 = await driver.findComponent(ON.text('对BuilderNode中的代理节点进行操作'));
       await button3.click();
       await driver.delayMs(500);
-      const button4 = await driver.findComponent(ON.text('对系统组件中的代理节点进行操作'))
+      const button4 = await driver.findComponent(ON.text('对系统组件中的代理节点进行操作'));
       await button4.click();
       await driver.delayMs(500);
-      const button5 = await driver.findComponent(ON.text('新增BuilderNode的代理节点'))
+      const button5 = await driver.findComponent(ON.text('新增BuilderNode的代理节点'));
       await button5.click();
       await driver.delayMs(500);
-      const button6 = await driver.findComponent(ON.text('新增系统组件代理节点'))
+      const button6 = await driver.findComponent(ON.text('新增系统组件代理节点'));
       await button6.click();
       await driver.delayMs(500);
-      const button1 = await driver.findComponent(ON.text('新增已有父节点的自定义节点'))
+      const button1 = await driver.findComponent(ON.text('新增已有父节点的自定义节点'));
       await button1.click();
       await driver.delayMs(500);
     })

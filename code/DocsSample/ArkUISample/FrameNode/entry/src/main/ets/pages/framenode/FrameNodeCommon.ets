@@ -14,11 +14,11 @@
  */
 
 //[Start frameNodeCommon_start]
-import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI'
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Params {
-  public text: string = 'this is a text'
+  public text: string = 'this is a text';
 }
 
 @Builder
@@ -62,10 +62,10 @@ class MyNodeController extends NodeController {
     }
     if (this.buttonNode == null) {
       this.buttonNode = new BuilderNode<[Params]>(uiContext);
-      this.buttonNode.build(this.wrapBuilder, { text: 'This is a Button' })
+      this.buttonNode.build(this.wrapBuilder, { text: 'This is a Button' });
       // 对BuilderNode中获取的FrameNode进行属性修改，该节点非自定义的FrameNode节点，修改不生效
-      this.buttonNode?.getFrameNode()?.commonAttribute.position({ x: 100, y: 100 })
-      this.rootNode.appendChild(this.buttonNode.getFrameNode())
+      this.buttonNode?.getFrameNode()?.commonAttribute.position({ x: 100, y: 100 });
+      this.rootNode.appendChild(this.buttonNode.getFrameNode());
     }
     return this.rootNode;
   }
@@ -103,7 +103,7 @@ struct Index {
             this.myNodeController.modifyNode(this.myNodeController?.frameNode, { width: 150, height: 100 }, {
               x: 100,
               y: 0
-            })
+            });
           })
         Button('modify FrameNode get by BuilderNode')
           .onClick(() => {
@@ -114,7 +114,7 @@ struct Index {
             this.myNodeController.modifyNode(this.myNodeController?.buttonNode?.getFrameNode(), {
               width: 100,
               height: 100
-            }, { x: 50, y: 50 })
+            }, { x: 50, y: 50 });
           })
         Button('modify proxyFrameNode get by search')
           .onClick(() => {
@@ -128,7 +128,7 @@ struct Index {
             }, {
               x: 0,
               y: 0
-            })
+            });
           })
       }
       .padding({
@@ -148,7 +148,7 @@ struct Index {
             hilog.info(0x0000,
               `Check the weather the node can be modified ${this.myNodeController?.rootNode?.getParent()
               ?.isModifiable()}`, 'isClicked');
-            this.myNodeController.addClickEvent(this.myNodeController?.frameNode)
+            this.myNodeController.addClickEvent(this.myNodeController?.frameNode);
           })
         Button('add click event to FrameNode get by BuilderNode')
           .onClick(() => {
@@ -157,7 +157,7 @@ struct Index {
             hilog.info(0x0000, `Check the weather the node can be modified
             ${this.myNodeController?.buttonNode?.getFrameNode()
             ?.isModifiable()}`, 'isClicked');
-            this.myNodeController.addClickEvent(this.myNodeController?.buttonNode?.getFrameNode())
+            this.myNodeController.addClickEvent(this.myNodeController?.buttonNode?.getFrameNode());
           })
         Button('add click event to proxyFrameNode get by search')
           .onClick(() => {

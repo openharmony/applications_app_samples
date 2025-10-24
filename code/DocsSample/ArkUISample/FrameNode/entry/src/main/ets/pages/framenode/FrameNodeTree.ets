@@ -44,7 +44,7 @@ function buttonBuilder(params: Params) {
 class MyNodeController extends NodeController {
   public buttonNode: BuilderNode<[Params]> | null = null;
   public frameNode: FrameNode | null = null;
-  public childList: FrameNode[] = new Array<FrameNode>();
+  public childList: Array<FrameNode> = new Array<FrameNode>();
   public rootNode: FrameNode | null = null;
   private uiContext: UIContext | null = null;
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
@@ -183,7 +183,8 @@ struct Index {
               .width(400)
               .onClick(() => {
                 // 对BuilderNode代理节点进行增、删、改操作，捕获异常信息。
-                this.myNodeController.operationFrameNodeWithFrameNode(this.myNodeController?.buttonNode?.getFrameNode());
+                this.myNodeController.operationFrameNodeWithFrameNode
+                (this.myNodeController?.buttonNode?.getFrameNode());
               })
             // $r('app.media.Operate_On_Proxy_Nodes_In_System_Components')需要替换为开发者所需的文本资源文件
             Button($r('app.string.Operate_On_Proxy_Nodes_In_System_Components'))
@@ -295,4 +296,5 @@ struct Index {
     .height('100%')
   }
 }
+
 //[End frameNodeTree_start]

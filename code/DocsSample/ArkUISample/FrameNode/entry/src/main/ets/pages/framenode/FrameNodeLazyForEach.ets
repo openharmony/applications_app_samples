@@ -20,12 +20,12 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const TEST_TAG: string = 'FrameNode';
 
 class MyNodeAdapter extends NodeAdapter {
-  uiContext: UIContext
+  uiContext: UIContext;
   cachePool: FrameNode[] = new Array();
-  changed: boolean = false
+  changed: boolean = false;
   reloadTimes: number = 0;
-  data: string[] = new Array();
-  hostNode?: FrameNode
+  data: Array<string> = new Array();
+  hostNode?: FrameNode;
 
   constructor(uiContext: UIContext, count: number) {
     super();
@@ -148,7 +148,7 @@ class MyNodeAdapter extends NodeAdapter {
 
 class MyNodeAdapterController extends NodeController {
   private rootNode: FrameNode | null = null;
-  private nodeAdapter: MyNodeAdapter | null = null;
+  public nodeAdapter: MyNodeAdapter | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
@@ -171,7 +171,7 @@ struct Index {
       Text('ListNode Adapter');
       NodeContainer(this.adapterController)
         .width(300).height(300)
-        .borderWidth(1).borderColor(Color.Black);
+        .borderWidth(1).borderColor(Color.Black)
       Row() {
         Button('Reload')
           .onClick(() => {

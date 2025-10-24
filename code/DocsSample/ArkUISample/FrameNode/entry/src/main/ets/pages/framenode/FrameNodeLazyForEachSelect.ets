@@ -97,7 +97,7 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = []
+  private dataArray: string[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -137,7 +137,7 @@ function buildData(params: Params) {
           Text(item)
             .fontSize(20)
             .onAppear(() => {
-              hilog.info(0x0000, `TEST_TAG node appear: ${item}`, 'item')
+              hilog.info(0x0000, `TEST_TAG node appear: ${item}`, 'item');
             })
             .backgroundColor(Color.Pink)
             .margin({

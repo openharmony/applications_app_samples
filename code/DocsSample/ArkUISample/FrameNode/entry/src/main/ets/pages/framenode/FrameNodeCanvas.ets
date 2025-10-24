@@ -111,7 +111,7 @@ class MyNodeController1 extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     const rootNode: FrameNode = new FrameNode(uiContext);
     rootNode.commonAttribute.width(300).height(300);
-    const theFrameNode: MyFrameNode1 = new MyFrameNode1(uiContext)
+    const theFrameNode: MyFrameNode1 = new MyFrameNode1(uiContext);
     theFrameNode.commonAttribute.width(100)
       .height(50)
       .position({ x: 10, y: 20 })
@@ -130,13 +130,13 @@ struct Index {
   build() {
     Row() {
       Column() {
-        NodeContainer(this.myNodeController)
+        NodeContainer(this.myNodeController);
       }
       .height('100%')
       .width('45%')
 
       Column() {
-        NodeContainer(this.myNodeController1)
+        NodeContainer(this.myNodeController1);
       }
       .height('100%')
       .width('45%')
