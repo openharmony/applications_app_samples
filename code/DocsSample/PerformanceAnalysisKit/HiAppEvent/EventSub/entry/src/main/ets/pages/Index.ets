@@ -88,6 +88,23 @@ struct Index {
             JSON.parse('');
           })
         // [End CrashEvent_Button]
+        // [Start PssleakEvent_Button]
+        Button('pss leak')
+            .type(ButtonType.Capsule)
+            .margin({
+              top: 20
+            })
+            .backgroundColor('#0D9FFB')
+            .width('80%')
+            .height('5%')
+            .onClick(() => {
+              // 设置一个简单的资源泄漏场景
+              hidebug.setAppResourceLimit("pss_memory", 1024, true);
+              for (let i = 0; i < 20 * 1024; i++) {
+                this.leakedArray.push(new Array(1).fill("leak"));
+              }
+            })
+          // [End PssleakEvent_Button]
           // [Start TimeOutEvent_Button]
           Button($r('app.string.TimeOut_Button'))
           .type(ButtonType.Capsule)
@@ -136,23 +153,6 @@ struct Index {
             }, 1000)
           })
         // [End FreezeEvent_Button]
-        // [Start PssleakEvent_Button]
-        Button('pss leak')
-          .type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('80%')
-          .height('5%')
-          .onClick(() => {
-            // 设置一个简单的资源泄漏场景
-            hidebug.setAppResourceLimit("pss_memory", 1024, true);
-            for (let i = 0; i < 20 * 1024; i++) {
-              this.leakedArray.push(new Array(1).fill("leak"));
-            }
-          })
-        // [End PssleakEvent_Button]
         // [Start AsanEvent_Button]
         Button('address-sanitizer'))
           .type(ButtonType.Capsule)
