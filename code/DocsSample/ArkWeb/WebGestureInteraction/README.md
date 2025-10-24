@@ -1,8 +1,8 @@
-## 使用Web组件的手势与应用交互
+# 使用Web组件的手势与应用交互
 
-#### 介绍
+### 介绍
 
-本工程主要实现了对以下指南文档中 https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-gesture.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+本工程主要实现了对以下指南文档中 [使用Web组件的手势与应用交互](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-gesture.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在移动端或支持触控的Web应用中，如何通过触摸屏与页面交互。
 
 ### ArkWeb手势与ArkUI手势
 
@@ -11,6 +11,7 @@
 1. 使用三指捏合，Web组件本身会进行缩放。这是因为ArkWeb接收到ArkUI识别出的PinchGesture，执行绑定的回调函数。同时，ArkWeb支持scale方法，能够调整Web组件的缩放比例。
 
 #### 预览效果
+
 <img src="screenshots/DistinguishTwoGesture_gesture01.gif" width="250">
 
 #### 使用说明
@@ -31,7 +32,7 @@
 
 #### 介绍
 
-1. 网页可能基于其他平台的User-Agent进行判断。为解决此问题，可以在Web组件中设置自定义User-Agent。
+1. 网页可能基于其它平台的User-Agent进行判断。为解决此问题，可以在Web组件中设置自定义User-Agent。
 
 #### 使用说明
 
@@ -55,19 +56,18 @@ entry/src/main/
 |---|---|---tests
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
+### 具体实现
+
+1. 导入必要的模块。
+2. 创建一个包含Web组件的页面。
+3. 为Web组件添加三指捏合手势，用于缩放整个Web组件（ArkUI手势）。
+4. 设置Web组件的zoomAccess为true，允许网页内容缩放（ArkWeb手势）。
+5. 重写onBackPress方法，实现Web页面的后退。
+6. 设置自定义User-Agent。
 
 ### 相关权限
 
-若使用本地资源，不涉及权限；若使用网络资源，需在module.json中配置网络权限：
-{
-"module": {
-"requestPermissions": [
-{
-"name": "ohos.permission.INTERNET"
-}
-]
-}
-}
+不涉及。
 
 ### 依赖
 

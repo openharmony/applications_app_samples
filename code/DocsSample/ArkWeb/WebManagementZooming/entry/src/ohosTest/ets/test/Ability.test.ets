@@ -15,13 +15,17 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, PointerMatrix } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_WebManagementZooming]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'WebManagementZooming_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      console.info('uitest: ActsAbilityTest begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -29,7 +33,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      console.info('get top ability');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -46,14 +50,14 @@ export default function abilityTest() {
       const driver = Driver.create();
       await driver.pressBack();
       await driver.delayMs(3000);
-      done()
+      done();
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
     it('processweb_ControlWebGestureZooming_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_ControlWebGestureZooming_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlWebGestureZooming_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('ControlWebGestureZoomingButton'));
@@ -62,15 +66,15 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      console.info('src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      console.info('uitest: processweb_ControlWebGestureZooming_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlWebGestureZooming_001 end');
 
       done();
     })
 
     it('processweb_ControlMouseAndKeyBoardZooming_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_ControlMouseAndKeyBoardZooming_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlMouseAndKeyBoardZooming_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('ControlMouseAndKeyBoardZoomingButton'));
@@ -79,15 +83,15 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      console.info('src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      console.info('uitest: processweb_ControlMouseAndKeyBoardZooming_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlMouseAndKeyBoardZooming_001 end');
 
       done();
     })
 
     it('processweb_MonitorZoomRatio_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_MonitorZoomRatio_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_MonitorZoomRatio_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('MonitorZoomRatioButton'));
@@ -96,15 +100,15 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      console.info('src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      console.info('uitest: processweb_MonitorZoomRatio_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_MonitorZoomRatio_001 end');
 
       done();
     })
 
     it('processweb_ControlZoomByFixedRatio_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_ControlZoomByFixedRatio_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlZoomByFixedRatio_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('ControlZoomByFixedRatioButton'));
@@ -121,15 +125,15 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      console.info('src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      console.info('uitest: processweb_ControlZoomByFixedRatio_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlZoomByFixedRatio_001 end');
 
       done();
     })
 
     it('processweb_ControlZoomByInput_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_ControlZoomByInput_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlZoomByInput_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('ControlZoomByInputButton'));
@@ -147,16 +151,16 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      console.info('src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      console.info('uitest: processweb_ControlZoomByInput_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlZoomByInput_001 end');
       await driver.pressBack();
       await driver.delayMs(1000);
       done();
     })
 
     it('processweb_ControlZoomToFixedRatio_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_ControlZoomToFixedRatio_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlZoomToFixedRatio_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('ControlZoomToFixedRatioButton'));
@@ -174,9 +178,9 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('Web'));
       let src: string = await type.getText();
-      console.info('src: ' + src);
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
       expect(src).assertContain('www.example.com');
-      console.info('uitest: processweb_ControlZoomToFixedRatio_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ControlZoomToFixedRatio_001 end');
 
       done();
     })

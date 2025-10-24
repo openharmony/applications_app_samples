@@ -15,13 +15,19 @@
 // [Start ControlZoomToFixedRatio]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
-
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_WebManagementZooming]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'WebManagementZooming_';
 @Entry
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
   @State targetFactor: number = 1;
+  // This represents the page zoom level
   @State pageFactor: number = 100;
+  // Represents the integer 100
+  intNumber: number = 100;
 
   build() {
     Column() {
@@ -34,17 +40,17 @@ struct WebComponent {
         .onClick(() => {
           try {
             // [Start ControlZoomToFixedRatioFactor]
-            let factor = this.targetFactor * 100 / this.pageFactor;
+            let factor = this.targetFactor * this.intNumber / this.pageFactor;
             // [End ControlZoomToFixedRatioFactor]
             this.controller.zoom(factor);
           } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            hilog.error(DOMAIN, TAG, BUNDLE, `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
         .zoomAccess(true)
         .onScaleChange((event) => {
-          console.info('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
+          hilog.error(DOMAIN, TAG, BUNDLE, 'onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
           this.pageFactor = event.newScale;
         })
     }

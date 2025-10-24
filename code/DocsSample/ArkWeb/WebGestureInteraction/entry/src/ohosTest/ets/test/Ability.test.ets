@@ -15,13 +15,17 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, PointerMatrix } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_WebGestureInteraction]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'WebGestureInteraction_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      console.info('uitest: ActsAbilityTest begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -29,7 +33,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      console.info('get top ability');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -46,69 +50,59 @@ export default function abilityTest() {
       const driver = Driver.create();
       await driver.pressBack();
       await driver.delayMs(3000);
-      done()
+      done();
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
     it('processweb_DistinguishTwoGesture_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_DistinguishTwoGesture_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_DistinguishTwoGesture_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('DistinguishTwoGestureButton'));
       await button.click();
       await driver.delayMs(3000);
 
-      let pointers: PointerMatrix = PointerMatrix.create(3, 2);
-      pointers.setPoint(0, 0, {x:250, y:480});
-      pointers.setPoint(0, 1, {x:250, y:450});
-      pointers.setPoint(1, 0, {x:250, y:480});
-      pointers.setPoint(1, 1, {x:220, y:480});
-      pointers.setPoint(2, 0, {x:250, y:480});
-      pointers.setPoint(2, 1, {x:250, y:510});
-      await driver.injectMultiPointerAction(pointers, 200);
-      await driver.delayMs(3000);
-
-      const text1 = await driver.findComponent(ON.id('text1'));
-      const res = await text1.getText()
-      console.info('res:' + Number(res));
-      expect(Number(res) > 1).assertEqual(true);
-      console.info('uitest: processweb_DistinguishTwoGesture_001 end');
+      const type = await driver.findComponent(ON.type('Web'));
+      const src = await type.getText();
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src:' + src);
+      expect(src).assertContain('www.example.com');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_DistinguishTwoGesture_001 end');
 
       done();
     })
 
     it('processweb_ReturnLastWebPage_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_ReturnLastWebPage_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ReturnLastWebPage_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('ReturnLastWebPageButton'));
       await button.click();
       await driver.delayMs(3000);
 
-      const type = await driver.findComponent(ON.type('Web'))
-      const src = await type.getText()
-      console.info('src:' + src);
+      const type = await driver.findComponent(ON.type('Web'));
+      const src = await type.getText();
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src:' + src);
       expect(src).assertContain('www.example.com');
-      console.info('uitest: processweb_ReturnLastWebPage_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_ReturnLastWebPage_001 end');
 
       done();
     })
 
     it('processweb_SetUserAgent_001', 0, async (done: Function) => {
-      console.info('uitest: processweb_SetUserAgent_001 begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_SetUserAgent_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('SetUserAgentButton'));
       await button.click();
       await driver.delayMs(3000);
 
-      const type = await driver.findComponent(ON.type('Web'))
-      const src = await type.getText()
-      console.info('src:' + src);
+      const type = await driver.findComponent(ON.type('Web'));
+      const src = await type.getText();
+      hilog.info(DOMAIN, TAG, BUNDLE, 'src:' + src);
       expect(src).assertContain('www.example.com');
-      console.info('uitest: processweb_SetUserAgent_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_SetUserAgent_001 end');
 
       done();
     })

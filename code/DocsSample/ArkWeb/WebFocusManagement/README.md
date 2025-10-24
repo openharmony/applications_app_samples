@@ -1,8 +1,8 @@
-## Web页面显示内容滚动
+# Web页面显示内容滚动
 
-#### 介绍
+### 介绍
 
-本工程主要实现了对以下指南文档中 https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-focus.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+本工程主要实现了对以下指南文档中 [Web组件焦点管理](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-focus.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解如何利用Web组件的焦点管理功能，有效管理Web组件的聚焦与失焦，同时利用H5侧的W3C标准接口，管理网页界面上唯一可交互的元素聚焦与失焦。
 
 ### Web组件与ArkUI组件焦点控制
 
@@ -14,7 +14,8 @@
 4. 设置组件是否可获焦：应用可以通过设置focusable属性，控制Web组件是否能够获取焦点。Web组件默认可获焦。
 
 #### 效果预览
-<img src="screenshots/WebFocusManagement.gif" width="250">
+
+<img src="screenshots/WebFocusManagement.gif" width="250" />
 
 #### 使用说明
 
@@ -27,7 +28,8 @@
 1. 加载本地HTML文件并实现H5表单元素的焦点控制
 
 #### 效果预览
-<img src="screenshots/img_1.png" width="200">
+
+<img src="screenshots/img_1.png" width="200" />
 
 #### 使用说明
 
@@ -51,18 +53,17 @@ entry/src/main/
 |---|---|---|---Ability.test.ets            // 自动化测试用例
 ```
 
+### 具体实现
+
+1. 创建两个WebviewController，分别用于两个Web组件。
+2. 使用@State装饰器定义两个变量来存储两个Web组件的边框颜色。
+3. 创建两个按钮，点击按钮时分别调用两个WebviewController的requestFocus方法。
+4. 为两个Web组件设置onFocus和onBlur事件，在获焦时改变边框颜色为绿色，失焦时改变为红色。
+5. 加载本地的test.html文件，该文件已经内置了focus和blur事件来改变输入框的背景色。
+
 ### 相关权限
 
-若使用本地资源，不涉及权限；若使用网络资源，需在module.json中配置网络权限：
-{
-"module": {
-"requestPermissions": [
-{
-"name": "ohos.permission.INTERNET"
-}
-]
-}
-}
+不涉及。
 
 ### 依赖
 
@@ -82,6 +83,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/WebFocusManagement > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb
+git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb 
 git pull origin master
 ```

@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 // [Start SetUserAgent]
-import { webview } from '@kit.ArkWeb'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct Index {
-  private webController: webview.WebviewController = new webview.WebviewController()
+  private webController: webview.WebviewController = new webview.WebviewController();
   build(){
     Column() {
       Web({
@@ -26,8 +26,8 @@ struct Index {
         controller: this.webController,
       }).onControllerAttached(() => {
         // 自定义User-Agent
-        let customUA = 'Mozilla/5.0 (Phone; Android; HarmonyOS 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36'
-        this.webController.setCustomUserAgent(customUA)
+        let customUA = 'Mozilla/5.0 (Phone; Android; HarmonyOS 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36';
+        this.webController.setCustomUserAgent(customUA);
       })
     }
   }

@@ -15,7 +15,10 @@
 // [Start WebFocusManagement]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
-
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_WebFocusManagement]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'WebFocusManagement_';
 @Entry
 @Component
 struct WebComponent {
@@ -32,7 +35,7 @@ struct WebComponent {
             try {
               this.controller.requestFocus();
             } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           });
         Button('web2 requestFocus')
@@ -40,7 +43,7 @@ struct WebComponent {
             try {
               this.controller2.requestFocus();
             } catch (error) {
-              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           });
       }
@@ -52,12 +55,12 @@ struct WebComponent {
           this.webBorderColor = Color.Red;
         })
         // [StartExclude WebFocusManagement]
-        .id("web1")
+        .id('web1')
         // [EndExclude WebFocusManagement]
         .margin(3)
         .borderWidth(10)
         .borderColor(this.webBorderColor)
-        .height("45%")
+        .height('45%')
 
       Web({ src: 'www.example.com', controller: this.controller2 })
         .onFocus(() => {
@@ -66,11 +69,10 @@ struct WebComponent {
         .onBlur(() => {
           this.webBorderColor2 = Color.Red;
         })
-        .id("web2")
         .margin(3)
         .borderWidth(10)
         .borderColor(this.webBorderColor2)
-        .height("45%")
+        .height('45%')
     }
   }
 }

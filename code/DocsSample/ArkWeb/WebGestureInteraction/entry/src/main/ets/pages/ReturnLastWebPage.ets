@@ -31,10 +31,10 @@ struct Index {
     if (this.controller.accessStep(-1)) {
       this.controller.backward(); // 返回上一个web页
       // 执行用户自定义返回逻辑
-      return true
+      return true;
     } else {
       // 执行系统默认返回逻辑，返回上一个page页
-      return false
+      return false;
     }
   }
 }

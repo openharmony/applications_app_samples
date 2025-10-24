@@ -14,7 +14,10 @@
  */
 // [Start MonitorZoomRatio]
 import { webview } from '@kit.ArkWeb';
-
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_WebManagementZooming]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'WebManagementZooming_';
 @Entry
 @Component
 struct WebComponent {
@@ -24,7 +27,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .onScaleChange((event) => {
-          console.info('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
+          hilog.info(DOMAIN, TAG, BUNDLE, 'onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
         })
     }
   }

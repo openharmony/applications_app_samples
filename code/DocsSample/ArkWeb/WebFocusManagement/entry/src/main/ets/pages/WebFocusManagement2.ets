@@ -22,7 +22,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Web({ src: $rawfile("test.html"), controller: this.controller })
+      Web({ src: $rawfile('test.html'), controller: this.controller })
     }
   }
 }

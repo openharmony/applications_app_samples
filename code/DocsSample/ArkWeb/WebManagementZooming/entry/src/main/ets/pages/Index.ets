@@ -13,7 +13,10 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
-
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_WebManagementZooming]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'WebManagementZooming_';
 @Entry
 @Component
 struct Index {
@@ -25,7 +28,7 @@ struct Index {
             url: 'pages/ControlWebGestureZooming',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -35,7 +38,7 @@ struct Index {
             url: 'pages/ControlMouseAndKeyBoardZooming',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -45,7 +48,7 @@ struct Index {
             url: 'pages/MonitorZoomRatio',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -55,7 +58,7 @@ struct Index {
             url: 'pages/ControlZoomByFixedRatio',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -65,7 +68,7 @@ struct Index {
             url: 'pages/ControlZoomByInput',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -75,7 +78,7 @@ struct Index {
             url: 'pages/ControlZoomToFixedRatio',
           })
             .catch((error: BusinessError) => {
-              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 

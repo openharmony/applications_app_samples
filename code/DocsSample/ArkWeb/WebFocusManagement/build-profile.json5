@@ -1,27 +1,28 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\huyingtao\\.ohos\\config\\default_WebFocusManagement_4U6Ij1ZBb82T4zIO-EIJOhPhcDmVr28zQJBzTydM1Io=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B81726A01C8D97CF104D09DC65E5F535AB90742A0276CD7F717C962BDCA54C7E975E93A778BC977",
-          "profile": "C:\\Users\\huyingtao\\.ohos\\config\\default_WebFocusManagement_4U6Ij1ZBb82T4zIO-EIJOhPhcDmVr28zQJBzTydM1Io=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\huyingtao\\.ohos\\config\\default_WebFocusManagement_4U6Ij1ZBb82T4zIO-EIJOhPhcDmVr28zQJBzTydM1Io=.p12",
-          "storePassword": "0000001B70663EFF7278EF619FE0A715BF9ECEE7FAE4F40030EBF16AB62B79E877135E2DDA9E398D252CA1"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "targetSdkVersion": "6.0.0(20)",
-        "compatibleSdkVersion": "6.0.0(20)",
-        "runtimeOS": "HarmonyOS",
+        "targetSdkVersion": 20,
+        "compileSdkVersion": 22,
+        "compatibleSdkVersion": 20,
+        "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true,

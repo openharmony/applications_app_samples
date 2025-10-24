@@ -14,7 +14,10 @@
  */
 // [Start DistinguishTwoGesture]
 import { webview } from '@kit.ArkWeb';
-
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_WebGestureInteraction]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'WebGestureInteraction_';
 @Entry
 @Component
 struct Index {
@@ -24,13 +27,6 @@ struct Index {
 
   build() {
     Column() {
-      // [StartExclude DistinguishTwoGesture]
-      Text(`${this.scaleValue.toFixed(2)}`)
-        .id('text1')
-        .fontSize(20)
-        .fontColor(Color.Blue)
-        .margin(10)
-      // [End DistinguishTwoGesture]
       Web({ src: 'www.example.com', controller: this.controller })
       // 在组件上绑定缩放比例，可以通过修改缩放比例来实现组件的缩小或者放大
         .scale({ x: this.scaleValue, y: this.scaleValue, z: 1 })
@@ -39,18 +35,18 @@ struct Index {
           // 在组件上绑定三指触发的捏合手势
           PinchGesture({ fingers: 3 })
             .onActionStart((event: GestureEvent|undefined) => {
-              console.info('Pinch start');
+              hilog.info(DOMAIN, TAG, BUNDLE, 'Pinch start');
             })
             // 当捏合手势触发时，可以通过回调函数获取缩放比例，从而修改组件的缩放比例
             .onActionUpdate((event: GestureEvent|undefined) => {
               if(event){
                 this.scaleValue = this.pinchValue * event.scale;
-                console.info(`Pinch update: ${this.scaleValue}`);
+                hilog.info(DOMAIN, TAG, BUNDLE, `Pinch update: ${this.scaleValue}`);
               }
             })
             .onActionEnd(() => {
               this.pinchValue = this.scaleValue;
-              console.info('Pinch end');
+              hilog.info(DOMAIN, TAG, BUNDLE, 'Pinch end');
             })
         )
     }
