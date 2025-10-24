@@ -24,7 +24,7 @@
   const abilityName: string = 'com.uitestScene.acts.MainAbility';
   export default function abilityTest() {
     describe('waitForComp_sample', () => {
-      it('testWaitForComponent_static', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async (): Promise<void> => {
+      it('testWaitForComponent_static', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async (done: Function): Promise<void> => {
         let driver = Driver.create();
         // 拉起目标应用      
         await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then(result => {

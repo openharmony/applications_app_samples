@@ -32,6 +32,7 @@ export default function customExampleTest() {
      * @tc.desc: 检测EntryAbility对象自定义function功能
      */
     it('customExampleTest_function',TestType.FUNCTION, async (done: Function) => {
+      console.info("uitest: TestUiExample begin");
       // start tested ability
       let want: Want = {
         bundleName : bundleName,
@@ -41,6 +42,7 @@ export default function customExampleTest() {
       await sleep(1000);
       // check top display ability
       await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
+        console.info("get top ability");
         expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
         let testAbility: EntryAbility = ability as EntryAbility;
         let result: string = testAbility.customFun();

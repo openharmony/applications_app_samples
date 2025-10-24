@@ -17,6 +17,7 @@
   import { describe, it, TestType, Size, Level, expect } from '@ohos/hypium';
   // 导入测试依赖kit
   import { Driver } from '@kit.TestKit';
+  // Error code when the device is not supported.
   const CapabilityCode = 801;
 
   export default function abilityTest() {

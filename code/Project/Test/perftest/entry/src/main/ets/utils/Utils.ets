@@ -15,9 +15,9 @@
 // [Start utils_sample]
 export class Utils {
   static num: number = 0;
-  let maxNum = 10000;
+  static maxNum: number = 10000;
   public static CalculateTest() {
-    for (let index = 0; index < maxNum; index++) {
+    for (let index = 0; index < Utils.maxNum; index++) {
       Utils.num++;
     }
   }

@@ -36,21 +36,21 @@ export default function exampleTest() {
     })
   
     afterAll(() => {
-      let expect = 5;
+      let expectValue : number = 5;
       expect(testNumA).assertEqual(expect);
     })
      
     it('testExampleA',Level.LEVEL1, async (done: Function) => {
-      let expectA = 3;
-      let expectB = 2;
+      let expectA : number = 3;
+      let expectB : number = 2;
       expect(testNumA).assertEqual(expectA);
       expect(testNumB).assertEqual(expectB);
       done();
     })
 
     it('testExampleB',Level.LEVEL1, async (done: Function) => {
-      let expectA = 5;
-      let expectB = 3;
+      let expectA : number = 5;
+      let expectB : number = 3;
       expect(testNumA).assertEqual(expectA);
       expect(testNumB).assertEqual(expectB);
       done();
