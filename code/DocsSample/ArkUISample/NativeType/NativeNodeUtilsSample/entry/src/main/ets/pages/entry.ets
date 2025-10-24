@@ -1,3 +1,5 @@
+// index.ets
+// 多线程创建组件相关
 import { NodeContent } from '@kit.ArkUI';
 import entry from 'libentry.so';
 
@@ -12,7 +14,7 @@ struct CAPIComponent {
 
   aboutToDisappear(): void {
     // 页面销毁前释放已创建的Native组件。
-    entry.disposeNodeTreeOnMultiThread(this.rootSlot)
+    entry.disposeNodeTree(this.rootSlot)
   }
 
   build() {
