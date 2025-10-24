@@ -37,21 +37,6 @@
         "name": "release"
       }
     ],
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\master\\.ohos\\config\\default_CustomComponentsFreeze_SRdg_gGXa41oi8TzpfwrAO2ASMZttcRHtrEXuaYkm74=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "00000019772629CE9CD2C5779F4EF30250A55C37E1639CEF5EC9FA70E703C8FF03C4B5D266D669F89C",
-          "profile": "C:\\Users\\master\\.ohos\\config\\default_CustomComponentsFreeze_SRdg_gGXa41oi8TzpfwrAO2ASMZttcRHtrEXuaYkm74=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\master\\.ohos\\config\\default_CustomComponentsFreeze_SRdg_gGXa41oi8TzpfwrAO2ASMZttcRHtrEXuaYkm74=.p12",
-          "storePassword": "000000192CD49BF1A512BF24E707CAA5347BF90F03CE3A4E83232F8975CD8449F3C3F73FBF83C98318"
-        }
-      }
-    ]
   },
   "modules": [
     {

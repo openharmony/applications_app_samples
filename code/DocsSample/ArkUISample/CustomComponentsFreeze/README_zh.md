@@ -14,13 +14,13 @@
 
 ### 效果预览
 
-| 页面1页面2跳转| 页面2返回上一页| TabContent创建|LazyForEach中缓存的自定义组件进行冻结|NavigationContentMsgStack会被设置成非激活态，将不再响应状态变量的变化，也不会触发组件刷新|
-|---------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------| ----------------------------------------------------------- | :------ |
-| ![image1](E:\CustomComponentsFreeze\screenshots\device\image1.jpeg) | ![image2](E:\CustomComponentsFreeze\screenshots\device\image2.jpeg) | ![image3](E:\CustomComponentsFreeze\screenshots\device\image3.jpeg) | ![image4](E:\CustomComponentsFreeze\screenshots\device\image4.jpeg) | ![image5](E:\CustomComponentsFreeze\screenshots\device\image5.jpeg) |
+| 页面1页面2跳转                            | 页面2返回上一页                            | TabContent创建                        | LazyForEach中缓存的自定义组件进行冻结            | NavigationContentMsgStack会被设置成非激活态，将不再响应状态变量的变化，也不会触发组件刷新 |
+|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|:----------------------------------------------------------|
+| ![](screenshots/device/image1.jpeg) | ![](screenshots/device/image2.jpeg) | ![](screenshots/device/image3.jpeg) | ![](screenshots/device/image4.jpeg) | ![](screenshots/device/image5.jpeg)                       |
 
-| 组件复用、if和组件冻结混用场景| LazyForEach、组件复用和组件冻结混用场景| LazyForEach、if、组件复用和组件冻结混用场景|Navigation和TabContent的混用| 页面和LazyForEach                                            |
-|-----------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------| ----------------------------------------------------------- |:----------------------------------------------------------|
-| ![image6](E:\CustomComponentsFreeze\screenshots\device\image6.jpeg) | ![image7](E:\CustomComponentsFreeze\screenshots\device\image7.jpeg) | ![image8](E:\CustomComponentsFreeze\screenshots\device\image8.jpeg) | ![image9](E:\CustomComponentsFreeze\screenshots\device\image9.jpeg) | ![image10](E:\CustomComponentsFreeze\screenshots\device\image10.jpeg) |
+| 组件复用、if和组件冻结混用场景                    | LazyForEach、组件复用和组件冻结混用场景           | LazyForEach、if、组件复用和组件冻结混用场景        | Navigation和TabContent的混用            | 页面和LazyForEach                      |
+|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|:------------------------------------|
+| ![](screenshots/device/image6.jpeg) | ![](screenshots/device/image7.jpeg) | ![](screenshots/device/image8.jpeg) | ![](screenshots/device/image8.jpeg) | ![](screenshots/device/image9.jpeg) |
 
 限制条件页面预览
 
@@ -186,7 +186,7 @@ CustomComponentsFreeze
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/BindSheet > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUIDocSample/CustomComponentsFreeze > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
