@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import ParentTest from './parent.test'
+import ParentTest from './parent.test';
 
 export default function testsuite() {
   ParentTest();

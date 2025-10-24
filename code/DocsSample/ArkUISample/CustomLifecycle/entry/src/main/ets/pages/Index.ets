@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import curves from '@ohos.curves';
-import { Route, RouteGroup } from './common/Index';
+import { Route, RouteGroup } from './common/CommonEvent';
 import { KeyboardAvoidMode } from '@kit.ArkUI';
 import router from '@ohos.router';
 
@@ -45,7 +45,7 @@ struct ComponentExtension {
   @Provide('router') router: NavPathStack = new NavPathStack();
   @State routes: RouteGroup[] = [
     {
-      name: "parent",
+      name: 'Parent',
       label: $r('app.string.parent'),
       children: [
         { name: 'Index', label: $r('app.string.parentExample') },
@@ -101,7 +101,7 @@ struct ComponentExtension {
   }
   build() {
     Column() {
-      Text("ComponentExtension")
+      Text('ComponentExtension')
       List() {
         ForEach(this.routes, (routeGroup: RouteGroup) => {
           ListItemGroup({
