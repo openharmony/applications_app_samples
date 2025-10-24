@@ -8,16 +8,16 @@
 
 | 首页 | navigation页面                                           |
 | ---- | -------------------------------------------------------- |
-|      | <img src='.\screenshots\page_navigation.jpeg' width=300> |
-|      | <img src='.\screenshots\mappingDescriptor.jpeg' width=300> |
+|      | <img src="./screenshots/page_navigation.jpeg" width="300;" /> |
+|      | <img src="./screenshots/mappingDescriptor.jpeg" width="300;" /> |
 
 ## 使用说明
 
-1. 安装编译生成的hap包，并打开应用；
+1. 安装编译生成的hap包，并打开应用。
 2. 进入首页，可选择不同模块页面。
-3. 点击navigation选择框进入navigation组件相关的CAPI接口展示界面，通过点击不同的按钮来触发不同的事件，具体结果在log中查看；
-4. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看；
-5. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看；
+3. 点击navigation选择框进入navigation组件相关的CAPI接口展示界面，通过点击不同的按钮来触发不同的事件，具体结果在log中查看。
+4. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看。
+5. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看。
 6. 点击Mapping DrawableDescriptor选择项进入DrawableDescriptor映射页面，通过点击按钮方式1:GetDrawableDescriptorFromNapiValue，来触发DrawableDescriptor的映射接口，若接口成功调用可以在DevEco Studio开发环境中的日志界面看到如下相关日志信息：
 ```
 "success to get drawable descriptor"
@@ -26,7 +26,6 @@
 ## 工程目录
 
 ```
-native_type_sample
 entry/src/main/ets/
 └── pages
     ├── Index.ets (获取导航页面)
