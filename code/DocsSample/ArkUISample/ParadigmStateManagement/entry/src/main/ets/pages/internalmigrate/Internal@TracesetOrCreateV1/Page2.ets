@@ -24,6 +24,7 @@ export function Page2Builder() {
 // Page2组件获得了父亲Page1组件的LocalStorage实例
 @Component
 struct Page2 {
+  // 页面级UI状态存储点击text文本的次数
   @LocalStorageProp('count') count: number = 0;
   pathStack: NavPathStack = new NavPathStack();
 

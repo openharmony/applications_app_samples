@@ -20,6 +20,7 @@ import { UIUtils } from '@kit.ArkUI';
 struct ListExample {
   private arr: Array<number> = new Array(10).fill(0);
   private scroller: ListScroller = new ListScroller();
+  // 子组件主轴方向的间隔
   listSpace: number = 10;
   // 使用makeObserved的能力来观测ChildrenMainSize
   listChildrenSize: ChildrenMainSize = UIUtils.makeObserved(new ChildrenMainSize(100));

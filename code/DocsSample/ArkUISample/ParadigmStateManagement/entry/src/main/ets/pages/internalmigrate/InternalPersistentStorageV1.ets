@@ -15,6 +15,7 @@
 // [Start Internal_Persistent_Storage_V1]
 class Data {
   public name: string = 'ZhangSan';
+  // 日期的id
   public id: number = 0;
 }
 
@@ -24,8 +25,9 @@ PersistentStorage.persistProp('DataProp', new Data());
 @Entry
 @Component
 struct Index {
+  // 页面级UI状态存储点击numProp的数字，默认值设置为48
   @StorageLink('numProp') numProp: number = 48;
-  @StorageLink('DataProp') DataProp: Data = new Data();
+  @StorageLink('DataProp') dataProp: Data = new Data();
 
   build() {
     Column() {
@@ -37,15 +39,15 @@ struct Index {
         .fontSize(30)
 
       // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
-      Text(`DataProp.name: ${this.DataProp.name}`)
+      Text(`DataProp.name: ${this.dataProp.name}`)
         .onClick(() => {
-          this.DataProp.name += 'a';
+          this.dataProp.name += 'a';
         })
         .fontSize(30)
       // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
-      Text(`DataProp.id: ${this.DataProp.id}`)
+      Text(`DataProp.id: ${this.dataProp.id}`)
         .onClick(() => {
-          this.DataProp.id += 1;
+          this.dataProp.id += 1;
         })
         .fontSize(30)
 

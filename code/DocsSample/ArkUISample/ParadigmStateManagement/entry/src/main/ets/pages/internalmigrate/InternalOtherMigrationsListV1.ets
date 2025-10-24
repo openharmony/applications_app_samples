@@ -18,7 +18,9 @@
 struct ListExample {
   private arr: Array<number> = new Array(10).fill(0);
   private scroller: ListScroller = new ListScroller();
-  @State listSpace: number = 10;
+  // list子组件主轴方向的间隔
+  @State listSpace: number = 20;
+  // 设置List组件的子组件在主轴方向的大小信息
   @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100);
 
   build() {

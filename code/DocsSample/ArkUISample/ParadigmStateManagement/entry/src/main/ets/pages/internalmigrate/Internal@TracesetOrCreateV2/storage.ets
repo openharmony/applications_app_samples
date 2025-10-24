@@ -13,10 +13,9 @@
 * limitations under the License.
 */
 // [Start Internal_@ObservedV2_@Trace_V2]
-// storage.ets
 @ObservedV2
 export class MyStorage {
-  static singleton_: MyStorage;
+  public static singleton_: MyStorage;
 
   static instance() {
     if (!MyStorage.singleton_) {
@@ -24,7 +23,7 @@ export class MyStorage {
     }
     return MyStorage.singleton_;
   }
-
-  @Trace count: number = 47;
+  // 页面级UI状态存储的数字
+  @Trace public count: number = 47;
 }
 // [End Internal_@ObservedV2_@Trace_V2]

@@ -13,7 +13,6 @@
 * limitations under the License.
 */
 // [Start Internal_Trace_customize_V2]
-// storage.ets
 @ObservedV2
 export class MyStorageA {
   @Trace public propA: string = 'Hello';
@@ -42,7 +41,6 @@ export class MyStorageC extends MyStorageA {
     this.propC = propC;
   }
 }
-
 // [End Internal_Trace_customize_V2]
 @Component
 export struct InternalTraceCustomizeParam {

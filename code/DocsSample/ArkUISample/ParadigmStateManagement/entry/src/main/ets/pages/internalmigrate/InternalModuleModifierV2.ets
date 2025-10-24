@@ -15,6 +15,9 @@
 // [Start Internal_Module_Modifier_V2]
 import { UIUtils } from '@kit.ArkUI';
 import { TextModifier } from '@ohos.arkui.modifier';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 class MyModifier extends TextModifier {
   applyNormalAttribute(instance: TextModifier): void {
@@ -35,6 +38,7 @@ class MyModifier extends TextModifier {
 @ComponentV2
 struct MyImage1 {
   @Param @Require modifier: TextModifier;
+  // 点击按钮的次数
   index: number = 0;
 
   build() {
@@ -45,14 +49,14 @@ struct MyImage1 {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.info('Modifier', 'onClick');
+          hilog.info(DOMAIN, 'testTag', 'Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.modifier as MyModifier).setGroup1();
-            console.info('Modifier', 'setGroup1');
+            hilog.info(DOMAIN, 'testTag', 'Modifier', 'setGroup1');
           } else {
             (this.modifier as MyModifier).setGroup2();
-            console.info('Modifier', 'setGroup2');
+            hilog.info(DOMAIN, 'testTag', 'Modifier', 'setGroup2');
           }
         })
     }
@@ -64,6 +68,7 @@ struct MyImage1 {
 struct Index {
   // 使用makeObserved的能力观测TextModifier
   @Local myModifier: TextModifier = UIUtils.makeObserved(new MyModifier().width(100).height(100).margin(10));
+  // 临时存储的index数字
   index: number = 0;
 
   build() {

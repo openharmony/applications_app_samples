@@ -15,29 +15,34 @@
 // [Start Internal_Persistent_Storage_V2]
 // 迁移到globalConnect
 import { PersistenceV2, Type } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0x0000;
 // 接受序列化失败的回调
 PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
-  console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);
+  hilog.error(DOMAIN, 'testTag', '%{public}s', `error key: ${key}, reason: ${reason}, message: ${msg}`);
 });
 
 class Data {
-  name: string = 'ZhangSan';
-  id: number = 0;
+  public name: string = 'ZhangSan';
+  // 日期的id
+  public id: number = 0;
 }
 
 @ObservedV2
 class V2Data {
-  @Trace name: string = '';
-  @Trace Id: number = 1;
+  @Trace public name: string = '';
+  // V2Data数据的id
+  @Trace public id: number = 1;
 }
 
 @ObservedV2
 export class Sample {
   // 对于复杂对象需要@Type修饰，确保序列化成功
   @Type(V2Data)
-  @Trace num: number = 1;
-  @Trace V2: V2Data = new V2Data();
+  // 点击增加的值，默认值为1
+  @Trace public num: number = 1;
+  @Trace public V2: V2Data = new V2Data();
 }
 
 // 用于判断是否完成数据迁移的辅助数据
@@ -65,7 +70,7 @@ function move() {
     // 赋值数据，@Trace修饰的会自动保存，对于非@Trace对象，也可以调用save保存，如：PersistenceV2.save('connect2');
     migrate.num = num;
     migrate.V2.name = v1Data.name;
-    migrate.V2.Id = v1Data.id;
+    migrate.V2.id = v1Data.id;
 
     // 将迁移标志设置为true
     movingState.isCompleteMoving = true;
@@ -98,9 +103,9 @@ struct Page1 {
         })
         .fontSize(30)
       // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
-      Text(`dataProp.id: ${this.p.V2.Id}`)
+      Text(`dataProp.id: ${this.p.V2.id}`)
         .onClick(() => {
-          this.p.V2.Id += 1;
+          this.p.V2.id += 1;
         })
         .fontSize(30)
     }

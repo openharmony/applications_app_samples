@@ -15,17 +15,21 @@
 // [Start Internal_@ObservedV2_@Trace_V2_pag1]
 // Page1.ets
 import { MyStorage } from './storage';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 @Entry
 @ComponentV2
 struct Page1 {
   storage: MyStorage = MyStorage.instance();
   pageStack: NavPathStack = new NavPathStack();
+  // 已经存储的页面级UI状态数字
   @Local count: number = this.storage.count;
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.info(`Page1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', '%{public}s', `Page1 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
 

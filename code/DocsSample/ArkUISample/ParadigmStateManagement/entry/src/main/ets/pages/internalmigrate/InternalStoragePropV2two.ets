@@ -15,9 +15,13 @@
 // [Start Internal_StorageProp_V2_two]
 import { common, Want } from '@kit.AbilityKit';
 import { AppStorageV2 } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 @ObservedV2
 export class MyStorage {
+  // 点击的次数
   @Trace public count: number = 0;
 }
 
@@ -25,12 +29,13 @@ export class MyStorage {
 @ComponentV2
 struct Index1 {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
+  // 获取到的storage存储点击的次数
   @Local count: number = this.storage.count;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.info(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', '%{public}s', `Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
 

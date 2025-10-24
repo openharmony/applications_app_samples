@@ -15,6 +15,9 @@
 // [Start Internal_Common_Modifier_V2]
 import { UIUtils } from '@kit.ArkUI';
 import { CommonModifier } from '@ohos.arkui.modifier';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 class MyModifier extends CommonModifier {
   applyNormalAttribute(instance: CommonAttribute): void {
@@ -49,6 +52,7 @@ struct MyImage1 {
 struct Index {
   // 使用makeObserved的能力来观测CommonModifier
   @Local myModifier: CommonModifier = UIUtils.makeObserved(new MyModifier().width(100).height(100).margin(10));
+  // 点击按钮的次数
   index: number = 0;
 
   build() {
@@ -56,14 +60,14 @@ struct Index {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.info('Modifier', 'onClick');
+          hilog.info(DOMAIN, 'testTag', 'Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.myModifier as MyModifier).setGroup1();
-            console.info('Modifier', 'setGroup1');
+            hilog.info(DOMAIN, 'testTag', 'Modifier', 'setGroup1');
           } else {
             (this.myModifier as MyModifier).setGroup2();
-            console.info('Modifier', 'setGroup2');
+            hilog.info(DOMAIN, 'testTag', 'Modifier', 'setGroup2');
           }
         })
 

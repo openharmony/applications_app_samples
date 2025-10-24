@@ -48,7 +48,7 @@ export default function localTest() {
      * @tc.type       : Function
      */
     it('local_LocalV1StateDecorator', 0, async (done: Function) => {
-      hilog.error(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
       const text = await driver.findComponent(ON.text(await getResourceString('local')));

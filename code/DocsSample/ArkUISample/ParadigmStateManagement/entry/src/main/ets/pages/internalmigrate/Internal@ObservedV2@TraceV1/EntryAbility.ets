@@ -24,5 +24,4 @@ export default class EntryAbility extends UIAbility {
     windowStage.loadContent('pages/Page1', this.storage);
   }
 }
-
 // [End Internal_@ObservedV2_@Trace_V1]

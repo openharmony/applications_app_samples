@@ -19,10 +19,11 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 export class Env {
   public language: string | undefined;
   public colorMode: ConfigurationConstant.ColorMode | undefined;
+  // 字体大小缩放的倍数
   public fontSizeScale: number | undefined;
+  // 字体粗细缩放的倍数
   public fontWeightScale: number | undefined;
 }
 
 export let env: Env = new Env();
-
 // [End Internal_Environment_V2_one]

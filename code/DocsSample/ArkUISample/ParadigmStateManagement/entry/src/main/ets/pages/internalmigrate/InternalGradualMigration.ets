@@ -13,6 +13,9 @@
 * limitations under the License.
 */
 // [Start Internal_Gradual_Migration]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 let storage: LocalStorage = new LocalStorage();
 
 @ObservedV2
@@ -22,7 +25,8 @@ class V1StorageData {
   @Monitor('title')
   onStrChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.info(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
+      hilog.info(DOMAIN, 'testTag', '%{public}s',
+        `${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
       if (path === 'title') {
         storage.setOrCreate('title', this.title);
       }

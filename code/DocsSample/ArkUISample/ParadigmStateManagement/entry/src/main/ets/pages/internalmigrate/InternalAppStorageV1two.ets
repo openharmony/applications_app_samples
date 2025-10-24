@@ -19,6 +19,7 @@ import { common, Want } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index1 {
+  // 页面级UI状态存储点击text文本的次数
   @StorageLink('count') count: number = 0;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 

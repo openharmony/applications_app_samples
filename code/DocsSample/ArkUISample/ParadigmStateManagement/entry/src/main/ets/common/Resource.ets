@@ -22,7 +22,7 @@ export class ResourceManager {
 
   public resourceToString(resource: Resource): string {
     try {
-      return this.context?.resourceManager.getStringSync(resource.id) || "";
+      return this.context?.resourceManager.getStringSync(resource.id) || '';
     } catch (error) {
       // TODO: Implement error handling.
       return ''
