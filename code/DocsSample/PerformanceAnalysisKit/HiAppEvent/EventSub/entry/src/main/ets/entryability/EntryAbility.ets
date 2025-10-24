@@ -377,9 +377,6 @@ export default class EntryAbility extends UIAbility {
     // 在onCreate()函数中新增接口调用
     // 启动时，注册系统事件观察者
     testNapi.registerAppKillReceiveWatcher();
-
-    // 在按钮操作或者启动时，触发泄漏
-    testNapi.leak();
   }
 
   // [StartExclude AppKillEvent_Call_Capi_Function]

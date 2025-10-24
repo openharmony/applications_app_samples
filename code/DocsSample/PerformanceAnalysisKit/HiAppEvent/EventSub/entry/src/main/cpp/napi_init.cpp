@@ -797,7 +797,7 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
     resouceLeakWatcherR = nullptr;
     // [EndExclude AppKillEvent_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(appKillWatcherR);
-    systemEventWatcher = nullptr;
+    appKillWatcherR = nullptr;
     return {};
 }
 // [End AppKillEvent_DestroyWatcher]
@@ -1044,13 +1044,13 @@ static napi_value Init(napi_env env, napi_value exports)
         // [StartExclude AppEvent_C++_Init]
         // [Start test_hicollie_timer]
         // 将TestHiCollieTimerNdk注册为ArkTS接口
-        { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr }
+        { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
         // [End test_hicollie_timer]
         // [Start register_app_hicollie_watcher]
         { "RegisterAppHicollieWatcherR", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
-            nullptr }
+            nullptr },
         { "RegisterAppHicollieWatcherT", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
-            nullptr }
+            nullptr },
         // [End register_app_hicollie_watcher]
         // [EndExclude AppEvent_C++_Init]
         // [EndExclude AsanEvent_Init]
@@ -1063,7 +1063,7 @@ static napi_value Init(napi_env env, napi_value exports)
         // [EndExclude AppKillEvent_Init]
         { "registerAppKillReceiveWatcher", nullptr, RegisterAppKillReceiveWatcher, nullptr, nullptr, nullptr,
             napi_default, nullptr },
-        { "leak", nullptr, Leak, nullptr, nullptr, nullptr, napi_default, nullptr},
+        { "leak", nullptr, Leak, nullptr, nullptr, nullptr, napi_default, nullptr}
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

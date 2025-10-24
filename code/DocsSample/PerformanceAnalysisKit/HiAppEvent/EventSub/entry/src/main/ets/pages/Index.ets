@@ -154,7 +154,7 @@ struct Index {
           })
         // [End FreezeEvent_Button]
         // [Start AsanEvent_Button]
-        Button('address-sanitizer'))
+        Button('address-sanitizer')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -180,6 +180,20 @@ struct Index {
             testNapi.TestHiCollieTimerNdk();
           })
         // [End AppEvent_hicollie_timer_ndk_Button]
+        // [Start AppKillEvent_Button]
+        Button('test leak')
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          .onClick(() => {
+            // 按钮触发泄漏
+            testNapi.leak();
+          })
+        // [End AppKillEvent_Button]
       }
       .width('50%')
     }
