@@ -16,7 +16,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import hilog from '@ohos.hilog';
 const TAG = '[Sample_ShowWebPageDialog]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
+const BUNDLE = 'ShowWebPageDialog_';
 
 @Entry
 @Component

@@ -20,11 +20,11 @@ result：<label id="promptLabel" for="prompt"></label><br/>
 <button id="prompt" onclick="handlePrompt()">prompt</button><br/>
 <script>
     function handlePrompt() {
-        let message = document.getElementById("prompt-message").value;
-        let defaultValue = document.getElementById("prompt-value").value;
+        let message = document.getElementById('prompt-message').value;
+        let defaultValue = document.getElementById('prompt-value').value;
         let result = window.prompt(message ? message : 'prompt', defaultValue);
         console.info(result);
-        document.getElementById("promptLabel").innerHTML=result;
+        document.getElementById('promptLabel').innerHTML = result;
     }
 </script>
 </body>

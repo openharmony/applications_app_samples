@@ -22,7 +22,7 @@ struct Index {
   build(){
     Column() {
       Web({
-        src: "example.com",
+        src: 'example.com',
         controller: this.webController,
       }).onControllerAttached(() => {
         // 特定UA

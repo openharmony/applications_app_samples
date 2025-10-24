@@ -62,30 +62,30 @@
       e.preventDefault();
       const data = e.dataTransfer.getData('text/plain');
       // 传入ArkTS
-      PostMsgToArkTS(data);
+      postMsgToArkTS(data);
       const draggableEl = document.getElementById(data);
       this.appendChild(draggableEl);
       this.classList.add('success');
-      this.textContent = "放置成功！";
+      this.textContent = '放置成功！';
     });
     //     scriptproxy端口在js侧设置
-    var h5Port;
+    let h5Port;
     window.addEventListener('message', function (event) {
-    console.info("H5 receive settingPort message");
-        if (event.data == '__init_port__') {
+    console.info('H5 receive settingPort message');
+        if (event.data === '__init_port__') {
             if (event.ports[0] != null) {
-                console.info("H5 set h5Port " + event.ports[0]);
+                console.info('H5 set h5Port ' + event.ports[0]);
                 h5Port = event.ports[0];
             }
         }
     });
     // 通过scriptproxy方式,发送数据到ArkTS侧的实现
-    function PostMsgToArkTS(data) {
-        console.info("H5 PostMsgToArkTS, h5Port " + h5Port);
+    function postMsgToArkTS(data) {
+        console.info('H5 postMsgToArkTS, h5Port ' + h5Port);
         if (h5Port) {
           h5Port.postMessage(data);
         } else {
-          console.error("h5Port is null, Please initialize first");
+          console.error('h5Port is null, Please initialize first');
         }
     }
 </script>

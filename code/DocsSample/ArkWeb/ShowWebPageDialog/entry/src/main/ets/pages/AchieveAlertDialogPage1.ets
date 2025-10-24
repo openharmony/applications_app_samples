@@ -17,7 +17,7 @@ import { webview } from '@kit.ArkWeb';
 import hilog from '@ohos.hilog';
 const TAG = '[Sample_ShowWebPageDialog]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
+const BUNDLE = 'ShowWebPageDialog_';
 @Entry
 @Component
 struct Index {
@@ -31,13 +31,16 @@ struct Index {
       Web({ src: $rawfile('test.html'), controller: this.webviewController })
         .onAlert((event) => {
           if (event) {
-            hilog.info(DOMAIN, TAG, BUNDLE, "event.url:" + event.url);
-            hilog.info(DOMAIN, TAG, BUNDLE, "event.message:" + event.message);
+            hilog.info(DOMAIN, TAG, BUNDLE, 'event.url:' + event.url);
+            hilog.info(DOMAIN, TAG, BUNDLE, 'event.message:' + event.message);
             this.uiContext.showAlertDialog({
+              // $r('app.string.from')需要替换为开发者所需的资源文件
               title: this.context?.resourceManager.getStringSync($r('app.string.from').id) + event.url +
+                // $r('app.string.warn')需要替换为开发者所需的资源文件
               this.context?.resourceManager.getStringSync($r('app.string.warn').id),
               message: event.message,
               confirm:{
+                // $r('app.string.notarize')需要替换为开发者所需的资源文件
                 value: $r('app.string.notarize'),
                 action: () => {
                   hilog.info(DOMAIN, TAG, BUNDLE, 'Alert confirmed.');

@@ -20,7 +20,7 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const TAG = '[Sample_WebDragInteraction]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
+const BUNDLE = 'WebDragInteraction_';
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = delegator.getAppContext().resourceManager;
   let text = await manage.getStringValue(resource);

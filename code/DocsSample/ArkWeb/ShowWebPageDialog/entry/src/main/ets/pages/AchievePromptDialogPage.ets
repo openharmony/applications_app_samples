@@ -18,7 +18,7 @@ import { webview } from '@kit.ArkWeb';
 import hilog from '@ohos.hilog';
 const TAG = '[Sample_ShowWebPageDialog]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
+const BUNDLE = 'ShowWebPageDialog_';
 
 @Entry
 @Component
@@ -37,6 +37,7 @@ struct PromptDialog {
       },
       buttons: [
         {
+          // $r('app.string.cancel')需要替换为开发者所需的资源文件
           value: $r('app.string.cancel'),
           buttonStyle: ButtonStyleMode.TEXTUAL,
           action: () => {
@@ -45,6 +46,7 @@ struct PromptDialog {
           }
         },
         {
+          // $r('app.string.notarize')需要替换为开发者所需的资源文件
           value: $r('app.string.notarize'),
           buttonStyle: ButtonStyleMode.TEXTUAL,
           action: () => {
@@ -78,10 +80,12 @@ struct PromptDialog {
       Web({ src: $rawfile('prompt.html'), controller: this.webviewController })
         .onPrompt((event) => {
           if (event) {
-            hilog.info(DOMAIN, TAG, BUNDLE, "event.url:" + event.url);
-            hilog.info(DOMAIN, TAG, BUNDLE, "event.message:" + event.message);
-            hilog.info(DOMAIN, TAG, BUNDLE, "event.value:" + event.value);
+            hilog.info(DOMAIN, TAG, BUNDLE, 'event.url:' + event.url);
+            hilog.info(DOMAIN, TAG, BUNDLE, 'event.message:' + event.message);
+            hilog.info(DOMAIN, TAG, BUNDLE, 'event.value:' + event.value);
+            // $r('app.string.from')需要替换为开发者所需的资源文件
             this.title = this.context?.resourceManager.getStringSync($r('app.string.from').id) +
+              // $r('app.string.info')需要替换为开发者所需的资源文件
             event.url + this.context?.resourceManager.getStringSync($r('app.string.info').id);
             this.message = event.message;
             this.promptResult = event.value;

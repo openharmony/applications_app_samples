@@ -1,8 +1,8 @@
-## 使用Web组件显示网页弹框
+# 使用Web组件显示网页弹框
 
-#### 介绍
+### 介绍
 
-本工程主要实现了对以下指南文档中 [使用Web组件显示网页弹框](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-dialog.md) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+本工程主要实现了对以下指南文档中 [使用Web组件显示网页弹框](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-dialog.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在HTML中，可以使用JavaScript创建三种类型的弹框：警告框window.alert(message)、确认框window.confirm(message)和提示框window.prompt(message, defaultValue)。这些弹框可以用于向用户传递信息、确认操作或请求输入。
 
 ### 实现Alert弹框
 
@@ -12,20 +12,21 @@
 
 #### 用AlertDialog创建弹框
 
-#### 效果预览
+##### 效果预览
 <img src="screenshots/AchieveAlertDialogPage1.gif" width="250">
 
-#### 使用说明
+##### 使用说明
 
 1. 在ArkUI中使用Web组件加载网页，并通过AlertDialog拦截并自定义显示网页中的alert弹窗。
 2. 当网页调用window.alert()时，系统会触发onAlert事件，然后在原生应用中显示一个自定义的警告对话框。
 
 #### 用CustomDialog-AlertDialog创建弹框。
 
-#### 效果预览
+##### 效果预览
+
 <img src="screenshots/AchieveAlertDialogPage2.gif" width="250">
 
-#### 使用说明
+##### 使用说明
 
 1. 使用CustomDialogController和AlertDialog组件拦截网页alert弹窗并自定义显示样式。
 2. 当网页调用window.alert()时，会触发onAlert事件，然后通过自定义对话框控制器显示美化后的警告对话框。
@@ -36,9 +37,10 @@
 
 1. window.prompt()用于显示一个对话框，并等待用户提交文本或取消对话框。用户需要输入某个值，然后点击确认或取消按钮。点击确认返回输入的值，点击取消返回null。
 
-#### 用CustomDialog-CustomContentDialog创建弹框。
+##### 用CustomDialog-CustomContentDialog创建弹框。
 
-#### 效果预览
+##### 效果预览
+
 <img src="screenshots/AchieveConfirmDialogPage1.gif" width="250">
 
 #### 使用说明
@@ -54,20 +56,21 @@
 
 #### 用AlertDialog创建弹框。
 
-#### 效果预览
+##### 效果预览
+
 <img src="screenshots/AchieveConfirmDialogPage2.gif" width="250">
 
-#### 使用说明
+##### 使用说明
 
 1. 使用AlertDialog拦截网页confirm弹窗并自定义显示。
 2. 当网页调用window.confirm()时，会触发onConfirm事件，然后在原生应用中显示带确认和取消按钮的自定义对话框。
 
 #### 用CustomDialog-ConfirmDialog创建弹框。
 
-#### 效果预览
+##### 效果预览
 <img src="screenshots/AchievePromptDialogPage.gif" width="250">
 
-#### 使用说明
+##### 使用说明
 
 1. 使用CustomDialogController和ConfirmDialog组件拦截网页confirm弹窗，并添加了"禁止后不再提示"的勾选框功能
 2. 当网页调用window.confirm()时，会显示带勾选框的自定义确认对话框，用户可选择允许或禁止操作。

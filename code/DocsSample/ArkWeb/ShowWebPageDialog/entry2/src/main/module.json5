@@ -18,7 +18,9 @@
     "type": "feature",
     "description": "$string:module_desc",
     "mainElement": "Entry2Ability",
-    "deviceTypes": [],
+    "deviceTypes": [
+      "default"
+    ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",

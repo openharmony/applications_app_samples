@@ -19,10 +19,10 @@ result：<label id="confirmLabel" for="confirm"></label><br/>
 <button id="confirm" onclick="handleConfirm()">confirm</button><br/>
 <script>
     function handleConfirm() {
-        let message = document.getElementById("confirm-message").value;
+        let message = document.getElementById('confirm-message').value;
         let result = window.confirm(message ? message : 'confirm');
         console.info(result);
-        document.getElementById("confirmLabel").innerHTML=String(result);
+        document.getElementById('confirmLabel').innerHTML = String(result);
     }
 </script>
 </body>

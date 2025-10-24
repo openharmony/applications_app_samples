@@ -1,6 +1,6 @@
-## 使用Web组件的拖拽功能与网页交互
+# 使用Web组件的拖拽功能与网页交互
 
-#### 介绍
+### 介绍
 
 本工程主要实现了对以下指南文档中 [使用Web组件的拖拽功能与网页交互](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web_drag.md) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
@@ -13,6 +13,7 @@
 3. 在ArkTS侧接受消息的方法中，添加应用处理逻辑，可以进行耗时任务。
 
 #### 效果预览
+
 <img src="screenshots/DragArkTSPage.gif" width="250">
 
 #### 使用说明
@@ -49,23 +50,14 @@ entry/src/main/
 
 ### 具体实现
 
-1. 在ArkTS侧，我们创建了一个Web组件，并设置了src为本地HTML文件。
-2. 当页面加载完成后，我们创建了Web消息端口，并将其中一个端口发送给HTML，以建立双向通信。
-3. 当在Web组件内拖放元素时，ArkTS侧的onDrop事件会被触发，我们可以从DragEvent中获取数据。
+1. 在ArkTS侧，创建一个Web组件，并设置了src为本地HTML文件。
+2. 当页面加载完成后，创建Web消息端口，并将其中一个端口发送给HTML，以建立双向通信。
+3. 当在Web组件内拖放元素时，ArkTS侧的onDrop事件会被触发，从DragEvent中获取数据。
 4. 同时，HTML侧在拖放完成后会通过消息端口发送数据到ArkTS侧，ArkTS侧在端口的消息事件中接收并处理。
 
 ### 相关权限
 
-若使用本地资源，不涉及权限；若使用网络资源，需在module.json中配置网络权限：
-{
-"module": {
-"requestPermissions": [
-{
-"name": "ohos.permission.INTERNET"
-}
-]
-}
-}
+不涉及。
 
 ### 依赖
 
