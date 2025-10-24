@@ -21,8 +21,8 @@ import hilog from '@ohos.hilog';
 const TAG = '[Sample_FormEditUIAbility]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'FormEditUIAbility_';
-const DELAYTIME01 = 500;
-const DELAYTIME02 = 2000;
+const DELAYTIME01 = 500; // 等待时长
+const DELAYTIME02 = 2000; // 等待时长
 
 let driver = Driver.create();
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
