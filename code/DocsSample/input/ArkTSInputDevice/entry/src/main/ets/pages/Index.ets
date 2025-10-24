@@ -23,7 +23,7 @@ const DOMAIN = 0x0000;
 @Component
 struct Index {
   @State isPhysicalKeyboardExist: boolean = false;
-  @State message: string = "点击获取设备列表并监听设备热拔插";
+  @State message: string = "Click to obtain the device list and monitor device hot-plug events";
 
   // [StartExclude input_device]
   // 结果展示
@@ -82,11 +82,12 @@ struct Index {
                   }
                 });
               });
-              this.message = "开启设备监听成功"
+              this.message = "Device monitoring enabled successfully"
             } catch (error) {
               hilog.error(DOMAIN, 'InputDevice', `Execute failed, error: %{public}s`,
                 JSON.stringify(error, ["code", "message"]));
-              this.message = `开启设备监听成功失败，点击重试。错误信息为${JSON.stringify(error, ["code", "message"])}`
+              this.message = `Failed to enable device monitoring. Click to retry. Error message:${JSON.stringify(error,
+                ["code", "message"])}`
             }
           })
           // [StartExclude input_device]

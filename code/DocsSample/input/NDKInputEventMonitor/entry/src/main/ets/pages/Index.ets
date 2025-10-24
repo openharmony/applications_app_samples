@@ -65,9 +65,14 @@ struct Index {
   }
 
   aboutToAppear(): void {
-    testNapi.onChange((event: testNapi.ValueChangeEvent) => {
-      this.result = event.value;
-    });
+    if (testNapi) {
+      testNapi.onChange((event: testNapi.ValueChangeEvent) => {
+        this.result = event.value;
+      });
+    } else {
+      hilog.error(DOMAIN, 'NDKInputEventMonitor', 'testNapi is undefined');
+      this.result = 'Native plugin failed to load';
+    }
   }
 
   build() {
@@ -76,133 +81,133 @@ struct Index {
         ResultDisplay({ result: this.result })
 
         this.ApiMethodItem(
-          "添加按键事件监听",
+          "Add key event monitor",
           () => {
             try {
-              this.result =testNapi.addKeyEventMonitor() }
-            catch (e) {
-              this.result = `添加按键事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.addKeyEventMonitor()
+            } catch (e) {
+              this.result = `Add key event monitor, error：${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "移除按键事件监听",
+          "Remove key event monitor",
           () => {
             try {
-              this.result =testNapi.removeKeyEventMonitor() }
-            catch (e) {
-              this.result = `移除按键事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.removeKeyEventMonitor()
+            } catch (e) {
+              this.result = `Remove key event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "添加鼠标事件监听",
+          "Add mouse event monitor",
           () => {
             try {
-              this.result =testNapi.addMouseEventMonitor() }
-            catch (e) {
-              this.result = `添加鼠标事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.addMouseEventMonitor()
+            } catch (e) {
+              this.result = `Add mouse event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "移除鼠标事件监听",
+          "Remove mouse event monitor",
           () => {
             try {
-              this.result =testNapi.removeMouseEventMonitor() }
-            catch (e) {
-              this.result = `移除鼠标事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.removeMouseEventMonitor()
+            } catch (e) {
+              this.result = `Remove mouse event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "添加触摸事件监听",
+          "Add touch event monitor",
           () => {
             try {
-              this.result =testNapi.addTouchEventMonitor() }
-            catch (e) {
-              this.result = `添加触摸事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.addTouchEventMonitor()
+            } catch (e) {
+              this.result = `Add touch event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "移除触摸事件监听",
+          "Remove touch event monitor",
           () => {
             try {
-              this.result =testNapi.removeTouchEventMonitor() }
-            catch (e) {
-              this.result = `移除触摸事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.removeTouchEventMonitor()
+            } catch (e) {
+              this.result = `Remove touch event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "添加轴事件监听",
+          "Add axis event monitor",
           () => {
             try {
-              this.result =testNapi.addAxisEventMonitorForAll() }
-            catch (e) {
-              this.result = `添加轴事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.addAxisEventMonitorForAll()
+            } catch (e) {
+              this.result = `Add axis event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "移除轴事件监听",
+          "Remove axis event monitor",
           () => {
             try {
-              this.result =testNapi.removeAxisEventMonitorForAll() }
-            catch (e) {
-              this.result = `移除轴事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.removeAxisEventMonitorForAll()
+            } catch (e) {
+              this.result = `Remove axis event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "添加捏合轴事件监听",
+          "Add pinch axis event monitor",
           () => {
             try {
-              this.result =testNapi.addPinchAxisEventMonitor() }
-            catch (e) {
-              this.result = `添加轴事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.addPinchAxisEventMonitor()
+            } catch (e) {
+              this.result = `Add axis event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "移除捏合轴事件监听",
+          "Remove pinch axis event monitor",
           () => {
             try {
-              this.result =testNapi.removePinchAxisEventMonitor() }
-            catch (e) {
-              this.result = `移除轴事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.removePinchAxisEventMonitor()
+            } catch (e) {
+              this.result = `Remove axis event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "添加滚轮轴事件监听",
+          "Add scroll axis event monitor",
           () => {
             try {
-              this.result =testNapi.addScrollAxisEventMonitor() }
-            catch (e) {
-              this.result = `添加滚轮轴事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.addScrollAxisEventMonitor()
+            } catch (e) {
+              this.result = `Add scroll axis event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )
 
         this.ApiMethodItem(
-          "移除滚轮轴事件监听",
+          "Remove scroll axis event monitor",
           () => {
             try {
-              this.result =testNapi.removeScrollAxisEventMonitor() }
-            catch (e) {
-              this.result = `移除滚轮轴事件监听异常：${JSON.stringify(e)}`
+              this.result = testNapi.removeScrollAxisEventMonitor()
+            } catch (e) {
+              this.result = `Remove scroll axis event monitor, error: ${JSON.stringify(e)}`
             }
           }
         )

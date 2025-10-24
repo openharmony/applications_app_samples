@@ -15,7 +15,8 @@
 1. 安装编译生成的hap包,打开应用时会自动添加对音量上下键的拦截监听。
 2. 使用音量上下键，按键事件会被拦截并在页面弹出提示，无法正常调节音量。
 3. 点击对应按钮取消对音量上下键的拦截监听，再次使用音量上下键，可以正常调节音量。
-4. 进入"DocsSample/InputKit/ArkTSInputConsumer/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
+4. 点击对应按钮重新添加对音量上下键的拦截监听，再次使用音量上下键，无法正常调节音量。
+5. 进入"DocsSample/input/ArkTSInputConsumer/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
 
 ## 工程目录
 
@@ -60,7 +61,7 @@ ArkTSInputConsumer
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/InputKit/ArkTSInputConsumer > .git/info/sparse-checkout
+echo code/DocsSample/input/ArkTSInputConsumer > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

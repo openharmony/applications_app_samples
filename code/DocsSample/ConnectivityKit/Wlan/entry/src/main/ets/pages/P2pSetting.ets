@@ -16,7 +16,10 @@
 
 import hilog from '../model/Logger';
 import router from '@ohos.router'
-import wifi from '@ohos.wifiManager';
+//import wifi from '@ohos.wifiManager';
+// [Start wifiManager]
+import { wifiManager } from '@kit.ConnectivityKit';
+// [End wifiManager]
 import promptAction from '@ohos.promptAction'
 
 const TAG = 'p2pSetting'
@@ -38,11 +41,11 @@ struct p2pSetting {
     AppStorage.setOrCreate('goBand' , this.goBand)
   }
 
-
+// [Start createGrop]
   async createGroup() {
     try {
-      let deviceInfo = await wifi.getP2pLocalDevice()
-      let config:wifi.WifiP2PConfig = {
+      let deviceInfo = await wifiManager.getP2pLocalDevice()
+      let config:wifiManager.WifiP2PConfig = {
         deviceAddress: deviceInfo.deviceAddress,
         netId: this.netId,
         passphrase: this.passphrase,
@@ -50,12 +53,13 @@ struct p2pSetting {
         goBand: this.goBand,
       }
       hilog.info(`deviceAddress: ${config.deviceAddress}, netId: ${config.netId}, pwd: ${config.passphrase}, gpname: ${config.groupName}, goBand: ${config.goBand}`)
-      wifi.createGroup(config)
+      wifiManager.createGroup(config)
       promptAction.showToast({ message : 'createGroup success' })
     } catch (e) {
       hilog.info(TAG, `createGroup Error: ${JSON.stringify(e)}`)
     }
   }
+// [End createGrop]
 
   build() {
     Column() {
@@ -176,5 +180,26 @@ struct p2pSetting {
       .height('6%')
       .justifyContent(FlexAlign.SpaceBetween)
     }
+      Button($r('app.string.remove_group'))
+        .fontSize('16fp')
+        .onClick(() => {
+          try {
+            // [Start removeGrop]
+            wifiManager.removeGroup();
+            // [End removeGrop]
+            hilog.info(TAG, 'removeGroup success');
+            promptAction.showToast({ message: 'Group removed successfully'
+            });
+        } catch (error) {
+            hilog.info(TAG, `removeGroup failed: ${JSON.stringify(error)
+            }`);
+            promptAction.showToast({
+              message: 'Failed to remove group: ' + JSON.stringify(error)
+            });
+        }
+      })
+      .height('100%')
+      .width('50%')
+      .justifyContent(FlexAlign.SpaceBetween)
   }
 }

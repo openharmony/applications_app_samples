@@ -21,7 +21,13 @@ struct styled_string_demo2 {
   @State str: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.CreateApply_Text_3')) as string;
   textStyleAttrs: TextStyle =
-    new TextStyle({ fontWeight: FontWeight.Bolder, fontSize: LengthMetrics.vp(24), fontStyle: FontStyle.Italic, strokeWidth: LengthMetrics.px(5), strokeColor: Color.Green });
+    new TextStyle({
+      fontWeight: FontWeight.Bolder,
+      fontSize: LengthMetrics.vp(24),
+      fontStyle: FontStyle.Italic,
+      strokeWidth: LengthMetrics.px(5),
+      strokeColor: Color.Green
+    });
   mutableStyledString: MutableStyledString = new MutableStyledString(this.str, [
     {
       start: 2,
@@ -33,8 +39,10 @@ struct styled_string_demo2 {
       start: 7,
       length: 4,
       styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({ fontColor: Color.Orange, fontSize: LengthMetrics.vp(12),
-        superscript: SuperscriptStyle.SUPERSCRIPT })
+      styledValue: new TextStyle({
+        fontColor: Color.Orange, fontSize: LengthMetrics.vp(12),
+        superscript: SuperscriptStyle.SUPERSCRIPT
+      })
     }
   ]);
   controller: TextController = new TextController();

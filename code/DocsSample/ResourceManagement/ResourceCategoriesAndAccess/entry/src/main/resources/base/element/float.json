@@ -1,0 +1,28 @@
+{
+  "float": [
+    {
+      "name": "font_hello",
+      "value": "28.0fp"
+    },
+    {
+      "name": "font_world",
+      "value": "20.0fp"
+    },
+    {
+      "name": "text_size_headline1",
+      "value": "96vp"
+    },
+    {
+      "name": "corner_radius_button",
+      "value": "20vp"
+    },
+    {
+      "name": "elements_margin_horizontal_m",
+      "value": "8vp"
+    },
+    {
+      "name": "elements_margin_horizontal_l",
+      "value": "16vp"
+    }
+  ]
+}

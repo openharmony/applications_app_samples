@@ -66,6 +66,8 @@ entry/src/main/ets/
 |   |       |---AddTextContent.ets
 |   |       |---BackplaneHighlighting.ets
 |   |       |---CreateRichEditor.ets
+|   |       |---DisableMenuItem.ets
+|   |       |---DisableSystemServiceMenu.ets
 |   |       |---GetGraphicInfoInComponent.ets
 |   |       |---index.ets
 |   |       |---SetAttributes.ets
@@ -107,9 +109,23 @@ entry/src/ohosTest/
 
 ## 具体实现
 
-1. 属性字符串（StyledString/MutableStyledString）
-   属性字符串StyledString/MutableStyledString（其中MutableStyledString继承自StyledString，下文统称为StyledString），可用于在字符或段落级别上设置文本样式。将StyledString应用到文本组件上，可以采用多种方式修改文本，包括调整字号、添加字体颜色、使文本具备可点击性，以及通过自定义方式绘制文本等。
-   属性字符串提供多种类型样式对象，涵盖各种常见的文本样式格式，例如文本装饰线样式、文本行高样式、文本阴影样式等。也可以自行创建CustomSpan，以应用自定义样式。
+1. 富文本(RichEditor)/禁用系统服务菜单：richEditor组件长按后调出的菜单，通过设置屏蔽所有系统服务菜单。源码参考[DisableSystemServiceMenu.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/DisableSystemServiceMenu.ets)
+
+    * 定义一个组件，在组件的aboutToAppear方法中设置TextMenuController组件禁用系统服务菜单
+
+    * 在组件的aboutToDisappear方法中设置TextMenuController组件恢复系统服务菜单
+
+2. 富文本(RichEditor)/禁用搜索和翻译菜单：richEditor组件长按后调出的菜单，通过设置屏蔽禁用搜索和翻译菜单。源码参考[DisableMenuItem.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/DisableMenuItem.ets)
+
+   * 定义一个组件，在组件的aboutToAppear方法中设置TextMenuController组件禁用搜索和翻译两项菜单
+
+   * 在组件的aboutToDisappear方法中设置TextMenuController组件恢复搜索和翻译两项菜单
+
+3. 属性字符串（StyledString/MutableStyledString）
+   
+   * 属性字符串StyledString/MutableStyledString（其中MutableStyledString继承自StyledString，下文统称为StyledString），可用于在字符或段落级别上设置文本样式。将StyledString应用到文本组件上，可以采用多种方式修改文本，包括调整字号、添加字体颜色、使文本具备可点击性，以及通过自定义方式绘制文本等。
+   
+   * 属性字符串提供多种类型样式对象，涵盖各种常见的文本样式格式，例如文本装饰线样式、文本行高样式、文本阴影样式等。也可以自行创建CustomSpan，以应用自定义样式。
 
 ### 相关权限
 

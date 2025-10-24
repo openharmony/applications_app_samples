@@ -123,6 +123,18 @@
       "name": "MySheetBuilder_text2",
       "value": "有票"
     }, {
+      "name": "Person_example1",
+      "value": "王**"
+    }, {
+      "name": "Person_example2",
+      "value": "宋*"
+    }, {
+      "name": "Person_example3",
+      "value": "许**"
+    }, {
+      "name": "Person_example4",
+      "value": "唐*"
+    }, {
       "name": "sideBuilder_text1",
       "value": "改变半模态交互模式"
     }, {

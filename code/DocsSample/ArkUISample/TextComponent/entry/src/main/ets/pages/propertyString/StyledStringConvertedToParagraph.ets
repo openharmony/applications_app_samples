@@ -145,7 +145,7 @@ struct Index {
       styledValue: new TextStyle({ fontColor: Color.Brown })
     }
   ]);
-  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 120, 10, this.getUIContext());
+  customSpan1: MyCustomSpan = new MyCustomSpan('Hello', 120, 10, this.getUIContext());
   mutableStrAllContent2 = new MutableStyledString(this.str, [
     {
       start: 0,

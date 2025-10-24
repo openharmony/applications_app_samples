@@ -174,7 +174,7 @@ struct Index {
             if (this.backDisplaySyncFast) {
               this.backDisplaySyncFast.stop();
             }
-            router.back();
+            this.getUIContext().getRouter().back();
           })
           .width('20%')
           .height(40)

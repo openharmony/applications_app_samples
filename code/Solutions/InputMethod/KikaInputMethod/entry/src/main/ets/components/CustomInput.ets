@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start input_case_input_CustomInput]
+// [Start input_case_input_CustomInputText]
 import { inputMethod } from '@kit.IMEKit';
 
 @Component
@@ -37,7 +39,7 @@ export struct CustomInput {
         this.attachAndListener(); // 点击控件
       })
   }
-
+  // [End input_case_input_CustomInputText]
   async attachAndListener() { // 绑定和设置监听
     focusControl.requestFocus('CustomInput');
     await this.inputController.attach(true, {
@@ -63,3 +65,4 @@ export struct CustomInput {
     this.inputController.off('deleteLeft');
   }
 }
+// [End input_case_input_CustomInput]
