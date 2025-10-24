@@ -128,6 +128,7 @@ entry/src/main/
 4. zoomIn将当前网页进行放大，比例为25%；zoomOut将当前网页进行缩小，比例为20%。
 5. zoom基于当前网页比例进行缩放，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。
 6. 通过onScaleChange接口，应用可以得知当前网页的缩放比例，配合zoom接口即可实现将页面缩放至指定比例的功能。根据当前页面缩放比例pageFactor和目标比例targetFactor计算zoom入参的公式为：factor = 100 * targetFactor / pageFact
+
 ### 相关权限
 
 不涉及。
