@@ -29,6 +29,7 @@ import { DlpManager, TestDlpFileInfo } from '../feature/DlpManager';
 import { CustomDialogExample } from '../component/CustomDialog';
 import { PreferencesManager } from '../feature/PreferencesManager';
 import { getResourceString } from '../util/ResourceUtils';
+import { hilog } from '@kit.PerformanceAnalysisKit'
 
 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
 
