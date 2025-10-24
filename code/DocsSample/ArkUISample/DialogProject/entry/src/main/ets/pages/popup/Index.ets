@@ -22,6 +22,7 @@ import { AnimationPopupExample } from './PopupAnimation';
 import { StatePopupExample } from './PopupStateChange';
 import { StylePopupExample } from './PopupStyle';
 import { TextPopupExample } from './TextPrompts';
+import { OpenPopup } from './globalpopupsindependentofuicomponents/OpenPopup'
 
 
 export const Popup_ROUTE_PREFIX: string = 'Popup_ROUTE_PREFIX';
@@ -56,6 +57,11 @@ const routes: Route[] = [
     name: `${Popup_ROUTE_PREFIX}/StylePopupExample`,
     title: resource.resourceToString($r('app.string.StylePopup_title')),
     description: $r('app.string.StylePopup_des'),
+  },
+  {
+    name: `${Popup_ROUTE_PREFIX}/OpenPopupExample`,
+    title: resource.resourceToString($r('app.string.StylePopup_global')),
+    description: $r('app.string.StylePopup_global_des'),
   }
 ]
 
@@ -75,6 +81,8 @@ export function PopupDestination(name: string) {
     CustomPopupExample();
   } else if (name === routes[5].name) {
     StylePopupExample();
+  } else if (name === routes[6].name) {
+    OpenPopup();
   }
 }
 

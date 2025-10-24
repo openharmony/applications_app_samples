@@ -49,6 +49,22 @@
       "value": "嵌套自定义弹出框"
     },
     {
+      "name": "CustomDialog_focus",
+      "value": "弹出框焦点策略"
+    },
+    {
+      "name": "CustomDialog_controller",
+      "value": "弹出框控制器"
+    },
+    {
+      "name": "CustomDialog_page_level",
+      "value": "页面级弹出框"
+    },
+    {
+      "name": "CustomDialog_box_layer",
+      "value": "弹出框层级管理"
+    },
+    {
       "name": "CustomDialog_create_des",
       "value": "使用@CustomDialog装饰器装饰自定义弹出框，可在此装饰器内自定义弹出框内容。CustomDialogController需在@Component内定义。"
     },
@@ -91,6 +107,22 @@
     {
       "name": "CustomDialog_nest_des",
       "value": "弹出框通过定义宽度、高度、背景色、阴影等参数来控制样式。"
+    },
+    {
+      "name": "CustomDialog_focus_des",
+      "value": "通过设置focusable参数来管理弹出框是否获取焦点。"
+    },
+    {
+      "name": "CustomDialog_controller_des",
+      "value": "可以将控制器传入弹出框内容区域后进行操作。"
+    },
+    {
+      "name": "CustomDialog_layer_des",
+      "value": "创建不同层级的弹出框。"
+    },
+    {
+      "name": "CustomDialog_page_level_des",
+      "value": "在路由跳转后，弹出框能够随前一个路由页面的切换而消失，并在路由返回后弹出框能够继续正常显示。"
     },
     {
       "name": "CustomDialog_nest_title",
@@ -217,8 +249,16 @@
       "value": "创建自定义样式的菜单"
     },
     {
+      "name": "OpenMenu_title",
+      "value": "不依赖UI组件的全局气泡提示"
+    },
+    {
       "name": "CreateMenu_des",
       "value": "菜单需要调用bindMenu接口来实现。bindMenu响应绑定组件的点击事件，绑定组件后手势点击对应组件后即可弹出。"
+    },
+    {
+      "name": "OpenMenu_des",
+      "value": "通过使用全局接口openPopup的方式，在无UI组件的场景下直接或封装使用。"
     },
     {
       "name": "Customdialog_title",
@@ -301,8 +341,16 @@
       "value": "气泡样式"
     },
     {
+      "name": "StylePopup_global",
+      "value": "全局气泡提示"
+    },
+    {
       "name": "StylePopup_des",
       "value": "气泡除了可以通过builder实现自定义气泡，还可以通过接口设置气泡的样式和显示效果。"
+    },
+    {
+      "name": "StylePopup_global_des",
+      "value": "通过使用全局接口openPopup的方式，在无UI组件的场景下直接或封装使用。"
     },
     {
       "name": "toast",
@@ -391,6 +439,34 @@
     {
       "name": "DefaultAndTopToast_topToastMessage",
       "value": "ok，我是TOP_MOST toast"
+    },
+    {
+      "name": "closeDialog_by_id",
+      "value": "点击关闭弹窗：通过DialogID"
+    },
+    {
+      "name": "closeDialog_by_outside",
+      "value": "点击关闭弹窗：通过外部传递的DialogController"
+    },
+    {
+      "name": "closeDialog_by_custom",
+      "value": "点我关闭弹窗：通过自定义组件自带的DialogController"
+    },
+    {
+      "name": "closeDialog_by_controller",
+      "value": "点我关闭弹窗：通过外部传递的DialogController"
+    },
+    {
+      "name": "my_content",
+      "value": "我是内容"
+    },
+    {
+      "name": "closeDialog_by_dialog",
+      "value": "点我关闭弹窗：通过自定义组件自带的DialogController"
+    },
+    {
+      "name": "closeDialog_by_dialog_controller",
+      "value": "点击关闭弹窗：通过外部传递的DialogController"
     }
   ]
 }
