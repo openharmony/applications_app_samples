@@ -32,6 +32,9 @@ import { getResourceString } from '../util/ResourceUtils';
 
 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
 
+let HILOG_DLP_DOMAIN: number = 0X0001;
+let HILOG_TAG: string = "dlp_info";
+
 interface Attribute {
   attributeId: string;
   attributeValues: Array<string>;
@@ -85,6 +88,7 @@ struct FilePicker {
 
   async aboutToAppear() {
     Logger.info(`aboutToAppear start`);
+    hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'aboutToAppear start');
     this.isFlag = true;
     await this.dlpManager.AccountLogin('zhangsan');
     await this.preferencesManager.getPreferences();
