@@ -37,6 +37,14 @@
       "value": "Dialog lifecycle demo"
     },
     {
+      "name": "demo_open_dialog",
+      "value": "点击弹窗"
+    },
+    {
+      "name": "demo_close_dialog",
+      "value": "关闭弹窗"
+    },
+    {
       "name": "exit_app",
       "value": "退出应用"
     },

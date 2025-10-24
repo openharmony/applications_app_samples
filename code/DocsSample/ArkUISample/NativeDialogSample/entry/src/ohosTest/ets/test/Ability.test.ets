@@ -17,14 +17,16 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
-import resource from '../../../main/ets/common/resource';
 
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const TAG: string = '[SAMPLE_TEST]';
+const TAG: string = '[Sample_com.example.nativedialogsample]';
 const DOMAIN: number = 0xFF00;
+
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let manager = abilityDelegator.getAppContext().resourceManager;
 
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -41,7 +43,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info("get top ability");
+      hilog.info(DOMAIN, TAG, '%{public}s', 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
@@ -61,20 +63,23 @@ export default function abilityTest() {
     it('testOpenDialogDemoController', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'testOpenDialogDemoController begin');
       let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text('dialog demo', MatchPattern.CONTAINS));
+      let button1 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_demo'), MatchPattern.CONTAINS));
       expect(button1 === null).assertFalse();
       await button1.click();
       await sleep(1000);
-      let button2 = await driver.findComponent(
-        ON.text(resource.resourceToString($r('app.string.dialog_controller_demo')), MatchPattern.CONTAINS));
+      let button2 = await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_controller_demo'),
+        MatchPattern.CONTAINS));
       expect(button2 === null).assertFalse();
       await button2.click();
       await sleep(1000);
-      let button3 = await driver.findComponent(ON.text('点击弹窗', MatchPattern.CONTAINS));
+      let button3 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_open_dialog'), MatchPattern.CONTAINS));
       expect(button3 === null).assertFalse();
       await button3.click();
       await sleep(1000);
-      let button4 = await driver.findComponent(ON.text('关闭弹窗', MatchPattern.CONTAINS));
+      let button4 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_close_dialog'), MatchPattern.CONTAINS));
       expect(button4 === null).assertFalse();
       await button4.click();
       await sleep(1000);
@@ -85,20 +90,23 @@ export default function abilityTest() {
     it('testOpenDialogDemoOption', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'testOpenDialogDemoOption begin');
       let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text('dialog demo', MatchPattern.CONTAINS));
+      let button1 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_demo'), MatchPattern.CONTAINS));
       expect(button1 === null).assertFalse();
       await button1.click();
       await sleep(1000);
-      let button2 = await driver.findComponent(
-        ON.text(resource.resourceToString($r('app.string.dialog_option_demo')), MatchPattern.CONTAINS));
+      let button2 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_option_demo'), MatchPattern.CONTAINS));
       expect(button2 === null).assertFalse();
       await button2.click();
       await sleep(1000);
-      let button3 = await driver.findComponent(ON.text('点击弹窗', MatchPattern.CONTAINS));
+      let button3 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_open_dialog'), MatchPattern.CONTAINS));
       expect(button3 === null).assertFalse();
       await button3.click();
       await sleep(1000);
-      let button4 = await driver.findComponent(ON.text('关闭弹窗', MatchPattern.CONTAINS));
+      let button4 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_close_dialog'), MatchPattern.CONTAINS));
       expect(button4 === null).assertFalse();
       await button4.click();
       await sleep(1000);
@@ -109,20 +117,23 @@ export default function abilityTest() {
     it('testOpenDialogDemoLifecycle', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'testOpenDialogDemoLifecycle begin');
       let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text('dialog demo', MatchPattern.CONTAINS));
+      let button1 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_demo'), MatchPattern.CONTAINS));
       expect(button1 === null).assertFalse();
       await button1.click();
       await sleep(1000);
       let button2 = await driver.findComponent(
-        ON.text(resource.resourceToString($r('app.string.dialog_lifecycle_demo')), MatchPattern.CONTAINS));
+        ON.text(manager.getStringByNameSync('dialog_lifecycle_demo'), MatchPattern.CONTAINS));
       expect(button2 === null).assertFalse();
       await button2.click();
       await sleep(1000);
-      let button3 = await driver.findComponent(ON.text('点击弹窗', MatchPattern.CONTAINS));
+      let button3 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_open_dialog'), MatchPattern.CONTAINS));
       expect(button3 === null).assertFalse();
       await button3.click();
       await sleep(1000);
-      let button4 = await driver.findComponent(ON.text('关闭弹窗', MatchPattern.CONTAINS));
+      let button4 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_close_dialog'), MatchPattern.CONTAINS));
       expect(button4 === null).assertFalse();
       await button4.click();
       await sleep(1000);
