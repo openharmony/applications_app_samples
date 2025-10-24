@@ -23,7 +23,7 @@
 #include <js_native_api.h>
 #include "NativeEntry.h"
 #include "ArkUICustomContainerNode.h"
-#include "drawing.h"
+#include "Drawing.h"
 #include <map>
 #include <thread>
 static napi_env g_env = nullptr;
