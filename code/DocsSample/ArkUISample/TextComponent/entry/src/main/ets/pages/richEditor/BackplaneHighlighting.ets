@@ -30,9 +30,9 @@ export struct BackplaneHighlighting {
         ComponentCard() {
           Column({ space: 3 }) {
             // [Start richEditor_selection]
-            // $r('app.string.xxx')需要替换为开发者所需的字符串
             RichEditor(this.options)
               .onReady(() => {
+                // $r('app.string.BackplaneHighlighting_Text_1')需要替换为开发者所需的资源文件
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
                   style: {
                     fontColor: Color.Black,
@@ -42,6 +42,7 @@ export struct BackplaneHighlighting {
               })
               .width(300)
               .height(60)
+            // $r('app.string.BackplaneHighlighting_Button_1')需要替换为开发者所需的资源文件
             Button($r('app.string.BackplaneHighlighting_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
             })

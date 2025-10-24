@@ -30,9 +30,9 @@ export struct AddTextContent {
         ComponentCard() {
           Column({ space: 3 }) {
             // [EndExclude richEditor_addText]
-            // $r('app.string.xxx')需要替换为开发者所需的字符串
             RichEditor(this.options)
               .onReady(() => {
+                // $r('app.string.AddTextContent_Text_1')需要替换为开发者所需的资源文件
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_1')), {
                   style: {
                     fontColor: Color.Black,
@@ -46,12 +46,14 @@ export struct AddTextContent {
               })
               .width(300)
               .margin(10)
+            // $r('app.string.AddTextContent_Button_1')需要替换为开发者所需的资源文件
             Button($r('app.string.AddTextContent_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
             })
               .height(30)
               .fontSize(13)
               .onClick(() => {
+                // $r('app.string.AddTextContent_Text_2')需要替换为开发者所需的资源文件
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_2')))
               })
             // [StartExclude richEditor_addText]

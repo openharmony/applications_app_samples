@@ -30,7 +30,7 @@ export struct AddSymbolSpanContent {
         ComponentCard() {
           Column({ space: 3 }) {
             // [EndExclude richEditor_addSymbol]
-            // $r('app.string.xxx')需要替换为开发者所需的字符串
+            // $r('app.string.xxx')需要替换为开发者所需的资源文件
             RichEditor(this.options)
               .onReady(() => {
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.AddSymbolSpanContent_Text_1')), {
@@ -48,6 +48,7 @@ export struct AddSymbolSpanContent {
               .height(30)
               .fontSize(13)
               .onClick(() => {
+                // $r('sys.symbol.basketball_fill')需要替换为开发者所需的资源文件
                 this.controller.addSymbolSpan($r('sys.symbol.basketball_fill'), {
                   style: {
                     fontSize: 30

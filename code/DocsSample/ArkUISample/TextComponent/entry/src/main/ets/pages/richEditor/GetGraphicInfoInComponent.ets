@@ -36,6 +36,7 @@ export struct GetGraphicInfoInComponent {
             RichEditor(this.options)
               .onReady(() => {
                 this.controller.addTextSpan(
+                  // $r('app.string.GetGraphicInfoInComponent_Text_1')需要替换为开发者所需的资源文件
                   resource.resourceToString($r('app.string.GetGraphicInfoInComponent_Text_1')), {
                   style: {
                     fontColor: Color.Black,
@@ -45,7 +46,7 @@ export struct GetGraphicInfoInComponent {
               })
               .width(300)
               .height(50);
-            // $r('app.string.xxx')需要替换为开发者所需的字符串
+            // $r('app.string.GetGraphicInfoInComponent_Text_1')需要替换为开发者所需的资源文件
             Text($r('app.string.GetGraphicInfoInComponent_Text_1')).fontSize(10).fontColor(Color.Gray).width(300);
             RichEditor(this.infoShowOptions)
               .width(300)

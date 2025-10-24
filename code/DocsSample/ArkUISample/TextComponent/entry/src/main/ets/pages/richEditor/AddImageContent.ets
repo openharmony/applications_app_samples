@@ -30,7 +30,7 @@ export struct AddImageContent {
         ComponentCard() {
           Column({ space: 10 }) {
             // [EndExclude richEditor_addImage]
-            // $r('app.string.xxx')需要替换为开发者所需的字符串
+            // $r('app.string.xxx')需要替换为开发者所需的资源文件
             RichEditor(this.options)
               .onReady(() => {
                 this.controller.addTextSpan(resource.resourceToString($r('app.string.AddImageContent_Text_1')), {
@@ -48,7 +48,7 @@ export struct AddImageContent {
               .height(30)
               .fontSize(13)
               .onClick(() => {
-                // $r('app.media.xxx')需要替换为开发者所需的图标
+                // $r('app.media.xxx')需要替换为开发者所需的资源文件
                 this.controller.addImageSpan($r('app.media.startIcon'), {
                   imageStyle: {
                     size: ['57px', '57px']

@@ -33,7 +33,6 @@ export struct DisableSystemServiceMenu {
     // 页面消失恢复系统服务菜单
     TextMenuController.disableSystemServiceMenuItems(false);
   }
-
   // [End richEditor_disableSystemMenu]
 
   build() {
@@ -41,8 +40,8 @@ export struct DisableSystemServiceMenu {
       Column({ space: 12 }) {
         ComponentCard() {
           // [Start richEditor_disableSystemMenu]
-          // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options).onReady(() => {
+            // $r('app.string.Demo_richEditor')需要替换为开发者所需的资源文件
             this.controller.addTextSpan($r('app.string.Demo_richEditor'),
               {
                 style:
