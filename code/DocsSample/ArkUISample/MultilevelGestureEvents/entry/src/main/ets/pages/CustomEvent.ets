@@ -34,7 +34,7 @@ const rect4 : CustomRect = new CustomRect(0, 0, 200, 150);
 struct CustomEvent {
   build() {
     Column() {
-      // [ Start responseRegion ]
+      // [Start responseRegion]
       Column() {
         Column()
           .id('ComponentB')
@@ -46,9 +46,9 @@ struct CustomEvent {
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}))
       .responseRegion([rect4]);
-      //   [ End responseRegion ]
+      //   [End responseRegion]
 
-      // [ Start hitTestBehavior_first ]
+      // [Start hitTestBehavior_first]
       Column() {
         Column()
           .id('ComponentB')
@@ -69,9 +69,9 @@ struct CustomEvent {
       .id('ComponentA')
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}));
-      //   [ End hitTestBehavior_first ]
+      //   [End hitTestBehavior_first]
 
-      // [ Start responseRegion_second ]
+      // [Start responseRegion_second]
       Stack() {
         Column()
           .id('ComponentB')
@@ -87,9 +87,9 @@ struct CustomEvent {
       .id('Stack A')
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}));
-      // [ End responseRegion_second ]
+      // [End responseRegion_second]
 
-      // [ Start responseRegion_thirdly ]
+      // [Start responseRegion_thirdly]
       Column() {
         Column()
           .id('ComponentB')
@@ -100,9 +100,9 @@ struct CustomEvent {
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}))
       .hitTestBehavior(HitTestMode.None);
-      // [ End responseRegion_thirdly ]
+      // [End responseRegion_thirdly]
 
-      // [ Start responseRegion_fourth ]
+      // [Start responseRegion_fourth]
       Stack() {
         Column()
           .id('ComponentB')
@@ -122,9 +122,9 @@ struct CustomEvent {
       .id('Stack A')
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}));
-      // [ End responseRegion_fourth ]
+      // [End responseRegion_fourth]
 
-      // [ Start responseRegion_fifth ]
+      // [Start responseRegion_fifth]
       Stack() {
         Column()
           .id('ComponentB')
@@ -144,9 +144,9 @@ struct CustomEvent {
       .id('Stack A')
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}));
-      // [ End responseRegion_fifth ]
+      // [End responseRegion_fifth]
 
-      // [ Start BindingFirst_gesture ]
+      // [Start BindingFirst_gesture]
       Column() {
         Column()
           .id('ComponentB')
@@ -154,9 +154,9 @@ struct CustomEvent {
       }
       .id('ComponentA')
       .gesture(TapGesture({count: 1}));
-      // [ End BindingFirst_gesture ]
+      // [End BindingFirst_gesture]
 
-      // [ Start BindingSecond_gesture ]
+      // [Start BindingSecond_gesture]
       Column() {
         Column()
           .id('ComponentB')
@@ -164,9 +164,9 @@ struct CustomEvent {
       }
       .id('ComponentA')
       .priorityGesture(TapGesture({count: 1}));
-      // [ End BindingSecond_gesture ]
+      // [End BindingSecond_gesture]
 
-      // [ Start BindingThirdly_gesture ]
+      // [Start BindingThirdly_gesture]
       Column() {
         Column()
           .id('ComponentB')
@@ -174,7 +174,7 @@ struct CustomEvent {
       }
       .id('ComponentA')
       .parallelGesture(TapGesture({count: 1}));
-      // [ End BindingThirdly_gesture ]
+      // [End BindingThirdly_gesture]
     }
     .width('100%')
     .height('100%')

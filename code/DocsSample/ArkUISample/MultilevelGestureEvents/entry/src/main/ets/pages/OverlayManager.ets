@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import { ComponentContent, OverlayManager, UIContext } from '@kit.ArkUI';
-// 定义位置接口
 interface Position {
   x: number;
   y: number;
@@ -28,24 +27,24 @@ class Params {
 }
 let uiContext: UIContext;
 
-// [ Start OverlayManager ]
+// [Start OverlayManager]
 @Builder
 function builderOverlay(params: Params) {
   Component1().hitTestBehavior(HitTestMode.Transparent)
 }
 
-// [StartExclude OverlayManager_CustomEvent ]
+// [StartExclude OverlayManager_CustomEvent]
 @Entry
 @Component
 struct CustomEvent {
   private overlayManager?: OverlayManager;
   @State context: UIContext = this.getUIContext();
-  // [EndExclude OverlayManager_CustomEvent ]
+  // [EndExclude OverlayManager_CustomEvent]
 
   aboutToAppear(): void {
-    // [StartExclude OverlayManager_overlayManager ]
+    // [StartExclude OverlayManager_overlayManager]
     this.overlayManager = this.context.getOverlayManager();
-    // [EndExclude OverlayManager_overlayManager ]
+    // [EndExclude OverlayManager_overlayManager]
     let componentContent = new ComponentContent(
       this.context,
       wrapBuilder<[Params]>(builderOverlay),
@@ -53,7 +52,7 @@ struct CustomEvent {
     );
     this.overlayManager.addComponentContent(componentContent, 0);
   }
-  // [ End OverlayManager ]
+  // [End OverlayManager]
   build() {}
 }
 @Component
