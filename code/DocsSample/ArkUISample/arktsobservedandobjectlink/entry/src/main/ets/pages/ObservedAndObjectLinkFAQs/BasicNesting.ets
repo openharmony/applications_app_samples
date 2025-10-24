@@ -14,41 +14,42 @@
  */
 // [Start Basic_nesting]
 class BasicNestingParent {
-  parentId: number;
+ public parentId: number;
 
   constructor(parentId: number) {
     this.parentId = parentId;
-  }
+  };
 
   getParentId(): number {
     return this.parentId;
-  }
+  };
 
   setParentId(parentId: number): void {
     this.parentId = parentId;
-  }
-}
+  };
+};
 
 @Observed
 class BasicNestingChild {
-  childId: number;
+ public childId: number;
 
   constructor(childId: number) {
     this.childId = childId;
-  }
+  };
 
   getChildId(): number {
     return this.childId;
-  }
+  };
 
   setChildId(childId: number): void {
     this.childId = childId;
-  }
-}
+  };
+};
 
 class Cousin extends BasicNestingParent {
-  cousinId: number = 47;
-  child: BasicNestingChild;
+  // The ID value assigned to the cousin (fixed as 47)
+ public cousinId: number = 47;
+ public child: BasicNestingChild;
 
   constructor(parentId: number, cousinId: number, childId: number) {
     super(parentId);
@@ -58,19 +59,19 @@ class Cousin extends BasicNestingParent {
 
   getCousinId(): number {
     return this.cousinId;
-  }
+  };
 
   setCousinId(cousinId: number): void {
     this.cousinId = cousinId;
-  }
+  };
 
   getChild(): number {
     return this.child.getChildId();
-  }
+  };
 
   setChild(childId: number): void {
     return this.child.setChildId(childId);
-  }
+  };
 }
 
 @Component
@@ -83,7 +84,7 @@ struct ViewChild {
       Button('Change childId')
         .onClick(() => {
           this.child.setChildId(this.child.getChildId() + 1);
-        })
+        });
     }
   }
 }
@@ -99,19 +100,19 @@ struct MyView {
       Button('Change Parent.parentId')
         .onClick(() => {
           this.cousin.parentId += 1;
-        })
+        });
 
       Text(`cousinId: ${this.cousin.cousinId}`)
       Button('Change Cousin.cousinId')
         .onClick(() => {
           this.cousin.cousinId += 1;
-        })
+        });
 
       ViewChild({ child: this.cousin.child }) // Text(`childId: ${this.cousin.child.childId}`)的替代写法
       Button('Change Cousin.Child.childId')
         .onClick(() => {
           this.cousin.child.childId += 1;
-        })
+        });
     }
   }
 }

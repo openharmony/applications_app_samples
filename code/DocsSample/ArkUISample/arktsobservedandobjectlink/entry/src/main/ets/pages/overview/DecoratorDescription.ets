@@ -18,16 +18,16 @@ class ObjLink {
 
   constructor(a: string) {
     this.a = a;
-  }
-}
+  };
+};
 // [Start Observe_the_changes]
 class DecoratorDescriptionChild {
   public num: number;
 
   constructor(num: number) {
     this.num = num;
-  }
-}
+  };
+};
 
 @Observed
 class DecoratorDescriptionParent {
@@ -37,8 +37,8 @@ class DecoratorDescriptionParent {
   constructor(child: DecoratorDescriptionChild, count: number) {
     this.child = child;
     this.count = count;
-  }
-}
+  };
+};
 // [End Observe_the_changes]
 
 @Entry
@@ -77,7 +77,7 @@ struct DecoratorDescriptionHelloWorld {
           // 允许@ObjectLink装饰的数据属性赋值
           this.objLink.a = '...'
           // [End Attribute_assignment]
-        })
+        });
     }
     .height('100%')
     .width('100%')

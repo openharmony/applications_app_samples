@@ -15,15 +15,15 @@
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG = 'MyApp';
+const TAG = 'arktsobservedandobjectlink';
 // [Start Delayed_change]
 @Observed
 class RenderClass {
-  waitToRender: boolean = false;
+ public waitToRender: boolean = false;
 
   constructor() {
-  }
-}
+  };
+};
 
 @Entry
 @Component
@@ -35,13 +35,13 @@ struct DelayedChangeIndex {
   renderClassChange() {
     // $r('app.string.renderClass_Change')需要替换为开发者所需的资源文件
     hilog.info(DOMAIN,TAG,`${this.context.resourceManager.getStringSync($r('app.string.renderClass_Change').id)}：` + this.renderClass.waitToRender);
-  }
+  };
 
   onPageShow() {
     setTimeout(() => {
       this.renderClass.waitToRender = true;
-    }, 1000)
-  }
+    }, 1000);
+  };
 
   build() {
     Row() {

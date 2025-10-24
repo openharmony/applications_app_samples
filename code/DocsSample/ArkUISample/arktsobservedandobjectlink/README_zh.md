@@ -16,12 +16,6 @@
 | ------------------------------------ | ------------------------------------ |
 | ![](screenshots/image2.PNG)          | ![](screenshots/image3.PNG)          |
 
-### 具体实现
-
-1. **基础嵌套对象观察实现**：用@Observed装饰所有层级的嵌套类（如内层Book类、外层Bag类），确保多层属性可被感知；子组件通过@ObjectLink声明对应@Observed类的变量（禁止本地初始化，仅父组件传参），允许修改变量属性但禁止改变变量本身；父组件用@State存储@Observed类实例，将嵌套属性传给子组件，修改属性时子组件 UI 同步刷新，示例中父组件改bag.book.name或子组件改book.name，子组件文本均会更新。
-2. **对象数组与复杂结构观察实现**：对象数组场景下，用@Observed装饰数组项类（如Info），父组件@State存该类数组，通过ForEach循环将数组项传给子组件（子组件@ObjectLink接收），支持数组增删（push/shift）和数组项属性修改触发刷新；二维数组需定义继承Array的@Observed类（如ObservedArray<T>），父组件存二维数组并传内层数组给子组件；继承 Map/Set（API 11+）时，用@Observed装饰自定义 Map/Set 类，子组件@ObjectLink接收实例，调用set/clear/add等方法可触发 UI 刷新。
-3. **问题解决与约束遵循实现**：解决嵌套属性更改失效问题，需给所有层级嵌套类加@Observed，并拆分组件让每层嵌套对象都被@ObjectLink接收（如外层组件传ParentCounter，内层组件传ParentCounter.subCounter）；遵循@ObjectLink约束：禁止在@Entry组件使用、禁止本地初始化、禁止给变量赋值（仅改属性），类型需显式为@Observed装饰类，整体替换变量需在父组件修改数据源（如父组件改bag.book为新Book实例）
-
 
 ### 使用说明
 
@@ -66,6 +60,13 @@ entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                  // 示例代码测试代码
 ```
+
+### 具体实现
+
+1. **基础嵌套对象观察实现**：用@Observed装饰所有层级的嵌套类（如内层Book类、外层Bag类），确保多层属性可被感知；子组件通过@ObjectLink声明对应@Observed类的变量（禁止本地初始化，仅父组件传参），允许修改变量属性但禁止改变变量本身；父组件用@State存储@Observed类实例，将嵌套属性传给子组件，修改属性时子组件 UI 同步刷新，示例中父组件改bag.book.name或子组件改book.name，子组件文本均会更新。
+2. **对象数组与复杂结构观察实现**：对象数组场景下，用@Observed装饰数组项类（如Info），父组件@State存该类数组，通过ForEach循环将数组项传给子组件（子组件@ObjectLink接收），支持数组增删（push/shift）和数组项属性修改触发刷新；二维数组需定义继承Array的@Observed类（如ObservedArray<T>），父组件存二维数组并传内层数组给子组件；继承 Map/Set（API 11+）时，用@Observed装饰自定义 Map/Set 类，子组件@ObjectLink接收实例，调用set/clear/add等方法可触发 UI 刷新。
+3. **问题解决与约束遵循实现**：解决嵌套属性更改失效问题，需给所有层级嵌套类加@Observed，并拆分组件让每层嵌套对象都被@ObjectLink接收（如外层组件传ParentCounter，内层组件传ParentCounter.subCounter）；遵循@ObjectLink约束：禁止在@Entry组件使用、禁止本地初始化、禁止给变量赋值（仅改属性），类型需显式为@Observed装饰类，整体替换变量需在父组件修改数据源（如父组件改bag.book为新Book实例）
+
 
 ### 相关权限
 

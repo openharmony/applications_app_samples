@@ -14,26 +14,26 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG = 'MyApp';
+const TAG = 'arktsobservedandobjectlink';
 @Observed
 class Person {
-  name: string = '';
-  age: number = 0;
+ public name: string = '';
+ public age: number = 0;
 
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
-  }
-}
+  };
+};
 
 @Observed
 class ClickEventJackInfo {
-  person: Person;
+ public person: Person;
 
   constructor(person: Person) {
     this.person = person;
-  }
-}
+  };
+};
 
 @Entry
 @Component
@@ -42,7 +42,7 @@ struct Parent {
 
   onChange01() {
     hilog.info(DOMAIN,TAG,`:::onChange01: + ${this.info.person.name}`); // 2
-  }
+  };
 
   build() {
     Column() {
@@ -54,7 +54,7 @@ struct Parent {
           this.info.person.name = 'Jack';
           hilog.info(DOMAIN,TAG,`:::clickEvent after ${this.info.person.name}`); // 3
         }
-      })
+      });
       // [End ClickEvent_Jack]
     }
   }
@@ -75,13 +75,13 @@ struct ClickEventJackChild {
         .height(40)
         .onClick(() => {
           this.onClickType();
-        })
+        });
     }
   }
 
   private onClickType() {
     if (this.clickEvent) {
       this.clickEvent();
-    }
-  }
+    };
+  };
 }

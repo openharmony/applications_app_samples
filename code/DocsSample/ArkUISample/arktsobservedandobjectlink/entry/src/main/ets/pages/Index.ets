@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router } from '@kit.ArkUI'
-
 class CreateRouter{
   public  pageName:string;
   public  routerName:string;
@@ -22,7 +20,7 @@ class CreateRouter{
     this.routerName = routerName;
   };
 };
-const CreateRouterList: CreateRouter[] = [
+const createRouterList: CreateRouter[] = [
   new CreateRouter('DecoratorDescriptionPage', 'pages/overview/DecoratorDescription'),
   new CreateRouter('ObservationChangeInheritancePage', 'pages/overview/ObservationChangeInheritance'),
   new CreateRouter('RestrictiveConditionsObservedPage', 'pages/restrictiveconditions/RestrictiveConditionsObserved'),
@@ -46,7 +44,7 @@ const CreateRouterList: CreateRouter[] = [
 @Entry
 @Component
 struct Index {
-  @State createRouterListIndex:CreateRouter[] = CreateRouterList;
+  @State createRouterListIndex:CreateRouter[] = createRouterList;
   build() {
     List({space:8}){
       ForEach(this.createRouterListIndex, (item:CreateRouter) => {
@@ -60,10 +58,10 @@ struct Index {
             .onClick(() => {
               this.getUIContext().getRouter().pushUrl({
                 url: `${item.routerName}`,
-              })
-            })
+              });
+            });
         }
-      }, (item:CreateRouter, index:number) => JSON.stringify(item))
+      }, (item:CreateRouter, index:number) => JSON.stringify(item));
     }
     .alignListItem(ListItemAlign.Center)
     .height('auto')

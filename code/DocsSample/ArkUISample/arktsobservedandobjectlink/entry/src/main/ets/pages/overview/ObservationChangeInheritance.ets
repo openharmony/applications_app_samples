@@ -17,8 +17,8 @@
 class DateClass extends Date {
   constructor(args: number | string) {
     super(args);
-  }
-}
+  };
+};
 
 @Observed
 class NewDate {
@@ -26,8 +26,8 @@ class NewDate {
 
   constructor(data: DateClass) {
     this.data = data;
-  }
-}
+  };
+};
 
 @Component
 struct ObservationChangeInheritanceChild {
@@ -39,12 +39,12 @@ struct ObservationChangeInheritanceChild {
       Button('child increase the day by 1')
         .onClick(() => {
           this.data.setDate(this.data.getDate() + 1);
-        })
+        });
       DatePicker({
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
         selected: this.data
-      })
+      });
     }
   }
 }
@@ -61,11 +61,11 @@ struct ObservationChangeInheritance {
       Button('parent update the new date')
         .onClick(() => {
           this.newData.data = new DateClass('2023-07-07');
-        })
+        });
       Button(`ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))`)
         .onClick(() => {
           this.newData = new NewDate(new DateClass('2023-08-20'));
-        })
+        });
     }
   }
 }

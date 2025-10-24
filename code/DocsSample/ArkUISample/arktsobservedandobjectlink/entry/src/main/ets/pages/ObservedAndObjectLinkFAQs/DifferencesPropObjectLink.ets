@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 // [Start Differences_Prop_ObjectLink]
+// Used to generate unique IDs for User instances
 let nextId = 0;
 
 @Observed
 class User {
-  id: number;
+ public id: number;
 
   constructor() {
     this.id = nextId++;
@@ -26,12 +27,12 @@ class User {
 
 @Entry
 @Component
-struct Index {
+struct DifferencesPropObjectLink {
   @State users: User[] = [new User(), new User(), new User()];
 
   build() {
     Column() {
-      UserChild({ firstUserByObjectLink: this.users[0], firstUserByProp: this.users[0] })
+      UserChild({ firstUserByObjectLink: this.users[0], firstUserByProp: this.users[0] });
     }
   }
 }
@@ -50,11 +51,11 @@ struct UserChild {
       Button('change @ObjectLink value')
         .onClick(() => {
           this.firstUserByObjectLink.id++;
-        })
+        });
       Button('change @Prop value')
         .onClick(() => {
           this.firstUserByProp.id++;
-        })
+        });
     }
   }
 }

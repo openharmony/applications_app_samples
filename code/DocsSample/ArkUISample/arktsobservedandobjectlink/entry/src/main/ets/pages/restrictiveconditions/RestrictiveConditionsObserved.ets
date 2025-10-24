@@ -15,20 +15,20 @@
 // [ Start Test_Info_Observed ]
 @Observed
 class RestrictiveConditionsObservedInfo {
-  count: number;
+ public count: number;
 
   constructor(count: number) {
     this.count = count;
-  }
-}
+  };
+};
 
 class Test {
-  msg: number;
+ public msg: number;
 
   constructor(msg: number) {
     this.msg = msg;
-  }
-}
+  };
+};
 // [StartExclude Test_Info_Observed]
 @Component
 struct TestInfo{
@@ -43,12 +43,12 @@ struct TestInfo{
 // [Start Info_Initialization]
 @Observed
 class InfoInitialization {
-  count: number;
+ public count: number;
 
   constructor(count: number) {
     this.count = count;
-  }
-}
+  };
+};
 // [StartExclude Info_Initialization]
 @Component
 struct Initialization{

@@ -12,40 +12,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-let ComplexMethodsNestingNextId = 1;
+// Used to generate unique IDs for ComplexMethodsMethodsNesting related instances
+let complexMethodsNestingNextId = 1;
 
 @Observed
 class ComplexMethodsNestingSubCounter {
-  counter: number;
+ public counter: number;
 
   constructor(c: number) {
     this.counter = c;
-  }
-}
+  };
+};
 
 @Observed
 class ParentCounter {
-  id: number;
-  counter: number;
-  subCounter: ComplexMethodsNestingSubCounter;
+ public id: number;
+ public counter: number;
+ public subCounter: ComplexMethodsNestingSubCounter;
 
   incrCounter() {
     this.counter++;
-  }
+  };
 
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
-  }
+  };
 
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
-  }
+  };
 
   constructor(c: number) {
-    this.id = ComplexMethodsNestingNextId++;
+    this.id = complexMethodsNestingNextId++;
     this.counter = c;
     this.subCounter = new ComplexMethodsNestingSubCounter(c);
-  }
+  };
 }
 
 
@@ -60,32 +61,36 @@ struct ParentComp {
         // [Start Complex_Methods_Nesting]
         ComplexMethodsNestingCounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
         // [StartExclude Complex_Methods_Nesting_One]
-        ComplexMethodsNestingCounterComp({ value: this.counter[1] })
-        ComplexMethodsNestingCounterComp({ value: this.counter[2] })
+        ComplexMethodsNestingCounterComp({ value: this.counter[1] });
+        ComplexMethodsNestingCounterComp({ value: this.counter[2] });
         Divider().height(5)
         ForEach(this.counter,
           (item: ParentCounter) => {
             ComplexMethodsNestingCounterComp({ value: item })
           },
           (item: ParentCounter) => item.id.toString()
-        )
+        );
         Divider().height(5)
         Text('Parent: reset entire counter')
           .fontSize(20).height(50)
           .onClick(() => {
-            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+            this.counter = [
+              new ParentCounter(1),
+              new ParentCounter(2),
+              new ParentCounter(3)
+            ];
           })
         Text('Parent: incr counter[0].counter')
           .fontSize(20).height(50)
           .onClick(() => {
             this.counter[0].incrCounter();
             this.counter[0].incrSubCounter(10);
-          })
+          });
         Text('Parent: set.counter to 10')
           .fontSize(20).height(50)
           .onClick(() => {
             this.counter[0].setSubCounter(10);
-          })
+          });
       }
     }
   }
@@ -102,7 +107,7 @@ struct ComplexMethodsNestingCounterComp {
         .fontSize(25)
         .onClick(() => {
           this.value.incrCounter();
-        })
+        });
       // [EndExclude Complex_Methods_Nesting_Two]
       // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
       ComplexMethodsNestingCounterChild({ subValue: this.value.subCounter });
@@ -121,6 +126,6 @@ struct ComplexMethodsNestingCounterChild {
     Text(`${this.subValue.counter}`)
       .onClick(() => {
         this.subValue.counter += 1;
-      })
+      });
   }
 }
