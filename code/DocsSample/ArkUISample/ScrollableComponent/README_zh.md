@@ -86,12 +86,14 @@ entry/src/main/ets/
 |   |       |---SwiperAndTabsLinkage.ets
 |   |       |---SwiperAutoPlay.ets
 |   |       |---SwiperCustomAnimation.ets
+|   |       |---SwiperDigitIndicatorIgnoreComponentSize.ets
 |   |       |---SwiperDirection.ets
 |   |       |---SwiperIgnoreComponentSize.ets
 |   |       |---SwiperIndicatorStyle.ets
 |   |       |---SwiperLoop.ets
 |   |       |---SwiperMultiPage.ets
 |   |       |---SwiperPageSwitchMethod.ets
+|   |       |---SwiperVisibleContentPosition.ets
 |   |---tabs                                 //选项卡
 |   |       |---AgeFriendlyTabs.ets  
 |   |       |---BottomTabBar.ets
@@ -153,7 +155,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/ScrollableComponent > .git/info/sparse-checkout
-git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/ScrollableComponent > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
