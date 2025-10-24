@@ -56,7 +56,7 @@ struct Page_FromStageModel {
           }
           .onClick(() => {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
-            const RESULT_CODE: number = 1001;
+            const RESULT_CODE: number = 1001; //FuncAbilityA返回的结果
             let abilityResult: common.AbilityResult = {
               resultCode: RESULT_CODE,
               want: {
@@ -64,7 +64,7 @@ struct Page_FromStageModel {
                 moduleName: 'entry', // moduleName非必选
                 abilityName: 'FuncAbilityA',
                 parameters: {
-                  info: '来自FuncAbility Index页面'
+                  info: $r('app.string.ability_return_info')
                 },
               },
             };

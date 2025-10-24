@@ -59,8 +59,8 @@ export default function abilityTest() {
       // 拉起FuncAbilityA
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA start');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('拉起FuncAbilityA'));
-      let StartModel = await driver.findComponent(ON.text('拉起FuncAbilityA'));
+      await driver.assertComponentExist(ON.text('StartFuncAbilityA'));
+      let StartModel = await driver.findComponent(ON.text('StartFuncAbilityA'));
       await StartModel.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA End');
@@ -71,8 +71,8 @@ export default function abilityTest() {
       // 启动单实例模式UIAbility
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA start');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('终止FuncAbilityA'));
-      let StartModel = await driver.findComponent(ON.text('终止FuncAbilityA'));
+      await driver.assertComponentExist(ON.text('StopFuncAbilityA'));
+      let StartModel = await driver.findComponent(ON.text('StopFuncAbilityA'));
       await StartModel.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA End');
@@ -83,8 +83,8 @@ export default function abilityTest() {
       // 启动单实例模式UIAbility
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA start');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('拉起FuncAbilityA With Result'));
-      let StartModel = await driver.findComponent(ON.text('拉起FuncAbilityA With Result'));
+      await driver.assertComponentExist(ON.text('StartFuncAbilityAWithResult'));
+      let StartModel = await driver.findComponent(ON.text('StartFuncAbilityAWithResult'));
       await StartModel.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA End');
@@ -95,8 +95,8 @@ export default function abilityTest() {
       // 启动单实例模式UIAbility
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA start');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('终止FuncAbilityA With Result'));
-      let StartModel = await driver.findComponent(ON.text('终止FuncAbilityA With Result'));
+      await driver.assertComponentExist(ON.text('StopFuncAbilityAWithResult'));
+      let StartModel = await driver.findComponent(ON.text('StopFuncAbilityAWithResult'));
       await StartModel.click();
       await driver.delayMs(2000);
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA End');
@@ -107,8 +107,8 @@ export default function abilityTest() {
       // 启动单实例模式UIAbility
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA start');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('冷启动指定页面'));
-      let StartModel = await driver.findComponent(ON.text('冷启动指定页面'));
+      await driver.assertComponentExist(ON.text('ColdStartPage'));
+      let StartModel = await driver.findComponent(ON.text('ColdStartPage'));
       await StartModel.click();
       await driver.delayMs(2000);
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA End');
@@ -121,8 +121,8 @@ export default function abilityTest() {
       // 启动单实例模式UIAbility
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA start');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('热启动指定页面'));
-      let StartModel = await driver.findComponent(ON.text('热启动指定页面'));
+      await driver.assertComponentExist(ON.text('HotStartPage'));
+      let StartModel = await driver.findComponent(ON.text('HotStartPage'));
       await StartModel.click();
       await driver.delayMs(2000);
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA End');
@@ -135,8 +135,8 @@ export default function abilityTest() {
       // 启动单实例模式UIAbility
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA start');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('热启动指定页面'));
-      let StartModel = await driver.findComponent(ON.text('热启动指定页面'));
+      await driver.assertComponentExist(ON.text('HotStartPage'));
+      let StartModel = await driver.findComponent(ON.text('HotStartPage'));
       await StartModel.click();
       await driver.delayMs(2000);
       hilog.info(DOMAIN_NUMBER, TAG, 'FuncAbilityA End');
