@@ -16,8 +16,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Want } from '@kit.AbilityKit';
 import { abilityDelegatorRegistry, Driver ,Component, Point, On, ON } from '@kit.TestKit';
-import { router } from '@kit.ArkUI';
 
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 export default function CheckPage() {
   describe('CheckPage', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -56,7 +62,7 @@ export default function CheckPage() {
      */
     it('CheckPageTest_001', 0, async (done:Function) => {
       const driver = Driver.create();
-      const button = await driver.findComponent(ON.text('UIContext查询组件树和组件信息能力'));
+      const button = await driver.findComponent((ON.text(await getResourceString($r('app.string.text1')))));
       await button.click();
       await driver.delayMs(500);
       const button1 = await driver.findComponent(ON.text('content'));
@@ -79,7 +85,7 @@ export default function CheckPage() {
      */
     it('CheckPageTest_002', 0, async (done:Function) => {
       const driver = Driver.create();
-      const button = await driver.findComponent(ON.text('布局回调的基本用法'));
+      const button = await driver.findComponent((ON.text(await getResourceString($r('app.string.text2')))));
       await button.click();
       await driver.delayMs(500);
       const button1 = await driver.findComponent(ON.text('getInspectorByKey'));
@@ -102,7 +108,7 @@ export default function CheckPage() {
      */
     it('CheckPageTest_003', 0, async (done:Function) => {
       const driver = Driver.create();
-      const button = await driver.findComponent(ON.text('组件标识属性的扩展能力'));
+      const button = await driver.findComponent((ON.text(await getResourceString($r('app.string.text3')))));
       await button.click();
       await driver.delayMs(500);
       done()
