@@ -38,7 +38,7 @@ const DEFAULT_FRICTION: number = 1;
 @Component
 export struct SupportSlidingHand {
   // [Start NewsData]
-  @State NewsData: Array<News> = [
+  @State newsData: Array<News> = [
     new News('1', 'News Title', 'This is a short news with limited content, quickly swipe to switch between them',
       'short'),
     new News('2', 'News Title', 'This is a short news with limited content, quickly swipe to switch between them',
@@ -58,7 +58,7 @@ export struct SupportSlidingHand {
 
   // 判断当前是否为短新闻
   IsShortNews(currentIndex: number): boolean {
-    return this.NewsData[currentIndex].type === 'short'
+    return this.newsData[currentIndex].type === 'short'
   }
 
   build() {
@@ -68,7 +68,7 @@ export struct SupportSlidingHand {
         this.topBar()
         //   新闻列表
         List({ scroller: this.scrollerForList, space: 10 }) {
-          ForEach(this.NewsData, (item: News, index) => {
+          ForEach(this.newsData, (item: News, index) => {
             ListItem() {
               Column({ space: 10 }) {
                 Text(item.title)

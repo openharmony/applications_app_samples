@@ -104,8 +104,7 @@ export function tabsDestination(name: string) {
     CustomTabBar();
   } else if (name === routes[8].name) {
     ContentWillChange();
-  }
-  else if (name === routes[9].name) {
+  } else if (name === routes[9].name) {
     AgeFriendlyTabs();
   }
 }
