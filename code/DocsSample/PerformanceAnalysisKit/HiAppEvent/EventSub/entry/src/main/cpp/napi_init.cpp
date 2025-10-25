@@ -37,14 +37,14 @@ static HiAppEvent_Watcher *eventWatcherR;
 static HiAppEvent_Watcher *eventWatcherT;
 // [End EventSub_onTrigger_ptr]
 
-// [Start App_Hicollie_OnReceive]
+// [Start App_Hicollie_Watcher_R_ptr]
 // 定义一变量，用来缓存创建的观察者的指针。
 static HiAppEvent_Watcher *appHicollieWatcherR;
-// [End App_Hicollie_OnReceive]
-// [Start App_Hicollie_Trigger]
+// [End App_Hicollie_Watcher_R_ptr]
+// [Start App_Hicollie_Watcher_T_ptr]
 // 定义一变量，用来缓存创建的观察者的指针。
 static HiAppEvent_Watcher *appHicollieWatcherT;
-// [End App_Hicollie_Trigger]
+// [End App_Hicollie_Watcher_T_ptr]
 
 // [Start CrashEvent_OnReceive]
 static void OnReceiveCrashEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
@@ -1130,12 +1130,12 @@ static napi_value Init(napi_env env, napi_value exports)
         { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
         // [End test_hicollie_timer]
         // [Start register_app_hicollie_watcherR]
-        { "RegisterAppHicollieWatcherR", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
-            nullptr },
+        { "RegisterAppHicollieWatcherR", nullptr, RegisterAppHicollieWatcherR, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
         // [End register_app_hicollie_watcherR]
         // [Start register_app_hicollie_watcherT]
-        { "RegisterAppHicollieWatcherT", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
-            nullptr },
+        { "RegisterAppHicollieWatcherT", nullptr, RegisterAppHicollieWatcherT, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
         // [End register_app_hicollie_watcherT]
         // [EndExclude AsanEvent_Init]
         { "registerSanitizerReceiveWatcher", nullptr, RegisterSanitizerReceiveWatcher, nullptr, nullptr, nullptr,
