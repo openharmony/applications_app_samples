@@ -86,6 +86,7 @@ void RdbDelete(OH_Rdb_Store *store_)
 void RdbUpdate(OH_Rdb_Store *store_)
 {
     // [Start rdb_OH_Rdb_Update_and_UpdateWithConflictResolution]
+    // 创建valueBucket对象，用于存储要更新的新数据
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putText(valueBucket, "NAME", "Rose");
     valueBucket->putInt64(valueBucket, "AGE", 22); // The value of AGE is 22
@@ -745,7 +746,7 @@ void RdbStoreTest()
     // [Start rdb_OH_Rdb_SetCustomDir_and_SetReadOnly]
     
     // 可设置自定义数据库路径
-    // 数据库文件创建位置将位于沙箱路径 /data/storage/el2/database/a/b/RdbTest.db
+    // 数据库文件创建位置将位于沙箱路径 /data/storage/el3/database/a/b/RdbTest.db
     OH_Rdb_SetCustomDir(config, "../a/b");
     // 可设置为只读模式打开数据库
     OH_Rdb_SetReadOnly(config, true);
