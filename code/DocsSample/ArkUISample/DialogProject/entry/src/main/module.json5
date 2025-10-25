@@ -61,6 +61,13 @@
           }
         ]
       }
-    ]
+    ],
+    // [Start menu_permissions]
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.VIBRATE",
+      }
+    ],
+    // [End menu_permissions]
   }
 }
