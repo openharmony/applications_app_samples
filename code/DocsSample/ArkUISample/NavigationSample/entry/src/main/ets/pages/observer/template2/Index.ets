@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 import { uiObserver } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0x0000;
 @Component
 struct PageOne {
   build() {
@@ -36,7 +38,7 @@ struct ObserverIndex2 {
   aboutToAppear() {
     // [Start uiObserver]
     uiObserver.on('navDestinationUpdate', (info) => {
-      console.info('NavDestination state update', JSON.stringify(info));
+      hilog.info(DOMAIN, 'testTag', 'NavDestination state update', JSON.stringify(info));
     });
     // [End uiObserver]
   }

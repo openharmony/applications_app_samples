@@ -12,10 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start onResult]
 // 在UIAbility中使用
 import { uiObserver } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 // [StartExclude onResult]
+const DOMAIN = 0x0000;
 @Component
 struct PageOne {
   build() {
@@ -28,7 +32,8 @@ struct PageOne {
 // callbackFunc是开发者定义的监听回调函数
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   // [StartExclude onResult]
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  hilog.info(DOMAIN, 'testTag', 'testTag navDestinationSwitch from: ', JSON.stringify(info.from), 'to:',
+    JSON.stringify(info.to));
   // [EndExclude onResult]
 };
 // 看日志

@@ -1,3 +1,5 @@
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -12,17 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { BusinessError } from '@kit.BasicServicesKit';
-
-class PageOneParamClass {
-  count: number = 10;
-};
-
-class ParamWithOp {
-  public operation: number = 1;
-  public count: number = 10;
-};
-
+const DOMAIN = 0x0000;
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
   PageOne()
@@ -48,7 +40,8 @@ export struct PageOne {
           .onClick(() => {
             // [Start PushPathByNameOnPop]
             this.pageInfo.pushPathByName('temp4-pageTwo', 'PageOne Param', (popInfo) => {
-              console.info('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result));
+              hilog.info(DOMAIN, 'testTag', 'Pop page name is: ', popInfo.info.name, 'result: ',
+                JSON.stringify(popInfo.result));
               // [StartExclude PushPathByNameOnPop]
               this.message =
                 'Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);

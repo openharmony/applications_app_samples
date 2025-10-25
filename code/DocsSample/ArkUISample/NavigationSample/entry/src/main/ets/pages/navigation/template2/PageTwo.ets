@@ -59,7 +59,6 @@ export struct PageTwo {
     })
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;
-      console.log('current page config info is ' + JSON.stringify(context.getConfigInRouteMap()));
     })
   }
 }

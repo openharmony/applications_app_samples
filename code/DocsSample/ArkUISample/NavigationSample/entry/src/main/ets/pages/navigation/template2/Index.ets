@@ -1,3 +1,5 @@
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -12,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+const DOMAIN = 0x0000;
 // [Start NavigationCreate]
 @Entry
 @Component
@@ -30,7 +33,7 @@ struct Index {
           return;
         }
         if (typeof to === 'string') {
-          console.log('target page is navigation home');
+          hilog.info(DOMAIN, 'testTag', 'target page is navigation home');
           return;
         }
         // 将跳转到PageTwo的路由重定向到PageOne

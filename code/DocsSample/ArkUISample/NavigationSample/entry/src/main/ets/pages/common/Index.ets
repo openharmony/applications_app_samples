@@ -16,17 +16,17 @@
 export interface Route {
   name: string;
   label: ResourceStr;
-}
+};
 
 export interface RouteGroup extends Route {
   children: Route[];
-}
+};
 
 export class P2PManager {
   public resourceToString(resource: Resource): string {
     return getContext(this).resourceManager.getStringSync(resource);
-  }
-}
+  };
+};
 
 // 默认导出let
 let p2pManager = new P2PManager();

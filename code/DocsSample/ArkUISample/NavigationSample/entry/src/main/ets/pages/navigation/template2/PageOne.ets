@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 class TmpClass {
   count: number = 10;
 };
@@ -21,7 +23,7 @@ class TmpClass {
 export function PageOneBuilder(name: string, param: Object) {
   PageOne()
 };
-
+const DOMAIN = 0x0000;
 @Component
 export struct PageOne {
   pageStack: NavPathStack = new NavPathStack();
@@ -51,9 +53,10 @@ export struct PageOne {
                 // [Start PushDestination]
                 this.pageStack.pushDestination({
                   name: 'pageTwo', param: 'PageOne Param'}).catch((error: BusinessError) => {
-                  console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
+                  hilog.info(DOMAIN, 'testTag', '[pushDestination]failed', 'error code = ', error.code,
+                    'error.message = ', error.message);
                 }).then(() => {
-                  console.error('[pushDestination]success.');
+                  hilog.info(DOMAIN, 'testTag', '[pushDestination]success.');
                 });
                 // [End PushDestination]
               })
@@ -63,9 +66,10 @@ export struct PageOne {
               .onClick(() => {
                 // [Start PushDestinationByName]
                 this.pageStack.pushDestinationByName('pageTwo', 'PageOne Param').catch((error: BusinessError) => {
-                  console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
+                  hilog.info(DOMAIN, 'testTag', '[pushDestinationByName]failed', 'error code = ', error.code,
+                    'error.message = ', error.message);
                 }).then(() => {
-                  console.error('[pushDestinationByName]success.');
+                  hilog.info(DOMAIN, 'testTag', '[pushDestinationByName]success.');
                 });
                 // [End PushDestinationByName]
               })
@@ -80,8 +84,8 @@ export struct PageOne {
                 this.pageStack.moveToTop('pageTwo');
                 // [Start moveToTop]
                 this.message = 'moveToTop' + JSON.stringify(this.pageStack);
-                console.log('moveToTop' + JSON.stringify(this.pageStack),
-                  'Return value' + JSON.stringify(this.pageStack.moveToTop('pageTwo')));
+                hilog.info(DOMAIN, 'testTag', 'moveToTop', JSON.stringify(this.pageStack), 'Return value',
+                  JSON.stringify(this.pageStack.moveToTop('pageTwo')));
               })
 
             Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
@@ -93,7 +97,7 @@ export struct PageOne {
                 this.pageStack.moveIndexToTop(1);
                 // [Start moveIndexToTop]
                 this.message = 'moveIndexToTop' + JSON.stringify(this.pageStack);
-                console.log('moveIndexToTop' + JSON.stringify(this.pageStack));
+                hilog.info(DOMAIN, 'testTag', 'moveIndexToTop', JSON.stringify(this.pageStack));
               })
 
             Button('removeByName', { stateEffect: true, type: ButtonType.Capsule })
@@ -106,7 +110,7 @@ export struct PageOne {
                 this.pageStack.removeByName('pageTwo');
                 // [Start removeByName]
                 this.message = 'removeByName' + JSON.stringify(this.pageStack);
-                console.log('removeByName' + JSON.stringify(this.pageStack));
+                hilog.info(DOMAIN, 'testTag', 'removeByName', JSON.stringify(this.pageStack));
               })
 
             Button('replacePathByName', { stateEffect: true, type: ButtonType.Capsule })
@@ -117,7 +121,7 @@ export struct PageOne {
                 this.pageStack.replacePathByName('pageTwo', 'PageOne Param');
                 // [End replacePathByName]
                 this.message = 'replacePathByName' + JSON.stringify(this.pageStack);
-                console.log('replacePathByName' + JSON.stringify(this.pageStack));
+                hilog.info(DOMAIN, 'testTag', 'replacePathByName', JSON.stringify(this.pageStack));
               })
 
             Button('replacePath', { stateEffect: true, type: ButtonType.Capsule })
@@ -130,7 +134,7 @@ export struct PageOne {
                 this.pageStack.replacePath({ name: 'pageTwo', param: 'PageOne Param' });
                 // [End replacePath]
                 this.message = 'replacePath' + JSON.stringify(this.pageStack);
-                console.log('replacePath' + JSON.stringify(this.pageStack));
+                hilog.info(DOMAIN, 'testTag', 'replacePath', JSON.stringify(this.pageStack));
               })
 
             Button('replaceDestination', { stateEffect: true, type: ButtonType.Capsule })
@@ -139,9 +143,10 @@ export struct PageOne {
               .onClick(() => {
                 this.pageStack.replaceDestination({ name: 'pageTwo', param: 'PageOne Param' })
                   .catch((error: BusinessError) => {
-                    console.error(`Replace destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+                    hilog.info(DOMAIN, 'testTag', '[replaceDestination]failed', 'error code = ', error.code,
+                      'error.message = ', error.message);
                   }).then(() => {
-                  console.info('Replace destination succeed.');
+                  hilog.info(DOMAIN, 'testTag', '[replaceDestination]success.');
                 })
               })
 
@@ -155,7 +160,7 @@ export struct PageOne {
                 this.pageStack.removeByIndexes([1]);
                 // [End removeByIndexes]
                 this.message = 'removeByIndexes' + JSON.stringify(this.pageStack);
-                console.log('removeByIndexes' + JSON.stringify(this.pageStack));
+                hilog.info(DOMAIN, 'testTag', 'removeByIndexes', JSON.stringify(this.pageStack));
               })
 
             Button('removeByNavDestinationId', { stateEffect: true, type: ButtonType.Capsule })
@@ -167,7 +172,7 @@ export struct PageOne {
                 this.pageStack.removeByNavDestinationId('1');
                 // [End removeByNavDestinationId]
                 this.message = 'removeByNavDestinationId' + JSON.stringify(this.pageStack);
-                console.log('removeByNavDestinationId' + JSON.stringify(this.pageStack));
+                hilog.info(DOMAIN, 'testTag', 'removeByNavDestinationId', JSON.stringify(this.pageStack));
               })
             Button('clear', { stateEffect: true, type: ButtonType.Capsule })
               .width('80%')
@@ -179,7 +184,7 @@ export struct PageOne {
                 this.pageStack.clear();
                 // [End PushPathParam]
                 this.message = 'clear' + JSON.stringify(this.pageStack);
-                console.log('clear' + JSON.stringify(this.pageStack));
+                hilog.info(DOMAIN, 'testTag', 'clear', JSON.stringify(this.pageStack));
               })
             Button('get', { stateEffect: true, type: ButtonType.Capsule })
               .width('80%')
@@ -195,13 +200,14 @@ export struct PageOne {
                 // 获取PageOne页面的索引集合
                 this.pageStack.getIndexByName('pageOne');
                 // [End GetParam]
-                console.log('-------------------');
-                console.log('Get the names of all NavDestination pages in the stack.', JSON.stringify(this.pageStack.getAllPathName()));
-                console.log('Get the parameter information of the NavDestination page specified by index.',
+                hilog.info(DOMAIN, 'testTag', 'Get the names of all NavDestination pages in the stack.',
+                  JSON.stringify(this.pageStack.getAllPathName()));
+                hilog.info(DOMAIN, 'testTag',
+                  'Get the parameter information of the NavDestination page specified by index.',
                   JSON.stringify(this.pageStack.getParamByIndex(1)));
-                console.log('Get all parameter information of NavDestination pages named "name"',
+                hilog.info(DOMAIN, 'testTag', 'Get all parameter information of NavDestination pages named "name"',
                   JSON.stringify(this.pageStack.getParamByName('pageTwo')));
-                console.log('Get the position indices of all NavDestination pages named "name"',
+                hilog.info(DOMAIN, 'testTag', 'Get the position indices of all NavDestination pages named "name"',
                   JSON.stringify(this.pageStack.getIndexByName('pageOne')));
               })
 
@@ -222,7 +228,7 @@ export struct PageOne {
     })
     .onBackPressed(() => {
       const popDestinationInfo = this.pageStack.pop(); // 弹出路由栈栈顶元素
-      console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', 'Return value', JSON.stringify(popDestinationInfo));
       return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageStack = context.pathStack;

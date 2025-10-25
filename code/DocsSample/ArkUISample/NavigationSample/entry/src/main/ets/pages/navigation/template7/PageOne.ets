@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 class NavParam {
-  desc: string = 'navigationOnReady-param'
+  public desc: string = 'navigationOnReady-param'
 };
 
 @Builder

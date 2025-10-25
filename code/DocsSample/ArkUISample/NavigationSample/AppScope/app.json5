@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.samples.navigation",
+    "bundleName": "com.samples.navigationsample",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

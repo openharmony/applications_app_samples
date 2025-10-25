@@ -1,3 +1,5 @@
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -12,9 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+const DOMAIN = 0x0000;
 // [Start onResult]
 class NavParam {
-  desc: string = 'navigationOnResult-param'
+  public desc: string = 'navigationOnResult-param'
 };
 // [StartExclude onResult]
 @Builder
@@ -41,7 +44,7 @@ struct DemoNavDestination {
     }
     .onResult((param: Object) => {
       if (param instanceof NavParam) {
-        console.info('TestTag', 'get NavParam, its desc: ' + (param as NavParam).desc);
+        hilog.info(DOMAIN, 'testTag', 'get NavParam, its desc:', (param as NavParam).desc);
         return;
       }
       console.info('TestTag', 'param not instance of NavParam');

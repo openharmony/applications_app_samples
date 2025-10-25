@@ -1,3 +1,20 @@
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+const DOMAIN = 0x0000;
 // [Start ToolBar]
 // [StartExclude ToolBar]
 let ToolTmp: ToolbarItem = {
@@ -5,7 +22,7 @@ let ToolTmp: ToolbarItem = {
   'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',  // 当前目录image文件夹下的图标资源
   'action': () => {}
 };
-let TooBar: ToolbarItem[] = [ToolTmp,ToolTmp,ToolTmp];
+let tooBar: ToolbarItem[] = [ToolTmp,ToolTmp,ToolTmp];
 @Entry
 @Component
 struct ToolBar {
@@ -59,7 +76,7 @@ struct ToolBar {
         .margin({ top: 12 })
         // [EndExclude ToolBar]
       }
-      .toolbarConfiguration(TooBar)
+      .toolbarConfiguration(tooBar)
       // [End ToolBar]
       .title('主标题')
       .mode(NavigationMode.Split)
@@ -106,7 +123,7 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -125,13 +142,12 @@ export struct pageTwoTmp {
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
       return true;
     })
   }
 }
 
-// PageThree.ets
 @Component
 export struct pageThreeTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
@@ -144,7 +160,7 @@ export struct pageThreeTmp {
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
       return true;
     })
   }
