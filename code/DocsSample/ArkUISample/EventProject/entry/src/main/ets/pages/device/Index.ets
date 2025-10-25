@@ -21,9 +21,6 @@ import { OnKey } from './OnKey';
 import { PreIme } from './OnKeyPreIme';
 import { Mouse } from './OnMouse';
 import resource from '../../common/resource';
-import { OnKeyPreventBubble } from './OnKeyPreventBubble';
-import { OnKeyDistributeEvent } from './OnKeyDistributeEvent';
-import { OnKeyPreImeCommit } from './OnKeyPreImeCommit';
 
 
 export const Device_ROUTE_PREFIX: string = 'Device_ROUTE_PREFIX';
@@ -50,24 +47,9 @@ const routes: Route[] = [
     description: resource.resourceToString($r('app.string.Key_Description')),
   },
   {
-    name: `${Device_ROUTE_PREFIX}/OnKeyPreventBubble `,
-    title: resource.resourceToString($r('app.string.Key_PreventBubble')),
-    description: resource.resourceToString($r('app.string.Key_PreventBubble_Description')),
-  },
-  {
     name: `${Device_ROUTE_PREFIX}/OnKeyPreIme `,
     title: resource.resourceToString($r('app.string.Key_PreIme')),
     description: resource.resourceToString($r('app.string.Key_PreIme_Description')),
-  },
-  {
-    name: `${Device_ROUTE_PREFIX}/OnKeyDistributeEvent `,
-    title: resource.resourceToString($r('app.string.OnKeyDistributeEvent_title')),
-    description: resource.resourceToString($r('app.string.OnKeyDistributeEvent_description')),
-  },
-  {
-    name: `${Device_ROUTE_PREFIX}/OnKeyPreImeCommit `,
-    title: resource.resourceToString($r('app.string.OnKeyPreImeCommit_title')),
-    description: resource.resourceToString($r('app.string.OnKeyPreImeCommit_description')),
   }
 
 
@@ -86,13 +68,7 @@ export function DeviceDestination(name: string) {
   } else if (name === routes[3].name) {
     OnKey();
   } else if (name === routes[4].name) {
-    OnKeyPreventBubble();
-  } else if (name === routes[5].name) {
     PreIme();
-  } else if (name === routes[6].name) {
-    OnKeyDistributeEvent();
-  } else if (name === routes[7].name) {
-    OnKeyPreImeCommit();
   }
 }
 

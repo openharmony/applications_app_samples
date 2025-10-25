@@ -24,7 +24,10 @@ import { GestureJudgeDestination, GestureJudge_ROUTE_PREFIX } from './gesturejud
 import { GroupGestureDestination, GroupGesture_ROUTE_PREFIX } from './groupgesture/Index';
 import { Gesture_ROUTE_PREFIX, GestureDestination } from './singlegesture/Index';
 import { TouchDestination, Touch_ROUTE_PREFIX } from './Touch/Index';
+import { DropAnimationExample, DropAnimation_ROUTE_PREFIX} from './drop/DropAnimationExample';
 import resource from '../common/resource';
+import { GridEts, Grid_ROUTE_PREFIX } from './grid/GridEts';
+import { SpringLoading_ROUTE_PREFIX, SpringLoadingPage} from './springloading/SpringLoading';
 
 const routes: Route[] = [
   {
@@ -54,6 +57,18 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.Pages_Index_DragEvent')),
     name: Drag_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.Pages_Index_DropAnimation')),
+    name: DropAnimation_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.Pages_Index_GridExample')),
+    name: Grid_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.Pages_Index_SpringLoading')), // 需添加字符串资源
+    name: SpringLoading_ROUTE_PREFIX
   }
 ];
 
@@ -73,6 +88,12 @@ function Destination(name: string) {
     FocusDestination(name);
   } else if (name.startsWith(Drag_ROUTE_PREFIX)) {
     DragGestureDestination(name);
+  } else if (name.startsWith(DropAnimation_ROUTE_PREFIX)) {
+    DropAnimationExample();
+  } else if (name.startsWith(Grid_ROUTE_PREFIX)) {
+    GridEts();
+  } else if (name.startsWith(SpringLoading_ROUTE_PREFIX)) {
+    SpringLoadingPage();
   }
 }
 

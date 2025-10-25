@@ -49,14 +49,6 @@
       "value": "按键事件由外设键盘等设备触发，经驱动和多模处理转换后发送给当前获焦的窗口，窗口获取到事件后，会尝试分发三次事件。"
     },
     {
-      "name": "Key_PreventBubble",
-      "value": "阻止冒泡"
-    },
-    {
-      "name": "Key_PreventBubble_Description",
-      "value": "如果要阻止冒泡，即仅Button响应键盘事件，Column不响应，在Button的onKeyEvent回调中加入event.stopPropagation()方法即可"
-    },
-    {
       "name": "Key_PreIme",
       "value": "屏蔽"
     },
@@ -79,22 +71,6 @@
     {
       "name": "Device_OnKeyPreIme_title",
       "value": "按键事件"
-    },
-    {
-      "name": "OnKeyPreImeCommit_title",
-      "value": "回车提交"
-    },
-    {
-      "name": "OnKeyPreImeCommit_description",
-      "value": "使用OnKeyPreIme实现回车提交（建议使用物理键盘）。"
-    },
-    {
-      "name": "OnKeyDistributeEvent_title",
-      "value": "分发按键事件"
-    },
-    {
-      "name": "OnKeyDistributeEvent_description",
-      "value": "使用onKeyEventDispatch分发按键事件到子组件，子组件使用onKeyEvent。"
     },
     {
       "name": "Device_OnMouse_title",
@@ -439,6 +415,34 @@
     {
       "name": "Pages_Index_DragEvent",
       "value": "拖拽事件/DragEvent"
+    },
+    {
+      "name": "Pages_Index_DropAnimation",
+      "value": "拖放动画事件/DropAnimation"
+    },
+    {
+      "name": "Pages_Index_GridExample",
+      "value": "网格拖拽事件/GridExample"
+    },
+    {
+      "name": "Pages_Index_SpringLoading",
+      "value": "弹性加载事件/SpringLoading"
+    },
+    {
+      "name": "Select_Result",
+      "value": "搜索结果：\\n  设备 1\\n  设备 2\\n  设备 3\\n  ... ..."
+    },
+    {
+      "name": "Push_Here",
+      "value": "拖入此处"
+    },
+    {
+      "name": "DoubleClick_Text",
+      "value": "双击文字选择后拖出: \\n     DeviceName"
+    },
+    {
+      "name": "Search_Device",
+      "value": "搜索设备"
     }
   ]
 }
