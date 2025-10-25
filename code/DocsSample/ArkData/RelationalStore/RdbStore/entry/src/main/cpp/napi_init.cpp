@@ -120,7 +120,7 @@ void RdbUpdate(OH_Rdb_Store *store_)
     OH_VObject *valueObject2 = OH_Rdb_CreateValueObject();
     valueObject2->putText(valueObject2, "Rose");
     predicates2->equalTo(predicates2, "NAME", valueObject2);
-    valueBucket->putInt64(valueBucket, "ID", 1);// The value of ID is 1
+    valueBucket->putInt64(valueBucket, "ID", 1); // The value of ID is 1
     valueBucket->putText(valueBucket, "NAME", "zhangsan");
     int64_t changeRows2 = -1;
     
