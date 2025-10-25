@@ -32,7 +32,8 @@ export default class EntryAbility extends UIAbility {
     let filePath = this.context.filesDir + '/test.txt';
     // 将沙箱路径转换为uri
     let uri = fileUri.getUriFromPath(filePath);
-    // [End file_caller_ability_get_url]
+    // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test.txt"
+    // [StartExclude file_caller_ability_get_url]
     // 构造请求数据
     let want: Want = {
       action: 'ohos.want.action.viewData', // 表示查看数据的操作，文件打开场景固定为此值
@@ -41,7 +42,7 @@ export default class EntryAbility extends UIAbility {
       // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
       flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
     };
-    // [End file_caller_ability_create_request]
+    // [StartExclude file_caller_ability_create_request]
     // 调用接口启动
     this.context.startAbility(want)
       .then(() => {
@@ -50,6 +51,10 @@ export default class EntryAbility extends UIAbility {
       .catch((err: BusinessError) => {
         hilog.error(DOMAIN, TAG, `Failed to invoke startAbility, code: ${err.code}, message: ${err.message}`);
       });
+    // [EndExclude file_caller_ability_create_request]
+    // [EndExclude file_caller_ability_get_url]
   }
 }
+// [End file_caller_ability_get_url]
+// [End file_caller_ability_create_request]
 // [End file_caller_ability_start]

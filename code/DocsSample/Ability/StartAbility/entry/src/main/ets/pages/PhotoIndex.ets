@@ -123,8 +123,8 @@ struct Index {
         }).width('200').margin({ top: 20 })
 
         Button('editImg').onClick(event => {
-          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           // [Start photo_index_ability_callback]
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let abilityStartCallback: common.AbilityStartCallback = {
             onError: (code, name, message) => {
               const tip: string = `code:` + code + ` name:` + name + ` message:` + message;
@@ -138,8 +138,8 @@ struct Index {
                 this.editedImage = imagePixMap;
               });
             }
-            // [End photo_index_ability_callback]
           }
+          // [End photo_index_ability_callback]
           // 将图片转换为图片uri，并调用startAbilityByType拉起图片编辑应用面板
           // [Start photo_index_ability_start]
           let uri = fileUri.getUriFromPath(this.filePath);
