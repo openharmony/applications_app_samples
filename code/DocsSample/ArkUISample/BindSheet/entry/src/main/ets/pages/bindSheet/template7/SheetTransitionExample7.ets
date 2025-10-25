@@ -12,66 +12,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { LengthMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
-struct SheetTransitionExample1 {
+struct SheetTransitionExample7 {
   @State isShow: boolean = false;
-  @State sheetHeight: number = 300;
 
   @Builder
   myBuilder() {
     Column() {
-      Button("change height")
+      Button('content1')
         .margin(10)
         .fontSize(20)
-        .onClick(() => {
-          this.sheetHeight = 500;
-        })
 
-      Button("Set Illegal height")
+      Button('content2')
         .margin(10)
         .fontSize(20)
-        .onClick(() => {
-          this.sheetHeight = -1;
-        })
-
-      Button("close modal 1")
-        .margin(10)
-        .fontSize(20)
-        .onClick(() => {
-          this.isShow = false;
-        })
     }
     .width('100%')
-    .height('100%')
   }
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          height: this.sheetHeight,
-          backgroundColor: Color.Green,
-          onWillAppear: () => {
-            console.log('BindSheet onWillAppear.');
-          },
-          onAppear: () => {
-            console.log('BindSheet onAppear.');
-          },
-          onWillDisappear: () => {
-            console.log('BindSheet onWillDisappear.');
-          },
-          onDisappear: () => {
-            console.log('BindSheet onDisappear.');
-          }
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          title: { title: 'title', subtitle: 'subtitle' },
+          radius: { topStart: LengthMetrics.vp(50), topEnd: LengthMetrics.vp(10) },
         })
     }
-    .justifyContent(FlexAlign.Center)
+    .justifyContent(FlexAlign.Start)
     .width('100%')
     .height('100%')
   }

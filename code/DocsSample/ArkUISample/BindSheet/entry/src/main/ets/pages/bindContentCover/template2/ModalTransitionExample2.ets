@@ -12,16 +12,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { curves } from '@kit.ArkUI';
+
 @Entry
 @Component
-struct ModalTransitionExample3 {
-  @State isShow: boolean = false;
-  @State isShow2: boolean = false;
+struct ModalTransitionExample2 {
+  @State @Watch('isShow1Change') isShow: boolean = false;
+  @State @Watch('isShow2Change') isShow2: boolean = false;
+  @State isScale1: number = 1;
+  @State isScale2: number = 1;
+
+  isShow1Change() {
+    this.isShow ? this.isScale1 = 0.95 : this.isScale1 = 1;
+  }
+
+  isShow2Change() {
+    this.isShow2 ? this.isScale2 = 0.95 : this.isScale2 = 1;
+  }
 
   @Builder
   myBuilder2() {
     Column() {
-      Button("close modal 2")
+      Button('close modal 2')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -35,14 +47,14 @@ struct ModalTransitionExample3 {
   @Builder
   myBuilder() {
     Column() {
-      Button("transition modal 2")
+      Button('transition modal 2')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
           this.isShow2 = true;
         }).bindContentCover(this.isShow2, this.myBuilder2(), {
-        modalTransition: ModalTransition.DEFAULT,
-        backgroundColor: Color.Gray,
+        modalTransition: ModalTransition.NONE,
+        backgroundColor: Color.Orange,
         onWillAppear: () => {
           console.log('BindContentCover onWillAppear.');
         },
@@ -57,7 +69,7 @@ struct ModalTransitionExample3 {
         }
       })
 
-      Button("close modal 1")
+      Button('close modal 1')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -67,18 +79,20 @@ struct ModalTransitionExample3 {
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
+    .scale({ x: this.isScale2, y: this.isScale2 })
+    .animation({ curve: curves.springMotion() })
   }
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindContentCover(this.isShow, this.myBuilder(), {
-          modalTransition: ModalTransition.DEFAULT,
+          modalTransition: ModalTransition.NONE,
           backgroundColor: Color.Pink,
           onWillAppear: () => {
             console.log('BindContentCover onWillAppear.');
@@ -95,8 +109,10 @@ struct ModalTransitionExample3 {
         })
     }
     .justifyContent(FlexAlign.Center)
-    .backgroundColor(Color.White)
+    .backgroundColor('#ff49c8ab')
     .width('100%')
     .height('100%')
+    .scale({ x: this.isScale1, y: this.isScale1 })
+    .animation({ curve: curves.springMotion() })
   }
 }

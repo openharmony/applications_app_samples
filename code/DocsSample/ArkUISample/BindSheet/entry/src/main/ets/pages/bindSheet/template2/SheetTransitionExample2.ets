@@ -14,44 +14,40 @@
  */
 @Entry
 @Component
-struct bindSheetExample4 {
-  @State isShow: Boolean = false;
+struct SheetTransitionExample2 {
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
     Column() {
-      Button("CONTEXT")
+      Button('content1')
+        .margin(10)
+        .fontSize(20)
+
+      Button('content2')
         .margin(10)
         .fontSize(20)
     }
+    .width('100%')
   }
 
   build() {
     Column() {
-      Button("NoRegisterSpringback")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          height: SheetSize.MEDIUM,
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
           blurStyle: BlurStyle.Thick,
           showClose: true,
-          title: { title: "title", subtitle: "subtitle" },
-          preferType: SheetType.CENTER,
-
-          onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-            if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss(); //注册dismiss行为
-            }
-          }),
-
-          onWillSpringBackWhenDismiss: ((springBackAction: SpringBackAction) => {
-            //没有注册springBack，下拉半模态页面无回弹行为
-            //springBackAction.springBack();
-          }),
+          title: { title: 'title', subtitle: 'subtitle' },
         })
     }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
   }
 }

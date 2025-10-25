@@ -4,11 +4,11 @@
 
 本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [全模态转场](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)。
-2. [半模态转场](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)。
-3. [命令式打开半模态](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#openbindsheet12)。
-4. [模态转场](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-modal-transition.md)。
-5. [绑定全模态页面](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-contentcover-page.md)。
+1. [全模态转场](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)。
+2. [半模态转场](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)。
+3. [命令式打开半模态](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#openbindsheet12)。
+4. [模态转场](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-modal-transition.md)。
+5. [绑定全模态页面](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-contentcover-page.md)。
 
 ### 效果预览
 

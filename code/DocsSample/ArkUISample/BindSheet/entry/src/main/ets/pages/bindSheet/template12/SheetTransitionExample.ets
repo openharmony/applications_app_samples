@@ -12,47 +12,65 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { LengthMetrics } from '@kit.ArkUI';
+
+// [Start SheetTransitionExample]
 
 @Entry
 @Component
-struct SheetTransitionExample3 {
+struct SheetTransitionExample {
   @State isShow: boolean = false;
+  @State enableHoverMode: boolean = true;
+  @State hoverModeArea: HoverModeAreaType = HoverModeAreaType.TOP_SCREEN;
 
   @Builder
   myBuilder() {
     Column() {
-      Button("content1")
+      Button('enableHoverMode')
         .margin(10)
         .fontSize(20)
+        .onClick(() => {
+          this.enableHoverMode = !this.enableHoverMode;
+        })
 
-      Button("content2")
+      Button('hoverModeArea')
         .margin(10)
         .fontSize(20)
+        .onClick(() => {
+          this.hoverModeArea = this.hoverModeArea === HoverModeAreaType.TOP_SCREEN ?
+            HoverModeAreaType.BOTTOM_SCREEN : HoverModeAreaType.TOP_SCREEN;
+        })
+
+      Button('close modal')
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.isShow = false;
+        })
     }
     .width('100%')
+    .height('100%')
   }
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button($r('app.string.bindSheetCmd_label9'))
         .onClick(() => {
           this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          backgroundColor: Color.Gray,
-          blurStyle: BlurStyle.Thick,
-          showClose: true,
-          title: { title: "title", subtitle: "subtitle" },
-          borderWidth: { top: LengthMetrics.vp(10), start: LengthMetrics.vp(10), end: LengthMetrics.vp(20) },
-          borderColor: { top: Color.Pink, start: Color.Blue, end: Color.Yellow },
+          height: 300,
+          backgroundColor: Color.Green,
+          preferType: SheetType.CENTER,
+          enableHoverMode: this.enableHoverMode,
+          hoverModeArea: this.hoverModeArea
         })
     }
-    .justifyContent(FlexAlign.Start)
+    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
   }
 }
+
+// [End SheetTransitionExample]

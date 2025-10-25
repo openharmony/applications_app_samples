@@ -14,39 +14,64 @@
  */
 @Entry
 @Component
-struct SheetTransitionExample2 {
+struct SheetTransitionExample1 {
   @State isShow: boolean = false;
+  @State sheetHeight: number = 300;
 
   @Builder
   myBuilder() {
     Column() {
-      Button("content1")
+      Button('change height')
         .margin(10)
         .fontSize(20)
+        .onClick(() => {
+          this.sheetHeight = 500;
+        })
 
-      Button("content2")
+      Button('Set Illegal height')
         .margin(10)
         .fontSize(20)
+        .onClick(() => {
+          this.sheetHeight = -1;
+        })
+
+      Button('close modal 1')
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.isShow = false;
+        })
     }
     .width('100%')
+    .height('100%')
   }
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          blurStyle: BlurStyle.Thick,
-          showClose: true,
-          title: { title: "title", subtitle: "subtitle" },
+          height: this.sheetHeight,
+          backgroundColor: Color.Green,
+          onWillAppear: () => {
+            console.log('BindSheet onWillAppear.');
+          },
+          onAppear: () => {
+            console.log('BindSheet onAppear.');
+          },
+          onWillDisappear: () => {
+            console.log('BindSheet onWillDisappear.');
+          },
+          onDisappear: () => {
+            console.log('BindSheet onDisappear.');
+          }
         })
     }
-    .justifyContent(FlexAlign.Start)
+    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
   }

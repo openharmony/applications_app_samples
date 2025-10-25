@@ -12,6 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start Nested_scrolling_Sheet]
+
 @Entry
 @Component
 struct SheetDemo {
@@ -63,3 +66,5 @@ struct SheetDemo {
     .justifyContent(FlexAlign.Center)
   }
 }
+
+// [End Nested_scrolling_Sheet]

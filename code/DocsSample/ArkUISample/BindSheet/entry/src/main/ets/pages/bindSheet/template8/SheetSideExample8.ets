@@ -43,7 +43,7 @@ struct SheetSideExample8 {
       Text($r('app.string.sideBuilder_text1'))
         .fontSize(22).fontColor(0xFFFFFF).fontWeight(FontWeight.Bold).textAlign(TextAlign.Center)
         .width('100%').height(50).backgroundColor('#2ebd82')
-      Button("change enableOutsideInteractive = " + this.enableOutsideInteractive)
+      Button('change enableOutsideInteractive = ' + this.enableOutsideInteractive)
         .margin({ top: 5 })
         .onClick(() => {
           this.enableOutsideInteractive = !this.enableOutsideInteractive;
@@ -70,7 +70,7 @@ struct SheetSideExample8 {
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShowSide, this.sideBuilder(), {
-          title: { title: "SideSheet", subtitle: $r('app.string.sideBuilder_text3') },
+          title: { title: 'SideSheet', subtitle: $r('app.string.sideBuilder_text3') },
           backgroundColor: Color.Grey,
           onWillAppear: () => {
             console.log('SideSheet onWillAppear.');
@@ -87,7 +87,7 @@ struct SheetSideExample8 {
 
           preferType: SheetType.SIDE,
           blurStyle: BlurStyle.Regular,
-          maskColor: "#4bffc62d",  // 自定义蒙层颜色
+          maskColor: '#4bffc62d',  // 自定义蒙层颜色
           enableOutsideInteractive: this.enableOutsideInteractive,
 
           borderWidth: this.borderWidths,

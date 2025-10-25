@@ -14,14 +14,14 @@
  */
 @Entry
 @Component
-struct ModalTransitionExample {
+struct ModalTransitionExample4 {
   @State isShow: boolean = false;
   @State isShow2: boolean = false;
 
   @Builder
   myBuilder2() {
     Column() {
-      Button("close modal 2")
+      Button('close modal 2')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -30,19 +30,20 @@ struct ModalTransitionExample {
     }
     .width('100%')
     .height('100%')
+    .justifyContent(FlexAlign.Center)
   }
 
   @Builder
   myBuilder() {
     Column() {
-      Button("transition modal 2")
+      Button('transition modal 2')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
           this.isShow2 = true;
         }).bindContentCover(this.isShow2, this.myBuilder2(), {
-        modalTransition: ModalTransition.NONE,
-        backgroundColor: Color.Orange,
+        modalTransition: ModalTransition.ALPHA,
+        backgroundColor: Color.Gray,
         onWillAppear: () => {
           console.log('BindContentCover onWillAppear.');
         },
@@ -57,7 +58,7 @@ struct ModalTransitionExample {
         }
       })
 
-      Button("close modal 1")
+      Button('close modal 1')
         .margin(10)
         .fontSize(20)
         .onClick(() => {
@@ -71,14 +72,14 @@ struct ModalTransitionExample {
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .onClick(() => {
           this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindContentCover(this.isShow, this.myBuilder(), {
-          modalTransition: ModalTransition.NONE,
+          modalTransition: ModalTransition.ALPHA,
           backgroundColor: Color.Pink,
           onWillAppear: () => {
             console.log('BindContentCover onWillAppear.');
@@ -95,7 +96,7 @@ struct ModalTransitionExample {
         })
     }
     .justifyContent(FlexAlign.Center)
-    .backgroundColor("#ff49c8ab")
+    .backgroundColor(Color.White)
     .width('100%')
     .height('100%')
   }

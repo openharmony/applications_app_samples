@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { FrameNode, ComponentContent } from "@kit.ArkUI";
+import { FrameNode, ComponentContent } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = "";
+ public text: string = '';
 
   constructor(text: string) {
     this.text = text;
@@ -81,7 +81,7 @@ struct UIContextBindSheet {
             uiContext.openBindSheet(contentNode, {
               height: SheetSize.MEDIUM,
               backgroundColor: Color.Green,
-              title: { title: "Title", subtitle: "subtitle" }
+              title: { title: 'Title', subtitle: 'subtitle' }
             }, targetId)
               .then(() => {
                 console.info('openBindSheet success');

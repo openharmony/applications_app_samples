@@ -12,43 +12,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { LengthMetrics } from '@kit.ArkUI';
-
 @Entry
 @Component
-struct SheetTransitionExample7 {
-  @State isShow: boolean = false;
+struct bindSheetExample4 {
+  @State isShow: Boolean = false;
 
   @Builder
   myBuilder() {
     Column() {
-      Button("content1")
-        .margin(10)
-        .fontSize(20)
-
-      Button("content2")
+      Button('CONTEXT')
         .margin(10)
         .fontSize(20)
     }
-    .width('100%')
   }
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('NoRegisterSpringback')
         .onClick(() => {
           this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          title: { title: "title", subtitle: "subtitle" },
-          radius: { topStart: LengthMetrics.vp(50), topEnd: LengthMetrics.vp(10) },
+          height: SheetSize.MEDIUM,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: 'title', subtitle: 'subtitle' },
+          preferType: SheetType.CENTER,
+
+          onWillDismiss: ((dismissSheetAction: DismissSheetAction) => {
+            if (dismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
+              dismissSheetAction.dismiss(); //注册dismiss行为
+            }
+          }),
+
+          onWillSpringBackWhenDismiss: ((springBackAction: SpringBackAction) => {
+          }),
         })
     }
-    .justifyContent(FlexAlign.Start)
-    .width('100%')
-    .height('100%')
   }
 }
