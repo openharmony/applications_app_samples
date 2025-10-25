@@ -164,16 +164,13 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-      {"defaultConfigRdbStore", nullptr, DefaultConfigRdbStore, nullptr,
-       nullptr, nullptr, napi_default, nullptr},
-      {"customizedConfigRdbStore", nullptr, CustomizedConfigRdbStore, nullptr,
-       nullptr, nullptr, napi_default, nullptr},
-      {"backupRdbStore", nullptr, BackupRdbStore, nullptr, nullptr, nullptr,
-       napi_default, nullptr},
-      {"restoreRdbStore", nullptr, RestoreRdbStore, nullptr, nullptr, nullptr,
-       napi_default, nullptr},
-      {"setSecurityLevelForRdbStore", nullptr, SetSecurityLevelForRdbStore,
-       nullptr, nullptr, nullptr, napi_default, nullptr}};
+      {"defaultConfigRdbStore", nullptr, DefaultConfigRdbStore, nullptr, nullptr, nullptr, napi_default, nullptr},
+      {"customizedConfigRdbStore", nullptr, CustomizedConfigRdbStore, nullptr, nullptr, nullptr, napi_default,
+        nullptr},
+      {"backupRdbStore", nullptr, BackupRdbStore, nullptr, nullptr, nullptr, napi_default, nullptr},
+      {"restoreRdbStore", nullptr, RestoreRdbStore, nullptr, nullptr, nullptr, napi_default, nullptr},
+      {"setSecurityLevelForRdbStore", nullptr, SetSecurityLevelForRdbStore, nullptr, nullptr, nullptr, napi_default,
+        nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
@@ -191,5 +188,5 @@ static napi_module demoModule = {
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
-  napi_module_register(&demoModule);
+    napi_module_register(&demoModule);
 }

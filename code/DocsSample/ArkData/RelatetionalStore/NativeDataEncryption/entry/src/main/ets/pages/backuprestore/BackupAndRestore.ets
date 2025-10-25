@@ -59,7 +59,7 @@ export async function backupManually() {
      * "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。
      * 也可指定绝对路径："/data/storage/el2/database/Backup.db"，文件路径需要存在，不会自动创建目录。
      */
-    await store.backup("Backup.db");
+    await store.backup('Backup.db');
     hilog.info(DOMAIN, 'BackupAndRestore', `Succeeded in backing up RdbStore.`);
   } catch (e) {
     const err = e as BusinessError;
@@ -173,7 +173,7 @@ export async function restoringManualBackupData() {
   let store: relationalStore.RdbStore | undefined = undefined;
   let context = getContext();
   let STORE_CONFIG: relationalStore.StoreConfig = {
-    name: "RdbTest.db",
+    name: 'RdbTest.db',
     securityLevel: relationalStore.SecurityLevel.S3,
     allowRebuild: true
   }
@@ -197,7 +197,7 @@ export async function restoringManualBackupData() {
   try {
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     // 调用restore接口恢复数据
-    await store.restore("Backup.db");
+    await store.restore('Backup.db');
     hilog.info(DOMAIN, 'BackupAndRestore', 'Restore from backup success.');
   } catch (e) {
     const err = e as BusinessError;
