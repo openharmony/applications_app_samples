@@ -33,8 +33,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit'
 
 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
 
-let HILOG_DLP_DOMAIN: number = 0X0001;
-let HILOG_TAG: string = "dlp_info";
+let HILOG_DLP_DOMAIN: number = 0Xf888;
+let HILOG_TAG: string = 'DLPManager';
 
 interface Attribute {
   attributeId: string;
