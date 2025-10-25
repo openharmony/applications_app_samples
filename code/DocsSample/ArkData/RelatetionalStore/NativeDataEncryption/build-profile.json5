@@ -1,0 +1,57 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\10496\\.ohos\\config\\default_NativeDataEncryption_Xo-77VKpnENEMJje2LhquZtWwB2_ViNnPLjbiMGIpeg=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BFEFFAEC6C4075B54C83BCBC1881D3F654F9862EFD144C4268640D38D0FC00AB53D7A13C95A7E13",
+          "profile": "C:\\Users\\10496\\.ohos\\config\\default_NativeDataEncryption_Xo-77VKpnENEMJje2LhquZtWwB2_ViNnPLjbiMGIpeg=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\10496\\.ohos\\config\\default_NativeDataEncryption_Xo-77VKpnENEMJje2LhquZtWwB2_ViNnPLjbiMGIpeg=.p12",
+          "storePassword": "0000001BAAAB9BC550254D69AEBE827C134FB0A5028598F0AA92C4D33511ABA83D10E64B78AEE1F846166B"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "6.0.0(20)",
+        "compatibleSdkVersion": "6.0.0(20)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "nativeCompiler": "BiSheng",
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
