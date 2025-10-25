@@ -20,9 +20,7 @@
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
-    "deviceTypes": [
-      "default"
-    ],
+    "deviceTypes": [],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
