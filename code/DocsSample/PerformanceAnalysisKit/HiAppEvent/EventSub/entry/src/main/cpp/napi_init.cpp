@@ -248,7 +248,8 @@ static void OnReceiveAppKillEvent(const char *domain, const struct HiAppEvent_Ap
     }
 }
 
-static napi_value RegisterAppKillReceiveWatcher(napi_env env, napi_callback_info info) {
+static napi_value RegisterAppKillReceiveWatcher(napi_env env, napi_callback_info info)
+{
     OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent RegisterWatcher");
     // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
     appKillWatcherR = OH_HiAppEvent_CreateWatcher("onAppKillReceiverWatcher");
@@ -293,7 +294,8 @@ static void HandleSanitizerEventInfo(const struct HiAppEvent_AppEventInfo &appEv
                 bundleName.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.type=%{public}s",type.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.type=%{public}s",
+                type.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
                 externalLog.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s",
@@ -868,8 +870,9 @@ static napi_value WriteAppEvent(napi_env env, napi_callback_info info)
 // [Start AsanEvent_AddressTest]
 static napi_value AddressSanitizerTest(napi_env env, napi_callback_info info)
 {
+    constexpr int BUFFER_SIZE = 42;
     int subscript = 43;
-    char buffer[42];
+    char buffer[BUFFER_SIZE];
     buffer[subscript] = 42;
     printf("address: %p", buffer);
     return {};
@@ -881,13 +884,14 @@ static napi_value AddressSanitizerTest(napi_env env, napi_callback_info info)
 static void NativeLeak()
 {
     constexpr int leakSizePerTime = 500000;
+    constexpr int sleepTimeMs = 10
     while (true) {
         char *p = (char *)malloc(leakSizePerTime + 1);
         if (!p) {
             break;
         }
         memset(p, 'a', leakSizePerTime);
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::this_thread::sleep_for(std::chrono::milliseconds(sleepTimeMs));
     }
 }
 
