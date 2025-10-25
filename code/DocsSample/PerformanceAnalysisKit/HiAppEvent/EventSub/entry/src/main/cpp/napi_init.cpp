@@ -764,8 +764,7 @@ static napi_value RegisterWatcher(napi_env env, napi_callback_info info)
     eventWatcherT = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
     eventWatcherR = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
     // 设置订阅的事件名称为click, EVENT_APP_CRASH。
-    const char *names[] = {"click", EVENT_APP_CRASH, EVENT_APP_FREEZE, EVENT_RESOURCE_OVERLIMIT,
-        EVENT_ADDRESS_SANITIZER, EVENT_MAIN_THREAD_JANK};
+    const char *names[] = {"click", EVENT_APP_CRASH, EVENT_APP_FREEZE, EVENT_MAIN_THREAD_JANK};
     int namesSize = sizeof(names) / sizeof(names[0]);
     // 开发者订阅感兴趣的应用事件
     OH_HiAppEvent_SetAppEventFilter(eventWatcherT, "button", 0, names, namesSize);
@@ -914,7 +913,7 @@ static napi_value AddressSanitizerTest(napi_env env, napi_callback_info info)
 static void NativeLeak()
 {
     constexpr int leakSizePerTime = 500000;
-    constexpr int sleepTimeMs = 10
+    constexpr int sleepTimeMs = 10;
     while (true) {
         char *p = (char *)malloc(leakSizePerTime + 1);
         if (!p) {
@@ -1119,7 +1118,6 @@ static napi_value Init(napi_env env, napi_value exports)
         // [StartExclude AsanEventTS_Init]
         // [StartExclude AppEvent_C++_Init]
         {"registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"addressTest", nullptr, AddressTest, nullptr, nullptr, nullptr, napi_default, nullptr},
         // [EndExclude AppEvent_C++_Init]
         { "registerWatcherCrash", nullptr, RegisterWatcherCrash, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "registerWatcherClick", nullptr, RegisterWatcherClick, nullptr, nullptr, nullptr, napi_default, nullptr },
