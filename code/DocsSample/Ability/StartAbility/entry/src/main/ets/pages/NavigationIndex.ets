@@ -15,9 +15,9 @@
 
 // [Start navigation_index_import]
 import { common } from '@kit.AbilityKit';
+// [End navigation_index_import]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// [End navigation_index_import]
 const TAG = 'NavigationIndex';
 const DOMAIN = 0x0000;
 // [Start navigation_index_component]

@@ -200,7 +200,7 @@ struct Index {
             testNapi.addressSanitizerTest();
           })
         // [End AsanEvent_Button]
-        // [Start AppEvent_hicollie_timer_ndk_Button]
+        // [Start hicollie_timer_ndk_Button]
         //添加点击事件，触发TestHiCollieTimerNdk方法。
         Button('TestHiCollieTimerNdk')
           .type(ButtonType.Capsule)
@@ -213,7 +213,7 @@ struct Index {
           .onClick(() => {
             testNapi.TestHiCollieTimerNdk();
           })
-        // [End AppEvent_hicollie_timer_ndk_Button]
+        // [End hicollie_timer_ndk_Button]
       }
       .width('50%')
     }

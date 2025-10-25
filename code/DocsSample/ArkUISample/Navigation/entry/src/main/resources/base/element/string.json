@@ -125,6 +125,66 @@
     }, {
       "name": "stepperIndex_text24",
       "value": "返回"
+    }, {
+      "name": "routerToNavigation_text",
+      "value": "Router切换Navigation"
+    }, {
+      "name": "routerToNavigation_text1",
+      "value": "Router页面跳转示例"
+    }, {
+      "name": "routerToNavigation_text2",
+      "value": "Navigation页面跳转示例"
+    }, {
+      "name": "routerToNavigation_text3",
+      "value": "页面路由示例"
+    },{
+      "name": "routerToNavigation_router_text1",
+      "value": "方法1：通过@Provide和@Consume传递给子页面"
+    }, {
+      "name": "routerToNavigation_router_text2",
+      "value": "方法2：子页面通过OnReady回调获取"
+    }, {
+      "name": "routerToNavigation_router_text3",
+      "value": "方法3：通过全局的AppStorage接口设置获取"
+    }, {
+      "name": "routerToNavigation_router_text4",
+      "value": "方法4：通过自定义组件查询接口获取"
+    }, {
+      "name": "routerToNavigation_nav_text1_backHome",
+      "value": "回到首页"
+    }, {
+      "name": "pageRouter_text",
+      "value": "页面路由"
+    }, {
+      "name": "pageRouter_jump_text1",
+      "value": "页面跳转1:pushUrl"
+    }, {
+      "name": "pageRouter_jump_text2",
+      "value": "页面跳转2:replaceUrl"
+    }, {
+      "name": "pageRouter_jump_text3",
+      "value": "页面跳转3:设置和主题切换"
+    }, {
+      "name": "pageRouter_jump_text4",
+      "value": "页面跳转4:搜索结果和详情"
+    }, {
+      "name": "pageRouter_jump_text5",
+      "value": "页面跳转5:params传参"
+    }, {
+      "name": "pageRouter_jump_text6_pageBack",
+      "value": "页面返回"
+    }, {
+      "name": "pageRouter_jump_text7_fromHome",
+      "value": "来自Home页"
+    }, {
+      "name": "pageRouter_jump_text8_life",
+      "value": "生命周期"
+    }, {
+      "name": "pageRouter_jump_text9_alert",
+      "value": "系统默认询问框-ShowAlert"
+    }, {
+      "name": "pageRouter_jump_text9_dialog",
+      "value": "系统默认询问框-ShowDialog"
     }
   ]
 }

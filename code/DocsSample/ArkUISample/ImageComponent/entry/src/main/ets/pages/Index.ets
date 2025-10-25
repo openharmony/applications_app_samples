@@ -67,6 +67,11 @@ let demandList: listItem[] = [
     description: "SVG format images can use the fillColor property to change the drawing color of the image.",
     router: "pages/DisplayVectorDiagram",
   },
+  {
+    name: "Shadow",
+    description: "The shadow interface can add shadow effects to the current component.",
+    router: "pages/Shadow",
+  },
 ]
 
 @Entry

@@ -403,24 +403,24 @@ export default class EntryAbility extends UIAbility {
     // 启动时，注册按钮点击事件观察者
     testNapi.registerWatcherClick();
     // [End AppEvent_Call_Capi_Function]
-
-    // [Start Register_AppHicollie_Watcher]
+    // [Start Register_AppHicollie_WatcherR]
+    // 在onCreate()函数中新增接口调用，启动时注册系统事件观察者R
     testNapi.RegisterAppHicollieWatcherR();
+    // [End Register_AppHicollie_WatcherR]
+    // [Start Register_AppHicollie_WatcherT]
+    // 在onCreate()函数中新增接口调用，启动时注册系统事件观察者T
     testNapi.RegisterAppHicollieWatcherT();
-    // [End Register_AppHicollie_Watcher]
-
+    // [End Register_AppHicollie_WatcherT]
     // [Start AsanEvent_Call_Capi_Function]
     // 在onCreate()函数中新增接口调用
     // 启动时，注册系统事件观察者
     testNapi.registerSanitizerReceiveWatcher();
     // [End AsanEvent_Call_Capi_Function]
-
     // [Start PssLeakEvent_Call_Capi_Function]
     // 在onCreate()函数中新增接口调用
     // 启动时，注册系统事件观察者
     testNapi.registerLeakReceiveWatcher();
     // [End PssLeakEvent_Call_Capi_Function]
-
     // [Start AppKillEvent_Call_Capi_Function]
     // 在onCreate()函数中新增接口调用
     // 启动时，注册系统事件观察者

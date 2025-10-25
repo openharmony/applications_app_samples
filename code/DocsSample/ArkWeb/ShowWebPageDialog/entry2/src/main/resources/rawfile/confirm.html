@@ -1,0 +1,29 @@
+<!-- confirm.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button,label,input {
+        margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+result：<label id="confirmLabel" for="confirm"></label><br/>
+<input type="text" id="confirm-message" placeholder="message for confirm"><br/>
+<button id="confirm" onclick="handleConfirm()">confirm</button><br/>
+<script>
+    function handleConfirm() {
+        let message = document.getElementById('confirm-message').value;
+        let result = window.confirm(message ? message : 'confirm');
+        console.info(result);
+        document.getElementById('confirmLabel').innerHTML = String(result);
+    }
+</script>
+</body>
+</html>

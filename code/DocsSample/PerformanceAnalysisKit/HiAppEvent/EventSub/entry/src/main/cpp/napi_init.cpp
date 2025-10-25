@@ -19,14 +19,15 @@
 #include "hilog/log.h"
 #include "hiappevent/hiappevent.h"
 #include "hiappevent/hiappevent_event.h"
-// <Start AppEvent_Set_Timer_h>
-#include <unistd.h>
-#include "hicollie/hicollie.h"
-// <End AppEvent_Set_Timer_h>
 
 #undef LOG_TAG
 #define LOG_TAG "testTag"
 // [End EventSub_napi_Header]
+
+// [Start Hicollie_Set_Timer_h]
+#include <unistd.h>
+#include "hicollie/hicollie.h"
+// [End Hicollie_Set_Timer_h]
 
 // 定义一变量，用来缓存创建的观察者的指针。
 // [Start EventSub_onReceive_ptr]
@@ -926,7 +927,7 @@ static napi_value Leak(napi_env env, napi_callback_info info)
 // [Start AppEvent_C++_Init]
 
 // [StartExclude AppEvent_C++_Init]
-// <Start AppEvent_Set_Timer>
+// [Start Hicollie_Set_Timer]
 //定义回调函数
 void CallBack(void*)
 {
@@ -946,7 +947,7 @@ static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
-// <End AppEvent_Set_Timer>
+// [End Hicollie_Set_Timer]
 
 // [Start App_Hicollie_OnReceive]
 // 定义一变量，用来缓存创建的观察者的指针。
