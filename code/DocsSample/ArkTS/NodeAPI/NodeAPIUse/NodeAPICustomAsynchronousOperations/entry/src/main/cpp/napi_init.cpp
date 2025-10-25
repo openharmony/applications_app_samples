@@ -16,6 +16,7 @@
 // [Start napi_async_open_close_callback_scope]
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_2 = 2; // 入参索引
 static constexpr int INT_ARG_3 = 3; // 入参索引
 
 static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
@@ -28,7 +29,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
     // 提取参数中的资源、接收器对象和函数
     napi_value resource = args[0];
     napi_value recv = args[1];
-    napi_value func = args[2];
+    napi_value func = args[INT_ARG_2];
     napi_value argv[1] = {nullptr};
     argv[0] = args[INT_ARG_3];
     // 获取函数的类型
@@ -46,7 +47,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
     }
     // 打开回调作用域
     napi_callback_scope scope = nullptr;
-    napi_open_callback_scope(env, resource, context, &scope);
+    status = napi_open_callback_scope(env, resource, context, &scope);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_open_callback_scope fail");
         return nullptr;
@@ -60,7 +61,7 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
         return nullptr;
     }
     // 关闭回调作用域
-    napi_close_callback_scope(env, scope);
+    status = napi_close_callback_scope(env, scope);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_close_callback_scope fail");
         return nullptr;
