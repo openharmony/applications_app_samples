@@ -779,6 +779,7 @@ static napi_value RegisterWatcher(napi_env env, napi_callback_info info)
 
 // [Start EventSub_RemoveWatcher_All]
 // [Start AppEvent_C++_RemoveWatcher]
+// [Start APP_Hicollie_RemoveWatcher]
 // [Start AsanEvent_RemoveWatcher]
 // [Start PssLeakEvent_RemoveWatcher]
 // [Start AppKillEvent_RemoveWatcher]
@@ -788,33 +789,42 @@ static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
     // [StartExclude AppKillEvent_RemoveWatcher]
     // [StartExclude PssLeakEvent_RemoveWatcher]
     // [StartExclude AsanEvent_RemoveWatcher]
+    // [StartExclude APP_Hicollie_RemoveWatcher]
     // [StartExclude AppEvent_C++_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(eventWatcherT);
     OH_HiAppEvent_RemoveWatcher(eventWatcherR);
     // [EndExclude AppEvent_C++_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(eventWatcherT1);
     OH_HiAppEvent_RemoveWatcher(eventWatcherR1);
-    // [EndExclude AsanEvent_RemoveWatcher]
+    // [EndExclude APP_Hicollie_RemoveWatcher]
     // [StartExclude AppEvent_C++_RemoveWatcher]
+    OH_HiAppEvent_RemoveWatcher(appHicollieWatcherR);
+    OH_HiAppEvent_RemoveWatcher(appHicollieWatcherT);
+    // [EndExclude AsanEvent_RemoveWatcher]
+    // [StartExclude APP_Hicollie_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(sanitizerWatcherR);
-    // [EndExclude PssLeakEvent_RemoveWatcher]
     // [StartExclude AsanEvent_RemoveWatcher]
+    // [EndExclude PssLeakEvent_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(resouceLeakWatcherR);
     // [EndExclude AppKillEvent_RemoveWatcher]
     // [StartExclude PssLeakEvent_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(appKillWatcherR);
+    // [EndExclude AppEvent_C++_RemoveWatcher]
     // [EndExclude AsanEvent_RemoveWatcher]
     // [EndExclude PssLeakEvent_RemoveWatcher]
-    // [EndExclude AppEvent_C++_RemoveWatcher]
+    // [EndExclude APP_Hicollie_RemoveWatcher]
     return {};
 }
 // [End AppKillEvent_RemoveWatcher]
 // [End PssLeakEvent_RemoveWatcher]
 // [End AsanEvent_RemoveWatcher]
+// [End APP_Hicollie_RemoveWatcher]
 // [End AppEvent_C++_RemoveWatcher]
 // [End EventSub_RemoveWatcher_All]
+
 // [Start EventSub_DestroyWatcher_All]
 // [Start AppEvent_C++_DestroyWatcher]
+// [Start APP_Hicollie_DestroyWatcher]
 // [Start AsanEvent_DestroyWatcher]
 // [Start PssLeakEvent_DestroyWatcher]
 // [Start AppKillEvent_DestroyWatcher]
@@ -824,6 +834,7 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
     // [StartExclude AppKillEvent_DestroyWatcher]
     // [StartExclude PssLeakEvent_DestroyWatcher]
     // [StartExclude AsanEvent_DestroyWatcher]
+    // [StartExclude APP_Hicollie_DestroyWatcher]
     // [StartExclude AppEvent_C++_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(eventWatcherT);
     OH_HiAppEvent_DestroyWatcher(eventWatcherR);
@@ -834,8 +845,14 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
     OH_HiAppEvent_DestroyWatcher(eventWatcherR1);
     eventWatcherT1 = nullptr;
     eventWatcherR1 = nullptr;
+    // [EndExclude APP_Hicollie_DestroyWatcher]
     // [StartExclude AppEvent_C++_DestroyWatcher]
+    OH_HiAppEvent_DestroyWatcher(appHicollieWatcherR);
+    OH_HiAppEvent_DestroyWatcher(appHicollieWatcherT);
+    appHicollieWatcherR = nullptr;
+    appHicollieWatcherT = nullptr;
     // [EndExclude AsanEvent_DestroyWatcher]
+    // [StartExclude APP_Hicollie_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(sanitizerWatcherR);
     sanitizerWatcherR = nullptr;
     // [EndExclude PssLeakEvent_DestroyWatcher]
@@ -846,6 +863,7 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
     // [StartExclude PssLeakEvent_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(appKillWatcherR);
     appKillWatcherR = nullptr;
+    // [EndExclude APP_Hicollie_DestroyWatcher]
     // [EndExclude AppEvent_C++_DestroyWatcher]
     // [EndExclude AsanEvent_DestroyWatcher]
     // [EndExclude PssLeakEvent_DestroyWatcher]
@@ -854,8 +872,10 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
 // [End AppKillEvent_DestroyWatcher]
 // [End PssLeakEvent_DestroyWatcher]
 // [End AsanEvent_DestroyWatcher]
+// [End APP_Hicollie_DestroyWatcher]
 // [End AppEvent_C++_DestroyWatcher]
 // [End EventSub_DestroyWatcher_All]
+
 // [Start AppEvent_Click_C++_WriteAppEvent]
 static napi_value WriteAppEvent(napi_env env, napi_callback_info info)
 {
@@ -1095,6 +1115,7 @@ static napi_value Init(napi_env env, napi_value exports)
         // [StartExclude AsanEventTS_Init]
         // [StartExclude AppEvent_C++_Init]
         {"registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"addressTest", nullptr, AddressTest, nullptr, nullptr, nullptr, napi_default, nullptr},
         // [EndExclude AppEvent_C++_Init]
         { "registerWatcherCrash", nullptr, RegisterWatcherCrash, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "registerWatcherClick", nullptr, RegisterWatcherClick, nullptr, nullptr, nullptr, napi_default, nullptr },
@@ -1104,12 +1125,14 @@ static napi_value Init(napi_env env, napi_value exports)
         // 将TestHiCollieTimerNdk注册为ArkTS接口
         { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
         // [End test_hicollie_timer]
-        // [Start register_app_hicollie_watcher]
+        // [Start register_app_hicollie_watcherR]
         { "RegisterAppHicollieWatcherR", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
             nullptr },
+        // [End register_app_hicollie_watcherR]
+        // [Start register_app_hicollie_watcherT]
         { "RegisterAppHicollieWatcherT", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
             nullptr },
-        // [End register_app_hicollie_watcher]
+        // [End register_app_hicollie_watcherT]
         // [EndExclude AsanEvent_Init]
         { "registerSanitizerReceiveWatcher", nullptr, RegisterSanitizerReceiveWatcher, nullptr, nullptr, nullptr,
             napi_default, nullptr },
