@@ -16,6 +16,13 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 export default function FrameNodeTest() {
   describe('FrameNodeTest', () => {
@@ -60,22 +67,22 @@ export default function FrameNodeTest() {
       const button = await driver.findComponent(ON.text('ShowFrameNodeTree'));
       await button.click();
       await driver.delayMs(500);
-      const button2 = await driver.findComponent(ON.text('对自定义FrameNode进行操作'));
+      const button2 = await driver.findComponent((ON.text(await getResourceString($r('app.string.Operate_On_Custom_FrameNode')))));
       await button2.click();
       await driver.delayMs(500);
-      const button3 = await driver.findComponent(ON.text('对BuilderNode中的代理节点进行操作'));
+      const button3 = await driver.findComponent((ON.text(await getResourceString($r('app.string.Operate_On_Proxy_Nodes_In_BuilderNode')))));
       await button3.click();
       await driver.delayMs(500);
-      const button4 = await driver.findComponent(ON.text('对系统组件中的代理节点进行操作'));
+      const button4 = await driver.findComponent((ON.text(await getResourceString($r('app.string.Operate_On_Proxy_Nodes_In_System_Components')))));
       await button4.click();
       await driver.delayMs(500);
-      const button5 = await driver.findComponent(ON.text('新增BuilderNode的代理节点'));
+      const button5 = await driver.findComponent((ON.text(await getResourceString($r('app.string.Add_Proxy_Nodes_Of_BuilderNode')))));
       await button5.click();
       await driver.delayMs(500);
-      const button6 = await driver.findComponent(ON.text('新增系统组件代理节点'));
+      const button6 = await driver.findComponent((ON.text(await getResourceString($r('app.string.Add_Proxy_Nodes_Of_System_Components')))));
       await button6.click();
       await driver.delayMs(500);
-      const button1 = await driver.findComponent(ON.text('新增已有父节点的自定义节点'));
+      const button1 = await driver.findComponent((ON.text(await getResourceString($r('app.string.Add_Custom_Nodes_With_Existing_Parent_Nodes')))));
       await button1.click();
       await driver.delayMs(500);
     })
