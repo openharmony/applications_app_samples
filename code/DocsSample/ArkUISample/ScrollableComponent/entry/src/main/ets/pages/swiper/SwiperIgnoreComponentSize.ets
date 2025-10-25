@@ -13,8 +13,11 @@
  * limitations under the License.
  */
 
+// [Start dot_indicator]
 import { LengthMetrics } from '@kit.ArkUI';
+// [StartExclude dot_indicator]
 import { ComponentCard } from '../../common/Card';
+// [EndExclude dot_indicator]
 
 
 class MyDataSource implements IDataSource {
@@ -63,12 +66,18 @@ export struct SwiperIgnoreComponentSize {
   }
 
   build() {
+    // [StartExclude dot_indicator]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SwiperIgnoreComponentSize_title') }) {
+          // [EndExclude dot_indicator]
           Scroll() {
             Column({ space: 20 }) {
+              // [Start dot_indicator_space]
+              // [Start dot_indicator_bottom]
               Swiper(this.swiperController1) {
+                // [StartExclude dot_indicator_space]
+                // [StartExclude dot_indicator_bottom]
                 LazyForEach(this.data1, (item: string) => {
                   Text(item.toString())
                     .width('90%')
@@ -77,16 +86,27 @@ export struct SwiperIgnoreComponentSize {
                     .textAlign(TextAlign.Center)
                     .fontSize(30)
                 }, (item: string) => item)
+                // [EndExclude dot_indicator_bottom]
+                // [EndExclude dot_indicator_space]
               }
               .indicator(new DotIndicator()
+                // [StartExclude dot_indicator_bottom]
                 .space(this.space)
-                .bottom(LengthMetrics.vp(0), this.ignoreSize)
+                // [EndExclude dot_indicator_bottom]
+                // [StartExclude dot_indicator_space]
+                .bottom(LengthMetrics.vp(0), this.ignoreSize) // true
+                // [StartExclude dot_indicator_bottom]
                 .itemWidth(15)
                 .itemHeight(15)
                 .selectedItemWidth(15)
                 .selectedItemHeight(15)
                 .color(Color.Gray)
-                .selectedColor(Color.Blue))
+                .selectedColor(Color.Blue)
+                // [EndExclude dot_indicator_space]
+                // [EndExclude dot_indicator_bottom]
+              )
+              // [End dot_indicator_bottom]
+              // [End dot_indicator_space]
               .displayArrow({
                 showBackground: true,
                 isSidebarMiddle: true,
@@ -109,6 +129,7 @@ export struct SwiperIgnoreComponentSize {
               }.margin(2)
             }.width('100%')
           }
+          // [StartExclude dot_indicator]
         }
       }
       .width('100%')
@@ -117,5 +138,7 @@ export struct SwiperIgnoreComponentSize {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.SwiperIgnoreComponentSize_title'))
+    // [EndExclude dot_indicator]
   }
 }
+// [End dot_indicator]

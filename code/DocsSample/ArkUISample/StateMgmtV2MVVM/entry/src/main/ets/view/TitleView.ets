@@ -25,7 +25,7 @@ export default struct TitleView {
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin(10)
-      Text(`${getContext(this).resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
+      Text(`${this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
     }
   }

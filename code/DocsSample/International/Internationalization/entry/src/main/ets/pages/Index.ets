@@ -22,7 +22,6 @@ interface Item {
 }
 
 const operationUrls: Array<string> = [
-  'i18napplication/LocaleCulturalDivision',
   'i18napplication/LanguagePreferenceSetting',
   'i18napplication/DateTimeFormatting',
   'i18napplication/NumberMeasurementFormatting',
@@ -39,7 +38,6 @@ const operationUrls: Array<string> = [
 struct Index {
 
   @State ListItem: Item[] = [
-    { text: resourceToString($r('app.string.LocaleCulturalDivisionExample')) },
     { text: resourceToString($r('app.string.LanguagePreferenceSetting')) },
     { text: resourceToString($r('app.string.DateTimeFormatting')) },
     { text: resourceToString($r('app.string.NumberMeasurementFormatting')) },

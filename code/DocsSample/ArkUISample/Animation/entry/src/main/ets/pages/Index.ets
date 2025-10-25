@@ -62,6 +62,16 @@ struct AnimateIndex {
       { name: 'template4/Index', label: $r("app.string.animation_temp_label4") }
     ]
   }, {
+    name: "animationBlur",
+    label: $r("app.string.animation_blur_label"),
+    children:[
+      { name: 'template1/BlurEffectsExample', label: $r("app.string.animation_blur_label1") },
+      { name: 'template2/Index', label: $r("app.string.animation_blur_label2") },
+      { name: 'template3/BackDropBlurStyleDemo', label: $r("app.string.animation_blur_label3") },
+      { name: 'template4/ForegroundBlurStyleDemo', label: $r("app.string.animation_blur_label4") },
+      { name: 'template5/MotionBlurTest', label: $r("app.string.animation_blur_label5") }
+    ]
+  }, {
     name: "cohesion",
     label: $r("app.string.cohesion_label"),
     children:[
@@ -81,7 +91,9 @@ struct AnimateIndex {
       { name: 'template1/Index', label: $r("app.string.pageTransition_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.pageTransition_temp_label2") },
       { name: 'template3/pageTransitionSrc1', label: $r("app.string.pageTransition_temp_label3") },
-      { name: 'template4/pageTransitionSrc2', label: $r("app.string.pageTransition_temp_label4") }
+      { name: 'template4/pageTransitionSrc2', label: $r("app.string.pageTransition_temp_label4") },
+      { name: 'template5/PageTransitionSrc3', label: $r("app.string.pageTransition_temp_label5") },
+      { name: 'template6/PageTransitionSrc4', label: $r("app.string.pageTransition_temp_label6") }
     ]
   }, {
     name: "compTransition",
@@ -122,7 +134,8 @@ struct AnimateIndex {
     children:[
       { name: 'template1/Index', label: $r("app.string.animator_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.animator_temp_label2") },
-      { name: 'template3/Index', label: $r("app.string.animator_temp_label3") }
+      { name: 'template3/Index', label: $r("app.string.animator_temp_label3") },
+      { name: 'template4/Index', label: $r("app.string.animator_temp_label4") }
     ]
   }, {
     name: "animateToImmediately",
