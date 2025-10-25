@@ -123,7 +123,7 @@ struct Index {
           })
         // [End PssleakEventTS_Button]
         // [Start AppKillEvent_Button]
-        Button('start to leak')
+        Button(this.message)
           .type(ButtonType.Capsule)
           .margin({
             top: 20

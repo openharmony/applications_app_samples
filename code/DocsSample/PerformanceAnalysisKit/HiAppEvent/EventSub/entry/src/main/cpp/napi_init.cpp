@@ -870,10 +870,10 @@ static napi_value WriteAppEvent(napi_env env, napi_callback_info info)
 // [Start AsanEvent_AddressTest]
 static napi_value AddressSanitizerTest(napi_env env, napi_callback_info info)
 {
-    constexpr int BUFFER_SIZE = 42;
+    constexpr int bufferSize = 42;
     int subscript = 43;
-    char buffer[BUFFER_SIZE];
-    buffer[subscript] = 42;
+    char buffer[bufferSize];
+    buffer[subscript] = subscript;
     printf("address: %p", buffer);
     return {};
 }
