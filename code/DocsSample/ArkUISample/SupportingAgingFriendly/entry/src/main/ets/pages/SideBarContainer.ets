@@ -26,8 +26,8 @@ const BUNDLE = 'SupportingAgingFriendly_';
 @Component
 struct SideBarContainerExample {
   @State currentFontSizeScale: number = 1;
-  normalIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的图片资源文件
-  selectedIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的图片资源文件
+  normalIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的资源文件
+  selectedIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的资源文件
   @State arr: number[] = [1, 2, 3]; // 标签的数量和名字，一共3个标签, 01, 02,03
   @State current: number = 1; // button所在的标签页Index01
   @State title: string = 'Index01';
@@ -66,27 +66,27 @@ struct SideBarContainerExample {
         }, (item: string) => item)
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
-      // $r('sys.color.mask_fifth')需要替换为开发者所需的字符串资源文件
+      // $r('sys.color.mask_fifth')需要替换为开发者所需的资源文件
       .backgroundColor($r('sys.color.mask_fifth'))
 
       Column() {
         Text(this.title);
-        // $r('app.string.one_multiple')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.one_multiple')需要替换为开发者所需的资源文件
         Button($r('app.string.one_multiple')).onClick(() => {
           this.setFontScale(1)
         }).margin(10);
 
-        // $r('app.string.one_point_seven_five_multiple')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.one_point_seven_five_multiple')需要替换为开发者所需的资源文件
         Button($r('app.string.one_point_seven_five_multiple')).onClick(() => {
           this.setFontScale(1.75)
         }).margin(10);
 
-        // $r('app.string.two_multiple')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.two_multiple')需要替换为开发者所需的资源文件
         Button($r('app.string.two_multiple')).onClick(() => {
           this.setFontScale(2)
         }).margin(10);
 
-        // $r('app.string.three_point_two_multiple')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.three_point_two_multiple')需要替换为开发者所需的资源文件
         Button($r('app.string.three_point_two_multiple')).onClick(() => {
           this.setFontScale(3.2)
         }).margin(10);
