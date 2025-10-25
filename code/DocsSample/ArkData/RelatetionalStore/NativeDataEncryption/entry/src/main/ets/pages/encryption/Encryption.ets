@@ -71,7 +71,7 @@ export async function customizedConfigRdbStoreTs() {
   }
 
   const STORE_CONFIG: relationalStore.StoreConfig = {
-    name: "encrypted.db",
+    name: 'encrypted.db',
     securityLevel: relationalStore.SecurityLevel.S3,
     encrypt: true,
     cryptoParam: CRYPTO_PARAM

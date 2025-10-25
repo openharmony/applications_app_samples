@@ -84,9 +84,9 @@ export async function backupManually() {
   // 抛出数据库异常错误码
 
   // [Start databaseExceptionErrorCodeThrown]
-  let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+  let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
   if (store != undefined) {
-    (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+    (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'])
       .then((result: relationalStore.ResultSet) => {
         let resultSet = result;
         try {
@@ -185,7 +185,7 @@ export async function restoringManualBackupData() {
     let backupFilePath = context.databaseDir + '/rdb/Backup.db';
     const backupExist: boolean = await fileIo.access(backupFilePath);
     if (!backupExist) {
-      hilog.info(DOMAIN, 'BackupAndRestore', "Backup is not exist.");
+      hilog.info(DOMAIN, 'BackupAndRestore', 'Backup is not exist.');
       // todo 开库建表
       // todo 自行生成数据
       return;
@@ -198,7 +198,7 @@ export async function restoringManualBackupData() {
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     // 调用restore接口恢复数据
     await store.restore("Backup.db");
-    hilog.info(DOMAIN, 'BackupAndRestore', "Restore from backup success.");
+    hilog.info(DOMAIN, 'BackupAndRestore', 'Restore from backup success.');
   } catch (e) {
     const err = e as BusinessError;
     hilog.info(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
