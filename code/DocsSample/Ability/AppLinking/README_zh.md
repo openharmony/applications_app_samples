@@ -2,7 +2,7 @@
 
 ### 介绍
 
-鸿蒙应用间跳转主要有App Linking和Deep Linking两种方式。以下主要讲解使用AppLinking方式：
+应用间跳转主要有App Linking和Deep Linking两种方式。以下主要讲解使用AppLinking方式：
 使用App Linking进行跳转时，系统会根据接口传入的uri信息（HTTPS链接）将用户引导至目标应用中的特定内容，无论应用是否已安装，用户都可以访问到链接对应的内容，跳转体验相比Deep Linking方式更加顺畅。二者相比如下:
 
 1. App Linking在Deep Linking基础上增加了域名校验环节，通过域名校验，可帮助用户消除歧义，识别合法归属于域名的应用，使链接更加安全可靠。

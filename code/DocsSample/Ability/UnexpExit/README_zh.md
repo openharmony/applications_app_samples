@@ -2,14 +2,22 @@
 
 ### 介绍
 
-1. 获取应用异常退出原因
-  就是获取应用异常退出原因。当应用异常退出后再次启动时，开发者往往需要获取上次异常退出的具体原因和当时的应用状态信息。
+当应用异常退出后再次启动时，开发者往往需要获取上次异常退出的具体原因和当时的应用状态信息，比如应用内存占用的rss、pss值、上次应用退出的时间等等。通过UIAbility和UIExtensionAbility的OnCreate生命周期函数中的launchParam参数，开发者可以获取到相关信息，并将其应用于应用体验的分析改进，从而调整业务逻辑、提高应用的存活率。
 
 ### 效果预览
 
 不涉及。
 
 ### 使用说明
+
+具体说明主要有异常获取和异常处理两个：
+1. 异常获取
+   获取UIAbility上次退出的原因：在UIAbility类的OnCreate成员函数的launchParam参数中读取Ability上次退出的信息。
+2. 异常处理
+   根据上次退出的信息做相应的业务处理,包含以下处理：
+   1. 对于不同的退出原因，开发者可以增加不同的处理逻辑。
+   2. 对于不同的退出原因，开发者可以增加不同的处理逻辑。
+   3. 根据异常退出时刻的时间戳，明确异常发生的时刻，便于问题定位。
 
 ### 工程目录
 
@@ -34,7 +42,7 @@ entry/src/
 ### 具体实现
 
 * 获取应用异常退出原因
-    * 获取应用异常主要通过AbilityConstant.LaunchParam参数lastExitReason字段获取，具体源码参考：[ExitAbility1](./entry/src/main/ets/exitability/ExitAbility1.ets)
+    * 获取应用异常通过AbilityConstant.LaunchParam参数lastExitReason字段获取，具体源码参考：[ExitAbility1](./entry/src/main/ets/exitability/ExitAbility1.ets)
 * 获取应用异常退出原因类型：
     * 通过lastExitReason获取不同的退出原因类型（取APP_FREEZE和SIGNAL等）退出原因。源码参考：[ExitAbility2](./entry/src/main/ets/exitability/ExitAbility2.ets)
 
