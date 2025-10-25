@@ -24,7 +24,7 @@ let context = getContext();
 let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
 let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
 if (!tokenTypeSupported) {
-  hilog.error(DOMAIN, "rdbDataPersistence", `ICU_TOKENIZER is not supported on this platform.`);
+  hilog.error(DOMAIN, 'rdbDataPersistence', `ICU_TOKENIZER is not supported on this platform.`);
 }
 const STORE_CONFIG: relationalStore.StoreConfig = {
   // 数据库文件名
@@ -51,10 +51,10 @@ export async function rdbDataPersistence() {
 
   relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
     if (err) {
-      hilog.error(DOMAIN, "rdbDataPersistence", `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+      hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
       return;
     }
-    hilog.info(DOMAIN, "rdbDataPersistence", 'Succeeded in getting RdbStore.');
+    hilog.info(DOMAIN, 'rdbDataPersistence', 'Succeeded in getting RdbStore.');
     let storeVersion = store.version;
     // 当数据库创建时，数据库默认版本为0
     if (storeVersion === 0) {
@@ -64,34 +64,36 @@ export async function rdbDataPersistence() {
         // 设置数据库的版本，入参为大于0的整数
       } catch (e) {
         const err = e as BusinessError;
-        hilog.error(DOMAIN, "rdbDataPersistence", `Failed to execute sql. Code:${err.code}, message:${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to execute sql. Code:${err.code}, message:${err.message}`);
       }
     }
 
     // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
     // 当前数据库存在并且版本为1，数据库需要从1版本升级到2版本
     if (storeVersion === 1) {
-      // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
+      // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS)
+      //=> version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
       try {
         await store.execute('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-        hilog.info(DOMAIN, "rdbDataPersistence", "Upgrade store version from 1 to 2 success.")
+        hilog.info(DOMAIN, 'rdbDataPersistence', 'Upgrade store version from 1 to 2 success.')
         storeVersion = 2;
       } catch (e) {
         const err = e as BusinessError;
-        hilog.error(DOMAIN, "rdbDataPersistence", `Failed to execute sql. Code:${err.code}, message:${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to execute sql. Code:${err.code}, message:${err.message}`);
       }
     }
 
     // 当前数据库存在并且版本为2，数据库需要从2版本升级到3版本
     if (storeVersion === 2) {
-      // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
+      // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) 
+      //=> version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
       try {
         await store.execute('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS');
         storeVersion = 3;
-        hilog.info(DOMAIN, "rdbDataPersistence", "Upgrade store version from 2 to 3 success.")
+        hilog.info(DOMAIN, 'rdbDataPersistence', 'Upgrade store version from 2 to 3 success.')
       } catch (e) {
         const err = e as BusinessError;
-        hilog.error(DOMAIN, "rdbDataPersistence", `Failed to execute sql. Code:${err.code}, message:${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to execute sql. Code:${err.code}, message:${err.message}`);
       }
     }
     store.version = storeVersion;
@@ -117,10 +119,10 @@ export async function rdbDataPersistence() {
   if (store !== undefined) {
     try {
       const rowId = await store.insert('EMPLOYEE', valueBucket);
-      hilog.info(DOMAIN, "rdbDataPersistence", `Succeeded in inserting data. rowId:${rowId}`);
+      hilog.info(DOMAIN, 'rdbDataPersistence', `Succeeded in inserting data. rowId:${rowId}`);
     } catch (error) {
       const err = error as BusinessError;
-      hilog.error(DOMAIN, "rdbDataPersistence", `Failed to insert data. Code:${err.code}, message:${err.message}`);
+      hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to insert data. Code:${err.code}, message:${err.message}`);
     }
   }
   // [End persistence_insert_data]
@@ -146,10 +148,10 @@ export async function rdbDataPersistence() {
   if (store !== undefined) {
     (store as relationalStore.RdbStore).update(valueBucket2, predicates1, (err: BusinessError, rows: number) => {
       if (err) {
-        hilog.error(DOMAIN, "rdbDataPersistence", `Failed to update data. Code:${err.code}, message:${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
       }
-      hilog.info(DOMAIN, "rdbDataPersistence", `Succeeded in updating data. row count: ${rows}`);
+      hilog.info(DOMAIN, 'rdbDataPersistence', `Succeeded in updating data. row count: ${rows}`);
     })
   }
 
@@ -159,10 +161,10 @@ export async function rdbDataPersistence() {
   if (store !== undefined) {
     (store as relationalStore.RdbStore).delete(predicates1, (err: BusinessError, rows: number) => {
       if (err) {
-        hilog.error(DOMAIN, "rdbDataPersistence", `Failed to delete data. Code:${err.code}, message:${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to delete data. Code:${err.code}, message:${err.message}`);
         return;
       }
-      hilog.info(DOMAIN, "rdbDataPersistence", `Delete rows: ${rows}`);
+      hilog.info(DOMAIN, 'rdbDataPersistence', `Delete rows: ${rows}`);
     })
   }
   // [End persistence_update_and_delete_data]
@@ -174,10 +176,10 @@ export async function rdbDataPersistence() {
   if (store !== undefined) {
     (store as relationalStore.RdbStore).query(predicates2, ['ID', 'NAME', 'AGE', 'SALARY', 'IDENTITY'], (err: BusinessError, resultSet) => {
       if (err) {
-        hilog.error(DOMAIN, "rdbDataPersistence", `Failed to query data. Code:${err.code}, message:${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to query data. Code:${err.code}, message:${err.message}`);
         return;
       }
-      hilog.info(DOMAIN, "rdbDataPersistence", `ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+      hilog.info(DOMAIN, 'rdbDataPersistence', `ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
       while (resultSet.goToNextRow()) {
         const id = resultSet.getLong(resultSet.getColumnIndex('ID'));
@@ -185,7 +187,7 @@ export async function rdbDataPersistence() {
         const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
         const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
         const identity = resultSet.getValue(resultSet.getColumnIndex('IDENTITY'));
-        hilog.info(DOMAIN, "rdbDataPersistence", `id=${id}, name=${name}, age=${age}, salary=${salary}, identity=${identity}`);
+        hilog.info(DOMAIN, 'rdbDataPersistence', `id=${id}, name=${name}, age=${age}, salary=${salary}, identity=${identity}`);
       }
       // 释放数据集的内存
       resultSet.close();
@@ -200,10 +202,10 @@ export async function rdbDataPersistence() {
     const SQL_CREATE_TABLE = 'CREATE VIRTUAL TABLE IF NOT EXISTS example USING fts4(name, content, tokenize=icu zh_CN)';
     try {
       await store.execute(SQL_CREATE_TABLE);
-      hilog.info(DOMAIN, "rdbDataPersistence", 'Succeeded in creating fts table.');
+      hilog.info(DOMAIN, 'rdbDataPersistence', 'Succeeded in creating fts table.');
     } catch (error) {
       const err = error as BusinessError;
-      hilog.error(DOMAIN, "rdbDataPersistence", `Failed to creating fts table. code: ${err.code}, message: ${err.message}.`);
+      hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to creating fts table. code: ${err.code}, message: ${err.message}.`);
     }
   }
   if (store !== undefined) {
@@ -211,12 +213,12 @@ export async function rdbDataPersistence() {
       const resultSet = await store.querySql('SELECT name FROM example WHERE example MATCH ?', ['测试']);
       while (resultSet.goToNextRow()) {
         const name = resultSet.getValue(resultSet.getColumnIndex('name'));
-        hilog.info(DOMAIN, "rdbDataPersistence", `name=${name}`);
+        hilog.info(DOMAIN, 'rdbDataPersistence', `name=${name}`);
       }
       resultSet.close();
     } catch (error) {
       const err = error as BusinessError;
-      hilog.error(DOMAIN, "rdbDataPersistence", `Query failed. code: ${err.code}, message: ${err.message}.`);
+      hilog.error(DOMAIN, 'rdbDataPersistence', `Query failed. code: ${err.code}, message: ${err.message}.`);
     }
   }
   // [End persistence_chinese_query_data]
@@ -239,7 +241,7 @@ export async function rdbDataPersistence() {
           },
           relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
         );
-        hilog.info(DOMAIN, "rdbDataPersistence", `Insert is successful, rowId = ${rowId}`);
+        hilog.info(DOMAIN, 'rdbDataPersistence', `Insert is successful, rowId = ${rowId}`);
 
         const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
         predicates.equalTo('NAME', 'Lisa');
@@ -254,24 +256,24 @@ export async function rdbDataPersistence() {
           predicates,
           relationalStore.ConflictResolution.ON_CONFLICT_REPLACE
         );
-        hilog.info(DOMAIN, "rdbDataPersistence", `Updated row count: ${rows}`);
+        hilog.info(DOMAIN, 'rdbDataPersistence', `Updated row count: ${rows}`);
 
         // 使用事务对象删除数据
         await transaction.execute('DELETE FROM EMPLOYEE WHERE age = ? OR age = ?', [21, 20]);
-        hilog.info(DOMAIN, "rdbDataPersistence", `execute delete success`);
+        hilog.info(DOMAIN, 'rdbDataPersistence', `execute delete success`);
 
         // 提交事务
         await transaction.commit();
-        hilog.info(DOMAIN, "rdbDataPersistence", 'Transaction commit success.');
+        hilog.info(DOMAIN, 'rdbDataPersistence', 'Transaction commit success.');
       } catch (error) {
         const err = error as BusinessError;
         // 执行失败回滚事务
         await transaction.rollback();
-        hilog.error(DOMAIN, "rdbDataPersistence", `Transaction execute failed, code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Transaction execute failed, code is ${err.code}, message is ${err.message}`);
       }
     } catch (error) {
       const err = error as BusinessError;
-      hilog.error(DOMAIN, "rdbDataPersistence", `createTransaction failed, code is ${err.code}, message is ${err.message}`);
+      hilog.error(DOMAIN, 'rdbDataPersistence', `createTransaction failed, code is ${err.code}, message is ${err.message}`);
     }
   }
   // [End persistence_transaction_insert_update_and_delete_data]
@@ -279,13 +281,13 @@ export async function rdbDataPersistence() {
   // [Start persistence_backup_store]
   // 在同路径下备份数据库
   if (store !== undefined) {
-    // "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。也可指定路径：customDir + "backup.db"
-    (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
+    // 'Backup.db'为备份数据库文件名，默认在RdbStore同路径下备份。也可指定路径：customDir + 'Backup.db'
+    (store as relationalStore.RdbStore).backup('Backup.db', (err: BusinessError) => {
       if (err) {
-        hilog.error(DOMAIN, "rdbDataPersistence", `Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
         return;
       }
-      hilog.info(DOMAIN, "rdbDataPersistence", `Succeeded in backing up RdbStore.`);
+      hilog.info(DOMAIN, 'rdbDataPersistence', `Succeeded in backing up RdbStore.`);
     })
   }
   // [End persistence_backup_store]
@@ -293,12 +295,12 @@ export async function rdbDataPersistence() {
   // [Start persistence_restore]
   // 备份数据库中恢复数据
   if (store !== undefined) {
-    (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+    (store as relationalStore.RdbStore).restore('Backup.db', (err: BusinessError) => {
       if (err) {
-        hilog.error(DOMAIN, "rdbDataPersistence", `Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+        hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
         return;
       }
-      hilog.info(DOMAIN, "rdbDataPersistence", `Succeeded in restoring RdbStore.`);
+      hilog.info(DOMAIN, 'rdbDataPersistence', `Succeeded in restoring RdbStore.`);
     })
   }
   // [End persistence_restore]
@@ -307,10 +309,10 @@ export async function rdbDataPersistence() {
   // 删除数据库
   relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
     if (err) {
-      hilog.error(DOMAIN, "rdbDataPersistence", `Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
+      hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
       return;
     }
-    hilog.info(DOMAIN, "rdbDataPersistence", 'Succeeded in deleting RdbStore.');
+    hilog.info(DOMAIN, 'rdbDataPersistence', 'Succeeded in deleting RdbStore.');
   });
   // [End persistence_delete_store]
 }

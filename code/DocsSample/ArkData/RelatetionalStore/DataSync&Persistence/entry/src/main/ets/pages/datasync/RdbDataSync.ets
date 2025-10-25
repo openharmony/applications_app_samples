@@ -38,7 +38,7 @@ export async function rdbDataSync() {
     // 将已创建的表设置分布式表。
     await store.setDistributedTables(['EMPLOYEE']);
   }).catch((err: BusinessError) => {
-    hilog.error(DOMAIN, "rdbDataSync", `Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
+    hilog.error(DOMAIN, 'rdbDataSync', `Get RdbStore failed, code is ${err.code}, message is ${err.message}`);
   });
   // [End setDistributedTables]
 
@@ -63,17 +63,17 @@ export async function rdbDataSync() {
           if (!store) {
             return;
           }
-          hilog.info(DOMAIN, "rdbDataSync", `The data of device:${device} has been changed.`);
+          hilog.info(DOMAIN, 'rdbDataSync', `The data of device:${device} has been changed.`);
           // 获取device对应的分布式表名。
           const distributedTableName = await store.obtainDistributedTableName(device, 'EMPLOYEE');
           // 创建查询谓词，查询组网内设备分布式表的数据
           const predicates = new relationalStore.RdbPredicates(distributedTableName);
           const resultSet = await store.query(predicates);
-          hilog.info(DOMAIN, "rdbDataSync", `device ${device}, table EMPLOYEE rowCount is: ${resultSet.rowCount}`);
+          hilog.info(DOMAIN, 'rdbDataSync', `device ${device}, table EMPLOYEE rowCount is: ${resultSet.rowCount}`);
         }
       });
     } catch (err) {
-      hilog.error(DOMAIN, "rdbDataSync", `Failed to register observer. Code:${err.code},message:${err.message}`);
+      hilog.error(DOMAIN, 'rdbDataSync', `Failed to register observer. Code:${err.code},message:${err.message}`);
     }
   }
   // [End on_data_change]
@@ -87,7 +87,7 @@ export async function rdbDataSync() {
       age: 18,
       salary: 666
     });
-    hilog.info(DOMAIN, "rdbDataSync", 'Insert to distributed table EMPLOYEE, result: ' + ret);
+    hilog.info(DOMAIN, 'rdbDataSync', 'Insert to distributed table EMPLOYEE, result: ' + ret);
     // 查询组网内的设备列表
     const deviceManager = distributedDeviceManager.createDeviceManager('com.example.rdbDataSync');
     const deviceList = deviceManager.getAvailableDeviceListSync();
@@ -98,7 +98,7 @@ export async function rdbDataSync() {
       }
     });
     if (syncTarget.length === 0) {
-      hilog.error(DOMAIN, "rdbDataSync", 'no device to sync');
+      hilog.error(DOMAIN, 'rdbDataSync', 'no device to sync');
     } else {
       // 构造用于同步分布式表的谓词对象
       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -107,19 +107,19 @@ export async function rdbDataSync() {
       try {
         // 调用同步数据的接口推送当前设备数据变化至组网内其他设备
         const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
-        hilog.info(DOMAIN, "rdbDataSync", 'Push data success.');
+        hilog.info(DOMAIN, 'rdbDataSync', 'Push data success.');
         // 获取同步结果
         for (let i = 0; i < result.length; i++) {
           const deviceId = result[i][0];
           const syncResult = result[i][1];
           if (syncResult === 0) {
-            hilog.info(DOMAIN, "rdbDataSync", `device:${deviceId} sync success`);
+            hilog.info(DOMAIN, 'rdbDataSync', `device:${deviceId} sync success`);
           } else {
-            hilog.error(DOMAIN, "rdbDataSync", `device:${deviceId} sync failed, status:${syncResult}`);
+            hilog.error(DOMAIN, 'rdbDataSync', `device:${deviceId} sync failed, status:${syncResult}`);
           }
         }
       } catch (e) {
-        hilog.error(DOMAIN, "rdbDataSync", 'Push data failed, code: ' + e.code + ', message: ' + e.message);
+        hilog.error(DOMAIN, 'rdbDataSync', 'Push data failed, code: ' + e.code + ', message: ' + e.message);
       }
     }
   }
@@ -138,7 +138,7 @@ export async function rdbDataSync() {
       }
     });
     if (syncTarget.length === 0) {
-      hilog.error(DOMAIN, "rdbDataSync", 'no device to pull data');
+      hilog.error(DOMAIN, 'rdbDataSync', 'no device to pull data');
     } else {
       // 构造用于同步分布式表的谓词对象
       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -147,19 +147,19 @@ export async function rdbDataSync() {
       try {
         // 调用同步数据的接口拉取其他设备数据变化至当前设备
         const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PULL, predicates);
-        hilog.info(DOMAIN, "rdbDataSync", 'Pull data success.');
+        hilog.info(DOMAIN, 'rdbDataSync', 'Pull data success.');
         // 获取同步结果
         for (let i = 0; i < result.length; i++) {
           const deviceId = result[i][0];
           const syncResult = result[i][1];
           if (syncResult === 0) {
-            hilog.info(DOMAIN, "rdbDataSync", `device:${deviceId} sync success`);
+            hilog.info(DOMAIN, 'rdbDataSync', `device:${deviceId} sync success`);
           } else {
-            hilog.error(DOMAIN, "rdbDataSync", `device:${deviceId} sync failed, status:${syncResult}`);
+            hilog.error(DOMAIN, 'rdbDataSync', `device:${deviceId} sync failed, status:${syncResult}`);
           }
         }
       } catch (e) {
-        hilog.error(DOMAIN, "rdbDataSync", 'Pull data failed, code: ' + e.code + ', message: ' + e.message);
+        hilog.error(DOMAIN, 'rdbDataSync', 'Pull data failed, code: ' + e.code + ', message: ' + e.message);
       }
     }
   }
@@ -178,16 +178,16 @@ export async function rdbDataSync() {
       }
     });
     if (devices.length === 0) {
-      hilog.error(DOMAIN, "rdbDataSync", 'no device to query data');
+      hilog.error(DOMAIN, 'rdbDataSync', 'no device to query data');
     } else {
       // 构造用于查询分布式表的谓词对象
       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
       try {
         // 查询组网内设备上的分布式表
         const resultSet = await store.remoteQuery(devices[0], 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES']);
-        hilog.info(DOMAIN, "rdbDataSync", `ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+        hilog.info(DOMAIN, 'rdbDataSync', `ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
       } catch (e) {
-        hilog.error(DOMAIN, "rdbDataSync", 'Remote query failed, code: ' + e.code + ', message: ' + e.message);
+        hilog.error(DOMAIN, 'rdbDataSync', 'Remote query failed, code: ' + e.code + ', message: ' + e.message);
       }
     }
   }
