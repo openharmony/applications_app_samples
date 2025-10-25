@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "add_form_to_desktop",
+      "value": "卡片"
+    },
+    {
+      "name": "remove_form_to_desktop",
+      "value": "移除"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加至桌面"
+    },
+    {
+      "name": "form_title",
+      "value": "detailOnUpdate"
+    },
+    {
+      "name": "form_title1",
+      "value": "hello world"
+    }
+  ]
+}

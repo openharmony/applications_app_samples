@@ -59,7 +59,7 @@ export default function InputEventTest() {
       try {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        // 点击按钮触发事件
+        // 点击按钮1触发事件
         const button = await driver.findComponent(ON.id('bt'));
         await button.longClick();
         await driver.delayMs(1000);
@@ -82,13 +82,13 @@ export default function InputEventTest() {
         let driver = Driver.create();
         await driver.delayMs(1000);
         // 移动鼠标，触发悬停事件
-        await driver.mouseMoveWithTrack({x:300, y:600}, {x:300, y:400});
+        await driver.mouseMoveWithTrack({x:300, y:400}, {x:300, y:200});
         let btObj: ESObject = JSON.parse(getInspectorByKey('bt'));
         hilog.info(0x0000, 'InputEventTest', 'testMouseInput buttonColor: %{public}s', JSON.stringify(btObj.$attrs.backgroundColor));
         expect(btObj.$attrs.backgroundColor).assertEqual('#FF009F40');
         await driver.delayMs(1000);
         // 鼠标左键单击，触发鼠标按下/释放事件
-        await driver.mouseLongClick({x:300, y:400}, MouseButton.MOUSE_BUTTON_LEFT);
+        await driver.mouseLongClick({x:300, y:200}, MouseButton.MOUSE_BUTTON_LEFT);
         await driver.delayMs(1000);
       } catch (error) {
         hilog.error(0x0000, 'InputEventTest', 'testMouseInput failed: %{public}s', error.message);
@@ -100,6 +100,49 @@ export default function InputEventTest() {
 
     /**
      * @tc.number InputEventTest_003
+     * @tc.name testMouseScrollInput
+     * @tc.desc 测试轴事件接口 - 测试鼠标滚轮触发轴事件信息
+     */
+    it('testMouseScrollInput', TestType.FUNCTION, async (done: Function) => {
+      hilog.info(0x0000, 'InputEventTest', 'testMouseScrollInput begin');
+      try {
+        let driver = Driver.create();
+        await driver.delayMs(1000);
+        // 鼠标滚轮滚动，触发轴事件
+        await driver.mouseScroll({x:300, y:400}, true, 30);
+        await driver.delayMs(1000);
+      } catch (error) {
+        hilog.error(0x0000, 'InputEventTest', 'testMouseScrollInput failed: %{public}s', error.message);
+        expect().assertFail();
+      }
+      done();
+      hilog.info(0x0000, 'InputEventTest', 'testMouseScrollInput end');
+    })
+
+    /**
+     * @tc.number InputEventTest_004
+     * @tc.name testTouchProInput
+     * @tc.desc 测试触摸事件冒泡接口 - 监听触摸事件，并阻止事件向上冒泡
+     */
+    it('testTouchProInput', TestType.FUNCTION, async (done: Function) => {
+      hilog.info(0x0000, 'InputEventTest', 'testTouchProInput begin');
+      try {
+        let driver = Driver.create();
+        await driver.delayMs(1000);
+        // 点击按钮2触发事件，由于阻止事件冒泡，背景不会发生改变
+        const button = await driver.findComponent(ON.id('bt2'));
+        await button.longClick();
+        await driver.delayMs(1000);
+      } catch (error) {
+        hilog.error(0x0000, 'InputEventTest', 'testTouchProInput failed: %{public}s', error.message);
+        expect().assertFail();
+      }
+      done();
+      hilog.info(0x0000, 'InputEventTest', 'testTouchProInput end');
+    })
+
+    /**
+     * @tc.number InputEventTest_005
      * @tc.name testKeyInput
      * @tc.desc 测试按键输入事件接口 - 测试按键事件监听
      */

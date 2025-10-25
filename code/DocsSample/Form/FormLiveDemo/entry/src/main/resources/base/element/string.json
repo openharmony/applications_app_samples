@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FormLiveDemo"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "button_one",
+      "value": "更换成：\"message one\""
+    },
+    {
+      "name": "button_two",
+      "value": "更换成：\"message two\""
+    },
+    {
+      "name": "liveform_click1",
+      "value": "点击触发互动卡片动效"
+    },
+    {
+      "name": "button_cancel",
+      "value": "强制取消动效"
+    }
+  ]
+}

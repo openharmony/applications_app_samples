@@ -17,12 +17,13 @@
 12. [旋转屏动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-rotation-transition-animation.md)。
 13. [模糊动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-blur-effect.md)
 14. [自定义属性动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-custom-attribute-animation.md)
+15. [组件动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-component-animation.md)
 
 ### 效果预览
 
 | 首页                                 |
 |------------------------------------|
-| ![](screenshots/device/image1.png) |
+| ![](screenshots/device/image2.png) |
 
 ### 使用说明
 
@@ -63,6 +64,17 @@ entry/src/main/ets/
 |   |   |   |---Index.ets        // 示例3（使用animation产生属性动画）
 |   |   |---template4         
 |   |   |   |---Index.ets         // 示例4（使用keyframeAnimateTo产生属性动画）
+|   |---animationBlur                             // 属性动画（animation）
+|   |   |---template1
+|   |   |   |---Index.ets           // 示例1（使用backdropBlur为组件添加背景模糊）
+|   |   |---template2                   
+|   |   |   |---Index.ets          // 示例2（使用blur为组件添加内容模糊）
+|   |   |---template3             
+|   |   |   |---Index.ets        // 示例3（使用backgroundBlurStyle为组件添加背景模糊效果）
+|   |   |---template4         
+|   |   |   |---Index.ets         // 示例4（使用foregroundBlurStyle为组件添加内容模糊效果）
+|   |   |---template5         
+|   |   |   |---Index.ets         // 示例5（使用motionBlur为组件添加运动模糊效果）
 |   |---animator              // 帧动画
 |   |   |---template1        // 示例1（基于ArkTS扩展的声明式开发范式）
 |   |   |   |---Index.ets
@@ -70,11 +82,18 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |   |---template3           // 示例3（使用帧动画实现小球抛物运动）
 |   |   |   |---Index.ets
+|   |   |---template4           // 示例4（使用帧动画实现小球抛物运动）
+|   |   |   |---Index.ets
 |   |---cohesion                  // 动画衔接
 |   |   |---template1
 |   |   |   |---Index.ets
 |   |   |---template2
 |   |   |   |---Index.ets
+|   |---component                 // 组件动画
+|   |   |---template1
+|   |   |   |---Index.ets           // 示例1（Scroll组件滑动动效）
+|   |   |---template2
+|   |   |   |---Index.ets           // 示例2（List组件动态替换动效）
 |   |---compTransition                 // 组件内转场
 |   |   |---template1     
 |   |   |   |---Index.ets            // 示例1（使用同一接口实现图片出现消失）
@@ -101,6 +120,10 @@ entry/src/main/ets/
 |   |   |   |---Index.ets     // 示例3（不推荐)（利用pushUrl跳转能力）
 |   |   |---template4     
 |   |   |   |---Index.ets         // 示例4（不推荐)（type为None的页面转场）
+|   |   |---template5    
+|   |   |   |---Index.ets     // 示例5（不推荐)（type配置为RouteType.None）
+|   |   |---template6     
+|   |   |   |---Index.ets         // 示例6（不推荐)（type配置为RouteType.Push或RouteType.Pop）
 |   |---particle                          // 粒子动画
 |   |   |---template1       
 |   |   |   |---Index.ets      // 示例1（圆形初始化粒子）
@@ -133,6 +156,7 @@ entry/src/ohosTest/
 |   |   |---Animation.test.ets                            // 属性动画（animation）示例代码测试代码
 |   |   |---Animator.test.ets             // 帧动画示例代码测试代码
 |   |   |---Cohesion.test.ets                 // 动画衔接示例代码测试代码
+|   |   |---Component.test.ets                 // 组件动画示例代码测试代码
 |   |   |---ComponentTransition.test.ets                // 组件内转场示例代码测试代码
 |   |   |---KeyFrameAnimateTo.test.ets                     // 关键帧动画示例代码测试代码
 |   |   |---MotionPath.test.ets                  // 路径动画示例代码测试代码
@@ -163,6 +187,22 @@ entry/src/ohosTest/
     * 对于桌面翻页类从跟手到离手触发动画的场景，离手后动画的初始速度应承继手势速度，避免由于速度不接续导致停顿感的产生。
     * 系统已提供动画与动画、手势与动画之间的衔接能力，保证各类场景下动画平稳光滑地过渡的同时，尽可能降低开发难度。
     * 开发者仅需在animateTo动画闭包中改变属性值或者改变animation接口作用的属性值，即可产生动画。
+5. 组件动画
+组件默认动画功能封装在ComponentDefaultAnimationModule，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template1/Index.ets)
+* 默认动画特性：ArkUI 部分基础组件（如 Checkbox、Button、List 等）内置了状态切换或交互反馈动画。例如 Checkbox 的勾选 / 取消动效、Button 的点击高亮反馈、List 的滑动过渡效果，这些动画无需开发者手动编写逻辑，能直观提示用户操作状态（如选中、点击生效）。
+* 使用方式：直接声明组件并配置基础属性（如 Checkbox 的shape、size、select状态），当组件状态发生变更时（如通过交互修改select值），默认动画会自动触发，简化了基础交互场景的动效实现。
+* 适用场景：适用于需要快速实现标准化交互反馈的场景，无需关注动画细节即可让界面具备基础生动性，减少开发工作量。
+  Scroll 组件定制化动效封装在TaskSwitchModule，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template2/Index.ets)
+* 动效定制逻辑：通过Scroller和PanGesture手势监控滑动距离，结合WindowManager获取屏幕尺寸，动态计算子组件的仿射属性。例如根据滑动进度调整卡片的scale（中间卡片放大、边缘卡片正常）、translate（位移偏移）和zIndex（层级叠加），实现滑动时的立体层次感。
+* 动画参数配置：为子组件绑定animation，设置不同曲线（如Curve.Smooth用于缩放过渡、curves.springMotion()用于位移弹性效果），确保滑动过程中动效自然流畅。
+* 边界与校准处理：在手势结束回调中，通过计算滑动速度和偏移量，校准卡片最终位置（如左滑 / 右滑到极限时锁定位置，未满足切换距离时自动回位），保证交互体验一致性。
+* 触发方式：支持滑动手势直接触发动效，也可通过点击 “Move to first/last” 按钮切换首尾位置，按钮点击会同步更新偏移量并触发动画。
+  List 组件定制化动效封装在ListAutoSortModule，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template3/Index.ets)
+* 动效核心实现：通过DragSortCtrl类管理列表项数据与视觉属性，该类封装了列表项移动逻辑（itemMove方法）和偏移量计算（onMove方法）。结合animateTo和createAnimator创建弹簧动画（使用interpolatingSpring曲线），在逐帧回调中更新translate属性，实现 Item 移动时的弹性过渡。
+* 交互触发机制：为 ListItem 配置swipeAction，滑动 Item 后显示 “To TOP” 按钮，点击按钮时启动动画；通过attributeModifier动态应用ListItemModify中的偏移量，让列表项在移动过程中实时更新位置。
+* 列表分组适配：支持将列表项分为多个ListItemGroup，动效会自动适配分组内的 Item 排列逻辑，确保移动时不破坏分组结构，保持界面布局合理性。
+* 动画控制细节：通过listScroll.closeAllSwipeActions确保滑动操作完成后再启动动画，避免交互冲突；动画结束后自动更新列表数据顺序，实现视觉与数据的同步。
+>>>>>>> master
 
 ### 相关权限
 

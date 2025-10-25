@@ -14,16 +14,13 @@
  */
 
 // [Start net_firewall_case_import_module]
-// [Start net_firewall_case_import_module_domain_names]
 // 从@kit.NetworkKit中导入netFirewall命名空间。
 import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End net_firewall_case_import_module]
-// [End net_firewall_case_import_module_domain_names]
 import { ComponentId } from '../common/CommonConstant';
 import { promptAction } from '@kit.ArkUI';
 
-// 接口定义
 // [Start net_firewall_set_net_firewall_policy]
 // IP类型
 interface IpType{
@@ -108,9 +105,9 @@ struct Index {
 
     // 给用户100设置防火墙策略。
     netFirewall.setNetFirewallPolicy(100, policy).then(() => {
-      console.info(`${LOG_TAG} set firewall policy success.`);
+      console.info(`set firewall policy success.`);
     }).catch((error : BusinessError) => {
-      console.error(`${LOG_TAG} error: set firewall policy failed: ${JSON.stringify(error)}`);
+      console.error(`error: set firewall policy failed: ${JSON.stringify(error)}`);
     });
     // [End net_firewall_set_net_firewall_policy]
 
@@ -175,7 +172,7 @@ struct Index {
         bottom: 300 // 与底间隔
       });
       // [EndExclude net_firewall_add_net_firewall_rule]
-      console.info(`${LOG_TAG} rule Id: ${result}`);
+      console.info(`rule Id: ${result}`);
     }, (reason: BusinessError) => {
       // [StartExclude net_firewall_add_net_firewall_rule]
       this.specificIPReqResult = 'error:' + JSON.stringify(reason);
@@ -185,7 +182,7 @@ struct Index {
         bottom: 300 // 与底间隔
       });
       // [EndExclude net_firewall_add_net_firewall_rule]
-      console.error(`${LOG_TAG} error: add firewall rule failed:  ${JSON.stringify(reason)}`);
+      console.error(`error: add firewall rule failed:  ${JSON.stringify(reason)}`);
     });
     // [End net_firewall_add_net_firewall_rule]
   }
@@ -202,9 +199,9 @@ struct Index {
 
     // 给用户100设置防火墙策略
     netFirewall.setNetFirewallPolicy(100, policy).then(() => {
-      console.info(`${LOG_TAG} set firewall policy success.`);
+      console.info(`set firewall policy success.`);
     }).catch((error : BusinessError) => {
-      console.error(`${LOG_TAG} error: set firewall policy failed: ${JSON.stringify(error)}`);
+      console.error(`error: set firewall policy failed: ${JSON.stringify(error)}`);
     });
     // [End net_firewall_set_net_firewall_policy_domain_names]
 
@@ -231,27 +228,27 @@ struct Index {
 
     // 添加防火墙规则。
     netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
-      // [StartExclude net_firewall_set_net_firewall_policy_domain_names]
+      // [StartExclude net_firewall_add_net_firewall_rule_domain_names]
       this.domainNameNetworkReqResult = $r('app.string.domain_names_networking_success');
       promptAction.showToast({
         message: this.domainNameNetworkReqResult,
         duration: 4000, // 持续时间
         bottom: 300 // 与底间隔
       });
-      // [EndExclude net_firewall_set_net_firewall_policy_domain_names]
-      console.info(`${LOG_TAG} rule Id: ${result}`);
+      // [EndExclude net_firewall_add_net_firewall_rule_domain_names]
+      console.info(`rule Id: ${result}`);
     }, (reason: BusinessError) => {
-      // [StartExclude net_firewall_set_net_firewall_policy_domain_names]
+      // [StartExclude net_firewall_add_net_firewall_rule_domain_names]
       this.domainNameNetworkReqResult = 'error:' + JSON.stringify(reason);
       promptAction.showToast({
         message: this.domainNameNetworkReqResult,
         duration: 4000, // 持续时间
         bottom: 300 // 与底间隔
       });
-      // [EndExclude net_firewall_set_net_firewall_policy_domain_names]
-      console.error(`${LOG_TAG} error: add firewall rule failed:  ${JSON.stringify(reason)}`);
+      // [EndExclude net_firewall_add_net_firewall_rule_domain_names]
+      console.error(`error: add firewall rule failed:  ${JSON.stringify(reason)}`);
     });
-    // [End net_firewall_set_net_firewall_policy_domain_names]
+    // [End net_firewall_add_net_firewall_rule_domain_names]
   }
 
 }

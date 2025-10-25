@@ -10,17 +10,7 @@
 | ---- | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 |      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> | <img src="./screenshots/page_public.jpg" width="300"/> |
 
-| Button页面                                           | Slider页面                                             | ShapeType页面                                             |
-| ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
-| <img src="./screenshots/button.jpeg" width="300" /> | <img src="./screenshots/slider.jpeg" width="300" /> | <img src="./screenshots/checkbox_shape_circle.jpeg" width="300" /> |
 
-| Progress页面                                                | CalendarPicker页面                                              | DatePicker页面                                         |
-|-----------------------------------------------------------| ------------------------------------------------------- | ---------------------------------------------------- |
-| <img src="./screenshots/page_progress.png" width="300" /> | <img src="./screenshots/page_calendarPicker.png" width="300" /> | <img src="./screenshots/datePicker.png" width="300" /> |
-
-| ImageAnimator                                         | TextPicker                                                  | Image页面                                                |
-| ---------------------------------------------------- |-------------------------------------------------------------|--------------------------------------------------------|
-| <img src="./screenshots/page_imageAnimator.png" width="300" /> | <img src="./screenshots/page_textPicker.png" width="300" /> | <img src="./screenshots/page_image.png" width="300" /> |
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；
 2. 进入首页，可选择不同模块页面。
@@ -28,17 +18,84 @@
 4. 点击Swiper选择框进入Swiper组件的CAPI接口展示界面；
 5. 点击Public选择框进入通用属性的CAPI接口展示界面。
 6. 点击Progress选择框进入Progress组件的CAPI接口展示界面；
-7. 点击Datepicker选择框进入Datepicker组件的CAPI接口展示界面；
+
+| Progress页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/page_progress.png" width="300" /> |
+7. 点击DatePicker选择框进入DatePicker组件的CAPI接口展示界面；
+
+| DatePicker页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/datePicker.png" width="300" /> |
 8. 点击TextPicker选择框进入TextPicker组件的CAPI接口展示界面；
+
+| TextPicker页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/page_textPicker.png" width="300" /> |
 9. 点击CalendarPicker选择框进入CalendarPicker组件的CAPI接口展示界面；
+
+| CalendarPicker页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/page_calendarPicker.png" width="300" /> |
 10. 点击Image选择框进入Image组件的CAPI接口展示界面；
+
+| Image页面                                                |
+|--------------------------------------------------------|
+| <img src="./screenshots/page_image.png" width="300" /> |
 11. 点击ImageAnimator选择框进入ImageAnimator组件的CAPI接口展示界面；
+
+| ImageAnimator页面                                                |
+|--------------------------------------------------------|
+| <img src="./screenshots/page_imageAnimator.png" width="300" /> |
 12. 点击Button选择框进入Button组件的CAPI接口展示界面；
-13. 点击Slider选择框进入Slider组件的CAPI接口展示界面； 
-14. 点击CheckboxShape选择框进入checkbox组件的CAPI接口展示界面； 
+
+| Button页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/button.jpeg" width="300" /> |
+13. 点击Slider选择框进入Slider组件的CAPI接口展示界面；
+
+| Slider页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/slider.jpeg" width="300" /> |
+14. 点击CheckboxShape选择框进入checkbox组件的CAPI接口展示界面；
+
+| CheckboxShape页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/checkbox_shape_circle.jpeg" width="300" /> |
 15. 点击HoverModeAreaType选择框进入HoverModeArea组件的CAPI接口展示界面；
 16. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看；
 17. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看；
+18. 点击WaterFlow选择框进入WaterFlow组件的CAPI接口展示界面；
+
+| WaterFlow页面                                            |
+|--------------------------------------------------------|
+| <img src="./screenshots/waterflow.jpeg" width="300" /> |
+
+19. 点击Refresh选择框进入Refresh组件的CAPI接口展示界面；
+
+| Refresh页面                                            |
+|------------------------------------------------------|
+| <img src="./screenshots/refresh.jpeg" width="300" /> |
+20. 点击List选择框进入List组件的CAPI接口展示界面；
+
+| List页面                                            |
+|---------------------------------------------------|
+| <img src="./screenshots/list.jpeg" width="300" /> |
+21. 点击Grid选择框进入Grid组件的CAPI接口展示界面；
+
+| Gird页面                                            |
+|---------------------------------------------------|
+| <img src="./screenshots/grid.jpeg" width="300" /> |
+22. 点击Scroll选择框进入Scroll组件的CAPI接口展示界面；
+
+| Scroll页面                                            |
+|-----------------------------------------------------|
+| <img src="./screenshots/scroll.jpeg" width="300" /> |
+23. 点击XComponent选择框进入XComponent组件的CAPI接口展示界面；
+
+| XComponent页面<br>(该示例在OpenHarmony与HarmonyOS上运行效果不同)      |
+|-----------------------------------------------------|
+| <img src="./screenshots/XComponent.png" width="300" /> |
 
 ## 工程目录
 
@@ -64,7 +121,12 @@ entry/src/main/ets/
     ├── page_image_animator.ets (图片帧页面)
     ├── page_text_picker.ets (文本选择器页面)
     ├── page_text.ets (文本界面)
-    └── page_xcomponent.ets (XComponent界面)
+    ├── page_xcomponent.ets (XComponent界面)
+    ├── PageGrid.ets       (Grid页面)
+    └── grid
+         ├── PageGridNormal.ets (普通Grid页面)
+         ├── PageGridIrregularIndexes.ets (可滚动Grid设置跨行跨列节点页面)
+         └── PageGridGetRectByIndex.ets (固定行列Grid页面)
 
 entry/src/main/
 ├── cpp
@@ -108,7 +170,13 @@ entry/src/main/
 |   ├── CheckboxShapeMaker.cpp
 │   ├── CheckboxShapeMaker.h
 |   ├── HoverModeAreaTypeMaker.cpp
-│   └── HoverModeAreaTypeMaker.h
+│   ├── HoverModeAreaTypeMaker.h
+│   ├── GridIrregularIndexesMaker.cpp
+│   ├── GridIrregularIndexesMaker.h
+│   ├── GridMaker.cpp
+│   ├── GridMaker.h
+│   ├── GridRectByIndexMaker.cpp
+│   └── GridRectByIndexMaker.h
 └── resources
     ├── base
     │   ├── element
@@ -117,6 +185,21 @@ entry/src/main/
     │   │   └── string.json
     │   └── media
 ```
+
+## 组件描述
+
+1. [Progress组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)
+   为进度条组件，用于显示内容加载或操作处理等进度。
+2. [Datepicker组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)
+   为滑动选择日期的组件。
+3. [TextPicker组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)
+   为滑动选择文本、图片或图文混排内容的组件。
+4. [CalendarPicker组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)
+   为日历选择器组件，提供下拉日历弹窗，可以让用户选择日期。
+5. [Image组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)
+   为图片组件，常用于在应用中显示图片。
+6. [ImageAnimator组件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)
+   该组件提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。
 
 ## 相关权限
 

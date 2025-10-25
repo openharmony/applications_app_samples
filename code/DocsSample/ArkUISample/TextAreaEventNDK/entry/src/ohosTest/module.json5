@@ -17,8 +17,29 @@
     "name": "entry_test",
     "type": "feature",
     "deviceTypes": [
-      "default",
-      "tablet"
+      "default"
+    ],
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      }
     ],
     "deliveryWithInstall": true,
     "installationFree": false

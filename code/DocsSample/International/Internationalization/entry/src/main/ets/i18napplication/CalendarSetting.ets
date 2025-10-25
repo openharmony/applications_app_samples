@@ -24,64 +24,64 @@ import { i18n } from '@kit.LocalizationKit';
 // 设置日历和历法开发实例
 // 公历相关用法
 let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans', 'gregory');
-
-// 设置日历对象的日期
+// 设置日历对象的时间日期为2022.06.13 08:00:00
 calendar.setTime(new Date(2022, 5, 13, 8, 0, 0));
 calendar.setTime(10540800000);
 
-// 设置日历对象的年、月、日、时、分、秒
+// 设置日历对象的时间日期为2022.06.13 08:00:00
 calendar.set(2022, 5, 13, 8, 0, 0);
 
 // 设置日历对象的时区
 calendar.setTimeZone('Asia/Shanghai');
 
 // 获取日历对象的时区
-let timezone: string = calendar.getTimeZone(); // Asia/Shanghai
+let timezone = calendar.getTimeZone(); // timezone = 'Asia/Shanghai'
 
 // 获取日历对象的一周起始日
-let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // 1
+let firstDayOfWeek = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
 
 // 设置每一周的起始日
 calendar.setFirstDayOfWeek(1);
 
 // 获取一年中第一周的最小天数
-let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // 1
+let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
 
 // 设置一年中第一周的最小天数
 calendar.setMinimalDaysInFirstWeek(3);
 
 // 获取日历对象中与field相关联的值
-let value: number = calendar.get('year'); // 2022
+let year = calendar.get('year'); // year = 2022
 
 // 获取日历对象本地化名称
-let calendarName: string = calendar.getDisplayName('zh-Hans'); // 公历
+let calendarName = calendar.getDisplayName('zh-Hans'); // calendarName = '公历'
 
 // 判断指定的日期在日历中是否为周末
-let isWeekend: boolean = calendar.isWeekend(new Date(2023, 9, 15)); // true
+let isWeekend = calendar.isWeekend(new Date(2023, 9, 15)); // isWeekend = true
 
 // 在日历的给定字段进行加减操作
 calendar.set(2023, 10, 15);
 calendar.add('date', 2);
-let day: number = calendar.get('date'); // day = 17
+let day = calendar.get('date'); // day = 17
 
 // 比较日历和指定日期相差的天数
-let daysDifference: number = calendar.compareDays(new Date(2023, 10, 15)); // daysDifference = -3
-let calendarChinese: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese');
-// 将公历日期设置到calendar对象，时间日期为2023.07.25 08:00:00
-calendarChinese.setTime(new Date(2023, 6, 25, 8, 0, 0));
+let daysDifference = calendar.compareDays(new Date(2023, 10, 15)); // daysDifference = -3
 // [End check_and_set_date]
 
 // [Start get_lunar_date]
+let calendarChinese: i18n.Calendar = i18n.getCalendar('zh-Hans', 'chinese');
+// 将公历日期设置到calendar对象，时间日期为2023.07.25 08:00:00
+calendarChinese.setTime(new Date(2023, 6, 25, 8, 0, 0));
+
 // 获取农历年月日
-let yearChinese: number = calendarChinese.get('year'); // year = 40，指干支纪年40，范围1-60
-let monthChinese: number = calendarChinese.get('month'); // month = 5，指6月
-let dayChinese: number = calendarChinese.get('date'); // day = 8，指8日
+let yearChinese = calendarChinese.get('year'); // year = 40，指干支纪年40，范围1-60
+let monthChinese = calendarChinese.get('month'); // month = 5，指6月
+let dayChinese = calendarChinese.get('date'); // day = 8，指8日
 // [End get_lunar_date]
 
 const expectedTimezone = 'Asia/Shanghai';
 const expectedFirstDayOfWeek = 1;
 const expectedMinimalDaysInFirstWeek = 1;
-const expectedValue = 2022;
+const expectedYear = 2022;
 const expectedCalendarName = resourceToString($r('app.string.Calendar'));
 const expectedIsWeekend = true;
 const expectedDateAddTwoDays = 17;
@@ -116,7 +116,7 @@ struct CalendarSetting {
       Text($r('app.string.SetMinimalDaysInFirstWeek'))
         .textStyle()
         .fontWeight(FontWeight.Bold)
-      Text(assertEqual(value, expectedValue, $r('app.string.YearOfTheFirstWeekIs3')))
+      Text(assertEqual(year, expectedYear, $r('app.string.YearOfTheFirstWeekIs3')))
         .textStyle()
       Text(assertEqual(calendarName, expectedCalendarName, $r('app.string.LocalizedCalendarName')))
         .textStyle()

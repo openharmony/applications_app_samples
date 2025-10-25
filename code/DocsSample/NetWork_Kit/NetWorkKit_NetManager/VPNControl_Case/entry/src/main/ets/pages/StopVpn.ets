@@ -13,19 +13,23 @@
  * limitations under the License.
  */
 
-import vpnext from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
+// [Start stop_vpn_extension_ability_import]
+import { common, Want } from '@kit.AbilityKit';
+import { vpnExtension } from '@kit.NetworkKit';
+// [End stop_vpn_extension_ability_import]
 import vpn_client from 'libentry.so';
 import { showToast } from '../common/ShowToast';
 import { ComponentId } from '../common/CommonConstant';
 import TitleBar from '../common/component';
-import Logger from '../common/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 常量提取
+const TOAST_DURATION = 2000; // Toast 显示时间
+let g_tunnelFd = -1;
+
+// [Start stop_vpn_extension_ability]
 const TITLE_FONT_SIZE = 35; // 标题字体大小
 const BUTTON_FONT_SIZE = 25; // 按钮字体大小
-const TOAST_DURATION = 2000; // Toast 显示时间
 const BUTTON_MARGIN = 16;
 
 let want: Want = {
@@ -33,41 +37,54 @@ let want: Want = {
   bundleName: 'com.samples.vpncontrol_case',
   abilityName: 'MyVpnExtAbility',
 };
-let g_tunnelFd = -1;
 
 @Entry
 @Component
 struct StopVpn {
   @State message: string = 'VPN';
+
+  // [StartExclude stop_vpn_extension_ability]
   @State flag: string = 'wait';
   @State blockedAppName: string = 'com.example.baidumyapplication';
+  // [Start stop_vpn_extension_ability_on_destroy]
   private context = getContext(this) as common.VpnExtensionContext;
-  private vpnConnection: vpnext.VpnConnection = vpnext.createVpnConnection(this.context);
+  private vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(this.context);
 
   Destroy() {
-    Logger.info('developTag', '%{public}s', 'vpn Destroy');
+    hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Destroy');
+    // [StartExclude stop_vpn_extension_ability_on_destroy]
     vpn_client.stopVpn(g_tunnelFd);
+    // [EndExclude stop_vpn_extension_ability_on_destroy]
     this.vpnConnection.destroy().then(() => {
+      hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Destroy Success');
+      // [StartExclude stop_vpn_extension_ability_on_destroy]
       showToast('vpn Destroy Success', TOAST_DURATION);
-      Logger.info('developTag', '%{public}s', 'vpn Destroy Success');
       this.flag = 'Pass';
+      // [EndExclude stop_vpn_extension_ability_on_destroy]
     }).catch((err: Error) => {
+       hilog.error(0x0000, 'testTag', 'developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
+      // [StartExclude stop_vpn_extension_ability_on_destroy]
       showToast('vpn Destroy Failed: ' + JSON.stringify(err), TOAST_DURATION);
-      Logger.error('developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
       this.flag = 'Error';
+      // [EndExclude stop_vpn_extension_ability_on_destroy]
     })
   }
+  // [End stop_vpn_extension_ability_on_destroy]
 
+  // [EndExclude stop_vpn_extension_ability]
   build() {
     Row() {
       Column() {
+        // [StartExclude stop_vpn_extension_ability]
         TitleBar({ hasBackPress: true, title: 'BACK' })
+        // [EndExclude stop_vpn_extension_ability]
         Text(this.message)
           .fontSize(TITLE_FONT_SIZE)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            Logger.info('developTag', '%{public}s', 'vpn Client');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Client');
           })
+        // [StartExclude stop_vpn_extension_ability]
         Button($r('app.string.stop_vpn'))
           .onClick(() => {
             this.Destroy();
@@ -76,27 +93,39 @@ struct StopVpn {
           .id(ComponentId.INNER_STOP_VPN_BUTTON)
           .fontSize(BUTTON_FONT_SIZE)
           .margin(BUTTON_MARGIN)
-        // [Start stop_vpn_extension_ability]
+        // [EndExclude stop_vpn_extension_ability]
+        Button('Start Extension').onClick(() => {
+          vpnExtension.startVpnExtensionAbility(want);
+        }).width('70%').fontSize(45).margin(16);
         Button($r('app.string.stop_vpnExt'))
           .onClick(() => {
             try {
-              vpnext.stopVpnExtensionAbility(want).then(() => {
-                showToast('stop vpnExt Success', TOAST_DURATION);
-                Logger.info('developTag', '%{public}s', 'stop vpnExt Success');
-                this.flag = 'Pass';
-              });
+              hilog.info(0x0000, 'testTag', 'btn end')
+              vpnExtension.stopVpnExtensionAbility(want)
+              // [StartExclude stop_vpn_extension_ability]
+                .then(() => {
+                  showToast('stop vpnExt Success', TOAST_DURATION);
+                  hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'stop vpnExt Success');
+                  this.flag = 'Pass';
+                });
+              // [EndExclude stop_vpn_extension_ability]
             } catch (err) {
+              // [StartExclude stop_vpn_extension_ability]
               showToast('stop vpnExt Fail: ' + JSON.stringify(err), TOAST_DURATION);
-              Logger.error('developTag', 'stop vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
               this.flag = 'Error';
+              // [EndExclude stop_vpn_extension_ability]
+              console.error('developTag', 'stop vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
             }
+
           })
           .width('70%')
+          // [StartExclude stop_vpn_extension_ability]
           .id(ComponentId.STOP_VPN_EXT_BUTTON)
+          // [EndExclude stop_vpn_extension_ability]
           .fontSize(BUTTON_FONT_SIZE)
           .margin(BUTTON_MARGIN)
-        // [End stop_vpn_extension_ability]
       }.width('100%');
     }.height('100%');
   }
 }
+// [End stop_vpn_extension_ability]

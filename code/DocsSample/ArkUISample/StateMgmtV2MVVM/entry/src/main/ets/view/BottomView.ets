@@ -30,7 +30,7 @@ import TaskListViewModel from '../viewmodel/TaskListViewModel';
 export default struct BottomView {
   @Param taskList: TaskListViewModel = new TaskListViewModel();
   @Local newTaskName: string = '';
-  private context = getContext() as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {

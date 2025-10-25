@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
-import resourceManager from '@ohos.resourceManager';
-export const getFileList: (resmgr: resourceManager.ResourceManager, path: string) => Array<String>;
-export const getRawFileContent: (resmgr: resourceManager.ResourceManager, path: string) => Uint8Array;
-export const getRawFileDescriptor: (resmgr: resourceManager.ResourceManager, path: string) => resourceManager.RawFileDescriptor;
-export const isRawDir: (resmgr: resourceManager.ResourceManager, path: string) => boolean;
+// [Start declare_interface]
+import resourceManager from '@kit.LocalizationKit';
+export const getFileList: (resmgr: resourceManager.resourceManager.ResourceManager, path: string) => Array<String>;
+export const getRawFileContent: (resmgr: resourceManager.resourceManager.ResourceManager, path: string) => Uint8Array;
+export const getRawFileDescriptor: (resmgr: resourceManager.resourceManager.ResourceManager, path: string) => resourceManager.resourceManager.RawFileDescriptor;
+export const isRawDir: (resmgr: resourceManager.resourceManager.ResourceManager, path: string) => boolean;
+// [End declare_interface]

@@ -215,11 +215,7 @@ struct formHostSample {
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
 
-      Divider()
-        .vertical(false)
-        .color(Color.Black)
-        .lineCap(LineCapStyle.Butt)
-        .margin({ top: 10, bottom: 10 })
+      Divider().vertical(false).color(Color.Black).lineCap(LineCapStyle.Butt).margin({ top: 10, bottom: 10 })
 
       Row() {
         // 点击查询所有卡片信息。
@@ -264,11 +260,7 @@ struct formHostSample {
       }
       .margin({ left: 10 })
 
-      Divider()
-        .vertical(false)
-        .color(Color.Black)
-        .lineCap(LineCapStyle.Butt)
-        .margin({ top: 10, bottom: 10 })
+      Divider().vertical(false).color(Color.Black).lineCap(LineCapStyle.Butt).margin({ top: 10, bottom: 10 })
 
       if (this.showForm) {
         Text(this.pickerBtnMsg)

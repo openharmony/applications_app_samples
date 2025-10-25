@@ -19,6 +19,7 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct AddBuilderDecoratorContent {
+  // [Start richEditor_addBuilder]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
   private myBuilder: CustomBuilder = undefined
@@ -28,6 +29,7 @@ export struct AddBuilderDecoratorContent {
     Row() {
       Image($r('app.media.startIcon')).width(50).height(50).margin(16)
       Column() {
+        // $r('app.string.XXX')需要替换为开发者所需的资源文件
         Text($r('app.string.AddBuilderDecoratorContent_Text_1')).fontWeight(FontWeight.Bold).fontSize(16)
         Text($r('app.string.AddBuilderDecoratorContent_Text_2')).fontColor('#8a8a8a').fontSize(12)
       }.alignItems(HorizontalAlign.Start)
@@ -35,7 +37,7 @@ export struct AddBuilderDecoratorContent {
     .borderRadius('20')
     .width(220)
   }
-
+  // [StartExclude richEditor_addBuilder]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -51,6 +53,7 @@ export struct AddBuilderDecoratorContent {
                   }
                 })
               })
+            // [EndExclude richEditor_addBuilder]
             Button($r('app.string.AddBuilderDecoratorContent_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
             })
@@ -62,6 +65,7 @@ export struct AddBuilderDecoratorContent {
                 }
                 this.controller.addBuilderSpan(this.myBuilder)
               })
+              // [End richEditor_addBuilder]
           }
         }
       }

@@ -55,6 +55,14 @@ struct datePicker {
           .height(50)
           .width('50%')
           .bindMenu(this.SubMenuModeType)
+          .margin({ bottom: 10 })
+        Button($r('app.string.Back'))
+          .height(50)
+          .width('50%')
+          .onClick(() => {
+            this.getUIContext().getRouter().back();
+          })
+          .margin({ bottom: 10 })
         Column() {
           ContentSlot(this.nodeContent)
         }

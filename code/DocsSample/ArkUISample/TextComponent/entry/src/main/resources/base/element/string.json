@@ -525,6 +525,46 @@
       "value": "富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单"
     },
     {
+      "name": "Set_Attributes_title_9",
+      "value": "设置富文本组件中文本装饰线"
+    },
+    {
+      "name": "Set_Attributes_title_9_desc",
+      "value": "通过decoration设置富文本组件中文本装饰线"
+    },
+    {
+      "name": "Set_Attributes_title_10",
+      "value": "设置富文本多装饰线"
+    },
+    {
+      "name": "Set_Attributes_title_10_desc",
+      "value": "通过StyledString类型的富文本设置多装饰线"
+    },
+    {
+      "name": "Set_Attributes_title_11",
+      "value": "设置垂直居中"
+    },
+    {
+      "name": "Set_Attributes_title_11_desc",
+      "value": "通过textVerticalAlign设置文本段落在垂直方向的对齐方式"
+    },
+    {
+      "name": "Set_Attributes_title_12",
+      "value": "设置中西文自动间距"
+    },
+    {
+      "name": "Set_Attributes_title_12_desc",
+      "value": "通过enableAutoSpacing设置是否开启中文与西文的自动间距"
+    },
+    {
+      "name": "Set_Attributes_title_13",
+      "value": "管理选中菜单项"
+    },
+    {
+      "name": "Set_Attributes_title_13_desc",
+      "value": "当富文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置"
+    },
+    {
       "name": "Add_Event_title",
       "value": "添加事件"
     },
@@ -591,6 +631,50 @@
     {
       "name": "Set_User_PresetText_Styles_desc",
       "value": "通过setTypingStyle设置用户预设的文本样式"
+    },
+    {
+      "name": "Disable_SystemService_Menu_title",
+      "value": "禁用系统服务菜单"
+    },
+    {
+      "name": "Disable_SystemService_Menu_title_desc",
+      "value": "文字被选中时弹出的菜单不包含系统菜单"
+    },
+    {
+      "name": "Disable_Menu_Item_title",
+      "value": "禁用搜索和翻译菜单"
+    },
+    {
+      "name": "Disable_Menu_Item_title_desc",
+      "value": "文字被选中时弹出的菜单不包含搜索和翻译菜单"
+    },
+    {
+      "name": "Demo_richEditor",
+      "value": "这是一个RichEditor"
+    },
+    {
+      "name": "Demo_oneText",
+      "value": "一段预置的文本"
+    },
+    {
+      "name": "Demo_SetStyledStringButton",
+      "value": "多装饰线文本"
+    },
+    {
+      "name": "Demo_styledString",
+      "value": "设置富文本多装饰线"
+    },
+    {
+      "name": "Demo_verticalAlignString",
+      "value": "这是一段富文本，展示了文本垂直居中的效果。"
+    },
+    {
+      "name": "Demo_autoSpacingString",
+      "value": "中西文Auto Spacing自动间距"
+    },
+    {
+      "name": "Demo_autoSpacingButton",
+      "value": "开启中西文自动间距"
     },
     {
       "name": "Backplane_Highlighting_title",

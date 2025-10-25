@@ -1,0 +1,42 @@
+{
+  "forms": [
+    {
+      "name": "WidgetJS",
+      "description": "$string:JSCardEntryAbility_desc",
+      "src": "./js/widgetjs/pages/index/index",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "widget",
+      "displayName": "$string:widget_display_name",
+      "description": "$string:widget_desc",
+      "src": "./js/widget/pages/index/index",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDynamic": true,
+      "isDefault": false,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*4",
+      "supportDimensions": [
+        "2*4"
+      ]
+    }
+  ]
+}

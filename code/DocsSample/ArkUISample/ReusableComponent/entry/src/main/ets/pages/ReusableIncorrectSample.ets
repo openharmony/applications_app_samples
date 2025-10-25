@@ -1,0 +1,94 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// [Start reusable_for_incorrect_sample]
+class IncorrectBasicDataSource implements IDataSource {
+  private listener: DataChangeListener | undefined = undefined;
+  public dataArray: number[] = [];
+
+  totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  getData(index: number): number {
+    return this.dataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    this.listener = undefined;
+  }
+}
+
+@Entry
+@Component
+struct IncorrectIndex {
+  private data: IncorrectBasicDataSource = new IncorrectBasicDataSource();
+
+  aboutToAppear(): void {
+    for (let index = 1; index < 20; index++) {
+      this.data.dataArray.push(index);
+    }
+  }
+
+  build() {
+    List() {
+      LazyForEach(this.data, (item: number, index: number) => {
+        ListItem() {
+          IncorrectReuseComponent({ num: item });
+        }
+      }, (item: number, index: number) => index.toString())
+    }.cachedCount(0)
+  }
+}
+
+@Reusable
+@Component
+struct IncorrectReuseComponent {
+  @State num: number = 0;
+
+  aboutToReuse(params: ESObject): void {
+    this.num = params.num;
+  }
+
+  build() {
+    Column() {
+      Text('ReuseComponent num:' + this.num.toString())
+      IncorrectReuseComponentChild({ num: this.num })
+      Button('plus')
+        .onClick(() => {
+          this.num += 10;
+        })
+    }
+    .height(200)
+  }
+}
+
+@Component
+struct IncorrectReuseComponentChild {
+  @Link num: number;
+
+  aboutToReuse(params: ESObject): void {
+    this.num = -1 * params.num;
+  }
+
+  build() {
+    Text('ReuseComponentChild num:' + this.num.toString())
+  }
+}
+// [End reusable_for_incorrect_sample]

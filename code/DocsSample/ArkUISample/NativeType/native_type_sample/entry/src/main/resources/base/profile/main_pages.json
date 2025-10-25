@@ -17,7 +17,7 @@
     "pages/visualEffects/VisualEffectsIndexBlur",
     "pages/visualEffects/VisualEffectsIndexShape",
     "pages/page_waterflow",
-    "pages/page_grid",
+    "pages/PageGrid",
     "pages/page_scroll",
     "pages/page_refresh",
     "pages/page_list",
@@ -31,6 +31,9 @@
     "pages/page_date_picker",
     "pages/page_image",
     "pages/page_calendar_picker",
-    "pages/page_image_animator"
+    "pages/page_image_animator",
+    "pages/grid/PageGridIrregularIndexes",
+    "pages/grid/PageGridNormal",
+    "pages/grid/PageGridGetRectByIndex"
   ]
 }

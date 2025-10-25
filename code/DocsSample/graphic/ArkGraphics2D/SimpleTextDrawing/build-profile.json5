@@ -19,19 +19,19 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 14,
-        "compatibleSdkVersion": 14,
+        "compileSdkVersion": 20,
+        "compatibleSdkVersion": 20,
         "runtimeOS": "OpenHarmony"
       }
     ],
     "buildModeSet": [
       {
-        "name": "debug"
+        "name": "debug",
       },
       {
         "name": "release"
       }
-    ],
+    ]
   },
   "modules": [
     {
@@ -44,7 +44,7 @@
             "default"
           ]
         }
-      ],
+      ]
     }
   ]
 }

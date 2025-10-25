@@ -21,7 +21,11 @@
 #include <memory>
 
 #include "NativeModule.h"
-
+#include <hilog/log.h>
+#undef LOG_DOMAIN
+#undef LOG_TAG
+#define LOG_DOMAIN 0x3200 // 全局domain宏，标识业务领域
+#define LOG_TAG "NativeModule"  // 全局tag宏，标识模块日志tag
 namespace NativeModule {
 
 class ArkUIBaseNode {
@@ -78,7 +82,14 @@ public:
         return -1; // 如果没找到，返回-1
     }
     
-    ArkUI_NodeHandle GetHandle() const { return handle_; }
+    ArkUI_NodeHandle GetHandle() const
+    {
+        if (!this || !handle_) {
+            OH_LOG_INFO(LOG_APP, "GetHandle nullptr");
+            return nullptr;
+        }
+        return handle_;
+    }
 
 protected:
     virtual void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) {}

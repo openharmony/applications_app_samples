@@ -1,0 +1,15 @@
+{
+  "data": {
+    "title": "TitleDefault",
+    "detail": "TextDefault"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "EntryAbility",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}

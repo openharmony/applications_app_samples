@@ -28,6 +28,7 @@ class Contact {
     this.firstChar = firstChar;
   }
 }
+
 @Builder
 function buildText() {
   Column() {
@@ -67,18 +68,17 @@ export struct ArcListSideSlip {
     new Contact('叔叔', 'S'),
     new Contact('天天', 'T'),
   ];
-
   private scrollerForList: Scroller = new Scroller();
-
   @State indexerIndex: number = 0;
   context: UIContext = this.getUIContext();
   tabBar1: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(buildText));
 
+  // [Start create_SideSlip_start]
   @Builder
   itemEnd(item: Contact) {
     // 构建尾端滑出组件
     Button({ type: ButtonType.Circle }) {
-      Image($r('app.media.MaterialSymbolsDelete'))
+      Image($r('app.media.ic_public_delete_filled'))
         .width(20)
         .height(20)
     }
@@ -92,12 +92,15 @@ export struct ArcListSideSlip {
         iterations: 1,
         playMode: PlayMode.Normal,
       }, () => {
+        // this.contacts为列表数据源，可根据实际场景构造，indexOf方法可获取将被删除数据在数据源中的索引
         let index = this.contacts.indexOf(item);
+        // 从数据源删除指定数据项
         this.contacts.splice(index, 1);
       })
-
     })
   }
+
+  // [Start create_SideSlip_start]
 
   build() {
     NavDestination() {
@@ -106,7 +109,10 @@ export struct ArcListSideSlip {
           Stack() {
             ArcList({ initialIndex: 0, header: this.tabBar1, scroller: this.scrollerForList }) {
               ForEach(this.contacts, (item: Contact) => {
+                // [Start bind_swipeAction_start]
+                // 构建ArcList时，通过ForEach基于数据源this.contacts循环渲染ArcListItem
                 ArcListItem() {
+                  // [StartExclude bind_swipeAction_start]
                   Row() {
                     Text(item.firstChar)
                       .textAlign(TextAlign.Center)
@@ -121,6 +127,7 @@ export struct ArcListSideSlip {
                   .borderRadius('65px')
                   .width('90%')
                   .justifyContent(FlexAlign.Start)
+                  // [EndExclude bind_swipeAction_start]
                 }
                 .swipeAction({
                   end: {
@@ -130,6 +137,7 @@ export struct ArcListSideSlip {
                     },
                   }
                 }) // 设置侧滑属性.
+                // [End bind_swipeAction_start]
                 .borderRadius('65px')
                 .width('400px')
                 .height('130px')

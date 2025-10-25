@@ -61,6 +61,26 @@
       "value": "暂停"
     },
     {
+      "name": "originalImage",
+      "value": "原图"
+    },
+    {
+      "name": "animation_blur_text1",
+      "value": "手指不在屏幕上"
+    },
+    {
+      "name": "animation_blur_text2",
+      "value": "按住屏幕上下滑动"
+    },
+    {
+      "name": "animation_blur_text3",
+      "value": "当前手指所在y轴位置 ： "
+    },
+    {
+      "name": "animation_blur_text4",
+      "value": "当前图片模糊程度为 : "
+    },
+    {
       "name": "navigation_toolbar_collect",
       "value": "collect"
     },
@@ -253,6 +273,7 @@
       "value": "示例2（List组件动态替换动效）"
     },
     {
+<<<<<<< zidingyi1022
       "name": "animatableProperty_label",
       "value": "自定义属性动画"
     },
@@ -295,6 +316,10 @@
     {
       "name": "animation_blur_label5",
       "value": "示例5（使用motionBlur为组件添加运动模糊效果）"
+    }，
+    {
+      "name": "AnimateIndex",
+      "value": "AnimateIndex"
     }
   ]
 }

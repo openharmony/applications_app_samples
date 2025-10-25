@@ -60,6 +60,13 @@ struct calendarPicker {
             .bindMenu(this.SubMenuCalendarType)
         }
         .padding({bottom: 10})
+        Button($r('app.string.Back'))
+          .height(50)
+          .width('50%')
+          .onClick(() => {
+            this.getUIContext().getRouter().back();
+          })
+          .margin({ bottom: 10 })
         Column() {
           ContentSlot(this.nodeContent)
         }

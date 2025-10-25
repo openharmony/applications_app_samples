@@ -14,7 +14,7 @@
  */
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@kit.BasicServicesKit';
 

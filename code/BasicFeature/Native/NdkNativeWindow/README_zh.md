@@ -25,6 +25,8 @@
 6. 点击页面底部”attachbuffer“, 在cachebuffer大于0时将buffer添加到nativewindow中，attachedbuffer数值加1，cachebuffer数值减1；cachebuffer为0时不做处理。(需要点第五步按钮更新数值)
 7. 点击页面底部”detachbuffer", 在attachedbuffer大于0时将buffer添加到缓存区cachebuffer中，attachedbuffer数值减1，cachebuffer数值加1； attachedbuffer为0时不做处理。(需要点第五步按钮更新数值)
 8. 点击页面顶部"Change ScalingMode"按钮，在支持fit模式的设备可以切换色块居中显示或平铺显示，开发板不支持fit模式。
+9. 点击页面底部“AcquireLatestBuffer”按钮，可以获取生产者最新生产的数据。
+10. 点击页面底部“PreAllocBuffer”按钮，通过NativeWindow提前申请buffer。
 
 ### 工程目录
 
@@ -54,6 +56,8 @@
 5.js侧调用DetachBuffer接口，当NativeWindow的attachedbuffer数量大于0时，会将NativeWindow中的buffer移除，放置到缓存区中，当attachedbuffer为0时不操作；
 6.js侧调用GetBufferQueueSize、GetAttachBufferCount、GetCacheBufferCount接口时，将获取当前NativeWindow的bufferqueue容量、已经attach到nativewindow的buffer数量，缓存区buffer数量
 7.js侧调用ChangeScalingMode接口，c++代码中会切换DrawColor的scalingmode，切换显示模式
+8.c++代码中定义对外接口为AcquireLatestBuffer，js侧调用该接口后，可以获取生产者最新生产的buffer。
+9.c++代码中定义对外接口为PreAllocBuffer，js侧调用该接口后，可以通过NativeWindow提前申请buffer。
 
 源码参考：[cpp目录](entry/src/main/cpp)下的文件。
 
@@ -84,6 +88,12 @@
 | OH_NativeWindow_WriteToParcel(OHNativeWindow* window, OHIPCParcel* parcel)| 向OHIPCParcel对象中写入一个OHNativeWindow对象|
 | OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **window)| 从OHIPCParcel对象中读取一个OHNativeWindow对象|
 | OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHScalingModeV2 scalingMode)| 为OHNativeWindow设置显示模式|
+| OH_NativeImage_AcquireLatestNativeWindowBuffer(OH_NativeImage* image, OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd)| 获取生产者最近生产的buffer|
+| OH_NativeWindow_PreAllocBuffers(OHNativeWindow *window, uint32_t allocBufferCnt)| 通过NativeWindow提前申请buffer|
+| OH_NativeImage_CreateWithSingleBufferMode(uint32_t textureId, uint32_t textureTarget, bool singleBufferMode)| 使用纹理ID创建一个OH_NativeImage实例，该实例与OpenGL ES的纹理ID和纹理目标相关联，并选择是否设置单buffer模式|
+| OH_NativeImage_ReleaseTextImage(OH_NativeImage* image)| 解除SurfaceBuffer与纹理的绑定，将纹理恢复到未使用状态|
+| OH_NativeImage_GetColorSpace(OH_NativeImage* image, OH_NativeBuffer_ColorSpace* colorSpace)| 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关色彩空间|
+
 
 详细的接口说明请参考[NativeWindow](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)，[NativeImage](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)，[NativeBuffer](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/native-apis/_o_h___native_buffer.md)。
 

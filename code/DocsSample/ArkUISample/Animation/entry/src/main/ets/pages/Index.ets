@@ -64,7 +64,16 @@ struct AnimateIndex {
       { name: 'template2/Index', label: $r('app.string.animation_temp_label2') },
       { name: 'template3/Index', label: $r('app.string.animation_temp_label3') },
       { name: 'template4/Index', label: $r('app.string.animation_temp_label4') }
-
+    ]
+  }, {
+    name: "animationBlur",
+    label: $r("app.string.animation_blur_label"),
+    children:[
+      { name: 'template1/BlurEffectsExample', label: $r("app.string.animation_blur_label1") },
+      { name: 'template2/Index', label: $r("app.string.animation_blur_label2") },
+      { name: 'template3/BackDropBlurStyleDemo', label: $r("app.string.animation_blur_label3") },
+      { name: 'template4/ForegroundBlurStyleDemo', label: $r("app.string.animation_blur_label4") },
+      { name: 'template5/MotionBlurTest', label: $r("app.string.animation_blur_label5") }
     ]
   }, {
     name: "cohesion",
@@ -173,6 +182,14 @@ struct AnimateIndex {
       // $r("app.string.component_temp_label1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.animatableProperty_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.animatableProperty_temp_label2") },
+  }, {
+    name: "component",
+    // $r('app.string.component_label')需要替换为开发者所需的资源文件
+    label: $r('app.string.component_label'),
+    children:[
+      // $r('app.string.component_temp_label1')需要替换为开发者所需的资源文件
+      { name: 'template1/Index', label: $r('app.string.component_temp_label1') },
+      { name: 'template2/Index', label: $r('app.string.component_temp_label2') },
     ]
   }
   ];
@@ -195,7 +212,7 @@ struct AnimateIndex {
 
       // $r('sys.media.ohos_ic_public_arrow_right')需要替换为开发者所需的资源文件
       Image($r('sys.media.ohos_ic_public_arrow_right'))
-      // $r('sys.color.ohos_id_color_fourth')需要替换为开发者所需的资源文件
+         // $r('sys.color.ohos_id_color_fourth')需要替换为开发者所需的资源文件
         .fillColor($r('sys.color.ohos_id_color_fourth'))
         .height(24)
         .width(24)
@@ -246,7 +263,7 @@ struct AnimateIndex {
                     Blank()
                     // $r('sys.media.ohos_ic_public_arrow_right')需要替换为开发者所需的资源文件
                     Image($r('sys.media.ohos_ic_public_arrow_right'))
-                    // $r('sys.color.ohos_id_color_fourth')需要替换为开发者所需的资源文件
+                       // $r('sys.color.ohos_id_color_fourth')需要替换为开发者所需的资源文件
                       .fillColor($r('sys.color.ohos_id_color_fourth'))
                       .height(24)
                       .width(24)

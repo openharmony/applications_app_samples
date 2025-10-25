@@ -13,8 +13,20 @@
       "value": "subscribe"
     },
     {
+      "name": "subscribeUseSensorInfoParam",
+      "value": "subscribeUseSensorInfoParam"
+    },
+    {
+      "name": "onceSubscribe",
+      "value": "onceSubscribe"
+    },
+    {
       "name": "unSubscribe",
       "value": "unSubscribe"
+    },
+    {
+      "name": "unSubscribeUseSensorInfoParam",
+      "value": "unSubscribeUseSensorInfoParam"
     },
     {
       "name": "getSensorListByDeviceSync",
@@ -31,6 +43,46 @@
     {
       "name": "off",
       "value": "off SensorStatusChange"
+    },
+    {
+      "name": "getGeomagneticInfo",
+      "value": "getGeomagneticInfo"
+    },
+    {
+      "name": "getDeviceAltitude",
+      "value": "getDeviceAltitude"
+    },
+    {
+      "name": "getInclination",
+      "value": "getInclination"
+    },
+    {
+      "name": "getAngleVariation",
+      "value": "getAngleVariation"
+    },
+    {
+      "name": "getRotationMatrix",
+      "value": "getRotationMatrix"
+    },
+    {
+      "name": "transformRotationMatrix",
+      "value": "transformRotationMatrix"
+    },
+    {
+      "name": "getQuaternion",
+      "value": "getQuaternion"
+    },
+    {
+      "name": "getOrientation",
+      "value": "getOrientation"
+    },
+    {
+      "name": "getRotationMatrixTwoParam",
+      "value": "getRotationMatrixTwoParam"
+    },
+    {
+      "name": "getSingleSensor",
+      "value": "getSingleSensor"
     },
     {
       "name": "clean",

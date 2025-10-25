@@ -24,7 +24,9 @@ import { ParticleTest } from './Particle.test';
 import { AnimatorTest } from './Animator.test';
 import { AnimateToImmediatelyTest } from './AnimateToImmediately.test';
 import { RotationTest } from './Rotation.test';
-import { AnimatablePropertyTest } from './AnimatableProperty.test'
+import { AnimatablePropertyTest } from './AnimatableProperty.test';
+import { ComponentTest } from './Component.test';
+
 
 export default function testsuite() {
   AnimateToTest();
@@ -39,5 +41,6 @@ export default function testsuite() {
   AnimatorTest();
   AnimateToImmediatelyTest();
   RotationTest();
-  AnimatablePropertyTest()
+  AnimatablePropertyTest();
+  ComponentTest();
 }

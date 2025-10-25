@@ -36,7 +36,7 @@ export struct TitleBarComponent {
   private dialogController: CustomDialogController | null = null
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   onSelectedIndexChange = async (index: number | undefined) => {
-    Logger.info(TAG, `selectedIndexChange`)
+    Logger.info(TAG, `selectedIndexChange, index = ${index}`)
     this.selectedIndex = index
     if (this.selectedIndex === 0) {
       Logger.info(TAG, `stop ability`)
@@ -94,7 +94,7 @@ export struct TitleBarComponent {
   }
 
   async startAbility(deviceId: string | undefined) {
-    Logger.debug(TAG, `startAbility deviceId: ${deviceId}`)
+    Logger.info(TAG, `startAbility deviceId: ${deviceId}`)
     let context = getContext(this) as common.UIAbilityContext
     let want: Want = {
       bundleName: BUNDLE_NAME,
@@ -178,13 +178,14 @@ export struct TitleBarComponent {
         .margin({ left: 12 })
       Blank().layoutWeight(1)
       if (!this.isShow) {
-        Image($r("app.media.ic_hop_normal1"))
+        Image($r('app.media.ic_hop_normal1'))
           .id('selectDevice')
           .margin({ right: 32 })
           .width('9%')
           .margin({ right: '12%' })
           .objectFit(ImageFit.Contain)
           .onClick(() => {
+            Logger.info(TAG, `selectDevice, showDialog`)
             this.showDiainfo()
           })
       }

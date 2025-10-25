@@ -123,6 +123,18 @@
       "name": "MySheetBuilder_text2",
       "value": "有票"
     }, {
+      "name": "Person_example1",
+      "value": "王**"
+    }, {
+      "name": "Person_example2",
+      "value": "宋*"
+    }, {
+      "name": "Person_example3",
+      "value": "许**"
+    }, {
+      "name": "Person_example4",
+      "value": "唐*"
+    }, {
       "name": "sideBuilder_text1",
       "value": "改变半模态交互模式"
     }, {
@@ -182,6 +194,21 @@
     }, {
       "name": "bindSheetCmd_label4",
       "value": "确认"
+    },{
+      "name": "bindSheetCmd_label8",
+      "value": "是否选择关闭半模态"
+    },{
+      "name": "bindSheetCmd_label9",
+      "value": "拉起半模态e"
+    },{
+      "name": "bindSheetCmd_label10",
+      "value": "enableHoverMode切换"
+    },{
+      "name": "bindSheetCmd_label11",
+      "value": "hoverModeArea切换"
+    },{
+      "name": "bindSheetCmd_label12",
+      "value": "是否选择关闭半模态"
     }
   ]
 }

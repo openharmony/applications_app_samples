@@ -21,14 +21,12 @@
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
-    "deviceTypes": [
-      "default",
-      "tablet"
-    ],
+    "deviceTypes": [],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
     // [Start module_json5_abilities]
+    //src/main/module.json5
     "abilities": [
       // [StartExclude module_json5_abilities]
       {
@@ -81,7 +79,7 @@
       // [EndExclude module_json5_abilities]
       {
         "name": "WidgetEventCallEntryAbility",
-        "srcEntry": "./ets/widgeteventcallentryability/WidgetEventCallEntryAbility.ts",
+        "srcEntry": "./ets/widgeteventcallentryability/WidgetEventCallEntryAbility.ets",
         "description": "$string:WidgetEventCallEntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:WidgetEventCallEntryAbility_label",
@@ -201,6 +199,7 @@
       }
     ],
     // [Start module_json5_request_permissions]
+    //src/main/module.json5
     "requestPermissions": [
       {
         "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",

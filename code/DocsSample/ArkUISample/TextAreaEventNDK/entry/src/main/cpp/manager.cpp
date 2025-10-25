@@ -14,6 +14,7 @@
  */
 #include "manager.h"
 #include <sstream>
+// [Start obtain_textarea_all]
 #include <arkui/native_interface.h>
 #include <arkui/styled_string.h>
 
@@ -21,6 +22,7 @@ namespace NativeNode::Manager {
 constexpr int32_t NUM_10 = 10;
 constexpr int32_t NUM_28 = 28;
 constexpr int32_t NUM_400 = 400;
+// [StartExclude obtain_textarea_all]
 NodeManager &NodeManager::GetInstance()
 {
     static NodeManager instance;
@@ -29,11 +31,14 @@ NodeManager &NodeManager::GetInstance()
 
 void NodeManager::SetXComponent(OH_NativeXComponent *xComponent) { xComponent_ = xComponent; }
 
+// [EndExclude obtain_textarea_all]
 void NodeManager::CreateTextAreaNode()
 {
+    // [StartExclude obtain_textarea_all]
     if (!xComponent_) {
         return;
     }
+    // [EndExclude obtain_textarea_all]
     ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
     if (nodeApi == nullptr) {
@@ -44,20 +49,26 @@ void NodeManager::CreateTextAreaNode()
     ArkUI_AttributeItem widthItem = {.value = colWidth, .size = 1};
     nodeApi->setAttribute(column, NODE_WIDTH, &widthItem);
 
+    // [Start obtain_create_textarea]
     ArkUI_NodeHandle text = nodeApi->createNode(ARKUI_NODE_TEXT);
     ArkUI_NumberValue textWidth[] = {{.f32 = 300}};
     ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = 1};
     nodeApi->setAttribute(text, NODE_WIDTH, &textWidthItem);
+    // [StartExclude obtain_textarea_all]
+    // [StartExclude obtain_create_textarea]
     ArkUI_NumberValue textHeight[] = {{.f32 = 100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = 1};
     nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     
+    // [EndExclude obtain_textarea_all]
     nodeApi->addChild(column, text);
     
+    // [EndExclude obtain_create_textarea]
     ArkUI_NodeHandle selectionText = nodeApi->createNode(ARKUI_NODE_TEXT);
     ArkUI_NumberValue selectionTextWidth[] = {{.f32 = 300}};
     ArkUI_AttributeItem selectionTextWidthItem = {.value = selectionTextWidth, .size = 1};
     nodeApi->setAttribute(selectionText, NODE_WIDTH, &selectionTextWidthItem);
+    // [StartExclude obtain_create_textarea]
     nodeApi->addChild(column, selectionText);
     ArkUI_NodeHandle textArea = nodeApi->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NumberValue textAreaWidth[] = {{.f32 = 300}};
@@ -68,11 +79,13 @@ void NodeManager::CreateTextAreaNode()
     ArkUI_AttributeItem borderWidthItem = {.value = borderWidth, .size = 1};
     nodeApi->setAttribute(textArea, NODE_BORDER_WIDTH, &borderWidthItem);
 
+    // [EndExclude obtain_create_textarea]
     const ArkUI_AttributeItem *attributeItem = nodeApi->getAttribute(textArea, NODE_UNIQUE_ID);
     auto id = attributeItem->value[0].i32;
     nodeApi->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_CHANGE, id, text);
     nodeApi->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_PASTE, id, text);
     nodeApi->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE, id, selectionText);
+    // [End obtain_create_textarea]
     TextAreaNodeEventReceiver(nodeApi);
     nodeApi->addChild(column, textArea);
     OH_NativeXComponent_AttachNativeRootNode(xComponent_, column);
@@ -80,6 +93,7 @@ void NodeManager::CreateTextAreaNode()
 
 void NodeManager::TextAreaNodeEventReceiver(ArkUI_NativeNodeAPI_1* nodeApi)
 {
+    // [Start obtain_textarea_NodeEventReceiver]
     nodeApi->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         ArkUI_NodeEventType eventType = OH_ArkUI_NodeEvent_GetEventType(event);
         ArkUI_AttributeItem content;
@@ -101,5 +115,7 @@ void NodeManager::TextAreaNodeEventReceiver(ArkUI_NativeNodeAPI_1* nodeApi)
             nodeApi->setAttribute(textNode, NODE_TEXT_CONTENT, &content);
         }
     });
+    // [End obtain_textarea_NodeEventReceiver]
 }
 } // namespace NativeNode::Manager
+// [End obtain_textarea_all]

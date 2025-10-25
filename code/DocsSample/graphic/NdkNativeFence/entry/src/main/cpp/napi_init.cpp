@@ -61,6 +61,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
 static napi_value SyncFenceWait(napi_env env, napi_callback_info info)
 {
+    // [EndExclude wait_fence]
     bool result = OH_NativeFence_Wait(INVALID_FD, TIMEOUT_MS);
     // [End wait_fence]
     // [Start check_fence_invalid]
@@ -158,7 +159,7 @@ static napi_value SyncFenceWaitForever(napi_env env, napi_callback_info info)
     waitThread.join();
     // [Start close_fence]
     OH_NativeFence_Close(sfd);
-    // [End wait_fence_forever]
+    // [End close_fence]
     napi_value funcResult = nullptr;
     napi_create_int32(env, result ? 1 : 0, &funcResult);
 

@@ -10,16 +10,33 @@
 
 3. [申请访问剪贴板权限](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md)。
 
+## 效果预览
+
+| 主页 |
+|-------|
+| ![image](screenshots/UI.PNG) |
+
+### 使用说明
+
+1. 在主界面，可以点击文本框进行输入。
+
+2. 输入文本后点击复制按钮进行剪贴板数据写入。
+
+3. 第一次点击粘贴时，会弹出授权请求对话框，用户授权后，粘贴的内容将在文本框显示。
+
 ## 工程目录
 
 ```
-entry/src/main/ets/
-|---entryAbility
-|   |---EntryAbility.ets             // 申请权限
-|---entrybackupability
-|---pages|
-|   |---Index.ets
-|   |---PasteboardModel.ets          // 开发步骤示例代码
+entry/src/main
+ │── ets
+ │   ├── entryability
+ │   ├── entrybackupability
+ │   ├── pages
+ │       ├── Index.ets            // UI页面
+ │       ├── PasteboardModel.ets  // 开发步骤示例代码
+ ├── resources
+ │   └── module.json5              // 声明所需的权限
+
 ```
 
 ## 相关权限
