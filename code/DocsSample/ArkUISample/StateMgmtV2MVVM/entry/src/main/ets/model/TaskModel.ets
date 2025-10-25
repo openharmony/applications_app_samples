@@ -15,8 +15,9 @@
 */
 
 // src/main/ets/model/TaskModel.ets
-
+// [Start Model_TaskModel]
 export default class TaskModel {
   public taskName: string = 'Todo';
   public isFinish: boolean = false;
 }
+// [End Model_TaskModel]

@@ -15,7 +15,7 @@
 */
 
 // src/main/ets/pages/1-Basic.ets
-
+// [Start Main_Basic]
 @Entry
 @ComponentV2
 struct TodoList {
@@ -30,3 +30,4 @@ struct TodoList {
     }
   }
 }
+// [End Main_Basic]

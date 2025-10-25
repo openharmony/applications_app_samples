@@ -15,7 +15,7 @@
 */
 
 // src/main/ets/pages/TodoListPage.ets
-
+// [Start Main_TodoListPage]
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 import { common } from '@kit.AbilityKit';
 import { AppStorageV2, PersistenceV2 } from '@kit.ArkUI';
@@ -55,3 +55,4 @@ struct TodoList {
     .margin({ left: 15 })
   }
 }
+// [End Main_TodoListPage]
