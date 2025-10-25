@@ -17,12 +17,12 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 // [Start ToolBar]
 // [StartExclude ToolBar]
-let ToolTmp: ToolbarItem = {
+let toolTmp: ToolbarItem = {
   'value': 'func',
   'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',  // 当前目录image文件夹下的图标资源
   'action': () => {}
 };
-let tooBar: ToolbarItem[] = [ToolTmp,ToolTmp,ToolTmp];
+let tooBar: ToolbarItem[] = [toolTmp,toolTmp,toolTmp];
 @Entry
 @Component
 struct ToolBar {
@@ -110,7 +110,6 @@ struct ToolBar {
   }
 }
 
-// PageOne.ets
 @Component
 export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
@@ -129,7 +128,6 @@ export struct pageOneTmp {
   }
 }
 
-// PageTwo.ets
 @Component
 export struct pageTwoTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;

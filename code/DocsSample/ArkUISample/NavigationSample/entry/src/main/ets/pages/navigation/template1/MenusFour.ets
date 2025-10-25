@@ -81,7 +81,6 @@ struct MenusFour {
   }
 }
 
-// PageOne.ets
 @Component
 export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
@@ -100,7 +99,6 @@ export struct pageOneTmp {
   }
 }
 
-// PageTwo.ets
 @Component
 export struct pageTwoTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;

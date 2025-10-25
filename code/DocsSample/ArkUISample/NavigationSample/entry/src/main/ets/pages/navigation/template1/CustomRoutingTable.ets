@@ -83,7 +83,6 @@ export struct pageTwoTmp {
   }
 }
 
-// pageOne.ets
 @Component
 export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
