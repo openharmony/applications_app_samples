@@ -1,10 +1,6 @@
 {
   "string": [
     {
-      "name": "ResultsOfLocalSort",
-      "value": "本地习惯排序: "
-    },
-    {
       "name": "ResultOfEnglishSort",
       "value": "英文区分大小写排序结果: \n"
     },

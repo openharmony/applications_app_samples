@@ -22,10 +22,10 @@
 
 namespace NativeModule 
 {
-
-    napi_value CreateNativeRoot(napi_env env, napi_callback_info info);
     napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info);
-    napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info);
+    napi_value CreateCustomPropertyDemo(napi_env env, napi_callback_info info);
+    napi_value CreateNodeAdapterDemo(napi_env env, napi_callback_info info);
+    napi_value DisposeNodeTree(napi_env env, napi_callback_info info);
     napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
     napi_value GetContext(napi_env env, napi_callback_info info);
     napi_value GetNodeHandle(napi_env env, napi_callback_info info);
@@ -51,7 +51,7 @@ namespace NativeModule
 
         void SetNodeHandle(ArkUI_NodeHandle handle) { nodeHandle_ = handle; }
 
-        void SetWindowName();
+        void GetWindowName();
 
         void SetRootNode(const std::shared_ptr<ArkUIBaseNode> &baseNode)
         {

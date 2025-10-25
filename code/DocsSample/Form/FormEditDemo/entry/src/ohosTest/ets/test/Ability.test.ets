@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON, Component, Point } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_FormEditDemo]'
-const DOMAIN = 0xF811
-const BUNDLE = 'FormEditDemo_'
-const DELAYTIME01 = 500;
-const DELAYTIME02 = 2000;
+const TAG = '[Sample_FormEditDemo]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'FormEditDemo_';
+const DELAYTIME01 = 500; // 等待时长
+const DELAYTIME02 = 2000; // 等待时长
 
 let driver = Driver.create();
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -64,7 +64,7 @@ async function addForm(point: Point) {
 export default function abilityTest() {
   describe('FormEditDemoTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
       // 回到桌面并进入测试应用的服务卡片预览界面
@@ -73,7 +73,7 @@ export default function abilityTest() {
       await driver.pressBack();
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point);
@@ -83,6 +83,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, 'beforeAll find component');
       })
       hilog.info(DOMAIN, TAG, 'Back to desktop and add form end');
+      done();
     });
     beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
@@ -97,11 +98,8 @@ export default function abilityTest() {
     afterAll(async () => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
-      hilog.info(DOMAIN, TAG, 'Back to first page start');
-      await driver.delayMs(DELAYTIME02);
-      await driver.pressHome();
     });
-    it(BUNDLE + '_Edit_001', 0, async () => {
+    it(BUNDLE + '_Edit_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'Edit test start');
       // 找到卡片是否存在
       await driver.delayMs(DELAYTIME02);
@@ -111,10 +109,15 @@ export default function abilityTest() {
       let formComponent: Component = await driver.findComponent(ON.text('Hello World').within(ON.type('FormComponent')));
       let point: Point = await getCenterPoint(formComponent, 0);
       await driver.longClick(point.x, point.y);
-
       await driver.delayMs(DELAYTIME02);
-      await driver.assertComponentExist(ON.text('编辑'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_edit'))));
+      //跳转半模态编辑页
+      let buttonedit: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_edit'))));
+      await buttonedit.click();
+      await driver.delayMs(DELAYTIME01);
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.button_finish'))));
       hilog.info(DOMAIN, TAG, 'Edit test end');
+      done();
     });
   })
 }

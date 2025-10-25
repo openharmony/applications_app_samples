@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
+// [Start scroll_sample]
 @Entry
 @Component
 struct ListPage {
   scroller: Scroller = new Scroller()
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
   build() {
     Row() {
       Column() {
@@ -28,14 +28,12 @@ struct ListPage {
               Text(item.toString())
                 .width('90%')
                 .height('40%')
-                .backgroundColor(0xDCDCDC)
                 .fontSize(80)
                 .textAlign(TextAlign.Center)
                 .margin({ top: 10 })
             }, (item: string) => item)
           }
         }
-        .id('verticalScroll')
         .width('100%')
         .height('100%')
         .scrollable(ScrollDirection.Vertical)
@@ -47,3 +45,4 @@ struct ListPage {
     .height('100%')
   }
 }
+// [End scroll_sample]

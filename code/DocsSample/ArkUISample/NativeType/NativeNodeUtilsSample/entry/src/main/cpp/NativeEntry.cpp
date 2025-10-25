@@ -16,6 +16,8 @@
 #include <arkui/native_node_napi.h>
 #include <ArkUICustomNode.h>
 #include <ArkUITextNode.h>
+#include <ArkUITextInputNode.h>
+#include <ArkUIListItemAdapter.h>
 #include <ArkUIListNode.h>
 #include <ArkUIListItemNode.h>
 #include <CreateNode.h>
@@ -217,8 +219,120 @@ napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+struct NodeAndContent {
+    std::shared_ptr<ArkUIBaseNode> node;
+};
 
-napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
+// 自定义属性Demo
+napi_value CreateCustomPropertyDemo(napi_env env, napi_callback_info info)
+{
+    size_t argc = 2;
+    napi_value args[2] = {nullptr, nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 获取ArkTs侧组件挂载点。
+    ArkUI_NodeContentHandle contentHandle;
+    int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        return nullptr;
+    }
+
+    // 创建Native侧组件树根节点。
+    auto scrollNode = std::make_shared<ArkUIScrollNode>();
+    // 将Native侧组件树根节点挂载到UI主树上。
+    result = OH_ArkUI_NodeContent_AddNode(contentHandle, scrollNode->GetHandle());
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        return nullptr;
+    }
+    // 保存Native侧组件树。
+    g_nodeMap[contentHandle] = scrollNode;
+    
+    auto columnNode = CreateCustomPropertyExample();
+
+    scrollNode->AddChild(columnNode);
+    return nullptr;
+}
+
+std::shared_ptr<ArkUIBaseNode> CreateCustomPropertyExample()
+{
+    auto columnNode = std::make_shared<ArkUIColumnNode>();
+    float textW = 200;
+    float testH = 50;
+    
+    auto textSave = std::make_shared<ArkUITextNode>();
+    textSave->SetSize(textW, testH);
+    textSave->SetTextContent("保存自定义属性");
+    auto textRead = std::make_shared<ArkUITextNode>();
+    textRead->SetSize(textW, testH);
+    textRead->SetTextContent("读取并打印自定义属性");
+    
+    NodeAndContent* input = new NodeAndContent{ .node = columnNode };
+    textSave->RegisterOnClick([](ArkUI_NodeEvent *event) {
+        auto input = (NodeAndContent *)OH_ArkUI_NodeEvent_GetUserData(event);
+        input->node->AddCustomProperty("testKey", "testValue");
+        }, input);
+    textRead->RegisterOnClick([](ArkUI_NodeEvent *event) {
+        auto input = (NodeAndContent *)OH_ArkUI_NodeEvent_GetUserData(event);
+        auto value = input->node->GetCustomProperty("testKey");
+        }, input);
+
+    auto textRoot = std::make_shared<ArkUITextNode>();
+    textRoot->SetSize(textW, testH);
+    textRoot->SetTextContent("打印根节点信息");
+    textRoot->RegisterOnClick(
+        [](ArkUI_NodeEvent *event) {
+            auto input = (NodeAndContent *)OH_ArkUI_NodeEvent_GetUserData(event);
+            input->node->GetCurrentPageRootNode();
+        }, nullptr);
+
+    auto textSearch = std::make_shared<ArkUITextNode>();
+    textSearch->SetSize(textW, testH);
+    textSearch->SetTextContent("打印Column的第一个子节点信息");
+    textSearch->RegisterOnClick(
+        [](ArkUI_NodeEvent *event) {
+            auto input = (NodeAndContent *)OH_ArkUI_NodeEvent_GetUserData(event);
+            input->node->GetActiveChildrenByIndex(0);
+        }, nullptr);
+
+    columnNode->AddChild(textSave);
+    columnNode->AddChild(textRead);
+    return columnNode;
+}
+
+std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample(napi_env env)
+{
+    // 创建组件并挂载
+    // 1：创建List组件。
+    auto list = std::make_shared<ArkUIListNode>();
+    list->SetPercentWidth(1);
+    list->SetPercentHeight(1);
+    // 2：创建ListItem懒加载组件并挂载到List上。
+    auto adapter = std::make_shared<ArkUIListItemAdapter>();
+    list->SetLazyAdapter(adapter);
+    return list;
+}
+
+// 懒加载列表示例
+napi_value CreateNodeAdapterDemo(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+
+    // 创建懒加载文本列表
+    auto node = CreateLazyTextListExample(env);
+
+    // 保持Native侧对象到管理类中，维护生命周期。
+    NativeEntry::GetInstance()->SetRootNode(node);
+    return nullptr;
+}
+
+napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -311,6 +425,7 @@ napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 获取并保存Context。
 napi_value GetContext(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -327,6 +442,7 @@ napi_value GetContext(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 通过接口传递TS侧节点信息。
 napi_value GetNodeHandle(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -343,6 +459,7 @@ napi_value GetNodeHandle(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 通过key查询节点
 napi_value GetNodeHandleById(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -362,6 +479,7 @@ napi_value GetNodeHandleById(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 通过id查询节点
 napi_value GetNodeHandleByUniqueId(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -408,7 +526,37 @@ napi_value CreateDrawNode(napi_env env, napi_callback_info info) {
     return exports;
 }
 
-void NativeEntry::SetWindowName()
+napi_value CreateDrawNode(napi_env env, napi_callback_info info) {
+    size_t argCnt = 1;
+    int32_t ret;
+    napi_value args[1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "CreateNativeNode napi_get_cb_info failed");
+    }
+    ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle);
+    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+    ArkUI_NodeHandle rootNode = test_draw(nodeAPI);
+    if (rootNode == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "test_draw_rootNode", "转换NodeContent失败");
+        return nullptr;
+    }
+    ret = OH_ArkUI_NodeContent_AddNode(nodeContentHandle, rootNode);
+    if (ret != 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OH_ArkUI_NodeContent_AddNode_ret", "转换NodeContent失败");
+        return nullptr;
+    }
+    napi_value exports;
+    if (napi_create_object(env, &exports) != napi_ok) {
+        napi_throw_type_error(env, NULL, "napi_create_object failed");
+        return nullptr;
+    }
+    return exports;
+}
+
+// 获取窗口名称
+void NativeEntry::GetWindowName()
 {
     ArkUI_HostWindowInfo* windowInfo;
     auto result = OH_ArkUI_NodeUtils_GetWindowInfo(nodeHandle_, &windowInfo);
@@ -421,6 +569,7 @@ void NativeEntry::SetWindowName()
     OH_ArkUI_HostWindowInfo_Destroy(windowInfo);
 }
 
+// 注册事件总线，多次注册会覆盖前置注册的总线，可通过对组件addNodeEventReceiver实现同样效果。
 void NativeEntry::RegisterNodeEventReceiver()
 {
     NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->registerNodeEventReceiver([](ArkUI_NodeEvent *event) 

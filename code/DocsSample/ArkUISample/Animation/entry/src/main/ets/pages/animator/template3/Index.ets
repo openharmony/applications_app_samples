@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start animator_template3_start]
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 import resource from '../../../common/resource';
 
@@ -92,3 +93,4 @@ struct Index {
     }.width('100%').height('100%')
   }
 }
+// [End animator_template3_start]

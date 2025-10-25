@@ -18,7 +18,9 @@ import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, MouseButton, MatchPattern, UiDirection, Component } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { Point } from '@ohos.UiTest';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0x0000;
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -1380,5 +1382,158 @@ export default function IndexTest() {
       console.info('uitest: testListChatRoom end');
       done();
     })
+
+    /**
+     * @tc.number UiTest_047
+     * @tc.name testSwiperIgnoreComponentSize
+     * @tc.desc 测试设置圆点导航点间距和忽略导航点组件大小
+     */
+    it('SwiperIgnoreComponentSize', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperIgnoreComponentSize begin');
+      let driver = Driver.create();
+      let componentButton = await driver.findComponent(ON.text('Swiper', MatchPattern.CONTAINS));
+      expect(componentButton === null).assertFalse();
+      await componentButton.click();
+      let str = await getResourceString($r('app.string.SwiperIgnoreComponentSize_title'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+
+      let spaceIndexButton = await driver.findComponent(ON.text('spaceIndex:', MatchPattern.CONTAINS));
+      expect(spaceIndexButton === null).assertFalse();
+      await spaceIndexButton.click();
+      await spaceIndexButton.click();
+      await spaceIndexButton.click();
+
+      let ignoreSizeIndexButton = await driver.findComponent(ON.text('ignoreSizeIndex:', MatchPattern.CONTAINS));
+      expect(ignoreSizeIndexButton === null).assertFalse();
+      await ignoreSizeIndexButton.click();
+      await ignoreSizeIndexButton.click();
+
+      let swiper = await driver.findComponent(ON.type('Swiper'));
+      expect(swiper === null).assertFalse();
+      let scrollPoint:Point = {x:400,y:500};
+      await driver.mouseScroll(scrollPoint,true,2);
+      await driver.pressBack();
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperIgnoreComponentSize end');
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_048
+     * @tc.name testSwiperDigitIndicatorIgnoreComponentSize
+     * @tc.desc 测试设置数字导航点忽略导航点组件大小
+     */
+    it('SwiperDigitIndicatorIgnoreComponentSize', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperDigitIndicatorIgnoreComponentSize begin');
+      let driver = Driver.create();
+      let componentButton = await driver.findComponent(ON.text('Swiper', MatchPattern.CONTAINS));
+      expect(componentButton === null).assertFalse();
+      await componentButton.click();
+
+      let listComponent: Component = await driver.waitForComponent(ON.id('list_'), 1000);
+      let listCenter = await listComponent.getBoundsCenter();
+      await driver.swipe(listCenter.x, listCenter.y + 400, listCenter.x, listCenter.y - 400, 3000);
+      await driver.waitForIdle(500, 500);
+
+      let str = await getResourceString($r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+
+      let swiper = await driver.findComponent(ON.type('Swiper'));
+      expect(swiper === null).assertFalse();
+      let scrollPoint:Point = {x:400,y:500};
+      await driver.mouseScroll(scrollPoint,true,2);
+      await driver.pressBack();
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperDigitIndicatorIgnoreComponentSize end');
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_049
+     * @tc.name testSwiperPageSwitchMethod
+     * @tc.desc 测试页面的切换方式。
+     */
+    it('SwiperPageSwitchMethod', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperPageSwitchMethod begin');
+      let driver = Driver.create();
+      let componentButton = await driver.findComponent(ON.text('Swiper', MatchPattern.CONTAINS));
+      expect(componentButton === null).assertFalse();
+      await componentButton.click();
+      let str = await getResourceString($r('app.string.SwiperPageSwitchMethod_title'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+
+      let showNextButton = await driver.findComponent(ON.text('showNext', MatchPattern.CONTAINS));
+      expect(showNextButton === null).assertFalse();
+      await showNextButton.click();
+
+      let showPreviousButton = await driver.findComponent(ON.text('showPrevious', MatchPattern.CONTAINS));
+      expect(showPreviousButton === null).assertFalse();
+      await showPreviousButton.click();
+      await showPreviousButton.click();
+
+      let undefinedButton = await driver.findComponent(ON.text('undefined', MatchPattern.CONTAINS));
+      expect(undefinedButton === null).assertFalse();
+      await undefinedButton.click();
+
+      let changeButton = await driver.findComponent(ON.text('changeIndex(', MatchPattern.CONTAINS));
+      expect(changeButton === null).assertFalse();
+      await changeButton.click();
+
+      let swiper = await driver.findComponent(ON.type('Swiper'));
+      expect(swiper === null).assertFalse();
+      let scrollPoint:Point = {x:400,y:500};
+      await driver.mouseScroll(scrollPoint,true,2);
+      await driver.pressBack();
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperPageSwitchMethod end');
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_050
+     * @tc.name testSwiperVisibleContentPosition
+     * @tc.desc 测试保存可见位置不变。
+     */
+    it('SwiperVisibleContentPosition', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperVisibleContentPosition begin');
+      let driver = Driver.create();
+      let componentButton = await driver.findComponent(ON.text('Swiper', MatchPattern.CONTAINS));
+      expect(componentButton === null).assertFalse();
+      await componentButton.click();
+
+      let listComponent: Component = await driver.waitForComponent(ON.id('list_'), 1000);
+      let listCenter = await listComponent.getBoundsCenter();
+      await driver.swipe(listCenter.x, listCenter.y + 400, listCenter.x, listCenter.y - 400, 3000);
+      await driver.waitForIdle(500, 500);
+
+      let str = await getResourceString($r('app.string.SwiperVisibleContentPosition_title'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+
+      let addButton = await driver.findComponent(ON.text('header data add', MatchPattern.CONTAINS));
+      expect(addButton === null).assertFalse();
+      await addButton.click();
+
+      let deleteButton = await driver.findComponent(ON.text('header data delete', MatchPattern.CONTAINS));
+      expect(deleteButton === null).assertFalse();
+      await deleteButton.click();
+
+      let swiper = await driver.findComponent(ON.type('Swiper'));
+      expect(swiper === null).assertFalse();
+      let scrollPoint:Point = {x:400,y:500};
+      await driver.mouseScroll(scrollPoint,true,2);
+      await driver.pressBack();
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', 'uitest: testSwiperVisibleContentPosition end');
+      done();
+    })
+
   })
 }

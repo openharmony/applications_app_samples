@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NodeContent,UIContext } from '@kit.ArkUI';
+import { NodeContent, UIContext } from '@kit.ArkUI';
 import entry from 'libentry.so';
 
 @Component
@@ -27,7 +27,7 @@ struct CAPIComponent {
 
   aboutToDisappear(): void {
     // 页面销毁前释放已创建的Native组件。
-    entry.disposeNodeTreeOnMultiThread(this.rootSlot)
+    entry.disposeNodeTree(this.rootSlot)
   }
 
   build() {
@@ -63,19 +63,19 @@ struct Index {
           CAPIComponent()
         }
         Button('ShowDrawPage')
-          .onClick(()=>{
+          .onClick(() => {
             const uiContext: UIContext = this.getUIContext();
             const router = uiContext.getRouter();
             router.pushUrl({
-              url:'pages/drawPage/DrawPage'
+              url: 'pages/drawPage/DrawPage'
             })
           })
         Button('ShowNativeUIPage')
-          .onClick(()=>{
+          .onClick(() => {
             const uiContext: UIContext = this.getUIContext();
             const router = uiContext.getRouter();
             router.pushUrl({
-              url:'pages/nativeUI/NativeUIPage'
+              url: 'pages/nativeUI/NativeUIPage'
             })
           })
       }.width('100%')

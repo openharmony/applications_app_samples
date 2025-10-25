@@ -20,7 +20,7 @@ import { startupManager } from '@kit.AbilityKit';
 struct Index {
   @State message: ResourceStr = $r('app.string.manual_mode');
   @State startParams1: Array<string> = ['StartupTask_006'];
-  @State startParams2: Array<string> = ['libentry_00'];
+  @State startParams2: Array<string> = ['libentry_006'];
 
   build() {
     RelativeContainer() {
@@ -45,4 +45,4 @@ struct Index {
     .width('100%')
   }
 }
-// [EndExclude startup008]
+// [End startup008]

@@ -69,7 +69,10 @@ void SetGestureEnableState(float offsetY, ArkUI_GestureRecognizer *childRecogniz
     bool childIsEnd = false;
     OH_ArkUI_GestureEventTargetInfo_IsScrollEnd(childTargetInfo, &childIsEnd);
     bool childIsBegin = false;
-    OH_ArkUI_GestureEventTargetInfo_IsScrollBegin(childTargetInfo, &childIsBegin);
+    auto errorCode = OH_ArkUI_GestureEventTargetInfo_IsScrollBegin(childTargetInfo, &childIsBegin);
+    if (errorCode == ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "not scrollable container");
+    }
     bool currentIsEnd = false;
     OH_ArkUI_GestureEventTargetInfo_IsScrollEnd(currentTargetInfo, &currentIsEnd);
     bool currentIsBegin = false;
@@ -113,7 +116,10 @@ ArkUI_GestureInterruptResult ChildGestureInterruptFunc(ArkUI_GestureInterruptInf
     char *nodeId = (char *)malloc(sizeof(char) * NUM_6);
     int result = 0;
     // 获取手势绑定的节点的inspectorId
-    OH_ArkUI_GetGestureBindNodeId(currentRecognizer, nodeId, NUM_6, &result);
+    auto errorCode = OH_ArkUI_GetGestureBindNodeId(currentRecognizer, nodeId, NUM_6, &result);
+    if (errorCode == ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "buffer size is not enough");
+    }
     char *childNodeId = (char *)malloc(sizeof(char) * NUM_6);
     int childResult = 0;
     // 获取手势绑定的节点的inspectorId

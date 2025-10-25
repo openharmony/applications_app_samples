@@ -91,6 +91,11 @@
 | Scroll页面                                            |
 |-----------------------------------------------------|
 | <img src="./screenshots/scroll.jpeg" width="300" /> |
+23. 点击XComponent选择框进入XComponent组件的CAPI接口展示界面；
+
+| XComponent页面<br>(该示例在OpenHarmony与HarmonyOS上运行效果不同)      |
+|-----------------------------------------------------|
+| <img src="./screenshots/XComponent.png" width="300" /> |
 
 ## 工程目录
 
