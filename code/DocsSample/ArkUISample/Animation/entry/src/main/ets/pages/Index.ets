@@ -114,7 +114,8 @@ struct AnimateIndex {
       { name: 'template2/Index', label: $r('app.string.compTransition_temp_label2') },
       { name: 'template3/Index', label: $r('app.string.compTransition_temp_label3') },
       { name: 'template4/Index', label: $r('app.string.compTransition_temp_label4') },
-      { name: 'template5/Index', label: $r('app.string.compTransition_temp_label5') }
+      { name: 'template5/Index', label: $r('app.string.compTransition_temp_label5') },
+      { name: 'template6/Index', label: $r('app.string.compTransition_temp_label6') }
     ]
   }, {
     name: "shareTransition",

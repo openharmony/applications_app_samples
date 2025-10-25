@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start transition_effectExample4]
 import { curves } from '@kit.ArkUI';
 
 @Entry
@@ -72,3 +73,4 @@ struct TransitionEffectDemo {
     .height('60%')
   }
 }
+// [End transition_effectExample4]
