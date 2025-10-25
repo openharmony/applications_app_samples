@@ -1,0 +1,23 @@
+{
+  "src": [
+    "pages/Index",
+    "component/ParentComponent",
+    "component/ParameterSpecification",
+    "component/ParentFunction",
+    "component/MyComponentBuild",
+    "component/MyComponentStyle",
+    "component/StaticCodeV1",
+    "component/StaticCodeV2",
+    "managementoverview/stateManagementOverview",
+    "component/Component",
+    "component/FreezeWhenInactive",
+    "component/BuildFunction",
+    "component/Entry",
+    "component/RouteName",
+    "component/Reusable",
+    "component/BuilderMethod",
+    "component/If",
+    "component/ModuleComponent",
+    "component/ForEachFilter"
+  ]
+}
