@@ -12,10 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_EventDecorator]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'EventDecorator_';
 // [Start EventDecoratorTest2]
 import hilog from '@ohos.hilog';
 const TAG = '[Sample_EventDecorator]';
