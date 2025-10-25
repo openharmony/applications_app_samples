@@ -1,5 +1,7 @@
 # Native XComponent
-本示例包含三个小示例。
+本示例包含三个小示例，该工程中展示的代码详细描述可查看如下链接：
+
+[native_interface_xcomponent.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-interface-xcomponent-h.md)
 
 示例一：使用NDK接口创建XComponent，并使用NativeXComponent相关接口
 
