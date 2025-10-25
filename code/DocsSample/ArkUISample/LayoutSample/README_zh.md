@@ -2,12 +2,16 @@
 
 ## 项目简介
 
-本项目基于HarmonyOS ArkUI框架，展示了ArkUI中多种布局组件布局约束的使用方法。项目包括了Native C++实现和ArkTS实现两种方式，为开发者提供了多种布局学习资源。
+本项目基于HarmonyOS ArkUI框架，展示了ArkUI中多种布局组件布局约束的使用方法。项目包括了Native C++实现和ArkTS的编码实现，为开发者提供了多种布局学习资源。
+工程中涉及接口文档：
+1. [提供NativeModule公共的类型定义](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-type-h.md)。
+2. [提供NativeNode接口的类型定义](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)。
 
 ## 效果预览
 <img src="./screenshot/operate_sample.gif" width="300" height="600">
 
 ## 项目结构
+```
 LayoutSample/
 ├── AppScope/                           # 应用全局配置
 │   ├── app.json5                      # 应用配置文件
@@ -57,7 +61,7 @@ LayoutSample/
 ├── build-profile.json5                # 项目构建配置
 ├── oh-package.json5                   # 项目包配置
 └── README.md                          # 项目说明文档
-
+```
 ## 功能特性
 
 ### 1. 布局组件示例

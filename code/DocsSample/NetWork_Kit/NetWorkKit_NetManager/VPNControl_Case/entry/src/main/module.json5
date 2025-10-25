@@ -48,7 +48,10 @@
         ]
       }
     ],
+    // [Start create_vpn_extension_ability]
+    // 举例：在应用的module.json5中定义MyVpnExtAbility。
     "extensionAbilities": [
+      // [StartExclude create_vpn_extension_ability]
       {
         "name": "EntryBackupAbility",
         "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
@@ -61,14 +64,14 @@
           }
         ]
       },
-      // [Start create_vpn_extension_ability]
+      // [EndExclude create_vpn_extension_ability]
       {
         "name": "MyVpnExtAbility",
         "srcEntry": "./ets/vpnability/VPNExtentionAbility.ets",
         "type": "vpn"
       }
-      // [End create_vpn_extension_ability]
     ],
+    // [End create_vpn_extension_ability]
     "requestPermissions": [
       {
         "name": "ohos.permission.INTERNET",

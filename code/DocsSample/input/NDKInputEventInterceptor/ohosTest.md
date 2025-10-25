@@ -1,0 +1,26 @@
+# 输入事件拦截（ArkTS）
+
+## 用例表
+
+| 测试功能       | 预置条件      | 输入                                  | 预期输出                                             | 是否自动 | 测试结果 |
+|------------|-----------|-------------------------------------|--------------------------------------------------|------|------|
+| 拉起应用       | 设备正常运行    |                                     | 成功拉起应用                                           | 是    | Pass |
+| 添加按键事件拦截   | 未添加按键事件拦截 | 点击**Add key event interceptor**                      | 页面显示**Key event interceptor added successfully, return 0**                         | 是    | Pass |
+| 按键事件拦截     | 已添加按键事件拦截 | 在输入框输入文本                            | 输入被拦截，页面实时显示拦截到的按键事件                             | 否    | Pass |
+| 移除按键事件拦截   | 已添加按键事件拦截 | 点击**Remove key event interceptor**                      | 页面显示**Key event interceptor removed successfully, return 0**                         | 是    | Pass |
+| 按键事件不拦截    | 已移除按键事件拦截 | 在输入框输入文本                            | 输入不被拦截，页面不显示拦截到的按键事件                             | 否    | Pass |
+| 添加输入事件拦截   | 未添加输入事件拦截 | 点击**Add input event interceptor. Input event include: mouse event, touch event, and axis event** | 页面显示**Input event interceptor added successfully, return code: 0. Input event interceptor will be automatically canceled after 30 seconds**，30秒后取消拦截 | 是    | Pass |
+| 鼠标输入事件拦截   | 已添加输入事件拦截 | 使用鼠标                                | 输入被拦截，页面实时显示拦截到的鼠标事件                             | 否    | Pass |
+| 触摸输入事件拦截   | 已添加输入事件拦截 | 使用触屏功能                              | 输入被拦截，页面实时显示拦截到的触摸事件                             | 否    | Pass |
+| 捏合轴输入事件拦截  | 已添加输入事件拦截 | 在触摸板进行捏合操作                          | 输入被拦截，页面实时显示拦截到的捏合轴事件                            | 否    | Pass |
+| 滚轮轴输入事件拦截  | 已添加输入事件拦截 | 使用鼠标滚轮                              | 输入被拦截，页面实时显示拦截到的滚轮轴事件                            | 否    | Pass |
+| 移除输入事件拦截   | 已添加输入事件拦截 | 点击**Remove input event interceptor. Input event include: mouse event, touch event, and axis event** | 页面显示接口调用结果                                       | 是    | Pass |
+| 鼠标输入事件不拦截  | 已移除输入事件拦截 | 使用鼠标                                | 输入不被拦截，页面不显示拦截到的鼠标事件                             | 否    | Pass |
+| 触摸输入事件不拦截  | 已移除输入事件拦截 | 使用触屏功能                              | 输入不被拦截，页面不显示拦截到的鼠标事件                             | 否    | Pass |
+| 捏合轴输入事件不拦截 | 已移除输入事件拦截 | 在触摸板进行捏合操作                          | 输入不被拦截，页面不显示拦截到的鼠标事件                             | 否    | Pass |
+| 滚轮轴输入事件不拦截 | 已移除输入事件拦截 | 使用鼠标滚轮                              | 输入不被拦截，页面不显示拦截到的鼠标事件                             | 否    | Pass |
+
+
+
+
+

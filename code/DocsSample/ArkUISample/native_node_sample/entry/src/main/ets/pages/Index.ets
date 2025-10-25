@@ -29,14 +29,14 @@ struct MenuIndex {
       { title: 'Text', url: 'pages/page_text', id: '' },
       { title: 'Swiper', url: 'pages/page_swiper', id: '' },
       { title: 'WaterFlow', url: 'pages/page_waterflow', id: '' },
-      { title: 'Grid', url: 'pages/page_grid', id: '' },
+      { title: 'Grid', url: 'pages/PageGrid', id: '' },
       { title: 'Scroll', url: 'pages/page_scroll', id: '' },
       { title: 'Refresh', url: 'pages/page_refresh', id: '' },
       { title: 'List', url: 'pages/page_list', id: '' },
       { title: 'Public', url: 'pages/page_public_event', id: 'Public' },
       { title: 'XComponent', url: 'pages/page_xcomponent', id: '' },
-      { title: 'Form', url: 'pages/page_form', id: '' },
-      { title: 'ImageSpan', url: 'pages/page_imagespan', id: '' },
+      { title: 'Form表单类', url: 'pages/page_form', id: '' },
+      { title: '信息选择图片类', url: 'pages/page_imagespan', id: '' },
     ];
 
   build() {

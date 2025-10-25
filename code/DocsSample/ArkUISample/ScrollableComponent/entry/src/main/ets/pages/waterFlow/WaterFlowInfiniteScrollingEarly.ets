@@ -107,7 +107,7 @@ export struct WaterFlowInfiniteScrollingEarly {
         .margin({ top: 2 })
     }.width('100%').justifyContent(FlexAlign.Center)
   }
-
+  // [Start waterFlowInfiniteScrollingEarly_start]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -144,4 +144,5 @@ export struct WaterFlowInfiniteScrollingEarly {
     .backgroundColor('#f1f2f3')
     .title($r('app.string.WaterFlowInfiniteScrollingEarly_title'))
   }
+  // [End waterFlowInfiniteScrollingEarly_start]
 }

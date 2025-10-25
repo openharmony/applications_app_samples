@@ -67,6 +67,16 @@ struct AnimateIndex {
 
     ]
   }, {
+    name: "animationBlur",
+    label: $r("app.string.animation_blur_label"),
+    children:[
+      { name: 'template1/BlurEffectsExample', label: $r("app.string.animation_blur_label1") },
+      { name: 'template2/Index', label: $r("app.string.animation_blur_label2") },
+      { name: 'template3/BackDropBlurStyleDemo', label: $r("app.string.animation_blur_label3") },
+      { name: 'template4/ForegroundBlurStyleDemo', label: $r("app.string.animation_blur_label4") },
+      { name: 'template5/MotionBlurTest', label: $r("app.string.animation_blur_label5") }
+    ]
+  }, {
     name: "cohesion",
     // $r('app.string.cohesion_label')需要替换为开发者所需的资源文件
     label: $r('app.string.cohesion_label'),

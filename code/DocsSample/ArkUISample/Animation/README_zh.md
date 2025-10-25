@@ -23,7 +23,7 @@
 
 | 首页                                 |
 |------------------------------------|
-| ![](screenshots/device/image1.png) |
+| ![](screenshots/device/image2.png) |
 
 ### 使用说明
 
@@ -59,12 +59,25 @@ entry/src/main/ets/
 |   |   |   |---Index.ets        // 示例3（使用animation产生属性动画）
 |   |   |---template4         
 |   |   |   |---Index.ets         // 示例4（使用keyframeAnimateTo产生属性动画）
+|   |---animationBlur                             // 属性动画（animation）
+|   |   |---template1
+|   |   |   |---Index.ets           // 示例1（使用backdropBlur为组件添加背景模糊）
+|   |   |---template2                   
+|   |   |   |---Index.ets          // 示例2（使用blur为组件添加内容模糊）
+|   |   |---template3             
+|   |   |   |---Index.ets        // 示例3（使用backgroundBlurStyle为组件添加背景模糊效果）
+|   |   |---template4         
+|   |   |   |---Index.ets         // 示例4（使用foregroundBlurStyle为组件添加内容模糊效果）
+|   |   |---template5         
+|   |   |   |---Index.ets         // 示例5（使用motionBlur为组件添加运动模糊效果）
 |   |---animator              // 帧动画
 |   |   |---template1        // 示例1（基于ArkTS扩展的声明式开发范式）
 |   |   |   |---Index.ets
 |   |   |---template2          // 示例2（位移动画示例）
 |   |   |   |---Index.ets
 |   |   |---template3           // 示例3（使用帧动画实现小球抛物运动）
+|   |   |   |---Index.ets
+|   |   |---template4           // 示例4（使用帧动画实现小球抛物运动）
 |   |   |   |---Index.ets
 |   |---cohesion                  // 动画衔接
 |   |   |---template1
@@ -102,6 +115,10 @@ entry/src/main/ets/
 |   |   |   |---Index.ets     // 示例3（不推荐)（利用pushUrl跳转能力）
 |   |   |---template4     
 |   |   |   |---Index.ets         // 示例4（不推荐)（type为None的页面转场）
+|   |   |---template5    
+|   |   |   |---Index.ets     // 示例5（不推荐)（type配置为RouteType.None）
+|   |   |---template6     
+|   |   |   |---Index.ets         // 示例6（不推荐)（type配置为RouteType.Push或RouteType.Pop）
 |   |---particle                          // 粒子动画
 |   |   |---template1       
 |   |   |   |---Index.ets      // 示例1（圆形初始化粒子）

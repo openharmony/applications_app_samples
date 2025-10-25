@@ -1,0 +1,90 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default"
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER"
+      },
+      {
+        "name": "ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL"
+      }
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:startIcon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "DriverAbility",
+        "srcEntry": "./ets/DriverAbility/driver.ts",
+        "icon": "$media:app_icon",
+        "exported": true,
+        "type": "driver",
+        "metadata": [
+          {
+            "name": "bus", // 必填项，所属总线
+            "value": "USB"
+          },
+          {
+            "name": "desc", // 必填项，必要的驱动描述
+            "value": "the sample of mouse driver"
+          },
+          {
+            "name": "vendor", // 必填项，驱动厂商名称
+            "value": "logitech"
+          },
+          {
+            "name": "vid", // 支持 USB vendor id 列表，用逗号分隔，不可为空
+            "value": "0x93A,0x46D,0x58F,0x17EF,0x0,0x1005,0x5448,0x5117,0x781,0x048D,0x346D,0x3689"
+          },
+          {
+            "name": "pid", // 支持的 USB product id 列表，用逗号分隔，不可为空
+            "value": "0x2510,0xC077,0x6387,0x6019,0x3825, 0x608D,0xB113,0x4,0x0840,0x5590,0x1234,0x5678,0x2020"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,8 +16,15 @@
 import inputMethod from '@ohos.inputMethod';
 import Log from '../model/Log';
 import { BusinessError } from '@ohos.base';
+import { CustomInput } from '../components/CustomInput';
+import testNapi from 'libentry.so';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext } from '@kit.ArkUI';
+
+const DOMAIN = 0x0000;
 
 const TAG: string = 'PrivatePreview->';
+
 
 @Entry
 @Component
@@ -28,14 +35,54 @@ struct PrivatePreview {
   @StorageLink('isTextPreviewSupported') isTextPreviewSupported: boolean = true;
   controllerPrivate: TextInputController = new TextInputController();
   controllerPreview: TextInputController = new TextInputController();
+  @State inputText: string = ''; // inputText作为Text组件要显示的内容
+
+  @State private text: string = 'Hello ArkTS';
+  @State private blinkPos: number = 0; // 目标字符位置（从0开始）
+  @State private isBlinking: boolean = true;
+  @State private opcacity: number = 1.0;
+  @State textFunc:string = '';
+  private uiContext: UIContext | null = null;
+  private intervailid: number = -1;
+  private flag : boolean = false;
+  @State inputWidth: number = 320;
+  @State LINE_HEIGHT: number = 20;
+  // 动画控制周期
+  startBLinkAnimation() {
+    //使用 UIContext.animateTo 替代就方法
+    this.uiContext?.animateTo({
+      duration: 1000,
+      curve: Curve.EaseInOut,
+      iterations: -1, // 无限循环
+      playMode: PlayMode.Alternate // 往返动画效果
+    }, () => {
+      this.opcacity = this.opcacity === 1.0 ? 0.3 : 1.0
+    })
+  }
+
+  // 符合基类要求的onAppear方法
+  onAppear(event: () => void): CommonAttribute {
+    if (this.isBlinking) {
+      this.startBLinkAnimation()
+    }
+    return {} as CommonAttribute // 返回符合类型的空对象
+  }
 
   aboutToAppear() {
     this.addLog(`private preview aboutToAppear begin!`);
+    this.intervailid = setInterval(()=>{
+      if (this.flag) {
+        this.textFunc = testNapi?.getText()
+      }
+    }, 50)
+
     inputMethod.getSetting().showOptionalInputMethods().then((data: boolean) => {
       console.log('onPageShow Succeeded in showing optionalInputMethods.');
     }).catch((err: BusinessError) => {
       console.error(`onPageShow Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
     })
+
+    this.uiContext = this.getUIContext();
   }
 
   onPageShow() {
@@ -76,6 +123,31 @@ struct PrivatePreview {
         })
         .onSubmit(() => {
           this.addLog('preViewText onSubmit.');
+        })
+      // [Start input_case_input_CustomInput]
+      CustomInput()
+      // [End input_case_input_CustomInput]
+
+// [Start input_case_input_KeyboardAppearance]
+      TextArea({placeholder: '沉浸模式'})
+        .keyboardAppearance(KeyboardAppearance.IMMERSIVE)
+
+      TextArea({placeholder: '非沉浸模式'})
+        .keyboardAppearance(KeyboardAppearance.NONE_IMMERSIVE)
+// [End input_case_input_KeyboardAppearance]
+
+      Text(this.textFunc) // Text组件作为自绘编辑框的文本显示组件。
+        .fontSize(16)
+        .width('100%')
+        .lineHeight(40)
+        .id('customInput123')
+        .height(85)
+        .border({ color: '#554455', radius: 30, width: 1 })
+        .maxLines(1)
+        .onClick(() => {
+          this.flag = true;
+          this.textFunc = testNapi.attachInputMethod();
+          hilog.info(DOMAIN, 'testTag', 'textFunc = %{public}s', this.textFunc);
         })
     }
     .width('100%')

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start input_case_input_KeyboardKeyData016]
 export interface keySourceListType {
   title: string,
   content: string,
@@ -180,6 +181,9 @@ export let keySourceListData: keySourceListType[] = [
   }
 ]
 
+// [End input_case_input_KeyboardKeyData016]
+
+// [Start input_case_input_KeyboardKeyData186]
 export let numberSourceListData: sourceListType[] = [
   {
     content: '1'
@@ -348,3 +352,4 @@ export let symbolSourceListData: sourceListType[] = [
     content: ']'
   }
 ]
+// [End input_case_input_KeyboardKeyData186]

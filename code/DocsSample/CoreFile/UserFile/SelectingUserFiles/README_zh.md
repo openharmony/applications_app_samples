@@ -4,13 +4,13 @@
 
 本示例主要展示了通过文件选择器（FilePicker）拉起对应的应用访问，相关文件。根据用户文件的常见类型，选择器（FilePicker）分别提供以下选项：
 
-- PhotoViewPicker：适用于图片或视频类型文件的选择与保存（该接口在后续版本不再演进）。请使用PhotoAccessHelper的PhotoViewPicker来选择图片文件。请使用[安全控件创建媒体资源](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件保存媒体库资源)。
+- PhotoViewPicker：适用于图片或视频类型文件的选择与保存（该接口在后续版本不再演进）。请使用PhotoAccessHelper的PhotoViewPicker来选择图片文件。请使用[安全控件创建媒体资源](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/media/medialibrary/photoAccessHelper-savebutton.md)。
 - DocumentViewPicker：适用于文件类型文件的选择与保存。DocumentViewPicker对接的选择资源来自于FilePicker, 负责文件类型的资源管理，文件类型不区分后缀，比如浏览器下载的图片、文档等，都属于文件类型。
 - AudioViewPicker：适用于音频类型文件的选择与保存。AudioViewPicker目前对接的选择资源来自于FilePicker。
 
 该工程中展示的代码与权限等详细描述可查如下链接。
 
-- [选择用户文件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/file-management/select-user-file.md)
+- [选择用户文件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/file-management/select-user-file.md)
 
 ### 效果预览
 
@@ -46,23 +46,20 @@
 ### 具体实现
 
 * 选择文档类文件：
-    * 导入[@ohos.file.picker（选择器）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md#ohosfilepicker-选择器)模块和[@ohos.file.fs （文件管理）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)模块。
+    * 导入[@ohos.file.picker（选择器）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md)模块和[@ohos.file.fs （文件管理）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)模块。
     * 创建文件类型、文件选择选项实例。
     * 创建文件选择器DocumentViewPicker实例。调用select()接口拉起FilePicker应用界面进行文件选择。
     * 待界面从FilePicker返回后，使用基础文件API的fs.openSync接口通过uri打开这个文件得到文件描述符(fd)。
     * 通过fd使用基础文件API的fs.readSync接口读取文件内的数据。
 * 选择音频类文件：
-    * 导入[@ohos.file.picker（选择器）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md#ohosfilepicker-选择器)模块、[@ohos.file.fs （文件管理）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)模块、[PhotoAccessHelper](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)模块。
+    * 导入[@ohos.file.picker（选择器）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md)模块和[@ohos.file.fs （文件管理）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)模块。
     * 创建音频类型文件选择选项实例。
     * 创建音频选择器AudioViewPicker实例。调用select()接口拉起FilePicker应用界面进行文件选择。
     * 待界面从FilePicker返回后，可以使用基础文件API的fs.openSync接口通过uri打开这个文件得到文件描述符(fd)。
     * 通过fd使用基础文件API的fs.readSync接口读取文件内的数据。
 
 ### 相关权限
-
-[ohos.permission.FILE_ACCESS_MANAGER](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionfile_access_manager)
-
-[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
+不涉及
 
 ### 依赖
 

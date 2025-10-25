@@ -24,7 +24,7 @@ const TAG: string = '[ZLibInterfaceListPage]';
 const SLEEP_TIME = 3000;
 const BUFFER_SIZE = 13;
 const OFFSET = 0;
-const STRING_DATA = 'hello, hello!';
+const STRING_DATA = 'hello, this is a message to show zip compress. It is a test for zip compress!';
 
 function sleep(time: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, time));

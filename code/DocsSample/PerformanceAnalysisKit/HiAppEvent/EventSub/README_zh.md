@@ -34,11 +34,13 @@
 
 - [订阅主线程超时事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
 
+- [订阅任务执行超时事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-apphicollie-events-ndk.md)
+
 ###  效果预览
 
 |                             主页                             |
 | :----------------------------------------------------------: |
-| <img src="./screenshots/Screenshot_20250909094941818.jpg" alt="z" width = "400" /> |
+| <img src="./screenshots/Screenshot_EventSub_Index.jpg" alt="z" width = "400" /> |
 
 #### 使用说明
 
@@ -90,6 +92,7 @@ AppEvent HiAppEvent eventPkg.packageId=0
 AppEvent HiAppEvent eventPkg.row=1
 AppEvent HiAppEvent eventPkg.size=120
 AppEvent HiAppEvent eventPkg.info={"domain_":"button","name_":"click","type_":4,"time_":1503514787492,"tz_":"","pid_":18178,"tid_":18178,"clickTime":100}
+AppEvents writeEvent ArkTS success
 ```
 
 注意：
@@ -442,6 +445,40 @@ HiAppEvent eventInfo.params.log_over_limit=0
 2.要确认日志输出中的eventInfo.name为MAIN_THREAD_JANK。
 
 3.C++实现了onReceive观察者，ArkTS实现了onReceive观察者。
+
+##### 9.订阅任务执行超时事件（C/C++） 
+
+本示例主要展示了订阅任务执行超时事件的功能，包括构造任务执行超时事件及其订阅处理。OH_HiAppEvent_AddWatcher接口用于添加对该超时事件的订阅。
+
+1.在应用侧主界面，点击“TestHiCollieTimerNdk”按钮；
+2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"No filters"，搜索内容设置为"testTag"。此时窗口仅显示符合条件的日志，打印日志示例结果为：
+
+```text
+HiAppEvent eventInfo.domain=OS
+HiAppEvent eventInfo.name=APP_HICOLLIE
+HiAppEvent eventInfo.eventType=1
+HiAppEvent eventInfo.params.time=xx
+HiAppEvent eventInfo.params.foreground=1
+HiAppEvent eventInfo.params.bundle_version=1.0.0
+HiAppEvent eventInfo.params.process_name=xx
+HiAppEvent eventInfo.params.pid=xx
+HiAppEvent eventInfo.params.uid=xx
+HiAppEvent eventInfo.params.uuid=xx
+HiAppEvent eventInfo.params.exception={"message":"","name":"APP_HICOLLIE"}
+HiAppEvent eventInfo.params.hilog.size=xx
+HiAppEvent eventInfo.params.peer_binder.size=xx
+HiAppEvent eventInfo.params.memory={"pss":0,"rss":xx,"sys_avail_mem":xx,"sys_free_mem":xx,"sys_total_mem":xx,"vss":xx}
+HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_HICOLLIE_xx_xx.log"]
+HiAppEvent eventInfo.params.log_over_limit=xx
+```
+
+注意：
+
+1.本示例适配API19及以上版本SDK。
+
+2.要确认日志输出中的eventInfo.name为APP_HICOLLIE。
+
+3.C++实现了onReceive和onTrigger两种观察者。
 
 ###  工程目录
 

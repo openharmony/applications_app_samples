@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "This module template implements List functions."
+    },
+    {
+      "name": "ability_desc",
+      "value": "This ability loads ListPage"
+    },
+    {
+      "name": "ability_label",
+      "value": "List Ability"
+    },
+    {
+      "name": "page_title",
+      "value": "Title"
+    },
+    {
+      "name": "page_title_video",
+      "value": "VideoRecorder"
+    },
+    {
+      "name": "page_title_audio",
+      "value": "AudioRecorder"
+    },
+    {
+      "name": "button_confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "button_cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "audio_parameter",
+      "value": "Select audio samplerate"
+    },
+    {
+      "name": "audio_samplerate",
+      "value": "audio samplerate: "
+    },
+    {
+      "name": "video_parameter",
+      "value": "Select video resolution"
+    },
+    {
+      "name": "video_resolution",
+      "value": "video resolution: "
+    },
+    {
+      "name": "reason",
+      "value": "Permission"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "Choice Device"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "distributed_calculator",
+      "value": "distributed calculator"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "Allow data exchange between different devices"
+    },
+    {
+      "name": "localhost",
+      "value": "localhost"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "EntryAbility"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EntryAbility"
+    }
+  ]
+}

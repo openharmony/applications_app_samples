@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start particle_example2]
 @Entry
 @Component
 struct ParticleExample2 {
@@ -37,6 +38,7 @@ struct ParticleExample2 {
                   lifetimeRange: 100
                 },
                 emitRate: 3,
+                position: [0, 0],
                 shape: ParticleEmitterShape.CIRCLE
               },
               color: {
@@ -397,3 +399,4 @@ struct ParticleExample2 {
 
   }
 }
+// [End particle_example2]

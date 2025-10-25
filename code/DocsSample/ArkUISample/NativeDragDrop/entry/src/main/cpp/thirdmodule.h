@@ -46,11 +46,12 @@ void ExecuteDragPending(ArkUI_DragEvent* dragEvent)
 {
     int32_t requestId = -1;
     auto ret = OH_ArkUI_DragEvent_RequestDragEndPending(dragEvent, &requestId);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_DROP get id = %{public}d, ret = %{public}d", requestId, ret);
-    if (ret != 0) {
+    if (ret == ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "dragTest", "The operation is not allowed!");
         return;
     }
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_DROP get id = %{public}d, ret = %{public}d", requestId, ret);
     std::thread tt([requestId]() {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP_ASYNC 1");
         sleep(1);
