@@ -257,7 +257,7 @@ export default class EntryAbility extends UIAbility {
     hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
     hiAppEvent.addWatcher({
       // 自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: "pssLeakWatcher",
+      name: 'pssLeakWatcher',
       // 订阅感兴趣的系统事件，此处是订阅了资源泄漏事件
       appEventFilters: [
         {
@@ -282,7 +282,7 @@ export default class EntryAbility extends UIAbility {
     // [Start AppKillEvent_ArkTS_Add_Watcher]
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: "leakWatcher",
+      name: 'leakWatcher',
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了应用终止事件
       appEventFilters: [
         {
@@ -314,7 +314,7 @@ export default class EntryAbility extends UIAbility {
     // [Start AsanEvent_ArkTS_Add_Watcher]
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: "sanitzierWatcher",
+      name: 'sanitzierWatcher',
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了地址越界事件
       appEventFilters: [
         {

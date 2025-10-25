@@ -835,20 +835,21 @@ static napi_value AddressSanitizerTest(napi_env env, napi_callback_info info)
 
 static void NativeLeak()
 {
-    constexpr int leak_size_per_time = 500000;
+    constexpr int leakSizePerTime = 500000;
     while (true) {
         char *p = (char *)malloc(leak_size_per_time + 1);
         if (!p) {
             break;
         }
-        memset(p, 'a', leak_size_per_time);
+        memset(p, 'a', leakSizePerTime);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
 
-static napi_value Leak(napi_env env, napi_callback_info info) {
-	std::thread t1(NativeLeak);
-	t1.detach();
+static napi_value Leak(napi_env env, napi_callback_info info)
+{
+    std::thread t1(NativeLeak);
+    t1.detach();
     return {};
 }
 // [End AppKillEvent_NativeLeak]

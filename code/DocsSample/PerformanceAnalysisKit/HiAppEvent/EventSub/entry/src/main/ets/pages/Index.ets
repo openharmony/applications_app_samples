@@ -104,7 +104,7 @@ struct Index {
               // 设置一个简单的资源泄漏场景
               hidebug.setAppResourceLimit("pss_memory", 1024, true);
               for (let i = 0; i < 20 * 1024; i++) {
-                this.leakedArray.push(new Array(1).fill("leak"));
+                this.leakedArray.push(new Array(1).fill('leak'));
               }
             })
         // [End PssleakEvent_Button]
