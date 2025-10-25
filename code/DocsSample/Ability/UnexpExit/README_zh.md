@@ -1,10 +1,14 @@
 # 获取应用异常退出原因
+
 ### 介绍
+
 1. 获取应用异常退出原因
   就是获取应用异常退出原因。当应用异常退出后再次启动时，开发者往往需要获取上次异常退出的具体原因和当时的应用状态信息。
+
 ### 效果预览
 
 不涉及。
+
 ### 使用说明
 
 ### 工程目录
@@ -29,11 +33,11 @@ entry/src/
 ```
 ### 具体实现
 
-1. 获取应用异常退出原因
-   [获取应用异常](./entry/src/main/ets/exitability/ExitAbility1.ets)
+* 获取应用异常退出原因
+    * 获取应用异常主要通过AbilityConstant.LaunchParam参数lastExitReason字段获取，具体源码参考：[ExitAbility1](./entry/src/main/ets/exitability/ExitAbility1.ets)
+* 获取应用异常退出原因类型：
+    * 通过lastExitReason获取不同的退出原因类型（取APP_FREEZE和SIGNAL等）退出原因。源码参考：[ExitAbility2](./entry/src/main/ets/exitability/ExitAbility2.ets)
 
-2. 通过want调用ExitAbility2,查看是否拉起对应的ExitAbility2元能力拉起正常。
-   [want调用](./entry/src/main/ets/exitability/ExitAbility2.ets)
 ### 相关权限
 
 不涉及。

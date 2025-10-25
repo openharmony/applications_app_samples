@@ -1,15 +1,20 @@
 # 获取/设置环境变量
+
 ### 介绍
+
 1. 获取/设置环境变量
    环境变量涵盖了所有可能影响应用运行时的环境配置信息，包括应用可指定的内部环境变量（字体大小、外观、语言等）和应用可感知的外部环境变量（屏幕方向等）。
 2. 获取环境变量
    开发者可以使用getConfigurationSync主动获取当前环境变量，包括深浅色模式、屏幕方向、语言地区、屏幕密度、设备类型等，对应用程序作出相应处理，提供更好的用户体验。
 3. 设置环境变量
    支持应用自定义的环境变量包括字体大小、外观模式、应用语言，其余环境变量（例如屏幕方向等）不支持直接设置。
+
 ### 效果预览
 
 不涉及。
+
 ### 使用说明
+
 1. 功能入口：启动应用后，通过首页（Index.ets）可进入环境变量管理、应用异常退出原因查询、应用间跳转等功能模块。
 2. 环境变量获取操作：
    在首页触发 “获取环境变量” 功能，系统通过 Want 拉起EnvAbility0.ets元能力。
@@ -17,6 +22,7 @@
 3. 环境变量设置操作：
    进入 “设置环境变量” 模块，系统拉起EnvAbility6.ets或EnvAbility7.ets元能力，并加载对应页面（EnvAbility6Page.ets/EnvAbility7Page.ets）。
    在设置页面通过开关、滑块等控件修改字体大小、深浅色模式等，操作后配置即时生效。
+
 ### 工程目录
 
 ```
@@ -55,14 +61,14 @@ entry/src/
  │   │       ├── Ability.test.ets            // 自动化测试代码
 ```
 ### 具体实现
-1. 核心实现逻辑框架
-   环境变量管理采用 “Want 拉起元能力→元能力加载对应页面” 的流程，核心分为获取与设置两大模块，各模块对应明确的元能力与页面文件。 
-2. 环境变量获取实现（EnvAbility0.ets）
-   通过getConfigurationSync接口获取系统与应用的环境配置.
-   [环境变量获取实现](./entry/src/main/ets/EnvAbility/EnvAbility0.ets)
-3. 环境变量设置实现（EnvAbility6Page.ets）
-   通过updateConfiguration接口修改应用内部环境变量.
-   [环境变量设置实现](./entry/src/main/ets/pages/EnvAbilityPage6.ets)
+
+* 核心实现逻辑框架
+   * 环境变量管理采用 “Want 拉起元能力→元能力加载对应页面” 的流程，核心分为获取与设置两大模块，各模块对应明确的元能力与页面文件。 
+* 环境变量获取实现，源码参考：[EnvAbility0.ets](./entry/src/main/ets/EnvAbility/EnvAbility0.ets)
+   * 通过getConfigurationSync接口获取系统与应用的环境配置.
+* 环境变量设置实现，源码参考：[EnvAbility6Page.ets](./entry/src/main/ets/pages/EnvAbilityPage6.ets)
+   * 通过updateConfiguration接口修改应用内部环境变量.
+
 ### 相关权限
 
 不涉及。
