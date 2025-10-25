@@ -32,30 +32,18 @@ export struct OpenCloseToastExample {
           Button('Open Toast')
             .height(100)
             .onClick(() => {
-              try {
-                this.promptAction.openToast({
-                  message: 'Toast Massage',
-                  duration: 10000,
-                }).then((toastId: number) => {
-                  this.toastId = toastId;
-                });
-              } catch (error) {
-                let message = (error as BusinessError).message;
-                let code = (error as BusinessError).code;
-                console.error(`OpenToast error code is ${code}, message is ${message}`);
-              };
+              this.promptAction.openToast({
+                message: 'Toast Massage',
+                duration: 10000,
+              }).then((toastId: number) => {
+                this.toastId = toastId;
+              });
             })
           Blank().height(50);
           Button('Close Toast')
             .height(100)
             .onClick(() => {
-              try {
-                this.promptAction.closeToast(this.toastId);
-              } catch (error) {
-                let message = (error as BusinessError).message;
-                let code = (error as BusinessError).code;
-                console.error(`CloseToast error code is ${code}, message is ${message}`);
-              };
+              this.promptAction.closeToast(this.toastId);
             })
         }.height('100%').width('100%').justifyContent(FlexAlign.Center)
       }
