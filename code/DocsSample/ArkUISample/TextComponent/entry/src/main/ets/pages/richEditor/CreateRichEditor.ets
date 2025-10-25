@@ -16,17 +16,21 @@
 import { ComponentCard } from '../../common/Card';
 import resource from '../../common/resource';
 
+// [Start richEditor_create_span]
 @Entry
 @Component
 export struct CreateRichEditor {
   controllerNoStyledString: RichEditorController = new RichEditorController();
   optionsNoStyledString: RichEditorOptions = { controller: this.controllerNoStyledString };
+  // [StartExclude richEditor_create_span]
+  // [Start richEditor_create]
   fontStyle: TextStyle = new TextStyle({
     fontColor: Color.Pink
   });
   // 定义字体样式对象
 
   mutableStyledString: MutableStyledString =
+    // $r('app.string.CreateRichEditor_Text_1')需要替换为开发者所需的资源文件
     new MutableStyledString(resource.resourceToString($r('app.string.CreateRichEditor_Text_1')),
     [{
       start: 0,
@@ -38,25 +42,33 @@ export struct CreateRichEditor {
 
   controller: RichEditorStyledStringController = new RichEditorStyledStringController();
   options: RichEditorStyledStringOptions = { controller: this.controller };
-
+  // [EndExclude richEditor_create_span]
+  // [StartExclude richEditor_create]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude richEditor_create_span]
         ComponentCard({
+          // $r('app.string.Create_RichEditor_Component_title_1')需要替换为开发者所需的资源文件
           title: $r('app.string.Create_RichEditor_Component_title_1')
         }) {
+          // [EndExclude richEditor_create]
           RichEditor(this.options)
             .onReady(() => {
               this.controller.setStyledString(this.mutableStyledString);
             })
+          // [End richEditor_create]
         }
 
+        // [EndExclude richEditor_create_span]
+        // $r('app.string.Create_RichEditor_Component_title_2')需要替换为开发者所需的资源文件
         ComponentCard({
           title: $r('app.string.Create_RichEditor_Component_title_2'),
         }) {
           RichEditor(this.optionsNoStyledString)
             .onReady(() => {
               this.controllerNoStyledString.addTextSpan(
+                // $r('app.string.CreateRichEditor_Text_2')需要替换为开发者所需的资源文件
                 resource.resourceToString($r('app.string.CreateRichEditor_Text_2')), {
                 style: {
                   fontColor: Color.Black,
@@ -68,9 +80,15 @@ export struct CreateRichEditor {
       }
       .width('100%')
       .height('100%')
+      // [StartExclude richEditor_create_span]
       .padding({ left: 12, right: 12 })
+      // [EndExclude richEditor_create_span]
     }
+    // [StartExclude richEditor_create_span]
     .backgroundColor('#f1f2f3')
+    // $r('app.string.Create_RichEditor_Component_title')需要替换为开发者所需的资源文件
     .title($r('app.string.Create_RichEditor_Component_title'))
+    // [EndExclude richEditor_create_span]
   }
 }
+// [End richEditor_create_span]

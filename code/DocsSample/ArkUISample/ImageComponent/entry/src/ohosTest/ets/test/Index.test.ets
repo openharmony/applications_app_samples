@@ -16,7 +16,10 @@
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN_NUMBER: number = 0xFF00;
+const TAG: string = '[EventAbility]';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let driver: Driver;
@@ -190,6 +193,41 @@ export default function IndexTest() {
       await driver.pressBack();
 
       console.info('ImageTest: testPageLoadPerformance end');
+      done();
+    });
+
+    /**
+     * @tc.number: ImageTest_007
+     * @tc.name: testShadow
+     * @tc.desc: Test page add shadow effect
+     * @tc.level: Level1
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     */
+    it('testShadow', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'ImageTest: testShadow begin');
+
+      // Set page scrolling
+      let size = await driver.getDisplaySize()
+      let x = Math.floor(size.x * 0.3)
+      await driver.swipe(x, Math.floor(size.y * 0.9), x, Math.floor(size.y * 0.1), 5000);
+      await driver.delayMs(500);
+
+      // Click the 'Add Shadow Effect' option
+      const shadowItem = await driver.findComponent(ON.text('Shadow'));
+      expect(shadowItem === null).assertFalse();
+      await shadowItem.click();
+      await driver.delayMs(1000);
+
+      // Verify whether it redirects to the target page
+      const pageTitle = await driver.findComponent(ON.type('Image'));
+      expect(pageTitle === null).assertFalse();
+
+      // Return to Home
+      await driver.pressBack();
+      await driver.delayMs(500);
+
+      hilog.info(DOMAIN_NUMBER, TAG, 'ImageTest: testShadow end');
       done();
     });
   });

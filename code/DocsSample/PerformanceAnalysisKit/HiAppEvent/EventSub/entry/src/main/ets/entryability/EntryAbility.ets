@@ -89,21 +89,26 @@ export default class EntryAbility extends UIAbility {
       }
     });
     // [End AppEvent_Click_ArkTS_Add_Watcher]
-    // [Start Crash&FreezeEvent_ArkTS_Add_Event]
+    // [Start ArkTS_Add_Event_Params]
     // 开发者完成参数键值对赋值
     let params: Record<string, hiAppEvent.ParamType> = {
       'testData': 100,
     };
+    // [End ArkTS_Add_Event_Params]
+    // [Start Crash_ArkTS_Add_Event]
     // 开发者可以设置事件的自定义参数
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_CRASH).then(() => {
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
+    // [End Crash_ArkTS_Add_Event]
+    // [Start FreezeEvent_ArkTS_Add_Event]
+    // 开发者可以设置事件的自定义参数
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_FREEZE).then(() => {
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
-    // [End Crash&FreezeEvent_ArkTS_Add_Event]
+    // [End FreezeEvent_ArkTS_Add_Event]
     // [Start CrashEvent_ArkTS_Add_Watcher]
     // 添加崩溃事件观察者
     hiAppEvent.addWatcher({
@@ -351,6 +356,15 @@ export default class EntryAbility extends UIAbility {
     // 启动时，注册按钮点击事件观察者
     testNapi.registerWatcherClick();
     // [End AppEvent_Call_Capi_Function]
+
+    // [Start Register_AppHicollie_WatcherR]
+    // 在onCreate()函数中新增接口调用，启动时注册系统事件观察者R
+    testNapi.RegisterAppHicollieWatcherR();
+    // [End Register_AppHicollie_WatcherR]
+    // [Start Register_AppHicollie_WatcherT]
+    // 在onCreate()函数中新增接口调用，启动时注册系统事件观察者T
+    testNapi.RegisterAppHicollieWatcherT();
+    // [End Register_AppHicollie_WatcherT]
   }
 
   onDestroy(): void {

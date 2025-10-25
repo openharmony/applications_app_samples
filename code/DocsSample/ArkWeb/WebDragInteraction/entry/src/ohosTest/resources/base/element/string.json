@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "string1",
+      "value": "可拖拽元素"
+    },
+    {
+      "name": "string2",
+      "value": "请将方块拖到这里"
+    },
+    {
+      "name": "string3",
+      "value": "放置成功！"
+    }
+  ]
+}

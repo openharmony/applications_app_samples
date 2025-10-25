@@ -925,12 +925,28 @@
       "value": "Swiper选中的元素改变时，会通过onSelected回调事件，将元素的索引值index返回。通过调用tabsController.changeIndex(index)方法来实现Tabs页签的切换。"
     },
     {
+      "name": "SwiperDigitIndicatorIgnoreComponentSize_title",
+      "value": "设置数字导航点忽略导航点组件大小"
+    },
+    {
+      "name": "SwiperDigitIndicatorIgnoreComponentSize_description",
+      "value": "针对数字导航点，当导航点的bottom设为0之后，导航点的底部与Swiper的底部还会有一定间距。如果希望消除该间距，可通过调用bottom(bottom, ignoreSize)属性来进行设置。"
+    },
+    {
       "name": "SwiperIgnoreComponentSize_title",
       "value": "设置圆点导航点间距和忽略导航点组件大小"
     },
     {
       "name": "SwiperIgnoreComponentSize_description",
       "value": "针对圆点导航点，可以通过DotIndicator的space属性来设置圆点导航点的间距。当导航点的bottom设为0之后，导航点的底部与Swiper的底部还会有一定间距。如果希望消除该间距，可通过调用bottom(bottom, ignoreSize)属性来进行设置。"
+    },
+    {
+      "name": "SwiperVisibleContentPosition_title",
+      "value": "保持可见内容位置不变"
+    },
+    {
+      "name": "SwiperVisibleContentPosition_description",
+      "value": "Swiper通过设置maintainVisibleContentPosition属性，可在使用LazyForEach懒加载数据时（如通过onDataAdd新增数据），保持当前可见内容位置不变，避免因数据增删导致的视图跳动。"
     },
     {
       "name": "ArcLongList_title",

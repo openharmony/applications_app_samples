@@ -47,6 +47,9 @@ struct ManageDomainAccounts {
       // [EndExclude call_the_hasaccount_operation]
     }).catch((err: BusinessError)=>{
       console.error(`execute hasAccount code is ${err.code}, message is ${err.message}`);
+      // [StartExclude call_the_hasaccount_operation]
+      this.message = `execute hasAccount code is ${err.code}, message is ${err.message}`;
+      // [EndExclude call_the_hasaccount_operation]
     });
     // [End call_the_hasaccount_operation]
   }
@@ -63,17 +66,23 @@ struct ManageDomainAccounts {
     try {
       osAccountMgr.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
         (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-          console.error(`createOsAccountForDomain exception: code is ${err.code}, message is ${err.message}`);
-          console.info('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
-          // [StartExclude create_a_domain_account]
-          this.message = 'Account creation information: ' + JSON.stringify(osAccountInfo.localName);
-          // [EndExclude create_a_domain_account]
+          if (err) {
+            console.error(`createOsAccountForDomain exception: code is ${err.code}, message is ${err.message}`);
+            // [StartExclude create_a_domain_account]
+            this.message = `createOsAccountForDomain exception: code is ${err.code}, message is ${err.message}`;
+            // [EndExclude create_a_domain_account]
+          } else {
+            console.info('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+            // [StartExclude create_a_domain_account]
+            this.message = 'Account creation information: ' + JSON.stringify(osAccountInfo.localName);
+            // [EndExclude create_a_domain_account]
+          }
         });
     } catch (e) {
       const err = e as BusinessError;
-      console.error(`createOsAccountForDomain exception: code is ${e.code}, message is ${e.message}`);
+      console.error(`createOsAccountForDomain exception: code is ${err.code}, message is ${err.message}`);
       // [StartExclude create_a_domain_account]
-      this.message = 'Account creation failed: ' + JSON.stringify(e);
+      this.message = 'Account creation failed: ' + JSON.stringify(err);
       // [EndExclude create_a_domain_account]
     }
     // [End create_a_domain_account]

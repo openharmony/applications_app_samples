@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start fixed_style_pop_up_box]
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
@@ -61,4 +62,4 @@ export struct ShowActionMenuExample {
     .title($r('app.string.ShowActionMenu_title'))
   }
 }
-
+// [End fixed_style_pop_up_box]

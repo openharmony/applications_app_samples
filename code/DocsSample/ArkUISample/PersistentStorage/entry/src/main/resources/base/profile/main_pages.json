@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/PageOneMessageStorage",
+    "pages/PageTowPersistentStorage",
+    "pages/PageThreeAppStorage",
+    "pages/PageFourMessageChange",
+    "pages/PageFivePersistedDate",
+    "pages/PageSixPersistedMap",
+    "pages/PageSevenPersistedSet"
+  ]
+}

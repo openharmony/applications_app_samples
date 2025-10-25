@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },{
+      "name": "arkts_custom_components_freeze1",
+      "value": "页面1页面2跳转"
+    },{
+      "name": "arkts_custom_components_freeze2",
+      "value": "页面2返回上一页"
+    },{
+      "name": "arkts_custom_components_freeze3",
+      "value": "TabContent创建"
+    },{
+      "name": "arkts_custom_components_freeze4",
+      "value": "LazyForEach中缓存的自定义组件进行冻结"
+    },{
+      "name": "arkts_custom_components_freeze5",
+      "value": "NavigationContentMsgStack会被设置成非激活态，将不再响应状态变量的变化，也不会触发组件刷新"
+    },{
+      "name": "arkts_custom_components_freeze6",
+      "value": "组件复用、if和组件冻结混用场景"
+    },{
+      "name": "arkts_custom_components_freeze7",
+      "value": "LazyForEach、组件复用和组件冻结混用场景"
+    },{
+      "name": "arkts_custom_components_freeze8",
+      "value": "LazyForEach、if、组件复用和组件冻结混用场景"
+    },{
+      "name": "arkts_custom_components_freeze9",
+      "value": "Navigation和TabContent的混用"
+    },{
+      "name": "arkts_custom_components_freeze10",
+      "value": "页面和LazyForEach"
+    },{
+      "name": "arkts_custom_components_freeze11",
+      "value": "限制条件"
+    },{
+      "name": "childComp",
+      "value": "子组件"
+    }
+  ]
+}

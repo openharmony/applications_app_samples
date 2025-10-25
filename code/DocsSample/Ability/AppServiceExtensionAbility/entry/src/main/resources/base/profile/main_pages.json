@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/StartAppServiceExt",
+    "pages/StopAppServiceExt",
+    "pages/ConnectAppServiceExt",
+    "pages/DisConnectAppServiceExt",
+    "pages/ClientServerExt"
+  ]
+}
