@@ -133,6 +133,16 @@ struct Index {
             .width(70)
             .fontSize(14)
             .flexGrow(0)
+
+          // 关闭连接
+          Button($r('app.string.Close_Connection'))
+            .onClick(() => {
+              this.closeConnection();
+            })
+            .enabled(this.canConnect)
+            .width(100)
+            .fontSize(14)
+            .flexGrow(0)
         }
         .width('100%')
         .padding(10)
@@ -264,6 +274,23 @@ struct Index {
       }
     };
   }
+
+  // 关闭连接
+  closeConnection() {
+    workerPort.postMessage({
+      type: 'disConnect'
+    });
+
+    workerPort.onmessage = (e: MessageEvents) => {
+      const response: TlsOneWayMessage = e.data;
+      if (response.type === 'Connection closed') {
+        this.msgHistory += 'Connection closed.\n';
+      } else if (response.type === 'Close connection failed') {
+        this.msgHistory += `Close connection failed`;
+      }
+    }
+  }
+
 }
 
 // 同步获取当前时间的字符串形式

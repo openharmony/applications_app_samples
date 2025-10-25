@@ -16,6 +16,7 @@
 import { ComponentCard } from '../../common/Card';
 import resource from '../../common/resource';
 
+// [Start richEditor_addText]
 @Entry
 @Component
 export struct AddTextContent {
@@ -23,32 +24,40 @@ export struct AddTextContent {
   options: RichEditorOptions = { controller: this.controller };
 
   build() {
+    // [StartExclude richEditor_addText]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 3 }) {
+            // [EndExclude richEditor_addText]
+            RichEditor(this.options)
+              .onReady(() => {
+                // $r('app.string.AddTextContent_Text_1')需要替换为开发者所需的资源文件
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_1')), {
+                  style: {
+                    fontColor: Color.Black,
+                    fontSize: 15
+                  }
+                })
               })
+              .border({ width: 1, color: Color.Gray })
+              .constraintSize({
+                maxHeight: 100
+              })
+              .width(300)
+              .margin(10)
+            // $r('app.string.AddTextContent_Button_1')需要替换为开发者所需的资源文件
+            Button($r('app.string.AddTextContent_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .border({ width: 1, color: Color.Gray })
-            .constraintSize({
-              maxHeight: 100
-            })
-            .width(300)
-            .margin(10)
-          Button($r('app.string.AddTextContent_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_2')))
-            })
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                // $r('app.string.AddTextContent_Text_2')需要替换为开发者所需的资源文件
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddTextContent_Text_2')))
+              })
+            // [StartExclude richEditor_addText]
+          }
         }
       }
       .width('100%')
@@ -56,5 +65,7 @@ export struct AddTextContent {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Add_TextContent_title'))
+    // [EndExclude richEditor_addText]
   }
 }
+// [End richEditor_addText]

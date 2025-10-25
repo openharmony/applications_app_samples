@@ -37,9 +37,13 @@ export struct ArcListCrown {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ArcListCrown_title') }) {
           Stack() {
+            // [Start arcListCrown_start]
+            // [Start arcListCrownDigitalCrownSensitivity_start]
             ArcList({
               initialIndex: 2,
             }) {
+              // [StartExclude arcListCrown_start]
+              // [StartExclude arcListCrownDigitalCrownSensitivity_start]
               ArcListItem() {
                 Text('Network').fontSize('38px').fontColor('#FFFFFFFF')
               }
@@ -109,14 +113,24 @@ export struct ArcListCrown {
               .width('414px')
               .height('100px')
               .backgroundColor('#26FFFFFF')
+              // [EndExclude arcListCrown_start]
+              // [EndExclude arcListCrownDigitalCrownSensitivity_start]
             }
+            // [StartExclude arcListCrownDigitalCrownSensitivity_start]
+            // 设置弧形列表支持获焦
+            .focusable(true)
+            // 设置弧形列表支持点击获焦
+            .focusOnTouch(true)
+            // 设置弧形列表为所在页面上的默认焦点
+            .defaultFocus(true)
+            // [End arcListCrown_start]
+            // [EndExclude arcListCrownDigitalCrownSensitivity_start]
+            .digitalCrownSensitivity(CrownSensitivity.MEDIUM)
+            // [End arcListCrownDigitalCrownSensitivity_start]
             .space(LengthMetrics.px(10))
             .scrollBarWidth(LengthMetrics.px(10))
             .scrollBarColor(ColorMetrics.resourceColor(Color.White))
             .borderRadius(this.watchSize)
-            .focusable(true)
-            .focusOnTouch(true)
-            .defaultFocus(true)
           }
           .align(Alignment.Center)
           .width(this.watchSize)

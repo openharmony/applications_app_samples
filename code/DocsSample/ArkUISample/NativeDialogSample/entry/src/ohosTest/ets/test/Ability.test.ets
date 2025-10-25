@@ -15,13 +15,36 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
+
+
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+let want: Want;
+const TAG: string = '[Sample_com.example.nativedialogsample]';
+const DOMAIN: number = 0xFF00;
+
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let manager = abilityDelegator.getAppContext().resourceManager;
+
+function sleep(time: number) {
+  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(() => {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
+    beforeAll(async () => {
+      want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      };
+      await delegator.startAbility(want);
+      await sleep(1000);
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
+      hilog.info(DOMAIN, TAG, '%{public}s', 'get top ability');
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
@@ -37,14 +60,85 @@ export default function abilityTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it('assertContain', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
+    it('testOpenDialogDemoController', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'testOpenDialogDemoController begin');
+      let driver = Driver.create();
+      let button1 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_demo'), MatchPattern.CONTAINS));
+      expect(button1 === null).assertFalse();
+      await button1.click();
+      await sleep(1000);
+      let button2 = await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_controller_demo'),
+        MatchPattern.CONTAINS));
+      expect(button2 === null).assertFalse();
+      await button2.click();
+      await sleep(1000);
+      let button3 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_open_dialog'), MatchPattern.CONTAINS));
+      expect(button3 === null).assertFalse();
+      await button3.click();
+      await sleep(1000);
+      let button4 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_close_dialog'), MatchPattern.CONTAINS));
+      expect(button4 === null).assertFalse();
+      await button4.click();
+      await sleep(1000);
+      await driver.pressBack();
+      done();
+    })
+
+    it('testOpenDialogDemoOption', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'testOpenDialogDemoOption begin');
+      let driver = Driver.create();
+      let button1 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_demo'), MatchPattern.CONTAINS));
+      expect(button1 === null).assertFalse();
+      await button1.click();
+      await sleep(1000);
+      let button2 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_option_demo'), MatchPattern.CONTAINS));
+      expect(button2 === null).assertFalse();
+      await button2.click();
+      await sleep(1000);
+      let button3 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_open_dialog'), MatchPattern.CONTAINS));
+      expect(button3 === null).assertFalse();
+      await button3.click();
+      await sleep(1000);
+      let button4 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_close_dialog'), MatchPattern.CONTAINS));
+      expect(button4 === null).assertFalse();
+      await button4.click();
+      await sleep(1000);
+      await driver.pressBack();
+      done();
+    })
+
+    it('testOpenDialogDemoLifecycle', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'testOpenDialogDemoLifecycle begin');
+      let driver = Driver.create();
+      let button1 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_demo'), MatchPattern.CONTAINS));
+      expect(button1 === null).assertFalse();
+      await button1.click();
+      await sleep(1000);
+      let button2 = await driver.findComponent(
+        ON.text(manager.getStringByNameSync('dialog_lifecycle_demo'), MatchPattern.CONTAINS));
+      expect(button2 === null).assertFalse();
+      await button2.click();
+      await sleep(1000);
+      let button3 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_open_dialog'), MatchPattern.CONTAINS));
+      expect(button3 === null).assertFalse();
+      await button3.click();
+      await sleep(1000);
+      let button4 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_close_dialog'), MatchPattern.CONTAINS));
+      expect(button4 === null).assertFalse();
+      await button4.click();
+      await sleep(1000);
+      await driver.pressBack();
+      done();
     })
   })
 }

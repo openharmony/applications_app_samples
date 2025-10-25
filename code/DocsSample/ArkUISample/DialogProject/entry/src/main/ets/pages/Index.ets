@@ -23,6 +23,7 @@ import { MenuDestination, Menu_ROUTE_PREFIX } from './Menu/Index';
 import { CustomDialogDestination, CustomDialog_ROUTE_PREFIX } from './opencustomdialog/Index';
 import { PopupDestination, Popup_ROUTE_PREFIX } from './popup/Index';
 import { ToastDestination, Toast_ROUTE_PREFIX } from './Toast/Index';
+import { OverlayManagerDestination, OverlayManager_ROUTE_PREFIX } from './OverlayManager/Index';
 
 const routes: Route[] = [
   {
@@ -48,6 +49,10 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.Popup1')),
     name: Popup_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.OverlayManager1')),
+    name: OverlayManager_ROUTE_PREFIX
   }
 ];
 
@@ -65,6 +70,8 @@ function Destination(name: string) {
     ToastDestination(name);
   } else if (name.startsWith(Popup_ROUTE_PREFIX)) {
     PopupDestination(name);
+  } else if (name.startsWith(OverlayManager_ROUTE_PREFIX)) {
+    OverlayManagerDestination(name);
   }
 }
 

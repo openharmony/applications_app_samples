@@ -48,7 +48,9 @@
         ]
       }
     ],
+    // [Start FormEditDemo_modulejson5]
     "extensionAbilities": [
+      // [StartExclude FormEditDemo_modulejson5]
       {
         "name": "EntryFormAbility",
         "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
@@ -62,16 +64,20 @@
           }
         ]
       },
+      // [EndExclude FormEditDemo_modulejson5]
       {
+        // 一级编辑页配置
         "name": "EntryFormEditAbility",
         "srcEntry": "./ets/entryformeditability/EntryFormEditAbility.ets",
         "type": "formEdit"
       },
       {
+        // 二级编辑页配置
         "name": "FormEditSecPageAbility",
         "srcEntry": "./ets/entryformeditability/FormEditSecPageAbility.ets",
         "type": "formEdit"
       }
-    ]
+    ],
+    // [End FormEditDemo_modulejson5]
   }
 }

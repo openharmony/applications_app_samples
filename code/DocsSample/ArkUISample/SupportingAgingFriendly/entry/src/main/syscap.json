@@ -2,6 +2,8 @@
 {
   "devices": {
     "general": [
+      "default",
+      "tablet"
     ]
   },
   "production": {

@@ -26,6 +26,8 @@ import { AddImageContent } from './AddImageContent';
 import { AddBuilderDecoratorContent } from './AddBuilderDecoratorContent';
 import { AddSymbolSpanContent } from './AddSymbolSpanContent';
 import { GetGraphicInfoInComponent } from './GetGraphicInfoInComponent';
+import { DisableSystemServiceMenu } from './DisableSystemServiceMenu';
+import { DisableMenuItem } from './DisableMenuItem';
 
 export const RICH_EDITOR_ROUTE_PREFIX: string = 'RichEditor';
 
@@ -77,6 +79,16 @@ const routes: Route[] = [
     name: `${RICH_EDITOR_ROUTE_PREFIX}/GetGraphicInfoInComponent`,
     title: resource.resourceToString($r('app.string.Get_GraphicInfo_In_Component_title')),
     description: $r('app.string.Get_GraphicInfo_In_Component_desc')
+  },
+  {
+    name: `${RICH_EDITOR_ROUTE_PREFIX}/DisableSystemServiceMenu`,
+    title: resource.resourceToString($r('app.string.Disable_SystemService_Menu_title')),
+    description: $r('app.string.Disable_SystemService_Menu_title_desc')
+  },
+  {
+    name: `${RICH_EDITOR_ROUTE_PREFIX}/DisableMenuItem`,
+    title: resource.resourceToString($r('app.string.Disable_Menu_Item_title')),
+    description: $r('app.string.Disable_Menu_Item_title_desc')
   }
 ];
 
@@ -104,6 +116,10 @@ export function RichEditorDestination(name: string) {
     AddSymbolSpanContent();
   } else if (name === routes[9].name) {
     GetGraphicInfoInComponent();
+  } else if (name === routes[10].name) {
+    DisableSystemServiceMenu();
+  } else if (name === routes[11].name) {
+    DisableMenuItem();
   }
 }
 

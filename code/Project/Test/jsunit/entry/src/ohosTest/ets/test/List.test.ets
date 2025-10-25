@@ -13,16 +13,35 @@
 * limitations under the License.
 */
 
-import basicTest from './basicExampleTest/basicExample.test';
-import  assert from  './assertExampleTest/assertExample.test';
+import basicTest from './basicExampleTest/BasicExample.test';
+import executeOrder1 from './basicExampleTest/ExecuteOrder1.test';
+import executeOrder2 from './basicExampleTest/ExecuteOrder2.test';
+import executeOrder3 from './basicExampleTest/ExecuteOrder3.test';
+import assert from  './assertExampleTest/AssertExample.test';
 import param from './paramExampleTest/paramExample.test';
 import custom from './customExampleTest/customExample.test';
 import cover from './coverExampleTest/coverExample.test';
 import callBack from './callBackExampleTest/callBackExample.test';
 import customAssertTest from './customEexpect/customAssert.test';
 import resourceReferenceTest from './resourceReferenceTest/resourceReference.test';
+import dataDriver from './dataDriver/DataDriver.test';
+import afterReturn from './mock/AfterReturn.test';
+import afterThrow from './mock/AfterThrow.test';
+import argumentMatchersForAny from './mock/ArgumentMatchersForAny.test';
+import argumentMatchersForRegex from './mock/ArgumentMatchersForRegex.test';
+import argumentMatchersForString from './mock/ArgumentMatchersForString.test';
+import clearMock from './mock/ClearMock.test';
+import ignoreMock from './mock/IgnoreMock.test';
+import mockStatic from './mock/MockStatic.test';
+import returnPromise from './mock/ReturnPromise.test';
+import vertify from './mock/Vertify.test';
+import vertifyTimes from './mock/VertifyTimes.test';
+
 export default function testsuite() {
   basicTest();
+  executeOrder1();
+  executeOrder2();
+  executeOrder3();
   assert();
   param();
   custom();
@@ -30,4 +49,16 @@ export default function testsuite() {
   callBack();
   customAssertTest();
   resourceReferenceTest();
+  dataDriver();
+  afterReturn();
+  afterThrow();
+  argumentMatchersForAny();
+  argumentMatchersForRegex();
+  argumentMatchersForString();
+  clearMock();
+  ignoreMock();
+  mockStatic();
+  returnPromise();
+  vertify();
+  vertifyTimes();
 }

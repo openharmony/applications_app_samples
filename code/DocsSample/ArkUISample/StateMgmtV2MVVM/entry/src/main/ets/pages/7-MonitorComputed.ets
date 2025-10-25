@@ -77,7 +77,7 @@ struct TodoList {
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin({ bottom: 10 })
-      Text(`${getContext(this).resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
+      Text(`${this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
       Repeat<Task>(this.tasks)
         .each((obj: RepeatItem<Task>) => {
           TaskItem({

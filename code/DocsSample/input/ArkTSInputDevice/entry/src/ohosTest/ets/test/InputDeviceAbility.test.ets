@@ -41,7 +41,7 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('点击获取设备列表并监听设备热拔插'));
+      await driver.assertComponentExist(ON.text('Click to obtain the device list and monitor device hot-plug events'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
@@ -63,8 +63,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('点击获取设备列表并监听设备热拔插'));
-      let button = await driver.findComponent(ON.text('点击获取设备列表并监听设备热拔插'));
+      await driver.assertComponentExist(ON.text('Click to obtain the device list and monitor device hot-plug events'));
+      let button = await driver.findComponent(ON.text('Click to obtain the device list and monitor device hot-plug events'));
       await button.click();
       await driver.delayMs(1000);
       done();

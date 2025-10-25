@@ -86,9 +86,9 @@ static napi_value AddKeyEventMonitor(napi_env env, napi_callback_info info)
     // [StartExclude key_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "添加按键事件监听成功，返回码为" + std::to_string(ret);
+        message = "Add key event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "添加按键事件监听失败，返回码为" + std::to_string(ret);
+        message = "Add key event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -102,9 +102,9 @@ static napi_value RemoveKeyEventMonitor(napi_env env, napi_callback_info info)
     // [StartExclude key_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "移除按键事件监听成功，返回码为" + std::to_string(ret);
+        message = "Remove key event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "移除按键事件监听失败，返回码为" + std::to_string(ret);
+        message = "Remove key event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -172,9 +172,9 @@ static napi_value RemoveMouseEventMonitor(napi_env env, napi_callback_info info)
     // [StartExclude mouse_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "移除鼠标事件监听成功，返回码为" + std::to_string(ret);
+        message = "Remove mouse event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "移除鼠标事件监听失败，返回码为" + std::to_string(ret);
+        message = "Remove mouse event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -235,9 +235,9 @@ static napi_value RemoveTouchEventMonitor(napi_env env, napi_callback_info info)
     // [StartExclude touch_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "移除触摸事件监听成功，返回码为" + std::to_string(ret);
+        message = "Remove touch event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "移除触摸事件监听失败，返回码为" + std::to_string(ret);
+        message = "Remove touch event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -386,9 +386,9 @@ static napi_value AddAxisEventMonitorForAll(napi_env env, napi_callback_info inf
     // [StartExclude axis_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "添加轴事件监听成功，返回码为" + std::to_string(ret);
+        message = "Add axis event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "添加轴事件监听失败，返回码为" + std::to_string(ret);
+        message = "Add axis event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -402,9 +402,9 @@ static napi_value RemoveAxisEventMonitorForAll(napi_env env, napi_callback_info 
     // [StartExclude axis_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "移除轴事件监听成功，返回码为" + std::to_string(ret);
+        message = "Remove axis event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "移除轴事件监听失败，返回码为" + std::to_string(ret);
+        message = "Remove axis event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -418,9 +418,9 @@ static napi_value AddPinchAxisEventMonitor(napi_env env, napi_callback_info info
     // [StartExclude axis_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "添加捏合轴事件监听成功，返回码为" + std::to_string(ret);
+        message = "Add pinch axis event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "添加捏合轴事件监听失败，返回码为" + std::to_string(ret);
+        message = "Add pinch axis event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -434,9 +434,9 @@ static napi_value RemovePinchAxisEventMonitor(napi_env env, napi_callback_info i
     // [StartExclude axis_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "移除捏合轴事件监听成功，返回码为" + std::to_string(ret);
+        message = "Remove pinch axis event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "移除捏合轴事件监听失败，返回码为" + std::to_string(ret);
+        message = "Remove pinch axis event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -450,9 +450,9 @@ static napi_value AddScrollAxisEventMonitor(napi_env env, napi_callback_info inf
     // [StartExclude axis_event_monitor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "添加滚轮轴事件监听成功，返回码为" + std::to_string(ret);
+        message = "Add scroll axis event monitor successfully, return " + std::to_string(ret);
     } else {
-        message = "添加滚轮轴事件监听失败，返回码为" + std::to_string(ret);
+        message = "Add scroll axis event monitor failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);

@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "themeskinning"
+    },
+    {
+      "name": "Theme1",
+      "value": "ThemeCustomOne"
+    },
+    {
+      "name": "Theme1_label1",
+      "value": "ThemeCustomTamplateOne"
+    },
+    {
+      "name": "Theme2",
+      "value": "ThemeCustomTwo"
+    },
+    {
+      "name": "Theme2_label1",
+      "value": "ThemeCustomTamplateTwo"
+    },
+    {
+      "name": "Theme3",
+      "value": "ThemeCustomThree"
+    },
+    {
+      "name": "Theme3_label1",
+      "value": "ThemeCustomTamplateThree"
+    }
+  ]
+}

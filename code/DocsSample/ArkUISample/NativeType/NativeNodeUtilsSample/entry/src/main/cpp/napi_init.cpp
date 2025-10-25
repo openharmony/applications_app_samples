@@ -6,10 +6,13 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     // 绑定Native侧的创建组件和销毁组件。
     napi_property_descriptor desc[] = {
-        {"createNativeRoot", nullptr, NativeModule::CreateNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"createNodeTreeOnMultiThread", nullptr, NativeModule::CreateNodeTreeOnMultiThread, nullptr, nullptr, nullptr,
          napi_default, nullptr},
-        {"disposeNodeTreeOnMultiThread", nullptr, NativeModule::DisposeNodeTreeOnMultiThread, nullptr, nullptr, nullptr,
+        {"createCustomPropertyDemo", nullptr, NativeModule::CreateCustomPropertyDemo, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"createNodeAdapterDemo", nullptr, NativeModule::CreateNodeAdapterDemo, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"disposeNodeTree", nullptr, NativeModule::DisposeNodeTree, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"destroyNativeRoot", nullptr, NativeModule::DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default,
          nullptr},

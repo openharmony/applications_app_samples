@@ -11,7 +11,7 @@ include_directories(${NATIVERENDER_ROOT_PATH}
 add_library(nativerender SHARED
     napi_init.cpp
     customdialog/customdialogexample.cpp
-)
+    customdialog/nativedialogdemo.cpp)
 
 find_library(
     # Sets the name of the path variable.
