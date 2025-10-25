@@ -251,7 +251,7 @@ export default class EntryAbility extends UIAbility {
     });
     // 完成自定义配置键值对赋值
     let configParams: Record<string, hiAppEvent.ParamType> = {
-      "js_heap_logtype": "event", // 仅获取事件
+      'js_heap_logtype': 'event', // 仅获取事件
     }
     // 设置资源泄漏事件的自定义配置
     hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
