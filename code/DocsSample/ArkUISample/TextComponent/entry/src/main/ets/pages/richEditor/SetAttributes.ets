@@ -142,7 +142,7 @@ struct attr2 {
   // [Start richEditor_color]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [End richEditor_color]
+  // [StartExclude richEditor_color]
 
   build() {
     Column() {
@@ -150,7 +150,7 @@ struct attr2 {
         title: $r('app.string.Set_Attributes_title_2'),
         description: $r('app.string.Set_Attributes_title_2_desc')
       }) {
-        // [Start richEditor_color]
+        // [EndExclude richEditor_color]
         // $r('app.string.SetAttributes_Text_5')需要替换为开发者所需的资源文件
         RichEditor(this.options)
           .onReady(() => {
@@ -208,7 +208,7 @@ struct attr4 {
   // [Start richEditor_maxLines]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [End richEditor_maxLines]
+  // [StartExclude richEditor_maxLines]
 
   build() {
     Column() {
@@ -216,7 +216,7 @@ struct attr4 {
         title: $r('app.string.Set_Attributes_title_4'),
         description: $r('app.string.Set_Attributes_title_4_desc')
       }) {
-        // [Start richEditor_maxLines]
+        // [EndExclude richEditor_maxLines]
         // $r('app.string.SetAttributes_Text_7')需要替换为开发者所需的资源文件
         RichEditor(this.options)
           .onReady(() => {
@@ -284,21 +284,24 @@ struct attr6 {
   }
 }
 
-// [Start richEditor_decoration]
+
 @Component
 struct Decoration {
+  // [Start richEditor_decoration]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [StartExclude richEditor_decoration]
 
   build() {
     Column() {
-      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       ComponentCard({
         title: $r('app.string.Set_Attributes_title_9'),
         description: $r('app.string.Set_Attributes_title_9_desc')
       }) {
+        // [EndExclude richEditor_decoration]
         RichEditor(this.options)
           .onReady(() => {
+            // $r('app.string.Demo_oneText')需要替换为开发者所需的资源文件
             this.controller.addTextSpan($r('app.string.Demo_oneText'), {
               style: {
                 fontSize: 25,
@@ -311,11 +314,11 @@ struct Decoration {
               }
             });
           });
+        // [End richEditor_decoration]
       }
     }.width('100%');
   }
 }
-// [End richEditor_decoration]
 
 @Component
 struct DecorationOptions {
@@ -384,7 +387,7 @@ struct SetTextVerticalAlign {
   // [Start richEditor_textVerticalAlign]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [End richEditor_textVerticalAlign]
+  // [StartExclude richEditor_textVerticalAlign]
 
   build() {
     Column() {
@@ -392,7 +395,7 @@ struct SetTextVerticalAlign {
         title: $r('app.string.Set_Attributes_title_11'),
         description: $r('app.string.Set_Attributes_title_11_desc')
       }) {
-        // [Start richEditor_textVerticalAlign]
+        // [EndExclude richEditor_textVerticalAlign]
         RichEditor(this.options)
           .onReady(() => {
             // $r('app.media.startIcon')需要替换为开发者所需的资源文件
@@ -426,7 +429,7 @@ struct EnableAutoSpacing {
   // [Start richEditor_enableAutoSpacing]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [End richEditor_enableAutoSpacing]
+  // [StartExclude richEditor_enableAutoSpacing]
   @State
   enableAutoSpace:boolean = false;
 
@@ -437,7 +440,7 @@ struct EnableAutoSpacing {
         description: $r('app.string.Set_Attributes_title_12_desc')
       }) {
         Column({ space: 3 }) {
-          // [Start richEditor_enableAutoSpacing]
+          // [EndExclude richEditor_enableAutoSpacing]
           // $r('app.string.Demo_autoSpacingString')需要替换为开发者所需的资源文件
           RichEditor(this.options)
             .onReady(() => {
@@ -463,10 +466,9 @@ struct EnableAutoSpacing {
   }
 }
 
-
+// [Start richEditor_prepareMenu]
 @Component
 struct PrepareMenu {
-  // [Start richEditor_prepareMenu]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
   @State endIndex: number | undefined = 0;
@@ -549,9 +551,8 @@ struct PrepareMenu {
       }
     }
   }
-  // [End richEditor_prepareMenu]
 }
-
+// [End richEditor_prepareMenu]
 
 @Entry
 @Component

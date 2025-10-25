@@ -14,13 +14,13 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+// [Start richEditor_disableMenu]
 import { TextMenuController } from '@kit.ArkUI';
 
 
 @Entry
 @Component
 export struct DisableMenuItem {
-  // [Start richEditor_disableMenu]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
 
@@ -33,13 +33,13 @@ export struct DisableMenuItem {
     // 恢复系统服务菜单
     TextMenuController.disableMenuItems([]);
   }
-  // [End richEditor_disableMenu]
 
   build() {
+    // [StartExclude richEditor_disableMenu]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          // [Start richEditor_disableMenu]
+          // [EndExclude richEditor_disableMenu]
           RichEditor(this.options)
             .onReady(() => {
               // $r('app.string.Demo_richEditor')需要替换为开发者所需的资源文件
@@ -59,7 +59,7 @@ export struct DisableMenuItem {
                 return false;
               }
             });
-          // [End richEditor_disableMenu]
+          // [StartExclude richEditor_disableMenu]
         }
       }
       .width('100%')
@@ -67,5 +67,7 @@ export struct DisableMenuItem {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Disable_Menu_Item_title'));
+    // [EndExclude richEditor_disableMenu]
   }
 }
+// [End richEditor_disableMenu]

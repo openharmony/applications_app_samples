@@ -22,14 +22,14 @@ export struct SetUserPresetTextStyles {
   // [Start richEditor_setTypingStyle]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [End richEditor_setTypingStyle]
+  // [StartExclude richEditor_setTypingStyle]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
           Column({ space: 3 }) {
-            // [Start richEditor_setTypingStyle]
+            // [EndExclude richEditor_setTypingStyle]
             RichEditor(this.options)
               .onReady(() => {
                 // $r('app.string.SetUserPresetTextStyles_Text_1')需要替换为开发者所需的资源文件
