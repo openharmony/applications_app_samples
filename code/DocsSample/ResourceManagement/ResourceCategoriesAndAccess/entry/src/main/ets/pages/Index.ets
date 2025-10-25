@@ -27,7 +27,7 @@ struct Index {
       // [StartExclude config_resource]
       // [Start app_resource]
       // 通过$r('app.type.name')访问
-      // 资源名仅作示例，请替换为实际使用的资源
+      // 资源name仅作示例，请替换为实际使用的资源
       Text($r('app.string.string_hello'))
         .id('app_resource')
         .fontColor($r('app.color.color_emphasize'))
@@ -35,6 +35,7 @@ struct Index {
         .fontFamily($r('app.string.font_family_medium'))
         .backgroundColor($r('app.color.color_palette_aux1'))
 
+      // 资源name仅作示例，请替换为实际使用的资源
       Image($r('app.media.app_icon'))
         .border({
           color: $r('app.color.color_palette_aux1'),
@@ -49,20 +50,24 @@ struct Index {
 
       // 对于string.json中name为"message_notification"，value为"Hello, %1$s!,You have %2$d new messages."
       // 该资源存在%1$s、%2$d两个占位符，需要替代为'LiHua'、2，则采用如下方式访问
+      // 资源name仅作示例，请替换为实际使用的资源
       Text($r('app.string.message_notification', 'LiHua', 2)).id('app_string_resource')
       // 对于plural.json中name为"eat_apple"，单数的value为"%d apple"，复数的value为"%d apples"
       // 访问plural.json资源，第一个参数控制字符串显示单数形式或复数形式，传递1表示单数，大于1表示复数，且在中文环境下始终为复数
       // 该资源存在%d一个占位符，需要替代为2，则采用如下方式访问
+      // 资源name仅作示例，请替换为实际使用的资源
       Text($r('app.plural.eat_apple', 2, 2)).id('app_plural_resource')
       // [End app_resource]
 
       // [Start system_resource]
+      // 资源name仅作示例，请替换为实际使用的资源
       Text('Hello')
         .fontColor($r('sys.color.ohos_id_color_emphasize'))
         .fontSize($r('sys.float.ohos_id_text_size_headline1'))
         .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
         .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
 
+      // 资源name仅作示例，请替换为实际使用的资源
       Image($r('sys.media.ohos_app_icon'))
         .border({
           color: $r('sys.color.ohos_id_color_palette_aux1'),
@@ -111,6 +116,7 @@ struct Index {
     }
     let currentLanguageString: string = '';
     try {
+      // 资源name仅作示例，请替换为实际使用的资源
       let resId = $r('app.string.greetings').id;
 
       // 获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
