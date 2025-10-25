@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-// [Start onResult]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// [Start callbackFunc]
 // 在UIAbility中使用
 import { uiObserver } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// [StartExclude onResult]
+// [StartExclude callbackFunc]
 const DOMAIN = 0x0000;
 @Component
 struct PageOne {
@@ -28,34 +28,33 @@ struct PageOne {
     }.title('pageOne')
   }
 }
-// [EndExclude onResult]
+// [EndExclude callbackFunc]
 // callbackFunc是开发者定义的监听回调函数
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  // [StartExclude onResult]
+  // [StartExclude callbackFunc]
   hilog.info(DOMAIN, 'testTag', 'testTag navDestinationSwitch from: ', JSON.stringify(info.from), 'to:',
     JSON.stringify(info.to));
-  // [EndExclude onResult]
+  // [EndExclude callbackFunc]
 };
-// 看日志
-// [StartExclude onResult]
+// [StartExclude callbackFunc]
 @Entry
 @Component
 struct Index {
   private stack: NavPathStack = new NavPathStack();
-  // [EndExclude onResult]
+  // [EndExclude callbackFunc]
   uiContext: UIContext | null = null;
-  // [StartExclude onResult]
+  // [StartExclude callbackFunc]
   @Builder
   PageBuilder(name: string) {
     PageOne()
   };
   aboutToAppear() {
-    // [EndExclude onResult]
+    // [EndExclude callbackFunc]
     uiObserver.on('navDestinationSwitch', this.uiContext, callBackFunc)
-    // [StartExclude onResult]
+    // [StartExclude callbackFunc]
   }
-  // [EndExclude onResult]
-  // [End onResult]
+  // [EndExclude callbackFunc]
+  // [End callbackFunc]
   aboutToDisappear() {
     uiObserver.off('navDestinationSwitch', this.uiContext, callBackFunc)
   }

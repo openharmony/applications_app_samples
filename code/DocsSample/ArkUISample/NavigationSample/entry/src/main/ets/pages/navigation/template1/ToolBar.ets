@@ -16,19 +16,19 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
  */
 const DOMAIN = 0x0000;
 // [Start ToolBar]
-// [StartExclude ToolBar]
 let toolTmp: ToolbarItem = {
   'value': 'func',
-  'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',  // 当前目录image文件夹下的图标资源
+  'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',
   'action': () => {}
 };
 let tooBar: ToolbarItem[] = [toolTmp,toolTmp,toolTmp];
+// [StartExclude ToolBar]
 @Entry
 @Component
 struct ToolBar {
   @State toolTmp: ToolbarItem = {
     'value': 'func',
-    'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',  // 当前目录image文件夹下的图标资源
+    'icon': 'ets/pages/navigation/template1/image/ic_public_highlights.svg',
     'action': () => {}
   };
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();

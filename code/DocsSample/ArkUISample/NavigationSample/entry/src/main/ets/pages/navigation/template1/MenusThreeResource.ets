@@ -19,12 +19,12 @@ const DOMAIN = 0x0000;
 @Component
 struct MenusThreeResource {
   // [Start NavigationMenuThreeResourceResource]
-  // [StartExclude NavigationMenuThreeResource]
   @State toolTmp: NavigationMenuItem  = {
     'value': 'func',
     'icon': 'resources/base/media/ic_public_add.svg',
     'action': () => {}
   };
+  // [StartExclude NavigationMenuThreeResource]
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
@@ -42,8 +42,8 @@ struct MenusThreeResource {
   build() {
     Column() {
       // [EndExclude NavigationMenuThreeResource]
-      // [StartExclude NavigationMenuThreeResource]
       Navigation(this.pageInfos) {
+        // [StartExclude NavigationMenuThreeResource]
         TextInput({ placeholder: 'search...' })
           .width('90%')
           .height(40)

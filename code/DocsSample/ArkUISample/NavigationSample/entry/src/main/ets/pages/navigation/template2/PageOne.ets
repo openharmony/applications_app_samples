@@ -82,7 +82,7 @@ export struct PageOne {
                 // [Start moveToTop]
                 // 移动栈中name为pageTwo的页面到栈顶
                 this.pageStack.moveToTop('pageTwo');
-                // [Start moveToTop]
+                // [End moveToTop]
                 this.message = 'moveToTop' + JSON.stringify(this.pageStack);
                 hilog.info(DOMAIN, 'testTag', 'moveToTop', JSON.stringify(this.pageStack), 'Return value',
                   JSON.stringify(this.pageStack.moveToTop('pageTwo')));
@@ -95,7 +95,7 @@ export struct PageOne {
                 // [Start moveIndexToTop]
                 // 移动栈中索引为1的页面到栈顶
                 this.pageStack.moveIndexToTop(1);
-                // [Start moveIndexToTop]
+                // [End moveIndexToTop]
                 this.message = 'moveIndexToTop' + JSON.stringify(this.pageStack);
                 hilog.info(DOMAIN, 'testTag', 'moveIndexToTop', JSON.stringify(this.pageStack));
               })
@@ -108,7 +108,7 @@ export struct PageOne {
                 // [Start removeByName]
                 // 删除栈中name为pageTwo的所有页面
                 this.pageStack.removeByName('pageTwo');
-                // [Start removeByName]
+                // [End removeByName]
                 this.message = 'removeByName' + JSON.stringify(this.pageStack);
                 hilog.info(DOMAIN, 'testTag', 'removeByName', JSON.stringify(this.pageStack));
               })
@@ -141,6 +141,8 @@ export struct PageOne {
               .width('80%')
               .height(40)
               .onClick(() => {
+                // [Start replaceDestination]
+                // 带错误码的替换，跳转结束会触发异步回调，返回错误码信息
                 this.pageStack.replaceDestination({ name: 'pageTwo', param: 'PageOne Param' })
                   .catch((error: BusinessError) => {
                     hilog.info(DOMAIN, 'testTag', '[replaceDestination]failed', 'error code = ', error.code,
@@ -148,6 +150,7 @@ export struct PageOne {
                   }).then(() => {
                   hilog.info(DOMAIN, 'testTag', '[replaceDestination]success.');
                 })
+                // [End replaceDestination]
               })
 
             Button('removeByIndexes', { stateEffect: true, type: ButtonType.Capsule })
@@ -179,10 +182,10 @@ export struct PageOne {
               .height(40)
               .margin(10)
               .onClick(() => {
-                // [Start PushPathParam]
+                // [Start clear]
                 // 返回到根首页（清除栈中所有页面）
                 this.pageStack.clear();
-                // [End PushPathParam]
+                // [End clear]
                 this.message = 'clear' + JSON.stringify(this.pageStack);
                 hilog.info(DOMAIN, 'testTag', 'clear', JSON.stringify(this.pageStack));
               })

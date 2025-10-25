@@ -18,12 +18,12 @@ const DOMAIN = 0x0000;
 @Component
 struct MenusFour {
   // [Start NavigationMenuFour]
-  // [StartExclude NavigationMenuFour]
   @State toolTmp: NavigationMenuItem  = {
     'value': 'func',
-    'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',  // 当前目录image文件夹下的图标资源
+    'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',
     'action': () => {}
   };
+  // [StartExclude NavigationMenuFour]
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
@@ -41,8 +41,8 @@ struct MenusFour {
   build() {
     Column() {
       // [EndExclude NavigationMenuFour]
-      // [StartExclude NavigationMenuFour]
       Navigation(this.pageInfos) {
+        // [StartExclude NavigationMenuFour]
         TextInput({ placeholder: 'search...' })
           .width('90%')
           .height(40)

@@ -68,7 +68,7 @@ struct ToPage {
       })
     }
     .title('ToPage')
-    // [Start GeometryTransitionToPage]
+    // [End GeometryTransitionToPage]
   }
 }
 

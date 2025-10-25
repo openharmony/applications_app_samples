@@ -111,7 +111,7 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
       return true;
     })
   }

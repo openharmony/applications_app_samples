@@ -24,14 +24,14 @@ class NavParam {
 export function PageTwoBuilder(name: string, param: Object) {
   DemoNavDestination();
 };
-// [StartExclude onResult]
+// [EndExclude onResult]
 @Component
 struct DemoNavDestination {
   // [StartExclude onResult]
   private pathStack: NavPathStack | undefined = undefined;
   private name: string = '';
   private pageParam: string = '';
-  // [StartExclude onResult]
+  // [EndExclude onResult]
   build() {
     NavDestination() {
       // [StartExclude onResult]
@@ -40,14 +40,14 @@ struct DemoNavDestination {
       }
       .width('100%')
       .height('100%')
-      // [StartExclude onResult]
+      // [EndExclude onResult]
     }
     .onResult((param: Object) => {
       if (param instanceof NavParam) {
         hilog.info(DOMAIN, 'testTag', 'get NavParam, its desc:', (param as NavParam).desc);
         return;
       }
-      console.info('TestTag', 'param not instance of NavParam');
+      hilog.info(DOMAIN, 'testTag', 'param not instance of NavParam');
     })
   }
 }

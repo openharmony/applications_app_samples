@@ -19,12 +19,12 @@ const DOMAIN = 0x0000;
 @Component
 struct MenusThreeImage {
   // [Start NavigationMenuThreeImageImage]
-  // [StartExclude NavigationMenuThreeImage]
   @State toolTmp: NavigationMenuItem  = {
     'value': 'func',
-    'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',  // 当前目录image文件夹下的图标资源
+    'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',
     'action': () => {}
   };
+  // [StartExclude NavigationMenuThreeImage]
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
@@ -42,8 +42,8 @@ struct MenusThreeImage {
   build() {
     Column() {
       // [EndExclude NavigationMenuThreeImage]
-      // [StartExclude NavigationMenuThreeImage]
       Navigation(this.pageInfos) {
+        // [StartExclude NavigationMenuThreeImage]
         TextInput({ placeholder: 'search...' })
           .width('90%')
           .height(40)
