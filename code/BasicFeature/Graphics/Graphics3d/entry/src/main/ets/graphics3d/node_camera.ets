@@ -53,7 +53,7 @@ struct nodeCamera {
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
           let rf: scene3d.SceneResourceFactory = this.scene.getResourceFactory();
           this.cam = await rf.createCamera({ "name": "Camera1" });
-          this.cam.position.z = 5;  // move camera to position 5 on z
+          this.cam.position.z = 5; // move camera to position 5 on z
           this.cam.enabled = true;
           this.cam.postProcess = {
             toneMapping: {
@@ -83,35 +83,38 @@ struct nodeCamera {
               .backgroundColor(Color.Transparent)
               .width("90%")
               .height('100%')
-          }
-          else {
+          } else {
             Text("loading 1...");
           }
         }
         .height('30%')
 
         Button('change fov').onClick(() => {
-          if (!this.scene || !this.cam) {
-            return;
-          }
-          const RADIAN: number = Math.PI / 180;
-          const FOV_COUNT: number = 3;
-          const FOV_0: number = 0;
-          const FOV_1: number = 1;
-          const FOV_2: number = 2;
-          fovFlag = ++fovFlag % FOV_COUNT;
-          if (fovFlag === FOV_0) {
-            let degree = 60; // 60 degree
-            this.cam.fov = degree *RADIAN;
-          }
-          else if (fovFlag === FOV_1) {
-            let degree = 90; // 90 degree
-            this.cam.fov = degree * RADIAN;
-          }
-          else if (fovFlag === FOV_2) {
-            let degree = 45; // 45 degree
-            this.cam.fov = degree * RADIAN;
-          }
+          this.sceneOpt = null;
+          setTimeout(() => {
+            if (!this.scene || !this.cam) {
+              return;
+            }
+            const RADIAN: number = Math.PI / 180;
+            const FOV_COUNT: number = 3;
+            const FOV_0: number = 0;
+            const FOV_1: number = 1;
+            const FOV_2: number = 2;
+            fovFlag = ++fovFlag % FOV_COUNT;
+            if (fovFlag === FOV_0) {
+              let degree = 60; // 60 degree
+              this.cam.fov = degree * RADIAN;
+              this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
+            } else if (fovFlag === FOV_1) {
+              let degree = 90; // 90 degree
+              this.cam.fov = degree * RADIAN;
+              this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
+            } else if (fovFlag === FOV_2) {
+              let degree = 45; // 45 degree
+              this.cam.fov = degree * RADIAN;
+              this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
+            }
+          }, 5)
         }).id('change_fov');
 
         Column() {
@@ -235,12 +238,20 @@ struct nodeCamera {
           clearColorFlag = ++clearColorFlag % CLEAR_COLOR_COUNT;
           if (clearColorFlag === CLEAR_COLOR_0) {
             this.cam.clearColor = null;
-          }
-          else if (clearColorFlag === CLEAR_COLOR_1) {
-            this.cam.clearColor = { r: 0, g: 0, b: 0, a: 0.0 };
-          }
-          else if (clearColorFlag === CLEAR_COLOR_2) {
-            this.cam.clearColor = { r: 1, g: 0, b: 0, a: 1 };
+          } else if (clearColorFlag === CLEAR_COLOR_1) {
+            this.cam.clearColor = {
+              r: 0,
+              g: 0,
+              b: 0,
+              a: 0.0
+            };
+          } else if (clearColorFlag === CLEAR_COLOR_2) {
+            this.cam.clearColor = {
+              r: 1,
+              g: 0,
+              b: 0,
+              a: 1
+            };
           }
         }).id('clear_color');
 

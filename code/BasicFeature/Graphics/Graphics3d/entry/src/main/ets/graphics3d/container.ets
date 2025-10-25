@@ -82,16 +82,15 @@ struct container {
             Component3D(this.sceneOpt)
               .renderWidth('60%')
               .renderHeight('60%')
-          }
-          else {
+          } else {
             Text("loading 1...");
           }
         }
         .height('30%')
 
         Button('remove node').onClick(() => {
-            this.scene?.root?.children.remove(this.node);
-          }).id('remove_node')
+          this.scene?.root?.children.remove(this.node);
+        }).id('remove_node')
 
         Button('append node').onClick(() => {
           this.scene?.root?.children.get(0)?.children.append(this.node);
@@ -102,7 +101,12 @@ struct container {
         }).id('insert_node')
 
         Button('clear').onClick(() => {
-          this.scene?.root?.children.clear();
+          // 清除children下面的所有节点
+          this.scene?.root?.children.get(0)?.children.clear();
+          setTimeout(() => {
+            // 清除node节点下的所有子节点，append、insertAfter失效
+            this.scene?.root?.children.clear();
+          }, 50);
         }).id('clear_node')
 
         Text(this.hierarchy)
