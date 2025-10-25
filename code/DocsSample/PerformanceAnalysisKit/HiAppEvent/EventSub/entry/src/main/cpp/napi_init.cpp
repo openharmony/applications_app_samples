@@ -599,7 +599,7 @@ static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
     // [EndExclude AppEvent_C++_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(eventWatcherT1);
     OH_HiAppEvent_RemoveWatcher(eventWatcherR1);
-    // [EndEXclude APP_Hicollie_RemoveWatcher]
+    // [EndExclude APP_Hicollie_RemoveWatcher]
 
     // [StartExclude AppEvent_C++_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(appHicollieWatcherR);
