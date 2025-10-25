@@ -18,10 +18,12 @@ import { LevelOrder } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const INDEX: number = 0;
+
 @Entry
 @Component
 export struct DialogBoxLayer {
-  @StorageLink('dialogIndex') dialogIndex: number = 0;
+  @StorageLink('dialogIndex') dialogIndex: number = INDEX;
 
   // [Start normal_custom_dialog]
   @Builder

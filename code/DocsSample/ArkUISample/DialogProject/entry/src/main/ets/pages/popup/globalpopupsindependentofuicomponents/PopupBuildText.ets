@@ -26,7 +26,7 @@ class Params {
   }
 }
 
-let message = new Params('hello')
+let message = new Params('hello');
 let uiContext = AppStorage.get('UIContext') as UIContext;
 
 // [Start build_text]
@@ -71,7 +71,7 @@ export function buildText(params: Params) {
         fontSize: 15,
         fontColor: Color.Black
       },] as [PopupButtonOptions?, PopupButtonOptions?]
-  })
+  });
 }
 
 let contentNode: ComponentContent<Object> =
@@ -82,7 +82,7 @@ let contentNode: ComponentContent<Object> =
 @Entry
 @Component
 struct BuildTextExample {
-  promptAction = this.getUIContext().getPromptAction()
+  promptAction = this.getUIContext().getPromptAction();
   private contentNode: ComponentContent<Object> | null = null;
   private uiContext: UIContext = this.getUIContext();
 
@@ -98,7 +98,7 @@ struct BuildTextExample {
       })
       .catch((err: BusinessError) => {
         hilog.error(0x0000, 'popupBuildText', 'openPopup error: ' + err.code + ' ' + err.message);
-      })
+      });
     // [End open_popup]
   }
 
@@ -112,7 +112,7 @@ struct BuildTextExample {
       })
       .catch((err: BusinessError) => {
         hilog.error(0x0000, 'popupBuildText', 'updatePopup error: ' + err.code + ' ' + err.message);
-      })
+      });
     // [End update_popup]
   }
 
@@ -124,7 +124,7 @@ struct BuildTextExample {
       })
       .catch((err: BusinessError) => {
         hilog.error(0x0000, 'popupBuildText', 'closePopup error: ' + err.code + ' ' + err.message);
-      })
+      });
     // [End close_popup]
   }
 

@@ -102,7 +102,7 @@ struct CustomDialogExample {
 @Entry
 @Component
 export struct DialogController {
-  private message = '弹窗';
+  private message = 'dialog';
   private baseDialogOptions: promptAction.BaseDialogOptions = {
     isModal: false,
     autoCancel: false

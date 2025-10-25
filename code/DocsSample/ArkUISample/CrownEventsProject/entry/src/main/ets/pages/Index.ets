@@ -19,7 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 @Entry
 @Component
 struct Index {
-  @State message: string = "onDigitalCrown";
+  @State message: string = 'onDigitalCrown';
 
   build() {
     Column() {

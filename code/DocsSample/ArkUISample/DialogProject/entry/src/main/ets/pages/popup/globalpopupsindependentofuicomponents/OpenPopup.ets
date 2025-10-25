@@ -18,6 +18,8 @@
 import { PromptActionClass } from './PopupMainPage';
 import { ComponentContent, PromptAction } from '@kit.ArkUI';
 
+const ID: number = 0;
+
 class Params {
   public text: string = '';
   public promptActionClass: PromptActionClass = new PromptActionClass();
@@ -58,7 +60,7 @@ export struct OpenPopup {
   private uiContext: UIContext = this.getUIContext();
   private promptAction: PromptAction = this.uiContext.getPromptAction();
   private promptActionClass: PromptActionClass = new PromptActionClass();
-  private targetId: number = 0;
+  private targetId: number = ID;
   // [Start content_node]
   private contentNode: ComponentContent<Object> =
     new ComponentContent(this.uiContext, wrapBuilder(buildText), new Params(this.message, this.promptActionClass));

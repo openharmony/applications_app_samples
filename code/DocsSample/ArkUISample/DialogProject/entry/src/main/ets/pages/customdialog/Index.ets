@@ -22,10 +22,10 @@ import { DialogInteraction } from './DialogInteraction';
 import { DialogInteraction1 } from './DialogInteraction1';
 import { DialogStyle } from './DialogStyle';
 import { NestDialog } from './NestDialog';
-import { DialogFocusStrategy } from './dialogboxfocuspolicy/DialogFocusStrategy'
-import { DialogController } from './dialogcontroller/DialogController'
-import { PageLevelDialogBox } from './pageleveldialogbox/PageLevelDialogBox'
-import { DialogBoxLayer } from './dialogboxlayermanagement/DialogBoxLayer'
+import { DialogFocusStrategy } from './dialogboxfocuspolicy/DialogFocusStrategy';
+import { DialogController } from './dialogcontroller/DialogController';
+import { PageLevelDialogBox } from './pageleveldialogbox/PageLevelDialogBox';
+import { DialogBoxLayer } from './dialogboxlayermanagement/DialogBoxLayer';
 
 export const Custom_ROUTE_PREFIX: string = 'Custom_ROUTE_PREFIX';
 
