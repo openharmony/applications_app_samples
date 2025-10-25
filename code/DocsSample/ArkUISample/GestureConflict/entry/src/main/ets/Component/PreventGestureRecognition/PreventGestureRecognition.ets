@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start gestureRecognition]
 @Entry
 @ComponentV2
@@ -26,6 +27,7 @@ struct Index {
   private normalPlayTimer: number = -1;
   private isPlaying: boolean = true;
   private fastForwardTimer: number = -1;
+  private context = this.getUIContext().getHostContext()
 
   aboutToAppear(): void {
     // 启动一个周期性定时器每隔一秒刷新一次进度
@@ -84,7 +86,11 @@ struct Index {
       this.currentWidth = '100%';
       this.currentHeight = '50%';
     };
-    this.showMessage(this.currentFullScreenState ? '全屏播放' : '取消全屏播放');
+    //  $r('app.string.Play_full_screen') 需要替换为开发者所需的资源文件
+    //  $r('app.string.Exit_play_full_screen') 需要替换为开发者所需的资源文件
+    this.showMessage(this.currentFullScreenState
+      ? this.context!.resourceManager.getStringSync($r('app.string.Play_full_screen').id)
+      : this.context!.resourceManager.getStringSync($r('app.string.Exit_play_full_screen').id));
   };
 
   togglePlayAndPause(): void {
@@ -95,32 +101,46 @@ struct Index {
       // 重新启动
       this.startNormalPlayTimer();
     };
-    this.showMessage(this.isPlaying ? '暂停播放' : '继续播放');
+    //  $r('app.string.stop_playing') 需要替换为开发者所需的资源文件
+    //  $r('app.string.Continue_playing') 需要替换为开发者所需的资源文件
+    this.showMessage(this.isPlaying
+      ? this.context!.resourceManager.getStringSync($r('app.string.stop_playing').id)
+      : this.context!.resourceManager.getStringSync($r('app.string.Continue_playing').id));
   };
 
   doFastForward(start: boolean): void {
     if (!start) { // 停止快进，恢复正常播放
       this.stopFastForwardTimer();
       this.startNormalPlayTimer();
-      this.showMessage('取消快进');
+      //  $r('app.string.Cancel_FastForwarding') 需要替换为开发者所需的资源文件
+      this.showMessage(
+        this.context!.resourceManager.getStringSync($r('app.string.Cancel_FastForwarding').id));
       return;
     };
 
     this.stopNormalPlayTimer();
     this.startFastForwardTimer();
-    this.showMessage('开始快进');
+    //  $r('app.string.Start_FastForwarding') 需要替换为开发者所需的资源文件
+    this.showMessage(
+      this.context!.resourceManager.getStringSync($r('app.string.Start_FastForwarding').id));
   };
 
   updateBrightness(start: boolean, event: BaseGestureEvent): void {
     let newY = event.fingerList[0].localY;
     if (start) {
       this.currentPosY = newY;
-      this.showMessage('开始调整 亮度');
+      //  $r('app.string.Start_adjusting_brightness') 需要替换为开发者所需的资源文件
+      this.showMessage(this.context!.resourceManager
+        .getStringSync($r('app.string.Start_adjusting_brightness').id));
       return;
     };
     let offsetY = newY - this.currentPosY;
     if (Math.abs(offsetY) > 10) {
-      this.showMessage((offsetY > 0) ? '降低亮度' : '提高亮度');
+      //  $r('app.string.Reduce_brightness') 需要替换为开发者所需的资源文件
+      //  $r('app.string.Increase_brightness') 需要替换为开发者所需的资源文件
+      this.showMessage((offsetY > 0)
+        ? this.context!.resourceManager.getStringSync($r('app.string.Reduce_brightness').id)
+        : this.context!.resourceManager.getStringSync($r('app.string.Increase_brightness').id) )
       this.currentPosY = newY;
     };
   };
@@ -129,7 +149,9 @@ struct Index {
     let newX = event.fingerList[0].localX;
     if (start) {
       this.currentPosX = newX;
-      this.showMessage('开始调整 进度');
+      //  $r('app.string.Adjust_schedule') 需要替换为开发者所需的资源文件
+      this.showMessage(this.context!.resourceManager
+        .getStringSync($r('app.string.Adjust_schedule').id));
       return;
     };
     let offsetX = newX - this.currentPosX;
@@ -142,7 +164,8 @@ struct Index {
       Column() {
         Column() {
           //  $r('app.string.Playback_progress') 需要替换为开发者所需的资源文件
-          Text(`$r('app.string.Playback_progress')` + this.progress)
+          Text(this.context!.resourceManager.getStringSync($r('app.string.Playback_progress').id)
+            + this.progress)
         }
         .width('100%').height('90%')
         Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {

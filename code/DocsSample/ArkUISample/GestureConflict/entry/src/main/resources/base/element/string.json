@@ -26,7 +26,47 @@
     },
     {
       "name": "Playback_progress",
-      "value": "播放进度："
+      "value": "播放进度"
+    },
+    {
+      "name": "Play_full_screen",
+      "value": "全屏播放"
+    },
+    {
+      "name": "Exit_play_full_screen",
+      "value": "取消全屏播放"
+    },
+    {
+      "name": "stop_playing",
+      "value": "暂停播放"
+    },
+    {
+      "name": "Continue_playing",
+      "value": "继续播放"
+    },
+    {
+      "name": "Cancel_FastForwarding",
+      "value": "取消快进"
+    },
+    {
+      "name": "Start_FastForwarding",
+      "value": "开始快进"
+    },
+    {
+      "name": "Start_adjusting_brightness",
+      "value": "开始调整 亮度"
+    },
+    {
+      "name": "Reduce_brightness",
+      "value": "降低亮度"
+    },
+    {
+      "name": "Increase_brightness",
+      "value": "提高亮度"
+    },
+    {
+      "name": "Adjust_schedule",
+      "value": "开始调整 进度"
     }
   ]
 }
