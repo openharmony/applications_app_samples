@@ -21,31 +21,35 @@ import Logger from '../common/Logger';
 
 let dataPreferences: preferences.Preferences | undefined = undefined;
 const context = EntryAbility.getContext();
-let xmlOptions: preferences.Options = { name: 'myStore' };
-let gskvOptions: preferences.Options = { name: 'myStore', storageType: preferences.StorageType.GSKV };
 
 export class PreferencesInterface {
-  // [Start preferences1]
   public GetPreferencesSync = (() => {
     Logger.info('GetPreferencesSync start');
     try {
-      dataPreferences = preferences.getPreferencesSync(context, xmlOptions);
+      // [Start GetPreferencesSync]
+      let options: preferences.Options = { name: 'myStore' };
+      dataPreferences = preferences.getPreferencesSync(context, options);
+      // [End GetPreferencesSync]
       Logger.info('Succeeded in get preferences.');
     } catch (err) {
       Logger.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
     }
     Logger.info('GetPreferencesSync end');
   })
-  // [End preferences1]
 
-  // [Start preferences2]
+
   public GetPreferencesSyncGSKV = (() => {
     Logger.info('GetPreferencesSyncGSKV start');
     try {
+      // [Start isStorageTypeSupported]
       let isGskvSupported = preferences.isStorageTypeSupported(preferences.StorageType.GSKV);
       Logger.info('Is gskv supported on this platform: ' + isGskvSupported);
+      // [End isStorageTypeSupported]
       if (isGskvSupported) {
-        dataPreferences = preferences.getPreferencesSync(context, gskvOptions);
+        // [Start GetPreferencesSyncGSKV]
+        let options: preferences.Options = { name: 'myStore', storageType: preferences.StorageType.GSKV };
+        dataPreferences = preferences.getPreferencesSync(context, options);
+        // [End GetPreferencesSyncGSKV]
       }
       Logger.info('Succeeded in get preferences GSKV.');
     } catch (err) {
@@ -53,9 +57,7 @@ export class PreferencesInterface {
     }
     Logger.info('GetPreferencesSyncGSKV end');
   })
-  // [End preferences2]
-
-  // [Start preferences3]
+  
   public PutSync = (() => {
     Logger.info('PutSync start');
     if (dataPreferences === undefined) {
@@ -63,6 +65,7 @@ export class PreferencesInterface {
       return;
     }
     try {
+      // [Start PutSync]
       if (dataPreferences.hasSync('startup')) {
         Logger.info('The key startup is contained.');
       } else {
@@ -72,17 +75,15 @@ export class PreferencesInterface {
         // 在XML模式下，当字符串包含非UTF-8格式的字符时，需要将字符串转为Uint8Array类型再存储，长度均不超过16 * 1024 * 1024个字节。
         let uInt8Array1 = new util.TextEncoder().encodeInto('~！@#￥%……&*（）——+？');
         dataPreferences.putSync('uInt8', uInt8Array1);
-        Logger.info('Succeeded in putting data.');
       }
+      // [End PutSync]
+      Logger.info('Succeeded in putting data.');
     } catch (e) {
       let error = e as BusinessError;
       Logger.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
     }
-    Logger.info('PutSync end');
   })
-  // [End preferences3]
 
-  // [Start preferences4]
   public GetSync = (() => {
     Logger.info('GetSync start');
     if (dataPreferences == undefined) {
@@ -90,6 +91,7 @@ export class PreferencesInterface {
       return;
     }
     try {
+      // [Start GetSync]
       let val = dataPreferences.getSync('startup', 'default');
       Logger.info('The startup value is ' + val);
       let uInt8Array2 : preferences.ValueType = dataPreferences.getSync('uInt8', new Uint8Array(0));
@@ -97,6 +99,7 @@ export class PreferencesInterface {
       let textDecoder = util.TextDecoder.create('utf-8');
       val = textDecoder.decodeToString(uInt8Array2 as Uint8Array);
       Logger.info('The uInt8 value is ' + val);
+      // [End GetSync]
       Logger.info(`Succeeded in getting val. val:${val}`);
     } catch (e) {
       let error = e as BusinessError;
@@ -104,9 +107,7 @@ export class PreferencesInterface {
     }
     Logger.info('GetSync end');
   })
-  // [End preferences4]
 
-  // [Start preferences5]
   public DeleteSync = (() => {
     Logger.info('DeleteSync start');
     if (dataPreferences === undefined) {
@@ -114,7 +115,9 @@ export class PreferencesInterface {
       return;
     }
     try {
+      // [Start DeleteSync]
       dataPreferences.deleteSync('startup');
+      // [End DeleteSync]
       let val = dataPreferences.getSync('startup', 'default');
       Logger.info('The startup value is ' + val);
       Logger.info('Succeeded in deleting data.');
@@ -124,9 +127,7 @@ export class PreferencesInterface {
     }
     Logger.info('DeleteSync end');
   })
-  // [End preferences5]
 
-  // [Start preferences6]
   public Flush = (() => {
     Logger.info('Flush start');
     if (dataPreferences === undefined) {
@@ -134,6 +135,7 @@ export class PreferencesInterface {
       return;
     }
     try {
+      // [Start Flush]
       dataPreferences.flush((err: BusinessError) => {
         if (err) {
           Logger.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
@@ -141,15 +143,14 @@ export class PreferencesInterface {
         }
         Logger.info('Succeeded in flushing.');
       })
+      // [End Flush]
     } catch (e) {
       let error = e as BusinessError;
       Logger.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
     }
     Logger.info('Flush end');
   })
-  // [End preferences6]
 
-  // [Start preferences7]
   public XMLOn = (() => {
     Logger.info('XMLOn start');
     if (dataPreferences === undefined) {
@@ -157,6 +158,7 @@ export class PreferencesInterface {
       return;
     }
     try {
+      // [Start XMLOn]
       let observer = (key: string) => {
         Logger.info('The key ' + key + ' changed.');
       }
@@ -178,15 +180,14 @@ export class PreferencesInterface {
           })
         }
       })
+      // [End XMLOn]
     } catch (e) {
       let error = e as BusinessError;
       Logger.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
     }
     Logger.info('XMLOn end');
-  })
-  // [End preferences7]
+  }) 
 
-  // [Start preferences8]
   public GSKVOn = (() => {
     Logger.info('GSKVOn start');
     if (dataPreferences === undefined) {
@@ -194,6 +195,7 @@ export class PreferencesInterface {
       return;
     }
     try {
+      // [Start GSKVOn]
       let observer = (key: string) => {
         Logger.info('The key ' + key + ' changed.');
       }
@@ -206,15 +208,14 @@ export class PreferencesInterface {
         }
         Logger.info('Succeeded in putting the value of startup.');
       })
+      // [End GSKVOn]
     } catch (e) {
       let error = e as BusinessError;
       Logger.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
     }
     Logger.info('GSKVOn end');
   })
-  // [End preferences8]
 
-  // [Start preferences9]
   public DeleteXMLPreferences = (() => {
     Logger.info('DeleteXMLPreferences start');
     if (dataPreferences === undefined) {
@@ -222,22 +223,24 @@ export class PreferencesInterface {
       return;
     }
     try {
-      preferences.deletePreferences(context, xmlOptions, (err: BusinessError) => {
+      // [Start DeleteXMLPreferences]
+      let options: preferences.Options = { name: 'myStore' };
+      preferences.deletePreferences(context, options, (err: BusinessError) => {
         if (err) {
           Logger.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
           return;
         }
         Logger.info('Succeeded in deleting preferences.');
       })
+      // [End DeleteXMLPreferences]
     } catch (e) {
       let error = e as BusinessError;
       Logger.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
     }
     Logger.info('DeleteXMLPreferences end');
   })
-  // [End preferences9]
 
-  // [Start preferences10]
+  // [Start DeleteGSKVPreferences]
   public DeleteGSKVPreferences = (() => {
     Logger.info('DeleteGSKVPreferences start');
     if (dataPreferences === undefined) {
@@ -245,7 +248,8 @@ export class PreferencesInterface {
       return;
     }
     try {
-      preferences.deletePreferences(context, gskvOptions, (err: BusinessError) => {
+      let options: preferences.Options = { name: 'myStore', storageType: preferences.StorageType.GSKV };
+      preferences.deletePreferences(context, options, (err: BusinessError) => {
         if (err) {
           Logger.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
           return;
@@ -258,5 +262,5 @@ export class PreferencesInterface {
     }
     Logger.info('DeleteGSKVPreferences end');
   })
-  // [End preferences10]
+  // [End DeleteGSKVPreferences]
 }

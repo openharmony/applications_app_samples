@@ -58,12 +58,13 @@ void DataChangeObserverCallback(void *context, const OH_PreferencesPair *pairs, 
         }
     }
 }
+
 // [End DataChangeObserverCallback]
 
-// [Start PreferencesCrudTest]
 void PreferencesCrudTest(OH_Preferences *preference)
 {
-    // 1. 对key_int、key_bool和key_string注册数据变更订阅。
+    // [Start PreferencesCrud]
+    // 3. 对key_int、key_bool和key_string注册数据变更订阅。
     const char *keys[] = {"key_int", "key_bool", "key_string"};
     int ret = OH_Preferences_RegisterDataObserver(preference, nullptr, DataChangeObserverCallback, keys, 3);
     if (ret != PREFERENCES_OK) {
@@ -71,7 +72,7 @@ void PreferencesCrudTest(OH_Preferences *preference)
         // 错误处理
     }
     
-    // 2. 设置Preferences实例中的KV数据。
+    // 4. 设置Preferences实例中的KV数据。
     ret = OH_Preferences_SetInt(preference, keys[0], 0);
     if (ret != PREFERENCES_OK) {
         (void)OH_Preferences_Close(preference);
@@ -89,7 +90,7 @@ void PreferencesCrudTest(OH_Preferences *preference)
         // 错误处理
     }
     
-    // 3. 获取Preferences实例中的KV数据。
+    // 5. 获取Preferences实例中的KV数据。
     int intValue = 0;
     ret = OH_Preferences_GetInt(preference, keys[0], &intValue);
     if (ret == PREFERENCES_OK) {
@@ -111,13 +112,13 @@ void PreferencesCrudTest(OH_Preferences *preference)
         OH_Preferences_FreeString(stringValue);
         stringValue = nullptr;
     }
+    // [End PreferencesCrud]
 }
-// [End PreferencesCrudTest]
 
-// [Start PreferencesOpenTest]
 void PreferencesOpenTest()
 {
-    OH_LOG_ERROR(LOG_APP, "PreferencesOpenCrudTest start.");
+    OH_LOG_INFO(LOG_APP, "PreferencesOpenTest start.");
+    // [Start PreferencesOpen]
     // 1. 创建Preferences配置选项。
     OH_PreferencesOption *option = OH_PreferencesOption_Create();
     if (option == nullptr) {
@@ -170,14 +171,15 @@ void PreferencesOpenTest()
     if (preference == nullptr || errCode != PREFERENCES_OK) {
         // 错误处理
     }
-    // 3. 使用preference进行增删改查。
+    // [End PreferencesOpen]
     PreferencesCrudTest(preference);
-    // 4. 使用完Preferences实例后需要关闭实例，关闭后需要将指针置空。
+    // [Start PreferencesClose]
+    // 6. 使用完Preferences实例后需要关闭实例，关闭后需要将指针置空。
     (void)OH_Preferences_Close(preference);
     preference = nullptr;
-    OH_LOG_ERROR(LOG_APP, "PreferencesOpenCrudTest end.");
+    // [End PreferencesClose]
+    OH_LOG_ERROR(LOG_APP, "PreferencesOpenTest end.");
 }
-// [End PreferencesOpenCrudTest]
 
 static napi_value Add(napi_env env, napi_callback_info info)
 {
