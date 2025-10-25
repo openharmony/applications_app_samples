@@ -882,7 +882,7 @@ static void NativeLeak()
 {
     constexpr int leakSizePerTime = 500000;
     while (true) {
-        char *p = (char *)malloc(leak_size_per_time + 1);
+        char *p = (char *)malloc(leakSizePerTime + 1);
         if (!p) {
             break;
         }
