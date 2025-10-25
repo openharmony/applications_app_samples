@@ -54,7 +54,7 @@ void RdbInsert(OH_Rdb_Store *store_)
     valueBucket2->putInt64(valueBucket2, "ID", 2); // The value of ID is 2
     valueBucket2->putText(valueBucket2, "NAME", "zhangsan");
     valueBucket2->putInt64(valueBucket2, "AGE", 24); // The value of AGE is 24
-    valueBucket2->putReal(valueBucket2, "SALARY", 120.4); // The value of SALARY is 120.1
+    valueBucket2->putReal(valueBucket2, "SALARY", 120.4); // The value of SALARY is 120.4
     int64_t rowId2 = -1;
     // 支持插入数据时配置冲突策略
     int result = OH_Rdb_InsertWithConflictResolution(store_, "EMPLOYEE", valueBucket2,
@@ -120,7 +120,7 @@ void RdbUpdate(OH_Rdb_Store *store_)
     OH_VObject *valueObject2 = OH_Rdb_CreateValueObject();
     valueObject2->putText(valueObject2, "Rose");
     predicates2->equalTo(predicates2, "NAME", valueObject2);
-    valueBucket->putInt64(valueBucket, "ID", 1); // The value of ID is 1
+    valueBucket->putInt64(valueBucket, "ID", 1);// The value of ID is 1
     valueBucket->putText(valueBucket, "NAME", "zhangsan");
     int64_t changeRows2 = -1;
     
@@ -184,10 +184,8 @@ void RdbQueryByLike(OH_Rdb_Store *store_)
     likePredicates->like(likePredicates, "NAME", likePattern);
     
     char *colName[] = { "NAME", "AGE" };
-    int len = sizeof(colName) / sizeof(colName[0]);
-    auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, len);
+    auto *likeQueryCursor = OH_Rdb_Query(store_, likePredicates, colName, 2); // the length of columnNames is 2
     if (likeQueryCursor == NULL) {
-        OH_LOG_ERROR(LOG_APP, "Query failed.");
         likePredicates->destroy(likePredicates);
         likePattern->destroy(likePattern);
         return;
@@ -197,7 +195,7 @@ void RdbQueryByLike(OH_Rdb_Store *store_)
     while (likeQueryCursor->goToNextRow(likeQueryCursor) == OH_Rdb_ErrCode::RDB_OK) {
         likeQueryCursor->getColumnIndex(likeQueryCursor, "NAME", &colIndex);
         likeQueryCursor->getSize(likeQueryCursor, colIndex, &dataLength);
-        char *name = (char *)malloc((dataLength + 1) * sizeof(char)); 
+        char *name = (char *)malloc((dataLength + 1) * sizeof(char));
         likeQueryCursor->getText(likeQueryCursor, colIndex, name, dataLength + 1);
         free(name);
     }
@@ -208,13 +206,13 @@ void RdbQueryByLike(OH_Rdb_Store *store_)
     
     OH_Predicates *notLikePredicates = OH_Rdb_CreatePredicates("EMPLOYEE");
     if (notLikePredicates == NULL) {
+        OH_LOG_ERROR(LOG_APP, "CreatePredicates failed.");
         return;
     }
     // 配置谓词以NOT LIKE模式匹配
     OH_Predicates_NotLike(notLikePredicates, "NAME", "zh%");
-    auto *notLikeQueryCursor = OH_Rdb_Query(store_, notLikePredicates, colName, len);
+    auto *notLikeQueryCursor = OH_Rdb_Query(store_, notLikePredicates, colName, 2); // the length of columnNames is 2
     if (notLikeQueryCursor == NULL) {
-        OH_LOG_ERROR(LOG_APP, "Query failed.");
         notLikePredicates->destroy(notLikePredicates);
         return;
     }
@@ -223,7 +221,7 @@ void RdbQueryByLike(OH_Rdb_Store *store_)
     while (notLikeQueryCursor->goToNextRow(notLikeQueryCursor) == OH_Rdb_ErrCode::RDB_OK) {
         notLikeQueryCursor->getColumnIndex(notLikeQueryCursor, "NAME", &colIndex);
         notLikeQueryCursor->getSize(notLikeQueryCursor, colIndex, &dataLength);
-        char *name2 = (char *)malloc((dataLength + 1) * sizeof(char)); 
+        char *name2 = (char *)malloc((dataLength + 1) * sizeof(char));
         notLikeQueryCursor->getText(notLikeQueryCursor, colIndex, name2, dataLength + 1);
         free(name2);
     }
@@ -245,8 +243,7 @@ void RdbQueryByGlobe(OH_Rdb_Store *store_)
     OH_Predicates_Glob(globPredicates, "NAME", "zh*");
     
     char *colName[] = { "NAME", "AGE" };
-    int len = sizeof(colName) / sizeof(colName[0]);
-    auto *globQueryCursor = OH_Rdb_Query(store_, globPredicates, colName, len);
+    auto *globQueryCursor = OH_Rdb_Query(store_, globPredicates, colName, 2); // the length of columnNames is 2
     if (globQueryCursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         globPredicates->destroy(globPredicates);
@@ -258,7 +255,7 @@ void RdbQueryByGlobe(OH_Rdb_Store *store_)
     while (globQueryCursor->goToNextRow(globQueryCursor) == OH_Rdb_ErrCode::RDB_OK) {
         globQueryCursor->getColumnIndex(globQueryCursor, "NAME", &colIndex);
         globQueryCursor->getSize(globQueryCursor, colIndex, &dataLength);
-        char *name = (char *)malloc((dataLength + 1) * sizeof(char)); 
+        char *name = (char *)malloc((dataLength + 1) * sizeof(char));
         globQueryCursor->getText(globQueryCursor, colIndex, name, dataLength + 1);
         free(name);
     }
@@ -272,7 +269,7 @@ void RdbQueryByGlobe(OH_Rdb_Store *store_)
     }
     // 配置谓词以NOT GLOB模式匹配
     OH_Predicates_NotGlob(notGlobPredicates, "NAME", "zh*");
-    auto *notGlobQueryCursor = OH_Rdb_Query(store_, notGlobPredicates, colName, len);
+    auto *notGlobQueryCursor = OH_Rdb_Query(store_, notGlobPredicates, colName, 2); // the length of columnNames is 2
     if (notGlobQueryCursor == NULL) {
         OH_LOG_ERROR(LOG_APP, "Query failed.");
         notGlobPredicates->destroy(notGlobPredicates);
@@ -283,7 +280,7 @@ void RdbQueryByGlobe(OH_Rdb_Store *store_)
     while (notGlobQueryCursor->goToNextRow(notGlobQueryCursor) == OH_Rdb_ErrCode::RDB_OK) {
         notGlobQueryCursor->getColumnIndex(notGlobQueryCursor, "NAME", &colIndex);
         notGlobQueryCursor->getSize(notGlobQueryCursor, colIndex, &dataLength);
-        char *name2 = (char *)malloc((dataLength + 1) * sizeof(char)); 
+        char *name2 = (char *)malloc((dataLength + 1) * sizeof(char));
         notGlobQueryCursor->getText(notGlobQueryCursor, colIndex, name2, dataLength + 1);
         free(name2);
     }
@@ -309,10 +306,10 @@ void RdbTransInsert(OH_Rdb_Transaction *trans)
     
     // 创建OH_Data_Values实例
     OH_Data_Values *values = OH_Values_Create();
-    ret = OH_Values_PutInt(values, 1);// The value of datat1 is 2
+    ret = OH_Values_PutInt(values, 1); // The value of id is 1
     ret = OH_Values_PutInt(values, 2); // The value of datat2 is 2
     ret = OH_Values_PutReal(values, 1.1); // The value of datat3 is 1.1
-    ret = OH_Values_PutText(values, "1"); // The value of datat4 is 1
+    ret = OH_Values_PutText(values, "1"); // The value of datat3 is 1
     unsigned char val[] = {1, 2};
     ret = OH_Values_PutBlob(values, val, sizeof(val) / sizeof(val[0]));
     
@@ -321,11 +318,11 @@ void RdbTransInsert(OH_Rdb_Transaction *trans)
     ret = OH_Values_PutAsset(values, asset);
     OH_Data_Asset_DestroyOne(asset);
     
-    Data_Asset **assets = OH_Data_Asset_CreateMultiple(2);
+    Data_Asset **assets = OH_Data_Asset_CreateMultiple(2); // The number of created Data_Assets is 2
     ret = OH_Data_Asset_SetName(assets[0], "name1");
     ret = OH_Data_Asset_SetName(assets[1], "name2");
-    ret = OH_Values_PutAssets(values, assets, 2);
-    ret = OH_Data_Asset_DestroyMultiple(assets, 2);
+    ret = OH_Values_PutAssets(values, assets, 2); // The number of Data_ Assets is 2
+    ret = OH_Data_Asset_DestroyMultiple(assets, 2); // The number of destroyed Data_Assets is 2
     
     uint64_t bigInt[] = {1, 2, 3, 4, 5};
     ret = OH_Values_PutUnlimitedInt(values, 0, bigInt, sizeof(bigInt) / sizeof(bigInt[0]));
@@ -380,7 +377,7 @@ void RdbTransUpdate(OH_Rdb_Transaction *trans)
     }
     auto targetValue = OH_Rdb_CreateValueObject();
     int64_t two = 2;
-    targetValue->putInt64(targetValue, &two, 1); // If value is a pointer to a single numerical value, count = 1
+    targetValue->putInt64(targetValue, &two, 1); // The value of id is 1
     transUpdatePredicates->equalTo(transUpdatePredicates, "data2", targetValue);
     
     int64_t updateRows = -1;
