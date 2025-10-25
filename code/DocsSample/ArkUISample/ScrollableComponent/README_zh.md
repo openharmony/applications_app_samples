@@ -17,6 +17,10 @@
 |------------------------------------|------------------------------------|------------------------------------|
 | ![](screenshots/device/image1.png) | ![](screenshots/device/image2.png) | ![](screenshots/device/image3.png) |
 
+ 缓存数预览图
+ ![](screenshots/device/image4.jpeg)
+ 标签与内容不联动预览图
+ ![](screenshots/device/image5.jpeg)
 ### 使用说明
 
 1. 在主界面，可以点击对应卡片，选择需要参考的组件示例。
@@ -144,9 +148,9 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API18版本full-SDK，版本号：5.1.0.107，镜像版本号：OpenHarmony_5.1.0 Release。
+2.本示例为Stage模型，支持API20版本full-SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0 Release。
 
-3.本示例需要使用DevEco Studio 5.0.5 Release (Build Version: 5.0.13.200， built on May 13, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 
 ### 下载
 

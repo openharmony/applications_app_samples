@@ -1535,5 +1535,54 @@ export default function IndexTest() {
       done();
     })
 
+    /**
+     * @tc.number UiTest_51
+     * @tc.name testBottomTabBar
+     * @tc.desc 内容标签不同步
+     */
+    it('testBottomTabBar', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let componentButton = await driver.findComponent(ON.text('Tabs', MatchPattern.CONTAINS));
+      expect(componentButton === null).assertFalse();
+      await componentButton.click();
+      let str = await getResourceString($r('app.string.ContentWillChange_titleContentOnAndTabSync'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+
+      let tabs = await driver.findComponent(ON.type('Tabs'));
+      expect(tabs === null).assertFalse();
+      let scrollPoint: Point = { x: 400, y: 400 };
+      await driver.mouseScroll(scrollPoint, true, 2);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_51
+     * @tc.name testBottomTabBar
+     * @tc.desc 缓存数
+     */
+    it('testBottomTabBar', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let componentButton = await driver.findComponent(ON.text('Tabs', MatchPattern.CONTAINS));
+      expect(componentButton === null).assertFalse();
+      await componentButton.click();
+      let str = await getResourceString($r('app.string.Cache_count'));
+      let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(sampleButton === null).assertFalse();
+      await sampleButton.click();
+
+      let tabs = await driver.findComponent(ON.type('Tabs'));
+      expect(tabs === null).assertFalse();
+      let scrollPoint: Point = { x: 400, y: 400 };
+      await driver.mouseScroll(scrollPoint, true, 2);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+
   })
 }
