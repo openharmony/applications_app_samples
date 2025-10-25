@@ -164,8 +164,7 @@ struct Index {
       Column() {
         Column() {
           //  $r('app.string.Playback_progress') 需要替换为开发者所需的资源文件
-          Text(this.context!.resourceManager.getStringSync($r('app.string.Playback_progress').id)
-            + this.progress)
+          Text(this.context!.resourceManager.getStringSync($r('app.string.Playback_progress').id) + this.progress)
         }
         .width('100%').height('90%')
         Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
