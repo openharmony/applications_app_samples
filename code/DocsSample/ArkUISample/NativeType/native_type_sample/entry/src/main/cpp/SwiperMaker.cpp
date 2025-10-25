@@ -17,8 +17,8 @@
 #include "baseUtils.h"
 
 namespace ConstIde {
-    const float TEXT_WIDTH_VP = 500.0f;        // 宽度
-    const float TEXT_HEIGHT_VP = 200.0f;       // 高度
+    const float SWIPER_WIDTH_PERCENT = 0.9f;     // 宽度
+    const float SWIPER_HEIGHT_PERCENT = 0.2f;     // 高度
     const uint32_t TEXT_BG_COLOR = 0xFFAFEEEE; // 淡蓝色
     const int32_t TEXT_ALIGN_CENTER = 1;       // 居中
     const float TEXT_FONT_SIZE_VP = 30.0f;     // 字体大小
@@ -63,9 +63,9 @@ namespace ConstIde {
 
 void SwiperMaker::createSwiperNode(ArkUI_NodeHandle &swiper)
 {
-    const int size = 14;
+    const int size = 5;
     // 设置swiper内容为0,1,2……
-    const char *arr[size] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"};
+    const char *arr[size] = {"0", "1", "2", "3", "4"};
 
     for (int j = ConstIde::NUMBER_0; j < size; j++) {
         ArkUI_NodeHandle textNode = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -74,10 +74,6 @@ void SwiperMaker::createSwiperNode(ArkUI_NodeHandle &swiper)
 
         ArkUI_NumberValue value[] = {0};
         ArkUI_AttributeItem item = {.value = value, .size = 1};
-        value[ConstIde::NUMBER_0].f32 = ConstIde::TEXT_WIDTH_VP;
-        Manager::nodeAPI_->setAttribute(textNode, NODE_WIDTH, &item);
-        value[ConstIde::NUMBER_0].f32 = ConstIde::TEXT_HEIGHT_VP;
-        Manager::nodeAPI_->setAttribute(textNode, NODE_HEIGHT, &item);
         value[ConstIde::NUMBER_0].u32 = ConstIde::TEXT_BG_COLOR;
         Manager::nodeAPI_->setAttribute(textNode, NODE_BACKGROUND_COLOR, &item);
         value[ConstIde::NUMBER_0].i32 = ConstIde::TEXT_ALIGN_CENTER;
@@ -90,6 +86,12 @@ void SwiperMaker::createSwiperNode(ArkUI_NodeHandle &swiper)
         Manager::nodeAPI_->addChild(swiper, textNode);
     }
     BaseUtils::SetNodeMargin(swiper, ConstIde::MARGIN_NUMBER_30); // 设置边距宽度为30vp
+    ArkUI_NumberValue value[] = {};
+    ArkUI_AttributeItem item = {.value = value, .size = 1};
+    value[0].f32 = ConstIde::SWIPER_WIDTH_PERCENT;
+    Manager::nodeAPI_->setAttribute(swiper, NODE_WIDTH_PERCENT, &item);
+    value[0].f32 = ConstIde::SWIPER_HEIGHT_PERCENT;
+    Manager::nodeAPI_->setAttribute(swiper, NODE_HEIGHT_PERCENT, &item);
 }
 
 void SwiperMaker::SetSwiperArrowStyle(ArkUI_NodeHandle &swiper)
@@ -240,9 +242,9 @@ void SwiperMaker::GetSwiperIndicatorTypeDigit(ArkUI_NodeHandle swiper)
 
 ArkUI_NodeHandle SwiperMaker::createSwiperPage()
 {
-    static ArkUI_NodeHandle swiper1 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
-    static ArkUI_NodeHandle swiper2 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
-    static ArkUI_NodeHandle swiper3 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
+    ArkUI_NodeHandle swiper1 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
+    ArkUI_NodeHandle swiper2 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
+    ArkUI_NodeHandle swiper3 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
     ArkUI_NodeHandle scroll = Manager::nodeAPI_->createNode(ARKUI_NODE_SCROLL);
     BaseUtils::SetNodeBackGroundColor(scroll, ConstIde::BACKGROUND_COLOR); // 设置节点背景颜色为淡灰色
     ArkUI_NodeHandle column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);

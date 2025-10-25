@@ -19,41 +19,50 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct SetUserPresetTextStyles {
+  // [Start richEditor_setTypingStyle]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [End richEditor_setTypingStyle]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.SetUserPresetTextStyles_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 3 }) {
+            // [Start richEditor_setTypingStyle]
+            RichEditor(this.options)
+              .onReady(() => {
+                // $r('app.string.SetUserPresetTextStyles_Text_1')需要替换为开发者所需的资源文件
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.SetUserPresetTextStyles_Text_1')),
+                  {
+                    style: {
+                      fontColor: Color.Black,
+                      fontSize: 15
+                    }
+                  })
               })
+              .width(300)
+              .height(60)
+            // $r('app.string.SetUserPresetTextStyles_Button_1')需要替换为开发者所需的资源文件
+            Button($r('app.string.SetUserPresetTextStyles_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .width(300)
-            .height(60)
-          Button($r('app.string.SetUserPresetTextStyles_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.setTypingStyle({
-                fontWeight: 'medium',
-                fontColor: Color.Pink,
-                fontSize: 15,
-                fontStyle: FontStyle.Italic,
-                decoration: {
-                  type: TextDecorationType.Underline,
-                  color: Color.Gray
-                }
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                this.controller.setTypingStyle({
+                  fontWeight: 'medium',
+                  fontColor: Color.Pink,
+                  fontSize: 15,
+                  fontStyle: FontStyle.Italic,
+                  decoration: {
+                    type: TextDecorationType.Underline,
+                    color: Color.Gray
+                  }
+                })
               })
-            })
+            // [End richEditor_setTypingStyle]
+          }
         }
       }
       .width('100%')

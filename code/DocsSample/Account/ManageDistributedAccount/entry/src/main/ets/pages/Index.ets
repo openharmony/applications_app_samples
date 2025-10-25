@@ -24,7 +24,7 @@ const distributedAccountAbility = distributedAccount.getDistributedAccountAbilit
 @Entry
 @Component
 struct Index {
-  @State message: string = 'No Name';
+  @State message: string = 'ManageDistributedAccount';
 
   private async bindCurrentManageDistributedAccounts(): Promise<void> {
     // [Start define_the_distributed_account_information_to_be_logged_in]

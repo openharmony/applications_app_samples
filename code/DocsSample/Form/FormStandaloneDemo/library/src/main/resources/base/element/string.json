@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "widget1_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget1_display_name",
+      "value": "widget1"
+    },
+    {
+      "name": "TransitionEffectExample1_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "TransitionEffectExample1_display_name",
+      "value": "widget"
+    }
+  ]
+}

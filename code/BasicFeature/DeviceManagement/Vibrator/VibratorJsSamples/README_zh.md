@@ -30,6 +30,9 @@
 9. 在主界面，点击stopVibration按钮可以实现停止振动的效果；
 10. 在主界面，点击on按钮和off按钮可以下发对设备热插拔事件的订阅和去订阅，此功能在手机上暂未实现；
 11. 在主界面，点击getVibratorInfoSync按钮可以实现对设备上马达器件列表信息的获取，并在下方显示；
+12. 在主界面，点击getVibratorInfoSyncByDeviceId按钮可以实现对指定设备上马达器件列表信息的获取，并在下方显示；
+13. 在主界面，点击getEffectInfoSync按钮可以获取预置振动效果信息，并在下方显示（本示例查询的是haptic.clock.timer）；
+14. 在主界面，点击isHdHapticSupported按钮可以查询设备是否支持高清振动，并在下方显示；
 
 工程目录
 
@@ -54,6 +57,8 @@ time、preset、file、pattern四种形式的振动，订阅去订阅外设热�
 * 停止振动：使用Vibrator.stopVibration来停止振动；
 * 订阅去订阅外设热插拔事件，通过Vibrator.on和Vibrator.off来实现对扩设备热插拔事件订阅；
 * 获取设备上马达信息列表：通过Vibrator.getVibratorInfoSync接口来实现对本设备及扩展设备上马达列表的获取；
+* 获取预置振动效果信息：通过vibrator.getEffectInfoSync接口来实现对预置震动效果信息的查询；
+* 查询是否支持高清振动：通过Vibrator.isHdHapticSupported接口来实现对本设备是否支持高清振动的查询；
 
 ### 相关权限
 
@@ -81,7 +86,7 @@ time、preset、file、pattern四种形式的振动，订阅去订阅外设热�
 git init  
 git config core.sparsecheckout true  
 echo code/BasicFeature/DeviceManagement/Vibrator/VibratorJsSamples/ > .git/info/sparse-checkout  
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git  
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git  
 git pull origin master
 
 ```

@@ -27,7 +27,7 @@ struct Index {
         .fontWeight(500)
         .margin({ top: 200, left: 6 })
         .onClick((): void => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/CustomDrawDisplaySync' // 目标url
           }, router.RouterMode.Standard, (err) => {
             if (err) {
@@ -47,7 +47,7 @@ struct Index {
         .fontWeight(500)
         .margin({ top: 20, left: 6 })
         .onClick((): void => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/PropertyAnimationDisplaySync' // 目标url
           }, router.RouterMode.Standard, (err) => {
             if (err) {
@@ -67,7 +67,7 @@ struct Index {
         .fontWeight(500)
         .margin({ top: 20, left: 6 })
         .onClick((): void => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/XComponentDisplaySync' // 目标url
           }, router.RouterMode.Single, (err) => {
             if (err) {
@@ -87,7 +87,7 @@ struct Index {
         .fontWeight(500)
         .margin({ top: 20, left: 6 })
         .onClick((): void => {
-          router.pushUrl({
+          this.getUIContext().getRouter().pushUrl({
             url: 'pages/AnimatorDisplaySync' // 目标url
           }, router.RouterMode.Single, (err) => {
             if (err) {

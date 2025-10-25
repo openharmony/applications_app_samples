@@ -13,18 +13,39 @@
  * limitations under the License.
  */
 
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMetrics, ColorMetrics } from '@kit.ArkUI';
+import {
+  ArcList,
+  ArcListItem,
+  ArcListAttribute,
+  ArcListItemAttribute,
+  LengthMetrics,
+  ColorMetrics,
+  ComponentContent
+} from '@kit.ArkUI';
 import { ComponentCard } from '../../common/Card';
+
+@Builder
+function customHeader() {
+  Column() {
+    Text($r('app.string.ArcListCrown_set'))
+      .fontColor('#FFFFFFFF')
+      .fontSize('19fp')
+  }
+}
 
 @Entry
 @Component
 export struct arcListBuiltInScrollerBar {
+  context: UIContext = this.getUIContext();
+  arcListHeader: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(customHeader));
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.arcListBuiltInScrollerBar_title') }) {
-          ArcList() {
+          // [Start arcListBuiltInScrollBar_start]
+          ArcList({ header: this.arcListHeader }) {
+            // [StartExclude arcListBuiltInScrollBar_start]
             ArcListItem() {
               Row() {
                 Image($r('app.media.wlan')).width('99px').height('99px')
@@ -111,7 +132,12 @@ export struct arcListBuiltInScrollerBar {
             .width('414px')
             .height('129px')
             .backgroundColor('#26FFFFFF')
+            // [EndExclude arcListBuiltInScrollBar_start]
           }
+          .scrollBar(BarState.Auto)
+          .scrollBarWidth(LengthMetrics.px(10))
+          .scrollBarColor(ColorMetrics.resourceColor(Color.White))
+          // [End arcListBuiltInScrollBar_start]
           .width('466px')
           .height('466px')
           .space(LengthMetrics.px(10))

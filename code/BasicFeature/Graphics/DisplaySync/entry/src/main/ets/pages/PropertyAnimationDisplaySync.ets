@@ -138,7 +138,7 @@ struct AnimationToAnimationDemo {
           .margin({ bottom: 10, left: 5 })
           .fontColor(Color.White)
           .onClick((): void => {
-            router.back();
+            this.getUIContext().getRouter().back();
           })
           .width('40%')
           .height(40)

@@ -97,6 +97,33 @@ export default function IndexTest() {
 
       let button_list2 = await driver.findComponent(ON.text('showDate', MatchPattern.CONTAINS));
       await button_list2.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
+
+    /**
+     * @tc.number testShowActionMenu001
+     * @tc.name testShowActionMenu001
+     * @tc.desc Test Fixed-style pop-up box.
+     * @tc.size MEDIUM
+     * @tc.level Level 1
+     * @tc.type Function
+     */
+    it('testShowActionMenu001', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.FixedStyleDialog1')), MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.ShowActionMenu_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+
+      let button_list2 = await driver.findComponent(ON.text('ShowActionMenu', MatchPattern.CONTAINS));
+      await button_list2.click();
+      await sleep(1000);
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
@@ -143,6 +170,22 @@ export default function IndexTest() {
       done();
     })
 
-
+    it('testOverlayManager', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager1')), MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager_demo1_title')), MatchPattern.CONTAINS));
+      expect(button_list1 === null).assertFalse();
+      await button_list1.click();
+      let button1 = await driver.findComponent(ON.text('ComponentContent', MatchPattern.CONTAINS));
+      expect(button1 === null).assertFalse();
+      await button1.click();
+      await driver.pressBack();
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
   })
 }

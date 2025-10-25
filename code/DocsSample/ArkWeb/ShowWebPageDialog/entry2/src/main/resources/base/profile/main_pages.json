@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/AchieveConfirmDialogPage1",
+    "pages/AchieveConfirmDialogPage2"
+  ]
+}

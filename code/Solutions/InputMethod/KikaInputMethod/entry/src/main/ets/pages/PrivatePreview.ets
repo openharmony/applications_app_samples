@@ -124,7 +124,9 @@ struct PrivatePreview {
         .onSubmit(() => {
           this.addLog('preViewText onSubmit.');
         })
+      // [Start input_case_input_CustomInput]
       CustomInput()
+      // [End input_case_input_CustomInput]
 
 // [Start input_case_input_KeyboardAppearance]
       TextArea({placeholder: '沉浸模式'})

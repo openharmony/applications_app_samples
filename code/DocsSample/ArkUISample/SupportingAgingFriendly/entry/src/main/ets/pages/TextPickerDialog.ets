@@ -28,7 +28,7 @@ struct TextPickerExample {
   private select: number | number[] = 0;
   private cascade: TextCascadePickerRangeContent[] = [
     {
-      // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       text: $r('app.string.liaoning'),
       children: [{ text: $r('app.string.shenyang'), children: [{ text: $r('app.string.shenhe') },
         { text: $r('app.string.heping') }, { text: $r('app.string.hunnan') }] },
@@ -36,7 +36,7 @@ struct TextPickerExample {
         { text: $r('app.string.jinzhou') }, { text: $r('app.string.changhai') }] }]
     },
     {
-      // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       text: $r('app.string.jilin'),
       children: [{ text: $r('app.string.changchun'), children: [{ text: $r('app.string.nangang') },
         { text: $r('app.string.kuanchen') }, { text: $r('app.string.chaoyang') }] },
@@ -44,7 +44,7 @@ struct TextPickerExample {
         { text: $r('app.string.tiedong') }, { text: $r('app.string.lishu') }] }]
     },
     {
-      // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       text: $r('app.string.heilingjiang'),
       children: [{ text: $r('app.string.haerbin'), children: [{ text: $r('app.string.daoli') },
         { text: $r('app.string.daowai') }, { text: $r('app.string.nangang') }] },
@@ -122,22 +122,22 @@ struct TextPickerExample {
         .margin({ top: 60 });
 
       Row() {
-        // $r('app.string.one_multiple')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.one_multiple')需要替换为开发者所需的资源文件
         Button($r('app.string.one_multiple')).onClick(() => {
           this.setFontScale(1)
         }).margin(10);
 
-        // $r('app.string.one_point_seven_five_multiple')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.one_point_seven_five_multiple')需要替换为开发者所需的资源文件
         Button($r('app.string.one_point_seven_five_multiple')).onClick(() => {
           this.setFontScale(1.75)
         }).margin(10);
 
-        // $r('app.string.two_multiple')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.two_multiple')需要替换为开发者所需的资源文件
         Button($r('app.string.two_multiple')).onClick(() => {
           this.setFontScale(2)
         }).margin(10);
 
-        // $r('app.string.three_point_two_multiple')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.three_point_two_multiple')需要替换为开发者所需的资源文件
         Button($r('app.string.three_point_two_multiple')).onClick(() => {
           this.setFontScale(3.2)
         }).margin(10);

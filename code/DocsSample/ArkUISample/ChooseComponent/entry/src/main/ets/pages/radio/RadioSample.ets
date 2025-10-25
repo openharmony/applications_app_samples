@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,6 +14,7 @@
  */
 
 // [Start click_radio_to_change_function]
+// xxx.ets
 import { promptAction } from '@kit.ArkUI';
 
 @Entry
@@ -22,12 +23,10 @@ export struct RadioSample {
   @State message: string = 'Ringing';
   pathStack: NavPathStack = new NavPathStack();
 
-  resourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
-  }
-
   build() {
+    // [StartExclude click_radio_to_change_function]
     NavDestination() {
+      // [EndExclude click_radio_to_change_function]
       Column({ space: 8 }) {
         Column({ space: 8 }) {
           Text(this.message).id('message')
@@ -43,7 +42,7 @@ export struct RadioSample {
                   // [StartExclude click_radio_to_change_function]
                   this.message = 'Ringing mode';
                   // [EndExclude click_radio_to_change_function]
-                  promptAction.showToast({ 'message': 'Ringing mode.' });
+                  promptAction.openToast({ 'message': 'Ringing mode.' });
                 }
               })
             Text('Ringing')
@@ -59,7 +58,7 @@ export struct RadioSample {
                   // [StartExclude change_radio_function]
                   this.message = 'Vibration';
                   // [EndExclude change_radio_function]
-                  promptAction.showToast({ 'message': 'Vibration mode.' });
+                  promptAction.openToast({ 'message': 'Vibration mode.' });
                 }
               })
             Text('Vibration')
@@ -74,7 +73,7 @@ export struct RadioSample {
                   // [StartExclude change_radio_function]
                   this.message = 'Silent';
                   // [EndExclude change_radio_function]
-                  promptAction.showToast({ 'message': 'Silent mode.' });
+                  promptAction.openToast({ 'message': 'Silent mode.' });
                 }
               })
             Text('Silent')
@@ -90,9 +89,12 @@ export struct RadioSample {
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude click_radio_to_change_function]
     }
+    // [EndExclude click_radio_to_change_function]
     .backgroundColor('#f1f2f3')
-    .title(this.resourceToString($r('app.string.RadioSample_title')))
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    .title($r('app.string.RadioSample_title'))
   }
 }
 // [End click_radio_to_change_function]
