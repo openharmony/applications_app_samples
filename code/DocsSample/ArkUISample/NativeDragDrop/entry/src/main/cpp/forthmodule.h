@@ -144,7 +144,7 @@ void ForthModule(ArkUI_NodeHandle &root)
     // [Start touch_intercept]
     // buttonTouch作为targetId，用于区分不同target的事件。
     enum {
-      BUTTON_TOUCH = 1
+        BUTTON_TOUCH = 1
     };
 
     dragButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
