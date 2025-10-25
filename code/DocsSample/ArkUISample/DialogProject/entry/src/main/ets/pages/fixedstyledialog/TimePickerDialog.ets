@@ -14,6 +14,8 @@
  */
 
 // [Start time_picker_dialog]
+// xxx.ets
+
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
@@ -55,6 +57,7 @@ export struct TimePickerDialogExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.CustomDialog_time'))
   }
 }
