@@ -12,13 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-export class PerfUtils {
+// [Start utils_sample]
+export class Utils {
+  static num: number = 0;
+  static maxNum: number = 10000;
   public static CalculateTest() {
-    let num: number = 0
-    for (let index = 0; index < 100000; index++) {
-      num += index
+    for (let index = 0; index < Utils.maxNum; index++) {
+      Utils.num++;
     }
   }
+  public static Reset() {
+    Utils.num = 0;
+  }
 }
-
+// [End utils_sample]
