@@ -1,0 +1,40 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//[Start WidthExample_start]
+@Entry
+@Component
+struct WidthExample {
+  build() {
+    Column() {
+      Row() {
+        Column() {
+          Text('left width 20%')
+            .textAlign(TextAlign.Center)
+        }.width('20%').backgroundColor(0xF5DEB3).height('100%')
+
+        Column() {
+          Text('center width 50%')
+            .textAlign(TextAlign.Center)
+        }.width('50%').backgroundColor(0xD2B48C).height('100%')
+
+        Column() {
+          Text('right width 30%')
+            .textAlign(TextAlign.Center)
+        }.width('30%').backgroundColor(0xF5DEB3).height('100%')
+      }.backgroundColor(0xffd306).height('30%')
+    }
+  }
+}
+// [End WidthExample_start]

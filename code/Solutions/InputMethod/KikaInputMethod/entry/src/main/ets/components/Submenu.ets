@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start input_case_input_Submenu]
+
 import { BusinessError } from '@ohos.base';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { SubMenuType } from '../model/KeyboardKeyData';
@@ -173,4 +173,3 @@ export struct Submenu {
     .backgroundColor('#F1F3F5')
   }
 }
-// [End input_case_input_Submenu]

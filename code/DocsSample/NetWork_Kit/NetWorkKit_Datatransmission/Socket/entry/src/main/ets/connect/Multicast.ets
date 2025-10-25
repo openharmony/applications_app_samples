@@ -14,7 +14,7 @@
  */
 
 import { socket } from '@kit.NetworkKit';
-import Logger from '../common/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS'; // 引入 worker
 
 // 创建 Worker 实例
@@ -93,12 +93,12 @@ struct TCPSocketDemo {
         this.startMulticast = response.status;
       }
       if (response.type === 'multicastMessage') {
-        Logger.info(`Multicast message: ${response.message}`);
+        hilog.info(0x0000, 'testTag', `Multicast message: ${response.message}`);
       }
     };
 
     workerPort.onerror = (e: ErrorEvent) => {
-      Logger.error(`Error from Worker: ${e}`);
+      hilog.error(0x0000, 'testTag', `Error from Worker: ${e}`);
     };
   }
 }
