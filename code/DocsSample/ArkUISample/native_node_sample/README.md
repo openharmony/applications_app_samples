@@ -63,6 +63,7 @@
 10. 点击List选择框进入List组件的CAPI接口展示界面；
 11. 点击Grid选择框进入Grid组件的CAPI接口展示界面；
 12. 点击Refresh选择框进入Refresh组件的CAPI接口展示界面；
+13. 点击XComponent选择框进入XComponent组件的CAPI接口展示界面<br>(该示例在OpenHarmony与HarmonyOS上运行效果不同)；
 ```
 "BIND_EVENT success"
 ```

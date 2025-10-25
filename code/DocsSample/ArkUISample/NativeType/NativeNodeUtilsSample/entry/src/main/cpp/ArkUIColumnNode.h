@@ -29,7 +29,5 @@ namespace NativeModule {
 
         ~ArkUIColumnNode() override {}
     };
-
 } // namespace NativeModule
-
 #endif // MYAPPLICATION_ArkUIColumnNode_H

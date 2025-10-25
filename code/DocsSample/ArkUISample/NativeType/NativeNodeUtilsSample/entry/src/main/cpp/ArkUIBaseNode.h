@@ -20,6 +20,7 @@
 #include <arkui/native_type.h>
 #include <list>
 #include <memory>
+#include <hilog/log.h>
 
 #include "NativeModule.h"
 
@@ -110,7 +111,17 @@ namespace NativeModule {
         // 以下方法可以跨过ContentSlot。
         ArkUI_NodeHandle GetParentInPageTree() const { return OH_ArkUI_NodeUtils_GetParentInPageTree(handle_); }
 
-        ArkUI_NodeHandle GetCurrentPageRootNode() const { return OH_ArkUI_NodeUtils_GetCurrentPageRootNode(handle_); }
+        ArkUI_NodeHandle GetCurrentPageRootNode() const
+        {
+            auto rootNode = OH_ArkUI_NodeUtils_GetCurrentPageRootNode(handle_);
+
+            int32_t uniqueId = -1;
+            OH_ArkUI_NodeUtils_GetNodeUniqueId(handle_, &uniqueId);
+            auto nodeType = OH_ArkUI_NodeUtils_GetNodeType(handle_);
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "BaseNode",
+                         "Print base node info, uniqueId%{public}d, type:%{public}d, ", uniqueId, nodeType);
+            return rootNode;
+        }
 
         ArkUI_NodeHandle GetActiveChildrenByIndex(uint32_t index) const
         {
@@ -120,6 +131,11 @@ namespace NativeModule {
             ArkUI_NodeHandle child;
             if (index < count) {
                 child = OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex(childrenInfo, index);
+                int32_t uniqueId = -1;
+                OH_ArkUI_NodeUtils_GetNodeUniqueId(child, &uniqueId);
+                auto nodeType = OH_ArkUI_NodeUtils_GetNodeType(child);
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "BaseNode",
+                             "Print child info, uniqueId%{public}d, type:%{public}d, ", uniqueId, nodeType);
             }
             OH_ArkUI_ActiveChildrenInfo_Destroy(childrenInfo);
             return child;
@@ -171,11 +187,14 @@ namespace NativeModule {
 
         void RemoveCustomProperty(const char *name) { OH_ArkUI_NodeUtils_RemoveCustomProperty(handle_, name); }
 
-        const char *GetCustomProperty(const char *name)
+        const char* GetCustomProperty(const char *name)
         {
             ArkUI_CustomProperty *property;
             OH_ArkUI_NodeUtils_GetCustomProperty(handle_, name, &property);
             auto value = OH_ArkUI_CustomProperty_GetStringValue(property);
+
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "BaseNode", "Get CP name-value: %{public}s - %{public}s",
+                name, value);
             OH_ArkUI_CustomProperty_Destroy(property);
             return value;
         }

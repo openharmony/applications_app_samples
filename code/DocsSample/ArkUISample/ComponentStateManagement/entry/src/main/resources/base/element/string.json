@@ -1,0 +1,61 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ComponentStateManagement"
+    },
+    {
+      "name": "LinkDecorator",
+      "value": "LinkDecorator"
+    },
+    {
+      "name": "LinkDecorator_label1",
+      "value": "AddProxyToRerendertheUI"
+    },
+    {
+      "name": "LinkDecorator_label2",
+      "value": "DecoratingVariablesDateType"
+    },
+    {
+      "name": "LinkDecorator_label3",
+      "value": "DecoratingVariablesMapType"
+    },
+    {
+      "name": "LinkDecorator_label4",
+      "value": "DecoratingVariablesSetType"
+    },
+    {
+      "name": "LinkDecorator_label5",
+      "value": "LinkUsage"
+    },
+    {
+      "name": "LinkDecorator_label6",
+      "value": "LinkUsage2"
+    },
+    {
+      "name": "LinkDecorator_label7",
+      "value": "UseWatchToChangeLocalVariables"
+    },
+    {
+      "name": "LinkDecorator_label8",
+      "value": "UsingLinkwithArrayTypes"
+    },
+    {
+      "name": "LinkDecorator_label9",
+      "value": "UsingLinkwithPrimitiveandClassTypes"
+    },
+    {
+      "name": "LinkDecorator_label10",
+      "value": "UsingUnionTypes"
+    }
+    
+  ]
+}

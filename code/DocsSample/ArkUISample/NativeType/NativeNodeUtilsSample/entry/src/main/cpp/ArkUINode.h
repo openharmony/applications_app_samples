@@ -73,6 +73,10 @@ public:
         auto result = nativeModule_->setAttribute(handle_, NODE_WIDTH, &item);
         CheckErrorCode(result);
     }
+    float GetWidth()
+    {
+        return nativeModule_->getAttribute(handle_, NODE_WIDTH)->value[0].f32;
+    }
     void SetPercentWidth(float percent)
     {
         ArkUI_NumberValue value[] = {{.f32 = percent}};
@@ -86,6 +90,19 @@ public:
         ArkUI_AttributeItem item = {value, 1};
         auto result = nativeModule_->setAttribute(handle_, NODE_HEIGHT, &item);
         CheckErrorCode(result);
+    }
+    float GetHeight()
+    {
+        return nativeModule_->getAttribute(handle_, NODE_HEIGHT)->value[0].f32;
+    }
+    void SetSize(float width, float height)
+    {
+        ArkUI_NumberValue valueWidth[] = {{.f32 = width}};
+        ArkUI_AttributeItem itemWidth = {valueWidth, 1};
+        nativeModule_->setAttribute(handle_, NODE_WIDTH, &itemWidth);
+        ArkUI_NumberValue valueHeight[] = {{.f32 = height}};
+        ArkUI_AttributeItem itemHeight = {valueHeight, 1};
+        nativeModule_->setAttribute(handle_, NODE_HEIGHT, &itemHeight);
     }
     void SetPercentHeight(float percent)
     {
@@ -107,6 +124,7 @@ public:
         auto result = nativeModule_->setAttribute(handle_, NODE_ID, &item);
         CheckErrorCode(result);
     }
+    void ResetId() { nativeModule_->resetAttribute(handle_, NODE_ID); }
     void CheckErrorCode(int32_t errorCode)
     {
         if (errorCode == ARKUI_ERROR_CODE_NO_ERROR) {
@@ -164,11 +182,11 @@ public:
     }
 
     // 处理通用事件。
-    void RegisterOnClick(const std::function<void(ArkUI_NodeEvent *event)> &onClick)
+    void RegisterOnClick(const std::function<void(ArkUI_NodeEvent *event)> &onClick, void* userData)
     {
         onClick_ = onClick;
         // 注册点击事件。
-        nativeModule_->registerNodeEvent(handle_, NODE_ON_CLICK_EVENT, 0, nullptr);
+        nativeModule_->registerNodeEvent(handle_, NODE_ON_CLICK_EVENT, 0, userData);
     }
 
     void RegisterOnTouch(const std::function<void(int32_t type, float x, float y)> &onTouch)

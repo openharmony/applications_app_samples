@@ -87,12 +87,14 @@ entry/src/main/ets/
 |   |       |---SwiperAndTabsLinkage.ets
 |   |       |---SwiperAutoPlay.ets
 |   |       |---SwiperCustomAnimation.ets
+|   |       |---SwiperDigitIndicatorIgnoreComponentSize.ets
 |   |       |---SwiperDirection.ets
 |   |       |---SwiperIgnoreComponentSize.ets
 |   |       |---SwiperIndicatorStyle.ets
 |   |       |---SwiperLoop.ets
 |   |       |---SwiperMultiPage.ets
 |   |       |---SwiperPageSwitchMethod.ets
+|   |       |---SwiperVisibleContentPosition.ets
 |   |---tabs                                 //选项卡
 |   |       |---AgeFriendlyTabs.ets  
 |   |       |---BottomTabBar.ets

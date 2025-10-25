@@ -14,6 +14,7 @@
  */
 import { LengthMetrics } from '@kit.ArkUI'
 
+// [Start particle_example6]
 @Entry
 @Component
 struct ParticleExample6 {
@@ -127,3 +128,4 @@ struct ParticleExample6 {
     }
   }
 }
+// [End particle_example6]
