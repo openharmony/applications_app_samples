@@ -43,7 +43,6 @@
 
 ### 具体实现
 
-- 使用前需要在CMakeLists.txt中添加`libnative_rdb_ndk.z.so`和`libhilog_ndk.z.so`库。
 - 本示例提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要，源码参考：napi_init.cpp。
 
 ### 相关权限

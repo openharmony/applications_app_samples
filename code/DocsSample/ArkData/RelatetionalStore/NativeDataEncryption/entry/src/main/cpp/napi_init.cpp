@@ -58,8 +58,10 @@ static napi_value CustomizedConfigRdbStore(napi_env env,
 
   uint8_t key[6] = {0x31, 0x32, 0x33, 0x34, 0x35, 0x36};
   // 使用指定的密钥打开加密数据库。不指定则由数据库负责生成并保存密钥，并使用生成的密钥。
-  OH_Crypto_SetEncryptionKey(cryptoParam, key, 6);
+  const int32_t length = 6;
+  OH_Crypto_SetEncryptionKey(cryptoParam, key, length);
   // 设置KDF算法迭代次数。迭代次数必须大于零。不指定或等于零则使用默认值10000和默认加密算法。
+  const int64_t iteration = 64000;
   OH_Crypto_SetIteration(cryptoParam, 64000);
   // 设置加密算法，如不设置默认为AES_256_GCM
   OH_Crypto_SetEncryptionAlgo(cryptoParam, Rdb_EncryptionAlgo::RDB_AES_256_CBC);
@@ -68,7 +70,8 @@ static napi_value CustomizedConfigRdbStore(napi_env env,
   // 设置KDF算法，如不设置默认为SHA256
   OH_Crypto_SetKdfAlgo(cryptoParam, RDB_KDF_SHA512);
   // 设置打开加密数据库时使用的页大小，须为1024到65536之间的整数且为2的幂，如不设置默认为1024
-  OH_Crypto_SetCryptoPageSize(cryptoParam, 4096);
+  const int64_t pageSize = 4096;
+  OH_Crypto_SetCryptoPageSize(cryptoParam, pageSize);
   // 设置自定义加密参数
   OH_Rdb_SetCryptoParam(config, cryptoParam);
 
@@ -135,24 +138,23 @@ static napi_value RestoreRdbStore(napi_env env, napi_callback_info info) {
 // 调用OH_Rdb_SetSecurityLevel接口设置数据库的安全等级。
 static napi_value SetSecurityLevelForRdbStore(napi_env env,
                                               napi_callback_info info) {
-    
-    // [Start SetSecurityLevelForRdbStore]
-      OH_Rdb_ConfigV2 *config = OH_Rdb_CreateConfig();
-      OH_Rdb_SetDatabaseDir(config, "/data/storage/el2/database");
-      OH_Rdb_SetStoreName(config, "RdbTest.db");
-      OH_Rdb_SetBundleName(config, "com.example.nativedemo");
-      OH_Rdb_SetModuleName(config, "entry");
-      // 数据库文件安全等级
-      OH_Rdb_SetSecurityLevel(config, OH_Rdb_SecurityLevel::S3);
-      OH_Rdb_SetEncrypted(config, false);
-      OH_Rdb_SetArea(config, RDB_SECURITY_AREA_EL2);
-    
-      int errCode = 0;
-      OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
-      OH_Rdb_CloseStore(store_);
-    // [End SetSecurityLevelForRdbStore]
-}
 
+  // [Start SetSecurityLevelForRdbStore]
+  OH_Rdb_ConfigV2 *config = OH_Rdb_CreateConfig();
+  OH_Rdb_SetDatabaseDir(config, "/data/storage/el2/database");
+  OH_Rdb_SetStoreName(config, "RdbTest.db");
+  OH_Rdb_SetBundleName(config, "com.example.nativedemo");
+  OH_Rdb_SetModuleName(config, "entry");
+  // 数据库文件安全等级
+  OH_Rdb_SetSecurityLevel(config, OH_Rdb_SecurityLevel::S3);
+  OH_Rdb_SetEncrypted(config, false);
+  OH_Rdb_SetArea(config, RDB_SECURITY_AREA_EL2);
+
+  int errCode = 0;
+  OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
+  OH_Rdb_CloseStore(store_);
+  // [End SetSecurityLevelForRdbStore]
+}
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {

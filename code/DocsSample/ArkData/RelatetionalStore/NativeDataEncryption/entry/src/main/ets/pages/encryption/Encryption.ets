@@ -37,10 +37,10 @@ export async function defaultConfigRdbStoreTs() {
       encrypt: true
     };
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
-    hilog.info(DOMAIN, "Encryption", 'Succeeded in getting RdbStore.');
+    hilog.info(DOMAIN, 'Encryption', 'Succeeded in getting RdbStore.');
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, "Encryption", `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.info(DOMAIN, 'Encryption', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
   }
 
   // [End defaultConfigRdbStoreTs]
@@ -79,15 +79,15 @@ export async function customizedConfigRdbStoreTs() {
   try {
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     if (store == null) {
-      hilog.info(DOMAIN, "Encryption", 'Failed to get RdbStore.');
+      hilog.info(DOMAIN, 'Encryption', 'Failed to get RdbStore.');
     } else {
-      hilog.info(DOMAIN, "Encryption", 'Succeeded in getting RdbStore.');
+      hilog.info(DOMAIN, 'Encryption', 'Succeeded in getting RdbStore.');
     }
     // 调用完后需要将密钥清零
     CRYPTO_PARAM.encryptionKey.fill(0);
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, "Encryption", `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.info(DOMAIN, 'Encryption', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
   }
 
   // [End customizedConfigRdbStoreTs]

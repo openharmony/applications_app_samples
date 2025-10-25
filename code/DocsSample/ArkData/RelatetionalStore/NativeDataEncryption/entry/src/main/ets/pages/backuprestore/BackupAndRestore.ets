@@ -44,10 +44,10 @@ export async function backupManually() {
   try {
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
-    hilog.info(DOMAIN, "BackupAndRestore", 'Succeeded in getting RdbStore.');
+    hilog.info(DOMAIN, 'BackupAndRestore', 'Succeeded in getting RdbStore.');
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, "BackupAndRestore", `Failed to get RdbStore. Code:${err.code},message:${err.message}`);
+    hilog.info(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code},message:${err.message}`);
   }
 
   if (!store) {
@@ -60,10 +60,10 @@ export async function backupManually() {
      * 也可指定绝对路径："/data/storage/el2/database/Backup.db"，文件路径需要存在，不会自动创建目录。
      */
     await store.backup("Backup.db");
-    hilog.info(DOMAIN, "BackupAndRestore", `Succeeded in backing up RdbStore.`);
+    hilog.info(DOMAIN, 'BackupAndRestore', `Succeeded in backing up RdbStore.`);
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, "BackupAndRestore", `Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.info(DOMAIN, 'BackupAndRestore', `Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
   }
 
   // [End backupManually]
@@ -100,14 +100,14 @@ export async function backupManually() {
           }
           // todo resultSet.goToFirstRow(), resultSet.count等其它接口也会抛异常
           while (resultSet.goToNextRow()) {
-            hilog.info(DOMAIN, "BackupAndRestore", JSON.stringify(resultSet.getRow()));
+            hilog.info(DOMAIN, 'BackupAndRestore', JSON.stringify(resultSet.getRow()));
           }
           resultSet.close();
         } catch (err) {
           if (err.code === 14800011) {
             // 执行下文的步骤，即关闭结果集之后进行数据的恢复
           }
-          hilog.info(DOMAIN, "BackupAndRestore", JSON.stringify(err));
+          hilog.info(DOMAIN, 'BackupAndRestore', JSON.stringify(err));
         }
       })
   }
@@ -115,14 +115,14 @@ export async function backupManually() {
 
   // 关闭所有打开着的结果集
   // [Start closeAllOpenResultSets]
-  let resultSets: Array<relationalStore.ResultSet> = [];
+  let resultSets: relationalStore.ResultSet[] = []
   // 使用resultSet.close()方法关闭所有打开着的结果集
   for (let resultSet of resultSets) {
     try {
       resultSet.close();
     } catch (e) {
       if (e.code !== 14800014) {
-        hilog.info(DOMAIN, "BackupAndRestore", `Code:${e.code}, message:${e.message}`);
+        hilog.info(DOMAIN, 'BackupAndRestore', `Code:${e.code}, message:${e.message}`);
       }
     }
   }
@@ -138,7 +138,9 @@ export async function rebuildingRelationalDatabaseAbnormally() {
 
   // 在创建或使用关系型数据库的过程中，抛出14800011异常错误码说明数据库出现异常，可以删除数据库后恢复数据。
 
-  // 需要通过在[StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig)中配置allowRebuild参数为true以设置数据库在出现异常时自动删库。数据库重建成功后为空库，需要开发者重新建表并且使用提前备份好的数据进行数据恢复，备份操作可见[关系型数据库备份](#关系型数据库备份)，数据恢复可见[关系型数据库恢复](#关系型数据库数据恢复)。
+  // 需要通过在[StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig)中配置
+  // allowRebuild参数为true以设置数据库在出现异常时自动删库。数据库重建成功后为空库，需要开发者重新建表并且使用提前备份好的数据进行数据恢复，
+  // 备份操作可见[关系型数据库备份](#关系型数据库备份)，数据恢复可见[关系型数据库恢复](#关系型数据库数据恢复)。
 
   // 若数据库异常前已配置StoreConfig中的allowRebuild为true，则数据库出现异常时将自动删库。
 
@@ -155,10 +157,10 @@ export async function rebuildingRelationalDatabaseAbnormally() {
     };
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
-    hilog.info(DOMAIN, "BackupAndRestore", 'Succeeded in getting RdbStore.');
+    hilog.info(DOMAIN, 'BackupAndRestore', 'Succeeded in getting RdbStore.');
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, "BackupAndRestore", `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.info(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
   }
   // [End rebuildingRelationalDatabaseAbnormally]
 }
@@ -183,23 +185,23 @@ export async function restoringManualBackupData() {
     let backupFilePath = context.databaseDir + '/rdb/Backup.db';
     const backupExist: boolean = await fileIo.access(backupFilePath);
     if (!backupExist) {
-      hilog.info(DOMAIN, "BackupAndRestore", "Backup is not exist.");
+      hilog.info(DOMAIN, 'BackupAndRestore', "Backup is not exist.");
       // todo 开库建表
       // todo 自行生成数据
       return;
     }
   } catch (e) {
-    hilog.info(DOMAIN, "BackupAndRestore", `Code:${e.code}, message:${e.message}`);
+    hilog.info(DOMAIN, 'BackupAndRestore', `Code:${e.code}, message:${e.message}`);
   }
 
   try {
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
     // 调用restore接口恢复数据
     await store.restore("Backup.db");
-    hilog.info(DOMAIN, "BackupAndRestore", "Restore from backup success.");
+    hilog.info(DOMAIN, 'BackupAndRestore', "Restore from backup success.");
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, "BackupAndRestore", `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.info(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
   }
   // [End invokeTheRestoreInterfaceToRestoreData]
 }
