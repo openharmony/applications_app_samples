@@ -17,26 +17,26 @@
 @Entry
 @ComponentV2
 export struct DecorativeDate {
-  @Provider() SelectedDate: Date = new Date('2021-08-08');
+  @Provider() selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
-      Text(`parent: ${this.SelectedDate}`)
+      Text(`parent: ${this.selectedDate}`)
       Button('update the new date')
         .onClick(() => {
-          this.SelectedDate = new Date('2023-07-07');
+          this.selectedDate = new Date('2023-07-07');
         })
       Button('increase the year by 1')
         .onClick(() => {
-          this.SelectedDate.setFullYear(this.SelectedDate.getFullYear() + 1);
+          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
         })
       Button('increase the month by 1')
         .onClick(() => {
-          this.SelectedDate.setMonth(this.SelectedDate.getMonth() + 1);
+          this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
         })
       Button('increase the day by 1')
         .onClick(() => {
-          this.SelectedDate.setDate(this.SelectedDate.getDate() + 1);
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
         })
       Child()
     }
@@ -44,26 +44,26 @@ export struct DecorativeDate {
 }
 @ComponentV2
 struct Child {
-  @Consumer() SelectedDate: Date = new Date('2022-07-07');
+  @Consumer() selectedDate: Date = new Date('2022-07-07');
 
   build() {
     Column() {
-      Text(`child: ${this.SelectedDate}`)
+      Text(`child: ${this.selectedDate}`)
       Button('update the new date')
         .onClick(() => {
-          this.SelectedDate = new Date('2025-01-01');
+          this.selectedDate = new Date('2025-01-01');
         })
       Button('increase the year by 1')
         .onClick(() => {
-          this.SelectedDate.setFullYear(this.SelectedDate.getFullYear() + 1);
+          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
         })
       Button('increase the month by 1')
         .onClick(() => {
-          this.SelectedDate.setMonth(this.SelectedDate.getMonth() + 1);
+          this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
         })
       Button('increase the day by 1')
         .onClick(() => {
-          this.SelectedDate.setDate(this.SelectedDate.getDate() + 1);
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
         })
     }
   }
