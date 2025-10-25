@@ -21,4 +21,9 @@ export const registerWatcherCrash: () => void;
 export const registerWatcherClick: () => void;
 export const writeAppEvent: () => void;
 // [End AppEvent_C++_Index.d.ts]
+// [Start test_hicollie_timer_Index.d.ts]
+export const TestHiCollieTimerNdk: () => void;
+export const RegisterAppHicollieWatcherR: () => void;
+export const RegisterAppHicollieWatcherT: () => void;
+// [End test_hicollie_timer_Index.d.ts]
 // [End EventSub_Index.d.ts_All]

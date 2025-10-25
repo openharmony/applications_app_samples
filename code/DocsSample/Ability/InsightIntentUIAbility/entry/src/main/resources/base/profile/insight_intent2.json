@@ -1,0 +1,13 @@
+{
+  "insightIntents": [
+    {
+      "domain": "MusicDomain",
+      "intentName": "PlayMusic",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/insightintents/DownloadExecutor.ets",
+      "serviceExtension": {
+        "ability": "DownloadService"
+      }
+    }
+  ]
+}

@@ -15,7 +15,7 @@
 
 import { MessageEvents, worker } from '@kit.ArkTS';
 import wifiManager from '@ohos.wifiManager';
-import Logger from '../common/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const workerPort = new worker.ThreadWorker('entry/ets/workers/TcpClientWorker.ets');
 
@@ -185,7 +185,7 @@ struct Index {
 
     if (this.clientIp === '' || !this.clientPort || this.serverIp === '' || !this.serverPort) {
       this.msgHistory += 'Some required fields are missing.' + '\r\n';
-      Logger.error('Some required fields are missing.');
+      hilog.error(0x0000, 'testTag', 'Some required fields are missing.');
       return;
     }
 
