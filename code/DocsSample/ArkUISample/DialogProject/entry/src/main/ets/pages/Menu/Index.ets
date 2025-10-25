@@ -17,7 +17,7 @@ import { CompletedRoutableCard } from '../../common/Card';
 import resource from '../../common/resource';
 import { Route } from '../../common/Route';
 import { menuExample } from './CreateMenu';
-import { OpenPopup } from './globalmenusindependentofuicomponents//GlobalOpenMenu'
+import { OpenPopup } from './globalmenusindependentofuicomponents//GlobalOpenMenu';
 
 
 export const Menu_ROUTE_PREFIX: string = 'Menu_ROUTE_PREFIX';

@@ -22,7 +22,7 @@ import { AnimationPopupExample } from './PopupAnimation';
 import { StatePopupExample } from './PopupStateChange';
 import { StylePopupExample } from './PopupStyle';
 import { TextPopupExample } from './TextPrompts';
-import { OpenPopup } from './globalpopupsindependentofuicomponents/OpenPopup'
+import { OpenPopup } from './globalpopupsindependentofuicomponents/OpenPopup';
 
 
 export const Popup_ROUTE_PREFIX: string = 'Popup_ROUTE_PREFIX';

@@ -18,17 +18,19 @@
 
 ## 工程目录
 
-```
+```    
 entry/src/main/ets/
-└─── pages
-    └── Index.ets(表冠输入案例)
+├──entryability
+├──entrybackupability
+└──pages
+    └── Index.ets                           // 表冠输入案例   
 ```
 
 ## 具体实现
 
-1. 组件焦点设置：确保接收表冠事件的组件启用焦点属性，例如 focusable(true)、focusOnTouch(true) 和 defaultFocus(true)，以便组件获得焦点并接收事件。
-
-2. 表冠事件回调注册：通过 .onDigitalCrown((event: CrownEvent) => { ... }) 注册表冠事件回调，处理事件参数（如 angularVelocity、degree 等）并根据需求实现自定义逻辑。
+1. 获取并保持焦点：为接收表冠事件的组件开启焦点能力，使用 focusable(true)、focusOnTouch(true) 和 defaultFocus(true) 以确保组件在需要时能够获得焦点并接收事件。
+2. 注册表冠事件回调：通过 onDigitalCrown((event: CrownEvent) => { ... }) 注册回调，处理 event 的字段（如 timestamp、angularVelocity、degree、action），并在需要时调用 stopPropagation 以阻止冒泡。
+3. 演示示例：在回调中实现自定义逻辑（例如更新文本显示、日志输出等），并在组件中示例化文本组件的样式设置与焦点配置，确保在 BEGIN/UPDATE/END 的焦点状态变化时行为符合预期。
 
 ## 相关权限
 
