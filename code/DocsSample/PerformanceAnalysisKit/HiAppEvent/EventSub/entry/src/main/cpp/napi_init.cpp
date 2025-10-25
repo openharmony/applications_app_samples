@@ -37,6 +37,15 @@ static HiAppEvent_Watcher *eventWatcherR;
 static HiAppEvent_Watcher *eventWatcherT;
 // [End EventSub_onTrigger_ptr]
 
+// [Start App_Hicollie_OnReceive]
+// 定义一变量，用来缓存创建的观察者的指针。
+static HiAppEvent_Watcher *appHicollieWatcherR;
+// [End App_Hicollie_OnReceive]
+// [Start App_Hicollie_Trigger]
+// 定义一变量，用来缓存创建的观察者的指针。
+static HiAppEvent_Watcher *appHicollieWatcherT;
+// [End App_Hicollie_Trigger]
+
 // [Start CrashEvent_OnReceive]
 static void OnReceiveCrashEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
@@ -950,9 +959,6 @@ static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
 // [End Hicollie_Set_Timer]
 
 // [Start App_Hicollie_OnReceive]
-// 定义一变量，用来缓存创建的观察者的指针。
-static HiAppEvent_Watcher *appHicollieWatcherR;
-
 static void OnReceiveAppHicollie(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
 {
     if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
@@ -1025,9 +1031,6 @@ static napi_value RegisterAppHicollieWatcherR(napi_env env, napi_callback_info i
 // [End App_Hicollie_OnReceive]
 
 // [Start App_Hicollie_Trigger]
-// 定义一变量，用来缓存创建的观察者的指针。
-static HiAppEvent_Watcher *appHicollieWatcherT;
-
 // 开发者可以自行实现获取已监听到事件的回调函数，其中events指针指向内容仅在该函数内有效。
 static void AppHicollieOnTake(const char *const *events, uint32_t eventLen)
 {
