@@ -12,15 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start JSForm_JsCardFormAbility_onAddForm]
-// [Start JSForm_JsCardFormAbility_onRemoveForm]
-// [Start JSForm_JsCardFormAbility_onUpdateForm]
+// [Start JSForm_JsCardFormAbility_import]
+// entry/src/main/ets/jscardformability/JsCardFormAbility.ets
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { preferences } from '@kit.ArkData';
-
+// [End JSForm_JsCardFormAbility_import]
+// [Start JSForm_JsCardFormAbility_FormExtensionAbility]
+// [Start JSForm_JsCardFormAbility_onAddForm]
+// [Start JSForm_JsCardFormAbility_onRemoveForm]
+// [Start JSForm_JsCardFormAbility_onUpdateForm]
 const TAG: string = 'JsCardFormAbility';
 // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -28,7 +31,8 @@ const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [StartExclude JSForm_JsCardFormAbility_onRemoveForm]
 // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
-let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
+let storeFormInfo =
+  async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
   // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
   let formInfo: Record<string, string | boolean | number> = {
     'formName': formName,
@@ -42,7 +46,8 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo,
+      err: ${JSON.stringify(err as BusinessError)}`);
   }
 }
 // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
@@ -55,7 +60,8 @@ let deleteFormInfo = async (formId: string, context: common.FormExtensionContext
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo,
+      err: ${JSON.stringify(err as BusinessError)}`);
   };
 };
 // [EndExclude JSForm_JsCardFormAbility_onAddForm]
@@ -107,7 +113,20 @@ export default class JsCardFormAbility extends FormExtensionAbility {
   }
   // [EndExclude JSForm_JsCardFormAbility_onAddForm]
   // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
+  // [Start JSForm_JsCardFormAbility_onFormEvent]
+  onFormEvent(formId: string, message: string): void {
+    // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
+    // 获取message事件中传递的detail参数
+    let msg: Record<string, string> = JSON.parse(message);
+    if (msg.detail === 'message detail') {
+      // 执行业务逻辑
+      hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
+    }
+  }
+  // [End JSForm_JsCardFormAbility_onFormEvent]
 }
 // [End JSForm_JsCardFormAbility_onAddForm]
 // [End JSForm_JsCardFormAbility_onRemoveForm]
 // [End JSForm_JsCardFormAbility_onUpdateForm]
+// [End JSForm_JsCardFormAbility_FormExtensionAbility]
