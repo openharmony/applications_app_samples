@@ -16,8 +16,8 @@
 // [Start Decorative_Complex]
 @ObservedV2
 class User {
-  @Trace name: string;
-  @Trace age: number;
+  @Trace public name: string;
+  @Trace public age: number;
 
   constructor(name: string, age: number) {
     this.name = name;
