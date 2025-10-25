@@ -19,13 +19,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "C:\\Users\\zhangdi\\.ohos\\config\\default_MyApplication2_BpUfE54aF0Hr3qHTRPqBeC-r8bSobbGp_46138UMdN4=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "000000196FC5050C2C1538710EFAFDF5E0B26E9E9D328510830E64CC01820494B9C7FF5FC6628D36B6",
-          "profile": "C:\\Users\\zhangdi\\.ohos\\config\\default_MyApplication2_BpUfE54aF0Hr3qHTRPqBeC-r8bSobbGp_46138UMdN4=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\zhangdi\\.ohos\\config\\default_MyApplication2_BpUfE54aF0Hr3qHTRPqBeC-r8bSobbGp_46138UMdN4=.p12",
-          "storePassword": "00000019197DE96955783171D161617254299F7860EDF1B717C8D02132B674D971EEBD78096F86D66C"
+          "certpath": "",
+          "keyAlias": "",
+          "keyPassword": "",
+          "profile": "",
+          "signAlg": "",
+          "storeFile": "",
+          "storePassword": ""
         }
       }
     ],
