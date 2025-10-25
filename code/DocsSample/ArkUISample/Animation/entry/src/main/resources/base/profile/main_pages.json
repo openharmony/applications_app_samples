@@ -44,10 +44,7 @@
     "pages/rotation/template2/Index",
     "pages/cohesion/template1/Index",
     "pages/cohesion/template2/Index",
-    "pages/animationBlur/template1/BlurEffectsExample",
-    "pages/animationBlur/template2/Index",
-    "pages/animationBlur/template3/BackDropBlurStyleDemo",
-    "pages/animationBlur/template4/ForegroundBlurStyleDemo",
-    "pages/animationBlur/template5/MotionBlurTest"
+    "pages/component/template1/Index",
+    "pages/component/template2/Index"
   ]
 }
