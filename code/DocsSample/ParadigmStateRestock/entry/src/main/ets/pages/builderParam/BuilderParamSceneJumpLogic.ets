@@ -18,13 +18,13 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
 
-class navigationParams {
-  pathStack: NavPathStack = new NavPathStack();
-  boo: boolean = true;
+class NavigationParams {
+  public pathStack: NavPathStack = new NavPathStack();
+  public boo: boolean = true;
 }
 
 @Builder
-function navigationAction(params: navigationParams) {
+function navigationAction(params: NavigationParams) {
   Column() {
     Navigation(params.pathStack) {
       Button('router to page', { stateEffect: true, type: ButtonType.Capsule })
@@ -52,7 +52,7 @@ function navigationAction(params: navigationParams) {
 @Entry
 @Component
 struct ParentPage {
-  @State info: navigationParams = new navigationParams();
+  @State info: NavigationParams = new NavigationParams();
 
   build() {
     Column() {
@@ -68,7 +68,7 @@ struct ParentPage {
 
 @Component
 struct ChildPageOne {
-  @State info: navigationParams = new navigationParams();
+  @State info: NavigationParams = new NavigationParams();
 
   build() {
     Column() {
@@ -80,8 +80,8 @@ struct ChildPageOne {
 
 @Component
 struct ChildPage_BuilderParam {
-  @State info: navigationParams = new navigationParams();
-  @BuilderParam eventBuilder: (param: navigationParams) => void = navigationAction;
+  @State info: NavigationParams = new NavigationParams();
+  @BuilderParam eventBuilder: (param: NavigationParams) => void = navigationAction;
 
   build() {
     Column() {

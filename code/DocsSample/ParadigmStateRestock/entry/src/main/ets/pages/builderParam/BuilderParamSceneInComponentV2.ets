@@ -32,13 +32,13 @@ struct ChildPage {
   }
 }
 
-const builder_value: string = 'Hello World';
+const builderValue: string = 'Hello World';
 
 @Builder
 function overBuilder() {
   Row() {
     // $r('app.string.builder_param_scene_text_01') 需要更换为开发者所需的字符串资源文件
-    Text($r('app.string.builder_param_scene_text_01', builder_value))
+    Text($r('app.string.builder_param_scene_text_01', builderValue))
       .fontSize(20)
       .fontWeight(FontWeight.Bold)
   }
@@ -64,7 +64,8 @@ struct ParentPage {
       // 调用this.componentBuilder()时，this指向当前@Entry所装饰的ParentPage组件，所以label变量的值为'Parent Page'。
       this.componentBuilder()
       ChildPage({
-        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为'Child Page'。
+        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，
+        // this指向的是子组件ChildPage，所以label变量的值为'Child Page'。
         customBuilderParam: this.componentBuilder,
         // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderPara
         // 因为箭头函数的this指向的是宿主对象，所以label变量的值为'Parent Page'。
@@ -79,9 +80,11 @@ struct ParentPage {
       // 调用全局overBuilder()时，this指向当前整个活动页，所以展示的内容为'Hello World'。
       overBuilder()
       ChildPage({
-        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向当前整个活动页，所以展示的内容为'Hello World'。
+        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，
+        // this指向当前整个活动页，所以展示的内容为'Hello World'。
         customBuilderParam: overBuilder,
-        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，this指向当前整个活动页，所以展示的内容为'Hello World'。
+        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，
+        // this指向当前整个活动页，所以展示的内容为'Hello World'。
         customChangeThisBuilderParam: overBuilder
       })
     }

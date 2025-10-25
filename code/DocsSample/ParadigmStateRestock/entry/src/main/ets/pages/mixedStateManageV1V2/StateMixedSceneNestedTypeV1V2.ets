@@ -1,8 +1,22 @@
+/*
+* Copyright (c) 2025 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 // [Start state_mixed_scene_nested_type_v1_v2]
 import { UIUtils } from '@kit.ArkUI';
 
 class ArrayItem {
-  value: number = 0;
+  public value: number = 0;
 
   constructor(value: number) {
     this.value = value;
@@ -10,8 +24,8 @@ class ArrayItem {
 }
 
 class Inner {
-  innerValue: string = 'inner';
-  arr: Array<ArrayItem>;
+  public innerValue: string = 'inner';
+  public arr: Array<ArrayItem>;
 
   constructor(arr: Array<ArrayItem>) {
     this.arr = arr;
@@ -19,8 +33,8 @@ class Inner {
 }
 
 class Outer {
-  @Track outerValue: string = 'outer';
-  @Track inner: Inner;
+  @Track public outerValue: string = 'outer';
+  @Track public inner: Inner;
 
   constructor(inner: Inner) {
     this.inner = inner;

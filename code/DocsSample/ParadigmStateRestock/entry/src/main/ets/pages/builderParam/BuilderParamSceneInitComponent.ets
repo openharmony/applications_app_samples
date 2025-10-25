@@ -14,7 +14,7 @@
 */
 // [Start builder_param_scene_init_component]
 class Tmp {
-  label: string = '';
+  public label: string = '';
 }
 
 @Builder

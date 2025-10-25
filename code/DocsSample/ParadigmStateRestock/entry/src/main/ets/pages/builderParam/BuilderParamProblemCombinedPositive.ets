@@ -23,18 +23,18 @@ function globalBuilder() {
 struct CustomBuilderDemo {
   build() {
     Column() {
-      ChildPage({ ChildBuilder: globalBuilder })
+      ChildPage({ childBuilder: globalBuilder })
     }
   }
 }
 
 @Component
 struct ChildPage {
-  @Require @BuilderParam ChildBuilder: () => void = globalBuilder;
+  @Require @BuilderParam childBuilder: () => void = globalBuilder;
 
   build() {
     Column() {
-      this.ChildBuilder()
+      this.childBuilder()
     }
   }
 }
