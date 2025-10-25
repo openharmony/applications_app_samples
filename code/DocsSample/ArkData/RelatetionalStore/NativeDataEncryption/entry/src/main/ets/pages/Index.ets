@@ -62,8 +62,8 @@ struct Index {
       }
       .type(ButtonType.Capsule)
       .margin({ top: 50 })
-      .width("60%")
-      .height("10%")
+      .width('60%')
+      .height('10%')
       .backgroundColor('#0D9FFB')
       .onClick(() => {
         defaultConfigRdbStoreTs()
