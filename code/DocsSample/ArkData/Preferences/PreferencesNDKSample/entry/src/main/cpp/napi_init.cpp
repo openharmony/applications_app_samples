@@ -14,6 +14,7 @@
  */
 
 #include "napi/native_api.h"
+#include <cstdint>
 #include <hilog/log.h>
 // [Start preferences_include]
 #include <database/preferences/oh_preferences.h>
@@ -81,7 +82,8 @@ void PreferencesCrudTest(OH_Preferences *preference)
         (void)OH_Preferences_Close(preference);
         // 错误处理
     }
-    ret = OH_Preferences_SetString(preference, keys[2], "string value");
+    int32_t stringIndex = 2;
+    ret = OH_Preferences_SetString(preference, keys[stringIndex], "string value");
     if (ret != PREFERENCES_OK) {
         (void)OH_Preferences_Close(preference);
         // 错误处理
@@ -102,7 +104,7 @@ void PreferencesCrudTest(OH_Preferences *preference)
     
     char *stringValue = nullptr;
     uint32_t valueLen = 0;
-    ret = OH_Preferences_GetString(preference, keys[2], &stringValue, &valueLen);
+    ret = OH_Preferences_GetString(preference, keys[stringIndex], &stringValue, &valueLen);
     if (ret == PREFERENCES_OK) {
         // 业务逻辑
         // 使用完OH_Preferences_GetString接口后，需要对字符串进行释放。
