@@ -60,7 +60,7 @@ export default class EntryAbility extends UIAbility {
     sessionId = distributedDataObject.genSessionId();
     hilog.info(DOMAIN, TAG, `gen sessionId: ${sessionId}`);
     let deviceId = getRemoteDeviceId();
-    if (deviceId == "") {
+    if (deviceId == '') {
       hilog.warn(DOMAIN, TAG, 'no remote device');
       return;
     }
@@ -152,7 +152,7 @@ export default class EntryAbility extends UIAbility {
 // 获取可信组网中的设备
 // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
 function getRemoteDeviceId() {
-  let deviceId = "";
+  let deviceId = '';
   try {
     let deviceManager = distributedDeviceManager.createDeviceManager('com.example.collaboration');
     let devices = deviceManager.getAvailableDeviceListSync();

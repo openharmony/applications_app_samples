@@ -23,13 +23,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 业务数据定义
 // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
 export class ContentInfo {
-  mainTitle: string | undefined;
-  textContent: string | undefined;
-  imageUriArray: Array<ImageInfo> | undefined;
-  isShowLocalInfo: boolean | undefined;
-  isAddLocalInfo: boolean | undefined;
-  selectLocalInfo: string | undefined;
-  attachments?: commonType.Assets | undefined;
+  public mainTitle: string | undefined;
+  public textContent: string | undefined;
+  public imageUriArray: Array<ImageInfo> | undefined;
+  public isShowLocalInfo: boolean | undefined;
+  public isAddLocalInfo: boolean | undefined;
+  public selectLocalInfo: string | undefined;
+  public attachments?: commonType.Assets | undefined;
 
   constructor(
     mainTitle: string | undefined,
@@ -92,7 +92,7 @@ export default class EntryAbility extends UIAbility {
       let sessionId: string = distributedDataObject.genSessionId();
       wantParam.distributedSessionId = sessionId;
 
-      let distrUriArray: Array<string> = [];
+      let distrUriArray: string[] = [];
       let assetUriArray = AppStorage.get<Array<string>>('assetUriArray');
       if (assetUriArray) {
         distrUriArray = assetUriArray;
@@ -135,7 +135,7 @@ export default class EntryAbility extends UIAbility {
       hilog.error(DOMAIN, TAG, 'OnContinue failed code: ', error.code);
       hilog.error(DOMAIN, TAG, 'OnContinue failed message: ', error.message);
     }
-    hilog.info(DOMAIN, TAG, "OnContinue success!");
+    hilog.info(DOMAIN, TAG, 'OnContinue success!');
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
