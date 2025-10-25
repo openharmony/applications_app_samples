@@ -149,49 +149,51 @@ static void OnReceiveFreezeEvent(const struct HiAppEvent_AppEventGroup *appEvent
 //定义一变量，用来缓存创建的观察者的指针。
 static HiAppEvent_Watcher *resouceLeakWatcherR;
 
-static void OnReceiveLeakEvent(const char *domain,
-                               const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
+static void HandleLeakEventInfo(const struct HiAppEvent_AppEventInfo &appEventInfos)
+{
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", appEventInfos.domain);
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", appEventInfos.name);
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", appEventInfos.type);
+    if (strcmp(appEventInfos.domain, DOMAIN_OS) == 0 &&
+        strcmp(appEventInfos.name, EVENT_RESOURCE_OVERLIMIT) == 0) {
+        Json::Value params;
+        Json::Reader reader(Json::Features::strictMode());
+        Json::FastWriter writer;
+        if (reader.parse(appEventInfos.params, params)) {
+            auto time = params["time"].asInt64();
+            auto pid = params["pid"].asInt();
+            auto uid = params["uid"].asInt();
+            auto resourceType = params["resourceType"].asString();
+            auto bundleName = params["bundle_name"].asString();
+            auto bundleVersion = params["bundle_version"].asString();
+            auto memory = writer.write(params["memory"]);
+            auto externalLog = writer.write(params["external_log"]);
+            std::string logOverLimit = params["log_over_limit"].asBool() ? "true":"false";
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.resource_type=%{public}s",
+                resourceType.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
+                bundleName.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
+                bundleVersion.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s",
+                memory.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
+                externalLog.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s",
+                logOverLimit.c_str());
+        }
+    }
+}
+
+static void OnReceiveLeakEvent(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups,
+    uint32_t groupLen)
 {
     for (int i = 0; i < groupLen; ++i) {
         for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s",
-                appEventGroups[i].appEventInfos[j].domain);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s",
-                appEventGroups[i].appEventInfos[j].name);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d",
-                appEventGroups[i].appEventInfos[j].type);
-            if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 && 
-                strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_RESOURCE_OVERLIMIT) == 0) {
-                Json::Value params;
-                Json::Reader reader(Json::Features::strictMode());
-                Json::FastWriter writer;
-                if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
-                    auto time = params["time"].asInt64();
-                    auto pid = params["pid"].asInt();
-                    auto uid = params["uid"].asInt();
-                    auto resourceType = params["resourceType"].asString();
-                    auto bundleName = params["bundle_name"].asString();
-                    auto bundleVersion = params["bundle_version"].asString();
-                    auto memory = writer.write(params["memory"]);
-                    auto externalLog = writer.write(params["external_log"]);
-                    std::string logOverLimit = params["log_over_limit"].asBool() ? "true":"false";
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.resource_type=%{public}s",
-                        resourceType.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
-                        bundleName.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
-                        bundleVersion.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s",
-                        memory.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
-                        externalLog.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s",
-                        logOverLimit.c_str());
-                }
-            }
+            HandleLeakEventInfo(appEventGroups[i].appEventInfos[j]);
         }
     }
 }
@@ -215,33 +217,33 @@ static napi_value RegisterLeakReceiveWatcher(napi_env env, napi_callback_info in
 // 定义一变量，用来缓存创建的观察者的指针。
 static HiAppEvent_Watcher *appKillWatcherR;
 
-static void OnReceiveAppKillEvent(const char *domain,
-                                  const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
+static void HandleAppKillEventInfo(const struct HiAppEvent_AppEventInfo &appEventInfos)
+{
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", appEventInfos.domain);
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", appEventInfos.name);
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", appEventInfos.type);
+    if (strcmp(appEventInfos.domain, DOMAIN_OS) == 0 &&
+        strcmp(appEventInfos.name, EVENT_APP_KILLED) == 0) {
+        Json::Value params;
+        Json::Reader reader(Json::Features::strictMode());
+        Json::FastWriter writer;
+        if (reader.parse(appEventInfos.params, params)) {
+            auto time = params["time"].asInt64();
+            auto reason = params["reason"].asString();
+            auto foreground = params["foreground"].asString();
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.reason=%{public}s", reason.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}s", foreground.c_str());
+        }
+    }
+}
+
+static void OnReceiveAppKillEvent(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups,
+    uint32_t groupLen)
 {
     for (int i = 0; i < groupLen; ++i) {
         for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s",
-                        appEventGroups[i].appEventInfos[j].domain);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s",
-                        appEventGroups[i].appEventInfos[j].name);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d",
-                        appEventGroups[i].appEventInfos[j].type);
-            if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
-                strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_APP_KILLED) == 0) {
-                Json::Value params;
-                Json::Reader reader(Json::Features::strictMode());
-                Json::FastWriter writer;
-                if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
-                    auto time = params["time"].asInt64();
-                    auto reason = params["reason"].asString();
-                    auto foreground = params["foreground"].asString();
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.reason=%{public}s",
-                                reason.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}s",
-                                foreground.c_str());
-                }
-            }
+            HandleAppKillEventInfo(appEventGroups[i].appEventInfos[j]);
         }
     }
 }
@@ -265,46 +267,47 @@ static napi_value RegisterAppKillReceiveWatcher(napi_env env, napi_callback_info
 //定义一变量，用来缓存创建的观察者的指针。
 static HiAppEvent_Watcher *sanitizerWatcherR;
 
-static void OnReceiveSanitizerEvent(const char *domain,
-                                    const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
+static void HandleSanitizerEventInfo(const struct HiAppEvent_AppEventInfo &appEventInfos)
+{
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", appEventInfos.domain);
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", appEventInfos.name);
+    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", appEventInfos.type);
+    if (strcmp(appEventInfos.domain, DOMAIN_OS) == 0 &&
+        strcmp(appEventInfos.name, EVENT_ADDRESS_SANITIZER) == 0) {
+        Json::Value params;
+        Json::Reader reader(Json::Features::strictMode());
+        Json::FastWriter writer;
+        if (reader.parse(appEventInfos.params, params)) {
+            auto time = params["time"].asInt64();
+            auto bundleVersion = params["bundle_version"].asString();
+            auto bundleName = params["bundle_name"].asString();
+            auto pid = params["pid"].asInt();
+            auto uid = params["uid"].asInt();
+            auto type = params["type"].asString();
+            std::string logOverLimit = params["log_over_limit"].asBool() ? "true" : "false";
+            auto externalLog = writer.write(params["external_log"]);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
+                bundleVersion.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
+                bundleName.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.type=%{public}s",type.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
+                externalLog.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s",
+                logOverLimit.c_str());
+        }
+    }
+}
+
+static void OnReceiveSanitizerEvent(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups,
+    uint32_t groupLen)
 {
     for (int i = 0; i < groupLen; ++i) {
         for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s",
-                appEventGroups[i].appEventInfos[j].domain);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s",
-                appEventGroups[i].appEventInfos[j].name);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d",
-                appEventGroups[i].appEventInfos[j].type);
-            if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 && 
-                strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_ADDRESS_SANITIZER) == 0) {
-                Json::Value params;
-                Json::Reader reader(Json::Features::strictMode());
-                Json::FastWriter writer;
-                if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
-                    auto time = params["time"].asInt64();
-                    auto bundleVersion = params["bundle_version"].asString();
-                    auto bundleName = params["bundle_name"].asString();
-                    auto pid = params["pid"].asInt();
-                    auto uid = params["uid"].asInt();
-                    auto type = params["type"].asString();
-                    std::string logOverLimit = params["log_over_limit"].asBool() ? "true" : "false";
-                    auto externalLog = writer.write(params["external_log"]);
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
-                        bundleVersion.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
-                        bundleName.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.type=%{public}s",
-                        type.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
-                        externalLog.c_str());
-                    OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s",
-                        logOverLimit.c_str());
-                }
-            }
+            HandleSanitizerEventInfo(appEventGroups[i].appEventInfos[j]);
         }
     }
 }
