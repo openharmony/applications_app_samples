@@ -18,23 +18,6 @@
 
 1. 通过点击主页的EventDecoratorTest1Button按钮，跳转到EventDecoratorTest1页面，点击change to Title Two按钮change to Title One按钮，其title值会进行改变。
 
-### 工程目录
-
-```
-entry/src/main/
-|---ets
-|---|---entryability
-|---|---|---EntryAbility.ets
-|---|---pages
-|---|---|---EventDecoratorTest1.ets
-|---|---|---Index.ets						// 首页
-|---resources								// 静态资源
-|---ohosTest
-|---|---ets
-|---|---|---tests
-|---|---|---|---Ability.test.ets            // 自动化测试用例
-```
-
 ### 父组件将变化同步回子组件的过程是异步
 
 #### 介绍
@@ -49,12 +32,15 @@ entry/src/main/
 
 1. 通过点击主页的EventDecoratorTest2Button按钮，跳转到EventDecoratorTest2页面，点击Text组件，其index也会进行改变。
 
+### 工程目录
+
 ```
-entry1/src/main/
+entry/src/main/
 |---ets
 |---|---entryability
 |---|---|---EntryAbility.ets
 |---|---pages
+|---|---|---EventDecoratorTest1.ets
 |---|---|---EventDecoratorTest2.ets
 |---|---|---Index.ets						// 首页
 |---resources								// 静态资源
@@ -70,7 +56,7 @@ entry1/src/main/
 2. 使用@Event修改父组件的值是立刻生效的，但从父组件将变化同步回子组件的过程是异步的，即在调用完@Event的方法后，子组件内的值不会立刻变化。这是因为@Event将子组件值实际的变化能力交由父组件处理，在父组件实际决定如何处理后，将最终值在渲染之前同步回子组件。
 3. 点击文字触发@Event函数事件改变子组件的值。
 4. 在调用changeIndex之后，父组件中index的值已经变化，但子组件中的index值还没有同步变化。
-5. 
+
 ### 相关权限
 
 不涉及。

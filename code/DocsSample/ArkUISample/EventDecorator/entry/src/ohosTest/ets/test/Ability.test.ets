@@ -88,5 +88,30 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest1_001 end');
       done();
     })
+
+    /**
+     * @tc.number UiTest_002
+     * @tc.name processweb_EventDecoratorTest2_001
+     * @tc.desc 测试从父组件将变化同步回子组件的过程是异步的场景示例
+     * @tc.level: Level 1
+     */
+    it('processweb_EventDecoratorTest2_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest begin');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest2_001 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const button = await driver.findComponent(ON.text('EventDecoratorTest2Button'));
+      await button.click();
+      await driver.delayMs(3000);
+
+      const text = await driver.findComponent(ON.type('Text'));
+      await text.click();
+      await driver.delayMs(300)
+      const res = await text.getText();
+      expect(res).assertEqual('Child index: 20');
+      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_EventDecoratorTest2_001 end');
+
+      done();
+    })
   })
 }

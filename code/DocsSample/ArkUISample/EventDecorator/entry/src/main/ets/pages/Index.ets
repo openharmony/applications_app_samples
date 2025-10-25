@@ -32,6 +32,16 @@ struct Index {
               hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
+      Button('EventDecoratorTest2Button')
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/EventDecoratorTest2',
+          })
+            .catch((error: BusinessError) => {
+              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+            })
+        })
+
     }.height('100%')
     .width('100%')
   }
