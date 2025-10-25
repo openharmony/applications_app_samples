@@ -17,10 +17,10 @@
 @Entry
 @Component
 export struct ContentTransition {
-  @State number: number = 98;
+  private static readonly INITIAL_SCORE: number = 98;
+  @State number: number = ContentTransition.INITIAL_SCORE;
   @State numberTransition: NumericTextTransition =
     new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
-
   build() {
     NavDestination() {
       Column() {
