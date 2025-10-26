@@ -13,21 +13,15 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, beforeAll, Level } from '@ohos/hypium';
+import { describe, it, expect, beforeAll } from '@ohos/hypium';
 // 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, On } from '@kit.TestKit';
-import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, Point } from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, Point, on } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import resource from '../../../main/ets/common/resource';
-import { KeyCode } from '@kit.InputKit';
-import { hilog } from '@kit.PerformanceAnalysisKit'
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const TAG = '[Sample_Eventproject]'
-const DOMAIN = 0xF811
-const BUNDLE = 'Eventproject_'
 
 export default function IndexTest() {
 
@@ -169,7 +163,7 @@ export default function IndexTest() {
      */
     it('testFocusActive', 0, async (done: Function) => {
       let driver = Driver.create();
-      let button_list = await driver.waitForComponent(ON.text('FocusEvent', MatchPattern.CONTAINS),1000);
+      let button_list = await driver.waitForComponent(ON.text('FocusEvent', MatchPattern.CONTAINS), 1000);
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
@@ -364,7 +358,7 @@ export default function IndexTest() {
       console.info('uitest: testPanCombination end');
       done();
     })
-  
+
     /**
      * @tc.number UiTest_013
      * @tc.name FocusOnClick
