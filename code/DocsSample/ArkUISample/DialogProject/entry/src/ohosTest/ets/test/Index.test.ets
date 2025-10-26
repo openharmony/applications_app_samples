@@ -331,6 +331,58 @@ export default function IndexTest() {
       done();
     })
 
+    it('testMaskDialog', 50, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.MaskDialog')), MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialogAnimation_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+
+      let button_list2 = await driver.findComponent(ON.text('CustomDialogController animate', MatchPattern.CONTAINS));
+      await button_list2.click();
+      await sleep(2000)
+      await driver.pressBack();
+      await sleep(2000)
+      await driver.pressBack();
+
+      let customDialogControl_list_item = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialogControl_title')), MatchPattern.CONTAINS));
+      await customDialogControl_list_item.click();
+      let button_autoCancel = await driver.findComponent(ON.text('openCustomDialog autoCancel:false', MatchPattern.CONTAINS));
+      await button_autoCancel.click();
+      await sleep(1000);
+      await driver.pressBack();
+
+      let button_isModal = await driver.findComponent(ON.text('openCustomDialog isModal:false', MatchPattern.CONTAINS));
+      await button_isModal.click();
+      await sleep(1000);
+      await driver.pressBack();
+
+      let button_maskOpt = await driver.findComponent(ON.text('openCustomDialog maskOpt', MatchPattern.CONTAINS));
+      await button_maskOpt.click();
+      await driver.pressBack();
+
+      let button_transition = await driver.findComponent(ON.text('openCustomDialog transition', MatchPattern.CONTAINS));
+      await button_transition.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await sleep(2000);
+
+      let button_immersiveMode = await driver.findComponent(ON.text('openCustomDialog immersiveMode', MatchPattern.CONTAINS));
+      await button_immersiveMode.click();
+      await sleep(1000);
+      await driver.pressBack();
+
+      let button_maskTransition = await driver.findComponent(ON.text('openCustomDialog maskTransition', MatchPattern.CONTAINS));
+      await sleep(1000);
+      await button_maskTransition.click();
+      await sleep(2000);
+      await driver.pressBack();
+
+      await sleep(1000);
+      done();
+    })
+
     it('testToast', 0, async (done: Function) => {
       console.info("uitest: testToast begin");
       let driver = Driver.create();

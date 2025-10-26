@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Parent13_start]
+// [Start MonitorExample1_start]
 import hilog from '@ohos.hilog';
 
 const DOMAIN = 0xFF00;
@@ -20,7 +20,7 @@ const TAG = '[Sample_StateMigration_App]';
 
 @Entry
 @ComponentV2
-struct monitorExample1 {
+struct MonitorExample1 {
   @Local apple: number = 0;
 
   @Monitor('apple')
@@ -38,4 +38,4 @@ struct monitorExample1 {
     }
   }
 }
-// [End Parent13_start]
+// [End MonitorExample1_start]

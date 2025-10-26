@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Parent13_start]
+// [Start ComputedV1_start]
 @Entry
 @Component
 struct Index1 {
@@ -30,4 +30,4 @@ struct Index1 {
     }
   }
 }
-// [End Parent13_start]
+// [End ComputedV1_start]

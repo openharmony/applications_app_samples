@@ -15,7 +15,7 @@
 */
 
 // src/main/ets/viewmodel/TaskViewModel.ets
-
+// [Start ViewModel_TaskViewModel]
 import TaskModel from '../model/TaskModel';
 
 @ObservedV2
@@ -32,3 +32,4 @@ export default class TaskViewModel {
     this.isFinish = !this.isFinish;
   }
 }
+// [End ViewModel_TaskViewModel]

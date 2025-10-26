@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,6 +36,12 @@ export struct ButtonCustomStyle {
             .id('circle_border')
             .borderRadius(10)
           // [End custom_button_border_radius]
+
+          // [Start custom_button_border_radius2]
+          Button('circle border', { type: ButtonType.Normal })
+            .borderRadius(20)
+            .height(40)
+          // [End custom_button_border_radius2]
         }
 
         ComponentCard({
@@ -48,6 +54,14 @@ export struct ButtonCustomStyle {
             .fontColor(Color.Pink)
             .fontWeight(800)
           // [End custom_font_style]
+
+
+          // [Start custom_font_style2]
+          Button('font style', { type: ButtonType.Normal })
+            .fontSize(20)
+            .fontColor(Color.Pink)
+            .fontWeight(800)
+          // [End custom_font_style2]
         }
 
         ComponentCard({
@@ -58,6 +72,20 @@ export struct ButtonCustomStyle {
           Button('Button').id('background_color')
             .backgroundColor(Color.Red)
           // [End custom_background_color]
+          // [Start custom_background_color2]
+          Button('background color').backgroundColor(0xF55A42)
+          // [Start custom_background_color2]
+        }
+
+        ComponentCard({
+          title: $r('app.string.SetButtonType_titleFive'),
+          description: $r('app.string.SetButtonType_descriptionFive')
+        }) {
+          //图片需要更换,left使用方式做了修改
+          // [Start custom_create_function_button]
+          Button({ type: ButtonType.Circle, stateEffect: true }) {
+            Image($r('sys.media.ohos_ic_public_cancel')).width(30).height(30)
+          }.width(55).height(55).margin({ 'left': 20 }).backgro
         }
       }
       .width('100%')

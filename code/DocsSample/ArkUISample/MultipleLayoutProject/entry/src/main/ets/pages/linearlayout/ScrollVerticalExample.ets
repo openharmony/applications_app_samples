@@ -15,7 +15,7 @@
 //[Start ScrollVerticalExample_start]
 @Entry
 @Component
-struct ScrollVerticalExample {
+struct ScrollExample1 {
   scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 

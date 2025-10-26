@@ -23,6 +23,7 @@ import { MenuDestination, Menu_ROUTE_PREFIX } from './Menu/Index';
 import { CustomDialogDestination, CustomDialog_ROUTE_PREFIX } from './opencustomdialog/Index';
 import { PopupDestination, Popup_ROUTE_PREFIX } from './popup/Index';
 import { ToastDestination, Toast_ROUTE_PREFIX } from './Toast/Index';
+import { MaskDestination, Mask_ROUTE_PREFIX } from './maskdialog/Index';
 import { OverlayManagerDestination, OverlayManager_ROUTE_PREFIX } from './OverlayManager/Index';
 
 const routes: Route[] = [
@@ -37,6 +38,10 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.FixedStyleDialog1')),
     name: Fixed_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.MaskDialog')),
+    name: Mask_ROUTE_PREFIX
   },
   {
     title: resource.resourceToString($r('app.string.Menu1')),
@@ -70,6 +75,8 @@ function Destination(name: string) {
     ToastDestination(name);
   } else if (name.startsWith(Popup_ROUTE_PREFIX)) {
     PopupDestination(name);
+  } else if (name.startsWith(Mask_ROUTE_PREFIX)) {
+    MaskDestination(name);
   } else if (name.startsWith(OverlayManager_ROUTE_PREFIX)) {
     OverlayManagerDestination(name);
   }

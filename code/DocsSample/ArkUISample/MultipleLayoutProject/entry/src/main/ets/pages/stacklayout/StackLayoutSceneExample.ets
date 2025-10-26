@@ -15,7 +15,7 @@
 //[Start StackLayoutSceneExample_start]
 @Entry
 @Component
-struct StackLayoutSceneExample {
+struct StackSample3 {
   private arr: string[] = ['APP1', 'APP2', 'APP3', 'APP4', 'APP5', 'APP6', 'APP7', 'APP8'];
 
   build() {

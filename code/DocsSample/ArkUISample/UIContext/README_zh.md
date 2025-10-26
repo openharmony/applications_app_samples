@@ -35,7 +35,7 @@ entry/src/main/ets/
 |   |---LocalStoragePage.ets                  // 使用UIContext接口替换全局接口     
 entry/src/ohosTest/
 |---ets
-|   |---index.test.ets                      // 对应页面测试代码
+|   |---Index.test.ets                      // 对应页面测试代码
 |   |---LocalStoragePage.test.ets              // 对应页面测试代码
 ```
 

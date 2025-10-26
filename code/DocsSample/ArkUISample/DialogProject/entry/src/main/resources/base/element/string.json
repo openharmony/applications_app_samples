@@ -573,6 +573,30 @@
       "value": "这是一个弹窗"
     },
     {
+      "name": "Mask_CustomDialog_dialog",
+      "value": "弹出框蒙层控制"
+    },
+    {
+      "name": "MaskDialog",
+      "value": "弹出框蒙层控制/MaskDialog"
+    },
+    {
+      "name": "CustomDialogAnimation_title",
+      "value": "openAnimation和closeAnimation接口"
+    },
+    {
+      "name": "CustomDialogAnimation_desc",
+      "value": "CustomDialog虽然不支持transition接口，但与之对应的openAnimation和closeAnimation接口在动画的打开和关闭时可进行定制。"
+    },
+    {
+      "name": "CustomDialogControl_title",
+      "value": "弹出框蒙层显隐控制"
+    },
+    {
+      "name": "CustomDialogControl_desc",
+      "value": "展示弹出框在蒙层显隐控制方面的能力。"
+    },
+    {
       "name": "DefaultAndTopToast_defaultToast",
       "value": "DEFAULT类型Toast"
     },

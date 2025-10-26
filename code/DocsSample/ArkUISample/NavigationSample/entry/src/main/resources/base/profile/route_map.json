@@ -1,0 +1,93 @@
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template2/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template1/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description" : "this is PageOne"
+      }
+    },
+    {
+      "name": "pageTwo",
+      "pageSourceFile": "src/main/ets/pages/navigation/template2/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    },
+    {
+      "name": "temp4-pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template4/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "temp4-pageTwo",
+      "pageSourceFile": "src/main/ets/pages/navigation/template4/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    },
+    {
+      "name": "temp7-pageOne",
+      "pageSourceFile": "src/main/ets/pages/navigation/template7/PageOne.ets",
+      "buildFunction": "PageOneBuilder"
+    },
+    {
+      "name": "temp7-pageTwo",
+      "pageSourceFile": "src/main/ets/pages/navigation/template7/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    },
+    {
+      "name" : "WLAN",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Bluetooth",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Personal Hotspot",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Connect & Share",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleTwo.ets",
+      "buildFunction" : "PageTwoBuilder"
+    },
+    {
+      "name" : "Projection",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Print",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "VPN",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Private DNS",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "NFC",
+      "pageSourceFile"  : "src/main/ets/pages/navigation/template1/NavigationExampleOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    }
+  ]
+}
