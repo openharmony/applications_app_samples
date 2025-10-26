@@ -12,12 +12,23 @@
 5. [属性字符串 (StyledString/MutableStyledString)](https://gitCode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-styled-string.md)。
 6. [Text组件的文本绘制与显示](https://gitCode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-styled-string.md)。
 7. [监听输入框事件](https://gitCode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-textarea-event.md)。
+8. [图文混排](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-text-image-layout.md)。
 
 ### 效果预览
 
 | 首页                                  | 文本显示组件目录                            | 创建文本示例                              |
 |-------------------------------------|-------------------------------------|-------------------------------------|
 | ![](screenshots/device/image1.jpeg) | ![](screenshots/device/image2.jpeg) | ![](screenshots/device/image3.jpeg) |
+
+### 具体实现
+
+1. 到对应模块的官网文档，理解模块功能和使用说明
+
+2. 补充对应的代码片段，确保可以运行
+
+3. 拿真机，填写测试用例，运行项目
+
+4. 拿真机对用例进行自动测试
 
 ### 使用说明
 
@@ -79,6 +90,7 @@ entry/src/main/ets/
 |   |       |---SymbolAddToText.ets
 |   |       |---SymbolCustomIconAnimation.ets
 |   |       |---SymbolSceneExample.ets
+|   |       |---SymbolShadowAndColor.ets
 |   |---text                                         // 文本显示     
 |   |       |---AIMenu.ets
 |   |       |---BindSelectionMenu.ets
@@ -101,19 +113,27 @@ entry/src/main/ets/
 |   |       |---TextHotSearch.ets
 |   |       |---TextLayout.ets
 |   |       |---TextSpan.ets
+|   |---textImageMixedLayout                       // 图文混排
+|   |       |---index.ets
+|   |       |---TextImageAttribute.ets
+|   |       |---TextImageComponent.ets
 |   |       |---TextSpanOnHover.ets
 |   |       |---WordBreakd.ets
 |   |---testInput                                    // 文本输入
+|   |       |---ProhibitSelectMenu
+|   |       |   |---DisableMenuItems.ets
+|   |       |   |---DisableSystemServiceMenuItems.ets
+|   |       |   |---index.ets
 |   |       |---AutoFill.ets
 |   |       |---CreatTextInput.ets
 |   |       |---CursorAvoidance.ets
 |   |       |---CustomTextInputStyle.ets
 |   |       |---index.ets
 |   |       |---KeyboardAvoidance.ets
-|   |       |---LoginRegisterPage.ets
 |   |       |---SelectMenu.ets
-|   |       |---SetOmissionProperty.ets
+|   |       |---SetProperty.ets
 |   |       |---SetTextInputType.ets
+|   |       |---SetTextMargin.ets
 |   |       |---TextInputAddEvent.ets
 |---pages
 |   |---Index.ets                                    // 应用主页面

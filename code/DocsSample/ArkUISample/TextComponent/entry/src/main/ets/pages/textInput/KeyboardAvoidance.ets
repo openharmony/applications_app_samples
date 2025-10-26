@@ -33,6 +33,7 @@ export struct KeyboardAvoidance {
                 ForEach(this.placeHolderArr, (placeholder: string) => {
                   TextInput({ placeholder: 'TextInput ' + placeholder })
                     .margin(30)
+                    .id(placeholder)
                 })
               }
             }

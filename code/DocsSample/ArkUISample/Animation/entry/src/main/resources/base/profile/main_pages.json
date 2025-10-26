@@ -36,6 +36,7 @@
     "pages/compTransition/template3/Index",
     "pages/compTransition/template4/Index",
     "pages/compTransition/template5/Index",
+    "pages/compTransition/template6/Index",
     "pages/shareTransition/template1/Index",
     "pages/shareTransition/template1/PageB",
     "pages/motionPath/template1/Index",
@@ -44,6 +45,8 @@
     "pages/rotation/template2/Index",
     "pages/cohesion/template1/Index",
     "pages/cohesion/template2/Index",
+    "pages/animatableProperty/template1/Index",
+    "pages/animatableProperty/template2/Index",
     "pages/component/template1/Index",
     "pages/component/template2/Index"
   ]

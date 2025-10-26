@@ -189,6 +189,10 @@
       "value": "示例5（多个组件渐次出现消失）"
     },
     {
+      "name": "compTransition_temp_label6",
+      "value": "示例6（旋转转场效果出现/消失）"
+    },
+    {
       "name": "shareTransition_label",
       "value": "共享元素转场"
     },
@@ -272,6 +276,51 @@
       "name": "component_temp_label2",
       "value": "示例2（List组件动态替换动效）"
     },
+    {
+<<<<<<< zidingyi1022
+      "name": "animatableProperty_label",
+      "value": "自定义属性动画"
+    },
+    {
+      "name": "animatableProperty_temp_label1",
+      "value": "示例1（改变Text组件宽度）"
+    },
+    {
+      "name": "animatableProperty_temp_label2",
+      "value": "示例2（改变图形形状）"
+    },
+    {
+      "name": "animatableProperty_AnimatableProperty",
+      "value": "AnimatableProperty"
+    },
+    {
+      "name": "animatableProperty_Play",
+      "value": "Play"
+    },
+    {
+      "name": "AnimateIndex",
+      "value": "AnimateIndex"
+    },
+    {
+      "name": "animation_blur_label1",
+      "value": "示例1（使用backdropBlur为组件添加背景模糊）"
+    },
+    {
+      "name": "animation_blur_label2",
+      "value": "示例2（使用blur为组件添加内容模糊）"
+    },
+    {
+      "name": "animation_blur_label3",
+      "value": "示例3（使用backgroundBlurStyle为组件添加背景模糊效果）"
+    },
+    {
+      "name": "animation_blur_label4",
+      "value": "示例4（使用foregroundBlurStyle为组件添加内容模糊效果）"
+    },
+    {
+      "name": "animation_blur_label5",
+      "value": "示例5（使用motionBlur为组件添加运动模糊效果）"
+    }，
     {
       "name": "AnimateIndex",
       "value": "AnimateIndex"
