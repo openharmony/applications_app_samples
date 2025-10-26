@@ -24,10 +24,10 @@ import { GestureJudgeDestination, GestureJudge_ROUTE_PREFIX } from './gesturejud
 import { GroupGestureDestination, GroupGesture_ROUTE_PREFIX } from './groupgesture/Index';
 import { Gesture_ROUTE_PREFIX, GestureDestination } from './singlegesture/Index';
 import { TouchDestination, Touch_ROUTE_PREFIX } from './Touch/Index';
-import { DropAnimationExample, DropAnimationRoutePrefix} from './drop/DropAnimationExample';
+import { DropAnimationExample, dropAnimationRoutePrefix} from './drop/DropAnimationExample';
 import resource from '../common/resource';
-import { GridEts, GridRoutePrefix } from './grid/GridEts';
-import { SpringLoadingRoutePrefix, SpringLoadingPage} from './springloading/SpringLoading';
+import { GridEts, gridRoutePrefix } from './grid/GridEts';
+import { springLoadingRoutePrefix, SpringLoadingPage} from './springloading/SpringLoading';
 
 // [Start route_push]
 const routes: Route[] = [
@@ -65,15 +65,15 @@ const routes: Route[] = [
   },
   {
     title: resource.resourceToString($r('app.string.Pages_Index_DropAnimation')),
-    name: DropAnimationRoutePrefix
+    name: dropAnimationRoutePrefix
   },
   {
     title: resource.resourceToString($r('app.string.Pages_Index_GridExample')),
-    name: GridRoutePrefix
+    name: gridRoutePrefix
   },
   {
     title: resource.resourceToString($r('app.string.Pages_Index_SpringLoading')), // 需添加字符串资源
-    name: SpringLoadingRoutePrefix
+    name: springLoadingRoutePrefix
   }
 ];
 // [End route_push]
@@ -94,11 +94,11 @@ function Destination(name: string) {
     FocusDestination(name);
   } else if (name.startsWith(Drag_ROUTE_PREFIX)) {
     DragGestureDestination(name);
-  } else if (name.startsWith(DropAnimationRoutePrefix)) {
+  } else if (name.startsWith(dropAnimationRoutePrefix)) {
     DropAnimationExample();
-  } else if (name.startsWith(GridRoutePrefix)) {
+  } else if (name.startsWith(gridRoutePrefix)) {
     GridEts();
-  } else if (name.startsWith(SpringLoadingRoutePrefix)) {
+  } else if (name.startsWith(springLoadingRoutePrefix)) {
     SpringLoadingPage();
   }
 }

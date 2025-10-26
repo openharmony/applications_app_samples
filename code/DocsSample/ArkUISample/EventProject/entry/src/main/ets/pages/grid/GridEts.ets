@@ -18,7 +18,7 @@ import { image } from '@kit.ImageKit';
 import { unifiedDataChannel as UDC } from '@kit.ArkData';
 import { dragController } from '@kit.ArkUI';
 
-export const GridRoutePrefix: string = 'gridExample';
+export const gridRoutePrefix: string = 'gridExample';
 
 @Entry
 @Component
