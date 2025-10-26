@@ -15,7 +15,7 @@
 // [Start freeze_template1_Page1_start]
 @ObservedV2
 export class Book {
-  @Trace name: string = '100';
+  @Trace public name: string = '100';
 
   constructor(page: string) {
     this.name = page;

@@ -16,7 +16,7 @@
 // Page1.ets
 @ObservedV2
 class Book {
-  @Trace name: string = 'TS';
+  @Trace public name: string = 'TS';
 
   constructor(name: string) {
     this.name = name;
