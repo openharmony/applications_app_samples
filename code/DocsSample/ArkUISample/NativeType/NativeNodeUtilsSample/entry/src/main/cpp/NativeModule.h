@@ -24,7 +24,6 @@
 #include <arkui/native_interface.h>
 
 namespace NativeModule {
-
     class NativeModuleInstance {
     public:
         static NativeModuleInstance *GetInstance()

@@ -37,7 +37,7 @@ struct ReusableFlowItem {
     }
   }
 }
-
+// [Start waterFlowDynamicSwitchover_start]
 @Reusable
 @Component
 struct ReusableListItem {
@@ -61,13 +61,16 @@ struct ReusableListItem {
 @Entry
 @Component
 export struct WaterFlowDynamicSwitchover {
+  // 通过状态变量设置列数，可以按需修改触发布局更新
+  @State columns: number = 2;
+
+  // [StartExclude waterFlowDynamicSwitchover_start]
   minSize: number = 80;
   maxSize: number = 180;
   colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(100);
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
-  @State columns: number = 2;
   @State waterflowScale: number = 1;
   @State imageScale: number = 1;
   @State waterFlowOpacity: number = 1;
@@ -127,7 +130,7 @@ export struct WaterFlowDynamicSwitchover {
         .margin({ top: 2 })
     }.width('100%').justifyContent(FlexAlign.Center)
   }
-
+  // [EndExclude waterFlowDynamicSwitchover_start]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -167,6 +170,9 @@ export struct WaterFlowDynamicSwitchover {
                 }, 1000);
               }
             })
+            // [StartExclude waterFlowDynamicSwitchover_start]
+            .id('test')
+            // [EndExclude waterFlowDynamicSwitchover_start]
           }
         }
       }
@@ -177,3 +183,4 @@ export struct WaterFlowDynamicSwitchover {
     .title($r('app.string.WaterFlowDynamicSwitchover_title'))
   }
 }
+// [End waterFlowDynamicSwitchover_start]

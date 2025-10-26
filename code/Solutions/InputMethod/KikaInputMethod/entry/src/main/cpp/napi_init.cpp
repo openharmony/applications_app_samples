@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start input_case_input_CPreview]
+// [Start input_case_input_CPreview016]
 #include "napi/native_api.h"
 #include <codecvt>
 #include <locale>
@@ -22,7 +22,7 @@
 #include "hilog/log.h"
 #include "inputmethod/inputmethod_controller_capi.h"
 
-constexpr int32_t TEXTSIZE 1024;
+ constexpr int32_t TEXTSIZE = 1024;
 
 static std::string g_strText;
 char g_strTextChar[TEXTSIZE];
@@ -185,6 +185,7 @@ void FinishTextPreviewFunc(InputMethod_TextEditorProxy *proxy)
 
 void ConstructTextEditorProxy(InputMethod_TextEditorProxy *textEditorProxy)
 {
+    // [Start input_case_input_ConstructTextEditorProxy]
     OH_TextEditorProxy_SetGetTextConfigFunc(textEditorProxy, GetTextConfigFunc);
     OH_TextEditorProxy_SetInsertTextFunc(textEditorProxy, InsertTextFunc);
     OH_TextEditorProxy_SetDeleteForwardFunc(textEditorProxy, DeleteForwardFunc);
@@ -200,12 +201,17 @@ void ConstructTextEditorProxy(InputMethod_TextEditorProxy *textEditorProxy)
     OH_TextEditorProxy_SetReceivePrivateCommandFunc(textEditorProxy, ReceivePrivateCommandFunc);
     OH_TextEditorProxy_SetSetPreviewTextFunc(textEditorProxy, SetPreviewTextFunc);
     OH_TextEditorProxy_SetFinishTextPreviewFunc(textEditorProxy, FinishTextPreviewFunc);
+    // [End input_case_input_ConstructTextEditorProxy]
 }
+// [End input_case_input_CPreview016]
 
+// [Start input_case_input_CPreview208]
 void InputMethodNdkDemo()
 {
+    // [Start input_case_input_TextEditorProxy]
     // 创建InputMethod_TextEditorProxy实例
     textEditorProxy = OH_TextEditorProxy_Create();
+    // [End input_case_input_TextEditorProxy]
     if (textEditorProxy == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "Create TextEditorProxy failed.");
         return;
@@ -214,15 +220,18 @@ void InputMethodNdkDemo()
     // 将实现好的响应处理函数设置到InputMethod_TextEditorProxy中
     ConstructTextEditorProxy(textEditorProxy);
 
+    // [Start input_case_input_attachOptions]
     // 创建InputMethod_AttachOptions实例，选项showKeyboard用于指定此次绑定成功后是否显示键盘，此处以目标显示键盘为例
     bool showKeyboard = true;
     attachOptions = OH_AttachOptions_Create(showKeyboard);
+    // [End input_case_input_attachOptions]
     if (attachOptions == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "Create AttachOptions failed.");
         OH_TextEditorProxy_Destroy(textEditorProxy);
         return;
     }
 
+    // [Start input_case_input_OH_InputMethodController_Attach]
     // 发起绑定请求
     auto ret = OH_InputMethodController_Attach(textEditorProxy, attachOptions, &inputMethodProxy);
     if (ret != IME_ERR_OK) {
@@ -231,6 +240,7 @@ void InputMethodNdkDemo()
         OH_AttachOptions_Destroy(attachOptions);
         return;
     }
+    // [End input_case_input_OH_InputMethodController_Attach]
 }
 
 static napi_value InputMethodDestroy(napi_env env, napi_callback_info info)
@@ -244,10 +254,12 @@ static napi_value InputMethodDestroy(napi_env env, napi_callback_info info)
         return nullptr;
     }
 
+    // [Start input_case_input_OH_InputMethodController_Detach]
     // 发起解绑请求
     OH_InputMethodController_Detach(inputMethodProxy);
     OH_TextEditorProxy_Destroy(textEditorProxy);
     OH_AttachOptions_Destroy(attachOptions);
+    // [End input_case_input_OH_InputMethodController_Detach]
     OH_LOG_Print(LOG_APP, LOG_INFO, 0, "testTag", "Finished.");
     return nullptr;
 }
@@ -296,4 +308,4 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&demoModule);
 }
-// [End input_case_input_CPreview]
+// [End input_case_input_CPreview208]

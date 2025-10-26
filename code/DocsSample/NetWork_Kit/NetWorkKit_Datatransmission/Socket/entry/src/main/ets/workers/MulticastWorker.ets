@@ -14,8 +14,10 @@
  */
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import Logger from '../common/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// [Start multicast_worker_import]
 import { socket } from '@kit.NetworkKit';
+// [End multicast_worker_import]
 import { Message } from '../connect/Multicast'
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -38,51 +40,82 @@ function postMessage(arg0: Message) {
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
-// [Start application_transmits_data_via_multicast_socket]
-function startMulticast(data: MulticastData) {
+function startMulticast(data: socket.NetAddress) {
+  // [Start multicast_worker_multicast]
+  // 创建Multicast对象。
   let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+  // [End multicast_worker_multicast]
 
-  // 这里构造一个对象用于加入多播组
-  const multicastConfig: MulticastData = {
+  // 构造一个对象用于加入多播组
+  let addr : socket.NetAddress = {
     address: data.address,
     port: data.port,
     family: data.family
   };
-
-  multicast.addMembership(multicastConfig).then(() => {
+  // [Start multicast_worker_multicastConfig]
+  // 加入多播组。
+  multicast.addMembership(addr).then(() => {
+    // [StartExclude multicast_worker_multicastConfig]
     postMessage({ type: 'multicastStatus', status: 'Joined multicast group' });
-    Logger.info(`Multicast: Joined group ${data.address}:${data.port}`);
+    hilog.info(0x0000, 'testTag', `Multicast: Joined group ${data.address}:${data.port}`);
+    // [EndExclude multicast_worker_multicastConfig]
+    hilog.info(0x0000, 'testTag', 'addMembership success');
   }).catch((err: BusinessError) => {
+    // [StartExclude multicast_worker_multicastConfig]
     postMessage({ type: 'multicastStatus', status: 'Failed to join multicast group' });
-    Logger.error(`Multicast: Failed to join group ${data.address}:${data.port} - ${JSON.stringify(err)}`);
+    hilog.error(0x0000, 'testTag', `Multicast: Failed to join group ${data.address}:${data.port} - ${JSON.stringify(err)}`);
+    // [EndExclude multicast_worker_multicastConfig]
+    hilog.error(0x0000, 'testTag', 'addMembership fail');
   });
+  // [End multicast_worker_multicastConfig]
 
-  multicast.on('message', (value: MulticastMessageEvent) => {
-    let str = '';
-    let buffer = value.message;
-    for (let i = 0; i < buffer.byteLength; ++i) {
-      str += String.fromCharCode(new DataView(buffer).getUint8(i));
+  // [Start multicast_worker_on_message]
+  // 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String。
+  class SocketInfo {
+    public message: ArrayBuffer = new ArrayBuffer(1);
+    public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+  }
+  multicast.on('message', (data: SocketInfo) => {
+    hilog.info(0x0000, 'testTag', '接收的数据: ' + JSON.stringify(data))
+    const uintArray = new Uint8Array(data.message)
+    let str = ''
+    for (let i = 0; i < uintArray.length; ++i) {
+      str += String.fromCharCode(uintArray[i])
     }
+    hilog.info(0x0000, 'testTag', str)
+    // [StartExclude multicast_worker_on_message]
     postMessage({ type: 'multicastMessage', status: 'Message received', message: str });
-    Logger.info(`Multicast: Received message: ${str}`);
+    // [EndExclude multicast_worker_on_message]
   });
+  // [End multicast_worker_on_message]
 
+  // [Start multicast_worker_send]
   // 发送一条多播消息
-  multicast.send({ data: 'Hello multicast group!', address: multicastConfig }).then(() => {
-    Logger.info('Multicast: Message sent successfully');
+  multicast.send({ data: 'Hello multicast group!', address: addr }).then(() => {
+    hilog.info(0x0000, 'testTag', 'Multicast: Message sent successfully');
   }).catch((err: BusinessError) => {
-    Logger.error(`Multicast: Failed to send message - ${JSON.stringify(err)}`);
+    hilog.error(0x0000, 'testTag', `Multicast: Failed to send message - ${JSON.stringify(err)}`);
   });
+  // [End multicast_worker_send]
 
   // 设定一定时间后退出多播组
   setTimeout(() => {
+    // [Start multicast_worker_off_message]
+    // 关闭消息的监听。
     multicast.off('message');
-    multicast.dropMembership(multicastConfig).then(() => {
+    // [End multicast_worker_off_message]
+
+    // [Start multicast_worker_dropMembership]
+    // 退出多播组。
+    multicast.dropMembership(addr).then(() => {
+      // [StartExclude multicast_worker_dropMembership]
       postMessage({ type: 'multicastStatus', status: 'Dropped multicast membership' });
-      Logger.info('Multicast: Dropped membership successfully');
+      // [StartExclude multicast_worker_dropMembership]
+      hilog.info(0x0000, 'testTag', 'Multicast: Dropped membership successfully');
     }).catch((err: BusinessError) => {
-      Logger.error(`Multicast: Failed to drop membership - ${JSON.stringify(err)}`);
+      hilog.error(0x0000, 'testTag', `Multicast: Failed to drop membership - ${JSON.stringify(err)}`);
     });
+    // [End multicast_worker_dropMembership]
   }, MULTICAST_MESSAGE_SEND_INTERVAL);
 }
 
@@ -96,7 +129,7 @@ workerPort.onmessage = (e: MessageEvents) => {
   const message: Message = e.data;
 
   if (message.type === 'startMulticast' && message.message) {
-    const multicastData = JSON.parse(message.message) as MulticastData;
+    const multicastData = JSON.parse(message.message) as socket.NetAddress;
     startMulticast(multicastData);
   }
 };

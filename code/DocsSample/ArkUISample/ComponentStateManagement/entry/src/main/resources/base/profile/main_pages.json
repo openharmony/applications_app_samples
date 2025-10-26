@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/LinkDecorator/AddProxyToRerendertheUI",
+    "pages/LinkDecorator/DecoratingVariablesDateType",
+    "pages/LinkDecorator/DecoratingVariablesMapType",
+    "pages/LinkDecorator/DecoratingVariablesSetType",
+    "pages/LinkDecorator/LinkUsage",
+    "pages/LinkDecorator/LinkUsage2",
+    "pages/LinkDecorator/UseWatchToChangeLocalVariables",
+    "pages/LinkDecorator/UsingLinkwithArrayTypes",
+    "pages/LinkDecorator/UsingLinkwithPrimitiveandClassTypes",
+    "pages/LinkDecorator/UsingUnionTypes"
+  ]
+}

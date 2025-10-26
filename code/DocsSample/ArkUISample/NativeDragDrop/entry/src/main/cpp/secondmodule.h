@@ -30,6 +30,7 @@ namespace NativeXComponentSample {
 
 ArkUI_NodeHandle dragImage = nullptr;
 ArkUI_NodeHandle dropImage = nullptr;
+bool dragResult = true;
 
 void SetImageDataLoadParams1(ArkUI_DragEvent* dragEvent)
 {
@@ -45,7 +46,8 @@ void SetImageDataLoadParams1(ArkUI_DragEvent* dragEvent)
         int returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/seagull.png");
         returnValue = OH_UdmfRecord_AddFileUri(record, imageValue);
         OH_UdmfData *data = OH_UdmfData_Create();
-        for (int i = 0; i < 1; i++) {
+        int dataCount = 3000;
+        for (int i = 0; i < dataCount; i++) {
             returnValue = OH_UdmfData_AddRecord(data, record);
         }
         return data;
@@ -116,13 +118,14 @@ void GetSecondDragResult1(ArkUI_DragEvent* dragEvent)
 {
     ArkUI_DragResult result;
     OH_ArkUI_DragEvent_GetDragResult(dragEvent, &result);
-    if (result == ARKUI_DRAG_RESULT_SUCCESSFUL) {
+    if (result == ARKUI_DRAG_RESULT_SUCCESSFUL && dragResult == true) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Successful!");
         nodeAPI->resetAttribute(dragImage, NODE_IMAGE_SRC);
         SetImageSrc(dropImage, "/resources/seagull.png");
-    } else if (result == ARKUI_DRAG_RESULT_FAILED) {
+    } else {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Failed!");
     }
+    dragResult = true;
 }
 
 void RegisterNodeEventSecondReceiver1(ArkUI_NodeHandle &dragNode)
@@ -232,7 +235,9 @@ void SecondButtonModule(ArkUI_NodeHandle &column)
     nodeAPI->registerNodeEvent(cancelLoadButton, NODE_ON_CLICK_EVENT, 1, nullptr);
     nodeAPI->addNodeEventReceiver(cancelLoadButton, [](ArkUI_NodeEvent *event) {
         int ret = OH_ArkUI_CancelDataLoading(context, key);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "30079408 button test ret:%{public}s", key);
+        if (ret == 0) {
+            dragResult = false;
+        }
     });
     nodeAPI->addChild(buttonRow, cancelLoadButton);
 }

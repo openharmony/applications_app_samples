@@ -166,6 +166,20 @@ struct Index {
             testNapi.addressTest();
           })
         // [End AsanEvent_Button]
+        // [Start hicollie_timer_ndk_Button]
+        //添加点击事件，触发TestHiCollieTimerNdk方法。
+        Button('TestHiCollieTimerNdk')
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          .onClick(() => {
+            testNapi.TestHiCollieTimerNdk();
+          })
+        // [End hicollie_timer_ndk_Button]
       }
       .width('50%')
     }

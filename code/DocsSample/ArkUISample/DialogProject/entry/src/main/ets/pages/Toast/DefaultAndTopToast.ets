@@ -13,56 +13,63 @@
  * limitations under the License.
  */
 
+// [Start toast_showDefaultAndTop]
 import {promptAction} from '@kit.ArkUI';
 
 @Entry
 @Component
 export struct DefaultAndTopToastExample {
-  private uiContext: UIContext = this.getUIContext();
-
   build() {
+    // [StartExclude toast_showDefaultAndTop]
     NavDestination() {
+      // [EndExclude toast_showDefaultAndTop]
       Column({ space: 10 }) {
         TextInput()
-        Column() {
-          Button() {
-            Text('DEFAULT Toast')
-              .fontSize(20)
-              .fontWeight(FontWeight.Bold)
+        Button() {
+          // $r('app.string.DefaultAndTopToast_defaultToast')需要替换为开发者所需的资源文件
+          Text($r('app.string.DefaultAndTopToast_defaultToast'))
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+        }
+        .height('100')
+        .width('100%')
+        .onClick(() => {
+          this.getUIContext().getPromptAction().showToast({
+            // $r('app.string.DefaultAndTopToast_defaultToastMessage')需要替换为开发者所需的资源文件
+            message: $r('app.string.DefaultAndTopToast_defaultToastMessage'),
+            duration: 2000,
+            showMode: promptAction.ToastShowMode.DEFAULT,
+            bottom: 80
+          });
+        })
 
-          }
-          .height(100)
-          .width('100%')
-          .onClick(() => {
-            promptAction.showToast({
-              message: 'ok,I am DEFAULT toast',
-              duration: 2000,
-              showMode: promptAction.ToastShowMode.DEFAULT,
-              bottom: 80
-            })
-          })
-          Blank().height(200);
-          Button() {
-            Text('TOPMOST Toast')
-              .fontSize(20)
-              .fontWeight(FontWeight.Bold)
-
-          }
-          .height(100)
-          .width('100%')
-          .onClick(() => {
-            promptAction.showToast({
-              message: 'ok,I am TOP_MOST toast',
-              duration: 2000,
-              showMode: promptAction.ToastShowMode.TOP_MOST,
-              bottom: 85
-            })
-          })
-        }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+        Blank().height(200);
+        Button() {
+          // $r('app.string.DefaultAndTopToast_topToast')需要替换为开发者所需的资源文件
+          Text($r('app.string.DefaultAndTopToast_topToast'))
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+        }
+        .height('100')
+        .width('100%')
+        .onClick(() => {
+          this.getUIContext().getPromptAction().showToast({
+            // $r('app.string.DefaultAndTopToast_topToastMessage')需要替换为开发者所需的资源文件
+            message: $r('app.string.DefaultAndTopToast_topToastMessage'),
+            duration: 2000,
+            showMode: promptAction.ToastShowMode.TOP_MOST,
+            bottom: 85
+          });
+        })
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude toast_showDefaultAndTop]
     }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.DefaultAndTopToast_title'))
+    // [EndExclude toast_showDefaultAndTop]
   }
 }
+// [End toast_showDefaultAndTop]

@@ -41,8 +41,10 @@ export struct FocusPrioritySample {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude focus_priority_manage]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Focus_FocusPriority_title'))
+    // [EndExclude focus_priority_manage]
   }
 }
 // [End focus_priority_manage]

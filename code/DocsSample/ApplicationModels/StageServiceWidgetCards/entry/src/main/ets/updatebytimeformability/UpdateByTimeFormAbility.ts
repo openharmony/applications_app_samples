@@ -14,17 +14,20 @@
  */
 
 // [Start update_by_time_form_ability]
+// [Start set_form_next_refreshime]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [StartExclude set_form_next_refreshime]
 import { Want } from '@kit.AbilityKit';
-
+// [EndExclude set_form_next_refreshime]
 const TAG: string = 'UpdateByTimeFormAbility';
 const FIVE_MINUTE: number = 5;
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class UpdateByTimeFormAbility extends FormExtensionAbility {
   // [StartExclude update_by_time_form_ability]
+  // [StartExclude set_form_next_refreshime]
   onAddForm(want: Want): formBindingData.FormBindingData {
     // Called to return a FormBindingData object.
     let formData = {};
@@ -46,7 +49,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
       hilog.error(DOMAIN_NUMBER, TAG, 'Operation updateForm failed. Cause: ' + error);
     });
   }
-
+  // [EndExclude set_form_next_refreshime]
   // [EndExclude update_by_time_form_ability]
   onFormEvent(formId: string, message: string): void {
     // Called when a specified message event defined by the form provider is triggered.
@@ -70,10 +73,13 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     ;
   }
   // [StartExclude update_by_time_form_ability]
+  // [StartExclude set_form_next_refreshime]
   onAcquireFormState(want: Want): formInfo.FormState {
     // Called to return a {@link FormState} object.
     return formInfo.FormState.READY;
   }
+  // [EndExclude set_form_next_refreshime]
   // [EndExclude update_by_time_form_ability]
 }
+// [End set_form_next_refreshime]
 // [End update_by_time_form_ability]

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。该工程创建Image组件，入参类型为DrawableDescriptor,并可以设置duration、iteration属性。该工程中代码详细描述可参考[显示图片 (Image)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-graphics-display.md)。
+本示例通过使用[drawable_descriptor.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-drawable-descriptor-h.md)中的接口，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。该工程创建Image组件，入参类型为DrawableDescriptor,并可以设置duration、iteration属性。
 
 ### 效果预览
 

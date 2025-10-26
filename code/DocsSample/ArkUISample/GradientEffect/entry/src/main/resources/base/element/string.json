@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Linear_Gradient_Effect",
+      "value": "点击线性渐变效果"
+    },
+    {
+      "name": "Direction_Gradient_Effect",
+      "value": "点击角度渐变效果"
+    },
+    {
+      "name": "Radial_Gradient_Effect",
+      "value": "点击径向渐变效果"
+    }
+  ]
+}

@@ -206,6 +206,14 @@
     {
       "name": "toggle",
       "value": "切换按钮/Toggle"
+    },
+    {
+      "name": "RadioSample2_title",
+      "value": "单选框示例2"
+    },
+    {
+      "name": "RadioSample2_description",
+      "value": "单选框示例2，模拟单选框应用效果。"
     }
   ]
 }

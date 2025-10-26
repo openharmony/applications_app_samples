@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "componentextension"
+    },
+    {
+      "name": "AnimatableExtendDecorator",
+      "value": "AnimatableExtendDecorator"
+    },
+    {
+      "name": "AnimatablePropertyExample",
+      "value": "AnimatableExtendDecoratorOne"
+    },
+    {
+      "name": "AnimatablePropertyText",
+      "value": "AnimatableExtendDecoratorTwo"
+    },
+    {
+      "name": "StylesDecorator",
+      "value": "StylesDecorator"
+    },
+    {
+      "name": "StylesDecorator1",
+      "value": "StylesDecoratorOne"
+    },
+    {
+      "name": "StylesDecorator2",
+      "value": "StylesDecoratorTwo"
+    }
+  ]
+}

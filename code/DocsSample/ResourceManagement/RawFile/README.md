@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了[Rawfile开发指导](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/napi/rawfile-guidelines.md)中功能，开发者可以通过本项目了解如何使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile。
+本工程主要实现了[Rawfile开发指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/rawfile-guidelines.md)中功能，开发者可以通过本项目了解如何使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile。
 
 ### 效果预览
 
@@ -67,6 +67,6 @@ RawFile/entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ResourceManagement/RawFile/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

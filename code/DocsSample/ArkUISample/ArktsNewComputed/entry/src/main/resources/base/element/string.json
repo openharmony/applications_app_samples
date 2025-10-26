@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "computed_title_1",
+      "value": "当被计算的属性变化时，@Computed装饰的getter访问器只会被求解一次。"
+    },
+    {
+      "name": "computed_title_2",
+      "value": "@Computed装饰的属性可以被@Monitor监听变化"
+    },
+    {
+      "name": "computed_title_3",
+      "value": "@Computed装饰的属性可以初始化@Param"
+    },
+    {
+      "name": "computed_desc_1",
+      "value": "在自定义组件中使用计算属性。"
+    },
+    {
+      "name": "computed_desc_2",
+      "value": "在@ObservedV2装饰的类中使用计算属性。。"
+    },
+    {
+      "name": "computed_desc_3",
+      "value": "如何使用计算属性求解fahrenheit和kelvin。"
+    },
+    {
+      "name": "computed_desc_4",
+      "value": "下面的例子使用@Computed初始化@Param。"
+    },
+    {
+      "name": "computed_property_title",
+      "value": "当开发者使用相同的计算逻辑重复绑定在UI上时，为了防止重复计算，可以使用@Computed计算属性。计算属性中的依赖的状态变量变化时，只会计算一次。这解决了UI多次重用该属性导致的重复计算和性能问题"
+    }
+  ]
+}

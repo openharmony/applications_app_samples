@@ -33,7 +33,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
             LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceCreatedCB: component or window is null");
         return;
     }
-
+    
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
     if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -134,7 +134,16 @@ void DispatchMouseEventCB(OH_NativeXComponent* component, void* window)
     if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         return;
     }
-
+    OH_NativeXComponent_ExtraMouseEventInfo* mouseEventInfo = NULL;
+    ret = OH_NativeXComponent_GetExtraMouseEventInfo(component, &mouseEventInfo);
+    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+        return;
+    }
+    uint64_t mouseKey;
+    ret = OH_NativeXComponent_GetMouseEventModifierKeyStates(mouseEventInfo, &mouseKey);
+    if (ret == OH_NATIVEXCOMPONENT_RESULT_FAILED || ret == OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER) {
+        return;
+    }
     std::string id(idStr);
     auto render = PluginRender::GetInstance(id);
     if (render != nullptr) {
@@ -341,6 +350,9 @@ void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
             LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback", "DispatchTouchEventCB: Unable to get XComponent id");
         return;
     }
+    OH_NativeXComponent_TouchEvent_SourceTool sourceTool = OH_NATIVEXCOMPONENT_SOURCETOOL_UNKNOWN;
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+        "touch info: OH_NATIVEXCOMPONENT_SOURCETOOL_UNKNOWN = %{public}d", sourceTool);
     OH_NativeXComponent_TouchEvent touchEvent;
     OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
     std::string id(idStr);
@@ -355,8 +367,87 @@ void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
     OH_NativeXComponent_GetTouchPointToolType(component, 0, &toolType);
     OH_NativeXComponent_GetTouchPointTiltX(component, 0, &tiltX);
     OH_NativeXComponent_GetTouchPointTiltY(component, 0, &tiltY);
+    float windowX = 0;
+    float windowY = 0;
+    float displayX = 0;
+    float displayY = 0;
+    OH_NativeXComponent_GetTouchPointWindowX(component, 0, &windowX);
+    OH_NativeXComponent_GetTouchPointWindowY(component, 0, &windowY);
+    OH_NativeXComponent_GetTouchPointDisplayX(component, 0, &displayX);
+    OH_NativeXComponent_GetTouchPointDisplayY(component, 0, &displayY);
+    int32_t pointId = 0;
+    OH_NativeXComponent_EventSourceType sourceType;
+    OH_NativeXComponent_GetTouchEventSourceType(component, pointId, &sourceType);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
         "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+        "touch info: max_touch_points_number = %{public}d", OH_MAX_TOUCH_POINTS_NUMBER);
+    bool isshowSample = 0;
+    if (isshowSample == 1) {
+        // 仅展示使用方法
+        ShowSample(component);
+    }
+}
+
+void SampleCallback(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targettimestamp)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallback", "SampleCallback");
+}
+
+void SampleInputeventCallback(OH_NativeXComponent *component, ArkUI_UIInputEvent *event, ArkUI_UIInputEvent_Type type)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInputeventCallback", "SampleInputeventCallback");
+}
+
+HitTestMode SampleInterceptCallback(OH_NativeXComponent *component, ArkUI_UIInputEvent *event)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleInterceptCallback", "SampleInterceptCallback");
+}
+
+void SampleSurfaceShowCallback(OH_NativeXComponent *component, void* window)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleSurfaceShowCallback", "SampleSurfaceShowCallback");
+}
+
+bool SampleCallbackWithResult(OH_NativeXComponent *component, void* window)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleCallbackWithResult", "SampleCallbackWithResult");
+    return false;
+}
+
+void SampleAnalyzer(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData)
+{
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "SampleAnalyzer", "SampleAnalyzer");
+}
+
+void myContentHandler(ArkUI_NodeContentEvent* event) {
+    // 处理内容变化
+}
+
+void PluginRender::ShowSample(OH_NativeXComponent* component)
+{
+    int32_t min = 0;
+    int32_t max = 0;
+    int32_t expected = 0;
+    OH_NativeXComponent_ExpectedRateRange range = {.min = min, .max = max, .expected = expected};
+    OH_NativeXComponent_SetExpectedFrameRateRange(component, &range);
+    bool needSoftKeyboard = 0;
+    OH_NativeXComponent_SetNeedSoftKeyboard(component, needSoftKeyboard);
+    ArkUI_AccessibilityProvider* sampleHandle; //此处需要绑定handle
+    OH_NativeXComponent_GetNativeAccessibilityProvider(component, &sampleHandle);
+    OH_NativeXComponent_RegisterOnFrameCallback(component, SampleCallback);
+    OH_NativeXComponent_UnregisterOnFrameCallback(component);
+    ArkUI_UIInputEvent_Type type = ARKUI_UIINPUTEVENT_TYPE_UNKNOWN;
+    OH_NativeXComponent_RegisterUIInputEventCallback(component, SampleInputeventCallback, type);
+    OH_NativeXComponent_RegisterOnTouchInterceptCallback(component, SampleInterceptCallback);
+    OH_NativeXComponent_RegisterSurfaceShowCallback(component, SampleSurfaceShowCallback);
+    OH_NativeXComponent_RegisterSurfaceHideCallback(component, SampleSurfaceShowCallback);
+    OH_NativeXComponent_RegisterKeyEventCallbackWithResult(component, SampleCallbackWithResult);
+    ArkUI_NodeHandle node;
+    void* userData;
+    OH_ArkUI_XComponent_StartImageAnalyzer(node, userData, SampleAnalyzer);
+    OH_ArkUI_XComponent_StopImageAnalyzer(node);
+    ArkUI_NodeContentCallback callback1 = myContentHandler;
 }
 
 void PluginRender::RegisterCallback(OH_NativeXComponent* nativeXComponent)
@@ -421,6 +512,14 @@ void PluginRender::OnKeyEvent(OH_NativeXComponent* component, void* window)
         OH_NativeXComponent_GetKeyEventDeviceId(keyEvent, &deviceId);
         int64_t timeStamp;
         OH_NativeXComponent_GetKeyEventTimestamp(keyEvent, &timeStamp);
+        uint64_t keys;
+        OH_NativeXComponent_GetKeyEventModifierKeyStates(keyEvent, &keys);
+        bool isNumLockOn;
+        OH_NativeXComponent_GetKeyEventNumLockState(keyEvent, &isNumLockOn);
+        bool isCapsLockOn;
+        OH_NativeXComponent_GetKeyEventCapsLockState(keyEvent, &isCapsLockOn);
+        bool isScrollLockOn;
+        OH_NativeXComponent_GetKeyEventScrollLockState(keyEvent, &isScrollLockOn);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender",
             "KeyEvent Info: action=%{public}d, code=%{public}d, sourceType=%{public}d, deviceId=%{public}ld, "
             "timeStamp=%{public}ld",

@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/FocusOnclickExample/FocusOnclickExample",
+    "pages/PreventBubbling/PreventBubbling",
+    "pages/sampling/Sampling",
+    "pages/MultipleFingerInformation/MultipleFingerInformation",
+    "pages/mouseMove/MouseMove",
+    "pages/onHover/OnHover",
+    "pages/stopPropagation/StopPropagation",
+    "pages/MouseButton/MouseButton",
+    "pages/MouseWheel/MouseWheel"
+  ]
+}

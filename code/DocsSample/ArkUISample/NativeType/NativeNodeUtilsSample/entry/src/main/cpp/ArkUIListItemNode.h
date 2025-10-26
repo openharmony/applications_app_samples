@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Provide_wrapper_class_list_items]
 // ArkUIListItemNode.h
 // 提供列表项的封装类。
 #ifndef MYAPPLICATION_ARKUILISTITEMNODE_H
@@ -52,3 +53,4 @@ namespace NativeModule {
     };
 } // namespace NativeModule
 #endif // MYAPPLICATION_ARKUILISTITEMNODE_H
+// [End Provide_wrapper_class_list_items]

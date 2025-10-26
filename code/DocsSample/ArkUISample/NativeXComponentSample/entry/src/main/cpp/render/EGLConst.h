@@ -15,6 +15,8 @@
 
 #ifndef NATIVEXCOMPONENT_EGLCONST_H
 #define NATIVEXCOMPONENT_EGLCONST_H
+// [Start egl_const_h]
+// EGLConst.h
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <GLES3/gl3.h>
@@ -22,65 +24,66 @@
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 
 /**
- * Program error.
+ * Program 错误
  */
 const GLuint PROGRAM_ERROR = 0;
 
 /**
- * Position error.
+ * 位置错误。
  */
 const GLint POSITION_ERROR = -1;
 
 /**
- * Default x position.
+ * 默认x坐标。
  */
 const int DEFAULT_X_POSITION = 0;
 
 /**
- * Default y position.
+ * 默认y坐标。
  */
 const int DEFAULT_Y_POSITION = 0;
 
 /**
- * Gl red default.
+ * Gl 红色默认值。
  */
 const GLfloat GL_RED_DEFAULT = 0.0;
 
 /**
- * Gl green default.
+ * Gl 绿色默认值。
  */
 const GLfloat GL_GREEN_DEFAULT = 0.0;
 
 /**
- * Gl blue default.
+ * Gl 蓝色默认值。
  */
 const GLfloat GL_BLUE_DEFAULT = 0.0;
 
 /**
- * Gl alpha default.
+ * Gl 透明度。
  */
 const GLfloat GL_ALPHA_DEFAULT = 1.0;
 
 /**
- * Pointer size.
+ * Pointer 数量。
  */
 const GLint POINTER_SIZE = 2;
 
 /**
- * Triangle fan size.
+ * Triangle fan 尺寸。
  */
 const GLsizei TRIANGLE_FAN_SIZE = 4;
 
 /**
- * Fifty percent.
+ * 50%。
  */
 const float FIFTY_PERCENT = 0.5;
 
 /**
- * Position handle name.
+ * 位置句柄名字。
  */
 const char POSITION_NAME[] = "a_position";
 
+// [StartExclude egl_const_h]
 /**
  * numeric value 0.
  */
@@ -90,43 +93,46 @@ const int NUM_0 = 0;
  * numeric value 4.
  */
 const int NUM_4 = 4;
+// [EndExclude egl_const_h]
 
 /**
- * Background color #f4f4f4.
+ * 背景色 #f4f4f4.
  */
 const GLfloat BACKGROUND_COLOR[] = {244.0f / 255, 244.0f / 255, 244.0f / 255, 1.0f};
 
+// [StartExclude egl_const_h]
 /**
  * Background color #ffffff00.
  */
 const GLfloat TRANSPARENT_COLOR[] = {255.0f / 255, 255.0f / 255, 255.0f / 255, 0.0f};
+// [EndExclude egl_const_h]
 
 /**
- * Draw color #7E8FFB.
+ * Draw 颜色 #7E8FFB.
  */
 const GLfloat DRAW_COLOR[] = {126.0f / 255, 143.0f / 255, 251.0f / 255, 1.0f};
 
 /**
- * Change color #92D6CC.
+ * Change 颜色 #92D6CC.
  */
 const GLfloat CHANGE_COLOR[] = {146.0f / 255, 214.0f / 255, 204.0f / 255, 1.0f};
 
 /**
- * Background area.
+ * 背景区域。
  */
 const GLfloat BACKGROUND_RECTANGLE_VERTICES[] = {-1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f};
 
 const EGLint ATTRIB_LIST[] = {
-    // Key,value.
+    // 键，值。
     EGL_SURFACE_TYPE, EGL_WINDOW_BIT, EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8, EGL_ALPHA_SIZE, 8,
     EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-    // End.
+    // 结束。
     EGL_NONE};
 
 const EGLint CONTEXT_ATTRIBS[] = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE};
 
 /**
- * Vertex shader.
+ * 顶点着色器
  */
 const char VERTEX_SHADER[] = "#version 300 es\n"
                              "layout(location = 0) in vec4 a_position;\n"
@@ -139,7 +145,7 @@ const char VERTEX_SHADER[] = "#version 300 es\n"
                              "}                                       \n";
 
 /**
- * Fragment shader.
+ * 片元着色器。
  */
 const char FRAGMENT_SHADER[] = "#version 300 es\n"
                                "precision mediump float;                  \n"
@@ -149,4 +155,5 @@ const char FRAGMENT_SHADER[] = "#version 300 es\n"
                                "{                                         \n"
                                "   fragColor = v_color;                   \n"
                                "}                                         \n";
+// [End egl_const_h]
 #endif // NATIVEXCOMPONENT_EGLCONST_H
