@@ -15,7 +15,7 @@
 //[Start testRelativeContainerComponentBarrier_start]
 @Entry
 @Component
-struct testRelativeContainerComponentBarrier {
+struct Index9 {
   build() {
     Row() {
       RelativeContainer() {

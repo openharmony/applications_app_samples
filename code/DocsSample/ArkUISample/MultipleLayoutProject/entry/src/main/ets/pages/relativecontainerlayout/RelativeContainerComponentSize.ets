@@ -15,7 +15,7 @@
 //[Start RelativeContainerComponentSize_start]
 @Entry
 @Component
-struct RelativeContainerComponentSize {
+struct Index6 {
   build() {
     Row() {
       RelativeContainer() {
