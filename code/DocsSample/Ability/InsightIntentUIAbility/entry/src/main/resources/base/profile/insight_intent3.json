@@ -1,0 +1,14 @@
+{
+  "insightIntents": [
+    {
+      "domain": "MusicDomain",
+      "intentName": "PlayMusic",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/insightintents/WidgetExecutor.ets",
+      "form": {
+        "ability": "PlayerWidgetAbility",
+        "formName": "mini_player"
+      }
+    }
+  ]
+}

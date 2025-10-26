@@ -272,6 +272,7 @@ void SetId(ArkUI_NodeHandle &node, const char *id)
     nodeAPI->setAttribute(node, NODE_ID, &idItem);
 }
 
+// [Start prepare_dragAction]
 void SetPixelMap(std::vector<OH_PixelmapNative *> &pixelVector)
 {
     uint8_t data[960000];
@@ -323,6 +324,7 @@ void PrintDragActionInfos()
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
         "OH_ArkUI_DragAction_SetTouchPointY returnValue = %{public}d", returnValue);
 }
+// [End prepare_dragAction]
 
 } // namespace NativeXComponentSample
 

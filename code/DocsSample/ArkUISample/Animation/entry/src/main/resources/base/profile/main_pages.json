@@ -11,6 +11,7 @@
     "pages/animator/template1/Index",
     "pages/animator/template2/Index",
     "pages/animator/template3/Index",
+    "pages/animator/template4/Index",
     "pages/particle/template1/Index",
     "pages/particle/template2/Index",
     "pages/particle/template3/Index",
@@ -26,11 +27,16 @@
     "pages/pageTransition/template3/pageTransitionSrc1",
     "pages/pageTransition/template4/pageTransitionDst2",
     "pages/pageTransition/template4/pageTransitionSrc2",
+    "pages/pageTransition/template5/PageTransitionSrc3",
+    "pages/pageTransition/template5/PageTransitionDst3",
+    "pages/pageTransition/template6/PageTransitionSrc4",
+    "pages/pageTransition/template6/PageTransitionDst4",
     "pages/compTransition/template1/Index",
     "pages/compTransition/template2/Index",
     "pages/compTransition/template3/Index",
     "pages/compTransition/template4/Index",
     "pages/compTransition/template5/Index",
+    "pages/compTransition/template6/Index",
     "pages/shareTransition/template1/Index",
     "pages/shareTransition/template1/PageB",
     "pages/motionPath/template1/Index",
@@ -38,6 +44,10 @@
     "pages/rotation/template1/Index",
     "pages/rotation/template2/Index",
     "pages/cohesion/template1/Index",
-    "pages/cohesion/template2/Index"
+    "pages/cohesion/template2/Index",
+    "pages/animatableProperty/template1/Index",
+    "pages/animatableProperty/template2/Index",
+    "pages/component/template1/Index",
+    "pages/component/template2/Index"
   ]
 }

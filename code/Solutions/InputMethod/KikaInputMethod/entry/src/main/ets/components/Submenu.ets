@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start input_case_input_Submenu]
+
 import { BusinessError } from '@ohos.base';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { SubMenuType } from '../model/KeyboardKeyData';
@@ -51,6 +51,7 @@ export struct Submenu {
     console.log('onPageShow11', JSON.stringify(this.b));
   }
 
+  // [Start input_case_input_switchInputMethodgetInputMethods]
   async switchInputMethod(item: string) {
     this.a = await inputMethod.getSetting().getInputMethods(true); // 获取已使能的输入法列表
     let currentInputMethod = inputMethod.getCurrentInputMethod(); // 获取当前输入法
@@ -72,6 +73,7 @@ export struct Submenu {
       console.log('GJ switchCurrentInputMethodSubtype error', JSON.stringify(error));
     }
   }
+  // [End input_case_input_switchInputMethodgetInputMethods]
 
   aboutToAppear(): void {
     this.inputList()
@@ -171,4 +173,3 @@ export struct Submenu {
     .backgroundColor('#F1F3F5')
   }
 }
-// [End input_case_input_Submenu]

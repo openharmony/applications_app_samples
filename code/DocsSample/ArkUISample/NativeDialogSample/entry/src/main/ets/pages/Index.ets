@@ -41,6 +41,13 @@ struct Index {
               url: 'pages/IndexCustomDialog',
             })
           })
+        Button($r('app.string.dialog_demo'))
+          .height(50)
+          .width('85%')
+          .margin({ top: 20, bottom: 10 })
+          .onClick(() => {
+            this.getUIContext().getRouter().pushUrl({url: 'pages/DialogDemo'});
+          })
         Text($r('app.string.exit_app'))
           .fontSize(20)
           .fontColor(0xCCCCCC)

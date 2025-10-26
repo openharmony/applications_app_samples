@@ -29,6 +29,14 @@
       "value": "属性字符串（StyledString/MutableStyledString）"
     },
     {
+      "name": "pageIndex_TextImageMixedLayout",
+      "value": "图文混排"
+    },
+    {
+      "name": "textImageMixedLayout_content",
+      "value": "点击查看商品详情"
+    },
+    {
       "name": "pageIndex_TextNDKUI",
       "value": "使用文本(NDK)"
     },
@@ -177,12 +185,116 @@
       "value": "这是一段可复制文本。"
     },
     {
+      "name": "Set_digital_flip_effect",
+      "value": "设置数字翻牌效果。"
+    },
+    {
+      "name": "Set_digital_flip_effect_description",
+      "value": "支持通过contentTransition属性设置数字翻牌效果展示"
+    },
+    {
+      "name": "text_layout",
+      "value": "文本布局"
+    },
+    {
+      "name": "text_layout_description",
+      "value": "支持通过optimizeTrailingSpace属性设置效果展示"
+    },
+    {
+      "name": "Set_text_line_spacing",
+      "value": "设置文本的行间距"
+    },
+    {
+      "name": "Set_text_line_spacing_description",
+      "value": "通过lineSpacing设置文本的行间距设置效果展示"
+    },
+    {
+      "name": "Automatic_spacing",
+      "value": "中文西文自动间距"
+    },
+    {
+      "name": "Automatic_spacing_description",
+      "value": "支持通过enableAutoSpacing设置是否开启中文与西文的自动间距"
+    },
+    {
+      "name": "Shader_Style",
+      "value": "设置渐变色"
+    },
+    {
+      "name": "direction_LeftTop",
+      "value": "direction为LeftTop的线性渐变"
+    },
+    {
+      "name": "Shader_Style_description",
+      "value": "支持通过shaderStyle设置渐变色"
+    },
+    {
+      "name": "Selection_Change",
+      "value": "关闭选中菜单"
+    },
+    {
+      "name": "Selection_Change_description",
+      "value": "在Text组件区域内点击空白处，会正常关闭选中态和菜单"
+    },
+    {
+      "name": "General_Events",
+      "value": "添加通用事件"
+    },
+    {
+      "name": "selected_menu",
+      "value": "这是一段文本，用来展示选中菜单"
+    },
+    {
+      "name": "Bind_SelectionMenu",
+      "value": "绑定自定义选择菜单"
+    },
+    {
+      "name": "display_the_selected_menu",
+      "value": "这是一段文本，用来展示选中菜单"
+    },
+    {
+      "name": "custom_selection_menu_pops_up",
+      "value": "自定义选择菜单弹出时触发该回调"
+    },
+    {
+      "name": "custom_selection_menu_is_closed",
+      "value": "自定义选择菜单关闭时触发该回调"
+    },
+    {
+      "name": "Bind_SelectionMenu_description",
+      "value": "Text组件通过设置bindSelectionMenu属性绑定自定义选择菜单。"
+    },
+    {
+      "name": "General_Events_description",
+      "value": "Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作。"
+    },
+    {
       "name": "CustomTextStyle_textContent_8",
       "value": "当文本溢出其尺寸时，文本将滚动显示，支持设置跑马灯配置项 When the text overflows its dimensions, the text will scroll for displaying."
     },
     {
       "name": "TextAlign_Start",
       "value": "左对齐"
+    },
+    {
+      "name": "Enable_automatic_spacing",
+      "value": "开启自动间距"
+    },
+    {
+      "name": "off_automatic_spacing",
+      "value": "关闭自动间距"
+    },
+    {
+      "name": "Automatic_spacing_has_been_enabled",
+      "value": "当前状态:已开启自动间距"
+    },
+    {
+      "name": "Automatic_spacing_has_been_turned_off",
+      "value": "当前状态:已关闭自动间距"
+    },
+    {
+      "name": "Chinese_and_Western_Auto_Spacing_automatic_spacing",
+      "value": "中西文Auto Spacing自动间距"
     },
     {
       "name": "TextAlign_Center",
@@ -205,8 +317,16 @@
       "value": "选中菜单"
     },
     {
+      "name": "ProhibitSelectionMenu_title",
+      "value": "禁用系统服务类菜单"
+    },
+    {
       "name": "SelectionMenu_description",
       "value": "输入框中的文字被选中时会弹出包含剪切、复制、翻译、搜索的菜单"
+    },
+    {
+      "name": "ProhibitSelectionMenu_description",
+      "value": "从API version 20开始，支持使用disableSystemServiceMenuItems方法屏蔽文本选择菜单中的所有系统服务菜单项。"
     },
     {
       "name": "SetSelectionMenu_description",
@@ -245,6 +365,14 @@
       "value": "热搜榜示例"
     },
     {
+      "name": "OnClick_onHover",
+      "value": "添加点击事件悬浮事件"
+    },
+    {
+      "name": "OnClickOnHover_description",
+      "value": "实例通过添加点击事件onClick、悬浮事件onHover展示效果"
+    },
+    {
       "name": "TextHotSearch_description",
       "value": "示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果"
     },
@@ -277,12 +405,36 @@
       "value": "创建输入框"
     },
     {
+      "name": "ProhibitSelectMenu_title_1",
+      "value": "disableSystemServiceMenuItems"
+    },
+    {
+      "name": "ProhibitSelectMenu_content",
+      "value": "这是一个TextInput，长按弹出文本选择菜单"
+    },
+    {
+      "name": "ProhibitSelectMenu_title_2",
+      "value": "disableMenuItems"
+    },
+    {
+      "name": "ProhibitSelectMenu_description_1",
+      "value": "从API version 20开始，支持使用disableSystemServiceMenuItems方法屏蔽文本选择菜单中的所有系统服务菜单项。"
+    },
+    {
+      "name": "ProhibitSelectMenu_description_2",
+      "value": "从API version 20开始，支持使用disableMenuItems方法屏蔽文本选择菜单中指定的系统服务菜单项。"
+    },
+    {
       "name": "CreatTextInput_title_1",
       "value": "单行输入框"
     },
     {
       "name": "CreatTextInput_title_2",
       "value": "多行输入框"
+    },
+    {
+      "name": "CreatTextInput_title_3",
+      "value": "搜索框。"
     },
     {
       "name": "CreatTextInput_description",
@@ -445,16 +597,36 @@
       "value": "输入你的邮箱..."
     },
     {
-      "name": "Set_Omission_Property",
-      "value": "设置省略属性"
+      "name": "Set_Text_Margin",
+      "value": "设置文本行间距"
+    },
+    {
+      "name": "SetTextMargin_Content",
+      "value": "The line spacing of this TextArea is set to 20_px, and the spacing is effective only between the lines."
+    },
+    {
+      "name": "Set_Text_Margin_description",
+      "value": "从API version 20开始，支持通过lineSpacing设置文本的行间距。如果不配置LineSpacingOptions时，首行上方和尾行下方默认会有行间距。如果onlyBetweenLines设置为true时，行间距仅适用于行与行之间，首行上方无额外行间距。"
+    },
+    {
+      "name": "Set_Property",
+      "value": "设置属性"
     },
     {
       "name": "Set_Omission_Property_description",
       "value": "输入框可以通过ellipsisMode属性设置省略位置"
     },
     {
+      "name": "Set_Stroke_Property_description",
+      "value": "从API version 20开始，输入框可以通过strokeWidth和strokeColor属性设置文本的描边宽度及颜色。"
+    },
+    {
       "name": "Set_Omission_Property_textContent",
       "value": "这是一段文本，用来展示省略模式"
+    },
+    {
+      "name": "Set_stroke_Property_textContent",
+      "value": "Text with stroke"
     },
     {
       "name": "Create_RichEditor_Component_title",
@@ -525,6 +697,46 @@
       "value": "富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单"
     },
     {
+      "name": "Set_Attributes_title_9",
+      "value": "设置富文本组件中文本装饰线"
+    },
+    {
+      "name": "Set_Attributes_title_9_desc",
+      "value": "通过decoration设置富文本组件中文本装饰线"
+    },
+    {
+      "name": "Set_Attributes_title_10",
+      "value": "设置富文本多装饰线"
+    },
+    {
+      "name": "Set_Attributes_title_10_desc",
+      "value": "通过StyledString类型的富文本设置多装饰线"
+    },
+    {
+      "name": "Set_Attributes_title_11",
+      "value": "设置垂直居中"
+    },
+    {
+      "name": "Set_Attributes_title_11_desc",
+      "value": "通过textVerticalAlign设置文本段落在垂直方向的对齐方式"
+    },
+    {
+      "name": "Set_Attributes_title_12",
+      "value": "设置中西文自动间距"
+    },
+    {
+      "name": "Set_Attributes_title_12_desc",
+      "value": "通过enableAutoSpacing设置是否开启中文与西文的自动间距"
+    },
+    {
+      "name": "Set_Attributes_title_13",
+      "value": "管理选中菜单项"
+    },
+    {
+      "name": "Set_Attributes_title_13_desc",
+      "value": "当富文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置"
+    },
+    {
       "name": "Add_Event_title",
       "value": "添加事件"
     },
@@ -591,6 +803,50 @@
     {
       "name": "Set_User_PresetText_Styles_desc",
       "value": "通过setTypingStyle设置用户预设的文本样式"
+    },
+    {
+      "name": "Disable_SystemService_Menu_title",
+      "value": "禁用系统服务菜单"
+    },
+    {
+      "name": "Disable_SystemService_Menu_title_desc",
+      "value": "文字被选中时弹出的菜单不包含系统菜单"
+    },
+    {
+      "name": "Disable_Menu_Item_title",
+      "value": "禁用搜索和翻译菜单"
+    },
+    {
+      "name": "Disable_Menu_Item_title_desc",
+      "value": "文字被选中时弹出的菜单不包含搜索和翻译菜单"
+    },
+    {
+      "name": "Demo_richEditor",
+      "value": "这是一个RichEditor"
+    },
+    {
+      "name": "Demo_oneText",
+      "value": "一段预置的文本"
+    },
+    {
+      "name": "Demo_SetStyledStringButton",
+      "value": "多装饰线文本"
+    },
+    {
+      "name": "Demo_styledString",
+      "value": "设置富文本多装饰线"
+    },
+    {
+      "name": "Demo_verticalAlignString",
+      "value": "这是一段富文本，展示了文本垂直居中的效果。"
+    },
+    {
+      "name": "Demo_autoSpacingString",
+      "value": "中西文Auto Spacing自动间距"
+    },
+    {
+      "name": "Demo_autoSpacingButton",
+      "value": "开启中西文自动间距"
     },
     {
       "name": "Backplane_Highlighting_title",
@@ -701,6 +957,18 @@
       "value": "可通过ParagraphStyle设置段落样式布局。"
     },
     {
+      "name": "StyledStringParagraphStyleOne_title",
+      "value": "设置段落样式方法一"
+    },
+    {
+      "name": "StyledStringReplaceParagraphStyle_title",
+      "value": "设置段落样式方法二"
+    },
+    {
+      "name": "StyledStringConvertedToParagraph_title",
+      "value": "支持将属性字符串转换成Paragraph"
+    },
+    {
       "name": "StyledStringImageAttachment_title",
       "value": "通过ImageAttachment来添加图片"
     },
@@ -727,6 +995,14 @@
     {
       "name": "StyledStringHtml_description",
       "value": "可以通过toHtml、fromHtml接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：<p>、<span>、<img>。"
+    },
+    {
+      "name": "StyledStringHtmlOne_title",
+      "value": "格式转换二"
+    },
+    {
+      "name": "StyledStringHtmlOne_description",
+      "value": "将HTML中<strong>、<b>、<a>、<i>、<em>、<s>、<u>、<del>、<sup>、<sub>标签及其style属性中的background-color转换为属性字符串并转回HTML。"
     },
     {
       "name": "StyledStringSceneExample_title",
@@ -763,6 +1039,14 @@
     {
       "name": "SymbolGlyphSpanCustomIconAnimation_description",
       "value": "相较于effectStrategy属性在启动时即触发动效，可以通过以下两种方式来控制动效的播放状态，以及选择更多样化的动效策略。"
+    },
+    {
+      "name": "SymbolShadowAndColor_title",
+      "value": "设置阴影和渐变色"
+    },
+    {
+      "name": "SymbolShadowAndColor_description",
+      "value": ""
     },
     {
       "name": "SymbolGlyphSpanAddEvent_title",
@@ -811,6 +1095,22 @@
     {
       "name": "SymbolGlyphSpanCustomIconAnimation_title_2",
       "value": "通过设置SymbolEffect属性，可以同时指定SymbolGlyph的动画效果策略及其播放触发条件"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_title_3",
+      "value": "从API version 20开始，支持通过设置SymbolEffect属性为ReplaceSymbolEffect，设置ReplaceEffectType为ReplaceEffectType.SLASH_OVERLAY，可以指定SymbolGlyph的禁用动画效果及其播放触发条件。"
+    },
+    {
+      "name": "SymbolGlyphSpanCustomIconAnimation_title_4",
+      "value": "从API version 20开始，支持通过设置SymbolEffect属性为ReplaceSymbolEffect，设置ReplaceEffectType为ReplaceEffectType.CROSS_FADE，可以指定SymbolGlyph的快速替换动画效果及其播放触发条件。"
+    },
+    {
+      "name": "SymbolShadowAndColor_title_1",
+      "value": "从API version 20开始，支持通过symbolShadow接口实现了symbolGlyph组件显示阴影效果。"
+    },
+    {
+      "name": "SymbolShadowAndColor_title_2",
+      "value": "从API version 20开始，支持通过shaderStyle接口实现了symbolGlyph组件显示渐变色效果。"
     },
     {
       "name": "ListenTextBoxEvents_NDK_title",
@@ -917,6 +1217,10 @@
       "value": "运动35分钟"
     },
     {
+      "name": "CreateApply_Text_3",
+      "value": "运动45分钟 目标达成"
+    },
+    {
       "name": "StyledStringHtml_Text_1",
       "value": "属性字符串"
     },
@@ -931,6 +1235,10 @@
     {
       "name": "StyledStringParagraphStyle_Text_1",
       "value": "段落标题\n正文第一段落开始0123456789正文第一段落结束。"
+    },
+    {
+      "name": "StyledStringParagraphStyle_Text_2",
+      "value": "段落标题\\n正文第一段落开始0123456789正文第一段落结束，通过replaceStyle清空原样式替换新样式。"
     },
     {
       "name": "StyledStringSceneExample_Text_1",
@@ -1153,6 +1461,14 @@
       "value": "弹跳动效"
     },
     {
+      "name": "SymbolCustomIconAnimation_Text_3",
+      "value": "禁用动效"
+    },
+    {
+      "name": "SymbolCustomIconAnimation_Text_4",
+      "value": "快速替换动效"
+    },
+    {
       "name": "SymbolSceneExample_Text_1",
       "value": "顺序播放"
     },
@@ -1197,6 +1513,14 @@
       "value": "歌曲七"
     },
     {
+      "name": "SymbolShadowAndColor_Text_1",
+      "value": "阴影能力"
+    },
+    {
+      "name": "SymbolShadowAndColor_Text_2",
+      "value": "径向渐变"
+    },
+    {
       "name": "SymbolSceneExample_Text_12",
       "value": "关闭"
     },
@@ -1227,6 +1551,133 @@
     {
       "name": "SelectMenu_Text_5",
       "value": "自定义选择菜单关闭时触发该回调"
+    },
+    {
+      "name": "TextImage_MixedLayout_Text_1",
+      "value": "使用Span和ImageSpan实现图文混排"
+    },
+    {
+      "name": "TextImage_MixedLayout_Text_2",
+      "value": "使用属性字符串实现图文混排"
+    },
+    {
+      "name": "TextImage_MixedLayout_Component_desc",
+      "value": "通过Text组件设置textVerticalAlign属性和ImageSpan设置verticalAlign为ImageSpanAlignment.FOLLOW_PARAGRAPH，实现商品价格优惠信息展示的应用场景。"
+    },
+    {
+      "name": "TextImage_MixedLayout_Attribute_desc",
+      "value": "通过ImageAttachment添加图片，TextStyle设置多种文本样式，实现商品详情信息展示的应用场景。"
+    },
+    {
+      "name": "TextImage_MixedLayout_Content_1",
+      "value": "惊喜价 ￥1299"
+    },
+    {
+      "name": "TextImage_MixedLayout_Content_2",
+      "value": "1599"
+    },
+    {
+      "name": "Creat_TextInput_Content",
+      "value": "搜索"
+    },
+    {
+      "name": "TextImageAttribute_Content_1",
+      "value": "\n高质量冲洗照片，高清冲印3/4/5/6寸包邮塑封，品质保证，"
+    },
+    {
+      "name": "TextImageAttribute_Content_2",
+      "value": "\n限时直降5.15元 限量增送"
+    },
+    {
+      "name": "TextImageAttribute_Content_3",
+      "value": "\n￥22.50 销量400万+"
+    }
+      "name": "Service_MenuItems",
+      "value": "屏蔽文本选择菜单内所有系统服务菜单项"
+    },
+    {
+      "name": "Service_MenuItems_description",
+      "value": "支持通过disableSystemServiceMenuItems屏蔽文本选择菜单内所有系统服务菜单项。"
+    },
+    {
+      "name": "Service_MenuItems_Text",
+      "value": "这是一段文本，长按弹出文本选择菜单。"
+    },
+    {
+      "name": "Disable_MenuItems",
+      "value": "屏蔽文本选择菜单内指定的系统服务菜单项。"
+    },
+    {
+      "name": "Disable_MenuItems_description",
+      "value": "触发onPrepareMenu回调可在该回调中进行菜单数据设置。"
+    },
+    {
+      "name": "Prepare_Menu",
+      "value": "屏蔽文本选择菜单内指定的系统服务菜单项。"
+    },
+    {
+      "name": "Prepare_Menu_description",
+      "value": "当文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置。"
+    },
+    {
+      "name": "Phone_number",
+      "value": " '电话号码：' + '(86) (755) ********' + '\\n' +\n    '链接：' + 'www.********.com' + '\\n' +\n    '邮箱：' + '***@example.com' + '\\n' +\n    '地址：' + 'XX省XX市XX区XXXX' + '\\n' +\n    '时间：' + 'XX年XX月XX日XXXX'"
+    },
+    {
+      "name": "Word_Break",
+      "value": "任意2个字符间断行使文本内容尽量占满组件区域"
+    },
+    {
+      "name": "Word_Break_description",
+      "value": "设置wordBreak属性为WordBreak.BREAK_ALL，任意2个字符间断行使文本内容尽量占满组件区域"
+    },
+    {
+      "name": "Height_AdaptivePolicy",
+      "value": "实现类似设置maxLines的效果。"
+    },
+    {
+      "name": "Height_AdaptivePolicy_description",
+      "value": "该模式会删除超过布局约束的行，从而实现类似设置maxLines的效果。"
+    },
+    {
+      "name": "Length_Metric",
+      "value": "在文本前后添加自定义标签。"
+    },
+    {
+      "name": "Length_Metric_description",
+      "value": "如何在文本的前后各添加一个标签，例如“专题”或“Top1”。这些标签的背景样式、尺寸设置需要能够自定义。"
+    },
+    {
+      "name": "Replace_paragraph_style",
+      "value": "替换段落样式"
+    },
+    {
+      "name": "Converted_HTML_to_SpanString",
+      "value": "Converted HTML to SpanString"
+    },
+    {
+      "name": "Converted_SpanString_to_HTML",
+      "value": "Converted SpanString to HTML"
+    },
+    {
+      "name": "Converted_HTML_back_to_SpanString",
+      "value": "Converted HTML back to SpanString"
+    },
+    {
+      "name": "Reset",
+      "value": "Reset"
+    },
+    {
+      "name": "Full_text",
+      "value": "... 全文"
+    },
+    {
+      "name": "Original_text",
+      "value": "原文"
+    },
+    {
+      "name": "After_typesetting",
+      "value": "排版后"
     }
   ]
 }

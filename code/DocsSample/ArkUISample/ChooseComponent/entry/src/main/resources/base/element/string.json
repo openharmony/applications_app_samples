@@ -238,6 +238,14 @@
     {
       "name": "HoverButtonExample_desc",
       "value": "在可以滑动的界面，滑动时按钮始终保持悬浮状态"
+    },
+    {
+      "name": "RadioSample2_title",
+      "value": "单选框示例2"
+    },
+    {
+      "name": "RadioSample2_description",
+      "value": "单选框示例2，模拟单选框应用效果。"
     }
   ]
 }

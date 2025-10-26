@@ -16,12 +16,11 @@
 #include "key_event_handler.h"
 
 #include <arkui/native_interface.h>
+#include <arkui/native_interface_focus.h>
 #include <arkui/native_key_event.h>
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
-#include <ctime>
 #include <hilog/log.h>
-#include <memory>
 #include <sstream>
 
 #include "container.h"
@@ -36,8 +35,12 @@ const int32_t NUMBER_FIVE = 5;
 const int32_t NUMBER_TEN = 10;
 
 static ArkUI_NativeNodeAPI_1* g_nodeAPI = nullptr;
-
+ArkUI_ContextHandle KeyEventHandler::context_ = nullptr;
 KeyEventHandler* KeyEventHandler::instance_ = nullptr;
+
+ArkUI_NodeHandle keyEventButton = nullptr;
+ArkUI_NodeHandle preIMEButton = nullptr;
+ArkUI_NodeHandle dispatchButton = nullptr;
 
 KeyEventHandler* KeyEventHandler::GetInstance()
 {
@@ -235,15 +238,16 @@ ArkUI_NodeHandle KeyEventHandler::CreateKeyEventNode()
     if (!columnNode) {
         return nullptr;
     }
-
+    KeyEventHandler::context_ = OH_ArkUI_GetContextByNode(columnNode);
+    
     // 创建三个Button，分别对应三个事件类型
-    ArkUI_NodeHandle keyEventButton = CreateKeyEventButton("Key Event (Click to Focus)", NODE_ON_KEY_EVENT);
+    keyEventButton = CreateKeyEventButton("Key Event (Click to Focus)", NODE_ON_KEY_EVENT);
     AddButtonWithSpacer(columnNode, keyEventButton, "Button1");
 
-    ArkUI_NodeHandle preIMEButton = CreateKeyEventButton("Pre-IME Event (Click to Focus)", NODE_ON_KEY_PRE_IME);
+    preIMEButton = CreateKeyEventButton("Pre-IME Event (Click to Focus)", NODE_ON_KEY_PRE_IME);
     AddButtonWithSpacer(columnNode, preIMEButton, "Button2");
 
-    ArkUI_NodeHandle dispatchButton = CreateKeyEventButton("Dispatch Event (Click to Focus)", NODE_DISPATCH_KEY_EVENT);
+    dispatchButton = CreateKeyEventButton("Dispatch Event (Click to Focus)", NODE_DISPATCH_KEY_EVENT);
     AddButtonWithSpacer(columnNode, dispatchButton, "Button3");
 
     // 添加事件冒泡和消费演示场景
@@ -408,7 +412,7 @@ void KeyEventHandler::GlobalEventReceiver(ArkUI_NodeEvent* event)
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "KeyEventHandler", "GlobalEventReceiver: Event is null");
         return;
     }
-
+    OH_ArkUI_FocusActivate(KeyEventHandler::context_, false, false);
     ArkUI_NodeEventType eventType = OH_ArkUI_NodeEvent_GetEventType(event);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "KeyEventHandler",
         "GlobalEventReceiver: eventType=%{public}d, targetId=%{public}d", eventType,
@@ -419,7 +423,7 @@ void KeyEventHandler::GlobalEventReceiver(ArkUI_NodeEvent* event)
         OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_PRINT_DOMAIN, "KeyEventHandler", "No user data found");
         return;
     }
-
+    
     KeyEventCallbackData* callbackData = static_cast<KeyEventCallbackData*>(userData);
 
     // 根据事件类型分发处理
@@ -435,8 +439,13 @@ void KeyEventHandler::GlobalEventReceiver(ArkUI_NodeEvent* event)
             break;
         default:
             // 处理按键事件
-            if (eventType == callbackData->eventType) {
+            if (eventType == callbackData->eventType && callbackData->buttonNode != dispatchButton) {
                 HandleKeyEventWithUserData(event);
+            } else if (eventType == callbackData->eventType && callbackData->buttonNode == dispatchButton) {
+                ArkUI_NumberValue focusValue = { .i32 = 1 };
+                ArkUI_AttributeItem focusItem = { .value = &focusValue, .size = 1 };
+                OH_ArkUI_NodeAPI_GetAPI()->setAttribute(keyEventButton, NODE_FOCUS_STATUS, &focusItem);
+                OH_ArkUI_KeyEvent_Dispatch(keyEventButton, OH_ArkUI_NodeEvent_GetInputEvent(event));
             }
             break;
     }
@@ -518,7 +527,7 @@ std::string CreateEventInfo(KeyEventCallbackData* callbackData, const ArkUI_UIIn
         }
     }
 
-    return eventTypeName + ": " + info + " API调用完成-查看日志详情!";
+    return eventTypeName + ":\n" + info + " API调用完成-查看日志详情!";
 }
 
 void KeyEventHandler::HandleKeyEventWithUserData(ArkUI_NodeEvent* event)
@@ -595,14 +604,14 @@ void UpdateButtonVisualFeedback(ArkUI_NodeHandle buttonNode, const std::string& 
     // 所有按钮收到按键事件时都变色，以便用户清楚看到事件传播现象
     if (originalLabel.find("Child Button") != std::string::npos) {
         // Child Button
-        UIUtils::SetNodeBackgroundColor(buttonNode, 0xFFFFEBEE); // 浅红色背景
+        UIUtils::SetNodeBackgroundColor(buttonNode, 0xFF008D3A); // 深绿色背景
         UIUtils::SetNodeBorder(buttonNode, 3.0f, 0xFFE57373);    // 红色边框
     } else if (originalLabel.find("Parent Column") != std::string::npos) {
         // Parent Column 通过专门的函数处理，这里不处理
         // UpdateParentContainerEventFeedback 函数会处理父容器的变色
     } else {
-        // 普通按钮变为浅红色
-        UIUtils::SetNodeBackgroundColor(buttonNode, 0xFFFFEBEE); // 浅红色背景
+        // 普通按钮变为绿色
+        UIUtils::SetNodeBackgroundColor(buttonNode, 0xFF008D3A); // 深绿色背景
         UIUtils::SetNodeBorder(buttonNode, 3.0f, 0xFFE57373);    // 红色边框
     }
 }
@@ -683,7 +692,7 @@ std::string GetKeyTextAndUnicodeInfo(const ArkUI_UIInputEvent* event)
 
     // 获取Unicode值
     uint32_t unicode = OH_ArkUI_KeyEvent_GetUnicode(event);
-    oss << "Unicode:" << std::hex << unicode << std::dec << " ";
+    oss << "Unicode:0x" << std::hex << unicode << std::dec << " ";
     oss << "\n";
 
     return oss.str();
@@ -792,7 +801,7 @@ std::string KeyEventHandler::GetKeyCodeName(int32_t keyCode)
         case ArkUI_KeyCode::ARKUI_KEYCODE_ESCAPE:
             return "ESCAPE";
         default:
-            return "OTHER(" + std::to_string(keyCode) + ")";
+            return "OTHER";
     }
 }
 
@@ -976,8 +985,8 @@ void KeyEventHandler::UpdateParentContainerEventFeedback(ArkUI_NodeHandle contai
         "Updating parent container visual feedback: %{public}s", eventReceived ? "event received" : "reset");
 
     if (eventReceived) {
-        // 父容器收到按键事件时 - 变为红色表示事件传播到了父级
-        UIUtils::SetNodeBackgroundColor(containerNode, 0xFFFFEBEE); // 浅红色背景
+        // 父容器收到按键事件时 - 变为绿色表示事件传播到了父级
+        UIUtils::SetNodeBackgroundColor(containerNode, 0xFF008D3A); // 深绿色背景
         UIUtils::SetNodeBorder(containerNode, 3.0f, 0xFFE57373);    // 红色边框
 
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "KeyEventHandler",

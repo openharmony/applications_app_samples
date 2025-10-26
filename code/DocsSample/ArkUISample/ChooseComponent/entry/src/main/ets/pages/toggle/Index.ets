@@ -24,16 +24,19 @@ export const TOGGLE_ROUTE_PREFIX: string = 'toggle';
 
 const routes: Route[] = [
   {
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     name: `${TOGGLE_ROUTE_PREFIX}/CreateToggle`,
     title: resource.resourceToString($r('app.string.CreateToggle_title')),
     description: $r('app.string.CreateToggle_description')
   },
   {
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     name: `${TOGGLE_ROUTE_PREFIX}/ToggleCustomStyle`,
     title: resource.resourceToString($r('app.string.ToggleCustomStyle_title')),
     description: $r('app.string.ToggleCustomStyle_description')
   },
   {
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     name: `${TOGGLE_ROUTE_PREFIX}/ToggleCaseExample`,
     title: resource.resourceToString($r('app.string.changeToggle_example')),
     description: $r('app.string.ToggleCaseExample_description')

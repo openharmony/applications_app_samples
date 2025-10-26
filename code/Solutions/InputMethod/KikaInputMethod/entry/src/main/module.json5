@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// [Start input_case_entry_module]
 {
   "module": {
     "name": "entry",
@@ -76,4 +75,3 @@
     ]
   }
 }
-// [End input_case_entry_module]

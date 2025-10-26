@@ -14,6 +14,7 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+// [Start styledStringGestureStyle_start]
 import { drawing } from '@kit.ArkGraphics2D';
 
 let gUIContext: UIContext;
@@ -162,3 +163,4 @@ export struct StyledStringGestureStyle {
     .title($r('app.string.TStyledStringGestureStyle_title'))
   }
 }
+// [End styledStringGestureStyle_start]

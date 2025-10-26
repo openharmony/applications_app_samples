@@ -18,7 +18,9 @@ import { ComponentCard } from '../../common/Card';
 @Entry
 @Component
 export struct SymbolGlyphSpanAddEvent {
+  // [Start symbol_glyph_span_add_event]
   @State wifiColor: ResourceColor = Color.Black;
+  // [End symbol_glyph_span_add_event]
 
   build() {
     NavDestination() {

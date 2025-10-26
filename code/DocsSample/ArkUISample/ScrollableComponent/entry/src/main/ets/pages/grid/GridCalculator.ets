@@ -21,6 +21,7 @@ export struct GridCalculator {
   private buttonArray: string[] =
     ['CE', 'C', '/', 'X', '7', '8', '9', '-', '4', '5', '6', '+', '1', '2', '3', '=', '0', '.'];
   @State res: string = '0';
+  //[Start Set_numberrows_columns]
   layoutOptions: GridLayoutOptions = {
     regularSize: [1, 1],
     onGetRectByIndex: (index: number) => {
@@ -64,12 +65,14 @@ export struct GridCalculator {
       return [0, 0, 2, 4];
     }
   }
-
+  // [StartExclude Set_numberrows_columns]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.GridCalculator_title') }) {
+          // [EndExclude Set_numberrows_columns]
           Grid(undefined, this.layoutOptions) {
+            // [StartExclude Set_numberrows_columns]
             ForEach(this.buttonArray, (item: string) => {
               GridItem() {
                 Button(item)
@@ -87,13 +90,17 @@ export struct GridCalculator {
             GridItem() {
               Text(this.res).width('100%').height('100%').textAlign(TextAlign.End).fontSize(30)
             }.backgroundColor(0x55555555).borderRadius(10)
+            // [EndExclude Set_numberrows_columns]
           }
           .columnsTemplate('1fr 1fr 1fr 1fr')
           .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
+          // [StartExclude Set_numberrows_columns]
           .rowsGap(8)
           .columnsGap(5)
           .width('100%')
           .height('80%')
+          // [EndExclude Set_numberrows_columns]
+          // [End Set_numberrows_columns]
         }
       }
     }

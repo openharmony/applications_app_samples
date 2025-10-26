@@ -66,7 +66,7 @@
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="35" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="38" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityFeature">基础能力增强</a></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityRuntime">基础能力增强</a></td>
@@ -292,6 +292,26 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>窗口</strong></td>
   <td x:str><a href="code/BasicFeature/Window/MediaFullScreen">视频全屏切换案例</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td rowspan="2" x:str><strong>驱动开发</strong></td>
+  <td x:str><a href="code/DocsSample/DriverDevelopmentKit/DriverDemo">基础驱动开发样例</a></td>
+  <td x:str><a href="code/DocsSample/DriverDevelopmentKit/UsbDriverDemo">USB协议类驱动样例</a></td>
+  <td x:str><a href="code/DocsSample/DriverDevelopmentKit/HidDriverDemo">HID协议类驱动样例</a></td>
+  <td x:str><a href="code/DocsSample/DriverDevelopmentKit/UsbSerialDriverDemo">USB转串口类驱动样例</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/DocsSample/DriverDevelopmentKit/ScsiPeripheralDemo">SCSI协议类驱动样例</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>USB</strong></td>
+  <td x:str><a href="code/DocsSample/USB/USBManagerSample">USB设备管理</a></td>
+  <td x:str><a href="code/DocsSample/USB/USBManagerSerialSample">串口设备管理</a></td>
   <td ></td>
   <td ></td>
  </tr>

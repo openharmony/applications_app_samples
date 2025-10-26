@@ -19,7 +19,7 @@
 5. 点击对应按键添加和移除轴事件监听，添加后在触摸板进行捏合动作或滚动鼠标滚轮，页面会实时显示监听到的捏合轴事件、滚轮轴事件。
 6. 点击对应按键添加和移除捏合轴事件监听，添加后在触摸板进行捏合动作，页面会实时显示监听到的捏合轴事件事件。
 7. 点击对应按键添加和移除滚轮轴事件监听，添加后滚动鼠标滚轮，页面会实时显示监听到的滚轮轴事件事件。
-8. 进入"DocsSample/InputKit/NDKInputEventMonitor/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
+8. 进入"DocsSample/input/NDKInputEventMonitor/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
 
 ## 工程目录
 
@@ -52,7 +52,7 @@ ohos.permission.INPUT_MONITORING
 
 ## 约束和限制
 
-1. 本示例支持标准系统上运行，支持设备：RK3568等。
+1. 本示例支持标准系统上运行，支持设备：Phone、Tablet。
 2. 本示例支持API20版本SDK，版本号：6.0.0.36。
 3. 本示例已支持使DevEco Studio 5.1.1 Release (构建版本：5.1.1.840，构建 2025年9月20日)编译运行。
 
@@ -63,7 +63,7 @@ ohos.permission.INPUT_MONITORING
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/InputKit/NDKInputEventMonitor > .git/info/sparse-checkout
+echo code/DocsSample/input/NDKInputEventMonitor > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

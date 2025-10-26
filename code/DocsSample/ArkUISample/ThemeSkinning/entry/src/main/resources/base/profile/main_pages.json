@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Theme1/Theme1",
+    "pages/Theme2/Theme2",
+    "pages/Theme3/Theme3"
+  ]
+}

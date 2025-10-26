@@ -63,6 +63,14 @@
     {
       "name": "grant_get_network_info",
       "value": "grant_get_network_info"
+    },
+    {
+      "name": "JudgeDefaultNetwork",
+      "value": "Determine the default network"
+    },
+    {
+      "name": "accessTheInternet",
+      "value": "Whether the default network can access the Internet"
     }
   ]
 }

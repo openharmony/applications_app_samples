@@ -1,0 +1,104 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "StartAbility"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "StartAbility"
+    },
+    {
+      "name": "Navigation_label",
+      "value": "导航功能"
+    },
+    {
+      "name": "Mail_label",
+      "value": "邮件功能"
+    },
+    {
+      "name": "MailtoAbility_desc",
+      "value": "Mailto功能"
+    },
+    {
+      "name": "MailtoAbility_label",
+      "value": "Mailto邮件功能"
+    },
+    {
+      "name": "FinanceAbility_desc",
+      "value": "金融功能"
+    },
+    {
+      "name": "FinanceAbility_label",
+      "value": "金融功能"
+    },
+    {
+      "name": "FlightAbility_desc",
+      "value": "航班功能"
+    },
+    {
+      "name": "FlightAbility_label",
+      "value": "航班功能"
+    },
+    {
+      "name": "ExpressAbility_desc",
+      "value": "快递功能"
+    },
+    {
+      "name": "ExpressAbility_label",
+      "value": "快递功能"
+    },
+    {
+      "name": "FileAbility_desc",
+      "value": "文件功能"
+    },
+    {
+      "name": "FileAbility_label",
+      "value": "文件功能"
+    },
+    {
+      "name": "photo_label",
+      "value": "图像编辑"
+    },
+    {
+      "name": "FileOpenAbility_desc",
+      "value": "FileOpenAbility"
+    },
+    {
+      "name": "FileOpenAbility_label",
+      "value": "FileOpenAbility_label"
+    },
+    {
+      "name": "OpenType_label",
+      "value": "打开方式"
+    },
+    {
+      "name": "Choice_label",
+      "value": "选择应用"
+    },
+    {
+      "name": "other_apps",
+      "value": "其他应用"
+    },
+    {
+      "name": "feedback",
+      "value": "反馈"
+    },
+    {
+      "name": "select_img",
+      "value": "selectImg"
+    },
+    {
+      "name": "edit_img",
+      "value": "editImg"
+    }
+  ]
+}

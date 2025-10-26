@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_hello",
+      "value": "#ffff0000"
+    },
+    {
+      "name": "color_world",
+      "value": "#ff0000ff"
+    },
+    {
+      "name": "color_emphasize",
+      "value": "#007DFF"
+    },
+    {
+      "name": "color_palette_aux1",
+      "value": "#7E8FFB"
+    }
+  ]
+}
