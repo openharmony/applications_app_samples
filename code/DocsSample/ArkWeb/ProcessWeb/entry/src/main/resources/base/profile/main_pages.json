@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/SetRenderProcessMode",
+    "pages/TerminateRenderProcess",
+    "pages/OnRenderExited",
+    "pages/OnRenderProcessNotResponding",
+    "pages/OnRenderProcessResponding",
+    "pages/WebComponentCreat",
+    "pages/FixingPageFlickering"
+  ]
+}

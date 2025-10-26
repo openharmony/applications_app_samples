@@ -122,7 +122,9 @@ export struct ArcLongList {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ArcLongList_title') }) {
+          // [Start arcLongList_start]
           ArcList() {
+            // [StartExclude arcLongList_start]
             LazyForEach(this.data, (item: StringData, index: number) => {
               ArcListItem() {
                 Text(item.message).fontSize(30).fontColor(Color.White)
@@ -131,7 +133,9 @@ export struct ArcLongList {
                 item.message += '0';
               })
             }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
+            // [EndExclude arcLongList_start]
           }.cachedCount(3)
+          // [End arcLongList_start]
           .space(LengthMetrics.px(10))
           .scrollBar(BarState.Auto)
           .width('466px')

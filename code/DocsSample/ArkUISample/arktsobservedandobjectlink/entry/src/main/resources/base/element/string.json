@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "value_num",
+      "value": "num的值"
+    },
+    {
+      "name": "value_count",
+      "value": "count的值"
+    },
+    {
+      "name": "renderClass_Change",
+      "value": "renderClass的值被更改为"
+    },
+    {
+      "name": "renderClass",
+      "value": "renderClass的值为"
+    },
+    {
+      "name": "ObjectLinkDataSourceUpdate_Child",
+      "value": "此时Child中的this.per.name值仍然是"
+    }
+  ]
+}

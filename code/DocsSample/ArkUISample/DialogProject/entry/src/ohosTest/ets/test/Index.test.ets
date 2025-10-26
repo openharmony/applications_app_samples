@@ -15,7 +15,7 @@
 
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
 // 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern } from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, UiDirection } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import resource from '../../../main/ets/common/resource';
 
@@ -180,6 +180,129 @@ export default function IndexTest() {
       done();
     })
 
+    it('testDialogFocusStrategy', 0, async (done: Function) => {
+      console.info("uitest: testDialogFocusStrategy begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_focus')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
+
+    it('testGlobalOpenPopup', 0, async (done: Function) => {
+      console.info("uitest: testGlobalOpenPopup begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Popup1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(1000);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.StylePopup_global')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(1000);
+      let button_list2 = await driver.findComponent(ON.text('openPopup', MatchPattern.CONTAINS));
+      await button_list2.click();
+      await sleep(1000);
+      let button_list3 = await driver.findComponent(ON.text('Update', MatchPattern.CONTAINS));
+      await button_list3.click();
+      let button_list4 = await driver.findComponent(ON.text('Close', MatchPattern.CONTAINS));
+      await button_list4.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
+
+    it('testDialogController', 0, async (done: Function) => {
+      console.info("uitest: testDialogController begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(1000);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_controller')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
+
+    it('testPageLevelDialog', 0, async (done: Function) => {
+      console.info("uitest: testPageLevelDialog begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(1000);
+      await driver.fling(UiDirection.DOWN, 10000);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_page_level')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
+
+    it('testGlobalOpenMenu', 0, async (done: Function) => {
+      console.info("uitest: testGlobalOpenMenu begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Menu1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(1000);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OpenMenu_title')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
+
+    it('testDialogBoxLayer', 0, async (done: Function) => {
+      console.info("uitest: testDialogBoxLayer begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(1000);
+      await driver.fling(UiDirection.DOWN, 10000);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_box_layer')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
+
     it('testFixedCustomDialog', 0, async (done: Function) => {
       console.info("uitest: testFixedCustomDialog begin");
       let driver = Driver.create();
@@ -191,6 +314,33 @@ export default function IndexTest() {
 
       let button_list2 = await driver.findComponent(ON.text('showDate', MatchPattern.CONTAINS));
       await button_list2.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
+
+    /**
+     * @tc.number testShowActionMenu001
+     * @tc.name testShowActionMenu001
+     * @tc.desc Test Fixed-style pop-up box.
+     * @tc.size MEDIUM
+     * @tc.level Level 1
+     * @tc.type Function
+     */
+    it('testShowActionMenu001', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.FixedStyleDialog1')), MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.ShowActionMenu_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+
+      let button_list2 = await driver.findComponent(ON.text('ShowActionMenu', MatchPattern.CONTAINS));
+      await button_list2.click();
+      await sleep(1000);
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
@@ -204,9 +354,10 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Menu1')), MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      await sleep(1000);
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CreateMenu_title')), MatchPattern.CONTAINS));
       await button_list1.click();
-
+      await sleep(1000);
       let button_list2 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.menu_bind')), MatchPattern.CONTAINS));
       await button_list2.click();
       await driver.pressBack();
@@ -237,6 +388,22 @@ export default function IndexTest() {
       done();
     })
 
-
+    it('testOverlayManager', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager1')), MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager_demo1_title')), MatchPattern.CONTAINS));
+      expect(button_list1 === null).assertFalse();
+      await button_list1.click();
+      let button1 = await driver.findComponent(ON.text('ComponentContent', MatchPattern.CONTAINS));
+      expect(button1 === null).assertFalse();
+      await button1.click();
+      await driver.pressBack();
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(1000);
+      done();
+    })
   })
 }

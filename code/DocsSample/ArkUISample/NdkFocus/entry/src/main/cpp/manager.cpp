@@ -46,7 +46,7 @@ static ArkUI_Context* context_ = nullptr;
 // 颜色常量
 const uint32_t RED_COLOR = 0xFFFF0000;
 const uint32_t BLACK_COLOR = 0xFF000000;
-const uint32_t DEFAULT_COLOR = 0xF2F2F3F0;
+const uint32_t DEFAULT_COLOR = 0xFF165DFF;
 
 // 数字常量
 const int32_t NUMBER_ZERO = 0;
@@ -54,7 +54,23 @@ const int32_t NUMBER_ONE = 1;
 const int32_t NUMBER_TWO = 2;
 const int32_t NUMBER_THREE = 3;
 const int32_t NUMBER_FOUR = 4;
+const int32_t NUMBER_FIVE = 5;
 const int32_t NUMBER_NINE = 9;
+
+// 按键事件回调数据结构
+struct KeyEventCallbackData {
+    ArkUI_NodeHandle buttonNode;   // Button节点引用
+    ArkUI_NodeEventType eventType; // 事件类型
+};
+
+KeyEventCallbackData* CreateCallbackData(
+    ArkUI_NodeHandle buttonNode, ArkUI_NodeEventType eventType)
+{
+    KeyEventCallbackData* callbackData = new KeyEventCallbackData();
+    callbackData->buttonNode = buttonNode;
+    callbackData->eventType = eventType;
+    return callbackData;
+}
 
 // 获焦回调函数
 void EventReceiver(ArkUI_NodeEvent* event)
@@ -83,6 +99,9 @@ void EventReceiver(ArkUI_NodeEvent* event)
         auto focusManager = FocusManager::GetInstance();
         focusManager->SetAutoTransfer(context_, autoTransfer);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver", "AutoTransfer set to true");
+    } else if (eventType == NODE_ON_KEY_EVENT) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EventReceiver",
+            "List handle the KeyEvent");
     }
 }
 
@@ -91,9 +110,9 @@ void SetListAttribute(ArkUI_NodeHandle& list)
     if (!nodeAPI) {
         return;
     }
-    ArkUI_NumberValue listWidthValue[] = { 400 };
+    ArkUI_NumberValue listWidthValue[] = { 1 };
     ArkUI_AttributeItem listWidthItem = { listWidthValue, 1 };
-    nodeAPI->setAttribute(list, NODE_WIDTH, &listWidthItem);
+    nodeAPI->setAttribute(list, NODE_WIDTH_PERCENT, &listWidthItem);
     ArkUI_NumberValue listHeightValue[] = { 200 };
     ArkUI_AttributeItem listHeightItem = { listHeightValue, 1 };
     nodeAPI->setAttribute(list, NODE_HEIGHT, &listHeightItem);
@@ -111,6 +130,9 @@ void SetListAttribute(ArkUI_NodeHandle& list)
     nodeAPI->setAttribute(list, NODE_SCROLL_EDGE_EFFECT, &edgeEffectItem);
     ArkUI_AttributeItem nodeIdItem = { .string = "inner" };
     nodeAPI->setAttribute(list, NODE_ID, &nodeIdItem);
+    KeyEventCallbackData* callbackData = CreateCallbackData(list, NODE_ON_KEY_EVENT);
+    nodeAPI->registerNodeEvent(list, NODE_ON_KEY_EVENT, NUMBER_FIVE, callbackData);
+    nodeAPI->registerNodeEventReceiver(EventReceiver);
 }
 
 void SetScrollAttribute(ArkUI_NodeHandle& scroll)
@@ -118,9 +140,9 @@ void SetScrollAttribute(ArkUI_NodeHandle& scroll)
     if (!nodeAPI) {
         return;
     }
-    ArkUI_NumberValue scrollWidthValue[] = { 500 };
+    ArkUI_NumberValue scrollWidthValue[] = { 1 };
     ArkUI_AttributeItem scrollWidthItem = { scrollWidthValue, 1 };
-    nodeAPI->setAttribute(scroll, NODE_WIDTH, &scrollWidthItem);
+    nodeAPI->setAttribute(scroll, NODE_WIDTH_PERCENT, &scrollWidthItem);
     ArkUI_NumberValue scrollHeightValue[] = { 400 };
     ArkUI_AttributeItem scrollHeightItem = { scrollHeightValue, 1 };
     nodeAPI->setAttribute(scroll, NODE_HEIGHT, &scrollHeightItem);
@@ -139,7 +161,7 @@ ArkUI_NodeHandle CreateDefaultButton(
     nodeAPI->setAttribute(defaultListItem, NODE_MARGIN, &marginItem);
 
     ArkUI_NodeHandle defaultButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
-    nodeAPI->setAttribute(defaultButton, NODE_WIDTH, &widthItem);
+    nodeAPI->setAttribute(defaultButton, NODE_WIDTH_PERCENT, &widthItem);
     nodeAPI->setAttribute(defaultButton, NODE_HEIGHT, &heightItem);
 
     // 设置默认按钮背景色
@@ -174,7 +196,7 @@ ArkUI_NodeHandle CreateNormalButton(int index, const ArkUI_AttributeItem& margin
     nodeAPI->setAttribute(listItem, NODE_MARGIN, &marginItem);
 
     ArkUI_NodeHandle button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
-    nodeAPI->setAttribute(button, NODE_WIDTH, &widthItem);
+    nodeAPI->setAttribute(button, NODE_WIDTH_PERCENT, &widthItem);
     nodeAPI->setAttribute(button, NODE_HEIGHT, &heightItem);
 
     // 设置按钮默认背景色
@@ -210,7 +232,7 @@ ArkUI_NodeHandle CreateSpecialButton(int index, const ArkUI_AttributeItem& margi
     nodeAPI->setAttribute(listItem, NODE_MARGIN, &marginItem);
 
     ArkUI_NodeHandle button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
-    nodeAPI->setAttribute(button, NODE_WIDTH, &widthItem);
+    nodeAPI->setAttribute(button, NODE_WIDTH_PERCENT, &widthItem);
     nodeAPI->setAttribute(button, NODE_HEIGHT, &heightItem);
 
     // 设置按钮默认背景色
@@ -231,7 +253,7 @@ ArkUI_NodeHandle CreateSpecialButton(int index, const ArkUI_AttributeItem& margi
 
     // 创建Column4包装
     ArkUI_NodeHandle column4 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
-    nodeAPI->setAttribute(column4, NODE_WIDTH, &widthItem);
+    nodeAPI->setAttribute(column4, NODE_WIDTH_PERCENT, &widthItem);
     nodeAPI->setAttribute(column4, NODE_HEIGHT, &heightItem);
     ArkUI_AttributeItem columnContentItem = { .string = "Column4" };
     nodeAPI->setAttribute(column4, NODE_ID, &columnContentItem);
@@ -250,7 +272,7 @@ void AddListChild(ArkUI_NodeHandle& list)
     // 创建公共属性
     ArkUI_NumberValue marginValues[] = { { 10 }, { 5 }, { 10 }, { 5 } };
     ArkUI_AttributeItem marginItem = { marginValues, 4 };
-    ArkUI_NumberValue widthValue[] = { 370 };
+    ArkUI_NumberValue widthValue[] = { 1 };
     ArkUI_AttributeItem widthItem = { widthValue, 1 };
     ArkUI_NumberValue heightValue[] = { 40 };
     ArkUI_AttributeItem heightItem = { heightValue, 1 };
@@ -330,18 +352,18 @@ napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info)
     }
 
     if (argCnt < 1) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     napi_valuetype valuetype;
     if (napi_typeof(env, args[0], &valuetype) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_typeof failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_typeof failed");
         return nullptr;
     }
 
     if (valuetype != napi_string) {
-        napi_throw_type_error(env, NULL, "Wrong type of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong type of arguments");
         return nullptr;
     }
 
@@ -349,7 +371,7 @@ napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info)
     constexpr uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], idStr, idSize, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_int64 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_int64 failed");
         return nullptr;
     }
 
@@ -388,18 +410,18 @@ napi_value Manager::UpdateNativeNode(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != 1) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "FocusManager", "Wrong number of arguments");
         return nullptr;
     }
 
     napi_valuetype valuetype;
     if (napi_typeof(env, args[0], &valuetype) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_typeof failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "FocusManager", "napi_typeof failed");
         return nullptr;
     }
 
     if (valuetype != napi_string) {
-        napi_throw_type_error(env, NULL, "Wrong type of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "FocusManager", "Wrong type of arguments");
         return nullptr;
     }
 
@@ -407,7 +429,7 @@ napi_value Manager::UpdateNativeNode(napi_env env, napi_callback_info info)
     constexpr uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], idStr, idSize, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_int64 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "FocusManager", "napi_get_value_int64 failed");
         return nullptr;
     }
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "CreateNativeNode %{public}s", idStr);
@@ -443,30 +465,30 @@ napi_value Manager::GetContext(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != 1) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     napi_valuetype valuetype;
     if (napi_typeof(env, args[0], &valuetype) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_typeof failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_typeof failed");
         return nullptr;
     }
 
     if (valuetype != napi_number) {
-        napi_throw_type_error(env, NULL, "Wrong type of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong type of arguments");
         return nullptr;
     }
 
     int64_t value;
     if (napi_get_value_int64(env, args[0], &value) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_int64 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_int64 failed");
         return nullptr;
     }
 
     napi_value exports;
     if (napi_create_object(env, &exports) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_create_object failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_create_object failed");
         return nullptr;
     }
 
@@ -546,25 +568,25 @@ napi_value Manager::RequestFocus(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != 1) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     napi_valuetype valuetype;
     if (napi_typeof(env, args[0], &valuetype) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_typeof failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_typeof failed");
         return nullptr;
     }
 
     if (valuetype != napi_string) {
-        napi_throw_type_error(env, NULL, "Wrong type of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong type of arguments");
         return nullptr;
     }
 
     char nodeId[256] = { 0 };
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], nodeId, sizeof(nodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_string_utf8 failed");
         return nullptr;
     }
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "接收的nodeId: %s, 长度: %zu", nodeId, length);
@@ -593,25 +615,25 @@ napi_value Manager::RequestFocusAsync(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != 1) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     napi_valuetype valuetype;
     if (napi_typeof(env, args[0], &valuetype) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_typeof failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_typeof failed");
         return nullptr;
     }
 
     if (valuetype != napi_string) {
-        napi_throw_type_error(env, NULL, "Wrong type of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong type of arguments");
         return nullptr;
     }
 
     char nodeId[256] = { 0 };
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], nodeId, sizeof(nodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_string_utf8 failed");
         return nullptr;
     }
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "接收的nodeId: %s, 长度: %zu", nodeId, length);
@@ -653,7 +675,7 @@ napi_value Manager::ActivateFocus(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != NUMBER_TWO) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
@@ -684,7 +706,7 @@ napi_value Manager::SetAutoTransfer(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != 1) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
@@ -712,7 +734,7 @@ napi_value Manager::SetKeyProcessingMode(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != 1) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
@@ -740,14 +762,14 @@ napi_value Manager::SetNodeFocusable(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != NUMBER_TWO) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     char nodeId[256] = { 0 };
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], nodeId, sizeof(nodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_string_utf8 failed");
         return nullptr;
     }
 
@@ -777,14 +799,14 @@ napi_value Manager::SetNodeFocusOnTouch(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != NUMBER_TWO) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     char nodeId[256] = { 0 };
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], nodeId, sizeof(nodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_string_utf8 failed");
         return nullptr;
     }
 
@@ -829,14 +851,14 @@ napi_value Manager::SetNodeDefaultFocus(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != NUMBER_TWO) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     char nodeId[256] = { 0 };
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], nodeId, sizeof(nodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_string_utf8 failed");
         return nullptr;
     }
 
@@ -866,14 +888,14 @@ napi_value Manager::SetNodeFocusBox(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != NUMBER_FOUR) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     char nodeId[256] = { 0 };
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], nodeId, sizeof(nodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_string_utf8 failed");
         return nullptr;
     }
 
@@ -908,7 +930,7 @@ napi_value Manager::SetNodeNextFocus(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != NUMBER_THREE) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
@@ -917,12 +939,13 @@ napi_value Manager::SetNodeNextFocus(napi_env env, napi_callback_info info)
     size_t length;
 
     if (napi_get_value_string_utf8(env, args[0], nodeId, sizeof(nodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed for nodeId");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_string_utf8 failed for nodeId");
         return nullptr;
     }
 
     if (napi_get_value_string_utf8(env, args[1], nextNodeId, sizeof(nextNodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed for nextNodeId");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
+            "napi_get_value_string_utf8 failed for nextNodeId");
         return nullptr;
     }
 
@@ -952,14 +975,14 @@ napi_value Manager::SetNodeTabStop(napi_env env, napi_callback_info info)
     }
 
     if (argCnt != NUMBER_TWO) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Wrong number of arguments");
         return nullptr;
     }
 
     char nodeId[256] = { 0 };
     size_t length;
     if (napi_get_value_string_utf8(env, args[0], nodeId, sizeof(nodeId) - 1, &length) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_string_utf8 failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "napi_get_value_string_utf8 failed");
         return nullptr;
     }
 

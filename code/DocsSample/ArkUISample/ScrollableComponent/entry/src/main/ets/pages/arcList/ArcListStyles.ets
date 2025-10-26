@@ -23,6 +23,7 @@ import {
 } from '@kit.ArkUI';
 import { ComponentCard } from '../../common/Card';
 
+//[Start create_customHeader_start]
 @Builder
 function customHeader() {
   Column() {
@@ -31,22 +32,26 @@ function customHeader() {
       .fontSize('19fp')
   }
 }
-
+//[End create_customHeader_start]
 
 @Entry
 @Component
 export struct ArcListStyles {
+  //[Start componentContent_start]
   context: UIContext = this.getUIContext();
   arcListHeader: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(customHeader));
+  //[End componentContent_start]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        List(){
-          ListItem(){
+        List() {
+          ListItem() {
             ComponentCard({ title: $r('app.string.ArcListStyles_head') }) {
+              //[Start arcListHeader_start]
               ArcList({ header: this.arcListHeader }) {
                 ArcListItem() {
+                  // [StartExclude arcListHeader_start]
                   Row() {
                     Image($r('app.media.wlan')).width('99px').height('99px')
                       .borderRadius('50px').margin({ left: 7 })
@@ -58,13 +63,17 @@ export struct ArcListStyles {
                     Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
                       .borderRadius('50px')
                   }
+                  // [EndExclude arcListHeader_start]
                 }
+                // [StartExclude arcListHeader_start]
                 .borderRadius('65px')
                 .width('414px')
                 .height('129px')
                 .backgroundColor('#26FFFFFF')
+                // [EndExclude arcListHeader_start]
 
                 ArcListItem() {
+                  // [StartExclude arcListHeader_start]
                   Row() {
                     Image($r('app.media.blueTooth')).width('99px').height('99px')
                       .borderRadius('50px').margin({ left: 7 })
@@ -76,7 +85,9 @@ export struct ArcListStyles {
                     Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
                       .borderRadius('50px')
                   }
+                  // [EndExclude arcListHeader_start]
                 }
+                // [StartExclude arcListHeader_start]
                 .borderRadius('65px')
                 .width('414px')
                 .height('129px')
@@ -132,7 +143,9 @@ export struct ArcListStyles {
                 .width('414px')
                 .height('129px')
                 .backgroundColor('#26FFFFFF')
+                // [EndExclude arcListHeader_start]
               }
+              //[End arcListHeader_start]
               .width('466px')
               .height('466px')
               .space(LengthMetrics.px(10))
@@ -141,9 +154,11 @@ export struct ArcListStyles {
             }
           }
 
-          ListItem(){
+          ListItem() {
             ComponentCard({ title: $r('app.string.ArcListStyles_titleSpacing') }) {
+              // [Start arcListSpace_start]
               ArcList({ initialIndex: 2 }) {
+                // [StartExclude arcListSpace_start]
                 ArcListItem() {
                   Row() {
                     Image($r('app.media.wlan')).width('99px').height('99px')
@@ -230,17 +245,18 @@ export struct ArcListStyles {
                 .width('414px')
                 .height('129px')
                 .backgroundColor('#26FFFFFF')
+                // [EndExclude arcListSpace_start]
               }
+              .space(LengthMetrics.px(30))
+              // [End arcListSpace_start]
               .width('466px')
               .height('466px')
-              .space(LengthMetrics.px(30))
               .borderRadius('233px')
               .backgroundColor(Color.Black)
-
             }
           }
 
-          ListItem(){
+          ListItem() {
             ComponentCard({ title: $r('app.string.ArcListStyles_titleScale') }) {
               ArcList({ initialIndex: 2 }) {
                 ArcListItem() {
@@ -278,8 +294,9 @@ export struct ArcListStyles {
                 .width('414px')
                 .height('129px')
                 .backgroundColor('#26FFFFFF')
-
+                // [Start arcListScale_start]
                 ArcListItem() {
+                  // [StartExclude arcListScale_start]
                   Row() {
                     Image($r('app.media.mobileData')).width('99px').height('99px')
                       .borderRadius('50px').margin({ left: 7 })
@@ -290,12 +307,14 @@ export struct ArcListStyles {
                     Image($r('app.media.ic_settings_arrow')).width('92px').height('92px')
                       .borderRadius('50px')
                   }
+                  // [EndExclude arcListScale_start]
                 }
+                .autoScale(false)
+                // [End arcListScale_start]
                 .borderRadius('65px')
                 .width('414px')
                 .height('129px')
                 .backgroundColor('#26FFFFFF')
-                .autoScale(false)
 
                 ArcListItem() {
                   Row() {

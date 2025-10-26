@@ -36,16 +36,19 @@
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
+        // [Start dlp_configurationModule]
         "skills": [
           {
             "entities": [
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home"
+              "action.system.home",
+              "ohos.want.action.viewData"
             ]
           }
         ]
+        // [End dlp_configurationModule]
       }
     ],
     "requestPermissions": [

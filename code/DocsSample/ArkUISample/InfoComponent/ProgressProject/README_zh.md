@@ -7,9 +7,9 @@
 1. [进度条 (Progress)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-common-components-progress-indicator.md)。
 ### 效果预览
 
-| 初始效果                               | 进度条+5                 | 进度条-5           |
-|------------------------------------|------------------------------------|------------------------------------|
-| ![](screenshots/device/image1.png) | ![](screenshots/device/image2.png) | ![](screenshots/device/image3.png) |
+| 初始效果                               | 进度条+5                 |
+|------------------------------------|------------------------------------|
+| ![](screenshots/device/image1.png) | ![](screenshots/device/image2.png) |
 
 ### 使用说明
 

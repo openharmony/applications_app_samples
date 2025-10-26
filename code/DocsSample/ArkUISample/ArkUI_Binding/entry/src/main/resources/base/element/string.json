@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "button1",
+      "value": "自定义组件间双向绑定"
+    },
+    {
+      "name": "button2",
+      "value": "系统组件参数双向绑定"
+    }
+  ]
+}

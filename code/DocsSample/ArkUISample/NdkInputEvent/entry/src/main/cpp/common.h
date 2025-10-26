@@ -19,8 +19,8 @@
 #include "container.h"
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
-#include <hilog/log.h>
 #include <sstream>
+#include <hilog/log.h>
 
 #define DEFAULT_WIDTH 200.0
 #define DEFAULT_HEIGHT 200.0
@@ -31,7 +31,12 @@
 #define DEFAULT_BORDER_COLOR 0xFF000000
 #define DEFAULT_RADIUS 10.0
 
-#define SIZE_200 200
+#define BUTTON_WIDTH_S 0.3
+#define BUTTON_WIDTH_L 0.55
+
+#define SIZE_50 50
+#define SIZE_80 80
+#define SIZE_100 100
 #define SIZE_300 300
 #define BLANK_10 10.0
 
@@ -46,14 +51,6 @@ namespace NativeXComponentSample {
 
 ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
 ArkUI_ContextHandle context;
-enum ArkUIModifierKeyName {
-    ARKUI_MODIFIER_KEY_CTRL = 1 << 0,  // Ctrl 键
-    ARKUI_MODIFIER_KEY_SHIFT = 1 << 1, // Shift 键
-    ARKUI_MODIFIER_KEY_ALT = 1 << 2,   // Alt 键
-    ARKUI_MODIFIER_KEY_FN = 1 << 3     // Fn 键（如适用）
-};
-
-std::stringstream g_ss;
 
 void SetWidth(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH)
 {
@@ -171,15 +168,6 @@ void SetText(ArkUI_NodeHandle &node, const char *str, float size = DEFAULT_TEXT_
     nodeAPI->setAttribute(node, NODE_TEXT_FONT, &fontItem);
 }
 
-void SetImageSrc(ArkUI_NodeHandle &node, const char *src)
-{
-    if (!nodeAPI) {
-        return;
-    }
-    ArkUI_AttributeItem imageSrcItem = {.string = src};
-    nodeAPI->setAttribute(node, NODE_IMAGE_SRC, &imageSrcItem);
-}
-
 void SetCommonAttribute(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH, float height = DEFAULT_HEIGHT,
     unsigned int color = DEFAULT_BG_COLOR, float margin = DEFAULT_MARGIN)
 {
@@ -247,6 +235,16 @@ void SetRowAlignItem(ArkUI_NodeHandle &node, int32_t alignment)
     ArkUI_NumberValue alignValue[] = {{.i32 = alignment}};
     ArkUI_AttributeItem alignItem = {alignValue, 1};
     nodeAPI->setAttribute(node, NODE_ROW_ALIGN_ITEMS, &alignItem);
+}
+
+void SetHitTestMode(ArkUI_NodeHandle &node, int32_t mode)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_NumberValue modeValue[] = {{.i32 = mode}};
+    ArkUI_AttributeItem modeItem = {modeValue, 1};
+    nodeAPI->setAttribute(node, NODE_HIT_TEST_BEHAVIOR, &modeItem);
 }
 
 void SetButtonLabel(ArkUI_NodeHandle &node, const char *label)

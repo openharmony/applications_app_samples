@@ -12,14 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start vibrator_js_development_dependency_import_example]
 import { vibrator } from '@kit.SensorServiceKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import hilog from '@ohos.hilog';
+// [End vibrator_js_development_dependency_import_example]
 
-
+// [Start vibrator_js_define_variables_example]
 const fileName: string = 'vibrator.json';
-let TAG = 'vibrator:'
+let TAG = 'vibrator:';
+// [End vibrator_js_define_variables_example]
 
 class Logger {
   private domain: number = 0xC02701;
@@ -83,11 +86,19 @@ struct Index {
     ['simulateReality', 'simulateReality'],
   ]);
   uiContext = this.getUIContext();
-  VibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
+  // [Start vibrator_js_vibrator_off_state_change_example]
+  // [Start vibrator_js_vibrator_on_state_change_example]
+  // 回调函数
+  vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
+    console.info('vibrator state callback info:', JSON.stringify(data));
+    // [StartExclude vibrator_js_vibrator_on_state_change_example]
+    // [StartExclude vibrator_js_vibrator_off_state_change_example]
     this.vibratorStatusEvent = data;
-    logger.info('Vibrator plunged info:', JSON.stringify(data));
-    logger.info('on is end');
-  };
+    // [EndExclude vibrator_js_vibrator_on_state_change_example]
+    // [EndExclude vibrator_js_vibrator_off_state_change_example]
+  }
+  // [StartExclude vibrator_js_vibrator_on_state_change_example]
+  // [StartExclude vibrator_js_vibrator_off_state_change_example]
   scroller: Scroller = new Scroller;
   @State private callbackContent: string = '';
 
@@ -190,73 +201,76 @@ struct Index {
         Column() {
           Button($r('app.string.file'))
             .onClick(() => {
-              try {
-                let rawFd: resourceManager.RawFileDescriptor | undefined =
-                  this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
-                if (rawFd != undefined) {
-                  vibrator.startVibration({
-                    type: 'file',
-                    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-                  }, {
-                    id: 1,
-                    deviceId: -1,
-                    usage: this.realUsage
-                  }, (error: BusinessError) => {
-                    if (error) {
-                      logger.error(TAG + 'error in, msg:' + JSON.stringify(error));
-                      return;
-                    }
-                    logger.info('Succeed in starting vibration');
-                  });
-                }
-                this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
-                this.callbackContent = 'Click the file button successfully';
-                hilog.info(0xF811, 'Sample_Vibrator', 'Click the file button successfully');
-              } catch (e) {
-                logger.error(TAG + 'Exception:', e);
-              }
-
+               // [Start vibrator_js_vibrator_by_type_file_example]
+               // 获取文件资源描述符
+               let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+               if (rawFd != undefined) {
+                 // 触发马达振动
+                 try {
+                   vibrator.startVibration({
+                     type: "file",
+                     hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                   }, {
+                     id: 0,
+                     usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                   }, (error: BusinessError) => {
+                     if (error) {
+                       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                       return;
+                     }
+                     console.info('Succeed in starting vibration');
+                   });
+                 } catch (err) {
+                   let e: BusinessError = err as BusinessError;
+                   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 } finally {
+                   vibrator.stopVibration();
+                   this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+                 }
+               }
+               // [End vibrator_js_vibrator_by_type_file_example]
+               this.callbackContent = 'Click the file button successfully';
+               hilog.info(0xF811, 'Sample_Vibrator', 'Click the file button successfully');
             })
 
           Button('preset:' + this.realEffectId)
             .onClick(() => {
+              // [Start vibrator_js_vibrator_by_type_preset_example]
               try {
-                // 查询是否支持'haptic.clock.timer'
                 vibrator.isSupportEffect(this.realEffectId, (err: BusinessError, state: boolean) => {
                   if (err) {
-                    logger.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+                    console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
                     return;
                   }
-                  logger.info('Succeed in querying effect');
+                  console.info('Succeed in querying effect');
                   if (state) {
                     try {
-                      // 使用startVibration需要添加ohos.permission.VIBRATE权限
+                      // 触发马达振动
                       vibrator.startVibration({
                         type: 'preset',
                         effectId: this.realEffectId,
                         count: 1,
-                        intensity: 100
+                        intensity: 50,
                       }, {
-                        id: 1,
-                        deviceId: -1,
-                        usage: this.realUsage // 根据实际选择类型归属不同的开关管控
+                        usage: 'unknown'
                       }, (error: BusinessError) => {
                         if (error) {
-                          logger.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                          console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
                         } else {
-                          logger.info('Succeed in starting vibration');
+                          console.info('Succeed in starting vibration');
                         }
                       });
                     } catch (error) {
                       let e: BusinessError = error as BusinessError;
-                      logger.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
                     }
                   }
                 })
               } catch (error) {
                 let e: BusinessError = error as BusinessError;
-                logger.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              // [End vibrator_js_vibrator_by_type_preset_example]
               this.callbackContent = 'Click the preset button successfully'
               hilog.info(0xF811, 'Sample_Vibrator', 'Click the preset button successfully');
             })
@@ -264,31 +278,34 @@ struct Index {
 
           Button($r('app.string.time'))
             .onClick(() => {
+              // [Start vibrator_js_vibrator_by_type_time_example]
               try {
-                vibrator.startVibration(
-                  {
-                    type: 'time',
-                    duration: 2000,
-                  }, {
-                  id: 1,
-                  deviceId: -1,
-                  usage: this.realUsage
+                // 触发马达振动
+                vibrator.startVibration({
+                  type: 'time',
+                  duration: 1000,
+                }, {
+                  id: 0,
+                  usage: 'alarm'
                 }, (error: BusinessError) => {
                   if (error) {
-                    logger.error(TAG + "error in, msg:" + JSON.stringify(error));
+                    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
                     return;
                   }
-                  logger.info('Succeed in starting vibration');
+                  console.info('Succeed in starting vibration');
                 });
-              } catch (e) {
-                logger.error(TAG + 'Exception:', e);
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              // [End vibrator_js_vibrator_by_type_time_example]
               this.callbackContent = 'Click the time button successfully';
               hilog.info(0xF811, 'Sample_Vibrator', 'Click the time button successfully');
             })
 
           Button($r('app.string.addTransientEvent'))
             .onClick(() => {
+              // [Start vibrator_js_vibrator_by_type_pattern_use_transient_example]
               let builder: vibrator.VibratorPatternBuilder = new vibrator.VibratorPatternBuilder();
               try {
                 let param: vibrator.TransientParam = {
@@ -297,10 +314,10 @@ struct Index {
                   index: 0
                 }
                 builder.addTransientEvent(0, param);
-                logger.info(`addTransientEvent builder is ${builder.build()}`);
+                console.info(`addTransientEvent builder is ${builder.build()}`);
               } catch (error) {
                 let e: BusinessError = error as BusinessError;
-                logger.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
               try {
                 vibrator.startVibration({
@@ -310,25 +327,27 @@ struct Index {
                   id: 1,
                   deviceId: -1,
                   // 根据实际选择类型归属不同的开关管控
-                  usage: this.realUsage
+                  usage: "alarm"
                 }, (error: BusinessError) => {
                   if (error) {
                     let e: BusinessError = error as BusinessError;
-                    logger.error(`Vibrate fail. Code: ${e.code}, message: ${e.message}`);
+                    console.error(`Vibrate fail. Code: ${e.code}, message: ${e.message}`);
                   } else {
-                    logger.info(`vibrate success`);
+                    console.info(`vibrate success`);
                   }
                 });
               } catch (error) {
                 let e: BusinessError = error as BusinessError;
-                logger.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              // [End vibrator_js_vibrator_by_type_pattern_use_transient_example]
               this.callbackContent = 'Click the addTransientEvent button successfully';
               hilog.info(0xF811, 'Sample_Vibrator', 'Click the addTransientEvent button successfully');
             })
 
           Button($r('app.string.addContinuousEvent'))
             .onClick(() => {
+              // [Start vibrator_js_vibrator_by_type_pattern_use_continuous_example]
               let builder: vibrator.VibratorPatternBuilder = new vibrator.VibratorPatternBuilder();
               try {
                 // VibratorCurvePoint参数最少设置4个，最大设置16个
@@ -352,10 +371,10 @@ struct Index {
                   index: 0
                 }
                 builder.addContinuousEvent(0, 2468, param);
-                logger.info(`addContinuousEvent builder is ${builder.build()}`);
+                console.info(`addContinuousEvent builder is ${builder.build()}`);
               } catch (error) {
                 let e: BusinessError = error as BusinessError;
-                logger.error(`Exception. Code ${e.code}`);
+                console.error(`Exception. Code ${e.code}`);
               }
               try {
                 vibrator.startVibration({
@@ -364,81 +383,201 @@ struct Index {
                 }, {
                   id: 1,
                   deviceId: -1,
-                  // 根据实际选择类型归属不同的开关管控
-                  usage: this.realUsage, // 根据实际选择类型归属不同的开关管控
+                  usage:"alarm",
                 }, (error: BusinessError) => {
                   if (error) {
                     let e: BusinessError = error as BusinessError;
-                    logger.error(`Vibrate fail. Code: ${e.code}, message: ${e.message}`);
+                    console.error(`Vibrate fail. Code: ${e.code}, message: ${e.message}`);
                   } else {
-                    logger.info(`vibrate success`);
+                    console.info(`vibrate success`);
                   }
                 });
               } catch (error) {
                 let e: BusinessError = error as BusinessError;
-                logger.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              // [End vibrator_js_vibrator_by_type_pattern_use_continuous_example]
               this.callbackContent = 'Click the addContinuousEvent button successfully';
               hilog.info(0xF811, 'Sample_Vibrator', 'Click the addContinuousEvent button successfully');
             })
 
           Button($r('app.string.stopVibration'))
             .onClick(() => {
+              // [Start vibrator_js_stop_vibrator_by_type_time_example]
               try {
-                vibrator.stopVibration({
-                  deviceId: -1,
-                  vibratorId: 1
-                }).then(() => {
-                  logger.info('stopVibration successfully');
-                }).catch((error: Error) => {
-                  logger.error('stopVibration failed:', error.name, error.message);
+                // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+                vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in stopping vibration');
+                })
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+              // [End vibrator_js_stop_vibrator_by_type_time_example]
+              // [Start vibrator_js_stop_vibrator_by_type_preset_example]
+              try {
+                // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
+                vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in stopping vibration');
+                })
+              } catch (err) {
+                let e: BusinessError = err as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+              // [End vibrator_js_stop_vibrator_by_type_preset_example]
+              // [Start vibrator_js_stop_vibrator_by_type_all_example]
+              try {
+                // 停止所有模式的马达振动
+                vibrator.stopVibration((error: BusinessError) => {
+                  if (error) {
+                    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+                    return;
+                  }
+                  console.info('Succeed in stopping vibration');
+                })
+              } catch (error) {
+                let e: BusinessError = error as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+              // [End vibrator_js_stop_vibrator_by_type_all_example]
+              // [Start vibrator_js_stop_vibrator_by_device_id_example]
+              const vibratorInfoParam: vibrator.VibratorInfoParam = {
+                deviceId: -1   // deviceid 需要是查询出来真实存在的设备
+              }
+              try {
+                vibrator.stopVibration(vibratorInfoParam).then(() => {
+                  console.info('Succeed in stopping vibration');
+                }, (error: BusinessError) => {
+                  console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
                 });
               } catch (error) {
-                logger.error('stopVibration Error:', error.code, error.message);
+                let e: BusinessError = error as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              // [End vibrator_js_stop_vibrator_by_device_id_example]
               this.callbackContent = 'Click the stopVibration button successfully'
               hilog.info(0xF811, 'Sample_Vibrator', 'Click the stopVibration button successfully');
             })
 
           Button($r('app.string.on'))
             .onClick(() => {
+              // [EndExclude vibrator_js_vibrator_on_state_change_example]
               try {
-                vibrator.on('vibratorStateChange', this.VibratorStateChangeCallback);
-              } catch (err) {
-                logger.error('Error in GetVibratorList:', err);
+                // 订阅 vibratorStateChange事件
+                vibrator.on('vibratorStateChange', this.vibratorStateChangeCallback);
+              } catch (error) {
+                let e: BusinessError = error as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              // [End vibrator_js_vibrator_on_state_change_example]
               this.callbackContent = 'Click the on button successfully'
               hilog.info(0xF811, 'Sample_Vibrator', 'Click the on button successfully');
             })
 
           Button($r('app.string.off'))
             .onClick(() => {
+              // [EndExclude vibrator_js_vibrator_off_state_change_example]
               try {
-                vibrator.off('vibratorStateChange', this.VibratorStateChangeCallback);
-              } catch (err) {
-                logger.error("Error in GetVibratorList:", err);
+                // 取消订阅 vibratorStateChange事件
+                vibrator.off('vibratorStateChange', this.vibratorStateChangeCallback);
+                // 取消订阅所有 vibratorStateChange事件
+                // vibrator.off('vibratorStateChange');
+              } catch (error) {
+                let e: BusinessError = error as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              // [End vibrator_js_vibrator_off_state_change_example]
               this.callbackContent = 'Click the off button successfully';
               hilog.info(0xF811, 'Sample_Vibrator', 'Click the off button successfully');
             })
 
           Button($r('app.string.getVibratorInfoSync'))
             .onClick(async () => {
+              // [Start vibrator_js_get_vibrator_info_sync_example]
               try {
-                let vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync({
-                  deviceId: -1,
-                  vibratorId: 1
-                });
+                const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync();
+                console.info(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+                // [StartExclude vibrator_js_get_vibrator_info_sync_example]
                 this.vibratorInfoContent = JSON.stringify(vibratorInfoList)
-              } catch (err) {
-                logger.error('Error in GetVibratorList:', err);
+                // [EndExclude vibrator_js_get_vibrator_info_sync_example]
+              } catch (error) {
+                let e: BusinessError = error as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
               }
+              // [End vibrator_js_get_vibrator_info_sync_example]
               logger.info('getVibratorInfoSync end');
               this.callbackContent = 'Click the getVibratorInfoSync button successfully';
               hilog.info(0xF811, 'Sample_Vibrator', 'Click the getVibratorInfoSync button successfully');
             })
 
-          Text(`${this.VibratorStateChangeCallback}`)
+          Button($r('app.string.getVibratorInfoSyncByDeviceId'))
+            .onClick(async () => {
+              // [Start vibrator_js_get_vibrator_info_sync_by_device_id_example]
+              try {
+                const vibratorParam: vibrator.VibratorInfoParam = {
+                  deviceId: -1    // deviceid 需要是查询出来真实存在的设备
+                }
+                const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync(vibratorParam);
+                console.info(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+                // [StartExclude vibrator_js_get_vibrator_info_sync_by_device_id_example]
+                this.vibratorInfoContent = JSON.stringify(vibratorInfoList);
+                // [EndExclude vibrator_js_get_vibrator_info_sync_by_device_id_example]
+              } catch (error) {
+                let e: BusinessError = error as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+              // [End vibrator_js_get_vibrator_info_sync_by_device_id_example]
+              logger.info('getVibratorInfoSyncByDeviceId end');
+              this.callbackContent = 'Click the getVibratorInfoSync button successfully';
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the getVibratorInfoSync button successfully');
+            })
+
+          Button($r('app.string.getEffectInfoSync'))
+            .onClick(() => {
+              // [Start vibrator_js_vibrator_get_effect_info_sync_example]
+              try {
+                const effectInfo: vibrator.EffectInfo = vibrator.getEffectInfoSync('haptic.clock.timer', { deviceId: -1, vibratorId: 1});
+                console.info(`isEffectSupported: ${effectInfo.isEffectSupported}`);
+                // [StartExclude vibrator_js_vibrator_get_effect_info_sync_example]
+                this.vibratorInfoContent = JSON.stringify(effectInfo);
+                // [EndExclude vibrator_js_vibrator_get_effect_info_sync_example]
+              } catch (error) {
+                let e: BusinessError = error as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+              // [End vibrator_js_vibrator_get_effect_info_sync_example]
+              this.callbackContent = 'Click the getEffectInfoSync button successfully'
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the getEffectInfoSync button successfully');
+            })
+
+          Button($r('app.string.isHdHapticSupported'))
+            .onClick(async () => {
+              // [Start vibrator_js_vibrator_is_hd_haptic_supported_example]
+              try {
+                // 查询是否支持高清振动
+                let ret = vibrator.isHdHapticSupported();
+                console.info(`The query result is ${ret}`);
+                // [StartExclude vibrator_js_vibrator_is_hd_haptic_supported_example]
+                this.vibratorInfoContent = `${ret}`;
+                // [EndExclude vibrator_js_vibrator_is_hd_haptic_supported_example]
+              } catch (error) {
+                let e: BusinessError = error as BusinessError;
+                console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+              }
+              // [End vibrator_js_vibrator_is_hd_haptic_supported_example]
+              this.callbackContent = 'Click the isHdHapticSupported button successfully';
+              hilog.info(0xF811, 'Sample_Vibrator', 'Click the isHdHapticSupported button successfully');
+            })
+
+          Text(`${this.vibratorStateChangeCallback}`)
             .fontSize(20)
             .margin({ top: 20 })
 

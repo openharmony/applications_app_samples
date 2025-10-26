@@ -26,7 +26,20 @@
 5. 在主界面，点击getSensorListByDeviceSync按钮获取本设备及扩展设备上的传感器列表，并在下方显示（手机上只能获取本机上的传感器信息）；
 6. 在主界面，点击getSingleSensorByDeviceSync按钮可以获取对应设备上对应的传感器信息，（手机只能获取本机上的传感器信息）；
 7. 在主界面，点击on SensorStatusChange按钮订阅本设备上扩展设备的热插拔事件，（目前手机上暂时不支持此功能）；
-8. 在主界面，点击off SensorStatusChange按钮去订阅本设备上扩展设备的热插拔事件，（目前手机上暂时不支持此功能）。
+8. 在主界面，点击off SensorStatusChange按钮去订阅本设备上扩展设备的热插拔事件，（目前手机上暂时不支持此功能）；
+9. 在主界面，点击subscribeUseSensorInfoParam按钮可以订阅Please select sensor type文本框中选择的传感器后，界面下方会显示回调数据；
+10. 在主界面，点击onceSubscribe按钮可以订阅Please select sensor type文本框中选择的传感器，界面下方会显示回调数据一次；
+11. 在主界面，点击unSubscribeUseSensorInfoParam按钮去订阅选中的传感器，去订阅后不会再收到回调数据；
+12. 在主界面，点击getGeomagneticInfo按钮可以获取某时刻地球上特定位置的地磁场信息；
+13. 在主界面，点击getDeviceAltitude按钮可以根据气压值获取海拔高度；
+14. 在主界面，点击getInclination按钮可以根据倾斜矩阵计算地磁倾角；
+15. 在主界面，点击getAngleVariation按钮可以计算两个旋转矩阵之间的角度变化；
+16. 在主界面，点击getRotationMatrix按钮可以根据旋转矢量获取旋转矩阵；
+17. 在主界面，点击transformRotationMatrix按钮可以根据指定坐标系映射旋转矩阵；
+18. 在主界面，点击getQuaternion按钮可以根据旋转向量计算归一化四元数；
+19. 在主界面，点击getOrientation按钮可以根据旋转矩阵计算设备方向；
+20. 在主界面，点击getRotationMatrixTwoParam按钮可以根据重力矢量和地磁矢量计算旋转矩阵；
+21. 在主界面，点击getSingleSensor按钮可以获取指定传感器类型的属性信息。
 
    
 
@@ -52,6 +65,17 @@ entry
 * getSensorListByDeviceSync获取本设备及扩展设备上传感器列表，使用sensor.getSensorListByDeviceSync接口即可获取本设备及扩展设备上传感器列表。手机暂时只能获取本机传感器信息列表；
 * getSingleSensorByDeviceSync获取指定设备上传感器信息，使用sensor.getSingleSensorByDeviceSync接口获取指定设备上指定传感器信息，目前手机上只能获取本机上传感器信息；
 * 订阅去订阅外设热插拔事件，通过sensor.on和sensor.off来实现对扩设备热插拔事件订阅，目前手机不支持此功能。
+* subscribe订阅传感器一次：先使用窗口框选择想要订阅的传感器，接着使用sensor.once接口对已经选择的传感器进行订阅；
+* 获取某时刻地球上特定位置的地磁场信息：通过sensor.getGeomagneticInfo接口来实现获取某时刻地球上特定位置的地磁场信息；
+* 根据气压值获取海拔高度：通过sensor.getDeviceAltitude接口来实现根据气压值获取海拔高度；
+* 根据倾斜矩阵计算地磁倾角：通过sensor.getInclination接口来实现根据倾斜矩阵计算地磁倾角；
+* 计算两个旋转矩阵之间的角度变化：通过sensor.getAngleVariation接口来实现计算两个旋转矩阵之间的角度变化；
+* 根据旋转矢量获取旋转矩阵：通过sensor.getRotationMatrix接口来实现根据旋转矢量获取旋转矩阵；
+* 根据指定坐标系映射旋转矩阵：通过sensor.transformRotationMatrix接口来实现根据指定坐标系映射旋转矩阵；
+* 根据旋转向量计算归一化四元数：通过sensor.getQuaternion接口来实现根据旋转向量计算归一化四元数；
+* 根据旋转矩阵计算设备方向：通过sensor.getOrientation接口来实现根据旋转矩阵计算设备方向；
+* 根据重力矢量和地磁矢量计算旋转矩阵：通过sensor.getRotationMatrix接口来实现根据重力矢量和地磁矢量计算旋转矩阵；
+* 获取指定传感器类型的属性信息：通过sensor.getSingleSensor接口来实现获取指定传感器类型的属性信息；
 
 ### 相关权限
 
@@ -79,7 +103,7 @@ entry
 git init  
 git config core.sparsecheckout true  
 echo code/BasicFeature/DeviceManagement/Sensor/SensorJsSamples/ > .git/info/sparse-checkout  
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git  
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git  
 git pull origin master
 
 ```

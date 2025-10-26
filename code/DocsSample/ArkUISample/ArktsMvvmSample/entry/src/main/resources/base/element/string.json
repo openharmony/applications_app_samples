@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "get_up",
+      "value": "7.30 起床"
+    },
+    {
+      "name": "breakfast",
+      "value": "8.30 早餐"
+    },
+    {
+      "name": "lunch",
+      "value": "11.30 中餐"
+    },
+    {
+      "name": "dinner",
+      "value": "17.30 晚餐"
+    },
+    {
+      "name": "midnight_snack",
+      "value": "21.30 夜宵"
+    },
+    {
+      "name": "bathe",
+      "value": "22.30 洗澡"
+    },
+    {
+      "name": "sleep",
+      "value": "1.30 睡觉"
+    },
+    {
+      "name": "all_tasks",
+      "value": "全部待办"
+    },
+    {
+      "name": "check_all",
+      "value": "全选"
+    },
+    {
+      "name": "learn_advanced_math",
+      "value": "学习高数"
+    },
+    {
+      "name": "learn_chinese",
+      "value": "学习语文"
+    },
+    {
+      "name": "la_la",
+      "value": "啦"
+    },
+    {
+      "name": "deselect_all",
+      "value": "取消全选"
+    }
+  ]
+}

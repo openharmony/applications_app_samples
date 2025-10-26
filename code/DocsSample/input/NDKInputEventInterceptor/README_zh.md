@@ -15,7 +15,7 @@
 1. 安装编译生成的hap包,打开应用。
 2. 点击对应按键添加和移除按键事件拦截，添加后使用键盘在输入框输入文本，输入被拦截并在页面实时显示拦截到的按键事件。
 3. 点击对应按键添加和移除输入事件拦截，添加后使用鼠标、使用触屏功能、在触摸板进行捏合操作和使用鼠标滚轮时，输入被拦截并在页面实时显示监听到的输入事件。
-8. 进入"DocsSample/InputKit/NDKInputEventInterceptor/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
+8. 进入"DocsSample/input/NDKInputEventInterceptor/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
 
 ## 工程目录
 
@@ -48,7 +48,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 ## 约束和限制
 
-1. 本示例支持标准系统上运行，支持设备：RK3568等。
+1. 本示例支持标准系统上运行，支持设备：Phone、Tablet。
 2. 本示例支持API20版本SDK，版本号：6.0.0.36。
 3. 本示例已支持使DevEco Studio 5.1.1 Release (构建版本：5.1.1.840，构建 2025年9月20日)编译运行。
 
@@ -59,7 +59,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/InputKit/NDKInputEventInterceptor > .git/info/sparse-checkout
+echo code/DocsSample/input/NDKInputEventInterceptor > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

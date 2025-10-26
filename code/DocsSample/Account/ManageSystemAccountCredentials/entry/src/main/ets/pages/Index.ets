@@ -39,7 +39,7 @@ function strToUint8Arr(str: string): Uint8Array {
 @Entry
 @Component
 struct SystemAccount {
-  @State message: string = 'Nothing';
+  @State message: string = 'ManageSystemAccountCredentials';
   @State cid: number = 100;
   @State textPassword: string = ''
   @State oldTextPassword: string = ''

@@ -29,10 +29,9 @@ export struct AnimationPopupExample {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-
-
           // PopupOptions 类型设置弹框内容
           Button('PopupOptions')
+            .id('PopupOptions')
             .margin({ top: 250 })
             .onClick(() => {
               this.handlePopup = !this.handlePopup;
@@ -53,9 +52,9 @@ export struct AnimationPopupExample {
                 TransitionEffect.IDENTITY)
             })
 
-
           // CustomPopupOptions 类型设置弹框内容
           Button('CustomPopupOptions')
+            .id('CustomPopupOptions')
             .margin({ top: 60 })
             .onClick(() => {
               this.customPopup = !this.customPopup;
@@ -72,14 +71,13 @@ export struct AnimationPopupExample {
               // 设置弹窗显示动效与退出动效为缩放动效
               transition:TransitionEffect.scale({ x: 1, y: 0 }).animation({ duration: 500, curve: Curve.Ease })
             })
-
-
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.AnimationPopup_title')需要替换为开发者所需的资源文件。
     .title($r('app.string.AnimationPopup_title'))
   }
 }

@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/BuilderIndex",
+    "pages/ForEachIndex",
+    "pages/PropLinkIndex",
+    "pages/StateIndex"
+  ]
+}

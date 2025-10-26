@@ -31,6 +31,10 @@ import { NestDialog1 } from './NestDialog1';
 import { DialogWithPhysicalBack } from './DialogWithPhysicalBack';
 import { DialogAvoidSoftKeyboard } from './DialogAvoidSoftKeyboard';
 import { GetDialogStatus } from './GetDialogStatus';
+import { DialogFocusStrategy } from './dialogboxfocuspolicy/DialogFocusStrategy';
+import { DialogController } from './dialogcontroller/DialogController';
+import { PageLevelDialogBox } from './pageleveldialogbox/PageLevelDialogBox';
+import { DialogBoxLayer } from './dialogboxlayermanagement/DialogBoxLayer';
 
 export const Custom_ROUTE_PREFIX: string = 'Custom_ROUTE_PREFIX';
 
@@ -109,7 +113,27 @@ const routes: Route[] = [
     name: `${Custom_ROUTE_PREFIX}/GetDialogStatus`,
     title: resource.resourceToString($r('app.string.GetDialogStatus_title')),
     description: $r('app.string.GetDialogStatus_desc'),
-  }
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogFocusStrategy`,
+    title: resource.resourceToString($r('app.string.CustomDialog_focus')),
+    description: $r('app.string.CustomDialog_focus_des'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogController`,
+    title: resource.resourceToString($r('app.string.CustomDialog_controller')),
+    description: $r('app.string.CustomDialog_controller_des'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/PageLevelDialog`,
+    title: resource.resourceToString($r('app.string.CustomDialog_page_level')),
+    description: $r('app.string.CustomDialog_controller_des'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogBoxLayer`,
+    title: resource.resourceToString($r('app.string.CustomDialog_box_layer')),
+    description: $r('app.string.CustomDialog_layer_des'),
+  },
 ]
 
 @Builder
@@ -146,6 +170,13 @@ export function CustomDestination(name: string) {
     DialogAvoidSoftKeyboard();
   } else if (name === routes[14].name) {
     GetDialogStatus();
+    DialogFocusStrategy();
+  } else if (name === routes[7].name) {
+    DialogController();
+  } else if (name === routes[8].name) {
+    PageLevelDialogBox();
+  } else if (name === routes[9].name) {
+    DialogBoxLayer();
   }
 }
 

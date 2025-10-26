@@ -93,7 +93,7 @@ struct TodoList {
   @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;

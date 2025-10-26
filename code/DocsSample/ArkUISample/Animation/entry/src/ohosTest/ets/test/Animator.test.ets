@@ -166,5 +166,37 @@ export function AnimatorTest() {
       hilog.info(DOMAIN, TAG, 'Animation_AnimatorTest_003_end');
     })
 
+    /*
+     * @tc.number: Animation_AnimatorTest_004
+     * @tc.name: Show ball moving with frame animate
+     * @tc.desc: Show ball moving with frame animate
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it(BUNDLE + 'AnimatorTest_004', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Animation_AnimatorTest_004_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.animator_temp_label4"))));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.play'))));
+      await aimComponent.click();
+      await driver.delayMs(5000);
+
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.reset'))));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.play'))));
+      await aimComponent.click();
+      await driver.delayMs(2000);
+
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.pause'))));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Animation_AnimatorTest_004_end');
+    })
+
   })
 }

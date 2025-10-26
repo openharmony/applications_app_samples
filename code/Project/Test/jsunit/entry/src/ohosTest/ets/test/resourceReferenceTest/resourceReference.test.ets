@@ -34,7 +34,6 @@ export default function resourceReferenceTest() {
      * @tc.desc: 在ohosTest测试用例中获取资源文件，资源文件存储在 ohosTest/resources/resfile 下，用例执行过程中保持屏幕开启，否则无法获取到topAbility
      */
     it('testResourceReference', 0, async (done: Function) => {
-      console.info("uitest: TestUiExample begin");
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'TestAbility'

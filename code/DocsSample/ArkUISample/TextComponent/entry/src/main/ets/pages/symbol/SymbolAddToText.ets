@@ -30,8 +30,10 @@ export struct SymbolGlyphSpanAddToText {
               SymbolSpan($r('sys.symbol.ohos_trash'))
                 .fontWeight(FontWeight.Normal)
                 .fontSize(96)
-            }.id('1')
-
+            }
+            // [StartExclude creat_symbol_span]
+            .id('1')
+            // [EndExclude creat_symbol_span]
             // [End creat_symbol_span]
           }
 
@@ -45,7 +47,10 @@ export struct SymbolGlyphSpanAddToText {
                     .fontSize(48)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
                     .fontColor([Color.Black, Color.Green, Color.White])
-                }.id('2')
+                }
+                // [StartExclude symbol_span_font_size]
+                .id('2')
+                // [EndExclude symbol_span_font_size]
               }
 
               Column() {
@@ -55,7 +60,10 @@ export struct SymbolGlyphSpanAddToText {
                     .fontSize(72)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
                     .fontColor([Color.Black, Color.Green, Color.White])
-                }.id('3')
+                }
+                // [StartExclude symbol_span_font_size]
+                .id('3')
+                // [EndExclude symbol_span_font_size]
               }
 
               Column() {
@@ -65,7 +73,10 @@ export struct SymbolGlyphSpanAddToText {
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
                     .fontColor([Color.Black, Color.Green, Color.White])
-                }.id('4')
+                }
+                // [StartExclude symbol_span_font_size]
+                .id('4')
+                // [EndExclude symbol_span_font_size]
               }
             }
 
@@ -81,7 +92,10 @@ export struct SymbolGlyphSpanAddToText {
                   SymbolSpan($r('sys.symbol.ohos_trash'))
                     .fontWeight(FontWeight.Lighter)
                     .fontSize(96)
-                }.id('5')
+                }
+                // [StartExclude symbol_span_font_weight]
+                .id('5')
+                // [EndExclude symbol_span_font_weight]
               }
 
               Column() {
@@ -90,7 +104,10 @@ export struct SymbolGlyphSpanAddToText {
                   SymbolSpan($r('sys.symbol.ohos_trash'))
                     .fontWeight(FontWeight.Normal)
                     .fontSize(96)
-                }.id('6')
+                }
+                // [StartExclude symbol_span_font_weight]
+                .id('6')
+                // [EndExclude symbol_span_font_weight]
               }
 
               Column() {
@@ -99,7 +116,10 @@ export struct SymbolGlyphSpanAddToText {
                   SymbolSpan($r('sys.symbol.ohos_trash'))
                     .fontWeight(FontWeight.Bold)
                     .fontSize(96)
-                }.id('7')
+                }
+                // [StartExclude symbol_span_font_weight]
+                .id('7')
+                // [EndExclude symbol_span_font_weight]
               }
             }
 
@@ -115,7 +135,10 @@ export struct SymbolGlyphSpanAddToText {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .fontColor([Color.Black])
-                }.id('8')
+                }
+                // [StartExclude symbol_span_font_color]
+                .id('8')
+                // [EndExclude symbol_span_font_color]
               }
 
               Column() {
@@ -124,7 +147,10 @@ export struct SymbolGlyphSpanAddToText {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .fontColor([Color.Green])
-                }.id('9')
+                }
+                // [StartExclude symbol_span_font_color]
+                .id('9')
+                // [EndExclude symbol_span_font_color]
               }
 
               Column() {
@@ -133,7 +159,10 @@ export struct SymbolGlyphSpanAddToText {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .fontColor([Color.Pink])
-                }.id('10')
+                }
+                // [StartExclude symbol_span_font_color]
+                .id('10')
+                // [EndExclude symbol_span_font_color]
               }
             }
 
@@ -144,33 +173,42 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_rendering_strategy]
             Row() {
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_1'))
+                Text($r('app.string.SymbolAddToText_Text_1'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
                     .fontColor([Color.Black, Color.Green, Color.White])
-                }.id('11')
+                }
+                // [StartExclude symbol_span_rendering_strategy]
+                .id('11')
+                // [EndExclude symbol_span_rendering_strategy]
               }
 
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_2'))
+                Text($r('app.string.SymbolAddToText_Text_2'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
                     .fontColor([Color.Black, Color.Green, Color.White])
-                }.id('12')
+                }
+                // [StartExclude symbol_span_rendering_strategy]
+                .id('12')
+                // [EndExclude symbol_span_rendering_strategy]
               }
 
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_3'))
+                Text($r('app.string.SymbolAddToText_Text_3'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
                     .fontColor([Color.Black, Color.Green, Color.White])
-                }.id('13')
+                }
+                // [StartExclude symbol_span_rendering_strategy]
+                .id('13')
+                // [EndExclude symbol_span_rendering_strategy]
               }
             }
 
@@ -181,30 +219,39 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_effect_strategy]
             Row() {
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_4'))
+                Text($r('app.string.SymbolAddToText_Text_4'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
                     .effectStrategy(SymbolEffectStrategy.NONE)
-                }.id('14')
+                }
+                // [StartExclude symbol_span_effect_strategy]
+                .id('14')
+                // [EndExclude symbol_span_effect_strategy]
               }
 
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_5'))
+                Text($r('app.string.SymbolAddToText_Text_5'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
                     .effectStrategy(SymbolEffectStrategy.SCALE)
-                }.id('15')
+                }
+                // [StartExclude symbol_span_effect_strategy]
+                .id('15')
+                // [EndExclude symbol_span_effect_strategy]
               }
 
               Column() {
-                Text($r('app.string.SymbolAddToText_Text_6'))
+                Text($r('app.string.SymbolAddToText_Text_6'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
                     .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
-                }.id('16')
+                }
+                // [StartExclude symbol_span_effect_strategy]
+                .id('16')
+                // [EndExclude symbol_span_effect_strategy]
               }
             }
 

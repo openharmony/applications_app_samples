@@ -10,9 +10,6 @@
 | ---- | ----------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 |      | <img src="./screenshots/nativeType.png" width="300"/> | <img src="./screenshots/page_swiper.jpeg" width="300"/> | <img src="./screenshots/page_public.jpg" width="300"/> |
 
-| Button页面                                           | Slider页面                                             | ShapeType页面                                             |
-| ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
-| <img src="./screenshots/button.jpeg" width="300" /> | <img src="./screenshots/slider.jpeg" width="300" /> | <img src="./screenshots/checkbox_shape_circle.jpeg" width="300" /> |
 
 ## 使用说明
 1. 安装编译生成的hap包，并打开应用；
@@ -51,11 +48,54 @@
 |--------------------------------------------------------|
 | <img src="./screenshots/page_imageAnimator.png" width="300" /> |
 12. 点击Button选择框进入Button组件的CAPI接口展示界面；
-13. 点击Slider选择框进入Slider组件的CAPI接口展示界面； 
-14. 点击CheckboxShape选择框进入checkbox组件的CAPI接口展示界面； 
+
+| Button页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/button.jpeg" width="300" /> |
+13. 点击Slider选择框进入Slider组件的CAPI接口展示界面；
+
+| Slider页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/slider.jpeg" width="300" /> |
+14. 点击CheckboxShape选择框进入checkbox组件的CAPI接口展示界面；
+
+| CheckboxShape页面                                                |
+|-----------------------------------------------------------|
+| <img src="./screenshots/checkbox_shape_circle.jpeg" width="300" /> |
 15. 点击HoverModeAreaType选择框进入HoverModeArea组件的CAPI接口展示界面；
 16. 点击accessibility选择框进入accessibility组件相关的CAPI接口展示界面，在屏幕朗读模式下，通过点击等行为来感知具体的无障碍属性，具体结果在log中查看；
 17. 点击embedded component选择框进入embedded component组件相关的CAPI接口展示界面，通过hdc设置不同的参数配置来触发不同的事件，具体结果在log中查看；
+18. 点击WaterFlow选择框进入WaterFlow组件的CAPI接口展示界面；
+
+| WaterFlow页面                                            |
+|--------------------------------------------------------|
+| <img src="./screenshots/waterflow.jpeg" width="300" /> |
+
+19. 点击Refresh选择框进入Refresh组件的CAPI接口展示界面；
+
+| Refresh页面                                            |
+|------------------------------------------------------|
+| <img src="./screenshots/refresh.jpeg" width="300" /> |
+20. 点击List选择框进入List组件的CAPI接口展示界面；
+
+| List页面                                            |
+|---------------------------------------------------|
+| <img src="./screenshots/list.jpeg" width="300" /> |
+21. 点击Grid选择框进入Grid组件的CAPI接口展示界面；
+
+| Gird页面                                            |
+|---------------------------------------------------|
+| <img src="./screenshots/grid.jpeg" width="300" /> |
+22. 点击Scroll选择框进入Scroll组件的CAPI接口展示界面；
+
+| Scroll页面                                            |
+|-----------------------------------------------------|
+| <img src="./screenshots/scroll.jpeg" width="300" /> |
+23. 点击XComponent选择框进入XComponent组件的CAPI接口展示界面；
+
+| XComponent页面<br>(该示例在OpenHarmony与HarmonyOS上运行效果不同)      |
+|-----------------------------------------------------|
+| <img src="./screenshots/XComponent.png" width="300" /> |
 
 ## 工程目录
 

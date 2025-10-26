@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/linkWithPrivate/LlinkWithPrivateCorrectCase",
+    "pages/linkWithPrivate/LlinkWithPrivateErrorCase",
+    "pages/privateWithLink/PrivateWithLinkCorrectCase",
+    "pages/privateWithLink/PrivateWithLinkEerrorCase",
+    "pages/privateWithRequire/PrivateWithRequireCorrectCase",
+    "pages/privateWithRequire/PrivateWithRequireErrorCase",
+    "pages/protectedInStruct/ProtectedInStructCorrectCase",
+    "pages/protectedInStruct/ProtectedInStructErrorCase",
+    "pages/publicWithStorageProp/PublicWithStoragePropCorrectCase",
+    "pages/publicWithStorageProp/PublicWithStoragePropErrorCase"
+  ]
+}

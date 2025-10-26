@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CustomComponentMixingUse"
+    },
+    {
+      "name": "MixingUseofCustomComponents",
+      "value": "MixingUseofCustomComponents"
+    },
+    {
+      "name": "MixingUseofCustomComponents_label1",
+      "value": "ObserveNestedClasses_ObservedAndObjectLink"
+    },
+    {
+      "name": "MixingUseofCustomComponents_label2",
+      "value": "ObserveNestedClasses_ObsevedV2AndTrace"
+    },
+    {
+      "name": "MixingUseofCustomComponents_label3",
+      "value": "V1CommonVariablesToV2CustomComponent"
+    },
+    {
+      "name": "MixingUseofCustomComponents_label4",
+      "value": "V1InV2"
+    },
+    {
+      "name": "MixingUseofCustomComponents_label5",
+      "value": "V1StateVariablesToV2CustomComponent"
+    },
+    {
+      "name": "MixingUseofCustomComponents_label6",
+      "value": "V2CommonVariablesToV1CustomComponent"
+    },
+    {
+      "name": "MixingUseofCustomComponents_label7",
+      "value": "V2InV1"
+    },
+    {
+      "name": "MixingUseofCustomComponents_label8",
+      "value": "V2StateVariablesToV1CustomComponent"
+    }
+  ]
+}
