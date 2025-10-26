@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start custom_drawing]
 @Entry
 @Component
 struct CustomCanvasDrawingCard {
@@ -90,3 +91,4 @@ struct CustomCanvasDrawingCard {
     }.height('100%').width('100%')
   }
 }
+// [End custom_drawing]

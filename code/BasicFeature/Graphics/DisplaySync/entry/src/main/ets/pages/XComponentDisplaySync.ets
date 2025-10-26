@@ -112,7 +112,7 @@ struct Index {
               Logger.info(TAG, "Unregister2");
               this.xComponentContext2.unregister();
             }
-            router.back();
+            this.getUIContext().getRouter().back();
           })
           .width('30%')
           .height(40)

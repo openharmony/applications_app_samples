@@ -1,0 +1,19 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.Ability.AbilityRuntime.Core",
+          "SystemCapability.Ability.AbilityRuntime.FAModel",
+          "SystemCapability.Ability.AbilityRuntime.AbilityCore",
+          "SystemCapability.Ability.AbilityRuntime.Mission",
+          "SystemCapability.Ability.AbilityRuntime.QuickFix",
+          "SystemCapability.Ability.AbilityTools.AbilityAssistant",
+          "SystemCapability.Security.DeviceSecurityLevel",
+          "SystemCapability.UserIAM.UserAuth.PinAuth"
+        ]
+      }
+    ]
+  }
+}

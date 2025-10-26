@@ -15,6 +15,7 @@
 
 // [Start import_entry_form_ability]
 // [Start update_form_interface]
+// [Start update_by_message_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 // [StartExclude update_form_interface]
 import { Configuration, Want } from '@kit.AbilityKit';
@@ -24,6 +25,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End import_entry_form_ability]
 
 // [Start form_extension_ability_interface]
+// [Start entry_form_ability]
 const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 
@@ -33,9 +35,15 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
     hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
-    // Called to return a FormBindingData object.
-    let formData = {};
-    return formBindingData.createFormBindingData(formData);
+
+    // ...
+    // 卡片使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+    let obj: Record<string, string> = {
+      'title': 'titleOnAddForm',
+      'detail': 'detailOnAddForm'
+    };
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+    return formData;
   }
 
   onCastToNormalForm(formId: string): void {
@@ -46,6 +54,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onUpdateForm(formId: string): void {
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
+    // [StartExclude update_by_message_form_ability]
     let obj: Record<string, string> = {
       'title': 'titleOnUpdateForm',
       'detail': 'detailOnUpdateForm'
@@ -54,6 +63,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
+    // [EndExclude update_by_message_form_ability]
   }
 
   onChangeFormVisibility(newStatus: Record<string, number>): void {
@@ -63,21 +73,23 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   // [EndExclude update_form_interface]
   onFormEvent(formId: string, message: string): void {
-    // Called when a specified message event defined by the form provider is triggered.
+    // 当卡片提供方的postCardAction接口的message事件被触发时调用
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
     // [StartExclude form_extension_lifecycle_interface]
+    // [StartExclude entry_form_ability]
     class FormDataClass {
       title: string = 'Title Update.'; // 和卡片布局中对应
       detail: string = 'Description update success.'; // 和卡片布局中对应
     }
-
+    // 请根据业务替换为实际刷新的卡片数据
     let formData = new FormDataClass();
     let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
     formProvider.updateForm(formId, formInfo).then(() => {
       hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       hilog.error(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
     });
+    // [EndExclude entry_form_ability]
     // [EndExclude form_extension_lifecycle_interface]
   }
 
@@ -103,6 +115,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
   // [EndExclude update_form_interface]
 }
+// [End entry_form_ability]
 // [End form_extension_ability_interface]
 // [End update_form_interface]
 // [End form_extension_lifecycle_interface]
+// [End update_by_message_form_ability]

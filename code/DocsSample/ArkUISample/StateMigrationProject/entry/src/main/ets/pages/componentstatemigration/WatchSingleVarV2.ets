@@ -1,0 +1,41 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// [Start Parent13_start]
+import hilog from '@ohos.hilog';
+
+const DOMAIN = 0xFF00;
+const TAG = '[Sample_StateMigration_App]';
+
+@Entry
+@ComponentV2
+struct monitorExample1 {
+  @Local apple: number = 0;
+
+  @Monitor('apple')
+  onFruitChange(monitor: IMonitor) {
+    hilog.info(DOMAIN, TAG, `apple changed from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Text(`apple count: ${this.apple}`);
+      Button('add apple')
+        .onClick(() => {
+          this.apple++;
+        });
+    }
+  }
+}
+// [End Parent13_start]

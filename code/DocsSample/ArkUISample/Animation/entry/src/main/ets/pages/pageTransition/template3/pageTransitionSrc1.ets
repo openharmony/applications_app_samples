@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start pageTransition_template3_pageTransitionSrc1_start]
+// PageTransitionSrc1
 @Entry
 @Component
 struct PageTransitionSrc1 {
@@ -56,3 +58,4 @@ struct PageTransitionSrc1 {
       .slide(SlideEffect.Right)
   }
 }
+// [End pageTransition_template3_pageTransitionSrc1_start]

@@ -1,0 +1,53 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "message_type",
+      "value": "Register the type of EAP message to be listened to"
+    },
+
+    {
+      "name": "Uncustomize",
+      "value": "Uncustomize"
+    },
+    {
+      "name": "client_sends_message",
+      "value": "The packet type is sent from the client to the server"
+    },
+    {
+      "name": "server_sends_message",
+      "value": "message type selection"
+    },
+    {
+      "name": "Withdrawal_of_certification",
+      "value": "Withdrawal of certification"
+    },
+    {
+      "name": "Start_authentication",
+      "value": "Start authentication"
+    },
+    {
+      "name": "first_part",
+      "value": "Add customized security verification to the 802.1X authentication process"
+    },
+    {
+      "name": "second_part",
+      "value": "Use the eth interface to initiate the 802.1X authentication process"
+    },
+    {
+      "name": "back_Btn",
+      "value": "Back"
+    }
+  ]
+}

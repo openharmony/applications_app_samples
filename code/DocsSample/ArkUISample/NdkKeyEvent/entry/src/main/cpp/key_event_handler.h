@@ -85,7 +85,9 @@ public:
     {
         return displayNode_;
     }
-
+    
+    static ArkUI_ContextHandle context_;
+    
 private:
     KeyEventHandler() = default;
     ~KeyEventHandler() = default;

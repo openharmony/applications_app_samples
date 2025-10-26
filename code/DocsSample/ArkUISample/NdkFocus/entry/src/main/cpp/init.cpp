@@ -48,6 +48,8 @@ static napi_value Init(napi_env env, napi_value exports)
             nullptr },
         { "setNodeFocusBox", nullptr, Manager::SetNodeFocusBox, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "setNodeNextFocus", nullptr, Manager::SetNodeNextFocus, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "SetKeyProcessingMode", nullptr, Manager::SetKeyProcessingMode, nullptr, nullptr, nullptr, napi_default,
+            nullptr },
         { "setNodeTabStop", nullptr, Manager::SetNodeTabStop, nullptr, nullptr, nullptr, napi_default, nullptr } };
 
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {

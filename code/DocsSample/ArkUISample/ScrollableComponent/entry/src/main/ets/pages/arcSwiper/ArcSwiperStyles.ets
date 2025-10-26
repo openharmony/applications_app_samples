@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start import]
 import {
   ArcSwiper,
   ArcSwiperAttribute,
@@ -20,6 +21,7 @@ import {
   ArcDirection,
   ArcSwiperController
 } from '@kit.ArkUI';
+// [End import]
 import { ComponentCard } from '../../common/Card';
 
 @Entry
@@ -31,6 +33,7 @@ export struct ArcSwiperStyles {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ArcSwiperStyles_titleDefault') }) {
+          // [Start styles_default]
           ArcSwiper() {
             Text('0')
               .width(233)
@@ -52,11 +55,14 @@ export struct ArcSwiperStyles {
               .backgroundColor(Color.Pink)
               .textAlign(TextAlign.Center)
               .fontSize(30)
+            // [End styles_default]
           }
         }
 
         ComponentCard({ title: $r('app.string.ArcSwiperStyles_titleCustomize') }) {
+          // [Start styles_customize]
           ArcSwiper() {
+            // [StartExclude styles_customize]
             Text('0')
               .width(233)
               .height(233)
@@ -77,6 +83,7 @@ export struct ArcSwiperStyles {
               .backgroundColor(Color.Pink)
               .textAlign(TextAlign.Center)
               .fontSize(30)
+            // [EndExclude styles_customize]
           }
           .indicator(
             new ArcDotIndicator()
@@ -84,6 +91,7 @@ export struct ArcSwiperStyles {
               .itemColor(Color.Red) // 设置导航点颜色为红色
               .selectedItemColor(Color.Blue) // 设置选中导航点颜色为蓝色
           )
+          // [End styles_customize]
         }
       }
       .width('100%')

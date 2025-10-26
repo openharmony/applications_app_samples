@@ -1,0 +1,24 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/overview/DecoratorDescription",
+    "pages/overview/ObservationChangeInheritance",
+    "pages/restrictiveconditions/RestrictiveConditionsObserved",
+    "pages/restrictiveconditions/ReadOnlyVariable",
+    "pages/objectLinkusagescenarios/NestedObject",
+    "pages/objectLinkusagescenarios/ObjectArray",
+    "pages/objectLinkusagescenarios/TwoDimensionalArray",
+    "pages/objectLinkusagescenarios/CompleteExampleTwoDimensionalArray",
+    "pages/objectLinkusagescenarios/InheritFromMapClass",
+    "pages/objectLinkusagescenarios/InheritFromSetClass",
+    "pages/objectLinkusagescenarios/ObjectLinkSupportsUnionTypes",
+    "pages/ObservedAndObjectLinkFAQs/BasicNesting",
+    "pages/ObservedAndObjectLinkFAQs/ComplexMethodsNesting",
+    "pages/ObservedAndObjectLinkFAQs/ComplexNestingComplete",
+    "pages/ObservedAndObjectLinkFAQs/DifferencesPropObjectLink",
+    "pages/ObservedAndObjectLinkFAQs/DelayedChange",
+    "pages/ObservedAndObjectLinkFAQs/ObjectLinkDataSourceUpdate",
+    "pages/ObservedAndObjectLinkFAQs/ClickEventJack",
+    "pages/ObservedAndObjectLinkFAQs/NotTriggerUIRefresh"
+  ]
+}

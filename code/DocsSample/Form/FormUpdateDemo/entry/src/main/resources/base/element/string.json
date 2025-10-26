@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FormUpdateDemo"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "button_update",
+      "value": "点击更新卡片"
+    },
+    {
+      "name": "default_title",
+      "value": "Title default"
+    },
+    {
+      "name": "update_title",
+      "value": "Title Update"
+    },
+    {
+      "name": "DescriptionDefault",
+      "value": "Description default"
+    },
+    {
+      "name": "widget_requestForm_desc",
+      "value": "requestForm"
+    }
+  ]
+}
