@@ -22,8 +22,10 @@ import { AnimationPopupExample } from './PopupAnimation';
 import { StatePopupExample } from './PopupStateChange';
 import { StylePopupExample } from './PopupStyle';
 import { TextPopupExample } from './TextPrompts';
+import { AvoidSoftKeyboardPopupExample } from './PopupAvoidSoftKeyboard';
+import { PolymorphicEffectPopupExample } from './PopupPolymorphicEffect';
+import { SupportedAvoidAxisPopupExample } from './PopupSupportedAvoidAxis';
 import { OpenPopup } from './globalpopupsindependentofuicomponents/OpenPopup';
-
 
 export const Popup_ROUTE_PREFIX: string = 'Popup_ROUTE_PREFIX';
 
@@ -59,6 +61,27 @@ const routes: Route[] = [
     description: $r('app.string.StylePopup_des'),
   },
   {
+    name: `${Popup_ROUTE_PREFIX}/AvoidSoftKeyboardPopupExample`,
+    // $r('app.string.AvoidSoftKeyboardPopupExample_title')需要替换为开发者所需的资源文件。
+    title: resource.resourceToString($r('app.string.AvoidSoftKeyboardPopupExample_title')),
+    // $r('app.string.AvoidSoftKeyboardPopupExample_des')需要替换为开发者所需的资源文件。
+    description: $r('app.string.AvoidSoftKeyboardPopupExample_des'),
+  },
+  {
+    name: `${Popup_ROUTE_PREFIX}/PolymorphicEffectPopupExample`,
+    // $r('app.string.PolymorphicEffectPopupExample_title')需要替换为开发者所需的资源文件。
+    title: resource.resourceToString($r('app.string.PolymorphicEffectPopupExample_title')),
+    // $r('app.string.PolymorphicEffectPopupExample_des')需要替换为开发者所需的资源文件。
+    description: $r('app.string.PolymorphicEffectPopupExample_des'),
+  },
+  {
+    name: `${Popup_ROUTE_PREFIX}/SupportedAvoidAxisPopupExample`,
+    // $r('app.string.SupportedAvoidAxisPopupExample_title')需要替换为开发者所需的资源文件。
+    title: resource.resourceToString($r('app.string.SupportedAvoidAxisPopupExample_title')),
+    // $r('app.string.SupportedAvoidAxisPopupExample_des')需要替换为开发者所需的资源文件。
+    description: $r('app.string.SupportedAvoidAxisPopupExample_des'),
+  },
+  {
     name: `${Popup_ROUTE_PREFIX}/OpenPopupExample`,
     title: resource.resourceToString($r('app.string.StylePopup_global')),
     description: $r('app.string.StylePopup_global_des'),
@@ -82,6 +105,12 @@ export function PopupDestination(name: string) {
   } else if (name === routes[5].name) {
     StylePopupExample();
   } else if (name === routes[6].name) {
+    AvoidSoftKeyboardPopupExample();
+  } else if (name === routes[7].name) {
+    PolymorphicEffectPopupExample();
+  } else if (name === routes[8].name) {
+    SupportedAvoidAxisPopupExample();
+  } else if (name === routes[9].name) {
     OpenPopup();
   }
 }

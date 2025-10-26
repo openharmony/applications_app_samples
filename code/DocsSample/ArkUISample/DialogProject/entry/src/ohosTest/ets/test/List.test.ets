@@ -13,11 +13,14 @@
  * limitations under the License.
  */
 
-
 import IndexTest from './Index.test'
 import abilityTest from './Ability.test';
+import PopupTest from './Popup.test';
+import MenuTest from './Menu.test'
 
 export default function testsuite() {
   abilityTest();
-  IndexTest()
+  IndexTest();
+  PopupTest();
+  MenuTest();
 }

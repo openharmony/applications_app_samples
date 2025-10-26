@@ -18,7 +18,10 @@ import resource from '../../common/resource';
 import { Route } from '../../common/Route';
 import { menuExample } from './CreateMenu';
 import { OpenPopup } from './globalmenusindependentofuicomponents//GlobalOpenMenu';
-
+import { PopVibrateMenuExample } from './PopVibrateMenu';
+import { SupportAvoidCentralAxisMenuExample } from './SupportAvoidCentralAxisMenu';
+import { EventTransSubWindowMenuExample } from './EventTransSubWindowMenu';
+import { BindComponentMenuExample } from './BindComponentMenu'
 
 export const Menu_ROUTE_PREFIX: string = 'Menu_ROUTE_PREFIX';
 
@@ -32,6 +35,26 @@ const routes: Route[] = [
     name: `${Menu_ROUTE_PREFIX}/OpenMenu`,
     title: resource.resourceToString($r('app.string.OpenMenu_title')),
     description: $r('app.string.OpenMenu_des'),
+  },
+  {
+    name: `${Menu_ROUTE_PREFIX}/PopVibrateMenu`,
+    title: resource.resourceToString($r('app.string.PopVibrateMenu_title')),
+    description: $r('app.string.PopVibrateMenu_des'),
+  },
+  {
+    name: `${Menu_ROUTE_PREFIX}/SupportAvoidCentralAxisMenu`,
+    title: resource.resourceToString($r('app.string.SupportAvoidCentralAxisMenu_title')),
+    description: $r('app.string.SupportAvoidCentralAxisMenu_des'),
+  },
+  {
+    name: `${Menu_ROUTE_PREFIX}/EventTransSubWindowMenu`,
+    title: resource.resourceToString($r('app.string.EventTransSubWindowMenu_title')),
+    description: $r('app.string.EventTransSubWindowMenu_des'),
+  },
+  {
+    name: `${Menu_ROUTE_PREFIX}/BindComponentMenu`,
+    title: resource.resourceToString($r('app.string.BindComponentMenu_title')),
+    description: $r('app.string.BindComponentMenu_des'),
   }
 ]
 
@@ -41,9 +64,16 @@ export function MenuDestination(name: string) {
     MenuExample();
   } else if (name === routes[0].name) {
     menuExample();
-  } else if (name === routes[1].name) {
+  } else if (name === routes[1].name) { 
     OpenPopup();
-  }
+  } else if (name === routes[2].name) { 
+    PopVibrateMenuExample();
+  } else if (name === routes[3].name) {
+    SupportAvoidCentralAxisMenuExample();
+  } else if (name === routes[4].name) {
+    EventTransSubWindowMenuExample();
+  } else if (name === routes[5].name) {
+    BindComponentMenuExample();
 }
 
 @Entry
