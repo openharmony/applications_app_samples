@@ -897,6 +897,18 @@
       "value": "可通过ParagraphStyle设置段落样式布局。"
     },
     {
+      "name": "StyledStringParagraphStyleOne_title",
+      "value": "设置段落样式方法一"
+    },
+    {
+      "name": "StyledStringReplaceParagraphStyle_title",
+      "value": "设置段落样式方法二"
+    },
+    {
+      "name": "StyledStringConvertedToParagraph_title",
+      "value": "支持将属性字符串转换成Paragraph"
+    },
+    {
       "name": "StyledStringImageAttachment_title",
       "value": "通过ImageAttachment来添加图片"
     },
@@ -923,6 +935,14 @@
     {
       "name": "StyledStringHtml_description",
       "value": "可以通过toHtml、fromHtml接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：<p>、<span>、<img>。"
+    },
+    {
+      "name": "StyledStringHtmlOne_title",
+      "value": "格式转换二"
+    },
+    {
+      "name": "StyledStringHtmlOne_description",
+      "value": "将HTML中<strong>、<b>、<a>、<i>、<em>、<s>、<u>、<del>、<sup>、<sub>标签及其style属性中的background-color转换为属性字符串并转回HTML。"
     },
     {
       "name": "StyledStringSceneExample_title",
@@ -1113,6 +1133,10 @@
       "value": "运动35分钟"
     },
     {
+      "name": "CreateApply_Text_3",
+      "value": "运动45分钟 目标达成"
+    },
+    {
       "name": "StyledStringHtml_Text_1",
       "value": "属性字符串"
     },
@@ -1127,6 +1151,10 @@
     {
       "name": "StyledStringParagraphStyle_Text_1",
       "value": "段落标题\n正文第一段落开始0123456789正文第一段落结束。"
+    },
+    {
+      "name": "StyledStringParagraphStyle_Text_2",
+      "value": "段落标题\\n正文第一段落开始0123456789正文第一段落结束，通过replaceStyle清空原样式替换新样式。"
     },
     {
       "name": "StyledStringSceneExample_Text_1",
@@ -1479,6 +1507,38 @@
     {
       "name": "Length_Metric_description",
       "value": "如何在文本的前后各添加一个标签，例如“专题”或“Top1”。这些标签的背景样式、尺寸设置需要能够自定义。"
+    },
+    {
+      "name": "Replace_paragraph_style",
+      "value": "替换段落样式"
+    },
+    {
+      "name": "Converted_HTML_to_SpanString",
+      "value": "Converted HTML to SpanString"
+    },
+    {
+      "name": "Converted_SpanString_to_HTML",
+      "value": "Converted SpanString to HTML"
+    },
+    {
+      "name": "Converted_HTML_back_to_SpanString",
+      "value": "Converted HTML back to SpanString"
+    },
+    {
+      "name": "Reset",
+      "value": "Reset"
+    },
+    {
+      "name": "Full_text",
+      "value": "... 全文"
+    },
+    {
+      "name": "Original_text",
+      "value": "原文"
+    },
+    {
+      "name": "After_typesetting",
+      "value": "排版后"
     }
   ]
 }
