@@ -19,6 +19,7 @@
 #define SIZE_4 4
 #define SIZE_16 16
 #define SIZE_10 10
+#define SIZE_30 30
 #define SIZE_100 100
 #define SIZE_200 200
 #define SIZE_480 480
@@ -27,6 +28,8 @@
 
 #define COLOR_YELLOW 0xFFFFFF00
 #define COLOR_BACKGROUND 0xFFfffacd
+#define COLOR_BACKGROUND1 0xFFD5D5D5
+#define COLOR_BACKGROUND2 0xFF707070
 #define RGBA_R1 0xFF
 #define RGBA_G1 0xFF
 #define RGBA_B1 0x00

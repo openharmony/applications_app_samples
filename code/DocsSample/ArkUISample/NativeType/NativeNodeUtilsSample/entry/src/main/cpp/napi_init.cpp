@@ -18,7 +18,7 @@
 #include "NativeEntry.h"
 
 static napi_value NAPI_Global_createNativeRoot(napi_env env, napi_callback_info info) {
-    // TODO: implements the code;
+  
 }
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {

@@ -28,7 +28,8 @@
 
 namespace NativeModule {
 
-std::shared_ptr<ArkUIBaseNode> CreateTextListExample() {
+std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
+{
     // 创建组件并挂载
     // 1：使用智能指针创建List组件。
     auto list = std::make_shared<ArkUIListNode>();

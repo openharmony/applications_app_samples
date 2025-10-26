@@ -122,8 +122,8 @@ public:
     }
 
     void UnregistSystemColorModeChange()
-    { 
-        OH_ArkUI_UnregisterSystemColorModeChangeEvent(handle_); 
+    {
+        OH_ArkUI_UnregisterSystemColorModeChangeEvent(handle_);
     }
 };
 } // namespace NativeModule

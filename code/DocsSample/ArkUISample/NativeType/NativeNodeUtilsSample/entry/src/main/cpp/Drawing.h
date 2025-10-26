@@ -22,7 +22,7 @@
 #include <native_drawing/drawing_pen.h>
 #include "common/common.h"
 
-ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) 
+ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
 {
     // 创建节点
     // [Start createColumnNode_start]
@@ -59,9 +59,9 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
     nodeAPI->registerNodeCustomEventReceiver([](ArkUI_NodeCustomEvent *event)
     // 事件回调函数逻辑
     // [End userdata_start]
-    {
         // 获取自定义事件的相关信息。
         // [Start nodeCustomEvent_start]
+    {
         auto type = OH_ArkUI_NodeCustomEvent_GetEventType(event);
         auto targetId = OH_ArkUI_NodeCustomEvent_GetEventTargetId(event);
         auto userData = reinterpret_cast<A *>(OH_ArkUI_NodeCustomEvent_GetUserData(event));

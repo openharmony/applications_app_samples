@@ -33,7 +33,6 @@ namespace NativeModule {
     napi_value GetNodeHandleById(napi_env env, napi_callback_info info);
     napi_value GetNodeHandleByUniqueId(napi_env env, napi_callback_info info);
     napi_value CreateDrawNode(napi_env env, napi_callback_info info);
-    napi_value CreateNativeRoot(napi_env env, napi_callback_info info);
     napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
 
     const unsigned int LOG_PRINT_DOMAIN = 0xFF00;

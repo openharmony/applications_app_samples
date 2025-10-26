@@ -406,10 +406,8 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
     ArkUI_NodeContentHandle contentHandle;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
-
         //创建文本列表
         auto list = CreateTextListExample();
-
         //保持Native侧对象到管理类中，维护生命周期。
         NativeEntry::GetInstance()->SetRootNode(list);
     return nullptr;
@@ -493,7 +491,8 @@ napi_value GetNodeHandleByUniqueId(napi_env env, napi_callback_info info)
     }
 }
 
-napi_value CreateDrawNode(napi_env env, napi_callback_info info) {
+napi_value CreateDrawNode(napi_env env, napi_callback_info info)
+{
     size_t argCnt = 1;
     int32_t ret;
     napi_value args[1] = {nullptr};
@@ -585,13 +584,11 @@ void NativeEntry::RegisterNodeEventReceiver()
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfo", "nodeHandle = %{public}p", nodeHandle);
         // 根据eventType来区分事件类型，进行差异化处理，其他获取事件信息的接口也可类似方式来进行差异化的处理
         switch (eventType) {
-            case NODE_ON_CLICK_EVENT:
-            {
+            case NODE_ON_CLICK_EVENT:{
                 //实现具体业务
                 break;
             }
-            default:
-            {
+            default:{
                 break;
             }
         }
