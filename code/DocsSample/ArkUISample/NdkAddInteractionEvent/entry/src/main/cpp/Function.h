@@ -393,7 +393,7 @@ void FirstModuleForGesture(ArkUI_NodeHandle &root)
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建长按手势
     auto longPressGesture = gestureApi->createLongPressGesture(GINGERS_NUM_1, true, DURATION_NUM_1000);
-    // [Start create_long_press]
+    // [End create_long_press]
     // [Start bind_event]
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
         // 回调内容
