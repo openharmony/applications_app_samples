@@ -18,7 +18,7 @@ const DOMAIN = 0x0000;
 @Entry
 @Component
 struct MenusThreeResource {
-  // [Start NavigationMenuThreeResourceResource]
+  // [Start NavigationMenuThreeResource]
   @State toolTmp: NavigationMenuItem  = {
     'value': 'func',
     'icon': 'resources/base/media/ic_public_add.svg',

@@ -24,10 +24,10 @@ export function PageOneBuilder(name: string, param: Object) {
 @Component
 struct Page01 {
   private pathStack: NavPathStack | undefined = undefined;
-  private name: string = '';
   // [StartExclude onReady]
-  private pageParam: string = '';
+  private name: string = '';
   // [EndExclude onReady]
+  private pageParam: string = '';
   build() {
     NavDestination() {
       // [StartExclude onReady]

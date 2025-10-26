@@ -18,7 +18,7 @@ const DOMAIN = 0x0000;
 @Entry
 @Component
 struct MenusThreeImage {
-  // [Start NavigationMenuThreeImageImage]
+  // [Start NavigationMenuThreeImage]
   @State toolTmp: NavigationMenuItem  = {
     'value': 'func',
     'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',

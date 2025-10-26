@@ -19,8 +19,8 @@ struct FromPage {
   @Consume('navPS') navPathStack: NavPathStack;
   build() {
     // [Start GeometryTransitionFromPage]
-    // [Start GeometryTransitionFromPage1]
     // 起始页配置共享元素id
+    // [Start GeometryTransitionFromPage1]
     NavDestination() {
       Column() {
         // [StartExclude GeometryTransitionFromPage]
@@ -43,8 +43,8 @@ struct FromPage {
         // [EndExclude GeometryTransitionFromPage1]
       }
     }.title('FromPage')
-    // [End GeometryTransitionFromPage]
     // [End GeometryTransitionFromPage1]
+    // [End GeometryTransitionFromPage]
   }
 }
 
@@ -63,9 +63,6 @@ struct ToPage {
           .width(200)
           .height(200)
       }
-      .onClick(() => {
-          this.navPathStack.pop(false)
-      })
     }
     .title('ToPage')
     // [End GeometryTransitionToPage]
