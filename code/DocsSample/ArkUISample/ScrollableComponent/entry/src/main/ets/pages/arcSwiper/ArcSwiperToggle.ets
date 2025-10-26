@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start toggle]
+// 导入ArcButton和ArcSwiper模块
 import {
   ArcButton,
   ArcButtonOptions,
@@ -20,24 +22,36 @@ import {
   ArcButtonStyleMode,
   ArcButtonPosition,
   ArcSwiper,
-  ArcSwiperAttribute,
+  ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
   ArcDotIndicator,
+  // [StartExclude toggle]
   ArcDirection,
   ArcSwiperController
+  // [EndExclude toggle]
 } from '@kit.ArkUI';
+// [StartExclude toggle]
 import { ComponentCard } from '../../common/Card';
-
+// [EndExclude toggle]
 @Entry
 @Component
 export struct ArcSwiperToggle {
   private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
 
   build() {
+    // [StartExclude toggle]
     NavDestination() {
+      // [EndExclude toggle]
       Column({ space: 12 }) {
+        // [StartExclude toggle]
         ComponentCard({ title: $r('app.string.ArcSwiperToggle_title') }) {
+          // [EndExclude toggle]
           Stack() {
+            // [Start toggle_sensitivity]
+            // [Start toggle_focus]
             ArcSwiper(this.wearableSwiperController) {
+              // [StartExclude toggle]
+              // [StartExclude toggle_focus]
+              // [StartExclude toggle_sensitivity]
               Text('0')
                 .width(233)
                 .height(233)
@@ -58,9 +72,27 @@ export struct ArcSwiperToggle {
                 .backgroundColor(Color.Pink)
                 .textAlign(TextAlign.Center)
                 .fontSize(30)
+              // [EndExclude toggle_sensitivity]
+              // [EndExclude toggle_focus]
+              // [EndExclude toggle]
             }
+            // [StartExclude toggle_sensitivity]
+            // [StartExclude toggle_focus]
             .vertical(true)
             .indicator(false)
+            // [EndExclude toggle_focus]
+
+            // [StartExclude toggle]
+            .focusable(true)
+            .focusOnTouch(true)
+            .defaultFocus(true)
+            // [EndExclude toggle_sensitivity]
+            // [End toggle_focus]
+
+            .digitalCrownSensitivity(CrownSensitivity.MEDIUM)
+            // [EndExclude toggle]
+            // [End toggle_sensitivity]
+
 
             Column() {
               ArcButton({
@@ -88,13 +120,18 @@ export struct ArcSwiperToggle {
               })
             }.width('100%').height('100%')
           }
+          // [StartExclude toggle]
         }
+        // [EndExclude toggle]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude toggle]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ArcSwiperToggle_title'))
+    // [EndExclude toggle]
   }
 }
+// [End toggle]

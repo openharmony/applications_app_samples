@@ -1,0 +1,55 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ResourceCategoriesAndAccess"
+    },
+    {
+      "name": "string_hello",
+      "value": "Hello"
+    },
+    {
+      "name": "string_world",
+      "value": "World"
+    },
+    {
+      "name": "message_arrive",
+      "value": "We will arrive at %1$s."
+    },
+    {
+      "name": "message_notification",
+      "value": "Hello, %1$s!,You have %2$d new messages."
+    },
+    {
+      "name": "string1",
+      "value": "1",
+      "attr": {
+        "translatable": false
+      }
+    },
+    {
+      "name": "string2",
+      "value": "Hello world!",
+      "attr": {
+        "translatable": true,
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "font_family_medium",
+      "value": "HarmonyOS-Sans"
+    },
+    {
+      "name": "greetings",
+      "value": "Hello, world"
+    }
+  ]
+}

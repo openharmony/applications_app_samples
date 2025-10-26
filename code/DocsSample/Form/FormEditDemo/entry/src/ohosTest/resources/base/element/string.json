@@ -2,11 +2,19 @@
   "string": [
     {
       "name": "add_form_to_desktop",
-      "value": "服务卡片"
+      "value": "卡片"
     },
     {
       "name": "add_to_desktop",
-      "value": "添加到桌面"
+      "value": "添加至桌面"
+    },
+    {
+      "name": "button_edit",
+      "value": "编辑"
+    },
+    {
+      "name": "button_finish",
+      "value": "完成"
     }
   ]
 }

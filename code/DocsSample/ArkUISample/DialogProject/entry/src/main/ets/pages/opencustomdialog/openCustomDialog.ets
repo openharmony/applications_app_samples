@@ -44,7 +44,7 @@ function buildText(params: Params) {
           PromptActionClass.updateDialog({
             alignment: DialogAlignment.Bottom,
             offset: { dx: 0, dy: -50 }
-          })
+          });
         }, 1500);
          PromptActionClass.closeDialog();
       })
@@ -65,7 +65,7 @@ function buildText(params: Params) {
           PromptActionClass.updateDialog({
             alignment: DialogAlignment.Bottom,
             offset: { dx: 0, dy: -50 }
-          })
+          });
         }, 150);
       })
       .layoutWeight(1)
@@ -88,7 +88,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 export struct openCustomDialog {
-  @State message: string = 'hello'
+  @State message: string = 'hello';
   private ctx: UIContext = this.getUIContext();
   // [Start create_component_content]
   private contentNode: ComponentContent<Object> =

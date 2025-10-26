@@ -1,0 +1,16 @@
+{
+  "src": [
+    "pages/Index",
+    "View/Page1",
+    "View/Page2",
+    "View/TabContentTest",
+    "View/LazyforEachTest",
+    "View/MyNavigationTestStack",
+    "View/ComponentReuse",
+    "View/ComponentReuse1",
+    "View/ComponentReuse2",
+    "View/ComponentMixing",
+    "View/ComponentMixing1",
+    "View/Constraints"
+  ]
+}

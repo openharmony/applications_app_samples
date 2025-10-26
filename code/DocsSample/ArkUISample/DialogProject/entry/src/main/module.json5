@@ -20,8 +20,7 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "default",
-      "tablet"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -61,6 +60,13 @@
           }
         ]
       }
-    ]
+    ],
+    // [Start menu_permissions]
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.VIBRATE",
+      }
+    ],
+    // [End menu_permissions]
   }
 }

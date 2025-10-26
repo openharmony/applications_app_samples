@@ -29,14 +29,6 @@
       "value": "widget"
     },
     {
-      "name": "button_one",
-      "value": "更换成：\"message one\""
-    },
-    {
-      "name": "button_two",
-      "value": "更换成：\"message two\""
-    },
-    {
       "name": "liveform_click1",
       "value": "点击触发互动卡片动效"
     },

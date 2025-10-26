@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start KeyframeAnimateToDemo]
 @Entry
 @Component
 struct KeyframeAnimateToDemo {
@@ -72,3 +74,4 @@ struct KeyframeAnimateToDemo {
     .justifyContent(FlexAlign.Center)
   }
 }
+// [End KeyframeAnimateToDemo]

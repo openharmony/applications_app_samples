@@ -24,6 +24,7 @@ import { CustomDialogDestination, CustomDialog_ROUTE_PREFIX } from './opencustom
 import { PopupDestination, Popup_ROUTE_PREFIX } from './popup/Index';
 import { ToastDestination, Toast_ROUTE_PREFIX } from './Toast/Index';
 import { MaskDestination, Mask_ROUTE_PREFIX } from './maskdialog/Index';
+import { OverlayManagerDestination, OverlayManager_ROUTE_PREFIX } from './OverlayManager/Index';
 
 const routes: Route[] = [
   {
@@ -53,6 +54,10 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.Popup1')),
     name: Popup_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.OverlayManager1')),
+    name: OverlayManager_ROUTE_PREFIX
   }
 ];
 
@@ -72,6 +77,8 @@ function Destination(name: string) {
     PopupDestination(name);
   } else if (name.startsWith(Mask_ROUTE_PREFIX)) {
     MaskDestination(name);
+  } else if (name.startsWith(OverlayManager_ROUTE_PREFIX)) {
+    OverlayManagerDestination(name);
   }
 }
 

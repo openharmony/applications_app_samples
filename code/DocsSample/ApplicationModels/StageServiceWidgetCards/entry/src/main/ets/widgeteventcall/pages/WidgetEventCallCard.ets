@@ -16,83 +16,59 @@
 let storageEventCall = new LocalStorage();
 
 // [Start widget_event_call_card]
+//src/main/ets/widgeteventcall/pages/WidgetEventCallCard.ets
 @Entry(storageEventCall)
 @Component
 struct WidgetEventCallCard {
   @LocalStorageProp('formId') formId: string = '12400633174999288';
 
   build() {
-    Column() {
-      // [StartExclude widget_event_call_card]
-      Text($r('app.string.WidgetEventCallEntryAbility_desc'))
-        .fontColor('#FFFFFF')
-        .opacity(0.9)
+    RelativeContainer() {
+      Button($r('app.string.ButtonA_label'))
+        .id('funA__')
         .fontSize(14)
-        .margin({ top: '8%', left: '10%' })
-        // [EndExclude widget_event_call_card]
-      Row() {
-        Column() {
-          Button() {
-            // [StartExclude widget_event_call_card]
-            Text($r('app.string.ButtonA_label'))
-              .fontColor('#45A6F4')
-              .fontSize(12)
-              // [EndExclude widget_event_call_card]
-          }
-          // [StartExclude widget_event_call_card]
-          .width(120)
-          .height(32)
-          .margin({ top: '20%' })
-          .backgroundColor('#FFFFFF')
-          .borderRadius(16)
-          // [EndExclude widget_event_call_card]
-          .onClick(() => {
-            postCardAction(this, {
-              action: 'call',
-              abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
-              params: {
-                formId: this.formId,
-                method: 'funA' // 在EntryAbility中调用的方法名
-              }
-            });
-          })
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          postCardAction(this, {
+            action: 'call',
+            // 只能跳转到当前应用下的UIAbility，与module.json5中定义保持一致
+            abilityName: 'WidgetEventCallEntryAbility',
+            params: {
+              formId: this.formId,
+              // 需要调用的方法名称
+              method: 'funA'
+            }
+          });
+        })
 
-          Button() {
-            // [StartExclude widget_event_call_card]
-            Text($r('app.string.ButtonB_label'))
-              .fontColor('#45A6F4')
-              .fontSize(12)
-              // [EndExclude widget_event_call_card]
-          }
-          // [StartExclude widget_event_call_card]
-          .width(120)
-          .height(32)
-          .margin({ top: '8%', bottom: '15vp' })
-          .backgroundColor('#FFFFFF')
-          .borderRadius(16)
-          // [EndExclude widget_event_call_card]
-          .onClick(() => {
-            postCardAction(this, {
-              action: 'call',
-              abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
-              params: {
-                formId: this.formId,
-                method: 'funB', // 在EntryAbility中调用的方法名
-                num: 1 // 需要传递的其他参数
-              }
-            });
-          })
-        }
-      }.width('100%').height('80%')
-      .justifyContent(FlexAlign.Center)
+      Button($r('app.string.ButtonB_label'))
+        .id('funB__')
+        .fontSize(14)
+        .fontWeight(FontWeight.Bold)
+        .margin({ top: 10 })
+        .alignRules({
+          top: { anchor: 'funA__', align: VerticalAlign.Bottom },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          postCardAction(this, {
+            action: 'call',
+            abilityName: 'WidgetEventCallEntryAbility',
+            params: {
+              formId: this.formId,
+              // 需要调用的方法名称
+              method: 'funB',
+              num: 1
+            }
+          });
+        })
     }
-    .width('100%')
     .height('100%')
-    .alignItems(HorizontalAlign.Start)
-    // [StartExclude widget_event_call_card]
-    .backgroundImage($r('app.media.CardEvent'))
-    .backgroundImageSize(ImageSize.Cover)
-    // [EndExclude widget_event_call_card]
+    .width('100%')
   }
 }
 // [End widget_event_call_card]

@@ -23,6 +23,8 @@
 #include "../render/plugin_render.h"
 
 namespace NativeXComponentSample {
+// [Start xcomponent_define_class]
+// PluginManager类定义
 class PluginManager {
 public:
     ~PluginManager();
@@ -37,5 +39,6 @@ public:
     static std::unordered_map<int64_t, PluginRender*> pluginRenderMap_;
     static std::unordered_map<int64_t, OHNativeWindow*> windowMap_;
 };
+// [End xcomponent_define_class]
 } // namespace NativeXComponentSample
 #endif // NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
