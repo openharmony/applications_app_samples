@@ -64,7 +64,6 @@ struct AnimateIndex {
       { name: 'template2/Index', label: $r('app.string.animation_temp_label2') },
       { name: 'template3/Index', label: $r('app.string.animation_temp_label3') },
       { name: 'template4/Index', label: $r('app.string.animation_temp_label4') }
-
     ]
   }, {
     name: "animationBlur",
@@ -102,7 +101,9 @@ struct AnimateIndex {
       { name: 'template1/Index', label: $r('app.string.pageTransition_temp_label1') },
       { name: 'template2/Index', label: $r('app.string.pageTransition_temp_label2') },
       { name: 'template3/pageTransitionSrc1', label: $r('app.string.pageTransition_temp_label3') },
-      { name: 'template4/pageTransitionSrc2', label: $r('app.string.pageTransition_temp_label4') }
+      { name: 'template4/pageTransitionSrc2', label: $r('app.string.pageTransition_temp_label4') },
+      { name: 'template5/PageTransitionSrc3', label: $r("app.string.pageTransition_temp_label5") },
+      { name: 'template6/PageTransitionSrc4', label: $r("app.string.pageTransition_temp_label6") }
     ]
   }, {
     name: "compTransition",
@@ -151,9 +152,10 @@ struct AnimateIndex {
     label: $r('app.string.animator_label'),
     children:[
       // $r('app.string.animator_temp_label1')需要替换为开发者所需的资源文件
-      { name: 'template1/Index', label: $r('app.string.animator_temp_label1') },
-      { name: 'template2/Index', label: $r('app.string.animator_temp_label2') },
-      { name: 'template3/Index', label: $r('app.string.animator_temp_label3') }
+      { name: 'template1/Index', label: $r("app.string.animator_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.animator_temp_label2") },
+      { name: 'template3/Index', label: $r("app.string.animator_temp_label3") },
+      { name: 'template4/Index', label: $r("app.string.animator_temp_label4") }
     ]
   }, {
     name: "animateToImmediately",
@@ -172,6 +174,14 @@ struct AnimateIndex {
       { name: 'template1/Index', label: $r('app.string.rotation_temp_label1') },
       { name: 'template2/Index', label: $r('app.string.rotation_temp_label2') }
     ]
+  },  {
+    name: "animatableProperty",
+    // $r("app.string.animatableProperty_label")需要替换为开发者所需的资源文件
+    label: $r("app.string.animatableProperty_label"),
+    children:[
+      // $r("app.string.component_temp_label1")需要替换为开发者所需的资源文件
+      { name: 'template1/Index', label: $r("app.string.animatableProperty_temp_label1") },
+      { name: 'template2/Index', label: $r("app.string.animatableProperty_temp_label2") },
   }, {
     name: "component",
     // $r('app.string.component_label')需要替换为开发者所需的资源文件
@@ -189,14 +199,14 @@ struct AnimateIndex {
   ListItemGroupHeader(route: RouteGroup) {
     Row() {
       Text(route.label)
-        // $r('app.string.ohos_id_color_text_primary')需要替换为开发者所需的资源文件
+      // $r('app.string.ohos_id_color_text_primary')需要替换为开发者所需的资源文件
         .fontColor($r('sys.color.ohos_id_color_text_primary'))
         .fontWeight(FontWeight.Medium)
 
       Blank()
 
       Text(`${route.children.length}`)
-        // $r('sys.color.ohos_id_color_text_secondary')需要替换为开发者所需的资源文件
+      // $r('sys.color.ohos_id_color_text_secondary')需要替换为开发者所需的资源文件
         .fontColor($r('sys.color.ohos_id_color_text_secondary'))
         .opacity(this.selection === route.name ? 0 : 1)
 
@@ -219,7 +229,7 @@ struct AnimateIndex {
       disabled: cardDisabledStyle,
     })
     .onClick(() => {
-      animateTo(
+      this.getUIContext().animateTo(
         { curve: curves.interpolatingSpring(0, 1, 228, 25) },
         () => {
           if (this.selection === route.name) {
@@ -227,7 +237,8 @@ struct AnimateIndex {
           } else {
             this.selection = route.name;
           }
-        });
+        }
+      );
     })
   }
 
@@ -272,7 +283,7 @@ struct AnimateIndex {
                   .width('100%')
                   .onClick(() => {
                     const name = `pages/${routeGroup.name}/${route.name}`;
-                    this.getUIContext().getRouter().pushUrl({url:name})
+                    this.getUIContext().getRouter().pushUrl({url:name});
                   })
                 }
                 .width('100%')
