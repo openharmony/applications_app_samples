@@ -15,7 +15,8 @@
 
 #ifndef NATIVEXCOMPONENT_EGLRENDER_H
 #define NATIVEXCOMPONENT_EGLRENDER_H
-
+// [Start egl_render_h]
+// EGLRender.h
 #include "EGLConst.h"
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
@@ -29,7 +30,9 @@ public:
     void SetEGLWindowSize(int width, int height);
     void DrawStar(bool drawColor);
     void DestroySurface();
+    // [StartExclude egl_render_h]
     void Clear();
+    // [EndExclude egl_render_h]
 
     std::string xcomponentId;
     EGLNativeWindowType eglWindow_;
@@ -46,4 +49,5 @@ private:
     GLint PrepareDraw();
     bool ExecuteDraw(GLint position, const GLfloat *color, const GLfloat shapeVertices[]);
 };
+// [End egl_render_h]
 #endif // NATIVEXCOMPONENT_EGLRENDER_H

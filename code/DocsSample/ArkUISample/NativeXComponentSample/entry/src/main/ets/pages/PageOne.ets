@@ -12,19 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start page_one]
 import nativeNode from 'libnativerender.so';
 import {NodeContent} from '@kit.ArkUI';
 
+// [StartExclude page_one]
 @Builder
 export function PageOneBuilder(name: string, param: Object){
     PageOne()
 }
+// [EndExclude page_one]
 @Component
 export struct PageOne {
   @State currentStatus: string = 'init';
   private nodeContent: NodeContent = new NodeContent();
   aboutToAppear():void{
+    // 通过C-API创建节点，并添加到管理器nodeContent上
     nativeNode.createNativeNode(this.nodeContent,'CreatNativeNode');
   }
 
@@ -45,6 +48,7 @@ export struct PageOne {
         .height(56)
 
         Column({ space: 10 }) {
+            // 显示nodeContent管理器里存放的Native侧的组件
             ContentSlot(this.nodeContent);
             Column().height(20)
             Text(this.currentStatus)
@@ -53,6 +57,7 @@ export struct PageOne {
         }
         .onClick(() => {
             let hasChangeColor: boolean = false;
+            // 获取当前绘制内容状态
             if (nativeNode.getStatus()) {
             hasChangeColor = nativeNode.getStatus().hasChangeColor;
             }
@@ -74,8 +79,10 @@ export struct PageOne {
             .fontWeight(500)
             .margin({ bottom: 24 })
             .onClick(() => {
+                // 调用drawPattern绘制内容
                 nativeNode.drawPattern();
                 let hasDraw: boolean = false;
+                // 获取当前绘制内容状态
                 if (nativeNode.getStatus()) {
                     hasDraw = nativeNode.getStatus().hasDraw;
                 }
@@ -96,3 +103,4 @@ export struct PageOne {
     }
   }
 }
+// [End page_one]
