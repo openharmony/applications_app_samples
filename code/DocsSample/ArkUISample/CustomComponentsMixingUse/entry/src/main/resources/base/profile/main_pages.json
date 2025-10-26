@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/MixingUseofCustomComponents/ObserveNestedClasses_ObservedAndObjectLink",
+    "pages/MixingUseofCustomComponents/ObserveNestedClasses_ObsevedV2AndTrace",
+    "pages/MixingUseofCustomComponents/V1CommonVariablesToV2CustomComponent",
+    "pages/MixingUseofCustomComponents/V1InV2",
+    "pages/MixingUseofCustomComponents/V1StateVariablesToV2CustomComponent",
+    "pages/MixingUseofCustomComponents/V2CommonVariablesToV1CustomComponent",
+    "pages/MixingUseofCustomComponents/V2InV1",
+    "pages/MixingUseofCustomComponents/V2StateVariablesToV1CustomComponent",
+    "pages/Index"
+  ]
+}

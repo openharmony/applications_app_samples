@@ -14,9 +14,11 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import resource from '../../common/resource';
+// [Start styledStringImageAttachment_start]
+// xxx.ets
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
-import resource from '../../common/resource';
 
 @Entry
 @Component
@@ -40,7 +42,7 @@ export struct StyledStringImageAttachment {
 
   async aboutToAppear() {
     console.info('aboutToAppear initial imagePixelMap');
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.startIcon'));
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.background'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -182,3 +184,4 @@ export struct StyledStringImageAttachment {
     .title($r('app.string.StyledStringImageAttachment_title'))
   }
 }
+// [End styledStringImageAttachment_start]

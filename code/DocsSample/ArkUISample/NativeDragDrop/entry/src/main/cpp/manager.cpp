@@ -144,7 +144,11 @@ napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info)
     if (component == nullptr) {
         return nullptr;
     }
-    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+    // [Start get_nodeAPI]
+    ArkUI_NativeNodeAPI_1 *nativeNodeAPI = nullptr;
+    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nativeNodeAPI);
+    nodeAPI = nativeNodeAPI;
+    // [End get_nodeAPI]
 
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {

@@ -14,13 +14,23 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-
 // [Start build_a_office_services_grid_of_foreach]
+import common from '@ohos.app.ability.common';
 @Entry
 @Component
 export struct DataInGrid {
-  @State services: Array<string> = ['Meeting', 'Voting', 'Check-in', 'Printing'];
-
+  @State services: Array<string> = [];
+  aboutToAppear(): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const meeting = context.resourceManager.getStringByNameSync('Meeting')
+    this.services.push(meeting)
+    const check = context.resourceManager.getStringByNameSync('Check_in')
+    this.services.push(check)
+    const voting = context.resourceManager.getStringByNameSync('Voting')
+    this.services.push(voting)
+    const printing = context.resourceManager.getStringByNameSync('Printing')
+    this.services.push(printing)
+  }
   build() {
     // [StartExclude build_a_office_services_grid_of_foreach]
     NavDestination() {
@@ -29,25 +39,31 @@ export struct DataInGrid {
         // [StartExclude build_a_office_services_grid_of_foreach]
         ComponentCard({ title: $r('app.string.DataInGrid_titleOfficeServices') }) {
           // [EndExclude build_a_office_services_grid_of_foreach]
+          // $r('app.string.build_a_office_services_grid')需要替换为开发者所需的字符串资源
           // [Start build_a_office_services_grid]
+
           Grid() {
             GridItem() {
-              Text('Meeting')
+              // $r('app.string.Meeting')需要替换为开发者所需的资源文件
+              Text($r('app.string.Meeting'))
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
 
             GridItem() {
-              Text('Check-in')
+              // $r('app.string.Check_in')需要替换为开发者所需的资源文件
+              Text($r('app.string.Check_in'))
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
 
             GridItem() {
-              Text('Voting')
+              // $r('app.string.Voting')需要替换为开发者所需的资源文件
+              Text($r('app.string.Voting'))
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
 
             GridItem() {
-              Text('Printing')
+              // $r('app.string.Printing')需要替换为开发者所需的资源文件
+              Text($r('app.string.Printing'))
                 .fontSize(24)
             }.backgroundColor('#FFF1F3F5')
           }
@@ -62,6 +78,7 @@ export struct DataInGrid {
         }
 
         // [StartExclude build_a_office_services_grid_of_foreach]
+        // $r('app.string.DataInGrid_titleForEach')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.DataInGrid_titleForEach') }) {
           // [EndExclude build_a_office_services_grid_of_foreach]
           Grid() {

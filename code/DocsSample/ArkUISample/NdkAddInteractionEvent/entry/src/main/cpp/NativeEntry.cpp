@@ -67,8 +67,9 @@ napi_value CreateNativeNodeForGesture(napi_env env, napi_callback_info info)
     // 获取NodeContent
     ArkUI_NodeContentHandle contentHandle;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
-
+    // [Start get_module_interface]
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+    // [End get_module_interface]
     
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     

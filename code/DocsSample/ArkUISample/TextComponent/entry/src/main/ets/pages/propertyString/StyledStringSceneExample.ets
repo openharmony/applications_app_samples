@@ -14,8 +14,9 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-import { LengthMetrics } from '@kit.ArkUI';
 import resource from '../../common/resource';
+// [Start styledStringSceneExample_start]
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -173,3 +174,4 @@ export struct StyledStringSceneExample {
     .title($r('app.string.StyledStringSceneExample_title'))
   }
 }
+// [End styledStringSceneExample_start]
