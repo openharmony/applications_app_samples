@@ -49,4 +49,4 @@ export struct Embedded {
     .title($r('app.string.Embedded_Component_title'))
   }
 }
-// [EndExclude embedded_start]
+// [End embedded_start]
