@@ -17,35 +17,36 @@
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel as UDC } from '@kit.ArkData';
 import { dragController } from '@kit.ArkUI';
-export  const Grid_ROUTE_PREFIX: string = 'gridExample';
+
+export const Grid_ROUTE_PREFIX: string = 'gridExample';
 
 @Entry
 @Component
 export struct GridEts {
   @Consume pathStack: NavPathStack;
-  @State pixmap: image.PixelMap|undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
   @State numbers: number[] = []
   @State isSelectedGrid: boolean[] = []
   @State previewData: DragItemInfo[] = []
   @State numberBadge: number = 0;
-  unifiedData: UnifiedData|undefined = undefined;
+  unifiedData: UnifiedData | undefined = undefined;
   timeout: number = 1
   finished: boolean = false;
-  dragEvent: DragEvent|undefined;
+  dragEvent: DragEvent | undefined;
 
   @Styles
-  normalStyles(): void{
+  normalStyles(): void {
     .opacity(1.0)
   }
 
   @Styles
-  selectStyles(): void{
+  selectStyles(): void {
     .opacity(0.4)
   }
 
   aboutToAppear(): void {
     let i: number = 0
-    for(i=0;i<500;i++){
+    for (i = 0; i < 500; i++) {
       this.numbers.push(i)
       this.isSelectedGrid.push(false)
       this.previewData.push({})
@@ -73,11 +74,11 @@ export struct GridEts {
   }
 
   build() {
-    NavDestination(){
+    NavDestination() {
       Column({ space: 5 }) {
         Button('全选')
           .onClick(() => {
-            for (let i=0;i<this.isSelectedGrid.length;i++) {
+            for (let i = 0; i < this.isSelectedGrid.length; i++) {
               if (this.isSelectedGrid[i] === false) {
                 this.numberBadge++;
                 this.isSelectedGrid[i] = true;
@@ -90,10 +91,10 @@ export struct GridEts {
                 this.unifiedData.addRecord(data);
                 let gridItemName = 'grid' + i;
                 // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
-                this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+                this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap) => {
                   this.pixmap = pixmap
                   this.previewData[i] = {
-                    pixelMap:this.pixmap
+                    pixelMap: this.pixmap
                   }
                 })
               }
@@ -107,17 +108,17 @@ export struct GridEts {
                 .width(50)
                 .height(50)
                 .opacity(1.0)
-                .id('grid'+idx)
+                .id('grid' + idx)
             }
             .dragPreview(this.previewData[idx])
             .selectable(true)
             .selected(this.isSelectedGrid[idx])
             // 设置多选显示效果
             .stateStyles({
-              normal : this.normalStyles,
+              normal: this.normalStyles,
               selected: this.selectStyles
             })
-            .onClick(()=>{
+            .onClick(() => {
               this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
               if (this.isSelectedGrid[idx]) {
                 let data: UDC.Image = new UDC.Image();
@@ -130,15 +131,15 @@ export struct GridEts {
                 this.numberBadge++;
                 let gridItemName = 'grid' + idx;
                 // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
-                this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+                this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap) => {
                   this.pixmap = pixmap;
                   this.previewData[idx] = {
-                    pixelMap:this.pixmap
+                    pixelMap: this.pixmap
                   }
                 })
               } else {
                 this.numberBadge--;
-                for (let i=0; i<this.isSelectedGrid.length; i++) {
+                for (let i = 0; i < this.isSelectedGrid.length; i++) {
                   if (this.isSelectedGrid[i] === true) {
                     let data: UDC.Image = new UDC.Image();
                     // '../../../resources/base/media/background.png'需要替换为开发者所需的图像资源文件
@@ -165,7 +166,9 @@ export struct GridEts {
             .onDragStart((event: DragEvent) => {
               this.dragEvent = event;
               if (this.finished == false) {
-                this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
+                this.getUIContext()
+                  .getDragController()
+                  .notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
               } else {
                 event.setData(this.unifiedData);
               }
@@ -191,4 +194,5 @@ export struct GridEts {
     .title($r('app.string.Pages_Index_GridExample'))
   }
 }
+
 //[End GridEts_start]
