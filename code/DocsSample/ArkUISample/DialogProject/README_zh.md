@@ -46,6 +46,7 @@ entry/src/main/ets/
 |   |       |---AlertDialog.ets
 |   |       |---CalendarPickerDialog.ets
 |   |       |---DatePickerDialog.ets
+|   |       |---DatePickerCustomDialog.ets
 |   |       |---Index.ets
 |   |       |---ShowActionMenu.ets
 |   |       |---ShowDialog.ets
@@ -148,9 +149,9 @@ entry/src/ohosTest/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.55，镜像版本号：OpenHarmony_6.0.2.55。
+2.本示例为Stage模型，支持API22版本full-SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_6.0.0 Release。
 
-3.本示例需要使用DevEco Studio NEXT Developer Preview2 (Build Version: 5.0.5.306， built on December 12, 2024)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858, built on September 24, 2025)及以上版本才可编译运行。
 
 ### 下载
 
