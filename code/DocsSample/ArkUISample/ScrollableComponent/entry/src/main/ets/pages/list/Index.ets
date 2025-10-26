@@ -30,6 +30,7 @@ import { TaggedListItems } from './TaggedListItems';
 import { CollapseAndExpand } from './CollapseAndExpand';
 import { LongList } from './LongList';
 import { ListChatRoom } from './ListChatRoom';
+import { SupportSlidingHand } from './SupportSlidingHand';
 import resource from '../../common/resource';
 
 export const List_ROUTE_PREFIX: string = 'list';
@@ -109,6 +110,11 @@ const routes: Route[] = [
     name: `${List_ROUTE_PREFIX}/ListChatRoom`,
     title: resource.resourceToString($r('app.string.ListChatRoom_title')),
     description: $r('app.string.ListChatRoom_description')
+  },
+  {
+    name: `${List_ROUTE_PREFIX}/SupportSlidingHand`,
+    title: resource.resourceToString($r('app.string.Support_Sliding_Hand_Event')),
+    description: $r('app.string.Sliding_Hand_Event')
   }
 ];
 
@@ -146,6 +152,8 @@ export function listDestination(name: string) {
     CollapseAndExpand();
   } else if (name === routes[14].name) {
     ListChatRoom();
+  } else if (name === routes[15].name) {
+    SupportSlidingHand()
   }
 }
 
@@ -164,6 +172,7 @@ struct ListExample {
           .width('100%')
           .onClick(() => {
             this.pathStack.pushPath({ name: route.name });
+            console.log(route.name +'点击滑动离手事件')
           })
         })
       }

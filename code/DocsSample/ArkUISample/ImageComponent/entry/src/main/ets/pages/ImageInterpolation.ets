@@ -12,19 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//  [Start ImageInterpolation]
 @Entry
 @Component
-struct MyComponent3 {
+struct ImageInterpolationType {
   build() {
     Column() {
       Row() {
+        //  $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
           .interpolation(ImageInterpolation.None)
           .borderWidth(1)
           .overlay('Interpolation.None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           .margin(10)
+        //  $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
           .interpolation(ImageInterpolation.Low)
@@ -35,12 +37,14 @@ struct MyComponent3 {
       .justifyContent(FlexAlign.Center)
 
       Row() {
+        //  $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
           .interpolation(ImageInterpolation.Medium)
           .borderWidth(1)
           .overlay('Interpolation.Medium', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           .margin(10)
+        //  $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
           .interpolation(ImageInterpolation.High)
@@ -51,5 +55,6 @@ struct MyComponent3 {
       .justifyContent(FlexAlign.Center)
     }
     .height('100%')
-  }
+  };
 }
+//  [End ImageInterpolation]

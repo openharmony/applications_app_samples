@@ -24,7 +24,6 @@
 #include "ArkUINode.h"
 
 namespace NativeModule {
-
 class ArkUICustomNode : public ArkUINode {
 public:
     // 使用自定义组件类型ARKUI_NODE_CUSTOM创建组件。
@@ -152,7 +151,7 @@ private:
         OH_Drawing_PathLineTo(path, size.width / NUM_3, size.height / NUM_3);
         OH_Drawing_PathClose(path);
         auto brush = OH_Drawing_BrushCreate();
-        OH_Drawing_BrushSetColor(brush, 0xFF0000FF); // 深蓝色
+        OH_Drawing_BrushSetColor(brush, 0xFF004AAF); // 深蓝色
         OH_Drawing_CanvasAttachBrush(drawCanvas, brush);
         OH_Drawing_CanvasDrawPath(drawCanvas, path);
         // 释放资源

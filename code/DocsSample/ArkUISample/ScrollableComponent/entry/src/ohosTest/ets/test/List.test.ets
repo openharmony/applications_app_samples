@@ -15,8 +15,9 @@
 
 import abilityTest from './Ability.test';
 import IndexTest from './index.test';
-
+import indexAdd from './indexAdd.test';
 export default function testsuite() {
   abilityTest();
   IndexTest();
+  indexAdd()
 }

@@ -22,7 +22,7 @@ export struct AddBuilderDecoratorContent {
   // [Start richEditor_addBuilder]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  private myBuilder: CustomBuilder = undefined
+  private myBuilder: CustomBuilder = undefined;
 
   @Builder
   TextBuilder() {

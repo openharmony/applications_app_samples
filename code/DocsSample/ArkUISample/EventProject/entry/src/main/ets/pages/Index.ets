@@ -29,6 +29,7 @@ import resource from '../common/resource';
 import { GridEts, Grid_ROUTE_PREFIX } from './grid/GridEts';
 import { SpringLoading_ROUTE_PREFIX, SpringLoadingPage} from './springloading/SpringLoading';
 
+// [Start route_push]
 const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.Pages_Index_gesture')),
@@ -71,6 +72,7 @@ const routes: Route[] = [
     name: SpringLoading_ROUTE_PREFIX
   }
 ];
+// [End route_push]
 
 @Builder
 function Destination(name: string) {
