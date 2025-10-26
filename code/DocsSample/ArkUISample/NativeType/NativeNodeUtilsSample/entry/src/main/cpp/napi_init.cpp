@@ -17,9 +17,7 @@
 #include "napi/native_api.h"
 #include "NativeEntry.h"
 
-static napi_value NAPI_Global_createNativeRoot(napi_env env, napi_callback_info info) {
-  
-}
+static napi_value NAPI_Global_createNativeRoot(napi_env env, napi_callback_info info) {}
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     // 绑定Native侧的创建组件和销毁组件。

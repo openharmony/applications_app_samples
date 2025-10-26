@@ -299,8 +299,6 @@ napi_value CreateCustomPropertyDemo(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
-
-
 std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample(napi_env env)
 {
     // 创建组件并挂载
