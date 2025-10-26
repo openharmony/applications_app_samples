@@ -23,6 +23,7 @@
 #include "ArkUIListItemNode.h"
 #include "ArkUIListNode.h"
 #include "ArkUITextNode.h"
+#include "common/common.h"
 #include <hilog/log.h>
 
 namespace NativeModule {
@@ -38,10 +39,10 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample() {
         auto listItem = std::make_shared<ArkUIListItemNode>();
         auto textNode = std::make_shared<ArkUITextNode>();
         textNode->SetTextContent(std::to_string(i));
-        textNode->SetFontSize(16);
+        textNode->SetFontSize(SIZE_16);
         textNode->SetPercentWidth(1);
-        textNode->SetHeight(100);
-        textNode->SetBackgroundColor(0xFFfffacd);
+        textNode->SetHeight(SIZE_100);
+        textNode->SetBackgroundColor(COLOR_BACKGROUND);
         textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
         // 在当前节点注册布局回调
         textNode->SetLayoutCallBack(i);

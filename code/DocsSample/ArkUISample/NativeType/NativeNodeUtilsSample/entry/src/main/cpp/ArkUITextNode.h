@@ -29,7 +29,7 @@
 namespace NativeModule {
 
 // 布局完成的回调方法
-void OnLayoutCompleted(void *userData) 
+void OnLayoutCompleted(void *userData)
 {
     ArkUI_NodeHandle node = (ArkUI_NodeHandle)userData;
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "the text_node is layout completed");
@@ -38,7 +38,7 @@ void OnLayoutCompleted(void *userData)
     nativeModule->setAttribute(node, NODE_TEXT_CONTENT, &item);
 }
 // 绘制送显完成的回调方法
-void OnDrawCompleted(void *userData) 
+void OnDrawCompleted(void *userData)
 {
     ArkUI_NodeHandle node = (ArkUI_NodeHandle)userData;
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "the text_node is draw completed");
@@ -47,7 +47,7 @@ void OnDrawCompleted(void *userData)
     nativeModule->setAttribute(node, NODE_TEXT_CONTENT, &item);
 }
 
-void ColorChangeCallback(ArkUI_SystemColorMode colorMode, void *userData) 
+void ColorChangeCallback(ArkUI_SystemColorMode colorMode, void *userData)
 {
     if (userData) {
         auto handle = (ArkUI_NodeHandle)userData;
@@ -64,72 +64,64 @@ public:
     ArkUITextNode()
         : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_TEXT)) {}
     // 文本属性接口封装。
-    void SetFontSize(float fontSize) 
+    void SetFontSize(float fontSize)
     {
-        assert(handle_);
         ArkUI_NumberValue value[] = {{.f32 = fontSize}};
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_FONT_SIZE, &item);
     }
-    void SetFontColor(uint32_t color) 
+    void SetFontColor(uint32_t color)
     {
-        assert(handle_);
         ArkUI_NumberValue value[] = {{.u32 = color}};
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_FONT_COLOR, &item);
     }
-    void SetTextContent(const std::string &content) 
+    void SetTextContent(const std::string &content)
     {
-        assert(handle_);
         ArkUI_AttributeItem item = {nullptr, 0, content.c_str()};
         nativeModule_->setAttribute(handle_, NODE_TEXT_CONTENT, &item);
     }
-    void SetTextAlign(ArkUI_TextAlignment align) 
+    void SetTextAlign(ArkUI_TextAlignment align)
     {
-        assert(handle_);
         ArkUI_NumberValue value[] = {{.i32 = align}};
         ArkUI_AttributeItem item = {value, 1};
         nativeModule_->setAttribute(handle_, NODE_TEXT_ALIGN, &item);
     }
-    void SetLayoutCallBack(int32_t nodeId) 
+    void SetLayoutCallBack(int32_t nodeId)
     {
-        assert(handle_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "set layout callback");
         // 注册布局完成的回调方法
         OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(handle_, this, OnLayoutCompleted);
     }
-    void ResetLayoutCallBack() 
+    void ResetLayoutCallBack()
     {
-        assert(handle_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "reset layout callback");
         // 取消注册布局完成的回调方法
         OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(handle_);
     }
-    void SetDrawCallBack(int32_t nodeId) 
+    void SetDrawCallBack(int32_t nodeId)
     {
-        assert(handle_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "set draw callback");
         // 注册绘制送显完成的回调方法
         OH_ArkUI_RegisterDrawCallbackOnNodeHandle(handle_, this, OnDrawCompleted);
     }
-    void ResetDrawCallBack() 
+    void ResetDrawCallBack()
     {
-        assert(handle_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "reset draw callback");
         // 取消注册绘制送显完成的回调方法
         OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(handle_);
     }
-    void SetInspectorId(std::string inspectorId) 
+    void SetInspectorId(std::string inspectorId)
     {
         ArkUI_AttributeItem item = {nullptr, 0, inspectorId.c_str()};
         nativeModule_->setAttribute(handle_, NODE_ID, &item);
     }
-    void RegistSystemColorModeChange() 
+    void RegistSystemColorModeChange()
     {
         OH_ArkUI_RegisterSystemColorModeChangeEvent(handle_, handle_, ColorChangeCallback);
     }
 
-    void UnregistSystemColorModeChange() 
+    void UnregistSystemColorModeChange()
     { 
         OH_ArkUI_UnregisterSystemColorModeChangeEvent(handle_); 
     }

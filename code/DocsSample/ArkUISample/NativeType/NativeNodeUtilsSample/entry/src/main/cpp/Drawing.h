@@ -84,7 +84,7 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
             OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
             OH_Drawing_PathClose(path);
             auto pen = OH_Drawing_PenCreate();
-            OH_Drawing_PenSetWidth(pen, 10);
+            OH_Drawing_PenSetWidth(pen, SIZE_10);
             OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(RGBA_R1, RGBA_G1, RGBA_B1, RGBA_A1));
             OH_Drawing_CanvasAttachPen(canvas, pen);
             OH_Drawing_CanvasDrawPath(canvas, path);

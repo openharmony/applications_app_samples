@@ -27,7 +27,7 @@
 // 注册事件
 void onError(int32_t code, const char *name, const char *message) {}
 void onTerminated(int32_t code, AbilityBase_Want *want) {}
-napi_value embeddedNode(napi_env env, napi_callback_info info) 
+napi_value embeddedNode(napi_env env, napi_callback_info info)
 {
     size_t argCnt = 1;
     napi_value args[1] = {nullptr};

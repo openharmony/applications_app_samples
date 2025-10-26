@@ -21,7 +21,7 @@
 
 EXTERN_C_START
 namespace nativeEmbedded {
-static void RenderInitPush0(napi_property_descriptor *desc) 
+static void RenderInitPush0(napi_property_descriptor *desc)
 {
     napi_property_descriptor descTemp[] = {
         {"embeddedNode", nullptr, embeddedNode, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -31,7 +31,7 @@ static void RenderInitPush0(napi_property_descriptor *desc)
     }
 }
 
-static napi_value RenderInit(napi_env env, napi_value exports) 
+static napi_value RenderInit(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[10] = {};
     RenderInitPush0(desc);

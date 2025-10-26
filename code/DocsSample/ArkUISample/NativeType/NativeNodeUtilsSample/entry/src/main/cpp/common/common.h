@@ -26,6 +26,7 @@
 #define SIZE_1000 1000
 
 #define COLOR_YELLOW 0xFFFFFF00
+#define COLOR_BACKGROUND 0xFFfffacd
 #define RGBA_R1 0xFF
 #define RGBA_G1 0xFF
 #define RGBA_B1 0x00
