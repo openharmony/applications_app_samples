@@ -25,6 +25,9 @@
 
 namespace NativeXComponentSample {
 
+void SetDragActionData();
+void GetUdmfDataText(ArkUI_DragEvent* dragEvent);
+
 ArkUI_NodeHandle dragButton = nullptr;
 ArkUI_NodeHandle dropButton = nullptr;
 
@@ -37,6 +40,135 @@ void DragStatusListener(ArkUI_DragAndDropInfo *info, void *userData)
                  dragStatus, dragEvent);
 }
 
+void RegisterNodeEventForthReceiver1()
+{
+    if (!nodeAPI) {
+        return;
+    }
+
+    // [Start on_touchIntercept]
+    nodeAPI->addNodeEventReceiver(dragButton, [](ArkUI_NodeEvent *event) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "RegisterNodeEventForthReceiver called");
+        auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
+        auto preDragStatus = OH_ArkUI_NodeEvent_GetPreDragStatus(event);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+            "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
+
+        auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
+        switch (eventType) {
+            // [Start set_dragAction]
+            case NODE_ON_TOUCH_INTERCEPT: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_TOUCH_INTERCEPT EventReceiver");
+                // [StartExclude on_touchIntercept]
+                // 创建DragAction
+                action = OH_ArkUI_CreateDragActionWithNode(dragButton);
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+                    "OH_ArkUI_CreateDragActionWithNode returnValue = %{public}p", action);
+                // 设置pixelMap
+                std::vector<OH_PixelmapNative *> pixelVector;
+                SetPixelMap(pixelVector);
+                // 设置DragPreviewOption
+                SetDragPreviewOption();
+                // 设置pointerId、touchPoint
+                PrintDragActionInfos();
+                // 设置unifiedData
+                SetDragActionData();
+                // startDrag
+                int returnValue = OH_ArkUI_StartDrag(action);
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+                    "OH_ArkUI_StartDrag returnValue = %{public}d",
+                    returnValue);
+                OH_ArkUI_DragAction_Dispose(action);
+                // [EndExclude on_touchIntercept]
+                break;
+            }
+            // [StartExclude set_dragAction]
+            default: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
+                break;
+            }
+        }
+    });
+    // [End on_touchIntercept]
+}
+
+void RegisterNodeEventForthReceiver2()
+{
+    if (!nodeAPI) {
+        return;
+    }
+
+    nodeAPI->addNodeEventReceiver(dropButton, [](ArkUI_NodeEvent *event) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "RegisterNodeEventForthReceiver called");
+        auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
+        auto preDragStatus = OH_ArkUI_NodeEvent_GetPreDragStatus(event);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+            "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
+
+        auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
+        switch (eventType) {
+            // [Start get_dragAction]
+            case NODE_ON_DROP: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP EventReceiver");
+                GetUdmfDataText(dragEvent);
+                OH_ArkUI_DragAction_UnregisterStatusListener(action);
+                break;
+            }
+            // [StartExclude get_dragAction]
+            default: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
+                break;
+            }
+        }
+    });
+}
+
+void ForthModule(ArkUI_NodeHandle &root)
+{
+    auto column4 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    SetWidthPercent(column4, 1);
+    SetColumnJustifyContent(column4, ARKUI_FLEX_ALIGNMENT_START);
+    SetColumnAlignItem(column4, ARKUI_HORIZONTAL_ALIGNMENT_START);
+    SetPadding(column4, BLANK_10);
+    SetBorderWidth(column4, BORDER_WIDTH_1);
+    SetBorderStyle(column4, ARKUI_BORDER_STYLE_DASHED, DEFAULT_RADIUS);
+
+    auto title4 = nodeAPI->createNode(ARKUI_NODE_TEXT);
+    SetTextAttribute(title4, "主动发起拖拽示例：", TEXT_FONT_SIZE_15, SIZE_170, SIZE_20);
+    nodeAPI->addChild(column4, title4);
+
+    auto dragRow = nodeAPI->createNode(ARKUI_NODE_ROW);
+    SetRowAlignItem(dragRow, ARKUI_VERTICAL_ALIGNMENT_TOP);
+    nodeAPI->addChild(column4, dragRow);
+
+    // [Start touch_intercept]
+    // buttonTouch作为targetId，用于区分不同target的事件。
+    enum {
+        BUTTON_TOUCH = 1
+    };
+
+    dragButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    SetId(dragButton, "dragBt3");
+    SetCommonAttribute(dragButton, SIZE_80, SIZE_50, 0xFFFF0000, BLANK_20);
+    SetButtonLabel(dragButton, "拖起");
+    nodeAPI->registerNodeEvent(dragButton, NODE_ON_TOUCH_INTERCEPT, BUTTON_TOUCH, nullptr);
+    // [End touch_intercept]
+    nodeAPI->addChild(dragRow, dragButton);
+
+    dropButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    SetId(dropButton, "dropBt3");
+    SetCommonAttribute(dropButton, SIZE_140, SIZE_50, 0xFFFF0000, BLANK_20);
+    SetButtonLabel(dropButton, "拖拽至此处");
+    nodeAPI->registerNodeEvent(dropButton, NODE_ON_DROP, 1, nullptr);
+    nodeAPI->addChild(dragRow, dropButton);
+
+    nodeAPI->addChild(root, column4);
+
+    RegisterNodeEventForthReceiver1();
+    RegisterNodeEventForthReceiver2();
+}
+
+// [EndExclude set_dragAction]
 void SetDragActionData()
 {
     // 创建OH_UdmfRecord对象
@@ -61,7 +193,9 @@ void SetDragActionData()
     // 注册拖拽状态监听回调
     OH_ArkUI_DragAction_RegisterStatusListener(action, data, &DragStatusListener);
 }
+// [Start set_dragAction]
 
+// [EndExclude get_dragAction]
 void GetUdmfDataText(ArkUI_DragEvent* dragEvent)
 {
     // 获取UDMF data
@@ -103,119 +237,7 @@ void GetUdmfDataText(ArkUI_DragEvent* dragEvent)
     }
     OH_UdmfData_Destroy(data);
 }
-
-void RegisterNodeEventForthReceiver1()
-{
-    if (!nodeAPI) {
-        return;
-    }
-
-    nodeAPI->addNodeEventReceiver(dragButton, [](ArkUI_NodeEvent *event) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "RegisterNodeEventForthReceiver called");
-        auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
-        auto preDragStatus = OH_ArkUI_NodeEvent_GetPreDragStatus(event);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-            "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
-
-        auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
-        switch (eventType) {
-            case NODE_ON_TOUCH_INTERCEPT: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_TOUCH_INTERCEPT EventReceiver");
-                // 创建DragAction
-                action = OH_ArkUI_CreateDragActionWithNode(dragButton);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                    "OH_ArkUI_CreateDragActionWithNode returnValue = %{public}p", action);
-                // 设置pixelMap
-                std::vector<OH_PixelmapNative *> pixelVector;
-                SetPixelMap(pixelVector);
-                // 设置DragPreviewOption
-                SetDragPreviewOption();
-                // 设置pointerId、touchPoint
-                PrintDragActionInfos();
-                // 设置unifiedData
-                SetDragActionData();
-                // startDrag
-                int returnValue = OH_ArkUI_StartDrag(action);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                    "OH_ArkUI_StartDrag returnValue = %{public}d",
-                    returnValue);
-                OH_ArkUI_DragAction_Dispose(action);
-                break;
-            }
-            default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
-                break;
-            }
-        }
-    });
-}
-
-void RegisterNodeEventForthReceiver2()
-{
-    if (!nodeAPI) {
-        return;
-    }
-
-    nodeAPI->addNodeEventReceiver(dropButton, [](ArkUI_NodeEvent *event) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "RegisterNodeEventForthReceiver called");
-        auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
-        auto preDragStatus = OH_ArkUI_NodeEvent_GetPreDragStatus(event);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-            "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
-
-        auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
-        switch (eventType) {
-            case NODE_ON_DROP: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP EventReceiver");
-                GetUdmfDataText(dragEvent);
-                OH_ArkUI_DragAction_UnregisterStatusListener(action);
-                break;
-            }
-            default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
-                break;
-            }
-        }
-    });
-}
-
-void ForthModule(ArkUI_NodeHandle &root)
-{
-    auto column4 = nodeAPI->createNode(ARKUI_NODE_COLUMN);
-    SetWidthPercent(column4, 1);
-    SetColumnJustifyContent(column4, ARKUI_FLEX_ALIGNMENT_START);
-    SetColumnAlignItem(column4, ARKUI_HORIZONTAL_ALIGNMENT_START);
-    SetPadding(column4, BLANK_10);
-    SetBorderWidth(column4, BORDER_WIDTH_1);
-    SetBorderStyle(column4, ARKUI_BORDER_STYLE_DASHED, DEFAULT_RADIUS);
-
-    auto title4 = nodeAPI->createNode(ARKUI_NODE_TEXT);
-    SetTextAttribute(title4, "主动发起拖拽示例：", TEXT_FONT_SIZE_15, SIZE_170, SIZE_20);
-    nodeAPI->addChild(column4, title4);
-
-    auto dragRow = nodeAPI->createNode(ARKUI_NODE_ROW);
-    SetRowAlignItem(dragRow, ARKUI_VERTICAL_ALIGNMENT_TOP);
-    nodeAPI->addChild(column4, dragRow);
-
-    dragButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
-    SetId(dragButton, "dragBt3");
-    SetCommonAttribute(dragButton, SIZE_80, SIZE_50, 0xFFFF0000, BLANK_20);
-    SetButtonLabel(dragButton, "拖起");
-    nodeAPI->registerNodeEvent(dragButton, NODE_ON_TOUCH_INTERCEPT, 1, nullptr);
-    nodeAPI->addChild(dragRow, dragButton);
-
-    dropButton = nodeAPI->createNode(ARKUI_NODE_BUTTON);
-    SetId(dropButton, "dropBt3");
-    SetCommonAttribute(dropButton, SIZE_140, SIZE_50, 0xFFFF0000, BLANK_20);
-    SetButtonLabel(dropButton, "拖拽至此处");
-    nodeAPI->registerNodeEvent(dropButton, NODE_ON_DROP, 1, nullptr);
-    nodeAPI->addChild(dragRow, dropButton);
-
-    nodeAPI->addChild(root, column4);
-
-    RegisterNodeEventForthReceiver1();
-    RegisterNodeEventForthReceiver2();
-}
+// [End get_dragAction]
 
 } // namespace NativeXComponentSample
 

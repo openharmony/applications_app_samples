@@ -22,14 +22,14 @@ export struct BackplaneHighlighting {
   // [Start richEditor_selection]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  // [End richEditor_selection]
+  // [StartExclude richEditor_selection]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
           Column({ space: 3 }) {
-            // [Start richEditor_selection]
+            // [EndExclude richEditor_selection]
             RichEditor(this.options)
               .onReady(() => {
                 // $r('app.string.BackplaneHighlighting_Text_1')需要替换为开发者所需的资源文件
