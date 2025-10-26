@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start Common_UIContext]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { display } from '@kit.ArkUI';
 
@@ -52,3 +52,4 @@ export class PixelUtils {
     return _uiContext.lpx2px(lpxValue)
   }
 }
+// [End Common_UIContext]

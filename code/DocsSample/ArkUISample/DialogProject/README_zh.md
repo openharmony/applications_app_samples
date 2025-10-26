@@ -11,6 +11,7 @@
 5. [气泡提示 (Popup)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-popup-and-menu-components-popup.md)
 6. [即时反馈 (Toast)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-create-toast.md)
 7. [设置浮层 (OverlayManager)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-create-overlaymanager.md)
+8. [弹出框蒙层控制](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/ui/arkts-dialog-mask.md)
 
 ### 效果预览
 
@@ -61,6 +62,10 @@ entry/src/main/ets/
 |   |       |---ShowDialog.ets
 |   |       |---TextPickerDialog.ets
 |   |       |---TimePickerDialog.ets
+|   |---maskdialog                             //弹出框蒙层控制
+|   |       |---CustomDialogAnimation.ets
+|   |       |---CustomDialogControl.ets
+|   |       |---Index.ets
 |   |---Menu                                  //菜单
 |   |       |---BindComponentMenu.ets         //基于绑定组件指定位置弹出菜单
 |   |       |---CreateMenu.ets
@@ -126,7 +131,7 @@ entry/src/ohosTest/
    * 使用bindMenu或bindContextMenu未设置预览图时，菜单弹出无蒙层，此时为非模态。
 
 4. 基础自定义弹出框 (CustomDialog)
-
+   
    * CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件更新等与用户交互响应操作。
 
    * 开发者可以通过CustomDialogController类显示自定义弹出框。具体用法请参考自定义弹出框。
@@ -137,6 +142,11 @@ entry/src/ohosTest/
 
    * 当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
+5. 弹出框蒙层控制（MaskDialog）
+   
+   * 开发者对弹出框的定制不仅限于弹出框里的内容，对弹出框蒙层的定制需求也逐渐增加。
+   
+   * 本文介绍ArkUI弹出框的蒙层控制，包括点击蒙层时是否消失、蒙层区域、蒙层颜色和蒙层动画等特性。
 
 ### 相关权限
    不涉及。

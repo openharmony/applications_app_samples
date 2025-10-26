@@ -1,0 +1,28 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/navigation/template1/PageDisplayModeAuto",
+    "pages/navigation/template1/PageDisplayModeSplit",
+    "pages/navigation/template1/PageDisplayModeStack",
+    "pages/navigation/template1/TitleModeFull",
+    "pages/navigation/template1/TitleModeMini",
+    "pages/navigation/template1/MenusThreeResource",
+    "pages/navigation/template1/MenusThreeImage",
+    "pages/navigation/template1/MenusFour",
+    "pages/navigation/template1/ToolBar",
+    "pages/navigation/template1/PageDisplayType",
+    "pages/navigation/template1/PageAnimated",
+    "pages/navigation/template1/PageOnceClose",
+    "pages/navigation/template1/GeometryTransition",
+    "pages/navigation/template1/PageOne",
+    "pages/navigation/template1/CustomRoutingTable",
+    "pages/navigation/template1/NavigationExample",
+    "pages/navigation/template2/Index",
+    "pages/navigation/template4/Index",
+    "pages/navigation/template7/PageOne",
+    "pages/navigation/template7/PageTwo",
+    "pages/observer/template1/Index",
+    "pages/observer/template2/Index",
+    "pages/observer/template3/Index"
+  ]
+}

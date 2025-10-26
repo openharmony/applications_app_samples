@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start Common_AttributeModifier]
 declare interface AttributeModifier<T> {
 
   applyNormalAttribute?(instance: T): void;
@@ -26,11 +26,15 @@ declare interface AttributeModifier<T> {
   applySelectedAttribute?(instance: T): void;
 
 }
+// [End Common_AttributeModifier]
 
+// [Start Common_CommonMethod]
 declare class CommonMethod<T> {
   attributeModifier(modifier: AttributeModifier<T>): T;
 }
+// [End Common_CommonMethod]
 
+// [Start Common_MyButtonModifier]
 export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
   public isDark: boolean = false
 
@@ -48,3 +52,4 @@ export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
     }
   }
 }
+// [End Common_MyButtonModifier]

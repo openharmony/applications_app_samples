@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start Common_ContextUtils]
 export class ContextUtils {
   public static context: Context | undefined;
 
@@ -28,3 +28,4 @@ export class ContextUtils {
     return ContextUtils.context;
   }
 }
+// [End Common_ContextUtils]

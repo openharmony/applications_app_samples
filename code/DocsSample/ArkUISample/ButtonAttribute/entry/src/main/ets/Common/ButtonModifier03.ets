@@ -30,7 +30,7 @@ declare interface AttributeModifier<T> {
 declare class CommonMethod<T> {
   attributeModifier(modifier: AttributeModifier<T>): T;
 }
-
+// [Start Common_MyButtonModifier3]
 export class MyButtonModifier3 implements AttributeModifier<ButtonAttribute> {
   public isDark2: boolean = false
 
@@ -46,3 +46,4 @@ export class MyButtonModifier3 implements AttributeModifier<ButtonAttribute> {
     }
   }
 }
+ // [End Common_MyButtonModifier3]

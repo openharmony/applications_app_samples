@@ -15,7 +15,7 @@
 */
 
 // src/main/ets/view/ListView.ets
-
+// [Start View_ListView]
 import TaskViewModel from '../viewmodel/TaskViewModel';
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 import { Setting } from '../pages/SettingPage';
@@ -65,3 +65,4 @@ export default struct ListView {
       })
   }
 }
+// [End View_ListView]

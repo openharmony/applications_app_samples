@@ -12,9 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start NumberOfCachesTabBar]
 import { ComponentCard } from '../../common/Card';
-
 @Entry
 @Component
 export struct NumberOfCachesTabBar {
@@ -81,3 +80,4 @@ struct MyComponent {
       .backgroundColor(this.color)
   }
 }
+// [End NumberOfCachesTabBar]

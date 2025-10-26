@@ -29,9 +29,12 @@ entry/src/main/ets/
 |---entryability
 |---pages
 |     |---button
+|     |      |---ButtionCase1.ets                       // 按钮创建示例代码
+|     |      |---ButtionCase2.ets                       // 按钮创建示例代码
 |     |      |---CreateButton.ets                       // 按钮创建示例代码
 |     |      |---ButtonCustomStyle.ets                  // 按钮自定义示例代码
 |     |      |---FloatingButton.ets                       // 按钮悬浮场景示例代码
+|     |      |---HoverButtonExample.ets                 // 按钮悬浮场景示例代码
 |     |      |---Index.ets                           // 第二层级目录
 |     |      |---SetButtonType.ets                       // 按钮类型设置示例代码
 |     |      |---SubmitForm.ets                       // 按钮注册场景示例代码
@@ -50,6 +53,8 @@ entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                       // 示例代码测试代码
 ```
+## 具体实现
+Button是按钮组件，通常用于响应用户的点击操作，其类型包括胶囊按钮、圆形按钮、普通按钮、圆角矩形按钮。Button作为容器使用时可以通过添加子组件实现包含文字、图片等元素的按钮
 
 ### 相关权限
 

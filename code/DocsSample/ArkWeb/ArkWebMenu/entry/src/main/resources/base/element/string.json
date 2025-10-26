@@ -1,0 +1,46 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "copy_image",
+      "value": "复制图片"
+    },
+    {
+      "name": "cut",
+      "value": "剪切"
+    },
+    {
+      "name": "copy",
+      "value": "复制"
+    },
+    {
+      "name": "paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "copy_url",
+      "value": "复制链接"
+    }
+  ,
+    {
+      "name": "all",
+      "value": "全选"
+    },
+    {
+      "name": "open_url",
+      "value": "打开链接"
+    }
+
+  ]
+}

@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 
-// [Start_attribute]
-import { MyButtonModifier } from '../Common/button_modifier_01';
-import { MyButtonModifier2 } from '../Common/button_modifier_02';
-import { MyButtonModifier3 } from '../Common/button_modifier_03';
-import { MyButtonModifier4 } from '../Common/button_modifier_04'
+import { MyButtonModifier } from '../Common/ButtonModifier01';
+import { MyButtonModifier2 } from '../Common/ButtonModifier02';
+import { MyButtonModifier3 } from '../Common/ButtonModifier03';
+import { MyButtonModifier4 } from '../Common/ButtonModifier04'
 
 @Entry
 @Component
@@ -31,12 +30,16 @@ struct attributeDemo_01 {
   build() {
     Row() {
       Column({space:20}) {
+        // [Start main_button1]
         Button('Button1')
           .id('btn')
           .attributeModifier(this.modifier)
           .onClick(() => {
             this.modifier.isDark = !this.modifier.isDark
           })
+          // [End main_button1]
+
+        // [Start main_button2]
         Button('Button2')
           .id('btn2')
           .backgroundColor('#2787D9')
@@ -44,6 +47,9 @@ struct attributeDemo_01 {
           .onClick(() => {
             this.modifier2.isDark = !this.modifier2.isDark
           })
+           // [End main_button2]
+
+        // [Start main_button3]
         Button('Button3')
           .id('btn3')
           .attributeModifier(this.modifier3)
@@ -52,13 +58,16 @@ struct attributeDemo_01 {
             this.modifier3.isDark = !this.modifier3.isDark
             this.modifier4.isDark2 = !this.modifier4.isDark2
           })
+           // [End main_button3]
+
+        // [Start main_button4]
         Button('Button4')
           .id('btn4')
           .attributeModifier(this.modifier5)
+          // [End main_button4]
       }
       .width('100%')
     }
     .height('100%')
   }
 }
-// [End_attribute]

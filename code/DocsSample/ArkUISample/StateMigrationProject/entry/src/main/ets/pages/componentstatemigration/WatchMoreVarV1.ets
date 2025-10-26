@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Parent13_start]
+// [Start WatchExample2_start]
 import hilog from '@ohos.hilog';
 
 const DOMAIN = 0xFF00;
@@ -20,7 +20,7 @@ const TAG = '[Sample_StateMigration_App]';
 
 @Entry
 @Component
-struct watchExample2 {
+struct WatchExample2 {
   @State @Watch('onAppleChange') apple: number = 0;
   @State @Watch('onOrangeChange') orange: number = 0;
 
@@ -49,4 +49,4 @@ struct watchExample2 {
   }
 }
 
-// [End Parent13_start]
+// [End WatchExample2_start]
