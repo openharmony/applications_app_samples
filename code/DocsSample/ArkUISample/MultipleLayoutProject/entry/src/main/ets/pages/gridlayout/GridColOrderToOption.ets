@@ -15,7 +15,7 @@
 //[Start GridColOrderToOption_start]
 @Entry
 @Component
-struct GridColOrderToOption {
+struct GridRowExample1 {
   @State currentBp: string = 'unknown'
 
   build() {
