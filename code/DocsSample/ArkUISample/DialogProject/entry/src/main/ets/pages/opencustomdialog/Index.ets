@@ -17,6 +17,9 @@ import { CompletedRoutableCard } from '../../common/Card';
 import resource from '../../common/resource';
 import { Route } from '../../common/Route';
 import { openCustomDialog } from './openCustomDialog';
+import { customDialogComponentWithTransition } from './customDialogComponentWithTransition';
+import { customDialogWithKeyboardAvoidDistance } from './customDialogWithKeyboardAvoidDistance';
+import { OpenDialogAndUpdate } from './OpenDialogAndUpdate';
 
 export const CustomDialog_ROUTE_PREFIX: string = 'CustomDialog_ROUTE_PREFIX';
 
@@ -25,6 +28,21 @@ const routes: Route[] = [
     name: `${CustomDialog_ROUTE_PREFIX}/Customdialog`,
     title: resource.resourceToString($r('app.string.Customdialog_title')),
     description: $r('app.string.Customdialog_des'),
+  },
+  {
+    name: `${CustomDialog_ROUTE_PREFIX}/customDialogComponentWithTransition`,
+    title: resource.resourceToString($r('app.string.customDialogComponentWithTransition_title')),
+    description: $r('app.string.customDialogComponentWithTransition_desc'),
+  },
+  {
+    name: `${CustomDialog_ROUTE_PREFIX}/customDialogWithKeyboardAvoidDistance`,
+    title: resource.resourceToString($r('app.string.customDialogWithKeyboardAvoidDistance_title')),
+    description: $r('app.string.customDialogWithKeyboardAvoidDistance_desc'),
+  },
+  {
+    name: `${CustomDialog_ROUTE_PREFIX}/OpenDialogAndUpdate`,
+    title: resource.resourceToString($r('app.string.OpenDialogAndUpdate_title')),
+    description: $r('app.string.OpenDialogAndUpdate_desc'),
   }
 ]
 
@@ -34,6 +52,12 @@ export function CustomDialogDestination(name: string) {
     CustomDialogExample();
   } else if (name === routes[0].name) {
     openCustomDialog();
+  } else if (name === routes[1].name) {
+    customDialogComponentWithTransition();
+  } else if (name === routes[2].name) {
+    customDialogWithKeyboardAvoidDistance();
+  } else if (name === routes[3].name) {
+    OpenDialogAndUpdate();
   }
 }
 

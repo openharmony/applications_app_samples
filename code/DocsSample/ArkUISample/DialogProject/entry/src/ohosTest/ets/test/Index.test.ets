@@ -65,6 +65,63 @@ export default function IndexTest() {
       done();
     })
 
+    it('testCustomDialogComponentWithTransition', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('openCustomDialog', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_customDialogComponentWithTransition = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.customDialogComponentWithTransition_title')), MatchPattern.CONTAINS));
+      await button_customDialogComponentWithTransition.click();
+      let text_open = await driver.findComponent(ON.text('打开弹窗', MatchPattern.CONTAINS));
+      expect(text_open === null).assertFalse();
+      await text_open.click();
+      await sleep(5000);
+      await driver.pressBack();
+      await sleep(5000);
+      await driver.pressBack();
+      done();
+    })
+
+    it('testcustomDialogWithKeyboardAvoidDistance', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('openCustomDialog', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_customDialogWithKeyboardAvoidDistance = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.customDialogWithKeyboardAvoidDistance_title')), MatchPattern.CONTAINS));
+      await button_customDialogWithKeyboardAvoidDistance.click();
+      let text_customDialogWithKeyboardAvoidDistance_open = await driver.findComponent(ON.text('打开弹窗', MatchPattern.CONTAINS));
+      await text_customDialogWithKeyboardAvoidDistance_open.click();
+      await sleep(1000);
+      let textinputComponent = await driver.findComponent(ON.type('TextInput'))
+      await textinputComponent.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await sleep(1000);
+      await driver.pressBack();
+      await sleep(1000);
+      await driver.pressBack();
+      done();
+    })
+
+    it('testOpenDialogAndUpdate', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('openCustomDialog', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_customDialogWithKeyboardAvoidDistance = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OpenDialogAndUpdate_title')), MatchPattern.CONTAINS));
+      await button_customDialogWithKeyboardAvoidDistance.click();
+      let text_OpenDialogAndUpdate_update_options = await driver.findComponent(ON.text('open dialog and update options', MatchPattern.CONTAINS));
+      await text_OpenDialogAndUpdate_update_options.click();
+      await sleep(3000);
+      await driver.pressBack();
+      let text_OpenDialogAndUpdate_update_content = await driver.findComponent(ON.text('open dialog and update content', MatchPattern.CONTAINS));
+      await text_OpenDialogAndUpdate_update_content.click();
+      await sleep(3000);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
     it('testCustomDialog', 0, async (done: Function) => {
       console.info("uitest: testCustomDialog begin");
       let driver = Driver.create();
