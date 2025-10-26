@@ -15,6 +15,7 @@
 
 import { describe, it, expect, beforeAll, Level } from '@ohos/hypium';
 // 导入测试依赖kit
+import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, On } from '@kit.TestKit';
 import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, Point } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import resource from '../../../main/ets/common/resource';
@@ -56,6 +57,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      //$r('app.string.singlegesture_Index_TapGesture_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_TapGesture_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -79,6 +81,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      //$r('app.string.singlegesture_Index_LongPress_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_LongPress_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -102,6 +105,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('GestureJudge', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      //$r('app.string.gesture_Index_GestureJudge_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.gesture_Index_GestureJudge_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -122,6 +126,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('TouchEvent', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      //$r('app.string.Touch_Index_ClickEvent_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Touch_Index_ClickEvent_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -136,6 +141,29 @@ export default function IndexTest() {
 
     /**
      * @tc.number UiTest_005
+     * @tc.name testOnClickGesture
+     * @tc.desc 测试点击事件示例
+     */
+    it('testOnClickGesture', 0, async (done: Function) => {
+      console.info('uitest: testOnClickGesture begin');
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      //$r('app.string.singlegesture_Index_Click_title')需要替换为开发者所需的字符串资源文件
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_Click_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      console.info('uitest: testOnClickGesture end');
+      done();
+    })
+
+    /**
+     * @tc.number UiTest_006
      * @tc.name testFocusActive
      * @tc.desc 测试聚焦示例
      */
@@ -157,6 +185,8 @@ export default function IndexTest() {
       done();
     })
 
+    /**
+     * @tc.number UiTest_007
      * @tc.name testDeviceOnKey_1
      * @tc.desc 测试支持键盘输入事件
      */
@@ -191,7 +221,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_006
+     * @tc.number UiTest_008
      * @tc.name testDeviceOnKey_2
      * @tc.desc 测试支持键盘输入事件
      */
@@ -225,7 +255,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_007
+     * @tc.number UiTest_009
      * @tc.name testDeviceOnKey_3
      * @tc.desc 测试支持键盘输入事件
      */
@@ -256,7 +286,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_008
+     * @tc.number UiTest_010
      * @tc.name testDeviceOnKey_4
      * @tc.desc 测试支持键盘输入事件
      */
@@ -284,7 +314,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_009
+     * @tc.number UiTest_011
      * @tc.name testDeviceOnKey_5
      * @tc.desc 测试支持键盘输入事件
      */
@@ -312,9 +342,31 @@ export default function IndexTest() {
       done();
     })
 
-
     /**
-     * @tc.number UiTest_006
+     * @tc.number UiTest_012
+     * @tc.name testPanCombination
+     * @tc.desc 测试滑动事件示例
+     */
+    it('testPanCombination', 0, async (done: Function) => {
+      console.info('uitest: testPanCombination begin');
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+      //$r('app.string.singlegesture_Index_Pancom_title')需要替换为开发者所需的字符串资源文件
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_Pancom_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      //已进入测试界面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      console.info('uitest: testPanCombination end');
+      done();
+    })
+  
+    /**
+     * @tc.number UiTest_013
      * @tc.name FocusOnClick
      * @tc.desc 测试焦点传递事件示例
      */
@@ -339,7 +391,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_007
+     * @tc.number UiTest_014
      * @tc.name FocusScopeId
      * @tc.desc 测试焦点传递事件示例
      */
@@ -369,7 +421,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_008
+     * @tc.number UiTest_015
      * @tc.name FocusScopePriorityPrevious
      * @tc.desc 测试焦点传递事件示例
      */
@@ -392,7 +444,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_009
+     * @tc.number UiTest_016
      * @tc.name FocusTransfer
      * @tc.desc 测试焦点传递事件示例
      */
@@ -413,7 +465,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_009
+     * @tc.number UiTest_017
      * @tc.name FocusTraversalGuidelines
      * @tc.desc 测试焦点传递事件示例
      */
@@ -439,7 +491,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_010
+     * @tc.number UiTest_018
      * @tc.name FrojectAreaFocusFlex
      * @tc.desc 测试焦点传递事件示例
      */
@@ -464,7 +516,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_011
+     * @tc.number UiTest_019
      * @tc.name NextFocus
      * @tc.desc 测试焦点传递事件示例
      */
@@ -499,7 +551,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_012
+     * @tc.number UiTest_020
      * @tc.name OnFocusOnBlurEvents
      * @tc.desc 测试焦点传递事件示例
      */
@@ -521,7 +573,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_013
+     * @tc.number UiTest_021
      * @tc.name ProjectionBasedFocus
      * @tc.desc 测试焦点传递事件示例
      */
@@ -543,7 +595,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_014
+     * @tc.number UiTest_022
      * @tc.name ProjectionBasedFocus
      * @tc.desc 测试焦点传递事件示例
      */
@@ -565,7 +617,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_015
+     * @tc.number UiTest_023
      * @tc.name ScopeFocus
      * @tc.desc 测试焦点传递事件示例
      */
@@ -594,7 +646,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_016
+     * @tc.number UiTest_024
      * @tc.name TabIndex
      * @tc.desc 测试焦点传递事件示例
      */
@@ -617,7 +669,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_017
+     * @tc.number UiTest_025
      * @tc.name TabIndexFocus
      * @tc.desc 测试焦点传递事件示例
      */
@@ -647,7 +699,7 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_018
+     * @tc.number UiTest_026
      * @tc.name TabIndexFocus
      * @tc.desc 测试焦点传递事件示例
      */

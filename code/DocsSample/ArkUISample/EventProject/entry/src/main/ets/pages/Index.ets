@@ -28,6 +28,10 @@ import resource from '../common/resource';
 
 // [Start route_push]
 const routes: Route[] = [
+  //$r('app.string.Pages_Index_gesture')、$r('app.string.Pages_Index_GroupGesture')、
+  $r('app.string.Pages_Index_GestureJudge')、$r('app.string.Pages_Index_TouchEvent')、
+  $r('app.string.Pages_Index_DeviceEvent')、$r('app.string.Pages_Index_FocusEvent')、
+  $r('app.string.Pages_Index_DragEvent')需要替换为开发者所需的字符串资源文件
   {
     title: resource.resourceToString($r('app.string.Pages_Index_gesture')),
     name: Gesture_ROUTE_PREFIX
