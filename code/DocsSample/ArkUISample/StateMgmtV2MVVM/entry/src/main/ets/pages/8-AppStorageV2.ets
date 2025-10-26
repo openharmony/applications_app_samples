@@ -65,7 +65,7 @@ struct TodoList {
   ];
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   finishAll(ifFinish: boolean) {
     for (let task of this.tasks) {

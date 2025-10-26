@@ -177,12 +177,116 @@
       "value": "这是一段可复制文本。"
     },
     {
+      "name": "Set_digital_flip_effect",
+      "value": "设置数字翻牌效果。"
+    },
+    {
+      "name": "Set_digital_flip_effect_description",
+      "value": "支持通过contentTransition属性设置数字翻牌效果展示"
+    },
+    {
+      "name": "text_layout",
+      "value": "文本布局"
+    },
+    {
+      "name": "text_layout_description",
+      "value": "支持通过optimizeTrailingSpace属性设置效果展示"
+    },
+    {
+      "name": "Set_text_line_spacing",
+      "value": "设置文本的行间距"
+    },
+    {
+      "name": "Set_text_line_spacing_description",
+      "value": "通过lineSpacing设置文本的行间距设置效果展示"
+    },
+    {
+      "name": "Automatic_spacing",
+      "value": "中文西文自动间距"
+    },
+    {
+      "name": "Automatic_spacing_description",
+      "value": "支持通过enableAutoSpacing设置是否开启中文与西文的自动间距"
+    },
+    {
+      "name": "Shader_Style",
+      "value": "设置渐变色"
+    },
+    {
+      "name": "direction_LeftTop",
+      "value": "direction为LeftTop的线性渐变"
+    },
+    {
+      "name": "Shader_Style_description",
+      "value": "支持通过shaderStyle设置渐变色"
+    },
+    {
+      "name": "Selection_Change",
+      "value": "关闭选中菜单"
+    },
+    {
+      "name": "Selection_Change_description",
+      "value": "在Text组件区域内点击空白处，会正常关闭选中态和菜单"
+    },
+    {
+      "name": "General_Events",
+      "value": "添加通用事件"
+    },
+    {
+      "name": "selected_menu",
+      "value": "这是一段文本，用来展示选中菜单"
+    },
+    {
+      "name": "Bind_SelectionMenu",
+      "value": "绑定自定义选择菜单"
+    },
+    {
+      "name": "display_the_selected_menu",
+      "value": "这是一段文本，用来展示选中菜单"
+    },
+    {
+      "name": "custom_selection_menu_pops_up",
+      "value": "自定义选择菜单弹出时触发该回调"
+    },
+    {
+      "name": "custom_selection_menu_is_closed",
+      "value": "自定义选择菜单关闭时触发该回调"
+    },
+    {
+      "name": "Bind_SelectionMenu_description",
+      "value": "Text组件通过设置bindSelectionMenu属性绑定自定义选择菜单。"
+    },
+    {
+      "name": "General_Events_description",
+      "value": "Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作。"
+    },
+    {
       "name": "CustomTextStyle_textContent_8",
       "value": "当文本溢出其尺寸时，文本将滚动显示，支持设置跑马灯配置项 When the text overflows its dimensions, the text will scroll for displaying."
     },
     {
       "name": "TextAlign_Start",
       "value": "左对齐"
+    },
+    {
+      "name": "Enable_automatic_spacing",
+      "value": "开启自动间距"
+    },
+    {
+      "name": "off_automatic_spacing",
+      "value": "关闭自动间距"
+    },
+    {
+      "name": "Automatic_spacing_has_been_enabled",
+      "value": "当前状态:已开启自动间距"
+    },
+    {
+      "name": "Automatic_spacing_has_been_turned_off",
+      "value": "当前状态:已关闭自动间距"
+    },
+    {
+      "name": "Chinese_and_Western_Auto_Spacing_automatic_spacing",
+      "value": "中西文Auto Spacing自动间距"
     },
     {
       "name": "TextAlign_Center",
@@ -243,6 +347,14 @@
     {
       "name": "TextHotSearch_title_1",
       "value": "热搜榜示例"
+    },
+    {
+      "name": "OnClick_onHover",
+      "value": "添加点击事件悬浮事件"
+    },
+    {
+      "name": "OnClickOnHover_description",
+      "value": "实例通过添加点击事件onClick、悬浮事件onHover展示效果"
     },
     {
       "name": "TextHotSearch_description",
@@ -1339,6 +1451,62 @@
     {
       "name": "SelectMenu_Text_5",
       "value": "自定义选择菜单关闭时触发该回调"
+    },
+    {
+      "name": "Service_MenuItems",
+      "value": "屏蔽文本选择菜单内所有系统服务菜单项"
+    },
+    {
+      "name": "Service_MenuItems_description",
+      "value": "支持通过disableSystemServiceMenuItems屏蔽文本选择菜单内所有系统服务菜单项。"
+    },
+    {
+      "name": "Service_MenuItems_Text",
+      "value": "这是一段文本，长按弹出文本选择菜单。"
+    },
+    {
+      "name": "Disable_MenuItems",
+      "value": "屏蔽文本选择菜单内指定的系统服务菜单项。"
+    },
+    {
+      "name": "Disable_MenuItems_description",
+      "value": "触发onPrepareMenu回调可在该回调中进行菜单数据设置。"
+    },
+    {
+      "name": "Prepare_Menu",
+      "value": "屏蔽文本选择菜单内指定的系统服务菜单项。"
+    },
+    {
+      "name": "Prepare_Menu_description",
+      "value": "当文本选择区域变化后显示菜单之前触发onPrepareMenu回调，可在该回调中进行菜单数据设置。"
+    },
+    {
+      "name": "Phone_number",
+      "value": " '电话号码：' + '(86) (755) ********' + '\\n' +\n    '链接：' + 'www.********.com' + '\\n' +\n    '邮箱：' + '***@example.com' + '\\n' +\n    '地址：' + 'XX省XX市XX区XXXX' + '\\n' +\n    '时间：' + 'XX年XX月XX日XXXX'"
+    },
+    {
+      "name": "Word_Break",
+      "value": "任意2个字符间断行使文本内容尽量占满组件区域"
+    },
+    {
+      "name": "Word_Break_description",
+      "value": "设置wordBreak属性为WordBreak.BREAK_ALL，任意2个字符间断行使文本内容尽量占满组件区域"
+    },
+    {
+      "name": "Height_AdaptivePolicy",
+      "value": "实现类似设置maxLines的效果。"
+    },
+    {
+      "name": "Height_AdaptivePolicy_description",
+      "value": "该模式会删除超过布局约束的行，从而实现类似设置maxLines的效果。"
+    },
+    {
+      "name": "Length_Metric",
+      "value": "在文本前后添加自定义标签。"
+    },
+    {
+      "name": "Length_Metric_description",
+      "value": "如何在文本的前后各添加一个标签，例如“专题”或“Top1”。这些标签的背景样式、尺寸设置需要能够自定义。"
     },
     {
       "name": "Replace_paragraph_style",

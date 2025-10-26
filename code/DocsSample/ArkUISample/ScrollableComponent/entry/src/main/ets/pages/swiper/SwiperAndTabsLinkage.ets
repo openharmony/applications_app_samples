@@ -15,6 +15,7 @@
 
 import { ComponentCard } from "../../common/Card";
 
+// [Start swiper_tabs_linkage]
 // xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = [];
@@ -72,9 +73,11 @@ export struct SwiperAndTabsLinkage {
   }
 
   build() {
+    // [StartExclude swiper_tabs_linkage]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SwiperAndTabsLinkage_title') }) {
+          // [EndExclude swiper_tabs_linkage]
           Column() {
             Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
               ForEach(this.list, (index: number) =>{
@@ -113,6 +116,7 @@ export struct SwiperAndTabsLinkage {
               this.tabsController.changeIndex(index);
             })
           }
+          // [StartExclude swiper_tabs_linkage]
         }
       }
       .width('100%')
@@ -121,5 +125,7 @@ export struct SwiperAndTabsLinkage {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.SwiperAndTabsLinkage_title'))
+    // [EndExclude swiper_tabs_linkage]
   }
 }
+// [End swiper_tabs_linkage]

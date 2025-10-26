@@ -34,13 +34,6 @@ function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
 
-async function getResourceString(resource: Resource): Promise<string> {
-  let manage = abilityDelegator.getAppContext().resourceManager;
-  let textString: string = await manage.getStringValue(resource);
-  return textString;
-}
-
-
 export default function IndexTest() {
 
   describe('IndexTest', () => {

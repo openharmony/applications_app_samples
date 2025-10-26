@@ -2,8 +2,8 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitCode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)
 中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-common-components-text-display.md)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
 1. [文本显示 (Text/Span)](https://gitCode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-common-components-text-display.md)。
 2. [文本输入 (TextInput/TextArea)](https://gitCode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-common-components-text-input.md)。
@@ -81,13 +81,28 @@ entry/src/main/ets/
 |   |       |---SymbolSceneExample.ets
 |   |---text                                         // 文本显示     
 |   |       |---AIMenu.ets
+|   |       |---BindSelectionMenu.ets
+|   |       |---ContentTransition.ets
 |   |       |---CreatText.ets
 |   |       |---CustomTextStyle.ets
+|   |       |---DisableMenuItems.ets
+|   |       |---EnableAutoSpacing.ets
+|   |       |---GeneralEvents.ets
+|   |       |---HeightAdaptivePolicy.ets
 |   |       |---index.ets
+|   |       |---LengthMetric.ets
+|   |       |---LineSpacing.ets
+|   |       |---PrepareMenu.ets
+|   |       |---SelectionChange.ets
 |   |       |---SelectMenu.ets
+|   |       |---ServiceMenuItems.ets
+|   |       |---ShaderStyle.ets
 |   |       |---TextAddEvent.ets
 |   |       |---TextHotSearch.ets
+|   |       |---TextLayout.ets
 |   |       |---TextSpan.ets
+|   |       |---TextSpanOnHover.ets
+|   |       |---WordBreakd.ets
 |   |---testInput                                    // 文本输入
 |   |       |---AutoFill.ets
 |   |       |---CreatTextInput.ets
@@ -117,11 +132,21 @@ entry/src/ohosTest/
 
 2. 富文本(RichEditor)/禁用搜索和翻译菜单：richEditor组件长按后调出的菜单，通过设置屏蔽禁用搜索和翻译菜单。源码参考[DisableMenuItem.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/TextComponent/entry/src/main/ets/pages/richEditor/DisableMenuItem.ets)
 
-   * 定义一个组件，在组件的aboutToAppear方法中设置TextMenuController组件禁用搜索和翻译两项菜单
+    * 定义一个组件，在组件的aboutToAppear方法中设置TextMenuController组件禁用搜索和翻译两项菜单
 
-   * 在组件的aboutToDisappear方法中设置TextMenuController组件恢复搜索和翻译两项菜单
+    * 在组件的aboutToDisappear方法中设置TextMenuController组件恢复搜索和翻译两项菜单
 
-3. 属性字符串（StyledString/MutableStyledString）
+3. 点击事件：Span('点击查看').onClick(() => { router.pushUrl(...) })，实现文本点击跳转。
+4. 复制功能：Text('验证码：123456').copyOption(CopyOptions.InApp)，允许用户长按文本复制内容（CopyOptions.InApp表示仅应用内可复制）。
+5. 文本选择：Text('可选择文本').textSelectable(true)，支持用户长按选择部分文本（配合自定义选择菜单可扩展功能）。
+6. 悬浮反馈：Span('hover效果').onHover((isHover) => { this.isHover = isHover; })，根据悬浮状态动态修改样式（如变色、加粗）。
+7. 字体大小自适应：同时设置minFontSize(12)、maxFontSize(20)+maxLines(1)+width(200)，文本会根据容器宽度自动调整字号（确保在 1 行内显示完整）。
+8. 截断不处理：设置textOverflow({ overflow: TextOverflow.None })+maxLines(1)，超出容器的文本直接截断（仅显示可见部分）。
+9. 显示省略号：textOverflow({ overflow: TextOverflow.Ellipsis })+maxLines(1)，超出部分用 “...” 表示（适合标题、短描述）。
+10. 跑马灯滚动：文本自动横向滚动显示完整内容，可通过.marqueeOptions({ loop: -1, step: 5 })配置循环次数（-1 为无限循环）、滚动速度等。
+11. 多行限制：设置maxLines(2)（最多 2 行），配合textOverflow，实现多行文本溢出处理（如 “...” 显示在最后一行末尾）。
+12. 为每个Span配置独立样式：通过.fontStyle(FontStyle.Italic)（斜体）、.decoration({ type: TextDecorationType.Underline })（下划线）等区分文本。
+13. 属性字符串（StyledString/MutableStyledString）
    
    * 属性字符串StyledString/MutableStyledString（其中MutableStyledString继承自StyledString，下文统称为StyledString），可用于在字符或段落级别上设置文本样式。将StyledString应用到文本组件上，可以采用多种方式修改文本，包括调整字号、添加字体颜色、使文本具备可点击性，以及通过自定义方式绘制文本等。
    

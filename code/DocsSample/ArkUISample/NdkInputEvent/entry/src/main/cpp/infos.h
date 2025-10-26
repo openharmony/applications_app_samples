@@ -230,7 +230,17 @@ void PrintClonedEventInfos(ArkUI_UIInputEvent* inputEvent, ArkUI_UIInputEvent* c
     OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId(clonedEvent, 0);
     if (OH_ArkUI_UIInputEvent_GetLatestStatus() == ARKUI_ERROR_CODE_NO_ERROR) {
         // 此前接口调用无误，执行克隆事件分发
-        OH_ArkUI_PointerEvent_PostClonedEvent(column1, clonedEvent);
+        int ret = OH_ArkUI_PointerEvent_PostClonedEvent(column1, clonedEvent);
+        if (ret == ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "inputTest",
+                         "The event is not cloned event!");
+        } else if (ret == ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "inputTest",
+                         "The component status abnormal!");
+        } else if (ret == ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "inputTest",
+                         "No component hit to respond to the event!");
+        }
     }
 }
 
