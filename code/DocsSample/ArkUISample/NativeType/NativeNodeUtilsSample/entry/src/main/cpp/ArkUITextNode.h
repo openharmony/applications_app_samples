@@ -22,7 +22,6 @@
 #include <string>
 
 namespace NativeModule {
-
     void ColorChangeCallback(ArkUI_SystemColorMode colorMode, void *userData)
     {
         if (userData) {
