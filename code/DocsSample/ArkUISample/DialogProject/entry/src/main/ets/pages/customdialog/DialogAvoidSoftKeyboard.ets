@@ -15,7 +15,7 @@
 
 // [Start dialog_avoid_soft_key_board]
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @CustomDialog
 struct CustomDialogExample {
@@ -58,7 +58,7 @@ export struct DialogAvoidSoftKeyboard {
           Text($r('app.string.open_windows'))
             .fontSize(30)
             .onClick(() => {
-              if (this.dialogController != null) {
+              if (this.dialogController !== null) {
                 this.dialogController.open();
               }
             })

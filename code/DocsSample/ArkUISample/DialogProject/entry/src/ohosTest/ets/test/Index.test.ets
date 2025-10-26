@@ -23,6 +23,8 @@ import resource from '../../../main/ets/common/resource';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
+const ONE_SECONDS_TIME = 1000;
+const ONE_SECONDS_TIME2 = 10000;
 
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -39,7 +41,7 @@ export default function IndexTest() {
         abilityName: 'EntryAbility'
       };
       await delegator.startAbility(want);
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
       console.info("get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
@@ -58,7 +60,7 @@ export default function IndexTest() {
 
       let button2 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.change_dialog')), MatchPattern.CONTAINS));
       await button2.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
@@ -72,7 +74,7 @@ export default function IndexTest() {
       await button_list.click();
       let button_customDialogComponentWithTransition = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.customDialogComponentWithTransition_title')), MatchPattern.CONTAINS));
       await button_customDialogComponentWithTransition.click();
-      let text_open = await driver.findComponent(ON.text('打开弹窗', MatchPattern.CONTAINS));
+      let text_open = await driver.findComponent(ON.text($r('app.string.CustomDialog_nest'), MatchPattern.CONTAINS));
       expect(text_open === null).assertFalse();
       await text_open.click();
       await sleep(5000);
@@ -89,7 +91,7 @@ export default function IndexTest() {
       await button_list.click();
       let button_customDialogWithKeyboardAvoidDistance = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.customDialogWithKeyboardAvoidDistance_title')), MatchPattern.CONTAINS));
       await button_customDialogWithKeyboardAvoidDistance.click();
-      let text_customDialogWithKeyboardAvoidDistance_open = await driver.findComponent(ON.text('打开弹窗', MatchPattern.CONTAINS));
+      let text_customDialogWithKeyboardAvoidDistance_open = await driver.findComponent(ON.text($r('app.string.CustomDialog_nest'), MatchPattern.CONTAINS));
       await text_customDialogWithKeyboardAvoidDistance_open.click();
       await sleep(1000);
       let textinputComponent = await driver.findComponent(ON.type('TextInput'))
@@ -139,6 +141,7 @@ export default function IndexTest() {
       await button_list4.click();
       await driver.pressBack();
       await driver.pressBack();
+
       await sleep(1000);
 
       let button_createCustomDialog1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CreateCustomDialog1_title')), MatchPattern.CONTAINS));
@@ -165,7 +168,7 @@ export default function IndexTest() {
       await button_dialogInteraction3_click.click();
       let button_dialogInteraction3_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
       await button_dialogInteraction3_confirm.click();
-      let button_dialogInteraction3_return = await driver.findComponent(ON.text('点击返回', MatchPattern.CONTAINS));
+      let button_dialogInteraction3_return = await driver.findComponent(ON.text($r('app.string.click_and_return'), MatchPattern.CONTAINS));
       await button_dialogInteraction3_return.click();
       await sleep(1000);
       await driver.pressBack();
@@ -211,17 +214,17 @@ export default function IndexTest() {
       await button_getDialogStatus.click();
       let button_button_getDialogStatus_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_button_getDialogStatus_click.click();
-      let button_button_getDialogStatus_custom = await driver.findComponent(ON.text('点我查询弹窗状态:通过自定义组件自带controller', MatchPattern.CONTAINS));
+      let button_button_getDialogStatus_custom = await driver.findComponent(ON.text($r('app.string.closeDialog_by_dialog'), MatchPattern.CONTAINS));
       await button_button_getDialogStatus_custom.click();
-      let button_button_getDialogStatus_custom_controller = await driver.findComponent(ON.text('点我查询弹窗状态:通过CustomDialogController ', MatchPattern.CONTAINS));
+      let button_button_getDialogStatus_custom_controller = await driver.findComponent(ON.text($r('app.string.closeDialog_by_dialog_controller'), MatchPattern.CONTAINS));
       await button_button_getDialogStatus_custom_controller.click();
-      let button_button_getDialogStatus_close = await driver.findComponent(ON.text('点我关闭弹窗', MatchPattern.CONTAINS));
+      let button_button_getDialogStatus_close = await driver.findComponent(ON.text($r('app.string.close_widows'), MatchPattern.CONTAINS));
       await button_button_getDialogStatus_close.click();
       await driver.pressBack();
 
       let button_dialogAvoidSoftKeyboard = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogAvoidSoftKeyboard_title')), MatchPattern.CONTAINS));
       await button_dialogAvoidSoftKeyboard.click();
-      let text_dialogWithPhysicalBack_open = await driver.findComponent(ON.text('打开弹窗', MatchPattern.CONTAINS));
+      let text_dialogWithPhysicalBack_open = await driver.findComponent(ON.text($r('app.string.open_windows'), MatchPattern.CONTAINS));
       await text_dialogWithPhysicalBack_open.click();
       await sleep(1000);
       let textinputComponent = await driver.findComponent(ON.type('TextInput'))
@@ -232,6 +235,8 @@ export default function IndexTest() {
       await driver.pressBack();
       await sleep(1000);
       await driver.pressBack();
+
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -246,10 +251,10 @@ export default function IndexTest() {
         await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_focus')),
           MatchPattern.CONTAINS));
       await button_list1.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -260,23 +265,23 @@ export default function IndexTest() {
         MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       let button_list1 =
         await driver.findComponent(ON.text(resource.resourceToString($r('app.string.StylePopup_global')),
           MatchPattern.CONTAINS));
       await button_list1.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       let button_list2 = await driver.findComponent(ON.text('openPopup', MatchPattern.CONTAINS));
       await button_list2.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       let button_list3 = await driver.findComponent(ON.text('Update', MatchPattern.CONTAINS));
       await button_list3.click();
       let button_list4 = await driver.findComponent(ON.text('Close', MatchPattern.CONTAINS));
       await button_list4.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -287,15 +292,15 @@ export default function IndexTest() {
         MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       let button_list1 =
         await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_controller')),
           MatchPattern.CONTAINS));
       await button_list1.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -306,16 +311,16 @@ export default function IndexTest() {
         MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      await sleep(1000);
-      await driver.fling(UiDirection.DOWN, 10000);
+      await sleep(ONE_SECONDS_TIME);
+      await driver.fling(UiDirection.DOWN, ONE_SECONDS_TIME2);
       let button_list1 =
         await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_page_level')),
           MatchPattern.CONTAINS));
       await button_list1.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -326,15 +331,15 @@ export default function IndexTest() {
         MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       let button_list1 =
         await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OpenMenu_title')),
           MatchPattern.CONTAINS));
       await button_list1.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -345,16 +350,139 @@ export default function IndexTest() {
         MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      await sleep(1000);
-      await driver.fling(UiDirection.DOWN, 10000);
+      await sleep(ONE_SECONDS_TIME);
+      await driver.fling(UiDirection.DOWN, ONE_SECONDS_TIME2);
       let button_list1 =
         await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_box_layer')),
           MatchPattern.CONTAINS));
       await button_list1.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
+      done();
+    })
+
+    it('testDialogFocusStrategy', 0, async (done: Function) => {
+      console.info("uitest: testDialogFocusStrategy begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_focus')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(ONE_SECONDS_TIME);
+      done();
+    })
+
+    it('testGlobalOpenPopup', 0, async (done: Function) => {
+      console.info("uitest: testGlobalOpenPopup begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Popup1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(ONE_SECONDS_TIME);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.StylePopup_global')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
+      let button_list2 = await driver.findComponent(ON.text('openPopup', MatchPattern.CONTAINS));
+      await button_list2.click();
+      await sleep(ONE_SECONDS_TIME);
+      let button_list3 = await driver.findComponent(ON.text('Update', MatchPattern.CONTAINS));
+      await button_list3.click();
+      let button_list4 = await driver.findComponent(ON.text('Close', MatchPattern.CONTAINS));
+      await button_list4.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(ONE_SECONDS_TIME);
+      done();
+    })
+
+    it('testDialogController', 0, async (done: Function) => {
+      console.info("uitest: testDialogController begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(ONE_SECONDS_TIME);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_controller')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(ONE_SECONDS_TIME);
+      done();
+    })
+
+    it('testPageLevelDialog', 0, async (done: Function) => {
+      console.info("uitest: testPageLevelDialog begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.fling(UiDirection.DOWN, ONE_SECONDS_TIME2);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_page_level')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(ONE_SECONDS_TIME);
+      done();
+    })
+
+    it('testGlobalOpenMenu', 0, async (done: Function) => {
+      console.info("uitest: testGlobalOpenMenu begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Menu1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(ONE_SECONDS_TIME);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OpenMenu_title')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(ONE_SECONDS_TIME);
+      done();
+    })
+
+    it('testDialogBoxLayer', 0, async (done: Function) => {
+      console.info("uitest: testDialogBoxLayer begin");
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog1')),
+        MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.fling(UiDirection.DOWN, ONE_SECONDS_TIME2);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialog_box_layer')),
+          MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -367,13 +495,13 @@ export default function IndexTest() {
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DatePicker_title')), MatchPattern.CONTAINS));
       await button_list1.click();
 
-      let button_list2 = await driver.findComponent(ON.text('showDate', MatchPattern.CONTAINS));
+      let button_list2 = await driver.findComponent(ON.text('showDatePickerDialog', MatchPattern.CONTAINS));
       await button_list2.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -395,11 +523,37 @@ export default function IndexTest() {
 
       let button_list2 = await driver.findComponent(ON.text('ShowActionMenu', MatchPattern.CONTAINS));
       await button_list2.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
+      done();
+    })
+
+    /**
+     * @tc.number testFixedCustomDialog_002
+     * @tc.name testFixedCustomDialog_002
+     * @tc.desc Test Fixed-style pop-up box.
+     * @tc.size MEDIUM
+     * @tc.level Level 1
+     * @tc.type Function
+     */
+    it('testFixedCustomDialog_002', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.FixedStyleDialog1')), MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(ONE_SECONDS_TIME);
+      let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DatePickerCustom_title')), MatchPattern.CONTAINS));
+      await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
+      let button_list2 = await driver.findComponent(ON.text('showDatePickerCustomDialog', MatchPattern.CONTAINS));
+      await button_list2.click();
+      await driver.pressBack();
+      await driver.pressBack();
+      await driver.pressBack();
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -409,17 +563,17 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Menu1')), MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CreateMenu_title')), MatchPattern.CONTAINS));
       await button_list1.click();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       let button_list2 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.menu_bind')), MatchPattern.CONTAINS));
       await button_list2.click();
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -490,8 +644,7 @@ export default function IndexTest() {
       await button2.click();
       await driver.pressBack();
       await driver.pressBack();
-      await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
@@ -500,16 +653,18 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager1')), MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      await sleep(ONE_SECONDS_TIME);
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager_demo1_title')), MatchPattern.CONTAINS));
       expect(button_list1 === null).assertFalse();
       await button_list1.click();
+      await sleep(ONE_SECONDS_TIME);
       let button1 = await driver.findComponent(ON.text('ComponentContent', MatchPattern.CONTAINS));
       expect(button1 === null).assertFalse();
       await button1.click();
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(1000);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
   })

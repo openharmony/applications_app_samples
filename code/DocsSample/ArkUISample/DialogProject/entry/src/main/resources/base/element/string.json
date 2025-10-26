@@ -145,6 +145,10 @@
       "value": "日期滑动选择器弹窗"
     },
     {
+      "name": "CustomCustomDialog_date",
+      "value": "日期滑动选择器自定义弹窗"
+    },
+    {
       "name": "CustomDialog_text",
       "value": "文本滑动选择器弹窗"
     },
@@ -167,6 +171,14 @@
     {
       "name": "DatePicker_des",
       "value": "开发者可以利用指定的日期范围，创建日期滑动选择器弹窗，将日期信息清晰地展示在弹出的窗口上。"
+    },
+    {
+      "name": "DatePickerCustom_title",
+      "value": "日期滑动选择器自定义弹窗"
+    },
+    {
+      "name": "DatePickerCustom_des",
+      "value": "开发者可以利用指定的日期范围，创建日期滑动选择器自定义弹窗，将日期信息清晰地展示在弹出的窗口上。"
     },
     {
       "name": "TimePicker_title",
@@ -811,6 +823,10 @@
     {
       "name": "closeDialog_by_dialog_controller",
       "value": "点击关闭弹窗：通过外部传递的DialogController"
+    },
+    {
+      "name": "close_widows",
+      "value": "点我关闭弹窗"
     }
   ]
 }

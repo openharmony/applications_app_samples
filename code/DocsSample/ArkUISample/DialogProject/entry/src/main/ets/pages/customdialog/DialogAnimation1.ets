@@ -66,7 +66,7 @@ export struct DialogAnimation1 {
       Column() {
         Button(this.inputValue)
           .onClick(() => {
-            if (this.dialogController != null) {
+            if (this.dialogController !== null) {
               this.dialogController.open();
             }
           }).backgroundColor(0x317aff)

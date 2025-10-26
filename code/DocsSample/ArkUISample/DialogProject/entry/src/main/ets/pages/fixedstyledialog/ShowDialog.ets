@@ -12,14 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start show_dialog_example]
+// xxx.ets
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 export struct ShowDialogExample {
   build() {
+    // [StartExclude show_dialog_example]
     NavDestination() {
+      // [EndExclude show_dialog_example]
       Column({ space: 12 }) {
         Column() {
           Button('ShowDialog')
@@ -56,8 +59,12 @@ export struct ShowDialogExample {
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude show_dialog_example]
     }
+    // [EndExclude show_dialog_example]
     .backgroundColor('#f1f2f3')
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.ShowDialog_title'))
   }
 }
+// [End show_dialog_example]

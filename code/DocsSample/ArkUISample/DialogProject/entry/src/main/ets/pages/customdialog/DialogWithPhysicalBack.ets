@@ -35,7 +35,7 @@ struct CustomDialogExample {
       Row() {
         Button('cancel')
           .onClick(() => {
-            if (this.controller != undefined) {
+            if (this.controller !== undefined) {
               this.controller.close();
             }
           })
@@ -43,7 +43,7 @@ struct CustomDialogExample {
           .fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
-            if (this.controller != undefined) {
+            if (this.controller !== undefined) {
               this.controller.close();
             }
           })

@@ -27,7 +27,7 @@ struct CustomDialogExample {
 
   build() {
     Column({ space: 20 }) {
-      if (this.textValue != '') {
+      if (this.textValue !== '') {
         Text($r('app.string.the_second_page_is')+`：${this.textValue}`)
           .fontSize(20)
       } else {
@@ -37,16 +37,16 @@ struct CustomDialogExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
-            if (this.controller != undefined) {
+            if (this.controller !== undefined) {
               this.controller.close();
               this.cancel();
             }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
-            if (this.controller != undefined && this.textValue != '') {
+            if (this.controller !== undefined && this.textValue !== '') {
               this.controller.close();
-            } else if (this.controller != undefined) {
+            } else if (this.controller !== undefined) {
               this.getUIContext().getRouter().pushUrl({
                 url: 'pages/Index2'
               });
@@ -104,7 +104,7 @@ export struct DialogInteraction3 {
       NavDestination() {
         Button('click me')
           .onClick(() => {
-            if (this.dialogController != null) {
+            if (this.dialogController !== null) {
               this.dialogController.open();
             }
           }).backgroundColor(0x317aff)

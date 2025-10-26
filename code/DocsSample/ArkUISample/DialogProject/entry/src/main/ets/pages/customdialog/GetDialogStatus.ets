@@ -19,25 +19,25 @@ const DOMAIN = 0x0000;
 // xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
 
   build() {
     Column() {
-      Button('点我查询弹窗状态:通过自定义组件自带controller')
+      Button($r('app.string.closeDialog_by_dialog'))
         .onClick(() => {
-          if (this.getDialogController() != undefined) {
+          if (this.getDialogController() !== undefined) {
             hilog.info(DOMAIN, 'testTag', 'state:' + this.getDialogController().getState())
           } else {
             hilog.info(DOMAIN, 'testTag', 'state: no exist')
           }
         }).margin(20)
-      Button('点我查询弹窗状态:通过CustomDialogController ')
+      Button($r('app.string.closeDialog_by_dialog_controller'))
         .onClick(() => {
           hilog.info(DOMAIN, 'testTag', 'state:' + this.controller?.getState())
         }).margin(20)
-      Button('点我关闭弹窗')
+      Button($r('app.string.close_widows'))
         .onClick(() => {
-          if (this.getDialogController() != undefined) {
+          if (this.getDialogController() !== undefined) {
             this.getDialogController().close()
           }
         }).margin(20)
@@ -62,7 +62,7 @@ export struct GetDialogStatus {
       Column() {
         Button('click me')
           .onClick(() => {
-            if (this.dialogController != null) {
+            if (this.dialogController !== null) {
               this.dialogController.open()
             }
           })

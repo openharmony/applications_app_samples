@@ -38,7 +38,7 @@ struct CustomDialogExampleTwo {
         })
       Button('Close Second Dialog Box')
         .onClick(() => {
-          if (this.controllerTwo != undefined) {
+          if (this.controllerTwo !== undefined) {
             this.controllerTwo.close();
           }
         })
@@ -49,8 +49,8 @@ struct CustomDialogExampleTwo {
 
 @CustomDialog
 struct CustomDialogExample {
-  openSecondBox?: () => void
-  controller?: CustomDialogController
+  openSecondBox?: () => void;
+  controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -71,7 +71,7 @@ export struct NestDialog1 {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
       openSecondBox: () => {
-        if (this.dialogControllerTwo != null) {
+        if (this.dialogControllerTwo !== null) {
           this.dialogControllerTwo.open()
         }
       }
@@ -113,7 +113,7 @@ export struct NestDialog1 {
       Column() {
         Button(this.inputValue)
           .onClick(() => {
-            if (this.dialogController != null) {
+            if (this.dialogController !== null) {
               this.dialogController.open();
             }
           }).backgroundColor(0x317aff)
