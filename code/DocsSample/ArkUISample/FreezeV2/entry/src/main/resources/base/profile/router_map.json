@@ -1,0 +1,9 @@
+{
+  "routerMap": [
+    {
+      "name": "PageB",
+      "pageSourceFile": "src/main/ets/pages/freeze/template5/PageA.ets",
+      "buildFunction": "page2Builder"
+    }
+  ]
+}
