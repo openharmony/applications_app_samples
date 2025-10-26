@@ -617,6 +617,30 @@
       "value": "我是内容"
     },
     {
+      "name": "customDialogComponentWithTransition_title",
+      "value": "为弹出框内容和蒙层设置不同的动画效果"
+    },
+    {
+      "name": "customDialogComponentWithTransition_desc",
+      "value": "当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，从API version 19开始，可通过BaseDialogOptions中dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考组件内转场 (transition)。"
+    },
+    {
+      "name": "customDialogWithKeyboardAvoidDistance_title",
+      "value": "设置弹出框避让软键盘的距离"
+    },
+    {
+      "name": "customDialogWithKeyboardAvoidDistance_desc",
+      "value": "为显示弹出框的独立性，弹出框弹出时会与周边进行避让，包括状态栏、导航条以及键盘等留有间距。故当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。从API version 15开始，开发者可以利用BaseDialogOptions中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。"
+    },
+    {
+      "name": "OpenDialogAndUpdate_title",
+      "value": "完整示例"
+    },
+    {
+      "name": "OpenDialogAndUpdate_desc",
+      "value": "完整示例。"
+    },
+    {
       "name": "open_windows",
       "value": "打开弹窗"
     },
@@ -631,6 +655,10 @@
     {
       "name": "click_and_return",
       "value": "点击返回"
+    },
+    {
+      "name": "this_is_a_window",
+      "value": "这是一个弹窗"
     },
     {
       "name": "Mask_CustomDialog_dialog",

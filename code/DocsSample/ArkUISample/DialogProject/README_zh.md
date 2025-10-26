@@ -12,7 +12,6 @@
 6. [即时反馈 (Toast)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/ui/arkts-create-toast.md)
 7. [设置浮层 (OverlayManager)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-create-overlaymanager.md)
 8. [弹出框蒙层控制](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/ui/arkts-dialog-mask.md)
-
 ### 效果预览
 
 | 首页                                | 弹窗类组件目录                        | 自定义弹窗示例                       |                                    |                                    |
@@ -76,6 +75,9 @@ entry/src/main/ets/
 |   |---opencustomdialog                      //不依赖UI组件的全局自定义弹出框
 |   |       |---Index.ets
 |   |       |---openCustomDialog.ets
+|   |       |---customDialogComponentWithTransition.ets
+|   |       |---customDialogWithKeyboardAvoidDistance.ets
+|   |       |---OpenDialogAndUpdate.ets
 |   |---OverlayManager                        //设置浮层
 |   |       |---Index.ets
 |   |       |---OverlayManagerDemo1.ets
@@ -140,10 +142,18 @@ entry/src/ohosTest/
 
    * 可以通过配置CustomDialogControllerOptions中的isModal属性来实现模态和非模态弹窗，详细说明可参考弹窗的种类。
 
+5. 不依赖UI组件的全局自定义弹出框 (openCustomDialog)
+
+   * 推荐使用UIContext中获取到的PromptAction对象提供的openCustomDialog接口在相对应用复杂的场景来实现自定义弹出框，相较于CustomDialogController优势点在于页面解耦，支持动态刷新。
+   
+   * 弹出框（openCustomDialog）默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。
+
+   * 可以通过配置promptAction.BaseDialogOptions类型中的isModal属性来实现模态和非模态弹窗，详细说明可参考弹窗的种类。
+
    * 当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
 5. 弹出框蒙层控制（MaskDialog）
-   
+
    * 开发者对弹出框的定制不仅限于弹出框里的内容，对弹出框蒙层的定制需求也逐渐增加。
    
    * 本文介绍ArkUI弹出框的蒙层控制，包括点击蒙层时是否消失、蒙层区域、蒙层颜色和蒙层动画等特性。
