@@ -15,7 +15,7 @@
 */
 
 // src/main/ets/pages/SettingPage.ets
-
+// [Start Main_SettingPage]
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -49,3 +49,4 @@ struct SettingPage {
     .alignItems(HorizontalAlign.Start)
   }
 }
+// [End Main_SettingPage]
