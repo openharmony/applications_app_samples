@@ -18,7 +18,7 @@ import { image } from '@kit.ImageKit';
 import { unifiedDataChannel as UDC } from '@kit.ArkData';
 import { dragController } from '@kit.ArkUI';
 
-export const Grid_ROUTE_PREFIX: string = 'gridExample';
+export const GridRoutePrefix: string = 'gridExample';
 
 @Entry
 @Component
@@ -46,70 +46,70 @@ export struct GridEts {
 
   aboutToAppear(): void {
     let i: number = 0
-    for (i = 0; i < 500; i++) {
-      this.numbers.push(i)
-      this.isSelectedGrid.push(false)
-      this.previewData.push({})
+    for(i = 0; i < 500; i++) {
+    this.numbers.push(i)
+    this.isSelectedGrid.push(false)
+    this.previewData.push({})
+  }
+}
+
+loadData() {
+  this.timeout = setTimeout(() => {
+    //数据准备完成后的状态
+    if (this.dragEvent) {
+      this.dragEvent.setData(this.unifiedData);
     }
-  }
+    this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY);
+    this.finished = true;
+  }, 4000);
+}
 
-  loadData() {
-    this.timeout = setTimeout(() => {
-      //数据准备完成后的状态
-      if (this.dragEvent) {
-        this.dragEvent.setData(this.unifiedData);
-      }
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY);
-      this.finished = true;
-    }, 4000);
-  }
+@Builder
+RandomBuilder(idx: number) {
+  Column()
+    .backgroundColor(Color.Blue)
+    .width(50)
+    .height(50)
+    .opacity(1.0)
+}
 
-  @Builder
-  RandomBuilder(idx: number) {
-    Column()
-      .backgroundColor(Color.Blue)
-      .width(50)
-      .height(50)
-      .opacity(1.0)
-  }
-
-  build() {
-    NavDestination() {
-      Column({ space: 5 }) {
-        Button('全选')
-          .onClick(() => {
-            for (let i = 0; i < this.isSelectedGrid.length; i++) {
-              if (this.isSelectedGrid[i] === false) {
-                this.numberBadge++;
-                this.isSelectedGrid[i] = true;
-                let data: UDC.Image = new UDC.Image();
-                // '../../../resources/base/media/background.png'需要替换为开发者所需的图像资源文件
-                data.uri = '/resources/base/media/background.png';
-                if (!this.unifiedData) {
-                  this.unifiedData = new UDC.UnifiedData(data);
-                }
-                this.unifiedData.addRecord(data);
-                let gridItemName = 'grid' + i;
-                // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
-                this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap) => {
-                  this.pixmap = pixmap
-                  this.previewData[i] = {
-                    pixelMap: this.pixmap
-                  }
-                })
+build() {
+  NavDestination() {
+    Column({ space: 5 }) {
+      Button('全选')
+        .onClick(() => {
+          for (let i = 0; i < this.isSelectedGrid.length; i++) {
+            if (this.isSelectedGrid[i] === false) {
+              this.numberBadge++;
+              this.isSelectedGrid[i] = true;
+              let data: UDC.Image = new UDC.Image();
+              // '../../../resources/base/media/background.png'需要替换为开发者所需的图像资源文件
+              data.uri = '/resources/base/media/background.png';
+              if (!this.unifiedData) {
+                this.unifiedData = new UDC.UnifiedData(data);
               }
+              this.unifiedData.addRecord(data);
+              let gridItemName = 'grid' + i;
+              // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap) => {
+                this.pixmap = pixmap
+                this.previewData[i] = {
+                  pixelMap: this.pixmap
+                }
+              })
             }
-          })
-        Grid() {
-          ForEach(this.numbers, (idx: number) => {
-            GridItem() {
-              Column()
-                .backgroundColor(Color.Blue)
-                .width(50)
-                .height(50)
-                .opacity(1.0)
-                .id('grid' + idx)
-            }
+          }
+        })
+      Grid() {
+        ForEach(this.numbers, (idx: number) => {
+          GridItem() {
+            Column()
+              .backgroundColor(Color.Blue)
+              .width(50)
+              .height(50)
+              .opacity(1.0)
+              .id('grid' + idx)
+          }
             .dragPreview(this.previewData[idx])
             .selectable(true)
             .selected(this.isSelectedGrid[idx])
@@ -176,23 +176,23 @@ export struct GridEts {
             .onDragEnd(() => {
               this.finished = false;
             })
-          }, (idx: string) => idx)
-        }
+        }, (idx: string) => idx)
+      }
         .width('100%')
         .height('100%')
         .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
         .columnsGap(5)
         .rowsGap(10)
         .backgroundColor(0xFAEEE0)
-      }.width('100%').margin({ top: 5 }).height('100%')
-    }
+    }.width('100%').margin({ top: 5 }).height('100%')
+  }
     .backgroundColor('#f1f3f5')
     .title('', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
     .title($r('app.string.Pages_Index_GridExample'))
-  }
+}
 }
 
 //[End GridEts_start]

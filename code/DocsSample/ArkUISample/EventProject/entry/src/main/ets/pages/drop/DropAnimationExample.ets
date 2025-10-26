@@ -15,7 +15,7 @@
 
 //[Start dropAnimationExample_start]
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-export const DropAnimation_ROUTE_PREFIX: string = 'dropAnimation';
+export const DropAnimationRoutePrefix: string = 'dropAnimation';
 
 @Entry
 @Component

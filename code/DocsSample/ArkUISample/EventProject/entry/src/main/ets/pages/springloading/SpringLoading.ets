@@ -16,7 +16,7 @@
 //[Start SpringLoading_start]
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-export const SpringLoading_ROUTE_PREFIX: string= 'springLoadingExample';
+export const SpringLoadingRoutePrefix: string= 'springLoadingExample';
 
 @Entry
 @ComponentV2
