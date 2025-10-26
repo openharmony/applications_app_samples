@@ -14,9 +14,11 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import resource from '../../common/resource';
+// [Start styledStringHtml_start]
+// xxx.ets
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
-import resource from '../../common/resource';
 
 @Entry
 @Component
@@ -96,3 +98,4 @@ export struct StyledStringHtml {
     .title($r('app.string.StyledStringHtml_title'))
   }
 }
+// [End styledStringHtml_start]

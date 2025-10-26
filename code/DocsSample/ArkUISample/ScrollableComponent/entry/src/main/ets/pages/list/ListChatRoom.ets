@@ -14,13 +14,14 @@
  */
 
 import { ComponentCard } from '../../common/Card'
+// [Start Listitem_data_structure]
 // 消息类型定义
 interface Message {
   id: number
   content: string
   sender: string
 }
-
+// [End Listitem_data_structure]
 @Entry
 @Component
 export struct ListChatRoom {
@@ -32,7 +33,7 @@ export struct ListChatRoom {
         .fontSize(16)
         .textAlign(TextAlign.Start)
         .padding(10)
-        .backgroundColor(message.sender === '系统' ? '#F0F0F0' : '#E6F3FF')
+        .backgroundColor(message.sender === 'system' ? '#F0F0F0' : '#E6F3FF')
         .borderRadius(8)
     }
     .width('100%')
@@ -46,24 +47,28 @@ export struct ListChatRoom {
       this.messages = [...this.messages, {
         id: Date.now(),
         content: this.inputText,
-        sender: '观众'
+        sender: 'audience'
       }]
       this.inputText = ''
     }
   }
+  // [Start Construct_list_structure]
   // 消息列表数据
   @State messages: Message[] = [
-    { id: 1, content: '欢迎来到直播间！', sender: '系统' },
-    { id: 2, content: '大家好啊~', sender: '主播' }
+    { id: 1, content: 'Welcome to the live streaming room！', sender: 'system' },
+    { id: 2, content: 'Hello everyone!~', sender: 'system' }
   ]
 
   // 输入框内容
   @State inputText: string = ''
 
   build() {
+    // [StartExclude Construct_list_structure]
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ListChatRoom_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ListChatRoom_title') }) {
+          // [EndExclude Construct_list_structure]
           Column() {
             // 聊天消息区域
             List({ space: 10 }) {
@@ -78,7 +83,7 @@ export struct ListChatRoom {
 
             // 输入区域
             Row({ space: 10 }) {
-              TextInput({ text: this.inputText, placeholder: '说点什么...' })
+              TextInput({ text: this.inputText, placeholder: 'Say something...' })
                 .layoutWeight(1)
                 .onChange((value: string) => {
                   this.inputText = value
@@ -87,7 +92,7 @@ export struct ListChatRoom {
                   this.sendMessage()
                 })
 
-              Button('发送', { type: ButtonType.Capsule })
+              Button($r('app.string.message'), { type: ButtonType.Capsule })
                 .backgroundColor('#007AFF')
                 .onClick(() => {
                   this.sendMessage()
@@ -98,6 +103,7 @@ export struct ListChatRoom {
           }
           .width('100%')
           .height('100%')
+          // [StartExclude Construct_list_structure]
         }
       }
       .width('100%')
@@ -106,5 +112,7 @@ export struct ListChatRoom {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ListChatRoom_title'))
+    // [EndExclude Construct_list_structure]
   }
+  // [End Construct_list_structure]
 }

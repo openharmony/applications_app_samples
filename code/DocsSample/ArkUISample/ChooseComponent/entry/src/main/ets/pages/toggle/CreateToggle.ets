@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,15 +14,12 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 export struct CreateToggle {
   pathStack: NavPathStack = new NavPathStack();
-
-  resourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
-  }
 
   build() {
     NavDestination() {
@@ -43,6 +40,21 @@ export struct CreateToggle {
           Toggle({ type: ToggleType.Switch, isOn: false }).id('toggle3')
           Toggle({ type: ToggleType.Switch, isOn: true }).id('toggle4')
           // [End create_toggle_with_switch]
+
+          // [Start create_toggle_with_event]
+          Toggle({ type: ToggleType.Switch, isOn: false })
+            .onChange((isOn: boolean) => {
+              if(isOn) {
+                // 需要执行的操作
+                // [StartExclude create_toggle_with_event]
+                promptAction.openToast({ 'message': 'Switch is on.' });
+                // [EndExclude create_toggle_with_event]
+              }
+            })
+            // [StartExclude create_toggle_with_event]
+            .visibility(Visibility.None)
+          // [EndExclude create_toggle_case]
+          // [End create_toggle_with_event]
         }
 
         ComponentCard({
@@ -68,6 +80,7 @@ export struct CreateToggle {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    .title(this.resourceToString($r('app.string.CreateToggle_title')))
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    .title($r('app.string.CreateToggle_title'))
   }
 }

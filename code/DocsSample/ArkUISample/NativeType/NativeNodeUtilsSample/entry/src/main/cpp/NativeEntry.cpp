@@ -418,14 +418,62 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
+{
+    // 创建组件并挂载
+    // 1：使用智能指针创建List组件。
+    auto list = std::make_shared<ArkUIListNode>();
+    list->SetPercentWidth(1);
+    list->SetPercentHeight(1);
+    list->SetScrollBarState(true);
+    // 2：创建ListItem子组件并挂载到List上。
+    for (int32_t i = 0; i < 30; ++i) { // 创建30个子项目。
+        auto listItem = std::make_shared<ArkUIListItemNode>();
+        auto textNode = std::make_shared<ArkUITextNode>();
+        textNode->SetTextContent(std::to_string(i));
+        int32_t fontSize = 16;
+        textNode->SetFontSize(fontSize);
+        textNode->SetFontColor(0xFFff00ff);
+        textNode->SetPercentWidth(1);
+        int32_t width = 300;
+        int32_t height = 100;
+        textNode->SetWidth(width);
+        textNode->SetHeight(height);
+        textNode->SetBackgroundColor(0xFFfffacd);
+        textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+        listItem->InsertChild(textNode, i);
+        list->AddChild(listItem);
+    }
+    return list;
+}
+// [Start Interface_entrance_mounting_file]
+napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+
+        //创建文本列表
+        auto list = CreateTextListExample();
+
+        //保持Native侧对象到管理类中，维护生命周期。
+        NativeEntry::GetInstance()->SetRootNode(list);
+    return nullptr;
+}
+
 napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
 {
     // 从管理类中释放Native侧对象。
     NativeEntry::GetInstance()->DisposeRootNode();
     return nullptr;
 }
-
-// 获取并保存Context。
+// [End Interface_entrance_mounting_file]
 napi_value GetContext(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;

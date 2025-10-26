@@ -86,7 +86,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/NativeNodeSample > .git/info/sparse-checkout
-git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/NativeNodeSample > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

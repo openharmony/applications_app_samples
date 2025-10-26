@@ -53,31 +53,31 @@ const char FRAGMENT_SHADER[] = "#version 300 es\n"
                                "{                                         \n"
                                "   fragColor = v_color;                   \n"
                                "}                                         \n";
-
+// [Start native_color]
 /**
- * Background color #f4f4f4.
+ * 绘制背景颜色 #f4f4f4.
  */
 const GLfloat BACKGROUND_COLOR[] = {244.0f / 255, 244.0f / 255, 244.0f / 255, 1.0f};
 
 /**
- * Draw color #7E8FFB.
+ * 绘制图案颜色 #7E8FFB.
  */
 const GLfloat DRAW_COLOR[] = {126.0f / 255, 143.0f / 255, 251.0f / 255, 1.0f};
 
 /**
- * Change color #92D6CC.
+ * 绘制图案改变后的颜色 #92D6CC.
  */
 const GLfloat CHANGE_COLOR[] = {146.0f / 255, 214.0f / 255, 204.0f / 255, 1.0f};
 
 /**
- * Background area.
+ * 绘制背景顶点
  */
 const GLfloat BACKGROUND_RECTANGLE_VERTICES[] = {
     -1.0f, 1.0f,
     1.0f, 1.0f,
     1.0f, -1.0f,
     -1.0f, -1.0f};
-
+// [End native_color]
 /**
  * Get context parameter count.
  */
@@ -189,24 +189,26 @@ const EGLint CONTEXT_ATTRIBS[] = {
     EGL_CONTEXT_CLIENT_VERSION, 2,
     EGL_NONE};
 } // namespace
+// [Start native_create_context_init]
 bool EGLCore::EglContextInit(void* window, int width, int height)
 {
+    // [StartExclude native_create_context_init]
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EGLCore", "EglContextInit execute");
     if ((window == nullptr) || (width <= 0) || (height <= 0)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "EglContextInit: param error");
         return false;
     }
-
+    // [EndExclude native_create_context_init]
     UpdateSize(width, height);
     eglWindow_ = static_cast<EGLNativeWindowType>(window);
 
-    // Init display.
+    // 初始化display
     eglDisplay_ = eglGetDisplay(EGL_DEFAULT_DISPLAY);
     if (eglDisplay_ == EGL_NO_DISPLAY) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglGetDisplay: unable to get EGL display");
         return false;
     }
-
+    // 初始化EGL
     EGLint majorVersion;
     EGLint minorVersion;
     if (!eglInitialize(eglDisplay_, &majorVersion, &minorVersion)) {
@@ -215,20 +217,21 @@ bool EGLCore::EglContextInit(void* window, int width, int height)
         return false;
     }
 
-    // Select configuration.
+    // 选择配置
     const EGLint maxConfigSize = 1;
     EGLint numConfigs;
     if (!eglChooseConfig(eglDisplay_, ATTRIB_LIST, &eglConfig_, maxConfigSize, &numConfigs)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglChooseConfig: unable to choose configs");
         return false;
     }
-
+    // 创建环境
     return CreateEnvironment();
 }
-
+// [End native_create_context_init]
+// [Start native_create_environment]
 bool EGLCore::CreateEnvironment()
 {
-    // Create surface.
+    // 创建Surface
     if (eglWindow_ == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglWindow_ is null");
         return false;
@@ -239,13 +242,13 @@ bool EGLCore::CreateEnvironment()
             LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglCreateWindowSurface: unable to create surface");
         return false;
     }
-    // Create context.
+    // 创建context
     eglContext_ = eglCreateContext(eglDisplay_, eglConfig_, EGL_NO_CONTEXT, CONTEXT_ATTRIBS);
     if (!eglMakeCurrent(eglDisplay_, eglSurface_, eglSurface_, eglContext_)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglMakeCurrent failed");
         return false;
     }
-    // Create program.
+    // 创建program
     program_ = CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (program_ == PROGRAM_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "CreateProgram: unable to create program");
@@ -253,7 +256,9 @@ bool EGLCore::CreateEnvironment()
     }
     return true;
 }
-
+// [End native_create_environment]
+// [Start native_background]
+// 绘制背景颜色
 void EGLCore::Background()
 {
     GLint position = PrepareDraw();
@@ -273,7 +278,8 @@ void EGLCore::Background()
         return;
     }
 }
-
+// [End native_background]
+// [Start native_draw]
 void EGLCore::Draw(int& hasDraw)
 {
     flag_ = false;
@@ -284,13 +290,14 @@ void EGLCore::Draw(int& hasDraw)
         return;
     }
 
+    // 绘制背景
     if (!ExecuteDraw(position, BACKGROUND_COLOR,
                      BACKGROUND_RECTANGLE_VERTICES, sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw background failed");
         return;
     }
 
-    // Divided into five quadrilaterals and calculate one of the quadrilateral's Vertices
+    // 将五角星分为五个四边形，计算其中一个四边形的四个顶点
     GLfloat rotateX = 0;
     GLfloat rotateY = FIFTY_PERCENT * height_;
     GLfloat centerX = 0;
@@ -303,6 +310,7 @@ void EGLCore::Draw(int& hasDraw)
     GLfloat rightX = rotateY * (M_PI / 180 * 18);
     GLfloat rightY = 0;
 
+    // 确定绘制四边形的顶点，使用绘制区域的百分比表示
     const GLfloat shapeVertices[] = { centerX / width_, centerY / height_, leftX / width_, leftY / height_,
         rotateX / width_, rotateY / height_, rightX / width_, rightY / height_ };
 
@@ -315,19 +323,23 @@ void EGLCore::Draw(int& hasDraw)
     GLfloat rad = M_PI / 180 * 72;
     // Rotate four times
     for (int i = 0; i < NUM_4; ++i) {
+        // 旋转得其他四个四边形的顶点
         Rotate2d(centerX, centerY, &rotateX, &rotateY, rad);
         Rotate2d(centerX, centerY, &leftX, &leftY, rad);
         Rotate2d(centerX, centerY, &rightX, &rightY, rad);
 
+        // 确定绘制四边形的顶点，使用绘制区域的百分比表示
         const GLfloat shapeVertices[] = { centerX / width_, centerY / height_, leftX / width_, leftY / height_,
             rotateX / width_, rotateY / height_, rightX / width_, rightY / height_ };
 
+        // 绘制图形
         if (!ExecuteDrawStar(position, DRAW_COLOR, shapeVertices, sizeof(shapeVertices))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw shape failed");
             return;
         }
     }
 
+    // 结束绘制
     if (!FinishDraw()) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw FinishDraw failed");
         return;
@@ -336,7 +348,8 @@ void EGLCore::Draw(int& hasDraw)
 
     flag_ = true;
 }
-
+// [End native_draw]
+// [Start native_change_color]
 void EGLCore::ChangeColor(int& hasChangeColor)
 {
     if (!flag_) {
@@ -349,13 +362,14 @@ void EGLCore::ChangeColor(int& hasChangeColor)
         return;
     }
 
+    // 绘制背景
     if (!ExecuteDraw(position, BACKGROUND_COLOR,
                      BACKGROUND_RECTANGLE_VERTICES, sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ChangeColor execute draw background failed");
         return;
     }
 
-    // Divided into five quadrilaterals and calculate one of the quadrilateral's Vertices
+    // 确定绘制四边形的顶点，使用绘制区域的百分比表示
     GLfloat rotateX = 0;
     GLfloat rotateY = FIFTY_PERCENT * height_;
     GLfloat centerX = 0;
@@ -368,9 +382,11 @@ void EGLCore::ChangeColor(int& hasChangeColor)
     GLfloat rightX = rotateY * (M_PI / 180 * 18);
     GLfloat rightY = 0;
 
+    // 确定绘制四边形的顶点，使用绘制区域的百分比表示
     const GLfloat shapeVertices[] = { centerX / width_, centerY / height_, leftX / width_, leftY / height_,
         rotateX / width_, rotateY / height_, rightX / width_, rightY / height_ };
 
+    // 使用新的颜色绘制
     if (!ExecuteDrawNewStar(0, CHANGE_COLOR, shapeVertices, sizeof(shapeVertices))) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw shape failed");
         return;
@@ -380,24 +396,30 @@ void EGLCore::ChangeColor(int& hasChangeColor)
     GLfloat rad = M_PI / 180 * 72;
     // Rotate four times
     for (int i = 0; i < NUM_4; ++i) {
+        // 旋转得其他四个四边形的顶点
         Rotate2d(centerX, centerY, &rotateX, &rotateY, rad);
         Rotate2d(centerX, centerY, &leftX, &leftY, rad);
         Rotate2d(centerX, centerY, &rightX, &rightY, rad);
+        // 确定绘制四边形的顶点，使用绘制区域的百分比表示
         const GLfloat shapeVertices[] = { centerX / width_, centerY / height_, leftX / width_, leftY / height_,
             rotateX / width_, rotateY / height_, rightX / width_, rightY / height_ };
 
+        // 使用新的颜色绘制
         if (!ExecuteDrawNewStar(position, CHANGE_COLOR, shapeVertices, sizeof(shapeVertices))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw shape failed");
             return;
         }
     }
 
+    // 结束绘制
     if (!FinishDraw()) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ChangeColor FinishDraw failed");
     }
     hasChangeColor = 1;
 }
-
+// [StartExclude native_change_color]
+// [Start native_prepare_draw]
+// 绘前准备，获取position，创建成功时position值从0开始
 GLint EGLCore::PrepareDraw()
 {
     if ((eglDisplay_ == nullptr) || (eglSurface_ == nullptr) || (eglContext_ == nullptr) ||
@@ -406,7 +428,7 @@ GLint EGLCore::PrepareDraw()
         return POSITION_ERROR;
     }
 
-    // The gl function has no return value.
+    // 该gl函数没有返回值。
     glViewport(DEFAULT_X_POSITION, DEFAULT_Y_POSITION, width_, height_);
     glClearColor(GL_RED_DEFAULT, GL_GREEN_DEFAULT, GL_BLUE_DEFAULT, GL_ALPHA_DEFAULT);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -414,7 +436,9 @@ GLint EGLCore::PrepareDraw()
 
     return glGetAttribLocation(program_, POSITION_NAME);
 }
-
+// [End native_prepare_draw]
+// [Start native_execute_draw]
+// 依据传入参数在指定区域绘制指定颜色
 bool EGLCore::ExecuteDraw(GLint position, const GLfloat* color, const GLfloat shapeVertices[], unsigned long vertSize)
 {
     if ((position > 0) || (color == nullptr) || (vertSize / sizeof(shapeVertices[0])) != SHAPE_VERTICES_SIZE) {
@@ -422,7 +446,7 @@ bool EGLCore::ExecuteDraw(GLint position, const GLfloat* color, const GLfloat sh
         return false;
     }
 
-    // The gl function has no return value.
+    // 该gl函数没有返回值。
     glVertexAttribPointer(position, POINTER_SIZE, GL_FLOAT, GL_FALSE, 0, shapeVertices);
     glEnableVertexAttribArray(position);
     glVertexAttrib4fv(1, color);
@@ -431,7 +455,7 @@ bool EGLCore::ExecuteDraw(GLint position, const GLfloat* color, const GLfloat sh
 
     return true;
 }
-
+// [End native_execute_draw]
 bool EGLCore::ExecuteDrawStar(
     GLint position, const GLfloat* color, const GLfloat shapeVertices[], unsigned long vertSize)
 {
@@ -452,7 +476,7 @@ bool EGLCore::ExecuteDrawStar(
 
     return true;
 }
-
+// [EndExclude native_change_color]
 bool EGLCore::ExecuteDrawNewStar(
     GLint position, const GLfloat* color, const GLfloat shapeVertices[], unsigned long vertSize)
 {
@@ -461,7 +485,7 @@ bool EGLCore::ExecuteDrawNewStar(
         return false;
     }
 
-    // The gl function has no return value.
+    // 该gl函数没有返回值。
     glVertexAttribPointer(position, POINTER_SIZE, GL_FLOAT, GL_FALSE, 0, shapeVertices);
     glEnableVertexAttribArray(position);
     glVertexAttrib4fv(1, color);
@@ -470,7 +494,7 @@ bool EGLCore::ExecuteDrawNewStar(
 
     return true;
 }
-
+// [End native_change_color]
 void EGLCore::Rotate2d(GLfloat centerX, GLfloat centerY, GLfloat* rotateX, GLfloat* rotateY, GLfloat theta)
 {
     GLfloat tempX = cos(theta) * (*rotateX - centerX) - sin(theta) * (*rotateY - centerY);
@@ -478,15 +502,17 @@ void EGLCore::Rotate2d(GLfloat centerX, GLfloat centerY, GLfloat* rotateX, GLflo
     *rotateX = tempX + centerX;
     *rotateY = tempY + centerY;
 }
-
+// [Start native_finish_draw]
+// 结束绘制操作
 bool EGLCore::FinishDraw()
 {
-    // The gl function has no return value.
+    // 强制刷新缓冲
     glFlush();
     glFinish();
     return eglSwapBuffers(eglDisplay_, eglSurface_);
 }
-
+// [End native_finish_draw]
+// [Start native_load_shader]
 GLuint EGLCore::LoadShader(GLenum type, const char* shaderSrc)
 {
     if ((type <= 0) || (shaderSrc == nullptr)) {
@@ -500,7 +526,7 @@ GLuint EGLCore::LoadShader(GLenum type, const char* shaderSrc)
         return PROGRAM_ERROR;
     }
 
-    // The gl function has no return value.
+    // 该gl函数没有返回值。
     glShaderSource(shader, 1, &shaderSrc, nullptr);
     glCompileShader(shader);
 
@@ -528,7 +554,8 @@ GLuint EGLCore::LoadShader(GLenum type, const char* shaderSrc)
     glDeleteShader(shader);
     return PROGRAM_ERROR;
 }
-
+// [End native_load_shader]
+// [Start native_create_program]
 GLuint EGLCore::CreateProgram(const char* vertexShader, const char* fragShader)
 {
     if ((vertexShader == nullptr) || (fragShader == nullptr)) {
@@ -557,7 +584,7 @@ GLuint EGLCore::CreateProgram(const char* vertexShader, const char* fragShader)
         return PROGRAM_ERROR;
     }
 
-    // The gl function has no return value.
+    // 该gl函数没有返回值。
     glAttachShader(program, vertex);
     glAttachShader(program, fragment);
     glLinkProgram(program);
@@ -586,28 +613,33 @@ GLuint EGLCore::CreateProgram(const char* vertexShader, const char* fragShader)
     glDeleteProgram(program);
     return PROGRAM_ERROR;
 }
-
+// [End native_create_program]
+// [Start native_update_size]
 void EGLCore::UpdateSize(int width, int height)
 {
+    // width_和height_在头文件中定义
     width_ = width;
     height_ = height;
     if (width_ > 0) {
         widthPercent_ = FIFTY_PERCENT * height_ / width_;
     }
 }
-
+// [End native_update_size]
+// [Start native_release]
 void EGLCore::Release()
 {
+    // 释放Surface
     if ((eglDisplay_ == nullptr) || (eglSurface_ == nullptr) || (!eglDestroySurface(eglDisplay_, eglSurface_))) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Release eglDestroySurface failed");
     }
-
+    // 释放context
     if ((eglDisplay_ == nullptr) || (eglContext_ == nullptr) || (!eglDestroyContext(eglDisplay_, eglContext_))) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Release eglDestroyContext failed");
     }
-
+    // 释放display
     if ((eglDisplay_ == nullptr) || (!eglTerminate(eglDisplay_))) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Release eglTerminate failed");
     }
 }
+// [End native_release]
 } // namespace NativeXComponentSample
