@@ -30,7 +30,7 @@ declare interface AttributeModifier<T> {
 declare class CommonMethod<T> {
   attributeModifier(modifier: AttributeModifier<T>): T;
 }
-
+// [Start Common_MyButtonModifier4]
 export class MyButtonModifier4 implements AttributeModifier<ButtonAttribute> {
   applyNormalAttribute(instance: ButtonAttribute): void {
     instance.backgroundColor('#17A98D')
@@ -44,3 +44,4 @@ export class MyButtonModifier4 implements AttributeModifier<ButtonAttribute> {
       .borderWidth(5)
   }
 }
+// [End Common_MyButtonModifier4]
