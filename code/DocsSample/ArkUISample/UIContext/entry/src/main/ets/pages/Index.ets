@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start_UIContext]
+// [Start Main_UIContext]
 import { ContextUtils } from '../Common/ContextUtils';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { Router } from '@kit.ArkUI';
@@ -50,4 +50,4 @@ struct Index {
     .width('100%')
   }
 }
-// [End_UIContext]
+// [End Main_UIContext]
