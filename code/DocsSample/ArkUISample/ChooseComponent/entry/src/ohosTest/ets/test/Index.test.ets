@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -70,6 +70,12 @@ export default function IndexTest() {
       expect(button_back === null).assertFalse();
       await button_normal.click();
       await button_back.click();
+
+      let buttons = await driver.findComponents(ON.type('Button'))
+      let ok_normal = buttons[1]
+      let loading_button = buttons[3]
+      await ok_normal.click();
+      await loading_button.click();
       await driver.pressBack();
       await driver.pressBack();
       done();
@@ -98,6 +104,12 @@ export default function IndexTest() {
       await button_Circle.click();
       await button_Normal.click();
       await button_Round.click();
+
+      let buttons = await driver.findComponents(ON.type('Button'))
+      await buttons[1].click();
+      await buttons[3].click();
+      await buttons[5].click();
+      await buttons[7].click();
       await driver.pressBack();
       await driver.pressBack();
       done();
@@ -123,6 +135,13 @@ export default function IndexTest() {
       await button_circle.click();
       await button_font.click();
       await button_color.click();
+
+      let buttons = await driver.findComponents(ON.type('Button'))
+      await buttons[1].click();
+      await buttons[3].click();
+      await buttons[5].click();
+      await buttons[6].click();
+
       await driver.pressBack();
       await driver.pressBack();
       done();
@@ -168,6 +187,91 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let str = await getResourceString($r('app.string.FloatingButton'));
+      let button_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(button_search === null).assertFalse();
+      await button_search.click();
+
+      let floatingButton = await driver.findComponent(ON.id('Button'));
+      let stackList = await driver.findComponent(ON.id('List'));
+      expect(floatingButton === null).assertFalse();
+      expect(stackList === null).assertFalse();
+      await floatingButton.click();
+      await stackList.scrollToBottom();
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    it('testButtonCase1', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('Button', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let str = await getResourceString($r('app.string.ButtonCase1_title'));
+      let button_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(button_search === null).assertFalse();
+      await button_search.click();
+      let button_first = await driver.findComponent(ON.text('First', MatchPattern.CONTAINS));
+      expect(button_first === null).assertFalse();
+      await button_first.click();
+      await driver.pressBack()
+
+      let button_second = await driver.findComponent(ON.text('Second', MatchPattern.CONTAINS));
+      expect(button_second === null).assertFalse();
+      await button_second.click();
+      await driver.pressBack()
+
+      let button_third = await driver.findComponent(ON.text('Third', MatchPattern.CONTAINS));
+      expect(button_third === null).assertFalse();
+      await button_third.click();
+      await driver.pressBack()
+
+      await driver.pressBack();
+      done();
+    })
+
+    it('testButtonCase2', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('Button', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let str = await getResourceString($r('app.string.ButtonCase2_title'));
+      let button_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(button_search === null).assertFalse();
+      await button_search.click();
+      let input_buttons = await driver.findComponents(ON.type('TextInput'))
+      let username = input_buttons[0]
+      let password = input_buttons[1]
+      let registerButton = await driver.findComponent(ON.text('Register', MatchPattern.CONTAINS));
+      let okButton = await driver.findComponent(ON.text('Ok', MatchPattern.CONTAINS));
+      expect(username === null).assertFalse();
+      expect(password === null).assertFalse();
+      expect(registerButton === null).assertFalse();
+      expect(okButton === null).assertFalse();
+      await username.inputText('username');
+      await password.inputText('password');
+      expect(await username.getText() === 'username').assertTrue();
+
+      let point = await password.getBoundsCenter();
+      await driver.mouseClick({
+        x: point.x + 300, y: point.y
+      }, MouseButton.MOUSE_BUTTON_LEFT, 0, 0);
+      expect(await password.getText() === 'password').assertTrue();
+      await registerButton.click();
+      await okButton.click();
+      await driver.pressBack();
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+
+    it('testHoverButtonExample', 0, async (done: Function) => {
+      let driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('Button', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      let str = await getResourceString($r('app.string.HoverButtonExample_title'));
       let button_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(button_search === null).assertFalse();
       await button_search.click();
