@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.samples.reusablev2",
+    "bundleName": "com.samples.freezev2",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

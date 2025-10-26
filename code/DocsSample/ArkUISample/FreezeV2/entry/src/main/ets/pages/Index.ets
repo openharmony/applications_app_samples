@@ -105,7 +105,7 @@ struct AnimateIndex {
   }
   build() {
     Column() {
-      Text('ReusableV2')
+      Text('Freezev2')
       List() {
         ForEach(this.routes, (routeGroup: RouteGroup) => {
           ListItemGroup({

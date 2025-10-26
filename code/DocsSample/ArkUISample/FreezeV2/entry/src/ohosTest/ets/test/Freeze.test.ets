@@ -32,7 +32,7 @@ export function FreezeTest() {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.samples.reusablev2',
+        bundleName: 'com.samples.freezev2',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -42,10 +42,10 @@ export function FreezeTest() {
     })
 
     afterEach(async () => {
-      aimComponent = await driver.findComponent(ON.text('ReusableV2'));
+      aimComponent = await driver.findComponent(ON.text('Freezev2'));
       do {
         await driver.pressBack();
-        aimComponent = await driver.findComponent(ON.text('ReusableV2'));
+        aimComponent = await driver.findComponent(ON.text('Freezev2'));
       } while (aimComponent == null)
     })
 
@@ -161,11 +161,7 @@ export function FreezeTest() {
     it(BUNDLE + 'FreezeTest_005', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_005_begin');
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label5"))));
-      await aimComponent.click();
-      await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('Next Page'));
-      await aimComponent.click();
       await driver.delayMs(1000);
       aimComponent = await driver.findComponent(ON.text('Go to next page'));
       await aimComponent.click();
@@ -187,10 +183,8 @@ export function FreezeTest() {
     it(BUNDLE + 'FreezeTest_006', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_006_begin');
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label6"))));
-      await aimComponent.click();
-      await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('change BookName'));
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r('change BookName'))));
       await aimComponent.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_006_end');

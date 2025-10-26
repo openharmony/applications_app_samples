@@ -51,7 +51,7 @@ entry/src/ohosTest/
 
 ### 具体实现
 
-1. 自定义组件冻结功能：通过@ComponentV2装饰的自定义组件处于非激活状态时，状态变量将不响应更新，通过freezeWhenInactive属性来决定是否使用冻结功能。源码参考[freeze/template1/Page1.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ReusableV2/entry/src/main/ets/pages/freeze/template1/Page1.ets)
+1. 自定义组件冻结功能：通过@ComponentV2装饰的自定义组件处于非激活状态时，状态变量将不响应更新，通过freezeWhenInactive属性来决定是否使用冻结功能。源码参考[freeze/template1/Page1.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/freezev2/entry/src/main/ets/pages/freeze/template1/Page1.ets)
    * 当@ComponentV2装饰的自定义组件处于非激活状态时，状态变量将不响应更新，即@Monitor不会调用，状态变量关联的节点不会刷新。
    * 该冻结机制在复杂UI场景下能显著优化性能，避免非激活组件因状态变量更新进行无效刷新，从而减少资源消耗。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。
    * 帧动画在动画过程中即可实时响应，而属性动画按最终状态响应。
@@ -79,7 +79,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/ReusableV2 > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/freezev2 > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples
 git pull origin master
 ````
