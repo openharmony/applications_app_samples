@@ -14,10 +14,11 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct SetOmissionProperty {
+export struct SetProperty {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
@@ -31,12 +32,23 @@ export struct SetOmissionProperty {
             .margin(30)
           // [End set_omission_property]
         }
+        ComponentCard({ description: $r('app.string.Set_Stroke_Property_description') }) {
+          // [Start set_stroke_property]
+          TextInput({ text: 'Text with stroke' })
+            .width('100%')
+            .height(60)
+            .borderWidth(1)
+            .fontSize(40)
+            .strokeWidth(LengthMetrics.px(3.0))
+            .strokeColor(Color.Red)
+          // [End set_stroke_property]
+        }
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.Set_Omission_Property'))
+    .title($r('app.string.Set_Property'))
   }
 }
