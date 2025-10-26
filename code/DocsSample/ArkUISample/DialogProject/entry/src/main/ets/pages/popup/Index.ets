@@ -25,6 +25,7 @@ import { TextPopupExample } from './TextPrompts';
 import { AvoidSoftKeyboardPopupExample } from './PopupAvoidSoftKeyboard';
 import { PolymorphicEffectPopupExample } from './PopupPolymorphicEffect';
 import { SupportedAvoidAxisPopupExample } from './PopupSupportedAvoidAxis';
+import { OpenPopup } from './globalpopupsindependentofuicomponents/OpenPopup';
 
 export const Popup_ROUTE_PREFIX: string = 'Popup_ROUTE_PREFIX';
 
@@ -79,6 +80,11 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.SupportedAvoidAxisPopupExample_title')),
     // $r('app.string.SupportedAvoidAxisPopupExample_des')需要替换为开发者所需的资源文件。
     description: $r('app.string.SupportedAvoidAxisPopupExample_des'),
+  },
+  {
+    name: `${Popup_ROUTE_PREFIX}/OpenPopupExample`,
+    title: resource.resourceToString($r('app.string.StylePopup_global')),
+    description: $r('app.string.StylePopup_global_des'),
   }
 ]
 
@@ -104,6 +110,8 @@ export function PopupDestination(name: string) {
     PolymorphicEffectPopupExample();
   } else if (name === routes[8].name) {
     SupportedAvoidAxisPopupExample();
+  } else if (name === routes[9].name) {
+    OpenPopup();
   }
 }
 

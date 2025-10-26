@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ListShow",
+      "value": "Show List"
+    },
+    {
+      "name": "Reset",
+      "value": "重置"
+    },
+    {
+      "name": "Brightness",
+      "value": "设置亮度"
+    },
+    {
+      "name": "ButtonComponent",
+      "value": "button"
+    }
+  ]
+}

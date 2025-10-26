@@ -577,6 +577,18 @@
       "value": "响应滚动位置"
     },
     {
+      "name": "Sliding_Hand_Event",
+      "value": "滑动离手事件"
+    },
+    {
+      "name": "Support_Sliding_Hand_Event",
+      "value": "支持滑动离手事件"
+    },
+    {
+      "name": "Today_Hot_News",
+      "value": "今日热点新闻"
+    },
+    {
       "name": "ResponsiveScrollPositionList_titleExample",
       "value": "响应滚动位置示例"
     },
@@ -925,12 +937,28 @@
       "value": "Swiper选中的元素改变时，会通过onSelected回调事件，将元素的索引值index返回。通过调用tabsController.changeIndex(index)方法来实现Tabs页签的切换。"
     },
     {
+      "name": "SwiperDigitIndicatorIgnoreComponentSize_title",
+      "value": "设置数字导航点忽略导航点组件大小"
+    },
+    {
+      "name": "SwiperDigitIndicatorIgnoreComponentSize_description",
+      "value": "针对数字导航点，当导航点的bottom设为0之后，导航点的底部与Swiper的底部还会有一定间距。如果希望消除该间距，可通过调用bottom(bottom, ignoreSize)属性来进行设置。"
+    },
+    {
       "name": "SwiperIgnoreComponentSize_title",
       "value": "设置圆点导航点间距和忽略导航点组件大小"
     },
     {
       "name": "SwiperIgnoreComponentSize_description",
       "value": "针对圆点导航点，可以通过DotIndicator的space属性来设置圆点导航点的间距。当导航点的bottom设为0之后，导航点的底部与Swiper的底部还会有一定间距。如果希望消除该间距，可通过调用bottom(bottom, ignoreSize)属性来进行设置。"
+    },
+    {
+      "name": "SwiperVisibleContentPosition_title",
+      "value": "保持可见内容位置不变"
+    },
+    {
+      "name": "SwiperVisibleContentPosition_description",
+      "value": "Swiper通过设置maintainVisibleContentPosition属性，可在使用LazyForEach懒加载数据时（如通过onDataAdd新增数据），保持当前可见内容位置不变，避免因数据增删导致的视图跳动。"
     },
     {
       "name": "ArcLongList_title",
@@ -947,6 +975,10 @@
     {
       "name": "ListChatRoom_description",
       "value": "部分业务场景需要列表底部插入数据时，自动向上滚动，把新插入的节点展示出来。"
+    },
+    {
+      "name": "SupportSlidingHand_title",
+      "value": "支持滑动离手事件"
     },
     {
       "name": "LongGrid_title",
@@ -991,6 +1023,98 @@
     {
       "name": "ArcListStyles_light",
       "value": "显示和亮度"
+    },
+    {
+      "name": "Reading",
+      "value": "读书"
+    },
+    {
+      "name": "Exercise",
+      "value": "旅游"
+    },
+    {
+      "name": "Travel",
+      "value": "旅游"
+    },
+    {
+      "name": "Listening_Music",
+      "value": "听音乐"
+    },
+    {
+      "name": "Watching_Films",
+      "value": "看电影"
+    },
+    {
+      "name": "Singing",
+      "value": "唱歌"
+    },
+    {
+      "name": "Meeting",
+      "value": "会议"
+    },
+    {
+      "name": "Voting",
+      "value": "投票"
+    },
+    {
+      "name": "Check_in",
+      "value": "签到"
+    },
+    {
+      "name": "Printing",
+      "value": "打印"
+    },
+    {
+      "name": "Live_Streaming",
+      "value": "直播"
+    },
+    {
+      "name": "Imported",
+      "value": "进口"
+    },
+    {
+      "name": "Categories",
+      "value": "分类"
+    },
+    {
+      "name": "Recharge",
+      "value": "充值"
+    },
+    {
+      "name": "Membership",
+      "value": "领卷"
+    },
+    {
+      "name": "Claim_Coupon",
+      "value": "抽奖"
+    },
+    {
+      "name": "Lottery",
+      "value": "会员"
+    },
+    {
+      "name": "Favorites",
+      "value": "收藏"
+    },
+    {
+      "name": "Points",
+      "value": "积分"
+    },
+    {
+      "name": "More",
+      "value": "更多"
+    },
+    {
+      "name": "Previous_Page",
+      "value": "上一页"
+    },
+    {
+      "name": "Next_page",
+      "value": "下一页"
+    },
+    {
+      "name": "message",
+      "value": "发送"
     },
     {
       "name": "contacts",

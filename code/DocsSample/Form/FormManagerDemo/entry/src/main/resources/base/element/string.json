@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FormManagerDemo"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "button_one",
+      "value": "更换成：\"message one\""
+    },
+    {
+      "name": "button_two",
+      "value": "更换成：\"message two\""
+    },
+    {
+      "name": "button_three",
+      "value": "进入编辑二级页"
+    },
+    {
+      "name": "open_form_manager_button",
+      "value": "添加应用卡片到桌面"
+    }
+  ]
+}

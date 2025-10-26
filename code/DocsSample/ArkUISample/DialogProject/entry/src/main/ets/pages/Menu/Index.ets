@@ -17,6 +17,7 @@ import { CompletedRoutableCard } from '../../common/Card';
 import resource from '../../common/resource';
 import { Route } from '../../common/Route';
 import { menuExample } from './CreateMenu';
+import { OpenPopup } from './globalmenusindependentofuicomponents//GlobalOpenMenu';
 import { PopVibrateMenuExample } from './PopVibrateMenu';
 import { SupportAvoidCentralAxisMenuExample } from './SupportAvoidCentralAxisMenu';
 import { EventTransSubWindowMenuExample } from './EventTransSubWindowMenu';
@@ -29,6 +30,11 @@ const routes: Route[] = [
     name: `${Menu_ROUTE_PREFIX}/CreateMenu`,
     title: resource.resourceToString($r('app.string.CreateMenu_title')),
     description: $r('app.string.CreateMenu_des'),
+  },
+  {
+    name: `${Menu_ROUTE_PREFIX}/OpenMenu`,
+    title: resource.resourceToString($r('app.string.OpenMenu_title')),
+    description: $r('app.string.OpenMenu_des'),
   },
   {
     name: `${Menu_ROUTE_PREFIX}/PopVibrateMenu`,
@@ -58,16 +64,16 @@ export function MenuDestination(name: string) {
     MenuExample();
   } else if (name === routes[0].name) {
     menuExample();
-  } else if (name === routes[1].name) {
+  } else if (name === routes[1].name) { 
+    OpenPopup();
+  } else if (name === routes[2].name) { 
     PopVibrateMenuExample();
-  } else if (name === routes[2].name) {
-    SupportAvoidCentralAxisMenuExample();
   } else if (name === routes[3].name) {
-    EventTransSubWindowMenuExample();
+    SupportAvoidCentralAxisMenuExample();
   } else if (name === routes[4].name) {
+    EventTransSubWindowMenuExample();
+  } else if (name === routes[5].name) {
     BindComponentMenuExample();
-  }
-
 }
 
 @Entry

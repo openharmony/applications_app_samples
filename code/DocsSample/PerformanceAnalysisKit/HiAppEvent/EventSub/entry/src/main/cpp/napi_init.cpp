@@ -19,14 +19,15 @@
 #include "hilog/log.h"
 #include "hiappevent/hiappevent.h"
 #include "hiappevent/hiappevent_event.h"
-// <Start AppEvent_Set_Timer_h>
-#include <unistd.h>
-#include "hicollie/hicollie.h"
-// <End AppEvent_Set_Timer_h>
 
 #undef LOG_TAG
 #define LOG_TAG "testTag"
 // [End EventSub_napi_Header]
+
+// [Start Hicollie_Set_Timer_h]
+#include <unistd.h>
+#include "hicollie/hicollie.h"
+// [End Hicollie_Set_Timer_h]
 
 // 定义一变量，用来缓存创建的观察者的指针。
 // [Start EventSub_onReceive_ptr]
@@ -584,26 +585,39 @@ static napi_value RegisterWatcher(napi_env env, napi_callback_info info)
     return {};
 }
 // [End EventSub_RegisterWatcher_All]
+
 // [Start EventSub_RemoveWatcher_All]
 // [Start AppEvent_C++_RemoveWatcher]
+// [Start APP_Hicollie_RemoveWatcher]
 static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
 {
     // 使观察者停止监听事件
+    // [StartExclude APP_Hicollie_RemoveWatcher]
     // [StartExclude AppEvent_C++_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(eventWatcherT);
     OH_HiAppEvent_RemoveWatcher(eventWatcherR);
     // [EndExclude AppEvent_C++_RemoveWatcher]
     OH_HiAppEvent_RemoveWatcher(eventWatcherT1);
     OH_HiAppEvent_RemoveWatcher(eventWatcherR1);
+    // [EndExclude APP_Hicollie_RemoveWatcher]
+
+    // [StartExclude AppEvent_C++_RemoveWatcher]
+    OH_HiAppEvent_RemoveWatcher(appHicollieWatcherR);
+    OH_HiAppEvent_RemoveWatcher(appHicollieWatcherT);
+    // [EndExclude AppEvent_C++_RemoveWatcher]
     return {};
 }
+// [End APP_Hicollie_RemoveWatcher]
 // [End AppEvent_C++_RemoveWatcher]
 // [End EventSub_RemoveWatcher_All]
+
 // [Start EventSub_DestroyWatcher_All]
 // [Start AppEvent_C++_DestroyWatcher]
+// [Start APP_Hicollie_DestroyWatcher]
 static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
 {
     // 销毁创建的观察者，并置eventWatcher为nullptr。
+    // [StartExclude APP_Hicollie_DestroyWatcher]
     // [StartExclude AppEvent_C++_DestroyWatcher]
     OH_HiAppEvent_DestroyWatcher(eventWatcherT);
     OH_HiAppEvent_DestroyWatcher(eventWatcherR);
@@ -614,10 +628,20 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
     OH_HiAppEvent_DestroyWatcher(eventWatcherR1);
     eventWatcherT1 = nullptr;
     eventWatcherR1 = nullptr;
+    // [EndExclude APP_Hicollie_DestroyWatcher]
+
+    // [StartExclude AppEvent_C++_DestroyWatcher]
+    OH_HiAppEvent_DestroyWatcher(appHicollieWatcherR);
+    OH_HiAppEvent_DestroyWatcher(appHicollieWatcherT);
+    appHicollieWatcherR = nullptr;
+    appHicollieWatcherT = nullptr;
+    // [StartExclude AppEvent_C++_DestroyWatcher]
     return {};
 }
+// [End APP_Hicollie_DestroyWatcher]
 // [End AppEvent_C++_DestroyWatcher]
 // [End EventSub_DestroyWatcher_All]
+
 // [Start AppEvent_Click_C++_WriteAppEvent]
 static napi_value WriteAppEvent(napi_env env, napi_callback_info info)
 {
@@ -645,7 +669,7 @@ static napi_value AddressTest(napi_env env, napi_callback_info info)
 // [Start AppEvent_C++_Init]
 
 // [StartExclude AppEvent_C++_Init]
-// <Start AppEvent_Set_Timer>
+// [Start Hicollie_Set_Timer]
 //定义回调函数
 void CallBack(void*)
 {
@@ -665,7 +689,7 @@ static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
     }
     return nullptr;
 }
-// <End AppEvent_Set_Timer>
+// [End Hicollie_Set_Timer]
 
 // [Start App_Hicollie_OnReceive]
 // 定义一变量，用来缓存创建的观察者的指针。
@@ -836,12 +860,14 @@ static napi_value Init(napi_env env, napi_value exports)
         // 将TestHiCollieTimerNdk注册为ArkTS接口
         { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr }
         // [End test_hicollie_timer]
-        // [Start register_app_hicollie_watcher]
+        // [Start register_app_hicollie_watcherR]
         { "RegisterAppHicollieWatcherR", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
             nullptr }
+        // [End register_app_hicollie_watcherR]
+        // [Start register_app_hicollie_watcherT]
         { "RegisterAppHicollieWatcherT", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default,
             nullptr }
-        // [End register_app_hicollie_watcher]
+        // [End register_app_hicollie_watcherT]
         // [EndExclude AppEvent_C++_Init]
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

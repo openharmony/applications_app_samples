@@ -33,42 +33,6 @@
       "value": "2021/9/17 下午13:04"
     },
     {
-      "name": "Apple",
-      "value": "苹果"
-    },
-    {
-      "name": "Pear",
-      "value": "梨"
-    },
-    {
-      "name": "Banana",
-      "value": "香蕉"
-    },
-    {
-      "name": "Pomegranate",
-      "value": "石榴"
-    },
-    {
-      "name": "Sugarcane",
-      "value": "甘蔗"
-    },
-    {
-      "name": "Grapes",
-      "value": "葡萄"
-    },
-    {
-      "name": "Orange",
-      "value": "橘子"
-    },
-    {
-      "name": "ExpectedChineseSort",
-      "value": "甘蔗,橘子,梨,苹果,葡萄,石榴,香蕉"
-    },
-    {
-      "name": "ExpectedChineseStrokeSort",
-      "value": "甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子"
-    },
-    {
       "name": "NiHao",
       "value": "你好"
     },

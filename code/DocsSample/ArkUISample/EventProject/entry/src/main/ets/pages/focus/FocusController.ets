@@ -93,8 +93,10 @@ export struct FocusControl {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude dynamic_focus_control_demo]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Focus_FocusController_title'))
+    // [EndExclude dynamic_focus_control_demo]
   }
 }
 // [End dynamic_focus_control_demo]

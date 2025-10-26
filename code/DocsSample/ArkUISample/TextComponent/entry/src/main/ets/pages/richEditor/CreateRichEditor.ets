@@ -60,11 +60,11 @@ export struct CreateRichEditor {
           // [End richEditor_create]
         }
 
-        // [EndExclude richEditor_create_span]
         // $r('app.string.Create_RichEditor_Component_title_2')需要替换为开发者所需的资源文件
         ComponentCard({
           title: $r('app.string.Create_RichEditor_Component_title_2'),
         }) {
+          // [EndExclude richEditor_create_span]
           RichEditor(this.optionsNoStyledString)
             .onReady(() => {
               this.controllerNoStyledString.addTextSpan(
@@ -76,19 +76,17 @@ export struct CreateRichEditor {
                 }
               })
             })
+        // [StartExclude richEditor_create_span]
         }
+      // [EndExclude richEditor_create_span]
       }
       .width('100%')
       .height('100%')
-      // [StartExclude richEditor_create_span]
       .padding({ left: 12, right: 12 })
-      // [EndExclude richEditor_create_span]
     }
-    // [StartExclude richEditor_create_span]
     .backgroundColor('#f1f2f3')
     // $r('app.string.Create_RichEditor_Component_title')需要替换为开发者所需的资源文件
     .title($r('app.string.Create_RichEditor_Component_title'))
-    // [EndExclude richEditor_create_span]
   }
 }
 // [End richEditor_create_span]

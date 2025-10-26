@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/AttributeVideo",
+    "pages/CustomizedControl",
+    "pages/DataAbility",
+    "pages/EventCall",
+    "pages/Index",
+    "pages/LocalVideo",
+    "pages/OnlineVideo",
+    "pages/Sandbox",
+    "pages/VideoControl"
+  ]
+}

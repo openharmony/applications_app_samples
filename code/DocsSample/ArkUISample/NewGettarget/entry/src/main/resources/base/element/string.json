@@ -1,0 +1,37 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },{
+      "name": "arkts_new_gettarget1",
+      "value": "不会触发UI刷新"
+    },{
+      "name": "arkts_new_gettarget2",
+      "value": "更改代理对象的属性"
+    },{
+      "name": "arkts_new_gettarget3",
+      "value": "更改原始对象的属性"
+    },{
+      "name": "arkts_new_gettarget4",
+      "value": "不重复创建代理"
+    },{
+      "name": "arkts_new_gettarget5",
+      "value": "使用UIUtils.getTarget接口可以获取代理前的原始对象1"
+    },{
+      "name": "arkts_new_gettarget6",
+      "value": "获取状态管理V2代理前的原始对象"
+    },{
+      "name": "arkts_new_gettarget7",
+      "value": "使用UIUtils.getTarget接口可以获取代理前的原始对象2"
+    }
+  ]
+}

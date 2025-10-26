@@ -61,6 +61,26 @@
       "value": "暂停"
     },
     {
+      "name": "originalImage",
+      "value": "原图"
+    },
+    {
+      "name": "animation_blur_text1",
+      "value": "手指不在屏幕上"
+    },
+    {
+      "name": "animation_blur_text2",
+      "value": "按住屏幕上下滑动"
+    },
+    {
+      "name": "animation_blur_text3",
+      "value": "当前手指所在y轴位置 ： "
+    },
+    {
+      "name": "animation_blur_text4",
+      "value": "当前图片模糊程度为 : "
+    },
+    {
       "name": "navigation_toolbar_collect",
       "value": "collect"
     },
@@ -135,6 +155,14 @@
     {
       "name": "pageTransition_temp_label4",
       "value": "示例4（不推荐)（type为None的页面转场）"
+    },
+    {
+      "name": "pageTransition_temp_label5",
+      "value": "示例5（不推荐)（type配置为RouteType.None）"
+    },
+    {
+      "name": "pageTransition_temp_label6",
+      "value": "示例6（不推荐)（type配置为RouteType.Push或RouteType.Pop）"
     },
     {
       "name": "compTransition_label",
@@ -213,6 +241,10 @@
       "value": "示例3（使用帧动画实现小球抛物运动）"
     },
     {
+      "name": "animator_temp_label4",
+      "value": "示例4（使用帧动画实现小球抛物运动）"
+    },
+    {
       "name": "animateToImmediately_label",
       "value": "显式动画立即下发"
     },
@@ -227,6 +259,22 @@
     {
       "name": "rotation_temp_label2",
       "value": "示例2（透明度变化的旋转屏动画）"
+    },
+    {
+      "name": "component_label",
+      "value": "组件动画"
+    },
+    {
+      "name": "component_temp_label1",
+      "value": "示例1（Scroll组件滑动动效）"
+    },
+    {
+      "name": "component_temp_label2",
+      "value": "示例2（List组件动态替换动效）"
+    },
+    {
+      "name": "AnimateIndex",
+      "value": "AnimateIndex"
     }
   ]
 }
