@@ -26,6 +26,7 @@ import { Gesture_ROUTE_PREFIX, GestureDestination } from './singlegesture/Index'
 import { TouchDestination, Touch_ROUTE_PREFIX } from './Touch/Index';
 import resource from '../common/resource';
 
+// [Start route_push]
 const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.Pages_Index_gesture')),
@@ -56,6 +57,7 @@ const routes: Route[] = [
     name: Drag_ROUTE_PREFIX
   }
 ];
+// [End route_push]
 
 @Builder
 function Destination(name: string) {

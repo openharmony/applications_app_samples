@@ -46,8 +46,10 @@ export struct FocusStyle {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude focus_style_manage]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Focus_FocusStyle_title'))
+    // [EndExclude focus_style_manage]
   }
 }
 // [End focus_style_manage]
