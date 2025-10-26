@@ -170,5 +170,56 @@ export function ComponentTransitionTest() {
       hilog.info(DOMAIN, TAG, 'Animation_ComponentTransitionTest_005_end');
     })
 
+    /*
+     * @tc.number: Animation_ComponentTransitionTest_006
+     * @tc.name: Add or remove component trigger method
+     * @tc.desc: Add or remove component trigger method
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it(BUNDLE + 'ComponentTransitionTest_006', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTransitionTest_006_begin');
+      // Find and click the target component
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.compTransition_temp_label6"))));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+
+      // Find and click the component with the text 'Click1'
+      aimComponent = await driver.findComponent(ON.text('Click1'));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+
+      aimComponent = await driver.findComponent(ON.text('Click1'));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTransitionTest_006_end');
+    })
+
+    /*
+     * @tc.number: Animation_ComponentTransitionTest_007
+     * @tc.name: Add or remove component trigger method
+     * @tc.desc: Add or remove component trigger method
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it(BUNDLE + 'ComponentTransitionTest_007', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTransitionTest_007_begin');
+      // Find and click the target component
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.compTransition_temp_label6"))));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+
+      // Find and click the component with the text 'Click2'
+      aimComponent = await driver.findComponent(ON.text('Click2'));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+
+      aimComponent = await driver.findComponent(ON.text('Click2'));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTransitionTest_007_end');
+    })
   })
 }

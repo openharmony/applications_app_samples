@@ -189,6 +189,10 @@
       "value": "示例5（多个组件渐次出现消失）"
     },
     {
+      "name": "compTransition_temp_label6",
+      "value": "示例6（旋转转场效果出现/消失）"
+    },
+    {
       "name": "shareTransition_label",
       "value": "共享元素转场"
     },

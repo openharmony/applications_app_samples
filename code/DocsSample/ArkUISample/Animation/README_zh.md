@@ -105,6 +105,8 @@ entry/src/main/ets/
 |   |   |   |---Index.ets        // 示例4（出现/消失转场）
 |   |   |---template5       
 |   |   |   |---Index.ets    // 示例5（多个组件渐次出现消失）
+|   |   |---template6
+|   |   |   |---Index.ets    // 示例6（旋转转场效果出现/消失）
 |   |---keyframeAnimateTo                      // 关键帧动画
 |   |   |---template1
 |   |   |   |---Index.ets     
