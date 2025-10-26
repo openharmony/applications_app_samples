@@ -15,19 +15,31 @@
 
 @Entry
 @Component
-struct MyComponent8 {
+struct DisplayVectorDiagram {
   build() {
     Column({ space: 10 }) {
       Row({ space: 50 }) {
-        Image($r('app.media.cloud'))
-          .width(50)
+
+        //  [Start SvgFillColor]
+        //  $r('app.media.cloud')需要替换为开发者所需的资源文件
         Image($r('app.media.cloud'))
           .width(50)
           .fillColor(Color.Blue)
+        //  [End SvgFillColor]
+
+        //  [Start LocalSVG]
+        //  'images/icon.svg' 需要替换为开发者所需的资源文件
         Image('images/icon.svg')
           .width(50)
           .height(50)
+        //  [End LocalSVG]
+
       }
+      //  [Start SynchronousImageLoading]
+      //  $r('app.media.icon')需要替换为开发者所需的资源文件
+      Image($r('app.media.icon'))
+        .syncLoad(true)
+      //  [End SynchronousImageLoading]
     }.height(150).width('100%').padding({ top: 20,right: 10 })
-  }
+  };
 }

@@ -20,14 +20,11 @@ import { ComponentCard } from '../../common/Card';
 export struct CustomStyle {
   pathStack: NavPathStack = new NavPathStack();
 
-  resourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
-  }
-
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({
+          // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
           title: $r('app.string.ToggleCustomStyle_titleOne'),
           description: $r('app.string.ToggleCustomStyle_descriptionOne')
         }) {
@@ -50,6 +47,7 @@ export struct CustomStyle {
         }
 
         ComponentCard({
+          // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
           title: $r('app.string.ToggleCustomStyle_titleTwo'),
           description: $r('app.string.ToggleCustomStyle_descriptionTwo')
         }) {
@@ -68,6 +66,7 @@ export struct CustomStyle {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    .title(this.resourceToString($r('app.string.ToggleCustomStyle_title')))
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    .title($r('app.string.ToggleCustomStyle_title'))
   }
 }

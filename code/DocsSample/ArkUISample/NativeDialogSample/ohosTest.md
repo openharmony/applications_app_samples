@@ -64,6 +64,9 @@
 | 背景模糊效果示例验证 | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击  设置属性按钮<br/>3.点击  背景模糊效果。<br/>4.点击  点此打开弹窗按钮   查看验证结果<br/>5.点击  弹框中Close Dialog 按钮<br/>6.点击  重置属性按钮 | 弹框内变为深色 | 是 | Pass |
 | 背景效果参数示例验证 | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击  设置属性按钮<br/>3.点击  背景效果参数。<br/>4.点击  点此打开弹窗按钮   查看验证结果<br/>5.点击  弹框中Close Dialog 按钮<br/>6.点击  重置属性按钮 | 弹框内变为深色                                               | 是 | Pass |
 | 返回按钮示例验证                         | 应用位于首页 | 1.点击  OpenCustomDialog_CAPI对接示例按钮<br/>2.点击 返回按钮 | 返回上一层                                                   | 是       | Pass     |
+| 弹窗Demo contorller示例验证 | 应用位于首页 | 1.点击  dialog demo按钮<br/>2.点击  DialogController demo按钮<br/>3.点击  “点击弹窗”按钮。 查看验证结果。<br/>4.点击  “关闭弹窗”按钮。   查看验证结果。                                                                                   | 弹框正常显示和关闭                                                                                                                    | 是 | Pass |
+| 弹窗Demo option示例验证     | 应用位于首页 | 1.点击  dialog demo按钮<br/>2.点击  DialogOption demo按钮<br/>3.点击  “点击弹窗”按钮。 查看验证结果。<br/>4.点击  “关闭弹窗”按钮。   查看验证结果。                                                                                       | 弹框正常显示和关闭                                                                                                                    | 是 | Pass |
+| 弹窗Demo lifecycle示例验证 | 应用位于首页 | 1.点击  dialog demo按钮<br/>2.点击  Dialog lifecycle demo按钮<br/>3.点击  “点击弹窗”按钮。 查看验证结果。<br/>4.点击  “关闭弹窗”按钮。   查看验证结果。                                                                                   | 弹框正常显示和关闭                                                                                                                    | 是 | Pass |
 
 
 

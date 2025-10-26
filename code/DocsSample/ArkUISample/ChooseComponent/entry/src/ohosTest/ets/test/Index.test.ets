@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -249,6 +249,62 @@ export default function IndexTest() {
       await toggle.click();
       expect(await message.getText() === 'Bluetooth Mode: on').assertTrue();
       await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number testRadioUiExample1
+     * @tc.name testRadioUiExample1
+     * @tc.desc Test multiple radio button.
+     * @tc.size MEDIUM
+     * @tc.level Level 1
+     * @tc.type Function
+     */
+    it('testRadioUiExample1', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('Radio', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(1000);
+      let str = await getResourceString($r('app.string.RadioSample_title'));
+      let radio_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(radio_search === null).assertFalse();
+      await radio_search.click();
+      let ringing_search = await driver.findComponent(ON.id('ringing', MatchPattern.CONTAINS));
+      expect(ringing_search === null).assertFalse();
+      await ringing_search.click();
+      let vibration_search = await driver.findComponent(ON.id('vibration', MatchPattern.CONTAINS));
+      expect(vibration_search === null).assertFalse();
+      await vibration_search.click();
+      let silent_search = await driver.findComponent(ON.id('silent', MatchPattern.CONTAINS));
+      expect(silent_search === null).assertFalse();
+      await silent_search.click();
+      await sleep(1000);
+      await driver.pressBack();
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * @tc.number testRadioUiExample2
+     * @tc.name testRadioUiExample2
+     * @tc.desc Test two radio button.
+     * @tc.size MEDIUM
+     * @tc.level Level 1
+     * @tc.type Function
+     */
+    it('testRadioUiExample2', 0, async (done: Function) => {
+      let driver: Driver = Driver.create();
+      let button_list = await driver.findComponent(ON.text('Radio', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await sleep(1000);
+      let str = await getResourceString($r('app.string.RadioSample2_title'));
+      let radio_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
+      expect(radio_search === null).assertFalse();
+      await radio_search.click();
+      await sleep(1000);
       await driver.pressBack();
       done();
     })

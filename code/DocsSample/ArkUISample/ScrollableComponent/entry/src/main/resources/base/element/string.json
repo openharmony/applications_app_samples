@@ -613,6 +613,18 @@
       "value": "响应滚动位置"
     },
     {
+      "name": "Sliding_Hand_Event",
+      "value": "滑动离手事件"
+    },
+    {
+      "name": "Support_Sliding_Hand_Event",
+      "value": "支持滑动离手事件"
+    },
+    {
+      "name": "Today_Hot_News",
+      "value": "今日热点新闻"
+    },
+    {
       "name": "ResponsiveScrollPositionList_titleExample",
       "value": "响应滚动位置示例"
     },
@@ -985,6 +997,10 @@
       "value": "部分业务场景需要列表底部插入数据时，自动向上滚动，把新插入的节点展示出来。"
     },
     {
+      "name": "SupportSlidingHand_title",
+      "value": "支持滑动离手事件"
+    },
+    {
       "name": "LongGrid_title",
       "value": "性能优化"
     },
@@ -1027,6 +1043,98 @@
     {
       "name": "ArcListStyles_light",
       "value": "显示和亮度"
+    },
+    {
+      "name": "Reading",
+      "value": "读书"
+    },
+    {
+      "name": "Exercise",
+      "value": "旅游"
+    },
+    {
+      "name": "Travel",
+      "value": "旅游"
+    },
+    {
+      "name": "Listening_Music",
+      "value": "听音乐"
+    },
+    {
+      "name": "Watching_Films",
+      "value": "看电影"
+    },
+    {
+      "name": "Singing",
+      "value": "唱歌"
+    },
+    {
+      "name": "Meeting",
+      "value": "会议"
+    },
+    {
+      "name": "Voting",
+      "value": "投票"
+    },
+    {
+      "name": "Check_in",
+      "value": "签到"
+    },
+    {
+      "name": "Printing",
+      "value": "打印"
+    },
+    {
+      "name": "Live_Streaming",
+      "value": "直播"
+    },
+    {
+      "name": "Imported",
+      "value": "进口"
+    },
+    {
+      "name": "Categories",
+      "value": "分类"
+    },
+    {
+      "name": "Recharge",
+      "value": "充值"
+    },
+    {
+      "name": "Membership",
+      "value": "领卷"
+    },
+    {
+      "name": "Claim_Coupon",
+      "value": "抽奖"
+    },
+    {
+      "name": "Lottery",
+      "value": "会员"
+    },
+    {
+      "name": "Favorites",
+      "value": "收藏"
+    },
+    {
+      "name": "Points",
+      "value": "积分"
+    },
+    {
+      "name": "More",
+      "value": "更多"
+    },
+    {
+      "name": "Previous_Page",
+      "value": "上一页"
+    },
+    {
+      "name": "Next_page",
+      "value": "下一页"
+    },
+    {
+      "name": "message",
+      "value": "发送"
     },
     {
       "name": "contacts",

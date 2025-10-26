@@ -16,7 +16,7 @@
 import { ComponentCard } from '../../common/Card';
 // [Start richEditor_eventPaste]
 import { pasteboard } from '@kit.BasicServicesKit';
-// [End richEditor_eventPaste]
+// [StartExclude richEditor_eventPaste]
 import resource from '../../common/resource';
 
 @Component
@@ -54,7 +54,7 @@ struct event2 {
 
   infoShowController: RichEditorController = new RichEditorController();
   infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
-  // [End richEditor_eventSelectChange]
+  // [StartExclude richEditor_eventSelectChange]
 
   build() {
     Column() {
@@ -63,7 +63,7 @@ struct event2 {
         description: $r('app.string.Add_Event_title_2_desc'),
       }) {
         Column({ space: 3 }) {
-          // [Start richEditor_eventSelectChange]
+          // [EndExclude richEditor_eventSelectChange]
           // $r('app.string.xxx')需要替换为开发者所需的字符串
           RichEditor(this.options)
             .onReady(() => {
@@ -219,7 +219,7 @@ struct event4 {
   }
 }
 
-// [Start richEditor_eventPaste]
+// [EndExclude richEditor_eventPaste]
 @Component
 struct on_cut_copy_paste {
   controller: RichEditorController = new RichEditorController();
@@ -351,7 +351,7 @@ struct event7 {
 
   infoShowController: RichEditorController = new RichEditorController();
   infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
-  // [End richEditor_eventCopy]
+  // [StartExclude richEditor_eventCopy]
 
   build() {
     Column() {
@@ -360,7 +360,7 @@ struct event7 {
         description: $r('app.string.Add_Event_title_7')
       }) {
         Column({ space: 3 }) {
-          // [Start richEditor_eventCopy]
+          // [EndExclude richEditor_eventCopy]
           // $r('app.string.xxx')需要替换为开发者所需的资源文件
           RichEditor(this.options)
             .onReady(() => {

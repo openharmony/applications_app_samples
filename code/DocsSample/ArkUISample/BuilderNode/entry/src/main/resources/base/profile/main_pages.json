@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/FrameNode",
+    "pages/RenderNode",
+    "pages/WrappedBuilder",
+    "pages/PostTouchEvent",
+    "pages/BuilderProxyNode01",
+    "pages/BuilderProxyNode02",
+    "pages/ReusablePage01",
+    "pages/ReusablePage02",
+    "pages/EnvironmentCallbackPage",
+    "pages/RouterPage1",
+    "pages/RouterPage2",
+    "pages/LocalStoragePage",
+    "pages/IsDisposedPage",
+    "pages/InheritFreezeOptionsPage",
+    "pages/ArkWebPage"
+  ]
+}

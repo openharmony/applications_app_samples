@@ -27,14 +27,44 @@ const routes: Route[] = [
     description: $r('app.string.Create_Apply_StyledString_MutableStyledString_desc')
   },
   {
-    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringStyle`,
-    title: resource.resourceToString($r('app.string.StyledStringStyle_title')),
-    description: $r('app.string.StyledStringStyle_description')
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringTextStyle`,
+    title: resource.resourceToString($r('app.string.StyledStringStyle_title_1')),
   },
   {
-    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringParagraphStyle`,
-    title: resource.resourceToString($r('app.string.StyledStringParagraphStyle_title')),
-    description: $r('app.string.StyledStringParagraphStyle_description')
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringTextShadowStyle`,
+    title: resource.resourceToString($r('app.string.StyledStringStyle_title_2')),
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringDecorationStyle`,
+    title: resource.resourceToString($r('app.string.StyledStringStyle_title_3')),
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringDecorationStyle`,
+    title: resource.resourceToString($r('app.string.StyledStringStyle_title_3')),
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringBaselineOffsetStyle`,
+    title: resource.resourceToString($r('app.string.StyledStringStyle_title_4')),
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringLineHeightStyle`,
+    title: resource.resourceToString($r('app.string.StyledStringStyle_title_5')),
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringLetterSpacingStyle`,
+    title: resource.resourceToString($r('app.string.StyledStringStyle_title_6')),
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringParagraphStyleOne`,
+    title: resource.resourceToString($r('app.string.StyledStringParagraphStyleOne_title')),
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringReplaceParagraphStyle`,
+    title: resource.resourceToString($r('app.string.StyledStringReplaceParagraphStyle_title')),
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringConvertedToParagraph`,
+    title: resource.resourceToString($r('app.string.StyledStringConvertedToParagraph_title')),
   },
   {
     name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringImageAttachment`,
@@ -50,6 +80,11 @@ const routes: Route[] = [
     name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringHtml`,
     title: resource.resourceToString($r('app.string.StyledStringHtml_title')),
     description: $r('app.string.StyledStringHtml_description')
+  },
+  {
+    name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringHtmlOne`,
+    title: resource.resourceToString($r('app.string.StyledStringHtmlOne_title')),
+    description: $r('app.string.StyledStringHtmlOne_description')
   },
   {
     name: `${PROPERTY_STRING_ROUTE_PREFIX}/StyledStringSceneExample`,
