@@ -48,6 +48,11 @@ export default function NativeUIPageTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
+    /**
+     * @tc.number ArkUINativeUI_001
+     * @tc.name NativeUITest_001
+     * @tc.desc 点击显示隐藏按钮
+     */
     it('NativeUIPageTest', 0, async () => {
       const driver = Driver.create();
       const button = await driver.findComponent(ON.text('ShowNativeUIPage'));

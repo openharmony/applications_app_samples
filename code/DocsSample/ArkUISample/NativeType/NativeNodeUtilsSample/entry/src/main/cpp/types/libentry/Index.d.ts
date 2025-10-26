@@ -2,6 +2,7 @@ import { NodeContent } from "@kit.ArkUI";
 
 export const createNativeRoot: (content: Object) => void;
 export const createNodeTreeOnMultiThread: (content: Object, context: Object) => void;
+export const disposeNodeTreeOnMultiThread: (content: Object) => void;
 export const createCustomPropertyDemo: (content: Object) => void;
 export const createNodeAdapterDemo: (content: Object) => void;
 export const disposeNodeTree: (content: Object) => void;

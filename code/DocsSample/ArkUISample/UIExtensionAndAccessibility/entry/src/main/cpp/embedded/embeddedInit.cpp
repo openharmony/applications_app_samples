@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,7 +21,8 @@
 
 EXTERN_C_START
 namespace nativeEmbedded {
-static void RenderInitPush0(napi_property_descriptor *desc) {
+static void RenderInitPush0(napi_property_descriptor *desc) 
+{
     napi_property_descriptor descTemp[] = {
         {"embeddedNode", nullptr, embeddedNode, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
@@ -30,7 +31,8 @@ static void RenderInitPush0(napi_property_descriptor *desc) {
     }
 }
 
-static napi_value RenderInit(napi_env env, napi_value exports) {
+static napi_value RenderInit(napi_env env, napi_value exports) 
+{
     napi_property_descriptor desc[10] = {};
     RenderInitPush0(desc);
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

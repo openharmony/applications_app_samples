@@ -20,25 +20,26 @@
 #include <native_drawing/drawing_color.h>
 #include <native_drawing/drawing_path.h>
 #include <native_drawing/drawing_pen.h>
+#include "common/common.h"
 
-const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
-ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) {
+ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) 
+{
     // 创建节点
     // [Start createColumnNode_start]
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     // [End createColumnNode_start]
     auto customNode = nodeAPI->createNode(ARKUI_NODE_CUSTOM);
-    ArkUI_NumberValue value[] = {480};
+    ArkUI_NumberValue value[] = {SIZE_480};
     ArkUI_AttributeItem item = {value, 1};
     // 属性设置
     nodeAPI->setAttribute(column, NODE_WIDTH, &item);
-    value[0].i32 = 720;
+    value[0].i32 = SIZE_720;
     nodeAPI->setAttribute(column, NODE_HEIGHT, &item);
-    ArkUI_NumberValue NODE_WIDTH_value[] = {200};
+    ArkUI_NumberValue NODE_WIDTH_value[] = {SIZE_200};
     ArkUI_AttributeItem NODE_WIDTH_Item[] = {NODE_WIDTH_value, 1};
-    ArkUI_NumberValue NODE_HEIGHT_value[] = {200};
+    ArkUI_NumberValue NODE_HEIGHT_value[] = {SIZE_200};
     ArkUI_AttributeItem NODE_HEIGHT_Item[] = {NODE_HEIGHT_value, 1};
-    ArkUI_NumberValue NODE_BACKGROUND_COLOR_item_value[] = {{.u32 = 0xFFFFFF00}};
+    ArkUI_NumberValue NODE_BACKGROUND_COLOR_item_value[] = {{.u32 = COLOR_YELLOW}};
     ArkUI_AttributeItem NODE_BACKGROUND_COLOR_Item[] = {NODE_BACKGROUND_COLOR_item_value, 1};
     // [Start userdata_start]
     // UserData
@@ -73,18 +74,18 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) {
             auto *canvas1 = OH_ArkUI_DrawContext_GetCanvas(drawContext);
             // 转换为OH_Drawing_Canvas指针进行绘制。
             OH_Drawing_Canvas *canvas = reinterpret_cast<OH_Drawing_Canvas *>(canvas1);
-            int32_t width = 1000;
-            int32_t height = 1000;
+            int32_t width = SIZE_1000;
+            int32_t height = SIZE_1000;
             auto path = OH_Drawing_PathCreate();
-            OH_Drawing_PathMoveTo(path, width / 4, height / 4);
-            OH_Drawing_PathLineTo(path, width * 3 / 4, height * 3 / 4);
-            OH_Drawing_PathLineTo(path, width * 3 / 4, height * 3 / 4);
-            OH_Drawing_PathLineTo(path, width * 3 / 4, height * 3 / 4);
-            OH_Drawing_PathLineTo(path, width * 3 / 4, height * 3 / 4);
+            OH_Drawing_PathMoveTo(path, width / SIZE_4, height / SIZE_4);
+            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
+            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
+            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
+            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
             OH_Drawing_PathClose(path);
             auto pen = OH_Drawing_PenCreate();
             OH_Drawing_PenSetWidth(pen, 10);
-            OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
+            OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(RGBA_R1, RGBA_G1, RGBA_B1, RGBA_A1));
             OH_Drawing_CanvasAttachPen(canvas, pen);
             OH_Drawing_CanvasDrawPath(canvas, path);
             // [End drawCanvas_Start]

@@ -15,6 +15,8 @@
 
 #ifndef NATIVE_EMBEDDED_COMMON_H
 #define NATIVE_EMBEDDED_COMMON_H
+#define SIZE_300 300
+#define SIZE_401 401
 
 
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;

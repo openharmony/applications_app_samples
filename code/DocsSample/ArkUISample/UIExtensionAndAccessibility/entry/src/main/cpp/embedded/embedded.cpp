@@ -16,17 +16,19 @@
 #include <hilog/log.h>
 #include "arkui/native_node_napi.h"
 #include "arkui/native_interface.h"
+#include "common/common.h"
 #include "napi/native_api.h"
 #include "embedded.h"
 //[Start embeddedComponentCTest_start]
 #include <arkui/native_node.h>
 #include <arkui/native_type.h>
 #include <AbilityKit/ability_base/want.h> //引用元能力want头文件
-const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+
 // 注册事件
 void onError(int32_t code, const char *name, const char *message) {}
 void onTerminated(int32_t code, AbilityBase_Want *want) {}
-napi_value embeddedNode(napi_env env, napi_callback_info info) {
+napi_value embeddedNode(napi_env env, napi_callback_info info) 
+{
     size_t argCnt = 1;
     napi_value args[1] = {nullptr};
     if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
@@ -61,7 +63,7 @@ napi_value embeddedNode(napi_env env, napi_callback_info info) {
     // 设置基本属性，如宽高
     ArkUI_NumberValue value[] = {480};
     ArkUI_AttributeItem item = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
-    value[0].f32 = 300;
+    value[0].f32 = SIZE_300;
     nodeAPI->setAttribute(embeddedNode, NODE_WIDTH, &item);
     nodeAPI->setAttribute(embeddedNode, NODE_HEIGHT, &item);
 
@@ -79,7 +81,7 @@ napi_value embeddedNode(napi_env env, napi_callback_info info) {
     int32_t result = OH_ArkUI_NodeContent_AddNode(nodeContentHandle, column);
     napi_value retValue = 0;
     napi_create_int32(env, result, &retValue);
-    if (result == 401) {
+    if (result == SIZE_401) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OH_ArkUI_NodeContent_AddNode_Result", "result");
     }
     napi_value exports;

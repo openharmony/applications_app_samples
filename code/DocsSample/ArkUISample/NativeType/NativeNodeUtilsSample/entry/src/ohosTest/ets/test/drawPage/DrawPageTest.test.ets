@@ -48,7 +48,12 @@ export default function DrawPageTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it('DrawPageTest', 0, async (done:Function) => {
+    /**
+     * @tc.number ArkUIDraw_001
+     * @tc.name DrawTest_001
+     * @tc.desc 点击显示隐藏按钮
+     */
+    it('DrawTest_001', 0, async (done:Function) => {
       const driver = Driver.create();
       const button = await driver.findComponent(ON.text('ShowDrawPage'));
       await button.click();
