@@ -14,7 +14,7 @@
  */
 // [Start normalTextListExample_start]
 // NormalTextListExample.h
-// Custom NDK interface entry function
+// 自定义接入入口函数
 
 #ifndef MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H
 #define MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H

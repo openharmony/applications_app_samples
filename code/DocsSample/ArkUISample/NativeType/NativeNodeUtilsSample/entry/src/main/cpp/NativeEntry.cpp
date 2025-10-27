@@ -566,8 +566,7 @@ void NativeEntry::GetWindowName()
 // 注册事件总线，多次注册会覆盖前置注册的总线，可通过对组件addNodeEventReceiver实现同样效果。
 void NativeEntry::RegisterNodeEventReceiver()
 {
-    NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->registerNodeEventReceiver([](ArkUI_NodeEvent *event)
-    {
+    NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         // 从组件事件中获取基础事件对象
         auto *inputEvent = OH_ArkUI_NodeEvent_GetInputEvent(event);
         // 从组件事件获取事件类型

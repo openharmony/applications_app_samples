@@ -56,12 +56,11 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
     // 进行事件注册
     nodeAPI->registerNodeCustomEvent(customNode, ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW, 1, a);
     // 事件回调函数的编写
-    nodeAPI->registerNodeCustomEventReceiver([](ArkUI_NodeCustomEvent *event)
+    nodeAPI->registerNodeCustomEventReceiver([](ArkUI_NodeCustomEvent *event) {
     // 事件回调函数逻辑
     // [End userdata_start]
         // 获取自定义事件的相关信息。
         // [Start nodeCustomEvent_start]
-    {
         auto type = OH_ArkUI_NodeCustomEvent_GetEventType(event);
         auto targetId = OH_ArkUI_NodeCustomEvent_GetEventTargetId(event);
         auto userData = reinterpret_cast<A *>(OH_ArkUI_NodeCustomEvent_GetUserData(event));
