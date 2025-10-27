@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start Component_List]
 import { curves, AnimatorResult } from '@kit.ArkUI';
 
 // 该接口控制列表项视觉属性
@@ -175,3 +177,4 @@ struct ListAutoSortExample {
     }.backgroundColor(0xDCDCDC); // 0xDCDCDC: 浅灰色背景
   }
 }
+// [End Component_List]

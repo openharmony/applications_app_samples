@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start Component_Scroll]
 import { curves, window, display, mediaquery, UIContext } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 
@@ -309,3 +311,4 @@ export struct TaskSwitchMainPage {
     .height('100%');
   }
 }
+// [End Component_Scroll]
