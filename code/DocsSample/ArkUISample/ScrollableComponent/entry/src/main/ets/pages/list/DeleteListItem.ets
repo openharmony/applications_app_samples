@@ -12,11 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start structural_references]
 import { util } from '@kit.ArkTS';
 import { UIContext } from '@kit.ArkUI';
-
-// [Start structural_references]
 import common from '@ohos.app.ability.common';
 
 export class ToDo {
@@ -45,6 +43,7 @@ export struct ToDoListItem {
         .width('80%')
         .margin({ left: 20 })
       // [StartExclude enter_edit_mode]
+      // [Start is_EditMode]
       if (this.isEditMode) {
         Checkbox()
           .onChange((isSelected) => {
@@ -58,6 +57,7 @@ export struct ToDoListItem {
             }
           })
       }
+      // [End is_EditMode]
       // [EndExclude enter_edit_mode]
     }
     .backgroundColor('#FFF1F3F5')
@@ -156,8 +156,9 @@ export struct DeleteListItem {
             .backgroundColor('#FFF1F3F5')
             .borderRadius(12)
             .height(45)
-
+            // [Start implement_cachedCount]
             List({ space: 12 }) {
+              // [StartExclude implement_cachedCount]
               ForEach(this.toDoData, (toDoItem: ToDo) => {
                 ListItem() {
                   // 将toDoData的每个数据放入到以model的形式放进ListItem里
@@ -168,7 +169,9 @@ export struct DeleteListItem {
                   })
                 }
               }, (toDoItem: ToDo) => toDoItem.name.toString())
-            }
+              // [EndExclude implement_cachedCount]
+            }.cachedCount(3)
+            // [End implement_cachedCount]
           }
         }
         .alignItems(HorizontalAlign.Start)
