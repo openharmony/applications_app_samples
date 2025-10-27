@@ -12,13 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, MatchPattern } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
 let driver: Driver;
+const TAG = '[Sample_createcustomcomponents]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'createcustomcomponents_';
+
 export default function IndexTest() {
   describe('IndexTest', () => {
     beforeAll(async () => {
@@ -30,7 +37,7 @@ export default function IndexTest() {
       driver = Driver.create();
       await driver.delayMs(2000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info('get top ability');
+      hilog.info(DOMAIN,TAG,BUNDLE + 'get top ability')
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     /**
@@ -261,7 +268,7 @@ export default function IndexTest() {
      * @tc.desc 测试If页面是否显示正常
      */
     it('IfPageTest', 0, async (done: Function) => {
-      let targetElement = await driver.findComponent(ON.text('If', MatchPattern.CONTAINS));
+      let targetElement = await driver.findComponent(ON.text('IfPage', MatchPattern.CONTAINS));
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);

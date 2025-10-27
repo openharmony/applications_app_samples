@@ -12,15 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router } from '@kit.ArkUI'
-
 class CreateRouter{
- public  pageName:string
- public  routerName:string
+  public pageName:string;
+  public routerName:string;
   constructor(pageName:string,routerName:string){
-    this.pageName = pageName
-    this.routerName = routerName
-  }
+    this.pageName = pageName;
+    this.routerName = routerName;
+  };
 };
 const createRouterList:CreateRouter[] = [
   new CreateRouter('ParentComponentPage','component/ParentComponent'),

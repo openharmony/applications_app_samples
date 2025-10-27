@@ -67,9 +67,9 @@ struct ObjectLinkDataSourceUpdateParent {
 struct ObjectLinkDataSourceUpdateChild {
   @ObjectLink @Watch('onChange02') per: ObjectLinkDataSourceUpdatePerson;
   clickEvent?: () => void;
-  // [StartExclude Data_Source_Update_Parent_Context]
+  // [StartExclude ObjectLink_Data_source_update_timing]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude Data_Source_Update_Parent_Context]
+  // [EndExclude ObjectLink_Data_source_update_timing]
   onChange02() {
     hilog.info(DOMAIN,TAG,`:::onChange02:${this.per.name}`); // 5
   };
