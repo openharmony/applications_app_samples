@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start appstorage_page_eight]
 import { emitter } from '@kit.BasicServicesKit';
 
 let nextId: number = 0;
@@ -114,3 +114,4 @@ export struct TapImage {
     }
   }
 }
+// [End appstorage_page_eight]

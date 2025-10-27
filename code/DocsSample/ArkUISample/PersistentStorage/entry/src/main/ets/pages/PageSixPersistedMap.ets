@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Persistent_page_six]
 PersistentStorage.persistProp('persistedMapString', new Map<number, string>([]));
 
 @Entry
@@ -55,3 +56,4 @@ struct PersistedMap {
     }
   }
 }
+// [End Persistent_page_six]
