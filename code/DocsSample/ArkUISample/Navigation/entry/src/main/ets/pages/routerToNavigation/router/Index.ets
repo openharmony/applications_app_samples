@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start router_page_one]
+// [Start router_index]
 // Index.ets
 import { router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -123,4 +123,4 @@ struct Index {
     .height('100%')
   }
 }
-// [End router_page_one]
+// [End router_index]
