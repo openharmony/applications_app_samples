@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "NativeDialogSample"
     },
     {
       "name": "dialog_controller",
@@ -31,6 +31,10 @@
     {
       "name": "dialog_option_demo",
       "value": "DialogOption demo"
+    },
+    {
+      "name": "dialog_optionText_demo",
+      "value": "Text Option demo"
     },
     {
       "name": "dialog_lifecycle_demo",

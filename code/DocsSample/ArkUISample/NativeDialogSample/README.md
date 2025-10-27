@@ -38,7 +38,11 @@ entry/src/main/
 │   │   └── libentry
 │   │       └── Index.d.ts (函数对应的js映射)
 │   ├── common
-│   │    └── common.h
+│   │─────├── ArkUIBaseNode.h（Node工具类）
+│   │─────├── ArkUINode.h（Node工具类）
+│   │─────├── ArkUITextNode.h（Text工具类）
+│   │─────├── NativeModule.h（NativeMoudle工具类）
+│   │     └── common.h
 │   ├── CMakeLists.txt (CMake脚本)
 │   └── napi_init.cpp
 └───customdialog
