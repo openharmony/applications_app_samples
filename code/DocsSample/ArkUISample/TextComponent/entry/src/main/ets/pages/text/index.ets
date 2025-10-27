@@ -38,6 +38,9 @@ import { PrepareMenu } from './PrepareMenu';
 import { WordBreakd } from './WordBreakd';
 import { HeightAdaptivePolicy } from './HeightAdaptivePolicy';
 import { LengthMetric } from './LengthMetric';
+import { DisplayedTogether } from './DisplayedTogether';
+import { TextLong } from './TextLong';
+import { TextLongTow } from './TextLongTow';
 
 export const TEXT_ROUTE_PREFIX: string = 'text';
 
@@ -151,6 +154,21 @@ const routes: Route[] = [
     name: `${TEXT_ROUTE_PREFIX}/LengthMetric`,
     title: resource.resourceToString($r('app.string.Length_Metric')),
     description: $r('app.string.Length_Metric_description')
+  },
+  {
+    name: `${TEXT_ROUTE_PREFIX}/DisplayedTogether`,
+    title: resource.resourceToString($r('app.string.Displayed_Together')),
+    description: $r('app.string.Displayed_Together_description')
+  },
+  {
+    name: `${TEXT_ROUTE_PREFIX}/TextLong`,
+    title: resource.resourceToString($r('app.string.Text_Long')),
+    description: $r('app.string.Text_Long_description')
+  },
+  {
+    name: `${TEXT_ROUTE_PREFIX}/TextLongTow`,
+    title: resource.resourceToString($r('app.string.Text_Long_Tow')),
+    description: $r('app.string.Text_Long_Tow_description')
   }
 ];
 
@@ -202,6 +220,12 @@ export function TextDestination(name: string) {
     HeightAdaptivePolicy();
   } else if (name === routes[21].name) {
     LengthMetric();
+  } else if (name === routes[22].name) {
+    DisplayedTogether();
+  } else if (name === routes[23].name) {
+    TextLong();
+  } else if (name === routes[24].name) {
+    TextLongTow();
   }
 }
 
