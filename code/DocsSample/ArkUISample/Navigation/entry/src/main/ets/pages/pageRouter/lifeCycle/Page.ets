@@ -57,4 +57,4 @@ struct Page {
     .width('100%')
   }
 }
-// [Start life_page]
+// [End life_page]

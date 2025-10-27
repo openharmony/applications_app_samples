@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start router_index]
+// [Start router_3]
 @Entry
 @Component
 struct Index {
@@ -45,4 +45,4 @@ export struct PageOne {
     .title('PageOne')
   }
 }
-// [End router_index]
+// [End router_3]
