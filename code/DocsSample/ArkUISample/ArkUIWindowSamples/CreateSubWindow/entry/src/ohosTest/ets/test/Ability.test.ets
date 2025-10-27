@@ -38,13 +38,39 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Hello Page3'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
+    })
+
+    /**
+     * 点击Hello Window，与主窗交互
+     */
+    it (BUNDLE + 'CreateWindow_001', 2, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + "CreateWindow_001, begin");
+      let driver = Driver.create();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.example.createsubwindow',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        hilog.info(DOMAIN, TAG, BUNDLE + `CreateWindow_001 exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Hello World'));
+      let clickBtn = await driver.findComponent(ON.text('Hello World'));
+      await clickBtn.click();
+      await driver.delayMs(1000);
+
+
+      hilog.info(DOMAIN, TAG, BUNDLE + `Hello World_001 end`);
     })
 
   })

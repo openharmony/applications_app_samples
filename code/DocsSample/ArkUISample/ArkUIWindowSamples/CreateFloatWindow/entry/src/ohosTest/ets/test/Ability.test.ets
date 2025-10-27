@@ -38,20 +38,20 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Hello World'));
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
     })
 
     /**
      * 点击Hello World
      */
     it (BUNDLE + 'ClickHelloWorld_001', 2, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + "ClickHelloWorld_001, begin")
+      hilog.info(DOMAIN, TAG, BUNDLE + "ClickHelloWorld_001, begin");
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -60,7 +60,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `ClickHelloWorld_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `ClickHelloWorld_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
@@ -70,7 +70,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
 
 
-      hilog.info(DOMAIN, TAG, BUNDLE + `ClickHelloWorld_001 end`)
+      hilog.info(DOMAIN, TAG, BUNDLE + `ClickHelloWorld_001 end`);
     })
 
   })

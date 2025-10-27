@@ -38,7 +38,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
@@ -60,7 +60,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `CreateMainWindow_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `CreateMainWindow_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
@@ -70,7 +70,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
 
 
-      hilog.info(DOMAIN, TAG, BUNDLE + `Hello World_001 end`)
+      hilog.info(DOMAIN, TAG, BUNDLE + `Hello World_001 end`);
     })
   })
 }

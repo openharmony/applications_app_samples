@@ -38,13 +38,13 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Hello World'));
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end');
     })
 
     /**
@@ -60,7 +60,7 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `CreateSubWindow_001 exception = ${JSON.stringify(exception)}`)
+        hilog.info(DOMAIN, TAG, BUNDLE + `CreateSubWindow_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
@@ -74,7 +74,7 @@ export default function abilityTest() {
       await clickBtn.click();
       await driver.delayMs(1000);
 
-      hilog.info(DOMAIN, TAG, BUNDLE + `CreateSubWindow_001 end`)
+      hilog.info(DOMAIN, TAG, BUNDLE + `CreateSubWindow_001 end`);
     })
   })
 }
