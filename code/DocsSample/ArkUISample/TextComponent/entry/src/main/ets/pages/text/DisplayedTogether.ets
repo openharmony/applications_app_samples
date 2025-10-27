@@ -50,11 +50,11 @@ export struct DisplayedTogether {
     for (let i = 0; i < emojis.length; i++) {
       switch (emojis[i]) {
         case 'rolling_on_the_floor_laughing':
-          emojisImg.push($r("app.media.app_icon"))
+          emojisImg.push($r('app.media.app_icon'))
         case 'slightly_smiling_face':
-          emojisImg.push($r("app.media.app_icon"))
+          emojisImg.push($r('app.media.app_icon'))
         case 'grin':
-          emojisImg.push($r("app.media.app_icon"))
+          emojisImg.push($r('app.media.app_icon'))
         default:
       }
     }
