@@ -60,7 +60,7 @@ export default class EntryAbility extends UIAbility {
     sessionId = distributedDataObject.genSessionId();
     hilog.info(DOMAIN, TAG, `gen sessionId: ${sessionId}`);
     let deviceId = getRemoteDeviceId();
-    if (deviceId == '') {
+    if (deviceId === '') {
       hilog.warn(DOMAIN, TAG, 'no remote device');
       return;
     }

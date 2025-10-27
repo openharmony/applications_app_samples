@@ -114,7 +114,7 @@ export default class EntryAbility extends UIAbility {
       // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
       // 1.3 将需要设置的分布式对象的资产或资产数组填充完成
       // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
-      if (assetUriArray?.length == 1) {
+      if (assetUriArray?.length === 1) {
         this.distributedObject?.setAsset('attachments', distrUriArray[0]).then(() => {
           hilog.info(DOMAIN, TAG, 'OnContinue setAsset');
         })
@@ -143,7 +143,7 @@ export default class EntryAbility extends UIAbility {
   // 2. 接收端在onCreate和onNewWant接口中创建分布式数据对象并加入组网进行数据恢复
   // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       if (want.parameters && want.parameters.distributedSessionId) {
         this.restoreDistributedObject(want);
       }
@@ -154,7 +154,7 @@ export default class EntryAbility extends UIAbility {
   // 2. 接收端在onCreate和onNewWant接口中创建分布式数据对象并加入组网进行数据恢复
   // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       if (want.parameters && want.parameters.distributedSessionId) {
         this.restoreDistributedObject(want);
       }
@@ -179,7 +179,7 @@ export default class EntryAbility extends UIAbility {
     dataObject.on('status', (sessionId: string, networkId: string, status: string) => {
       hilog.info(DOMAIN, TAG, `status change, sessionId:  ${sessionId}`);
       hilog.info(DOMAIN, TAG, `status change, networkId:  ${networkId}`);
-      if (status == 'restored') {
+      if (status === 'restored') {
         // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
         // 收到'restored'的状态通知表示已恢复发起端保存的数据
         // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
