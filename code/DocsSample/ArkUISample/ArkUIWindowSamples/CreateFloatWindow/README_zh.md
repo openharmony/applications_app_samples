@@ -38,6 +38,17 @@ entry/src/main/ets/
 |   |   |   |---Ability.test.ets           // 自动化测试代码
 ```
 
+### 具体实现
+
+创建全局悬浮窗的方法在EntryAbility中实现，源码参考：[EntryAbility.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateFloatWindow/entry/src/main/ets/entryability/EntryAbility.ets)
+
+- 通过window.createWindow接口创建全局悬浮窗类型的窗口；
+- 全局悬浮窗窗口创建成功后，设置大小、位置等相关属性；
+- 通过setUIContent和showWindow接口加载显示全局悬浮窗的具体内容；
+- 当不再需要全局悬浮窗时，使用destroyWindow接口销毁全局悬浮窗。
+
+目标页面在Index中实现，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateFloatWindow/entry/src/main/ets/pages/Index.ets)
+
 ### 相关权限
 
 创建WindowType.TYPE_FLOAT即全局悬浮窗类型的窗口，需要申请ohos.permission.SYSTEM_FLOAT_WINDOW权限，该权限为受控开放权限，仅符合指定场景的在2in1设备上的应用可申请该权限。申请方式请参考：[申请使用受限权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/declare-permissions-in-acl)

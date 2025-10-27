@@ -33,6 +33,16 @@ entry/src/main/ets/
 |   |   |   |---Ability.test.ets           // 自动化测试代码
 ```
 
+### 具体实现
+
+设置窗口沉浸式的方法在EntryAbility中，源码参考：[EntryAbility.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/SetWindowSystemBarEnable/entry/src/main/ets/entryability/EntryAbility.ets)
+
+- 使用getMainWindow获取到主窗口；
+- 使用setWindowSystemBarEnable设置导航栏、状态栏不显示；
+- 使用setWindowLayoutFullScreen设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性。
+
+主窗口加载的页面在Index中实现，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/SetWindowSystemBarEnable/entry/src/main/ets/pages/Index.ets)
+
 ### 相关权限
 
 不涉及
@@ -42,6 +52,8 @@ entry/src/main/ets/
 不涉及
 
 ### 约束与限制
+
+不涉及
 
 ### 下载
 

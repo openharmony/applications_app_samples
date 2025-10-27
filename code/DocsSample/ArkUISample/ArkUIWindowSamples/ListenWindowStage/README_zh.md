@@ -34,6 +34,14 @@ entry/src/main/ets/
 |   |   |---test
 |   |   |   |---Ability.test.ets           // 自动化测试代码
 ```
+### 具体实现
+
+创建子窗口的方法在EntryAbility中，源码参考：[EntryAbility.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/ListenWindowStage/entry/src/main/ets/entryability/EntryAbility.ets)
+
+- 使用loadContent为当前主窗加载页面；
+- 使用on()接口监听当前的页面状态。
+
+主窗口加载的页面在Index中实现，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/ListenWindowStage/entry/src/main/ets/pages/Index.ets)
 
 ### 相关权限
 
@@ -44,6 +52,8 @@ entry/src/main/ets/
 不涉及
 
 ### 约束与限制
+
+不涉及
 
 ### 下载
 

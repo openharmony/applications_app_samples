@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 // [Start create_sub_window2_index]
 // Index.ets
 import { window } from '@kit.ArkUI';
@@ -51,7 +65,7 @@ struct Index {
           hilog.info(DOMAIN, TAG, `Succeeded in changing the window size.`);
         });
         // 3.为子窗口加载对应的目标页面。
-        sub_windowClass.setUIContent("pages/subWindow", (err: BusinessError) => {
+        sub_windowClass.setUIContent("pages/SubWindow", (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             hilog.error(DOMAIN, TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);

@@ -28,7 +28,7 @@ entry/src/main/ets/
 |   |   |---entrybackupability
 |   |   |---pages
 |   |   |   |---Index.ets                  // 主窗口页面
-|   |   |   |---subWindow.ets              // 子窗口页面
+|   |   |   |---SubWindow.ets              // 子窗口页面
 |   |---resources
 |   |---module.json5                       
 |---ohosTest
@@ -36,8 +36,21 @@ entry/src/main/ets/
 |   |   |---test
 |   |   |   |---Ability.test.ets           // 自动化测试代码
 ```
+### 具体实现
+
+创建子窗口的方法在Index中实现，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateSubWindow2/entry/src/main/ets/pages/Index.ets)
+
+- 使用createSubWindow创建应用子窗口；
+- 使用moveWindowTo设置子窗口的位置、大小及相关属性等；
+- 使用setUIContent为子窗口加载对应的页面；
+- 使用showWindow方法显示子窗口
+- 当不再需要子窗口时，可使用destroy对其进行销毁。
+
+子窗口加载的页面在SubWindow中实现，源码参考：[SubWindow.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateSubWindow2/entry/src/main/ets/pages/Index.ets)
 
 ### 相关权限
+
+不涉及
 
 ### 依赖
 

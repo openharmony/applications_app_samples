@@ -35,11 +35,28 @@ entry/src/main/ets/
 |   |   |   |---Ability.test.ets           // 自动化测试代码
 ```
 
+### 具体实现
+
+创建主窗口的方法在EntryAbility中实现，源码参考：[EntryAbility.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateMainWindow/entry/src/main/ets/entryability/EntryAbility.ets)
+
+- 使用getMainWindow获取应用主窗口
+- 使用setWindowTouchable设置主窗口属性
+- 使用loadContent加载对应的目标页面
+
+目标页面在Index中实现，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/CreateMainWindow/entry/src/main/ets/pages/Index.ets)
+
+
 ### 相关权限
+
+不涉及
 
 ### 依赖
 
+不涉及
+
 ### 约束与限制
+
+不涉及
 
 ### 下载
 
