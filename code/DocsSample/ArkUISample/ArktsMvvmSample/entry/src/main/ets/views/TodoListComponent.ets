@@ -14,8 +14,8 @@
  */
 
 // [Start to_do_list_component_view]
-import ThingViewModel from '../viewModel/ThingViewModel';
-import { ThingViewModelArray } from '../viewModel/TodoListViewModel'
+import ThingViewModel from '../viewmodel/ThingViewModel';
+import { ThingViewModelArray } from '../viewmodel/TodoListViewModel'
 import { ThingComponent } from './ThingComponent';
 
 @Component
