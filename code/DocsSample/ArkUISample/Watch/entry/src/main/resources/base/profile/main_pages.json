@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CountModifier",
+    "pages/BasketModifier",
+    "pages/ParentComponent",
+    "pages/UsePropertyName"
+  ]
+}
