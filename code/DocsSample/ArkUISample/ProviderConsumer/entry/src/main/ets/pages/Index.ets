@@ -97,6 +97,12 @@ build() {
    .onClick(()=>{
      this.getUIContext().getRouter().pushUrl({url:'homePage/CodeThree'})
    }).margin({top:'50'})
+   Column(){
+     Text($r('app.string.Builder_Node')).backgroundColor(Color.Green)
+   }.width('100%').height(50)
+   .onClick(()=>{
+     this.getUIContext().getRouter().pushUrl({url:'homePage/BuilderNode'})
+   }).margin({top:'50'})
  }
 }
 }

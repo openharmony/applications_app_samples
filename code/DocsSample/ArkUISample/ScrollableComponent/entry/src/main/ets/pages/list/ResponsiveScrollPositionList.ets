@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start respond_to_scroll_position]
 import { util } from '@kit.ArkTS';
 import { ComponentCard } from '../../common/Card';
 
-// [Start respond_to_scroll_position]
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -139,8 +138,10 @@ export struct ResponsiveScrollPositionList {
           // [EndExclude use_stack]
           Stack({ alignContent: Alignment.End }) {
             // 此为响应滚动位置示例List容器
+            // [Start respond_tolistScroller]
             List({ scroller: this.listScroller }) {
               // [StartExclude use_foreach]
+              // [StartExclude respond_tolistScroller]
               ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
                 ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
                   // 循环渲染ListItem
@@ -160,7 +161,9 @@ export struct ResponsiveScrollPositionList {
                   }
                 }
               }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
+              // [EndExclude respond_tolistScroller]
             }
+            // [End respond_tolistScroller]
             // [EndExclude respond_to_scroll_position]
             .onScrollIndex((firstIndex: number) => {
               // [StartExclude respond_to_scroll_position]
