@@ -17,7 +17,7 @@
  * 基于 wrapBuilder 和 WrappedBuilder 的简单页面示例
  * 功能：展示包装后的 @Builder 方法调用及动态更新
  */
-
+// [Start wrapbuilder_page_one]
 declare function wrapBuilder<Args extends Object[]>(builder: (...args: Args) => void): WrappedBuilder<Args>;
 
 // 1. 全局 @Builder 方法（符合 wrapBuilder 全局限制）
@@ -101,3 +101,4 @@ struct WrapBuilderSimplePage {
     .padding(20)
   } // 闭合 build() 方法
 } // 闭合 struct 组件
+// [End wrapbuilder_page_one]

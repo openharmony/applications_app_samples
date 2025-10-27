@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start localtorage_page_local_storage_link]
 @Component
 struct LocalStorageLinkComponent {
   @LocalStorageLink('LinkA') linkA: number | null = null;
@@ -77,3 +78,4 @@ struct LinkIndex {
     .height('100%')
   }
 }
+// [End localtorage_page_local_storage_link]

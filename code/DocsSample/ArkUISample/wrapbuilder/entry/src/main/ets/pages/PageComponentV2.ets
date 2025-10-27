@@ -17,6 +17,7 @@ import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.Ab
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
+// [Start ComponentV2_page_componentV2]
 @Entry
 @ComponentV2
 struct ComponentV2Test {
@@ -39,3 +40,4 @@ struct ComponentV2Test {
     .width('100%')
   }
 }
+// [End ComponentV2_page_componentV2]
