@@ -30,8 +30,7 @@ export default class EntryAbility extends UIAbility {
     // 1.创建应用子窗口。
     if (windowStage_ == null) {
       hilog.error(DOMAIN, TAG, `Failed to create the subwindow. Cause: windowStage_ is null`);
-    }
-    else {
+    } else {
       windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -62,7 +61,7 @@ export default class EntryAbility extends UIAbility {
           hilog.info(DOMAIN, TAG, `Succeeded in changing the window size.`);
         });
         // 3.为子窗口加载对应的目标页面。
-        sub_windowClass.setUIContent("pages/Index", (err: BusinessError) => {
+        sub_windowClass.setUIContent('pages/Index', (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
             hilog.info(DOMAIN, TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);

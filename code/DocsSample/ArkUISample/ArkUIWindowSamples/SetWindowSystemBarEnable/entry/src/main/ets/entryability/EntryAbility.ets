@@ -36,7 +36,7 @@ export default class EntryAbility extends UIAbility {
       hilog.info(DOMAIN, TAG, `Succeeded in obtaining the main window. Data: ${JSON.stringify(data)}`);
 
       // 2.实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
-      let names: Array<'status' | 'navigation'> = [];
+      let names: 'status'[] | 'navigation'[] = [];
       windowClass.setWindowSystemBarEnable(names)
         .then(() => {
           hilog.info(DOMAIN, TAG, `Succeeded in setting the system bar to be visible.`);
@@ -69,7 +69,7 @@ export default class EntryAbility extends UIAbility {
         });
     })
     // 3.为沉浸式窗口加载对应的目标页面。
-    windowStage.loadContent("pages/Index", (err: BusinessError) => {
+    windowStage.loadContent('pages/Index', (err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
         hilog.error(DOMAIN, TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
