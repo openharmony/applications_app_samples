@@ -14,11 +14,11 @@
  */
 // [Start quick_start0]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-// [StartExclude  tag]
+// [StartExclude  hilogtag]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER = 0xF811;
 const TAG  = '[Sample_EnvConfig]';
-// [StartExclude  hilogtag]
+// [EndExclude  hilogtag]
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
