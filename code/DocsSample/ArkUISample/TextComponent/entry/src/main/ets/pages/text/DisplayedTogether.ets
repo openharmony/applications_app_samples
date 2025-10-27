@@ -17,7 +17,7 @@
 @Component
 export struct DisplayedTogether {
   @State fulltext: string =
-    '你好我是Text[grin]，你好我[rolling_on_the_floor_laughing]是Text，[slightly_smiling_face]你好我是Text[grin]';
+    'Hello, I am Text [gin]. Hello, I am [rolling_onthet_floor_laughing] Text, [slightly_stmiling_face] Hello, I am Text [gin]';
 
   static classifyTextAndEmojis(input: string): Map<string, string[]> {
     const emojiRegex = /\[([a-zA-Z_]+)\]/g; // 根据实际情况编写正则表达式
