@@ -67,8 +67,8 @@ textNode.frame = {
   width: 400,
   height: 600
 }
-textNode.pivot = { x: 0.2, y: 0.8 }
-textNode.scale = { x: 1, y: 1 }
+textNode.pivot = { x: 0.2, y: 0.8 };
+textNode.scale = { x: 1, y: 1 };
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -76,9 +76,9 @@ class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode {
     this.rootNode = new FrameNode(uiContext)
     if (this.rootNode == null) {
-      return this.rootNode
+      return this.rootNode;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
       renderNode.frame = {
         x: 0,
@@ -86,37 +86,37 @@ class MyNodeController extends NodeController {
         width: 10,
         height: 500
       }
-      renderNode.pivot = { x: 50, y: 50 }
+      renderNode.pivot = { x: 50, y: 50 };
     }
-    return this.rootNode
+    return this.rootNode;
   }
 
   addNode(node: RenderNode): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode != null) {
-      renderNode.appendChild(node)
+      renderNode.appendChild(node);
     }
   }
 
   clearNodes(): void {
     if (this.rootNode == null) {
-      return
+      return;
     }
     const renderNode = this.rootNode.getRenderNode()
     if (renderNode != null) {
-      renderNode.clearChildren()
+      renderNode.clearChildren();
     }
   }
 }
 
-let myNodeController: MyNodeController = new MyNodeController()
+let myNodeController: MyNodeController = new MyNodeController();
 
 async function performTask() {
-  myNodeController.clearNodes()
-  myNodeController.addNode(textNode)
+  myNodeController.clearNodes();
+  myNodeController.addNode(textNode);
 }
 
 @Entry
