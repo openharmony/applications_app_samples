@@ -13,15 +13,13 @@
  * limitations under the License.
  */
 
-// [Start data_sync_on_distributed_data_object_cross_device_migration]
+// [Start data_sync_on_distributed_data_object_cross_device_migration_one]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { commonType, distributedDataObject } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
 // 业务数据定义
-// [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
 export class ContentInfo {
   public mainTitle: string | undefined;
   public textContent: string | undefined;
@@ -60,6 +58,8 @@ export class ContentInfo {
     return obj;
   }
 }
+// [End data_sync_on_distributed_data_object_cross_device_migration_one]
+// [Start data_sync_on_distributed_data_object_cross_device_migration_two]
 
 export interface ImageInfo {
   /**
@@ -81,13 +81,9 @@ export default class EntryAbility extends UIAbility {
   private imageUriArray: Array<ImageInfo> = [];
   private distributedObject: distributedDataObject.DataObject | undefined = undefined;
 
-  // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
   // 1. 迁移发起端在onContinue接口中创建分布式数据对象并保存数据到接收端
-  // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
   async onContinue(wantParam: Record<string, Object | undefined>): Promise<AbilityConstant.OnContinueResult> {
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
     // 1.1 获取需要设置的分布式对象的资产关键uri
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
     try {
       let sessionId: string = distributedDataObject.genSessionId();
       wantParam.distributedSessionId = sessionId;
@@ -97,9 +93,7 @@ export default class EntryAbility extends UIAbility {
       if (assetUriArray) {
         distrUriArray = assetUriArray;
       }
-      // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
       // 1.2 创建分布式数据对象
-      // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
       let contentInfo: ContentInfo = new ContentInfo(
         AppStorage.get('mainTitle'),
         AppStorage.get('textContent'),
@@ -110,10 +104,10 @@ export default class EntryAbility extends UIAbility {
       );
       let source = contentInfo.flatAssets();
       this.distributedObject = distributedDataObject.create(this.context, source);
+      // [End data_sync_on_distributed_data_object_cross_device_migration_two]
+      // [Start data_sync_on_distributed_data_object_cross_device_migration_three]
 
-      // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
       // 1.3 将需要设置的分布式对象的资产或资产数组填充完成
-      // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
       if (assetUriArray?.length === 1) {
         this.distributedObject?.setAsset('attachments', distrUriArray[0]).then(() => {
           hilog.info(DOMAIN, TAG, 'OnContinue setAsset');
@@ -123,9 +117,7 @@ export default class EntryAbility extends UIAbility {
           hilog.info(DOMAIN, TAG, 'OnContinue setAssets');
         })
       }
-      // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
       // 1.4 将设置的资产或资产数组保存至迁移发起端
-      // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
       this.distributedObject?.setSessionId(sessionId);
       this.distributedObject?.save(wantParam.targetDevice as string).catch((err: BusinessError) => {
         hilog.error(DOMAIN, TAG, 'OnContinue failed to save. code: ', err.code);
@@ -139,9 +131,7 @@ export default class EntryAbility extends UIAbility {
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
-  // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
   // 2. 接收端在onCreate和onNewWant接口中创建分布式数据对象并加入组网进行数据恢复
-  // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       if (want.parameters && want.parameters.distributedSessionId) {
@@ -150,9 +140,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
-  // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
   // 2. 接收端在onCreate和onNewWant接口中创建分布式数据对象并加入组网进行数据恢复
-  // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       if (want.parameters && want.parameters.distributedSessionId) {
@@ -160,6 +148,8 @@ export default class EntryAbility extends UIAbility {
       }
     }
   }
+  // [End data_sync_on_distributed_data_object_cross_device_migration_three]
+  // [Start data_sync_on_distributed_data_object_cross_device_migration_four]
 
   async restoreDistributedObject(want: Want): Promise<void> {
     if (!want.parameters || !want.parameters.distributedSessionId) {
@@ -167,22 +157,15 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
     // 2.1 调用create接口创建并得到一个分布式数据对象实例
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
     let mailInfo: ContentInfo = new ContentInfo(undefined, undefined, [], undefined, undefined, undefined, undefined);
     dataObject = distributedDataObject.create(this.context, mailInfo);
 
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
     // 2.2 注册恢复状态监听。收到状态为'restored'的回调通知时，表示接收端分布式数据对象已恢复发起端保存过来的数据（有资产数据时，对应的文件也迁移过来了）
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
     dataObject.on('status', (sessionId: string, networkId: string, status: string) => {
       hilog.info(DOMAIN, TAG, `status change, sessionId:  ${sessionId}`);
       hilog.info(DOMAIN, TAG, `status change, networkId:  ${networkId}`);
-      if (status === 'restored') {
-        // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
-        // 收到'restored'的状态通知表示已恢复发起端保存的数据
-        // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
+      if (status === 'restored') { // 收到'restored'的状态通知表示已恢复发起端保存的数据
         hilog.info(DOMAIN, TAG, `title: ${dataObject['title']}, text: ${dataObject['text']}`);
         AppStorage.setOrCreate('mainTitle', dataObject['mainTitle']);
         AppStorage.setOrCreate('textContent', dataObject['textContent']);
@@ -194,13 +177,11 @@ export default class EntryAbility extends UIAbility {
       }
     });
 
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_migration]
     // 2.3 从want.parameters中获取发起端放入的sessionId，调用setSessionId接口设置同步的sessionId
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_migration]
     let sessionId = want.parameters.distributedSessionId as string;
     hilog.info(DOMAIN, TAG, `get sessionId: ${sessionId}`);
     dataObject.setSessionId(sessionId);
   }
 }
 
-// [End data_sync_on_distributed_data_object_demo1]
+// [End data_sync_on_distributed_data_object_cross_device_migration_four]
