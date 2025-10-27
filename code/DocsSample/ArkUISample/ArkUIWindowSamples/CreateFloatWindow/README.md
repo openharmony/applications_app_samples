@@ -59,7 +59,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-仅符合指定场景的在2in1设备上的应用可申请ohos.permission.SYSTEM_FLOAT_WINDOW权限
+1.本示例仅支持标准系统上运行, 支持设备：2in1。
+
+2.本示例为Stage模型，支持API Version 20及以上版本SDK。
+
+3.本示例需要使用DevEco Studio 6.0.0 Release及以上版本才可编译运行。
 
 ### 下载
 
