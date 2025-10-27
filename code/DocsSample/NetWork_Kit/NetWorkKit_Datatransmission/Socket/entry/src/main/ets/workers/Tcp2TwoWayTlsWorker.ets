@@ -159,7 +159,7 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
         address: serverIp,
         port: serverPort,
         family: 1,
-      },
+      } as socket.NetAddress,
     };
     // [EndExclude tcp_Upgrade_to_tls_server]
     // 建立TLSSocket连接。
