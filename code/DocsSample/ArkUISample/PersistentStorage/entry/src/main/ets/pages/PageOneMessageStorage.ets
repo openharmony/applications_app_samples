@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Persistent_page_one]
 PersistentStorage.persistProp('aProp', 47);
 
 @Entry
@@ -34,3 +35,4 @@ struct testPageOne {
     }
   }
 }
+// [End Persistent_page_one]

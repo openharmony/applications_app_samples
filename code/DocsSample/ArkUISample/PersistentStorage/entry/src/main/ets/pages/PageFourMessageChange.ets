@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ // [Start Persistent_page_four]
 // 定义常量替代魔法值，明确数值含义
 const DEFAULT_NUMBER: number = 10; // 默认数字值
 const FONT_SIZE_LARGE: number = 50; // 大字体尺寸
@@ -49,3 +50,4 @@ struct TestCase6 {
     .height(HEIGHT_FULL)
   }
 }
+// [End Persistent_page_four]

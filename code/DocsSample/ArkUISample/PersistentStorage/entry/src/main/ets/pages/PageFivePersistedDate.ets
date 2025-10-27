@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start Persistent_page_five]
 PersistentStorage.persistProp('persistedDate', new Date());
 
 @Entry
@@ -65,3 +65,4 @@ struct PersistedDate {
     }
   }
 }
+// [End Persistent_page_five]

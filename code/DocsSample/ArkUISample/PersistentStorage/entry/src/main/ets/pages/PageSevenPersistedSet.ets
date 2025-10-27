@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Persistent_page_seven]
 PersistentStorage.persistProp('persistedSet', new Set<number>([]));
 
 @Entry
@@ -77,3 +78,4 @@ struct PersistedSet {
     }
   }
 }
+// [End Persistent_page_seven]
