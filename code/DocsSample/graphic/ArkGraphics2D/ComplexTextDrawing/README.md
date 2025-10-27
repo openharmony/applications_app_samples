@@ -6,7 +6,7 @@
 
 ## 效果预览
 
-| ![](screenshots/Index.png) | ![](screenshots/Multilanguage-text_page.png) | ![](screenshots/Multiline-text_page.png)   | ![](screenshots/Complex-text_page.png) | ![](screenshots/Example1_Decoration_FontFeature.png) | ![](screenshots/Example2_FontVariation_TextShadow_Placeholder.png) | ![](screenshots/Example3_VerticalAlign.png) | ![](screenshots/Example4_BadgeType.png) | ![](screenshots/Example5_TextHighContrast.png) | ![](screenshots/Shape_Page.png) |
+| ![](screenshots/Index.png) | ![](screenshots/Multilanguage-text_page.png) | ![](screenshots/Multiline-text_page.png)   | ![](screenshots/Complex-text_page.png) | ![](screenshots/Example1_Decoration_FontFeature.png) | ![](screenshots/Example2_FontVariation_TextShadow_Placeholder.png) | ![](screenshots/Example3_VerticalAlign.png) | ![](screenshots/Example4_BadgeType.png) | ![](screenshots/Example5_TextHighContrast.png) | ![](screenshots/srceenshot_lineHeight1.jpeg) | ![](screenshots/srceenshot_lineHeight2.jpeg) | ![](screenshots/srceenshot_lineSpacing.jpeg) | ![](screenshots/Shape_Page.png) |
 |--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
 
 **使用方法：**
@@ -32,6 +32,9 @@ ArkTSDrawing
 │  │     │  ├─ ComplexStyleExample3.ets
 │  │     │  ├─ ComplexStyleExample4.ets
 │  │     │  ├─ ComplexStyleExample5.ets
+│  │     │  ├─ ComplexStyleExample6.ets
+│  │     │  ├─ ComplexStyleExample7.ets
+│  │     │  ├─ ComplexStyleExample8.ets
 │  │     │  └─ ComplexStyleText.ets
 │  │     ├─ Index.ets               // 主界面
 │  │     ├─ multilanguage
@@ -64,7 +67,7 @@ ArkTSDrawing
 ## 约束与限制
 
 1. 本示例支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API20版本SDK，版本号：6.0.0.47。
+2. 本示例支持API20版本SDK，版本号：6.0.2.55。
 3. 本示例已支持DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年9月25日)编译运行。
 
 ## 下载
