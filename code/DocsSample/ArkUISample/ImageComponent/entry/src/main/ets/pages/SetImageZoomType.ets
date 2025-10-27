@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-//  [Start ImageObjectFit]
+//  [Start Image_ObjectFit]
 @Entry
 @Component
 struct ImageScalingType {
@@ -85,4 +85,4 @@ struct ImageScalingType {
     };
   };
 }
-//  [End ImageObjectFit]
+//  [End Image_ObjectFit]

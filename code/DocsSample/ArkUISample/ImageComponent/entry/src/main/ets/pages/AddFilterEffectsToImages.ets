@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//  [Start ImageFilterEffect]
+//  [Start Image_FilterEffect]
 @Entry
 @Component
 struct AddFilterEffectsToImages {
@@ -37,4 +37,4 @@ struct AddFilterEffectsToImages {
     }
   };
 }
-//  [End ImageFilterEffect]
+//  [End Image_FilterEffect]

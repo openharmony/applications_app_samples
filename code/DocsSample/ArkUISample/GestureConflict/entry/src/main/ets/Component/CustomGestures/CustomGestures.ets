@@ -31,23 +31,23 @@ struct CustomGestures {
           }.width('200vp').height('200vp')
 
 
-          // [Start ComponentDragging]
+          // [Start Component_dragging]
           //  $r('sys.media.ohos_app_icon') 需要替换为开发者所需的资源文件
           Image($r('sys.media.ohos_app_icon'))
             .draggable(true)
             .onDragStart(()=>{
-              // [StartExclude ComponentDragging]
+              // [StartExclude Component_dragging]
              let promptAction: PromptAction = this.getUIContext().getPromptAction();
-              // [EndExclude ComponentDragging]
+              // [EndExclude Component_dragging]
               //  $r('app.string.Allow_dragging_prompt') 需要替换为开发者所需的资源文件
               promptAction.showToast({ message: $r('app.string.Allow_dragging_prompt') });
             })
             .width('200vp').height('200vp')
-          //  [End ComponentDragging]
+          // [End Component_dragging]
 
 
 
-          // [Start SetGestures]
+          // [Start Set_gestures]
           Stack() {}
           .width('200vp')
           .height('200vp')
@@ -55,17 +55,17 @@ struct CustomGestures {
           .gesture(GestureGroup(GestureMode.Parallel,
             LongPressGesture()
               .onAction((event: GestureEvent) => {
-                // [StartExclude SetGestures]
+                // [StartExclude Set_gestures]
                 let promptAction: PromptAction = this.getUIContext().getPromptAction();
-                // [EndExclude SetGestures]
+                // [EndExclude Set_gestures]
                 //  $r('app.string.Stop_dragging_prompt') 需要替换为开发者所需的资源文件
                 promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt')  });
               })
               .tag('longpress')
           ))
-          //  [End SetGestures]
+          //  [End Set_gestures]
 
-          // [Start SetUpInterception]
+          // [Start SetUp_interception]
           .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
             // 如果是长按类型手势，判断点击的位置是否在上半区
             if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
@@ -77,7 +77,7 @@ struct CustomGestures {
             };
             return GestureJudgeResult.CONTINUE;
           })
-          //  [End SetUpInterception]
+          //  [End SetUp_interception]
 
         }.width('100%')
       }.width('100%')

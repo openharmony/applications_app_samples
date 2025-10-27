@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-//  [Start MultimediaPixel]
+//  [Start Multimedia_Pixel]
 import { http } from '@kit.NetworkKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// [StartExclude HttpExample_HiLog]
+// [StartExclude Multimedia_Pixel]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'MyApp';
-// [EndExclude HttpExample_HiLog]
+// [EndExclude Multimedia_Pixel]
 @Entry
 @Component
 struct HttpExample {
@@ -61,4 +61,4 @@ struct HttpExample {
     };
   };
 }
-//  [End MultimediaPixel]
+//  [End Multimedia_Pixel]

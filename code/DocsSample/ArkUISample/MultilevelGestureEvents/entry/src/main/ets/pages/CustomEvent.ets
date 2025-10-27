@@ -34,7 +34,7 @@ const rect4 : CustomRect = new CustomRect(0, 0, 200, 150);
 struct CustomEvent {
   build() {
     Column() {
-      // [Start responseRegion]
+      // [Start response_Region]
       Column() {
         Column()
           .id('ComponentB')
@@ -46,7 +46,7 @@ struct CustomEvent {
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}))
       .responseRegion([rect4]);
-      //   [End responseRegion]
+      //   [End response_Region]
 
       // [Start hitTestBehavior_first]
       Column() {

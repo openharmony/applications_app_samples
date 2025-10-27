@@ -179,7 +179,7 @@ struct PreventIdentification {
 
 
 
-            // [Start DisableGestureType]
+            // [Start Disable_GestureType]
             .onTouchTestDone((event, recognizers) => {
               for (let i = 0; i < recognizers.length; i++) {
                 let recognizer = recognizers[i];
@@ -189,9 +189,9 @@ struct PreventIdentification {
                 };
               };
             })
-            //  [End DisableGestureType]
+            //  [End Disable_GestureType]
 
-            // [Start ComponentDisabled]
+            // [Start Component_Disabled]
             .onTouchTestDone((event, recognizers) => {
               for (let i = 0; i < recognizers.length; i++) {
                 let recognizer = recognizers[i];
@@ -201,9 +201,9 @@ struct PreventIdentification {
                 };
               };
             })
-            //  [End ComponentDisabled]
+            //  [End Component_Disabled]
 
-            // [Start BuiltInGestureDisable]
+            // [Start BuiltIn_GestureDisable]
             .onTouchTestDone((event, recognizers) => {
               for (let i = 0; i < recognizers.length; i++) {
                 let recognizer = recognizers[i];
@@ -213,7 +213,7 @@ struct PreventIdentification {
                 };
               };
             })
-            //  [End BuiltInGestureDisable]
+            //  [End BuiltIn_GestureDisable]
 
             .margin({ left: 5 })
             .trackColor(Color.Red)

@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//  [Start MediaLibraryFile]
+//  [Start Media_LibraryFile]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// [StartExclude MediaLibraryFile]
+// [StartExclude Media_LibraryFile]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'MyApp';
-// [EndExclude MediaLibraryFile]
+// [EndExclude Media_LibraryFile]
 @Entry
 @Component
 struct MediaLibraryFile {
@@ -65,4 +65,4 @@ struct MediaLibraryFile {
     }.width('100%').height('100%');
   };
 }
-//  [End MediaLibraryFile]
+//  [End Media_LibraryFile]

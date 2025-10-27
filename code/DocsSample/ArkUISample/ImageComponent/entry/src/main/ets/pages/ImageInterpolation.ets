@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//  [Start ImageInterpolation]
+//  [Start Image_Interpolation]
 @Entry
 @Component
 struct ImageInterpolationType {
@@ -57,4 +57,4 @@ struct ImageInterpolationType {
     .height('100%')
   };
 }
-//  [End ImageInterpolation]
+//  [End Image_Interpolation]

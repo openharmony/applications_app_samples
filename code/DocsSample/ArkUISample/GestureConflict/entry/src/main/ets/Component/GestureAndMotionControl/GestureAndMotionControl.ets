@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start GestureAndMotionControl]
+// [Start Gesture_MotionControl]
 // xxx.ets
 @Entry
 @Component
@@ -150,4 +150,4 @@ struct FatherControlChild {
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
   };
 }
-//  [End GestureAndMotionControl]
+//  [End Gesture_MotionControl]

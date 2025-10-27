@@ -72,7 +72,7 @@ struct GestureControlGroup {
       .edgeEffect(EdgeEffect.None)
 
 
-      // [Start GestureSimultaneously]
+      // [Start Gesture_Simultaneously]
       .shouldBuiltInRecognizerParallelWith((current: GestureRecognizer, others: Array<GestureRecognizer>) => {
         for (let i = 0; i < others.length; i++) {
           let target = others[i].getEventTargetInfo();
@@ -84,10 +84,10 @@ struct GestureControlGroup {
         };
         return undefined;
       })
-      //  [End GestureSimultaneously]
+      //  [End Gesture_Simultaneously]
 
 
-      // [Start GestureOpeningClosing]
+      // [Start Gesture_OpeningClosing]
       .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
         others: Array<GestureRecognizer>) => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
         let target = current.getEventTargetInfo();
@@ -114,9 +114,9 @@ struct GestureControlGroup {
         };
         return GestureJudgeResult.CONTINUE;
       })
-      //  [End GestureOpeningClosing]
+      //  [End Gesture_OpeningClosing]
 
-      // [Start ListeningToGestures]
+      // [Start Listening_Gestures]
       .parallelGesture( // 绑定一个Pan手势作为动态控制器
         PanGesture()
           .onActionUpdate((event: GestureEvent)=>{
@@ -152,7 +152,7 @@ struct GestureControlGroup {
             this.lastOffset = event.offsetY;
           })
       );
-      //  [End ListeningToGestures]
+      //  [End Listening_Gestures]
 
     }.width('100%').height('100%').backgroundColor(0xDCDCDC);
   };
