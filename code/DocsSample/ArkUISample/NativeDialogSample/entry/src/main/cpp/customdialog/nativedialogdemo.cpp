@@ -14,6 +14,7 @@
  */
 
 #include "nativedialogdemo.h"
+#include "../common/ArkUITextNode.h"
 #include <napi/native_api.h>
 #include <arkui/native_dialog.h>
 #include <arkui/native_interface.h>
@@ -38,7 +39,7 @@ void MainViewMethod(ArkUI_NodeContentHandle handle);
 // [Start main_view]
 constexpr int32_t BUTTON_CLICK_ID = 1;
 bool g_isShown = false;
-ArkUI_NativeDialogHandle g_dialogController;
+ArkUI_NativeDialogHandle g_dialogController = nullptr;
 ArkUI_NodeHandle g_buttonNode;
 
 void MainViewMethod(ArkUI_NodeContentHandle handle)
@@ -171,11 +172,14 @@ napi_value Dispose(napi_env env, napi_callback_info info)
     napi_value result;
     napi_get_undefined(env, &result); // 返回undefined表示void
 
-    // [Start dialog_dispose]
-    ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
-        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_1"));
-    dialogAPI->dispose(g_dialogController);
-    // [End dialog_dispose]
+    if (g_dialogController) {
+        // [Start dialog_dispose]
+        ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_1"));
+        dialogAPI->dispose(g_dialogController);
+        g_dialogController = nullptr;
+        // [End dialog_dispose]
+    }
     return result;
 }
 
@@ -254,17 +258,17 @@ void OpenDialogCallBack(int32_t dialogId)
 
 void OpenCustomDialog()
 {
-    // [Start dialog_createOption]
-    ArkUI_NodeHandle contentNode = CreateDialogContent();
-    auto dialogOptions = OH_ArkUI_CustomDialog_CreateOptions(contentNode);
-    // [End dialog_createOption]
-    OH_ArkUI_CustomDialog_SetAlignment(dialogOptions, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
-    OH_ArkUI_CustomDialog_SetBackgroundColor(dialogOptions, 0xffffffff);
-    OH_ArkUI_CustomDialog_SetModalMode(dialogOptions, false);
-    OH_ArkUI_CustomDialog_SetAutoCancel(dialogOptions, true);
-    OH_ArkUI_CustomDialog_SetBorderStyle(dialogOptions, ARKUI_BORDER_STYLE_SOLID,
+    auto contentNode = CreateDialogContent();
+    if (!g_dialogOptions) {
+        g_dialogOptions = OH_ArkUI_CustomDialog_CreateOptions(contentNode);
+    }
+    OH_ArkUI_CustomDialog_SetAlignment(g_dialogOptions, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
+    OH_ArkUI_CustomDialog_SetBackgroundColor(g_dialogOptions, 0xffffffff);
+    OH_ArkUI_CustomDialog_SetModalMode(g_dialogOptions, false);
+    OH_ArkUI_CustomDialog_SetAutoCancel(g_dialogOptions, true);
+    OH_ArkUI_CustomDialog_SetBorderStyle(g_dialogOptions, ARKUI_BORDER_STYLE_SOLID,
                                          ARKUI_BORDER_STYLE_SOLID, ARKUI_BORDER_STYLE_SOLID, ARKUI_BORDER_STYLE_SOLID);
-    OH_ArkUI_CustomDialog_OpenDialog(dialogOptions, OpenDialogCallBack);
+    OH_ArkUI_CustomDialog_OpenDialog(g_dialogOptions, OpenDialogCallBack);
 }
 // [End open_dialogOption]
 
@@ -340,9 +344,12 @@ napi_value Dispose(napi_env env, napi_callback_info info)
     napi_value result;
     napi_get_undefined(env, &result); // 返回undefined表示void
 
-    // [Start dialog_disposeOption]
-    OH_ArkUI_CustomDialog_DisposeOptions(g_dialogOptions);
-    // [End dialog_disposeOption]
+    if (g_dialogOptions) {
+        // [Start dialog_disposeOption]
+        OH_ArkUI_CustomDialog_DisposeOptions(g_dialogOptions);
+        // [End dialog_disposeOption]
+        g_dialogOptions = nullptr;
+    }
     return result;
 }
 
@@ -362,6 +369,135 @@ napi_value BuildDemoPage(napi_env env, napi_callback_info info)
 }
 
 } // namespace Dialog_Option_Demo
+
+namespace Dialog_OptionText_Demo {
+
+void CloseCustomDialog();
+void MainViewMethod(ArkUI_NodeContentHandle handle);
+void OpenDialogCallBack(int32_t dialogId);
+void OnButtonClicked(ArkUI_NodeEvent *event);
+
+ArkUI_NodeHandle g_buttonNode = nullptr;
+ArkUI_CustomDialogOptions* g_dialogOptions = nullptr;
+constexpr int32_t BUTTON_CLICK_ID = 1;
+bool g_isShown = false;
+
+// 触发dialogOptions弹窗
+int32_t g_id = 0;
+void OpenDialogCallBack(int32_t dialogId)
+{
+    g_id = dialogId;
+}
+
+void OpenTextDialog()
+{
+    // [Start dialog_createOption]
+    auto textNode = std::make_shared<NativeModule::ArkUITextNode>();
+    if (!g_dialogOptions) {
+        g_dialogOptions = OH_ArkUI_CustomDialog_CreateOptions(textNode->GetHandle());
+    }
+    // [End dialog_createOption]
+    textNode->SetTextContent("this is a demo");
+    OH_ArkUI_CustomDialog_SetAlignment(g_dialogOptions, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
+    OH_ArkUI_CustomDialog_SetBackgroundColor(g_dialogOptions, 0xffffffff);
+    OH_ArkUI_CustomDialog_SetModalMode(g_dialogOptions, false);
+    OH_ArkUI_CustomDialog_SetAutoCancel(g_dialogOptions, true);
+    OH_ArkUI_CustomDialog_SetBorderStyle(g_dialogOptions, ARKUI_BORDER_STYLE_SOLID,
+                                         ARKUI_BORDER_STYLE_SOLID, ARKUI_BORDER_STYLE_SOLID, ARKUI_BORDER_STYLE_SOLID);
+    OH_ArkUI_CustomDialog_OpenDialog(g_dialogOptions, OpenDialogCallBack);
+}
+
+void CloseCustomDialog()
+{
+    OH_ArkUI_CustomDialog_CloseDialog(g_id);
+}
+
+// 创建可交互界面，点击Button后弹窗
+void MainViewMethod(ArkUI_NodeContentHandle handle)
+{
+    ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+    ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    ArkUI_NumberValue widthValue[] = {{.f32 = 300}};
+    ArkUI_AttributeItem widthItem = {.value = widthValue, .size = sizeof(widthValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(column, NODE_WIDTH, &widthItem);
+    ArkUI_NumberValue heightValue[] = {{.f32 = 300}};
+    ArkUI_AttributeItem heightItem = {.value = heightValue, .size = sizeof(heightValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(column, NODE_HEIGHT, &heightItem);
+    
+    g_buttonNode = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_NumberValue buttonWidthValue[] = {{.f32 = 200}};
+    ArkUI_AttributeItem buttonWidthItem = {.value = buttonWidthValue,
+                                           .size = sizeof(buttonWidthValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(g_buttonNode, NODE_WIDTH, &buttonWidthItem);
+    ArkUI_NumberValue buttonHeightValue[] = {{.f32 = 50}};
+    ArkUI_AttributeItem buttonHeightItem = {.value = buttonHeightValue,
+                                            .size = sizeof(buttonHeightValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(g_buttonNode, NODE_HEIGHT, &buttonHeightItem);
+    ArkUI_AttributeItem labelItem = {.string = "点击弹窗"};
+    nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
+    ArkUI_NumberValue buttonTypeValue[] = {{.i32 = static_cast<int32_t>(ARKUI_BUTTON_TYPE_NORMAL)}};
+    ArkUI_AttributeItem buttonTypeItem = {.value = buttonTypeValue,
+                                          .size = sizeof(buttonTypeValue) / sizeof(ArkUI_NumberValue)};
+    nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_TYPE, &buttonTypeItem);
+    nodeAPI->registerNodeEvent(g_buttonNode, NODE_ON_CLICK, BUTTON_CLICK_ID, nullptr);
+    nodeAPI->addNodeEventReceiver(g_buttonNode, OnButtonClicked);
+    nodeAPI->addChild(column, g_buttonNode);
+    OH_ArkUI_NodeContent_AddNode(handle, column);
+}
+
+void OnButtonClicked(ArkUI_NodeEvent *event)
+{
+    if (!event || !g_buttonNode) {
+        return;
+    }
+    auto eventId = OH_ArkUI_NodeEvent_GetTargetId(event);
+    if (eventId == BUTTON_CLICK_ID) {
+        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+        if (g_isShown) {
+            g_isShown = false;
+            ArkUI_AttributeItem labelItem = {.string = "显示弹窗"};
+            nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
+            CloseCustomDialog();
+        } else {
+            g_isShown = true;
+            ArkUI_AttributeItem labelItem = {.string = "关闭弹窗"};
+            nodeAPI->setAttribute(g_buttonNode, NODE_BUTTON_LABEL, &labelItem);
+            OpenTextDialog();
+        }
+    }
+}
+
+// 退出时删除g_dialogOptions
+napi_value Dispose(napi_env env, napi_callback_info info)
+{
+    napi_value result;
+    napi_get_undefined(env, &result); // 返回undefined表示void
+
+    if (g_dialogOptions) {
+        OH_ArkUI_CustomDialog_DisposeOptions(g_dialogOptions);
+        g_dialogOptions = nullptr;
+    }
+    return result;
+}
+
+napi_value BuildDemoPage(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args;
+    napi_get_cb_info(env, info, &argc, &args, nullptr, nullptr);
+    napi_value result;
+    napi_get_undefined(env, &result); // 返回undefined表示void
+    
+    ArkUI_NodeContentHandle contentHandle;
+    // 将napi_value转为NodeContentHandle
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args, &contentHandle);
+    MainViewMethod(contentHandle);
+    return result;
+}
+
+}
 
 // 弹窗的生命周期
 namespace Dialog_LifeCycle_Demo {
@@ -438,15 +574,17 @@ void ShowDialog()
 {
     ArkUI_NativeDialogAPI_3 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_3 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_3"));
-    auto customDialog = dialogAPI->nativeDialogAPI1.create();
+    if (!g_dialogController) {
+        g_dialogController = dialogAPI->nativeDialogAPI1.create();
+    }
     auto contentNode = CreateDialogContent();
-    dialogAPI->nativeDialogAPI1.setContent(customDialog, contentNode);
-    dialogAPI->nativeDialogAPI1.setAutoCancel(customDialog, true);
-    dialogAPI->registerOnWillAppear(customDialog, nullptr, OnWillAppearCallBack);
-    dialogAPI->registerOnDidAppear(customDialog, nullptr, OnDidAppearCallBack);
-    dialogAPI->registerOnWillDisappear(customDialog, nullptr, OnWillDisappearCallBack);
-    dialogAPI->registerOnDidDisappear(customDialog, nullptr, OnDidDisappearCallBack);
-    dialogAPI->nativeDialogAPI1.show(customDialog, false);
+    dialogAPI->nativeDialogAPI1.setContent(g_dialogController, contentNode);
+    dialogAPI->nativeDialogAPI1.setAutoCancel(g_dialogController, true);
+    dialogAPI->registerOnWillAppear(g_dialogController, nullptr, OnWillAppearCallBack);
+    dialogAPI->registerOnDidAppear(g_dialogController, nullptr, OnDidAppearCallBack);
+    dialogAPI->registerOnWillDisappear(g_dialogController, nullptr, OnWillDisappearCallBack);
+    dialogAPI->registerOnDidDisappear(g_dialogController, nullptr, OnDidDisappearCallBack);
+    dialogAPI->nativeDialogAPI1.show(g_dialogController, false);
 }
 // [End dialog_lifecycle]
 
@@ -523,9 +661,12 @@ napi_value Dispose(napi_env env, napi_callback_info info)
     napi_value result;
     napi_get_undefined(env, &result); // 返回undefined表示void
 
-    ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
-        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_1"));
-    dialogAPI->dispose(g_dialogController);
+    if (g_dialogController) {
+        ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_1"));
+        dialogAPI->dispose(g_dialogController);
+        g_dialogController = nullptr;
+    }
     return result;
 }
 

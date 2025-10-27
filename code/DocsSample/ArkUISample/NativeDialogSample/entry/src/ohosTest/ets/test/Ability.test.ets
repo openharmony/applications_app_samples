@@ -114,6 +114,33 @@ export default function abilityTest() {
       done();
     })
 
+    it('testOpenDialogDemoOptionText', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'testOpenDialogDemoOptionText begin');
+      let driver = Driver.create();
+      let button1 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_demo'), MatchPattern.CONTAINS));
+      expect(button1 === null).assertFalse();
+      await button1.click();
+      await sleep(1000);
+      let button2 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('dialog_optionText_demo'), MatchPattern.CONTAINS));
+      expect(button2 === null).assertFalse();
+      await button2.click();
+      await sleep(1000);
+      let button3 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_open_dialog'), MatchPattern.CONTAINS));
+      expect(button3 === null).assertFalse();
+      await button3.click();
+      await sleep(1000);
+      let button4 =
+        await driver.findComponent(ON.text(manager.getStringByNameSync('demo_close_dialog'), MatchPattern.CONTAINS));
+      expect(button4 === null).assertFalse();
+      await button4.click();
+      await sleep(1000);
+      await driver.pressBack();
+      done();
+    })
+
     it('testOpenDialogDemoLifecycle', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'testOpenDialogDemoLifecycle begin');
       let driver = Driver.create();
