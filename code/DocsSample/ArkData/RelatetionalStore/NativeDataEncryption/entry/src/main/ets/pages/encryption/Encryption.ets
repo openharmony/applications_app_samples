@@ -14,11 +14,11 @@
  */
 
 
-// [StartExclude encryption_TS_IncludeSupported]
+// [Start encryption_TS_IncludeSupported]
 import { relationalStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit'
-// [EndExclude encryption_TS_IncludeSupported]
+// [End encryption_TS_IncludeSupported]
 
 const DOMAIN = 0x0000
 

@@ -14,12 +14,12 @@
  */
 
 
-// [StartExclude backuprestore_TS_IncludeSupported]
+// [Start backuprestore_TS_IncludeSupported]
 import { relationalStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { hilog } from '@kit.PerformanceAnalysisKit'
-// [EndExclude backuprestore_TS_IncludeSupported]
+// [End backuprestore_TS_IncludeSupported]
 
 
 const DOMAIN = 0x0000
