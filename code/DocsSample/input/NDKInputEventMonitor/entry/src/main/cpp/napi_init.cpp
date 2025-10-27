@@ -267,10 +267,10 @@ void OnAllAxisEventCallback(const Input_AxisEvent* axisEvent)
     ret = OH_Input_GetAxisEventDisplayX(axisEvent, &event.displayX);
     ret = OH_Input_GetAxisEventDisplayY(axisEvent, &event.displayY);
     ret = OH_Input_GetAxisEventActionTime(axisEvent, &event.actionTime);
-    InputEvent_SourceType sourceType;
+    InputEvent_SourceType sourceType = 0;
     ret = OH_Input_GetAxisEventSourceType(axisEvent, &sourceType);
     event.sourceType = sourceType;
-    InputEvent_AxisEventType axisEventType;
+    InputEvent_AxisEventType axisEventType = 0;
     ret = OH_Input_GetAxisEventType(axisEvent, &axisEventType);
     event.axisEventType = axisEventType;
     if (event.axisEventType == AXIS_EVENT_TYPE_PINCH) {
@@ -314,10 +314,10 @@ void OnPinchAxisEventCallback(const Input_AxisEvent* axisEvent)
     ret = OH_Input_GetAxisEventDisplayX(axisEvent, &event.displayX);
     ret = OH_Input_GetAxisEventDisplayY(axisEvent, &event.displayY);
     ret = OH_Input_GetAxisEventActionTime(axisEvent, &event.actionTime);
-    InputEvent_SourceType sourceType;
+    InputEvent_SourceType sourceType = 0;
     ret = OH_Input_GetAxisEventSourceType(axisEvent, &sourceType);
     event.sourceType = sourceType;
-    InputEvent_AxisEventType axisEventType;
+    InputEvent_AxisEventType axisEventType = 0;
     ret = OH_Input_GetAxisEventType(axisEvent, &axisEventType);
     event.axisEventType = axisEventType;
     double value = 0;
@@ -352,10 +352,10 @@ void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
     ret = OH_Input_GetAxisEventDisplayX(axisEvent, &event.displayX);
     ret = OH_Input_GetAxisEventDisplayY(axisEvent, &event.displayY);
     ret = OH_Input_GetAxisEventActionTime(axisEvent, &event.actionTime);
-    InputEvent_SourceType sourceType;
+    InputEvent_SourceType sourceType = 0;
     ret = OH_Input_GetAxisEventSourceType(axisEvent, &sourceType);
     event.sourceType = sourceType;
-    InputEvent_AxisEventType axisEventType;
+    InputEvent_AxisEventType axisEventType = 0;
     ret = OH_Input_GetAxisEventType(axisEvent, &axisEventType);
     event.axisEventType = axisEventType;
     double value = 0;
