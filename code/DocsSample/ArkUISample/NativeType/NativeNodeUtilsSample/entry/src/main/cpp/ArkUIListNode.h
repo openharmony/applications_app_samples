@@ -94,16 +94,16 @@ public:
 protected:
     void OnNodeEvent(ArkUI_NodeEvent *event) override
     {
-        auto eventType = OH_ArkUI_NodeEvent_GetEventType);
+        auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
         switch (eventType) {
             case NODE_LIST_ON_SCROLL_INDEX: {
                 auto index = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event)->data[0];
-                ifonScrollIndex_) {
+                if (onScrollIndex_) {
                     onScrollIndex_(index.i32);
                 }
             }
             default: {
-        }
+            }
         }
     }
 

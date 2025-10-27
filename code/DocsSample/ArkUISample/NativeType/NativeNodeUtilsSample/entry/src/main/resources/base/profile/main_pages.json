@@ -1,8 +1,9 @@
 {
   "src": [
-    "pages/entry",
-    "pages/index",
-    "pages/customproperty",
-    "pages/nodeadapter"
+    "pages/drawPage/DrawPage",
+    "pages/nativeUI/NativeUIPage",
+    "pages/Index",
+    "pages/CustomProperty",
+    "pages/NodeAdapter"
   ]
 }
