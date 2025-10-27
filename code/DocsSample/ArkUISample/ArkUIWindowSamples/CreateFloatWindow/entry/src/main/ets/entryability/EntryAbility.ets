@@ -55,7 +55,7 @@ export default class EntryAbility extends UIAbility {
         hilog.info(DOMAIN, TAG, `Succeeded in changing the window size.`);
       });
       // 3.为悬浮窗加载对应的目标页面。
-      windowClass.setUIContent("pages/page4", (err: BusinessError) => {
+      windowClass.setUIContent('pages/page4', (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
           hilog.error(DOMAIN, TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
