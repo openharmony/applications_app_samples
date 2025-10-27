@@ -28,10 +28,10 @@ struct OnHover {
         .onHover((isHover?: boolean) => { // 使用onHover接口监听鼠标是否悬浮在Button组件上
           if (isHover) {
             this.hoverText = 'Hovered!';
-            this.Color = Color.Green;
+            this.color = Color.Green;
           } else {
             this.hoverText = 'Not Hover';
-            this.Color = Color.Gray;
+            this.color = Color.Gray;
           }
         })
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)

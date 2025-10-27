@@ -14,7 +14,7 @@
  */
 
 // [Start dynamic_focus_request]
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'；
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
