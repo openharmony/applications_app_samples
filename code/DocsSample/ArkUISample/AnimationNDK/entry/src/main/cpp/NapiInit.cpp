@@ -22,8 +22,11 @@ static napi_value Init(napi_env env, napi_value exports)
 //     绑定Native侧的创建组件和销毁组件。
     napi_property_descriptor desc[] = {
         {"createNativeRoot", nullptr, NativeModule::CreateNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"destroyNativeRoot", nullptr, NativeModule::DestroyNativeRoot, nullptr,
-            nullptr, nullptr, napi_default, nullptr}};
+        {"destroyNativeRoot", nullptr, NativeModule::DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"createTransitionEffectRoot", nullptr, NativeModule::CreateTransitionEffectRoot, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+    };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
@@ -35,11 +38,8 @@ static napi_module demoModule = {
     .nm_filename = nullptr,
     .nm_register_func = Init,
     .nm_modname = "entry",
-    .nm_priv = ((void*)0),
-    .reserved = { 0 },
+    .nm_priv = ((void *)0),
+    .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
-{
-    napi_module_register(&demoModule);
-}
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }

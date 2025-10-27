@@ -25,6 +25,7 @@ struct ButtonAlignBottom {
   build() {
     RelativeContainer() {
       // [Start button_align_bottom]
+      // [Start button_touch]
       ArcButton({
         options: new ArcButtonOptions({
           label: 'OK',
@@ -40,6 +41,7 @@ struct ButtonAlignBottom {
         })
 
       })
+      // [End button_touch]
       // [End button_align_bottom]
         .alignRules({
           middle: { anchor: '__container__', align: HorizontalAlign.Center },

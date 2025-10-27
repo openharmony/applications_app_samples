@@ -77,6 +77,7 @@ struct TransitionData {
 
 std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
 {
+    // [Start get_keyframeAnimateTo]
     auto column = std::make_shared<ArkUIColumnNode>();
     column->SetWidth(NUM_300);
     column->SetHeight(NUM_250);
@@ -99,13 +100,17 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
     auto onTouch = [](ArkUI_NodeEvent *event) {
         // 点击button按钮时触发该逻辑
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_1) {
+            // [Start get_context]
             // 获取context对象
             ArkUI_ContextHandle context = nullptr;
             context = OH_ArkUI_GetContextByNode(g_keyframe_button->GetHandle());
+            // [End get_context]
 
+            // [Start get_Api]
             // 获取ArkUI_NativeAnimateAPI接口
             ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
+            // [End get_Api]
             
             // 以下代码为创建关键帧动画的关键流程，包括设置关键帧动画参数、开启关键帧动画
             // 设置ArkUI_KeyframeAnimateOption参数，通过提供的C方法设置对应的参数
@@ -173,6 +178,7 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
     column->AddChild(g_keyframe_text);
     column->AddChild(textNode);
     column->AddChild(button);
+    // [End get_keyframeAnimateTo]
     return column;
 }
 
@@ -208,6 +214,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
             ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
             
+            // [Start set_option]
             // 设置动画参数
             ArkUI_AnimateOption *option = OH_ArkUI_AnimateOption_Create();
             OH_ArkUI_AnimateOption_SetDuration(option, NUM_2000);
@@ -224,7 +231,9 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
             range->max = NUM_120;
             range->expected = NUM_60;
             OH_ArkUI_AnimateOption_SetExpectedFrameRateRange(option, range);
+            // [End set_option]
             
+            // [Start set_callback]
             // 设置完成的回调
             ArkUI_AnimateCompleteCallback *completeCallback = new ArkUI_AnimateCompleteCallback;
             completeCallback->type = ARKUI_FINISH_CALLBACK_REMOVED;
@@ -269,6 +278,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
             };
             // 执行对应的动画
             animateApi->animateTo(context, option, update, completeCallback);
+            // [End set_callback]
             
             auto duration = OH_ArkUI_AnimateOption_GetDuration(option);
             auto tempo = OH_ArkUI_AnimateOption_GetTempo(option);
@@ -419,6 +429,7 @@ std::shared_ptr<ArkUIBaseNode> CreateTransitionEffect()
     return column;
 }
 
+// [Start get_createAnimator]
 std::shared_ptr<ArkUIBaseNode> CreateAnimator()
 {
     auto column = std::make_shared<ArkUIColumnNode>();
@@ -628,6 +639,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     column->AddChild(buttoColumn);
     return column;
 }
+// [End get_createAnimator]
 
 std::shared_ptr<ArkUIBaseNode> CreateAnimateRootNode()
 {
