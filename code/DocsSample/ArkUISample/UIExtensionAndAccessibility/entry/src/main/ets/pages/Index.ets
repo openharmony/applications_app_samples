@@ -17,11 +17,11 @@ import { LengthMetrics } from '@kit.ArkUI';
 import { RoutableCard } from '../common/Card';
 import { Route } from '../common/Route';
 import resource from '../common/resource';
-import { UI_EXTENSION_ROUTE_PREFIX, UIExtensionDestination } from './UIExtensionComponent/Index'
-import { EMBEDDED_ROUTE_PREFIX, EmbeddedDestination } from './EmbeddedComponent/Index'
-import { SCREEN_ROUTE_PREFIX, FullScreenDestination } from './FullScreenLaunchComponent/Index'
-import { ISOLATED_ROUTE_PREFIX, IsolatedDestination } from './IsolatedComponent/Index'
-import { ACCESSIBILITY_ROUTE_PREFIX, AccessibilityDestination } from './UniversalAttributesAccessibility/Index'
+import { UI_EXTENSION_ROUTE_PREFIX, UIExtensionDestination } from './UIExtensionComponent/Index';
+import { EMBEDDED_ROUTE_PREFIX, EmbeddedDestination } from './EmbeddedComponent/Index';
+import { SCREEN_ROUTE_PREFIX, FullScreenDestination } from './FullScreenLaunchComponent/Index';
+import { ISOLATED_ROUTE_PREFIX, IsolatedDestination } from './IsolatedComponent/Index';
+import { ACCESSIBILITY_ROUTE_PREFIX, AccessibilityDestination } from './UniversalAttributesAccessibility/Index';
 import { UIContext } from '@kit.ArkUI';
 
 const routes: Route[] = [

@@ -42,7 +42,7 @@ export default function NativeUIPageTest() {
       const driver = Driver.create();
       await driver.pressBack();
       await driver.delayMs(1000);
-      done()
+      done();
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.

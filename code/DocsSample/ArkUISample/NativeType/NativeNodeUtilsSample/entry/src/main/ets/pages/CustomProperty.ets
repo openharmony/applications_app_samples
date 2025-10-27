@@ -23,18 +23,18 @@ struct CAPIComponent {
 
   aboutToAppear(): void {
     // 页面显示前多线程创建Native组件。
-    entry.createCustomPropertyDemo(this.rootSlot)
+    entry.createCustomPropertyDemo(this.rootSlot);
   }
 
   aboutToDisappear(): void {
     // 页面销毁前释放已创建的Native组件。
-    entry.disposeNodeTree(this.rootSlot)
+    entry.disposeNodeTree(this.rootSlot);
   }
 
   build() {
     Column() {
       // Native组件挂载点。
-      ContentSlot(this.rootSlot)
+      ContentSlot(this.rootSlot);
     }
   }
 }
@@ -48,7 +48,7 @@ struct Index {
   build() {
     Flex() {
       Column() {
-        Text('通用类接口测试')
+        Text($r('app.string.Common_Interface_Test'))
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
 

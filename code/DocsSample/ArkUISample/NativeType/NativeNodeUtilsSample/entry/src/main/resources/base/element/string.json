@@ -11,6 +11,26 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "Create_Component",
+      "value": "多实例创建组件"
+    },
+    {
+      "name": "Custom_Attribute_Test",
+      "value": "自定义属性测试"
+    },
+    {
+      "name": "LazyForEach_Page",
+      "value": "懒加载页面"
+    },
+    {
+      "name": "Setting_NDKNativeWindows_Context",
+      "value": "设置NDK侧主窗口Context"
+    },
+    {
+      "name": "Common_Interface_Test",
+      "value": "通用类接口测试"
     }
   ]
 }

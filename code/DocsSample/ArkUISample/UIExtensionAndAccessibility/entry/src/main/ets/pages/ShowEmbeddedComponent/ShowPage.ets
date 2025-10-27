@@ -14,9 +14,9 @@
  */
 
 import render from 'libentry.so';
-
 import { NodeContent } from '@kit.ArkUI';
 import { UIContext } from '@kit.ArkUI';
+
 @Entry
 @Component
 export struct ShowPage {

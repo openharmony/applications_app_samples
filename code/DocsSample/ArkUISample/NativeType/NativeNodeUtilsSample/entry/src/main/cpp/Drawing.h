@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#ifndef DRAWING_NATIVEENTRY_H
+#define DRAWING_NATIVEENTRY_H
 // [Start drawing_start]
 #include <arkui/native_node.h>
 #include <arkui/native_node_napi.h>
@@ -95,3 +96,4 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
     return column;
 }
 // [End drawing_start]
+#endif // DRAWING_NATIVEENTRY_H

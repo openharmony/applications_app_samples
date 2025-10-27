@@ -23,13 +23,13 @@ struct CAPIComponent {
 
   aboutToAppear(): void {
     // 页面显示前多线程创建Native组件。
-    entry.createNodeAdapterDemo(this.rootSlot)
+    entry.createNodeAdapterDemo(this.rootSlot);
   }
 
   build() {
     Column() {
       // Native组件挂载点。
-      ContentSlot(this.rootSlot)
+      ContentSlot(this.rootSlot);
     }
   }
 }

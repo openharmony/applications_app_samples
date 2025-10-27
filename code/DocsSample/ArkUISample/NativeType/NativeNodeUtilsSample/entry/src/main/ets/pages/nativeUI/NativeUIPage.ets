@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { NodeContent, router } from '@kit.ArkUI';
+import { NodeContent } from '@kit.ArkUI';
 import render, { DestroyNativeRoot } from 'libentry.so';
 @Entry
 @Component
 
 struct NativeCustomPage {
-  @State flag:boolean=true
-  @State text:string='ShowNativeUI'
+  @State flag:boolean=true;
+  @State text:string='ShowNativeUI';
   private nodeContent: NodeContent = new NodeContent();
   private isNodeCreated: boolean = true;
   onPageShow() {
@@ -52,7 +52,7 @@ struct NativeCustomPage {
       }
        if(this.flag){
          Column() {
-           ContentSlot(this.nodeContent)
+           ContentSlot(this.nodeContent);
          }
          .margin({top:50})
          .flexGrow(1)

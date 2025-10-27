@@ -42,7 +42,7 @@ export default function DrawPageTest() {
       const driver = Driver.create();
       await driver.pressBack();
       await driver.delayMs(3000);
-      done()
+      done();
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
@@ -58,7 +58,7 @@ export default function DrawPageTest() {
       const button = await driver.findComponent(ON.text('ShowDrawPage'));
       await button.click();
       await driver.delayMs(3000);
-      done()
+      done();
     })
   })
 }

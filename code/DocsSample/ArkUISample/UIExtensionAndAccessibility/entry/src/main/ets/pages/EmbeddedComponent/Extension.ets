@@ -16,7 +16,7 @@
 // [Start extension_start]
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = LocalStorage.getShared()
+let storage = LocalStorage.getShared();
 
 @Entry(storage)
 @Component

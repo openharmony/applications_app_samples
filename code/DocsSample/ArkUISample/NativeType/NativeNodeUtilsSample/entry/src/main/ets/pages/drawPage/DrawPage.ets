@@ -27,7 +27,7 @@ struct DrawPage {
   }
   build() {
     Column() {
-      ContentSlot(this.nodeContent)
+      ContentSlot(this.nodeContent);
     }
     .width('100%')
     .height('100%')
