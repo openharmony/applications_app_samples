@@ -35,12 +35,22 @@ entry/src/main/ets/
 |---pages
 |   |---customdialog                          //自定义弹出框     
 |   |       |---CreateCustomDialog.ets
+|   |       |---CreateCustomDialog1.ets
 |   |       |---DialogAnimation.ets
+|   |       |---DialogAnimation1.ets
+|   |       |---DialogAvoidSoftKeyboard.ets
 |   |       |---DialogInteraction.ets
 |   |       |---DialogInteraction1.ets
+|   |       |---DialogInteraction2.ets
+|   |       |---DialogInteraction3.ets
 |   |       |---DialogStyle.ets
+|   |       |---DialogStyle1.ets
+|   |       |---DialogWithPhysicalBack.ets
+|   |       |---GetDialogStatus.ets
 |   |       |---Index.ets
+|   |       |---Index2.ets
 |   |       |---NestDialog.ets
+|   |       |---NestDialog1.ets
 |   |---fixedstyledialog                      //固定样式弹出框
 |   |       |---ActionSheet.ets
 |   |       |---AlertDialog.ets
@@ -123,7 +133,17 @@ entry/src/ohosTest/
    
    * 使用bindMenu或bindContextMenu未设置预览图时，菜单弹出无蒙层，此时为非模态。
 
-4. 不依赖UI组件的全局自定义弹出框 (openCustomDialog)
+4. 基础自定义弹出框 (CustomDialog)
+   
+   * CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件更新等与用户交互响应操作。
+
+   * 开发者可以通过CustomDialogController类显示自定义弹出框。具体用法请参考自定义弹出框。
+
+   * 默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。
+
+   * 可以通过配置CustomDialogControllerOptions中的isModal属性来实现模态和非模态弹窗，详细说明可参考弹窗的种类。
+
+5. 不依赖UI组件的全局自定义弹出框 (openCustomDialog)
 
    * 推荐使用UIContext中获取到的PromptAction对象提供的openCustomDialog接口在相对应用复杂的场景来实现自定义弹出框，相较于CustomDialogController优势点在于页面解耦，支持动态刷新。
    
@@ -134,12 +154,13 @@ entry/src/ohosTest/
    * 当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
 5. 弹出框蒙层控制（MaskDialog）
+
    * 开发者对弹出框的定制不仅限于弹出框里的内容，对弹出框蒙层的定制需求也逐渐增加。
+   
    * 本文介绍ArkUI弹出框的蒙层控制，包括点击蒙层时是否消失、蒙层区域、蒙层颜色和蒙层动画等特性。
 
 ### 相关权限
-
-不涉及。
+   不涉及。
 
 ### 依赖
 
