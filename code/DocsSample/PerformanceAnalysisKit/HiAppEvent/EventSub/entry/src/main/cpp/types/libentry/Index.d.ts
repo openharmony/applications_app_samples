@@ -15,7 +15,6 @@
 
 // [Start EventSub_Index.d.ts_All]
 export const registerWatcher: () => void;
-export const addressTest: () => void;
 // [Start AppEvent_C++_Index.d.ts]
 export const registerWatcherCrash: () => void;
 export const registerWatcherClick: () => void;
@@ -24,6 +23,17 @@ export const writeAppEvent: () => void;
 // [Start test_hicollie_timer_Index.d.ts]
 export const TestHiCollieTimerNdk: () => void;
 // [End test_hicollie_timer_Index.d.ts]
+// [Start AsanEvent_Index.d.ts]
+export const registerSanitizerReceiveWatcher: () => void;
+export const addressSanitizerTest: () => void;
+// [End AsanEvent_Index.d.ts]
+// [Start PssLeakEvent_Index.d.ts]
+export const registerLeakReceiveWatcher: () => void;
+// [End PssLeakEvent_Index.d.ts]
+// [Start AppKillEvent_Index.d.ts]
+export const registerAppKillReceiveWatcher: () => void;
+export const leak: () => void;
+// [End AppKillEvent_Index.d.ts]
 // [Start Register_AppHicollie_WatcherR.d.ts]
 export const RegisterAppHicollieWatcherR: () => void;
 // [End Register_AppHicollie_WatcherR.d.ts]

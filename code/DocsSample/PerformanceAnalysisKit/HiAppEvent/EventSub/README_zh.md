@@ -4,7 +4,7 @@
 
 本示例主要展示用HiAppEvent如何实现事件订阅（AppEvent），并列举了订阅如下系统事件的例子：
 
-崩溃事件（CrashEvent）、系统卡死事件（FreezeEvent）、系统资源泄漏事件（PssLeakEvent）、系统踩内存事件（ASANEvent）以及主线程超时事件
+崩溃事件（CrashEvent）、系统卡死事件（FreezeEvent）、系统资源泄漏事件（PssLeakEvent）、系统地址越界事件（ASANEvent）以及主线程超时事件
 
 （TimeOutEvent）。
 
@@ -22,19 +22,23 @@
 
 - [订阅卡死事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-freeze-events-ndk.md)
 
-- [订阅资源泄漏事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-arkts.md)
+- [订阅资源泄漏事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-arkts.md)
 
-- [订阅资源泄漏事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-ndk.md)
+- [订阅资源泄漏事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-ndk.md)
 
-- [订阅踩内存事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
+- [订阅地址越界事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
 
-- [订阅踩内存事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
+- [订阅地址越界事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
 
 - [订阅主线程超时事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
 
 - [订阅主线程超时事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
 
 - [订阅任务执行超时事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-apphicollie-events-ndk.md)
+
+- [订阅应用终止事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-app-killed-events-arkts.md)
+
+- [订阅应用终止事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-app-killed-events-ndk.md)
 
 ###  效果预览
 
@@ -292,7 +296,7 @@ HiAppEvent eventInfo.params.test_data=100
 
 1.先在设备“开发者选项”中打开“系统资源泄漏日志”，并重启设备；
 
-2.在应用侧主界面，点击"pssLeak ArkTS&C++"按钮触发资源泄露事件，等待15~30分钟，会上报应用内存泄漏事件；
+2.在应用侧主界面，点击"pss leak"按钮触发资源泄露事件，等待15~30分钟，会上报应用内存泄漏事件；
 
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
@@ -339,11 +343,11 @@ HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"p
 
 3.C++实现了onReceive和onTrigger两种观察者，ArkTS实现了onReceive观察者。
 
-##### 7.订阅踩内存事件（ArkTS&C++）
+##### 7.订阅地址越界事件（ArkTS&C++）
 
 1.点击DevEco Studio界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。
 
-2.在应用侧主界面，点击"appAsanEvent ArkTS&C++"按钮触发踩内存事件，应用退出后重启应用；
+2.在应用侧主界面，点击"address-sanitizer"按钮触发地址越界事件，应用退出后重启应用；
 
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 

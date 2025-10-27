@@ -17,9 +17,9 @@
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 // [End EventSub_Header]
-// [Start PssleakEvent_Header]
-import hidebug from '@ohos.hidebug';
-// [End PssleakEvent_Header]
+// [Start PssleakEvent_Button]
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+// [End PssleakEvent_Button]
 // [Start EventSub_Index_Capi_Header]
 import testNapi from 'libentry.so';
 // [End EventSub_Index_Capi_Header]
@@ -27,7 +27,9 @@ import testNapi from 'libentry.so';
 @Component
 struct Index {
   @State leakedArray: string[][] = [];
-
+  // [Start AppKillEvent_Button]
+  @State message: string = 'Start To Leak';
+  // [End AppKillEvent_Button]
   build() {
     Row() {
       Column() {
@@ -88,8 +90,9 @@ struct Index {
             JSON.parse('');
           })
         // [End CrashEvent_Button]
+        // [Start PssleakEventTS_Button]
         // [Start PssleakEvent_Button]
-        Button($r('app.string.Pssleak_Button'))
+        Button('pss leak')
             .type(ButtonType.Capsule)
             .margin({
               top: 20
@@ -104,9 +107,40 @@ struct Index {
                 this.leakedArray.push(new Array(1).fill('leak'));
               }
             })
-          // [End PssleakEvent_Button]
-          // [Start TimeOutEvent_Button]
-          Button($r('app.string.TimeOut_Button'))
+        // [End PssleakEvent_Button]
+        Button('js leak')
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          .onClick(() => {
+            for (let i = 0; i < 10000; i++) {
+              this.leakedArray.push(new Array(500000).fill(1));
+            }
+          })
+        // [End PssleakEventTS_Button]
+        // [Start AppKillEvent_Button]
+        Button(this.message)
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          .onClick(() => {
+            if (this.message != 'Leaking') {
+              this.message = 'Leaking';
+              hilog.info(0x0000, 'testTag', 'Start leaking');
+              testNapi.leak();
+            }
+          })
+        // [End AppKillEvent_Button]
+        // [Start TimeOutEvent_Button]
+        Button($r('app.string.TimeOut_Button'))
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -154,7 +188,7 @@ struct Index {
           })
         // [End FreezeEvent_Button]
         // [Start AsanEvent_Button]
-        Button($r('app.string.AsanEvent_Button'))
+        Button('address-sanitizer')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -163,7 +197,7 @@ struct Index {
           .width('80%')
           .height('5%')
           .onClick(() => {
-            testNapi.addressTest();
+            testNapi.addressSanitizerTest();
           })
         // [End AsanEvent_Button]
         // [Start hicollie_timer_ndk_Button]

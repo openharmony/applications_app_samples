@@ -15,11 +15,13 @@
  
 // [Start EventSub_EntryAbility_Header]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+// [Start PssLeakEvent_ArkTS_Header]
 // [Start AppEvent_Crash_Click_ArkTS_Header]
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 // [End AppEvent_Crash_Click_ArkTS_Header]
-import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End PssLeakEvent_ArkTS_Header]
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 // [End EventSub_EntryAbility_Header]
 // [Start EventSub_Capi_Header]
@@ -236,16 +238,56 @@ export default class EntryAbility extends UIAbility {
       }
     });
     // [End FreezeEvent_ArkTS_Add_Watcher]
-    // [Start PssleakEvent_ArkTS_Add_Watcher]
-    // 添加资源泄露事件观察者
+    // [Start PssLeakEvent_ArkTS_Add_Watcher]
+    // 完成参数键值对赋值
+    let pssParams: Record<string, hiAppEvent.ParamType> = {
+      "test_data": 100,
+    };
+    // 设置资源泄漏事件的自定义参数
+    hiAppEvent.setEventParam(pssParams, hiAppEvent.domain.OS, hiAppEvent.event.RESOURCE_OVERLIMIT).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
+    });
+    // 完成自定义配置键值对赋值
+    let configParams: Record<string, hiAppEvent.ParamType> = {
+      'js_heap_logtype': 'event', // 仅获取事件
+    }
+    // 设置资源泄漏事件的自定义配置
+    hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
     hiAppEvent.addWatcher({
-      // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: 'pssleakwatcher',
-      // 开发者可以订阅感兴趣的系统事件，此处是订阅了资源泄漏事件
+      // 自定义观察者名称，系统会使用名称来标识不同的观察者
+      name: 'pssLeakWatcher',
+      // 订阅感兴趣的系统事件，此处是订阅了资源泄漏事件
       appEventFilters: [
         {
           domain: hiAppEvent.domain.OS,
           names: [hiAppEvent.event.RESOURCE_OVERLIMIT]
+        }
+      ],
+      // 自行实现订阅实时回调函数，以便对订阅获取到的事件数据进行自定义处理
+      onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
+        hilog.info(0x0000, 'testTag', `HiAppEvent onReceive: domain=${domain}`);
+        for (const eventGroup of appEventGroups) {
+          // 根据事件集合中的事件名称区分不同的系统事件
+          hilog.info(0x0000, 'testTag', `HiAppEvent eventName=${eventGroup.name}`);
+          for (const eventInfo of eventGroup.appEventInfos) {
+            // 获取到资源泄漏事件发生时内存信息
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo=${JSON.stringify(eventInfo)}`);
+          }
+        }
+      }
+    });
+    // [End PssLeakEvent_ArkTS_Add_Watcher]
+    // [Start AppKillEvent_ArkTS_Add_Watcher]
+    hiAppEvent.addWatcher({
+      // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
+      name: 'leakWatcher',
+      // 开发者可以订阅感兴趣的系统事件，此处是订阅了应用终止事件
+      appEventFilters: [
+        {
+          domain: hiAppEvent.domain.OS,
+          names: [hiAppEvent.event.APP_KILLED]
         }
       ],
       // 开发者可以自行实现订阅实时回调函数，以便对订阅获取到的事件数据进行自定义处理
@@ -255,19 +297,25 @@ export default class EntryAbility extends UIAbility {
           // 开发者可以根据事件集合中的事件名称区分不同的系统事件
           hilog.info(0x0000, 'testTag', `HiAppEvent eventName=${eventGroup.name}`);
           for (const eventInfo of eventGroup.appEventInfos) {
-            // 开发者可以获取到资源泄漏事件发生时内存信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo)}`);
+            // 开发者可以对事件集合中的事件数据进行自定义处理，此处是将事件数据打印在日志中
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.domain=${eventInfo.domain}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
+            // 开发者可以获取到应用终止事件发生的时间戳
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
+            // 开发者可以获取到应用的前后台状态
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
+            // 开发者可以获取到应用终止事件发生的原因
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.reason=${eventInfo.params['reason']}`);
           }
         }
       }
     });
-    // [End PssleakEvent_ArkTS_Add_Watcher]
+    // [End AppKillEvent_ArkTS_Add_Watcher] 
     // [Start AsanEvent_ArkTS_Add_Watcher]
-    // 添加踩地址事件观察者
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: 'addressSanitizerWatcher',
-      // 开发者可以订阅感兴趣的系统事件，此处是订阅了踩内存事件
+      name: 'sanitzierWatcher',
+      // 开发者可以订阅感兴趣的系统事件，此处是订阅了地址越界事件
       appEventFilters: [
         {
           domain: hiAppEvent.domain.OS,
@@ -291,8 +339,7 @@ export default class EntryAbility extends UIAbility {
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.pid=${eventInfo.params['pid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.uid=${eventInfo.params['uid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.type=${eventInfo.params['type']}`);
-            hilog.info(0x0000, 'testTag',
-              `HiAppEvent eventInfo.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.log_over_limit=${eventInfo.params['log_over_limit']}`);
           }
         }
@@ -356,7 +403,6 @@ export default class EntryAbility extends UIAbility {
     // 启动时，注册按钮点击事件观察者
     testNapi.registerWatcherClick();
     // [End AppEvent_Call_Capi_Function]
-
     // [Start Register_AppHicollie_WatcherR]
     // 在onCreate()函数中新增接口调用，启动时注册系统事件观察者R
     testNapi.RegisterAppHicollieWatcherR();
@@ -365,6 +411,21 @@ export default class EntryAbility extends UIAbility {
     // 在onCreate()函数中新增接口调用，启动时注册系统事件观察者T
     testNapi.RegisterAppHicollieWatcherT();
     // [End Register_AppHicollie_WatcherT]
+    // [Start AsanEvent_Call_Capi_Function]
+    // 在onCreate()函数中新增接口调用
+    // 启动时，注册系统事件观察者
+    testNapi.registerSanitizerReceiveWatcher();
+    // [End AsanEvent_Call_Capi_Function]
+    // [Start PssLeakEvent_Call_Capi_Function]
+    // 在onCreate()函数中新增接口调用
+    // 启动时，注册系统事件观察者
+    testNapi.registerLeakReceiveWatcher();
+    // [End PssLeakEvent_Call_Capi_Function]
+    // [Start AppKillEvent_Call_Capi_Function]
+    // 在onCreate()函数中新增接口调用
+    // 启动时，注册系统事件观察者
+    testNapi.registerAppKillReceiveWatcher();
+    // [End AppKillEvent_Call_Capi_Function]
   }
 
   onDestroy(): void {
