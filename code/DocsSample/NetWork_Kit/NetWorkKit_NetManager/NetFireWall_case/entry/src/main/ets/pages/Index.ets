@@ -20,6 +20,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [End net_firewall_case_import_module]
 import { ComponentId } from '../common/CommonConstant';
 import { promptAction } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // [Start net_firewall_set_net_firewall_policy]
 // IP类型
@@ -105,9 +106,9 @@ struct Index {
 
     // 给用户100设置防火墙策略。
     netFirewall.setNetFirewallPolicy(100, policy).then(() => {
-      console.info(`set firewall policy success.`);
+      hilog.info(0x0000, 'testTag', `set firewall policy success.`);
     }).catch((error : BusinessError) => {
-      console.error(`error: set firewall policy failed: ${JSON.stringify(error)}`);
+      hilog.error(0x0000, 'testTag', `error: set firewall policy failed: ${JSON.stringify(error)}`);
     });
     // [End net_firewall_set_net_firewall_policy]
 
@@ -172,7 +173,7 @@ struct Index {
         bottom: 300 // 与底间隔
       });
       // [EndExclude net_firewall_add_net_firewall_rule]
-      console.info(`rule Id: ${result}`);
+      hilog.info(0x0000, 'testTag', `rule Id: ${result}`);
     }, (reason: BusinessError) => {
       // [StartExclude net_firewall_add_net_firewall_rule]
       this.specificIPReqResult = 'error:' + JSON.stringify(reason);
@@ -182,7 +183,7 @@ struct Index {
         bottom: 300 // 与底间隔
       });
       // [EndExclude net_firewall_add_net_firewall_rule]
-      console.error(`error: add firewall rule failed:  ${JSON.stringify(reason)}`);
+      hilog.error(0x0000, 'testTag', `error: add firewall rule failed:  ${JSON.stringify(reason)}`);
     });
     // [End net_firewall_add_net_firewall_rule]
   }
@@ -199,9 +200,9 @@ struct Index {
 
     // 给用户100设置防火墙策略
     netFirewall.setNetFirewallPolicy(100, policy).then(() => {
-      console.info(`set firewall policy success.`);
+      hilog.info(0x0000, 'testTag', `set firewall policy success.`);
     }).catch((error : BusinessError) => {
-      console.error(`error: set firewall policy failed: ${JSON.stringify(error)}`);
+      hilog.error(0x0000, 'testTag', `error: set firewall policy failed: ${JSON.stringify(error)}`);
     });
     // [End net_firewall_set_net_firewall_policy_domain_names]
 
@@ -236,7 +237,7 @@ struct Index {
         bottom: 300 // 与底间隔
       });
       // [EndExclude net_firewall_add_net_firewall_rule_domain_names]
-      console.info(`rule Id: ${result}`);
+      hilog.info(0x0000, 'testTag', `rule Id: ${result}`);
     }, (reason: BusinessError) => {
       // [StartExclude net_firewall_add_net_firewall_rule_domain_names]
       this.domainNameNetworkReqResult = 'error:' + JSON.stringify(reason);
@@ -246,7 +247,7 @@ struct Index {
         bottom: 300 // 与底间隔
       });
       // [EndExclude net_firewall_add_net_firewall_rule_domain_names]
-      console.error(`error: add firewall rule failed:  ${JSON.stringify(reason)}`);
+      hilog.error(0x0000, 'testTag', `error: add firewall rule failed:  ${JSON.stringify(reason)}`);
     });
     // [End net_firewall_add_net_firewall_rule_domain_names]
   }

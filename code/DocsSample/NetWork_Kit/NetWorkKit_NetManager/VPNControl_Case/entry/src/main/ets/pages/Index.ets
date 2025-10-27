@@ -15,6 +15,7 @@
 
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { ComponentId } from '../common/CommonConstant';
 import Logger from '../common/Logger';
 import { notificationUtil } from '../notification/NotificationUtil';
@@ -48,15 +49,15 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .id(this.flag)
           .onClick(() => {
-            Logger.info('developTag', '%{public}s', 'vpn Client');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Client');
           })
 
         // Start VPN 按钮
         Button($r('app.string.Start_VPN'))
           .onClick(() => {
-            Logger.info('developTag', '%{public}s', 'Succeeded in clicking the button.');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'Succeeded in clicking the button.');
             router.pushUrl({ url: 'pages/StartVpn' }).then(() => {
-              Logger.info('developTag', '%{public}s', 'Succeeded in jumping to the second page.');
+              hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
               this.flag = 'Pass';
             }).catch((err: BusinessError) => {
               Logger.error('developTag', 'Failed to jump to the second page: %{public}s',
@@ -72,9 +73,9 @@ struct Index {
         // Stop VPN 按钮
         Button($r('app.string.Stop_VPN'))
           .onClick(() => {
-            Logger.info('developTag', '%{public}s', 'Succeeded in clicking the button.');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'Succeeded in clicking the button.');
             router.pushUrl({ url: 'pages/StopVpn' }).then(() => {
-              Logger.info('developTag', '%{public}s', 'Succeeded in jumping to the second page.');
+              hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
               this.flag = 'Pass';
             }).catch((err: BusinessError) => {
               Logger.error('developTag', 'Failed to jump to the second page: %{public}s',
@@ -91,7 +92,7 @@ struct Index {
         Button('getVpnId').onClick(() => {
           let vpnId: string = this.getVpnIdTest.getVpnId();
           showToast('vpn getVpnId Success', TOAST_DURATION);
-          console.log(vpnId);
+          hilog.info(0x0000, 'testTag', vpnId);
         }).width('70%')
           .fontSize(BUTTON_FONT_SIZE)
           .margin(BUTTON_MARGIN);

@@ -127,7 +127,7 @@ struct SocketDemo {
     };
 
     workerPort.onerror = (e: ErrorEvent) => {
-      hilog.error(0x0000, 'testTag', `Error from Worker: ${e}`);
+     hilog.error(0x0000, 'testTag', `Error from Worker: ${e}`);
     };
   }
 
@@ -149,7 +149,7 @@ struct SocketDemo {
     };
 
     workerPort.onerror = (e: ErrorEvent) => {
-      hilog.error(0x0000, 'testTag', `Error from Worker: ${e}`);
+     hilog.error(0x0000, 'testTag', `Error from Worker: ${e}`);
     };
   }
 

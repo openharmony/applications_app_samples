@@ -17,6 +17,7 @@
 import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End WebSocket_case_module_import]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const BUTTON_HEIGHT = 50; // 按钮高度
 const BUTTON_RADIUS = 5; // 按钮边缘角度
@@ -110,15 +111,15 @@ struct WebSocketDemo {
     this.closeConnectionResult = '';
     // [Start websocket_open_message_close_error_methods]
     ws.on('open', (err: BusinessError, value: Object) => {
-      console.info('on open, status:' + JSON.stringify(value));
+      hilog.info(0x0000, 'testTag', 'on open, status:' + JSON.stringify(value));
       // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
       // [StartExclude websocket_open_message_close_error_methods]
       if (!err) {
         this.connectionStatus = 'Connected';
-        console.info(`WebSocket connected: ` + JSON.stringify(value));
+        hilog.info(0x0000, 'testTag', `WebSocket connected: ` + JSON.stringify(value));
       } else {
         this.connectionStatus = 'Connection failed';
-        console.error(`WebSocket connection failed: ` + JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', `WebSocket connection failed: ` + JSON.stringify(err));
       }
       // [EndExclude websocket_open_message_close_error_methods]
     });
@@ -126,11 +127,11 @@ struct WebSocketDemo {
     ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
       // [StartExclude websocket_open_message_close_error_methods]
       if (err) {
-        console.error(`Error receiving message: ` + JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', `Error receiving message: ` + JSON.stringify(err));
         return;
       }
       // [EndExclude websocket_open_message_close_error_methods]
-      console.info('on message, message:' + value);
+      hilog.info(0x0000, 'testTag', 'on message, message:' + value);
       // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
       if (value === 'bye') {
         ws!.close((err: BusinessError) => {
@@ -139,25 +140,25 @@ struct WebSocketDemo {
             this.closeConnectionResult = 'Connection closed successfully';
             this.connectionStatus = 'Not connected';
             // [EndExclude websocket_open_message_close_error_methods]
-            console.info(`WebSocket closed successfully`);
+            hilog.info(0x0000, 'testTag', `WebSocket closed successfully`);
           } else {
             // [StartExclude websocket_open_message_close_error_methods]
             this.closeConnectionResult = 'Connection closing failed';
             // [EndExclude websocket_open_message_close_error_methods]
-            console.error(`WebSocket closing failed: ` + JSON.stringify(err));
+            hilog.error(0x0000, 'testTag', `WebSocket closing failed: ` + JSON.stringify(err));
           }
         });
       }
     })
 
     ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
-      console.log('on close, code is ' + value.code + ', reason is ' + value.reason);
+     hilog.info(0x0000, 'testTag', 'on close, code is ' + value.code + ', reason is ' + value.reason);
       // [StartExclude websocket_open_message_close_error_methods]
       if (!err) {
         this.connectionStatus = 'Disconnected';
-        console.info('Connection closed: code = ' + value.code + ', reason ='  + value.reason);
+        hilog.info(0x0000, 'testTag', 'Connection closed: code = ' + value.code + ', reason ='  + value.reason);
       } else {
-        console.error('Error while closing connection: ' + JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', 'Error while closing connection: ' + JSON.stringify(err));
       }
       // [EndExclude websocket_open_message_close_error_methods]
     });
@@ -166,7 +167,7 @@ struct WebSocketDemo {
       // [StartExclude websocket_open_message_close_error_methods]
       this.connectionStatus = 'Error';
       // [EndExclude websocket_open_message_close_error_methods]
-      console.error('WebSocket error: ' + JSON.stringify(err));
+      hilog.error(0x0000, 'testTag', 'WebSocket error: ' + JSON.stringify(err));
     });
     // [End websocket_open_message_close_error_methods]
 
@@ -174,12 +175,12 @@ struct WebSocketDemo {
     // [Start webSocket_case_object_connect]
     ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
       if (!err) {
-        console.info('Connected successfully');
+        hilog.info(0x0000, 'testTag', 'Connected successfully');
       } else {
         // [StartExclude webSocket_case_object_connect]
         this.connectionStatus = 'Connection failed';
         // [EndExclude webSocket_case_object_connect]
-        console.error(`WebSocket connection failed: ` + JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', `WebSocket connection failed: ` + JSON.stringify(err));
       }
     });
     // [End webSocket_case_object_connect]
@@ -189,7 +190,7 @@ struct WebSocketDemo {
   sendMessage() {
     if (this.connectionStatus !== 'Connected') {
       this.sendMessageResult = 'WebSocket not connected';
-      console.error(`WebSocket not connected`);
+      hilog.error(0x0000, 'testTag', `WebSocket not connected`);
       return;
     }
     // [Start webSocket_case_send_message]
@@ -198,12 +199,12 @@ struct WebSocketDemo {
         // [StartExclude webSocket_case_send_message]
         this.sendMessageResult = 'Message sent successfully';
         // [EndExclude webSocket_case_send_message]
-        console.info('Message sent successfully');
+        hilog.info(0x0000, 'testTag', 'Message sent successfully');
       } else {
         // [StartExclude webSocket_case_send_message]
         this.sendMessageResult = 'Message sending failed';
         // [EndExclude webSocket_case_send_message]
-        console.error(`Message sending failed: ` + JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', `Message sending failed: ` + JSON.stringify(err));
       }
     });
     // [End webSocket_case_send_message]
@@ -213,7 +214,7 @@ struct WebSocketDemo {
   closeWebSocket() {
     if (this.connectionStatus !== 'Connected') {
       this.closeConnectionResult = 'WebSocket not connected';
-      console.error(`WebSocket not connected`);
+      hilog.error(0x0000, 'testTag', `WebSocket not connected`);
       return;
     }
 
@@ -221,10 +222,10 @@ struct WebSocketDemo {
       if (!err) {
         this.closeConnectionResult = 'Connection closed successfully';
         this.connectionStatus = 'Not connected';
-        console.info(`WebSocket closed successfully`);
+        hilog.info(0x0000, 'testTag', `WebSocket closed successfully`);
       } else {
         this.closeConnectionResult = 'Connection closing failed';
-        console.error(`WebSocket closing failed: ` + JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', `WebSocket closing failed: ` + JSON.stringify(err));
       }
     });
     ws.off('open');

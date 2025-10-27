@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start get_all_registered_networks]
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
@@ -72,7 +74,7 @@ export default struct AllNetworksBtn {
     // [EndExclude get_all_registered_networks]
     // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)
     connection.getAllNets().then((data: connection.NetHandle[]) => {
-      console.info('getAllNets get data: ' + JSON.stringify(data));
+      hilog.info(0x0000, 'testTag', 'getAllNets get data: ' + JSON.stringify(data));
       if (data) {
         // [StartExclude get_all_registered_networks]
         this.getAllNetsStatus = 'Retrieved successfully';
@@ -84,12 +86,12 @@ export default struct AllNetworksBtn {
         for (let item of dataNumber) {
           // 循环获取网络列表每个netHandle对应网络的能力信息
           connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
-            console.info('getNetCapabilities get data: ' + JSON.stringify(data));
+            hilog.info(0x0000, 'testTag', 'getNetCapabilities get data: ' + JSON.stringify(data));
           });
 
           // 循环获取网络列表每个netHandle对应的网络的连接信息
           connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
-            console.info('getConnectionProperties get data: ' + JSON.stringify(data));
+            hilog.info(0x0000, 'testTag', 'getConnectionProperties get data: ' + JSON.stringify(data));
           });
         }
         // [EndExclude get_all_registered_networks]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start resolve_the_domain_name_and_get_all_ips]
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
@@ -49,13 +50,13 @@ export default struct DefaultNetworkIPBtn {
     connection.getDefaultNet().then((data: connection.NetHandle) => {
       if (data.netId === 0) {
         this.defaultNetworkIPStatus = 'No default network';
-        console.error('No default network available');
+        hilog.error(0x0000, 'testTag', 'No default network available');
         return;
       }
       // [EndExclude resolve_the_domain_name_and_get_all_ips]
       // 使用默认网络解析主机名以获取所有IP地址
       connection.getAddressesByName('xxxx').then((data: connection.NetAddress[]) => {
-        console.info('Successfully retrieved default network IP address: ' + JSON.stringify(data));
+        hilog.info(0x0000, 'testTag', 'Successfully retrieved default network IP address: ' + JSON.stringify(data));
         // [StartExclude resolve_the_domain_name_and_get_all_ips]
         this.defaultNetworkIPStatus = 'Retrieved successfully';
         // [EndExclude resolve_the_domain_name_and_get_all_ips]
@@ -63,11 +64,11 @@ export default struct DefaultNetworkIPBtn {
       // [End resolve_the_domain_name_and_get_all_ips]
         .catch((err: BusinessError) => {
           this.defaultNetworkIPStatus = 'Retrieval failed';
-          console.error('Failed to retrieve default network IP address:', JSON.stringify(err));
+          hilog.error(0x0000, 'testTag', 'Failed to retrieve default network IP address:', JSON.stringify(err));
         });
     }).catch((err: BusinessError) => {
       this.defaultNetworkIPStatus = 'Retrieval failed';
-      console.error('Failed to retrieve default network:', JSON.stringify(err));
+      hilog.error(0x0000, 'testTag', 'Failed to retrieve default network:', JSON.stringify(err));
     });
   }
 }

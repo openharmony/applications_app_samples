@@ -17,6 +17,7 @@ import { MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start local_socket_worker_import]
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 // [End local_socket_worker_import]
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;

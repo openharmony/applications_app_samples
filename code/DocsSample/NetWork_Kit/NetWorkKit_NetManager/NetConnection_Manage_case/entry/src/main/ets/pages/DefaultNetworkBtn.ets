@@ -17,6 +17,7 @@
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
 // [StartExclude get_default_network_methods]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小
@@ -44,13 +45,13 @@ export default struct DefaultNetworkBtn {
   }
 
   // 根据数据网络查询网络的能力信息及连接信息
-  // [EndExclude get_default_network_methods]
   getDefaultNetwork() {
+    // [EndExclude get_default_network_methods]
     let netHandleInfo:connection.NetHandle|null = null;
     // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)
     connection.getDefaultNet().then((data: connection.NetHandle) => {
       if (data.netId == 0) {
-        console.info(`don't have defaultNet`);
+        hilog.info(0x0000, 'testTag', `don't have defaultNet`);
         // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
         return;
       }
@@ -58,25 +59,25 @@ export default struct DefaultNetworkBtn {
         // [StartExclude get_default_network_methods]
         this.defaultNetworkStatus = 'Retrieved successfully'
         // [EndExclude get_default_network_methods]
-        console.info('getDefaultNet get data: ' + JSON.stringify(data));
+        hilog.info(0x0000, 'testTag', 'getDefaultNet get data: ' + JSON.stringify(data));
         // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
         netHandleInfo = data;
         connection.getNetCapabilities(netHandleInfo).then(
           (data: connection.NetCapabilities) => {
-            console.info('getNetCapabilities get data: ' + JSON.stringify(data));
+            hilog.info(0x0000, 'testTag', 'getNetCapabilities get data: ' + JSON.stringify(data));
             // 获取网络类型(bearerTypes)
             let bearerTypes: Set<number> = new Set(data.bearerTypes);
             let bearerTypesNum = Array.from(bearerTypes.values());
             for (let item of bearerTypesNum) {
               if (item == 0) {
                 // 蜂窝网络
-                console.info(JSON.stringify('BEARER_CELLULAR'));
+                hilog.info(0x0000, 'testTag', JSON.stringify('BEARER_CELLULAR'));
               } else if (item == 1) {
                 // Wi-Fi网络
-                console.info(JSON.stringify('BEARER_WIFI'));
+                hilog.info(0x0000, 'testTag', JSON.stringify('BEARER_WIFI'));
               } else if (item == 3) {
                 // 以太网网络
-                console.info(JSON.stringify('BEARER_ETHERNET'));
+                hilog.info(0x0000, 'testTag', JSON.stringify('BEARER_ETHERNET'));
               }
             }
 
@@ -86,19 +87,19 @@ export default struct DefaultNetworkBtn {
             for (let item of dataNumber) {
               if (item == 0) {
                 // 表示网络可以访问运营商的MMSC(Multimedia Message Service，多媒体短信服务)发送和接收彩信
-                console.info(JSON.stringify('NET_CAPABILITY_MMS'));
+                hilog.info(0x0000, 'testTag', JSON.stringify('NET_CAPABILITY_MMS'));
               } else if (item == 11) {
                 // 表示网络流量未被计费
-                console.info(JSON.stringify('NET_CAPABILITY_NOT_METERED'));
+                hilog.info(0x0000, 'testTag', JSON.stringify('NET_CAPABILITY_NOT_METERED'));
               } else if (item == 12) {
                 // 表示该网络应具有访问Internet的能力，该能力由网络提供者设置
-                console.info(JSON.stringify('NET_CAPABILITY_INTERNET'));
+                hilog.info(0x0000, 'testTag', JSON.stringify('NET_CAPABILITY_INTERNET'));
               } else if (item == 15) {
                 // 表示网络不使用VPN（Virtual Private Network，虚拟专用网络）
-                console.info(JSON.stringify('NET_CAPABILITY_NOT_VPN'));
+                hilog.info(0x0000, 'testTag', JSON.stringify('NET_CAPABILITY_NOT_VPN'));
               } else if (item == 16) {
                 // 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置
-                console.info(JSON.stringify('NET_CAPABILITY_VALIDATED'));
+                hilog.info(0x0000, 'testTag', JSON.stringify('NET_CAPABILITY_VALIDATED'));
               }
             }
           });
@@ -107,8 +108,10 @@ export default struct DefaultNetworkBtn {
 
     // 获取netHandle对应的网络的连接信息。
     connection.getConnectionProperties(netHandleInfo).then((data: connection.ConnectionProperties) => {
-      console.info('getConnectionProperties get data: ' + JSON.stringify(data));
+      hilog.info(0x0000, 'testTag', 'getConnectionProperties get data: ' + JSON.stringify(data));
     })
+  // [StartExclude get_default_network_methods]
   }
+  // [EndExclude get_default_network_methods]
   // [End get_default_network_methods]
 }

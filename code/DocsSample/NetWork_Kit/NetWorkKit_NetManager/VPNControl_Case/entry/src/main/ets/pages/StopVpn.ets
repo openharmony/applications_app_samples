@@ -114,7 +114,7 @@ struct StopVpn {
               showToast('stop vpnExt Fail: ' + JSON.stringify(err), TOAST_DURATION);
               this.flag = 'Error';
               // [EndExclude stop_vpn_extension_ability]
-              console.error('developTag', 'stop vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
+              hilog.info(0x0000, 'testTag', 'developTag', 'stop vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
             }
 
           })
