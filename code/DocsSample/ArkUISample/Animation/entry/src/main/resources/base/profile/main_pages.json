@@ -39,6 +39,12 @@
     "pages/compTransition/template6/Index",
     "pages/shareTransition/template1/Index",
     "pages/shareTransition/template1/PageB",
+    "pages/shareTransition/template2/Index",
+    "pages/shareTransition/template3/Index",
+    "pages/shareTransition/template4/Index",
+    "pages/shareTransition/template5/Index",
+    "pages/shareTransition/template6/IfElseGeometryTransition",
+    "pages/shareTransition/template7/Index",
     "pages/motionPath/template1/Index",
     "pages/animateToImmediately/template1/Index",
     "pages/rotation/template1/Index",
@@ -48,6 +54,13 @@
     "pages/animatableProperty/template1/Index",
     "pages/animatableProperty/template2/Index",
     "pages/component/template1/Index",
-    "pages/component/template2/Index"
+    "pages/component/template2/Index",
+    "pages/animationBlur/template1/BlurEffectsExample",
+    "pages/animationBlur/template2/Index",
+    "pages/animationBlur/template3/BackDropBlurStyleDemo",
+    "pages/animationBlur/template4/ForegroundBlurStyleDemo",
+    "pages/animationBlur/template5/MotionBlurTest",
+    "pages/traditionalCurve/template1/CurveDemo",
+    "pages/springCurve/template1/SpringCurve"
   ]
 }

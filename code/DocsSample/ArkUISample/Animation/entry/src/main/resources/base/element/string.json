@@ -197,6 +197,90 @@
       "value": "共享元素转场"
     },
     {
+      "name": "shareTransition_label1",
+      "value": "示例1（共享元素转场）"
+    },
+    {
+      "name": "shareTransition_label2",
+      "value": "示例2（不新建容器并直接变化原容器）"
+    },
+    {
+      "name": "shareTransition_label3",
+      "value": "示例3（新建容器并跨容器迁移组件-结合Stack使用）"
+    },
+    {
+      "name": "shareTransition_label4",
+      "value": "示例4（新建容器并跨容器迁移组件-结合Navigation使用）"
+    },
+    {
+      "name": "shareTransition_label5",
+      "value": "示例5（新建容器并跨容器迁移组件-结合BindSheet使用）"
+    },
+    {
+      "name": "shareTransition_label6",
+      "value": "示例6（使用geometryTransition共享元素转场-geometryTransition的简单使用）"
+    },
+    {
+      "name": "shareTransition_label7",
+      "value": "示例7（使用geometryTransition共享元素转场-geometryTransition结合模态转场使用）"
+    },
+    {
+      "name": "shareTransition_text1",
+      "value": "天气晴朗"
+    },
+    {
+      "name": "shareTransition_text2",
+      "value": "你好世界"
+    },
+    {
+      "name": "shareTransition_text3",
+      "value": "万物生长"
+    },
+    {
+      "name": "shareTransition_text4",
+      "value": "评论区"
+    },
+    {
+      "name": "shareTransition_text5",
+      "value": "点击展开 Item "
+    },
+    {
+      "name": "shareTransition_text6",
+      "value": "共享元素转场"
+    },
+    {
+      "name": "shareTransition_text7",
+      "value": "展开态"
+    },
+    {
+      "name": "shareTransition_text8",
+      "value": "展开态内容"
+    },
+    {
+      "name": "shareTransition_text9",
+      "value": "照片"
+    },
+    {
+      "name": "shareTransition_text10",
+      "value": "半模态页面"
+    },
+    {
+      "name": "shareTransition_text11",
+      "value": "你好，我是"
+    },
+    {
+      "name": "shareTransition_text12",
+      "value": "点击展开 Item 2"
+    },
+    {
+      "name": "shareTransition_text13",
+      "value": "点击展开 Item 4"
+    },
+    {
+      "name": "shareTransition_text14",
+      "value": "点击展开 Item 8"
+    },
+    {
       "name": "motionPath_label",
       "value": "路径动画"
     },
@@ -277,7 +361,6 @@
       "value": "示例2（List组件动态替换动效）"
     },
     {
-<<<<<<< zidingyi1022
       "name": "animatableProperty_label",
       "value": "自定义属性动画"
     },
@@ -302,6 +385,10 @@
       "value": "AnimateIndex"
     },
     {
+      "name": "animation_blur_label",
+      "value": "模糊动画"
+    },
+    {
       "name": "animation_blur_label1",
       "value": "示例1（使用backdropBlur为组件添加背景模糊）"
     },
@@ -320,10 +407,26 @@
     {
       "name": "animation_blur_label5",
       "value": "示例5（使用motionBlur为组件添加运动模糊效果）"
-    }，
+    },
     {
-      "name": "AnimateIndex",
-      "value": "AnimateIndex"
+      "name": "traditionalCurve_label",
+      "value": "传统曲线"
+    },
+    {
+      "name": "springCurve_label",
+      "value": "弹簧曲线"
+    },
+    {
+      "name": "springCurve_text1",
+      "value": "周期1, 阻尼0.25"
+    },
+    {
+      "name": "springCurve_text2",
+      "value": "弹性跟手曲线"
+    },
+    {
+      "name": "springCurve_text3",
+      "value": "初始速度10， 质量1， 刚度228， 阻尼30"
     }
   ]
 }
