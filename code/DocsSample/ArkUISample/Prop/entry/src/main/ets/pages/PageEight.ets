@@ -63,13 +63,13 @@ struct ObservedDemo {
         // 操作按钮：修改数据
         Row({ space: 20 }) {
           // 按钮1：修改Father的name（第一层属性）
-          Button('change the father's name')
+          Button(`change the father's name`)
             .onClick(() => {
               this.father.name = '新的父亲名字'; // 直接修改，@Observed会触发更新
             });
 
           // 按钮2：修改Son的title（嵌套的第二层属性）
-          Button('modify the son's title')
+          Button(`modify the son's title`)
             .onClick(() => {
               this.father.son.title = '新的儿子标题'; // 深层修改，@Observed会触发更新
             });
