@@ -15,7 +15,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'MyApp';
-// [Start Priority_binding]
+// [Start priority_binding]
 // xxx.ets
 @Entry
 @Component
@@ -39,4 +39,4 @@ struct PriorityBinding {
         }), GestureMask.IgnoreInternal);
   };
 }
-//  [End Priority_binding]
+//  [End priority_binding]

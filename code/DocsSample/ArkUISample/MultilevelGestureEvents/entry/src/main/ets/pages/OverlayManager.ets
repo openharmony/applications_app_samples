@@ -27,24 +27,24 @@ class Params {
 }
 let uiContext: UIContext;
 
-// [Start Overlay_Manager]
+// [Start overlay_manager]
 @Builder
 function builderOverlay(params: Params) {
   Component1().hitTestBehavior(HitTestMode.Transparent)
 }
 
-// [StartExclude Overlay_Manager]
+// [StartExclude overlay_manager]
 @Entry
 @Component
 struct CustomEvent {
   private overlayManager?: OverlayManager;
   @State context: UIContext = this.getUIContext();
-  // [EndExclude Overlay_Manager]
+  // [EndExclude overlay_manager]
 
   aboutToAppear(): void {
-    // [StartExclude Overlay_Manager]
+    // [StartExclude overlay_manager]
     this.overlayManager = this.context.getOverlayManager();
-    // [EndExclude Overlay_Manager]
+    // [EndExclude overlay_manager]
     let componentContent = new ComponentContent(
       this.context,
       wrapBuilder<[Params]>(builderOverlay),
@@ -52,7 +52,7 @@ struct CustomEvent {
     );
     this.overlayManager.addComponentContent(componentContent, 0);
   }
-  // [End Overlay_Manager]
+  // [End overlay_manager]
   build() {}
 }
 @Component

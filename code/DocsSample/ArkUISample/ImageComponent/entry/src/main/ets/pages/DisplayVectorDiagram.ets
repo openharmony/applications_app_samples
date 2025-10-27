@@ -20,26 +20,26 @@ struct DisplayVectorDiagram {
     Column({ space: 10 }) {
       Row({ space: 50 }) {
 
-        //  [Start Svg_FillColor]
+        //  [Start svg_fillColor]
         //  $r('app.media.cloud')需要替换为开发者所需的资源文件
         Image($r('app.media.cloud'))
           .width(50)
           .fillColor(Color.Blue)
-        //  [End Svg_FillColor]
+        //  [End svg_fillColor]
 
-        //  [Start Local_SVG]
+        //  [Start local_svg]
         //  'images/icon.svg' 需要替换为开发者所需的资源文件
         Image('images/icon.svg')
           .width(50)
           .height(50)
-        //  [End Local_SVG]
+        //  [End local_svg]
 
       }
-      //  [Start Synchronous_ImageLoading]
+      //  [Start synchronous_imageloading]
       //  $r('app.media.icon')需要替换为开发者所需的资源文件
       Image($r('app.media.icon'))
         .syncLoad(true)
-      //  [End Synchronous_ImageLoading]
+      //  [End synchronous_imageloading]
     }.height(150).width('100%').padding({ top: 20,right: 10 })
   };
 }

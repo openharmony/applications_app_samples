@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-//  [Start Image_RepetitionStyle]
+//  [Start image_repetitionstyle]
 @Entry
 @Component
 struct ImageRepetitionStyle {
@@ -51,4 +51,4 @@ struct ImageRepetitionStyle {
     }.height(150).width('100%').padding(8);
   };
 }
-//  [End Image_RepetitionStyle]
+//  [End image_repetitionstyle]

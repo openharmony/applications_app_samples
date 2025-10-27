@@ -16,7 +16,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'MyApp';
 
-// [Start Parallel_binding]
+// [Start parallel_binding]
 // xxx.ets
 @Entry
 @Component
@@ -40,4 +40,4 @@ struct ParallelBinding {
         }), GestureMask.Normal);
   };
 }
-//  [End Parallel_binding]
+//  [End parallel_binding]

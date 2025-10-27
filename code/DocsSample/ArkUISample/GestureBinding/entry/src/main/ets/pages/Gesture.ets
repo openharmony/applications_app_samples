@@ -15,7 +15,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'MyApp';
-// [Start Regular_binding]
+// [Start regular_binding]
 // xxx.ets
 @Entry
 @Component
@@ -34,4 +34,4 @@ struct RegularBinding {
     .width(250);
   };
 }
-//  [End Regular_binding]
+//  [End regular_binding]
