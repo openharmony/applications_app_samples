@@ -314,10 +314,17 @@ struct ImageSize {
         Row() {
           Button($r('app.string.Select_background_overlay_mode'))
             .height(50)
+            .width('50%')
             .onClick(() => {
               ImageNapi.createImageSize(ArkUIObjectFit.ARKUI_OBJECT_FIT_NONE, ArkUIImageSize.ARKUI_IMAGE_SIZE_AUTO);
             })
             .bindMenu(this.SubMenuImageRepeat)
+          Button($r('app.string.Back'))
+            .height(50)
+            .width('50%')
+            .onClick(() => {
+              this.getUIContext().getRouter().back();
+            })
         }
         .padding({bottom: 10})
         Column() {

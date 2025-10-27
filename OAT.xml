@@ -487,6 +487,21 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Security/RequestUserAuthorization/screenshots/main.png" desc="Provided by code/DocsSample/Security/RequestUserAuthorization"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/RequestUserAuthorization/screenshots/seconddialog.png" desc="Provided by code/DocsSample/Security/RequestUserAuthorization"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/RequestUserAuthorization/screenshots/secondability.png" desc="Provided by code/DocsSample/Security/RequestUserAuthorization"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/AppScope/resources/base/media/background.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/AppScope/resources/base/media/foreground.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/entry/src/main/resources/base/media/background.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/environment/src/bind.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/environment/src/copy_url.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/environment/src/past_url.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/environment/src/permission.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/environment/src/prop.png" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/screenshots/devices/zh/download_user.jpeg" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/screenshots/devices/zh/download.jpeg" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/screenshots/devices/zh/home.jpeg" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
+				<filteritem type="filepath" name="code/DocsSample/UploadAndDownload/UploadDownloadGuide/screenshots/devices/zh/upload.jpeg" desc="Provided by code/DocsSample/UploadAndDownload/UploadDownloadGuide"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.hap" desc="Provided by code/BasicFeature/Media/AVRecorder"/>

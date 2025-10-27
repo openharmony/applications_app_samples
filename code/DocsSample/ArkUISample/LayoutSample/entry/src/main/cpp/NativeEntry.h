@@ -19,6 +19,7 @@
 #include <nodes/ArkUIBaseNode.h>
 #include <arkui/native_type.h>
 #include <js_native_api_types.h>
+#include <unordered_map>
 
 namespace NativeModule {
 
@@ -98,25 +99,24 @@ public:
         return &nativeEntry;
     }
     
-    void SetContentHandle(ArkUI_NodeContentHandle handle) { handle_ = handle; }
-    
-    void SetRootNode(const std::shared_ptr<ArkUIBaseNode> &baseNode)
+    // 使用 contentHandle 作为 key，支持多个页面
+    void SetRootNode(ArkUI_NodeContentHandle contentHandle, const std::shared_ptr<ArkUIBaseNode>& node)
     {
-        root_ = baseNode;
-        // 添加Native组件到NodeContent上用于挂载显示
-        OH_ArkUI_NodeContent_AddNode(handle_, root_->GetHandle());
+        roots_[contentHandle] = node;
+        OH_ArkUI_NodeContent_AddNode(contentHandle, node->GetHandle());
     }
-    
-    void DisposeRootNode()
+
+    void DisposeRootNode(ArkUI_NodeContentHandle contentHandle)
     {
-        // 从NodeContent上卸载组件并销毁Native组件
-        OH_ArkUI_NodeContent_RemoveNode(handle_, root_->GetHandle());
-        root_.reset();
+        auto it = roots_.find(contentHandle);
+        if (it != roots_.end()) {
+            OH_ArkUI_NodeContent_RemoveNode(contentHandle, it->second->GetHandle());
+            roots_.erase(it);
+        }
     }
 
 private:
-    std::shared_ptr<ArkUIBaseNode> root_; // 根节点智能指针
-    ArkUI_NodeContentHandle handle_;      // NodeContent句柄
+    std::unordered_map<ArkUI_NodeContentHandle, std::shared_ptr<ArkUIBaseNode>> roots_;
 };
 
 } // namespace NativeModule

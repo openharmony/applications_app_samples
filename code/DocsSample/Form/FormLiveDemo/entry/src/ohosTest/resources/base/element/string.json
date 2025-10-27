@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "add_form_to_desktop",
+      "value": "卡片"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加至桌面"
+    },
+    {
+      "name": "button_cancle",
+      "value": "强制取消动效"
+    },
+    {
+      "name": "liveform_click",
+      "value": "点击触发互动卡片动效"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "data": {
+    "title": "TitleDefault",
+    "detail": "TextDefault"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "JSCardEntryAbility",
+      "params": {
+        "info": "router info",
+        "message": "router message"
+      }
+    },
+    "messageEvent": {
+      "action": "message",
+      "params": {
+        "detail": "message detail"
+      }
+    }
+  }
+}

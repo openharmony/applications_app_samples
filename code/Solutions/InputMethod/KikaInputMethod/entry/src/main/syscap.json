@@ -1,0 +1,12 @@
+{
+  "devices": {
+    "general": [
+      "default",
+      "tablet"]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Tee.TeeClient"
+    ]
+  }
+}

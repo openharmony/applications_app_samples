@@ -1,4 +1,4 @@
-https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AssetStoreKit# Asset Store Kit开发指导(C/C++)
+# Asset Store Kit开发指导(C/C++)
 
 ### 介绍
 
@@ -15,14 +15,14 @@ Asset Store Kit（关键资产存储开发套件）包含了关键资产存储�
 
 ### 效果预览
 
-| 首页效果图                                                   | 执行结果图                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 首页效果图                                                             | 执行结果图                                                             |
+|-------------------------------------------------------------------|-------------------------------------------------------------------|
 | <img src="./screenshots/AssetStoreNdk1.png" style="zoom: 50%;" /> | <img src="./screenshots/AssetStoreNdk2.png" style="zoom: 50%;" /> |
 
 ### 使用说明
 
 1. 运行Index主界面。
-2. 页面呈现上述执行结果图效果，点击文本为‘AddAsset’的按钮可以新增资产，点击'RemoveAsset'按钮可以删除新增资产，点击'UpdateAsset'、'QueryAsset'、'QueryAttributesAsset'、'BatchQuary'可以依次进行关键资产的更新查询，其中最后一个按钮需要先在添加后直接查询可成功，更新后会导致失败。
+2. 页面呈现为上述首页效果图，点击对应文本的按钮可以管理关键资产。
 3. 运行测试用例AssetStoreNdk.test.ets文件对页面代码进行测试可以全部通过。
 
 ### 工程目录

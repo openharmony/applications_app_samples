@@ -24,85 +24,43 @@ struct WidgetImageUpdateCard {
   @LocalStorageProp('imgName') imgName: ResourceStr = $r('app.string.imgName');
 
   build() {
-    if (this.loaded) {
+    Column() {
       Column() {
-        Column() {
-          Text(this.text)
-            .fontColor('#FFFFFF')
-            .opacity(0.9)
-            .fontSize(12)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(1)
-            .margin({ top: '8%', left: '10%' })
-        }.width('100%').height('50%')
-        .alignItems(HorizontalAlign.Start)
+        Text(this.text)
+          .fontColor('#FFFFFF')
+          .opacity(0.9)
+          .fontSize(12)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .maxLines(1)
+          .margin({ top: '8%', left: '10%' })
+      }.width('100%').height('50%')
+      .alignItems(HorizontalAlign.Start)
 
-        Row() {
-          Button() {
-            Text($r('app.string.update'))
-              .fontColor('#45A6F4')
-              .fontSize(12)
-          }
-          .width(120)
-          .height(32)
-          .margin({ top: '30%', bottom: '10%' })
-          .backgroundColor('#FFFFFF')
-          .borderRadius(16)
-          .onClick(() => {
-            postCardAction(this, {
-              action: 'message',
-              params: {
-                info: 'refreshImage'
-              }
-            });
-          })
-        }.width('100%').height('40%')
-        .justifyContent(FlexAlign.Center)
-      }
-      .width('100%').height('100%')
-      .backgroundImage('memory://' + this.imgName)
-      .backgroundImageSize(ImageSize.Cover)
-    } 
-    // [StartExclude widget_image_update_card]
-    else {
-      Column() {
-        Column() {
-          Text(this.text)
-            .fontColor('#FFFFFF')
-            .opacity(0.9)
+      Row() {
+        Button() {
+          Text($r('app.string.update'))
+            .fontColor('#45A6F4')
             .fontSize(12)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(1)
-            .margin({ top: '8%', left: '10%' })
-        }.width('100%').height('50%')
-        .alignItems(HorizontalAlign.Start)
-
-        Row() {
-          Button() {
-            Text($r('app.string.update'))
-              .fontColor('#45A6F4')
-              .fontSize(12)
-          }
-          .width(120)
-          .height(32)
-          .margin({ top: '30%', bottom: '10%' })
-          .backgroundColor('#FFFFFF')
-          .borderRadius(16)
-          .onClick(() => {
-            postCardAction(this, {
-              action: 'message',
-              params: {
-                info: 'refreshImage'
-              }
-            });
-          })
-        }.width('100%').height('40%')
-        .justifyContent(FlexAlign.Center)
-      }.width('100%').height('100%')
-      .backgroundImage($r('app.media.ImageDisp'))
-      .backgroundImageSize(ImageSize.Cover)
+        }
+        .width(120)
+        .height(32)
+        .margin({ top: '30%', bottom: '10%' })
+        .backgroundColor('#FFFFFF')
+        .borderRadius(16)
+        .onClick(() => {
+          postCardAction(this, {
+            action: 'message',
+            params: {
+              info: 'refreshImage'
+            }
+          });
+        })
+      }.width('100%').height('40%')
+      .justifyContent(FlexAlign.Center)
     }
-    // [EndExclude widget_image_update_card]
+    .width('100%').height('100%')
+    .backgroundImage(this.loaded ? 'memory://' + this.imgName : $r('app.media.ImageDisp'))
+    .backgroundImageSize(ImageSize.Cover) 
   } 
 }
 // [End widget_image_update_card]

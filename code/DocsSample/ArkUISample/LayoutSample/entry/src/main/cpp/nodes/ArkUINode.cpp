@@ -65,11 +65,11 @@ std::pair<std::string, ArkUI_IntSize> ArkUINode::layoutConstraintExample(std::sh
     constraint += "\n";
     constraint += "MaxHeight: " + std::to_string(OH_ArkUI_LayoutConstraint_GetMaxHeight(layoutConstraint));
     constraint += "\n";
-    constraint +=
-        "PercentReferenceWidth: " + std::to_string(OH_ArkUI_LayoutConstraint_GetMinWidth(layoutConstraint));
+    constraint += "PercentReferenceWidth: ";
+    constraint += std::to_string(OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth(layoutConstraint));
     constraint += "\n";
-    constraint +=
-        "PercentReferenceHeight: " + std::to_string(OH_ArkUI_LayoutConstraint_GetMinWidth(layoutConstraint));
+    constraint += "PercentReferenceHeight: ";
+    constraint += std::to_string(OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight(layoutConstraint));
 
     // Create a deep copy of old constraint.
     auto layoutConstraintCopy = OH_ArkUI_LayoutConstraint_Copy(layoutConstraint);

@@ -16,12 +16,16 @@
 export { addAsset } from './add';
 export { removeAsset } from './remove';
 export { updateAsset } from './update';
-export { queryAssetPlaintext, queryAssetAttribute, queryBatchAssetAttributes } from './query';
+export { queryAssetPlaintext } from './query_plaintext';
+export { queryAssetAttribute } from './query_attr';
+export { queryBatchAssetAttributes } from './query_batch_attrs';
 export { addUserAuthAsset } from './add_auth';
 export { removeUserAuthAsset } from './remove_auth';
 export { queryUserAuthAsset } from './query_auth';
 export { addGroupAsset } from './add_group';
 export { removeGroupAsset } from './remove_group';
 export { updateGroupAsset } from './update_group';
-export { queryGroupAssetPlaintext, queryGroupAssetAttribute } from './query_group';
-export { addSyncAsset, querySyncResult } from './sync';
+export { queryGroupAssetPlaintext } from './query_group_plaintext';
+export { queryGroupAssetAttribute } from './query_group_attr'
+export { addSyncAsset } from './add_sync';
+export { querySyncResult } from './query_sync_result';

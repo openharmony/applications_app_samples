@@ -14,9 +14,9 @@
  */
 
 // [Start widget_update_call_card]
-let storageUpdtCall = new LocalStorage();
+let storageUpdateCall = new LocalStorage();
 
-@Entry(storageUpdtCall)
+@Entry(storageUpdateCall)
 @Component
 struct WidgetUpdateCallCard {
   @LocalStorageProp('formId') formId: string = '12400633174999288';

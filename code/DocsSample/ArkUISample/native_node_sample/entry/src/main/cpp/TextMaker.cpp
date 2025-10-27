@@ -20,6 +20,7 @@
 #include <hilog/log.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_color.h>
+#include <native_drawing/drawing_color_filter.h>
 #include <native_drawing/drawing_font_collection.h>
 #include <native_drawing/drawing_rect.h>
 #include <native_drawing/drawing_round_rect.h>
@@ -561,6 +562,27 @@ void setTextInput3(ArkUI_NodeHandle &textInput3)
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 }
 
+void setTextInput4(ArkUI_NodeHandle &textInput4)
+{
+    // 默认提示文本内容
+    const char *inputPlaceHolderVal = "Set ShowCounter Color";
+    ArkUI_AttributeItem placeHolderItem = {.string = inputPlaceHolderVal};
+    Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_PLACEHOLDER, &placeHolderItem);
+    
+    // 设置输入框最大文本数属性
+    ArkUI_NumberValue maxLength = {.i32 = VALUE_10};
+    ArkUI_AttributeItem maxLengthItem = {&maxLength, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_MAX_LENGTH, &maxLengthItem);
+    
+    // 设置计数下标及超出计数时文本框的颜色
+    ArkUI_ShowCounterConfig *options = OH_ArkUI_ShowCounterConfig_Create();
+    OH_ArkUI_ShowCounterConfig_SetCounterTextColor(options, 0xFF0000FF);
+    OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(options, 0xFF0000FF);
+    ArkUI_NumberValue showCounterArray[] = {{.i32 = true}, {.f32 = 50.0f}, {.i32 = true}};
+    ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
+    Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
+}
+
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
 {
     // 多行文本输入框的默认提示文本内容属性
@@ -628,6 +650,14 @@ static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
     ArkUI_NumberValue textAreaMinLines = {.i32 = VALUE_1};
     ArkUI_AttributeItem textAreaMinLinesItem = {&textAreaMinLines, VALUE_1};
     Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_MIN_LINES, &textAreaMinLinesItem);
+    
+    // 设置计数下标及超出计数时文本框的颜色
+    ArkUI_ShowCounterConfig *options = OH_ArkUI_ShowCounterConfig_Create();
+    OH_ArkUI_ShowCounterConfig_SetCounterTextColor(options, 0xFF0000FF);
+    OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(options, 0xFF0000FF);
+    ArkUI_NumberValue showCounterArray[] = {{.i32 = true}, {.f32 = 50.0f}, {.i32 = true}};
+    ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
+    Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_SHOW_COUNTER, &ShowCounterColorItem);
 }
 
 void setTextArea1(ArkUI_NodeHandle &textArea1)
@@ -964,6 +994,44 @@ void setTextArea3(ArkUI_NodeHandle &textArea3)
     Manager::nodeAPI_->setAttribute(textArea3, NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL, &maxLinesWithScrollItem);
 }
 
+void setTextArea4(ArkUI_NodeHandle &textArea4)
+{
+    const char *textAreaText = "设置TextArea滚动条颜色以及显示";
+    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
+    ArkUI_NumberValue textAreaHeightValue{ .f32 = VALUE_30 };
+    ArkUI_AttributeItem textAreaHeightItem = {&textAreaHeightValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_TEXT, &textAreaTextItem);
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_HEIGHT, &textAreaHeightItem);
+    
+    // 滚动条状态
+    ArkUI_NumberValue textAreaScrollBarState = { .i32 = VALUE_2 };
+    ArkUI_AttributeItem textAreaScrollBarStateItem = {&textAreaScrollBarState, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_BAR_STATE, &textAreaScrollBarStateItem);
+    
+    // 滚动条颜色属性
+    ArkUI_NumberValue textAreaScrollBarColor = { .u32 = 0xFFFFE4E1 };
+    ArkUI_AttributeItem textAreaScrollBarColorItem = {&textAreaScrollBarColor, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_SCROLL_BAR_COLOR, &textAreaScrollBarColorItem);
+}
+
+void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
+{
+    const char *textAreaText = "这是设置自定义键盘";
+    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
+    ArkUI_NumberValue textAreaHeightValue{ .f32 = VALUE_50 };
+    ArkUI_AttributeItem textAreaHeightItem = {&textAreaHeightValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea5, NODE_TEXT_AREA_PLACEHOLDER, &textAreaTextItem);
+    // 自定义键盘
+    auto button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_NumberValue buttonHeightValue { .f32 = VALUE_300 };
+    ArkUI_AttributeItem heightItem = {&buttonHeightValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(button, NODE_HEIGHT, &heightItem);
+    ArkUI_NumberValue customKeyboardValue[] = { { .u32 = 0XFFFF0330 } };
+    ArkUI_AttributeItem customKeyboard = {customKeyboardValue, sizeof(customKeyboardValue) / sizeof(ArkUI_NumberValue)};
+    customKeyboard.object = button;
+    Manager::nodeAPI_->setAttribute(textArea5, NODE_TEXT_AREA_CUSTOM_KEYBOARD, &customKeyboard);
+}
+
 void setAccessibility(ArkUI_NodeHandle &accessibilityText)
 {
     ArkUI_AccessibilityValue *accessibilityLabelVal = OH_ArkUI_AccessibilityValue_Create();
@@ -1082,6 +1150,129 @@ void setText7(ArkUI_NodeHandle &text7)
     Manager::nodeAPI_->addChild(text7, text);
 }
 
+void setText8(ArkUI_NodeHandle &text8)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "最小显示3行";
+    Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_CONTENT, &item0);
+    ArkUI_NumberValue value3[] = {{.u32 = 0xffff0000}};
+    ArkUI_AttributeItem item3 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text8, NODE_BACKGROUND_COLOR, &item3);
+    ArkUI_NumberValue value1[] = {{.i32 = 3}};
+    ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_MIN_LINES, &item1);
+    ArkUI_NumberValue value2[] = {{.i32 = 5}};
+    ArkUI_AttributeItem item2 = {value2, sizeof(value2)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_MAX_LINES, &item2);
+}
+
+void setText9(ArkUI_NodeHandle &text9)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "使用倍数模式设置行高，2倍";
+    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_CONTENT, &item0);
+    ArkUI_NumberValue value3[] = {{.u32 = 0xFFFF0000}};
+    ArkUI_AttributeItem item6 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text9, NODE_BACKGROUND_COLOR, &item6);
+    ArkUI_NumberValue value[] = {{.f32 = 2.0}};
+    ArkUI_AttributeItem item = {value, sizeof(value)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_LINE_HEIGHT_MULTIPLE, &item);
+}
+
+void setText10(ArkUI_NodeHandle &text10)
+{
+    ArkUI_AttributeItem item0;
+    item0.string = "使用最大最小行高限制行高，50fp";
+    Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_CONTENT, &item0);
+    ArkUI_NumberValue value3[] = {{.u32 = 0xFFFF0000}};
+    ArkUI_AttributeItem item6 = {value3, sizeof(value3)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text10, NODE_BACKGROUND_COLOR, &item6);
+    ArkUI_NumberValue value0[] = {{.f32 = 1.0}};
+    ArkUI_AttributeItem item3 = {value0, sizeof(value0)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_LINE_HEIGHT, &item3);
+    ArkUI_NumberValue value1[] = {{.f32 = 50}};
+    ArkUI_AttributeItem item1 = {value1, sizeof(value1)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MIN_LINE_HEIGHT, &item1);
+    ArkUI_NumberValue value2[] = {{.f32 = 50}};
+    ArkUI_AttributeItem item2 = {value2, sizeof(value2)/ sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MAX_LINE_HEIGHT, &item2);
+}
+
+void setText11(ArkUI_NodeHandle &text11)
+{
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_30}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text11, NODE_WIDTH, &textWidthItem);
+    ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_50}};
+    ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text11, NODE_HEIGHT, &textHeightItem);
+    // Text属性字符串和ImageSpancolorFilter支持svg
+    auto imageSpan = Manager::nodeAPI_->createNode(ARKUI_NODE_IMAGE_SPAN);
+    ArkUI_NumberValue value[] = {};
+    ArkUI_AttributeItem item = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
+    item.string = "resource://base/media/lmagespancolorfilte.svg";
+    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &item);
+    OH_Drawing_ColorFilter* colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0xFFFF0000, BLEND_MODE_DIFFERENCE);
+    ArkUI_AttributeItem drawingColor = {.object = colorFilter};
+    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SPAN_COLOR_FILTER, &drawingColor);
+    ArkUI_NumberValue svg[] = {{
+        .i32 = VALUE_1
+    }};
+    ArkUI_AttributeItem svg2 = {svg, sizeof(svg) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SUPPORT_SVG2, &svg2);
+    ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = VALUE_30}};
+    ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
+                                              .size = sizeof(textWidth) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
+    ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = VALUE_30}};
+    ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
+                                               .size = sizeof(textWidth) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
+    Manager::nodeAPI_->addChild(text11, imageSpan);
+}
+
+void setColumn(ArkUI_NodeHandle &column)
+{
+    // 设置空隙以便于展示对齐效果
+    auto spaceColumn1 = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
+    auto spaceColumn2 = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
+    ArkUI_NumberValue columnHeightValue[] = {{.f32 = 20}};
+    ArkUI_AttributeItem columnHeightItem = {.value = columnHeightValue,
+        .size = sizeof(columnHeightValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(spaceColumn1, NODE_HEIGHT, &columnHeightItem);
+    Manager::nodeAPI_->setAttribute(spaceColumn2, NODE_HEIGHT, &columnHeightItem);
+
+    auto text12 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    // 设置文本字体粗细
+    ArkUI_NumberValue textWeightValue[] = {{.f32 = 160}};
+    ArkUI_AttributeItem textWeightItem = {.value = textWeightValue,
+        .size = sizeof(textWeightValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text12, NODE_WIDTH, &textWeightItem);
+    // 设置文本高度
+    ArkUI_NumberValue textHeightValue[] = {{.f32 = 50}};
+    ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
+        .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
+    Manager::nodeAPI_->setAttribute(text12, NODE_HEIGHT, &textHeightItem);
+    // 设置字体大小
+    ArkUI_NumberValue fontSizeValue[] = {16};
+    ArkUI_AttributeItem fontSizeItem = {fontSizeValue, 1};
+    Manager::nodeAPI_->setAttribute(text12, NODE_FONT_SIZE, &fontSizeItem);
+    // 设置背景颜色
+    ArkUI_NumberValue bgColorValue[] = {{.u32 = 0xff00ff00}};
+    ArkUI_AttributeItem bgColorItem = {.value = bgColorValue, .size = 1};
+    Manager::nodeAPI_->setAttribute(text12, NODE_BACKGROUND_COLOR, &bgColorItem);
+    // 设置文本内容
+    ArkUI_AttributeItem item = {.string = "这是一个长长长长长文本，用于展示文本内容高度大于文本高度时，竖向居中对齐依然生效"};
+    Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_CONTENT, &item);
+    // 设置对齐模式
+    ArkUI_NumberValue textContentAlignCenter[] = {{.u32 = ARKUI_TEXT_CONTENT_ALIGN_CENTER}};
+    ArkUI_AttributeItem textContentAlignItemCenter = {textContentAlignCenter, 1};
+    Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_CONTENT_ALIGN, &textContentAlignItemCenter);
+    Manager::nodeAPI_->addChild(column, spaceColumn1);
+    Manager::nodeAPI_->addChild(column, text12);
+    Manager::nodeAPI_->addChild(column, spaceColumn2);
+}
+
 static void MyTaskCallback(void *userData)
 {
     if (!userData) {
@@ -1142,55 +1333,84 @@ void measuredInfo(ArkUI_NodeHandle &component)
     ArkUI_IntSize getMeasured = Manager::nodeAPI_->getMeasuredSize(component);
 }
 
-void setUIVal(ArkUI_NodeHandle &textContainer)
+void setAllText(ArkUI_NodeHandle &textContainer)
 {
     ArkUI_NodeHandle text1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    ArkUI_NodeHandle textInput1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
-    ArkUI_NodeHandle textInput2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
-    ArkUI_NodeHandle textInput3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
-    ArkUI_NodeHandle textArea1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
-    ArkUI_NodeHandle textArea2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
-    ArkUI_NodeHandle textArea3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
-    ArkUI_NodeHandle accessibilityLabel = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    ArkUI_NodeHandle customSpan = Manager::nodeAPI_->createNode(ARKUI_NODE_CUSTOM_SPAN);
     ArkUI_NodeHandle text6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    measuredInfo(text4);
+    ArkUI_NodeHandle text8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text9 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text10 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text11 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
     setText1(text1);
     setText2(text2);
     setText3(text3);
     setText4(text4);
-    setText5(text5);
-    setText6(text6);
-    setTextInput1(textInput1);
-    setTextInput2(textInput2);
-    setTextInput3(textInput3);
-    setTextArea1(textArea1);
-    setTextArea2(textArea2);
-    setTextArea3(textArea3);
-    setAccessibility(accessibilityLabel);
-    setText7(text7);
+    measuredInfo(text4);
     RunTaskInUIContext(text5);
     SetComponentForceDark(text5);
+    setText5(text5);
+    setText6(text6);
+    setText7(text7);
+    setText8(text8);
+    setText9(text9);
+    setText10(text10);
+    setText11(text11);
+    setColumn(column);
     Manager::nodeAPI_->addChild(textContainer, text1);
     Manager::nodeAPI_->addChild(textContainer, text2);
     Manager::nodeAPI_->addChild(textContainer, text3);
     Manager::nodeAPI_->addChild(textContainer, text4);
     Manager::nodeAPI_->addChild(textContainer, text5);
+    Manager::nodeAPI_->addChild(textContainer, text6);
+    Manager::nodeAPI_->addChild(textContainer, text7);
+    Manager::nodeAPI_->addChild(textContainer, text8);
+    Manager::nodeAPI_->addChild(textContainer, text9);
+    Manager::nodeAPI_->addChild(textContainer, text10);
+    Manager::nodeAPI_->addChild(textContainer, text11);
+    Manager::nodeAPI_->addChild(textContainer, column);
+}
+
+void setUIVal(ArkUI_NodeHandle &textContainer)
+{
+    setAllText(textContainer);
+    ArkUI_NodeHandle textInput1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textInput4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textArea1 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle textArea5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
+    ArkUI_NodeHandle accessibilityLabel = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle customSpan = Manager::nodeAPI_->createNode(ARKUI_NODE_CUSTOM_SPAN);
+    setTextInput1(textInput1);
+    setTextInput2(textInput2);
+    setTextInput3(textInput3);
+    setTextInput4(textInput4);
+    setTextArea1(textArea1);
+    setTextArea2(textArea2);
+    setTextArea3(textArea3);
+    setTextArea4(textArea4);
+    setCustomKeyboard(textArea5);
+    setAccessibility(accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, textInput1);
     Manager::nodeAPI_->addChild(textContainer, textInput2);
     Manager::nodeAPI_->addChild(textContainer, textInput3);
+    Manager::nodeAPI_->addChild(textContainer, textInput4);
     Manager::nodeAPI_->addChild(textContainer, textArea1);
     Manager::nodeAPI_->addChild(textContainer, textArea2);
     Manager::nodeAPI_->addChild(textContainer, textArea3);
+    Manager::nodeAPI_->addChild(textContainer, textArea4);
+    Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, customSpan);
-    Manager::nodeAPI_->addChild(textContainer, text6);
-    Manager::nodeAPI_->addChild(textContainer, text7);
 }
 
 ArkUI_NodeHandle TextMaker::CreateNativeNode()

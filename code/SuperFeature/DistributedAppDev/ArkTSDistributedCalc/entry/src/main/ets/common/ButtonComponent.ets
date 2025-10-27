@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { logger } from '../../../ohosTest/ets/util/Logger'
 import { obtainImgVertical, obtainImgV, obtainImgVs } from '../model/ImageList'
 
 interface ImageList {
@@ -41,6 +42,7 @@ export struct ButtonComponent {
             .borderRadius('16px')
             .backgroundColor(index !== undefined && index < 2 ? '#33007DFF' : '#FF006CDE')
             .onClick(() => {
+              logger.info('ButtonComponent', 'onClick: ' + item.value)
               this.onInputValue(item.value)
             })
           }
@@ -63,6 +65,7 @@ export struct ButtonComponent {
             .borderRadius('16px')
             .backgroundColor('#33007DFF')
             .onClick(() => {
+              logger.info('ButtonComponent', 'onClick: ' + item.value)
               this.onInputValue(item.value)
             })
           }
@@ -85,6 +88,7 @@ export struct ButtonComponent {
             .borderRadius('16px')
             .backgroundColor('#F0F0F0')
             .onClick(() => {
+              logger.info('ButtonComponent', 'onClick: ' + item.value)
               this.onInputValue(item.value)
             })
           }

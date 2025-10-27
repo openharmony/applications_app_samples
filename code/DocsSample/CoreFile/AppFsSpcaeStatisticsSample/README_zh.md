@@ -4,7 +4,7 @@
 
 本示例主要展示了有关文件系统空间和应用空间统计的接口功能。使用ohos.file.statvfs、ohos.file.storageStatistics。实现了应用空间的查询功能。该工程中展示的代码与接口等详细描述可查如下链接。
 
-- [应用及文件系统空间统计](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/file-management/app-fs-space-statistics.md)
+- [应用及文件系统空间统计](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/file-management/app-fs-space-statistics.md)
 
 ### 效果预览
 
@@ -37,7 +37,7 @@
 
 ### 具体实现
 
-- 使用[ohos.file.storageStatistics](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/file-management/app-fs-space-statistics.md)提供的功能获取文件系统空间和应用空间的大小。
+- 使用[ohos.file.storageStatistics](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-storage-statistics.md)提供的功能获取文件系统空间和应用空间的大小。
 
 ### 相关权限
 

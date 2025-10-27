@@ -39,4 +39,6 @@ export default interface NativeWindowContext {
   GetBufferQueueSize(): number;
   GetAttachBufferCount(): number;
   GetCacheBufferCount(): number;
+  AcquireLatestBuffer(): number;
+  PreAllocBuffer(): number;
 };

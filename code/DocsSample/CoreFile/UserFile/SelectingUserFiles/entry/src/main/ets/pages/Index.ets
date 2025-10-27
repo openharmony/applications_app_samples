@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-// [Start import_interface_file]
+// [Start import_interface_select]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess, fileIo as fs,  picker } from '@kit.CoreFileKit';
 import Logger from '../common/Logger';
-// [End import_interface_file]
+// [End import_interface_select]
 
 @Entry
 @Component
@@ -167,7 +167,7 @@ struct Index {
         let readLen = fs.readSync(file.fd, buffer); // 读取文件内容
         Logger.info('readSync data to file succeed and buffer size is:' + readLen);
         fs.closeSync(file);
-        // [Start document_fs_read_sync]
+        // [End document_fs_read_sync]
       }
       // [End document_read_only]
     }catch (error) {
@@ -225,7 +225,7 @@ struct Index {
         fs.closeSync(file);
         // [End fs_read_sync]
       }
-      // [Start openmode_read_only]
+      // [End openmode_read_only]
     } catch (err) {
       const error: BusinessError = err as BusinessError;
       Logger.error(`Failed to read file, code is ${error.code}, message is ${error.message}`);

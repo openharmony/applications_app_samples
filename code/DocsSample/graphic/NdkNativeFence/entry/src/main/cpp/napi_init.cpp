@@ -158,7 +158,7 @@ static napi_value SyncFenceWaitForever(napi_env env, napi_callback_info info)
     waitThread.join();
     // [Start close_fence]
     OH_NativeFence_Close(sfd);
-    // [End wait_fence_forever]
+    // [End close_fence]
     napi_value funcResult = nullptr;
     napi_create_int32(env, result ? 1 : 0, &funcResult);
 

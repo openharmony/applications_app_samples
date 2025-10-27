@@ -44,6 +44,7 @@ napi_value createVisualEffectsGroup(napi_env env, napi_callback_info info);
 napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
 
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+const int32_t CNT_NUMBER = 1;
 class Manager {
 public:
     static ArkUI_NativeNodeAPI_1 *nodeAPI_;
@@ -62,11 +63,16 @@ public:
 
     void SetRootNode(const std::shared_ptr<NativeModule::ArkUIBaseNode> &baseNode)
     {
+        cnt++;
         root_ = baseNode;
         OH_ArkUI_NodeContent_AddNode(handle_, root_->GetHandle());
     }
     void DisposeRootNode()
     {
+        if (cnt != CNT_NUMBER) {
+            cnt--;
+            return;
+        }
         OH_ArkUI_NodeContent_RemoveNode(handle_, root_->GetHandle());
         root_.reset();
     }
@@ -78,6 +84,7 @@ public:
     static napi_value CreateNativeEmbeddedComponentNode(napi_env env, napi_callback_info info);
 
 private:
+    int32_t cnt = 0;
     static Manager manager_;
     std::shared_ptr<NativeModule::ArkUIBaseNode> root_;
     ArkUI_NodeContentHandle handle_;

@@ -188,10 +188,10 @@ static void WorkComplete(napi_env env, napi_status status, void *data)
 
 static napi_value CallThreadSafeWithPriority(napi_env env, napi_callback_info info)
 {
+    CallbackData *callbackData = new CallbackData();
     size_t argc = 1;
     napi_value jsCb = nullptr;
-    CallbackData *callbackData = nullptr;
-    napi_get_cb_info(env, info, &argc, &jsCb, nullptr, reinterpret_cast<void **>(&callbackData));
+    napi_get_cb_info(env, info, &argc, &jsCb, nullptr, nullptr);
     napi_value resourceName = nullptr;
     napi_create_string_utf8(env, "Thread-safe Function Demo", NAPI_AUTO_LENGTH, &resourceName);
     napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr, callbackData, CallJs,
@@ -205,12 +205,11 @@ static napi_value CallThreadSafeWithPriority(napi_env env, napi_callback_info in
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    CallbackData *callbackData = new CallbackData();
     napi_property_descriptor desc[] = {
         {"createArkRuntime", nullptr, CreateArkRuntime, nullptr, nullptr, nullptr, napi_static, nullptr},
         {"runEventLoop", nullptr, RunEventLoop, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"callThreadSafeWithPriority", nullptr, CallThreadSafeWithPriority, nullptr, nullptr, nullptr,
-            napi_default, callbackData}};
+            napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

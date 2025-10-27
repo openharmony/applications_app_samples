@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-// [Start import_interface_picker]
+// [Start import_interface_storage]
 import { statfs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 import { storageStatistics } from '@kit.CoreFileKit';
-// [End import_interface_picker]
+// [End import_interface_storage]
 
 @Entry
 @Component
@@ -194,7 +194,7 @@ struct Index {
       }).catch((err: BusinessError) => {
         console.error(`getTotalSize failed with error, code is ${err.code}, message is ${err.message}`);
       });
-      // [Start storageStatistics_getTotalSize]
+      // [End storageStatistics_getTotalSize]
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
@@ -223,7 +223,7 @@ struct Index {
       }).catch((err: BusinessError) => {
         console.error(`getFreeSize failed with error, code is ${err.code}, message is ${err.message}`);
       });
-      // [Start storageStatistics_getFreeSize]
+      // [End storageStatistics_getFreeSize]
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
@@ -240,7 +240,7 @@ struct Index {
         let error: BusinessError = err as BusinessError;
         console.error(`getFreeSizeSync failed with error, code is ${error.code}, message is ${error.message}`);
       }
-    // [Start storageStatistics_getFreeSizeSync]
+    // [End storageStatistics_getFreeSizeSync]
     this.result = 'getFreeSizeSync success';
   }
 }

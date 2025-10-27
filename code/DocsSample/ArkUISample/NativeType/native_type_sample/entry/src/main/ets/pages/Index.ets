@@ -33,7 +33,7 @@ struct MenuIndex {
       { title: 'Animation', url: 'pages/page_animation' },
       { title: 'Visual Effects', url: 'pages/page_visual_effects' },
       { title: 'WaterFlow', url: 'pages/page_waterflow' },
-      { title: 'Grid', url: 'pages/page_grid' },
+      { title: 'Grid', url: 'pages/PageGrid' },
       { title: 'Scroll', url: 'pages/page_scroll' },
       { title: 'Refresh', url: 'pages/page_refresh' },
       { title: 'List', url: 'pages/page_list' },

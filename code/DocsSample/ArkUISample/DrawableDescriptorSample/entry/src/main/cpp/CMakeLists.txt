@@ -25,4 +25,8 @@ target_link_libraries(entry PUBLIC
     libace_napi.z.so
     libpixelmap_ndk.z.so
     libhilog_ndk.z.so
+    libimage_source.so
+    libpixelmap.so
+    libohresmgr.so
+    librawfile.z.so
 )

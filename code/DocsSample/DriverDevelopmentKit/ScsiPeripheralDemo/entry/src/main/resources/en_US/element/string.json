@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "mass-storage-device"
+    },
+    {
+      "name": "direction",
+      "value": "方向："
+    },
+    {
+      "name": "result",
+      "value": "执行结果："
+    },
+    {
+      "name": "send",
+      "value": "发送"
+    },
+    {
+      "name": "cdb_data",
+      "value": "CDB数据(网格内数据请输入十六进制数据，不包含0x)"
+    },
+    {
+      "name": "cdb_data_bit",
+      "value": "CDB数据字节数(6~16):"
+    },
+    {
+      "name": "dev_type",
+      "value": "设备类型："
+    },
+    {
+      "name": "vendor_id",
+      "value": "制造商："
+    },
+    {
+      "name": "product_id",
+      "value": "产品标识："
+    },
+    {
+      "name": "revision",
+      "value": "产品版本："
+    },
+    {
+      "name": "volume",
+      "value": "容量："
+    },
+    {
+      "name": "block_num",
+      "value": "块数："
+    },
+    {
+      "name": "block_volume",
+      "value": "块大小："
+    },
+    {
+      "name": "commands",
+      "value": "SCSI命令："
+    },
+    {
+      "name": "block_start",
+      "value": "起始块："
+    },
+    {
+      "name": "block_num_str",
+      "value": "块    数："
+    },
+    {
+      "name": "exec_result",
+      "value": "执行结果："
+    },
+    {
+      "name": "data",
+      "value": "数据"
+    },
+    {
+      "name": "device_connect",
+      "value": "设备已连接"
+    },
+    {
+      "name": "device_disconnect",
+      "value": "设备未连接"
+    }
+  ]
+}

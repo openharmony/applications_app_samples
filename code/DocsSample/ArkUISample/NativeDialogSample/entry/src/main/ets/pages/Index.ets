@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
 import testNapi2 from 'libnativerender.so';
 import { common } from '@kit.AbilityKit';
 
@@ -29,7 +28,7 @@ struct Index {
           .width('85%')
           .margin({ top: 20, bottom: 10 })
           .onClick(() => {
-            router.push({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/IndexController',
             })
           })
@@ -38,7 +37,7 @@ struct Index {
           .width('85%')
           .margin({ top: 20, bottom: 10 })
           .onClick(() => {
-            router.push({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/IndexCustomDialog',
             })
           })
@@ -56,14 +55,9 @@ struct Index {
             context.terminateSelf()
           })
           .margin({ top: 20, bottom: 20 })
-        XComponent({
-          id: 'xComponent',
-          type: XComponentType.NODE,
-          libraryname: 'entry'
-        }).onAppear(()=> {
-        })
       }
       .width('100%')
+      .height('100%')
     }
     .height('100%')
   }

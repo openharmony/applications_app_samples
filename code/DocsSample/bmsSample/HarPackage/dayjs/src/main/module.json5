@@ -18,7 +18,7 @@
     "name": "dayjs",
     "type": "har",
     "deviceTypes": [
-      "default"
+      "tablet"
     ]
   }
 }

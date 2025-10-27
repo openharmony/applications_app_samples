@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start toast_openClose]
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -24,9 +24,10 @@ export struct OpenCloseToastExample {
   private promptAction: PromptAction = this.uiContext.getPromptAction();
 
   build() {
+    // [StartExclude toast_openClose]
     NavDestination() {
+      // [EndExclude toast_openClose]
       Column({ space: 12 }) {
-
         Column() {
           Button('Open Toast')
             .height(100)
@@ -57,13 +58,15 @@ export struct OpenCloseToastExample {
               };
             })
         }.height('100%').width('100%').justifyContent(FlexAlign.Center)
-
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude toast_openClose]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.OpenCloseToast_title'))
+    // [EndExclude toast_openClose]
   }
 }
+// [End toast_openClose]

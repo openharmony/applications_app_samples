@@ -98,10 +98,10 @@ static void WorkComplete(napi_env env, napi_status status, void *data)
 
 static napi_value StartThread(napi_env env, napi_callback_info info)
 {
+    CallbackData *callbackData = new CallbackData();
     size_t argc = 1;
     napi_value jsCb = nullptr;
-    CallbackData *callbackData = nullptr;
-    napi_get_cb_info(env, info, &argc, &jsCb, nullptr, reinterpret_cast<void **>(&callbackData));
+    napi_get_cb_info(env, info, &argc, &jsCb, nullptr, nullptr);
 
     // 创建一个线程安全函数
     napi_value resourceName = nullptr;
@@ -123,9 +123,8 @@ static napi_value StartThread(napi_env env, napi_callback_info info)
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    CallbackData *callbackData = new CallbackData(); // 可在线程退出时释放
     napi_property_descriptor desc[] = {
-        {"startThread", nullptr, StartThread, nullptr, nullptr, nullptr, napi_default, callbackData},
+        {"startThread", nullptr, StartThread, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

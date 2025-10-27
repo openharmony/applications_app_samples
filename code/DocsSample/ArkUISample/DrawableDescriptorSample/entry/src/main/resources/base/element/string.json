@@ -29,12 +29,12 @@
       "value": "设置iteration"
     },
     {
-      "name": "Index_label_check_picture",
-      "value": "提示:请确保资源文件存在于rawfile目录"
-    },
-    {
       "name": "Index_button_setting",
       "value": "设置"
+    },
+    {
+      "name": "Index_button_back",
+      "value": "返回"
     }
   ]
 }

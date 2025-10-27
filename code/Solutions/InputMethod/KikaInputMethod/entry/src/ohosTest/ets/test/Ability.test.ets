@@ -98,8 +98,7 @@ export default function abilityTest() {
       }
       logger.info(TAG, `${BUNDLE}ShowKeyboard_001 22`);
 
-      //点击等输入法弹出
-      await customInputText.click();
+      //点击等输入法弹出      
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('a', MatchPattern.CONTAINS));
       let inputTexta = await driver.findComponent(ON.text('a', MatchPattern.CONTAINS));

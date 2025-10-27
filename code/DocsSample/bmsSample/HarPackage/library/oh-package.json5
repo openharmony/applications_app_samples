@@ -13,20 +13,28 @@
  * limitations under the License.
  */
 
+// [Start har_package_001]
+// [Start har_package_008]
 {
+  // [StartExclude har_package_001]
+  // [StartExclude har_package_008]
   "name": "library",
   "version": "1.0.0",
   "description": "Please describe the basic information.",
-  // [Start har_package_001]
+  // [EndExclude har_package_001]
   "main": "Index.ets",
-  // [end har_package_001]
+  // [StartExclude har_package_001]
   "author": "",
   "license": "Apache-2.0",
+  // [EndExclude har_package_008]
   "dependencies": {
+    // [StartExclude har_package_008]
     "liblibrary.so": "file:./src/main/cpp/types/liblibrary",
-    // [Start har_package_008]
+    // [EndExclude har_package_008]
     "dayjs": "file:../dayjs",
     "lottie": "file:../lottie",
-    // [End har_package_008]
-  }
+  },
+  // [EndExclude har_package_001]
 }
+// [End har_package_008]
+// [End har_package_001]

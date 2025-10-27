@@ -65,6 +65,7 @@ entry/src/main/ets/
 |   |       |---TextPrompts.ets
 |   |---Toast                                 //即使反馈
 |   |       |---CreateToast.ets
+|   |       |---DefaultAndTopToast.ets
 |   |       |---Index.ets
 |   |       |---OpenCloseToast.ets                           
 |---pages

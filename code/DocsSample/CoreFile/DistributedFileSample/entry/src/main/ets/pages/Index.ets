@@ -50,28 +50,6 @@ function createFile(context: common.UIAbilityContext): void {
   // [End access_A_write_distributed_file]
 }
 
-// [Start set_security_label]
-// 打开文件并设置文件数据等级为‘s0’
-function setFileLv(path: string): void {
-  let file = fs.openSync(path, fs.OpenMode.READ_ONLY);
-  securityLabel.setSecurityLabel(path, 's0').then(() => {
-    Logger.info('Successfully set the security label to s0.');
-    fs.closeSync(file);
-  }).catch((err: BusinessError) => {
-    let error: BusinessError = err as BusinessError;
-    console.error(`Failed to setSecurityLabel. Code: ${error.code}, message: ${error.message}`);
-  });
-}
-
-// [End set_security_label]
-
-// 定义访问公共文件目录的回调
-let listeners: fs.DfsListeners = {
-  onStatus: (networkId: string, status: number): void => {
-    Logger.info('Failed to access public directory');
-  }
-}
-
 // 授权分布式数据同步权限。
 async function applyPermission(context: common.UIAbilityContext) {
   // [Start distributed_Data_Permission]
@@ -94,6 +72,9 @@ async function applyPermission(context: common.UIAbilityContext) {
 async function mountPublicDir(context: common.UIAbilityContext) {
   // [Start access_ConnectDfs]
   // 通过分布式设备管理的接口获取设备A的networkId信息
+  // [StartExclude access_ConnectDfs]
+  console.info(`connectDfs start`);
+  // [EndExclude access_ConnectDfs]
   let dmInstance = distributedDeviceManager.createDeviceManager('com.example.hap');
   let deviceInfoList: distributedDeviceManager.DeviceBasicInfo[] = dmInstance.getAvailableDeviceListSync();
   if (deviceInfoList && deviceInfoList.length > 0) {
@@ -146,6 +127,9 @@ async function mountPublicDir(context: common.UIAbilityContext) {
 function disMountPublicDir(): void {
   // [Start access_DisConnectDfs]
   // 获取设备A的networkId
+  // [StartExclude access_DisConnectDfs]
+  console.info(`disconnectDfs start`);
+  // [EndExclude access_DisConnectDfs]
   let dmInstance = distributedDeviceManager.createDeviceManager('com.example.hap');
   let deviceInfoList: distributedDeviceManager.DeviceBasicInfo[] = dmInstance.getAvailableDeviceListSync();
   if (deviceInfoList && deviceInfoList.length > 0) {
@@ -198,7 +182,10 @@ function copySandFile(context: common.UIAbilityContext): void {
 
 // B设备在获取A端沙箱文件时，从B设备的分布式路径下将对应的文件拷贝走，以此完成跨设备拷贝。
 function copyDistributedFile(context: common.UIAbilityContext): void {
-  // [End copy_distributed_to_sand]
+  // [Start copy_distributed_to_sand]
+  // [StartExclude copy_distributed_to_sand]
+  console.info(`copyDistributedFile start`);
+  // [EndExclude copy_distributed_to_sand]
   let pathDir: string = context.filesDir;
   let distributedPathDir: string = context.distributedFilesDir;
   // 待拷贝文件的目标路径(沙箱路径)

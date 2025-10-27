@@ -4,9 +4,8 @@
 
 本实例实现了分布式文件系统的文件跨设备访问、跨设备拷贝以及设计分布式文件数据等级。使用两台设备进行分布式组网，在组网环境下可以对文件进行跨设备的访问和拷贝，该工程中展示的代码详细描述可查如下链接。
 
-- [ 设置分布式文件数据等级](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/file-management/set-security-label.md)
-- [ 跨设备文件访问](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/file-management/file-access-across-devices.md)
-- [ 跨设备文件拷贝](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/file-management/file-copy-across-devices.md)
+- [ 跨设备文件访问](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/file-management/file-access-across-devices.md)
+- [ 跨设备文件拷贝](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/file-management/file-copy-across-devices.md)
 
 ## 效果预览
 

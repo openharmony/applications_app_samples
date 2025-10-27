@@ -12,35 +12,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaQuery from '@ohos.mediaquery'
-import Logger from '../model/Logger'
-import { ButtonComponent } from '../common/ButtonComponent'
-import { ButtonComponentHorizontal } from '../common/ButtonComponentHorizontal'
-import { InputComponent } from '../common/InputComponent'
-import { KvStoreModel } from '../model/KvStoreModel'
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
-import { TitleBarComponent } from '../common/TitleBarComponent'
-import { isOperator, calc } from '../model/Calculator'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-import common from '@ohos.app.ability.common';
-import mediaquery from '@ohos.mediaquery';
+import Logger from '../model/Logger';
+import { ButtonComponent } from '../common/ButtonComponent';
+import { ButtonComponentHorizontal } from '../common/ButtonComponentHorizontal';
+import { InputComponent } from '../common/InputComponent';
 
-const TAG: string = 'Index'
-const EXIT: string = 'exit'
-const DATA_CHANGE: string = 'dataChange'
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
+import { TitleBarComponent } from '../common/TitleBarComponent';
+import { isOperator, calc } from '../model/Calculator';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import mediaquery from '@ohos.mediaquery';
+import { KvStoreModel } from '../model/KvStoreModel';
+import { emitter } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+const TAG: string = 'Index';
+const EXIT: string = 'exit';
+const DATA_CHANGE: string = 'dataChange';
 
 @Entry
 @Component
 struct Index {
   @State isCallback: boolean = false;
-  @State isLand: boolean = false
-  @State result: string = ''
-  @State @Watch('dataChange') expression: string = ''
-  @State isDistributed: boolean = false
-  @State isShow: boolean = false
-  private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
-  private kvStoreModel: KvStoreModel = new KvStoreModel()
-  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
+  @State isLand: boolean = false;
+  @State result: string = '';
+  @State @Watch('dataChange') expression: string = '';
+  @State isDistributed: boolean = false;
+  @State isShow: boolean = false;
+  private kvStoreModel: KvStoreModel | undefined = AppStorage.get('KvStoreModel');
+  private listener = this.getUIContext()
+    .getMediaQuery()
+    .matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)');
+  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel();
   onLand = (mediaQueryResult: mediaquery.MediaQueryResult) => {
     Logger.info(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`);
     if (mediaQueryResult.matches) {
@@ -48,21 +51,20 @@ struct Index {
     } else {
       this.isLand = false
     }
-  }
+  };
 
   dataChange() {
-    Logger.info(TAG, `dataChange, expression = ${this.expression}`)
+    Logger.info(TAG, `dataChange, expression = ${this.expression}`);
+    Logger.info(TAG, `dataChange, isCallback = ${this.isCallback}`);
     if (this.isCallback) {
       this.isCallback = false;
     } else {
-      this.kvStoreModel.put(DATA_CHANGE, this.expression);
+      // 如果是第一次同步数据，会通过startAbilityCallBack调用，所以此处不需要调用put
+      if (!this.kvStoreModel?.isFirstSync) {
+        Logger.info(TAG, `dataChange, put start`)
+        this.kvStoreModel?.put(DATA_CHANGE, this.expression, false);
+      }
     }
-  }
-
-  isOperator(operator: string) {
-    return (
-      operator === '+' || operator === '-' || operator === '*' || operator === '/'
-    )
   }
 
   onInputValue = (value: string) => {
@@ -110,36 +112,42 @@ struct Index {
   }
 
   aboutToDisappear() {
-    Logger.info(TAG, `index disappear`)
-    this.kvStoreModel.deleteKvStore()
+    Logger.info(TAG, `index disappear`);
+    emitter.off('dataChange');
   }
 
   async aboutToAppear() {
     this.listener.on('change', this.onLand)
-    let context = getContext(this) as common.UIAbilityContext
-    let atManager = abilityAccessCtrl.createAtManager()
+    let context: common.UIAbilityContext = AppStorage.get('UIAbilityContext') as common.UIAbilityContext;
+    let atManager = abilityAccessCtrl.createAtManager();
     try {
       atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
-        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+        Logger.info(TAG, `grantPermission,requestPermissionsFromUser`);
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`);
       }).catch((err: object) => {
-        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`);
       })
     } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
     }
-    Logger.info(TAG, `grantPermission,requestPermissionsFromUser`)
-    let isRemote: string | undefined = AppStorage.get('isRemote')
+    let isRemote: string | undefined = AppStorage.get('isRemote');
+    Logger.info(TAG, `aboutToAppear isRemote = ${isRemote}`);
+
     if (isRemote === 'isRemote' ? true : false) {
-      this.isDistributed = true
-      this.isShow = true
+      this.isDistributed = true;
+      this.isShow = true;
+      // 如果设备是被远程拉起的设备，则不需要增加延迟时间，因为此时应用已经启动了，不涉及耗时增加
+      this.kvStoreModel!.isFirstSync = false;
     }
-    this.kvStoreModel.setOnMessageReceivedListener(context, DATA_CHANGE, (value: string) => {
-      Logger.info(TAG, `DATA_CHANGE: ${value},this.isDistributed = ${this.isDistributed}`);
+
+    emitter.on('dataChange', (data: emitter.EventData) => {
+      let value: string = data.data?.value;
+      Logger.info(TAG, `dataChange: ${value},this.isDistributed = ${this.isDistributed}`);
       if (this.isDistributed) {
-        if (value.search(EXIT) !== -1) {
-          Logger.info(TAG, `EXIT ${EXIT}`)
+        if (value.search('exit') !== -1) {
+          Logger.info(TAG, `EXIT`);
           context.terminateSelf((error) => {
-            Logger.error(TAG, `terminateSelf finished, error= ${error}`)
+            Logger.error(TAG, `terminateSelf finished, error= ${error}`);
           })
         } else {
           this.isCallback = true;
@@ -148,23 +156,25 @@ struct Index {
           } else {
             this.expression = value
           }
-          if (this.isOperator(this.expression.substr(this.expression.length - 1, this.expression.length))) {
+          if (isOperator(this.expression.substr(this.expression.length - 1, this.expression.length))) {
             this.result = calc(this.expression.substring(0, this.expression.length - 1))
           } else {
             this.result = calc(this.expression)
           }
         }
       }
-    })
+    });
   }
 
   startAbilityCallBack = (key: string) => {
-    Logger.info(TAG, `startAbilityCallBack ${key}`)
-    if (DATA_CHANGE === key) {
-      this.kvStoreModel.put(DATA_CHANGE, this.expression)
+    Logger.info(TAG, `startAbilityCallBack ${key}`);
+    this.kvStoreModel!.isFirstSync = false;
+    // 拉起另一台设备、第一次同步数据时，如果数据不为空，则同步数据
+    if (DATA_CHANGE === key && this.expression.length > 0) {
+      this.kvStoreModel?.put(DATA_CHANGE, this.expression, true);
     }
     if (EXIT === key) {
-      this.kvStoreModel.put(DATA_CHANGE, EXIT)
+      this.kvStoreModel?.put(DATA_CHANGE, EXIT, false);
     }
   }
 

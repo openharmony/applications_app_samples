@@ -4,7 +4,7 @@
 
 本示例主要展示了有关保存用户文件的功能，使用PhotoViewPicker、PhotoAccessHelper、@ohos.file.picker（选择器）、@ohos.file.fs （文件管理）、fs.openSync、fs.writeSync、AudioViewPicker等，实现了保存文件的功能。该工程中展示的代码与接口等详细描述可查如下链接。
 
-- [保存用户文件](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/file-management/save-user-file.md)
+- [保存用户文件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/file-management/save-user-file.md)
 
 ### 效果预览
 
@@ -37,13 +37,13 @@
 ### 具体实现
 
 * 保存文档类文件：
-    * 导入[@ohos.file.picker（选择器）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md#ohosfilepicker-选择器)模块和[@ohos.file.fs （文件管理）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)模块。
+    * * 导入[@ohos.file.picker（选择器）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md)模块和[@ohos.file.fs （文件管理）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)模块。
     * 创建文档保存选项实例。
     * 创建文件选择器DocumentViewPicker实例。调用save()接口拉起FilePicker界面进行文件保存。
     * 待界面从FilePicker返回后，使用基础文件API的fs.openSync接口，通过URI打开这个文件得到文件描述符(fd)。
     * 通过(fd)使用基础文件API的fs.writeSync接口对这个文件进行编辑修改，编辑修改完成后关闭(fd)。
 * 保存音频类文件：
-    * 导入[@ohos.file.picker（选择器）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md#ohosfilepicker-选择器)模块、[@ohos.file.fs （文件管理）](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)模块、[PhotoAccessHelper](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)模块。
+    * * 导入[@ohos.file.picker（选择器）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md)模块和[@ohos.file.fs （文件管理）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)模块。
     * 创建音频保存选项实例。
     * 创建音频选择器AudioViewPicker实例。调用save()接口拉起FilePicker界面进行文件保存。
     * 待界面从FilePicker返回后，可以使用基础文件API的fs.openSync接口，通过URI打开这个文件得到文件描述符(fd)。

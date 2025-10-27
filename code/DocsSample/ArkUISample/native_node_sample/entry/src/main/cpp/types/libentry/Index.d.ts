@@ -34,3 +34,5 @@ export const removeImageSpanNode: (nodeId: number) => void;
 export const setImageSpanAttribute: (nodeId: number, nodeType: number, attributeType: number, attributeValue: string) => number;
 export const getImageSpanAttribute: (nodeId: number, nodeType: number, attributeType: number) => string;
 export const resetImageSpanAttribute: (nodeId: number, nodeType: number, attributeType: number) => number;
+export const createGridNativeNodeOnGetRectByIndex: (content: Object) => void;
+export const createGridNativeNodeIrregularIndexes: (content: Object) => void;

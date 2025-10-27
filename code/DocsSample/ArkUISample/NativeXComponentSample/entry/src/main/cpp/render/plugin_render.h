@@ -47,6 +47,7 @@ public:
     void OnBlurEvent(OH_NativeXComponent* component, void* window);
     void OnKeyEvent(OH_NativeXComponent* component, void* window);
     void RegisterCallback(OH_NativeXComponent* nativeXComponent);
+    void ShowSample(OH_NativeXComponent* component);
 
 public:
     static std::unordered_map<std::string, PluginRender*> instance_;

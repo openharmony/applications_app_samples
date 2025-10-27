@@ -2,7 +2,9 @@
 
 ## 介绍
 
-本示例展示了keyFrameAnimeteto、animateTo、tranisation及animator动画。
+本示例展示了keyFrameAnimeteto、animateTo、tranisation及animator动画。该工程中展示的接口详细描述可查如下链接：
+
+[native_animate.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-animate-h.md)。
 
 ## 效果预览
 

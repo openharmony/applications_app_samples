@@ -14,49 +14,49 @@
  */
 
 import deviceManager from '@ohos.distributedDeviceManager';
-import Logger from '../model/Logger'
-import { Callback } from '@ohos.base'
+import Logger from './Logger';
+import { Callback } from '@ohos.base';
 
 interface deviceData {
-  device: deviceManager.DeviceBasicInfo
+  device: deviceManager.DeviceBasicInfo;
 }
 
 interface extraInfo {
-  bindType: number
-  targetPkgName: string
-  appName: string
+  bindType: number;
+  targetPkgName: string;
+  appName: string;
 }
 
-const TAG: string = 'RemoteDeviceModel'
-let SUBSCRIBE_ID: number = 100
+const TAG: string = 'RemoteDeviceModel';
+let SUBSCRIBE_ID: number = 100;
 
-export const BUNDLE_NAME: string = 'ohos.samples.distributedcalc'
+export const BUNDLE_NAME: string = 'ohos.samples.distributedcalc';
 
 export class RemoteDeviceModel {
-  public deviceList: Array<deviceManager.DeviceBasicInfo> | null = []
-  public discoverList: Array<deviceManager.DeviceBasicInfo> = []
+  public deviceList: Array<deviceManager.DeviceBasicInfo> | null = [];
+  public discoverList: Array<deviceManager.DeviceBasicInfo> = [];
   private callback: () => void = () => {
-  }
+  };
   private authCallback: () => void = () => {
-  }
-  private deviceManager: deviceManager.DeviceManager | undefined = undefined
+  };
+  private deviceManager: deviceManager.DeviceManager | undefined = undefined;
 
   registerDeviceListCallback(callback: Callback<void>) {
-    Logger.info(TAG, `deviceManager type =${typeof (this.deviceManager)} ,${JSON.stringify(this.deviceManager)} ,${JSON.stringify(this.deviceManager) === '{}'}`)
+    Logger.info(TAG, `deviceManager type =${typeof (this.deviceManager)} ,${JSON.stringify(this.deviceManager)} ,${JSON.stringify(this.deviceManager) === '{}'}`);
     if (typeof (this.deviceManager) !== 'undefined') {
-      this.registerDeviceListCallbackImplement(callback)
-      return
+      this.registerDeviceListCallbackImplement(callback);
+      return;
     }
-    Logger.info(TAG, 'deviceManager.createDeviceManager begin')
+    Logger.info(TAG, 'deviceManager.createDeviceManager begin');
     try {
       let dmInstance = deviceManager.createDeviceManager(BUNDLE_NAME);
-      this.deviceManager = dmInstance
-      this.registerDeviceListCallbackImplement(callback)
-      Logger.info(TAG, `createDeviceManager callback returned, value= ${JSON.stringify(this.deviceManager)}`)
+      this.deviceManager = dmInstance;
+      this.registerDeviceListCallbackImplement(callback);
+      Logger.info(TAG, `createDeviceManager callback returned, value= ${JSON.stringify(this.deviceManager)}`);
     } catch (error) {
-      Logger.error(TAG, `createDeviceManager throw code:${error.code} message:${error.message}`)
+      Logger.error(TAG, `createDeviceManager throw code:${error.code} message:${error.message}`);
     }
-    Logger.info(TAG, 'deviceManager.createDeviceManager end')
+    Logger.info(TAG, 'deviceManager.createDeviceManager end');
   }
 
   changeStateOnline(device: deviceManager.DeviceBasicInfo) {
@@ -116,14 +116,14 @@ export class RemoteDeviceModel {
   }
 
   registerDeviceListCallbackImplement(callback: Callback<void>) {
-    Logger.info(TAG, 'registerDeviceListCallback')
-    this.callback = callback
+    Logger.info(TAG, 'registerDeviceListCallback');
+    this.callback = callback;
     if (this.deviceManager === undefined) {
-      Logger.error(TAG, 'deviceManager has not initialized')
-      this.callback()
+      Logger.error(TAG, 'deviceManager has not initialized');
+      this.callback();
       return
     }
-    Logger.info(TAG, 'getTrustedDeviceListSync begin')
+    Logger.info(TAG, 'getTrustedDeviceListSync begin');
     try {
       let list = this.deviceManager !== undefined ? this.deviceManager.getAvailableDeviceListSync() : null;
       Logger.debug(TAG, `getTrustedDeviceListSync end, deviceList= ${JSON.stringify(list)}`);
@@ -140,18 +140,18 @@ export class RemoteDeviceModel {
       if (this.deviceManager !== undefined) {
         this.deviceManager.on('deviceStateChange', (data) => {
           if (data === null) {
-            return
+            return;
           }
           Logger.debug(TAG, `deviceStateChange data= ${JSON.stringify(data)}`)
           switch (data.action) {
             case deviceManager.DeviceStateChange.AVAILABLE:
-              this.changeState(data.device, deviceManager.DeviceStateChange.AVAILABLE)
+              this.changeState(data.device, deviceManager.DeviceStateChange.AVAILABLE);
               break
             case deviceManager.DeviceStateChange.UNKNOWN:
-              this.changeStateOnline(data.device)
+              this.changeStateOnline(data.device);
               break
             case deviceManager.DeviceStateChange.UNAVAILABLE:
-              this.changeStateOffline(data.device)
+              this.changeStateOffline(data.device);
               break
             default:
               break
@@ -161,35 +161,35 @@ export class RemoteDeviceModel {
       if (this.deviceManager !== undefined) {
         this.deviceManager.on('discoverSuccess', (data) => {
           if (data === null) {
-            return
+            return;
           }
-          this.discoverList = []
-          Logger.info(TAG, `discoverSuccess data=${JSON.stringify(data)}`)
-          this.deviceFound(data.device)
+          this.discoverList = [];
+          Logger.info(TAG, `discoverSuccess data=${JSON.stringify(data)}`);
+          this.deviceFound(data.device);
         })
         this.deviceManager.on('discoverFailure', (data) => {
-          Logger.info(TAG, `discoverFailure data= ${JSON.stringify(data)}`)
+          Logger.info(TAG, `discoverFailure data= ${JSON.stringify(data)}`);
         })
         this.deviceManager.on('serviceDie', () => {
-          Logger.error(TAG, 'serviceDie')
+          Logger.error(TAG, 'serviceDie');
         })
       }
     } catch (error) {
-      Logger.error(TAG, `on throw code:${error.code} message:${error.message}`)
+      Logger.error(TAG, `on throw code:${error.code} message:${error.message}`);
     }
-    this.startDeviceDiscovery()
+    this.startDeviceDiscovery();
   }
 
   deviceFound(data: deviceManager.DeviceBasicInfo) {
     for (let i = 0;i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId === data.deviceId) {
-        Logger.info(TAG, 'device founded ignored')
+        Logger.info(TAG, 'device founded ignored');
         return
       }
     }
-    this.discoverList[this.discoverList.length] = data
-    Logger.debug(TAG, `deviceFound self.discoverList= ${this.discoverList}`)
-    this.callback()
+    this.discoverList[this.discoverList.length] = data;
+    Logger.debug(TAG, `deviceFound self.discoverList= ${this.discoverList}`);
+    this.callback();
   }
 
   /**
@@ -207,15 +207,15 @@ export class RemoteDeviceModel {
     Logger.info(TAG, `startDeviceDiscovery${SUBSCRIBE_ID}`);
     try {
       if (this.deviceManager !== undefined) {
-        this.deviceManager.startDiscovering(discoverParam, filterOptions)
+        this.deviceManager.startDiscovering(discoverParam, filterOptions);
       }
     } catch (error) {
-      Logger.error(TAG, `startDeviceDiscovery throw code:${error.code} message:${error.message}`)
+      Logger.error(TAG, `startDeviceDiscovery throw code:${error.code} message:${error.message}`);
     }
   }
 
   unregisterDeviceListCallback() {
-    Logger.debug(TAG, `stopDeviceDiscovery ${SUBSCRIBE_ID}`)
+    Logger.info(TAG, `stopDeviceDiscovery ${SUBSCRIBE_ID}`);
     if (this.deviceManager === undefined) {
       return
     }
@@ -224,29 +224,29 @@ export class RemoteDeviceModel {
         Logger.info(TAG, `stopDiscovering`)
         this.deviceManager.stopDiscovering();
       } catch (error) {
-        Logger.error(TAG, `stopDeviceDiscovery throw code:${JSON.stringify(error.code)} message:${error.message}`)
+        Logger.error(TAG, `stopDeviceDiscovery throw code:${JSON.stringify(error.code)} message:${error.message}`);
       }
       try {
-        this.deviceManager.off('deviceStateChange')
-        this.deviceManager.off('discoverSuccess')
-        this.deviceManager.off('discoverFailure')
-        this.deviceManager.off('serviceDie')
+        this.deviceManager.off('deviceStateChange');
+        this.deviceManager.off('discoverSuccess');
+        this.deviceManager.off('discoverFailure');
+        this.deviceManager.off('serviceDie');
       } catch (error) {
-        Logger.error(TAG, `off throw code:${error.code} message:${error.message}`)
+        Logger.error(TAG, `off throw code:${error.code} message:${error.message}`);
       }
     }
-    this.deviceList = []
-    this.discoverList = []
+    this.deviceList = [];
+    this.discoverList = [];
   }
 
   authenticateDevice(device: deviceManager.DeviceBasicInfo, callBack: Callback<void>) {
-    Logger.info(TAG, `authenticateDevice ${JSON.stringify(device)}`)
+    Logger.info(TAG, `authenticateDevice ${JSON.stringify(device)}`);
     for (let i = 0; i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId !== device.deviceId) {
-        continue
+        continue;
       }
       if (this.deviceManager === undefined) {
-        return
+        return;
       }
       try {
         if (this.deviceManager !== undefined) {
@@ -257,17 +257,17 @@ export class RemoteDeviceModel {
             appName: 'Distributed distributecalc',
           }, (err, data) => {
             if (err) {
-              Logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`)
+              Logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`);
               this.authCallback = () => {
               }
-              return
+              return;
             }
-            Logger.debug(TAG, `authenticateDevice succeed: ${JSON.stringify(data)}`)
-            this.authCallback = callBack
+            Logger.debug(TAG, `authenticateDevice succeed: ${JSON.stringify(data)}`);
+            this.authCallback = callBack;
           })
         }
       } catch (error) {
-        Logger.error(TAG, `authenticateDevice throw throw code:${error.code} message:${error.message}`)
+        Logger.error(TAG, `authenticateDevice throw throw code:${error.code} message:${error.message}`);
       }
     }
   }

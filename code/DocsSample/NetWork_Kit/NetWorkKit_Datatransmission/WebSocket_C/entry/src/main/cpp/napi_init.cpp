@@ -14,11 +14,9 @@
  */
 
 // [Start websocket_build_project]
-// [Start websocket_c_module_import]
 #include "napi/native_api.h"
 #include "network/netstack/net_websocket.h"
 #include "network/netstack/net_websocket_type.h"
-// [End websocket_c_module_import]
 #include "hilog/log.h"
 
 #include <cstring>

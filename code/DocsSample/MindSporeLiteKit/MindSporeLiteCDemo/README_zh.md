@@ -78,8 +78,8 @@ ohos.permission.READ_IMAGEVIDEO
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/ApplicationModels/MindSporeLiteCDemo/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/MindSporeLiteKit/MindSporeLiteCDemo/ > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
 

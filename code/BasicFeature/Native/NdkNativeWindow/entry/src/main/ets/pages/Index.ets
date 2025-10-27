@@ -158,26 +158,53 @@ struct Index {
         }
       })
       .height(60)
-      Button(`attach buffer`)
-        .fontSize('14fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          if (this.nativeWindowContext) {
-            this.nativeWindowContext.AttachBuffer();
-          }
-        })
-        .height(40)
-      Button(`dettach buffer`)
-        .fontSize('14fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          if (this.nativeWindowContext) {
-            this.nativeWindowContext.DettachBuffer();
-          }
-        })
-        .height(40)
+      Row() {
+        Button(`attach buffer`)
+          .fontSize('14fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            if (this.nativeWindowContext) {
+              this.nativeWindowContext.AttachBuffer();
+            }
+          })
+          .height(40)
+        Button(`dettach buffer`)
+          .fontSize('14fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            if (this.nativeWindowContext) {
+              this.nativeWindowContext.DettachBuffer();
+            }
+          })
+          .height(40)
+      }
+      Row() {
+        Button(`AcquireLatestBuffer`)
+          .fontSize('14fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            if (this.nativeWindowContext) {
+              console.info(TAG, 'AcquireLatestBuffer.');
+              this.nativeWindowContext.AcquireLatestBuffer();
+              this.frameAvailableCount = 0;
+            }
+          })
+          .height(40)
+        Button(`PreAllocBuffer`)
+          .fontSize('14fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            if (this.nativeWindowContext) {
+              console.info(TAG, 'PreAllocBuffer.');
+              this.nativeWindowContext.PreAllocBuffer();
+            }
+          })
+          .height(40)
+      }
     }
     .width('100%')
     .height('100%')

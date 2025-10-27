@@ -15,6 +15,7 @@
 import image from '@ohos.multimedia.image';
 import hilog from '@ohos.hilog';
 import napiAgent from 'libentry.so';
+import { NodeContent } from '@kit.ArkUI';
 
 const TAG = 'DrawableDemo';
 
@@ -30,11 +31,34 @@ struct DrawablePage {
   @State newDuration: number = 1000;
   @State animationIteration: number = 0;
   @State newIteration: number = 10;
+  private nodeContent = new NodeContent();
+
+  loadPixelMapArray() {
+    if (!this.getUIContext() || !this.getUIContext().getHostContext()) {
+      hilog.error(0x0000, TAG, `getUIContext fail.`);
+      return;
+    }
+    const context = this.getUIContext().getHostContext();
+    const resMgr = context!.resourceManager;
+
+    this.imagePixelMapArrayId = napiAgent.createNodePage(this.nodeContent, resMgr);
+
+    if (this.imagePixelMapArrayId >= 0) {
+      hilog.error(0x0000, TAG, '---test loadPixelMapArray创建成功, imagePixelMapArrayId:%d', this.imagePixelMapArrayId);
+    } else {
+      hilog.error(0x0000, TAG, '---test loadPixelMapArray创建失败');
+    }
+  }
+
+  async loadPixelMapArrayAsync() {
+    this.loadPixelMapArray()
+  }
 
   async aboutToAppear() {
     // 从资源加载图片并转换为PixelMap
     await this.loadImageFromResource();
     await this.loadImageArrayFromResource();
+    await this.loadPixelMapArrayAsync();
   }
 
   // 从资源加载图片并转换为PixelMap
@@ -77,7 +101,7 @@ struct DrawablePage {
       this.imagePixelMapArray = pixelMap;
       hilog.info(0x0000, TAG, '图片test加载成功');
 
-      this.createPixelMapAarry();
+      this.createPixelMapArray();
     } catch (err) {
       hilog.error(0x0000, TAG, `图片test加载失败: ${JSON.stringify(err)}`);
     }
@@ -94,35 +118,24 @@ struct DrawablePage {
 
     if (this.imagePixelMapId >= 0) {
       hilog.error(0x0000, TAG, 'imagePixelMap创建成功');
-      // 获取默认动画时长
-      this.animationDuration = napiAgent.getAnimationDuration(this.imagePixelMapId);
     } else {
       hilog.error(0x0000, TAG, 'imagePixelMap创建失败');
     }
   }
 
-  createPixelMapAarry() {
-    if (!this.imagePixelMapArray) {
-      return;
-    }
-
-    // 调用Native方法创建Drawable
-    this.imagePixelMapArrayId = napiAgent.createFromAnimatedPixelMap(this.imagePixelMapArray, 1);
-
-    if (this.imagePixelMapArrayId >= 0) {
-      hilog.error(0x0000, TAG, 'imagePixelMapArray创建成功');
-    } else {
-      hilog.error(0x0000, TAG, 'imagePixelMapArray创建失败');
-    }
+  createPixelMapArray() {
+    // 调用Native方法,测试相关接口
+    napiAgent.createFromAnimatedPixelMap(this.imagePixelMapArray, 1);
   }
 
   // 设置输入的duration
   setNewDuration() {
-    if (this.imagePixelMapArrayId < 0) {
-      hilog.error(0x0000, TAG, 'imagePixelMapArrayId < 0, return');
-      return;
+    if (this.imagePixelMapArrayId >= 0) {
+      napiAgent.disposeDrawable(this.imagePixelMapArrayId);
+      this.imagePixelMapArrayId = -1;
     }
 
+    this.loadPixelMapArray();
     napiAgent.setAnimationDuration(this.imagePixelMapArrayId, this.newDuration);
     this.animationDuration = napiAgent.getAnimationDuration(this.imagePixelMapArrayId);
   }
@@ -159,6 +172,17 @@ struct DrawablePage {
     }
   }
 
+  onBackPress() {
+    hilog.error(0x0000, TAG, 'onBackPress');
+
+    // 先清理老的节点，再重新设置一个新的
+    hilog.error(0x0000, TAG, 'onBackPress begin, ---test imagePixelMapArrayId:%d', this.imagePixelMapArrayId);
+    napiAgent.disposeDrawable(this.imagePixelMapArrayId);
+    this.imagePixelMapArrayId = -1;
+
+    this.loadPixelMapArray();
+  }
+
   build() {
     Column() {
       Text($r('app.string.Index_label_func_sample'))
@@ -170,31 +194,23 @@ struct DrawablePage {
         Image(this.imagePixelMap)
           .width(100)
           .height(100)
-          .margin(20)
+          .margin(10)
           .objectFit(ImageFit.Auto)
       } else {
         Text($r('app.string.Index_label_load_fail'))
           .fontSize(16)
-          .margin(20)
-      }
-
-      if (this.imagePixelMapArray) {
-        Image(this.imagePixelMapArray)
-          .width(100)
-          .height(100)
-          .margin(20)
-          .objectFit(ImageFit.Auto)
-      } else {
-        Text($r('app.string.Index_label_load_fail'))
-          .fontSize(16)
-          .margin(20)
+          .margin(10)
       }
 
       Column() {
-        Text(`current duration: ${this.animationDuration}ms`)
+        ContentSlot(this.nodeContent)
+      }
+
+      Column() {
+        Text(`duration: ${this.animationDuration}ms`)
           .fontSize(18)
           .margin(10)
-        Text(`current iteration: ${this.animationIteration}`)
+        Text(`iteration: ${this.animationIteration}`)
           .fontSize(18)
           .margin(10)
 
@@ -241,9 +257,13 @@ struct DrawablePage {
       .backgroundColor('#f5f5f5')
       .borderRadius(10)
 
-      Text($r('app.string.Index_label_check_picture'))
-        .fontSize(14)
-        .margin({ top: 20 })
+      Button($r('app.string.Index_button_back'))
+        .fontSize(18)
+        .width(240)
+        .onClick(() => {
+          this.getUIContext().getRouter().back();
+        })
+        .margin({ top: 20, bottom: 20 })
     }
     .width('100%')
     .height('100%')

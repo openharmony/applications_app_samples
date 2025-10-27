@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "VideoRender"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VideoRender"
+    },
+    {
+      "name": "title",
+      "value": "Video Render"
+    },
+    {
+      "name": "vulkan_title",
+      "value": "Video Render Based On Vulkan"
+    },
+    {
+      "name": "play",
+      "value": "Play"
+    }
+  ]
+}

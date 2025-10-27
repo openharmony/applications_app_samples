@@ -13,11 +13,13 @@
  * limitations under the License.
  */
 import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
 
 export const createFromPixelMap: (pMap: image.PixelMap) => number;
-export const createFromAnimatedPixelMap: (pMap: image.PixelMap, size: number) => number;
+export const createFromAnimatedPixelMap: (pMap: image.PixelMap, size: number) => void;
 export const disposeDrawable: (imagePixelMapId: number) => void;
 export const setAnimationDuration: (imagePixelMapId: number, duration: number) => void;
 export const getAnimationDuration: (imagePixelMapId: number) => number;
 export const setAnimationIteration: (imagePixelMapId: number, iteration: number) => void;
 export const getAnimationIteration: (imagePixelMapId: number) => number;
+export const createNodePage: (content: Object, resmgr: resourceManager.ResourceManager) =>number;

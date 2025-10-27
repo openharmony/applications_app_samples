@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-// [Start import_interface_picker]
+// [Start import_interface_save]
 import { fileUri, picker } from '@kit.CoreFileKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-// [End import_interface_picker]
+// [End import_interface_save]
 
 @Entry
 @Component
@@ -228,7 +228,7 @@ struct Index {
       }).catch((err: BusinessError) => {
         console.error(`Invoke audioViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
       });
-      // [Start audio_save_file]
+      // [End audio_save_file]
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
@@ -243,14 +243,13 @@ struct Index {
         //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
         let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
         console.info('file fd: ' + file.fd);
-        // [End audio_open_mode]
-
         // [Start audio_write_sync]
         let writeLen = fs.writeSync(file.fd, 'hello, world');
         console.info('write data to file succeed and size is:' + writeLen);
         fs.closeSync(file);
         // [End audio_write_sync]
       }
+      // [End audio_open_mode]
       this.result = 'Successfully saved audio files';
     } catch (error) {
       let err: BusinessError = error as BusinessError;
@@ -280,7 +279,7 @@ struct Index {
       }).catch((err: BusinessError) => {
         console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
       })
-      // [Start download_save_file]
+      // [End download_save_file]
       this.downloadResult = 'Successfully download';
     } catch (error) {
       let err: BusinessError = error as BusinessError;

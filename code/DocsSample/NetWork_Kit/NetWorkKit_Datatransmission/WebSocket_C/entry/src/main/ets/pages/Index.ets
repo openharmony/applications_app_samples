@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import { promptAction } from '@kit.ArkUI';
 // [Start WebSocket_C_full_example]
 import testWebsocket from 'libentry.so';
-// [StartExclude WebSocket_C_full_example_part_one]
-import { promptAction } from '@kit.ArkUI';
-// [EndExclude WebSocket_C_full_example_part_one]
 
 @Entry
 @Component
@@ -70,6 +69,7 @@ struct Index {
         })
 
         Blank()
+
         Column({
           space: 12 // 占位空间
         }) {
@@ -80,15 +80,15 @@ struct Index {
               let connRet = testWebsocket.Connect(this.wsUrl);
               if (connRet) {
                 this.connecting = true;
-                // [StartExclude WebSocket_C_full_example_part_two]
+                // [StartExclude WebSocket_C_full_example]
                 promptAction.showToast({
                   message: $r('app.string.Connect_successfully'),
                   duration: 4000, // 持续时间
                   bottom: 300 // 与底间隔
                 });
-                // [EndExclude WebSocket_C_full_example_part_two]
+                // [EndExclude WebSocket_C_full_example]
               } 
-              // [StartExclude WebSocket_C_full_example_part_three]
+              // [StartExclude WebSocket_C_full_example]
               else {
                 this.connecting = false;
                 promptAction.showToast({
@@ -97,20 +97,20 @@ struct Index {
                   bottom: 300 // 与底间隔
                 });
               }
-              // [EndExclude WebSocket_C_full_example_part_three]
+              // [EndExclude WebSocket_C_full_example]
             })
           Button($r('app.string.Send'))
             .id('Send')
             .enabled(this.connecting)
             .onClick(() => {
               testWebsocket.Send(this.content);
-              // [StartExclude WebSocket_C_full_example_part_four]
+              // [StartExclude WebSocket_C_full_example]
               promptAction.showToast({
                 message: $r('app.string.Send_message_successfully'),
                 duration: 4000, // 持续时间
                 bottom: 300 // 与底间隔
               });
-              // [EndExclude WebSocket_C_full_example_part_four]
+              // [EndExclude WebSocket_C_full_example]
             })
           Button($r('app.string.Close'))
             .id('Close')
@@ -118,8 +118,8 @@ struct Index {
             .onClick(() => {
               let closeResult = testWebsocket.Close();
               if (closeResult != -1) {
-                // [StartExclude WebSocket_C_full_example_part_five]
                 this.connecting = false;
+                // [StartExclude WebSocket_C_full_example]
                 promptAction.showToast({
                   message: $r('app.string.Close_connection'),
                   duration: 4000, // 持续时间
@@ -127,9 +127,9 @@ struct Index {
                 });
                 this.wsUrl = '';
                 this.content = '';
-                // [EndExclude WebSocket_C_full_example_part_five]
+                // [EndExclude WebSocket_C_full_example]
               } 
-              // [StartExclude WebSocket_C_full_example_part_six]
+              // [StartExclude WebSocket_C_full_example]
               else {
                 promptAction.showToast({
                   message: $r('app.string.Close_connection_failed'),
@@ -137,7 +137,7 @@ struct Index {
                   bottom: 300 // 与底间隔
                 });
               }
-              // [EndExclude WebSocket_C_full_example_part_six]
+              // [EndExclude WebSocket_C_full_example]
             })
         }
       }

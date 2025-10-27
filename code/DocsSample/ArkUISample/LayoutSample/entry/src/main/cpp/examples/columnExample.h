@@ -65,6 +65,7 @@ std::shared_ptr<ArkUIColumnNode> CreateOffsetSection()
 
     auto offsetText = std::make_shared<ArkUITextNode>();
     offsetText->SetTextContent(Texts::CONTENT_OFFSET);
+    offsetText->SetPosition(Sizes::ZERO, Sizes::ZERO);    //初始位置为(0,0)
     offsetText->SetOffset(Sizes::OFFSET_MEDIUM, Sizes::OFFSET_MEDIUM); // 特定偏移值
     offsetText->SetBackgroundColor(Colors::GREEN);
 

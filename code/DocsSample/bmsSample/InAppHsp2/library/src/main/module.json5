@@ -20,7 +20,6 @@
     "type": "shared",
     "description": "$string:shared_desc",
     "deviceTypes": [
-      "default",
       "tablet",
       "2in1"
     ],

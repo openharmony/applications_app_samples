@@ -14,11 +14,11 @@
  */
 
 // [Start widget_updt_router_card]
-let storageUpdtRouter = new LocalStorage();
+let storageUpdateRouter = new LocalStorage();
 
-@Entry(storageUpdtRouter)
+@Entry(storageUpdateRouter)
 @Component
-struct WidgetUpdtRouterCard {
+struct WidgetUpdateRouterCard {
   @LocalStorageProp('routerDetail') routerDetail: ResourceStr = $r('app.string.init');
 
   build() {
