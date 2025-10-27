@@ -26,8 +26,10 @@ import { http } from '@kit.NetworkKit';
 
 const TAG: string = 'WgtImgUpdateEntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
+ // [StartExclude local_file_refresh]
 const TEXT1: string = '刷新中...'
 const TEXT2: string = '刷新失败'
+ // [EndExclude local_file_refresh]
 
 export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
   // [StartExclude network_file_refresh]

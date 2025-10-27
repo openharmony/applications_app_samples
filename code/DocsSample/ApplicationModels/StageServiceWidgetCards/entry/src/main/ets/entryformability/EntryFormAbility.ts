@@ -17,15 +17,14 @@
 // [Start update_form_interface]
 // [Start update_by_message_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
-// [StartExclude update_form_interface]
 import { Configuration, Want } from '@kit.AbilityKit';
-// [EndExclude update_form_interface]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End import_entry_form_ability]
 
 // [Start form_extension_ability_interface]
 // [Start entry_form_ability]
+// [Start update_form_interface]
 const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 
@@ -74,7 +73,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   // [EndExclude update_form_interface]
   onFormEvent(formId: string, message: string): void {
     // 当卡片提供方的postCardAction接口的message事件被触发时调用
-    hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
     // [StartExclude form_extension_lifecycle_interface]
     // [StartExclude entry_form_ability]
     class FormDataClass {
