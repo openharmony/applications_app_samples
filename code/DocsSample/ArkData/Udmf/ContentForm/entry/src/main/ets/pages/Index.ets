@@ -14,9 +14,7 @@
  */
 
 // [Start components_based_on_uniform_data_structure]
-// [StartExclude components_based_on_uniform_data_structure]
 // 1. 导入需要的模块
-// [EndExclude components_based_on_uniform_data_structure]
 import { ContentFormCard, FormType, uniformDataStruct } from '@kit.ArkData';
 import hilog from '@ohos.hilog';
 
@@ -30,9 +28,7 @@ struct Index {
   @State startToShow: boolean = false;
 
   aboutToAppear(): void {
-    // [StartExclude components_based_on_uniform_data_structure]
     // 2. 初始化数据
-    // [EndExclude components_based_on_uniform_data_structure]
     this.initData();
   }
 
@@ -61,15 +57,11 @@ struct Index {
     Column() {
       Button('show card').fontSize(30)
         .onClick(() => {
-          // [StartExclude components_based_on_uniform_data_structure]
           // 3. 点击后startToShow变为true，页面重新渲染
-          // [EndExclude components_based_on_uniform_data_structure]
           this.startToShow = true;
         })
       if (this.startToShow) {
-        // [StartExclude components_based_on_uniform_data_structure]
         // 4. 使用内容卡片，传入对应的参数
-        // [EndExclude components_based_on_uniform_data_structure]
         ContentFormCard({
           contentFormData: this.contentForm,
           formType: FormType.TYPE_SMALL,
