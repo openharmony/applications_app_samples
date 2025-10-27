@@ -169,7 +169,6 @@ entry/src/main/ets/
 |   |---springCurve                   // 弹簧曲线
 |   |   |---template1
 |   |   |   |---SpringCurve.ets
-|   |   |   |---Index.ets     
 |   |---modalTransition                          // 模态转场
 |   |   |---template1       
 |   |   |   |---BindContentCoverDemo.ets       // 示例1（使用bindContentCover构建全屏模态转场效果）
@@ -183,6 +182,7 @@ entry/src/main/ets/
 |   |   |   |---BindPopupDemo.ets       // 示例5（使用bindPopup实现气泡弹窗效果）
 |   |   |---template6       
 |   |   |   |---ModalTransitionWithIf.ets       // 示例6（使用if实现模态转场）
+
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
