@@ -251,4 +251,4 @@ struct Index {
     .height(this.currentHeight)
   };
 }
-//  [End gestureRecognition]
+// [End gestureRecognition]

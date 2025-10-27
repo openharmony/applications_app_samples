@@ -12,6 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'MyApp';
 
 // [Start Parallel_binding]
 // xxx.ets
@@ -24,7 +27,7 @@ struct ParallelBinding {
         .gesture(
           TapGesture()
             .onAction(() => {
-              console.info('Text TapGesture is onAction');
+              hilog.info(DOMAIN, TAG,'Text TapGesture is onAction');
             }));
     }
     .height(200)
@@ -33,7 +36,7 @@ struct ParallelBinding {
     .parallelGesture(
       TapGesture()
         .onAction(() => {
-          console.info('Column TapGesture is onAction');
+          hilog.info(DOMAIN, TAG,'Column TapGesture is onAction');
         }), GestureMask.Normal);
   };
 }

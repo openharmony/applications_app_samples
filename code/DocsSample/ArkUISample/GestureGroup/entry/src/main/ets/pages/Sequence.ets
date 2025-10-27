@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'MyApp';
 // [Start sequence_identification]
 // xxx.ets
 @Entry
@@ -48,16 +50,16 @@ struct sequenceIdentification {
                 this.count++;
               };
             };
-            console.info('LongPress onAction');
+            hilog.info(DOMAIN, TAG,'LongPress onAction');
           })
           .onActionEnd(() => {
-            console.info('LongPress end');
+            hilog.info(DOMAIN, TAG,'LongPress end');
           }),
         // 当长按之后进行拖动，PanGesture手势被触发
         PanGesture()
           .onActionStart(() => {
             this.borderStyles = BorderStyle.Dashed;
-            console.info('pan start');
+            hilog.info(DOMAIN, TAG,'pan start');
           })
           // 当该手势被触发时，根据回调获得拖动的距离，修改该组件的位移距离从而实现组件的移动
           .onActionUpdate((event: GestureEvent|undefined) => {
@@ -65,7 +67,7 @@ struct sequenceIdentification {
               this.offsetX = (this.positionX + event.offsetX);
               this.offsetY = this.positionY + event.offsetY;
             };
-            console.info('pan update');
+            hilog.info(DOMAIN, TAG,'pan update');
           })
           .onActionEnd(() => {
             this.positionX = this.offsetX;
@@ -74,7 +76,7 @@ struct sequenceIdentification {
           })
       )
         .onCancel(() => {
-          console.info('sequence gesture canceled');
+          hilog.info(DOMAIN, TAG,'sequence gesture canceled');
         })
     );
   };

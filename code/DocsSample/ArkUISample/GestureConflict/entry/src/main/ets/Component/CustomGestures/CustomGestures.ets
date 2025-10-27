@@ -36,9 +36,9 @@ struct CustomGestures {
           Image($r('sys.media.ohos_app_icon'))
             .draggable(true)
             .onDragStart(()=>{
-              // [StartExclude ExcludeComponentDragging]
+              // [StartExclude ComponentDragging]
              let promptAction: PromptAction = this.getUIContext().getPromptAction();
-              // [EndExclude ExcludeComponentDragging]
+              // [EndExclude ComponentDragging]
               //  $r('app.string.Allow_dragging_prompt') 需要替换为开发者所需的资源文件
               promptAction.showToast({ message: $r('app.string.Allow_dragging_prompt') });
             })
@@ -55,9 +55,9 @@ struct CustomGestures {
           .gesture(GestureGroup(GestureMode.Parallel,
             LongPressGesture()
               .onAction((event: GestureEvent) => {
-                // [StartExclude ExcludeSetGestures]
+                // [StartExclude SetGestures]
                 let promptAction: PromptAction = this.getUIContext().getPromptAction();
-                // [EndExclude ExcludeSetGestures]
+                // [EndExclude SetGestures]
                 //  $r('app.string.Stop_dragging_prompt') 需要替换为开发者所需的资源文件
                 promptAction.showToast({ message: $r('app.string.Stop_dragging_prompt')  });
               })

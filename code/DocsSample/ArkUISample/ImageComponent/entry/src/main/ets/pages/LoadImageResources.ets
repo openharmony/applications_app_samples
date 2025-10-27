@@ -16,11 +16,11 @@
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// [StartExclude MediaLibraryFile_HiLog]
+// [StartExclude MediaLibraryFile]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'MyApp';
-// [EndExclude MediaLibraryFile_HiLog]
+// [EndExclude MediaLibraryFile]
 @Entry
 @Component
 struct MediaLibraryFile {

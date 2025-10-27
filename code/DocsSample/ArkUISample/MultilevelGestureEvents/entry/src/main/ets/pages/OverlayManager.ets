@@ -33,18 +33,18 @@ function builderOverlay(params: Params) {
   Component1().hitTestBehavior(HitTestMode.Transparent)
 }
 
-// [StartExclude OverlayManager_CustomEvent]
+// [StartExclude OverlayManager]
 @Entry
 @Component
 struct CustomEvent {
   private overlayManager?: OverlayManager;
   @State context: UIContext = this.getUIContext();
-  // [EndExclude OverlayManager_CustomEvent]
+  // [EndExclude OverlayManager]
 
   aboutToAppear(): void {
-    // [StartExclude OverlayManager_overlayManager]
+    // [StartExclude OverlayManager]
     this.overlayManager = this.context.getOverlayManager();
-    // [EndExclude OverlayManager_overlayManager]
+    // [EndExclude OverlayManager]
     let componentContent = new ComponentContent(
       this.context,
       wrapBuilder<[Params]>(builderOverlay),
