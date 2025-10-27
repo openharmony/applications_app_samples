@@ -25,8 +25,8 @@ import hilog from '@ohos.hilog';
 // 业务数据定义
 // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
 class Data {
-  title: string | undefined;
-  text: string | undefined;
+  public title: string | undefined;
+  public text: string | undefined;
 
   constructor(title: string | undefined, text: string | undefined) {
     this.title = title;
