@@ -49,7 +49,7 @@ class MyRenderNode extends RenderNode {
     // 设置待排版文本要应用的样式
     paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
-    paragraphBuilder.addText("Hello World!");
+    paragraphBuilder.addText('Hello World!');
 
     // 生成段落
     let paragraph = paragraphBuilder.build();
@@ -131,7 +131,7 @@ struct Font08 {
         NodeContainer(myNodeController)
           .height('100%')
           .width('100%')
-        Text("Test for line height limit")
+        Text('Test for line height limit')
           .onAppear(() => {
             performTask();
           })
