@@ -14,5 +14,5 @@
  */
 
 // [Start napi_async_open_close_callback_scope_api]
-export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | void;
+export const asynchronousWork: (object: Object, obj: Object, fun: Function, num: number) => number | undefined;
 // [End napi_async_open_close_callback_scope_api]

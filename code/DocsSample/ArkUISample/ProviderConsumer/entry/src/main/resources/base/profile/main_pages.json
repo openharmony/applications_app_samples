@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/Index",
+    "homePage/TwowayBinding",
+    "homePage/NoTwowayBinding",
+    "homePage/DecorativeArray",
+    "homePage/DecorativeDate",
+    "homePage/DecorativeMap",
+    "homePage/DecorativeSet",
+    "homePage/DragDrop",
+    "homePage/DecorativeComplex",
+    "homePage/ProviderSame",
+    "homePage/DecorativeInitialized",
+    "homePage/CodeFirst",
+    "homePage/CodeSecond",
+    "homePage/CodeThree"
+  ]
+}
+

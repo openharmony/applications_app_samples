@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "checkbox_name",
+      "value": "复选框状态"
+    },
+    {
+      "name": "checkbox_status",
+      "value": "复选框状态"
+    },
+    {
+      "name": "checked_context",
+      "value": "（选中）"
+    },
+    {
+      "name": "unchecked_context",
+      "value": "（非选中）"
+    }
+  ]
+}

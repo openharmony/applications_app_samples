@@ -37,6 +37,11 @@ namespace Dialog_Option_Demo {
     napi_value Dispose(napi_env env, napi_callback_info info);
 } // Dialog_Option_Demo
 
+namespace Dialog_OptionText_Demo {
+    napi_value BuildDemoPage(napi_env env, napi_callback_info info);
+    napi_value Dispose(napi_env env, napi_callback_info info);
+} // Dialog_OptionText_Demo
+
 namespace Dialog_LifeCycle_Demo {
     napi_value BuildDemoPage(napi_env env, napi_callback_info info);
     napi_value Dispose(napi_env env, napi_callback_info info);

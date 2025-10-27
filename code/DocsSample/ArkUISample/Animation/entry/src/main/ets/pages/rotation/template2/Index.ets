@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start rotation_page]
 import { display } from '@kit.ArkUI';
 
 @Entry
@@ -46,3 +47,5 @@ struct rotation {
     .size({ width: '100%', height: '100%' })
   }
 }
+
+// [End rotation_page]

@@ -16,6 +16,7 @@ import curves from '@ohos.curves';
 import { Route, RouteGroup } from './common/Index';
 import { KeyboardAvoidMode } from '@kit.ArkUI';
 import router from '@ohos.router';
+import { common } from '@kit.AbilityKit';
 
 @Styles
 function cardPressedStyle() {
@@ -42,6 +43,7 @@ function cardDisabledStyle() {
 @Entry
 @Component
 struct AnimateIndex {
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @Provide('router') router: NavPathStack = new NavPathStack();
   @State routes: RouteGroup[] = [
     {
@@ -123,8 +125,13 @@ struct AnimateIndex {
     // $r('app.string.shareTransition_label')需要替换为开发者所需的资源文件
     label: $r('app.string.shareTransition_label'),
     children:[
-      // $r('app.string.temp1') 需要替换为开发者所需的资源文件
-      { name: 'template1/Index', label: $r('app.string.temp1') }
+      { name: 'template1/Index', label: $r("app.string.shareTransition_label1") },
+      { name: 'template2/Index', label: $r("app.string.shareTransition_label2") },
+      { name: 'template3/Index', label: $r("app.string.shareTransition_label3") },
+      { name: 'template4/Index', label: $r("app.string.shareTransition_label4") },
+      { name: 'template5/Index', label: $r("app.string.shareTransition_label5") },
+      { name: 'template6/IfElseGeometryTransition', label: $r("app.string.shareTransition_label6") },
+      { name: 'template7/Index', label: $r("app.string.shareTransition_label7") }
     ]
   }, {
     name: "motionPath",
@@ -175,7 +182,7 @@ struct AnimateIndex {
       { name: 'template1/Index', label: $r('app.string.rotation_temp_label1') },
       { name: 'template2/Index', label: $r('app.string.rotation_temp_label2') }
     ]
-  },  {
+  }, {
     name: "animatableProperty",
     // $r("app.string.animatableProperty_label")需要替换为开发者所需的资源文件
     label: $r("app.string.animatableProperty_label"),
@@ -183,6 +190,7 @@ struct AnimateIndex {
       // $r("app.string.component_temp_label1")需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r("app.string.animatableProperty_temp_label1") },
       { name: 'template2/Index', label: $r("app.string.animatableProperty_temp_label2") },
+      ]
   }, {
     name: "component",
     // $r('app.string.component_label')需要替换为开发者所需的资源文件
@@ -191,6 +199,29 @@ struct AnimateIndex {
       // $r('app.string.component_temp_label1')需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r('app.string.component_temp_label1') },
       { name: 'template2/Index', label: $r('app.string.component_temp_label2') },
+    ]
+  }, {
+    name: "traditionalCurve",
+    label: $r("app.string.traditionalCurve_label"),
+    children:[
+      { name: 'template1/CurveDemo', label: $r("app.string.temp1") }
+    ]
+  }, {
+    name: "springCurve",
+    label: $r("app.string.springCurve_label"),
+    children:[
+      { name: 'template1/SpringCurve', label: $r("app.string.temp1") }
+    ]
+  }, {
+    name: "modalTransition",
+    label: $r("app.string.modal_transition_label"),
+    children:[
+      { name: 'template1/BindContentCoverDemo', label: $r("app.string.modal_transition_label1") },
+      { name: 'template2/BindSheetDemo', label: $r("app.string.modal_transition_label2") },
+      { name: 'template3/BindMenuDemo', label: $r("app.string.modal_transition_label3") },
+      { name: 'template4/BindContextMenuDemo', label: $r("app.string.modal_transition_label4") },
+      { name: 'template5/BindPopupDemo', label: $r("app.string.modal_transition_label5") },
+      { name: 'template6/ModalTransitionWithIf', label: $r("app.string.modal_transition_label6") }
     ]
   }
   ];

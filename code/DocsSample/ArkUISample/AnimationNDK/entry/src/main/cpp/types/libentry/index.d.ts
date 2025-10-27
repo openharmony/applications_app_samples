@@ -14,3 +14,4 @@
  */
 export const createNativeRoot: (content: Object) => void;
 export const destroyNativeRoot: () => void;
+export const createTransitionEffectRoot: (content: Object) => void;
