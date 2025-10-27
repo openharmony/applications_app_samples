@@ -34,7 +34,7 @@ struct Index {
     if (windowStage_ == null) {
       hilog.error(DOMAIN, TAG, `Failed to create the subwindow. Cause: windowStage_ is null`);
     } else {
-      windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
+      windowStage_.createSubWindow('mySubWindow', (err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
           hilog.error(DOMAIN, TAG, `Failed to create the subwindow. Cause: ${JSON.stringify(err)}`);

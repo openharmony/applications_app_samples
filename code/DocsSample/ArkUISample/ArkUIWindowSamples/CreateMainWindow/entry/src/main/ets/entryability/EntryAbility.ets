@@ -46,7 +46,7 @@ export default class EntryAbility extends UIAbility {
       })
     })
     // 3.为主窗口加载对应的目标页面。
-    windowStage.loadContent("pages/Index", (err: BusinessError) => {
+    windowStage.loadContent('pages/Index', (err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
         hilog.error(DOMAIN, TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
