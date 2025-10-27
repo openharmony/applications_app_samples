@@ -15,8 +15,7 @@
 
 // [Start arkts_complex_style_example7_text]
 import { NodeController, FrameNode, RenderNode, DrawContext, UIContext } from '@kit.ArkUI'
-import { drawing, text, common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
+import { text } from '@kit.ArkGraphics2D'
 
 // 创建一个MyRenderNode类，并绘制文本。
 class MyRenderNode extends RenderNode {
