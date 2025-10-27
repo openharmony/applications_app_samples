@@ -2,9 +2,9 @@
 
 ### 介绍
 
-1.OEM厂商可以通过[分布式账号SDK](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md)将自有账号与本地系统账号建立关联关系。
+1.OEM厂商可以通过[分布式账号SDK](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)将自有账号与本地系统账号建立关联关系。
 
-2.实现对以下指南文档中 [管理分布式账号](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-distributed-account.md) 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
+2.实现对以下指南文档中 [管理分布式账号](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-distributed-account-sys.md) 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
 
 ### 效果预览
 
@@ -44,7 +44,7 @@ entry/src/
 
 ### 相关权限
 
-[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanagedistributedaccounts)
+[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanagedistributedaccounts)
 
 ### 依赖
 
@@ -66,6 +66,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Account/ManageDistributedAccount > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

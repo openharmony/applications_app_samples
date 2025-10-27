@@ -10,9 +10,9 @@
 
 账号管理模块提供了基于角色的访问控制机制，用户可以为系统账号设置约束，以限制目标账号的行为。
 
-预定义的账号约束条件，可以参考 ：[系统账号约束列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)
+预定义的账号约束条件，可以参考 ：[系统账号约束列表](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)
 
-3.实现对以下指南文件中 [管理系统账号](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-os-account.md)  [使用约束管控系统账号](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/control-os-account-by-constraints.md) 示例代码片段的工程化。保证指南中示例代码与sample工程文件同源。
+3.实现对以下指南文件中 [管理系统账号](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/manage-os-account-sys.md)  [使用约束管控系统账号](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/basic-services/account/control-os-account-by-constraints-sys.md) 示例代码片段的工程化。保证指南中示例代码与sample工程文件同源。
 
 ### 效果预览
 
@@ -66,9 +66,9 @@ entry/src/
 
 ### 相关权限
 
-[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanagelocalaccounts)
+[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanagelocalaccounts)
 
-[ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissioninteractacrosslocalaccountsextension)
+[ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissioninteractacrosslocalaccountsextension)
 
 ### 依赖
 
@@ -90,6 +90,6 @@ entry/src/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Account/SystemAccount > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
