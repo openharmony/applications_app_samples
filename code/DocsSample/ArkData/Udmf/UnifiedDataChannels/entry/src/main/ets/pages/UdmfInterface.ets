@@ -21,14 +21,11 @@ import hilog from '@ohos.hilog';
 // [Start import_unifiedData_object_module]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
-
 // [End import_unifiedData_object_module]
 
 export function insertUnifiedData() {
   // [Start unified_data_channels_insert_data]
-  // [StartExclude unified_data_channels_insert_data]
   // 准备PlainText文本数据内容
-  // [EndExclude unified_data_channels_insert_data]
   let plainTextObj: uniformDataStruct.PlainText = {
     uniformDataType: 'general.plain-text',
     textContent: 'Hello world',
@@ -36,23 +33,17 @@ export function insertUnifiedData() {
   }
   let record =
     new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
-  // [StartExclude unified_data_channels_insert_data]
   // 准备HTML数据内容
-  // [EndExclude unified_data_channels_insert_data]
   let htmlObj: uniformDataStruct.HTML = {
     uniformDataType: 'general.html',
     htmlContent: '<div><p>Hello world</p></div>',
     plainContent: 'Hello world'
   }
-  // [StartExclude unified_data_channels_insert_data]
   // 为该记录增加一种样式，两种样式存储的是同一个数据，为不同表达形式
-  // [EndExclude unified_data_channels_insert_data]
   record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
   let unifiedData = new unifiedDataChannel.UnifiedData(record);
 
-  // [StartExclude unified_data_channels_insert_data]
   // 准备pixelMap数据内容
-  // [EndExclude unified_data_channels_insert_data]
   let arrayBuffer = new ArrayBuffer(4 * 3 * 3);
   let opt: image.InitializationOptions = {
     editable: true,
@@ -66,9 +57,7 @@ export function insertUnifiedData() {
   }
   unifiedData.addRecord(new unifiedDataChannel.UnifiedRecord(
     uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap));
-  // [StartExclude unified_data_channels_insert_data]
   // 指定要插入数据的数据通路枚举类型
-  // [EndExclude unified_data_channels_insert_data]
   let options: unifiedDataChannel.Options = {
     intention: unifiedDataChannel.Intention.DATA_HUB
   }
@@ -105,13 +94,9 @@ export function updateUnifiedData() {
   recordUpdate.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlUpdate);
   let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(recordUpdate);
 
-  // [StartExclude unified_data_channels_update_data]
   // 指定要更新的统一数据对象的URI
-  // [EndExclude unified_data_channels_update_data]
   let optionsUpdate: unifiedDataChannel.Options = {
-    // [StartExclude unified_data_channels_update_data]
     // 此处的key值仅为示例，不可直接使用，其值与insertData接口回调函数中key保持一致
-    // [EndExclude unified_data_channels_update_data]
     key: 'udmf://DataHub/com.ohos.test/0123456789'
   };
 
@@ -133,9 +118,7 @@ export function updateUnifiedData() {
 
 export function deleteUnifiedData() {
   // [Start unified_data_channels_delete_data]
-  // [StartExclude unified_data_channels_delete_data]
   // 指定要删除数据的数据通路枚举类型
-  // [EndExclude unified_data_channels_delete_data]
   let optionsDelete: unifiedDataChannel.Options = {
     intention: unifiedDataChannel.Intention.DATA_HUB
   };
@@ -148,9 +131,7 @@ export function deleteUnifiedData() {
           let records = data[i].getRecords();
           for (let j = 0; j < records.length; j++) {
             let types = records[j].getTypes();
-            // [Start unified_data_channels_delete_data]
             // 根据业务需要从记录中获取样式数据
-            // [EndExclude unified_data_channels_delete_data]
             if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
               let text =
                 records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
@@ -177,9 +158,7 @@ export function deleteUnifiedData() {
 
 export function queryUnifiedData() {
   // [Start unified_data_channels_query_data]
-  // [StartExclude unified_data_channels_query_data]
   // 指定要查询数据的数据通路枚举类型
-  // [EndExclude unified_data_channels_query_data]
   let options: unifiedDataChannel.Options = {
     intention: unifiedDataChannel.Intention.DATA_HUB
   };
@@ -192,9 +171,7 @@ export function queryUnifiedData() {
           let records = data[i].getRecords();
           for (let j = 0; j < records.length; j++) {
             let types = records[j].getTypes();
-            // [StartExclude unified_data_channels_query_data]
             // 根据业务需要从记录中获取样式数据
-            // [EndExclude unified_data_channels_query_data]
             if (types.includes(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT)) {
               let text =
                 records[j].getEntry(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) as uniformDataStruct.PlainText;
