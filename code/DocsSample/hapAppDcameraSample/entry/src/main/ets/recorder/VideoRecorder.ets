@@ -165,7 +165,7 @@ struct PhotoTaker {
       });
 
       const surfaceId = await this.photoReceiver.getReceivingSurfaceId();
-      this.photoOutput = this.cameraManager.createPhotoOutput(photoProfile);
+      this.photoOutput = this.cameraManager.createPhotoOutput(photoProfile, surfaceId);
     } catch (error) {
       Logger.error(TAG, `createPhotoOutput failed: ${JSON.stringify(error)}`);
     }
@@ -365,6 +365,7 @@ struct PhotoTaker {
             // Correctly calls the takePicture function
             this.takePicture();
           })
+          .id('takePictureButton')
         }
         .width('100%')
         .justifyContent(FlexAlign.Center)
