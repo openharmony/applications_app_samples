@@ -27,7 +27,7 @@ export default class EntryAbility extends UIAbility {
     // 1.创建悬浮窗。
     let windowClass: window.Window | null = null;
     let config: window.Configuration = {
-      name: "floatWindow", windowType: window.WindowType.TYPE_FLOAT, ctx: this.context
+      name: 'floatWindow', windowType: window.WindowType.TYPE_FLOAT, ctx: this.context
     };
     window.createWindow(config, (err: BusinessError, data) => {
       let errCode: number = err.code;
