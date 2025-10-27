@@ -18,8 +18,10 @@
 13. [模糊动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-blur-effect.md)
 14. [自定义属性动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-custom-attribute-animation.md)
 15. [组件动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-component-animation.md)
-16. [传统曲线](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-traditional-curve.md)。
-17. [弹簧曲线](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-spring-curve.md)。
+16. [传统曲线](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-traditional-curve.md)。
+17. [弹簧曲线](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-spring-curve.md)。
+18. [模态转场](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-modal-transition.md)。
+
 
 ### 效果预览
 
@@ -167,6 +169,20 @@ entry/src/main/ets/
 |   |---springCurve                   // 弹簧曲线
 |   |   |---template1
 |   |   |   |---SpringCurve.ets
+|   |---modalTransition                          // 模态转场
+|   |   |---template1       
+|   |   |   |---BindContentCoverDemo.ets       // 示例1（使用bindContentCover构建全屏模态转场效果）
+|   |   |---template2      
+|   |   |   |---BindSheetDemo.ets       // 示例2（使用bindSheet构建半模态转场效果）
+|   |   |---template3     
+|   |   |   |---BindMenuDemo.ets       // 示例3（使用bindMenu实现菜单弹出效果）
+|   |   |---template4         
+|   |   |   |---BindContextMenuDemo.ets       // 示例4（使用bindContextMenu实现菜单弹出效果） 
+|   |   |---template5     
+|   |   |   |---BindPopupDemo.ets       // 示例5（使用bindPopup实现气泡弹窗效果）
+|   |   |---template6       
+|   |   |   |---ModalTransitionWithIf.ets       // 示例6（使用if实现模态转场）
+
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
@@ -188,6 +204,7 @@ entry/src/ohosTest/
 |   |   |---ShareTransition.test.ets                       // 共享元素转场示例代码测试代码
 |   |   |---TraditionalCurve.test.ets                  // 传统曲线示例代码测试代码
 |   |   |---SpringCurve.test.ets                  // 弹簧曲线示例代码测试代码
+|   |   |---ModalTransition.test.ets                       // 模态转场示例代码测试代码
 ```
 
 ### 具体实现
@@ -248,6 +265,15 @@ entry/src/ohosTest/
     * 使用geometryTransition共享元素转场。geometryTransition用于组件内隐式共享元素转场，在视图状态切换过程中提供丝滑的上下文继承过渡体验。
     * geometryTransition的使用方式为对需要添加一镜到底动效的两个组件使用geometryTransition接口绑定同一id，这样在其中一个组件消失同时另一个组件创建出现的时候，系统会对二者添加一镜到底动效。
     * geometryTransition绑定两个对象的实现方式使得geometryTransition区别于其他方法，最适合用于两个不同对象之间完成一镜到底。
+10. 模态转场：模态转场是新的界面覆盖在旧的界面上，旧的界面不消失的一种转场方式。源码参考[modalTransition/template1/Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/modalTransition/template1/BindContentCoverDemo.ets)
+    * bindContentCover接口用于为组件绑定全屏模态页面，在组件出现和消失时可通过设置转场参数ModalTransition添加过渡动效。
+    * bindSheet属性可为组件绑定半模态页面，在组件出现时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用bindContentCover构建全屏模态转场动效相同。
+    * bindMenu属性为组件绑定弹出式菜单，通过点击触发。
+    * bindContextMenu属性为组件绑定弹出式菜单，通过长按或右键点击触发。
+    * bindPopup属性可为组件绑定弹窗，并设置弹窗，交互逻辑和显示状态。
+    * 使用if语句实现模态转场。模态转场接口需要绑定到其他组件上，通过监听状态变量变化调起态界面。同时，也可以通过if语句，通过新增或删除组件实现模态转场效果。
+
+
 ### 相关权限
 
 不涉及。

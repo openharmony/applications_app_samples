@@ -122,7 +122,8 @@ struct AnimateIndex {
     ]
   }, {
     name: "shareTransition",
-    label: $r("app.string.shareTransition_label"),
+    // $r('app.string.shareTransition_label')需要替换为开发者所需的资源文件
+    label: $r('app.string.shareTransition_label'),
     children:[
       { name: 'template1/Index', label: $r("app.string.shareTransition_label1") },
       { name: 'template2/Index', label: $r("app.string.shareTransition_label2") },
@@ -210,6 +211,17 @@ struct AnimateIndex {
     label: $r("app.string.springCurve_label"),
     children:[
       { name: 'template1/SpringCurve', label: $r("app.string.temp1") }
+    ]
+  }, {
+    name: "modalTransition",
+    label: $r("app.string.modal_transition_label"),
+    children:[
+      { name: 'template1/BindContentCoverDemo', label: $r("app.string.modal_transition_label1") },
+      { name: 'template2/BindSheetDemo', label: $r("app.string.modal_transition_label2") },
+      { name: 'template3/BindMenuDemo', label: $r("app.string.modal_transition_label3") },
+      { name: 'template4/BindContextMenuDemo', label: $r("app.string.modal_transition_label4") },
+      { name: 'template5/BindPopupDemo', label: $r("app.string.modal_transition_label5") },
+      { name: 'template6/ModalTransitionWithIf', label: $r("app.string.modal_transition_label6") }
     ]
   }
   ];

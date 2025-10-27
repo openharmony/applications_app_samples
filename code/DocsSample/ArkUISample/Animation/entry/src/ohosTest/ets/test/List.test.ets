@@ -29,6 +29,7 @@ import { ComponentTest } from './Component.test';
 import { AnimationBlurTest } from './AnimationBlur.test';
 import { TraditionalCurveTest } from './TraditionalCurve.test';
 import { SpringCurveTest } from './SpringCurve.test';
+import { ModalTransitionTest } from './ModalTransition.test';
 
 export default function testsuite() {
   AnimateToTest();
@@ -48,4 +49,5 @@ export default function testsuite() {
   AnimationBlurTest();
   TraditionalCurveTest();
   SpringCurveTest();
+  ModalTransitionTest();
 }

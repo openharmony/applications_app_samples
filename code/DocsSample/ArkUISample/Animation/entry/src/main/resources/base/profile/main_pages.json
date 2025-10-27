@@ -61,6 +61,12 @@
     "pages/animationBlur/template4/ForegroundBlurStyleDemo",
     "pages/animationBlur/template5/MotionBlurTest",
     "pages/traditionalCurve/template1/CurveDemo",
-    "pages/springCurve/template1/SpringCurve"
+    "pages/springCurve/template1/SpringCurve",
+    "pages/modalTransition/template1/BindContentCoverDemo",
+    "pages/modalTransition/template2/BindSheetDemo",
+    "pages/modalTransition/template3/BindMenuDemo",
+    "pages/modalTransition/template4/BindContextMenuDemo",
+    "pages/modalTransition/template5/BindPopupDemo",
+    "pages/modalTransition/template6/ModalTransitionWithIf"
   ]
 }
