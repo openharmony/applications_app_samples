@@ -14,7 +14,7 @@
  */
 
 // [Start embedded_start]
-import { Want } from '@kit.AbilityKit'
+import { Want } from '@kit.AbilityKit';
 
 @Component
 export struct Embedded {

@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { CompletedRoutableCard } from '../../common/Card'
-import { Route } from '../../common/Route'
-import { Embedded } from './Embedded'
-import resource from '../../common/resource'
+import { CompletedRoutableCard } from '../../common/Card';
+import { Route } from '../../common/Route';
+import { Embedded } from './Embedded';
+import resource from '../../common/resource';
 
 export const EMBEDDED_ROUTE_PREFIX: string = 'EmbeddedComponent';
 

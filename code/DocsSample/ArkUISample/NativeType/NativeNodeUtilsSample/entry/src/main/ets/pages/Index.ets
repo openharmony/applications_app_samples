@@ -22,18 +22,18 @@ struct CAPIComponent {
 
   aboutToAppear(): void {
     // 页面显示前多线程创建Native组件。
-    entry.createNodeTreeOnMultiThread(this.rootSlot, this.getUIContext())
+    entry.createNodeTreeOnMultiThread(this.rootSlot, this.getUIContext());
   }
 
   aboutToDisappear(): void {
     // 页面销毁前释放已创建的Native组件。
-    entry.disposeNodeTreeOnMultiThread(this.rootSlot)
+    entry.disposeNodeTreeOnMultiThread(this.rootSlot);
   }
 
   build() {
     Column() {
       // Native组件挂载点。
-      ContentSlot(this.rootSlot)
+      ContentSlot(this.rootSlot);
     }
   }
 }
@@ -79,21 +79,21 @@ struct Index {
               url:'pages/nativeUI/NativeUIPage'
             })
           })
-        Button("多实例创建组件").onClick(() => {
+        Button($r('app.string.Create_Component')).onClick(() => {
           const uiContext: UIContext = this.getUIContext();
           const router = uiContext.getRouter();
           router.pushUrl({
-            url: 'pages/entry'
+            url: 'pages/Index'
           });
         })
-        Button("自定义属性测试").onClick(() => {
+        Button($r('app.string.Custom_Attribute_Test')).onClick(() => {
           const uiContext: UIContext = this.getUIContext();
           const router = uiContext.getRouter();
           router.pushUrl({
             url: 'pages/customproperty'
           });
         })
-        Button("懒加载页面").onClick(() => {
+        Button($r('app.string.LazyForEach_Page')).onClick(() => {
           const uiContext: UIContext = this.getUIContext();
           const router = uiContext.getRouter();
           router.pushUrl({
@@ -101,8 +101,8 @@ struct Index {
           });
         })
         // 该接口作用为NDK侧保存主窗口实例，用户保护实例错误调用场景。
-        Button("设置NDK侧主窗口Context").onClick(()=> {
-          entry.getContext(this.getUIContext())
+        Button($r('app.string.Setting_NDKNativeWindows_Context')).onClick(()=> {
+          entry.getContext(this.getUIContext());
         })
       }.width('100%')
     }.width('100%')

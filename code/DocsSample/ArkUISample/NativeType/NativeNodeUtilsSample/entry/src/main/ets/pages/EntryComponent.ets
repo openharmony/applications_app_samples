@@ -22,18 +22,18 @@ struct CAPIComponent {
 
   aboutToAppear(): void {
     // 页面显示前多线程创建Native组件。
-    entry.createNodeTreeOnMultiThread(this.rootSlot, this.getUIContext())
+    entry.createNodeTreeOnMultiThread(this.rootSlot, this.getUIContext());
   }
 
   aboutToDisappear(): void {
     // 页面销毁前释放已创建的Native组件。
-    entry.disposeNodeTree(this.rootSlot)
+    entry.disposeNodeTree(this.rootSlot);
   }
 
   build() {
     Column() {
       // Native组件挂载点。
-      ContentSlot(this.rootSlot)
+      ContentSlot(this.rootSlot);
     }
   }
 }
