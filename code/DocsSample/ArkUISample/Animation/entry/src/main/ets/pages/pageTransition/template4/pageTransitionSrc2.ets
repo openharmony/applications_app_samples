@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start pageTransition_template4_pageTransitionSrc2_start]
+// PageTransitionSrc2
 @Entry
 @Component
 struct PageTransitionSrc2 {
@@ -51,3 +53,4 @@ struct PageTransitionSrc2 {
       .opacity(0)
   }
 }
+// [End pageTransition_template4_pageTransitionSrc2_start]

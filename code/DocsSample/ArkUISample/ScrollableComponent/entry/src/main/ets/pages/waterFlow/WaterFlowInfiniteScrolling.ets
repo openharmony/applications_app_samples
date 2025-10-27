@@ -93,7 +93,7 @@ export struct WaterFlowInfiniteScrolling {
       this.columnChanged = true;
     }
   }
-
+  // [Start WaterFlowInfiniteScrolling_start]
   @Builder
   itemFoot() {
     Row() {
@@ -130,9 +130,7 @@ export struct WaterFlowInfiniteScrolling {
           // 触底加载数据
           .onReachEnd(() => {
             setTimeout(() => {
-              for (let i = 0; i < 100; i++) {
-                this.dataSource.addLastItem();
-              }
+              this.dataSource.addNewItems(100);
             }, 1000)
           })
         }
@@ -144,4 +142,5 @@ export struct WaterFlowInfiniteScrolling {
     .backgroundColor('#f1f2f3')
     .title($r('app.string.WaterFlowInfiniteScrolling_title'))
   }
+  // [End WaterFlowInfiniteScrolling_start]
 }

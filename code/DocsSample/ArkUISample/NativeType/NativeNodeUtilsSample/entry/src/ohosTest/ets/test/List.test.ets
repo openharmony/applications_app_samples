@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 import abilityTest from './Ability.test';
-
+import LoadingAdapter from './LoadingAdapter.test';
 export default function testsuite() {
   abilityTest();
+  LoadingAdapter()
 }

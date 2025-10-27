@@ -1,0 +1,113 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      // [Start quick_start0]
+      {
+        // [StartExclude  quick_start]
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "icon": "$media:startIcon",
+        "label": "$string:EntryAbility_label",
+        // 请将exported配置为true；如果exported为false，仅具有权限的系统应用能够拉起该应用，否则无法拉起应用
+        "exported": true,
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        // [EndExclude  quick_start]
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              // API19及以上版本须配置为"ohos.want.action.home"，API18及以下版本请配置为"action.system.home"
+              "ohos.want.action.home"
+            ]
+          },
+          {
+            "entities": [
+              // entities必须包含"entity.system.browsable"
+              "entity.system.browsable"
+            ],
+            "actions": [
+              // actions必须包含"ohos.want.action.viewData"
+              "ohos.want.action.viewData"
+            ],
+            "uris": [
+              {
+                // scheme须配置为https
+                "scheme": "https",
+                // host须配置为关联的域名
+                "host": "www.example.com",
+                // path可选，表示域名服务器上的目录或文件路径，例如www.example.com/path1中的path1
+                // 如果应用只能处理部分特定的path，则此处应该配置应用所支持的path，避免出现应用不能处理的path链接也被引流到应用中的问题
+                "path": "path1"
+              }
+            ],
+            // domainVerify须设置为true
+            "domainVerify": true
+          }
+          // 若有其他跳转能力，如推送消息跳转、NFC跳转，可新增一个skill对象，防止与App Linking业务冲突
+        ]
+      },
+      // [End quick_start0]
+      {
+        "name": "AppLinkEntryAbility",
+        "srcEntry": "./ets/entryability/AppLinkEntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
+      }
+    ]
+  }
+}

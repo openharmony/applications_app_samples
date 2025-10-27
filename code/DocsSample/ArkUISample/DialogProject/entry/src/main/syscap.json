@@ -1,0 +1,21 @@
+
+{
+  "devices": {
+    "general": [
+      "default"
+    ],
+    "custom": [
+      {
+        "xts": [
+          "systemcapability.graphic.graphic2d.nativedrawing"
+        ]
+      }
+    ]
+  },
+  "production": {
+    "removedsyscaps": [
+      "systemcapability.security.devicesecuritylevel",
+      "systemcapability.useriam.userauth.pinauth"
+    ]
+  } 
+}

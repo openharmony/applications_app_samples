@@ -1,0 +1,46 @@
+# Navigation 测试用例归档
+
+## 用例表
+
+| 测试功能                         | 预置条件       | 输入                                                                                                                             | 预期输出                      | 是否自动 | 测试结果 |
+|------------------------------| -------------- |--------------------------------------------------------------------------------------------------------------------------------|---------------------------| :------- | -------- |
+| 自适应模式                        | 设备正常运行   | 进入示例1-1 页面自适应模式页面                                                                                                              | 页面效果符合标准                  | 是       | Pass     |
+| 单栏模式                         | 设备正常运行   | 进入示例1-2 页面单栏显示模式页面                                                                                                             | 页面效果符合标准                  | 是       | Pass     |
+| 分栏模式                         | 设备正常运行   | 进入示例1-3 页面分栏显示模式页面                                                                                                             | 页面效果符合标准                  | 是       | Pass     |
+| Mini模式                       | 设备正常运行   | 进入示例2-1 标题栏Mini模式页面                                                                                                            | 页面效果符合标准                  | 是       | Pass     |
+| Full模式                       | 设备正常运行   | 进入示例2-2 标题栏Full模式页面                                                                                                            | 页面效果符合标准                  | 是       | Pass     |
+| 设置了3个图标的菜单栏(resources资源)     | 设备正常运行   | 进入示例3-1 设置3个resources图标的菜单栏页面                                                                                                  | 页面效果符合标准                  | 是       | Pass     |
+| 设置了3个图标的菜单栏                  | 设备正常运行   | 进入示例3-1 设置3个image图标的菜单栏页面                                                                                                      | 页面效果符合标准                  | 是       | Pass     |
+| 设置了4个图标的菜单栏                  | 设备正常运行   | 进入示例3-2 设置4个图标的菜单栏页面                                                                                                           | 页面效果符合标准                  | 是       | Pass     |
+| 设置工具栏                        | 设备正常运行 | 进入示例4 设置工具栏页面                                                                                                                  | 页面效果符合标准                  | 是       | Pass     |
+| 页面显示类型(弹窗类型)                 | 设备正常运行 | 进入示例5 页面显示类型页面，点击按钮                                                                                                            | 出现弹窗效果                    | 是       | Pass     |
+| 关闭转场(全局关闭)                   | 设备正常运行 | 进入示例6-1 关闭转场页面，点击push按钮                                                                                                        | 页面跳转没有动画效果，点击返回按钮同样没有动画效果 | 是       | Pass     |
+| 关闭转场(单次关闭)                   | 设备正常运行 | 进入示例6-2 单次关闭页面，点击push按钮                                                                                                        | 页面跳转没有动画效果，点击返回按钮有动画效果    | 是       | Pass     |
+| 共享元素转场                       | 设备正常运行 | 进入示例7 共享元素转场页面，点击跳转目的页按钮                                                                                                       | 页面效果符合标准                  | 是       | Pass     |
+| 系统路由表                        | 设备正常运行 | 进入示例8-1 系统路由表页面                                                                                                                | 页面切换正常                    | 是       | Pass     |
+| 自定义路由表                       | 设备正常运行 | 进入示例8-2 自定义路由表页面                                                                                                               | 页面切换正常                    | 是       | Pass     |
+| 参数获取（onReady）                | 设备正常运行 | 进入示例12-1（通过onReady获取参数）页面,点击pushPath                                                                                           | 页面切换正常，目的页显示起始页传递的参数      | 是       | Pass     |
+| 参数获取 (onResult)              | 设备正常运行 | 进入示例12-2（通过onResult获取参数）页面,点击pushPath                                                                                          | 页面切换正常，打印日志查看参数           | 是       | Pass     |
+| 示例代码                         | 设备正常运行 | 进入示例9 示例代码页面                                                                                                                   | 页面切换正常                    | 是       | Pass     |
+| 普通跳转，通过页面的name去跳转，并可以携带param | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮                                                                                                       | 页面切换正常，页面下滑可以看到传递的参数      | 是       | Pass     |
+| pop()返回到上一页                  | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName,再点击返回键                                                                               | 页面切换正常                    | 是       | Pass     |
+| pushPathByName普通跳转           | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName                                                           | 页面切换正常，页面下滑可以看到传递的参数      | 是       | Pass     |
+| pushDestination带错误码跳转        | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮，点击pushDestination按钮                                                                                   | 页面切换正常，打印对应日志可以看到返回的错误码信息 | 是       | Pass     |
+| pushDestinationByName带错误码跳转  | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮，点击pushDestinationByName按钮                                                                             | 页面切换正常，打印对应日志可以看到返回的错误码信息 | 是       | Pass     |
+| moveToTop                    | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName，页面下滑看已经入栈的页面信息，然后点击moveToTop按钮，打印栈日志可以看到对应的页面到栈顶          | 页面切换正常，效果符合标准             | 是       | Pass     |
+| moveIndexToTop               | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName，页面下滑看已经入栈的页面信息，然后点击moveIndexToTop按钮，打印栈日志可以看到对应的页面到栈顶     | 页面切换正常，效果符合标准                     | 是       | Pass     |
+| removeByName                 | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName，页面下滑看已经入栈的页面信息，然后点击removeByName按钮，打印栈日志可以看到对应的页面已经删除      | 页面切换正常，效果符合标准                    | 是       | Pass     |
+| removeByIndexes              | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName，页面下滑看已经入栈的页面信息，然后点击removeByName按钮，打印栈日志可以看到对应的页面已经删除      | 页面切换正常，效果符合标准                   | 是       | Pass     |
+| removeByNavDestinationId     | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName，页面下滑看已经入栈的页面信息，然后点击removeByName按钮，打印栈日志可以看到对应的页面已经删除      | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| replacePath                  | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName，页面下滑看已经入栈的页面信息，然后点击replacePath按钮，打印栈日志可以看到对应的页面被替换        | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| replacePathByName            | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName，页面下滑看已经入栈的页面信息，然后点击replacePathByName按钮，打印栈日志可以看到对应的页面被替换  | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| replaceDestination           | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击pushPathByName跳转到pageTwo再点击pushPathByName，页面下滑看已经入栈的页面信息，然后点击replaceDestination按钮，打印栈日志可以看到对应的页面被替换 | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| clear                        | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击clear按钮                                                                                             | 页面切换正常                    | 是       | Pass     |
+| Get相关接口                      | 设备正常运行 | 进入使用路由栈方法页面，点击pushPath按钮,点击get按钮,然后打印日志查看对应页面信息                                                                                | 页面切换正常，效果符合标准                     | 是       | Pass     |
+| pushPathByName添加onPop回调      | 设备正常运行 | 进入Navigation带参返回页面，点击StartTest按钮,点击pushPathByName跳转到pageTwo再点击popToName，页面上可以看到页面出栈时获取返回信息                                     | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| popToName无参                  | 设备正常运行 | 进入Navigation带参返回页面，点击StartTest按钮,点击pushPathByName跳转到pageTwo再点击popToNameWithoutResult                                           | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| popToIndex     | 设备正常运行 | 进入Navigation带参返回页面，点击StartTest按钮,点击pushPathByName跳转到pageTwo再点击popToName，页面上可以看到页面出栈时获取返回信息                                     | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| 路由拦截       | 设备正常运行 | 进入使用路由栈方法页面，点击use interception按钮                                                                                               | 页面切换正常 | 是       | Pass     |
+| 页面信息查询    | 设备正常运行 | 进入uiObserver页面，点击页面信息查询按钮,点击push按钮，页面上可以看到页面信息查询                                                                               | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| 页面状态监听    | 设备正常运行 | 进入uiObserver页面，点击页面信息查询按钮,点击push按钮，打印日志观察监听信息                                                                                  | 页面切换正常，效果符合标准                  | 是       | Pass     |
+| 注册页面切换的状态回调     | 设备正常运行 | 进入uiObserver页面，点击页面信息查询按钮,点击push按钮，打印日志观察监听信息                                       | 页面切换正常，效果符合标准                  | 是       | Pass     |

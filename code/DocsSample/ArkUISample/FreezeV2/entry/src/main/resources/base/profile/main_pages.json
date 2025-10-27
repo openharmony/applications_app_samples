@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/freeze/template1/Page1",
+    "pages/freeze/template1/Page2",
+    "pages/freeze/template2/TabContentTest",
+    "pages/freeze/template3/MyNavigationTestStack",
+    "pages/freeze/template4/RepeatVirtualScrollFreeze",
+    "pages/freeze/template5/PageA",
+    "pages/freeze/template6/MyNavigationTestStack"
+  ]
+}

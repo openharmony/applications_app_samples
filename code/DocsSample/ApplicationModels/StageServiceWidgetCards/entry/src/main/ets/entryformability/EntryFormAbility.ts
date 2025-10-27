@@ -14,6 +14,8 @@
  */
 
 // [Start import_entry_form_ability]
+// [Start update_form_interface]
+// [Start update_by_message_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { Configuration, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -51,6 +53,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onUpdateForm(formId: string): void {
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
+    // [StartExclude update_by_message_form_ability]
     let obj: Record<string, string> = {
       'title': 'titleOnUpdateForm',
       'detail': 'detailOnUpdateForm'
@@ -59,6 +62,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
+    // [EndExclude update_by_message_form_ability]
   }
 
   onChangeFormVisibility(newStatus: Record<string, number>): void {
@@ -114,3 +118,4 @@ export default class EntryFormAbility extends FormExtensionAbility {
 // [End form_extension_ability_interface]
 // [End update_form_interface]
 // [End form_extension_lifecycle_interface]
+// [End update_by_message_form_ability]

@@ -23,7 +23,12 @@ import { SymbolGlyphSpanDestination, SYMBOL_GLYPH_SPAN } from './symbol';
 import { PropertyStringDestination, PROPERTY_STRING_ROUTE_PREFIX } from './propertyString';
 import { NDKDestination, NDK_ROUTE_PREFIX } from './ndk';
 import resource from '../common/resource';
+import { TextImageMixedLayoutDestination, TEXT_IMAGE_MIXED_LAYOUT } from './textImageMixedLayout';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const TAG = '[Sample_Textcomponent]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Textcomponent_';
 const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.pageIndex_Text')),
@@ -48,6 +53,10 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.pageIndex_TextNDKUI')),
     name: NDK_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.pageIndex_TextImageMixedLayout')),
+    name: TEXT_IMAGE_MIXED_LAYOUT
   }
 ];
 
@@ -65,6 +74,8 @@ function Destination(name: string) {
     PropertyStringDestination(name);
   }else if (name.startsWith(NDK_ROUTE_PREFIX)) {
     NDKDestination(name);
+  }else if (name.startsWith(TEXT_IMAGE_MIXED_LAYOUT)) {
+    TextImageMixedLayoutDestination(name);
   }
 }
 
@@ -105,6 +116,7 @@ struct Index {
           }
           .width('100%')
           .onClick(() => {
+            hilog.info(DOMAIN, TAG, BUNDLE + "route.name" + route.name);
             this.pathStack.pushPath({ name: route.name });
           })
         })

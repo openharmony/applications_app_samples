@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
+// [Start side_slip]
 import {
   ArcSwiper,
-  ArcSwiperAttribute,
+  ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
@@ -29,9 +30,13 @@ export struct ArcSwiperSideSlip {
   innerSelectedIndex: number = 0;
 
   build() {
+    // [StartExclude side_slip]
     NavDestination() {
+      // [EndExclude side_slip]
       Column({ space: 12 }) {
+        // [StartExclude side_slip]
         ComponentCard({ title: $r('app.string.ArcSwiperSideSlip_title') }) {
+          // [EndExclude side_slip]
           ArcSwiper() {
             ForEach(this.backgroundColors, (backgroundColor: Color, index: number) => {
               Text(index.toString())
@@ -62,13 +67,18 @@ export struct ArcSwiperSideSlip {
             }
             return GestureJudgeResult.CONTINUE;
           })
+          // [StartExclude side_slip]
         }
+        // [EndExclude side_slip]
       }
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude side_slip]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ArcSwiperSideSlip_title'))
+    // [EndExclude side_slip]
   }
 }
+// [End side_slip]

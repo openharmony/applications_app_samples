@@ -22,6 +22,7 @@ struct Index {
       Column() {
         Button($r('app.string.ListPage_label'))
           .fontSize(25)
+          .id('toPageList')
           .fontWeight(FontWeight.Bold)
           .onClick(async () => {
             await router.pushUrl({ url: "pages/PageListPage"})
@@ -33,6 +34,7 @@ struct Index {
         }
         .key('my-key2')
         .type(ButtonType.Capsule)
+        .id('toNavigationPage')
         .margin({ top: 20 })
         .onClick(() => {
           router.pushUrl({url: "pages/navigationPage"})

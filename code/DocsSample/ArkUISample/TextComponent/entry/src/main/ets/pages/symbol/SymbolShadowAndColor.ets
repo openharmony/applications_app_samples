@@ -1,0 +1,83 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { ComponentCard } from '../../common/Card';
+
+@Entry
+@Component
+export struct SymbolShadowAndColor {
+  scroller: Scroller = new Scroller();
+  // [Start shadow_color_1]
+  @State isActive: boolean = true;
+
+  options: ShadowOptions = {
+    radius: 10.0,
+    color: Color.Blue,
+    offsetX: 10,
+    offsetY: 10,
+  };
+  // [End shadow_color_1]
+
+  // [Start shadow_color_2]
+  radialGradientOptions: RadialGradientOptions = {
+    center: ['50%', '50%'],
+    radius: '20%',
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
+  // [End shadow_color_2]
+
+  build() {
+    NavDestination() {
+      Scroll(this.scroller) {
+        Column({ space: 12 }) {
+          ComponentCard({ title: $r('app.string.SymbolShadowAndColor_title_1') }) {
+            // [Start shadow_color_1]
+            Column() {
+              Text($r('app.string.SymbolShadowAndColor_Text_1'));
+              SymbolGlyph($r('sys.symbol.ohos_wifi'))
+                .id('1')
+                .fontSize(96)
+                .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
+                .symbolShadow(this.options)
+              Button(!this.isActive ? $r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_1') : $r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_2')).onClick(() => {
+                this.isActive = !this.isActive;
+              })
+            }
+            // [End shadow_color_1]
+          }
+          ComponentCard({ title: $r('app.string.SymbolShadowAndColor_title_2') }) {
+            // [Start shadow_color_2]
+            Column() {
+              Text($r('app.string.SymbolShadowAndColor_Text_2'))
+                .id('2')
+                .fontSize(18)
+                .fontColor(0xCCCCCC)
+                .textAlign(TextAlign.Center)
+              SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
+                .fontSize(96)
+                .shaderStyle([new RadialGradientStyle(this.radialGradientOptions)])
+            }
+            // [End shadow_color_2]
+          }
+        }
+        .width('100%')
+        .padding({ left: 12, right: 12 })
+      }.id('scroll_')
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.SymbolShadowAndColor_title'))
+  }
+}

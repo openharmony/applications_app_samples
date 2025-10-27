@@ -143,8 +143,10 @@ export struct FocusScopePriority {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude focus_scope_navigation]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Focus_FocusScopePriority_title'))
+    // [EndExclude focus_scope_navigation]
   }
 }
 // [End focus_scope_navigation]

@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// [Start module_start]
+{
+  "module": {
+    // [StartExclude exclude_module]
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone",
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    // [EndExclude  exclude_module]
+    "abilities": [
+      {
+        "name": "EntryAbility", // UIAbility组件的名称
+        "srcEntry": "./ets/entryability/EntryAbility.ets", // UIAbility组件的代码路径
+        "description": "$string:EntryAbility_desc", // UIAbility组件的描述信息
+        "icon": "$media:layered_image", // UIAbility组件的图标
+        "label": "$string:EntryAbility_label", // UIAbility组件的标签
+        "startWindowIcon": "$media:startIcon", // UIAbility组件启动页面图标资源文件的索引
+        "startWindowBackground": "$color:start_window_background", // UIAbility组件启动页面背景颜色资源文件的索引
+        // [StartExclude exclude_abilities]
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+        // [EndExclude exclude_abilities]
+      }
+    ],
+    // [StartExclude exclude_abilities]
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
+      }
+    ]
+    // [EndExclude exclude_abilities]
+  }
+}
+// [End module_start]

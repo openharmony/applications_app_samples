@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/WebClipboard",
+    "pages/WebClipboardEvent",
+    "pages/WebCopyOptions"
+  ]
+}

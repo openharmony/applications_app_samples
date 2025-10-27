@@ -15,7 +15,7 @@
 */
 
 // src/main/ets/view/TitleView.ets
-
+// [Start View_TitleView]
 @ComponentV2
 export default struct TitleView {
   @Param tasksUnfinished: number = 0;
@@ -25,8 +25,9 @@ export default struct TitleView {
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin(10)
-      Text(`${getContext(this).resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
+      Text(`${this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
     }
   }
 }
+// [End View_TitleView]
