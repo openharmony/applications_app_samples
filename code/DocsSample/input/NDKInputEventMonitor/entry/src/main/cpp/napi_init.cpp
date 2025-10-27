@@ -261,16 +261,16 @@ void OnAllAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     //Input_AxisEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
-    InputEvent_AxisAction action;
+    InputEvent_AxisAction action = static_cast<InputEvent_AxisAction>(0);
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
     ret = OH_Input_GetAxisEventDisplayX(axisEvent, &event.displayX);
     ret = OH_Input_GetAxisEventDisplayY(axisEvent, &event.displayY);
     ret = OH_Input_GetAxisEventActionTime(axisEvent, &event.actionTime);
-    InputEvent_SourceType sourceType = 0;
+    InputEvent_SourceType sourceType = static_cast<InputEvent_SourceType>(0);
     ret = OH_Input_GetAxisEventSourceType(axisEvent, &sourceType);
     event.sourceType = sourceType;
-    InputEvent_AxisEventType axisEventType = 0;
+    InputEvent_AxisEventType axisEventType = static_cast<InputEvent_AxisEventType>(-1);
     ret = OH_Input_GetAxisEventType(axisEvent, &axisEventType);
     event.axisEventType = axisEventType;
     if (event.axisEventType == AXIS_EVENT_TYPE_PINCH) {
@@ -308,16 +308,16 @@ void OnPinchAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     //Input_AxisEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
-    InputEvent_AxisAction action;
+    InputEvent_AxisAction action = static_cast<InputEvent_AxisAction>(0);
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
     ret = OH_Input_GetAxisEventDisplayX(axisEvent, &event.displayX);
     ret = OH_Input_GetAxisEventDisplayY(axisEvent, &event.displayY);
     ret = OH_Input_GetAxisEventActionTime(axisEvent, &event.actionTime);
-    InputEvent_SourceType sourceType = 0;
+    InputEvent_SourceType sourceType = static_cast<InputEvent_SourceType>(0);
     ret = OH_Input_GetAxisEventSourceType(axisEvent, &sourceType);
     event.sourceType = sourceType;
-    InputEvent_AxisEventType axisEventType = 0;
+    InputEvent_AxisEventType axisEventType = static_cast<InputEvent_AxisEventType>(-1);
     ret = OH_Input_GetAxisEventType(axisEvent, &axisEventType);
     event.axisEventType = axisEventType;
     double value = 0;
@@ -346,16 +346,16 @@ void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     //Input_AxisEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
-    InputEvent_AxisAction action;
+    InputEvent_AxisAction action = static_cast<InputEvent_AxisAction>(0);
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
     ret = OH_Input_GetAxisEventDisplayX(axisEvent, &event.displayX);
     ret = OH_Input_GetAxisEventDisplayY(axisEvent, &event.displayY);
     ret = OH_Input_GetAxisEventActionTime(axisEvent, &event.actionTime);
-    InputEvent_SourceType sourceType = 0;
+    InputEvent_SourceType sourceType = static_cast<InputEvent_SourceType>(0);
     ret = OH_Input_GetAxisEventSourceType(axisEvent, &sourceType);
     event.sourceType = sourceType;
-    InputEvent_AxisEventType axisEventType = 0;
+    InputEvent_AxisEventType axisEventType = static_cast<InputEvent_AxisEventType>(-1);
     ret = OH_Input_GetAxisEventType(axisEvent, &axisEventType);
     event.axisEventType = axisEventType;
     double value = 0;
