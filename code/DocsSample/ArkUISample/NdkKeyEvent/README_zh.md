@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例基于[native_key_event.h](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/capi-native-key-event-h.md)中的各接口进行构建，以帮助开发者更好地理解按键事件C-API的用法。
+本示例基于[native_key_event.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-key-event-h.md)中的各接口进行构建，以帮助开发者更好地理解按键事件C-API的用法。
 
 ### 效果预览
 

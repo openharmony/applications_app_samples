@@ -15,7 +15,7 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType } from '@ohos/hypium';
-import { abilityDelegatorRegistry, Driver, ON, MouseButton, UiDirection } from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -81,14 +81,17 @@ export default function InputEventTest() {
       try {
         let driver = Driver.create();
         await driver.delayMs(1000);
+        let button: Component = await driver.findComponent(ON.id('bt'));
+        let point = await button.getBoundsCenter();
         // 移动鼠标，触发悬停事件
-        await driver.mouseMoveWithTrack({x:300, y:400}, {x:300, y:200});
+        await driver.mouseMoveWithTrack({ x: point.x, y: point.y + 200 }, { x: point.x, y: point.y });
         let btObj: ESObject = JSON.parse(getInspectorByKey('bt'));
-        hilog.info(0x0000, 'InputEventTest', 'testMouseInput buttonColor: %{public}s', JSON.stringify(btObj.$attrs.backgroundColor));
+        hilog.info(0x0000, 'InputEventTest', 'testMouseInput buttonColor: %{public}s',
+          JSON.stringify(btObj.$attrs.backgroundColor));
         expect(btObj.$attrs.backgroundColor).assertEqual('#FF009F40');
         await driver.delayMs(1000);
         // 鼠标左键单击，触发鼠标按下/释放事件
-        await driver.mouseLongClick({x:300, y:200}, MouseButton.MOUSE_BUTTON_LEFT);
+        await driver.mouseLongClick({ x: point.x, y: point.y }, MouseButton.MOUSE_BUTTON_LEFT);
         await driver.delayMs(1000);
       } catch (error) {
         hilog.error(0x0000, 'InputEventTest', 'testMouseInput failed: %{public}s', error.message);
@@ -108,8 +111,10 @@ export default function InputEventTest() {
       try {
         let driver = Driver.create();
         await driver.delayMs(1000);
+        let button2: Component = await driver.findComponent(ON.id('bt'));
+        let point2 = await button2.getBoundsCenter();
         // 鼠标滚轮滚动，触发轴事件
-        await driver.mouseScroll({x:300, y:400}, true, 30);
+        await driver.mouseScroll({ x: point2.x, y: point2.y }, true, 30);
         await driver.delayMs(1000);
       } catch (error) {
         hilog.error(0x0000, 'InputEventTest', 'testMouseScrollInput failed: %{public}s', error.message);
