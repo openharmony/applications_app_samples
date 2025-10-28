@@ -16,7 +16,7 @@
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [Start_EXclude quick_start1]
+// [StartExclude quick_start0]
 import { common, Want, wantConstant } from '@kit.AbilityKit';
 
 const TAG: string = '[Page_UIAbilityComponentsInteractive]';
@@ -28,13 +28,13 @@ struct Page_UIAbilityComponentsInteractive {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   public canOpen: boolean = false;
   aboutToAppear() {
-// [End_EXclude quick_start1]
+// [EndExclude quick_start0]
     try {
       let link = 'app1Scheme://test.example.com/home';
       let canOpen = bundleManager.canOpenLink(link);
-      // [Start_EXclude quick_start2]
+      // [StartExclude quick_start0]
       this.canOpen = canOpen;
-      // [End_EXclude quick_start2]
+      // [EndExclude quick_start0]
       hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(canOpen));
     } catch (err) {
       let message = (err as BusinessError).message;

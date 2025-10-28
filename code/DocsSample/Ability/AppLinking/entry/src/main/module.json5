@@ -27,7 +27,7 @@
     "abilities": [
       // [Start quick_start0]
       {
-        // [StartExclude  quick_start]
+        // [StartExclude  quick_start0]
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "icon": "$media:startIcon",
@@ -36,7 +36,7 @@
         "exported": true,
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        // [EndExclude  quick_start]
+        // [EndExclude  quick_start0]
         "skills": [
           {
             "entities": [

@@ -14,8 +14,8 @@
  */
 // [Start quick_start0]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { url } from '@kit.ArkTS';
+
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 从want中获取传入的链接信息。
@@ -23,14 +23,11 @@ export default class EntryAbility extends UIAbility {
     let uri = want?.uri;
     if (uri) {
       // 从链接中解析query参数，拿到参数后，开发者可根据自己的业务需求进行后续的处理。
-      try {
-        let urlObject = url.URL.parseURL(want?.uri);
-        let action = urlObject.params.get('action');
-        // 例如，当action为showall时，展示所有的节目。
-        if (action === 'showall') {
-        }
-      } catch (error) {
-        hilog.error(0x0000, 'testTag', `Failed to parse url.`);
+      let urlObject = url.URL.parseURL(want?.uri);
+      let action = urlObject.params.get('action');
+      // 例如，当action为showall时，展示所有的节目。
+      if (action === "showall") {
+        // ...
       }
     }
   }
