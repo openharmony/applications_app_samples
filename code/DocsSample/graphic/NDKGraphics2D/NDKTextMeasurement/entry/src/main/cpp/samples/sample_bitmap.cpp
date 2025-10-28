@@ -189,10 +189,10 @@ void SampleBitMap::DrawText()
     OH_Drawing_TypographyLayout(typography, maxWidth);
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
-// [Start c_text_metrics_get_all_case]
+    // [Start c_text_metrics_get_all_case]
     // case1: 获取排版后最长行行宽
     double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
-    DRAWING_LOGI("第%{public}d行 longestLine: %{public}f" ,longestLine);
+    DRAWING_LOGI("第%{public}d行 longestLine: %{public}f", longestLine);
 
     // case2:获取排版后段落行数
     size_t lineCnt = OH_Drawing_TypographyGetLineCount(typography);
@@ -211,7 +211,7 @@ void SampleBitMap::DrawText()
 
     // case4:获取段落最长行宽度与带缩进最长行行宽
     double longestLineWithIndent = OH_Drawing_TypographyGetLongestLineWithIndent(typography);
-    DRAWING_LOGI("longestLineWithIndent: %{public}f" , longestLineWithIndent);
+    DRAWING_LOGI("longestLineWithIndent: %{public}f", longestLineWithIndent);
 
     OH_Drawing_Font_Metrics fontMetrics;
     // 获取文本字体属性
@@ -221,7 +221,7 @@ void SampleBitMap::DrawText()
     OH_Drawing_LineMetrics lineMetric;
     OH_Drawing_TypographyGetLineMetricsAt(typography, 0, &lineMetric);
     DRAWING_LOGI("第1行 lineMetrics ascender: %{public}f" ,lineMetric.ascender);
-// [End c_text_metrics_get_all_case]
+    // [End c_text_metrics_get_all_case]
 }
 
 napi_value SampleBitMap::NapiDrawText(napi_env env, napi_callback_info info)
