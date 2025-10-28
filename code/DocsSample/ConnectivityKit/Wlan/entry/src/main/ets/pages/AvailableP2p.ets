@@ -69,7 +69,7 @@ struct WifiConnect {
     })
   }
 
-//[Start discover_p2p_device]
+// [Start discover_p2p_device]
   aboutToAppear() {
     // 如果wifi是开的，就记录下状态，然后扫描p2p设备，并获取连接信息
     if (!wifi.isWifiActive()) {
