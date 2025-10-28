@@ -135,7 +135,7 @@ hdc file recv /system/variant/phone/base/etc/app/install_list_capability.json<br
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc file send install_list_capability.json /system/variant/pc/base/etc/app/<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc shell reboot<br>
 （5）下载签名工具（clone下来）
-https://gitee.com/openharmony/developtools_hapsigner
+https://gitee.com/openharmony/developtools_hapsigner<br>
 （6）在下载好的文件夹中，修改文件  .\developtools_hapsigner-master\dist\UnsgnedReleasedProfileTemplate.json<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改如下所示
 ```
