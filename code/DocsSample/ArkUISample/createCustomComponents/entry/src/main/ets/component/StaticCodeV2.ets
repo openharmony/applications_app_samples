@@ -21,7 +21,7 @@ struct MyComponentV2 {
   static {
     this.a = 'hello world';
   };
-  // [StartExclude code_V2]
+  // [StartExclude Static_code_V2]
   build() {
       Column(){
         Text(MyComponentV2.a)
@@ -29,6 +29,6 @@ struct MyComponentV2 {
       .width('100%')
       .height('100%')
   }
-  // [EndExclude code_V2]
+  // [EndExclude Static_code_V2]
 }
 // [End Static_code_V2]

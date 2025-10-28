@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start ObservationChangeInheritance]
+// [Start Observation_ChangeInheritance]
 @Observed
 class DateClass extends Date {
   constructor(args: number | string) {
@@ -69,4 +69,4 @@ struct ObservationChangeInheritance {
     }
   }
 }
-// [End ObservationChangeInheritance]
+// [End Observation_ChangeInheritance]

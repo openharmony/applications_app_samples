@@ -29,9 +29,9 @@ class RenderClass {
 @Component
 struct DelayedChangeIndex {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
-  // [StartExclude DelayedChangeIndexContext]
+  // [StartExclude Delayed_change]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude DelayedChangeIndexContext]
+  // [EndExclude Delayed_change]
   renderClassChange() {
     // $r('app.string.renderClass_Change')需要替换为开发者所需的资源文件
     hilog.info(DOMAIN,TAG,`${this.context.resourceManager.getStringSync($r('app.string.renderClass_Change').id)}：` + this.renderClass.waitToRender);

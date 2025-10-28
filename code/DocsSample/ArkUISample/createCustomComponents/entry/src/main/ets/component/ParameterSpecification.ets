@@ -19,10 +19,10 @@ struct MyComponentSpecification {
   private color: Color = Color.Blue;
 
   build() {
-    // [StartExclude test_specification]
+    // [StartExclude Parameter_specification]
     Text('test')
       .backgroundColor(this.color)
-    // [EndExclude test_specification]
+    // [EndExclude Parameter_specification]
   }
 }
 
