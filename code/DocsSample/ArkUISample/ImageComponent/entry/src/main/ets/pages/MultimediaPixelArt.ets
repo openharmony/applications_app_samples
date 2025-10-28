@@ -21,7 +21,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude multimedia_pixel]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG = 'MyApp';
+const TAG = 'Sample_imagecomponent';
 // [EndExclude multimedia_pixel]
 @Entry
 @Component

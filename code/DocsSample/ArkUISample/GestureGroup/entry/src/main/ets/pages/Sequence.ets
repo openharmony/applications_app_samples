@@ -14,7 +14,7 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG = 'MyApp';
+const TAG = 'Sample_gesturegroup';
 // [Start sequence_identification]
 // xxx.ets
 @Entry

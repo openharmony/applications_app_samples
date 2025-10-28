@@ -15,7 +15,7 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG = 'MyApp';
+const TAG = 'Sample_imagecomponent';
 //  [Start event_invocation]
 @Entry
 @Component

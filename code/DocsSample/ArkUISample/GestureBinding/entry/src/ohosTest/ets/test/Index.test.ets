@@ -18,7 +18,7 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
-const TAG = 'GestureBinding';
+const TAG = 'Sample_gesturebinding';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let driver: Driver;

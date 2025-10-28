@@ -19,7 +19,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude media_libraryfile]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG = 'MyApp';
+const TAG = 'Sample_imagecomponent';
 // [EndExclude media_libraryfile]
 @Entry
 @Component
