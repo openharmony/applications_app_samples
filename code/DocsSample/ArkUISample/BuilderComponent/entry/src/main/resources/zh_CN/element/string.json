@@ -123,6 +123,10 @@
     {
       "name": "ButtonTwentyEight",
       "value": "按引用传递参数"
+    },
+    {
+      "name": "ButtonTwentyNine",
+      "value": "按回调传递参数"
     }
   ]
 }
