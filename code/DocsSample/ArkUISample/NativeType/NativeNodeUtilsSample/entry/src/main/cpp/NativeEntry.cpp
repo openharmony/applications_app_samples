@@ -553,6 +553,7 @@ napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
 void NativeEntry::GetWindowName()
 {
     ArkUI_HostWindowInfo* windowInfo;
+    // 给windowInfo结构体赋值。
     auto result = OH_ArkUI_NodeUtils_GetWindowInfo(nodeHandle_, &windowInfo);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         return;
