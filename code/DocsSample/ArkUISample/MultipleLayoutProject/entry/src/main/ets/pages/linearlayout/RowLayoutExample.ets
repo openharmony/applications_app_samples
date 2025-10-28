@@ -17,8 +17,8 @@
 @Component
 struct RowLayoutExample {
   build() {
+    //[Start RowLayoutExample_start]
     Row({ space: 35 }) {
-      //[Start RowLayoutExample_start]
       Text('space: 35').fontSize(15).fontColor(Color.Gray)
       Row().width('10%').height(150).backgroundColor(0xF5DEB3)
       Row().width('10%').height(150).backgroundColor(0xD2B48C)
