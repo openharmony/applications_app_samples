@@ -12,26 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start arkts_custom_font]
 // Index.ets
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
+
+// 获取全局字体集实例
+let fontCollection = text.FontCollection.getGlobalInstance() //获取Arkui全局FC
+const familyName = "myFamilyName"
 
 // 创建一个自定义的渲染节点类，用于绘制文本
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     // 创建画布canvas对象
     const canvas = context.canvas
-    // 获取全局字体集实例
-    let fontCollection = text.FontCollection.getGlobalInstance() //获取Arkui全局FC
-    // 注册自定义字体
-    fontCollection.loadFontSync('myFamilyName', 'file:///system/fonts/NotoSansMalayalamUI-SemiBold.ttf')
     // 使用自定义字体
-    let myFontFamily: Array<string> = ["myFamilyName"] // 如果已经注册自定义字体，填入自定义字体的字体家族名
+    let myFontFamily: Array<string> = [familyName] // 如果已经注册自定义字体，填入自定义字体的字体家族名
     // 设置文本样式
     let myTextStyle: text.TextStyle = {
-      color: { alpha: 255, red: 255, green: 0, blue: 0 },
+      color: {
+        alpha: 255,
+        red: 255,
+        green: 0,
+        blue: 0
+      },
       fontSize: 30,
       // 在文本样式中加入可使用的自定义字体
       fontFamilies: myFontFamily
@@ -40,7 +45,7 @@ class MyRenderNode extends RenderNode {
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
       align: 3,
-      wordBreak:text.WordBreak.NORMAL
+      wordBreak: text.WordBreak.NORMAL
     };
     // 创建一个段落生成器
     let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
@@ -59,11 +64,17 @@ class MyRenderNode extends RenderNode {
 // 创建并初始化渲染节点实例
 const newNode = new MyRenderNode();
 // 设置渲染节点的位置和尺寸
-newNode.frame = { x: 0, y: 0, width: 400, height: 600 };
+newNode.frame = {
+  x: 0,
+  y: 0,
+  width: 400,
+  height: 600
+};
 
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
+
   makeNode(uiContext: UIContext): FrameNode {
     this.rootNode = new FrameNode(uiContext)
     if (this.rootNode == null) {
@@ -71,11 +82,17 @@ class MyNodeController extends NodeController {
     }
     const renderNode = this.rootNode.getRenderNode()
     if (renderNode != null) {
-      renderNode.frame = { x: 0, y: 0, width: 300, height: 50 }
+      renderNode.frame = {
+        x: 0,
+        y: 0,
+        width: 300,
+        height: 50
+      }
       renderNode.pivot = { x: 0, y: 0 }
     }
     return this.rootNode
   }
+
   addNode(node: RenderNode): void {
     if (this.rootNode == null) {
       return
@@ -85,6 +102,7 @@ class MyNodeController extends NodeController {
       renderNode.appendChild(node)
     }
   }
+
   clearNodes(): void {
     if (this.rootNode == null) {
       return
@@ -100,24 +118,48 @@ class MyNodeController extends NodeController {
 @Component
 struct RenderTest {
   private myNodeController: MyNodeController = new MyNodeController()
+
   build() {
     Column() {
       Row() {
+        // 如果使用getGlobalInstance的fontCollection注册字体，使用对应family name的组件会自动刷新
+        Text("Text Component")
+          .fontFamily(familyName)
         NodeContainer(this.myNodeController)
           .height('100%')
+          .onAppear(() => {
+            this.myNodeController.clearNodes()
+            this.myNodeController.addNode(newNode)
+          })
       }
       .height('90%')
       .backgroundColor(Color.White)
-      Row(){
-        Button($r("app.string.Button_label"))
+
+      Row() {
+        Button("load font")
           .fontSize('16fp')
           .fontWeight(500)
           .margin({ bottom: 24, right: 12 })
           .onClick(() => {
-            this.myNodeController.clearNodes()
-            this.myNodeController.addNode(newNode)
+            // 注册自定义字体
+            fontCollection.loadFontSync(familyName, 'file:///system/fonts/NotoSansMalayalamUI-SemiBold.ttf')
+            // 注册之后需要刷新使用该fontCollection的节点
+            newNode.invalidate()
           })
-          .width('50%')
+          .width('30%')
+          .height(40)
+          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+        Button("unload font")
+          .fontSize('16fp')
+          .fontWeight(500)
+          .margin({ bottom: 24, right: 12 })
+          .onClick(() => {
+            // 注销自定义字体
+            fontCollection.unloadFontSync(familyName)
+            // 注销之后需要刷新使用该fontCollection的节点
+            newNode.invalidate()
+          })
+          .width('30%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
       }
@@ -129,3 +171,4 @@ struct RenderTest {
     }
   }
 }
+// [End arkts_custom_font]
