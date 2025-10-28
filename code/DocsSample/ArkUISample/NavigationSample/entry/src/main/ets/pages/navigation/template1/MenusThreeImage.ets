@@ -15,16 +15,16 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
  * limitations under the License.
  */
 const DOMAIN = 0x0000;
+// [Start NavigationMenuThreeImage]
+let toolTmp: NavigationMenuItem  = {
+  'value': 'func',
+  'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',
+  'action': () => {}
+};
+// [StartExclude NavigationMenuThreeImage]
 @Entry
 @Component
 struct MenusThreeImage {
-  // [Start NavigationMenuThreeImage]
-  @State toolTmp: NavigationMenuItem  = {
-    'value': 'func',
-    'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',
-    'action': () => {}
-  };
-  // [StartExclude NavigationMenuThreeImage]
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
@@ -70,7 +70,7 @@ struct MenusThreeImage {
         .margin({ top: 12 })
         // [EndExclude NavigationMenuThreeImage]
       }
-      .menus([this.toolTmp, this.toolTmp, this.toolTmp])
+      .menus([toolTmp, toolTmp, toolTmp])
       // [End NavigationMenuThreeImage]
       .title('主标题')
       .mode(NavigationMode.Split)
