@@ -35,7 +35,7 @@ entry/src/main/ets/
 
 允许应用调用storage manager服务中对空间统计以及卷信息的查询接口：[ohos.permission.STORAGE_MANAGER](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionstorage_manager)
 
-允许查询应用的基本信息和其他敏感信息：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitcode.com/openharmony/docs/blobzh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md)
+允许查询应用的基本信息和其他敏感信息：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md)
 
 允许对DLP文件进行权限配置和管理：[ohos.permission.ACCESS_DLP_FILE](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccess_dlp_file)
 
