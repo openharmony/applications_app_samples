@@ -26,7 +26,7 @@ export default class EntryAbility extends UIAbility {
       let urlObject = url.URL.parseURL(want?.uri);
       let action = urlObject.params.get('action');
       // 例如，当action为showall时，展示所有的节目。
-      if (action === "showall") {
+      if (action === 'showall') {
         // ...
       }
     }
