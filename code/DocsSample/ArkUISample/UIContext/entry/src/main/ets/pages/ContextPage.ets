@@ -12,12 +12,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start appStorageV2_sample]
-// 数据中心
-// Sample.ets
-@ObservedV2
-export class Sample {
-  @Trace public p1: number = 0;
-  public p2: number = 10;
+
+// [Start Main_Index]
+import { ContextUtils } from '../Common/ContextUtils';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0xF811;
+
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Column() {
+      Text('getContext')
+        .onClick(() => {
+          let context = ContextUtils.getContext(this.getUIContext());
+          hilog.info(DOMAIN,'testTag',`The context is ${context}`);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
 }
-// [End appStorageV2_sample]
+// [End Main_Index]

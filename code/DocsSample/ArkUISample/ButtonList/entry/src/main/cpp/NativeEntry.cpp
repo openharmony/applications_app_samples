@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// NativeEntry.cpp
 // [Start Cpp_NativeEntry]
+// NativeEntry.cpp
+
 #include <arkui/native_node_napi.h>
 #include <hilog/log.h>
 #include <js_native_api.h>
@@ -48,5 +49,5 @@ napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
     NativeEntry::GetInstance()->DisposeRootNode();
     return nullptr;
 }
-}
+} // namespace NativeModule
 // [End Cpp_NativeEntry]

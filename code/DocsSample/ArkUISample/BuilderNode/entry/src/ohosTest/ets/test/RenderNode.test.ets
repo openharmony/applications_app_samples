@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const DOMAIN = 0x0000;
+
 
 export default function RenderNodeTest() {
   describe('RenderNodeTest', () => {
@@ -36,34 +36,43 @@ export default function RenderNodeTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xF811, 'testTag', '%{public}s','get top ability');
+      hilog.info(0xF811,'testTag','%{public}s','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811, 'testTag', '%{public}s','RenderNode beforeEach start');
+      hilog.info(0xF811,'testTag','%{public}s','RenderNode beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/RenderNode',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811, 'testTag', '%{public}s','get RenderNode state pages:' + JSON.stringify(pages));
-        if (!('RenderNode' == pages.name)) {
-          hilog.info(0xF811, 'testTag', '%{public}s','get RenderNode pages.name:' + JSON.stringify(pages.name));
+        hilog.info(0xF811,'testTag','%{public}s','get RenderNode state pages:' + JSON.stringify(pages));
+        if (('RenderNode' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get RenderNode pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'testTag', '%{public}s','push RenderNode page error:' + err);
+        hilog.error(0xF811,'testTag','%{public}s','push RenderNode page error:' + err);
       }
-      hilog.info(0xF811, 'testTag', '%{public}s','RenderNode beforeEach end');
+      hilog.info(0xF811,'testTag','%{public}s','RenderNode beforeEach end');
     });
 
+    /*
+     * @tc.number     : RenderNode_01
+     * @tc.name       : RenderNodeTest_01
+     * @tc.desc       : 测试将BuilderNode与RenderNode进行结合使用是否可以实现组件树的创建。
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('RenderNodeTest_01', 0, async (done: Function) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: RenderNode begin');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: RenderNode begin');
       let driver = Driver.create();
       let componentText = await driver.findComponent(ON.text('hello world'));
       await componentText.click();
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 // [Start Cpp_NativeModule]
+// NativeModule.h
+// 提供获取ArkUI在Native侧模块的封装接口
+
 #ifndef MYAPPLICATION_NATIVEMODULE_H
 #define MYAPPLICATION_NATIVEMODULE_H
 
@@ -30,18 +33,18 @@ public:
         static NativeModuleInstance instance;
         return &instance;
     }
-
     NativeModuleInstance()
     {
         OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativeNodeApi_);
     }
+    // 暴露给其他模块使用。
     ArkUI_NativeNodeAPI_1 *GetNativeNodeAPI() { return arkUINativeNodeApi_; }
 
 private:
     ArkUI_NativeNodeAPI_1 *arkUINativeNodeApi_ = nullptr;
 };
 
-}
+} // namespace NativeModule
 
-#endif
+#endif // MYAPPLICATION_NATIVEMODULE_H
 // [End Cpp_NativeModule]

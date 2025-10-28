@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Cpp_ArkUITextNode]
 // ArkUITextNode.h
 // 实现文本组件的封装类。
-// [Start Cpp_ArkUITextNode]
 #ifndef MYAPPLICATION_ARKUITEXTNODE_H
 #define MYAPPLICATION_ARKUITEXTNODE_H
 
@@ -27,6 +27,7 @@ class ArkUITextNode : public ArkUINode {
 public:
     ArkUITextNode()
         : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_TEXT)) {}
+    
     void SetFontSize(float fontSize)
     {
         ArkUI_NumberValue value[] = {{.f32 = fontSize}};
@@ -51,7 +52,7 @@ public:
         nativeModule_->setAttribute(handle_, NODE_TEXT_ALIGN, &item);
     }
 };
-}
+} // namespace NativeModule
 
-#endif
+#endif // MYAPPLICATION_ARKUITEXTNODE_H
 // [End Cpp_ArkUITextNode]

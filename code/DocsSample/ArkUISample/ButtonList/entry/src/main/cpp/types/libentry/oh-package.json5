@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+// [Start Cpp_libentry]
 {
   "name": "libentry.so",
   "types": "./Index.d.ts",
   "version": "1.0.0",
   "description": "Please describe the basic information."
 }
+// [End Cpp_libentry]

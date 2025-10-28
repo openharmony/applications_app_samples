@@ -36,34 +36,43 @@ export default function LocalStoragePageTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(DOMAIN, 'get top ability', 'get top ability');
+      hilog.info(DOMAIN,'get top ability','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(DOMAIN, 'LocalStoragePage beforeEach start', 'LocalStoragePage beforeEach start');
+      hilog.info(DOMAIN,'LocalStoragePage beforeEach start','LocalStoragePage beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/LocalStoragePage',
       }
       try {
-        const routerInstance = AppStorage.get<Router>("router") as Router
+        const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(DOMAIN, 'get LocalStoragePage state pages', JSON.stringify(pages));
-        if (!('LocalStoragePage' == pages.name)) {
-          hilog.info(DOMAIN, 'get LocalStoragePage state pages', JSON.stringify(pages.name));
+        hilog.info(DOMAIN,'get LocalStoragePage state pages',JSON.stringify(pages));
+        if (('LocalStoragePage' != pages.name)) {
+          hilog.info(DOMAIN,'get LocalStoragePage state pages',JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'get LocalStoragePage state pages', err);
+        hilog.error(DOMAIN,'get LocalStoragePage state pages', err);
       }
-      hilog.info(DOMAIN, 'LocalStoragePage beforeEach end', 'LocalStoragePage beforeEach end');
+      hilog.info(DOMAIN,'LocalStoragePage beforeEach end','LocalStoragePage beforeEach end');
     });
 
+    /*
+     * @tc.number     : LocalStoragePage_01
+     * @tc.name       : LocalStoragePageTest_01
+     * @tc.desc       : 测试将EntryOptions的useSharedStorage参数设置为true，是否能使用共享的LocalStorage实例对象。
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('LocalStoragePageTest_01', 0, async (done: Function) => {
-      hilog.info(DOMAIN, 'uitest: LocalStoragePage begin', 'uitest: LocalStoragePage begin');
+      hilog.info(DOMAIN,'uitest: LocalStoragePage begin','uitest: LocalStoragePage begin');
       let driver = Driver.create();
       let componentText = await driver.findComponent(ON.id('LocalStoragePageHelloWorld'));
       await componentText.click();
-      hilog.info(DOMAIN, 'uitest: already click', 'uitest: already click');
+      hilog.info(DOMAIN,'uitest: already click','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

@@ -30,7 +30,7 @@ export class WindowUIContextUtils {
             let uiContext = windowClass.getUIContext();
             WindowUIContextUtils.activeUIContext = uiContext;
           } catch(exception) {
-            hilog.error(DOMAIN, 'testTag', `Can't get UIContext, ${exception}`);
+            hilog.error(DOMAIN,'testTag', `Can't get UIContext, ${exception}`);
           }
         }
       });

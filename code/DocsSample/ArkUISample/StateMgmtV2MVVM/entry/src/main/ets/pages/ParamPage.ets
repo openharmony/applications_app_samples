@@ -23,6 +23,7 @@ struct TaskItem {
 
   build() {
     Row() {
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)

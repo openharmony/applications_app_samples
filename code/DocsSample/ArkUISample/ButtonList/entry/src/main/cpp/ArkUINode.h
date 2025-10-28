@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 // [Start Cpp_ArkUINode]
+// ArkUINode.h
+// 提供通用属性和事件的封装。
 #ifndef MYAPPLICATION_ARKUINODE_H
 #define MYAPPLICATION_ARKUINODE_H
 
@@ -61,6 +63,7 @@ public:
     }
 
 protected:
+    // 组件树操作的实现类对接。
     void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) override
     {
         nativeModule_->addChild(handle_, child->GetHandle());
@@ -74,7 +77,7 @@ protected:
         nativeModule_->insertChildAt(handle_, child->GetHandle(), index);
     }
 };
-}
+} // namespace NativeModule
 
-#endif
+#endif // MYAPPLICATION_ARKUINODE_H
 // [End Cpp_ArkUINode]

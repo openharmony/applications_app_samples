@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 // [Start Cpp_ArkUIListNode]
+// ArkUIListNode.h
+// 提供列表组件的封装。
 #ifndef MYAPPLICATION_ARKUILISTNODE_H
 #define MYAPPLICATION_ARKUILISTNODE_H
 
@@ -25,6 +27,7 @@ public:
         : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST)) {}
 
     ~ArkUIListNode() override {}
+    
     void SetScrollBarState(bool isShow)
     {
         ArkUI_ScrollBarDisplayMode displayMode =
@@ -34,7 +37,7 @@ public:
         nativeModule_->setAttribute(handle_, NODE_SCROLL_BAR_DISPLAY_MODE, &item);
     }
 };
-}
+} // namespace NativeModule
 
-#endif
+#endif // MYAPPLICATION_ARKUILISTNODE_H
 // [End Cpp_ArkUIListNode]

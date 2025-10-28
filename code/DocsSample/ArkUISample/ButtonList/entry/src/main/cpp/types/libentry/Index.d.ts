@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start Cpp_indexes]
+// entry/src/main/cpp/types/libentry/Index.d.ts
 export const createNativeRoot: (content: Object) => void;
 export const destroyNativeRoot: () => void;
 // [End Cpp_indexes]
