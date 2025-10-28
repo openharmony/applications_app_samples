@@ -12,47 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import hilog from '@ohos.hilog';
-
-// text font size
-const TEXT_FONT_SIZE: number = 50;
-//button font size
-const BUTTON_FONT_SIZE: number = 20;
-//button margin top
-const BUTTON_MARGIN_TOP: number = 20;
+import testNapi from 'libentry.so';
 
 @Entry
 @Component
 struct Index {
-  aboutToAppear() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
-  }
-
-  @State message: string = 'Hello World'
 
   build() {
     Row() {
       Column() {
-        Text(this.message)
-          .fontSize(TEXT_FONT_SIZE)
-          .fontWeight(FontWeight.Bold);
-        Button() {
-          Text('next page')
-            .fontSize(BUTTON_FONT_SIZE)
-            .fontWeight(FontWeight.Bold);
-        }
-        .type(ButtonType.Capsule)
-        .margin({
-          top: BUTTON_MARGIN_TOP
-        })
-        .backgroundColor('#0D9FFB')
-        .width('35%')
-        .height('5%')
-        .onClick(() => {
+        XComponent({
+          id: "xComponent",
+          type: XComponentType.NODE,
+          libraryname: "entry"
+        }).onAppear(()=> {
+          testNapi.createNativeNode()
         })
       }
-      .width('100%');
+      .width('100%')
     }
-    .height('100%');
+    .height('100%')
   }
 }

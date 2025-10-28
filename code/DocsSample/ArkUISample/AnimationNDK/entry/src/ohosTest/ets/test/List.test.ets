@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 import abilityTest from './Ability.test';
+import AnimationNdkTest from './Index.test';
 
 export default function testsuite() {
   abilityTest();
+  AnimationNdkTest();
 }

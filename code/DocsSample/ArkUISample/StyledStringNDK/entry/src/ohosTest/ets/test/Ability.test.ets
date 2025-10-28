@@ -46,9 +46,9 @@ export default function abilityTest() {
      */
     it('testStyledStringNDK_001', Level.LEVEL1, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', 'testChangeOrientation_001 begin');
+      hilog.info(0x0000, 'testTag', 'testStyledStringNDK_001 begin');
       testNapi.createNativeNode();
-      hilog.info(0x0000, 'testTag', 'testChangeOrientation_001 end');
+      hilog.info(0x0000, 'testTag', 'testStyledStringNDK_001 end');
       done();
     })
   })

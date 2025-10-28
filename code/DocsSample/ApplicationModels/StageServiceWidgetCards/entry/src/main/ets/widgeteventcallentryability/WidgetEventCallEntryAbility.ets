@@ -78,4 +78,4 @@ export default class WidgetEventCallEntryAbility extends UIAbility {
     }
   }
 }
-// [Start widget_event_call_card_entry_ability]
+// [End widget_event_call_card_entry_ability]

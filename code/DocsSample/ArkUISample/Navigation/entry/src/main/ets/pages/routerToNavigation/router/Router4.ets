@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start router_index]
+// [Start router_4]
 // 子页面中的自定义组件
 @Entry
 @Component
@@ -37,4 +37,4 @@ struct CustomNode {
     }
   }
 }
-// [End router_index]
+// [End router_4]

@@ -33,6 +33,18 @@
       "value": "Example5 (TextHighContrast)"
     },
     {
+      "name": "ComplexStyle_Button_example6",
+      "value": "Example6 (LineHeightDemoOne)"
+    },
+    {
+      "name": "ComplexStyle_Button_example7",
+      "value": "Example7 (LineHeightDemoTwo)"
+    },
+    {
+      "name": "ComplexStyle_Button_example8",
+      "value": "Example8 (LineSpacing)"
+    },
+    {
       "name": "Button_page_Multilanguage",
       "value": "Multilanguage-text page"
     },

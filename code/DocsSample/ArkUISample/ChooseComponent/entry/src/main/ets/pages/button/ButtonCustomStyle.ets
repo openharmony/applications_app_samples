@@ -85,7 +85,8 @@ export struct ButtonCustomStyle {
           // [Start custom_create_function_button]
           Button({ type: ButtonType.Circle, stateEffect: true }) {
             Image($r('sys.media.ohos_ic_public_cancel')).width(30).height(30)
-          }.width(55).height(55).margin({ 'left': 20 }).backgro
+          }.width(55).height(55).margin({ 'left': 20 }).backgroundColor(0xF55A42)
+          // [End custom_create_function_button]
         }
       }
       .width('100%')

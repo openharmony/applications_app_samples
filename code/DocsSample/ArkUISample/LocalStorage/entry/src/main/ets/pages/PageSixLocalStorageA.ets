@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start localtorage_page_six_local_storageA]
 let localStorage1A: LocalStorage = new LocalStorage();
 localStorage1A.setOrCreate('propA', 'propA');
 
@@ -48,3 +49,4 @@ struct AChild {
       .fontWeight(FontWeight.Bold)
   }
 }
+// [End localtorage_page_six_local_storageA]

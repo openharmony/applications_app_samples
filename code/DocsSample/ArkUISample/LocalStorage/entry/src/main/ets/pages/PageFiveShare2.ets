@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ // [Start localtorage_page_five_share2]
 // Page.ets
 
 @Builder
@@ -52,3 +53,4 @@ struct Page {
     })
   }
 }
+// [Start localtorage_page_five_share2]

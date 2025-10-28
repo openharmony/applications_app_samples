@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start appstorage_page_three]
 @Component
 struct StorageLinkComponent {
   @StorageLink('linkA') linkA: number | null = null;
@@ -64,3 +65,4 @@ struct TestPageThree {
     .height('100%')
   }
 }
+// [End appstorage_page_three]

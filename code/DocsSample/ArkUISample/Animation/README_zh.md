@@ -18,12 +18,16 @@
 13. [模糊动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-blur-effect.md)
 14. [自定义属性动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-custom-attribute-animation.md)
 15. [组件动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-component-animation.md)
+16. [传统曲线](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-traditional-curve.md)。
+17. [弹簧曲线](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-spring-curve.md)。
+18. [模态转场](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-modal-transition.md)。
+
 
 ### 效果预览
 
 | 首页                                 |
 |------------------------------------|
-| ![](screenshots/device/image2.png) |
+| ![](screenshots/device/image1.png) |
 
 ### 使用说明
 
@@ -146,7 +150,39 @@ entry/src/main/ets/
 |   |   |   |---Index.ets       
 |   |---shareTransition                        // 共享元素转场
 |   |   |---template1
-|   |   |   |---Index.ets        
+|   |   |   |---Index.ets           //示例1（共享元素转场）
+|   |   |---template2
+|   |   |   |---Index.ets           //示例2（不新建容器并直接变化原容器）
+|   |   |---template3
+|   |   |   |---Index.ets           //示例3（新建容器并跨容器迁移组件-结合Stack使用）
+|   |   |---template4
+|   |   |   |---Index.ets           //示例4（新建容器并跨容器迁移组件-结合Navigation使用）
+|   |   |---template5
+|   |   |   |---Index.ets           //示例5（新建容器并跨容器迁移组件-结合BindSheet使用）
+|   |   |---template6
+|   |   |   |---IfElseGeometryTransition.ets           //示例6（使用geometryTransition共享元素转场-geometryTransition的简单使用）
+|   |   |---template7
+|   |   |   |---Index.ets           //示例7（使用geometryTransition共享元素转场-geometryTransition结合模态转场使用）
+|   |---traditionalCurve                   // 传统曲线
+|   |   |---template1
+|   |   |   |---CurveDemo.ets
+|   |---springCurve                   // 弹簧曲线
+|   |   |---template1
+|   |   |   |---SpringCurve.ets
+|   |---modalTransition                          // 模态转场
+|   |   |---template1       
+|   |   |   |---BindContentCoverDemo.ets       // 示例1（使用bindContentCover构建全屏模态转场效果）
+|   |   |---template2      
+|   |   |   |---BindSheetDemo.ets       // 示例2（使用bindSheet构建半模态转场效果）
+|   |   |---template3     
+|   |   |   |---BindMenuDemo.ets       // 示例3（使用bindMenu实现菜单弹出效果）
+|   |   |---template4         
+|   |   |   |---BindContextMenuDemo.ets       // 示例4（使用bindContextMenu实现菜单弹出效果） 
+|   |   |---template5     
+|   |   |   |---BindPopupDemo.ets       // 示例5（使用bindPopup实现气泡弹窗效果）
+|   |   |---template6       
+|   |   |   |---ModalTransitionWithIf.ets       // 示例6（使用if实现模态转场）
+
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
@@ -166,6 +202,9 @@ entry/src/ohosTest/
 |   |   |---Particle.test.ets                         // 粒子动画示例代码测试代码
 |   |   |---Rotation.test.ets                         // 旋转屏动画示例代码测试代码
 |   |   |---ShareTransition.test.ets                       // 共享元素转场示例代码测试代码
+|   |   |---TraditionalCurve.test.ets                  // 传统曲线示例代码测试代码
+|   |   |---SpringCurve.test.ets                  // 弹簧曲线示例代码测试代码
+|   |   |---ModalTransition.test.ets                       // 模态转场示例代码测试代码
 ```
 
 ### 具体实现
@@ -191,20 +230,49 @@ entry/src/ohosTest/
     * 开发者仅需在animateTo动画闭包中改变属性值或者改变animation接口作用的属性值，即可产生动画。
 5. 组件动画
 组件默认动画功能封装在ComponentDefaultAnimationModule，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template1/Index.ets)
-* 默认动画特性：ArkUI 部分基础组件（如 Checkbox、Button、List 等）内置了状态切换或交互反馈动画。例如 Checkbox 的勾选 / 取消动效、Button 的点击高亮反馈、List 的滑动过渡效果，这些动画无需开发者手动编写逻辑，能直观提示用户操作状态（如选中、点击生效）。
-* 使用方式：直接声明组件并配置基础属性（如 Checkbox 的shape、size、select状态），当组件状态发生变更时（如通过交互修改select值），默认动画会自动触发，简化了基础交互场景的动效实现。
-* 适用场景：适用于需要快速实现标准化交互反馈的场景，无需关注动画细节即可让界面具备基础生动性，减少开发工作量。
-  Scroll 组件定制化动效封装在TaskSwitchModule，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template2/Index.ets)
-* 动效定制逻辑：通过Scroller和PanGesture手势监控滑动距离，结合WindowManager获取屏幕尺寸，动态计算子组件的仿射属性。例如根据滑动进度调整卡片的scale（中间卡片放大、边缘卡片正常）、translate（位移偏移）和zIndex（层级叠加），实现滑动时的立体层次感。
-* 动画参数配置：为子组件绑定animation，设置不同曲线（如Curve.Smooth用于缩放过渡、curves.springMotion()用于位移弹性效果），确保滑动过程中动效自然流畅。
-* 边界与校准处理：在手势结束回调中，通过计算滑动速度和偏移量，校准卡片最终位置（如左滑 / 右滑到极限时锁定位置，未满足切换距离时自动回位），保证交互体验一致性。
-* 触发方式：支持滑动手势直接触发动效，也可通过点击 “Move to first/last” 按钮切换首尾位置，按钮点击会同步更新偏移量并触发动画。
-  List 组件定制化动效封装在ListAutoSortModule，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template3/Index.ets)
-* 动效核心实现：通过DragSortCtrl类管理列表项数据与视觉属性，该类封装了列表项移动逻辑（itemMove方法）和偏移量计算（onMove方法）。结合animateTo和createAnimator创建弹簧动画（使用interpolatingSpring曲线），在逐帧回调中更新translate属性，实现 Item 移动时的弹性过渡。
-* 交互触发机制：为 ListItem 配置swipeAction，滑动 Item 后显示 “To TOP” 按钮，点击按钮时启动动画；通过attributeModifier动态应用ListItemModify中的偏移量，让列表项在移动过程中实时更新位置。
-* 列表分组适配：支持将列表项分为多个ListItemGroup，动效会自动适配分组内的 Item 排列逻辑，确保移动时不破坏分组结构，保持界面布局合理性。
-* 动画控制细节：通过listScroll.closeAllSwipeActions确保滑动操作完成后再启动动画，避免交互冲突；动画结束后自动更新列表数据顺序，实现视觉与数据的同步。
->>>>>>> master
+   * 默认动画特性：ArkUI 部分基础组件（如 Checkbox、Button、List 等）内置了状态切换或交互反馈动画。例如 Checkbox 的勾选 / 取消动效、Button 的点击高亮反馈、List 的滑动过渡效果，这些动画无需开发者手动编写逻辑，能直观提示用户操作状态（如选中、点击生效）。
+   * 使用方式：直接声明组件并配置基础属性（如 Checkbox 的shape、size、select状态），当组件状态发生变更时（如通过交互修改select值），默认动画会自动触发，简化了基础交互场景的动效实现。
+   * 适用场景：适用于需要快速实现标准化交互反馈的场景，无需关注动画细节即可让界面具备基础生动性，减少开发工作量。
+     Scroll 组件定制化动效封装在TaskSwitchModule，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template2/Index.ets)
+   * 动效定制逻辑：通过Scroller和PanGesture手势监控滑动距离，结合WindowManager获取屏幕尺寸，动态计算子组件的仿射属性。例如根据滑动进度调整卡片的scale（中间卡片放大、边缘卡片正常）、translate（位移偏移）和zIndex（层级叠加），实现滑动时的立体层次感。
+   * 动画参数配置：为子组件绑定animation，设置不同曲线（如Curve.Smooth用于缩放过渡、curves.springMotion()用于位移弹性效果），确保滑动过程中动效自然流畅。
+   * 边界与校准处理：在手势结束回调中，通过计算滑动速度和偏移量，校准卡片最终位置（如左滑 / 右滑到极限时锁定位置，未满足切换距离时自动回位），保证交互体验一致性。
+   * 触发方式：支持滑动手势直接触发动效，也可通过点击 “Move to first/last” 按钮切换首尾位置，按钮点击会同步更新偏移量并触发动画。
+     List 组件定制化动效封装在ListAutoSortModule，源码参考：[Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/component/template3/Index.ets)
+   * 动效核心实现：通过DragSortCtrl类管理列表项数据与视觉属性，该类封装了列表项移动逻辑（itemMove方法）和偏移量计算（onMove方法）。结合animateTo和createAnimator创建弹簧动画（使用interpolatingSpring曲线），在逐帧回调中更新translate属性，实现 Item 移动时的弹性过渡。
+   * 交互触发机制：为 ListItem 配置swipeAction，滑动 Item 后显示 “To TOP” 按钮，点击按钮时启动动画；通过attributeModifier动态应用ListItemModify中的偏移量，让列表项在移动过程中实时更新位置。
+   * 列表分组适配：支持将列表项分为多个ListItemGroup，动效会自动适配分组内的 Item 排列逻辑，确保移动时不破坏分组结构，保持界面布局合理性。
+   * 动画控制细节：通过listScroll.closeAllSwipeActions确保滑动操作完成后再启动动画，避免交互冲突；动画结束后自动更新列表数据顺序，实现视觉与数据的同步。
+6. 旋转屏动画：旋转屏动画主要分为两类：布局切换的旋转屏动画和透明度变化的旋转屏动画，旨在实现屏幕显示方向变化时的自然过渡。源码参考[rotation/template1/Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/rotation/template1/Index.ets)
+   * 布局切换时的旋转屏动画，是在屏幕显示方向改变时，为窗口与应用视图同步旋转而设计的大小和位置过渡动画。
+   * 这种布局切换的旋转屏动画是系统默认的，便于开发者实现。当屏幕显示方向变化时，系统会生成窗口旋转动画，并自动调整窗口大小以匹配旋转后的尺寸。
+   * 在此过程中，窗口会通知对应的应用，要求其根据新的窗口大小重新布局，产生与窗口旋转动画参数相同的布局动画。
+   * 透明度变化的旋转屏动画在屏幕显示方向变化时启用，当窗口进行旋转动画时，为旋转过程中新增或删除的组件添加默认透明度转场，以实现组件的优雅出现和消失。
+   * 此功能通过监听窗口旋转事件，在事件中切换组件的视图效果，如果消失视图的根节点和新出现视图的根节点未设置转场效果，会为其自动添加默认透明度转场（即TransitionEffect.OPACITY），展现出透明度的渐隐和渐显效果。
+7. 传统曲线：传统曲线基于数学公式，创造形状符合开发者预期的动画曲线。源码参考[traditionalCurve/template1/Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/SupportingAgingFriendly/entry/src/main/ets/pages/traditionalCurve/template1/Index.ets)
+    * 以三阶贝塞尔曲线为代表，通过调整曲线控制点，可以改变曲线形状，从而带来缓入、缓出等动画效果。
+    * 对于同一条传统曲线，由于不具备物理含义，其形状不会因为用户行为发生任何改变，缺少物理动画的自然感和生动感。
+    * 建议优先采用物理曲线创建动画，将传统曲线作为辅助用于极少数必要场景中。
+8. 弹簧曲线：使用animation接口作用的属性值，即可产生动画。源码参考[springCurve/template1/Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/SupportingAgingFriendly/entry/src/main/ets/pages/springCurve/template1/Index.ets)
+    * 阻尼弹簧曲线（以下简称弹簧曲线）对应的阻尼弹簧系统中，偏离平衡位置的物体一方面受到弹簧形变产生的反向作用力，被迫发生振动。
+    * 另一方面，阻尼的存在为物体振动提供阻力。
+    * 除阻尼为0的特殊情况，物体在振动过程中振幅不断减小，且最终趋于0，其轨迹对应的动画曲线自然连续。 
+9. 共享元素转场 (一镜到底)：共享元素转场是一种界面切换时对相同或者相似的两个元素做的一种位置和大小匹配的过渡动画效果，也称一镜到底动效。源码参考[shareTransition/template1/Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/SupportingAgingFriendly/entry/src/main/ets/pages/shareTransition/template1/Index.ets)
+    * 不新建容器并直接变化原容器。通过在已有容器上增删组件触发transition，搭配组件属性动画实现一镜到底效果。
+    * 新建容器并跨容器迁移组件。利用Stack内后定义组件在最上方的特性控制组件在跨节点迁移后位z序最高。
+    * 新建容器并跨容器迁移组件。利用Navigation的自定义导航转场动画能力实现一镜到底动效。共享元素转场期间，组件由消失页面迁移至出现页面。
+    * 新建容器并跨容器迁移组件。实现半模态转场（bindSheet）的同时，组件从初始界面做一镜到底动画到半模态页面的效果，可以使用这样的设计思路。将SheetOptions中的mode设置为SheetMode.EMBEDDED，该模式下新起的页面可以覆盖在半模态弹窗上，页面返回后该半模态依旧存在，半模态面板内容不丢失。在半模态转场的同时设置一全模态转场（bindContentCover）页面无转场出现，该页面仅有需要做共享元素转场的组件，通过属性动画，展示组件从初始界面至半模态页面的一镜到底动效，并在动画结束时关闭页面，并将该组件迁移至半模态页面。
+    * 使用geometryTransition共享元素转场。geometryTransition用于组件内隐式共享元素转场，在视图状态切换过程中提供丝滑的上下文继承过渡体验。
+    * geometryTransition的使用方式为对需要添加一镜到底动效的两个组件使用geometryTransition接口绑定同一id，这样在其中一个组件消失同时另一个组件创建出现的时候，系统会对二者添加一镜到底动效。
+    * geometryTransition绑定两个对象的实现方式使得geometryTransition区别于其他方法，最适合用于两个不同对象之间完成一镜到底。
+10. 模态转场：模态转场是新的界面覆盖在旧的界面上，旧的界面不消失的一种转场方式。源码参考[modalTransition/template1/Index.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Animation/entry/src/main/ets/pages/modalTransition/template1/BindContentCoverDemo.ets)
+    * bindContentCover接口用于为组件绑定全屏模态页面，在组件出现和消失时可通过设置转场参数ModalTransition添加过渡动效。
+    * bindSheet属性可为组件绑定半模态页面，在组件出现时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用bindContentCover构建全屏模态转场动效相同。
+    * bindMenu属性为组件绑定弹出式菜单，通过点击触发。
+    * bindContextMenu属性为组件绑定弹出式菜单，通过长按或右键点击触发。
+    * bindPopup属性可为组件绑定弹窗，并设置弹窗，交互逻辑和显示状态。
+    * 使用if语句实现模态转场。模态转场接口需要绑定到其他组件上，通过监听状态变量变化调起态界面。同时，也可以通过if语句，通过新增或删除组件实现模态转场效果。
+
 
 ### 相关权限
 

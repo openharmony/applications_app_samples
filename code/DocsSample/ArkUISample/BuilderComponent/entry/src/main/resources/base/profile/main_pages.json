@@ -1,0 +1,32 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/PrivateCustomConstructor",
+    "pages/GlobalCustomConstructor",
+    "pages/ParameterPassing",
+    "pages/InCustomComponent",
+    "pages/GlobalCustomBuilder",
+    "pages/ChangingByDecorator",
+    "pages/AsCustomBuilder",
+    "pages/NestedBuilderFunctions",
+    "pages/BuilderCombined",
+    "pages/BuilderCombinedLocal",
+    "pages/AcrossComponents",
+    "pages/BuilderSupports",
+    "pages/MultipleIncorrectUsage1",
+    "pages/MultipleIncorrectUsage2",
+    "pages/MultipleCorrectUsage",
+    "pages/DynamicIncorrectUsage",
+    "pages/DynamicCorrectUsage",
+    "pages/BuilderIncorrectUsage",
+    "pages/BuilderCorrectUsage",
+    "pages/OutsideIncorrectUsage",
+    "pages/OutsideCorrectUsage",
+    "pages/AccessorIncorrectUsage",
+    "pages/AccessorCorrectUsage",
+    "pages/ChangingIncorrectUsage",
+    "pages/ChangingCorrectUsage",
+    "pages/WatchIncorrectUsage",
+    "pages/WatchCorrectUsage"
+  ]
+}

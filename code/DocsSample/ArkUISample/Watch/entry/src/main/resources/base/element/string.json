@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Watch"
+    },
+    {
+      "name": "watch_text1",
+      "value": "@Watch和自定义组件更新"
+    },
+    {
+      "name": "watch_text2",
+      "value": "@Watch与@Link组合使用"
+    },
+    {
+      "name": "watch_text3",
+      "value": "@Watch的触发时机"
+    },
+    {
+      "name": "watch_text4",
+      "value": "使用changedPropertyName进行不同的逻辑处理"
+    }
+  ]
+}

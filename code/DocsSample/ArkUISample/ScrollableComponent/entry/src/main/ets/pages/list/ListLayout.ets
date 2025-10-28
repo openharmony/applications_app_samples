@@ -14,15 +14,18 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-
+// [Start egLanes_add]
 @Entry
 @Component
 export struct ListLayout {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
 
   build() {
+    // [StartExclude egLanes_add]
     NavDestination() {
       Column({ space: 12 }) {
+        // [EndExclude egLanes_add]
+        // [StartExclude egLanes_add]
         ComponentCard({ title: $r('app.string.ListLayout_titleMainAxis') }) {
           // [Start build_a_horizontal_scrolling_list]
           List({ space: 8 }) {
@@ -40,8 +43,9 @@ export struct ListLayout {
           // [End build_a_horizontal_scrolling_list]
           .height(30)
         }
-
+        // [EndExclude egLanes_add]
         ComponentCard({ title: $r('app.string.ListLayout_titleCrossAxisLanes') }) {
+          // [EndExclude egLanes_add]
           // [Start build_list_by_size]
           List({ space: 8 }) {
             ListItem() {
@@ -62,9 +66,10 @@ export struct ListLayout {
           .lanes(this.egLanes)
           // [End build_list_by_size]
         }
-
+        // [StartExclude egLanes_add]
         ComponentCard({ title: $r('app.string.ListLayout_titleCrossAxisAlignment') }) {
           // [Start build_list_with_align_horizontally_in_the_center]
+          // [End lanes_add]
           List({ space: 8 }) {
             // [StartExclude build_list_with_align_horizontally_in_the_center]
             ListItem() {
@@ -79,11 +84,14 @@ export struct ListLayout {
               Text('ListItem tree')
             }
             // [EndExclude build_list_with_align_horizontally_in_the_center]
-          }
+          }.lanes(2)
+          // [End lanes_add]
           // 此处alignListItem设置水平方向对齐
           .alignListItem(ListItemAlign.Center)
           // [End build_list_with_align_horizontally_in_the_center]
         }
+        // [StartExclude egLanes_add]
+        // [StartExclude egLanes_add]
       }
       .width('100%')
       .height('100%')
@@ -91,5 +99,7 @@ export struct ListLayout {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ListLayout_title'))
+    // [EndExclude egLanes_add]
   }
+  // [End egLanes_add]
 }

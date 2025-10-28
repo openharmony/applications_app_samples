@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start router_index]
+// [Start router_2]
 @Entry
 @Component
 export struct PageOne {
@@ -28,4 +28,4 @@ export struct PageOne {
     })
   }
 }
-// [End router_index]
+// [End router_2]

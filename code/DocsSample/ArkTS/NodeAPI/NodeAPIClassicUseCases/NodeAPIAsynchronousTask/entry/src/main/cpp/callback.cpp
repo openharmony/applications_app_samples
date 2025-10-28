@@ -51,6 +51,7 @@ static void CompleteCB(napi_env env, napi_status status, void *data)
     napi_delete_reference(env, callbackData->callbackRef);
     napi_delete_async_work(env, callbackData->asyncWork);
     delete callbackData;
+    callbackData = nullptr;
 }
 // [End napi_async_second_call_back_work]
 // [EndExclude napi_create_queue_async_work]

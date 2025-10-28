@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start localtorage_page_my_navigation]
 let localStorageA: LocalStorage = new LocalStorage();
 localStorageA.setOrCreate('propA', 'propA');
 
@@ -154,3 +155,4 @@ struct NavigationContentMsgStack {
     }
   }
 }
+// [End localtorage_page_my_navigation]

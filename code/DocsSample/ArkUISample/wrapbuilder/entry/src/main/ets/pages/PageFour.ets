@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+// [Start wrapbuilder_page_four]
 class Tmp {
   public paramA2: string = 'hello';
 }
@@ -40,3 +40,4 @@ struct Parent {
     }
   }
 }
+// [End wrapbuilder_page_four]

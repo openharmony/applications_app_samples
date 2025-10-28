@@ -45,4 +45,4 @@ struct FunB {
     .height('100%')
   }
 }
-// [end fun_b]
+// [End fun_b]

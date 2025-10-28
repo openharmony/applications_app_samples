@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start Persistent_page_three]
 const MAX_NUM: number = 50; // 大字体尺寸
 
 @Entry
@@ -41,3 +41,4 @@ struct testPageThree {
     }
   }
 }
+// [End Persistent_page_three]

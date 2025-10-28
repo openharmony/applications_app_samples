@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-//[Start List_item_data_structure]
+//[Start List_item_data_structures]
 import { curves } from '@kit.ArkUI';
-//[StartExclude List_item_data_structure]
+//[StartExclude List_item_data_structures]
 import { ComponentCard } from '../../common/Card';
 
-// [EndExclude List_item_data_structure]
+// [EndExclude List_item_data_structures]
 interface ItemInfo {
   index: number,
   name: string,
@@ -30,7 +30,7 @@ interface ItemGroupInfo extends ItemInfo {
   children: ItemInfo[]
 }
 
-//[End List_item_data_structure]
+//[End List_item_data_structures]
 
 @Entry
 @Component
@@ -108,7 +108,7 @@ export struct CollapseAndExpand {
   @State expandedItems: boolean[] = Array(this.routes.length).fill(false);
   @State selection: string | null = null;
 
-  //[Start List_item_data_structure]
+  //[Start List_item_data_ItemGroupInfo]
   @Builder
   ListItemGroupHeader(itemGroup: ItemGroupInfo) {
     Row() {
@@ -133,7 +133,7 @@ export struct CollapseAndExpand {
     })
   }
 
-  //[End List_item_data_structure]
+  //[End List_item_data_ItemGroupInfo]
   build() {
     //[StartExclude List_item_data_structure]
     NavDestination() {
