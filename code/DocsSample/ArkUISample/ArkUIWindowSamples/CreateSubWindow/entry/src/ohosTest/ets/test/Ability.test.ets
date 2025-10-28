@@ -42,7 +42,7 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Hello Page3'));
+      await driver.assertComponentExist(ON.text('Hello World'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
