@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start data_sync_on_distributed_data_object_cross_device_migration_one]
+// [Start data_sync_on_distributed_data_object_cross_device_migration]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { commonType, distributedDataObject } from '@kit.ArkData';
@@ -58,8 +58,6 @@ export class ContentInfo {
     return obj;
   }
 }
-// [End data_sync_on_distributed_data_object_cross_device_migration_one]
-// [Start data_sync_on_distributed_data_object_cross_device_migration_two]
 
 export interface ImageInfo {
   /**
@@ -104,8 +102,6 @@ export default class EntryAbility extends UIAbility {
       );
       let source = contentInfo.flatAssets();
       this.distributedObject = distributedDataObject.create(this.context, source);
-      // [End data_sync_on_distributed_data_object_cross_device_migration_two]
-      // [Start data_sync_on_distributed_data_object_cross_device_migration_three]
 
       // 1.3 将需要设置的分布式对象的资产或资产数组填充完成
       if (assetUriArray?.length === 1) {
@@ -148,8 +144,6 @@ export default class EntryAbility extends UIAbility {
       }
     }
   }
-  // [End data_sync_on_distributed_data_object_cross_device_migration_three]
-  // [Start data_sync_on_distributed_data_object_cross_device_migration_four]
 
   async restoreDistributedObject(want: Want): Promise<void> {
     if (!want.parameters || !want.parameters.distributedSessionId) {
@@ -184,4 +178,4 @@ export default class EntryAbility extends UIAbility {
   }
 }
 
-// [End data_sync_on_distributed_data_object_cross_device_migration_four]
+// [End data_sync_on_distributed_data_object_cross_device_migration]
