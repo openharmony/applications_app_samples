@@ -5,6 +5,7 @@
     "pages/GlobalCustomConstructor",
     "pages/ParameterValue",
     "pages/ParameterReference",
+    "pages/ParameterMakeBinding",
     "pages/InCustomComponent",
     "pages/GlobalCustomBuilder",
     "pages/ChangingByDecorator",
