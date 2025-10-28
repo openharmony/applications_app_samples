@@ -115,7 +115,7 @@ struct Index {
                   systemPasteboard.clearData().then((data: void) => {
                     console.info('Succeeded in clearing the pasteboard.');
                   }).catch((err: BusinessError) => {
-                    console.error(Failed to clear the pasteboard. Cause: ${err.message});
+                    console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
                   });
                   // 获取当前 ChangeCount
                   let currentChangeCount: number = systemPasteboard.getChangeCount();
