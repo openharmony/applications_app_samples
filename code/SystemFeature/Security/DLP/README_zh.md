@@ -97,25 +97,24 @@ git pull origin master
 ```
 3.配置build-profile.json5 （.\DLP\build-profile.json5）
 ```
-    "products": [
-      {
-        "name": "default",
-        "signingConfig": "default",
-        "compileSdkVersion": 22,
-        "compatibleSdkVersion": 22,
-        "runtimeOS": "OpenHarmony",
-        "targetSdkVersion": 22
-      }
-    ],
+"products": [
+   {
+     "name": "default",
+     "signingConfig": "default",
+     "compileSdkVersion": 22,
+     "compatibleSdkVersion": 22,
+     "runtimeOS": "OpenHarmony",
+     "targetSdkVersion": 22
+   }
+],
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若出现sync failed,可以尝试点击Migrate Assistant <br>
 ![Index](screenshots/devices/syn出错.png)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置另外一个build-profile.json5 (.\DLP\entry\src\main\module.json5)
 4.添加签名<br>
 （1）在cmd中输入如下指令，获取DLP samples应用指纹<br>
-hdc shell "bm dump -n com.samples.dlp | grep finger"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc shell "bm dump -n com.samples.dlp | grep finger"<br>
 （2）拉出配置文件install_list_capability.json(该文件在打开cmd的目录下)<br>
-hdc file recv /system/variant/phone/base/etc/app/install_list_capability.json<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc file recv /system/variant/phone/base/etc/app/install_list_capability.json<br>
 （3）打开install_list_capability.json文件，将DLP samples应用设置为系统应用,文件最下面添加（可以直接复制其它应用的配置，再改签名和包名）
 ```
 {
@@ -178,11 +177,11 @@ https://gitee.com/openharmony/developtools_hapsigner<br>
 hdc uninstall com.samples.dlp<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建一个记事本文件，命名为签名证书.bat，bat内容为：
 ```
-java -jar hap-sign-tool.jar sign-profile -keyAlias "openharmony application profile release" -signAlg "SHA256withECDSA"  -mode "localSign" -profileCertFile "OpenHarmonyProfileRelease.pem" -inFile "UnsgnedReleasedProfileTemplate.json" -keystoreFile "OpenHarmony.p12" -outFile "app1-profile.p7b" -keyPwd "123456" -keystorePwd "123456"
+java -jar hap-sign-tool.jar sign-profile -keyAlias "openharmony application profile release" -signAlg "SHA256withECDSA" -mode "localSign" -profileCertFile "OpenHarmonyProfileRelease.pem" -inFile "UnsgnedReleasedProfileTemplate.json" -keystoreFile "OpenHarmony.p12" -outFile "app1-profile.p7b" -keyPwd "123456" -keystorePwd "123456"
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建一个记事本文件，命名为签名证书.bat，bat内容为：
 ```
-java -jar hap-sign-tool.jar sign-app -keyAlias "openharmony application release" -signAlg "SHA256withECDSA"  -mode "localSign" -appCertFile "OpenHarmonyProfileRelease.pem" -profileFile "app1-profile.p7b" -inFile "entry-default-unsigned.hap" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
+java -jar hap-sign-tool.jar sign-app -keyAlias "openharmony application release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "app1-profile.p7b" -inFile "entry-default-unsigned.hap" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
 ```
 （8）依次运行签名证书.bat和签名应用.bat，当前目录会产生一个文件app1.signed.hap<br>
 （9）执行Build Hap(s)，顺利编译后，产生entry-default-unsigned.hap；将entry-default-unsigned.hap移到目录 .\developtools_hapsigner-master\dist下<br>
