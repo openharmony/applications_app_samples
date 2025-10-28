@@ -17,19 +17,19 @@
 struct TouchEvent {
   build() {
     Column(){
-      // [Start Column_touch]
+      // [Start column_touch]
       Column() {
         Column().id('ComponentB').onTouch(() => {})
         Column().id('ComponentC').onTouch(() => {})
       }.id('ComponentA').onTouch(() => {})
-      // [End Column_touch]
+      // [End column_touch]
 
-      // [Start Stack_touch]
+      // [Start stack_touch]
       Stack() {
         Column().id('ComponentB').onTouch(() => {})
         Column().id('ComponentC').onTouch(() => {})
       }.id('Stack A').onTouch(() => {})
-      // [End Stack_touch]
+      // [End stack_touch]
     }
   }
 }

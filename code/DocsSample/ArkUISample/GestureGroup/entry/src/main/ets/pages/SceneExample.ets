@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start Scene_example]
+// [Start scene_example]
 // xxx.ets
 import { PromptAction } from '@kit.ArkUI';
 
@@ -73,4 +73,4 @@ struct CombinedGestureDemo {
     .padding(20);
   };
 }
-// [End Scene_example]
+// [End scene_example]

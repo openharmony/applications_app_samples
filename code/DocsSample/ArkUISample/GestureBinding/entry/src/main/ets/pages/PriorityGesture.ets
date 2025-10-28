@@ -12,8 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// [Start Priority_binding]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'Sample_gesturebinding';
+// [Start priority_binding]
 // xxx.ets
 @Entry
 @Component
@@ -24,7 +26,7 @@ struct PriorityBinding {
         .gesture(
           TapGesture()
             .onAction(() => {
-              console.info('Text TapGesture is onAction');
+              hilog.info(DOMAIN, TAG,'Text TapGesture is onAction');
             }));
     }
     .height(200)
@@ -33,8 +35,8 @@ struct PriorityBinding {
     .priorityGesture(
       TapGesture()
         .onAction(() => {
-          console.info('Column TapGesture is onAction');
+          hilog.info(DOMAIN, TAG,'Column TapGesture is onAction');
         }), GestureMask.IgnoreInternal);
   };
 }
-//  [End Priority_binding]
+//  [End priority_binding]

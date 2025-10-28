@@ -17,9 +17,8 @@ import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
-const DOMAIN_NUMBER: number = 0xFF00;
-const TAG: string = '[EventAbility]';
+const DOMAIN = 0x0001;
+const TAG = 'Sample_imagecomponent';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let driver: Driver;
@@ -39,7 +38,7 @@ export default function IndexTest() {
 
       // 验证当前页面是否正确
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info('get top ability');
+      hilog.info(DOMAIN, TAG,'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     });
 
@@ -49,7 +48,7 @@ export default function IndexTest() {
      * @tc.desc 测试首页加载是否成功
      */
     it('testHomePageLoad', 0, async (done: Function) => {
-      console.info('ImageTest: testHomePageLoad begin');
+      hilog.info(DOMAIN, TAG,'ImageTest: testHomePageLoad begin');
 
       // 验证标题存在
       const title = await driver.findComponent(ON.text('Show Image'));
@@ -59,7 +58,7 @@ export default function IndexTest() {
       const list = await driver.findComponent(ON.type('List'));
       expect(list === null).assertFalse();
 
-      console.info('ImageTest: testHomePageLoad end');
+      hilog.info(DOMAIN, TAG,'ImageTest: testHomePageLoad end');
       done();
     });
 
@@ -69,7 +68,7 @@ export default function IndexTest() {
      * @tc.desc 测试图片缩放类型设置页面跳转
      */
     it('testImageZoomNavigation', 0, async (done: Function) => {
-      console.info('ImageTest: testImageZoomNavigation begin');
+      hilog.info(DOMAIN, TAG,'ImageTest: testImageZoomNavigation begin');
 
       // 点击"设置图片缩放类型"项
       const zoomItem = await driver.findComponent(ON.text('SetImageZoomType'));
@@ -85,7 +84,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.delayMs(500);
 
-      console.info('ImageTest: testImageZoomNavigation end');
+      hilog.info(DOMAIN, TAG,'ImageTest: testImageZoomNavigation end');
       done();
     });
 
@@ -95,7 +94,7 @@ export default function IndexTest() {
      * @tc.desc 测试图片插值页面跳转
      */
     it('testImageInterpolationNavigation', 0, async (done: Function) => {
-      console.info('ImageTest: testImageInterpolationNavigation begin');
+      hilog.info(DOMAIN, TAG,'ImageTest: testImageInterpolationNavigation begin');
 
       // 点击"图片插值"项
       const interpolationItem = await driver.findComponent(ON.text('ImageInterpolation'));
@@ -111,7 +110,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.delayMs(500);
 
-      console.info('ImageTest: testImageInterpolationNavigation end');
+      hilog.info(DOMAIN, TAG,'ImageTest: testImageInterpolationNavigation end');
       done();
     });
 
@@ -121,7 +120,7 @@ export default function IndexTest() {
      * @tc.desc 测试设置图片重复样式页面跳转
      */
     it('testSetImageRepetitionStyle', 0, async (done: Function) => {
-      console.info('ImageTest: testSetImageRepetitionStyle begin');
+      hilog.info(DOMAIN, TAG,'ImageTest: testSetImageRepetitionStyle begin');
 
       // 点击"设置图片重复样式"项
       const interpolationItem = await driver.findComponent(ON.text('SetImageRepetitionStyle'));
@@ -137,7 +136,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.delayMs(500);
 
-      console.info('ImageTest: testSetImageRepetitionStyle end');
+      hilog.info(DOMAIN, TAG,'ImageTest: testSetImageRepetitionStyle end');
       done();
     });
 
@@ -147,7 +146,7 @@ export default function IndexTest() {
      * @tc.desc 测试设置图片渲染模式页面跳转
      */
     it('testSetImageRenderingMode', 0, async (done: Function) => {
-      console.info('ImageTest: testSetImageRenderingMode begin');
+      hilog.info(DOMAIN, TAG,'ImageTest: testSetImageRenderingMode begin');
 
       // 点击"设置图片渲染模式"项
       const interpolationItem = await driver.findComponent(ON.text('SetImageRenderingMode'));
@@ -163,7 +162,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.delayMs(500);
 
-      console.info('ImageTest: testSetImageRenderingMode end');
+      hilog.info(DOMAIN, TAG,'ImageTest: testSetImageRenderingMode end');
       done();
     });
 
@@ -174,7 +173,7 @@ export default function IndexTest() {
      * @tc.desc 测试页面加载性能
      */
     it('testPageLoadPerformance', 0, async (done: Function) => {
-      console.info('ImageTest: testPageLoadPerformance begin');
+      hilog.info(DOMAIN, TAG,'ImageTest: testPageLoadPerformance begin');
 
       const startTime = new Date().getTime();
 
@@ -187,12 +186,12 @@ export default function IndexTest() {
       const endTime = new Date().getTime();
 
       const loadTime = endTime - startTime;
-      console.info(`Page load time: ${loadTime}ms`);
+      hilog.info(DOMAIN, TAG,`Page load time: ${loadTime}ms`);
       expect(loadTime < 3000).assertTrue(); // 加载时间应小于3秒
 
       await driver.pressBack();
 
-      console.info('ImageTest: testPageLoadPerformance end');
+      hilog.info(DOMAIN, TAG,'ImageTest: testPageLoadPerformance end');
       done();
     });
 
@@ -205,7 +204,7 @@ export default function IndexTest() {
      * @tc.type: Function
      */
     it('testShadow', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'ImageTest: testShadow begin');
+      hilog.info(DOMAIN, TAG, 'ImageTest: testShadow begin');
 
       // Set page scrolling
       let size = await driver.getDisplaySize()
@@ -227,7 +226,7 @@ export default function IndexTest() {
       await driver.pressBack();
       await driver.delayMs(500);
 
-      hilog.info(DOMAIN_NUMBER, TAG, 'ImageTest: testShadow end');
+      hilog.info(DOMAIN, TAG, 'ImageTest: testShadow end');
       done();
     });
   });

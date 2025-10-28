@@ -12,8 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// [Start Regular_binding]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'Sample_gesturebinding';
+// [Start regular_binding]
 // xxx.ets
 @Entry
 @Component
@@ -25,11 +27,11 @@ struct RegularBinding {
         .gesture(
           TapGesture()
             .onAction(() => {
-              console.info('TapGesture is onAction');
+              hilog.info(DOMAIN, TAG,'TapGesture is onAction');
             }));
     }
     .height(200)
     .width(250);
   };
 }
-//  [End Regular_binding]
+//  [End regular_binding]

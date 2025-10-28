@@ -9,16 +9,6 @@
 ### 效果预览
 不涉及
 
-### 具体实现
-
-1. **GestureGroup 组合多级手势**：创建 GestureGroup 实例，传入手势协作模式（如 GestureMask.EXCLUSIVE 互斥、GestureMask.PARALLEL 并行），再添加需组合的基础手势（如 TapGesture、DoubleTapGesture），实现多级手势关联。
-2. **hitTestBehavior 事件传递控制**：在手势的 withOptions 中配置 hitTestBehavior，支持三种模式 ——ACCEPT（响应事件不传递）、IGNORE（忽略事件传父组件）、BLOCK（拦截事件不响应不传递），控制组件手势事件交互。
-3. **手势优先级配置**：通过手势的 withOptions 设置 recognizePriority 属性（数值越大优先级越高），或通过 GestureGroup 添加顺序（先加的优先），解决多级手势识别冲突。
-4. **单击 + 双击多级手势实现**：创建 TapGesture（单击）和 DoubleTapGesture（双击），用 GestureGroup (GestureMask.EXCLUSIVE) 组合，配置双击优先级高于单击，绑定到组件实现 “双击优先响应，单击延后判断”。
-5. **滑动 + 缩放多级手势实现**：组合 PanGesture（滑动）与 PinchGesture（缩放），设为 GestureMask.PARALLEL 并行模式，配置缩放优先级高于滑动，实现 “滑动平移 + 双指缩放” 同时支持。
-
-
-
 ### 使用说明
 
 1. **GestureGroup 组合多级手势**: 适用于需要关联触发的手势场景。例如，在图片查看页面中可实现“单击隐藏、双击缩放图像”；在页面中可实现“滑动移动 + 双指缩放”。互斥模式（EXCLUSIVE）适用于手势之间互斥的场景，例如单击与双击；并行模式（PARALLEL）则适用于多个手势可同时生效的场景，例如滑动与缩放，从而避免单一手势的功能局限。
@@ -42,6 +32,15 @@ entry/src/main/ets/
 |---pages
 |   |---Index.ets                      // 应用主页面
 ```
+
+### 具体实现
+
+1. **GestureGroup 组合多级手势**：创建 GestureGroup 实例，传入手势协作模式（如 GestureMask.EXCLUSIVE 互斥、GestureMask.PARALLEL 并行），再添加需组合的基础手势（如 TapGesture、DoubleTapGesture），实现多级手势关联。
+2. **hitTestBehavior 事件传递控制**：在手势的 withOptions 中配置 hitTestBehavior，支持三种模式 ——ACCEPT（响应事件不传递）、IGNORE（忽略事件传父组件）、BLOCK（拦截事件不响应不传递），控制组件手势事件交互。
+3. **手势优先级配置**：通过手势的 withOptions 设置 recognizePriority 属性（数值越大优先级越高），或通过 GestureGroup 添加顺序（先加的优先），解决多级手势识别冲突。
+4. **单击 + 双击多级手势实现**：创建 TapGesture（单击）和 DoubleTapGesture（双击），用 GestureGroup (GestureMask.EXCLUSIVE) 组合，配置双击优先级高于单击，绑定到组件实现 “双击优先响应，单击延后判断”。
+5. **滑动 + 缩放多级手势实现**：组合 PanGesture（滑动）与 PinchGesture（缩放），设为 GestureMask.PARALLEL 并行模式，配置缩放优先级高于滑动，实现 “滑动平移 + 双指缩放” 同时支持。
+
 
 ### 相关权限
 

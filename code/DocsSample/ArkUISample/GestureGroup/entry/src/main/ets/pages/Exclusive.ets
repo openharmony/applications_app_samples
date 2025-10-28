@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start Mutual_exclusion]
+// [Start mutual_exclusion]
 // xxx.ets
 @Entry
 @Component
@@ -43,4 +43,4 @@ struct MutualExclusion {
     );
   };
 }
-// [End Mutual_exclusion]
+// [End mutual_exclusion]

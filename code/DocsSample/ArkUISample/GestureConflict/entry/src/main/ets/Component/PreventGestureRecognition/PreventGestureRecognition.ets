@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start gestureRecognition]
+// [Start gesture_recognition]
 @Entry
 @ComponentV2
 struct Index {
@@ -251,4 +251,4 @@ struct Index {
     .height(this.currentHeight)
   };
 }
-//  [End gestureRecognition]
+// [End gesture_recognition]

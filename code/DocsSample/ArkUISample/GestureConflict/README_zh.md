@@ -15,22 +15,6 @@
 | ![](screenshots/kineticControl.jpg)   | ![](screenshots/Stop.jpg)  |
 
 
-### 具体实现
-
-1. **基础单个手势识别**：用系统手势类创建实例，绑定回调并关联组件。  
-   点击（TapGesture）：设 count（点击次数），onAction 定义逻辑，.gesture () 绑定组件。  
-   长按（LongPressGesture）：设 duration（触发时间），onActionStart/End 处理始末逻辑。  
-   滑动（PanGesture）：设 direction（方向），onActionUpdate 获取 offsetX/Y 实现跟随滑动。
-2. **组合手势识别**：用 GestureGroup 按模式管理多手势。  
-   并行（Parallel）：如捏合 + 旋转，可同时触发。  
-   顺序（Serial）：如长按后滑动，需先触发前者。  
-   互斥（Exclusive）：如点击 / 长按，优先识别高优先级手势。
-3. **手势冲突处理**：  
-   优先级：通过 priority 属性（值越大优先级越高）设置。  
-   父子组件：父组件用 gestureMask 控制子组件手势透传。  
-   条件过滤：回调中加判断（如有效滑动偏移）避免误触。
-
-
 ### 使用说明
 
 1. **API 适配场景**：  
@@ -61,6 +45,21 @@ entry/src/main/ets/
     └── PreventGestureRecognition.ets    //  阻止手势参与识别页面
     └── PreventIdentification.ets        //  阻止手势参与识别页面片段
 ```
+
+### 具体实现
+
+1. **基础单个手势识别**：用系统手势类创建实例，绑定回调并关联组件。  
+   点击（TapGesture）：设 count（点击次数），onAction 定义逻辑，.gesture () 绑定组件。  
+   长按（LongPressGesture）：设 duration（触发时间），onActionStart/End 处理始末逻辑。  
+   滑动（PanGesture）：设 direction（方向），onActionUpdate 获取 offsetX/Y 实现跟随滑动。
+2. **组合手势识别**：用 GestureGroup 按模式管理多手势。  
+   并行（Parallel）：如捏合 + 旋转，可同时触发。  
+   顺序（Serial）：如长按后滑动，需先触发前者。  
+   互斥（Exclusive）：如点击 / 长按，优先识别高优先级手势。
+3. **手势冲突处理**：  
+   优先级：通过 priority 属性（值越大优先级越高）设置。  
+   父子组件：父组件用 gestureMask 控制子组件手势透传。  
+   条件过滤：回调中加判断（如有效滑动偏移）避免误触。
 
 ## 相关权限
 
