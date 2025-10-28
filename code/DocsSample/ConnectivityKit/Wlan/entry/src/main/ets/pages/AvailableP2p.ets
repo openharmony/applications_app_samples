@@ -85,7 +85,7 @@ struct WifiConnect {
     wifi.off('p2pPeerDeviceChange')
     wifi.off('p2pConnectionChange')
   }
-// [End Discover_p2p_device]
+// [End discover_p2p_device]
 
 // [Start connectP2p]
   connectP2p(p2pScanInfo: wifi.WifiP2pDevice) {
