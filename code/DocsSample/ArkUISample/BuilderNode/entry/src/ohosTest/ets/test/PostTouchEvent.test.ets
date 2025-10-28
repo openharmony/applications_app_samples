@@ -19,10 +19,10 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 import { Router, router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0x0000;
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-
 
 export default function postTouchEventTest() {
   describe('postTouchEventTest', () => {
@@ -42,7 +42,7 @@ export default function postTouchEventTest() {
     beforeEach(() => {
       hilog.info(0xF811, 'testTag', '%{public}s','postTouchEventTest beforeEach start');
       let options: router.RouterOptions = {
-        url: 'pages/postTouchEvent',
+        url: 'pages/PostTouchEvent',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router

@@ -192,7 +192,7 @@ struct ComponentExtension {
                   .width('100%')
                   .onClick(() => {
                     const name = `pages/${routeGroup.name}/${route.name}`;
-                    this.getUIContext().getRouter().pushUrl({url: name});
+                    router.pushUrl({ url: name })
                   })
                 }
                 .width('100%')

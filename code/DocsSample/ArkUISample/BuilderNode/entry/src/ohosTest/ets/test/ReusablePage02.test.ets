@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-
+const DOMAIN = 0x0000;
 
 export default function ReusablePage02Test() {
   describe('ReusablePage02Test', () => {

@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-
+const DOMAIN = 0x0000;
 
 export default function inheritFreezeTest() {
   describe('inheritFreezeTest', () => {
@@ -42,7 +42,7 @@ export default function inheritFreezeTest() {
     beforeEach(() => {
       hilog.info(0xF811, 'testTag', '%{public}s','inheritFreezeTest beforeEach start');
       let options: router.RouterOptions = {
-        url: 'pages/inheritFreezeOptionsPage',
+        url: 'pages/InheritFreezeOptionsPage',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
