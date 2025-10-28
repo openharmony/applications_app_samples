@@ -18,7 +18,6 @@ import nativeNode from 'libnativeNode.so';
 @Entry
 @Component
 struct KeyEventSample {
-  @State eventInfo: string = '🎹 按任意键查看按键事件信息...';
   @State lastKeyEvent: string = '';
   @State keyEventCount: number = 0;
 
@@ -26,7 +25,7 @@ struct KeyEventSample {
     Column() {
       // 标题区域
       Row() {
-        Text('🎹 按键事件示例')
+        Text($r('app.string.demo_title'))
           .fontSize(24)
           .fontWeight(FontWeight.Bold)
           .fontColor(Color.White)
@@ -42,25 +41,25 @@ struct KeyEventSample {
         Column({ space: 20 }) {
           // 说明区域
           Column({ space: 10 }) {
-            Text('本示例展示了Native API (CAPI) 中的按键事件处理功能，包括：')
+            Text($r('app.string.demo_introduce'))
               .fontSize(14)
               .fontColor('#666666')
               .textAlign(TextAlign.Start)
             
             Column({ space: 5 }) {
-              Text('• NODE_ON_KEY_EVENT - 标准按键事件处理')
+              Text($r('app.string.demo_introduce_item1'))
                 .fontSize(12)
                 .fontColor('#888888')
                 .textAlign(TextAlign.Start)
-              Text('• NODE_ON_KEY_PRE_IME - 输入法前置按键事件')
+              Text($r('app.string.demo_introduce_item2'))
                 .fontSize(12)
                 .fontColor('#888888')
                 .textAlign(TextAlign.Start)
-              Text('• NODE_DISPATCH_KEY_EVENT - 按键事件分发处理')
+              Text($r('app.string.demo_introduce_item3'))
                 .fontSize(12)
                 .fontColor('#888888')
                 .textAlign(TextAlign.Start)
-              Text('• 事件冒泡与消费机制演示 (Column+Button层级结构)')
+              Text($r('app.string.demo_introduce_item4'))
                 .fontSize(12)
                 .fontColor('#FF6B6B')
                 .textAlign(TextAlign.Start)
@@ -82,7 +81,7 @@ struct KeyEventSample {
                 .fontSize(20)
                 .fontWeight(FontWeight.Bold)
                 .fontColor('#4A90E2')
-              Text('按键次数')
+              Text($r('app.string.key_count'))
                 .fontSize(12)
                 .fontColor('#666666')
             }
@@ -100,7 +99,7 @@ struct KeyEventSample {
                 .fontColor('#FF6B6B')
                 .maxLines(1)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
-              Text('最后按键')
+              Text($r('app.string.last_key'))
                 .fontSize(12)
                 .fontColor('#666666')
             }
@@ -117,7 +116,7 @@ struct KeyEventSample {
 
           // Native组件区域
           Column() {
-            Text('🎯 Native 按键事件组件')
+            Text($r('app.string.native_component'))
               .fontSize(16)
               .fontWeight(FontWeight.Medium)
               .fontColor('#333333')
@@ -154,42 +153,42 @@ struct KeyEventSample {
 
           // 使用说明
           Column({ space: 8 }) {
-            Text('💡 使用说明')
+            Text($r('app.string.use_direction'))
               .fontSize(16)
               .fontWeight(FontWeight.Medium)
               .fontColor('#333333')
 
-            Text('📌 基础功能测试：')
+            Text($r('app.string.basic_test'))
               .fontSize(13)
               .fontColor('#4A90E2')
               .fontWeight(FontWeight.Medium)
-            Text('1. 点击上方Native组件区域使其获得焦点')
+            Text($r('app.string.test_step1'))
               .fontSize(12)
               .fontColor('#666666')
-            Text('2. 点击三个按钮测试不同的按键事件处理类型')
+            Text($r('app.string.test_step2'))
               .fontSize(12)
               .fontColor('#666666')
-            Text('3. 使用键盘输入按键，观察事件信息的实时更新')
+            Text($r('app.string.test_step3'))
               .fontSize(12)
               .fontColor('#666666')
 
-            Text('🔄 事件冒泡与消费测试：')
+            Text($r('app.string.other_test'))
               .fontSize(13)
               .fontColor('#FF6B6B')
               .fontWeight(FontWeight.Medium)
-            Text('4. 在事件冒泡演示区域的子按钮上：')
+            Text($r('app.string.test_step4'))
               .fontSize(12)
               .fontColor('#666666')
-            Text('   • 按 ESC 键 - 演示事件消费 (SetConsumed)')
+            Text($r('app.string.test_step4_1'))
               .fontSize(12)
               .fontColor('#666666')
-            Text('   • 按 F1 键 - 演示阻止事件冒泡 (StopPropagation)')
+            Text($r('app.string.test_step4_2'))
               .fontSize(12)
               .fontColor('#666666')
-            Text('   • 按其他键 - 事件正常冒泡到父容器')
+            Text($r('app.string.test_step4_3'))
               .fontSize(12)
               .fontColor('#666666')
-            Text('5. 支持常用按键：字母、数字、方向键、功能键等')
+            Text($r('app.string.test_step5'))
               .fontSize(12)
               .fontColor('#666666')
           }
@@ -222,11 +221,6 @@ struct KeyEventSample {
     // 更新事件信息
     let eventType = this.getEventTypeName(event.type);
     let timestamp = new Date().toLocaleTimeString();
-    
-    this.eventInfo = `🔍 ETS 按键事件详情:\n` +
-                    `🔑 按键: ${keyName} (${event.keyCode})\n` +
-                    `📝 事件类型: ${eventType}\n` +
-                    `📈 总计次数: ${this.keyEventCount}`;
   }
 
   private getKeyName(keyCode: number): string {
