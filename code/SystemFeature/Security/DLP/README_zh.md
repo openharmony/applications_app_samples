@@ -5,9 +5,9 @@
 本示例是一个安全类App，使用[@ohos.dlpPermission](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-data-protection-kit/js-apis-dlppermission-sys.md) 接口展示了在eTS中普通文件加密受限的过程。
 
 ### 效果预览
-| Index                                     | Encryption                                           | Encryptied                                       | FileEdit                                           |
-|-----------------------------------------|-----------------------------------------------|---------------------------------------------|----------------------------------------------------|
-| ![Index](screenshots/devices/Index.jpeg) | ![Encryption](screenshots/devices/Encryption.jpeg) | ![Encryptied](screenshots/devices/Encrypted.jpeg) | ![FileEdit](screenshots/devices/FileEditPage.jpeg) |
+| Index                                     | 
+|-----------------------------------------|
+| ![Index](screenshots/devices/Index_pages.jpg) | 
 
 使用说明:
 1. 启动应用后点击“**+**”按钮可以添加一个普通文件;
