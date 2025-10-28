@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-// [Start import_module]
 #include <database/udmf/udmf_err_code.h>
 
+// [Start import_module]
 #include <database/udmf/uds.h>
 #include <database/udmf/udmf.h>
 #include <database/udmf/udmf_meta.h>
@@ -47,10 +47,10 @@ static napi_value NAPI_Global_geiPlainText(napi_env env, napi_callback_info info
     OH_UdsPlainText_Destroy(plainText);
     OH_UdmfRecord_Destroy(plainTextRecord);
     OH_UdsPlainText_Destroy(plainText2);
+    // [End use_plaintext_datastructure]
     napi_value result;
     napi_create_int32(env, Udmf_ErrCode::UDMF_E_OK, &result);
     return result;
-    // [End use_plaintext_datastructure]
 }
 
 static napi_value NAPI_Global_getFileUri(napi_env env, napi_callback_info info)
@@ -74,10 +74,10 @@ static napi_value NAPI_Global_getFileUri(napi_env env, napi_callback_info info)
     OH_UdsFileUri_Destroy(fileUri);
     OH_UdmfRecord_Destroy(record);
     OH_UdsFileUri_Destroy(fileUri1);
+    // [End use_fileUri_datastructure]
     napi_value result;
     napi_create_int32(env, Udmf_ErrCode::UDMF_E_OK, &result);
     return result;
-    // [End use_fileUri_datastructure]
 }
 
 EXTERN_C_START
