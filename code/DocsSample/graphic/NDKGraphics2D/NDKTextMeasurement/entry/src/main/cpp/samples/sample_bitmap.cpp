@@ -189,8 +189,8 @@ void SampleBitMap::DrawText()
     OH_Drawing_TypographyLayout(typography, maxWidth);
     // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
-    // case1: 获取排版后最长行行宽
 // [Start c_text_metrics_get_all_case]
+    // case1: 获取排版后最长行行宽
     double longestLine = OH_Drawing_TypographyGetLongestLine(typography);
     DRAWING_LOGI("第%{public}d行 longestLine: %{public}f" ,longestLine);
 
