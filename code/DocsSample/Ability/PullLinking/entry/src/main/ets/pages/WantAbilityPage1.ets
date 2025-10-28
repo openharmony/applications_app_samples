@@ -47,10 +47,10 @@ struct Index {
         //   hilog.error(DOMAIN_NUMBER, TAG, `Failed to startAbility. Code is ${paramError.code},\
         //   message is ${paramError.message}`);
         // }
-        let link: string = 'links://www.example.com';
+        let link: string = 'https://www.example.com';
         let openLinkOptions: OpenLinkOptions = {
           // 匹配的abilities选项是否需要通过App Linking域名校验，匹配到唯一配置过的应用ability
-          appLinkingOnly: false,
+          appLinkingOnly: true,
           // 同want中的parameter，用于传递的参数
           parameters: {demo_key: 'demo_value'}
         };
