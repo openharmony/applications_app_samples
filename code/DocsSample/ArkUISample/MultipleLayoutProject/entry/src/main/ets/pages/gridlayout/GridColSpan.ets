@@ -12,82 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridColSpan_start]
+let gSpan:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
+//[End GridColSpan_start]
 @Entry
 @Component
 struct GridColSpan {
-  //[Start gridSpan_start]
-  gSpan: Record<string, number> = {
-    'xs': 1,
-    'sm': 2,
-    'md': 3,
-    'lg': 4
-  }
 
-  // [End gridSpan_start]
   build() {
-    //[Start gridSpan_start]
-    // [StartExclude gridSpan_start]
     GridRow({ gutter: { x: 20, y: 50 } }) {
-      // [EndExclude gridSpan_start]
-      GridCol({ span: 2 }) {
-        // [StartExclude gridSpan_start]
-        Row() {
-          Text('1')
-        }.width('100%').height('50')
-
-        // [EndExclude gridSpan_start]
-      }
-      // [StartExclude gridSpan_start]
-      .backgroundColor('rgb(150,150,150)')
-
-      // [EndExclude gridSpan_start]
-      GridCol({
-        span: {
-          xs: 1,
-          sm: 2,
-          md: 3,
-          lg: 4
-        }
-      }) {
-        // [StartExclude gridSpan_start]
-        Row() {
-          Text('2')
-        }.width('100%').height('50')
-
-        // [EndExclude gridSpan_start]
-      }
-      // [StartExclude gridSpan_start]
-      .backgroundColor('rgb(213,213,213)')
-
-      // [EndExclude gridSpan_start]
-      GridCol() {
-        // [StartExclude gridSpan_start]
-        Row() {
-          Text('3')
-        }.width('100%').height('50')
-
-        // [EndExclude gridSpan_start]
-      }.span(2)
-      // [StartExclude gridSpan_start]
-      .backgroundColor('rgb(0,74,175)')
-
-      // [EndExclude gridSpan_start]
-      GridCol() {
-        // [StartExclude gridSpan_start]
-        Row() {
-          Text('4')
-        }.width('100%').height('50')
-
-        // [EndExclude gridSpan_start]
-      }.span(this.gSpan)
-      // [StartExclude gridSpan_start]
-      .backgroundColor('rgb(39,135,217)')
+      //[Start GridColSpan1_start]
+      GridCol({ span: 2 }){}
+      GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }){}
+      GridCol(){}.span(2)
+      GridCol(){}.span(gSpan)
+      //[End GridColSpan1_start]
     }
     .height(200)
     .border({ color: 'rgb(39,135,217)', width: 2 })
-
-    // [EndExclude gridSpan_start]
-    // [End gridSpan_start]
   }
 }
