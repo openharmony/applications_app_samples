@@ -42,6 +42,7 @@ entry/src/main/ets/
 |   |       |---StateArrayLazy2.ets
 |   |       |---StateArrayLoadDate.ets
 |   |       |---StateArrayNo.ets
+|   |       |---StateArrayNo2.ets
 |   |       |---StateArrayObserved.ets
 |   |       |---StateArrayPrecise.ets
 |   |       |---StateArrayTrack.ets
