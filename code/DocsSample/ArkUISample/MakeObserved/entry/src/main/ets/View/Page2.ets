@@ -38,4 +38,4 @@ struct Page2 {
     }
   }
 }
-// [Start MakeObserved_only_applies_to_input_parameters]
+// [End MakeObserved_only_applies_to_input_parameters]

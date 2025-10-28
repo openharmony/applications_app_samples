@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [start name_change_from_monitor_value]
+// [Start name_change_from_monitor_value]
 import { UIUtils } from '@kit.ArkUI';
 
 class Info {
