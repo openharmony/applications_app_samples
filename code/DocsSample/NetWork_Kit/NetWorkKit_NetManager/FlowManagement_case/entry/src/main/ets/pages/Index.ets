@@ -16,8 +16,8 @@
 // [Start flow_management_case_module_import]
 import { socket, statistics } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// [End flow_management_case_module_import]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [End flow_management_case_module_import]
 
 const LOG_FONT_SIZE = 15; // 日志文字大小
 const LOG_MARGIN = 20; // 日志上边距

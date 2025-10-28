@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
+
 // [Start net_Connection_create_connection_import]
 import { connection, socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End net_Connection_create_connection_import]
 
 import { promptAction } from '@kit.ArkUI';

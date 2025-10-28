@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start get_all_registered_networks]
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [StartExclude get_all_registered_networks]
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小

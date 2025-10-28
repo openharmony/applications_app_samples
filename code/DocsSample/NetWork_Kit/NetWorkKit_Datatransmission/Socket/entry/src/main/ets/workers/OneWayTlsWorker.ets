@@ -15,10 +15,10 @@
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
 import fs from '@ohos.file.fs';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start one_way_tls_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End one_way_tls_worker_import]
 const workerPort = worker.workerPort; // 获取 workerPort 实例
 

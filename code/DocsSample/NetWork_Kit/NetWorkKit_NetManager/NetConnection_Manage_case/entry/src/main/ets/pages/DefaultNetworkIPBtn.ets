@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start resolve_the_domain_name_and_get_all_ips]
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [StartExclude resolve_the_domain_name_and_get_all_ips]
 
 const BUTTON_HEIGHT = 50; // 按钮的高度

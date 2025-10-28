@@ -14,9 +14,9 @@
  */
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start multicast_worker_import]
 import { socket } from '@kit.NetworkKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End multicast_worker_import]
 import { Message } from '../connect/Multicast'
 import { BusinessError } from '@kit.BasicServicesKit';

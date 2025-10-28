@@ -16,8 +16,8 @@
 // [Start get_default_network_methods]
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
-// [StartExclude get_default_network_methods]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [StartExclude get_default_network_methods]
 
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小

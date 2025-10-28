@@ -15,10 +15,10 @@
 
 import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 import { TcpMessage } from '../connect/TcpClient';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start tcp_client_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End tcp_client_worker_import]
 
 const workerPort = worker.workerPort; // 获取 workerPort 实例

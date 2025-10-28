@@ -14,10 +14,10 @@
  */
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start two_way_tls_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End two_way_tls_worker_import]
 import fs from '@ohos.file.fs';
 

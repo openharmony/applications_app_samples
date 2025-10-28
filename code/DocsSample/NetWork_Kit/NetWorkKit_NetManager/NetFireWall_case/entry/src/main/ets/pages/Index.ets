@@ -17,10 +17,10 @@
 // 从@kit.NetworkKit中导入netFirewall命名空间。
 import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End net_firewall_case_import_module]
 import { ComponentId } from '../common/CommonConstant';
 import { promptAction } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // [Start net_firewall_set_net_firewall_policy]
 // IP类型

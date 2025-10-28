@@ -17,11 +17,11 @@
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End HTTP_case_module_import_data_request]
 
 import { ComponentId } from '../common/CommonConstant';
 import { promptAction } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 常量定义
 const LOG_TAG: string = '[Sample_HttpRequestDemo]';

@@ -18,9 +18,9 @@
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End MDNS_case_module_import]
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { serviceOperateStatus } from '../common/ServiceOperateStatus';
 import { ComponentId } from '../common/ComponentId';
 

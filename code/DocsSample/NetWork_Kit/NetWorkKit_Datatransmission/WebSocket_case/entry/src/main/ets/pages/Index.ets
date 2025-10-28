@@ -16,8 +16,8 @@
 // [Start WebSocket_case_module_import]
 import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// [End WebSocket_case_module_import]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [End WebSocket_case_module_import]
 
 const BUTTON_HEIGHT = 50; // 按钮高度
 const BUTTON_RADIUS = 5; // 按钮边缘角度

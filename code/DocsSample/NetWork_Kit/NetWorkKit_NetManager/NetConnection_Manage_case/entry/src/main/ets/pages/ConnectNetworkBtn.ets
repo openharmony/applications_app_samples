@@ -17,8 +17,8 @@
 // 引入包名。
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// [End NetConnection_manage_case_module_import]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [End NetConnection_manage_case_module_import]
 
 const NETWORK_CONNECTION_TIMEOUT = 1000; // 网络连接超时
 const BUTTON_HEIGHT = 50; // 按钮的高度

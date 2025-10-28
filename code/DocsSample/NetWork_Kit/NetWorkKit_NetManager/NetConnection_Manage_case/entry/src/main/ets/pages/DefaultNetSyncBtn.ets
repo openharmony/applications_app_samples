@@ -16,8 +16,8 @@
 // [Start NetConnection_manage_case_default_net_sync]
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
-// [StartExclude NetConnection_manage_case_default_net_sync]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [StartExclude NetConnection_manage_case_default_net_sync]
 
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小

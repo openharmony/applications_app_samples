@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
+
 // [Start get_net_capabilities_and_get_connection_properties]
 // 从@kit.NetworkKit中导入connection命名空间。
 import { connection } from '@kit.NetworkKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [StartExclude get_net_capabilities_and_get_connection_properties]
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小
