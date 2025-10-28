@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start StateArrayInit_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[EvtryAblity]';
@@ -34,8 +33,7 @@ class StateArrayInitChildList extends Array<StateArrayInitChild> {
       this.push(...children);
     }
   }
-}
-;
+};
 
 @Observed
 class StateArrayInitAncestor {
@@ -163,4 +161,3 @@ struct StateArrayInitPage {
     }
   }
 }
-// [End StateArrayInit_start]

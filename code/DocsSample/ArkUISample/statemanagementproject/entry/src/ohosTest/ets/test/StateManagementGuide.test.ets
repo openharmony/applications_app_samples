@@ -204,6 +204,24 @@ export default function StateManagementGuide() {
       });
 
     /*
+    * @tc.number     : StateArrayNo2_001
+    * @tc.name       : testStateArrayNo2
+    * @tc.desc       : 测试UI能够正常的刷新
+    * @tc.size       : MediumTest
+    * @tc.type       : Function
+    * @tc.level      : Level 1
+    */
+    it('StateArrayNo2', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: Function) => {
+        let driver = Driver.create();
+        await driver.delayMs(1000);
+        await router.pushUrl({ url: 'pages/statemanagementguide/StateArrayNo2' })
+        await driver.delayMs(1000);
+        await driver.pressBack();
+        await driver.delayMs(1000);
+        done();
+      });
+    /*
 * @tc.number     : StateArrayLazy_001
 * @tc.name       : testStateArrayLazy
 * @tc.desc       : 测试减少使用LazyForEach的重建机制刷新UI
