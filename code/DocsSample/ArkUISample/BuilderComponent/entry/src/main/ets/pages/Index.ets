@@ -22,7 +22,8 @@ let router: Router;
 const pageArray: string[] = [
   'pages/PrivateCustomConstructor',
   'pages/GlobalCustomConstructor',
-  'pages/ParameterPassing',
+  'pages/ParameterValue',
+  'pages/ParameterReference',
   'pages/InCustomComponent',
   'pages/GlobalCustomBuilder',
   'pages/ChangingByDecorator',
@@ -53,6 +54,7 @@ export const buttonArray: string[] = [
   'ButtonOne',
   'ButtonTwo',
   'ButtonThree',
+  'ButtonTwentyEight',
   'ButtonFour',
   'ButtonFive',
   'ButtonSix',
