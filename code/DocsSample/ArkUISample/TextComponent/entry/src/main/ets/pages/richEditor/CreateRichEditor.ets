@@ -42,8 +42,8 @@ export struct CreateRichEditor {
 
   controller: RichEditorStyledStringController = new RichEditorStyledStringController();
   options: RichEditorStyledStringOptions = { controller: this.controller };
-  // [EndExclude richEditor_create_span]
   // [StartExclude richEditor_create]
+  // [EndExclude richEditor_create_span]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
