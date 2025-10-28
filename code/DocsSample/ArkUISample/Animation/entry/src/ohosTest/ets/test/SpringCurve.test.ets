@@ -36,6 +36,7 @@ export function SpringCurveTest() {
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
+      await driver.swipe(500, 800, 500, 20);
 
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.springCurve_label"))));
       await aimComponent.click();
