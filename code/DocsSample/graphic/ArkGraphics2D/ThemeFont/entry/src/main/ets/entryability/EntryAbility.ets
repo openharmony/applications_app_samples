@@ -12,17 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start arkts_theme_font_entry_ability]
 import { AbilityConstant, Configuration, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { updateRenderNodeData } from '../pages/Index';
 
+// [StartExclude arkts_theme_font_entry_ability]
 const DOMAIN = 0x0000;
+// [EndExclude arkts_theme_font_entry_ability]
 
 export default class EntryAbility extends UIAbility {
   preFontId = "";
-
+  // [StartExclude arkts_theme_font_entry_ability]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN, 'testTag', 'onCreate');
   }
@@ -37,13 +39,17 @@ export default class EntryAbility extends UIAbility {
       hilog.info(DOMAIN, 'testTag', 'Content loaded successfully.');
     });
   }
+  // [EndExclude arkts_theme_font_entry_ability]
 
   onConfigurationUpdate(newConfig: Configuration): void {
     let fontId = newConfig.fontId;
     if (fontId && fontId !== this.preFontId) {
       this.preFontId = fontId;
       updateRenderNodeData();
+      // [StartExclude arkts_theme_font_entry_ability]
       hilog.info(DOMAIN, 'testTag', 'Font updated: ' + fontId);
+      // [EndExclude arkts_theme_font_entry_ability]
     }
   }
 }
+// [End arkts_theme_font_entry_ability]
