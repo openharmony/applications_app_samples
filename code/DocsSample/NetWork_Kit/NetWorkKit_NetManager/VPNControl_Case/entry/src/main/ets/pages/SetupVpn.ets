@@ -16,13 +16,13 @@
 // [Start vpn_config_import]
 import { vpnExtension } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End vpn_config_import]
 import { ComponentId } from '../common/CommonConstant'; // 引入枚举
 import { BusinessError } from '@kit.BasicServicesKit';
 import { showToast } from '../common/ShowToast';
 import vpn_client from 'libentry.so';
 import NotificationOperations from '../notification/NotificationOperations';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const buttonFontSize = 25; // 按钮的字体大小
 const buttonMargin = 16;

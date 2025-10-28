@@ -18,6 +18,7 @@
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End MDNS_case_module_import]
 
 import { serviceOperateStatus } from '../common/ServiceOperateStatus';
@@ -186,12 +187,12 @@ struct MdnsServiceDemo {
       // [StartExclude MDNS_add_local_service]
       this.addServiceStatus = serviceOperateStatus.ADD_SUCCESS;
       // [EndExclude MDNS_add_local_service]
-      console.info(`Local Service Added: ${JSON.stringify(data)}`);
+      hilog.info(0x0000, 'testTag', `Local Service Added: ${JSON.stringify(data)}`);
     })
     // [StartExclude MDNS_add_local_service]
     .catch((err: BusinessError) => {
       this.addServiceStatus = serviceOperateStatus.ADD_FAIL;
-      console.error(`Error adding local service: ${JSON.stringify(err)}`);
+      hilog.error(0x0000, 'testTag', `Error adding local service: ${JSON.stringify(err)}`);
     });
   }
   // [EndExclude MDNS_add_local_service]
@@ -206,12 +207,12 @@ struct MdnsServiceDemo {
       // [StartExclude MDNS_resolve_local_service]
       this.resolveServiceStatus = serviceOperateStatus.RESOLVE_SUCCESS;
       // [EndExclude  MDNS_resolve_local_service]
-      console.info(`Resolved Local Service: ${JSON.stringify(data)}`);
+      hilog.info(0x0000, 'testTag', `Resolved Local Service: ${JSON.stringify(data)}`);
     })
     // [End MDNS_resolve_local_service]
     .catch((err: BusinessError) => {
       this.resolveServiceStatus = serviceOperateStatus.RESOLVE_FAIL;
-      console.error(`Error resolving local service: ${JSON.stringify(err)}`);
+      hilog.error(0x0000, 'testTag', `Error resolving local service: ${JSON.stringify(err)}`);
     });
   }
 
@@ -226,12 +227,12 @@ struct MdnsServiceDemo {
       // [StartExclude MDNS_remove_local_service]
       this.removeServiceStatus = serviceOperateStatus.REMOVE_SUCCESS;
       // [EndExclude  MDNS_remove_local_service]
-      console.info(`Local Service Removed: ${JSON.stringify(data)}`);
+      hilog.info(0x0000, 'testTag', `Local Service Removed: ${JSON.stringify(data)}`);
     })
     // [End MDNS_remove_local_service]
     .catch((err: BusinessError) => {
       this.removeServiceStatus = serviceOperateStatus.REMOVE_FAIL;
-      console.error(`Error removing local service: ${JSON.stringify(err)}`);
+      hilog.error(0x0000, 'testTag', `Error removing local service: ${JSON.stringify(err)}`);
     });
   }
   
@@ -243,7 +244,7 @@ struct MdnsServiceDemo {
     this.discoveryStatus = serviceOperateStatus.DISCOVERY_STARTING;
     if (!context) {
       this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL3;
-      console.error('Context is undefined or null.');
+      hilog.error(0x0000, 'testTag', 'Context is undefined or null.');
       return;
     }
     // [EndExclude  create_discovery_service_object]
@@ -254,26 +255,26 @@ struct MdnsServiceDemo {
 
     if (!discoveryService) {
       this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL2;
-      console.error('Failed to create discovery service.');
+      hilog.error(0x0000, 'testTag', 'Failed to create discovery service.');
       return;
     }
 
     // [Start discovery_service_on_method]
     // 订阅MDNS服务发现相关状态变化。
     discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
-      console.info(JSON.stringify(data));
+      hilog.info(0x0000, 'testTag', JSON.stringify(data));
     });
     discoveryService.on('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
-      console.info(JSON.stringify(data));
+      hilog.info(0x0000, 'testTag', JSON.stringify(data));
     });
     discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
-      console.info(JSON.stringify(data));
+      hilog.info(0x0000, 'testTag', JSON.stringify(data));
       // [StartExclude discovery_service_on_method]
       this.onServiceFound(data);
       // [EndExclude discovery_service_on_method]
     });
     discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
-      console.info(JSON.stringify(data));
+      hilog.info(0x0000, 'testTag', JSON.stringify(data));
       // [StartExclude discovery_service_on_method]
       this.onServiceLost(data);
       // [EndExclude discovery_service_on_method]
@@ -288,7 +289,7 @@ struct MdnsServiceDemo {
       this.discoveryStatus = serviceOperateStatus.DISCOVERY_STARTED;
     } catch (error) {
       this.discoveryStatus = serviceOperateStatus.DISCOVERY_FAIL1;
-      console.error(`Error starting mDNS service discovery: ${JSON.stringify(error)}`);
+      hilog.error(0x0000, 'testTag', `Error starting mDNS service discovery: ${JSON.stringify(error)}`);
     }
   }
 
@@ -307,19 +308,19 @@ struct MdnsServiceDemo {
       // [Start discovery_service_off_method]
       // 取消订阅的MDNS服务。
       discoveryService.off('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
-        console.info(JSON.stringify(data));
+        hilog.info(0x0000, 'testTag', JSON.stringify(data));
       });
       discoveryService.off('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
-        console.info(JSON.stringify(data));
+        hilog.info(0x0000, 'testTag', JSON.stringify(data));
       });
       discoveryService.off('serviceFound', (data: mdns.LocalServiceInfo) => {
-        console.info(JSON.stringify(data));
+        hilog.info(0x0000, 'testTag', JSON.stringify(data));
         // [StartExclude discovery_service_off_method]
         this.onServiceFound(data);
         // [EndExclude discovery_service_off_method]
       });
       discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
-        console.info(JSON.stringify(data));
+        hilog.info(0x0000, 'testTag', JSON.stringify(data));
         // [StartExclude discovery_service_off_method]
         this.onServiceLost(data);
         // [EndExclude discovery_service_off_method]
@@ -329,31 +330,31 @@ struct MdnsServiceDemo {
       this.discoveryStatus = serviceOperateStatus.STOPPED;
     } catch (err) {
       this.discoveryStatus = serviceOperateStatus.STOP_FAIL;
-      console.info(`Error stopping mDNS service discovery: ${JSON.stringify(err)}`);
+      hilog.info(0x0000, 'testTag', `Error stopping mDNS service discovery: ${JSON.stringify(err)}`);
     }
   }
 
   private onServiceFound(data: mdns.LocalServiceInfo): void {
-    console.info(`Service Found: ${JSON.stringify(data)}`);
+    hilog.info(0x0000, 'testTag', `Service Found: ${JSON.stringify(data)}`);
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 检查设备是否已经存在于列表中，避免重复推送
     const deviceExists = this.discoveredDevices.some((device) => device.text === JSON.stringify(data));
     if (!deviceExists) {
       // 只有在设备未存在的情况下，才会推送
       mdns.resolveLocalService(context, data).then((resolvedData) => {
-        console.info(`Resolved Service: ${JSON.stringify(resolvedData)}`);
+        hilog.info(0x0000, 'testTag', `Resolved Service: ${JSON.stringify(resolvedData)}`);
         // 推送新的设备信息到列表
         this.discoveredDevices.push({ id: Date.now().toString(), text: JSON.stringify(resolvedData) });
       }).catch((err: BusinessError) => {
-        console.error(`Error resolving service: ${JSON.stringify(err)}`);
+        hilog.error(0x0000, 'testTag', `Error resolving service: ${JSON.stringify(err)}`);
       });
     } else {
-      console.info('Service already exists, skipping push.');
+      hilog.info(0x0000, 'testTag', 'Service already exists, skipping push.');
     }
   }
 
   private onServiceLost(data: mdns.LocalServiceInfo): void {
-    console.info(`Service Lost: ${JSON.stringify(data)}`);
+    hilog.info(0x0000, 'testTag', `Service Lost: ${JSON.stringify(data)}`);
     const index = this.discoveredDevices.findIndex(
       (device) => device.text === JSON.stringify(data)
     );

@@ -14,9 +14,9 @@
  */
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start multicast_worker_import]
 import { socket } from '@kit.NetworkKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End multicast_worker_import]
 import { Message } from '../connect/Multicast'
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -110,7 +110,7 @@ function startMulticast(data: socket.NetAddress) {
     multicast.dropMembership(addr).then(() => {
       // [StartExclude multicast_worker_dropMembership]
       postMessage({ type: 'multicastStatus', status: 'Dropped multicast membership' });
-      // [StartExclude multicast_worker_dropMembership]
+      // [EndExclude multicast_worker_dropMembership]
       hilog.info(0x0000, 'testTag', 'Multicast: Dropped membership successfully');
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `Multicast: Failed to drop membership - ${JSON.stringify(err)}`);

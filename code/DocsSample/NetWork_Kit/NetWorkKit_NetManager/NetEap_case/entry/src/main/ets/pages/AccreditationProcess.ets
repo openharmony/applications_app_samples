@@ -14,9 +14,9 @@
  */
 // [Start eap_case_module_import]
 import { eap } from '@kit.NetworkKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End eap_case_module_import]
 import { promptAction } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const BUTTON_HEIGHT = 50; // 按钮的高度
 const BUTTON_FONT_SIZE = 20; // 按钮的字体大小

@@ -14,10 +14,10 @@
  */
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start two_way_tls_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End two_way_tls_worker_import]
 import fs from '@ohos.file.fs';
 
@@ -155,13 +155,17 @@ function connectToServer(serverIp: string, serverPort: number, ca: string, cert:
       workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
       // [EndExclude two-way_bindTlsSocket]
     });
-    // [StartExclude two-way_bindTlsSocket]
-    tlsSocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {  
+    tlsSocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {
+      hilog.info(0x0000, 'testTag', 'Connected successfully');
+      // [StartExclude two-way_bindTlsSocket]
       workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
+      // [EndExclude two-way_bindTlsSocket]
     }).catch((e: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `Failed to connect: ${e.message}`);
+      // [StartExclude two-way_bindTlsSocket]
       workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
+      // [EndExclude two-way_bindTlsSocket]
     });
-    // [EndExclude two-way_bindTlsSocket]
   }).catch((e: BusinessError) => {
     hilog.error(0x0000, 'testTag', 'bind fail');
     // [StartExclude two-way_bindTlsSocket]

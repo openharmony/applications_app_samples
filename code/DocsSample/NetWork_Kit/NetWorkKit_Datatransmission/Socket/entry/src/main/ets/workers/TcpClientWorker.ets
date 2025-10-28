@@ -15,10 +15,10 @@
 
 import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS';
 import { TcpMessage } from '../connect/TcpClient';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start tcp_client_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End tcp_client_worker_import]
 
 const workerPort = worker.workerPort; // 获取 workerPort 实例
@@ -101,11 +101,11 @@ function sendMessage(tcpMessage: TcpMessage) {
       address: tcpMessage.serverIp!,
       port: tcpMessage.serverPort!
     };
+    // [EndExclude tcp_client_worker_ipAddress]
     let tcpConnect: socket.TCPConnectOptions = {
       address: netAddress,
       timeout: 6000 // 超时时间设置
     };
-    // [EndExclude tcp_client_worker_ipAddress]
     tcpClient.connect(tcpConnect).then(() => {
       hilog.info(0x0000, 'testTag', 'connect success');
       let tcpSendOptions: socket.TCPSendOptions = {
