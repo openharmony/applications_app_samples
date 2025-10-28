@@ -39,8 +39,7 @@ struct PWLErrorComponentChild  {
   @ObjectLink private objectLinkValue: PWLErrorComponentObj;
   build() {
     Column() {
-      // $r('app.string.Hello')需要替换为开发者所需的资源文件
-      Text($r('app.string.Hello'))
+      Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
     };
