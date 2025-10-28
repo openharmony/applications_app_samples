@@ -18,44 +18,27 @@ class Tmp {
 }
 
 @Builder
-function overBuilderByReference(params: Tmp) { // 不同名ets文件定义同名不导出的function编译报错，故修改
+function overBuilderByReference(params: Tmp) {
   Row() {
     Text(`UseStateVarByReference: ${params.paramA1} `)
   }
 }
-// [StartExclude by_reference_parameter_passing]
-// [Start by_value_parameter_passing]
-@Builder
-function overBuilderByValue(paramA1: string) { // 不同名ets文件定义同名不导出的function编译报错，故修改
-  Row() {
-    Text(`UseStateVarByValue: ${paramA1} `)
-  }
-}
-// [EndExclude by_reference_parameter_passing]
 
 @Entry
 @Component
-struct Parent {
+struct ParameterReference {
   @State label: string = 'Hello';
 
   build() {
     Column() {
-      // [StartExclude by_value_parameter_passing]
       // 在父组件中调用overBuilderByReference组件时，
       // 把this.label通过引用传递的方式传给overBuilderByReference组件。
       overBuilderByReference({ paramA1: this.label })
-      // [StartExclude by_reference_parameter_passing]
-      // [EndExclude by_value_parameter_passing]
-      overBuilderByValue(this.label)
-      // [StartExclude by_value_parameter_passing]
-      // [EndExclude by_reference_parameter_passing]
       Button('Click me').onClick(() => {
         // 单击Click me后，UI文本从Hello更改为ArkUI。
         this.label = 'ArkUI';
       })
-      // [EndExclude by_value_parameter_passing]
     }
   }
 }
 // [End by_reference_parameter_passing]
-// [End by_value_parameter_passing]

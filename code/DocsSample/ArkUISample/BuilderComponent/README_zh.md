@@ -63,7 +63,7 @@ entry/src/main/ets/
   * 在BuilderDemo外部使用@Builder修饰函数showTextBuilder()，使其能以链式调用的方式配置并构建Text组件;
   * 在build()中调用上述自定义构建函数，可在页面看到'Hello World'字样;
 * 参数传递规则
-  * 当@Builder修饰的自定义构建函数具备参数，其规则大致如下，源码参考[ParameterPassing.ets](./entry/src/main/ets/pages/ParameterPassing.ets)
+  * 当@Builder修饰的自定义构建函数具备参数，其规则大致如下，源码参考[ParameterValue.ets](./entry/src/main/ets/pages/ParameterValue.ets)和[ParameterReference.ets](./entry/src/main/ets/pages/ParameterReference.ets)。
   ```typescript
   // 按值传递（无自动刷新）
   @Builder function StaticText(content: string) {
