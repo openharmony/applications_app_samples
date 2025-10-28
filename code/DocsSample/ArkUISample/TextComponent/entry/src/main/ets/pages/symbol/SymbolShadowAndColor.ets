@@ -19,7 +19,7 @@ import { ComponentCard } from '../../common/Card';
 @Component
 export struct SymbolShadowAndColor {
   scroller: Scroller = new Scroller();
-  // [Start shadow_color_1]
+  // [Start shadow_color_1_new]
   @State isActive: boolean = true;
 
   options: ShadowOptions = {
@@ -28,16 +28,16 @@ export struct SymbolShadowAndColor {
     offsetX: 10,
     offsetY: 10,
   };
-  // [End shadow_color_1]
+  // [End shadow_color_1_new]
 
-  // [Start shadow_color_2]
+  // [Start shadow_color_2_new]
   radialGradientOptions: RadialGradientOptions = {
     center: ['50%', '50%'],
     radius: '20%',
     colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
     repeating: true,
   };
-  // [End shadow_color_2]
+  // [End shadow_color_2_new]
 
   build() {
     NavDestination() {

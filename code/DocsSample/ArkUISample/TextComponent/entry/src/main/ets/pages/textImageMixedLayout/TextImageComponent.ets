@@ -21,6 +21,7 @@ export struct TextImageComponent {
   build() {
     // [StartExclude textImage_component]
     NavDestination() {
+      // [EndExclude textImage_component]
       Text() {
         ImageSpan($r('app.media.startIcon'))
           .width(50)
@@ -38,6 +39,7 @@ export struct TextImageComponent {
           })
           .fontSize(16)
       }.textVerticalAlign(TextVerticalAlign.CENTER)
+      // [StartExclude textImage_component]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.TextImage_MixedLayout_Text_1'))
