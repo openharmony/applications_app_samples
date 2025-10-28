@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例是一个安全类App，使用[@ohos.dlpPermission](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-data-protection-kit/js-apis-dlppermission-sys.md) 接口展示了在eTS中常用接口的调用。
+本示例是一个安全类App，使用[@ohos.dlpPermission](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/DataProtectionKit/dlp-guidelines.md) 接口展示了在eTS中常用接口的调用。
 
 ### 效果预览
 | Index                                     | 
@@ -31,19 +31,19 @@ entry/src/main/ets/
 
 ### 相关权限
 
-允许文件管理类应用通过FAF框架访问公共数据文件：[ohos.permission.FILE_ACCESS_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionfile_access_manager)
+允许文件管理类应用通过FAF框架访问公共数据文件：[ohos.permission.FILE_ACCESS_MANAGER](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionfile_access_manager)
 
-允许应用调用storage manager服务中对空间统计以及卷信息的查询接口：[ohos.permission.STORAGE_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionstorage_manager)
+允许应用调用storage manager服务中对空间统计以及卷信息的查询接口：[ohos.permission.STORAGE_MANAGER](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionstorage_manager)
 
-允许查询应用的基本信息和其他敏感信息：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
+允许查询应用的基本信息和其他敏感信息：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED]
 
-允许对DLP文件进行权限配置和管理：[ohos.permission.ACCESS_DLP_FILE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccess_dlp_file)
+允许对DLP文件进行权限配置和管理：[ohos.permission.ACCESS_DLP_FILE](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccess_dlp_file)
 
-允许应用管理系统分布式帐号信息：[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_distributed_accounts)
+允许应用管理系统分布式帐号信息：[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_distributed_accounts)
 
-允许应用管理系统本地帐号：[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_local_accounts)
+允许应用管理系统本地帐号：[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_local_accounts)
 
-允许应用查询系统本地帐号信息：[ohos.permission.GET_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_local_accounts)
+允许应用查询系统本地帐号信息：[ohos.permission.GET_LOCAL_ACCOUNTS](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_local_accounts)
 
 ### 依赖
 
@@ -115,7 +115,7 @@ entry/src/main/ets/
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc file send install_list_capability.json /system/variant/pc/base/etc/app/<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc shell reboot<br>
 （5）下载签名工具（clone下来）
-https://gitee.com/openharmony/developtools_hapsigner<br>
+https://gitcode.com/openharmony/developtools_hapsigner<br>
 （6）在下载好的文件夹中，修改文件  .\developtools_hapsigner-master\dist\UnsgnedReleasedProfileTemplate.json<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改如下所示
 ```
@@ -143,7 +143,6 @@ https://gitee.com/openharmony/developtools_hapsigner<br>
             "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
             "ohos.permission.ACCESS_DLP_FILE",
             "ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS",
-            "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
             "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
             "ohos.permission.GET_LOCAL_ACCOUNTS"
         ]
