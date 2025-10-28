@@ -14,6 +14,7 @@
  */
 
 // [Start create_custom_dialog_1]
+// [Start create_custom_dialog_1_customDialog_controller_1]
 @CustomDialog
 struct CustomDialogExample {
   controller: CustomDialogController;
@@ -25,14 +26,17 @@ struct CustomDialogExample {
     }.height(60).justifyContent(FlexAlign.Center)
   }
 }
+// [End create_custom_dialog_1_customDialog_controller_1]
 
+// [Start create_custom_dialog_1_customDialog_controller_3]
+// [Start create_custom_dialog_1_customDialog_controller_2]
 @Entry
 @Component
 export struct CreateCustomDialog1 {
   dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomDialogExample(),
   })
-
+  // [StartExclude create_custom_dialog_1_customDialog_controller_2]
   build() {
     // [StartExclude create_custom_dialog_1]
     NavDestination() {
@@ -47,5 +51,8 @@ export struct CreateCustomDialog1 {
     }
     // [EndExclude create_custom_dialog_1]
   }
+  // [EndExclude create_custom_dialog_1_customDialog_controller_2]
 }
+// [End create_custom_dialog_1_customDialog_controller_2]
+// [End create_custom_dialog_1_customDialog_controller_3]
 // [End create_custom_dialog_1]

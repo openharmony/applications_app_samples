@@ -74,7 +74,7 @@ export default function IndexTest() {
       await button_list.click();
       let button_customDialogComponentWithTransition = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.customDialogComponentWithTransition_title')), MatchPattern.CONTAINS));
       await button_customDialogComponentWithTransition.click();
-      let text_open = await driver.findComponent(ON.text($r('app.string.CustomDialog_nest'), MatchPattern.CONTAINS));
+      let text_open = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.open_windows')), MatchPattern.CONTAINS));
       expect(text_open === null).assertFalse();
       await text_open.click();
       await sleep(5000);
@@ -91,7 +91,7 @@ export default function IndexTest() {
       await button_list.click();
       let button_customDialogWithKeyboardAvoidDistance = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.customDialogWithKeyboardAvoidDistance_title')), MatchPattern.CONTAINS));
       await button_customDialogWithKeyboardAvoidDistance.click();
-      let text_customDialogWithKeyboardAvoidDistance_open = await driver.findComponent(ON.text($r('app.string.CustomDialog_nest'), MatchPattern.CONTAINS));
+      let text_customDialogWithKeyboardAvoidDistance_open = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.open_windows')), MatchPattern.CONTAINS));
       await text_customDialogWithKeyboardAvoidDistance_open.click();
       await sleep(1000);
       let textinputComponent = await driver.findComponent(ON.type('TextInput'))
@@ -168,7 +168,7 @@ export default function IndexTest() {
       await button_dialogInteraction3_click.click();
       let button_dialogInteraction3_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
       await button_dialogInteraction3_confirm.click();
-      let button_dialogInteraction3_return = await driver.findComponent(ON.text($r('app.string.click_and_return'), MatchPattern.CONTAINS));
+      let button_dialogInteraction3_return = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.click_and_return')), MatchPattern.CONTAINS));
       await button_dialogInteraction3_return.click();
       await sleep(1000);
       await driver.pressBack();
@@ -214,17 +214,17 @@ export default function IndexTest() {
       await button_getDialogStatus.click();
       let button_button_getDialogStatus_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_button_getDialogStatus_click.click();
-      let button_button_getDialogStatus_custom = await driver.findComponent(ON.text($r('app.string.closeDialog_by_dialog'), MatchPattern.CONTAINS));
+      let button_button_getDialogStatus_custom = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.closeDialog_by_dialog')), MatchPattern.CONTAINS));
       await button_button_getDialogStatus_custom.click();
-      let button_button_getDialogStatus_custom_controller = await driver.findComponent(ON.text($r('app.string.closeDialog_by_dialog_controller'), MatchPattern.CONTAINS));
+      let button_button_getDialogStatus_custom_controller = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.closeDialog_by_dialog_controller')), MatchPattern.CONTAINS));
       await button_button_getDialogStatus_custom_controller.click();
-      let button_button_getDialogStatus_close = await driver.findComponent(ON.text($r('app.string.close_widows'), MatchPattern.CONTAINS));
+      let button_button_getDialogStatus_close = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.close_widows')), MatchPattern.CONTAINS));
       await button_button_getDialogStatus_close.click();
       await driver.pressBack();
 
       let button_dialogAvoidSoftKeyboard = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogAvoidSoftKeyboard_title')), MatchPattern.CONTAINS));
       await button_dialogAvoidSoftKeyboard.click();
-      let text_dialogWithPhysicalBack_open = await driver.findComponent(ON.text($r('app.string.open_windows'), MatchPattern.CONTAINS));
+      let text_dialogWithPhysicalBack_open = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.open_windows')), MatchPattern.CONTAINS));
       await text_dialogWithPhysicalBack_open.click();
       await sleep(1000);
       let textinputComponent = await driver.findComponent(ON.type('TextInput'))
