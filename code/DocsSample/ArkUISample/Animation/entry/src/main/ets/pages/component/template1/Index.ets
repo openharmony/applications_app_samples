@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// [Start Component_Scroll]
 import { curves, window, display, mediaquery, UIContext } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 
@@ -209,7 +207,7 @@ export struct TaskSwitchMainPage {
       Column()
         .width('100%')
         .height('100%')
-        .backgroundColor(0xF0F0F0);
+        .backgroundColor(0xF0F0F0)
 
       // 滑动组件
       Scroll(this.scroller) {
@@ -234,11 +232,11 @@ export struct TaskSwitchMainPage {
               // 滑动动画
               .translate({ x: this.cardOffset })
               .animation({ curve: curves.springMotion() })
-              .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1);
+              .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
           }, (item: TaskData) => item.toString())
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))
-        .height('100%');
+        .height('100%')
       }
       .gesture(
         GestureGroup(GestureMode.Parallel,
@@ -290,7 +288,7 @@ export struct TaskSwitchMainPage {
             })
         ), GestureMask.IgnoreInternal)
       .scrollable(ScrollDirection.Horizontal)
-      .scrollBar(BarState.Off);
+      .scrollBar(BarState.Off)
 
       // 滑动到首尾位置
       Button('Move to first/last')
@@ -305,10 +303,9 @@ export struct TaskSwitchMainPage {
             this.cardOffset = this.displayWidth / 4 - (taskDataArr.length - 1) * this.displayWidth / 2;
           }
           this.lastCardOffset = this.cardOffset;
-        });
+        })
     }
     .width('100%')
-    .height('100%');
+    .height('100%')
   }
 }
-// [End Component_Scroll]

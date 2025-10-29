@@ -144,9 +144,10 @@ struct AnimatedShape {
           } else {
             this.polyline1Vec = this.pointVec1;
           }
-        });
+        })
     }
-    .width('100%').height('100%').justifyContent(FlexAlign.Center);
+    .width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 }
+
 // [End Animation_AnimatableProperty]
