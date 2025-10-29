@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本工程主要实现了对以下指南文档[事件监听开发指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/device/input/inputmonitor-guidelines.md)
+本工程主要实现了对以下指南文档[输入监听开发指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/device/input/inputmonitor-guidelines-sys.md)
 中示例代码片段的工程化，通过该工程可以添加和移除对于按键、输入事件（鼠标、触屏和轴事件）的监听。
 
 ## 效果预览

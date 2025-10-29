@@ -17,9 +17,6 @@
     "name": "entry",
     "requestPermissions": [
       {
-        "name": "ohos.permission.INPUT_MONITORING"
-      },
-      {
         "name": "ohos.permission.INTERCEPT_INPUT_EVENT"
       }
     ],
