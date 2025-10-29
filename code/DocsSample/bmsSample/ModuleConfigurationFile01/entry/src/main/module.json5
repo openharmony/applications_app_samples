@@ -40,7 +40,7 @@
     ],
     "deliveryWithInstall": true,
     // [EndExclude module_pages]
-    "pages": "$profile:main_pages", // 资源配置，指向profile下面定义配置文件main_pages.json
+    "pages": "$profile:main_pages", // 资源配置，指向profile下面定义的配置文件main_pages.json
     // [StartExclude module_pages]
     "appStartup": "$profile:app_startup_config",
     // [EndExclude module_metadata]
@@ -161,12 +161,12 @@
     ],
     // [StartExclude module_appEnvironments]
     // [EndExclude module_fileContextMenu]
-    "fileContextMenu": "$profile:menu", // 资源配置，指向profile下面定义配置文件menu.json
+    "fileContextMenu": "$profile:menu", // 资源配置，指向profile下面定义的配置文件menu.json
     // [StartExclude module_fileContextMenu]
     "crossAppSharedConfig": "$profile:shared_config",
     // [StartExclude module_all]
     // [EndExclude module_systemTheme]
-    "systemTheme": "$profile:theme_config", // 资源配置，指向profile下面定义配置文件theme_config.json
+    "systemTheme": "$profile:theme_config", // 资源配置，指向profile下面定义的配置文件theme_config.json
     // [EndExclude module_metadata]
     // [EndExclude module_all]
     // [EndExclude module_fileContextMenu]
