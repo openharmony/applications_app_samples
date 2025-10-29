@@ -23,7 +23,7 @@ class TmpThree {
 
 @Entry
 @Component
-struct viewPort3 {
+struct ViewPort3 {
   viep: TmpThree = new TmpThree();
 
   build() {

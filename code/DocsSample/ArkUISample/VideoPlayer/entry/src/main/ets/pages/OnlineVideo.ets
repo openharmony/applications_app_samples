@@ -19,10 +19,10 @@
 @Entry
 // [EndExclude online_video]
 @Component
-export struct onlineVideo {
+export struct OnlineVideo {
   private controller: VideoController = new VideoController();
   private previewUris: Resource = $r('app.media.preview');
-  private videoSrc: string = 'xxx.mp4'; // 使用时请替换为实际视频加载网址
+  private videoSrc: string = 'www.example.com/example.mp4'; // 使用时请替换为实际视频加载网址
 
   build() {
     Column() {

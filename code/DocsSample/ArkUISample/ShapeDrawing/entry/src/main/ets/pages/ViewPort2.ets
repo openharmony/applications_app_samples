@@ -23,7 +23,7 @@ class TmpTwo {
 
 @Entry
 @Component
-struct viewPort2 {
+struct ViewPort2 {
   viep: TmpTwo = new TmpTwo();
 
   build() {
