@@ -14,6 +14,7 @@
  */
 
 // [Start soft_keyboard_index]
+//Index.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -22,10 +23,10 @@ struct KeyboardAvoidExample {
   controller: webview.WebviewController = new webview.WebviewController();
   build() {
     Column() {
-      Row().height('50%').width('100%').backgroundColor(Color.Gray)
-      Web({ src: $rawfile('index.html'),controller: this.controller})
-      Text('I can see the bottom of the page').width('100%').textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
-    }.width('100%').height('100%')
+      Row().height("50%").width("100%").backgroundColor(Color.Gray)
+      Web({ src: $rawfile("index.html"),controller: this.controller})
+      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
+    }.width('100%').height("100%")
   }
 }
 // [End soft_keyboard_index]
