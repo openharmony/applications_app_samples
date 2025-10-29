@@ -16,6 +16,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 // [Start dialog_interaction_2]
+// [Start dialog_interaction_2_example]
 @CustomDialog
 struct CustomDialogExample {
   cancel: () => void = () => {
@@ -46,7 +47,9 @@ struct CustomDialogExample {
     }
   }
 }
+// [End dialog_interaction_2_example]
 
+// [Start dialog_interaction_2_user]
 @Entry
 @Component
 export struct DialogInteraction2 {
@@ -76,4 +79,5 @@ export struct DialogInteraction2 {
     }
   }
 }
+// [End dialog_interaction_2_user]
 // [End dialog_interaction_2]
