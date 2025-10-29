@@ -17,13 +17,13 @@
 struct Index {
   build() {
     Column() {
-      // [Start priorityFirst_gesture]
+      // [Start priorityfirst_gesture]
       Column() {
         Column().id('ComponentB').gesture(TapGesture({ count: 1 }));
       }.id('ComponentA').gesture(TapGesture({ count: 1 }));
-      // [End priorityFirst_gesture]
+      // [End priorityfirst_gesture]
 
-      // [Start prioritySecond_gesture]
+      // [Start prioritysecond_gesture]
       Column()
         .id('ComponentA')
         .gesture(
@@ -33,7 +33,7 @@ struct Index {
             PanGesture({distance: 5})
           )
         );
-      // [End prioritySecond_gesture]
+      // [End prioritysecond_gesture]
     }
     .width('100%')
     .height('100%')

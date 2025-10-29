@@ -11,7 +11,7 @@ endif()
 include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
-add_library(entry SHARED napi_init.cpp NativeEntry.cpp)
+add_library(entry SHARED NapiInit.cpp NativeEntry.cpp)
 
 target_link_libraries(entry PUBLIC libace_napi.z.so libace_ndk.z.so libhilog_ndk.z.so)
 

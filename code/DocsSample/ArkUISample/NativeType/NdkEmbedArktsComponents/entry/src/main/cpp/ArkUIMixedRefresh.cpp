@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start arkui_mixed_refresh]
+// [Start arkui_mixed_refresh_cpp]
 // ArkUIMixedRefresh.cpp
 
 #include "ArkUIMixedRefresh.h"
@@ -220,4 +220,4 @@ napi_value ArkUIMixedRefresh::RegisterUpdateRefresh(napi_env env, napi_callback_
 }
 
 } // namespace NativeModule
-// [End arkui_mixed_refresh]
+// [End arkui_mixed_refresh_cpp]

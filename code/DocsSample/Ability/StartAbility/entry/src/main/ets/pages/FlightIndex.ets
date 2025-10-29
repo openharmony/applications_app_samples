@@ -64,4 +64,4 @@ struct Index {
     .height('100%')
   }
 }
-// [Start flight_index_component]
+// [End flight_index_component]

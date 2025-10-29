@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, MatchPattern } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
@@ -24,6 +24,7 @@ let driver: Driver;
 const TAG = '[Sample_arktsobservedandobjectlink]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'arktsobservedandobjectlink_';
+
 export default function IndexTest() {
   describe('IndexTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.

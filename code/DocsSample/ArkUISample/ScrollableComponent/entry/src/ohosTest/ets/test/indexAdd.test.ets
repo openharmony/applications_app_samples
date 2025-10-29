@@ -44,7 +44,7 @@ export default function IndexTest() {
       const ability: UIAbility = await delegator.getCurrentTopAbility();
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
-    /**要
+    /**
      * @tc.number UiTest_001
      * @tc.name SlidingHandEvent
      * @tc.desc 支持滑动离手事件

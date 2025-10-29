@@ -15,16 +15,18 @@
 // [Start state_management_overview]
 @Component
 struct MyComponentOverview {
+  // State variable to track the current count value
   @State count: number = 0;
+  // Increment step value, determines how much to add to the count each time
   increaseBy: number = 1;
 
   build() {
-    // [StartExclude management_overview]
+    // [StartExclude state_management_overview]
     Column(){
       Text(`Count: ${this.count}`)
       Text(`increaseBy: ${this.increaseBy}`)
     }
-    // [EndExclude management_overview]
+    // [EndExclude state_management_overview]
   }
 }
 

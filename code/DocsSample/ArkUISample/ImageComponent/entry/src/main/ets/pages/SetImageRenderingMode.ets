@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-//  [Start ImageRenderingMode]
+//  [Start image_renderingmode]
 @Entry
 @Component
 struct SetImageRenderingMode {
@@ -41,4 +41,4 @@ struct SetImageRenderingMode {
     }.height(150).width('100%').padding({ top: 20,right: 10 });
   };
 }
-//  [End ImageRenderingMode]
+//  [End image_renderingmode]

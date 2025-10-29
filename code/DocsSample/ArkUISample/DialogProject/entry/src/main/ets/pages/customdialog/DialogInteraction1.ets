@@ -25,7 +25,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      if (this.textValue != '') {
+      if (this.textValue !== '') {
             Text(`The next content is：${this.textValue}`)
               .padding({ top: 24, right: 24, left: 24 })
           } else {
@@ -42,7 +42,7 @@ struct CustomDialogExample {
             .lineHeight(21)
         }
         .onClick(() => {
-          if (this.controller != undefined) {
+          if (this.controller !== undefined) {
                       this.controller.close();
                       this.cancel();
                     };
@@ -60,9 +60,9 @@ struct CustomDialogExample {
             .fontColor($r('sys.color.font_emphasize'))
         }
         .onClick(() => {
-          if (this.controller != undefined && this.textValue != '') {
+          if (this.controller !== undefined && this.textValue !== '') {
             this.controller.close();
-          } else if (this.controller != undefined) {
+          } else if (this.controller !== undefined) {
             this.getUIContext().getRouter().pushUrl({
               url: 'pages/Index2'
             });
@@ -134,7 +134,7 @@ export struct DialogInteraction1 {
         Column() {
           Button('click me')
             .onClick(() => {
-              if (this.dialogController != null) {
+              if (this.dialogController !== null) {
                 this.dialogController.open();
               }
             }).backgroundColor(0x317aff)

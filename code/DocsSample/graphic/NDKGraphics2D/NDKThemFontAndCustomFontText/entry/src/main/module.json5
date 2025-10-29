@@ -21,11 +21,11 @@
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
-      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    "routerMap": "$profile:router_map",
     "abilities": [
       {
         "name": "EntryAbility",

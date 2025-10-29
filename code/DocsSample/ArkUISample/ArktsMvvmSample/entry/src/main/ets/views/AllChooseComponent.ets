@@ -14,7 +14,7 @@
  */
 
 // [Start all_choose_component_view]
-import TodoListViewModel from '../viewModel/TodoListViewModel';
+import TodoListViewModel from '../viewmodel/TodoListViewModel';
 import { common } from '@kit.AbilityKit';
 
 @Component

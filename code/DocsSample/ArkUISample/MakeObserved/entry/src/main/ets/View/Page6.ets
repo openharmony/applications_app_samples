@@ -58,4 +58,5 @@ struct Page6 {
     .height('100%')
     .width('100%')
   }
-}// [End Array_rom_shallow_copy]
+}
+// [End Array_rom_shallow_copy]

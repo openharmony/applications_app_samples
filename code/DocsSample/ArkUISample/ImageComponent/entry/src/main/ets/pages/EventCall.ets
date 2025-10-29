@@ -15,8 +15,8 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG = 'MyApp';
-//  [Start EventInvocation]
+const TAG = 'Sample_imagecomponent';
+//  [Start event_invocation]
 @Entry
 @Component
 struct EventCall {
@@ -53,4 +53,4 @@ struct EventCall {
     }
   };
 }
-//  [End EventInvocation]
+//  [End event_invocation]

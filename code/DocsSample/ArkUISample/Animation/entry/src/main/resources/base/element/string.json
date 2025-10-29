@@ -197,6 +197,90 @@
       "value": "共享元素转场"
     },
     {
+      "name": "shareTransition_label1",
+      "value": "示例1（共享元素转场）"
+    },
+    {
+      "name": "shareTransition_label2",
+      "value": "示例2（不新建容器并直接变化原容器）"
+    },
+    {
+      "name": "shareTransition_label3",
+      "value": "示例3（新建容器并跨容器迁移组件-结合Stack使用）"
+    },
+    {
+      "name": "shareTransition_label4",
+      "value": "示例4（新建容器并跨容器迁移组件-结合Navigation使用）"
+    },
+    {
+      "name": "shareTransition_label5",
+      "value": "示例5（新建容器并跨容器迁移组件-结合BindSheet使用）"
+    },
+    {
+      "name": "shareTransition_label6",
+      "value": "示例6（使用geometryTransition共享元素转场-geometryTransition的简单使用）"
+    },
+    {
+      "name": "shareTransition_label7",
+      "value": "示例7（使用geometryTransition共享元素转场-geometryTransition结合模态转场使用）"
+    },
+    {
+      "name": "shareTransition_text1",
+      "value": "天气晴朗"
+    },
+    {
+      "name": "shareTransition_text2",
+      "value": "你好世界"
+    },
+    {
+      "name": "shareTransition_text3",
+      "value": "万物生长"
+    },
+    {
+      "name": "shareTransition_text4",
+      "value": "评论区"
+    },
+    {
+      "name": "shareTransition_text5",
+      "value": "点击展开 Item "
+    },
+    {
+      "name": "shareTransition_text6",
+      "value": "共享元素转场"
+    },
+    {
+      "name": "shareTransition_text7",
+      "value": "展开态"
+    },
+    {
+      "name": "shareTransition_text8",
+      "value": "展开态内容"
+    },
+    {
+      "name": "shareTransition_text9",
+      "value": "照片"
+    },
+    {
+      "name": "shareTransition_text10",
+      "value": "半模态页面"
+    },
+    {
+      "name": "shareTransition_text11",
+      "value": "你好，我是"
+    },
+    {
+      "name": "shareTransition_text12",
+      "value": "点击展开 Item 2"
+    },
+    {
+      "name": "shareTransition_text13",
+      "value": "点击展开 Item 4"
+    },
+    {
+      "name": "shareTransition_text14",
+      "value": "点击展开 Item 8"
+    },
+    {
       "name": "motionPath_label",
       "value": "路径动画"
     },
@@ -277,7 +361,6 @@
       "value": "示例2（List组件动态替换动效）"
     },
     {
-<<<<<<< zidingyi1022
       "name": "animatableProperty_label",
       "value": "自定义属性动画"
     },
@@ -302,6 +385,10 @@
       "value": "AnimateIndex"
     },
     {
+      "name": "animation_blur_label",
+      "value": "模糊动画"
+    },
+    {
       "name": "animation_blur_label1",
       "value": "示例1（使用backdropBlur为组件添加背景模糊）"
     },
@@ -320,10 +407,202 @@
     {
       "name": "animation_blur_label5",
       "value": "示例5（使用motionBlur为组件添加运动模糊效果）"
-    }，
+    },
     {
-      "name": "AnimateIndex",
-      "value": "AnimateIndex"
+      "name": "traditionalCurve_label",
+      "value": "传统曲线"
+    },
+    {
+      "name": "springCurve_label",
+      "value": "弹簧曲线"
+    },
+    {
+      "name": "springCurve_text1",
+      "value": "周期1, 阻尼0.25"
+    },
+    {
+      "name": "springCurve_text2",
+      "value": "弹性跟手曲线"
+    },
+    {
+      "name": "springCurve_text3",
+      "value": "初始速度10， 质量1， 刚度228， 阻尼30"
+    },
+    {
+      "name": "modal_transition_label",
+      "value": "模态转场"
+    },
+    {
+      "name": "modal_transition_label1",
+      "value": "示例1（使用bindContentCover构建全屏模态转场效果）"
+    },
+    {
+      "name": "modal_transition_label2",
+      "value": "示例2（使用bindSheet构建半模态转场效果）"
+    },
+    {
+      "name": "modal_transition_label3",
+      "value": "示例3（使用bindMenu实现菜单弹出效果）"
+    },
+    {
+      "name": "modal_transition_label4",
+      "value": "示例4（使用bindContextMenu实现菜单弹出效果）"
+    },
+    {
+      "name": "modal_transition_label5",
+      "value": "示例5（使用bindPopup实现气泡弹窗效果）"
+    },
+    {
+      "name": "modal_transition_label6",
+      "value": "示例6（使用if实现模态转场）"
+    },
+    {
+      "name": "modal_transition_text1",
+      "value": "王**"
+    },
+    {
+      "name": "modal_transition_text2",
+      "value": "宋*"
+    },
+    {
+      "name": "modal_transition_text3",
+      "value": "许**"
+    },
+    {
+      "name": "modal_transition_text4",
+      "value": "唐*"
+    },
+    {
+      "name": "modal_transition_text5",
+      "value": "选择乘车人"
+    },
+    {
+      "name": "modal_transition_text6",
+      "value": "+ 添加乘车人"
+    },
+    {
+      "name": "modal_transition_text7",
+      "value": "编辑"
+    },
+    {
+      "name": "modal_transition_text8",
+      "value": "确认"
+    },
+    {
+      "name": "modal_transition_text9",
+      "value": "确认订单"
+    },
+    {
+      "name": "modal_transition_text10",
+      "value": "始发站"
+    },
+    {
+      "name": "modal_transition_text11",
+      "value": "8时1分"
+    },
+    {
+      "name": "modal_transition_text12",
+      "value": "终点站"
+    },
+    {
+      "name": "modal_transition_text13",
+      "value": "+ 选择乘车人"
+    },
+    {
+      "name": "modal_transition_text14",
+      "value": "不要辣"
+    },
+    {
+      "name": "modal_transition_text15",
+      "value": "少放辣"
+    },
+    {
+      "name": "modal_transition_text16",
+      "value": "多放辣"
+    },
+    {
+      "name": "modal_transition_text17",
+      "value": "不要香菜"
+    },
+    {
+      "name": "modal_transition_text18",
+      "value": "不要香葱"
+    },
+    {
+      "name": "modal_transition_text19",
+      "value": "不要一次性餐具"
+    },
+    {
+      "name": "modal_transition_text20",
+      "value": "需要一次性餐具"
+    },
+    {
+      "name": "modal_transition_text21",
+      "value": "口味与餐具"
+    },
+    {
+      "name": "modal_transition_text22",
+      "value": "选择点餐口味和餐具"
+    },
+    {
+      "name": "modal_transition_text23",
+      "value": "菜单项1"
+    },
+    {
+      "name": "modal_transition_text24",
+      "value": "菜单项2"
+    },
+    {
+      "name": "modal_transition_text25",
+      "value": "保存图片"
+    },
+    {
+      "name": "modal_transition_text26",
+      "value": "收藏"
+    },
+    {
+      "name": "modal_transition_text27",
+      "value": "搜一搜"
+    },
+    {
+      "name": "modal_transition_text28",
+      "value": "查看图片"
+    },
+    {
+      "name": "modal_transition_text29",
+      "value": "蓝牙"
+    },
+    {
+      "name": "modal_transition_text30",
+      "value": "个人热点"
+    },
+    {
+      "name": "modal_transition_text31",
+      "value": "连接与共享"
+    },
+    {
+      "name": "modal_transition_text32",
+      "value": "投屏"
+    },
+    {
+      "name": "modal_transition_text33",
+      "value": "打印"
+    },
+    {
+      "name": "modal_transition_text34",
+      "value": "私人DNS"
+    },
+    {
+      "name": "modal_transition_text35",
+      "value": "设置"
+    },
+    {
+      "name": "modal_transition_text36",
+      "value": "输入关键字搜索"
+    },
+    {
+      "name": "modal_transition_text37",
+      "value": "共享"
     }
   ]
 }

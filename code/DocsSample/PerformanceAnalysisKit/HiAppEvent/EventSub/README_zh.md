@@ -14,9 +14,9 @@
 
 - [事件订阅（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-app-events-ndk.md)
 
-- [订阅崩溃事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-arkts.md)
+- [订阅崩溃事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-arkts.md)
 
-- [订阅崩溃事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-ndk.md)
+- [订阅崩溃事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-ndk.md)
 
 - [订阅卡死事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-freeze-events-arkts.md)
 
@@ -84,7 +84,7 @@ AppEvent HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappe
 2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"AppEvent HiAppEvent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-AppEvent HiAppEvent succeed to read events with onTrigger callback form C API 
+AppEvent HiAppEvent succeed to read events with onTrigger callback form C API
 AppEvent HiAppEvent eventInfo={"domain_":"button","name_":"click","type_":4,"time_":1503514787492,"tz_":"","pid_":18178,"tid_":18178,"clickTime":100}
 AppEvent HiAppEvent eventInfo.domain=button
 AppEvent HiAppEvent eventInfo.name=click
@@ -112,7 +112,7 @@ AppEvents writeEvent ArkTS success
 2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"AppEvent HiAppEvent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-AppEvent HiAppEvent succeed to read events with onTrigger callback form C API 
+AppEvent HiAppEvent succeed to read events with onTrigger callback form C API
 AppEvent HiAppEvent eventInfo={"domain_":"button","name_":"click","type_":4,"time_":1503515278195,"tz_":"","pid_":18178,"tid_":18178,"clickTime":1503515278}
 AppEvent HiAppEvent eventInfo.domain=button
 AppEvent HiAppEvent eventInfo.name=click
@@ -352,9 +352,9 @@ HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"p
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-HiAppEvent eventInfo.WatcherType=OnTrigger 													
+HiAppEvent eventInfo.WatcherType=OnTrigger
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=ADDRESS_SANITIZER													
+HiAppEvent eventInfo.name=ADDRESS_SANITIZER
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.bundle_version=1.0.0
@@ -365,9 +365,9 @@ HiAppEvent eventInfo.params.type="stack-buffer-overflow"
 HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1609739933234_6628.log"]
 HiAppEvent eventInfo.params.log_over_limit=0
 // 以上为C++ OnTrigger观察者日志输出
-HiAppEvent eventInfo.WatcherType=OnReceive 													
+HiAppEvent eventInfo.WatcherType=OnReceive
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=ADDRESS_SANITIZER													
+HiAppEvent eventInfo.name=ADDRESS_SANITIZER
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.bundle_version=1.0.0
@@ -413,9 +413,9 @@ HiAppEvent eventInfo.params.log_over_limit=0
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-HiAppEvent eventInfo.WatcherType=OnReceive 													
+HiAppEvent eventInfo.WatcherType=OnReceive
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=MAIN_THREAD_JANK												    
+HiAppEvent eventInfo.name=MAIN_THREAD_JANK
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.pid=6628
@@ -450,7 +450,7 @@ HiAppEvent eventInfo.params.log_over_limit=0
 
 3.C++实现了onReceive观察者，ArkTS实现了onReceive观察者。
 
-##### 9.订阅任务执行超时事件（C/C++） 
+##### 9.订阅任务执行超时事件（C/C++）
 
 本示例主要展示了订阅任务执行超时事件的功能，包括构造任务执行超时事件及其订阅处理。OH_HiAppEvent_AddWatcher接口用于添加对该超时事件的订阅。
 

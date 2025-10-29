@@ -31,14 +31,18 @@ entry/src/main/ets/
 │   ├── IndexController.ets (CustomDialogController_CAPI对接示例界面)
 │   └── IndexCustomDialog.ets (OpenCustomDialog_CAPI对接示例界面)
 └───common
-       └── resource.ets (资源字串处理工具类)
+       └── sky.jpg(图片)
 entry/src/main/
 ├── cpp
 │   ├── types
 │   │   └── libentry
 │   │       └── Index.d.ts (函数对应的js映射)
 │   ├── common
-│   │    └── common.h
+│   │     ├── ArkUIBaseNode.h（Node工具类）
+│   │     ├── ArkUINode.h（Node工具类）
+│   │     ├── ArkUITextNode.h（Text工具类）
+│   │     ├── NativeModule.h（NativeMoudle工具类）
+│   │     └── common.h
 │   ├── CMakeLists.txt (CMake脚本)
 │   └── napi_init.cpp
 └───customdialog

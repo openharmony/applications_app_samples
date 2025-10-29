@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start CustomGestures]
+// [Start custom_gestures]
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
@@ -71,4 +71,4 @@ struct Index {
     }
   };
 }
-//   [End CustomGestures]
+//   [End custom_gestures]

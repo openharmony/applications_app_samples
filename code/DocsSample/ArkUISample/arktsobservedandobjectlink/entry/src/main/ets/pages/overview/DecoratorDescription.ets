@@ -73,7 +73,7 @@ struct DecoratorDescriptionHelloWorld {
           this.parent.child.num = 5;
           // [End Modify_and_change]
 
-          // [ Start Attribute_assignment ]
+          // [Start Attribute_assignment]
           // 允许@ObjectLink装饰的数据属性赋值
           this.objLink.a = '...'
           // [End Attribute_assignment]

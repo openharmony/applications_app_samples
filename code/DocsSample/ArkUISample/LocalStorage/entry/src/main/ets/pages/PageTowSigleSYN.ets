@@ -14,6 +14,7 @@
  */
 // 创建新实例并使用给定对象初始化
 // 使LocalStorage可从@Component组件访问
+// [Start localtorage_page_tow_sigle_syn]
 @Entry
 @Component
 struct Parent1 {
@@ -44,3 +45,4 @@ struct Child1 {
     }
   }
 }
+// [End localtorage_page_tow_sigle_syn]

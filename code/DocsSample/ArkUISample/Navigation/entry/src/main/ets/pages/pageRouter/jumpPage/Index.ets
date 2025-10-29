@@ -19,7 +19,7 @@ import { DOMAIN, TAG } from '../../common/Common';
 @Entry
 @Component
 struct Index {
-  // [Start home_click]
+  // [Start jump_click]
   // 在Home页面中
   onJumpClick(): void {
     this.getUIContext().getRouter().pushUrl({
@@ -32,7 +32,7 @@ struct Index {
       hilog.info(DOMAIN, TAG,'Invoke pushUrl succeeded.');
     });
   }
-  // [End home_click]
+  // [End jump_click]
 
   @State message: string = 'Home Page';
 

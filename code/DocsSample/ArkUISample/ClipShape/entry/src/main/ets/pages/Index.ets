@@ -32,13 +32,13 @@ struct Index {
     Scroll() {
       Column(){
         // $r('app.string.EntryAbility_title1')需要替换为开发者所需的字符串（图像、数字等）资源文件
-        Text($('app.string.EntryAbility_title1'))
+        Text($r('app.string.EntryAbility_title1'))
         ClipShapeExampleA()
-        Text($('app.string.EntryAbility_title2'))
+        Text($r('app.string.EntryAbility_title2'))
         ClipShapeExampleB()
-        Text($('app.string.EntryAbility_title3'))
+        Text($r('app.string.EntryAbility_title3'))
         ClipShapeExampleC()
-        Text($('app.string.EntryAbility_title4'))
+        Text($r('app.string.EntryAbility_title4'))
         ClipShapeExampleD()
       }
 

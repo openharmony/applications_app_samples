@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-//  [Start ImageDecodingSize]
+//  [Start image_decodingsize]
 @Entry
 @Component
 struct SetImageDecodingSize {
@@ -46,4 +46,4 @@ struct SetImageDecodingSize {
     };
   };
 }
-//  [End ImageDecodingSize]
+//  [End image_decodingsize]

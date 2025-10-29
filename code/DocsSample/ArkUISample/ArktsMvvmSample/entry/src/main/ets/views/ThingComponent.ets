@@ -14,7 +14,7 @@
  */
 
 // [Start thing_component_view]
-import ThingViewModel from '../viewModel/ThingViewModel';
+import ThingViewModel from '../viewmodel/ThingViewModel';
 
 @Component
 export struct ThingComponent {

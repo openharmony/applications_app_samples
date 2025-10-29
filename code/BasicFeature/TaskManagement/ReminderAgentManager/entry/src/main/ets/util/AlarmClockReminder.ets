@@ -24,41 +24,13 @@ import { Reminder } from '../common/Reminder';
 import TimeConversion from './TimeConversion';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
-import { deviceInfo } from '@kit.BasicServicesKit';
-import { calendarManager } from '@kit.CalendarKit';
-import { calendarMgr } from '../MainAbility/MainAbility';
 import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = 'AlarmClockReminder';
-let deviceTypeInfo: string = deviceInfo.deviceType;
-let calendar: calendarManager.Calendar | undefined = undefined;
 
 class AlarmClockReminder {
   public alarmClockReminders: Reminder[] = []
   private date: Date = new Date();
-
-  setCalendarReminder() {
-    let config: calendarManager.CalendarConfig = {
-      // 日历配置信息
-      enableReminder: true,
-      color: '#aabbcc',
-    };
-
-    calendarMgr?.getCalendar(async (err: BusinessError, data: calendarManager.Calendar) => {
-      if (err) {
-        Logger.error(TAG, `Failed to get calendar.code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-      } else {
-        Logger.info(TAG, `Succeeded in getting calendar, data ->` + JSON.stringify(data));
-        calendar = data;
-        // 设置日历配置信息
-        await calendar!.setConfig(config).then(() => {
-          Logger.info(TAG, `Succeeded in setting config, config -> ` + JSON.stringify(config));
-        }).catch((err: BusinessError) => {
-          Logger.error(TAG, `Failed to set config. code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-        });
-      }
-    });
-  }
 
   async setAlarmReminder(time: TimePickerResult) {
     let hour = time.hour! < 10 ? `0${time.hour}` : time.hour;
@@ -81,6 +53,7 @@ class AlarmClockReminder {
         notificationType: notificationManager.SlotType.CONTENT_INFORMATION
       });
       reminder.reminderName = selectTime
+      // [Start alarm_reminder]
       let alarm: reminderAgent.ReminderRequestAlarm = {
         reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
         hour: time.hour!,
@@ -99,8 +72,8 @@ class AlarmClockReminder {
         slotType: notificationManager.SlotType.CONTENT_INFORMATION,
         ringDuration: Constant.REMINDER_DURATION,
         wantAgent: {
-          pkgName: 'ohos.samples.reminderagentmanager',
-          abilityName: 'MainAbility'
+          pkgName: 'com.example.reminderagentmanager',
+          abilityName: 'EntryAbility'
         },
         title: context.resourceManager.getStringSync($r('app.string.alarm_clock').id),
         content: context.resourceManager.getStringSync($r('app.string.alarm_clock_reach').id),
@@ -108,13 +81,13 @@ class AlarmClockReminder {
         timeInterval: 0,
         daysOfWeek: []
       }
+      // [End alarm_reminder]
       Logger.info(TAG, `this alarm clock is ${JSON.stringify(alarm)}`)
       reminder.reminderRequestAlarm = alarm
       reminder.isStart = false
       this.alarmClockReminders.push(reminder)
       Logger.info(TAG, `setAlarmReminder this all alarmclock is ${JSON.stringify(this.alarmClockReminders)}`)
       await PreferencesDataManager.putData('alarmClock', this.alarmClockReminders)
-      this.setCalendarReminder();
     } else {
       promptAction.showToast({
         message: context.resourceManager.getStringSync($r('app.string.alarm_clock_existence').id),
@@ -132,32 +105,10 @@ class AlarmClockReminder {
     let day = this.date.getDate();
     this.alarmClockReminders[index].isStart = isOn
     if (isOn) {
-      if (deviceTypeInfo === 'default') {
-        await reminderAgent.addNotificationSlot(
-          { notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION });
-        let reminderId = await reminderAgent.publishReminder(this.alarmClockReminders[index].reminderRequestAlarm!);
-        this.alarmClockReminders[index].reminderId = reminderId;
-      } else {
-        let context = getContext(this) as common.UIAbilityContext;
-        let selectDate = `${year}-${month}-${day} ${selectTime} `;
-        let event: calendarManager.Event = {
-          type: calendarManager.EventType.NORMAL,
-          title: context.resourceManager.getStringSync($r('app.string.alarm_clock').id),
-          description: context.resourceManager.getStringSync($r('app.string.alarm_clock_reach').id),
-          reminderTime: [0],
-          startTime: Date.parse(selectDate),
-          endTime: Date.parse(selectDate) + 60 * 1000
-        };
-        await calendar!.addEvent(event)
-          .then((data: number) => {
-            Logger.info(TAG, `Succeeded in adding event, id -> {data}`);
-            this.alarmClockReminders[index].reminderId = data;
-          })
-          .catch((err: BusinessError) => {
-            Logger.error(TAG, `Failed to add event.
-              code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-          });
-      }
+      await reminderAgent.addNotificationSlot(
+        { notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION });
+      let reminderId = await reminderAgent.publishReminder(this.alarmClockReminders[index].reminderRequestAlarm!);
+      this.alarmClockReminders[index].reminderId = reminderId;
       if (this.alarmClockReminders[index].audioSrc) {
         let audioIndex: number = await AudioPlayer.getAudioID(this.alarmClockReminders[index].audioSrc,
           TimeConversion.timeToMillisecond(this.alarmClockReminders[index].reminderRequestAlarm!.hour,
@@ -198,11 +149,7 @@ class AlarmClockReminder {
       clearTimeout(this.alarmClockReminders[index].vibratorTimeouts)
       clearTimeout(this.alarmClockReminders[index].audioTimeouts)
       await PreferencesDataManager.putData('alarmClock', this.alarmClockReminders)
-      if (deviceTypeInfo === 'default') {
-        await reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId);
-      } else {
-        await calendar!.deleteEvent(this.alarmClockReminders[index].reminderId);
-      }
+      await reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId);
       await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
     }
   }
@@ -215,19 +162,11 @@ class AlarmClockReminder {
     try {
       clearTimeout(this.alarmClockReminders[index].vibratorTimeouts)
       clearTimeout(this.alarmClockReminders[index].audioTimeouts)
-      if (deviceTypeInfo === 'default') {
-        reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId).then(() => {
-          Logger.info(TAG, `deleteAlarmReminder cancelReminder is succeed`);
-        }).catch((err: BusinessError) => {
-          Logger.info(TAG, `deleteAlarmReminder cancelReminder is not exist err is ${JSON.stringify(err)}`);
-        })
-      } else {
-        calendar!.deleteEvent(this.alarmClockReminders[index].reminderId).then(() => {
-          Logger.info(TAG, `Succeeded in deleting event`);
-        }).catch((err: BusinessError) => {
-          Logger.error(TAG, `Failed to delete event. Code: ${err.code}, message: ${err.message}`);
-        });
-      }
+      reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId).then(() => {
+        Logger.info(TAG, `deleteAlarmReminder cancelReminder is succeed`);
+      }).catch((err: BusinessError) => {
+        Logger.info(TAG, `deleteAlarmReminder cancelReminder is not exist err is ${JSON.stringify(err)}`);
+      })
       vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME).then(() => {
         Logger.info(TAG, `deleteAlarmReminder stop vibrator is succeed`)
       }).catch((err: BusinessError) => {

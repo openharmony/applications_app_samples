@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start localtorage_local_date_sample] 
 @Entry
 @Component
 struct LocalDateSample {
@@ -47,3 +48,4 @@ struct LocalDateSample {
     }.width('100%')
   }
 }
+// [End localtorage_local_date_sample] 

@@ -216,7 +216,7 @@
       // [End quick_start1]
       // [Start quick_start2]
       {
-        // [StartExclude  quick_start0]
+        // [StartExclude  quick_start2]
         "name": "WantAbility2",
         "srcEntry": "./ets/want/WantAbility2.ets",
         "description": "$string:EntryAbility_desc",
@@ -225,7 +225,7 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        // [EndExclude  quick_start0]
+        // [EndExclude  quick_start2]
         "skills": [
           {
             "entities": [
@@ -247,7 +247,7 @@
       // [End quick_start2]
       // [Start quick_start3]
       {
-        // [StartExclude  quick_start0]
+        // [StartExclude  quick_start3]
         "name": "loginAbility",
         "srcEntry": "./ets/clearability/LoginAbility.ets",
         "description": "$string:ClearAbility_desc",
@@ -255,7 +255,7 @@
         "label": "$string:ClearAbility_label",
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        // [EndExclude  quick_start0]
+        // [EndExclude  quick_start3]
         "skills": [
           {
             "uris": [
@@ -272,7 +272,7 @@
       // [End quick_start3]
       // [Start quick_start4]
       {
-        // [StartExclude  quick_start0]
+        // [StartExclude  quick_start4]
         "name": "clearAbility",
         "srcEntry": "./ets/clearability/ClearAbility.ets",
         "description": "$string:ClearAbility_desc",
@@ -280,7 +280,7 @@
         "label": "$string:ClearAbility_label",
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        // [EndExclude  quick_start0]
+        // [EndExclude  quick_start4]
         "skills": [
           {
             "uris": [

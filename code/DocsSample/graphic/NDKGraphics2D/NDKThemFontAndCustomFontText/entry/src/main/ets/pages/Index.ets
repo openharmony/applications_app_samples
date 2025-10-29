@@ -12,96 +12,74 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import text from '@ohos.graphics.text';
 
-import XComponentContext from "../interface/XComponentContext";
-
-const TAG = '[Sample_DrawingAPI]';
+export interface NavNode {
+  label: string
+  targetPage: string
+  params: string | NavNode[]
+}
 
 @Entry
 @Component
 struct Index {
-  private xComponentContext: XComponentContext | undefined = undefined;
+  @Provide('NavPathStack') pageStack: NavPathStack = new NavPathStack();
 
   build() {
-    Column() {
+    Navigation(this.pageStack) {
       Row() {
-        XComponent({ id: 'xcomponentId', type: XComponentType.SURFACE, libraryname: 'entry' })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext = xComponentContext as XComponentContext;
-            // if (this.xComponentContext) {
-            //   this.xComponentContext.drawNothing();
-            // }
-          }).width('640px') // Multiples of 64
-          .backgroundColor(Color.White)
-      }.height('88%')
-      // .colorBlend(Color.White)
-      // .backgroundColor(Color.White)
-      Row() {
-        Button($r("app.string.Button_label1"))
-          .fontSize('10fp')
-          .fontWeight(500)
-          .margin({ bottom: 24, left: 5 })
-          .onClick(() => {
-            console.log(TAG, "draw text click");
-            if (this.xComponentContext) {
-              console.log(TAG, "draw text");
-              this.xComponentContext.drawText();
-            }
+        Column({ space: 17 }) {
+          ForEach(navTree, (node: NavNode) => {
+            Button(node.label)
+              .width('70%')
+              .onClick(() => {
+                this.pageStack.pushPathByName(node.targetPage, node.params);
+              })
           })
-          .width('23.6%')
-          .height(40)
-          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
-
-        Button($r("app.string.Button_label2"))
-          .fontSize('10fp')
-          .fontWeight(500)
-          .margin({ bottom: 24, left: 5 })
-          .onClick(() => {
-            console.log(TAG, "draw text click");
-            if (this.xComponentContext) {
-              console.log(TAG, "draw text");
-              this.xComponentContext.drawCustomFontText();
-            }
-          })
-          .width('24.6%')
-          .height(40)
-          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
-
-        Button($r("app.string.Button_label3"))
-          .fontSize('10fp')
-          .fontWeight(500)
-          .margin({ bottom: 24, left: 8 })
-          .onClick(() => {
-            console.log(TAG, "SysFontMetrics click");
-            if (this.xComponentContext) {
-              console.log(TAG, "SysFontMetrics log");
-              this.xComponentContext.printSysFontMetrics();
-            }
-          })
-          .width('23.6%')
-          .height(40)
-          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
-
-        Button($r("app.string.Button_label4"))
-          .fontSize('10fp')
-          .fontWeight(500)
-          .margin({ bottom: 24, left: 3 })
-          .onClick(() => {
-            console.log(TAG, "DisableSysFont click");
-            if (this.xComponentContext) {
-              console.log(TAG, "DisableSysFont log");
-              this.xComponentContext.drawDisableSysFontText();
-            }
-          })
-          .width('23.6%')
-          .height(40)
-          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+        }
+        .justifyContent(FlexAlign.Center)
       }
       .width('100%')
+      .height('100%')
       .justifyContent(FlexAlign.Center)
-      .shadow(ShadowStyle.OUTER_DEFAULT_SM)
-      .alignItems(VerticalAlign.Bottom)
-      .layoutWeight(1)
     }
+    .hideToolBar(true)
+    .hideTitleBar(true)
+    .mode(NavigationMode.Stack)
   }
 }
+
+
+const navTree: NavNode[] = [
+  {
+    label: '使用主题字体',
+    targetPage: 'NdkPage',
+    params: 'drawText'
+  },
+  {
+    label: '自定义字体的注册和使用',
+    targetPage: 'NdkPage',
+    params: 'drawCustomFontText'
+  },
+  {
+    label: '系统字体的信息获取和使用',
+    targetPage: 'NavTreePage',
+    params: [
+      {
+        label: '获取系统字体信息',
+        targetPage: 'NdkPage',
+        params: 'printSysFontMetrics'
+      },
+      {
+        label: '使用或切换系统字体',
+        targetPage: 'NdkPage',
+        params: 'printSysFontMetrics'
+      },
+      {
+        label: '禁用系统字体',
+        targetPage: 'NdkPage',
+        params: 'drawDisableSysFontText'
+      },
+    ]
+  },
+];

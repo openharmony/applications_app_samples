@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-//  [Start DrawableDescriptor]
+//  [Start drawable_descriptor]
 import {
   DrawableDescriptor,
   PixelMapDrawableDescriptor,
@@ -128,4 +128,4 @@ struct DrawableDescriptorType {
     .margin(50)
   };
 }
-//  [End DrawableDescriptor]
+//  [End drawable_descriptor]

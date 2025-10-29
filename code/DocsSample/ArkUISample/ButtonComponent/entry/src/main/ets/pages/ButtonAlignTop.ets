@@ -32,7 +32,7 @@ struct ButtonAlignTop {
           // [StartExclude button_click]
           position: ArcButtonPosition.TOP_EDGE,
           styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT,
-          // [End button_click]
+          // [EndExclude button_click]
           // [StartExclude button_align_top]
           onClick: () => {
             hilog.info(DOMAIN, TAG, 'ArcButton onClick');

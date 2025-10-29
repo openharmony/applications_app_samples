@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start wrapbuilder_page_five]
 @Builder
 function myBuilderFirst(value: string, size: number) {
   Text('MyBuilderFirst：' + value)
@@ -52,3 +52,4 @@ struct testBuilderIndex {
     .height('100%')
   }
 }
+// [End wrapbuilder_page_five]

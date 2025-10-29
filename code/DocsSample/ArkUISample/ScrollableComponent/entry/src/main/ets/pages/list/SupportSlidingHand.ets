@@ -15,7 +15,7 @@
 // [Start class_News]
 import { LengthMetrics } from '@kit.ArkUI';
 import { ComponentCard } from '../../common/Card';
-
+// [Start class_News_content]
 class News {
   public id: string;
   public title: string;
@@ -29,7 +29,7 @@ class News {
     this.type = type;
   }
 }
-
+// [End class_News_content]
 const FRICTION_SCALE: number = 4.2;
 const DEFAULT_FRICTION: number = 1;
 
@@ -99,6 +99,7 @@ export struct SupportSlidingHand {
         })
         .id('scrollToIndex')
         // 实现参考
+        // [Start scrollToIndex_scrollerForList]
         .onWillStopDragging((velocity: number) => {
           // 短新闻处理
           if (this.IsShortNews(this.currentIndex)) {
@@ -113,7 +114,9 @@ export struct SupportSlidingHand {
           }
           // [Start scrollerForList]
           // 长新闻处理
+          // [Start scrollerForList_rect]
           let rect = this.scrollerForList.getItemRect(this.currentIndex);
+          // [End scrollerForList_rect]
           if (velocity < -1000) {
             if (rect) {
               // 当前节点在页面内的剩余显示范围
@@ -139,6 +142,7 @@ export struct SupportSlidingHand {
           }
           // [End scrollerForList]
         })
+        // [End scrollToIndex_scrollerForList]
       }
       .width('100%')
       .height('100%')

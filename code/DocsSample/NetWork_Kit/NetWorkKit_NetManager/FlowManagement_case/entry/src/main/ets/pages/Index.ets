@@ -16,6 +16,7 @@
 // [Start flow_management_case_module_import]
 import { socket, statistics } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End flow_management_case_module_import]
 
 const LOG_FONT_SIZE = 15; // 日志文字大小
@@ -177,30 +178,36 @@ struct NetworkStatisticsDemo {
     // [Start flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
     // wlan0为主WiFi网卡名，获取主WiFi实时下行流量数据。
     statistics.getIfaceRxBytes('wlan0').then((stats: number) => {
-      console.info(JSON.stringify(stats));
+      hilog.info(0x0000, 'testTag', JSON.stringify(stats));
       // [StartExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
       this.logMessage = `Interface wlan0 downstream traffic: ${JSON.stringify(stats)}`;
       // [EndExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
     })
-    // [StartExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
     .catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', JSON.stringify(err));
+      // [StartExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
       this.logMessage = `Failed to get downstream traffic for interface wlan0: ${JSON.stringify(err)}`;
+      // [EndExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
     });
+    // [StartExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
   }
 
   getIfaceTxBytes() {
     // [EndExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
     // wlan0为主WiFi网卡名，获取主WiFi实时上行流量数据。
     statistics.getIfaceTxBytes('wlan0').then((stats: number) => {
-      console.info(JSON.stringify(stats));
+      hilog.info(0x0000, 'testTag', JSON.stringify(stats));
       // [StartExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
       this.logMessage = `Interface wlan0 upstream traffic: ${JSON.stringify(stats)}`;
       // [EndExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
     })
-    // [StartExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
     .catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', JSON.stringify(err));
+      // [StartExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
       this.logMessage = `Failed to get upstream traffic for interface wlan0: ${JSON.stringify(err)}`;
+      // [EndExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
     });
+  // [StartExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
   }
   // [EndExclude flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
   // [End flow_management_getIfaceRxBytes_and_getIfaceTxBytes]
@@ -209,7 +216,7 @@ struct NetworkStatisticsDemo {
     // [Start flow_management_getCellularRxBytes_and_getCellularTxBytes]
     // 获取蜂窝实时下行流量数据。
     statistics.getCellularRxBytes().then((stats: number) => {
-      console.info(JSON.stringify(stats));
+      hilog.info(0x0000, 'testTag', JSON.stringify(stats));
       // [StartExclude flow_management_getCellularRxBytes_and_getCellularTxBytes]
       this.logMessage = `Cellular downstream traffic: ${JSON.stringify(stats)}`;
       // [EndExclude flow_management_getCellularRxBytes_and_getCellularTxBytes]
@@ -224,7 +231,7 @@ struct NetworkStatisticsDemo {
     // [EndExclude flow_management_getCellularRxBytes_and_getCellularTxBytes]
     // 获取蜂窝实时上行流量数据。
     statistics.getCellularTxBytes().then((stats: number) => {
-      console.info(JSON.stringify(stats));
+      hilog.info(0x0000, 'testTag', JSON.stringify(stats));
       // [StartExclude flow_management_getCellularRxBytes_and_getCellularTxBytes]
       this.logMessage = `Cellular upstream traffic: ${JSON.stringify(stats)}`;
       // [EndExclude flow_management_getCellularRxBytes_and_getCellularTxBytes]
@@ -241,7 +248,7 @@ struct NetworkStatisticsDemo {
     // [Start flow_management_getAllRxBytes_and_getAllTxBytes]
     // 获取所有网卡实时下行流量数据。
     statistics.getAllRxBytes().then((stats: number) => {
-      console.info(JSON.stringify(stats));
+      hilog.info(0x0000, 'testTag', JSON.stringify(stats));
       // [StartExclude flow_management_getAllRxBytes_and_getAllTxBytes]
       this.logMessage = `All interfaces downstream traffic: ${JSON.stringify(stats)}`;
       // [EndExclude flow_management_getAllRxBytes_and_getAllTxBytes]
@@ -256,7 +263,7 @@ struct NetworkStatisticsDemo {
     // [EndExclude flow_management_getAllRxBytes_and_getAllTxBytes]
     // 获取所有网卡实时上行流量数据。
     statistics.getAllTxBytes().then((stats: number) => {
-      console.info(JSON.stringify(stats));
+      hilog.info(0x0000, 'testTag', JSON.stringify(stats));
       // [StartExclude flow_management_getAllRxBytes_and_getAllTxBytes]
       this.logMessage = `All interfaces upstream traffic: ${JSON.stringify(stats)}`;
       // [EndExclude flow_management_getAllRxBytes_and_getAllTxBytes]
@@ -278,7 +285,7 @@ struct NetworkStatisticsDemo {
     let UID = getContext(this).applicationInfo.uid
     // [EndExclude flow_management_getUidRxBytes_and_getUidTxBytes]
     statistics.getUidRxBytes(UID).then((stats: number) => {
-      console.info(JSON.stringify(stats));
+      hilog.info(0x0000, 'testTag', JSON.stringify(stats));
       // [StartExclude flow_management_getUidRxBytes_and_getUidTxBytes]
       this.logMessage = `Application ${UID} downstream traffic: ${JSON.stringify(stats)}`;
       // [EndExclude flow_management_getUidRxBytes_and_getUidTxBytes]
@@ -296,7 +303,7 @@ struct NetworkStatisticsDemo {
     let UID = getContext(this).applicationInfo.uid
     // [EndExclude flow_management_getUidRxBytes_and_getUidTxBytes]
     statistics.getUidTxBytes(UID).then((stats: number) => {
-      console.info(JSON.stringify(stats));
+      hilog.info(0x0000, 'testTag', JSON.stringify(stats));
       // [StartExclude flow_management_getUidRxBytes_and_getUidTxBytes]
       this.logMessage = `Application ${UID} upstream traffic: ${JSON.stringify(stats)}`;
       // [EndExclude flow_management_getUidRxBytes_and_getUidTxBytes]
@@ -333,12 +340,12 @@ struct NetworkStatisticsDemo {
     // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
     tcp.getSocketFd().then((sockfd: number) => {
       statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
-        console.info(JSON.stringify(stats));
+        hilog.info(0x0000, 'testTag', JSON.stringify(stats));
         // [StartExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
         this.logMessage = `Socket ${sockfd} downstream traffic: ${JSON.stringify(stats)}`;
         // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
       }).catch((err: BusinessError) => {
-        console.error(JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', JSON.stringify(err));
         // [StartExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
         this.logMessage = `Failed to get socket downstream traffic: ${JSON.stringify(err)}`;
         // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
@@ -372,12 +379,12 @@ struct NetworkStatisticsDemo {
     // 获取指定socket实时上行流量数据。
     tcp.getSocketFd().then((sockfd: number) => {
       statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
-        console.info(JSON.stringify(stats));
+        hilog.info(0x0000, 'testTag', JSON.stringify(stats));
         // [StartExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
         this.logMessage = `Socket ${sockfd} upstream traffic: ${JSON.stringify(stats)}`;
         // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
       }).catch((err: BusinessError) => {
-        console.error(JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', JSON.stringify(err));
         // [StartExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]
         this.logMessage = `Failed to get socket upstream traffic: ${JSON.stringify(err)}`;
         // [EndExclude flow_management_getSockfdRxBytes_and_getSockfdTxBytes]

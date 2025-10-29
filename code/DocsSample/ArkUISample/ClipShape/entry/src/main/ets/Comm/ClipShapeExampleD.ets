@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [End ClipShapeExampleD]
+// [Start ClipShapeExampleD]
 import { PathShape } from '@kit.ArkUI';
 @Component
 export  struct ClipShapeExampleD {

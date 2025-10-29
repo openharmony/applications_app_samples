@@ -112,7 +112,7 @@ const routes: Route[] = [
   {
     name: `${Focus_ROUTE_PREFIX}/ FocusTraversalGuidelines`,
     title: resource.resourceToString($r('app.string.Focus_Index_FocusTraversalGuidelines_title')),
-    description: resource.resourceToString($r('app.string.Focus_Index_FocusTraversalGuidelines_description')),
+    description: resource.resourceToString($r('app.string.Focus_Index_FocusTransfer_desFocus_Index_FocusTraver_descriptioncription')),
   },
   {
     name: `${Focus_ROUTE_PREFIX}/ FrojectAreaFocusFlex`,

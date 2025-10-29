@@ -32,28 +32,36 @@ struct Index {
           this.getUIContext().getRouter().pushUrl({url: 'pages/Index'});
           testNapi2.disposeController();
           testNapi2.disposeOption();
+          testNapi2.disposeOptionText();
           testNapi2.disposeLifecycle();
         })
       Button($r('app.string.dialog_controller_demo'))
-        .height(50)
+        .height(30)
         .width('85%')
         .margin({ top: 20, bottom: 10 })
         .onClick(() => {
           testNapi2.mainPageController(this.nodeContent);
         })
       Button($r('app.string.dialog_option_demo'))
-        .height(50)
+        .height(30)
         .width('85%')
         .margin({ top: 20, bottom: 10 })
         .onClick(() => {
-          testNapi2.mainPageController(this.nodeContent);
+          testNapi2.mainPageOption(this.nodeContent);
+        })
+      Button($r('app.string.dialog_optionText_demo'))
+        .height(30)
+        .width('85%')
+        .margin({ top: 20, bottom: 10 })
+        .onClick(() => {
+          testNapi2.mainPageOptionText(this.nodeContent);
         })
       Button($r('app.string.dialog_lifecycle_demo'))
-        .height(50)
+        .height(25)
         .width('85%')
         .margin({ top: 20, bottom: 10 })
         .onClick(() => {
-          testNapi2.mainPageController(this.nodeContent);
+          testNapi2.mainPageLifecycle(this.nodeContent);
         })
       ContentSlot(this.nodeContent);
     }

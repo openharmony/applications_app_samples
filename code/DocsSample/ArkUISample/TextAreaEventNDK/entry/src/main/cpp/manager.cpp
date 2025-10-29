@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start obtain_textarea_all]
 #include "manager.h"
 #include <sstream>
-// [Start obtain_textarea_all]
 #include <arkui/native_interface.h>
 #include <arkui/styled_string.h>
 
@@ -22,7 +22,6 @@ namespace NativeNode::Manager {
 constexpr int32_t NUM_10 = 10;
 constexpr int32_t NUM_28 = 28;
 constexpr int32_t NUM_400 = 400;
-// [StartExclude obtain_textarea_all]
 NodeManager &NodeManager::GetInstance()
 {
     static NodeManager instance;
@@ -31,14 +30,11 @@ NodeManager &NodeManager::GetInstance()
 
 void NodeManager::SetXComponent(OH_NativeXComponent *xComponent) { xComponent_ = xComponent; }
 
-// [EndExclude obtain_textarea_all]
 void NodeManager::CreateTextAreaNode()
 {
-    // [StartExclude obtain_textarea_all]
     if (!xComponent_) {
         return;
     }
-    // [EndExclude obtain_textarea_all]
     ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
     if (nodeApi == nullptr) {
@@ -54,13 +50,11 @@ void NodeManager::CreateTextAreaNode()
     ArkUI_NumberValue textWidth[] = {{.f32 = 300}};
     ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = 1};
     nodeApi->setAttribute(text, NODE_WIDTH, &textWidthItem);
-    // [StartExclude obtain_textarea_all]
     // [StartExclude obtain_create_textarea]
     ArkUI_NumberValue textHeight[] = {{.f32 = 100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = 1};
     nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     
-    // [EndExclude obtain_textarea_all]
     nodeApi->addChild(column, text);
     
     // [EndExclude obtain_create_textarea]
