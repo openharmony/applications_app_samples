@@ -12,8 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start HTTP_interceptor_case_import]
+import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import http from '@ohos.net.http';
+// [End HTTP_interceptor_case_import]
 import { promptAction } from '@kit.ArkUI';
 
 const BUTTON_HEIGHT = 50; // 按钮的高度
@@ -21,141 +24,102 @@ const BUTTON_FONT_SIZE = 18; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
 const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
 
-const HTTP_URL: string = "https://www.baidu.com/"; // 长文本的上边距
-
+// [Start HTTP_interceptor_case_creat_http_interceptor]
 enum InterceptorType {
-  // 1.创建请求之后，向服务端发送请求之前；
-  // 2.result返回为true，标识请求可以继续往下执行；待确定：result返回为false，表示请求在此中断，将response的信息返回为客户端；
   INITIAL_REQUEST = 'INITIAL_REQUEST',
-
   REDIRECTION = 'REDIRECTION',
-  //1.服务端返回信息，命中缓存之后触发(发送第二次相同请求之前并且命中缓存之后才会触发)；
   CACHE_CHECKED = 'READ_CACHE',
-  // 1.创建请求之后，向服务端发送请求之前，更靠近请求；
   NETWORK_CONNECT = 'CONNECT_NETWORK',
-  // 1.服务端返回信息之后；
   FINAL_RESPONSE = 'FINAL_RESPONSE'
 }
 
 class TestHttpInterceptor implements http.HttpInterceptor {
   interceptorType: InterceptorType = InterceptorType.INITIAL_REQUEST;
-  result: boolean;
-  title = "";
 
-  constructor(interceptorType: InterceptorType, result: boolean) {
+  constructor(interceptorType: InterceptorType) {
     this.interceptorType = interceptorType;
-    this.result = result;
-    this.title = this.interceptorType.toString() + " Promise.resolve(" + this.result + ")";
-    console.log("TestHttpInterceptor::constructor::" + this.title + '::success');
   }
 
   interceptorHandle(reqContext: http.HttpRequestContext, rspContext: http.HttpResponse): Promise<http.ChainContinue> {
-    console.log(this.title + '::success');
-    console.log(this.title + '::reqContext::' + JSON.stringify(reqContext));
-    console.log(this.title + '::rspContext::' + JSON.stringify(rspContext));
-
+    // 命中拦截器后对请求报文与请求响应操作
+    // [StartExclude HTTP_interceptor_case_creat_http_interceptor]
     rspContext.result = "INITIAL_REQUEST";
     rspContext.responseCode = 200;
     rspContext.header =
       "content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue";
-    return Promise.resolve(this.result);
+    // [EndExclude HTTP_interceptor_case_creat_http_interceptor]
+    return Promise.resolve(true);
   }
 }
-
-class NetworkHttpInterceptor implements http.HttpInterceptor {
-  interceptorType: InterceptorType = InterceptorType.NETWORK_CONNECT;
-  result: boolean;
-  title = "";
-
-  constructor(interceptorType: InterceptorType, result: boolean) {
-    this.interceptorType = interceptorType;
-    this.result = result;
-    this.title = this.interceptorType.toString() + " Promise.resolve(" + this.result + ")";
-    console.log("NetworkHttpInterceptor::constructor::" + this.title + '::success');
-  }
-
-  interceptorHandle(reqContext: http.HttpRequestContext, rspContext: http.HttpResponse): Promise<http.ChainContinue> {
-    console.log(this.title + '::success');
-    console.log(this.title + '::reqContext::' + JSON.stringify(reqContext));
-    console.log(this.title + '::rspContext::' + JSON.stringify(rspContext));
-
-    rspContext.result = "NETWORK_CONNECT";
-    rspContext.responseCode = 900;
-    rspContext.header =
-      "content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue";
-    return Promise.resolve(this.result);
-  }
-}
-
-class FinallyHttpInterceptor implements http.HttpInterceptor {
-  interceptorType: InterceptorType = InterceptorType.INITIAL_REQUEST;
-  result: boolean;
-  title = "";
-
-  constructor(interceptorType: InterceptorType, result: boolean) {
-    this.interceptorType = interceptorType;
-    this.result = result;
-    this.title = this.interceptorType.toString() + " Promise.resolve(" + this.result + ")";
-    console.log("FinallyHttpInterceptor::constructor::" + this.title + '::success');
-  }
-
-  interceptorHandle(reqContext: http.HttpRequestContext, rspContext: http.HttpResponse): Promise<http.ChainContinue> {
-    console.log(this.title + '::success');
-    console.log(this.title + '::reqContext::' + JSON.stringify(reqContext));
-    console.log(this.title + '::rspContext::' + JSON.stringify(rspContext));
-
-    rspContext.result = "FINAL_RESPONSE";
-    rspContext.responseCode = 900;
-    rspContext.header =
-      "content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue";
-    return Promise.resolve(this.result);
-  }
-}
+// [End HTTP_interceptor_case_creat_http_interceptor]
 
 function httpNormalRequest() {
   try {
+    // [Start HTTP_interceptor_case_creat_request]
     // 创建http请求
     let httpRequest: http.HttpRequest = http.createHttp();
+    // [End HTTP_interceptor_case_creat_request]
+
+    // [Start HTTP_interceptor_case_chain]
     // 创建拦截器链
     let chain: http.HttpInterceptorChain = new http.HttpInterceptorChain();
-    // 创建所需要的拦截器对象
-    let c1 = new TestHttpInterceptor(InterceptorType.INITIAL_REQUEST, true);
-    let c2 = new NetworkHttpInterceptor(InterceptorType.NETWORK_CONNECT, true);
-    let c3 = new FinallyHttpInterceptor(InterceptorType.FINAL_RESPONSE, true);
-    // 将拦截器对象加入拦截器链中
+    // [End HTTP_interceptor_case_chain]
+
+    // [Start HTTP_interceptor_case_addChain]
+    // 创建所需要的拦截器对象,将拦截器对象加入拦截器链中
     chain.addChain([
-      c1, c2, c3
+      new TestHttpInterceptor(InterceptorType.INITIAL_REQUEST),
+      new TestHttpInterceptor(InterceptorType.NETWORK_CONNECT),
+      new TestHttpInterceptor(InterceptorType.FINAL_RESPONSE)
     ]);
+    // [End HTTP_interceptor_case_addChain]
+
+    // [Start HTTP_interceptor_case_apply]
     // 将请求应用到拦截器链中
     chain.apply(httpRequest);
+    // [End HTTP_interceptor_case_apply]
+
+    // [Start HTTP_interceptor_case_options]
     // 创建请求可选项
     let options: http.HttpRequestOptions = {
       method: http.RequestMethod.POST,
       header: { "content-type": "text/html" } as Record<string, string>,
       extraData: { "context": "BODY_NO_CHANGE" } as Record<string, string>,
     };
+    // [End HTTP_interceptor_case_options]
+
+    // [Start HTTP_interceptor_case_request]
     // 发起请求
-    httpRequest.request(HTTP_URL, options, (err: BusinessError, res: http.HttpResponse) => {
+    httpRequest.request("https://www.baidu.com/", options, (err: BusinessError, res: http.HttpResponse) => {
       if (err) {
         console.log(`request fail, error code: ${err.code}, msg: ${err.message}`);
+        // [StartExclude HTTP_interceptor_case_request]
         promptAction.showToast({
           message: `request hit the interceptor fail`,
           duration: 4000, // 持续时间
           bottom: 300 // 与底间隔
         });
+        // [EndExclude HTTP_interceptor_case_request]
       } else {
         console.log(`res:${JSON.stringify(res)}`);
+        // [StartExclude HTTP_interceptor_case_request]
         promptAction.showToast({
           message: `request hit the interceptor successfully`,
           duration: 4000, // 持续时间
           bottom: 300 // 与底间隔
         });
+        // [EndExclude HTTP_interceptor_case_request]
       }
+      // [StartExclude HTTP_interceptor_case_request]
+      // [Start HTTP_interceptor_case_request_destroy]
       // 销毁请求
       httpRequest.destroy();
+      // [End HTTP_interceptor_case_request_destroy]
+      // [EndExclude HTTP_interceptor_case_request]
     });
+    // [End HTTP_interceptor_case_request]
   } catch (error) {
-    console.log(`catch ERROR-->:${JSON.stringify(error)}`);
+    console.log(`catch ERROR-->:${JSON.stringify(error.message)}`);
     promptAction.showToast({
       message: `${error.message}`,
       duration: 4000, // 持续时间

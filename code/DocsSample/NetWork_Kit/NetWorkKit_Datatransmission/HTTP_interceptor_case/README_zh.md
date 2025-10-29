@@ -2,7 +2,7 @@
 
 ### 介绍
 
-应用通过`http.HttpInterceptorChain()`创建拦截器链，通过`addChain()`方法将需要的拦截器加入到链中，通过`apply()`将http请求与拦截器链绑定，最后通过`httpRequest.request(url)`发送请求。本项目的构建依据[HTTP数据请求拦截器](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/http-request-interceptor.md)示例代码，构建了一个HTTP数据请求拦截器的示例应用，它实现了通过按钮实现http添加拦截器的开发步骤功能，使用了[@ohos.net.http](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)接口。
+应用通过`http.HttpInterceptorChain()`创建拦截器链，通过`addChain()`方法将需要的拦截器加入到链中，通过`apply()`将http请求与拦截器链绑定，最后通过`httpRequest.request(url)`发送请求。本项目的构建依据[HTTP数据请求](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/http-request.md)示例代码，构建了一个HTTP数据请求拦截器的示例应用，它实现了通过按钮实现http添加拦截器的开发步骤功能，使用了[@ohos.net.http](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)接口。
 
 **注意：**本示例需要用户输入一个实际的URL，方能获得通过的结果。
 
@@ -15,24 +15,16 @@
 
 使用说明
 
-1. 前置条件：需要用户在
+1. 点击 "正常流程请求" 按钮，发送一个请求到 HTTP_URL 并显示测试结果。
 
-   ```
-   const HTTP_URL: string = '';
-   ```
+   注1：日志输出使用 `console.log` 进行调试，可以查看 HTTP 请求命中拦截器是否成功，
+   - 如果成功，日志打印请求命中拦截器的的详细信息，包括请求头、响应数据、状态码等。
+   - 如果失败，日志打印错误状态码和错误信息。
 
-   这个位置的单引号之间输入一个实际URL（参考格式：https://www.example.com/）
-
-   2. 点击 "正常流程请求" 按钮，发送一个请求到 HTTP_URL 并显示测试结果。
-
-      注1：日志输出使用 `console.log` 进行调试，可以查看 HTTP 请求命中拦截器是否成功，
-      - 如果成功，日志打印请求命中拦截器的的详细信息，包括请求头、响应数据、状态码等。
-      - 如果失败，日志打印错误状态码和错误信息。
-
-      注2：弹窗信息展示，
-      - 如果成功，展示`request hit the interceptor successfully`。
-      - 如果失败，展示`request hit the interceptor fail`。
-      - 如果报错，展示错误信息。
+   注2：弹窗信息展示，
+   - 如果成功，展示`request hit the interceptor successfully`。
+   - 如果失败，展示`request hit the interceptor fail`。
+   - 如果报错，展示错误信息。
 
 ### 工程目录
 
@@ -78,7 +70,7 @@ entry/src/main/ets/
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 2. 本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.49。
-3. 本示例需要使用DevEco Studio Release（5.0.5.306）及以上版本才可编译运行。
+3. 本示例需要使用DevEco Studio Release（5.0.13.240）及以上版本才可编译运行。
 
 ### 下载
 
