@@ -130,7 +130,7 @@ export struct PageOne {
               .margin(10)
               .onClick(() => {
                 // [Start replacePath]
-                // 将栈顶页面替换为PageOne
+                // 将栈顶页面替换为pageTwo
                 this.pageStack.replacePath({ name: 'pageTwo', param: 'PageOne Param' });
                 // [End replacePath]
                 this.message = 'replacePath' + JSON.stringify(this.pageStack);
