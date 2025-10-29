@@ -40,26 +40,26 @@
       customKeyboardBuilder() {
 		  // 这里实现自定义键盘组件，对接WebKeyboardController实现输入、删除、关闭等操作。
         Row() {
-          Text("完成")
+          Text('完成')
             .fontSize(20)
             .fontColor(Color.Blue)
             .onClick(() => {
               this.webKeyboardController.close();
             })
           // 插入字符。
-          Button("insertText").onClick(() => {
+          Button('insertText').onClick(() => {
             this.webKeyboardController.insertText('insert ');
           }).margin({
             bottom: 200,
           })
           // 从后往前删除length参数指定长度的字符。
-          Button("deleteForward").onClick(() => {
+          Button('deleteForward').onClick(() => {
             this.webKeyboardController.deleteForward(1);
           }).margin({
             bottom: 200,
           })
           // 从前往后删除length参数指定长度的字符。
-          Button("deleteBackward").onClick(() => {
+          Button('deleteBackward').onClick(() => {
             this.webKeyboardController.deleteBackward(1);
           }).margin({
             left: -220,

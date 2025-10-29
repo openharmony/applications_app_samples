@@ -29,7 +29,7 @@ struct NewWebViewComp {
         .javaScriptAccess(true)
         .multiWindowAccess(false)
         .onWindowExit(() => {
-          console.info("NewWebViewComp onWindowExit");
+          console.info('NewWebViewComp onWindowExit');
           if (this.controller) {
             this.controller.close();
           }
