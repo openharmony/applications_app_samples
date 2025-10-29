@@ -14,9 +14,6 @@
  */
 import { common } from '@kit.AbilityKit';
 
-// [Start watch_index]
-import { router } from '@kit.ArkUI'
-
 interface Ary {
   path: string,
   name: string
@@ -25,9 +22,7 @@ interface Ary {
 @Entry
 @Component
 struct Index {
-  // [StartExclude watch_index]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude watch_index]
   ary: Ary[] = [
     {
       name: this.context.resourceManager.getStringByNameSync('watch_text1'),
@@ -59,5 +54,3 @@ struct Index {
     }
   }
 }
-
-// [End watch_index]
