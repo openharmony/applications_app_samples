@@ -73,7 +73,7 @@ struct NavigationDemo {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, '详情页面参数');
+              this.pathInfos.pushPathByName(`${item}`, '详情页面参数'); // 将name指定的NaviDestination页面信息入栈,传递的参数为param
             })
           }, (item: string): string => item)
         }

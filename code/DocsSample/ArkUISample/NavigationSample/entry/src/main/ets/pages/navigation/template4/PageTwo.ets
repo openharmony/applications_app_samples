@@ -23,7 +23,7 @@ class ResultClass {
 @Builder
 export function PageTwoBuilder() {
   PageTwo();
-};
+}
 
 @Component
 export struct PageTwo {

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start GeometryTransitionFromPage]
+// [Start SystemRoutingTable]
 @Entry
 @Component
 struct SystemRoutingTable {
@@ -26,8 +26,8 @@ struct SystemRoutingTable {
     .hideNavBar(true)
   }
 }
-// [End GeometryTransitionFromPage]
-// [Start GeometryTransitionFromPage1]
+// [End SystemRoutingTable]
+// [Start SystemRoutingTableOne]
 // 跳转页面入口函数
 @Builder
 export function PageOneBuilder() {
@@ -47,4 +47,4 @@ struct PageOne {
     })
   }
 }
-// [End GeometryTransitionFromPage1]
+// [End SystemRoutingTableOne]

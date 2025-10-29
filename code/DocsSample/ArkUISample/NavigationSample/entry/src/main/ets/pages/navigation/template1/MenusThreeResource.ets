@@ -37,7 +37,7 @@ struct MenusThreeResource {
     } else if (name === 'NavDestinationTitle3') {
       pageThreeTmp();
     }
-  };
+  }
 
   build() {
     Column() {

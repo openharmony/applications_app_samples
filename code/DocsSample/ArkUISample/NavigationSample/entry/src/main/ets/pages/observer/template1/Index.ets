@@ -53,7 +53,7 @@ struct ObserverIndex1 {
 
   @Builder
   PageBuilder(name: string) {
-    MyComponent1()
+    MyComponent1();
   }
 
   build() {

@@ -23,7 +23,7 @@ class NavParam {
 @Builder
 export function PageTwoBuilder(name: string, param: Object) {
   DemoNavDestination();
-};
+}
 // [EndExclude onResult]
 @Component
 struct DemoNavDestination {

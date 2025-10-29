@@ -120,9 +120,9 @@ struct Index {
           } else {
             this.selection = route.name;
           }
-        });
+        })
     })
-  };
+  }
 
   aboutToAppear(): void{
     this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);

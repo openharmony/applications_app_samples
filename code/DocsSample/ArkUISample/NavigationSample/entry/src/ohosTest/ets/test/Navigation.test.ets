@@ -57,7 +57,7 @@ export function NavigationTest() {
      * @tc.type: Function
      * @tc.level Level 1
      */
-    it(BUNDLE + 'PageTitleModeTest_001', 0, async (done: Function) => {
+    it('PageTitleModeTest_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_001_begin');
       aimComponent = await driver.findComponent(ON.text(await getResourceString($r('app.string.pageDisplayModeAuto'))));
       await aimComponent.click();

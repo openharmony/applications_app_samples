@@ -34,7 +34,7 @@ struct PageDisplayModeAuto {
         .opacity(0.4)
         .margin({ top: 2, bottom: 20 })
     }.alignItems(HorizontalAlign.Start)
-  };
+  }
 
   @Builder
   NavigationMenus() {
@@ -52,7 +52,7 @@ struct PageDisplayModeAuto {
         .margin({ left: 24 })
     }
     .margin({ top: 12, right: 24})
-  };
+  }
 
   build() {
     Column() {
