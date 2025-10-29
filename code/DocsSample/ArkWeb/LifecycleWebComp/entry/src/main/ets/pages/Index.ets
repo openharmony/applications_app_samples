@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start]
+// [Start the_status_of_web_component_web_page_loading]
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -130,4 +130,4 @@ struct WebComponent {
     }
   }
 }
-// [End quick_start]
+// [End the_status_of_web_component_web_page_loading]

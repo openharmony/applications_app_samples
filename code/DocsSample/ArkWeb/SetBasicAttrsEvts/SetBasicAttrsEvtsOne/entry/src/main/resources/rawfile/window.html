@@ -16,17 +16,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name='viewport' content='width=device-width'/>
+    <meta name="viewport" content="width=device-width"/>
     <title>WindowEvent</title>
 </head>
 <body>
-<input type='button' value='新窗口中打开网页' onclick='openNewWindow()'>
-<script type='text/javascript'>
-    function openNewWindow()
+<input type="button" value="新窗口中打开网页" onclick="OpenNewWindow()">
+<script type="text/javascript">
+    function OpenNewWindow()
     {
-        let txt = '打开的窗口';
-        let openedWindow = window.open('about:blank', '', 'location=no,status=no,scrollvars=no');
-        openedWindow.document.write('<p>' + '<br><br>' + txt.fontsize(10) + '</p>');
+        var txt = '打开的窗口';
+        let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollbars=no");
+        openedWindow.document.write("<p>" + "<br><br>" + txt + "</p>");
         openedWindow.focus();
     }
 </script>
