@@ -21,7 +21,6 @@ class UseMixtureJob {
 @ObservedV2
 class UseMixtureInfo {
   @Trace public name: string = 'Tom';
-  // The 'age' property is decorated with @Trace, so its changes will trigger UI updates
   @Trace public age: number = 25;
   public job: UseMixtureJob = new UseMixtureJob();
 };

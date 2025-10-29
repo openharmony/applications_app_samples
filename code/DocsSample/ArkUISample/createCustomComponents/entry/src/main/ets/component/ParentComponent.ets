@@ -35,10 +35,10 @@ struct ParentComponentUI {
   build() {
       Column() {
         Text('ArkUI message')
-        HelloComponent({ message: 'Hello World!' });
+        HelloComponent({ message: 'Hello World!' })
         Divider()
         // $r('app.string.Hello_The_world')需要替换为开发者所需的资源文件
-        HelloComponent({ message: $r('app.string.Hello_The_world') });
+        HelloComponent({ message: $r('app.string.Hello_The_world') })
       }
   }
 }

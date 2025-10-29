@@ -15,7 +15,6 @@
 // [Start Static_Attribute]
 @ObservedV2
 class Manager {
-  // Decorate the static property 'count' with @Trace to enable its changes to trigger UI updates
   @Trace public static count: number = 1;
 };
 @Entry

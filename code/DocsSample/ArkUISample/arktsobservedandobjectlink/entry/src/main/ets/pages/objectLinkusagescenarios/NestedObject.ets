@@ -71,7 +71,7 @@ struct NestedObjectIndex {
           this.bag.book.name = 'TS';
         });
 
-      BookCard({ book: this.bag.book });
+      BookCard({ book: this.bag.book })
     }
   }
 }
