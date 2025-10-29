@@ -47,7 +47,7 @@ export struct DisableSystemServiceMenu {
                 {
                   fontSize: 30
                 }
-              });
+              })
           })
             .height(60)
             .editMenuOptions({
@@ -58,7 +58,7 @@ export struct DisableSystemServiceMenu {
               onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
                 return false;
               }
-            });
+            })
           // [StartExclude richEditor_disableSystemMenu]
         }
       }

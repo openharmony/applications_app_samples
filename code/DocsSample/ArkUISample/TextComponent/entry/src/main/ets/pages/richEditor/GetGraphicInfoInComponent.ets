@@ -42,15 +42,15 @@ export struct GetGraphicInfoInComponent {
                     fontColor: Color.Black,
                     fontSize: 15
                   }
-                });
+                })
               })
               .width(300)
-              .height(50);
+              .height(50)
             // $r('app.string.GetGraphicInfoInComponent_Text_1')需要替换为开发者所需的资源文件
             Text($r('app.string.GetGraphicInfoInComponent_Text_1')).fontSize(10).fontColor(Color.Gray).width(300);
             RichEditor(this.infoShowOptions)
               .width(300)
-              .height(50);
+              .height(50)
             Button($r('app.string.GetGraphicInfoInComponent_Button_1'), {
               buttonStyle: ButtonStyleMode.NORMAL
               })
@@ -63,7 +63,7 @@ export struct GetGraphicInfoInComponent {
                     fontSize: 10
                   }
                 })
-              });
+              })
             // [End richEditor_getSpans]
           }
         }

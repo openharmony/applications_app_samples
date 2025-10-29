@@ -26,7 +26,7 @@ export struct CreateRichEditor {
   // [Start richEditor_create]
   fontStyle: TextStyle = new TextStyle({
     fontColor: Color.Pink
-  });
+  })
   // 定义字体样式对象
 
   mutableStyledString: MutableStyledString =
@@ -37,7 +37,7 @@ export struct CreateRichEditor {
       length: 5,
       styledKey: StyledStringKey.FONT,
       styledValue: this.fontStyle
-    }]);
+    }])
   // 创建属性字符串
 
   controller: RichEditorStyledStringController = new RichEditorStyledStringController();
