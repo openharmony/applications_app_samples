@@ -25,15 +25,15 @@
     <button onclick="getLocation()">获取位置</button>
 
     <script>
-        var locationInfo=document.getElementById("locationInfo");
-        function getLocation(){
+        let locationInfo = document.getElementById("locationInfo");
+        function getLocation() {
             if (navigator.geolocation) {
                 // 访问设备地理位置
                 navigator.geolocation.getCurrentPosition(showPosition);
             }
         }
-        function showPosition(position){
-            locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+        function showPosition(position) {
+            locationInfo.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />Longitude: ' + position.coords.longitude;
         }
     </script>
 </body>

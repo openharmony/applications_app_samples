@@ -30,7 +30,7 @@
     <script type="text/javascript">
         // 访问设备的加速度计传感器，并获取其数据。
         function getAccelerometer() {
-            var acc = new Accelerometer({frequency: 60});
+            let acc = new Accelerometer({frequency: 60});
             acc.addEventListener('activate', () => console.info('Ready to measure.'));
             acc.addEventListener('error', error => console.info('Error type: ' + error.type + ', error: ' + error.error ));
             acc.addEventListener('reading', () => {
@@ -41,7 +41,7 @@
 
         // 访问设备的陀螺仪传感器，并获取其数据。
         function getGyroscope() {
-            var gyr = new Gyroscope({frequency: 60});
+            let gyr = new Gyroscope({frequency: 60});
             gyr.addEventListener('activate', () => console.info('Ready to measure.'));
             gyr.addEventListener('error', error => console.info('Error type: ' + error.type + ', error: ' + error.error ));
             gyr.addEventListener('reading', () => {
@@ -52,7 +52,7 @@
 
         // 访问设备的方向传感器，并获取其数据。
         function getAbsoluteOrientationSensor() {
-            var aos = new AbsoluteOrientationSensor({frequency: 60});
+            let aos = new AbsoluteOrientationSensor({frequency: 60});
             aos.addEventListener('activate', () => console.info('Ready to measure.'));
             aos.addEventListener('error', error => console.info('Error type: ' + error.type + ', error: ' + error.error ));
             aos.addEventListener('reading', () => {
