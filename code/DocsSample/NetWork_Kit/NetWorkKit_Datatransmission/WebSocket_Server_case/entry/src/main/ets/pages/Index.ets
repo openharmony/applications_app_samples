@@ -35,7 +35,7 @@ let connections: webSocket.WebSocketConnection[] = [];
 
 // [StartExclude WebSocket_server_connections]
 function localServerStart() {
-  try{
+  try {
     // [Start websocket_server_open_message_close_error_methods]
     localServer.on('connect', async (connection: webSocket.WebSocketConnection) => {
       hilog.info(0x0000, 'testTag', `New client connected! Client ip: ${connection.clientIP}, Client port: ${connection.clientPort}`);
@@ -52,7 +52,7 @@ function localServerStart() {
     });
 
     localServer.on('messageReceive', (message: webSocket.WebSocketMessage) => {
-      try{
+      try {
         hilog.info(0x0000, 'testTag', `on message received, client: ${message.clientConnection}, data: ${message.data}`);
         // 当收到客户端的"bye"消息时（此消息字段仅为示意，具体字段需要与客户端协商），主动断开连接。
         if (message.data === 'bye') {
@@ -108,7 +108,7 @@ function localServerStart() {
 
 async function allClientMessage() {
   // [EndExclude WebSocket_server_connections]
-  try{
+  try {
     connections = await localServer.listAllConnections();
     if (connections.length === 0) {
       hilog.info(0x0000, 'testTag', 'client list is empty');
@@ -140,9 +140,9 @@ async function localServerClose() {
     hilog.info(0x0000, 'testTag', 'localServer is nullptr');
     return;
   }
-  try{
+  try {
     connections = await localServer!.listAllConnections();
-    if(connections.length === 0){
+    if (connections.length === 0) {
       hilog.info(0x0000, 'testTag', 'client list is empty');
       return
     }
@@ -151,7 +151,7 @@ async function localServerClose() {
     const firstClient = connections[0];
     hilog.info(0x0000, 'testTag', 'close client connections is:' + JSON.stringify(firstClient));
     localServer.close(firstClient).then((success) => {
-      if(success){
+      if (success) {
         hilog.info(0x0000, 'testTag', 'close client connections success');
         promptAction.showToast({
           message: 'close client connections success',
@@ -173,7 +173,7 @@ async function localServerClose() {
 }
 
 function localServerStop() {
-  try{
+  try {
     // [Start WebSocket_server_stop]
     localServer.stop().then((success: boolean) => {
       if (success) {
@@ -258,7 +258,7 @@ struct Index {
         .borderRadius(BUTTON_RADIUS)
     }
     .height('100%')
-    .width('100%')
-    .justifyContent(FlexAlign.Center)
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
   }
 }

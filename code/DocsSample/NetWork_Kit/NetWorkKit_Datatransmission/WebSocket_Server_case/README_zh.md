@@ -54,8 +54,8 @@ entry/src/main/ets/
 
 2. 所有已连接的客户信息
 
-- 使用 `listAllConnections()` 获取所有客户信息。
-- 发送成功后，更新 UI 显示“client list 客户信息”。
+- 使用 `listAllConnections()` 获取所有客户端的信息。
+- 发送成功后，更新 UI 显示“client list 客户端的信息”。
 - 发送失败后，更新 UI 显示“Failed to listAllConnections”。
 
 3. 关闭指定连接
