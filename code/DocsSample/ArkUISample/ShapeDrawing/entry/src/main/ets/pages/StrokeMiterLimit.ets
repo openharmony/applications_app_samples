@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct Stroke_MiterLimit {
+struct StrokeMiterLimit {
   build() {
     Row() {
       // [Start stroke_miter_limit]

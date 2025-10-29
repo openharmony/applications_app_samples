@@ -99,7 +99,7 @@ struct Mesh {
         .height(150)
         .backgroundColor(Color.Grey)
         .onClick(() => {
-          this.meshArray = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360, 0]
+          this.meshArray = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360, 0];
         })
       Button('change mesh')
         .margin(5)
@@ -109,7 +109,7 @@ struct Mesh {
       Button('Show Shape')
         .margin(5)
         .onClick(() => {
-          this.showShape = !this.showShape
+          this.showShape = !this.showShape;
         })
 
       if (this.showShape) {
