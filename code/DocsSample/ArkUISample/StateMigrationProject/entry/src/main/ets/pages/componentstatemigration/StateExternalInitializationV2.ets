@@ -18,7 +18,7 @@ struct Child6 {
   @Param @Once value: number = 0;
 
   build() {
-    Text(this.value.toString());
+    Text(this.value.toString())
   }
 }
 
@@ -28,7 +28,7 @@ struct Parent6 {
   build() {
     Column() {
       // @Local禁止从外部初始化，可以用@Param和@Once替代实现
-      Child6({ value: 30 });
+      Child6({ value: 30 })
     }
   }
 }

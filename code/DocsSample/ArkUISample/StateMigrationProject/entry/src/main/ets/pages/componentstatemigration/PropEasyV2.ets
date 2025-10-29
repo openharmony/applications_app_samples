@@ -18,7 +18,7 @@ struct Child10 {
   @Param value: number = 0;
 
   build() {
-    Text(this.value.toString());
+    Text(this.value.toString())
   }
 }
 
@@ -27,7 +27,7 @@ struct Child10 {
 struct Parent10 {
   build() {
     Column() {
-      Child10({ value: 30 });
+      Child10({ value: 30 })
     }
   }
 }

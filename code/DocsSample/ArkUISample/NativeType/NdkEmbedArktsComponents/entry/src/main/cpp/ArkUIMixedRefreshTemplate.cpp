@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start arkui_mixed_refresh_template]
+// [Start arkui_mixed_refresh_template_cpp]
 
 // 混合模式交互类。
 
-#include "ArkUIMixedRefresh.h"
+#include "ArkUIMixedRefreshTemplate.h"
 
 namespace NativeModule {
 namespace {
@@ -42,4 +42,4 @@ napi_value ArkUIMixedRefresh::RegisterCreateAndUpdateRefresh(napi_env env, napi_
 }
 
 } // namespace NativeModule
-// [End arkui_mixed_refresh_template]
+// [End arkui_mixed_refresh_template_cpp]

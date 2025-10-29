@@ -27,9 +27,9 @@
 #define LOG_TAG "MY_LOG"
 // [End import_module]
 
-// [Start uniform_data_type_descriptors_c]
 static napi_value NAPI_Global_getTypesAndCompare(napi_env env, napi_callback_info info)
 {
+    // [Start uniform_data_type_descriptors_c]
     // 1. 通过文件后缀名获取纯文本类型的UTD的typeId
     unsigned int typeIds1Count = 0;
     const char **typeIds1 = OH_Utd_GetTypesByFilenameExtension(".txt", &typeIds1Count);
@@ -74,10 +74,10 @@ static napi_value NAPI_Global_getTypesAndCompare(napi_env env, napi_callback_inf
     OH_Utd_DestroyStringList(typeIds2, typeIds2Count);
     OH_Utd_Destroy(utd1);
     OH_Utd_Destroy(utd2);
+    // [End uniform_data_type_descriptors_c]
     napi_value result;
     napi_create_int32(env, Udmf_ErrCode::UDMF_E_OK, &result);
     return result;
-    // [End uniform_data_type_descriptors_c]
 }
 
 EXTERN_C_START

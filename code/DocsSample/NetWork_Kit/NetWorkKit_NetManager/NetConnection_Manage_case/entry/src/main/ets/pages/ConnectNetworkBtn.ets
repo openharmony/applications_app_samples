@@ -17,6 +17,7 @@
 // 引入包名。
 import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End NetConnection_manage_case_module_import]
 
 const NETWORK_CONNECTION_TIMEOUT = 1000; // 网络连接超时
@@ -78,7 +79,7 @@ export default struct ConnectNetworkBtn {
     // [Start notification_network_netAvailable_netUnavailable]
     // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
     conn.on('netAvailable', (data: connection.NetHandle) => {
-      console.info('Network available, NetId is ' + data.netId);
+      hilog.info(0x0000, 'testTag', 'Network available, NetId is ' + data.netId);
       // [StartExclude notification_network_netAvailable_netUnavailable]
       this.connectStatus = `Network available, NetId: ${data.netId}`;
       // [EndExclude notification_network_netAvailable_netUnavailable]
@@ -86,7 +87,7 @@ export default struct ConnectNetworkBtn {
 
     // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
     conn.on('netUnavailable', (data: void) => {
-      console.info('Network unavailable, data is ' + JSON.stringify(data));
+      hilog.info(0x0000, 'testTag', 'Network unavailable, data is ' + JSON.stringify(data));
       // [StartExclude notification_network_netAvailable_netUnavailable]
       this.connectStatus = 'Network unavailable';
       // [EndExclude notification_network_netAvailable_netUnavailable]
@@ -99,7 +100,7 @@ export default struct ConnectNetworkBtn {
       // [StartExclude notification_network_register]
       if (err) {
         // [EndExclude notification_network_register]
-        console.error('Error occurred during connection:', JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', 'Error occurred during connection:', JSON.stringify(err));
         // [StartExclude notification_network_register]
         this.connectStatus = 'Connection failed';
         return;
@@ -107,7 +108,7 @@ export default struct ConnectNetworkBtn {
       // [EndExclude notification_network_register]
     });
     // [End notification_network_register]
-    console.info('Network connection attempt started');
+    hilog.info(0x0000, 'testTag', 'Network connection attempt started');
   }
 
   // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅
@@ -115,14 +116,14 @@ export default struct ConnectNetworkBtn {
     // [Start notification_network_unregister]
     // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
     conn.unregister((err: BusinessError, data: void) => {
-      // [StartExclude notification_network_unregister]
       if (err) {
-        console.error('Error occurred during unsubscription:', JSON.stringify(err));
+        hilog.error(0x0000, 'testTag', 'Error occurred during unsubscription:', JSON.stringify(err));
       } else {
+        // [StartExclude notification_network_unregister]
         this.disconnectStatus = 'Network disconnected';
-        console.info('Network connection disconnected.');
+        // [EndExclude notification_network_unregister]
+        hilog.info(0x0000, 'testTag', 'Network connection disconnected.');
       }
-      // [EndExclude notification_network_unregister]
     });
     // [End notification_network_unregister]
   }

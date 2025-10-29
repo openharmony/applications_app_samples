@@ -142,7 +142,6 @@ export struct StyledStringImageAttachment {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.StyledStringImageAttachment_title') }) {
-          // [Start styled_string_image_attachment]
           Row() {
             Column({ space: 10 }) {
               Text(undefined, { controller: this.controller })
@@ -173,7 +172,6 @@ export struct StyledStringImageAttachment {
           }
           .height('100%')
           .backgroundColor('#F8F8FF')
-          // [End styled_string_image_attachment]
         }
       }
       .width('100%')

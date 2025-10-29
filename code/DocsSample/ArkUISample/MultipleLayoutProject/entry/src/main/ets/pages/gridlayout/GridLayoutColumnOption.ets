@@ -15,7 +15,7 @@
 //[Start GridLayoutColumnOption_start]
 @Entry
 @Component
-struct Index13 {
+struct Index14 {
   @State bgColors: ResourceColor[] =
     ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
       'rgb(255,192,0)', 'rgb(170,10,33)'];

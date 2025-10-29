@@ -29,11 +29,11 @@ struct WatchExample1 {
 
   build() {
     Column() {
-      Text(`apple count: ${this.apple}`);
+      Text(`apple count: ${this.apple}`)
       Button('add apple')
         .onClick(() => {
           this.apple++;
-        });
+        })
     }
   }
 }

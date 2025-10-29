@@ -16,25 +16,26 @@
 // [Start ProtectedInStruct_CorrectCase]
 @Entry
 @Component
-struct PISCorrectAccessRestrictions  {
+struct ProtectedCorrectAccessRestrictions {
   build() {
     Column() {
-      PISCorrectComponentChild({regularValue: 'Hello'});
+      ProtectedCorrectComponentChild({ regularValue: 'Hello' })
     }
     .width('100%');
   }
 }
 
 @Component
-struct PISCorrectComponentChild  {
+struct ProtectedCorrectComponentChild {
   regularValue: string = 'Hello';
+
   build() {
     Column() {
-      // $r('app.string.Hello')需要替换为开发者所需的资源文件
-      Text($r('app.string.Hello'))
+      Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
-    };
+    }
   }
 }
+
 // [End ProtectedInStruct_CorrectCase]

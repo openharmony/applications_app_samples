@@ -12,70 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//[Start GridColOrder_start]
+let gOrder:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
+//[End GridColOrder_start]
 @Entry
 @Component
 struct GridColOrder {
-  //[Start gridOrder_start]
-  gOrder:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
 
-  // [End gridOrder_start]
   build() {
-    //[Start gridOrder_start]
-    // [StartExclude gridOrder_start]
     GridRow({ gutter: { x: 20, y: 50 } }) {
-      // [EndExclude gridOrder_start]
-      GridCol({ order: 2, span: 1  }) {
-        // [StartExclude gridOrder_start]
-        Row() {
-          Text('1')
-        }.width('100%').height('50')
-
-        // [EndExclude gridOrder_start]
-      }
-      // [StartExclude gridOrder_start]
-      .backgroundColor('rgb(150,150,150)')
-
-      // [EndExclude gridOrder_start]
-      GridCol({ order: { xs: 1, sm: 2, md: 3, lg: 4 }, span: 1 }) {
-        // [StartExclude gridOrder_start]
-        Row() {
-          Text('2')
-        }.width('100%').height('50')
-
-        // [EndExclude gridOrder_start]
-      }
-      // [StartExclude gridOrder_start]
-      .backgroundColor('rgb(213,213,213)')
-
-      // [EndExclude gridOrder_start]
-      GridCol({ span: 1 }) {
-        // [StartExclude gridOrder_start]
-        Row() {
-          Text('3')
-        }.width('100%').height('50')
-
-        // [EndExclude gridOrder_start]
-      }.order(2)
-      // [StartExclude gridOrder_start]
-      .backgroundColor('rgb(0,74,175)')
-
-      // [EndExclude gridOrder_start]
-      GridCol({ span: 1 }) {
-        // [StartExclude gridOrder_start]
-        Row() {
-          Text('4')
-        }.width('100%').height('50')
-
-        // [EndExclude gridOrder_start]
-      }.order(this.gOrder)
-      // [StartExclude gridOrder_start]
-      .backgroundColor('rgb(39,135,217)')
+      //[Start GridColOrder1_start]
+      GridCol({ order: 2, span: 1 }){}
+      GridCol({ order: { xs: 1, sm: 2, md: 3, lg: 4 }, span: 1 }){}
+      GridCol({ span: 1 }){}.order(2)
+      GridCol({ span: 1 }){}.order(gOrder)
+      //[End GridColOrder1_start]
     }
     .height(200)
     .border({ color: 'rgb(39,135,217)', width: 2 })
-
-    // [EndExclude gridOrder_start]
-    // [End gridOrder_start]
   }
 }

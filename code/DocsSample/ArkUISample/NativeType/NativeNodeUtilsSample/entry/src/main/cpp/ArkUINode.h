@@ -141,16 +141,23 @@ public:
 
     void SetCrossLanguage(bool isCross)
     {
+        // 构造结构体。
         auto option = OH_ArkUI_CrossLanguageOption_Create();
+        // 设置结构体属性，此处为设置是否允许跨语言。
         OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(option, isCross);
+        // 设置结构体给组件。
         OH_ArkUI_NodeUtils_SetCrossLanguageOption(handle_, option);
+        // 销毁结构体。
         OH_ArkUI_CrossLanguageOption_Destroy(option);
     }
 
     bool GetCrossLanguage()
     {
+        // 构造结构体。
         auto option = OH_ArkUI_CrossLanguageOption_Create();
+        // 获取组件的结构体配置。
         OH_ArkUI_NodeUtils_GetCrossLanguageOption(handle_, option);
+        // 从结构体内取值。
         bool isCross = OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(option);
         int32_t uniqueId = -1;
         OH_ArkUI_NodeUtils_GetNodeUniqueId(handle_, &uniqueId);

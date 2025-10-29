@@ -18,7 +18,7 @@ struct Child5 {
   @State value: number = 0;
 
   build() {
-    Text(this.value.toString());
+    Text(this.value.toString())
   }
 }
 
@@ -28,7 +28,7 @@ struct Parent5 {
   build() {
     Column() {
       // @State可以从外部初始化
-      Child5({ value: 30 });
+      Child5({ value: 30 })
     }
   }
 }

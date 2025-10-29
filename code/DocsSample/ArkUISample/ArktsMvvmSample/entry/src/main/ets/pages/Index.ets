@@ -16,7 +16,7 @@
 // [Start mvvm_model_main_index]
 import { common } from '@kit.AbilityKit';
 // import ViewModel
-import TodoListViewModel from '../viewModel/TodoListViewModel';
+import TodoListViewModel from '../viewmodel/TodoListViewModel';
 
 // import View
 import { TodoComponent } from '../views/TodoComponent';

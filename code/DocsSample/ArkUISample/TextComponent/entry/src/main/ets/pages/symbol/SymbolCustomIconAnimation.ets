@@ -19,18 +19,18 @@ import { ComponentCard } from '../../common/Card';
 @Component
 export struct SymbolGlyphSpanCustomIconAnimation {
   scroller: Scroller = new Scroller();
-  // [Start symbol_variable_color]
+  // [Start symbol_variable_color_new]
   @State isActive: boolean = true;
-  // [End symbol_variable_color]
-  // [Start symbol_bouncing_effect]
-  // [Start symbol_disable_effect]
-  // [Start symbol_quick_replacement]
+  // [End symbol_variable_color_new]
+  // [Start symbol_bouncing_effect_new]
+  // [Start symbol_disable_effect_new]
+  // [Start symbol_quick_replacement_new]
   @State triggerValueReplace: number = 0;
-  // [End symbol_bouncing_effect]
+  // [End symbol_bouncing_effect_new]
   @State renderMode: number = 1;
-  // [End symbol_disable_effect]
+  // [End symbol_disable_effect_new]
   replaceFlag: boolean = true;
-  // [End symbol_quick_replacement]
+  // [End symbol_quick_replacement_new]
 
   build() {
     NavDestination() {

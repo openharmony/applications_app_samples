@@ -168,8 +168,8 @@ void SampleBitMap::DrawCustomFontText()
     // Start [custom_font_c_custom_font_text_step1]
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
     // End [custom_font_c_custom_font_text_step1]
-    // 后续使用自定义字体时，需使用到该字体家族名
     // Start [custom_font_c_custom_font_text_step2]
+    // 后续使用自定义字体时，需使用到该字体家族名
     const char* fontFamily = "myFamilyName"; 
     // 该路径是待注册的自定义字体文件在应用设备下的路径，确保该自定义字体文件已正确放置在该路径下
     const char* fontPath = "/system/fonts/NotoSerifTamil[wdth,wght].ttf"; 

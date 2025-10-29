@@ -27,7 +27,7 @@
     "abilities": [
       // [Start quick_start0]
       {
-        // [StartExclude  quick_start]
+        // [StartExclude  quick_start0]
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "icon": "$media:startIcon",
@@ -36,41 +36,38 @@
         "exported": true,
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        // [EndExclude  quick_start]
+        // [EndExclude  quick_start0]
         "skills": [
           {
             "entities": [
               "entity.system.home"
             ],
             "actions": [
-              // API19及以上版本须配置为"ohos.want.action.home"，API18及以下版本请配置为"action.system.home"
               "ohos.want.action.home"
             ]
           },
           {
             "entities": [
-              // entities必须包含"entity.system.browsable"
+              // entities须包含"entity.system.browsable"
               "entity.system.browsable"
             ],
             "actions": [
-              // actions必须包含"ohos.want.action.viewData"
+              // actions须包含"ohos.want.action.viewData"
               "ohos.want.action.viewData"
             ],
             "uris": [
               {
                 // scheme须配置为https
                 "scheme": "https",
-                // host须配置为关联的域名
+                // host须配置关联的域名
                 "host": "www.example.com",
-                // path可选，表示域名服务器上的目录或文件路径，例如www.example.com/path1中的path1
-                // 如果应用只能处理部分特定的path，则此处应该配置应用所支持的path，避免出现应用不能处理的path链接也被引流到应用中的问题
+                // path可选，为了避免匹配到多个应用，建议配置该字段
                 "path": "path1"
               }
             ],
             // domainVerify须设置为true
             "domainVerify": true
-          }
-          // 若有其他跳转能力，如推送消息跳转、NFC跳转，可新增一个skill对象，防止与App Linking业务冲突
+          } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       },
       // [End quick_start0]

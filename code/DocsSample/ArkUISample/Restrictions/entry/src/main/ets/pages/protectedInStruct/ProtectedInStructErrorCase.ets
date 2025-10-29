@@ -16,26 +16,27 @@
 // [Start ProtectedInStruct_ErrorCase]
 @Entry
 @Component
-struct PISErrorAccessRestrictions  {
+struct ProtectedErrorAccessRestrictions {
   build() {
     Column() {
-      PISErrorComponentChild({regularValue: 'Hello'});
+      ProtectedErrorComponentChild({ regularValue: 'Hello' })
     }
     .width('100%');
   }
 }
 
 @Component
-struct PISErrorComponentChild  {
+struct ProtectedErrorComponentChild {
   // 此处使用protected修饰符时会出现告警日志
   protected regularValue: string = 'Hello';
+
   build() {
     Column() {
-      // $r('app.string.Hello')需要替换为开发者所需的资源文件
-      Text($r('app.string.Hello'))
+      Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
-    };
+    }
   }
 }
+
 // [End ProtectedInStruct_ErrorCase]

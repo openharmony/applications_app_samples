@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start data_sync_on_distributed_data_object_cross_device_collaboration_one]
+// [Start data_sync_on_distributed_data_object_cross_device_collaboration]
 import { AbilityConstant, Caller, UIAbility, Want } from '@kit.AbilityKit';
 import { distributedDataObject } from '@kit.ArkData';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
@@ -41,8 +41,7 @@ let dataObject: distributedDataObject.DataObject;
 const changeCallBack: distributedDataObject.DataObserver = (sessionId: string, fields: Array<string>) => {
   console.info(`change, sessionId: ${sessionId}, fields: ${JSON.stringify(fields)}`);
 }
-// [End data_sync_on_distributed_data_object_cross_device_collaboration_one]
-// [Start data_sync_on_distributed_data_object_cross_device_collaboration_two]
+
 export default class EntryAbility extends UIAbility {
   // 1. 调用端调用startAbilityByCall接口拉起对端Ability
   callRemote() {
@@ -84,8 +83,7 @@ export default class EntryAbility extends UIAbility {
       hilog.error(DOMAIN, TAG, `get remote deviceId error, error code: ${err.code}, error message: ${err.message}`);
     }
   }
-// [End data_sync_on_distributed_data_object_cross_device_collaboration_two]
-// [Start data_sync_on_distributed_data_object_cross_device_collaboration_three]
+
   // 2. 拉起对端Ability后创建分布式数据对象
   createDataObject() {
     if (!caller) {
@@ -123,8 +121,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-// [End data_sync_on_distributed_data_object_cross_device_collaboration_three]
-// [Start data_sync_on_distributed_data_object_cross_device_collaboration_four]
+
 // 获取可信组网中的设备
 function getRemoteDeviceId() {
   let deviceId = '';
@@ -141,4 +138,4 @@ function getRemoteDeviceId() {
   return deviceId;
 }
 
-// [End data_sync_on_distributed_data_object_cross_device_collaboration_four]
+// [End data_sync_on_distributed_data_object_cross_device_collaboration]

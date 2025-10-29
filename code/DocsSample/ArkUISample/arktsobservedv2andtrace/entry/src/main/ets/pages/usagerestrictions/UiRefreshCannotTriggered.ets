@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start UiRefreshCannotTriggered]
+// [Start UiRefresh_CannotTriggered]
 @ObservedV2
 class TriggeredPerson {
   // Public property to store the unique identifier
@@ -40,4 +40,4 @@ struct UiRefreshCannotTriggered {
     }
   }
 }
-// [End UiRefreshCannotTriggered]
+// [End UiRefresh_CannotTriggered]

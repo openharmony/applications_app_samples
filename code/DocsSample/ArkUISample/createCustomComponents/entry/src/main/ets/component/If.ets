@@ -14,8 +14,8 @@
  */
 @Entry
 @Component
-struct If {
-  expression: number = 0;
+struct IfPage {
+  expression: number = 1;
   // [Start switch_syntax]
   build() {
     Column() {

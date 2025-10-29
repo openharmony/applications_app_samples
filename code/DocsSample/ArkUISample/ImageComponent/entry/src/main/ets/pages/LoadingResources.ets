@@ -19,32 +19,32 @@ struct LoadingResources {
   build() {
     Column({ space: 10 }) {
 
-      //  [Start localResource]
+      //  [Start local_resource]
       //  'images/view.jpg' 需要替换为开发者所需的资源文件
       Image('images/view.jpg')
         .width(200)
-      //  [End localResource]
+      //  [End local_resource]
 
-      //  [Start netResource]
+      //  [Start net_resource]
       //  $r('app.string.LoadingResources') 需要替换为开发者所需的资源文件
       Image($r('app.string.LoadingResources')) // 实际使用时请替换为真实地址
-      //  [End netResource]
+      //  [End net_resource]
 
-      //  [Start Resource]
+      //  [Start resource_icon]
       //  $r('app.media.icon') 需要替换为开发者所需的资源文件
       Image($r('app.media.icon'))
-      //  [End Resource]
+      //  [End resource_icon]
 
-      //  [Start rawfileResource]
+      //  [Start rawfile_resource]
       //  $rawfile('example1.png') 需要替换为开发者所需的资源文件
       Image($rawfile('example1.png'))
-      //  [End rawfileResource]
+      //  [End rawfile_resource]
 
-      //  [Start FileLibraryFormat]
+      //  [Start fileLibrary_format]
       //  'file://media/Photos/5' 需要替换为开发者所需的资源文件
       Image('file://media/Photos/5')
         .width(200)
-      //  [End FileLibraryFormat]
+      //  [End fileLibrary_format]
     }
     .height(150)
     .width('100%')

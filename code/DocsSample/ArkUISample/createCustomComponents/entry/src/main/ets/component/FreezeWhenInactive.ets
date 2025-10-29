@@ -16,7 +16,7 @@
   // [Start freezeWhenInactive_Component]
 @Component({ freezeWhenInactive: true })
 struct MyComponentFreezeWhenInactive {
-  // [StartExclude freezeWhenInactive_build]
+  // [StartExclude freezeWhenInactive_Component]
   build() {
     Column(){
       Text('Hello World')
@@ -26,6 +26,6 @@ struct MyComponentFreezeWhenInactive {
     .width('100%')
     .height('100%')
   }
-  // [EndExclude freezeWhenInactive_build]
+  // [EndExclude freezeWhenInactive_Component]
 }
 // [End freezeWhenInactive_Component]

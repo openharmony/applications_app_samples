@@ -16,29 +16,28 @@
 // [Start LlinkWithPrivate_CorrectCase]
 @Entry
 @Component
-struct LWPCCAccessRestrictions {
+struct LinkAccessRestrictions {
   @Builder
   buildTest() {
-    // $r('app.string.Parentbuilder')需要替换为开发者所需的资源文件
-    Text($r('app.string.Parentbuilder'));
+    Text('Parent builder');
   }
 
   build() {
     Column() {
-      LWPCCComponentChild({
+      LinkComponentChild({
         stateValue: 'Hello',
         propValue: 'Hello',
         provideValue: 'Hello',
         builderValue: this.buildTest,
         regularValue: 'Hello'
-      });
+      })
     }
     .width('100%');
   }
 }
 
 @Component
-struct LWPCCComponentChild {
+struct LinkComponentChild {
   @State stateValue: string = 'Hello';
   @Prop propValue: string = 'Hello';
   @Provide provideValue: string = 'Hello';
@@ -47,17 +46,16 @@ struct LWPCCComponentChild {
 
   @Builder
   buildTest() {
-    // $r('app.string.Childbuilder')需要替换为开发者所需的资源文件
-    Text($r('app.string.Childbuilder'));
+    Text('Child builder');
   }
 
   build() {
     Column() {
-      // $r('app.string.Hello')需要替换为开发者所需的资源文件
-      Text($r('app.string.Hello'))
+      Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
-    };
+    }
   }
 }
+
 // [End LlinkWithPrivate_CorrectCase]

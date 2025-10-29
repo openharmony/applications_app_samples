@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct Stroke_LineJoin {
+struct StrokeLineJoin {
   build() {
     Column() {
       // [Start stroke_line_join]

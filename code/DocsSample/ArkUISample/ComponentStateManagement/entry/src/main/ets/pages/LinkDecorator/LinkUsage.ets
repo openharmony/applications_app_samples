@@ -20,7 +20,7 @@ class LinkInfo {
 
 @Component
 struct LinkChild {
-  // 在子组件中，使用@Link装饰Info类型的test变量
+  // 在子组件中，使用@Link装饰LinkInfo类型的test变量
   @Link test: LinkInfo;
 
   build() {
@@ -35,7 +35,7 @@ struct LinkExample {
 
   build() {
     Column() {
-      // 在父组件中，使用@State装饰的info变量初始化Child组件的test变量
+      // 在父组件中，使用@State装饰的info变量初始化LinkChild组件的test变量
       LinkChild({test: this.info})
     }
   }

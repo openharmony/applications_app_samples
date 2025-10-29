@@ -74,7 +74,7 @@ export struct ButtonCustomStyle {
           // [End custom_background_color]
           // [Start custom_background_color2]
           Button('background color').backgroundColor(0xF55A42)
-          // [Start custom_background_color2]
+          // [End custom_background_color2]
         }
 
         ComponentCard({

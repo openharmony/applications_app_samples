@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct anti_Alias {
+struct AntiAlias {
   build() {
     Column() {
       Text('Turn on anti-aliasing').margin({bottom:10})

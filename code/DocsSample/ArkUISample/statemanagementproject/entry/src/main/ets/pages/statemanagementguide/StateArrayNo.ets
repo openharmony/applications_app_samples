@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start StateArrayNo_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[EvtryAblity]';
@@ -151,13 +151,12 @@ struct Ancestor8 {
 @Entry
 @Component
 struct Page8 {
-  // [Start StateArrayNo_start]
   @State childList: ChildList = [new Child8(1), new Child8(2), new Child8(3), new Child8(4), new Child8(5)];
   @State ancestor: Ancestor = new Ancestor(this.childList)
-  // [End StateArrayNo_start]
   build() {
     Column() {
       Ancestor8({ ancestor: this.ancestor })
     }
   }
 }
+// [End StateArrayNo_start]

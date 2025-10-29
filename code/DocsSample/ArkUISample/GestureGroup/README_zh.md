@@ -15,18 +15,6 @@
 | ![](screenshots/Parallel.gif) | ![](screenshots/Exclusive.gif) |
 
 
-### 具体实现
-
-1. **GestureGroup 基础搭建**：通过GestureGroup(模式)创建容器，包裹多个手势实例，再用组件.gesture()绑定，实现多手势统一管理。
-2. **三种组合模式实现**：  
-   并行（Parallel）：包裹无冲突手势（如捏合 + 旋转），可同时触发，各自回调独立执行（如捏合改缩放比例、旋转改角度）。  
-   顺序（Serial）：包裹有依赖的手势（如长按 + 滑动），需先触发前一个（长按满足 duration），再触发后一个（滑动），前一个未触发则后一个无效。  
-   互斥（Exclusive）：包裹互斥手势（如点击 + 长按），系统优先识别高优先级手势，未识别则尝试下一个（如长按优先级高，先判断长按，不满足再判断点击）。
-3. **优先级与冲突控制**：  
-   手势优先级：给手势设priority（默认 0，值越大优先级越高），如LongPressGesture({priority:1})比TapGesture({priority:0})优先被识别。  
-   父子组件冲突：父组件用gestureMask控制透传（如GestureMask.IgnoreInternal，父手势不响应子组件区域操作）。
-
-
 ### 使用说明
 
 1. **模式选择按场景匹配**:   
@@ -51,6 +39,18 @@ entry/src/main/ets/
     └── SceneExample.ets       //  场景示例页面
     └── Sequence.ets           //  顺序识别页面
 ```
+
+### 具体实现
+
+1. **GestureGroup 基础搭建**：通过GestureGroup(模式)创建容器，包裹多个手势实例，再用组件.gesture()绑定，实现多手势统一管理。
+2. **三种组合模式实现**：  
+   并行（Parallel）：包裹无冲突手势（如捏合 + 旋转），可同时触发，各自回调独立执行（如捏合改缩放比例、旋转改角度）。  
+   顺序（Serial）：包裹有依赖的手势（如长按 + 滑动），需先触发前一个（长按满足 duration），再触发后一个（滑动），前一个未触发则后一个无效。  
+   互斥（Exclusive）：包裹互斥手势（如点击 + 长按），系统优先识别高优先级手势，未识别则尝试下一个（如长按优先级高，先判断长按，不满足再判断点击）。
+3. **优先级与冲突控制**：  
+   手势优先级：给手势设priority（默认 0，值越大优先级越高），如LongPressGesture({priority:1})比TapGesture({priority:0})优先被识别。  
+   父子组件冲突：父组件用gestureMask控制透传（如GestureMask.IgnoreInternal，父手势不响应子组件区域操作）。
+
 
 ## 相关权限
 

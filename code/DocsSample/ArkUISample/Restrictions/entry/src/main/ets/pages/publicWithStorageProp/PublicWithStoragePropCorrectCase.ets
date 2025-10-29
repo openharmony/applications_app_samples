@@ -16,30 +16,32 @@
 // [Start PublicWithStorageProp_CorrectCase]
 @Entry
 @Component
-struct PWPCorrectAccessRestrictions  {
+struct PublicCorrectAccessRestrictions {
   @Provide consumeValue: string = 'Hello';
+
   build() {
     Column() {
-      PWPCorrectComponentChild();
+      PublicCorrectComponentChild()
     }
     .width('100%');
   }
 }
 
 @Component
-struct PWPCorrectComponentChild {
+struct PublicCorrectComponentChild {
   @LocalStorageProp('sessionLocalProp') localPropValue: string = 'Hello';
   @LocalStorageLink('sessionLocalLink') localLinkValue: string = 'Hello';
   @StorageProp('sessionProp') storagePropValue: string = 'Hello';
   @StorageLink('sessionLink') storageLinkValue: string = 'Hello';
   @Consume consumeValue: string;
+
   build() {
     Column() {
-      // $r('app.string.Hello')需要替换为开发者所需的资源文件
-      Text($r('app.string.Hello'))
+      Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
-    };
+    }
   }
 }
+
 // [End PublicWithStorageProp_CorrectCase]

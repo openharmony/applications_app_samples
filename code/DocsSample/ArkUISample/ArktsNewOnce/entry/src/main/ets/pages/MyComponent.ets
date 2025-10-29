@@ -33,12 +33,12 @@ struct MyComponent {
   // [StartExclude once_init_sync_noMore]
   // [StartExclude once_param_order_irrelevant]
   @Param @Once onceParam: string = 'onceParam'; // 正确用法
-  // [EndExclide once_param_order_irrelevant]
+  // [EndExclude once_param_order_irrelevant]
   // [StartExclude once_param_componentV2_pair]
   @Param @Once param1: number = 0;
   @Once @Param param2: number = 0;
   // [StartExclude once_param_order_irrelevant]
-  // [EndExclide once_init_sync_noMore]
+  // [EndExclude once_init_sync_noMore]
   @Local message: string = 'Hello World';
 
   build() {
@@ -51,8 +51,8 @@ struct MyComponent {
       ChildComponent({ onceParam: this.message });
     }
   }
-  // [EndExclide once_param_componentV2_pair]
-  // [EndExclide once_param_order_irrelevant]
+  // [EndExclude once_param_componentV2_pair]
+  // [EndExclude once_param_order_irrelevant]
 }
 //[End once_param_componentV2_pair]
 // [End once_param_order_irrelevant]

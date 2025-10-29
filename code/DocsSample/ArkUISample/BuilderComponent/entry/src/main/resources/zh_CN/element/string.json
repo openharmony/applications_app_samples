@@ -22,7 +22,7 @@
     },
     {
       "name": "ButtonThree",
-      "value": "传递参数"
+      "value": "按值传递参数"
     },
     {
       "name": "ButtonFour",
@@ -119,6 +119,14 @@
     {
       "name": "ButtonTwentySeven",
       "value": "在@Watch函数中执行@Builder函数【正例】"
+    },
+    {
+      "name": "ButtonTwentyEight",
+      "value": "按引用传递参数"
+    },
+    {
+      "name": "ButtonTwentyNine",
+      "value": "按回调传递参数"
     }
   ]
 }

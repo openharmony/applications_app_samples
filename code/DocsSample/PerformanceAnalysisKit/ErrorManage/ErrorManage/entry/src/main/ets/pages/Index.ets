@@ -22,13 +22,13 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start error_observer]
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
-    hilog.info(0x0000, 'testTag','onUnhandledException, errorMsg: ', errorMsg);
+    hilog.info(0x0000, 'testErrorManage','onUnhandledException, errorMsg: ', errorMsg);
   },
   onException(errorObj) {
-    hilog.info(0x0000, 'testTag','onException, name: ', errorObj.name);
-    hilog.info(0x0000, 'testTag','onException, message: ', errorObj.message);
+    hilog.info(0x0000, 'testErrorManage','onException, name: ', errorObj.name);
+    hilog.info(0x0000, 'testErrorManage','onException, message: ', errorObj.message);
     if (typeof(errorObj.stack) === 'string') {
-      hilog.info(0x0000, 'testTag','onException, stack: ', errorObj.stack);
+      hilog.info(0x0000, 'testErrorManage','onException, stack: ', errorObj.stack);
     }
   }
 };
@@ -36,30 +36,34 @@ let observer: errorManager.ErrorObserver = {
 
 // [Start error_func]
 function errorFunc(observer: errorManager.GlobalError) {
-  hilog.info(0x0000, 'testTag','result name :' + observer.name);
-  hilog.info(0x0000, 'testTag','result message :' + observer.message);
-  hilog.info(0x0000, 'testTag','result stack :' + observer.stack);
-  hilog.info(0x0000, 'testTag','result instanceName :' + observer.instanceName);
-  hilog.info(0x0000, 'testTag','result instanceType :' + observer.instanceType);
+  hilog.info(0x0000, 'testErrorManage','result name :' + observer.name);
+  hilog.info(0x0000, 'testErrorManage','result message :' + observer.message);
+  hilog.info(0x0000, 'testErrorManage','result stack :' + observer.stack);
+  hilog.info(0x0000, 'testErrorManage','result instanceName :' + observer.instanceName);
+  hilog.info(0x0000, 'testErrorManage','result instanceType :' + observer.instanceType);
 };
 // [End error_func]
 
 // [Start loop_observer]
 let loopObserver: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
-    hilog.info(0x0000, 'testTag','Duration timeout: ' + timeout);
+    hilog.info(0x0000, 'testErrorManage','Duration timeout: ' + timeout);
   }
 };
 // [End loop_observer]
 
 // [Start promise_func]
 function promiseFunc(observer: errorManager.GlobalError) {
-  hilog.info(0x0000, 'testTag','result name :' + observer.name);
-  hilog.info(0x0000, 'testTag','result message :' + observer.message);
-  hilog.info(0x0000, 'testTag','result stack :' + observer.stack);
-  hilog.info(0x0000, 'testTag','result instanceName :' + observer.instanceName);
-  hilog.info(0x0000, 'testTag','result instanceType :' + observer.instanceType);
-}
+  hilog.info(0x0000, 'testErrorManage','result name :' + observer.name);
+  hilog.info(0x0000, 'testErrorManage','result message :' + observer.message);
+  hilog.info(0x0000, 'testErrorManage','result stack :' + observer.stack);
+  hilog.info(0x0000, 'testErrorManage','result instanceName :' + observer.instanceName);
+  hilog.info(0x0000, 'testErrorManage','result instanceType :' + observer.instanceType);
+};
+
+async function promiseFuncOne() {
+  throw new Error('process promise exception');
+};
 // [End promise_func]
 
 // [Start unhandled_rejection_observer]
@@ -69,20 +73,24 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 
 let unhandledrejectionObserver: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    hilog.info(0x0000, 'testTag','promise1 is rejected');
+    hilog.info(0x0000, 'testErrorManage','promise1 is rejected');
   }
-  hilog.info(0x0000, 'testTag','reason.name: ', reason.name);
-  hilog.info(0x0000, 'testTag','reason.message: ', reason.message);
+  hilog.info(0x0000, 'testErrorManage','reason.name: ', reason.name);
+  hilog.info(0x0000, 'testErrorManage','reason.message: ', reason.message);
   if (reason.stack) {
-    hilog.info(0x0000, 'testTag','reason.stack: ', reason.stack);
+    hilog.info(0x0000, 'testErrorManage','reason.stack: ', reason.stack);
   }
+};
+
+async function promiseFuncTwo() {
+  throw new Error('process promise unhandled rejection exception');
 };
 // [End unhandled_rejection_observer]
 
 // [Start freeze_call_back]
 function freezeCallback() {
-  hilog.info(0x0000, 'testTag','freezecallback');
-}
+  hilog.info(0x0000, 'testErrorManage','freezecallback');
+};
 // [End freeze_call_back]
 
 @Entry
@@ -100,8 +108,10 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testTag',`error: ${code}, ${message}`);
+          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
         }
+        // 构造场景故障
+        throw new Error('test errorObserver msg');
       }).position({x:50, y:50});
       // [End onclick_error_observer]
 
@@ -112,8 +122,10 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testTag',`error: ${code}, ${message}`);
+          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
         }
+        // 构造场景故障
+        throw new Error('test errorFunc msg');
       }).position({x:50, y:100});
       // [End onclick_error_func]
 
@@ -124,8 +136,12 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testTag',`error: ${code}, ${message}`);
+          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
         }
+        // 构造场景故障
+        let date = Date.now();
+        while (Date.now() - date < 4000) {
+        };
       }).position({x:50, y:150});
       // [End onclick_loop_observer]
 
@@ -136,8 +152,14 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testTag',`error: ${code}, ${message}`);
+          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
         }
+        // 构造场景故障
+        new Promise<string>(() => {
+          promiseFuncOne();
+        }).then(() => {
+          throw new Error('test promiseFuncOne msg');
+        });
       }).position({x:50, y:200});
       // [End onclick_promise_func]
 
@@ -148,8 +170,14 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testTag',`error: ${code}, ${message}`);
+          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
         }
+        // 构造场景故障
+        new Promise<string>(() => {
+          promiseFuncTwo();
+        }).then(() => {
+          throw new Error('test promiseFuncTwo msg');
+        });
       }).position({x:50, y:250});
       // [End onclick_unhandled_rejection_observer]
 
@@ -160,8 +188,12 @@ struct Index {
         } catch (paramError) {
           let code = (paramError as BusinessError).code;
           let message = (paramError as BusinessError).message;
-          hilog.error(0x0000, 'testTag',`error: ${code}, ${message}`);
+          hilog.error(0x0000, 'testErrorManage',`error: ${code}, ${message}`);
         }
+        // 构造场景故障
+        let date = Date.now();
+        while (Date.now() - date < 15000) {
+        };
       }).position({x:50, y:300});
       // [End onclick_freeze_call_back]
     }

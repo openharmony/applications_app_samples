@@ -22,7 +22,9 @@ let router: Router;
 const pageArray: string[] = [
   'pages/PrivateCustomConstructor',
   'pages/GlobalCustomConstructor',
-  'pages/ParameterPassing',
+  'pages/ParameterValue',
+  'pages/ParameterReference',
+  'pages/ParameterMakeBinding',
   'pages/InCustomComponent',
   'pages/GlobalCustomBuilder',
   'pages/ChangingByDecorator',
@@ -53,6 +55,8 @@ export const buttonArray: string[] = [
   'ButtonOne',
   'ButtonTwo',
   'ButtonThree',
+  'ButtonTwentyEight',
+  'ButtonTwentyNine',
   'ButtonFour',
   'ButtonFive',
   'ButtonSix',
@@ -81,6 +85,7 @@ export const buttonArray: string[] = [
 
 @Extend(Button)
 function buttonCustomStyle(id: string, page: string) {
+  .height(40)
   .fontWeight(FontWeight.Bold)
   .borderColor('#FF8040')
   .borderWidth($r('sys.float.corner_radius_level1'))

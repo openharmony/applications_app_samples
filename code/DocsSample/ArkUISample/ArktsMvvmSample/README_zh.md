@@ -9,7 +9,6 @@
 
 ### 效果展示
 
-
 | @State实现备忘录演示                                | @Prop和@Link实现备忘录演示                           |
 |-------------------------------------------|-------------------------------------------|
 | ![](screenshots/StateEffectPreview.gif)   | ![](screenshots/PropLinkPreview.gif)      |
@@ -17,6 +16,12 @@
 | ![](screenshots/ForEachEffectPreview.gif) | ![](screenshots/BuilderEffectPreview.gif) |
 | Mvvm实现备忘录使用演示                             | 
 | ![](screenshots/MvvmEffectPreview.gif)    |
+
+### 使用说明
+
+1. 必须搭配 @Param：仅能与 @Param 共同使用，不可单独使用或与@State、@Local 等其它装饰器搭配，且仅支持@ComponentV2组件（API 12+）。
+2. 初始化仅同步一次：变量初始化时接收外部传入值，后续外部数据源变化时，子组件变量不再同步更新。
+3. 允许本地修改：解除@Param默认“不可本地修改”的限制，修改后可触发UI刷新，且不影响外部数据源。
 
 ### 工程目录
 ```
@@ -57,18 +62,13 @@ entry/src/
 
 ```
 
-### 使用说明
-
-1. 必须搭配 @Param：仅能与 @Param 共同使用，不可单独使用或与 @State、@Local 等其它装饰器搭配，且仅支持 @ComponentV2 组件（API 12+）。
-2. 初始化仅同步一次：变量初始化时接收外部传入值，后续外部数据源变化时，子组件变量不再同步更新。
-3. 允许本地修改：解除 @Param 默认 “不可本地修改” 的限制，修改后可触发 UI 刷新，且不影响外部数据源。
-
-
 ### 具体实现
 
-1. 通过装饰器修饰变量，在变量修改时，数据发生变化，实现备忘录。
-2. 进一步使用@Builder装饰器将组件进一步抽离，进一步靠近mvvm模式的结构。
-3. 分层职责：Model 层仅管数据结构 / 加载，ViewModel 层处理业务逻辑（如全选、状态切换），View 层只负责 UI 渲染，严格遵循 “不跨层访问” 原则。
+1. 搭建MVVM项目目录（model、viewModel、views、pages），并在 resources下创建default_tasks.json存储初始待办数据。
+2. 开发Model层：用ThingModel定义单条待办结构，TodoListModel实现从JSON读取数据的逻辑。
+3. 开发ViewModel层：ThingViewModel封装单待办操作（切换状态、加后缀），TodoListViewModel处理列表逻辑（加载数据、全选）。
+4. 开发View层：编写组件（标题、单待办、全选、列表），页面Index.ets组装组件并绑定ViewModel。
+5. 测试应用，确认数据加载正常、交互（切换状态、全选）时UI与ViewModel数据双向同步。
 
 ### 相关权限
 
@@ -80,7 +80,7 @@ entry/src/
 
 ### 约束与限制
 
-不涉及。
+1.本示例已适配API version 20及以上版本SDK。
 
 ### 下载
 

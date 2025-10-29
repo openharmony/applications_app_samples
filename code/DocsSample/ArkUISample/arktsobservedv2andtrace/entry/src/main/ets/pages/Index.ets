@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 class CreateRouter{
-  public  pageName:string;
-  public  routerName:string;
+  public pageName:string;
+  public routerName:string;
   constructor(pageName:string,routerName:string){
     this.pageName = pageName;
     this.routerName = routerName;

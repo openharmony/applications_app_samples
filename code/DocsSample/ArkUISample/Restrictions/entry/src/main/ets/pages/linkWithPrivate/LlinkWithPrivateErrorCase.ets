@@ -16,29 +16,28 @@
 // [Start LlinkWithPrivate_ErrorCase]
 @Entry
 @Component
-struct LWPErrorAccessRestrictions {
+struct LinkErrorAccessRestrictions {
   @Builder
   buildTest() {
-    // $r('app.string.Parentbuilder')需要替换为开发者所需的资源文件
-    Text($r('app.string.Parentbuilder'));
+    Text('Parent builder');
   }
 
   build() {
     Column() {
-      LWPErrorComponentChild({
+      LinkErrorComponentChild({
         stateValue: 'Hello',
         propValue: 'Hello',
         provideValue: 'Hello',
         builderValue: this.buildTest,
         regularValue: 'Hello'
-      });
+      })
     }
     .width('100%');
   }
 }
 
 @Component
-struct LWPErrorComponentChild  {
+struct LinkErrorComponentChild {
   // 此处使用private修饰符时会出现告警日志
   @State private stateValue: string = 'Hello';
   // 此处使用private修饰符时会出现告警日志
@@ -52,17 +51,16 @@ struct LWPErrorComponentChild  {
 
   @Builder
   buildTest() {
-    // $r('app.string.Childbuilder')需要替换为开发者所需的资源文件
-    Text($r('app.string.Childbuilder'));
+    Text('Child builder');
   }
 
   build() {
     Column() {
-      // $r('app.string.Hello')需要替换为开发者所需的资源文件
-      Text($r('app.string.Hello'))
+      Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
-    };
+    }
   }
 }
+
 // [End LlinkWithPrivate_ErrorCase]

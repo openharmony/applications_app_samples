@@ -36,7 +36,7 @@ struct Index {
     Column() {
       Button('Click to print log')
         .onClick(() => {
-          this.appendMsg('Operating status variable');
+          this.appendMsg('Operating temporary variable');
         })
         .width('90%')
         .backgroundColor(Color.Blue)

@@ -13,13 +13,9 @@
  * limitations under the License.
  */
 // [Start transition_effectExample5]
-// Total number of grid items (3x3 grid)
 const ITEM_COUNTS = 9;
-// Grid item theme color (orange)
 const ITEM_COLOR = '#ED6F21';
-// Animation stagger delay is 30ms
 const INTERVAL = 30;
-// The animation duration for a single grid item is 300ms
 const DURATION = 300;
 
 @Entry

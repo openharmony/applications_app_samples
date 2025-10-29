@@ -38,4 +38,5 @@ struct Index {
           })
       })
   }
-}// [End quick_start0]
+}
+// [End quick_start0]

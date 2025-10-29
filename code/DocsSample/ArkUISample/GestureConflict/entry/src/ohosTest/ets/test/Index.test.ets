@@ -20,7 +20,7 @@ import hilog from '@ohos.hilog';
 
 // HiLog通常需要domain, tag等参数
 const DOMAIN = 0x0001;
-const TAG = 'MyApp';
+const TAG = 'Sample_gestureconflict';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;

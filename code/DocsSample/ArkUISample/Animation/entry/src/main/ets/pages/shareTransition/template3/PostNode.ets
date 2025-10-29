@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { common } from '@kit.AbilityKit';
+import resource from '../../../common/resource';
 
 // [Start stack_post_node]
 // 跨容器迁移能力
@@ -22,8 +23,6 @@ class Data {
   public item: string | null = null;
   public isExpand: boolean = false;
 }
-
-let context = AppStorage.get<common.UIAbilityContext>('context') as common.UIAbilityContext;
 
 @Builder
 function postBuilder(data: Data) {
@@ -36,9 +35,9 @@ function postBuilder(data: Data) {
         .width(80)
         .height(80)
       Column() {
-        Text(context.resourceManager.getStringByNameSync('shareTransition_text5') + data.item)
+        Text(resource.resourceToString($r('app.string.shareTransition_text5')) + data.item)
           .fontSize(20)
-        Text(context.resourceManager.getStringByNameSync('shareTransition_text6'))
+        Text(resource.resourceToString($r('app.string.shareTransition_text6')))
           .fontSize(12)
           .fontColor(0x909399)
       }
@@ -53,7 +52,7 @@ function postBuilder(data: Data) {
     // 展开后显示细节内容
     if (data.isExpand) {
       Row() {
-        Text(context.resourceManager.getStringByNameSync('shareTransition_text7'))
+        Text(resource.resourceToString($r('app.string.shareTransition_text7')))
           .fontSize(28)
           .fontColor(0x909399)
           .textAlign(TextAlign.Center)

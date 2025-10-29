@@ -16,12 +16,12 @@
 // [Start stop_vpn_extension_ability_import]
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End stop_vpn_extension_ability_import]
 import vpn_client from 'libentry.so';
 import { showToast } from '../common/ShowToast';
 import { ComponentId } from '../common/CommonConstant';
 import TitleBar from '../common/component';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 常量提取
 const TOAST_DURATION = 2000; // Toast 显示时间
@@ -114,7 +114,7 @@ struct StopVpn {
               showToast('stop vpnExt Fail: ' + JSON.stringify(err), TOAST_DURATION);
               this.flag = 'Error';
               // [EndExclude stop_vpn_extension_ability]
-              console.error('developTag', 'stop vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
+              hilog.error(0x0000, 'testTag', 'developTag', 'stop vpnExt Fail %{public}s', JSON.stringify(err) ?? '');
             }
 
           })
