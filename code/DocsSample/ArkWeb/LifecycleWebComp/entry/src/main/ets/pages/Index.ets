@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start the_status_of_web_component_web_page_loading]
+// [Start quick_start]
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -23,15 +23,15 @@ struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
   responseWeb: WebResourceResponse = new WebResourceResponse();
   heads: Header[] = new Array();
-  @State webData: string = '<!DOCTYPE html>\n' +
-    '<html>\n' +
-    '<head>\n' +
-    '<title>intercept test</title>\n' +
-    '</head>\n' +
-    '<body>\n' +
-    '<h1>intercept test</h1>\n' +
-    '</body>\n' +
-    '</html>';
+  @State webData: string = "<!DOCTYPE html>\n" +
+    "<html>\n" +
+    "<head>\n" +
+    "<title>intercept test</title>\n" +
+    "</head>\n" +
+    "<body>\n" +
+    "<h1>intercept test</h1>\n" +
+    "</body>\n" +
+    "</html>";
 
   aboutToAppear(): void {
     try {
@@ -43,42 +43,44 @@ struct WebComponent {
 
   build() {
     Column() {
-      Web({ src: $rawfile('index.html'), controller: this.controller })
+      Web({ src: 'www.example.com', controller: this.controller })
         .onControllerAttached(() => {
           // 推荐在此loadUrl、设置自定义用户代理、注入JS对象等
-          console.log('onControllerAttached execute');
+          console.info('onControllerAttached execute')
         })
         .onLoadIntercept((event) => {
           if (event) {
-            console.log('onLoadIntercept url:' + event.data.getRequestUrl());
-            console.log('url:' + event.data.getRequestUrl());
-            console.log('isMainFrame:' + event.data.isMainFrame());
-            console.log('isRedirect:' + event.data.isRedirect());
-            console.log('isRequestGesture:' + event.data.isRequestGesture());
+            console.info('onLoadIntercept url:' + event.data.getRequestUrl())
+            console.info('url:' + event.data.getRequestUrl())
+            console.info('isMainFrame:' + event.data.isMainFrame())
+            console.info('isRedirect:' + event.data.isRedirect())
+            console.info('isRequestGesture:' + event.data.isRequestGesture())
           }
           // 返回true表示阻止此次加载，否则允许此次加载
-          return true;
+          return false;
         })
         .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
-          if (webResourceRequest && webResourceRequest.getRequestUrl() == 'about:blank') {
+          if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
             return true;
           }
           return false;
         })
         .onInterceptRequest((event) => {
           if (event) {
-            console.log('url:' + event.request.getRequestUrl());
+            console.info('url:' + event.request.getRequestUrl());
           }
           let head1: Header = {
-            headerKey: 'Connection',
-            headerValue: 'keep-alive'
+            headerKey: "Connection",
+            headerValue: "keep-alive"
           }
           let head2: Header = {
-            headerKey: 'Cache-Control',
-            headerValue: 'no-cache'
+            headerKey: "Cache-Control",
+            headerValue: "no-cache"
           }
+          // 将新元素追加到数组的末尾，并返回数组的新长度。
           let length = this.heads.push(head1);
           length = this.heads.push(head2);
+          console.info('The response header result length is :' + length);
           this.responseWeb.setResponseHeader(this.heads);
           this.responseWeb.setResponseData(this.webData);
           this.responseWeb.setResponseEncoding('utf-8');
@@ -90,42 +92,42 @@ struct WebComponent {
         })
         .onPageBegin((event) => {
           if (event) {
-            console.log('onPageBegin url:' + event.url);
+            console.info('onPageBegin url:' + event.url);
           }
         })
         .onFirstContentfulPaint(event => {
           if (event) {
-            console.log('onFirstContentfulPaint:' + '[navigationStartTick]:' +
-            event.navigationStartTick + ', [firstContentfulPaintMs]:' +
+            console.info("onFirstContentfulPaint:" + "[navigationStartTick]:" +
+            event.navigationStartTick + ", [firstContentfulPaintMs]:" +
             event.firstContentfulPaintMs);
           }
         })
         .onProgressChange((event) => {
           if (event) {
-            console.log('newProgress:' + event.newProgress);
+            console.info('newProgress:' + event.newProgress);
           }
         })
         .onPageEnd((event) => {
           // 推荐在此事件中执行JavaScript脚本
           if (event) {
-            console.log('onPageEnd url:' + event.url);
+            console.info('onPageEnd url:' + event.url);
           }
         })
         .onPageVisible((event) => {
-          console.log('onPageVisible url:' + event.url);
+          console.info('onPageVisible url:' + event.url);
         })
         .onRenderExited((event) => {
           if (event) {
-            console.log('onRenderExited reason:' + event.renderExitReason);
+            console.info('onRenderExited reason:' + event.renderExitReason);
           }
         })
         .onDisAppear(() => {
-          promptAction.showToast({
+          this.getUIContext().getPromptAction().showToast({
             message: 'The web is hidden',
             duration: 2000
-          });
+          })
         })
     }
   }
 }
-// [End the_status_of_web_component_web_page_loading]
+// [End quick_start]
