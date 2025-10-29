@@ -40,7 +40,7 @@ struct Parent {
     Column() {
       // this.showChild为true，创建Child子组件，执行Child aboutToAppear
       if (this.showChild) {
-        Child();
+        Child()
       }
       Button('delete Child')
         .margin(20)
