@@ -24,6 +24,7 @@ const DOMAIN = 0x0000;
 struct Index {
   @State isPhysicalKeyboardExist: boolean = false;
   @State message: string = "Click to obtain the device list and monitor device hot-plug events";
+  keyBoards: Map<number, inputDevice.KeyboardType> = new Map();
 
   // [StartExclude input_device]
   // 结果展示
@@ -68,6 +69,7 @@ struct Index {
                     if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD) {
                       // 物理键盘已连接
                       this.isPhysicalKeyboardExist = true;
+                      this.keyBoards.set(data[i], type);
                     }
                   });
                 }
@@ -80,11 +82,15 @@ struct Index {
                   if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
                     // 物理键盘已插入
                     this.isPhysicalKeyboardExist = true;
-                  } else if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
-                    // 物理键盘已拔掉
-                    this.isPhysicalKeyboardExist = false;
+                    this.keyBoards.set(data.deviceId, type);
                   }
                 });
+                if (this.keyBoards.get(data.deviceId) == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD &&
+                  data.type == 'remove') {
+                  // 物理键盘已拔掉
+                  this.isPhysicalKeyboardExist = false;
+                  this.keyBoards.delete(data.deviceId);
+                }
               });
               this.message = "Device monitoring enabled successfully"
             } catch (error) {
