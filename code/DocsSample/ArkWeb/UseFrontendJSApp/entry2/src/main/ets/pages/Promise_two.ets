@@ -25,8 +25,8 @@ class TestClass {
     setTimeout( () => { param('suc') }, 10000)
   }
 
-  toString(param:String): void {
-    console.log(' ' + param);
+  toString(param:string): void {
+    console.info(' ' + param);
   }
 }
 

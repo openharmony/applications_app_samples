@@ -33,7 +33,7 @@ class TestClass {
   }
 
   toString(param: ESObject): void {
-    console.log('Web Component toString' + param['name']);
+    console.info('Web Component toString' + param['name']);
   }
 }
 

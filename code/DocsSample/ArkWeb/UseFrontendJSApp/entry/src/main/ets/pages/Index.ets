@@ -28,10 +28,15 @@ struct WebComponent {
 
   build() {
     Column() {
+      Button('runJavaScriptParam')
+        .onClick(() => {
+          // 调用前端页面有参函数。
+          this.webviewController.runJavaScript('htmlTestParam(param)');
+        })
       Button('runJavaScript')
         .onClick(() => {
-          // 前端页面函数无参时，将param删除。
-          this.webviewController.runJavaScript('htmlTest(param)');
+          // 调用前端页面无参函数。
+          this.webviewController.runJavaScript('htmlTest()');
         })
       Button('runJavaScriptCodePassed')
         .onClick(() => {
