@@ -32,7 +32,8 @@ function cardNormalStyle() {
   .animation({ curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1), duration: 100 })
 };
 
-@Styles
+
+
 function cardDisabledStyle() {
   .backgroundColor('rgba(0,0,0,0)')
   .opacity(0.5)
@@ -120,9 +121,9 @@ struct Index {
           } else {
             this.selection = route.name;
           }
-        });
+        })
     })
-  };
+  }
 
   aboutToAppear(): void{
     this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);

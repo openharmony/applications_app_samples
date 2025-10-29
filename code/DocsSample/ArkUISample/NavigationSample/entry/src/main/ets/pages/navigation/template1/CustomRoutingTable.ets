@@ -76,7 +76,7 @@ export struct pageTwoTmp {
       }.width('100%').height('100%')
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop();
+      const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈的栈顶元素
       hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
       return true;
     })

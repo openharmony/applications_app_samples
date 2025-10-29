@@ -28,7 +28,7 @@ struct TitleModeMini {
         .lineHeight(36)
         .margin({ top: 6, left: 6 })
     }.alignItems(HorizontalAlign.Start)
-  };
+  }
 
   @Builder
   NavigationMenus() {
@@ -46,7 +46,7 @@ struct TitleModeMini {
         .margin({ left: 24 })
     }
     .margin({ top: 12, right: 24})
-  };
+  }
 
   build() {
     Column() {
@@ -59,10 +59,10 @@ struct TitleModeMini {
           .backgroundColor('#FFFFFF')
         // [EndExclude NavigationTitleModeMini]
       }
-      .title(this.NavigationTitle)
-      // [End NavigationTitleModeMini]
-      .menus(this.NavigationMenus)
       .titleMode(NavigationTitleMode.Mini)
+      // [End NavigationTitleModeMini]
+      .title(this.NavigationTitle)
+      .menus(this.NavigationMenus)
       .toolbarConfiguration([
         {
           value: $r('app.string.navigation_toolbar_add'),
