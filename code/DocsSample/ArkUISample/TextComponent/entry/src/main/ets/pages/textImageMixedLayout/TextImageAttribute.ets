@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-
+import resource from '../../common/resource';
+// [Start textImage_attribute]
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
-import resource from '../../common/resource';
 
 @Entry
 @Component
 export struct TextImageAttribute {
-  // [Start textImage_attribute]
   @State message: string = 'Hello World';
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State imagePixelMap3: image.PixelMap | undefined = undefined;
@@ -157,10 +156,11 @@ export struct TextImageAttribute {
   ]);
 
   build() {
+    // [StartExclude textImage_attribute]
     NavDestination() {
+      // [EndExclude textImage_attribute]
       Row() {
         Column({ space: 10 }) {
-          // [StartExclude textImage_attribute]
           Text(undefined, { controller: this.controller })
             .copyOption(CopyOptions.InApp)
             .draggable(true)
@@ -188,13 +188,14 @@ export struct TextImageAttribute {
             })
         }
         .width('100%')
-        // [EndExclude textImage_attribute]
       }
       .height('100%')
       .backgroundColor('#F8F8FF')
-      // [End textImage_attribute]
+      // [StartExclude textImage_attribute]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.TextImage_MixedLayout_Text_2'))
+    // [EndExclude textImage_attribute]
   }
 }
+// [End textImage_attribute]

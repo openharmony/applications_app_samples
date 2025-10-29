@@ -591,6 +591,14 @@
     {
       "name": "Get_Focus",
       "value": "获得焦点"
+    },
+    {
+      "name": "OnKeyDistributeEvent_title",
+      "value": "分发按键事件"
+    },
+    {
+      "name": "OnKeyPreImeCommit_title",
+      "value": "使用OnKeyPreIme实现回车提交"
     }
   ]
 }

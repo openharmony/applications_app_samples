@@ -25,9 +25,10 @@ export struct PreIme {
   @State columnType: string = '';
 
   build() {
+    // [StartExclude key_event_intercept]
     NavDestination() {
       Column({ space: 12 }) {
-
+        // [EndExclude key_event_intercept]
         Column() {
           Search({
             placeholder: 'Search...'
@@ -42,14 +43,15 @@ export struct PreIme {
               return false;
             })
         }
-
       }
+      // [StartExclude key_event_intercept]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Device_OnKeyPreIme_title'))
+    // [EndExclude key_event_intercept]
   }
 }
 // [End key_event_intercept]

@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-// [Start textImage_component]
 
 @Entry
 @Component
 export struct TextImageComponent {
   build() {
     NavDestination() {
+      // [Start textImage_component]
       Text() {
         ImageSpan($r('app.media.startIcon'))
           .width(50)
@@ -37,9 +37,9 @@ export struct TextImageComponent {
           })
           .fontSize(16)
       }.textVerticalAlign(TextVerticalAlign.CENTER)
+      // [End textImage_component]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.TextImage_MixedLayout_Text_1'))
   }
 }
-// [End textImage_component]

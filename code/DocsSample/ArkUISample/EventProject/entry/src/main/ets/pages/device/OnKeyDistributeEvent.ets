@@ -18,15 +18,15 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = '[Sample_Eventproject]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'Eventproject_';
-// [Start OnKeyPreImeCommit]
+// [Start On_key_distribute_event]
 @Entry
 @Component
 export struct OnKeyDistributeEvent {
   build() {
-    // [StartExclude key_event_intercept]
+    // [StartExclude On_key_distribute_event]
     NavDestination() {
       Column({ space: 12 }) {
-        // [EndExclude key_event_intercept]
+        // [EndExclude On_key_distribute_event]
         Row() {
           Row() {
             Button('button1').id('button1').onKeyEvent((event) => {
@@ -58,7 +58,7 @@ export struct OnKeyDistributeEvent {
           }
           return true;
         })
-        // [StartExclude key_event_intercept]
+        // [StartExclude On_key_distribute_event]
       }
       .width('100%')
       .height('100%')
@@ -66,7 +66,7 @@ export struct OnKeyDistributeEvent {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.OnKeyDistributeEvent_title'))
-    // [EndExclude key_event_intercept]
+    // [EndExclude On_key_distribute_event]
   }
 }
-// [End OnKeyPreImeCommit]
+// [End On_key_distribute_event]
