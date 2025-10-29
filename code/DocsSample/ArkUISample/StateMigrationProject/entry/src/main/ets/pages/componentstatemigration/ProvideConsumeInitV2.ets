@@ -19,7 +19,7 @@ struct Child20 {
   @Consumer() message: string = 'Hello World';
 
   build() {
-    Text(this.message);
+    Text(this.message)
   }
 }
 
@@ -28,7 +28,7 @@ struct Child20 {
 struct Parent20 {
   build() {
     Column() {
-      Child20();
+      Child20()
     }
   }
 }

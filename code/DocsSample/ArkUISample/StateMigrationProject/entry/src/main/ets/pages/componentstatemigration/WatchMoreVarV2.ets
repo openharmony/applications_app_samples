@@ -34,16 +34,16 @@ struct MonitorExample2 {
 
   build() {
     Column() {
-      Text(`apple count: ${this.apple}`);
-      Text(`orange count: ${this.orange}`);
+      Text(`apple count: ${this.apple}`)
+      Text(`orange count: ${this.orange}`)
       Button('add apple')
         .onClick(() => {
           this.apple++;
-        });
+        })
       Button('add orange')
         .onClick(() => {
           this.orange++;
-        });
+        })
     }
   }
 }

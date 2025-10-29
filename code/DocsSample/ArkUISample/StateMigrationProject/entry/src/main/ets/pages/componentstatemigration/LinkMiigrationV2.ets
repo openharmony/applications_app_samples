@@ -21,11 +21,11 @@ struct Child8 {
 
   build() {
     Column() {
-      Text('child: ' + this.val.toString());
+      Text('child: ' + this.val.toString())
       Button('+1')
         .onClick(() => {
           this.addOne();
-        });
+        })
     }
   }
 }
@@ -37,8 +37,8 @@ struct Parent8 {
 
   build() {
     Column() {
-      Text('parent: ' + this.myVal.toString());
-      Child8({ val: this.myVal, addOne: () => this.myVal++ });
+      Text('parent: ' + this.myVal.toString())
+      Child8({ val: this.myVal, addOne: () => this.myVal++ })
     }
   }
 }

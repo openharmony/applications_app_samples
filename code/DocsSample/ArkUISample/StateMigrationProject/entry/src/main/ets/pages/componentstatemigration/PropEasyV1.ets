@@ -18,7 +18,7 @@ struct Child9 {
   @Prop value: number;
 
   build() {
-    Text(this.value.toString());
+    Text(this.value.toString())
   }
 }
 
@@ -27,7 +27,7 @@ struct Child9 {
 struct Parent9 {
   build() {
     Column() {
-      Child9({ value: 30 });
+      Child9({ value: 30 })
     }
   }
 }

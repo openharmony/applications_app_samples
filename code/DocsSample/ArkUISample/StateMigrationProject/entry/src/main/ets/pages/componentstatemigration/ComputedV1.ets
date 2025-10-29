@@ -21,11 +21,11 @@ struct Index1 {
 
   build() {
     Column() {
-      Text(this.lastName + ' ' + this.firstName);
-      Text(this.lastName + ' ' + this.firstName);
+      Text(this.lastName + ' ' + this.firstName)
+      Text(this.lastName + ' ' + this.firstName)
       Button('changed lastName').onClick(() => {
         this.lastName += 'a';
-      });
+      })
 
     }
   }

@@ -33,17 +33,17 @@ struct Child12 {
 
   build() {
     Column() {
-      Text('child');
-      Text(this.fruit.apple.toString());
-      Text(this.fruit.orange.toString());
+      Text('child')
+      Text(this.fruit.apple.toString())
+      Text(this.fruit.orange.toString())
       Button('apple+1')
         .onClick(() => {
           this.fruit.apple++;
-        });
+        })
       Button('orange+1')
         .onClick(() => {
           this.fruit.orange++;
-        });
+        })
     }
   }
 }
@@ -55,10 +55,10 @@ struct Parent12 {
 
   build() {
     Column() {
-      Text('parent');
-      Text(this.parentFruit.apple.toString());
-      Text(this.parentFruit.orange.toString());
-      Child12({ fruit: this.parentFruit.clone() });
+      Text('parent')
+      Text(this.parentFruit.apple.toString())
+      Text(this.parentFruit.orange.toString())
+      Child12({ fruit: this.parentFruit.clone() })
     }
   }
 }
