@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start NavigationExampleOne]
-//PageOne.ets
 @Builder
 export function PageOneBuilder(name: string, param: string) {
   PageOne({ name: name, value: param });
