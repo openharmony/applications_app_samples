@@ -117,12 +117,12 @@ struct FilePicker {
       DocumentSaveOptions.newFileNames = [getResourceString(context, $r('app.string.init_file_name'))];
       let documentPicker = new picker.DocumentViewPicker();
       documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult) => {
-        Logger.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
-        hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
+        Logger.info('DocumentViewPicker.save successfully');
+        hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'DocumentViewPicker.save successfully');
         if (DocumentSaveResult !== null && DocumentSaveResult !== undefined) {
           this.uri = DocumentSaveResult[0];
-          Logger.info(`save file uri: ${this.uri}`);
-          hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'save file uri: %{public}s', this.uri);
+          Logger.info(`file saved`);
+          hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'file saved');
         }
         this.getFilenameByUri(this.uri);
       })
@@ -140,15 +140,15 @@ struct FilePicker {
       let DocumentSelectOptions = new picker.DocumentSelectOptions();
       let documentPicker = new picker.DocumentViewPicker();
       documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult) => {
-        Logger.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
-        hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
+        Logger.info('DocumentViewPicker.select successfully');
+        hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'DocumentViewPicker.select successfully');
         let editFlag = false;
         if (DocumentSelectResult !== null && DocumentSelectResult !== undefined) {
           DocumentSelectResult.forEach((value) => {
             this.uri = value;
             editFlag = true;
-            Logger.info(`select file uri: ${this.uri}`);
-            hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'select file uri: %{public}s', this.uri);
+            Logger.info('file selected');
+            hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG,'file selected');
           })
         }
         if (editFlag) {
