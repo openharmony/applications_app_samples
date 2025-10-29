@@ -19,6 +19,18 @@
     {
       "name": "EntryFormAbility_label",
       "value": "独立卡包"
+    },
+    {
+      "name": "add_form_to_desktop",
+      "value": "添加卡片到桌面"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加桌面"
+    },
+    {
+      "name": "app_to_delele",
+      "value": "卸载"
     }
   ]
 }
