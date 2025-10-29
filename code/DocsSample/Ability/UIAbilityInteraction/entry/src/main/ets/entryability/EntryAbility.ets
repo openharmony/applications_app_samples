@@ -13,7 +13,10 @@
  * limitations under the License.
  */
 
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+// [Start UIAbility]
+import { UIAbility } from '@kit.AbilityKit';
+// [End UIAbility]
+import { AbilityConstant, ConfigurationConstant, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
