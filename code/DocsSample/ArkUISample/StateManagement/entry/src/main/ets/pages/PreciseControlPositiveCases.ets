@@ -16,7 +16,6 @@
 // [Start precise_control_positive_cases]
 @Observed
 class PageTranslate {
-  // The translation distance of the control component is 20.
   public translateX: number = 20;
 }
 @Component
