@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start freeze_template5_PageA_start]
-// Page1.ets
+// src/main/ets/pages/freeze/template5/PageA.ets
 @ObservedV2
 class Book {
   @Trace public name: string = 'TS';
@@ -70,30 +70,3 @@ export struct Child {
   }
 }
 // [End freeze_template5_PageA_start]
-
-// [Start freeze_template5_PageB_start]
-@Builder
-function page2Builder() {
-  PageB();
-}
-
-@ComponentV2
-struct PageB {
-  pathStack: NavPathStack = new NavPathStack();
-
-  build() {
-    NavDestination() {
-      Column() {
-        Text('This is the Page2')
-
-        Button('Back').fontSize(30)
-          .onClick(() => {
-            this.pathStack.pop();
-          })
-      }
-    }.onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack;
-    })
-  }
-}
-// [End freeze_template5_PageB_start]
