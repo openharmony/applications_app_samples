@@ -27,7 +27,7 @@ struct PriorityBinding {
           TapGesture()
             .onAction(() => {
               hilog.info(DOMAIN, TAG,'Text TapGesture is onAction');
-            }));
+            }))
     }
     .height(200)
     .width(250)
@@ -36,7 +36,7 @@ struct PriorityBinding {
       TapGesture()
         .onAction(() => {
           hilog.info(DOMAIN, TAG,'Column TapGesture is onAction');
-        }), GestureMask.IgnoreInternal);
-  };
+        }), GestureMask.IgnoreInternal)
+  }
 }
 //  [End priority_binding]

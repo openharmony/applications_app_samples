@@ -59,18 +59,18 @@ struct CombinedGestureDemo {
                 this.promptAction.showToast({ message: 'child pan start' });
               })
           )
-        );
+        )
       // 页面2
       Row()
         .width('100%')
         .height('100%')
         .backgroundColor(Color.Pink)
-        .borderRadius(12);
+        .borderRadius(12)
     }
     .borderWidth(2)
     .width('100%')
     .height(300)
-    .padding(20);
-  };
+    .padding(20)
+  }
 }
 // [End scene_example]

@@ -28,7 +28,7 @@ struct ParallelBinding {
           TapGesture()
             .onAction(() => {
               hilog.info(DOMAIN, TAG,'Text TapGesture is onAction');
-            }));
+            }))
     }
     .height(200)
     .width(250)
@@ -37,7 +37,7 @@ struct ParallelBinding {
       TapGesture()
         .onAction(() => {
           hilog.info(DOMAIN, TAG,'Column TapGesture is onAction');
-        }), GestureMask.Normal);
-  };
+        }), GestureMask.Normal)
+  }
 }
 //  [End parallel_binding]

@@ -151,9 +151,9 @@ struct GestureControlGroup {
             };
             this.lastOffset = event.offsetY;
           })
-      );
+      )
       //  [End listening_gestures]
 
-    }.width('100%').height('100%').backgroundColor(0xDCDCDC);
-  };
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
 }

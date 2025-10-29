@@ -19,8 +19,8 @@ struct Index {
     Column() {
       // [Start priorityfirst_gesture]
       Column() {
-        Column().id('ComponentB').gesture(TapGesture({ count: 1 }));
-      }.id('ComponentA').gesture(TapGesture({ count: 1 }));
+        Column().id('ComponentB').gesture(TapGesture({ count: 1 }))
+      }.id('ComponentA').gesture(TapGesture({ count: 1 }))
       // [End priorityfirst_gesture]
 
       // [Start prioritysecond_gesture]
@@ -32,13 +32,13 @@ struct Index {
             TapGesture({count: 1}),
             PanGesture({distance: 5})
           )
-        );
+        )
       // [End prioritysecond_gesture]
     }
     .width('100%')
     .height('100%')
     .padding(20)
     .backgroundColor(Color.White)
-    .justifyContent(FlexAlign.Start);
-  };
+    .justifyContent(FlexAlign.Start)
+  }
 }

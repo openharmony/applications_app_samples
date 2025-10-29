@@ -148,5 +148,5 @@ struct Index {
       .backgroundColor('#fff4f3f3')
       .padding({ top: 5 })
     }
-  };
+  }
 }

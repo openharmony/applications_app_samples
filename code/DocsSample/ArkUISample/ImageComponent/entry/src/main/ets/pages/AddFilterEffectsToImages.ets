@@ -35,6 +35,6 @@ struct AddFilterEffectsToImages {
       }.width('100%')
       .justifyContent(FlexAlign.Center)
     }
-  };
+  }
 }
 //  [End image_filtereffect]

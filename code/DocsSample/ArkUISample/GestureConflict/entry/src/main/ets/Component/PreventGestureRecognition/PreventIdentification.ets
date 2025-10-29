@@ -276,5 +276,5 @@ struct PreventIdentification {
     )
     .width(this.currentWidth)
     .height(this.currentHeight)
-  };
+  }
 }

@@ -69,6 +69,6 @@ struct Index {
         }.width('100%')
       }.width('100%')
     }
-  };
+  }
 }
 //   [End custom_gestures]

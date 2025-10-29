@@ -78,7 +78,7 @@ struct sequenceIdentification {
         .onCancel(() => {
           hilog.info(DOMAIN, TAG,'sequence gesture canceled');
         })
-    );
-  };
+    )
+  }
 }
 // [End sequence_identification]

@@ -249,6 +249,6 @@ struct Index {
     )
     .width(this.currentWidth)
     .height(this.currentHeight)
-  };
+  }
 }
 // [End gesture_recognition]

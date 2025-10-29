@@ -55,6 +55,6 @@ struct ImageInterpolationType {
       .justifyContent(FlexAlign.Center)
     }
     .height('100%')
-  };
+  }
 }
 //  [End image_interpolation]
