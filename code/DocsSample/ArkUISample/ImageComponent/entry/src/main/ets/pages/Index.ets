@@ -18,7 +18,6 @@ interface listItem {
   name: string;
   description?: string;
 };
-
 let demandList: listItem[] = [
   {
     name: 'LoadingResources',
