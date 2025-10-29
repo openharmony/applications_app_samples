@@ -45,7 +45,7 @@ struct SetSampleNested {
   build() {
     Row() {
       Column() {
-        SetSampleNestedChild({ mySet: this.message.info });
+        SetSampleNestedChild({ mySet: this.message.info })
       }
       .width('100%')
     }

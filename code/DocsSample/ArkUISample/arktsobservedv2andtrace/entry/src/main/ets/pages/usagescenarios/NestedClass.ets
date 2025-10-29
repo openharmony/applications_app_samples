@@ -21,14 +21,11 @@ class Pencil {
   @Trace public length: number = 21; // 当length变化时，会刷新关联的组件
 }
 class Bag {
-  // Public property representing the width dimension
  public width: number = 50;
-  // Public property representing the height dimension
  public height: number = 60;
  public pencil: Pencil = new Pencil();
 }
 class NestedClassSon {
-  // Public property storing the age value
  public age: number = 5;
  public school: string = 'some';
  public bag: Bag = new Bag();
@@ -38,13 +35,12 @@ class NestedClassSon {
 @ComponentV2
 struct Page {
   son: NestedClassSon = new NestedClassSon();
-  // Variable to track the number of times the component has been rendered
   renderTimes: number = 0;
   isRender(id: number): number {
     hilog.info(DOMAIN,TAG,`id: ${id} renderTimes: ${this.renderTimes}`);
     this.renderTimes++;
     return 40;
-  };
+  }
 
   build() {
     Column() {

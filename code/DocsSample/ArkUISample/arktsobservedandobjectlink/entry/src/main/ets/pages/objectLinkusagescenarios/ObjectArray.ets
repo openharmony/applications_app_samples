@@ -16,7 +16,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedandobjectlink';
 // [Start Object_Array]
-// Used to generate unique IDs for ObjectArrayInfo instances
 let arrayInfoNextID: number = 1;
 
 @Observed
@@ -63,8 +62,8 @@ struct ObjectArrayChildParent {
         (item: ObjectArrayInfo): string => item.id.toString()
       );
       // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的Info的实例
-      ObjectArrayChild({ label: 'ViewChild this.arrA[first]', info: this.arrA[0] });
-      ObjectArrayChild({ label: 'ViewChild this.arrA[last]', info: this.arrA[this.arrA.length-1] });
+      ObjectArrayChild({ label: 'ViewChild this.arrA[first]', info: this.arrA[0] })
+      ObjectArrayChild({ label: 'ViewChild this.arrA[last]', info: this.arrA[this.arrA.length-1] })
 
       Button('ViewParent: reset array')
         .width(320)
@@ -86,7 +85,7 @@ struct ObjectArrayChildParent {
             this.arrA.shift();
           } else {
             hilog.info(DOMAIN,TAG,'length <= 0');
-          };
+          }
         });
       Button('ViewParent: item property in middle')
         .width(320)

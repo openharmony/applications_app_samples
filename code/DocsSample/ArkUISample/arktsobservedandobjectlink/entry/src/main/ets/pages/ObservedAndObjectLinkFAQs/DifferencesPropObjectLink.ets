@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start Differences_Prop_ObjectLink]
-// Used to generate unique IDs for User instances
 let nextId = 0;
 
 @Observed

@@ -41,7 +41,7 @@ struct ObjectLinkSupportsUnionTypesParent {
 
   build() {
     Column() {
-      ObjectLinkSupportsUnionTypesChild({ count: this.count });
+      ObjectLinkSupportsUnionTypesChild({ count: this.count })
 
       Button('change count property')
         .margin(10)

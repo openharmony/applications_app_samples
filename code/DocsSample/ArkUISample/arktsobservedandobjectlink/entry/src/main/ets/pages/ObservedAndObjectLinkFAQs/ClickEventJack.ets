@@ -54,7 +54,7 @@ struct Parent {
           this.info.person.name = 'Jack';
           hilog.info(DOMAIN,TAG,`:::clickEvent after ${this.info.person.name}`); // 3
         }
-      });
+      })
       // [End ClickEvent_Jack]
     }
   }

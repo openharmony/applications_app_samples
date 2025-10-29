@@ -20,7 +20,6 @@ const TAG = 'arktsobservedandobjectlink';
 @Observed
 class ObjectLinkDataSourceUpdatePerson {
  public name: string = '';
- // The age attribute, initialized to 0
  public age: number = 0;
 
   constructor(name: string, age: number) {
@@ -58,7 +57,7 @@ struct ObjectLinkDataSourceUpdateParent {
           this.info.person = new ObjectLinkDataSourceUpdatePerson('Jack', 12);
           hilog.info(DOMAIN,TAG,`:::clickEvent after ${this.info.person.name}`); // 3
         }
-      });
+      })
     }
   }
 }

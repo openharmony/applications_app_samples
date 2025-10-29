@@ -57,7 +57,7 @@ struct RealizeObservation {
 
   build() {
     Column() {
-      Child({son: this.father.son});
+      Child({son: this.father.son})
     }
   }
 }

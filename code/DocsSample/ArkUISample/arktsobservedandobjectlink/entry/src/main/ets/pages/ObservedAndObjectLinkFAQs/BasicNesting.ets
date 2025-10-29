@@ -47,7 +47,6 @@ class BasicNestingChild {
 };
 
 class Cousin extends BasicNestingParent {
-  // The ID value assigned to the cousin (fixed as 47)
  public cousinId: number = 47;
  public child: BasicNestingChild;
 
