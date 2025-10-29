@@ -26,14 +26,7 @@ import { VolumeControlDemo } from './PanCombinationGesture';
 import resource from '../../common/resource';
 
 export const Gesture_ROUTE_PREFIX: string = 'gesture';
-//$r('app.string.singlegesture_Index_TapGesture_title')、$r('app.string.singlegesture_Index_TapGesture_description')、
-$r('app.string.singlegesture_Index_LongPress_title')、$r('app.string.singlegesture_Index_LongPress_description')、
-$r('app.string.singlegesture_Index_Pan_title')、$r('app.string.singlegesture_Index_Pan_description')、
-$r('app.string.singlegesture_Index_Pinch_title')、$r('app.string.singlegesture_Index_Pinch_description')、
-$r('app.string.singlegesture_Index_Pinch_title')、$r('app.string.singlegesture_Index_Rotation_description')、
-$r('app.string.singlegesture_Index_Swipe_title')、$r('app.string.singlegesture_Index_Swipe_description')、
-$r('app.string.singlegesture_Index_Pancom_title')、$r('app.string.singlegesture_Index_PanCombination_description')
-需要替换为开发者所需的字符串资源文件
+//$r('app.string.xxx')需要替换为开发者所需的资源文件
 
 const routes: Route[] = [
   {

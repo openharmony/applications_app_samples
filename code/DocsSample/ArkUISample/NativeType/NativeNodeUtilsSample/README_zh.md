@@ -2,29 +2,31 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。通过该工程可以创建IMAGE组件并可以设置、获取、重置组件对应节点属性，对已创建的IMAGE组件进行销毁操作。该工程中代码详细描述可参考[显示图片 (Image)](https://gitcode.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-graphics-display.md)。
-
-### 效果预览
-
-| 首页                               | 设置图像内容顺时针旋转90度显示                   |
-|------------------------------------|---------------------------------|
-| ![](screenshots/device/image1.png) |![](screenshots/device/result.png) |
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的通用类型接口。
 
 ### 使用说明
 
-1. 在主界面，可以点击“选择节点类型”，创建需要的组件。
+1. 在主界面，可以点击不同的按钮，查看不同的示例。
 
-2. 选择组件对应的“选择节点属性”菜单列。
+2. 点击多线程创建组件，跳转查看多线程创建组件示例。
 
-3. 通过文本输入，设置属性值。
+3. 点击自定义属性测试，跳转查看组件使用自定义属性的示例。
 
-4. 点击“设置属性值”，查看效果。
+4. 点击懒加载页面，查看懒加载页面示例。
 
-5. 点击“获取属性值”，查看已设置的属性值。
+5. 点击设置capi侧主窗口Context，查看如何将ArkTS的上下文传到capi。
 
-6. 点击“重置”，清除设置的属性。
+### 具体实现
 
-7. 点击“清理”，移除创建的组件节点。
+- 本示例实现了多线程创建组件的能力，通过调用CAPI抛线程创建的接口，将组件创建操作放到其它线程执行，有效提高UI效率。
+
+- 实现了组件存储自定义属性的能力，开发者可以通过该能力，赋予组件一些特殊的字段接口，用以实现即时性的接口调用。
+
+- 实现了CAPI侧懒加载实现列表的能力，可复用已生成的列表项，减少创建/销毁的性能开销。
+
+8. 点击“展示绘画页面”，查看绘画效果。
+
+9. 点击：“返回”，返回到主页面。
 
 ### 工程目录
 ```
@@ -32,23 +34,18 @@ entry/src/main/cpp
 |---CMakeLists.txt                   // 编译脚本
 |---napi_init.cpp                      // 实现创建、设置、获取、重置组件属性
 |---manager.cpp                        // 管理组件节点
+|---NativeEntry.cpp                    // 多线程节点管理与自定义组件实现
+|---NativeEntry.h                      // 核心管理类声明
 |---types
     |---Index.d.ts                      // napi对外接口定义
 entry/src/main/ets/
 |---entryability
 |---pages
-|   |---Index.ets                      // 应用主页面
-entry/src/ohosTest/
-|---ets
-|   |---index.test.ets                 // 示例代码测试代码
+|   |---customproperty.ets             // 自定义属性用例demo
+|   |---entry.ets                      // 多线程创建组件demo
+|   |---index.ets                      // 应用主页面
+|   |---nodeadapter.ets                // 懒加载列表demo
 ```
-
-### 具体实现
-
-1. 在[Index.ets](entry%2Fsrc%2Fmain%2Fets%2Fpages%2FIndex.ets)文件中，通过点击按钮创建IMAGE组件节点，并通过文本输入框设置、获取、重置属性值。
-2. 在[Index.d.ts](entry%2Fsrc%2Fmain%2Fcpp%2Ftypes%2Flibentry%2FIndex.d.ts)文件中，定义napi对外接口。
-3. 在[napi_init.cpp](entry%2Fsrc%2Fmain%2Fcpp%2Fnapi_init.cpp)文件中，实现Index.d.ts中对外的接口。
-4. 在[manager.cpp](entry%2Fsrc%2Fmain%2Fcpp%2Fmanager.cpp)文件中，通过调用ArkUI的接口实现创建、设置、获取、重置组件属性。
 
 ### 相关权限
 

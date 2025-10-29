@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/RouterImplementPage",
+    "route/Page1",
+    "pages/TypeNodeFreePage",
+    "pages/AbilityImplementPage",
+    "pages/XComponentImplementPage",
+    "pages/NDKImplementPage",
+    "pages/NavigationImplementPage"
+  ]
+}

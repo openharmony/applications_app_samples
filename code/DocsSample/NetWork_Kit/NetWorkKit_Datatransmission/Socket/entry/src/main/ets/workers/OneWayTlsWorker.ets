@@ -15,10 +15,10 @@
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
 import fs from '@ohos.file.fs';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start one_way_tls_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End one_way_tls_worker_import]
 const workerPort = worker.workerPort; // 获取 workerPort 实例
 
@@ -98,7 +98,7 @@ function loadCA(fileUri: string) {
 // [Start create_tls_worker_object]
 // 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
 let tlsOneWaySocket: socket.TLSSocket = socket.constructTLSSocketInstance();  // One way authentication
-// [StartExclude create_tls_worker_object]
+// [End create_tls_worker_object]
 
 // [Start tls_worker_bind_the_server]
 class SocketInfo {
@@ -136,14 +136,17 @@ function connectToServer(serverIp: string, serverPort: number, ca: string) {
       workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
       // [EndExclude tls_worker_bind_the_server]
     });
-    // [StartExclude tls_worker_bind_the_server]
     tlsOneWaySocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {
       hilog.info(0x0000, 'testTag', 'connect successfully');
+      // [StartExclude tls_worker_bind_the_server]
       workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
+      // [EndExclude tls_worker_bind_the_server]
     }).catch((e: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `Failed to connect: ${e.message}`);
+      // [StartExclude tls_worker_bind_the_server]
       workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
+      // [EndExclude tls_worker_bind_the_server]
     });
-    // [EndExclude tls_worker_bind_the_server]
   }).catch((e: BusinessError) => {
     hilog.error(0x0000, 'testTag', 'bind fail');
     // [StartExclude tls_worker_bind_the_server]

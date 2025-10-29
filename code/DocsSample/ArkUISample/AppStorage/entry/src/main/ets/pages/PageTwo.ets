@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start appstorage_page_two]
 class Data {
   public code: number;
 
@@ -69,3 +70,4 @@ struct TestPageTow {
     }
   }
 }
+// [End appstorage_page_two]

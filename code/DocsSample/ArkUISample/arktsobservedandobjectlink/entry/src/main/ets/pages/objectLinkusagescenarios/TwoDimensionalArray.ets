@@ -12,12 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Two_dimensional_array_example]
+
 // [Start Two_dimensional_array]
+@Observed
+class ObservedArrays<T> extends Array<T> {
+}
+// [End Two_dimensional_array]
+
+// [Start Two_dimensional_array_example]
 @Observed
 class ObservedArray<T> extends Array<T> {
 }
-// [End Two_dimensional_array]
 @Component
 struct Item {
   @ObjectLink itemArr: ObservedArray<string>;

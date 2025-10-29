@@ -21,13 +21,14 @@ import resource from '../../common/resource';
 export struct SelectMenu {
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
-
+  // [Start Right_Click_Text_CustomMenu]
   // 定义菜单项
   @Builder
   RightClickTextCustomMenu() {
     Column() {
       Menu() {
         MenuItemGroup() {
+          // $r('app.media.app_icon')需要替换为开发者所需的资源文件。
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'CustomMenu One', labelInfo: '' })
             .onClick(() => {
               // 使用closeSelectionMenu接口关闭菜单
@@ -39,9 +40,11 @@ export struct SelectMenu {
       }.backgroundColor('#F0F0F0')
     }
   }
-
+  // [End Right_Click_Text_CustomMenu]
+  // [Start onCreate_Menu]
   // 定义onCreateMenu，onMenuItemClick
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    // $r('app.media.xxx')需要替换为开发者所需的资源文件。
     let item1: TextMenuItem = {
       content: 'customMenu1',
       icon: $r('app.media.app_icon'),
@@ -74,7 +77,7 @@ export struct SelectMenu {
     }
     return false;
   };
-
+  // [End onCreate_Menu]
   build() {
     NavDestination() {
       Column({ space: 12 }) {

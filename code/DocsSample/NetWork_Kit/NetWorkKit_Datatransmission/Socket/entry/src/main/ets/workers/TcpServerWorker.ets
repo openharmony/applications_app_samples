@@ -14,11 +14,11 @@
  */
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { TcpMessage } from '../connect/TcpClient';
 // [Start tcp_server_worker_import]
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End tcp_server_worker_import]
 
 // [Start tcp_server_worker_tcpServer]

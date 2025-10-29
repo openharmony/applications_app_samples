@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start localtorage_change_local_set_sample]
 let storageChange = new LocalStorage();
 storageChange.setOrCreate('count', 47);
 
@@ -40,3 +41,4 @@ struct Test {
     }
   }
 }
+// [End localtorage_change_local_set_sample]

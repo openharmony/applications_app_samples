@@ -27,9 +27,9 @@ class ReadOnlyVariableInfo {
 @Component
 struct ReadOnlyVariableChild {
   @ObjectLink num: ReadOnlyVariableInfo;
-  // [StartExclude ReadOnlyVariableChildContext]
+  // [StartExclude variables_decorated_ObjectLink_read_only]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude ReadOnlyVariableChildContext]
+  // [EndExclude variables_decorated_ObjectLink_read_only]
   build() {
     Column() {
       // $r('app.string.value_num')需要替换为开发者所需的资源文件
@@ -46,9 +46,9 @@ struct ReadOnlyVariableChild {
 @Component
 struct ReadOnlyVariableParent {
   @State num: ReadOnlyVariableInfo = new ReadOnlyVariableInfo(10);
-  // [StartExclude ReadOnlyVariableParentContext]
+  // [StartExclude variables_decorated_ObjectLink_read_only]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude ReadOnlyVariableParentContext]
+  // [EndExclude variables_decorated_ObjectLink_read_only]
   build() {
     Column() {
       // $r('app.string.value_count')需要替换为开发者所需的资源文件

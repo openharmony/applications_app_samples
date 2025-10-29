@@ -61,9 +61,10 @@ export struct ControlledScrollPositionList {
             .onClick(() => {
               // 点击按钮时，指定跳转位置，返回列表顶部
               this.listScroller.scrollToIndex(0);
-              // [End control_scrolling]
             })
-          }.height('90%')
+          }
+          // [End control_scrolling]
+          .height('90%')
         }
       }
       .width('100%')

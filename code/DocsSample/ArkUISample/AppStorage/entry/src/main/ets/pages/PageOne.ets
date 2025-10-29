@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start appstorage_page_one]
 @Entry
 @Component
 struct StorageDemoPage {
   // 存储实例与关联对象
+  // [StartExclude appstorage_page_one]
   private storage: LocalStorage = new LocalStorage();
   private link1: SubscribedAbstractProperty<number> = AppStorage.link('propA');
   private link2: SubscribedAbstractProperty<number> = AppStorage.link('propA');
@@ -43,7 +45,7 @@ struct StorageDemoPage {
     this.link2Val = this.link2.get();
     this.propVal = this.prop.get();
   }
-
+  // [EndExclude appstorage_page_one]
   build() {
     List() {
       // 标题
@@ -151,3 +153,4 @@ struct StorageDemoPage {
     .backgroundColor('#F5F5F5')
   }
 }
+// [End appstorage_page_one]

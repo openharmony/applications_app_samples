@@ -74,6 +74,7 @@ export function MenuDestination(name: string) {
     EventTransSubWindowMenuExample();
   } else if (name === routes[5].name) {
     BindComponentMenuExample();
+  }
 }
 
 @Entry

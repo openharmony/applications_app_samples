@@ -21,8 +21,8 @@ struct Child18 {
 
   build() {
     Column() {
-      Text(this.childMessage);
-      Text(this.message); // Text是default
+      Text(this.childMessage)
+      Text(this.message) // Text是default
     }
   }
 }
@@ -34,7 +34,7 @@ struct Parent18 {
 
   build() {
     Column() {
-      Child18();
+      Child18()
     }
   }
 }

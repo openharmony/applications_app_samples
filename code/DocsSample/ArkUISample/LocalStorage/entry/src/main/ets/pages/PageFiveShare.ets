@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start localtorage_page_five_share]
 // index.ets
 
 // 预览器上不支持获取页面共享的LocalStorage实例。
@@ -40,3 +41,4 @@ struct Index {
     }
   }
 }
+// [End localtorage_page_five_share]

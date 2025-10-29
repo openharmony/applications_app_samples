@@ -21,9 +21,7 @@ import hilog from '@ohos.hilog';
 
 export function uniformDataStructure() {
   // [Start unified_data_structure]
-  // [StartExclude unified_data_structure]
   // 2. 创建超链接数据记录。
-  // [EndExclude unified_data_structure]
   let hyperlinkDetails: Record<string, string> = {
     'attr1': 'value1',
     'attr2': 'value2'
@@ -35,19 +33,13 @@ export function uniformDataStructure() {
     details: hyperlinkDetails
   }
 
-  // [StartExclude unified_data_structure]
   // 修改hyperlink属性description
-  // [EndExclude unified_data_structure]
   hyperlink.description = '...';
 
-  // [StartExclude unified_data_structure]
   // 访问对象属性。
-  // [EndExclude unified_data_structure]
   hilog.info(0xFF00, '[Sample_Udmf]', `hyperlink.url = ${hyperlink.url}`);
 
-  // [StartExclude unified_data_structure]
   // 3. 创建纯文本数据类型记录，将其添加到刚才创建的UnifiedData对象。
-  // [EndExclude unified_data_structure]
   let plainTextDetails: Record<string, string> = {
     'attr1': 'value1',
     'attr2': 'value2'
@@ -58,36 +50,26 @@ export function uniformDataStructure() {
     abstract: 'this is abstract',
     details: plainTextDetails
   }
-  // [StartExclude unified_data_structure]
   // 4. 创建一个统一数据对象实例。
-  // [EndExclude unified_data_structure]
   let unifiedData = new unifiedDataChannel.UnifiedData();
   let hyperlinkRecord =
     new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
   let plainTextRecord =
     new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 
-  // [StartExclude unified_data_structure]
   // 5. 添加plainText数据记录。
-  // [EndExclude unified_data_structure]
   unifiedData.addRecord(hyperlinkRecord);
   unifiedData.addRecord(plainTextRecord);
 
-  // [StartExclude unified_data_structure]
   // 6. 记录添加完成后，可获取当前UnifiedData对象内的所有数据记录。
-  // [EndExclude unified_data_structure]
   let records = unifiedData.getRecords();
 
-  // [StartExclude unified_data_structure]
   // 7. 遍历每条记录，判断该记录的数据类型，转换为子类对象，得到原数据记录。
-  // [EndExclude unified_data_structure]
   for (let i = 0; i < records.length; i++) {
     let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
     let record = unifiedDataRecord.getValue() as object;
     if (record != undefined) {
-      // [StartExclude unified_data_structure]
       // 读取该数据记录的类型
-      // [EndExclude unified_data_structure]
       let type: string = record['uniformDataType'];
       switch (type) {
         case uniformTypeDescriptor.UniformDataType.HYPERLINK:

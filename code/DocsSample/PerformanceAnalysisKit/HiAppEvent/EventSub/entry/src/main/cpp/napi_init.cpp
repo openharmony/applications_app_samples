@@ -46,49 +46,6 @@ static HiAppEvent_Watcher *appHicollieWatcherR;
 static HiAppEvent_Watcher *appHicollieWatcherT;
 // [End App_Hicollie_Watcher_T_ptr]
 
-// [Start CrashEvent_OnReceive]
-static void OnReceiveCrashEvent(const struct HiAppEvent_AppEventGroup *appEventGroups, int i, int j)
-{
-    if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
-        strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_APP_CRASH) == 0) {
-        Json::Value params;
-        Json::Reader reader(Json::Features::strictMode());
-        Json::FastWriter writer;
-        if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
-            auto time = params["time"].asInt64();
-            auto crashType = params["crash_type"].asString();
-            auto foreground = params["foreground"].asBool();
-            auto bundleVersion = params["bundle_version"].asString();
-            auto bundleName = params["bundle_name"].asString();
-            auto pid = params["pid"].asInt();
-            auto uid = params["uid"].asInt();
-            auto uuid = params["uuid"].asString();
-            auto exception = writer.write(params["exception"]);
-            auto hilogSize = params["hilog"].size();
-            auto externalLog = writer.write(params["external_log"]);
-            auto logOverLimit = params["log_over_limit"].asBool();
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.crash_type=%{public}s",
-                        crashType.c_str());
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
-                        bundleVersion.c_str());
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
-                        bundleName.c_str());
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uuid=%{public}s", uuid.c_str());
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.exception=%{public}s",
-                        exception.c_str());
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.hilog.size=%{public}d", hilogSize);
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
-                        externalLog.c_str());
-            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d",
-                        logOverLimit);
-        }
-    }
-}
-// [End CrashEvent_OnReceive]
 // [Start FreezeEvent_OnReceive_Output]
 // OnReceiveFreezeEvent超出50行限制，将日志输出单独抽出
 static void FreezeEventOutput(Json::Value params, Json::FastWriter writer)
@@ -478,6 +435,167 @@ static napi_value RegisterWatcherClick(napi_env env, napi_callback_info info)
 }
 // [End AppEvent_Click_C++_Add_Watcher]
 
+// [Start Sys_Native_Nullptr_Event_C++_Index.d.ts]
+static napi_value TestNullptr(napi_env env, napi_callback_info info)
+{
+    int *p = nullptr;
+    int a = *p; // 空指针解引用，程序会在此处崩溃
+    return {};
+}
+// [Start Sys_Native_Nullptr_Event_C++_Index.d.ts]
+
+// [Start Sys_Crash_Crash_OnReceive]
+static void OnReceiveCrashEvent(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups,
+    uint32_t groupLen)
+{
+    for (int i = 0; i < groupLen; ++i) {
+        for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s",
+                appEventGroups[i].appEventInfos[j].domain);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s",
+                appEventGroups[i].appEventInfos[j].name);
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d",
+                appEventGroups[i].appEventInfos[j].type);
+            if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) != 0 ||
+                strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_APP_CRASH) != 0) {
+                continue;
+            }
+            Json::Value params;
+            Json::Reader reader(Json::Features::strictMode());
+            Json::FastWriter writer;
+            if (reader.parse(appEventGroups[i].appEventInfos[j].params, params)) {
+                auto time = params["time"].asInt64();
+                auto crashType = params["crash_type"].asString();
+                auto foreground = params["foreground"].asBool();
+                auto bundleVersion = params["bundle_version"].asString();
+                auto bundleName = params["bundle_name"].asString();
+                auto pid = params["pid"].asInt();
+                auto uid = params["uid"].asInt();
+                auto uuid = params["uuid"].asString();
+                auto exception = writer.write(params["exception"]);
+                auto hilogSize = params["hilog"].size();
+                auto externalLog = writer.write(params["external_log"]);
+                auto logOverLimit = params["log_over_limit"].asBool();
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.crash_type=%{public}s", crashType.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
+                    bundleVersion.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
+                    bundleName.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uuid=%{public}s", uuid.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.exception=%{public}s", exception.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.hilog.size=%{public}d", hilogSize);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
+                    externalLog.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
+            }
+        }
+    }
+}
+// [End Sys_Crash_Crash_OnReceive]
+
+// [Start Sys_Crash_Event_C++_Add_Watcher]
+// 定义变量，用来缓存创建的观察者的指针。
+static HiAppEvent_Watcher *systemEventWatcherR;
+
+static napi_value RegisterWatcherCrashEvent(napi_env env, napi_callback_info info)
+{
+    // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
+    systemEventWatcherR = OH_HiAppEvent_CreateWatcher("AppCrashWatcherCrash");
+    // 设置订阅的事件名称为EVENT_APP_CRASH，即崩溃事件。
+    const char *names[] = {EVENT_APP_CRASH};
+    // 开发者订阅感兴趣的事件，此处订阅了系统事件。
+    OH_HiAppEvent_SetAppEventFilter(systemEventWatcherR, DOMAIN_OS, 0, names, 1);
+    // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive1回调。
+    OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcherR, OnReceiveCrashEvent);
+    // 使观察者开始监听订阅的事件。
+    OH_HiAppEvent_AddWatcher(systemEventWatcherR);
+    return {};
+}
+// [End Sys_Crash_Event_C++_Add_Watcher]
+
+// [Start Sys_Crash_Event_OnTrigger]
+// 开发者可以自行实现获取已监听到事件的回调函数，其中events指针指向内容仅在该函数内有效。
+static void OnTakeCrash(const char *const *events, uint32_t eventLen)
+{
+    Json::Reader reader(Json::Features::strictMode());
+    Json::FastWriter writer;
+    for (int i = 0; i < eventLen; ++i) {
+        Json::Value eventInfo;
+        if (reader.parse(events[i], eventInfo)) {
+            auto domain =  eventInfo["domain_"].asString();
+            auto name = eventInfo["name_"].asString();
+            auto type = eventInfo["type_"].asInt();
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.WatcherType=OnTrigger");
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", domain.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", name.c_str());
+            OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", type);
+            if (domain ==  DOMAIN_OS && name == EVENT_APP_CRASH) {
+                auto time = eventInfo["time"].asInt64();
+                auto crashType = eventInfo["crash_type"].asString();
+                auto foreground = eventInfo["foreground"].asBool();
+                auto bundleVersion = eventInfo["bundle_version"].asString();
+                auto bundleName = eventInfo["bundle_name"].asString();
+                auto pid = eventInfo["pid"].asInt();
+                auto uid = eventInfo["uid"].asInt();
+                auto uuid = eventInfo["uuid"].asString();
+                auto exception = writer.write(eventInfo["exception"]);
+                auto hilogSize = eventInfo["hilog"].size();
+                auto externalLog = writer.write(eventInfo["external_log"]);
+                auto logOverLimit = eventInfo["log_over_limit"].asBool();
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.crash_type=%{public}s", crashType.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
+                    bundleVersion.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
+                    bundleName.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uuid=%{public}s", uuid.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.exception=%{public}s", exception.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.hilog.size=%{public}d", hilogSize);
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
+                    externalLog.c_str());
+                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
+            }
+        }
+    }
+}
+// [End Sys_Crash_Event_OnTrigger]
+
+// [Start Sys_Click_Event_C++_Add_WatcherT]
+// 定义变量，用来缓存创建的观察者的指针。
+static HiAppEvent_Watcher *systemEventWatcherT;
+
+// 开发者可以自行实现订阅回调函数，以便对获取到的事件打点数据进行自定义处理。
+static void OnTriggerCrash(int row, int size)
+{
+    // 接收回调后，获取指定数量的已接收事件。
+    OH_HiAppEvent_TakeWatcherData(systemEventWatcherT, row, OnTakeCrash);
+}
+
+static napi_value RegisterWatcherClickCrash(napi_env env, napi_callback_info info)
+{
+    // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
+    systemEventWatcherT = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
+    // 设置订阅的事件名称为click。
+    const char *names[] = {EVENT_APP_CRASH};
+    // 开发者订阅感兴趣的应用事件，此处订阅了button相关事件。
+    OH_HiAppEvent_SetAppEventFilter(systemEventWatcherT, DOMAIN_OS, 0, names, 1);
+    // 开发者设置已实现的回调函数，需OH_HiAppEvent_SetTriggerCondition设置的条件满足方可触发。
+    OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcherT, OnTriggerCrash);
+    // 开发者可以设置订阅触发回调的条件，此处是设置新增事件打点数量为1个时，触发onTrigger回调。
+    OH_HiAppEvent_SetTriggerCondition(systemEventWatcherT, 1, 0, 0);
+    // 使观察者开始监听订阅的事件。
+    OH_HiAppEvent_AddWatcher(systemEventWatcherT);
+    return {};
+}
+// [End Sys_Click_Event_C++_Add_WatcherT]
+
 // [Start EventSub_OnReceive_All]
 static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
 {
@@ -491,8 +609,6 @@ static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup 
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d",
                         appEventGroups[i].appEventInfos[j].type);
 
-            // 处理崩溃事件
-            OnReceiveCrashEvent(appEventGroups, i, j);
             // 处理卡死事件
             OnReceiveFreezeEvent(appEventGroups, i, j);
             // 处理主线程卡顿事件
@@ -502,39 +618,6 @@ static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup 
 }
 // [End EventSub_OnReceive_All]
 
-// [Start CrashEvent_OnTrigger]
-static void OnTriggerCrashEvent(std::string domain, std::string name, Json::Value eventInfo, Json::FastWriter writer)
-{
-    if (domain == DOMAIN_OS && name == EVENT_APP_CRASH) {
-        auto time = eventInfo["time"].asInt64();
-        auto crashType = eventInfo["crash_type"].asString();
-        auto foreground = eventInfo["foreground"].asBool();
-        auto bundleVersion = eventInfo["bundle_version"].asString();
-        auto bundleName = eventInfo["bundle_name"].asString();
-        auto pid = eventInfo["pid"].asInt();
-        auto uid = eventInfo["uid"].asInt();
-        auto uuid = eventInfo["uuid"].asString();
-        auto exception = writer.write(eventInfo["exception"]);
-        auto hilogSize = eventInfo["hilog"].size();
-        auto externalLog = writer.write(eventInfo["external_log"]);
-        auto logOverLimit = eventInfo["log_over_limit"].asBool();
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.crash_type=%{public}s", crashType.c_str());
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.foreground=%{public}d", foreground);
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
-                    bundleVersion.c_str());
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uuid=%{public}s", uuid.c_str());
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.exception=%{public}s", exception.c_str());
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.hilog.size=%{public}d", hilogSize);
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s",
-                    externalLog.c_str());
-        OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
-    }
-}
-// [End CrashEvent_OnTrigger]
 // [Start FreezeEvent_OnTrigger]
 static void OnTriggerFreezeEvent(std::string domain, std::string name, Json::Value eventInfo, Json::FastWriter writer)
 {
@@ -740,9 +823,6 @@ static void OnTake(const char *const *events, uint32_t eventLen)
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", domain.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", name.c_str());
             OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", type);
-
-            // 处理崩溃事件
-            OnTriggerCrashEvent(domain, name, eventInfo, writer);
             // 处理卡死事件
             OnTriggerFreezeEvent(domain, name, eventInfo, writer);
         }
@@ -764,7 +844,7 @@ static napi_value RegisterWatcher(napi_env env, napi_callback_info info)
     eventWatcherT = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
     eventWatcherR = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
     // 设置订阅的事件名称为click, EVENT_APP_CRASH。
-    const char *names[] = {"click", EVENT_APP_CRASH, EVENT_APP_FREEZE, EVENT_MAIN_THREAD_JANK};
+    const char *names[] = {"click", EVENT_APP_FREEZE, EVENT_MAIN_THREAD_JANK};
     int namesSize = sizeof(names) / sizeof(names[0]);
     // 开发者订阅感兴趣的应用事件
     OH_HiAppEvent_SetAppEventFilter(eventWatcherT, "button", 0, names, namesSize);
@@ -831,6 +911,16 @@ static napi_value RemoveWatcher(napi_env env, napi_callback_info info)
 // [End AppEvent_C++_RemoveWatcher]
 // [End EventSub_RemoveWatcher_All]
 
+// [Start Sys_Crash_Event_C++_RemoveWatcher]
+static napi_value RemoveWatcherCrash(napi_env env, napi_callback_info info)
+{
+    // 使观察者停止监听crash事件
+    OH_HiAppEvent_RemoveWatcher(systemEventWatcherR);
+    OH_HiAppEvent_RemoveWatcher(systemEventWatcherT);
+    return {};
+}
+// [End Sys_Crash_Event_C++_RemoveWatcher]
+
 // [Start EventSub_DestroyWatcher_All]
 // [Start AppEvent_C++_DestroyWatcher]
 // [Start APP_Hicollie_DestroyWatcher]
@@ -884,6 +974,18 @@ static napi_value DestroyWatcher(napi_env env, napi_callback_info info)
 // [End APP_Hicollie_DestroyWatcher]
 // [End AppEvent_C++_DestroyWatcher]
 // [End EventSub_DestroyWatcher_All]
+
+// [Start Sys_Crash_Event_C++_DestroyWatcher]
+static napi_value DestroyWatcherCrash(napi_env env, napi_callback_info info)
+{
+    // 销毁创建的观察者，并置eventWatcher为nullptr。
+    OH_HiAppEvent_DestroyWatcher(systemEventWatcherR);
+    OH_HiAppEvent_DestroyWatcher(systemEventWatcherT);
+    systemEventWatcherR = nullptr;
+    systemEventWatcherT = nullptr;
+    return {};
+}
+// [End Sys_Crash_Event_C++_DestroyWatcher]
 
 // [Start AppEvent_Click_C++_WriteAppEvent]
 static napi_value WriteAppEvent(napi_env env, napi_callback_info info)
@@ -1109,6 +1211,7 @@ static napi_value RegisterAppHicollieWatcherT(napi_env env, napi_callback_info i
 // [Start AsanEventTS_Init]
 // [Start PssLeakEvent_Init]
 // [Start AppKillEvent_Init]
+// [Start Sys_Crash_Event_C++_Init]
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
@@ -1117,12 +1220,19 @@ static napi_value Init(napi_env env, napi_value exports)
         // [StartExclude AsanEvent_Init]
         // [StartExclude AsanEventTS_Init]
         // [StartExclude AppEvent_C++_Init]
+        // [StartExclude Sys_Crash_Event_C++_Init]
         {"registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr},
         // [EndExclude AppEvent_C++_Init]
         { "registerWatcherCrash", nullptr, RegisterWatcherCrash, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "registerWatcherClick", nullptr, RegisterWatcherClick, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "writeAppEvent", nullptr, WriteAppEvent, nullptr, nullptr, nullptr, napi_default, nullptr },
         // [StartExclude AppEvent_C++_Init]
+        // [EndExclude Sys_Crash_Event_C++_Init]
+        { "registerWatcherCrashEvent", nullptr, RegisterWatcherCrashEvent, nullptr, nullptr, nullptr, napi_default,
+            nullptr },
+        { "registerWatcherClickCrash", nullptr, RegisterWatcherClickCrash, nullptr, nullptr, nullptr, napi_default,
+            nullptr },
+        // [StartExclude Sys_Crash_Event_C++_Init]
         // [Start test_hicollie_timer]
         // 将TestHiCollieTimerNdk注册为ArkTS接口
         { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
@@ -1154,6 +1264,7 @@ static napi_value Init(napi_env env, napi_value exports)
         // [EndExclude AsanEventTS_Init]
         // [EndExclude PssLeakEvent_Init]
         // [EndExclude AppEvent_C++_Init]
+        // [EndExclude Sys_Crash_Event_C++_Init]
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -1163,6 +1274,7 @@ static napi_value Init(napi_env env, napi_value exports)
 // [End AsanEventTS_Init]
 // [End AsanEvent_Init]
 // [End AppEvent_C++_Init]
+// [End Sys_Crash_Event_C++_Init]
 // [End EventSub_Init_All]
 static napi_module demoModule = {
     .nm_version = 1,

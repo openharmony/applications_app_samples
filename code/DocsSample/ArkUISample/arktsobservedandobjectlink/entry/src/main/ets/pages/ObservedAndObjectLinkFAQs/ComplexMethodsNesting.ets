@@ -60,7 +60,7 @@ struct ParentComp {
       Column() {
         // [Start Complex_Methods_Nesting]
         ComplexMethodsNestingCounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
-        // [StartExclude Complex_Methods_Nesting_One]
+        // [StartExclude Complex_Methods_Nesting]
         ComplexMethodsNestingCounterComp({ value: this.counter[1] });
         ComplexMethodsNestingCounterComp({ value: this.counter[2] });
         Divider().height(5)
@@ -97,9 +97,9 @@ struct ParentComp {
 }
 @Component
 struct ComplexMethodsNestingCounterComp {
-  // [EndExclude Complex_Methods_Nesting_One]
+  // [EndExclude Complex_Methods_Nesting]
   @ObjectLink value: ParentCounter; // @ObjectLink 接收 ParentCounter
-  // [StartExclude Complex_Methods_Nesting_Two]
+  // [StartExclude Complex_Methods_Nesting]
 
   build() {
     Column({ space: 10 }) {
@@ -108,10 +108,10 @@ struct ComplexMethodsNestingCounterComp {
         .onClick(() => {
           this.value.incrCounter();
         });
-      // [EndExclude Complex_Methods_Nesting_Two]
+      // [EndExclude Complex_Methods_Nesting]
       // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
       ComplexMethodsNestingCounterChild({ subValue: this.value.subCounter });
-      // [StartExclude Complex_Methods_Nesting_Three]
+      // [StartExclude Complex_Methods_Nesting]
       Divider().height(2)
     }
   }
@@ -119,7 +119,7 @@ struct ComplexMethodsNestingCounterComp {
 
 @Component
 struct ComplexMethodsNestingCounterChild {
-  // [EndExclude Complex_Methods_Nesting_Three]
+  // [EndExclude Complex_Methods_Nesting]
   @ObjectLink subValue: ComplexMethodsNestingSubCounter; // @ObjectLink 接收 SubCounter
   // [End Complex_Methods_Nesting]
   build() {

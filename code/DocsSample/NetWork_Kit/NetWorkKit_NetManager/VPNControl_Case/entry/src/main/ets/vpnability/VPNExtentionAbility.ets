@@ -15,11 +15,11 @@
 // [Start vpn_control_case_extention_ability]
 import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
 import { Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // [StartExclude vpn_control_case_extention_ability]
 // vpn_client是一个C语言便携的so，比如import vpn_client from 'libvpn_client.so';
 import vpn_client from 'libentry.so';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [EndExclude vpn_control_case_extention_ability]
 
 const TAG: string = '[MyVpnExtAbility]';

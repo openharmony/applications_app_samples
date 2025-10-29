@@ -24,13 +24,12 @@ struct example1 {
 
   build() {
     Column() {
-      Text(this.child.value.toString());
+      Text(this.child.value.toString())
       // @State可以观察第一层变化
       Button('value+1')
         .onClick(() => {
           this.child.value++;
-
-        });
+        })
     }
   }
 }

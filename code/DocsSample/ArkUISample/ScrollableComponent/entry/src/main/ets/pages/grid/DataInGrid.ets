@@ -41,39 +41,48 @@ export struct DataInGrid {
           // [EndExclude build_a_office_services_grid_of_foreach]
           // $r('app.string.build_a_office_services_grid')需要替换为开发者所需的字符串资源
           // [Start build_a_office_services_grid]
-
+          // [Start build_a_office_services_meeting]
           Grid() {
             GridItem() {
               // $r('app.string.Meeting')需要替换为开发者所需的资源文件
               Text($r('app.string.Meeting'))
+              // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
-            }.backgroundColor('#FFF1F3F5')
+              // [EndExclude build_a_office_services_meeting]
+            }
 
             GridItem() {
               // $r('app.string.Check_in')需要替换为开发者所需的资源文件
               Text($r('app.string.Check_in'))
+              // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
-            }.backgroundColor('#FFF1F3F5')
+              // [EndExclude build_a_office_services_meeting]
+            }
 
             GridItem() {
               // $r('app.string.Voting')需要替换为开发者所需的资源文件
               Text($r('app.string.Voting'))
+              // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
-            }.backgroundColor('#FFF1F3F5')
+              // [EndExclude build_a_office_services_meeting]
+            }
 
             GridItem() {
               // $r('app.string.Printing')需要替换为开发者所需的资源文件
               Text($r('app.string.Printing'))
                 .fontSize(24)
-            }.backgroundColor('#FFF1F3F5')
+            }
           }
+          // [StartExclude build_a_office_services_meeting]
           // [StartExclude build_a_office_services_grid]
           .height(200)
           // [EndExclude build_a_office_services_grid]
           .columnsGap(6)
           .rowsGap(6)
+          // [EndExclude build_a_office_services_meeting]
           .rowsTemplate('1fr 1fr')
           .columnsTemplate('1fr 1fr')
+          // [End build_a_office_services_meeting]
           // [End build_a_office_services_grid]
         }
 

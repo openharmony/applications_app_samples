@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Persistent_page_tow]
 let aProp = AppStorage.setOrCreate('aProp', 47);
 PersistentStorage.persistProp('aProp', 48);
 
 @Entry
 @Component
-struct testPageTow {
+struct TestPageTwo {
   @State message: string = 'Hello World';
   @StorageLink('aProp') aProp: number = 50;
 
@@ -35,3 +36,4 @@ struct testPageTow {
     }
   }
 }
+// [End Persistent_page_tow]

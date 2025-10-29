@@ -16,6 +16,7 @@
 // [Start start_vpn_extension_ability]
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [StartExclude start_vpn_extension_ability]
 import vpn_client from 'libentry.so';
 import { showToast } from '../common/ShowToast';
@@ -23,7 +24,6 @@ import { ComponentId } from '../common/CommonConstant'; // 引入枚举
 import TitleBar from '../common/component';
 import NotificationOperations from '../notification/NotificationOperations';
 import SetupVpn from './SetupVpn';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 提取常量
 const LABEL_FONT_SIZE = 20; // 标签字体大小

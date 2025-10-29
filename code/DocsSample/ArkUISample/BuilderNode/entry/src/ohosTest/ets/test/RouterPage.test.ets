@@ -19,6 +19,8 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 import { Router, router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0x0000;
+
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
@@ -42,7 +44,7 @@ export default function routerPageTest() {
     beforeEach(() => {
       hilog.info(0xF811, 'testTag', '%{public}s','routerPageTest beforeEach start');
       let options: router.RouterOptions = {
-        url: 'pages/routerPage1',
+        url: 'pages/RouterPage1',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router

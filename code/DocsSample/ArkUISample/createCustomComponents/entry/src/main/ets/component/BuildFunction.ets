@@ -17,6 +17,7 @@
 @Component
 struct MyComponentBuildFunction {
   build() {
+    // [StartExclude Declarative_UI_description]
     Column(){
       Text('Hello World')
         .fontSize(50)
@@ -24,6 +25,7 @@ struct MyComponentBuildFunction {
     }
     .width('100%')
     .height('100%')
+    // [EndExclude Declarative_UI_description]
   }
 }
 // [End Declarative_UI_description]

@@ -16,9 +16,9 @@
 // [Start destroy_vpn_ability]
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 import { vpnExtension } from '@kit.NetworkKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [StartExclude destroy_vpn_ability]
 import { common } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [EndExclude destroy_vpn_ability]
 export class VpnTest extends VpnExtensionAbility {
   public vpnId: string = 'test_vpn_id';

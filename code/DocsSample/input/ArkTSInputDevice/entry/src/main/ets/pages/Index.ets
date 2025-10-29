@@ -45,6 +45,10 @@ struct Index {
     .padding(0)
   }
 
+  aboutToDisappear(): void {
+    inputDevice.off("change");
+  }
+
   // [EndExclude  input_device]
 
   build() {

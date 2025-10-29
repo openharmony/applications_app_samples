@@ -13,15 +13,21 @@
  * limitations under the License.
  */
 
+// [Start progress_example_up]
 @Entry
 @Component
 struct ProgressCase1 {
   @State progressValue: number = 0	// 设置进度条初始值为0
+  // [StartExclude progress_example_up]
   scroller: Scroller = new Scroller();
+  // [EndExclude progress_example_up]
   build() {
+    // [StartExclude progress_example_up]
     NavDestination() {
       Scroll(this.scroller) {
+        // [EndExclude progress_example_up]
         Column({space:10}) {
+          // [End progress_example_up]
           Text($r('app.string.Linear_Progress')).fontSize(9).fontColor(0xCCCCCC).width('90%')
           // [Start progress_style_1]
           Progress({ value: 20, total: 100, type: ProgressType.Linear }).width(200).height(50)
@@ -83,11 +89,15 @@ struct ProgressCase1 {
                 this.progressValue = 0;
               }
             })
-          // [End progress_example]
         }.width('100%')
-      }.id('scroll_')
+      }
+      // [StartExclude progress_example]
+      .id('scroll_')
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Progress_Style'))
+    // [EndExclude progress_example]
   }
 }
+// [End progress_example]
+

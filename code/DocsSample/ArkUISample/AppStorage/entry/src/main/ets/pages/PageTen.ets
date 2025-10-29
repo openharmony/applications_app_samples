@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start appstorage_page_ten]
 AppStorage.setOrCreate('propA', false);
 
 @Entry
@@ -38,3 +39,4 @@ struct PageTenIndex {
     }
   }
 }
+// [End appstorage_page_ten]

@@ -28,8 +28,7 @@ class Child6 {
 
 @Observed
 class Child6List extends Array<Child6> {
-}
-;
+};
 
 @Observed
 class Ancestor6 {

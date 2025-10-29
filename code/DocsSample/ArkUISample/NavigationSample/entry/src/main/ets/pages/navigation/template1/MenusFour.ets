@@ -14,16 +14,16 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
+// [Start NavigationMenuFour]
+let toolTmp: NavigationMenuItem  = {
+  'value': 'func',
+  'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',
+  'action': () => {}
+};
+// [StartExclude NavigationMenuFour]
 @Entry
 @Component
 struct MenusFour {
-  // [Start NavigationMenuFour]
-  @State toolTmp: NavigationMenuItem  = {
-    'value': 'func',
-    'icon': 'ets/pages/navigation/template1/image/ic_public_add.svg',
-    'action': () => {}
-  };
-  // [StartExclude NavigationMenuFour]
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
   private arr: number[] = [1, 2, 3];
 
@@ -69,7 +69,7 @@ struct MenusFour {
         .margin({ top: 12 })
         // [EndExclude NavigationMenuFour]
       }
-      .menus([this.toolTmp, this.toolTmp, this.toolTmp, this.toolTmp])
+      .menus([toolTmp, toolTmp, toolTmp, toolTmp])
       // [End NavigationMenuFour]
       .title('主标题')
       .mode(NavigationMode.Split)

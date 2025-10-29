@@ -21,7 +21,7 @@ struct MyComponentCodeV1 {
   static {
     this.a = 'hello world';
   };
-  // [StartExclude code_V1]
+  // [StartExclude Static_code_V1]
   build() {
       Column(){
         // $r('app.string.static_code')需要替换为开发者所需的资源文件
@@ -30,7 +30,7 @@ struct MyComponentCodeV1 {
       .width('100%')
       .height('100%')
   }
-  // [EndExclude code_V1]
+  // [EndExclude Static_code_V1]
 }
 // [End Static_code_V1]
 

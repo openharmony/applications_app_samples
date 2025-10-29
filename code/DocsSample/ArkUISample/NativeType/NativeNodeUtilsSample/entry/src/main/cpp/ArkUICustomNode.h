@@ -14,6 +14,7 @@
  */
 // ArkUICustomNode.h
 // 自定义绘制组件示例
+// [Start arkUICustomNode_start]
 #ifndef MYAPPLICATION_ARKUICUSTOMNODE_H
 #define MYAPPLICATION_ARKUICUSTOMNODE_H
 
@@ -211,3 +212,4 @@ private:
 } // namespace NativeModule
 
 #endif // MYAPPLICATION_ARKUICUSTOMNODE_H
+// [End arkUICustomNode_start]

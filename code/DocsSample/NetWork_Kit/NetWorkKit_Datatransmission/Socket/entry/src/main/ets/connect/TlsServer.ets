@@ -190,7 +190,7 @@ struct TLS_Server {
         this.serverKey = result[0];
         this.msgHistory += `Selected server private key file: ${this.serverKey}\n`;
       }
-    }).catch((err: BusinessError) => {
+    }).catch((err: BusinessError<void>) => {
       this.msgHistory += `Failed to select server private key file: ${err.message}\n`;
     });
   }
@@ -216,7 +216,7 @@ struct TLS_Server {
         this.serverCert = result[0];
         this.msgHistory += `Selected server certificate file: ${this.serverCert}\n`;
       }
-    }).catch((err: BusinessError) => {
+    }).catch((err: BusinessError<void>) => {
       this.msgHistory += `Failed to select server certificate file: ${err.message}\n`;
     });
   }
@@ -242,7 +242,7 @@ struct TLS_Server {
         this.caCert = result[0];
         this.msgHistory += `Selected CA certificate file: ${this.caCert}\n`;
       }
-    }).catch((err: BusinessError) => {
+    }).catch((err: BusinessError<void>) => {
       this.msgHistory += `Failed to select CA certificate file: ${err.message}\n`;
     });
   }

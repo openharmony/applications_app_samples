@@ -111,6 +111,11 @@ interface CA {
   ca: string[];
 }
 
+class SocketInfo {
+  public message: ArrayBuffer = new ArrayBuffer(1);
+  public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+
 function upgradeToTLSSocket(ca: string) {
   if (!tcpSocket) {
     workerPort.postMessage({ type: 'connectFailure', message: 'No active TCP connection' });
@@ -127,7 +132,7 @@ function upgradeToTLSSocket(ca: string) {
   }).then(() => {
     workerPort.postMessage({ type: 'tlsConnectSuccess', message: 'TLS connection successful' });
 
-    tlsSocket!.on('message', (data) => {
+    tlsSocket!.on('message', (data: SocketInfo) => {
       let receivedMsg = buf2String(data.message);
       workerPort.postMessage({ type: 'serverMessage', message: receivedMsg });
     });

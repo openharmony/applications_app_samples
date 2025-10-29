@@ -13,12 +13,50 @@
 
 使用说明
 
-1. 在主界面，点击按钮引发崩溃，重启应用；切换到"Log"窗口，日志过滤选择"No filters",搜索内容设置为"onException"。此时窗口仅显示符合条件的日志，打印日志结果为：
+1. 在主界面，启动应用，切换到"Log"窗口，日志过滤选择"No filters"，搜索内容设置为"testErrorManage"。
+
+（1）重启应用，点击“单线程监听场景”按钮，出现如下形式日志输出：
 
 ```
-onException, name:  SyntaxError
-onException, message:  Unexpected Text in JSON
-onException, stack:      at anonymous (entry/src/main/ets/pages/Index.ets:31:34)
+onUnhandledException, errorMsg: xxx
+onException, name: xxx
+onException, message: xxx
+onException, stack: xxx
+```
+（2）重启应用，点击“进程监听异常场景”按钮，出现如下形式日志输出：
+
+```
+result name :Error
+result message :test errorFunc msg
+result stack:    at anonymous entry xxx
+result instanceName : xxx
+result instanceType :0
+```
+（3）重启应用，点击“主线程监听消息处理耗时”按钮，出现如下形式日志输出：
+
+```
+Duration timeout: xxx
+```
+（4）重启应用，点击“进程监听promise异常场景”按钮，出现如下形式日志输出：
+
+```
+result name :Error
+result message :process promise exception
+result stack:    at anonymous entry xxx
+result instanceName : xxx
+result instanceType :0
+```
+（5）重启应用，点击“进程promise监听注册被拒绝”按钮，出现如下形式日志输出：
+
+```
+reason.name : xxx
+reason.message : xxx
+reason.stack: xxx
+```
+（6）重启应用，点击“主线程监听freeze”按钮，出现如下形式日志输出：
+
+```
+freezecallback
 ```
 
 ###  工程目录
@@ -58,7 +96,7 @@ entry/src/main/ets/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/PerformanceAnalysisKit/ErrorManage/ErrorManage/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
 

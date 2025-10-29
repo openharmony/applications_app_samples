@@ -27,20 +27,19 @@ export default function abilityTest() {
      */
     it('StartAbility_001', 0, async (done: Function) => {
       console.info(TAG, 'StartAbility_001 begin');
-      let driver = Driver.create();
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
+        let driver = Driver.create();
+        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
         await abilityDelegator.startAbility({
           bundleName: 'com.samples.nativedrawing',
           abilityName: 'EntryAbility'
         });
+        await driver.delayMs(1000);
+        done();
       } catch (exception) {
         console.info(TAG, `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw theme font'));
-      done();
       console.info(TAG, 'StartAbility_001 end');
     })
 
@@ -49,23 +48,23 @@ export default function abilityTest() {
      */
     it('DrawThemeFont_001', 2, async () => {
       console.info(TAG, 'DrawPath_001 begin');
-      let driver = Driver.create();
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
+        let driver = Driver.create();
+        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
         await abilityDelegator.startAbility({
           bundleName: 'com.samples.nativedrawing',
           abilityName: 'EntryAbility'
         });
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('使用主题字体'));
+        let drawPathBtn = await driver.findComponent(ON.text('使用主题字体'));
+        await drawPathBtn.click();
+        await driver.delayMs(1000);
+        await driver.pressBack();
       } catch (exception) {
         console.info(TAG, `DrawPath_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw theme font'));
-      let drawPathBtn = await driver.findComponent(ON.text('Draw theme font'));
-      // 点击'Draw Path'按钮
-      await drawPathBtn.click();
-      await driver.delayMs(1000);
       console.info(TAG, 'DrawPath_001 end');
     })
 
@@ -74,23 +73,23 @@ export default function abilityTest() {
      */
     it('DrawCustomFont_001', 2, async () => {
       console.info(TAG, 'DrawCustomFont_001 begin');
-      let driver = Driver.create();
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
+        let driver = Driver.create();
+        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
         await abilityDelegator.startAbility({
           bundleName: 'com.samples.nativedrawing',
           abilityName: 'EntryAbility'
         });
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('自定义字体的注册和使用'));
+        let drawPathBtn = await driver.findComponent(ON.text('自定义字体的注册和使用'));
+        await drawPathBtn.click();
+        await driver.delayMs(1000);
+        await driver.pressBack();
       } catch (exception) {
         console.info(TAG, `DrawCustomFont_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw CustomFont'));
-      let drawPathBtn = await driver.findComponent(ON.text('Draw CustomFont'));
-      // 点击'Draw Path'按钮
-      await drawPathBtn.click();
-      await driver.delayMs(1000);
       console.info(TAG, 'DrawCustomFont_001 end');
     })
 
@@ -99,23 +98,27 @@ export default function abilityTest() {
      */
     it('DrawSysFontMetrics_001', 2, async () => {
       console.info(TAG, 'DrawSysFontMetrics_001 begin');
-      let driver = Driver.create();
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
+        let driver = Driver.create();
+        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
         await abilityDelegator.startAbility({
           bundleName: 'com.samples.nativedrawing',
           abilityName: 'EntryAbility'
         });
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('系统字体的信息获取和使用'));
+        let drawPathBtn = await driver.findComponent(ON.text('系统字体的信息获取和使用'));
+        await drawPathBtn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('获取系统字体信息'));
+        drawPathBtn = await driver.findComponent(ON.text('获取系统字体信息'));
+        await drawPathBtn.click()
+        await driver.delayMs(1000);
+        await driver.pressBack();
       } catch (exception) {
         console.info(TAG, `DrawSysFontMetrics_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('SysFontMetrics'));
-      let drawPathBtn = await driver.findComponent(ON.text('SysFontMetrics'));
-      // 点击'Draw Path'按钮
-      await drawPathBtn.click();
-      await driver.delayMs(1000);
       console.info(TAG, 'DrawSysFontMetrics_001 end');
     })
 
@@ -124,25 +127,24 @@ export default function abilityTest() {
      */
     it('DrawDisableSysFont_001', 2, async () => {
       console.info(TAG, 'DrawDisableSysFont_001 begin');
-      let driver = Driver.create();
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
+        let driver = Driver.create();
+        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
         await abilityDelegator.startAbility({
           bundleName: 'com.samples.nativedrawing',
           abilityName: 'EntryAbility'
         });
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text('停用或切换系统字体'));
+        let drawPathBtn = await driver.findComponent(ON.text('停用或切换系统字体'));
+        await drawPathBtn.click()
+        await driver.delayMs(1000);
+        await driver.pressBack();
+        console.info(TAG, 'DrawDisableSysFont_001 end');
       } catch (exception) {
         console.info(TAG, `DrawDisableSysFont_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('DisableSysFont'));
-      let drawPathBtn = await driver.findComponent(ON.text('DisableSysFont'));
-      // 点击'Draw Path'按钮
-      await drawPathBtn.click();
-      await driver.delayMs(1000);
-      console.info(TAG, 'DrawDisableSysFont_001 end');
     })
-
   })
 }

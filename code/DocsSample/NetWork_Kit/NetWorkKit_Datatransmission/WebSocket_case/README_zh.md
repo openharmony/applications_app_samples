@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例依照指南 开发->系统->网络->Network Kit（网络服务）->[使用WebSocket访问网络](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/websocket-connection.md) 进行编写。使用WebSocket建立服务器与客户端的双向连接，需要先通过createWebSocket()方法创建WebSocket对象，然后通过connect()方法连接到服务器。当连接成功后，客户端会收到open事件的回调，之后客户端就可以通过send()方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到message事件的回调。当客户端不要此连接时，可以通过调用close()方法主动断开连接，之后客户端会收到close事件的回调。本项目展示了一个WebSocket连接的示例应用，它实现了通过按钮创建一个WebSocket连接、发送消息、断开连接的功能，使用了[@ohos.net.webSocket](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-connection.md)接口。
+本示例依照指南 开发->系统->网络->Network Kit（网络服务）->[使用WebSocket访问网络](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/websocket-connection.md) 进行编写。使用WebSocket建立服务器与客户端的双向连接，需要先通过createWebSocket()方法创建WebSocket对象，然后通过connect()方法连接到服务器。当连接成功后，客户端会收到open事件的回调，之后客户端就可以通过send()方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到message事件的回调。当客户端不要此连接时，可以通过调用close()方法主动断开连接，之后客户端会收到close事件的回调。本项目展示了一个WebSocket连接的示例应用，它实现了通过按钮创建一个WebSocket连接、发送消息、断开连接的功能，使用了[@ohos.net.webSocket](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-webSocket.md)接口。
 
 ### 效果预览
 

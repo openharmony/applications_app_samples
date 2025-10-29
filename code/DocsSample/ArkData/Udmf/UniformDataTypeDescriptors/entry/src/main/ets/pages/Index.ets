@@ -22,9 +22,7 @@ import hilog from '@ohos.hilog';
 // [Start uniform_type_descriptor_test]
 function uniformTypeDescriptorTest() {
   try {
-    // [StartExclude uniform_type_descriptor_test]
     // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性
-    // [EndExclude uniform_type_descriptor_test]
     let fileExtension = '.mp3';
     let typeIds1 = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtension);
     if (typeIds1.length == 0) {
@@ -37,9 +35,7 @@ function uniformTypeDescriptorTest() {
     hilog.info(0xFF00, '[Sample_Udmf]', `filenameExtensions: ${typeObj1.filenameExtensions}`);
     hilog.info(0xFF00, '[Sample_Udmf]', `mimeTypes: ${typeObj1.mimeTypes}`);
 
-    // [StartExclude uniform_type_descriptor_test]
     // 3.可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
-    // [EndExclude uniform_type_descriptor_test]
     let mimeType = 'audio/mp3';
     let typeIds2 = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mimeType);
     if (typeIds2.length == 0) {
@@ -52,24 +48,18 @@ function uniformTypeDescriptorTest() {
     hilog.info(0xFF00, '[Sample_Udmf]', `filenameExtensions: ${typeObj2.filenameExtensions}`);
     hilog.info(0xFF00, '[Sample_Udmf]', `mimeTypes: ${typeObj2.mimeTypes}`);
 
-    // [StartExclude uniform_type_descriptor_test]
     // 4.将数据类型进行比较，确认是否同一种数据类型
-    // [EndExclude uniform_type_descriptor_test]
     if (typeObj1 != null && typeObj2 != null) {
       let ret = typeObj1.equals(typeObj2);
       hilog.info(0xFF00, '[Sample_Udmf]', `typeObj1 equals typeObj2, ret: ${ret}`);
     }
 
-    // [StartExclude uniform_type_descriptor_test]
     // 5.将查询到的标准数据类型“general.mp3”与表示音频数据的已知标准数据类型“general.audio”做比较查询，确认是否存在归属关系。
-    // [EndExclude uniform_type_descriptor_test]
     if (typeObj1 != null) {
       let ret = typeObj1.belongsTo('general.audio');
       hilog.info(0xFF00, '[Sample_Udmf]', `belongsTo, ret: + ${ret}`);
       let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
-      // [StartExclude uniform_type_descriptor_test]
       // 确认是否存在归属关系
-      // [EndExclude uniform_type_descriptor_test]
       ret = mediaTypeObj.isHigherLevelType('general.audio');
       hilog.info(0xFF00, '[Sample_Udmf]', `isHigherLevelType, ret: + ${ret}`);
     }
@@ -82,15 +72,11 @@ function uniformTypeDescriptorTest() {
 function getMimeTypeByFilenameExtensions() {
   // [Start get_filename_extensions_by_mimeType]
   try {
-    // [StartExclude get_filename_extensions_by_mimeType]
     // 2.可根据 “.ts” 文件后缀查询对应UTD数据类型。
-    // [EndExclude get_filename_extensions_by_mimeType]
     let fileExtension = '.ts';
     let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtension);
     for (let typeId of typeIds) {
-      // [StartExclude get_filename_extensions_by_mimeType]
       // 3.根据UTD数据类型查询对应的MIMEType列表。
-      // [EndExclude get_filename_extensions_by_mimeType]
       let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
       let mimeTypes = typeObj.mimeTypes;
       hilog.info(0xFF00, '[Sample_Udmf]', `mimeTypes: ${mimeTypes}`);
@@ -98,22 +84,17 @@ function getMimeTypeByFilenameExtensions() {
   } catch (err) {
     hilog.error(0xFF00, '[Sample_Udmf]', `err message: ${err.message}, err code: ${err.code}`);
   }
-  }
   // [End get_filename_extensions_by_mimeType]
 }
 
 function getFilenameExtensionByMimeType() {
   // [Start get_filename_extension_by_mimeType]
   try {
-    // [StartExclude get_filename_extension_by_mimeType]
     // 2.可根据 “text/plain” MIMEType查询对应UTD数据类型。
-    // [EndExclude get_filename_extension_by_mimeType]
     let mimeType = 'text/plain';
     let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mimeType);
     for (let typeId of typeIds) {
-      // [StartExclude get_filename_extension_by_mimeType]
       // 3. 根据UTD数据类型查询对应的文件后缀列表
-      // [EndExclude get_filename_extension_by_mimeType]
       let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
       let filenameExtensions = typeObj.filenameExtensions;
       hilog.info(0xFF00, '[Sample_Udmf]', `filenameExtensions: ${filenameExtensions}`);

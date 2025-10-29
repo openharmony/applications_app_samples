@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Persistent_page_four]
 // 定义常量替代魔法值，明确数值含义
 const DEFAULT_NUMBER: number = 10; // 默认数字值
 const FONT_SIZE_LARGE: number = 50; // 大字体尺寸
-const WIDTH_FULL: string = '100%'; // 宽度占满
-const HEIGHT_FULL: string = '100%'; // 高度占满
+const WIDTH_HEIGHT_FULL: string = '100%'; // 宽度占满,高度占满
 
 // 初始化持久化属性，键名使用常量定义（若有多处使用可提取）
 const STORAGE_KEY_P: string = 'P';
@@ -44,8 +44,9 @@ struct TestCase6 {
           this.p = null;
         })
       }
-      .width(WIDTH_FULL)
+      .width(WIDTH_HEIGHT_FULL)
     }
-    .height(HEIGHT_FULL)
+    .height(WIDTH_HEIGHT_FULL)
   }
 }
+// [End Persistent_page_four]

@@ -14,7 +14,6 @@
  */
 
 // [Start import_entry_form_ability]
-// [Start update_form_interface]
 // [Start update_by_message_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { Configuration, Want } from '@kit.AbilityKit';

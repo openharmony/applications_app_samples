@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // NativeEntry.cpp
-#include <arkui/native_node_napi.h>
-#include <ArkUICustomNode.h>
+
 #include <ArkUITextNode.h>
 #include <ArkUITextInputNode.h>
 #include <ArkUIListItemAdapter.h>
@@ -22,13 +22,22 @@
 #include <ArkUIListItemNode.h>
 #include <CreateNode.h>
 #include <hilog/log.h>
-#include <js_native_api.h>
-#include "NativeEntry.h"
+#include "Drawing.h"
 #include <map>
 #include <thread>
+// [Start arkUICustomNodeCpp_start]
+#include <arkui/native_node_napi.h>
+#include <arkui/native_type.h>
+#include <js_native_api.h>
 
+#include "NativeEntry.h"
+#include "ArkUICustomContainerNode.h"
+#include "ArkUICustomNode.h"
+static napi_env g_env = nullptr;
+// [Start normalTextListExample_start]
 namespace NativeModule {
-
+// [StartExclude normalTextListExample_start]
+// [StartExclude ArkUICustomNodeCpp_start]
 #define FRAMEWORK_NODE_TREE_NUMBER 4 // 在框架线程创建组件树的数量。
 #define USER_NODE_TREE_NUMBER 3      // 在开发者线程创建组件树的数量。
 struct AsyncData {
@@ -221,35 +230,6 @@ struct NodeAndContent {
     std::shared_ptr<ArkUIBaseNode> node;
 };
 
-// 自定义属性Demo
-napi_value CreateCustomPropertyDemo(napi_env env, napi_callback_info info)
-{
-    size_t argc = 2;
-    napi_value args[2] = {nullptr, nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取ArkTs侧组件挂载点。
-    ArkUI_NodeContentHandle contentHandle;
-    int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
-    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
-        return nullptr;
-    }
-
-    // 创建Native侧组件树根节点。
-    auto scrollNode = std::make_shared<ArkUIScrollNode>();
-    // 将Native侧组件树根节点挂载到UI主树上。
-    result = OH_ArkUI_NodeContent_AddNode(contentHandle, scrollNode->GetHandle());
-    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
-        return nullptr;
-    }
-    // 保存Native侧组件树。
-    g_nodeMap[contentHandle] = scrollNode;
-    
-    auto columnNode = CreateCustomPropertyExample();
-
-    scrollNode->AddChild(columnNode);
-    return nullptr;
-}
-
 std::shared_ptr<ArkUIBaseNode> CreateCustomPropertyExample()
 {
     auto columnNode = std::make_shared<ArkUIColumnNode>();
@@ -294,6 +274,35 @@ std::shared_ptr<ArkUIBaseNode> CreateCustomPropertyExample()
     columnNode->AddChild(textSave);
     columnNode->AddChild(textRead);
     return columnNode;
+}
+
+// 自定义属性Demo
+napi_value CreateCustomPropertyDemo(napi_env env, napi_callback_info info)
+{
+    size_t argc = 2;
+    napi_value args[2] = {nullptr, nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 获取ArkTs侧组件挂载点。
+    ArkUI_NodeContentHandle contentHandle;
+    int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        return nullptr;
+    }
+
+    // 创建Native侧组件树根节点。
+    auto scrollNode = std::make_shared<ArkUIScrollNode>();
+    // 将Native侧组件树根节点挂载到UI主树上。
+    result = OH_ArkUI_NodeContent_AddNode(contentHandle, scrollNode->GetHandle());
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        return nullptr;
+    }
+    // 保存Native侧组件树。
+    g_nodeMap[contentHandle] = scrollNode;
+    
+    auto columnNode = CreateCustomPropertyExample();
+
+    scrollNode->AddChild(columnNode);
+    return nullptr;
 }
 
 std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample(napi_env env)
@@ -359,7 +368,7 @@ napi_value DisposeNodeTree(napi_env env, napi_callback_info info)
     g_nodeMap.erase(contentHandle);
     return nullptr;
 }
-
+// [EndExclude normalTextListExample_start]
 std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
 {
     // 创建组件并挂载
@@ -388,35 +397,7 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
     }
     return list;
 }
-// [Start Interface_entrance_mounting_file]
-napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    // 获取NodeContent
-    ArkUI_NodeContentHandle contentHandle;
-    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
-    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
-
-        //创建文本列表
-        auto list = CreateTextListExample();
-
-        //保持Native侧对象到管理类中，维护生命周期。
-        NativeEntry::GetInstance()->SetRootNode(list);
-    return nullptr;
-}
-
-napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
-{
-    // 从管理类中释放Native侧对象。
-    NativeEntry::GetInstance()->DisposeRootNode();
-    NativeEntry::GetInstance()->ClearNode();
-    return nullptr;
-}
-// [End Interface_entrance_mounting_file]
+// [StartExclude normalTextListExample_start]
 napi_value GetContext(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -488,10 +469,71 @@ napi_value GetNodeHandleByUniqueId(napi_env env, napi_callback_info info)
     }
 }
 
+napi_value CreateDrawNode(napi_env env, napi_callback_info info)
+{
+    size_t argCnt = 1;
+    int32_t ret;
+    napi_value args[1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "CreateNativeNode napi_get_cb_info failed");
+    }
+    ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
+    ArkUI_NodeContentHandle nodeContentHandle = nullptr;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle);
+    OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+    ArkUI_NodeHandle rootNode = test_draw(nodeAPI);
+    if (rootNode == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "test_draw_rootNode", "转换NodeContent失败");
+        return nullptr;
+    }
+    ret = OH_ArkUI_NodeContent_AddNode(nodeContentHandle, rootNode);
+    if (ret != 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OH_ArkUI_NodeContent_AddNode_ret", "转换NodeContent失败");
+        return nullptr;
+    }
+    napi_value exports;
+    if (napi_create_object(env, &exports) != napi_ok) {
+        napi_throw_type_error(env, NULL, "napi_create_object failed");
+        return nullptr;
+    }
+    return exports;
+}
+
+napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 获取ArkTs侧组件挂载点。
+    ArkUI_NodeContentHandle contentHandle;
+    int32_t result = OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_ERROR(LOG_APP, "OH_ArkUI_GetNodeContentFromNapiValue Failed %{public}d", result);
+        return nullptr;
+    }
+
+    auto it = g_nodeMap.find(contentHandle);
+    if (it == g_nodeMap.end()) {
+        return nullptr;
+    }
+    auto rootNode = it->second;
+    // 将Native侧组件树根节点从UI主树上卸载。
+    result = OH_ArkUI_NodeContent_RemoveNode(contentHandle, rootNode->GetHandle());
+    if (result != ARKUI_ERROR_CODE_NO_ERROR) {
+        OH_LOG_ERROR(LOG_APP, "OH_ArkUI_NodeContent_RemoveNode Failed %{public}d", result);
+        return nullptr;
+    }
+    // 释放Native侧组件树。
+    g_nodeMap.erase(contentHandle);
+    return nullptr;
+}
+
 // 获取窗口名称
 void NativeEntry::GetWindowName()
 {
     ArkUI_HostWindowInfo* windowInfo;
+    // 给windowInfo结构体赋值。
     auto result = OH_ArkUI_NodeUtils_GetWindowInfo(nodeHandle_, &windowInfo);
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         return;
@@ -520,11 +562,11 @@ void NativeEntry::RegisterNodeEventReceiver()
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfo", "nodeHandle = %{public}p", nodeHandle);
         // 根据eventType来区分事件类型，进行差异化处理，其他获取事件信息的接口也可类似方式来进行差异化的处理
         switch (eventType) {
-            case NODE_ON_CLICK_EVENT: {
+            case NODE_ON_CLICK_EVENT:{
                 //实现具体业务
                 break;
             }
-            default: {
+            default:{
                 break;
             }
         }
@@ -535,5 +577,32 @@ void NativeEntry::UnregisterNodeEventReceiver()
 {
     NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->unregisterNodeEventReceiver();
 }
+// [EndExclude ArkUICustomNodeCpp_start]
+napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
 
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+        //创建文本列表
+        auto list = CreateTextListExample();
+        //保持Native侧对象到管理类中，维护生命周期。
+        NativeEntry::GetInstance()->SetRootNode(list);
+    return nullptr;
+}
+
+napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
+{
+    // 从管理类中释放Native侧对象。
+    NativeEntry::GetInstance()->DisposeRootNode();
+    return nullptr;
+}
+// [EndExclude normalTextListExample_start]
 } // namespace NativeModule
+// [End normalTextListExample_start]
+// [End arkUICustomNodeCpp_start]

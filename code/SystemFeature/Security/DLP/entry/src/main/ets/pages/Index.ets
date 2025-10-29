@@ -227,9 +227,8 @@ struct FilePicker {
     }
     return file;
   }
-
-  // [Start dlp_prepareForOpenDlpFile]
   // 2，打开Dlp文件
+  // [Start dlp_prepareForOpenDlpFile]
   openDlpFile(dlpUri: string, fileName: string, fd: number) {
     let want:Want = {
       'action': 'ohos.want.action.viewData',
@@ -271,9 +270,8 @@ struct FilePicker {
   }
   // [End dlp_prepareForOpenDlpFile]
 
-
+  //3，生成DLP文件
   // [Start dlp_generateDlpFiles]
-  //3 生成DLP文件
   generateDlpFiles() {
     try {
       let fileUri: string = this.uri;
@@ -300,8 +298,8 @@ struct FilePicker {
   }
   // [End dlp_generateDlpFiles]
 
+  // 4，查询当前应用是否在沙箱中
   // [Start dlp_isInSandBox]
-  // 4 查询当前应用是否在沙箱中
   isInSandbox() {
     dlpPermission.isInSandbox().then((data) => {
       this.result = 'isInSandbox result: ' + JSON.stringify(data);
@@ -315,8 +313,8 @@ struct FilePicker {
   }
   // [End dlp_isInSandBox]
 
+  // 5，查询当前编辑的文件权限
   // [Start dlp_getDLPPermissionInfo]
-  // 5 查询当前编辑的文件权限
   getDLPPermissionInfo() {
     dlpPermission.getDLPPermissionInfo().then((data) => {
       this.result = 'getDLPPermissionInfo result: ' + JSON.stringify(data);
@@ -330,8 +328,8 @@ struct FilePicker {
   }
   // [End dlp_getDLPPermissionInfo]
 
+  //6，获取当前可支持DLP方案的文件拓展名类型列表
   // [Start dlp_getDLPSupportedFileTypes]
-  //6 获取当前可支持DLP方案的文件拓展名类型列表
   getDLPSupportedFileTypes() {
     dlpPermission.getDLPSupportedFileTypes((err, result) => {
       console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
@@ -343,8 +341,8 @@ struct FilePicker {
   }
   // [End dlp_getDLPSupportedFileTypes]
 
+  //7，判断当前打开文件是否是DLP文件
   // [Start dlp_isCurrentDlpFile]
-  //7 判断当前打开文件是否是DLP文件
   isCurrentDlpFile() {
     let file = this.openFile(this.uri);
     if(!file) {
@@ -369,8 +367,8 @@ struct FilePicker {
   }
   // [End dlp_isCurrentDlpFile]
 
+  // 8，订阅、取消订阅DLP打开事件
   // [Start dlp_subscribe]
-  // 8 订阅、取消订阅DLP打开事件。
   event(info: dlpPermission.AccessedDLPFileInfo) {
     console.info('openDlpFile event', info.uri, info.lastOpenTime);
     hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'openDlpFile event' + info.uri + info.lastOpenTime);
@@ -401,8 +399,8 @@ struct FilePicker {
   }
   // [End dlp_subscribe]
 
+  // 9，获取DLP文件打开记录
   // [Start dlp_getDLPFileAccessRecords]
-  // 9 获取DLP文件打开记录
   getDLPFileAccessRecords() {
     dlpPermission.getDLPFileAccessRecords().then((res) => {
       this.result = 'getDLPFileAccessRecords result: ' + JSON.stringify(res);
@@ -416,8 +414,8 @@ struct FilePicker {
   }
   // [End dlp_getDLPFileAccessRecords]
 
+  // 10，获取DLP文件保留沙箱记录
   // [Start dlp_getRetentionSandboxList]
-  // 10 获取DLP文件保留沙箱记录
   getRetentionSandboxList() {
     dlpPermission.getRetentionSandboxList().then((res) => {
       this.result = 'getRetentionSandboxList result: ' + JSON.stringify(res);
@@ -431,8 +429,8 @@ struct FilePicker {
   }
   // [End dlp_getRetentionSandboxList]
 
+  // 11，设置沙箱应用配置
   // [Start dlp_setSandboxAppConfig]
-  // 11 设置沙箱应用配置
   setSandboxAppConfig() {
     dlpPermission.setSandboxAppConfig('configInfo').then(() => {
       this.result = 'setSandboxAppConfig result: 设置沙箱应用配置信息成功';
@@ -446,8 +444,8 @@ struct FilePicker {
   }
   // [End dlp_setSandboxAppConfig]
 
+  // 12，清理沙箱应用配置信息
   // [Start dlp_cleanSandboxAppConfig]
-  // 12 清理沙箱应用配置信息
   cleanSandboxAppConfig() {
     dlpPermission.cleanSandboxAppConfig().then(() => {
       this.result = 'cleanSandboxAppConfig result: 清理沙箱成功';
@@ -461,8 +459,8 @@ struct FilePicker {
   }
   // [End dlp_cleanSandboxAppConfig]
 
+  // 13，获取DLP文件保留沙箱记录
   // [Start dlp_getSandboxAppConfig]
-  // 13 获取DLP文件保留沙箱记录
   getSandboxAppConfig() {
     dlpPermission.getSandboxAppConfig().then((res) => {
       this.result = 'getSandboxAppConfig result: ' + JSON.stringify(res);
@@ -476,8 +474,8 @@ struct FilePicker {
   }
   // [End dlp_getSandboxAppConfig]
 
+  // 14，以无边框形式打开DLP权限管理应用
   // [Start dlp_startDLPManagerForResult]
-  // 14 以无边框形式打开DLP权限管理应用。
   startDLPManagerForResult() {
     try {
       let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
@@ -502,8 +500,8 @@ struct FilePicker {
   }
   // [End dlp_startDLPManagerForResult]
 
+  // 15，查询当前系统是否提供DLP特性
   // [Start dlp_isDLPFeature]
-  // 15 查询当前系统是否提供DLP特性
   isDLPFeature() {
     dlpPermission.isDLPFeatureProvided().then((res) => {
       this.result = 'isDLPFeatureProvided result: ' + JSON.stringify(res.valueOf());
@@ -517,8 +515,8 @@ struct FilePicker {
   }
   // [End dlp_isDLPFeature]
 
+  // 16，设置企业应用防护策略
   // [Start dlp_setDLPProtectPolicy]
-  // 16 设置企业应用防护策略
   setDLPProtectPolicy() {
     try {
       let attributeValues: string[] = [ '1' ];
@@ -552,8 +550,8 @@ struct FilePicker {
   }
   // [End dlp_setDLPProtectPolicy]
 
+  // 17，识别指定文件中的敏感内容
   // [Start dlp_scanSensitiveInfo]
-  // 17 识别指定文件中的敏感内容
   scanSensitiveInfo() {
     let filepath = this.uri;
     let policies: identifySensitiveContent.Policy[] = [

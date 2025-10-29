@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common, Want, wantConstant } from '@kit.AbilityKit';
 // [Start quick_start0]
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [End quick_start0]
+// [StartExclude quick_start0]
+import { common, Want, wantConstant } from '@kit.AbilityKit';
+
 const TAG: string = '[Page_UIAbilityComponentsInteractive]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
@@ -27,20 +28,19 @@ struct Page_UIAbilityComponentsInteractive {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   public canOpen: boolean = false;
   aboutToAppear() {
-    let link = 'app1Scheme://test.example.com/home';
-    // [Start quick_start1]
+// [EndExclude quick_start0]
     try {
       let link = 'app1Scheme://test.example.com/home';
       let canOpen = bundleManager.canOpenLink(link);
-      // [Start_EXclude quick_start1]
+      // [StartExclude quick_start0]
       this.canOpen = canOpen;
-      // [End_EXclude quick_start1]
+      // [EndExclude quick_start0]
       hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(canOpen));
     } catch (err) {
       let message = (err as BusinessError).message;
       hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
     }
-    // [End quick_start1]
+    // [End quick_start0]
   }
   build() {
     Column() {

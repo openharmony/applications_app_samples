@@ -29,6 +29,10 @@ let demandList: listItem[] = [
     router: 'pages/statemanagementguide/StateArrayNo',
   },
   {
+    name: 'StateArrayNo2',
+    router: 'pages/statemanagementguide/StateArrayNo2',
+  },
+  {
     name: 'StateArrayLazy',
     router: 'pages/statemanagementguide/StateArrayLazy',
   },

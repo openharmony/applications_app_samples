@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start OnKeyPreventBubble]
+// [Start listen_response_key_event]
 @Entry
 @Component
 export struct OnKeyPreventBubble {
@@ -81,4 +81,4 @@ export struct OnKeyPreventBubble {
     // [EndExclude listen_response_key_event]
   }
 }
-// [End OnKeyPreventBubble]
+// [End listen_response_key_event]

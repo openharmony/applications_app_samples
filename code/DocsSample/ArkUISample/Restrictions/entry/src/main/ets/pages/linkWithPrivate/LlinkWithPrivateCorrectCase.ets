@@ -19,8 +19,7 @@
 struct LWPCCAccessRestrictions {
   @Builder
   buildTest() {
-    // $r('app.string.Parentbuilder')需要替换为开发者所需的资源文件
-    Text($r('app.string.Parentbuilder'));
+    Text('Parent builder');
   }
 
   build() {
@@ -47,14 +46,12 @@ struct LWPCCComponentChild {
 
   @Builder
   buildTest() {
-    // $r('app.string.Childbuilder')需要替换为开发者所需的资源文件
-    Text($r('app.string.Childbuilder'));
+    Text('Child builder');
   }
 
   build() {
     Column() {
-      // $r('app.string.Hello')需要替换为开发者所需的资源文件
-      Text($r('app.string.Hello'))
+      Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
     };

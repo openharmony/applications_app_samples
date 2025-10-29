@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start localtorage_local_map_sample]
 @Entry
 @Component
 struct LocalMapSample {
@@ -46,3 +47,4 @@ struct LocalMapSample {
     .height('100%')
   }
 }
+// [End localtorage_local_map_sample]

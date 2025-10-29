@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start appstorage_page_six]
 @Entry
 @Component
 struct SetSample {
@@ -47,3 +48,4 @@ struct SetSample {
     .height('100%')
   }
 }
+// [End appstorage_page_six]

@@ -43,9 +43,7 @@ function cardDisabledStyle() {
 @Component
 struct ComponentExtension {
   @Provide('router') router: NavPathStack = new NavPathStack();
-  //$r('app.string.FocusOnclick')、$r('app.string.FocusOnclickExample')、$r('app.string.PreventBubbling')、
-  $r('app.string.PreventBubblingExample')、$r('app.string.sampling')、$r('app.string.samplingExample')、
-  $r('app.string.MultipleFingerInformation')、$r('app.string.MultipleFingerInformationExample')需要替换为开发者所需的字符串资源文件
+  //$r('app.string.xxx')需要替换为开发者所需的资源文件
   @State routes: RouteGroup[] = [
     {
       name: 'FocusOnclickExample',

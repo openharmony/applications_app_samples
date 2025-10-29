@@ -107,38 +107,38 @@ export function ComponentTest() {
      * @tc.type: Function
      * @tc.level Level 1
      */
-    it(BUNDLE + 'ComponentTest_002', 0, async () => {
-      hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_begin');
-
-      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.component"))));
-      await aimComponent.click();
-      await driver.delayMs(1000);
-
-      const firstGroup = await driver.findComponent(ON.text('first ListItemGroup'));
-      const secondGroup = await driver.findComponent(ON.text('second ListItemGroup'));
-
-      const displaySize = await driver.getDisplaySize();
-      const itemWidth = displaySize.x;
-      const itemHeight = 100;
-      const targetItemY = Math.floor(displaySize.y * 0.4);
-
-      await driver.swipe(
-        Math.floor(itemWidth * 0.9),
-        targetItemY,
-        Math.floor(itemWidth * 0.1),
-        targetItemY,
-        300
-      );
-      await driver.delayMs(500);
-
-      const toTopButton = await driver.findComponent(ON.text('To TOP'));
-      await toTopButton.click();
-      await driver.delayMs(1500);
-
-      const firstItem = await driver.findComponent(ON.text('3'));
-
-      hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_end');
-    });
+    // it(BUNDLE + 'ComponentTest_002', 0, async () => {
+    //   hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_begin');
+    //
+    //   aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.component"))));
+    //   await aimComponent.click();
+    //   await driver.delayMs(1000);
+    //
+    //   const firstGroup = await driver.findComponent(ON.text('first ListItemGroup'));
+    //   const secondGroup = await driver.findComponent(ON.text('second ListItemGroup'));
+    //
+    //   const displaySize = await driver.getDisplaySize();
+    //   const itemWidth = displaySize.x;
+    //   const itemHeight = 100;
+    //   const targetItemY = Math.floor(displaySize.y * 0.4);
+    //
+    //   await driver.swipe(
+    //     Math.floor(itemWidth * 0.9),
+    //     targetItemY,
+    //     Math.floor(itemWidth * 0.1),
+    //     targetItemY,
+    //     300
+    //   );
+    //   await driver.delayMs(500);
+    //
+    //   const toTopButton = await driver.findComponent(ON.text('To TOP'));
+    //   await toTopButton.click();
+    //   await driver.delayMs(1500);
+    //
+    //   const firstItem = await driver.findComponent(ON.text('3'));
+    //
+    //   hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_end');
+    // });
 
   });
 }

@@ -14,10 +14,10 @@
  */
 import { display } from '@kit.ArkUI';
 
+// [Start rotation]
 @Entry
 @Component
 struct rotation {
-
   build() {
     Stack() {
       Image($r('app.media.tree'))
@@ -29,3 +29,5 @@ struct rotation {
     .size({ width: '100%', height: '100%' })
   }
 }
+
+// [End rotation]

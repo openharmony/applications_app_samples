@@ -21,9 +21,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { JSON } from '@kit.ArkTS';
 import hilog from '@ohos.hilog';
 
-// [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
 // 业务数据定义
-// [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
 class Data {
   public title: string | undefined;
   public text: string | undefined;
@@ -45,18 +43,14 @@ const changeCallBack: distributedDataObject.DataObserver = (sessionId: string, f
 }
 
 export default class EntryAbility extends UIAbility {
-  // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
   // 1. 调用端调用startAbilityByCall接口拉起对端Ability
-  // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
   callRemote() {
     if (caller) {
       hilog.error(DOMAIN, TAG, 'call remote already');
       return;
     }
 
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     // 1.1 调用genSessionId接口创建一个sessionId，通过分布式设备管理接口获取对端设备networkId
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     sessionId = distributedDataObject.genSessionId();
     hilog.info(DOMAIN, TAG, `gen sessionId: ${sessionId}`);
     let deviceId = getRemoteDeviceId();
@@ -66,9 +60,7 @@ export default class EntryAbility extends UIAbility {
     }
     hilog.info(DOMAIN, TAG, `get remote deviceId: ${deviceId}`);
 
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     // 1.2 组装want，并将sessionId放入want
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     let want: Want = {
       bundleName: 'com.example.collaboration',
       abilityName: 'EntryAbility',
@@ -79,9 +71,7 @@ export default class EntryAbility extends UIAbility {
       }
     }
     try {
-      // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
       // 1.3 调用startAbilityByCall接口拉起对端Ability
-      // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
       this.context.startAbilityByCall(want).then((res) => {
         if (!res) {
           hilog.error(DOMAIN, TAG, 'startAbilityByCall failed');
@@ -94,9 +84,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
-  // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
   // 2. 拉起对端Ability后创建分布式数据对象
-  // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
   createDataObject() {
     if (!caller) {
       hilog.error(DOMAIN, TAG, 'call remote first');
@@ -107,40 +95,26 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     // 2.1 创建分布式数据对象实例
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     let data = new Data('The title', 'The text');
     dataObject = distributedDataObject.create(this.context, data);
 
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     // 2.2 注册数据变更监听
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     dataObject.on('change', changeCallBack);
-    // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     // 2.3 设置同步sessionId加入组网
-    // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
     dataObject.setSessionId(sessionId);
   }
 
-  // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
   // 3. 被调用端被拉起后创建和恢复分布式数据对象
-  // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (want.parameters && want.parameters.distributedSessionId) {
-      // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
       // 3.1 创建分布式数据对象实例
-      // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
       let data = new Data(undefined, undefined);
       dataObject = distributedDataObject.create(this.context, data);
 
-      // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
       // 3.2 注册数据变更监听
-      // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
       dataObject.on('change', changeCallBack);
-      // [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
       // 3.3 从want中获取源端放入的sessionId，使用这个sessionId加入组网
-      // [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
       let sessionId = want.parameters.distributedSessionId as string;
       hilog.info(DOMAIN, TAG, `onCreate get sessionId: ${sessionId}`);
       dataObject.setSessionId(sessionId);
@@ -148,9 +122,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 
-// [StartExclude data_sync_on_distributed_data_object_cross_device_collaboration]
 // 获取可信组网中的设备
-// [EndExclude data_sync_on_distributed_data_object_cross_device_collaboration]
 function getRemoteDeviceId() {
   let deviceId = '';
   try {

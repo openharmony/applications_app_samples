@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start localtorage_page_one_double_syn]
 class Data {
   public code: number;
 
@@ -72,3 +74,4 @@ struct Parent {
     }
   }
 }
+// [End localtorage_page_one_double_syn]

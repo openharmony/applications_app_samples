@@ -19,7 +19,7 @@ struct Child1 {
   @State val: number = 10;
 
   build() {
-    Text(this.val.toString());
+    Text(this.val.toString())
   }
 }
 // [End Child1_start]

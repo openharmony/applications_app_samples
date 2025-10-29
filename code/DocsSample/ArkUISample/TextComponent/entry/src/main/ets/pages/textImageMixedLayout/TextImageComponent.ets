@@ -19,7 +19,6 @@
 @Component
 export struct TextImageComponent {
   build() {
-    // [StartExclude textImage_component]
     NavDestination() {
       Text() {
         ImageSpan($r('app.media.startIcon'))
@@ -41,7 +40,6 @@ export struct TextImageComponent {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.TextImage_MixedLayout_Text_1'))
-    // [EndExclude textImage_component]
   }
 }
 // [End textImage_component]

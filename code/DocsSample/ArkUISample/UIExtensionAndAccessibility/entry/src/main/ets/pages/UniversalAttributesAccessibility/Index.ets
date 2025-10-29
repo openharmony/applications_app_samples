@@ -19,6 +19,7 @@ import { AccessibilityText } from './AccessibilityText'
 import { AccessibilityGroup } from './AccessibilityGroup'
 import { AccessibilityFocusDrawLevel } from './AccessibilityFocusDrawLevel'
 import resource from '../../common/resource'
+import { router } from '@kit.ArkUI'
 
 export const ACCESSIBILITY_ROUTE_PREFIX: string = 'UniversalAttributesAccessibility';
 
