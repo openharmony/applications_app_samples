@@ -12,22 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start ClipShapeExampleA]
-import { CircleShape } from '@kit.ArkUI';
+// [Start ClipShapeExampleC]
+// xxx.ets
+import { RectShape } from '@kit.ArkUI';
+
+@Entry
 @Component
-export struct ClipShapeExampleA {
+struct ClipShapeExample {
   build() {
     Column({ space: 15 }) {
-      // $r('app.media.background')需要替换为开发者所需的字符串（图像、数字等）资源文件
       Image($r('app.media.background'))
-        .clipShape(new CircleShape({ width: '280px', height: '280px' }))
-        .width('500px').height('280px')
+        .clipShape(new RectShape({ width: '200px', height: '200px' }))
+        .width('500px').height('400px')
+
       Image($r('app.media.background'))
-        .clipShape(new CircleShape({ width: '350px', height: '350px' }))
-        .width('500px').height('370px')
+        .clipShape(new RectShape({ width: '380px', height: '280px' }))
+        .width('500px').height('400px')
     }
     .width('100%')
     .margin({ top: 15 })
   }
 }
-// [End ClipShapeExampleA]
+// [End ClipShapeExampleC]

@@ -13,12 +13,14 @@
  * limitations under the License.
  */
 // [Start ClipShapeExampleB]
+// xxx.ets
 import { EllipseShape } from '@kit.ArkUI';
+
+@Entry
 @Component
-export struct ClipShapeExampleB {
+struct ClipShapeExample {
   build() {
     Column({ space: 15 }) {
-      // $r('app.media.background')需要替换为开发者所需的字符串（图像、数字等）资源文件
       Image($r('app.media.background'))
         .clipShape(new EllipseShape({ width: '280px', height: '200px' }))
         .width('500px').height('400px')
