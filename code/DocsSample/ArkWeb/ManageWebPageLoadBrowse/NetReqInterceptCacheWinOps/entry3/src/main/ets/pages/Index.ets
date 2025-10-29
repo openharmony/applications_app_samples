@@ -15,7 +15,8 @@
 
 // [Start web_module_dynamic_attach_detach]
 // 使用NodeController的Page页
-import { getBuilderNode, MyNodeController, defaultUrl, getWebviewController } from './common';
+// pages/Index.ets
+import { getBuilderNode, MyNodeController, defaultUrl, getWebviewController } from "./common"
 
 @Entry
 @Component
@@ -26,13 +27,13 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button('Attach Webview')
+        Button("Attach Webview")
           .onClick(() => {
             // 注意不要将同一个节点同时挂载在不同的页面上！
             this.nodeController.attachWeb();
             this.nodeController.rebuild();
           })
-        Button('Detach Webview')
+        Button("Detach Webview")
           .onClick(() => {
             this.nodeController.detachWeb();
             this.nodeController.rebuild();
@@ -40,8 +41,8 @@ struct Index {
         // NodeContainer用于与NodeController节点绑定，rebuild会触发makeNode
         // Page页通过NodeContainer接口绑定NodeController，实现动态组件页面显示
         NodeContainer(this.nodeController)
-          .height('80%')
-          .width('80%')
+          .height("80%")
+          .width("80%")
       }
       .width('100%')
     }

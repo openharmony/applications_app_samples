@@ -15,16 +15,17 @@
 
 // [Start dynamic_web_module_manage]
 // 提供动态挂载Web组件能力
+// pages/common.ets
 import { UIContext, NodeController, BuilderNode, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-export const defaultUrl : string = 'www.example.com';
+export const defaultUrl : string = 'https://www.example.com';
 
 // Data为入参封装类
 class Data{
-  public url: string = '';
-  public webController: webview.WebviewController | null = null;
+  url: string = '';
+  webController: webview.WebviewController | null = null;
 
   constructor(url: string, webController: webview.WebviewController) {
     this.url = url;
@@ -34,15 +35,15 @@ class Data{
 
 // @Builder中为动态组件的具体组件内容
 @Builder
-function webBuilder(data:Data) {
+function WebBuilder(data:Data) {
   Web({ src: data.url, controller: data.webController })
-    .width('100%')
-    .height('100%')
+    .width("100%")
+    .height("100%")
     .borderStyle(BorderStyle.Dashed)
     .borderWidth(2)
 }
 
-let wrap = wrapBuilder<[Data]>(webBuilder);
+let wrap = wrapBuilder<[Data]>(WebBuilder);
 
 // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
 export class MyNodeController extends NodeController {
