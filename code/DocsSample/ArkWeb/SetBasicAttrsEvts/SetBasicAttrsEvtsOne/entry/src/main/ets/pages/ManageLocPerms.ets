@@ -30,7 +30,7 @@ struct WebComponent {
   aboutToAppear(): void {
     let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
     if (!context) {
-      console.error("context is undefined");
+      console.error('context is undefined');
       return;
     }
     // 向用户请求位置权限，对整个应用生效
