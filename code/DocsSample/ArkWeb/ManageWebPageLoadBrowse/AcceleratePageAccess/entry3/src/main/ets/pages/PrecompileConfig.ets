@@ -16,24 +16,20 @@
 // [Start compile_resource_allocation_information]
 import { webview } from '@kit.ArkWeb'
 
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-
 export interface Config {
   url:  string,
   localPath: string, // 本地资源路径
   options: webview.CacheOptions
 }
 
-export let configs: Config[] = [
+export let configs: Array<Config> = [
   {
-    url: resourceToString($r('app.string.web_path')),
-    localPath: 'example.js',
+    url: "https://www.example.com/example.js",
+    localPath: "example.js",
     options: {
       responseHeaders: [
-        { headerKey: 'E-Tag', headerValue: 'aWO42N9P9dG/5xqYQCxsx+vDOoU='},
-        { headerKey: 'Last-Modified', headerValue: 'Wed, 21 Mar 2025 10:38:41 GMT'}
+        { headerKey: "E-Tag", headerValue: "aWO42N9P9dG/5xqYQCxsx+vDOoU="},
+        { headerKey: "Last-Modified", headerValue: "Wed, 21 Mar 2024 10:38:41 GMT"}
       ]
     }
   }

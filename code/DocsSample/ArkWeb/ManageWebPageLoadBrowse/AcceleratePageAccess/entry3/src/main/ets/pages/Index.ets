@@ -20,10 +20,6 @@ import { createNode } from "./DynamicComponent";
 import { precompileWebview } from "./PrecompileWebview";
 import { businessWebview } from "./BusinessWebview";
 
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-
 @Entry
 @Component
 struct Index {
@@ -36,17 +32,18 @@ struct Index {
   aboutToAppear(): void {
     // 初始化用于注入本地资源的Web组件
     this.precompileNode = createNode(precompileWebview,
-      { url: resourceToString($r('app.string.web_path_one')) + 'empty.html', controller: this.precompileController});
+      { url: "https://www.example.com/empty.html", controller: this.precompileController, context: this.getUIContext()});
   }
 
   build() {
     Column() {
       // 在适当的时机加载业务用Web组件，本例以Button点击触发为例
-      Button('加载页面')
+      Button("加载页面")
         .onClick(() => {
           this.businessNode = createNode(businessWebview, {
-            url: resourceToString($r('app.string.web_path_one')) + 'business.html',
-            controller: this.businessController
+            url:  "https://www.example.com/business.html",
+            controller: this.businessController,
+            context: this.getUIContext()
           });
         })
       // 用于业务的Web组件

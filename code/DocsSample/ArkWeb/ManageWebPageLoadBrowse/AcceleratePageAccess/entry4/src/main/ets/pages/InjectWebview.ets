@@ -15,32 +15,32 @@
 
 // [Start local_resources_content_read_from_rawfile_directory_by_file_operation]
 import { webview } from '@kit.ArkWeb';
-import { resourceConfigs } from './Resource';
-import { BuilderData } from './DynamicComponent';
+import { resourceConfigs } from "./Resource";
+import { BuilderData } from "./DynamicComponent";
 
 @Builder
-function webBuilder(data: BuilderData) {
+function WebBuilder(data: BuilderData) {
   Web({ src: data.url, controller: data.controller })
     .onControllerAttached(async () => {
       try {
-        data.controller.injectOfflineResources(await getData ());
+        data.controller.injectOfflineResources(await getData (data.context));
       } catch (err) {
-        console.error('error: ' + err.code + ' ' + err.message);
+        console.error("error: " + err.code + " " + err.message);
       }
     })
     .fileAccess(true)
 }
 
-export const injectWebview = wrapBuilder<BuilderData[]>(webBuilder);
+export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-export async function getData() {
-  const resourceMapArr: webview.OfflineResourceMap[] = [];
+export async function getData(context: UIContext) {
+  const resourceMapArr: Array<webview.OfflineResourceMap> = [];
 
   // 读取配置，从rawfile目录中读取文件内容
   for (let config of resourceConfigs) {
     let buf: Uint8Array = new Uint8Array(0);
     if (config.localPath) {
-      buf = await readRawFile(config.localPath);
+      buf = await readRawFile(config.localPath, context);
     }
 
     resourceMapArr.push({
@@ -54,9 +54,9 @@ export async function getData() {
   return resourceMapArr;
 }
 
-export async function readRawFile(url: string) {
+export async function readRawFile(url: string, context: UIContext) {
   try {
-    return await getContext().resourceManager.getRawFileContent(url);
+    return await context.getHostContext()!.resourceManager.getRawFileContent(url);
   } catch (err) {
     return new Uint8Array(0);
   }

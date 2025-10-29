@@ -14,40 +14,40 @@
  */
 
 // [Start read_local_js_resource_from_rawfile_dir_via_file_api]
-import { BuilderData } from './DynamicComponent';
-import { Config, configs } from './PrecompileConfig';
+import { BuilderData } from "./DynamicComponent";
+import { Config, configs } from "./PrecompileConfig";
 
 @Builder
-function webBuilder(data: BuilderData) {
+function WebBuilder(data: BuilderData) {
   Web({ src: data.url, controller: data.controller })
     .onControllerAttached(() => {
-      precompile(data.controller, configs);
+      precompile(data.controller, configs, data.context);
     })
     .fileAccess(true)
 }
 
-export const precompileWebview = wrapBuilder<BuilderData[]>(webBuilder);
+export const precompileWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-export const precompile = async (controller: WebviewController, configs: Array<Config>) => {
+export const precompile = async (controller: WebviewController, configs: Array<Config>, context: UIContext) => {
   for (const config of configs) {
-    let content = await readRawFile(config.localPath);
+    let content = await readRawFile(config.localPath, context);
 
     try {
       controller.precompileJavaScript(config.url, content, config.options)
         .then(errCode => {
-          console.error('precompile successfully! ' + errCode);
+          console.error("precompile successfully! " + errCode);
         }).catch((errCode: number) => {
-        console.error('precompile failed. ' + errCode);
+          console.error("precompile failed. " + errCode);
       });
     } catch (err) {
-      console.error('precompile failed. ' + err.code + ' ' + err.message);
+      console.error("precompile failed. " + err.code + " " + err.message);
     }
   }
 }
 
-async function readRawFile(path: string) {
+async function readRawFile(path: string, context: UIContext) {
   try {
-    return await getContext().resourceManager.getRawFileContent(path);;
+    return await context.getHostContext()!.resourceManager.getRawFileContent(path);
   } catch (err) {
     return new Uint8Array(0);
   }
