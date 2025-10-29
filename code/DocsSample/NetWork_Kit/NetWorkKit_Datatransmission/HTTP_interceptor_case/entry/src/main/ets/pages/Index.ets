@@ -21,19 +21,13 @@ const BUTTON_FONT_SIZE = 18; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
 const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
 
-const HTTP_URL: string = "https://www.baidu.com/"; // 长文本的上边距
+const HTTP_URL: string = "https://www.baidu.com/"; // 请求URL
 
 enum InterceptorType {
-  // 1.创建请求之后，向服务端发送请求之前；
-  // 2.result返回为true，标识请求可以继续往下执行；待确定：result返回为false，表示请求在此中断，将response的信息返回为客户端；
   INITIAL_REQUEST = 'INITIAL_REQUEST',
-
   REDIRECTION = 'REDIRECTION',
-  //1.服务端返回信息，命中缓存之后触发(发送第二次相同请求之前并且命中缓存之后才会触发)；
   CACHE_CHECKED = 'READ_CACHE',
-  // 1.创建请求之后，向服务端发送请求之前，更靠近请求；
   NETWORK_CONNECT = 'CONNECT_NETWORK',
-  // 1.服务端返回信息之后；
   FINAL_RESPONSE = 'FINAL_RESPONSE'
 }
 
