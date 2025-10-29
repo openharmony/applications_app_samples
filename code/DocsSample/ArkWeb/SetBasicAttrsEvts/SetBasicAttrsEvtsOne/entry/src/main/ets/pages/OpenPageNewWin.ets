@@ -50,7 +50,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Web({ src: $rawfile("window.html"), controller: this.controller })
+      Web({ src: $rawfile('window.html'), controller: this.controller })
         .javaScriptAccess(true)
           // 需要使能multiWindowAccess
         .multiWindowAccess(true)

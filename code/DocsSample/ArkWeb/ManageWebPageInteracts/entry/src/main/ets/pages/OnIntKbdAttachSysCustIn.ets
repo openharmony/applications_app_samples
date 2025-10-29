@@ -65,7 +65,7 @@
             left: -220,
           })
           // 插入功能按键。
-          Button("sendFunctionKey").onClick(() => {
+          Button('sendFunctionKey').onClick(() => {
             this.webKeyboardController.sendFunctionKey(6);
           })
         }

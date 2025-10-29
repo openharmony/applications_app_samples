@@ -18,7 +18,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 // [Start create_main_window]
 // 主窗Ability
-// EntryAbility.ets
 import { createNWeb, defaultUrl } from '../pages/common';
 
 // [StartExclude create_main_window]

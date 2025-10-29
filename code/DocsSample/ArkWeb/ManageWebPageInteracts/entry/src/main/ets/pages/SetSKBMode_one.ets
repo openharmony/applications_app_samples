@@ -27,7 +27,7 @@ struct KeyboardAvoidExample {
       Web({ src: $rawfile("index.html"),controller: this.controller})
         .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) //此时ArkWeb组件不会调整任何视口的大小。
       Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
-    }.width('100%').height("100%")
+    }.width('100%').height('100%')
   }
 }
 // [End soft_keyboard_setmode]
