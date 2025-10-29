@@ -17,8 +17,8 @@
 @Entry
 @Component
 export struct DialogFocusStrategy {
-  @State dialogIdIndex: number = 0;
   // [Start dialog_focus_text]
+  @State dialogIdIndex: number = 0;
   private message = 'dialog';
 
   @Builder

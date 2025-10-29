@@ -69,6 +69,7 @@ export struct DialogBoxLayer {
           Button('Click the popup')
             .fontSize(20)
             .onClick(() => {
+              // [Start open_top_custom_dialog]
               this.getUIContext().getPromptAction().openCustomDialog({
                 builder: () => {
                   this.topCustomDialog();
@@ -77,6 +78,7 @@ export struct DialogBoxLayer {
               }).catch((err: BusinessError) => {
                 hilog.error(0x0000, 'dialogBoxLayer', 'openCustomDialog error: ' + err.code + ' ' + err.message);
               });
+              // [End open_top_custom_dialog]
             })
         }.width('100%')
       }
