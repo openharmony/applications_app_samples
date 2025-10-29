@@ -41,8 +41,8 @@ struct Index {
         // NodeContainer用于与NodeController节点绑定，rebuild会触发makeNode
         // Page页通过NodeContainer接口绑定NodeController，实现动态组件页面显示
         NodeContainer(this.nodeController)
-          .height("80%")
-          .width("80%")
+          .height('80%')
+          .width('80%')
       }
       .width('100%')
     }

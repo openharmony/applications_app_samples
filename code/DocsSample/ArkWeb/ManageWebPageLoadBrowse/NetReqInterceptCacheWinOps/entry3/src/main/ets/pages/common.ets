@@ -35,15 +35,15 @@ class Data{
 
 // @Builder中为动态组件的具体组件内容
 @Builder
-function WebBuilder(data:Data) {
+function webBuilder(data:Data) {
   Web({ src: data.url, controller: data.webController })
-    .width("100%")
-    .height("100%")
+    .width('100%')
+    .height('100%')
     .borderStyle(BorderStyle.Dashed)
     .borderWidth(2)
 }
 
-let wrap = wrapBuilder<[Data]>(WebBuilder);
+let wrap = wrapBuilder<[Data]>(webBuilder);
 
 // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
 export class MyNodeController extends NodeController {

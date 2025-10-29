@@ -74,18 +74,18 @@
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .onInterceptKeyboardAttach((KeyboardCallbackInfo) => {
+        .onInterceptKeyboardAttach((keyBoardCallBackInfo) => {
           // option初始化，默认使用系统默认键盘
           let option: WebKeyboardOptions = {
             useSystemKeyboard: true,
           };
-          if (!KeyboardCallbackInfo) {
+          if (!keyBoardCallBackInfo) {
             return option;
           }
 
           // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handler控制输入、删除、软键盘关闭等行为
-          this.webKeyboardController = KeyboardCallbackInfo.controller;
-          let attributes: Record<string, string> = KeyboardCallbackInfo.attributes;
+          this.webKeyboardController = keyBoardCallBackInfo.controller;
+          let attributes: Record<string, string> = keyBoardCallBackInfo.attributes;
           // 遍历attributes
           let attributeKeys = Object.keys(attributes);
           for (let i = 0; i < attributeKeys.length; i++) {
