@@ -19,7 +19,7 @@ struct Child19 {
   @Consume message: string;
 
   build() {
-    Text(this.message);
+    Text(this.message)
   }
 }
 
@@ -30,7 +30,7 @@ struct Parent19 {
 
   build() {
     Column() {
-      Child19();
+      Child19()
     }
   }
 }

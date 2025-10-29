@@ -19,12 +19,12 @@ struct Child15 {
 
   build() {
     Column() {
-      Text(`${this.localValue}`).fontSize(25);
+      Text(`${this.localValue}`).fontSize(25)
       Button('Child +100')
         .onClick(() => {
           // 改变localValue不会传递给父组件Parent
           this.localValue += 100;
-        });
+        })
     }
   }
 }
@@ -40,8 +40,8 @@ struct Parent15 {
         .onClick(() => {
           // 改变value的值，通知子组件Child value更新
           this.value += 1;
-        });
-      Child15({ localValue: this.value });
+        })
+      Child15({ localValue: this.value })
     }
   }
 }

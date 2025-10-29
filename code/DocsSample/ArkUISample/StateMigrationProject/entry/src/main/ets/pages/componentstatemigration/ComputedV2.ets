@@ -26,11 +26,11 @@ struct Index2 {
 
   build() {
     Column() {
-      Text(this.fullName);
-      Text(this.fullName);
+      Text(this.fullName)
+      Text(this.fullName)
       Button('changed lastName').onClick(() => {
         this.lastName += 'a';
-      });
+      })
     }
   }
 }
