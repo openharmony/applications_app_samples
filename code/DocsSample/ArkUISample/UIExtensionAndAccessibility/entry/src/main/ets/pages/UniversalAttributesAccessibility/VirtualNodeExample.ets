@@ -29,7 +29,7 @@ struct VirtualNodeExample {
         .fontWeight(FontWeight.Bold)
     }
     .accessibilityGroup(true)
-      .accessibilityLevel("yes")
+      .accessibilityLevel('yes')
       .accessibilityVirtualNode(this.customAccessibilityNode)
   }
 }

@@ -31,52 +31,52 @@ export struct AccessibilityText {
         // [StartExclude accessibility_text_start]
         // [Start accessibility_group_start]
         Column() {
-          Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
+          Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
         // [End accessibility_group_start]
         // [Start accessibility_level_start]
         Column() {
-          Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
+          Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
-        .accessibilityLevel("yes")
+        .accessibilityLevel('yes')
         // [End accessibility_level_start]
         // [Start accessibility_text_group_start]
         Column() {
-          Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
+          Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
-        .accessibilityLevel("yes")
+        .accessibilityLevel('yes')
         .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
         // [End accessibility_text_group_start]
         // [Start accessibility_description_start]
         Column() {
-          Text("HelloWorld")
+          Text('HelloWorld')
         }
         .accessibilityGroup(true)
-        .accessibilityLevel("yes")
+        .accessibilityLevel('yes')
         .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
         .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
         // [End accessibility_description_start]
         // [Start accessibility_checked_start]
         Column() {
-          Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
+          Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
-        .accessibilityLevel("yes")
+        .accessibilityLevel('yes')
         .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
         .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
         .accessibilityChecked(true)
         // [End accessibility_checked_start]
         // [Start accessibility_selected_start]
         Column() {
-          Text("HelloWorld").fontSize(50).fontWeight(FontWeight.Bold)
+          Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
-        .accessibilityLevel("yes")
-        .accessibilityText("分组")
-        .accessibilityDescription("Column组件可以被选中，播报的内容是“分组”")
+        .accessibilityLevel('yes')
+        .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
+        .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
         .accessibilitySelected(undefined)
         // [End accessibility_selected_start]
         // [EndExclude accessibility_text_start]
