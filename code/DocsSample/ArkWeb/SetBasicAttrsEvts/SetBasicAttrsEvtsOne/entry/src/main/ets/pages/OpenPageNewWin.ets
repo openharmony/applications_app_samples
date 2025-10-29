@@ -25,7 +25,7 @@ struct NewWebViewComp {
 
   build() {
     Column() {
-      Web({ src: "", controller: this.webviewController1 })
+      Web({ src: '', controller: this.webviewController1 })
         .javaScriptAccess(true)
         .multiWindowAccess(false)
         .onWindowExit(() => {
