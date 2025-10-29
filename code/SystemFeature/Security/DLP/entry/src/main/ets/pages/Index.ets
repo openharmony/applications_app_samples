@@ -370,8 +370,8 @@ struct FilePicker {
   // 8，订阅、取消订阅DLP打开事件
   // [Start dlp_subscribe]
   event(info: dlpPermission.AccessedDLPFileInfo) {
-    console.info('openDlpFile event', info.uri, info.lastOpenTime);
-    hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'openDlpFile event' + info.uri + info.lastOpenTime);
+    console.info('openDlpFile event');
+    hilog.info(HILOG_DLP_DOMAIN, HILOG_TAG, 'openDlpFile event');
   }
 
   unSubscribe() {
