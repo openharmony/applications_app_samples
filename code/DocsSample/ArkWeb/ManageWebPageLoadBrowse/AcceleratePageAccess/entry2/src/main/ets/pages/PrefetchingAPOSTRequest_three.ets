@@ -28,18 +28,18 @@ struct WebComponent {
     Column() {
       Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onPageEnd(() => {
-          // 预获取时，需要将"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+          // 预获取时，需要将'https://www.example1.com/post?e=f&g=h'替换成真实要访问的网站地址。
           webview.WebviewController.prefetchResource(
             {
-              url: "https://www.example1.com/post?e=f&g=h",
-              method: "POST",
-              formData: "a=x&b=y",
+              url: 'https://www.example1.com/post?e=f&g=h',
+              method: 'POST',
+              formData: 'a=x&b=y',
             },
             [{
-              headerKey: "c",
-              headerValue: "z",
+              headerKey: 'c',
+              headerValue: 'z',
             },],
-            "KeyX", 500);
+            'KeyX', 500);
         })
     }
   }

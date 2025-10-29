@@ -15,26 +15,26 @@
 
 // [Start local_resources_content_read_from_rawfile_directory_by_file_operation]
 import { webview } from '@kit.ArkWeb';
-import { resourceConfigs } from "./Resource";
-import { BuilderData } from "./DynamicComponent";
+import { resourceConfigs } from './Resource';
+import { BuilderData } from './DynamicComponent';
 
 @Builder
-function WebBuilder(data: BuilderData) {
+function webBuilder(data: BuilderData) {
   Web({ src: data.url, controller: data.controller })
     .onControllerAttached(async () => {
       try {
         data.controller.injectOfflineResources(await getData (data.context));
       } catch (err) {
-        console.error("error: " + err.code + " " + err.message);
+        console.error('error: ' + err.code + ' ' + err.message);
       }
     })
     .fileAccess(true)
 }
 
-export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+export const injectWebview = wrapBuilder<BuilderData[]>(webBuilder);
 
 export async function getData(context: UIContext) {
-  const resourceMapArr: Array<webview.OfflineResourceMap> = [];
+  const resourceMapArr: webview.OfflineResourceMap[] = [];
 
   // 读取配置，从rawfile目录中读取文件内容
   for (let config of resourceConfigs) {

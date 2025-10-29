@@ -45,7 +45,7 @@ export class NodeControllerImpl extends NodeController {
       return;
     }
 
-    const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
+    const uiContext: UIContext = storage!.get<UIContext>('uiContext') as UIContext;
     if (!uiContext) {
       return;
     }

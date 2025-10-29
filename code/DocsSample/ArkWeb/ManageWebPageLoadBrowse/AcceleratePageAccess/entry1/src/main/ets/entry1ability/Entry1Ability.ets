@@ -24,7 +24,7 @@ export default class Entry1Ability extends UIAbility {
     webview.WebviewController.initializeWebEngine();
     // 预连接时，需要將'https://www.example.com'替换成真实要访问的网站地址。
 
-    webview.WebviewController.prepareForPageLoad("https://www.example.com/", true, 2);
+    webview.WebviewController.prepareForPageLoad('https://www.example.com/', true, 2);
     AppStorage.setOrCreate('abilityWant', want);
     console.info('EntryAbility onCreate done');
   }
