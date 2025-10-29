@@ -33,7 +33,11 @@ class LogNotTrack {
 
   constructor(str1: string) {
     this.str1 = str1;
-    this.str2 = '世界';
+    this.str2 = 'World';
+  }
+
+  getUIContext() {
+    throw new Error('Method not implemented.');
   }
 }
 
@@ -41,7 +45,7 @@ class LogNotTrack {
 @Component
 struct AddLog {
   @State logTrack: LogTrack = new LogTrack('Hello');
-  @State logNotTrack: LogNotTrack = new LogNotTrack('你好');
+  @State logNotTrack: LogNotTrack = new LogNotTrack(this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.state_hello').id));
 
   isRender(index: number) {
     hilog.info(DOMAIN_NUMBER, TAG, `Text ${index} is rendered`);
@@ -71,7 +75,7 @@ struct AddLog {
           .fontWeight(FontWeight.Bold)
         Button('change logNotTrack.str1')
           .onClick(() => {
-            this.logNotTrack.str1 = '再见';
+            this.logNotTrack.str1 = this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.state_bye').id);
           })
       }
       .width('100%')

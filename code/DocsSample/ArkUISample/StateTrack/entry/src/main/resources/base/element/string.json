@@ -19,6 +19,14 @@
     {
       "name": "state_layout",
       "value": "@Track装饰器"
+    },
+    {
+      "name": "state_word",
+      "value": "世界"
+    },
+    {
+      "name": "state_bye",
+      "value": "再见"
     }
   ]
 }
