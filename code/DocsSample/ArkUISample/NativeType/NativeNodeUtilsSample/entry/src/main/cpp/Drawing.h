@@ -26,10 +26,10 @@
 ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
 {
     // 创建节点
-    // [Start createColumnNode_start]
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
-    // [End createColumnNode_start]
+    // [Start create_customNode_start]
     auto customNode = nodeAPI->createNode(ARKUI_NODE_CUSTOM);
+    // [End create_customNode_start]
     ArkUI_NumberValue value[] = {SIZE_480};
     ArkUI_AttributeItem item = {value, 1};
     // 属性设置

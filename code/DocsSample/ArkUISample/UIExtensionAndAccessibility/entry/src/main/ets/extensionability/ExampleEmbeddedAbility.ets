@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start exampleEmbeddedAbility_start]
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
 const TAG: string = '[ExampleEmbeddedAbility]'
@@ -48,3 +48,4 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     console.log(TAG, `onSessionDestroy`);
   }
 }
+// [End exampleEmbeddedAbility_start]
