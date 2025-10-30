@@ -20,7 +20,7 @@ import { HiDumperHomeView } from '@ohos/hiDumper';
 struct HiDumperPage {
   build() {
     Column() {
-      HiDumperHomeView()
+      HiDumperHomeView();
     }
   }
 }

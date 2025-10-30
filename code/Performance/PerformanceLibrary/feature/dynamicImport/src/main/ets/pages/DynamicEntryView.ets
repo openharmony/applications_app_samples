@@ -26,8 +26,8 @@ export struct DynamicEntryView {
           .onClick(() => {
             router.pushUrl({
               url: 'pages/dynamicImport/DynamicHome'
-            })
-          })
+            });
+          });
       }
       .width('100%')
     }

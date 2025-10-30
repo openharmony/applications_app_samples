@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-const ID_GRID: string = "ID_GRID";
+const ID_GRID: string = 'ID_GRID';
 
 @Component
 export struct GridView {
@@ -30,16 +30,16 @@ export struct GridView {
                   Stack() {
                     Text(item.toString())
                       .fontColor(Color.White)
-                  }.size({ width: "100%" })
+                  }.size({ width: '100%' })
                 }.backgroundColor(Color.Blue)
               }.backgroundColor(Color.Yellow)
             }
-          }, (item: string) => item)
+          }, (item: string) => item);
         }
         .columnsTemplate('1fr 1fr 1fr 1fr')
         .columnsGap(0)
         .rowsGap(0)
-        .size({ width: "100%", height: "100%" })
+        .size({ width: '100%', height: '100%' })
         .id(ID_GRID)
       }
     }

@@ -20,7 +20,7 @@ import { StaticEntryView } from '@ohos/staticImport';
 struct StaticEntry {
   build() {
     Column() {
-      StaticEntryView()
+      StaticEntryView();
     }
   }
 }

@@ -20,7 +20,7 @@ import { GridLayoutOptionsView } from '@ohos/grid';
 struct GridLayoutOptionsPage {
   build() {
     Column() {
-      GridLayoutOptionsView()
+      GridLayoutOptionsView();
     }
   }
 }

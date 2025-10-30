@@ -88,7 +88,7 @@ export struct SaveControl {
     if (this.mediaUri) {
       this.saveVideo();
     } else {
-      this.saveImage()
+      this.saveImage();
     }
   }
 

@@ -20,7 +20,7 @@ import { GridColumnStartView } from '@ohos/grid';
 struct GridColumnStartPage {
   build() {
     Column() {
-      GridColumnStartView()
+      GridColumnStartView();
     }
   }
 }

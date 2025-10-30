@@ -88,7 +88,7 @@ struct TrensListComp {
         ListItem() {
           TrendsItem({ trendsItemData: item })
             .onClick(() => {
-              router.pushUrl({ url: 'pages/CommentDetailPage', params: { trendsData: item, isDetailPage: false } })
+              router.pushUrl({ url: 'pages/CommentDetailPage', params: { trendsData: item, isDetailPage: false } });
             })
         }
       })

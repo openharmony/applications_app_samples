@@ -20,7 +20,7 @@ import { DFXStateManagementHome } from '@ohos/DFXStateManagement';
 struct DFXStateManagementPage {
   build() {
     Column() {
-      DFXStateManagementHome()
+      DFXStateManagementHome();
     }
   }
 }

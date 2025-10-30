@@ -26,29 +26,29 @@ export struct HiDumperHomeView {
           .margin({ top: 30 })
 
         Button($r('app.string.check_component_tree'))
-          .width("80%")
+          .width('80%')
           .fontSize(18)
           .margin({ top: 30 })
           .onClick(() => {
-            router.pushUrl({ url: "pages/hiDumper/GridPage" });
-          })
+            router.pushUrl({ url: 'pages/hiDumper/GridPage' });
+          });
         Button($r('app.string.check_if_else_component'))
-          .width("80%")
+          .width('80%')
           .fontSize(18)
           .margin({ top: 30 })
           .onClick(() => {
-            router.pushUrl({ url: "pages/hiDumper/ConditionPage" });
-          })
+            router.pushUrl({ url: 'pages/hiDumper/ConditionPage' });
+          });
         Button($r('app.string.check_visibility'))
-          .width("80%")
+          .width('80%')
           .fontSize(18)
           .margin({ top: 30 })
           .onClick(() => {
-            router.pushUrl({ url: "pages/hiDumper/VisibilityPage" });
-          })
+            router.pushUrl({ url: 'pages/hiDumper/VisibilityPage' });
+          });
       }
       .width('100%')
-      .height("100%")
+      .height('100%')
     }
     .height('100%')
   }

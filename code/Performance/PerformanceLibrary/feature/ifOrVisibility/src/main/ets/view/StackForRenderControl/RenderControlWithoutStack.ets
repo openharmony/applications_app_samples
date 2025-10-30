@@ -33,14 +33,14 @@ export struct RenderControlWithoutStack {
         Scroll() {
           Column() { // 刷新范围会扩展到这一层
             if (this.isVisible) { // 条件变化会触发创建和销毁该组件，影响到容器的布局，该容器内所有组件都会刷新
-              Text('New item').fontSize($r('app.integer.font_size_20'))
+              Text('New item').fontSize($r('app.integer.font_size_20'));
             }
             ForEach(this.data, (item: number) => {
               Text(`Item value: ${item}`)
                 .fontSize($r('app.integer.font_size_20'))
                 .width($r('app.string.layout_100_percent'))
                 .textAlign(TextAlign.Center)
-            }, (item: number) => item.toString())
+            }, (item: number) => item.toString());
           }
         }
       }.height($r('app.string.layout_90_percent'))

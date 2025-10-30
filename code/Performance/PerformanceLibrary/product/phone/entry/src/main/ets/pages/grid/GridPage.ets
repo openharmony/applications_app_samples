@@ -20,7 +20,7 @@ import { GridView } from '@ohos/grid';
 struct GridPage {
   build() {
     Column() {
-      GridView()
+      GridView();
     }
   }
 }

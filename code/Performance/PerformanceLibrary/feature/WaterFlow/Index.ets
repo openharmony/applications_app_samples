@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export { WaterflowDemo } from './src/main/ets/pages/Index'
+export { WaterFlowDemo } from './src/main/ets/pages/Index'

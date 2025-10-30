@@ -70,7 +70,7 @@ export struct SameCityListView {
           .height($r('app.integer.layout_size_24'))
           .margin({ right: $r('app.integer.layout_size_24') })
           .onClick(() => {
-            router.back()
+            router.back();
           })
           .id('locationbackBtn')
         Text($r('app.string.hot_search_list'))
@@ -127,7 +127,7 @@ export struct SameCityDetail {
     new hotItem('eighth', $r('app.string.number_eight'), $r('app.string.hot_item_eight')),
     new hotItem('ninth', $r('app.string.number_nine'), $r('app.string.hot_item_nine')),
     new hotItem('tenth', $r('app.string.number_ten'), $r('app.string.hot_item_ten'))
-  ]
+  ];
   @StorageLink('location') displayLocation: string = '';
 
   build() {
@@ -167,11 +167,11 @@ export struct SameCityDetail {
           //创建微博热搜榜
           ForEach(this.sameCityGroup, (item: hotItem) => {
             ListItem() {
-              settingHotItem({ number: item.number, des: item.des })
+              settingHotItem({ number: item.number, des: item.des });
             }
             .margin({ bottom: $r('app.integer.layout_size_5'), top: $r('app.integer.layout_size_5') })
             .width('100%')
-          }, (item: hotItem) => item.id.toString())
+          }, (item: hotItem) => item.id.toString());
         }
         .margin({ bottom: $r('app.integer.layout_size_4'), top: $r('app.integer.layout_size_4') })
         .borderRadius($r('app.integer.layout_size_24'))
@@ -204,7 +204,7 @@ export struct HotSearchDetail {
     new hotItem('eighth', $r('app.string.number_eight'), $r('app.string.hot_item_eight')),
     new hotItem('ninth', $r('app.string.number_nine'), $r('app.string.hot_item_nine')),
     new hotItem('tenth', $r('app.string.number_ten'), $r('app.string.hot_item_ten'))
-  ]
+  ];
 
   build() {
     Column() {
@@ -231,11 +231,11 @@ export struct HotSearchDetail {
           //创建微博热搜榜
           ForEach(this.sameCityGroup, (item: hotItem) => {
             ListItem() {
-              settingHotItem({ number: item.number, des: item.des })
+              settingHotItem({ number: item.number, des: item.des });
             }
             .margin({ bottom: $r('app.integer.layout_size_5'), top: $r('app.integer.layout_size_5') })
             .width('100%')
-          }, (item: hotItem) => item.id.toString())
+          }, (item: hotItem) => item.id.toString());
         }
         .margin({ bottom: $r('app.integer.layout_size_4'), top: $r('app.integer.layout_size_4') })
         .borderRadius($r('app.integer.layout_size_24'))
