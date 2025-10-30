@@ -19,7 +19,7 @@ const TAG: string = '[EvtryAblity]';
 
 @Observed
 class InfoList extends Array<Info> {
-};
+}
 
 @Observed
 class Info {

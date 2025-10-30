@@ -33,7 +33,7 @@ class StateArrayInitChildList extends Array<StateArrayInitChild> {
       this.push(...children);
     }
   }
-};
+}
 
 @Observed
 class StateArrayInitAncestor {
@@ -149,12 +149,12 @@ struct StateArrayInitCompAncestor {
 @Entry
 @Component
 struct StateArrayInitPage {
-  // [StartExclude StateArrayInit_start]
+  // [Start StateArrayInit_start]
   @State childList: StateArrayInitChildList =
     new StateArrayInitChildList([new StateArrayInitChild(1), new StateArrayInitChild(2), new StateArrayInitChild(3),
       new StateArrayInitChild(4), new StateArrayInitChild(5)]);
   @State ancestor: StateArrayInitAncestor = new StateArrayInitAncestor(this.childList)
-  // [StartExclude StateArrayInit_end]
+  // [End StateArrayInit_end]
   build() {
     Column() {
       StateArrayInitCompAncestor({ stateArrayInitancestor: this.ancestor })
