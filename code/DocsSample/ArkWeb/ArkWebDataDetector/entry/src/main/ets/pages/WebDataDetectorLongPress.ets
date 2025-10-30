@@ -12,7 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// [Start web_DataDetector_LongPress]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -29,7 +28,7 @@ struct Index {
             this.webController.refresh();
           })
       }
-
+      // [Start web_DataDetector_LongPress]
       Web({
         src: $rawfile('index.html'),
         controller: this.webController
@@ -39,9 +38,9 @@ struct Index {
           enablePreviewMenu: true,  // 配置分词长按预览功能
           types: []
         })
+      // [End web_DataDetector_LongPress]
     }
     .height('100%')
     .width('100%')
   }
 }
-// [End web_DataDetector_LongPress]
