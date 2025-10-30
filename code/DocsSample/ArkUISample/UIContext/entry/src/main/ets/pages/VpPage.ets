@@ -15,14 +15,13 @@
 
 // [Start Main_VpPage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { PixelUtils } from '../Common/Utils';
+import { PixelUtil } from '../Common/Utils';
 
 const DOMAIN = 0x0000;
 
 @Entry
 @Component
 struct Index {
-
   build() {
     RelativeContainer() {
       Text('Caculate 20vp to px')
@@ -32,12 +31,13 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          let pxValue = PixelUtils.vp2px(20, this.getUIContext());
-          hilog.info(DOMAIN,'testTag',`20vp equals to ${pxValue}px`);
+          let pxValue = PixelUtil.vp2px(20, this.getUIContext());
+          hilog.info(DOMAIN, 'testTag', `20vp equals to ${pxValue}px`);
         })
     }
     .height('100%')
     .width('100%')
   }
 }
+
 // [End Main_VpPage]

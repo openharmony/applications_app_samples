@@ -24,7 +24,7 @@ const DOMAIN = 0x0000;
 @Entry
 @Component
 struct Index {
-  private subWindow : window.Window | undefined;
+  private subWindow: window.Window | undefined;
 
   build() {
     Column() {
@@ -39,7 +39,7 @@ struct Index {
             window.createWindow(config, (err: BusinessError, windowClass: window.Window) => {
               const errCode: number = err.code;
               if (errCode) {
-                hilog.error(DOMAIN,'testTag', `Failed to create the window. Cause: ${errCode}`);
+                hilog.error(DOMAIN, 'testTag', `Failed to create the window. Cause: ${errCode}`);
                 return;
               }
               // 在窗口创建后注册回调。
@@ -50,12 +50,12 @@ struct Index {
                   windowClass.resize(500, 1000);
                   windowClass.showWindow();
                 });
-              } catch(exception) {
-                hilog.error(DOMAIN,'testTag', `Failed to setUIContent. Cause : ${exception}`);
+              } catch (exception) {
+                hilog.error(DOMAIN, 'testTag', `Failed to setUIContent. Cause : ${exception}`);
               }
             });
           } catch (exception) {
-            hilog.error(DOMAIN,'testTag', `Failed to create the window. Cause : ${exception}`);
+            hilog.error(DOMAIN, 'testTag', `Failed to create the window. Cause : ${exception}`);
           }
         })
       Text('Destroy SubWindow')
@@ -71,4 +71,5 @@ struct Index {
     .width('100%')
   }
 }
+
 // [End Main_WindowTestPage]

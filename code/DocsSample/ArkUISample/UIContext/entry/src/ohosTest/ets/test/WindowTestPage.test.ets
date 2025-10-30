@@ -36,26 +36,26 @@ export default function WindowTestPageTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(DOMAIN,'get top ability','get top ability');
+      hilog.info(DOMAIN, 'get top ability', 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(DOMAIN,'WindowTestPage beforeEach start','WindowTestPage beforeEach start');
+      hilog.info(DOMAIN, 'WindowTestPage beforeEach start', 'WindowTestPage beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/WindowTestPage',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(DOMAIN,'get WindowTestPage state pages',JSON.stringify(pages));
+        hilog.info(DOMAIN, 'get WindowTestPage state pages', JSON.stringify(pages));
         if (('WindowTestPage' != pages.name)) {
-          hilog.info(DOMAIN,'get WindowTestPage state pages',JSON.stringify(pages.name));
+          hilog.info(DOMAIN, 'get WindowTestPage state pages', JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN,'get WindowTestPage state pages',err);
+        hilog.error(DOMAIN, 'get WindowTestPage state pages', err);
       }
-      hilog.info(DOMAIN,'WindowTestPage beforeEach end','WindowTestPage beforeEach end');
+      hilog.info(DOMAIN, 'WindowTestPage beforeEach end', 'WindowTestPage beforeEach end');
     });
 
     /*
@@ -68,11 +68,11 @@ export default function WindowTestPageTest() {
      */
 
     it('WindowTestPageTest_01', 0, async (done: Function) => {
-      hilog.info(DOMAIN,'uitest: WindowTestPageTest begin','uitest: WindowTestPageTest begin');
+      hilog.info(DOMAIN, 'uitest: WindowTestPageTest begin', 'uitest: WindowTestPageTest begin');
       let driver = Driver.create();
       let componentText1 = await driver.findComponent(ON.text('Create SubWindow'));
       await componentText1.click();
-      hilog.info(DOMAIN,'uitest: already click','uitest: already click');
+      hilog.info(DOMAIN, 'uitest: already click', 'uitest: already click');
       await driver.delayMs(2000);
       done();
     })

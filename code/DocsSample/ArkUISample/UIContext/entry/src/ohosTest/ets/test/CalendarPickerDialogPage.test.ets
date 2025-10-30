@@ -36,26 +36,26 @@ export default function CalendarPickerDialogPageTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(DOMAIN,'get top ability','get top ability');
+      hilog.info(DOMAIN, 'get top ability', 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(DOMAIN,'CalendarPickerDialogPage beforeEach start','CalendarPickerDialogPage beforeEach start');
+      hilog.info(DOMAIN, 'CalendarPickerDialogPage beforeEach start', 'CalendarPickerDialogPage beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/CalendarPickerDialogPage',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(DOMAIN,'get CalendarPickerDialogPage state pages',JSON.stringify(pages));
+        hilog.info(DOMAIN, 'get CalendarPickerDialogPage state pages', JSON.stringify(pages));
         if (('CalendarPickerDialogPage' != pages.name)) {
-          hilog.info(DOMAIN,'get CalendarPickerDialogPage state pages',JSON.stringify(pages.name));
+          hilog.info(DOMAIN, 'get CalendarPickerDialogPage state pages', JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN,'get CalendarPickerDialogPage state pages',err);
+        hilog.error(DOMAIN, 'get CalendarPickerDialogPage state pages', err);
       }
-      hilog.info(DOMAIN,'CalendarPickerDialogPage beforeEach end','CalendarPickerDialogPage beforeEach end');
+      hilog.info(DOMAIN, 'CalendarPickerDialogPage beforeEach end', 'CalendarPickerDialogPage beforeEach end');
     });
 
     /*
@@ -68,11 +68,11 @@ export default function CalendarPickerDialogPageTest() {
      */
 
     it('CalendarPickerDialogPageTest_01', 0, async (done: Function) => {
-      hilog.info(DOMAIN,'uitest: CalendarPickerDialogPageTest begin','uitest: CalendarPickerDialogPageTest begin');
+      hilog.info(DOMAIN, 'uitest: CalendarPickerDialogPageTest begin', 'uitest: CalendarPickerDialogPageTest begin');
       let driver = Driver.create();
       let componentText = await driver.findComponent(ON.text('Show CalendarPicker Dialog'));
       await componentText.click();
-      hilog.info(DOMAIN,'uitest: already click','uitest: already click');
+      hilog.info(DOMAIN, 'uitest: already click', 'uitest: already click');
       await driver.delayMs(2000);
       done();
     })

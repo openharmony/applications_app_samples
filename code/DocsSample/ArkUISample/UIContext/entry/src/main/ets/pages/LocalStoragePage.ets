@@ -14,7 +14,7 @@
  */
 // [Start Main_LocalStoragePage]
 // pages/LocalStoragePage
-@Entry({useSharedStorage: true})
+@Entry({ useSharedStorage: true })
 @Component
 struct LocalStoragePage {
   @LocalStorageLink('message') message: string = 'Hello World';
@@ -32,7 +32,7 @@ struct LocalStoragePage {
           let uiContext = this.getUIContext();
           let storage = uiContext.getSharedLocalStorage();
           if (storage) {
-            storage.setOrCreate('message','onClick is called.');
+            storage.setOrCreate('message', 'onClick is called.');
             this.message = 'LocalStoragePageHelloWorld';
           }
         })
@@ -41,4 +41,5 @@ struct LocalStoragePage {
     .width('100%')
   }
 }
+
 // [End Main_LocalStoragePage]

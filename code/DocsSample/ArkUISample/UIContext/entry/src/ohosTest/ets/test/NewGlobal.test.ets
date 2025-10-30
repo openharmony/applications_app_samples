@@ -36,26 +36,26 @@ export default function NewGlobalTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(DOMAIN,'get top ability','get top ability');
+      hilog.info(DOMAIN, 'get top ability', 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(DOMAIN,'NewGlobal beforeEach start','NewGlobal beforeEach start');
+      hilog.info(DOMAIN, 'NewGlobal beforeEach start', 'NewGlobal beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/NewGlobal',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(DOMAIN,'get NewGlobal state pages',JSON.stringify(pages));
+        hilog.info(DOMAIN, 'get NewGlobal state pages', JSON.stringify(pages));
         if (('NewGlobal' != pages.name)) {
-          hilog.info(DOMAIN,'get NewGlobal state pages',JSON.stringify(pages.name));
+          hilog.info(DOMAIN, 'get NewGlobal state pages', JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN,'get NewGlobal state pages',err);
+        hilog.error(DOMAIN, 'get NewGlobal state pages', err);
       }
-      hilog.info(DOMAIN,'NewGlobal beforeEach end','NewGlobal beforeEach end');
+      hilog.info(DOMAIN, 'NewGlobal beforeEach end', 'NewGlobal beforeEach end');
     });
 
     /*
@@ -68,11 +68,11 @@ export default function NewGlobalTest() {
      */
 
     it('NewGlobalTest_01', 0, async (done: Function) => {
-      hilog.info(DOMAIN,'uitest: NewGlobalTest begin','uitest: NewGlobalTest begin');
+      hilog.info(DOMAIN, 'uitest: NewGlobalTest begin', 'uitest: NewGlobalTest begin');
       let driver = Driver.create();
       let componentText = await driver.findComponent(ON.text('Calculate 20vp to px'));
       await componentText.click();
-      hilog.info(DOMAIN,'uitest: already click','uitest: already click');
+      hilog.info(DOMAIN, 'uitest: already click', 'uitest: already click');
       await driver.delayMs(2000);
       done();
     })

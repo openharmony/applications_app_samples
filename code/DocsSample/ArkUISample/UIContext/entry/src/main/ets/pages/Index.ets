@@ -26,9 +26,9 @@ struct Index {
   aboutToAppear() {
     try {
       let router1 = this.getUIContext().getRouter();
-      AppStorage.setOrCreate<Router>('router',router1);
+      AppStorage.setOrCreate<Router>('router', router1);
     } catch (e) {
-      hilog.info(DOMAIN,'e',e);
+      hilog.info(DOMAIN, 'e', e);
     }
   }
 

@@ -22,17 +22,17 @@ const DOMAIN = 0xF811;
 @Entry
 @Component
 struct Index {
-
   build() {
     Column() {
       Text('getContext')
         .onClick(() => {
           let context = ContextUtils.getContext(this.getUIContext());
-          hilog.info(DOMAIN,'testTag',`The context is ${context}`);
+          hilog.info(DOMAIN, 'testTag', `The context is ${context}`);
         })
     }
     .height('100%')
     .width('100%')
   }
 }
+
 // [End Main_Index]

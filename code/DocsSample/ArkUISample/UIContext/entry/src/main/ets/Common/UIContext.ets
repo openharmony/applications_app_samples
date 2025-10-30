@@ -19,13 +19,14 @@ import { display } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 export class PixelUtils {
-  public static uiContext : UIContext | undefined;
-  static setUIContext(uiContext : UIContext) : void {
+  public static uiContext: UIContext | undefined;
+
+  static setUIContext(uiContext: UIContext): void {
     PixelUtils.uiContext = uiContext;
   }
 
   static vp2px(vpValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtils.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
       let displayClass = display.getDefaultDisplaySync();
       let density = displayClass.densityPixels;
@@ -35,21 +36,22 @@ export class PixelUtils {
   }
 
   static fp2px(fpValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtils.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
-      hilog.error(DOMAIN,'testTag', `Can't get UIContext`);
+      hilog.error(DOMAIN, 'testTag', `Can't get UIContext`);
       return undefined;
     }
     return _uiContext.fp2px(fpValue)
   }
 
   lpx2px(lpxValue: number, uiContext?: UIContext): number | undefined {
-    let _uiContext = uiContext??PixelUtils.uiContext;
+    let _uiContext = uiContext ?? PixelUtils.uiContext;
     if (!_uiContext || !_uiContext.isAvailable()) {
-      hilog.error(DOMAIN,'testTag', `Can't get UIContext`);
+      hilog.error(DOMAIN, 'testTag', `Can't get UIContext`);
       return undefined;
     }
     return _uiContext.lpx2px(lpxValue)
   }
 }
+
 // [End Common_PixelUtils]
