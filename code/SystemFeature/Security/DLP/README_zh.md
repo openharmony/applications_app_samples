@@ -57,10 +57,10 @@ entry/src/main/ets/
 4. 需要链接DLP凭据服务器。
 
 ## samples代码运行及其环境配置
-1.克隆samples代码到本地<br>
-&nbsp;&nbsp;&nbsp;&nbsp;开发板上需要烧入日构建版本（dayu200）和最新的SDK（ohos-sdk-full）：https://dcp.openharmony.cn/workbench/cicd/dailybuild/dailylist<br>
+1.克隆samples代码到本地  
+2.开发板上需要烧入日构建版本（dayu200）和最新的SDK（ohos-sdk-full）：https://dcp.openharmony.cn/workbench/cicd/dailybuild/dailylist<br>
 &nbsp;&nbsp;&nbsp;&nbsp;具体操作为：https://blog.csdn.net/nanzhanfei/article/details/121951919<br>
-2.在".\DLP\entry\src\main"下新增syscap.json文件，文件内容为：
+3.在".\DLP\entry\src\main"下新增syscap.json文件，文件内容为：
 ```
 {
   "devices": {
@@ -76,7 +76,7 @@ entry/src/main/ets/
   }
 }
 ```
-3.配置build-profile.json5 （.\DLP\build-profile.json5）
+4.配置build-profile.json5 （.\DLP\build-profile.json5）
 ```
 "products": [
    {
@@ -91,12 +91,16 @@ entry/src/main/ets/
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若出现sync failed,可以尝试点击Migrate Assistant <br>
 ![Index](screenshots/devices/syn出错.png)<br>
-4.添加签名<br>
-（1）在cmd中输入如下指令，获取DLP samples应用指纹<br>
+5.添加签名<br>
+（1）装一个假应用  （该应用的所有配置均默认）  
+![Index](screenshots/devices/new_application.png)  
+（2）点击运行，将假应用烧录到开发板中  
+![Index](screenshots/devices/startWrite.png)  
+（3）在cmd中输入如下指令，获取DLP samples应用指纹<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc shell "bm dump -n com.samples.dlp | grep finger"<br>
-（2）拉出配置文件install_list_capability.json(该文件在打开cmd的目录下)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc file recv /system/variant/phone/base/etc/app/install_list_capability.json<br>
-（3）打开install_list_capability.json文件，将DLP samples应用设置为系统应用,文件最下面添加（可以直接复制其它应用的配置，再改签名和包名）
+（4）拉出配置文件install_list_capability.json(该文件在打开cmd的目录下)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc file recv /system/etc/app/install_list_capability.json<br>
+（5）打开install_list_capability.json文件，将DLP samples应用设置为系统应用,文件最下面添加（可以直接复制其它应用的配置，再改DLP samples应用指纹（app_signature）和包名（bundleName））
 ```
 {
   {
@@ -111,12 +115,12 @@ entry/src/main/ets/
   }
 }
 ```
-（4）推送配置文件（在install_list_capability.json所在目录打开cmd）<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc file send install_list_capability.json /system/variant/pc/base/etc/app/<br>
+（6）推送配置文件（在install_list_capability.json所在目录打开cmd）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc file send install_list_capability.json /system/etc/app/<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc shell reboot<br>
-（5）下载签名工具（clone下来）
+（7）下载签名工具（clone下来）
 https://gitcode.com/openharmony/developtools_hapsigner<br>
-（6）在下载好的文件夹中，修改文件  .\developtools_hapsigner-master\dist\UnsgnedReleasedProfileTemplate.json<br>
+（8）在下载好的文件夹中，修改文件  .\developtools_hapsigner-master\dist\UnsgnedReleasedProfileTemplate.json<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改如下所示
 ```
 {
@@ -153,7 +157,7 @@ https://gitcode.com/openharmony/developtools_hapsigner<br>
     "issuer": "pki_internal"
 }
 ```
-（7）签名应用（需要配置java环境）
+（9）签名应用（需要配置java环境）
 hdc uninstall com.samples.dlp<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建一个记事本文件，命名为签名证书.bat，bat内容为：
 ```
@@ -163,8 +167,8 @@ java -jar hap-sign-tool.jar sign-profile -keyAlias "openharmony application prof
 ```
 java -jar hap-sign-tool.jar sign-app -keyAlias "openharmony application release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "app1-profile.p7b" -inFile "entry-default-unsigned.hap" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
 ```
-（8）依次运行签名证书.bat和签名应用.bat，当前目录会产生一个文件app1.signed.hap<br>
-（9）执行Build Hap(s)，顺利编译后，产生entry-default-unsigned.hap；将entry-default-unsigned.hap移到目录 .\developtools_hapsigner-master\dist下<br>
-（10）安装应用<br>
+（10）依次运行签名证书.bat和签名应用.bat，当前目录会产生一个文件app1.signed.hap<br>
+（11）执行Build Hap(s)，顺利编译后，产生entry-default-unsigned.hap；将entry-default-unsigned.hap移到目录 .\developtools_hapsigner-master\dist下<br>
+（12）安装应用<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc install app1-signed.hap<br>
-（11）如果之后更改了DLP samples项目，再次执行Build Hap(s)，然后将entry-default-unsigned.hap移到目录 .\developtools_hapsigner-master\dist下，运行签名应用.bat，执行hdc install app1-signed.hap
+（13）如果之后更改了DLP samples项目，再次执行Build Hap(s)，然后将entry-default-unsigned.hap移到目录 .\developtools_hapsigner-master\dist下，运行签名应用.bat，执行hdc install app1-signed.hap
