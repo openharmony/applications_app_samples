@@ -12,8 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start quick_start0]
 {
   "module": {
+    // [StartExclude  quick_start0]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -24,8 +26,8 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    // [EndExclude  quick_start0]
     "abilities": [
-      // [Start quick_start0]
       {
         // [StartExclude  quick_start0]
         "name": "EntryAbility",
@@ -70,7 +72,7 @@
           } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       },
-      // [End quick_start0]
+      // [StartExclude  quick_start0]
       {
         "name": "AppLinkEntryAbility",
         "srcEntry": "./ets/entryability/AppLinkEntryAbility.ets",
@@ -91,7 +93,9 @@
           }
         ]
       }
+      // [EndExclude  quick_start0]
     ],
+    // [StartExclude  quick_start0]
     "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
@@ -105,6 +109,8 @@
           }
         ],
       }
-    ]
+    ],
+    // [EndExclude  quick_start0]
   }
 }
+// [End quick_start0]
