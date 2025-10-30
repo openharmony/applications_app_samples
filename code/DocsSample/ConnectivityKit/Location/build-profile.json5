@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\z30025928\\.ohos\\config\\default_Location_OQtJraiGdrVdvj-JpddH-vA9QLPT0XmOlLf-W3MDCv0=.cer",
+          "storePassword": "0000001B432E5F5393E6DCF4FB08E329B82B13A3AC979CFFF5A7A6DF9FAC8CAA21588BADD4CD065856A777",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B91A179C31366BCCC9D3CB3FF0F01E2DBDFFCDAF9F00465A85ACB38BE38390E92D8FE14B9484B76",
+          "profile": "C:\\Users\\z30025928\\.ohos\\config\\default_Location_OQtJraiGdrVdvj-JpddH-vA9QLPT0XmOlLf-W3MDCv0=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\z30025928\\.ohos\\config\\default_Location_OQtJraiGdrVdvj-JpddH-vA9QLPT0XmOlLf-W3MDCv0=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "5.0.2(14)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
