@@ -79,8 +79,8 @@ struct GridEts {
               this.numberBadge++;
               this.isSelectedGrid[i] = true;
               let data: UDC.Image = new UDC.Image();
-              // '/resource/image.jpeg'需要替换为开发者所需的图像资源文件
-              data.uri = '/resource/image.jpeg';
+              // '../../../resources/base/media/background.png'需要替换为开发者所需的图像资源文件
+              data.uri = '/resources/base/media/background.png';
               if (!this.unifiedData) {
                 this.unifiedData = new UDC.UnifiedData(data);
               }
@@ -143,8 +143,8 @@ struct GridEts {
               for (let i=0; i<this.isSelectedGrid.length; i++) {
                 if (this.isSelectedGrid[i] === true) {
                   let data: UDC.Image = new UDC.Image();
-                  // '/resource/image.jpeg'需要替换为开发者所需的图像资源文件
-                  data.uri = '/resource/image.jpeg';
+                  // '../../../resources/base/media/background.png'需要替换为开发者所需的图像资源文件
+                  data.uri = '/resources/base/media/background.png';
                   if (!this.unifiedData) {
                     this.unifiedData = new UDC.UnifiedData(data);
                   }
