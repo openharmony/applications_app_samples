@@ -14,24 +14,29 @@
  */
 
 // [Start languageCode]
-// 将设备languageCode存入AppStorage中
-Environment.envProp('languageCode', 'en');
-
 @Entry
 @Component
 struct Index {
   @StorageProp('languageCode') languageCode: string = 'en';
+  aboutToAppear(): void {
+    // [Start languageCode_AppStorage]
+    // 将设备languageCode存入AppStorage中
+    Environment.envProp('languageCode', 'en');
+    // 从AppStorage获取单向绑定的languageCode的变量
+    const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
 
+    if (lang.get() === 'zh') {
+      console.info('你好');
+    } else {
+      console.info('Hello!');
+    }
+    // [End languageCode_AppStorage]
+  }
   build() {
     Row() {
       Column() {
         // 输出当前设备的languageCode
         Text(this.languageCode)
-        if (this.languageCode === 'zh'){
-          Text($r('app.string.EntryAbility_title1'))
-        }else {
-          Text('Hello!')
-        }
       }
     }
   }
