@@ -14,8 +14,6 @@
  */
 
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';	
-
-
 import { window } from '@kit.ArkUI';
 // [Start soft_keyboard_entryability]	
 import { KeyboardAvoidMode } from '@kit.ArkUI';
