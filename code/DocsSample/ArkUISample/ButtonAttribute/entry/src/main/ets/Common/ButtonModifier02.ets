@@ -13,23 +13,6 @@
  * limitations under the License.
  */
 
-declare interface AttributeModifier<T> {
-
-  applyNormalAttribute?(instance: T): void;
-
-  applyPressedAttribute?(instance: T): void;
-
-  applyFocusedAttribute?(instance: T): void;
-
-  applyDisabledAttribute?(instance: T): void;
-
-  applySelectedAttribute?(instance: T): void;
-
-}
-
-declare class CommonMethod<T> {
-  attributeModifier(modifier: AttributeModifier<T>): T;
-}
 // [Start Common_MyButtonModifier2]
 export class MyButtonModifier2 implements AttributeModifier<ButtonAttribute> {
   public isDark: boolean = false

@@ -13,41 +13,40 @@
  * limitations under the License.
  */
 
-// [Start Main_UIContext]
-import { ContextUtils } from '../Common/ContextUtils';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { Router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xF811;
 
 @Entry
 @Component
 struct Index {
-  @State bgColor: Color = Color.Green
+  @State message: string = 'Hello World';
 
   aboutToAppear() {
     try {
       let router1 = this.getUIContext().getRouter();
-      AppStorage.setOrCreate<Router>('router', router1);
+      AppStorage.setOrCreate<Router>('router',router1);
     } catch (e) {
-      hilog.info(DOMAIN, 'e', e);
+      hilog.info(DOMAIN,'e',e);
     }
   }
 
   build() {
-    Column() {
-      Text('getContext')
-        .backgroundColor(this.bgColor)
-        .fontSize(20)
-        .padding(5)
+    RelativeContainer() {
+      Text(this.message)
+        .id('IndexHelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
         .onClick(() => {
-          let context = ContextUtils.getContext(this.getUIContext());
-          hilog.info(DOMAIN, 'testTag', `The context is ${context}`);
-          this.bgColor = Color.Blue
+          this.message = 'Welcome';
         })
     }
     .height('100%')
     .width('100%')
   }
 }
-// [End Main_UIContext]

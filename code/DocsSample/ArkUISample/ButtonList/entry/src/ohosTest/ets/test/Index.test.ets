@@ -33,24 +33,27 @@ export default function IndexTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info('get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 
+    /*
+     * @tc.number     : Index_01
+     * @tc.name       : ButtonIndexTest
+     * @tc.desc       : 测试使用ContentSlot挂载Native侧的文本列表能否正常显示
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
 
     it('ButtonIndexTest', 0, async (done: Function) => {
-      console.info('uitest: ButtonIndexTest begin');
       let driver = Driver.create();
       let componentButton = await driver.findComponent(ON.id('btn'));
       expect(componentButton === null).assertFalse();
       await componentButton.click();
-      console.info('uitest: already click');
       await driver.delayMs(1000);
       let scrollBar: Component = await driver.findComponent(ON.type('List'));
       await scrollBar.scrollToBottom(5000);
-      console.info('uitest: already scrollToBottom');
       await componentButton.click();
-      console.info('uitest: click end');
       await driver.delayMs(1000);
       done();
     })

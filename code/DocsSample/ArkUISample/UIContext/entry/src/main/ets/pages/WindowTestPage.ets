@@ -39,7 +39,7 @@ struct Index {
             window.createWindow(config, (err: BusinessError, windowClass: window.Window) => {
               const errCode: number = err.code;
               if (errCode) {
-                hilog.error(DOMAIN, 'testTag', `Failed to create the window. Cause: ${errCode}`);
+                hilog.error(DOMAIN,'testTag', `Failed to create the window. Cause: ${errCode}`);
                 return;
               }
               // 在窗口创建后注册回调。
@@ -51,11 +51,11 @@ struct Index {
                   windowClass.showWindow();
                 });
               } catch(exception) {
-                hilog.error(DOMAIN, 'testTag', `Failed to setUIContent. Cause : ${exception}`);
+                hilog.error(DOMAIN,'testTag', `Failed to setUIContent. Cause : ${exception}`);
               }
             });
           } catch (exception) {
-            hilog.error(DOMAIN, 'testTag', `Failed to create the window. Cause : ${exception}`);
+            hilog.error(DOMAIN,'testTag', `Failed to create the window. Cause : ${exception}`);
           }
         })
       Text('Destroy SubWindow')

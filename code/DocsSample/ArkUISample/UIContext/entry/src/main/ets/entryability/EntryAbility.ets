@@ -23,30 +23,44 @@ import { PixelUtils } from '../Common/UIContext';
 
 const DOMAIN = 0x0000;
 
+// [Start Common_setContext]
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
+    hilog.info(DOMAIN,'testTag','%{public}s', 'Ability onCreate');
+    // [Start Common_pxValue]
+    let pxValue = PixelUtils.vp2px(20);
+    hilog.info(DOMAIN,'testTag',`20vp equals to ${pxValue}px`);
+    // [End Common_pxValue]
     ContextUtils.setContext(this.context);
+    hilog.info(DOMAIN,'testTag','%{public}s', 'setContext success');
+    // [Start Common_getContext]
+    let context = ContextUtils.getContext();
+    hilog.info(DOMAIN,'testTag',`The context is ${context}`);
+    // [End Common_getContext]
   }
+  // [End Common_setContext]
 
   //[StartExclude Common_UIContext]
   onDestroy(): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
+    hilog.info(DOMAIN,'testTag','%{public}s', 'Ability onDestroy');
   }
 
   // [EndExclude Common_UIContext]
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN,'testTag','%{public}s', 'Ability onWindowStageCreate');
+    // [Start Common_LocalStorage]
     let localStorage = new LocalStorage();
     localStorage.setOrCreate('message', 'Message from Storage')
+    // [End Common_LocalStorage]
+    hilog.info(DOMAIN,'testTag','%{public}s', 'success localStorage');
     // [Start Common_GetMainWindowSync]
     let window = windowStage.getMainWindowSync();
     // [Start Common_RegisterWindowCallback]
     WindowUIContextUtils.registerWindowCallback(window);
     windowStage.loadContent('pages/Index', localStorage, (err) => {
       if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        hilog.error(DOMAIN,'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
         return;
       }
       try {
@@ -56,22 +70,22 @@ export default class EntryAbility extends UIAbility {
         // [End Common_SetUIContext]
         WindowUIContextUtils.setActiveUIContext(uiContext)
         if (!uiContext) {
-          hilog.error(DOMAIN, 'testTag', `Can't get UIContext`);
+          hilog.error(DOMAIN,'testTag', `Can't get UIContext`);
           return;
         }
         let pxValue = uiContext.vp2px(20);
-        hilog.info(DOMAIN, 'testTag', `20vp equals to ${pxValue}px`);
+        hilog.info(DOMAIN,'testTag',`20vp equals to ${pxValue}px`);
       } catch (e) {
-        hilog.error(DOMAIN, 'testTag', `Can't get UIContext, ${e}`);
+        hilog.error(DOMAIN,'testTag', `Can't get UIContext, ${e}`);
       }
       // [End Common_GetMainWindowSync]
-      hilog.info(DOMAIN, 'testTag', `loadContent success.`);
+      hilog.info(DOMAIN,'testTag',`loadContent success.`);
     });
   }
 
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
     let window = windowStage.getMainWindowSync();
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `The main window: ${window}`);
+    hilog.info(DOMAIN,'testTag','%{public}s', `The main window: ${window}`);
     // 注销主窗的回调。
     WindowUIContextUtils.unregisterWindowCallback(window);
   }
@@ -80,17 +94,17 @@ export default class EntryAbility extends UIAbility {
   //[StartExclude Common_UIContext]
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    hilog.info(DOMAIN,'testTag','%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
     // Ability has brought to foreground
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
+    hilog.info(DOMAIN,'testTag','%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
     // Ability has back to background
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
+    hilog.info(DOMAIN,'testTag','%{public}s', 'Ability onBackground');
   }
   // [EndExclude Common_UIContext]
 }
