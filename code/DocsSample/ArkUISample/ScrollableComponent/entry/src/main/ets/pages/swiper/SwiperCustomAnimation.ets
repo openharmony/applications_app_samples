@@ -58,7 +58,7 @@ export struct SwiperCustomAnimation {
                 .zIndex(this.zIndexList[index])
             })
           }
-          .height(200)
+          .height(300)
           .indicator(false)
           .displayCount(this.DISPLAY_COUNT, true)
           .customContentTransition({
@@ -90,14 +90,18 @@ export struct SwiperCustomAnimation {
               }
             }
           })
+          // [StartExclude customize_transition_animations]
         }
+        // [EndExclude customize_transition_animations]
       }
       .width('100%')
-      // [End customize_transition_animations]
+      // [StartExclude customize_transition_animations]
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.SwiperCustomAnimation_title'))
+    // [EndExclude customize_transition_animations]
   }
 }
+// [End customize_transition_animations]

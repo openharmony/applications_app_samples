@@ -76,7 +76,9 @@ export struct SwiperIndicatorStyle {
               .fontSize(30)
             // [EndExclude customize_navigation_point_styles]
           }
+          // [StartExclude customize_navigation_point_styles]
           .height(100)
+          // [EndExclude customize_navigation_point_styles]
           .indicator(
             Indicator.dot()
               .left(0)
@@ -87,8 +89,8 @@ export struct SwiperIndicatorStyle {
               .color(Color.Red)
               .selectedColor(Color.Blue)
           )
+          // [End customize_navigation_point_styles]
         }
-        // [End customize_navigation_point_styles]
 
         ComponentCard({ title: $r('app.string.SwiperIndicatorStyle_titleDefaultArrows') }) {
           // [Start default_arrow_style]
