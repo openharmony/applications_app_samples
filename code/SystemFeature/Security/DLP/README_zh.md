@@ -99,7 +99,7 @@ entry/src/main/ets/
 7.添加签名<br>
 （1）装一个假应用  （在DLP目录下新建假应用，该应用的所有配置均默认）  
 ![Index](screenshots/devices/new_application.png)  
-（2）点击运行，将假应用烧录到开发板中，删除假应用  
+（2）点击运行，将假应用烧录到开发板中，删除假应用代码  
 ![Index](screenshots/devices/startWrite.png)  
 （3）在cmd中输入如下指令，获取DLP samples应用指纹<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc shell "bm dump -n com.samples.dlp | grep finger"<br>
@@ -164,11 +164,11 @@ https://gitcode.com/openharmony/developtools_hapsigner<br>
 ```
 （9）签名应用（需要配置java环境）
 hdc uninstall com.samples.dlp<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建一个记事本文件，命名为签名证书.bat，bat内容为：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在.\developtools_hapsigner-master\dist下新建一个记事本文件，命名为签名证书.bat，bat内容为：
 ```
 java -jar hap-sign-tool.jar sign-profile -keyAlias "openharmony application profile release" -signAlg "SHA256withECDSA" -mode "localSign" -profileCertFile "OpenHarmonyProfileRelease.pem" -inFile "UnsgnedReleasedProfileTemplate.json" -keystoreFile "OpenHarmony.p12" -outFile "app1-profile.p7b" -keyPwd "123456" -keystorePwd "123456"
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建一个记事本文件，命名为签名应用.bat，bat内容为：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在.\developtools_hapsigner-master\dist下新建一个记事本文件，命名为签名应用.bat，bat内容为：
 ```
 java -jar hap-sign-tool.jar sign-app -keyAlias "openharmony application release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "app1-profile.p7b" -inFile "entry-default-unsigned.hap" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
 ```
