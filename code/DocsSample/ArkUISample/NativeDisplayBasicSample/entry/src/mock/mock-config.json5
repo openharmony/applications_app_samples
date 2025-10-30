@@ -1,0 +1,5 @@
+{
+  "libnativedisplay.so": {
+    "source": "src/mock/Libentry.mock.ets"
+  }
+}
