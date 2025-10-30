@@ -45,7 +45,7 @@ struct ComponentExtension {
   @Provide('router') router: NavPathStack = new NavPathStack();
   @State routes: RouteGroup[] = [
     {
-      name: 'Parent',
+      name: 'parent',
       label: $r('app.string.parent'),
       children: [
         { name: 'Index', label: $r('app.string.parentExample') },
