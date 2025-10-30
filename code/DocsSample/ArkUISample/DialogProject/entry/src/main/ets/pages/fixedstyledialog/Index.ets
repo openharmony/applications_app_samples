@@ -20,6 +20,7 @@ import { CalendarDialog } from './CalendarPickerDialog';
 import { DatePickerDialogExample } from './DatePickerDialog';
 import { DatePickerCustomDialogExample } from './DatePickerCustomDialog';
 import { TextPickerDialogExample } from './TextPickerDialog';
+import {TextPickerCNDialogExample} from './TextPickerCNDialog'
 import { TimePickerDialogExample } from './TimePickerDialog';
 import { showAlertDialogExample } from './AlertDialog';
 import { ShowActionMenuExample } from './ShowActionMenu';
@@ -54,6 +55,11 @@ const routes: Route[] = [
     name: `${Fixed_ROUTE_PREFIX}/TextPickerDialog`,
     title: resource.resourceToString($r('app.string.TextPicker_title')),
     description: $r('app.string.TextPicker_des'),
+  },
+  {
+    name: `${Fixed_ROUTE_PREFIX}/TextPickerCNDialog`,
+    title: resource.resourceToString($r('app.string.TextPicker_cn_title')),
+    description: $r('app.string.TextPicker_cn_des'),
   },
   {
     name: `${Fixed_ROUTE_PREFIX}/ActionSheet`,
@@ -92,12 +98,14 @@ export function FixedDialogDestination(name: string) {
   } else if (name === routes[4].name) {
     TextPickerDialogExample();
   } else if (name === routes[5].name) {
-    showActionSheetExample();
+    TextPickerCNDialogExample();
   } else if (name === routes[6].name) {
-    showAlertDialogExample();
+    showActionSheetExample();
   } else if (name === routes[7].name) {
-    ShowActionMenuExample();
+    showAlertDialogExample();
   } else if (name === routes[8].name) {
+    ShowActionMenuExample();
+  } else if (name === routes[9].name) {
     ShowDialogExample();
   }
 }

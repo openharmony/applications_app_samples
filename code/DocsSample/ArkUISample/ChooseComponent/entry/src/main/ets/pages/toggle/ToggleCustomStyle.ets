@@ -24,30 +24,36 @@ export struct CustomStyle {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({
-          // $r('app.string.xxx')��Ҫ�滻Ϊ������������ַ�����Դ�ļ�
+          // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
           title: $r('app.string.ToggleCustomStyle_titleOne'),
           description: $r('app.string.ToggleCustomStyle_descriptionOne')
         }) {
           // [Start custom_toggle]
           Toggle({ type: ToggleType.Button, isOn: true }) {
             Text('status button')
-              .fontColor(Color.White)
+              .fontColor('#182431')
               .fontSize(12)
           }.width(100)
           .selectedColor(Color.Pink)
+          // [StartExclude custom_toggle]
           .id('toggle1')
+          // [EndExclude custom_toggle]
 
           Toggle({ type: ToggleType.Checkbox, isOn: true })
             .selectedColor(Color.Pink)
+            // [StartExclude custom_toggle]
             .id('toggle2')
+          // [EndExclude custom_toggle]
           Toggle({ type: ToggleType.Switch, isOn: true })
             .selectedColor(Color.Pink)
+            // [StartExclude custom_toggle]
             .id('toggle3')
+          // [EndExclude custom_toggle]
           // [End custom_toggle]
         }
 
         ComponentCard({
-          // $r('app.string.xxx')��Ҫ�滻Ϊ������������ַ�����Դ�ļ�
+          // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
           title: $r('app.string.ToggleCustomStyle_titleTwo'),
           description: $r('app.string.ToggleCustomStyle_descriptionTwo')
         }) {
@@ -66,7 +72,7 @@ export struct CustomStyle {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')��Ҫ�滻Ϊ������������ַ�����Դ�ļ�
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.ToggleCustomStyle_title'))
   }
 }

@@ -197,6 +197,15 @@
       "value": "开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
     },
     {
+      "name": "TextPicker_cn_title",
+      "value": "文本滑动选择器中文弹窗"
+    },
+    {
+      "name": "TextPicker_cn_des",
+      "value": "开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
+    },
+
+    {
       "name": "ActionSheet_title",
       "value": "列表选择弹窗"
     },
