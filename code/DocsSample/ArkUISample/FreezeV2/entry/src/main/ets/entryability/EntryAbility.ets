@@ -19,11 +19,11 @@ import { display, uiObserver, window } from '@kit.ArkUI';
 const DOMAIN = 0x0000;
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  hilog.info(DOMAIN, 'testTag', `testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 function callBackFunc2(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag2 navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  hilog.info(DOMAIN, 'testTag', `testTag2 navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
@@ -54,11 +54,11 @@ export default class EntryAbility extends UIAbility {
       AppStorage.setOrCreate('orientation', displayClass.orientation);
       // 监听窗口的windowsSizeChange事件，旋转屏时会触发该事件
       mainWindow.on('windowSizeChange', (data) => {
-        console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
+        hilog.info(DOMAIN, 'testTag', 'Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
         let displayClass: display.Display | null = null;
         try {
           displayClass = display.getDefaultDisplaySync();
-          console.info('display orientation is ' + JSON.stringify(displayClass.orientation));
+          hilog.info(DOMAIN, 'testTag', 'display orientation is ' + JSON.stringify(displayClass.orientation));
           // 获取屏幕的显示方向
           AppStorage.set('orientation', displayClass.orientation);
         } catch {

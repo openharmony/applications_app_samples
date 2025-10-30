@@ -12,6 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 // [Start freeze_template3_start]
 @Entry
 @ComponentV2
@@ -20,7 +23,7 @@ struct MyNavigationTestStack {
   @Local message: number = 0;
 
   @Monitor('message') info() {
-    console.info(`freeze-test MyNavigation message callback ${this.message}`);
+    hilog.info(DOMAIN, 'testTag', `freeze-test MyNavigation message callback ${this.message}`);
   }
 
   @Builder
@@ -149,8 +152,8 @@ struct NavigationContentMsgStack {
   @Param index: number = 0;
 
   @Monitor('message') info() {
-    console.info(`freeze-test NavigationContent message callback ${this.message}`);
-    console.info(`freeze-test ---- called by content ${this.index}`);
+    hilog.info(DOMAIN, 'testTag', `freeze-test NavigationContent message callback ${this.message}`);
+    hilog.info(DOMAIN, 'testTag', `freeze-test ---- called by content ${this.index}`);
   }
 
   build() {
