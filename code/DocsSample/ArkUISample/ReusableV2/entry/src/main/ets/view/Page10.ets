@@ -40,4 +40,5 @@ struct Page10 {
       }
     }
   }
-}// [End Use_in_ForEach_component]
+}
+// [End Use_in_Repeat_component]
