@@ -22,7 +22,7 @@ static napi_value GetDefaultDisplayRotation(napi_env env, napi_callback_info inf
         napi_create_int32(env, errCode, &errorCode);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest",
             "GetDefaultDisplayRotation errCode=%{public}d", errCode);
-        return errorCode;  
+        return errorCode;
     }
 }
 // [End get_rotation]
@@ -43,7 +43,7 @@ static napi_value CreateDefaultDisplayCutoutInfo(napi_env env, napi_callback_inf
                     i, cutOutInfo->boundingRects[i].left, cutOutInfo->boundingRects[i].top,
                     cutOutInfo->boundingRects[i].width, cutOutInfo->boundingRects[i].height);
             }
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest", 
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest",
                 "cutOutInfo waterfall left rect=[%{public}d %{public}d %{public}d %{public}d]",
                 cutOutInfo->waterfallDisplayAreaRects.left.left, cutOutInfo->waterfallDisplayAreaRects.left.top,
                 cutOutInfo->waterfallDisplayAreaRects.left.width, cutOutInfo->waterfallDisplayAreaRects.left.height);
@@ -58,16 +58,16 @@ static napi_value CreateDefaultDisplayCutoutInfo(napi_env env, napi_callback_inf
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest",
                 "cutOutInfo waterfall bottom rect=[%{public}d %{public}d %{public}d %{public}d]",
                 cutOutInfo->waterfallDisplayAreaRects.bottom.left, cutOutInfo->waterfallDisplayAreaRects.bottom.top,
-                cutOutInfo->waterfallDisplayAreaRects.bottom.width, cutOutInfo->waterfallDisplayAreaRects.bottom.height);            
+                cutOutInfo->waterfallDisplayAreaRects.bottom.width, cutOutInfo->waterfallDisplayAreaRects.bottom.height);
         }
         napi_value boundingRectsLength;
         napi_create_int32(env, cutOutInfo->boundingRectsLength, &boundingRectsLength);
-        OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo(cutOutInfo);   
+        OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo(cutOutInfo);
         return boundingRectsLength;
     } else {
         napi_value errorCode;
         napi_create_int32(env, errCode, &errorCode);
-        return errorCode;  
+        return errorCode;
     }
 }
 // [End get_cutout_info]
@@ -75,7 +75,8 @@ static napi_value CreateDefaultDisplayCutoutInfo(napi_env env, napi_callback_inf
 // [Start register_display_change]
 void DisplayChangeCallback(uint64_t displayId)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest", "DisplayChangeCallback displayId=%{public}lu.", displayId);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest",
+        "DisplayChangeCallback displayId=%{public}lu.", displayId);
 }
 
 static napi_value RegisterDisplayChangeListener(napi_env env, napi_callback_info info)
@@ -92,7 +93,7 @@ static napi_value RegisterDisplayChangeListener(napi_env env, napi_callback_info
     } else {
         napi_value errorCode;
         napi_create_int32(env, errCode, &errorCode);
-        return errorCode;  
+        return errorCode;
     }
 }
 
@@ -102,7 +103,7 @@ static napi_value UnregisterDisplayChangeListener(napi_env env, napi_callback_in
     napi_value args[1] = { nullptr };
 
     uint32_t listenerIndex;
-    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     napi_get_value_uint32(env, args[0], &listenerIndex);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest",
         "UnregisterDisplayChangeListener listenerIndex =%{public}d.", listenerIndex);
@@ -146,7 +147,7 @@ static napi_value RegisterFoldDisplayModeChangeListener(napi_env env, napi_callb
     } else {
         napi_value errorCode;
         napi_create_int32(env, errCode, &errorCode);
-        return errorCode;  
+        return errorCode;
     }
 }
 
@@ -155,10 +156,11 @@ static napi_value UnregisterFoldDisplayModeChangeListener(napi_env env, napi_cal
     size_t argc = 1;
     napi_value args[1] = { nullptr };
     uint32_t listenerIndex;
-    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     napi_get_value_uint32(env, args[0], &listenerIndex);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest", "listenerIndex =%{public}d.", listenerIndex);
-    NativeDisplayManager_ErrorCode errCode = OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener(listenerIndex);
+    NativeDisplayManager_ErrorCode errCode =
+        OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener(listenerIndex);
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest", "errorCode=%{public}d", errCode);
     napi_value errorCode;
     napi_create_int32(env, errCode, &errorCode);
@@ -170,17 +172,17 @@ static napi_value UnregisterFoldDisplayModeChangeListener(napi_env env, napi_cal
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-       { "getDisplayRotation", nullptr, GetDefaultDisplayRotation, nullptr, nullptr, nullptr, napi_default, nullptr },
-       { "getCutoutInfo", nullptr, CreateDefaultDisplayCutoutInfo, nullptr, nullptr, nullptr, napi_default, nullptr },
-       { "registerDisplayChange", nullptr, RegisterDisplayChangeListener, nullptr, nullptr, nullptr,
-           napi_default, nullptr },
-       { "unregisterDisplayChange", nullptr, UnregisterDisplayChangeListener, nullptr, nullptr, nullptr,
-           napi_default, nullptr },
-       { "checkIsFoldDevice", nullptr, IsFoldable, nullptr, nullptr, nullptr, napi_default, nullptr },
-       { "registerFoldDisplayModeChange", nullptr, RegisterFoldDisplayModeChangeListener, nullptr, nullptr, nullptr,
-           napi_default, nullptr },
-       { "unregisterFoldDisplayModeChange", nullptr, UnregisterFoldDisplayModeChangeListener, nullptr, nullptr,
-           nullptr, napi_default, nullptr },
+        {"getDisplayRotation", nullptr, GetDefaultDisplayRotation, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"getCutoutInfo", nullptr, CreateDefaultDisplayCutoutInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"registerDisplayChange", nullptr, RegisterDisplayChangeListener,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"unregisterDisplayChange", nullptr, UnregisterDisplayChangeListener,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"checkIsFoldDevice", nullptr, IsFoldable, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"registerFoldDisplayModeChange", nullptr, RegisterFoldDisplayModeChangeListener,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"unregisterFoldDisplayModeChange", nullptr, UnregisterFoldDisplayModeChangeListener,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

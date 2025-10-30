@@ -149,7 +149,7 @@ struct Index {
         if (cutoutInfo.boundingRects.length > 0) {
           hilog.info(DOMAIN, 'DisplayTest', `cutoutInfo boundingRects: ${JSON.stringify(cutoutInfo.boundingRects)}`);
         } else {
-          hilog.info(DOMAIN, 'DisplayTest', "There is no cutout info on the screen.");
+          hilog.info(DOMAIN, 'DisplayTest', 'There is no cutout info on the screen.');
         }
         // 处理瀑布屏的区域信息
         hilog.info(DOMAIN, 'DisplayTest',
