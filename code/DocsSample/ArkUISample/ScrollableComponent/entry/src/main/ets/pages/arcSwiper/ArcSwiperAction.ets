@@ -18,8 +18,13 @@ import { Decimal } from '@kit.ArkTS';
 import {
   ArcSwiper,
   ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
+  ArcDotIndicator,
+  ArcDirection,
+  ArcSwiperController
 } from '@kit.ArkUI';
+// [StartExclude action]
 import { ComponentCard } from '../../common/Card';
+// [EndExclude action]
 
 @Entry
 @Component
@@ -76,9 +81,9 @@ export struct ArcSwiperAction {
         // [EndExclude action]
       }
       .width('100%')
+      // [StartExclude action]
       .height('100%')
       .padding({ left: 12, right: 12 })
-      // [StartExclude action]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ArcSwiperAction_title'))

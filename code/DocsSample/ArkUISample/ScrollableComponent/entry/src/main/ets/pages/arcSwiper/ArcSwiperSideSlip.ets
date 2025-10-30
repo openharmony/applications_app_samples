@@ -21,7 +21,9 @@ import {
   ArcDirection,
   ArcSwiperController
 } from '@kit.ArkUI';
+// [StartExclude side_slip]
 import { ComponentCard } from '../../common/Card';
+// [EndExclude side_slip]
 
 @Entry
 @Component
@@ -72,9 +74,9 @@ export struct ArcSwiperSideSlip {
         // [EndExclude side_slip]
       }
       .width('100%')
+      // [StartExclude side_slip]
       .height('100%')
       .padding({ left: 12, right: 12 })
-      // [StartExclude side_slip]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ArcSwiperSideSlip_title'))

@@ -75,7 +75,13 @@ export struct SwiperIgnoreComponentSize {
             Column({ space: 20 }) {
               // [Start dot_indicator_space]
               // [Start dot_indicator_bottom]
-              Swiper(this.swiperController1) {
+              Swiper(
+                // [StartExclude dot_indicator_space]
+                // [StartExclude dot_indicator_bottom]
+                this.swiperController1
+                // [EndExclude dot_indicator_bottom]
+                // [EndExclude dot_indicator_space]
+              ) {
                 // [StartExclude dot_indicator_space]
                 // [StartExclude dot_indicator_bottom]
                 LazyForEach(this.data1, (item: string) => {
