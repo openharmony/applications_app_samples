@@ -130,8 +130,8 @@ export struct SpringLoadingPage {
     }
   }
   //[End springLoading_handleSpringLoading]
+  //[Start springLoading_example]
   build() {
-    //[Start springLoading_example]
     Column() {
       //[StartExclude springLoading_example]
       NavDestination(){
