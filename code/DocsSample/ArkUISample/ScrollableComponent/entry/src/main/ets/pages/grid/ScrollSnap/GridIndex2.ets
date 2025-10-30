@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import { router } from '@kit.ArkUI';
 
 @Entry
@@ -86,14 +86,6 @@ struct Index {
         });
       })
 
-      Button('翻页').onClick(() => {
-        router.pushUrl({
-          url: 'pages/grid/ScrollSnap/GridIndex',
-          params: {
-            data1: 'message'
-          }
-        });
-      })
     }
 
   }

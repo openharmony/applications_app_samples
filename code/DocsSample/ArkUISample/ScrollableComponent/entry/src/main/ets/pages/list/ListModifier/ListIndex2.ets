@@ -50,7 +50,6 @@ struct Index {
       snapPagination : 800
     })
 
-
   build() {
     Column() {
       Row() {
@@ -92,14 +91,6 @@ struct Index {
         });
       })
 
-      Button('翻页').onClick(() => {
-        router.pushUrl({
-          url: 'pages/list/ListModifier/ListIndex',
-          params: {
-            data1: 'message'
-          }
-        });
-      })
     }
 
   }
