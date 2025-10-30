@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// [Start Component_List]
 import { curves, AnimatorResult } from '@kit.ArkUI';
 
 // 该接口控制列表项视觉属性
@@ -80,7 +78,8 @@ class DragSortCtrl<T> {
 @Component
 struct ListAutoSortExample {
   @State private arr: Array<number> = [0, 1, 2, 3, 4, 5]; // 列表数据数组
-  @State dragSortCtrl: DragSortCtrl<number> = new DragSortCtrl<number>(this.arr, 120, this.getUIContext()); // 120: 列表项高度间隔
+  @State dragSortCtrl: DragSortCtrl<number> =
+    new DragSortCtrl<number>(this.arr, 120, this.getUIContext()); // 120: 列表项高度间隔
   @State firstListItemGroupCount: number = 3; // 第一个列表项组包含的项目数量
   private listScroll: ListScroller = new ListScroller(); // 列表滚动控制器
   private backAnimator: AnimatorResult | null = null; // 动画控制器
@@ -94,7 +93,8 @@ struct ListAutoSortExample {
           onFinish: () => {
             this.dragSortCtrl.setDragRef(item);
             let length = 120 * (this.arr.indexOf(item)); // 120: 列表项高度间隔
-            this.backAnimator = this.getUIContext()?.createAnimator({ // 创建弹簧动画
+            this.backAnimator = this.getUIContext()?.createAnimator({
+              // 创建弹簧动画
               duration: 1000, // 动画持续时间，单位毫秒
               easing: 'interpolating-spring(0, 1, 150, 24)', // 150: 弹簧刚度，24: 弹簧阻尼
               delay: 0, // 动画延迟时间
@@ -107,19 +107,21 @@ struct ListAutoSortExample {
             this.backAnimator.onFrame = (value) => { // 逐帧回调更新位置
               this.dragSortCtrl.onMove(item, value); // 处理list的移动替换动效
             };
-            this.backAnimator.onFinish = () => {};
+            this.backAnimator.onFinish = () => {
+            };
             this.backAnimator.play(); // 启动动画
           }
         });
-      });
-    }.padding('4vp').justifyContent(FlexAlign.SpaceEvenly); // 4vp: 内边距
+      })
+    }
+    .padding('4vp').justifyContent(FlexAlign.SpaceEvenly) // 4vp: 内边距
   }
 
   @Builder
   header(title: string) {
     Row() {
-      Text(title);
-    };
+      Text(title)
+    }
   }
 
   build() {
@@ -136,7 +138,7 @@ struct ListAutoSortExample {
                     .fontSize(16) // 16: 字体大小
                     .borderRadius(10) // 10: 边框圆角半径
                     .textAlign(TextAlign.Center)
-                    .backgroundColor(0xFFFFFF); // 0xFFFFFF: 白色背景
+                    .backgroundColor(0xFFFFFF) // 0xFFFFFF: 白色背景
                 }
                 .swipeAction({
                   end: this.itemEnd(item, index)
@@ -144,10 +146,11 @@ struct ListAutoSortExample {
                 .clip(true)
                 .attributeModifier(this.dragSortCtrl.getModify(item)) // 动态设置属性修改
                 .borderRadius(10) // 10: 边框圆角半径
-                .margin({ left: 20, right: 20 }); // 20: 左右外边距
+                .margin({ left: 20, right: 20 }) // 20: 左右外边距
               }
-            });
+            })
           }
+
           ListItemGroup({ header: this.header('second ListItemGroup'), space: 20 }) { // 20: 列表项组内间距
             ForEach(this.arr, (item: number, index) => {
               if (index > this.firstListItemGroupCount - 1) { // 1: 索引偏移量
@@ -158,7 +161,7 @@ struct ListAutoSortExample {
                     .fontSize(16) // 16: 字体大小
                     .borderRadius(10) // 10: 边框圆角半径
                     .textAlign(TextAlign.Center)
-                    .backgroundColor(0xFFFFFF); // 0xFFFFFF: 白色背景
+                    .backgroundColor(0xFFFFFF) // 0xFFFFFF: 白色背景
                 }
                 .swipeAction({
                   end: this.itemEnd(item, index)
@@ -166,15 +169,15 @@ struct ListAutoSortExample {
                 .clip(true)
                 .attributeModifier(this.dragSortCtrl.getModify(item))
                 .borderRadius(10) // 10: 边框圆角半径
-                .margin({ left: 20, right: 20 }); // 20: 左右外边距
+                .margin({ left: 20, right: 20 }) // 20: 左右外边距
               }
-            });
+            })
           }
         }
         .padding({ top: 20 }) // 20: 顶部内边距
-        .height('100%');
+        .height('100%')
       }
-    }.backgroundColor(0xDCDCDC); // 0xDCDCDC: 浅灰色背景
+    }
+    .backgroundColor(0xDCDCDC) // 0xDCDCDC: 浅灰色背景
   }
 }
-// [End Component_List]
