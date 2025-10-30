@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/DarkMode_one",
     "pages/DarkMode_two",
+    "pages/DarkMode_three",
     "pages/AllowGeolocation",
     "pages/ClearAllCookiesSync",
     "pages/ConfigCookieSync",
