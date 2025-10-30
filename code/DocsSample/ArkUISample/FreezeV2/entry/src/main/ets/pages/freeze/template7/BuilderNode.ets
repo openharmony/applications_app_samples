@@ -19,10 +19,10 @@ import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 @ObservedV2
 class Params {
   // 单例模式，确保只有一个Params实例
-  static singleton_: Params;
+  public static singleton_: Params;
 
   // 获取Params实例的方法
-  static instance() {
+  public static instance() {
     if (!Params.singleton_) {
       Params.singleton_ = new Params(0);
     }
