@@ -38,22 +38,22 @@ struct Index {
     if (this.showNative) {
       // [EndExclude get_content]
       // 传递NodeContent对象用于Native创建组件的挂载显示
-      nativeNode?.createNativeRoot(this.rootSlot)
+      nativeNode?.createNativeRoot(this.rootSlot);
       // [End get_content]
     } else {
       // 销毁NativeModule组件
-      nativeNode.destroyNativeRoot()
+      nativeNode.destroyNativeRoot();
     }
   }
 
   build() {
     Column() {
       Button(this.showNative ? 'Hide Native UI Animate' : 'Show Native UI Animate').onClick(() => {
-        this.showNative = !this.showNative
+        this.showNative = !this.showNative;
       })
       Row() {
         // 将NodeContent和ContentSlot占位组件绑定。
-        ContentSlot(this.rootSlot)
+        ContentSlot(this.rootSlot);
       }.layoutWeight(1)
     }
     .width('100%')
