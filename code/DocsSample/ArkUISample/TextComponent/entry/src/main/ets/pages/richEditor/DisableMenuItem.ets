@@ -58,7 +58,7 @@ export struct DisableMenuItem {
               onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
                 return false;
               }
-            });
+            })
           // [StartExclude richEditor_disableMenu]
         }
       }

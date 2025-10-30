@@ -39,8 +39,8 @@ function builderTopText(params: Params) {
     .height(200)
     .padding(5)
     .backgroundColor('#F7F7F7')
-    .alignContent(Alignment.Top);
-  }.offset(params.offset);
+    .alignContent(Alignment.Top)
+  }.offset(params.offset)
 }
 
 @Builder
@@ -55,8 +55,8 @@ function builderNormalText(params: Params) {
     .height(400)
     .padding(5)
     .backgroundColor('#D5D5D5')
-    .alignContent(Alignment.Top);
-  }.offset(params.offset);
+    .alignContent(Alignment.Top)
+  }.offset(params.offset)
 }
 
 @Entry
@@ -84,7 +84,7 @@ export struct OverlayManagerDemo3 {
               );
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100000));
-            });
+            })
           Button($r('app.string.Demo3_normalDialogButton'))
             .onClick(() => {
               let componentContent = new ComponentContent(
@@ -93,19 +93,19 @@ export struct OverlayManagerDemo3 {
               );
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(0));
-            });
+            })
           Button($r('app.string.Demo3_removeDialogButton')).onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray.splice(this.arrayIndex, 1);
               this.overlayManager.removeComponentContent(componentContent.pop());
             }
-          });
-        }.width('100%');
+          })
+        }.width('100%')
       }
       // [StartExclude OverlayManager_Demo3]
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.OverlayManager_demo3_title'));
+    .title($r('app.string.OverlayManager_demo3_title'))
     // [EndExclude OverlayManager_Demo3]
   }
 }
