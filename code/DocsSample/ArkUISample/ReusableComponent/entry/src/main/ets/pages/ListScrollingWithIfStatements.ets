@@ -14,7 +14,7 @@
  */
 
 // [Start list_scrolling_with_if_statements]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_ReusableComponent]';
 const DOMAIN = 0xF811;
