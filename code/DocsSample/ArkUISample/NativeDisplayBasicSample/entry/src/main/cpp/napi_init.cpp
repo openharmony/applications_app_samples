@@ -194,7 +194,6 @@ EXTERN_C_END
 // [End register_napi_display_function]
 
 // [Start register_display_module]
-[]
 static napi_module displayModule = {
     .nm_version = 1,
     .nm_flags = 0,
