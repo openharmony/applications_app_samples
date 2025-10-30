@@ -72,7 +72,8 @@ struct MenusThreeResource {
       }
       .menus([toolTmp, toolTmp, toolTmp])
       // [End NavigationMenuThreeResource]
-      .title('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      .title($r('app.string.mainTitle'))
       .mode(NavigationMode.Split)
       .navDestination(this.pageMap)
     }
@@ -94,7 +95,8 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop();
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -112,7 +114,8 @@ export struct pageTwoTmp {
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop();
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -130,7 +133,8 @@ export struct pageThreeTmp {
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop();
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }

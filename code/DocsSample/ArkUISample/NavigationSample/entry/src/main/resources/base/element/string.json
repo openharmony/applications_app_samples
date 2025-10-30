@@ -179,10 +179,33 @@
     }, {
       "name": "ToPage",
       "value": "跳转目的页"
-    }
-  , {
+    }, {
       "name": "uiObserverCallbackFunc",
       "value": "uiObserver.on('navDestinationSwitch')"
+    }, {
+      "name": "mainTitle",
+      "value": "主标题"
+    }, {
+      "name": "returnValue",
+      "value": "返回值"
+    }, {
+      "name": "enterKeyWordsToSearch",
+      "value": "输入关键字搜索"
+    }, {
+      "name": "detailsPageParameters",
+      "value": "详情页面参数"
+    }, {
+      "name": "settings",
+      "value": "设置"
+    }, {
+      "name": "settingPage",
+      "value": "设置页面"
+    }, {
+      "name": "onPage",
+      "value": "所属页面"
+    }, {
+      "name": "onPageName",
+      "value": "所属页面Name:"
     }
   ]
 }

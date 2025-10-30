@@ -72,7 +72,8 @@ export struct PageTwo {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, '页面设置参数');
+              // $r('app.string.detailsPageParameters')需要替换为开发者所需的字符串资源文件
+              this.pathInfos.pushPathByName(`${item}`, $r('app.string.detailsPageParameters'));
             })
           }, (item: string): string => item)
         }

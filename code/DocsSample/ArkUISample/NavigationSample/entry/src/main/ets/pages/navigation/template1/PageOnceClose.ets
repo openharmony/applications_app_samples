@@ -47,7 +47,8 @@ struct MyComponent {
   build() {
     NavDestination() {
       Column() {
-        Text('所属页面')
+        // $r('app.string.ToPage')需要替换为开发者所需的字符串资源文件
+        Text($r('app.string.ToPage'))
           .onClick(()=>{
             // [Start PageOnceClose2]
             this.pageStack.pop(false);

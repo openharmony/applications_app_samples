@@ -29,7 +29,8 @@ struct MyComponent {
     NavDestination() {
       // [EndExclude MyComponent]
       Column() {
-        Text('所属页面Name: ' + this.navDesInfo?.name)
+        // $r('app.string.onPageName')需要替换为开发者所需的字符串资源文件
+        Text($r('app.string.onPageName') + `${this.navDesInfo?.name}`)
       }.width('100%').height('100%')
       // [StartExclude MyComponent]
     }
