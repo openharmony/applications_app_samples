@@ -24,23 +24,23 @@ const driver = Driver.create();
 const BUNDLE = 'Freeze_'
 const TAG = '[Sample_Freeze]';
 const DOMAIN = 0xF811
+const DELAYTIME01 = 1000;
+const DELAYTIME02 = 3000;
 
 let aimComponent : Component
 
 export function FreezeTest() {
   describe('Freeze_FreezeTest', () => {
-
     beforeAll(async () => {
       await delegator.startAbility({
         bundleName: 'com.samples.freezev2',
         abilityName: 'EntryAbility'
       });
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME02);
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label"))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
     })
-
     afterEach(async () => {
       aimComponent = await driver.findComponent(ON.text('Freezev2'));
       do {
@@ -61,17 +61,16 @@ export function FreezeTest() {
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_001_begin');
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label1"))));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('changeBookName'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('go to next page'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('Back'));
       await aimComponent.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME02);
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_001_end');
     })
 
@@ -87,17 +86,16 @@ export function FreezeTest() {
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_002_begin');
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label2"))));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('change message'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('tab1'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('tab0'));
       await aimComponent.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME02);
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_002_end');
     })
 
@@ -113,17 +111,16 @@ export function FreezeTest() {
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_003_begin');
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label3"))));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('Next Page'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('change message'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('Back Page'));
       await aimComponent.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME02);
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_003_end');
     })
 
@@ -139,14 +136,13 @@ export function FreezeTest() {
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_004_begin');
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label4"))));
       await aimComponent.click();
-      await driver.delayMs(1000);
-
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('Reduce length to 5'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('Change bgColor'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_004_end');
     })
 
@@ -161,14 +157,14 @@ export function FreezeTest() {
     it(BUNDLE + 'FreezeTest_005', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_005_begin');
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label5"))));
-
-      await driver.delayMs(1000);
+      await aimComponent.click();
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('Go to next page'));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       aimComponent = await driver.findComponent(ON.text('Back'));
       await aimComponent.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME02);
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_005_end');
     })
 
@@ -183,11 +179,42 @@ export function FreezeTest() {
     it(BUNDLE + 'FreezeTest_006', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_006_begin');
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label6"))));
-
-      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r('change BookName'))));
       await aimComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
+      aimComponent = await driver.findComponent(ON.text('Next Page'));
+      await aimComponent.click();
+      await driver.delayMs(DELAYTIME01);
+      aimComponent = await driver.findComponent(ON.text('Next Page'));
+      await aimComponent.click();
+      await driver.delayMs(DELAYTIME01);
+      aimComponent = await driver.findComponent(ON.text('Back Page'));
+      await aimComponent.click();
+      await driver.delayMs(DELAYTIME01);
       hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_006_end');
+    })
+    /*
+    * @tc.number: Animation_FreezeTest_007
+    * @tc.name: Custom Component Freeze Functionality
+    * @tc.desc: Custom Component Freeze Functionality
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level Level 1
+    */
+    it(BUNDLE + 'FreezeTest_007', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_007_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.freeze_to_label7"))));
+      await aimComponent.click();
+      await driver.delayMs(DELAYTIME01);
+      aimComponent = await driver.findComponent(ON.text('change'));
+      await aimComponent.click();
+      await driver.delayMs(DELAYTIME01);
+      aimComponent = await driver.findComponent(ON.text('tab1'));
+      await aimComponent.click();
+      await driver.delayMs(DELAYTIME01);
+      aimComponent = await driver.findComponent(ON.text('change'));
+      await aimComponent.click();
+      await driver.delayMs(DELAYTIME01);
+      hilog.info(DOMAIN, TAG, 'Animation_FreezeTest_007_end');
     })
   })
 }
