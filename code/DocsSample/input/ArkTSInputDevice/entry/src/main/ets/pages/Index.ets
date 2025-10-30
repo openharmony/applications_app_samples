@@ -79,14 +79,14 @@ struct Index {
                 hilog.info(DOMAIN, 'InputDevice', `Device event info: %{public}s`, JSON.stringify(data));
                 inputDevice.getKeyboardType(data.deviceId).then((type) => {
                   hilog.info(DOMAIN, 'InputDevice', 'The keyboard type is: %{public}d', type);
-                  if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
+                  if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type === 'add') {
                     // 物理键盘已插入
                     this.isPhysicalKeyboardExist = true;
                     this.keyBoards.set(data.deviceId, type);
                   }
                 });
-                if (this.keyBoards.get(data.deviceId) == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD &&
-                  data.type == 'remove') {
+                if (this.keyBoards.get(data.deviceId) === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD &&
+                  data.type === 'remove') {
                   // 物理键盘已拔掉
                   this.isPhysicalKeyboardExist = false;
                   this.keyBoards.delete(data.deviceId);
