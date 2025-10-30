@@ -15,8 +15,8 @@
 
 // [Start page_showAlert1]
 import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End page_showAlert1]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xF811
 const TAG = '[Sample_ArkTSRouter]';

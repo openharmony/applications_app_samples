@@ -25,9 +25,9 @@ struct Home {
     }
   }
 
+  // [StartExclude home_router]
   // ...
 
-  // [StartExclude home_router]
   build() {
 
   }

@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { DOMAIN, TAG } from '../../common/Common';
+// [Start jump_click]
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  // [Start jump_click]
   // 在Home页面中
   onJumpClick(): void {
     this.getUIContext().getRouter().pushUrl({
@@ -32,14 +32,12 @@ struct Index {
       hilog.info(DOMAIN, TAG,'Invoke pushUrl succeeded.');
     });
   }
-  // [End jump_click]
-
-  @State message: string = 'Home Page';
 
   build() {
+    // [StartExclude jump_click]
     Row() {
       Column() {
-        Text(this.message)
+        Text('Home Page')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button('Jump to Detail', { stateEffect: true, type: ButtonType.Capsule })
@@ -51,5 +49,7 @@ struct Index {
           })
       }.width('100%')
     }.height('100%')
+    // [EndExclude jump_click]
   }
 }
+// [End jump_click]
