@@ -2,9 +2,9 @@
 
 ### 介绍
 
-应用通过`http.HttpInterceptorChain()`创建拦截器链，通过`addChain()`方法将需要的拦截器加入到链中，通过`apply()`将http请求与拦截器链绑定，最后通过`httpRequest.request(url)`发送请求。本项目的构建依据[HTTP数据请求](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/http-request.md)示例代码，构建了一个HTTP数据请求拦截器的示例应用，它实现了通过按钮实现http添加拦截器的开发步骤功能，使用了[@ohos.net.http](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)接口。
+应用通过`http.HttpInterceptorChain()`创建拦截器链，使用`addChain()`方法将需要的拦截器加入到链中，使用`apply()`方法将http请求与拦截器链绑定，最后通过`httpRequest.request(url)`发送请求。本项目的构建依据[HTTP数据请求](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/http-request.md)示例代码，构建了一个HTTP数据请求拦截器的示例应用，它实现了通过按钮实现http添加拦截器的开发步骤功能，使用了[@ohos.net.http](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)接口。
 
-**注意：**本示例需要用户输入一个实际的URL，方能获得通过的结果。
+**注意**：本示例需要用户输入一个实际的URL，方能获得通过的结果。
 
 ### 效果预览
 
@@ -13,11 +13,11 @@
 | <img src="screenshots/HTTP_Request.jpg" width="300" /> | 
 
 
-使用说明
+**使用说明**
 
 1. 点击 "正常流程请求" 按钮，发送一个请求到 HTTP_URL 并显示测试结果。
 
-   注1：日志输出使用 `console.log` 进行调试，可以查看 HTTP 请求命中拦截器是否成功，
+   注1：日志输出使用 `hilog.info` 进行调试，可以查看 HTTP 请求命中拦截器是否成功，
    - 如果成功，日志打印请求命中拦截器的的详细信息，包括请求头、响应数据、状态码等。
    - 如果失败，日志打印错误状态码和错误信息。
 
