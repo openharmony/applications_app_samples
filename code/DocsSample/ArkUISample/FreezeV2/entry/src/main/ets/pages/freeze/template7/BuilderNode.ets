@@ -31,7 +31,7 @@ class Params {
 
   // 使用@Trace装饰器装饰message属性，以便跟踪其变化
   @Trace message: string = 'Hello';
-  index: number = 0;
+  public index: number = 0;
 
   constructor(index: number) {
     this.index = index;
