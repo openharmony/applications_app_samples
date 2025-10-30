@@ -36,26 +36,28 @@ export default function IndexTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(DOMAIN,'get top ability','get top ability');
+      hilog.info(DOMAIN, 'get top ability', 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811,'testTag','%{public}s','inheritFreezeTest beforeEach start');
+      hilog.info(0xF811, 'testTag', '%{public}s', 'inheritFreezeTest beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/ContextPage',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811,'testTag','%{public}s','get inheritFreezeOptionsPage state pages:' + JSON.stringify(pages));
+        hilog.info(0xF811, 'testTag', '%{public}s',
+          'get inheritFreezeOptionsPage state pages:' + JSON.stringify(pages));
         if (('ContextPage' != pages.name)) {
-          hilog.info(0xF811,'testTag','%{public}s','get inheritFreezeOptionsPage pages.name:' + JSON.stringify(pages.name));
+          hilog.info(0xF811, 'testTag', '%{public}s',
+            'get inheritFreezeOptionsPage pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(0xF811, 'testTag', '%{public}s','push inheritFreezeOptionsPage page error:' + err);
+        hilog.error(0xF811, 'testTag', '%{public}s', 'push inheritFreezeOptionsPage page error:' + err);
       }
-      hilog.info(0xF811,'testTag','%{public}s','inheritFreezeOptionsPage beforeEach end');
+      hilog.info(0xF811, 'testTag', '%{public}s', 'inheritFreezeOptionsPage beforeEach end');
     });
 
     /*
@@ -68,11 +70,11 @@ export default function IndexTest() {
      */
 
     it('IndexTest_01', 0, async (done: Function) => {
-      hilog.info(DOMAIN,'uitest: IndexTest_01 begin','uitest: IndexTest_01 begin');
+      hilog.info(DOMAIN, 'uitest: IndexTest_01 begin', 'uitest: IndexTest_01 begin');
       let driver = Driver.create();
       let componentButton = await driver.findComponent(ON.text('getContext'));
       await componentButton.click();
-      hilog.info(DOMAIN,'uitest: already click','uitest: already click');
+      hilog.info(DOMAIN, 'uitest: already click', 'uitest: already click');
       await driver.delayMs(2000);
       done();
     })

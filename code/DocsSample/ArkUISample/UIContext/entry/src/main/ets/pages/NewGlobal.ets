@@ -31,11 +31,12 @@ struct Index {
         .onClick(() => {
           let uiContext = this.getUIContext();
           let pxValue = uiContext.vp2px(20);
-          hilog.info(DOMAIN,'testTag',`20vp equals to ${pxValue}px`);
+          hilog.info(DOMAIN, 'testTag', `20vp equals to ${pxValue}px`);
         })
     }
     .height('100%')
     .width('100%')
   }
 }
+
 // [End Main_NewGlobal]
