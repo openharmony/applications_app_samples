@@ -16,7 +16,7 @@
 // [Start module_start]
 {
   "module": {
-    // [StartExclude exclude_module]
+    // [StartExclude module_start]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -27,7 +27,7 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    // [EndExclude  exclude_module]
+    // [EndExclude  module_start]
     "abilities": [
       {
         "name": "EntryAbility", // UIAbility组件的名称
@@ -37,7 +37,7 @@
         "label": "$string:EntryAbility_label", // UIAbility组件的标签
         "startWindowIcon": "$media:startIcon", // UIAbility组件启动页面图标资源文件的索引
         "startWindowBackground": "$color:start_window_background", // UIAbility组件启动页面背景颜色资源文件的索引
-        // [StartExclude exclude_abilities]
+        // [StartExclude module_start]
         "exported": true,
         "skills": [
           {
@@ -49,10 +49,10 @@
             ]
           }
         ]
-        // [EndExclude exclude_abilities]
+        // [EndExclude module_start]
       }
     ],
-    // [StartExclude exclude_abilities]
+    // [StartExclude module_start]
     "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
@@ -67,7 +67,7 @@
         ],
       }
     ]
-    // [EndExclude exclude_abilities]
+    // [EndExclude module_start]
   }
 }
 // [End module_start]

@@ -380,10 +380,10 @@ struct event7 {
               })
             })
             .width(300)
-            .height(50);
+            .height(50)
           RichEditor(this.infoShowOptions)
             .width(300)
-            .height(70);
+            .height(70)
             // [End richEditor_eventCopy]
         }
       }

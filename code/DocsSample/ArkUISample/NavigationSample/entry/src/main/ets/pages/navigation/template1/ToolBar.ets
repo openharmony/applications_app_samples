@@ -43,7 +43,7 @@ struct ToolBar {
     } else if (name === 'NavDestinationTitle3') {
       pageThreeTmp();
     }
-  };
+  }
 
   build() {
     Column() {

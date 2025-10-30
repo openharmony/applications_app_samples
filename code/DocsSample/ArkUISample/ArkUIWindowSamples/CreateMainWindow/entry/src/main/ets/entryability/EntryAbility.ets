@@ -14,7 +14,7 @@
  */
 
 // [Start create_main_window]
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { UIAbility} from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import hilog from '@ohos.hilog';

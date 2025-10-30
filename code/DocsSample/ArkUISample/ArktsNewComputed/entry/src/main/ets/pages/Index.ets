@@ -16,7 +16,7 @@
 import { LengthMetrics } from '@kit.ArkUI';
 import { RoutableCard } from '../common/Card';
 import { Route } from '../common/Route';
-import resource from '../common/resource';
+import resource from '../common/Resource';
 import { CustomComponentUse } from './CustomComponentUse';
 import { ObservedV2ClassUser } from './ObservedV2ClassUser';
 import { ComputingPropertyResolution } from './ComputingPropertyResolution';

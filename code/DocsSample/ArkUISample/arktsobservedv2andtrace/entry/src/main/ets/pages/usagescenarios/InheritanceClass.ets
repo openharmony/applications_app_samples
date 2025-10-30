@@ -18,7 +18,6 @@ const TAG = 'arktsobservedv2andtrace';
 // [Start Inheritance_Class]
 @ObservedV2
 class GrandFather {
-  // The 'age' property is decorated with @Trace, so changes to its value will trigger UI updates
   @Trace public age: number = 0;
 
   constructor(age: number) {
@@ -56,7 +55,7 @@ struct InheritanceClass {
     hilog.info(DOMAIN, TAG,`id: ${id} renderTimes: ${this.renderTimes}`);
     this.renderTimes++;
     return 40;
-  };
+  }
 
   build() {
     Row() {

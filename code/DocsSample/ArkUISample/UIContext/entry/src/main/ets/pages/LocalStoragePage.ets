@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start Main_LocalStoragePage]
+// pages/LocalStoragePage
 @Entry({useSharedStorage: true})
 @Component
 struct LocalStoragePage {
@@ -31,7 +32,7 @@ struct LocalStoragePage {
           let uiContext = this.getUIContext();
           let storage = uiContext.getSharedLocalStorage();
           if (storage) {
-            storage.setOrCreate('message', 'onClick is called.');
+            storage.setOrCreate('message','onClick is called.');
             this.message = 'LocalStoragePageHelloWorld';
           }
         })

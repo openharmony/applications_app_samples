@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const DOMAIN = 0x0000;
+
 
 export default function isDisposedPageTest() {
   describe('isDisposedPageTest', () => {
@@ -36,38 +36,47 @@ export default function isDisposedPageTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xF811, 'testTag', '%{public}s','get top ability');
+      hilog.info(0xF811,'testTag','%{public}s','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811, 'testTag', '%{public}s','isDisposedPageTest beforeEach start');
+      hilog.info(0xF811,'testTag','%{public}s','isDisposedPageTest beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/IsDisposedPage',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811, 'testTag', '%{public}s','get isDisposedPage state pages:' + JSON.stringify(pages));
-        if (!('isDisposedPage' == pages.name)) {
-          hilog.info(0xF811, 'testTag', '%{public}s','get isDisposedPage pages.name:' + JSON.stringify(pages.name));
+        hilog.info(0xF811,'testTag','%{public}s','get IsDisposedPage state pages:' + JSON.stringify(pages));
+        if (('IsDisposedPage' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get IsDisposedPage pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'testTag', '%{public}s','push isDisposedPage page error:' + err);
+        hilog.error(0xF811,'testTag','%{public}s','push isDisposedPage page error:' + err);
       }
-      hilog.info(0xF811, 'testTag', '%{public}s','isDisposedPage beforeEach end');
+      hilog.info(0xF811,'testTag','%{public}s','isDisposedPage beforeEach end');
     });
 
+    /*
+     * @tc.number     : IsDisposedPage_01
+     * @tc.name       : isDisposedPageTest
+     * @tc.desc       : 测试使用isDisposed接口查询当前BuilderNode对象是否已解除与后端实体节点的引用关系
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('isDisposedPageTest', 0, async (done: Function) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: isDisposedPageTest begin');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: isDisposedPageTest begin');
       let driver = Driver.create();
       let componentButton1 = await driver.findComponent(ON.text('BuilderNode isDisposed'));
       await componentButton1.click()
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       let componentButton2 = await driver.findComponent(ON.text('BuilderNode dispose'));
       await componentButton2.click()
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

@@ -60,7 +60,7 @@ struct Index {
 @Component
 struct Child {
   // Child通过BuilderNode上树后，@Consume和Index中的@Provide建立连接时发现类型不一致，抛出运行时错误
-  @Consume message: string = '';
+  @Consume message: number = 0;
 
   build() {
     Column() {

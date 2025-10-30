@@ -14,7 +14,7 @@
  */
 
 // [Start reusable_for_water_flow_usage_scenario]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_ReusableComponent]';
 const DOMAIN = 0xF811;

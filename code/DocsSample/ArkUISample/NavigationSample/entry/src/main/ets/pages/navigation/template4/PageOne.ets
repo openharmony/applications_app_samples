@@ -17,8 +17,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
-  PageOne()
-};
+  PageOne();
+}
 
 @Component
 export struct PageOne {

@@ -18,7 +18,7 @@ PersistentStorage.persistProp('aProp', 48);
 
 @Entry
 @Component
-struct testPageTow {
+struct TestPageTwo {
   @State message: string = 'Hello World';
   @StorageLink('aProp') aProp: number = 50;
 

@@ -12,10 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// 使用NodeController的Page页。
-// Index.ets
 // [Start Main_ArkWebPage]
+// 使用NodeController的Page页。
+// pages/ArkWebPage.ets
 import { createNWeb, getNWeb } from '../Common/CommonIndex';
 
 @Entry

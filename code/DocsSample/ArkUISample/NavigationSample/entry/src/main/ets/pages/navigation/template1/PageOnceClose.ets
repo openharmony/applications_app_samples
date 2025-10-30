@@ -21,8 +21,8 @@ struct PageOnceClose {
   // [End PageOnceClose]
   @Builder
   PageBuilder(name: string) {
-    MyComponent()
-  };
+    MyComponent();
+  }
 
   build() {
     Column() {

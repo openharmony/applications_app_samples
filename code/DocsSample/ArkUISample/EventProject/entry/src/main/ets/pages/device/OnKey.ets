@@ -23,9 +23,10 @@ export struct OnKey {
   @State columnType: string = '';
 
   build() {
+    // [StartExclude listen_response_key_event]
     NavDestination() {
       Column({ space: 12 }) {
-
+        // [EndExclude listen_response_key_event]
         Column() {
           Button('onKeyEvent')
             .defaultFocus(true)
@@ -70,9 +71,11 @@ export struct OnKey {
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude listen_response_key_event]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Device_OnKey_title'))
+    // [EndExclude listen_response_key_event]
   }
 }
 // [End listen_response_key_event]

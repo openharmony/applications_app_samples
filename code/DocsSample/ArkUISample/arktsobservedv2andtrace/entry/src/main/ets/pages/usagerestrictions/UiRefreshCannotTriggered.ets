@@ -15,16 +15,13 @@
 // [Start UiRefresh_CannotTriggered]
 @ObservedV2
 class TriggeredPerson {
-  // Public property to store the unique identifier
   public id: number = 0;
-  // Property 'age' decorated with @Trace to trigger UI updates when its value changes
   @Trace public age: number = 8;
 };
 @Entry
 @ComponentV2
 struct UiRefreshCannotTriggered {
   person: TriggeredPerson = new TriggeredPerson();
-
   build() {
     Column() {
       // age被@Trace装饰，用在UI中可以触发UI刷新

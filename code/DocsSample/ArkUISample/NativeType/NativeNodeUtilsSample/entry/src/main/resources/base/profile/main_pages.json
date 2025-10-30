@@ -1,7 +1,6 @@
 {
   "src": [
-    "pages/drawPage/DrawPage",
-    "pages/nativeUI/NativeUIPage",
+    "pages/Entry",
     "pages/Index",
     "pages/CustomProperty",
     "pages/NodeAdapter"

@@ -42,14 +42,14 @@ struct ParticleExample6 {
         endAngle: 0 // 圆环的结束角度
       }
     }
-  ];
+  ]
   @State region: ParticleAnnulusRegion = {
     center:{x:this.centerX, y: this.centerY},
     outerRadius: this.outRadius,
     innerRadius: this.inRadius,
     startAngle: -90,
     endAngle: 0
-  };
+  }
 
   aboutToDisappear(): void {
     // 页面销毁时清除计时器

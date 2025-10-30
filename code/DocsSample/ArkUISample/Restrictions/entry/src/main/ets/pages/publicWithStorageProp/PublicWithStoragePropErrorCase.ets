@@ -16,18 +16,19 @@
 // [Start PublicWithStorageProp_ErrorCase]
 @Entry
 @Component
-struct PWPErrorAccessRestrictions  {
+struct PublicErrorAccessRestrictions {
   @Provide consumeValue: string = 'Hello';
+
   build() {
     Column() {
-      PWPErrorComponentChild();
+      PublicErrorComponentChild()
     }
     .width('100%');
   }
 }
 
 @Component
-struct PWPErrorComponentChild  {
+struct PublicErrorComponentChild {
   // 此处使用public修饰符时会出现告警日志
   @LocalStorageProp('sessionLocalProp') public localPropValue: string = 'Hello';
   // 此处使用public修饰符时会出现告警日志
@@ -44,7 +45,8 @@ struct PWPErrorComponentChild  {
       Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
-    };
+    }
   }
 }
+
 // [End PublicWithStorageProp_ErrorCase]

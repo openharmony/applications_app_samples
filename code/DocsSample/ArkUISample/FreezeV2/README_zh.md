@@ -35,12 +35,15 @@ entry/src/main/ets/
 |   |   |---template3                  
 |   |   |   |---MyNavigationTestStack.ets            // 示例3（Navigation）
 |   |   |---template4       
-|   |   |   |---RepeatVirtualScrollFreeze.ets           // 示例4（Repeat）
+|   |   |   |---RepeatVirtualScrollFreeze.ets           // 示例4（Repeat,开启组件冻结）
+|   |   |   |---PageB.ets                             // 示例4（Repeat,关闭组件冻结）
 |   |   |---template5  
 |   |   |   |---PageA.ets                // 示例5（仅子组件开启组件冻结）
-|   |   |   |---PageB.ets
+|   |   |   |---PageB.ets                // 示例5 (Navigation子页面)
 |   |   |---template6                  
 |   |   |   |---MyNavigationTestStack.ets            // 示例6（混用场景）
+|   |   |---template7                  
+|   |   |   |---BuilderNode.ets            // 示例7（限制条件BuilderNode）
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/

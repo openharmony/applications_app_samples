@@ -15,6 +15,7 @@
 
 // [Start dynamic_web_module_manage]
 // 提供动态挂载Web组件能力
+// pages/common.ets
 import { UIContext, NodeController, BuilderNode, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -23,7 +24,7 @@ export const defaultUrl : string = 'www.example.com';
 
 // Data为入参封装类
 class Data{
-  public url: string = '';
+  public url: string = '';	
   public webController: webview.WebviewController | null = null;
 
   constructor(url: string, webController: webview.WebviewController) {

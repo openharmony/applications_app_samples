@@ -1,7 +1,5 @@
 {
   "src": [
-    "pages/Index",
-    "pages/subWindow",
-    "pages/fullScreenWindow"
+    "pages/Index"
   ]
 }

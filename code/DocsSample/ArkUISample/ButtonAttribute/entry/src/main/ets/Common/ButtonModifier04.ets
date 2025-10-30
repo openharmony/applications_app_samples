@@ -13,32 +13,17 @@
  * limitations under the License.
  */
 
-declare interface AttributeModifier<T> {
-
-  applyNormalAttribute?(instance: T): void;
-
-  applyPressedAttribute?(instance: T): void;
-
-  applyFocusedAttribute?(instance: T): void;
-
-  applyDisabledAttribute?(instance: T): void;
-
-  applySelectedAttribute?(instance: T): void;
-
-}
-
-declare class CommonMethod<T> {
-  attributeModifier(modifier: AttributeModifier<T>): T;
-}
 // [Start Common_MyButtonModifier4]
 export class MyButtonModifier4 implements AttributeModifier<ButtonAttribute> {
   applyNormalAttribute(instance: ButtonAttribute): void {
+    // instance为Button的属性对象，设置正常状态下属性值
     instance.backgroundColor('#17A98D')
       .borderColor('#707070')
       .borderWidth(2)
   }
 
   applyPressedAttribute(instance: ButtonAttribute): void {
+    // instance为Button的属性对象，设置按压状态下属性值
     instance.backgroundColor('#2787D9')
       .borderColor('#FFC000')
       .borderWidth(5)

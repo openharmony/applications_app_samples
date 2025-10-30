@@ -182,7 +182,7 @@ struct TextBuilder {
   @Prop @Watch('info') message: number = 0;
 
   info(): void {
-    hilog.info(0xF811, 'testTag', '%{public}s',`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
+    hilog.info(0xF811,'testTag','%{public}s',`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
   }
 
   build() {

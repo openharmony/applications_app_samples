@@ -14,19 +14,19 @@
  */
 
 // [Start soft_keyboard_setmode]
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct KeyboardAvoidExample {
   controller: webview.WebviewController = new webview.WebviewController();
-
   build() {
     Column() {
       Row().height('50%').width('100%').backgroundColor(Color.Gray)
-      Web({ src: $rawfile('SetSKBModeIndex.html'), controller: this.controller })
-        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) //此时ArkWeb组件不会调整任何视口的大小大小
-      Text('I can see the bottom of the page')
+      Web({ src: $rawfile('index.html'),controller: this.controller})
+        .keyboardAvoidMode(WebKeyboardAvoidMode.OVERLAYS_CONTENT) //此时ArkWeb组件不会调整任何视口的大小。
+      Text('I can see the bottom of the page')	
         .width('100%')
         .textAlign(TextAlign.Center)
         .backgroundColor(Color.Pink)

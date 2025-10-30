@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, beforeAll } from '@ohos/hypium';
+import { describe, it, expect, beforeAll, beforeEach } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { Router, router } from '@kit.ArkUI';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -38,6 +39,33 @@ export default function IndexTest() {
       hilog.info(DOMAIN,'get top ability','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
+    beforeEach(() => {
+      hilog.info(0xF811,'testTag','%{public}s','inheritFreezeTest beforeEach start');
+      let options: router.RouterOptions = {
+        url: 'pages/ContextPage',
+      }
+      try {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let pages = routerInstance.getState();
+        hilog.info(0xF811,'testTag','%{public}s','get inheritFreezeOptionsPage state pages:' + JSON.stringify(pages));
+        if (('ContextPage' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get inheritFreezeOptionsPage pages.name:' + JSON.stringify(pages.name));
+          routerInstance.pushUrl(options);
+        }
+      } catch (err) {
+        hilog.error(0xF811, 'testTag', '%{public}s','push inheritFreezeOptionsPage page error:' + err);
+      }
+      hilog.info(0xF811,'testTag','%{public}s','inheritFreezeOptionsPage beforeEach end');
+    });
+
+    /*
+     * @tc.number     : ContextPage_01
+     * @tc.name       : IndexTest_01
+     * @tc.desc       : 测试在单Ability场景中，直接获取Ability的context属性。
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
 
     it('IndexTest_01', 0, async (done: Function) => {
       hilog.info(DOMAIN,'uitest: IndexTest_01 begin','uitest: IndexTest_01 begin');

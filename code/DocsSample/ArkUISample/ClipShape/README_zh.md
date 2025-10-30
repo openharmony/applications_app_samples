@@ -9,8 +9,11 @@
 2.[图片](https://docs.openharmony.cn/pages/v4.1/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md)
 3.[形状裁剪](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md)
 
-### 效果预览
-![](screenshots/device/image1.jpeg)
+| 裁剪圆形                                | 裁剪椭圆形                               | 裁剪矩形                                | 裁剪不规则形状                          |
+|------------------------------------|-------------------------------------|-------------------------------------|------------------------------------|
+| ![](screenshots/device/image1.jpeg) | ![](screenshots/device/image2.jpeg) | ![](screenshots/device/image3.jpeg) |![](screenshots/device/image4.jpeg)
+
+
 
 ### 具体实现
 1. 基本功能与原理
@@ -64,11 +67,11 @@ ClipShape
 │  └─ src
 │     ├─ main
 │     │  ├─ ets
-│     │  │  ├─ Comm 
-│     │  │  │  ├─ ClipShapeExampleA.ets          // 裁剪圆形
-│     │  │  │  ├─ ClipShapeExampleB.ets          // 裁剪椭圆形
-│     │  │  │  ├─ ClipShapeExampleC.ets          // 裁剪矩形
-│     │  │  │  └─ ClipShapeExampleD.ets          // 裁剪不规则形状
+│     │  │  ├─ View 
+│     │  │  │  ├─ ClipShapeExample1.ets          // 裁剪圆形
+│     │  │  │  ├─ ClipShapeExample2.ets          // 裁剪椭圆形
+│     │  │  │  ├─ ClipShapeExample3.ets          // 裁剪矩形
+│     │  │  │  └─ ClipShapeExample4.ets          // 裁剪不规则形状
 │     │  │  ├─ entryability
 │     │  │  │  └─ EntryAbility.ets
 │     │  │  ├─ entrybackupability

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-// ets/pages/Index.ets
 // [Start Main_RouterPage1]
+// ets/pages/RouterPage1.ets
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 import 'ets/pages/RouterPage2';
 
@@ -85,8 +85,6 @@ struct Index {
           .onClick(() => {
             // 改变AppStorage中的状态变量触发Text节点的重新创建
             AppStorage.setOrCreate<boolean>('isShowText', false);
-            // 将BuilderNode从AppStorage中移除
-            AppStorage.delete('textNode');
 
             this.getUIContext().getRouter().replaceNamedRoute({ name: 'pageTwo' });
           })

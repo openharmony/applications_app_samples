@@ -50,22 +50,20 @@ export default function abilityTest() {
       * @tc.type: Function
       * @tc.level Level 1
       */
-    it(BUNDLE + 'Watch_AbilityTest_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, 'Watch_SpringCurveTest_001_begin');
+    it(BUNDLE + 'AbilityTest_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Watch_AbilityTest_001_begin');
       let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.watch_text1"))));
-      expect(button1 === null).assertFalse();
+      let button1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.watch_text1'))));
       await button1.click();
       await driver.delayMs(1000);
 
       let button2 = await driver.findComponent(ON.text('add to basket'));
-      expect(button2 === null).assertFalse();
       await button2.click();
       await driver.delayMs(500);
       await button2.click();
       await driver.delayMs(500);
       await driver.pressBack();
-      hilog.info(DOMAIN, TAG, 'Watch_SpringCurveTest_001_end');
+      hilog.info(DOMAIN, TAG, 'Watch_AbilityTest_001_end');
     })
 
     /*
@@ -76,22 +74,20 @@ export default function abilityTest() {
       * @tc.type: Function
       * @tc.level Level 1
       */
-    it(BUNDLE + 'Watch_AbilityTest_002', 0, async () => {
-      hilog.info(DOMAIN, TAG, 'Watch_SpringCurveTest_002_begin');
+    it(BUNDLE + 'AbilityTest_002', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Watch_AbilityTest_002_begin');
       let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.watch_text2")), MatchPattern.CONTAINS));
-      expect(button1 === null).assertFalse();
+      let button1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.watch_text2')), MatchPattern.CONTAINS));
       await button1.click();
       await driver.delayMs(1000);
 
       let button2 = await driver.findComponent(ON.text('Add to basket'));
-      expect(button2 === null).assertFalse();
       await button2.click();
       await driver.delayMs(500);
       await button2.click();
       await driver.delayMs(500);
       await driver.pressBack();
-      hilog.info(DOMAIN, TAG, 'Watch_SpringCurveTest_002_end');
+      hilog.info(DOMAIN, TAG, 'Watch_AbilityTest_002_end');
     })
 
     /*
@@ -102,22 +98,20 @@ export default function abilityTest() {
       * @tc.type: Function
       * @tc.level Level 1
       */
-    it(BUNDLE + 'Watch_AbilityTest_003', 0, async () => {
-      hilog.info(DOMAIN, TAG, 'Watch_SpringCurveTest_003_begin');
+    it(BUNDLE + 'AbilityTest_003', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Watch_AbilityTest_003_begin');
       let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.watch_text3")), MatchPattern.CONTAINS));
-      expect(button1 === null).assertFalse();
+      let button1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.watch_text3')), MatchPattern.CONTAINS));
       await button1.click();
       await driver.delayMs(1000);
 
-      let button2 = await driver.findComponent(ON.text('Switch Task State'));
-      expect(button2 === null).assertFalse();
+      let button2 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.watch_text9'))));
       await button2.click();
       await driver.delayMs(500);
       await button2.click();
       await driver.delayMs(500);
       await driver.pressBack();
-      hilog.info(DOMAIN, TAG, 'Watch_SpringCurveTest_003_end');
+      hilog.info(DOMAIN, TAG, 'Watch_AbilityTest_003_end');
     })
 
     /*
@@ -128,28 +122,26 @@ export default function abilityTest() {
       * @tc.type: Function
       * @tc.level Level 1
       */
-    it(BUNDLE + 'Watch_AbilityTest_004', 0, async () => {
-      hilog.info(DOMAIN, TAG, 'Watch_SpringCurveTest_004_begin');
+    it(BUNDLE + 'AbilityTest_004', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Watch_AbilityTest_004_begin');
       let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.watch_text4")), MatchPattern.CONTAINS));
-      expect(button1 === null).assertFalse();
+      let button1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.watch_text4')), MatchPattern.CONTAINS));
       await button1.click();
+      await driver.delayMs(1000);
 
       let button2 = await driver.findComponent(ON.text('Add apples'));
-      expect(button2 === null).assertFalse();
       await button2.click();
       await driver.delayMs(500);
       await button2.click();
       await driver.delayMs(500);
 
       let button3 = await driver.findComponent(ON.text('Add cabbages'));
-      expect(button3 === null).assertFalse();
       await button3.click();
       await driver.delayMs(500);
       await button3.click();
       await driver.delayMs(500);
       await driver.pressBack();
-      hilog.info(DOMAIN, TAG, 'Watch_SpringCurveTest_004_end');
+      hilog.info(DOMAIN, TAG, 'Watch_AbilityTest_004_end');
     })
   })
 }

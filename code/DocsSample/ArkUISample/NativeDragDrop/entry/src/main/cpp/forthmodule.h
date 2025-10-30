@@ -193,7 +193,7 @@ void SetDragActionData()
     // 注册拖拽状态监听回调
     OH_ArkUI_DragAction_RegisterStatusListener(action, data, &DragStatusListener);
 }
-// [Start set_dragAction]
+// [End set_dragAction]
 
 // [EndExclude get_dragAction]
 void GetUdmfDataText(ArkUI_DragEvent* dragEvent)

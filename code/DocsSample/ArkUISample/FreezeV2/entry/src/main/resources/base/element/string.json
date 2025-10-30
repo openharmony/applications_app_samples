@@ -30,7 +30,11 @@
     },
     {
       "name": "freeze_to_label4",
-      "value": "示例4（Repeat）"
+      "value": "示例4（开启组件冻结）"
+    },
+    {
+      "name": "freeze_to_label4_B",
+      "value": "示例4（关闭组件冻结）"
     },
     {
       "name": "freeze_to_label5",
@@ -39,6 +43,10 @@
     {
       "name": "freeze_to_label6",
       "value": "示例6（混用场景）"
+    },
+    {
+      "name": "freeze_to_label7",
+      "value": "示例7（限制条件BuilderNode）"
     }
   ]
 }

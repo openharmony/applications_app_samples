@@ -14,9 +14,10 @@
  */
 
 // [Start receive_a_web_component_new_window_event]
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 
-// 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+// 在同一界面有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
 @CustomDialog
 struct NewWebViewComp {
   controller?: CustomDialogController;
@@ -32,6 +33,10 @@ struct NewWebViewComp {
           if (this.controller) {
             this.controller.close();
           }
+        })
+        .onActivateContent(() => {
+          //该Web需要展示到前台，建议应用在这里进行tab或window切换的动作
+          console.log('NewWebViewComp onActivateContent')
         })
     }
   }
@@ -52,16 +57,18 @@ struct WebComponent {
         .allowWindowOpenMethod(true)
         .onWindowNew((event) => {
           if (this.dialogController) {
-            this.dialogController.close();
+            this.dialogController.close()
           }
           let popController: webview.WebviewController = new webview.WebviewController();
           this.dialogController = new CustomDialogController({
-            builder: NewWebViewComp({ webviewController1: popController })
-          });
+            builder: NewWebViewComp({ webviewController1: popController }),
+            // isModal设置为false，防止新窗口被销毁而无法触发onActivateContent回调
+            isModal: false
+          })
           this.dialogController.open();
           // 将新窗口对应WebviewController返回给Web内核。
-          // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
           // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+          // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
           event.handler.setWebController(popController);
         })
     }

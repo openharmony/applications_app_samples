@@ -27,6 +27,46 @@
     {
       "name": "watch_text4",
       "value": "使用changedPropertyName进行不同的逻辑处理"
+    },
+    {
+      "name": "watch_text5",
+      "value": "父组件任务A状态:"
+    },
+    {
+      "name": "watch_text6",
+      "value": "父组件任务B状态:"
+    },
+    {
+      "name": "watch_text7",
+      "value": "已完成"
+    },
+    {
+      "name": "watch_text8",
+      "value": "未完成"
+    },
+    {
+      "name": "watch_text9",
+      "value": "切换任务状态"
+    },
+    {
+      "name": "watch_text10",
+      "value": "子组件任务A状态:"
+    },
+    {
+      "name": "watch_text11",
+      "value": "子组件任务B状态:"
+    },
+    {
+      "name": "watch_text12",
+      "value": "观测到父组件任务属性变化:"
+    },
+    {
+      "name": "watch_text13",
+      "value": "观测到子组件@ObjectLink关联的任务属性变化:"
+    },
+    {
+      "name": "watch_text14",
+      "value": "观测到子组件@Link关联的任务属性变化:"
     }
   ]
 }

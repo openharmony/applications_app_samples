@@ -44,9 +44,15 @@ export default function TodoListTest () {
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 
-    /**
-     * 点击单个任务，测试切换单项任务的完成状态
+    /*
+     * @tc.number     : TodoList_01
+     * @tc.name       : testTask
+     * @tc.desc       : 测试切换单项任务的完成状态
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
      */
+
     it('testTask',0, async (done: Function) => {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testTask begin');
       let driver = Driver.create();
@@ -70,9 +76,15 @@ export default function TodoListTest () {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testTask end');
     })
 
-    /**
-     * 点击全部完成，全部未完成按钮，测试切换全部任务的完成状态
+    /*
+     * @tc.number     : TodoList_02
+     * @tc.name       : testFinishAll_UnfinishAll
+     * @tc.desc       : 测试切换全部任务的完成状态
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
      */
+
     it('testFinishAll_UnfinishAll',0, async (done: Function) => {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testFinishAll_UnfinishAll begin');
       let driver = Driver.create();
@@ -94,9 +106,15 @@ export default function TodoListTest () {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testFinishAll_UnfinishAll end');
     })
 
-    /**
-     * 点击删除添加新任务，测试增删功能
+    /*
+     * @tc.number     : TodoList_03
+     * @tc.name       : testDeleteAddTask
+     * @tc.desc       : 测试增删任务功能
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
      */
+
     it('testDeleteAddTask',0, async (done: Function) => {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testDeleteAddTask begin');
       let driver = Driver.create();
@@ -113,13 +131,20 @@ export default function TodoListTest () {
       await driver.delayMs(1000);
       let newTask = await driver.findComponent(ON.text('test123'));
       expect(newTask === null).assertFalse();
+      await driver.delayMs(2000);
       done();
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testDeleteAddTask end');
     })
 
-    /**
-     * 点击设置按钮，测试切换显示已完成任务功能
+    /*
+     * @tc.number     : TodoList_04
+     * @tc.name       : testSetting
+     * @tc.desc       : 测试切换显示已完成任务功能
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
      */
+
     it('testSetting',0, async (done: Function) => {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testSetting begin');
       let driver = Driver.create();

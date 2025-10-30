@@ -13,12 +13,10 @@
  * limitations under the License.
  */
 // [Start Decoration_Foundation]
-// Variable to generate unique IDs for foundation-related instances
 let foundationNextId: number = 0;
 
 @ObservedV2
 class Arr {
-  // Public property storing the instance's unique identifier
   public id: number = 0;
   @Trace public numberArr: number[] = [];
 

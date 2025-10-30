@@ -57,8 +57,8 @@ struct HttpExample {
       //显示图片
       Image(this.image)
         .height(100)
-        .width(100);
-    };
-  };
+        .width(100)
+    }
+  }
 }
 //  [End multimedia_pixel]

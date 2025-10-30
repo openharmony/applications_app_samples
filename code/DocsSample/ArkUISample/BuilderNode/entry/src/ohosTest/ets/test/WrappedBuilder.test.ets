@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const DOMAIN = 0x0000;
+
 
 export default function WrappedBuilderTest() {
   describe('WrappedBuilderTest', () => {
@@ -36,37 +36,46 @@ export default function WrappedBuilderTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xF811, 'testTag', '%{public}s','get top ability');
+      hilog.info(0xF811,'testTag','%{public}s','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811, 'testTag', '%{public}s','WrappedBuilderTest beforeEach start');
+      hilog.info(0xF811,'testTag','%{public}s','WrappedBuilderTest beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/WrappedBuilder',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811, 'testTag', '%{public}s','get WrappedBuilder state pages:' + JSON.stringify(pages));
-        if (!('WrappedBuilder' == pages.name)) {
-          hilog.info(0xF811, 'testTag', '%{public}s','get WrappedBuilder pages.name:' + JSON.stringify(pages.name));
+        hilog.info(0xF811,'testTag','%{public}s','get WrappedBuilder state pages:' + JSON.stringify(pages));
+        if (('WrappedBuilder' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get WrappedBuilder pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'testTag', '%{public}s','push WrappedBuilder page error:' + err);
+        hilog.error(0xF811,'testTag','%{public}s','push WrappedBuilder page error:' + err);
       }
-      hilog.info(0xF811, 'testTag', '%{public}s','WrappedBuilder beforeEach end');
+      hilog.info(0xF811,'testTag','%{public}s','WrappedBuilder beforeEach end');
     });
 
+    /*
+     * @tc.number     : WrappedBuilder_01
+     * @tc.name       : WrappedBuilderTest_01
+     * @tc.desc       : 测试通过BuilderNode对象的build创建组件树。
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('WrappedBuilderTest_01', 0, async (done: Function) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: WrappedBuilderTest_01 begin');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: WrappedBuilderTest_01 begin');
       let driver = Driver.create();
       let componentButton = await driver.findComponent(ON.text('Update'));
       await componentButton.click();
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       await componentButton.click();
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

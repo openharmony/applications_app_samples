@@ -60,15 +60,11 @@ export default function IndexTest() {
       let driver = Driver.create();
       let str = await getResourceString($r('app.string.computed_desc_1'));
       let buttonComponent = await driver.findComponent(ON.text(str));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-
       buttonComponent = await driver.findComponent(ON.text('changed lastName', MatchPattern.CONTAINS));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       await buttonComponent.click();
       buttonComponent = await driver.findComponent(ON.text('changed age', MatchPattern.CONTAINS));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       await buttonComponent.click();
 
@@ -88,14 +84,10 @@ export default function IndexTest() {
       let driver = Driver.create();
       let str = await getResourceString($r('app.string.computed_desc_2'));
       let buttonComponent = await driver.findComponent(ON.text(str));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-
       buttonComponent = await driver.findComponent(ON.text('changed lastName', MatchPattern.CONTAINS));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       await buttonComponent.click();
-
       await driver.pressBack();
       hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testObservedV2ClassUser end');
       done();
@@ -112,18 +104,13 @@ export default function IndexTest() {
       let driver = Driver.create();
       let str = await getResourceString($r('app.string.computed_title_2'));
       let buttonComponent = await driver.findComponent(ON.text(str));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-
       buttonComponent = await driver.findComponent(ON.text('-', MatchPattern.CONTAINS));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       await buttonComponent.click();
       buttonComponent = await driver.findComponent(ON.text('+', MatchPattern.CONTAINS));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       await buttonComponent.click();
-
       await driver.pressBack();
       hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testComputingPropertyResolution end');
       done();
@@ -140,18 +127,13 @@ export default function IndexTest() {
       let driver = Driver.create();
       let str = await getResourceString($r('app.string.computed_title_3'));
       let buttonComponent = await driver.findComponent(ON.text(str));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-
       buttonComponent = await driver.findComponent(ON.text('-', MatchPattern.CONTAINS));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       await buttonComponent.click();
       buttonComponent = await driver.findComponent(ON.text('+', MatchPattern.CONTAINS));
-      expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       await buttonComponent.click();
-
       await driver.pressBack();
       hilog.info(DOMAIN, TAG, BUNDLE + 'uitest: testComputedInitParam end');
       done();

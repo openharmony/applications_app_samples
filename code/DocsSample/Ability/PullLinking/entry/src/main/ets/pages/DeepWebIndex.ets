@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start quick_start0]
+// index.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';

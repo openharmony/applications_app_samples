@@ -20,13 +20,16 @@ import { NodeContent } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
+  // 初始化NodeContent对象。
   private rootSlot:NodeContent = new NodeContent();
   @State @Watch('changeNativeFlag') showNative: boolean = false;
 
   changeNativeFlag(): void {
     if (this.showNative) {
+      // 传递NodeContent对象用于Native创建组件的挂载显示
       nativeNode.createNativeRoot(this.rootSlot)
     } else {
+      // 销毁NativeModule组件
       nativeNode.destroyNativeRoot()
     }
   }
@@ -39,6 +42,7 @@ struct Index {
       })
         .id('btn')
       Row() {
+        // 将NodeContent和ContentSlot占位组件绑定
         ContentSlot(this.rootSlot)
       }.layoutWeight(1)
     }

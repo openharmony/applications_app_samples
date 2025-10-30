@@ -43,9 +43,9 @@ function builderOverlay(params: Params) {
           },
           cancel: () => {}
         }
-      );
-    });
-  }.focusable(false).width('100%').height('100%').hitTestBehavior(HitTestMode.Transparent);
+      )
+    })
+  }.focusable(false).width('100%').height('100%').hitTestBehavior(HitTestMode.Transparent)
 }
 
 @Entry
@@ -80,7 +80,7 @@ export struct OverlayManagerDemo2 {
 
       }
       .width('100%')
-      .height('100%');
+      .height('100%')
     // [StartExclude OverlayManager_Demo2]
     }
     .backgroundColor('#f1f2f3')

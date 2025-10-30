@@ -19,7 +19,7 @@
 @Entry
 // [EndExclude sandbox]
 @Component
-export struct sandbox {
+export struct Sandbox {
   private controller: VideoController = new VideoController();
   private videoSrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4';
 

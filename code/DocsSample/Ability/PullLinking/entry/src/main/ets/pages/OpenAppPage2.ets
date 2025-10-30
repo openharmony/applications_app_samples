@@ -26,15 +26,11 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Component
 struct Page_UIAbilityComponentsInteractive {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  public canOpen: boolean = false;
   aboutToAppear() {
 // [EndExclude quick_start0]
     try {
       let link = 'app1Scheme://test.example.com/home';
       let canOpen = bundleManager.canOpenLink(link);
-      // [StartExclude quick_start0]
-      this.canOpen = canOpen;
-      // [EndExclude quick_start0]
       hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(canOpen));
     } catch (err) {
       let message = (err as BusinessError).message;

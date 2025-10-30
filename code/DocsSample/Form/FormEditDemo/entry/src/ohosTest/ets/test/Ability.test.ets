@@ -20,7 +20,7 @@ import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_FormEditDemo]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'FormEditDemo_';
+const BUNDLE = 'FormEditDemo';
 const DELAYTIME01 = 500; // 等待时长
 const DELAYTIME02 = 2000; // 等待时长
 

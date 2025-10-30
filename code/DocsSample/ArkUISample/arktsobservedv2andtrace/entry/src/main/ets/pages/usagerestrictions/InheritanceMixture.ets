@@ -21,7 +21,6 @@ class Job {
 @ObservedV2
 class InheritanceMixtureInfo {
   @Trace public name: string = 'Tom';
-  // Decorate the 'age' property with @Trace to enable its changes to trigger UI updates
   @Trace public age: number = 25;
   public job: Job = new Job();
 };

@@ -126,6 +126,6 @@ struct DrawableDescriptorType {
     .height('100%')
     .width('100%')
     .margin(50)
-  };
+  }
 }
 //  [End drawable_descriptor]

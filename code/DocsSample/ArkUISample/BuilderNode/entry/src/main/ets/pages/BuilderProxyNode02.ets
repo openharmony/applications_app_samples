@@ -27,7 +27,7 @@ struct BlueRowComponent {
       .backgroundColor(0xFF2787D9)
       .onTouch((event: TouchEvent) => {
         // 触摸绿色Column，蓝色Row的触摸事件触发
-        hilog.info(0xF811, 'testTag', '%{public}s','blue touched: ' + event.type);
+        hilog.info(0xF811,'testTag','%{public}s','blue touched: ' + event.type);
       })
     }
   }
@@ -38,13 +38,12 @@ struct GreenColumnComponent {
   build() {
     Column() {
     }
-    .id('BuilderProxyNode02')
     .width('100%')
     .height('100vp')
     .backgroundColor(0xFF17A98D)
     .hitTestBehavior(HitTestMode.Transparent)
     .onTouch((event: TouchEvent) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','green touched: ' + event.type);
+      hilog.info(0xF811,'testTag','%{public}s','green touched: ' + event.type);
     })
   }
 }
@@ -84,10 +83,11 @@ class MyNodeController extends NodeController {
 
 @Entry
 @Component
-struct BuilderProxyNode02 {
+struct Index {
   build() {
     Column() {
       NodeContainer(new MyNodeController())
+        .id('BuilderProxyNode02')
     }
   }
 }

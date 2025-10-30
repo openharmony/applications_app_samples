@@ -16,24 +16,27 @@
 // [Start PrivateWithRequire_ErrorCase]
 @Entry
 @Component
-struct PWRErrorAccessRestrictions  {
+struct PrivateErrorAccessRestrictions {
   build() {
     Column() {
-      PWRErrorComponentChild({propValue: 'Hello'});
+      PrivateErrorComponentChild({ propValue: 'Hello' })
     }
     .width('100%');
   }
 }
+
 @Component
-struct PWRErrorComponentChild  {
+struct PrivateErrorComponentChild {
   // 此处使用private修饰符时会出现告警日志
   @Require @Prop private propValue: string = 'Hello';
+
   build() {
     Column() {
       Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
-    };
+    }
   }
 }
+
 // [End PrivateWithRequire_ErrorCase]

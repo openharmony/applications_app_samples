@@ -7,7 +7,7 @@
 | build()函数                      | 设备正常运行 | 点击"MyComponentBuildPage" | 跳转成功且build()函数下根节点唯一且必要，必须为容器组件                          | Pass     |
 | 自定义组件通用样式                      | 设备正常运行 | 点击"MyComponentStylePage" | 跳转成功且自定义组件通过“.”链式调用设置通用样式                                | Pass     |
 | V1自定义组件不支持静态代码块                | 设备正常运行 | 点击"StaticCodeV1Page" | 跳转成功且在@Component或@CustomDialog装饰的自定义组件中编写静态代码块时，该代码不会被执行 | Pass     |
-| V2装饰的自定义组件中支持使用静态代码块           | 设备正常运行 | 点击"StaticCodeV2Page"" | 跳转成功且静态代码块生效，a的值变为'hello world'                          | Pass     |
+| V2装饰的自定义组件中支持使用静态代码块           | 设备正常运行 | 点击"StaticCodeV2Page" | 跳转成功且静态代码块生效，a的值变为'hello world'                          | Pass     |
 | 状态管理基本概念                       | 设备正常运行 | 点击"stateManagementOverviewPage" | 跳转成功且子组件初始化的默认值在有父组件传值的情况下，会被覆盖                          | Pass     |
 | @Component                     | 设备正常运行 | 点击"ComponentPage" | 跳转成功且一个struct只能被一个@Component装饰                           | Pass     |
 | freezeWhenInactive             | 设备正常运行 | 点击"FreezeWhenInactivePage" | 跳转成功且页面包含freezeWhenInactive参数                            | Pass     |

@@ -38,7 +38,7 @@ struct PageAnimated {
   // [End PageAnimated]
   @Builder
   PageBuilder(name: string) {
-    MyComponent()
+    MyComponent();
   }
 
   build() {

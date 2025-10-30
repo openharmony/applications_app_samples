@@ -27,6 +27,7 @@
 // 注册事件
 void onError(int32_t code, const char *name, const char *message) {}
 void onTerminated(int32_t code, AbilityBase_Want *want) {}
+//[StartExclude embeddedComponentCTest_start]
 napi_value embeddedNode(napi_env env, napi_callback_info info)
 {
     size_t argCnt = 1;
@@ -40,6 +41,7 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
     // 创建节点
     ArkUI_NodeHandle embeddedNode = nodeAPI->createNode(ARKUI_NODE_EMBEDDED_COMPONENT);
+    //[EndExclude embeddedComponentCTest_start]
     // 设置属性
     AbilityBase_Element Element = {.bundleName = "com.example.uiextensionandaccessibility",
                                    .abilityName = "ExampleEmbeddedAbility",
@@ -78,6 +80,7 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
 
     // 上树
     nodeAPI->addChild(column, embeddedNode);
+    //[End embeddedComponentCTest_start]
     int32_t result = OH_ArkUI_NodeContent_AddNode(nodeContentHandle, column);
     napi_value retValue = 0;
     napi_create_int32(env, result, &retValue);
@@ -92,4 +95,3 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
     }
     return exports;
 }
-//[End embeddedComponentCTest_start]

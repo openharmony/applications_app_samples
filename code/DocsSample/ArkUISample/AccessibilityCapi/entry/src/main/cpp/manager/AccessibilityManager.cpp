@@ -17,7 +17,9 @@
 #include <arkui/native_interface_accessibility.h>
 #include <string>
 #include "common/common.h"
+// 完整实现请参考AccessibilityCapiSample。
 #include "fakenode/fake_node.h"
+// 完整实现请参考AccessibilityCapiSample。
 #include "AccessibilityManager.h"
 
 // [StartExclude abilitycap_one_start]
@@ -129,9 +131,8 @@ int32_t AccessibilityManager::FindAccessibilityNodeInfosById(const char* instanc
     }
     
     if (mode == ARKUI_ACCESSIBILITY_NATIVE_SEARCH_MODE_PREFETCH_RECURSIVE_CHILDREN) {
-        // arkUi框架设计的特殊值，根节点必须设置parentId为这个值
-
-        // fill some fake nodes
+        // 三方框架需要在该方法中实现自己的查找策略，返回无障碍节点信息给无障碍服务，以下逻辑仅为示意过程。
+        // ArkUI框架设计的特殊值，根节点必须设置parentId为这个值。
         auto rootNode = OH_ArkUI_AddAndGetAccessibilityElementInfo(elementList);
         if (!rootNode) {
             return OH_NATIVEXCOMPONENT_RESULT_FAILED;
@@ -253,6 +254,7 @@ int32_t AccessibilityManager::FindAccessibilityNodeInfosById(const char* instanc
 int32_t AccessibilityManager::FindAccessibilityNodeInfosByText(const char* instanceId, int64_t elementId,
     const char *text, int32_t requestId, ArkUI_AccessibilityElementInfoList *elementList)
 {
+    // 三方框架需实现根据文本内容查询无障碍节点的逻辑。
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT,
                  "FindAccessibilityNodeInfosByText start,instanceId %{public}s elementId: %{public}ld, "
                  "requestId: %{public}d, text: %{public}s.", instanceId,
@@ -265,6 +267,7 @@ int32_t AccessibilityManager::FindAccessibilityNodeInfosByText(const char* insta
 int32_t AccessibilityManager::FindFocusedAccessibilityNode(const char* instanceId, int64_t elementId,
     ArkUI_AccessibilityFocusType focusType, int32_t requestId, ArkUI_AccessibilityElementInfo *elementInfo)
 {
+    // 三方框架需实现基于指定节点获取焦点元素信息的逻辑。
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT,
                  "FindFocusedAccessibilityNode start instanceId %{public}s, "
                  "elementId: %{public}ld, requestId: %{public}d, focusType: %{public}d",
@@ -360,7 +363,7 @@ int32_t AccessibilityManager::ExecuteAccessibilityAction(const char* instanceId,
 
                 object->fillAccessibilityElement(element);
             }
-
+            // 向无障碍服务发送指定事件。
             AccessibilityManager::SendAccessibilityAsyncEvent(element,
                 ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUSED,
                 announcedText);
@@ -375,7 +378,7 @@ int32_t AccessibilityManager::ExecuteAccessibilityAction(const char* instanceId,
                 announcedText);
             break;
         default:
-            // Optionally handle unknown actions or do nothing
+            // 处理不支持的action行为。
             break;
     }
     OH_ArkUI_DestoryAccessibilityElementInfo(element);
@@ -386,6 +389,7 @@ int32_t AccessibilityManager::ExecuteAccessibilityAction(const char* instanceId,
 // [Start abilitycap_seven_start]
 int32_t AccessibilityManager::ClearFocusedFocusAccessibilityNode(const char* instanceId)
 {
+    // 三方框架需要实现清除当前获焦的节点的行为。
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT,
                  "ClearFocusedFocusAccessibilityNode, instanceId %{public}s", instanceId);
     return OH_NATIVEXCOMPONENT_RESULT_SUCCESS;
@@ -396,6 +400,7 @@ int32_t AccessibilityManager::ClearFocusedFocusAccessibilityNode(const char* ins
 int32_t AccessibilityManager::GetAccessibilityNodeCursorPosition(const char* instanceId, int64_t elementId,
     int32_t requestId, int32_t *index)
 {
+    // 三方框架需要实现获取当前组件中（文本组件）光标位置。
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, LOG_PRINT_TEXT,
                  "GetAccessibilityNodeCursorPosition, instanceId %{public}s "
                  "elementId: %{public}ld, requestId: %{public}d, index: %{public}d",

@@ -16,19 +16,8 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start callbackFunc]
 // 在UIAbility中使用
-import { uiObserver } from '@kit.ArkUI';
+import { UIContext, uiObserver } from '@kit.ArkUI';
 
-// [StartExclude callbackFunc]
-const DOMAIN = 0x0000;
-@Component
-struct PageOne {
-  build() {
-    NavDestination() {
-      Text('pageOne')
-    }.title('pageOne')
-  }
-}
-// [EndExclude callbackFunc]
 // callbackFunc是开发者定义的监听回调函数
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   // [StartExclude callbackFunc]
@@ -37,26 +26,47 @@ function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   // [EndExclude callbackFunc]
 };
 // [StartExclude callbackFunc]
+const DOMAIN = 0x0000;
+
+@Component
+struct PageOne {
+  context: UIContext | null = null;
+
+  aboutToAppear() {
+    // [EndExclude callbackFunc]
+    uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
+    // [StartExclude callbackFunc]
+  }
+  build() {
+    NavDestination() {
+      Text('pageOne')
+    }.title('pageOne')
+  }
+}
+// [EndExclude callbackFunc]
+
+// [StartExclude callbackFunc]
 @Entry
 @Component
 struct Index {
   private stack: NavPathStack = new NavPathStack();
   // [EndExclude callbackFunc]
+  // 可以通过窗口的getUIContext()方法获取对应的UIContent
   uiContext: UIContext | null = null;
   // [StartExclude callbackFunc]
   @Builder
   PageBuilder(name: string) {
-    PageOne()
-  };
+    PageOne();
+  }
   aboutToAppear() {
     // [EndExclude callbackFunc]
-    uiObserver.on('navDestinationSwitch', this.uiContext, callBackFunc)
+    uiObserver.on('navDestinationSwitch', this.uiContext, callBackFunc);
     // [StartExclude callbackFunc]
   }
   // [EndExclude callbackFunc]
   // [End callbackFunc]
   aboutToDisappear() {
-    uiObserver.off('navDestinationSwitch', this.uiContext, callBackFunc)
+    uiObserver.off('navDestinationSwitch', this.uiContext, callBackFunc);
   }
 
   build() {

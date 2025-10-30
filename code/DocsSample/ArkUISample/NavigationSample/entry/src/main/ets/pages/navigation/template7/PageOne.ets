@@ -19,15 +19,15 @@ class NavParam {
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
     Page01();
-};
+}
 // [Start onReady]
 @Component
 struct Page01 {
-  private pathStack: NavPathStack | undefined = undefined;
+  pathStack: NavPathStack | undefined = undefined;
   // [StartExclude onReady]
   private name: string = '';
   // [EndExclude onReady]
-  private pageParam: string = '';
+  pageParam: string = '';
   build() {
     NavDestination() {
       // [StartExclude onReady]

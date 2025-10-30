@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 // [Start Main_FrameNode]
-import { BuilderNode, FrameNode, NodeController, Router, UIContext } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 
 class Params {
   public text: string = '';
@@ -54,15 +53,6 @@ class TextNodeController extends NodeController {
 @Component
 struct FrameNodePage {
   @State message: string = 'hello';
-
-  aboutToAppear() {
-    try {
-      let router1 = this.getUIContext().getRouter();
-      AppStorage.setOrCreate<Router>('router', router1);
-    } catch (e) {
-      hilog.info(0xF811, 'testTag', '%{public}s','e' + e);
-    }
-  }
 
   build() {
     Row() {

@@ -30,7 +30,7 @@ class TmpOne {
 
 @Entry
 @Component
-struct viewPort1 {
+struct ViewPort1 {
   viep: Tmp = new Tmp();
   viep1: TmpOne = new TmpOne();
 

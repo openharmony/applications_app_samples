@@ -19,6 +19,7 @@ let storageUpdateRouter = new LocalStorage();
 @Entry(storageUpdateRouter)
 @Component
 struct WidgetUpdateRouterCard {
+  // $r('app.string.init')需要替换为开发者所需的资源文件
   @LocalStorageProp('routerDetail') routerDetail: ResourceStr = $r('app.string.init');
 
   build() {

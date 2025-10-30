@@ -36,7 +36,7 @@ struct MenusFour {
     } else if (name === 'NavDestinationTitle3') {
       pageThreeTmp();
     }
-  };
+  }
 
   build() {
     Column() {
@@ -69,6 +69,7 @@ struct MenusFour {
         .margin({ top: 12 })
         // [EndExclude NavigationMenuFour]
       }
+      // 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标。
       .menus([toolTmp, toolTmp, toolTmp, toolTmp])
       // [End NavigationMenuFour]
       .title('主标题')

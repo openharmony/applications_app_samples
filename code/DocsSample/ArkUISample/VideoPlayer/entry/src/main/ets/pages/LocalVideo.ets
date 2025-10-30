@@ -19,7 +19,7 @@
 @Entry
 // [EndExclude local_video]
 @Component
-export struct localVideo {
+export struct LocalVideo {
   private controller: VideoController = new VideoController();
   private previewUris: Resource = $r('app.media.preview');
   private innerResource: Resource = $rawfile('videoTest.mp4');

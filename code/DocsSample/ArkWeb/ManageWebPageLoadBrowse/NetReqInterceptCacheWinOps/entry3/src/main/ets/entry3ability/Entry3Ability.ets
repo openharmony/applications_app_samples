@@ -17,6 +17,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 // [Start create_main_window]
+// 主窗Ability
 import { createNWeb, defaultUrl } from '../pages/common';
 
 // [StartExclude create_main_window]
@@ -30,12 +31,13 @@ export default class Entry3Ability extends UIAbility {
   }
   // [EndExclude create_main_window]
 
+// ...
+
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
-      if (err.code) {
+      if (err && err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
@@ -44,6 +46,8 @@ export default class Entry3Ability extends UIAbility {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     });
   }
+
+// ...
   // [End create_main_window]
 
   onWindowStageDestroy(): void {

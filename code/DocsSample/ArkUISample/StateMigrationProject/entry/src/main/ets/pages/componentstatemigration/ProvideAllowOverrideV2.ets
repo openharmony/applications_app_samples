@@ -20,7 +20,7 @@ struct GrandParent2 {
 
   build() {
     Column() {
-      Parent24();
+      Parent24()
     }
   }
 }
@@ -31,7 +31,7 @@ struct Parent24 {
   @Provider() reviewVotes: number = 20;
 
   build() {
-    Child24();
+    Child24()
   }
 }
 
@@ -40,7 +40,7 @@ struct Child24 {
   @Consumer() reviewVotes: number = 0;
 
   build() {
-    Text(this.reviewVotes.toString()); // Text显示20
+    Text(this.reviewVotes.toString()) // Text显示20
   }
 }
 // [End GrandParent2_start]

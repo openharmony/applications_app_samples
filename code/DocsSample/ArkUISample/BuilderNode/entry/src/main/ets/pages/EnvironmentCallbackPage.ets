@@ -109,10 +109,10 @@ struct Index {
   aboutToAppear(): void {
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
-        hilog.info(0xF811, 'testTag', '%{public}s','onMemoryLevel');
+        hilog.info(0xF811,'testTag','%{public}s','onMemoryLevel');
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        hilog.info(0xF811, 'testTag', '%{public}s','onConfigurationUpdated ' + JSON.stringify(config));
+        hilog.info(0xF811,'testTag','%{public}s','onConfigurationUpdated ' + JSON.stringify(config));
         updateColorMode();
       }
     }

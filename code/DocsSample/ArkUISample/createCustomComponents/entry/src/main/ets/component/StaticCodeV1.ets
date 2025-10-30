@@ -20,7 +20,7 @@ struct MyComponentCodeV1 {
   // 静态代码块不生效，a的值仍为空字符串''
   static {
     this.a = 'hello world';
-  };
+  }
   // [StartExclude Static_code_V1]
   build() {
       Column(){

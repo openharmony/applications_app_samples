@@ -20,7 +20,7 @@ import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_FormEditUIAbility]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'FormEditUIAbility_';
+const BUNDLE = 'FormEditUIAbility';
 const DELAYTIME01 = 500; // 等待时长
 const DELAYTIME02 = 2000; // 等待时长
 

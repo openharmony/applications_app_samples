@@ -16,7 +16,7 @@
 // [Start trigger_aging_friendly_by_set_font_size]
 import { abilityManager, Configuration } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_SupportingAgingFriendly]';
 const DOMAIN = 0xF811;

@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct shape1 {
+struct Shape1 {
   build() {
     Column() {
       Text('Create drawing component')

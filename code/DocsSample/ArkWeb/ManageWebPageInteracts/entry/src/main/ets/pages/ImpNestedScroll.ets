@@ -33,7 +33,7 @@ struct NestedScroll {
 build() {
   Scroll(this.scrollerForScroll) {
     Column() {
-      Web({ src: $rawfile('index.html'), controller: this.controller })
+      Web({ src: $rawfile('scroll.html'), controller: this.controller })
         .nestedScroll({
           scrollUp: NestedScrollMode.PARENT_FIRST,//向上滚动父组件优先
           scrollDown: NestedScrollMode.SELF_FIRST,//向下滚动子组件优先

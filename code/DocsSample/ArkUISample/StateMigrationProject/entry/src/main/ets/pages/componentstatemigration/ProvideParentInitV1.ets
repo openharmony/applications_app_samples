@@ -21,7 +21,7 @@ struct Parent21 {
   build() {
     Column() {
       // @Provide可以从父组件初始化
-      Child21({ childValue: this.parentValue });
+      Child21({ childValue: this.parentValue })
     }
   }
 }
@@ -32,7 +32,7 @@ struct Child21 {
 
   build() {
     Column() {
-      Text(this.childValue.toString());
+      Text(this.childValue.toString())
     }
   }
 }
