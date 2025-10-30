@@ -46,7 +46,7 @@ struct Index {
               hilog.info( DOMAIN, TAG, 'Invoke pushUrl succeeded.');
             })
           })
-
+        // [StartExclude quick_start]
         Text(this.router)
           .fontSize(40)
           .fontWeight(FontWeight.Bold)
@@ -117,6 +117,7 @@ struct Index {
               hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
             })
           })
+        // [EndExclude quick_start]
       }
       .width('100%')
     }

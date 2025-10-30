@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router } from '@kit.ArkUI';
+// [Start search_click]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { DOMAIN, TAG } from '../../common/Common';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SearchResult {
-  // [Start search_click]
   // 在SearchResult页面中
   onJumpClick(): void {
     this.getUIContext().getRouter().replaceUrl({
@@ -32,14 +32,12 @@ struct SearchResult {
       hilog.error(DOMAIN, TAG, 'Invoke replaceUrl succeeded.');
     })
   }
-  // [End search_click]
-
-  @State message: string = 'SearchResult Page';
 
   build() {
+    // [StartExclude quick_start]
     Row() {
       Column() {
-        Text(this.message)
+        Text('SearchResult Page')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button('Jump to Profile', { stateEffect: true, type: ButtonType.Capsule })
@@ -52,4 +50,6 @@ struct SearchResult {
       }.width('100%')
     }.height('100%')
   }
+  // [EndExclude quick_start]
 }
+// [End search_click]

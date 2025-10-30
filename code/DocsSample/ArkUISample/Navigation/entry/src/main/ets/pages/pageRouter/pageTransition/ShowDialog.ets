@@ -16,8 +16,8 @@
 // [Start page_showDialog1]
 import { promptAction} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End page_showDialog1]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0xF811
 const TAG = '[Sample_ArkTSRouter]';
 

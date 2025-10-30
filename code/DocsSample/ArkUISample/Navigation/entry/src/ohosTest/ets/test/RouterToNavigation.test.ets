@@ -37,7 +37,7 @@ export function Navigation_RouteToNavTest() {
       });
       await driver.delayMs(3000);
 
-      aimComponent = await driver.findComponent(ON.text('RouterToNavigation'));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_text')));
       await aimComponent.click();
       await driver.delayMs(1000);
     })
@@ -189,11 +189,57 @@ export function Navigation_RouteToNavTest() {
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_nav_text1')));
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('routerToNavigation_nav_text1_backHome')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
       hilog.info(DOMAIN, TAG, 'Navigation_RouteToNavTest_006_end');
+    })
+
+    /*
+     * @tc.number: Navigation_RoutePageTest_001
+     * @tc.name: example_one_RoutePage
+     * @tc.desc: example_one_RoutePage
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it(BUNDLE + 'RoutePageTest_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Navigation_RoutePageTest_001_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('pageRouter_text')));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('pageRouter_jump_text1')));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      aimComponent = await driver.findComponent(ON.text('Jump to Detail'));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      hilog.info(DOMAIN, TAG, 'Navigation_RoutePageTest_001_end');
+    })
+
+    /*
+     * @tc.number: Navigation_RoutePageTest_002
+     * @tc.name: example_one_RoutePage
+     * @tc.desc: example_one_RoutePage
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it(BUNDLE + 'RoutePageTest_002', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Navigation_RoutePageTest_002_begin');
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('pageRouter_jump_text2')));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      aimComponent = await driver.findComponent(ON.text('Jump to Profile'));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      hilog.info(DOMAIN, TAG, 'Navigation_RoutePageTest_002_end');
     })
 
   })
