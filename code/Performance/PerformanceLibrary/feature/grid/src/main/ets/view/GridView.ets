@@ -26,33 +26,33 @@ export struct GridView {
           .margin({ top: 30 })
 
         Button($r('app.string.use_lazy_foreach'))
-          .width("80%")
+          .width('80%')
           .id('buttonOne')
           .fontSize(18)
           .margin({ top: 30 })
           .onClick(() => {
-            router.pushUrl({ url: "pages/grid/GridLazyForEachPage" });
-          })
+            router.pushUrl({ url: 'pages/grid/GridLazyForEachPage' });
+          });
         Button($r('app.string.use_grid_column_start'))
-          .width("80%")
+          .width('80%')
           .fontSize(18)
           .id('buttonTwo')
           .margin({ top: 30 })
           .onClick(() => {
-            router.pushUrl({ url: "pages/grid/GridColumnStartPage" });
-          })
+            router.pushUrl({ url: 'pages/grid/GridColumnStartPage' });
+          });
         Button($r('app.string.use_grid_layout_options'))
-          .width("80%")
+          .width('80%')
           .fontSize(18)
           .margin({ top: 30 })
           .id('buttonThree')
           .onClick(() => {
-            router.pushUrl({ url: "pages/grid/GridLayoutOptionsPage" });
-          })
+            router.pushUrl({ url: 'pages/grid/GridLayoutOptionsPage' });
+          });
       }
-      .width("100%")
-      .height("100%")
+      .width('100%')
+      .height('100%')
     }
-    .height("100%")
+    .height('100%')
   }
 }

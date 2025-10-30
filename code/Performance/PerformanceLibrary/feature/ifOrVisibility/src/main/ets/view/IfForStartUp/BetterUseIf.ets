@@ -47,7 +47,7 @@ export struct BetterUseIf {
                   .fontSize($r('app.integer.font_size_20'))
                   .width($r('app.string.layout_100_percent'))
                   .textAlign(TextAlign.Center)
-              }, (item: number) => item.toString())
+              }, (item: number) => item.toString());
             }
           }
         }

@@ -14,11 +14,11 @@
  */
 
 // 导入性能打点模块
-import hiTraceMeter from "@ohos.hiTraceMeter";
+import hiTraceMeter from '@ohos.hiTraceMeter';
 
 @Component
 struct TextItem {
-  @State item: string = "";
+  @State item: string = '';
 
   build() {
     Text(this.item)
@@ -31,7 +31,7 @@ struct TextItem {
 
   aboutToAppear() {
     // 结束打点任务
-    hiTraceMeter.finishTrace("useColumnStartColumnEnd", 1);
+    hiTraceMeter.finishTrace('useColumnStartColumnEnd', 1);
   }
 }
 
@@ -79,31 +79,31 @@ export struct GridColumnStartView {
           if ((index % 4) === 0) {
             GridItem() {
               TextItem({ item: item })
-            }.columnStart(0).columnEnd(2)
+            }.columnStart(0).columnEnd(2);
           }
           else {
             GridItem() {
-              TextItem({ item: item })
+              TextItem({ item: item });
             }
           }
 
-        }, (item: string) => item)
+        }, (item: string) => item);
       }
-      .columnsTemplate("1fr 1fr 1fr")
+      .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(10)
-      .width("90%")
-      .height("40%")
+      .width('90%')
+      .height('40%')
 
-      Button("scrollToIndex:1900")
+      Button('scrollToIndex:1900')
         .id('scrollToIndexBtn')
         .onClick(() => {
           // 开始打点任务
-          hiTraceMeter.startTrace("useColumnStartColumnEnd", 1);
+          hiTraceMeter.startTrace('useColumnStartColumnEnd', 1);
           this.scroller.scrollToIndex(1900);
-        })
+        });
     }
-    .width("100%")
+    .width('100%')
     .margin({ top: 5 })
   }
 }

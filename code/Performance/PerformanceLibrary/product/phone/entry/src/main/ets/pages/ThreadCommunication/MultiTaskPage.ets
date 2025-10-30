@@ -20,7 +20,7 @@ import { MultiTask } from '@ohos/ThreadCommunication';
 struct MultiTaskPage {
   build() {
     Column() {
-      MultiTask()
+      MultiTask();
     }
   }
 }

@@ -22,7 +22,7 @@ struct DynamicHomePage {
 
   build() {
     Column() {
-      DynamicHome({ PageOneLoader: this.PageOneLoader })
+      DynamicHome({ PageOneLoader: this.PageOneLoader });
     }
   }
 }

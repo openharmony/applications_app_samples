@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-export { DFXStateManagementHome } from './src/main/ets/view/DFXStateManagementHome'
-export { DFXStateBeforeOptimization } from './src/main/ets/view/DFXStateBeforeOptimization'
-export { DFXStateAfterOptimization } from './src/main/ets/view/DFXStateAfterOptimization'
+export { DFXStateManagementHome } from './src/main/ets/view/DFXStateManagementHome';
+export { DFXStateBeforeOptimization } from './src/main/ets/view/DFXStateBeforeOptimization';
+export { DFXStateAfterOptimization } from './src/main/ets/view/DFXStateAfterOptimization';

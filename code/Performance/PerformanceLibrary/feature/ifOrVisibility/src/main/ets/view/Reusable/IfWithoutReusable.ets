@@ -22,7 +22,7 @@ export struct IfWithoutReusable {
 
   build() {
     Column() {
-      Button("Change FlexAlign")
+      Button('Change FlexAlign')
         .onClick(() => {
           this.isAlignStyleStart = !this.isAlignStyleStart;
         })

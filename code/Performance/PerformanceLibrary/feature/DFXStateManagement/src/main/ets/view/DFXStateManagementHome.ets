@@ -13,29 +13,29 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Component
 export struct DFXStateManagementHome {
-  @State message: string = 'Hello World DFXStateManagementHome'
+  @State message: string = 'Hello World DFXStateManagementHome';
 
   build() {
     Row() {
       Column() {
         Button($r('app.string.before_optimization'))
-          .width("80%")
+          .width('80%')
           .fontSize(18)
           .margin({ top: 30 })
           .onClick(() => {
-            router.pushUrl({ url: "pages/DFXStateManagement/DFXStateBeforeOptimizationPage" });
-          })
+            router.pushUrl({ url: 'pages/DFXStateManagement/DFXStateBeforeOptimizationPage' });
+          });
         Button($r('app.string.after_optimization'))
-          .width("80%")
+          .width('80%')
           .fontSize(18)
           .margin({ top: 30 })
           .onClick(() => {
-            router.pushUrl({ url: "pages/DFXStateManagement/DFXStateAfterOptimizationPage" });
-          })
+            router.pushUrl({ url: 'pages/DFXStateManagement/DFXStateAfterOptimizationPage' });
+          });
       }
       .width('100%')
     }

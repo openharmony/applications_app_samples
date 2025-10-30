@@ -20,7 +20,7 @@ import { GridLazyForEachView } from '@ohos/grid';
 struct GridLazyForEachPage {
   build() {
     Column() {
-      GridLazyForEachView()
+      GridLazyForEachView();
     }
   }
 }

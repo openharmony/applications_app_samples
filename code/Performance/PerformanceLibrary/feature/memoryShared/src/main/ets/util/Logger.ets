@@ -18,7 +18,7 @@ import hilog from '@ohos.hilog';
 const DOMAIN: number = 0xF811;
 
 class Logger {
-  private prefix: string="";
+  private prefix: string= '';
   private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {

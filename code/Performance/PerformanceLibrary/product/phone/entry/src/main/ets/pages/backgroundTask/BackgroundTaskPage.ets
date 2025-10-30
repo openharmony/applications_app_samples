@@ -20,7 +20,7 @@ import { BackgroundTaskHomeView } from '@ohos/backgroundTask';
 struct BackgroundTaskPage {
   build() {
     Column() {
-      BackgroundTaskHomeView()
+      BackgroundTaskHomeView();
     }
   }
 }

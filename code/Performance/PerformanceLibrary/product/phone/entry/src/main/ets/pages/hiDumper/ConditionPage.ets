@@ -20,7 +20,7 @@ import { ConditionView } from '@ohos/hiDumper';
 struct ConditionPage {
   build() {
     Column() {
-      ConditionView()
+      ConditionView();
     }
   }
 }

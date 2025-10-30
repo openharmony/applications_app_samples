@@ -20,7 +20,7 @@ import { TransientTaskView } from '@ohos/backgroundTask';
 struct TransientTask {
   build() {
     Column() {
-      TransientTaskView()
+      TransientTaskView();
     }
   }
 }

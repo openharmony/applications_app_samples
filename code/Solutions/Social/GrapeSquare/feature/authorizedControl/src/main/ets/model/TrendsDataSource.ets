@@ -31,7 +31,7 @@ export class TrendsData extends BasicDataSource<Trends> {
   public getData(index: number): Trends {
     if (index === this.trendsList.length - 1) {
       let mockData = trendsList[this.getJsonIndex % 3];
-      for (let i = 0;i < mockData.length; i++) {
+      for (let i = 0; i < mockData.length; i++) {
         this.pushData(mockData[i]);
       }
       this.getJsonIndex++;

@@ -20,7 +20,7 @@ import { TaskSendDataUsage } from '@ohos/ThreadCommunication';
 struct TaskSendDataUsagePage {
   build() {
     Column() {
-      TaskSendDataUsage()
+      TaskSendDataUsage();
     }
   }
 }

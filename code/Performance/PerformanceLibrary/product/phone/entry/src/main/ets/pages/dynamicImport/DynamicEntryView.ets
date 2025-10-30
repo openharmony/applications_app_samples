@@ -20,7 +20,7 @@ import { DynamicEntryView } from '@ohos/dynamicImport';
 struct DynamicEntry {
   build() {
     Column() {
-      DynamicEntryView()
+      DynamicEntryView();
     }
   }
 }
