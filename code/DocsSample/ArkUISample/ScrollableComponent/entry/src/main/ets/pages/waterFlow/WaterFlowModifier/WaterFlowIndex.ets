@@ -51,7 +51,7 @@ struct Index {
             }
 
           }.width('90%').backgroundColor(0xDCDCDC)
-        }
+        }.attributeModifier(this.customModifier)
 
         ScrollBar({ scroller: this.scroller, state: BarState.On }) {
           Text()

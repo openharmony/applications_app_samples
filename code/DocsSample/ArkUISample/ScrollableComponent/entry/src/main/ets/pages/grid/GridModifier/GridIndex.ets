@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI';
-import { ScrollModifier } from '@ohos.arkui.modifier'
+import { ScrollModifier } from '@ohos.arkui.modifier';
 
 class CustomModifier extends ScrollModifier {
 }
