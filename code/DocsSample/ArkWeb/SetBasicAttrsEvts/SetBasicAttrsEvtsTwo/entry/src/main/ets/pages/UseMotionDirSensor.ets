@@ -14,6 +14,7 @@
  */
 
 // [Start the_type_of_resource_for_which_permission_is_requested]
+import { UIContext } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
 import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -22,22 +23,25 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
+
   aboutToAppear() {
     // 配置Web开启调试模式
     webview.WebviewController.setWebDebuggingAccess(true);
     // 访问控制管理, 获取访问控制模块对象。
     let atManager = abilityAccessCtrl.createAtManager();
     try {
-      atManager.requestPermissionsFromUser(getContext(this)
-        , ['ohos.permission.ACCELEROMETER', 'ohos.permission.GYROSCOPE']
+      atManager.requestPermissionsFromUser(this.uiContext.getHostContext(), ['ohos.permission.ACCELEROMETER', 'ohos.permission.GYROSCOPE']
         , (err: BusinessError, data: PermissionRequestResult) => {
-          console.info('data:' + JSON.stringify(data));
+        if (err) {
+          console.error(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
+        } else {
           console.info('data permissions:' + data.permissions);
           console.info('data authResults:' + data.authResults);
-        })
+        }
+      })
     } catch (error) {
-      console.error(
-        `ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
+      console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
     }
   }
 
@@ -46,7 +50,7 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPermissionRequest((event) => {
           if (event) {
-            AlertDialog.show({
+             this.uiContext.showAlertDialog({
               title: 'title',
               message: 'text',
               primaryButton: {
