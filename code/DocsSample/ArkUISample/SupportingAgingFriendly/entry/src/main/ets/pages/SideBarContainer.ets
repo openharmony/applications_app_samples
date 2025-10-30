@@ -16,20 +16,23 @@
 // [Start trigger_aging_friendly_by_long_press]
 import { abilityManager, Configuration } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_SupportingAgingFriendly]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'SupportingAgingFriendly_';
+const NUMBER1 = 1;
+const NUMBER2 = 2;
+const NUMBER3 = 3;
 
 @Entry
 @Component
 struct SideBarContainerExample {
-  @State currentFontSizeScale: number = 1;
+  @State currentFontSizeScale: number = NUMBER1;
   normalIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的资源文件
   selectedIcon: Resource = $r('app.media.icon'); // $r('app.media.icon')需要替换为开发者所需的资源文件
-  @State arr: number[] = [1, 2, 3]; // 标签的数量和名字，一共3个标签, 01, 02,03
-  @State current: number = 1; // button所在的标签页Index01
+  @State arr: number[] = [NUMBER1, NUMBER2, NUMBER3];
+  @State current: number = NUMBER1;
   @State title: string = 'Index01';
   // 设置字体大小
   async setFontScale(scale: number): Promise<void> {

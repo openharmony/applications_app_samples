@@ -15,7 +15,7 @@
 
 // [Start list_scrolling_with_for_each]
 // xxx.ets
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_ReusableComponent]';
 const DOMAIN = 0xF811;
