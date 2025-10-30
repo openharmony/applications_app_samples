@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 // [Start quick_start0]
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { GlobalContext } from '../common/GlobalContext';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -26,16 +25,16 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context = GlobalContext.getContext();
+        let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let link: string = 'https://www.example.com/programs?action=showall';
         // 仅以App Linking的方式打开应用
         context.openLink(link, { appLinkingOnly: true })
           .then(() => {
-            hilog.info(0x0000, 'testTag', `Succeeded in opening link.`);
+            console.info('openlink success.');
           })
           .catch((error: BusinessError) => {
-            hilog.error(0x0000, 'testTag', `Failed to open link, code: ${error.code}, message: ${error.message}`);
-          })
+            console.error(`openlink failed. error:${JSON.stringify(error)}`);
+          });
       })
   }
 }
