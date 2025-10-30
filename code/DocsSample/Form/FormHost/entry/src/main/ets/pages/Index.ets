@@ -40,9 +40,11 @@ struct formHostSample {
     [60, 60], // 1*1
     [240, 360],// 6*4
   ]
+  // $r('app.string.Host')需要替换为开发者所需的资源文件
   @State message: Resource | string = $r('app.string.Host');
   formCardHashMap: HashMap<string, formInfo.FormInfo> = new HashMap();
   @State showFormPicker: boolean = false;
+  // $r('app.string.formOperation')需要替换为开发者所需的资源文件
   @State operation: Resource | string = $r('app.string.formOperation');
   @State index: number = 2;
   @State space: number = 8;
@@ -60,7 +62,9 @@ struct formHostSample {
     descriptionId: 0,
     type: formInfo.FormType.eTS,
     jsComponentName: '',
+    // [StartExclude form_host_index]
     colorMode: formInfo.ColorMode.MODE_AUTO,
+    // [EndExclude form_host_index]
     isDefault: false,
     updateEnabled: false,
     formVisibleNotify: true,
@@ -75,6 +79,7 @@ struct formHostSample {
     transparencyEnabled: false
   }
   formInfoRecord: TextCascadePickerRangeContent[] = [];
+  // $r('app.string.formType')需要替换为开发者所需的资源文件
   pickerBtnMsg: Resource | string = $r('app.string.formType');
   @State showForm: boolean = true;
   @State selectFormId: string = '0';
@@ -219,12 +224,14 @@ struct formHostSample {
 
       Row() {
         // 点击查询所有卡片信息。
+        // $r('app.string.inquiryForm')需要替换为开发者所需的资源文件
         Button($r('app.string.inquiryForm'))
           .onClick(() => {
             this.getAllBundleFormsInfo();
           })
 
         // 点击按钮弹出选择界面，点击确定后，添加默认尺寸的所选卡片。
+        // $r('app.string.selectAddForm')需要替换为开发者所需的资源文件
         Button($r('app.string.selectAddForm'))
           .enabled(this.showFormPicker)
           .onClick(() => {
@@ -308,6 +315,7 @@ struct formHostSample {
 
         // select列表，列出部分formHost接口功能。
         Row() {
+          // $r('app.string.xxx')需要替换为开发者所需的资源文件
           Select([{ value: $r('app.string.deleteForm') },
             { value: $r('app.string.updateForm') },
             { value: $r('app.string.visibleForms') },
@@ -335,6 +343,7 @@ struct formHostSample {
             })
 
           // 根据select列表所选的功能，对当前卡片执行对应操作。
+          // $r('app.string.execute')需要替换为开发者所需的资源文件
           Button($r('app.string.execute'), {
             type: ButtonType.Capsule
           })
