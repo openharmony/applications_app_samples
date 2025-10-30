@@ -21,15 +21,15 @@ import { dragController } from '@kit.ArkUI';
 @Entry
 @Component
 struct GridEts {
-  @State pixmap: image.PixelMap|undefined = undefined;
+  @State pixmap: image.PixelMap | undefined = undefined;
   @State numbers: number[] = [];
   @State isSelectedGrid: boolean[] = [];
   @State previewData: DragItemInfo[] = [];
   @State numberBadge: number = 0;
-  unifiedData: UnifiedData|undefined = undefined;
+  unifiedData: UnifiedData | undefined = undefined;
   timeout: number = 1;
   finished: boolean = false;
-  dragEvent: DragEvent|undefined;
+  dragEvent: DragEvent | undefined;
 
   @Styles
   normalStyles(): void{
@@ -40,15 +40,17 @@ struct GridEts {
   selectStyles(): void{
     .opacity(0.4)
   }
+
   //[Start grid_onPageShow_start]
   onPageShow(): void {
     let i: number = 0
-    for(i=0;i<500;i++){
+    for (i = 0; i < 500; i++) {
       this.numbers.push(i);
       this.isSelectedGrid.push(false);
       this.previewData.push({});
     }
   }
+
   //[End grid_onPageShow_start]
   loadData() {
     this.timeout = setTimeout(() => {
@@ -74,7 +76,7 @@ struct GridEts {
     Column({ space: 5 }) {
       Button('全选')
         .onClick(() => {
-          for (let i=0;i<this.isSelectedGrid.length;i++) {
+          for (let i = 0; i < this.isSelectedGrid.length; i++) {
             if (this.isSelectedGrid[i] === false) {
               this.numberBadge++;
               this.isSelectedGrid[i] = true;
@@ -87,10 +89,10 @@ struct GridEts {
               this.unifiedData.addRecord(data);
               let gridItemName = 'grid' + i;
               // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
-              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap) => {
                 this.pixmap = pixmap;
                 this.previewData[i] = {
-                  pixelMap:this.pixmap
+                  pixelMap: this.pixmap
                 }
               })
             }
@@ -105,20 +107,21 @@ struct GridEts {
               .width(50)
               .height(50)
               .opacity(1.0)
-              .id('grid'+idx)
+              .id('grid' + idx)
           }
           .dragPreview(this.previewData[idx])
-          .dragPreviewOptions({numberBadge: this.numberBadge},{isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
+          .dragPreviewOptions({ numberBadge: this.numberBadge },
+            { isMultiSelectionEnabled: true, defaultAnimationBeforeLifting: true })
           .selectable(true)
           .selected(this.isSelectedGrid[idx])
           //[StartExclude grid_start]
           // 设置多选显示效果
           .stateStyles({
-            normal : this.normalStyles,
+            normal: this.normalStyles,
             selected: this.selectStyles
           })
           //[Start grid_onclick_start]
-          .onClick(()=>{
+          .onClick(() => {
             this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
             //[StartExclude grid_start]
             if (this.isSelectedGrid[idx]) {
@@ -132,15 +135,15 @@ struct GridEts {
               this.numberBadge++;
               let gridItemName = 'grid' + idx;
               // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
-              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap) => {
                 this.pixmap = pixmap;
                 this.previewData[idx] = {
-                  pixelMap:this.pixmap
+                  pixelMap: this.pixmap
                 }
               })
             } else {
               this.numberBadge--;
-              for (let i=0; i<this.isSelectedGrid.length; i++) {
+              for (let i = 0; i < this.isSelectedGrid.length; i++) {
                 if (this.isSelectedGrid[i] === true) {
                   let data: UDC.Image = new UDC.Image();
                   // '../../../resources/base/media/background.png'需要替换为开发者所需的图像资源文件
@@ -166,9 +169,8 @@ struct GridEts {
               // 2.用户按住一段时间，还没有松手，有可能会拖拽，此时可准备数据
               //[EndExclude grid_onPreDrag_start]
               this.loadData()
-            }
-            //[StartExclude grid_onPreDrag_start]
-            else if (status == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG) {
+              //[StartExclude grid_onPreDrag_start]
+            } else if (status == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG) {
               // 3.用户停止拖拽交互，取消数据准备(模拟方法：定时器取消)
               clearTimeout(this.timeout);
             }
@@ -180,7 +182,9 @@ struct GridEts {
           .onDragStart((event: DragEvent) => {
             this.dragEvent = event;
             if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
+              this.getUIContext()
+                .getDragController()
+                .notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
             } else {
               event.setData(this.unifiedData);
             }
@@ -189,6 +193,7 @@ struct GridEts {
           .onDragEnd(() => {
             this.finished = false;
           })
+
           //[EndExclude grid_start]
         }, (idx: string) => idx)
       }
@@ -200,4 +205,5 @@ struct GridEts {
     }.width('100%').margin({ top: 5 })
   }
 }
+
 //[End grid_start]
