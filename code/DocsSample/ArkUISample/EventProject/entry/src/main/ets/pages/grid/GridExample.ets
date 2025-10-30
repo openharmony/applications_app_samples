@@ -43,7 +43,7 @@ struct GridEts {
 
   //[Start grid_onPageShow_start]
   onPageShow(): void {
-    let i: number = 0
+    let i: number = 0;
     for (i = 0; i < 500; i++) {
       this.numbers.push(i);
       this.isSelectedGrid.push(false);
@@ -168,7 +168,7 @@ struct GridEts {
               //[StartExclude grid_onPreDrag_start]
               // 2.用户按住一段时间，还没有松手，有可能会拖拽，此时可准备数据
               //[EndExclude grid_onPreDrag_start]
-              this.loadData()
+              this.loadData();
               //[StartExclude grid_onPreDrag_start]
             } else if (status == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG) {
               // 3.用户停止拖拽交互，取消数据准备(模拟方法：定时器取消)
