@@ -57,8 +57,10 @@ static napi_value CreateDefaultDisplayCutoutInfo(napi_env env, napi_callback_inf
                 cutOutInfo->waterfallDisplayAreaRects.right.width, cutOutInfo->waterfallDisplayAreaRects.right.height);
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "DMSTest",
                 "cutOutInfo waterfall bottom rect=[%{public}d %{public}d %{public}d %{public}d]",
-                cutOutInfo->waterfallDisplayAreaRects.bottom.left, cutOutInfo->waterfallDisplayAreaRects.bottom.top,
-                cutOutInfo->waterfallDisplayAreaRects.bottom.width, cutOutInfo->waterfallDisplayAreaRects.bottom.height);
+                cutOutInfo->waterfallDisplayAreaRects.bottom.left,
+                cutOutInfo->waterfallDisplayAreaRects.bottom.top,
+                cutOutInfo->waterfallDisplayAreaRects.bottom.width,
+                cutOutInfo->waterfallDisplayAreaRects.bottom.height);
         }
         napi_value boundingRectsLength;
         napi_create_int32(env, cutOutInfo->boundingRectsLength, &boundingRectsLength);
@@ -170,7 +172,8 @@ static napi_value UnregisterFoldDisplayModeChangeListener(napi_env env, napi_cal
 
 // [Start register_napi_display_function]
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"getDisplayRotation", nullptr, GetDefaultDisplayRotation, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getCutoutInfo", nullptr, CreateDefaultDisplayCutoutInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
