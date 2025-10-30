@@ -34,17 +34,15 @@ struct UseFrameAnimation {
     if (this.showNative) {
       // 传递NodeContent对象用于Native创建组件的挂载显示
       nativeNode?.createTransitionEffectRoot(this.rootSlot);
-    } else {
-      // 销毁NativeModule组件
-      nativeNode.destroyNativeRoot();
     }
+  }
+
+  aboutToAppear(): void {
+      this.showNative = !this.showNative;
   }
 
   build() {
     Column() {
-      Button(this.showNative ? 'Hide Native UI Animate' : 'Show Native UI Animate').onClick(() => {
-        this.showNative = !this.showNative;
-      })
       Column() {
         // 将NodeContent和ContentSlot占位组件绑定。
         ContentSlot(this.rootSlot);
