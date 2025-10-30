@@ -13,11 +13,23 @@
  * limitations under the License.
  */
 
-// [Start soft_keyboard_entryability]
-// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';	
+import { window } from '@kit.ArkUI';
+// [Start soft_keyboard_entryability]	
 import { KeyboardAvoidMode } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+// [StartExclude soft_keyboard_entryability]
+export default class Entry2Ability extends UIAbility {	
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {	
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {	
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');	
+  }	
+
+  // [EndExclude soft_keyboard_entryability]
 onWindowStageCreate(windowStage: window.WindowStage) {
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
@@ -32,4 +44,20 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
   });
 }
-// [End soft_keyboard_entryability]
+
+  // [End soft_keyboard_entryability]
+  onWindowStageDestroy(): void {
+      // Main window is destroyed, release UI related resources
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+      // Ability has brought to foreground
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+      // Ability has back to background
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
