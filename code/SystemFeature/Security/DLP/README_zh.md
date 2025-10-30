@@ -167,8 +167,8 @@ java -jar hap-sign-tool.jar sign-profile -keyAlias "openharmony application prof
 ```
 java -jar hap-sign-tool.jar sign-app -keyAlias "openharmony application release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "app1-profile.p7b" -inFile "entry-default-unsigned.hap" -keystoreFile "OpenHarmony.p12" -outFile "app1-signed.hap" -keyPwd "123456" -keystorePwd "123456"
 ```
-（10）依次运行签名证书.bat和签名应用.bat，当前目录会产生一个文件app1.signed.hap<br>
-（11）执行Build Hap(s)，顺利编译后，产生entry-default-unsigned.hap；将entry-default-unsigned.hap移到目录 .\developtools_hapsigner-master\dist下<br>
+（10）执行Build Hap(s)，顺利编译后，产生entry-default-unsigned.hap；将entry-default-unsigned.hap移到目录 .\developtools_hapsigner-master\dist下<br>
+（11）依次运行签名证书.bat和签名应用.bat，当前目录会产生一个文件app1.signed.hap<br>
 （12）安装应用<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc install app1-signed.hap<br>
 （13）如果之后更改了DLP samples项目，再次执行Build Hap(s)，然后将entry-default-unsigned.hap移到目录 .\developtools_hapsigner-master\dist下，运行签名应用.bat，执行hdc install app1-signed.hap
