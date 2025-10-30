@@ -25,7 +25,7 @@ export struct DropAnimationExample {
   @State imageWidth: number = 100;
   @State imageHeight: number = 100;
   @State imgState: Visibility = Visibility.Visible;
-
+  //[Start drop_customDropAnimation_start]
   customDropAnimation =
     () => {
       this.getUIContext().animateTo({ duration: 1000, curve: Curve.EaseOut, playMode: PlayMode.Normal }, () => {
@@ -34,11 +34,13 @@ export struct DropAnimationExample {
         this.imgState = Visibility.None;
       })
     }
+  //[End drop_customDropAnimation_start]
   build() {
     NavDestination() {
       Row() {
         Column() {
           // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
+          //[Start drop_image_start]
           Image($r('app.media.app_icon'))
             .width(100)
             .height(100)
@@ -48,12 +50,16 @@ export struct DropAnimationExample {
             .onDragStart((event) => {
             })
             .onDragEnd((event) => {
+              //[StartExclude drop_image_start]
               if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
                 console.info('Drag Success');
               } else if (event.getResult() === DragResult.DRAG_FAILED) {
                 console.info('Drag failed');
               }
+              //[EndExclude drop_image_start]
             })
+          //[Start drop_image_start]
+
         }.width('45%')
         .height('100%')
 
@@ -65,6 +71,7 @@ export struct DropAnimationExample {
             .textAlign(TextAlign.Center)
             .margin(10)
             .backgroundColor('rgb(240,250,255)')
+          //[Start drop_column_start]
           Column() {
             Image(this.targetImage)
               .width(this.imageWidth)
@@ -83,6 +90,7 @@ export struct DropAnimationExample {
             dragEvent.useCustomDropAnimation = true;
             dragEvent.executeDropAnimation(this.customDropAnimation)
           })
+          //[End drop_column_start]
           .width(this.imageWidth)
           .height(this.imageHeight)
         }.width('45%')

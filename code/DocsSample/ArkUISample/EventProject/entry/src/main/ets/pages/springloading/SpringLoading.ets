@@ -28,7 +28,7 @@ export struct SpringLoadingPage {
   private  reminderColor: Color = Color.Green;
   private normalColor: Color = Color.Blue;
   @Local buttonBackgroundColor: Color = this.normalColor;
-
+  //[Start springLoading_builder]
   @Builder
   SheetBuilder() {
     Column() {
@@ -48,7 +48,7 @@ export struct SpringLoadingPage {
       }
     }.width('100%').height('100%')
   }
-
+  //[End springLoading_builder]
   // 检查拖拽数据类型是否包含所希望的plain-text
   checkDataType(dataSummary: unifiedDataChannel.Summary | undefined): boolean {
     let summary = dataSummary?.summary;
@@ -79,39 +79,63 @@ export struct SpringLoadingPage {
   }
 
   // Spring Loading处理入口
+  //[Start springLoading_handleSpringLoading]
   handleSpringLoading(context: SpringLoadingContext) {
     // BEGIN 状态时检查拖拽数据类型
     if (context.state == dragController.DragSpringLoadingState.BEGIN) {
+      //[StartExclude springLoading_handleSpringLoading]
       if (this.handleBeginState(context)) {
         // 我们已经在onDragEnter时刷新了提醒色，进入Spring Loading状态时，恢复UI，提醒用户继续保持不动
         this.buttonBackgroundColor = this.normalColor;
       }
+      //[EndExclude springLoading_handleSpringLoading]
+      //[StartExclude SpringLoading_start]
+      // 进行必要判断，决定是否要终止触发
+      //[EndExclude SpringLoading_start]
       return;
     }
     if (context.state == dragController.DragSpringLoadingState.UPDATE) {
+      //[StartExclude springLoading_handleSpringLoading]
       // 奇数次UPDATE通知刷新提醒UI，偶数次复原UI
       if (context.currentNotifySequence % 2 != 0) {
         this.buttonBackgroundColor = this.reminderColor;
       } else {
         this.buttonBackgroundColor = this.normalColor;
       }
+      //[EndExclude springLoading_handleSpringLoading]
+      //[StartExclude SpringLoading_start]
+      // 刷新提醒
+      //[EndExclude SpringLoading_start]
       return;
     }
     // 处理Spring Loading结束，触发视图切换
     if (context.state == dragController.DragSpringLoadingState.END) {
+      //[StartExclude springLoading_handleSpringLoading]
       this.isShowSheet = true;
+      //[EndExclude springLoading_handleSpringLoading]
+      //[StartExclude SpringLoading_start]
+      // 视图激活或跳转
+      //[EndExclude SpringLoading_start]
       return;
     }
     // 处理CANCEL状态，复原UI
     if (context.state == dragController.DragSpringLoadingState.CANCEL) {
+      //[StartExclude springLoading_handleSpringLoading]
       this.buttonBackgroundColor = this.normalColor;
+      //[EndExclude springLoading_handleSpringLoading]
+      //[StartExclude SpringLoading_start]
+      // 恢复状态与UI
+      //[EndExclude SpringLoading_start]
       return;
     }
   }
-
+  //[End springLoading_handleSpringLoading]
+  //[Start springLoading_example]
   build() {
     Column() {
+      //[StartExclude springLoading_example]
       NavDestination(){
+        //[EndExclude springLoading_example]
         Column() {
           Text($r('app.string.DoubleClick_Text'))
             .fontSize(30)
@@ -124,8 +148,10 @@ export struct SpringLoadingPage {
             preferType: SheetType.BOTTOM,
             title: { title: $r('app.string.Search_Device') },
           })
+          //[StartExclude springLoading_example]
           .allowDrop([uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
           .backgroundColor(this.buttonBackgroundColor)
+          //[Start springLoading_onDragEnter]
           .onDragEnter(()=>{
             // 当用户拖拽进入按钮范围，即提醒用户，此处是可以处理数据的
             this.buttonBackgroundColor = this.reminderColor
@@ -134,6 +160,10 @@ export struct SpringLoadingPage {
             // 当用户拖拽离开按钮范围，恢复UI
             this.buttonBackgroundColor = this.normalColor
           })
+          //[End springLoading_onDragEnter]
+          //[Start springLoading_onDragSpringLoading_null]
+          .onDragSpringLoading(null)
+          //[End springLoading_onDragSpringLoading_null]
           .onDragSpringLoading((context: SpringLoadingContext)=>{
             this.handleSpringLoading(context);
           })
@@ -144,8 +174,10 @@ export struct SpringLoadingPage {
         barStyle: BarStyle.STACK
       })
       .title($r('app.string.Pages_Index_DropAnimation'))
+      //[EndExclude springLoading_example]
     }.width('100%').height('100%')
     .justifyContent(FlexAlign.Center)
   }
+  //[End springLoading_example]
 }
 //[End SpringLoading_start]
