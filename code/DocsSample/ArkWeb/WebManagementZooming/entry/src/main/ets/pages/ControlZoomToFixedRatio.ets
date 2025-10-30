@@ -39,9 +39,7 @@ struct WebComponent {
       Button('zoom')
         .onClick(() => {
           try {
-            // [Start ControlZoomToFixedRatioFactor]
             let factor = this.targetFactor * this.intNumber / this.pageFactor;
-            // [End ControlZoomToFixedRatioFactor]
             this.controller.zoom(factor);
           } catch (error) {
             hilog.error(DOMAIN, TAG, BUNDLE, `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
