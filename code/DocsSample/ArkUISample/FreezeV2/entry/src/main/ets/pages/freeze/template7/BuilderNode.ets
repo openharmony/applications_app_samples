@@ -14,6 +14,9 @@
  */
 // [Start freeze_template7_start]
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 // 定义一个Params类，用于传递参数
 @ObservedV2
@@ -48,7 +51,8 @@ struct buildNodeChild {
   // 使用@Monitor装饰器监听storage.message的变化
   @Monitor('storage.message')
   onMessageChange(monitor: IMonitor) {
-    console.info(`FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
+    hilog.info(DOMAIN, 'onMessageChange',
+      `FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
   }
 
   build() {
@@ -126,7 +130,8 @@ struct FreezeBuildNode {
   // 使用@Monitor装饰器监听storage.message的变化
   @Monitor('storage.message')
   onMessageChange(monitor: IMonitor) {
-    console.info(`FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
+    hilog.info(DOMAIN, 'onMessageChange',
+      `FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
   }
 
   build() {
