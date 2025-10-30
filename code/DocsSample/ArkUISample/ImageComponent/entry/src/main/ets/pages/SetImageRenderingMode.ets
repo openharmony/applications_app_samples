@@ -28,7 +28,7 @@ struct SetImageRenderingMode {
           .height(100)
           .border({ width: 1 })
             // overlay是通用属性，用于在组件上显示说明文字
-          .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
+          .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
           // 设置图片的渲染模式为黑白
@@ -36,9 +36,9 @@ struct SetImageRenderingMode {
           .width(100)
           .height(100)
           .border({ width: 1 })
-          .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-      };
-    }.height(150).width('100%').padding({ top: 20,right: 10 });
-  };
+          .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding({ top: 20,right: 10 })
+  }
 }
 //  [End image_renderingmode]

@@ -46,8 +46,7 @@ struct CustomEvent {
     this.overlayManager = this.context.getOverlayManager();
     // [EndExclude overlay_manager]
     let componentContent = new ComponentContent(
-      this.context,
-      wrapBuilder<[Params]>(builderOverlay),
+      this.context, wrapBuilder<[Params]>(builderOverlay),
       new Params(uiContext, {x:0, y: 100})
     );
     this.overlayManager.addComponentContent(componentContent, 0);

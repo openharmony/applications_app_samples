@@ -28,10 +28,10 @@ struct RegularBinding {
           TapGesture()
             .onAction(() => {
               hilog.info(DOMAIN, TAG,'TapGesture is onAction');
-            }));
+            }))
     }
     .height(200)
-    .width(250);
-  };
+    .width(250)
+  }
 }
 //  [End regular_binding]

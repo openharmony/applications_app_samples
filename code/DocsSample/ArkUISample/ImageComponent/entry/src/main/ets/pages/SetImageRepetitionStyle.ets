@@ -28,7 +28,7 @@ struct ImageRepetitionStyle {
           .objectRepeat(ImageRepeat.XY)
           .objectFit(ImageFit.ScaleDown)
           // 在水平轴和竖直轴上同时重复绘制图片
-          .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
+          .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         //  $r('app.media.ic_public_favor_filled_1')需要替换为开发者所需的资源文件
         Image($r('app.media.ic_public_favor_filled_1'))
           .width(110)
@@ -37,7 +37,7 @@ struct ImageRepetitionStyle {
           .objectRepeat(ImageRepeat.Y)
           .objectFit(ImageFit.ScaleDown)
           // 只在竖直轴上重复绘制图片
-          .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
+          .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         //  $r('app.media.ic_public_favor_filled_1')需要替换为开发者所需的资源文件
         Image($r('app.media.ic_public_favor_filled_1'))
           .width(110)
@@ -46,9 +46,9 @@ struct ImageRepetitionStyle {
           .objectRepeat(ImageRepeat.X)
           .objectFit(ImageFit.ScaleDown)
           // 只在水平轴上重复绘制图片
-          .overlay('ImageRepeat.X', { align: Alignment.Bottom, offset: { x: 0, y: 20 } });
-      };
-    }.height(150).width('100%').padding(8);
-  };
+          .overlay('ImageRepeat.X', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding(8)
+  }
 }
 //  [End image_repetitionstyle]

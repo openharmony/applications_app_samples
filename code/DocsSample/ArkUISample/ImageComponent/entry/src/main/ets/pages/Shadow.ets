@@ -52,6 +52,6 @@ struct ShadowOptionDemo {
       .justifyContent(FlexAlign.Center)
     }
     .height('100%')
-  };
+  }
 }
 // [End shadow_option]
