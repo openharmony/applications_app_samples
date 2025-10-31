@@ -115,7 +115,7 @@ struct ParticleExample6 {
                 }
                 return;
               }
-              // 更新角度值（5度/秒）
+              // 更新角度值（30度/秒）
               this.startAngle += 30;
               this.endAngle += 30;
             }, 1000);
