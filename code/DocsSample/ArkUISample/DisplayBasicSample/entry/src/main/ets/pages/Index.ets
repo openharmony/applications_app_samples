@@ -188,7 +188,7 @@ struct Index {
     };
     try {
       // 此处以监听显示设备的增加为例
-      display.on("add", callback1);
+      display.on('add', callback1);
       hilog.info(DOMAIN, 'DisplayTest', `register add success`);
 
       // 关闭单个callback监听
