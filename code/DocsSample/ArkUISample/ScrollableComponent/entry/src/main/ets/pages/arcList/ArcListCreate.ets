@@ -25,6 +25,7 @@ export struct ArcListCreate {
   build() {
     NavDestination() {
       Column() {
+        // $r('app.string.ArcListCreate_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ArcListCreate_title') }) {
           Stack() {
             // [Start arcList_create_start]
@@ -72,6 +73,7 @@ export struct ArcListCreate {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.ArcListCreate_title')需要替换为开发者所需的资源文件
     .title($r('app.string.ArcListCreate_title'))
   }
 }

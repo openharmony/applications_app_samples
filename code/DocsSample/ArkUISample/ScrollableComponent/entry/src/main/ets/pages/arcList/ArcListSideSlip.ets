@@ -104,6 +104,7 @@ export struct ArcListSideSlip {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ArcListSideSlip_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ArcListSideSlip_title') }) {
           Stack() {
             ArcList({ initialIndex: 0, header: this.tabBar1, scroller: this.scrollerForList }) {
@@ -161,6 +162,7 @@ export struct ArcListSideSlip {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.ArcListSideSlip_title')需要替换为开发者所需的资源文件
     .title($r('app.string.ArcListSideSlip_title'))
   }
 }

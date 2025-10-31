@@ -42,6 +42,7 @@ export struct arcListBuiltInScrollerBar {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.arcListBuiltInScrollerBar_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.arcListBuiltInScrollerBar_title') }) {
           // [Start arcListBuiltInScrollBar_start]
           ArcList({ header: this.arcListHeader }) {
@@ -150,6 +151,7 @@ export struct arcListBuiltInScrollerBar {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.arcListBuiltInScrollerBar_title')需要替换为开发者所需的资源文件
     .title($r('app.string.arcListBuiltInScrollerBar_title'))
   }
 }
