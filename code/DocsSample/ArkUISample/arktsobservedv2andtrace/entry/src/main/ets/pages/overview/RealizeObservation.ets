@@ -15,22 +15,24 @@
 // [Start Realize_Observation]
 @Observed
 class FatherRea {
- public son: SonRea;
+  public son: SonRea;
 
   constructor(name: string, age: number) {
     this.son = new SonRea(name, age);
-  };
-};
+  }
+}
+
 @Observed
 class SonRea {
- public name: string;
- public age: number;
+  public name: string;
+  public age: number;
 
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
-  };
-};
+  }
+}
+
 @Component
 struct Child {
   @ObjectLink son: SonRea;
@@ -43,13 +45,14 @@ struct Child {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             this.son.age++;
-          });
+          })
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+
 @Entry
 @Component
 struct RealizeObservation {
@@ -57,8 +60,9 @@ struct RealizeObservation {
 
   build() {
     Column() {
-      Child({son: this.father.son})
+      Child({ son: this.father.son })
     }
   }
 }
+
 // [End Realize_Observation]

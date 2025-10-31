@@ -23,7 +23,8 @@ struct ParentComponent {
     return 'Hello World';
   }
 
-  @Builder doSomeRender() {
+  @Builder
+  doSomeRender() {
     Text(`Hello World`)
   }
 
@@ -36,4 +37,5 @@ struct ParentComponent {
     }
   }
 }
+
 // [End Builder_decoration]

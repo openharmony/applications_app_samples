@@ -18,7 +18,7 @@
 struct MyComponentStruct {
   // [StartExclude Component_data_structure]
   build() {
-    Column(){
+    Column() {
       Text('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -26,6 +26,8 @@ struct MyComponentStruct {
     .width('100%')
     .height('100%')
   }
+
   // [EndExclude Component_data_structure]
 }
+
 // [End Component_data_structure]

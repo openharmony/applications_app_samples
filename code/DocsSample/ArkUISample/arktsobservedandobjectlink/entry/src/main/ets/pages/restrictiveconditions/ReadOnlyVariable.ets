@@ -17,18 +17,19 @@ import { common } from '@kit.AbilityKit';
 // [Start variables_decorated_ObjectLink_read_only]
 @Observed
 class ReadOnlyVariableInfo {
- public count: number;
+  public count: number;
 
   constructor(count: number) {
     this.count = count;
-  };
-};
+  }
+}
 
 @Component
 struct ReadOnlyVariableChild {
   @ObjectLink num: ReadOnlyVariableInfo;
   // [StartExclude variables_decorated_ObjectLink_read_only]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   // [EndExclude variables_decorated_ObjectLink_read_only]
   build() {
     Column() {
@@ -37,7 +38,7 @@ struct ReadOnlyVariableChild {
         .onClick(() => {
           // 正确写法，可以更改@ObjectLink装饰变量的成员属性
           this.num.count = 20;
-        });
+        })
     }
   }
 }
@@ -48,6 +49,7 @@ struct ReadOnlyVariableParent {
   @State num: ReadOnlyVariableInfo = new ReadOnlyVariableInfo(10);
   // [StartExclude variables_decorated_ObjectLink_read_only]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   // [EndExclude variables_decorated_ObjectLink_read_only]
   build() {
     Column() {
@@ -57,9 +59,10 @@ struct ReadOnlyVariableParent {
         .onClick(() => {
           // 可以在父组件做整体替换
           this.num = new ReadOnlyVariableInfo(30);
-        });
-      ReadOnlyVariableChild({num: this.num})
+        })
+      ReadOnlyVariableChild({ num: this.num })
     }
   }
 }
+
 // [End variables_decorated_ObjectLink_read_only]

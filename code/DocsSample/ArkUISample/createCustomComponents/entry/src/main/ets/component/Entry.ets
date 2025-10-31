@@ -18,7 +18,7 @@
 struct MyComponentEntry {
   // [StartExclude Entry_UI_page]
   build() {
-    Column(){
+    Column() {
       Text('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -26,6 +26,8 @@ struct MyComponentEntry {
     .width('100%')
     .height('100%')
   }
+
   // [EndExclude Entry_UI_page]
 }
+
 // [End Entry_UI_page]

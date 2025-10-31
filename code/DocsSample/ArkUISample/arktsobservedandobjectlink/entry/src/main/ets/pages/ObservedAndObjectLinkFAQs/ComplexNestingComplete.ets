@@ -21,8 +21,8 @@ class SubCounter {
 
   constructor(c: number) {
     this.counter = c;
-  };
-};
+  }
+}
 
 @Observed
 class ComplexNestingCompleteParentCounter {
@@ -32,22 +32,22 @@ class ComplexNestingCompleteParentCounter {
 
   incrCounter() {
     this.counter++;
-  };
+  }
 
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
-  };
+  }
 
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
-  };
+  }
 
   constructor(c: number) {
     this.id = complexNestingCompleteNextId++;
     this.counter = c;
     this.subCounter = new SubCounter(c);
-  };
-};
+  }
+}
 
 @Component
 struct ComplexNestingCompleteCounterComp {
@@ -59,8 +59,8 @@ struct ComplexNestingCompleteCounterComp {
         .fontSize(25)
         .onClick(() => {
           this.value.incrCounter();
-        });
-      CounterChild({ subValue: this.value.subCounter });
+        })
+      CounterChild({ subValue: this.value.subCounter })
       Divider().height(2)
     }
   }
@@ -74,7 +74,7 @@ struct CounterChild {
     Text(`${this.subValue.counter}`)
       .onClick(() => {
         this.subValue.counter += 1;
-      });
+      })
   }
 }
 
@@ -99,7 +99,7 @@ struct ComplexNestingCompleteParentComp {
             ComplexNestingCompleteCounterComp({ value: item })
           },
           (item: ComplexNestingCompleteParentCounter) => item.id.toString()
-        );
+        )
         Divider().height(5)
         Text('Parent: reset entire counter')
           .fontSize(20).height(50)
@@ -109,20 +109,21 @@ struct ComplexNestingCompleteParentComp {
               new ComplexNestingCompleteParentCounter(2),
               new ComplexNestingCompleteParentCounter(3)
             ];
-          });
+          })
         Text('Parent: incr counter[0].counter')
           .fontSize(20).height(50)
           .onClick(() => {
             this.counter[0].incrCounter();
             this.counter[0].incrSubCounter(10);
-          });
+          })
         Text('Parent: set.counter to 10')
           .fontSize(20).height(50)
           .onClick(() => {
             this.counter[0].setSubCounter(10);
-          });
+          })
       }
     }
   }
 }
+
 // [End Complex_nested_observation_levels]

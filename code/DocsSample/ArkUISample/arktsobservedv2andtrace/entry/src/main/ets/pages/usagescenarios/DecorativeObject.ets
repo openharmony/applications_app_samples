@@ -21,24 +21,24 @@ class Person {
 
   constructor(age: number) {
     this.age = age;
-  };
-};
+  }
+}
 
 @ObservedV2
-class ObjectInfo {
- public id: number = 0;
+class InfoObject {
+  public id: number = 0;
   @Trace public personList: Person[] = [];
 
   constructor() {
     this.id = nextId++;
     this.personList = [new Person(0), new Person(1), new Person(2)];
-  };
-};
+  }
+}
 
 @Entry
 @ComponentV2
 struct DecorativeObject {
-  info: ObjectInfo = new ObjectInfo();
+  info: InfoObject = new InfoObject();
 
   build() {
     Column() {
@@ -50,19 +50,19 @@ struct DecorativeObject {
           .fontSize(40)
           .onClick(() => {
             this.info.personList[0].age++;
-          });
+          })
 
         Text(`${this.info.personList[1].age}`)
           .fontSize(40)
           .onClick(() => {
             this.info.personList[1].age++;
-          });
+          })
 
         Text(`${this.info.personList[2].age}`)
           .fontSize(40)
           .onClick(() => {
             this.info.personList[2].age++;
-          });
+          })
       }
 
       Divider()
@@ -70,8 +70,9 @@ struct DecorativeObject {
       ForEach(this.info.personList, (item: Person, index: number) => {
         Text(`${index} ${item.age}`)
           .fontSize(40)
-      });
+      })
     }
   }
 }
+
 // [End Decorative_Object]

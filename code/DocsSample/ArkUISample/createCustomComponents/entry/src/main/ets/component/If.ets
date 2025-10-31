@@ -16,18 +16,20 @@
 @Component
 struct IfPage {
   expression: number = 1;
+
   // [Start switch_syntax]
   build() {
     Column() {
       // 正例：使用if
-      if(this.expression == 1) {
+      if (this.expression == 1) {
         Text('...')
-      } else if(this.expression == 2) {
+      } else if (this.expression == 2) {
         Image('...')
       } else {
         Text('...')
       }
     }
   }
+
   // [End switch_syntax]
 }

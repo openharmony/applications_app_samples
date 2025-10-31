@@ -40,7 +40,7 @@ struct IndexPage {
     Column() {
       ForEach(this.arr, (itemArr: Array<string>) => {
         Item({ itemArr: itemArr })
-      });
+      })
 
       Divider()
 
@@ -48,26 +48,27 @@ struct IndexPage {
         .margin(10)
         .onClick(() => {
           this.arr[0].push('strawberry');
-        });
+        })
 
       Button('push array item')
         .margin(10)
         .onClick(() => {
           this.arr.push(UIUtils.makeV1Observed(['pear']));
-        });
+        })
 
       Button('change two-dimensional array first item')
         .margin(10)
         .onClick(() => {
           this.arr[0][0] = 'APPLE';
-        });
+        })
 
       Button('change array first item')
         .margin(10)
         .onClick(() => {
           this.arr[0] = UIUtils.makeV1Observed(['watermelon']);
-        });
+        })
     }
   }
 }
+
 // [End Complete_Example_Two_Dimensional_Array]

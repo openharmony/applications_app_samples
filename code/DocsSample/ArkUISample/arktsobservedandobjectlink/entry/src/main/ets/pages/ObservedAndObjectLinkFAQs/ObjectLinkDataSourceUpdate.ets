@@ -14,19 +14,21 @@
  */
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedandobjectlink';
+
 // [Start ObjectLink_Data_source_update_timing]
 @Observed
 class ObjectLinkDataSourceUpdatePerson {
- public name: string = '';
- public age: number = 0;
+  public name: string = '';
+  public age: number = 0;
 
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
-  };
-};
+  }
+}
 
 @Observed
 class ObjectLinkDataSourceUpdateInfo {
@@ -34,8 +36,8 @@ class ObjectLinkDataSourceUpdateInfo {
 
   constructor(person: ObjectLinkDataSourceUpdatePerson) {
     this.person = person;
-  };
-};
+  }
+}
 
 @Entry
 @Component
@@ -44,18 +46,19 @@ struct ObjectLinkDataSourceUpdateParent {
     new ObjectLinkDataSourceUpdateInfo(
       new ObjectLinkDataSourceUpdatePerson('Bob', 10)
     );
+
   onChange01() {
-    hilog.info(DOMAIN,TAG,`:::onChange01: + ${this.info.person.name}`); // 2
-  };
+    hilog.info(DOMAIN, TAG, `:::onChange01: + ${this.info.person.name}`); // 2
+  }
 
   build() {
     Column() {
       Text(this.info.person.name).height(40)
       ObjectLinkDataSourceUpdateChild({
         per: this.info.person, clickEvent: () => {
-          hilog.info(DOMAIN,TAG,`:::clickEvent before ${this.info.person.name}`); // 1
+          hilog.info(DOMAIN, TAG, `:::clickEvent before ${this.info.person.name}`); // 1
           this.info.person = new ObjectLinkDataSourceUpdatePerson('Jack', 12);
-          hilog.info(DOMAIN,TAG,`:::clickEvent after ${this.info.person.name}`); // 3
+          hilog.info(DOMAIN, TAG, `:::clickEvent after ${this.info.person.name}`); // 3
         }
       })
     }
@@ -68,10 +71,11 @@ struct ObjectLinkDataSourceUpdateChild {
   clickEvent?: () => void;
   // [StartExclude ObjectLink_Data_source_update_timing]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   // [EndExclude ObjectLink_Data_source_update_timing]
   onChange02() {
-    hilog.info(DOMAIN,TAG,`:::onChange02:${this.per.name}`); // 5
-  };
+    hilog.info(DOMAIN, TAG, `:::onChange02:${this.per.name}`); // 5
+  }
 
   build() {
     Column() {
@@ -79,16 +83,17 @@ struct ObjectLinkDataSourceUpdateChild {
         .height(40)
         .onClick(() => {
           this.onClickType();
-        });
+        })
     }
   }
 
   private onClickType() {
     if (this.clickEvent) {
       this.clickEvent();
-    };
+    }
     // $r('app.string.ObjectLinkDataSourceUpdate_Child')需要替换为开发者所需的资源文件
-    hilog.info(DOMAIN,TAG,`:::--------${this.context.resourceManager.getStringSync($r('app.string.ObjectLinkDataSourceUpdate_Child').id)}: ${this.per.name}`); // 4
+    hilog.info(DOMAIN, TAG, `:::--------${this.context.resourceManager.getStringSync($r('app.string.ObjectLinkDataSourceUpdate_Child').id)}: ${this.per.name}`); // 4
   };
 }
+
 // [End ObjectLink_Data_source_update_timing]

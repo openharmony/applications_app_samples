@@ -17,24 +17,27 @@
 class TriggeredPerson {
   public id: number = 0;
   @Trace public age: number = 8;
-};
+}
+
 @Entry
 @ComponentV2
 struct UiRefreshCannotTriggered {
   person: TriggeredPerson = new TriggeredPerson();
+
   build() {
     Column() {
       // age被@Trace装饰，用在UI中可以触发UI刷新
       Text(`${this.person.age}`)
         .onClick(() => {
           this.person.age++; // 点击会触发UI刷新
-        });
+        })
       // id未被@Trace装饰，用在UI中不会触发UI刷新
       Text(`${this.person.id}`) // 当id变化时不会刷新
         .onClick(() => {
           this.person.id++; // 点击不会触发UI刷新
-        });
+        })
     }
   }
 }
+
 // [End UiRefresh_CannotTriggered]

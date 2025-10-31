@@ -17,23 +17,25 @@
 @ObservedV2
 class Job {
   @Trace public jobName: string = 'Teacher';
-};
+}
+
 @ObservedV2
 class InheritanceMixtureInfo {
   @Trace public name: string = 'Tom';
   @Trace public age: number = 25;
   public job: Job = new Job();
-};
+}
+
 class Message extends InheritanceMixtureInfo {
   constructor() {
     super();
-  };
-};
+  }
+}
+
 @Entry
-// @Component 需使用@ComponentV2
 @ComponentV2
 struct InheritanceMixture {
-  // @State message: Message = new Message();  无法混用，运行时报错
+  // @State message: Message = new Message();  无法混用，编译时报错
   @Local message: Message = new Message();
 
   build() {
@@ -44,12 +46,13 @@ struct InheritanceMixture {
       Button('change age')
         .onClick(() => {
           this.message.age++;
-        });
+        })
       Button('Change job')
         .onClick(() => {
           this.message.job.jobName = 'Doctor';
-        });
+        })
     }
   }
 }
+
 // [End Inheritance_Mixture]

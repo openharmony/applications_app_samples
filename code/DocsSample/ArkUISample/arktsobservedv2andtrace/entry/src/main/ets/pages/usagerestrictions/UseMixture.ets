@@ -17,15 +17,16 @@
 @ObservedV2
 class UseMixtureJob {
   @Trace public jobName: string = 'Teacher';
-};
+}
+
 @ObservedV2
 class UseMixtureInfo {
   @Trace public name: string = 'Tom';
   @Trace public age: number = 25;
   public job: UseMixtureJob = new UseMixtureJob();
-};
+}
+
 @Entry
-// @Component 需使用@ComponentV2
 @ComponentV2
 struct UseMixture {
   // @State info: UseMixtureInfo = new UseMixtureInfo(); 无法混用，编译时报错
@@ -39,12 +40,13 @@ struct UseMixture {
       Button('change age')
         .onClick(() => {
           this.info.age++;
-        });
+        })
       Button('Change job')
         .onClick(() => {
           this.info.job.jobName = 'Doctor';
-        });
+        })
     }
   }
 }
+
 // [End Use_Mixture]

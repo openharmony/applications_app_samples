@@ -21,6 +21,7 @@ class CreateRouter {
     this.routerName = routerName;
   }
 }
+
 const createRouterList: CreateRouter[] = [
   new CreateRouter('ParentComponentPage', 'component/ParentComponent'),
   new CreateRouter('ParameterSpecificationPage', 'component/ParameterSpecification'),

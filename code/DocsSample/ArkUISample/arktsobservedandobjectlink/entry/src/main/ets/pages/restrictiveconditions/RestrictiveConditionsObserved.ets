@@ -15,47 +15,52 @@
 // [Start Test_Info_Observed]
 @Observed
 class RestrictiveConditionsObservedInfo {
- public count: number;
+  public count: number;
 
   constructor(count: number) {
     this.count = count;
-  };
-};
+  }
+}
 
 class Test {
- public msg: number;
+  public msg: number;
 
   constructor(msg: number) {
     this.msg = msg;
-  };
-};
+  }
+}
+
 // [StartExclude Test_Info_Observed]
 @Component
-struct TestInfo{
+struct TestInfo {
   // [EndExclude Test_Info_Observed]
   // 正确写法
   @ObjectLink count: RestrictiveConditionsObservedInfo;
+
   // [End Test_Info_Observed]
   build() {
 
   }
 }
+
 // [Start Info_Initialization]
 @Observed
 class InfoInitialization {
- public count: number;
+  public count: number;
 
   constructor(count: number) {
     this.count = count;
-  };
-};
+  }
+}
+
 // [StartExclude Info_Initialization]
 @Component
-struct Initialization{
+struct Initialization {
   // [EndExclude Info_Initialization]
 
   // 正确写法
   @ObjectLink count: InfoInitialization;
+
   // [End Info_Initialization]
 
   build() {

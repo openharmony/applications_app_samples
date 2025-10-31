@@ -16,7 +16,8 @@
 @ObservedV2
 class Manager {
   @Trace public static count: number = 1;
-};
+}
+
 @Entry
 @ComponentV2
 struct StaticAttribute {
@@ -26,8 +27,9 @@ struct StaticAttribute {
       Text(`${Manager.count}`)
         .onClick(() => {
           Manager.count++;
-        });
+        })
     }
   }
 }
+
 // [End Static_Attribute]
