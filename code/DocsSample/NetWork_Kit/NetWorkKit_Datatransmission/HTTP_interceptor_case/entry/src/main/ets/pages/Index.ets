@@ -25,6 +25,8 @@ const BUTTON_FONT_SIZE = 18; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
 const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
 
+const EXAMPLE_URL: string = 'https://www.example.com/';
+
 // [Start HTTP_interceptor_case_creat_http_interceptor]
 enum InterceptorType {
   INITIAL_REQUEST = 'INITIAL_REQUEST',
@@ -44,7 +46,7 @@ class TestHttpInterceptor implements http.HttpInterceptor {
   interceptorHandle(reqContext: http.HttpRequestContext, rspContext: http.HttpResponse): Promise<http.ChainContinue> {
     // 命中拦截器后对请求报文与请求响应操作
     // [StartExclude HTTP_interceptor_case_creat_http_interceptor]
-    rspContext.result = "INITIAL_REQUEST";
+    rspContext.result = 'INITIAL_REQUEST';
     rspContext.responseCode = 200;
     rspContext.header =
       'content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue';
@@ -84,14 +86,14 @@ function httpNormalRequest() {
     // 创建请求可选项
     let options: http.HttpRequestOptions = {
       method: http.RequestMethod.POST,
-      header: { "content-type": "text/html" } as Record<string, string>,
-      extraData: { "context": "BODY_NO_CHANGE" } as Record<string, string>,
+      header: { 'content-type': 'text/html' } as Record<string, string>,
+      extraData: { 'context': 'BODY_NO_CHANGE' } as Record<string, string>,
     };
     // [End HTTP_interceptor_case_options]
 
     // [Start HTTP_interceptor_case_request]
     // 发起请求
-    httpRequest.request('https://www.example.com/', options, (err: BusinessError, res: http.HttpResponse) => {
+    httpRequest.request(EXAMPLE_URL, options, (err: BusinessError, res: http.HttpResponse) => {
       if (err) {
         hilog.info(0xFF00, 'httpNormalRequest', `request fail, error code: ${err.code}, msg: ${err.message}`);
         // [StartExclude HTTP_interceptor_case_request]
