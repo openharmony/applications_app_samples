@@ -21,7 +21,8 @@ struct MyComponent {
   build() {
     NavDestination() {
       Column() {
-        Text('所属页面')
+        // $r('app.string.ToPage')需要替换为开发者所需的字符串资源文件
+        Text($r('app.string.ToPage'))
       }.width('100%').height('100%')
     }.title('MyComponent')
   }
