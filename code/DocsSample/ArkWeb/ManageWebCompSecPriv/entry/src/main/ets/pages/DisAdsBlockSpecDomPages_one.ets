@@ -13,54 +13,50 @@
  * limitations under the License.
  */
 // [Start turn_off_ad_filtering_for_specific_domain_pages]
-import { webview } from '@kit.ArkWeb';
+import { webview } from '@kit.ArkWeb';	
 
-// [StartExclude turn_off_ad_filtering_for_specific_domain_pages]
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-// [EndExclude turn_off_ad_filtering_for_specific_domain_pages]
-@Entry
-@Component
-struct WebComponent {
-  mainUrl: string = resourceToString($r('app.string.web_path'));
-  textInputController: TextInputController = new TextInputController();
-  controller: webview.WebviewController = new webview.WebviewController();
+// 演示通过一个按钮的点击向Web组件设置广告过滤的域名策略	
+@Entry	
+@Component	
+struct WebComponent {	
+  main_url: string = 'https://www.example.com';	
+  text_input_controller: TextInputController = new TextInputController();	
+  controller: webview.WebviewController = new webview.WebviewController();	
 
-  @State inputText: string = resourceToString($r('app.string.web_path'));
+  @State input_text: string = 'https://www.example.com';	
 
-  build() {
-    Column() {
-      Row() {
-        Flex() {
-          TextInput({ text: this.inputText, placeholder: this.mainUrl, controller: this.textInputController})
-            .id('input_url')
-            .height(40)
-            .margin(5)
-            .borderColor(Color.Blue)
-            .onChange((value: string) => {
-              this.inputText = value;
-            })
+  build() {	
+    Column() {	
+      Row() {	
+        Flex() {	
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})	
+            .id('input_url')	
+            .height(40)	
+            .margin(5)	
+            .borderColor(Color.Blue)	
+            .onChange((value: string) => {	
+              this.input_text = value;	
+            })	
 
-          Button({type: ButtonType.Capsule}) { Text('Go') }
-          .onClick(() => {
-            this.controller.loadUrl(this.inputText);
-          })
+          Button({type: ButtonType.Capsule}) { Text('Go') }	
+          .onClick(() => {	
+            this.controller.loadUrl(this.input_text);	
+          })	
 
-          Button({type: ButtonType.Capsule}) { Text('addAdsBlockDisallowedList') }
-          .onClick(() => {
-            let arrDomainSuffixes: string[] = [];
-            arrDomainSuffixes.push('example.com');
-            arrDomainSuffixes.push('abcdefg.cn');
-            webview.AdsBlockManager.addAdsBlockDisallowedList(arrDomainSuffixes);
-          })
-        }
-      }
-      Web({ src: this.mainUrl, controller: this.controller })
-        .onControllerAttached(()=>{
-          this.controller.enableAdsBlock(true);
-        })
-    }
-  }
+          Button({type: ButtonType.Capsule}) { Text('addAdsBlockDisallowedList') }	
+          .onClick(() => {	
+            let arrDomainSuffixes = new Array<string>();	
+            arrDomainSuffixes.push('example.com');	
+            arrDomainSuffixes.push('abcdefg.cn');	
+            webview.AdsBlockManager.addAdsBlockDisallowedList(arrDomainSuffixes);	
+          })	
+        }	
+      }	
+      Web({ src: this.main_url, controller: this.controller })	
+        .onControllerAttached(()=>{	
+          this.controller.enableAdsBlock(true);	
+        })	
+    }	
+  }	
 }
 // [End turn_off_ad_filtering_for_specific_domain_pages]

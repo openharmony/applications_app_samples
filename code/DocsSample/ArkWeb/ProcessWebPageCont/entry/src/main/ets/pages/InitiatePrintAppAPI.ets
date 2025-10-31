@@ -15,8 +15,7 @@
 
 // [Start create_web_print_document]
 import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { BusinessError, print } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -29,7 +28,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
-            print.print('example_jobid', webPrintDocadapter, null, getContext());
+            print.print('example_job_id', webPrintDocadapter, null, this.getUIContext().getHostContext());
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

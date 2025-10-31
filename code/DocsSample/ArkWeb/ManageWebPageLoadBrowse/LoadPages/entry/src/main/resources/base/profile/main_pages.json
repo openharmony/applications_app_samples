@@ -5,6 +5,7 @@
     "pages/LoadingLocalPages",
     "pages/LoadingHTMLRichTextData",
     "pages/LoadLocalPageFileInSandboxPath_one",
-    "pages/LoadLocalPageFileInSandboxPath_two"
+    "pages/LoadLocalPageFileInSandboxPath_two",
+    "pages/ResourceLoadPage"
   ]
 }

@@ -27,7 +27,7 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            webview.WebCookieManager.configCookieSync('www.example.com', 'value=test');
+            webview.WebCookieManager.configCookieSync('https://www.example.com', 'value=test');
           } catch (error) {
             console.error(
               `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
