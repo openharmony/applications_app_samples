@@ -33,13 +33,11 @@ export async function backupManually() {
   // 手动备份：通过调用[backup](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#backup)接口实现数据库手动备份。示例如下：
 
   // [Start backupManually]
-
   let store: relationalStore.RdbStore | undefined = undefined;
   let context = getContext();
   const STORE_CONFIG: relationalStore.StoreConfig = {
     name: 'RdbTest.db',
-    securityLevel: relationalStore.SecurityLevel.S3,
-    allowRebuild: true
+    securityLevel: relationalStore.SecurityLevel.S3
   };
   try {
     store = await relationalStore.getRdbStore(context, STORE_CONFIG);
@@ -47,7 +45,7 @@ export async function backupManually() {
     hilog.info(DOMAIN, 'BackupAndRestore', 'Succeeded in getting RdbStore.');
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code},message:${err.message}`);
+    hilog.error(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code},message:${err.message}`);
   }
 
   if (!store) {
@@ -63,9 +61,8 @@ export async function backupManually() {
     hilog.info(DOMAIN, 'BackupAndRestore', `Succeeded in backing up RdbStore.`);
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, 'BackupAndRestore', `Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.error(DOMAIN, 'BackupAndRestore', `Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
   }
-
   // [End backupManually]
 
 
@@ -96,7 +93,7 @@ export async function backupManually() {
           */
           // 抛出异常
           if (resultSet?.rowCount == -1) {
-            resultSet ?.isColumnNull(0);
+            resultSet?.isColumnNull(0);
           }
           // todo resultSet.goToFirstRow(), resultSet.count等其它接口也会抛异常
           while (resultSet.goToNextRow()) {
@@ -160,7 +157,7 @@ export async function rebuildingRelationalDatabaseAbnormally() {
     hilog.info(DOMAIN, 'BackupAndRestore', 'Succeeded in getting RdbStore.');
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.error(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
   }
   // [End rebuildingRelationalDatabaseAbnormally]
 }
@@ -201,7 +198,7 @@ export async function restoringManualBackupData() {
     hilog.info(DOMAIN, 'BackupAndRestore', 'Restore from backup success.');
   } catch (e) {
     const err = e as BusinessError;
-    hilog.info(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    hilog.error(DOMAIN, 'BackupAndRestore', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
   }
   // [End invokeTheRestoreInterfaceToRestoreData]
 }
