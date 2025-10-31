@@ -20,6 +20,7 @@ import ThingModel from '../model/ThingModel';
 export default class ThingViewModel {
   @Track public thingName: string = 'Todo';
   @Track public isFinish: boolean = false;
+  public context: Context = AppStorage.get('context')!
 
   updateTask(thing: ThingModel) {
     this.thingName = thing.thingName;
@@ -31,7 +32,9 @@ export default class ThingViewModel {
   }
 
   addSuffixes(): void {
-    this.thingName += '啦';
+    // $r('app.string.la_la')需要替换为开发者所需的资源文件
+    this.thingName += this.context.resourceManager.getStringSync($r('app.string.la_la').id);
   }
 }
+
 // [End thing_view_model]
