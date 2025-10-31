@@ -17,6 +17,7 @@
 import geoLocationManager from '@ohos.geoLocationManager';
 // [End import_geoLocation]
 import {listData, heatCity, ListItem, ProvinceWithSubCities} from '../mock/LocationMock';
+import hilog from '@ohos.hilog';
 
 @Entry
 @Component
@@ -31,6 +32,7 @@ export struct SamplePage {
   @State isShow: boolean = true;
   private tabValue: string[] = ['A', 'B', 'C', 'F', 'G', 'H', 'J', 'L', 'N', 'Q', 'S', 'T', 'X', 'Y', 'Z'];
   private scroller: Scroller = new Scroller();
+  private tag: string = 'LocationSample'; 
 
   async requestLocation() {
 // [Start request_location]
@@ -40,7 +42,7 @@ export struct SamplePage {
     };
 
     let locationCallback = async (location: geoLocationManager.Location) => {
-      console.info('Received Location:' + JSON.stringify(location));
+      hilog.info(0x0000, this.tag, 'Received Location:' + JSON.stringify(location));
 // [StartExclude request_location]
 // [Start off_location]
       // 该回调函数需要与on接口传入的回调函数保持一致。
@@ -54,7 +56,7 @@ export struct SamplePage {
         geoLocationManager.on('locationChange', requestConfig, locationCallback);
       }
     } catch (err) {
-      console.info('errorCode:' + err.code + ', errMsg:' + err.msg);
+      hilog.info(0x0000, this.tag, 'errorCode:' + err.code + ', errMsg:' + err.msg);
     }
 // [End request_location]
   }
@@ -73,24 +75,24 @@ export struct SamplePage {
             maxAccuracy: 100
         };
         let location = await geoLocationManager.getCurrentLocation(requestInfo);
-        if (location != undefined) {
+        if (location !== undefined) {
 // [StartExclude get_current_location]
           let request: geoLocationManager.ReverseGeoCodeRequest = {
             latitude: location.latitude,
             longitude: location.longitude
           };
           let address = await geoLocationManager.getAddressesFromLocation(request);
-          if (address != undefined && address.length >= 1 && address[0].locality != undefined) {
+          if (address !== undefined && address.length >= 1 && address[0].locality !== undefined) {
             this.city = address[0].locality;
           }
-          console.info('this city:' + JSON.stringify(this.city));
+          hilog.info(0x0000, this.tag, 'this city:' + JSON.stringify(this.city));
 // [StartExclude get_current_location]
-          console.info('current location:' + JSON.stringify(location));
+          hilog.info(0x0000, this.tag, 'current location:' + JSON.stringify(location));
         }
       }
 // [EndExclude is_location_enabled]
     } catch (err) {
-      console.info('errorCode:' + err.code + ', errMsg:' + err.msg);
+      hilog.info(0x0000, this.tag, 'errorCode:' + err.code + ', errMsg:' + err.msg);
     }
 // [End get_address_from_location]
 // [End is_location_enabled]
@@ -103,14 +105,14 @@ export struct SamplePage {
       let isLocationEnabled = geoLocationManager.isLocationEnabled();
       if (isLocationEnabled) {
         let location = await geoLocationManager.getLastLocation();
-        if (location != undefined) {
+        if (location !== undefined) {
           this.latitude = location.latitude;
           this.longitude = location.longitude;
-          console.info('last location:' + JSON.stringify(location));
+          hilog.info(0x0000, this.tag, 'last location:' + JSON.stringify(location));
         }
       }
     } catch (err) {
-      console.info('errorCode:' + err.code + ', errMsg:' + err.msg);
+      hilog.info(0x0000, this.tag, 'errorCode:' + err.code + ', errMsg:' + err.msg);
     }
 // [End get_last_location]
   }

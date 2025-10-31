@@ -45,11 +45,11 @@ export default class EntryAbility extends UIAbility {
         atManager.requestPermissionsFromUser(this.context,
         ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION'],
         (err, data) => {
-          console.info('data->${JSON.stringify(data)}');
-          console.info('err->${JSON.stringify(err)}');
+          hilog.info(DOMAIN, 'testTag', 'data->${JSON.stringify(data)}');
+          hilog.info(DOMAIN, 'testTag', 'err->${JSON.stringify(err)}');
         });
       } catch(err) {
-        console.log('catch err->${JSON.stringify(err)}');
+        hilog.info(DOMAIN, 'testTag', 'catch err->${JSON.stringify(err)}');
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
