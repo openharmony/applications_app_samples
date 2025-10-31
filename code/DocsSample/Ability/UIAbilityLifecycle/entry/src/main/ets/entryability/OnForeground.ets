@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-// [Start EventHubOff]
+// [Start onForeground]
 import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-  onDestroy(): void {
-    this.context.eventHub.off('event1');
+  onForeground(): void {
+    // 申请系统需要的资源，或者重新申请在onBackground()中释放的资源
   }
 }
-// [End EventHubOff]
+// [End onForeground]

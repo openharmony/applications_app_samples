@@ -13,15 +13,18 @@
  * limitations under the License.
  */
 
-// [Start onWindowStageCreate]
+// [Start onWindowStageDestroy]
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
+
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
-    windowStage.loadContent('pages/Index', (err, data) => {
-    });
+    // 加载UI资源
+  }
+
+  onWindowStageDestroy() {
+    // 释放UI资源
   }
 }
-// [End onWindowStageCreate]
+// [End onWindowStageDestroy]

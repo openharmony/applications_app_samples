@@ -19,7 +19,7 @@ import { emitter } from '@kit.BasicServicesKit';
 import Logger from '../common/Logger';
 import Constant from '../common/Constants';
 
-const TAG = '[Sample_StartMode]';
+const TAG = '[SingletonAbility]';
 const eventId = Constant.DEFAULT_ONE;
 
 interface Data {

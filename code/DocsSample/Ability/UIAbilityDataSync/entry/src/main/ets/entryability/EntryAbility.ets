@@ -15,14 +15,18 @@
 
 // [Start onCreate]
 // [Start onDestroy]
+// [StartExclude onDestroy]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [EndExclude onDestroy]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 // [StartExclude onDestroy]
 // [StartExclude onCreate]
 import { window } from '@kit.ArkUI';
 // [EndExclude onCreate]
+// [EndExclude onDestroy]
 
 const DOMAIN = 0x0000;
+// [StartExclude onDestroy]
 const TAG: string = '[EventAbility]';
 // [EndExclude onDestroy]
 
@@ -36,7 +40,7 @@ export default class EntryAbility extends UIAbility {
     eventhub.on('event1', (data: string) => {
       // 触发事件，完成相应的业务操作
     });
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onCreate');
   }
 
   eventFunc(argOne: object, argTwo: object): void {
@@ -47,40 +51,39 @@ export default class EntryAbility extends UIAbility {
 
   // [StartExclude onCreate]
   onDestroy(): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
     this.context.eventHub.off('event1');
   }
 
   // [StartExclude onDestroy]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/EventHubPage', (err) => {
       if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        hilog.error(DOMAIN, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
         return;
       }
-      hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
+      hilog.info(DOMAIN, TAG, 'Succeeded in loading the content.');
     });
   }
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
     // Ability has brought to foreground
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
     // Ability has back to background
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onBackground');
   }
   // [EndExclude onCreate]
   // [EndExclude onDestroy]
 }
-// [End onCreate]
 // [End onDestroy]
+// [End onCreate]

@@ -17,7 +17,7 @@ import { UIAbility, AbilityConstant, Want, Context } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import Logger from '../common/Logger';
 
-const TAG = '[Sample_StartMode]';
+const TAG = '[SpecifiedAbility]';
 
 interface Data {
   context: Context;

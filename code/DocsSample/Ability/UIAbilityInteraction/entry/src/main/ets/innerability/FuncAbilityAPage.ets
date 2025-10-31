@@ -18,17 +18,17 @@
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[Page_FromStageModel]';
+const TAG: string = '[FuncAbilityAPage]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Page_FromStageModel {
+struct FuncAbilityAPage {
 
   build() {
     Column() {
       // [StartExclude FuncAbilityB]
-      Button($r('app.string.Stop_AbilityA'))
+      Button($r('app.string.Stop_AbilityA')) //'app.string.Stop_AbilityA'为用户自定义字符串资源
         .onClick(() => {
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
           // context为需要停止的UIAbility实例的AbilityContext
@@ -50,7 +50,7 @@ struct Page_FromStageModel {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityB]
-            Button($r('app.string.Stop_AbilityA_Result'))
+            Button($r('app.string.Stop_AbilityA_Result')) //'app.string.Stop_AbilityA_Result'为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbilityB]
           }
@@ -64,7 +64,7 @@ struct Page_FromStageModel {
                 moduleName: 'entry', // moduleName非必选
                 abilityName: 'FuncAbilityA',
                 parameters: {
-                  info: $r('app.string.ability_return_info')
+                  info: $r('app.string.ability_return_info') //'app.string.ability_return_info'为用户自定义字符串资源
                 },
               },
             };

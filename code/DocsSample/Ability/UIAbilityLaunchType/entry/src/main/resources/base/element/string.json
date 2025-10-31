@@ -226,11 +226,11 @@
     },
     {
       "name": "multitonAbility",
-      "value": "启动单实例模式UIAbility"
+      "value": "启动多实例模式UIAbility"
     },
     {
       "name": "specifiedAbility",
-      "value": "启动单实例模式UIAbility"
+      "value": "启动指定实例模式UIAbility"
     },
     {
       "name": "single_display",

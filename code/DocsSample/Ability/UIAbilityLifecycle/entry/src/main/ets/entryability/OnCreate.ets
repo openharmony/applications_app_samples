@@ -13,29 +13,12 @@
  * limitations under the License.
  */
 
-// [Start EventHub]
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { UIAbility, Context, Want, AbilityConstant } from '@kit.AbilityKit';
-
-const DOMAIN_NUMBER: number = 0xFF00;
-const TAG: string = '[EventAbility]';
+// [Start EntryAbility_onCreate]
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // 获取eventHub
-    let eventhub = this.context.eventHub;
-    // 执行订阅操作
-    eventhub.on('event1', this.eventFunc);
-    eventhub.on('event1', (data: string) => {
-      // 触发事件，完成相应的业务操作
-    });
-    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-  }
-
-  // ...
-  eventFunc(argOne: Context, argTwo: Context): void {
-    hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
-    return;
+    // 执行UIAbility整个生命周期中仅发生一次的业务逻辑
   }
 }
-// [End EventHub]
+// [End EntryAbility_onCreate]
