@@ -15,7 +15,7 @@
 @Entry
 @Component
 struct SpecifiedSecondPage {
-  @State message: string | Resource = $r('app.string.old_doc');
+  @State message: string | Resource = $r('app.string.old_doc'); //app.string.old_doc为用户自定义字符串资源
 
   build() {
     RelativeContainer() {

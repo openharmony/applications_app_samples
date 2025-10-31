@@ -18,16 +18,16 @@
 // [Start FuncAbility_Cold]
 // [Start FuncAbility_Hot]
 // [Start FuncAbility_Window]
-import { AbilityConstant, bundleManager, common, StartOptions, Want } from '@kit.AbilityKit';
+import { AbilityConstant, common, StartOptions, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+const TAG: string = '[MainPage]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsInteractive {
+struct MainPage {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
@@ -41,7 +41,7 @@ struct Page_UIAbilityComponentsInteractive {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityA]
-            Button($r('app.string.Start_AbilityA'))
+            Button($r('app.string.Start_AbilityA')) //app.string.Start_AbilityA为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbilityA]
           }
@@ -55,7 +55,7 @@ struct Page_UIAbilityComponentsInteractive {
               abilityName: 'FuncAbilityA',
               parameters: {
                 // 自定义信息
-                info: '来自EntryAbility Page_UIAbilityComponentsInteractive页面'
+                info: $r('app.string.main_page_return_info') //app.string.main_page_return_info为用户自定义字符串资源
               },
             };
             // context为调用方UIAbility的UIAbilityContext
@@ -72,7 +72,7 @@ struct Page_UIAbilityComponentsInteractive {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityA_Result]
-            Button($r('app.string.Start_AbilityA_Result'))
+            Button($r('app.string.Start_AbilityA_Result')) //app.string.Start_AbilityA_Result为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbilityA_Result]
           }
@@ -112,7 +112,7 @@ struct Page_UIAbilityComponentsInteractive {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Cold]
-            Button($r('app.string.Cold_Start_Page'))
+            Button($r('app.string.Cold_Start_Page')) //app.string.Cold_Start_Page为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbility_Cold]
           }
@@ -141,7 +141,7 @@ struct Page_UIAbilityComponentsInteractive {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Hot]
-            Button($r('app.string.Hot_Start_Page'))
+            Button($r('app.string.Hot_Start_Page')) //app.string.Hot_Start_Page为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbility_Hot]
           }
@@ -170,7 +170,7 @@ struct Page_UIAbilityComponentsInteractive {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Window]
-            Button('StartWindowMode')
+            Button('StartWindowMode') //StartWindowMode为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbility_Window]
           }

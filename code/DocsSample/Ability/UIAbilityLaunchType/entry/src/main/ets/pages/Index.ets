@@ -33,7 +33,7 @@ struct Index {
           this.message = 'Welcome';
         })
 
-      Button($r('app.string.singletonAbility'))
+      Button($r('app.string.singletonAbility')) //app.string.singletonAbility为用户自定义字符串资源
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -51,7 +51,7 @@ struct Index {
           })
         })
 
-      Button($r('app.string.multitonAbility'))
+      Button($r('app.string.multitonAbility')) //app.string.multitonAbility为用户自定义字符串资源
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -69,7 +69,7 @@ struct Index {
           })
         })
 
-      Button($r('app.string.specifiedAbility'))
+      Button($r('app.string.specifiedAbility')) //app.string.specifiedAbility为用户自定义字符串资源
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;

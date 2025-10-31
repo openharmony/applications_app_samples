@@ -39,6 +39,10 @@
     {
       "name": "ability_return_info",
       "value": "来自FuncAbility Index页面"
+    },
+    {
+      "name": "main_page_return_info",
+      "value": "来自EntryAbility MainPage页面"
     }
   ]
 }
