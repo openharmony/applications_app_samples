@@ -43,6 +43,8 @@ entry/src/main/ets/
 
 允许应用管理系统本地帐号：[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_local_accounts)
 
+允许应用查询系统本地帐号信息：[ohos.permission.GET_LOCAL_ACCOUNTS](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_local_accounts)
+
 允许MDM应用识别文件敏感内容：[ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-mdm-apps.md#ohospermissionenterprise_data_identify_file)
 
 ### 依赖
