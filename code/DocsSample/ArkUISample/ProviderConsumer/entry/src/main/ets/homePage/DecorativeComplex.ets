@@ -27,7 +27,7 @@ class User {
 const data: User[] = [new User('Json', 10), new User('Eric', 15)];
 @Entry
 @ComponentV2
-export struct DecorativeComplex {
+export struct Parent  {
   @Provider('data') users: User[] = data;
 
   build() {

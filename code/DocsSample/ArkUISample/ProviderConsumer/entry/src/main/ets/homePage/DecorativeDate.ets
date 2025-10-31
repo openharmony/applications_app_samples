@@ -16,7 +16,7 @@
 // [Start Decorative_Date]
 @Entry
 @ComponentV2
-export struct DecorativeDate {
+export struct Parent  {
   @Provider() selectedDate: Date = new Date('2021-08-08');
 
   build() {

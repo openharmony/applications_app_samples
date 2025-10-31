@@ -39,13 +39,13 @@ struct Parent {
         this.val++;
       })
       Text(`Parent @Param val2: ${this.val2}`).fontSize(30)
-      DecorativeInitialized({ val: this.val })
+      Child ({ val: this.val })
     }.border({ width: 2, color: Color.Green })
   }
 }
 
 @ComponentV2
-export struct DecorativeInitialized {
+export struct Child  {
   @Require @Param val: number;
 
   build() {

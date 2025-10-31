@@ -16,7 +16,7 @@
 // [Start Twoway_Binding]
 @Entry
 @ComponentV2
-export struct TwowayBinding {
+export struct Parent  {
   @Provider() str: string = 'hello';
 
   build() {
