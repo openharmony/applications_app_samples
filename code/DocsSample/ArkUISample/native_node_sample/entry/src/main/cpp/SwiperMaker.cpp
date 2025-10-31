@@ -15,6 +15,7 @@
 
 #include "SwiperMaker.h"
 #include "baseUtils.h"
+#include "ButtonMaker.h"
 #include <arkui/native_node.h>
 #include <cstdint>
 
@@ -708,6 +709,18 @@ void SwiperMaker::EventOnScrollStateChanged(ArkUI_NodeEvent *event)
     }
 }
 
+ArkUI_NodeHandle SwiperMaker::CreateButtonNodeWithFinishAnimation(ArkUI_NodeHandle& swiper)
+{
+    static ButtonMaker* button = new ButtonMaker();
+    ArkUI_AttributeItem btn1TextItem = { .string = "停止上面的Swiper正在执行的翻页动画" };
+    Manager::nodeAPI_->setAttribute(button->GetHandle(), NODE_BUTTON_LABEL, &btn1TextItem);
+    button->RegisterOnClick([swiper](ArkUI_NodeEvent*) {
+        int32_t eventId = OH_ArkUI_Swiper_FinishAnimation(swiper);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "eventId is :%{public}d", eventId);
+    });
+    return button->GetHandle();
+}
+
 void SwiperMaker::SetSwiperAttribute(ArkUI_NodeHandle &swiper)
 {
     SetSwiperAttributeLoop(swiper);
@@ -741,6 +754,7 @@ ArkUI_NodeHandle SwiperMaker::CreateNativeNode()
     static ArkUI_NodeHandle swiper2 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
     static ArkUI_NodeHandle swiper3 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
     static ArkUI_NodeHandle swiper4 = Manager::nodeAPI_->createNode(ARKUI_NODE_SWIPER);
+    static ArkUI_NodeHandle button1 = SwiperMaker::CreateButtonNodeWithFinishAnimation(swiper4);
     ArkUI_NodeHandle scroll = Manager::nodeAPI_->createNode(ARKUI_NODE_SCROLL);
     BaseUtils::SetNodeBackGroundColor(scroll, ConstIde::BACKGROUND_COLOR); // 设置节点背景颜色为淡灰色
     ArkUI_NodeHandle column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
@@ -759,6 +773,7 @@ ArkUI_NodeHandle SwiperMaker::CreateNativeNode()
     Manager::nodeAPI_->addChild(column, swiper2);
     Manager::nodeAPI_->addChild(column, swiper3);
     Manager::nodeAPI_->addChild(column, swiper4);
+    Manager::nodeAPI_->addChild(column, button1);
     Manager::nodeAPI_->addChild(scroll, column);
     return scroll;
 }
