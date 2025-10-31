@@ -23,7 +23,7 @@ const DOMAIN = 0x0000;
 // [Start flight_index_component]
 @Entry
 @Component
-struct Index {
+struct FlightIndex {
   @State hideAbility: string = 'hideAbility'
 
   build() {

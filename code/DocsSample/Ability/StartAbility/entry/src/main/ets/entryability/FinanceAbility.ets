@@ -20,7 +20,7 @@ import { window } from '@kit.ArkUI';
 
 const TAG = 'FinanceAbility';
 const DOMAIN = 0x0000;
-export default class EntryAbility extends UIAbility {
+export default class FinanceAbility extends UIAbility {
   private windowStage: window.WindowStage | null = null;
 
   private uri?: string;

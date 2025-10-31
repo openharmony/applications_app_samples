@@ -18,7 +18,7 @@ import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
-struct Index {
+struct MailtoIndex {
   build() {
     Column() {
       Button('feedback')

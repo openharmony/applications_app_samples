@@ -17,8 +17,8 @@
 import { PhotoEditorExtensionAbility,UIExtensionContentSession,Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = '[ExamplePhotoEditorAbility]';
-export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbility {
+const TAG = 'PhotoEditorAbility';
+export default class PhotoEditorAbility extends PhotoEditorExtensionAbility {
   onCreate() {
     hilog.info(0x0000, TAG, 'onCreate');
   }

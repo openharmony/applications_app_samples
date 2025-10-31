@@ -20,7 +20,7 @@ import { window } from '@kit.ArkUI';
 const TAG = 'MailtoAbility';
 const DOMAIN = 0x0000;
 // [Start mailto_ability]
-export default class EntryAbility extends UIAbility {
+export default class MailtoAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 应用冷启动生命周期回调，其他业务处理...
     this.parseMailto(want);

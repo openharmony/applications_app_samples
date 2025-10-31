@@ -20,7 +20,7 @@ import { window } from '@kit.ArkUI';
 
 const TAG = 'MailAbility';
 const DOMAIN = 0x0000;
-export default class EntryAbility extends UIAbility {
+export default class MailAbility extends UIAbility {
   private windowStage: window.WindowStage | null = null;
 
   private email: string[] | undefined;

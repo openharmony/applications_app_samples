@@ -23,7 +23,7 @@ const DOMAIN = 0x0000;
 // [Start navigation_index_component]
 @Entry
 @Component
-struct Index {
+struct NavigationIndex {
   @State hideAbility: string = 'hideAbility'
 
   build() {
