@@ -29,9 +29,7 @@ export struct customDialogComponentWithTransition {
   }
 
   build() {
-    // [StartExclude custom_dialog_with_transition]
     NavDestination() {
-      // [EndExclude custom_dialog_with_transition]
       Row() {
         Row({ space: 20 }) {
           Text($r('app.string.open_windows'))
@@ -73,9 +71,7 @@ export struct customDialogComponentWithTransition {
         .width('100%')
       }
       .height('100%')
-      // [StartExclude custom_dialog_with_transition]
     }
-    // [EndExclude custom_dialog_with_transition]
   }
 }
 // [End custom_dialog_with_transition]

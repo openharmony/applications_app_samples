@@ -56,9 +56,7 @@ export struct OpenDialogAndUpdate {
   }
 
   build() {
-    // [StartExclude open_dialog_and_update]
     NavDestination() {
-      // [EndExclude open_dialog_and_update]
       Row() {
         Column() {
           Button('open dialog and update options')
@@ -89,9 +87,7 @@ export struct OpenDialogAndUpdate {
         .height('100%')
       }
       .height('100%')
-      // [StartExclude open_dialog_and_update]
     }
-    // [EndExclude open_dialog_and_update]
   }
 }
 // [End open_dialog_and_update]

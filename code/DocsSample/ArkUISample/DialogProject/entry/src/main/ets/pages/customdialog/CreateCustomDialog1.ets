@@ -21,6 +21,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
+      //"我是内容"替换为资源文件
       Text($r('app.string.i_am_content'))
         .fontSize(20)
     }.height(60).justifyContent(FlexAlign.Center)
@@ -38,18 +39,14 @@ export struct CreateCustomDialog1 {
   })
   // [StartExclude create_custom_dialog_1_customDialog_controller_2]
   build() {
-    // [StartExclude create_custom_dialog_1]
     NavDestination() {
-      // [EndExclude create_custom_dialog_1]
       Column() {
         Button('click me')
           .onClick(() => {
             this.dialogController.open();
           })
       }.width('100%').margin({ top: 5 })
-      // [StartExclude create_custom_dialog_1]
     }
-    // [EndExclude create_custom_dialog_1]
   }
   // [EndExclude create_custom_dialog_1_customDialog_controller_2]
 }

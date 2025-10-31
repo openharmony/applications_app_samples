@@ -16,6 +16,9 @@
 import IndexTest from './Index.test'
 import abilityTest from './Ability.test';
 import PopupTest from './Popup.test';
+import MenuTest from './Menu.test'
+import OpenCustomDialogTest from './OpenCustomDialog.test';
+import CustomDialogTest from './CustomDialog.test';
 import MenuTest from './Menu.test';
 import NewFixDialogTest from './FixedDialogNew.test';
 
@@ -24,5 +27,7 @@ export default function testsuite() {
   IndexTest();
   PopupTest();
   MenuTest();
+  OpenCustomDialogTest();
+  CustomDialogTest();
   NewFixDialogTest();
 }

@@ -20,6 +20,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
+      //"我是内容"替换为资源文件
       Text($r('app.string.i_am_content')).fontSize(16).margin({ bottom: 10 })
     }
   }
@@ -58,9 +59,7 @@ export struct DialogStyle1 {
   }
 
   build() {
-    // [StartExclude dialog_style_1]
     NavDestination() {
-      // [EndExclude dialog_style_1]
       Column() {
         Button(this.inputValue)
           .onClick(() => {
@@ -69,9 +68,7 @@ export struct DialogStyle1 {
             }
           }).backgroundColor(0x317aff)
       }.width('100%').margin({ top: 5 })
-      // [StartExclude dialog_style_1]
     }
-    // [EndExclude dialog_style_1]
   }
 }
 // [End dialog_style_1]

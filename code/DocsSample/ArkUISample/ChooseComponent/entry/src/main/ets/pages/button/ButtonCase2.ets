@@ -21,9 +21,7 @@ const DOMAIN = 0x0000;
 @Component
 export struct ButtonCase2 {
   build() {
-    // [StartExclude button_case_2]
     NavDestination() {
-      // [EndExclude button_case_2]
       Column() {
         TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
         TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
@@ -38,12 +36,10 @@ export struct ButtonCase2 {
           .onClick(()=>{
             hilog.info(DOMAIN, 'testTag', 'Button onClick')
           }).margin(10)
-        // [Start button_case2_add_event]
+        // [End button_case2_add_event]
         // [EndExclude button_case_2]
       }.padding(20)
-      // [StartExclude button_case_2]
     }
-    // [EndExclude button_case_2]
   }
 }
 // [End button_case_2]

@@ -60,9 +60,7 @@ export struct DialogAnimation1 {
   }
 
   build() {
-    // [StartExclude dialog_animation_1]
     NavDestination() {
-      // [EndExclude dialog_animation_1]
       Column() {
         Button(this.inputValue)
           .onClick(() => {
@@ -71,9 +69,7 @@ export struct DialogAnimation1 {
             }
           }).backgroundColor(0x317aff)
       }.width('100%').margin({ top: 5 })
-      // [StartExclude dialog_animation_1]
     }
-    // [EndExclude dialog_animation_1]
   }
 }
 // [End dialog_animation_1]

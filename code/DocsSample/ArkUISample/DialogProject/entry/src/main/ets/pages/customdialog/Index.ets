@@ -169,13 +169,14 @@ export function CustomDestination(name: string) {
   } else if (name === routes[13].name) {
     DialogAvoidSoftKeyboard();
   } else if (name === routes[14].name) {
-    GetDialogStatus();
+    GetDialogStatus(); 
+  } else if (name === routes[15].name) { 
     DialogFocusStrategy();
-  } else if (name === routes[7].name) {
+  } else if (name === routes[16].name) {
     DialogController();
-  } else if (name === routes[8].name) {
+  } else if (name === routes[17].name) {
     PageLevelDialogBox();
-  } else if (name === routes[9].name) {
+  } else if (name === routes[18].name) {
     DialogBoxLayer();
   }
 }

@@ -28,9 +28,7 @@ export struct SubmitForm {
   // [EndExclude button_to_log_in_or_register]
 
   build() {
-    // [StartExclude button_to_log_in_or_register]
     NavDestination() {
-      // [EndExclude button_to_log_in_or_register]
       Column({ space: 12 }) {
         TextInput({ text: this.username, placeholder: 'input your username' })
           .id('username')

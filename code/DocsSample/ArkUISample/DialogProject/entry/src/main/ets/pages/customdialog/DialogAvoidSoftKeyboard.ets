@@ -50,11 +50,10 @@ export struct DialogAvoidSoftKeyboard {
   })
 
   build() {
-    // [StartExclude dialog_avoid_soft_key_board]
     NavDestination() {
-      // [EndExclude dialog_avoid_soft_key_board]
       Row() {
         Row({ space: 20 }) {
+          //"打开弹窗"替换为资源文件
           Text($r('app.string.open_windows'))
             .fontSize(30)
             .onClick(() => {
@@ -66,9 +65,7 @@ export struct DialogAvoidSoftKeyboard {
         .width('100%')
       }
       .height('100%')
-      // [StartExclude dialog_avoid_soft_key_board]
     }
-    // [EndExclude dialog_avoid_soft_key_board]
   }
 }
 // [End dialog_avoid_soft_key_board]
