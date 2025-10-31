@@ -26,9 +26,7 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 
 @ObservedV2
 class SampleChild {
-  // 应用持久化点击的数量，默认为0，如果点击后退出再次进入，则默认为持久化的数量
   @Trace public childId: number = 0;
-  // 应用持久化点击的数量，默认为1，如果点击后退出再次进入，则默认为持久化的数量
   public groupId: number = 1;
 }
 
@@ -42,7 +40,6 @@ export class Sample {
 @Entry
 @ComponentV2
 struct Page1 {
-  // 进入当前页面后点击了Persist keys:及之后的内容多少次
   @Local refresh: number = 0;
   // key不传入尝试用为type的name作为key，加密参数不传入默认加密等级为EL2
   @Local p: Sample = PersistenceV2.globalConnect({ type: Sample, defaultCreator: () => new Sample() })!;

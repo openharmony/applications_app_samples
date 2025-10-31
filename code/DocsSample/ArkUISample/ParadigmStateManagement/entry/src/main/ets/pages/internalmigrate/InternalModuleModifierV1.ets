@@ -37,7 +37,6 @@ class MyModifier extends TextModifier {
 @Component
 struct MyImage1 {
   @Link modifier: TextModifier;
-  // 点击按钮的次数
   index: number = 0;
 
   build() {

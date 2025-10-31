@@ -21,7 +21,6 @@ storage.setOrCreate('count', 47);
 @Entry(storage)
 @Component
 struct Page1 {
-  // 页面级UI状态存储点击text文本的次数
   @LocalStorageProp('count') count: number = 0;
   pageStack: NavPathStack = new NavPathStack();
 

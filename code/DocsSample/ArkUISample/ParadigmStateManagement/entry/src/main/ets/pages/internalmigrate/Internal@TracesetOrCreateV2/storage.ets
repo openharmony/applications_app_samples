@@ -23,7 +23,6 @@ export class MyStorage {
     }
     return MyStorage.singleton_;
   }
-  // 页面级UI状态存储的数字
   @Trace public count: number = 47;
 }
 // [End Internal_@ObservedV2_@Trace_V2]

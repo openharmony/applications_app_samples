@@ -16,7 +16,6 @@
 // [Start persistence_v2_module_connect_storage_two]
 // 模块2
 import { PersistenceV2, Type } from '@kit.ArkUI';
-import { contextConstant } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
@@ -27,9 +26,7 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 
 @ObservedV2
 class SampleChild {
-  // 不同模块应用持久化Key globalConnect1:点击的数量，默认为0，如果点击后退出再次进入，则默认为持久化的数量
   @Trace public childId: number = 0;
-  // 不同模块应用持久化Key connect2:点击的数量，默认为1，如果点击后退出再次进入，则默认为持久化的数量
   public groupId: number = 1;
 }
 
@@ -43,7 +40,6 @@ export class Sample {
 @Entry
 @ComponentV2
 struct Page1 {
-  // 进入当前页面后点击了多少次
   @Local a: number = 0;
   // 使用key:global1连接，传入加密等级为EL1
   @Local p1: Sample =
