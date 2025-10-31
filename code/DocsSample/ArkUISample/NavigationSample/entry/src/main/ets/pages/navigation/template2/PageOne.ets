@@ -33,7 +33,6 @@ export struct PageOne {
     this.message = JSON.stringify(this.pageStack);
   }
   build() {
-    Stack({ alignContent: Alignment.TopStart }) {
     NavDestination() {
         Scroll(this.scroller){
           Column() {
@@ -216,11 +215,10 @@ export struct PageOne {
 
             Text(this.message)
               .width('80%')
-              .height(50)
-          }.width('100%').height('100%')
+          }.width('100%')
         }
         .width('100%')
-        .scrollBar(BarState.Off)
+        .scrollBar(BarState.Auto)
         .scrollable(ScrollDirection.Vertical)
         .edgeEffect(EdgeEffect.None)
         .id('ScrollNoParam')
@@ -239,6 +237,5 @@ export struct PageOne {
     }).onReady((context: NavDestinationContext) => {
       this.pageStack = context.pathStack;
     })
-    }
   }
 }
