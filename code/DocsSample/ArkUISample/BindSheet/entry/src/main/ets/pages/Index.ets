@@ -49,37 +49,39 @@ struct Index {
       name: "bindContentCover",
       label: $r('app.string.bindContentCover_label'),
       children: [
-        { name:"template1/Index", label: $r('app.string.bindContentCover_label1') },
-        { name:"template2/Index", label: $r('app.string.bindContentCover_label2') },
-        { name:"template3/Index", label: $r('app.string.bindContentCover_label3') },
-        { name:"template4/Index", label: $r('app.string.bindContentCover_label4') },
-        { name:"template5/Index", label: $r('app.string.bindContentCover_label5') },
-        { name:"template6/Index", label: $r('app.string.bindContentCover_label6') },
-        { name:"template7/Index", label: $r('app.string.bindContentCover_label7') },
+        { name:"template1/ModalTransitionExample", label: $r('app.string.bindContentCover_label1') },
+        { name:"template2/ModalTransitionExample2", label: $r('app.string.bindContentCover_label2') },
+        { name:"template3/ModalTransitionExample3", label: $r('app.string.bindContentCover_label3') },
+        { name:"template4/struct ModalTransitionExample4 {\n", label: $r('app.string.bindContentCover_label4') },
+        { name:"template5/ModalTransitionExample5", label: $r('app.string.bindContentCover_label5') },
+        { name:"template6/BindContentCoverDemo", label: $r('app.string.bindContentCover_label6') },
+        { name:"template7/BindContentCoverDemo", label: $r('app.string.bindContentCover_label7') },
 
       ]
     }, {
       name: "bindSheet",
       label: $r('app.string.bindSheet_label'),
       children: [
-        { name:"template1/Index", label: $r('app.string.bindSheet_label1') },
-        { name:"template2/Index", label: $r('app.string.bindSheet_label2') },
-        { name:"template3/Index", label: $r('app.string.bindSheet_label3') },
-        { name:"template4/Index", label: $r('app.string.bindSheet_label4') },
-        { name:"template5/Index", label: $r('app.string.bindSheet_label5') },
-        { name:"template6/Index", label: $r('app.string.bindSheet_label6') },
-        { name:"template7/Index", label: $r('app.string.bindSheet_label7') },
-        { name:"template8/Index", label: $r('app.string.bindSheet_label8') },
-        { name:"template9/Index", label: $r('app.string.bindSheet_label9') },
-        { name:"template10/Index", label: $r('app.string.bindSheet_label10') },
+        { name:"template1/SheetTransitionExample1", label: $r('app.string.bindSheet_label1') },
+        { name:"template2/SheetTransitionExample2", label: $r('app.string.bindSheet_label2') },
+        { name:"template3/SheetTransitionExample3", label: $r('app.string.bindSheet_label3') },
+        { name:"template4/bindSheetExample4", label: $r('app.string.bindSheet_label4') },
+        { name:"template5/bindSheetExample5", label: $r('app.string.bindSheet_label5') },
+        { name:"template6/ListenKeyboardHeightChange", label: $r('app.string.bindSheet_label6') },
+        { name:"template7/SheetTransitionExample7", label: $r('app.string.bindSheet_label7') },
+        { name:"template8/SheetSideExample8", label: $r('app.string.bindSheet_label8') },
+        { name:"template9/BindSheetDemo9", label: $r('app.string.bindSheet_label9') },
+        { name:"template10/SheetDemo", label: $r('app.string.bindSheet_label10') },
+        { name:"template11/OnWillDismiss_Dismiss", label: $r('app.string.bindSheet_label11') },
+        { name:"template12/SheetTransitionExample", label: $r('app.string.bindSheet_label12') },
       ]
     }, {
       name: "bindSheetCmd",
       label: $r('app.string.bindSheetCmd_label'),
       children: [
-        { name:"template1/Index", label: $r('app.string.bindSheetCmd_label1') },
-        { name:"template2/Index", label: $r('app.string.bindSheetCmd_label2') },
-        { name:"template3/Index", label: $r('app.string.bindSheetCmd_label3') },
+        { name:"template1/UIContextBindSheet", label: $r('app.string.bindSheetCmd_label1') },
+        { name:"template2/UIContextBindSheet", label: $r('app.string.bindSheetCmd_label2') },
+        { name:"template3/UIContextBindSheet", label: $r('app.string.bindSheetCmd_label3') },
       ]
     }
   ];
