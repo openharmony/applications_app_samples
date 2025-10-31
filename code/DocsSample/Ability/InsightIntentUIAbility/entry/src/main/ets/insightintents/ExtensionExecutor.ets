@@ -15,7 +15,7 @@
 // [Start play_music0200]
 import { InsightIntentExecutor, insightIntent, UIExtensionContentSession } from '@kit.AbilityKit';
 
-export default class IntentExecutorImpl extends InsightIntentExecutor {
+export default class ExtensionExecutor extends InsightIntentExecutor {
   // 由于意图配置了uiExtension，故需要实现该接口
   async onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>,
     pageLoader: UIExtensionContentSession): Promise<insightIntent.ExecuteResult> {
