@@ -85,17 +85,17 @@ struct BuilderThingComponent {
     // 待办事项1
     Row({ space: 15 }) {
       if (this.isFinished) {
-        // $r('app.string.finished')需要替换为开发者所需的资源文件
+        // $r('app.media.finished')需要替换为开发者所需的资源文件
         this.displayIcon($r('app.media.finished'));
       } else {
-        // $r('app.string.unfinished')需要替换为开发者所需的资源文件
+        // $r('app.media.unfinished')需要替换为开发者所需的资源文件
         this.displayIcon($r('app.media.unfinished'));
       }
       Text(`${this.thing}`)
         .fontSize(24)
         .decoration({ type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None })
         .onClick(() => {
-          this.thing += '啦';
+          this.thing += this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.la_la').id);
         })
     }
     .height('8%')
@@ -144,4 +144,5 @@ struct BuilderIndex {
     .backgroundColor('#90f1f3f5')
   }
 }
+
 // [End builder_source_update_refresh]

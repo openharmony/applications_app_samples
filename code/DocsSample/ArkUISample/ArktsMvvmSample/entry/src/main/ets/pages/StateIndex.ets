@@ -33,12 +33,12 @@ struct StateIndex {
       // 待办事项
       Row({ space: 15 }) {
         if (this.isFinished) {
-          // $r('app.string.finished')需要替换为开发者所需的资源文件
+          // $r('app.media.finished')需要替换为开发者所需的资源文件
           Image($r('app.media.finished'))
             .width(28)
             .height(28)
         } else {
-          // $r('app.string.unfinished')需要替换为开发者所需的资源文件
+          // $r('app.media.unfinished')需要替换为开发者所需的资源文件
           Image($r('app.media.unfinished'))
             .width(28)
             .height(28)
