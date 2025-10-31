@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start navigation_custom_component]
+// CustomComponent.ets
 // 自定义占位节点，跨容器迁移能力
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 

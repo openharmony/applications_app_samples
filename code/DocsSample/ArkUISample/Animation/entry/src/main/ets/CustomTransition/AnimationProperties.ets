@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start navigation_animation_properties]
+// AnimationProperties.ets
 // 一镜到底转场动画封装
 import { curves, UIContext } from '@kit.ArkUI';
 import { RectInfoInPx } from '../utils/ComponentAttrUtils';

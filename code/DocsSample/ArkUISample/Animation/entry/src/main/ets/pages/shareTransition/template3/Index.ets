@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start stack_index]
+// Index.ets
 import { createPostNode, getPostNode, PostNode } from './PostNode';
 import { componentUtils, curves, UIContext } from '@kit.ArkUI';
 

@@ -15,6 +15,7 @@
 import { common } from '@kit.AbilityKit';
 
 // [Start navigation_page_two]
+// PageTwo.ets
 import { CustomTransition } from '../../../CustomTransition/CustomNavigationUtils';
 import { AnimationProperties } from '../../../CustomTransition/AnimationProperties';
 import { RectInfoInPx } from '../../../utils/ComponentAttrUtils';

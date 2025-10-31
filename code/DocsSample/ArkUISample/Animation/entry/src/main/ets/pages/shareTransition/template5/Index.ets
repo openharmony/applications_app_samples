@@ -15,6 +15,7 @@
 import { common } from '@kit.AbilityKit';
 
 // [Start bind_sheet_index]
+// index.ets
 import { MyNodeController, createMyNode, getMyNode } from '../../../NodeContainer/CustomComponentBindSheet';
 import { ComponentAttrUtils, RectInfoInPx } from '../../../utils/ComponentAttrUtils';
 import { WindowUtils } from '../../../utils/WindowUtils';

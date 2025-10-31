@@ -14,6 +14,9 @@
  */
 // [Start navigation_entry_ability]
 // [Start bind_sheet_entry_ability]
+// EntryAbility.ets
+// 程序入口处的onWindowStageCreate增加对窗口宽高等的抓取
+
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { display, uiObserver, window } from '@kit.ArkUI';
@@ -91,8 +94,8 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
-    // [EndExclude navigation_entry_ability]
     // [StartExclude window_stage]
+    // [EndExclude navigation_entry_ability]
     // 获取窗口宽高
     WindowUtils.window = windowStage.getMainWindowSync();
     WindowUtils.windowWidthPx = WindowUtils.window.getWindowProperties().windowRect.width;

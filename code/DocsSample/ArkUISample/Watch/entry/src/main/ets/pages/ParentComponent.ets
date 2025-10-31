@@ -32,27 +32,22 @@ const DOMAIN = 0x0000;
 struct ParentComponent {
   @State @Watch('onTaskAChanged') taskA: Task = new Task(false);
   @State @Watch('onTaskBChanged') taskB: Task = new Task(false);
-  // [StartExclude parent_component]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State type1: string = this.context!.resourceManager.getStringSync($r('app.string.watch_text5').id);
   @State type2: string = this.context!.resourceManager.getStringSync($r('app.string.watch_text6').id);
-  // [EndExclude parent_component]
 
   onTaskAChanged(changedPropertyName: string): void {
-    hilog.info(DOMAIN, resource.resourceToString($r('app.string.watch_text12')),
-      JSON.stringify(changedPropertyName));
+    hilog.info(DOMAIN, resource.resourceToString($r('app.string.watch_text12')), changedPropertyName);
   }
 
   onTaskBChanged(changedPropertyName: string): void {
-    hilog.info(DOMAIN, resource.resourceToString($r('app.string.watch_text12')),
-      JSON.stringify(changedPropertyName));
-
+    hilog.info(DOMAIN, resource.resourceToString($r('app.string.watch_text12')), changedPropertyName);
   }
 
   build() {
     Column() {
-      Text(`${this.type1} ${this.taskA.isFinished ? resource.resourceToString($r('app.string.watch_text7')) : resource.resourceToString($r('app.string.watch_text8'))}`);
-      Text(`${this.type2} ${this.taskB.isFinished ? resource.resourceToString($r('app.string.watch_text7')) : resource.resourceToString($r('app.string.watch_text8'))}`);
+      Text(`${this.type1} ${this.taskA.isFinished ? resource.resourceToString($r('app.string.watch_text7')) : resource.resourceToString($r('app.string.watch_text8'))}`)
+      Text(`${this.type2} ${this.taskB.isFinished ? resource.resourceToString($r('app.string.watch_text7')) : resource.resourceToString($r('app.string.watch_text8'))}`)
       ChildComponent({ taskA: this.taskA, taskB: this.taskB })
       Button(resource.resourceToString($r('app.string.watch_text9')))
         .onClick(() => {
@@ -67,26 +62,22 @@ struct ParentComponent {
 struct ChildComponent {
   @ObjectLink @Watch('onObjectLinkTaskChanged') taskB: Task;
   @Link @Watch('onLinkTaskChanged') taskA: Task;
-  // [StartExclude parent_component]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State type1: string = this.context!.resourceManager.getStringSync($r('app.string.watch_text10').id);
   @State type2: string = this.context!.resourceManager.getStringSync($r('app.string.watch_text11').id);
-  // [EndExclude parent_component]
 
   onObjectLinkTaskChanged(changedPropertyName: string): void {
-    hilog.info(DOMAIN, resource.resourceToString($r('app.string.watch_text13')),
-      JSON.stringify(changedPropertyName));
+    hilog.info(DOMAIN, resource.resourceToString($r('app.string.watch_text13')), changedPropertyName);
   }
 
   onLinkTaskChanged(changedPropertyName: string): void {
-    hilog.info(DOMAIN, resource.resourceToString($r('app.string.watch_text14')),
-      JSON.stringify(changedPropertyName));
+    hilog.info(DOMAIN, resource.resourceToString($r('app.string.watch_text14')), changedPropertyName);
   }
 
   build() {
     Column() {
-      Text(`${this.type1} ${this.taskA.isFinished ? resource.resourceToString($r('app.string.watch_text7')) : resource.resourceToString($r('app.string.watch_text8'))}`);
-      Text(`${this.type2} ${this.taskB.isFinished ? resource.resourceToString($r('app.string.watch_text7')) : resource.resourceToString($r('app.string.watch_text8'))}`);
+      Text(`${this.type1} ${this.taskA.isFinished ? resource.resourceToString($r('app.string.watch_text7')) : resource.resourceToString($r('app.string.watch_text8'))}`)
+      Text(`${this.type2} ${this.taskB.isFinished ? resource.resourceToString($r('app.string.watch_text7')) : resource.resourceToString($r('app.string.watch_text8'))}`)
     }
   }
 }

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start navigation_index]
+// Index.ets
 import { AnimateCallback, CustomTransition } from '../../../CustomTransition/CustomNavigationUtils';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
