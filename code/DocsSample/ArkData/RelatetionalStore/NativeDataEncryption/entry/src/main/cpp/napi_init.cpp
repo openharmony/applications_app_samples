@@ -84,6 +84,7 @@ static napi_value CustomizedConfigRdbStore(napi_env env,
     OH_Rdb_Store *store = OH_Rdb_CreateOrOpen(config, &errCode);
     // 销毁自定义加密参数对象
     OH_Rdb_DestroyCryptoParam(cryptoParam);
+    cryptoParam = nullptr;
     OH_Rdb_CloseStore(store);
     store = nullptr;
     // [End CustomizedConfigRdbStore]
@@ -130,6 +131,8 @@ static napi_value RestoreRdbStore(napi_env env, napi_callback_info info)
     int errCode = 0;
     OH_Rdb_Store *store = OH_Rdb_CreateOrOpen(config, &errCode);
     
+    OH_Rdb_DestroyConfig(config);
+    config = nullptr;
     // 恢复数据库
     int result2 =
       OH_Rdb_Restore(store, "/data/storage/el2/database/RdbTest_bak.db");

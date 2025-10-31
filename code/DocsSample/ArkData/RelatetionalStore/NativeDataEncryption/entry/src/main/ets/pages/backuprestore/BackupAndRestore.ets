@@ -33,7 +33,6 @@ export async function backupManually() {
   // 手动备份：通过调用[backup](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#backup)接口实现数据库手动备份。示例如下：
 
   // [Start backupManually]
-
   let store: relationalStore.RdbStore | undefined = undefined;
   let context = getContext();
   const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -64,7 +63,6 @@ export async function backupManually() {
     const err = e as BusinessError;
     hilog.error(DOMAIN, 'BackupAndRestore', `Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
   }
-
   // [End backupManually]
 
 
