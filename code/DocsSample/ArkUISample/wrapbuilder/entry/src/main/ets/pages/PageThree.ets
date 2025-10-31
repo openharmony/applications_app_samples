@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start wrapbuilder_page_three] 
+// [Start wrapbuilder_page_three]
 @Builder
 function myBuilder0(value: string, size: number) {
   Text(value)
@@ -32,9 +32,9 @@ const builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(myBuilder0),
 
 @Entry
 @Component
-struct TestBuilderItem {
+struct IndexItem {
   @Builder
-  testBuilder() {
+  IndexItem() {
     ForEach(builderArr, (item: WrappedBuilder<[string, number]>) => {
       item.builder('Hello World', 30)
     }
@@ -45,7 +45,7 @@ struct TestBuilderItem {
   build() {
     Row() {
       Column() {
-        this.testBuilder()
+        this.IndexItem()
       }
       .width('100%')
     }

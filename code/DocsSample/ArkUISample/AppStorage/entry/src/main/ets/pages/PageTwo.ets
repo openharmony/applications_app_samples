@@ -29,7 +29,7 @@ storage.setOrCreate('linkB', new Data(100));
 
 @Entry(storage)
 @Component
-struct TestPageTow {
+struct TestPageTwo {
   @StorageLink('propA') storageLink: number = 1;
   @StorageProp('propA') storageProp: number = 1;
   @StorageLink('propB') storageLinkObject: Data = new Data(1);
