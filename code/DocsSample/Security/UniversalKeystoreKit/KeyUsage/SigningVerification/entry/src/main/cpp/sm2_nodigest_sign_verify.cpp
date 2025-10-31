@@ -128,7 +128,6 @@ napi_value SignVerifyKeySM2NoDigest(napi_env env, napi_callback_info info)
             break;
         }
 
-        // Finish传入签名数据进行验证
         ohResult = OH_Huks_FinishSession(&handleVerify, verifyParamSet, &outDataSign, &verifyOut);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;

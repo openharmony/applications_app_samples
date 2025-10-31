@@ -11,7 +11,6 @@ endif()
 include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
-# 添加所有 cpp 文件到编译
 add_library(entry SHARED
     napi_init.cpp
     ecc_sha256_sign_verify.cpp

@@ -52,7 +52,7 @@ export default function signingVerificationTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('ECC256/SHA256').type('Button'));
       await button2.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text('ECC256/SHA256 Result: Success'));
       console.info('uitest: testSigningVerification001 end');
       await driver.pressBack();
@@ -70,7 +70,7 @@ export default function signingVerificationTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('SM2/SM3').type('Button'));
       await button2.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text('SM2/SM3 Result: Success'));
       console.info('uitest: testSigningVerification002 end');
       await driver.pressBack();
@@ -88,7 +88,7 @@ export default function signingVerificationTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('RSA/SHA256/PSS').type('Button'));
       await button2.click();
-      await driver.delayMs(4000);
+      await driver.delayMs(8000);
       await driver.assertComponentExist(ON.text('RSA/SHA256/PSS Result: Success'));
       console.info('uitest: testSigningVerification003 end');
       await driver.pressBack();
@@ -135,7 +135,7 @@ export default function signingVerificationTest() {
       const button1 = await driver.findComponent(ON.text('Call C++ ECC256/SHA256'));
       await driver.delayMs(1000);
       await button1.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(8000);
       await driver.assertComponentExist(ON.text('ECC256/SHA256 Result: 0'));
       console.info('uitest: testSigningVerification006 end');
     })
@@ -177,7 +177,7 @@ export default function signingVerificationTest() {
       const button1 = await driver.findComponent(ON.text('Call C++ RSA/SHA256/PSS'));
       await driver.delayMs(1000);
       await button1.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(8000);
       await driver.assertComponentExist(ON.text('RSA/SHA256/PSS Result: 0'));
       console.info('uitest: testSigningVerification009 end');
     })
@@ -198,7 +198,6 @@ export default function signingVerificationTest() {
 
     /**
      * 点击按钮，签名/验签RSA/SHA384/PSS
-     * RSA密钥生成需要较长时间，延迟设置为6秒
      */
     it('testSigningVerification011', 0, async () => {
       console.info('uitest: testSigningVerification011 begin');

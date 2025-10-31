@@ -86,7 +86,6 @@ struct Index {
           this.goToSample('pages/RSASHA256PKCS1_V1_5');
         })
 
-      // 新增：RSA/SHA384/PSS 页面导航
       Button($r('app.string.rsa_sha384_pss'))
         .padding('12vp')
         .height('40vp')
@@ -98,7 +97,6 @@ struct Index {
           this.goToSample('pages/RSA2048SHA384PSS');
         })
 
-      // C++ 函数调用按钮
       Button($r('app.string.call_cpp_rsa'))
         .padding('12vp')
         .height('40vp')
