@@ -29,8 +29,36 @@
       "value": "RSA/SHA256/PKCS1_V1_5"
     },
     {
+      "name": "rsa_sha384_pss",
+      "value": "RSA/SHA384/PSS"
+    },
+    {
       "name": "call_cpp_sign_verify",
       "value": "Call C/C++"
+    },
+    {
+      "name": "call_cpp_rsa",
+      "value": "Call C++ RSA/SHA384/PSS"
+    },
+    {
+      "name": "call_cpp_ecc",
+      "value": "Call C++ ECC256/SHA256"
+    },
+    {
+      "name": "call_cpp_sm2_sm3",
+      "value": "Call C++ SM2/SM3"
+    },
+    {
+      "name": "call_cpp_sm2_nodigest",
+      "value": "Call C++ SM2/NoDigest"
+    },
+    {
+      "name": "call_cpp_rsa_sha256_pss",
+      "value": "Call C++ RSA/SHA256/PSS"
+    },
+    {
+      "name": "call_cpp_rsa_sha256_pkcs1",
+      "value": "Call C++ RSA/SHA256/PKCS1_V1_5"
     },
     {
       "name": "ecc256_sha256_result_success",
@@ -57,12 +85,28 @@
       "value": "RSA/SHA256/PSS Result: Failed"
     },
     {
+      "name": "rsa_sha384_pss_result_success",
+      "value": "RSA/SHA384/PSS Result: Success"
+    },
+    {
+      "name": "rsa_sha384_pss_result_failed",
+      "value": "RSA/SHA384/PSS Result: Failed"
+    },
+    {
       "name": "sm2_sm3_result_success",
       "value": "SM2/SM3 Result: Success"
     },
     {
       "name": "sm2_sm3_result_failed",
       "value": "SM2/SM3 Result: Failed"
+    },
+    {
+      "name": "sm2_nodigest_result_success",
+      "value": "SM2/NoDigest Result: Success"
+    },
+    {
+      "name": "sm2_nodigest_result_failed",
+      "value": "SM2/NoDigest Result: Failed"
     }
   ]
 }

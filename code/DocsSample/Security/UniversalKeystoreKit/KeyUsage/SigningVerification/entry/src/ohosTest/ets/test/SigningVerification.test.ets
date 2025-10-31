@@ -14,7 +14,6 @@
  */
 
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
-// 导入测试依赖kit
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
@@ -107,25 +106,112 @@ export default function signingVerificationTest() {
       await driver.delayMs(1000);
       const button2 = await driver.findComponent(ON.text('RSA/SHA256/PKCS1_V1_5').type('Button'));
       await button2.click();
-      await driver.delayMs(4000);
+      await driver.delayMs(8000);
       await driver.assertComponentExist(ON.text('RSA/SHA256/PKCS1_V1_5 Result: Success'));
       console.info('uitest: testSigningVerification004 end');
       await driver.pressBack();
     })
 
     /**
-     * 点击按钮，签名/验签C/C++
+     * 点击按钮，签名/验签 Call C++ RSA/SHA384/PSS
      */
     it('testSigningVerification005', 0, async () => {
       console.info('uitest: testSigningVerification005 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Call C/C++'));
+      const button1 = await driver.findComponent(ON.text('Call C++ RSA/SHA384/PSS'));
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Call C/C++ Result: 0'));
+      await driver.assertComponentExist(ON.text('RSA/SHA384/PSS Result: 0'));
       console.info('uitest: testSigningVerification005 end');
-      await driver.pressBack();
+    })
+
+    /**
+     * 点击按钮，签名/验签 Call C++ ECC256/SHA256
+     */
+    it('testSigningVerification006', 0, async () => {
+      console.info('uitest: testSigningVerification006 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C++ ECC256/SHA256'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('ECC256/SHA256 Result: 0'));
+      console.info('uitest: testSigningVerification006 end');
+    })
+
+    /**
+     * 点击按钮，签名/验签 Call C++ SM2/SM3
+     */
+    it('testSigningVerification007', 0, async () => {
+      console.info('uitest: testSigningVerification007 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C++ SM2/SM3'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SM2/SM3 Result: 0'));
+      console.info('uitest: testSigningVerification007 end');
+    })
+
+    /**
+     * 点击按钮，签名/验签 Call C++ SM2/NoDigest
+     */
+    it('testSigningVerification008', 0, async () => {
+      console.info('uitest: testSigningVerification008 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C++ SM2/NoDigest'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SM2/NoDigest Result: 0'));
+      console.info('uitest: testSigningVerification008 end');
+    })
+
+    /**
+     * 点击按钮，签名/验签 Call C++ RSA/SHA256/PSS
+     */
+    it('testSigningVerification009', 0, async () => {
+      console.info('uitest: testSigningVerification009 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C++ RSA/SHA256/PSS'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('RSA/SHA256/PSS Result: 0'));
+      console.info('uitest: testSigningVerification009 end');
+    })
+
+    /**
+     * 点击按钮，签名/验签 Call C++ RSA/SHA256/PKCS1_V1_5
+     */
+    it('testSigningVerification010', 0, async () => {
+      console.info('uitest: testSigningVerification010 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C++ RSA/SHA256/PKCS1_V1_5'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('RSA/SHA256/PKCS1_V1_5 Result: 0'));
+      console.info('uitest: testSigningVerification010 end');
+    })
+
+    /**
+     * 点击按钮，签名/验签RSA/SHA384/PSS
+     * RSA密钥生成需要较长时间，延迟设置为6秒
+     */
+    it('testSigningVerification011', 0, async () => {
+      console.info('uitest: testSigningVerification011 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('RSA/SHA384/PSS'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('RSA/SHA384/PSS').type('Button'));
+      await button2.click();
+      await driver.delayMs(6000);
+      await driver.assertComponentExist(ON.text('RSA/SHA384/PSS Result: Success'));
+      console.info('uitest: testSigningVerification011 end');
     })
   })
 }

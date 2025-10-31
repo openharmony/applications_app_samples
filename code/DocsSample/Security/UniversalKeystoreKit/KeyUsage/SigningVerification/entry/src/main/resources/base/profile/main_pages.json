@@ -4,6 +4,7 @@
     "pages/ECC256SHA256",
     "pages/RSASHA256PKCS1_V1_5",
     "pages/RSASHA256PSS",
-    "pages/SM2SM3"
+    "pages/SM2SM3",
+    "pages/RSA2048SHA384PSS"
   ]
 }

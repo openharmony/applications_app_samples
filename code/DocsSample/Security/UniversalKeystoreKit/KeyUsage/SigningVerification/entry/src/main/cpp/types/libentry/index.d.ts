@@ -14,3 +14,8 @@
  */
 
 export const signVerifyKey: () => number;
+export const signVerifyKeyECC: () => number;
+export const signVerifyKeySM2SM3: () => number;
+export const signVerifyKeySM2NoDigest: () => number;
+export const signVerifyKeyRsaSha256Pss: () => number;
+export const signVerifyKeyRsaSha256Pkcs1V15: () => number;
