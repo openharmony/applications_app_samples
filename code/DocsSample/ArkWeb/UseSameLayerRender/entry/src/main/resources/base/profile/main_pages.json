@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/RenderTxtBoxSameLayer_one",
     "pages/RenderTxtBoxSameLayer_two",
-    "pages/DrawXCompAVPBtn"
+    "pages/DrawXCompAVPBtn",
+    "pages/NativeEmbedOverlay"
   ]
 }

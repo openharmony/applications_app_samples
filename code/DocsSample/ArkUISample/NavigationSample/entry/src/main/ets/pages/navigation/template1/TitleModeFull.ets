@@ -28,7 +28,7 @@ struct TitleModeFull {
         .lineHeight(41)
         .margin({ top: 24, left: 18 })
     }.alignItems(HorizontalAlign.Start)
-  };
+  }
 
   @Builder
   NavigationMenus() {
@@ -46,7 +46,7 @@ struct TitleModeFull {
         .margin({ left: 24 })
     }
     .margin({ top: 12, right: 24})
-  };
+  }
 
   build() {
     Column() {

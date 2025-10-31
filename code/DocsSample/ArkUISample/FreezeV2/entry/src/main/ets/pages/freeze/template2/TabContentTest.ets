@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0000;
 // [Start freeze_template2_start]
 @Entry
 @ComponentV2
@@ -46,7 +48,7 @@ struct FreezeChild {
   @Param index: number = 0;
 
   @Monitor('message') onMessageUpdated(mon: IMonitor) {
-    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`);
+    hilog.info(DOMAIN, 'testTag', `FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

@@ -308,7 +308,7 @@ export default function abilityTest() {
         const want: Want = {
           deviceId: '',
           bundleName: 'com.example.pulllinking',
-          abilityName: 'clearAbility'
+          abilityName: 'ClearAbility'
         };
         await delegator.startAbility(want);
         // const ability: UIAbility = await delegator.getCurrentTopAbility();

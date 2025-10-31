@@ -24,7 +24,7 @@ struct ForEachFilter {
       // ...
     });
     // [End filter_New_array]
-  };
+  }
 
   build() {
     RelativeContainer() {

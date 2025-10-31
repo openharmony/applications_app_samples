@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 // [Start Cpp_ArkUIBaseNode]
+// ArkUIBaseNode.h
+// 提供组件树操作的基类。
 #ifndef MYAPPLICATION_ARKUIBASENODE_H
 #define MYAPPLICATION_ARKUIBASENODE_H
 
@@ -31,12 +33,14 @@ public:
 
     virtual ~ArkUIBaseNode()
     {
+        // 封装析构函数，实现子节点移除功能。
         if (!children_.empty()) {
             for (const auto& child : children_) {
                 nativeModule_->removeChild(handle_, child->GetHandle());
             }
             children_.clear();
         }
+        // 封装析构函数，统一回收节点资源。
         nativeModule_->disposeNode(handle_);
     }
 
@@ -67,6 +71,7 @@ public:
     ArkUI_NodeHandle GetHandle() const { return handle_; }
 
 protected:
+    // 针对父容器子类需要重载下面的函数，实现组件挂载和卸载。
     virtual void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) {}
     virtual void OnRemoveChild(const std::shared_ptr<ArkUIBaseNode> &child) {}
     virtual void OnInsertChild(const std::shared_ptr<ArkUIBaseNode> &child, int32_t index) {}
@@ -77,7 +82,7 @@ protected:
 private:
     std::list<std::shared_ptr<ArkUIBaseNode>> children_;
 };
-}
+} // namespace NativeModule
 
-#endif
+#endif // MYAPPLICATION_ARKUIBASENODE_H
 // [End Cpp_ArkUIBaseNode]

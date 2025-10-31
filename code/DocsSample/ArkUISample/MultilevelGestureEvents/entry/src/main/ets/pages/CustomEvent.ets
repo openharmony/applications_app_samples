@@ -40,12 +40,12 @@ struct CustomEvent {
           .id('ComponentB')
           .onTouch(() => {})
           .gesture(TapGesture({count: 1}))
-          .responseRegion([rect1, rect2, rect3]);
+          .responseRegion([rect1, rect2, rect3])
       }
       .id('ComponentA')
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}))
-      .responseRegion([rect4]);
+      .responseRegion([rect4])
       //   [End response_region]
 
       // [Start hittestbehavior_first]
@@ -53,22 +53,22 @@ struct CustomEvent {
         Column()
           .id('ComponentB')
           .onTouch(() => {})
-          .gesture(TapGesture({count: 1}));
+          .gesture(TapGesture({count: 1}))
 
         Column() {
           Column()
             .id('ComponentD')
             .onTouch(() => {})
-            .gesture(TapGesture({count: 1}));
+            .gesture(TapGesture({count: 1}))
         }
         .id('ComponentC')
         .onTouch(() => {})
         .gesture(TapGesture({count: 1}))
-        .hitTestBehavior(HitTestMode.Block);
+        .hitTestBehavior(HitTestMode.Block)
       }
       .id('ComponentA')
       .onTouch(() => {})
-      .gesture(TapGesture({count: 1}));
+      .gesture(TapGesture({count: 1}))
       //   [End hittestbehavior_first]
 
       // [Start responseregion_second]
@@ -76,17 +76,17 @@ struct CustomEvent {
         Column()
           .id('ComponentB')
           .onTouch(() => {})
-          .gesture(TapGesture({count: 1}));
+          .gesture(TapGesture({count: 1}))
 
         Column()
           .id('ComponentC')
           .onTouch(() => {})
           .gesture(TapGesture({count: 1}))
-          .hitTestBehavior(HitTestMode.Transparent);
+          .hitTestBehavior(HitTestMode.Transparent)
       }
       .id('Stack A')
       .onTouch(() => {})
-      .gesture(TapGesture({count: 1}));
+      .gesture(TapGesture({count: 1}))
       // [End responseregion_second]
 
       // [Start responseregion_thirdly]
@@ -94,12 +94,12 @@ struct CustomEvent {
         Column()
           .id('ComponentB')
           .onTouch(() => {})
-          .gesture(TapGesture({count: 1}));
+          .gesture(TapGesture({count: 1}))
       }
       .id('ComponentA')
       .onTouch(() => {})
       .gesture(TapGesture({count: 1}))
-      .hitTestBehavior(HitTestMode.None);
+      .hitTestBehavior(HitTestMode.None)
       // [End responseregion_thirdly]
 
       // [Start responseregion_fourth]
@@ -107,21 +107,21 @@ struct CustomEvent {
         Column()
           .id('ComponentB')
           .onTouch(() => {})
-          .gesture(TapGesture({count: 1}));
+          .gesture(TapGesture({count: 1}))
         Column() {
           Column()
             .id('ComponentD')
             .onTouch(() => {})
-            .gesture(TapGesture({count: 1}));
+            .gesture(TapGesture({count: 1}))
         }
         .id('ComponentC')
         .onTouch(() => {})
         .gesture(TapGesture({count: 1}))
-        .hitTestBehavior(HitTestMode.BLOCK_HIERARCHY);
+        .hitTestBehavior(HitTestMode.BLOCK_HIERARCHY)
       }
       .id('Stack A')
       .onTouch(() => {})
-      .gesture(TapGesture({count: 1}));
+      .gesture(TapGesture({count: 1}))
       // [End responseregion_fourth]
 
       // [Start responseregion_fifth]
@@ -129,51 +129,51 @@ struct CustomEvent {
         Column()
           .id('ComponentB')
           .onTouch(() => {})
-          .gesture(TapGesture({count: 1}));
+          .gesture(TapGesture({count: 1}))
         Column() {
           Column()
             .id('ComponentD')
             .onTouch(() => {})
-            .gesture(TapGesture({count: 1}));
+            .gesture(TapGesture({count: 1}))
         }
         .id('ComponentC')
         .onTouch(() => {})
         .gesture(TapGesture({count: 1}))
-        .hitTestBehavior(HitTestMode.BLOCK_DESCENDANTS);
+        .hitTestBehavior(HitTestMode.BLOCK_DESCENDANTS)
       }
       .id('Stack A')
       .onTouch(() => {})
-      .gesture(TapGesture({count: 1}));
+      .gesture(TapGesture({count: 1}))
       // [End responseregion_fifth]
 
       // [Start bindingfirst_gesture]
       Column() {
         Column()
           .id('ComponentB')
-          .gesture(TapGesture({count: 1}));
+          .gesture(TapGesture({count: 1}))
       }
       .id('ComponentA')
-      .gesture(TapGesture({count: 1}));
+      .gesture(TapGesture({count: 1}))
       // [End bindingfirst_gesture]
 
       // [Start bindingsecond_gesture]
       Column() {
         Column()
           .id('ComponentB')
-          .gesture(TapGesture({count: 1}));
+          .gesture(TapGesture({count: 1}))
       }
       .id('ComponentA')
-      .priorityGesture(TapGesture({count: 1}));
+      .priorityGesture(TapGesture({count: 1}))
       // [End bindingsecond_gesture]
 
       // [Start bindingthirdly_gesture]
       Column() {
         Column()
           .id('ComponentB')
-          .gesture(TapGesture({count: 1}));
+          .gesture(TapGesture({count: 1}))
       }
       .id('ComponentA')
-      .parallelGesture(TapGesture({count: 1}));
+      .parallelGesture(TapGesture({count: 1}))
       // [End bindingthirdly_gesture]
     }
     .width('100%')
@@ -181,5 +181,5 @@ struct CustomEvent {
     .padding(20)
     .backgroundColor(Color.White)
     .justifyContent(FlexAlign.Start)
-  };
+  }
 }

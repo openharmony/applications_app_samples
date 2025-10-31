@@ -1,19 +1,17 @@
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the 'License');
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an 'AS IS' BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// index.ets
 import { NodeContent } from '@kit.ArkUI';
 import entry from 'libentry.so';
 
@@ -22,19 +20,18 @@ struct CAPIComponent {
   private rootSlot = new NodeContent();
 
   aboutToAppear(): void {
-    // 页面显示前多线程创建Native组件。
-    entry.createCustomPropertyDemo(this.rootSlot);
+    entry.createCustomPropertyDemo(this.rootSlot)
   }
 
   aboutToDisappear(): void {
     // 页面销毁前释放已创建的Native组件。
-    entry.disposeNodeTree(this.rootSlot);
+    entry.disposeNodeTree(this.rootSlot)
   }
 
   build() {
     Column() {
       // Native组件挂载点。
-      ContentSlot(this.rootSlot);
+      ContentSlot(this.rootSlot)
     }
   }
 }
@@ -48,7 +45,7 @@ struct Index {
   build() {
     Flex() {
       Column() {
-        Text($r('app.string.Common_Interface_Test'))
+        Text('通用类接口测试')
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
 

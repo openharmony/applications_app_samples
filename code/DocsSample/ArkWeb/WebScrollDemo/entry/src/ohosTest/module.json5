@@ -16,7 +16,9 @@
   "module": {
     "name": "entry_test",
     "type": "feature",
-    "deviceTypes": [],
+    "deviceTypes": [
+      "default"
+    ],
     "deliveryWithInstall": true,
     "installationFree": false
   }

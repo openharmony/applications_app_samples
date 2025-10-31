@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-import attributeTest from './attribute.test';
+import Button1Test from './Button1.test';
+import Button2Test from './Button2.test';
+import Button3Test from './Button3.test';
+import Button4Test from './Button4.test';
 
 export default function testsuite() {
-  attributeTest();
+  Button1Test();
+  Button2Test();
+  Button3Test();
+  Button4Test();
 }

@@ -14,6 +14,9 @@
     "pages/LocalStoragePage",
     "pages/IsDisposedPage",
     "pages/InheritFreezeOptionsPage",
-    "pages/ArkWebPage"
+    "pages/ArkWebPage",
+    "pages/BuilderProxyNode03",
+    "pages/RouterPage3",
+    "pages/Index"
   ]
 }

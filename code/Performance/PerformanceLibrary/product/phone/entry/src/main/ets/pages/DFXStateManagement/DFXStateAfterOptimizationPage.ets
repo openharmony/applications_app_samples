@@ -20,7 +20,7 @@ import { DFXStateAfterOptimization } from '@ohos/DFXStateManagement';
 struct DFXStateAfterOptimizationPage {
   build() {
     Column() {
-      DFXStateAfterOptimization()
+      DFXStateAfterOptimization();
     }
   }
 }

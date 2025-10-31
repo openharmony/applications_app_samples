@@ -7,15 +7,15 @@
     "custom": [
       {
         "xts": [
-          "systemcapability.graphic.graphic2d.nativedrawing"
+          "SystemCapability.Graphic.Graphic2D.NativeDrawing"
         ]
       }
     ]
   },
   "production": {
-    "removedsyscaps": [
-      "systemcapability.security.devicesecuritylevel",
-      "systemcapability.useriam.userauth.pinauth"
+    "removedSysCaps": [
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.UserIAM.UserAuth.PinAuth"
     ]
   } 
 }

@@ -56,11 +56,11 @@ struct ReusableChildComponent {
   @Prop item: string = '';
 
   aboutToReuse(params: object): void {
-    hilog.info(0xF811, 'testTag', '%{public}s',`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+    hilog.info(0xF811,'testTag','%{public}s',`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    hilog.info(0xF811, 'testTag', '%{public}s',`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+    hilog.info(0xF811,'testTag','%{public}s',`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -75,11 +75,11 @@ struct ChildComponent2 {
   @Prop item: string = '';
 
   aboutToReuse(params: Record<string, object>) {
-    hilog.info(0xF811, 'testTag', '%{public}s',`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+    hilog.info(0xF811,'testTag','%{public}s',`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    hilog.info(0xF811, 'testTag', '%{public}s',`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
+    hilog.info(0xF811,'testTag','%{public}s',`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {

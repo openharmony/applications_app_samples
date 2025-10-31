@@ -51,6 +51,6 @@ struct EventCall {
           })
       }
     }
-  };
+  }
 }
 //  [End event_invocation]

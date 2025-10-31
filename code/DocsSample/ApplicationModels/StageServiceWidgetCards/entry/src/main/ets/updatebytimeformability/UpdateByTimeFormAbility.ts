@@ -14,13 +14,11 @@
  */
 
 // [Start update_by_time_form_ability]
-// [Start set_form_next_refreshime]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// [StartExclude set_form_next_refreshime]
 import { Want } from '@kit.AbilityKit';
-// [EndExclude set_form_next_refreshime]
+// [Start set_form_next_refreshime]
 const TAG: string = 'UpdateByTimeFormAbility';
 const FIVE_MINUTE: number = 5;
 const DOMAIN_NUMBER: number = 0xFF00;

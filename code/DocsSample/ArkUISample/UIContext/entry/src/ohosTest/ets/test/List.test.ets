@@ -13,10 +13,18 @@
  * limitations under the License.
  */
 
+import CalendarPickerDialogPageTest from './CalendarPickerDialogPage.test';
 import IndexTest from './index.test';
 import LocalStoragePageTest from './LocalStoragePage.test';
+import NewGlobalTest from './NewGlobal.test';
+import VpPageTest from './VpPage.test';
+import WindowTestPageTest from './WindowTestPage.test';
 
 export default function testsuite() {
   IndexTest();
-  LocalStoragePageTest()
+  LocalStoragePageTest();
+  CalendarPickerDialogPageTest();
+  NewGlobalTest();
+  VpPageTest();
+  WindowTestPageTest()
 }

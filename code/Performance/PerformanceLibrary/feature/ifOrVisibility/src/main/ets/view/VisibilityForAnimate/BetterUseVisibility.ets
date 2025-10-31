@@ -40,9 +40,9 @@ export struct BetterUseVisibility {
             Image($r('app.media.icon'))
               .width($r('app.string.foreach_image_width'))
               .height($r('app.string.foreach_image_height'))
-          }, (item: number) => item.toString())
+          }, (item: number) => item.toString());
         }
-      }.visibility(this.isVisible ? Visibility.Visible : Visibility.None) // 使用显隐控制切换，不会频繁创建与销毁组件
+      }.visibility(this.isVisible ? Visibility.Visible : Visibility.None); // 使用显隐控制切换，不会频繁创建与销毁组件
     }
   }
 }

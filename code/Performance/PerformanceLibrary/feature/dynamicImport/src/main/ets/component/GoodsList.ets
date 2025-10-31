@@ -68,11 +68,11 @@ export struct GoodsList {
           .padding(12)
           .backgroundColor($r('app.color.white'))
         }
-      }, (item: ProductDataModel) => item.id.toString())
+      }, (item: ProductDataModel) => item.id.toString());
     }
     .padding({ left: 12, right: 12 })
     .onAreaChange((newArea: Area) => {
       AppStorage.setOrCreate('listHeight', newArea.height as number);
-    })
+    });
   }
 }

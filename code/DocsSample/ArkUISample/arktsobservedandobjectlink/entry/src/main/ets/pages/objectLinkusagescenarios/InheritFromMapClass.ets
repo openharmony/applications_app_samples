@@ -45,7 +45,7 @@ struct MapSampleNested {
   build() {
     Row() {
       Column() {
-        MapSampleNestedChild({ myMap: this.message.info });
+        MapSampleNestedChild({ myMap: this.message.info })
       }
       .width('100%')
     }

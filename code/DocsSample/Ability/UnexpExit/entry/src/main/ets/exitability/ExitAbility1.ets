@@ -23,7 +23,6 @@ const TAG  = '[Sample_UnexpExit]';
 const MAX_RSS_THRESHOLD: number = 100000;
 const MAX_PSS_THRESHOLD: number = 100000;
 
-
 function doSomething() {
   hilog.info(DOMAIN_NUMBER, TAG, 'do Something');
 }

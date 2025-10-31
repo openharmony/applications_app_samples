@@ -22,7 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
-const DOMAIN = 0x0000;
+
 
 export default function LocalStoragePageTest() {
   describe('LocalStoragePageTest', () => {
@@ -36,34 +36,43 @@ export default function LocalStoragePageTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xF811, 'testTag', '%{public}s','get top ability');
+      hilog.info(0xF811,'testTag','%{public}s','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811, 'testTag', '%{public}s','LocalStoragePageTest beforeEach start');
+      hilog.info(0xF811,'testTag','%{public}s','LocalStoragePageTest beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/LocalStoragePage',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811, 'testTag', '%{public}s','get LocalStoragePage state pages:' + JSON.stringify(pages));
-        if (!('LocalStoragePage' == pages.name)) {
-          hilog.info(0xF811, 'testTag', '%{public}s','get LocalStoragePage pages.name:' + JSON.stringify(pages.name));
+        hilog.info(0xF811,'testTag','%{public}s','get LocalStoragePage state pages:' + JSON.stringify(pages));
+        if (('LocalStoragePage' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get LocalStoragePage pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'testTag', '%{public}s','push LocalStoragePage page error:' + err);
+        hilog.error(0xF811,'testTag','%{public}s','push LocalStoragePage page error:' + err);
       }
-      hilog.info(0xF811, 'testTag', '%{public}s','LocalStoragePage beforeEach end');
+      hilog.info(0xF811,'testTag','%{public}s','LocalStoragePage beforeEach end');
     });
 
+    /*
+     * @tc.number     : LocalStoragePage_01
+     * @tc.name       : LocalStoragePageTest
+     * @tc.desc       : 测试自定义组件支持接收LocalStorage实例
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('LocalStoragePageTest', 0, async (done: Function) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: LocalStoragePageTest begin');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: LocalStoragePageTest begin');
       let driver = Driver.create();
       let componentButton1 = await driver.findComponent(ON.id('LocalStoragePage'));
       await componentButton1.click()
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

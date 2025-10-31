@@ -32,8 +32,8 @@ struct ObserverIndex2 {
 
   @Builder
   PageBuilder(name: string) {
-    PageOne()
-  };
+    PageOne();
+  }
 
   aboutToAppear() {
     // [Start uiObserver]

@@ -24,7 +24,7 @@ const DOMAIN = 0x0000;
 @Entry
 @Component
 struct Index {
-  private subWindow : window.Window | undefined;
+  private subWindow: window.Window | undefined;
 
   build() {
     Column() {
@@ -50,7 +50,7 @@ struct Index {
                   windowClass.resize(500, 1000);
                   windowClass.showWindow();
                 });
-              } catch(exception) {
+              } catch (exception) {
                 hilog.error(DOMAIN, 'testTag', `Failed to setUIContent. Cause : ${exception}`);
               }
             });
@@ -71,4 +71,5 @@ struct Index {
     .width('100%')
   }
 }
+
 // [End Main_WindowTestPage]

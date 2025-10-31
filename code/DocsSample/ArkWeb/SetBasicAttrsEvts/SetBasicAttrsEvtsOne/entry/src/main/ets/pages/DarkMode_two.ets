@@ -20,7 +20,7 @@ import { webview } from '@kit.ArkWeb';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  @State mode: WebDarkMode = WebDarkMode.On;
+  @State mode: WebDarkMode = WebDarkMode.Auto;
   @State access: boolean = true;
 
   build() {

@@ -58,11 +58,11 @@ struct MediaLibraryFile {
         ForEach(this.imgDatas, (item:string) => {
           GridItem() {
             Image(item)
-              .width(200);
-          };
-        }, (item:string):string => JSON.stringify(item));
-      };
-    }.width('100%').height('100%');
-  };
+              .width(200)
+          }
+        }, (item:string):string => JSON.stringify(item))
+      }
+    }.width('100%').height('100%')
+  }
 }
 //  [End media_libraryfile]

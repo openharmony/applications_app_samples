@@ -38,7 +38,7 @@ struct ResuableFlowItem {
 }
 
 @Component
-export struct WaterflowDemo {
+export struct WaterFlowDemo {
   @State minSize: number = 200
   @State maxSize: number = 400
   @State fontSize: number = 24

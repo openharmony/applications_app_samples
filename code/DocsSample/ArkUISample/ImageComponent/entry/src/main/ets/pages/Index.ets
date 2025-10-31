@@ -18,7 +18,6 @@ interface listItem {
   name: string;
   description?: string;
 };
-
 let demandList: listItem[] = [
   {
     name: 'LoadingResources',
@@ -148,5 +147,5 @@ struct Index {
       .backgroundColor('#fff4f3f3')
       .padding({ top: 5 })
     }
-  };
+  }
 }

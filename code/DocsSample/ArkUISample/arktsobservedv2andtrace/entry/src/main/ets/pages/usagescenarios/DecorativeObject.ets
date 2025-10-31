@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start Decorative_Object]
-// Used to generate unique IDs for ObjectInfo instances
 let nextId: number = 0;
 
 @ObservedV2
@@ -27,7 +26,6 @@ class Person {
 
 @ObservedV2
 class ObjectInfo {
-  // Public property to hold the unique identifier of the instance
  public id: number = 0;
   @Trace public personList: Person[] = [];
 

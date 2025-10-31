@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 // [Start Main_LocalStoragePage]
-@Entry({useSharedStorage: true})
+// pages/LocalStoragePage
+@Entry({ useSharedStorage: true })
 @Component
 struct LocalStoragePage {
   @LocalStorageLink('message') message: string = 'Hello World';
@@ -40,4 +41,5 @@ struct LocalStoragePage {
     .width('100%')
   }
 }
+
 // [End Main_LocalStoragePage]

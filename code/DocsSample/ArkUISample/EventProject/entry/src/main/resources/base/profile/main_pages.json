@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/springloading/SpringLoading"
+    "pages/springloading/SpringLoading",
+    "pages/grid/GridExample"
   ]
 }

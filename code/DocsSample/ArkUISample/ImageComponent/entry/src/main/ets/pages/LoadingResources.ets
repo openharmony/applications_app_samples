@@ -49,5 +49,5 @@ struct LoadingResources {
     .height(150)
     .width('100%')
     .padding({ top: 20,right: 10 })
-  };
+  }
 }

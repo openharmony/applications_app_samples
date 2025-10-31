@@ -21,8 +21,8 @@ struct Child17 {
 
   build() {
     Column() {
-      Text(this.childMessage);
-      Text(this.message); // Text是Hello World
+      Text(this.childMessage)
+      Text(this.message) // Text是Hello World
     }
   }
 }
@@ -34,7 +34,7 @@ struct Parent17 {
 
   build() {
     Column() {
-      Child17();
+      Child17()
     }
   }
 }

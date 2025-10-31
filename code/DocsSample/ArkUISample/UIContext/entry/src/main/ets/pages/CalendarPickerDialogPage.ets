@@ -41,4 +41,5 @@ struct CalendarPickerDialogPage {
     .width('100%')
   }
 }
+
 // [End Main_CalendarPickerDialogPage]

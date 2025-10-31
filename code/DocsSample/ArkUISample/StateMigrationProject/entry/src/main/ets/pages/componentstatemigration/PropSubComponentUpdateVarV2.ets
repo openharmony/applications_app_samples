@@ -20,11 +20,11 @@ struct Child14 {
 
   build() {
     Column() {
-      Text(this.value.toString());
+      Text(this.value.toString())
       Button('+1')
         .onClick(() => {
           this.value++;
-        });
+        })
     }
   }
 }
@@ -34,7 +34,7 @@ struct Child14 {
 struct Parent14 {
   build() {
     Column() {
-      Child14({ value: 30 });
+      Child14({ value: 30 })
     }
   }
 }

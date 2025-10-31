@@ -574,12 +574,17 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
     ArkUI_AttributeItem maxLengthItem = {&maxLength, VALUE_1};
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_MAX_LENGTH, &maxLengthItem);
     
-    // 设置计数下标及超出计数时文本框的颜色
+    // 设置TextInput文本输入框未达到和超出最大字符数时计数器的颜色
     ArkUI_ShowCounterConfig *options = OH_ArkUI_ShowCounterConfig_Create();
     OH_ArkUI_ShowCounterConfig_SetCounterTextColor(options, 0xFF0000FF);
     OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(options, 0xFF0000FF);
     ArkUI_NumberValue showCounterArray[] = {{.i32 = true}, {.f32 = 50.0f}, {.i32 = true}};
     ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
+
+    // 获取TextInput文本输入框未达到和超出最大字符数时计数器的颜色
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "GetCounterTextColor: 0x%{public}X
+        GetCounterTextOverflowColor: 0x%{public}X",OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
+        OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
 }
 
@@ -650,19 +655,24 @@ static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
     ArkUI_NumberValue textAreaMinLines = {.i32 = VALUE_1};
     ArkUI_AttributeItem textAreaMinLinesItem = {&textAreaMinLines, VALUE_1};
     Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_MIN_LINES, &textAreaMinLinesItem);
-    
-    // 设置计数下标及超出计数时文本框的颜色
-    ArkUI_ShowCounterConfig *options = OH_ArkUI_ShowCounterConfig_Create();
-    OH_ArkUI_ShowCounterConfig_SetCounterTextColor(options, 0xFF0000FF);
-    OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(options, 0xFF0000FF);
-    ArkUI_NumberValue showCounterArray[] = {{.i32 = true}, {.f32 = 50.0f}, {.i32 = true}};
-    ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
-    Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_SHOW_COUNTER, &ShowCounterColorItem);
 }
 
 void setTextArea1(ArkUI_NodeHandle &textArea1)
 {
     setTextArea1Val(textArea1);
+    // 设置TextArea文本输入框未达到和超出最大字符数时计数器的颜色
+    ArkUI_ShowCounterConfig *options = OH_ArkUI_ShowCounterConfig_Create();
+    OH_ArkUI_ShowCounterConfig_SetCounterTextColor(options, 0xFF0000FF);
+    OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(options, 0xFF0000FF);
+    ArkUI_NumberValue showCounterArray[] = {{.i32 = true}, {.f32 = 50.0f}, {.i32 = true}};
+    ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
+
+    // 设置TextArea文本输入框未达到和超出最大字符数时计数器的颜色
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "GetCounterTextColor: 0x%{public}X
+        GetCounterTextOverflowColor: 0x%{public}X",OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
+        OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
+    Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_SHOW_COUNTER, &ShowCounterColorItem);
+
     // 设置输入框文本的高度
     ArkUI_NumberValue textAreaLineHeight = {.i32 = VALUE_30};
     ArkUI_AttributeItem textAreaLineHeightItem = {&textAreaLineHeight, VALUE_1};

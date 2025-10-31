@@ -93,6 +93,7 @@ export struct SwiperVisibleContentPosition {
             })
             .index(3)
             .maintainVisibleContentPosition(true)
+            // [StartExclude visible_content_position]
             .displayArrow({
               showBackground: true,
               isSidebarMiddle: true,
@@ -101,6 +102,7 @@ export struct SwiperVisibleContentPosition {
               arrowSize: 18,
               arrowColor: Color.Blue
             }, false)
+            // [EndExclude visible_content_position]
 
             Column({ space: 12 }) {
               Text('index:' + this.index).fontSize(20)

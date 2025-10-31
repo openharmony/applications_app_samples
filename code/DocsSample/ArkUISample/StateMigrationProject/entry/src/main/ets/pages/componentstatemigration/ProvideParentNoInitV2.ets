@@ -21,7 +21,7 @@ struct Parent22 {
   build() {
     Column() {
       // @Provider禁止从父组件初始化，替代方案为先用@Param接受，再赋值给@Provider
-      Child22({ initialValue: this.parentValue });
+      Child22({ initialValue: this.parentValue })
     }
   }
 }
@@ -33,7 +33,7 @@ struct Child22 {
 
   build() {
     Column() {
-      Text(this.childValue.toString());
+      Text(this.childValue.toString())
     }
   }
 }

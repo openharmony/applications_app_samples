@@ -12,8 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 // [Start freeze_template5_PageA_start]
-// Page1.ets
+// src/main/ets/pages/freeze/template5/PageA.ets
 @ObservedV2
 class Book {
   @Trace public name: string = 'TS';
@@ -48,11 +51,11 @@ export struct Child {
 
   @Monitor('bookTest.name')
   onMessageChange(monitor: IMonitor) {
-    console.info(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(DOMAIN, 'testTag', `The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   textUpdate(): number {
-    console.info('The text is update');
+    hilog.info(DOMAIN, 'testTag', 'The text is update');
     return 25;
   }
 
@@ -70,30 +73,3 @@ export struct Child {
   }
 }
 // [End freeze_template5_PageA_start]
-
-// [Start freeze_template5_PageB_start]
-@Builder
-function page2Builder() {
-  PageB();
-}
-
-@ComponentV2
-struct PageB {
-  pathStack: NavPathStack = new NavPathStack();
-
-  build() {
-    NavDestination() {
-      Column() {
-        Text('This is the Page2')
-
-        Button('Back').fontSize(30)
-          .onClick(() => {
-            this.pathStack.pop();
-          })
-      }
-    }.onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack;
-    })
-  }
-}
-// [End freeze_template5_PageB_start]

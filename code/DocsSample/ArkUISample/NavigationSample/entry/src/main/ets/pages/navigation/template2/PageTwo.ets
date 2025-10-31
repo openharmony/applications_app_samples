@@ -14,8 +14,8 @@
  */
 @Builder
 export function PageTwoBuilder(name: string, param: Object) {
-  PageTwo()
-};
+  PageTwo();
+}
 
 @Component
 export struct PageTwo {

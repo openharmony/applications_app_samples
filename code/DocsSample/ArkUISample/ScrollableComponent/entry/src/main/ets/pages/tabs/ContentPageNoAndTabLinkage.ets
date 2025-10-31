@@ -19,7 +19,7 @@ import { ComponentCard } from '../../common/Card';
 export struct ContentPageNoAndTabLinkage {
 
   @State selectIndex: number = 0;
-  @Builder tabBuilder(title: string, targetIndex: number) {
+  @Builder tabBuilder(title: Resource, targetIndex: number) {
     Column() {
       Text(title)
         .fontColor(this.selectIndex === targetIndex ? '#1698CE' : '#6B6B6B')

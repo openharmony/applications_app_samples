@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct Stroke_Opacity {
+struct StrokeOpacity {
   build() {
     Column() {
       // [Start stroke_opacity]

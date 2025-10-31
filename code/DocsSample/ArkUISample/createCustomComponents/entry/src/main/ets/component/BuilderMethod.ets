@@ -30,7 +30,7 @@ struct ParentComponent {
   build() {
     Column() {
       // 正例：可以调用
-      this.doSomeRender();
+      this.doSomeRender()
       // 正例：参数可以为调用TS方法的返回值
       Text(this.calcTextValue())
     }

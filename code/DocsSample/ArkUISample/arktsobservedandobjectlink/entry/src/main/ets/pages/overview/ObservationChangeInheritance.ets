@@ -44,7 +44,7 @@ struct ObservationChangeInheritanceChild {
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
         selected: this.data
-      });
+      })
     }
   }
 }

@@ -19,7 +19,7 @@
 @Entry
 // [EndExclude attribute_video]
 @Component
-export struct attributeVideo {
+export struct AttributeVideo {
   private controller: VideoController = new VideoController();
 
   build() {

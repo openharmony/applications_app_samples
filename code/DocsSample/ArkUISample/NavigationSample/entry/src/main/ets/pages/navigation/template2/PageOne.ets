@@ -21,8 +21,8 @@ class TmpClass {
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
-  PageOne()
-};
+  PageOne();
+}
 const DOMAIN = 0x0000;
 @Component
 export struct PageOne {
@@ -130,7 +130,7 @@ export struct PageOne {
               .margin(10)
               .onClick(() => {
                 // [Start replacePath]
-                // 将栈顶页面替换为PageOne
+                // 将栈顶页面替换为pageTwo
                 this.pageStack.replacePath({ name: 'pageTwo', param: 'PageOne Param' });
                 // [End replacePath]
                 this.message = 'replacePath' + JSON.stringify(this.pageStack);
@@ -199,7 +199,7 @@ export struct PageOne {
                 // 获取索引为1的页面参数
                 this.pageStack.getParamByIndex(1);
                 // 获取PageOne页面的参数
-                this.pageStack.getParamByName('pageTwo');
+                this.pageStack.getParamByName('PageOne');
                 // 获取PageOne页面的索引集合
                 this.pageStack.getIndexByName('pageOne');
                 // [End GetParam]
@@ -222,10 +222,13 @@ export struct PageOne {
         .width('100%')
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)
-        .edgeEffect(EdgeEffect.Spring)
-      .id('ScrollNoParam')
+        .edgeEffect(EdgeEffect.None)
+        .id('ScrollNoParam')
 
-    }.title('pageOne')
+    }
+    .width('100%')
+    .height('100%')
+    .title('pageOne')
     .onWillShow(()=>{
       this.message = JSON.stringify(this.pageStack);
     })
@@ -236,6 +239,6 @@ export struct PageOne {
     }).onReady((context: NavDestinationContext) => {
       this.pageStack = context.pathStack;
     })
-    }.width('100%').height('100%')
+    }
   }
 }

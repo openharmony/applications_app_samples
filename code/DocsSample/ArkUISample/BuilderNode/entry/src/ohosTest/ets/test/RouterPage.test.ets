@@ -19,8 +19,6 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 import { Router, router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
@@ -38,38 +36,47 @@ export default function routerPageTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xF811, 'testTag', '%{public}s','get top ability');
+      hilog.info(0xF811,'testTag','%{public}s','get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
     beforeEach(() => {
-      hilog.info(0xF811, 'testTag', '%{public}s','routerPageTest beforeEach start');
+      hilog.info(0xF811,'testTag','%{public}s','routerPageTest beforeEach start');
       let options: router.RouterOptions = {
         url: 'pages/RouterPage1',
       }
       try {
         const routerInstance = AppStorage.get<Router>('router') as Router
         let pages = routerInstance.getState();
-        hilog.info(0xF811, 'testTag', '%{public}s','get routerPage1 state pages:' + JSON.stringify(pages));
-        if (!('routerPage1' == pages.name)) {
-          hilog.info(0xF811, 'testTag', '%{public}s','get routerPage1 pages.name:' + JSON.stringify(pages.name));
+        hilog.info(0xF811,'testTag','%{public}s','get routerPage1 state pages:' + JSON.stringify(pages));
+        if (('RouterPage1' != pages.name)) {
+          hilog.info(0xF811,'testTag','%{public}s','get routerPage1 pages.name:' + JSON.stringify(pages.name));
           routerInstance.pushUrl(options);
         }
       } catch (err) {
-        hilog.error(DOMAIN, 'testTag', '%{public}s','push ReusablePage02 page error:' + err);
+        hilog.error(0xF811,'testTag','%{public}s','push ReusablePage02 page error:' + err);
       }
-      hilog.info(0xF811, 'testTag', '%{public}s','ReusablePage02 beforeEach end');
+      hilog.info(0xF811,'testTag','%{public}s','ReusablePage02 beforeEach end');
     });
 
+    /*
+     * @tc.number     : RouterPage_01
+     * @tc.name       : routerPageTest
+     * @tc.desc       : 测试BuilderNode在新页面被复用时，会自动刷新自身内容
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+
     it('routerPageTest', 0, async (done: Function) => {
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: routerPageTest begin');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: routerPageTest begin');
       let driver = Driver.create();
       let componentButton1 = await driver.findComponent(ON.text('Router pageTwo'));
       await componentButton1.click()
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       let componentButton2 = await driver.findComponent(ON.text('Router replace to index'));
       await componentButton2.click()
-      hilog.info(0xF811, 'testTag', '%{public}s','uitest: already click');
+      hilog.info(0xF811,'testTag','%{public}s','uitest: already click');
       await driver.delayMs(2000);
       done();
     })

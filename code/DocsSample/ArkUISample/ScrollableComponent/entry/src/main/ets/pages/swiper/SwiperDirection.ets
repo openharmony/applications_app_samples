@@ -27,7 +27,11 @@ export struct SwiperDirection {
         ComponentCard({ title: $r('app.string.SwiperPageSwitchMethod_titleHorizontal') }) {
           Column({ space: 8 }) {
             // [Start rotate_horizontally]
-            Swiper(this.swiperHorizontalController) {
+            Swiper(
+              // [StartExclude rotate_horizontally]
+              this.swiperHorizontalController
+              // [EndExclude rotate_horizontally]
+            ) {
               // [StartExclude rotate_horizontally]
               Text('0')
                 .width('90%')
@@ -74,7 +78,11 @@ export struct SwiperDirection {
         ComponentCard({ title: $r('app.string.SwiperPageSwitchMethod_titleVertical') }) {
           Column({ space: 8 }) {
             // [Start rotate_vertically]
-            Swiper(this.swiperVerticalController) {
+            Swiper(
+              // [StartExclude rotate_vertically]
+              this.swiperVerticalController
+              // [EndExclude rotate_vertically]
+            ) {
               // [StartExclude rotate_vertically]
               Text('0')
                 .width('90%')

@@ -13,17 +13,16 @@
  * limitations under the License.
  */
 
-// [Start local_file_refresh]
+
 import { Want } from '@kit.AbilityKit';
 // [Start network_file_refresh]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [StartExclude local_file_refresh]
 import { http } from '@kit.NetworkKit';
-// [EndExclude local_file_refresh]
 
+// [Start local_file_refresh]
 const TAG: string = 'WgtImgUpdateEntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
  // [StartExclude local_file_refresh]
@@ -52,9 +51,9 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     class FormDataClass {
       text: string = 'Image: Bear';
       loaded: boolean = true;
-      // 卡片需要显示图片场景, 必须和下列字段formImages 中的key 'imgBear' 相同。
+      // 卡片需要显示图片场景,必须和下列字段formImages中的key 'imgBear'相同。
       imgName: string = 'imgBear';
-      // 卡片需要显示图片场景, 必填字段(formImages 不可缺省或改名), 'imgBear' 对应 fd
+      // 卡片需要显示图片场景,必填字段(formImages不可缺省或改名), 'imgBear'对应fd
       formImages: Record<string, number> = imgMap;
     }
 
@@ -84,9 +83,9 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     class FormDataClass {
       text: string = 'Image: Bear' + fileName;
       loaded: boolean = true;
-      // 卡片需要显示图片场景, 必须和下列字段formImages 中的key fileName 相同。
+      // 卡片需要显示图片场景,必须和下列字段formImages中的key fileName相同。
       imgName: string = fileName;
-      // 卡片需要显示图片场景, 必填字段(formImages 不可缺省或改名), fileName 对应 fd
+      // 卡片需要显示图片场景,必填字段(formImages不可缺省或改名), fileName对应fd
       formImages: Record<string, number> = imgMap;
     }
 

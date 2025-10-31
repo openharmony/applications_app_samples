@@ -25,8 +25,6 @@ export struct OnFocusBlur {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-
         Column({ space: 20 }) {
           // 通过外接键盘的上下键可以让焦点在三个按钮间移动，按钮获焦时颜色变化，失焦时变回原背景色
           Button('First Button')
@@ -71,11 +69,6 @@ export struct OnFocusBlur {
               this.threeButtonColor = Color.Gray;
             })
         }.width('100%').margin({ top: 20 })
-
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
     }
     // [StartExclude focus_dynamic_reflect]
     .backgroundColor('#f1f2f3')

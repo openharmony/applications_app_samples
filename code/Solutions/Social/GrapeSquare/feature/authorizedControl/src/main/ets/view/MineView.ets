@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { TitleBar } from './TitleBar'
+import { TitleBar } from './TitleBar';
 
 @Observed
   //设置条目信息构造

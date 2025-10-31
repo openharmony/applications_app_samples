@@ -231,6 +231,7 @@
  </tr>
   <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Notification/CustomNotificationBadge">自定义通知角标（API 10）</a></td>
+  <td x:str><a href="code/DocsSample/Notification/ThirdpartyWerableDemo">三方穿戴设备</a></td>
   <td ></td>
   <td ></td>
   <td ></td>

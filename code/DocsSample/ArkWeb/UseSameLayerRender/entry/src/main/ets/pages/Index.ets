@@ -32,6 +32,10 @@ struct Index {
         .onClick(() => {
           router.pushUrl({ url: 'pages/DrawXCompAVPBtn' });
         })
+      Button('NativeEmbedOverlay')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/NativeEmbedOverlay' });
+        })
     }.height('100%')
     .width('100%')
   }

@@ -40,7 +40,7 @@ struct parallelRecognition {
             this.count2++;
           })
       )
-    );
-  };
+    )
+  }
 }
 // [End parallel_recognition]

@@ -30,7 +30,7 @@ export struct SetTextInputType {
                 .id('Normal')
                 // [EndExclude set_password_input_type_1]
                 .type(InputType.Normal)
-              // [Start set_password_input_type_1]
+              // [End set_password_input_type_1]
             }
           }.width('33%')
           GridItem() {

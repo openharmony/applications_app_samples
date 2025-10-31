@@ -60,7 +60,11 @@ export struct SwiperDigitIndicatorIgnoreComponentSize {
           Scroll() {
             Column({ space: 20 }) {
               // [Start digit_indicator]
-              Swiper(this.swiperController1) {
+              Swiper(
+                // [StartExclude digit_indicator]
+                this.swiperController1
+                // [EndExclude digit_indicator]
+              ) {
                 // [StartExclude digit_indicator]
                 LazyForEach(this.data1, (item: string) => {
                   Text(item.toString())

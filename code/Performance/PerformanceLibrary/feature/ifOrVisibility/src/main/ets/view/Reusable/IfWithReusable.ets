@@ -22,13 +22,13 @@ export struct IfWithReusable {
 
   build() {
     Column() {
-      Button("Change FlexAlign")
+      Button('Change FlexAlign')
         .onClick(() => {
           this.isAlignStyleStart = !this.isAlignStyleStart;
         })
       Stack() {
         if (this.isAlignStyleStart) {
-          MockComplexReusableSubBranch({ alignStyle: FlexAlign.Start  }); // 使用组件复用机制实现的MockComplexSubBranch
+          MockComplexReusableSubBranch({ alignStyle: FlexAlign.Start }); // 使用组件复用机制实现的MockComplexSubBranch
         } else {
           MockComplexReusableSubBranch({ alignStyle: FlexAlign.End });
         }

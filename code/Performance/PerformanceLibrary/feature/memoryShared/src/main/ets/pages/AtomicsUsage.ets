@@ -15,11 +15,11 @@
 
 import taskpool from '@ohos.taskpool';
 import { BusinessError } from '@ohos.base';
-import logger from "../util/Logger";
+import logger from '../util/Logger';
 
 @Component
 export struct AtomicsUsage {
-  @State result: string = "";
+  @State result: string = '';
   private taskNum: number = 2;
   private scroller: Scroller = new Scroller();
 
@@ -27,35 +27,35 @@ export struct AtomicsUsage {
     Row() {
       Column() {
         Button($r('app.string.not_use_atomics'))
-          .width("80%")
+          .width('80%')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .margin({ top: 30 })
           .onClick(async () => {
             this.sharedArrayBufferUsage(false);
-          })
+          });
         Button($r('app.string.use_atomics'))
-          .width("80%")
+          .width('80%')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .margin({ top: 30 })
           .onClick(async () => {
             this.sharedArrayBufferUsage(true);
-          })
+          });
         Text($r('app.string.result'))
-          .width("80%")
+          .width('80%')
           .fontSize(30)
           .margin({ top: 30 })
           .fontWeight(FontWeight.Bold)
           .fontColor(Color.Blue)
         Scroll(this.scroller) {
           Text(this.result)
-            .width("80%")
+            .width('80%')
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
             .fontColor(Color.Blue)
         }
-        .height("60%")
+        .height('60%')
         .margin({ top: 30 })
       }
       .width('100%')
@@ -82,14 +82,14 @@ export struct AtomicsUsage {
 
     taskpool.execute(taskGroup).then(() => {
       // 将结果打印在Text上
-      this.result = this.result + "\n" + int32Array;
+      this.result = this.result + '\n' + int32Array;
       // 如果Scroll不在底部，则滑到到底部
       if (!this.scroller.isAtEnd()) {
         this.scroller.scrollEdge(Edge.Bottom);
       }
     }).catch((e: BusinessError) => {
       logger.error(e.message);
-    })
+    });
 
   }
 }

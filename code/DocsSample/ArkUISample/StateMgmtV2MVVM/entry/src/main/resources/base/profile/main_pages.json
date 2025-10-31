@@ -1,9 +1,6 @@
 {
   "src": [
     "pages/TodoListPage",
-    "pages/SettingPage",
-    "pages/AppStorageV2",
-    "pages/Page1",
-    "pages/Page2"
+    "pages/SettingPage"
   ]
 }

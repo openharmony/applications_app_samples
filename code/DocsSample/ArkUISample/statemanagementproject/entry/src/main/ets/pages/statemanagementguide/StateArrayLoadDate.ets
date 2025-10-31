@@ -32,7 +32,7 @@ class ChildList7 extends Array<Child> {
     list.push(...children);
     return list;
   }
-};
+}
 
 @Observed
 class Ancestor7 {

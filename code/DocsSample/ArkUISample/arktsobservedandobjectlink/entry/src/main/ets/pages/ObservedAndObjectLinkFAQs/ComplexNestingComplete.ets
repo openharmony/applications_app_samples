@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start Complex_nested_observation_levels]
-// Used to generate unique IDs for complex nesting completion related instances
 let complexNestingCompleteNextId = 1;
 
 @Observed
@@ -91,9 +90,9 @@ struct ComplexNestingCompleteParentComp {
   build() {
     Row() {
       Column() {
-        ComplexNestingCompleteCounterComp({ value: this.counter[0] });
-        ComplexNestingCompleteCounterComp({ value: this.counter[1] });
-        ComplexNestingCompleteCounterComp({ value: this.counter[2] });
+        ComplexNestingCompleteCounterComp({ value: this.counter[0] })
+        ComplexNestingCompleteCounterComp({ value: this.counter[1] })
+        ComplexNestingCompleteCounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
           (item: ComplexNestingCompleteParentCounter) => {

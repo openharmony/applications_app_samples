@@ -58,7 +58,7 @@ struct ReadOnlyVariableParent {
           // 可以在父组件做整体替换
           this.num = new ReadOnlyVariableInfo(30);
         });
-      ReadOnlyVariableChild({num: this.num});
+      ReadOnlyVariableChild({num: this.num})
     }
   }
 }

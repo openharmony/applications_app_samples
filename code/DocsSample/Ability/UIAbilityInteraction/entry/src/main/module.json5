@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start routerMap]
 {
   "module": {
+    // [StartExclude routerMap]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -26,7 +28,9 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    // [EndExclude routerMap]
     "routerMap": "$profile:router_map",
+    // [StartExclude routerMap]
     "abilities": [
       {
         "name": "EntryAbility",
@@ -164,6 +168,8 @@
       {
         "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
       }
-    ]
+    ],
+    // [EndExclude routerMap]
   }
 }
+// [End routerMap]

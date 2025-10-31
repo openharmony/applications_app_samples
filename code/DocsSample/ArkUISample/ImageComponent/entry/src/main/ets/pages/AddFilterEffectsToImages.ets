@@ -27,7 +27,7 @@ struct AddFilterEffectsToImages {
         Image($r('app.media.example'))
           .width('40%')
           .colorFilter(
-            [1, 1, 0, 0, 0,
+             [1, 1, 0, 0, 0,
               0, 1, 0, 0, 0,
               0, 0, 1, 0, 0,
               0, 0, 0, 1, 0])
@@ -35,6 +35,6 @@ struct AddFilterEffectsToImages {
       }.width('100%')
       .justifyContent(FlexAlign.Center)
     }
-  };
+  }
 }
 //  [End image_filtereffect]

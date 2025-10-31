@@ -23,10 +23,10 @@ import {
   ArcButtonPosition,
   ArcSwiper,
   ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
-  ArcDotIndicator,
+  ArcSwiperController,
   // [StartExclude toggle]
   ArcDirection,
-  ArcSwiperController
+  ArcDotIndicator
   // [EndExclude toggle]
 } from '@kit.ArkUI';
 // [StartExclude toggle]
@@ -48,7 +48,13 @@ export struct ArcSwiperToggle {
           Stack() {
             // [Start toggle_sensitivity]
             // [Start toggle_focus]
-            ArcSwiper(this.wearableSwiperController) {
+            ArcSwiper(
+              // [StartExclude toggle_focus]
+              // [StartExclude toggle_sensitivity]
+              this.wearableSwiperController
+              // [EndExclude toggle_sensitivity]
+              // [EndExclude toggle_focus]
+            ) {
               // [StartExclude toggle]
               // [StartExclude toggle_focus]
               // [StartExclude toggle_sensitivity]
@@ -124,10 +130,10 @@ export struct ArcSwiperToggle {
         }
         // [EndExclude toggle]
       }
+      // [StartExclude toggle]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
-      // [StartExclude toggle]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ArcSwiperToggle_title'))

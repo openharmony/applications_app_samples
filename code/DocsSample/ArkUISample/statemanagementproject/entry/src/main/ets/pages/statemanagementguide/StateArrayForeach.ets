@@ -19,7 +19,7 @@ const TAG: string = '[EvtryAblity]';
 
 @Observed
 class StyleList12 extends Array<TextStyles12> {
-};
+}
 
 @Observed
 class TextStyles12 {

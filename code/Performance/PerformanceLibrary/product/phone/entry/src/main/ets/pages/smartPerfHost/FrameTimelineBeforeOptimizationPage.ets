@@ -20,7 +20,7 @@ import { FrameTimelineBeforeOptimization } from '@ohos/smartPerfHost';
 struct FrameTimelineBeforeOptimizationPage {
   build() {
     Column() {
-      FrameTimelineBeforeOptimization()
+      FrameTimelineBeforeOptimization();
     }
   }
 }

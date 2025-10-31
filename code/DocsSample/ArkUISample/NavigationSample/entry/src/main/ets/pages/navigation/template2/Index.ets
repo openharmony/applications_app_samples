@@ -29,9 +29,6 @@ struct Index {
     this.pageStack.setInterception({
       willShow: (from: NavDestinationContext | 'navBar', to: NavDestinationContext | 'navBar',
         operation: NavigationOperation, animated: boolean) => {
-        if (!this.isUseInterception) {
-          return;
-        }
         if (typeof to === 'string') {
           hilog.info(DOMAIN, 'testTag', 'target page is navigation home');
           return;

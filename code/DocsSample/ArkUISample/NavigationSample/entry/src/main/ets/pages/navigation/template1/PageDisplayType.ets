@@ -24,7 +24,7 @@ struct PageDisplayType {
     if (name == 'DialogPage') {
       DialogPage();
     }
-  };
+  }
 
   build() {
     Navigation(this.pageStack) {

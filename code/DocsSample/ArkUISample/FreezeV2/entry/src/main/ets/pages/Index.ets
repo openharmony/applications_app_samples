@@ -51,8 +51,10 @@ struct AnimateIndex {
         { name: 'template2/TabContentTest', label: $r('app.string.freeze_to_label2') },
         { name: 'template3/MyNavigationTestStack', label: $r('app.string.freeze_to_label3') },
         { name: 'template4/RepeatVirtualScrollFreeze', label: $r('app.string.freeze_to_label4') },
+        { name: 'template4/PageB', label: $r('app.string.freeze_to_label4_B') },
         { name: 'template5/PageA', label: $r('app.string.freeze_to_label5') },
         { name: 'template6/MyNavigationTestStack', label: $r('app.string.freeze_to_label6') },
+        { name: 'template7/BuilderNode', label: $r('app.string.freeze_to_label7') },
       ]
     }
   ];

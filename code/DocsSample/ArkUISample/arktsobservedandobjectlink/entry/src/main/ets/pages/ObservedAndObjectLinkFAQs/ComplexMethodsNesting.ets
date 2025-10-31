@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Used to generate unique IDs for ComplexMethodsMethodsNesting related instances
 let complexMethodsNestingNextId = 1;
 
 @Observed
@@ -59,10 +58,10 @@ struct ParentComp {
     Row() {
       Column() {
         // [Start Complex_Methods_Nesting]
-        ComplexMethodsNestingCounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
+        ComplexMethodsNestingCounterComp({ value: this.counter[0] }) // ParentComp组件传递 ParentCounter 给 CounterComp 组件
         // [StartExclude Complex_Methods_Nesting]
-        ComplexMethodsNestingCounterComp({ value: this.counter[1] });
-        ComplexMethodsNestingCounterComp({ value: this.counter[2] });
+        ComplexMethodsNestingCounterComp({ value: this.counter[1] })
+        ComplexMethodsNestingCounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
           (item: ParentCounter) => {
@@ -110,7 +109,7 @@ struct ComplexMethodsNestingCounterComp {
         });
       // [EndExclude Complex_Methods_Nesting]
       // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
-      ComplexMethodsNestingCounterChild({ subValue: this.value.subCounter });
+      ComplexMethodsNestingCounterChild({ subValue: this.value.subCounter })
       // [StartExclude Complex_Methods_Nesting]
       Divider().height(2)
     }

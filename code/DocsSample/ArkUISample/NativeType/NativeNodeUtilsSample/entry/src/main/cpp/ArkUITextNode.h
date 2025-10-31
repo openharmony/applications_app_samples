@@ -20,12 +20,12 @@
 
 #include <arkui/native_type.h>
 #include <arkui/native_node.h>
-#include <hilog/log.h>
 #include "ArkUINode.h"
 #include <string>
 #include "NativeEntry.h"
-#include <string>
-
+// [StartExclude arkUITestNode_start]
+#include <hilog/log.h>
+// [EndExclude arkUITestNode_start]
 namespace NativeModule {
 
 // 布局完成的回调方法

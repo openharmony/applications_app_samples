@@ -16,7 +16,7 @@
 // [Start LlinkWithPrivate_CorrectCase]
 @Entry
 @Component
-struct LWPCCAccessRestrictions {
+struct LinkAccessRestrictions {
   @Builder
   buildTest() {
     Text('Parent builder');
@@ -24,20 +24,20 @@ struct LWPCCAccessRestrictions {
 
   build() {
     Column() {
-      LWPCCComponentChild({
+      LinkComponentChild({
         stateValue: 'Hello',
         propValue: 'Hello',
         provideValue: 'Hello',
         builderValue: this.buildTest,
         regularValue: 'Hello'
-      });
+      })
     }
     .width('100%');
   }
 }
 
 @Component
-struct LWPCCComponentChild {
+struct LinkComponentChild {
   @State stateValue: string = 'Hello';
   @Prop propValue: string = 'Hello';
   @Provide provideValue: string = 'Hello';
@@ -54,7 +54,8 @@ struct LWPCCComponentChild {
       Text('Hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold);
-    };
+    }
   }
 }
+
 // [End LlinkWithPrivate_CorrectCase]

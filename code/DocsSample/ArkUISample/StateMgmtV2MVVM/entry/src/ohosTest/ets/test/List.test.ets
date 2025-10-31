@@ -16,10 +16,8 @@
 
 import abilityTest from './Ability.test';
 import TodoListTest from './TodoList.test';
-import AppV2 from './AppStorageV2.test';
 
 export default function testsuite() {
   abilityTest();
   TodoListTest();
-  AppV2();
 }
