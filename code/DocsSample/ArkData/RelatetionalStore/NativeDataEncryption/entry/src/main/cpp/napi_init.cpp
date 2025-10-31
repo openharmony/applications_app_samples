@@ -17,7 +17,6 @@
 
 // [Start encryption_include]
 #include "database/rdb/relational_store.h"
-#include <cstring>
 // [End encryption_include]
 
 // By default, the database is encrypted and decrypted
@@ -64,8 +63,10 @@ static napi_value CustomizedConfigRdbStore(napi_env env,
     // 使用指定的密钥打开加密数据库。不指定则由数据库负责生成并保存密钥，并使用生成的密钥。
     const int32_t length = 6;
     OH_Crypto_SetEncryptionKey(cryptoParam, key, length);
-    // 此处是示例代码，实际项目中建议使用memset_s 接口
-    memset(key, 0, sizeof(key));
+    // 秘钥信息使用完之后要清空
+    for (size_t i = 0; i < sizeof(key); i++) {
+        key[i] = 0;
+    }
     // 设置KDF算法迭代次数。迭代次数必须大于零。不指定或等于零则使用默认值10000和默认加密算法。
     const int64_t iteration = 64000;
     OH_Crypto_SetIteration(cryptoParam, iteration);
