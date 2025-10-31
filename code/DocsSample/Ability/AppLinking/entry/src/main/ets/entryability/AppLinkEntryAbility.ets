@@ -16,7 +16,7 @@
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { url } from '@kit.ArkTS';
 
-export default class EntryAbility extends UIAbility {
+export default class AppLinkEntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 从want中获取传入的链接信息。
     // 如传入的url为：https://www.example.com/programs?action=showall

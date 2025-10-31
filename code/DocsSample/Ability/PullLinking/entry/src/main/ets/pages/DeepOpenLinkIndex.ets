@@ -22,7 +22,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct DeepOpenLinkIndex {
   build() {
     Button('start link', { type: ButtonType.Capsule, stateEffect: true })
       .width('87%')

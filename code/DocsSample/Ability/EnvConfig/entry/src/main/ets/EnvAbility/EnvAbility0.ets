@@ -19,7 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER = 0xF811;
 const TAG  = '[Sample_EnvConfig]';
 // [EndExclude  quick_start0]
-export default class EntryAbility extends UIAbility {
+export default class EnvAbility0 extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       let value = this.context.resourceManager.getConfigurationSync();

@@ -17,7 +17,7 @@ import { UIAbility, ConfigurationConstant } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-export default class MyAbility extends UIAbility {
+export default class EnvAbility3 extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {

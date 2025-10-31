@@ -22,7 +22,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct EnvAbilityPage7 {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private callbackId: number = 0; // 注册订阅系统环境变化的ID
 

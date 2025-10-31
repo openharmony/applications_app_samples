@@ -20,7 +20,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG: string = '[EntryAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-export default class EntryFormAbility extends FormExtensionAbility {
+export default class EnvAbility10 extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate: ' + JSON.stringify(newConfig));
   }

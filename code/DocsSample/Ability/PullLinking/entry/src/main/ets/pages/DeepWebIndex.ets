@@ -24,7 +24,7 @@ const TAG  = '[Sample_PullLinking]';
 // [EndExclude  quick_start0]
 @Entry
 @Component
-struct WebComponent {
+struct DeepOpenLinkAbility {
   controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
