@@ -15,7 +15,7 @@
 // [Start play_music0300]
 import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 
-export default class IntentExecutorImpl extends InsightIntentExecutor {
+export default class DownloadExecutor extends InsightIntentExecutor {
   // 由于意图配置了serviceExtension，故需要实现该接口
   async onExecuteInServiceExtensionAbility(name: string,
     param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
