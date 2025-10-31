@@ -24,7 +24,7 @@ const DOMAIN = 0x0000;
 // [Start express_index_component]
 @Entry
 @Component
-struct Index {
+struct ExpressIndex {
   @State hideAbility: string = 'hideAbility';
 
   build() {

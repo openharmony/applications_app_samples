@@ -21,7 +21,7 @@ import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = 'ExpressIndex';
+const TAG = 'FileIndex';
 const DOMAIN = 0x0000;
 
 @Entry

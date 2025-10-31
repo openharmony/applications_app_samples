@@ -344,9 +344,9 @@
     // [StartExclude navitation_config]
     "extensionAbilities": [
       {
-        "name": "ExamplePhotoEditorAbility",
+        "name": "PhotoEditorAbility",
         "icon": "$media:layered_image",
-        "description": "ExamplePhotoEditorAbility",
+        "description": "PhotoEditorAbility",
         "type": "photoEditor",
         "exported": true,
         "srcEntry": "./ets/entryability/PhotoEditorAbility.ets",

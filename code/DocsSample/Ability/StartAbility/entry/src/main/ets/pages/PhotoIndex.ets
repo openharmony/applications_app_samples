@@ -24,11 +24,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { JSON } from '@kit.ArkTS';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-const TAG = 'PhotoEditorCaller';
+const TAG = 'PhotoIndex';
 
 @Entry
 @Component
-struct Index {
+struct PhotoIndex {
   @State message: string = 'selectImg';
   @State originalImage: ResourceStr = '';
   @State editedImage: PixelMap | null = null;

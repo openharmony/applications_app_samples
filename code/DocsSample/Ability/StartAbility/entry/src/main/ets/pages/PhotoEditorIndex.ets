@@ -20,11 +20,11 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
 
-const TAG = '[ExamplePhotoEditorAbility]';
+const TAG = 'PhotoEditorIndex';
 
 @Entry
 @Component
-struct Index {
+struct PhotoEditorIndex {
   @State message: string = 'editImg';
   @State originalImage: PixelMap | null = null;
   @State editedImage: PixelMap | null = null;
