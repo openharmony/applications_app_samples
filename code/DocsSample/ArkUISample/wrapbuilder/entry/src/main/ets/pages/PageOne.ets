@@ -58,21 +58,21 @@ struct WrapBuilderSimplePage {
       // 1. 标题（子组件，正确嵌套在根 Column 内）
       Text('wrapBuilder simple example')
         .fontSize(20)
-        .fontWeight('bold') // 用字符串避免枚举问题
-        .margin({ bottom: 10 });
+        .fontWeight('bold')
+        .margin({ bottom: 10 })
 
       // 2. 包装后的文本展示（子组件，嵌套在根 Column 内）
       Column() {
         Text('Display of wrapped text:')
           .fontSize(14)
           .fontColor('#666')
-          .margin({ bottom: 8 });
+          .margin({ bottom: 8 })
 
         wrappedText.builder(this.info, this.textSize);
       }
       .padding(10)
       .backgroundColor('#f0f0f0')
-      .borderRadius(6);
+      .borderRadius(6)
 
       // 3. 交互按钮（子组件，嵌套在根 Column 内）
       Row({ space: 15 }) {
@@ -83,7 +83,7 @@ struct WrapBuilderSimplePage {
         .onClick(() => {
           this.info = 'the updated content';
           this.textSize = 18;
-        });
+        })
 
         // 按钮2：重置
         Column() {
@@ -92,13 +92,13 @@ struct WrapBuilderSimplePage {
         .onClick(() => {
           this.info = 'initial information';
           this.textSize = 16;
-        });
+        })
       }
     }
     // 根 Column 的属性（紧跟在根容器代码块之后）
     .width('100%')
     .height('100%')
     .padding(20)
-  } // 闭合 build() 方法
-} // 闭合 struct 组件
+  }
+}
 // [End wrapbuilder_page_one]

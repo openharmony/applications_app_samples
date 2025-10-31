@@ -36,12 +36,12 @@ struct DisplayComponent {
         // 显示简单类型 count
         Text(`简单类型 count 的值：${this.count}`)
           .fontSize(18)
-          .margin(5);
+          .margin(5)
 
         // 显示复杂类型 title 的值
         Text(`复杂类型 title 的值：${this.title.value}`)
           .fontSize(18)
-          .margin(5);
+          .margin(5)
 
         // 按钮：触发数据赋值变化（验证@Prop的观察能力）
         Column({ space: 10 }) {
@@ -50,18 +50,18 @@ struct DisplayComponent {
               // [StartExclude prop_sixteen_start]
               this.count = 1; // 简单类型赋值变化，UI会更新
               // [EndExclude prop_sixteen_start]
-            });
+            })
 
           Button('change title to "Hi"')
             .onClick(() => {
               // [StartExclude prop_sixteen_start]
               this.title = new Model('Hi'); // 复杂类型赋值新对象，UI会更新
               // [EndExclude prop_sixteen_start]
-            });
+            })
         }
-        .margin({ top: 20 });
+        .margin({ top: 20 })
       }
-      .padding(30);
+      .padding(30)
   }
 }
 
@@ -83,7 +83,7 @@ struct TestPro {
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
-    .padding(15);
+    .padding(15)
   }
 }
 
