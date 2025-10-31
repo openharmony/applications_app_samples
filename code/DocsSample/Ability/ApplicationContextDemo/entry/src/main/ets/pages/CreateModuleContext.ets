@@ -18,14 +18,14 @@ import { common, application } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = '[Page_Context]';
+const TAG = '[CreateModuleContext]';
 const DOMAIN = 0xF811;
 
 let storageEventCall = new LocalStorage();
 
 @Entry(storageEventCall)
 @Component
-struct Page_Context {
+struct CreateModuleContext {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
@@ -49,6 +49,7 @@ struct Page_Context {
                 hilog.info(DOMAIN, TAG, `CreateModuleContext success, data: ${JSON.stringify(data)}`);
                 if (data !== null) {
                   this.getUIContext().getPromptAction().showToast({
+                    // $r('app.string.success_message')需要替换为开发者所需的资源文件
                     message: $r('app.string.success_message')
                   });
                 }

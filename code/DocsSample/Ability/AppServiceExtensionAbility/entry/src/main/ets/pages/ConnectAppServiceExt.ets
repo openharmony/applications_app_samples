@@ -17,7 +17,7 @@ import { common, Want } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[Page_AppServiceExtensionAbility]';
+const TAG: string = '[ConnectAppServiceExt]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 let connectionId: number;
@@ -46,7 +46,7 @@ let options: common.ConnectOptions = {
 
 @Entry
 @Component
-struct Page_AppServiceExtensionAbility {
+struct ConnectAppServiceExt {
   build() {
     Column() {
       // [StartExclude app_ext_service_three_start]

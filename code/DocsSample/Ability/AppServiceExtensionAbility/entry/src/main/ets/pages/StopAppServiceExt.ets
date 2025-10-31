@@ -17,12 +17,12 @@ import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Page_AppServiceExtensionAbility]';
+const TAG: string = '[StopAppServiceExt]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Page_AppServiceExtensionAbility {
+struct StopAppServiceExt {
   build() {
     Column() {
       // [StartExclude app_ext_service_two_start]

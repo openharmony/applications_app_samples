@@ -18,7 +18,7 @@ import { common, Want } from '@kit.AbilityKit'; // 导入依赖资源context模�
 
 @Entry
 @Component
-struct Page_EventHub {
+struct EventHub {
   // 定义context变量
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 

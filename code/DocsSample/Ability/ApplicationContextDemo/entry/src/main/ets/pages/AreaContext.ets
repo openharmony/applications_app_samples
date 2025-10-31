@@ -19,7 +19,7 @@ import { contextConstant, common } from '@kit.AbilityKit';
 
 @Entry
 @Component
-struct Page_Context {
+struct AreaContext {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
