@@ -16,6 +16,7 @@
 // [Start HTTP_interceptor_case_import]
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End HTTP_interceptor_case_import]
 import { promptAction } from '@kit.ArkUI';
 
@@ -92,7 +93,7 @@ function httpNormalRequest() {
     // 发起请求
     httpRequest.request('https://www.example.com/', options, (err: BusinessError, res: http.HttpResponse) => {
       if (err) {
-        console.log(`request fail, error code: ${err.code}, msg: ${err.message}`);
+        hilog.info(0xFF00, 'httpNormalRequest', `request fail, error code: ${err.code}, msg: ${err.message}`);
         // [StartExclude HTTP_interceptor_case_request]
         promptAction.showToast({
           message: `request hit the interceptor fail`,
@@ -101,7 +102,7 @@ function httpNormalRequest() {
         });
         // [EndExclude HTTP_interceptor_case_request]
       } else {
-        console.log(`res:${JSON.stringify(res)}`);
+        hilog.info(0xFF00, 'httpNormalRequest', `res:${JSON.stringify(res)}`);
         // [StartExclude HTTP_interceptor_case_request]
         promptAction.showToast({
           message: `request hit the interceptor successfully`,
@@ -119,7 +120,7 @@ function httpNormalRequest() {
     });
     // [End HTTP_interceptor_case_request]
   } catch (error) {
-    console.log(`catch ERROR-->:${JSON.stringify(error.message)}`);
+    hilog.info(0xFF00, 'httpNormalRequest', `catch ERROR-->:${JSON.stringify(error.message)}`);
     promptAction.showToast({
       message: `${error.message}`,
       duration: 4000, // 持续时间
