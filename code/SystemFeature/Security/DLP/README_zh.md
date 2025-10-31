@@ -101,7 +101,7 @@ entry/src/main/ets/
 ![Index](screenshots/devices/new_application.png)  
 （2）点击运行，将假应用烧录到开发板中，删除假应用代码  
 ![Index](screenshots/devices/startWrite.png)  
-           如果运行报错no signature file，请配置在线签名，然后再点击运行  
+如果运行报错no signature file，请配置在线签名，然后再点击运行  
 ![Index](screenshots/devices/run_error.png)            
 （3）在cmd中输入如下指令，获取DLP samples应用指纹<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hdc shell "bm dump -n com.samples.dlp | grep finger"<br>
