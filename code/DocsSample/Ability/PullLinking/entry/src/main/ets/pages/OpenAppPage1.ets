@@ -22,7 +22,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsInteractive {
+struct OpenAppPage1 {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {

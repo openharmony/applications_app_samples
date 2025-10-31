@@ -21,7 +21,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 let systemLanguage: string | undefined; // 系统当前语言
 
-export default class EntryAbility extends UIAbility {
+export default class EnvAbility9 extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     systemLanguage = this.context.config.language; // UIAbility实例首次加载时，获取系统当前语言
     hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage is ${systemLanguage}`);

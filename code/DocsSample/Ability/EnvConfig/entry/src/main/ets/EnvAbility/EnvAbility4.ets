@@ -16,7 +16,7 @@
 // UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
 import { ShareExtensionAbility, ConfigurationConstant } from '@kit.AbilityKit';
 
-export default class MyAbility extends ShareExtensionAbility {
+export default class EnvAbility4 extends ShareExtensionAbility {
   onForeground() {
     let uiExtensionContext = this.context;
     uiExtensionContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
