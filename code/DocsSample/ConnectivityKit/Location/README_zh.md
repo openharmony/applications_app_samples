@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用 [geolocation](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-location-kit/js-apis-geolocation.md) 实现获取当前位置的经纬度。
+本示例使用 [geolocation](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-location-kit/js-apis-geolocation.md) 实现获取当前位置的经纬度。
 
 ### 效果预览
 |首页|
@@ -30,9 +30,9 @@ entry/src/main/
 
 ### 相关权限
 
-[ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionlocation)
+[ohos.permission.LOCATION](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all-user.md#ohospermissionlocation)
 
-[ohos.permission.APPROXIMATELY_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location)
+[ohos.permission.APPROXIMATELY_LOCATION](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all-user.md#ohospermissionapproximately_location)
 
 ### 依赖
 
@@ -54,6 +54,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ConnectivityKit/Location/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
