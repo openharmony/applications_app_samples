@@ -29,13 +29,19 @@
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
 #include <js_native_api.h>
-
-#include "NativeEntry.h"
 #include "ArkUICustomContainerNode.h"
 #include "ArkUICustomNode.h"
 static napi_env g_env = nullptr;
+// [Start Interface_entrance_mounting_file]
+#include "NativeEntry.h"
+#include "LazyTextListExample.h"
+#include <arkui/native_node_napi.h>
+#include <arkui/native_type.h>
+#include <js_native_api.h>
+#include <uv.h>
 // [Start normalTextListExample_start]
 namespace NativeModule {
+// [StartExclude Interface_entrance_mounting_file]
 // [StartExclude normalTextListExample_start]
 // [StartExclude ArkUICustomNodeCpp_start]
 #define FRAMEWORK_NODE_TREE_NUMBER 4 // 在框架线程创建组件树的数量。
@@ -578,6 +584,7 @@ void NativeEntry::UnregisterNodeEventReceiver()
     NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->unregisterNodeEventReceiver();
 }
 // [EndExclude ArkUICustomNodeCpp_start]
+// [EndExclude Interface_entrance_mounting_file]
 napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -606,3 +613,4 @@ napi_value DestroyNativeRoot(napi_env env, napi_callback_info info)
 } // namespace NativeModule
 // [End normalTextListExample_start]
 // [End arkUICustomNodeCpp_start]
+// [End Interface_entrance_mounting_file]
