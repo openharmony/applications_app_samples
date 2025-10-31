@@ -51,10 +51,8 @@ export struct CreateToggle {
                 // [EndExclude create_toggle_with_event]
               }
             })
-            // [StartExclude create_toggle_with_event]
+            // [End create_toggle_with_event]
             .visibility(Visibility.None)
-          // [EndExclude create_toggle_case]
-          // [End create_toggle_with_event]
         }
 
         ComponentCard({

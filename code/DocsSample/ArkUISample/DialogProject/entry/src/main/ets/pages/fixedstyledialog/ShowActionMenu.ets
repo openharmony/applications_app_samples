@@ -20,7 +20,9 @@ import { PromptAction } from '@kit.ArkUI';
 @Component
 export struct ShowActionMenuExample {
   build() {
+    // [StartExclude fixed_style_pop_up_box]
     NavDestination() {
+      // [EndExclude fixed_style_pop_up_box]
       Column({ space: 12 }) {
 
         Column() {
@@ -56,10 +58,12 @@ export struct ShowActionMenuExample {
       }
       .width('100%')
       .height('100%')
+      // [StartExclude fixed_style_pop_up_box]
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ShowActionMenu_title'))
+    // [EndExclude fixed_style_pop_up_box]
   }
 }
 // [End fixed_style_pop_up_box]

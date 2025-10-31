@@ -16,11 +16,13 @@
 import IndexTest from './Index.test'
 import abilityTest from './Ability.test';
 import PopupTest from './Popup.test';
-import MenuTest from './Menu.test'
+import MenuTest from './Menu.test';
+import NewFixDialogTest from './FixedDialogNew.test';
 
 export default function testsuite() {
   abilityTest();
   IndexTest();
   PopupTest();
   MenuTest();
+  NewFixDialogTest();
 }
