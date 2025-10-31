@@ -83,6 +83,12 @@
     }, {
       "name": "bindSheet_label10",
       "value": "示例10（使用嵌套滚动交互）"
+    },{
+      "name": "bindSheet_label11",
+      "value": "示例11（二次确认）"
+    },{
+      "name": "bindSheet_label12",
+      "value": "示例12（半模态支持避让中轴）"
     }, {
       "name": "bindSheetCmd_label",
       "value": "命令式打开半模态"

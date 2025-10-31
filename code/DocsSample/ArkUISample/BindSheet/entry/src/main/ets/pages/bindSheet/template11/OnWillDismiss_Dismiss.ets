@@ -65,6 +65,9 @@ struct OnWillDismiss_Dismiss {
                   dismissSheetAction.dismiss();
                 }
               },
+              cancel: () => {
+                hilog.info(0x0000, 'onWillDismiss_Dismiss', 'AlertDialog Closed callbacks')
+              }
             }
           )
         })
