@@ -18,16 +18,16 @@
 struct RowLayoutJustifyContentCenter {
   build() {
     //[Start RowLayoutJustifyContentCenter_start]
-    Column({}) {
+    Row({}) {
       Column() {
-      }.width('80%').height(50).backgroundColor(0xF5DEB3)
+      }.width('20%').height(30).backgroundColor(0xF5DEB3)
 
       Column() {
-      }.width('80%').height(50).backgroundColor(0xD2B48C)
+      }.width('20%').height(30).backgroundColor(0xD2B48C)
 
       Column() {
-      }.width('80%').height(50).backgroundColor(0xF5DEB3)
-    }.width('100%').height(300).backgroundColor('rgb(242,242,242)').justifyContent(FlexAlign.Center)
+      }.width('20%').height(30).backgroundColor(0xF5DEB3)
+    }.width('100%').height(200).backgroundColor('rgb(242,242,242)').justifyContent(FlexAlign.Center)
     // [End RowLayoutJustifyContentCenter_start]
   }
 }
