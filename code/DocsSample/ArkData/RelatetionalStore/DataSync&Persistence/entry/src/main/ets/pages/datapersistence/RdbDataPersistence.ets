@@ -52,7 +52,7 @@ export async function rdbDataPersistence() {
   if (store === undefined) {
     try {
       store = await relationalStore.getRdbStore(context, STORE_CONFIG);
-    }catch (e) {
+    } catch (e) {
       const err = e as BusinessError;
       hilog.error(DOMAIN, 'rdbDataPersistence', `Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
       return;
@@ -120,7 +120,7 @@ export async function rdbDataPersistence() {
   let value2 = 18;
   let value3 = 100.5;
   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-  let value5 = BigInt('15822401018187971961171');;
+  let value5 = BigInt('15822401018187971961171');
   const valueBucket: relationalStore.ValuesBucket = {
     NAME: value1,
     AGE: value2,
