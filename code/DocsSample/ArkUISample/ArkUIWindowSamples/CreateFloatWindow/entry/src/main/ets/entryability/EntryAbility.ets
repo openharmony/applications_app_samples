@@ -73,14 +73,6 @@ export default class EntryAbility extends UIAbility {
         });
       });
       // 4.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁。
-      // windowClass.destroyWindow((err: BusinessError) => {
-      //   let errCode: number = err.code;
-      //   if (errCode) {
-      //     hilog.error(DOMAIN, TAG, `Failed to destroy the window. Cause: ${JSON.stringify(err)}`);
-      //     return;
-      //   }
-      //   hilog.info(DOMAIN, TAG, `Succeeded in destroying the window.`);
-      // });
     });
   }
 };
