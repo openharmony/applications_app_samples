@@ -16,7 +16,7 @@
 @ObservedV2
 class SetInfo {
   @Trace public memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
-};
+}
 
 @Entry
 @ComponentV2
@@ -34,23 +34,24 @@ struct SetSample {
         Button('init set')
           .onClick(() => {
             this.info.memberSet = new Set([0, 1, 2, 3, 4]);
-          });
+          })
         Button('set new one')
           .onClick(() => {
             this.info.memberSet.add(5);
-          });
+          })
         Button('clear')
           .onClick(() => {
             this.info.memberSet.clear();
-          });
+          })
         Button('delete the first one')
           .onClick(() => {
             this.info.memberSet.delete(0);
-          });
+          })
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+
 // [End Decoration_Set]

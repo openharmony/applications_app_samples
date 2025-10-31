@@ -14,16 +14,18 @@
  */
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedandobjectlink';
+
 // [Start Delayed_change]
 @Observed
 class RenderClass {
- public waitToRender: boolean = false;
+  public waitToRender: boolean = false;
 
   constructor() {
-  };
-};
+  }
+}
 
 @Entry
 @Component
@@ -31,23 +33,26 @@ struct DelayedChangeIndex {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
   // [StartExclude Delayed_change]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   // [EndExclude Delayed_change]
   renderClassChange() {
     // $r('app.string.renderClass_Change')需要替换为开发者所需的资源文件
-    hilog.info(DOMAIN,TAG,`${this.context.resourceManager.getStringSync($r('app.string.renderClass_Change').id)}：` + this.renderClass.waitToRender);
-  };
+    hilog.info(DOMAIN, TAG, `${this.context.resourceManager.getStringSync($r('app.string.renderClass_Change').id)}：` +
+    this.renderClass.waitToRender);
+  }
 
   onPageShow() {
     setTimeout(() => {
       this.renderClass.waitToRender = true;
     }, 1000);
-  };
+  }
 
   build() {
     Row() {
       Column() {
         // $r('app.string.renderClass')需要替换为开发者所需的资源文件
-        Text(`${this.context.resourceManager.getStringSync($r('app.string.renderClass').id)}：` + this.renderClass.waitToRender)
+        Text(`${this.context.resourceManager.getStringSync($r('app.string.renderClass').id)}：` +
+        this.renderClass.waitToRender)
           .fontSize(20)
       }
       .width('100%')
@@ -55,4 +60,5 @@ struct DelayedChangeIndex {
     .height('100%')
   }
 }
+
 // [End Delayed_change]

@@ -18,7 +18,7 @@
 struct MyComponentFreezeWhenInactive {
   // [StartExclude freezeWhenInactive_Component]
   build() {
-    Column(){
+    Column() {
       Text('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -26,6 +26,8 @@ struct MyComponentFreezeWhenInactive {
     .width('100%')
     .height('100%')
   }
+
   // [EndExclude freezeWhenInactive_Component]
 }
+
 // [End freezeWhenInactive_Component]

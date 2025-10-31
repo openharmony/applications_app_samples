@@ -17,7 +17,7 @@ let nextId = 0;
 
 @Observed
 class User {
- public id: number;
+  public id: number;
 
   constructor() {
     this.id = nextId++;
@@ -31,7 +31,7 @@ struct DifferencesPropObjectLink {
 
   build() {
     Column() {
-      UserChild({ firstUserByObjectLink: this.users[0], firstUserByProp: this.users[0] });
+      UserChild({ firstUserByObjectLink: this.users[0], firstUserByProp: this.users[0] })
     }
   }
 }
@@ -50,12 +50,13 @@ struct UserChild {
       Button('change @ObjectLink value')
         .onClick(() => {
           this.firstUserByObjectLink.id++;
-        });
+        })
       Button('change @Prop value')
         .onClick(() => {
           this.firstUserByProp.id++;
-        });
+        })
     }
   }
 }
+
 // [End Differences_Prop_ObjectLink]

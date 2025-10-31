@@ -19,16 +19,18 @@ struct ChildComponentCustom {
     Button(`Hello World`)
   }
 }
+
 @Entry
 @Component
 struct MyComponentStyle {
   build() {
-      Row() {
-        ChildComponentCustom()
-          .width(200)
-          .height(300)
-          .backgroundColor(Color.Red)
-      }
+    Row() {
+      ChildComponentCustom()
+        .width(200)
+        .height(300)
+        .backgroundColor(Color.Red)
+    }
   }
 }
+
 // [End Custom_style]

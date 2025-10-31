@@ -17,8 +17,10 @@
 class FatherInheritance {
   @Trace public name: string = 'Tom';
 }
+
 class ChangesSon extends FatherInheritance {
 }
+
 @Entry
 @ComponentV2
 struct InheritedChanges {
@@ -30,8 +32,9 @@ struct InheritedChanges {
       Text(`${this.son.name}`)
         .onClick(() => {
           this.son.name = 'Jack';
-        });
+        })
     }
   }
 }
+
 // [End Inherited_Changes]

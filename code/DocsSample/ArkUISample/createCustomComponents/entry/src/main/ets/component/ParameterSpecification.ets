@@ -33,9 +33,10 @@ struct ParentComponentParameter {
 
   build() {
     Column() {
-        // 创建MyComponent实例，并将创建MyComponent成员变量countDownFrom初始化为10，将成员变量color初始化为this.someColor
+      // 创建MyComponentSpecification实例，并将创建MyComponentSpecification成员变量countDownFrom初始化为10，将成员变量color初始化为this.someColor
       MyComponentSpecification({ countDownFrom: 10, color: this.someColor })
     }
   }
 }
+
 // [End Parameter_specification]

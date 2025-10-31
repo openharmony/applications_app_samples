@@ -16,17 +16,16 @@
 @Entry
 @Component
 struct ParentFunction {
-  // Counter to record the number of button clicks
   @State clickCount: number = 0;
   submit: () => void = () => {
     this.clickCount++;
   };
 
   build() {
-      Column() {
-        Text(`${this.clickCount}`)
-        Son({ submitArrow: this.submit })
-      }
+    Column() {
+      Text(`${this.clickCount}`)
+      Son({ submitArrow: this.submit })
+    }
   }
 }
 
@@ -47,4 +46,5 @@ struct Son {
     .height(56)
   }
 }
+
 // [End Function_passing]

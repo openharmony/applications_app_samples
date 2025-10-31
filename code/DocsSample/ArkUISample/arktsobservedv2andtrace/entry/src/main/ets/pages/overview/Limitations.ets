@@ -15,22 +15,24 @@
 // [Start Observed_Limitations]
 @Observed
 class FatherLim {
- public son: SonLim;
+  public son: SonLim;
 
   constructor(name: string, age: number) {
     this.son = new SonLim(name, age);
-  };
-};
+  }
+}
+
 @Observed
 class SonLim {
- public name: string;
- public age: number;
+  public name: string;
+  public age: number;
 
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
-  };
-};
+  }
+}
+
 @Entry
 @Component
 struct Limitations {
@@ -44,11 +46,12 @@ struct Limitations {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             this.father.son.age++;
-          });
+          })
       }
       .width('100%')
     }
     .height('100%')
   }
 }
+
 // [End Observed_Limitations]

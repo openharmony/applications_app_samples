@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 // [Start routeName_myPage]
-@Entry({ routeName : 'myPage' })
+@Entry({ routeName: 'myPage' })
 @Component
 struct MyComponentRouteName {
   // [StartExclude routeName_myPage]
   build() {
-    Column(){
+    Column() {
       Text('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -26,6 +26,8 @@ struct MyComponentRouteName {
     .width('100%')
     .height('100%')
   }
+
   // [EndExclude routeName_myPage]
 }
+
 // [End routeName_myPage]

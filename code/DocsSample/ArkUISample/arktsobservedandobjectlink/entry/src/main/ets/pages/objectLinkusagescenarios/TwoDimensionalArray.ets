@@ -17,12 +17,14 @@
 @Observed
 class ObservedArrays<T> extends Array<T> {
 }
+
 // [End Two_dimensional_array]
 
 // [Start Two_dimensional_array_example]
 @Observed
 class ObservedArray<T> extends Array<T> {
 }
+
 @Component
 struct Item {
   @ObjectLink itemArr: ObservedArray<string>;
@@ -33,7 +35,7 @@ struct Item {
         Text(`${index}: ${item}`)
           .width(100)
           .height(100)
-      }, (item: string) => item);
+      }, (item: string) => item)
     }
   }
 }
@@ -51,7 +53,7 @@ struct IndexPage {
     Column() {
       ForEach(this.arr, (itemArr: ObservedArray<string>) => {
         Item({ itemArr: itemArr })
-      });
+      })
 
       Divider()
 
@@ -59,26 +61,27 @@ struct IndexPage {
         .margin(10)
         .onClick(() => {
           this.arr[0].push('strawberry');
-        });
+        })
 
       Button('push array item')
         .margin(10)
         .onClick(() => {
           this.arr.push(new ObservedArray<string>('pear'));
-        });
+        })
 
       Button('change two-dimensional array first item')
         .margin(10)
         .onClick(() => {
           this.arr[0][0] = 'APPLE';
-        });
+        })
 
       Button('change array first item')
         .margin(10)
         .onClick(() => {
           this.arr[0] = new ObservedArray<string>('watermelon');
-        });
+        })
     }
   }
 }
+
 // [End Two_dimensional_array_example]

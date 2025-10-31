@@ -17,10 +17,10 @@
 @Component
 struct MyComponent {
   build() {
-      // 根节点唯一且必要，必须为容器组件
-      Row() {
-        ChildComponentBuildFunction()
-      }
+    // 根节点唯一且必要，必须为容器组件
+    Row() {
+      ChildComponentBuildFunction()
+    }
   }
 }
 
@@ -32,4 +32,5 @@ struct ChildComponentBuildFunction {
     Image($r('app.media.startIcon'))
   }
 }
+
 // [End build_function]

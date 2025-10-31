@@ -16,7 +16,7 @@
 @ObservedV2
 class DateInfo {
   @Trace public selectedDate: Date = new Date('2021-08-08');
-};
+}
 
 @Entry
 @ComponentV2
@@ -29,17 +29,17 @@ struct DateSample {
         .margin(10)
         .onClick(() => {
           this.info.selectedDate = new Date('2023-07-08');
-        });
+        })
       Button('increase the year by 1')
         .margin(10)
         .onClick(() => {
           this.info.selectedDate.setFullYear(this.info.selectedDate.getFullYear() + 1);
-        });
+        })
       Button('increase the month by 1')
         .margin(10)
         .onClick(() => {
           this.info.selectedDate.setMonth(this.info.selectedDate.getMonth() + 1);
-        });
+        })
       Button('increase the day by 1')
         .margin(10)
         .onClick(() => {
@@ -53,4 +53,5 @@ struct DateSample {
     }.width('100%')
   }
 }
+
 // [End Decorate_Date]

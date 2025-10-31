@@ -16,36 +16,36 @@ let complexMethodsNestingNextId = 1;
 
 @Observed
 class ComplexMethodsNestingSubCounter {
- public counter: number;
+  public counter: number;
 
   constructor(c: number) {
     this.counter = c;
-  };
-};
+  }
+}
 
 @Observed
 class ParentCounter {
- public id: number;
- public counter: number;
- public subCounter: ComplexMethodsNestingSubCounter;
+  public id: number;
+  public counter: number;
+  public subCounter: ComplexMethodsNestingSubCounter;
 
   incrCounter() {
     this.counter++;
-  };
+  }
 
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
-  };
+  }
 
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
-  };
+  }
 
   constructor(c: number) {
     this.id = complexMethodsNestingNextId++;
     this.counter = c;
     this.subCounter = new ComplexMethodsNestingSubCounter(c);
-  };
+  }
 }
 
 
@@ -77,27 +77,29 @@ struct ParentComp {
               new ParentCounter(1),
               new ParentCounter(2),
               new ParentCounter(3)
-            ];
+            ]
           })
         Text('Parent: incr counter[0].counter')
           .fontSize(20).height(50)
           .onClick(() => {
             this.counter[0].incrCounter();
             this.counter[0].incrSubCounter(10);
-          });
+          })
         Text('Parent: set.counter to 10')
           .fontSize(20).height(50)
           .onClick(() => {
             this.counter[0].setSubCounter(10);
-          });
+          })
       }
     }
   }
 }
+
 @Component
 struct ComplexMethodsNestingCounterComp {
   // [EndExclude Complex_Methods_Nesting]
   @ObjectLink value: ParentCounter; // @ObjectLink 接收 ParentCounter
+
   // [StartExclude Complex_Methods_Nesting]
 
   build() {
@@ -106,7 +108,7 @@ struct ComplexMethodsNestingCounterComp {
         .fontSize(25)
         .onClick(() => {
           this.value.incrCounter();
-        });
+        })
       // [EndExclude Complex_Methods_Nesting]
       // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
       ComplexMethodsNestingCounterChild({ subValue: this.value.subCounter })
@@ -120,11 +122,12 @@ struct ComplexMethodsNestingCounterComp {
 struct ComplexMethodsNestingCounterChild {
   // [EndExclude Complex_Methods_Nesting]
   @ObjectLink subValue: ComplexMethodsNestingSubCounter; // @ObjectLink 接收 SubCounter
+
   // [End Complex_Methods_Nesting]
   build() {
     Text(`${this.subValue.counter}`)
       .onClick(() => {
         this.subValue.counter += 1;
-      });
+      })
   }
 }

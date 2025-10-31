@@ -15,20 +15,21 @@
 @Entry
 @Component
 struct ForEachFilter {
-  @State arr: number[] = [0,1,2,3];
-  For(){
+  @State arr: number[] = [0, 1, 2, 3];
+
+  For() {
     // [Start filter_New_array]
     // 正确的执行方式为：filter返回一个新数组，后面的sort方法才不会改变原数组this.arr
     ForEach(this.arr.filter((item, index) => index >= 2).sort(),
-    (item:number) => {
-      // ...
-    });
+      (item: number) => {
+        // ...
+      });
     // [End filter_New_array]
   }
 
   build() {
     RelativeContainer() {
-      Column(){
+      Column() {
         Text('Hello World')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
