@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// [Start jump_detail]
 @Entry
 @Component
 struct Profile {
@@ -38,4 +37,3 @@ struct Profile {
     .height('100%')
   }
 }
-// [End jump_detail]

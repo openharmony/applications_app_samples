@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
 // [Start login_click]
 import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { DOMAIN, TAG } from '../../common/Common';
 
 @Entry
 @Component
@@ -35,7 +35,7 @@ struct Login {
   }
 
   build() {
-    // [StartExclude quick_start]
+    // [StartExclude login_click]
     Row() {
       Column() {
         Text('Login Page')
@@ -50,7 +50,7 @@ struct Login {
           })
       }.width('100%')
     }.height('100%')
-    // [EndExclude quick_start]
+    // [EndExclude login_click]
   }
 }
 // [End login_click]
