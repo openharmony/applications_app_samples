@@ -34,10 +34,7 @@ export struct ButtonCase1 {
   }
 
   build() {
-    // [StartExclude button_case_1]
     NavDestination() {
-      // [EndExclude button_case_1]
-
       Navigation(this.pathStack) {
         List({ space: 4 }) {
           ListItem() {
@@ -66,9 +63,7 @@ export struct ButtonCase1 {
       }
       .mode(NavigationMode.Stack)
       .navDestination(this.PageMap)
-      // [StartExclude button_case_1]
     }
-    // [EndExclude button_case_1]
   }
 }
 

@@ -95,9 +95,7 @@ export struct DialogWithPhysicalBack {
   }
 
   build() {
-    // [StartExclude dialog_with_physical_back]
     NavDestination() {
-      // [EndExclude dialog_with_physical_back]
       Column() {
         Button('click me')
           .onClick(() => {
@@ -105,9 +103,7 @@ export struct DialogWithPhysicalBack {
           })
       }
       .width('100%')
-      // [StartExclude dialog_with_physical_back]
     }
-    // [EndExclude dialog_with_physical_back]
   }
 }
 // [End dialog_with_physical_back]

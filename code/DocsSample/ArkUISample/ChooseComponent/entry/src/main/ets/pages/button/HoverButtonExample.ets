@@ -13,16 +13,14 @@
  * limitations under the License.
  */
 
-
+// [Start hover_button_example]
 // xxx.ets
 @Entry
 @Component
 export struct HoverButtonExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   build() {
-    // [StartExclude hover_button_example]
     NavDestination() {
-      // [EndExclude hover_button_example]
       Stack() {
         List({ space: 20, initialIndex: 0 }) {
           ForEach(this.arr, (item: number) => {
@@ -56,9 +54,7 @@ export struct HoverButtonExample {
       .height('100%')
       .backgroundColor(0xDCDCDC)
       .padding({ top: 5 })
-      // [StartExclude hover_button_example]
     }
-    // [EndExclude hover_button_example]
   }
 }
-// [End button_case_1]
+// [End hover_button_example]

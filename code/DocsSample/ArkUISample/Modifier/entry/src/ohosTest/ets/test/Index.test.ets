@@ -40,7 +40,7 @@ export default function IndexTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      console.info("get top ability");
+      console.info('get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 

@@ -63,7 +63,7 @@ export struct CreateButton {
               Text('loading').fontSize(12).fontColor(0xffffff).margin({ left: 5, right: 12 })
             }.alignItems(VerticalAlign.Center)
           }.borderRadius(8).backgroundColor(0x317aff).width(90).height(40)
-          // [Start create_button_by_button_options2]
+          // [End create_button_by_button_options2]
         }
       }
       .width('100%')

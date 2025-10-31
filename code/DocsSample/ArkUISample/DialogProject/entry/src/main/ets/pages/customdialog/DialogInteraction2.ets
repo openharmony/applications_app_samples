@@ -27,6 +27,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
+      //"我是内容"替换为资源文件
       Text($r('app.string.i_am_content')).fontSize(20).margin({ top: 10, bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')

@@ -20,9 +20,7 @@ struct Index2 {
   @State message: string = $r('app.string.click_and_return');
 
   build() {
-    // [StartExclude index_2]
     NavDestination() {
-      // [EndExclude index_2]
       Column() {
         Button(this.message)
           .type(ButtonType.Capsule)
@@ -35,9 +33,7 @@ struct Index2 {
             });
           })
       }.width('100%').height('100%').margin({ top: 20 })
-      // [StartExclude index_2]
     }
-    // [EndExclude index_2]
   }
 }
 // [End index_2]

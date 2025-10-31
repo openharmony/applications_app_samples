@@ -107,9 +107,7 @@ export struct NestDialog1 {
   }
 
   build() {
-    // [StartExclude nest_dialog_1]
     NavDestination() {
-      // [EndExclude nest_dialog_1]
       Column() {
         Button(this.inputValue)
           .onClick(() => {
@@ -118,9 +116,7 @@ export struct NestDialog1 {
             }
           }).backgroundColor(0x317aff)
       }.width('100%').margin({ top: 5 })
-      // [StartExclude nest_dialog_1]
     }
-    // [EndExclude nest_dialog_1]
   }
 }
 // [End nest_dialog_1]

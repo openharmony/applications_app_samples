@@ -79,6 +79,7 @@ struct Index {
   build() {
     Row() {
       Column() {
+        //选中和不选中按钮
         Checkbox({ name: $r('app.string.checkbox_status'), group: 'checkboxGroup' })
           .select(true)
           .contentModifier(new MyCheckboxStyle(Color.Red))

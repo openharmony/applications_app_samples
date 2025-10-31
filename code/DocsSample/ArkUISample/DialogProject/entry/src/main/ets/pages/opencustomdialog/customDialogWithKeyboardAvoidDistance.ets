@@ -34,9 +34,7 @@ export struct customDialogWithKeyboardAvoidDistance {
   }
 
   build() {
-    // [StartExclude custom_dialog_with_key_board_distance]
     NavDestination() {
-      // [EndExclude custom_dialog_with_key_board_distance]
       Row() {
         Row({ space: 20 }) {
           Text($r('app.string.open_windows'))
@@ -57,9 +55,7 @@ export struct customDialogWithKeyboardAvoidDistance {
         .width('100%')
       }
       .height('100%')
-      // [StartExclude custom_dialog_with_key_board_distance]
     }
-    // [EndExclude custom_dialog_with_key_board_distance]
   }
 }
-// [end custom_dialog_with_key_board_distance]
+// [End custom_dialog_with_key_board_distance]

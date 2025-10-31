@@ -28,9 +28,11 @@ struct CustomDialogExample {
   build() {
     Column({ space: 20 }) {
       if (this.textValue !== '') {
+        //"第二个页面的内容为"替换为资源文件
         Text($r('app.string.the_second_page_is')+`：${this.textValue}`)
           .fontSize(20)
       } else {
+        //"是否获取第二个页面的内容"替换为资源文件
         Text($r('app.string.wether_to_get_the_second_page'))
           .fontSize(20)
       }

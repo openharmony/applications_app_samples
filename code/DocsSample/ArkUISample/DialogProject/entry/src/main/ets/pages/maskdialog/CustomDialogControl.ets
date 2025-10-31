@@ -76,9 +76,7 @@ export struct CustomDialogControl {
   }
 
   build() {
-    // [StartExclude custom_dialog_control]
     NavDestination() {
-      // [EndExclude custom_dialog_control]
       Column() {
         // [Start custom_dialog_control_autoCance_btn]
         Button('openCustomDialog autoCancel:false')
@@ -150,9 +148,7 @@ export struct CustomDialogControl {
       }
       .width('100%')
       .height('100%')
-      // [StartExclude custom_dialog_control]
     }
-    // [EndExclude custom_dialog_control]
   }
 }
 // [End custom_dialog_control]
