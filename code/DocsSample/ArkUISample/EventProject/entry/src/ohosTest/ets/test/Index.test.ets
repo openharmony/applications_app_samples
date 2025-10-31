@@ -167,7 +167,7 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FocusActive_title')), MatchPattern.CONTAINS));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Pages_Index_Focus_Active_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
       await driver.triggerKey(2049);
@@ -650,7 +650,7 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_TabIndex_title')), MatchPattern.CONTAINS));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Tab_Index_TabIndex_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
       await driver.triggerKey(2049);
@@ -673,7 +673,7 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_TabIndexFocus_title')), MatchPattern.CONTAINS));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Tab_Index_TabIndexFocus_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
       await driver.triggerKey(2049);
@@ -703,7 +703,7 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_TabStop_title')), MatchPattern.CONTAINS));
+      let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Tab_Index_TabStop_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
       await driver.triggerKey(2049);
