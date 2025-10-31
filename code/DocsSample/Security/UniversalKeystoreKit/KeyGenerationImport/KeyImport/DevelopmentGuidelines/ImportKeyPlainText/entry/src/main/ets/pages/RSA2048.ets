@@ -14,16 +14,17 @@
  */
 
 // [Start import_keys_in_plaintext_RSA2048]
-/* 以下以导入RSA2048密钥的Callback操作使用为例 */
-import { huks } from '@kit.UniversalKeystoreKit'
+/* 以下以导入RSA2048密钥的Callback操作使用为例。 */
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let rsa2048KeyPairMaterial = new Uint8Array([
-  0x01, 0x00, 0x00, 0x00, // 密钥算法(小端表示)huks.HuksKeyAlg.HUKS_ALG_RSA = 1
-  0x00, 0x08, 0x00, 0x00, // 密钥大小（比特）：2048
-  0x00, 0x01, 0x00, 0x00, // 模数n长度（字节）：256
-  0x03, 0x00, 0x00, 0x00, // 公钥指数e长度（字节）：3
-  0x00, 0x01, 0x00, 0x00, // 私钥指数d长度（字节）：256
-  // 模数n
+  0x01, 0x00, 0x00, 0x00, // 密钥算法(小端表示)huks.HuksKeyAlg.HUKS_ALG_RSA = 1。
+  0x00, 0x08, 0x00, 0x00, // 密钥大小（比特）：2048。
+  0x00, 0x01, 0x00, 0x00, // 模数n长度（字节）：256。
+  0x03, 0x00, 0x00, 0x00, // 公钥指数e长度（字节）：3。
+  0x00, 0x01, 0x00, 0x00, // 私钥指数d长度（字节）：256。
+  // 模数n。
   0xc5, 0x35, 0x62, 0x48, 0xc4, 0x92, 0x87, 0x73, 0x0d, 0x42, 0x96, 0xfc, 0x7b, 0x11, 0x05, 0x06,
   0x0f, 0x8d, 0x66, 0xc1, 0x0e, 0xad, 0x37, 0x44, 0x92, 0x95, 0x2f, 0x6a, 0x55, 0xba, 0xec, 0x1d,
   0x54, 0x62, 0x0a, 0x4b, 0xd3, 0xc7, 0x05, 0xe4, 0x07, 0x40, 0xd9, 0xb7, 0xc2, 0x12, 0xcb, 0x9a,
@@ -40,9 +41,9 @@ let rsa2048KeyPairMaterial = new Uint8Array([
   0x80, 0x7d, 0xf8, 0x5e, 0xc1, 0x1d, 0x32, 0x38, 0x41, 0x5b, 0xb6, 0x92, 0xb8, 0xb7, 0x03, 0x0d,
   0x3e, 0x59, 0x0f, 0x1c, 0xb3, 0xe1, 0x2a, 0x95, 0x1a, 0x3b, 0x50, 0x4f, 0xc4, 0x1d, 0xcf, 0x73,
   0x7c, 0x14, 0xca, 0xe3, 0x0b, 0xa7, 0xc7, 0x1a, 0x41, 0x4a, 0xee, 0xbe, 0x1f, 0x43, 0xdd, 0xf9,
-  // 公钥指数e
+  // 公钥指数e。
   0x01, 0x00, 0x01,
-  // 私钥指数d
+  // 私钥指数d。
   0x88, 0x4b, 0x82, 0xe7, 0xe3, 0xe3, 0x99, 0x75, 0x6c, 0x9e, 0xaf, 0x17, 0x44, 0x3e, 0xd9, 0x07,
   0xfd, 0x4b, 0xae, 0xce, 0x92, 0xc4, 0x28, 0x44, 0x5e, 0x42, 0x79, 0x08, 0xb6, 0xc3, 0x7f, 0x58,
   0x2d, 0xef, 0xac, 0x4a, 0x07, 0xcd, 0xaf, 0x46, 0x8f, 0xb4, 0xc4, 0x43, 0xf9, 0xff, 0x5f, 0x74,
@@ -61,50 +62,56 @@ let rsa2048KeyPairMaterial = new Uint8Array([
   0x0b, 0x7d, 0x23, 0x04, 0xb4, 0x75, 0x8c, 0xed, 0x77, 0xfc, 0x1a, 0x85, 0x29, 0x11, 0xe0, 0x61,
 ]);
 
-/* 1.确定密钥别名 */
+/* 1.确定密钥别名。 */
 let keyAlias = 'RSA_sample';
-/* 2.封装密钥属性集和密钥材料 */
-let properties: huks.HuksParam[] = [
-  {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_RSA
-  },
-  {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
-  },
-  {
-    // 此 tag表示密钥导入后的用途，导入后将不可更改
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-  },
-  {
-    // 此 tag表示需导入的密钥类型
-    tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
-    // 此 value表示导入密钥对，若改为HUKS_KEY_TYPE_PUBLIC_KEY时表示仅导入公钥
-    value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
-  },
-];
-
+/* 2.封装密钥属性集和密钥材料。 */
+let properties: Array<huks.HuksParam> = [{
+  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+  value: huks.HuksKeyAlg.HUKS_ALG_RSA
+}, {
+  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+  value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+}, {
+  // 此tag表示密钥导入后的用途，导入后将不可更改。
+  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+}, {
+  // 此tag表示需导入的密钥类型。
+  tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+  // 此value表示导入密钥对，若改为HUKS_KEY_TYPE_PUBLIC_KEY时表示仅导入公钥。
+  value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+},
+]
 let options: huks.HuksOptions = {
   properties: properties,
   inData: rsa2048KeyPairMaterial
 };
 
-/* 3.明文导入密钥 */
-function importRSA2048() {
+/* 3.明文导入密钥。 */
+async function importKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
+  console.info("promise: enter importKeyItem");
+  let ret: boolean = false;
   try {
-    huks.importKeyItem(keyAlias, options, (error, data) => {
-      if (error) {
-        console.error(`callback: importKeyItem failed` + error);
-      } else {
-        console.info(`callback: importKeyItem success`);
-      }
-    });
+    await huks.importKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: importKeyItem success`);
+        ret = true;
+      }).catch((error: BusinessError) => {
+        console.error(`promise: importKeyItem failed errCode : ${error.code}, errMsg : ${error.message}`);
+      })
   } catch (error) {
-    console.error(`callback: importKeyItem input arg invalid` + error);
-    throw (error as Error);
+    console.error(`promise: importKeyItem input arg invalid`);
   }
+  return ret;
+}
+
+async function testImport() {
+  let retImp = await importKeyItem(keyAlias, options);
+  if (retImp == false) {
+    console.error(`testImport failed`);
+    return;
+  }
+  console.info(`testImport success`);
 }
 
 
@@ -176,7 +183,7 @@ struct Index {
         .fontColor('#ffffff')
         .onClick(() => {
           try {
-            importRSA2048();
+            testImport();
             check();
             this.message = 'RSA2048 Result: Success';
           }catch{

@@ -71,7 +71,7 @@ struct Index {
         .onClick(() => {
           this.goToSample('pages/X25519');
         })
-      Button($r('app.string.call_cpp_import_key'))
+      Button($r('app.string.call_cpp_import_aes_key'))
         .padding('12vp')
         .height('40vp')
         .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
@@ -79,8 +79,30 @@ struct Index {
         .fontSize('14sp')
         .fontColor('#ffffff')
         .onClick(() => {
-          let ret: number = testNapi.importKey();
-          this.message = 'Call C/C++ Result: ' + ret.toString();
+          let ret: number = testNapi.importAesKey();
+          this.message = 'Call C/C++ AES256 Result: ' + ret.toString();
+        })
+      Button($r('app.string.call_cpp_import_rsa_key'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.importRsaKey();
+          this.message = 'Call C/C++ RSA2048 Result: ' + ret.toString();
+        })
+      Button($r('app.string.call_cpp_import_x25519_key'))
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
+        .onClick(() => {
+          let ret: number = testNapi.importX25519Key();
+          this.message = 'Call C/C++ X25519 Result: ' + ret.toString();
         })
     }
     .height('100%')

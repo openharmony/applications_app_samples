@@ -87,12 +87,34 @@ export default function importKeyPlainTextTest() {
     it('testImportKeyPlainText004', 0, async () => {
       console.info('uitest: testImportKeyPlainText004 begin');
       const driver = Driver.create();
-      const button1 = await driver.findComponent(ON.text('Call C/C++'));
+      const button1 = await driver.findComponent(ON.text('Call C/C++ AES256'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Call C/C++ AES256 Result: 0'));
+      console.info('uitest: testImportKeyPlainText004 end');
+    })
+
+    it('testImportKeyPlainText005', 0, async () => {
+      console.info('uitest: testImportKeyPlainText005 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C/C++ RSA2048'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Call C/C++ RSA2048 Result: 0'));
+      console.info('uitest: testImportKeyPlainText005 end');
+    })
+
+    it('testImportKeyPlainText006', 0, async () => {
+      console.info('uitest: testImportKeyPlainText006 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('Call C/C++ X25519'));
       await driver.delayMs(1000);
       await button1.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Call C/C++ Result: 0'));
-      console.info('uitest: testImportKeyPlainText004 end');
+      await driver.assertComponentExist(ON.text('Call C/C++ X25519 Result: 0'));
+      console.info('uitest: testImportKeyPlainText006 end');
     })
   })
 }

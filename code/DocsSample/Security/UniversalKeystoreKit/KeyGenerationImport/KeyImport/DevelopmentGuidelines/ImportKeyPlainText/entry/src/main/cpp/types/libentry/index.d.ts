@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
-export const importKey: () => number;
+export const importAesKey: () => number;
+export const importRsaKey: () => number;
+export const importX25519Key: () => number;

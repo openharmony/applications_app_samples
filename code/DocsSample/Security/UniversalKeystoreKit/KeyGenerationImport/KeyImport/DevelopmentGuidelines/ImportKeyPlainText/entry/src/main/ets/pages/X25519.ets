@@ -13,59 +13,66 @@
  * limitations under the License.
  */
 // [Start import_keys_in_plaintext_X25519]
-/* 以下以导入X25519密钥的Callback操作使用为例 */
-import { huks } from '@kit.UniversalKeystoreKit'
+/* 以下以导入X25519密钥的Callback操作使用为例。 */
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
-// X25519的公钥数据。X25519 密钥对中的私钥和公钥都是 32 字节（256 位），关于算法原理请自行参考相关密钥学资料。
+// X25519的公钥数据。X25519密钥对中的私钥和公钥都是32字节（256位），关于算法原理请自行参考相关密码学资料。
 let x25519KeyPubMaterial = new Uint8Array([
   0x30, 0x2A, 0x30, 0x05, 0x06, 0x03, 0x2B, 0x65, 0x6E, 0x03, 0x21, 0x00, 0xD2, 0x36, 0x9E, 0xCF,
   0xF0, 0x61, 0x5B, 0x73, 0xCE, 0x4F, 0xF0, 0x40, 0x2B, 0x89, 0x18, 0x3E, 0x06, 0x33, 0x60, 0xC6
 ]);
 
-/* 1.确定密钥别名 */
+/* 1.确定密钥别名。 */
 let keyAlias = 'X25519_Pub_import_sample';
-/* 2.封装密钥属性集和密钥材料 */
-let properties: huks.HuksParam[] = [
-  {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_X25519
-  },
-  {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
-  },
-  {
-    // 此 tag表示密钥导入后的用途，导入后将不可更改
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-  },
-  {
-    // 此 tag表示需导入的密钥类型
-    tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
-    // 此 value表示导入密钥的公钥，若改为HUKS_KEY_TYPE_KEY_PAIR时表示导入密钥对
-    value: huks.HuksImportKeyType.HUKS_KEY_TYPE_PUBLIC_KEY
-  },
-];
-
+/* 2.封装密钥属性集和密钥材料。 */
+let properties: Array<huks.HuksParam> = [{
+  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+  value: huks.HuksKeyAlg.HUKS_ALG_X25519
+}, {
+  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+  value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+}, {
+  // 此tag表示密钥导入后的用途，导入后将不可更改。
+  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+}, {
+  // 此tag表示需导入的密钥类型。
+  tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+  // 此value表示导入密钥的公钥，若改为HUKS_KEY_TYPE_KEY_PAIR时表示导入密钥对。
+  value: huks.HuksImportKeyType.HUKS_KEY_TYPE_PUBLIC_KEY
+},
+]
 let options: huks.HuksOptions = {
   properties: properties,
   inData: x25519KeyPubMaterial
 };
 
-/* 3.明文导入密钥 */
-function importX25519() {
+/* 3.明文导入密钥。 */
+async function importKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
+  console.info("promise: enter importKeyItem");
+  let ret: boolean = false;
   try {
-    huks.importKeyItem(keyAlias, options, (error, data) => {
-      if (error) {
-        console.error(`callback: importKeyItem failed` + error);
-      } else {
-        console.info(`callback: importKeyItem success`);
-      }
-    });
+    await huks.importKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: importKeyItem success`);
+        ret = true;
+      }).catch((error: BusinessError) => {
+        console.error(`promise: importKeyItem failed errCode : ${error.code}, errMsg : ${error.message}`);
+      })
   } catch (error) {
-    console.error(`callback: importKeyItem input arg invalid` + error);
-    throw (error as Error);
+    console.error(`promise: importKeyItem input arg invalid`);
   }
+  return ret;
+}
+
+async function testImport() {
+  let retImp = await importKeyItem(keyAlias, options);
+  if (retImp == false) {
+    console.error(`testImport failed`);
+    return;
+  }
+  console.info(`testImport success`);
 }
 
 
@@ -137,7 +144,7 @@ struct Index {
         .fontColor('#ffffff')
         .onClick(() => {
           try {
-            importX25519();
+            testImport();
             check();
             this.message = 'X25519 Result: Success';
           }catch{
