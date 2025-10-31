@@ -46,7 +46,7 @@ class TestHttpInterceptor implements http.HttpInterceptor {
     rspContext.result = "INITIAL_REQUEST";
     rspContext.responseCode = 200;
     rspContext.header =
-      "content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue";
+      'content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue';
     // [EndExclude HTTP_interceptor_case_creat_http_interceptor]
     return Promise.resolve(true);
   }
@@ -90,7 +90,7 @@ function httpNormalRequest() {
 
     // [Start HTTP_interceptor_case_request]
     // 发起请求
-    httpRequest.request("https://www.baidu.com/", options, (err: BusinessError, res: http.HttpResponse) => {
+    httpRequest.request('https://www.example.com/', options, (err: BusinessError, res: http.HttpResponse) => {
       if (err) {
         console.log(`request fail, error code: ${err.code}, msg: ${err.message}`);
         // [StartExclude HTTP_interceptor_case_request]
