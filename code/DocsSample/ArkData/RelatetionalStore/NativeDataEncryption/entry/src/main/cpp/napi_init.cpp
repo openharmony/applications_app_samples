@@ -17,6 +17,7 @@
 
 // [Start encryption_include]
 #include "database/rdb/relational_store.h"
+#include <cstring>
 // [End encryption_include]
 
 // By default, the database is encrypted and decrypted
@@ -58,10 +59,12 @@ static napi_value CustomizedConfigRdbStore(napi_env env,
     // 创建自定义加密参数对象
     OH_Rdb_CryptoParam *cryptoParam = OH_Rdb_CreateCryptoParam();
     
+    // 示例中使用硬编码密钥仅用于演示目的， 实际应用中应使用安全的密钥管理服务
     uint8_t key[6] = {0x31, 0x32, 0x33, 0x34, 0x35, 0x36};
     // 使用指定的密钥打开加密数据库。不指定则由数据库负责生成并保存密钥，并使用生成的密钥。
     const int32_t length = 6;
     OH_Crypto_SetEncryptionKey(cryptoParam, key, length);
+    memset(key, 0, sizeof(key));
     // 设置KDF算法迭代次数。迭代次数必须大于零。不指定或等于零则使用默认值10000和默认加密算法。
     const int64_t iteration = 64000;
     OH_Crypto_SetIteration(cryptoParam, iteration);
@@ -82,6 +85,7 @@ static napi_value CustomizedConfigRdbStore(napi_env env,
     // 销毁自定义加密参数对象
     OH_Rdb_DestroyCryptoParam(cryptoParam);
     OH_Rdb_CloseStore(store);
+    store = nullptr;
     // [End CustomizedConfigRdbStore]
     
     napi_value sum;
@@ -106,6 +110,7 @@ static napi_value BackupRdbStore(napi_env env, napi_callback_info info)
     int result =
       OH_Rdb_Backup(store, "/data/storage/el2/database/RdbTest_bak.db");
     OH_Rdb_CloseStore(store);
+    store = nullptr;
     // [End BackupRdbStore]
     
     napi_value sum;
@@ -116,19 +121,20 @@ static napi_value BackupRdbStore(napi_env env, napi_callback_info info)
 static napi_value RestoreRdbStore(napi_env env, napi_callback_info info)
 {
     // [Start rdb_OH_Rdb_Restore]
-    OH_Rdb_ConfigV2 *config2 = OH_Rdb_CreateConfig();
-    OH_Rdb_SetDatabaseDir(config2, "/data/storage/el2/database");
-    OH_Rdb_SetArea(config2, RDB_SECURITY_AREA_EL2);
-    OH_Rdb_SetStoreName(config2, "RdbRestoreTest.db");
-    OH_Rdb_SetSecurityLevel(config2, OH_Rdb_SecurityLevel::S3);
-    OH_Rdb_SetBundleName(config2, "com.example.nativedemo");
-    int errCode2 = 0;
-    OH_Rdb_Store *store2 = OH_Rdb_CreateOrOpen(config2, &errCode2);
+    OH_Rdb_ConfigV2 *config = OH_Rdb_CreateConfig();
+    OH_Rdb_SetDatabaseDir(config, "/data/storage/el2/database");
+    OH_Rdb_SetArea(config, RDB_SECURITY_AREA_EL2);
+    OH_Rdb_SetStoreName(config, "RdbRestoreTest.db");
+    OH_Rdb_SetSecurityLevel(config, OH_Rdb_SecurityLevel::S3);
+    OH_Rdb_SetBundleName(config, "com.example.nativedemo");
+    int errCode = 0;
+    OH_Rdb_Store *store = OH_Rdb_CreateOrOpen(config, &errCode);
     
     // 恢复数据库
     int result2 =
-      OH_Rdb_Restore(store2, "/data/storage/el2/database/RdbTest_bak.db");
-    OH_Rdb_CloseStore(store2);
+      OH_Rdb_Restore(store, "/data/storage/el2/database/RdbTest_bak.db");
+    OH_Rdb_CloseStore(store);
+    store = nullptr;
     // [End rdb_OH_Rdb_Restore]
     
     napi_value sum;
@@ -157,6 +163,7 @@ static napi_value SetSecurityLevelForRdbStore(napi_env env,
     int errCode = 0;
     OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
     OH_Rdb_CloseStore(store_);
+    store_ = nullptr;
     // [End SetSecurityLevelForRdbStore]
 }
 
