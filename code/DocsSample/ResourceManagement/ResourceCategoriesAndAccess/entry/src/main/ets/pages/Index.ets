@@ -52,6 +52,7 @@ struct Index {
       // 该资源存在%1$s、%2$d两个占位符，需要替代为'LiHua'、2，则采用如下方式访问
       // 资源name仅作示例，请替换为实际使用的资源
       Text($r('app.string.message_notification', 'LiHua', 2)).id('app_string_resource')
+
       // 对于plural.json中name为"eat_apple"，单数的value为"%d apple"，复数的value为"%d apples"
       // 访问plural.json资源，第一个参数控制字符串显示单数形式或复数形式，传递1表示单数，大于1表示复数，且在中文环境下始终为复数
       // 该资源存在%d一个占位符，需要替代为2，则采用如下方式访问

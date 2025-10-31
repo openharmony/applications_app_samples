@@ -18,11 +18,12 @@
 struct NavigationDemo {
   @Provide('pathInfos') pathInfos: NavPathStack = new NavPathStack();
   private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotspot', 'Connect & Share'];
-
+  context = this.getUIContext().getHostContext();
   build() {
     Column() {
       Navigation(this.pathInfos) {
-        TextInput({ placeholder: '输入关键字搜索' })
+        // $r('app.string.enterKeyWordsToSearch')需要替换为开发者所需的字符串资源文件
+        TextInput({ placeholder: $r('app.string.enterKeyWordsToSearch') })
           .width('90%')
           .height(40)
           .margin({ bottom: 10 })
@@ -73,7 +74,10 @@ struct NavigationDemo {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, '详情页面参数'); // 将name指定的NaviDestination页面信息入栈,传递的参数为param
+              // $r('app.string.detailsPageParameters')需要替换为开发者所需的字符串资源文件
+              this.pathInfos.pushPathByName(`${item}`,
+                // 将name指定的NaviDestination页面信息入栈,传递的参数为param
+                this.context!.resourceManager.getStringSync($r('app.string.detailsPageParameters').id));
             })
           }, (item: string): string => item)
         }
@@ -85,7 +89,8 @@ struct NavigationDemo {
       }
       .width('100%')
       .mode(NavigationMode.Auto)
-      .title('设置') // 设置标题文字
+      // $r('app.string.settings')需要替换为开发者所需的字符串资源文件
+      .title($r('app.string.settings')) // 设置标题文字
     }
     .size({ width: '100%', height: '100%' })
     .backgroundColor(0xf4f4f5)

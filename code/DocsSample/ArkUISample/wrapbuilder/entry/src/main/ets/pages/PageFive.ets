@@ -31,7 +31,7 @@ interface BuilderModel {
 
 @Entry
 @Component
-struct testBuilderIndex {
+struct TestBuilderIndex {
   @State message: string = 'Hello World';
   @State builderObj: BuilderModel = { globalBuilder: wrapBuilder(myBuilderFirst) };
 

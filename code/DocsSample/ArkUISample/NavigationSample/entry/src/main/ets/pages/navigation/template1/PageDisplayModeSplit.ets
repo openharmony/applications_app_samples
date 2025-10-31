@@ -1,5 +1,3 @@
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -14,6 +12,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 // [Start NavigationModeSplit]
 @Entry
@@ -66,7 +65,8 @@ struct PageDisplayModeSplit {
         .width('90%')
         .margin({ top: 12 })
       }
-      .title('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      .title($r('app.string.mainTitle'))
       .mode(NavigationMode.Split)
       .navDestination(this.pageMap)
       .menus([
@@ -102,7 +102,7 @@ struct PageDisplayModeSplit {
 @Component
 export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -111,7 +111,9 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -120,7 +122,7 @@ export struct pageOneTmp {
 @Component
 export struct pageTwoTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -129,7 +131,9 @@ export struct pageTwoTmp {
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -138,7 +142,7 @@ export struct pageTwoTmp {
 @Component
 export struct pageThreeTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -147,7 +151,9 @@ export struct pageThreeTmp {
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }

@@ -17,7 +17,7 @@
   "buildOption": {
     "resOptions": {
       "copyCodeResource": {
-        "enable": false
+        "enable": true
       }
     }
   },
