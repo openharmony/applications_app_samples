@@ -41,7 +41,7 @@ export class Sample {
 // 用于判断是否完成数据迁移的辅助数据
 @ObservedV2
 class StorageState {
-  @Trace isCompleteMoving: boolean = false;
+  @Trace public isCompleteMoving: boolean = false;
 }
 
 function move() {
