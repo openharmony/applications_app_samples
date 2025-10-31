@@ -37,7 +37,7 @@ static napi_env g_env = nullptr;
 // [Start normalTextListExample_start]
 namespace NativeModule {
 // [StartExclude normalTextListExample_start]
-// [StartExclude ArkUICustomNodeCpp_start]
+// [StartExclude arkUICustomNodeCpp_start]
 #define FRAMEWORK_NODE_TREE_NUMBER 4 // 在框架线程创建组件树的数量。
 #define USER_NODE_TREE_NUMBER 3      // 在开发者线程创建组件树的数量。
 struct AsyncData {
@@ -577,7 +577,7 @@ void NativeEntry::UnregisterNodeEventReceiver()
 {
     NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->unregisterNodeEventReceiver();
 }
-// [EndExclude ArkUICustomNodeCpp_start]
+// [EndExclude arkUICustomNodeCpp_start]
 napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -588,11 +588,25 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
     // 获取NodeContent
     ArkUI_NodeContentHandle contentHandle;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    // 创建自定义容器和自定义绘制组件。
+    auto node = std::make_shared<ArkUICustomContainerNode>();
+    // 浅灰色
+    node->SetBackgroundColor(0xFFD5D5D5);
+    auto customNode = std::make_shared<ArkUICustomNode>();
+    // 深灰色
+    customNode->SetBackgroundColor(0xFF707070);
+    customNode->SetWidth(SIZE_150);
+    customNode->SetHeight(SIZE_150);
+    node->AddChild(customNode);
+    // 保持Native侧对象到管理类中，维护生命周期。
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+    g_env = env;
+        // [StartExclude arkUICustomNodeCpp_start]
         //创建文本列表
         auto list = CreateTextListExample();
         //保持Native侧对象到管理类中，维护生命周期。
         NativeEntry::GetInstance()->SetRootNode(list);
+        // [EndExclude arkUICustomNodeCpp_start]
     return nullptr;
 }
 

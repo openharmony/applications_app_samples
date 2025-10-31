@@ -19,7 +19,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct MyComponent {
   navDesInfo: uiObserver.NavDestinationInfo | undefined;
-
+  context = this.getUIContext().getHostContext();
   aboutToAppear() {
     this.navDesInfo = this.queryNavDestinationInfo();
   }
@@ -29,7 +29,8 @@ struct MyComponent {
     NavDestination() {
       // [EndExclude MyComponent]
       Column() {
-        Text('所属页面Name: ' + this.navDesInfo?.name)
+        // $r('app.string.onPageName')需要替换为开发者所需的字符串资源文件
+        Text(this.context!.resourceManager.getStringSync($r('app.string.onPageName').id) + `${this.navDesInfo?.name}`)
       }.width('100%').height('100%')
       // [StartExclude MyComponent]
     }

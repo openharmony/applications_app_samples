@@ -22,7 +22,8 @@ struct TitleModeMini {
   @Builder
   NavigationTitle() {
     Column() {
-      Text('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      Text($r('app.string.mainTitle'))
         .fontColor('#182431')
         .fontSize(18)
         .lineHeight(36)

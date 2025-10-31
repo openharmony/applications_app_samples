@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 // [Start NavigationMenuFour]
 let toolTmp: NavigationMenuItem  = {
@@ -72,7 +71,8 @@ struct MenusFour {
       // 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标。
       .menus([toolTmp, toolTmp, toolTmp, toolTmp])
       // [End NavigationMenuFour]
-      .title('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      .title($r('app.string.mainTitle'))
       .mode(NavigationMode.Split)
       .navDestination(this.pageMap)
     }
@@ -94,7 +94,6 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -112,7 +111,6 @@ export struct pageTwoTmp {
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -130,7 +128,6 @@ export struct pageThreeTmp {
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
       return true;
     })
   }

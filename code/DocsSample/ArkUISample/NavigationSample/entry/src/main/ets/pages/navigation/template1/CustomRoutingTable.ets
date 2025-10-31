@@ -56,7 +56,8 @@ struct NavigationExample {
         .width('90%')
         .margin({ top: 12 })
       }
-      .title('主标题')
+      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      .title($r('app.string.mainTitle'))
       .navDestination(this.pageMap)
       .mode(NavigationMode.Split)
     }
@@ -68,7 +69,7 @@ struct NavigationExample {
 @Component
 export struct pageTwoTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -77,7 +78,9 @@ export struct pageTwoTmp {
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈的栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -86,7 +89,7 @@ export struct pageTwoTmp {
 @Component
 export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -95,7 +98,9 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈的栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop', '返回值', JSON.stringify(popDestinationInfo));
+      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }

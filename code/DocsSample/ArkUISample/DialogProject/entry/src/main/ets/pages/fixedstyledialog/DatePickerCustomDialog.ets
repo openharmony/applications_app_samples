@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-// [Start date_picker_custom_dialog]
 import { PromptAction } from '@kit.ArkUI';
+// [Start date_picker_custom_dialog]
 
 @Entry
 @Component
@@ -24,7 +24,7 @@ export struct DatePickerCustomDialogExample {
   build() {
     NavDestination() {
       Column() {
-        Button('showDatePickerCustomDialog')
+        Button('showDatePickerDialog')
           .margin(30)
           .onClick(() => {
             this.getUIContext().showDatePickerDialog({
@@ -49,9 +49,11 @@ export struct DatePickerCustomDialogExample {
           })
       }.width('100%').margin({ top: 5 })
     }
+    // [StartExclude date_picker_custom_dialog]
     .backgroundColor('#f1f2f3')
     // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.CustomCustomDialog_date'))
+    // [EndExclude date_picker_custom_dialog]
     }
 }
 // [End date_picker_custom_dialog]

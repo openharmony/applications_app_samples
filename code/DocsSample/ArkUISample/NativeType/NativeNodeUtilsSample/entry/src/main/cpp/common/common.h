@@ -21,6 +21,7 @@
 #define SIZE_10 10
 #define SIZE_30 30
 #define SIZE_100 100
+#define SIZE_150 150
 #define SIZE_200 200
 #define SIZE_480 480
 #define SIZE_720 720

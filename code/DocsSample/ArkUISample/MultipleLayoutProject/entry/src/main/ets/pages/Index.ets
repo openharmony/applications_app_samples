@@ -367,8 +367,8 @@ let demandList: listItem[] = [
     router: 'pages/gridlayout/GridColOrderToNumber',
   },
   {
-    name: 'testGridColOrderToOption',
-    router: 'pages/gridlayout/testGridColOrderToOption',
+    name: 'GridColOrderToOption',
+    router: 'pages/gridlayout/GridColOrderToOption',
   },
   {
     name: 'GridRowExample',

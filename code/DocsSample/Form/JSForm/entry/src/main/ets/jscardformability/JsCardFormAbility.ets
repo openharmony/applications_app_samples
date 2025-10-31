@@ -24,6 +24,7 @@ import { preferences } from '@kit.ArkData';
 // [Start JSForm_JsCardFormAbility_onAddForm]
 // [Start JSForm_JsCardFormAbility_onRemoveForm]
 // [Start JSForm_JsCardFormAbility_onUpdateForm]
+// entry/src/main/ets/jscardformability/JsCardFormAbility.ets
 const TAG: string = 'JsCardFormAbility';
 // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -77,7 +78,6 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       let formName = JSON.stringify(want.parameters['ohos.extra.param.key.form_name']);
       let tempFlag = want.parameters['ohos.extra.param.key.form_temporary'] as boolean;
       // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
-      // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
       storeFormInfo(formId, formName, tempFlag, this.context);
     }
 

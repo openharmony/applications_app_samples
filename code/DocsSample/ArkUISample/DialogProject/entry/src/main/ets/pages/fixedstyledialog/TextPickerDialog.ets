@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-// [Start text_picker_dialog]
-import { PromptAction } from '@kit.ArkUI';
-
 @Entry
 @Component
 export struct TextPickerDialogExample {
@@ -62,8 +59,6 @@ export struct TextPickerDialogExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.CustomDialog_text'))
   }
 }
-// [End text_picker_dialog]

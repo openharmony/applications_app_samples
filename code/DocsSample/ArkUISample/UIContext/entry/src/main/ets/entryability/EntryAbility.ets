@@ -45,17 +45,16 @@ export default class EntryAbility extends UIAbility {
     // [Start Common_getContext]
     let context = ContextUtils.getContext();
     hilog.info(DOMAIN, 'testTag', `The context is ${context}`);
-    // [EndExclude Common_setContext]
     // [End Common_getContext]
+    // [EndExclude Common_setContext]
   }
 
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
-
-  // [EndExclude Common_UIContext]
-  // [EndExclude Common_registerWindowCallback]
   // [EndExclude Common_LocalStorage]
+  // [EndExclude Common_registerWindowCallback]
+  // [EndExclude Common_UIContext]
   // [StartExclude Common_setContext]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -101,7 +100,7 @@ export default class EntryAbility extends UIAbility {
     WindowUIContextUtils.unregisterWindowCallback(window);
   }
 
-  // [End Common_UIContext]
+  // [EndExclude Common_UIContext]
   // [StartExclude Common_registerWindowCallback]
 
   onWindowStageDestroy(): void {
@@ -121,11 +120,10 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
-
+  // [EndExclude Common_UIContext]
+  // [EndExclude Common_registerWindowCallback]
   // [EndExclude Common_LocalStorage]
   // [EndExclude Common_setContext]
-  // [EndExclude Common_registerWindowCallback]
-  // [EndExclude Common_UIContext]
 }
 
 // [End Common_LocalStorage]
