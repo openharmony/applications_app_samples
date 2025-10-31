@@ -49,7 +49,7 @@ function move() {
   if (!movingState.isCompleteMoving) {
     let p: Sample = PersistenceV2.connect(Sample, 'connect2', () => new Sample())!;
     PersistenceV2.remove('connect2');
-    let p1 = PersistenceV2.globalConnect({ type: Sample, key: 'connect3', defaultCreator: () => p })!; // 使用默认构造函数也可以
+    let p1 = PersistenceV2.globalConnect({ type: Sample, key: 'connect2', defaultCreator: () => p })!; // 使用默认构造函数也可以
     // 赋值数据，@Trace修饰的会自动保存
     p1.father = p.father;
     // 将迁移标志设置为true
@@ -63,14 +63,14 @@ move();
 @ComponentV2
 struct Page1 {
   @Local refresh: number = 0;
-  // 使用key:connect3存入数据
+  // 使用key:connect2存入数据
   @Local p: Sample =
-    PersistenceV2.globalConnect({ type: Sample, key: 'connect3', defaultCreator: () => new Sample() })!;
+    PersistenceV2.globalConnect({ type: Sample, key: 'connect2', defaultCreator: () => new Sample() })!;
 
   build() {
     Column({ space: 5 }) {
       /**************************** 显示数据 **************************/
-      Text('Key connect3: ' + this.p.father.childId.toString())
+      Text('Key connect2: ' + this.p.father.childId.toString())
         .onClick(() => {
           this.p.father.childId += 1;
         })
@@ -79,11 +79,11 @@ struct Page1 {
 
       /**************************** save接口 **************************/
       // 非状态变量需要借助状态变量refresh才能刷新
-      Text('save key connect3: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
+      Text('save key connect2: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
         .onClick(() => {
           // 未被@Trace保存的对象无法自动存储，需要调用save存储
           this.p.father.groupId += 1;
-          PersistenceV2.save('connect3');
+          PersistenceV2.save('connect2');
           this.refresh += 1;
         })
         .fontSize(25)

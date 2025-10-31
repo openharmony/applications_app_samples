@@ -15,7 +15,6 @@
 // [Start Internal_Persistent_Storage_V1]
 class Data {
   public name: string = 'ZhangSan';
-  // 日期的id
   public id: number = 0;
 }
 
@@ -25,7 +24,6 @@ PersistentStorage.persistProp('DataProp', new Data());
 @Entry
 @Component
 struct Index {
-  // 页面级UI状态存储点击numProp的数字，默认值设置为48
   @StorageLink('numProp') numProp: number = 48;
   @StorageLink('DataProp') dataProp: Data = new Data();
 
