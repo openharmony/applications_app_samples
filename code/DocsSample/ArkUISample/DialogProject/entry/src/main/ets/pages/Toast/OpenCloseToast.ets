@@ -15,6 +15,10 @@
 // [Start toast_openClose]
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[Sample_dialogproject]';
+const DOMAIN: number = 0xFF00;
 
 @Entry
 @Component
@@ -31,19 +35,33 @@ export struct OpenCloseToastExample {
         Column() {
           Button('Open Toast')
             .height(100)
+            .type(ButtonType.Capsule)
             .onClick(() => {
-              this.promptAction.openToast({
-                message: 'Toast Massage',
-                duration: 10000,
-              }).then((toastId: number) => {
-                this.toastId = toastId;
-              });
+              try {
+                this.promptAction.openToast({
+                  message: 'Toast Massage',
+                  duration: 10000,
+                }).then((toastId: number) => {
+                  this.toastId = toastId;
+                });
+              } catch (error) {
+                let message = (error as BusinessError).message;
+                let code = (error as BusinessError).code;
+                hilog.info(DOMAIN, TAG, '%{public}s', 'OpenToast error code is $\{code}, message is $\{message}');
+              }
             })
           Blank().height(50);
           Button('Close Toast')
             .height(100)
+            .type(ButtonType.Capsule)
             .onClick(() => {
-              this.promptAction.closeToast(this.toastId);
+              try {
+                this.promptAction.closeToast(this.toastId);
+              } catch (error) {
+                let message = (error as BusinessError).message;
+                let code = (error as BusinessError).code;
+                hilog.info(DOMAIN, TAG, '%{public}s', 'CloseToast error code is $\{code}, message is $\{message}');
+              }
             })
         }.height('100%').width('100%').justifyContent(FlexAlign.Center)
       }

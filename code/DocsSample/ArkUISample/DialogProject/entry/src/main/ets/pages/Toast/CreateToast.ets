@@ -16,6 +16,10 @@
 // [Start toast_create]
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[Sample_dialogproject]';
+const DOMAIN: number = 0xFF00;
 
 @Entry
 @Component
@@ -38,7 +42,7 @@ export struct CreateToastExample {
               } catch (error) {
                 let message = (error as BusinessError).message;
                 let code = (error as BusinessError).code;
-                console.error(`showToast args error code is ${code}, message is ${message}`);
+                hilog.info(DOMAIN, TAG, '%{public}s', 'showToast args error code is $\{code}, message is $\{message}');
               };
             })
         }.height('100%').width('100%').justifyContent(FlexAlign.Center)
