@@ -25,14 +25,12 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 
 class Data {
   public name: string = 'ZhangSan';
-  // 日期的id
   public id: number = 0;
 }
 
 @ObservedV2
 class V2Data {
   @Trace public name: string = '';
-  // V2Data数据的id
   @Trace public id: number = 1;
 }
 
@@ -40,7 +38,6 @@ class V2Data {
 export class Sample {
   // 对于复杂对象需要@Type修饰，确保序列化成功
   @Type(V2Data)
-  // 点击增加的值，默认值为1
   @Trace public num: number = 1;
   @Trace public V2: V2Data = new V2Data();
 }

@@ -21,7 +21,6 @@ const DOMAIN = 0x0000;
 
 @ObservedV2
 export class MyStorage {
-  // 点击的次数
   @Trace public count: number = 0;
 }
 
@@ -29,7 +28,6 @@ export class MyStorage {
 @ComponentV2
 struct Index1 {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
-  // 获取到的storage存储点击的次数
   @Local count: number = this.storage.count;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 

@@ -52,7 +52,6 @@ struct MyImage1 {
 struct Index {
   // 使用makeObserved的能力来观测CommonModifier
   @Local myModifier: CommonModifier = UIUtils.makeObserved(new MyModifier().width(100).height(100).margin(10));
-  // 点击按钮的次数
   index: number = 0;
 
   build() {

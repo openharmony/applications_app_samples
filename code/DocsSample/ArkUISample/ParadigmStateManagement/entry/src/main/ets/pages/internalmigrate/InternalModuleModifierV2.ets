@@ -38,7 +38,6 @@ class MyModifier extends TextModifier {
 @ComponentV2
 struct MyImage1 {
   @Param @Require modifier: TextModifier;
-  // 点击按钮的次数
   index: number = 0;
 
   build() {

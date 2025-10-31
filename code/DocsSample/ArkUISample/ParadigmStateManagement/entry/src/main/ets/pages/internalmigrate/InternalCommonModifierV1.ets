@@ -50,7 +50,6 @@ struct MyImage1 {
 @Component
 struct Index {
   @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10);
-  // 点击按钮的次数
   index: number = 0;
 
   build() {
