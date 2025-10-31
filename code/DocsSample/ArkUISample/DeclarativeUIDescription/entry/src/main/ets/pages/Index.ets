@@ -67,6 +67,7 @@ struct Index {
 
         // [Start segment4]
         Image(this.imagePath)
+        // 此处需要替换为开发者所需的正确url
         Image('https://' + this.imageUrl)
         Text(`count: ${this.count}`)
         // [End segment4]
