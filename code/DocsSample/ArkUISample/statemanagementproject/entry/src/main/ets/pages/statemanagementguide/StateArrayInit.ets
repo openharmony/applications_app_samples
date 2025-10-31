@@ -154,7 +154,7 @@ struct StateArrayInitPage {
     new StateArrayInitChildList([new StateArrayInitChild(1), new StateArrayInitChild(2), new StateArrayInitChild(3),
       new StateArrayInitChild(4), new StateArrayInitChild(5)]);
   @State ancestor: StateArrayInitAncestor = new StateArrayInitAncestor(this.childList)
-  // [End StateArrayInit_end]
+  // [End StateArrayInit_start]
   build() {
     Column() {
       StateArrayInitCompAncestor({ stateArrayInitancestor: this.ancestor })
