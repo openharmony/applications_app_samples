@@ -36,7 +36,7 @@ class SppClientManager {
     this.peerDevice = peerDevice
   }
 
-  public isConnect() : boolean {
+  public isConnect(): boolean {
     return this.clientNumber !== -1;
   }
 
@@ -70,7 +70,7 @@ class SppClientManager {
     }
     hilog.info(DOMAIN, 'testTag', `prepare sending data to client ${this.clientNumber}`);
     const textEncoder = new util.TextEncoder();
-    const uint8Array = textEncoder.encode(jsonStr);
+    const uint8Array = textEncoder.encodeInto(jsonStr);
     const arrayBuffer = uint8Array.buffer; // 最终要传输的ArrayBuffer
 
     // 步骤3：通过sppWrite发送数据
