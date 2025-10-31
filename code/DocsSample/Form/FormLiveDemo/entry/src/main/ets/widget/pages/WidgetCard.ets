@@ -20,6 +20,7 @@ struct WidgetCard {
   build() {
     Row() {
       Column() {
+        // $r('app.string.liveform_click1')需要在相应的资源文件string.json中定义
         Text($r('app.string.liveform_click1'))
           .fontSize($r('app.float.font_size'))
           .fontWeight(FontWeight.Medium)

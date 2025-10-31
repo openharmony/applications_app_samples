@@ -20,7 +20,7 @@ let storageUpdateByMsg = new LocalStorage();
 @Entry(storageUpdateByMsg)
 @Component
 struct UpdateByMessageCard {
-  // $r('app.string.xxx')需要替换为开发者所需的资源文件 
+  // 创建两个待刷新的Text，Text初始内容分别为'Title default'、'Description default'。资源文件定义请参见下方步骤4
   @LocalStorageProp('title') title: ResourceStr = $r('app.string.default_title');
   @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.DescriptionDefault');
 
@@ -41,6 +41,7 @@ struct UpdateByMessageCard {
       .alignItems(HorizontalAlign.Start)
 
       Row() {
+        // 添加一个按钮，资源文件定义请参见下方步骤4
         Button() {
           // $r('app.string.update')需要替换为开发者所需的资源文件
           Text($r('app.string.update'))
