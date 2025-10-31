@@ -26,7 +26,7 @@ entry/src/main/
 ```
 
 ### 具体实现
-+ 本示例展示获取定位的功能在页面中直接调用，使用geolocation.on方法获取当前位置的经纬度，然后监听经纬度变化发送request请求获取对应城市信息，源码参考[Location.ets](position/src/main/ets/components/pages/Location.ets)。
++ 本示例展示获取定位的功能在页面中直接调用，使用geolocation.on方法获取当前位置的经纬度，然后监听经纬度变化发送request请求获取对应城市信息，源码参考[SamplePage.ets](entry/src/main/ets/pages/SamplePage.ets)。
 
 ### 相关权限
 
