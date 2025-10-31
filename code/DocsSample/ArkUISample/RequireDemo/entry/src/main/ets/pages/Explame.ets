@@ -29,7 +29,7 @@ struct Explame {
 
   build() {
     Row() {
-      // 构造Child、ChildV2组件时传递相应参数，编译通过。
+      // ChildV1、ChildV2组件时传递相应参数，编译通过。
       ChildV1({
         regularValue: 'Hello',
         stateValue: 'Hello',
