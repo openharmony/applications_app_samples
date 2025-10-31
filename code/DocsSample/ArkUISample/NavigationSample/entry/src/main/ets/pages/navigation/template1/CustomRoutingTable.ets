@@ -69,7 +69,7 @@ struct NavigationExample {
 @Component
 export struct pageTwoTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -79,7 +79,8 @@ export struct pageTwoTmp {
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈的栈顶元素
       // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -88,7 +89,7 @@ export struct pageTwoTmp {
 @Component
 export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -98,7 +99,8 @@ export struct pageOneTmp {
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈的栈顶元素
       // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }

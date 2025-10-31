@@ -23,12 +23,13 @@ export struct PageOne {
   pathInfos: NavPathStack = new NavPathStack();
   name: string = '';
   @State value: string = '';
+  context = this.getUIContext().getHostContext();
 
   build() {
     NavDestination() {
       Column() {
         // $r('app.string.settingPage')需要替换为开发者所需的字符串资源文件
-        Text(`${this.name}${$r('app.string.settingPage')}`)
+        Text(`${this.name}${this.context!.resourceManager.getStringSync($r('app.string.settingPage').id)}`)
           .width('100%')
           .fontSize(20)
           .fontColor(0x333333)
@@ -47,7 +48,7 @@ export struct PageOne {
           .textAlign(TextAlign.Center)
           .padding({ top: 45 })
         // $r('app.string.stepperIndex_text24')需要替换为开发者所需的字符串资源文件
-        Button($r('app.string.stepperIndex_text24'))
+        Button($r('app.string.return'))
           .width('50%')
           .height(40)
           .margin({ top: 50 })

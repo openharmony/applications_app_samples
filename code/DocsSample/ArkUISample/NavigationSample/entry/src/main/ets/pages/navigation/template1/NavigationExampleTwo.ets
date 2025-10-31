@@ -23,7 +23,7 @@ export struct PageTwo {
   pathInfos: NavPathStack = new NavPathStack();
   name: string = '';
   private listArray: Array<string> = ['Projection', 'Print', 'VPN', 'Private DNS', 'NFC'];
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -72,8 +72,8 @@ export struct PageTwo {
             }
             .width('100%')
             .onClick(() => {
-              // $r('app.string.detailsPageParameters')需要替换为开发者所需的字符串资源文件
-              this.pathInfos.pushPathByName(`${item}`, $r('app.string.detailsPageParameters'));
+              this.pathInfos.pushPathByName(`${item}`,
+                this.context!.resourceManager.getStringSync($r('app.string.pageSettingParam').id));
             })
           }, (item: string): string => item)
         }

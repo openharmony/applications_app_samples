@@ -1,5 +1,3 @@
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -14,6 +12,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 // [Start NavigationModeSplit]
 @Entry
@@ -103,7 +102,7 @@ struct PageDisplayModeSplit {
 @Component
 export struct pageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -113,7 +112,8 @@ export struct pageOneTmp {
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
       // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -122,7 +122,7 @@ export struct pageOneTmp {
 @Component
 export struct pageTwoTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -132,7 +132,8 @@ export struct pageTwoTmp {
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
       // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -141,7 +142,7 @@ export struct pageTwoTmp {
 @Component
 export struct pageThreeTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
-
+  context = this.getUIContext().getHostContext();
   build() {
     NavDestination() {
       Column() {
@@ -151,7 +152,8 @@ export struct pageThreeTmp {
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
       // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
+      hilog.info(DOMAIN, 'testTag', 'pop', this.context!.resourceManager.getStringSync($r('app.string.returnValue').id),
+        JSON.stringify(popDestinationInfo));
       return true;
     })
   }

@@ -1,5 +1,3 @@
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
@@ -95,8 +93,6 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop();
-      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -114,8 +110,6 @@ export struct pageTwoTmp {
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop();
-      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -133,8 +127,6 @@ export struct pageThreeTmp {
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop();
-      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }

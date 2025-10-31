@@ -206,6 +206,12 @@
     }, {
       "name": "onPageName",
       "value": "所属页面Name:"
+    }, {
+      "name": "pageSettingParam",
+      "value": "页面设置参数:"
+    }, {
+      "name": "return",
+      "value": "返回"
     }
   ]
 }

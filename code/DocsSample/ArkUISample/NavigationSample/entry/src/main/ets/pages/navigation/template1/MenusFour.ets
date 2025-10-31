@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 // [Start NavigationMenuFour]
 let toolTmp: NavigationMenuItem  = {
@@ -95,8 +94,6 @@ export struct pageOneTmp {
     }.title('NavDestinationTitle1')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -114,8 +111,6 @@ export struct pageTwoTmp {
     }.title('NavDestinationTitle2')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }
@@ -133,8 +128,6 @@ export struct pageThreeTmp {
     }.title('NavDestinationTitle3')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      // $r('app.string.returnValue')需要替换为开发者所需的字符串资源文件
-      hilog.info(DOMAIN, 'testTag', 'pop', $r('app.string.returnValue'), JSON.stringify(popDestinationInfo));
       return true;
     })
   }

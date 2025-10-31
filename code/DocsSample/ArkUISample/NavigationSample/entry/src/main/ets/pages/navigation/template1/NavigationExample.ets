@@ -18,7 +18,7 @@
 struct NavigationDemo {
   @Provide('pathInfos') pathInfos: NavPathStack = new NavPathStack();
   private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotspot', 'Connect & Share'];
-
+  context = this.getUIContext().getHostContext();
   build() {
     Column() {
       Navigation(this.pathInfos) {
@@ -75,7 +75,9 @@ struct NavigationDemo {
             .width('100%')
             .onClick(() => {
               // $r('app.string.detailsPageParameters')需要替换为开发者所需的字符串资源文件
-              this.pathInfos.pushPathByName(`${item}`, $r('app.string.detailsPageParameters')); // 将name指定的NaviDestination页面信息入栈,传递的参数为param
+              this.pathInfos.pushPathByName(`${item}`,
+                // 将name指定的NaviDestination页面信息入栈,传递的参数为param
+                this.context!.resourceManager.getStringSync($r('app.string.detailsPageParameters').id));
             })
           }, (item: string): string => item)
         }
