@@ -195,7 +195,7 @@ struct Index {
       display.off('add', callback1);
       hilog.info(DOMAIN, 'DisplayTest', `unregister add success`);
       // 如果通过on注册多个callback，同时关闭所有callback监听
-      display.off("add");
+      display.off('add');
       hilog.info(DOMAIN, 'DisplayTest', `unregister all add success`);
     } catch (exception) {
       hilog.error(DOMAIN, 'DisplayTest',
