@@ -43,6 +43,22 @@ entry/src/main/
     │   └── media
 ```
 
+### 具体实现
+
+1. **获取屏幕Rotation属性**
+   - 调用OH_NativeDisplayManager_GetDefaultDisplayRotation接口获取默认屏幕的旋转角度，并将此属性信息打印到log中。
+2. **获取挖孔信息**
+   - 调用OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息，并将此信息打印到log中。
+   - 在使用完此信息后，调用OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo销毁挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。
+3. **测试Display监听机制**
+   - 调用OH_NativeDisplayManager_RegisterDisplayChangeListener接口注册屏幕变化的监听，包括屏幕旋转、分辨率变化、刷新率变化、DPI变化都会触发此监听回调。
+   - 在不需要监听的时候，调用OH_NativeDisplayManager_UnregisterDisplayChangeListener接口取消屏幕状态变化的监听。
+4. **折叠设备判断**
+   - 调用通过OH_NativeDisplayManager_IsFoldable接口查询设备是否为折叠设备。
+5. **测试折叠状态监听**
+   - 调用OH_NativeDisplayManager_RegisterFoldDisplayModeChangeListener注册屏幕展开/折叠状态变化的监听。
+   - 在不需要监听的时候，调用OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener接口取消屏幕展开/折叠状态变化的监听。
+
 ### 相关权限
 
 不涉及
