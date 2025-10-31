@@ -18,7 +18,7 @@ import { common, Want } from '@kit.AbilityKit';
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsBasicUsage {
+struct UIAbilityComponentsBasicUsage {
   startAbilityTest(): void {
     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let want: Want = {

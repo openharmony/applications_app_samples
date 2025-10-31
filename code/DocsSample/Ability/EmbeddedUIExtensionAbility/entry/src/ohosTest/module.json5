@@ -16,7 +16,10 @@
   "module": {
     "name": "entry_test",
     "type": "feature",
-    "deviceTypes": [],
+    "deviceTypes": [
+      "2in1",
+      "tablet"
+    ],
     "deliveryWithInstall": true,
     "installationFree": false
   }

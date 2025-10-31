@@ -19,10 +19,10 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import  { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[LifecycleAbility]';
+const TAG: string = '[EntryLifecycleAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-export default class LifecycleAbility extends UIAbility {
+export default class EntryLifecycleAbility extends UIAbility {
   // 定义生命周期ID
   private lifecycleId: number = -1;
 

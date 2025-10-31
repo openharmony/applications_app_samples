@@ -18,7 +18,7 @@ import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Page_AppServiceExtensionAbility]';
+const TAG: string = '[ClientServerExt]';
 const DOMAIN_NUMBER: number = 0xFF00;
 const REQUEST_CODE = 1;
 let connectionId: number;
@@ -66,7 +66,7 @@ let options: common.ConnectOptions = {
 
 @Entry
 @Component
-struct Page_AppServiceExtensionAbility {
+struct ClientServerExt {
   build() {
     Column() {
       // [StartExclude app_ext_service_five_start]
@@ -81,11 +81,11 @@ struct Page_AppServiceExtensionAbility {
               .fontSize(20)
             // [EndExclude app_ext_service_five_start]
           }
-          // [StartExclude app_ext_service_four_start]
+          // [StartExclude app_ext_service_five_start]
           .id('clientService')
           .width('100%')
           .height('100%')
-          // [EndExclude app_ext_service_four_start]
+          // [EndExclude app_ext_service_five_start]
           .onClick(() => {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
             connectionId = context.connectAppServiceExtensionAbility(want, options);

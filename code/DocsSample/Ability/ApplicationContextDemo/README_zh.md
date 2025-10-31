@@ -20,15 +20,17 @@ entry/src/
  │   │   ├── abilitystagecontextability
  │   │       ├── MyAbilityStage.ets   // 模块级别的上下文
  │   │   ├── entryability
+ │   │   ├── entryareaability
+ │   │       ├── EntryAbility.ets   // 模块级别的上下文
  │   │   ├── entrybackupability
  │   │   ├── entryexampleability
- │   │       ├── EntryExampleAbility.ets   // 应用的全局上下文
+ │   │       ├── EntryAbility.ets   // 应用的全局上下文
  │   │   ├── entrylifecycleability
  │   │       ├── EntryLifecycleAbility.ets            // 监听UIAbility生命周期变化
  │   │   ├── entrysceneability
- │   │       ├── EntrySceneAbility.ets            // 获取基本信息
+ │   │       ├── EntryAbility.ets            // 获取基本信息
  │   │   ├── extensionability
- │   │       ├── ExtensionAbility.ets            // ExtensionAbility组件的上下文
+ │   │       ├── MyFormExtensionAbility.ets            // ExtensionAbility组件的上下文
  │   │   ├── lifecycleability
  │   │       ├── LifecycleAbility.ets            // 监听应用前后台变化
  │   │   ├── pages

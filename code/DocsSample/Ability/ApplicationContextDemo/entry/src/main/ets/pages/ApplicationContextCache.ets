@@ -16,12 +16,12 @@
 // [Start app_context_cache_start]
 import { common } from '@kit.AbilityKit';
 
-const TAG: string = '[Page_Context]';
+const TAG: string = '[ApplicationContextCache]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct ApplicationContextCache {
   @State message: string = 'Hello World';
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
