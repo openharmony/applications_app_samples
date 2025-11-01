@@ -31,7 +31,7 @@ struct HttpExample {
   @State image: PixelMap | undefined = undefined; //创建PixelMap状态变量。
 
   aboutToAppear(): void {
-    http.createHttp().request('', //请填写一个具体的网络图片地址。
+    http.createHttp().request('xxx://xxx.xxx.xxx/example.png', //请填写一个具体的网络图片地址。
       (error: BusinessError, data: http.HttpResponse) => {
         if (error) {
           hilog.error(DOMAIN, TAG, `hello http request failed. Code: ${error.code}, message: ${error.message}`);

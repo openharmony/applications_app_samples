@@ -19,11 +19,11 @@
 struct ImageRepetitionStyle {
   build() {
     Column({ space: 10 }) {
-      Row({ space: 5 }) {
+      Column({ space: 25 }) {
         //  $r('app.media.ic_public_favor_filled_1')需要替换为开发者所需的资源文件
         Image($r('app.media.ic_public_favor_filled_1'))
-          .width(110)
-          .height(115)
+          .width(160)
+          .height(160)
           .border({ width: 1 })
           .objectRepeat(ImageRepeat.XY)
           .objectFit(ImageFit.ScaleDown)
@@ -31,8 +31,8 @@ struct ImageRepetitionStyle {
           .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         //  $r('app.media.ic_public_favor_filled_1')需要替换为开发者所需的资源文件
         Image($r('app.media.ic_public_favor_filled_1'))
-          .width(110)
-          .height(115)
+          .width(160)
+          .height(160)
           .border({ width: 1 })
           .objectRepeat(ImageRepeat.Y)
           .objectFit(ImageFit.ScaleDown)
@@ -40,8 +40,8 @@ struct ImageRepetitionStyle {
           .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         //  $r('app.media.ic_public_favor_filled_1')需要替换为开发者所需的资源文件
         Image($r('app.media.ic_public_favor_filled_1'))
-          .width(110)
-          .height(115)
+          .width(160)
+          .height(160)
           .border({ width: 1 })
           .objectRepeat(ImageRepeat.X)
           .objectFit(ImageFit.ScaleDown)

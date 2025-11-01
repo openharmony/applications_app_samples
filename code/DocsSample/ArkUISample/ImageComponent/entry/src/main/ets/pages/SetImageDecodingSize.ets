@@ -38,7 +38,8 @@ struct SetImageDecodingSize {
             height: 90
           })
           .objectFit(ImageFit.ScaleDown)
-          .width('25%')
+          .width(100)
+          .height(100)
           .aspectRatio(1)
           .border({ width: 1 })
           .overlay('width:90 height:90', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
