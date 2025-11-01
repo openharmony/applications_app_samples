@@ -63,7 +63,7 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.INTERNET"
+        "name" : "ohos.permission.INTERNET"
       }
     ]
   }
