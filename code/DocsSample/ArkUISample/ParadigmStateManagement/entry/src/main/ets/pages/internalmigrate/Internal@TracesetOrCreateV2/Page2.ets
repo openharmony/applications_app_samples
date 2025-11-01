@@ -28,7 +28,6 @@ export function Page2Builder() {
 struct Page2 {
   storage: MyStorage = MyStorage.instance();
   pathStack: NavPathStack = new NavPathStack();
-  // 已经存储的页面级UI状态数字
   @Local count: number = this.storage.count;
 
   @Monitor('storage.count')
