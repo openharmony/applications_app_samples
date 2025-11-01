@@ -13,14 +13,15 @@
  * limitations under the License.
  */
 
-import fs from '@ohos.file.fs';
-import notificationManager from '@ohos.notificationManager';
-import Notification from '@ohos.notification';
-import bundle from '@ohos.bundle.installer';
-import account from '@ohos.account.osAccount';
-import workScheduler from '@ohos.resourceschedule.workScheduler';
-import http from '@ohos.net.http';
+import { fileIo } from '@kit.CoreFileKit';
+import { notificationManager, notificationSubscribe } from '@kit.NotificationKit';
+
+import { bundle } from '@kit.AbilityKit';
+import { osAccount } from '@kit.BasicServicesKit';
+import { workScheduler } from '@kit.BackgroundTasksKit';
+import { http } from '@kit.NetworkKit';
 import { Logger } from '../utils/Logger';
+import { BusinessError } from '@ohos.base';
 
 const FILE_NAME = '/UpdateWorkScheduler.hap';
 const BUNDLE_NAMES = ['ohos.samples.workschedulerextensionability'];
@@ -36,25 +37,24 @@ export namespace WorkSchedulerSystem {
   export function saveFile(pathDir: string, content: ArrayBuffer): void {
     try {
       let filePath = pathDir + FILE_NAME;
-      let fd = fs.openSync(filePath, 0o2 | 0o100).fd;
-      fs.writeSync(fd, content);
-      fs.closeSync(fd);
+      let fd = fileIo.openSync(filePath, 0o2 | 0o100).fd;
+      fileIo.writeSync(fd, content);
+      fileIo.closeSync(fd);
     } catch (err) {
-      Logger.error(`saveFile failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(`838078 saveFile failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
   /**
    * Sending a Notification.
    *
-   * @param bundleName Check the name of the application that has permission.
    * @permission ohos.permission.NOTIFICATION_CONTROLLER
    */
-  export async function handleNotification(bundleName: string): Promise<void> {
+  export async function handleNotification(): Promise<void> {
     await notificationManager.requestEnableNotification();
-    Notification.subscribe({
+    notificationSubscribe.subscribe({
       onConsume: (data) => {
-        if (data.request.content.normal.text === 'isReady') {
+        if (data.request.content.normal?.text === 'isReady') {
           AppStorage.SetOrCreate('isShowDialog', true);
         }
       }
@@ -72,16 +72,23 @@ export namespace WorkSchedulerSystem {
    * @permission ohos.permission.NOTIFICATION_CONTROLLER
    */
   export function publishNotification(title: string, text: string, additionalText: string): void {
-    notificationManager.publish({
+    Logger.info(`publishNotification start 838078`);
+    let notificationRequest: notificationManager.NotificationRequest = {
       content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
           title,
           text,
           additionalText
         }
       }
+    }
+    notificationManager.publish(notificationRequest, (err: BusinessError) => {
+      if (err) {
+        Logger.error(`publishNotification failed 838078`);
+      }
     })
+    Logger.info(`publishNotification success 838078`);
   }
 
   /**
@@ -93,7 +100,7 @@ export namespace WorkSchedulerSystem {
   export async function installBundle(filePath: Array<string>): Promise<void> {
     try {
       let bundleInstall = await bundle.getBundleInstaller();
-      let userId = await account.getAccountManager().getOsAccountLocalIdFromProcess();
+      let userId = await osAccount.getAccountManager().getOsAccountLocalIdFromProcess();
       bundleInstall.install(filePath, {
         userId: userId,
         installFlag: INSTALL_PARAMETER,
@@ -111,25 +118,26 @@ export namespace WorkSchedulerSystem {
    * Register the delayed task and pass the parameters.
    *
    * @param version Current application version.
-   * @param bundleName The name of the application package for which the task needs to be registered.
    * @param filePath Storage address of the application package.
    */
-  export async function startUpdateSample(version: string, bundleName: string, filePath: string): Promise<void> {
-    try {
-      let workInfo = {
-        workId: 1,
-        bundleName: bundleName,
-        abilityName: 'WorkSchedulerAbility',
-        networkType: workScheduler.NetworkType.NETWORK_TYPE_ANY,
-        parameters: {
-          version: version,
-          filePath: filePath
-        }
-      };
-      workScheduler.startWork(workInfo);
+  export async function startUpdateSample(version: string, filePath: string): Promise<void> {
+    let workInfo: workScheduler.WorkInfo = {
+      workId: 1,
+      networkType: workScheduler.NetworkType.NETWORK_TYPE_ANY,
+      bundleName: 'ohos.samples.workschedulerextensionability',
+      abilityName: 'WorkSchedulerAbility',
+      parameters: {
+        version: version,
+        filePath: filePath
+      }
     }
-    catch (err) {
-      Logger.error(`startWork failed, code is ${err.code}, message is ${err.message}`);
+
+    try {
+      workScheduler.startWork(workInfo);
+      console.info(`startWork success`);
+    }
+    catch (error) {
+      console.error(`startWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
   }
 
@@ -140,14 +148,23 @@ export namespace WorkSchedulerSystem {
    * @permission ohos.permission.INTERNET
    */
   export async function getNewHap(url: string): Promise<http.HttpResponse> {
-    try {
-      return await http.createHttp().request(
-        url,
-        {
-          expectDataType: http.HttpDataType.ARRAY_BUFFER
-        });
-    } catch (err) {
-      Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
-    }
+    Logger.info(`838078 getNewHap,start`, JSON.stringify(url));
+    let result = await http.createHttp().request(
+      url,
+      {
+        expectDataType: http.HttpDataType.ARRAY_BUFFER
+      }).catch((err: BusinessError) => {
+      Logger.error(`838078 get result failed, code is ${err.code}, message is ${err.message}`);
+    });
+    return result as http.HttpResponse;
+    // try {
+    //   return await http.createHttp().request(
+    //     url,
+    //     {
+    //       expectDataType: http.HttpDataType.ARRAY_BUFFER
+    //     });
+    // } catch {
+    //   Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
+    // }
   }
 }
