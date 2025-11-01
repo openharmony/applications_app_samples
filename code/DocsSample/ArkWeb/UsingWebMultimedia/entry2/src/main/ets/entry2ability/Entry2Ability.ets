@@ -30,11 +30,17 @@ export default class Entry2Ability extends UIAbility {
   // [EndExclude allow_subsequent_rendering_to_use_ui]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     windowStage.loadContent('pages/Index', (err, data) => {
-      if (err.code) {
+      if (err && err.code) {
         return;
       }
-      // 保存 UIContext， 在后续的同层渲染绘制中会用到。
-      AppStorage.setOrCreate<UIContext>('UIContext', windowStage.getMainWindowSync().getUIContext());
+      
+      let mainWindow = windowStage.getMainWindowSync();
+      if (mainWindow) {
+        // 保存UIContext， 在后续的同层渲染绘制中使用。
+        AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
+      } else {
+        console.error("Failed to get the main window");
+      }
     });
   }
   // [StartExclude allow_subsequent_rendering_to_use_ui]
