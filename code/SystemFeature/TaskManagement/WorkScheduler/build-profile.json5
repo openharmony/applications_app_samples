@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,12 +15,42 @@
 
 {
   "app": {
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001ACE876E33D34168C5BFC0196BE10205ABD5C4901D8AC39BFEBA74DA55CF875E7F1F63B87D59B4",
+          "profile": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.p12",
+          "storePassword": "0000001A8C0379597BB9789F86F8C11AB02BAE675A99AD4064CEFD87740A929877E474D2577148A29416"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
-        "signingConfig": "default"
+        "signingConfig": "default",
+        "targetSdkVersion": "6.0.0(20)",
+        "compatibleSdkVersion": "6.0.0(20)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
       }
     ]
   },
