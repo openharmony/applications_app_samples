@@ -26,7 +26,7 @@ class User {
 
 @Entry
 @Component
-struct DifferencesPropObjectLink {
+struct Index {
   @State users: User[] = [new User(), new User(), new User()];
 
   build() {
@@ -60,3 +60,5 @@ struct UserChild {
 }
 
 // [End Differences_Prop_ObjectLink]
+const differencesPropObjectLink = Index;
+export default differencesPropObjectLink;

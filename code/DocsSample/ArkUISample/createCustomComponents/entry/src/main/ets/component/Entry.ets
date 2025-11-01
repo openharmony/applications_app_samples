@@ -15,7 +15,7 @@
 // [Start Entry_UI_page]
 @Entry
 @Component
-struct MyComponentEntry {
+struct MyComponent {
   // [StartExclude Entry_UI_page]
   build() {
     Column() {
@@ -31,3 +31,5 @@ struct MyComponentEntry {
 }
 
 // [End Entry_UI_page]
+const myComponentEntry = MyComponent;
+export default myComponentEntry;

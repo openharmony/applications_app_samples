@@ -15,7 +15,7 @@
 @Entry
   // [Start Declarative_UI_description]
 @Component
-struct MyComponentBuildFunction {
+struct MyComponent {
   build() {
     // [StartExclude Declarative_UI_description]
     Column() {
@@ -31,3 +31,5 @@ struct MyComponentBuildFunction {
 }
 
 // [End Declarative_UI_description]
+const buildFunction = MyComponent;
+export default buildFunction;

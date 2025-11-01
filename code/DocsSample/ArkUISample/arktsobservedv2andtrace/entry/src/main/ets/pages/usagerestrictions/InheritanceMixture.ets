@@ -20,13 +20,13 @@ class Job {
 }
 
 @ObservedV2
-class InheritanceMixtureInfo {
+class Info {
   @Trace public name: string = 'Tom';
   @Trace public age: number = 25;
   public job: Job = new Job();
 }
 
-class Message extends InheritanceMixtureInfo {
+class Message extends Info {
   constructor() {
     super();
   }
@@ -34,7 +34,7 @@ class Message extends InheritanceMixtureInfo {
 
 @Entry
 @ComponentV2
-struct InheritanceMixture {
+struct Index {
   // @State message: Message = new Message();  无法混用，编译时报错
   @Local message: Message = new Message();
 
@@ -56,3 +56,5 @@ struct InheritanceMixture {
 }
 
 // [End Inheritance_Mixture]
+const inheritanceMixture = Index;
+export default inheritanceMixture;

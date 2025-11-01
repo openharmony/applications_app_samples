@@ -15,7 +15,7 @@
 // [Start routeName_myPage]
 @Entry({ routeName: 'myPage' })
 @Component
-struct MyComponentRouteName {
+struct MyComponent {
   // [StartExclude routeName_myPage]
   build() {
     Column() {
@@ -31,3 +31,5 @@ struct MyComponentRouteName {
 }
 
 // [End routeName_myPage]
+const myComponentRouteName = MyComponent;
+export default myComponentRouteName;

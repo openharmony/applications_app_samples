@@ -16,7 +16,7 @@
   // [Start Reusable_MyComponent]
 @Reusable
 @Component
-struct MyComponentReusable {
+struct MyComponent {
   // [StartExclude Reusable_MyComponent]
   build() {
     Column() {
@@ -32,3 +32,5 @@ struct MyComponentReusable {
 }
 
 // [End Reusable_MyComponent]
+const myComponentReusable = MyComponent;
+export default myComponentReusable;

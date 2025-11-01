@@ -25,7 +25,7 @@ struct Item {
         Text(`${index}: ${item}`)
           .width(100)
           .height(100)
-      }, (item: string) => item);
+      }, (item: string) => item)
     }
   }
 }

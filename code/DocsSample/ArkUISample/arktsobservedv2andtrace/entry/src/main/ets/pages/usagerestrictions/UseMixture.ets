@@ -15,22 +15,22 @@
 // [Start Use_Mixture]
 // 以@State装饰器为例
 @ObservedV2
-class UseMixtureJob {
+class Job {
   @Trace public jobName: string = 'Teacher';
 }
 
 @ObservedV2
-class UseMixtureInfo {
+class Info {
   @Trace public name: string = 'Tom';
   @Trace public age: number = 25;
-  public job: UseMixtureJob = new UseMixtureJob();
+  public job: Job = new Job();
 }
 
 @Entry
 @ComponentV2
-struct UseMixture {
-  // @State info: UseMixtureInfo = new UseMixtureInfo(); 无法混用，编译时报错
-  @Local info: UseMixtureInfo = new UseMixtureInfo();
+struct Index {
+  // @State info: Info = new Info(); 无法混用，编译时报错
+  @Local info: Info = new Info();
 
   build() {
     Column() {
@@ -50,3 +50,5 @@ struct UseMixture {
 }
 
 // [End Use_Mixture]
+const useMixture = Index;
+export default useMixture;
