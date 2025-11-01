@@ -26,11 +26,12 @@
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 
 namespace ConstIde {
+// [Start runtaskinscopeone_start]
 const uint32_t NUMBER_0 = 0;
 const uint32_t NUMBER_1 = 1;
 const uint32_t VALUE_2 = 250;
 const uint32_t VALUE_3 = 480;
-const uint32_t MARGIN_NUMBER_30 = 30;
+// [StartExclude runtaskinscopeone_start]
 constexpr const char *K_LOG_DOMAIN = "Manager";
 }
 ArkUI_NativeNodeAPI_1* nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
@@ -38,7 +39,7 @@ ArkUI_NativeNodeAPI_1* nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
 
 static void CreateAndSetID(ArkUI_NodeHandle &textContainer)
 {
-    // [Start runtaskinscopeone_start]
+    // [EndExclude runtaskinscopeone_start]
     //page1
     ArkUI_NodeHandle button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
     ArkUI_AttributeItem LABEL_Item = {.string = "pageOneButton"};
