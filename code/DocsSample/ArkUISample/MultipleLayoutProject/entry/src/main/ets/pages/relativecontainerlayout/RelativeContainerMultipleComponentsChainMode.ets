@@ -15,7 +15,7 @@
 //[Start RelativeContainerMultipleComponentsChainMode_start]
 @Entry
 @Component
-struct Index7 {
+struct RelativeChainModeExample {
   build() {
     Row() {
       RelativeContainer() {

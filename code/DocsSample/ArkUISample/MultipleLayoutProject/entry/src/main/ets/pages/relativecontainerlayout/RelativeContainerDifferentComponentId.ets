@@ -15,7 +15,7 @@
 //[Start RelativeContainerDifferentComponentId_start]
 @Entry
 @Component
-struct Index5 {
+struct RelativeContainerExample {
   @State value: number = 0
 
   build() {

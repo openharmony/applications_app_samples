@@ -15,7 +15,7 @@
 //[Start RelativeContainerComponentSize_start]
 @Entry
 @Component
-struct Index6 {
+struct RelativeAlignRulesExample {
   build() {
     Row() {
       RelativeContainer() {
