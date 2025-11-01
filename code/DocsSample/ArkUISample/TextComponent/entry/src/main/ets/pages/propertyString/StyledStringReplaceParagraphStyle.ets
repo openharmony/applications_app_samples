@@ -19,9 +19,9 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State str: string =
-    this.getUIContext()
-      .getHostContext()?.resourceManager.getStringSync($r('app.string.StyledStringParagraphStyle_Text_2')) as string;
+  context = this.getUIContext().getHostContext();
+  @State message1: string =
+    this.context!.resourceManager.getStringSync($r('app.string.StyledStringParagraphStyle_Text_2').id);
   titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
   // 段落首行缩进15vp
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
@@ -29,7 +29,7 @@ struct Index {
   lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
   // 创建含段落样式的对象paragraphStyledString1
   paragraphStyledString1: MutableStyledString =
-    new MutableStyledString(this.str, [
+    new MutableStyledString(this.message1, [
       {
         start: 0,
         length: 4,
