@@ -20,7 +20,7 @@ const DOMAIN = 0x0000;
 struct PageDisplayModeSplit {
   @State toolTmp: ToolbarItem = {
     'value': 'func',
-    'icon': 'resources/base/media/ic_public_highlights.svg',  // 当前目录image文件夹下的图标资源
+    'icon': 'ets/pages/navigation/template1/ic_public_highlights.svg',  // 当前目录image文件夹下的图标资源
     'action': () => {}
   };
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
