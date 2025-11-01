@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start click_button_to_turn_on_camera_microphone]
-// xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl } from '@kit.AbilityKit';
