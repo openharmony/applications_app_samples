@@ -42,7 +42,8 @@ export struct StyledStringImageAttachment {
 
   async aboutToAppear() {
     console.info('aboutToAppear initial imagePixelMap');
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.background'));
+    // $r('app.media.sea')需要替换为开发者所需的图像资源文件。
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.sea'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
