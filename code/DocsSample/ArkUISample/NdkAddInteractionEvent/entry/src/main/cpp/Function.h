@@ -225,7 +225,7 @@ ArkUI_GestureRecognizer* CreateTapGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建点击手势
-    auto tapGesture = gestureApi->createTapGesture(COUNT_NUM_1, GINGERS_NUM_1);
+    auto tapGesture = gestureApi->createTapGesture(1, 1);
     // [End create_tap_gesture]
     return tapGesture;
 }
@@ -237,7 +237,7 @@ ArkUI_GestureRecognizer* CreatePanGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建滑动手势
-    auto panGesture = gestureApi->createPanGesture(COUNT_NUM_1, GESTURE_DIRECTION_ALL, GINGERS_NUM_1);
+    auto panGesture = gestureApi->createPanGesture(1, GESTURE_DIRECTION_ALL, 1);
     // [End create_pan_gesture]
     return panGesture;
 }
@@ -249,7 +249,8 @@ ArkUI_GestureRecognizer* CreateLongPressGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建长按手势
-    auto longPressGesture = gestureApi->createLongPressGesture(GINGERS_NUM_1, true, DURATION_NUM_1000);
+    // DURATION_NUM_1000 = 1000
+    auto longPressGesture = gestureApi->createLongPressGesture(1, true, DURATION_NUM_1000);
     // [End create_long_press_gesture]
     return longPressGesture;
 }
@@ -261,7 +262,7 @@ ArkUI_GestureRecognizer* CreatePinchGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建捏合手势
-    auto pinchGesture = gestureApi->createPinchGesture(1, DISTANCE_NUM_1);
+    auto pinchGesture = gestureApi->createPinchGesture(1, 1);
     // [End create_pinch_gesture]
     return pinchGesture;
 }
@@ -273,7 +274,7 @@ ArkUI_GestureRecognizer* CreateRotationGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建旋转手势
-    auto rotationGesture = gestureApi->createRotationGesture(1, DISTANCE_NUM_1);
+    auto rotationGesture = gestureApi->createRotationGesture(1, 1);
     // [End create_rotation_gesture]
     return rotationGesture;
 }
@@ -285,7 +286,8 @@ ArkUI_GestureRecognizer* CreateSwiperGesture()
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建快滑手势
-    auto swipeGesture = gestureApi->createSwipeGesture(GINGERS_NUM_1, GESTURE_DIRECTION_ALL, SPEED_NUM_50);
+    // SPEED_NUM_50 = 50
+    auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, SPEED_NUM_50);
     // [End create_swiper_gesture]
     return swipeGesture;
 }
@@ -376,15 +378,15 @@ void FirstModuleForGesture(ArkUI_NodeHandle &root)
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     // 设置背景色
     ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
-    ArkUI_AttributeItem item = {value, GINGERS_NUM_1};
+    ArkUI_AttributeItem item = {value, 1};
     nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &item);
     // 设置宽度
     ArkUI_NumberValue widthValue[] = {{400}};
-    ArkUI_AttributeItem width = {widthValue, GINGERS_NUM_1};
+    ArkUI_AttributeItem width = {widthValue, 1};
     nodeAPI->setAttribute(column, NODE_WIDTH, &width);
     // 设置高度
     ArkUI_NumberValue heightValue[] = {{400}};
-    ArkUI_AttributeItem height = {heightValue, GINGERS_NUM_1};
+    ArkUI_AttributeItem height = {heightValue, 1};
     nodeAPI->setAttribute(column, NODE_HEIGHT, &height);
     // [End create_column]
     // [Start create_long_press]
@@ -392,7 +394,7 @@ void FirstModuleForGesture(ArkUI_NodeHandle &root)
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     // 创建长按手势
-    auto longPressGesture = gestureApi->createLongPressGesture(GINGERS_NUM_1, true, DURATION_NUM_1000);
+    auto longPressGesture = gestureApi->createLongPressGesture(1, true, DURATION_NUM_1000);
     // [End create_long_press]
     // [Start bind_event]
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {

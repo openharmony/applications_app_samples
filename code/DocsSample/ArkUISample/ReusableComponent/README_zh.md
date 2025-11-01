@@ -80,11 +80,6 @@ entry/src/main/
 |---ets
 |   |---pages
 |   |   |---Index.ets                                   // 应用主页面
-|   |   |---Index1.ets                                   // 应用主页面1
-|   |   |---Index2.ets                                   // 应用主页面2
-|   |   |---Index3.ets                                   // 应用主页面3
-|   |   |---Index4.ets                                   // 应用主页面4
-|   |   |---Index5.ets                                   // 应用主页面5
 |   |   |---ComponentContentNotSupportReusable.ets      // ComponentContent不支持传入\@Reusable装饰器装饰的自定义组件
 |   |   |---DynamicLayoutUpdate.ets                     // 动态布局更新
 |   |   |---ListScrollingWithIfStatements.ets           // 列表滚动-if使用场景
