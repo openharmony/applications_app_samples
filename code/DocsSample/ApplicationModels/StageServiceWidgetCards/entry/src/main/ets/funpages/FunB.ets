@@ -14,6 +14,7 @@
  */
 
 // [Start fun_b]
+// src/main/ets/funpages/FunB.ets
 @Entry
 @Component
 struct FunB {
