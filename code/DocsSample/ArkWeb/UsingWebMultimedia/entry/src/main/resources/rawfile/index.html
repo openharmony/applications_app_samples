@@ -16,30 +16,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='UTF-8'>
+  <meta charset="UTF-8">
 </head>
 <body>
-<video id='video' width='500px' height='500px' autoplay='autoplay'></video>
-<canvas id='canvas' width='500px' height='500px'></canvas>
+<video id="video" width="500px" height="500px" autoplay></video>
+<canvas id="canvas" width="500px" height="500px"></canvas>
 <br>
-<button type='button' title='HTML5摄像头' onclick='getMedia()'>开启摄像头</button>
+<input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
 <script>
-    function getMedia()
-    {
-      let constraints = {
-        video: {width: 500, height: 500},
-        audio: true
-      };
-      // 获取video摄像头区域
-      let video = document.getElementById('video');
-      // 返回的Promise对象
-      let promise = navigator.mediaDevices.getUserMedia(constraints);
-      // then()异步，调用MediaStream对象作为参数
-      promise.then(function (MediaStream) {
-        video.srcObject = MediaStream;
-        video.play();
-      });
-    }
+  function getMedia()
+  {
+    let constraints = {
+      video: {width: 500, height: 500},
+      audio: true
+    };
+    // 获取video摄像头区域
+    let video = document.getElementById("video");
+    // 返回的Promise对象
+    let promise = navigator.mediaDevices.getUserMedia(constraints);
+    // then()异步，调用MediaStream对象作为参数
+    promise.then(function(MediaStream) {
+      video.srcObject = MediaStream;
+      video.play();
+    }).catch(function(err) {
+  	  console.info(err.name + ": " + err.message);
+    });
+  }
 </script>
 </body>
 </html>
