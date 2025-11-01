@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start spring_curve]
 import { curves } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 class Spring {
   public title: string;
@@ -70,9 +70,7 @@ struct Motion {
 @Entry
 @Component
 export struct SpringCurve {
-  // [StartExclude spring_curve]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude spring_curve]
   @State dRotate: number = 0;
   private springs: Spring[] = [
     new Spring('springMotion', this.context.resourceManager.getStringByNameSync('springCurve_text1'),

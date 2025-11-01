@@ -82,11 +82,11 @@ export struct PageOne {
               .borderRadius(25)
               .clip(true)
 
-            Text('Alice');
+            Text('Alice')
           }
           .justifyContent(FlexAlign.Start)
 
-          Text(this.context.resourceManager.getStringByNameSync('shareTransition_text2'));
+          Text(this.context.resourceManager.getStringByNameSync('shareTransition_text2'))
 
           NodeContainer(this.myNodeController)
             .size({ width: 320, height: 250 })

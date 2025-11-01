@@ -280,7 +280,7 @@ struct ImageNode {
   }
 
   build() {
-    NodeContainer(this.myNodeController);
+    NodeContainer(this.myNodeController)
   }
 }
 
