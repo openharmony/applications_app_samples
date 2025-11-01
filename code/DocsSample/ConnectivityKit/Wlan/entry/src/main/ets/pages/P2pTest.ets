@@ -15,7 +15,7 @@
 
 import hilog from '../model/Logger';
 import { TitleBar } from '../component/TitleBar';
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 const TAG = 'Index';
 
