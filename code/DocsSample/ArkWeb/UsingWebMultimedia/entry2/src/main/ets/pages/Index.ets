@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start video_hosting_usage]
-// Index.ets
 import { webview } from '@kit.ArkWeb';
 import { BuilderNode, FrameNode, NodeController, NodeRenderType } from '@kit.ArkUI';
 import { AVPlayerDemo, AVPlayerListener } from './PlayerDemo';
