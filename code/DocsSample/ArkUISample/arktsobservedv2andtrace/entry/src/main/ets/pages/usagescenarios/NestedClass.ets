@@ -29,7 +29,7 @@ class Bag {
   public pencil: Pencil = new Pencil();
 }
 
-class NestedClassSon {
+class Son {
   public age: number = 5;
   public school: string = 'some';
   public bag: Bag = new Bag();
@@ -38,7 +38,7 @@ class NestedClassSon {
 @Entry
 @ComponentV2
 struct Page {
-  son: NestedClassSon = new NestedClassSon();
+  son: Son = new Son();
   renderTimes: number = 0;
 
   isRender(id: number): number {
@@ -59,7 +59,7 @@ struct Page {
       Button('assign Son')
         .onClick(() => {
           // 由于变量son非状态变量，因此无法刷新UINode（1）
-          this.son = new NestedClassSon();
+          this.son = new Son();
         })
     }
   }

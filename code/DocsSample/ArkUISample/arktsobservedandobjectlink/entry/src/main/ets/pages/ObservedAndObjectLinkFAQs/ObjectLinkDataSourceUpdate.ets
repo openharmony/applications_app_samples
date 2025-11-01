@@ -20,7 +20,7 @@ const TAG = 'arktsobservedandobjectlink';
 
 // [Start ObjectLink_Data_source_update_timing]
 @Observed
-class ObjectLinkDataSourceUpdatePerson {
+class Person {
   public name: string = '';
   public age: number = 0;
 
@@ -31,20 +31,20 @@ class ObjectLinkDataSourceUpdatePerson {
 }
 
 @Observed
-class ObjectLinkDataSourceUpdateInfo {
-  public person: ObjectLinkDataSourceUpdatePerson;
+class Info {
+  public person: Person;
 
-  constructor(person: ObjectLinkDataSourceUpdatePerson) {
+  constructor(person: Person) {
     this.person = person;
   }
 }
 
 @Entry
 @Component
-struct ObjectLinkDataSourceUpdateParent {
-  @State @Watch('onChange01') info: ObjectLinkDataSourceUpdateInfo =
-    new ObjectLinkDataSourceUpdateInfo(
-      new ObjectLinkDataSourceUpdatePerson('Bob', 10)
+struct Parent {
+  @State @Watch('onChange01') info: Info =
+    new Info(
+      new Person('Bob', 10)
     );
 
   onChange01() {
@@ -54,10 +54,10 @@ struct ObjectLinkDataSourceUpdateParent {
   build() {
     Column() {
       Text(this.info.person.name).height(40)
-      ObjectLinkDataSourceUpdateChild({
+      Child({
         per: this.info.person, clickEvent: () => {
           hilog.info(DOMAIN, TAG, `:::clickEvent before ${this.info.person.name}`); // 1
-          this.info.person = new ObjectLinkDataSourceUpdatePerson('Jack', 12);
+          this.info.person = new Person('Jack', 12);
           hilog.info(DOMAIN, TAG, `:::clickEvent after ${this.info.person.name}`); // 3
         }
       })
@@ -66,8 +66,8 @@ struct ObjectLinkDataSourceUpdateParent {
 }
 
 @Component
-struct ObjectLinkDataSourceUpdateChild {
-  @ObjectLink @Watch('onChange02') per: ObjectLinkDataSourceUpdatePerson;
+struct Child {
+  @ObjectLink @Watch('onChange02') per: Person;
   clickEvent?: () => void;
   // [StartExclude ObjectLink_Data_source_update_timing]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -97,3 +97,5 @@ struct ObjectLinkDataSourceUpdateChild {
 }
 
 // [End ObjectLink_Data_source_update_timing]
+const objectLinkDataSourceUpdateParent = Parent;
+export default objectLinkDataSourceUpdateParent;

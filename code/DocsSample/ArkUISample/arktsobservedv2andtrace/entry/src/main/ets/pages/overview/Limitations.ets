@@ -14,16 +14,16 @@
  */
 // [Start Observed_Limitations]
 @Observed
-class FatherLim {
-  public son: SonLim;
+class Father {
+  public son: Son;
 
   constructor(name: string, age: number) {
-    this.son = new SonLim(name, age);
+    this.son = new Son(name, age);
   }
 }
 
 @Observed
-class SonLim {
+class Son {
   public name: string;
   public age: number;
 
@@ -35,8 +35,8 @@ class SonLim {
 
 @Entry
 @Component
-struct Limitations {
-  @State father: FatherLim = new FatherLim('John', 8);
+struct Index {
+  @State father: Father = new Father('John', 8);
 
   build() {
     Row() {
@@ -55,3 +55,5 @@ struct Limitations {
 }
 
 // [End Observed_Limitations]
+const limitations = Index;
+export default limitations;

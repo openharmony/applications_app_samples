@@ -30,7 +30,7 @@ class NewDate {
 }
 
 @Component
-struct ObservationChangeInheritanceChild {
+struct Child {
   label: string = 'date';
   @ObjectLink data: DateClass;
 
@@ -51,12 +51,12 @@ struct ObservationChangeInheritanceChild {
 
 @Entry
 @Component
-struct ObservationChangeInheritance {
+struct Parent {
   @State newData: NewDate = new NewDate(new DateClass('2023-1-1'));
 
   build() {
     Column() {
-      ObservationChangeInheritanceChild({ label: 'date', data: this.newData.data })
+      Child({ label: 'date', data: this.newData.data })
 
       Button('parent update the new date')
         .onClick(() => {
@@ -71,3 +71,5 @@ struct ObservationChangeInheritance {
 }
 
 // [End Observation_ChangeInheritance]
+const observationChangeInheritance = Parent;
+export default observationChangeInheritance;

@@ -99,3 +99,4 @@ struct MapSampleNestedChild {
 }
 
 // [End Inherit_From_Map_Class]
+export default MapSampleNested;

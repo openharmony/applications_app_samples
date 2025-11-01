@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Decoration_Foundation]
-let foundationNextId: number = 0;
+let nextId: number = 0;
 
 @ObservedV2
 class Arr {
@@ -21,14 +21,14 @@ class Arr {
   @Trace public numberArr: number[] = [];
 
   constructor() {
-    this.id = foundationNextId++;
+    this.id = nextId++;
     this.numberArr = [0, 1, 2];
   }
 }
 
 @Entry
 @ComponentV2
-struct DecorationArr {
+struct Index {
   arr: Arr = new Arr();
 
   build() {
@@ -59,7 +59,7 @@ struct DecorationArr {
       ForEach(this.arr.numberArr, (item: number, index: number) => {
         Text(`${index} ${item}`)
           .fontSize(40)
-      });
+      })
 
       Button('push')
         .onClick(() => {
@@ -111,3 +111,5 @@ struct DecorationArr {
 }
 
 // [End Decoration_Foundation]
+const decorationArr = Index;
+export default decorationArr;

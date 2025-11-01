@@ -20,7 +20,7 @@ class Manager {
 
 @Entry
 @ComponentV2
-struct StaticAttribute {
+struct Index {
   build() {
     Column() {
       // 当点击改变count时，Text组件会刷新
@@ -33,3 +33,5 @@ struct StaticAttribute {
 }
 
 // [End Static_Attribute]
+const staticAttribute = Index;
+export default staticAttribute;

@@ -38,7 +38,7 @@ class Day {
 
 @Entry
 @Component
-struct NotTriggerUIRefreshParent {
+struct Parent {
   @State day1: Day = new Day(new Weather(15), 'Monday');
 
   build() {
@@ -81,3 +81,5 @@ struct Child {
 }
 
 // [End Not_Trigger_UI_Refresh_Proxy]
+const notTriggerUIRefreshParent = Parent;
+export default notTriggerUIRefreshParent;

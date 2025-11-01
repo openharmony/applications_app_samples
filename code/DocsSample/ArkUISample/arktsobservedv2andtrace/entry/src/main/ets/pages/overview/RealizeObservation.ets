@@ -14,16 +14,16 @@
  */
 // [Start Realize_Observation]
 @Observed
-class FatherRea {
-  public son: SonRea;
+class Father {
+  public son: Son;
 
   constructor(name: string, age: number) {
-    this.son = new SonRea(name, age);
+    this.son = new Son(name, age);
   }
 }
 
 @Observed
-class SonRea {
+class Son {
   public name: string;
   public age: number;
 
@@ -35,7 +35,7 @@ class SonRea {
 
 @Component
 struct Child {
-  @ObjectLink son: SonRea;
+  @ObjectLink son: Son;
 
   build() {
     Row() {
@@ -55,8 +55,8 @@ struct Child {
 
 @Entry
 @Component
-struct RealizeObservation {
-  @State father: FatherRea = new FatherRea('John', 8);
+struct Index {
+  @State father: Father = new Father('John', 8);
 
   build() {
     Column() {
@@ -66,3 +66,5 @@ struct RealizeObservation {
 }
 
 // [End Realize_Observation]
+const realizeObservation = Index;
+export default realizeObservation;

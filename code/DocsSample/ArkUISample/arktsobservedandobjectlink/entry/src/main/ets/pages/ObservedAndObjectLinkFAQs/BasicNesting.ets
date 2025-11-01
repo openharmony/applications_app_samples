@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Basic_nesting]
-class BasicNestingParent {
+class Parent {
   public parentId: number;
 
   constructor(parentId: number) {
@@ -30,7 +30,7 @@ class BasicNestingParent {
 }
 
 @Observed
-class BasicNestingChild {
+class Child {
   public childId: number;
 
   constructor(childId: number) {
@@ -46,14 +46,14 @@ class BasicNestingChild {
   }
 }
 
-class Cousin extends BasicNestingParent {
+class Cousin extends Parent {
   public cousinId: number = 47;
-  public child: BasicNestingChild;
+  public child: Child;
 
   constructor(parentId: number, cousinId: number, childId: number) {
     super(parentId);
     this.cousinId = cousinId;
-    this.child = new BasicNestingChild(childId);
+    this.child = new Child(childId);
   }
 
   getCousinId(): number {
@@ -75,7 +75,7 @@ class Cousin extends BasicNestingParent {
 
 @Component
 struct ViewChild {
-  @ObjectLink child: BasicNestingChild;
+  @ObjectLink child: Child;
 
   build() {
     Column({ space: 10 }) {
@@ -117,3 +117,4 @@ struct MyView {
 }
 
 // [End Basic_nesting]
+export default MyView;

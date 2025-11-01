@@ -15,7 +15,7 @@
 @Entry
   // [Start freezeWhenInactive_Component]
 @Component({ freezeWhenInactive: true })
-struct MyComponentFreezeWhenInactive {
+struct MyComponent {
   // [StartExclude freezeWhenInactive_Component]
   build() {
     Column() {
@@ -31,3 +31,5 @@ struct MyComponentFreezeWhenInactive {
 }
 
 // [End freezeWhenInactive_Component]
+const myComponentFreezeWhenInactive = MyComponent;
+export default myComponentFreezeWhenInactive;

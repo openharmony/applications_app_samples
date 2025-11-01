@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Complex_nested_observation_levels]
-let complexNestingCompleteNextId = 1;
+let nextId = 1;
 
 @Observed
 class SubCounter {
@@ -25,7 +25,7 @@ class SubCounter {
 }
 
 @Observed
-class ComplexNestingCompleteParentCounter {
+class ParentCounter {
   public id: number;
   public counter: number;
   public subCounter: SubCounter;
@@ -43,15 +43,15 @@ class ComplexNestingCompleteParentCounter {
   }
 
   constructor(c: number) {
-    this.id = complexNestingCompleteNextId++;
+    this.id = nextId++;
     this.counter = c;
     this.subCounter = new SubCounter(c);
   }
 }
 
 @Component
-struct ComplexNestingCompleteCounterComp {
-  @ObjectLink value: ComplexNestingCompleteParentCounter;
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
 
   build() {
     Column({ space: 10 }) {
@@ -80,35 +80,27 @@ struct CounterChild {
 
 @Entry
 @Component
-struct ComplexNestingCompleteParentComp {
-  @State counter: ComplexNestingCompleteParentCounter[] = [
-    new ComplexNestingCompleteParentCounter(1),
-    new ComplexNestingCompleteParentCounter(2),
-    new ComplexNestingCompleteParentCounter(3)
-  ];
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
 
   build() {
     Row() {
       Column() {
-        ComplexNestingCompleteCounterComp({ value: this.counter[0] })
-        ComplexNestingCompleteCounterComp({ value: this.counter[1] })
-        ComplexNestingCompleteCounterComp({ value: this.counter[2] })
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
-          (item: ComplexNestingCompleteParentCounter) => {
-            ComplexNestingCompleteCounterComp({ value: item })
+          (item: ParentCounter) => {
+            CounterComp({ value: item })
           },
-          (item: ComplexNestingCompleteParentCounter) => item.id.toString()
+          (item: ParentCounter) => item.id.toString()
         )
         Divider().height(5)
         Text('Parent: reset entire counter')
           .fontSize(20).height(50)
           .onClick(() => {
-            this.counter = [
-              new ComplexNestingCompleteParentCounter(1),
-              new ComplexNestingCompleteParentCounter(2),
-              new ComplexNestingCompleteParentCounter(3)
-            ];
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
           })
         Text('Parent: incr counter[0].counter')
           .fontSize(20).height(50)
@@ -127,3 +119,5 @@ struct ComplexNestingCompleteParentComp {
 }
 
 // [End Complex_nested_observation_levels]
+const complexNestingCompleteParentComp = ParentComp;
+export default complexNestingCompleteParentComp;

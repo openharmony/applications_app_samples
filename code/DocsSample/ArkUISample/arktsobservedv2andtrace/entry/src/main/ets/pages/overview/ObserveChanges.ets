@@ -14,18 +14,18 @@
  */
 // [Start Observe_Changes]
 @ObservedV2
-class SonChang {
+class Son {
   @Trace public age: number = 100;
 }
 
-class FatherChang {
-  public son: SonChang = new SonChang();
+class Father {
+  public son: Son = new Son();
 }
 
 @Entry
 @ComponentV2
-struct ObserveChanges {
-  father: FatherChang = new FatherChang();
+struct Index {
+  father: Father = new Father();
 
   build() {
     Column() {
@@ -39,3 +39,5 @@ struct ObserveChanges {
 }
 
 // [End Observe_Changes]
+const observeChanges = Index;
+export default observeChanges;
