@@ -14,6 +14,11 @@
  */
 
 // [Start onWillDismiss_Dismiss]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '[Sample_SupportingAgingFriendly]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'SupportingAgingFriendly_';
 
 @Entry
 @Component
@@ -66,7 +71,7 @@ struct OnWillDismiss_Dismiss {
                 }
               },
               cancel: () => {
-                hilog.info(0x0000, 'onWillDismiss_Dismiss', 'AlertDialog Closed callbacks')
+                hilog.info(DOMAIN, TAG, BUNDLE + 'onWillDismiss_Dismiss:' + 'AlertDialog Closed callbacks');
               }
             }
           )

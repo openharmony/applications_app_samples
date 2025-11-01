@@ -25,14 +25,14 @@ struct SheetTransitionExample {
   @Builder
   myBuilder() {
     Column() {
-      Button('enableHoverMode')
+      Button($r('app.string.bindSheetCmd_label10'))
         .margin(10)
         .fontSize(20)
         .onClick(() => {
           this.enableHoverMode = !this.enableHoverMode;
         })
 
-      Button('hoverModeArea')
+      Button($r('app.string.bindSheetCmd_label11'))
         .margin(10)
         .fontSize(20)
         .onClick(() => {

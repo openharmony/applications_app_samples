@@ -54,7 +54,7 @@
 
 ### 具体实现
 
-1. 实现长内容滚动截图（滚动 + 拼接。源码参考[ScrollSnapshot.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ComponentSnapshot/entry/src/main/ets/view/ScrollSnapshot.ets)
+1. 实现长内容滚动截图（滚动 + 拼接）。源码参考[ScrollSnapshot.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ComponentSnapshot/entry/src/main/ets/view/ScrollSnapshot.ets)
 
     * 添加滚动控制器及事件监听，为了能够模拟滚动，以及监听组件滚动的具体offset，需要为List（此处以列表为例）组件添加滚动控制器以及滚动监听。
 
