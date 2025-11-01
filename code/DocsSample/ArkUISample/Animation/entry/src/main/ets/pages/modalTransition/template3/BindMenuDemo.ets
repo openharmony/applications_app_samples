@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start bind_menu_demo]
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xF811;
 const TAG = '[Sample_Animation]';
 
-// [Start bind_menu_demo]
 class BMD {
   public value: ResourceStr = '';
   public action: () => void = () => {
@@ -28,9 +29,7 @@ class BMD {
 @Entry
 @Component
 struct BindMenuDemo {
-  // [StartExclude bind_menu_demo]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude bind_menu_demo]
 
   // 第一步: 定义一组数据用来表示菜单按钮项
   @State items: BMD[] = [

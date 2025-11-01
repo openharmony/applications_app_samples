@@ -70,7 +70,7 @@ struct Index {
         // 当点击了某个post后，会使其余的post消失下树
         if (!this.isExpand || this.selectedIndex === index) {
           Column() {
-            Post({ data: postData, selectedIndex: this.selectedIndex, index: index });
+            Post({ data: postData, selectedIndex: this.selectedIndex, index: index })
           }
           .width('100%')
           // 对出现消失的post添加透明度转场和位移转场效果
@@ -104,11 +104,11 @@ export default struct Post {
           .borderRadius(this.avatarSize / 2)
           .clip(true)
 
-        Text(this.data.name);
+        Text(this.data.name)
       }
       .justifyContent(FlexAlign.Start)
 
-      Text(this.data.message);
+      Text(this.data.message)
 
       Row({ space: 15 }) {
         ForEach(this.data.images, (imageResource: Resource, index: number) => {

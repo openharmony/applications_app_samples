@@ -12,15 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start bind_sheet_demo]
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct BindSheetDemo {
-  // [StartExclude bind_sheet_demo]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude bind_sheet_demo]
   // 半模态转场显示隐藏控制
   @State isShowSheet: boolean = false;
   private menuList: string[] = [this.context.resourceManager.getStringByNameSync('modal_transition_text14'),

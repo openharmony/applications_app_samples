@@ -77,7 +77,7 @@ export struct PageTwo {
                 .margin(30)
             }
           }
-          .alignItems(HorizontalAlign.Start);
+          .alignItems(HorizontalAlign.Start)
         }
         .position({ y: this.animationProperties.positionValue });
       }
