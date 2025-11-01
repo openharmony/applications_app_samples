@@ -15,6 +15,7 @@
 
 // [Start import_entry_form_ability]
 // [Start update_by_message_form_ability]
+// entry/src/main/ets/entryformability/EntryFormAbility.ts
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { Configuration, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -33,8 +34,6 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
     hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
-
-    // ...
     // 卡片使用方创建卡片时触发，提供方需要返回卡片数据绑定类
     let obj: Record<string, string> = {
       'title': 'titleOnAddForm',
@@ -45,12 +44,16 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   onCastToNormalForm(formId: string): void {
+    // [StartExclude update_by_message_form_ability]
     // 使用方将临时卡片转换为常态卡片触发，卡片提供方需要做相应的处理
+    // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
   }
 
   onUpdateForm(formId: string): void {
+    // [StartExclude update_by_message_form_ability]
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+    // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
     // [StartExclude update_by_message_form_ability]
     let obj: Record<string, string> = {
@@ -65,13 +68,17 @@ export default class EntryFormAbility extends FormExtensionAbility {
   }
 
   onChangeFormVisibility(newStatus: Record<string, number>): void {
+    // [StartExclude update_by_message_form_ability]
     // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+    // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
   }
 
   // [EndExclude update_form_interface]
   onFormEvent(formId: string, message: string): void {
+    // [StartExclude update_by_message_form_ability]
     // 当卡片提供方的postCardAction接口的message事件被触发时调用
+    // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
     // [StartExclude form_extension_lifecycle_interface]
     // [StartExclude entry_form_ability]
@@ -79,7 +86,9 @@ export default class EntryFormAbility extends FormExtensionAbility {
       title: string = 'Title Update.'; // 和卡片布局中对应
       detail: string = 'Description update success.'; // 和卡片布局中对应
     }
+    // [StartExclude update_by_message_form_ability]
     // 请根据业务替换为实际刷新的卡片数据
+    // [EndExclude update_by_message_form_ability]
     let formData = new FormDataClass();
     let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
     formProvider.updateForm(formId, formInfo).then(() => {
@@ -93,22 +102,30 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   // [StartExclude update_form_interface]
   onRemoveForm(formId: string): void {
+    // [StartExclude update_by_message_form_ability]
     // 删除卡片实例数据
+    // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
+    // [StartExclude update_by_message_form_ability]
     // 删除之前持久化的卡片实例数据
     // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+    // [EndExclude update_by_message_form_ability]
   }
 
   // [StartExclude form_extension_lifecycle_interface]
   onConfigurationUpdate(config: Configuration) {
+    // [StartExclude update_by_message_form_ability]
     // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
     // 需注意：formExtensionAbility创建后10秒内无操作将会被清理。
+    // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
   // [EndExclude form_extension_lifecycle_interface]
 
   onAcquireFormState(want: Want): formInfo.FormState {
+    // [StartExclude update_by_message_form_ability]
     // Called to return a {@link FormState} object.
+    // [EndExclude update_by_message_form_ability]
     return formInfo.FormState.READY;
   }
   // [EndExclude update_form_interface]
