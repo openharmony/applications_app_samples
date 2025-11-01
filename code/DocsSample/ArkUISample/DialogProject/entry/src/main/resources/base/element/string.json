@@ -767,7 +767,7 @@
     },
     {
       "name": "hoverMode_start",
-      "value": "hoverMode开启"
+      "value": "hoverMode开启:"
     },
     {
       "name": "PopVibrateMenu_title",
@@ -836,6 +836,14 @@
     {
       "name": "close_widows",
       "value": "点我关闭弹窗"
+    },
+    {
+      "name": "copy",
+      "value": "复制"
+    },
+    {
+      "name": "paste",
+      "value": "粘贴"
     }
   ]
 }
