@@ -31,11 +31,13 @@ static napi_value DefaultConfigRdbStore(napi_env env, napi_callback_info info)
     OH_Rdb_SetSecurityLevel(config, OH_Rdb_SecurityLevel::S3);
     // 设置为使用加密方式创建或打开数据库
     OH_Rdb_SetEncrypted(config, true);
-    
     int errCode = 0;
-    
     // 获取OH_Rdb_Store实例
     OH_Rdb_Store *store = OH_Rdb_CreateOrOpen(config, &errCode);
+    OH_Rdb_CloseStore(store);
+    store = nullptr;
+    OH_Rdb_DestroyConfig(config);
+    config = nullptr;
     // [End DefaultConfigRdbStore]
     
     napi_value sum;
@@ -89,6 +91,8 @@ static napi_value CustomizedConfigRdbStore(napi_env env,
     cryptoParam = nullptr;
     OH_Rdb_CloseStore(store);
     store = nullptr;
+    OH_Rdb_DestroyConfig(config);
+    config = nullptr;
     // [End CustomizedConfigRdbStore]
     
     napi_value sum;
@@ -105,15 +109,14 @@ static napi_value BackupRdbStore(napi_env env, napi_callback_info info)
     OH_Rdb_SetStoreName(config, "RdbTest.db");
     OH_Rdb_SetSecurityLevel(config, OH_Rdb_SecurityLevel::S3);
     OH_Rdb_SetBundleName(config, "com.example.nativedemo");
-    
     int errCode = 0;
     OH_Rdb_Store *store = OH_Rdb_CreateOrOpen(config, &errCode);
-    
     // 备份数据库
-    int result =
-      OH_Rdb_Backup(store, "/data/storage/el2/database/RdbTest_bak.db");
+    int result = OH_Rdb_Backup(store, "/data/storage/el2/database/RdbTest_bak.db");
     OH_Rdb_CloseStore(store);
     store = nullptr;
+    OH_Rdb_DestroyConfig(config);
+    config = nullptr;
     // [End BackupRdbStore]
     
     napi_value sum;
@@ -132,14 +135,13 @@ static napi_value RestoreRdbStore(napi_env env, napi_callback_info info)
     OH_Rdb_SetBundleName(config, "com.example.nativedemo");
     int errCode = 0;
     OH_Rdb_Store *store = OH_Rdb_CreateOrOpen(config, &errCode);
-    
-    OH_Rdb_DestroyConfig(config);
-    config = nullptr;
     // 恢复数据库
     int result2 =
-      OH_Rdb_Restore(store, "/data/storage/el2/database/RdbTest_bak.db");
+        OH_Rdb_Restore(store, "/data/storage/el2/database/RdbTest_bak.db");
     OH_Rdb_CloseStore(store);
     store = nullptr;
+    OH_Rdb_DestroyConfig(config);
+    config = nullptr;
     // [End rdb_OH_Rdb_Restore]
     
     napi_value sum;
@@ -169,6 +171,8 @@ static napi_value SetSecurityLevelForRdbStore(napi_env env,
     OH_Rdb_Store *store_ = OH_Rdb_CreateOrOpen(config, &errCode);
     OH_Rdb_CloseStore(store_);
     store_ = nullptr;
+    OH_Rdb_DestroyConfig(config);
+    config = nullptr;
     // [End SetSecurityLevelForRdbStore]
 }
 
