@@ -16,6 +16,7 @@ import { common } from '@kit.AbilityKit';
 import resource from '../../../common/resource';
 
 // [Start stack_post_node]
+// PostNode.ets
 // 跨容器迁移能力
 import { UIContext, curves, NodeController, BuilderNode, FrameNode } from '@kit.ArkUI';
 

@@ -14,6 +14,7 @@
  */
 // [Start navigation_component_attr_utils]
 // [Start bind_sheet_component_attr_utils]
+// ComponentAttrUtils.ets
 // 获取组件相对窗口的位置
 import { componentUtils, UIContext } from '@kit.ArkUI';
 import { JSON } from '@kit.ArkTS';

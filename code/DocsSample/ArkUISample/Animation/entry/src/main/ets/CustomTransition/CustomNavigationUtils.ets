@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start custom_navigation_utils]
+// CustomNavigationUtils.ets
 // 配置Navigation自定义转场动画
 export interface AnimateCallback {
   animation: ((isPush: boolean, isExit: boolean, transitionProxy: NavigationTransitionProxy) => void | undefined)

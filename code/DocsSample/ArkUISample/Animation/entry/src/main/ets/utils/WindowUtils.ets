@@ -14,6 +14,7 @@
  */
 // [Start navigation_window_utils]
 // [Start bind_sheet_window_utils]
+// WindowUtils.ets
 // 窗口信息
 import { window } from '@kit.ArkUI';
 
