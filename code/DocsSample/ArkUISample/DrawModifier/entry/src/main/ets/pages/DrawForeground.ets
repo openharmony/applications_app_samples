@@ -55,6 +55,7 @@ struct DrawModifierExample {
 
   build() {
     Column() {
+      // $r('app.string.TestNode')需要替换为开发者所需的资源文件。
       Text($r('app.string.TestNode'))
         .fontSize(36)
         .width('100%')
