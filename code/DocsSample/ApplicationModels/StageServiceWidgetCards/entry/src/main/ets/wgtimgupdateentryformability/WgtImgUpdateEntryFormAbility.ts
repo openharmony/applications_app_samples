@@ -45,7 +45,6 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     } catch (e) {
       hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
     }
-    ;
 
     class FormDataClass {
       text: string = 'Image: Bear';
@@ -112,7 +111,6 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
         } finally {
           fileIo.closeSync(imgFile);
         }
-        ;
       } catch (e) {
         hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
       }
