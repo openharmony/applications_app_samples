@@ -15,6 +15,8 @@
 
 // [Start observer_query]
 import { uiObserver } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { DOMAIN, TAG } from '../../common/Common';
 
 @Component
 export struct NavDestinationExample {
@@ -31,7 +33,7 @@ struct MyComponent {
 
   aboutToAppear() {
     this.navDesInfo = this.queryNavDestinationInfo();
-    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
+    hilog.info(DOMAIN, TAG, 'get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
   }
 
   build() {

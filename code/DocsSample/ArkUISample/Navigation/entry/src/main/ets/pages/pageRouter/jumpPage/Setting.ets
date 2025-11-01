@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+
 // [Start setting_click]
 import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { DOMAIN, TAG } from '../../common/Common';
 
 @Entry
 @Component
@@ -34,7 +35,7 @@ struct Login {
   }
 
   build() {
-    // [StartExclude quick_start]
+    // [StartExclude setting_click]
     Row() {
       Column() {
         Text('Setting Page')
@@ -50,6 +51,6 @@ struct Login {
       }.width('100%')
     }.height('100%')
   }
-  // [EndExclude quick_start]
+  // [EndExclude setting_click]
 }
 // [End setting_click]
