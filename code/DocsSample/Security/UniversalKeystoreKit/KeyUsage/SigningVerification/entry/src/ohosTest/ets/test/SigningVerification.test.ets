@@ -211,6 +211,26 @@ export default function signingVerificationTest() {
       await driver.delayMs(6000);
       await driver.assertComponentExist(ON.text('RSA/SHA384/PSS Result: Success'));
       console.info('uitest: testSigningVerification011 end');
+      await driver.pressBack();
+    })
+
+
+    /**
+     * 点击按钮，签名/验签SM2/NoDigest
+     */
+    it('testSigningVerification012', 0, async () => {
+      console.info('uitest: testSigningVerification012 begin');
+      const driver = Driver.create();
+      const button1 = await driver.findComponent(ON.text('SM2/NoDigest'));
+      await driver.delayMs(1000);
+      await button1.click();
+      await driver.delayMs(1000);
+      const button2 = await driver.findComponent(ON.text('SM2/NoDigest').type('Button'));
+      await button2.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('SM2/NoDigest Result: Success'));
+      console.info('uitest: testSigningVerification012 end');
+      await driver.pressBack();
     })
   })
 }

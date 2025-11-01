@@ -181,8 +181,6 @@ export async function testSignVerify() {
   await deleteRsaKey(keyAlias);
 }
 
-
-
 // [End key_algorithm_RSASHA256PKCS1_V1_5]
 @Entry
 @Component

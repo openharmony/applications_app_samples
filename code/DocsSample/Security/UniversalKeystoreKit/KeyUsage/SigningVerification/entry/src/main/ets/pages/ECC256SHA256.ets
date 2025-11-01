@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start key_algorithm_ECC256SHA256]
 /*
  * 密钥算法为ECC256、摘要算法为SHA256
@@ -177,8 +178,6 @@ async function testSignVerify() {
   await verify(keyAlias, plaintext, signature);
   await deleteEccKey(keyAlias);
 }
-
-
 // [End key_algorithm_ECC256SHA256]
 @Entry
 @Component

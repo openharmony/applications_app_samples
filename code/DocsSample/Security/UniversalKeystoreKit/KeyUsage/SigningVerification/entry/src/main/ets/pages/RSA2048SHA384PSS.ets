@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start key_algorithm_RSA2048SHA384PSS]
 /*
  * 密钥算法为RSA2048、摘要算法为SHA384、填充模式为PSS
  */
@@ -186,6 +187,7 @@ async function testSignVerify() {
   await verify(keyAlias, plaintext, signature);
   await deleteRsaKey(keyAlias);
 }
+// [End key_algorithm_RSA2048SHA384PSS]
 
 @Entry
 @Component

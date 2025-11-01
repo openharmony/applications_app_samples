@@ -188,8 +188,6 @@ export async function testSignVerify() {
   await verify(keyAlias, plaintext, signature);
   await deleteRsaKey(keyAlias);
 }
-
-
 // [End key_algorithm_RSASHA256PSS]
 @Entry
 @Component
