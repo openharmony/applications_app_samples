@@ -134,6 +134,7 @@ export struct WaterFlowDynamicSwitchover {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.WaterFlowDynamicSwitchover_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.WaterFlowDynamicSwitchover_title') }) {
           Column({ space: 2 }) {
             Button('切换列数').fontSize(20).onClick(() => {
@@ -180,6 +181,7 @@ export struct WaterFlowDynamicSwitchover {
       .height('100%')
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.WaterFlowDynamicSwitchover_title')需要替换为开发者所需的资源文件
     .title($r('app.string.WaterFlowDynamicSwitchover_title'))
   }
 }
