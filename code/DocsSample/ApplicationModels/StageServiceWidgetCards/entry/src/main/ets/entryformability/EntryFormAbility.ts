@@ -15,6 +15,7 @@
 
 // [Start import_entry_form_ability]
 // [Start update_by_message_form_ability]
+// entry/src/main/ets/entryformability/EntryFormAbility.ts
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { Configuration, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
