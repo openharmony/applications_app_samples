@@ -13,12 +13,9 @@
  * limitations under the License.
  */
 
-
-// [Start generate_key_ar]
-
-import { huks } from '@kit.UniversalKeystoreKit';
 import testNapi from 'libentry.so';
-
+// [Start generate_key_ar]
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 1.确定密钥别名 */
 let keyAlias = 'dh_key';
 /* 2.初始化密钥属性集 */
@@ -80,10 +77,7 @@ async function testGenKey(): Promise<string> {
   let ret = await publicGenKeyFunc(keyAlias, huksOptions);
   return ret;
 }
-
-
 // [End generate_key_ar]
-
 
 @Entry
 @Component
