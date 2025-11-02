@@ -17,7 +17,7 @@
 @Entry
 export struct FocusTransferExample {
   @State logText: string = '\n';
-    context = this.getUIContext().getHostContext();
+  context = this.getUIContext().getHostContext();
 
   addText(message: string) {
     this.logText += `${message}\n`;
