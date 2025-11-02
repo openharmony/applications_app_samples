@@ -1208,39 +1208,6 @@ void setText10(ArkUI_NodeHandle &text10)
     Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MAX_LINE_HEIGHT, &item2);
 }
 
-void setText11(ArkUI_NodeHandle &text11)
-{
-    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_30}};
-    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
-    Manager::nodeAPI_->setAttribute(text11, NODE_WIDTH, &textWidthItem);
-    ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_50}};
-    ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
-    Manager::nodeAPI_->setAttribute(text11, NODE_HEIGHT, &textHeightItem);
-    // Text属性字符串和ImageSpancolorFilter支持svg
-    auto imageSpan = Manager::nodeAPI_->createNode(ARKUI_NODE_IMAGE_SPAN);
-    ArkUI_NumberValue value[] = {};
-    ArkUI_AttributeItem item = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
-    item.string = "resource://base/media/lmagespancolorfilte.svg";
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &item);
-    OH_Drawing_ColorFilter* colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0xFFFF0000, BLEND_MODE_DIFFERENCE);
-    ArkUI_AttributeItem drawingColor = {.object = colorFilter};
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SPAN_COLOR_FILTER, &drawingColor);
-    ArkUI_NumberValue svg[] = {{
-        .i32 = VALUE_1
-    }};
-    ArkUI_AttributeItem svg2 = {svg, sizeof(svg) / sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SUPPORT_SVG2, &svg2);
-    ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = VALUE_30}};
-    ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
-                                              .size = sizeof(textWidth) / sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
-    ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = VALUE_30}};
-    ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
-                                               .size = sizeof(textWidth) / sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
-    Manager::nodeAPI_->addChild(text11, imageSpan);
-}
-
 void setColumn(ArkUI_NodeHandle &column)
 {
     // 设置空隙以便于展示对齐效果
@@ -1370,7 +1337,6 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     setText8(text8);
     setText9(text9);
     setText10(text10);
-    setText11(text11);
     setColumn(column);
     Manager::nodeAPI_->addChild(textContainer, text1);
     Manager::nodeAPI_->addChild(textContainer, text2);
