@@ -25,6 +25,9 @@ struct Index {
     Row() {
       Column({ space: 10 }) {
         TextInput({ placeholder: $r('app.string.input_verify_code'), text: this.message })
+          .onChange((val: string) => {
+            this.message = val;
+          })
         PasteButton()
           .padding({
             top: 12,
@@ -39,7 +42,6 @@ struct Index {
                   console.error(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
                   return;
                 }
-                // 剪贴板内容为 '123456'
                 this.message = pasteData.getPrimaryText();
               });
             }

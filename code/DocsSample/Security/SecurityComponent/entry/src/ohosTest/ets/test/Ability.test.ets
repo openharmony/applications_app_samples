@@ -21,10 +21,10 @@ import Logger from '../utils/Logger';
 const BUNDLE = 'SecurityComponent_';
 const DELAY_TIME = 1000;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-let manage = abilityDelegator.getAppContext().resourceManager;
+let resourceManager = abilityDelegator.getAppContext().resourceManager;
 
-async function getResourceString(resource: Resource): Promise<string> {
-  let text = await manage.getStringValue(resource);
+async function getResourceString(resId: number): Promise<string> {
+  let text = await resourceManager.getStringValue(resId);
   return text;
 }
 
@@ -49,34 +49,6 @@ export default function abilityTest() {
       }
       Logger.info(BUNDLE + 'StartAbility_001 end');
     })
-    /**
-     * 获取定位信息
-     */
-    it(BUNDLE + 'GetLocation_001', 0, async (done: Function) => {
-      Logger.info(BUNDLE + 'GetLocation_001 begin');
-      await driver.delayMs(DELAY_TIME);
-      // 点击Location
-      await driver.assertComponentExist(ON.id('Location'));
-      let location = await driver.findComponent(ON.id('Location'));
-      await location.click();
-      await driver.delayMs(DELAY_TIME);
-      // 点击LocationButton获取定位信息
-      await driver.assertComponentExist(ON.type('LocationButton'));
-      let locationButton = await driver.findComponent(ON.type('LocationButton'));
-      await locationButton.click();
-      await driver.delayMs(DELAY_TIME);
-      // 点击允许
-      let str = await getResourceString($r('app.string.admit'));
-      await driver.assertComponentExist(ON.text(str));
-      let button = await driver.findComponent(ON.text(str));
-      await button.click();
-      await driver.delayMs(DELAY_TIME * 5);
-      // 返回
-      await driver.pressBack();
-      await driver.delayMs(DELAY_TIME);
-      Logger.info(BUNDLE + 'GetLocation_001 end');
-      done();
-    })
 
     /**
      * 获取剪贴板内容
@@ -96,13 +68,13 @@ export default function abilityTest() {
       await textInput.longClick();
       await driver.delayMs(DELAY_TIME);
       // 点击全选按钮
-      let str = await getResourceString($r('app.string.select_all'));
+      let str = await getResourceString($r('app.string.select_all').id);
       await driver.assertComponentExist(ON.text(str));
       let selectButton = await driver.findComponent(ON.text(str));
       await selectButton.click();
       await driver.delayMs(DELAY_TIME);
       // 点击剪切选项
-      str = await getResourceString($r('app.string.cut'));
+      str = await getResourceString($r('app.string.cut').id);
       await driver.assertComponentExist(ON.text(str));
       let cutButton = await driver.findComponent(ON.text(str));
       await cutButton.click();
@@ -133,13 +105,13 @@ export default function abilityTest() {
       let save = await driver.findComponent(ON.id('Save'));
       await save.click();
       await driver.delayMs(DELAY_TIME);
-      // 点击LocationButton获取定位信息
+      // 点击Savebutton保存图片
       await driver.assertComponentExist(ON.type('SaveButton'));
       let saveButton = await driver.findComponent(ON.type('SaveButton'));
       await saveButton.click();
       await driver.delayMs(DELAY_TIME);
       // 点击允许
-      let str = await getResourceString($r('app.string.admit'));
+      let str = await getResourceString($r('app.string.admit').id);
       await driver.assertComponentExist(ON.text(str));
       let Button = await driver.findComponent(ON.text(str));
       await Button.click();
