@@ -20,11 +20,12 @@
 
 #include <arkui/native_type.h>
 #include <arkui/native_node.h>
+#include <hilog/log.h>
 #include "ArkUINode.h"
 #include <string>
-#include "NativeEntry.h"
+
 // [StartExclude arkUITestNode_start]
-#include <hilog/log.h>
+#include "NativeEntry.h"
 // [EndExclude arkUITestNode_start]
 namespace NativeModule {
 
@@ -46,7 +47,7 @@ void OnDrawCompleted(void *userData)
     ArkUI_AttributeItem item = {nullptr, 0, "draw callback"};
     nativeModule->setAttribute(node, NODE_TEXT_CONTENT, &item);
 }
-
+// [StartExclude arkUITestNode_start]
 void ColorChangeCallback(ArkUI_SystemColorMode colorMode, void *userData)
 {
     if (userData) {
@@ -58,12 +59,11 @@ void ColorChangeCallback(ArkUI_SystemColorMode colorMode, void *userData)
         NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->setAttribute(handle, NODE_FONT_COLOR, &item);
     }
 }
-
+// [EndExclude arkUITestNode_start]
 class ArkUITextNode : public ArkUINode {
 public:
     ArkUITextNode()
         : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_TEXT)) {}
-    // 文本属性接口封装。
     void SetFontSize(float fontSize)
     {
         ArkUI_NumberValue value[] = {{.f32 = fontSize}};
@@ -116,6 +116,7 @@ public:
         ArkUI_AttributeItem item = {nullptr, 0, inspectorId.c_str()};
         nativeModule_->setAttribute(handle_, NODE_ID, &item);
     }
+    // [StartExclude arkUITestNode_start]
     void RegistSystemColorModeChange()
     {
         OH_ArkUI_RegisterSystemColorModeChangeEvent(handle_, handle_, ColorChangeCallback);
@@ -125,6 +126,7 @@ public:
     {
         OH_ArkUI_UnregisterSystemColorModeChangeEvent(handle_);
     }
+    // [EndExclude arkUITestNode_start]
 };
 } // namespace NativeModule
 
