@@ -83,7 +83,7 @@ static napi_value NativeWebInit(napi_env env, napi_callback_info info)
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_WebMessageAPI success");
 
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit NativeWebInit end");
-
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -115,6 +115,7 @@ static napi_value createWebMessagePorts(napi_env env, napi_callback_info info)
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit createWebMessagePorts end, web message port size:%{public}d", g_webMessagePortSize);
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -153,6 +154,7 @@ static napi_value postMessage(napi_env env, napi_callback_info info)
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit postMessage end, web message port size:%{public}d", g_webMessagePortSize);
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -207,6 +209,7 @@ static napi_value postMessageThread(napi_env env, napi_callback_info info)
     for (int i = 0; i < numThreads; ++i) {
         threads[i].detach();
     }
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -247,6 +250,7 @@ static napi_value setMessageEventHandlerThread(napi_env env, napi_callback_info 
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit SetMessageEventHandler end, web message port size:%{public}d", g_webMessagePortSize);
+    delete[] webTagValue;
     return nullptr;
 }
 static napi_value postNoneMessage(napi_env env, napi_callback_info info)
@@ -281,6 +285,7 @@ static napi_value postNoneMessage(napi_env env, napi_callback_info info)
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit postMessage end, web message port size:%{public}d", g_webMessagePortSize);
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -310,12 +315,13 @@ static napi_value postBufferMessage(napi_env env, napi_callback_info info)
     ArkWeb_WebMessagePtr message1 = webMessage->createWebMessage();
     webMessage->setType(message1, ArkWeb_WebMessageType::ARKWEB_BUFFER);
     std::string str1 = "send buffer from native";
-    webMessage->setData(message1, (void *)str1.c_str(), str1.length());
+    webMessage->setData(message1, (void *)str1.c_str(), str1.length()+1);
     webMessagePort->postMessage(g_web_message_port_arr[1], webTagValue, message1);
     webMessage->destroyWebMessage(&message1);
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit postMessage end, web message port size:%{public}d", g_webMessagePortSize);
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -345,6 +351,7 @@ static napi_value setMessageEventHandler(napi_env env, napi_callback_info info)
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit SetMessageEventHandler end, web message port size:%{public}d", g_webMessagePortSize);
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -374,6 +381,7 @@ static napi_value closeMessagePort(napi_env env, napi_callback_info info)
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit SetMessageEventHandler end, web message port size:%{public}d", g_webMessagePortSize);
     controller->refresh(webTagValue);
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -403,6 +411,7 @@ static napi_value destroyMessagePort(napi_env env, napi_callback_info info)
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit SetMessageEventHandler end, web message port size:%{public}d", g_webMessagePortSize);
+    delete[] webTagValue;
     return nullptr;
 }
 
@@ -430,6 +439,7 @@ static napi_value destroyNullMessagePort(napi_env env, napi_callback_info info)
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
         "Native Development Kit SetMessageEventHandler end, web message port size:%{public}d", g_webMessagePortSize);
+    delete[] webTagValue;
     return nullptr;
 }
 
