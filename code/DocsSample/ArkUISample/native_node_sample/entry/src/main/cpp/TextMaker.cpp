@@ -586,6 +586,11 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
         GetCounterTextOverflowColor: 0x%{public}X",OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
         OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
+
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
@@ -1022,6 +1027,11 @@ void setTextArea4(ArkUI_NodeHandle &textArea4)
     ArkUI_NumberValue textAreaScrollBarColor = { .u32 = 0xFFFFE4E1 };
     ArkUI_AttributeItem textAreaScrollBarColorItem = {&textAreaScrollBarColor, VALUE_1};
     Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_SCROLL_BAR_COLOR, &textAreaScrollBarColorItem);
+
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
@@ -1187,6 +1197,10 @@ void setText9(ArkUI_NodeHandle &text9)
     ArkUI_NumberValue value[] = {{.f32 = 2.0}};
     ArkUI_AttributeItem item = {value, sizeof(value)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_LINE_HEIGHT_MULTIPLE, &item);
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 void setText10(ArkUI_NodeHandle &text10)
