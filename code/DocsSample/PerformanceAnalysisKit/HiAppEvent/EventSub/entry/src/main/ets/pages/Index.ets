@@ -76,8 +76,8 @@ struct Index {
             });
           })
         // [End AppEvent_Click_ArkTS_Button]
-        // [Start CrashEvent_Button]
-        Button($r('app.string.Crash_Button'))
+        // [Start JsError_CrashEvent_Button]
+        Button('JsError')
           .type(ButtonType.Capsule)
           .margin({
             top: 20
@@ -89,7 +89,21 @@ struct Index {
             // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
             JSON.parse('');
           })
-        // [End CrashEvent_Button]
+        // [End JsError_CrashEvent_Button]
+        // [Start Native_CrashEvent_Button]
+        Button('NativeCrash')
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('80%')
+          .height('5%')
+          .onClick(() => {
+            // 在按钮点击函数中构造一个crash场景，触发应用崩溃事件
+            testNapi.testNullptr();
+          })
+        // [End Native_CrashEvent_Button]
         // [Start PssleakEventTS_Button]
         // [Start PssleakEvent_Button]
         Button('pss leak')
