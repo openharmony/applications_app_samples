@@ -22,7 +22,6 @@ class Info {
   }
 }
 
-
 @Observed
 export class MyMap<K, V> extends Map<K, V> {
   public name: string;
@@ -36,7 +35,6 @@ export class MyMap<K, V> extends Map<K, V> {
     return this.name;
   }
 }
-
 
 @Entry
 @Component

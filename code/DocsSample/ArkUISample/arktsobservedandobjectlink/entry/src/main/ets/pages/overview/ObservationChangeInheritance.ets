@@ -69,7 +69,6 @@ struct Parent {
     }
   }
 }
-
 // [End Observation_ChangeInheritance]
 const observationChangeInheritance = Parent;
 export default observationChangeInheritance;

@@ -22,7 +22,6 @@ class Info {
   }
 }
 
-
 @Observed
 export class MySet<T> extends Set<T> {
   public name: string;
