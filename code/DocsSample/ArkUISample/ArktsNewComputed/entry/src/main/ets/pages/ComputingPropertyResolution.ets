@@ -50,7 +50,8 @@ export struct ComputingPropertyResolution {
               this.celsius--;
             })
 
-          Text(`Celsius ${this.celsius.toFixed(1)}`).fontSize(40)
+          Text(`Celsius ${this.celsius.toFixed(1)}`)
+            .fontSize(40)
 
           Button('+')
             .onClick(() => {
@@ -58,8 +59,10 @@ export struct ComputingPropertyResolution {
             })
         }
 
-        Text(`Fahrenheit ${this.fahrenheit.toFixed(2)}`).fontSize(40)
-        Text(`Kelvin ${this.kelvin.toFixed(2)}`).fontSize(40)
+        Text(`Fahrenheit ${this.fahrenheit.toFixed(2)}`)
+          .fontSize(40)
+        Text(`Kelvin ${this.kelvin.toFixed(2)}`)
+          .fontSize(40)
       }
       .width('100%')
         // [StartExclude Computing_Property_Resolution]
