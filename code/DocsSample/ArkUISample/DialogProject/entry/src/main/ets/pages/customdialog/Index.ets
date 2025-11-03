@@ -31,7 +31,7 @@ import { NestDialog1 } from './NestDialog1';
 import { DialogWithPhysicalBack } from './DialogWithPhysicalBack';
 import { DialogAvoidSoftKeyboard } from './DialogAvoidSoftKeyboard';
 import { GetDialogStatus } from './GetDialogStatus';
-import { DialogFocusStrategy } from './dialogboxfocuspolicy/DialogFocusStrategy';
+import { Index as DialogFocusStrategy } from './dialogboxfocuspolicy/DialogFocusStrategy';
 import { DialogController } from './dialogcontroller/DialogController';
 import { PageLevelDialogBox } from './pageleveldialogbox/PageLevelDialogBox';
 import { DialogBoxLayer } from './dialogboxlayermanagement/DialogBoxLayer';
