@@ -48,15 +48,15 @@ struct ObservedDemo {
           Text('嵌套对象数据展示')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
-            .margin(20);
+            .margin(20)
 
           // 展示Father的name属性
           Text(`父亲的名字: ${this.father.name}`)
-            .fontSize(16);
+            .fontSize(16)
 
           // 展示Son的title属性（嵌套层级）
           Text(`儿子的标题: ${this.father.son.title}`)
-            .fontSize(16);
+            .fontSize(16)
         }
         .margin(30)
 
@@ -66,13 +66,13 @@ struct ObservedDemo {
           Button(`change the father's name`)
             .onClick(() => {
               this.father.name = '新的父亲名字'; // 直接修改，@Observed会触发更新
-            });
+            })
 
           // 按钮2：修改Son的title（嵌套的第二层属性）
           Button(`modify the son's title`)
             .onClick(() => {
               this.father.son.title = '新的儿子标题'; // 深层修改，@Observed会触发更新
-            });
+            })
         }
       }
       .width('100%')

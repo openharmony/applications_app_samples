@@ -63,7 +63,7 @@ struct NestedDisplay {
             // [Start prop_seventeen_start]
             this.title.value = 'Hi'; // 第一层属性变化，UI 会更新
             // [End prop_seventeen_start]
-          });
+          })
 
         // 按钮2：修改第二层属性（@Prop 观察不到，UI 不更新）
         Button('change title.info.value to "ArkUI"')
@@ -71,7 +71,7 @@ struct NestedDisplay {
             // [Start prop_seventeen_start]
             this.title.info.value = 'ArkUI'; // 第二层属性变化，@Prop 无反应
             // [End prop_seventeen_start]
-          });
+          })
 
         // 按钮3：重新赋值整个 Model（强制更新所有属性）
         Button('Reassign Model')
@@ -81,7 +81,7 @@ struct NestedDisplay {
               this.title.value,
               new Info(this.title.info.value)
             );
-          });
+          })
       }
       .margin({ top: 20 });
     }
@@ -107,7 +107,7 @@ struct Test {
       .width('100%')
       .height('100%')
       .justifyContent(FlexAlign.Start)
-      .padding(15);
+      .padding(15)
   }
 }
 

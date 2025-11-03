@@ -70,23 +70,21 @@ struct DataDisplay {
 
             Button('assign ["1"]')
               .fontSize(8)
-              .onClick(() => this.title = ['1']);
+              .onClick(() => this.title = ['1'])
 
             // 按钮2：第一项改为 "2"
             Button('change to "2"')
               .fontSize(8)
-              .onClick(() => this.title.length > 0 && (this.title[0] = '2'));
+              .onClick(() => this.title.length > 0 && (this.title[0] = '2'))
             // 按钮4：新增 "3"
             Button('insert "3"')
               .fontSize(8)
-              .onClick(() => this.title.push('3'));
+              .onClick(() => this.title.push('3'))
             // 按钮3：删除最后一项
             Button('delete')
               .fontSize(8)
-              .onClick(() => this.title.pop());
-
+              .onClick(() => this.title.pop())
           }
-
         }
       }
       .padding(20);

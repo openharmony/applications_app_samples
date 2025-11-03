@@ -55,7 +55,6 @@ struct Index {
             })
         }
       }
-      // [EndExclude prop_four_start]
   }
 }
 // [End prop_four_start]
