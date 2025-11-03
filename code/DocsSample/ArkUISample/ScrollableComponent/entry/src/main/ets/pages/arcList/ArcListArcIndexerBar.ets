@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import { ComponentCard } from '../../common/Card';
+import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@ohos.arkui.ArcAlphabetIndexer';
+import { util } from '@kit.ArkTS';
+import { ColorMetrics, ComponentContent } from '@ohos.arkui.node';
 // [Start arcAlphabetIndexer_start]
 import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
-import { ColorMetrics, ComponentContent } from '@ohos.arkui.node';
-import { util } from '@kit.ArkTS';
-import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@ohos.arkui.ArcAlphabetIndexer';
-import { ComponentCard } from '../../common/Card';
 
 // [StartExclude arcAlphabetIndexer_start]
 class Contact {
