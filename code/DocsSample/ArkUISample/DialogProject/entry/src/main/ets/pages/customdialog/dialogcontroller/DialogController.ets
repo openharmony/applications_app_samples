@@ -178,7 +178,7 @@ export struct DialogController {
     .backgroundColor('#FFF0F0F0')
   }
 
-  // [Start dialog_component_get_state]
+  // [End dialog_component_get_state]
 
   build() {
     NavDestination() {

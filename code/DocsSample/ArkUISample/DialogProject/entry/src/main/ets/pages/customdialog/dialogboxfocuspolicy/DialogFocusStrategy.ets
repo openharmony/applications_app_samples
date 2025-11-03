@@ -18,10 +18,10 @@
 @Component
 export struct Index {
   // [Start dialog_focus_text]
-  // 'dialog_message'需要替换为开发者所需的资源文件
+  @State dialogIdIndex: number = 0;
+  // 'dialog_message'需要替换为开发者所需的资源名称
   private message: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('dialog_message') as string;
-  @State dialogIdIndex: number = 0;
 
   @Builder
   customDialogComponent() {

@@ -39,11 +39,10 @@ function customDialogBuilder(uiContext: UIContext) {
 @Component
 export struct PageLevelDialogBox {
   @State message: string = 'Hello World';
-  private uiContext: UIContext = this.getUIContext();
 
   @Builder
   customDialogComponent() {
-    customDialogBuilder(this.uiContext);
+    customDialogBuilder(this.getUIContext());
   }
 
   build() {
@@ -58,7 +57,7 @@ export struct PageLevelDialogBox {
             .onClick(() => {
               const node: FrameNode | null = this.getUIContext().getFrameNodeById('test_text') || null;
               // [Start open_custom_dialog]
-              this.uiContext.getPromptAction().openCustomDialog({
+              this.getUIContext().getPromptAction().openCustomDialog({
                 builder: () => {
                   this.customDialogComponent();
                 },
