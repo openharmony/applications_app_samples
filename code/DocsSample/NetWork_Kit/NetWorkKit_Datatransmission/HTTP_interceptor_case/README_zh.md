@@ -44,7 +44,7 @@ entry/src/main/ets/
    - 使用 `http.createHttp()` 创建一个 HTTP 请求对象 `httpRequest`。
    - 使用 `http.HttpInterceptorChain()` 创建一个拦截器链对象 `chain`。
    - 将需要的拦截器实例化，并使用 `chain.addChain()` 加入到拦截器链中。
-   - 使用 `chain.apply(httpRequest)` 将请求应用到拦截器链。
+   - 使用 `chain.apply(httpRequest)` 将当前配置好的拦截器链附加到 `httpRequest` 对象上。
    - 使用 `httpRequest.request(HTTP_URL, options)` 发起 http 请求。
    - 日志记录请求返回的 http.HttpResponse 信息。
    - 在请求完成时，成功会将 `request hit the interceptor successfully` 展示在 UI 中
