@@ -65,32 +65,32 @@ export default function CustomDialogTest() {
       await driver.pressBack();
       await sleep(1000);
 
-      let button_createCustomDialog1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CreateCustomDialog1_title')), MatchPattern.CONTAINS));
+      let button_createCustomDialog1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CreateCustomDialogNew_title')), MatchPattern.CONTAINS));
       await button_createCustomDialog1.click();
       let button_createCustomDialog1_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
       await button_createCustomDialog1_click.click();
       await driver.pressBack();
       await driver.pressBack();
 
-      let button_dialogInteraction2 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogInteraction2_title')), MatchPattern.CONTAINS));
-      await button_dialogInteraction2.click();
-      let button_dialogInteraction2_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
-      await button_dialogInteraction2_click.click();
-      let button_dialogInteraction2_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
-      await button_dialogInteraction2_confirm.click();
+      let button_dialogInteractionUseConstructor = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogInteractionUseConstructor_title')), MatchPattern.CONTAINS));
+      await button_dialogInteractionUseConstructor.click();
+      let button_dialogInteractionUseConstructor_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
+      await button_dialogInteractionUseConstructor_click.click();
+      let button_dialogInteractionUseConstructor_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
+      await button_dialogInteractionUseConstructor_confirm.click();
       await driver.pressBack();
 
       let stackList = await driver.findComponent(ON.type('List'));
-      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogInteraction3_title'))));
+      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogInteractionUseButton_title'))));
 
-      let button_dialogInteraction3 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogInteraction3_title')), MatchPattern.CONTAINS));
-      await button_dialogInteraction3.click();
-      let button_dialogInteraction3_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
-      await button_dialogInteraction3_click.click();
-      let button_dialogInteraction3_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
-      await button_dialogInteraction3_confirm.click();
-      let button_dialogInteraction3_return = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.click_and_return')), MatchPattern.CONTAINS));
-      await button_dialogInteraction3_return.click();
+      let button_dialogInteractionUseButton = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogInteractionUseButton_title')), MatchPattern.CONTAINS));
+      await button_dialogInteractionUseButton.click();
+      let button_dialogInteractionUseButton_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
+      await button_dialogInteractionUseButton_click.click();
+      let button_dialogInteractionUseButton_confirm = await driver.findComponent(ON.text('confirm', MatchPattern.CONTAINS));
+      await button_dialogInteractionUseButton_confirm.click();
+      let button_dialogInteractionUseButton_return = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.click_and_return')), MatchPattern.CONTAINS));
+      await button_dialogInteractionUseButton_return.click();
       await sleep(1000);
       await driver.pressBack();
       await sleep(1000);

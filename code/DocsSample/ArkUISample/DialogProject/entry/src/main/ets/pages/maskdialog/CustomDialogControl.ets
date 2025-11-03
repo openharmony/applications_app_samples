@@ -20,29 +20,29 @@ import { ImmersiveMode, LevelMode, promptAction } from '@kit.ArkUI';
 @Entry
 @Component
 export struct CustomDialogControl {
-  // [Start custom_dialog_control_immersive_default]
+  // [Start custom_dialog_control_immersive]
   @State immersiveMode: ImmersiveMode = ImmersiveMode.DEFAULT;
-  // [End custom_dialog_control_immersive_default]
+  // [StartExclude custom_dialog_control_immersive]
 
-  // [Start custom_dialog_control_autoCancel_opt]
+  // [Start custom_dialog_control_autoCancel]
   autoCancelOpt: promptAction.CustomDialogOptions = {
     builder: () => {
       this.myBuilder();
     },
     autoCancel: false,
   } as promptAction.CustomDialogOptions;
-  // [End custom_dialog_control_autoCancel_opt]
+  // [StartExclude custom_dialog_control_autoCancel]
 
-  // [Start custom_dialog_control_modal_opt]
+  // [Start custom_dialog_control_modal]
   modalOpt: promptAction.CustomDialogOptions = {
     builder: () => {
       this.myBuilder();
     },
     isModal: false,
   } as promptAction.CustomDialogOptions;
-  // [End custom_dialog_control_modal_opt]
+  // [StartExclude custom_dialog_control_modal]
 
-  // [Start custom_dialog_control_mask_opt]
+  // [Start custom_dialog_control_mask]
   maskOpt: promptAction.CustomDialogOptions = {
     builder: () => {
       this.myBuilder();
@@ -55,16 +55,16 @@ export struct CustomDialogControl {
     },
     maskColor: '#33AA0000'
   } as promptAction.CustomDialogOptions;
-  // [End custom_dialog_control_mask_opt]
+  // [StartExclude custom_dialog_control_mask]
 
-  // [Start custom_dialog_control_transition_opt]
+  // [Start custom_dialog_control_transition]
   transitionOpt: promptAction.CustomDialogOptions = {
     builder: () => {
       this.myBuilder();
     },
     transition: TransitionEffect.OPACITY.animation({ duration: 3000 })
   } as promptAction.CustomDialogOptions;
-  // [End custom_dialog_control_transition_opt]
+  // [StartExclude custom_dialog_control_transition]
 
   @Builder
   myBuilder() {
@@ -78,43 +78,43 @@ export struct CustomDialogControl {
   build() {
     NavDestination() {
       Column() {
-        // [Start custom_dialog_control_autoCance_btn]
+        // [EndExclude custom_dialog_control_autoCancel]
         Button('openCustomDialog autoCancel:false')
           .width('100%')
           .margin({ top: 10 })
           .onClick(() => {
             this.getUIContext().getPromptAction().openCustomDialog(this.autoCancelOpt)
           })
-          // [End custom_dialog_control_autoCance_btn]
+          // [End custom_dialog_control_autoCancel]
 
-        // [Start custom_dialog_control_modal_btn]
+        // [EndExclude custom_dialog_control_modal]
         Button('openCustomDialog isModal:false')
           .width('100%')
           .margin({ top: 10 })
           .onClick(() => {
             this.getUIContext().getPromptAction().openCustomDialog(this.modalOpt)
           })
-          // [End custom_dialog_control_modal_btn]
+          // [End custom_dialog_control_modal]
 
-        // [Start custom_dialog_control_mask_btn]
+        // [EndExclude custom_dialog_control_mask]
         Button('openCustomDialog maskOpt')
           .width('100%')
           .margin({ top: 10 })
           .onClick(() => {
             this.getUIContext().getPromptAction().openCustomDialog(this.maskOpt)
           })
-          // [End custom_dialog_control_mask_btn]
+          // [End custom_dialog_control_mask]
 
-        // [Start custom_dialog_control_transition_btn]
+        // [EndExclude custom_dialog_control_transition]
         Button('openCustomDialog transition')
           .width('100%')
           .margin({ top: 10 })
           .onClick(() => {
             this.getUIContext().getPromptAction().openCustomDialog(this.transitionOpt);
           })
-          // [End custom_dialog_control_transition_btn]
+          // [End custom_dialog_control_transition]
 
-        // [Start custom_dialog_control_immersive_btn]
+        // [EndExclude custom_dialog_control_immersive]
         Button('openCustomDialog immersiveMode')
           .width('100%')
           .margin({ top: 10 })
@@ -129,7 +129,7 @@ export struct CustomDialogControl {
               immersiveMode: this.immersiveMode,
             })
           })
-        // [End custom_dialog_control_immersive_btn]
+        // [End custom_dialog_control_immersive]
 
         // [Start custom_dialog_control_mask_transition]
         Button('openCustomDialog maskTransition')

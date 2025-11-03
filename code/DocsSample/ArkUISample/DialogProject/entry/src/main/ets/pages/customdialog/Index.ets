@@ -22,9 +22,9 @@ import { DialogInteraction } from './DialogInteraction';
 import { DialogInteraction1 } from './DialogInteraction1';
 import { DialogStyle } from './DialogStyle';
 import { NestDialog } from './NestDialog';
-import { CreateCustomDialog1 } from './CreateCustomDialog1';
-import { DialogInteraction2 } from './DialogInteraction2';
-import { DialogInteraction3 } from './DialogInteraction3';
+import { CreateCustomDialogNew } from './CreateCustomDialogNew';
+import { DialogInteractionUseConstructor } from './DialogInteractionUseConstructor';
+import { DialogInteractionUseButton } from './DialogInteractionUseButton';
 import { DialogAnimation1 } from './DialogAnimation1';
 import { DialogStyle1 } from './DialogStyle1';
 import { NestDialog1 } from './NestDialog1';
@@ -70,19 +70,19 @@ const routes: Route[] = [
     description: $r('app.string.CustomDialog_nest_des'),
   },
   {
-    name: `${Custom_ROUTE_PREFIX}/CreateCustomDialog1`,
-    title: resource.resourceToString($r('app.string.CreateCustomDialog1_title')),
-    description: $r('app.string.CreateCustomDialog1_desc'),
+    name: `${Custom_ROUTE_PREFIX}/CreateCustomDialogNew`,
+    title: resource.resourceToString($r('app.string.CreateCustomDialogNew_title')),
+    description: $r('app.string.CreateCustomDialogNew_desc'),
   },
   {
-    name: `${Custom_ROUTE_PREFIX}/DialogInteraction2`,
-    title: resource.resourceToString($r('app.string.DialogInteraction2_title')),
-    description: $r('app.string.DialogInteraction2_desc'),
+    name: `${Custom_ROUTE_PREFIX}/DialogInteractionUseConstructor`,
+    title: resource.resourceToString($r('app.string.DialogInteractionUseConstructor_title')),
+    description: $r('app.string.DialogInteractionUseConstructor_desc'),
   },
   {
-    name: `${Custom_ROUTE_PREFIX}/DialogInteraction3`,
-    title: resource.resourceToString($r('app.string.DialogInteraction3_title')),
-    description: $r('app.string.DialogInteraction3_desc'),
+    name: `${Custom_ROUTE_PREFIX}/DialogInteractionUseButton`,
+    title: resource.resourceToString($r('app.string.DialogInteractionUseButton_title')),
+    description: $r('app.string.DialogInteractionUseButton_desc'),
   },
   {
     name: `${Custom_ROUTE_PREFIX}/DialogAnimation1`,
@@ -153,11 +153,11 @@ export function CustomDestination(name: string) {
   } else if (name === routes[5].name) {
     NestDialog();
   } else if (name === routes[6].name) {
-    CreateCustomDialog1();
+    CreateCustomDialogNew();
   } else if (name === routes[7].name) {
-    DialogInteraction2();
+    DialogInteractionUseConstructor();
   } else if (name === routes[8].name) {
-    DialogInteraction3();
+    DialogInteractionUseButton();
   } else if (name === routes[9].name) {
     DialogAnimation1();
   } else if (name === routes[10].name) {

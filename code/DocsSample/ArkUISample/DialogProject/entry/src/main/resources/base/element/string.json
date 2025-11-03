@@ -562,27 +562,27 @@
       "value": "即时反馈提供了两种显示模式，分别为DEFAULT（显示在应用内）、TOP_MOST（显示在应用之上）。"
     },
     {
-      "name": "CreateCustomDialog1_title",
-      "value": "创建自定义弹出框1"
+      "name": "CreateCustomDialogNew_title",
+      "value": "创建自定义弹出框新页面"
     },
     {
-      "name": "CreateCustomDialog1_desc",
+      "name": "CreateCustomDialogNew_desc",
       "value": "使用@CustomDialog装饰器装饰自定义弹出框，可在此装饰器内自定义弹出框内容。CustomDialogController需在@Component内定义。"
     },
     {
-      "name": "DialogInteraction2_title",
-      "value": "弹出框的交互2"
+      "name": "DialogInteractionUseConstructor_title",
+      "value": "弹出框的交互使用构造器"
     },
     {
-      "name": "DialogInteraction2_desc",
+      "name": "DialogInteractionUseConstructor_desc",
       "value": "页面内需要在构造器内进行接收，同时创建相应的函数操作。"
     },
     {
-      "name": "DialogInteraction3_title",
-      "value": "弹出框的交互3"
+      "name": "DialogInteractionUseButton_title",
+      "value": "弹出框的交互使用button"
     },
     {
-      "name": "DialogInteraction3_desc",
+      "name": "DialogInteractionUseButton_desc",
       "value": "可通过弹出框中的按钮实现路由跳转，同时获取跳转页面向当前页传入的参数。"
     },
     {

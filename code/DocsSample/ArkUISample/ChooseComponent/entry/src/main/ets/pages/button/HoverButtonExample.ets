@@ -37,7 +37,7 @@ export struct HoverButtonExample {
         }.width('90%')
 
         Button() {
-          Image($r('app.media.add'))
+          Image($r('app.media.ic_public_add'))
            .width(50)
            .height(50)
         }
