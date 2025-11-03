@@ -12,24 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start startup003]
 import { StartupTask, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Sendable
-export default class StartupTask_001 extends StartupTask {
+export default class StartupTask006 extends StartupTask {
   constructor() {
     super();
   }
 
   async init(context: common.AbilityStageContext) {
-    hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
-    return 'StartupTask_001';
+    hilog.info(0x0000, 'testTag', 'StartupTask_006 init.');
+    return 'StartupTask_006';
   }
 
   onDependencyCompleted(dependence: string, result: Object): void {
-    hilog.info(0x0000, 'testTag', 'StartupTask_001 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
+    hilog.info(0x0000, 'testTag', 'StartupTask_006 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
       dependence, JSON.stringify(result));
   }
 }
-// [End startup003]
