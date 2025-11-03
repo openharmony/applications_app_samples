@@ -14,12 +14,13 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-// [Start build_scrollable_horizontally_grid_layouts]
 import common from '@ohos.app.ability.common';
+// [Start build_scrollable_horizontally_grid_layouts]
 @Entry
 @Component
 export struct ScrollableGrid {
   @State services: Array<string> = [];
+  // [StartExclude build_scrollable_horizontally_grid_layouts]
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     const streaming = context.resourceManager.getStringByNameSync('Live_Streaming')
@@ -43,39 +44,42 @@ export struct ScrollableGrid {
     const more = context.resourceManager.getStringByNameSync('More')
     this.services.push(more)
   }
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
   build() {
     // [StartExclude build_scrollable_horizontally_grid_layouts]
     NavDestination() {
       // [EndExclude build_scrollable_horizontally_grid_layouts]
-      Column({ space: 12 }) {
+
+      Column({ space: 5 }) {
         // [StartExclude build_scrollable_horizontally_grid_layouts]
         ComponentCard({ title: $r('app.string.ScrollableGrid_titleHorizontal') }) {
           // [EndExclude build_scrollable_horizontally_grid_layouts]
+
           Grid() {
-            ForEach(this.services, (service: string) => {
+            ForEach(this.services, (service: string, index) => {
               GridItem() {
-                Text(service)
-              }.backgroundColor('#FFF1F3F5').width('25%')
+              }
+              .width('25%')
             }, (service: string): string => service)
           }
+          .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
+          .rowsGap(15)
+
           // [StartExclude build_scrollable_horizontally_grid_layouts]
           .height(200)
           .columnsGap(10)
           // [EndExclude build_scrollable_horizontally_grid_layouts]
-          .rowsGap(15)
-          .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
-          // [StartExclude build_scrollable_horizontally_grid_layouts]
         }
-        // [EndExclude build_scrollable_horizontally_grid_layouts]
       }
+      // [StartExclude build_scrollable_horizontally_grid_layouts]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
-      // [StartExclude build_scrollable_horizontally_grid_layouts]
+
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ScrollableGrid_title'))
-    // [EndExclude build_scrollable_horizontally_grid_layouts]
   }
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
 }
 // [End build_scrollable_horizontally_grid_layouts]

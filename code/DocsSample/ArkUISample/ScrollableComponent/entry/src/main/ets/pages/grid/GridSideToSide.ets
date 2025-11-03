@@ -40,7 +40,7 @@ export struct GridSideToSide {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
+      Column({ space: 5 }) {
         // $r('app.string.GridSideToSide_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.GridSideToSide_title') }) {
           // [Start Control_scrolling_position]
