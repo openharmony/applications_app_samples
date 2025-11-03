@@ -18,12 +18,14 @@
 @Component
 struct VirtualNodeExample {
   @Builder customAccessibilityNode() {
+    // 'app.string.UniversalAttributesAccessibility_text6'需要替换为开发者所需的文本资源文件
     Text($r('app.string.UniversalAttributesAccessibility_text6'))
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
   }
   build() {
     Column() {
+      // 'app.string.UniversalAttributesAccessibility_text5'需要替换为开发者所需的文本资源文件
       Text($r('app.string.UniversalAttributesAccessibility_text5'))
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
