@@ -599,6 +599,10 @@
     {
       "name": "OnKeyPreImeCommit_title",
       "value": "使用OnKeyPreIme实现回车提交"
+    },
+    {
+      "name": "Select_All",
+      "value": "全选"
     }
   ]
 }

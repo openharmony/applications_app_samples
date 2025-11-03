@@ -16,7 +16,10 @@
 //[Start SpringLoading_start]
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-export const springLoadingRoutePrefix: string= 'springLoadingExample';
+
+//[StartExclude SpringLoading_start]
+export const springLoadingRoutePrefix: string = 'springLoadingExample';
+//[EndExclude SpringLoading_start]
 
 @Entry
 @ComponentV2
@@ -25,17 +28,21 @@ export struct SpringLoadingPage {
   @Local isShowSheet: boolean = false;
   private searchResult: string = this.context1?.resourceManager.getStringSync($r('app.string.Select_Result').id)!;
   @Local isSearchDone: boolean = false;
-  private  reminderColor: Color = Color.Green;
+  private reminderColor: Color = Color.Green;
   private normalColor: Color = Color.Blue;
   @Local buttonBackgroundColor: Color = this.normalColor;
+
   //[Start springLoading_builder]
   @Builder
   SheetBuilder() {
     Column() {
       // 输入框
-      TextInput({placeholder: $r('app.string.Push_Here')})
-        .width('80%').borderWidth(1).borderColor(Color.Black).padding({bottom: 5})
-        .onChange((value: string)=>{
+      TextInput({ placeholder: $r('app.string.Push_Here') })
+        .width('80%')
+        .borderWidth(1)
+        .borderColor(Color.Black)
+        .padding({ bottom: 5 })
+        .onChange((value: string) => {
           if (value.length == 0) {
             this.isSearchDone = false;
             return;
@@ -48,6 +55,7 @@ export struct SpringLoadingPage {
       }
     }.width('100%').height('100%')
   }
+
   //[End springLoading_builder]
   // 检查拖拽数据类型是否包含所希望的plain-text
   checkDataType(dataSummary: unifiedDataChannel.Summary | undefined): boolean {
@@ -129,20 +137,26 @@ export struct SpringLoadingPage {
       return;
     }
   }
+
   //[End springLoading_handleSpringLoading]
   //[Start springLoading_example]
   build() {
     Column() {
       //[StartExclude springLoading_example]
-      NavDestination(){
+      //[StartExclude SpringLoading_start]
+      NavDestination() {
+        //[EndExclude SpringLoading_start]
         //[EndExclude springLoading_example]
         Column() {
           Text($r('app.string.DoubleClick_Text'))
             .fontSize(30)
             .copyOption(CopyOptions.InApp) // 开启copyOption之后，文本组件即可支持选择内容进行拖拽
-        }.padding({bottom:30})
+        }.padding({ bottom: 30 })
 
-        Button($r('app.string.Search_Device')).width('80%').height('80vp').fontSize(30)
+        Button($r('app.string.Search_Device'))
+          .width('80%')
+          .height('80vp')
+          .fontSize(30)
           .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
             detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
             preferType: SheetType.BOTTOM,
@@ -152,11 +166,11 @@ export struct SpringLoadingPage {
           .allowDrop([uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
           .backgroundColor(this.buttonBackgroundColor)
           //[Start springLoading_onDragEnter]
-          .onDragEnter(()=>{
+          .onDragEnter(() => {
             // 当用户拖拽进入按钮范围，即提醒用户，此处是可以处理数据的
             this.buttonBackgroundColor = this.reminderColor
           })
-          .onDragLeave(()=>{
+          .onDragLeave(() => {
             // 当用户拖拽离开按钮范围，恢复UI
             this.buttonBackgroundColor = this.normalColor
           })
@@ -164,9 +178,10 @@ export struct SpringLoadingPage {
           //[Start springLoading_onDragSpringLoading_null]
           .onDragSpringLoading(null)
           //[End springLoading_onDragSpringLoading_null]
-          .onDragSpringLoading((context: SpringLoadingContext)=>{
+          .onDragSpringLoading((context: SpringLoadingContext) => {
             this.handleSpringLoading(context);
           })
+        //[StartExclude SpringLoading_start]
       }
       .backgroundColor('#f1f3f5')
       .title('', {
@@ -174,10 +189,14 @@ export struct SpringLoadingPage {
         barStyle: BarStyle.STACK
       })
       .title($r('app.string.Pages_Index_DropAnimation'))
+
       //[EndExclude springLoading_example]
+      //[StartExclude SpringLoading_start]
     }.width('100%').height('100%')
     .justifyContent(FlexAlign.Center)
   }
+
   //[End springLoading_example]
 }
+
 //[End SpringLoading_start]
