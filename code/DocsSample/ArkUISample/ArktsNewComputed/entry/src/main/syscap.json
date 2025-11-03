@@ -4,8 +4,8 @@
         "custom": [
             {
                 "xts": [
-                    "SystemCapability.Account.AppAccount",
-                    "SystemCapability.Account.OsAccount"
+                    "SystemCapability.ArkUI.ArkUI.Full",
+                    "SystemCapability.HiviewDFX.HiLog"
                 ]
             }
         ]

@@ -10,9 +10,9 @@
 ### 效果预览
 
 
-| CustomComponentUse页面  | ObservedV2ClassUser界面    | ComputingPropertyResolution界面 | ComputedInitParam界面  |
-|-------------------------|-----------------------------|-----------------------------|-----------------------------|
-| ![](screenshots/image1.png) | ![](screenshots/image2.png) | ![](screenshots/image3.png) | ![](screenshots/image4.png) |
+| CustomComponentUse页面  | ObservedV2ClassUser界面    | ComputingPropertyResolution界面 | ComputedInitParam界面 | ComputedProperty界面         |
+|-------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|
+| ![](screenshots/image1.png) | ![](screenshots/image2.png) | ![](screenshots/image3.png) | ![](screenshots/image4.png) | ![](screenshots/image5.png) |
 
 ### 具体实现
 
