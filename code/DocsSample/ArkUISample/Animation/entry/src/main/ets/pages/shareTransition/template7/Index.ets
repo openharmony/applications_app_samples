@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start geometry_transition]
+import resource from '../../../common/resource';
+
 class PostData {
   // 图片使用Resource资源，需用户自定义
   avatar: Resource = $r('app.media.flower');
@@ -29,28 +30,25 @@ struct Index {
   @State isPersonalPageShow: boolean = false;
   @State selectedIndex: number = 0;
   @State alphaValue: number = 1;
-  // [StartExclude geometry_transition]
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude geometry_transition]
 
   // 数组中图片均使用Resource资源，需用户自定义
   private allPostData: PostData[] = [
     {
       avatar: $r('app.media.flower'),
       name: 'Alice',
-      message: this.context.resourceManager.getStringByNameSync('shareTransition_text1'),
+      message:resource.resourceToString($r('app.string.shareTransition_text1')),
       images: [$r('app.media.spring'), $r('app.media.tall_tree')]
     },
     {
       avatar: $r('app.media.sunset_sky'),
       name: 'Bob',
-      message: this.context.resourceManager.getStringByNameSync('shareTransition_text2'),
+      message: resource.resourceToString($r('app.string.shareTransition_text2')),
       images: [$r('app.media.island')]
     },
     {
       avatar: $r('app.media.tall_tree'),
       name: 'Carl',
-      message: this.context.resourceManager.getStringByNameSync('shareTransition_text3'),
+      message: resource.resourceToString($r('app.string.shareTransition_text3')),
       images: [$r('app.media.flower'), $r('app.media.sunset_sky'), $r('app.media.spring')]
     }];
 
@@ -95,7 +93,7 @@ struct Index {
           TransitionEffect.OPACITY.animation({ duration: 0 })
         ))
 
-      Text(this.context.resourceManager.getStringByNameSync('shareTransition_text11') +
+      Text(resource.resourceToString($r('app.string.shareTransition_text11')) +
       this.allPostData[index].name)
       // 对文本添加出现转场效果
         .transition(TransitionEffect.asymmetric(
@@ -143,8 +141,7 @@ export default struct Post {
   @Prop index: number;
   @State expandImageSize: number = 100;
   @State avatarSize: number = 50;
-  private onAvatarClicked: (index: number) => void = (index: number) => {
-  };
+  private onAvatarClicked: (index: number) => void = (index: number) => { };
 
   build() {
     Column({ space: 20 }) {

@@ -35,7 +35,7 @@ struct Index {
   private isCustomTransitionEnabled(fromName: string, toName: string): boolean {
     // 点击和返回均需要进行自定义转场，因此需要分别判断
     if ((this.allowedCustomTransitionFromPageName.includes(fromName) &&
-    this.allowedCustomTransitionToPageName.includes(toName)) ||
+      this.allowedCustomTransitionToPageName.includes(toName)) ||
       (this.allowedCustomTransitionFromPageName.includes(toName) &&
       this.allowedCustomTransitionToPageName.includes(fromName))) {
       return true;

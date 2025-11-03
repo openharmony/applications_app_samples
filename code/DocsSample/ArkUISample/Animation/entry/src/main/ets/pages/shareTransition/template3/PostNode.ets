@@ -12,13 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
-import resource from '../../../common/resource';
 
 // [Start stack_post_node]
 // PostNode.ets
 // 跨容器迁移能力
 import { UIContext, curves, NodeController, BuilderNode, FrameNode } from '@kit.ArkUI';
+import resource from '../../../common/resource';
 
 class Data {
   public item: string | null = null;
@@ -38,7 +37,7 @@ function postBuilder(data: Data) {
       Column() {
         Text(resource.resourceToString($r('app.string.shareTransition_text5')) + data.item)
           .fontSize(20)
-        Text(resource.resourceToString($r('app.string.shareTransition_text6')))
+        Text($r('app.string.shareTransition_text6'))
           .fontSize(12)
           .fontColor(0x909399)
       }
@@ -53,7 +52,7 @@ function postBuilder(data: Data) {
     // 展开后显示细节内容
     if (data.isExpand) {
       Row() {
-        Text(resource.resourceToString($r('app.string.shareTransition_text7')))
+        Text($r('app.string.shareTransition_text7'))
           .fontSize(28)
           .fontColor(0x909399)
           .textAlign(TextAlign.Center)
@@ -79,8 +78,7 @@ function postBuilder(data: Data) {
 
 class InternalValue {
   public flag: boolean = false;
-}
-;
+};
 
 export class PostNode extends NodeController {
   private node: BuilderNode<Data[]> | null = null;

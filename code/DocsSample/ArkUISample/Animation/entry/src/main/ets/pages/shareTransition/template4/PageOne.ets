@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start navigation_page_one]
 // PageOne.ets
@@ -28,9 +27,6 @@ export function PageOneBuilder() {
 
 @Component
 export struct PageOne {
-  // [StartExclude navigation_page_one]
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude navigation_page_one]
   private pageInfos: NavPathStack = new NavPathStack();
   private pageId: number = -1;
   @State myNodeController: MyNodeController | undefined = new MyNodeController(false);
@@ -86,7 +82,7 @@ export struct PageOne {
           }
           .justifyContent(FlexAlign.Start)
 
-          Text(this.context.resourceManager.getStringByNameSync('shareTransition_text2'))
+          Text($r('app.string.shareTransition_text2'))
 
           NodeContainer(this.myNodeController)
             .size({ width: 320, height: 250 })

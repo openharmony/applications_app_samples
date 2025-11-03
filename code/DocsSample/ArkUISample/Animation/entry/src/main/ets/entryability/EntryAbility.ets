@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start navigation_entry_ability]
 // [Start bind_sheet_entry_ability]
 // EntryAbility.ets
 // 程序入口处的onWindowStageCreate增加对窗口宽高等的抓取
@@ -22,49 +21,25 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { display, uiObserver, window } from '@kit.ArkUI';
 import { WindowUtils } from '../utils/WindowUtils';
 
-// [StartExclude navigation_entry_ability]
-// [StartExclude bind_sheet_entry_ability]
 const DOMAIN = 0x0000;
-// [EndExclude bind_sheet_entry_ability]
-// [EndExclude navigation_entry_ability]
 const TAG: string = 'EntryAbility';
-
-// [StartExclude navigation_entry_ability]
-// [StartExclude bind_sheet_entry_ability]
-function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
-}
-
-function callBackFunc2(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag2 navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
-}
-
-// [EndExclude bind_sheet_entry_ability]
 
 export default class EntryAbility extends UIAbility {
   private currentBreakPoint: string = '';
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
-    uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
-    uiObserver.on('navDestinationSwitch', this.context, {
-      navigationId: 'myNavId'
-    }, callBackFunc2);
   }
 
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
-    uiObserver.off('navDestinationSwitch', this.context, callBackFunc);
-    uiObserver.off('navDestinationSwitch', this.context, {
-      navigationId: 'myNavId'
-    }, callBackFunc);
   }
 
   // [Start window_stage]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    // [StartExclude bind_sheet_entry_ability]
     let mainWindow: window.Window;
     try {
       mainWindow = windowStage.getMainWindowSync();
@@ -84,18 +59,11 @@ export default class EntryAbility extends UIAbility {
         }
       })
     } catch {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'error');
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'error');
       return;
     }
-    windowStage.loadContent('pages/Index', (err) => {
-      if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
-        return;
-      }
-      hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
-    });
+    // [EndExclude bind_sheet_entry_ability]
     // [StartExclude window_stage]
-    // [EndExclude navigation_entry_ability]
     // 获取窗口宽高
     WindowUtils.window = windowStage.getMainWindowSync();
     WindowUtils.windowWidthPx = WindowUtils.window.getWindowProperties().windowRect.width;
@@ -111,13 +79,13 @@ export default class EntryAbility extends UIAbility {
     let navigationArea = WindowUtils.window.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
     WindowUtils.navigationIndicatorHeightPx = navigationArea.bottomRect.height;
 
-    hilog.info(0x0000, TAG, 'the width is ' + WindowUtils.windowWidthPx + '  ' + WindowUtils.windowHeightPx + '  ' +
+    hilog.info(DOMAIN, TAG, 'the width is ' + WindowUtils.windowWidthPx + '  ' + WindowUtils.windowHeightPx + '  ' +
     WindowUtils.topAvoidAreaHeightPx + '  ' + WindowUtils.navigationIndicatorHeightPx);
 
     // 监听窗口尺寸、状态栏高度及导航条高度的变化并更新
     try {
       WindowUtils.window.on('windowSizeChange', (data) => {
-        hilog.info(0x0000, TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
+        hilog.info(DOMAIN, TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
         WindowUtils.windowWidthPx = data.width;
         WindowUtils.windowHeightPx = data.height;
         this.updateBreakpoint(data.width);
@@ -127,27 +95,28 @@ export default class EntryAbility extends UIAbility {
       WindowUtils.window.on('avoidAreaChange', (data) => {
         if (data.type === window.AvoidAreaType.TYPE_SYSTEM) {
           let topRectHeight = data.area.topRect.height;
-          hilog.info(0x0000, TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
+          hilog.info(DOMAIN, TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
           WindowUtils.topAvoidAreaHeightPx = topRectHeight;
         } else if (data.type === window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR) {
           let bottomRectHeight = data.area.bottomRect.height;
-          hilog.info(0x0000, TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
+          hilog.info(DOMAIN, TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
           WindowUtils.navigationIndicatorHeightPx = bottomRectHeight;
         }
       })
     } catch (exception) {
-      hilog.error(0x0000, TAG, `register failed. code: ${exception.code}, message: ${exception.message}`);
+      hilog.error(DOMAIN, TAG, `register failed. code: ${exception.code}, message: ${exception.message}`);
     }
+    // [EndExclude window_stage]
 
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+      hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
   }
-
+  // [StartExclude window_stage]
   updateBreakpoint(width: number) {
     let windowWidthVp = width / (display.getDefaultDisplaySync().densityDPI / 160);
     let newBreakPoint: string = '';
@@ -187,4 +156,3 @@ export default class EntryAbility extends UIAbility {
 }
 
 // [End bind_sheet_entry_ability]
-// [End navigation_entry_ability]
