@@ -25,11 +25,11 @@ struct WebComponent {
     Column() {
       Web({
         src:
-        $r('app.string.web_path'), 				// 方式一 加载网络PDF文档
-        // getContext(this).filesDir + '/test.pdf',   // 方式二 加载本地应用沙箱内PDF文档
-        // 'resource://rawfile/test.pdf', 						// 方式三 应用内resource资源PDF文档
-        // $rawfile('test.pdf'), 								        // 方式四 应用内resource资源PDF文档
-        controller: this.controller
+        'https://www.example.com/test.pdf', 					// 方式一 加载网络PDF文档
+      	// this.getUIContext().getHostContext()!.filesDir + '/test.pdf', // 方式二 加载本地应用沙箱内PDF文档
+      	// 'resource://rawfile/test.pdf', 						// 方式三 本地PDF文档 (格式一)
+      	// $rawfile('test.pdf'), 								// 方式三 本地PDF文档 (格式二)
+      	controller: this.controller
       })
         .domStorageAccess(true)
     }
