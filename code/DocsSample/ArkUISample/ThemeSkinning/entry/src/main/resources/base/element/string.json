@@ -35,6 +35,10 @@
     {
       "name": "Theme3_label1",
       "value": "ThemeCustomTamplateThree"
+    },
+    {
+      "name": "SetCustomThemeStyle",
+      "value": "设置应用局部页面自定义主题风格"
     }
   ]
 }

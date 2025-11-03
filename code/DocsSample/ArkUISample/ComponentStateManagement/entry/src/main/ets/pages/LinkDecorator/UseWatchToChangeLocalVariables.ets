@@ -45,7 +45,7 @@ struct ChangeVariablesChild {
   build() {
     Column() {
       Text(this.memberMessage)
-      Text(`sourceNumber of the child component:：` + this.sourceNumber.toString())
+      Text(`sourceNumber of the child component:` + this.sourceNumber.toString())
       Button('Change memberMessage in Child Component')
         .onClick(() => {
           this.memberMessage = 'Hello memberMessage';

@@ -38,7 +38,9 @@ class AppThemeSec implements CustomTheme {
 @Component
 struct DisplayPage1 {
   @State customTheme: CustomTheme = new AppTheme();
-  @State message: string = 'Set a custom theme style for specific pages';
+  // $r('app.string.SetCustomThemeStyle')需要替换为开发者所需的资源文件
+  @State message: string =
+    this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.SetCustomThemeStyle'));
   count = 0;
 
   build() {
