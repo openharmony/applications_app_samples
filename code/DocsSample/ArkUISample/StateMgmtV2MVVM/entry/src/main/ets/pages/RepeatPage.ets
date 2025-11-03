@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/5-Repeat.ets
 // [Start Main_Repeat]
+// src/main/ets/pages/RepeatPage.ets
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';

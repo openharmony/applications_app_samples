@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// [Start Main_RouterPage1]
 // ets/pages/RouterPage1.ets
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 import 'ets/pages/RouterPage2';
@@ -97,4 +96,3 @@ struct Index {
     .height('100%')
   }
 }
-// [End Main_RouterPage1]

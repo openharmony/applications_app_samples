@@ -28,5 +28,4 @@ export class ContextUtils {
     return ContextUtils.context;
   }
 }
-
 // [End Common_ContextUtils]

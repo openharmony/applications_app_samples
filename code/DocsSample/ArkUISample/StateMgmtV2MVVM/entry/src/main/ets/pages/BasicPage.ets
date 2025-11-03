@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/1-Basic.ets
 // [Start Main_Basic]
+// src/main/ets/pages/BasicPage.ets
 @Entry
 @ComponentV2
 struct TodoList {

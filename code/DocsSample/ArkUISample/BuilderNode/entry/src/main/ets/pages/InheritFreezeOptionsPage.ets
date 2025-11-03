@@ -58,13 +58,13 @@ class TextNodeController extends NodeController {
 }
 
 const textNodeController: TextNodeController = new TextNodeController();
-const ZERO = 0;
+
 @Entry
 @Component
 struct MyNavigationTestStack {
   @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @State message: number = ZERO;
-  @State logNumber: number = ZERO;
+  @State message: number = 0;
+  @State logNumber: number = 0;
 
   @Builder
   PageMap(name: string) {
@@ -162,7 +162,8 @@ struct pageTwoStack {
   }
 }
 
-@Component({ freezeWhenInactive: true }) // 设置冻结策略为不活跃冻结
+@Component({ freezeWhenInactive: true })
+  // 设置冻结策略为不活跃冻结
 struct NavigationContentMsgStack {
   @Link message: number;
   @Link index: number;
@@ -177,12 +178,14 @@ struct NavigationContentMsgStack {
   }
 }
 
-@Component({ freezeWhenInactive: true }) // 设置冻结策略为不活跃冻结
+@Component({ freezeWhenInactive: true })
+  // 设置冻结策略为不活跃冻结
 struct TextBuilder {
   @Prop @Watch('info') message: number = 0;
 
   info(): void {
-    hilog.info(0xF811,'testTag','%{public}s',`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
+    hilog.info(0xF811, 'testTag', '%{public}s',
+      `freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
   }
 
   build() {
@@ -195,4 +198,5 @@ struct TextBuilder {
     }
   }
 }
+
 // [End Main_InheritFreezeOptionsPage]

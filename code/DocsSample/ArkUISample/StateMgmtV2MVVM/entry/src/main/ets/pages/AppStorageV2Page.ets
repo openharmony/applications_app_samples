@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/8-AppStorageV2.ets
 // [Start Main_AppStorageV2]
+// src/main/ets/pages/AppStorageV2Page.ets
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';

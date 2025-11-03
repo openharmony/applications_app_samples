@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/view/TitleView.ets
 // [Start View_TitleView]
+// src/main/ets/view/TitleView.ets
 @ComponentV2
 export default struct TitleView {
   @Param tasksUnfinished: number = 0;

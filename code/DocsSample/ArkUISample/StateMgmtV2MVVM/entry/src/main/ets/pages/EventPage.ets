@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/4-Event.ets
 // [Start Main_Event]
+// src/main/ets/pages/EventPage.ets
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';

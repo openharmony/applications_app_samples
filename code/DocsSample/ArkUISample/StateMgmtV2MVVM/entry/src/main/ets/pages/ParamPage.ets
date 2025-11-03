@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/3-Param.ets
 // [Start Main_Param]
+// src/main/ets/pages/ParamPage.ets
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';

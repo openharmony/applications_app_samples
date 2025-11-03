@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/6-ObservedV2Trace.ets
 // [Start Main_ObservedV2Trace]
+// src/main/ets/pages/ObservedV2TracePage.ets
 @ObservedV2
 class Task {
   public taskName: string = '';
@@ -65,6 +65,7 @@ struct TodoList {
 
   build() {
     Column() {
+      // app.string.TodoList_title资源文件中的value值为'待办'
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin({ bottom: 10 })
@@ -76,8 +77,10 @@ struct TodoList {
           })
         })
       Row() {
+        // app.string.Finish_all_tasks资源文件中的value值为'全部完成'
         Button($r('app.string.Finish_all_tasks'))
           .onClick(() => this.finishAll(true))
+        // app.string.Unfinish_all_tasks资源文件中的value值为'全部未完成'
         Button($r('app.string.Unfinish_all_tasks'))
           .onClick(() => this.finishAll(false))
       }

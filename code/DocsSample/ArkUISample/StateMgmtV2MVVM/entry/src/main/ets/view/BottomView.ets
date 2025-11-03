@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/view/BottomView.ets
 // [Start View_BottomView]
+// src/main/ets/view/BottomView.ets
 import { common, Want } from '@kit.AbilityKit';
 import TaskViewModel from '../viewmodel/TaskViewModel';
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
