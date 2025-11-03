@@ -39,9 +39,9 @@ napi_value embeddedNode(napi_env env, napi_callback_info info)
     ArkUI_NodeContentHandle nodeContentHandle = nullptr;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle);
     OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+    //[EndExclude embeddedComponentCTest_start]
     // 创建节点
     ArkUI_NodeHandle embeddedNode = nodeAPI->createNode(ARKUI_NODE_EMBEDDED_COMPONENT);
-    //[EndExclude embeddedComponentCTest_start]
     // 设置属性
     AbilityBase_Element Element = {.bundleName = "com.example.uiextensionandaccessibility",
                                    .abilityName = "ExampleEmbeddedAbility",
