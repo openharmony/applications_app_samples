@@ -56,7 +56,7 @@ export struct SamplePage {
         geoLocationManager.on('locationChange', requestConfig, locationCallback);
       }
     } catch (err) {
-      hilog.info(0x0000, this.tag, 'errorCode:' + err.code + ', errMsg:' + err.msg);
+      hilog.info(0x0000, this.tag, 'error:' + JSON.stringify(err));
     }
 // [End request_location]
   }
@@ -86,13 +86,13 @@ export struct SamplePage {
             this.city = address[0].locality;
           }
           hilog.info(0x0000, this.tag, 'this city:' + JSON.stringify(this.city));
-// [StartExclude get_current_location]
+// [EndExclude get_current_location]
           hilog.info(0x0000, this.tag, 'current location:' + JSON.stringify(location));
         }
       }
 // [EndExclude is_location_enabled]
     } catch (err) {
-      hilog.info(0x0000, this.tag, 'errorCode:' + err.code + ', errMsg:' + err.msg);
+      hilog.info(0x0000, this.tag, 'error:' + JSON.stringify(err));
     }
 // [End get_address_from_location]
 // [End is_location_enabled]
@@ -112,7 +112,7 @@ export struct SamplePage {
         }
       }
     } catch (err) {
-      hilog.info(0x0000, this.tag, 'errorCode:' + err.code + ', errMsg:' + err.msg);
+      hilog.info(0x0000, this.tag, 'error:' + JSON.stringify(err));
     }
 // [End get_last_location]
   }
