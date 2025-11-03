@@ -49,4 +49,4 @@ export const RegisterAppHicollieWatcherT: () => void;
 // [End EventSub_Index.d.ts_All]
 // [Start Sys_Native_Crash_Event_C++_Index.d.ts]
 export const testNullptr: () => void;
-// [Start Sys_Native_Crash_Event_C++_Index.d.ts]
+// [End Sys_Native_Crash_Event_C++_Index.d.ts]

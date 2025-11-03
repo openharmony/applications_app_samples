@@ -442,7 +442,7 @@ static napi_value TestNullptr(napi_env env, napi_callback_info info)
     int a = *p; // 空指针解引用，程序会在此处崩溃
     return {};
 }
-// [Start Sys_Native_Nullptr_Event_C++]
+// [End Sys_Native_Nullptr_Event_C++]
 
 // [Start Sys_Crash_Crash_OnReceive]
 static void OnReceiveCrashEvent(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups,
