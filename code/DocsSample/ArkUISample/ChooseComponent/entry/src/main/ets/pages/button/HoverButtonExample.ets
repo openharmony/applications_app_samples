@@ -37,8 +37,7 @@ export struct HoverButtonExample {
         }.width('90%')
 
         Button() {
-          //注意图片需要替换
-          Image($r('sys.media.ohos_ic_public_add'))
+          Image($r('app.media.add'))
            .width(50)
            .height(50)
         }
