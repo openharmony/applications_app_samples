@@ -13,22 +13,28 @@
  * limitations under the License.
  */
 
+// [Start light_header]
 import { Camera, Light, LightType, Scene, SceneNodeParameters, SceneResourceFactory } from '@kit.ArkGraphics3D';
+// [End light_header]
 import { router } from '@kit.ArkUI';
-import logger from '../utils/Logger';
 
 let globalScene: Scene | null = null;
 
 function createLightPromise(): Promise<Light> {
   return new Promise((resolve, reject) => {
     // Switched from .gltf to .glb; same content, different format
+    // [Start light_load_and_factory]
     let scene: Promise<Scene> = Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'));
     scene.then(async (result: Scene) => {
+      // [StartExclude light_load_and_factory]
       // Save loaded scene globally for reuse (e.g., in LightPage)
       globalScene = result;
+      // [EndExclude light_load_and_factory]
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let lightParameter: SceneNodeParameters = { name: 'light' };
+      // [StartExclude light_load_and_factory]
       // Create directional light.
+      // [Start light_create_and_config]
       let light: Promise<Light> = sceneFactory.createLight(lightParameter, LightType.DIRECTIONAL);
       light.then(async (lightEntity: Light) => {
         // Set the color of the directional light.
@@ -36,15 +42,24 @@ function createLightPromise(): Promise<Light> {
 
         // Set other light parameters.
         // ...
+        // [StartExclude light_create_and_config]
         resolve(lightEntity);
+        // [EndExclude light_create_and_config]
       }).catch((err: string) => {
-        logger.error('Light create failed: ' + err + '.');
+        console.error('Light create failed: ' + err + '.');
+        // [StartExclude light_create_and_config]
         reject(err);
+        // [EndExclude light_create_and_config]
       });
+      // [End light_create_and_config]
+      // [EndExclude light_load_and_factory]
     }).catch((error: string) => {
-        logger.error('Scene load failed: ' + error);
-        reject(error);
-      });
+      console.error('Scene load failed: ' + error);
+      // [StartExclude light_load_and_factory]
+      reject(error);
+      // [EndExclude light_load_and_factory]
+    });
+    // [End light_load_and_factory]
   });
 }
 
@@ -77,10 +92,11 @@ struct LightPage {
   }
 
   async init(): Promise<void> {
+    // [Start light_init_bind]
     this.light = await createLightPromise();
     if (globalScene && this.light) {
       this.scene = globalScene;
-      this.sceneOpt = { scene: globalScene, modelType: ModelType.SURFACE } as SceneOptions;
+      this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
       this.rf = this.scene.getResourceFactory();
       this.cam = await this.rf.createCamera({ 'name': 'Camera1' });
       this.cam.enabled = true;
@@ -90,6 +106,7 @@ struct LightPage {
       this.green = this.light.color.g;
       this.blue = this.light.color.b;
     }
+    // [End light_init_bind]
   }
 
   build() {
@@ -103,6 +120,7 @@ struct LightPage {
 
         Column() {
           Text('Red: ' + this.red.toFixed(1)).fontSize(12);
+          // [Start light_ui_sliders]
           Slider({
             value: this.red,
             min: 0,
@@ -126,6 +144,7 @@ struct LightPage {
               }
             })
             .width('100%')
+          // [End light_ui_sliders]
         }
         .width('100%')
 
