@@ -50,7 +50,7 @@ function builderOverlay(params: Params) {
 
 @Entry
 @Component
-export struct OverlayManagerDemo2 {
+export struct OverlayManagerAlertDialog {
   @State message: string = 'ComponentContent';
   private uiContext: UIContext = this.getUIContext();
   private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
@@ -84,7 +84,7 @@ export struct OverlayManagerDemo2 {
     // [StartExclude OverlayManager_Demo2]
     }
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.OverlayManager_demo2_title'));
+    .title($r('app.string.OverlayManager_alert_title'));
     // [EndExclude OverlayManager_Demo2]
   }
 }

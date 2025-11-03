@@ -18,6 +18,7 @@ import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, UiDirection } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import resource from '../../../main/ets/common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -25,6 +26,9 @@ let want: Want;
 const ONE_SECONDS_TIME = 1000;
 const SCROLL_DISTANCE = 2000;
 const ONE_SECONDS_TIME2 = 10000;
+
+const TAG: string = '[Sample_dialogproject]';
+const DOMAIN: number = 0xFF00;
 
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -304,14 +308,18 @@ export default function IndexTest() {
     })
 
     it('testToast', 0, async (done: Function) => {
-      console.info("uitest: testToast begin");
+      hilog.info(DOMAIN, TAG, 'uitest: testToast begin');
       let driver = Driver.create();
-      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Toast1')), MatchPattern.CONTAINS));
+      let button_list =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Toast1')), MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OpenCloseToast_title')), MatchPattern.CONTAINS));
+      await sleep(ONE_SECONDS_TIME);
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OpenCloseToast_title')),
+          MatchPattern.CONTAINS));
       await button_list1.click();
-
+      await sleep(ONE_SECONDS_TIME);
       let button1 = await driver.findComponent(ON.text('Open', MatchPattern.CONTAINS));
       await button1.click();
       let button2 = await driver.findComponent(ON.text('Close', MatchPattern.CONTAINS));
@@ -323,12 +331,16 @@ export default function IndexTest() {
     })
 
     it('testOverlayManager', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'uitest: testOverlayManager begin');
       let driver = Driver.create();
-      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager1')), MatchPattern.CONTAINS));
+      let button_list = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager1')),
+        MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
       await sleep(ONE_SECONDS_TIME);
-      let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager_demo1_title')), MatchPattern.CONTAINS));
+      let button_list1 =
+        await driver.findComponent(ON.text(resource.resourceToString($r('app.string.OverlayManager_component_title')),
+          MatchPattern.CONTAINS));
       expect(button_list1 === null).assertFalse();
       await button_list1.click();
       await sleep(ONE_SECONDS_TIME);

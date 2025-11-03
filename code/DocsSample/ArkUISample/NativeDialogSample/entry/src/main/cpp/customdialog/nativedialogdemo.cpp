@@ -124,6 +124,7 @@ void ShowDialog()
     dialogAPI->setContent(g_dialogController, contentNode);
     dialogAPI->setContentAlignment(g_dialogController, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
     dialogAPI->setBackgroundColor(g_dialogController, 0xffffffff);
+    dialogAPI->setCornerRadius(g_dialogController, 6.0f, 6.0f, 6.0f, 6.0f);
     dialogAPI->setModalMode(g_dialogController, false);
     dialogAPI->setAutoCancel(g_dialogController, true);
     dialogAPI->show(g_dialogController, false);
@@ -264,6 +265,7 @@ void OpenCustomDialog()
     }
     OH_ArkUI_CustomDialog_SetAlignment(g_dialogOptions, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
     OH_ArkUI_CustomDialog_SetBackgroundColor(g_dialogOptions, 0xffffffff);
+    OH_ArkUI_CustomDialog_SetCornerRadius(g_dialogOptions, 6.0f, 6.0f, 6.0f, 6.0f);
     OH_ArkUI_CustomDialog_SetModalMode(g_dialogOptions, false);
     OH_ArkUI_CustomDialog_SetAutoCancel(g_dialogOptions, true);
     OH_ArkUI_CustomDialog_SetBorderStyle(g_dialogOptions, ARKUI_BORDER_STYLE_SOLID,
