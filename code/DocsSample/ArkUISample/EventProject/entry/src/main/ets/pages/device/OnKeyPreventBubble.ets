@@ -16,17 +16,13 @@
 // [Start listen_response_key_event]
 @Entry
 @Component
-export struct OnKeyPreventBubble {
+struct KeyEventPreventBubble {
   @State buttonText: string = '';
   @State buttonType: string = '';
   @State columnText: string = '';
   @State columnType: string = '';
 
   build() {
-    // [StartExclude listen_response_key_event]
-    NavDestination() {
-      Column({ space: 12 }) {
-        // [EndExclude listen_response_key_event]
     Column() {
       Button('onKeyEvent')
         .defaultFocus(true)
@@ -70,15 +66,20 @@ export struct OnKeyPreventBubble {
           'KeyText:' + event.keyText;
       }
     })
-        // [StartExclude listen_response_key_event]
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.Device_OnKey_title'))
-    // [EndExclude listen_response_key_event]
   }
 }
 // [End listen_response_key_event]
+
+@Builder
+export function OnKeyPreventBubble() {
+  NavDestination() {
+    Column({ space: 12 }) {
+      KeyEventPreventBubble()
+    }
+    .width('100%')
+    .height('100%')
+    .padding({ left: 12, right: 12 })
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.Device_OnKeyPreventBubble_title'))
+}

@@ -69,8 +69,12 @@
       "value": "按键事件"
     },
     {
+      "name": "Device_OnKeyPreventBubble_title",
+      "value": "阻止按键事件冒泡"
+    },
+    {
       "name": "Device_OnKeyPreIme_title",
-      "value": "按键事件"
+      "value": "屏蔽按键事件"
     },
     {
       "name": "Device_OnMouse_title",
