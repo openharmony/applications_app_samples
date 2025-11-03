@@ -25,7 +25,7 @@ const DOMAIN = 0x0000;
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsBasicUsage {
+struct BasicUsage {
   // [StartExclude terminateSelf]
   startAbilityTest(): void {
     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
