@@ -40,6 +40,10 @@ struct Index {
         .onClick(() => {
           router.pushUrl({ url: 'pages/LoadLocalPageFileInSandboxPath_two' });
         })
+      Button('ResourceLoadPage')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/ResourceLoadPage' });
+        })
     }.height('100%')
     .width('100%')
   }

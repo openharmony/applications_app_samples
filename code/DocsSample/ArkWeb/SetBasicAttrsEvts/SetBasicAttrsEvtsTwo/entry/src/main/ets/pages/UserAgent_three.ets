@@ -29,7 +29,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.userAgent = this.controller.getCustomUserAgent();
-            console.log('userAgent: ' + this.userAgent);
+            console.info('userAgent: ' + this.userAgent);
           } catch (error) {
             console.error(
               `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

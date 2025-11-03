@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
+// [Start index_load_route_link_to_profile]
 import { webview } from '@kit.ArkWeb';
 import { router } from '@kit.ArkUI';
 
-// [Start index_load_route_link_to_profile]
 @Entry
 @Component
 struct WebComponent {
@@ -31,7 +31,7 @@ struct WebComponent {
             let url: string = event.data.getRequestUrl();
             if (url.indexOf('native://') === 0) {
               // 跳转其他界面
-              router.pushUrl({ url: url.substring(9) });
+              this.getUIContext().getRouter().pushUrl({ url: url.substring(9) });
               return true;
             }
           }

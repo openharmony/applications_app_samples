@@ -15,10 +15,6 @@
 // [Start build_response_resources_to_implement_custom_page_response_scenarios]
 import { webview } from '@kit.ArkWeb';
 
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-
 @Entry
 @Component
 struct WebComponent {
@@ -42,7 +38,7 @@ struct WebComponent {
           if (event) {
             console.info('url:' + event.request.getRequestUrl());
             // 拦截页面请求
-            if (event.request.getRequestUrl() !== resourceToString($r('app.string.web_path')) + '/test.html') {
+            if (event.request.getRequestUrl() !== 'https://www.example.com/test.html') {
               return null;
             }
           }
