@@ -16,7 +16,7 @@
 // [Start Decorative_Set]
 @Entry
 @ComponentV2
-export struct DecorativeSet {
+export struct Parent {
   @Provider() message: Set<number> = new Set([1, 2, 3, 4]);
 
   build() {

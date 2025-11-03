@@ -16,7 +16,7 @@
 // [Start Decorative_Array]
 @Entry
 @ComponentV2
-export struct DecorativeArray {
+export struct Parent  {
   @Provider() count: number[] = [1,2,3];
 
   build() {

@@ -62,7 +62,7 @@ class TextNodeController extends NodeController {
 
 @Entry
 @ComponentV2
-export struct RemoChildDisconnectProvider {
+export struct Parent  {
   @Provider() content: string = 'Index: hello world';
   @Monitor('content') providerWatch() {
     console.info(`Provider change ${this.content}`);

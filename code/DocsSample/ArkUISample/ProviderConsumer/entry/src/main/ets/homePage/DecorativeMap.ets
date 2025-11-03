@@ -16,7 +16,7 @@
 // [Start Decorative_Map]
 @Entry
 @ComponentV2
-export struct DecorativeMap {
+export struct Parent {
   @Provider() message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {

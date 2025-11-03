@@ -16,7 +16,7 @@
 // [Start No_Twoway_Binding]
 @Entry
 @ComponentV2
-export struct NoTwowayBinding {
+export struct Parent {
   @Provider() str1: string = 'hello';
 
   build() {

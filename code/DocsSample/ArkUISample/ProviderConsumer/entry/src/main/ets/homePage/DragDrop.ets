@@ -16,7 +16,7 @@
 // [Start Drag_Drop]
 @Entry
 @ComponentV2
-struct DragDrop {
+struct Parent {
   @Local childX: number = 0;
   @Local childY: number = 1;
   @Provider() onDrag: (x: number, y: number) => void = (x: number, y: number) => {

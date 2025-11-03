@@ -34,13 +34,13 @@ struct Parent {
   build() {
     Column() {
       Text(`${this.val2}`)
-      ProviderSame()
+      Child ()
     }
   }
 }
 
 @ComponentV2
-export struct ProviderSame {
+export struct Child  {
   @Consumer() val: number = 0; // 20
 
   build() {
