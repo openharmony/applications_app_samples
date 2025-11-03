@@ -33,6 +33,8 @@
 #include "NativeEntry.h"
 #include "ArkUICustomContainerNode.h"
 #include "ArkUICustomNode.h"
+
+// 全局环境变量声明
 static napi_env g_env = nullptr;
 // [Start normalTextListExample_start]
 namespace NativeModule {
