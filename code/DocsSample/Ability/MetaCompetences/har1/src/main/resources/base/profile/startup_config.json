@@ -2,7 +2,7 @@
   "startupTasks": [
     {
       "name": "HSP1_Task_01",
-      "srcEntry": "./ets/startup/HAR1_Task_01.ets",
+      "srcEntry": "./ets/startup/HAR1Task01.ets",
       "dependencies": [
         "HSP2_Task_01"
       ],

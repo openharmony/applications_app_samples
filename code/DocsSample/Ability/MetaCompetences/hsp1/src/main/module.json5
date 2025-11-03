@@ -23,6 +23,9 @@
     "appStartup": "$profile:startup_config", // 启动框架的配置文件
     // [StartExclude startup004]
     "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
     ],
     "deliveryWithInstall": true,
     "pages": "$profile:main_pages",
