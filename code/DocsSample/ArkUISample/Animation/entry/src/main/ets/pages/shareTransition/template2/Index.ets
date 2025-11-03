@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start post_data]
+import resource from '../../../common/resource';
+
 class PostData {
   // 图片使用Resource资源，需用户自定义
   avatar: Resource = $r('app.media.flower');
@@ -26,9 +27,6 @@ class PostData {
 @Entry
 @Component
 struct Index {
-  // [StartExclude post_data]
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude post_data]
   @State isExpand: boolean = false;
   @State @Watch('onItemClicked') selectedIndex: number = -1;
   // 数组中图片均使用Resource资源，需用户自定义
@@ -36,19 +34,19 @@ struct Index {
     {
       avatar: $r('app.media.flower'),
       name: 'Alice',
-      message: this.context.resourceManager.getStringByNameSync('shareTransition_text1'),
+      message: resource.resourceToString($r('app.string.shareTransition_text1')),
       images: [$r('app.media.spring'), $r('app.media.tall_tree')]
     },
     {
       avatar: $r('app.media.sunset_sky'),
       name: 'Bob',
-      message: this.context.resourceManager.getStringByNameSync('shareTransition_text2'),
+      message: resource.resourceToString($r('app.string.shareTransition_text2')),
       images: [$r('app.media.island')]
     },
     {
       avatar: $r('app.media.tall_tree'),
       name: 'Carl',
-      message: this.context.resourceManager.getStringByNameSync('shareTransition_text3'),
+      message: resource.resourceToString($r('app.string.shareTransition_text3')),
       images: [$r('app.media.flower'), $r('app.media.sunset_sky'), $r('app.media.spring')]
     }];
 
@@ -87,7 +85,6 @@ struct Index {
 
 @Component
 export default struct Post {
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @Link selectedIndex: number;
   @Prop data: PostData;
   @Prop index: number;
@@ -120,7 +117,7 @@ export default struct Post {
       // 展开态下组件增加的内容
       if (this.isExpand) {
         Column() {
-          Text(this.context.resourceManager.getStringByNameSync('shareTransition_text4'))
+          Text($r('app.string.shareTransition_text1'))
           // 对评论区文本添加出现消失转场效果
             .transition(TransitionEffect.OPACITY
               .animation({ duration: 350, curve: Curve.Friction }))

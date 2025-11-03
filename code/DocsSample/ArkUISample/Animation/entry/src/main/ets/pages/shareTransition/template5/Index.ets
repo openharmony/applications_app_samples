@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start bind_sheet_index]
 // index.ets
@@ -45,9 +44,6 @@ struct Index {
   @State radius: number = 0;
   // 原图的透明度
   @State opacityDegree: number = 1;
-  // [StartExclude bind_sheet_index]
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude bind_sheet_index]
 
   // 抓取照片原位置信息
   private originInfo: AnimationInfo = new AnimationInfo;
@@ -144,7 +140,7 @@ struct Index {
   // 照片页
   build() {
     Column() {
-      Text(this.context.resourceManager.getStringByNameSync('shareTransition_text9'))
+      Text($r('app.string.shareTransition_text9'))
         .textAlign(TextAlign.Start)
         .width('100%')
         .fontSize(30)
@@ -200,7 +196,7 @@ struct Index {
   @Builder
   mySheet() {
     Column({ space: 20 }) {
-      Text(this.context.resourceManager.getStringByNameSync('shareTransition_text10'))
+      Text($r('app.string.shareTransition_text10'))
         .fontSize(30)
       Row({ space: 40 }) {
         Column({ space: 20 }) {

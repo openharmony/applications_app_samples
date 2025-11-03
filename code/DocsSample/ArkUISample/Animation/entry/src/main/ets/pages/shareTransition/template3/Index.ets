@@ -195,7 +195,7 @@ class AnimationProperties {
     this.positionX = this.uiContext.px2vp(clickedImageInfo.left - rootStackInfo.left);
     this.positionY = this.uiContext.px2vp(clickedImageInfo.top - rootStackInfo.top);
     this.calculatedTranslateX = this.uiContext.px2vp(rootStackInfo.left - clickedImageInfo.left) +
-    this.expandTranslateX;
+      this.expandTranslateX;
     this.calculatedTranslateY = this.uiContext.px2vp(rootStackInfo.top - clickedImageInfo.top) + this.expandTranslateY;
   }
 
