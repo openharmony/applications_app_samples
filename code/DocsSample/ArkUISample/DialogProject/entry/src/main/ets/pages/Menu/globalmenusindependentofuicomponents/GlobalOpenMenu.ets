@@ -33,8 +33,8 @@ let uiContext = AppStorage.get('UIContext') as UIContext;
 export function buildText(params: Params) {
   Menu() {
     MenuItem({ startIcon: $r('app.media.app_icon') }).width(32).height(32).borderRadius(10)
-    MenuItem({ content: 'This is a Popup title 1' })
-    MenuItem({ content: 'This is a Popup title 2' })
+    MenuItem({ content: 'This is a Menu title 1' })
+    MenuItem({ content: 'This is a Menu title 2' })
     MenuItem({ content: 'confirm' }).onClick(() => {
       hilog.error(0x0000, 'globalOpenMenu', 'confirm button click');
     })

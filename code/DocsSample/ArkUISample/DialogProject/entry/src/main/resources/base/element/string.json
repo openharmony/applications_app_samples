@@ -836,6 +836,10 @@
     {
       "name": "close_widows",
       "value": "点我关闭弹窗"
+    },
+    {
+      "name": "dialog_message",
+      "value": "弹窗"
     }
   ]
 }
