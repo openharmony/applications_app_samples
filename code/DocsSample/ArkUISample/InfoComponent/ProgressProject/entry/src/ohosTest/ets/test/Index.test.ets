@@ -17,6 +17,7 @@ import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, Component } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit'
+import { KeyCode } from '@kit.InputKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -76,16 +77,14 @@ export default function IndexTest() {
      */
     it('testProgressIncrease', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressIncrease begin");
-
-      let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
-      await driver.waitForIdle(500, 500);
-
+      const routerBtn = await driver.findComponent(ON.text('更新进度示例'));
+      await routerBtn.click();
+      await driver.delayMs(500);
       const increaseBtn = await driver.findComponent(ON.text('进度条+5'));
       expect(increaseBtn === null).assertFalse();
       await increaseBtn.click();
       await driver.delayMs(500);
+      await driver.triggerKey(KeyCode.KEYCODE_BACK);
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressIncrease end");
       done();
     });
@@ -97,16 +96,16 @@ export default function IndexTest() {
      */
     it('testProgressMaxValue', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressMaxValue begin");
-      let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
-      await driver.waitForIdle(500, 500);
+      const routerBtn = await driver.findComponent(ON.text('更新进度示例'));
+      await routerBtn.click();
+      await driver.delayMs(500);
       const increaseBtn = await driver.findComponent(ON.text('进度条+5'));
       for (let i = 0; i < 25; i++) {
         await increaseBtn.click();
         await driver.delayMs(100);
       }
       await driver.delayMs(500);
+      await driver.triggerKey(KeyCode.KEYCODE_BACK);
       hilog.info(DOMAIN, TAG, BUNDLE + "ProgressTest: testProgressDecrease end");
       done();
     });
