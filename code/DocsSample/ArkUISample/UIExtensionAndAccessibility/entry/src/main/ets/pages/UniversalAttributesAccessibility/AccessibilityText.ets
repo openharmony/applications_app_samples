@@ -22,7 +22,7 @@ export struct AccessibilityText {
       Text(`virtual node`)
     }
     .width(10)
-    .height(10)
+      .height(10)
   }
 
   build() {
@@ -40,44 +40,51 @@ export struct AccessibilityText {
           Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
-        .accessibilityLevel('yes')
+          .accessibilityLevel('yes')
         // [End accessibility_level_start]
         // [Start accessibility_text_group_start]
         Column() {
           Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
-        .accessibilityLevel('yes')
-        .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
+          .accessibilityLevel('yes')
+          // 'app.string.UniversalAttributesAccessibility_text7'需要替换为开发者所需的文本资源文件
+          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
         // [End accessibility_text_group_start]
         // [Start accessibility_description_start]
         Column() {
           Text('HelloWorld')
         }
         .accessibilityGroup(true)
-        .accessibilityLevel('yes')
-        .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-        .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
+          .accessibilityLevel('yes')
+          // 'app.string.UniversalAttributesAccessibility_text7'需要替换为开发者所需的文本资源文件
+          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
+          // 'app.string.UniversalAttributesAccessibility_text8'需要替换为开发者所需的文本资源文件
+          .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
         // [End accessibility_description_start]
         // [Start accessibility_checked_start]
         Column() {
           Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
-        .accessibilityLevel('yes')
-        .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-        .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
-        .accessibilityChecked(true)
+          .accessibilityLevel('yes')
+          // 'app.string.UniversalAttributesAccessibility_text7'需要替换为开发者所需的文本资源文件
+          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
+          // 'app.string.UniversalAttributesAccessibility_text8'需要替换为开发者所需的文本资源文件
+          .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
+          .accessibilityChecked(true)
         // [End accessibility_checked_start]
         // [Start accessibility_selected_start]
         Column() {
           Text('HelloWorld').fontSize(50).fontWeight(FontWeight.Bold)
         }
         .accessibilityGroup(true)
-        .accessibilityLevel('yes')
-        .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-        .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
-        .accessibilitySelected(undefined)
+          .accessibilityLevel('yes')
+          // 'app.string.UniversalAttributesAccessibility_text7'需要替换为开发者所需的文本资源文件
+          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
+          // 'app.string.UniversalAttributesAccessibility_text8'需要替换为开发者所需的文本资源文件
+          .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
+          .accessibilitySelected(undefined)
         // [End accessibility_selected_start]
         // [EndExclude accessibility_text_start]
         Column() {
@@ -91,21 +98,21 @@ export struct AccessibilityText {
             .fontWeight(FontWeight.Bold)
         }
         .width('100%')
-        .accessibilityGroup(true)
-        .accessibilityLevel('yes')
-        // $r('app.media.UniversalAttributesAccessibility_text7')需要替换为开发者所需的文本资源文件
-        .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
-        // $r('app.media.UniversalAttributesAccessibility_text8')需要替换为开发者所需的文本资源文件
-        .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
-        .accessibilityVirtualNode(this.customAccessibilityNode)
-        .accessibilityChecked(true)
-        .accessibilitySelected(undefined)
+          .accessibilityGroup(true)
+          .accessibilityLevel('yes')
+          // $r('app.media.UniversalAttributesAccessibility_text7')需要替换为开发者所需的文本资源文件
+          .accessibilityText($r('app.string.UniversalAttributesAccessibility_text7'))
+          // $r('app.media.UniversalAttributesAccessibility_text8')需要替换为开发者所需的文本资源文件
+          .accessibilityDescription($r('app.string.UniversalAttributesAccessibility_text8'))
+          .accessibilityVirtualNode(this.customAccessibilityNode)
+          .accessibilityChecked(true)
+          .accessibilitySelected(undefined)
       }
       .height('100%')
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.media.UniversalAttributesAccessibility_title1')需要替换为开发者所需的文本资源文件
-    .title($r('app.string.UniversalAttributesAccessibility_title1'))
+      // $r('app.media.UniversalAttributesAccessibility_title1')需要替换为开发者所需的文本资源文件
+      .title($r('app.string.UniversalAttributesAccessibility_title1'))
   }
 }
 // [End accessibility_text_start]

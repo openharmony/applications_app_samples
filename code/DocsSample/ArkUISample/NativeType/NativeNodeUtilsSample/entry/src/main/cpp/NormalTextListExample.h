@@ -23,7 +23,9 @@
 #include "ArkUIListItemNode.h"
 #include "ArkUIListNode.h"
 #include "ArkUITextNode.h"
+// [StartExclude normalTextListExample_start]
 #include "common/common.h"
+// [EndExclude normalTextListExample_start]
 #include <hilog/log.h>
 
 namespace NativeModule {
