@@ -15,10 +15,6 @@
 // [Start AchieveConfirmDialogPage2]
 import { webview } from '@kit.ArkWeb';
 import { ConfirmDialog } from '@kit.ArkUI';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_ShowWebPageDialog]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'ShowWebPageDialog_';
 
 @Entry
 @Component
@@ -26,7 +22,6 @@ struct DialogConfirmDialog {
   @State message: string = 'Hello World';
   @State title: string = 'Hello World';
   @State result: JsResult | null = null;
-  context = this.getUIContext().getHostContext()
   webviewController: webview.WebviewController = new webview.WebviewController();
   isChecked = false;
   dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
@@ -36,27 +31,24 @@ struct DialogConfirmDialog {
       // 勾选框选中状态
       isChecked: this.isChecked,
       // 勾选框说明文本
-      // $r('app.string.noPrompt')需要替换为开发者所需的资源文件
-      checkTips: $r('app.string.noPrompt'),
+      checkTips: 'No further prompts after prohibition',
       primaryButton: {
-        // $r('app.string.no')需要替换为开发者所需的资源文件
-        value: $r('app.string.no'),
+        value: 'prohibited',
         action: () => {
           this.result?.handleCancel();
         },
       },
       secondaryButton: {
-        // $r('app.string.allow')需要替换为开发者所需的资源文件
-        value: $r('app.string.allow'),
+        value: 'allow',
         action: () => {
           this.isChecked = false;
-          hilog.info(DOMAIN, TAG, BUNDLE, 'Callback when the second button is clicked');
+          console.info('Callback when the second button is clicked');
           this.result?.handleConfirm();
         }
       },
       onCheckedChange: (checked) => {
         this.isChecked = checked;
-        hilog.info(DOMAIN, TAG, BUNDLE, 'Callback when the checkbox is clicked');
+        console.info('Callback when the checkbox is clicked');
       },
     }),
     onWillDismiss: () => {
@@ -74,12 +66,9 @@ struct DialogConfirmDialog {
             if (this.isChecked) {
               event.result.handleCancel();
             } else {
-              hilog.info(DOMAIN, TAG, BUNDLE, 'event.url:' + event.url);
-              hilog.info(DOMAIN, TAG, BUNDLE, 'event.message:' + event.message);
-              // $r('app.string.from')需要替换为开发者所需的资源文件
-              this.title = this.context?.resourceManager.getStringSync($r('app.string.from').id) +
-                // $r('app.string.info')需要替换为开发者所需的资源文件
-              event.url + this.context?.resourceManager.getStringSync($r('app.string.info').id);
+              console.info('event.url:' + event.url);
+              console.info('event.message:' + event.message);
+              this.title = 'from' + event.url + 'news';
               this.message = event.message;
               this.result = event.result;
               this.dialogControllerCheckBox.open();

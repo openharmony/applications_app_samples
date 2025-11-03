@@ -21,15 +21,6 @@ import { http } from '@kit.NetworkKit';
 import { scanCore, scanBarcode, detectBarcode } from '@kit.ScanKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//font size
-const FONT_SIZE: number = 20;
-//buffer size
-const BUFSIZE: number = 4096;
-//MenuItem width
-const MENUITEM_WIDTH: number = 200;
-//MenuItem height
-const MENUITEM_HEIGHT: number = 50;
-
 @Entry
 @Component
 struct WebComponent {
@@ -49,7 +40,7 @@ struct WebComponent {
     let srcFileDes = this.context.resourceManager.getRawFdSync(rawfilePath);
     let dstPath = this.context.filesDir + '/' +newFileName;
     let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    let bufsize = BUFSIZE;
+    let bufsize = 4096;
     let buf = new ArrayBuffer(bufsize);
     let off = 0;
     let len = 0;
@@ -85,8 +76,8 @@ struct WebComponent {
       MenuItem({
         content: 'Scan QR Code',
       })
-        .width(MENUITEM_WIDTH)
-        .height(MENUITEM_HEIGHT)
+        .width(200)
+        .height(50)
         .onClick(async () => {
           try {
             let uri = '';
@@ -96,19 +87,19 @@ struct WebComponent {
             } else if (this.imgUrl?.includes('http') || this.imgUrl?.includes('https')) {
               uri = await this.copyUrlPicToDir(this.imgUrl, `onlinePic${systemDateTime.getTime()}.png`);
             }
-            let options: scanBarcode.ScanOptions =
-              { scanTypes: [scanCore.ScanType.ALL], enableMultiMode: true, enableAlbum: true }
+            let options: scanBarcode.ScanOptions = { scanTypes: [scanCore.ScanType.ALL],
+              enableMultiMode: true, enableAlbum: true }
             let inputImage: detectBarcode.InputImage = { uri: uri };
             try {
               // 调用图片识码接口
               detectBarcode.decode(inputImage, options,
                 (error: BusinessError, result: Array<scanBarcode.ScanResult>) => {
-                  if (error && error.code) {
-                    console.error(`create asset failed with error: ${error.code}, ${error.message}`);
-                    return;
-                  }
-                  this.decodeResult = JSON.stringify(result);
-                });
+                if (error && error.code) {
+                  console.error(`create asset failed with error: ${error.code}, ${error.message}`);
+                  return;
+                }
+                this.decodeResult = JSON.stringify(result);
+              });
             } catch (err) {
               console.error(`Failed to detect Barcode. Code: ${err.code}, ${err.message}`);
             }
@@ -136,7 +127,7 @@ struct WebComponent {
         .domStorageAccess(true)
         .height('40%')
       Text('Decode result is ' + this.decodeResult)
-        .fontSize(FONT_SIZE)
+        .fontSize(20)
         .height('10%')
     }
   }

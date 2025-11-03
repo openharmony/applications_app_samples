@@ -19,19 +19,6 @@ import { fileIo as fs} from '@kit.CoreFileKit';
 import { systemDateTime } from '@kit.BasicServicesKit';
 import { http } from '@kit.NetworkKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import hilog from '@ohos.hilog';
-
-//margin top
-const MARGIN_TOP: number = 20;
-//margin bottom
-const MARGIN_BOTTOM: number = 20;
-//buffer size
-const BUFSIZE: number = 4096;
-//border radius
-const BORDER_RADIUS: number = 10;
-const TAG = '[Sample_WebSaveImage]'
-const DOMAIN = 0xF811
-const BUNDLE = 'WebSaveImage_'
 
 @Entry
 @Component
@@ -50,7 +37,7 @@ struct WebComponent {
     let srcFileDes = this.context.resourceManager.getRawFdSync(rawfilePath);
     let dstPath = this.context.filesDir + '/' +newFileName;
     let dest: fs.File = fs.openSync(dstPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    let bufsize = BUFSIZE;
+    let bufsize = 4096;
     let buf = new ArrayBuffer(bufsize);
     let off = 0;
     let len = 0;
@@ -98,23 +85,23 @@ struct WebComponent {
                   uri = await this.copyUrlPicToDir(this.imgUrl, `onlinePic${systemDateTime.getTime()}.png`);
                 }
                 let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
-                  photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, uri);
+                  photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context,  uri);
                 await phAccessHelper.applyChanges(assetChangeRequest);
               } catch (err) {
-                hilog.error(DOMAIN, TAG, BUNDLE + `create asset failed with error: ${err.code}, ${err.message}`);
+                console.error(`create asset failed with error: ${err.code}, ${err.message}`);
               }
             } else {
-              hilog.error(DOMAIN, TAG, BUNDLE + `SaveButtonOnClickResult create asset failed`);
+              console.error(`SaveButtonOnClickResult create asset failed`);
             }
             this.showMenu = false;
           })
       }
-      .margin({ top: MARGIN_TOP, bottom: MARGIN_BOTTOM })
+      .margin({ top: 20, bottom: 20 })
       .justifyContent(FlexAlign.Center)
     }
     .width('80')
     .backgroundColor(Color.White)
-    .borderRadius(BORDER_RADIUS)
+    .borderRadius(10)
   }
 
   build() {

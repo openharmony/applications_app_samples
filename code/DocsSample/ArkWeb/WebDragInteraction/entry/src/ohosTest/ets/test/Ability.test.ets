@@ -15,12 +15,8 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const TAG = '[Sample_WebDragInteraction]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'WebDragInteraction_';
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = delegator.getAppContext().resourceManager;
   let text = await manage.getStringValue(resource);
@@ -30,7 +26,7 @@ export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest begin');
+      console.info('uitest: ActsAbilityTest begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -38,7 +34,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
+      console.info('get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -62,7 +58,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     it('processweb_DragArkTSPage_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_DragArkTSPage_001 begin');
+      console.info('uitest: processweb_DragArkTSPage_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('DragArkTSPageButton'));
@@ -78,13 +74,13 @@ export default function abilityTest() {
       const res2 = await Component3.getText();
       const res = await Component2.getText();
       expect(res).assertEqual(res2);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_DragArkTSPage_001 end');
+      console.info('uitest: processweb_DragArkTSPage_001 end');
 
       done();
     })
 
     it('processweb_SetUAPage_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_SetUAPage_001 begin');
+      console.info('uitest: processweb_SetUAPage_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('SetUAPageButton'));
@@ -96,7 +92,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
 
       expect(res).assertContain('example.com');
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_SetUAPage_001 end');
+      console.info('uitest: processweb_SetUAPage_001 end');
 
       done();
     })

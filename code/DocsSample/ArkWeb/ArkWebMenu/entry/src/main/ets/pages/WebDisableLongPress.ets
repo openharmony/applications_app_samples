@@ -14,6 +14,7 @@
  */
 // [Start web_Disable_long_press]
 import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct WebComponent {
@@ -28,7 +29,7 @@ struct WebComponent {
   }
 
   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
-    return false;// 返回默认值false
+    return false; // 返回默认值false
   }
 
   @State editMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }

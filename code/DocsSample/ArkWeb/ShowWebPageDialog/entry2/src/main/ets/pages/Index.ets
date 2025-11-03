@@ -13,10 +13,6 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_ShowWebPageDialog]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'ShowWebPageDialog_';
 
 @Entry
 @Component
@@ -29,7 +25,7 @@ struct Index {
             url: 'pages/AchieveConfirmDialogPage1',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -39,7 +35,7 @@ struct Index {
             url: 'pages/AchieveConfirmDialogPage2',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')

@@ -14,10 +14,7 @@
  */
 // [Start terminateRenderProcess]
 import { webview } from '@kit.ArkWeb';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_ProcessWeb]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
+
 @Entry
 @Component
 struct WebComponent {
@@ -28,7 +25,7 @@ struct WebComponent {
       Button('terminateRenderProcess')
         .onClick(() => {
           let result = this.controller.terminateRenderProcess();
-          hilog.info(DOMAIN, TAG, BUNDLE, 'terminateRenderProcess result: ' + result);
+          console.info('terminateRenderProcess result: ' + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }

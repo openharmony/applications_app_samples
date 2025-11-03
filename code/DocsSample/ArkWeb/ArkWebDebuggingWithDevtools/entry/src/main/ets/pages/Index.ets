@@ -14,12 +14,6 @@
 */
 
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
-
-const TAG = '[Sample_Web_Debugging]'
-const DOMAIN = 0xF811
-const BUNDLE = 'WebDebugging_'
 const COLUMN_SPACE: number = 10;
 @Entry
 @Component
@@ -32,7 +26,7 @@ struct Index {
             url: 'pages/WebDebuggingWithWiFi',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
       Button('debugging USB')
@@ -41,7 +35,7 @@ struct Index {
             url: 'pages/WebDebuggingWithUSB',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')

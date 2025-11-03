@@ -15,8 +15,6 @@
 // [Start web_EditMenuOptions]
 import { webview } from '@kit.ArkWeb';
 let selectText = '';
-//font Size
-const FONT_SIZE: number = 20;
 
 class SelectClass {
   constructor() {
@@ -45,13 +43,13 @@ struct WebComponent {
         })
         .height('40%')
       Text('Click here to get the selected text.')
-        .fontSize(FONT_SIZE)
+        .fontSize(20)
         .onClick(() => {
           this.textStr = selectText;
         })
         .height('10%')
       Text('Selected text is ' + this.textStr)
-        .fontSize(FONT_SIZE)
+        .fontSize(20)
         .height('10%')
     }
   }

@@ -13,10 +13,6 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_WebGestureInteraction]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'WebGestureInteraction_';
 @Entry
 @Component
 struct Index {
@@ -28,7 +24,7 @@ struct Index {
             url: 'pages/DistinguishTwoGesture',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -38,7 +34,7 @@ struct Index {
             url: 'pages/ReturnLastWebPage',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -48,7 +44,7 @@ struct Index {
             url: 'pages/SetUserAgent',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
     }.height('100%')

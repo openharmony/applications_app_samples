@@ -14,36 +14,28 @@
  */
 // [Start AchieveAlertDialogPage1]
 import { webview } from '@kit.ArkWeb';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_ShowWebPageDialog]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'ShowWebPageDialog_';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World';
   webviewController: webview.WebviewController = new webview.WebviewController();
   uiContext: UIContext = this.getUIContext();
-  context = this.getUIContext().getHostContext();
 
   build() {
     Row() {
       Web({ src: $rawfile('test.html'), controller: this.webviewController })
         .onAlert((event) => {
           if (event) {
-            hilog.info(DOMAIN, TAG, BUNDLE, 'event.url:' + event.url);
-            hilog.info(DOMAIN, TAG, BUNDLE, 'event.message:' + event.message);
+            console.info('event.url:' + event.url);
+            console.info('event.message:' + event.message);
             this.uiContext.showAlertDialog({
-              // $r('app.string.from')需要替换为开发者所需的资源文件
-              title: this.context?.resourceManager.getStringSync($r('app.string.from').id) + event.url +
-                // $r('app.string.warn')需要替换为开发者所需的资源文件
-              this.context?.resourceManager.getStringSync($r('app.string.warn').id),
+              title: 'from' + event.url + 'warning',
               message: event.message,
               confirm:{
-                // $r('app.string.notarize')需要替换为开发者所需的资源文件
-                value: $r('app.string.notarize'),
+                value: 'confirm',
                 action: () => {
-                  hilog.info(DOMAIN, TAG, BUNDLE, 'Alert confirmed.');
+                  console.info('Alert confirmed.');
                   event.result.handleConfirm();
                 }
               },

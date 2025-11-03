@@ -16,23 +16,10 @@
 import { webview } from '@kit.ArkWeb';
 import { pasteboard } from '@kit.BasicServicesKit';
 
-//text padding
-const TEXT_PADDING: Length = 5;
-//progress total
-const PROGRESS_TOTAL:number = 100;
-//progress stroke width
-const PROGRESS_STROKE_WIDTH:number = 3;
-//substring index
-const SUBSTRING_INDEX:number = 19;
-//preview width
-const PREVIEW_WIDTH:number = 500;
-//preview height
-const PREVIEW_HEIGHT:number = 400;
-
 interface PreviewBuilderParam {
   width: number;
   height: number;
-  url: Resource | string | undefined;
+  url:Resource | string | undefined;
 }
 
 interface PreviewBuilderParamForImage {
@@ -42,8 +29,7 @@ interface PreviewBuilderParamForImage {
 }
 
 
-@Builder
-function previewBuilderGlobalForImage($$: PreviewBuilderParamForImage) {
+@Builder function previewBuilderGlobalForImage($$: PreviewBuilderParamForImage) {
   Column() {
     Image($$.previewImage)
       .objectFit(ImageFit.Fill)
@@ -60,17 +46,17 @@ struct SelectionMenuLongPress {
     Column() {
       Stack(){
         Text('') // 可选择是否展示url
-          .padding(TEXT_PADDING)
+          .padding(5)
           .width('100%')
           .textAlign(TextAlign.Start)
           .backgroundColor(Color.White)
           .copyOption(CopyOptions.LocalDevice)
           .maxLines(1)
           .textOverflow({overflow:TextOverflow.Ellipsis})
-        Progress({ value: this.progressValue, total: PROGRESS_TOTAL, type: ProgressType.Linear }) // 展示进度条
-          .style({ strokeWidth: PROGRESS_STROKE_WIDTH, enableSmoothEffect: true })
+        Progress({ value: this.progressValue, total: 100, type: ProgressType.Linear }) // 展示进度条
+          .style({ strokeWidth: 3, enableSmoothEffect: true })
           .backgroundColor(Color.White)
-          .opacity(this.progressVisible ? 1 : 0)
+          .opacity(this.progressVisible?1:0)
           .backgroundColor(Color.White)
       }.alignContent(Alignment.Bottom)
       Web({src:$$.url,controller: new webview.WebviewController()})
@@ -107,13 +93,13 @@ struct SelectionMenuLongPress {
   @Builder
   LinkMenuBuilder() {
     Menu() {
-      MenuItem({ content: $r('app.string.copy_url'), })
+      MenuItem({ content: 'Copy link', })
         .onClick(() => {
           const pasteboardData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, this.linkURL);
           const systemPasteboard = pasteboard.getSystemPasteboard();
           systemPasteboard.setData(pasteboardData);
         })
-      MenuItem({ content: $r('app.string.open_url') })
+      MenuItem({content:'Open the link'})
         .onClick(()=>{
           this.controller.loadUrl(this.linkURL);
         })
@@ -122,7 +108,7 @@ struct SelectionMenuLongPress {
   @Builder
   ImageMenuBuilder() {
     Menu() {
-      MenuItem({ content: $r('app.string.copy_image'), })
+      MenuItem({ content: 'Copy Image', })
         .onClick(() => {
           this.result?.copyImage();
           this.result?.closeContextMenu();
@@ -144,8 +130,8 @@ struct SelectionMenuLongPress {
               this.result?.closeContextMenu();
             },
             preview: this.PreviewBuilder({
-              width: PREVIEW_WIDTH,
-              height: PREVIEW_HEIGHT,
+              width: 500,
+              height: 400,
               url:this.linkURL
             }),
             menuType: MenuType.PREVIEW_MENU,
@@ -170,7 +156,7 @@ struct SelectionMenuLongPress {
             this.previewWidthImage = this.uiContext!.px2vp(event.param.getPreviewWidth());
             this.previewHeightImage = this.uiContext!.px2vp(event.param.getPreviewHeight());
             if (event.param.getSourceUrl().indexOf('resource://rawfile/') == 0) {
-              this.previewImage = $rawfile(event.param.getSourceUrl().substring(SUBSTRING_INDEX));
+              this.previewImage = $rawfile(event.param.getSourceUrl().substring(19));
             } else {
               this.previewImage = event.param.getSourceUrl();
             }
