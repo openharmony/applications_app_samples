@@ -25,7 +25,9 @@ const BUTTON_FONT_SIZE = 18; // 按钮的字体大小
 const BUTTON_RADIUS = 5; // 按钮的圆角半径
 const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
 
-const EXAMPLE_URL: string = 'https://www.example.com/';
+const EXAMPLE_URL: string = 'http://www.baidu.com/';
+const EXAMPLE_INITIAL_URL: string = 'http://www.hao123.com';
+const EXAMPLE_NETWORK_URL: string = 'http://www.test.com';
 
 // [Start HTTP_interceptor_case_creat_http_interceptor]
 enum InterceptorType {
@@ -36,22 +38,90 @@ enum InterceptorType {
   FINAL_RESPONSE = 'FINAL_RESPONSE'
 }
 
-class TestHttpInterceptor implements http.HttpInterceptor {
+class InitialHttpInterceptor implements http.HttpInterceptor {
   interceptorType: InterceptorType = InterceptorType.INITIAL_REQUEST;
+  result: boolean = false;
 
-  constructor(interceptorType: InterceptorType) {
+  constructor(interceptorType: InterceptorType, result: boolean) {
     this.interceptorType = interceptorType;
+    this.result = result;
   }
 
   interceptorHandle(reqContext: http.HttpRequestContext, rspContext: http.HttpResponse): Promise<http.ChainContinue> {
     // 命中拦截器后对请求报文与请求响应操作
-    // [StartExclude HTTP_interceptor_case_creat_http_interceptor]
+    hilog.info(0xFF00, 'httpNormalRequest', `INITIAL_REQUEST, Original req: ${JSON.stringify(reqContext)}`);
+    hilog.info(0xFF00, 'httpNormalRequest', `INITIAL_REQUEST, Original rsp: ${JSON.stringify(rspContext)}`);
+
+    reqContext.url = EXAMPLE_INITIAL_URL;
+    reqContext.head = { 'content-type': 'text/plain' };
+    reqContext.body = { 'context': 'INITIAL_REQUEST' };
+
     rspContext.result = 'INITIAL_REQUEST';
     rspContext.responseCode = 200;
     rspContext.header =
       'content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue';
-    // [EndExclude HTTP_interceptor_case_creat_http_interceptor]
-    return Promise.resolve(true);
+
+    hilog.info(0xFF00, 'httpNormalRequest', `INITIAL_REQUEST, Update req: ${JSON.stringify(reqContext)}`);
+    hilog.info(0xFF00, 'httpNormalRequest', `INITIAL_REQUEST, Update rsp: ${JSON.stringify(rspContext)}`);
+    return Promise.resolve(this.result);
+  }
+}
+
+class NetworkHttpInterceptor implements http.HttpInterceptor {
+  interceptorType: InterceptorType = InterceptorType.INITIAL_REQUEST;
+  result: boolean = false;
+
+  constructor(interceptorType: InterceptorType, result: boolean) {
+    this.interceptorType = interceptorType;
+    this.result = result;
+  }
+
+  interceptorHandle(reqContext: http.HttpRequestContext, rspContext: http.HttpResponse): Promise<http.ChainContinue> {
+    // 命中拦截器后对请求报文与请求响应操作
+    hilog.info(0xFF00, 'httpNormalRequest', `NETWORK_CONNECT, Original req: ${JSON.stringify(reqContext)}`);
+    hilog.info(0xFF00, 'httpNormalRequest', `NETWORK_CONNECT, Original rsp: ${JSON.stringify(rspContext)}`);
+
+    reqContext.url = EXAMPLE_NETWORK_URL;
+    reqContext.head = { 'content-type': 'text/xml' };
+    reqContext.body = { 'context': 'NETWORK_CONNECT' };
+
+    rspContext.result = 'NETWORK_CONNECT';
+    rspContext.responseCode = 300;
+    rspContext.header =
+      'content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue';
+
+    hilog.info(0xFF00, 'httpNormalRequest', `NETWORK_CONNECT, Update req: ${JSON.stringify(reqContext)}`);
+    hilog.info(0xFF00, 'httpNormalRequest', `NETWORK_CONNECT, Update rsp: ${JSON.stringify(rspContext)}`);
+    return Promise.resolve(this.result);
+  }
+}
+
+class FinalHttpInterceptor implements http.HttpInterceptor {
+  interceptorType: InterceptorType = InterceptorType.INITIAL_REQUEST;
+  result: boolean = false;
+
+  constructor(interceptorType: InterceptorType, result: boolean) {
+    this.interceptorType = interceptorType;
+    this.result = result;
+  }
+
+  interceptorHandle(reqContext: http.HttpRequestContext, rspContext: http.HttpResponse): Promise<http.ChainContinue> {
+    // 命中拦截器后对请求报文与请求响应操作
+    hilog.info(0xFF00, 'httpNormalRequest', `FINAL_RESPONSE, Original req: ${JSON.stringify(reqContext)}`);
+    hilog.info(0xFF00, 'httpNormalRequest', `FINAL_RESPONSE, Original rsp: ${JSON.stringify(rspContext)}`);
+
+    reqContext.url = EXAMPLE_INITIAL_URL;
+    reqContext.head = { 'content-type': 'text/html' };
+    reqContext.body = { 'context': 'FINAL_RESPONSE' };
+
+    rspContext.result = 'FINAL_RESPONSE';
+    rspContext.responseCode = 200;
+    rspContext.header =
+      'content-encoding:br \r\n content-type:text/html\r\ncharset=UTF-8,cxy_all:+5c4ea5d1638626cbb796a7db10e0d663\r\ndate:Tue';
+
+    hilog.info(0xFF00, 'httpNormalRequest', `FINAL_RESPONSE, Update req: ${JSON.stringify(reqContext)}`);
+    hilog.info(0xFF00, 'httpNormalRequest', `FINAL_RESPONSE, Update rsp: ${JSON.stringify(rspContext)}`);
+    return Promise.resolve(this.result);
   }
 }
 // [End HTTP_interceptor_case_creat_http_interceptor]
@@ -71,14 +141,14 @@ function httpNormalRequest() {
     // [Start HTTP_interceptor_case_addChain]
     // 创建所需要的拦截器对象,将拦截器对象加入拦截器链中
     chain.addChain([
-      new TestHttpInterceptor(InterceptorType.INITIAL_REQUEST),
-      new TestHttpInterceptor(InterceptorType.NETWORK_CONNECT),
-      new TestHttpInterceptor(InterceptorType.FINAL_RESPONSE)
+      new InitialHttpInterceptor(InterceptorType.INITIAL_REQUEST, true),
+      new NetworkHttpInterceptor(InterceptorType.NETWORK_CONNECT, true),
+      new FinalHttpInterceptor(InterceptorType.FINAL_RESPONSE, true)
     ]);
     // [End HTTP_interceptor_case_addChain]
 
     // [Start HTTP_interceptor_case_apply]
-    // 将请求应用到拦截器链中
+    // 将当前配置好的拦截器链附加到httpRequest中
     chain.apply(httpRequest);
     // [End HTTP_interceptor_case_apply]
 
@@ -87,7 +157,7 @@ function httpNormalRequest() {
     let options: http.HttpRequestOptions = {
       method: http.RequestMethod.POST,
       header: { 'content-type': 'text/html' } as Record<string, string>,
-      extraData: { 'context': 'BODY_NO_CHANGE' } as Record<string, string>,
+      extraData: { 'context': 'BODY' } as Record<string, string>,
     };
     // [End HTTP_interceptor_case_options]
 
