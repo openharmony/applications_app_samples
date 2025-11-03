@@ -14,6 +14,7 @@
  */
 // [Start StateArrayBig_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[EvtryAblity]';
 
@@ -39,14 +40,13 @@ class UiStyle3 {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UiStyle3;
-
   private isRenderSpecialImage(): number { // 显示组件是否渲染的函数
     hilog.info(DOMAIN_NUMBER, TAG, 'SpecialImage is rendered');
     return 1;
   }
 
   build() {
-    Image($r('app.media.startIcon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -90,7 +90,7 @@ struct PageChild3 {
       })
       Stack() {
         Column() {
-          Image($r('app.media.startIcon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
             .opacity(this.uiStyle.alpha)
             .scale({
               x: this.uiStyle.scaleX,
@@ -122,7 +122,7 @@ struct PageChild3 {
       .margin({ top: 50 })
       .borderRadius(this.uiStyle.borderRadius)
       .opacity(this.isRenderStack())
-      .backgroundColor('FFFFFF')
+      .backgroundColor('#FFFFFF')
       .width(this.uiStyle.width)
       .height(this.uiStyle.height)
       .translate({

@@ -20,7 +20,6 @@ const TAG: string = '[EvtryAblity]';
 @Observed
 class Child6 {
   public count: number;
-
   constructor(count: number) {
     this.count = count
   }
