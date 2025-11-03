@@ -66,10 +66,10 @@ export default function IndexTest1() {
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
 
-      str = await getResourceString($r('app.string.CreateApply_Text_1'));
+      str = await getResourceString($r('app.string.CreateApply_Text_Forty_Five'));
       let styledString = await driver.findComponent(ON.text(str));
       expect(styledString === null).assertFalse();
-      str = await getResourceString($r('app.string.CreateApply_Text_2'));
+      str = await getResourceString($r('app.string.CreateApply_Text_Third_Five'));
       let mutableStyledString = await driver.findComponent(ON.text(str));
       expect(mutableStyledString === null).assertFalse();
 
