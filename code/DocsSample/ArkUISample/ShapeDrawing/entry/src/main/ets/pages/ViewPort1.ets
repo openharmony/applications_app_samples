@@ -37,7 +37,8 @@ struct ViewPort1 {
   build() {
     Column() {
       // 画一个宽高都为75的圆
-      Text('Original Size Circle')
+      // $r('app.string.OriginalSizeCircle')需要替换为开发者所需的资源文件
+      Text($r('app.string.OriginalSizeCircle'))
       Circle({ width: 75, height: 75 }).fill('#E87361')
 
       Row({ space: 10 }) {
@@ -45,7 +46,8 @@ struct ViewPort1 {
           // 创建一个宽高都为150的shape组件，背景色为黄色，一个宽高都为75的viewPort。
           // 用一个蓝色的矩形来填充viewPort，在viewPort中绘制一个直径为75的圆。
           // 绘制结束，viewPort会根据组件宽高放大两倍。
-          Text('Enlarged Circle')
+          // $r('app.string.EnlargedCircle')需要替换为开发者所需的资源文件
+          Text($r('app.string.EnlargedCircle'))
           Shape() {
             Rect().width('100%').height('100%').fill('#0097D4')
             Circle({ width: 75, height: 75 }).fill('#E87361')
@@ -60,7 +62,8 @@ struct ViewPort1 {
           // 创建一个宽高都为150的shape组件，背景色为黄色，一个宽高都为300的viewPort。
           // 用一个绿色的矩形来填充viewPort，在viewPort中绘制一个直径为75的圆。
           // 绘制结束，viewPort会根据组件宽高缩小两倍。
-          Text('Shrunk Circle')
+          // $r('app.string.ShrunkCircle')需要替换为开发者所需的资源文件
+          Text($r('app.string.ShrunkCircle'))
           Shape() {
             Rect().width('100%').height('100%').fill('#BDDB69')
             Circle({width: 75, height: 75}).fill('#E87361')
