@@ -18,10 +18,10 @@ import { image } from '@kit.ImageKit';
 @Entry
 @Component
 struct GridEts {
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State numbers: number[] = []
-  @State isSelectedGrid: boolean[] = []
-  @State previewData: DragItemInfo[] = []
+  @State pixmap: image.PixelMap | undefined = undefined;
+  @State numbers: number[] = [];
+  @State isSelectedGrid: boolean[] = [];
+  @State previewData: DragItemInfo[] = [];
   @State numberBadge: number = 0;
 
   @Styles
@@ -35,11 +35,11 @@ struct GridEts {
   }
 
   onPageShow(): void {
-    let i: number = 0
+    let i: number = 0;
     for (i = 0; i < 100; i++) {
-      this.numbers.push(i)
-      this.isSelectedGrid.push(false)
-      this.previewData.push({})
+      this.numbers.push(i);
+      this.isSelectedGrid.push(false);
+      this.previewData.push({});
     }
   }
 
@@ -76,10 +76,10 @@ struct GridEts {
             this.isSelectedGrid[idx] = !this.isSelectedGrid[idx]
             if (this.isSelectedGrid[idx]) {
               this.numberBadge++;
-              let gridItemName = 'grid' + idx
+              let gridItemName = 'grid' + idx;
               // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
               this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap) => {
-                this.pixmap = pixmap
+                this.pixmap = pixmap;
                 this.previewData[idx] = {
                   pixelMap: this.pixmap
                 }

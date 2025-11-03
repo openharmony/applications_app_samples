@@ -81,7 +81,7 @@ export struct GridEts {
   build() {
     NavDestination() {
       Column({ space: 5 }) {
-        Button('全选')
+        Button($r('app.string.Select_All'))
           .onClick(() => {
             for (let i = 0; i < this.isSelectedGrid.length; i++) {
               if (this.isSelectedGrid[i] === false) {
