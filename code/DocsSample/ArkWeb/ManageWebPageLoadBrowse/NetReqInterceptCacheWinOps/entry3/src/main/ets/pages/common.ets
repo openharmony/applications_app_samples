@@ -20,7 +20,7 @@ import { UIContext, NodeController, BuilderNode, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-export const defaultUrl : string = 'www.example.com';
+export const defaultUrl : string = 'https://www.example.com';
 
 // Data为入参封装类
 class Data{
