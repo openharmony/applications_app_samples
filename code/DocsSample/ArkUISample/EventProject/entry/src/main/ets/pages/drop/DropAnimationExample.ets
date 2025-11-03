@@ -58,7 +58,7 @@ export struct DropAnimationExample {
               }
               //[EndExclude drop_image_start]
             })
-          //[Start drop_image_start]
+          //[End drop_image_start]
 
         }.width('45%')
         .height('100%')
