@@ -21,52 +21,57 @@ const BUNDLE = 'Eventproject_';
 // [Start key_distribute_event]
 @Entry
 @Component
-export struct OnKeyDistributeEvent {
+struct Index {
   build() {
-    // [StartExclude key_distribute_event]
-    NavDestination() {
-      Column({ space: 12 }) {
-        // [EndExclude key_distribute_event]
-        Row() {
-          Row() {
-            Button('button1').id('button1').onKeyEvent((event) => {
-              hilog.info(DOMAIN, TAG, BUNDLE + 'button1');
-              return true
-            })
-            Button('button2').id('button2').onKeyEvent((event) => {
-              hilog.info(DOMAIN, TAG, BUNDLE + 'button2');
-              return true
-            })
-          }
-          .width('100%')
-          .height('100%')
-          .id('Row1')
-          .onKeyEventDispatch((event) => {
-            let context = this.getUIContext();
-            context.getFocusController().requestFocus('button1');
-            return context.dispatchKeyEvent('button1', event);
+    Row() {
+      Row() {
+        Button('button1')
+          .id('button1')
+          .onKeyEvent((event) => {
+            hilog.info(DOMAIN, TAG, BUNDLE + 'button1');
+            return true
           })
-
-        }
-        .height('100%')
-        .width('100%')
-        .onKeyEventDispatch((event) => {
-          if (event.type == KeyType.Down) {
-            let context = this.getUIContext();
-            context.getFocusController().requestFocus('Row1');
-            return context.dispatchKeyEvent('Row1', event);
-          }
-          return true;
-        })
-        // [StartExclude key_distribute_event]
+        Button('button2')
+          .id('button2')
+          .onKeyEvent((event) => {
+            hilog.info(DOMAIN, TAG, BUNDLE + 'button2');
+            return true
+          })
       }
       .width('100%')
       .height('100%')
-      .padding({ left: 12, right: 12 })
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('button1');
+        return context.dispatchKeyEvent('button1', event);
+      })
+
     }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.OnKeyDistributeEvent_title'))
-    // [EndExclude key_distribute_event]
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
   }
 }
 // [End key_distribute_event]
+
+@Builder
+export function OnKeyDistributeEvent() {
+  NavDestination() {
+    Column({ space: 12 }) {
+      Index()
+    }
+    .width('100%')
+    .height('100%')
+    .padding({ left: 12, right: 12 })
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.OnKeyDistributeEvent_title'))
+}

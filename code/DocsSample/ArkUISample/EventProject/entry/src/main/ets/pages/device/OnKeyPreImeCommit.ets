@@ -20,48 +20,49 @@ const BUNDLE = 'Eventproject_';
 // [Start key_event_intercept]
 @Entry
 @Component
-export struct OnKeyPreImeCommit {
+struct TextAreaDemo {
   @State content: string = '';
   @State text: string = '';
   controller: TextAreaController = new TextAreaController();
 
   build() {
-    // [StartExclude key_event_intercept]
-    NavDestination() {
-      Column({ space: 12 }) {
-        // [EndExclude key_event_intercept]
-        Column() {
-          Text('Submissions: ' + this.content)
-          TextArea({ controller: this.controller, text: this.text })
-            .onKeyPreIme((event: KeyEvent) => {
-              hilog.info(DOMAIN, TAG, BUNDLE + JSON.stringify(event));
-              if (event.keyCode === 2054 && event.type === KeyType.Down) { // 回车键物理码
-                const hasCtrl = event?.getModifierKeyState?.(['Ctrl']);
-                if (hasCtrl) {
-                  hilog.info(DOMAIN, TAG, BUNDLE + 'Line break');
-                } else {
-                  hilog.info(DOMAIN, TAG, BUNDLE + 'Submissions：' + this.text);
-                  this.content = this.text;
-                  this.text = '';
-                  event.stopPropagation();
-                }
-                return true;
-              }
-              return false;
-            })
-            .onChange((value: string) => {
-              this.text = value
-            })
-        }
-        // [StartExclude key_event_intercept]
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
+    Column() {
+      Text('Submissions: ' + this.content)
+      TextArea({ controller: this.controller, text: this.text })
+        .onKeyPreIme((event: KeyEvent) => {
+          hilog.info(DOMAIN, TAG, `${BUNDLE + JSON.stringify(event)}`);
+          if (event.keyCode === 2054 && event.type === KeyType.Down) { // 回车键物理码
+            const hasCtrl = event?.getModifierKeyState?.(['Ctrl']);
+            if (hasCtrl) {
+              hilog.info(DOMAIN, TAG, BUNDLE + 'Line break');
+            } else {
+              hilog.info(DOMAIN, TAG, BUNDLE + 'Submissions：' + this.text);
+              this.content = this.text;
+              this.text = '';
+              event.stopPropagation();
+            }
+            return true;
+          }
+          return false;
+        })
+        .onChange((value: string) => {
+          this.text = value;
+        })
     }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.OnKeyPreImeCommit_title'))
-    // [EndExclude key_event_intercept]
   }
 }
 // [End key_event_intercept]
+
+@Builder
+export function OnKeyPreImeCommit() {
+  NavDestination() {
+    Column({ space: 12 }) {
+      TextAreaDemo()
+    }
+    .width('100%')
+    .height('100%')
+    .padding({ left: 12, right: 12 })
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.OnKeyPreImeCommit_title'))
+}
