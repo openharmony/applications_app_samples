@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start import_keys_in_plaintext_RSA2048]
 /* 以下以明文导入RSA2048密钥为例 */
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
@@ -118,3 +119,5 @@ napi_value ImportRsaKey(napi_env env, napi_callback_info info)
 
     return ret;
 }
+
+// [End import_keys_in_plaintext_RSA2048]
