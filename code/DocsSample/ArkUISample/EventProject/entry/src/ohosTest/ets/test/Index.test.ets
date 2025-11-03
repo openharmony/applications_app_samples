@@ -13,15 +13,21 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, beforeAll } from '@ohos/hypium';
+import { describe, it, expect, beforeAll, Level } from '@ohos/hypium';
 // 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, Point, on } from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern, Point, On } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import resource from '../../../main/ets/common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { KeyCode } from '@kit.InputKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
+
+const TAG = '[Sample_Eventproject]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Eventproject_';
 
 export default function IndexTest() {
 
@@ -228,7 +234,7 @@ export default function IndexTest() {
       await driver.delayMs(1000);
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Device_index_title')), MatchPattern.CONTAINS));
       await button_list1.click();
-      button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Key_PreventBubble')), MatchPattern.CONTAINS));
+      button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Key_Event')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
       await driver.triggerKey(KeyCode.KEYCODE_SEARCH);
