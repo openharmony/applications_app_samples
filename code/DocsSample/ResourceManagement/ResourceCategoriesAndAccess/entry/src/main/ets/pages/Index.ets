@@ -61,14 +61,12 @@ struct Index {
       // [End app_resource]
 
       // [Start system_resource]
-      // 资源name仅作示例，请替换为实际使用的资源
       Text('Hello')
         .fontColor($r('sys.color.ohos_id_color_emphasize'))
         .fontSize($r('sys.float.ohos_id_text_size_headline1'))
         .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
         .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
 
-      // 资源name仅作示例，请替换为实际使用的资源
       Image($r('sys.media.ohos_app_icon'))
         .border({
           color: $r('sys.color.ohos_id_color_palette_aux1'),
