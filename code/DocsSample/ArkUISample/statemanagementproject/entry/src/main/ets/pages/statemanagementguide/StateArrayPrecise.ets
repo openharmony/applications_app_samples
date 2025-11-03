@@ -14,6 +14,7 @@
  */
 // [Start StateArrayPrecise_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[EvtryAblity]';
 
@@ -67,14 +68,14 @@ class NeedRenderTranslate { // 在一起使用的属性可以划分为相同的�
 @Observed
 class UiStyle4 {
   // 使用NeedRenderxxx类
- public  needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
- public  needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
- public  needRenderBorderRadius: NeedRenderBorderRadius = new NeedRenderBorderRadius();
- public  needRenderPos: NeedRenderPos = new NeedRenderPos();
- public  needRenderSize: NeedRenderSize = new NeedRenderSize();
- public  needRenderAlpha: NeedRenderAlpha = new NeedRenderAlpha();
- public  needRenderScale: NeedRenderScale = new NeedRenderScale();
- public  needRenderImage: NeedRenderImage = new NeedRenderImage();
+  public needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
+  public needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
+  public needRenderBorderRadius: NeedRenderBorderRadius = new NeedRenderBorderRadius();
+  public needRenderPos: NeedRenderPos = new NeedRenderPos();
+  public needRenderSize: NeedRenderSize = new NeedRenderSize();
+  public needRenderAlpha: NeedRenderAlpha = new NeedRenderAlpha();
+  public needRenderScale: NeedRenderScale = new NeedRenderScale();
+  public needRenderImage: NeedRenderImage = new NeedRenderImage();
 }
 
 @Component
@@ -245,4 +246,5 @@ struct Page4 {
     .backgroundColor('#F1F3F5')
   }
 }
+
 // [End StateArrayPrecise_start]

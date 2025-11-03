@@ -119,7 +119,7 @@ struct MyComponent8 {
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
       // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-      this.data.pushData(new StringData2(`Click to add ${i}`, $r('app.media.startIcon')));
+      this.data.pushData(new StringData2(`Click to add ${i}`, $r('app.media.icon')));
     }
   }
 

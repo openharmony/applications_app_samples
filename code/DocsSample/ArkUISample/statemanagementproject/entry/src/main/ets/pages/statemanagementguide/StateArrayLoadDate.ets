@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[EvtryAblity]';
 
@@ -44,7 +45,7 @@ class Ancestor7 {
 
   // [Start StateArrayLoadDate_start]
   public loadData() {
-    const tempList = ChildList7.from([new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)]);
+    let tempList = ChildList7.from([new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)]);
     this.childList = tempList;
   }
   // [End StateArrayLoadDate_start]

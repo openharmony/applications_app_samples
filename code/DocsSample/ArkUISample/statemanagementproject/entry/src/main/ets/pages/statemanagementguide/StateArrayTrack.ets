@@ -39,14 +39,13 @@ class UiStyle5 {
 @Component
 struct SpecialImage5 {
   @ObjectLink uiStyle: UiStyle5;
-
   private isRenderSpecialImage(): number { // 显示组件是否渲染的函数
     hilog.info(DOMAIN_NUMBER, TAG, 'SpecialImage is rendered');
     return 1;
   }
 
   build() {
-    Image($r('app.media.startIcon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+    Image($r('app.media.foreground')) // 此处'app.media.foreground'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
