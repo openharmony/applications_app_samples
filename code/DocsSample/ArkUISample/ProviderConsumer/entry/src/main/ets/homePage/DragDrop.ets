@@ -35,7 +35,8 @@ struct Parent {
 
 @ComponentV2
 struct Child {
-  @Consumer() onDrag: (x: number, y: number) => void = (x: number, y: number) => {};
+  @Consumer() onDrag: (x: number, y: number) => void = (x: number, y: number) => {
+  };
 
   build() {
     Button('changed')
@@ -46,4 +47,19 @@ struct Child {
       })
   }
 }
+
 // [End Drag_Drop]
+
+@Component
+export struct DragDrop {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Parent()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.Drag_Drop'))
+  }
+}
