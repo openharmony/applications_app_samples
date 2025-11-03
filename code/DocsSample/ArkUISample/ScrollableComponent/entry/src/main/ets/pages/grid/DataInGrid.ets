@@ -70,7 +70,9 @@ export struct DataInGrid {
             GridItem() {
               // $r('app.string.Printing')需要替换为开发者所需的资源文件
               Text($r('app.string.Printing'))
+              // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
+              // [EndExclude build_a_office_services_meeting]
             }
           }
           // [StartExclude build_a_office_services_meeting]

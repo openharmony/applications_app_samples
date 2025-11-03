@@ -1144,11 +1144,11 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_51
-     * @tc.name testBottomTabBar
-     * @tc.desc 内容标签不同步
+     * @tc.number UiTest_051
+     * @tc.name testSyncTabContentAndTitle
+     * @tc.desc 测试内容标签不同步
      */
-    it('testBottomTabBar', 0, async (done: Function) => {
+    it('testSyncTabContentAndTitle', 0, async (done: Function) => {
       let driver = Driver.create();
       let componentButton = await driver.findComponent(ON.text('Tabs', MatchPattern.CONTAINS));
       expect(componentButton === null).assertFalse();
@@ -1168,11 +1168,11 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number UiTest_51
-     * @tc.name testBottomTabBar
-     * @tc.desc 缓存数
+     * @tc.number UiTest_052
+     * @tc.name testTabCacheCount
+     * @tc.desc 测试Tab组件缓存数量
      */
-    it('testBottomTabBar', 0, async (done: Function) => {
+    it('testCacheCount', 0, async (done: Function) => {
       let driver = Driver.create();
       let componentButton = await driver.findComponent(ON.text('Tabs', MatchPattern.CONTAINS));
       expect(componentButton === null).assertFalse();
