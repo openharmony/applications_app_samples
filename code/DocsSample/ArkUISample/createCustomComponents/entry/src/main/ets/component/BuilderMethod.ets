@@ -16,9 +16,6 @@
   // [Start Builder_decoration]
 @Component
 struct ParentComponent {
-  doSomeCalculations() {
-  }
-
   calcTextValue(): string {
     return 'Hello World';
   }
@@ -39,3 +36,5 @@ struct ParentComponent {
 }
 
 // [End Builder_decoration]
+const builderMethod = ParentComponent;
+export default builderMethod;

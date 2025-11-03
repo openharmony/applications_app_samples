@@ -23,6 +23,7 @@ export default class EntryAbility extends UIAbility {
   // [Start create_sys]
   onCreate(): void {
     this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    AppStorage.setOrCreate('currentColorMode', this.context.config.colorMode);
   }
   // [End create_sys]
   onConfigurationUpdate(newConfig: Configuration): void {

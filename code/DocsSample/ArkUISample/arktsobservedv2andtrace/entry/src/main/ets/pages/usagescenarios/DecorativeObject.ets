@@ -25,7 +25,7 @@ class Person {
 }
 
 @ObservedV2
-class InfoObject {
+class Info {
   public id: number = 0;
   @Trace public personList: Person[] = [];
 
@@ -37,8 +37,8 @@ class InfoObject {
 
 @Entry
 @ComponentV2
-struct DecorativeObject {
-  info: InfoObject = new InfoObject();
+struct Index {
+  info: Info = new Info();
 
   build() {
     Column() {
@@ -76,3 +76,5 @@ struct DecorativeObject {
 }
 
 // [End Decorative_Object]
+const decorativeObject = Index;
+export default decorativeObject;

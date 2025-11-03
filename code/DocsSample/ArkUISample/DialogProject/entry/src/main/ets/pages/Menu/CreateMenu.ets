@@ -17,7 +17,7 @@ import { PromptAction } from '@kit.ArkUI';
 
 // [Start builder_menu_content]
 class Tmp {
-  private iconStr2: ResourceStr = $r('app.media.app_icon')
+  private iconStr2: ResourceStr = $r('app.media.view_list_filled')
 
   set(val: Resource) {
     this.iconStr2 = val;
@@ -28,26 +28,28 @@ class Tmp {
 @Component
 export struct menuExample  {
   @State select: boolean = true;
-  private iconStr: ResourceStr = $r('app.media.app_icon');
-  private iconStr2: ResourceStr = $r('app.media.app_icon');
+  private iconStr: ResourceStr = $r('app.media.view_list_filled');
+  private iconStr2: ResourceStr = $r('app.media.view_list_filled');
+  private copy: ResourceStr = $r('app.string.copy');
+  private paste: ResourceStr = $r('app.string.paste');
 
   @Builder
   SubMenu() {
     Menu() {
-      MenuItem({ content: 'copy', labelInfo: 'Ctrl+C' })
-      MenuItem({ content: 'paste', labelInfo: 'Ctrl+V' })
+      MenuItem({ content: this.copy, labelInfo: 'Ctrl+C' })
+      MenuItem({ content: this.paste, labelInfo: 'Ctrl+V' })
     }
   }
 
   @Builder
   MyMenu() {
     Menu() {
-      MenuItem({ startIcon: $r('app.media.app_icon'), content: $r('app.string.menu_single') })
-      MenuItem({ startIcon: $r('app.media.app_icon'), content: $r('app.string.menu_forbid') }).enabled(false)
+      MenuItem({ startIcon: $r('app.media.icon'), content: $r('app.string.menu_selection') })
+      MenuItem({ startIcon: $r('app.media.icon'), content: $r('app.string.menu_selection') }).enabled(false)
       MenuItem({
         startIcon: this.iconStr,
-        content: $r('app.string.menu_more'),
-        endIcon: $r('app.media.app_icon'),
+        content: $r('app.string.menu_selection'),
+        endIcon: $r('app.media.arrow_right_filled'),
         // 当builder参数进行配置时，表示与menuItem项绑定了子菜单。鼠标hover在该菜单项时，会显示子菜单。
         builder: this.SubMenu
       })
@@ -58,20 +60,20 @@ export struct menuExample  {
           .onChange((selected) => {
             console.info('menuItem select' + selected);
             let str: Tmp = new Tmp();
-            str.set($r('app.media.app_icon'));
+            str.set($r('app.media.icon'));
           })
         MenuItem({
-          startIcon: $r('app.media.app_icon'),
-          content: $r('app.string.menu_more'),
-          endIcon: $r('app.media.foreground'),
+          startIcon: $r('app.media.view_list_filled'),
+          content: $r('app.string.menu_selection'),
+          endIcon: $r('app.media.arrow_right_filled'),
           builder: this.SubMenu
         })
       }
 
       MenuItem({
         startIcon: this.iconStr2,
-        content: $r('app.string.menu_single'),
-        endIcon: $r('app.media.app_icon')
+        content: $r('app.string.menu_selection'),
+        endIcon: $r('app.media.arrow_right_filled')
       })
     }
   }
@@ -114,6 +116,7 @@ export struct menuExample  {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.create_menu')需要替换为开发者所需的资源文件。
     .title($r('app.string.create_menu'))
   }
   // [EndExclude builder_menu_content]

@@ -19,13 +19,13 @@ struct MyComponent {
   build() {
     // 根节点唯一且必要，必须为容器组件
     Row() {
-      ChildComponentBuildFunction()
+      ChildComponent()
     }
   }
 }
 
 @Component
-struct ChildComponentBuildFunction {
+struct ChildComponent {
   build() {
     // 根节点唯一且必要，可为非容器组件
     // $r('app.media.startIcon')需要替换为开发者所需的资源文件
@@ -34,3 +34,6 @@ struct ChildComponentBuildFunction {
 }
 
 // [End build_function]
+const childComponentBuildFunction = ChildComponent;
+export default childComponentBuildFunction;
+

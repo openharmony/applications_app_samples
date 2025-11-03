@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+
 // [Start jump_click]
 import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { DOMAIN, TAG } from '../../common/Common';
 
 @Entry
 @Component

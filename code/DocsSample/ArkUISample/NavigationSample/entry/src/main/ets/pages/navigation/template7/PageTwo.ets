@@ -15,32 +15,25 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
  * limitations under the License.
  */
 const DOMAIN = 0x0000;
-// [Start onResult]
 class NavParam {
   public desc: string = 'navigationOnResult-param'
 };
-// [StartExclude onResult]
 @Builder
 export function PageTwoBuilder(name: string, param: Object) {
   DemoNavDestination();
 }
-// [EndExclude onResult]
 @Component
 struct DemoNavDestination {
-  // [StartExclude onResult]
   private pathStack: NavPathStack | undefined = undefined;
   private name: string = '';
   private pageParam: string = '';
-  // [EndExclude onResult]
   build() {
     NavDestination() {
-      // [StartExclude onResult]
       Column() {
         Text('onResult')
       }
       .width('100%')
       .height('100%')
-      // [EndExclude onResult]
     }
     .onResult((param: Object) => {
       if (param instanceof NavParam) {
@@ -51,7 +44,6 @@ struct DemoNavDestination {
     })
   }
 }
-// [End onResult]
 @Entry
 @Component
 struct NavigationExample7 {

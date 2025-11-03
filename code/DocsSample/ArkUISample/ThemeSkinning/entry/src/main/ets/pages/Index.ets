@@ -15,7 +15,8 @@
 import curves from '@ohos.curves';
 import { Route, RouteGroup } from './common/Index';
 import { KeyboardAvoidMode } from '@kit.ArkUI';
-import router from '@ohos.router';
+import { ThemeControl } from '@kit.ArkUI';
+ThemeControl.setDefaultTheme(undefined);
 
 @Styles
 function cardPressedStyle() {

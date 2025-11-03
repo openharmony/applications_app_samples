@@ -53,7 +53,7 @@ class Cousin extends Uncle {
 
 @Entry
 @ComponentV2
-struct Inheritance {
+struct Index {
   son: Son = new Son(0);
   cousin: Cousin = new Cousin(0);
   renderTimes: number = 0;
@@ -89,3 +89,5 @@ struct Inheritance {
 }
 
 // [End Inheritance_Class]
+const inheritance = Index;
+export default inheritance;

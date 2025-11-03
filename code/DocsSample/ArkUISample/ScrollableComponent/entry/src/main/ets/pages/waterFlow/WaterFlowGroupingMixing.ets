@@ -98,6 +98,7 @@ export struct WaterFlowGroupingMixing {
 
   build() {
     NavDestination() {
+      // $r('app.string.WaterFlowGroupingMixing_title')需要替换为开发者所需的资源文件
       ComponentCard({ title: $r('app.string.WaterFlowGroupingMixing_title') }) {
         WaterFlow({ layoutMode: WaterFlowLayoutMode.SLIDING_WINDOW, sections: this.sections }) {
           LazyForEach(this.dataSource, (item: number) => {
@@ -140,6 +141,7 @@ export struct WaterFlowGroupingMixing {
         .margin(10)
       }
     }.backgroundColor('#f1f2f3')
+    // $r('app.string.WaterFlowGroupingMixing_title')需要替换为开发者所需的资源文件
     .title($r('app.string.WaterFlowGroupingMixing_title'))
   }
 }

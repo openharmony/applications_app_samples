@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  */
 
 // [Start life_page]
+ import { hilog } from '@kit.PerformanceAnalysisKit';
+ import { DOMAIN, TAG } from '../../common/Common';
 // Page.ets
 @Entry
 @Component
@@ -23,18 +25,18 @@ struct Page {
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageShow() {
-    console.info('Page onPageShow');
+    hilog.info(DOMAIN, TAG, 'Page onPageShow');
     this.num = 5;
   }
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageHide() {
-    console.info('Page onPageHide');
+    hilog.info(DOMAIN, TAG, 'Page onPageHide');
   }
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onBackPress() { // 不设置返回值按照false处理
-    console.info('Page onBackPress');
+    hilog.info(DOMAIN, TAG, 'Page onBackPress');
     this.textColor = Color.Grey;
     this.num = 0;
   }

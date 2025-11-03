@@ -15,15 +15,15 @@
 // [Start Function_passing]
 @Entry
 @Component
-struct ParentFunction {
-  @State clickCount: number = 0;
+struct Parent {
+  @State cnt: number = 0;
   submit: () => void = () => {
-    this.clickCount++;
+    this.cnt++;
   };
 
   build() {
     Column() {
-      Text(`${this.clickCount}`)
+      Text(`${this.cnt}`)
       Son({ submitArrow: this.submit })
     }
   }
@@ -48,3 +48,5 @@ struct Son {
 }
 
 // [End Function_passing]
+const parentFunction = Parent;
+export default parentFunction;

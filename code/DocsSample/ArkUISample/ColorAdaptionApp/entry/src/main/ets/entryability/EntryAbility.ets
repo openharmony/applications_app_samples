@@ -21,9 +21,14 @@ const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
   // [Start create_app]
-  onCreate(): void {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+      this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+    } catch (err) {
+      hilog.error(DOMAIN, 'testTag', 'Failed to set colorMode. Cause: %{public}s', JSON.stringify(err));
+    }
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
   // [End create_app]
   // [Start update_app]

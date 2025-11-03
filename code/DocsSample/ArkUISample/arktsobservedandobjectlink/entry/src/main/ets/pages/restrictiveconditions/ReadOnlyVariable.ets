@@ -16,7 +16,7 @@ import { common } from '@kit.AbilityKit';
 
 // [Start variables_decorated_ObjectLink_read_only]
 @Observed
-class ReadOnlyVariableInfo {
+class Info {
   public count: number;
 
   constructor(count: number) {
@@ -25,8 +25,8 @@ class ReadOnlyVariableInfo {
 }
 
 @Component
-struct ReadOnlyVariableChild {
-  @ObjectLink num: ReadOnlyVariableInfo;
+struct Child {
+  @ObjectLink num: Info;
   // [StartExclude variables_decorated_ObjectLink_read_only]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
@@ -45,8 +45,8 @@ struct ReadOnlyVariableChild {
 
 @Entry
 @Component
-struct ReadOnlyVariableParent {
-  @State num: ReadOnlyVariableInfo = new ReadOnlyVariableInfo(10);
+struct Parent {
+  @State num: Info = new Info(10);
   // [StartExclude variables_decorated_ObjectLink_read_only]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
@@ -58,11 +58,13 @@ struct ReadOnlyVariableParent {
       Button('click')
         .onClick(() => {
           // 可以在父组件做整体替换
-          this.num = new ReadOnlyVariableInfo(30);
+          this.num = new Info(30);
         })
-      ReadOnlyVariableChild({ num: this.num })
+      Child({ num: this.num })
     }
   }
 }
 
 // [End variables_decorated_ObjectLink_read_only]
+const readOnlyVariableParent = Parent;
+export default readOnlyVariableParent;

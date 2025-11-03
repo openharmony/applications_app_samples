@@ -14,7 +14,7 @@
  */
 // [Start Parameter_specification]
 @Component
-struct MyComponentSpecification {
+struct MyComponent {
   private countDownFrom: number = 0;
   private color: Color = Color.Blue;
 
@@ -28,15 +28,17 @@ struct MyComponentSpecification {
 
 @Entry
 @Component
-struct ParentComponentParameter {
+struct ParentComponent {
   private someColor: Color = Color.Pink;
 
   build() {
     Column() {
-      // 创建MyComponentSpecification实例，并将创建MyComponentSpecification成员变量countDownFrom初始化为10，将成员变量color初始化为this.someColor
-      MyComponentSpecification({ countDownFrom: 10, color: this.someColor })
+      // 创建MyComponent实例，并将创建MyComponent成员变量countDownFrom初始化为10，将成员变量color初始化为this.someColor
+      MyComponent({ countDownFrom: 10, color: this.someColor })
     }
   }
 }
 
 // [End Parameter_specification]
+const parentComponentParameter = ParentComponent;
+export default parentComponentParameter;

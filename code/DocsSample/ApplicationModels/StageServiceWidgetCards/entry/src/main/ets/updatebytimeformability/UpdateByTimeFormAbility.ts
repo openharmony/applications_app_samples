@@ -68,7 +68,6 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
         `Failed to setFormNextRefreshTime. Code: ${(err as BusinessError).code},
          message: ${(err as BusinessError).message}`);
     }
-    ;
   }
   // [StartExclude update_by_time_form_ability]
   // [StartExclude set_form_next_refreshime]

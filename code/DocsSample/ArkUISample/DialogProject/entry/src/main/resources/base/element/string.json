@@ -767,7 +767,7 @@
     },
     {
       "name": "hoverMode_start",
-      "value": "hoverMode开启"
+      "value": "hoverMode开启:"
     },
     {
       "name": "PopVibrateMenu_title",
@@ -840,6 +840,14 @@
     {
       "name": "dialog_message",
       "value": "弹窗"
+    },
+    {
+      "name": "copy",
+      "value": "复制"
+    },
+    {
+      "name": "paste",
+      "value": "粘贴"
     }
   ]
 }

@@ -14,6 +14,9 @@
  */
 
 // [Start with_theme]
+import { ThemeControl } from '@kit.ArkUI';
+ThemeControl.setDefaultTheme(undefined);
+
 @Entry
 @Component
 struct DisplayPage3 {

@@ -39,7 +39,7 @@ export struct PageOne {
           .margin(10)
           .onClick(() => {
             // [Start PushPathByNameOnPop]
-            this.pageInfo.pushPathByName('temp4-pageTwo', 'PageOne Param', (popInfo) => {
+            this.pageInfo.pushPathByName('temp4-pageTwo', 'temp4-pageTwo Param', (popInfo) => {
               hilog.info(DOMAIN, 'testTag', 'Pop page name is: ', popInfo.info.name, 'result: ',
                 JSON.stringify(popInfo.result));
               // [StartExclude PushPathByNameOnPop]

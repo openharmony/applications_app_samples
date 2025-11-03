@@ -95,7 +95,7 @@ export async function backupManually() {
           if (resultSet?.rowCount == -1) {
             resultSet?.isColumnNull(0);
           }
-          // todo resultSet.goToFirstRow(), resultSet.count等其它接口也会抛异常
+          // todo resultSet.goToFirstRow()等其它接口也会抛异常
           while (resultSet.goToNextRow()) {
             hilog.info(DOMAIN, 'BackupAndRestore', JSON.stringify(resultSet.getRow()));
           }
