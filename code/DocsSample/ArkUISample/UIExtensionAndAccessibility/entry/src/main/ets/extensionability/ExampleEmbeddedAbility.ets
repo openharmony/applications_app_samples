@@ -14,28 +14,29 @@
  */
 // [Start exampleEmbeddedAbility_start]
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[ExampleEmbeddedAbility]'
 
 export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
   onCreate() {
-    console.log(TAG, `onCreate`);
+    hilog.info(0x0000, TAG, '%{public}s', `onCreate`);
   }
 
   onForeground() {
-    console.log(TAG, `onForeground`);
+    hilog.info(0x0000, TAG, '%{public}s',  `onForeground`);
   }
 
   onBackground() {
-    console.log(TAG, `onBackground`);
+    hilog.info(0x0000, TAG, '%{public}s', `onBackground`);
   }
 
   onDestroy() {
-    console.log(TAG, `onDestroy`);
+    hilog.info(0x0000, TAG, '%{public}s', `onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+    hilog.info(0x0000, TAG , '%{public}s', `onSessionCreate, want: ${JSON.stringify(want)}`);
     let param: Record<string, UIExtensionContentSession> = {
       'session': session
     };
@@ -45,7 +46,7 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(TAG, `onSessionDestroy`);
+    hilog.info(0x0000, TAG , '%{public}s',  `onSessionDestroy`);
   }
 }
 // [End exampleEmbeddedAbility_start]
