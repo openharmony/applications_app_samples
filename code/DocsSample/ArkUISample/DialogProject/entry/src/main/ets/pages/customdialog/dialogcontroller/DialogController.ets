@@ -166,7 +166,7 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogController !== undefined) {
-        Button('Click me to check the pop-up status')
+        Button($r('app.string.click_check_status'))
           .onClick(() => {
             hilog.info(0x0000, 'dialogController', 'state:' + dialogController.getState());
           })
@@ -183,7 +183,7 @@ export struct DialogController {
   build() {
     NavDestination() {
       Column({ space: 5 }) {
-        Button('OpenCustomDialogWithController Dialog')
+        Button($r('app.string.open_custom_dialog_with_controller'))
           .onClick(() => {
             // [Start content_node]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
@@ -197,7 +197,7 @@ export struct DialogController {
             });
             // [End content_node]
           })
-        Button('PresentCustomDialog+CustomBuilder Dialog')
+        Button($r('app.string.present_custom_dialog'))
           .onClick(() => {
             // [Start dialog_controller_component]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
@@ -208,7 +208,7 @@ export struct DialogController {
             });
             // [End dialog_controller_component]
           })
-        Button('PresentCustomDialog+CustomBuilderWithId Dialog')
+        Button($r('app.string.custom_builder_with_id'))
           .onClick(() => {
             // [Start dialog_controller_id]
             let dialogController: promptAction.CommonController = new promptAction.DialogController();
@@ -219,7 +219,7 @@ export struct DialogController {
             });
             // [End dialog_controller_id]
           })
-        Button('CustomDialogController Dialog')
+        Button($r('app.string.custom_dialog_controller_dialog'))
           .onClick(() => {
             // [Start custom_dialog_example_click]
             let customDialogController: CustomDialogController = new CustomDialogController({

@@ -848,6 +848,42 @@
     {
       "name": "paste",
       "value": "粘贴"
+    },
+    {
+      "name": "click_check_status",
+      "value": "点我查询弹窗状态"
+    },
+    {
+      "name": "open_custom_dialog_with_controller",
+      "value": "OpenCustomDialogWithController弹窗"
+    },
+    {
+      "name": "present_custom_dialog",
+      "value": "PresentCustomDialog+CustomBuilder弹窗"
+    },
+    {
+      "name": "custom_builder_with_id",
+      "value": "PresentCustomDialog+CustomBuilderWithId弹窗"
+    },
+    {
+      "name": "custom_dialog_controller_dialog",
+      "value": "CustomDialogController弹窗"
+    },
+    {
+      "name": "top_dialog",
+      "value": "我是置顶弹窗"
+    },
+    {
+      "name": "open_dialog",
+      "value": "点我打开普通弹窗"
+    },
+    {
+      "name": "open_normal_dialog",
+      "value": "我是普通弹窗"
+    },
+    {
+      "name": "click_dialog",
+      "value": "点击弹窗"
     }
   ]
 }
