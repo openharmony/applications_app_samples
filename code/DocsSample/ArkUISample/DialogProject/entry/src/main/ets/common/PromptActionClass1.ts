@@ -53,7 +53,6 @@ export class PromptActionClass1 {
 
   static closeDialog() {
     if (PromptActionClass1.contentNode !== null) {
-      // [Start prompt_action_class_close_custom_dialog]
       PromptActionClass1.ctx.getPromptAction().closeCustomDialog(PromptActionClass1.contentNode)
         .then(() => {
           console.info('CloseCustomDialog complete.');
@@ -63,9 +62,27 @@ export class PromptActionClass1 {
           let code = (error as BusinessError).code;
           console.error(`CloseCustomDialog args error code is ${code}, message is ${message}`);
         })
-      // [End prompt_action_class_close_custom_dialog]
     }
   }
+
+  // [StartExclude prompt_action_class1]
+  static closeDialogAndDispose() {
+     // [Start prompt_action_class_close_custom_dialog]
+     PromptActionClass1.ctx.getPromptAction().closeCustomDialog(PromptActionClass1.contentNode)
+     .then(() => {
+       console.info('CloseCustomDialog complete.');
+       if (this.contentNode !== null) {
+            this.contentNode.dispose();   // 释放contentNode
+        }
+     })
+     .catch((error: BusinessError) => {
+       let message = (error as BusinessError).message;
+       let code = (error as BusinessError).code;
+       console.error(`CloseCustomDialog args error code is ${code}, message is ${message}`);
+     })
+     // [End prompt_action_class_close_custom_dialog]
+  }
+  // [EndExclude prompt_action_class1]
 
   static updateDialog(options: promptAction.BaseDialogOptions) {
     if (PromptActionClass1.contentNode !== null) {
