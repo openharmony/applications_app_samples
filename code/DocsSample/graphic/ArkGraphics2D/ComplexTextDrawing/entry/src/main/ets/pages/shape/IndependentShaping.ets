@@ -46,7 +46,7 @@ export default struct Index {
   }
 }
 
-// 绘制代码逻辑写在这里
+// 文本绘制代码逻辑
 function drawText(canvas: drawing.Canvas) {
   let myTextStyle: text.TextStyle = {
     // 文本大小
@@ -79,8 +79,7 @@ function drawText(canvas: drawing.Canvas) {
     for (let i = 0; i < glyphs.length; i++) {
       runBuffer.push({ glyph: glyphs[i], positionX: x, positionY: y });
       x += advances[i].x + 10;
-      y += advances[i].y + 30
-      0;
+      y += advances[i].y + 30;
     }
     let textBlob: drawing.TextBlob = drawing.TextBlob.makeFromRunBuffer(runBuffer, font, null);
     // 自定义绘制一串具有相同属性的一系列连续字形
