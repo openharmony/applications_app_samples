@@ -258,6 +258,7 @@ export struct GridEts {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    // 'app.string.Pages_Index_GridExample'需要替换为开发者所需的文本资源文件
     .title($r('app.string.Pages_Index_GridExample'))
   }
 }

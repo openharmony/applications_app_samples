@@ -25,45 +25,45 @@ struct GridEts {
   @State numberBadge: number = 0;
 
   @Styles
-  normalStyles(): void{
+  normalStyles(): void {
     .opacity(1.0)
   }
 
   @Styles
-  selectStyles(): void{
+  selectStyles(): void {
     .opacity(0.4)
   }
 
   onPageShow(): void {
     let i: number = 0;
-    for (i = 0; i < 100; i++) {
-      this.numbers.push(i);
-      this.isSelectedGrid.push(false);
-      this.previewData.push({});
-    }
+    for(i = 0; i < 100; i++) {
+    this.numbers.push(i);
+    this.isSelectedGrid.push(false);
+    this.previewData.push({});
   }
+}
 
-  @Builder
-  RandomBuilder(idx: number) {
-    Column()
-      .backgroundColor(Color.Blue)
-      .width(50)
-      .height(50)
-      .opacity(1.0)
-  }
+@Builder
+RandomBuilder(idx: number) {
+  Column()
+    .backgroundColor(Color.Blue)
+    .width(50)
+    .height(50)
+    .opacity(1.0)
+}
 
-  build() {
-    Column({ space: 5 }) {
-      Grid() {
-        ForEach(this.numbers, (idx: number) => {
-          GridItem() {
-            Column()
-              .backgroundColor(Color.Blue)
-              .width(50)
-              .height(50)
-              .opacity(1.0)
-              .id('grid' + idx)
-          }
+build() {
+  Column({ space: 5 }) {
+    Grid() {
+      ForEach(this.numbers, (idx: number) => {
+        GridItem() {
+          Column()
+            .backgroundColor(Color.Blue)
+            .width(50)
+            .height(50)
+            .opacity(1.0)
+            .id('grid' + idx)
+        }
           .dragPreview(this.previewData[idx])
           .selectable(true)
           .selected(this.isSelectedGrid[idx])
@@ -93,14 +93,14 @@ struct GridEts {
             { isMultiSelectionEnabled: true, defaultAnimationBeforeLifting: true })
           .onDragStart(() => {
           })
-        }, (idx: string) => idx)
-      }
+      }, (idx: string) => idx)
+    }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(5)
       .rowsGap(10)
       .backgroundColor(0xFAEEE0)
-    }.width('100%').margin({ top: 5 })
-  }
+  }.width('100%').margin({ top: 5 })
+}
 }
 
 //[End gridExample_start]
