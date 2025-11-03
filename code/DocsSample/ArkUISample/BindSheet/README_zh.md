@@ -33,47 +33,51 @@ entry/src/main/ets/
 |---pages
 |   |---bindContentCover                       // 全模态转场 
 |   |   |---template1
-|   |   |   |---Index.ets
+|   |   |   |---ModalTransitionExample.ets
 |   |   |---template2
-|   |   |   |---Index.ets
+|   |   |   |---ModalTransitionExample2.ets
 |   |   |---template3
-|   |   |   |---Index.ets
+|   |   |   |---ModalTransitionExample3.ets
 |   |   |---template4
-|   |   |   |---Index.ets
+|   |   |   |---ModalTransitionExample4.ets
 |   |   |---template5
-|   |   |   |---Index.ets
+|   |   |   |---ModalTransitionExample5.ets
 |   |   |---template6
-|   |   |   |---Index.ets
+|   |   |   |---BindContentCoverDemo.ets
 |   |   |---template7
-|   |   |   |---Index.ets
+|   |   |   |---BindContentCoverDemo.ets
 |   |---bindSheet                      // 半模态转场
 |   |   |---template1
-|   |   |   |---Index.ets
+|   |   |   |---SheetTransitionExample1.ets
 |   |   |---template2
-|   |   |   |---Index.ets
+|   |   |   |---SheetTransitionExample2.ets
 |   |   |---template3
-|   |   |   |---Index.ets
+|   |   |   |---SheetTransitionExample3.ets
 |   |   |---template4
-|   |   |   |---Index.ets
+|   |   |   |---bindSheetExample4.ets
 |   |   |---template5
-|   |   |   |---Index.ets
+|   |   |   |---bindSheetExample5.ets
 |   |   |---template6
-|   |   |   |---Index.ets
+|   |   |   |---ListenKeyboardHeightChange.ets
 |   |   |---template7
-|   |   |   |---Index.ets
+|   |   |   |---SheetTransitionExample7.ets
 |   |   |---template8
-|   |   |   |---Index.ets
+|   |   |   |---SheetSideExample8.ets
 |   |   |---template9
-|   |   |   |---Index.ets
+|   |   |   |---BindSheetDemo9.ets
 |   |   |---template10
-|   |   |   |---Index.ets
+|   |   |   |---SheetDemo.ets
+|   |   |---template11
+|   |   |   |---OnWillDismiss_Dismiss.ets
+|   |   |---template12
+|   |   |   |---SheetTransitionExample.ets
 |   |---bindSheetCmd                             // 命令式打开半模态
 |   |   |---template1
-|   |   |   |---Index.ets
+|   |   |   |---UIContextBindSheet.ets
 |   |   |---template2
-|   |   |   |---Index.ets
+|   |   |   |---UIContextBindSheet.ets
 |   |   |---template3
-|   |   |   |---Index.ets
+|   |   |   |---UIContextBindSheet.ets
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
@@ -84,6 +88,17 @@ entry/src/ohosTest/
 |   |   |---OpenSheet.test.ets                            // 命令式打开半模态示例代码测试代码
 
 ```
+
+### 具体实现
+
+1. 绑定半模态页面：
+
+    * 基础半模态页面（带生命周期监听）。源码参考[SheetDemo.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BindSheet/entry/src/main/ets/pages/bindSheet/template10/SheetDemo.ets)
+
+    * 嵌套滚动 + 二次确认关闭（防误关）。源码参考[OnWillDismiss_Dismiss.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BindSheet/entry/src/main/ets/pages/bindSheet/template11/OnWillDismiss_Dismiss.ets)
+
+    * 避让中轴。源码参考[SheetTransitionExample.ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/BindSheet/entry/src/main/ets/pages/bindSheet/template12/SheetTransitionExample.ets)
+
 
 ### 相关权限
 
