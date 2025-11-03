@@ -15,17 +15,13 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_ShowWebPageDialog]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'ShowWebPageDialog_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {
   describe('ActsAbilityTest1', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest1 begin');
+      console.info('uitest: ActsAbilityTest1 begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
@@ -33,7 +29,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
+      console.info('get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -59,7 +55,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     it('processweb_AchieveAlertDialogPage1_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_AchieveAlertDialogPage1_001 begin');
+      console.info('uitest: processweb_AchieveAlertDialogPage1_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('AchieveAlertDialogPage1Button'));
@@ -72,13 +68,13 @@ export default function abilityTest() {
 
       const alertText = await driver.findComponent(ON.type('AlertDialog'));
       expect(alertText != null).assertEqual(true);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_AchieveAlertDialogPage1_001 end');
+      console.info('uitest: processweb_AchieveAlertDialogPage1_001 end');
 
       done();
     })
 
     it('processweb_AchieveAlertDialogPage2_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_AchieveAlertDialogPage2_001 begin');
+      console.info('uitest: processweb_AchieveAlertDialogPage2_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('AchieveAlertDialogPage2Button'));
@@ -91,13 +87,13 @@ export default function abilityTest() {
 
       const alertText = await driver.findComponent(ON.type('Dialog'));
       expect(alertText != null).assertEqual(true);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_AchieveAlertDialogPage2_001 end');
+      console.info('uitest: processweb_AchieveAlertDialogPage2_001 end');
 
       done();
     })
 
     it('processweb_AchievePromptDialogPage_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_AchievePromptDialogPage_001 begin');
+      console.info('uitest: processweb_AchievePromptDialogPage_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('AchievePromptDialogPageButton'));
@@ -110,7 +106,7 @@ export default function abilityTest() {
 
       const alertText = await driver.findComponent(ON.type('Dialog'));
       expect(alertText != null).assertEqual(true);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_AchievePromptDialogPage_001 end');
+      console.info('uitest: processweb_AchievePromptDialogPage_001 end');
 
       done();
     })

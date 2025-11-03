@@ -14,10 +14,7 @@
  */
 // [Start onRenderProcessNotResponding]
 import { webview } from '@kit.ArkWeb';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_ProcessWeb]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
+
 @Entry
 @Component
 struct WebComponent {
@@ -27,7 +24,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .onRenderProcessNotResponding((data) => {
-          hilog.info(DOMAIN, TAG, BUNDLE, 'onRenderProcessNotResponding: [jsStack]= ' + data.jsStack +
+          console.info('onRenderProcessNotResponding: [jsStack]= ' + data.jsStack +
             ', [process]=' + data.pid + ', [reason]=' + data.reason);
         })
     }

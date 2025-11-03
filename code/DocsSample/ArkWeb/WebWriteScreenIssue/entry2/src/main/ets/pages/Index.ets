@@ -13,10 +13,7 @@
  * limitations under the License.
  */
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_WebWriteScreenIssue]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'WebWriteScreenIssue_';
+
 @Entry
 @Component
 struct Index {
@@ -28,7 +25,7 @@ struct Index {
             url: 'pages/SetPath',
           })
             .catch((error: BusinessError) => {
-              hilog.info(DOMAIN, TAG, BUNDLE, `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.info(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 

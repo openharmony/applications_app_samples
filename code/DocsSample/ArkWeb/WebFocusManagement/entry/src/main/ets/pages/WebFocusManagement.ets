@@ -15,10 +15,7 @@
 // [Start WebFocusManagement]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_WebFocusManagement]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'WebFocusManagement_';
+
 @Entry
 @Component
 struct WebComponent {
@@ -35,7 +32,7 @@ struct WebComponent {
             try {
               this.controller.requestFocus();
             } catch (error) {
-              hilog.error(DOMAIN, TAG, BUNDLE, `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           });
         Button('web2 requestFocus')
@@ -43,7 +40,7 @@ struct WebComponent {
             try {
               this.controller2.requestFocus();
             } catch (error) {
-              hilog.error(DOMAIN, TAG, BUNDLE, `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           });
       }

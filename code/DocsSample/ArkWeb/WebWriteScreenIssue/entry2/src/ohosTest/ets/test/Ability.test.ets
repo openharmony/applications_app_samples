@@ -15,17 +15,13 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, PointerMatrix } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_WebWriteScreenIssue]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'WebWriteScreenIssue_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 export default function abilityTest() {
   describe('ActsAbilityTest2', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: ActsAbilityTest2 begin');
+      console.info('uitest: ActsAbilityTest2 begin');
       const want: Want = {
         bundleName: bundleName,
         abilityName: 'Entry2Ability'
@@ -33,7 +29,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       const driver = Driver.create();
       await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'get top ability');
+      console.info('get top ability');
       await driver.delayMs(1000);
 
       done();
@@ -57,7 +53,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     it('processweb_SetPath_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_SetPath_001 begin');
+      console.info('uitest: processweb_SetPath_001 begin');
       const driver = Driver.create();
 
       const button = await driver.findComponent(ON.text('SetPathButton'));
@@ -70,9 +66,9 @@ export default function abilityTest() {
 
       const type = await driver.findComponent(ON.type('genericContainer'));
       let src: string = await type.getText();
-      hilog.info(DOMAIN, TAG, BUNDLE, 'src: ' + src);
+      console.info('src: ' + src);
       expect(src != null).assertEqual(true);
-      hilog.info(DOMAIN, TAG, BUNDLE, 'uitest: processweb_SetPath_001 end');
+      console.info('uitest: processweb_SetPath_001 end');
 
       done();
     })

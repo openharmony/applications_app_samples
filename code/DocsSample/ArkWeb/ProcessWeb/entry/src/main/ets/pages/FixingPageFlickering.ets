@@ -13,10 +13,6 @@
  * limitations under the License.
  */
 import webview from '@ohos.web.webview';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_ProcessWeb]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'ProcessWeb_';
 @Entry
 @Component
 struct FixingPageFlickering {
@@ -31,7 +27,7 @@ struct FixingPageFlickering {
         .height('100%')
         .onPageEnd(() => {
           // 页面加载完成时的回调
-          hilog.info(DOMAIN, TAG, BUNDLE, 'Web page loaded completely')
+          console.info('Web page loaded completely');
         })
     }
     .width('100%')

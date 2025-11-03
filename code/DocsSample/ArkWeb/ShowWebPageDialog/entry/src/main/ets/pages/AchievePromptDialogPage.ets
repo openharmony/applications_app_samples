@@ -15,10 +15,6 @@
 // [Start AchievePromptDialogPage]
 import { CustomContentDialog } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
-import hilog from '@ohos.hilog';
-const TAG = '[Sample_ShowWebPageDialog]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'ShowWebPageDialog_';
 
 @Entry
 @Component
@@ -28,7 +24,6 @@ struct PromptDialog {
   @State result: JsResult | null = null;
   promptResult: string = '';
   webviewController: webview.WebviewController = new webview.WebviewController();
-  context = this.getUIContext().getHostContext();
   dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomContentDialog({
       primaryTitle: this.title,
@@ -37,17 +32,15 @@ struct PromptDialog {
       },
       buttons: [
         {
-          // $r('app.string.cancel')需要替换为开发者所需的资源文件
-          value: $r('app.string.cancel'),
+          value: 'cancel',
           buttonStyle: ButtonStyleMode.TEXTUAL,
           action: () => {
-            hilog.info(DOMAIN, TAG, BUNDLE, 'Callback when the button is clicked');
+            console.info('Callback when the button is clicked');
             this.result?.handleCancel();
           }
         },
         {
-          // $r('app.string.notarize')需要替换为开发者所需的资源文件
-          value: $r('app.string.notarize'),
+          value: 'confirm',
           buttonStyle: ButtonStyleMode.TEXTUAL,
           action: () => {
             this.result?.handlePromptConfirm(this.promptResult);
@@ -80,13 +73,10 @@ struct PromptDialog {
       Web({ src: $rawfile('prompt.html'), controller: this.webviewController })
         .onPrompt((event) => {
           if (event) {
-            hilog.info(DOMAIN, TAG, BUNDLE, 'event.url:' + event.url);
-            hilog.info(DOMAIN, TAG, BUNDLE, 'event.message:' + event.message);
-            hilog.info(DOMAIN, TAG, BUNDLE, 'event.value:' + event.value);
-            // $r('app.string.from')需要替换为开发者所需的资源文件
-            this.title = this.context?.resourceManager.getStringSync($r('app.string.from').id) +
-              // $r('app.string.info')需要替换为开发者所需的资源文件
-            event.url + this.context?.resourceManager.getStringSync($r('app.string.info').id);
+            console.info('event.url:' + event.url);
+            console.info('event.message:' + event.message);
+            console.info('event.value:' + event.value);
+            this.title = 'from' + event.url + 'news';
             this.message = event.message;
             this.promptResult = event.value;
             this.result = event.result;

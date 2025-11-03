@@ -14,12 +14,7 @@
 */
 
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_WebClipboard]'
-const DOMAIN = 0xF811
-const BUNDLE = 'WebClipboard_'
 //Column space
 const COLUMN_SPACE: Length = 10;
 
@@ -34,7 +29,7 @@ struct Index {
             url: 'pages/WebClipboard',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`)
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`)
             })
         })
       Button('clipboard event')
@@ -43,7 +38,7 @@ struct Index {
             url: 'pages/WebClipboardEvent',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 
@@ -53,7 +48,7 @@ struct Index {
             url: 'pages/WebCopyOptions',
           })
             .catch((error: BusinessError) => {
-              hilog.error(DOMAIN, TAG, BUNDLE + `pushUrl failed, code is ${error.code}, message is ${error.message}`);
+              console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
             })
         })
 

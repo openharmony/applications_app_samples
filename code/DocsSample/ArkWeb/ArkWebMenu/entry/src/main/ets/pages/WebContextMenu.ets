@@ -13,22 +13,11 @@
  * limitations under the License.
  */
 // [Start web_ContextMenu]
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { pasteboard } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
 
-const TAG = '[Sample_ContextMenu]'
-const DOMAIN = 0xF811
-const BUNDLE = 'ContextMenu_'
-
-//MenuItem width
-const MENUITEM_WIDTH: number = 100;
-//MenuItem height
-const MENUITEM_HEIGHT: number = 50;
-//MenuBuilder width
-const MENUBUILDER_WIDTH: number = 150;
-//MenuBuilder height
-const MENUBUILDER_HEIGHT: number = 300;
+const TAG = 'ContextMenu';
 
 @Entry
 @Component
@@ -48,46 +37,46 @@ struct WebComponent {
     Menu() {
       // 展示菜单Menu中具体的item菜单项。
       MenuItem({
-        content: $r('app.string.copy_image'),
+        content: 'Copy Image',
       })
-        .width(MENUITEM_WIDTH)
-        .height(MENUITEM_HEIGHT)
+        .width(100)
+        .height(50)
         .onClick(() => {
           this.result?.copyImage();
           this.showMenu = false;
         })
       MenuItem({
-        content: $r('app.string.cut'),
+        content: 'Cut',
       })
-        .width(MENUITEM_WIDTH)
-        .height(MENUITEM_HEIGHT)
+        .width(100)
+        .height(50)
         .onClick(() => {
           this.result?.cut();
           this.showMenu = false;
         })
       MenuItem({
-        content: $r('app.string.copy'),
+        content: 'Copy',
       })
-        .width(MENUITEM_WIDTH)
-        .height(MENUITEM_HEIGHT)
+        .width(100)
+        .height(50)
         .onClick(() => {
           this.result?.copy();
           this.showMenu = false;
         })
       MenuItem({
-        content: $r('app.string.paste'),
+        content: 'Paste',
       })
-        .width(MENUITEM_WIDTH)
-        .height(MENUITEM_HEIGHT)
+        .width(100)
+        .height(50)
         .onClick(() => {
           this.result?.paste();
           this.showMenu = false;
         })
       MenuItem({
-        content: $r('app.string.copy_url'),
+        content: 'Copy link',
       })
-        .width(MENUITEM_WIDTH)
-        .height(MENUITEM_HEIGHT)
+        .width(100)
+        .height(50)
         .onClick(() => {
           let pasteData = pasteboard.createData('text/plain', this.linkUrl);
           pasteboard.getSystemPasteboard().setData(pasteData, (error) => {
@@ -98,17 +87,17 @@ struct WebComponent {
           this.showMenu = false;
         })
       MenuItem({
-        content: $r('app.string.all'),
+        content: '全选',
       })
-        .width(MENUITEM_WIDTH)
-        .height(MENUITEM_HEIGHT)
+        .width(100)
+        .height(50)
         .onClick(() => {
           this.result?.selectAll();
           this.showMenu = false;
         })
     }
-    .width(MENUBUILDER_WIDTH)
-    .height(MENUBUILDER_HEIGHT)
+    .width(150)
+    .height(300)
   }
 
   build() {
@@ -118,11 +107,11 @@ struct WebComponent {
         .onContextMenuShow((event) => {
           if (event) {
             this.result = event.result
-            hilog.info(DOMAIN, TAG, BUNDLE + 'x coord = ' + event.param.x());
-            hilog.info(DOMAIN, TAG, BUNDLE + 'link url = ' + event.param.getLinkUrl());
+            console.info('x coord = ' + event.param.x());
+            console.info('link url = ' + event.param.getLinkUrl());
             this.linkUrl = event.param.getLinkUrl();
           }
-          hilog.info(DOMAIN, TAG, BUNDLE + `x: ${this.offsetX}, y: ${this.offsetY}`);
+          console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
           this.showMenu = true;
           this.offsetX = 0;
           this.offsetY = Math.max(this.uiContext!.px2vp(event?.param.y() ?? 0) - 0, 0);
