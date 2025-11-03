@@ -378,7 +378,7 @@ let demandList: listItem[] = [
 
 @Entry
 @Component
-struct Index {
+struct MainPage {
   @State bgColor: ResourceColor = '#39b5fa';
 
   build() {

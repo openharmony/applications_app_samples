@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//[Start RelativeContainerComponentBarrier_start]
+//[Start testRelativeContainerComponentBarrier_start]
 @Entry
 @Component
-struct RelativeBarrierExample {
+struct Index {
   build() {
     Row() {
       RelativeContainer() {
@@ -104,4 +104,4 @@ struct RelativeBarrierExample {
     .height('100%')
   }
 }
-// [End RelativeContainerComponentBarrier_start]
+// [End testRelativeContainerComponentBarrier_start]
