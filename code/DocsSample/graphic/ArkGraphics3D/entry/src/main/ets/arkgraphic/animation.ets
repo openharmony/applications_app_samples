@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
+// [Start anim_header]
 import { Animation, Camera, Scene, SceneResourceFactory } from '@kit.ArkGraphics3D';
+// [End anim_header]
 import { router } from '@kit.ArkUI';
-import logger from '../utils/Logger';
 
 @Entry
 @Component
@@ -44,41 +45,51 @@ struct sceneAnimation {
     if (this.scene == null) {
       // Loading scene.
       // Switched from .gltf to .glb; same content, different format
+      // [Start anim_load]
       Scene.load($rawfile('gltf/BrainStem/glTF/BrainStem.glb'))
         .then(async (result: Scene) => {
           this.scene = result;
           let rf: SceneResourceFactory = this.scene.getResourceFactory();
-
+          // [StartExclude anim_load]
           // Get animation resources
+          // [Start anim_pick_anim]
           this.anim = this.scene.animations[0];
           if (this.anim) {
             this.anim.enabled = true;
             // Register callback function
             this.anim.onStarted(() => {
+              // [StartExclude anim_pick_anim]
               console.info('onStarted');
+              // [EndExclude anim_pick_anim]
               this.animationCallbackInvoked = 'animation on start';
             });
 
             this.anim.onFinished(() => {
+              // [StartExclude anim_pick_anim]
               console.info('onFinished');
+              // [EndExclude anim_pick_anim]
               this.animationCallbackInvoked = 'animation on finish';
             });
-
-            logger.info('ready to create a new animation.');
+            // [StartExclude anim_pick_anim]
+            console.info('ready to create a new animation.');
+            // [EndExclude anim_pick_anim]
           } else {
-            logger.error('No animation found in scene.');
+            console.error('No animation found in scene.');
           }
-
+          // [End anim_pick_anim]
+          // [Start anim_camera_sceneopt]
           // create a new camera.
           this.cam = await rf.createCamera({ 'name': 'Camera' });
           // set the camera.
           this.cam.enabled = true;
           this.cam.position.z = 5;
-
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
+          // [End anim_camera_sceneopt]
+          // [EndExclude anim_load]
         }).catch((err: string) => {
-          logger.error(err);
+          console.error(err);
       });
+      // [End anim_load]
     }
   }
 
@@ -99,12 +110,14 @@ struct sceneAnimation {
         Text('animation invoked callback:' + this.animationCallbackInvoked)
           .fontSize(16)
           .fontWeight(500);
-
+        // [Start anim_controls]
         Button('start')
+          // [StartExclude anim_controls]
           .id('start')
           .margin({ top: 50, left: 6 })
           .width('30%')
           .height(40)
+          // [EndExclude anim_controls]
           .onClick(async () => {
             if (!this.scene || !this.scene.animations[0]) {
               return;
@@ -114,10 +127,12 @@ struct sceneAnimation {
           });
 
         Button('pause')
+          // [StartExclude anim_controls]
           .id('pause')
           .margin({ top: 10, left: 6 })
           .width('30%')
           .height(40)
+          // [EndExclude anim_controls]
           .onClick(async () => {
             if (!this.scene || !this.scene.animations[0]) {
               return;
@@ -127,10 +142,12 @@ struct sceneAnimation {
           });
 
         Button('stop')
+          // [StartExclude anim_controls]
           .id('stop')
           .margin({ top: 10, left: 6 })
           .width('30%')
           .height(40)
+          // [EndExclude anim_controls]
           .onClick(async () => {
             if (!this.scene || !this.scene.animations[0]) {
               return;
@@ -140,35 +157,42 @@ struct sceneAnimation {
           });
 
         Button('finish')
+          // [StartExclude anim_controls]
+          .id('finish')
           .margin({ top: 10, left: 6 })
           .width('30%')
           .height(40)
+          // [EndExclude anim_controls]
           .onClick(async () => {
             if (!this.scene || !this.scene.animations[0]) {
               return;
             }
             this.anim = this.scene.animations[0];
             this.anim.finish();
-          })
-          .id('finish');
+          });
 
         Button('restart')
+          // [StartExclude anim_controls]
+          .id('restart')
           .margin({ top: 10, left: 6 })
           .width('30%')
           .height(40)
+          // [EndExclude anim_controls]
           .onClick(async () => {
             if (!this.scene || !this.scene.animations[0]) {
               return;
             }
             this.anim = this.scene.animations[0];
             this.anim.restart();
-          })
-          .id('restart');
+          });
 
         Button('seek to 30% progress')
+          // [StartExclude anim_controls]
+          .id('seek')
           .margin({ top: 10, left: 6 })
           .width('30%')
           .height(40)
+          // [EndExclude anim_controls]
           .onClick(async () => {
             if (!this.scene || !this.scene.animations[0]) {
               return;
@@ -176,17 +200,17 @@ struct sceneAnimation {
             this.anim = this.scene.animations[0];
             // seek to 30%
             this.anim.seek(0.3);
-          })
-          .id('seek');
+          });
+        // [End anim_controls]
 
         Button('back')
+          .id('back')
           .margin({ top: 10, left: 6 })
           .width('30%')
           .height(40)
           .onClick(() => {
             router.back();
-          })
-          .id('back');
+          });
       }
       .width('100%');
     }

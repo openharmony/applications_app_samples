@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
+// [Start model_header]
 import { Camera, Scene, SceneResourceFactory } from '@kit.ArkGraphics3D';
+// [End model_header]
 import { router } from '@kit.ArkUI';
-import logger from '../utils/Logger';
 
 @Entry
 @Component
@@ -38,6 +39,7 @@ struct Model {
   }
 
   init(): void {
+    // [Start model_load]
     if (this.scene == null) {
       // Load the model and place the gltf file in the related path. Use the actual path during loading.
       // Switched from .gltf to .glb; same content, different format
@@ -45,6 +47,8 @@ struct Model {
         .then(async (result: Scene) => {
           this.scene = result;
           let rf: SceneResourceFactory = this.scene.getResourceFactory();
+          // [StartExclude model_load]
+          // [Start camera_scene_params]
           // Create a Camera.
           this.cam = await rf.createCamera({ 'name': 'Camera' });
           // Set proper camera parameters.
@@ -52,23 +56,28 @@ struct Model {
           this.cam.position.z = 5;
 
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
-          logger.info('initialization completely.');
+          // [End camera_scene_params]
+          console.info('initialization completely.');
+          // [EndExclude model_load]
         })
         .catch((reason: string) => {
           console.log(reason);
       });
     }
+    // [End model_load]
   }
 
   build() {
     Row() {
       Column() {
+        // [Start render_model]
         if (this.sceneOpt) {
           // Use Component3D to display the 3D scenario.
           Component3D(this.sceneOpt);
         } else {
           Text('Loading···');
         }
+        // [End render_model]
 
         Button('back')
           .id('back')

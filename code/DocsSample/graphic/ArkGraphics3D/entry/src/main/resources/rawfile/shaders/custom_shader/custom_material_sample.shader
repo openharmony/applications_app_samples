@@ -7,8 +7,8 @@
         "rasterizationState": {
             "enableDepthClamp": true,
             "enableDepthBias": true,
-            "enableRasterizerDiscard": true,
-            "polygonMode": "line",
+            "enableRasterizerDiscard": false,
+            "polygonMode": "fill",
             "cullModeFlags": "back",
             "frontFace": "counter_clockwise"
         },
@@ -23,7 +23,7 @@
             "colorAttachments": [
                 {
                     "enableBlend": true,
-                    "colorWriteMask": "g_bit|b_bit",
+                    "colorWriteMask": "r_bit|g_bit|b_bit|a_bit",
                     "srcColorBlendFactor": "one",
                     "dstColorBlendFactor": "one_minus_src_alpha",
                     "colorBlendOp": "add",

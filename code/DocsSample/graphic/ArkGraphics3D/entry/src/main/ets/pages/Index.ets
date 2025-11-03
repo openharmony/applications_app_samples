@@ -79,8 +79,45 @@ struct Index {
             }
           );
         })
+
+      Button('Use of general material properties')
+        .id('material_common')
+        .fontWeight(500)
+        .margin({ top: 20, left: 6 })
+        .width('80%')
+        .height(40)
+        .onClick((): void => {
+          router.pushUrl({ url: 'arkgraphic/material_common' },
+            router.RouterMode.Standard,
+            (err) => {
+              if (err) {
+                logger.error('Invoke replaceUrl failed, code is ' + err.code + ', message is ' + err.message);
+                return;
+              }
+              logger.info('Invoke replaceUrl succeeded.');
+            }
+          );
+        })
+
+      Button('Use of PBR material')
+        .id('pbr')
+        .fontWeight(500)
+        .margin({ top: 20, left: 6 })
+        .width('80%')
+        .height(40)
+        .onClick((): void => {
+          router.pushUrl({ url: 'arkgraphic/pbr' },
+            router.RouterMode.Standard,
+            (err) => {
+              if (err) {
+                logger.error('Invoke replaceUrl failed, code is ' + err.code + ', message is ' + err.message);
+                return;
+              }
+              logger.info('Invoke replaceUrl succeeded.');
+            }
+          );
+        })
     }
     .width('100%');
   }
 }
-

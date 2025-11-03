@@ -13,25 +13,15 @@
  * limitations under the License.
  */
 
-import {
-  Camera,
-  Environment,
-  Geometry,
-  Image,
-  Material,
-  MaterialType,
-  Scene,
-  SceneResourceFactory,
-  SceneResourceParameters,
-  Shader,
-  ShaderMaterial,
-  EnvironmentBackgroundType
-} from '@kit.ArkGraphics3D';
+// [Start resource_header]
+import { Camera, Environment, Geometry, Image, Material, MaterialType, Scene, SceneResourceFactory,
+  SceneResourceParameters, Shader, ShaderMaterial, EnvironmentBackgroundType } from '@kit.ArkGraphics3D';
+// [End resource_header]
 import { router } from '@kit.ArkUI';
-import logger from '../utils/Logger';
 
 let globalScene: Scene | null = null;
 
+// [Start create_material_promise]
 function createMaterialPromise(): Promise<Material> {
   return new Promise((resolve, reject) => {
     // Ensure the scene is loaded before accessing sceneFactory
@@ -42,7 +32,7 @@ function createMaterialPromise(): Promise<Material> {
       let material: Promise<Material> = sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
       material.then(resolve)
       .catch((err: string) => {
-        logger.error('Blank material create failed: ' + err);
+        console.error('Blank material create failed: ' + err);
         reject(err);
       });
     } else {
@@ -50,7 +40,9 @@ function createMaterialPromise(): Promise<Material> {
     }
   });
 }
+// [End create_material_promise]
 
+// [Start create_shader_promise]
 function createShaderPromise(): Promise<Shader> {
   return new Promise((resolve, reject) => {
     // Ensure the scene is loaded before accessing sceneFactory
@@ -62,21 +54,12 @@ function createShaderPromise(): Promise<Shader> {
         name: 'shaderResource',
         uri: $rawfile('shaders/custom_shader/custom_material_sample.shader')
       };
+
       let shader: Promise<Shader> = sceneFactory.createShader(sceneResourceParameter);
-      shader.then(async (shaderEntity: Shader) => {
-        let sceneMaterialParameter: SceneResourceParameters = { name: 'material' };
-        // Create material
-        let material: Promise<Material> = sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
-        material.then(async (materialEntity: ShaderMaterial) => {
-          // Bind material with shader
-          materialEntity.colorShader = shaderEntity;
-          resolve(shaderEntity);
-        }).catch((err: string) => {
-          logger.error('Custom ShaderMaterial create failed: ' + err + '.');
-          reject(err);
-        });
+      shader.then((shaderEntity: Shader) => {
+        resolve(shaderEntity);
       }).catch((err: string) => {
-        logger.error('Shader load failed: ' + err + '.');
+        console.error('Shader load failed: ' + err + '.');
         reject(err);
       });
     } else {
@@ -84,31 +67,25 @@ function createShaderPromise(): Promise<Shader> {
     }
   });
 }
+// [End create_shader_promise]
 
+// [Start create_image_promise]
 function createImagePromise(): Promise<Image> {
   return new Promise((resolve, reject) => {
     // Ensure the scene is loaded before accessing sceneFactory
     if (globalScene) {
       let sceneFactory: SceneResourceFactory = globalScene.getResourceFactory();
-      let sceneImageParameter: SceneResourceParameters = { name: 'image', uri: $rawfile('image/Cube_BaseColor.png') };
-      // Create image
+
+      let sceneImageParameter: SceneResourceParameters = {
+        name: 'image',
+        uri: $rawfile('image/Cube_BaseColor.png')
+      };
+
       let image: Promise<Image> = sceneFactory.createImage(sceneImageParameter);
-      image.then(async (imageEntity: Image) => {
-        let sceneMaterialParameter: SceneResourceParameters = { name: 'material' };
-        // Create material
-        let material: Promise<Material> = sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
-        material.then(async (materialEntity: ShaderMaterial) => {
-          // Use the created image resource to set texture property
-          if (materialEntity && materialEntity.colorShader) {
-            materialEntity.colorShader.inputs['BASE_COLOR_Image'] = imageEntity;
-          }
-          resolve(imageEntity);
-        }).catch((err: string) => {
-          logger.error('Shader material of image texture create failed: ' + err + '.');
-          reject(err);
-        });
+      image.then((imageEntity: Image) => {
+        resolve(imageEntity);
       }).catch((err: string) => {
-        logger.error('ImageTexture load failed: ' + err + '.');
+        console.error('Image load failed: ' + err + '.');
         reject(err);
       });
     } else {
@@ -116,7 +93,9 @@ function createImagePromise(): Promise<Image> {
     }
   });
 }
+// [End create_image_promise]
 
+// [Start create_environment_promise]
 function createEnvironmentPromise() : Promise<Environment> {
   return new Promise((resolve, reject) => {
     // Ensure the scene is loaded before accessing sceneFactory
@@ -140,11 +119,11 @@ function createEnvironmentPromise() : Promise<Environment> {
           envEntity.indirectDiffuseFactor.w = 1;
           resolve(envEntity);
         }).catch((err: string) => {
-          logger.error('Environment mapping material create failed: ' + err + '.');
+          console.error('Environment mapping material create failed: ' + err + '.');
           reject(err);
         });
       }).catch((err: string) => {
-        logger.error('Image load failed: ' + err);
+        console.error('Image load failed: ' + err);
         reject(err);
       });
     } else {
@@ -152,6 +131,7 @@ function createEnvironmentPromise() : Promise<Environment> {
     }
   });
 }
+// [End create_environment_promise]
 
 @Entry
 @Component
@@ -195,6 +175,7 @@ struct materialPage {
   }
 
   init(): void {
+    // [Start scene_load_init]
     if (this.scene === null) {
       // Switched from .gltf to .glb; same content, different format
       Scene.load($rawfile('gltf/CubeWithFloor/glTF/AnimatedCube.glb'))
@@ -204,20 +185,26 @@ struct materialPage {
           this.scene = result;
           this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
           this.rf = this.scene.getResourceFactory();
+          // [StartExclude scene_load_init]
+          // [Start scene_camera_init]
           this.cam = await this.rf.createCamera({ 'name': 'Camera1' });
           this.cam.enabled = true;
           this.cam.position.z = 5;
-
+          // [End scene_camera_init]
           // create a geometry
+          // [Start geometry_node_get]
           this.geom = this.scene.getNodeByPath('rootNode_/Unnamed Node 1/AnimatedCube') as Geometry;
 
           // record original material
           this.originalMat = this.geom.mesh.subMeshes[0].material;
+          // [End geometry_node_get]
+          // [EndExclude scene_load_init]
         })
         .catch((error: string) => {
-          logger.error('init error: ' + error + '.');
+          console.error('init error: ' + error + '.');
         });
     }
+    // [End scene_load_init]
   }
 
   build() {
@@ -232,13 +219,16 @@ struct materialPage {
         }
         .height('30%');
 
+        // [Start material_button_action]
         Button('Replace with a blank material')
+          // [StartExclude material_button_action]
           .id('material')
           .margin({ top: 80, left: 6 })
           .width('60%')
           .height(40)
+          // [EndExclude material_button_action]
           .onClick(async (): Promise<void> => {
-            logger.info('Start to replace with a blank material');
+            console.info('Start to replace with a blank material');
 
             if (!this.blankMat) {
               this.blankMat = await createMaterialPromise();
@@ -258,12 +248,14 @@ struct materialPage {
           });
 
         Button('Replace with a Shader material')
+          // [StartExclude material_button_action]
           .id('shader')
           .margin({ top: 20, left: 6 })
           .width('60%')
           .height(40)
+          // [EndExclude material_button_action]
           .onClick(async (): Promise<void> => {
-            logger.info('Start to replace with a shader material');
+            console.info('Start to replace with a shader material');
 
             if (!this.shader) {
               this.shader = await createShaderPromise();
@@ -290,14 +282,18 @@ struct materialPage {
               this.geom.mesh.subMeshes[0].material = this.shaderMat;
             }
           })
+        // [End material_button_action]
 
+        // [Start replace_with_image_material]
         Button('Replace with a Image material')
+          // [StartExclude replace_with_image_material]
           .id('image')
           .margin({ top: 20, left: 6 })
           .width('60%')
           .height(40)
+          // [EndExclude replace_with_image_material]
           .onClick(async (): Promise<void> => {
-            logger.info('Start to replace with a material of image');
+            console.info('Start to replace with a material of image');
 
             if (!this.scene || !this.cam || !this.rf) {
               return;
@@ -324,14 +320,18 @@ struct materialPage {
             this.geom.mesh.materialOverride = undefined;
             this.geom.mesh.subMeshes[0].material = this.imageMat;
           })
+        // [End replace_with_image_material]
 
+        // [Start environment_button_action]
         Button('Add to Environment')
+          // [StartExclude environment_button_action]
           .id('env')
           .margin({ top: 20, left: 6 })
           .width('60%')
           .height(40)
+          // [EndExclude environment_button_action]
           .onClick(async (): Promise<void> => {
-            logger.info('Start to replace with a material of image');
+            console.info('Start to replace with a material of image');
 
             if (!this.scene || !this.cam) {
               return;
@@ -342,6 +342,7 @@ struct materialPage {
               this.scene.environment = this.env;
             }
           });
+        // [End environment_button_action]
 
         Button('back')
           .id('back')
