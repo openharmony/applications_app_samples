@@ -53,24 +53,25 @@ class CalendarReminder {
       reminder.reminderName = selectCalendar
       // [Start calendar_reminder]
       let calendar: reminderAgent.ReminderRequestCalendar = {
-        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
-        dateTime: {
+        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,  // 提醒类型为日历类型
+        dateTime: {  // 指明提醒的目标时间
           year: date.getFullYear(),
           month: date.getUTCMonth() + 1,
           day: date.getDate(),
           hour: date.getHours(),
           minute: date.getMinutes(),
         },
-        actionButton:
+        actionButton:  // 设置弹出的提醒通知信息上显示的按钮类型和标题
         [{
-          title: context.resourceManager.getStringSync($r('app.string.calendar_close').id),
+          title: context.resourceManager.getStringSync($r('app.string.calendar_close').id),  // “关闭日历提醒”
           type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
         }],
+        // 点击提醒通知后跳转的目标UIAbility信息
         wantAgent: { pkgName: 'com.example.reminderagentmanager', abilityName: 'EntryAbility' },
-        ringDuration: Constant.REMINDER_DURATION,
-        title: context.resourceManager.getStringSync($r('app.string.calendar').id),
-        content: context.resourceManager.getStringSync($r('app.string.calendar_reach').id),
-        slotType: notificationManager.SlotType.CONTENT_INFORMATION
+        ringDuration: Constant.REMINDER_DURATION,  // 指明响铃时长（单位：秒）
+        title: context.resourceManager.getStringSync($r('app.string.calendar').id),  // 指明提醒标题“日历”
+        content: context.resourceManager.getStringSync($r('app.string.calendar_reach').id),  // 指明提醒内容“日历提醒时间到了”
+        slotType: notificationManager.SlotType.CONTENT_INFORMATION  // 指明提醒的Slot类型
       }
       // [End calendar_reminder]
       Logger.info(TAG, `setCalendar this calendar is ${JSON.stringify(calendar)}}`);
@@ -95,7 +96,8 @@ class CalendarReminder {
       // [Start publish_reminder]
       let reminderId: number = await reminderAgent.publishReminder(
         this.calendarReminders[index].reminderRequestCalendar!);
-      this.calendarReminders[index].reminderId = reminderId;
+      Logger.info(TAG, `publish reminder result: id is ${reminderId}`);
+      this.calendarReminders[index].reminderId = reminderId;  // 保存发布的提醒ID
       // [End publish_reminder]
       if (this.calendarReminders[index].audioSrc) {
         let audioIndex: number = await AudioPlayer.getAudioID(
@@ -145,6 +147,7 @@ class CalendarReminder {
       clearTimeout(this.calendarReminders[index].audioTimeouts)
       await PreferencesDataManager.putData('Calendar', this.calendarReminders);
       // [Start cancel_reminder]
+      Logger.info(TAG, `cancel reminder id is ${this.calendarReminders[index].reminderId}`)
       await reminderAgent.cancelReminder(this.calendarReminders[index].reminderId);
       // [Start cancel_reminder]
       await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
