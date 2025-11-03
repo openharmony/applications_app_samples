@@ -31,8 +31,6 @@ export default class Entry3Ability extends UIAbility {
   }
   // [EndExclude create_main_window]
 
-// ...
-
   onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
