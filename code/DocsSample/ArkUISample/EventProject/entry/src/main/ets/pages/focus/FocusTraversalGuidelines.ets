@@ -19,34 +19,33 @@
 export struct FocusLinerExample {
   build() {
     NavDestination() {
-    Column() {
       Column() {
-        Button('Column Button1')
-          .width(150)
-          .height(45)
-          .fontColor(Color.White)
-          .margin(10)
-        Button('Column Button2')
-          .width(150)
-          .height(45)
-          .fontColor(Color.White)
-          .margin(10)
+        Column() {
+          Button('Column Button1')
+            .width(150)
+            .height(45)
+            .fontColor(Color.White)
+            .margin(10)
+          Button('Column Button2')
+            .width(150)
+            .height(45)
+            .fontColor(Color.White)
+            .margin(10)
+        }
+        .margin(10)
+        Row() {
+          Button('Row Button1')
+            .width(150)
+            .height(45)
+            .fontColor(Color.White)
+            .margin(10)
+          Button('Row Button2')
+            .width(150)
+            .height(45)
+            .fontColor(Color.White)
+            .margin(10)
+        }
       }
-      .margin(10)
-
-      Row() {
-        Button('Row Button1')
-          .width(150)
-          .height(45)
-          .fontColor(Color.White)
-          .margin(10)
-        Button('Row Button2')
-          .width(150)
-          .height(45)
-          .fontColor(Color.White)
-          .margin(10)
-      }
-    }
     }
     // [StartExclude dynamic_focus_liner]
     .backgroundColor('#f1f2f3')

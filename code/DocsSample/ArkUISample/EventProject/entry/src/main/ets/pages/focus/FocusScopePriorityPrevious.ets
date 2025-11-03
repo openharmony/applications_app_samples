@@ -19,12 +19,12 @@
 export struct FocusScopePriorityPrevious {
   build() {
     NavDestination() {
-    Row() {
-      Button('Button1')
-        .defaultFocus(true)
-      Button('Button2')
-        .focusScopePriority('RowScope', FocusPriority.PREVIOUS)
-    }.focusScopeId('RowScope')
+      Row() {
+        Button('Button1')
+          .defaultFocus(true)
+        Button('Button2')
+          .focusScopePriority('RowScope', FocusPriority.PREVIOUS)
+      }.focusScopeId('RowScope')
     }
     // [StartExclude dynamic_focus_scope_priority_previous]
     .backgroundColor('#f1f2f3')

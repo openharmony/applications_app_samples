@@ -19,31 +19,36 @@
 export struct NextFocusExample {
   build() {
     NavDestination() {
-    Column({space: 30}) {
-      Row().height('30%')
-      Row({space: 10}) {
-        Button('A')
-          .id('A')
-          .nextFocus({forward: 'F', backward: 'C', down: 'B'})
-        Button('B')
-          .id('B')
-          .nextFocus({ down: 'C'})
-        Button('C')
-          .id('C')
-      }
-      Column({space: 10}) {
-        Button('D')
-          .id('D')
-        Button('E')
-          .id('E')
-          .nextFocus({forward: 'A', backward: 'M', up: 'E', right: 'F'})
-      }
-      Row({space: 10}) {
-        Button('F')
-          .id('F')
-          .nextFocus({forward: 'B', down: 'A'});
-      }
-    }.width('100%')
+      Column({ space: 30 }) {
+        Row().height('30%')
+        Row({ space: 10 }) {
+          Button('A')
+            .id('A')
+            .nextFocus({ forward: 'F', backward: 'C', down: 'B' })
+          Button('B')
+            .id('B')
+            .nextFocus({ down: 'C' })
+          Button('C')
+            .id('C')
+        }
+        Column({ space: 10 }) {
+          Button('D')
+            .id('D')
+          Button('E')
+            .id('E')
+            .nextFocus({
+              forward: 'A',
+              backward: 'M',
+              up: 'E',
+              right: 'F'
+            })
+        }
+        Row({ space: 10 }) {
+          Button('F')
+            .id('F')
+            .nextFocus({ forward: 'B', down: 'A' });
+        }
+      }.width('100%')
     }
     // [StartExclude dynamic_focus_next]
     .backgroundColor('#f1f2f3')
