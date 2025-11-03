@@ -186,7 +186,7 @@ export struct GridEts {
             })
             .dragPreviewOptions({ numberBadge: this.numberBadge })
             //[End grid_numberBadge_start]
-            //[Start grid_isSelected_start]
+            //[End grid_isSelected_start]
             .onPreDrag((status: PreDragStatus) => {
               // 1.长按时通知，350ms回调
               if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
