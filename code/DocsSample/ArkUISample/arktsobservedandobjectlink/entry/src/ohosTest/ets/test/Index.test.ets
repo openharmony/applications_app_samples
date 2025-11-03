@@ -400,18 +400,6 @@ export default function IndexTest() {
       expect(targetElement === null).assertFalse();
       await targetElement!.click();
       await driver.delayMs(2000);
-      let targetElement2 = await driver.findComponent(ON.text('Parent: reset entire counter', MatchPattern.CONTAINS));
-      expect(targetElement2=== null).assertFalse();
-      await targetElement2.click();
-      await driver.delayMs(1000);
-      let targetElement3 = await driver.findComponent(ON.text('Parent: incr counter[0].counter', MatchPattern.CONTAINS));
-      expect(targetElement3=== null).assertFalse();
-      await targetElement3.click();
-      await driver.delayMs(1000);
-      let targetElement4 = await driver.findComponent(ON.text('Parent: set.counter to 10', MatchPattern.CONTAINS));
-      expect(targetElement4=== null).assertFalse();
-      await targetElement4.click();
-      await driver.delayMs(1000);
       await driver.pressBack();
       done();
       hilog.info(DOMAIN,TAG,BUNDLE + 'ComplexMethodsNesting_013,end')

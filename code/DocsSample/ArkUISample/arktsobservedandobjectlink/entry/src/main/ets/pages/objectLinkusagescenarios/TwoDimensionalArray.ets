@@ -17,7 +17,6 @@
 @Observed
 class ObservedArrays<T> extends Array<T> {
 }
-
 // [End Two_dimensional_array]
 
 // [Start Two_dimensional_array_example]

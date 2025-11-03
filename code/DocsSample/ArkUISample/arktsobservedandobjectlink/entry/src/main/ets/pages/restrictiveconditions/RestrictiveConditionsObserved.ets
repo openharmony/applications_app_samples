@@ -21,15 +21,13 @@ class Info {
     this.count = count;
   }
 }
-
 // [StartExclude Test_Info_Observed]
 @Component
 struct TestInfo {
-  // [EndExclude Test_Info_Observed]
-  // 正确写法
-  @ObjectLink count: Info;
-
-  // [End Test_Info_Observed]
+// [EndExclude Test_Info_Observed]
+// 正确写法
+@ObjectLink count: Info;
+// [End Test_Info_Observed]
   build() {
 
   }
@@ -44,15 +42,12 @@ class CountInfo {
     this.count = count;
   }
 }
-
 // [StartExclude Info_Initialization]
 @Component
 struct Initialization {
-  // [EndExclude Info_Initialization]
-
-  // 正确写法
-  @ObjectLink count: CountInfo;
-
+// [EndExclude Info_Initialization]
+// 正确写法
+@ObjectLink count: CountInfo;
   // [End Info_Initialization]
 
   build() {

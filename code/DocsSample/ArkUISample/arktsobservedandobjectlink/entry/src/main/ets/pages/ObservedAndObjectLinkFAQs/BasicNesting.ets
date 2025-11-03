@@ -115,6 +115,5 @@ struct MyView {
     }
   }
 }
-
 // [End Basic_nesting]
 export default MyView;

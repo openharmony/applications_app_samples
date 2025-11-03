@@ -58,7 +58,6 @@ struct UserChild {
     }
   }
 }
-
 // [End Differences_Prop_ObjectLink]
 const differencesPropObjectLink = Index;
 export default differencesPropObjectLink;

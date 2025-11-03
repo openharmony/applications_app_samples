@@ -63,27 +63,24 @@ struct DecoratorDescriptionHelloWorld {
   // [Start Modify_and_change]
   @ObjectLink parent: Parent;
 
-  // [StartExclude Modify_and_change]
   build() {
-    RelativeContainer() {
-      Button('')
-        .onClick(() => {
-          // [EndExclude Modify_and_change]
-          // 赋值变化可以被观察到
-          this.parent.child = new Child(5);
-          this.parent.count = 5;
-          // Child没有被@Observed装饰，其属性的变化观察不到
-          this.parent.child.num = 5;
-          // [End Modify_and_change]
-
-          // [Start Attribute_assignment]
-          // 允许@ObjectLink装饰的数据属性赋值
-          this.objLink.a = '...'
-          // [End Attribute_assignment]
-        })
+    Column() {
     }
-    .height('100%')
-    .width('100%')
+    .onClick(() => {
+      // 赋值变化可以被观察到
+      this.parent.child = new Child(5);
+      this.parent.count = 5;
+      // Child没有被@Observed装饰，其属性的变化观察不到
+      this.parent.child.num = 5;
+      // [StartExclude Modify_and_change]
+      // [Start Attribute_assignment]
+      // 允许@ObjectLink装饰的数据属性赋值
+      this.objLink.a = '...';
+      // [End Attribute_assignment]
+      // [EndExclude Modify_and_change]
+    })
   }
+  // [End Modify_and_change]
 }
+
 export default DecoratorDescription;

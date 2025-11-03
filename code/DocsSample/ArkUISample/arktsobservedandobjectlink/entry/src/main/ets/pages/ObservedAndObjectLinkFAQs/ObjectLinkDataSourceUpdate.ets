@@ -69,10 +69,8 @@ struct Parent {
 struct Child {
   @ObjectLink @Watch('onChange02') per: Person;
   clickEvent?: () => void;
-  // [StartExclude ObjectLink_Data_source_update_timing]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-  // [EndExclude ObjectLink_Data_source_update_timing]
   onChange02() {
     hilog.info(DOMAIN, TAG, `:::onChange02:${this.per.name}`); // 5
   }
@@ -95,7 +93,6 @@ struct Child {
     hilog.info(DOMAIN, TAG, `:::--------${this.context.resourceManager.getStringSync($r('app.string.ObjectLinkDataSourceUpdate_Child').id)}: ${this.per.name}`); // 4
   };
 }
-
 // [End ObjectLink_Data_source_update_timing]
 const objectLinkDataSourceUpdateParent = Parent;
 export default objectLinkDataSourceUpdateParent;

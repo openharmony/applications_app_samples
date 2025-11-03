@@ -27,10 +27,8 @@ class Info {
 @Component
 struct Child {
   @ObjectLink num: Info;
-  // [StartExclude variables_decorated_ObjectLink_read_only]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-  // [EndExclude variables_decorated_ObjectLink_read_only]
   build() {
     Column() {
       // $r('app.string.value_num')需要替换为开发者所需的资源文件
@@ -47,10 +45,8 @@ struct Child {
 @Component
 struct Parent {
   @State num: Info = new Info(10);
-  // [StartExclude variables_decorated_ObjectLink_read_only]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-  // [EndExclude variables_decorated_ObjectLink_read_only]
   build() {
     Column() {
       // $r('app.string.value_count')需要替换为开发者所需的资源文件
@@ -64,7 +60,6 @@ struct Parent {
     }
   }
 }
-
 // [End variables_decorated_ObjectLink_read_only]
 const readOnlyVariableParent = Parent;
 export default readOnlyVariableParent;

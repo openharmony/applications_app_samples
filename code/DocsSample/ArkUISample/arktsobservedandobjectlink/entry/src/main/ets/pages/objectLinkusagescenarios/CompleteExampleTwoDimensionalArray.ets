@@ -70,5 +70,4 @@ struct IndexPage {
     }
   }
 }
-
 // [End Complete_Example_Two_Dimensional_Array]

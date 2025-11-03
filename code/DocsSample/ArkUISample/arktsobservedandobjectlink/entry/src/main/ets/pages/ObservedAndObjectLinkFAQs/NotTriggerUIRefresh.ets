@@ -79,7 +79,6 @@ struct Child {
     .width('100%')
   }
 }
-
 // [End Not_Trigger_UI_Refresh_Proxy]
 const notTriggerUIRefreshParent = Parent;
 export default notTriggerUIRefreshParent;
