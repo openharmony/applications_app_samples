@@ -86,7 +86,7 @@ export struct SamplePage {
             this.city = address[0].locality;
           }
           hilog.info(0x0000, this.tag, 'this city:' + JSON.stringify(this.city));
-// [StartExclude get_current_location]
+// [EndExclude get_current_location]
           hilog.info(0x0000, this.tag, 'current location:' + JSON.stringify(location));
         }
       }
