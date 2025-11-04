@@ -67,6 +67,10 @@ export default function abilityTest() {
       await button2.click();
       await driver.delayMs(1000);
 
+      const button3 = await driver.findComponent(ON.text('runJavaScriptParam'));
+      await button3.click();
+      await driver.delayMs(1000);
+
       const webButton = await driver.findComponent(ON.type('button'));
       await webButton.click();
       await driver.delayMs(1000);

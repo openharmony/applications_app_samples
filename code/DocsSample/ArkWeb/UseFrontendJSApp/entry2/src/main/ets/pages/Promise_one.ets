@@ -24,15 +24,15 @@ class TestClass {
   test(): Promise<string> {
     let p: Promise<string> = new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log('Execute Finished');
+        console.info('Execute Finished');
         reject('fail');
       }, 10000);
     });
     return p;
   }
 
-  toString(param: String): void {
-    console.log(' ' + param);
+  toString(param: string): void {
+    console.info(' ' + param);
   }
 }
 

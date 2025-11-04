@@ -25,8 +25,8 @@ class TestClass {
     param.hello('call obj func');
   }
 
-  toString(param: String): void {
-    console.log('Web Component toString' + param);
+  toString(param: string): void {
+    console.info('Web Component toString' + param);
   }
 }
 
