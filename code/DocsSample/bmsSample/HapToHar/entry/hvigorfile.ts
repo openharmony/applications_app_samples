@@ -17,7 +17,7 @@
 import { harTasks } from '@ohos/hvigor-ohos-plugin';
 
 export default {
-  system: harTasks,  // 修改成har编译任务
+  system: harTasks,  // 修改成HAR编译任务
   plugins:[]
 }
 // [End hap_to_har_003]
