@@ -55,6 +55,22 @@
     {
       "name": "update_software",
       "value": "软件更新"
+    },
+    {
+      "name": "request_suspend_delay",
+      "value": "申请短时任务"
+    },
+    {
+      "name": "get_remaining_delay_time",
+      "value": "获取短时任务剩余时间"
+    },
+    {
+      "name": "cancel_suspend_delay",
+      "value": "取消短时任务"
+    },
+    {
+      "name": "transient_task_id",
+      "value": "短时任务Id："
     }
   ]
 }

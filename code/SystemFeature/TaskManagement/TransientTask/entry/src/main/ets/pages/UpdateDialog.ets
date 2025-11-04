@@ -16,10 +16,9 @@
 import http from '@ohos.net.http'
 import Logger from '../util/Logger'
 import saveFile from '../feature/SaveFile'
-import getFix from '../feature/LoadFile'
+import {getFix, getNewHap} from '../feature/LoadFile'
 
 const TAG: string = 'UpdateDialog'
-
 @Component
 export struct UpdateDialog {
   build() {

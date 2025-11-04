@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import http from '@ohos.net.http'
 import Logger from '../util/Logger'
 
 const TAG: string = 'LoadFile'
-const URL: string = 'https://gitee.com/openharmony/applications_app_samples/raw/master/code/DataMock/QuickFix/entry-signed-release.hqf'
+const URL: string = "https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DataMock/QuickFix/entry-signed-release.hqf"
 
 export default async function getFix(): Promise<http.HttpResponse> {
   try {
@@ -30,3 +30,4 @@ export default async function getFix(): Promise<http.HttpResponse> {
     Logger.error(TAG, `get result failed, code is ${err.code}, message is ${err.message}`)
   }
 }
+
