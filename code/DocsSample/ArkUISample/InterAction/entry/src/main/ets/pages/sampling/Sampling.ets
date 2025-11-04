@@ -14,6 +14,12 @@
  */
 
 // [Start samp_ling]
+import hilog from '@ohos.hilog';
+
+const TAG = '[Sample_Sampling]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'MyApp_Sampling';
+
 @Entry
 @ComponentV2
 struct Sampling {
@@ -28,6 +34,8 @@ struct Sampling {
           let allHistoricalPoints = event.getHistoricalPoints();
           if (allHistoricalPoints.length !== 0) {
             for (const point of allHistoricalPoints) {
+              hilog.info(DOMAIN, TAG, BUNDLE + 'historical point: [' + point.touchObject.windowX +
+                ', ' + point.touchObject.windowY + ']')
             }
           }
         })

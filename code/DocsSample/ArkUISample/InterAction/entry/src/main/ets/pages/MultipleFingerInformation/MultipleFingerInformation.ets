@@ -14,6 +14,12 @@
  */
 
 // [Start multiple_finger_information]
+import hilog from '@ohos.hilog';
+
+const TAG = '[Sample_MultipleFingerInformation]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'MyApp_MultipleFingerInformation';
+
 @Entry
 @ComponentV2
 struct MultipleFingerInformation {
@@ -36,15 +42,18 @@ struct MultipleFingerInformation {
           let allFingers = event.touches;
           if (allFingers.length > 0 && this.currentFingerCount === 0) {
             // 第1根手指按下
+            hilog.info(DOMAIN, TAG, BUNDLE + 'fingers start to press down')
             this.currentFingerCount = allFingers.length
           }
           if (allFingers.length !== 0) {
             for (const finger of allFingers) {
               this.allFingerIds.push(finger.id)
             }
+            hilog.info(DOMAIN, TAG, BUNDLE + 'current all fingers : ' + this.allFingerIds.toString())
           }
           if (event.type === TouchType.Up && event.touches.length === 1) {
             // 所有手指都已抬起
+            hilog.info(DOMAIN, TAG, BUNDLE + 'all fingers already up')
             this.currentFingerCount = 0
           }
         })
