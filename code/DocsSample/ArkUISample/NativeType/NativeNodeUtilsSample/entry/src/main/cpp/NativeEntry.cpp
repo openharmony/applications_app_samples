@@ -29,11 +29,14 @@
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
 #include <js_native_api.h>
+
+#include "NativeEntry.h"
 #include "ArkUICustomContainerNode.h"
 #include "ArkUICustomNode.h"
 
 // 全局环境变量声明
 static napi_env g_env = nullptr;
+// [StartExclude arkUICustomNodeCpp_start]
 // [Start Interface_entrance_mounting_file]
 #include "NativeEntry.h"
 #include "LazyTextListExample.h"
@@ -585,7 +588,7 @@ void NativeEntry::UnregisterNodeEventReceiver()
 {
     NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->unregisterNodeEventReceiver();
 }
-// [EndExclude ArkUICustomNodeCpp_start]
+// [EndExclude arkUICustomNodeCpp_start]
 // [EndExclude Interface_entrance_mounting_file]
 napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 {
