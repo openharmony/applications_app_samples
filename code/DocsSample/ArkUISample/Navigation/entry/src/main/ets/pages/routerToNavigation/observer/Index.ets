@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
 // [Start observer_index]
 // EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 import { UIObserver, window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 export default class EntryAbility extends UIAbility {
   // ...

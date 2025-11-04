@@ -15,7 +15,8 @@
 
 // [Start life_page]
  import { hilog } from '@kit.PerformanceAnalysisKit';
- import { DOMAIN, TAG } from '../../common/Common';
+ const DOMAIN = 0xF811;
+ const TAG = '[Sample_ArkTSRouter]';
 // Page.ets
 @Entry
 @Component

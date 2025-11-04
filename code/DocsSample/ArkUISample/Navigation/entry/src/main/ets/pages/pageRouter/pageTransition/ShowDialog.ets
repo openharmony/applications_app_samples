@@ -16,10 +16,10 @@
 // [Start page_showDialog1]
 import { promptAction} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-// [End page_showDialog1]
 import { hilog } from '@kit.PerformanceAnalysisKit';
-const DOMAIN = 0xF811
+const DOMAIN = 0xF811;
 const TAG = '[Sample_ArkTSRouter]';
+// [End page_showDialog1]
 
 @Entry
 @Component
@@ -30,14 +30,14 @@ struct ShowAlert {
     // 弹出自定义的询问框
     this.getUIContext().getPromptAction().showDialog({
       // 您还没有完成支付，确定要返回吗？
-      message: 'You haven\'t completed the payment yet. Are you sure you want to return?',
+      message: this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('pageRouter_dialog_context') as string,
       buttons: [
         {
-          text: 'Cancel',
+          text: this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('pageRouter_dialog_canceled') as string,
           color: '#FF0000'
         },
         {
-          text: 'Confirm',
+          text: this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('pageRouter_dialog_confirmed') as string,
           color: '#0099FF'
         }
       ]

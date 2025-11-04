@@ -17,7 +17,8 @@
 import { BusinessError } from '@kit.BasicServicesKit';
 import '@ohos/library/src/main/ets/pages/Index'; // 引入共享包中的命名路由页面
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 @Entry
 @Component
