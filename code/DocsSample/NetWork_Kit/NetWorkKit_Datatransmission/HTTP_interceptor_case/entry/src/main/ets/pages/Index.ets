@@ -53,7 +53,7 @@ class InitialHttpInterceptor implements http.HttpInterceptor {
     hilog.info(0xFF00, 'httpNormalRequest', `INITIAL_REQUEST, Original rsp: ${JSON.stringify(rspContext)}`);
 
     reqContext.url = EXAMPLE_INITIAL_URL;
-    reqContext.head = { 'content-type': 'text/plain' };
+    reqContext.header = { 'content-type': 'text/plain' };
     reqContext.body = { 'context': 'INITIAL_REQUEST' };
 
     rspContext.result = 'INITIAL_REQUEST';
@@ -82,7 +82,7 @@ class NetworkHttpInterceptor implements http.HttpInterceptor {
     hilog.info(0xFF00, 'httpNormalRequest', `NETWORK_CONNECT, Original rsp: ${JSON.stringify(rspContext)}`);
 
     reqContext.url = EXAMPLE_NETWORK_URL;
-    reqContext.head = { 'content-type': 'text/xml' };
+    reqContext.header = { 'content-type': 'text/xml' };
     reqContext.body = { 'context': 'NETWORK_CONNECT' };
 
     rspContext.result = 'NETWORK_CONNECT';
@@ -111,7 +111,7 @@ class FinalHttpInterceptor implements http.HttpInterceptor {
     hilog.info(0xFF00, 'httpNormalRequest', `FINAL_RESPONSE, Original rsp: ${JSON.stringify(rspContext)}`);
 
     reqContext.url = EXAMPLE_INITIAL_URL;
-    reqContext.head = { 'content-type': 'text/html' };
+    reqContext.header = { 'content-type': 'text/html' };
     reqContext.body = { 'context': 'FINAL_RESPONSE' };
 
     rspContext.result = 'FINAL_RESPONSE';
