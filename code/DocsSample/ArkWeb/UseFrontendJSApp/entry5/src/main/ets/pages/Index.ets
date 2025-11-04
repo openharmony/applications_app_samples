@@ -39,13 +39,13 @@ struct Index {
     Scroll() {
       Column({ space: 10 }) {
         // 展示H5接收到的内容
-        Text($r('app.string.H5_Side_Message_Display_From_App'))
+        Text('H5_Side_Message_Display_From_App')
         TextArea({text: this.h5Log})
           .id('log_area')
           .width('100%')
           .height(100)
           .border({ width: 1 })
-        Text($r('app.string.App_Side_Button'))
+        Text('App_Side_Button')
         Row() {
           Button('createNoControllerTagPort')
             .id('create_no_tag_btn')
@@ -182,7 +182,7 @@ struct Index {
         .border({ width: 1 })
 
         Column({ space: 10 }) {
-          Text($r('app.string.H5_Side_Send_Button'))
+          Text('H5_Side_Send_Button')
           Row({ space: 10 }) {
             Button('H5String')
               .id('h5_send_string_btn')

@@ -23,12 +23,12 @@ class testObj {
   }
 
   test(): string {
-    console.log('ArkUI Web Component');
+    console.info('ArkUI Web Component');
     return 'ArkUI Web Component';
   }
 
   toString(): void {
-    console.log('Web Component toString');
+    console.info('Web Component toString');
   }
 }
 
