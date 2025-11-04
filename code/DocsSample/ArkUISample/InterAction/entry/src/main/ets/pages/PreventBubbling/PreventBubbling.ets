@@ -14,6 +14,12 @@
  */
 
 // [Start prevent_bubbling]
+import hilog from '@ohos.hilog';
+
+const TAG = '[Sample_MultipleFingerInformation]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'MyApp_MultipleFingerInformation';
+
 @Entry
 @ComponentV2
 struct PreventBubbling {
@@ -38,6 +44,7 @@ struct PreventBubbling {
       .height('100%')
       .width('100%')
       .onTouch((event:TouchEvent)=>{
+        hilog.info(DOMAIN, TAG, BUNDLE + 'touch event received on parent')
       })
     }
     .height('100%')
