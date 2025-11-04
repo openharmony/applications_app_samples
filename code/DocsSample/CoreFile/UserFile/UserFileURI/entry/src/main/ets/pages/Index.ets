@@ -40,7 +40,7 @@ let uris: string[] = [];
 // [EndExclude copy_file_uri_example]
 
 // context 是EntryAbility 传过来的context
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let context = getContext(this) as common.UIAbilityContext;
 // [End import_user_fileAccess]
 
 // [StartExclude copy_file_uri_example]
@@ -71,8 +71,8 @@ async function photoPickerGetUri() {
     console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     uris = photoSelectResult.photoUris;
   } catch (err) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`PhotoViewPicker failed with err, code is ${err.code}, message is ${err.message}`);
+    let error: BusinessError = err as BusinessError;
+    console.error(`PhotoViewPicker failed with err, code is ${error.code}, message is ${error.message}`);
   }
 }
 
