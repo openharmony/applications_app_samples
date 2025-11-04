@@ -16,7 +16,6 @@
 // [Start custom_dialog_with_key_board_distance]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { LengthMetrics } from '@kit.ArkUI'
-import resource from '../../common/resource';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 
@@ -37,6 +36,7 @@ export struct customDialogWithKeyboardAvoidDistance {
     NavDestination() {
       Row() {
         Row({ space: 20 }) {
+          //$r('app.string.open_windows')资源文件中的value为'打开弹窗'
           Text($r('app.string.open_windows'))
             .fontSize(30)
             .onClick(() => {

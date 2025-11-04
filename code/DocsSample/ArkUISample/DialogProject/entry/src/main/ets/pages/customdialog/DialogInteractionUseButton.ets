@@ -15,7 +15,7 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
-// [Start dialog_interaction_3]
+// [Start dialog_interaction_use_button]
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string;
@@ -32,7 +32,7 @@ struct CustomDialogExample {
         Text($r('app.string.the_second_page_is')+`：${this.textValue}`)
           .fontSize(20)
       } else {
-        //$r('app.wether_to_get_the_second_page.the_second_page_is')资源文件中的value为'是否获取第二个页面的内容'
+        //$r('app.string.wether_to_get_the_second_page')资源文件中的value为'是否获取第二个页面的内容'
         Text($r('app.string.wether_to_get_the_second_page'))
           .fontSize(20)
       }
@@ -114,4 +114,4 @@ export struct DialogInteractionUseButton {
     }
   }
 }
-// [End dialog_interaction_3]
+// [End dialog_interaction_use_button]

@@ -587,7 +587,7 @@
     },
     {
       "name": "DialogAnimation1_title",
-      "value": "弹出框的动画1"
+      "value": "弹出框的动画新页面"
     },
     {
       "name": "DialogAnimation1_desc",
@@ -595,7 +595,7 @@
     },
     {
       "name": "DialogStyle1_title",
-      "value": "弹出框的样式1"
+      "value": "弹出框的样式新页面"
     },
     {
       "name": "DialogStyle1_desc",
@@ -603,7 +603,7 @@
     },
     {
       "name": "NestDialog1_title",
-      "value": "嵌套自定义弹出框1"
+      "value": "嵌套自定义弹出框新页面"
     },
     {
       "name": "NestDialog1_desc",
