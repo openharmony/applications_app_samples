@@ -23,12 +23,15 @@ export struct CustomTextInputStyle {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_1') }) {
           // [Start custom_text_input_with_place_holder]
+          // 'app.string.CustomTextInputStyle_textContent_1'资源文件中的value值为"我是提示文本"
           TextInput({ placeholder: $r('app.string.CustomTextInputStyle_textContent_1') })
           // [End custom_text_input_with_place_holder]
         }
 
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_2') }) {
           // [Start custom_text_input_with_place_holder_and_text]
+          // 'app.string.CustomTextInputStyle_textContent_1'资源文件中的value值为"我是提示文本"
+          // 'app.string.CustomTextInputStyle_textContent_2'资源文件中的value值为"我是当前文本内容"
           TextInput({
             placeholder: $r('app.string.CustomTextInputStyle_textContent_1'),
             text: $r('app.string.CustomTextInputStyle_textContent_2')
@@ -38,6 +41,8 @@ export struct CustomTextInputStyle {
 
         ComponentCard({ title: $r('app.string.CustomTextInputStyle_title_3') }) {
           // [Start custom_text_input_background_color]
+          // 'app.string.CustomTextInputStyle_textContent_1'资源文件中的value值为"我是提示文本"
+          // 'app.string.CustomTextInputStyle_textContent_2'资源文件中的value值为"我是当前文本内容"
           TextInput({
             placeholder: $r('app.string.CustomTextInputStyle_textContent_1'),
             text: $r('app.string.CustomTextInputStyle_textContent_2')
