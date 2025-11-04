@@ -37,9 +37,9 @@ export default class Entry2Ability extends UIAbility {
       let mainWindow = windowStage.getMainWindowSync();
       if (mainWindow) {
         // 保存UIContext， 在后续的同层渲染绘制中使用。
-        AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
+        AppStorage.setOrCreate<UIContext>('UIContext', mainWindow.getUIContext());
       } else {
-        console.error("Failed to get the main window");
+        console.error('Failed to get the main window');
       }
     });
   }
