@@ -45,7 +45,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onCastToNormalForm(formId: string): void {
     // [StartExclude update_by_message_form_ability]
-    // 使用方将临时卡片转换为常态卡片触发，卡片提供方需要做相应的处理
+    // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
     // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
   }
@@ -124,7 +124,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onAcquireFormState(want: Want): formInfo.FormState {
     // [StartExclude update_by_message_form_ability]
-    // Called to return a {@link FormState} object.
+    // 调用后返回对象{@link FormState}.
     // [EndExclude update_by_message_form_ability]
     return formInfo.FormState.READY;
   }
