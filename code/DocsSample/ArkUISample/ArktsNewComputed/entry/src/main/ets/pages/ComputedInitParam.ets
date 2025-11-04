@@ -27,7 +27,7 @@ class Article {
 
 @Entry
 @ComponentV2
-export struct ComputedInitParam {
+struct ComputingInitParam {
   @Local shoppingBasket: Article[] = [new Article(1, 20), new Article(5, 2)];
 
   @Computed
@@ -41,37 +41,29 @@ export struct ComputedInitParam {
   }
 
   build() {
-    // [StartExclude Computed_Init_Param]
-    NavDestination() {
-      // [EndExclude  Computed_Init_Param]
-      Column() {
-        Text(`Shopping List: `)
-          .fontSize(30)
-        ForEach(this.shoppingBasket, (item: Article) => {
-          Row() {
-            Text(`unitPrice: ${item.unitPrice}`)
-            Button('-')
-              .onClick(() => {
-                if (item.quantity > 0) {
-                  item.quantity--;
-                }
-              })
-            Text(`quantity: ${item.quantity}`)
-            Button('+')
-              .onClick(() => {
-                item.quantity++;
-              })
-          }
+    Column() {
+      Text(`Shopping List: `)
+        .fontSize(30)
+      ForEach(this.shoppingBasket, (item: Article) => {
+        Row() {
+          Text(`unitPrice: ${item.unitPrice}`)
+          Button('-')
+            .onClick(() => {
+              if (item.quantity > 0) {
+                item.quantity--;
+              }
+            })
+          Text(`quantity: ${item.quantity}`)
+          Button('+')
+            .onClick(() => {
+              item.quantity++;
+            })
+        }
 
-          Divider()
-        })
-        Child({ total: this.total, qualifiesForDiscount: this.qualifiesForDiscount })
-      }.alignItems(HorizontalAlign.Start)
-      // [StartExclude Computed_Init_Param]
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.computed_title_3'))
-    // [EndExclude  Computed_Init_Param]
+        Divider()
+      })
+      Child({ total: this.total, qualifiesForDiscount: this.qualifiesForDiscount })
+    }.alignItems(HorizontalAlign.Start)
   }
 }
 
@@ -90,3 +82,12 @@ struct Child {
   }
 }
 // [End Computed_Init_Param]
+
+@Builder
+export function ComputedInitParam() {
+  NavDestination() {
+    ComputingInitParam()
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.computed_title_3'))
+}
