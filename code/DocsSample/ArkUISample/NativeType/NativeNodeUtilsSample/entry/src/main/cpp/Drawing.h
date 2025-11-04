@@ -21,8 +21,9 @@
 #include <native_drawing/drawing_color.h>
 #include <native_drawing/drawing_path.h>
 #include <native_drawing/drawing_pen.h>
+// [StartExclude drawing_start]
 #include "common/common.h"
-
+// [EndExclude drawing_start]
 ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
 {
     // 创建节点
@@ -51,15 +52,16 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
     };
     A *a = new A;
     a->node = customNode;
+    // [StartExclude userdata_start]
     nodeAPI->setAttribute(customNode, NODE_WIDTH, NODE_WIDTH_Item);
     nodeAPI->setAttribute(customNode, NODE_HEIGHT, NODE_HEIGHT_Item);
     nodeAPI->setAttribute(customNode, NODE_BACKGROUND_COLOR, NODE_BACKGROUND_COLOR_Item);
     // 进行事件注册
+    // [EndExclude userdata_start]
     nodeAPI->registerNodeCustomEvent(customNode, ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW, 1, a);
     // 事件回调函数的编写
     nodeAPI->registerNodeCustomEventReceiver([](ArkUI_NodeCustomEvent *event) {
     // 事件回调函数逻辑
-    // [End userdata_start]
         // 获取自定义事件的相关信息。
         // [Start nodeCustomEvent_start]
         auto type = OH_ArkUI_NodeCustomEvent_GetEventType(event);
@@ -67,6 +69,7 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
         auto userData = reinterpret_cast<A *>(OH_ArkUI_NodeCustomEvent_GetUserData(event));
         // [End nodeCustomEvent_start]
         if (type == ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW && targetId == 1 && userData->flag) {
+            // [Start nodeCustomEvent_start]
             // [Start drawCanvas_Start]
             // 获取自定义事件绘制的上下文。
             auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
@@ -89,8 +92,10 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
             OH_Drawing_CanvasAttachPen(canvas, pen);
             OH_Drawing_CanvasDrawPath(canvas, path);
             // [End drawCanvas_Start]
+            // [EndExclude nodeCustomEvent_start]
         }
     });
+    // [End userdata_start]
     // 自定义节点上树
     nodeAPI->addChild(column, customNode);
     return column;

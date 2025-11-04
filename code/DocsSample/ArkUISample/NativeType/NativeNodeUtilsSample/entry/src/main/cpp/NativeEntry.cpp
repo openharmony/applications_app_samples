@@ -31,6 +31,8 @@
 #include <js_native_api.h>
 #include "ArkUICustomContainerNode.h"
 #include "ArkUICustomNode.h"
+
+// 全局环境变量声明
 static napi_env g_env = nullptr;
 // [Start Interface_entrance_mounting_file]
 #include "NativeEntry.h"
