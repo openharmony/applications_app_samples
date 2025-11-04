@@ -20,6 +20,8 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Component
 struct Index {
   context = this.getUIContext().getHostContext();
+  /*'app.string.StyledStringParagraphStyle_Text_2'资源文件中的value值为"段落标题\n正文第一段落开始0123456789正文第一段落结束，
+   通过replaceStyle清空原样式替换新样式。"*/
   @State message1: string =
     this.context!.resourceManager.getStringSync($r('app.string.StyledStringParagraphStyle_Text_2').id);
   titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
@@ -76,6 +78,7 @@ struct Index {
     Column() {
       // 显示属性字符串
       Text(undefined, { controller: this.controller }).width(300)
+      //'app.string.Replace_paragraph_style'资源文件中的value值为"替换段落样式"
       Button($r('app.string.Replace_paragraph_style'))
         .onClick(() => {
           this.paragraphStyledString1.replaceStyle({

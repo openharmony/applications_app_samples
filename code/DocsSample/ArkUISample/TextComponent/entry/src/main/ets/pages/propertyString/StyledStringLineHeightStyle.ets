@@ -19,6 +19,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct styled_string_demo6 {
+  //'app.string.StyledStringStyle_Text_5'资源文件中的value值为"运动35分钟\n顶顶顶\n得到"
   @State str: string =
     this.getUIContext()
       .getHostContext()?.resourceManager.getStringSync($r('app.string.StyledStringStyle_Text_5')) as string;

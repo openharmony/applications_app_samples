@@ -95,7 +95,7 @@ class MyCustomSpan extends CustomSpan {
     this.word = word;
   }
 
-  public  width: number = 160;
+  public width: number = 160;
   public word: string = 'drawing';
   public height: number = 10;
   public fontSize: number = 16;
@@ -139,10 +139,15 @@ export struct StyledStringGestureStyle {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        //'app.string.TStyledStringGestureStyle_title'资源文件中的value值为"设置事件"
         ComponentCard({ title: $r('app.string.TStyledStringGestureStyle_title') }) {
           Row() {
             Column() {
-              Button($r('app.string.StyledStringGestureStyle_button_content')).backgroundColor(this.backgroundColor1).width('80%').margin(10)
+              //'app.string.StyledStringGestureStyle_button_content'资源文件中的value值为"响应属性字符串事件改变背景色"
+              Button($r('app.string.StyledStringGestureStyle_button_content'))
+                .backgroundColor(this.backgroundColor1)
+                .width('80%')
+                .margin(10)
               Text(undefined, { controller: this.textController })
                 .id('text1')
                 .copyOption(CopyOptions.InApp)
@@ -158,6 +163,7 @@ export struct StyledStringGestureStyle {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    //'app.string.TStyledStringGestureStyle_title'资源文件中的value值为"设置事件"
     .title($r('app.string.TStyledStringGestureStyle_title'))
   }
 }
