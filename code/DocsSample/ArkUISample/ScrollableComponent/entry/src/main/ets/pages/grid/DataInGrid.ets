@@ -14,12 +14,13 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-// [Start build_a_office_services_grid_of_foreach]
 import common from '@ohos.app.ability.common';
+// [Start build_a_office_services_grid_of_foreach]
 @Entry
 @Component
 export struct DataInGrid {
   @State services: Array<string> = [];
+  // [StartExclude build_a_office_services_grid_of_foreach]
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     const meeting = context.resourceManager.getStringByNameSync('Meeting')
@@ -31,6 +32,8 @@ export struct DataInGrid {
     const printing = context.resourceManager.getStringByNameSync('Printing')
     this.services.push(printing)
   }
+  // [EndExclude build_a_office_services_grid_of_foreach]
+
   build() {
     // [StartExclude build_a_office_services_grid_of_foreach]
     NavDestination() {
@@ -38,7 +41,6 @@ export struct DataInGrid {
       Column({ space: 12 }) {
         // [StartExclude build_a_office_services_grid_of_foreach]
         ComponentCard({ title: $r('app.string.DataInGrid_titleOfficeServices') }) {
-          // [EndExclude build_a_office_services_grid_of_foreach]
           // $r('app.string.build_a_office_services_grid')需要替换为开发者所需的字符串资源
           // [Start build_a_office_services_grid]
           // [Start build_a_office_services_meeting]
@@ -88,7 +90,6 @@ export struct DataInGrid {
           // [End build_a_office_services_grid]
         }
 
-        // [StartExclude build_a_office_services_grid_of_foreach]
         // $r('app.string.DataInGrid_titleForEach')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.DataInGrid_titleForEach') }) {
           // [EndExclude build_a_office_services_grid_of_foreach]
@@ -99,13 +100,13 @@ export struct DataInGrid {
               }.backgroundColor('#FFF1F3F5')
             }, (service: string): string => service)
           }
+          .rowsTemplate(('1fr 1fr') as string)
+          .columnsTemplate(('1fr 1fr') as string)
           // [StartExclude build_a_office_services_grid_of_foreach]
           .height(200)
           .columnsGap(6)
           .rowsGap(6)
           // [EndExclude build_a_office_services_grid_of_foreach]
-          .rowsTemplate(('1fr 1fr') as string)
-          .columnsTemplate(('1fr 1fr') as string)
         }
       }
       // [End build_a_office_services_grid_of_foreach]
