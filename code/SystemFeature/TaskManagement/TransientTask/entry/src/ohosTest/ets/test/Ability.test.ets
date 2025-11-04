@@ -63,7 +63,7 @@ export default function abilityTest() {
     })
 
     /**
-     * 拉起应用 com.samples.camera
+     * 拉起应用 com.samples.transienttask
      */
     it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}CameraAbility_StartAbility_001 start`);
@@ -79,7 +79,7 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      Logger.info(TAG, `${BUNDLE}CameraAbility_StartAbility_001 end`);
+      Logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
       done();
     })
 
@@ -90,7 +90,6 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}ComponentIfExist_001 start`);
       await driver.delayMs(1000);
       // 测试控件是否存在
-      await driver.assertComponentExist(ON.id('check'));
       await driver.assertComponentExist(ON.id('transient_task_id'));
       await driver.assertComponentExist(ON.id('request_suspend_delay'));
       await driver.assertComponentExist(ON.id('get_remaining_delay_time'));

@@ -14,7 +14,6 @@
  */
 
 import { TitleBar } from './TitleBar'
-import { UpdateDialog } from './UpdateDialog'
 import { TransientTaskDialog } from './TransientTaskDialog'
 
 @Entry
@@ -27,8 +26,6 @@ struct Index {
         .width(250)
         .height(250)
         .borderRadius(10)
-      Text($r('app.string.update_message')).fontSize(20)
-      UpdateDialog()
       TransientTaskDialog()
     }
     .width('100%')

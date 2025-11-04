@@ -13,53 +13,55 @@
  * limitations under the License.
  */
 
-import Logger from '../util/Logger'
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit'
 import { BusinessError } from '@kit.BasicServicesKit'
 
-const TAG: string = 'TransientTaskDialog'
-
 @Component
 export struct TransientTaskDialog {
-  @State requestId : number = 0;
-  @State delayTime : number = 0;
-  @State time : number = 0;
+  // [Start request_suspend_delay]
+  @State requestId : number = 0;  // 申请短时任务ID
+  @State delayTime : number = 0;  // 本次申请短时任务的剩余时间
 
   requestSuspendDelay() {
     let myReason = 'test requestSuspendDelay';   // 申请原因
     try {
       let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
         // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务
-        Logger.info(TAG, 'suspend delay task will timeout');
+        console.info('suspend delay task will timeout');
       })
       this.requestId = delayInfo.requestId;
       this.delayTime = delayInfo.actualDelayTime;
-      Logger.info(TAG, `Succeeded in requestSuspendDelay. requestId is :${this.requestId}, delayTime is :${this.delayTime}`);
+      console.info(`Succeeded in requestSuspendDelay. requestId is :${this.requestId}, delayTime is :${this.delayTime}`);
     } catch (error) {
-      Logger.error(TAG, `Operation requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+      console.error(`Operation requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
   }
+  // [End request_suspend_delay]
 
+  // [Start get_time]
   getRemainingDelayTime() {
     try {
       backgroundTaskManager.getRemainingDelayTime(this.requestId).then((res: number) => {
-        Logger.info(TAG, `Succeeded in getting remaining delay time. delay time is :${res}`);
+        console.info(`Succeeded in getting remaining delay time. delay time is :${res}`);
       }).catch((err: BusinessError) => {
-        Logger.error(TAG, `Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
       })
     } catch (error) {
-      Logger.error(TAG, `Operation getRemainingDelayTime failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+      console.error(`Operation getRemainingDelayTime failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
   }
+  // [End get_time]
 
+  // [Start cancel_suspend_delay]
   cancelSuspendDelay() {
     try {
       backgroundTaskManager.cancelSuspendDelay(this.requestId);
-      Logger.info(TAG, 'Succeeded in cancelSuspendDelay');
+      console.info('Succeeded in cancelSuspendDelay');
     } catch (error) {
-      Logger.error(TAG, `Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+      console.error(`Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
   }
+  // [End cancel_suspend_delay]
 
   build() {
     Column() {
@@ -73,7 +75,7 @@ export struct TransientTaskDialog {
         .margin({ top: 10, bottom: 10 })
         .type(ButtonType.Capsule)
         .backgroundColor($r('app.color.background'))
-        .size({ width: '50%', height: '5%' })
+        .size({ width: '70%', height: '8%' })
         .onClick(() => {
           this.requestSuspendDelay()
         })
@@ -83,7 +85,7 @@ export struct TransientTaskDialog {
         .margin({ top: 10, bottom: 10 })
         .type(ButtonType.Capsule)
         .backgroundColor($r('app.color.background'))
-        .size({ width: '50%', height: '5%' })
+        .size({ width: '70%', height: '8%' })
         .onClick(() => {
           this.getRemainingDelayTime()
         })
@@ -93,7 +95,7 @@ export struct TransientTaskDialog {
         .margin({ top: 10, bottom: 10 })
         .type(ButtonType.Capsule)
         .backgroundColor($r('app.color.background'))
-        .size({ width: '50%', height: '5%' })
+        .size({ width: '70%', height: '8%' })
         .onClick(() => {
           this.cancelSuspendDelay()
         })
