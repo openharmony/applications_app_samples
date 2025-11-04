@@ -35,7 +35,7 @@ export struct LongGrid {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.LongGrid_title')需要替换为开发者所需的资源文件
+        // app.string.LongGrid_title资源文件中的value值为‘性能优化’
         ComponentCard({ title: $r('app.string.LongGrid_title') }) {
           Column({ space: 5 }) {
             // [Start long_list]

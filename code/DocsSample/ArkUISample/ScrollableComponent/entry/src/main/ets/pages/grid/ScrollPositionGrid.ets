@@ -28,7 +28,7 @@ export struct ScrollPosition {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
-        // $r('app.string.ScrollPosition_titleExample')需要替换为开发者所需的资源文件
+        // app.string.ScrollPosition_titleExample资源文件中的value值为‘控制滚动位置示例’
         ComponentCard({ title: $r('app.string.ScrollPosition_titleExample') }) {
           // [Start control_the_grid_scroll]
           Column({ space: 12 }) {

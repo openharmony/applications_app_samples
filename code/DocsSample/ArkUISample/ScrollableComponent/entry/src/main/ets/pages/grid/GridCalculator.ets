@@ -69,8 +69,8 @@ export struct GridCalculator {
       } else if (index == 17) {
         return [6, 2, 1, 1];
       }
-      // [EndExclude Set_numberrows_columns]
       return [0, 0, 2, 4];
+      // [EndExclude Set_numberrows_columns]
       // 这里需要根据具体布局返回其他item的位置
     }
   }

@@ -20,7 +20,6 @@ import { ComponentCard } from '../../common/Card';
 export struct GridLayout {
   @State numbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7'];
   scroller: Scroller = new Scroller();
-  // [Start set_rows_and_columns_occupied]
   layoutOptions: GridLayoutOptions = {
     regularSize: [1, 1],
     irregularIndexes: [1, 3, 4], // 索引为0和7的GridItem占用的列数由onGetIrregularSizeByIndex指定
@@ -32,12 +31,12 @@ export struct GridLayout {
     }
   }
 
-  // [StartExclude set_rows_and_columns_occupied]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // app.string.GridLayout_titleRowSpacing资源文件中的value值为‘设置行列数量占比和行间距示例’
         ComponentCard({ title: $r('app.string.GridLayout_titleRowSpacing') }) {
-          // [EndExclude set_rows_and_columns_occupied]
+
           // [Start build_a_grid]
           Grid() {
             // [StartExclude build_a_grid]
@@ -69,17 +68,12 @@ export struct GridLayout {
             }.backgroundColor('#ffe0e2e4')
             // [EndExclude build_a_grid]
           }
-          // [StartExclude build_a_grid]
-          //设置行列间距
-          .columnsGap(10)
-          .rowsGap(15)
-          .height(150)
-          //设置行列数量与占比
-          // [EndExclude build_a_grid]
           .rowsTemplate('1fr 1fr 1fr')
           .columnsTemplate('1fr 2fr 1fr')
           // [End build_a_grid]
-          // [End set_rows_and_columns_occupied]
+          .columnsGap(10)
+          .rowsGap(15)
+          .height(150)
         }
 
         ComponentCard({ title: $r('app.string.GridLayout_titleChildSpan') }) {

@@ -19,7 +19,20 @@ import common from '@ohos.app.ability.common';
 @Entry
 @Component
 export struct DataInGrid {
-  @State services: Array<string> = [];
+  // [StartExclude build_a_office_services_grid_of_foreach]
+  context = this.getUIContext().getHostContext();
+  // [EndExclude build_a_office_services_grid_of_foreach]
+
+  @State services: Array<string> = [
+    // app.string.Meeting资源文件中的value值为‘会议’
+    this.context!.resourceManager.getStringSync($r('app.string.Meeting').id),
+    // app.string.Check_in资源文件中的value值为‘投票’
+    this.context!.resourceManager.getStringSync($r('app.string.Check_in').id),
+    // app.string.Voting资源文件中的value值为‘签到’
+    this.context!.resourceManager.getStringSync($r('app.string.Voting').id),
+    // app.string.Printing资源文件中的value值为‘打印’
+    this.context!.resourceManager.getStringSync($r('app.string.Printing').id)
+  ];
   // [StartExclude build_a_office_services_grid_of_foreach]
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -38,15 +51,14 @@ export struct DataInGrid {
     // [StartExclude build_a_office_services_grid_of_foreach]
     NavDestination() {
       // [EndExclude build_a_office_services_grid_of_foreach]
-      Column({ space: 12 }) {
+      Column() {
         // [StartExclude build_a_office_services_grid_of_foreach]
         ComponentCard({ title: $r('app.string.DataInGrid_titleOfficeServices') }) {
-          // $r('app.string.build_a_office_services_grid')需要替换为开发者所需的字符串资源
           // [Start build_a_office_services_grid]
           // [Start build_a_office_services_meeting]
           Grid() {
             GridItem() {
-              // $r('app.string.Meeting')需要替换为开发者所需的资源文件
+              // app.string.Meeting资源文件中的value值为‘会议’
               Text($r('app.string.Meeting'))
               // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
@@ -54,7 +66,7 @@ export struct DataInGrid {
             }
 
             GridItem() {
-              // $r('app.string.Check_in')需要替换为开发者所需的资源文件
+              // app.string.Check_in资源文件中的value值为‘投票’
               Text($r('app.string.Check_in'))
               // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
@@ -62,7 +74,7 @@ export struct DataInGrid {
             }
 
             GridItem() {
-              // $r('app.string.Voting')需要替换为开发者所需的资源文件
+              // app.string.Voting资源文件中的value值为‘签到’
               Text($r('app.string.Voting'))
               // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
@@ -70,7 +82,7 @@ export struct DataInGrid {
             }
 
             GridItem() {
-              // $r('app.string.Printing')需要替换为开发者所需的资源文件
+              // app.string.Printing资源文件中的value值为‘打印’
               Text($r('app.string.Printing'))
               // [StartExclude build_a_office_services_meeting]
                 .fontSize(24)
@@ -90,14 +102,17 @@ export struct DataInGrid {
           // [End build_a_office_services_grid]
         }
 
-        // $r('app.string.DataInGrid_titleForEach')需要替换为开发者所需的资源文件
+        // app.string.DataInGrid_titleForEach资源文件中的value值为‘办公服务网格ForEach语句示例’
         ComponentCard({ title: $r('app.string.DataInGrid_titleForEach') }) {
           // [EndExclude build_a_office_services_grid_of_foreach]
           Grid() {
             ForEach(this.services, (service: string) => {
               GridItem() {
                 Text(service)
-              }.backgroundColor('#FFF1F3F5')
+              }
+              // [StartExclude build_a_office_services_grid_of_foreach]
+              .backgroundColor('#FFF1F3F5')
+              // [EndExclude build_a_office_services_grid_of_foreach]
             }, (service: string): string => service)
           }
           .rowsTemplate(('1fr 1fr') as string)
