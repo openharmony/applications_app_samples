@@ -590,7 +590,7 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
     // 设置文本选中识别属性
     ArkUI_NumberValue selectValue = {.i32 = true};
     ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
+    Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
@@ -1031,7 +1031,7 @@ void setTextArea4(ArkUI_NodeHandle &textArea4)
     // 设置文本选中识别属性
     ArkUI_NumberValue selectValue = {.i32 = true};
     ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
