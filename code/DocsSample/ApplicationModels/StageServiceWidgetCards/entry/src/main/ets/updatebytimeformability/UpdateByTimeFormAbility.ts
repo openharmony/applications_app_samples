@@ -50,7 +50,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
   // [EndExclude set_form_next_refreshime]
   // [EndExclude update_by_time_form_ability]
   onFormEvent(formId: string, message: string): void {
-    // Called when a specified message event defined by the form provider is triggered.
+    // 当卡片提供方的postCardAction接口的message事件被触发时调用
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
     try {
       // 设置过5分钟后更新卡片内容
