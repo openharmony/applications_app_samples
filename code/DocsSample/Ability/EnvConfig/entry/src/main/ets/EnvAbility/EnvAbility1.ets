@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start env_conf0]
+// [Start env_setscale]
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
