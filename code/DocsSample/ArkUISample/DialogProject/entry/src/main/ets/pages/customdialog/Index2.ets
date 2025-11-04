@@ -17,6 +17,7 @@
 @Entry
 @Component
 struct Index2 {
+  //$r('app.string.click_and_return')资源文件中的value为'点击返回'
   @State message: string = $r('app.string.click_and_return');
 
   build() {

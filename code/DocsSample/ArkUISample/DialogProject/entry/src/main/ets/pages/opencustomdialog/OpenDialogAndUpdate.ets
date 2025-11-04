@@ -16,7 +16,7 @@
 // [Start open_dialog_and_update]
 // Index.ets
 import { ComponentContent } from '@kit.ArkUI';
-import { PromptActionClass1 } from '../../common/PromptActionClass1';
+import { PromptActionClassNew } from '../../common/PromptActionClassNew';
 
 class Params {
   public text: string = '';
@@ -35,7 +35,7 @@ function buildText(params: Params) {
       .margin({ bottom: 36 })
     Button('Close')
       .onClick(() => {
-        PromptActionClass1.closeDialog();
+        PromptActionClassNew.closeDialog();
       })
   }.backgroundColor('#FFF0F0F0')
 }
@@ -50,9 +50,9 @@ export struct OpenDialogAndUpdate {
     new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
   // [End open_dialog_and_update_create_componentContent]
   aboutToAppear(): void {
-    PromptActionClass1.setContext(this.ctx);
-    PromptActionClass1.setContentNode(this.contentNode);
-    PromptActionClass1.setOptions({ alignment: DialogAlignment.Top, offset: { dx: 0, dy: 50 } });
+    PromptActionClassNew.setContext(this.ctx);
+    PromptActionClassNew.setContentNode(this.contentNode);
+    PromptActionClassNew.setOptions({ alignment: DialogAlignment.Top, offset: { dx: 0, dy: 50 } });
   }
 
   build() {
@@ -62,10 +62,10 @@ export struct OpenDialogAndUpdate {
           Button('open dialog and update options')
             .margin({ top: 50 })
             .onClick(() => {
-              PromptActionClass1.openDialog();
+              PromptActionClassNew.openDialog();
 
               setTimeout(() => {
-                PromptActionClass1.updateDialog({
+                PromptActionClassNew.updateDialog({
                   alignment: DialogAlignment.Bottom,
                   offset: { dx: 0, dy: -50 }
                 });
@@ -74,7 +74,7 @@ export struct OpenDialogAndUpdate {
           Button('open dialog and update content')
             .margin({ top: 50 })
             .onClick(() => {
-              PromptActionClass1.openDialog();
+              PromptActionClassNew.openDialog();
 
               setTimeout(() => {
                 // [Start open_dialog_and_update_content]
