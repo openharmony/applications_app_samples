@@ -23,7 +23,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      //"点我关闭弹窗：通过自定义组件自带的DialogController"替换为资源文件
+      //$r('app.string.closeDialog_by_dialog')资源文件中的value为'点我关闭弹窗：通过自定义组件自带的DialogController'
       Button($r('app.string.closeDialog_by_dialog'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {
@@ -32,12 +32,12 @@ struct CustomDialogExample {
             hilog.info(DOMAIN, 'testTag', 'state: no exist')
           }
         }).margin(20)
-      //"点击关闭弹窗：通过外部传递的DialogController"替换为资源文件
+      //$r('app.string.closeDialog_by_dialog_controller')资源文件中的value为'点击关闭弹窗：通过外部传递的DialogController'
       Button($r('app.string.closeDialog_by_dialog_controller'))
         .onClick(() => {
           hilog.info(DOMAIN, 'testTag', 'state:' + this.controller?.getState())
         }).margin(20)
-      //"点我关闭弹窗"替换为资源文件
+      //$r('app.string.close_widows')资源文件中的value为'点我关闭弹窗'
       Button($r('app.string.close_widows'))
         .onClick(() => {
           if (this.getDialogController() !== undefined) {

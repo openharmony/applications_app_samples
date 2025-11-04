@@ -35,14 +35,14 @@ entry/src/main/ets/
 |---pages
 |   |---customdialog                          //自定义弹出框     
 |   |       |---CreateCustomDialog.ets
-|   |       |---CreateCustomDialog1.ets
+|   |       |---CreateCustomDialogNew.ets
 |   |       |---DialogAnimation.ets
 |   |       |---DialogAnimation1.ets
 |   |       |---DialogAvoidSoftKeyboard.ets
 |   |       |---DialogInteraction.ets
 |   |       |---DialogInteraction1.ets
-|   |       |---DialogInteraction2.ets
-|   |       |---DialogInteraction3.ets
+|   |       |---DialogInteractionUseConstructor.ets
+|   |       |---DialogInteractionUseButton.ets
 |   |       |---DialogStyle.ets
 |   |       |---DialogStyle1.ets
 |   |       |---DialogWithPhysicalBack.ets

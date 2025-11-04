@@ -81,10 +81,9 @@ export struct ButtonCustomStyle {
           title: $r('app.string.SetButtonType_titleFive'),
           description: $r('app.string.SetButtonType_descriptionFive')
         }) {
-          //图片需要更换,left使用方式做了修改
           // [Start custom_create_function_button]
           Button({ type: ButtonType.Circle, stateEffect: true }) {
-            Image($r('app.media.delete')).width(30).height(30)
+            Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
           }.width(55).height(55).margin({ 'left': 20 }).backgroundColor(0xF55A42)
           // [End custom_create_function_button]
         }
