@@ -177,8 +177,8 @@ struct NavigationContentMsgStack {
   @Link logNumber: number;
 
   info() {
-    hilog.info(0x0000, 'freeze-test NavigationContent message callback', 'FreezeChild message callback func %{public}d, index: %{public}d', this.message)
-    hilog.info(0x0000, 'freeze-test ---- called by content', 'FreezeChild message callback func %{public}d, index: %{public}d', this.index)
+    hilog.info(0x0000, 'FreezeChild',`freeze-test NavigationContent message callback ${this.message}`);
+    hilog.info(0x0000, 'FreezeChild',`freeze-test ---- called by content ${this.index}`);
     this.logNumber++;
   }
 
