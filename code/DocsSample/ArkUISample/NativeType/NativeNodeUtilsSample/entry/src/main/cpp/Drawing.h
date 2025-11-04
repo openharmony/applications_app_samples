@@ -24,7 +24,8 @@
 // [StartExclude drawing_start]
 #include "common/common.h"
 // [EndExclude drawing_start]
-ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) {
+ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) 
+{
     // 创建节点
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     // [Start create_customNode_start]
