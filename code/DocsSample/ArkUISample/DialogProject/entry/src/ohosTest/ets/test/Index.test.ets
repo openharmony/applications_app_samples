@@ -297,7 +297,7 @@ export default function IndexTest() {
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CreateMenu_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       await sleep(ONE_SECONDS_TIME);
-      let button_list2 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.menu_bind')), MatchPattern.CONTAINS));
+      let button_list2 = await driver.findComponent(ON.id('click for Menu One', MatchPattern.CONTAINS));
       await button_list2.click();
       await driver.pressBack();
       await driver.pressBack();

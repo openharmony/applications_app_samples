@@ -246,14 +246,6 @@
       "value": "菜单选项"
     },
     {
-      "name": "menu_default",
-      "value": "默认样式"
-    },
-    {
-      "name": "menu_bind",
-      "value": "属性绑定"
-    },
-    {
       "name": "menu_rightClick",
       "value": "支持鼠标右键的菜单"
     },
