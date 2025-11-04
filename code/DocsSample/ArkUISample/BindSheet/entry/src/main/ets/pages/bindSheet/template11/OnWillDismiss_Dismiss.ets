@@ -57,6 +57,7 @@ struct OnWillDismiss_Dismiss {
               primaryButton: {
                 value: 'cancel',
                 action: () => {
+                  hilog.info(DOMAIN, TAG, 'Callback when the cancel button is clicked');
                 }
               },
               secondaryButton: {
@@ -68,6 +69,7 @@ struct OnWillDismiss_Dismiss {
                 action: () => {
                   // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
                   dismissSheetAction.dismiss();
+                  hilog.info(DOMAIN, TAG, 'Callback when the ok button is clicked');
                 }
               },
               cancel: () => {

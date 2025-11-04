@@ -29,10 +29,10 @@ struct AnimatablePropertyExample {
     Column() {
       Text('AnimatableProperty')
         .animatableWidth(this.textWidth) // 第二步：将自定义可动画属性接口设置到组件上
-        .animation({ duration: 2000, curve: Curve.Ease }) // 第三步:为自定义可动画属性接口绑定动画，2000: 动画持续时间（毫秒）
+        .animation({ duration: 2000, curve: Curve.Ease }) // 第三步:为自定义可动画属性接口绑定动画。
       Button('Play')
         .onClick(() => {
-          this.textWidth = this.textWidth == 80 ? 160 : 80; // 第四步：改变自定义可动画属性的参数，产生动画，80: 最小宽度，160: 最大宽度
+          this.textWidth = this.textWidth == 80 ? 160 : 80; // 第四步：改变自定义可动画属性的参数，产生动画。
         })
     }
     .width('100%')
