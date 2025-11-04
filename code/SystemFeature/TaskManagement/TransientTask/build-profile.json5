@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,21 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\wangjiawei\\.ohos\\config\\default_transienttask_Nr_5Cbbo0lS3tIr_UT34oE-aDGLcQ0Yz72s7nTPBKdE=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BAE39A6444F8C503245DF41F699734824088EEE1160D3BDCFA01375ECB01D9BA3FA4A38CE0663C0",
-          "profile": "C:\\Users\\wangjiawei\\.ohos\\config\\default_transienttask_Nr_5Cbbo0lS3tIr_UT34oE-aDGLcQ0Yz72s7nTPBKdE=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\wangjiawei\\.ohos\\config\\default_transienttask_Nr_5Cbbo0lS3tIr_UT34oE-aDGLcQ0Yz72s7nTPBKdE=.p12",
-          "storePassword": "0000001B0FB5EB360E48F297C04DF2AB3F67BA7C9E6FE6C4B2E40ED277CBC775AB891404D71F6A61F9B526"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
