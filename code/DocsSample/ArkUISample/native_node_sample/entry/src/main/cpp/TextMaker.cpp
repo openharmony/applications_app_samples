@@ -582,8 +582,9 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
     ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
 
     // 获取TextInput文本输入框未达到和超出最大字符数时计数器的颜色
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "GetCounterTextColor: 0x%{public}X
-        GetCounterTextOverflowColor: 0x%{public}X",OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager",
+        "GetCounterTextColor: 0x%{public}X GetCounterTextOverflowColor: 0x%{public}X",
+        OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
         OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
 
@@ -673,8 +674,9 @@ void setTextArea1(ArkUI_NodeHandle &textArea1)
     ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
 
     // 设置TextArea文本输入框未达到和超出最大字符数时计数器的颜色
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "GetCounterTextColor: 0x%{public}X
-        GetCounterTextOverflowColor: 0x%{public}X",OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager",
+        "GetCounterTextColor: 0x%{public}X GetCounterTextOverflowColor: 0x%{public}X",
+        OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
         OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
     Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_SHOW_COUNTER, &ShowCounterColorItem);
 
