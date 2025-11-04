@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 // [Start localtorage_page_six_local_storageA]
-let localStorage1A: LocalStorage = new LocalStorage();
-localStorage1A.setOrCreate('propA', 'propA');
+let localStorageA0: LocalStorage = new LocalStorage();
+localStorageA0.setOrCreate('propA', 'propA');
 
-let localStorage2: LocalStorage = new LocalStorage();
-localStorage2.setOrCreate('propB', 'propB');
+let localStorageB0: LocalStorage = new LocalStorage();
+localStorageB0.setOrCreate('propB', 'propB');
 
-@Entry(localStorage1A)
+@Entry(localStorageA0)
 @Component
 struct AIndex {
-  // 'PropA'，和localStorage1中'PropA'的双向同步
+  // 'PropA'，和localStorageA0中'PropA'的双向同步
   @LocalStorageLink('PropA') propA: string = 'Hello World';
   @State count: number = 0;
 
@@ -32,8 +32,8 @@ struct AIndex {
         Text(this.propA)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorage2
-        AChild(localStorage2)
+        // 使用LocalStorage 实例localStorageB0
+        AChild(localStorageB0)
       }
       .width('100%')
     }

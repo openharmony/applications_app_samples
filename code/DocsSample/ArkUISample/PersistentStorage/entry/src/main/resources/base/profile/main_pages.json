@@ -2,7 +2,7 @@
   "src": [
     "pages/Index",
     "pages/PageOneMessageStorage",
-    "pages/PageTowPersistentStorage",
+    "pages/PageTwoPersistentStorage",
     "pages/PageThreeAppStorage",
     "pages/PageFourMessageChange",
     "pages/PageFivePersistedDate",

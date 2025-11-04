@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// 创建新实例并使用给定对象初始化
-// 使LocalStorage可从@Component组件访问
 // [Start localtorage_page_tow_sigle_syn]
-@Entry
+// 创建新实例并使用给定对象初始化
+let para0: Record<string, number> = { 'PropA': 47 };
+let storage0: LocalStorage = new LocalStorage(para0);
+// 使LocalStorage可从@Component组件访问
+@Entry(storage0)
 @Component
 struct Parent1 {
   // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
