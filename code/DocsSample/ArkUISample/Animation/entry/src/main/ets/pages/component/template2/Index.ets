@@ -38,7 +38,7 @@ class DragSortCtrl<T> {
     this.arr = arr;
     this.uiContext = uiContext;
     this.modify = [];
-    this.ITEM_INTV = intv; // 120: 列表项高度间隔
+    this.ITEM_INTV = intv;
     arr.forEach(() => {
       this.modify.push(new ListItemModify());
     });
