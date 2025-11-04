@@ -22,7 +22,7 @@
 // [Start onDestroy]
 // [Start onNewWant]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-// [StartExclude onCrete]
+// [StartExclude onCreate]
 // [StartExclude onForeground]
 // [StartExclude onBackground]
 // [StartExclude onDestroy]
@@ -37,20 +37,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const DOMAIN = 0x0000;
 // [EndExclude onBackground]
 // [EndExclude onForeground]
-// [EndExclude onCrete]
+// [EndExclude onCreate]
 // [EndExclude onWindowStageDestroy]
 // [EndExclude onDestroy]
 // [EndExclude onNewWant]
 
 export default class EntryAbility extends UIAbility {
-  // [StartExclude onCrete]
+  // [StartExclude onCreate]
   // [StartExclude onForeground]
   // [StartExclude onBackground]
   // [StartExclude onWindowStageDestroy]
   // [StartExclude onDestroy]
   // [StartExclude onNewWant]
   public windowStage: window.WindowStage | undefined = undefined;
-  // [EndExclude onCrete]
+  // [EndExclude onCreate]
 
   // [StartExclude onWindowStageCreate]
   // [StartExclude onWindowStageWillDestroy]
@@ -59,7 +59,7 @@ export default class EntryAbility extends UIAbility {
   }
   // [EndExclude onDestroy]
 
-  // [StartExclude onCrete]
+  // [StartExclude onCreate]
   onDestroy(): void {
     // 系统资源的释放、数据的保存等
   }
@@ -140,6 +140,7 @@ export default class EntryAbility extends UIAbility {
   }
   // [EndExclude onForeground]
 
+  // [StartExclude onWindowStageDestroy]
   onForeground(): void {
     // 申请系统需要的资源，或者重新申请在onBackground()中释放的资源
   }
@@ -155,8 +156,9 @@ export default class EntryAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 更新资源、数据
   }
-  // [EndExclude onCrete]
+  // [EndExclude onCreate]
   // [EndExclude onWindowStageCreate]
+  // [EndExclude onWindowStageDestroy]
   // [EndExclude onForeground]
   // [EndExclude onBackground]
   // [EndExclude onWindowStageWillDestroy]
