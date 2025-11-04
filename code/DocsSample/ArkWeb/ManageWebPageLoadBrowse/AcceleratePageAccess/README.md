@@ -233,7 +233,7 @@ entry4/src/main/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API14版本SDK，SDK版本号(API Version 14 Release)。
+2. 本示例支持API18版本SDK，SDK版本号(API Version 18 Release)。
 3. 本示例需要使用DevEco Studio 版本号(5.0.1Release)才可编译运行。
 
 ### 下载

@@ -28,8 +28,8 @@ export default class Entry2Ability extends UIAbility {
     webview.WebviewController.initializeWebEngine();
     AppStorage.setOrCreate('abilityWant', want);
   }
-  // [End web_module_open_bf_cache]
 
+// [StartExclude web_module_open_bf_cache]
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
@@ -61,4 +61,6 @@ export default class Entry2Ability extends UIAbility {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude web_module_open_bf_cache]
 }
+// [End web_module_open_bf_cache]
