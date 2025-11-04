@@ -33,16 +33,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // [Start identify_character_type]
 // 判断字符是否是数字
-let isDigit = i18n.Unicode.isDigit('1'); // isDigit: true
+let isDigit = i18n.Unicode.isDigit('1'); // isDigit = true
 
 // 判断字符是否是从右到左语言的字符
-let isRTL = i18n.Unicode.isRTL('a'); // isRTL: false
+let isRTL = i18n.Unicode.isRTL('a'); // isRTL = false
 
 // 判断字符是否是表意文字
-let isIdeograph = i18n.Unicode.isIdeograph(resourceToString($r('app.string.Hua'))); // isIdeograph: true
+let isIdeograph = i18n.Unicode.isIdeograph(resourceToString($r('app.string.Hua'))); // isIdeograph = true
 
 // 获取字符的一般类别值
-let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
+let unicodeType = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCASE_LETTER'
 // [End identify_character_type]
 
 /**********************************************************************************************************************
@@ -59,20 +59,20 @@ let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
 
 // [Start get_transliteration]
 // 音译成Latn格式
-let transliterator = i18n.Transliterator.getInstance('Any-Latn');
-let text = resourceToString($r('app.string.CountryWordChina'));
-let translatedText: string = transliterator.transform(text); // translatedText = 'zhōng guó'
+let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
+let text = '中国';
+let translatedText = transliterator.transform(text); // translatedText = 'zhōng guó'
 
 // 汉语音译去声调
-let toneLessTransliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-let toneTranslatedText: string = toneLessTransliterator.transform(resourceToString($r('app.string.CountryWordChina'))); // result: zhong guo
+let toneLessTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+let toneLessTranslatedText = toneLessTransliterator.transform('中国'); // toneLessTranslatedText = 'zhong guo'
 
 // 汉语姓氏读音
-let nameTransliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
-let nameTranslatedText: string = nameTransliterator.transform(resourceToString($r('app.string.TeacherShan'))); // result1: shàn lǎo shī
+let nameTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
+let nameTranslatedText = nameTransliterator.transform('单老师'); // nameTranslatedText = 'shàn lǎo shī'
 
-// 获取音译支持的ID列表
-let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
+// 获取音译支持的转换ID列表
+let ids = i18n.Transliterator.getAvailableIDs(); // ids = ['ASCII-Latin', 'Accents-Any', ...]
 // [End get_transliteration]
 
 /**********************************************************************************************************************
@@ -86,9 +86,9 @@ let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accent
  *********************************************************************************************************************/
 
 // [Start character_normalization]
-// 以NFC范式标准化字符
-let normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
-let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u1E9B\u0323
+// 按照NFC范式对文本进行标准化处理
+let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
+let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText = 'ẛ̣'
 // [End character_normalization]
 
 /**********************************************************************************************************************
@@ -113,23 +113,26 @@ let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u
  *********************************************************************************************************************/
 
 // [Start set_text_line_break_settings]
-// 断句对象
-let iterator = i18n.getLineInstance('en-GB');
+// 创建获取文本可换行点的对象，该对象将按照指定区域的规则计算文本中的可换行点的位置
+let iterator: i18n.BreakIterator  = i18n.getLineInstance('en-GB');
 
-// 断句文本
+// 设置处理文本
 iterator.setLineBreakText('Apple is my favorite fruit.');
 
-// 将BreakIterator对象移动到文本起始位置
-let firstPos = iterator.first(); // firstPos: 0
+// 将换行迭代器移动到文本起始位置
+let firstPos = iterator.first(); // firstPos = 0
 
-// 将BreakIterator对象移动几个分割点
-let nextPos = iterator.next(2); // nextPos: 9
+// 将换行迭代器向后移动2个可换行点，nextPos为移动后在文本中的位置，如果超出文本的长度范围，返回-1
+let nextPos = iterator.next(2); // nextPos = 9
 
-// 判断某个位置是否是分割点
-let isBoundary = iterator.isBoundary(9); // isBoundary: true
+// 获取换行迭代器在当前所处理文本中的位置
+let currentPos = iterator.current(); // currentPos = 9
+
+// 判断某个位置是否是可换行点
+let isBoundary = iterator.isBoundary(9); // isBoundary = true
 
 // 获取BreakIterator对象处理的文本
-let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
+let breakText = iterator.getLineBreakText(); // breakText = 'Apple is my favorite fruit.'
 // [End set_text_line_break_settings]
 
 /**********************************************************************************************************************
@@ -140,23 +143,27 @@ let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite 
  *  let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
  *********************************************************************************************************************/
 
-let mirrorPath: string = "";
-let unMirrorPath: string = "";
+// [Start get_unicode_wrapped_file_path]
+let mirrorPath = '';
+let unMirrorPath = '';
+
 // 传入镜像语言，对路径进行镜像处理
-let originPath: string = 'data/out/tmp';
+let path = 'data/out/tmp';
 
 try {
-  let delimiter: string = '/';
-  let locale: intl.Locale = new intl.Locale('ar');
+  let delimiter = '/';
+  let locale: Intl.Locale = new Intl.Locale('ar');
   // mirrorPath = 'tmp/out/data/'
-  mirrorPath = i18n.I18NUtil.getUnicodeWrappedFilePath(originPath, delimiter, locale);
+  mirrorPath = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);
+
   // 传入非镜像语言，不处理路径
-  let localeZh: intl.Locale = new intl.Locale('zh');
-  // unMirrorPath = 'data/out/tmp'
-  unMirrorPath = i18n.I18NUtil.getUnicodeWrappedFilePath(originPath, delimiter, localeZh);
+  let localeZh: Intl.Locale = new Intl.Locale('zh');
+  // unMirrorPath = '/data/out/tmp'
+  unMirrorPath = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh);
 } catch (error) {
   console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
 }
+// [End get_unicode_wrapped_file_path]
 
 const expectedIsDigit = true;
 const expectedIsRTL = false;
@@ -195,14 +202,14 @@ export default struct CharacterProcessing {
             .textStyle()
           Text(assertEqual(isIdeograph, expectedIsIdeograph, $r('app.string.HuaIsIdeograph')))
             .textStyle()
-          Text(assertEqual(type, expectedType, $r('app.string.AGetType')))
+          Text(assertEqual(unicodeType, expectedType, $r('app.string.AGetType')))
             .textStyle()
           Text($r('app.string.ResultsOfTrans'))
             .textStyle()
             .fontWeight(FontWeight.Bold)
           Text(assertEqual(translatedText, expectedTransResult, $r('app.string.CharacterTransResult')))
             .textStyle()
-          Text(assertEqual(toneTranslatedText, expectedToneTranslatedText, $r('app.string.ChinaTrans')))
+          Text(assertEqual(toneLessTranslatedText, expectedToneTranslatedText, $r('app.string.ChinaTrans')))
             .textStyle()
           Text(assertEqual(nameTranslatedText, expectedNameTranslatedText, $r('app.string.TeachersSurnameTrans')))
             .textStyle()
@@ -245,7 +252,7 @@ export default struct CharacterProcessing {
             .fontWeight(FontWeight.Bold)
           Text($r('app.string.originPath'))
             .textStyle()
-          Text(originPath)
+          Text(path)
             .textStyle()
           Text($r('app.string.MirrorLanguage'))
             .textStyle()

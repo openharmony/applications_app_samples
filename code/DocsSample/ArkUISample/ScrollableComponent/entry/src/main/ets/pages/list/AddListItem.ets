@@ -16,8 +16,12 @@
 import { ComponentCard } from '../../common/Card';
 // [Start define_the_data_to_be_done]
 import { util } from '@kit.ArkTS';
+import { UIContext } from '@kit.ArkUI';
+// [Start build_list_layouts_and_list_items]
+import common from '@ohos.app.ability.common';
 
-
+// [StartExclude build_list_layouts_and_list_items]
+// [Start build_the_overall_list_layout_and_list_items]
 export class ToDo {
   public key: string = util.generateRandomUUID(true);
   public name: string;
@@ -28,7 +32,6 @@ export class ToDo {
 }
 // [End define_the_data_to_be_done]
 
-// [Start build_the_overall_list_layout_and_list_items]
 @Component
 export struct ToDoListItem {
   @Link isEditMode: boolean;
@@ -54,16 +57,16 @@ export struct ToDoListItem {
       // [StartExclude build_the_overall_list_layout_and_list_items]
       GestureGroup(GestureMode.Exclusive,
         LongPressGesture()
-          // [EndExclude build_the_overall_list_layout_and_list_items]
+        // [EndExclude build_the_overall_list_layout_and_list_items]
           .onAction(() => {
           })
       )
     )
   }
 }
-// [End build_the_overall_list_layout_and_list_items]
 
-// [Start build_list_layouts_and_list_items]
+// [End build_the_overall_list_layout_and_list_items]
+// [EndExclude build_list_layouts_and_list_items]
 @Entry
 @Component
 export struct AddListItem {
@@ -75,7 +78,23 @@ export struct AddListItem {
   // [EndExclude build_list_layouts_and_list_items]
   @Watch('onEditModeChange') @State isEditMode: boolean = false
   @State selectedItems: ToDo[] = []
-  private availableThings: string[] = ['Reading', 'Exercise', 'Travel', 'Listening Music', 'Watching Films', 'Singing'];
+  private availableThings: string [] = [];
+
+  aboutToAppear(): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const reading = context.resourceManager.getStringByNameSync('Reading')
+    this.availableThings.push(reading)
+    const exercise = context.resourceManager.getStringByNameSync('Exercise')
+    this.availableThings.push(exercise)
+    const travel = context.resourceManager.getStringByNameSync('Travel')
+    this.availableThings.push(travel)
+    const listening = context.resourceManager.getStringByNameSync('Listening_Music')
+    this.availableThings.push(listening)
+    const watching = context.resourceManager.getStringByNameSync('Watching_Films')
+    this.availableThings.push(watching)
+    const singing = context.resourceManager.getStringByNameSync('Singing')
+    this.availableThings.push(singing)
+  }
 
   onEditModeChange() {
     if (!this.isEditMode) {
@@ -89,6 +108,7 @@ export struct AddListItem {
       // [EndExclude build_list_layouts_and_list_items]
       Column({ space: 12 }) {
         // [StartExclude build_list_layouts_and_list_items]
+        // $r('app.string.AddListItem_titleExample')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.AddListItem_titleExample') }) {
           // [EndExclude build_list_layouts_and_list_items]
           Column({ space: 12 }) {
@@ -101,6 +121,7 @@ export struct AddListItem {
                   })
                   .margin({ left: 20, right: 20 })
               } else {
+                // $r('app.string.TodoItem')需要替换为开发者所需的资源文件
                 Text($r('app.string.TodoItem'))
                   .fontSize(30)
                   .margin({ left: 20 })
@@ -126,6 +147,7 @@ export struct AddListItem {
             .backgroundColor('#FFF1F3F5')
             .borderRadius(12)
             .height(45)
+
             // [EndExclude build_list_layouts_and_list_items]
 
             List({ space: 12 }) {

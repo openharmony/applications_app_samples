@@ -12,46 +12,71 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import nativeNode from 'libentry.so';
-import { NodeContent } from '@kit.ArkUI';
+
+interface listItem {
+  router?: string;
+  name: string;
+}
+
+let demandList: listItem[] = [
+  {
+    name: "TransitionAnimation",
+    router: "pages/TransitionAnimation",
+  },  {
+  name: "UseFrameAnimation",
+  router: "pages/UseFrameAnimation",
+},
+]
 
 @Entry
 @Component
 struct Index {
-  // 初始化NodeContent对象。
-  private rootSlot = new NodeContent();
-  @State @Watch('changeNativeFlag') showNative: boolean = false;
-  @State isModuleLoaded: boolean = false;
-
-  changeNativeFlag(): void {
-    if (nativeNode) {
-      this.isModuleLoaded = true;
-    }
-    if (!this.isModuleLoaded) {
-      console.info('CXX Please wait, native module is loading...');
-      return;
-    }
-
-    if (this.showNative) {
-      // 传递NodeContent对象用于Native创建组件的挂载显示
-      nativeNode?.createNativeRoot(this.rootSlot)
-    } else {
-      // 销毁NativeModule组件
-      nativeNode.destroyNativeRoot()
-    }
-  }
-
+  @State bgColor: ResourceColor = '#39b5fa';
   build() {
     Column() {
-      Button(this.showNative ? 'Hide Native UI Animate' : 'Show Native UI Animate').onClick(() => {
-        this.showNative = !this.showNative
-      })
-      Row() {
-        // 将NodeContent和ContentSlot占位组件绑定。
-        ContentSlot(this.rootSlot)
-      }.layoutWeight(1)
+      Text('ListShow')
+        .height('5.00%')
+        .width('100%')
+        .textAlign(TextAlign.Center)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor(this.bgColor)
+        .fontColor(Color.White)
+      Column() {
+        List({ space: 5, initialIndex: 0 }) {
+          ForEach(demandList, (listitem: listItem, index: number) => {
+            ListItem() {
+              Column({ space: 10 }) {
+                Text(listitem.name)
+                  .fontSize(20)
+                  .maxLines(1)
+              }
+              .padding('1%')
+              .width('100%')
+              .height(50)
+              .borderRadius(10)
+              .backgroundColor(this.bgColor)
+              .borderColor(this.bgColor)
+              .borderWidth(1)
+              .onClick(() => {
+                if (!!listitem.router) {
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router })
+                }
+              })
+            }
+          })
+        }
+        .listDirection(Axis.Vertical) // 排列方向
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+        .margin(1)
+        .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
+        .width('90%')
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#fff4f3f3')
+      .padding({ top: 5 })
     }
-    .width('100%')
-    .height('100%')
   }
 }

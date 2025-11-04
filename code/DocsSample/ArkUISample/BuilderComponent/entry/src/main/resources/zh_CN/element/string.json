@@ -1,0 +1,132 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ButtonOne",
+      "value": "私有自定义构建函数"
+    },
+    {
+      "name": "ButtonTwo",
+      "value": "全局自定义构建函数"
+    },
+    {
+      "name": "ButtonThree",
+      "value": "按值传递参数"
+    },
+    {
+      "name": "ButtonFour",
+      "value": "自定义组件内使用自定义构建函数"
+    },
+    {
+      "name": "ButtonFive",
+      "value": "全局自定义构建函数"
+    },
+    {
+      "name": "ButtonSix",
+      "value": "修改装饰器修饰的变量触发UI刷新"
+    },
+    {
+      "name": "ButtonSeven",
+      "value": "将@Builder装饰的函数当作CustomBuilder类型使用"
+    },
+    {
+      "name": "ButtonEight",
+      "value": "多层@Builder函数嵌套"
+    },
+    {
+      "name": "ButtonNine",
+      "value": "@Builder函数联合V2装饰器"
+    },
+    {
+      "name": "ButtonTen",
+      "value": "@Builder函数联合V2装饰器，若参数为@Local装饰的对象"
+    },
+    {
+      "name": "ButtonEleven",
+      "value": "跨组件复用的全局@Builder"
+    },
+    {
+      "name": "ButtonTwelve",
+      "value": "@Builder支持状态变量刷新"
+    },
+    {
+      "name": "ButtonThirteen",
+      "value": "@Builder存在两个或两个以上参数【反例1】"
+    },
+    {
+      "name": "ButtonFourteen",
+      "value": "@Builder存在两个或两个以上参数【反例2】"
+    },
+    {
+      "name": "ButtonFifteen",
+      "value": "@Builder存在两个或两个以上参数【正例】"
+    },
+    {
+      "name": "ButtonSixteen",
+      "value": "使用@ComponentV2装饰器触发动态刷新【反例】"
+    },
+    {
+      "name": "ButtonSeventeen",
+      "value": "使用@ComponentV2装饰器触发动态刷新【正例】"
+    },
+    {
+      "name": "ButtonEighteen",
+      "value": "在@Builder内创建自定义组件传递参数不刷新问题【反例】"
+    },
+    {
+      "name": "ButtonNineteen",
+      "value": "在@Builder内创建自定义组件传递参数不刷新问题【正例】"
+    },
+    {
+      "name": "ButtonTwenty",
+      "value": "在UI语句外调用@Builder函数或方法影响节点正常刷新【反例】"
+    },
+    {
+      "name": "ButtonTwentyOne",
+      "value": "在UI语句外调用@Builder函数或方法影响节点正常刷新【正例】"
+    },
+    {
+      "name": "ButtonTwentyTwo",
+      "value": "在@Builder方法中使用MutableBinding未传递set访问器【反例】"
+    },
+    {
+      "name": "ButtonTwentyThree",
+      "value": "在@Builder方法中使用MutableBinding未传递set访问器【正例】"
+    },
+    {
+      "name": "ButtonTwentyFour",
+      "value": "在@Builder装饰的函数内部修改入参内容【反例】"
+    },
+    {
+      "name": "ButtonTwentyFive",
+      "value": "在@Builder装饰的函数内部修改入参内容【正例】"
+    },
+    {
+      "name": "ButtonTwentySix",
+      "value": "在@Watch函数中执行@Builder函数【反例】"
+    },
+    {
+      "name": "ButtonTwentySeven",
+      "value": "在@Watch函数中执行@Builder函数【正例】"
+    },
+    {
+      "name": "ButtonTwentyEight",
+      "value": "按引用传递参数"
+    },
+    {
+      "name": "ButtonTwentyNine",
+      "value": "按回调传递参数"
+    }
+  ]
+}

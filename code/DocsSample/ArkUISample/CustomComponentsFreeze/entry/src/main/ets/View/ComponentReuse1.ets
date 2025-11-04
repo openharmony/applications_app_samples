@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 // [Start arkts_custom_components_freeze7]
+import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];

@@ -19,7 +19,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
-struct Index {
+struct BasicClass {
   @State message: string = 'Message: ';
   private want: Want = {
     bundleName: 'com.samples.embeddeduiextensionability',

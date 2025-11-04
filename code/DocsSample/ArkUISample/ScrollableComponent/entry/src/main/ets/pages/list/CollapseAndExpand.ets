@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
+//[Start List_item_data_structures]
 import { curves } from '@kit.ArkUI';
+//[StartExclude List_item_data_structures]
 import { ComponentCard } from '../../common/Card';
 
+// [EndExclude List_item_data_structures]
 interface ItemInfo {
   index: number,
   name: string,
@@ -27,43 +30,45 @@ interface ItemGroupInfo extends ItemInfo {
   children: ItemInfo[]
 }
 
+//[End List_item_data_structures]
 
 @Entry
 @Component
 export struct CollapseAndExpand {
+  //[Start List_item_data_structure]
   @State routes: ItemGroupInfo[] = [
     {
       index: 0,
       name: 'basicInfo',
-      label: '个人基本资料',
+      label: 'Personal_Basic_Information',
       children: [
         {
           index: 0,
-          name: '昵称',
+          name: 'nick_name',
           label: 'xxxx',
           type: 'Text'
         },
         {
           index: 1,
-          name: '头像',
+          name: 'avatar',
           label: $r('sys.media.ohos_user_auth_icon_face'),
           type: 'Image'
         },
         {
           index: 2,
-          name: '年龄',
+          name: 'age',
           label: 'xxxx',
           type: 'Text'
         },
         {
           index: 3,
-          name: '生日',
+          name: 'birthday',
           label: 'xxxxxxxxx',
           type: 'Text'
         },
         {
           index: 4,
-          name: '性别',
+          name: 'gender',
           label: 'xxxxxxxx',
           type: 'Text'
         },
@@ -72,38 +77,38 @@ export struct CollapseAndExpand {
     {
       index: 1,
       name: 'equipInfo',
-      label: '设备信息',
+      label: 'Device_Information',
       children: []
     },
     {
       index: 2,
       name: 'appInfo',
-      label: '应用使用信息',
+      label: 'Application_usage_information',
       children: []
     },
     {
       index: 3,
       name: 'uploadInfo',
-      label: '您主动上传的数据',
+      label: 'data_you_voluntarily_uploaded',
       children: []
     },
     {
       index: 4,
       name: 'tradeInfo',
-      label: '交易与资产信息',
+      label: 'Trading_and_asset_information',
       children: []
     },
     {
       index: 5,
       name: 'otherInfo',
-      label: '其他资料',
+      label: 'Other_materials',
       children: []
     },
   ];
-
   @State expandedItems: boolean[] = Array(this.routes.length).fill(false);
   @State selection: string | null = null;
 
+  //[Start List_item_data_ItemGroupInfo]
   @Builder
   ListItemGroupHeader(itemGroup: ItemGroupInfo) {
     Row() {
@@ -127,10 +132,15 @@ export struct CollapseAndExpand {
       }
     })
   }
+
+  //[End List_item_data_ItemGroupInfo]
   build() {
+    //[StartExclude List_item_data_structure]
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.CollapseAndExpand_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.CollapseAndExpand_title') }) {
+          // [EndExclude List_item_data_structure]
           Column() {
             List({ space: 10 }) {
               ForEach(this.routes, (itemGroup: ItemGroupInfo) => {
@@ -151,7 +161,9 @@ export struct CollapseAndExpand {
                           } else {
                             Text(item.label)
                           }
+                          // $r('app.string.ohos_ic_public_arrow_right')需要替换为开发者所需的资源文件
                           Image($r('sys.media.ohos_ic_public_arrow_right'))
+                          // $r('app.string.ohos_id_color_fourth')需要替换为开发者所需的资源文件
                             .fillColor($r('sys.color.ohos_id_color_fourth'))
                             .height(30)
                             .width(30)
@@ -170,15 +182,19 @@ export struct CollapseAndExpand {
           .width('100%')
           .height('100%')
           .justifyContent(FlexAlign.Start)
+          // $r('app.string.ohos_id_color_sub_background')需要替换为开发者所需的资源文件
           .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
         }
+
+        //[End List_item_data_structure]
       }
+      //[StartExclude List_item_data_structure]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [EndExclude List_item_data_structure]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CollapseAndExpand_title'))
   }
-
 }

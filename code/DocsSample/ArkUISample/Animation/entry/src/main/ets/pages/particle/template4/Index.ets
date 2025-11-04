@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start particle_example4]
 @Entry
 @Component
 struct ParticleExample4 {
@@ -82,3 +83,4 @@ struct ParticleExample4 {
     }.width('100%').height('100%').align(Alignment.Center)
   }
 }
+// [End particle_example4]

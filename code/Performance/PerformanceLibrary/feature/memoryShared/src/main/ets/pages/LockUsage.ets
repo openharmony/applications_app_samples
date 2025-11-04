@@ -16,7 +16,7 @@
 import taskpool from '@ohos.taskpool';
 import fs from '@ohos.file.fs';
 import { NonReentrantLock } from '../util/LockUtil';
-import logger from "../util/Logger";
+import logger from '../util/Logger';
 
 @Component
 export struct LockUsage {
@@ -24,7 +24,7 @@ export struct LockUsage {
   baseDir: string = getContext().filesDir + '/TextDir'; // 文件写入的应用沙箱路径
   sabInLock: SharedArrayBuffer = new SharedArrayBuffer(4); // 在主线程，初始化子线程锁标志位，所使用的共享内存
   sabForLine: SharedArrayBuffer = new SharedArrayBuffer(4); // 在主线程，初始化子线程偏移位，所使用的共享内存
-  @State result: string = "";
+  @State result: string = '';
   loadDialogController: CustomDialogController = new CustomDialogController({
     builder: Dialog(),
     alignment: DialogAlignment.Center,
@@ -37,25 +37,25 @@ export struct LockUsage {
       Column() {
         // 不使用锁写入的按钮
         Button($r('app.string.not_use_lock'))
-          .width("80%")
+          .width('80%')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .margin({ top: 30 })
           .onClick(async () => {
             this.startWrite(false);
-          })
+          });
         // 使用锁写入的按钮
         Button($r('app.string.use_lock'))
-          .width("80%")
+          .width('80%')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .margin({ top: 30 })
           .onClick(async () => {
             this.startWrite(true);
-          })
+          });
         // 运行状态说明
         Text(this.result)
-          .width("80%")
+          .width('80%')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .fontColor(Color.Blue)
@@ -88,7 +88,7 @@ export struct LockUsage {
       // 指明运行状态为“写入文件失败”
       this.result = getContext().resourceManager.getStringSync($r('app.string.write_file_failed'));
       this.loadDialogController.close();
-    })
+    });
   }
 }
 
@@ -102,11 +102,11 @@ async function createWriteTask(baseDir: string, writeText: number, sabInLock: Sh
     constructor(offset: number, length: number) {
       this.offset = offset;
       this.length = length;
-    }
+    };
   }
 
   // 初始化文件目录
-  let filePath: string | undefined = baseDir + (useLock ? "/useLock.txt" : "/unusedLock.txt");
+  let filePath: string | undefined = baseDir + (useLock ? '/useLock.txt' : '/unusedLock.txt');
 
   if (!fs.accessSync(baseDir)) {
     fs.mkdirSync(baseDir);
@@ -152,8 +152,8 @@ export struct Dialog {
     Column() {
       LoadingProgress()
         .color(Color.White)
-        .width("30%")
-        .height("30%")
+        .width('30%')
+        .height('30%')
     }
   }
 }

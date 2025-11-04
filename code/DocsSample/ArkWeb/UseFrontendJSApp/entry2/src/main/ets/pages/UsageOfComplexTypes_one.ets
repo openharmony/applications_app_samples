@@ -21,12 +21,12 @@ class TestClass {
   constructor() {
   }
 
-  test(): Array<Number> {
+  test(): Array<number> {
     return [1, 2, 3, 4];
   }
 
-  toString(param: String): void {
-    console.log('Web Component toString' + param);
+  toString(param: string): void {
+    console.info('Web Component toString' + param);
   }
 }
 

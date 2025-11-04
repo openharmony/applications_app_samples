@@ -113,6 +113,10 @@
       "value": "圆角矩形按钮"
     },
     {
+      "name": "SetButtonType_titleFive",
+      "value": "创建功能型按钮"
+    },
+    {
       "name": "SetButtonType_description",
       "value": "Button 组件的类型的设置，共有四种类型：胶囊按钮、圆形按钮、普通按钮、圆角矩形按钮。"
     },
@@ -131,6 +135,10 @@
     {
       "name": "SetButtonType_descriptionFour",
       "value": "通过type属性为ButtonType.ROUNDED_RECTANGLE，将按钮类型设置为圆角矩形按钮。"
+    },
+    {
+      "name": "SetButtonType_descriptionFive",
+      "value": "创建删除操作的按钮。"
     },
     {
       "name": "ButtonCustomStyle_test",
@@ -206,6 +214,38 @@
     {
       "name": "toggle",
       "value": "切换按钮/Toggle"
+    },
+    {
+      "name": "ButtonCase1_title",
+      "value": "启动操作"
+    },
+    {
+      "name": "ButtonCase1_desc",
+      "value": "可以用按钮启动任何用户界面元素，按钮会根据用户的操作触发相应的事件。"
+    },
+    {
+      "name": "ButtonCase2_title",
+      "value": "提交表单"
+    },
+    {
+      "name": "ButtonCase2_desc",
+      "value": "在用户登录/注册页面，使用按钮进行登录或注册操作"
+    },
+    {
+      "name": "HoverButtonExample_title",
+      "value": "悬浮按钮"
+    },
+    {
+      "name": "HoverButtonExample_desc",
+      "value": "在可以滑动的界面，滑动时按钮始终保持悬浮状态"
+    },
+    {
+      "name": "RadioSample2_title",
+      "value": "单选框示例2"
+    },
+    {
+      "name": "RadioSample2_description",
+      "value": "单选框示例2，模拟单选框应用效果。"
     }
   ]
 }

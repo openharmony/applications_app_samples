@@ -21,9 +21,12 @@ import { Pinch } from './PinchGesture';
 import { Rotation } from './RotationGesture';
 import { Swipe } from './SwipeGesture';
 import { Tap } from './TapGesture';
+import { OnClickGesture } from './OnClickGesture';
+import { VolumeControlDemo } from './PanCombinationGesture';
 import resource from '../../common/resource';
 
 export const Gesture_ROUTE_PREFIX: string = 'gesture';
+//$r('app.string.xxx')需要替换为开发者所需的资源文件
 
 const routes: Route[] = [
   {
@@ -55,7 +58,18 @@ const routes: Route[] = [
     name: `${Gesture_ROUTE_PREFIX}/Swipe`,
     title: resource.resourceToString($r('app.string.singlegesture_Index_Swipe_title')),
     description: resource.resourceToString($r('app.string.singlegesture_Index_Swipe_description')),
+  },
+  {
+    name: `${Gesture_ROUTE_PREFIX}/PanCombinationGesture`,
+    title: resource.resourceToString($r('app.string.singlegesture_Index_Pancom_title')),
+    description: resource.resourceToString($r('app.string.singlegesture_Index_PanCombination_description')),
+  },
+  {
+    name: `${Gesture_ROUTE_PREFIX}/OnClickGesture`,
+    title: resource.resourceToString($r('app.string.singlegesture_Index_Click_title')),
+    description: resource.resourceToString($r('app.string.singlegesture_Index_Click_description')),
   }
+
 ]
 
 @Builder
@@ -74,6 +88,10 @@ export function GestureDestination(name: string) {
     Rotation();
   } else if (name === routes[5].name) {
     Swipe();
+  } else if (name === routes[6].name) {
+    VolumeControlDemo();
+  } else if (name === routes[7].name) {
+    OnClickGesture();
   }
 }
 
@@ -84,25 +102,28 @@ struct GestureExample {
 
   build() {
     NavDestination() {
-      List({ space: 12 }) {
-        ForEach(routes, (route: Route) => {
-          ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
-          }
-          .width('100%')
-          .onClick(() => {
-            this.pathStack.pushPath({ name: route.name });
+      Scroll() {
+        List({ space: 12 }) {
+          ForEach(routes, (route: Route) => {
+            ListItem() {
+              CompletedRoutableCard({ title: route.title, description: route.description })
+            }
+            .width('100%')
+            .onClick(() => {
+              this.pathStack.pushPath({ name: route.name });
+            })
           })
-        })
+        }
+        .contentStartOffset(20)
+        .padding({ left: 16, right: 16 })
       }
-      .contentStartOffset(20)
-      .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
     .title('', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    .title($r('app.string.singlegesture_Index_title'))
+    //$r('app.string.singlegesture_Index_Pancom_title')需要替换为开发者所需的字符串资源文件
+    .title($r('app.string.singlegesture_Index_Pancom_title'))
   }
 }

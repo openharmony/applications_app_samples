@@ -28,6 +28,10 @@ struct Index {
         .onClick(() => {
           router.pushUrl({ url: 'pages/DarkMode_two' });
         })
+      Button('DarkMode_three')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/DarkMode_three' });
+        })
       Button('AllowGeolocation')
         .onClick(() => {
           router.pushUrl({ url: 'pages/AllowGeolocation' });

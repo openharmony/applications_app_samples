@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-// [Start text_picker_dialog]
-import { PromptAction } from '@kit.ArkUI';
-
 @Entry
 @Component
 export struct TextPickerDialogExample {
@@ -65,4 +62,3 @@ export struct TextPickerDialogExample {
     .title($r('app.string.CustomDialog_text'))
   }
 }
-// [End text_picker_dialog]

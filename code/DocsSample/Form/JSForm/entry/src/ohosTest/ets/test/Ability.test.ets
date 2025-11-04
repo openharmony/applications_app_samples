@@ -108,7 +108,8 @@ export default function abilityTest() {
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
-      let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
+      let formEditDemoIcon: Component =
+        await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point, 0);
       // 找到卡片是否存在
@@ -128,7 +129,8 @@ export default function abilityTest() {
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
-      let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
+      let formEditDemoIcon: Component =
+        await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point, 1);
       // 找到卡片是否存在

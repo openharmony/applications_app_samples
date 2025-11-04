@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Start_AbilityA",
+      "value": "StartFuncAbilityA"
+    },
+    {
+      "name": "Stop_AbilityA",
+      "value": "StopFuncAbilityA"
+    },
+    {
+      "name": "Start_AbilityA_Result",
+      "value": "StartFuncAbilityAWithResult"
+    },
+    {
+      "name": "Stop_AbilityA_Result",
+      "value": "StopFuncAbilityAWithResult"
+    },
+    {
+      "name": "Cold_Start_Page",
+      "value": "ColdStartPage"
+    },
+    {
+      "name": "Hot_Start_Page",
+      "value": "HotStartPage"
+    },
+    {
+      "name": "ability_return_info",
+      "value": "来自FuncAbility Index页面"
+    },
+    {
+      "name": "main_page_return_info",
+      "value": "来自EntryAbility MainPage页面"
+    }
+  ]
+}

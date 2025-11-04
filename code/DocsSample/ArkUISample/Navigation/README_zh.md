@@ -11,6 +11,8 @@
 5. [NavPathStack派生类](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
 6. [Router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
 7. [Stepper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)
+8. [Router切换Navigation](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-router-to-navigation.md)
+9. [页面路由 (@ohos.router)(不推荐)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-routing.md)
 
 ### 效果预览
 
@@ -81,9 +83,36 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |   |---template4
 |   |   |   |---Index.ets
+|   |---pageRouter                  // 页面路由
+|   |   |---backPage
+|   |   |   |---Home.ets
+|   |   |---jumpPage
+|   |   |   |---Index.ets
+|   |   |   |---IndexPara.ets
+|   |   |   |---BackHome.ets
+|   |   |   |---Login.ets
+|   |   |   |---Setting.ets
+|   |   |   |---SearchResule.ets
+|   |   |---lifeCycle
+|   |   |   |---Index.ets   
+|   |   |   |---Page.ets 
+|   |   |---pageTransition
+|   |   |   |---ShowAlert.ets   
+|   |   |   |---ShowDialog.ets 
 |   |---router                  // Router
 |   |   |---template1
 |   |   |   |---Index.ets
+|   |---routerToNavigation                 // routerToNavigation
+|   |   |---lifeCycle
+|   |   |   |---Index.ets   
+|   |   |---navigation
+|   |   |   |---Index.ets
+|   |   |---navPathStack
+|   |   |   |---Index.ets  
+|   |   |---observer
+|   |   |   |---Index.ets  
+|   |   |---router
+|   |   |   |---Index.ets  
 |   |---sideBarContainer                 // SideBarContainer
 |   |   |---template1
 |   |   |   |---Index.ets   
@@ -99,6 +128,7 @@ entry/src/ohosTest/
 |   |   |---Navigation.test.ets                         // Navigation示例代码测试代码
 |   |   |---QueryNavDestinationInfo.test.ets                         // NavPathStack派生类示例代码测试代码
 |   |   |---Router.test.ets                       // Router示例代码测试代码
+|   |   |---RouterToNavigation.test.ets           // Router切换Navigation
 |   |   |---SideBarContainer.test.ets                       // SideBarContainer示例代码测试代码
 |   |   |---Stepper.test.ets                       // Stepper示例代码测试代码
 |   |   |---UiObserver.test.ets                    // 无感监听示例代码测试代码
@@ -127,7 +157,7 @@ entry/src/ohosTest/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUIDocSample/Navigation > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+echo code/DocsSample/ArkUISample/Navigation > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start arkts_drawing_simple_text]
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
@@ -132,3 +133,4 @@ struct RenderTest {
     }
   }
 }
+// [End arkts_drawing_simple_text]

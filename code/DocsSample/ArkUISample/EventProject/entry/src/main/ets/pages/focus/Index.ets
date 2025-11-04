@@ -24,10 +24,25 @@ import { FocusScopePriority } from './FocusScopePriority';
 import { FocusStyle } from './FocusStyle';
 import { OnFocusBlur } from './onFocusBlur';
 import resource from '../../common/resource';
-
+import { FocusActiveExample } from './FocusActive';
+import { FocusOnclickExample } from './FocusOnClick';
+import { FocusScopeIdExample } from './FocusScopeId';
+import { FocusScopePriorityPrevious } from './FocusScopePriorityPrevious';
+import { FocusTransferExample } from './FocusTransfer';
+import { FocusLinerExample } from './FocusTraversalGuidelines';
+import { ProjectAreaFocusFlexExample } from './FrojectAreaFocusFlex';
+import { NextFocusExample } from './NextFocus';
+import { FocusAndBlurExample } from './OnFocusOnBlurEvents';
+import { ProjectAreaFocusExample } from './ProjectionBasedFocus';
+import { RequestFocusExample } from './RequestFocus';
+import { ScopeFocusExample } from './ScopeFocus';
+import { TabIndexExample } from './TabIndex';
+import { TabIndexFocusExample } from './TabIndexFocus';
+import { TabStopExample } from './TabStop';
 
 export const Focus_ROUTE_PREFIX: string = 'Focus_ROUTE_PREFIX';
 
+// [Start route_push]
 const routes: Route[] = [
   {
     name: `${Focus_ROUTE_PREFIX}/onFocusBlur`,
@@ -68,9 +83,84 @@ const routes: Route[] = [
     name: `${Focus_ROUTE_PREFIX}/FocusAndClick`,
     title: resource.resourceToString($r('app.string.Focus_Index_FocusAndClick_title')),
     description: resource.resourceToString($r('app.string.Focus_Index_FocusAndClick_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/FocusActive`,
+    title: resource.resourceToString($r('app.string.Pages_Index_Focus_Active_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_Focus_Active_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/FocusOnClick`,
+    title: resource.resourceToString($r('app.string.Focus_Index_FocusOnClick_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_FocusOnClick_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/FocusScopeId`,
+    title: resource.resourceToString($r('app.string.Focus_Index_FocusScopeId_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_FocusScopeId_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ FocusScopePriorityPrevious`,
+    title: resource.resourceToString($r('app.string.Focus_Index_FocusScopePriorityPrevious_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_FocusScopePriorityPrevious_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ FocusTransfer`,
+    title: resource.resourceToString($r('app.string.Focus_Index_FocusTransfer_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_FocusTransfer_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ FocusTraversalGuidelines`,
+    title: resource.resourceToString($r('app.string.Focus_Index_FocusTraversalGuidelines_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_FocusTransfer_desFocus_Index_FocusTraver_descriptioncription')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ FrojectAreaFocusFlex`,
+    title: resource.resourceToString($r('app.string.Focus_Index_FrojectAreaFocusFlex_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_FrojectAreaFocusFlex_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ NextFocus`,
+    title: resource.resourceToString($r('app.string.Focus_Index_NextFocus_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_NextFocus_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ OnFocusOnBlurEvents`,
+    title: resource.resourceToString($r('app.string.Focus_Index_OnFocusOnBlurEvents_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_OnFocusOnBlurEvents_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ ProjectionBasedFocus`,
+    title: resource.resourceToString($r('app.string.Focus_Index_ProjectionBasedFocus_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_ProjectionBasedFocus_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ RequestFocus`,
+    title: resource.resourceToString($r('app.string.Focus_Index_RequestFocus_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_RequestFocus_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ ScopeFocus`,
+    title: resource.resourceToString($r('app.string.Focus_Index_ScopeFocus_title')),
+    description: resource.resourceToString($r('app.string.Focus_Index_ScopeFocus_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ TabIndex`,
+    title: resource.resourceToString($r('app.string.Tab_Index_TabIndex_title')),
+    description: resource.resourceToString($r('app.string.Tab_Index_TabIndex_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ TabIndexFocus`,
+    title: resource.resourceToString($r('app.string.Tab_Index_TabIndexFocus_title')),
+    description: resource.resourceToString($r('app.string.Tab_Index_TabIndexFocus_description')),
+  },
+  {
+    name: `${Focus_ROUTE_PREFIX}/ TabStop`,
+    title: resource.resourceToString($r('app.string.Tab_Index_TabStop_title')),
+    description: resource.resourceToString($r('app.string.Tab_Index_TabStop_description')),
   }
 ]
-
+// [End route_push]
 @Builder
 export function FocusDestination(name: string) {
   if (name === Focus_ROUTE_PREFIX) {
@@ -91,6 +181,36 @@ export function FocusDestination(name: string) {
     FocusScopePriority();
   } else if (name === routes[7].name) {
     FocusAndClick();
+  } else if (name === routes[8].name) {
+    FocusActiveExample();
+  } else if (name === routes[9].name) {
+    FocusOnclickExample();
+  } else if (name === routes[10].name) {
+    FocusScopeIdExample();
+  } else if (name === routes[11].name) {
+    FocusScopePriorityPrevious();
+  } else if (name === routes[12].name) {
+    FocusTransferExample();
+  } else if (name === routes[13].name) {
+    FocusLinerExample();
+  } else if (name === routes[14].name) {
+    ProjectAreaFocusFlexExample();
+  } else if (name === routes[15].name) {
+    NextFocusExample();
+  } else if (name === routes[16].name) {
+    FocusAndBlurExample();
+  } else if (name === routes[17].name) {
+    ProjectAreaFocusExample();
+  } else if (name === routes[18].name) {
+    RequestFocusExample();
+  } else if (name === routes[19].name) {
+    ScopeFocusExample();
+  } else if (name === routes[20].name) {
+    TabIndexExample();
+  } else if (name === routes[21].name) {
+    TabIndexFocusExample();
+  } else if (name === routes[22].name) {
+    TabStopExample();
   }
 }
 
@@ -101,25 +221,28 @@ struct FocusExample {
 
   build() {
     NavDestination() {
-      List({ space: 12 }) {
-        ForEach(routes, (route: Route) => {
-          ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
-          }
-          .width('100%')
-          .onClick(() => {
-            this.pathStack.pushPath({ name: route.name })
+     Scroll() {
+        List({ space: 12 }) {
+          ForEach(routes, (route: Route) => {
+            ListItem() {
+              CompletedRoutableCard({ title: route.title, description: route.description })
+            }
+            .width('100%')
+            .onClick(() => {
+              this.pathStack.pushPath({ name: route.name })
+            })
           })
-        })
+        }
+        .contentStartOffset(20)
+        .padding({ left: 16, right: 16 })
       }
-      .contentStartOffset(20)
-      .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
     .title('', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
+    //$r('app.string.Focus_Index_title')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.Focus_Index_title'))
   }
 }

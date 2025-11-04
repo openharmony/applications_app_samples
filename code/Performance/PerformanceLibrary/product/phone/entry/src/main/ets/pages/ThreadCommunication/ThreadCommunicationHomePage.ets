@@ -20,7 +20,7 @@ import { ThreadCommunicationHomePage } from '@ohos/ThreadCommunication';
 struct ThreadCommunicationPage {
   build() {
     Column() {
-      ThreadCommunicationHomePage()
+      ThreadCommunicationHomePage();
     }
   }
 }

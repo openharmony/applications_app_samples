@@ -47,7 +47,7 @@ struct AttributeScope {
 };
 
 AttributeScope g_attributeArray[] = {
-    {ARKUI_NODE_IMAGE_SPAN, NODE_IMAGE_SPAN_SRC, NODE_IMAGE_SPAN_BASELINE_OFFSET},
+    {ARKUI_NODE_IMAGE_SPAN, NODE_IMAGE_SPAN_SRC, NODE_IMAGE_SPAN_SUPPORT_SVG2},
     {ARKUI_NODE_IMAGE, NODE_BACKGROUND_IMAGE, NODE_IMAGE_ORIENTATION},
     {ARKUI_NODE_LOADING_PROGRESS, NODE_LOADING_PROGRESS_COLOR, NODE_LOADING_PROGRESS_ENABLE_LOADING},
     {ARKUI_NODE_PROGRESS, NODE_PROGRESS_VALUE, NODE_PROGRESS_LINEAR_STYLE},
@@ -112,6 +112,8 @@ static std::map<int32_t, ArkUI_AttributeItem> attributeValueMap = {
     {NODE_IMAGE_SPAN_VERTICAL_ALIGNMENT, {imageSpanValue2, 1, nullptr, nullptr}},
     {NODE_IMAGE_SPAN_ALT, {commonValue1, 1, BACKGROUND_PATH, nullptr}},
     {NODE_IMAGE_SPAN_BASELINE_OFFSET, {commonValue1, 1, nullptr, nullptr}},
+    {NODE_IMAGE_SPAN_COLOR_FILTER, {imageValue8, 20, nullptr, nullptr}},
+    {NODE_IMAGE_SPAN_SUPPORT_SVG2, {commonValue1, 1, nullptr, nullptr}},
     // ARKUI_NODE_IMAGE
     {NODE_BACKGROUND_IMAGE, {commonValue1, 1, BACKGROUND_PATH, nullptr}},
     {NODE_BACKGROUND_IMAGE_SIZE, {imageValue2, 2, nullptr, nullptr}},

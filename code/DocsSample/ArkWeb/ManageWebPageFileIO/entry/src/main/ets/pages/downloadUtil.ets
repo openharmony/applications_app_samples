@@ -19,9 +19,13 @@ import fileStream from '@ohos.file.fs';
 
 const helper = new util.Base64Helper();
 
-export const filePath = getContext().filesDir;
+export let filePath : string;
 export const fileName = 'demoFile.txt';
 export namespace  DownloadUtil {
+  
+  export function init(context: UIContext): void {
+    filePath = context.getHostContext()!.filesDir;
+  }
 
   export function uint8ArrayToStr(uint8Array: Uint8Array): string {
     return helper.encodeToStringSync(uint8Array);

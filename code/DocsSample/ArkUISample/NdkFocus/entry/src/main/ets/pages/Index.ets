@@ -26,7 +26,7 @@ struct Index {
   build() {
     Column({ space: 15 }) {
       // 标题
-      Text('Native Interface Focus API 用例测试')
+      Text('Native Interface Focus API Test')
         .fontSize(22)
         .fontWeight(FontWeight.Bold)
         .margin({ top: 20 })
@@ -34,14 +34,14 @@ struct Index {
 
       // 当前焦点状态显示
       Column({ space: 8 }) {
-        Text('焦点状态信息')
+        Text($r('app.string.state_information'))
           .fontSize(16)
           .fontWeight(FontWeight.Medium)
 
         Row() {
-          Text('手动激活状态: ')
+          Text($r('app.string.a_status'))
             .fontSize(14)
-          Text(this.focusActive ? '已激活' : '未激活')
+          Text(this.focusActive ? $r('app.string.is_status') : $r('app.string.no_status'))
             .fontSize(14)
             .fontColor(this.focusActive ? Color.Green : Color.Red)
             .fontWeight(FontWeight.Bold)
@@ -50,9 +50,9 @@ struct Index {
         .justifyContent(FlexAlign.Start)
 
         Row() {
-          Text('自动转移状态: ')
+          Text($r('app.string.transfer_status'))
             .fontSize(14)
-          Text(this.autoTransfer ? '启用' : '禁用')
+          Text(this.autoTransfer ? $r('app.string.enable') : $r('app.string.disable'))
             .fontSize(14)
             .fontColor(this.autoTransfer ? Color.Green : Color.Red)
             .fontWeight(FontWeight.Bold)
@@ -84,87 +84,76 @@ struct Index {
       Scroll() {
         Column() {
           Column({ space: 15 }) {
-            Text('焦点控制操作')
+            Text($r('app.string.control_operation'))
               .fontSize(18)
               .fontWeight(FontWeight.Medium)
 
             // Menu测试
             Row({ space: 10 }) {
-              Button('菜单测试按钮')
+              Button($r('app.string.test_button'))
                 .bindMenu([
                   {
-                    value: '拉起菜单观察是否Button失焦',
+                    value: $r('app.string.check_button'),
                     action: () => {
                     }
                   }
                 ])
                 .id('menu')
                 .fontSize(12)
-                .width(150)
                 .focusable(true)
+                .fontWeight(FontWeight.Medium)
             }
 
             // 节点可聚焦控制
             Row({ space: 10 }) {
-              Button('设置Button0可聚焦')
+              Button($r('app.string.set_be_focusable'))
                 .onClick(() => {
                   this.setNodeFocusable('Button0', true);
                 })
                 .id('setNodeFocusableTrue')
                 .fontSize(12)
-                .width(200)
 
-              Button('设置Button0不可聚焦')
+              Button($r('app.string.set_be_not_focusable'))
                 .onClick(() => {
                   this.setNodeFocusable('Button0', false);
                 })
                 .id('setNodeFocusableFalse')
                 .fontSize(12)
-                .width(200)
             }
 
             // 请求焦点/清理焦点操作
             Row({ space: 10 }) {
-              Button('同步请求焦点(0)')
+              Button($r('app.string.synchronize_request_focus'))
                 .onClick(() => {
                   this.requestFocus('Button0');
                 })
                 .fontSize(12)
-                .width(200)
                 .id('requestButton0')
 
-              Button('异步请求焦点(1)')
+              Button($r('app.string.synchronize_request_focus1'))
                 .onClick(() => {
                   this.requestFocusAsync('Button1');
                 })
                 .fontSize(12)
-                .width(120)
-
-              Button('清除焦点')
-                .onClick(() => {
-                  this.clearFocus();
-                })
-                .fontSize(12)
-                .width(80)
             }
+            Button($r('app.string.clear_focus'))
+              .onClick(() => {
+                this.clearFocus();
+              })
+              .fontSize(12)
 
             // 焦点通用属性
-
-            Row({ space: 10 }) {
               Button('SetFocusOnTouch(2) false')
                 .onClick(() => {
                   this.setNodeFocusOnTouch('Button2', false);
                 })
                 .fontSize(12)
-                .width(200)
 
               Button('SetFocusOnTouch(3) true')
                 .onClick(() => {
                   this.setNodeFocusOnTouch('Button3', true);
                 })
                 .fontSize(12)
-                .width(200)
-            }
 
             Row({ space: 10 }) {
               Button('SetTabStop(4) ' + this.nodeTabStop)
@@ -173,7 +162,6 @@ struct Index {
                   this.nodeTabStop = !this.nodeTabStop;
                 })
                 .fontSize(12)
-                .width(200)
                 .id('setTabStopButton')
             }
 
@@ -183,34 +171,39 @@ struct Index {
                   this.setNodeNextFocus('Button5', 'Button7', 0); // 0表示tab
                 })
                 .fontSize(12)
-                .width(200)
 
               Button('SetFocusBox(8)')
                 .onClick(() => {
                   this.setNodeFocusBox('Button8', 5.0, 2.0, 0xFF00FF00);
                 })
                 .fontSize(12)
-                .width(200)
             }
 
             // 焦点激活控制
             Row({ space: 10 }) {
-              Button(this.focusActive ? '取消激活' : '激活焦点')
+              Button(this.focusActive ? $r('app.string.deactivate') : $r('app.string.activate_focus'))
                 .onClick(() => {
                   this.focusActive = !this.focusActive;
                   this.activateFocus(this.focusActive);
                 })
                 .fontSize(12)
-                .width(100)
 
-              Button(this.autoTransfer ? '禁用自动转移' : '启用自动转移')
+              Button(this.autoTransfer ? $r('app.string.disable_automatic_transfer') :
+                $r('app.string.enable_automatic_transfer'))
                 .onClick(() => {
                   this.autoTransfer = !this.autoTransfer;
                   this.setAutoTransfer(this.autoTransfer);
                 })
                 .fontSize(12)
-                .width(120)
             }
+
+            Button(this.keyProcessingMode ? $r('app.string.propagate_upward_to_ancestor_components') :
+              $r('app.string.key_events_are_used_for_focus_navigation'))
+              .onClick(() => {
+                this.keyProcessingMode = Number(!this.keyProcessingMode);
+                this.SetKeyProcessingMode(this.keyProcessingMode);
+              })
+              .fontSize(12)
           }
           .width('100%')
           .padding(20)
@@ -222,6 +215,13 @@ struct Index {
     .width('100%')
     .height('100%')
     .padding(20)
+  }
+
+  private SetKeyProcessingMode(mode: number) {
+    try {
+      nativeNode.SetKeyProcessingMode(mode);
+    } catch (error) {
+    }
   }
 
   // 请求焦点

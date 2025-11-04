@@ -19,36 +19,44 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct AddSymbolSpanContent {
+  // [Start richEditor_addSymbol]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [StartExclude richEditor_addSymbol]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.AddSymbolSpanContent_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 3 }) {
+            // [EndExclude richEditor_addSymbol]
+            // $r('app.string.xxx')需要替换为开发者所需的资源文件
+            RichEditor(this.options)
+              .onReady(() => {
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddSymbolSpanContent_Text_1')), {
+                  style: {
+                    fontColor: Color.Black,
+                    fontSize: 15
+                  }
+                })
               })
+              .width(300)
+              .height(100)
+            Button($r('app.string.AddSymbolSpanContent_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .width(300)
-            .height(100)
-          Button($r('app.string.AddSymbolSpanContent_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.addSymbolSpan($r('sys.symbol.basketball_fill'), {
-                style: {
-                  fontSize: 30
-                }
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                // $r('sys.symbol.basketball_fill')需要替换为开发者所需的资源文件
+                this.controller.addSymbolSpan($r('sys.symbol.basketball_fill'), {
+                  style: {
+                    fontSize: 30
+                  }
+                })
               })
-            })
+            // [End richEditor_addSymbol]
+          }
         }
       }
       .width('100%')

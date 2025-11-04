@@ -19,6 +19,7 @@ import { SideBarContainerTest } from './SideBarContainer.test';
 import { StepperTest } from './Stepper.test';
 import { UiObserverTest } from './UiObserver.test';
 import { QueryNavDestinationInfoTest } from './QueryNavDestinationInfo.test';
+import { Navigation_RouteToNavTest } from './RouterToNavigation.test';
 
 export default function testsuite() {
   RouterTest();
@@ -28,4 +29,5 @@ export default function testsuite() {
   StepperTest();
   UiObserverTest();
   QueryNavDestinationInfoTest();
+  Navigation_RouteToNavTest();
 }

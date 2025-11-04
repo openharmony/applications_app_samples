@@ -1,0 +1,736 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "local_builder",
+      "value": "@LocalBuilder装饰器： 维持组件关系"
+    },
+    {
+      "name": "custom_builder_in_component",
+      "value": "自定义组件内的自定义构建函数"
+    },
+    {
+      "name": "reference_passing",
+      "value": "按引用传递参数"
+    },
+    {
+      "name": "parent_ref_sync",
+      "value": "ArkUI提供$$按引用传递参数"
+    },
+    {
+      "name": "builder_this_diff",
+      "value": "@Builder和@LocalBuilder传递参数差异"
+    },
+    {
+      "name": "value_passing",
+      "value": "按值传递参数"
+    },
+    {
+      "name": "builder_label_diff",
+      "value": "@LocalBuilder和@Builder区别说明"
+    },
+    {
+      "name": "v2_local_builder_update",
+      "value": "@LocalBuilder在@ComponentV2修饰的自定义组件中使用"
+    },
+    {
+      "name": "v2_local_builder_update_text_01_name",
+      "value": "自定义组件  name :%s"
+    },
+    {
+      "name": "v2_local_builder_update_text_01_age",
+      "value": "自定义组件  age :%d"
+    },
+    {
+      "name": "v2_local_builder_update_text_02_name",
+      "value": "局部LocalBuilder@Builder name :%s"
+    },
+    {
+      "name": "v2_local_builder_update_text_02_age",
+      "value": "局部LocalBuilder@Builder name :%d"
+    },
+    {
+      "name": "extend",
+      "value": "@Extend装饰器：定义扩展组件样式"
+    },
+    {
+      "name": "global_function_extension",
+      "value": "@Extend封装指定组件的全局方法"
+    },
+    {
+      "name": "extend_parameter_usage",
+      "value": "@Extend装饰的方法调用时传递参数"
+    },
+    {
+      "name": "extend_extend_function_handle",
+      "value": "@Extend的参数可以为function作为Event事件的句柄"
+    },
+    {
+      "name": "extend_ui_state_variable",
+      "value": "@Extend的参数状态变量"
+    },
+    {
+      "name": "extend_positive_example",
+      "value": "@Extend限制条件正例"
+    },
+    {
+      "name": "extend_usage_scenario",
+      "value": "@Extend使用场景1"
+    },
+    {
+      "name": "extend_usage_scenario_two",
+      "value": "@Extend使用场景2"
+    },
+    {
+      "name": "local",
+      "value": "@Local装饰器：组件内部状态"
+    },
+    {
+      "name": "local_v1_state_decorator",
+      "value": "状态管理V1版本@State装饰器的局限性"
+    },
+    {
+      "name": "local_observe_changes_type",
+      "value": "@Local装饰的变量观测简单类型变化"
+    },
+    {
+      "name": "local_observe_changes_decorator",
+      "value": "@Local装饰的变量观测类对象整体赋值的变化"
+    },
+    {
+      "name": "local_observe_changes_array",
+      "value": "@Local装饰的变量为简单类型数组时的变化"
+    },
+    {
+      "name": "local_observe_changes_deep_object",
+      "value": "@Local装饰的变量为嵌套类或对象数组时"
+    },
+    {
+      "name": "local_use_case_object",
+      "value": "@Local装饰的变量观测对象整体变化"
+    },
+    {
+      "name": "local_use_case_array",
+      "value": "@Local装饰Array类型变量"
+    },
+    {
+      "name": "local_use_case_date",
+      "value": "@Local装饰Date类型变量"
+    },
+    {
+      "name": "local_use_case_map",
+      "value": "@Local装饰Map类型变量"
+    },
+    {
+      "name": "local_use_case_set",
+      "value": "@Local装饰Set类型变量"
+    },
+    {
+      "name": "local_use_case_join",
+      "value": "@Local装饰联合类型"
+    },
+    {
+      "name": "local_question_spark_update",
+      "value": "常见问题：复杂类型常量重复赋值给状态变量触发刷新"
+    },
+    {
+      "name": "local_question_ui_utils",
+      "value": "常见问题：复杂类型常量重复赋值给状态变量触发刷新--使用UIUtils.getTarget()方法示例"
+    },
+    {
+      "name": "local_question_v2_animate_to",
+      "value": "状态管理V2中使用animateTo动画效果异常--animateTo暂不支持直接在状态管理V2中使用"
+    },
+    {
+      "name": "local_question_expected_effect",
+      "value": "状态管理V2中使用animateTo动画效果异常--通过下面的方法暂时获得预期的显示效果"
+    },
+    {
+      "name": "persistenceV2",
+      "value": "PersistenceV2: 持久化存储UI状态"
+    },
+    {
+      "name": "persistence_v2_page1",
+      "value": "PersistenceV2:在两个页面之间存储数据--页面1"
+    },
+    {
+      "name": "persistence_v2_page2",
+      "value": "PersistenceV2:在两个页面之间存储数据--页面2"
+    },
+    {
+      "name": "persistence_v2_global_connect",
+      "value": "使用globalConnect存储数据"
+    },
+    {
+      "name": "persistence_v2_module_connect_storage1",
+      "value": "在不同的module中使用connect和globalConnect--模块1"
+    },
+    {
+      "name": "persistence_v2_module_connect_storage1_text",
+      "value": "跳转newModule"
+    },
+    {
+      "name": "persistence_v2_module_connect_storage2",
+      "value": "在不同的module中使用connect和globalConnect--模块2"
+    },
+    {
+      "name": "persistence_v2_connect_migration1",
+      "value": "connect向globalConnect迁移实现--模块1"
+    },
+    {
+      "name": "persistence_v2_connect_migration2",
+      "value": "connect向globalConnect迁移实现--模块2"
+    },
+    {
+      "name": "param",
+      "value": "@Param：组件外部输入"
+    },
+    {
+      "name": "param_decorator_limitations",
+      "value": "状态管理V1版本接受外部传入的装饰器的局限性"
+    },
+    {
+      "name": "param_observe_change_variable",
+      "value": "使用@Param装饰的变量具有被观测变化的能力"
+    },
+    {
+      "name": "param_observe_change_class",
+      "value": "当装饰的变量类型为类对象时"
+    },
+    {
+      "name": "param_observe_change_array",
+      "value": "装饰的变量为简单类型数组时"
+    },
+    {
+      "name": "param_observe_change_nested_class",
+      "value": "当装饰的变量是嵌套类或对象数组时"
+    },
+    {
+      "name": "param_use_scene_parent_to_child",
+      "value": "从父组件到子组件变量传递与同步"
+    },
+    {
+      "name": "param_use_scene_array",
+      "value": "装饰Array类型变量"
+    },
+    {
+      "name": "param_use_scene_date",
+      "value": "装饰Date类型变量"
+    },
+    {
+      "name": "param_use_scene_map",
+      "value": "装饰Map类型变量"
+    },
+    {
+      "name": "param_use_scene_set",
+      "value": "装饰Set类型变量"
+    },
+    {
+      "name": "param_use_scene_unite",
+      "value": "联合类型"
+    },
+    {
+      "name": "param_restrict_modify_object",
+      "value": "装饰的变量是对象类型"
+    },
+    {
+      "name": "provide_and_consume",
+      "value": "@Provide装饰器和@Consume装饰器：与后代组件双向同步"
+    },
+    {
+      "name": "provide_and_consume_text_1",
+      "value": "你好"
+    },
+    {
+      "name": "provide_consume_proper_demo",
+      "value": "@Consume装饰的变量初始化正例"
+    },
+    {
+      "name": "provide_consume_proper_demo_text_01",
+      "value": "num的值: %d"
+    },
+    {
+      "name": "provide_consume_proper_demo_text_02",
+      "value": "num1的值：%d"
+    },
+    {
+      "name": "provide_consume_proper_demo_text_03",
+      "value": "numWithDefaultValue的值：%d"
+    },
+    {
+      "name": "provide_consume_proper_demo_two",
+      "value": "@Consume装饰的变量初始化正例2"
+    },
+    {
+      "name": "provide_consume_bidirectional_sync",
+      "value": "@Provide变量与后代组件中@Consume变量进行双向同步"
+    },
+    {
+      "name": "provide_consume_map_sync",
+      "value": "@Consume装饰Map类型变量"
+    },
+    {
+      "name": "provide_consume_set_sync",
+      "value": "装饰Set类型变量"
+    },
+    {
+      "name": "provide_consume_date_sync",
+      "value": "装饰Date类型变量"
+    },
+    {
+      "name": "provide_consume_federation",
+      "value": "Provide和Consume支持联合类型实例"
+    },
+    {
+      "name": "provide_consume_provide_allow_override",
+      "value": "@Provide支持allowOverride参数"
+    },
+    {
+      "name": "provide_consume_decorated_variable",
+      "value": "@Consume装饰的变量支持设置默认值"
+    },
+    {
+      "name": "provide_consume_two_way",
+      "value": "和@Provide建立双向同步"
+    },
+    {
+      "name": "provide_consume_provide_error",
+      "value": "@BuilderParam尾随闭包@Provide未定义错误"
+    },
+    {
+      "name": "provide_consume_provide_error_text",
+      "value": "%d测试"
+    },
+    {
+      "name": "provide_consume_this_object",
+      "value": "a.b(this.object)不触发UI刷新"
+    },
+    {
+      "name": "link",
+      "value": "@Link装饰器：父子双向同步"
+    },
+    {
+      "name": "builder_param",
+      "value": "@BuilderParam装饰器：引用@Builder函数"
+    },
+    {
+      "name": "sync_state_manager",
+      "value": "\u0024\u0024语法：系统组件双向同步"
+    },
+    {
+      "name": "sync_usage_example",
+      "value": "使用示例：以TextInput方法的text参数为例"
+    },
+    {
+      "name": "migration_data_object_variables",
+      "value": "数据对象状态变量的迁移指导"
+    },
+    {
+      "name": "migration_nested_object_properties",
+      "value": "嵌套对象属性观察方法V1实现"
+    },
+    {
+      "name": "migration_nested_object_properties_v2",
+      "value": "嵌套对象属性V2迁移策略"
+    },
+    {
+      "name": "migration_class_attribute_v1",
+      "value": "类属性变化观测V1实现"
+    },
+    {
+      "name": "migration_class_attribute_v2",
+      "value": "类属性变化观测V2迁移策略"
+    },
+    {
+      "name": "monitor",
+      "value": "@Monitor装饰器：状态变量修改监听"
+    },
+    {
+      "name": "monitor_watch_decorator_limitations_v1",
+      "value": "状态管理V1版本@Watch装饰器的局限性"
+    },
+    {
+      "name": "monitor_decorator_multi_watch_comp_v2",
+      "value": "@ComponentV2：@Monitor可以同时监听多个状态变量，这些变量名之间用\",\"隔开"
+    },
+    {
+      "name": "monitor_decorator_object_trace_comp_v2",
+      "value": "@ComponentV2：@Monitor监听类属性的变化需要类属性被@Trace装饰"
+    },
+    {
+      "name": "monitor_decorator_multi_watch_observed_v2",
+      "value": "@ObservedV2：@Monitor可以同时监听多个属性，这些属性之间用\",\"隔开。"
+    },
+    {
+      "name": "monitor_decorator_object_trace_observed_v2",
+      "value": "@ObservedV2：@Monitor可以监听深层属性的变化，该深层属性需要被@Trace装饰"
+    },
+    {
+      "name": "monitor_decorator_inheritance_support_observed_v2",
+      "value": "@ObservedV2：@Monitor在继承类场景下，可以在继承链中对同一个属性进行多次监听。"
+    },
+    {
+      "name": "monitor_decorator_array_support",
+      "value": "@Monitor通用监听能力：@Monitor监听数组中的项，包括多维数组，对象数组。"
+    },
+    {
+      "name": "monitor_decorator_object_support",
+      "value": "@Monitor通用监听能力：@Monitor监听对象整体改变，但监听的属性不变时，不触发@Monitor回调。"
+    },
+    {
+      "name": "monitor_decorator_last_write",
+      "value": "@Monitor通用监听能力：在一次事件中多次改变被@Monitor监听的属性，以最后一次修改为准。"
+    },
+    {
+      "name": "monitor_limitation_last_listener_wins",
+      "value": "@Monitor限制条件：当一个类中存在对一个属性的多次监听时，只有最后一个定义的监听方法会生效。"
+    },
+    {
+      "name": "monitor_limitation_multiple_path_params",
+      "value": "@Monitor限制条件：当@Monitor传入多个路径参数时，以参数的全拼接结果判断是否重复监听。全拼接时会在参数间加空格，以区分不同参数。"
+    },
+    {
+      "name": "monitor_limitation_parameter_string_constraint",
+      "value": "@Monitor限制条件：@Monitor的参数需要为监听属性名的字符串，仅可以使用字符串字面量、const常量、enum枚举值作为参数。"
+    },
+    {
+      "name": "monitor_scene_deep_attribute_changes",
+      "value": "@Monitor使用场景：监听深层属性变化，@Monitor可以监听深层属性的变化，并能够根据更改前后的值做分类处理。"
+    },
+    {
+      "name": "monitor_problem_effect_time_comp_v2",
+      "value": "@Monitor常见问题：@ComponentV2自定义组件中，@Monitor对变量监听的生效及失效时间。"
+    },
+    {
+      "name": "monitor_problem_effect_time_class",
+      "value": "@Monitor常见问题：类中@Monitor对变量监听的生效及失效时间。"
+    },
+    {
+      "name": "monitor_problem_class_delayed",
+      "value": "@Monitor常见问题：@Monitor监听类--由于类的实际销毁释放依赖于垃圾回收机制，导致类中定义的@Monitor仍在监听变化的情况。"
+    },
+    {
+      "name": "monitor_problem_class_failure_time_set_comp",
+      "value": "@Monitor常见问题：@Monitor监听类--管理@Monitor的失效时间--将@Monitor定义在自定义组件中"
+    },
+    {
+      "name": "monitor_problem_class_failure_time_empty_object",
+      "value": "@Monitor常见问题：@Monitor监听类--管理@Monitor的失效时间--主动置空监听的对象"
+    },
+    {
+      "name": "monitor_problem_param_counter_example_1",
+      "value": "@Monitor常见问题：正确设置@Monitor入参--反例1"
+    },
+    {
+      "name": "monitor_problem_param_counter_example_2",
+      "value": "@Monitor常见问题：正确设置@Monitor入参--反例2"
+    },
+    {
+      "name": "monitor_problem_param_positive_example_1",
+      "value": "@Monitor常见问题：正确设置@Monitor入参--正例1"
+    },
+    {
+      "name": "monitor_problem_param_positive_example_2",
+      "value": "@Monitor常见问题：正确设置@Monitor入参--正例2"
+    },
+    {
+      "name": "monitor_problem_param_state_variables",
+      "value": "@Monitor常见问题：直接监听状态变量本身"
+    },
+    {
+      "name": "monitor_problem_state_change_use_addMonitor",
+      "value": "@Monitor常见问题：无法监听变量从可访问变为不可访问和从不可访问变为可访问"
+    },
+    {
+      "name": "state",
+      "value": "@State装饰器：组件内状态"
+    },
+    {
+      "name": "state_change_observation_object",
+      "value": "@State观察变化和行为表现：当装饰的数据类型为class或Object"
+    },
+    {
+      "name": "state_decorate_object_change_text_01",
+      "value": "class类型赋值"
+    },
+    {
+      "name": "state_decorate_object_change_text_02",
+      "value": "class属性的赋值"
+    },
+    {
+      "name": "state_decorate_object_change_text_03",
+      "value": "嵌套的属性赋值观察不到"
+    },
+    {
+      "name": "state_change_observation_array",
+      "value": "@State观察变化和行为表现：当装饰的对象是array"
+    },
+    {
+      "name": "state_decorate_array_change_text_01",
+      "value": "数组赋值"
+    },
+    {
+      "name": "state_decorate_array_change_text_02",
+      "value": "数组项赋值"
+    },
+    {
+      "name": "state_decorate_array_change_text_03",
+      "value": "数组项更改-pop"
+    },
+    {
+      "name": "state_decorate_array_change_text_04",
+      "value": "数组项更改-push"
+    },
+    {
+      "name": "state_decorate_array_change_text_05",
+      "value": "嵌套的属性赋值观察不到"
+    },
+    {
+      "name": "state_scene_simple_type",
+      "value": "@State使用场景：装饰简单类型的变量"
+    },
+    {
+      "name": "state_scene_type_class",
+      "value": "@State使用场景：装饰class对象类型的变量"
+    },
+    {
+      "name": "state_scene_type_map",
+      "value": "@State使用场景：装饰Map类型变量"
+    },
+    {
+      "name": "state_scene_type_set",
+      "value": "@State使用场景：装饰Set类型变量"
+    },
+    {
+      "name": "state_scene_type_date",
+      "value": "@State使用场景：装饰Date类型变量"
+    },
+    {
+      "name": "state_scene_joint_type_instance",
+      "value": "@State使用场景：State支持联合类型实例"
+    },
+    {
+      "name": "state_problem_arrow_function_opposite",
+      "value": "@State常见问题：使用箭头函数改变状态变量未生效--反例"
+    },
+    {
+      "name": "state_problem_arrow_function_positive",
+      "value": "@State常见问题：使用箭头函数改变状态变量未生效--正例"
+    },
+    {
+      "name": "state_problem_arrow_change_color_text",
+      "value": "点击改变颜色"
+    },
+    {
+      "name": "state_problem_this_unable_observe_opposite",
+      "value": "@State常见问题：类的构造函数中通过捕获this修改变量无法观察--反例"
+    },
+    {
+      "name": "state_problem_this_unable_observe_positive",
+      "value": "@State常见问题：类的构造函数中通过捕获this修改变量无法观察--正例"
+    },
+    {
+      "name": "state_problem_state_ui_refresh_example_01",
+      "value": "@State常见问题：状态变量只能影响其直接绑定的UI组件的刷新--示例1"
+    },
+    {
+      "name": "state_problem_state_ui_refresh_example_02",
+      "value": "@State常见问题：状态变量只能影响其直接绑定的UI组件的刷新--示例2"
+    },
+    {
+      "name": "state_problem_state_ui_refresh_example_03",
+      "value": "@State常见问题：状态变量只能影响其直接绑定的UI组件的刷新--示例3"
+    },
+    {
+      "name": "state_problem_complex_constant_repeat_refresh",
+      "value": "@State常见问题：复杂类型常量重复赋值给状态变量触发刷新"
+    },
+    {
+      "name": "state_problem_complex_solution_01",
+      "value": "@State常见问题：避免复杂类型常量重复赋值给状态变量触发刷新--方法一：增加@Observed"
+    },
+    {
+      "name": "state_problem_complex_solution_02",
+      "value": "@State常见问题：避免复杂类型常量重复赋值给状态变量触发刷新--方法二：使用UIUtils.getTarget()获取原始对象"
+    },
+    {
+      "name": "state_problem_not_update_in_build_error_01",
+      "value": "@State常见问题：不允许在build里改状态变量--示例01"
+    },
+    {
+      "name": "state_problem_not_update_in_build_error_02",
+      "value": "@State常见问题：不允许在build里改状态变量--示例02"
+    },
+    {
+      "name": "state_problem_a_b_call_ui_refresh_opposite",
+      "value": "@State常见问题：使用a.b(this.object)形式调用，不会触发UI刷新--反例"
+    },
+    {
+      "name": "state_problem_a_b_call_ui_refresh_positive",
+      "value": "@State常见问题：使用a.b(this.object)形式调用，不会触发UI刷新--正例"
+    },
+    {
+      "name": "state_problem_unregister_state_callback",
+      "value": "@State常见问题：用注册回调的方式更改状态变量需要执行解注册"
+    },
+    {
+      "name": "internal_trace",
+      "value": "应用内状态变量及其它场景迁移指导"
+    },
+    {
+      "name": "Internal_ObservedV2_Trace_V1_pag1",
+      "value": "使用@LocalStorageLink将开发者本地的修改同步pag1"
+    },
+    {
+      "name": "Internal_ObservedV2_Trace_V1_pag2",
+      "value": "使用@LocalStorageLink将开发者本地的修改同步pag2"
+    },
+    {
+      "name": "Internal_ObservedV2_Trace_V2_pag1",
+      "value": "声明@ObservedV2装饰的MyStorage类pag1"
+    },
+    {
+      "name": "Internal_ObservedV2_Trace_V2_pag2",
+      "value": "声明@ObservedV2装饰的MyStorage类pag2"
+    },
+    {
+      "name": "Internal_Trace_setOrCreate_V1_pag1",
+      "value": "调用LocalStorage的setOrCreate改变对应的值pag1"
+    },
+    {
+      "name": "Internal_Trace_setOrCreate_V1_pag2",
+      "value": "调用LocalStorage的setOrCreate改变对应的值pag2"
+    },
+    {
+      "name": "Internal_Trace_setOrCreate_V2_pag1",
+      "value": "在V2中借助@Local和@Monitor实现类似的效果pag1"
+    },
+    {
+      "name": "Internal_Trace_setOrCreate_V2_pag2",
+      "value": "在V2中借助@Local和@Monitor实现类似的效果pag2"
+    },
+    {
+      "name": "Internal_Trace_customize_V1",
+      "value": "自定义组件接收LocalStorage实例场景V1"
+    },
+    {
+      "name": "Internal_Trace_customize_V2",
+      "value": "自定义组件接收LocalStorage实例场景V2"
+    },
+    {
+      "name": "Internal_Trace_customize_Param",
+      "value": "实现类似LocalStorage实例在子组件树上共享的能力。"
+    },
+    {
+      "name": "Internal_AppStorage_V1_one",
+      "value": "AppStorage与应用进程绑定支持跨Ability数据共享V1one"
+    },
+    {
+      "name": "Internal_AppStorage_V1_two",
+      "value": "AppStorage与应用进程绑定支持跨Ability数据共享V1two"
+    },
+    {
+      "name": "Internal_AppStorage_V2_one",
+      "value": "可以使用AppStorageV2实现跨Ability共享V2one"
+    },
+    {
+      "name": "Internal_AppStorage_V2_two",
+      "value": "可以使用AppStorageV2实现跨Ability共享V2two"
+    },
+    {
+      "name": "Internal_StorageProp_V1_one",
+      "value": "类似于@StorageProp的效果希望本地的修改不同步V1one"
+    },
+    {
+      "name": "Internal_StorageProp_V1_two",
+      "value": "类似于@StorageProp的效果希望本地的修改不同步V1two"
+    },
+    {
+      "name": "Internal_StorageProp_V2_one",
+      "value": "开发者可以使用@Monitor和@Local实现类似效果V2one"
+    },
+    {
+      "name": "Internal_StorageProp_V2_two",
+      "value": "开发者可以使用@Monitor和@Local实现类似效果V2two"
+    },
+    {
+      "name": "Internal_Environment_V1",
+      "value": "Environment->调用Ability接口直接获取系统环境变量V1"
+    },
+    {
+      "name": "Internal_Environment_V2",
+      "value": "Environment->调用Ability接口直接获取系统环境变量V1"
+    },
+    {
+      "name": "Internal_Persistent_Storage_V1",
+      "value": "V1中PersistentStorage提供了持久化UI数据的能力"
+    },
+    {
+      "name": "Internal_Persistent_Storage_V2",
+      "value": "将PersistentStorage的持久化数据迁移到V2的PersistenceV2中"
+    },
+    {
+      "name": "Internal_Gradual_Migration",
+      "value": "通常父组件使用状态管理V1，而迁移的子组件使用状态管理V2"
+    },
+    {
+      "name": "Internal_Other_Migrations_List_V1",
+      "value": "V1:ChildrenMainSize来设置List的子组件在主轴方向的大小信息。"
+    },
+    {
+      "name": "Internal_Other_Migrations_List_V2",
+      "value": "V2:ChildrenMainSize来设置List的子组件在主轴方向的大小信息。"
+    },
+    {
+      "name": "Internal_Other_Migrations_WaterFlow_V1",
+      "value": "V1:WaterFlowSections来设置WaterFlow瀑布流分组信息"
+    },
+    {
+      "name": "Internal_Other_Migrations_WaterFlow_V2",
+      "value": "V2:WaterFlowSections来设置WaterFlow瀑布流分组信息"
+    },
+    {
+      "name": "Internal_attribute_Modifier_V1",
+      "value": "V1:通过attributeModifier动态设置组件的属性方法"
+    },
+    {
+      "name": "Internal_attribute_Modifier_V2",
+      "value": "V2:通过attributeModifier动态设置组件的属性方法"
+    },
+    {
+      "name": "Internal_Common_Modifier_V1",
+      "value": "V1:动态设置组件的属性类。以CommonModifier为例"
+    },
+    {
+      "name": "Internal_Common_Modifier_V2",
+      "value": "V2:动态设置组件的属性类。以CommonModifier为例"
+    },
+    {
+      "name": "Internal_Module_Modifier_V1",
+      "value": "V1:组件Modifier动态设置组件的属性类。以Text组件为例"
+    },
+    {
+      "name": "Internal_Module_Modifier_V2",
+      "value": "V2:组件Modifier动态设置组件的属性类。以Text组件为例"
+    },
+    {
+      "name": "Internal_Attribute_Updater_V1",
+      "value": "V1:将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新"
+    },
+    {
+      "name": "Internal_Attribute_Updater_V2",
+      "value": "V2:将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新"
+    }
+  ]
+}

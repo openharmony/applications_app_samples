@@ -14,8 +14,8 @@
  *
 */
 
+// [Start Main_SettingPage]
 // src/main/ets/pages/SettingPage.ets
-
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -28,7 +28,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build(){
     Column(){
@@ -49,3 +49,4 @@ struct SettingPage {
     .alignItems(HorizontalAlign.Start)
   }
 }
+// [End Main_SettingPage]

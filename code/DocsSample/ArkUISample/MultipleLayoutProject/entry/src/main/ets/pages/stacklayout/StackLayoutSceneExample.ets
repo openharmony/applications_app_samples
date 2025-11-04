@@ -15,7 +15,7 @@
 //[Start StackLayoutSceneExample_start]
 @Entry
 @Component
-struct StackLayoutSceneExample {
+struct StackSample {
   private arr: string[] = ['APP1', 'APP2', 'APP3', 'APP4', 'APP5', 'APP6', 'APP7', 'APP8'];
 
   build() {
@@ -34,11 +34,11 @@ struct StackLayoutSceneExample {
       }.width('100%').height('100%')
 
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-        //$r('app.string.contacts')需要替换为开发者所需的资源文件
+        //'app.string.contacts'资源文件中的value值为'联系人'
         Text($r('app.string.contacts')).fontSize(16)
-        //$r('app.string.setting')需要替换为开发者所需的资源文件
+        //'app.string.setting'资源文件中的value值为'设置'
         Text($r('app.string.setting')).fontSize(16)
-        //$r('app.string.text_message')需要替换为开发者所需的资源文件
+        //'app.string.text_message'资源文件中的value值为'短信'
         Text($r('app.string.text_message')).fontSize(16)
       }
       .width('50%')

@@ -18,10 +18,12 @@ import { formInfo, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import LiveFormExtensionContext from 'application/LiveFormExtensionContext';
 import { Constants } from '../../common/Constants';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const ANIMATION_RECT_SIZE: number = 100;
 const END_SCALE: number = 1.5;
 const END_TRANSLATE: number = -300;
+const DOMAIN = 0x0000;
 
 @Entry
 @Component
@@ -39,7 +41,7 @@ struct MyLiveFormPage {
   aboutToAppear(): void {
     this.uiContext = this.getUIContext();
     if (!this.uiContext) {
-      console.warn('no uiContext');
+      hilog.error(DOMAIN, 'testTag', 'no uiContext');
       return;
     }
     this.initParams();
@@ -72,13 +74,13 @@ struct MyLiveFormPage {
         abilityName: 'EntryAbility',
       })
         .then(() => {
-          console.info('startAbilityByLiveForm succeed');
+          hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm succeed');
         })
         .catch((err: BusinessError) => {
-          console.error(`startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
+          hilog.error(DOMAIN, 'testTag', `startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
         });
     } catch (e) {
-      console.error(`startAbilityByLiveForm failed, code is ${e?.code}, message is ${e?.message}`);
+      hilog.error(DOMAIN, 'testTag', `startAbilityByLiveForm failed, code is ${e?.code}, message is ${e?.message}`);
     }
   }
 
@@ -103,9 +105,9 @@ struct MyLiveFormPage {
     .width('100%')
     .height('100%')
     .onClick(() => {
-      console.info('startAbilityByLiveForm click to start ability');
+      hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm click to start ability');
       if (!this.liveFormContext) {
-        console.info('startAbilityByLiveForm liveFormContext is empty');
+        hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm liveFormContext is empty');
         return;
       }
       this.startAbilityByLiveForm();
@@ -134,10 +136,10 @@ struct MyLiveFormPage {
       .backgroundColor(Color.Grey)
       .onClick(() => {
         if (!this.formId) {
-          console.info('startAbilityByLiveForm formId is empty, cancel overflow failed');
+          hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm formId is empty, cancel overflow failed');
           return;
         }
-        console.info('startAbilityByLiveForm cancel overflow animation');
+        hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm cancel overflow animation');
         formProvider.cancelOverflow(this.formId);
       })
   }

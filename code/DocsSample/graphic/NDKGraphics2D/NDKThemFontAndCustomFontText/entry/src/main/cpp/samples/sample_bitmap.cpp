@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-#include <bits/alltypes.h>
+// Start [theme_font_c_header]
 #include <native_drawing/drawing_font_collection.h>
 #include <native_drawing/drawing_text_typography.h>
 #include <native_drawing/drawing_register_font.h>
+// End [theme_font_c_header]
 #include <native_buffer/native_buffer.h>
 #include <fstream>
 
@@ -164,31 +165,33 @@ void SampleBitMap::Create()
 
 void SampleBitMap::DrawCustomFontText()
 {
+    // Start [custom_font_c_custom_font_text_step1]
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
+    // End [custom_font_c_custom_font_text_step1]
+    // Start [custom_font_c_custom_font_text_step2]
     // 后续使用自定义字体时，需使用到该字体家族名
     const char* fontFamily = "myFamilyName"; 
     // 该路径是待注册的自定义字体文件在应用设备下的路径，确保该自定义字体文件已正确放置在该路径下
     const char* fontPath = "/system/fonts/NotoSerifTamil[wdth,wght].ttf"; 
-    std::ifstream fileStream(fontPath);
-    fileStream.seekg(0, std::ios::end);
-    uint32_t bufferSize = fileStream.tellg();
-    fileStream.seekg(0, std::ios::beg);
-    std::unique_ptr<uint8_t[]> buffer = std::make_unique<uint8_t[]>(bufferSize);
-    fileStream.read(reinterpret_cast<char*>(buffer.get()), bufferSize);
-    fileStream.close();
+    // End [custom_font_c_custom_font_text_step2]
+    // Start [custom_font_c_custom_font_text_step3]
     // 返回0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败，9文件损坏
     int errorCode = OH_Drawing_RegisterFont(fontCollection, fontFamily, fontPath);
+    // End [custom_font_c_custom_font_text_step3]
     // 用于在字体管理器中注册字体缓冲区
-    uint32_t result = OH_Drawing_RegisterFontBuffer(fontCollection, fontFamily, buffer.get(), bufferSize);
-    DRAWING_LOGI("errorCode = %{public}d  result = %{public}d", errorCode, result);
     OH_Drawing_TextStyle* textStyle = OH_Drawing_CreateTextStyle();
+    // Start [custom_font_c_custom_font_text_step4]
     // 如果已经注册成功自定义字体，填入自定义字体的字体家族名
     const char* myFontFamilies[] = {"myFamilyName"}; 
     // 加入可使用的自定义字体
     OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
+    // End [custom_font_c_custom_font_text_step4]
+    
+    // Start [custom_font_c_custom_font_text_step5]
     // 设置其他文本样式
     OH_Drawing_SetTextStyleColor(textStyle , OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
-    OH_Drawing_SetTextStyleFontSize(textStyle , 50.0);
+    // 设置字体大小为60.0
+    OH_Drawing_SetTextStyleFontSize(textStyle, 60.0);
     // 创建一个段落样式对象，以设置排版风格
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextAlign(typographyStyle, TEXT_ALIGN_LEFT); // 设置段落样式为左对齐
@@ -197,27 +200,54 @@ void SampleBitMap::DrawCustomFontText()
     // 在段落生成器中设置文本样式
     OH_Drawing_TypographyHandlerPushTextStyle(handler, textStyle);
     // 在段落生成器中设置文本内容
-    const char* text = "Hello World. 你好世界。\n以上文字使用了自定义字体";
+    const char* text = "hello, 这段文字使用了自定义字体";
     OH_Drawing_TypographyHandlerAddText(handler, text);
     // 通过段落生成器生成段落
     OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);
     // 设置页面最大宽度
     double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
-    // 设置文本在画布上绘制的起始位置
-    double position[2] = {width_ / 5.0, height_ / 2.0};
-    // 将文本绘制到画布上
+    // 将文本绘制到画布(0,100)上
     OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
+    // End [custom_font_c_custom_font_text_step5]
+
+    // Start [custom_font_c_custom_font_text_step6]
+    // 注销对应的自定义字体
+    OH_Drawing_UnregisterFont(fontCollection, fontFamily);
+    OH_Drawing_TypographyCreate* handler1 = OH_Drawing_CreateTypographyHandler(typographyStyle, fontCollection);
+    // 在段落生成器中设置文本样式
+    OH_Drawing_TypographyHandlerPushTextStyle(handler1, textStyle);
+    // 在段落生成器中设置文本内容
+    const char* text1 = "hello, 这段文本的自定义字体被注销了";
+    OH_Drawing_TypographyHandlerAddText(handler1, text1);
+    // 通过段落生成器生成段落
+    OH_Drawing_Typography* typography1 = OH_Drawing_CreateTypography(handler1);
+    OH_Drawing_TypographyLayout(typography1, maxWidth);
+    // 将文本绘制到画布(0,300)上
+    OH_Drawing_TypographyPaint(typography1, cCanvas_, 0, 300);
+    // End [custom_font_c_custom_font_text_step6]
+
+    // 释放内存
+    OH_Drawing_DestroyTypographyStyle(typographyStyle);
+    OH_Drawing_DestroyTextStyle(textStyle);
+    OH_Drawing_DestroyFontCollection(fontCollection);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypographyHandler(handler1);
+    OH_Drawing_DestroyTypography(typography);
+    OH_Drawing_DestroyTypography(typography1);
 }
 
 void SampleBitMap::PrintSysFontMetrics()
 {
+    // [Start custom_font_c_print_system_font_metrics_step1]
     OH_Drawing_FontConfigInfoErrorCode fontConfigInfoErrorCode;  // 用于接收错误代码
     OH_Drawing_FontConfigInfo* fontConfigInfo = OH_Drawing_GetSystemFontConfigInfo(&fontConfigInfoErrorCode);
     if(fontConfigInfoErrorCode != SUCCESS_FONT_CONFIG_INFO) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, "PrintSysFontMetrics", "获取系统信息失败，错误代码为： %{public}d", fontConfigInfoErrorCode);
     }
+    // [End custom_font_c_print_system_font_metrics_step1]
 
+    // [Start custom_font_c_print_system_font_metrics_step2]
     // 获取系统字体配置信息示例
     if (fontConfigInfo != nullptr) {
         // 获取字体文件路径数量，打印日志
@@ -238,11 +268,15 @@ void SampleBitMap::PrintSysFontMetrics()
                          "获取第%{public}zu个通用字体集中的字体家族名为: %{public}s", i, genericInfo.familyName);
         }
     }
+    // [End custom_font_c_print_system_font_metrics_step2]
+
     // 如若后续不再需要系统字体的系统配置信息时，则释放其占用的内存。
     OH_Drawing_DestroySystemFontConfigInfo(fontConfigInfo);
     
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateSharedFontCollection();
     OH_Drawing_TextStyle *textStyle = OH_Drawing_CreateTextStyle();
+    
+    // [Start custom_font_c_print_system_font_metrics_step3]
     // 情况一：设置系统字体为"HarmonyOS Sans Condensed"
     const char *myFontFamilies[] = {"HarmonyOS Sans Condensed"};
     OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
@@ -250,9 +284,12 @@ void SampleBitMap::PrintSysFontMetrics()
     // 情况二：不手动设置，此时使用的是系统默认字体"HarmonyOS Sans"
     // const char* myFontFamilies[] = {"HarmonyOS Sans Condensed"};
     // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
+    // [End custom_font_c_print_system_font_metrics_step3]
 
+    // [Start custom_font_c_print_system_font_metrics_step4]
     // 设置其他文本样式
     OH_Drawing_SetTextStyleColor(textStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    // 设置字体大小为70.0
     OH_Drawing_SetTextStyleFontSize(textStyle, 70.0);
     // 创建一个段落样式对象，以设置排版风格
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
@@ -269,10 +306,16 @@ void SampleBitMap::PrintSysFontMetrics()
     // 设置页面最大宽度
     double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
-    // 设置文本在画布上绘制的起始位置
-    double position[2] = {width_ / 5.0, height_ / 2.0};
-    // 将文本绘制到画布上
-    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
+    // 将文本绘制到画布(width_/5.0,height_/2.0)上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, width_ / 5.0, height_ / 2.0);
+    // [End custom_font_c_print_system_font_metrics_step4]
+    
+    // 释放内存
+    OH_Drawing_DestroyTypographyStyle(typographyStyle);
+    OH_Drawing_DestroyTextStyle(textStyle);
+    OH_Drawing_DestroyFontCollection(fontCollection);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
 }
 
 void SampleBitMap::DrawDisableSysFontText()
@@ -282,6 +325,8 @@ void SampleBitMap::DrawDisableSysFontText()
     // 禁用系统字体。
     OH_Drawing_DisableFontCollectionSystemFont(fontCollection);
     // 注意 若不设置字体，文本会默认使用系统字体，而系统字体禁用后若不设置使用自定义字体，文本将无法正常显示。
+    
+    // [Start custom_font_c_disable_system_font_text_step1]
     OH_Drawing_TextStyle *textStyle = OH_Drawing_CreateTextStyle();
     // 禁用系统字体后的几种情况如下：
     // 情况一：如果此时设置使用了自定义字体，文本会正常显示
@@ -302,9 +347,12 @@ void SampleBitMap::DrawDisableSysFontText()
     // 情况三：如果此时不设置使用字体，文本会默认使用系统默认字体，而此时系统字体已被禁用，因此文本将无法显示
     // const char *myFontFamilies[] = {"HarmonyOS_Sans"};
     // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
+    // [End custom_font_c_disable_system_font_text_step1]
 
+    // [Start custom_font_c_disable_system_font_text_step2]
     // 设置其他文本样式
     OH_Drawing_SetTextStyleColor(textStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+    // 设置字体大小为30.0
     OH_Drawing_SetTextStyleFontSize(textStyle, 30.0);
     // 创建一个段落样式对象，以设置排版风格
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
@@ -322,24 +370,35 @@ void SampleBitMap::DrawDisableSysFontText()
     // 设置页面最大宽度
     double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
-    // 设置文本在画布上绘制的起始位置
-    double position[2] = {width_ / 5.0, height_ / 2.0};
-    // 将文本绘制到画布上
-    OH_Drawing_TypographyPaint(typography, cCanvas_, position[0], position[1]);
+    // 将文本绘制到画布(width_/5.0,height_/2.0)上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, width_ / 5.0, height_ / 2.0);
+    // [End custom_font_c_disable_system_font_text_step2]
+    
+    // 释放内存
+    OH_Drawing_DestroyTypographyStyle(typographyStyle);
+    OH_Drawing_DestroyTextStyle(textStyle);
+    OH_Drawing_DestroyFontCollection(fontCollection);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
 }
 
 void SampleBitMap::DrawText()
 {
-
+    // [Start theme_font_c_draw_text_step1]
     OH_Drawing_FontCollection *fontCollection = OH_Drawing_GetFontCollectionGlobalInstance();
+    // [End theme_font_c_draw_text_step1]
+    // [Start theme_font_c_draw_text_step2]
     OH_Drawing_TextStyle *myTextStyle = OH_Drawing_CreateTextStyle();
     // const char* myFontFamilies[] = {"otherFontFamilyName"};
     // 注意不要使用此接口来指定字体
     // OH_Drawing_SetTextStyleFontFamilies(textStyle, 1, myFontFamilies);
+    // [End theme_font_c_draw_text_step2]
     
+    // [Start theme_font_c_draw_text_step3]
     // 设置其他文本样式
     OH_Drawing_SetTextStyleColor(myTextStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
-    OH_Drawing_SetTextStyleFontSize(myTextStyle, 50.0);
+    // 设置字体大小为100.0
+    OH_Drawing_SetTextStyleFontSize(myTextStyle, 100.0);
     // 创建一个段落样式对象，以设置排版风格
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextAlign(typographyStyle, TEXT_ALIGN_LEFT); // 设置段落样式为左对齐
@@ -352,14 +411,20 @@ void SampleBitMap::DrawText()
     OH_Drawing_TypographyHandlerAddText(handler, text);
     // 通过段落生成器生成段落
     OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+    // [End theme_font_c_draw_text_step3]
     
     // 设置页面最大宽度
     double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
-    // 设置文本在画布上绘制的起始位置
-    double position[2] = {width_ / 5.0, height_ / 2.0};
-    // 将文本绘制到画布上
-    OH_Drawing_TypographyPaint(typography, cCanvas_, position[0], position[1]);
+    // 将文本绘制到画布(0, 100)上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, 100);
+    
+    // 释放内存
+    OH_Drawing_DestroyTypographyStyle(typographyStyle);
+    OH_Drawing_DestroyTextStyle(myTextStyle);
+    OH_Drawing_DestroyFontCollection(fontCollection);
+    OH_Drawing_DestroyTypographyHandler(handler);
+    OH_Drawing_DestroyTypography(typography);
 }
 
 napi_value SampleBitMap::NapiDrawCustomFontText(napi_env env, napi_callback_info info)
@@ -590,6 +655,7 @@ void SampleBitMap::Destroy()
     cCanvas_ = nullptr;
     // 销毁bitmap对象
     OH_Drawing_BitmapDestroy(cBitmap_);
+    cBitmap_ = nullptr;
 }
 
 void SampleBitMap::Release(std::string &id)

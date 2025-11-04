@@ -46,7 +46,7 @@ void SetImageDataLoadParams1(ArkUI_DragEvent* dragEvent)
         int returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/seagull.png");
         returnValue = OH_UdmfRecord_AddFileUri(record, imageValue);
         OH_UdmfData *data = OH_UdmfData_Create();
-        int dataCount = 3000;
+        int dataCount = 6000;
         for (int i = 0; i < dataCount; i++) {
             returnValue = OH_UdmfData_AddRecord(data, record);
         }

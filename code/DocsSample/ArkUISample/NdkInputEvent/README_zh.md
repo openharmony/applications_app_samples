@@ -48,9 +48,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.41，镜像版本号：OpenHarmony_6.0.0.41。
+2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.55，镜像版本号：OpenHarmony_6.0.2.55。
 
-3.本示例需要使用DevEco Studio 5.0.5 Release (Build Version: 5.0.13.200, built on May 13, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.868, built on October 22, 2025)及以上版本才可编译运行。
 
 ### 下载
 

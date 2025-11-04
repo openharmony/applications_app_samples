@@ -13,12 +13,18 @@
  * limitations under the License.
  */
 
+// [Start action]
 import { Decimal } from '@kit.ArkTS';
 import {
   ArcSwiper,
-  ArcSwiperAttribute,
+  ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
+  ArcDotIndicator,
+  ArcDirection,
+  ArcSwiperController
 } from '@kit.ArkUI';
+// [StartExclude action]
 import { ComponentCard } from '../../common/Card';
+// [EndExclude action]
 
 @Entry
 @Component
@@ -36,9 +42,13 @@ export struct ArcSwiperAction {
   }
 
   build() {
+    // [StartExclude action]
     NavDestination() {
+      // [EndExclude action]
       Column({ space: 12 }) {
+        // [StartExclude action]
         ComponentCard({ title: $r('app.string.ArcSwiperAction_title') }) {
+          // [EndExclude action]
           ArcSwiper() {
             ForEach(this.backgroundColors, (backgroundColor: Color, index: number) => {
               Text(index.toString())
@@ -66,13 +76,18 @@ export struct ArcSwiperAction {
               }
             }
           })
+          // [StartExclude action]
         }
+        // [EndExclude action]
       }
       .width('100%')
+      // [StartExclude action]
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ArcSwiperAction_title'))
+    // [EndExclude action]
   }
 }
+// [End action]

@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export { DynamicHome } from './src/main/ets/pages/DynamicHome'
+export { DynamicHome } from './src/main/ets/pages/DynamicHome';
 
-export { DynamicEntryView } from './src/main/ets/pages/DynamicEntryView'
+export { DynamicEntryView } from './src/main/ets/pages/DynamicEntryView';
 
-export { DynamicContentPageOne } from './src/main/ets/pages/DynamicContentPageOne'
+export { DynamicContentPageOne } from './src/main/ets/pages/DynamicContentPageOne';

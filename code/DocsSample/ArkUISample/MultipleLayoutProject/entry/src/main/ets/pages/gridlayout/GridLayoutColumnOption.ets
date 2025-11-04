@@ -15,7 +15,7 @@
 //[Start GridLayoutColumnOption_start]
 @Entry
 @Component
-struct GridLayoutColumnOption {
+struct GridRowColumnOptionLayout {
   @State bgColors: ResourceColor[] =
     ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
       'rgb(255,192,0)', 'rgb(170,10,33)'];
@@ -24,8 +24,7 @@ struct GridLayoutColumnOption {
     GridRow({
       columns: { sm: 4, md: 8 },
       breakpoints: {
-        value: ['320vp', '600vp', '840vp', '1440vp',
-          '1600vp'] // 表示在保留默认断点['320vp', '600vp', '840vp']的同时自定义增加'1440vp', '1600vp'的断点，实际开发中需要根据实际使用场景，合理设置断点值实现一次开发多端适配。
+        value: ['320vp', '600vp', '840vp', '1440vp', '1600vp'] // 表示在保留默认断点['320vp', '600vp', '840vp']的同时自定义增加'1440vp', '1600vp'的断点，实际开发中需要根据实际使用场景，合理设置断点值实现一次开发多端适配。
       }
     }) {
       ForEach(this.bgColors, (item: ResourceColor, index?: number | undefined) => {

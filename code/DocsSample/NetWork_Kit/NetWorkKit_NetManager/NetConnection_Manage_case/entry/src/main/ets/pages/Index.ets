@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+
 // [Start net_Connection_create_connection_import]
 import { connection, socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 // [End net_Connection_create_connection_import]
 
 import { promptAction } from '@kit.ArkUI';
@@ -40,7 +42,7 @@ function test() {
   const netConnection = connection.createNetConnection();
   /* 监听默认网络改变 */
   netConnection.on('netAvailable', (data: connection.NetHandle) => {
-    console.info(JSON.stringify(data));
+    hilog.info(0x0000, 'testTag', JSON.stringify(data));
   });
   // [End monitor_default_network_change]
 }
@@ -61,10 +63,10 @@ function useSocket() {
     timeout: 6000 // 连接超时时间
   };
 
-  /* 建立socket连接 */
+  // 建立socket连接
   sock.connect(tcpConnectOptions, (err: BusinessError) => {
     if (err) {
-      console.error('connect fail: '+JSON.stringify(err));
+      hilog.error(0x0000, 'testTag', 'connect fail: '+JSON.stringify(err));
       // [StartExclude original_network_connection_uses_socket]
       promptAction.showToast({
         message: 'Connect fail!',
@@ -74,9 +76,9 @@ function useSocket() {
       // [EndExclude original_network_connection_uses_socket]
       return;
     }
-    console.info('connect success');
+    hilog.info(0x0000, 'testTag', 'connect success');
 
-    /* 通过socket发送数据 */
+    // 通过socket发送数据
     let tcpSendOptions: socket.TCPSendOptions = {
       data: 'Hello, server!'
     };
@@ -87,7 +89,7 @@ function useSocket() {
 // 通过socket发送数据。
 function socketSend(tcpSendOptions: socket.TCPSendOptions) {
   sock.send(tcpSendOptions).then(() => {
-    console.info('send success');
+    hilog.info(0x0000, 'testTag', 'send success');
     // [StartExclude original_network_connection_uses_socket]
     promptAction.showToast({
       message: 'Connect and Send successfully!',
@@ -96,7 +98,7 @@ function socketSend(tcpSendOptions: socket.TCPSendOptions) {
     });
     // [EndExclude original_network_connection_uses_socket]
   }).catch((err: BusinessError) => {
-    console.error('send fail');
+    hilog.error(0x0000, 'testTag', 'send fail');
     // [StartExclude original_network_connection_uses_socket]
     promptAction.showToast({
       message: 'Send fail!',
@@ -111,7 +113,7 @@ function socketTest() {
   const netConnection = connection.createNetConnection();
   // 网络切换会导致网络发生中断，原socket失效，故需重新建立socket。
   netConnection.on('netAvailable', (netHandle: connection.NetHandle) => {
-    console.info('default network changed123: ' + JSON.stringify(netHandle));
+    hilog.info(0x0000, 'testTag', 'default network changed: ' + JSON.stringify(netHandle));
     sock.close();
     sock = socket.constructTCPSocketInstance();
     // 通过socket发送数据。
@@ -123,15 +125,15 @@ function socketTest() {
     // 订阅指定网络状态变化的通知。
     netConnection.register((error: BusinessError) => {
       if (error) {
-        console.error('register fail: ' + JSON.stringify(error));
+        hilog.error(0x0000, 'testTag', 'register fail: ' + JSON.stringify(error));
       } else {
-        console.info('register success');
+        hilog.info(0x0000, 'testTag', 'register success');
       }
     });
     // [StartExclude original_network_connection_uses_socket]
     useSocket();
   } catch (e) {
-    console.error(e.code.toString());
+    hilog.error(0x0000, 'testTag', e.code.toString());
   };
   // [EndExclude original_network_connection_uses_socket]
 }

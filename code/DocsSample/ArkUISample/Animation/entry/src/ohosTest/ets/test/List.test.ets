@@ -24,6 +24,12 @@ import { ParticleTest } from './Particle.test';
 import { AnimatorTest } from './Animator.test';
 import { AnimateToImmediatelyTest } from './AnimateToImmediately.test';
 import { RotationTest } from './Rotation.test';
+import { AnimatablePropertyTest } from './AnimatableProperty.test';
+import { ComponentTest } from './Component.test';
+import { AnimationBlurTest } from './AnimationBlur.test';
+import { TraditionalCurveTest } from './TraditionalCurve.test';
+import { SpringCurveTest } from './SpringCurve.test';
+import { ModalTransitionTest } from './ModalTransition.test';
 
 export default function testsuite() {
   AnimateToTest();
@@ -38,4 +44,10 @@ export default function testsuite() {
   AnimatorTest();
   AnimateToImmediatelyTest();
   RotationTest();
+  AnimatablePropertyTest();
+  ComponentTest();
+  AnimationBlurTest();
+  TraditionalCurveTest();
+  SpringCurveTest();
+  ModalTransitionTest();
 }

@@ -69,13 +69,13 @@ export struct GridLayout {
             }.backgroundColor('#ffe0e2e4')
             // [EndExclude build_a_grid]
           }
-          //设置行列间距
           // [StartExclude build_a_grid]
+          //设置行列间距
           .columnsGap(10)
           .rowsGap(15)
           .height(150)
-          // [EndExclude build_a_grid]
           //设置行列数量与占比
+          // [EndExclude build_a_grid]
           .rowsTemplate('1fr 1fr 1fr')
           .columnsTemplate('1fr 2fr 1fr')
           // [End build_a_grid]
@@ -145,13 +145,10 @@ export struct GridLayout {
             // [EndExclude Set_the_direction_of_the_main_axis_of_the_grid]
           }
           .maxCount(3)
-          // [StartExclude Set_the_direction_of_the_main_axis_of_the_grid]
-          .columnsGap(4)
-          .rowsGap(4)
-          // [EndExclude Set_the_direction_of_the_main_axis_of_the_grid]
           .layoutDirection(GridDirection.Row)
           // [End Set_the_direction_of_the_main_axis_of_the_grid]
-
+          .columnsGap(4)
+          .rowsGap(4)
           Grid() {
             GridItem() {
               Text('1')

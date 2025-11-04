@@ -574,13 +574,24 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
     ArkUI_AttributeItem maxLengthItem = {&maxLength, VALUE_1};
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_MAX_LENGTH, &maxLengthItem);
     
-    // 设置计数下标及超出计数时文本框的颜色
+    // 设置TextInput文本输入框未达到和超出最大字符数时计数器的颜色
     ArkUI_ShowCounterConfig *options = OH_ArkUI_ShowCounterConfig_Create();
     OH_ArkUI_ShowCounterConfig_SetCounterTextColor(options, 0xFF0000FF);
     OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(options, 0xFF0000FF);
     ArkUI_NumberValue showCounterArray[] = {{.i32 = true}, {.f32 = 50.0f}, {.i32 = true}};
     ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
+
+    // 获取TextInput文本输入框未达到和超出最大字符数时计数器的颜色
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager",
+        "GetCounterTextColor: 0x%{public}X GetCounterTextOverflowColor: 0x%{public}X",
+        OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
+        OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
+
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
@@ -650,19 +661,25 @@ static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
     ArkUI_NumberValue textAreaMinLines = {.i32 = VALUE_1};
     ArkUI_AttributeItem textAreaMinLinesItem = {&textAreaMinLines, VALUE_1};
     Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_MIN_LINES, &textAreaMinLinesItem);
-    
-    // 设置计数下标及超出计数时文本框的颜色
-    ArkUI_ShowCounterConfig *options = OH_ArkUI_ShowCounterConfig_Create();
-    OH_ArkUI_ShowCounterConfig_SetCounterTextColor(options, 0xFF0000FF);
-    OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(options, 0xFF0000FF);
-    ArkUI_NumberValue showCounterArray[] = {{.i32 = true}, {.f32 = 50.0f}, {.i32 = true}};
-    ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
-    Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_SHOW_COUNTER, &ShowCounterColorItem);
 }
 
 void setTextArea1(ArkUI_NodeHandle &textArea1)
 {
     setTextArea1Val(textArea1);
+    // 设置TextArea文本输入框未达到和超出最大字符数时计数器的颜色
+    ArkUI_ShowCounterConfig *options = OH_ArkUI_ShowCounterConfig_Create();
+    OH_ArkUI_ShowCounterConfig_SetCounterTextColor(options, 0xFF0000FF);
+    OH_ArkUI_ShowCounterConfig_SetCounterTextOverflowColor(options, 0xFF0000FF);
+    ArkUI_NumberValue showCounterArray[] = {{.i32 = true}, {.f32 = 50.0f}, {.i32 = true}};
+    ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
+
+    // 设置TextArea文本输入框未达到和超出最大字符数时计数器的颜色
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager",
+        "GetCounterTextColor: 0x%{public}X GetCounterTextOverflowColor: 0x%{public}X",
+        OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
+        OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
+    Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_SHOW_COUNTER, &ShowCounterColorItem);
+
     // 设置输入框文本的高度
     ArkUI_NumberValue textAreaLineHeight = {.i32 = VALUE_30};
     ArkUI_AttributeItem textAreaLineHeightItem = {&textAreaLineHeight, VALUE_1};
@@ -1012,6 +1029,11 @@ void setTextArea4(ArkUI_NodeHandle &textArea4)
     ArkUI_NumberValue textAreaScrollBarColor = { .u32 = 0xFFFFE4E1 };
     ArkUI_AttributeItem textAreaScrollBarColorItem = {&textAreaScrollBarColor, VALUE_1};
     Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_SCROLL_BAR_COLOR, &textAreaScrollBarColorItem);
+
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
@@ -1177,6 +1199,10 @@ void setText9(ArkUI_NodeHandle &text9)
     ArkUI_NumberValue value[] = {{.f32 = 2.0}};
     ArkUI_AttributeItem item = {value, sizeof(value)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_LINE_HEIGHT_MULTIPLE, &item);
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 void setText10(ArkUI_NodeHandle &text10)
@@ -1196,39 +1222,6 @@ void setText10(ArkUI_NodeHandle &text10)
     ArkUI_NumberValue value2[] = {{.f32 = 50}};
     ArkUI_AttributeItem item2 = {value2, sizeof(value2)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MAX_LINE_HEIGHT, &item2);
-}
-
-void setText11(ArkUI_NodeHandle &text11)
-{
-    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_30}};
-    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
-    Manager::nodeAPI_->setAttribute(text11, NODE_WIDTH, &textWidthItem);
-    ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_50}};
-    ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = VALUE_1};
-    Manager::nodeAPI_->setAttribute(text11, NODE_HEIGHT, &textHeightItem);
-    // Text属性字符串和ImageSpancolorFilter支持svg
-    auto imageSpan = Manager::nodeAPI_->createNode(ARKUI_NODE_IMAGE_SPAN);
-    ArkUI_NumberValue value[] = {};
-    ArkUI_AttributeItem item = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
-    item.string = "resource://base/media/lmagespancolorfilte.svg";
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &item);
-    OH_Drawing_ColorFilter* colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0xFFFF0000, BLEND_MODE_DIFFERENCE);
-    ArkUI_AttributeItem drawingColor = {.object = colorFilter};
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SPAN_COLOR_FILTER, &drawingColor);
-    ArkUI_NumberValue svg[] = {{
-        .i32 = VALUE_1
-    }};
-    ArkUI_AttributeItem svg2 = {svg, sizeof(svg) / sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_IMAGE_SUPPORT_SVG2, &svg2);
-    ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = VALUE_30}};
-    ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
-                                              .size = sizeof(textWidth) / sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
-    ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = VALUE_30}};
-    ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
-                                               .size = sizeof(textWidth) / sizeof(ArkUI_NumberValue)};
-    Manager::nodeAPI_->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
-    Manager::nodeAPI_->addChild(text11, imageSpan);
 }
 
 void setColumn(ArkUI_NodeHandle &column)
@@ -1360,7 +1353,6 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     setText8(text8);
     setText9(text9);
     setText10(text10);
-    setText11(text11);
     setColumn(column);
     Manager::nodeAPI_->addChild(textContainer, text1);
     Manager::nodeAPI_->addChild(textContainer, text2);

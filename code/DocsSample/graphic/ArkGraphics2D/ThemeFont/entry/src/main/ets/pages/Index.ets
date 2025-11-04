@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start arkts_theme_font_index]
 // /pages/Index.ets
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
 import { UIContext } from '@kit.ArkUI';
@@ -142,4 +143,4 @@ struct RenderTest {
     }
   }
 }
-
+// [End arkts_theme_font_index]

@@ -23,6 +23,9 @@ import { SwiperLoop } from './SwiperLoop';
 import { SwiperMultiPage } from './SwiperMultiPage';
 import { SwiperPageSwitchMethod } from './SwiperPageSwitchMethod';
 import { SwiperAndTabsLinkage } from './SwiperAndTabsLinkage';
+import { SwiperIgnoreComponentSize } from './SwiperIgnoreComponentSize';
+import { SwiperDigitIndicatorIgnoreComponentSize } from './SwiperDigitIndicatorIgnoreComponentSize';
+import { SwiperVisibleContentPosition } from './SwiperVisibleContentPosition';
 import resource from '../../common/resource';
 
 export const SWIPER_ROUTE_PREFIX: string = 'swiper';
@@ -67,6 +70,21 @@ const routes: Route[] = [
     name: `${SWIPER_ROUTE_PREFIX}/SwiperAndTabsLinkage`,
     title: resource.resourceToString($r('app.string.SwiperAndTabsLinkage_title')),
     description: $r('app.string.SwiperAndTabsLinkage_description')
+  },
+  {
+    name: `${SWIPER_ROUTE_PREFIX}/SwiperIgnoreComponentSize`,
+    title: resource.resourceToString($r('app.string.SwiperIgnoreComponentSize_title')),
+    description: $r('app.string.SwiperIgnoreComponentSize_description')
+  },
+  {
+    name: `${SWIPER_ROUTE_PREFIX}/SwiperDigitIndicatorIgnoreComponentSize`,
+    title: resource.resourceToString($r('app.string.SwiperDigitIndicatorIgnoreComponentSize_title')),
+    description: $r('app.string.SwiperDigitIndicatorIgnoreComponentSize_description')
+  },
+  {
+    name: `${SWIPER_ROUTE_PREFIX}/SwiperVisibleContentPosition`,
+    title: resource.resourceToString($r('app.string.SwiperVisibleContentPosition_title')),
+    description: $r('app.string.SwiperVisibleContentPosition_description')
   }
 ];
 
@@ -90,6 +108,12 @@ export function swiperDestination(name: string) {
     SwiperCustomAnimation();
   } else if (name === routes[7].name) {
     SwiperAndTabsLinkage();
+  } else if (name === routes[8].name) {
+    SwiperIgnoreComponentSize();
+  } else if (name === routes[9].name) {
+    SwiperDigitIndicatorIgnoreComponentSize();
+  } else if (name === routes[10].name) {
+    SwiperVisibleContentPosition();
   }
 }
 
@@ -113,6 +137,7 @@ struct SwiperExample {
       }
       .contentStartOffset(56)
       .padding({ left: 16, right: 16 })
+      .id('list_')
     }
     .backgroundColor('#f1f3f5')
     .title('Swiper', {

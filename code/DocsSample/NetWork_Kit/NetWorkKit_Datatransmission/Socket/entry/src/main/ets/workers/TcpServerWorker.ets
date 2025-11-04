@@ -14,13 +14,17 @@
  */
 
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-import { socket } from '@kit.NetworkKit';
 import { TcpMessage } from '../connect/TcpClient';
+// [Start tcp_server_worker_import]
+import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import Logger from '../common/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// [End tcp_server_worker_import]
 
-
+// [Start tcp_server_worker_tcpServer]
+// 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+// [End tcp_server_worker_tcpServer]
 let client: socket.TCPSocketConnection | null = null; // 保存客户端连接
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -43,34 +47,46 @@ function handleMessage(message: TcpMessage) {
   }
 }
 
-// [Start application_transmits_data_via_tcp_socket_server]
 function startServer(tcpMessage: TcpMessage) {
   let ipAddress: socket.NetAddress = {} as socket.NetAddress;
   ipAddress.address = tcpMessage.serverIp!; // 服务端IP
   ipAddress.port = tcpMessage.serverPort; // 端口号
+  // [Start tcp_server_worker_ipAddress]
+  // 绑定本地IP地址和端口，进行监听。
   tcpServer.listen(ipAddress).then(() => {
-    Logger.info('listen success');
+    hilog.info(0x0000, 'testTag', 'listen success');
+    // [StartExclude tcp_server_worker_ipAddress]
     workerPort.postMessage({ type: 'listen success' });
+    // [EndExclude tcp_server_worker_ipAddress]
   }).catch(() => {
-    Logger.info('listen fail');
+    hilog.info(0x0000, 'testTag', 'listen fail');
+    // [StartExclude tcp_server_worker_ipAddress]
     workerPort.postMessage({ type: 'listen fail' });
+    // [EndExclude tcp_server_worker_ipAddress]
   });
+  // [End tcp_server_worker_ipAddress]
 
+  // [Start tcp_server_worker_socketInfo]
   class SocketInfo {
     public message: ArrayBuffer = new ArrayBuffer(1);
     public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
   }
-
-  tcpServer.on('connect', (client_: socket.TCPSocketConnection) => {
-    Logger.info('client connected');
+  // 订阅TCPSocketServer的connect事件
+  // 客户端与服务端建立连接后，返回一个TCPSocketConnection对象，用于与客户端通信。
+  tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
+    // [StartExclude tcp_server_worker_socketInfo]
+    hilog.info(0x0000, 'testTag', 'client connected');
     workerPort.postMessage({ type: 'client connected' });
     // 保存客户端连接
-    client = client_;
+    client = client;
+    // [EndExclude tcp_server_worker_socketInfo]
 
-    // 订阅客户端连接的事件
+    // client即为建立连接后获取到的连接对象，可以通过该对象订阅TCPSocketConnection相关的事件。
     client.on('close', () => {
-      Logger.info('client on close success');
+      hilog.info(0x0000, 'testTag', 'client on close success');
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'client on close success' });
+      // [EndExclude tcp_server_worker_socketInfo]
     });
 
     client.on('message', (value: SocketInfo) => {
@@ -80,45 +96,63 @@ function startServer(tcpMessage: TcpMessage) {
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      Logger.info('received message--:' + str);
+      hilog.info(0x0000, 'testTag', 'received message--:' + str);
+      hilog.info(0x0000, 'testTag', 'received address--:' + value.remoteInfo.address);
+      hilog.info(0x0000, 'testTag', 'received family--:' + value.remoteInfo.family);
+      hilog.info(0x0000, 'testTag', 'received port--:' + value.remoteInfo.port);
+      hilog.info(0x0000, 'testTag', 'received size--:' + value.remoteInfo.size);
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'received message--', message: str });
+      // [EndExclude tcp_server_worker_socketInfo]
     });
   });
-
+  // [StartExclude tcp_server_worker_socketInfo]
+  // [Start tcp_server_worker_setTimeout]
   // 设置连接超时（例如 30 秒后取消连接）
   setTimeout(() => {
     tcpServer.off('connect');
   }, 30 * 1000);
+  // [End tcp_server_worker_setTimeout]
 }
 
 function sendMessage(tcpMessage: TcpMessage) {
   if (client) {
+    // [EndExclude tcp_server_worker_socketInfo]
     let tcpSendOptions: socket.TCPSendOptions = {} as socket.TCPSendOptions;
+    // 用户可根据需要自行定义发送数据
     tcpSendOptions.data = tcpMessage.message!;
 
     client.send(tcpSendOptions).then(() => {
-      Logger.info('send success');
+      hilog.info(0x0000, 'testTag', 'send success');
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'send success', message: tcpMessage.message });
-
+      // [EndExclude tcp_server_worker_socketInfo]
     }).catch((err: Object) => {
-      Logger.error('send fail: ' + JSON.stringify(err));
+      hilog.error(0x0000, 'testTag', 'send fail: ' + JSON.stringify(err));
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'send fail', message: JSON.stringify(err) });
+      // [EndExclude tcp_server_worker_socketInfo]
     });
+    // [StartExclude tcp_server_worker_socketInfo]
   } else {
-    Logger.info('No client connected');
+    hilog.info(0x0000, 'testTag', 'No client connected');
     workerPort.postMessage({ type: 'No client connected' });
-
   }
 }
 
 function disConnect() {
   if (client) {
+    // [EndExclude tcp_server_worker_socketInfo]
     client.close().then(() => {
-      Logger.info('close success');
+      hilog.info(0x0000, 'testTag', 'close success');
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'close success' });
+      // [EndExclude tcp_server_worker_socketInfo]
     }).catch((err: BusinessError) => {
-      Logger.info('close fail');
+      hilog.info(0x0000, 'testTag', 'close fail');
+      // [StartExclude tcp_server_worker_socketInfo]
       workerPort.postMessage({ type: 'close fail', message: JSON.stringify(err) });
+      // [EndExclude tcp_server_worker_socketInfo]
     });
 
     // 取消事件订阅，设置关闭连接超时（例如 10 秒后取消关闭连接）
@@ -126,13 +160,14 @@ function disConnect() {
       client?.off('message');
       client?.off('close');
     }, 10 * 1000);
+    // [End tcp_server_worker_socketInfo]
+
   } else {
-    Logger.info('No client to close');
+    hilog.info(0x0000, 'testTag', 'No client to close');
     workerPort.postMessage({ type: 'No client to close' });
 
   }
 }
-// [End application_transmits_data_via_tcp_socket_server]
 
 /**
  * Defines the event handler to be called when the worker thread receives a message sent by the host thread.

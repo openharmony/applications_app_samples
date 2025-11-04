@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,7 +43,9 @@ export struct ReminderCalendar {
             DatePickerDialog.show({
               start: new Date(),
               end: new Date('2100-12-31'),
-              onAccept: async (value: DatePickerResult) => {
+              showTime: true,
+              useMilitaryTime: true,
+              onDateAccept: async (value: Date) => {
                 await CalendarReminder.setCalendar(value)
                 if (CalendarReminder.calendarReminders.length !== 0) {
                   for (let i = 0; i < CalendarReminder.calendarReminders.length; i++) {

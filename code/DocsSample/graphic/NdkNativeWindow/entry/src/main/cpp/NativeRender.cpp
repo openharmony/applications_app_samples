@@ -142,7 +142,7 @@ bool NativeRender::Export(napi_env env, napi_value exports)
     callback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
     callback_.DispatchTouchEvent = DispatchTouchEventCB;
     // [End xcomponent_callback]
-    // [Start get_natvie_xcomponent]
+    // [Start get_native_xcomponent]
     napi_value exportInstance = nullptr;
     OH_NativeXComponent *nativeXComponent = nullptr;
     int32_t ret;
@@ -163,7 +163,7 @@ bool NativeRender::Export(napi_env env, napi_value exports)
     if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         return false;
     }
-    // [End get_natvie_xcomponent]
+    // [End get_native_xcomponent]
     // [Start register_xcomponent_callback]
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback_);
     // [End register_xcomponent_callback]

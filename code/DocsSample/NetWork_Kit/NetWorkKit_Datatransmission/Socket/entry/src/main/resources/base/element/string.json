@@ -307,6 +307,22 @@
     {
       "name": "grant_get_wifi_info",
       "value": "获取wifi信息权限"
+    },
+    {
+      "name": "Stop_Server",
+      "value": "停止服务"
+    },
+    {
+      "name": "close_Server",
+      "value": "关闭服务"
+    },
+    {
+      "name": "close_socket_Server",
+      "value": "关闭Socket服务"
+    },
+    {
+      "name": "clos_Server_Status",
+      "value": "停止并关闭Socket服务"
     }
   ]
 }

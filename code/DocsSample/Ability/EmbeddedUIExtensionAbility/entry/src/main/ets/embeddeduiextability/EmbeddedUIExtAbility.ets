@@ -16,9 +16,9 @@
 // [Start embeddedAbility_start]
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-const TAG: string = '[ExampleEmbeddedAbility]';
+const TAG: string = '[EmbeddedUIExtAbility]';
 
-export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
+export default class EmbeddedUIExtAbility extends EmbeddedUIExtensionAbility {
   onCreate() {
     console.info(TAG, `onCreate`);
   }

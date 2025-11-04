@@ -14,9 +14,11 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import resource from '../../common/resource';
+// [Start styledStringHtml_start]
+// xxx.ets
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
-import resource from '../../common/resource';
 
 @Entry
 @Component
@@ -51,7 +53,6 @@ export struct StyledStringHtml {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.StyledStringHtml_title') }) {
-          // [Start styled_string_html]
           Column() {
             Text(undefined, { controller: this.controller1 }).height(100).id('text1')
             Row() {
@@ -85,7 +86,6 @@ export struct StyledStringHtml {
             Text(undefined, { controller: this.controller2 }).height(100).id('text2')
             Text(this.html).id('text3')
           }.width('100%')
-          // [End styled_string_html]
         }
       }
       .width('100%')
@@ -96,3 +96,4 @@ export struct StyledStringHtml {
     .title($r('app.string.StyledStringHtml_title'))
   }
 }
+// [End styledStringHtml_start]

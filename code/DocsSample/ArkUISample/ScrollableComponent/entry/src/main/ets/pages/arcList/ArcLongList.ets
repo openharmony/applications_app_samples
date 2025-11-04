@@ -121,6 +121,7 @@ export struct ArcLongList {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ArcLongList_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ArcLongList_title') }) {
           // [Start arcLongList_start]
           ArcList() {
@@ -150,6 +151,7 @@ export struct ArcLongList {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.ArcLongList_title')需要替换为开发者所需的资源文件
     .title($r('app.string.ArcLongList_title'))
   }
 }

@@ -58,6 +58,10 @@ export default function abilityTest() {
       await button3.click();
       await driver.delayMs(1000);
 
+      const button4 = await driver.findComponent(ON.text('ManageDomainAccounts'));
+      await button4.click();
+      await driver.delayMs(1000);
+
       const button5 = await driver.findComponent(ON.id('button1'));
       await button5.click();
       await driver.delayMs(1000);

@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "homePage/DirectionGradientEffect",
+    "homePage/LinearGradientEffect",
+    "homePage/RadialGradientEffect"
+  ]
+}

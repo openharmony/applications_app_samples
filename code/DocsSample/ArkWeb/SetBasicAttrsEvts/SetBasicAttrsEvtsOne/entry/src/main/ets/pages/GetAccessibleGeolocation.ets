@@ -32,10 +32,10 @@ struct WebComponent {
             // 以回调方式异步获取指定源的地理位置权限状态。
             webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
-                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
+                console.error(`getAccessibleGeolocationAsync error: + Code: ${error.code}, message: ${error.message}`);
                 return;
               }
-              console.log('getAccessibleGeolocationAsync result: ' + result);
+              console.info('getAccessibleGeolocationAsync result: ' + result);
             }, true);
           } catch (error) {
             console.error(

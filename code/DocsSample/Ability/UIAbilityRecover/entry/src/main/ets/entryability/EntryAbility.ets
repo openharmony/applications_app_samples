@@ -16,8 +16,12 @@
 // [Start onCreate]
 // [Start onSaveState]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+// [StartExclude onCreate]
+// [StartExclude onSaveState]
+import { window } from '@kit.ArkUI';
+// [EndExclude onSaveState]
+// [EndExclude onCreate]
 
 const DOMAIN = 0x0000;
 

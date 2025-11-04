@@ -1,0 +1,36 @@
+{
+  "insightIntents": [
+    {
+      "domain": "MusicDomain",
+      "intentName": "PlayMusic",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/insightintents/PlayMusicExecutor.ets",
+      "uiAbility": {
+        "ability": "MusicPlayerAbility",
+        "executeMode": [
+          "foreground",
+          "background"
+        ]
+      },
+      "inputParams": [
+        {
+          "properties": {
+            "pageId": {
+              "type": "string",
+              "enum": [
+                {
+                  "value": "1",
+                  "displayName": "PlayMusic",
+                  "keywords": [
+                    "PlayMusic"
+                  ],
+                  "displayDescription": "PlayMusic"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

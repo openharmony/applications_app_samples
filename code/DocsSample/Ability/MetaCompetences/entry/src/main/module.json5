@@ -21,6 +21,8 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
+      "default",
+      "2in1"
     ],
     // [EndExclude startup001]
     "appStartup": "$profile:startup_config", // 启动框架的配置文件

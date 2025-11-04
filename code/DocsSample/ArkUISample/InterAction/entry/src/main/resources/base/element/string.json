@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "FocusOnclick",
+      "value": "热区"
+    },
+    {
+      "name": "FocusOnclickExample",
+      "value": "热区范围"
+    },
+    {
+      "name": "PreventBubbling",
+      "value": "阻止冒泡"
+    },
+    {
+      "name": "PreventBubblingExample",
+      "value": "阻止冒泡事件"
+    },
+    {
+      "name": "sampling",
+      "value": "采样和历史点"
+    },
+    {
+      "name": "samplingExample",
+      "value": "采样和历史点事件"
+    },
+    {
+      "name": "MultipleFingerInformation",
+      "value": "多指信息"
+    },
+    {
+      "name": "MultipleFingerInformationExample",
+      "value": "多指信息事件"
+    },
+    {
+      "name": "mouseMove",
+      "value": "鼠标移动"
+    },
+    {
+      "name": "mouseMoveExample",
+      "value": "鼠标移动事件"
+    },
+    {
+      "name": "stopPropagation",
+      "value": "阻止鼠标冒泡"
+    },
+    {
+      "name": "stopPropagationExample",
+      "value": "阻止鼠标冒泡事件"
+    },
+    {
+      "name": "onHover",
+      "value": "鼠标移入移出"
+    },
+    {
+      "name": "onHoverExample",
+      "value": "鼠标移入移出事件"
+    },
+    {
+      "name": "MouseButton",
+      "value": "鼠标按键"
+    },
+    {
+      "name": "MouseButtonExample",
+      "value": "鼠标按键事件"
+    },
+    {
+      "name": "MouseWheel",
+      "value": "鼠标滚轮"
+    },
+    {
+      "name": "MouseWheelExample",
+      "value": "鼠标滚轮事件"
+    },
+    {
+      "name": "AnimatablePropertyText",
+      "value": "动画装饰器2"
+    },
+    {
+      "name": "StylesDecorator",
+      "value": "Style装饰器"
+    },
+    {
+      "name": "fancyAndglobalFancy",
+      "value": "Style装饰器1"
+    },
+    {
+      "name": "FancyUse",
+      "value": "Style装饰器2"
+    },
+    {
+      "name": "button",
+      "value": "按钮"
+    },
+    {
+      "name": "preventEvent",
+      "value": "如果点中了我，就阻止父组件收到触摸事件"
+    }
+  ]
+}

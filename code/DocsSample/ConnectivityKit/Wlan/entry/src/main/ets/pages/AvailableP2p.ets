@@ -69,6 +69,7 @@ struct WifiConnect {
     })
   }
 
+// [Start discover_p2p_device]
   aboutToAppear() {
     // 如果wifi是开的，就记录下状态，然后扫描p2p设备，并获取连接信息
     if (!wifi.isWifiActive()) {
@@ -84,8 +85,9 @@ struct WifiConnect {
     wifi.off('p2pPeerDeviceChange')
     wifi.off('p2pConnectionChange')
   }
+// [End discover_p2p_device]
 
-
+// [Start connectP2p]
   connectP2p(p2pScanInfo: wifi.WifiP2pDevice) {
     promptAction.showToast({ message : 'connect to device' })
     hilog.info(TAG , `connect deviceAddress=${ p2pScanInfo.deviceAddress }`)
@@ -100,7 +102,7 @@ struct WifiConnect {
     }
     wifi.p2pConnect(config)
   }
-
+// [End connectP2p]
 
   build() {
     Column() {

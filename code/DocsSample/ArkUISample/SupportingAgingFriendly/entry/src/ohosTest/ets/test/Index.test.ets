@@ -17,7 +17,7 @@ import { describe, beforeAll, it, expect, Level, Size, TestType } from '@ohos/hy
 // 导入测试依赖kit
 import { abilityDelegatorRegistry, Driver, ON, MouseButton, Component, MatchPattern } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -33,13 +33,6 @@ const BUNDLE = 'SupportingAgingFriendly_';
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
-
-async function getResourceString(resource: Resource): Promise<string> {
-  let manage = abilityDelegator.getAppContext().resourceManager;
-  let textString: string = await manage.getStringValue(resource);
-  return textString;
-}
-
 
 export default function IndexTest() {
 

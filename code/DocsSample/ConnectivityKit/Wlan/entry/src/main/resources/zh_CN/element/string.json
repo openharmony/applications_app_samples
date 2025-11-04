@@ -126,7 +126,7 @@
     },
     {
       "name": "p2p_available",
-      "value": "对等设备"
+      "value": "对端设备"
     },
     {
       "name": "p2p_test",
@@ -139,6 +139,10 @@
     {
       "name": "create_group",
       "value": "创建群组"
+    },
+    {
+      "name": "remove_group",
+      "value": "删除群组"
     },
     {
       "name": "useful",

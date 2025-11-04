@@ -22,7 +22,11 @@
     // [StartExclude abilityModule_start]
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
-    "deviceTypes": [],
+    "deviceTypes": [
+      "phone",
+      "2in1",
+      "tablet"
+    ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",

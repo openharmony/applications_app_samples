@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index",
+    "homePage/CustomizeCanvasComponentDrawing",
+    "homePage/InterfaceLayoutBorderSettings"
+  ]
+}

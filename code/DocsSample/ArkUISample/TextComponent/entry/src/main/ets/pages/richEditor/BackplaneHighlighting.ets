@@ -19,32 +19,40 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct BackplaneHighlighting {
+  // [Start richEditor_selection]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [StartExclude richEditor_selection]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 3 }) {
+            // [EndExclude richEditor_selection]
+            RichEditor(this.options)
+              .onReady(() => {
+                // $r('app.string.BackplaneHighlighting_Text_1')需要替换为开发者所需的资源文件
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.BackplaneHighlighting_Text_1')), {
+                  style: {
+                    fontColor: Color.Black,
+                    fontSize: 15
+                  }
+                })
               })
+              .width(300)
+              .height(60)
+            // $r('app.string.BackplaneHighlighting_Button_1')需要替换为开发者所需的资源文件
+            Button($r('app.string.BackplaneHighlighting_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .width(300)
-            .height(60)
-          Button($r('app.string.BackplaneHighlighting_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.setSelection(0, 2)
-            })
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                this.controller.setSelection(0, 2)
+              })
+            // [End richEditor_selection]
+          }
         }
       }
       .width('100%')

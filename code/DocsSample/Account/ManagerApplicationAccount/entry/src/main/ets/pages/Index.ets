@@ -24,7 +24,7 @@ const appAccountManager = appAccount.createAppAccountManager();
 @Entry
 @Component
 struct Index {
-  @State message: string = 'No Name';
+  @State message: string = 'ManagerApplicationAccount';
 
   private async createAccount(): Promise<void> {
     // [Start parameter_preparation]

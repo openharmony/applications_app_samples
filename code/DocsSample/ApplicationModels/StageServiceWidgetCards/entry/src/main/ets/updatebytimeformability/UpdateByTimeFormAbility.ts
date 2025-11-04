@@ -14,13 +14,11 @@
  */
 
 // [Start update_by_time_form_ability]
-// [Start set_form_next_refreshime]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-// [StartExclude set_form_next_refreshime]
 import { Want } from '@kit.AbilityKit';
-// [EndExclude set_form_next_refreshime]
+// [Start set_form_next_refreshime]
 const TAG: string = 'UpdateByTimeFormAbility';
 const FIVE_MINUTE: number = 5;
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -52,7 +50,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
   // [EndExclude set_form_next_refreshime]
   // [EndExclude update_by_time_form_ability]
   onFormEvent(formId: string, message: string): void {
-    // Called when a specified message event defined by the form provider is triggered.
+    // 当卡片提供方的postCardAction接口的message事件被触发时调用
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
     try {
       // 设置过5分钟后更新卡片内容
@@ -70,7 +68,6 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
         `Failed to setFormNextRefreshTime. Code: ${(err as BusinessError).code},
          message: ${(err as BusinessError).message}`);
     }
-    ;
   }
   // [StartExclude update_by_time_form_ability]
   // [StartExclude set_form_next_refreshime]

@@ -1,5 +1,8 @@
 {
   "src": [
-    "pages/entry"
+    "pages/Entry",
+    "pages/Index",
+    "pages/CustomProperty",
+    "pages/NodeAdapter"
   ]
 }

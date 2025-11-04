@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-
 import IndexTest from './Index.test'
+import IndexTest2 from './Index2.test'
 import abilityTest from './Ability.test';
 
 export default function testsuite() {
   abilityTest();
-  IndexTest()
+  IndexTest();
+  IndexTest2();
 }

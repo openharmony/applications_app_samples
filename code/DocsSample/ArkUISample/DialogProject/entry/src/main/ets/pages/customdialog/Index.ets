@@ -22,6 +22,19 @@ import { DialogInteraction } from './DialogInteraction';
 import { DialogInteraction1 } from './DialogInteraction1';
 import { DialogStyle } from './DialogStyle';
 import { NestDialog } from './NestDialog';
+import { CreateCustomDialogNew } from './CreateCustomDialogNew';
+import { DialogInteractionUseConstructor } from './DialogInteractionUseConstructor';
+import { DialogInteractionUseButton } from './DialogInteractionUseButton';
+import { DialogAnimation1 } from './DialogAnimation1';
+import { DialogStyle1 } from './DialogStyle1';
+import { NestDialog1 } from './NestDialog1';
+import { DialogWithPhysicalBack } from './DialogWithPhysicalBack';
+import { DialogAvoidSoftKeyboard } from './DialogAvoidSoftKeyboard';
+import { GetDialogStatus } from './GetDialogStatus';
+import { Index as DialogFocusStrategy } from './dialogboxfocuspolicy/DialogFocusStrategy';
+import { DialogController } from './dialogcontroller/DialogController';
+import { PageLevelDialogBox } from './pageleveldialogbox/PageLevelDialogBox';
+import { DialogBoxLayer } from './dialogboxlayermanagement/DialogBoxLayer';
 
 export const Custom_ROUTE_PREFIX: string = 'Custom_ROUTE_PREFIX';
 
@@ -55,7 +68,72 @@ const routes: Route[] = [
     name: `${Custom_ROUTE_PREFIX}/NestDialog`,
     title: resource.resourceToString($r('app.string.CustomDialog_nest')),
     description: $r('app.string.CustomDialog_nest_des'),
-  }
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/CreateCustomDialogNew`,
+    title: resource.resourceToString($r('app.string.CreateCustomDialogNew_title')),
+    description: $r('app.string.CreateCustomDialogNew_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogInteractionUseConstructor`,
+    title: resource.resourceToString($r('app.string.DialogInteractionUseConstructor_title')),
+    description: $r('app.string.DialogInteractionUseConstructor_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogInteractionUseButton`,
+    title: resource.resourceToString($r('app.string.DialogInteractionUseButton_title')),
+    description: $r('app.string.DialogInteractionUseButton_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogAnimation1`,
+    title: resource.resourceToString($r('app.string.DialogAnimation1_title')),
+    description: $r('app.string.DialogAnimation1_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogStyle1`,
+    title: resource.resourceToString($r('app.string.DialogStyle1_title')),
+    description: $r('app.string.DialogStyle1_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/NestDialog1`,
+    title: resource.resourceToString($r('app.string.NestDialog1_title')),
+    description: $r('app.string.NestDialog1_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogWithPhysicalBack`,
+    title: resource.resourceToString($r('app.string.DialogWithPhysicalBack_title')),
+    description: $r('app.string.DialogWithPhysicalBack_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogAvoidSoftKeyboard`,
+    title: resource.resourceToString($r('app.string.DialogAvoidSoftKeyboard_title')),
+    description: $r('app.string.DialogAvoidSoftKeyboard_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/GetDialogStatus`,
+    title: resource.resourceToString($r('app.string.GetDialogStatus_title')),
+    description: $r('app.string.GetDialogStatus_desc'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogFocusStrategy`,
+    title: resource.resourceToString($r('app.string.CustomDialog_focus')),
+    description: $r('app.string.CustomDialog_focus_des'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogController`,
+    title: resource.resourceToString($r('app.string.CustomDialog_controller')),
+    description: $r('app.string.CustomDialog_controller_des'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/PageLevelDialog`,
+    title: resource.resourceToString($r('app.string.CustomDialog_page_level')),
+    description: $r('app.string.CustomDialog_controller_des'),
+  },
+  {
+    name: `${Custom_ROUTE_PREFIX}/DialogBoxLayer`,
+    title: resource.resourceToString($r('app.string.CustomDialog_box_layer')),
+    description: $r('app.string.CustomDialog_layer_des'),
+  },
 ]
 
 @Builder
@@ -74,6 +152,32 @@ export function CustomDestination(name: string) {
     DialogStyle();
   } else if (name === routes[5].name) {
     NestDialog();
+  } else if (name === routes[6].name) {
+    CreateCustomDialogNew();
+  } else if (name === routes[7].name) {
+    DialogInteractionUseConstructor();
+  } else if (name === routes[8].name) {
+    DialogInteractionUseButton();
+  } else if (name === routes[9].name) {
+    DialogAnimation1();
+  } else if (name === routes[10].name) {
+    DialogStyle1();
+  } else if (name === routes[11].name) {
+    NestDialog1();
+  } else if (name === routes[12].name) {
+    DialogWithPhysicalBack();
+  } else if (name === routes[13].name) {
+    DialogAvoidSoftKeyboard();
+  } else if (name === routes[14].name) {
+    GetDialogStatus(); 
+  } else if (name === routes[15].name) { 
+    DialogFocusStrategy();
+  } else if (name === routes[16].name) {
+    DialogController();
+  } else if (name === routes[17].name) {
+    PageLevelDialogBox();
+  } else if (name === routes[18].name) {
+    DialogBoxLayer();
   }
 }
 

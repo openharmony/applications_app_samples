@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 // [Start JSForm_EntryAbility]
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+// entry/src/main/ets/entryability/EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { router, window } from '@kit.ArkUI';
+import { window } from '@kit.ArkUI';
 
 const TAG: string = 'EtsCardEntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;

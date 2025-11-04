@@ -22,6 +22,7 @@ import { SymbolGlyphSpanSceneExample } from './SymbolSceneExample';
 
 import { Route } from '../../common/Route';
 import resource from '../../common/resource';
+import { SymbolShadowAndColor } from './SymbolShadowAndColor';
 
 export const SYMBOL_GLYPH_SPAN: string = 'symbol';
 
@@ -40,6 +41,11 @@ const routes: Route[] = [
     name: `${SYMBOL_GLYPH_SPAN}/SymbolGlyphSpanCustomIconAnimation`,
     title: resource.resourceToString($r('app.string.SymbolGlyphSpanCustomIconAnimation_title')),
     description: $r('app.string.SymbolGlyphSpanCustomIconAnimation_description')
+  },
+  {
+    name: `${SYMBOL_GLYPH_SPAN}/SymbolShadowAndColor`,
+    title: resource.resourceToString($r('app.string.SymbolShadowAndColor_title')),
+    description: $r('app.string.SymbolShadowAndColor_description')
   },
   {
     name: `${SYMBOL_GLYPH_SPAN}/SymbolGlyphSpanAddEvent`,
@@ -64,8 +70,10 @@ export function SymbolGlyphSpanDestination(name: string) {
   } else if (name === routes[2].name) {
     SymbolGlyphSpanCustomIconAnimation();
   } else if (name === routes[3].name) {
-    SymbolGlyphSpanAddEvent();
+    SymbolShadowAndColor();
   } else if (name === routes[4].name) {
+    SymbolGlyphSpanAddEvent();
+  } else if (name === routes[5].name) {
     SymbolGlyphSpanSceneExample();
   }
 }

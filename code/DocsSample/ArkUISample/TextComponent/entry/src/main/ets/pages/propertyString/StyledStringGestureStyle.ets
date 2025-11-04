@@ -14,6 +14,7 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+// [Start styledStringGestureStyle_start]
 import { drawing } from '@kit.ArkGraphics2D';
 
 let gUIContext: UIContext;
@@ -139,7 +140,6 @@ export struct StyledStringGestureStyle {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.TStyledStringGestureStyle_title') }) {
-          // [Start styled_string_gesture_style]
           Row() {
             Column() {
               Button($r('app.string.StyledStringGestureStyle_button_content')).backgroundColor(this.backgroundColor1).width('80%').margin(10)
@@ -151,7 +151,6 @@ export struct StyledStringGestureStyle {
             .width('100%')
           }
           .height('100%')
-          // [End styled_string_gesture_style]
         }
       }
       .width('100%')
@@ -162,3 +161,4 @@ export struct StyledStringGestureStyle {
     .title($r('app.string.TStyledStringGestureStyle_title'))
   }
 }
+// [End styledStringGestureStyle_start]

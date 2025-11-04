@@ -136,6 +136,7 @@ void GetDragMoveInfos(ArkUI_DragEvent* dragEvent)
         velocityX, velocityY, velocity);
 }
 
+// [Start on_drop]
 void GetDragData(ArkUI_DragEvent* dragEvent)
 {
     // 获取UDMF data
@@ -192,6 +193,7 @@ void GetDragData(ArkUI_DragEvent* dragEvent)
             "OH_ArkUI_DragEvent_GetDataTypes returnValue = %{public}s", eventTypeArray[i]);
     }
 }
+// [StartExclude on_drop]
 
 void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
 {
@@ -199,6 +201,7 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
         return;
     }
 
+    // [Start event_Type]
     nodeAPI->addNodeEventReceiver(dragNode, [](ArkUI_NodeEvent *event) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "RegisterNodeEventFirstReceiver called");
         auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
@@ -213,12 +216,15 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
             }
             case NODE_ON_DRAG_START: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_START EventReceiver");
+                // [StartExclude event_Type]
                 PrintDragStartInfos(dragEvent);
                 SetData(dragEvent);
+                // [EndExclude event_Type]
                 break;
             }
             case NODE_ON_DRAG_END: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_END EventReceiver");
+                // [StartExclude event_Type]
                 ArkUI_DragResult result;
                 OH_ArkUI_DragEvent_GetDragResult(dragEvent, &result);
                 if (result == ARKUI_DRAG_RESULT_SUCCESSFUL) {
@@ -229,6 +235,7 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
                 } else if (result == ARKUI_DRAG_RESULT_FAILED) {
                     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Failed!");
                 }
+                // [EndExclude event_Type]
                 break;
             }
             default: {
@@ -237,6 +244,7 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
             }
         }
     });
+    // [End event_Type]
 }
 
 void RegisterNodeEventFirstReceiver2(ArkUI_NodeHandle node)
@@ -254,12 +262,14 @@ void RegisterNodeEventFirstReceiver2(ArkUI_NodeHandle node)
 
         auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
         switch (eventType) {
+            // [EndExclude on_drop]
             case NODE_ON_DROP: {
                 OH_ArkUI_DragEvent_SetSuggestedDropOperation(dragEvent, ARKUI_DROP_OPERATION_COPY);
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP EventReceiver");
                 GetDragData(dragEvent);
                 break;
             }
+            // [End on_drop]
             case NODE_ON_DRAG_ENTER: {
                 OH_ArkUI_DragEvent_SetSuggestedDropOperation(dragEvent, ARKUI_DROP_OPERATION_COPY);
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_ENTER EventReceiver");
@@ -359,6 +369,7 @@ void DisplayInfo(ArkUI_NodeHandle &column1)
 
 void SetPreviewOption(ArkUI_NodeHandle &node)
 {
+    // [Start create_pixelMap]
     // 创建pixelMap
     uint8_t data[960000];
     size_t dataSize = 960000;
@@ -389,6 +400,7 @@ void SetPreviewOption(ArkUI_NodeHandle &node)
         "dragTest DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled returnValue = %{public}d",
         returnValue);
     OH_ArkUI_SetNodeDragPreviewOption(node, previewOptionsText);
+    // [End create_pixelMap]
     OH_ArkUI_DragPreviewOption_Dispose(previewOptionsText);
 }
 

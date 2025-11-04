@@ -1,0 +1,17 @@
+{
+    "devices": {
+        "general": [
+            "wearable"
+        ],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Account.AppAccount",
+                    "SystemCapability.Account.OsAccount",
+                    "SystemCapability.ArkUI.ArkUI.Circle",
+                    "SystemCapability.ArkUI.ArkUI.Full"
+                ]
+            }
+        ]
+    }
+}

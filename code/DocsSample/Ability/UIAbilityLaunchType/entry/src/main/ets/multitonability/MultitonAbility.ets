@@ -17,7 +17,7 @@ import { UIAbility,AbilityConstant,Want,Context } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import Logger from '../common/Logger';
 
-const TAG = '[Sample_StartMode]';
+const TAG = '[MultitonAbility]';
 
 interface Data {
   context: Context;
@@ -31,7 +31,7 @@ export default class MultitonAbility extends UIAbility {
     Logger.info(TAG, 'MultitonAbility onCreate');
     const that = this;
     this.context.eventHub.on('getAbilityData', this.getAbilityDataCallback = (data: Data): void => {
-      Logger.info(TAG, 'MainAbility' + JSON.stringify(data));
+      Logger.info(TAG, 'MultitonAbility' + JSON.stringify(data));
       data.context = that.context;
       data.launchWant = want;
     })

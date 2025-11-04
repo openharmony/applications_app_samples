@@ -27,7 +27,7 @@ struct WebComponent {
         .onClick(() => {
           // existCookie参数表示隐私模式（true）或非隐私模式（false）下，查询是否存在cookies。
           let result = webview.WebCookieManager.existCookie(true);
-          console.log('result: ' + result);
+          console.info('result: ' + result);
         })
       Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true });
     }

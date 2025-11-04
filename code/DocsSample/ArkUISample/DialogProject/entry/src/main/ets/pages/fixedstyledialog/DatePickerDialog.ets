@@ -48,8 +48,11 @@ export struct DatePickerDialogExample {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude date_picker_dialog]
     .backgroundColor('#f1f2f3')
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.CustomDialog_date'))
+    // [EndExclude date_picker_dialog]
   }
 }
 // [End date_picker_dialog]

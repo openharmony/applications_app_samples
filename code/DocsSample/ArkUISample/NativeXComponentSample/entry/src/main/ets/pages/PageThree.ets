@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start page_three]
 import native from 'libnativerender.so';
+// [StartExclude page_three]
 import { FrameNode, NodeController, typeNode, UIContext } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
@@ -64,6 +66,7 @@ class MyNodeController extends NodeController {
 export function PageThreeBuilder(name: string, param: Object){
     PageThree()
 }
+// [EndExclude page_three]
 @Component
 export struct PageThree {
   @State isShow: boolean = true;
@@ -170,6 +173,7 @@ export struct PageThree {
           left: 12,
           right: 12
         })
+      // [StartExclude page_three]
       Button('Initialize')
         .onClick(()=>{
           native.initialize(this.myNodeController.xComponentId)
@@ -190,8 +194,10 @@ export struct PageThree {
           left: 12,
           right: 12
         })
+      // [EndExclude page_three]
     }
     .width('100%')
   }
   }
 }
+// [End page_three]

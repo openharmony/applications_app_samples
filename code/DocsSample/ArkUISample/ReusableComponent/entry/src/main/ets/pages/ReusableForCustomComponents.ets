@@ -16,7 +16,7 @@
 // [Start reusable_for_custom_components]
 import { ComponentContent } from '@kit.ArkUI';
 
-// @Builder加上@Reusable编译报错,不适用于builder。
+// @Builder不能与@Reusable搭配使用。
 // @Reusable
 @Builder
 function buildCreativeLoadingDialog(closedClick: () => void) {

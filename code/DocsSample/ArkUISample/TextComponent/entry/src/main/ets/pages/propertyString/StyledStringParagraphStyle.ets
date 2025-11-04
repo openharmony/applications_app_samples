@@ -14,8 +14,8 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-import { LengthMetrics } from '@kit.ArkUI';
 import resource from '../../common/resource';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component

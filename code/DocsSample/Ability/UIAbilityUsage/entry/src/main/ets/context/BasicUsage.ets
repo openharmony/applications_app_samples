@@ -25,7 +25,7 @@ const DOMAIN = 0x0000;
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsBasicUsage {
+struct BasicUsage {
   // [StartExclude terminateSelf]
   startAbilityTest(): void {
     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -43,8 +43,8 @@ struct Page_UIAbilityComponentsBasicUsage {
   // 页面展示
   build() {
     // [StartExclude basicUsage]
-    // [StartExclude terminateSelf]
     Column() {
+      // [StartExclude terminateSelf]
       Text('UIAbilityB')
         .id('HelloWorld')
         .fontSize(30)
@@ -76,11 +76,15 @@ struct Page_UIAbilityComponentsBasicUsage {
             hilog.error(DOMAIN, 'terminateSelf', `terminateSelf failed, code is ${code}, message is ${message}.`);
           }
         })
+        // [StartExclude terminateSelf]
         .width('60%')
         .margin({top: 8})
+      // [EndExclude terminateSelf]
     }
+    // [StartExclude terminateSelf]
     .width('100%')
     .justifyContent(FlexAlign.Center)
+    // [EndExclude terminateSelf]
     // [EndExclude basicUsage]
   }
 }

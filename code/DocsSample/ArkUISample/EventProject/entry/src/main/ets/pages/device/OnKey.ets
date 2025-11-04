@@ -16,63 +16,66 @@
 // [Start listen_response_key_event]
 @Entry
 @Component
-export struct OnKey {
+struct KeyEventExample {
   @State buttonText: string = '';
   @State buttonType: string = '';
   @State columnText: string = '';
   @State columnType: string = '';
 
   build() {
-    NavDestination() {
-      Column({ space: 12 }) {
-
-        Column() {
-          Button('onKeyEvent')
-            .defaultFocus(true)
-            .width(140).height(70)
-            .onKeyEvent((event?: KeyEvent) => { // 给Button设置onKeyEvent事件
-              if(event){
-                if (event.type === KeyType.Down) {
-                  this.buttonType = 'Down';
-                }
-                if (event.type === KeyType.Up) {
-                  this.buttonType = 'Up';
-                }
-                this.buttonText = 'Button: \n' +
-                  'KeyType:' + this.buttonType + '\n' +
-                  'KeyCode:' + event.keyCode + '\n' +
-                  'KeyText:' + event.keyText;
-              }
-            })
-
-          Divider()
-          Text(this.buttonText).fontColor(Color.Green)
-
-          Divider()
-          Text(this.columnText).fontColor(Color.Red)
-        }.width('100%').height('100%').justifyContent(FlexAlign.Center)
-        .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
+    Column() {
+      Button('onKeyEvent')
+        .defaultFocus(true)
+        .width(140).height(70)
+        .onKeyEvent((event?: KeyEvent) => { // 给Button设置onKeyEvent事件
           if(event){
             if (event.type === KeyType.Down) {
-              this.columnType = 'Down';
+              this.buttonType = 'Down';
             }
             if (event.type === KeyType.Up) {
-              this.columnType = 'Up';
+              this.buttonType = 'Up';
             }
-            this.columnText = 'Column: \n' +
-              'KeyType:' + this.buttonType + '\n' +
-              'KeyCode:' + event.keyCode + '\n' +
-              'KeyText:' + event.keyText;
+            this.buttonText = 'Button: \n' +
+            'KeyType:' + this.buttonType + '\n' +
+            'KeyCode:' + event.keyCode + '\n' +
+            'KeyText:' + event.keyText;
           }
         })
 
+      Divider()
+      Text(this.buttonText).fontColor(Color.Green)
+
+      Divider()
+      Text(this.columnText).fontColor(Color.Red)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+    .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
+      if(event){
+        if (event.type === KeyType.Down) {
+          this.columnType = 'Down';
+        }
+        if (event.type === KeyType.Up) {
+          this.columnType = 'Up';
+        }
+        this.columnText = 'Column: \n' +
+        'KeyType:' + this.columnType + '\n' +
+        'KeyCode:' + event.keyCode + '\n' +
+        'KeyText:' + event.keyText;
       }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.Device_OnKey_title'))
+    })
   }
 }
 // [End listen_response_key_event]
+
+@Builder
+export function OnKey() {
+  NavDestination() {
+    Column({ space: 12 }) {
+      KeyEventExample()
+    }
+    .width('100%')
+    .height('100%')
+    .padding({ left: 12, right: 12 })
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.Device_OnKey_title'))
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滚动演示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: sans-serif;
+            background: linear-gradient(180deg, #f0f8ff 0%, #e6f7ff 100%);
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #007DFF;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #333;
+            border-left: 4px solid #007DFF;
+            padding-left: 12px;
+        }
+
+        .read-more-btn {
+            background: #007DFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 0;
+            display: block;
+            width: 100%;
+        }
+
+        .read-more-btn:hover {
+            background: #0056cc;
+        }
+
+        .position-marker {
+            background: #34C759;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .scroll-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .scroll-btn {
+        background: #007DFF;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px 0;
+        display: block;
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+<div class="scroll-info" id="scrollInfo">滚动位置: 0px</div>
+//js侧5个代码片段
+<div class="section">
+    <button class="scroll-btn" id="scrollBy0200">Scroll down ↓</button>
+    <script>
+        const deltaX = 0;
+        const deltaY = 200;
+        document.getElementById('scrollBy0200').addEventListener('click', ()=>{
+            // [Start scrollBy_js_two]
+            window.scrollBy(deltaX, deltaY);
+            // [End scrollBy_js_two]
+        });
+    </script>
+
+    <button class="scroll-btn" id="scrollTo0400">Scroll to 400px ↓</button>
+    <script>
+        const x = 0;
+        const y = 400;
+        document.getElementById('scrollTo0400').addEventListener('click', ()=>{
+            // [Start scrollTo_js_four]
+            window.scrollTo(x, y);
+            // [End scrollTo_js_four]
+        });
+    </script>
+
+    <button class="scroll-btn" id="scrollTo0">Back to top</button>
+    <script>
+        document.getElementById('scrollTo0').addEventListener('click', ()=>{
+            // [Start scrollTo_js_five]
+            window.scrollTo(0, 0);
+            // [End scrollTo_js_five]
+        });
+    </script>
+
+    <button class="scroll-btn" id="scrollTo0500">Jump to a specific location：500px ↓</button>
+    <script>
+        document.getElementById('scrollTo0500').addEventListener('click', ()=>{
+            // [Start scrollTo_js_six]
+            window.scrollTo(0, 500);
+            // [End scrollTo_js_six]
+        });
+    </script>
+</div>
+
+<div class="section">
+    <h1>Web滚动控制演示</h1>
+    <p>这个页面演示了ArkTS和JavaScript的滚动控制功能。</p>
+</div>
+
+<div class="section">
+    <h2>功能区域 1</h2>
+    <p>向下滚动查看更多内容...</p>
+    <p>当前区域主要用于展示基本的页面布局和样式。</p>
+</div>
+
+<div class="section">
+    <h2>阅读更多功能</h2>
+    <p>点击下面的"阅读更多"按钮可以自动向下滚动300px。</p>
+
+    <!-- 代码片段3: 阅读更多按钮点击事件 -->
+    <button class="read-more-btn" id="read-more">阅读更多 ↓</button>
+
+    <script>
+        // 代码片段3: 阅读更多按钮事件监听
+        // [Start scrollBy_js_three]
+        document.getElementById('read-more').addEventListener('click', ()=>{
+            window.scrollBy(0, 300);
+        });
+        // [End scrollBy_js_three]
+    </script>
+</div>
+
+<div class="section">
+    <h2>功能区域 2</h2>
+    <p>继续向下滚动查看其他功能区域...</p>
+</div>
+
+<div class="section">
+    <h2>功能区域 3</h2>
+    <p>页面内容继续延伸...</p>
+</div>
+
+<div class="section">
+    <h2>功能区域 4</h2>
+    <p>更多内容展示区域。</p>
+</div>
+
+<div class="section">
+    <h2>页面底部</h2>
+    <p>你已经到达页面底部！使用"返回顶部"按钮可以快速回到页面开头。</p>
+</div>
+
+<script>
+    // 更新滚动位置显示
+    window.addEventListener('scroll', function() {
+        const scrollY = window.pageYOffset;
+        document.getElementById('scrollInfo').textContent =
+            `滚动位置: ${scrollY}px`;
+    });
+
+    // 页面加载完成
+    window.addEventListener('load', function() {
+        console.log('页面加载完成');
+    });
+</script>
+</body>
+</html>

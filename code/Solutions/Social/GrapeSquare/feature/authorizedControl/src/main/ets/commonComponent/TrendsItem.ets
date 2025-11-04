@@ -70,7 +70,7 @@ export struct TrendsItem {
     } else if (count > Constants.UNIT_1000 && count < Constants.UNIT_10000) {
       return `${(count / Constants.UNIT_1000).toFixed(1)}k`;
     } else {
-      return count.toString()
+      return count.toString();
     }
   }
 
@@ -106,7 +106,7 @@ export struct TrendsItem {
         .height($r('app.integer.layout_size_37'))
         .borderRadius($r('app.integer.layout_size_18'))
         .onClick(() => {
-          promptActionFn($r('app.string.feature_development'))
+          promptActionFn($r('app.string.feature_development'));
         })
       }.width('100%').justifyContent(FlexAlign.SpaceBetween)
 
@@ -134,7 +134,7 @@ export struct TrendsItem {
               .width($r('app.integer.layout_size_54'))
               .height($r('app.integer.layout_size_54'))
             if (this.isShowSaveButton) {
-              SaveControl({ mediaUri: this.trendsItemData.contents.media[0], isShowSaveButton: $isShowSaveButton })
+              SaveControl({ mediaUri: this.trendsItemData.contents.media[0], isShowSaveButton: $isShowSaveButton });
             }
           }
         } else if (this.trendsItemData.contents.imageList.length === 1) {
@@ -153,7 +153,7 @@ export struct TrendsItem {
                   this.isShowSaveButton = true;
                 }))
             if (this.isShowSaveButton) {
-              SaveControl({ imageUri: this.trendsItemData.contents.imageList[0], isShowSaveButton: $isShowSaveButton })
+              SaveControl({ imageUri: this.trendsItemData.contents.imageList[0], isShowSaveButton: $isShowSaveButton });
             }
           }
         } else {
@@ -176,7 +176,7 @@ export struct TrendsItem {
                       this.isShowSaveButton = true;
                     }))
                 if (this.isShowSaveButton && this.seletedImageIndex === index) {
-                  SaveControl({ imageUri: image, isShowSaveButton: $isShowSaveButton })
+                  SaveControl({ imageUri: image, isShowSaveButton: $isShowSaveButton });
                 }
               }
             })

@@ -19,6 +19,10 @@
     {
       "name": "ImageShow",
       "value": "Show Image"
+    } ,
+    {
+      "name": "LoadingResources",
+      "value": "https://www.example.com/example.JPG"
     }
   ]
 }

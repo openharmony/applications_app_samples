@@ -53,7 +53,7 @@
     "extensionAbilities": [
       {
         "name": "JsCardFormAbility",
-        "srcEntry": "./ets/jscardformability/JsCardFormAbility.ts",
+        "srcEntry": "./ets/jscardformability/JsCardFormAbility.ets",
         "description": "$string:JSCardFormAbility_desc",
         "label": "$string:JSCardFormAbility_label",
         "type": "form",

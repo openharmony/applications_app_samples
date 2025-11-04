@@ -14,12 +14,14 @@
  */
 
 // [Start fun_a]
+// src/main/ets/funpages/FunA.ets
 @Entry
 @Component
 struct FunA {
   build() {
     Column() {
       Row() {
+        // $r('app.string.ButtonA_label')需要替换为开发者所需的资源文件
         Text(($r('app.string.ButtonA_label')))
           .fontSize(24)
           .fontWeight(FontWeight.Bold)
@@ -30,13 +32,16 @@ struct FunA {
       .height(56)
       .justifyContent(FlexAlign.Start)
 
+      // $r('app.media.pic_empty')需要替换为开发者所需的资源文件
       Image($r('app.media.pic_empty'))
         .width(120)
         .height(120)
         .margin({ top: 224 })
 
+      // $r('app.string.NoContentAvailable')需要替换为开发者所需的资源文件
       Text($r('app.string.NoContentAvailable'))
         .fontSize(14)
+        // $r('app.color.text_color')需要替换为开发者所需的资源文件
         .fontColor($r('app.color.text_color'))
         .opacity(0.4)
         .margin({ top: 8, bottom: 317, right: 152, left: 152 })

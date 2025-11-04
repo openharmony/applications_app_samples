@@ -17,7 +17,7 @@ import { UIAbility, AbilityConstant, Want, Context } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import Logger from '../common/Logger';
 
-const TAG = '[Sample_StartMode]';
+const TAG = '[SpecifiedFirstAbility]';
 
 interface Data {
   context: Context;
@@ -29,22 +29,22 @@ export default class SpecifiedFirstAbility extends UIAbility {
   private getAbilityDataCallback: Function | undefined = undefined;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    Logger.info(TAG, 'SpecifiedAbility onCreate');
+    Logger.info(TAG, 'SpecifiedFirstAbility onCreate');
     this.want = want;
     this.context.eventHub.on('getAbilityData', this.getAbilityDataCallback = (data: Data): void => {
-      Logger.info(TAG, 'SpecifiedAbility' + JSON.stringify(data));
+      Logger.info(TAG, 'SpecifiedFirstAbility' + JSON.stringify(data));
       data.context = this.context;
       data.launchWant = want;
     })
   }
 
   onDestroy() {
-    Logger.info(TAG, 'SpecifiedAbility onDestroy');
+    Logger.info(TAG, 'SpecifiedFirstAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, 'SpecifiedAbility onWindowStageCreate');
+    Logger.info(TAG, 'SpecifiedFirstAbility onWindowStageCreate');
     let target =
       this.want && this.want.parameters && this.want.parameters.target ? this.want.parameters.target : 'pages/Home';
     windowStage.loadContent('pages/SpecifiedFirstPage', (err, data) => {
@@ -58,16 +58,16 @@ export default class SpecifiedFirstAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info(TAG, 'SpecifiedAbility onWindowStageDestroy');
+    Logger.info(TAG, 'SpecifiedFirstAbility onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info(TAG, 'SpecifiedAbility onForeground');
+    Logger.info(TAG, 'SpecifiedFirstAbility onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info(TAG, 'SpecifiedAbility onBackground');
+    Logger.info(TAG, 'SpecifiedFirstAbility onBackground');
   }
 }

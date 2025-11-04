@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CalculationDirectState",
+    "pages/CalculationTempVariable",
+    "pages/DeepCopyCorrect",
+    "pages/DeepCopyReverse",
+    "pages/ForceUpdateCounterexample",
+    "pages/ForceUpdatePositiveCase",
+    "pages/LoopStateInefficient",
+    "pages/LoopStateOptimized",
+    "pages/PreciseControlCounterexamples",
+    "pages/PreciseControlPositiveCases"
+  ]
+}

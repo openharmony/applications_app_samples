@@ -15,63 +15,33 @@
 //[Start GridColOrderToOption_start]
 @Entry
 @Component
-struct GridColOrderToOption {
+struct OrderColumnOptionExample {
   @State currentBp: string = 'unknown'
 
   build() {
     Column({ space: 5 }) {
       GridRow({ columns: 12 }) {
         GridCol({
-          order: {
-            xs: 1,
-            sm: 5,
-            md: 3,
-            lg: 7
-          },
-          span: 1
-        }) {
+          order: { xs: 1, sm: 5, md: 3, lg: 7 }, span: 1 }) {
           Row() {
             Text('1')
           }.width('100%').height('50vp')
         }.backgroundColor('rgb(213,213,213)')
 
         GridCol({
-          order: {
-            xs: 2,
-            sm: 2,
-            md: 6,
-            lg: 1
-          },
-          span: 1
-        }) {
+          order: { xs: 2, sm: 2, md: 6, lg: 1 }, span: 1 }) {
           Row() {
             Text('2')
           }.width('100%').height('50vp')
         }.backgroundColor('rgb(150,150,150)')
 
-        GridCol({
-          order: {
-            xs: 3,
-            sm: 3,
-            md: 1,
-            lg: 6
-          },
-          span: 1
-        }) {
+        GridCol({ order: { xs: 3, sm: 3, md: 1, lg: 6 }, span: 1 }) {
           Row() {
             Text('3')
           }.width('100%').height('50vp')
         }.backgroundColor('rgb(0,74,175)')
 
-        GridCol({
-          order: {
-            xs: 4,
-            sm: 4,
-            md: 2,
-            lg: 5
-          },
-          span: 1
-        }) {
+        GridCol({ order: { xs: 4, sm: 4, md: 2, lg: 5 }, span: 1 }) {
           Row() {
             Text('4')
           }.width('100%').height('50vp')

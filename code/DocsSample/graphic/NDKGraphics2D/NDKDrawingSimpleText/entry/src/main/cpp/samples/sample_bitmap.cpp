@@ -162,6 +162,7 @@ void SampleBitMap::Create()
 }
 
 void SampleBitMap::DrawSimpleText() {
+    // [Start ndk_drawing_simple_text]
     // 创建一个 TypographyStyle 创建 Typography 时需要使用
     OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
     // 设置文本对齐方式为居中
@@ -197,6 +198,7 @@ void SampleBitMap::DrawSimpleText() {
     OH_Drawing_DestroyFontCollection(fc);
     OH_Drawing_DestroyTypographyHandler(handler);
     OH_Drawing_DestroyTypography(typography);
+    // [End ndk_drawing_simple_text]
 }
 
 napi_value SampleBitMap::NapiDrawSimpleText(napi_env env, napi_callback_info info)

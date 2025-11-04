@@ -14,8 +14,8 @@
  *
 */
 
+// [Start View_BottomView]
 // src/main/ets/view/BottomView.ets
-
 import { common, Want } from '@kit.AbilityKit';
 import TaskViewModel from '../viewmodel/TaskViewModel';
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
@@ -30,7 +30,7 @@ import TaskListViewModel from '../viewmodel/TaskListViewModel';
 export default struct BottomView {
   @Param taskList: TaskListViewModel = new TaskListViewModel();
   @Local newTaskName: string = '';
-  private context = getContext() as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -61,3 +61,4 @@ export default struct BottomView {
     }
   }
 }
+// [End View_BottomView]

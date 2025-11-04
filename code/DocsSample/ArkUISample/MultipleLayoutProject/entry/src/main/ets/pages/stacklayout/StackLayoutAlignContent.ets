@@ -16,7 +16,7 @@
 // xxx.ets
 @Entry
 @Component
-struct StackLayoutAlignContent {
+struct StackAlignContentExample {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Text('Stack').width('90%').height('100%').backgroundColor('#e1dede').align(Alignment.BottomEnd)

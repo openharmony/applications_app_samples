@@ -558,7 +558,7 @@ void Manager::SetMultiGesture(ArkUI_NodeHandle &node)
 void Manager::SetGestureJudgeBegin(ArkUI_NodeHandle node)
 {
     SetMultiGesture(node);
-    auto onGestureJudgeBeginCallback = [](ArkUI_GestureInterruptInfo *info) {
+    auto onGestureJudgeBeginCallback = [](ArkUI_GestureInterruptInfo *info)-> ArkUI_GestureInterruptResult {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest", "onGestureJudgeBeginCallback triggered");
         // 获取自定义手势判定回调中的信息
         auto isSystem = OH_ArkUI_GestureInterruptInfo_GetSystemFlag(info);
@@ -573,7 +573,7 @@ void Manager::SetGestureJudgeBegin(ArkUI_NodeHandle node)
         OH_ArkUI_GetGestureParam_limitFingerCount(recognizer, &limitFingerCount);
         char *tag = (char *)malloc(sizeof(char) * NUM_2);
         if (!tag) {
-            return;
+            return ArkUI_GestureInterruptResult::GESTURE_INTERRUPT_RESULT_REJECT;
         }
         tag[0] = '\0';
         int result = 0;
@@ -636,7 +636,11 @@ void Manager::SetPanGestureWithDistanceMap(ArkUI_NodeHandle &column)
                 OH_ArkUI_GetGestureParam_DirectMask(recognizer, &direction);
                 double distanceByMap = 0.0;
                 // 根据输入设备类型获取移动阈值
-                OH_ArkUI_PanGesture_GetDistanceByToolType(recognizer, UI_INPUT_EVENT_TOOL_TYPE_PEN, &distanceByMap);
+                auto errorCode =
+                    OH_ArkUI_PanGesture_GetDistanceByToolType(recognizer, UI_INPUT_EVENT_TOOL_TYPE_PEN, &distanceByMap);
+                if (errorCode == ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED) {
+                    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest", "not support the recognizer type");
+                }
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest",
                     "onGestureJudgeBeginCallback distance %{public}lf", distanceByMap);
                 return ArkUI_GestureInterruptResult::GESTURE_INTERRUPT_RESULT_CONTINUE;

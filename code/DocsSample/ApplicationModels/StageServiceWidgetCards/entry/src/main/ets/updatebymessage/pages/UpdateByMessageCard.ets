@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,11 +14,15 @@
  */
 
 // [Start update_by_message_card]
+// entry/src/main/ets/updatebymessage/pages/UpdateByMessageCard.ets
 let storageUpdateByMsg = new LocalStorage();
 
 @Entry(storageUpdateByMsg)
 @Component
 struct UpdateByMessageCard {
+  // [StartExclude update_by_message_card]
+  // 创建两个待刷新的Text，Text初始内容分别为'Title default'、'Description default'。资源文件定义请参见下方步骤4
+  // [EndExclude update_by_message_card]
   @LocalStorageProp('title') title: ResourceStr = $r('app.string.default_title');
   @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.DescriptionDefault');
 
@@ -39,7 +43,11 @@ struct UpdateByMessageCard {
       .alignItems(HorizontalAlign.Start)
 
       Row() {
+        // [StartExclude update_by_message_card]
+        // 添加一个按钮，资源文件定义请参见下方步骤4
+        // [EndExclude update_by_message_card]
         Button() {
+          // $r('app.string.update')需要替换为开发者所需的资源文件
           Text($r('app.string.update'))
             .fontColor('#45A6F4')
             .fontSize(12)
@@ -61,6 +69,7 @@ struct UpdateByMessageCard {
     .width('100%')
     .height('100%')
     .alignItems(HorizontalAlign.Start)
+    // $r('app.media.CardEvent')需要替换为开发者所需的资源文件
     .backgroundImage($r('app.media.CardEvent'))
     .backgroundImageSize(ImageSize.Cover)
   }

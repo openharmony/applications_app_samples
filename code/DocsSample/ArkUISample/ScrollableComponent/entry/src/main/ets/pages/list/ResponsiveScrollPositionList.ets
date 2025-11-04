@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start respond_to_scroll_position]
 import { util } from '@kit.ArkTS';
 import { ComponentCard } from '../../common/Card';
 
-// [Start respond_to_scroll_position]
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -42,6 +41,7 @@ export let contactsGroups: object[] = [
   {
     title: 'A',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_A_one'), $r('sys.media.clone_app_badge_1')),
       new Contact($r('app.string.contacts_A_two'), $r('sys.media.clone_app_badge_2'))
     ],
@@ -50,6 +50,7 @@ export let contactsGroups: object[] = [
   {
     title: 'B',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_B_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_B_two'), $r('sys.media.clone_app_badge_4')),
       new Contact($r('app.string.contacts_B_three'), $r('sys.media.clone_app_badge_5'))
@@ -59,6 +60,7 @@ export let contactsGroups: object[] = [
   {
     title: 'D',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_D_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_D_two'), $r('sys.media.clone_app_badge_4')),
       new Contact($r('app.string.contacts_D_three'), $r('sys.media.clone_app_badge_5'))
@@ -68,6 +70,7 @@ export let contactsGroups: object[] = [
   {
     title: 'F',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_F_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_F_two'), $r('sys.media.clone_app_badge_4'))
     ],
@@ -76,6 +79,7 @@ export let contactsGroups: object[] = [
   {
     title: 'G',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_G_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_G_two'), $r('sys.media.clone_app_badge_4'))
     ],
@@ -84,6 +88,7 @@ export let contactsGroups: object[] = [
   {
     title: 'H',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_H_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_H_two'), $r('sys.media.clone_app_badge_4')),
       new Contact($r('app.string.contacts_H_three'), $r('sys.media.clone_app_badge_5'))
@@ -93,6 +98,7 @@ export let contactsGroups: object[] = [
   {
     title: 'X',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_X_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_X_two'), $r('sys.media.clone_app_badge_4')),
       new Contact($r('app.string.contacts_X_three'), $r('sys.media.clone_app_badge_5'))
@@ -100,6 +106,7 @@ export let contactsGroups: object[] = [
     key: util.generateRandomUUID(true)
   } as ContactsGroup
 ];
+
 // [EndExclude respond_to_scroll_position]
 
 @Entry
@@ -119,18 +126,22 @@ export struct ResponsiveScrollPositionList {
       .width('100%')
       .padding(5)
   }
+
   // [EndExclude respond_to_scroll_position]
 
   build() {
     // [StartExclude respond_to_scroll_position]
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ResponsiveScrollPositionList_titleExample')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ResponsiveScrollPositionList_titleExample') }) {
           // [EndExclude use_stack]
           Stack({ alignContent: Alignment.End }) {
             // 此为响应滚动位置示例List容器
+            // [Start respond_tolistScroller]
             List({ scroller: this.listScroller }) {
               // [StartExclude use_foreach]
+              // [StartExclude respond_tolistScroller]
               ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
                 ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
                   // 循环渲染ListItem
@@ -141,14 +152,18 @@ export struct ResponsiveScrollPositionList {
                           Image(item.icon).width(40).height(40).margin(10)
                           Text(item.name).fontSize(20)
                         }.width('100%').justifyContent(FlexAlign.Start)
+
                         // [EndExclude respond_to_scroll_position]
                       }
+
                       // [StartExclude respond_to_scroll_position]
                     }, (item: Contact) => JSON.stringify(item))
                   }
                 }
               }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
+              // [EndExclude respond_tolistScroller]
             }
+            // [End respond_tolistScroller]
             // [EndExclude respond_to_scroll_position]
             .onScrollIndex((firstIndex: number) => {
               // [StartExclude respond_to_scroll_position]
@@ -162,6 +177,9 @@ export struct ResponsiveScrollPositionList {
             // 字母表索引组件
             AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
               .selected(this.selectedIndex)
+              .onSelect((index: number) => {
+                this.listScroller.scrollToIndex(index);
+              })
             // [End respond_to_scroll_position]
           }.height('90%')
         }

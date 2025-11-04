@@ -1,0 +1,132 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ButtonTwo",
+      "value": "Global custom constructor"
+    },
+    {
+      "name": "ButtonOne",
+      "value": "Private custom constructor"
+    },
+    {
+      "name": "ButtonThree",
+      "value": "Parameter passing by value"
+    },
+    {
+      "name": "ButtonFour",
+      "value": "Using custom builder function in custom component"
+    },
+    {
+      "name": "ButtonFive",
+      "value": "Global custom builder function"
+    },
+    {
+      "name": "ButtonSix",
+      "value": "Changing the variables decorated by the decorator triggers ui rerendering"
+    },
+    {
+      "name": "ButtonSeven",
+      "value": "Using a function decorated with @Builder as custombuilder"
+    },
+    {
+      "name": "ButtonEight",
+      "value": "Nested @Builder functions"
+    },
+    {
+      "name": "ButtonNine",
+      "value": "@Builder function combined with the V2 decorator"
+    },
+    {
+      "name": "ButtonTen",
+      "value": "@Builder function combined with the V2 decorator and @Local"
+    },
+    {
+      "name": "ButtonEleven",
+      "value": "Global @Builder reused across components"
+    },
+    {
+      "name": "ButtonTwelve",
+      "value": "@Builder supports state variable refresh"
+    },
+    {
+      "name": "ButtonThirteen",
+      "value": "Multiple parameters in @Builder [Incorrect Usage 1]"
+    },
+    {
+      "name": "ButtonFourteen",
+      "value": "Multiple parameters in @Builder [Incorrect Usage 2]"
+    },
+    {
+      "name": "ButtonFifteen",
+      "value": "Multiple parameters in @Builder [Correct Usage]"
+    },
+    {
+      "name": "ButtonSixteen",
+      "value": "Dynamic rerendering with @ComponentV2 [Incorrect Usage]"
+    },
+    {
+      "name": "ButtonSeventeen",
+      "value": "Dynamic rerendering with @ComponentV2 [Correct Usage]"
+    },
+    {
+      "name": "ButtonEighteen",
+      "value": "Component creation in @Builder prevents parameter update propagation [Incorrect Usage]"
+    },
+    {
+      "name": "ButtonNineteen",
+      "value": "Component creation in @Builder prevents parameter update propagation [Correct Usage]"
+    },
+    {
+      "name": "ButtonTwenty",
+      "value": "Calling the @Builder function or method outside the UI statement affects the normal refresh of nodes [Incorrect Usage]"
+    },
+    {
+      "name": "ButtonTwentyOne",
+      "value": "Calling the @Builder function or method outside the UI statement affects the normal refresh of nodes [Correct Usage]"
+    },
+    {
+      "name": "ButtonTwentyTwo",
+      "value": "MutableBinding not passed to the set accessor in the @Builder method [Incorrect Usage]"
+    },
+    {
+      "name": "ButtonTwentyThree",
+      "value": "MutableBinding not passed to the set accessor in the @Builder method [Correct Usage]"
+    },
+    {
+      "name": "ButtonTwentyFour",
+      "value": "Changing the input parameters in the @Builder decorated function [Incorrect Usage]"
+    },
+    {
+      "name": "ButtonTwentyFive",
+      "value": "Changing the input parameters in the @Builder decorated function [Correct Usage]"
+    },
+    {
+      "name": "ButtonTwentySix",
+      "value": "Executing the @Builder function in the @Watch function [Incorrect Usage]"
+    },
+    {
+      "name": "ButtonTwentySeven",
+      "value": "Executing the @Builder function in the @Watch function [Correct Usage]"
+    },
+    {
+      "name": "ButtonTwentyEight",
+      "value": "Parameter passing by reference"
+    },
+    {
+      "name": "ButtonTwentyNine",
+      "value": "Parameter passing by makebinding"
+    }
+  ]
+}

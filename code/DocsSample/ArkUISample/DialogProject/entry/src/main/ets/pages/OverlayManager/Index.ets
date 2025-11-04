@@ -73,13 +73,13 @@ struct OverlayManagerList {
         })
       }
       .contentStartOffset(20)
-      .padding({ left: 16, right: 16 });
+      .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
     .title('', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    .title($r('app.string.OverlayManager_demo1_title'));
+    .title($r('app.string.OverlayManager_demo1_title'))
   }
 }

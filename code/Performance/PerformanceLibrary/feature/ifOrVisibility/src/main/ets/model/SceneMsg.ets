@@ -16,4 +16,4 @@
 export interface SceneMsg {
   title: Resource
   uri: string
-}
+};

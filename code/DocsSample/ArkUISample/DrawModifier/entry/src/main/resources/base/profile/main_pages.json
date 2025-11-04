@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/DrawFrontDrawContentDrawBehind",
+    "pages/DrawForeground",
+    "pages/Canvas"
+  ]
+}

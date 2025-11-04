@@ -79,8 +79,10 @@ export struct DefaultFocus {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude focus_visualization_manage]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Focus_DefaultFocus_title'))
+    // [EndExclude focus_visualization_manage]
   }
 }
 // [End focus_visualization_manage]

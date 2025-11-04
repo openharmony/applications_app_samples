@@ -1,5 +1,17 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/multilanguage/MultilanguageText",
+    "pages/multiline/MultilineText",
+    "pages/complexStyle/ComplexStyleText",
+    "pages/complexStyle/ComplexStyleExample1",
+    "pages/complexStyle/ComplexStyleExample2",
+    "pages/complexStyle/ComplexStyleExample3",
+    "pages/complexStyle/ComplexStyleExample4",
+    "pages/complexStyle/ComplexStyleExample5",
+    "pages/complexStyle/ComplexStyleExample6",
+    "pages/complexStyle/ComplexStyleExample7",
+    "pages/complexStyle/ComplexStyleExample8",
+    "pages/shape/IndependentShaping"
   ]
 }

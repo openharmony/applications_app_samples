@@ -1,0 +1,53 @@
+<!--clipboard_event.html-->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard Event demo</title>
+    <style>
+        .output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+<h2>Clipboard Event监听示例</h2>
+<textarea id="inputArea" rows="4" cols="50" placeholder="在这里输入文本，尝试复制和粘贴..."></textarea>
+
+<div class="output" id="output">
+    <h3>输出内容:</h3>
+    <p id="resultText">没有复制或粘贴内容。</p>
+</div>
+
+<script>
+    const inputArea = document.getElementById('inputArea');
+    const resultText = document.getElementById('resultText');
+    // 监听复制事件
+    inputArea.addEventListener('copy', (event) => {
+        const selection = document.getSelection();
+        const copiedText = selection.toString() + '(复制自ArkWeb)';
+        event.clipboardData.setData('text/plain', copiedText);
+        event.preventDefault();
+        resultText.textContent = `复制的内容: '${copiedText}'`;
+    });
+    // 监听粘贴事件
+    inputArea.addEventListener('paste', (event) => {
+        const pastedData = event.clipboardData.getData('text');
+        resultText.textContent = `粘贴的内容: '${pastedData}'`;
+    });
+    // 监听剪切事件
+    inputArea.addEventListener('cut', (event) => {
+        const selection = document.getSelection();
+        const cutText = selection.toString() + '(剪切自ArkWeb)';
+        event.clipboardData.setData('text/plain', cutText);
+        selection.deleteFromDocument();
+        event.preventDefault();
+        resultText.textContent = `剪切的内容: '${cutText}'`;
+    });
+</script>
+</body>
+</html>

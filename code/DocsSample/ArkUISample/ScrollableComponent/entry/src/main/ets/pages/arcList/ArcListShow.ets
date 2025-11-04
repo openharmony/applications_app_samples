@@ -14,7 +14,7 @@
  */
 import { ComponentCard } from '../../common/Card';
 // [Start arcListShow_start]
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMetrics, } from '@kit.ArkUI';
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -22,6 +22,7 @@ export struct ArcListShow {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ArcListShow_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ArcListShow_title') }) {
           ArcList({ initialIndex: 2 }) {
             ArcListItem() {
@@ -123,6 +124,7 @@ export struct ArcListShow {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.ArcListShow_title')需要替换为开发者所需的资源文件
     .title($r('app.string.ArcListShow_title'))
   }
 }

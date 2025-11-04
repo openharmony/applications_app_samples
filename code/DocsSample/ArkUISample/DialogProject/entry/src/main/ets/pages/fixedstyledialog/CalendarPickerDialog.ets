@@ -14,6 +14,7 @@
  */
 
 // [Start calender_picker_dialog]
+// xxx.ets
 import { PromptAction } from '@kit.ArkUI';
 
 @Entry
@@ -57,7 +58,10 @@ export struct CalendarDialog {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude calender_picker_dialog]
     .backgroundColor('#f1f2f3')
+    // [EndExclude calender_picker_dialog]
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
     .title($r('app.string.CustomDialog_calender'))
   }
 }

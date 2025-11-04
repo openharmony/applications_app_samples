@@ -35,20 +35,18 @@ export struct LongGrid {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.LongGrid_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.LongGrid_title') }) {
           Column({ space: 5 }) {
-            Grid(this.scroller) {
-              LazyForEach(this.numbers, (day: string) => {
+            // [Start long_list]
+            Grid() {
+              LazyForEach(this.numbers, () => {
                 GridItem() {
-                  Text(day)
-                    .fontSize(16)
-                    .backgroundColor(0xF9CF93)
-                    .width('100%')
-                    .height(80)
-                    .textAlign(TextAlign.Center)
                 }
-              }, (index: number) => index.toString())
+              })
             }
+            .cachedCount(3)
+            // [End long_list]
             .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
             .columnsGap(10)
             .rowsGap(20)

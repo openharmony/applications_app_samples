@@ -49,6 +49,22 @@
       "value": "嵌套自定义弹出框"
     },
     {
+      "name": "CustomDialog_focus",
+      "value": "弹出框焦点策略"
+    },
+    {
+      "name": "CustomDialog_controller",
+      "value": "弹出框控制器"
+    },
+    {
+      "name": "CustomDialog_page_level",
+      "value": "页面级弹出框"
+    },
+    {
+      "name": "CustomDialog_box_layer",
+      "value": "弹出框层级管理"
+    },
+    {
       "name": "CustomDialog_create_des",
       "value": "使用@CustomDialog装饰器装饰自定义弹出框，可在此装饰器内自定义弹出框内容。CustomDialogController需在@Component内定义。"
     },
@@ -93,6 +109,22 @@
       "value": "弹出框通过定义宽度、高度、背景色、阴影等参数来控制样式。"
     },
     {
+      "name": "CustomDialog_focus_des",
+      "value": "通过设置focusable参数来管理弹出框是否获取焦点。"
+    },
+    {
+      "name": "CustomDialog_controller_des",
+      "value": "可以将控制器传入弹出框内容区域后进行操作。"
+    },
+    {
+      "name": "CustomDialog_layer_des",
+      "value": "创建不同层级的弹出框。"
+    },
+    {
+      "name": "CustomDialog_page_level_des",
+      "value": "在路由跳转后，弹出框能够随前一个路由页面的切换而消失，并在路由返回后弹出框能够继续正常显示。"
+    },
+    {
       "name": "CustomDialog_nest_title",
       "value": "弹出框的样式"
     },
@@ -111,6 +143,10 @@
     {
       "name": "CustomDialog_date",
       "value": "日期滑动选择器弹窗"
+    },
+    {
+      "name": "CustomCustomDialog_date",
+      "value": "日期滑动选择器自定义弹窗"
     },
     {
       "name": "CustomDialog_text",
@@ -137,6 +173,14 @@
       "value": "开发者可以利用指定的日期范围，创建日期滑动选择器弹窗，将日期信息清晰地展示在弹出的窗口上。"
     },
     {
+      "name": "DatePickerCustom_title",
+      "value": "日期滑动选择器自定义弹窗"
+    },
+    {
+      "name": "DatePickerCustom_des",
+      "value": "开发者可以利用指定的日期范围，创建日期滑动选择器自定义弹窗，将日期信息清晰地展示在弹出的窗口上。"
+    },
+    {
       "name": "TimePicker_title",
       "value": "时间滑动选择器弹窗"
     },
@@ -152,6 +196,15 @@
       "name": "TextPicker_des",
       "value": "开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
     },
+    {
+      "name": "TextPicker_cn_title",
+      "value": "文本滑动选择器中文弹窗"
+    },
+    {
+      "name": "TextPicker_cn_des",
+      "value": "开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
+    },
+
     {
       "name": "ActionSheet_title",
       "value": "列表选择弹窗"
@@ -217,8 +270,16 @@
       "value": "创建自定义样式的菜单"
     },
     {
+      "name": "OpenMenu_title",
+      "value": "不依赖UI组件的全局气泡提示"
+    },
+    {
       "name": "CreateMenu_des",
       "value": "菜单需要调用bindMenu接口来实现。bindMenu响应绑定组件的点击事件，绑定组件后手势点击对应组件后即可弹出。"
+    },
+    {
+      "name": "OpenMenu_des",
+      "value": "通过使用全局接口openPopup的方式，在无UI组件的场景下直接或封装使用。"
     },
     {
       "name": "Customdialog_title",
@@ -389,8 +450,40 @@
       "value": "气泡样式"
     },
     {
+      "name": "StylePopup_global",
+      "value": "全局气泡提示"
+    },
+    {
       "name": "StylePopup_des",
       "value": "气泡除了可以通过builder实现自定义气泡，还可以通过接口设置气泡的样式和显示效果。"
+    },
+    {
+      "name": "AvoidSoftKeyboardPopupExample_title",
+      "value": "气泡避让软键盘"
+    },
+    {
+      "name": "AvoidSoftKeyboardPopupExample_des",
+      "value": "当软键盘弹出时，气泡默认不会对其避让，可能导致气泡被软键盘覆盖，这时需要设置keyboardAvoidMode为KeyboardAvoidMode.DEFAULT，来使气泡避让键盘。这时如果当前没有位置放下气泡时，气泡会从预设位置平移覆盖宿主组件。"
+    },
+    {
+      "name": "PolymorphicEffectPopupExample_title",
+      "value": "设置气泡内的多态效果"
+    },
+    {
+      "name": "PolymorphicEffectPopupExample_des",
+      "value": "目前使用@Builder自定义气泡内容时，默认不支持多态样式，可以使用@Component新建一个组件实现按下气泡中的内容时背景变色。"
+    },
+    {
+      "name": "SupportedAvoidAxisPopupExample_title",
+      "value": "气泡支持避让中轴"
+    },
+    {
+      "name": "SupportedAvoidAxisPopupExample_des",
+      "value": "从API version 18起，气泡支持中轴避让功能。从API version 20开始，在2in1设备上默认启用（仅在窗口处于瀑布模式时产生避让）。开发者可通过PopupOptions中的enableHoverMode属性，控制气泡是否启用中轴避让。"
+    },
+    {
+      "name": "StylePopup_global_des",
+      "value": "通过使用全局接口openPopup的方式，在无UI组件的场景下直接或封装使用。"
     },
     {
       "name": "toast",
@@ -469,6 +562,150 @@
       "value": "即时反馈提供了两种显示模式，分别为DEFAULT（显示在应用内）、TOP_MOST（显示在应用之上）。"
     },
     {
+      "name": "CreateCustomDialogNew_title",
+      "value": "创建自定义弹出框新页面"
+    },
+    {
+      "name": "CreateCustomDialogNew_desc",
+      "value": "使用@CustomDialog装饰器装饰自定义弹出框，可在此装饰器内自定义弹出框内容。CustomDialogController需在@Component内定义。"
+    },
+    {
+      "name": "DialogInteractionUseConstructor_title",
+      "value": "弹出框的交互使用构造器"
+    },
+    {
+      "name": "DialogInteractionUseConstructor_desc",
+      "value": "页面内需要在构造器内进行接收，同时创建相应的函数操作。"
+    },
+    {
+      "name": "DialogInteractionUseButton_title",
+      "value": "弹出框的交互使用button"
+    },
+    {
+      "name": "DialogInteractionUseButton_desc",
+      "value": "可通过弹出框中的按钮实现路由跳转，同时获取跳转页面向当前页传入的参数。"
+    },
+    {
+      "name": "DialogAnimation1_title",
+      "value": "弹出框的动画1"
+    },
+    {
+      "name": "DialogAnimation1_desc",
+      "value": "弹出框通过定义openAnimation控制弹出框出现动画的持续时间，速度等参数。"
+    },
+    {
+      "name": "DialogStyle1_title",
+      "value": "弹出框的样式1"
+    },
+    {
+      "name": "DialogStyle1_desc",
+      "value": "通过定义弹出框的宽度、高度、背景色、阴影等参数，控制其样式。"
+    },
+    {
+      "name": "NestDialog1_title",
+      "value": "嵌套自定义弹出框1"
+    },
+    {
+      "name": "NestDialog1_desc",
+      "value": "通过第一个弹出框打开第二个弹出框时，最好将第二个弹出框定义在第一个弹出框的父组件处，通过父组件传给第一个弹出框的回调来打开第二个弹出框。"
+    },
+    {
+      "name": "DialogWithPhysicalBack_title",
+      "value": "实现弹出框的物理返回拦截"
+    },
+    {
+      "name": "DialogWithPhysicalBack_desc",
+      "value": "执行点击遮障层关闭、侧滑（左滑或右滑）、三键Back、键盘ESC关闭等交互操作时，如果注册了CustomDialogControllerOptions中的onWillDismiss回调函数，弹出框不会立即关闭。在回调函数中，通过DismissDialogAction中的reason属性获取阻拦关闭弹出框的操作类型，根据原因决定是否关闭弹出框。"
+    },
+    {
+      "name": "DialogAvoidSoftKeyboard_title",
+      "value": "设置弹出框避让软键盘的距离"
+    },
+    {
+      "name": "DialogAvoidSoftKeyboard_desc",
+      "value": "为显示弹出框的独立性，弹出框弹出时会与周边进行避让，包括状态栏、导航条以及键盘等留有间距。故当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。从API version 15开始，开发者可以利用CustomDialogControllerOptions中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。"
+    },
+    {
+      "name": "GetDialogStatus_title",
+      "value": "获取弹出框的状态"
+    },
+    {
+      "name": "GetDialogStatus_desc",
+      "value": "在业务模块中，页面上可能会同时出现多个弹出框。为避免重复打开相同的弹出框，建议在显示弹出框前，先通过控制器检查其当前状态。如果弹出框已处于显示状态，则不应再次打开。"
+    },
+    {
+      "name": "i_am_content",
+      "value": "我是内容"
+    },
+    {
+      "name": "customDialogComponentWithTransition_title",
+      "value": "为弹出框内容和蒙层设置不同的动画效果"
+    },
+    {
+      "name": "customDialogComponentWithTransition_desc",
+      "value": "当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，从API version 19开始，可通过BaseDialogOptions中dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考组件内转场 (transition)。"
+    },
+    {
+      "name": "customDialogWithKeyboardAvoidDistance_title",
+      "value": "设置弹出框避让软键盘的距离"
+    },
+    {
+      "name": "customDialogWithKeyboardAvoidDistance_desc",
+      "value": "为显示弹出框的独立性，弹出框弹出时会与周边进行避让，包括状态栏、导航条以及键盘等留有间距。故当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。从API version 15开始，开发者可以利用BaseDialogOptions中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。"
+    },
+    {
+      "name": "OpenDialogAndUpdate_title",
+      "value": "完整示例"
+    },
+    {
+      "name": "OpenDialogAndUpdate_desc",
+      "value": "完整示例。"
+    },
+    {
+      "name": "open_windows",
+      "value": "打开弹窗"
+    },
+    {
+      "name": "the_second_page_is",
+      "value": "第二个页面的内容为"
+    },
+    {
+      "name": "wether_to_get_the_second_page",
+      "value": "是否获取第二个页面的内容"
+    },
+    {
+      "name": "click_and_return",
+      "value": "点击返回"
+    },
+    {
+      "name": "this_is_a_window",
+      "value": "这是一个弹窗"
+    },
+    {
+      "name": "Mask_CustomDialog_dialog",
+      "value": "弹出框蒙层控制"
+    },
+    {
+      "name": "MaskDialog",
+      "value": "弹出框蒙层控制/MaskDialog"
+    },
+    {
+      "name": "CustomDialogAnimation_title",
+      "value": "openAnimation和closeAnimation接口"
+    },
+    {
+      "name": "CustomDialogAnimation_desc",
+      "value": "CustomDialog虽然不支持transition接口，但与之对应的openAnimation和closeAnimation接口在动画的打开和关闭时可进行定制。"
+    },
+    {
+      "name": "CustomDialogControl_title",
+      "value": "弹出框蒙层显隐控制"
+    },
+    {
+      "name": "CustomDialogControl_desc",
+      "value": "展示弹出框在蒙层显隐控制方面的能力。"
+    },
+    {
       "name": "DefaultAndTopToast_defaultToast",
       "value": "DEFAULT类型Toast"
     },
@@ -483,6 +720,170 @@
     {
       "name": "DefaultAndTopToast_topToastMessage",
       "value": "ok，我是TOP_MOST toast"
+    },
+    {
+      "name": "Scan_title",
+      "value": "扫一扫"
+    },
+    {
+      "name": "Create_group_chat",
+      "value": "创建群聊"
+    },
+    {
+      "name": "Electronic_work_card",
+      "value": "电子工卡"
+    },
+    {
+      "name": "Selected",
+      "value": "选中了"
+    },
+    {
+      "name": "Upper_half_screen",
+      "value": "上半屏"
+    },
+    {
+      "name": "Middle_axle",
+      "value": "中轴"
+    },
+    {
+      "name": "Lower_half_screen",
+      "value": "下半屏"
+    },
+    {
+      "name": "Subwindow_display",
+      "value": "子窗显示"
+    },
+    {
+      "name": "Subwindow",
+      "value": "子窗"
+    },
+    {
+      "name": "Non_Subwindow",
+      "value": "非子窗"
+    },
+    {
+      "name": "zone",
+      "value": "区域"
+    },
+    {
+      "name": "hoverMode_start",
+      "value": "hoverMode开启:"
+    },
+    {
+      "name": "PopVibrateMenu_title",
+      "value": "菜单弹出时振动效果"
+    },
+    {
+      "name": "PopVibrateMenu_des",
+      "value": "菜单弹出时，默认不振动。若希望菜单弹出时有振动效果，可以通过ContextMenuOptions的hapticFeedbackMode属性，设置菜单弹出时的振动模式。"
+    },
+    {
+      "name": "Click_for_menu",
+      "value": "click for Menu"
+    },
+    {
+      "name": "SupportAvoidCentralAxisMenu_title",
+      "value": "菜单支持避让中轴"
+    },
+    {
+      "name": "SupportAvoidCentralAxisMenu_des",
+      "value": "从API version 18起，菜单支持中轴避让功能。从API version 20开始，在2in1设备上默认启用（仅在窗口处于瀑布模式时产生避让）。开发者可通过ContextMenuOptions中的enableHoverMode属性，控制菜单是否启用中轴避让。"
+    },
+    {
+      "name": "EventTransSubWindowMenu_title",
+      "value": "控制子窗菜单的事件透传"
+    },
+    {
+      "name": "EventTransSubWindowMenu_des",
+      "value": "当菜单在子窗口中弹出时，默认情况下，菜单周围的事件会传递至所在窗口。从API version 20开始，开发者可通过ContextMenuOptions的modalMode属性设置子菜单弹出时的模态模式，以控制菜单周围事件是否传递。将modalMode设置为ModalMode.TARGET_WINDOW时，菜单周围的事件将不再传递，菜单下方的控件也不会响应事件。"
+    },
+    {
+      "name": "BindComponentMenu_title",
+      "value": "基于绑定组件指定位置弹出菜单"
+    },
+    {
+      "name": "BindComponentMenu_des",
+      "value": "菜单从API version 20开始支持基于绑定组件在指定位置弹出。通过设置水平与垂直偏移量，控制菜单相对于绑定组件左上角的弹出位置。与单独使用offset接口不同，此方法可使菜单覆盖显示在绑定组件上。需要指定弹出位置时，可使用ContextMenuOptions的anchorPosition属性进行设置。"
+    },
+    {
+      "name": "closeDialog_by_id",
+      "value": "点击关闭弹窗：通过DialogID"
+    },
+    {
+      "name": "closeDialog_by_outside",
+      "value": "点击关闭弹窗：通过外部传递的DialogController"
+    },
+    {
+      "name": "closeDialog_by_custom",
+      "value": "点我关闭弹窗：通过自定义组件自带的DialogController"
+    },
+    {
+      "name": "closeDialog_by_controller",
+      "value": "点我关闭弹窗：通过外部传递的DialogController"
+    },
+    {
+      "name": "my_content",
+      "value": "我是内容"
+    },
+    {
+      "name": "closeDialog_by_dialog",
+      "value": "点我关闭弹窗：通过自定义组件自带的DialogController"
+    },
+    {
+      "name": "closeDialog_by_dialog_controller",
+      "value": "点击关闭弹窗：通过外部传递的DialogController"
+    },
+    {
+      "name": "close_widows",
+      "value": "点我关闭弹窗"
+    },
+    {
+      "name": "dialog_message",
+      "value": "弹窗"
+    },
+    {
+      "name": "copy",
+      "value": "复制"
+    },
+    {
+      "name": "paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "click_check_status",
+      "value": "点我查询弹窗状态"
+    },
+    {
+      "name": "open_custom_dialog_with_controller",
+      "value": "OpenCustomDialogWithController弹窗"
+    },
+    {
+      "name": "present_custom_dialog",
+      "value": "PresentCustomDialog+CustomBuilder弹窗"
+    },
+    {
+      "name": "custom_builder_with_id",
+      "value": "PresentCustomDialog+CustomBuilderWithId弹窗"
+    },
+    {
+      "name": "custom_dialog_controller_dialog",
+      "value": "CustomDialogController弹窗"
+    },
+    {
+      "name": "top_dialog",
+      "value": "我是置顶弹窗"
+    },
+    {
+      "name": "open_dialog",
+      "value": "点我打开普通弹窗"
+    },
+    {
+      "name": "open_normal_dialog",
+      "value": "我是普通弹窗"
+    },
+    {
+      "name": "click_dialog",
+      "value": "点击弹窗"
     }
   ]
 }

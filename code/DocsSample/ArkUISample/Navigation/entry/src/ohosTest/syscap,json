@@ -1,0 +1,13 @@
+{
+  "devices": {
+    "general": ["default",
+                      "tablet"],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.ArkUI.ArkUI.Full"
+        ]
+      }
+    ]
+  }
+}

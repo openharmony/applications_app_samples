@@ -12,9 +12,9 @@
 
 ### 效果预览
 
-| 首页选项目录                                 | Isolated目录                            | Isolated示例                            |
-|------------------------------------|------------------------------------|------------------------------------|
-| ![](screenshots/device/image1.jpg) | ![](screenshots/device/image2.jpg) | ![](screenshots/device/image3.jpg) |
+| 首页选项目录                                 | Isolated目录                            | Isolated示例                            | Embedded示例                           
+|------------------------------------|------------------------------------|------------------------------------|--------------------------------------|
+| ![](screenshots/device/image1.jpg) | ![](screenshots/device/image2.jpg) | ![](screenshots/device/image3.jpg) | ![](screenshots/device/Embedded.png) |
 
 ### 使用说明
 
@@ -58,11 +58,24 @@ entry/src/ohosTest/
 |   |---index.test.ets                      // 示例代码测试代码
 ```
 
+### 具体实现
+
+1. 引入必要头文件，包括日志、ArkUI 节点、元能力 Want 等接口定义。
+2. 定义错误和终止事件回调函数 onError、onTerminated，暂为空实现。
+3. 实现嵌入式组件创建函数 embeddedNode：
+4. 获取 NAPI 回调参数，提取节点内容句柄。
+5. 获取 ArkUI 节点 API 接口，创建嵌入式组件节点。
+6. 构造元能力 Element，包含包名、能力名等信息，创建 Want 对象并设置为组件属性。
+7. 创建嵌入式组件选项，绑定事件回调并设置为组件属性。
+8. 设置组件宽高属性
+9. 创建Column容器，设置属性并将嵌入式组件作为字节点添加
+10. Column容器添加到节点内容
+
 ### 相关权限
 
 允许系统方舟运行时引擎在受限模式下执行动态下发的方舟字节码。
 
-[ohos.permission.RUN_DYN_CODE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionrun_dyn_code)
+[ohos.permission.RUN_DYN_CODE](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionrun_dyn_code)
 
 ### 依赖
 
@@ -90,6 +103,6 @@ entry/src/ohosTest/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUISample/UIExtensionAndAccessibility > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

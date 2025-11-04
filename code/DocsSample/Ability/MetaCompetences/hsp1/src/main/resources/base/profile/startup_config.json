@@ -2,11 +2,18 @@
   "startupTasks": [
     {
       "name": "HSP1_Task_01",
-      "srcEntry": "./ets/startup/HSP1_Task_01.ets",
+      "srcEntry": "./ets/startup/HSP1Task01.ets",
       "dependencies": [
         "HSP1_Task_02",
         "HAR1_Task_01"
       ],
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false,
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "HSP1_Task_02",
+      "srcEntry": "./ets/startup/HSP1Task02.ets",
       "runOnThread": "taskPool",
       "waitOnMainThread": false,
       "excludeFromAutoStart": true

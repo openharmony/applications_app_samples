@@ -140,6 +140,14 @@ struct Index {
         this.attributeType = 'BASELINE_OFFSET'
         this.attributeTypeId = 3003
       })
+      MenuItem({ content: 'COLOR_FILTER' }).width('50%').onChange(()=> {
+        this.attributeType = 'COLOR_FILTER'
+        this.attributeTypeId = 3004
+      })
+      MenuItem({ content: 'SUPPORT_SVG2' }).width('50%').onChange(()=> {
+        this.attributeType = 'SUPPORT_SVG2'
+        this.attributeTypeId = 3005
+      })
     }
   }
   // add image attributeType

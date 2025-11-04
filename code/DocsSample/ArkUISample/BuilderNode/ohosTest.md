@@ -1,0 +1,20 @@
+# Navigation 测试用例归档
+
+## 用例表
+
+| 测试功能                                                                                | 预置条件       | 输入                                                              | 预期输出                                                             | 是否自动 | 测试结果 |
+|-------------------------------------------------------------------------------------| -------------- |-----------------------------------------------------------------|------------------------------------------------------------------| :------- | -------- |
+| 测试通过BuilderNode的build可以实现组件树的创建。                                                    | 设备正常运行   | BuilderNode的根节点直接作为NodeController的makeNode返回值。                  | 组件创建成功                                                           | 是       | Pass     |
+| 测试将BuilderNode与RenderNode进行结合使用是否可以实现组件树的创建。                                        | 设备正常运行 | BuilderNode的RenderNode挂载节点                                      | 组件创建成功                                                           | 是       | Pass     |
+| 测试通过BuilderNode对象的build创建组件树。                                                       | 设备正常运行 | 使用update更新BuilderNode中的节点。                                      | 组件更新成功                                                           | 是       | Pass     |
+| 测试通过该接口向BuilderNode中绑定的组件注入触摸事件，实现事件的模拟转发。                                          | 设备正常运行   | 向BuilderNode中的Column组件转发另一个Column接收的事件                          | 上方的Column组件也会收到同样的触摸事件。                                          | 是       | Pass     |
+| 测试若传入的Builder的根节点为语法节点（if/else/foreach/…）或自定义组件，将额外生成一个FrameNode                    | 设备正常运行 | Column组件触发触摸事件                                                  | Column的触摸测试无法传递到Row上                                             | 是       | Pass     |
+| 测试使用一个容器组件包裹语法节点或自定义组件，并将容器组件的hitTestBehavior设置为HitTestMode.Transparent，向兄弟节点传递触摸测试 | 设备正常运行 | Column组件触发触摸事件                                                  | Column的触摸测试传递到Row上                                               | 是       | Pass     |
+| 测试调用reuse接口和recycle接口，将复用和回收事件传递至BuilderNode中的自定义组件，实现BuilderNode节点内部的自定义组件的复用      | 设备正常运行 | 调用BuilderNode的reuse和recycle接口                                   | 复用和回收事件传递给自定义组件ChildComponent2，达成复用效果                            | 是       | Pass     |
+| 测试使用@Reusable装饰器时，应使用一个普通自定义组件包裹该自定义组件                                              | 设备正常运行 | 通过ChildComponent2对其包裹，ReusableChildComponent可以使用@Reusable装饰器标记。 | 使用@Reusable装饰器标记成功                                               | 是       | Pass     |
+| 测试使用updateConfiguration来监听系统环境变化事件，触发节点的全量更新                                                                      | 设备正常运行 | 使用updateConfiguration监听系统环境变化事件                                 | 节点的全量更新                                                          | 是       | Pass     |
+| 测试BuilderNode在新页面被复用时，会自动刷新自身内容                                                                      | 设备正常运行 | 在页面跳转前，触发点击事件                                                   | BuilderNode从AppStorage中移除                                        | 是       | Pass     |
+| 测试自定义组件支持接收LocalStorage实例                                                                     | 设备正常运行 | 传递LocalStorage实例                           | LocalStorage相关的装饰器@LocalStorageProp、@LocalStorageLink可以使用并能接收得到值 | 是       | Pass     |
+| 测试使用isDisposed接口查询当前BuilderNode对象是否已解除与后端实体节点的引用关系                                                                        | 设备正常运行 | 在页面跳转前，触发点击事件                                     | 页面跳转，各按钮功能逻辑正常                                                   | 是       | Pass     |
+| 测试当组件处于非激活状态时，即便其绑定状态变量发生变化，也不会触发组件UI的重新渲染                                                                     | 设备正常运行 | 父自定义组件的冻结策略设置为开启组件冻结                                      | BuilderNode节点在不活跃时将会冻结                                           | 是       | Pass     |
+| 测试结合BuilderNode，可以将ArkWeb组件提前进行离线预渲染                                                                    | 设备正常运行 | 创建NodeContainer和对应的NodeController，渲染后台Web组件                            | 通过NodeContainer展示已经预渲染的页面                                        | 是       | Pass     |

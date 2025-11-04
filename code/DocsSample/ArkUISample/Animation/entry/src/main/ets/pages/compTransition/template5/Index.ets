@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start transition_effectExample5]
 const ITEM_COUNTS = 9;
 const ITEM_COLOR = '#ED6F21';
 const INTERVAL = 30;
@@ -70,3 +71,4 @@ struct Index1 {
     })
   }
 }
+// [End transition_effectExample5]

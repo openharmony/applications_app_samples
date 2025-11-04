@@ -1,0 +1,63 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// [Start AchieveAlertDialogPage2]
+import { AlertDialog } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct AlertDialogPage {
+  @State message: string = 'Hello World';
+  @State title: string = 'Hello World';
+  @State subtitle: string = '';
+  @State result: JsResult | null = null;
+  webviewController: webview.WebviewController = new webview.WebviewController();
+  dialogControllerAlert: CustomDialogController = new CustomDialogController({
+    builder: AlertDialog({
+      primaryTitle: this.title,
+      secondaryTitle: this.subtitle,
+      content: this.message,
+      primaryButton: {
+        value: 'confirm',
+        role: ButtonRole.ERROR,
+        action: () => {
+          console.info('Callback when the second button is clicked');
+          this.result?.handleConfirm();
+        }
+      },
+    }),
+    onWillDismiss: () => {
+      this.result?.handleCancel();
+      this.dialogControllerAlert.close();
+    }
+  })
+  build() {
+    Column() {
+      Web({ src: $rawfile('alert.html'), controller: this.webviewController })
+        .onAlert((event) => {
+          if (event) {
+            console.info('event.url:' + event.url);
+            console.info('event.message:' + event.message);
+            this.title = 'from' + event.url + 'warning';
+            this.message = event.message;
+            this.result = event.result;
+            this.dialogControllerAlert.open();
+          }
+          return true;
+        })
+    }
+  }
+}
+// [End AchieveAlertDialogPage2]

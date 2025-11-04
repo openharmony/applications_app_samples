@@ -14,9 +14,12 @@
  */
 
 import { MessageEvents, util, worker } from '@kit.ArkTS';
-import socket from '@ohos.net.socket';
-import fs from '@ohos.file.fs';
+// [Start two_way_tls_worker_import]
+import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// [End two_way_tls_worker_import]
+import fs from '@ohos.file.fs';
 
 // 获取 workerPort 实例
 const workerPort = worker.workerPort;
@@ -47,9 +50,6 @@ interface TlsTwoWayMessage {
   privateKeyContent?: string; // 从文件中读取的私钥内容
 }
 
-// 共享变量
-let tlsSocket: socket.TLSSocket | null = null;
-
 // 监听主线程消息
 workerPort.onmessage = (e: MessageEvents) => {
   const message: TlsTwoWayMessage = e.data;
@@ -79,7 +79,6 @@ function handleMessage(message: TlsTwoWayMessage) {
   }
 }
 
-// [Start two-way_authentication_via_tls_socket]
 // 读取文件并返回内容
 function loadFile(fileUri: string) {
   try {
@@ -105,61 +104,110 @@ function loadFile(fileUri: string) {
   }
 }
 
+let connectFlag: boolean = false;
+
+// [Start two-way_constructTLSSocketInstance]
+// 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
+let tlsSocket: socket.TLSSocket | null = socket.constructTLSSocketInstance();
+// [End two-way_constructTLSSocketInstance]
+
 function connectToServer(serverIp: string, serverPort: number, ca: string, cert: string, privateKey: string) {
-  if (tlsSocket) {
-    workerPort.postMessage({ type: 'connectFailure', message: 'Socket already connected' });
-    return;
+  let ipAddress: LocalAddress = { address: '0.0.0.0', family: 1 };
+  // [Start two-way_bindTlsSocket]
+  class SocketInfo {
+    public message: ArrayBuffer = new ArrayBuffer(1);
+    public remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
   }
-
-  tlsSocket = socket.constructTLSSocketInstance();
-
-  let localAddress: LocalAddress = { address: '0.0.0.0', family: 1 };
-  tlsSocket.bind(localAddress).then(() => {
+  // 绑定本地IP地址和端口。
+  tlsSocket!.bind(ipAddress).then(() => {
+    hilog.info(0x0000, 'testTag', 'bind success');
+    // [StartExclude two-way_bindTlsSocket]
     let serverAddress: ServerAddress = { address: serverIp, port: serverPort, family: 1 };
     let opt: socket.TLSSecureOptions = {
       ca: [ca],
       cert: cert,
       key: privateKey
     };
+    // [EndExclude two-way_bindTlsSocket]
+    // 确保bind成功后，再订阅TLS Socket相关的订阅事件
+    tlsSocket!.on('message', (value: SocketInfo) => {
+      hilog.info(0x0000, 'testTag', 'on message');
+      let buffer = value.message;
+      let dataView = new DataView(buffer);
+      let str = '';
+      for (let i = 0; i < dataView.byteLength; ++i) {
+        str += String.fromCharCode(dataView.getUint8(i));
+      }
+      hilog.info(0x0000, 'testTag', 'on connect received:' + str);
+    });
 
+    tlsSocket!.on('connect', () => {
+      // [StartExclude two-way_bindTlsSocket]
+      connectFlag = true;    
+      // [EndExclude two-way_bindTlsSocket]
+      hilog.info(0x0000, 'testTag', 'on connect');
+    });
+    // 监听连接关闭
+    tlsSocket!.on('close', () => { 
+      hilog.info(0x0000, 'testTag', 'on close');
+      // [StartExclude two-way_bindTlsSocket]
+      connectFlag = false;
+      workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
+      // [EndExclude two-way_bindTlsSocket]
+    });
     tlsSocket!.connect({ address: serverAddress, secureOptions: opt }).then(() => {
+      hilog.info(0x0000, 'testTag', 'Connected successfully');
+      // [StartExclude two-way_bindTlsSocket]
       workerPort.postMessage({ type: 'connectSuccess', status: 'Connected successfully' });
-
-      // 监听消息
-      tlsSocket!.on('message', (data) => {
-        let receivedMsg = buf2String(data.message);
-        workerPort.postMessage({ type: 'serverMessage', message: receivedMsg });
-      });
-
-      // 监听连接关闭
-      tlsSocket!.on('close', () => {
-        tlsSocket = null; // 清理连接
-        workerPort.postMessage({ type: 'connectionClosed', status: 'Connection closed by server' });
-      });
+      // [EndExclude two-way_bindTlsSocket]
     }).catch((e: BusinessError) => {
-      tlsSocket = null;
+      hilog.error(0x0000, 'testTag', `Failed to connect: ${e.message}`);
+      // [StartExclude two-way_bindTlsSocket]
       workerPort.postMessage({ type: 'connectFailure', status: `Failed to connect: ${e.message}` });
+      // [EndExclude two-way_bindTlsSocket]
     });
   }).catch((e: BusinessError) => {
-    tlsSocket = null;
+    hilog.error(0x0000, 'testTag', 'bind fail');
+    // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'connectFailure', status: `Failed to bind socket: ${e.message}` });
+    // [EndExclude two-way_bindTlsSocket]
   });
+  // [StartExclude two-way_bindTlsSocket]
 }
 
 // 发送消息到服务器
 function sendMessageToServer(message: string) {
-  if (!tlsSocket) {
+  if (!tlsSocket && connectFlag) {
     workerPort.postMessage({ type: 'sendMessageFailure', message: 'TLS connection is not established.' });
     return;
   }
-
-  tlsSocket.send(message + '\r\n').then(() => {
+  // [EndExclude two-way_bindTlsSocket]
+  tlsSocket!.send('message').then(() => {
+    hilog.info(0x0000, 'testTag', 'send successfully');
+    // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'sendMessageSuccess', message: message });
-  }).catch((e: Error) => {
+    // [Start two-way_closeTlsSocket]
+    // 连接使用完毕后，主动关闭，并取消相关事件的订阅。
+    tlsSocket!.close((err: BusinessError) => {
+      if (err) {
+        hilog.error(0x0000, 'testTag', 'close callback error = ' + err);
+      } else {
+        hilog.info(0x0000, 'testTag', 'close success');
+      }
+      tlsSocket!.off('message');
+      tlsSocket!.off('connect');
+      tlsSocket!.off('close');
+    });
+    // [End two-way_closeTlsSocket]
+    // [EndExclude two-way_bindTlsSocket]
+  }).catch((e: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'send failed ' + JSON.stringify(e));
+    // [StartExclude two-way_bindTlsSocket]
     workerPort.postMessage({ type: 'sendMessageFailure', message: e.message });
+    // [EndExclude two-way_bindTlsSocket]
   });
+  // [End two-way_bindTlsSocket]
 }
-// [End two-way_authentication_via_tls_socket]
 
 // ArrayBuffer 转 utf8 字符串
 function buf2String(buf: ArrayBuffer): string {

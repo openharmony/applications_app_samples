@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/canvas/CanvasRenderingContext2D",
+    "pages/canvas/CanvasComponentBasicShapes",
+    "pages/canvas/CanvasComponentCustomFontsDrawText",
+    "pages/canvas/CanvasComponentDrawingMethod",
+    "pages/canvas/CanvasComponentDrawingPictureAndImagePixel",
+    "pages/canvas/CanvasComponentOtherMethods",
+    "pages/canvas/CanvasComponentText",
+    "pages/canvas/CanvasComponentTextBorder",
+    "pages/canvas/CanvasContentUpdate",
+    "pages/canvas/DrawDraggableCursor",
+    "pages/canvas/DrawingRegularBaseShape",
+    "pages/canvas/DrawIrregularFigures",
+    "pages/canvas/InitCanvasComponent",
+    "pages/canvas/OffScreenDrawing"
+  ]
+}

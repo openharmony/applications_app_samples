@@ -34,6 +34,7 @@ export struct CustomPopupExample {
 
         Column() {
           Button('CustomPopupOptions')
+            .id('CustomPopupOptions')
             .margin({ top: 300 })
             .onClick(() => {
               this.customPopup = !this.customPopup;
@@ -57,6 +58,7 @@ export struct CustomPopupExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.custom_popup')需要替换为开发者所需的资源文件。
     .title($r('app.string.custom_popup'))
   }
 }

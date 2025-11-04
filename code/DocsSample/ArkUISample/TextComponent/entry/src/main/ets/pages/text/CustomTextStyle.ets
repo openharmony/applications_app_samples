@@ -244,6 +244,11 @@ export struct CustomTextStyle {
                 .border({ width: 1 })
                 .padding(10)
               // [End custom_the_text_by_text_case]
+              // [Start custom_the_text_fontFamily]
+              Text('This is the text content with fontFamily')
+                .fontSize(30)
+                .fontFamily('HarmonyOS Sans')
+              // [End custom_the_text_fontFamily]
             }
           }
 

@@ -9,9 +9,9 @@
 
 ### 效果预览
 
-| 主界面 |选择设备|权限申请|
-|---|---|---|
-| <img src=".\screenshot\image.png" width="360;">  |<img src=".\screenshot\image2.png" width="360;">|<img src=".\screenshot\image3.png" width="360;">|
+| 主界面 |权限申请|
+|---|---|
+| <img src=".\screenshot\image.png" width="360;">  |<img src=".\screenshot\image3.png" width="360;">|
 | 预览 |照片文件|
 | <img src=".\screenshot\image4.png" width="360;">  |<img src=".\screenshot\image5.png" width="360;">
 ### 使用说明
@@ -22,6 +22,7 @@
 4.  连接成功后，远端摄像头的预览画面将实时显示在应用屏幕上。
 5.  点击屏幕下方的圆形白色拍照按钮，即可控制远端设备进行拍照。
 6.  拍摄的照片会自动保存到应用的沙箱目录中。
+   > 参考路径: /data/app/el2/100/com.ohos.HapAppDcameraSample/haps/entry/files
 7.  退出应用或应用进入后台时，会自动释放相机资源。
 
 ### 工程目录

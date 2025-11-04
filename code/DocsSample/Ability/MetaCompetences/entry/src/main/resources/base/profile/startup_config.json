@@ -3,7 +3,7 @@
   "startupTasks": [
     {
       "name": "StartupTask_001",
-      "srcEntry": "./ets/startup/StartupTask_001.ets",
+      "srcEntry": "./ets/startup/StartupTask001.ets",
       "dependencies": [
         "StartupTask_002",
         "StartupTask_003"
@@ -13,7 +13,7 @@
     },
     {
       "name": "StartupTask_002",
-      "srcEntry": "./ets/startup/StartupTask_002.ets",
+      "srcEntry": "./ets/startup/StartupTask002.ets",
       "dependencies": [
         "StartupTask_003",
         "StartupTask_004"
@@ -23,7 +23,7 @@
     },
     {
       "name": "StartupTask_003",
-      "srcEntry": "./ets/startup/StartupTask_003.ets",
+      "srcEntry": "./ets/startup/StartupTask003.ets",
       "dependencies": [
         "StartupTask_004"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "name": "StartupTask_004",
-      "srcEntry": "./ets/startup/StartupTask_004.ets",
+      "srcEntry": "./ets/startup/StartupTask004.ets",
       "runOnThread": "taskPool",
       "waitOnMainThread": false,
       "schedulerPhase": "preAbilityStageLoad",
@@ -44,7 +44,7 @@
     },
     {
       "name": "StartupTask_005",
-      "srcEntry": "./ets/startup/StartupTask_005.ets",
+      "srcEntry": "./ets/startup/StartupTask005.ets",
       "dependencies": [
         "StartupTask_006"
       ],
@@ -54,7 +54,7 @@
     },
     {
       "name": "StartupTask_006",
-      "srcEntry": "./ets/startup/StartupTask_006.ets",
+      "srcEntry": "./ets/startup/StartupTask006.ets",
       "runOnThread": "mainThread",
       "waitOnMainThread": false,
       "excludeFromAutoStart": true,

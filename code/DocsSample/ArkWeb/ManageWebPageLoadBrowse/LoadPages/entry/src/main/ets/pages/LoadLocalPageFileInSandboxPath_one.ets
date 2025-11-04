@@ -26,9 +26,12 @@ struct WebComponent {
 
   build() {
     Column() {
+      // [StartExclude load_local_page_file_in_sandbox_path]
       Text('loading success');
+      // [EndExclude load_local_page_file_in_sandbox_path]
       // 加载沙箱路径文件。
-      Web({ src: url, controller: this.controller });
+      Web({ src: url, controller: this.controller })
+      .fileAccess(true);
     }
   }
 }

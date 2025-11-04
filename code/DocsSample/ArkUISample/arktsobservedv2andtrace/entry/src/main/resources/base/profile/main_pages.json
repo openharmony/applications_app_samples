@@ -1,0 +1,20 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/overview/Limitations",
+    "pages/overview/RealizeObservation",
+    "pages/overview/ObserveChanges",
+    "pages/overview/InheritedChanges",
+    "pages/overview/StaticAttribute",
+    "pages/usagerestrictions/UiRefreshCannotTriggered",
+    "pages/usagerestrictions/UseMixture",
+    "pages/usagerestrictions/InheritanceMixture",
+    "pages/usagescenarios/NestedClass",
+    "pages/usagescenarios/InheritanceClass",
+    "pages/usagescenarios/DecorationFoundation",
+    "pages/usagescenarios/DecorativeObject",
+    "pages/usagescenarios/DecorationMap",
+    "pages/usagescenarios/DecorationSet",
+    "pages/usagescenarios/DecorateDate"
+  ]
+}

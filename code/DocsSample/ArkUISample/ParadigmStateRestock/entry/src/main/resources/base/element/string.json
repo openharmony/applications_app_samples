@@ -1,0 +1,156 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "builder_param",
+      "value": "@BuilderParam装饰器：引用@Builder函数"
+    },
+    {
+      "name": "builder_param_init_method",
+      "value": "@BuilderParam装饰器:初始化@BuilderParam装饰的方法"
+    },
+    {
+      "name": "builder_param_init_method_demo01",
+      "value": "@BuilderParam装饰器:使用父组件自定义构建函数初始化子组件@BuilderParam装饰的方法。"
+    },
+    {
+      "name": "builder_param_init_method_demo02",
+      "value": "@BuilderParam装饰器:需要注意this的指向。"
+    },
+    {
+      "name": "builder_param_scene_init_component",
+      "value": "使用场景:参数初始化组件。"
+    },
+    {
+      "name": "builder_param_scene_trailing_closure_01",
+      "value": "使用场景:尾随闭包初始化组件--示例1"
+    },
+    {
+      "name": "builder_param_scene_trailing_closure_02",
+      "value": "使用场景:尾随闭包初始化组件--示例2"
+    },
+    {
+      "name": "builder_param_scene_jump_logic",
+      "value": "使用场景:使用@BuilderParam隔离多组件对@Builder跳转逻辑的调用"
+    },
+    {
+      "name": "builder_param_scene_global_local_init",
+      "value": "使用场景:使用全局和局部@Builder初始化@BuilderParam"
+    },
+    {
+      "name": "builder_param_scene_in_component_v2",
+      "value": "使用场景:在@ComponentV2装饰的自定义组件中使用@BuilderParam"
+    },
+    {
+      "name": "builder_param_scene_text_01",
+      "value": "全局 Builder: %s"
+    },
+    {
+      "name": "builder_param_scene_text_02",
+      "value": "局部 Builder :%s"
+    },
+    {
+      "name": "builder_param_problem_not_refresh_opposite",
+      "value": "常见问题:改变内容UI不刷新--反例"
+    },
+    {
+      "name": "builder_param_problem_not_refresh_positive",
+      "value": "常见问题:改变内容UI不刷新--正例"
+    },
+    {
+      "name": "builder_param_problem_combined_opposite",
+      "value": "常见问题:@Require装饰器和@BuilderParam装饰器联合使用--反例"
+    },
+    {
+      "name": "builder_param_problem_combined_positive",
+      "value": "常见问题:@Require装饰器和@BuilderParam装饰器联合使用--正例"
+    },
+    {
+      "name": "builder_param_problem_must_builder_opposite",
+      "value": "常见问题:@BuilderParam装饰器初始化的值必须为@Builder--反例"
+    },
+    {
+      "name": "builder_param_problem_must_builder_positive",
+      "value": "常见问题:@BuilderParam装饰器初始化的值必须为@Builder--正例"
+    },
+    {
+      "name": "mixed_state_manage_v1_v2",
+      "value": "状态管理V1V2混用文档"
+    },
+    {
+      "name": "state_manage_mixed_paradigm_v1_to_v2",
+      "value": "状态管理V1V2混用范式：V1->V2"
+    },
+    {
+      "name": "state_manage_mixed_paradigm_v2_to_v1",
+      "value": "状态管理V1V2混用范式：V2->V1"
+    },
+    {
+      "name": "state_mixed_scene_js_v1_v2_recommend",
+      "value": "常见场景：普通JS Object V1->V2--推荐写法"
+    },
+    {
+      "name": "state_mixed_scene_js_v1_v2_not_recommend",
+      "value": "常见场景：普通JS Object V1->V2--不推荐写法"
+    },
+    {
+      "name": "state_mixed_scene_js_v2_v1_recommend",
+      "value": "常见场景：普通JS Object V2->V1--推荐写法"
+    },
+    {
+      "name": "state_mixed_scene_js_v2_v1_not_recommend",
+      "value": "常见场景：普通JS Object V2->V1--不推荐写法"
+    },
+    {
+      "name": "state_mixed_scene_observed_class_v1_v2",
+      "value": "常见场景：@Observed装饰的class--V1->V2"
+    },
+    {
+      "name": "state_mixed_scene_observed_class_v2_v1",
+      "value": "常见场景：@Observed装饰的class--V2->V1"
+    },
+    {
+      "name": "state_mixed_scene_built_type_v1_v2_recommend",
+      "value": "常见场景：内置类型 V1->V2--推荐写法"
+    },
+    {
+      "name": "state_mixed_scene_built_type_v1_v2_not_recommend",
+      "value": "常见场景：内置类型 V1->V2--不推荐写法"
+    },
+    {
+      "name": "state_mixed_scene_built_type_v2_v1_recommend",
+      "value": "常见场景：内置类型 V2->V1--推荐写法"
+    },
+    {
+      "name": "state_mixed_scene_built_type_v2_v1_not_recommend",
+      "value": "常见场景：内置类型 V2->V1--不推荐写法"
+    },
+    {
+      "name": "state_mixed_scene_two_bit_array_v1_v2",
+      "value": "常见场景：二维数组 V1->V2"
+    },
+    {
+      "name": "state_mixed_scene_two_bit_array_v2_v1",
+      "value": "常见场景：二维数组 V2->V1"
+    },
+    {
+      "name": "state_mixed_scene_nested_type_v1_v2",
+      "value": "常见场景：嵌套类型 V1->V2"
+    },
+    {
+      "name": "state_mixed_scene_nested_type_v2_v1",
+      "value": "常见场景：嵌套类型 V2->V1"
+    }
+  ]
+}

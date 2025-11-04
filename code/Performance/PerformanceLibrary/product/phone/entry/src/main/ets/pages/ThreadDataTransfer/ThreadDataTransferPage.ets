@@ -20,7 +20,7 @@ import { ThreadDataTransferHomePage } from '@ohos/ThreadDataTransfer';
 struct ThreadDataTransferPage {
   build() {
     Column() {
-      ThreadDataTransferHomePage()
+      ThreadDataTransferHomePage();
     }
   }
 }

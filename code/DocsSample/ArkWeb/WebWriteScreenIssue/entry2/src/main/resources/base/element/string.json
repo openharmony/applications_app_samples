@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Entry2Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Entry2Ability_label",
+      "value": "label"
+    }
+  ]
+}

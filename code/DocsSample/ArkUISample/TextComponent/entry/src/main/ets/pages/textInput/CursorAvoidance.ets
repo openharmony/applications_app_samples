@@ -33,13 +33,16 @@ export struct CursorAvoidance {
     'or someone we hardly know. As a result, what we do remember is anything that makes others happy, ' +
     'anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
   ';
-  //  : string = getResourceString($r('app.string.CursorAvoidance_Button_1'));
+  // [StartExclude cursor_avoid]
   @State str1 : string = getContext(this).resourceManager.getStringSync($r('app.string.CursorAvoidance_Button_1'));
   @State str2 : string = getContext(this).resourceManager.getStringSync($r('app.string.CursorAvoidance_Button_2'));
+  // [EndExclude cursor_avoid]
 
   build() {
+    // [StartExclude cursor_avoid]
     NavDestination() {
       ComponentCard({ title: $r('app.string.CursorAvoidance_title') }) {
+        // [EndExclude cursor_avoid]
         Scroll() {
           Column() {
             Row() {
@@ -60,10 +63,12 @@ export struct CursorAvoidance {
               .fontSize('20fp')
           }
         }.width('100%').height('100%')
+        // [StartExclude cursor_avoid]
       }
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CursorAvoidance_title'))
+    // [EndExclude cursor_avoid]
   }
 }
 // [End cursor_avoid]

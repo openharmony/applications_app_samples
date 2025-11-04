@@ -12,40 +12,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//  [Start media_libraryfile]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// [StartExclude media_libraryfile]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'Sample_imagecomponent';
+// [EndExclude media_libraryfile]
 @Entry
 @Component
-struct MyComponent9 {
+struct MediaLibraryFile {
   @State imgDatas: string[] = [];
   // 获取照片url集
   getAllImg() {
     try {
-      let photoSelectOptions:photoAccessHelper.PhotoSelectOptions  = new photoAccessHelper.PhotoSelectOptions();
+      let photoSelectOptions:photoAccessHelper.PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
       photoSelectOptions.maxSelectNumber = 5;
       let photoPicker:photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
       photoPicker.select(photoSelectOptions).then((photoSelectResult:photoAccessHelper.PhotoSelectResult) => {
         this.imgDatas = photoSelectResult.photoUris;
-        console.info('PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
+        hilog.info(DOMAIN, TAG,'PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
       }).catch((err:Error) => {
         let message = (err as BusinessError).message;
         let code = (err as BusinessError).code;
-        console.error(`PhotoViewPicker.select failed with. Code: ${code}, message: ${message}`);
+        hilog.info(DOMAIN, TAG,`PhotoViewPicker.select failed with. Code: ${code}, message: ${message}`);
       });
     } catch (err) {
       let message = (err as BusinessError).message;
       let code = (err as BusinessError).code;
-      console.error(`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);
-    }
-  }
+      hilog.info(DOMAIN, TAG,`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);
+    };
+  };
 
   // aboutToAppear中调用上述函数，获取图库的所有图片url，存在imgDatas中
   async aboutToAppear() {
     this.getAllImg();
-  }
+  };
   // 使用imgDatas的url加载图片。
   build() {
     Column() {
@@ -60,3 +65,4 @@ struct MyComponent9 {
     }.width('100%').height('100%')
   }
 }
+//  [End media_libraryfile]

@@ -21,18 +21,20 @@
 #include <js_native_api_types.h>
 
 namespace NativeModule {
-
     napi_value CreateNativeRoot(napi_env env, napi_callback_info info);
     napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info);
+    napi_value CreateCustomPropertyDemo(napi_env env, napi_callback_info info);
     napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info);
-
+    napi_value CreateNodeAdapterDemo(napi_env env, napi_callback_info info);
+    napi_value DisposeNodeTree(napi_env env, napi_callback_info info);
     napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
-
     napi_value GetContext(napi_env env, napi_callback_info info);
-
     napi_value GetNodeHandle(napi_env env, napi_callback_info info);
     napi_value GetNodeHandleById(napi_env env, napi_callback_info info);
     napi_value GetNodeHandleByUniqueId(napi_env env, napi_callback_info info);
+    napi_value CreateDrawNode(napi_env env, napi_callback_info info);
+    napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
+
     const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
     // 管理Native组件的生命周期和内存。
     class NativeEntry {
@@ -49,7 +51,7 @@ namespace NativeModule {
 
         void SetNodeHandle(ArkUI_NodeHandle handle) { nodeHandle_ = handle; }
 
-        void SetWindowName();
+        void GetWindowName();
 
         void SetRootNode(const std::shared_ptr<ArkUIBaseNode> &baseNode)
         {

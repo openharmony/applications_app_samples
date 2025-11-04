@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,6 +32,14 @@ export struct CreateButton {
           Button('Button', { type: ButtonType.Capsule, stateEffect: true })
             .id('button')
           // [End create_button_by_label]
+
+          // [Start create_button_by_label2]
+          Button('Ok', { type: ButtonType.Normal, stateEffect: true })
+            .borderRadius(8)
+            .backgroundColor(0x317aff)
+            .width(90)
+            .height(40)
+          // [End create_button_by_label2]
         }
 
         ComponentCard({
@@ -46,6 +54,15 @@ export struct CreateButton {
             }.alignItems(VerticalAlign.Center).justifyContent(FlexAlign.Center).width(90).height(40)
           }.id('button_back')
           // [End create_button_by_button_options]
+
+          // [Start create_button_by_button_options2]
+          Button({ type: ButtonType.Normal, stateEffect: true }) {
+            Row() {
+              Image($r('app.media.loading')).width(20).height(40).margin({ left: 12 })
+              Text('loading').fontSize(12).fontColor(0xffffff).margin({ left: 5, right: 12 })
+            }.alignItems(VerticalAlign.Center)
+          }.borderRadius(8).backgroundColor(0x317aff).width(90).height(40)
+          // [End create_button_by_button_options2]
         }
       }
       .width('100%')

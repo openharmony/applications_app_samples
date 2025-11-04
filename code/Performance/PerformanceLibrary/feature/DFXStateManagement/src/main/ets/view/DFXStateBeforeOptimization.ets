@@ -50,12 +50,12 @@ struct SpecialImage {
           x: this.specialImageUiStyle.scaleX,
           y: this.specialImageUiStyle.scaleY
         })
-        .opacity(this.isRenderSpecialImage())
-      Text("SpecialImage")
+        .opacity(this.isRenderSpecialImage());
+      Text('SpecialImage')
         .fontColor($r('app.color.text_color'))
         .fontWeight(FontWeight.Medium)
         .fontSize($r('app.integer.button_font_size'))
-        .margin({ top: $r('app.integer.text_margin_top') })
+        .margin({ top: $r('app.integer.text_margin_top') });
     }
     .backgroundColor($r('app.color.stack_color'))
     .width($r('app.integer.stack_width'))
@@ -74,7 +74,7 @@ struct ComponentA {
       // 使用状态变量的组件
       SpecialImage({
         specialImageUiStyle: this.uiStyle
-      })
+      });
       Stack() {
         Column() {
           Image($r('app.media.icon'))
@@ -87,10 +87,10 @@ struct ComponentA {
             .height($r('app.integer.stack_icon_height'))
         }
         .width('100%')
-        .position({ y: $r('app.integer.stack_column_position_y') })
+        .position({ y: $r('app.integer.stack_column_position_y') });
 
         Stack() {
-          Text("Hello World")
+          Text('Hello World')
             .fontColor($r('app.color.text_color'))
             .fontWeight(FontWeight.Medium)
             .fontSize($r('app.integer.button_font_size'))
@@ -125,8 +125,8 @@ struct ComponentA {
               duration: animationDuration
             }, () => {
               this.uiStyle.translateY = (this.uiStyle.translateY + translateYChangeValue) % translateYChangeRange;
-            })
-          })
+            });
+          });
         Button('Scale')
           .backgroundColor($r('app.color.button_color'))
           .fontSize($r('app.integer.button_font_size'))
@@ -134,7 +134,7 @@ struct ComponentA {
           .margin({ bottom: $r('app.integer.button_margin_bottom') })
           .onClick(() => {
             this.uiStyle.scaleX = (this.uiStyle.scaleX + scaleXChangeValue) % scaleXChangeRange;
-          })
+          });
       }
       .position({
         y: $r('app.integer.button_column_position_y')
@@ -155,7 +155,7 @@ export struct DFXStateBeforeOptimization {
     Stack() {
       ComponentA({
         uiStyle: this.uiStyle
-      })
+      });
     }
     .backgroundColor($r('app.color.stack_background'))
   }

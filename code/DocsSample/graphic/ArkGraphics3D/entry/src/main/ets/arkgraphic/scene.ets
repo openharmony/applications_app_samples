@@ -14,7 +14,6 @@
  */
 
 import { router } from '@kit.ArkUI';
-import logger from '../utils/Logger';
 
 @Entry
 @Component
@@ -31,10 +30,10 @@ struct scenePage {
             url: 'scene/init'
           }, router.RouterMode.Standard, (err) => {
             if (err) {
-              logger.error('Invoke replaceUrl failed, code is %{public}s, message is %{public}s');
+              console.error('Invoke replaceUrl failed, code is %{public}s, message is %{public}s');
               return;
             }
-            logger.info('Invoke replaceUrl succeeded.');
+            console.info('Invoke replaceUrl succeeded.');
           });
         })
         .width('80%')
@@ -50,10 +49,10 @@ struct scenePage {
             url: 'scene/camera'
           }, router.RouterMode.Standard, (err) => {
             if (err) {
-              logger.error('Invoke replaceUrl failed, code is %{public}s, message is %{public}s');
+              console.error('Invoke replaceUrl failed, code is %{public}s, message is %{public}s');
               return;
             }
-            logger.info('Invoke replaceUrl succeeded.');
+            console.info('Invoke replaceUrl succeeded.');
           });
         })
         .width('80%')
@@ -69,10 +68,10 @@ struct scenePage {
             url: 'scene/light'
           }, router.RouterMode.Standard, (err) => {
             if (err) {
-              logger.error('Invoke replaceUrl failed, code is %{public}s, message is %{public}s');
+              console.error('Invoke replaceUrl failed, code is %{public}s, message is %{public}s');
               return;
             }
-            logger.info('Invoke replaceUrl succeeded.');
+            console.info('Invoke replaceUrl succeeded.');
           });
         })
         .width('80%')

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start animation_template2_start]
 import { curves } from '@kit.ArkUI';
 
 @Entry
@@ -67,3 +68,4 @@ struct SpringMotionDemo {
     }.height('100%').width('100%')
   }
 }
+// [End animation_template2_start]

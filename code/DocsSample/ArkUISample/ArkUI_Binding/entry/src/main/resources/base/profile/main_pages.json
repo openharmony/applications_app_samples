@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Binding_Star",
+    "pages/Sys_Binding"
+  ]
+}

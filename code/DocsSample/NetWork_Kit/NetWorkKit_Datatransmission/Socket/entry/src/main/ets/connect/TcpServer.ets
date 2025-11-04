@@ -15,7 +15,7 @@
 
 import { TcpMessage } from './TcpClient';
 import { MessageEvents, worker } from '@kit.ArkTS';
-import Logger from '../common/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const workerPort = new worker.ThreadWorker('entry/ets/workers/TcpServerWorker.ets');
 
@@ -182,7 +182,7 @@ struct Index {
   // 启动服务器
   startServer() {
     if (!this.serverIp || !this.serverPort) {
-      Logger.error('Some required fields are missing.');
+      hilog.error(0x0000, 'testTag', 'Some required fields are missing.');
       this.msgHistory += 'Some required fields are missing.' + '\r\n';
       return;
     }
@@ -194,7 +194,7 @@ struct Index {
       message: this.message,
     };
 
-    Logger.info(tcpMessage.serverIp! + tcpMessage.serverPort);
+    hilog.info(0x0000, 'testTag', tcpMessage.serverIp! + tcpMessage.serverPort);
     workerPort.postMessage(
       tcpMessage
     );
@@ -222,7 +222,7 @@ struct Index {
   // 发送消息到服务端
   sendMessage() {
     if (!this.message) {
-      Logger.error('Some required fields are missing.');
+      hilog.error(0x0000, 'testTag', 'Some required fields are missing.');
       this.msgHistory += 'Some required fields are missing.' + '\r\n';
       return;
     }

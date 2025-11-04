@@ -15,21 +15,27 @@
 
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { ComponentId } from '../common/CommonConstant';
 import Logger from '../common/Logger';
 import { notificationUtil } from '../notification/NotificationUtil';
+import { showToast } from '../common/ShowToast';
+import { VpnTest as GetVpnIdTest } from '../vpnability/GetVpnIdTest';
+import { VpnTest as DestroyVpnTest } from '../vpnability/DestroyVpnTest';
 
 // 常量定义
 const TITLE_FONT_SIZE = 35; // 标题字体大小
 const BUTTON_FONT_SIZE = 25; // 按钮字体大小
 const BUTTON_MARGIN = 16; // 按钮边距
+const TOAST_DURATION = 2000; // Toast 显示时间
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'VPN';
   @State flag: string = 'wait';
-
+  getVpnIdTest: GetVpnIdTest = new GetVpnIdTest();
+  destroyVpnTest: DestroyVpnTest = new DestroyVpnTest();
 
   aboutToAppear(): void {
     notificationUtil.enableNotification();
@@ -43,15 +49,15 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .id(this.flag)
           .onClick(() => {
-            Logger.info('developTag', '%{public}s', 'vpn Client');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'vpn Client');
           })
 
         // Start VPN 按钮
         Button($r('app.string.Start_VPN'))
           .onClick(() => {
-            Logger.info('developTag', '%{public}s', 'Succeeded in clicking the button.');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'Succeeded in clicking the button.');
             router.pushUrl({ url: 'pages/StartVpn' }).then(() => {
-              Logger.info('developTag', '%{public}s', 'Succeeded in jumping to the second page.');
+              hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
               this.flag = 'Pass';
             }).catch((err: BusinessError) => {
               Logger.error('developTag', 'Failed to jump to the second page: %{public}s',
@@ -67,9 +73,9 @@ struct Index {
         // Stop VPN 按钮
         Button($r('app.string.Stop_VPN'))
           .onClick(() => {
-            Logger.info('developTag', '%{public}s', 'Succeeded in clicking the button.');
+            hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'Succeeded in clicking the button.');
             router.pushUrl({ url: 'pages/StopVpn' }).then(() => {
-              Logger.info('developTag', '%{public}s', 'Succeeded in jumping to the second page.');
+              hilog.info(0x0000, 'testTag', 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
               this.flag = 'Pass';
             }).catch((err: BusinessError) => {
               Logger.error('developTag', 'Failed to jump to the second page: %{public}s',
@@ -80,7 +86,30 @@ struct Index {
           .id(ComponentId.STOP_VPN_BUTTON)
           .width('70%')
           .fontSize(BUTTON_FONT_SIZE)
-      }.width('100%')
-    }.height('100%')
+          .margin(BUTTON_MARGIN);
+
+        //生成VPN Id
+        Button('getVpnId').onClick(() => {
+          let vpnId: string = this.getVpnIdTest.getVpnId();
+          showToast('vpn getVpnId Success', TOAST_DURATION);
+          hilog.info(0x0000, 'testTag', vpnId);
+        }).width('70%')
+          .fontSize(BUTTON_FONT_SIZE)
+          .margin(BUTTON_MARGIN);
+
+        //断开VPN
+        Button('destroy').onClick(() => {
+          let idDestroy: boolean = this.destroyVpnTest.destroy();
+          if (idDestroy) {
+            showToast('vpn destroy Success', TOAST_DURATION);
+          } else {
+            showToast('vpn destroy fail', TOAST_DURATION);
+          }
+        }).width('70%')
+          .fontSize(BUTTON_FONT_SIZE)
+          .margin(BUTTON_MARGIN);
+
+      }.width('100%');
+    }.height('100%');
   }
 }

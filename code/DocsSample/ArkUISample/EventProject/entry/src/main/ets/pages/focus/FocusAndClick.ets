@@ -47,8 +47,10 @@ export struct FocusAndClick {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
+    // [StartExclude dynamic_focus_click_count]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Focus_FocusAndClick_title'))
+    // [EndExclude dynamic_focus_click_count]
   }
 }
 // [End dynamic_focus_click_count]

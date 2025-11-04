@@ -13,18 +13,20 @@
  * limitations under the License.
  */
 
-import { Want } from '@kit.AbilityKit'
+// [Start embedded_start]
+import { Want } from '@kit.AbilityKit';
 
 @Component
 export struct Embedded {
-  @State message: string = 'Message: '
+  @State message: string = 'Message: ';
   private want: Want = {
     bundleName: 'com.samples.uiextensionandaccessibility',
     abilityName: 'ExampleEmbeddedAbility',
-  }
-
+  };
   build() {
+    // [StartExclude embedded_start]
     NavDestination() {
+      // [EndExclude embedded_start]
       Row() {
         Column() {
           Text(this.message).fontSize(30)
@@ -33,18 +35,22 @@ export struct Embedded {
             .height('90%')
             .onTerminated((info) => {
               // 点击extension页面内的terminateSelfWithResult按钮后触发onTerminated回调，文本框显示如下信息
-              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+              this.message = `Termination: code = ${info.code} , want = ${JSON.stringify(info.want)}`;
             })
             .onError((error) => {
               // 失败或异常触发onError回调，文本框显示如下报错内容
-              this.message = 'Error: code = ' + error.code;
+              this.message = `Error: code = ${error.code}`;
             })
         }
         .width('100%')
       }
       .height('100%')
     }
+    // [StartExclude embedded_start]
     .backgroundColor('#f1f2f3')
-    .title($r('app.string.Embedded_Component_title'))
+      // $r('app.media.Embedded_Component_title')需要替换为开发者所需的文本资源文件
+      .title($r('app.string.Embedded_Component_title'))
+    // [EndExclude embedded_start]
   }
 }
+// [End embedded_start]

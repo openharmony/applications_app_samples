@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start animation_template1_start]
 import { curves } from '@kit.ArkUI';
 
-class SetSlt {
+class SetAnimationVariables {
   isAnimation: boolean = true
 
   set(): void {
@@ -26,7 +27,7 @@ class SetSlt {
 @Component
 struct AnimationToAnimationDemo {
   // 第一步：声明相关状态变量
-  @State setAnimation: SetSlt = new SetSlt();
+  @State setAnimation: SetAnimationVariables = new SetAnimationVariables();
 
   build() {
     Column() {
@@ -58,3 +59,4 @@ struct AnimationToAnimationDemo {
     .justifyContent(FlexAlign.Center)
   }
 }
+// [End animation_template1_start]

@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-
 @Entry
 @Component
 struct Index {
@@ -22,7 +20,7 @@ struct Index {
   @State text: string = '';
 
   openPage(pageName: string) {
-    router.pushUrl({
+    this.getUIContext().getRouter().pushUrl({
       url: 'securitycomponent/pages/' + pageName,
     });
   }

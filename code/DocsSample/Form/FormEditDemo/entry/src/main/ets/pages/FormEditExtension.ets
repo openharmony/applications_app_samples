@@ -13,61 +13,73 @@
  * limitations under the License.
  */
 
+// [Start FormEditDemo_FormEditExtension]
+// entry/src/main/ets/pages/FormEditExtension.ets
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { formBindingData, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { PreferencesUtil } from '../common/PreferencesUtil'
+import { FormData } from '../common/CommonData';
+import { preferences } from '@kit.ArkData';
+import FormEditExtensionContext from 'application/FormEditExtensionContext';
 
 const TAG: string = 'FormEditDemo[Extension] -->';
 let storage: LocalStorage = ExtensionEvent.getStorage();
+const DOMAIN = 0xFF00;
 
 @Entry(storage)
 @Component
 struct FormEditExtension {
-  @State message1: string = 'message one';
-  @State message2: string = 'message two';
-  private formId: string | undefined = storage.get('formId')
-  private previewFormId: string | undefined = storage.get('previewFormId')
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-  private extensionEvent: ExtensionEvent | undefined = storage.get<ExtensionEvent>('extensionEvent');
+  context1 = this.getUIContext().getHostContext();
+  @State message1: string = this.context1!.resourceManager.getStringSync($r('app.string.button_one').id);
+  @State message2: string = this.context1!.resourceManager.getStringSync($r('app.string.button_two').id);
+  private formId: string = storage.get('formId') as string;
+  private previewFormId: string = storage.get('previewFormId') as string;
+  private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session') as UIExtensionContentSession;
+  private extensionEvent: ExtensionEvent = storage.get<ExtensionEvent>('extensionEvent') as ExtensionEvent;
+  private context: FormEditExtensionContext = storage.get<FormEditExtensionContext>('context') as FormEditExtensionContext;
   updateForm(message: string) {
+    if (!this.formId && !this.previewFormId) {
+      return;
+    }
     let param: Record<string, string> = {
       'message': message
     }
+    let util = PreferencesUtil.getInstance();
+    let preferences = util.getPreferences(this.context) as preferences.Preferences;
+    util.preferencesPut(preferences, this.formId, new FormData(this.formId, message));
     let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
-    if (!this.formId) {
-      console.error(TAG, 'formId is empty');
-      return;
-    }
     try {
       formProvider.updateForm(this.formId, obj, (error: BusinessError) => {
         if (error) {
-          console.error(TAG, `callback error, code: ${error.code}, message: ${error.message})`);
+          hilog.error(DOMAIN, TAG, `callback error, code: ${error.code}, message: ${error.message})`);
           return;
         }
-        console.log(TAG, `formProvider updateForm success`);
+        hilog.info(DOMAIN, TAG, `formProvider updateForm success`);
       });
     } catch (error) {
-      console.error(TAG, `catch error, code: ${JSON.stringify(error)})`);
+      hilog.error(DOMAIN, TAG, `catch error, code: ${JSON.stringify(error)})`);
     }
     if (!this.previewFormId) {
-      console.error(TAG, 'previewFormId is empty');
+      hilog.error(DOMAIN, TAG, 'previewFormId is empty');
       return;
     }
     try {
       formProvider.updateForm(this.previewFormId, obj, (error: BusinessError) => {
         if (error) {
-          console.error(TAG, `callback error, code: ${error.code}, message: ${error.message})`);
+          hilog.error(DOMAIN, TAG, `callback error, code: ${error.code}, message: ${error.message})`);
           return;
         }
-        console.log(TAG, `formProvider updateForm success`);
+        hilog.info(DOMAIN, TAG, `formProvider updateForm success`);
       });
     } catch (error) {
-      console.error(TAG, `catch error, code: ${JSON.stringify(error)})`);
+      hilog.error(DOMAIN, TAG, `catch error, code: ${JSON.stringify(error)})`);
     }
   }
   onPageShow() {
-    console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    hilog.info(DOMAIN, TAG, `${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
   }
   build() {
     Row() {
@@ -79,7 +91,7 @@ struct FormEditExtension {
             top: 20
           })
           .onClick(() => {
-            console.info(`${TAG} Button1 onClick ${storage.get('message')}`);
+            hilog.info(DOMAIN, TAG, `${TAG} Button1 onClick ${storage.get('message')}`);
             this.updateForm(this.message1);
             storage.setOrCreate('message', this.message1);
           })
@@ -90,7 +102,7 @@ struct FormEditExtension {
             top: 20
           })
           .onClick(() => {
-            console.info(`${TAG} Button2 onClick`);
+            hilog.info(DOMAIN, TAG, `${TAG} Button2 onClick`);
             this.updateForm(this.message2);
             storage.setOrCreate('message', this.message2);
           })
@@ -101,7 +113,7 @@ struct FormEditExtension {
             top: 20
           })
           .onClick(async () => {
-            console.info(`${TAG} Button onClick`);
+            hilog.info(DOMAIN, TAG, `${TAG} Button onClick`);
             this.extensionEvent?.startFormEditSecondPage();
           })
       }
@@ -110,3 +122,4 @@ struct FormEditExtension {
     .width('100%')
   }
 }
+// [End FormEditDemo_FormEditExtension]

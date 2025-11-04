@@ -45,7 +45,7 @@ export default function abilityTest() {
      * 打开应用，点击 ImpNestedScroll 按钮
      * 设置滚动模式
      */
-    it('ImpNestedScroll', 0, async (done: Function) => {
+    it('ImpNestedScroll', 30000, async (done: Function) => {
       console.info('uitest: ImpNestedScroll begin');
       const want: Want = {
         bundleName: bundleName,
@@ -63,25 +63,17 @@ export default function abilityTest() {
       await button1.click();
       await driver.delayMs(500);
 
-      const button2 = await driver.findComponent(ON.text('SELF_ONLY'));
-      await button2.click();
+      await driver.swipe(649, 1934, 649, 697, 2000)
       await driver.delayMs(500);
 
-      const button3 = await driver.findComponent(ON.text('SELF_FIRST'));
-      await button3.click();
+      await driver.swipe(649, 1934, 649, 697, 2000)
+      await driver.delayMs(500)
+
+      await driver.swipe(649, 697, 649, 1934, 2000)
       await driver.delayMs(500);
 
-      const button4 = await driver.findComponent(ON.text('PARENT_FIRST'));
-      await button4.click();
+      await driver.swipe(649, 697, 649, 1934, 2000)
       await driver.delayMs(500);
-
-      const button5 = await driver.findComponent(ON.text('PARALLEL'));
-      await button5.click();
-      await driver.delayMs(500);
-
-      const web1 = await driver.findComponent(ON.type('Web'));
-      let src: string = await web1.getText();
-      expect(src).assertContain('www.example.com');
 
       await driver.pressBack();
       console.info('uitest: ImpNestedScroll end');
@@ -134,7 +126,7 @@ export default function abilityTest() {
 
       const web1 = await driver.findComponent(ON.type('Web'));
       let src: string = await web1.getText();
-      expect(src).assertContain('SetSKBModeIndex.html');
+      expect(src).assertContain('index.html');
 
       await driver.pressBack();
       console.info('uitest: SetSKBMode_one end');

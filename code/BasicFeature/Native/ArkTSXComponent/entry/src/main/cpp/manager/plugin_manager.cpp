@@ -23,8 +23,9 @@
 #include <native_window/external_window.h>
 
 namespace NativeXComponentSample {
-
+// [Start xcomponent_manager_cpp]
 namespace {
+    // 解析从ArkTS侧传入的surfaceId，此处surfaceId是一个64位int值
     int64_t ParseId(napi_env env, napi_callback_info info)
     {
         if ((env == nullptr) || (info == nullptr)) {
@@ -46,7 +47,7 @@ namespace {
         return value;
     }
 }
-
+// [StartExclude xcomponent_manager_cpp]
 std::unordered_map<int64_t, PluginRender*> PluginManager::pluginRenderMap_;
 std::unordered_map<int64_t, OHNativeWindow*> PluginManager::windowMap_;
 
@@ -68,6 +69,7 @@ PluginManager::~PluginManager()
     }
     windowMap_.clear();
 }
+// [EndExclude xcomponent_manager_cpp]
 
 PluginRender* PluginManager::GetPluginRender(int64_t& id)
 {
@@ -77,6 +79,7 @@ PluginRender* PluginManager::GetPluginRender(int64_t& id)
     return nullptr;
 }
 
+// 设置SurfaceId，基于SurfaceId完成对NativeWindow的初始化
 napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
 {
     int64_t surfaceId = ParseId(env, info);
@@ -96,6 +99,7 @@ napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 销毁Surface
 napi_value PluginManager::DestroySurface(napi_env env, napi_callback_info info)
 {
     int64_t surfaceId = ParseId(env, info);
@@ -112,6 +116,7 @@ napi_value PluginManager::DestroySurface(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 根据传入的surfaceId、width、height实现Surface大小的变动
 napi_value PluginManager::ChangeSurface(napi_env env, napi_callback_info info)
 {
     if ((env == nullptr) || (info == nullptr)) {
@@ -149,6 +154,7 @@ napi_value PluginManager::ChangeSurface(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 实现改变绘制图形颜色的功能
 napi_value PluginManager::ChangeColor(napi_env env, napi_callback_info info)
 {
     int64_t surfaceId = ParseId(env, info);
@@ -157,10 +163,11 @@ napi_value PluginManager::ChangeColor(napi_env env, napi_callback_info info)
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "ChangeColor: Get pluginRender failed");
         return nullptr;
     }
-    pluginRender->ChangeColor();
+    pluginRender->ChangeColor(); // 参考Native XComponent场景ChangeColor实现
     return nullptr;
 }
 
+// 实现EGL绘画逻辑
 napi_value PluginManager::DrawPattern(napi_env env, napi_callback_info info)
 {
     int64_t surfaceId = ParseId(env, info);
@@ -173,6 +180,7 @@ napi_value PluginManager::DrawPattern(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+// 获得xcomponent状态，并返回至ArkTS侧
 napi_value PluginManager::GetXComponentStatus(napi_env env, napi_callback_info info)
 {
     int64_t surfaceId = ParseId(env, info);
@@ -217,4 +225,5 @@ napi_value PluginManager::GetXComponentStatus(napi_env env, napi_callback_info i
     }
     return obj;
 }
+// [End xcomponent_manager_cpp]
 } // namespace NativeXComponentSample

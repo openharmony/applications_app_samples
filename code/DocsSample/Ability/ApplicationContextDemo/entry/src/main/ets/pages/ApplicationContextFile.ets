@@ -19,12 +19,12 @@ import { buffer } from '@kit.ArkTS';
 import { fileIo, ReadOptions } from '@kit.CoreFileKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[Page_Context]';
+const TAG: string = '[ApplicationContextFile]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Index {
+struct ApplicationContextFile {
   @State message: string = 'Hello World';
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 

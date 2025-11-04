@@ -28,7 +28,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let result = this.controller.isIncognitoMode();
-            console.log('isIncognitoMode' + result);
+            console.info('isIncognitoMode' + result);
           } catch (error) {
             console.error(
               `ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

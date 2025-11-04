@@ -21,21 +21,21 @@ export struct MemorySharedHome {
     Row() {
       Column() {
         Button($r('app.string.atomics_action'))
-          .width("80%")
+          .width('80%')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .margin({ top: 30 })
           .onClick(() => {
             router.pushUrl({ url: 'pages/memoryShared/AtomicsUsagePage' });
-          })
+          });
         Button($r('app.string.lock_usage'))
-          .width("80%")
+          .width('80%')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .margin({ top: 30 })
           .onClick(() => {
             router.pushUrl({ url: 'pages/memoryShared/LockUsagePage' });
-          })
+          });
       }
       .width('100%')
     }

@@ -25,6 +25,7 @@ export struct TextPopupExample {
 
         Column() {
           Button('PopupOptions')
+            .id('PopupOptions')
             .margin({ top: 300 })
             .onClick(() => {
               this.handlePopup = !this.handlePopup;
@@ -40,6 +41,7 @@ export struct TextPopupExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.TextPopup_title')需要替换为开发者所需的资源文件。
     .title($r('app.string.TextPopup_title'))
   }
 }

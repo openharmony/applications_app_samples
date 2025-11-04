@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "text1",
+      "value": "UIContext查询组件树和组件信息能力"
+    },
+    {
+      "name": "text2",
+      "value": "布局回调的基本用法"
+    },
+    {
+      "name": "text3",
+      "value": "组件标识属性的扩展能力"
+    }
+  ]
+}

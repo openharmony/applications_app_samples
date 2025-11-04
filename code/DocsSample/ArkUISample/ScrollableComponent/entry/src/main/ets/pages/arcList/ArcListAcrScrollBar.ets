@@ -47,6 +47,7 @@ export struct ArcListAcrScrollBar {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ArcListAcrScrollBar_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ArcListAcrScrollBar_title') }) {
           // [Start bind_arcList_start]
           // 将arcListScroller用于初始化ArcList组件的scroller参数，完成arcListScroller与弧形列表的绑定。
@@ -159,6 +160,7 @@ export struct ArcListAcrScrollBar {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.ArcListAcrScrollBar_title')需要替换为开发者所需的资源文件
     .title($r('app.string.ArcListAcrScrollBar_title'))
   }
 }

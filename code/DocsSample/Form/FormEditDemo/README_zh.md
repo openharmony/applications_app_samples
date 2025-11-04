@@ -1,17 +1,16 @@
-# 卡片编辑开发指导
+# 卡片编辑开发指导-半模态编辑页
 
-### 介绍
+### 半模态编辑页介绍
 
 ArkTS卡片提供卡片页面编辑能力，支持实现用户自定义卡片内容的功能，例如：编辑联系人卡片、修改卡片中展示的联系人、编辑天气卡片等。
 
-桌面提供统一的卡片编辑页，卡片提供方使用卡片框架提供的[FormEditExtensionAbility](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)开发卡片编辑功能。
-通过FormEditExtensionAbility组件的上下文[FormEditExtensionContext](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md)提供的[startSecondPage](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage)方法，将卡片提供方的二级编辑页信息传递给桌面，桌面将二级编辑页拉起后即可进行页面内容编辑。
+卡片编辑页分为卡片预览区与卡片编辑区。卡片编辑区的布局是由应用继承[FormEditExtensionAbility](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)画出来的，卡片预览区布局由系统决定。
 
 ### 效果预览
 
-| 长按编辑                                      | 一级编辑页                            | 修改后                                           | 二级编辑页                                   | 最终效果       |
-|-------------------------------------------|-----------------------------------|-----------------------------------------------|-----------------------------------------|------------|
-| ![image](screenshot/LongPressAndEdit.png) | ![image](screenshot/EditPage.png) | ![image](screenshot/EditContentAndResult.png) | ![image](screenshot/EditSecondPage.png) | ![image](screenshot%2FEditFinish.png) |
+| 长按编辑                                      | 一级编辑页                            | 修改后                                           | 二级编辑页                                   | 最终效果                                |
+|-------------------------------------------|-----------------------------------|-----------------------------------------------|-----------------------------------------|-------------------------------------|
+| ![image](screenshot/LongPressAndEdit.png) | ![image](screenshot/EditPage.png) | ![image](screenshot/EditContentAndResult.png) | ![image](screenshot/EditSecondPage.png) | ![image](screenshot/EditFinish.png) |
 
 使用说明
 
@@ -31,6 +30,9 @@ ArkTS卡片提供卡片页面编辑能力，支持实现用户自定义卡片内
 
 ```
 entry/src/main/ets/
+|---common
+|   |---CommonData.ets                     // FormData类的定义
+|   |---PreferencesUtil.ets                // 实现封装preference的工具类
 |---entryability
 |   |---EntryAbility.ets                   // 主进程UIAbility
 |---entryformability
@@ -47,7 +49,7 @@ entry/src/main/ets/
 |---widget
 |   |---pages
 |   |   |---WidgetCard.ets                 // 卡片页
-|---mock                                   // 本地模拟数据
+
 ```
 
 ### 具体实现

@@ -24,9 +24,17 @@ import { GestureJudgeDestination, GestureJudge_ROUTE_PREFIX } from './gesturejud
 import { GroupGestureDestination, GroupGesture_ROUTE_PREFIX } from './groupgesture/Index';
 import { Gesture_ROUTE_PREFIX, GestureDestination } from './singlegesture/Index';
 import { TouchDestination, Touch_ROUTE_PREFIX } from './Touch/Index';
+import { DropAnimationExample, dropAnimationRoutePrefix} from './drop/DropAnimationExample';
 import resource from '../common/resource';
+import { GridEts, gridRoutePrefix } from './grid/GridEts';
+import { springLoadingRoutePrefix, SpringLoadingPage} from './springloading/SpringLoading';
 
+// [Start route_push]
 const routes: Route[] = [
+  // $r('app.string.Pages_Index_gesture')、$r('app.string.Pages_Index_GroupGesture')、
+  // $r('app.string.Pages_Index_GestureJudge')、$r('app.string.Pages_Index_TouchEvent')、
+  // $r('app.string.Pages_Index_DeviceEvent')、$r('app.string.Pages_Index_FocusEvent')、
+  // $r('app.string.Pages_Index_DragEvent')需要替换为开发者所需的字符串资源文件
   {
     title: resource.resourceToString($r('app.string.Pages_Index_gesture')),
     name: Gesture_ROUTE_PREFIX
@@ -54,8 +62,21 @@ const routes: Route[] = [
   {
     title: resource.resourceToString($r('app.string.Pages_Index_DragEvent')),
     name: Drag_ROUTE_PREFIX
+  },
+  {
+    title: resource.resourceToString($r('app.string.Pages_Index_DropAnimation')),
+    name: dropAnimationRoutePrefix
+  },
+  {
+    title: resource.resourceToString($r('app.string.Pages_Index_GridExample')),
+    name: gridRoutePrefix
+  },
+  {
+    title: resource.resourceToString($r('app.string.Pages_Index_SpringLoading')), // 需添加字符串资源
+    name: springLoadingRoutePrefix
   }
 ];
+// [End route_push]
 
 @Builder
 function Destination(name: string) {
@@ -73,6 +94,12 @@ function Destination(name: string) {
     FocusDestination(name);
   } else if (name.startsWith(Drag_ROUTE_PREFIX)) {
     DragGestureDestination(name);
+  } else if (name.startsWith(dropAnimationRoutePrefix)) {
+    DropAnimationExample();
+  } else if (name.startsWith(gridRoutePrefix)) {
+    GridEts();
+  } else if (name.startsWith(springLoadingRoutePrefix)) {
+    SpringLoadingPage();
   }
 }
 

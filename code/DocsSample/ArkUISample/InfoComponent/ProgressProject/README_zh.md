@@ -7,14 +7,15 @@
 1. [进度条 (Progress)](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/ui/arkts-common-components-progress-indicator.md)。
 ### 效果预览
 
-| 初始效果                               | 进度条+5                 | 进度条-5           |
+| 初始效果             |        进度条更新进度示例页面          | 进度条+5                              |
 |------------------------------------|------------------------------------|------------------------------------|
 | ![](screenshots/device/image1.png) | ![](screenshots/device/image2.png) | ![](screenshots/device/image3.png) |
 
 ### 使用说明
 
-1. 在主界面，点击进度条+5/进度条-5的按钮，查看不同样式进度条的变化。
-
+1. 在主界面，查看不同样式进度条。
+2. 在主界面点击“更新进度示例”按钮进入进度条更新进度示例页面。
+3. 在进度条更新进度示例页面，点击进度条+5的按钮，可见进度增长，当进度满后再点击恢复至0进度。
 4. 通过自动测试框架可进行测试及维护。
 
 ### 工程目录
@@ -23,6 +24,7 @@ entry/src/main/ets/
 |---entryability          
 |---pages
 |   |---Index.ets                      // 应用主页面
+|   |---ProgressCase1.ets                      // 进度条更新进度示例页面
 entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                 // 示例代码测试代码

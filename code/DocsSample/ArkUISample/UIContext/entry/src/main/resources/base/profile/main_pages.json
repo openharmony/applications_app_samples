@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/ContextPage",
+    "pages/LocalStoragePage",
+    "pages/NewGlobal",
+    "pages/WindowTestPage",
+    "pages/CalendarPickerDialogPage",
+    "pages/VpPage",
+    "pages/Index"
+  ]
+}

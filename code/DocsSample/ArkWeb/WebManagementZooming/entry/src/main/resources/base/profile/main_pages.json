@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/ControlWebGestureZooming",
+    "pages/ControlMouseAndKeyBoardZooming",
+    "pages/MonitorZoomRatio",
+    "pages/ControlZoomByFixedRatio",
+    "pages/ControlZoomByInput",
+    "pages/ControlZoomToFixedRatio"
+  ]
+}

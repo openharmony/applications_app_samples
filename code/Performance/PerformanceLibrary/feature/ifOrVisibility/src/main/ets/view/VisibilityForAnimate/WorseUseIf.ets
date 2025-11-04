@@ -41,7 +41,7 @@ export struct WorseUseIf {
               Image($r('app.media.icon'))
                 .width($r('app.string.foreach_image_width'))
                 .height($r('app.string.foreach_image_height'))
-            }, (item: number) => item.toString())
+            }, (item: number) => item.toString());
           }
         }
       }

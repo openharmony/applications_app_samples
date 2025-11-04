@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import { ComponentCard } from '../../common/Card';
+import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@ohos.arkui.ArcAlphabetIndexer';
+import { util } from '@kit.ArkTS';
+import { ColorMetrics, ComponentContent } from '@ohos.arkui.node';
 // [Start arcAlphabetIndexer_start]
 import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
-import { ColorMetrics, ComponentContent } from '@ohos.arkui.node';
-import { util } from '@kit.ArkTS';
-import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@ohos.arkui.ArcAlphabetIndexer';
-import { ComponentCard } from '../../common/Card';
 
 // [StartExclude arcAlphabetIndexer_start]
 class Contact {
@@ -88,6 +89,7 @@ export struct ArcListArcIndexerBar {
     // [StartExclude arcAlphabetIndexer_start]
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ArcListArcIndexerBar_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ArcListArcIndexerBar_title') }) {
           // [EndExclude arcAlphabetIndexer_start]
           Stack({alignContent: Alignment.End}) {
@@ -173,6 +175,7 @@ export struct ArcListArcIndexerBar {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.ArcListArcIndexerBar_title')需要替换为开发者所需的资源文件
     .title($r('app.string.ArcListArcIndexerBar_title'))
     // [EndExclude arcAlphabetIndexer_start]
   }

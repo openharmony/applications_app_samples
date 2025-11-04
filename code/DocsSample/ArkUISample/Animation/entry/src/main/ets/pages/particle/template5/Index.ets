@@ -14,6 +14,7 @@
  */
 import { LengthMetrics } from '@kit.ArkUI';
 
+// [Start particle_example5]
 @Entry
 @Component
 struct ParticleExample5 {
@@ -90,3 +91,4 @@ struct ParticleExample5 {
     }.width('100%').height('100%').align(Alignment.Center)
   }
 }
+// [End particle_example5]

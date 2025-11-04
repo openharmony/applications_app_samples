@@ -20,7 +20,7 @@ import { SmartPerfHostHomeView } from '@ohos/smartPerfHost';
 struct SmartPerfHostPage {
   build() {
     Column() {
-      SmartPerfHostHomeView()
+      SmartPerfHostHomeView();
     }
   }
 }

@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-// [Start ark_napi_async_open_close_callback_scope]
+// [Start ark_napi_async_open_close_callback_scope_head]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
-import process from '@ohos.process';
+import { process } from '@kit.ArkTS';
+// [End ark_napi_async_open_close_callback_scope_head]
 
-// [StartExclude ark_napi_async_open_close_callback_scope]
 @Entry
 @Component
 struct Index {
@@ -41,16 +41,20 @@ struct Index {
             .borderRadius(30)
             .backgroundColor(Color.White)
             .onClick(() => {
-              // [EndExclude ark_napi_async_open_close_callback_scope]
+              // [Start ark_napi_async_open_close_callback_scope]
               try {
                 hilog.info(0x0000, 'testTag', 'Test Node-API asynchronousWork: %{public}d',
                   testNapi.asynchronousWork({}, process.ProcessManager, (num: number) => {
                     return num;
                   }, 123));
+                // [StartExclude ark_napi_async_open_close_callback_scope]  
                 this.result = 'customAsyncSuccess';
+                // [EndExclude ark_napi_async_open_close_callback_scope]
               } catch (error) {
                 hilog.error(0x0000, 'testTag', 'Test Node-API asynchronousWork error: %{public}s', error.message);
+                // [StartExclude ark_napi_async_open_close_callback_scope] 
                 this.result = 'customAsyncFail';
+                // [EndExclude ark_napi_async_open_close_callback_scope]
               }
               // [End ark_napi_async_open_close_callback_scope]
             })

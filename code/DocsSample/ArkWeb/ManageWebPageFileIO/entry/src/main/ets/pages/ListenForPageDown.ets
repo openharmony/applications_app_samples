@@ -31,27 +31,26 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log('will start a download.');
-              // Pass in a download path and start the download.
-              // If the path is invalid, the file will be downloaded to the
-              // default directory at /data/storage/el2/base/cache/web/.
+              console.info('will start a download.');
+              // 传入一个下载路径，并开始下载。
+              // 如果传入一个不存在的路径，则会下载到默认/data/storage/el2/base/cache/web/目录。
               webDownloadItem.start('/data/storage/el2/base/cache/web/' + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              // Unique ID of a download task.
-              console.log('download update guid: ' + webDownloadItem.getGuid());
-              // Download progress.
-              console.log('download update guid: ' + webDownloadItem.getPercentComplete());
-              // Current download speed.
-              console.log('download update speed: ' + webDownloadItem.getCurrentSpeed());
+              // 下载任务的唯一标识。
+              console.info('download update guid: ' + webDownloadItem.getGuid());
+              // 下载的进度。
+              console.info('download update percent complete: ' + webDownloadItem.getPercentComplete());
+              // 当前的下载速度。
+              console.info('download update speed: ' + webDownloadItem.getCurrentSpeed());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log('download failed guid: ' + webDownloadItem.getGuid());
-              // Error code of a download task failure.
-              console.log('download failed guid: ' + webDownloadItem.getLastErrorCode());
+              console.error('download failed guid: ' + webDownloadItem.getGuid());
+              // 下载任务失败的错误码。
+              console.error('download failed last error code: ' + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log('download finish guid: ' + webDownloadItem.getGuid());
+              console.info('download finish guid: ' + webDownloadItem.getGuid());
               this.myText = 'download finish';
             })
             this.controller.setDownloadDelegate(this.delegate);

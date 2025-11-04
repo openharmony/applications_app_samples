@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Attribute",
+    "pages/FetchAndLoad",
+    "pages/GetNodeById",
+    "pages/InquireUniqueId",
+    "pages/MoveTo"
+  ]
+}

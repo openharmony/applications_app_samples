@@ -16,13 +16,9 @@
 // [Start dynamic_webview_component_loading]
 import { webview } from '@kit.ArkWeb';
 import { NodeController } from '@kit.ArkUI';
-import { createNode } from "./DynamicComponent";
-import { injectWebview } from "./InjectWebview";
-import { businessWebview } from "./BusinessWebview";
-
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
+import { createNode } from './DynamicComponent';
+import { injectWebview } from './InjectWebview';
+import { businessWebview } from './BusinessWebview';
 
 @Entry
 @Component
@@ -36,17 +32,18 @@ struct Index {
   aboutToAppear(): void {
     // 初始化用于注入本地资源的Web组件, 提供一个空的html页面作为url即可
     this.injectNode = createNode(injectWebview,
-      { url: resourceToString($r('app.string.web_path_two')), controller: this.injectController});
+      { url: 'https://www.example.com/empty.html', controller: this.injectController, context: this.getUIContext()});
   }
 
   build() {
     Column() {
       // 在适当的时机加载业务用Web组件，本例以Button点击触发为例
-      Button("加载页面")
+      Button('加载页面')
         .onClick(() => {
           this.businessNode = createNode(businessWebview, {
-            url: resourceToString($r('app.string.web_path_three')),
-            controller: this.businessController
+            url: 'https://www.example.com/business.html',
+            controller: this.businessController,
+            context: this.getUIContext()
           });
         })
       // 用于业务的Web组件

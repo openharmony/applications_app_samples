@@ -231,6 +231,7 @@
  </tr>
   <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Notification/CustomNotificationBadge">自定义通知角标（API 10）</a></td>
+  <td x:str><a href="code/DocsSample/Notification/ThirdpartyWerableDemo">三方穿戴设备</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -367,7 +368,6 @@
   <td x:str><strong>设备管理</strong></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 11）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/Mouse">鼠标外设（API 10）</a></td>
-  <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/StorageStatistic">存储空间统计（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>

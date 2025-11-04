@@ -1,0 +1,20 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/statemanagementguide/StateArray",
+    "pages/statemanagementguide/StateArrayUpdate",
+    "pages/statemanagementguide/StateArrayBig",
+    "pages/statemanagementguide/StateArrayPrecise",
+    "pages/statemanagementguide/StateArrayTrack",
+    "pages/statemanagementguide/StateArrayObserved",
+    "pages/statemanagementguide/StateArrayLoadDate",
+    "pages/statemanagementguide/StateArrayInit",
+    "pages/statemanagementguide/StateArrayNo",
+    "pages/statemanagementguide/StateArrayNo2",
+    "pages/statemanagementguide/StateArrayLazy",
+    "pages/statemanagementguide/StateArrayLazy2",
+    "pages/statemanagementguide/StateArrayForeach",
+    "pages/statemanagementguide/StateArrayForeach2"
+
+ ]
+}

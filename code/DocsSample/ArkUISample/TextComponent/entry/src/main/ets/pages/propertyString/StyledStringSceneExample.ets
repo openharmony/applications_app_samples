@@ -14,8 +14,9 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-import { LengthMetrics } from '@kit.ArkUI';
 import resource from '../../common/resource';
+// [Start styledStringSceneExample_start]
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -137,7 +138,6 @@ export struct StyledStringSceneExample {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.StyledStringSceneExample_title') }) {
-          // [Start styled_string_scene_example]
           Row() {
             Column({ space: 5 }) {
               Text(undefined, { controller: this.controller })
@@ -162,7 +162,6 @@ export struct StyledStringSceneExample {
             .margin({ left: 10 })
           }
           .height('60%')
-          // [End styled_string_scene_example]
         }
       }
       .width('100%')
@@ -173,3 +172,4 @@ export struct StyledStringSceneExample {
     .title($r('app.string.StyledStringSceneExample_title'))
   }
 }
+// [End styledStringSceneExample_start]

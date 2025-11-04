@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "OperationNodeTree",
+      "value": "操作节点树"
+    },
+    {
+      "name": "RenderingProperties",
+      "value": "设置和获取渲染相关属性"
+    },
+    {
+      "name": "CustomDraw",
+      "value": "自定义绘制"
+    },
+    {
+      "name": "CustomDrawCanvas",
+      "value": "调整自定义绘制Canvas的变换矩阵"
+    },
+    {
+      "name": "CustomDrawCanvasNative",
+      "value": "C++获取Canvas，并进行自定义绘制操作"
+    },
+    {
+      "name": "SetLabel",
+      "value": "设置标签"
+    },
+    {
+      "name": "CheckRanderNodeDisposed",
+      "value": "查询当前RenderNode是否解除引用"
+    }
+  ]
+}

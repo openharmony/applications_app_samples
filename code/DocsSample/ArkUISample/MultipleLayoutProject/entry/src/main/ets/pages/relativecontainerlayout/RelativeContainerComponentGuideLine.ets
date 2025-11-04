@@ -15,7 +15,7 @@
 //[Start RelativeContainerComponentGuideLine_start]
 @Entry
 @Component
-struct RelativeContainerComponentGuideLine {
+struct RelativeGuideLineExample {
   build() {
     Row() {
       RelativeContainer() {

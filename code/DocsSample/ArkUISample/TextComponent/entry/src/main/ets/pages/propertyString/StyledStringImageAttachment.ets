@@ -14,9 +14,11 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import resource from '../../common/resource';
+// [Start styledStringImageAttachment_start]
+// xxx.ets
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
-import resource from '../../common/resource';
 
 @Entry
 @Component
@@ -40,7 +42,8 @@ export struct StyledStringImageAttachment {
 
   async aboutToAppear() {
     console.info('aboutToAppear initial imagePixelMap');
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.startIcon'));
+    // $r('app.media.sea')需要替换为开发者所需的图像资源文件。
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.sea'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -140,7 +143,6 @@ export struct StyledStringImageAttachment {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.StyledStringImageAttachment_title') }) {
-          // [Start styled_string_image_attachment]
           Row() {
             Column({ space: 10 }) {
               Text(undefined, { controller: this.controller })
@@ -171,7 +173,6 @@ export struct StyledStringImageAttachment {
           }
           .height('100%')
           .backgroundColor('#F8F8FF')
-          // [End styled_string_image_attachment]
         }
       }
       .width('100%')
@@ -182,3 +183,4 @@ export struct StyledStringImageAttachment {
     .title($r('app.string.StyledStringImageAttachment_title'))
   }
 }
+// [End styledStringImageAttachment_start]
