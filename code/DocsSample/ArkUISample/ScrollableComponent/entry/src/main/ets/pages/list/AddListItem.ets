@@ -13,71 +13,19 @@
  * limitations under the License.
  */
 
+
 import { ComponentCard } from '../../common/Card';
-// [Start define_the_data_to_be_done]
-import { util } from '@kit.ArkTS';
-import { UIContext } from '@kit.ArkUI';
-// [Start build_list_layouts_and_list_items]
 import common from '@ohos.app.ability.common';
+// [Start build_list_layouts_and_list_items]
+import { ToDo } from './ToDo';
+import { ToDoListItem } from './ToDoListItem';
 
-// [StartExclude build_list_layouts_and_list_items]
-// [Start build_the_overall_list_layout_and_list_items]
-export class ToDo {
-  public key: string = util.generateRandomUUID(true);
-  public name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-}
-// [End define_the_data_to_be_done]
-
-@Component
-export struct ToDoListItem {
-  @Link isEditMode: boolean;
-  @Link selectedItems: ToDo[];
-  private toDoItem: ToDo = new ToDo('');
-
-  build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-      // [StartExclude build_the_overall_list_layout_and_list_items]
-      Text(this.toDoItem.name)
-        .fontSize(16)
-        .width('80%')
-        .margin({ left: 20 })
-      // [EndExclude build_the_overall_list_layout_and_list_items]
-    }
-    .backgroundColor('#FFF1F3F5')
-    .width('100%')
-    .height(40)
-    // .padding() 根据具体使用场景设置
-    .borderRadius(12)
-    // .linearGradient() 根据具体使用场景设置
-    .gesture(
-      // [StartExclude build_the_overall_list_layout_and_list_items]
-      GestureGroup(GestureMode.Exclusive,
-        LongPressGesture()
-        // [EndExclude build_the_overall_list_layout_and_list_items]
-          .onAction(() => {
-          })
-      )
-    )
-  }
-}
-
-// [End build_the_overall_list_layout_and_list_items]
-// [EndExclude build_list_layouts_and_list_items]
 @Entry
 @Component
 export struct AddListItem {
-  private l1 = 0;
-  private l2 = 0;
-  // [StartExclude build_list_layouts_and_list_items]
-  @State arr: number[] = [0, 1, 2, 3]
-  @State toDoData: ToDo[] = []
-  // [EndExclude build_list_layouts_and_list_items]
-  @Watch('onEditModeChange') @State isEditMode: boolean = false
-  @State selectedItems: ToDo[] = []
+  @State toDoData: ToDo[] = [];
+  @Watch('onEditModeChange') @State isEditMode: boolean = false;
+  @State selectedItems: ToDo[] = [];
   private availableThings: string [] = [];
 
   aboutToAppear(): void {
@@ -106,12 +54,16 @@ export struct AddListItem {
     // [StartExclude build_list_layouts_and_list_items]
     NavDestination() {
       // [EndExclude build_list_layouts_and_list_items]
-      Column({ space: 12 }) {
+      Column(
+        // [StartExclude build_list_layouts_and_list_items]
+        { space: 12 }
+        // [EndExclude build_list_layouts_and_list_items]
+      ) {
         // [StartExclude build_list_layouts_and_list_items]
         // $r('app.string.AddListItem_titleExample')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.AddListItem_titleExample') }) {
-          // [EndExclude build_list_layouts_and_list_items]
           Column({ space: 12 }) {
+            // [EndExclude build_list_layouts_and_list_items]
             Row() {
               if (this.isEditMode) {
                 Text('X')
@@ -121,14 +73,16 @@ export struct AddListItem {
                   })
                   .margin({ left: 20, right: 20 })
               } else {
-                // $r('app.string.TodoItem')需要替换为开发者所需的资源文件
+                // app.string.TodoItem 资源文件中的value值为'待办'
                 Text($r('app.string.TodoItem'))
-                  .fontSize(30)
-                  .margin({ left: 20 })
+                  .fontSize(36)
+                  .margin({ left: 40 })
                 Blank()
                 Text('+')// 提供新增列表项入口，即给新增按钮添加点击事件
+                //  [StartExclude build_list_layouts_and_list_items]
                   .fontSize(36)
                   .margin({ right: 20 })
+                  // [EndExclude build_list_layouts_and_list_items]
                   .onClick(() => {
                     this.getUIContext().showTextPickerDialog({
                       range: this.availableThings,
@@ -141,8 +95,8 @@ export struct AddListItem {
                     })
                   })
               }
+              // [StartExclude build_list_layouts_and_list_items]
             }
-            // [StartExclude build_list_layouts_and_list_items]
             .width('100%')
             .backgroundColor('#FFF1F3F5')
             .borderRadius(12)
@@ -150,7 +104,7 @@ export struct AddListItem {
 
             // [EndExclude build_list_layouts_and_list_items]
 
-            List({ space: 12 }) {
+            List({ space: 10 }) {
               ForEach(this.toDoData, (toDoItem: ToDo) => {
                 ListItem() {
                   // 将toDoData的每个数据放入到以model的形式放进ListItem里
@@ -164,13 +118,15 @@ export struct AddListItem {
             }
           }
         }
+        // [StartExclude build_list_layouts_and_list_items]
       }
-      // [End build_list_layouts_and_list_items]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.AddListItem_title'))
+    // [EndExclude build_list_layouts_and_list_items]
   }
 }
+// [End build_list_layouts_and_list_items]

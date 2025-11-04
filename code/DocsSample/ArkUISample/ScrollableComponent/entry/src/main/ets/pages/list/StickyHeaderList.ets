@@ -14,7 +14,7 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-// [Start Add_sticky_titles]
+// [Start add_sticky_titles]
 import { util } from '@kit.ArkTS';
 
 class Contact {
@@ -34,25 +34,53 @@ class ContactsGroup {
   public key: string = '';
 }
 
+export class ContactsGroupDataSource implements IDataSource {
+  private list: object[] = [];
+
+  constructor(list: object[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): object {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
 export let contactsGroups: object[] = [
   {
     title: 'A',
     contacts: [
-      new Contact($r('app.string.contacts_A_one'), $r('sys.media.clone_app_badge_1')),
-      new Contact($r('app.string.contacts_A_two'), $r('sys.media.clone_app_badge_2'))
+      // app.string.contacts_A_one 资源文件中的value值为'艾佳'，app.media.iconA为自定义资源
+      new Contact($r('app.string.contacts_A_one'), $r('app.media.iconA')),
+      // app.string.contacts_A_two 资源文件中的value值为'安安'，app.media.iconB为自定义资源
+      new Contact($r('app.string.contacts_A_two'), $r('app.media.iconB')),
+      // app.media.iconC为自定义资源
+      new Contact('Angela', $r('app.media.iconC')),
     ],
     key: util.generateRandomUUID(true)
   } as ContactsGroup,
   {
     title: 'B',
     contacts: [
-      new Contact($r('app.string.contacts_B_one'), $r('sys.media.clone_app_badge_3')),
-      new Contact($r('app.string.contacts_B_two'), $r('sys.media.clone_app_badge_4')),
-      new Contact($r('app.string.contacts_B_three'), $r('sys.media.clone_app_badge_5'))
+      // app.string.contacts_B_one 资源文件中的value值为'白叶'，app.media.iconD为自定义资源
+      new Contact($r('app.string.contacts_B_one'), $r('app.media.iconD')),
+      // app.string.contacts_B_three 资源文件中的value值为'伯明'，app.media.iconE为自定义资源
+      new Contact($r('app.string.contacts_B_three'), $r('app.media.iconE'))
     ],
     key: util.generateRandomUUID(true)
   } as ContactsGroup
 ];
+export let contactsGroupsDataSource: ContactsGroupDataSource = new ContactsGroupDataSource(contactsGroups);
 
 @Entry
 @Component
@@ -75,12 +103,12 @@ export struct StickyHeaderList {
         ComponentCard({ title: $r('app.string.StickyHeaderList_titleExample') }) {
           // [EndExclude add_sticky_titles]
           List() {
-            // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
-            ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
+            // 懒加载ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
+            LazyForEach(contactsGroupsDataSource, (itemGroup: ContactsGroup) => {
               ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
                 // 循环渲染ListItem
                 if (itemGroup.contacts) {
-                  ForEach(itemGroup.contacts, (item: Contact) => {
+                  LazyForEach(new ContactsGroupDataSource(itemGroup.contacts), (item: Contact) => {
                     ListItem() {
                       // [StartExclude add_sticky_titles]
                       Row() {
@@ -94,12 +122,10 @@ export struct StickyHeaderList {
               }
             }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
           }
+          .sticky(StickyStyle.Header) // 设置吸顶，实现粘性标题效果
           // [StartExclude add_sticky_titles]
           .height(230)
-          // [EndExclude add_sticky_titles]
-          .sticky(StickyStyle.Header) // 设置吸顶，实现粘性标题效果
         }
-        // [End add_sticky_titles]
       }
       .width('100%')
       .height('100%')
@@ -107,5 +133,7 @@ export struct StickyHeaderList {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.StickyHeaderList_title'))
+    // [EndExclude add_sticky_titles]
   }
 }
+// [End add_sticky_titles]

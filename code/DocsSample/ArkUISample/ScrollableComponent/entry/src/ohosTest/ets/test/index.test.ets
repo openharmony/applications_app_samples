@@ -200,10 +200,12 @@ export default function IndexTest() {
       expect(addButton === null).assertFalse();
       await addButton.click();
       await driver.mouseClick({ x: 580, y: 770 }, MouseButton.MOUSE_BUTTON_LEFT, 0, 0);
-      let listContent = await driver.findComponent(ON.text('Reading', MatchPattern.CONTAINS));
+      let readingStr = await getResourceString($r('app.string.Reading'));
+      let listContent = await driver.findComponent(ON.text(readingStr, MatchPattern.CONTAINS));
       expect(listContent === null).assertFalse();
       await listContent.longClick();
-      let deleteButton = await driver.findComponent(ON.text('delete', MatchPattern.CONTAINS));
+      let deleteStr = await getResourceString($r('app.string.delete'));
+      let deleteButton = await driver.findComponent(ON.text(deleteStr, MatchPattern.CONTAINS));
       expect(deleteButton === null).assertFalse();
       await deleteButton.click();
       await driver.pressBack();

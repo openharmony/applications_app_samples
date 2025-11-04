@@ -28,35 +28,40 @@ export struct DataInList {
           // [EndExclude list_statically_creates_the_contents_of_list_item]
           List() {
             ListItem() {
+              // app.string.city_beijing 资源文件中的value值为'北京'
               Text($r('app.string.city_beijing'))
                 .fontSize(24)
             }
 
             ListItem() {
+              // app.string.city_hangzhou 资源文件中的value值为'杭州'
               Text($r('app.string.city_hangzhou'))
                 .fontSize(24)
             }
 
             ListItem() {
+              // app.string.city_shanghai 资源文件中的value值为'上海'
               Text($r('app.string.city_shanghai'))
                 .fontSize(24)
             }
           }
           .backgroundColor('#FFF1F3F5')
           .alignListItem(ListItemAlign.Center)
+          // [StartExclude list_statically_creates_the_contents_of_list_item]
         }
-        // [End list_statically_creates_the_contents_of_list_item]
 
         ComponentCard({ title: $r('app.string.DataInList_titleContactsList') }) {
           // [Start encapsulate_the_image_and_text_into_a_row]
           List() {
             ListItem() {
               Row() {
-                Image($r('sys.media.ohos_ic_public_phone'))
+                // app.media.iconE为自定义资源
+                Image($r('app.media.iconE'))
                   .width(40)
                   .height(40)
                   .margin(10)
 
+                // app.string.peopleOne 资源文件中的value值为'小明'
                 Text($r('app.string.peopleOne'))
                   .fontSize(20)
               }
@@ -64,24 +69,28 @@ export struct DataInList {
 
             ListItem() {
               Row() {
-                Image($r('sys.media.ohos_ic_public_phone'))
+                // app.media.iconF为自定义资源
+                Image($r('app.media.iconF'))
                   .width(40)
                   .height(40)
                   .margin(10)
 
+                // app.string.peopleTwo 资源文件中的value值为'小红'
                 Text($r('app.string.peopleTwo'))
                   .fontSize(20)
               }
             }
           }
+          // [End encapsulate_the_image_and_text_into_a_row]
         }
       }
-      // [End encapsulate_the_image_and_text_into_a_row]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.DataInList_titlePage'))
+    // [EndExclude list_statically_creates_the_contents_of_list_item]
   }
 }
+// [End list_statically_creates_the_contents_of_list_item]
