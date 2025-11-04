@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start variables_decorated_ObjectLink_read_only]
 import { common } from '@kit.AbilityKit';
 
-// [Start variables_decorated_ObjectLink_read_only]
 @Observed
 class Info {
   public count: number;
@@ -31,7 +31,7 @@ struct Child {
 
   build() {
     Column() {
-      // $r('app.string.value_num')需要替换为开发者所需的资源文件
+      // app.string.value_num资源文件中的value值为'num的值'
       Text(`${this.context.resourceManager.getStringSync($r('app.string.value_num').id)}: ${this.num.count}`)
         .onClick(() => {
           // 正确写法，可以更改@ObjectLink装饰变量的成员属性
@@ -49,7 +49,7 @@ struct Parent {
 
   build() {
     Column() {
-      // $r('app.string.value_count')需要替换为开发者所需的资源文件
+      // app.string.value_count资源文件中的value值为'count的值'
       Text(`${this.context.resourceManager.getStringSync($r('app.string.value_count').id)}: ${this.num.count}`)
       Button('click')
         .onClick(() => {

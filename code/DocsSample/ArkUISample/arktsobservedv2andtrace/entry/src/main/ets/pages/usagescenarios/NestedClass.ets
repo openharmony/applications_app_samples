@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Nested_Class]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedv2andtrace';
 
-// [Start Nested_Class]
 @ObservedV2
 class Pencil {
   @Trace public length: number = 21; // 当length变化时，会刷新关联的组件

@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Inheritance_Class]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedv2andtrace';
 
-// [Start Inheritance_Class]
 @ObservedV2
 class GrandFather {
   @Trace public age: number = 0;
