@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start applink_ability]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { url } from '@kit.ArkTS';
 
@@ -32,4 +32,4 @@ export default class AppLinkEntryAbility extends UIAbility {
     }
   }
 }
-// [End quick_start0]
+// [End applink_ability]

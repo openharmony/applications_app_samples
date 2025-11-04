@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start app_link]
 {
   "module": {
-    // [StartExclude  quick_start0]
+    // [StartExclude  app_link]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -26,10 +26,10 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    // [EndExclude  quick_start0]
+    // [EndExclude  app_link]
     "abilities": [
       {
-        // [StartExclude  quick_start0]
+        // [StartExclude  app_link]
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "icon": "$media:startIcon",
@@ -38,7 +38,7 @@
         "exported": true,
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        // [EndExclude  quick_start0]
+        // [EndExclude  app_link]
         "skills": [
           {
             "entities": [
@@ -72,7 +72,7 @@
           } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       },
-      // [StartExclude  quick_start0]
+      // [StartExclude  app_link]
       {
         "name": "AppLinkEntryAbility",
         "srcEntry": "./ets/entryability/AppLinkEntryAbility.ets",
@@ -93,9 +93,9 @@
           }
         ]
       }
-      // [EndExclude  quick_start0]
+      // [EndExclude  app_link]
     ],
-    // [StartExclude  quick_start0]
+    // [StartExclude  app_link]
     "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
@@ -110,7 +110,7 @@
         ],
       }
     ],
-    // [EndExclude  quick_start0]
+    // [EndExclude  app_link]
   }
 }
-// [End quick_start0]
+// [End app_link]

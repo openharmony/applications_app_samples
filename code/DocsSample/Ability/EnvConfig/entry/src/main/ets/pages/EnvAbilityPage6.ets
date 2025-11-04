@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start envconf_page]
 import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -58,4 +58,4 @@ struct EnvAbilityPage6 {
   build() {
   }
 }
-// [End quick_start0]
+// [End envconf_page]

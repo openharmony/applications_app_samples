@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start envconf_language]
 import { AbilityStage, Configuration } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -37,4 +37,4 @@ export default class EnvAbility8 extends AbilityStage {
     }
   }
 }
-// [End quick_start0]
+// [End envconf_language]
