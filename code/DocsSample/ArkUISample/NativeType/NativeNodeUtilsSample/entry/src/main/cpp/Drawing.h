@@ -77,6 +77,9 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI) {
             auto *canvas1 = OH_ArkUI_DrawContext_GetCanvas(drawContext);
             // 转换为OH_Drawing_Canvas指针进行绘制。
             OH_Drawing_Canvas *canvas = reinterpret_cast<OH_Drawing_Canvas *>(canvas1);
+            // [StartExclude drawing_start]
+            // 绘制逻辑。
+            // [EndExclude drawing_start]
             int32_t width = SIZE_1000;
             int32_t height = SIZE_1000;
             auto path = OH_Drawing_PathCreate();
