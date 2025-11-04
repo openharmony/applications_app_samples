@@ -52,11 +52,14 @@ export struct StyledStringHtml {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        //'app.string.StyledStringHtml_title'资源文件中的value值为"格式转换"
         ComponentCard({ title: $r('app.string.StyledStringHtml_title') }) {
           Column() {
             Text(undefined, { controller: this.controller1 }).height(100).id('text1')
             Row() {
+              //'app.string.StyledStringHtml_Button_1'资源文件中的value值为"添加属性字符串"
               Button($r('app.string.StyledStringHtml_Button_1')).onClick(() => {
+                //'app.string.StyledStringHtml_Text_1'资源文件中的value值为"属性字符串"
                 let mutableStyledString1: MutableStyledString =
                   new MutableStyledString(resource.resourceToString($r('app.string.StyledStringHtml_Text_1')), [{
                   start: 0,
@@ -74,9 +77,11 @@ export struct StyledStringHtml {
                 this.styledString = mutableStyledString1;
                 this.controller1.setStyledString(mutableStyledString1);
               }).margin(5)
+              //'app.string.StyledStringHtml_Button_2'资源文件中的value值为"toHtml"
               Button($r('app.string.StyledStringHtml_Button_2')).onClick(() => {
                 this.html = StyledString.toHtml(this.styledString);
               }).margin(5)
+              //'app.string.StyledStringHtml_Button_3'资源文件中的value值为"fromHtml"
               Button($r('app.string.StyledStringHtml_Button_3')).onClick(async () => {
                 let styledString = await StyledString.fromHtml(this.html);
                 this.controller2.setStyledString(styledString);
@@ -93,6 +98,7 @@ export struct StyledStringHtml {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    //'app.string.StyledStringHtml_title'资源文件中的value值为"格式转换"
     .title($r('app.string.StyledStringHtml_title'))
   }
 }

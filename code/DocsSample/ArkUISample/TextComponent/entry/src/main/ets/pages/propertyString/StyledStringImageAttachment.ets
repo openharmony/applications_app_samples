@@ -66,6 +66,7 @@ export struct StyledStringImageAttachment {
   //Bold样式
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
   //创建含段落样式的对象paragraphStyledString1
+  //'app.string.StyledStringImageAttachment_Text_1'资源文件中的value值为"\n品牌相纸 高清冲印30张\n限时直降5.15元 限量增送"
   paragraphStyledString1: MutableStyledString =
     new MutableStyledString(resource.resourceToString($r('app.string.StyledStringImageAttachment_Text_1')), [
     {
@@ -93,6 +94,7 @@ export struct StyledStringImageAttachment {
       styledValue: this.lineHeightStyle1
     }
   ]);
+  //'app.string.StyledStringImageAttachment_Text_2'资源文件中的value值为"\n￥16.21 3000+人好评"
   paragraphStyledString2: MutableStyledString =
     new MutableStyledString(resource.resourceToString($r('app.string.StyledStringImageAttachment_Text_2')), [
     {
@@ -142,6 +144,7 @@ export struct StyledStringImageAttachment {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        //'app.string.StyledStringImageAttachment_title'资源文件中的value值为"通过ImageAttachment来添加图片"
         ComponentCard({ title: $r('app.string.StyledStringImageAttachment_title') }) {
           Row() {
             Column({ space: 10 }) {
@@ -151,7 +154,7 @@ export struct StyledStringImageAttachment {
                 .draggable(true)
                 .backgroundColor('#FFFFFF')
                 .borderRadius(5)
-
+              //'app.string.StyledStringImageAttachment_Button_1'资源文件中的value值为"点击查看商品卡片"
               Button($r('app.string.StyledStringImageAttachment_Button_1'))
                 .enabled(this.abled)
                 .onClick(() => {
@@ -180,6 +183,7 @@ export struct StyledStringImageAttachment {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    //'app.string.StyledStringImageAttachment_title'资源文件中的value值为"通过ImageAttachment来添加图片"
     .title($r('app.string.StyledStringImageAttachment_title'))
   }
 }

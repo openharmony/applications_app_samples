@@ -72,10 +72,13 @@ class MyCustomSpan extends CustomSpan {
 @Entry
 @Component
 struct Index {
+  //'app.string.Full_text'资源文件中的value值为"... 全文"
   @State fullText: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Full_text')) as string;
+  //'app.string.Original_text'资源文件中的value值为"原文"
   @State originalText: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Original_text')) as string;
+  //'app.string.After_typesetting'资源文件中的value值为"排版后"
   @State afterTypesetting: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.After_typesetting')) as string;
 
