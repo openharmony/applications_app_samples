@@ -126,7 +126,7 @@ export default function abilityTest() {
 
       const web1 = await driver.findComponent(ON.type('Web'));
       let src: string = await web1.getText();
-      expect(src).assertContain('SetSKBModeIndex.html');
+      expect(src).assertContain('index.html');
 
       await driver.pressBack();
       console.info('uitest: SetSKBMode_one end');
