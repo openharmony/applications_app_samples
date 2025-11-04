@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import { DOMAIN, TAG } from '../../common/Common';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start observer_comm]
 import { UIContext, uiObserver } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 function callbackFunc(info: uiObserver.RouterPageInfo) {
   hilog.info(DOMAIN, TAG,'RouterPageInfo is : ' + JSON.stringify(info));

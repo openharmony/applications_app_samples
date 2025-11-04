@@ -15,11 +15,10 @@
 
 // [Start page_showAlert1]
 import { BusinessError } from '@kit.BasicServicesKit';
-// [End page_showAlert1]
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
-const DOMAIN = 0xF811
+const DOMAIN = 0xF811;
 const TAG = '[Sample_ArkTSRouter]';
+// [End page_showAlert1]
 
 @Entry
 @Component
@@ -31,8 +30,7 @@ struct ShowAlert {
     // 调用this.getUIContext().getRouter().showAlertBeforeBackPage方法，设置返回询问框的信息
     try {
       this.getUIContext().getRouter().showAlertBeforeBackPage({
-        // 您还没有完成支付，确定要返回吗？
-        message: 'You haven\'t completed the payment yet. Are you sure you want to return?', // 设置询问框的内容
+        message: this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('pageRouter_dialog_context') as string, // 设置询问框的内容
       });
     } catch (err) {
       let message = (err as BusinessError).message;

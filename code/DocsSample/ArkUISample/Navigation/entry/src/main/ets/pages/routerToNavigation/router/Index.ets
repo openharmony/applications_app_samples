@@ -17,7 +17,8 @@
 // Index.ets
 import { router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 @Entry
 @Component

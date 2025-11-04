@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start router_hsp12]
 import { BusinessError } from '@kit.BasicServicesKit';
-import { DOMAIN, TAG } from '../../common/Common';
 import('library/src/main/ets/pages/routerToNavigation/router/Index');  // 引入共享包中的命名路由页面
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 @Entry
 @Component

@@ -14,9 +14,9 @@
  */
 import { router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
-// [Start back_home]
 @Entry({ routeName: 'myPage' })
 @Component
 struct BackHome {
@@ -52,4 +52,3 @@ struct BackHome {
     }.height('100%')
   }
 }
-// [End back_home]

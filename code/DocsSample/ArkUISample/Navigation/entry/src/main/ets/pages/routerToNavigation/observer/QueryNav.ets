@@ -16,7 +16,8 @@
 // [Start observer_query]
 import { uiObserver } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { DOMAIN, TAG } from '../../common/Common';
+const DOMAIN = 0xF811;
+const TAG = '[Sample_ArkTSRouter]';
 
 @Component
 export struct NavDestinationExample {
