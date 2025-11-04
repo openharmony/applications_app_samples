@@ -24,9 +24,11 @@ export struct SelectMenu {
         ComponentCard({ description: $r('app.string.SelectionMenu_description') }) {
           Column({ space: 8 }) {
             // [Start select_textinput]
+            // 'app.string.SelectMenu_textContent_1'资源文件中的value值为"这是一段文本，用来展示选中菜单"
             TextInput({ text: $r('app.string.SelectMenu_textContent_1') })
             // [End select_textinput]
             // [Start select_textarea]
+            // 'app.string.SelectMenu_textContent_1'资源文件中的value值为"这是一段文本，用来展示选中菜单"
             TextArea({ text: $r('app.string.SelectMenu_textContent_1') })
             // [End select_textarea]
           }

@@ -19,7 +19,7 @@ import { DisableMenuItems } from './DisableMenuItems';
 import { DisableSystemServiceMenuItems } from './DisableSystemServiceMenuItems';
 import { router } from '@kit.ArkUI';
 
-export const PROHIBIT_SELECT_MENU_ROUTE: string = 'textInput/ProhibitSelectMenu';
+export const PROHIBIT_SELECT_MENU_ROUTE: string = 'textInput/disablemenu';
 const routes: Route[] = [
   {
     name: `${PROHIBIT_SELECT_MENU_ROUTE}/DisableSystemServiceMenuItems`,
@@ -48,7 +48,7 @@ export struct ProhibitSelectionMenu {
   @Consume pathStack: NavPathStack;
 
   goToSample(url: string): void {
-    router.pushUrl({
+    this.getUIContext().getRouter().pushUrl({
       url: url,
     }, router.RouterMode.Single, (err) => {
       if (err) {
