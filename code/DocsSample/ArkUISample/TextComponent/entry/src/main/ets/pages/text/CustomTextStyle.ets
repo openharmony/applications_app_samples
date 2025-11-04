@@ -27,16 +27,19 @@ export struct CustomTextStyle {
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_1') }) {
             Column() {
               // [Start custom_text_align]
+              // 'app.string.TextAlign_Start'资源文件中的value值为'左对齐'
               Text($r('app.string.TextAlign_Start'))
                 .width(300)
                 .textAlign(TextAlign.Start)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.TextAlign_Center'资源文件中的value值为'中间对齐'
               Text($r('app.string.TextAlign_Center'))
                 .width(300)
                 .textAlign(TextAlign.Center)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.TextAlign_End'资源文件中的value值为'右对齐'
               Text($r('app.string.TextAlign_End'))
                 .width(300)
                 .textAlign(TextAlign.End)
@@ -61,6 +64,8 @@ export struct CustomTextStyle {
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.CustomTextStyle_textContent_1'资源文件中的value值为
+              // '我是超长文本，超出的部分显示省略号 I am an extra long text, with ellipses displayed for any excess。'
               Text($r('app.string.CustomTextStyle_textContent_1'))
                 .width(250)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -68,6 +73,9 @@ export struct CustomTextStyle {
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.CustomTextStyle_textContent_2'资源文件中的value值为
+              // '当文本溢出其尺寸时，文本将滚动显示
+              // When the text overflows its dimensions,the text will scroll for displaying.'
               Text($r('app.string.CustomTextStyle_textContent_2'))
                 .width(250)
                 .textOverflow({ overflow: TextOverflow.MARQUEE })
@@ -75,6 +83,9 @@ export struct CustomTextStyle {
                 .fontSize(12)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.CustomTextStyle_textContent_8'资源文件中的value值为
+              // '当文本溢出其尺寸时，文本将滚动显示，支持设置跑马灯配置项
+              // When the text overflows its dimensions, the text will scroll for displaying.'
               Text($r('app.string.CustomTextStyle_textContent_8'))
                 .width(250)
                 .textOverflow({ overflow: TextOverflow.MARQUEE })
@@ -118,22 +129,48 @@ export struct CustomTextStyle {
                   type: TextDecorationType.LineThrough,
                   color: Color.Red
                 })
-                .borderWidth(1)
-                .padding(10)
+                .borderWidth(1).padding(15).margin(5)
               Text('This is the text')
                 .decoration({
                   type: TextDecorationType.Overline,
                   color: Color.Red
                 })
-                .borderWidth(1)
-                .padding(10)
+                .borderWidth(1).padding(15).margin(5)
               Text('This is the text')
                 .decoration({
                   type: TextDecorationType.Underline,
                   color: Color.Red
                 })
-                .borderWidth(1)
-                .padding(10)
+                .borderWidth(1).padding(15).margin(5)
+              Text('This is the text')
+                .decoration({
+                  type: TextDecorationType.Underline,
+                  color: Color.Blue,
+                  style: TextDecorationStyle.DASHED
+                })
+                .borderWidth(1).padding(15).margin(5)
+              Text('This is the text')
+                .decoration({
+                  type: TextDecorationType.Underline,
+                  color: Color.Blue,
+                  style: TextDecorationStyle.DOTTED
+                })
+                .borderWidth(1).padding(15).margin(5)
+              Text('This is the text')
+                .decoration({
+                  type: TextDecorationType.Underline,
+                  color: Color.Blue,
+                  style: TextDecorationStyle.DOUBLE
+                })
+                .borderWidth(1).padding(15).margin(5)
+              Text('This is the text')
+                .decoration({
+                  type: TextDecorationType.Underline,
+                  color: Color.Blue,
+                  style: TextDecorationStyle.WAVY,
+                  thicknessScale: 4
+                })
+                .borderWidth(1).padding(15).margin(5)
               // [End custom_text_line_and_color]
             }
           }
@@ -191,6 +228,7 @@ export struct CustomTextStyle {
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_7') }) {
             Column({ space: 8 }) {
               // [Start custom_the_size_of_text]
+              // 'app.string.CustomTextStyle_textContent_3'资源文件中的value值为'我的最大字号为30，最小字号为5，宽度为250，maxLines为1'
               Text($r('app.string.CustomTextStyle_textContent_3'))
                 .width(250)
                 .maxLines(1)
@@ -198,6 +236,7 @@ export struct CustomTextStyle {
                 .minFontSize(5)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.CustomTextStyle_textContent_4'资源文件中的value值为'我的最大字号为30，最小字号为5，宽度为250，maxLines为2'
               Text($r('app.string.CustomTextStyle_textContent_4'))
                 .width(250)
                 .maxLines(2)
@@ -205,6 +244,7 @@ export struct CustomTextStyle {
                 .minFontSize(5)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.CustomTextStyle_textContent_5'资源文件中的value值为'我的最大字号为30，最小字号为15，宽度为250,高度为50'
               Text($r('app.string.CustomTextStyle_textContent_5'))
                 .width(250)
                 .height(50)
@@ -212,6 +252,7 @@ export struct CustomTextStyle {
                 .minFontSize(15)
                 .border({ width: 1 })
                 .padding(10)
+              // 'app.string.CustomTextStyle_textContent_6'我的最大字号为30，最小字号为15，宽度为250,高度为100'
               Text($r('app.string.CustomTextStyle_textContent_6'))
                 .width(250)
                 .height(100)
@@ -254,6 +295,7 @@ export struct CustomTextStyle {
 
           ComponentCard({ title: $r('app.string.CustomTextStyle_title_9') }) {
             // [Start custom_the_text_by_copy_option]
+            // 'app.string.CustomTextStyle_textContent_7'资源文件中的value值为'我的最大字号为30，最小字号为15，宽度为250,高度为50'
             Text($r('app.string.CustomTextStyle_textContent_7'))
               .fontSize(30)
               .copyOption(CopyOptions.InApp)

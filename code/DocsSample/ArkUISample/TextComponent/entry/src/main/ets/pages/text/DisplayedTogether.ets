@@ -62,40 +62,47 @@ export struct DisplayedTogether {
   }
 
   build() {
-    Column() {
-      TextInput({
-        placeholder: 'The user inputs text with emojis, such as: Hello [grin]'
-      })
+    // [StartExclude Displayed_Together]
+    NavDestination() {
+      // [EndExclude Displayed_Together]
+      Column() {
+        TextInput({
+          placeholder: 'The user inputs text with emojis, such as: Hello [grin]'
+        })
+          .width('80%')
+          .padding(10)
+          .border({ width: 1, color: '#EEEEEE' })
+          .onChange((value: string) => {
+            // 输入变化时，更新 fulltext
+            this.fulltext = value;
+          });
+
+        Text() {
+          ForEach(DisplayedTogether.classifyTextAndEmojis(this.fulltext).get('text'),
+            (item: string, index: number) => { // 展示文本和自定义表情资源
+              Span(item)
+                .fontSize(18)
+                .fontColor('#666666')
+                .fontWeight(FontWeight.Regular)
+
+              ImageSpan(DisplayedTogether.getEmojiImg(
+                DisplayedTogether.classifyTextAndEmojis(this.fulltext).get('emojis'))[index])
+                .verticalAlign(ImageSpanAlignment.BOTTOM)
+                .height(24)
+            })
+        }
         .width('80%')
-        .padding(10)
-        .border({ width: 1, color: '#EEEEEE' })
-        .onChange((value: string) => {
-          // 输入变化时，更新 fulltext
-          this.fulltext = value;
-        });
-
-      Text() {
-        ForEach(DisplayedTogether.classifyTextAndEmojis(this.fulltext).get('text'),
-          (item: string, index: number) => { // 展示文本和自定义表情资源
-            Span(item)
-              .fontSize(18)
-              .fontColor('#666666')
-              .fontWeight(FontWeight.Regular)
-
-            ImageSpan(DisplayedTogether.getEmojiImg(
-              DisplayedTogether.classifyTextAndEmojis(this.fulltext).get('emojis'))[index])
-              .verticalAlign(ImageSpanAlignment.BOTTOM)
-              .height(24)
-          })
+        .padding(15)
       }
-      .width('80%')
-      .padding(15)
-    }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Center)
-    .alignItems(HorizontalAlign.Center)
-    .padding(20)
+      .width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
+      .padding(20)
+      // [StartExclude Displayed_Together]
+    }.backgroundColor('#f1f 2f3')
+    .title($r('app.string.Displayed_Together_description'))
+    // [EndExclude Displayed_Together]
   }
 }
 

@@ -1702,6 +1702,10 @@
     {
       "name": "Text_Long_Tow_description",
       "value": "可以把Text组件放在滚动容器Scroll里面，通过手势滑动来浏览全部文本。"
+    },
+    {
+      "name": "Text_Long_String",
+      "value": "这是一段超长文本"
     }
   ]
 }

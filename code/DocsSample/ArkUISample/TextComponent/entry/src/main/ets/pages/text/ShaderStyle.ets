@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // xxx.ets
-// [End Shader_Style]
+// [Start Shader_Style]
 @Entry
 @Component
 export struct ShaderStyle {
@@ -26,8 +26,11 @@ export struct ShaderStyle {
     };
 
   build() {
+    // [StartExclude Shader_Style]
     NavDestination() {
+      // [EndExclude Shader_Style]
       Column({ space: 5 }) {
+        // 'app.string.direction_LeftTop'资源文件中的value值为'direction为LeftTop的线性渐变'
         Text($r('app.string.direction_LeftTop')).fontSize(18).width('90%').fontColor(0xCCCCCC)
           .margin({ top: 40, left: 40 })
         Text(this.message)
@@ -38,8 +41,10 @@ export struct ShaderStyle {
       }
       .height('100%')
       .width('100%')
+      // [StartExclude Shader_Style]
     }.backgroundColor('#f1f 2f3')
     .title($r('app.string.Shader_Style'))
+    // [EndExclude Shader_Style]
   }
 }
 

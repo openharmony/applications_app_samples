@@ -20,18 +20,23 @@ import { ComponentCard } from '../../common/Card';
 @Component
 export struct TextHotSearch {
   build() {
+    // [StartExclude the_text_fact_example]
     NavDestination() {
+      // [EndExclude the_text_fact_example]
       Column({ space: 12 }) {
+        // $r('app.string.TextHotSearch_title_1')需要替换为开发者定义的资源
         ComponentCard({ title: $r('app.string.TextHotSearch_title_1') }) {
           Column() {
             Row() {
               Text('1').fontSize(14).fontColor(Color.Red).margin({ left: 10, right: 10 })
+              // $r('app.string.TextHotSearch_textContent_1')需要替换为开发者定义的资源
               Text($r('app.string.TextHotSearch_textContent_1'))
                 .fontSize(12)
                 .fontColor(Color.Blue)
                 .maxLines(1)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                 .fontWeight(300)
+              // $r('app.string.TextHotSearch_textContent_2')需要替换为开发者定义的资源
               Text($r('app.string.TextHotSearch_textContent_2'))
                 .margin({ left: 6 })
                 .textAlign(TextAlign.Center)
@@ -46,6 +51,7 @@ export struct TextHotSearch {
 
             Row() {
               Text('2').fontSize(14).fontColor(Color.Red).margin({ left: 10, right: 10 })
+              // $r('app.string.TextHotSearch_textContent_2')需要替换为开发者定义的资源，下同
               Text($r('app.string.TextHotSearch_textContent_3'))
                 .fontSize(12)
                 .fontColor(Color.Blue)
@@ -102,9 +108,11 @@ export struct TextHotSearch {
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude the_text_fact_example]
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.TextHotSearch_title'))
+    // [EndExclude the_text_fact_example]
   }
 }
 // [End the_text_fact_example]

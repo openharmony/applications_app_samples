@@ -22,7 +22,9 @@ export struct ContentTransition {
   @State numberTransition: NumericTextTransition =
     new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
   build() {
+    // [StartExclude Content_Transition]
     NavDestination() {
+      // [EndExclude Content_Transition]
       Column() {
         Text(this.number + '')
           .borderWidth(1)
@@ -36,8 +38,10 @@ export struct ContentTransition {
       }
       .width('100%')
       .height('100%')
+      // [StartExclude Content_Transition]
     }.backgroundColor('#f1f 2f3')
     .title($r('app.string.Set_digital_flip_effect'))
+    // [EndExclude Content_Transition]
   }
 }
 

@@ -69,7 +69,9 @@ export struct LengthMetric {
   }
 
   build() {
+    // [StartExclude Length_Metric]
     NavDestination() {
+      // [EndExclude Length_Metric]
       Column({ space: 20 }) {
         Blank()
           .height(200)
@@ -94,8 +96,10 @@ export struct LengthMetric {
       .height('100%')
       .width('90%')
       .padding('5%')
+      // [StartExclude Length_Metric]
     }.backgroundColor('#f1f 2f3')
     .title($r('app.string.Length_Metric'))
+    // [EndExclude Length_Metric]
   }
 }
 

@@ -21,7 +21,9 @@ export struct TextSpanOnHover {
   @State textStr2: string = '';
 
   build() {
+    // [StartExclude textspan_onhover]
     NavDestination() {
+      // [EndExclude textspan_onhover]
       Row() {
         Column() {
           Text() {
@@ -45,8 +47,10 @@ export struct TextSpanOnHover {
         }.width('100%')
       }
       .height('100%')
+      // [StartExclude textspan_onhover]
     }.backgroundColor('#f1f 2f3')
     .title($r('app.string.OnClick_onHover'))
+    // [EndExclude textspan_onhover]
   }
 }
 
