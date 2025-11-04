@@ -16,13 +16,12 @@
 /*
  * 以下以HKDF256密钥的Promise操作使用为例
  */
-// [Start key_deletions]
+// [Start key_deletions_arkts]
 import { huks } from '@kit.UniversalKeystoreKit';
 
-/* 1.确定密钥别名 */
 let keyAlias = 'test_Key';
-// [StartExclude key_deletions]
-/* 2.初始化密钥属性集 */
+
+// ===== 密钥生成配置 =====
 let generateProperties: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -43,7 +42,7 @@ let generateHuksOptions: huks.HuksOptions = {
   inData: new Uint8Array([])
 }
 
-/* 3.生成密钥 */
+// ===== 生成密钥 =====
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   return new Promise<void>((resolve, reject) => {
     try {
@@ -60,39 +59,22 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   });
 }
 
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+async function generateKey(keyAlias: string, huksOptions: huks.HuksOptions): Promise<void> {
   console.info(`enter promise generateKeyItem`);
   try {
-    await generateKeyItem(keyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
-      });
-    return 'Success';
+    await generateKeyItem(keyAlias, huksOptions);
+    console.info(`promise: generateKeyItem success`);
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    return 'Failed';
+    console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
   }
 }
 
-async function testGenKey(): Promise<string> {
-  let ret = await publicGenKeyFunc(keyAlias, generateHuksOptions);
-  return ret;
-}
-
-// [EndExclude key_deletions]
-/* 4.构造空对象 */
+// ===== 删除密钥 =====
 let deleteHuksOptions: huks.HuksOptions = {
   properties: []
 }
 
-class ThrowObject {
-  public isThrow = false;
-}
-
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
+function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -103,43 +85,42 @@ function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
         }
       });
     } catch (error) {
-      throwObject.isThrow = true;
       throw (error as Error);
     }
   });
 }
 
-/* 3.删除密钥*/
-async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+async function deleteKey(keyAlias: string, huksOptions: huks.HuksOptions): Promise<void> {
   console.info(`enter promise deleteKeyItem`);
-  let throwObject: ThrowObject = { isThrow: false };
   try {
-    console.log('start genKey...')
-    await testGenKey();
-    console.log('end genKey...')
-    await deleteKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
-        }
-      });
-    return 'Success';
+    await deleteKeyItem(keyAlias, huksOptions);
+    console.info(`promise: deleteKeyItem success`);
   } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    return 'Failed';
+    console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
   }
 }
 
-async function testDerive(): Promise<string> {
-  let ret = await publicDeleteKeyFunc(keyAlias, deleteHuksOptions);
-  return ret;
+// ===== 完整流程：生成并删除密钥 =====
+async function executeKeyLifecycle(): Promise<string> {
+  try {
+    // 生成密钥
+    console.log('start generateKey...');
+    await generateKey(keyAlias, generateHuksOptions);
+    console.log('end generateKey...');
+
+    // 删除密钥
+    console.log('start deleteKey...');
+    await deleteKey(keyAlias, deleteHuksOptions);
+    console.log('end deleteKey...');
+
+    console.info('Key lifecycle completed successfully');
+    return 'Success';
+  } catch (error) {
+    console.error(`Key lifecycle failed: ${JSON.stringify(error)}`);
+    return 'Failed';
+  }
 }
-// [End key_deletions]
+// [End key_deletions_arkts]
 @Entry
 @Component
 struct Index {
@@ -161,7 +142,7 @@ struct Index {
         .fontSize('14sp')
         .fontColor('#ffffff')
         .onClick(async () => {
-          let ret = await testDerive();
+          let ret = await executeKeyLifecycle();
           this.message = 'KeyDeletion Result: ' + ret;
         })
     }

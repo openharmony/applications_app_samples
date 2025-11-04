@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start key_deletion]
+// [Start key_deletion_cpp]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <cstring>
-// [StartExclude key_deletion]
-/* 以下以生成ECC密钥为例 */
+
+// ===== 工具函数：初始化参数集 =====
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount)
 {
@@ -39,56 +39,63 @@ OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_
     return ret;
 }
 
+// ===== 密钥生成参数配置 =====
 struct OH_Huks_Param g_testGenerateKeyParam[] = {{.tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_ECC},
                                                  {.tag = OH_HUKS_TAG_PURPOSE, .uint32Param = OH_HUKS_KEY_PURPOSE_AGREE},
                                                  {.tag = OH_HUKS_TAG_KEY_SIZE, .uint32Param = OH_HUKS_ECC_KEY_SIZE_256},
                                                  {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE}};
 
+// ===== 生成密钥 =====
 static OH_Huks_Result GenerateKeyHelper(const char *alias)
 {
     struct OH_Huks_Blob aliasBlob = {.size = (uint32_t)strlen(alias), .data = (uint8_t *)alias};
     struct OH_Huks_ParamSet *testGenerateKeyParamSet = nullptr;
     struct OH_Huks_Result ohResult;
+    
     do {
-        /* 1.初始化密钥属性集 */
+        // 初始化参数集
         ohResult = InitParamSet(&testGenerateKeyParamSet, g_testGenerateKeyParam,
                                 sizeof(g_testGenerateKeyParam) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        /* 2.生成密钥 */
+        
+        // 生成密钥
         ohResult = OH_Huks_GenerateKeyItem(&aliasBlob, testGenerateKeyParamSet, nullptr);
     } while (0);
+    
     OH_Huks_FreeParamSet(&testGenerateKeyParamSet);
     return ohResult;
 }
-// [EndExclude key_deletion]
+
+// ===== NAPI 接口：删除密钥 =====
 static napi_value DeleteKey(napi_env env, napi_callback_info info)
 {
-    /* 1.获取密钥别名 */
+    // 设置密钥别名
     const char *alias = "test_key";
     struct OH_Huks_Blob keyAlias = {
         (uint32_t)strlen("test_key"),
         (uint8_t *)"test_key"
     };
-    // [StartExclude key_deletion]
-    /* 生成密钥 */
+    
+    // 先生成密钥用于演示
     OH_Huks_Result genResult = GenerateKeyHelper(alias);
     if (genResult.errorCode != OH_HUKS_SUCCESS) {
         napi_value ret;
         napi_create_int32(env, genResult.errorCode, &ret);
         return ret;
     }
-    // [EndExclude key_deletion]
 
-    /* 2.调用OH_Huks_DeleteKeyItem删除密钥  */
+    // 删除密钥
     struct OH_Huks_Result ohResult = OH_Huks_DeleteKeyItem(&keyAlias, nullptr);
 
     napi_value ret;
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-// [End key_deletion]
+// [End key_deletion_cpp]
+
+// ===== NAPI 模块注册 =====
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
