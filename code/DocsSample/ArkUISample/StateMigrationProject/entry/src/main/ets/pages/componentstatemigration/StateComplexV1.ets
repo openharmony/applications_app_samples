@@ -19,7 +19,7 @@ class Child3 {
 
 @Component
 @Entry
-struct example1 {
+struct Example1 {
   @State child: Child3 = new Child3();
 
   build() {
