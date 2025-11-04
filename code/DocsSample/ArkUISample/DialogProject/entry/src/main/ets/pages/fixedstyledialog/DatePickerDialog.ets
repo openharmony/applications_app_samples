@@ -14,7 +14,6 @@
  */
 
 // [Start date_picker_dialog]
-import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
