@@ -16,27 +16,27 @@
 import { CompletedRoutableCard } from '../../common/Card';
 import resource from '../../common/resource';
 import { Route } from '../../common/Route';
-import { OverlayManagerDemo1 } from './OverlayManagerDemo1';
-import { OverlayManagerDemo2 } from './OverlayManagerDemo2';
-import { OverlayManagerDemo3 } from './OverlayManagerDemo3';
+import { OverlayManagerComponent } from './OverlayManagerComponent';
+import { OverlayManagerAlertDialog } from './OverlayManagerAlertDialog';
+import { OverlayManagerWithOrder } from './OverlayManagerWithOrder';
 
 export const OverlayManager_ROUTE_PREFIX: string = 'OverlayManager_ROUTE_PREFIX';
 
 const routes: Route[] = [
   {
-    name: `${OverlayManager_ROUTE_PREFIX}/OverlayManagerDemo1`,
-    title: resource.resourceToString($r('app.string.OverlayManager_demo1_title')),
-    description: $r('app.string.OverlayManager_demo1_des'),
+    name: `${OverlayManager_ROUTE_PREFIX}/OverlayManagerComponent`,
+    title: resource.resourceToString($r('app.string.OverlayManager_component_title')),
+    description: $r('app.string.OverlayManager_component_des'),
   },
   {
-    name: `${OverlayManager_ROUTE_PREFIX}/OverlayManagerDemo2`,
-    title: resource.resourceToString($r('app.string.OverlayManager_demo2_title')),
-    description: $r('app.string.OverlayManager_demo2_des'),
+    name: `${OverlayManager_ROUTE_PREFIX}/OverlayManagerAlertDialog`,
+    title: resource.resourceToString($r('app.string.OverlayManager_alert_title')),
+    description: $r('app.string.OverlayManager_alert_des'),
   },
   {
-    name: `${OverlayManager_ROUTE_PREFIX}/OverlayManagerDemo3`,
-    title: resource.resourceToString($r('app.string.OverlayManager_demo3_title')),
-    description: $r('app.string.OverlayManager_demo3_des'),
+    name: `${OverlayManager_ROUTE_PREFIX}/OverlayManagerWithOrder`,
+    title: resource.resourceToString($r('app.string.OverlayManager_withOrder_title')),
+    description: $r('app.string.OverlayManager_withOrder_des'),
   }
 
 ]
@@ -46,11 +46,11 @@ export function OverlayManagerDestination(name: string) {
   if (name === OverlayManager_ROUTE_PREFIX) {
     OverlayManagerList();
   } else if (name === routes[0].name) {
-    OverlayManagerDemo1();
+    OverlayManagerComponent();
   } else if (name === routes[1].name) {
-    OverlayManagerDemo2();
+    OverlayManagerAlertDialog();
   } else if (name === routes[2].name) {
-    OverlayManagerDemo3();
+    OverlayManagerWithOrder();
   }
 }
 
@@ -80,6 +80,6 @@ struct OverlayManagerList {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    .title($r('app.string.OverlayManager_demo1_title'))
+    .title($r('app.string.OverlayManager_component_title'))
   }
 }

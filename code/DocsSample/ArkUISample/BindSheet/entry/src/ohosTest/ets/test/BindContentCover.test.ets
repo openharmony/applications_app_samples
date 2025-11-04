@@ -93,23 +93,23 @@ export function BindContentCoverTest() {
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_002_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindContentCover_label2'))));
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('transition modal 1'))
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('transition modal 2'))
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('close modal 2'))
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('close modal 1'))
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_002_end');
     })
 
@@ -125,23 +125,23 @@ export function BindContentCoverTest() {
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_003_begin');
       aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindContentCover_label3'))));
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('transition modal 1'))
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('transition modal 2'))
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('close modal 2'))
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('close modal 1'))
       await aimComponent.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_003_end');
     })
 
@@ -193,19 +193,19 @@ export function BindContentCoverTest() {
 
       aimComponent = await driver.findComponent(ON.text('Transition Modal 1'))
       await aimComponent.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('Transition Modal 2'))
       await aimComponent.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('Close Modal 2'))
       await aimComponent.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(1000);
 
       aimComponent = await driver.findComponent(ON.text('Close Modal 1'))
       await aimComponent.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_005_end');
     })
 
@@ -219,19 +219,21 @@ export function BindContentCoverTest() {
      */
     it(BUNDLE + 'BindContentCoverTest_006', 0, async () => {
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_006_begin');
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindContentCover_label6'))));
+      aimComponent =
+        await driver.findComponent(ON.text(resourceManager.getStringByNameSync('bindContentCover_label6')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.MySheetBuilder_text2'))))
+      aimComponent =
+        await driver.findComponent(ON.text(resourceManager.getStringByNameSync('Sheet_tickets_available')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.MySheetBuilder_text1'))))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('Sheet_choose_person')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.MyContentCoverBuilder_text4'))))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('Text_confirm')));
       await aimComponent.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_006_end');
@@ -247,15 +249,16 @@ export function BindContentCoverTest() {
      */
     it(BUNDLE + 'BindContentCoverTest_007', 0, async () => {
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_007_begin');
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.bindContentCover_label7'))));
+      aimComponent =
+        await driver.findComponent(ON.text(resourceManager.getStringByNameSync('bindContentCover_label7')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.MyContentCoverBuilder_text2'))))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('Sheet_choose_person')));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.MyContentCoverBuilder_text4'))))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringByNameSync('Text_confirm')));
       await aimComponent.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'BindSheet_BindContentCoverTest_007_end');
