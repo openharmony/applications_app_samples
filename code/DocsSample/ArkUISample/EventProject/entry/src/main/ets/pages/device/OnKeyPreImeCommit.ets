@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start key_event_intercept]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Eventproject]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'Eventproject_';
-// [Start key_event_intercept]
+
 @Entry
 @Component
 struct TextAreaDemo {
