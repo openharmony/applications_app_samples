@@ -76,6 +76,7 @@ export struct GridLayout {
           .rowsTemplate('1fr 1fr 1fr')
           .columnsTemplate('1fr 2fr 1fr')
         }
+        // app.string.GridLayout_titleChildSpan资源文件中的value值为‘设置子组件所占行列数示例’
 
         ComponentCard({ title: $r('app.string.GridLayout_titleChildSpan') }) {
           Grid(undefined, this.layoutOptions) {
@@ -97,6 +98,7 @@ export struct GridLayout {
           .width('80%')
           .height(210)
         }
+        // app.string.GridLayout_titleMainAxis资源文件中的value值为‘设置主轴方向示例’
 
         ComponentCard({ title: $r('app.string.GridLayout_titleMainAxis') }) {
           Grid() {
@@ -188,6 +190,8 @@ export struct GridLayout {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.GridLayout_title资源文件中的value值为‘网格开发布局’
+
     .title($r('app.string.GridLayout_title'))
   }
 }

@@ -78,6 +78,7 @@ export struct GridCalculator {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // app.string.GridCalculator_title资源文件中的value值为‘计算器的按键布局’
         ComponentCard({ title: $r('app.string.GridCalculator_title') }) {
           // [EndExclude Set_numberrows_columns]
           Grid(undefined, this.layoutOptions) {

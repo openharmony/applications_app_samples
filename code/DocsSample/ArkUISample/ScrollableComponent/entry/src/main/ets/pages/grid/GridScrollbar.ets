@@ -86,6 +86,7 @@ export struct GridScrollbar {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.GridScrollbar_title资源文件中的value值为‘添加外置滚动条’
     .title($r('app.string.GridScrollbar_title'))
   }
 }

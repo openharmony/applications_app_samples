@@ -92,6 +92,7 @@ export struct GridSideToSide {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
     .title($r('app.string.GridSideToSide_title'))
   }
 }

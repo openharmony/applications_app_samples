@@ -130,6 +130,7 @@ export struct DataInGrid {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.DataInGrid_title资源文件中的value值为‘网格显示数据’
     .title($r('app.string.DataInGrid_title'))
   }
 }

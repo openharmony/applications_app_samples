@@ -67,6 +67,7 @@ export struct ScrollPosition {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.ScrollPosition_title资源文件中的value值为‘控制滚动位置的网格布局’
     .title($r('app.string.ScrollPosition_title'))
   }
 }
