@@ -53,7 +53,7 @@ export default function accessControlTest() {
       await driver.delayMs(5000);
       const button2 = await driver.findComponent(ON.text('Call'));
       await button2.click();
-      await driver.delayMs(10000);
+      await driver.delayMs(8000);
       await driver.assertComponentExist(ON.text('Call Result: Success'));
       console.info('uitest: testAccessControl001 end');
       await driver.pressBack();
@@ -68,10 +68,10 @@ export default function accessControlTest() {
       const button1 = await driver.findComponent(ON.text('FineGrainedUserIdentityAuthentication'));
       await driver.delayMs(1000);
       await button1.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(5000);
       const button2 = await driver.findComponent(ON.text('Call'));
       await button2.click();
-      await driver.delayMs(10000);
+      await driver.delayMs(7000);
       await driver.assertComponentExist(ON.text('Call Result: Success'));
       console.info('uitest: testAccessControl002 end');
       await driver.pressBack();
