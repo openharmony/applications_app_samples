@@ -27,7 +27,7 @@ class SetAnimationVariables {
 @Component
 struct AnimationToAnimationDemo {
   // 第一步：声明相关状态变量
-  @State setAnimation: SetAnimationVariables = new SetAnimationVariables();
+  @State animationController: SetAnimationVariables = new SetAnimationVariables();
 
   build() {
     Column() {
@@ -42,8 +42,8 @@ struct AnimationToAnimationDemo {
         .height(100)
         .scale({
           // 第二步：将状态变量设置到相关可动画属性接口
-          x: this.setAnimation.isAnimation ? 2 : 1,
-          y: this.setAnimation.isAnimation ? 2 : 1
+          x: this.animationController.isAnimation ? 2 : 1,
+          y: this.animationController.isAnimation ? 2 : 1
         })
         .animation({ curve: curves.springMotion(0.4, 0.8) }) // 第四步：通过animation接口开启动画，动画终点值改变时，系统自动添加衔接动画
 
@@ -51,7 +51,7 @@ struct AnimationToAnimationDemo {
         .margin({ top: 200 })
         .onClick(() => {
           // 第三步：通过点击事件改变状态变量值，影响可动画属性值
-          this.setAnimation.set()
+          this.animationController.set()
         })
     }
     .width('100%')

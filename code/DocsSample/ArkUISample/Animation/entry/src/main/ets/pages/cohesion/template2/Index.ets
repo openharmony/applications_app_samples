@@ -51,7 +51,7 @@ struct SpringMotionDemo {
             }
           })
       }
-      .width('100%').height("80%")
+      .width('100%').height('80%')
       .clip(true) // 如果球超出父组件范围，使球不可见
       .backgroundColor(Color.Orange)
 
