@@ -39,6 +39,7 @@ function uint8ArrayToString(fileData: Uint8Array) {
   return dataString;
 }
 
+// ===== HMAC 配置 =====
 function getHMACProperties() {
   const properties: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -56,21 +57,12 @@ function getHMACProperties() {
   return properties;
 }
 
+// ===== 生成 HMAC 密钥 =====
 async function generateHMACKey() {
-  /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
-  /*
-  * 2. 获取生成密钥算法参数配置
-  */
-  let genProperties = getHMACProperties();
   let options: huks.HuksOptions = {
-    properties: genProperties
+    properties: getHMACProperties()
   }
-  /*
-  * 3. 调用generateKeyItem
-  */
+
   await huks.generateKeyItem(hmacKeyAlias, options)
     .then((data) => {
       console.info(`promise: generate HMAC Key success`);
@@ -80,35 +72,23 @@ async function generateHMACKey() {
     })
 }
 
+// ===== 执行 HMAC 计算 =====
 async function hMACData() {
-  /*
-  * 模拟HMAC场景
-  * 1. 获取密钥别名
-  */
-  /*
-  * 2. 获取待哈希的数据
-  */
-  /*
-  * 3. 获取HMAC算法参数配置
-  */
-  let hmacProperties = getHMACProperties();
   let options: huks.HuksOptions = {
-    properties: hmacProperties,
+    properties: getHMACProperties(),
     inData: stringToUint8Array(plainText)
   }
-  /*
-  * 4. 调用initSession获取handle
-  */
+
+  // 初始化会话
   await huks.initSession(hmacKeyAlias, options)
     .then((data) => {
       handle = data.handle;
     }).catch((error: Error) => {
-      console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
+      console.error(`promise: init session failed, ${JSON.stringify(error)}`);
       throw (error as Error);
     })
-  /*
-  * 5. 调用finishSession获取HMAC的结果
-  */
+
+  // 完成会话并获取 HMAC 结果
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: HMAC data success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
@@ -117,6 +97,11 @@ async function hMACData() {
       console.error(`promise: HMAC data failed, ${JSON.stringify(error)}`);
       throw (error as Error);
     })
+}
+
+async function executeHMAC() {
+  await generateHMACKey();
+  await hMACData();
 }
 // [End hmac_to]
 @Entry
@@ -141,8 +126,7 @@ struct Index {
         .fontColor('#ffffff')
         .onClick(async () => {
           try {
-            await generateHMACKey();
-            await hMACData();
+            await executeHMAC();
             this.message = 'HMAC Result: Success';
           } catch (error) {
             this.message = 'HMAC Result: ' + error.message;
