@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/10-Builder.ets
 // [Start Main_Builder]
+// src/main/ets/pages/BuilderPage.ets
 import { AppStorageV2, PersistenceV2, Type } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';

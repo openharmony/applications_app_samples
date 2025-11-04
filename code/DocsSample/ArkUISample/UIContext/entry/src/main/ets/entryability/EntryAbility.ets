@@ -60,17 +60,21 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     let localStorage = new LocalStorage();
     localStorage.setOrCreate('message', 'Message from Storage')
+  // [StartExclude Common_LocalStorage]
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'success localStorage');
     let window = windowStage.getMainWindowSync();
     // 注册主窗的回调。
     WindowUIContextUtils.registerWindowCallback(window);
     // 在loadContent前调用getUIContext时，UI实例未创建，存在异常。
+    // [EndExclude Common_LocalStorage]
     windowStage.loadContent('pages/Index', localStorage, (err) => {
       // 需要在loadContent完成后获取UIContext。
       if (err.code) {
         hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
         return;
       }
+      hilog.info(DOMAIN, 'testTag', `loadContent success.`);
+      // [StartExclude Common_LocalStorage]
       // 需要在回调中调用。
       try {
         let uiContext = window.getUIContext();
@@ -87,7 +91,7 @@ export default class EntryAbility extends UIAbility {
         hilog.error(DOMAIN, 'testTag', `Can't get UIContext, ${e}`);
       }
       // loadContent是异步接口，在此处调用不能保证UI实例已经创建成功。
-      hilog.info(DOMAIN, 'testTag', `loadContent success.`);
+      // [EndExclude Common_LocalStorage]
     });
   }
 

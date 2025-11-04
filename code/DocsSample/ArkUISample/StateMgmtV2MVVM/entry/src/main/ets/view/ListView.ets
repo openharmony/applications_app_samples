@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/view/ListView.ets
 // [Start View_ListView]
+// src/main/ets/view/ListView.ets
 import TaskViewModel from '../viewmodel/TaskViewModel';
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 import { Setting } from '../pages/SettingPage';

@@ -14,8 +14,8 @@
  *
 */
 
-// src/main/ets/pages/2-Local.ets
 // [Start Main_Local]
+// src/main/ets/pages/LocalPage.ets
 @Entry
 @ComponentV2
 struct TodoList {
