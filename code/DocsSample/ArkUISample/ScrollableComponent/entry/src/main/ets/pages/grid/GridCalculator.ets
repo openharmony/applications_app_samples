@@ -34,7 +34,9 @@ export struct GridCalculator {
         return [6, 0, 1, 2];
       } else if (index == key2) { // key2是“=”按键对应的index
         return [5, 3, 2, 1];
-      } else if (index == 0) {
+      }
+      // [StartExclude Set_numberrows_columns]
+      if (index == 0) {
         return [2, 0, 1, 1];
       } else if (index == 1) {
         return [2, 1, 1, 1];
@@ -64,13 +66,10 @@ export struct GridCalculator {
         return [5, 1, 1, 1];
       } else if (index == 14) {
         return [5, 2, 1, 1];
-      // } else if (index == 15) {
-      //   return [5, 3, 2, 1];
-      // } else if (index == 16) {
-      //   return [6, 0, 1, 2];
       } else if (index == 17) {
         return [6, 2, 1, 1];
       }
+      // [EndExclude Set_numberrows_columns]
       return [0, 0, 2, 4];
       // 这里需要根据具体布局返回其他item的位置
     }
