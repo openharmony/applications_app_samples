@@ -140,6 +140,7 @@ export default class EntryAbility extends UIAbility {
   }
   // [EndExclude onForeground]
 
+  // [StartExclude onWindowStageDestroy]
   onForeground(): void {
     // 申请系统需要的资源，或者重新申请在onBackground()中释放的资源
   }
@@ -157,6 +158,7 @@ export default class EntryAbility extends UIAbility {
   }
   // [EndExclude onCreate]
   // [EndExclude onWindowStageCreate]
+  // [EndExclude onWindowStageDestroy]
   // [EndExclude onForeground]
   // [EndExclude onBackground]
   // [EndExclude onWindowStageWillDestroy]
