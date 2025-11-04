@@ -20,7 +20,7 @@ class Child4 {
 
 @ComponentV2
 @Entry
-struct example2 {
+struct Example2 {
   @Local child: Child4 = new Child4();
 
   build() {
