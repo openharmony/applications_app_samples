@@ -16,8 +16,6 @@
 // [Start app_context_cache_start]
 import { common } from '@kit.AbilityKit';
 
-const TAG: string = '[ApplicationContextCache]';
-const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
