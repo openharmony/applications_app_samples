@@ -19,6 +19,7 @@ import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
 //[StartExclude SpringLoading_start]
 export const springLoadingRoutePrefix: string = 'springLoadingExample';
+
 //[EndExclude SpringLoading_start]
 
 @Entry
@@ -42,7 +43,9 @@ export struct SpringLoadingPage {
         .width('80%')
         .borderWidth(1)
         .borderColor(Color.Black)
+        //[StartExclude springLoading_builder]
         .padding({ bottom: 5 })
+        //[EndExclude springLoading_builder]
         .onChange((value: string) => {
           if (value.length == 0) {
             this.isSearchDone = false;
@@ -52,7 +55,11 @@ export struct SpringLoadingPage {
           this.isSearchDone = true;
         })
       if (this.isSearchDone) {
-        Text(this.searchResult).fontSize(20).textAlign(TextAlign.Start).width('80%')
+        Text(this.searchResult).fontSize(20)
+        //[StartExclude springLoading_builder]
+          .textAlign(TextAlign.Start)
+          .width('80%')
+        //[EndExclude springLoading_builder]
       }
     }.width('100%').height('100%')
   }
@@ -154,6 +161,7 @@ export struct SpringLoadingPage {
             .fontSize(30)
             .copyOption(CopyOptions.InApp) // 开启copyOption之后，文本组件即可支持选择内容进行拖拽
         }.padding({ bottom: 30 })
+
         // 'app.string.Search_Device'需要替换为开发者所需的文本资源文件
         Button($r('app.string.Search_Device'))
           .width('80%')
@@ -187,17 +195,17 @@ export struct SpringLoadingPage {
         //[StartExclude SpringLoading_start]
       }
       .backgroundColor('#f1f3f5')
-        .title('', {
-          backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
-          barStyle: BarStyle.STACK
-        })
-        // 'app.string.Pages_Index_DropAnimation'需要替换为开发者所需的文本资源文件
-        .title($r('app.string.Pages_Index_DropAnimation'))
+      .title('', {
+        backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
+        barStyle: BarStyle.STACK
+      })
+      // 'app.string.Pages_Index_DropAnimation'需要替换为开发者所需的文本资源文件
+      .title($r('app.string.Pages_Index_DropAnimation'))
 
       //[EndExclude springLoading_example]
       //[StartExclude SpringLoading_start]
     }.width('100%').height('100%')
-      .justifyContent(FlexAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 
   //[End springLoading_example]

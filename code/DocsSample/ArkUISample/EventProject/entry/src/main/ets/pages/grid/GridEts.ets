@@ -32,6 +32,7 @@ export struct GridEts {
   //[StartExclude grid_previewData_start]
   //[Start grid_numberBadge_start]
   @State numberBadge: number = 0;
+  //[StartExclude grid_numberBadge_start]
   unifiedData: UnifiedData | undefined = undefined;
   timeout: number = 1;
   finished: boolean = false;
@@ -127,6 +128,7 @@ export struct GridEts {
             .onDragStart(() => {
             })
             .selectable(true)
+            //[StartExclude grid_start]
             //[Start grid_isSelected_start]
             .selected(this.isSelectedGrid[idx])
             //[StartExclude grid_isSelected_start]
@@ -139,7 +141,7 @@ export struct GridEts {
             //[End grid_styles_start]
             //[EndExclude grid_isSelected_start]
             //[EndExclude grid_previewData_start]
-            //[StartExclude grid_numberBadge_start]
+            //[EndExclude grid_numberBadge_start]
             .onClick(() => {
               this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
               //[StartExclude grid_isSelected_start]
@@ -155,6 +157,7 @@ export struct GridEts {
                 this.unifiedData.addRecord(data);
                 //[EndExclude grid_numberBadge_start]
                 this.numberBadge++;
+                //[StartExclude grid_numberBadge_start]
                 //[EndExclude grid_previewData_start]
                 let gridItemName = 'grid' + idx;
                 // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
@@ -164,8 +167,9 @@ export struct GridEts {
                     pixelMap: this.pixmap
                   }
                 })
-                //[StartExclude grid_previewData_start]
+                //[EndExclude grid_numberBadge_start]
               } else {
+                //[StartExclude grid_previewData_start]
                 this.numberBadge--;
                 //[StartExclude grid_numberBadge_start]
                 for (let i = 0; i < this.isSelectedGrid.length; i++) {
@@ -179,14 +183,15 @@ export struct GridEts {
                     this.unifiedData.addRecord(data);
                   }
                 }
+                //[EndExclude grid_previewData_start]
               }
               //[EndExclude grid_isSelected_start]
-              //[EndExclude grid_previewData_start]
               //[EndExclude grid_numberBadge_start]
             })
+            //[End grid_previewData_start]
+            //[End grid_isSelected_start]
             .dragPreviewOptions({ numberBadge: this.numberBadge })
             //[End grid_numberBadge_start]
-            //[End grid_isSelected_start]
             .onPreDrag((status: PreDragStatus) => {
               // 1.长按时通知，350ms回调
               if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
@@ -215,7 +220,6 @@ export struct GridEts {
             //[EndExclude grid_start]
           }, (idx: string) => idx)
         }
-        //[End grid_previewData_start]
         //[End grid_start]
         .width('100%')
         .height('100%')
@@ -236,8 +240,10 @@ export struct GridEts {
                 .id('grid' + idx)
             }
             .dragPreview(this.previewData[idx])
+            //[Start dragPreviewOptions_start]
             .dragPreviewOptions({ numberBadge: this.numberBadge },
               { isMultiSelectionEnabled: true, defaultAnimationBeforeLifting: true })
+            //[End dragPreviewOptions_start]
             .selectable(true)
             .selected(this.isSelectedGrid[idx])
             .stateStyles({
