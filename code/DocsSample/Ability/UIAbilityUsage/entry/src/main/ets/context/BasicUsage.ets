@@ -43,8 +43,8 @@ struct BasicUsage {
   // 页面展示
   build() {
     // [StartExclude basicUsage]
-    // [StartExclude terminateSelf]
     Column() {
+      // [StartExclude terminateSelf]
       Text('UIAbilityB')
         .id('HelloWorld')
         .fontSize(30)
@@ -76,11 +76,15 @@ struct BasicUsage {
             hilog.error(DOMAIN, 'terminateSelf', `terminateSelf failed, code is ${code}, message is ${message}.`);
           }
         })
+        // [StartExclude terminateSelf]
         .width('60%')
         .margin({top: 8})
+      // [EndExclude terminateSelf]
     }
+    // [StartExclude terminateSelf]
     .width('100%')
     .justifyContent(FlexAlign.Center)
+    // [EndExclude terminateSelf]
     // [EndExclude basicUsage]
   }
 }

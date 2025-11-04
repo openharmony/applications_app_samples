@@ -18,7 +18,7 @@ import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
-struct Page_EventHub {
+struct EventHubPage {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   eventHubFunc(): void {
