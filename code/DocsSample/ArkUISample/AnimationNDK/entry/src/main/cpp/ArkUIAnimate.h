@@ -24,33 +24,49 @@
 namespace NativeModule {
 constexpr int32_t NUM_100 = 100;
 constexpr int32_t NUM_120 = 120;
+// [Start get_keyframeAnimateTo]
 constexpr int32_t NUM_150 = 150;
+// [StartExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_200 = 200;
+// [EndExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_250 = 250;
 constexpr int32_t NUM_300 = 300;
+// [StartExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_400 = 400;
+// [EndExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_500 = 500;
 constexpr int32_t NUM_1000 = 1000;
+// [StartExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_1500 = 1500;
+// [EndExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_2000 = 2000;
 constexpr int32_t NUM_0 = 0;
 constexpr int32_t NUM_1 = 1;
 constexpr int32_t NUM_2 = 2;
+// [StartExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_3 = 3;
 constexpr int32_t NUM_4 = 4;
+// [EndExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_5 = 5;
+// [StartExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_6 = 6;
 constexpr int32_t NUM_7 = 7;
 constexpr int32_t NUM_8 = 8;
 constexpr int32_t NUM_9 = 9;
 constexpr int32_t NUM_10 = 10;
 constexpr int32_t NUM_20 = 20;
+// [EndExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_30 = 30;
+// [StartExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_40 = 40;
+// [EndExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_50 = 50;
 constexpr int32_t NUM_60 = 60;
+// [StartExclude get_keyframeAnimateTo]
 constexpr int32_t NUM_80 = 80;
+// [Start get_context]
 std::shared_ptr<ArkUIButtonNode> g_keyframe_button = nullptr;
+// [StartExclude get_context]
 std::shared_ptr<ArkUITextNode> g_keyframe_text = nullptr;
 std::shared_ptr<ArkUIButtonNode> g_animateto_button = nullptr;
 std::shared_ptr<ArkUITextNode> g_animateto_text = nullptr;
@@ -77,7 +93,7 @@ struct TransitionData {
 
 std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
 {
-    // [Start get_keyframeAnimateTo]
+    // [EndExclude get_keyframeAnimateTo]
     auto column = std::make_shared<ArkUIColumnNode>();
     column->SetWidth(NUM_300);
     column->SetHeight(NUM_250);
@@ -100,7 +116,7 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
     auto onTouch = [](ArkUI_NodeEvent *event) {
         // 点击button按钮时触发该逻辑
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_1) {
-            // [Start get_context]
+            // [EndExclude get_context]
             // 获取context对象
             ArkUI_ContextHandle context = nullptr;
             context = OH_ArkUI_GetContextByNode(g_keyframe_button->GetHandle());
@@ -120,7 +136,7 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
             OH_ArkUI_KeyframeAnimateOption_SetDuration(option, NUM_2000, NUM_1); // 第二段关键帧动画的持续时间
             OH_ArkUI_KeyframeAnimateOption_SetIterations(option, NUM_5); // 关键帧动画播放次数
             ArkUI_CurveHandle curve = OH_ArkUI_Curve_CreateCubicBezierCurve(0.5f, 4.0f, 1.2f, 0.0f);
-            // 以下四种曲线根据自己得业务需要选择
+            // 以下四种曲线需要根据实际业务选择
             ArkUI_CurveHandle springCurve = OH_ArkUI_Curve_CreateSpringCurve(0.5f, 4.0f, 1.2f, 0.0f);
             ArkUI_CurveHandle springMotionCurve = OH_ArkUI_Curve_CreateSpringMotion(0.5f, 0.6f, 0.0f);
             ArkUI_CurveHandle responsiveSpringMotionCurve = OH_ArkUI_Curve_CreateResponsiveSpringMotion(0.5f,
@@ -569,7 +585,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
             OH_ArkUI_AnimatorOption_SetDuration(option, NUM_1000);
             OH_ArkUI_AnimatorOption_SetDelay(option, NUM_0);
             OH_ArkUI_AnimatorOption_SetIterations(option, NUM_4);
-            // 根据自己得需要选择下述两种曲线适合得去设置OH_ArkUI_AnimatorOption_SetCurve
+            // 根据实际业务需求选择下述两种曲线，设置OH_ArkUI_AnimatorOption_SetCurve
             auto curve = OH_ArkUI_Curve_CreateCurveByType(ARKUI_CURVE_EASE); // 动画以低速开始，然后加快，在结束前变慢
             auto stepsCurve = OH_ArkUI_Curve_CreateStepsCurve(NUM_20, true); // 构造阶梯曲线对象
             OH_ArkUI_AnimatorOption_SetCurve(option, curve);
