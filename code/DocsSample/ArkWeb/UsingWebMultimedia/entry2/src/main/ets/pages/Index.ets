@@ -28,14 +28,17 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   httpHeaders: Record<string, string>;
   uiContext?: UIContext;
 
-  constructor(nativePlayerInfo: NativePlayerInfo, handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo, uiContext: UIContext) {
+  constructor(nativePlayerInfo: NativePlayerInfo,
+              handler: webview.NativeMediaPlayerHandler,
+              mediaInfo: webview.MediaInfo,
+              uiContext: UIContext) {
     this.uiContext = uiContext;
     console.info(`NativeMediaPlayerImpl.constructor, surface_id[${mediaInfo.surfaceInfo.id}]`);
     this.nativePlayerInfo = nativePlayerInfo;
     this.mediaHandler = handler;
     this.surfaceId = mediaInfo.surfaceInfo.id;
-    this.mediaSource = mediaInfo.mediaSrcList.find((item) => item.source.indexOf('.mp4') > 0)?.source
-      || mediaInfo.mediaSrcList[0].source;
+    this.mediaSource = mediaInfo.mediaSrcList.find((item) => item.source.indexOf('.mp4') > 0)?.source ||
+      mediaInfo.mediaSrcList[0].source;
     this.httpHeaders = mediaInfo.headers;
     this.nativePlayer = new AVPlayerDemo();
 
@@ -338,7 +341,10 @@ class NativePlayerInfo {
 
   playerComponent?: NativeMediaPlayerComponent;
 
-  constructor(web: WebComponent, handler: webview.NativeMediaPlayerHandler, videoInfo: webview.MediaInfo, uiContext: UIContext) {
+  constructor(web: WebComponent,
+              handler: webview.NativeMediaPlayerHandler,
+              videoInfo: webview.MediaInfo,
+              uiContext: UIContext) {
     this.web = web;
     this.embed_id = videoInfo.embedID;
 
