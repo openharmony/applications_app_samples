@@ -15,7 +15,6 @@
 
 // [Start calender_picker_dialog]
 // xxx.ets
-import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
