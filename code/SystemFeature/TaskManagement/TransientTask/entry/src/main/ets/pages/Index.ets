@@ -15,6 +15,7 @@
 
 import { TitleBar } from './TitleBar'
 import { TransientTaskDialog } from './TransientTaskDialog'
+import { Interval } from './Interval';
 
 @Entry
 @Component
@@ -26,6 +27,7 @@ struct Index {
         .width(250)
         .height(250)
         .borderRadius(10)
+      Interval()
       TransientTaskDialog()
     }
     .width('100%')

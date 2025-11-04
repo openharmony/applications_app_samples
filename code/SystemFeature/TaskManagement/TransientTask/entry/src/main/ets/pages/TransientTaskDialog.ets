@@ -67,7 +67,7 @@ export struct TransientTaskDialog {
     Column() {
       Row(){
         Text($r('app.string.transient_task_id')).fontSize(20)
-        Text(""+this.requestId).fontSize(20).id('transient_task_id')
+        Text(this.requestId.toString()).fontSize(20).id('transient_task_id')
       }
       Button($r('app.string.request_suspend_delay'))
         .id('request_suspend_delay')
