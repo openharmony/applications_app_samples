@@ -140,6 +140,7 @@ struct Index {
   // 照片页
   build() {
     Column() {
+      // 'app.string.shareTransition_text9'资源文件中的value值为'照片'
       Text($r('app.string.shareTransition_text9'))
         .textAlign(TextAlign.Start)
         .width('100%')
@@ -196,6 +197,7 @@ struct Index {
   @Builder
   mySheet() {
     Column({ space: 20 }) {
+      // 'app.string.shareTransition_text10'资源文件中的value值为'半模态页面'
       Text($r('app.string.shareTransition_text10'))
         .fontSize(30)
       Row({ space: 40 }) {

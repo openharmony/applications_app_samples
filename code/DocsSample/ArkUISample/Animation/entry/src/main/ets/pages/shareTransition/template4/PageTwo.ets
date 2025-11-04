@@ -66,6 +66,7 @@ export struct PageTwo {
           Column({ space: 20 }) {
             NodeContainer(this.myNodeController);
             if (this.animationProperties.showDetailContent) {
+              // 'app.string.shareTransition_text8'资源文件中的value值为'展开态内容'
               Text($r('app.string.shareTransition_text8'))
                 .fontSize(20)
                 .transition(TransitionEffect.OPACITY)

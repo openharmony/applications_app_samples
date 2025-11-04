@@ -35,8 +35,10 @@ function postBuilder(data: Data) {
         .width(80)
         .height(80)
       Column() {
+        // 'app.string.shareTransition_text5'资源文件中的value值为'点击展开 Item '
         Text(resource.resourceToString($r('app.string.shareTransition_text5')) + data.item)
           .fontSize(20)
+        // 'app.string.shareTransition_text6'资源文件中的value值为'共享元素转场'
         Text($r('app.string.shareTransition_text6'))
           .fontSize(12)
           .fontColor(0x909399)
@@ -52,6 +54,7 @@ function postBuilder(data: Data) {
     // 展开后显示细节内容
     if (data.isExpand) {
       Row() {
+        // 'app.string.shareTransition_text7'资源文件中的value值为'展开态'
         Text($r('app.string.shareTransition_text7'))
           .fontSize(28)
           .fontColor(0x909399)
