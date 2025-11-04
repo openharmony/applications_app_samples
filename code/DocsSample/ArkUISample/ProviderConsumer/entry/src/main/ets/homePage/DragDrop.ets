@@ -35,8 +35,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
-  @Consumer() onDrag: (x: number, y: number) => void = (x: number, y: number) => {
-  };
+  @Consumer() onDrag: (x: number, y: number) => void = (x: number, y: number) => {};
 
   build() {
     Button('changed')
@@ -47,7 +46,6 @@ struct Child {
       })
   }
 }
-
 // [End Drag_Drop]
 
 @Component
