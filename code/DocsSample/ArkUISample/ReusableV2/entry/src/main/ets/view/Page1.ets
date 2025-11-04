@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//[Start Interface Description]
 import { ReusableV2Component } from '../common/ReusableV2Component1'
+//[Start Interface Description]
 @Entry
 @ComponentV2
 struct Page1 {

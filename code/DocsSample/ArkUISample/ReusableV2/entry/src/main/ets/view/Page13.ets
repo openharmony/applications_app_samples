@@ -101,7 +101,7 @@ class MyDataSource extends BasicDataSource {
 
 @ObservedV2
 class StringData {
-  @Trace private message: string;
+  @Trace public message: string;
   constructor(message: string) {
     this.message = message;
   }

@@ -16,9 +16,9 @@
 import { ReusableV2Component2 } from '../common/ReusableV2Component2';
 @ObservedV2
 export class Info {
-  @Trace private age: number = 25;
+  @Trace public age: number = 25;
 }
-export  const info: Info = new Info();
+export const info: Info = new Info();
 
 @Entry
 @ComponentV2
@@ -28,8 +28,8 @@ struct Page5 {
   build() {
     Column() {
       // $r('app.string.EntryAbility_title6')需要替换为开发者所需的字符串（图像、数字等）资源文件。
-      Button($('app.string.EntryAbility_title6')).onClick(()=>{this.condition=!this.condition;})
-      Button($('app.string.EntryAbility_title7')).onClick(()=>{info.age++;})
+      Button($r('app.string.EntryAbility_title6')).onClick(()=>{this.condition=!this.condition;})
+      Button($r('app.string.EntryAbility_title7')).onClick(()=>{info.age++;})
       if (this.condition) {
         ReusableV2Component2()
       }

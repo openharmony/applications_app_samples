@@ -16,7 +16,7 @@
 import { ReusableV2Component3 } from '../common/ReusableV2Component3';
 @ObservedV2
 export class Info1 {
-  @Trace private age: number;
+  @Trace public  age: number;
   constructor(age: number) {
     this.age = age;
   }
@@ -31,9 +31,9 @@ struct Page6 {
   build() {
     Column() {
       // $r('app.string.EntryAbility_title6')需要替换为开发者所需的字符串（图像、数字等）资源文件。
-      Button($('app.string.EntryAbility_title6')).onClick(()=>{this.condition=!this.condition;})
+      Button($r('app.string.EntryAbility_title6')).onClick(()=>{this.condition=!this.condition;})
       Column() {
-        Text($('app.string.EntryAbility_title12'))
+        Text($r('app.string.EntryAbility_title12'))
         Text(`local: ${this.local}`).onClick(()=>{this.local++;})
         Text(`inheritProvider: ${this.inheritProvider}`).onClick(()=>{this.inheritProvider++;})
       }.borderWidth(2)

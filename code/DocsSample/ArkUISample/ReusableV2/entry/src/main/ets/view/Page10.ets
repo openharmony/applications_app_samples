@@ -22,10 +22,10 @@ struct Page10 {
   build() {
     Column() {
       // $r('app.string.EntryAbility_title1')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($('app.string.EntryAbility_title1')).onClick(()=>{this.condition=!this.condition;})
-      Button($('app.string.EntryAbility_title2')).onClick(()=>{this.simpleList.push(this.simpleList.length+1);})
-      Button($('app.string.EntryAbility_title3')).onClick(()=>{this.simpleList.pop();})
-      Button($('app.string.EntryAbility_title4')).onClick(()=>{this.simpleList[0]++;})
+      Button($r('app.string.EntryAbility_title1')).onClick(()=>{this.condition=!this.condition;})
+      Button($r('app.string.EntryAbility_title2')).onClick(()=>{this.simpleList.push(this.simpleList.length+1);})
+      Button($r('app.string.EntryAbility_title3')).onClick(()=>{this.simpleList.pop();})
+      Button($r('app.string.EntryAbility_title4')).onClick(()=>{this.simpleList[0]++;})
       if (this.condition) {
         List({ space: 10 }) {
           Repeat(this.simpleList)

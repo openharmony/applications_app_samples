@@ -42,7 +42,7 @@ export struct ReusableV2Component3 {
   build() {
     Column() {
       Column() {
-        Text($('app.string.EntryAbility_title8'))
+        Text($r('app.string.EntryAbility_title8'))
         Text(`val: ${this.val}`).onClick(()=>{this.val++;})
         Text(`info.age: ${this.info.age}`).onClick(()=>{this.info.age++;})
         Text(`paramLocal: ${this.paramLocal}`).onClick(()=>{/* 无外部传入的Local无法本地修改 */})
@@ -50,17 +50,17 @@ export struct ReusableV2Component3 {
         Text(`selfConsumer: ${this.selfConsumer}`).onClick(()=>{this.selfConsumer++;})
       }.borderWidth(2)
       Column() {
-        Text($('app.string.EntryAbility_title9'))
+        Text($r('app.string.EntryAbility_title9'))
         Text(`paramOut: ${this.paramOut}`).onClick(()=>{this.changeParam();})
         Text(`paramOnce: ${this.paramOnce}`).onClick(()=>{this.paramOnce++;})
       }.borderWidth(2)
       Column() {
-        Text($('app.string.EntryAbility_title10'))
+        Text($r('app.string.EntryAbility_title10'))
         Text(`inheritConsumer: ${this.inheritConsumer}`).onClick(()=>{this.inheritConsumer++;})
         Text(`plusParam: ${this.plusParam}`)
       }.borderWidth(2)
       Column() {
-        Text($('app.string.EntryAbility_title11'))
+        Text($r('app.string.EntryAbility_title11'))
         Text(`noDecoVariable: ${this.noDecoVariable}`)
         Text(`noDecoInfo.age: ${this.noDecoInfo.age}`).onClick(()=>{this.noDecoInfo.age++;}) // 能够触发刷新但是复用时不会被重置
         Text(`readOnlyVariable: ${this.readOnlyVariable}`)

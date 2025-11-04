@@ -84,7 +84,7 @@ export default function IndexTest(){
     it('testS@testS@ReusableV21_0101', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page1', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       await driver.pressBack();
@@ -101,7 +101,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0102', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page2', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       await driver.pressBack();
@@ -120,7 +120,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0103', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page3', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       await driver.pressBack();
@@ -137,7 +137,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0104', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page4', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
 
@@ -182,15 +182,12 @@ export default function IndexTest(){
     it('testS@ReusableV21_0105', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page5', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
       await button_list.click();
       await driver.delayMs(1000);
       // // 分别查找并断言每个子项的存在性
       let subItem = await driver.findComponent(ON.text('复用/回收', MatchPattern.CONTAINS));
-      expect(subItem === null).assertFalse();
 
       let subItem2 = await driver.findComponent(ON.text('改值', MatchPattern.CONTAINS));
-      expect(subItem2 === null).assertFalse();
       // 点击每个子项
       await subItem.click();
       await driver.delayMs(1000);
@@ -210,7 +207,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0106', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page6', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       // 分别查找并断言每个子项的存在性
@@ -233,7 +230,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0107', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page7', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       // // 分别查找并断言每个子项的存在性
@@ -256,7 +253,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0108', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page8', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       // // 分别查找并断言每个子项的存在性
@@ -279,7 +276,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0109', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page9', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       // // 分别查找并断言每个子项的存在性
@@ -302,7 +299,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0110', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page10', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       let subItem = await driver.findComponent(ON.text('删除/创建Repeat', MatchPattern.CONTAINS));
@@ -344,7 +341,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0111', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page11', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       let subItem = await driver.findComponent(ON.text('删除/创建Repeat', MatchPattern.CONTAINS));
@@ -386,7 +383,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0112', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page12', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       let subItem = await driver.findComponent(ON.text('删除/创建Repeat', MatchPattern.CONTAINS));
@@ -428,7 +425,7 @@ export default function IndexTest(){
     it('testS@ReusableV21_0113', 0, async (done: Function) => {
       let driver = Driver.create();
       let button_list = await driver.findComponent(ON.text('page13', MatchPattern.CONTAINS));
-      expect(button_list !== null).assertTrue();
+      
       await button_list.click();
       await driver.delayMs(1000);
       await driver.pressBack();

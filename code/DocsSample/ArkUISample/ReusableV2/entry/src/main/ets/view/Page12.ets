@@ -23,7 +23,7 @@ struct Page12 {
     Column() {
       ForEach(this.simpleList, (num: number, index) => {
         Row() {
-          Button($('app.string.EntryAbility_title13')).onClick(()=>{this.simpleList[index]++;})
+          Button($r('app.string.EntryAbility_title13')).onClick(()=>{this.simpleList[index]++;})
           ReusableV2Component9({ num: num })
         }
       }) // 每次修改完key发生变化
