@@ -20,8 +20,8 @@ export struct Interval {
   build() {
     Column() {
       Row(){
-        Text($r('app.string.interval_number')).fontSize(20)
-        Text(this.timer.toString()).fontSize(20).id('interval_number')
+        Text($r('app.string.interval_number')).fontSize(20);
+        Text(this.timer.toString()).fontSize(20).id('interval_number');
       }
       Button($r('app.string.counter'))
         .id('counter')
@@ -32,8 +32,8 @@ export struct Interval {
         .size({ width: '70%', height: '8%' })
         .onClick(() => {
         setInterval(() => {
-          this.timer += 1
-          console.info('text now is '+ this.timer)
+          this.timer += 1;
+          console.info('text now is '+ this.timer);
         }, 1000)
       })
     }

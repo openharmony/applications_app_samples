@@ -15,67 +15,52 @@
 
 import { AbilityConstant, ConfigurationConstant, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import Logger from '../util/Logger'
-import quickFixManager from '@ohos.app.ability.quickFixManager'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import Logger from '../util/Logger';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const DOMAIN = 0x0000;
-const TAG: string = 'MainAbility'
-
-
-async function applyQuickFix() {
-  let hapModuleQuickFixFiles = ['/data/storage/el2/base/haps/entry-signed-release.hqf'];
-  try {
-    quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-      Logger.info(`applyQuickFix success`);
-    }).catch((error: BusinessError) => {
-      Logger.error(`applyQuickFix err: ${error}`);
-    });
-  } catch (paramError) {
-    Logger.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
-  }
-}
+const TAG: string = 'MainAbility';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    Logger.info(TAG, `onCreate`)
-    let status = want.parameters
-    AppStorage.SetOrCreate('status', status)
-    AppStorage.SetOrCreate('filePath', this.context.filesDir)
+    Logger.info(TAG, `onCreate`);
+    let status = want.parameters;
+    AppStorage.SetOrCreate('status', status);
+    AppStorage.SetOrCreate('filePath', this.context.filesDir);
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
 
   onDestroy() {
-    Logger.info(TAG, `onDestroy`)
+    Logger.info(TAG, `onDestroy`);
   }
 
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, `onWindowStageCreate`)
+    Logger.info(TAG, `onWindowStageCreate`);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.info(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
-        return
+        Logger.info(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        return;
       }
-      Logger.info(TAG, `Succeeded in loading the content. Data:  ${JSON.stringify(data)}`)
+      Logger.info(TAG, `Succeeded in loading the content. Data:  ${JSON.stringify(data)}`);
     })
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info(TAG, `onWindowStageDestroy`)
+    Logger.info(TAG, `onWindowStageDestroy`);
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info(TAG, `onForeground`)
+    Logger.info(TAG, `onForeground`);
   }
 
   onBackground(): void {
     // Ability has back to background
-    Logger.info(TAG, `onBackground`)
+    Logger.info(TAG, `onBackground`);
   }
 }

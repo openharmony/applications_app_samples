@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { TitleBar } from './TitleBar'
-import { TransientTaskDialog } from './TransientTaskDialog'
+import { TitleBar } from './TitleBar';
+import { TransientTaskDialog } from './TransientTaskDialog';
 import { Interval } from './Interval';
 
 @Entry
@@ -22,13 +22,13 @@ import { Interval } from './Interval';
 struct Index {
   build() {
     Column() {
-      TitleBar()
+      TitleBar();
       Image($r('app.media.Tomato'))
         .width(250)
         .height(250)
         .borderRadius(10)
-      Interval()
-      TransientTaskDialog()
+      Interval();
+      TransientTaskDialog();
     }
     .width('100%')
     .height('100%')

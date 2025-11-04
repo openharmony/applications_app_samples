@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { backgroundTaskManager } from '@kit.BackgroundTasksKit'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Component
 export struct TransientTaskDialog {
@@ -66,8 +66,8 @@ export struct TransientTaskDialog {
   build() {
     Column() {
       Row(){
-        Text($r('app.string.transient_task_id')).fontSize(20)
-        Text(this.requestId.toString()).fontSize(20).id('transient_task_id')
+        Text($r('app.string.transient_task_id')).fontSize(20);
+        Text(this.requestId.toString()).fontSize(20).id('transient_task_id');
       }
       Button($r('app.string.request_suspend_delay'))
         .id('request_suspend_delay')
@@ -77,7 +77,7 @@ export struct TransientTaskDialog {
         .backgroundColor($r('app.color.background'))
         .size({ width: '70%', height: '8%' })
         .onClick(() => {
-          this.requestSuspendDelay()
+          this.requestSuspendDelay();
         })
       Button($r('app.string.get_remaining_delay_time'))
         .id('get_remaining_delay_time')
@@ -87,7 +87,7 @@ export struct TransientTaskDialog {
         .backgroundColor($r('app.color.background'))
         .size({ width: '70%', height: '8%' })
         .onClick(() => {
-          this.getRemainingDelayTime()
+          this.getRemainingDelayTime();
         })
       Button($r('app.string.cancel_suspend_delay'))
         .id('cancel_suspend_delay')
@@ -97,7 +97,7 @@ export struct TransientTaskDialog {
         .backgroundColor($r('app.color.background'))
         .size({ width: '70%', height: '8%' })
         .onClick(() => {
-          this.cancelSuspendDelay()
+          this.cancelSuspendDelay();
         })
     }.width('100%')
     .margin({ top: 5 })
