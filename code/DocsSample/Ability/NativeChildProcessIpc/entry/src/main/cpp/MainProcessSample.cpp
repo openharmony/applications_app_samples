@@ -21,8 +21,6 @@
 // [StartExclude main_process_launch_native_child]
 #include "IpcProxy.h"
 #include <cstdint>
-#include <cstdlib>
-#include <cstring>
 #include <hilog/log.h>
 #include <future>
 #include <thread>
@@ -124,8 +122,8 @@ void ArkTsThread::CallFunc()
 namespace {
     ArkTsThread *g_thread;
 }
-// [EndExclude main_handle_child_start_callback]
 // [EndExclude main_process_launch_native_child]
+// [EndExclude main_handle_child_start_callback]
 static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remoteProxy)
 {
     if (errCode != NCP_NO_ERROR) {
@@ -152,8 +150,8 @@ static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remotePro
     if (g_promiseStartProcess != nullptr) {
         g_promiseStartProcess->set_value(errCode);
     }
-    // [EndExclude main_handle_child_start_callback]
     // [EndExclude main_process_launch_native_child]
+    // [EndExclude main_handle_child_start_callback]
 }
 // [End main_handle_child_start_callback]
 
