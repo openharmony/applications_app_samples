@@ -16,7 +16,9 @@
 // [Start ability_app_service_one]
 // [Start ability_app_service_two]
 import { AppServiceExtensionAbility, Want } from '@kit.AbilityKit';
+// [StartExclude ability_app_service_two]
 import { rpc } from '@kit.IPCKit';
+// [EndExclude  ability_app_service_two]
 // [StartExclude ability_app_service_one]
 import { BusinessError } from '@kit.BasicServicesKit';
 // [EndExclude  ability_app_service_one]

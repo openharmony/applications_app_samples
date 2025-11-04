@@ -13,16 +13,21 @@
  * limitations under the License.
  */
 
-// [Start implicit_start]
-import { Want } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let wantInfo: Want = {
-  // uncomment line below if wish to implicitly query only in the specific bundle.
-  // bundleName: 'com.example.myapplication',
-  action: 'ohos.want.action.search',
-  // entities can be omitted
-  entities: [ 'entity.system.browsable' ],
-  uri: 'https://www.test.com:8080/query/student',
-  type: 'text/plain',
-};
-// [End implicit_start]
+const DOMAIN = 0x0000;
+
+export default class ImplicitAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  }
+
+  onDestroy(): void {
+    hilog.info(DOMAIN, 'ImplicitAbility', `ImplicitAbility onDestroy.`);
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    hilog.info(DOMAIN, 'ImplicitAbility', `Ability onWindowStageCreate.`);
+  }
+}
