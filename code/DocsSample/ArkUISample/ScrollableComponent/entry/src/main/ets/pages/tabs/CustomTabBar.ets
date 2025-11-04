@@ -70,7 +70,6 @@ export struct CustomTabBar {
               $r('sys.media.ohos_ic_public_video'),
               $r('sys.media.ohos_ic_public_video')))
 
-            // [Start set_custom_tab_bar_style]
             TabContent() {
               Text($r('app.string.more_content'))
                 .fontSize(30)
@@ -80,7 +79,6 @@ export struct CustomTabBar {
               3,
               $r('sys.media.ohos_ic_public_drawer_open'),
               $r('sys.media.ohos_ic_public_drawer_open')))
-            // [End set_custom_tab_bar_style]
           }.height(500)
           .onChange((index: number) => {
             this.currentIndex = index; // 监听索引index的变化，实现页签内容的切换。

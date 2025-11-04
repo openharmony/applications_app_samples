@@ -24,6 +24,7 @@ export struct TopTabBar {
         ComponentCard({ title: $r('app.string.TopTabBar_titleExample') }) {
           // [Start top_navigation]
           Tabs({ barPosition: BarPosition.Start }) {
+            // TabContent的内容:关注、视频、游戏、数码、科技、体育、影视
             // [StartExclude top_navigation]
             TabContent() {
               Text($r('app.string.FocusOn_content'))

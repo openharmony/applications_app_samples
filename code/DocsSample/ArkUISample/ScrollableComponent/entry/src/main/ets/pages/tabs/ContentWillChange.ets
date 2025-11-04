@@ -15,19 +15,21 @@
 
 import { ComponentCard } from '../../common/Card';
 
-// [Start switch_the_tab_to_a_specific_tab]
+// [Start switch_the_tab_specific_tab]
+// [StartExclude switch_the_tab_specific_tab]
 @Entry
 @Component
 export struct ContentWillChange {
   scroller: Scroller = new Scroller();
-  @State currentIndex: number = 2;
-  // [StartExclude switch_the_tab_to_a_specific_tab]
-  @State currentIndexTwo: number = 2;
   @State currentIndexThree: number = 2;
-  private controller: TabsController = new TabsController();
+  @State currentIndexTwo: number = 2;
   private controllerTwo: TabsController = new TabsController();
-  // [EndExclude switch_the_tab_to_a_specific_tab]
+  // [EndExclude switch_the_tab_specific_tab]
+  @State currentIndex: number = 2;
+  @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST;
+  private controller: TabsController = new TabsController();
 
+  // [StartExclude switch_the_tab_specific_tab]
   @Builder
   tabBuilder(title: ResourceStr, targetIndex: number) {
     Column() {
@@ -36,7 +38,6 @@ export struct ContentWillChange {
     }
   }
 
-  // [StartExclude switch_the_tab_to_a_specific_tab]
   @Builder
   tabBuilderTwo(title: ResourceStr, targetIndex: number) {
     Column() {
@@ -52,50 +53,37 @@ export struct ContentWillChange {
         .fontColor(this.currentIndexThree === targetIndex ? '#F111C1' : '#6B6B6B')
     }
   }
-  // [EndExclude switch_the_tab_to_a_specific_tab]
 
   build() {
-    // [StartExclude switch_the_tab_to_a_specific_tab]
     NavDestination() {
       Scroll(this.scroller) {
-        // [EndExclude switch_the_tab_to_a_specific_tab]
         Column({ space: 12 }) {
-          // [StartExclude switch_the_tab_to_a_specific_tab]
           ComponentCard({ title: $r('app.string.ContentWillChange_titleContentAndTabSync') }) {
-            // [EndExclude switch_the_tab_to_a_specific_tab]
             Tabs({ barPosition: BarPosition.End }) {
               TabContent() {
-                // [StartExclude switch_the_tab_to_a_specific_tab]
                 Text($r('app.string.homepage_content'))
                   .fontSize(30)
-                // [EndExclude switch_the_tab_to_a_specific_tab]
               }
               .backgroundColor(Color.Blue)
               .tabBar(this.tabBuilder($r('app.string.homepage'), 0))
 
               TabContent() {
-                // [StartExclude switch_the_tab_to_a_specific_tab]
                 Text($r('app.string.discover_content'))
                   .fontSize(30)
-                // [EndExclude switch_the_tab_to_a_specific_tab]
               }
               .backgroundColor(Color.Green)
               .tabBar(this.tabBuilder($r('app.string.discover'), 1))
 
               TabContent() {
-                // [StartExclude switch_the_tab_to_a_specific_tab]
                 Text($r('app.string.recommend_content'))
                   .fontSize(30)
-                // [EndExclude switch_the_tab_to_a_specific_tab]
               }
               .backgroundColor(Color.Yellow)
               .tabBar(this.tabBuilder($r('app.string.recommend'), 2))
 
               TabContent() {
-                // [StartExclude switch_the_tab_to_a_specific_tab]
                 Text($r('app.string.mine_content'))
                   .fontSize(30)
-                // [EndExclude switch_the_tab_to_a_specific_tab]
               }
               .backgroundColor(Color.Orange)
               .tabBar(this.tabBuilder($r('app.string.mine'), 3))
@@ -109,9 +97,9 @@ export struct ContentWillChange {
 
           ComponentCard({ title: $r('app.string.ContentWillChange_titleSpecifiedTab') }) {
             Column({ space: 8 }) {
-              // [Start content_associated_with_tab]
+              // [EndExclude switch_the_tab_specific_tab]
               Tabs({ barPosition: BarPosition.End, index: this.currentIndexTwo, controller: this.controller }) {
-                // [StartExclude content_associated_with_tab]
+                // [StartExclude switch_the_tab_specific_tab]
                 TabContent() {
                   Text($r('app.string.homepage_content'))
                     .fontSize(30)
@@ -139,27 +127,45 @@ export struct ContentWillChange {
                 }
                 .backgroundColor(Color.Orange)
                 .tabBar(this.tabBuilderTwo($r('app.string.mine'), 3))
-                // [EndExclude content_associated_with_tab]
+                // [EndExclude switch_the_tab_specific_tab]
               }
               .animationDuration(0)
               .height(300)
+              .animationMode(this.currentAnimationMode)
               .onChange((index: number) => {
                 this.currentIndexTwo = index;
               })
 
-              Button($r('app.string.ContentWillChange_changeIndex')).width('50%')
+              //app.string.ContentWillChange_changeIndex资源文件中的ContentWillChange_changeIndex值为‘动态修改index’
+              Button('app.string.ContentWillChange_changeIndex').width('50%').margin({ top: 1 }).height(25)
+                .onClick(()=>{
+                  if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
+                    this.currentAnimationMode = AnimationMode.ACTION_FIRST;
+                  } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
+                    this.currentAnimationMode = AnimationMode.NO_ANIMATION;
+                  } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
+                    this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP;
+                  } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
+                    this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP;
+                  } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
+                    this.currentAnimationMode = AnimationMode.CONTENT_FIRST;
+                  }
+              })
+
+              //app.string.ContentWillChange_changeIndex资源文件中的ContentWillChange_changeIndex值为‘动态修改index’
+              Button($r('app.string.ContentWillChange_changeIndex')).width('50%').margin({ top: 20 })
                 .onClick(() => {
                   this.currentIndexTwo = (this.currentIndexTwo + 1) % 4;
                 })
 
-              Button('changeIndex').width('50%')
+              Button('changeIndex').width('50%').margin({ top: 20 })
                 .onClick(() => {
                   let index = (this.currentIndexTwo + 1) % 4;
                   this.controller.changeIndex(index);
                 })
-              // [End content_associated_with_tab]
             }
           }
+          // [End switch_the_tab_specific_tab]
 
           ComponentCard({ title: $r('app.string.ContentWillChange_titleInterception') }) {
             Column({ space: 8 }) {
@@ -198,10 +204,10 @@ export struct ContentWillChange {
               // [StartExclude custom_page_toggle_interception_events]
               .animationDuration(0)
               .height(300)
-              // [EndExclude custom_page_toggle_interception_events]
               .onChange((index: number) => {
                 this.currentIndexThree = index;
               })
+              // [EndExclude custom_page_toggle_interception_events]
               .onContentWillChange((currentIndex, comingIndex) => {
                 if (comingIndex == 2) {
                   return false;
@@ -231,4 +237,3 @@ export struct ContentWillChange {
     .title($r('app.string.ContentWillChange_title'))
   }
 }
-// [End switch_the_tab_to_a_specific_tab]
