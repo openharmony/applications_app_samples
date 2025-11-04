@@ -95,33 +95,33 @@ export default function CustomDialogTest() {
       await driver.pressBack();
       await sleep(1000);
 
-      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogAnimation1_title'))));
-      let button_dialogAnimation1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogAnimation1_title')), MatchPattern.CONTAINS));
-      await button_dialogAnimation1.click();
-      let button_dialogAnimation1_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
-      await button_dialogAnimation1_click.click();
+      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogAnimationNew_title'))));
+      let button_dialogAnimationNew = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogAnimationNew_title')), MatchPattern.CONTAINS));
+      await button_dialogAnimationNew.click();
+      let button_dialogAnimationNew_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
+      await button_dialogAnimationNew_click.click();
       await driver.pressBack();
       await driver.pressBack();
 
-      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogStyle1_title'))));
-      let button_dialogStyle1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogStyle1_title')), MatchPattern.CONTAINS));
-      await button_dialogStyle1.click();
-      let button_dialogStyle1_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
-      await button_dialogStyle1_click.click();
+      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.DialogStyleNew_title'))));
+      let button_dialogStyleNew = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.DialogStyleNew_title')), MatchPattern.CONTAINS));
+      await button_dialogStyleNew.click();
+      let button_dialogStyleNew_click = await driver.findComponent(ON.text('click me', MatchPattern.CONTAINS));
+      await button_dialogStyleNew_click.click();
       await driver.pressBack();
       await driver.pressBack();
 
-      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.NestDialog1_title'))));
-      let button_nestDialog1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.NestDialog1_title')), MatchPattern.CONTAINS));
-      await button_nestDialog1.click();
-      let button_nestDialog1_click = await driver.findComponent(ON.text('Click Me', MatchPattern.CONTAINS));
-      await button_nestDialog1_click.click();
-      let button_nestDialog1_open = await driver.findComponent(ON.text('Open Second Dialog Box and close this box', MatchPattern.CONTAINS));
-      await button_nestDialog1_open.click();
-      let button_nestDialog1_create_text = await driver.findComponent(ON.text('Create Text', MatchPattern.CONTAINS));
-      await button_nestDialog1_create_text.click();
-      let button_nestDialog1_close = await driver.findComponent(ON.text('Close Second Dialog Box', MatchPattern.CONTAINS));
-      await button_nestDialog1_close.click();
+      await stackList.scrollSearch(ON.text(resource.resourceToString($r('app.string.NestDialogNew_title'))));
+      let button_nestDialogNew = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.NestDialogNew_title')), MatchPattern.CONTAINS));
+      await button_nestDialogNew.click();
+      let button_nestDialogNew_click = await driver.findComponent(ON.text('Click Me', MatchPattern.CONTAINS));
+      await button_nestDialogNew_click.click();
+      let button_nestDialogNew_open = await driver.findComponent(ON.text('Open Second Dialog Box and close this box', MatchPattern.CONTAINS));
+      await button_nestDialogNew_open.click();
+      let button_nestDialogNew_create_text = await driver.findComponent(ON.text('Create Text', MatchPattern.CONTAINS));
+      await button_nestDialogNew_create_text.click();
+      let button_nestDialogNew_close = await driver.findComponent(ON.text('Close Second Dialog Box', MatchPattern.CONTAINS));
+      await button_nestDialogNew_close.click();
       await driver.pressBack();
 
       await stackList.scrollToBottom()
