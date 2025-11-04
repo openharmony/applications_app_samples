@@ -20,6 +20,7 @@ import resource from '../../../common/resource';
 @Component
 struct Index {
   @State animatorOptions: AnimatorResult | undefined = undefined;
+  // $r('app.string.create')资源文件中的value值为'创建'
   @State animatorStatus: Resource = $r('app.string.create');
   begin: number = 0;
   end: number = 300;
@@ -48,9 +49,11 @@ struct Index {
       }
     }
     this.animatorOptions.onCancel = () => {
+      // $r('app.string.cancel')资源文件中的value值为'取消'
       this.animatorStatus = $r('app.string.cancel');
     }
     this.animatorOptions.onFinish = () => {
+      // $r('app.string.complete')资源文件中的value值为'完成'
       this.animatorStatus = $r('app.string.complete');
     }
     this.animatorOptions.onRepeat = () => {
@@ -65,16 +68,21 @@ struct Index {
   build() {
     Column() {
       Column({ space: 30 }) {
+        // $r('app.string.play')资源文件中的value值为'播放'
         Button($r('app.string.play')).onClick(() => {
           this.animatorOptions?.play();
+          // $r('app.string.playing')资源文件中的value值为'播放中'
           this.animatorStatus = $r('app.string.playing');
         }).width(80).height(35)
+        // $r('app.string.reset')资源文件中的value值为'重置'
         Button($r('app.string.reset')).onClick(() => {
           this.translateX = 0;
           this.translateY = 0;
         }).width(80).height(35)
+        // $r('app.string.pause')资源文件中的value值为'暂停'
         Button($r('app.string.pause')).onClick(() => {
           this.animatorOptions?.pause();
+          // $r('app.string.pause')资源文件中的value值为'暂停'
           this.animatorStatus = $r('app.string.pause');
         }).width(80).height(35)
       }.width('100%').height('25%')
