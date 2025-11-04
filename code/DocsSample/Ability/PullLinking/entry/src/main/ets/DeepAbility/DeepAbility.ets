@@ -14,7 +14,7 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-// [Start quick_start0]
+// [Start deep_ability]
 // 以EntryAbility.ets为例
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { url } from '@kit.ArkTS';
@@ -35,7 +35,7 @@ export default class DeepAbility extends UIAbility {
       }
     }
   }
-// [End quick_start0]
+// [End deep_ability]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }

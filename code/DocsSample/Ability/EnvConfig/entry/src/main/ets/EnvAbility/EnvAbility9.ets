@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start envconf_lang]
 import { AbilityConstant, Configuration, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -36,4 +36,4 @@ export default class EnvAbility9 extends UIAbility {
     }
   }
 }
-// [End quick_start0]
+// [End envconf_lang]

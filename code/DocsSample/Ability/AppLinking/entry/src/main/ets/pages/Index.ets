@@ -13,14 +13,12 @@
  * limitations under the License.
  */
 
-// [Start quick_start0]
+// [Start applink_index]
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
-// [StartExclude  quick_start0]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_UnexpExit]';
-// [EndExclude  quick_start0]
+const TAG  = '[Sample_AppLinking]';
 @Entry
 @Component
 struct Index {
@@ -43,4 +41,4 @@ struct Index {
       })
   }
 }
-// [End quick_start0]
+// [End applink_index]
