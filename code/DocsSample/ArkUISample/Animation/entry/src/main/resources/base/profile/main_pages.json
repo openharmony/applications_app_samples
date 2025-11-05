@@ -68,6 +68,7 @@
     "pages/modalTransition/template3/BindMenuDemo",
     "pages/modalTransition/template4/BindContextMenuDemo",
     "pages/modalTransition/template5/BindPopupDemo",
-    "pages/modalTransition/template6/ModalTransitionWithIf"
+    "pages/modalTransition/template6/ModalTransitionWithIf",
+    "pages/animator/template4/AnimatorPage"
   ]
 }
