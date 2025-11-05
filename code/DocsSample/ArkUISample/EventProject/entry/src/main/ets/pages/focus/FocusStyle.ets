@@ -48,6 +48,7 @@ export struct FocusStyle {
     }
     // [StartExclude focus_style_manage]
     .backgroundColor('#f1f2f3')
+    //app.string.Focus_FocusStyle_title资源文件中的value值为'焦点样式'
     .title($r('app.string.Focus_FocusStyle_title'))
     // [EndExclude focus_style_manage]
   }

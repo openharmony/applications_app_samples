@@ -42,6 +42,7 @@ function cardDisabledStyle() {
 @Entry
 @Component
 struct ComponentExtension {
+  //$r('app.string.xxx')需要替换为开发者所需的资源文件
   @Provide('router') router: NavPathStack = new NavPathStack();
   @State routes: RouteGroup[] = [
     {

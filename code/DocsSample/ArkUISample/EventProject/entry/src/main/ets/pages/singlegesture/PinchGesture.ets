@@ -61,6 +61,7 @@ export struct Pinch {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    //app.string.singlegesture_PinchGesture_title资源文件中的value值为'捏合手势'
     .title($r('app.string.singlegesture_PinchGesture_title'))
   }
 }

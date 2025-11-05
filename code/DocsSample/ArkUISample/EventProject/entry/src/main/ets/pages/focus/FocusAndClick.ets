@@ -49,6 +49,7 @@ export struct FocusAndClick {
     }
     // [StartExclude dynamic_focus_click_count]
     .backgroundColor('#f1f2f3')
+    //app.string.Focus_FocusAndClick_title资源文件中的value值为'焦点与按键事件'
     .title($r('app.string.Focus_FocusAndClick_title'))
     // [EndExclude dynamic_focus_click_count]
   }

@@ -42,5 +42,4 @@ export struct TabStopExample {
     // [EndExclude dynamic_focus_tab_stop]
   }
 }
-
 // [End dynamic_focus_tab_stop]

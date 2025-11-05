@@ -43,6 +43,7 @@ import { TabStopExample } from './TabStop';
 export const Focus_ROUTE_PREFIX: string = 'Focus_ROUTE_PREFIX';
 
 // [Start route_push]
+//$r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Focus_ROUTE_PREFIX}/onFocusBlur`,

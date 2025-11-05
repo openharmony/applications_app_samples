@@ -30,6 +30,7 @@ export struct FocusActiveExample {
     }
     // [StartExclude dynamic_focus_active]
     .backgroundColor('#f1f2f3')
+    //app.string.Pages_Index_Focus_Active_title资源文件中的value值为'聚焦/FocusActive'
     .title($r('app.string.Pages_Index_Focus_Active_title'))
     // [EndExclude dynamic_focus_active]
   }
