@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 // [Start prop_eight_start]
-// 嵌套观察类（已用@Observed装饰，支持深层数据监听）
+// [StartExclude prop_eight_start]
+// 以下是嵌套类对象的数据结构。
 @Observed
 class Son {
   public title: string;
@@ -31,7 +32,7 @@ class Father {
     this.son = son;
   }
 }
-
+// [EndExclude prop_eight_start]
 @Entry
 @Component
 struct ObservedDemo {
