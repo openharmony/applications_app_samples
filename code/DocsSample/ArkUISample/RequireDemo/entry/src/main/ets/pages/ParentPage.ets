@@ -22,8 +22,8 @@ class Info {
 
 @ComponentV2
 struct ChildPage {
-  @Require @Param childInfo: Info = new Info();
-  @Require @Param stateValue: string = 'Hello';
+  @Require @Param childInfo: Info;
+  @Require @Param stateValue: string;
 
   build() {
     Column() {
