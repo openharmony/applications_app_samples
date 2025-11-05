@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start deep_web]
-// index.ets
+// DeepWebIndex.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -23,7 +23,7 @@ const TAG  = '[Sample_PullLinking]';
 
 @Entry
 @Component
-struct DeepOpenLinkAbility {
+struct DeepWebIndex {
   controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
