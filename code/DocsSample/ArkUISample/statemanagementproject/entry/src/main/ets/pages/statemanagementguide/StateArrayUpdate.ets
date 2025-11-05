@@ -15,7 +15,7 @@
 // [Start Information_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateManagement]';
 
 @Observed
 class InfoList extends Array<Info> {

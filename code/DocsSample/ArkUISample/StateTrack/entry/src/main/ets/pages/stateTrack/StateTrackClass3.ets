@@ -15,7 +15,7 @@
 // [Start addLog3_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
-const TAG: string = '[EvtryAblity]';
+const TAG: string = '[Sample_StateTrack]';
 class Log {
   @Track public logInfo: string;
   public owner: string;
