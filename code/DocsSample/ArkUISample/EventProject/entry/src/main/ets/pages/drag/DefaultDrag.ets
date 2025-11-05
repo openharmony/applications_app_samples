@@ -134,7 +134,8 @@ export struct DefaultDrag {
                 // [EndExclude module_draggable]
                 .onDragStart((event) => {
                   let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-                  data.imageUri = 'common/pic/img.png';
+                  // 'resources/base/media/app_icon.png'需要替换为开发者所需的图像资源文件
+                  data.imageUri = 'resources/base/media/app_icon.png';
                   let unifiedData = new unifiedDataChannel.UnifiedData(data);
                   event.setData(unifiedData);
 

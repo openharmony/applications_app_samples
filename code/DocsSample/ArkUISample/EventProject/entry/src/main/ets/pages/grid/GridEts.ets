@@ -82,7 +82,7 @@ export struct GridEts {
   build() {
     NavDestination() {
       Column({ space: 5 }) {
-        // $r('app.string.Select_All')需要替换为开发者所需的文本资源文件
+        // app.string.Select_All资源文件中的value值为'全选'
         Button($r('app.string.Select_All'))
           .onClick(() => {
             for (let i = 0; i < this.isSelectedGrid.length; i++) {
@@ -185,9 +185,9 @@ export struct GridEts {
                   }
                 }
                 //[EndExclude grid_previewData_start]
+                //[EndExclude grid_numberBadge_start]
               }
               //[EndExclude grid_isSelected_start]
-              //[EndExclude grid_numberBadge_start]
             })
             //[End grid_previewData_start]
             //[End grid_isSelected_start]
