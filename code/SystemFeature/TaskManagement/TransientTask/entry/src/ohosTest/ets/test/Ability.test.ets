@@ -25,16 +25,6 @@ const BUNDLE = 'TransientTaskTest_';
 const TAG = '[Sample_TransientTask]';
 const DOMAIN = 0xF811;
 
-function getResourceString(resource: Resource) {
-  let res: resourceManager.Resource = {
-    bundleName: resource.bundleName,
-    moduleName: resource.moduleName,
-    id: resource.id
-  }
-  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  return delegator.getAppContext().resourceManager.getStringSync(res);
-}
-
 export default function abilityTest() {
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   let driver: Driver = Driver.create();
