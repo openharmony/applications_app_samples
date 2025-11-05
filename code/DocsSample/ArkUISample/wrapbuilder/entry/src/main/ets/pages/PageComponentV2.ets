@@ -26,6 +26,7 @@ struct ComponentV2Test { // struct声明的数据结构
     RelativeContainer() {
       Text(this.message)
         .id('HelloWorld')
+        //$r('app.float.page_text_font_size')需要替换为开发者所需的资源文件;
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
         .alignRules({

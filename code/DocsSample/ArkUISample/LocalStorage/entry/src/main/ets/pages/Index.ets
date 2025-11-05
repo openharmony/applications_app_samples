@@ -28,7 +28,7 @@ struct Index {
     },
     {
       name:'PageTwo',
-      path:'pages/PageTowSigleSYN'
+      path:'pages/PageTwoSigleSYN'
     },
     {
       name:'PageThree',

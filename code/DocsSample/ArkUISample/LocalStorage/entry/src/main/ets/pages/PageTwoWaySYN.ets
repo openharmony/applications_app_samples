@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// 构造LocalStorage实例
 // [Start localtorage_page_two_way_syn]
+// 构造LocalStorage实例
 let para1: Record<string, number> = { 'PropA': 47 };
 let storage1: LocalStorage = new LocalStorage(para1);
 // 调用link（api9以上）接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
 let linkToPropA: SubscribedAbstractProperty<object> = storage1.link('PropA');
 
-@Entry
+@Entry(storage1)
 @Component
 struct Parent2 {
 
