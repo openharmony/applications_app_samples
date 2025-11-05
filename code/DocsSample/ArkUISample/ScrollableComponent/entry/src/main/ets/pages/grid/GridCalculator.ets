@@ -69,8 +69,8 @@ export struct GridCalculator {
       } else if (index == 17) {
         return [6, 2, 1, 1];
       }
-      // [EndExclude Set_numberrows_columns]
       return [0, 0, 2, 4];
+      // [EndExclude Set_numberrows_columns]
       // 这里需要根据具体布局返回其他item的位置
     }
   }
@@ -78,6 +78,7 @@ export struct GridCalculator {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // app.string.GridCalculator_title资源文件中的value值为‘计算器的按键布局’
         ComponentCard({ title: $r('app.string.GridCalculator_title') }) {
           // [EndExclude Set_numberrows_columns]
           Grid(undefined, this.layoutOptions) {

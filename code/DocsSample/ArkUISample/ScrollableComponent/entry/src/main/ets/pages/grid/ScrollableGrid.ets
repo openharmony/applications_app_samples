@@ -52,6 +52,7 @@ export struct ScrollableGrid {
 
       Column({ space: 5 }) {
         // [StartExclude build_scrollable_horizontally_grid_layouts]
+        // app.string.ScrollableGrid_titleHorizontal资源文件中的value值为‘横向可滚动网格布局示例’
         ComponentCard({ title: $r('app.string.ScrollableGrid_titleHorizontal') }) {
           // [EndExclude build_scrollable_horizontally_grid_layouts]
 
@@ -78,6 +79,7 @@ export struct ScrollableGrid {
 
     }
     .backgroundColor('#f1f2f3')
+    // app.string.ScrollableGrid_title资源文件中的value值为‘横向可滚动网格布局示例’
     .title($r('app.string.ScrollableGrid_title'))
   }
   // [EndExclude build_scrollable_horizontally_grid_layouts]
