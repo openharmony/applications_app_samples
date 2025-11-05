@@ -21,9 +21,21 @@
 #include <native_drawing/drawing_color.h>
 #include <native_drawing/drawing_path.h>
 #include <native_drawing/drawing_pen.h>
-// [StartExclude drawing_start]
-#include "common/common.h"
-// [EndExclude drawing_start]
+
+#define SIZE_3 3
+#define SIZE_4 4
+#define SIZE_10 10
+#define SIZE_150 150
+#define SIZE_200 200
+#define SIZE_480 480
+#define SIZE_720 720
+#define SIZE_1000 1000
+#define COLOR_YELLOW 0xFFFFFF00
+#define RGBA_R1 0xFF
+#define RGBA_G1 0xFF
+#define RGBA_B1 0x00
+#define RGBA_A1 0x00
+
 ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
 {
     // 创建节点

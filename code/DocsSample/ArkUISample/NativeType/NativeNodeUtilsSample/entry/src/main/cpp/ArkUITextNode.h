@@ -28,7 +28,7 @@
 #include "NativeEntry.h"
 // [EndExclude arkUITestNode_start]
 namespace NativeModule {
-
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 // 布局完成的回调方法
 void OnLayoutCompleted(void *userData)
 {

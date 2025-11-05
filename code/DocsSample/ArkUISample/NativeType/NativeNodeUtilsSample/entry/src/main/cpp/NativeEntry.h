@@ -35,7 +35,6 @@ namespace NativeModule {
     napi_value CreateDrawNode(napi_env env, napi_callback_info info);
     napi_value DestroyNativeRoot(napi_env env, napi_callback_info info);
 
-    const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
     // 管理Native组件的生命周期和内存。
     class NativeEntry {
     public:
