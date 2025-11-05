@@ -18,7 +18,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-const TAG: string = 'EtsCardEntryAbility';
+const TAG: string = 'EntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 // [StartExclude JSForm_EntryAbility]
 const DOMAIN = 0x0000;

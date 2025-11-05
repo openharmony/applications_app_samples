@@ -34,7 +34,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
     hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
-    // 卡片使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+    // 卡片使用方创建卡片时触发，卡片提供方需要返回卡片数据绑定类
     let obj: Record<string, string> = {
       'title': 'titleOnAddForm',
       'detail': 'detailOnAddForm'
@@ -45,7 +45,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onCastToNormalForm(formId: string): void {
     // [StartExclude update_by_message_form_ability]
-    // 使用方将临时卡片转换为常态卡片触发，卡片提供方需要做相应的处理
+    // 当前卡片使用方不会涉及该场景，无需实现该回调函数
     // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
   }
@@ -124,7 +124,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onAcquireFormState(want: Want): formInfo.FormState {
     // [StartExclude update_by_message_form_ability]
-    // Called to return a {@link FormState} object.
+    // 调用后返回对象{@link FormState}.
     // [EndExclude update_by_message_form_ability]
     return formInfo.FormState.READY;
   }
