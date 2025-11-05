@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start custom_component_use]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Textcomponent]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'Textcomponent_';
 
-// [Start custom_component_use]
 @Entry
 @ComponentV2
 struct CustomComponentUse {

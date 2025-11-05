@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start ObservedV2_Class_User]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Textcomponent]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'Textcomponent_';
-// [Start ObservedV2_Class_User]
+
 @ObservedV2
 class Name {
   @Trace public firstName: string = 'Hua';
