@@ -21,7 +21,7 @@ struct ForegroundBlurStyleDemo {
       GridItem() {
         Column() {
           Column() {
-            // $r('app.string.originalImage')需要替换为开发者所需要的资源文件
+            // $r('app.string.originalImage')资源文件中的value值为'原图'
             Text($r('app.string.originalImage'))
               .fontSize(20)
               .fontColor(Color.White)
@@ -35,7 +35,7 @@ struct ForegroundBlurStyleDemo {
           // $r('app.media.bg')需要替换为开发者所需要的资源文件
           .backgroundImage($r('app.media.bg'))
 
-          // $r('app.string.originalImage')需要替换为开发者所需要的资源文件
+          // $r('app.string.originalImage')资源文件中的value值为'原图' 
           Text($r('app.string.originalImage'))
             .fontSize(12)
             .fontColor(Color.Black)
