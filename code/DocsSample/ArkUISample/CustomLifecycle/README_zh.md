@@ -1,9 +1,9 @@
-# ArkUI使用支持交互事件指南文档示例
+# ArkUI使用自定义组件生命周期指南文档示例
 
 ### 介绍
 
 本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)
-中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。
+中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的自定义组件生命周期并合理使用。
 
 ### 效果预览
 
