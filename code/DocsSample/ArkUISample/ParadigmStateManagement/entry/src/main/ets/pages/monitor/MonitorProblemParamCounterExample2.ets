@@ -40,8 +40,8 @@ class Info {
     return this.age; // age为状态变量
   }
 
-  @Monitor('myAge')
   // 监听非@Computed装饰的getter访问器
+  @Monitor('myAge')
   onPropertyChange() {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'age changed');
   }

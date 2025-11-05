@@ -46,8 +46,8 @@ class Info {
   @Trace public t4: number = 0;
   @Trace public t5: number = 0;
 
-  @Monitor('t1')
   // 字符串字面量
+  @Monitor('t1')
   onT1Change(monitor: IMonitor) {
     hilog.info(DOMAIN, 'testTag', '%{public}s', `t1 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }

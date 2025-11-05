@@ -37,8 +37,7 @@ class Info {
   @Trace public age: number = 25;
   @Trace public position: string = 'North';
 
-  @Monitor('name','age')
-  // Monitor 1
+  @Monitor('name', 'age') // Monitor 1
   onNameAgeChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',
@@ -46,8 +45,7 @@ class Info {
     });
   }
 
-  @Monitor('name','position')
-  // Monitor 2
+  @Monitor('name', 'position') // Monitor 2
   onNamePositionChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',
@@ -56,8 +54,7 @@ class Info {
   }
 
   // 重复监听name、position，仅最后定义的生效
-  @Monitor('name','position')
-  // Monitor3
+  @Monitor('name', 'position') // Monitor3
   onNamePositionChangeDuplicate(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',

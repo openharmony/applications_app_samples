@@ -36,8 +36,8 @@ class Info {
   public name: string = 'John';
   @Trace public age: number = 24;
 
-  @Monitor('age')
   // 仅监听状态变量age
+  @Monitor('age')
   onPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',

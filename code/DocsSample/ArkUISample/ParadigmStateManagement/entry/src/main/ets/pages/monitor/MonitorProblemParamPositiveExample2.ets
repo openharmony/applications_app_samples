@@ -36,14 +36,14 @@ class Info {
   public name: string = 'John';
   @Trace public age: number = 24;
 
-  @Computed
   // 给myAge添加@Computed成为状态变量
+  @Computed
   get myAge() {
     return this.age;
   }
 
-  @Monitor('myAge')
   // 监听@Computed装饰的getter访问器
+  @Monitor('myAge')
   onPropertyChange() {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'age changed');
   }

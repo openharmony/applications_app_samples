@@ -49,7 +49,7 @@ class ArrMonitor {
   @Trace public infoArr: Info[] = [new Info('Jack', 24), new Info('Lucy', 18)];
 
   // dimensionTwo为二维简单类型数组，且被@Trace装饰，能够观测里面的元素变化
-  @Monitor('dimensionTwo.0.0','dimensionTwo.1.1')
+  @Monitor('dimensionTwo.0.0', 'dimensionTwo.1.1')
   onDimensionTwoChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',
@@ -58,7 +58,7 @@ class ArrMonitor {
   }
 
   // dimensionThree为三维简单类型数组，且被@Trace装饰，能够观测里面的元素变化
-  @Monitor('dimensionThree.0.0.0','dimensionThree.1.1.0')
+  @Monitor('dimensionThree.0.0.0', 'dimensionThree.1.1.0')
   onDimensionThreeChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',
@@ -67,7 +67,7 @@ class ArrMonitor {
   }
 
   // Info类中属性name、age均被@Trace装饰，能够监听到变化
-  @Monitor('infoArr.0.name','infoArr.1.age')
+  @Monitor('infoArr.0.name', 'infoArr.1.age')
   onInfoArrPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',
