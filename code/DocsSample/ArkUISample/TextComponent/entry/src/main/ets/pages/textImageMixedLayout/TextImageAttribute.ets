@@ -45,6 +45,7 @@ struct styled_string_demo {
 
   async aboutToAppear() {
     hilog.info(DOMAIN, TAG, BUNDLE + 'aboutToAppear initial imagePixelMap');
+    // $r('app.media.sky')需要替换为开发者所需的资源文件。
     this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.sky'));
   }
 
@@ -70,8 +71,8 @@ struct styled_string_demo {
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
   //创建含段落样式的对象paragraphStyledString1
   paragraphStyledString1: MutableStyledString =
-    // 'app.string.TextImageAttribute_Content_1'资源文件中的value值为"\n高质量冲洗照片，高清冲印3/4/5/6寸包邮塑封，品质保证，"
-    new MutableStyledString(resourceGetString.resourceToString($r('app.string.TextImageAttribute_Content_1')), [
+    // 'app.string.print_photo'资源文件中的value值为"\n高质量冲洗照片，高清冲印3/4/5/6寸包邮塑封，品质保证，"
+    new MutableStyledString(resourceGetString.resourceToString($r('app.string.print_photo')), [
       {
         start: 0,
         length: 28,
@@ -85,8 +86,8 @@ struct styled_string_demo {
         styledValue: this.lineHeightStyle1
       }
     ]);
-  // 'app.string.TextImageAttribute_Content_2'资源文件中的value值为"\n限时直降5.15元 限量增送"
-  paragraphStyledString2: MutableStyledString = new MutableStyledString(resourceGetString.resourceToString($r('app.string.TextImageAttribute_Content_2')), [
+  // 'app.string.limited_time_discount'资源文件中的value值为"\n限时直降5.15元 限量增送"
+  paragraphStyledString2: MutableStyledString = new MutableStyledString(resourceGetString.resourceToString($r('app.string.limited_time_discount')), [
     {
       start: 0,
       length: 5,
@@ -118,8 +119,8 @@ struct styled_string_demo {
       styledValue: new TextStyle({ fontColor: Color.Grey, fontSize: LengthMetrics.vp(14) })
     }
   ]);
-  // 'app.string.TextImageAttribute_Content_3'资源文件中的value值为"\n￥22.50 销量400万+"
-  paragraphStyledString3: MutableStyledString = new MutableStyledString(resourceGetString.resourceToString($r('app.string.TextImageAttribute_Content_3')), [
+  // 'app.string.sales_volume'资源文件中的value值为"\n￥22.50 销量400万+"
+  paragraphStyledString3: MutableStyledString = new MutableStyledString(resourceGetString.resourceToString($r('app.string.sales_volume')), [
     {
       start: 0,
       length: 15,

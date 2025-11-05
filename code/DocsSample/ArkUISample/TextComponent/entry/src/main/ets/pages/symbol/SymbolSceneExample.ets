@@ -27,12 +27,12 @@ struct SymbolMusicDemo {
     [$r('sys.symbol.repeat'), $r('sys.symbol.repeat_1'), $r('sys.symbol.arrow_left_arrow_right')];
   @State symbolSourcesIndex: number = 0;
   @State symbolText: string[] = [
-    // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-    resourceGetString.resourceToString($r('app.string.SymbolSceneExample_Text_1')),
-    // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-    resourceGetString.resourceToString($r('app.string.SymbolSceneExample_Text_2')),
-    // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-    resourceGetString.resourceToString($r('app.string.SymbolSceneExample_Text_3')),
+    // 'app.string.play_in_order'资源文件中的value值为"顺序播放"
+    resourceGetString.resourceToString($r('app.string.play_in_order')),
+    // 'app.string.play_in_single_repeat'资源文件中的value值为"单曲循环"
+    resourceGetString.resourceToString($r('app.string.play_in_single_repeat')),
+    // 'app.string.shuffle_play'资源文件中的value值为"随机播放"
+    resourceGetString.resourceToString($r('app.string.shuffle_play')),
   ];
   @State symbolTextIndex: number = 0;
   @State fontColorValue: ResourceColor = Color.Grey;
@@ -42,8 +42,8 @@ struct SymbolMusicDemo {
     Column({ space: 10 }) {
       Row() {
         Text() {
-          // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-          Span(resourceGetString.resourceToString($r('app.string.SymbolSceneExample_Text_4')))
+          // 'app.string.current_playlist'资源文件中的value值为"当前播放列表"
+          Span(resourceGetString.resourceToString($r('app.string.current_playlist')))
             .fontSize(20)
             .fontWeight(FontWeight.Bolder)
           Span('（101）')
@@ -98,8 +98,8 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-          Text($r('app.string.SymbolSceneExample_Text_5'))
+          // 'app.string.song'资源文件中的value值为"歌曲一"
+          Text($r('app.string.song'))
         }.width('82%')
 
         Row({ space: 5 }) {
@@ -115,8 +115,8 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-          Text($r('app.string.SymbolSceneExample_Text_6'))
+          // 'app.string.song_again'资源文件中的value值为"歌曲二"
+          Text($r('app.string.song_again'))
         }.width('82%')
 
         Row({ space: 5 }) {
@@ -132,8 +132,8 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-          Text($r('app.string.SymbolSceneExample_Text_7'))
+          // 'app.string.again_song'资源文件中的value值为"歌曲三"
+          Text($r('app.string.again_song'))
         }.width('82%')
 
         Row({ space: 5 }) {
@@ -149,8 +149,8 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-          Text($r('app.string.SymbolSceneExample_Text_8'))
+          // 'app.string.song_repeat'资源文件中的value值为"歌曲四"
+          Text($r('app.string.song_repeat'))
         }.width('82%')
 
         Row({ space: 5 }) {
@@ -166,8 +166,8 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-          Text($r('app.string.SymbolSceneExample_Text_9'))
+          // 'app.string.repeat_song'资源文件中的value值为"歌曲五"
+          Text($r('app.string.repeat_song'))
         }.width('82%')
 
         Row({ space: 5 }) {
@@ -183,8 +183,8 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-          Text($r('app.string.SymbolSceneExample_Text_10'))
+          // 'app.string.song_play'资源文件中的value值为"歌曲六"
+          Text($r('app.string.song_play'))
         }.width('82%')
 
         Row({ space: 5 }) {
@@ -200,8 +200,8 @@ struct SymbolMusicDemo {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row() {
         Row() {
-          // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-          Text($r('app.string.SymbolSceneExample_Text_11'))
+          // 'app.string.play_song'资源文件中的value值为"歌曲七"
+          Text($r('app.string.play_song'))
         }.width('82%')
 
         Row({ space: 5 }) {
@@ -216,8 +216,8 @@ struct SymbolMusicDemo {
 
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Column() {
-        // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-        Text($r('app.string.SymbolSceneExample_Text_12'))
+        // 'app.string.last_song'资源文件中的value值为"歌曲八"
+        Text($r('app.string.last_song'))
       }
       .alignItems(HorizontalAlign.Center)
       .width('98%')

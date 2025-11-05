@@ -539,11 +539,11 @@
 
     },
     {
-      "name": "CustomTextInputStyle_textContent_1",
+      "name": "i_am_placeholder",
       "value": "我是提示文本"
     },
     {
-      "name": "CustomTextInputStyle_textContent_2",
+      "name": "i_am_current_text_content",
       "value": "我是当前文本内容"
     },
     {
@@ -600,7 +600,7 @@
       "value": "键盘抬起后，具有滚动能力的容器组件在横竖屏切换时，才会生效键盘避让，若希望无滚动能力的容器组件也生效键盘避让，建议在组件外嵌套一层具有滚动能力的容器组件"
     },
     {
-      "name": "SelectMenu_textContent_1",
+      "name": "show_selected_menu",
       "value": "这是一段文本，用来展示选中菜单"
     },
     {
@@ -1216,11 +1216,11 @@
       "value": "setTypingStyle"
     },
     {
-      "name": "SymbolGlyphSpanCustomIconAnimation_Button_1",
+      "name": "off",
       "value": "关闭"
     },
     {
-      "name": "SymbolGlyphSpanCustomIconAnimation_Button_2",
+      "name": "on",
       "value": "播放"
     },
     {
@@ -1464,99 +1464,99 @@
       "value": "点击按钮，改变预设文本样式。"
     },
     {
-      "name": "SymbolAddToText_Text_1",
+      "name": "single_color",
       "value": "单色"
     },
     {
-      "name": "SymbolAddToText_Text_2",
+      "name": "multi_color",
       "value": "多色"
     },
     {
-      "name": "SymbolAddToText_Text_3",
+      "name": "hierarchical",
       "value": "分层"
     },
     {
-      "name": "SymbolAddToText_Text_4",
+      "name": "no_action",
       "value": "无动效"
     },
     {
-      "name": "SymbolAddToText_Text_5",
+      "name": "overall_scaling_animation_effect",
       "value": "整体缩放动效"
     },
     {
-      "name": "SymbolAddToText_Text_6",
+      "name": "hierarchical_animation",
       "value": "层级动效"
     },
     {
-      "name": "SymbolCustomIconAnimation_Text_1",
+      "name": "variable_color_animation",
       "value": "可变颜色动效"
     },
     {
-      "name": "SymbolCustomIconAnimation_Text_2",
+      "name": "bounce_animation",
       "value": "弹跳动效"
     },
     {
-      "name": "SymbolCustomIconAnimation_Text_3",
+      "name": "disable_animation",
       "value": "禁用动效"
     },
     {
-      "name": "SymbolCustomIconAnimation_Text_4",
+      "name": "quick_replacement_animation",
       "value": "快速替换动效"
     },
     {
-      "name": "SymbolSceneExample_Text_1",
+      "name": "play_in_order",
       "value": "顺序播放"
     },
     {
-      "name": "SymbolSceneExample_Text_2",
+      "name": "play_in_single_repeat",
       "value": "单曲循环"
     },
     {
-      "name": "SymbolSceneExample_Text_3",
+      "name": "shuffle_play",
       "value": "随机播放"
     },
     {
-      "name": "SymbolSceneExample_Text_4",
+      "name": "current_playlist",
       "value": "当前播放列表"
     },
     {
-      "name": "SymbolSceneExample_Text_5",
+      "name": "song",
       "value": "歌曲一"
     },
     {
-      "name": "SymbolSceneExample_Text_6",
+      "name": "song_again",
       "value": "歌曲二"
     },
     {
-      "name": "SymbolSceneExample_Text_7",
+      "name": "again_song",
       "value": "歌曲三"
     },
     {
-      "name": "SymbolSceneExample_Text_8",
+      "name": "song_repeat",
       "value": "歌曲四"
     },
     {
-      "name": "SymbolSceneExample_Text_9",
+      "name": "repeat_song",
       "value": "歌曲五"
     },
     {
-      "name": "SymbolSceneExample_Text_10",
+      "name": "song_play",
       "value": "歌曲六"
     },
     {
-      "name": "SymbolSceneExample_Text_11",
+      "name": "play_song",
       "value": "歌曲七"
     },
     {
-      "name": "SymbolShadowAndColor_Text_1",
+      "name": "shadow_ability",
       "value": "阴影能力"
     },
     {
-      "name": "SymbolShadowAndColor_Text_2",
+      "name": "radial_gradient",
       "value": "径向渐变"
     },
     {
-      "name": "SymbolSceneExample_Text_12",
+      "name": "last_song",
       "value": "关闭"
     },
     {
@@ -1604,7 +1604,7 @@
       "value": "通过ImageAttachment添加图片，TextStyle设置多种文本样式，实现商品详情信息展示的应用场景。"
     },
     {
-      "name": "TextImage_MixedLayout_Content_1",
+      "name": "surprise_price",
       "value": "惊喜价 ￥1299"
     },
     {
@@ -1616,15 +1616,15 @@
       "value": "搜索"
     },
     {
-      "name": "TextImageAttribute_Content_1",
+      "name": "print_photo",
       "value": "\n高质量冲洗照片，高清冲印3/4/5/6寸包邮塑封，品质保证，"
     },
     {
-      "name": "TextImageAttribute_Content_2",
+      "name": "limited_time_discount",
       "value": "\n限时直降5.15元 限量增送"
     },
     {
-      "name": "TextImageAttribute_Content_3",
+      "name": "sales_volume",
       "value": "\n￥22.50 销量400万+"
     },{
       "name": "Service_MenuItems",

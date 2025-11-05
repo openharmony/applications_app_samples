@@ -61,7 +61,7 @@ export struct SetTextInputType {
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_5') }) {
               // [Start set_phonenumber_input_type_5]
-              TextInput({ text: '+86 123-0123-0456' })
+              TextInput()
                 .type(InputType.PhoneNumber)
                 // [End set_phonenumber_input_type_5]
                 .id('PhoneNumber')

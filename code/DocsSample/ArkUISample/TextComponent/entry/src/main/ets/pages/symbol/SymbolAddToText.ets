@@ -141,8 +141,8 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_rendering_strategy]
             Row() {
               Column() {
-                // 'app.string.SymbolAddToText_Text_1'资源文件中的value值为"单色"
-                Text($r('app.string.SymbolAddToText_Text_1'));
+                // 'app.string.single_color'资源文件中的value值为"单色"
+                Text($r('app.string.single_color'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
@@ -152,8 +152,8 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                // 'app.string.SymbolAddToText_Text_2'资源文件中的value值为"多色"
-                Text($r('app.string.SymbolAddToText_Text_2'));
+                // 'app.string.multi_color'资源文件中的value值为"多色"
+                Text($r('app.string.multi_color'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
@@ -163,8 +163,8 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                // 'app.string.SymbolAddToText_Text_3'资源文件中的value值为"分层"
-                Text($r('app.string.SymbolAddToText_Text_3'));
+                // 'app.string.hierarchical'资源文件中的value值为"分层"
+                Text($r('app.string.hierarchical'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
@@ -180,8 +180,8 @@ export struct SymbolGlyphSpanAddToText {
             // [Start symbol_span_effect_strategy]
             Row() {
               Column() {
-                // 'app.string.SymbolAddToText_Text_4'资源文件中的value值为"无动效"
-                Text($r('app.string.SymbolAddToText_Text_4'));
+                // 'app.string.no_action'资源文件中的value值为"无动效"
+                Text($r('app.string.no_action'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
@@ -190,8 +190,8 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                // 'app.string.SymbolAddToText_Text_5'资源文件中的value值为"整体缩放动效"
-                Text($r('app.string.SymbolAddToText_Text_5'));
+                // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
+                Text($r('app.string.overall_scaling_animation_effect'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
@@ -200,8 +200,8 @@ export struct SymbolGlyphSpanAddToText {
               }
 
               Column() {
-                // 'app.string.SymbolAddToText_Text_6'资源文件中的value值为"层级动效"
-                Text($r('app.string.SymbolAddToText_Text_6'));
+                // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
+                Text($r('app.string.hierarchical_animation'));
                 Text() {
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)

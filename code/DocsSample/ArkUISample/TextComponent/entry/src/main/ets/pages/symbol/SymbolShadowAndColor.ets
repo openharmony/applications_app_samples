@@ -46,15 +46,15 @@ export struct SymbolShadowAndColor {
           ComponentCard({ title: $r('app.string.SymbolShadowAndColor_title_1') }) {
             // [Start shadow_color_1]
             Column() {
-              // 'app.string.SymbolShadowAndColor_Text_1'资源文件中的value值为"阴影能力"
-              Text($r('app.string.SymbolShadowAndColor_Text_1'));
+              // 'app.string.shadow_ability'资源文件中的value值为"阴影能力"
+              Text($r('app.string.shadow_ability'));
               SymbolGlyph($r('sys.symbol.ohos_wifi'))
                 .fontSize(96)
                 .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
                 .symbolShadow(this.options)
-              // 'app.string.SymbolGlyphSpanCustomIconAnimation_Button_1'资源文件中的value值为"关闭"
-              // 'app.string.SymbolGlyphSpanCustomIconAnimation_Button_2'资源文件中的value值为"播放"
-              Button(!this.isActive ? $r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_1') : $r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_2')).onClick(() => {
+              // 'app.string.off'资源文件中的value值为"关闭"
+              // 'app.string.on'资源文件中的value值为"播放"
+              Button(!this.isActive ? $r('app.string.off') : $r('app.string.on')).onClick(() => {
                 this.isActive = !this.isActive;
               })
             }
@@ -63,8 +63,8 @@ export struct SymbolShadowAndColor {
           ComponentCard({ title: $r('app.string.SymbolShadowAndColor_title_2') }) {
             // [Start shadow_color_2]
             Column() {
-              // 'app.string.SymbolShadowAndColor_Text_2'资源文件中的value值为"径向渐变"
-              Text($r('app.string.SymbolShadowAndColor_Text_2'))
+              // 'app.string.radial_gradient'资源文件中的value值为"径向渐变"
+              Text($r('app.string.radial_gradient'))
                 .fontSize(18)
                 .fontColor(0xCCCCCC)
                 .textAlign(TextAlign.Center)

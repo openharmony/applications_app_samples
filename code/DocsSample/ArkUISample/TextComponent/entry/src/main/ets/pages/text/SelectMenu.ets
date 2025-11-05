@@ -83,7 +83,8 @@ export struct SelectMenu {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.SetSelectionMenu_textContent_1') }) {
           // [Start set_selection_menu_with_copyoption]
-          Text($r('app.string.SelectMenu_textContent_1'))
+          // 'app.string.show_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+          Text($r('app.string.show_selected_menu'))
             .fontSize(30)
             .copyOption(CopyOptions.InApp)
           // [End set_selection_menu_with_copyoption]
@@ -91,8 +92,8 @@ export struct SelectMenu {
 
         ComponentCard({ title: $r('app.string.SetSelectionMenu_textContent_2') }) {
           // [Start set_selection_menu_with_bindselectionmenu]
-          // 'app.string.SelectMenu_textContent_1'资源文件中的value值为'这是一段文本，用来展示选中菜单'
-          Text($r('app.string.SelectMenu_textContent_1'), this.options)
+          // 'app.string.show_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+          Text($r('app.string.show_selected_menu'), this.options)
             .fontSize(30)
             .copyOption(CopyOptions.InApp)
             .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
@@ -108,8 +109,8 @@ export struct SelectMenu {
 
         ComponentCard({ title: $r('app.string.SetSelectionMenu_textContent_3') }) {
           // [Start set_selection_menu_with_editmenuoptions]
-          // 'app.string.SelectMenu_textContent_1'资源文件中的value值为'这是一段文本，用来展示选中菜单'
-          Text($r('app.string.SelectMenu_textContent_1'))
+          // 'app.string.show_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
+          Text($r('app.string.show_selected_menu'))
             .fontSize(20)
             .copyOption(CopyOptions.LocalDevice)
             .editMenuOptions({

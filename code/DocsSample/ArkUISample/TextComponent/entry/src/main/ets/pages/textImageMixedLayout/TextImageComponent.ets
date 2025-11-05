@@ -20,13 +20,14 @@ export struct TextImageComponent {
     NavDestination() {
       // [Start textImage_component]
       Text() {
+        // $r('app.media.hot_sale')需要替换为开发者所需的资源文件。
         ImageSpan($r('app.media.hot_sale'))
           .width(50)
           .height(30)
           .borderRadius(5)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
-        // 'app.string.TextImage_MixedLayout_Content_1'资源文件中的value值为"惊喜价 ￥1299"
-        Span($r('app.string.TextImage_MixedLayout_Content_1'))
+        // 'app.string.surprise_price'资源文件中的value值为"惊喜价 ￥1299"
+        Span($r('app.string.surprise_price'))
           .fontSize(25)
           .fontColor(Color.Red)
         Span('1599')
