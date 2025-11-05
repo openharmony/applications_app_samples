@@ -45,7 +45,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onCastToNormalForm(formId: string): void {
     // [StartExclude update_by_message_form_ability]
-    // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+    // 当前卡片使用方不会涉及该场景，无需实现该回调函数
     // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
   }

@@ -12,16 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start deep_web]
 // index.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
-// [StartExclude  quick_start0]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER = 0xF811;
 const TAG  = '[Sample_PullLinking]';
-// [EndExclude  quick_start0]
+
 @Entry
 @Component
 struct DeepOpenLinkAbility {
@@ -47,4 +46,4 @@ struct DeepOpenLinkAbility {
     }
   }
 }
-// [End quick_start0]
+// [End deep_web]

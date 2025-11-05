@@ -83,7 +83,7 @@ export struct menuExample  {
       Column({ space: 12 }) {
 
         // [Start call_bind_menu]
-        Button($r('app.string.menu_default'))
+        Button('click for Menu')
           .bindMenu([
             {
               value: 'Menu1',
@@ -97,14 +97,15 @@ export struct menuExample  {
           .height(50)
 
         // [Start bind_menu_property]
-        Button($r('app.string.menu_bind'))
+        Button('click for Menu')
           .bindMenu(this.MyMenu)
           // [End bind_menu_property]
+          .id('click for Menu One')
           .width(160)
           .height(50)
 
         // [Start create_right_click_menu]
-        Button($r('app.string.menu_rightClick'))
+        Button('click for Menu')
           .bindContextMenu(this.MyMenu, ResponseType.RightClick)
           // [End create_right_click_menu]
           .width(160)

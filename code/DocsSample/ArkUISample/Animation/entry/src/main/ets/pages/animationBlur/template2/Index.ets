@@ -21,11 +21,12 @@ struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State radius: number = 0;
   @State text: string = '';
-  @State y: Resource | string = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text1').id);
+  @State y: Resource | string = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text1').id);//app.string.animation_blur_text1资源文件中的value值为‘手指不在屏幕上’
 
   aboutToAppear() {
-    // $r('app.string.xxx')需要替换为开发着所需要的资源文件
-    this.text = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text2').id) + "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text3').id) + this.y +
+    // $r('app.string.xxx')需要替换为开发者所需要的资源文件
+    this.text = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text2').id) + 
+    "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text3').id) + this.y +
       "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text4').id) + this.radius;
   }
 
@@ -37,6 +38,7 @@ struct Index {
         .fontWeight(FontWeight.Bold)
         .fontFamily("cursive")
         .fontStyle(FontStyle.Italic)
+      // $r("app.media.bg")需要替换为开发者所需的图像资源文件
       Image($r("app.media.bg"))
         .blur(this.radius)// 使用blur接口为照片组件添加内容模糊效果
         .height('100%')
@@ -52,11 +54,11 @@ struct Index {
         }
         if (event.type === TouchType.Up) {
           this.radius = 0;
-          // $r('app.string.animation_blur_text1')需要替换为开发着所需要的资源文件
+          //app.string.animation_blur_text1资源文件中的value值为‘手指不在屏幕上‘
           this.y = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text1').id);
         }
       }
-      // $r('app.string.xxx')需要替换为开发着所需要的资源文件
+      // $r('app.string.xxx')需要替换为开发者所需要的资源文件
       this.text = this.context.resourceManager.getStringSync($r('app.string.animation_blur_text2').id) + "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text3').id) + this.y +
         "\n" + this.context.resourceManager.getStringSync($r('app.string.animation_blur_text4').id) + this.radius;
     })

@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
-// [Start quick_start1]
-// [Start quick_start2]
+// [Start skills_custom]
+// [Start domainVerify_true]
+// [Start pull_results]
 {
   "module": {
-    // [StartExclude  quick_start0]
-    // [StartExclude  quick_start1]
-    // [StartExclude  quick_start2]
+    // [StartExclude  skills_custom]
+    // [StartExclude  domainVerify_true]
+    // [StartExclude  pull_results]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -30,13 +30,13 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    // [EndExclude  quick_start0]
-    // [EndExclude  quick_start1]
-    // [EndExclude  quick_start2]
+    // [EndExclude  pull_results]
+    // [EndExclude  domainVerify_true]
+    // [EndExclude  skills_custom]
     "abilities": [
-      // [StartExclude  quick_start0]
-      // [StartExclude  quick_start1]
-      // [StartExclude  quick_start2]
+      // [StartExclude  skills_custom]
+      // [StartExclude  domainVerify_true]
+      // [StartExclude  pull_results]
       {
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
@@ -157,9 +157,9 @@
           }
         ]
       },
-      // [EndExclude  quick_start0]
+      // [EndExclude  skills_custom]
       {
-        // [StartExclude  quick_start0]
+        // [StartExclude  skills_custom]
         "name": "DeepEntryAbility",
         "srcEntry": "./ets/DeepAbility/DeepAbility.ets",
         "description": "$string:EntryAbility_desc",
@@ -168,7 +168,7 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        // [EndExclude  quick_start0]
+        // [EndExclude  skills_custom]
         "skills": [
           {
             "entities": [
@@ -194,10 +194,10 @@
           } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       },
-      // [StartExclude  quick_start0]
-      // [EndExclude  quick_start1]
+      // [StartExclude  skills_custom]
+      // [EndExclude  domainVerify_true]
       {
-        // [StartExclude  quick_start1]
+        // [StartExclude  domainVerify_true]
         "name": "WantAbility1",
         "srcEntry": "./ets/want/WantAbility1.ets",
         "description": "$string:EntryAbility_desc",
@@ -206,7 +206,7 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        // [EndExclude  quick_start1]
+        // [EndExclude  domainVerify_true]
         "skills": [
           {
             "entities": [
@@ -225,10 +225,10 @@
           }
         ]
       },
-      // [StartExclude  quick_start1]
-      // [EndExclude  quick_start2]
+      // [EndExclude  pull_results]
+      // [StartExclude  domainVerify_true]
       {
-        // [StartExclude  quick_start2]
+        // [StartExclude  pull_results]
         "name": "WantAbility2",
         "srcEntry": "./ets/want/WantAbility2.ets",
         "description": "$string:EntryAbility_desc",
@@ -237,7 +237,7 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        // [EndExclude  quick_start2]
+        // [EndExclude  pull_results]
         "skills": [
           {
             "entities": [
@@ -256,7 +256,7 @@
           }
         ]
       },
-      // [StartExclude  quick_start2]
+      // [StartExclude  pull_results]
       {
         "name": "loginAbility",
         "srcEntry": "./ets/clearability/LoginAbility.ets",
@@ -267,7 +267,7 @@
         "startWindowBackground": "$color:start_window_background",
         "skills": [
           {
-            // [Start quick_start3]
+            // [Start pulllink_login]
             "uris": [
               {
                 "scheme": "https",
@@ -276,21 +276,21 @@
                 "linkFeature": "Login"
               }
             ]
-            // [End quick_start3]
+            // [End pulllink_login]
           }
         ]
       },
-      // [Start quick_start4]
+      // [Start pulllink_clearcache]
       {
         "name": "ClearAbility",
         "srcEntry": "./ets/clearability/ClearAbility.ets",
         "description": "$string:ClearAbility_desc",
         "icon": "$media:layered_image",
         "label": "$string:ClearAbility_label",
-        // [StartExclude  quick_start4]
+        // [StartExclude  pulllink_clearcache]
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        // [EndExclude  quick_start4]
+        // [EndExclude  pulllink_clearcache]
         "skills": [
           {
             "uris": [
@@ -304,14 +304,14 @@
           }
         ]
       }
-      // [End quick_start4]
-      // [EndExclude  quick_start0]
-      // [EndExclude  quick_start1]
-      // [EndExclude  quick_start2]
+      // [End pulllink_clearcache]
+      // [EndExclude  pull_results]
+      // [EndExclude  domainVerify_true]
+      // [EndExclude  skills_custom]
     ],
-    // [StartExclude  quick_start0]
-    // [StartExclude  quick_start1]
-    // [StartExclude  quick_start2]
+    // [StartExclude  skills_custom]
+    // [StartExclude  domainVerify_true]
+    // [StartExclude  pull_results]
     "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
@@ -344,11 +344,11 @@
         }
       }
     ],
-    // [EndExclude  quick_start0]
-    // [EndExclude  quick_start1]
-    // [EndExclude  quick_start2]
+    // [EndExclude  pull_results]
+    // [EndExclude  domainVerify_true]
+    // [EndExclude  skills_custom]
   }
 }
-// [End quick_start0]
-// [End quick_start1]
-// [End quick_start2]
+// [End pull_results]
+// [End domainVerify_true]
+// [End skills_custom]

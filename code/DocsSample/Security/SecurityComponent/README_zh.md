@@ -45,7 +45,7 @@ SecurityComponent
   * 媒体库安全控件模块
   
     * 使用SaveButton组件开发保存图片到媒体库功能，在其点击回调onclick事件中调用photoAccessHelper.getPhotoAccessHelper()得到媒体库图片管理器helper， helper.createAsset()得到保存到媒体库图片的uri，使用resourceManager.getMediaContent()得到存放在Resources/base/media文件下的test.jpg图片内容，调用fs.open()和fs.write()将图片内容通过得到的uri写到媒体库中，最后fs.close()关闭文件。
-    * 接口参考：[@ohos.file.photoAccessHelper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)，[@ohos.file.fs](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
+    * 接口参考：[@ohos.file.photoAccessHelper-f](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/arkts-apis-photoAccessHelper-f.md)，[@ohos.file.photoAccessHelper-PhotoAccessHelper](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md)，[@ohos.file.fs](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
 
 ### 相关权限
 

@@ -13,32 +13,32 @@
  * limitations under the License.
  */
 
-// [Start prompt_action_class1]
-// PromptActionClass1.ets
+// [Start prompt_action_class_new]
+// PromptActionClassNew.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, promptAction, UIContext } from '@kit.ArkUI';
 
-export class PromptActionClass1 {
+export class PromptActionClassNew {
   static ctx: UIContext;
   static contentNode: ComponentContent<Object>;
   static options: promptAction.BaseDialogOptions;
 
   static setContext(context: UIContext) {
-    PromptActionClass1.ctx = context;
+    PromptActionClassNew.ctx = context;
   }
 
   static setContentNode(node: ComponentContent<Object>) {
-    PromptActionClass1.contentNode = node;
+    PromptActionClassNew.contentNode = node;
   }
 
   static setOptions(options: promptAction.BaseDialogOptions) {
-    PromptActionClass1.options = options;
+    PromptActionClassNew.options = options;
   }
 
   static openDialog() {
-    if (PromptActionClass1.contentNode !== null) {
+    if (PromptActionClassNew.contentNode !== null) {
       // [Start prompt_action_class_open_custom_dialog]
-      PromptActionClass1.ctx.getPromptAction().openCustomDialog(PromptActionClass1.contentNode, PromptActionClass1.options)
+      PromptActionClassNew.ctx.getPromptAction().openCustomDialog(PromptActionClassNew.contentNode, PromptActionClassNew.options)
         .then(() => {
           console.info('OpenCustomDialog complete.');
         })
@@ -52,8 +52,8 @@ export class PromptActionClass1 {
   }
 
   static closeDialog() {
-    if (PromptActionClass1.contentNode !== null) {
-      PromptActionClass1.ctx.getPromptAction().closeCustomDialog(PromptActionClass1.contentNode)
+    if (PromptActionClassNew.contentNode !== null) {
+      PromptActionClassNew.ctx.getPromptAction().closeCustomDialog(PromptActionClassNew.contentNode)
         .then(() => {
           console.info('CloseCustomDialog complete.');
         })
@@ -65,10 +65,10 @@ export class PromptActionClass1 {
     }
   }
 
-  // [StartExclude prompt_action_class1]
+  // [StartExclude prompt_action_class_new]
   static closeDialogAndDispose() {
      // [Start prompt_action_class_close_custom_dialog]
-     PromptActionClass1.ctx.getPromptAction().closeCustomDialog(PromptActionClass1.contentNode)
+     PromptActionClassNew.ctx.getPromptAction().closeCustomDialog(PromptActionClassNew.contentNode)
      .then(() => {
        console.info('CloseCustomDialog complete.');
        if (this.contentNode !== null) {
@@ -82,12 +82,12 @@ export class PromptActionClass1 {
      })
      // [End prompt_action_class_close_custom_dialog]
   }
-  // [EndExclude prompt_action_class1]
+  // [EndExclude prompt_action_class_new]
 
   static updateDialog(options: promptAction.BaseDialogOptions) {
-    if (PromptActionClass1.contentNode !== null) {
+    if (PromptActionClassNew.contentNode !== null) {
       // [Start prompt_action_class_update_options]
-      PromptActionClass1.ctx.getPromptAction().updateCustomDialog(PromptActionClass1.contentNode, options)
+      PromptActionClassNew.ctx.getPromptAction().updateCustomDialog(PromptActionClassNew.contentNode, options)
         .then(() => {
           console.info('UpdateCustomDialog complete.');
         })
@@ -100,4 +100,4 @@ export class PromptActionClass1 {
     }
   }
 }
-// [End prompt_action_class1]
+// [End prompt_action_class_new]

@@ -18,7 +18,7 @@ import { ComponentCard } from '../../common/Card';
 // [Start cursor_avoid]
 @Entry
 @Component
-export struct CursorAvoidance {
+struct CursorAvoid {
   @State caretPosition: number = 600;
   areaController: TextAreaController = new TextAreaController();
   text = 'Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot,' +
@@ -33,42 +33,37 @@ export struct CursorAvoidance {
     'or someone we hardly know. As a result, what we do remember is anything that makes others happy, ' +
     'anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
   ';
-  // [StartExclude cursor_avoid]
-  @State str1 : string = getContext(this).resourceManager.getStringSync($r('app.string.CursorAvoidance_Button_1'));
-  @State str2 : string = getContext(this).resourceManager.getStringSync($r('app.string.CursorAvoidance_Button_2'));
-  // [EndExclude cursor_avoid]
 
   build() {
-    // [StartExclude cursor_avoid]
-    NavDestination() {
-      ComponentCard({ title: $r('app.string.CursorAvoidance_title') }) {
-        // [EndExclude cursor_avoid]
-        Scroll() {
-          Column() {
-            Row() {
+    Scroll() {
+      Column() {
+        Row() {
+          Button('CaretPosition++: ' + this.caretPosition).onClick(() => {
+            this.caretPosition += 1;
+          }).fontSize(10)
+          Button('CaretPosition--: ' + this.caretPosition).onClick(() => {
+            this.caretPosition -= 1;
+          }).fontSize(10)
+          Button('SetCaretPosition: ').onClick(() => {
+            this.areaController.caretPosition(this.caretPosition);
+          }).fontSize(10)
+        }
 
-              Button(this.str1 + this.caretPosition).onClick(() => {
-                this.caretPosition += 1;
-              }).fontSize(10)
-              Button(this.str2 + this.caretPosition).onClick(() => {
-                this.caretPosition -= 1;
-              }).fontSize(10)
-              Button($r('app.string.CursorAvoidance_Button_3')).onClick(() => {
-                this.areaController.caretPosition(this.caretPosition);
-              }).fontSize(10)
-            }
-
-            TextArea({ text: this.text, controller: this.areaController })
-              .width('100%')
-              .fontSize('20fp')
-          }
-        }.width('100%').height('100%')
-        // [StartExclude cursor_avoid]
+        TextArea({ text: this.text, controller: this.areaController })
+          .width('100%')
+          .fontSize('20fp')
       }
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.CursorAvoidance_title'))
-    // [EndExclude cursor_avoid]
+    }.width('100%').height('100%')
   }
 }
 // [End cursor_avoid]
+@Builder
+export function CursorAvoidance() {
+  NavDestination() {
+    ComponentCard({ title: $r('app.string.CursorAvoidance_title') }) {
+      CursorAvoid()
+    }
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.CursorAvoidance_title'))
+}

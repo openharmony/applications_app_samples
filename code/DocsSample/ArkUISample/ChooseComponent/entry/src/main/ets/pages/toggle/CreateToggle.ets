@@ -28,8 +28,8 @@ export struct CreateToggle {
           title: 'ToggleType is Checkbox',
         }) {
           // [Start create_toggle_with_checkbox]
-          Toggle({ type: ToggleType.Checkbox, isOn: false }).id('toggle1')
-          Toggle({ type: ToggleType.Checkbox, isOn: true }).id('toggle2')
+          Toggle({ type: ToggleType.Checkbox, isOn: false }).id('toggle1') // 请开发者替换为实际的id
+          Toggle({ type: ToggleType.Checkbox, isOn: true }).id('toggle2') // 请开发者替换为实际的id
           // [End create_toggle_with_checkbox]
         }
 

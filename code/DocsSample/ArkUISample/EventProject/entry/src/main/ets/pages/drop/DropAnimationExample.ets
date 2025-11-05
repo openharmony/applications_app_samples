@@ -15,12 +15,16 @@
 
 //[Start dropAnimationExample_start]
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+//[StartExclude dropAnimationExample_start]
 export const dropAnimationRoutePrefix: string = 'dropAnimation';
+//[EndExclude dropAnimationExample_start]
 
 @Entry
 @Component
 export struct DropAnimationExample {
+  //[StartExclude dropAnimationExample_start]
   @Consume pathStack: NavPathStack;
+  //[EndExclude dropAnimationExample_start]
   @State targetImage: string = '';
   @State imageWidth: number = 100;
   @State imageHeight: number = 100;
@@ -36,7 +40,9 @@ export struct DropAnimationExample {
     }
   //[End drop_customDropAnimation_start]
   build() {
+    //[StartExclude dropAnimationExample_start]
     NavDestination() {
+    //[EndExclude dropAnimationExample_start]
       Row() {
         Column() {
           // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
@@ -98,6 +104,7 @@ export struct DropAnimationExample {
         .margin({ left: '5%' })
       }
       .height('100%')
+      //[StartExclude dropAnimationExample_start]
       .width('100%')
     }
     .backgroundColor('#f1f3f5')
@@ -106,6 +113,7 @@ export struct DropAnimationExample {
       barStyle: BarStyle.STACK
     })
     .title($r('app.string.Pages_Index_DropAnimation'))
+    //[EndExclude dropAnimationExample_start]
   }
 }
 //[End dropAnimationExample_start]

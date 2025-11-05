@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start envconf_ability]
 import { FormExtensionAbility } from '@kit.FormKit';
 import { Configuration } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -25,4 +25,4 @@ export default class EnvAbility10 extends FormExtensionAbility {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate: ' + JSON.stringify(newConfig));
   }
 }
-// [End quick_start0]
+// [End envconf_ability]

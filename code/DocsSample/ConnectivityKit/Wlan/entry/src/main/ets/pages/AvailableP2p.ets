@@ -36,35 +36,35 @@ struct WifiConnect {
     hilog.info(TAG, 'addListener');
     wifi.on('p2pConnectionChange', async wifiP2pLinkedInfo => {
       hilog.info('p2p connection change receive event: ' + JSON.stringify(wifiP2pLinkedInfo));
-      this.p2pLinkedInfo = wifiP2pLinkedInfo
-      let connectState = wifiP2pLinkedInfo.connectState
-      let p2pConnectionMessage = ''
+      this.p2pLinkedInfo = wifiP2pLinkedInfo;
+      let connectState = wifiP2pLinkedInfo.connectState;
+      let p2pConnectionMessage = '';
       switch ( connectState ) {
         case 0:
           p2pConnectionMessage = 'DISCONNECTED!';
-          this.p2pLinkedInfo = null
-          promptAction.showToast({ message : 'connect disabled' })
+          this.p2pLinkedInfo = null;
+          promptAction.showToast({ message : 'connect disabled' });
           break;
         case 1:
-          p2pConnectionMessage = 'CONNECTED！';
+          p2pConnectionMessage = 'CONNECTED!';
           promptAction.showToast({ message : 'connect success' })
-          let curGp = await wifi.getCurrentGroup()
-          AppStorage.setOrCreate('p2pLinkedDeviceName', curGp.groupName)
+          let curGp = await wifi.getCurrentGroup();
+          AppStorage.setOrCreate('p2pLinkedDeviceName', curGp.groupName);
           break;
         default:
           p2pConnectionMessage = '未知状态';
           break;
       }
-      AppStorage.setOrCreate('p2pConnectState', connectState)
+      AppStorage.setOrCreate('p2pConnectState', connectState);
     })
 
       wifi.on('p2pPeerDeviceChange', async (_: wifi.WifiP2pDevice[]) => {
-      hilog.info(TAG, 'p2pPeerDeviceChange:', JSON.stringify(_))
+      hilog.info(TAG, 'p2pPeerDeviceChange:', JSON.stringify(_));
       try {
-        let devices = await wifi.getP2pPeerDevices()
-        this.p2pList = devices
+        let devices = await wifi.getP2pPeerDevices();
+        this.p2pList = devices;
       } catch (e) {
-        hilog.info(JSON.stringify(e))
+        hilog.info(JSON.stringify(e));
       }
     })
   }
@@ -73,25 +73,25 @@ struct WifiConnect {
   aboutToAppear() {
     // 如果wifi是开的，就记录下状态，然后扫描p2p设备，并获取连接信息
     if (!wifi.isWifiActive()) {
-      promptAction.showToast({ message : 'place active wifi' })
-      return
+      promptAction.showToast({ message : 'place active wifi' });
+      return;
     }
     this.isSwitchOn = true;
-    wifi.startDiscoverDevices()
+    wifi.startDiscoverDevices();
     this.addListener();
   }
 
   aboutToDisappear() {
-    wifi.off('p2pPeerDeviceChange')
-    wifi.off('p2pConnectionChange')
+    wifi.off('p2pPeerDeviceChange');
+    wifi.off('p2pConnectionChange');
   }
 // [End discover_p2p_device]
 
 // [Start connectP2p]
   connectP2p(p2pScanInfo: wifi.WifiP2pDevice) {
-    promptAction.showToast({ message : 'connect to device' })
-    hilog.info(TAG , `connect deviceAddress=${ p2pScanInfo.deviceAddress }`)
-    hilog.info(TAG , `p2pScanInfo:` + JSON.stringify(p2pScanInfo))
+    promptAction.showToast({ message : 'connect to device' });
+    hilog.info(TAG , `connect deviceAddress=${ p2pScanInfo.deviceAddress }`);
+    hilog.info(TAG , `p2pScanInfo:` + JSON.stringify(p2pScanInfo));
     let config: wifi.WifiP2PConfig = {
       deviceAddress : p2pScanInfo.deviceAddress,
       netId : - 2 ,
@@ -100,7 +100,7 @@ struct WifiConnect {
       groupName : '' ,
       goBand : 0
     }
-    wifi.p2pConnect(config)
+    wifi.p2pConnect(config);
   }
 // [End connectP2p]
 
@@ -121,15 +121,15 @@ struct WifiConnect {
             P2pView({ p2p : item })
           }
           .onClick(() => {
-            hilog.info(TAG , 'p2p click')
-            this.selectIndex = index
+            hilog.info(TAG , 'p2p click');
+            this.selectIndex = index;
             if ( this.p2pLinkedInfo !== null && this.p2pLinkedInfo.connectState == 1 ) {
-              promptAction.showToast({ message : 'this p2p is connected' })
-              return
+              promptAction.showToast({ message : 'this p2p is connected' });
+              return;
             }
-            this.connectP2p(item)
+            this.connectP2p(item);
           })
-        } , (item: wifi.WifiP2pDevice) => JSON.stringify(item));
+        } , (item: wifi.WifiP2pDevice) => JSON.stringify(item))
       }
       .layoutWeight(1)
       .divider({ strokeWidth : 1 , color : Color.Gray , startMargin : 10 , endMargin : 10 })

@@ -45,9 +45,9 @@ export default function ParentTest() {
      */
     it('Interaction_0100', 0, async (done: Function) => {
       let driver = Driver.create();
-      let button = await driver.findComponent(ON.text($r('app.string.FocusOnclick'), MatchPattern.CONTAINS));
+      let button = await driver.findComponent(ON.text('热区', MatchPattern.CONTAINS));
       await button.click();
-      let button1 = await driver.findComponent(ON.text($r('app.string.FocusOnclickExample'), MatchPattern.CONTAINS));
+      let button1 = await driver.findComponent(ON.text('热区范围', MatchPattern.CONTAINS));
       await button1.click();
       let button2 = await driver.findComponent(ON.text('按钮', MatchPattern.CONTAINS));
       await button2.click();

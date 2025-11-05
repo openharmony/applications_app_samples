@@ -55,7 +55,6 @@ export struct ButtonCustomStyle {
             .fontWeight(800)
           // [End custom_font_style]
 
-
           // [Start custom_font_style2]
           Button('font style', { type: ButtonType.Normal })
             .fontSize(20)

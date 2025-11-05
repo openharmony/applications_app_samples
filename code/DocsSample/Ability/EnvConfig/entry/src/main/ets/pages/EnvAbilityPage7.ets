@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start envconf_apppage]
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -41,4 +41,4 @@ struct EnvAbilityPage7 {
   build() {
   }
 }
-// [End quick_start0]
+// [End envconf_apppage]

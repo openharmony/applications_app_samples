@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start quick_start0]
+// [Start can_open]
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [StartExclude quick_start0]
+// [StartExclude can_open]
 import { common, Want, wantConstant } from '@kit.AbilityKit';
 
 const TAG: string = '[Page_UIAbilityComponentsInteractive]';
@@ -27,7 +27,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 struct OpenAppPage2 {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   aboutToAppear() {
-// [EndExclude quick_start0]
+// [EndExclude can_open]
     try {
       let link = 'app1Scheme://test.example.com/home';
       let canOpen = bundleManager.canOpenLink(link);
@@ -36,7 +36,7 @@ struct OpenAppPage2 {
       let message = (err as BusinessError).message;
       hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
     }
-    // [End quick_start0]
+    // [End can_open]
   }
   build() {
     Column() {

@@ -81,9 +81,9 @@ entry/src/main/ets/
 |   |       |---OpenDialogAndUpdate.ets
 |   |---OverlayManager                        //设置浮层
 |   |       |---Index.ets
-|   |       |---OverlayManagerDemo1.ets
-|   |       |---OverlayManagerDemo2.ets
-|   |       |---OverlayManagerDemo3.ets
+|   |       |---OverlayManagerAlertDialog.ets
+|   |       |---OverlayManagerComponent.ets
+|   |       |---OverlayManagerWithOrder.ets
 |   |---popup                                 //气泡提示
 |   |       |---ButtonPopup.ets
 |   |       |---CustomPopup.ets

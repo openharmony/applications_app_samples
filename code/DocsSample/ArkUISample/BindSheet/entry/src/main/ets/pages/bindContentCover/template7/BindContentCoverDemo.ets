@@ -16,17 +16,17 @@ import { curves } from '@kit.ArkUI';
 
 interface PersonList {
   name: string,
-  cardnum: string
+  cardNum: string
 }
 
 @Entry
 @Component
 struct BindContentCoverDemo {
   private personList: Array<PersonList> = [
-    { name: 'wang**', cardnum: '1234***********789' },
-    { name: 'song*', cardnum: '2345***********789' },
-    { name: 'xu**', cardnum: '3456***********789' },
-    { name: 'tang*', cardnum: '4567***********789' }
+    { name: 'wang**', cardNum: '1234***********789' },
+    { name: 'song*', cardNum: '2345***********789' },
+    { name: 'xu**', cardNum: '3456***********789' },
+    { name: 'tang*', cardNum: '4567***********789' }
   ];
   // 第一步：定义全屏模态转场效果bindContentCover
   // 模态转场控制变量
@@ -38,7 +38,7 @@ struct BindContentCoverDemo {
   MyBuilder() {
     Column() {
       Row() {
-        Text($r('app.string.MyContentCoverBuilder_text1'))
+        Text($r('app.string.Text_choose_person'))
           .fontSize(20)
           .fontColor(Color.White)
           .width('100%')
@@ -48,7 +48,7 @@ struct BindContentCoverDemo {
       .backgroundColor(0x007dfe)
 
       Row() {
-        Text($r('app.string.MyContentCoverBuilder_text2'))
+        Text($r('app.string.Text_add_person'))
           .fontSize(16)
           .fontColor(0x333333)
           .margin({ top: 10 })
@@ -82,7 +82,7 @@ struct BindContentCoverDemo {
               Text(item.name)
                 .fontColor(0x333333)
                 .fontSize(18)
-              Text(item.cardnum)
+              Text(item.cardNum)
                 .fontColor(0x666666)
                 .fontSize(14)
             }
@@ -90,7 +90,7 @@ struct BindContentCoverDemo {
             .alignItems(HorizontalAlign.Start)
 
             Column() {
-              Text($r('app.string.MyContentCoverBuilder_text3'))
+              Text($r('app.string.Text_edit'))
                 .fontColor(0x007dfe)
                 .fontSize(16)
             }
@@ -104,7 +104,7 @@ struct BindContentCoverDemo {
       }
       .padding({ top: 20, bottom: 20 })
 
-      Text($r('app.string.MyContentCoverBuilder_text4'))
+      Text($r('app.string.Text_confirm'))
         .width('90%')
         .height(40)
         .textAlign(TextAlign.Center)
@@ -124,7 +124,7 @@ struct BindContentCoverDemo {
   build() {
     Column() {
       Row() {
-        Text($r('app.string.MySheetBuilder_text'))
+        Text($r('app.string.Text_confirm'))
           .fontSize(20)
           .fontColor(Color.White)
           .width('100%')
@@ -137,19 +137,19 @@ struct BindContentCoverDemo {
         Row() {
           Column() {
             Text('00:25')
-            Text($r('app.string.MyContentCoverBuilder_text5'))
+            Text($r('app.string.Label_origin_station'))
           }
           .width('30%')
 
           Column() {
             Text('G1234')
-            Text($r('app.string.MyContentCoverBuilder_text6'))
+            Text($r('app.string.Label_start_time'))
           }
           .width('30%')
 
           Column() {
             Text('08:26')
-            Text($r('app.string.MyContentCoverBuilder_text7'))
+            Text($r('app.string.Label_destination_station'))
           }
           .width('30%')
         }
@@ -162,7 +162,7 @@ struct BindContentCoverDemo {
       .borderRadius(10)
 
       Column() {
-        Text($r('app.string.MyContentCoverBuilder_text2'))
+        Text($r('app.string.Sheet_choose_person'))
           .fontSize(18)
           .fontColor(Color.Orange)
           .fontWeight(FontWeight.Bold)
