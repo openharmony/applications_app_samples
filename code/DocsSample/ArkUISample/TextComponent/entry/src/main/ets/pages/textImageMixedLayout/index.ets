@@ -16,18 +16,19 @@
 import { CompletedRoutableCard } from '../../common/Card';
 import { Route } from '../../common/Route';
 import resource from '../../common/resource';
-import { router } from '@kit.ArkUI';
+import { TextImageComponent } from './TextImageComponent';
+import { TextImageAttribute } from './TextImageAttribute';
 
 export const TEXT_IMAGE_MIXED_LAYOUT: string = 'TextImageMixedLayout';
 
 const routes: Route[] = [
     {
-      name: 'textImageMixedLayout/TextImageComponent',
+      name: `${TEXT_IMAGE_MIXED_LAYOUT}/TextImageComponent`,
       title: resource.resourceToString($r('app.string.TextImage_MixedLayout_Text_1')),
       description: $r('app.string.TextImage_MixedLayout_Component_desc')
     },
     {
-      name: `textImageMixedLayout/TextImageAttribute`,
+      name: `${TEXT_IMAGE_MIXED_LAYOUT}/TextImageAttribute`,
       title: resource.resourceToString($r('app.string.TextImage_MixedLayout_Text_2')),
       description: $r('app.string.TextImage_MixedLayout_Attribute_desc')
     }
@@ -37,23 +38,17 @@ const routes: Route[] = [
 export function TextImageMixedLayoutDestination(name: string) {
   if (name === TEXT_IMAGE_MIXED_LAYOUT) {
     PropertyStringExample();
+  } else if (name === routes[0].name) {
+    TextImageComponent();
+  } else if (name === routes[1].name) {
+    TextImageAttribute();
   }
 }
 
 @Entry
 @Component
 struct PropertyStringExample {
-  goToSample(url: string): void {
-    router.pushUrl({
-      url: url,
-    }, router.RouterMode.Single, (err) => {
-      if (err) {
-        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-        return;
-      }
-      console.info('pushUrl success');
-    })
-  }
+  @Consume pathStack: NavPathStack;
 
   build() {
     NavDestination() {
@@ -64,7 +59,7 @@ struct PropertyStringExample {
           }
           .width('100%')
           .onClick(() => {
-            this.goToSample('pages/' + route.name);
+            this.pathStack.pushPath({ name: route.name });
           })
         })
       }
