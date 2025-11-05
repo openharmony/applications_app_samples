@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- // [Start localtorage_page_five_share2]
+// [Start localtorage_page_five_share2]
 // Page.ets
 
 @Builder
@@ -21,7 +21,6 @@ export function PageBuilder() {
 }
 
 // Page组件获得了父亲Index组件的LocalStorage实例
-@Entry
 @Component
 struct Page {
   @LocalStorageLink('PropA') propA: number = 2;

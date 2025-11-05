@@ -28,7 +28,7 @@ struct Index {
     },
     {
       name:'PageTwo',
-      path:'pages/PageTowPersistentStorage'
+      path:'pages/PageTwoPersistentStorage'
     },
     {
       name:'PageThree',

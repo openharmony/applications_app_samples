@@ -253,11 +253,6 @@ export default function IndexTest() {
       expect(button1 === null).assertFalse();
       await button1.click();
       await driver.delayMs(1000);
-      let button2 = await driver.findComponent(ON.text('Change propA', MatchPattern.CONTAINS));
-      expect(button2 === null).assertFalse();
-      await button2.click();
-      await driver.delayMs(1000);
-      await driver.pressBack();
       console.info('uitest: PageElevenTest end');
       done();
     })

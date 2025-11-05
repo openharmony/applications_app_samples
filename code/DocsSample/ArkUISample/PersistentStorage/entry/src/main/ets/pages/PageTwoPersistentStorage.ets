@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Persistent_page_tow]
+// [Start Persistent_page_two]
 let aProp = AppStorage.setOrCreate('aProp', 47);
 PersistentStorage.persistProp('aProp', 48);
 
@@ -36,4 +36,4 @@ struct TestPageTwo {
     }
   }
 }
-// [End Persistent_page_tow]
+// [End Persistent_page_two]

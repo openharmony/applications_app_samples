@@ -61,7 +61,8 @@ struct NestedDisplay {
         Button('change title.value to "Hi"')
           .onClick(() => {
             // [Start prop_seventeen_start]
-            this.title.value = 'Hi'; // 第一层属性变化，UI 会更新
+            // 可以观察到第一层的变化
+            this.title.value = 'Hi';
             // [End prop_seventeen_start]
           })
 
@@ -69,7 +70,8 @@ struct NestedDisplay {
         Button('change title.info.value to "ArkUI"')
           .onClick(() => {
             // [Start prop_seventeen_start]
-            this.title.info.value = 'ArkUI'; // 第二层属性变化，@Prop 无反应
+            // 观察不到第二层的变化
+            this.title.info.value = 'ArkUI';
             // [End prop_seventeen_start]
           })
 
