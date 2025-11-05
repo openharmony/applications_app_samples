@@ -10,7 +10,7 @@
 
 ### 3.[Button](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
 
-### 3[ 自定义组件冻结功能](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/ui/state-management/arkts-custom-components-freeze.md)
+### 4.[ 自定义组件冻结功能](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/ui/state-management/arkts-custom-components-freeze.md)
 
 ### 效果预览
 
