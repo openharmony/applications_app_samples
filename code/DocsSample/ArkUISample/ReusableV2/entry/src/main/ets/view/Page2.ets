@@ -23,7 +23,7 @@ struct Page13 {
     }
   }
 }
-// @ReusableV2
+@ReusableV2
 @ComponentV2
 struct ReusableV2Component {
   build() {

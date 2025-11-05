@@ -22,7 +22,7 @@ struct Page8 {
   build() {
     Column() {
       // $r('app.string.EntryAbility_title6')需要替换为开发者所需的字符串（图像、数字等）资源文件。
-      Button($('app.string.EntryAbility_title6')).onClick(()=>{this.condition=!this.condition;}) // 点击切换回收/复用状态
+      Button($r('app.string.EntryAbility_title6')).onClick(()=>{this.condition=!this.condition;}) // 点击切换回收/复用状态
       if (this.condition) {
         ReusableV2Component5()
       }
