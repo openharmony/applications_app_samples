@@ -47,8 +47,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
     let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName;
     let debug = abilityDelegatorArguments.parameters['-D'];
-    if (debug === 'true')
-    {
+    if (debug === 'true') {
       cmd += ' -D';
     }
     hilog.info(0x0000, 'testTag', 'cmd : %{public}s', cmd);
