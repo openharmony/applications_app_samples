@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start Displayed_Together]
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件
 @Entry
 @Component
 export struct DisplayedTogether {
@@ -46,7 +47,6 @@ export struct DisplayedTogether {
 
   static getEmojiImg(emojis: string[]): Resource[] { // 根据正则匹配结果返回自定义表情资源
     let emojisImg: Resource[] = []
-    // $r('app.media.app_icon')需要替换为开发者所需的资源文件。
     for (let i = 0; i < emojis.length; i++) {
       switch (emojis[i]) {
         case 'rolling_on_the_floor_laughing':
@@ -62,9 +62,7 @@ export struct DisplayedTogether {
   }
 
   build() {
-    // [StartExclude Displayed_Together]
     NavDestination() {
-      // [EndExclude Displayed_Together]
       Column() {
         TextInput({
           placeholder: 'The user inputs text with emojis, such as: Hello [grin]'
@@ -99,8 +97,9 @@ export struct DisplayedTogether {
       .justifyContent(FlexAlign.Center)
       .alignItems(HorizontalAlign.Center)
       .padding(20)
-      // [StartExclude Displayed_Together]
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Displayed_Together]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Displayed_Together_description'))
     // [EndExclude Displayed_Together]
   }

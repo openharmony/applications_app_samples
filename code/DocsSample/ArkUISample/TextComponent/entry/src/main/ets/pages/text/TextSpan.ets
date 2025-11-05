@@ -25,10 +25,10 @@ export struct TextSpan {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.TextSpan_title_1') }) {
           // [Start create_span]
-          // 'app.string.TextSpan_textContent_1'×ÊÔ´ÎÄ¼şÖĞµÄvalueÖµÎª'ÎÒÊÇText'
-          Text($r('app.string.TextSpan_textContent_1')) {
-            // 'app.string.TextSpan_textContent_2'×ÊÔ´ÎÄ¼şÖĞµÄvalueÖµÎª'ÎÒÊÇSpan'
-            Span($r('app.string.TextSpan_textContent_2'))
+          // 'app.string.TextSpan_textContent_text'èµ„æºæ–‡ä»¶ä¸­çš„valueå€¼ä¸º'æˆ‘æ˜¯Text'
+          Text($r('app.string.TextSpan_textContent_text')) {
+            // 'app.string.TextSpan_textContent_span'èµ„æºæ–‡ä»¶ä¸­çš„valueå€¼ä¸º'æˆ‘æ˜¯Span'
+            Span($r('app.string.TextSpan_textContent_span'))
           }
           .padding(10)
           .borderWidth(1)
@@ -38,19 +38,19 @@ export struct TextSpan {
         ComponentCard({ title: $r('app.string.TextSpan_title_2') }) {
           // [Start create_span_with_lines]
           Text() {
-            // 'app.string.TextSpan_textContent_3'×ÊÔ´ÎÄ¼şÖĞµÄvalueÖµÎª'ÎÒÊÇSpan1£¬'
-            Span($r('app.string.TextSpan_textContent_3'))
+            // 'app.string.TextSpan_textContent_span_one'èµ„æºæ–‡ä»¶ä¸­çš„valueå€¼ä¸º'æˆ‘æ˜¯Span1ï¼Œ'
+            Span($r('app.string.TextSpan_textContent_span_one'))
               .fontSize(16)
               .fontColor(Color.Grey)
               .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
-            // 'app.string.TextSpan_textContent_4'×ÊÔ´ÎÄ¼şÖĞµÄvalueÖµÎª'ÎÒÊÇSpan2'
-            Span($r('app.string.TextSpan_textContent_4'))
+            // 'app.string.TextSpan_textContent_span_two'èµ„æºæ–‡ä»¶ä¸­çš„valueå€¼ä¸º'æˆ‘æ˜¯Span2'
+            Span($r('app.string.TextSpan_textContent_span_two'))
               .fontColor(Color.Blue)
               .fontSize(16)
               .fontStyle(FontStyle.Italic)
               .decoration({ type: TextDecorationType.Underline, color: Color.Black })
-            // 'app.string.TextSpan_textContent_5'×ÊÔ´ÎÄ¼şÖĞµÄvalueÖµÎª'£¬ÎÒÊÇSpan3'
-            Span($r('app.string.TextSpan_textContent_5'))
+            // 'app.string.TextSpan_textContent_span_three'èµ„æºæ–‡ä»¶ä¸­çš„valueå€¼ä¸º'ï¼Œæˆ‘æ˜¯Span3'
+            Span($r('app.string.TextSpan_textContent_span_three'))
               .fontSize(16)
               .fontColor(Color.Grey)
               .decoration({ type: TextDecorationType.Overline, color: Color.Green })

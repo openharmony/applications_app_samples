@@ -21,6 +21,7 @@ export struct TextLongTow {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
 
+  // 'Text_Long_String'资源文件中的value值为'这是一段超长文本'
   @State message: string = this.manager.getStringByNameSync('Text_Long_String').repeat(50);
 
   build() {

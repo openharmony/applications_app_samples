@@ -21,9 +21,7 @@ import common from '@ohos.app.ability.common';
 export struct WordBreakd {
   @State message: string = 'Hello World! honorificabilitudinitatibus!';
   build() {
-    // [StartExclude Word_Break]
     NavDestination() {
-    // [EndExclude Word_Break]
     Column() {
       Text(this.message)
         .id('HelloWorld')
@@ -39,8 +37,9 @@ export struct WordBreakd {
     .width(300)
     .border({ width: 1, color: Color.Blue})
     .margin({left: 30, top: 50})
+    }
     // [StartExclude Word_Break]
-    }.backgroundColor('#f1f 2f3')
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Word_Break'))
     // [EndExclude Word_Break]
   }

@@ -16,7 +16,6 @@
 // [Start General_Events]
 // xxx.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
-const DOMAIN = 0x0000;
 @Entry
 @Component
 export struct GeneralEvents {
@@ -24,19 +23,17 @@ export struct GeneralEvents {
   @State textStr2: string = '';
 
   build() {
-    // [StartExclude General_Events]
     NavDestination() {
-      // [EndExclude General_Events]
       Row() {
         Column() {
           Text('This is a text component.')
             .fontSize(30)
             .onClick(() => {
-              hilog.info(DOMAIN, 'testTag', '%{public}s', 'Text onClick is triggering');
+              hilog.info(0x0000, 'Sample_TextComponent', 'Text onClick is triggering');
               this.textStr1 = 'Text onClick is triggering';
             })
             .onTouch(() => {
-              hilog.info(DOMAIN, 'testTag', '%{public}s', 'Text onTouch is triggering');
+              hilog.info(0x0000, 'Sample_TextComponent', 'Text onTouch is triggering');
               this.textStr2 = 'Text onTouch is triggering';
             })
           Text('onClick：' + this.textStr1)
@@ -46,8 +43,9 @@ export struct GeneralEvents {
         }.width('100%')
       }
       .height('100%')
-      // [StartExclude General_Events]
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude General_Events]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.General_Events'))
     // [EndExclude General_Events]
   }

@@ -15,6 +15,7 @@
 
 import { ComponentCard } from '../../common/Card';
 import resource from '../../common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
@@ -43,8 +44,8 @@ export struct SelectMenu {
   // [End Right_Click_Text_CustomMenu]
   // [Start onCreate_Menu]
   // 定义onCreateMenu，onMenuItemClick
+  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
-    // $r('app.media.xxx')需要替换为开发者所需的资源文件。
     let item1: TextMenuItem = {
       content: 'customMenu1',
       icon: $r('app.media.app_icon'),
@@ -61,18 +62,23 @@ export struct SelectMenu {
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of('customMenu2'))) {
-      console.log(resource.resourceToString($r('app.string.SelectMenu_Text_1')) +
-      textRange.start + '; end:' + textRange.end);
+      // 'app.string.SelectMenu_Text_customMenu'资源文件中的value值为'拦截 id: customMenu2 start:'
+      hilog.info(0x0000, 'Sample_TextComponent',
+        resource.resourceToString($r('app.string.SelectMenu_Text_customMenu')) + textRange.start + '; end:' +
+        textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log(resource.resourceToString($r('app.string.SelectMenu_Text_2')) +
-      textRange.start + '; end:' + textRange.end);
+      // 'app.string.SelectMenu_Text_copy'资源文件中的value值为'拦截 COPY start:'
+      hilog.info(0x0000, 'Sample_TextComponent',
+        resource.resourceToString($r('app.string.SelectMenu_Text_copy')) + textRange.start + '; end:' + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log(resource.resourceToString($r('app.string.SelectMenu_Text_3')) +
-      textRange.start + '; end:' + textRange.end);
+      // 'app.string.SelectMenu_Text_SelectionAll'资源文件中的value值为'不拦截 SELECT_ALL start:'
+      hilog.info(0x0000, 'Sample_TextComponent',
+        resource.resourceToString($r('app.string.SelectMenu_Text_SelectionAll')) + textRange.start + '; end:' +
+        textRange.end);
       return false;
     }
     return false;
@@ -98,10 +104,14 @@ export struct SelectMenu {
             .copyOption(CopyOptions.InApp)
             .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
               onAppear: () => {
-                console.info(resource.resourceToString($r('app.string.SelectMenu_Text_4')));
+                // 'app.string.SelectMenu_Text_Ejected'资源文件中的value值为'自定义选择菜单弹出时触发该回调'
+                hilog.info(0x0000, 'Sample_TextComponent',
+                  resource.resourceToString($r('app.string.SelectMenu_Text_Ejected')));
               },
               onDisappear: () => {
-                console.info(resource.resourceToString($r('app.string.SelectMenu_Text_5')));
+                // 'SelectMenu_Text_Close'资源文件中的value值为'自定义选择菜单关闭时触发该回调'
+                hilog.info(0x0000, 'Sample_TextComponent',
+                  resource.resourceToString($r('app.string.SelectMenu_Text_Close')));
               }
             })
           // [End set_selection_menu_with_bindselectionmenu]

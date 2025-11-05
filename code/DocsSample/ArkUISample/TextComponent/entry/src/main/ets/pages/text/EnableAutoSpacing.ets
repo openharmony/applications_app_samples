@@ -20,9 +20,7 @@ export struct EnableAutoSpacing {
   @State enableSpacing: boolean = false;
 
   build() {
-    // [StartExclude Enable_AutoSpacing]
     NavDestination() {
-    // [EndExclude Enable_AutoSpacing]
     Column() {
       Row({ space: 20 }) {
         // 'app.string.Enable_automatic_spacing'资源文件中的value值为'开启自动间距'
@@ -60,8 +58,9 @@ export struct EnableAutoSpacing {
     .width('100%')
     .height('100%')
     .padding(20)
+    }
     // [StartExclude Enable_AutoSpacing]
-    }.backgroundColor('#f1f 2f3')
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Automatic_spacing'))
     // [EndExclude Enable_AutoSpacing]
   }

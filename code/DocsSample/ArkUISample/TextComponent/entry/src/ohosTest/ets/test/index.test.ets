@@ -66,7 +66,7 @@ export default function IndexTest() {
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
 
-      str = await getResourceString($r('app.string.CreateText_Text_1'));
+      str = await getResourceString($r('app.string.CreateText_Text_new'));
       let textString = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       str = await getResourceString($r('app.string.module_desc'));
       let textResource = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
@@ -95,13 +95,13 @@ export default function IndexTest() {
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
 
-      str = await getResourceString($r('app.string.TextSpan_textContent_2'));
+      str = await getResourceString($r('app.string.TextSpan_textContent_span'));
       let textSpan = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.TextSpan_textContent_3'));
+      str = await getResourceString($r('app.string.TextSpan_textContent_span_one'));
       let textColorSpan1 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.TextSpan_textContent_4'));
+      str = await getResourceString($r('app.string.TextSpan_textContent_span_two'));
       let textColorSpan2 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.TextSpan_textContent_5'));
+      str = await getResourceString($r('app.string.TextSpan_textContent_span_three'));
       let textColorSpan3 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
 
       let uppercase = await driver.findComponent(ON.text('I am Upper-span', MatchPattern.CONTAINS));
@@ -153,11 +153,11 @@ export default function IndexTest() {
         'This is the setting of textOverflow to Clip text content This is the setting of textOverflow ' +
           'to None text content. This is the setting of textOverflow to Clip text content This is the setting ' +
           'of textOverflow to None text content.', MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.CustomTextStyle_textContent_1'));
+      str = await getResourceString($r('app.string.CustomTextStyle_textContent_epsis'));
       let longText2 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.CustomTextStyle_textContent_2'));
+      str = await getResourceString($r('app.string.CustomTextStyle_textContent_marq'));
       let longText3 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.CustomTextStyle_textContent_8'));
+      str = await getResourceString($r('app.string.CustomTextStyle_textContent_marq_def'));
       let longText4 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
 
       let customLineHeight = await driver.findComponent(ON.text(
@@ -186,13 +186,13 @@ export default function IndexTest() {
       await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
       await driver.waitForIdle(500, 500);
 
-      str = await getResourceString($r('app.string.CustomTextStyle_textContent_3'));
+      str = await getResourceString($r('app.string.CustomTextStyle_textContent_one_style'));
       let customTheSizeOfText1 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.CustomTextStyle_textContent_4'));
+      str = await getResourceString($r('app.string.CustomTextStyle_textContent_two_style'));
       let customTheSizeOfText2 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.CustomTextStyle_textContent_5'));
+      str = await getResourceString($r('app.string.CustomTextStyle_textContent_no_max'));
       let customTheSizeOfText3 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.CustomTextStyle_textContent_6'));
+      str = await getResourceString($r('app.string.CustomTextStyle_textContent_high'));
       let customTheSizeOfText4 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       let textCase1 = await driver.findComponent(ON.text('This is the text content with textCase set to Normal.',
         MatchPattern.CONTAINS));
@@ -200,7 +200,7 @@ export default function IndexTest() {
         MatchPattern.CONTAINS));
       let textCase3 = await driver.findComponent(ON.text('This is the text content with textCase set to UpperCase.',
         MatchPattern.CONTAINS));
-      str = await getResourceString($r('app.string.CustomTextStyle_textContent_7'));
+      str = await getResourceString($r('app.string.CustomTextStyle_textContent_incopy'));
       let copyOption = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
 
       expect(textLeft === null).assertFalse();
@@ -306,7 +306,7 @@ export default function IndexTest() {
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
 
-      str = await getResourceString($r('app.string.AIMenu_Text_1'));
+      str = await getResourceString($r('app.string.AIMenu_Text_One'));
       let aiMenuText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(aiMenuText === null).assertFalse();
 

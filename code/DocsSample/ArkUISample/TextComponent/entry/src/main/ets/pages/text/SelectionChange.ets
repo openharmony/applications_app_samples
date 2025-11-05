@@ -23,9 +23,7 @@ export struct SelectionChange {
   @State end: number = 20;
 
   build() {
-    // [StartExclude Selection_Change]
     NavDestination() {
-      // [EndExclude Selection_Change]
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
         Text(this.text)
           .fontSize(12)
@@ -48,8 +46,8 @@ export struct SelectionChange {
         this.start = -1;
         this.end = -1;
       })
-      // [StartExclude Selection_Change]
     }
+    // [StartExclude Selection_Change]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Selection_Change'))
     // [EndExclude Selection_Change]

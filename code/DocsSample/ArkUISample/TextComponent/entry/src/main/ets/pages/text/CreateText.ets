@@ -23,8 +23,8 @@ export struct CreateText {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CreatText_title_1') }) {
           // [Start create_a_text_in_one_way]
-          // 'app.string.CreateText_Text_1'×ÊÔ´ÎÄ¼şÖĞµÄvalueÖµÎª'ÎÒÊÇÒ»¶ÎÎÄ±¾'
-          Text($r('app.string.CreateText_Text_1'))
+          // 'app.string.CreateText_Text_new'èµ„æºæ–‡ä»¶ä¸­çš„valueå€¼ä¸º'æˆ‘æ˜¯ä¸€æ®µæ–‡æœ¬'
+          Text($r('app.string.CreateText_Text_new'))
           // [End create_a_text_in_one_way]
         }
 
@@ -33,7 +33,7 @@ export struct CreateText {
           description: $r('app.string.CreatText_description_1')
         }) {
           // [Start create_a_text_in_another_way]
-          // 'app.string.module_desc'×ÊÔ´ÎÄ¼şÖĞµÄvalueÖµÎª'Ä£¿éÃèÊö'
+          // 'app.string.module_desc'èµ„æºæ–‡ä»¶ä¸­çš„valueå€¼ä¸º'æ¨¡å—æè¿°'
           Text($r('app.string.module_desc'))
             .baselineOffset(0)
             .fontSize(30)
