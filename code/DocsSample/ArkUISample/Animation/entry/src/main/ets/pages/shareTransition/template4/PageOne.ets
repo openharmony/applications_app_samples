@@ -82,6 +82,7 @@ export struct PageOne {
           }
           .justifyContent(FlexAlign.Start)
 
+          // 'app.string.shareTransition_text2'资源文件中的value值为'你好世界'
           Text($r('app.string.shareTransition_text2'))
 
           NodeContainer(this.myNodeController)

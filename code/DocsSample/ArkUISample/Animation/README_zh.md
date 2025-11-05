@@ -95,9 +95,11 @@ entry/src/main/ets/
 |   |   |   |---Index.ets
 |   |---component                 // 组件动画
 |   |   |---template1
-|   |   |   |---Index.ets           // 示例1（Scroll组件滑动动效）
+|   |   |   |---Index.ets           // 示例1（使用组件默认动画）
 |   |   |---template2
-|   |   |   |---Index.ets           // 示例2（List组件动态替换动效）
+|   |   |   |---Index.ets           // 示例2（Scroll组件滑动动效）
+|   |   |---template3
+|   |   |   |---Index.ets           // 示例3（List组件动态替换动效）
 |   |---compTransition                 // 组件内转场
 |   |   |---template1     
 |   |   |   |---Index.ets            // 示例1（使用同一接口实现图片出现消失）

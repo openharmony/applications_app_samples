@@ -16,9 +16,9 @@
 // EntryAbility.ets
 // 程序入口处的onWindowStageCreate增加对窗口宽高等的抓取
 
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { display, uiObserver, window } from '@kit.ArkUI';
+import { display, window } from '@kit.ArkUI';
 import { WindowUtils } from '../utils/WindowUtils';
 
 const DOMAIN = 0x0000;

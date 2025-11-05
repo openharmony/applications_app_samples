@@ -199,6 +199,7 @@ struct AnimateIndex {
       // $r('app.string.component_temp_label1')需要替换为开发者所需的资源文件
       { name: 'template1/Index', label: $r('app.string.component_temp_label1') },
       { name: 'template2/Index', label: $r('app.string.component_temp_label2') },
+      { name: 'template3/Index', label: $r('app.string.component_temp_label3') },
     ]
   }, {
     name: "traditionalCurve",

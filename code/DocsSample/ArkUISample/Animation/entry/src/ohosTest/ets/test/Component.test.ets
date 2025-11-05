@@ -36,6 +36,7 @@ export function ComponentTest() {
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
+      await driver.swipe(500, 800, 500, 20);
 
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.component_label"))));
       await aimComponent.click();
@@ -61,8 +62,28 @@ export function ComponentTest() {
      */
     it(BUNDLE + 'ComponentTest_001', 0, async () => {
       hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_001_begin');
-
       aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.component_temp_label1"))));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      aimComponent = await driver.findComponent(ON.type('root'));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_001_end');
+    })
+
+    /*
+     * @tc.number: Animation_ComponentTest_002
+     * @tc.name: Animation_ComponentTest_002
+     * @tc.desc: Test TaskSwitchMainPage component animation
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it(BUNDLE + 'ComponentTest_002', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_begin');
+
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.component_temp_label2"))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
@@ -96,49 +117,39 @@ export function ComponentTest() {
       );
       await driver.delayMs(1000);
 
-      hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_001_end');
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_end');
     });
 
     /*
-     * @tc.number: Animation_ComponentTest_002
-     * @tc.name: Animation_ComponentTest_002
+     * @tc.number: Animation_ComponentTest_003
+     * @tc.name: Animation_ComponentTest_003
      * @tc.desc: Test ListAutoSortExample component animation
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level Level 1
      */
-    // it(BUNDLE + 'ComponentTest_002', 0, async () => {
-    //   hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_begin');
-    //
-    //   aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.component"))));
-    //   await aimComponent.click();
-    //   await driver.delayMs(1000);
-    //
-    //   const firstGroup = await driver.findComponent(ON.text('first ListItemGroup'));
-    //   const secondGroup = await driver.findComponent(ON.text('second ListItemGroup'));
-    //
-    //   const displaySize = await driver.getDisplaySize();
-    //   const itemWidth = displaySize.x;
-    //   const itemHeight = 100;
-    //   const targetItemY = Math.floor(displaySize.y * 0.4);
-    //
-    //   await driver.swipe(
-    //     Math.floor(itemWidth * 0.9),
-    //     targetItemY,
-    //     Math.floor(itemWidth * 0.1),
-    //     targetItemY,
-    //     300
-    //   );
-    //   await driver.delayMs(500);
-    //
-    //   const toTopButton = await driver.findComponent(ON.text('To TOP'));
-    //   await toTopButton.click();
-    //   await driver.delayMs(1500);
-    //
-    //   const firstItem = await driver.findComponent(ON.text('3'));
-    //
-    //   hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_002_end');
-    // });
+    it(BUNDLE + 'ComponentTest_003', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_003_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.component_temp_label3"))));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+      const displaySize = await driver.getDisplaySize();
+      const itemWidth = displaySize.x;
+      const targetItemY = Math.floor(displaySize.y * 0.4);
+
+      await driver.swipe(
+        Math.floor(itemWidth * 0.9),
+        targetItemY,
+        Math.floor(itemWidth * 0.1),
+        targetItemY,
+        300
+      );
+      await driver.delayMs(500);
+      const toTopButton = await driver.findComponent(ON.text('To TOP'));
+      await toTopButton.click();
+      await driver.delayMs(1500);
+      hilog.info(DOMAIN, TAG, 'Animation_ComponentTest_003_end');
+    });
 
   });
 }

@@ -34,18 +34,21 @@ struct Index {
     {
       avatar: $r('app.media.flower'),
       name: 'Alice',
+      // 'app.string.shareTransition_text1'资源文件中的value值为'天气晴朗'
       message: resource.resourceToString($r('app.string.shareTransition_text1')),
       images: [$r('app.media.spring'), $r('app.media.tall_tree')]
     },
     {
       avatar: $r('app.media.sunset_sky'),
       name: 'Bob',
+      // 'app.string.shareTransition_text2'资源文件中的value值为'你好世界'
       message: resource.resourceToString($r('app.string.shareTransition_text2')),
       images: [$r('app.media.island')]
     },
     {
       avatar: $r('app.media.tall_tree'),
       name: 'Carl',
+      // 'app.string.shareTransition_text3'资源文件中的value值为'万物生长'
       message: resource.resourceToString($r('app.string.shareTransition_text3')),
       images: [$r('app.media.flower'), $r('app.media.sunset_sky'), $r('app.media.spring')]
     }];
@@ -117,7 +120,8 @@ export default struct Post {
       // 展开态下组件增加的内容
       if (this.isExpand) {
         Column() {
-          Text($r('app.string.shareTransition_text1'))
+          // 'app.string.shareTransition_text1'资源文件中的value值为'评论区'
+          Text($r('app.string.shareTransition_text4'))
           // 对评论区文本添加出现消失转场效果
             .transition(TransitionEffect.OPACITY
               .animation({ duration: 350, curve: Curve.Friction }))
