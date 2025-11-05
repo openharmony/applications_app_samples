@@ -37,8 +37,8 @@ export struct CreateToggle {
           title: 'ToggleType is Switch',
         }) {
           // [Start create_toggle_with_switch]
-          Toggle({ type: ToggleType.Switch, isOn: false }).id('toggle3')
-          Toggle({ type: ToggleType.Switch, isOn: true }).id('toggle4')
+          Toggle({ type: ToggleType.Switch, isOn: false }).id('toggle3') // 请开发者替换为实际的id
+          Toggle({ type: ToggleType.Switch, isOn: true }).id('toggle4') // 请开发者替换为实际的id
           // [End create_toggle_with_switch]
 
           // [Start create_toggle_with_event]
@@ -63,13 +63,13 @@ export struct CreateToggle {
             Text('status button')
               .fontColor('#182431')
               .fontSize(12)
-          }.width(100).id('toggle5')
+          }.width(100).id('toggle5') // 请开发者替换为实际的id
 
           Toggle({ type: ToggleType.Button, isOn: true }) {
             Text('status button')
               .fontColor('#182431')
               .fontSize(12)
-          }.width(100).id('toggle6')
+          }.width(100).id('toggle6') // 请开发者替换为实际的id
           // [End create_a_toggle_that_contains_subcomponents]
         }
       }
