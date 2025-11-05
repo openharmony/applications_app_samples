@@ -12,23 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start play_music0100]
+// [Start playmusic_executor]
 // 本示例对应意图配置中的'srcEntry'字段对应的文件
 import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-// [StartExclude play_music0100]
+// [StartExclude playmusic_executor]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0002;
-// [EndExclude play_music0100]
+// [EndExclude playmusic_executor]
 
 export default class PlayMusicExecutor extends InsightIntentExecutor {
   // 由于意图配置中'executeMode'配置了'foreground'前台模式执行，故需要实现该接口
   async onExecuteInUIAbilityForegroundMode(intentName: string, params: Record<string, Object>,
     windowStage: window.WindowStage): Promise<insightIntent.ExecuteResult> {
     // 实现播放逻辑
-    // [StartExclude play_music0100]
+    // [StartExclude playmusic_executor]
     hilog.info(DOMAIN, 'testTag', '[PlayMusicExecutor] onExecuteInUIAbilityForegroundMode run');
-    // [EndExclude play_music0100]
+    // [EndExclude playmusic_executor]
     const result: insightIntent.ExecuteResult = {
       code: 0
     };
@@ -45,4 +45,4 @@ export default class PlayMusicExecutor extends InsightIntentExecutor {
     return Promise.resolve(result);
   }
 }
-// [End play_music0100]
+// [End playmusic_executor]

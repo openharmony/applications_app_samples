@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start startup002]
-// [Start startup009]
-import { StartupConfig, StartupConfigEntry, StartupListener,Want } from '@kit.AbilityKit';
+// [Start startup_entryconfig]
+// [Start startup_config]
+import { StartupConfig, StartupConfigEntry, StartupListener, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
-  // [StartExclude startup009]
+  // [StartExclude startup_config]
   onConfig() {
     hilog.info(0x0000, 'testTag', `onConfig`);
     let onCompletedCallback = (error: BusinessError<void>) => {
@@ -39,15 +39,15 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     };
     return config;
   }
-  // [EndExclude startup009]
-  // [StartExclude startup002]
+  // [EndExclude startup_config]
+  // [StartExclude startup_entryconfig]
   onRequestCustomMatchRule(want: Want): string {
     if (want?.parameters?.fromType == 'card') {
       return 'ruleCard';
     }
     return '';
   }
-  // [EndExclude startup002]
+  // [EndExclude startup_entryconfig]
 }
-// [End startup009]
-// [End startup002]
+// [End startup_config]
+// [End startup_entryconfig]

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start startup_config_0100]
+
 import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -38,4 +38,3 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     return config;
   }
 }
-// [End startup_config_0100]

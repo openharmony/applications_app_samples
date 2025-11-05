@@ -12,21 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start startup001]
+// [Start startup_module]
 {
   "module": {
     "name": "entry",
     "type": "entry",
-    // [StartExclude startup001]
+    // [StartExclude startup_module]
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
       "2in1"
     ],
-    // [EndExclude startup001]
+    // [EndExclude startup_module]
     "appStartup": "$profile:startup_config", // 启动框架的配置文件
-    // [StartExclude startup001]
+    // [StartExclude startup_module]
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
@@ -66,7 +66,7 @@
         ],
       }
     ],
-    // [EndExclude startup001]
+    // [EndExclude startup_module]
   }
 }
-// [End startup001]
+// [End startup_module]

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start startup003]
+// [Start startup_task]
 import { StartupTask, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -32,4 +32,4 @@ export default class StartupTask001 extends StartupTask {
       dependence, JSON.stringify(result));
   }
 }
-// [End startup003]
+// [End startup_task]

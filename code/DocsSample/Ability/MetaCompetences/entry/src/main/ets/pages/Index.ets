@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start startup008]
+// [Start startup_index]
 import { startupManager } from '@kit.AbilityKit';
 
 @Entry
@@ -45,4 +45,4 @@ struct Index {
     .width('100%')
   }
 }
-// [End startup008]
+// [End startup_index]
