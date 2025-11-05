@@ -16,11 +16,15 @@
 import { taskpool } from '@kit.ArkTS';
 import { SendableData } from '../Model/modelView';
 import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Concurrent
 function threadGetData(param: string): SendableData {
+  const DOMAIN = 0xF811;
+  const TAG = '[Sample_MakeObserved]';
   // 在子线程处理数据
   let ret = new SendableData();
-  console.info(`Concurrent threadGetData, param ${param}`);
+  hilog.info(DOMAIN, TAG, `Concurrent threadGetData, param ${param}`);
   ret.name = param + '-o';
   ret.age = Math.floor(Math.random() * 40);
   ret.likes = Math.floor(Math.random() * 100);
@@ -30,6 +34,7 @@ function threadGetData(param: string): SendableData {
 @Entry
 @ComponentV2
 struct Page3 {
+  // 通过makeObserved给普通对象或是SendableData对象添加可观察能力
   @Local send: SendableData = UIUtils.makeObserved(new SendableData());
 
   build() {

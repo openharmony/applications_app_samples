@@ -14,10 +14,14 @@
  */
 // [Start name_change_from_monitor_value]
 import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0xF811;
+const TAG = '[Sample_MakeObserved]';
 
 class Info {
- public id: number = 0;
- public age: number = 20;
+  public id: number = 0;
+  public age: number = 20;
 
   constructor(id: number) {
     this.id = id;
@@ -31,10 +35,12 @@ struct Page8 {
 
   @Monitor('message.id')
   onStrChange(monitor: IMonitor) {
+    hilog.info(DOMAIN, TAG, `name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   @Computed
   get ageId() {
+    hilog.info(DOMAIN, TAG, '---------Computed----------');
     return this.message.id + ' ' + this.message.age;
   }
 

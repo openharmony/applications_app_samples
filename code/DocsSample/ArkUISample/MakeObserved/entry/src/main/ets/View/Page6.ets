@@ -15,6 +15,11 @@
 // [Start Array_rom_shallow_copy]
 import { collections } from '@kit.ArkTS';
 import { UIUtils } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0xF811;
+const TAG = '[Sample_MakeObserved]';
+
 @Sendable
 class Info {
   public id: number = 0;
@@ -43,7 +48,7 @@ struct Page6 {
       // add
       Button('add').onClick(() => {
         this.set.add(new Info(30));
-        console.info('size:' + this.set.size);
+        hilog.info(DOMAIN, TAG, ('size:' + this.set.size));
       })
       // delete
       Button('delete').onClick(() => {
