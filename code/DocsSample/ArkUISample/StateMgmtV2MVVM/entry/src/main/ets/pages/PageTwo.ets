@@ -30,19 +30,19 @@ struct Page2 {
   build() {
     NavDestination() {
       Column() {
-        Button('Page2 connect the key Sample1')
+        Button('PageTwo connect the key Sample1')
           .onClick(() => {
             // 在AppStorageV2中创建一个key为Sample1的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
             this.prop = AppStorageV2.connect(Sample, 'Sample1', () => new Sample())!;
           })
 
-        Text(`Page2 add 1 to prop.p1: ${this.prop.p1}`)
+        Text(`PageTwo add 1 to prop.p1: ${this.prop.p1}`)
           .fontSize(30)
           .onClick(() => {
             this.prop.p1++;
           })
 
-        Text(`Page2 add 1 to prop.p2: ${this.prop.p2}`)
+        Text(`PageTwo add 1 to prop.p2: ${this.prop.p2}`)
           .fontSize(30)
           .onClick(() => {
             // 页面不刷新，但是p2的值改变了；只有重新初始化才会改变
