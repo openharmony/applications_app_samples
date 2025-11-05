@@ -14,7 +14,7 @@
  */
 // [Start startup002]
 // [Start startup009]
-import { StartupConfig, StartupConfigEntry, StartupListener,Want } from '@kit.AbilityKit';
+import { StartupConfig, StartupConfigEntry, StartupListener, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
