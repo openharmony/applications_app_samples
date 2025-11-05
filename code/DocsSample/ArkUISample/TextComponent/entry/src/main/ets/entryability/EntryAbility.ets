@@ -45,15 +45,15 @@ export default class EntryAbility extends UIAbility {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
-  // [Start cursor_avoid_part2]
+  // [End cursor_avoid_part2]
   onWindowStageDestroy(): void {
-      // Main window is destroyed, release UI related resources
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-      // Ability has brought to foreground
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
