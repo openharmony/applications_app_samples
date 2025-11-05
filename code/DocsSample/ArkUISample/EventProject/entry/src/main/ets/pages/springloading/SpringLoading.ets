@@ -27,7 +27,7 @@ export const springLoadingRoutePrefix: string = 'springLoadingExample';
 export struct SpringLoadingPage {
   context1 = this.getUIContext().getHostContext()
   @Local isShowSheet: boolean = false;
-  // 'app.string.Select_Result'需要替换为开发者所需的文本资源文件
+  // $r('app.string.Select_Result')需要替换为开发者所需的文本资源文件
   private searchResult: string = this.context1?.resourceManager.getStringSync($r('app.string.Select_Result').id)!;
   @Local isSearchDone: boolean = false;
   private reminderColor: Color = Color.Green;
@@ -39,6 +39,7 @@ export struct SpringLoadingPage {
   SheetBuilder() {
     Column() {
       // 输入框
+      // $r('app.string.Push_Here')需要替换为开发者所需的文本资源文件
       TextInput({ placeholder: $r('app.string.Push_Here') })
         .width('80%')
         .borderWidth(1)
@@ -156,13 +157,13 @@ export struct SpringLoadingPage {
         //[EndExclude SpringLoading_start]
         //[EndExclude springLoading_example]
         Column() {
-          // 'app.string.DoubleClick_Text'需要替换为开发者所需的文本资源文件
+          // $r('app.string.DoubleClick_Text')需要替换为开发者所需的文本资源文件
           Text($r('app.string.DoubleClick_Text'))
             .fontSize(30)
             .copyOption(CopyOptions.InApp) // 开启copyOption之后，文本组件即可支持选择内容进行拖拽
         }.padding({ bottom: 30 })
 
-        // 'app.string.Search_Device'需要替换为开发者所需的文本资源文件
+        // $r('app.string.Search_Device')需要替换为开发者所需的文本资源文件
         Button($r('app.string.Search_Device'))
           .width('80%')
           .height('80vp')
@@ -170,7 +171,7 @@ export struct SpringLoadingPage {
           .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
             detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
             preferType: SheetType.BOTTOM,
-            // 'app.string.Search_Device'需要替换为开发者所需的文本资源文件
+            // $r('app.string.Search_Device')需要替换为开发者所需的文本资源文件
             title: { title: $r('app.string.Search_Device') },
           })
           //[StartExclude springLoading_example]
@@ -199,7 +200,7 @@ export struct SpringLoadingPage {
         backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
         barStyle: BarStyle.STACK
       })
-      // 'app.string.Pages_Index_DropAnimation'需要替换为开发者所需的文本资源文件
+      // $r('app.string.Pages_Index_DropAnimation')需要替换为开发者所需的文本资源文件
       .title($r('app.string.Pages_Index_DropAnimation'))
 
       //[EndExclude springLoading_example]

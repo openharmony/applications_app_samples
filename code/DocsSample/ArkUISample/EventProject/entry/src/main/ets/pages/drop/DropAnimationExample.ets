@@ -15,9 +15,15 @@
 
 //[Start dropAnimationExample_start]
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 //[StartExclude dropAnimationExample_start]
 export const dropAnimationRoutePrefix: string = 'dropAnimation';
+
 //[EndExclude dropAnimationExample_start]
+
+const DOMAIN = 0x0000;
+const TAG = 'DropAnimationExampleTag'
 
 @Entry
 @Component
@@ -38,15 +44,16 @@ export struct DropAnimationExample {
         this.imgState = Visibility.None;
       })
     }
+
   //[End drop_customDropAnimation_start]
   build() {
     //[StartExclude dropAnimationExample_start]
     NavDestination() {
-    //[EndExclude dropAnimationExample_start]
+      //[EndExclude dropAnimationExample_start]
       Row() {
         Column() {
-          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
           //[Start drop_image_start]
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
           Image($r('app.media.app_icon'))
             .width(100)
             .height(100)
@@ -58,9 +65,9 @@ export struct DropAnimationExample {
             .onDragEnd((event) => {
               //[StartExclude drop_image_start]
               if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-                console.info('Drag Success');
+                hilog.info(DOMAIN, TAG, '%{public}s', 'Drag Success');
               } else if (event.getResult() === DragResult.DRAG_FAILED) {
-                console.info('Drag failed');
+                hilog.info(DOMAIN, TAG, '%{public}s', 'Drag failed');
               }
               //[EndExclude drop_image_start]
             })
@@ -113,7 +120,9 @@ export struct DropAnimationExample {
       barStyle: BarStyle.STACK
     })
     .title($r('app.string.Pages_Index_DropAnimation'))
+
     //[EndExclude dropAnimationExample_start]
   }
 }
+
 //[End dropAnimationExample_start]

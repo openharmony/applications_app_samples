@@ -21,6 +21,10 @@ import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 // [StartExclude onDragEnd_start]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAG = 'DefaultDragError: '
 
 @Entry
 @Component
@@ -35,6 +39,7 @@ export struct DefaultDrag {
   @Builder
   pixelMapBuilder() {
     Column() {
+      // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
       Image($r('app.media.startIcon'))
         .width(120)
         .height(120)
@@ -61,7 +66,7 @@ export struct DefaultDrag {
       callback(event);
       return true;
     } catch (e) {
-      console.error('getData failed, code: ' + (e as BusinessError).code + ', message: ' +
+      hilog.error(DOMAIN, TAG, '%{public}s', (e as BusinessError).code + ', message: ' +
       (e as BusinessError).message);
       return false;
     }
@@ -86,7 +91,7 @@ export struct DefaultDrag {
     },
       (error: Error, pixmap: image.PixelMap) => {
         if (error) {
-          console.error('error: ' + JSON.stringify(error))
+          hilog.error(DOMAIN, TAG, '%{public}s', JSON.stringify(error));
           return;
         }
         this.pixmap = pixmap;
@@ -110,6 +115,7 @@ export struct DefaultDrag {
               .backgroundColor('#008888')
             Row() {
               // [EndExclude module_draggable]
+              // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
               Image($r('app.media.app_icon'))
                 .width(100)
                 .height(100)

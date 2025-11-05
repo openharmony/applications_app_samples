@@ -82,6 +82,7 @@ export struct GridEts {
   build() {
     NavDestination() {
       Column({ space: 5 }) {
+        // $r('app.string.Select_All')需要替换为开发者所需的文本资源文件
         Button($r('app.string.Select_All'))
           .onClick(() => {
             for (let i = 0; i < this.isSelectedGrid.length; i++) {
@@ -264,7 +265,7 @@ export struct GridEts {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    // 'app.string.Pages_Index_GridExample'需要替换为开发者所需的文本资源文件
+    // $r('app.string.Pages_Index_GridExample')需要替换为开发者所需的文本资源文件
     .title($r('app.string.Pages_Index_GridExample'))
   }
 }

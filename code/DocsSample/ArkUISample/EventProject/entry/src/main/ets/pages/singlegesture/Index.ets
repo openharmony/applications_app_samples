@@ -26,7 +26,7 @@ import { VolumeControlDemo } from './PanCombinationGesture';
 import resource from '../../common/resource';
 
 export const Gesture_ROUTE_PREFIX: string = 'gesture';
-//$r('app.string.xxx')需要替换为开发者所需的资源文件
+//$r('app.string.xxx')需要替换为开发者所需的文本资源文件
 
 const routes: Route[] = [
   {
