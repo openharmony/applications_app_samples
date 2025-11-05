@@ -26,42 +26,41 @@ export struct TabsLayout {
           Tabs() {
             // [Start basic_layout_displays_one_content]
             TabContent() {
-              //app.string.homepage_content资源文件中的homepage_content值为‘首页的内容’
+              //app.string.homepage_content资源文件中的value值为‘首页的内容’
               Text($r('app.string.homepage_content'))
                 .fontSize(30)
             }
-            //app.string.homepage资源文件中的homepage值为‘首页’
+            //app.string.homepage资源文件中的value值为‘首页’
             .tabBar($r('app.string.homepage'))
             // [End basic_layout_displays_one_content]
 
             TabContent() {
-              //app.string.recommend_content资源文件中的recommend_content值为‘推荐的内容’
+              //app.string.recommend_content资源文件中的value值为‘推荐的内容’
               Text($r('app.string.recommend_content'))
                 .fontSize(30)
             }
-            //app.string.recommend资源文件中的recommend值为‘推荐’
+            //app.string.recommend资源文件中的value值为‘推荐’
             .tabBar($r('app.string.recommend'))
 
             TabContent() {
-              //app.string.discover_content资源文件中的discover_content值为‘发现的内容’
+              //app.string.discover_content资源文件中的value值为‘发现的内容’
               Text($r('app.string.discover_content'))
                 .fontSize(30)
             }
-            //app.string.discover资源文件中的discover值为‘发现’
+            //app.string.discover资源文件中的value值为‘发现’
             .tabBar($r('app.string.discover'))
 
             TabContent() {
-              //app.string.mine_content资源文件中的mine_content值为‘我的内容’
+              //app.string.mine_content资源文件中的value值为‘我的内容’
               Text($r('app.string.mine_content'))
                 .fontSize(30)
             }
-            //app.string.mine_content资源文件中的mine值为‘我的’
+            //app.string.mine_content资源文件中的value值为‘我的’
             .tabBar($r('app.string.mine'))
-            // [StartExclude basic_layout_displays_many_contents]
-          }.height(300)
-          // [EndExclude basic_layout_displays_many_contents]
+          }
+          // [End basic_layout_displays_many_contents]
+          .height(300)
         }
-        // [End basic_layout_displays_many_contents]
       }
       .width('100%')
       .height('100%')

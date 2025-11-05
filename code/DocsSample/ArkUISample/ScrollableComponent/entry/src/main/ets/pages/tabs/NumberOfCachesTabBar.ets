@@ -57,9 +57,9 @@ export struct NumberOfCachesTabBar {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.Cache_count'))
+    // [EndExclude number_of_caches_tabBar]
   }
 }
-// [EndExclude number_of_caches_tabBar]
 
 @Component
 struct MyComponent {

@@ -1243,6 +1243,14 @@
     {
       "name": "new_long",
       "value": "这是第二条长新闻，内容较多，可以自由滑动查看完整内容。"
+    },
+    {
+      "name": "Dark_mode",
+      "value": "深色模式"
+    },
+    {
+      "name": "Light_mode",
+      "value": "浅色模式"
     }
   ]
 }
