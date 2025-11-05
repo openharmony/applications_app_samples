@@ -14,6 +14,7 @@
  */
 
 // [Start custom_popup]
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 @Entry
 @Component
 export struct CustomPopupExample {
@@ -58,8 +59,9 @@ export struct CustomPopupExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.custom_popup')需要替换为开发者所需的资源文件。
+    // [StartExclude custom_popup]
     .title($r('app.string.custom_popup'))
+    // [EndExclude custom_popup]
   }
 }
 // [End custom_popup]
