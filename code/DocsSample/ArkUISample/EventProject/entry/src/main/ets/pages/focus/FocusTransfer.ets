@@ -31,6 +31,7 @@ export struct FocusTransferExample {
             Button('button 1')
               .margin(20)
               .onClick(() => {
+                //app.string.Focus_Event资源文件中的value值为'获焦信息'
                 this.logText = this.context!.resourceManager.getStringSync($r('app.string.Focus_Event').id) + '：\n';
                 this.getUIContext().getFocusController().requestFocus('Row 2')
               })
@@ -42,6 +43,7 @@ export struct FocusTransferExample {
             Button('button 2')
               .margin(20)
               .onFocus(() => {
+                //app.string.Get_Focus资源文件中的value值为'获得焦点'
                 this.addText('Button 2' + this.context!.resourceManager.getStringSync($r('app.string.Get_Focus').id));
               })
             Button('button 3')

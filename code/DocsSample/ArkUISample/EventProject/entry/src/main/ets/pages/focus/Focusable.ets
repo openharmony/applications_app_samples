@@ -107,6 +107,7 @@ export struct FocusableExample {
     }
     // [StartExclude dynamic_focus_control_manage]
     .backgroundColor('#f1f2f3')
+    //$r('app.string.xxx')需要替换为开发者所需的资源文件
     .title($r('app.string.Focus_Focusable_title'))
     // [EndExclude dynamic_focus_control_manage]
   }

@@ -81,6 +81,7 @@ export struct DefaultFocus {
     }
     // [StartExclude focus_visualization_manage]
     .backgroundColor('#f1f2f3')
+    //app.string.Focus_DefaultFocus_title资源文件中的value值为'默认焦点'
     .title($r('app.string.Focus_DefaultFocus_title'))
     // [EndExclude focus_visualization_manage]
   }

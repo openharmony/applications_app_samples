@@ -14,7 +14,7 @@
  */
 
 // [Start prevent_bubbling]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_MultipleFingerInformation]';
 const DOMAIN = 0xF811;
@@ -27,6 +27,7 @@ struct PreventBubbling {
   build() {
     RelativeContainer() {
       Column() { // 父组件
+        //$r('app.string.xxx')需要替换为开发者所需的资源文件
         Text($r('app.string.preventEvent'))
           .fontColor(Color.White)
           .height('40%')
