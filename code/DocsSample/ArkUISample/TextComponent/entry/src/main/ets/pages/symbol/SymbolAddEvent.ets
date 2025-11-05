@@ -28,7 +28,6 @@ export struct SymbolGlyphSpanAddEvent {
         ComponentCard({ title: $r('app.string.SymbolGlyphSpanAddEvent_title') }) {
           // [Start symbol_glyph_span_add_event]
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
-            .id('symbolGlyph1')
             .fontSize(96)
             .fontColor([this.wifiColor])
             .onClick(() => {

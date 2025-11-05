@@ -39,13 +39,13 @@ export struct SymbolGlyphSpanCustomIconAnimation {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanCustomIconAnimation_title_1') }) {
             // [Start symbol_variable_color]
             Column() {
+              // 'app.string.SymbolCustomIconAnimation_Text_1'资源文件中的value值为"可变颜色动效"
               Text($r('app.string.SymbolCustomIconAnimation_Text_1'));
               SymbolGlyph($r('sys.symbol.ohos_wifi'))
-                // [StartExclude symbol_variable_color]
-                .id('1')
-                // [EndExclude symbol_variable_color]
                 .fontSize(96)
                 .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
+              // 'app.string.SymbolGlyphSpanCustomIconAnimation_Button_1'资源文件中的value值为"关闭"
+              // 'app.string.SymbolGlyphSpanCustomIconAnimation_Button_2'资源文件中的value值为"播放"
               Button(this.isActive ? $r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_1') : $r('app.string.SymbolGlyphSpanCustomIconAnimation_Button_2')).onClick(() => {
                 this.isActive = !this.isActive;
               })
@@ -55,11 +55,9 @@ export struct SymbolGlyphSpanCustomIconAnimation {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanCustomIconAnimation_title_2') }) {
             // [Start symbol_bouncing_effect]
             Column() {
+              // 'app.string.SymbolCustomIconAnimation_Text_2'资源文件中的value值为"弹跳动效"
               Text($r('app.string.SymbolCustomIconAnimation_Text_2'));
               SymbolGlyph($r('sys.symbol.ellipsis_message_1'))
-                // [StartExclude symbol_bouncing_effect]
-                .id('2')
-                // [EndExclude symbol_bouncing_effect]
                 .fontSize(96)
                 .fontColor([Color.Gray])
                 .symbolEffect(new BounceSymbolEffect(EffectScope.WHOLE, EffectDirection.UP), this.triggerValueReplace)
@@ -72,11 +70,9 @@ export struct SymbolGlyphSpanCustomIconAnimation {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanCustomIconAnimation_title_3') }) {
             // [Start symbol_disable_effect]
             Column() {
+              // 'app.string.SymbolCustomIconAnimation_Text_3'资源文件中的value值为"禁用动效"
               Text($r('app.string.SymbolCustomIconAnimation_Text_3'));
               SymbolGlyph(this.replaceFlag ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
-                // [StartExclude symbol_disable_effect]
-                .id('3')
-                // [EndExclude symbol_disable_effect]
                 .fontSize(96)
                 .renderingStrategy(this.renderMode)
                 .symbolEffect(new ReplaceSymbolEffect(EffectScope.LAYER, ReplaceEffectType.SLASH_OVERLAY),
@@ -91,11 +87,9 @@ export struct SymbolGlyphSpanCustomIconAnimation {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanCustomIconAnimation_title_4') }) {
             // [Start symbol_quick_replacement]
             Column() {
+              // 'app.string.SymbolCustomIconAnimation_Text_4'资源文件中的value值为"快速替换动效"
               Text($r('app.string.SymbolCustomIconAnimation_Text_4'));
               SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
-                // [StartExclude symbol_quick_replacement]
-                .id('4')
-                // [EndExclude symbol_quick_replacement]
                 .fontSize(96)
                 .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE, ReplaceEffectType.CROSS_FADE),
                   this.triggerValueReplace)

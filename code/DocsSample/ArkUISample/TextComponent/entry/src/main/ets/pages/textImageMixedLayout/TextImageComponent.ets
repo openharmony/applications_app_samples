@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-
 @Entry
 @Component
 export struct TextImageComponent {
@@ -21,15 +20,16 @@ export struct TextImageComponent {
     NavDestination() {
       // [Start textImage_component]
       Text() {
-        ImageSpan($r('app.media.startIcon'))
+        ImageSpan($r('app.media.hot_sale'))
           .width(50)
           .height(30)
           .borderRadius(5)
           .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
+        // 'app.string.TextImage_MixedLayout_Content_1'资源文件中的value值为"惊喜价 ￥1299"
         Span($r('app.string.TextImage_MixedLayout_Content_1'))
           .fontSize(25)
           .fontColor(Color.Red)
-        Span($r('app.string.TextImage_MixedLayout_Content_2'))
+        Span('1599')
           .decoration({
             type: TextDecorationType.LineThrough,
             color: Color.Grey,
