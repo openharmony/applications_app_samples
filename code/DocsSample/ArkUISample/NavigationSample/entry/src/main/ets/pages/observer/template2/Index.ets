@@ -37,6 +37,7 @@ struct ObserverIndex2 {
 
   aboutToAppear() {
     // [Start uiObserver]
+    const DOMAIN = 0x0000;
     uiObserver.on('navDestinationUpdate', (info) => {
       hilog.info(DOMAIN, 'testTag', 'NavDestination state update', JSON.stringify(info));
     });

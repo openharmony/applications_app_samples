@@ -14,7 +14,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-const DOMAIN = 0x0000;
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
   PageOne();
@@ -39,6 +38,7 @@ export struct PageOne {
           .margin(10)
           .onClick(() => {
             // [Start PushPathByNameOnPop]
+            let DOMAIN = 0x0000;
             this.pageInfo.pushPathByName('temp4-pageTwo', 'temp4-pageTwo Param', (popInfo) => {
               hilog.info(DOMAIN, 'testTag', 'Pop page name is: ', popInfo.info.name, 'result: ',
                 JSON.stringify(popInfo.result));

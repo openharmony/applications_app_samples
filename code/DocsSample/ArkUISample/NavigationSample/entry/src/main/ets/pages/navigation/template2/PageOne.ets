@@ -18,12 +18,12 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 class NavParam {
   desc: string = 'navigation-param'
 };
+const DOMAIN = 0x0000;
 // [StartExclude onResult]
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
   PageOne();
 }
-const DOMAIN = 0x0000;
 // [EndExclude onResult]
 @Component
 export struct PageOne {
@@ -54,6 +54,7 @@ export struct PageOne {
               .margin(10)
               .onClick(() => {
                 // [Start PushDestination]
+                const DOMAIN = 0x0000;
                 this.pageStack.pushDestination({
                   name: 'pageTwo', param: 'PageTwo Param'}).catch((error: BusinessError) => {
                   hilog.info(DOMAIN, 'testTag', '[pushDestination]failed', 'error code = ', error.code,
@@ -68,6 +69,7 @@ export struct PageOne {
               .height(40)
               .onClick(() => {
                 // [Start PushDestinationByName]
+                const DOMAIN = 0x0000;
                 this.pageStack.pushDestinationByName('pageTwo', 'PageTwo Param').catch((error: BusinessError) => {
                   hilog.info(DOMAIN, 'testTag', '[pushDestinationByName]failed', 'error code = ', error.code,
                     'error.message = ', error.message);
@@ -135,6 +137,7 @@ export struct PageOne {
                 // [Start replacePath]
                 // 将栈顶页面替换为pageTwo
                 this.pageStack.replacePath({ name: 'pageTwo', param: 'PageTwo Param' });
+                this.pageStack.replacePathByName('pageTwo', 'PageTwo Param');
                 // [End replacePath]
                 this.message = 'replacePath' + JSON.stringify(this.pageStack);
                 hilog.info(DOMAIN, 'testTag', 'replacePath', JSON.stringify(this.pageStack));
@@ -145,6 +148,7 @@ export struct PageOne {
               .height(40)
               .onClick(() => {
                 // [Start replaceDestination]
+                const DOMAIN = 0x0000;
                 // 带错误码的替换，跳转结束会触发异步回调，返回错误码信息
                 this.pageStack.replaceDestination({ name: 'pageTwo', param: 'PageTwo Param' })
                   .catch((error: BusinessError) => {

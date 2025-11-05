@@ -48,7 +48,7 @@ export struct PageTwo {
           .margin(20)
           .onClick(() => {
             // [Start popToName]
-            // 返回到上一个temp4-pageOne页面
+            // 返回到上一个pageOne页面
             this.pathStack.popToName('temp4-pageOne');
             // [End popToName]
           })
