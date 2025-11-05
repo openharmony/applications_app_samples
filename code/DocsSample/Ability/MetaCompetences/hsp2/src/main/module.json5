@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start startup005]
+// [Start startup_hsp2module]
 {
   "module": {
     "name": "hsp2",
     "type": "shared",
-    // [StartExclude startup005]
+    // [StartExclude startup_hsp2module]
     "description": "$string:shared_desc",
-    // [EndExclude startup005]
+    // [EndExclude startup_hsp2module]
     "appStartup": "$profile:startup_config", // 启动框架的配置文件
-    // [StartExclude startup005]
+    // [StartExclude startup_hsp2module]
     "deviceTypes": [
       "default",
       "tablet",
@@ -29,7 +29,7 @@
     ],
     "deliveryWithInstall": true,
     "pages": "$profile:main_pages",
-    // [EndExclude startup005]
+    // [EndExclude startup_hsp2module]
   }
 }
-// [End startup005]
+// [End startup_hsp2module]

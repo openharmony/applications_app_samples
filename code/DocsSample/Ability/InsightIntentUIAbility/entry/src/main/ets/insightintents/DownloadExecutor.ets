@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start play_music0300]
+// [Start playmusic_download]
 import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 
 export default class DownloadExecutor extends InsightIntentExecutor {
@@ -25,4 +25,4 @@ export default class DownloadExecutor extends InsightIntentExecutor {
     return Promise.resolve(result);
   }
 }
-// [End play_music0300]
+// [End playmusic_download]
