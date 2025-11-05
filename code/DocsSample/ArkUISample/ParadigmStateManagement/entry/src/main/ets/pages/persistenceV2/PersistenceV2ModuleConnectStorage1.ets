@@ -67,8 +67,7 @@ struct Page1 {
         .fontColor(Color.Red)
 
       /**************************** 跳转 **************************/
-      // $r('app.string.persistence_v2_module_connect_storage1_text') 需要更换为开发者所需的字符串资源文件
-      Button($r('app.string.persistence_v2_module_connect_storage1_text'))
+      Button('Jump to newModule')
         .onClick(() => { // 不同module之间使用，建议使用globalConnect
           let want: Want = {
             deviceId: '', // deviceId为空代表本设备

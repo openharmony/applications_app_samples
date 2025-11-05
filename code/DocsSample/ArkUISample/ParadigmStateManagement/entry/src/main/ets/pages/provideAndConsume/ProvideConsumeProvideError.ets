@@ -25,13 +25,12 @@ struct HomePage {
 
   @Builder
   builder2($$: Tmp) {
-    // $r('app.string.provide_consume_provide_error_text') 需要更换为开发者所需的字符串资源文件
-    Text($r('app.string.provide_consume_provide_error_text', $$.name))
+    Text(`${$$.name} test`)
   }
 
   build() {
     Column() {
-      Button($r('app.string.provide_and_consume_text_1')).onClick(() => {
+      Button('Hello').onClick(() => {
         if (this.name == 'ddd') {
           this.name = 'abc';
         } else {

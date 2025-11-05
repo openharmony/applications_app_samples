@@ -21,10 +21,8 @@ struct Child {
 
   build() {
     Column() {
-      // $r('app.string.provide_consume_proper_demo_text_01') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.provide_consume_proper_demo_text_01', this.num))
-      // $r('app.string.provide_consume_proper_demo_text_02') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.provide_consume_proper_demo_text_02', this.num1))
+      Text(`Value of num: ${this.num}`)
+      Text(`num1: ${this.num1}`)
     }
   }
 }
@@ -36,8 +34,7 @@ struct Parent {
 
   build() {
     Column() {
-      // $r('app.string.provide_consume_proper_demo_text_01') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.provide_consume_proper_demo_text_01', this.num))
+      Text(`Value of num: ${this.num}`)
       Child()
     }
   }

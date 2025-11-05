@@ -53,7 +53,7 @@ class Info {
   }
 
   // region与job均被@Trace装饰，能够监听变化
-  @Monitor('region','job')
+  @Monitor('region', 'job')
   onChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
       hilog.info(DOMAIN, 'testTag', '%{public}s',

@@ -40,12 +40,10 @@ struct ChildPage {
 
   build() {
     Column() {
-      // $r('app.string.v2_local_builder_update_text_01_name') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.v2_local_builder_update_text_01_name', this.childInfo.name))
+      Text(`Custom component name: ${this.childInfo.name}`)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
-      // $r('app.string.v2_local_builder_update_text_01_age') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.v2_local_builder_update_text_01_age', this.childInfo.age))
+      Text(`Custom component age: ${this.childInfo.age}`)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
     }
@@ -61,12 +59,10 @@ struct ParentPage {
   @LocalBuilder
   privateBuilder() {
     Column() {
-      // $r('app.string.v2_local_builder_update_text_02_name') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.v2_local_builder_update_text_02_name', this.info1.name))
+      Text(`Local @LocalBuilder name: ${this.info1.name}`)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
-      // $r('app.string.v2_local_builder_update_text_02_age') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.v2_local_builder_update_text_02_age', this.info1.age))
+      Text(`Local @LocalBuilder age: ${this.info1.age}`)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
     }
@@ -75,12 +71,10 @@ struct ParentPage {
   @LocalBuilder
   privateBuilderSecond() {
     Column() {
-      // $r('app.string.v2_local_builder_update_text_02_name') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.v2_local_builder_update_text_02_name', this.info2.name))
+      Text(`Local @LocalBuilder name: ${this.info2.name}`)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
-      // $r('app.string.v2_local_builder_update_text_02_age') 需要更换为开发者所需的字符串资源文件
-      Text($r('app.string.v2_local_builder_update_text_02_age', this.info2.age))
+      Text(`Local @LocalBuilder age: ${this.info2.age}`)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
     }

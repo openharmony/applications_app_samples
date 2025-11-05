@@ -33,7 +33,6 @@ export struct MonitorDecoratorLastWrite {
 // [Start monitor_decorator_last_write]
 @ObservedV2
 class Frequency {
-  // 监听的属性值，值的类型为数量
   @Trace public count: number = 0;
 
   @Monitor('count')
