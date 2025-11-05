@@ -27,7 +27,7 @@ const TEXT_MARGIN_TOP_L = 20; // 长文本的上边距
 
 const EXAMPLE_URL: string = 'http://www.baidu.com/';
 const EXAMPLE_INITIAL_URL: string = 'http://www.hao123.com';
-const EXAMPLE_NETWORK_URL: string = 'http://www.test.com';
+const EXAMPLE_Final_URL: string = 'http://www.test.com/';
 
 // [Start HTTP_interceptor_case_creat_http_interceptor]
 enum InterceptorType {
@@ -81,7 +81,7 @@ class NetworkHttpInterceptor implements http.HttpInterceptor {
     hilog.info(0xFF00, 'httpNormalRequest', `NETWORK_CONNECT, Original req: ${JSON.stringify(reqContext)}`);
     hilog.info(0xFF00, 'httpNormalRequest', `NETWORK_CONNECT, Original rsp: ${JSON.stringify(rspContext)}`);
 
-    reqContext.url = EXAMPLE_NETWORK_URL;
+    reqContext.url = EXAMPLE_URL;
     reqContext.header = { 'content-type': 'text/xml' };
     reqContext.body = { 'context': 'NETWORK_CONNECT' };
 
@@ -110,7 +110,7 @@ class FinalHttpInterceptor implements http.HttpInterceptor {
     hilog.info(0xFF00, 'httpNormalRequest', `FINAL_RESPONSE, Original req: ${JSON.stringify(reqContext)}`);
     hilog.info(0xFF00, 'httpNormalRequest', `FINAL_RESPONSE, Original rsp: ${JSON.stringify(rspContext)}`);
 
-    reqContext.url = EXAMPLE_INITIAL_URL;
+    reqContext.url = EXAMPLE_Final_URL;
     reqContext.header = { 'content-type': 'text/html' };
     reqContext.body = { 'context': 'FINAL_RESPONSE' };
 
