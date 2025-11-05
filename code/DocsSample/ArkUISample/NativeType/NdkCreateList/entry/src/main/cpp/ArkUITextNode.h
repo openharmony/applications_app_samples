@@ -29,7 +29,7 @@
 // [EndExclude arkUITestNode_start]
 namespace NativeModule {
 
-// 布局完成的回调方法
+// 布局完成的回调方法。
 void OnLayoutCompleted(void *userData)
 {
     ArkUI_NodeHandle node = (ArkUI_NodeHandle)userData;
@@ -38,7 +38,7 @@ void OnLayoutCompleted(void *userData)
     ArkUI_AttributeItem item = {nullptr, 0, "layout callback"};
     nativeModule->setAttribute(node, NODE_TEXT_CONTENT, &item);
 }
-// 绘制送显完成的回调方法
+// 绘制送显完成的回调方法。
 void OnDrawCompleted(void *userData)
 {
     ArkUI_NodeHandle node = (ArkUI_NodeHandle)userData;
@@ -90,25 +90,25 @@ public:
     void SetLayoutCallBack(int32_t nodeId)
     {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "set layout callback");
-        // 注册布局完成的回调方法
+        // 注册布局完成的回调方法。
         OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(handle_, this, OnLayoutCompleted);
     }
     void ResetLayoutCallBack()
     {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "reset layout callback");
-        // 取消注册布局完成的回调方法
+        // 取消注册布局完成的回调方法。
         OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle(handle_);
     }
     void SetDrawCallBack(int32_t nodeId)
     {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "set draw callback");
-        // 注册绘制送显完成的回调方法
+        // 注册绘制送显完成的回调方法。
         OH_ArkUI_RegisterDrawCallbackOnNodeHandle(handle_, this, OnDrawCompleted);
     }
     void ResetDrawCallBack()
     {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "reset draw callback");
-        // 取消注册绘制送显完成的回调方法
+        // 取消注册绘制送显完成的回调方法。
         OH_ArkUI_UnregisterDrawCallbackOnNodeHandle(handle_);
     }
     void SetInspectorId(std::string inspectorId)
