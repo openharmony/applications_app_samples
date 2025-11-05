@@ -194,8 +194,8 @@
           } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       },
-      // [StartExclude  skills_custom]
       // [EndExclude  domainVerify_true]
+      // [StartExclude  skills_custom]
       {
         // [StartExclude  domainVerify_true]
         "name": "WantAbility1",
