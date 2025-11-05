@@ -97,8 +97,7 @@ struct Index {
         ))
 
       // 'app.string.shareTransition_text11'资源文件中的value值为'你好，我是'
-      Text(resource.resourceToString($r('app.string.shareTransition_text11')) +
-      this.allPostData[index].name)
+      Text(resource.resourceToString($r('app.string.shareTransition_text11')) + this.allPostData[index].name)
       // 对文本添加出现转场效果
         .transition(TransitionEffect.asymmetric(
           TransitionEffect.OPACITY
