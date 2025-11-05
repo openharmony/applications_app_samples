@@ -1257,7 +1257,7 @@ export default function IndexTest() {
       expect(symbolGlyph14 === null).assertFalse();
       let symbolGlyph15 = await driver.findComponent(ON.id('symbolGlyph15'));
       expect(symbolGlyph15 === null).assertFalse();
-      str = await getResourceString($r('app.string.last_song'));
+      str = await getResourceString($r('app.string.off'));
       let text12 = await driver.findComponent(ON.text(str));
       expect(text12 === null).assertFalse();
 

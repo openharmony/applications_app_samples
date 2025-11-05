@@ -216,8 +216,8 @@ struct SymbolMusicDemo {
 
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Column() {
-        // 'app.string.last_song'资源文件中的value值为"歌曲八"
-        Text($r('app.string.last_song'))
+        // 'app.string.off'资源文件中的value值为"关闭"
+        Text($r('app.string.off'))
       }
       .alignItems(HorizontalAlign.Center)
       .width('98%')
