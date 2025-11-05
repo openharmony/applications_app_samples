@@ -53,14 +53,16 @@ const routes: Route[] = [
     name: `${GRID_ROUTE_PREFIX}/ScrollPosition`,
     // app.string.ScrollPosition_title资源文件中的value值为‘控制滚动位置的网格布局’
     title: resource.resourceToString($r('app.string.ScrollPosition_title')),
-    // app.string.ScrollPosition_description资源文件中的value值为‘示例通过添加Scroller对象的scrollPage方法，实现滚动网格布局翻页滚动的功能。’
+    // app.string.ScrollPosition_description资源文件中的value值为‘示例通过添加Scroller对象的scrollPage方法，
+    // 实现滚动网格布局翻页滚动的功能。’
     description: $r('app.string.ScrollPosition_description')
   },
   {
     name: `${GRID_ROUTE_PREFIX}/GridSideToSide`,
     // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
     title: resource.resourceToString($r('app.string.GridSideToSide_title')),
-    // app.string.GridSideToSide_description资源文件中的value值为‘与新闻列表的返回顶部场景类似，控制滚动位置功能在网格布局中也很常用，例如下图所示日历的翻页功能。’
+    // app.string.GridSideToSide_description资源文件中的value值为‘与新闻列表的返回顶部场景类似，控制滚动位置功能在网格布局中也很常用，
+    // 例如下图所示日历的翻页功能。’
     description: $r('app.string.GridSideToSide_description')
   },
   {
@@ -74,7 +76,8 @@ const routes: Route[] = [
     name: `${GRID_ROUTE_PREFIX}/LongGrid`,
     // app.string.LongGrid_title资源文件中的value值为‘性能优化’
     title: resource.resourceToString($r('app.string.LongGrid_title')),
-    // app.string.LongGrid_description资源文件中的value值为‘与长列表的处理类似，循环渲染适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用数据懒加载方式实现按需迭代加载数据，从而提升列表性能。’
+    // app.string.LongGrid_description资源文件中的value值为‘与长列表的处理类似，循环渲染适用于数据量较小的布局场景，
+    // 当构建具有大量网格项的可滚动网格布局时，推荐使用数据懒加载方式实现按需迭代加载数据，从而提升列表性能。’
     description: $r('app.string.LongGrid_description')
   },
   {
