@@ -53,12 +53,12 @@ struct Child {
     }
   }
 
-  @Require regularValue: string = 'Hello';
-  @Require @State stateValue: string = 'Hello';
-  @Require @Provide provideValue: string = 'Hello';
+  @Require regularValue: string;
+  @Require @State stateValue: string;
+  @Require @Provide provideValue: string;
   @Require @BuilderParam buildTest: () => void;
   @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
-  @Require @Prop initMessage: string = 'Hello';
+  @Require @Prop initMessage: string;
   @Require @Prop message: string;
 
   build() {
