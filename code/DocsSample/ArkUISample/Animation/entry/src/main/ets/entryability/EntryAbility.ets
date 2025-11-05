@@ -20,8 +20,11 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { display, window } from '@kit.ArkUI';
 import { WindowUtils } from '../utils/WindowUtils';
+// [Start window_stage]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
+// [StartExclude window_stage]
 const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
@@ -35,9 +38,11 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
 
-  // [Start window_stage]
+  // [EndExclude window_stage]
   onWindowStageCreate(windowStage: window.WindowStage): void {
+    // [StartExclude window_stage]
     // Main window is created, set main page for this ability
+    // [EndExclude window_stage]
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     // [StartExclude bind_sheet_entry_ability]
     let mainWindow: window.Window;
@@ -47,11 +52,11 @@ export default class EntryAbility extends UIAbility {
       AppStorage.setOrCreate('orientation', displayClass.orientation);
       // 监听窗口的windowsSizeChange事件，旋转屏时会触发该事件
       mainWindow.on('windowSizeChange', (data) => {
-        console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
+        hilog.info(DOMAIN, TAG, 'Succeeded in enabling the listener for window size changes. Data: ' + data);
         let displayClass: display.Display | null = null;
         try {
           displayClass = display.getDefaultDisplaySync();
-          console.info('display orientation is ' + JSON.stringify(displayClass.orientation));
+          hilog.info(DOMAIN, TAG, 'display orientation is ' + displayClass.orientation);
           // 获取屏幕的显示方向
           AppStorage.set('orientation', displayClass.orientation);
         } catch {
@@ -59,7 +64,7 @@ export default class EntryAbility extends UIAbility {
         }
       })
     } catch {
-      hilog.info(DOMAIN, 'testTag', '%{public}s', 'error');
+      hilog.error(DOMAIN, 'testTag', '%{public}s', 'error');
       return;
     }
     // [EndExclude bind_sheet_entry_ability]
@@ -116,6 +121,7 @@ export default class EntryAbility extends UIAbility {
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
   }
+
   // [StartExclude window_stage]
   updateBreakpoint(width: number) {
     let windowWidthVp = width / (display.getDefaultDisplaySync().densityDPI / 160);
