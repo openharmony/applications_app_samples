@@ -25,9 +25,9 @@ import { NestDialog } from './NestDialog';
 import { CreateCustomDialogNew } from './CreateCustomDialogNew';
 import { DialogInteractionUseConstructor } from './DialogInteractionUseConstructor';
 import { DialogInteractionUseButton } from './DialogInteractionUseButton';
-import { DialogAnimation1 } from './DialogAnimation1';
-import { DialogStyle1 } from './DialogStyle1';
-import { NestDialog1 } from './NestDialog1';
+import { DialogAnimationNew } from './DialogAnimationNew';
+import { DialogStyleNew } from './DialogStyleNew';
+import { NestDialogNew } from './NestDialogNew';
 import { DialogWithPhysicalBack } from './DialogWithPhysicalBack';
 import { DialogAvoidSoftKeyboard } from './DialogAvoidSoftKeyboard';
 import { GetDialogStatus } from './GetDialogStatus';
@@ -85,19 +85,19 @@ const routes: Route[] = [
     description: $r('app.string.DialogInteractionUseButton_desc'),
   },
   {
-    name: `${Custom_ROUTE_PREFIX}/DialogAnimation1`,
-    title: resource.resourceToString($r('app.string.DialogAnimation1_title')),
-    description: $r('app.string.DialogAnimation1_desc'),
+    name: `${Custom_ROUTE_PREFIX}/DialogAnimationNew`,
+    title: resource.resourceToString($r('app.string.DialogAnimationNew_title')),
+    description: $r('app.string.DialogAnimationNew_desc'),
   },
   {
-    name: `${Custom_ROUTE_PREFIX}/DialogStyle1`,
-    title: resource.resourceToString($r('app.string.DialogStyle1_title')),
-    description: $r('app.string.DialogStyle1_desc'),
+    name: `${Custom_ROUTE_PREFIX}/DialogStyleNew`,
+    title: resource.resourceToString($r('app.string.DialogStyleNew_title')),
+    description: $r('app.string.DialogStyleNew_desc'),
   },
   {
-    name: `${Custom_ROUTE_PREFIX}/NestDialog1`,
-    title: resource.resourceToString($r('app.string.NestDialog1_title')),
-    description: $r('app.string.NestDialog1_desc'),
+    name: `${Custom_ROUTE_PREFIX}/NestDialogNew`,
+    title: resource.resourceToString($r('app.string.NestDialogNew_title')),
+    description: $r('app.string.NestDialogNew_desc'),
   },
   {
     name: `${Custom_ROUTE_PREFIX}/DialogWithPhysicalBack`,
@@ -159,11 +159,11 @@ export function CustomDestination(name: string) {
   } else if (name === routes[8].name) {
     DialogInteractionUseButton();
   } else if (name === routes[9].name) {
-    DialogAnimation1();
+    DialogAnimationNew();
   } else if (name === routes[10].name) {
-    DialogStyle1();
+    DialogStyleNew();
   } else if (name === routes[11].name) {
-    NestDialog1();
+    NestDialogNew();
   } else if (name === routes[12].name) {
     DialogWithPhysicalBack();
   } else if (name === routes[13].name) {

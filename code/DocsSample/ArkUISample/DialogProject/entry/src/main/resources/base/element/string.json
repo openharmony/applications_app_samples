@@ -578,27 +578,27 @@
       "value": "可通过弹出框中的按钮实现路由跳转，同时获取跳转页面向当前页传入的参数。"
     },
     {
-      "name": "DialogAnimation1_title",
+      "name": "DialogAnimationNew_title",
       "value": "弹出框的动画新页面"
     },
     {
-      "name": "DialogAnimation1_desc",
+      "name": "DialogAnimationNew_desc",
       "value": "弹出框通过定义openAnimation控制弹出框出现动画的持续时间，速度等参数。"
     },
     {
-      "name": "DialogStyle1_title",
+      "name": "DialogStyleNew_title",
       "value": "弹出框的样式新页面"
     },
     {
-      "name": "DialogStyle1_desc",
+      "name": "DialogStyleNew_desc",
       "value": "通过定义弹出框的宽度、高度、背景色、阴影等参数，控制其样式。"
     },
     {
-      "name": "NestDialog1_title",
+      "name": "NestDialogNew_title",
       "value": "嵌套自定义弹出框新页面"
     },
     {
-      "name": "NestDialog1_desc",
+      "name": "NestDialogNew_desc",
       "value": "通过第一个弹出框打开第二个弹出框时，最好将第二个弹出框定义在第一个弹出框的父组件处，通过父组件传给第一个弹出框的回调来打开第二个弹出框。"
     },
     {
@@ -824,6 +824,14 @@
     {
       "name": "closeDialog_by_dialog_controller",
       "value": "点击关闭弹窗：通过外部传递的DialogController"
+    },
+    {
+      "name": "search_by_dialog_controller",
+      "value": "点我查询弹窗状态:通过CustomDialogController "
+    },
+    {
+      "name": "search_by_dialog",
+      "value": "点我查询弹窗状态:通过自定义组件自带controller"
     },
     {
       "name": "close_widows",
