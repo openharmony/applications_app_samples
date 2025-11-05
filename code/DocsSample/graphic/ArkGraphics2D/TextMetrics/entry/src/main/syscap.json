@@ -1,0 +1,23 @@
+{
+  "devices": {
+    "general": [
+      "default",
+      "tablet"
+    ]
+  },
+  "production": {
+    "removedSysCaps": [
+      "SystemCapability.Multimedia.Media.AVTranscoder",
+      "SystemCapability.Communication.Bluetooth.Core",
+      "SystemCapability.DistributedHardware.DeviceManager",
+      "SystemCapability.Multimedia.Drm.Core",
+      "SystemCapability.Advertising.Ads",
+      "SystemCapability.Customization.EnterpriseDeviceManager",
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.UserIAM.UserAuth.PinAuth",
+      "SystemCapability.HiviewDFX.DiDumper",
+      "SystemCapability.Multimedia.AVSession.ExtendedDisplayCast",
+      "SystemCapability.Security.DeviceAuth"
+    ]
+  }
+}
