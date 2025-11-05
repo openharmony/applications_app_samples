@@ -25,7 +25,7 @@ class Info {
 
 @Entry
 @Component
-struct Page8 {
+struct Page9 {
   // 如果和@State一起使用会抛出运行时异常
   message: Info = UIUtils.makeObserved(new Info(20));
 
