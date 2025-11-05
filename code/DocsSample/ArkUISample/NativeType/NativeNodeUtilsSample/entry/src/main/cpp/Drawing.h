@@ -61,7 +61,8 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
     nodeAPI->registerNodeCustomEvent(customNode, ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW, 1, a);
     // 事件回调函数的编写
     nodeAPI->registerNodeCustomEventReceiver([](ArkUI_NodeCustomEvent *event) {
-    // 事件回调函数逻辑
+        // 事件回调函数逻辑
+        // [StartExclude userdata_start]
         // 获取自定义事件的相关信息。
         // [Start nodeCustomEvent_start]
         auto type = OH_ArkUI_NodeCustomEvent_GetEventType(event);
@@ -77,6 +78,9 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
             auto *canvas1 = OH_ArkUI_DrawContext_GetCanvas(drawContext);
             // 转换为OH_Drawing_Canvas指针进行绘制。
             OH_Drawing_Canvas *canvas = reinterpret_cast<OH_Drawing_Canvas *>(canvas1);
+            // [StartExclude drawing_start]
+            // 绘制逻辑。
+            // [EndExclude drawing_start]
             int32_t width = SIZE_1000;
             int32_t height = SIZE_1000;
             auto path = OH_Drawing_PathCreate();
@@ -94,6 +98,7 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
             // [End drawCanvas_Start]
             // [EndExclude nodeCustomEvent_start]
         }
+        // [EndExclude userdata_start]
     });
     // [End userdata_start]
     // 自定义节点上树

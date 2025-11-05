@@ -29,11 +29,14 @@
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
 #include <js_native_api.h>
+
+#include "NativeEntry.h"
 #include "ArkUICustomContainerNode.h"
 #include "ArkUICustomNode.h"
 
 // 全局环境变量声明
 static napi_env g_env = nullptr;
+// [StartExclude arkUICustomNodeCpp_start]
 // [Start Interface_entrance_mounting_file]
 #include "NativeEntry.h"
 #include "LazyTextListExample.h"
@@ -42,12 +45,14 @@ static napi_env g_env = nullptr;
 #include <js_native_api.h>
 #include <uv.h>
 // [Start normalTextListExample_start]
+// [EndExclude arkUICustomNodeCpp_start]
 namespace NativeModule {
 // [StartExclude Interface_entrance_mounting_file]
 // [StartExclude normalTextListExample_start]
 // [StartExclude arkUICustomNodeCpp_start]
 #define FRAMEWORK_NODE_TREE_NUMBER 4 // 在框架线程创建组件树的数量。
 #define USER_NODE_TREE_NUMBER 3      // 在开发者线程创建组件树的数量。
+
 struct AsyncData {
     napi_env env;
     std::shared_ptr<ArkUINode> parent = nullptr;
@@ -585,7 +590,7 @@ void NativeEntry::UnregisterNodeEventReceiver()
 {
     NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->unregisterNodeEventReceiver();
 }
-// [EndExclude ArkUICustomNodeCpp_start]
+// [EndExclude arkUICustomNodeCpp_start]
 // [EndExclude Interface_entrance_mounting_file]
 napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 {
