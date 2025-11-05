@@ -19,7 +19,15 @@ import common from '@ohos.app.ability.common';
 @Entry
 @Component
 export struct ScrollableGrid {
-  @State services: Array<string> = [];
+  // [StartExclude build_scrollable_horizontally_grid_layouts]
+  context = this.getUIContext().getHostContext();
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
+  @State services: Array<string> = [
+    // app.string.Live_Streaming资源文件中的value值为‘直播’
+    this.context!.resourceManager.getStringSync($r('app.string.Live_Streaming').id),
+    // app.string.Imported资源文件中的value值为‘进口’
+    this.context!.resourceManager.getStringSync($r('app.string.Imported').id)
+    ];
   // [StartExclude build_scrollable_horizontally_grid_layouts]
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
