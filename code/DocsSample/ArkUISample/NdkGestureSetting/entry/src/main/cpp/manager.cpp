@@ -57,6 +57,7 @@ static ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
 static ArkUI_NativeGestureAPI_1 *gestureApi = nullptr;
 static const int NUM_2 = 2;
 static const int COLUMN_SIZE = 600;
+static const int MOVE_SIZE = 200;
 
 
 void SetTextAttribute(ArkUI_NodeHandle &node, const char *str)
@@ -287,6 +288,7 @@ void Manager::SetLongPressGesture(ArkUI_NodeHandle &column)
         return;
     }
     auto longPressGesture = gestureApi->createLongPressGesture(1, true, 500);
+    OH_ArkUI_LongPressGesture_SetAllowableMovement(longPressGesture, MOVE_SIZE);
     // 给手势绑定回调
     gestureApi->setGestureEventTarget(
         longPressGesture, GESTURE_EVENT_ACTION_ACCEPT, column, [](ArkUI_GestureEvent *event, void *extraParams) {
@@ -298,6 +300,10 @@ void Manager::SetLongPressGesture(ArkUI_NodeHandle &column)
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest",
                          "column longPressGesture is called repeat %{public}d", repeat);
         });
+    double allowableMovement;
+    OH_ArkUI_LongPressGesture_GetAllowableMovement(longPressGesture, &allowableMovement);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "gestureTest",
+                 "column longPressGesture allow movement %{public}d", allowableMovement);
     // 将手势绑定到组件上
     gestureApi->addGestureToNode(column, longPressGesture, ArkUI_GesturePriority::NORMAL,
                                  ArkUI_GestureMask::NORMAL_GESTURE_MASK);

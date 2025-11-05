@@ -503,6 +503,7 @@ void CreateNodeVisibleAreaApproximateChangeRatio(ArkUI_NodeHandle &column)
         OH_ArkUI_VisibleAreaEventOptions_SetRatios(options, ratiosArray, TARGET_ID_2);
         auto value = 1000;
         OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval(options, value);
+        OH_ArkUI_VisibleAreaEventOptions_SetMeasureFromViewport(options, true);
         ArkUI_AttributeItem areaItem = {.object = options};
         Manager::nodeAPI_->setAttribute(row, NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO, &areaItem);
         auto item = Manager::nodeAPI_->getAttribute(row, NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO);
