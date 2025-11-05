@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start freeze_template3_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
-// [Start freeze_template3_start]
+
 @Entry
 @ComponentV2
 struct MyNavigationTestStack {

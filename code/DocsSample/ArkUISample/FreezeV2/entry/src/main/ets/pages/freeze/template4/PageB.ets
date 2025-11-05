@@ -12,9 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start freeze_template4_pageB_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
+// [StartExclude freeze_template4_pageB_start]
 @Entry
 @ComponentV2
 struct RepeatVirtualScrollFreeze1 {
@@ -60,7 +62,7 @@ struct RepeatVirtualScrollFreeze1 {
     .height('100%')
   }
 }
-// [Start freeze_template4_pageB_start]
+// [EndExclude freeze_template4_pageB_start]
 // 关闭组件冻结
 @ComponentV2({ freezeWhenInactive: false })
 struct ChildComponent1 {

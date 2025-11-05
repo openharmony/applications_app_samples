@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start freeze_template6_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
-// [Start freeze_template6_start]
+
 @ComponentV2
 struct ChildOfParamComponent {
   @Require @Param childVal: number;
