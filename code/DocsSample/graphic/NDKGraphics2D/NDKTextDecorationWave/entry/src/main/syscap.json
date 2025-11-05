@@ -15,7 +15,7 @@
       "SystemCapability.Customization.EnterpriseDeviceManager",
       "SystemCapability.Security.DeviceSecurityLevel",
       "SystemCapability.UserIAM.UserAuth.PinAuth",
-      "SystemCapability.HiviewDFX.DiDumper",
+      "SystemCapability.HiviewDFX.HiDumper",
       "SystemCapability.Multimedia.AVSession.ExtendedDisplayCast",
       "SystemCapability.Security.DeviceAuth"
     ]
