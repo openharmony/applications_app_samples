@@ -45,22 +45,6 @@
       "value": "@LocalBuilder在@ComponentV2修饰的自定义组件中使用"
     },
     {
-      "name": "v2_local_builder_update_text_01_name",
-      "value": "自定义组件  name :%s"
-    },
-    {
-      "name": "v2_local_builder_update_text_01_age",
-      "value": "自定义组件  age :%d"
-    },
-    {
-      "name": "v2_local_builder_update_text_02_name",
-      "value": "局部LocalBuilder@Builder name :%s"
-    },
-    {
-      "name": "v2_local_builder_update_text_02_age",
-      "value": "局部LocalBuilder@Builder name :%d"
-    },
-    {
       "name": "extend",
       "value": "@Extend装饰器：定义扩展组件样式"
     },
@@ -257,18 +241,6 @@
       "value": "@Consume装饰的变量初始化正例"
     },
     {
-      "name": "provide_consume_proper_demo_text_01",
-      "value": "num的值: %d"
-    },
-    {
-      "name": "provide_consume_proper_demo_text_02",
-      "value": "num1的值：%d"
-    },
-    {
-      "name": "provide_consume_proper_demo_text_03",
-      "value": "numWithDefaultValue的值：%d"
-    },
-    {
       "name": "provide_consume_proper_demo_two",
       "value": "@Consume装饰的变量初始化正例2"
     },
@@ -307,10 +279,6 @@
     {
       "name": "provide_consume_provide_error",
       "value": "@BuilderParam尾随闭包@Provide未定义错误"
-    },
-    {
-      "name": "provide_consume_provide_error_text",
-      "value": "%d测试"
     },
     {
       "name": "provide_consume_this_object",

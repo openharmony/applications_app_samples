@@ -25,8 +25,7 @@ struct PlayDetailPage {
     Stack() {
       Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
       Row() {
-        // $r('app.string.state_problem_arrow_change_color_text') 需要更换为开发者所需的字符串资源文件
-        Button($r('app.string.state_problem_arrow_change_color_text'))
+        Button('Change Color')
           .onClick(() => {
             let self = this.vm;
             this.vm.changeCoverUrl(self);
