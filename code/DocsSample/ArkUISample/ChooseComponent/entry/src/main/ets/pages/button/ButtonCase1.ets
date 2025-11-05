@@ -80,7 +80,8 @@ export struct pageOneTmp {
     }.title('pageOne')
     .onBackPressed(() => {
       const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      // $r('app.string.return_value')资源文件中的value为'返回'
+      hilog.info(DOMAIN, 'testTag', 'pop' + $r('app.string.return_value') + JSON.stringify(popDestinationInfo));
       return true
     })
     .onReady((context: NavDestinationContext) => {
@@ -102,7 +103,8 @@ export struct pageTwoTmp {
     }.title('pageTwo')
     .onBackPressed(() => {
       const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      // $r('app.string.return_value')资源文件中的value为'返回'
+      hilog.info(DOMAIN, 'testTag', 'pop' + $r('app.string.return_value') + JSON.stringify(popDestinationInfo));
       return true
     })
     .onReady((context: NavDestinationContext) => {
@@ -124,7 +126,8 @@ export struct pageThreeTmp {
     }.title('pageThree')
     .onBackPressed(() => {
       const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
-      hilog.info(DOMAIN, 'testTag', 'pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      // $r('app.string.return_value')资源文件中的value为'返回'
+      hilog.info(DOMAIN, 'testTag', 'pop' + $r('app.string.return_value') + JSON.stringify(popDestinationInfo));
       return true
     })
     .onReady((context: NavDestinationContext) => {

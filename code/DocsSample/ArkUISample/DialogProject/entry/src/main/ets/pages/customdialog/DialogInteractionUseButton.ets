@@ -28,11 +28,11 @@ struct CustomDialogExample {
   build() {
     Column({ space: 20 }) {
       if (this.textValue !== '') {
-        //$r('app.string.the_second_page_is')资源文件中的value为'第二个页面的内容为'
+        // $r('app.string.the_second_page_is')资源文件中的value为'第二个页面的内容为'
         Text($r('app.string.the_second_page_is')+`：${this.textValue}`)
           .fontSize(20)
       } else {
-        //$r('app.string.wether_to_get_the_second_page')资源文件中的value为'是否获取第二个页面的内容'
+        // $r('app.string.wether_to_get_the_second_page')资源文件中的value为'是否获取第二个页面的内容'
         Text($r('app.string.wether_to_get_the_second_page'))
           .fontSize(20)
       }
