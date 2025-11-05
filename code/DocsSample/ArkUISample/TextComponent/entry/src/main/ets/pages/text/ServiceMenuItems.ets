@@ -29,9 +29,12 @@ export struct ServiceMenuItems {
     TextMenuController.disableSystemServiceMenuItems(false);
   }
   build() {
+    // [StartExclude Service_MenuItems]
     NavDestination() {
+      // [EndExclude Service_MenuItems]
       Row() {
         Column() {
+          // 'app.string.Service_MenuItems_Text'资源文件中的value值为'这是一段文本，长按弹出文本选择菜单。'
           Text($r('app.string.Service_MenuItems_Text'))
             .height(60)
             .fontStyle(FontStyle.Italic)
@@ -50,8 +53,10 @@ export struct ServiceMenuItems {
         }.width('100%')
       }
       .height('100%')
+      // [StartExclude Service_MenuItems]
     }.backgroundColor('#f1f 2f3')
     .title($r('app.string.Service_MenuItems'))
+    // [EndExclude Service_MenuItems]
   }
 }
 

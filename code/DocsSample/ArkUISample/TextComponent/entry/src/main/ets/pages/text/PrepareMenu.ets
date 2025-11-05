@@ -74,7 +74,9 @@ export struct PrepareMenu {
   };
 
   build() {
+    // [StartExclude Prepare_Menu]
     NavDestination() {
+    // [EndExclude Prepare_Menu]
     Column() {
       Text(this.text)
         .fontSize(20)
@@ -87,8 +89,10 @@ export struct PrepareMenu {
     }
     .width('90%')
     .margin('5%')
+    // [StartExclude Prepare_Menu]
     }.backgroundColor('#f1f 2f3')
     .title($r('app.string.Prepare_Menu'))
+    // [EndExclude Prepare_Menu]
   }
 }
 // [End Prepare_Menu]

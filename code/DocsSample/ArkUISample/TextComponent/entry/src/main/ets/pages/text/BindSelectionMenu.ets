@@ -58,4 +58,3 @@ export struct BindSelectionMenu {
   }
   // [End Right_ClickTextCustomMenu]
 }
-// [End General_Events]

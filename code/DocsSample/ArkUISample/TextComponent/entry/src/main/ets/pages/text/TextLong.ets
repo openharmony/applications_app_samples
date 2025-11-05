@@ -12,23 +12,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { common } from '@kit.AbilityKit';
+
 // [Start Text_Long]
 @Entry
 @Component
 export struct TextLong {
-  @State message: string = 'This is an excessively long text'.repeat(50);
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
+
+  @State message: string = this.manager.getStringByNameSync('Text_Long_String').repeat(50);
 
   build() {
-    Column() {
-      Text(this.message)
-        .height('auto')
-        .maxLines(3)
-    }
-    .height(200)
-    .width('80%')
-    .margin('10%')
-    .borderWidth(1)
-    .justifyContent(FlexAlign.Center)
+    // [StartExclude Text_Long]
+    NavDestination() {
+      // [EndExclude Text_Long]
+      Column() {
+        Text(this.message)
+          .height('auto')
+          .maxLines(3)
+      }
+      .height(200)
+      .width('80%')
+      .margin('10%')
+      .borderWidth(1)
+      .justifyContent(FlexAlign.Center)
+      // [StartExclude Text_Long]
+    }.backgroundColor('#f1f 2f3')
+    .title($r('app.string.Text_Long'))
+    // [EndExclude Text_Long]
   }
+
 }
 // [End Text_Long]

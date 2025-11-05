@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // xxx.ets
-// [End General_Events]
+// [Start General_Events]
 // xxx.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
@@ -24,7 +24,9 @@ export struct GeneralEvents {
   @State textStr2: string = '';
 
   build() {
+    // [StartExclude General_Events]
     NavDestination() {
+      // [EndExclude General_Events]
       Row() {
         Column() {
           Text('This is a text component.')
@@ -44,8 +46,10 @@ export struct GeneralEvents {
         }.width('100%')
       }
       .height('100%')
+      // [StartExclude General_Events]
     }.backgroundColor('#f1f 2f3')
     .title($r('app.string.General_Events'))
+    // [EndExclude General_Events]
   }
 }
 
