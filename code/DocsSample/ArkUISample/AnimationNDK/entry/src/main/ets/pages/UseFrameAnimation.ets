@@ -22,11 +22,12 @@ struct Index {
   // [Start get_content]
   // 初始化NodeContent对象。
   private rootSlot = new NodeContent();
-  // [StartExclude get_content]
   @State @Watch('changeNativeFlag') showNative: boolean = false;
+  // [StartExclude get_content]
   @State isModuleLoaded: boolean = false;
-
+  // [EndExclude get_content]
   changeNativeFlag(): void {
+    // [StartExclude get_content]
     if (nativeNode) {
       this.isModuleLoaded = true;
     }
@@ -34,16 +35,17 @@ struct Index {
       hilog.info(0x0000, 'testTag', 'CXX Please wait, native module is loading...');
       return;
     }
-
+    // [EndExclude get_content]
     if (this.showNative) {
-      // [EndExclude get_content]
       // 传递NodeContent对象用于Native创建组件的挂载显示
       nativeNode?.createNativeRoot(this.rootSlot);
-      // [End get_content]
+      // [StartExclude get_content]
     } else {
       // 销毁NativeModule组件
       nativeNode.destroyNativeRoot();
+      // [EndExclude get_content]
     }
+    // [End get_content]
   }
 
   build() {

@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
+// [Start process_data_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// [Start process_data_form_ability]
 const TAG: string = 'ProcessDataFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 
@@ -36,11 +36,9 @@ export default class ProcessDataFormAbility extends FormExtensionAbility {
     return formBinding;
   }
 
-  // [StartExclude process_data_form_ability]
   onAcquireFormState(want: Want): formInfo.FormState {
-    // Called to return a {@link FormState} object.
+    // 函数调用后返回对象{@link FormState}.
     return formInfo.FormState.READY;
   }
-  // [EndExclude process_data_form_ability]
 }
 // [End process_data_form_ability]
