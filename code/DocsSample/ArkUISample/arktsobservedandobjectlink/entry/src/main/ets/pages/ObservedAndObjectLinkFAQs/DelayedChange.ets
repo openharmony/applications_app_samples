@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Delayed_change]
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedandobjectlink';
 
-// [Start Delayed_change]
 @Observed
 class RenderClass {
   public waitToRender: boolean = false;
@@ -34,7 +34,7 @@ struct DelayedChangeIndex {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   renderClassChange() {
-    // $r('app.string.renderClass_Change')需要替换为开发者所需的资源文件
+    // app.string.renderClass_Change资源文件中的value值为'renderClass的值被更改为'
     hilog.info(DOMAIN, TAG, `${this.context.resourceManager.getStringSync($r('app.string.renderClass_Change').id)}：` +
     this.renderClass.waitToRender);
   }
@@ -48,7 +48,7 @@ struct DelayedChangeIndex {
   build() {
     Row() {
       Column() {
-        // $r('app.string.renderClass')需要替换为开发者所需的资源文件
+        // app.string.renderClass资源文件中的value值为'renderClass的值为'
         Text(`${this.context.resourceManager.getStringSync($r('app.string.renderClass').id)}：` +
         this.renderClass.waitToRender)
           .fontSize(20)

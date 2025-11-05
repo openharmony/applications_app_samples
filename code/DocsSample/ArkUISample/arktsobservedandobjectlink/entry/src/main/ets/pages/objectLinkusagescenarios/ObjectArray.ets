@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Object_Array]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedandobjectlink';
-// [Start Object_Array]
 let nextID: number = 1;
 
 @Observed

@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start ObjectLink_Supports_Union_Types]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedandobjectlink';
 
-// [Start ObjectLink_Supports_Union_Types]
 @Observed
 class Source {
   public source: number;

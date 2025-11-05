@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start ObjectLink_Data_source_update_timing]
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
 const TAG = 'arktsobservedandobjectlink';
 
-// [Start ObjectLink_Data_source_update_timing]
 @Observed
 class Person {
   public name: string = '';
@@ -89,7 +89,7 @@ struct Child {
     if (this.clickEvent) {
       this.clickEvent();
     }
-    // $r('app.string.ObjectLinkDataSourceUpdate_Child')需要替换为开发者所需的资源文件
+    // app.string.ObjectLinkDataSourceUpdate_Child资源文件中的value值为'此时Child中的this.per.name值仍然是'
     hilog.info(DOMAIN, TAG, `:::--------${this.context.resourceManager.getStringSync($r('app.string.ObjectLinkDataSourceUpdate_Child').id)}: ${this.per.name}`); // 4
   };
 }
