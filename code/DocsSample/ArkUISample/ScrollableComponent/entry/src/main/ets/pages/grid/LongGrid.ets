@@ -19,7 +19,7 @@ import { GridDataSource } from './GridDataSource';
 @Entry
 @Component
 export struct LongGrid {
-  numbers: GridDataSource = new GridDataSource([]);
+  dataSource: GridDataSource = new GridDataSource([]);
   scroller: Scroller = new Scroller();
 
   aboutToAppear() {
@@ -29,7 +29,7 @@ export struct LongGrid {
         list.push(j.toString());
       }
     }
-    this.numbers = new GridDataSource(list);
+    this.dataSource = new GridDataSource(list);
   }
 
   build() {
@@ -40,7 +40,7 @@ export struct LongGrid {
           Column({ space: 5 }) {
             // [Start long_list]
             Grid() {
-              LazyForEach(this.numbers, () => {
+              LazyForEach(this.dataSource, () => {
                 GridItem() {
                 }
               })

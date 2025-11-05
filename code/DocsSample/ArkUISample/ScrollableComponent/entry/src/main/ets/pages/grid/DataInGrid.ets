@@ -121,10 +121,10 @@ export struct DataInGrid {
           .height(200)
           .columnsGap(6)
           .rowsGap(6)
-          // [EndExclude build_a_office_services_grid_of_foreach]
         }
+        // [EndExclude build_a_office_services_grid_of_foreach]
       }
-      // [End build_a_office_services_grid_of_foreach]
+      // [StartExclude build_a_office_services_grid_of_foreach]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
@@ -132,5 +132,7 @@ export struct DataInGrid {
     .backgroundColor('#f1f2f3')
     // app.string.DataInGrid_title资源文件中的value值为‘网格显示数据’
     .title($r('app.string.DataInGrid_title'))
+    // [EndExclude build_a_office_services_grid_of_foreach]
   }
 }
+// [End build_a_office_services_grid_of_foreach]
