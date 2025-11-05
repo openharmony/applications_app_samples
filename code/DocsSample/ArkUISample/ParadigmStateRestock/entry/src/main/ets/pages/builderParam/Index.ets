@@ -21,7 +21,7 @@ import { BuilderParamInitMethodDemo02 } from './BuilderParamInitMethodDemo02';
 import { BuilderParamSceneInitComponent } from './BuilderParamSceneInitComponent';
 import { BuilderParamSceneTrailingClosure01 } from './BuilderParamSceneTrailingClosure01';
 import { BuilderParamSceneTrailingClosure02 } from './BuilderParamSceneTrailingClosure02';
-import { BuilderParamSceneJumpLogic } from './BuilderParamSceneJumpLogic';
+import { BuilderParamSceneJumpLogic } from '../BuilderParamSceneJumpLogic';
 import { BuilderParamSceneGlobalLocalInit } from './BuilderParamSceneGlobalLocalInit';
 import { BuilderParamSceneInComponentV2 } from './BuilderParamSceneInComponentV2';
 import { BuilderParamProblemNotRefreshOpposite } from './BuilderParamProblemNotRefreshOpposite';
