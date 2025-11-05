@@ -306,8 +306,8 @@ void SampleBitMap::PrintSysFontMetrics()
     // 设置页面最大宽度
     double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
-    // 将文本绘制到画布(width_/5.0,height_/2.0)上
-    OH_Drawing_TypographyPaint(typography, cCanvas_, width_ / 5.0, height_ / 2.0);
+    // 将文本绘制到画布(0,height_/2.0)上
+    OH_Drawing_TypographyPaint(typography, cCanvas_, 0, height_ / 2.0);
     // [End custom_font_c_print_system_font_metrics_step4]
     
     // 释放内存
