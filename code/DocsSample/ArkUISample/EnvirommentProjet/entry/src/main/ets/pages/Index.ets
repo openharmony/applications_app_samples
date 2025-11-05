@@ -20,13 +20,13 @@ interface listItem {
 };
 let demandList: listItem[] = [
   {
-    name: 'TouchEvent',
-    description: ' TouchEvent.',
+    name: 'UiEnvironment',
+    description: ' Access Environment parameters from the UI.',
     router: 'pages/UiEnvironment',
   },
   {
-    name: 'GesturesEvents',
-    description: 'GesturesEvents.',
+    name: 'AppliedLogic',
+    description: 'The application logic uses Environment..',
     router: 'pages/AppliedLogic',
   }
 ];

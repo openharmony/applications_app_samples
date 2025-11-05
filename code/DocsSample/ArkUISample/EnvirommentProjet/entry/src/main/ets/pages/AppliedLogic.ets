@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start applied_logic]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'envirommentprojet';
@@ -23,11 +24,12 @@ Environment.envProp('languageCode', 'en');
 const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
 
 if (lang.get() === 'zh') {
-  // $r('app.string.renderClass_Change')需要替换为开发者所需的资源文件
-  hilog.info(DOMAIN, TAG, '你好');
+  // $r('app.string.AppliedLogic_Hello')需要替换为开发者所需的资源文件
+  hilog.info(DOMAIN, TAG, `${$r('app.string.AppliedLogic_Hello')}`);
 } else {
   hilog.info(DOMAIN, TAG, 'Hello!');
 };
+// [End applied_logic]
 
 @Entry
 @Component

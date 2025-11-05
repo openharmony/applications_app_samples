@@ -16,15 +16,13 @@ import { AbilityConstant, ConfigurationConstant, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // [Start limiting_condition]
+// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-
 // [StartExclude limiting_condition]
 const DOMAIN = 0x0000;
 // [EndExclude limiting_condition]
-
 export default class EntryAbility extends UIAbility {
-
   // [StartExclude limiting_condition]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
@@ -38,7 +36,6 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
   // [EndExclude limiting_condition]
-
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index');
     let window = windowStage.getMainWindow();
@@ -48,8 +45,7 @@ export default class EntryAbility extends UIAbility {
         Environment.envProp('languageCode', 'en');
       });
     });
-  }
-
+  };
   // [StartExclude limiting_condition]
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
@@ -64,5 +60,5 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
   // [EndExclude limiting_condition]
-}
+};
 // [End limiting_condition]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ui_Environment]
 // 将设备languageCode存入AppStorage中
 Environment.envProp('languageCode', 'en');
 
@@ -30,3 +31,4 @@ struct UiEnvironment {
     }
   };
 }
+// [End ui_Environment]
