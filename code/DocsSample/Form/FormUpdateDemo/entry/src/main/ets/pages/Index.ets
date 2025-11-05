@@ -32,7 +32,7 @@ struct Index {
         FormComponent({
           id: 0,
           name: 'widget',
-          bundle: 'com.samples.formupdatedemo', // 使用自己的bundlename
+          bundle: 'com.samples.formupdatedemo', // 请开发者替换为实际的bundlename
           ability: 'EntryFormAbility',
           module: 'entry',
           dimension: 2,

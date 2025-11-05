@@ -101,13 +101,12 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     // 删除卡片实例数据
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
     // 删除之前持久化的卡片实例数据
-    // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
     deleteFormInfo(formId, this.context);
   }
   // [StartExclude JSForm_JsCardFormAbility_onRemoveForm]
   // [EndExclude JSForm_JsCardFormAbility_onUpdateForm]
   onUpdateForm(formId: string): void {
-    // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+    // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则卡片提供方需要重写该方法以支持数据更新
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
     let obj: Record<string, string> = {
       'title': 'titleOnUpdate',
