@@ -24,6 +24,7 @@ export struct BottomTabBar {
         ComponentCard({ title: $r('app.string.BottomTabBar_titleExample') }) {
           // [Start bottom_navigation]
           Tabs({ barPosition: BarPosition.End }) {
+            // TabContent的内容：首页、发现、推荐、我的
             // [StartExclude bottom_navigation]
             TabContent() {
               Text($r('app.string.homepage_content'))

@@ -24,6 +24,7 @@ export struct SideTabBar {
         ComponentCard({ title: $r('app.string.SideTabBar_titleExample') }) {
           // [Start side_navigation]
           Tabs({ barPosition: BarPosition.Start  }) {
+            // TabContent的内容:首页、发现、推荐、我的
             // [StartExclude side_navigation]
             TabContent() {
               Text($r('app.string.homepage_content'))
