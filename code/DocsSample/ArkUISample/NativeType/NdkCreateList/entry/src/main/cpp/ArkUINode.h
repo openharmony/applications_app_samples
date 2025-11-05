@@ -65,7 +65,7 @@ public:
         nativeModule_->removeNodeEventReceiver(handle_, ArkUINode::NodeEventReceiver);
     }
 
-    // 通用属性调用封装
+    // 通用属性调用封装。
     void SetWidth(float width)
     {
         ArkUI_NumberValue value[] = {{.f32 = width}};
@@ -304,7 +304,7 @@ protected:
                 break;
             }
             default: {
-                // 组件特有事件交给子类处理
+                // 组件特有事件交给子类处理。
                 OnNodeEvent(event);
                 break;
             }

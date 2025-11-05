@@ -17,7 +17,7 @@
 
 #include "NativeEntry.h"
 
-#include "LazyTextListExample1.h"
+#include "LazyTextListExample.h"
 
 #include <arkui/native_node_napi.h>
 #include <arkui/native_type.h>
@@ -33,12 +33,12 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    // 获取NodeContent
+    // 获取NodeContent。
     ArkUI_NodeContentHandle contentHandle;
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
 
-    // 创建懒加载文本列表
+    // 创建懒加载文本列表。
     auto node = CreateLazyTextListExample();
 
     // 保持Native侧对象到管理类中，维护生命周期。
