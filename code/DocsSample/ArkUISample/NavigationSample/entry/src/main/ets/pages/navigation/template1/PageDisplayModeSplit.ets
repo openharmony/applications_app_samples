@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
-const DOMAIN = 0x0000;
 // [Start NavigationModeSplit]
+const DOMAIN = 0x0000;
 @Entry
 @Component
 struct PageDisplayModeSplit {

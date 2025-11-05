@@ -68,7 +68,7 @@ struct MenusFour {
         .margin({ top: 12 })
         // [EndExclude NavigationMenuFour]
       }
-      // 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标。
+      // 竖屏最多支持显示3个图标，多余的图标会被放入自动生成的更多图标
       .menus([toolTmp, toolTmp, toolTmp, toolTmp])
       // [End NavigationMenuFour]
       // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
