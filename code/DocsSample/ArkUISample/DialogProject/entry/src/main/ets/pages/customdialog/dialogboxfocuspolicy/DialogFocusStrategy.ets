@@ -19,7 +19,7 @@
 export struct Index {
   // [Start dialog_focus_text]
   @State dialogIdIndex: number = 0;
-  // 'dialog_message'需要替换为开发者所需的资源名称
+  //'dialog_message'资源文件中的value值为'弹窗'
   private message: string =
     this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('dialog_message') as string;
 
