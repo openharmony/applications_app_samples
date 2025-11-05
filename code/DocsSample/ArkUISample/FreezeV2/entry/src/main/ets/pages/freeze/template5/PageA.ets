@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start freeze_template5_PageA_start]
+// src/main/ets/pages/freeze/template5/PageA.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
-// [Start freeze_template5_PageA_start]
-// src/main/ets/pages/freeze/template5/PageA.ets
+
 @ObservedV2
 class Book {
   @Trace public name: string = 'TS';
