@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ComponentContent, PromptAction, promptAction, UIContext } from '@kit.ArkUI';
+import { ComponentContent, PromptAction, UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -68,9 +68,10 @@ export struct OpenPopup {
     let frameNode: FrameNode | null = this.uiContext.getFrameNodeByUniqueId(this.getUniqueId());
     let targetId = frameNode?.getChild(0)?.getUniqueId();
     // [Start open_menu]
-    this.promptAction.openMenu(this.contentNode, { id: targetId }, {
-      enableArrow: true
-    })
+    this.uiContext.getPromptAction()
+      .openMenu(this.contentNode, { id: targetId }, {
+        enableArrow: true
+      })
       .then(() => {
         hilog.info(0x0000, 'globalOpenMenu', 'openMenu success');
       })
@@ -82,9 +83,10 @@ export struct OpenPopup {
 
   updateMenu() {
     // [Start update_menu]
-    this.promptAction.updateMenu(this.contentNode, {
-      enableArrow: false
-    }, true)
+    this.uiContext.getPromptAction()
+      .updateMenu(this.contentNode, {
+        enableArrow: false
+      }, true)
       .then(() => {
         hilog.info(0x0000, 'globalOpenMenu', 'updateMenu success');
       })
@@ -96,7 +98,8 @@ export struct OpenPopup {
 
   closeMenu() {
     // [Start close_menu]
-    this.promptAction.closeMenu(this.contentNode)
+    this.uiContext.getPromptAction()
+      .closeMenu(this.contentNode)
       .then(() => {
         hilog.info(0x0000, 'globalOpenMenu', 'closeMenu success');
       })
