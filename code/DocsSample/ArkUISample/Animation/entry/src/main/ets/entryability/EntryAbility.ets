@@ -17,7 +17,6 @@
 // 程序入口处的onWindowStageCreate增加对窗口宽高等的抓取
 
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { display, window } from '@kit.ArkUI';
 import { WindowUtils } from '../utils/WindowUtils';
 // [Start window_stage]
@@ -144,7 +143,6 @@ export default class EntryAbility extends UIAbility {
   }
 
   // [End window_stage]
-
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
