@@ -375,13 +375,13 @@ export default function IndexTest() {
       let radio_search = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(radio_search === null).assertFalse();
       await radio_search.click();
-      let ringing_search = await driver.findComponent(ON.id('ringing', MatchPattern.CONTAINS));
+      let ringing_search = await driver.findComponent(ON.id('Ringing', MatchPattern.CONTAINS));
       expect(ringing_search === null).assertFalse();
       await ringing_search.click();
-      let vibration_search = await driver.findComponent(ON.id('vibration', MatchPattern.CONTAINS));
+      let vibration_search = await driver.findComponent(ON.id('Vibration', MatchPattern.CONTAINS));
       expect(vibration_search === null).assertFalse();
       await vibration_search.click();
-      let silent_search = await driver.findComponent(ON.id('silent', MatchPattern.CONTAINS));
+      let silent_search = await driver.findComponent(ON.id('Silent', MatchPattern.CONTAINS));
       expect(silent_search === null).assertFalse();
       await silent_search.click();
       await sleep(1000);
