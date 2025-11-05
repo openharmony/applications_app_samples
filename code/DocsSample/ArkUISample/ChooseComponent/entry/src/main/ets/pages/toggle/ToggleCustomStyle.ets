@@ -60,10 +60,14 @@ export struct CustomStyle {
           // [Start custom_switch_point_color]
           Toggle({ type: ToggleType.Switch, isOn: false })
             .switchPointColor(Color.Pink)
+            // [StartExclude custom_switch_point_color]
             .id('toggle4')
+            // [EndExclude custom_switch_point_color]
           Toggle({ type: ToggleType.Switch, isOn: true })
             .switchPointColor(Color.Pink)
+            // [StartExclude custom_switch_point_color]
             .id('toggle5')
+            // [EndExclude custom_switch_point_color]
           // [End custom_switch_point_color]
         }
       }

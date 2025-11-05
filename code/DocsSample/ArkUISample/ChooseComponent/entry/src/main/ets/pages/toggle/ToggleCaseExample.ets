@@ -36,7 +36,7 @@ export struct ToggleSample {
             Blank()
             // [Start create_toggle_case]
             Toggle({ type: ToggleType.Switch })
-              .id('toggle')
+              .id('toggle') // 请开发者替换为实际的id
               .onChange((isOn: boolean) => {
                 if (isOn) {
                   // [StartExclude create_toggle_case]
