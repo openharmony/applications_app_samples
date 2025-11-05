@@ -53,7 +53,7 @@ export struct DialogAvoidSoftKeyboard {
     NavDestination() {
       Row() {
         Row({ space: 20 }) {
-          //$r('app.string.open_windows')资源文件中的value为'打开弹窗'
+          // $r('app.string.open_windows')资源文件中的value为'打开弹窗'
           Text($r('app.string.open_windows'))
             .fontSize(30)
             .onClick(() => {

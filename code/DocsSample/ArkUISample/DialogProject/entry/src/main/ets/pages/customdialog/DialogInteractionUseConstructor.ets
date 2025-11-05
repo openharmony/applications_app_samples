@@ -27,7 +27,7 @@ struct CustomDialogExample {
 
   build() {
     Column() {
-      //$r('app.string.i_am_content')资源文件中的value为'我是内容'
+      // $r('app.string.i_am_content')资源文件中的value为'我是内容'
       Text($r('app.string.i_am_content')).fontSize(20).margin({ top: 10, bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')

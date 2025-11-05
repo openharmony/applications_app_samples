@@ -246,6 +246,11 @@
     {
       "name": "RadioSample2_description",
       "value": "单选框示例2，模拟单选框应用效果。"
+    },
+    {
+      "name": "return_value",
+      "value": "返回值"
     }
+    
   ]
 }
