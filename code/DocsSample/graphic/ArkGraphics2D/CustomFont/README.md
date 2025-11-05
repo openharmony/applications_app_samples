@@ -6,8 +6,8 @@
 
 ## 效果预览
 
-| ![](screenshots/customFont.jpg) |
-|---------------------------------|
+| ![](screenshots/load_custom_font.jpeg) | ![](screenshots/unload_custom_font.jpeg) |
+|----------------------------------------|------------------------------------------|
 
 **使用方法：**
 

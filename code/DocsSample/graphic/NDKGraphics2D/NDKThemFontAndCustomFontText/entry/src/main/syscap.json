@@ -17,7 +17,9 @@
       "SystemCapability.Telephony.StateRegistry",
       "SystemCapability.Telephony.SmsMms",
       "SystemCapability.Telephony.CallManager",
-      "SystemCapability.BundleManager.AppDomainVerify"
+      "SystemCapability.BundleManager.AppDomainVerify",
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.UserIAM.UserAuth.PinAuth"
     ]
   }
 }
