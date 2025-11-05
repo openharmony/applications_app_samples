@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-//[Start List_item_data_structures]
-import { curves } from '@kit.ArkUI';
-//[StartExclude List_item_data_structures]
-import { ComponentCard } from '../../common/Card';
 
-// [EndExclude List_item_data_structures]
+import { ComponentCard } from '../../common/Card';
+//[Start data_structures_head]
+import { curves } from '@kit.ArkUI';
+
 interface ItemInfo {
   index: number,
-  name: string,
+  name: ResourceStr,
   label: ResourceStr,
   type?: string,
 }
@@ -29,46 +28,51 @@ interface ItemInfo {
 interface ItemGroupInfo extends ItemInfo {
   children: ItemInfo[]
 }
-
-//[End List_item_data_structures]
+//[End data_structures_head]
 
 @Entry
 @Component
 export struct CollapseAndExpand {
-  //[Start List_item_data_structure]
+  //[Start list_item_data_structure]
   @State routes: ItemGroupInfo[] = [
     {
       index: 0,
       name: 'basicInfo',
-      label: 'Personal_Basic_Information',
+      // app.string.Personal_Basic_Information 资源文件中的value值为'个人基本资料'
+      label: $r('app.string.Personal_Basic_Information'),
       children: [
         {
           index: 0,
-          name: 'nick_name',
+          // app.string.nick_name 资源文件中的value值为'昵称'
+          name: $r('app.string.nick_name'),
           label: 'xxxx',
           type: 'Text'
         },
         {
           index: 1,
-          name: 'avatar',
+          // app.string.avatar 资源文件中的value值为'头像'
+          name: $r('app.string.avatar'),
           label: $r('sys.media.ohos_user_auth_icon_face'),
           type: 'Image'
         },
         {
           index: 2,
-          name: 'age',
+          // app.string.age 资源文件中的value值为'年龄'
+          name: $r('app.string.age'),
           label: 'xxxx',
           type: 'Text'
         },
         {
           index: 3,
-          name: 'birthday',
+          // app.string.birthday 资源文件中的value值为'性别'
+          name: $r('app.string.birthday'),
           label: 'xxxxxxxxx',
           type: 'Text'
         },
         {
           index: 4,
-          name: 'gender',
+          // app.string.gender 资源文件中的value值为''
+          name: $r('app.string.gender'),
           label: 'xxxxxxxx',
           type: 'Text'
         },
@@ -77,38 +81,44 @@ export struct CollapseAndExpand {
     {
       index: 1,
       name: 'equipInfo',
-      label: 'Device_Information',
+      // app.string.Device_Information 资源文件中的value值为'设备信息'
+      label: $r('app.string.Device_Information'),
       children: []
     },
     {
       index: 2,
       name: 'appInfo',
-      label: 'Application_usage_information',
+      // app.string.Application_usage_information 资源文件中的value值为'应用使用信息'
+      label: $r('app.string.Application_usage_information'),
       children: []
     },
     {
       index: 3,
       name: 'uploadInfo',
-      label: 'data_you_voluntarily_uploaded',
+      // app.string.data_you_voluntarily_uploaded 资源文件中的value值为'您主动上传的数据'
+      label: $r('app.string.data_you_voluntarily_uploaded'),
       children: []
     },
     {
       index: 4,
       name: 'tradeInfo',
-      label: 'Trading_and_asset_information',
+      // app.string.Trading_and_asset_information 资源文件中的value值为'交易与资产信息'
+      label: $r('app.string.Trading_and_asset_information'),
       children: []
     },
     {
       index: 5,
       name: 'otherInfo',
-      label: 'Other_materials',
+      // app.string.Other_materials 资源文件中的value值为'其他资料'
+      label: $r('app.string.Other_materials'),
       children: []
     },
   ];
   @State expandedItems: boolean[] = Array(this.routes.length).fill(false);
   @State selection: string | null = null;
 
-  //[Start List_item_data_ItemGroupInfo]
+  //[StartExclude list_item_data_structure]
+  //[Start list_item_data_group_info]
   @Builder
   ListItemGroupHeader(itemGroup: ItemGroupInfo) {
     Row() {
@@ -132,15 +142,16 @@ export struct CollapseAndExpand {
       }
     })
   }
+  //[End list_item_data_group_info]
+  //[EndExclude list_item_data_structure]
 
-  //[End List_item_data_ItemGroupInfo]
   build() {
-    //[StartExclude List_item_data_structure]
+    //[StartExclude list_item_data_structure]
     NavDestination() {
       Column({ space: 12 }) {
         // $r('app.string.CollapseAndExpand_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.CollapseAndExpand_title') }) {
-          // [EndExclude List_item_data_structure]
+          // [EndExclude list_item_data_structure]
           Column() {
             List({ space: 10 }) {
               ForEach(this.routes, (itemGroup: ItemGroupInfo) => {
@@ -161,9 +172,7 @@ export struct CollapseAndExpand {
                           } else {
                             Text(item.label)
                           }
-                          // $r('app.string.ohos_ic_public_arrow_right')需要替换为开发者所需的资源文件
                           Image($r('sys.media.ohos_ic_public_arrow_right'))
-                          // $r('app.string.ohos_id_color_fourth')需要替换为开发者所需的资源文件
                             .fillColor($r('sys.color.ohos_id_color_fourth'))
                             .height(30)
                             .width(30)
@@ -182,19 +191,17 @@ export struct CollapseAndExpand {
           .width('100%')
           .height('100%')
           .justifyContent(FlexAlign.Start)
-          // $r('app.string.ohos_id_color_sub_background')需要替换为开发者所需的资源文件
           .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+          //[StartExclude list_item_data_structure]
         }
-
-        //[End List_item_data_structure]
       }
-      //[StartExclude List_item_data_structure]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
-    // [EndExclude List_item_data_structure]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CollapseAndExpand_title'))
+    // [EndExclude list_item_data_structure]
   }
 }
+//[End list_item_data_structure]

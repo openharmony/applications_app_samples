@@ -40,7 +40,9 @@ export struct CustomListStyle {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CustomListStyle_titleContentSpacing') }) {
+          // [Start set_space]
           List({ space: 10 }) {
+            // [StartExclude set_space]
             ListItem() {
               Text('ListItem One')
             }
@@ -48,14 +50,21 @@ export struct CustomListStyle {
             ListItem() {
               Text('ListItem Two')
             }
+            // [EndExclude set_space]
           }
+          // [End set_space]
           .backgroundColor('#FFF1F3F5')
           .alignListItem(ListItemAlign.Center)
         }
 
         ComponentCard({ title: $r('app.string.CustomListStyle_titleDividerLines') }) {
           // [EndExclude set_the_divider]
-          List({ space: 10 }) {
+          List(
+            // [StartExclude set_the_divider]
+            { space: 10 }
+            // [EndExclude set_the_divider]
+          ) {
+            // [StartExclude set_the_divider]
             ListItem() {
               Text('ListItem One')
             }
@@ -63,15 +72,20 @@ export struct CustomListStyle {
             ListItem() {
               Text('ListItem Two')
             }
+            // [EndExclude set_the_divider]
           }
           .divider(this.egDivider)
+          // [StartExclude set_the_divider]
           .alignListItem(ListItemAlign.Center)
         }
-        // [End set_the_divider]
 
         ComponentCard({ title: $r('app.string.CustomListStyle_titleScrollbars') }) {
           // [Start add_a_scrollbar]
-          List({ space: 10 }) {
+          List(
+            // [StartExclude add_a_scrollbar]
+            { space: 10 }
+            // [EndExclude add_a_scrollbar]
+          ) {
             // [StartExclude add_a_scrollbar]
             ListItem() {
               Text('ListItem One')
@@ -100,5 +114,7 @@ export struct CustomListStyle {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CustomListStyle_title'))
+    // [EndExclude set_the_divider]
   }
 }
+// [End set_the_divider]
