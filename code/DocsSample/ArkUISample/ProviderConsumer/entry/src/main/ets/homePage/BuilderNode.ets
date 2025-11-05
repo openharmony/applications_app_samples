@@ -64,7 +64,6 @@ class TextNodeController extends NodeController {
 @ComponentV2
 struct RemoChildDisconnectProvider {
   @Provider() content: string = 'Index: hello world';
-
   @Monitor('content')
   providerWatch() {
     console.info(`Provider change ${this.content}`);
@@ -109,7 +108,6 @@ struct RemoChildDisconnectProvider {
 @ComponentV2
 struct TestRemove {
   @Consumer() content: string = 'default value';
-
   @Monitor('content')
   consumerWatch() {
     console.info(`Consumer change ${this.content}`);

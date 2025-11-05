@@ -1,13 +1,15 @@
-# ArkUI使用滚动类指南文档示例
+# @Provider装饰器和@Consumer装饰器指南文档示例
 
 ### 介绍
 
-本示例展示了[@Once：初始化同步一次](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-color-effect.md)装饰器的使用方法：
+@Provider和@Consumer用于跨组件层级数据双向同步，可以使得开发者不用拘泥于组件层级。
+
+@Provider和@Consumer属于状态管理V2装饰器，所以只能在@ComponentV2中才能使用，在@Component中使用会编译报错。
 
 使用说明：
 1. 该工程可以选择在模拟器和开发板上运行。
 2. 点击构建，即可在生成的应用中点击对应的按钮，观察自定义占位节点的不同应用。
-3. 进入”DocsSample/ArkUISample/internationalization/entry/src/ohosTest/ets/test/index.test.ets“文件，可以对本项目进行UI的自动化测试。
+3. 进入”DocsSample/ArkUISample/ProviderConsumer/entry/src/ohosTest/ets/test/index.test.ets“文件，可以对本项目进行UI的自动化测试。
 ### 效果预览
 
 | 首页                                 | 列表类组件目录                            | 列表中显示数据示例                            |
@@ -29,6 +31,7 @@
 entry/src/main/ets/
 |---entryability
 |---homePage
+|   |---BuilderNode.ets                    @Consumer在跨BuilderNode场景下和@Provider建立双向同步过程
 |   |---CodeFirst.ets                      点击第一段代码
 |   |---CodeSecond.ets                     点击第二段代码
 |   |---CodeThree.ets                      点击第三段代码
@@ -42,8 +45,6 @@ entry/src/main/ets/
 |   |---NoTwowayBinding.ets                点击未建立双向绑定
 |   |---ProviderSame.ets                   点击@Provider重名时
 |   |---TwowayBinding.ets                  点击未建立双向绑定
-  
-
 |---pages
 |   |---Index.ets                       // 应用主页面
 entry/src/ohosTest/
