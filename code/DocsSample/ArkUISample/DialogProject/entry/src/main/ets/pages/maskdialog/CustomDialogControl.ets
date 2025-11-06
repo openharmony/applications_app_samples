@@ -56,7 +56,7 @@ export struct CustomDialogControl {
     maskColor: '#33AA0000'
   } as promptAction.CustomDialogOptions;
   // [StartExclude custom_dialog_control_mask]
-
+  
   // [Start custom_dialog_control_transition]
   transitionOpt: promptAction.CustomDialogOptions = {
     builder: () => {
@@ -75,18 +75,26 @@ export struct CustomDialogControl {
     }.width('100%').height('50%')
   }
 
+  // [EndExclude custom_dialog_control_transition]
+  // [EndExclude custom_dialog_control_mask]
+  // [EndExclude custom_dialog_control_modal]
+  // [EndExclude custom_dialog_control_immersive]
+  // [EndExclude custom_dialog_control_autoCancel]
   build() {
     NavDestination() {
       Column() {
-        // [EndExclude custom_dialog_control_autoCancel]
+        // [StartExclude custom_dialog_control_transition]
+        // [StartExclude custom_dialog_control_mask]
+        // [StartExclude custom_dialog_control_immersive]
+        // [StartExclude custom_dialog_control_modal]
         Button('openCustomDialog autoCancel:false')
           .width('100%')
           .margin({ top: 10 })
           .onClick(() => {
             this.getUIContext().getPromptAction().openCustomDialog(this.autoCancelOpt)
           })
-          // [End custom_dialog_control_autoCancel]
-
+         
+        // [StartExclude custom_dialog_control_autoCancel]   
         // [EndExclude custom_dialog_control_modal]
         Button('openCustomDialog isModal:false')
           .width('100%')
@@ -94,8 +102,8 @@ export struct CustomDialogControl {
           .onClick(() => {
             this.getUIContext().getPromptAction().openCustomDialog(this.modalOpt)
           })
-          // [End custom_dialog_control_modal]
 
+        // [StartExclude custom_dialog_control_modal]
         // [EndExclude custom_dialog_control_mask]
         Button('openCustomDialog maskOpt')
           .width('100%')
@@ -103,8 +111,8 @@ export struct CustomDialogControl {
           .onClick(() => {
             this.getUIContext().getPromptAction().openCustomDialog(this.maskOpt)
           })
-          // [End custom_dialog_control_mask]
 
+        // [StartExclude custom_dialog_control_mask]
         // [EndExclude custom_dialog_control_transition]
         Button('openCustomDialog transition')
           .width('100%')
@@ -112,8 +120,8 @@ export struct CustomDialogControl {
           .onClick(() => {
             this.getUIContext().getPromptAction().openCustomDialog(this.transitionOpt);
           })
-          // [End custom_dialog_control_transition]
 
+        // [StartExclude custom_dialog_control_transition]
         // [EndExclude custom_dialog_control_immersive]
         Button('openCustomDialog immersiveMode')
           .width('100%')
@@ -129,8 +137,8 @@ export struct CustomDialogControl {
               immersiveMode: this.immersiveMode,
             })
           })
-        // [End custom_dialog_control_immersive]
 
+        // [StartExclude custom_dialog_control_immersive]
         // [Start custom_dialog_control_mask_transition]
         Button('openCustomDialog maskTransition')
           .width('100%')
@@ -145,10 +153,20 @@ export struct CustomDialogControl {
             });
           })
           // [End custom_dialog_control_mask_transition]
+          // [EndExclude custom_dialog_control_transition]
+          // [EndExclude custom_dialog_control_mask]
+          // [EndExclude custom_dialog_control_modal]
+          // [EndExclude custom_dialog_control_autoCancel]
+          // [EndExclude custom_dialog_control_immersive]
       }
       .width('100%')
       .height('100%')
     }
   }
+  // [End custom_dialog_control_transition]
+  // [End custom_dialog_control_mask]
+  // [End custom_dialog_control_modal]
+  // [End custom_dialog_control_autoCancel]
+  // [End custom_dialog_control_immersive]
 }
 // [End custom_dialog_control]

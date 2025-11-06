@@ -63,7 +63,7 @@ export struct customDialogComponentWithTransition {
 
                 })
                 .then((dialogId: number) => {
-                  this.customDialogComponentId = dialogId
+                  this.customDialogComponentId = dialogId;
                 })
                 .catch((error: BusinessError) => {
                   hilog.error(DOMAIN, 'testTag', `openCustomDialog error code is ${error.code}, message is ${error.message}`)
