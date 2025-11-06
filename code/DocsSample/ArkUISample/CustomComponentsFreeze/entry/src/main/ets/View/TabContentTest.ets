@@ -33,7 +33,6 @@ struct TabContentTest {
         Button('change message').onClick(() => {
           this.message++;
         })
-
         Tabs() {
           ForEach(this.data, (item: number) => {
             TabContent() {

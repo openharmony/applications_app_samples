@@ -110,6 +110,7 @@ struct ChildComponent {
   @Link @Watch('descChange') desc: string;
   @State item: string = '';
   @State index: number = 0;
+
   descChange() {
     hilog.info(DOMAIN, TAG, `ChildComponent messageChange ${this.desc}`);
   }
@@ -122,6 +123,7 @@ struct ChildComponent {
   aboutToRecycle(): void {
     hilog.info(DOMAIN, TAG, `ChildComponent has been recycled`);
   }
+
   build() {
     Column() {
       Text(`ChildComponent index: ${this.index} item: ${this.item}`)
@@ -152,13 +154,11 @@ struct Page {
         this.desc += '!';
         hiTraceMeter.finishTrace('change desc', 1);
       })
-
       Button(`change flag`).onClick(() => {
         hiTraceMeter.startTrace('change flag', 1);
         this.flag = !this.flag;
         hiTraceMeter.finishTrace('change flag', 1);
       })
-
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string, index: number) => {
           ListItem() {
@@ -168,7 +168,6 @@ struct Page {
       }
       .cachedCount(5)
       .height('60%')
-
       if (this.flag) {
         ChildComponent({ index: -1, item: 'Hello', desc: this.desc }).reuseId('1')
       }

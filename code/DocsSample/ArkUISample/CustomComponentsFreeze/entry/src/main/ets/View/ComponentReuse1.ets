@@ -123,6 +123,7 @@ struct ChildComponent {
   aboutToRecycle(): void {
     hilog.info(DOMAIN, TAG, `ChildComponent has been recycled`);
   }
+
   build() {
     Column() {
       Text(`ChildComponent index: ${this.index} item: ${this.item}`)

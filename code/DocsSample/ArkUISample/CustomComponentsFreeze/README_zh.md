@@ -13,15 +13,13 @@
 ### 4[ 自定义组件冻结功能](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/ui/state-management/arkts-custom-components-freeze.md)
 
 ### 效果预览
+| 页面1页面2跳转 | 页面2返回上一页 | TabContent创建 | LazyForEach中缓存的自定义组件进行冻结 | NavigationContentMsgStack会被设置成非激活态 |
+|----------------|----------------|----------------|-------------------------------------|-------------------------------------------|
+| <img src="screenshots/device/image1.jpeg" width="200" height="400"> | <img src="screenshots/device/image2.jpeg" width="200" height="400"> | <img src="screenshots/device/image3.jpeg" width="200" height="400"> | <img src="screenshots/device/image4.jpeg" width="200" height="400"> | <img src="screenshots/device/image5.jpeg" width="200" height="400"> |
 
-| 页面1页面2跳转                            | 页面2返回上一页                            | TabContent创建                        | LazyForEach中缓存的自定义组件进行冻结            | NavigationContentMsgStack会被设置成非激活态，将不再响应状态变量的变化，也不会触发组件刷新 |
-|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|:----------------------------------------------------------|
-| ![](screenshots/device/image1.jpeg) | ![](screenshots/device/image2.jpeg) | ![](screenshots/device/image3.jpeg) | ![](screenshots/device/image4.jpeg) | ![](screenshots/device/image5.jpeg)                       |
-
-| 组件复用、if和组件冻结混用场景                    | LazyForEach、组件复用和组件冻结混用场景           | LazyForEach、if、组件复用和组件冻结混用场景        | Navigation和TabContent的混用            | 页面和LazyForEach                      |
-|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|:------------------------------------|
-| ![](screenshots/device/image6.jpeg) | ![](screenshots/device/image7.jpeg) | ![](screenshots/device/image8.jpeg) | ![](screenshots/device/image8.jpeg) | ![](screenshots/device/image9.jpeg) |
-
+| 组件复用、if和组件冻结混用场景 | LazyForEach、组件复用和组件冻结混用场景 | LazyForEach、if、组件复用和组件冻结混用场景 | Navigation和TabContent的混用 | 页面和LazyForEach |
+|----------------|----------------|----------------|----------------|----------------|
+| <img src="screenshots/device/image6.jpeg" width="200" height="400"> | <img src="screenshots/device/image7.jpeg" width="200" height="400"> | <img src="screenshots/device/image8.jpeg" width="200" height="400"> | <img src="screenshots/device/image8.jpeg" width="200" height="400"> | <img src="screenshots/device/image9.jpeg" width="200" height="400"> |
 
 ![image11](E:\CustomComponentsFreeze\screenshots\device\image11.jpeg)
 
@@ -134,34 +132,34 @@ CustomComponentsFreeze
 
 ### 具体实现
 
-核心作用:优化复杂 UI 性能，冻结非激活状态组件的刷新能力
+核心作用:优化复杂UI性能，冻结非激活状态组件的刷新能力
 1. 工作机制:
    启用后仅激活状态组件响应状态变化
-   非激活组件不触发 UI 刷新，减少不必要的渲染
-   重新激活时自动刷新，确保 UI 正确性
-   启用方式:在 @Component 装饰器中设置freezeWhenInactive: true
+   非激活组件不触发UI刷新，减少不必要的渲染
+   重新激活时自动刷新，确保UI正确性
+   启用方式:在@Component装饰器中设置freezeWhenInactive:true
 2. 适用场景与激活状态
    主要场景:
    页面路由:仅栈顶页面为激活状态
-   TabContent:仅当前显示的 Tab 为激活状态
+   TabContent:仅当前显示的Tab为激活状态
    LazyForEach:仅当前显示的列表项为激活状态
-   Navigation:仅当前显示的 NavDestination 为激活状态
+   Navigation:仅当前显示的NavDestination为激活状态
    激活状态定义:
    激活:用户可见的组件
    非激活:不可见的缓存组件或后台页面组件
-   混用场景:API 18 + 支持父组件激活时仅解冻屏上子组件
+   混用场景:API18+支持父组件激活时仅解冻屏上子组件
 3. 关键使用方式
-   页面路由场景:在 @Entry 组件上启用，实现页面切换时的冻结
-   TabContent 场景:在 TabContent 内的子组件上启用，实现 Tab 切换时的冻结
-   LazyForEach 场景:在列表项组件上启用，减少长列表刷新负担
-   组件复用场景:结合 @Reusable 使用，优化复用池中的组件刷新
+   页面路由场景:在@Entry组件上启用，实现页面切换时的冻结
+   TabContent场景:在TabContent内的子组件上启用，实现Tab切换时的冻结
+   LazyForEach场景:在列表项组件上启用，减少长列表刷新负担
+   组件复用场景:结合@Reusable使用，优化复用池中的组件刷新
 4. 限制条件与注意事项
-   不支持场景:使用 BuilderNode 动态挂载的组件无法被冻结
+   不支持场景:使用BuilderNode动态挂载的组件无法被冻结
    重要注意:
    激活状态≠可见性，由框架自动管理
    非激活组件的状态变化会在重新激活时一次性刷新
-   API 11 开始支持，API 18 开始支持混用场景优化
-   性能监控:建议使用 hiTraceMeter 跟踪刷新次数，验证优化效果
+   API11开始支持，API18开始支持混用场景优化
+   性能监控:建议使用hiTraceMeter跟踪刷新次数，验证优化效果
 
 ### 相关权限
 
@@ -173,11 +171,11 @@ CustomComponentsFreeze
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行, 支持设备:RK3568。
+1.本示例仅支持标准系统上运行,支持设备:RK3568
 
-2.本示例为Stage模型，支持API20版本SDK，版本号:6.0.0.33，镜像版本号:OpenHarmony_6.0.0.33。
+2.本示例为Stage模型，支持API20版本SDK，版本号:6.0.0.33，镜像版本号:OpenHarmony_6.0.0.33
 
-3.本示例需要使用DevEco Studio 6.0.0 Canary1 (Build Version: 6.0.0.270， built on May 9, 2025)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0.0 Canary1 (Build Version: 6.0.0.270， built on May 9, 2025)及以上版本才可编译运行
 
 ### 下载
 

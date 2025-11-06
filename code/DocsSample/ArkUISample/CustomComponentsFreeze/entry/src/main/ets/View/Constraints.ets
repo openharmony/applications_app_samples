@@ -84,7 +84,6 @@ struct Index {
           .onClick(() => {
             this.message += 'a';
           })
-
         Tabs() {
           ForEach(this.data, (item: number) => {
             TabContent() {

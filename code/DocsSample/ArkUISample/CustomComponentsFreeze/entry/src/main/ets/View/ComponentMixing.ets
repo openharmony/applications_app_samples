@@ -44,12 +44,10 @@ struct ParamComponent {
   build() {
     Column() {
       Text(`val: ${this.paramVal}`)
-      ChildOfParamComponent({ childVal: this.paramVal });
+      ChildOfParamComponent({ childVal: this.paramVal })
     }
   }
 }
-
-
 
 @Component
 struct DelayComponent {
@@ -83,12 +81,10 @@ struct TabsComponent {
           hilog.info(DOMAIN, TAG, 'Button increment state value');
           this.tabState = this.tabState + 1;
         })
-
       Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {
         TabContent() {
           ParamComponent({ paramVal: this.tabState })
         }.tabBar('Update')
-
         TabContent() {
           DelayComponent({ delayVal: this.tabState })
         }.tabBar('DelayUpdate')
@@ -147,7 +143,6 @@ struct PageOneStack {
     NavDestination() {
       Column() {
         TabsComponent()
-
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)

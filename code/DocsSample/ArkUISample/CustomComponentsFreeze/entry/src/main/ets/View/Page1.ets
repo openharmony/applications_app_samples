@@ -19,7 +19,7 @@ const TAG = 'FreezeChild';
 
 @Entry
 @Component({ freezeWhenInactive: true })
-struct Page1 {
+struct PageOne {
   @StorageLink('PropA') @Watch('first') storageLink: number = 47;
 
   first() {

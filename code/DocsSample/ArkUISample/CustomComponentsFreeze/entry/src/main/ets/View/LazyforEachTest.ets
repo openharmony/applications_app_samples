@@ -127,7 +127,6 @@ struct LazyforEachTest {
         }, (item: string) => item)
       }.cachedCount(5).height(500)
     }
-
   }
 }
 

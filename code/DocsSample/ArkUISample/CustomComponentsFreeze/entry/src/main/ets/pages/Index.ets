@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 // [Start arkts_custom_components_freeze_Page_Index]
-import { Router } from '../model/routerModle'
+import { Router } from '../model/routerModle';
+
 @Entry
 @Component
 struct Index {
