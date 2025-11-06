@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的通用类型接口。
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的通用类型接口。接口详情请参考[native_node.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)。
 
 ### 使用说明
 
@@ -16,6 +16,17 @@
 
 5. 点击设置capi侧主窗口Context，查看如何将ArkTS的上下文传到capi。
 
+6. 点击“展示绘画页面”，查看绘画效果。
+
+7. 点击：“返回”，返回到主页面。
+
+## 效果预览
+
+| 首页 | 应用页面                                           |
+| ---- | -------------------------------------------------------- |
+|      | <img src="./screenshots/DrawPage.png" width="300;" /> |
+|      | <img src="./screenshots/MultiThread.png" width="300;" /> |
+
 ### 具体实现
 
 - 本示例实现了多线程创建组件的能力，通过调用CAPI抛线程创建的接口，将组件创建操作放到其它线程执行，有效提高UI效率。
@@ -23,10 +34,6 @@
 - 实现了组件存储自定义属性的能力，开发者可以通过该能力，赋予组件一些特殊的字段接口，用以实现即时性的接口调用。
 
 - 实现了CAPI侧懒加载实现列表的能力，可复用已生成的列表项，减少创建/销毁的性能开销。
-
-8. 点击“展示绘画页面”，查看绘画效果。
-
-9. 点击：“返回”，返回到主页面。
 
 ### 工程目录
 ```
