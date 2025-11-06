@@ -13,10 +13,15 @@
  * limitations under the License.
  */
 // [Start Use_in_the_'each'_attribute_of_the_Repeat_component_in_non_lazy_loading_scenarios]
-import { ReusableV2Component6 } from '../common/ReusableV2Component6';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '[Sample_Reusablev2]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Reusablev2_';
+
 @Entry
 @ComponentV2
-struct Page9 {
+struct RepeatPage {
   @Local condition: boolean = true;
   @Local simpleList: number[] = [];
 
@@ -28,15 +33,15 @@ struct Page9 {
 
   build() {
     Column() {
-      // $r('app.string.EntryAbility_title5')需要替换为开发者所需的字符串（图像、数字等）资源文件。
-      Button($r('app.string.EntryAbility_title5')).onClick(() => {
+      // $r('app.string.EntryAbility_ChangeCondition')需要替换为开发者所需的字符串（图像、数字等）资源文件
+      Button($r('app.string.EntryAbility_ChangeCondition')).onClick(() => {
         this.condition = !this.condition;
       })
       if (this.condition) {
         // 此处仅做演示使用，让复用池中填充3个组件
-        ReusableV2Component6({ num: 0 })
-        ReusableV2Component6({ num: 0 })
-        ReusableV2Component6({ num: 0 })
+        ReusableV2ComponentRepeat({ num: 0 })
+        ReusableV2ComponentRepeat({ num: 0 })
+        ReusableV2ComponentRepeat({ num: 0 })
       }
       List({ space: 10 }) {
         Repeat(this.simpleList)
@@ -44,12 +49,31 @@ struct Page9 {
           .each((obj: RepeatItem<number>) => {
             ListItem() {
               Column() {
-                ReusableV2Component6({ num: obj.item })
+                ReusableV2ComponentRepeat({ num: obj.item })
               }
             }
           })
       }.height('50%')
       .cachedCount(2)
+    }
+  }
+}
+@ReusableV2
+@ComponentV2
+struct ReusableV2ComponentRepeat {
+  @Require @Param num: number;
+  aboutToAppear() {
+    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToAppear');
+  }
+  aboutToRecycle() {
+    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToRecycle');
+  }
+  aboutToReuse() {
+    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToReuse');
+  }
+  build() {
+    Column() {
+      Text(`${this.num}`).fontSize(50)
     }
   }
 }

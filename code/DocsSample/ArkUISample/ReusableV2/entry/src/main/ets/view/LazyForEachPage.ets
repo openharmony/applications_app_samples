@@ -13,6 +13,12 @@
  * limitations under the License.
  */
 // [Start Using_LazyForEach_component]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '[Sample_Reusablev2]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Reusablev2_';
+
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: StringData[] = [];
@@ -27,7 +33,7 @@ class BasicDataSource implements IDataSource {
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'add listener');
       this.listeners.push(listener);
     }
   }
@@ -35,7 +41,7 @@ class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'remove listener');
       this.listeners.splice(pos, 1);
     }
   }
@@ -101,7 +107,7 @@ class MyDataSource extends BasicDataSource {
 
 @ObservedV2
 class StringData {
-  @Trace public message: string;
+  @Trace message: string;
   constructor(message: string) {
     this.message = message;
   }
@@ -139,14 +145,16 @@ struct Index {
 struct ChildComponent {
   @Param @Require data: string;
   aboutToAppear(): void {
+    hilog.info(DOMAIN, TAG, BUNDLE + 'ChildComponent aboutToAppear', this.data);
   }
   aboutToDisappear(): void {
+    hilog.info(DOMAIN, TAG, BUNDLE + 'ChildComponent aboutToDisappear', this.data);
   }
   aboutToReuse(): void {
-
+    hilog.info(DOMAIN, TAG, BUNDLE + 'ChildComponent aboutToReuse', this.data); // 复用时触发
   }
   aboutToRecycle(): void {
-
+    hilog.info(DOMAIN, TAG, BUNDLE + 'ChildComponent aboutToRecycle', this.data); // 回收时触发
   }
   build() {
     Row() {

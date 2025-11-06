@@ -12,21 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//[Start ReusableV2Component9]
-@ReusableV2
+
+//[Start Interface Description]
+@Entry
 @ComponentV2
-export struct ReusableV2Component9 {
-  @Require @Param num: number;
-  aboutToAppear() {
-  }
-  aboutToRecycle() {
-  }
-  aboutToReuse() {
-  }
+struct ExamplePage {
+
   build() {
     Column() {
-      Text(`child: ${this.num}`)
+      ReusableV2ComponentExample()
+        .reuse({reuseId: () => 'reuseComponent'}) // 使用'ReusableV2ComponentExample'作为reuseId
+      ReusableV2ComponentExample()
+        .reuse({reuseId: () => ''}) // 使用空字符串将默认使用组件名'ReusableV2ComponentExample'作为reuseId
+      ReusableV2ComponentExample() // 未指定reuseId将默认使用组件名'ReusableV2ComponentExample'作为reuseId
     }
   }
 }
-//[End ReusableV2Component9]
+@ReusableV2
+@ComponentV2
+struct ReusableV2ComponentExample {
+  build() {
+  }
+}
+//[End Interface Description]
