@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 import { AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
 
 @Entry
 @Component
@@ -28,7 +31,7 @@ struct AnimatorTest {
     )
     this.backAnimator.onFinish = ()=> {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onFinish')
+      hilog.info(DOMAIN, this.TAG, 'backAnimator onFinish');
     }
     this.backAnimator.onFrame = (value:number)=> {
       this.translate_ = value
@@ -95,7 +98,7 @@ struct AnimatorTest {
                   )
                 }
               } else {
-                console.info(this.TAG, 'Animation not ended')
+                hilog.info(DOMAIN, this.TAG, 'Animation not ended');
               }
             })
         }

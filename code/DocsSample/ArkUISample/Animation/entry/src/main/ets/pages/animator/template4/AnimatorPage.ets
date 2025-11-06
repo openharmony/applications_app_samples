@@ -15,6 +15,11 @@
 // [Start animator_import_start]
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 // [End animator_import_start]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAG: string = '[AnimatorTest]';
+
 @Entry
 @Component
 struct AnimatorPage {
@@ -43,7 +48,8 @@ struct AnimatorPage {
           let result: AnimatorResult | undefined = this.getUIContext().createAnimator(options);
           // 设置接收到帧时回调，动画播放过程中每帧会调用onFrame回调
           result.onFrame = (value: number) => {
-            console.info('current value is :' + value);
+            hilog.info(DOMAIN, TAG, 'current value is :' + value);
+
           }
           // [End animator_options_start]
 

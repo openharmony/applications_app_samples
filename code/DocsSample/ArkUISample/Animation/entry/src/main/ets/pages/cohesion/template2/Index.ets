@@ -14,6 +14,10 @@
  */
 // [Start animation_template2_start]
 import { curves } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAG: string = '[AnimatorTest]';
 
 @Entry
 @Component
@@ -38,14 +42,14 @@ struct SpringMotionDemo {
                   // 减去半径，以使球的中心运动到手指位置
                   this.positionX = event.touches[0].windowX - this.diameter / 2;
                   this.positionY = event.touches[0].windowY - this.diameter / 2;
-                  console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
+                  hilog.info(DOMAIN, TAG, `move, animateTo x:${this.positionX}, y:${this.positionY}`);
                 })
               } else if (event.type === TouchType.Up) {
                 // 第四步：在离手过程设定状态变量终点值，并且用springMotion动画运动到新的值，springMotion动画将继承跟手阶段的动画速度
                 this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
                   this.positionX = 100;
                   this.positionY = 100;
-                  console.info(`touchUp, animateTo x:100, y:100`);
+                  hilog.info(DOMAIN, TAG, `touchUp, animateTo x:100, y:100`);
                 })
               }
             }
@@ -56,12 +60,14 @@ struct SpringMotionDemo {
       .backgroundColor(Color.Orange)
 
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Center }) {
-        Text("拖动小球").fontSize(16)
+        // $r('app.string.drag')资源文件中的value值为'拖动小球'
+        Text($r('app.string.drag')).fontSize(16)
       }
       .width('100%')
 
       Row() {
-        Text('点击位置: [x: ' + Math.round(this.positionX) + ', y:' + Math.round(this.positionY) + ']').fontSize(16)
+        // $r('app.string.location')资源文件中的value值为'点击位置:'
+        Text($r('app.string.location') + ' [x: ' + Math.round(this.positionX) + ', y:' + Math.round(this.positionY) + ']').fontSize(16)
       }
       .padding(10)
       .width('100%')
