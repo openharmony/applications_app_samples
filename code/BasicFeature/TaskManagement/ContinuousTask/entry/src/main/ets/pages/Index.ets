@@ -108,7 +108,7 @@ struct Index {
   checkHaveAuidioPlaybackTask(): boolean {
     try {
       backgroundTaskManager.getAllContinuousTasks(this.context, false).
-        then((info: backgroundTaskManager.ContinuousTaskInfo[]) => {
+      then((info: backgroundTaskManager.ContinuousTaskInfo[]) => {
         console.info(`Operation getAllContinuousTasks succeeded. data: ` + JSON.stringify(info));
         let index: number = 0;
         for (index = 0; index < info.length; index++) {
@@ -163,8 +163,8 @@ struct Index {
       // 添加需要被拉起应用的bundleName和abilityName
       wants: [
         {
-          bundleName: "ohos.samples.continuoustask",
-          abilityName: "MainAbility"
+          bundleName: 'ohos.samples.continuoustask',
+          abilityName: 'MainAbility'
         }
       ],
       // 指定点击通知栏消息后的动作是拉起ability
@@ -175,7 +175,9 @@ struct Index {
       actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
       // 车钥匙长时任务子类型，从API version 16开始支持。只有申请bluetoothInteraction类型的长时任务，车钥匙子类型才能生效。
       // 确保extraInfo参数中的Key值为backgroundTaskManager.BackgroundModeType.SUB_MODE，否则子类型不生效。
-      // extraInfo: { [backgroundTaskManager.BackgroundModeType.SUB_MODE] : backgroundTaskManager.BackgroundSubMode.CAR_KEY }
+      // extraInfo: {
+      //   [backgroundTaskManager.BackgroundModeType.SUB_MODE] :backgroundTaskManager.BackgroundSubMode.CAR_KEY
+      // }
     };
 
     try {
@@ -183,8 +185,8 @@ struct Index {
       // 在原子化服务中，使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
-          let list: string[] = ["audioPlayback"];
-          // let list: string[] = ["bluetoothInteraction"]; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
+          let list: string[] = ['audioPlayback'];
+          // let list: string[] = ['bluetoothInteraction']; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
           backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).
             then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info('Operation startBackgroundRunning succeeded');
@@ -223,7 +225,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text("Index")
+        Text('Index')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
 
@@ -283,7 +285,7 @@ struct Index {
           this.OffContinuousTaskCancel();
         })
 
-        Text("播音业务功能")
+        Text('播音业务功能')
           .fontSize(40)
           .fontWeight(FontWeight.Bold)
 
