@@ -69,7 +69,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onChangeFormVisibility(newStatus: Record<string, number>): void {
     // [StartExclude update_by_message_form_ability]
-    // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+    // 卡片使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
     // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
   }
@@ -77,7 +77,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
   // [EndExclude update_form_interface]
   onFormEvent(formId: string, message: string): void {
     // [StartExclude update_by_message_form_ability]
-    // 当卡片提供方的postCardAction接口的message事件被触发时调用
+    // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
     // [EndExclude update_by_message_form_ability]
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${message}`);
     // [StartExclude form_extension_lifecycle_interface]
@@ -124,7 +124,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onAcquireFormState(want: Want): formInfo.FormState {
     // [StartExclude update_by_message_form_ability]
-    // 调用后返回对象{@link FormState}.
+    // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
     // [EndExclude update_by_message_form_ability]
     return formInfo.FormState.READY;
   }
