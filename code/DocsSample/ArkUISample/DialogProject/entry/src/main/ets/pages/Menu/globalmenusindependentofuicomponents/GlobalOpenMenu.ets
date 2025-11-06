@@ -16,6 +16,7 @@
 import { ComponentContent, PromptAction, UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0000;
 
 class Params {
   public message: string = '';
@@ -32,14 +33,15 @@ let uiContext = AppStorage.get('UIContext') as UIContext;
 @Builder
 export function buildText(params: Params) {
   Menu() {
+    // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
     MenuItem({ startIcon: $r('app.media.app_icon') }).width(32).height(32).borderRadius(10)
     MenuItem({ content: 'This is a Menu title 1' })
     MenuItem({ content: 'This is a Menu title 2' })
     MenuItem({ content: 'confirm' }).onClick(() => {
-      hilog.error(0x0000, 'globalOpenMenu', 'confirm button click');
+      hilog.error(DOMAIN, 'globalOpenMenu', 'confirm button click');
     })
     MenuItem({ content: 'cancel' }).onClick(() => {
-      hilog.info(0x0000, 'globalOpenMenu', 'cancel button click');
+      hilog.info(DOMAIN, 'globalOpenMenu', 'cancel button click');
     })
   }
 }
@@ -68,43 +70,43 @@ export struct OpenPopup {
     let frameNode: FrameNode | null = this.uiContext.getFrameNodeByUniqueId(this.getUniqueId());
     let targetId = frameNode?.getChild(0)?.getUniqueId();
     // [Start open_menu]
-    this.uiContext.getPromptAction()
+    this.getUIContext().getPromptAction()
       .openMenu(this.contentNode, { id: targetId }, {
         enableArrow: true
       })
       .then(() => {
-        hilog.info(0x0000, 'globalOpenMenu', 'openMenu success');
+        hilog.info(DOMAIN, 'globalOpenMenu', 'openMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'globalOpenMenu', 'openMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(DOMAIN, 'globalOpenMenu', 'openMenu error: ' + err.code + ' ' + err.message);
       });
     // [End open_menu]
   }
 
   updateMenu() {
     // [Start update_menu]
-    this.uiContext.getPromptAction()
+    this.getUIContext().getPromptAction()
       .updateMenu(this.contentNode, {
         enableArrow: false
       }, true)
       .then(() => {
-        hilog.info(0x0000, 'globalOpenMenu', 'updateMenu success');
+        hilog.info(DOMAIN, 'globalOpenMenu', 'updateMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'globalOpenMenu', 'updateMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(DOMAIN, 'globalOpenMenu', 'updateMenu error: ' + err.code + ' ' + err.message);
       });
     // [End update_menu]
   }
 
   closeMenu() {
     // [Start close_menu]
-    this.uiContext.getPromptAction()
+    this.getUIContext().getPromptAction()
       .closeMenu(this.contentNode)
       .then(() => {
-        hilog.info(0x0000, 'globalOpenMenu', 'closeMenu success');
+        hilog.info(DOMAIN, 'globalOpenMenu', 'closeMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'globalOpenMenu', 'closeMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(DOMAIN, 'globalOpenMenu', 'closeMenu error: ' + err.code + ' ' + err.message);
       });
     // [End close_menu]
   }
@@ -116,7 +118,7 @@ export struct OpenPopup {
           .margin({ top: 50, left: 100 })
           .onClick(() => {
             // [Start frame_node]
-            let frameNode: FrameNode | null = this.uiContext.getFrameNodeByUniqueId(this.getUniqueId());
+            let frameNode: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(this.getUniqueId());
             let targetId = frameNode?.getChild(0)?.getUniqueId();
             // [End frame_node]
             this.openMenu();
