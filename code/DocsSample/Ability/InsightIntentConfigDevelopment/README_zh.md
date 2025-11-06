@@ -31,8 +31,6 @@ entry/src/main
 │   ├── abilities                 # 应用能力（Ability）
 │   │   ├── EntryAbility.ets      # 主入口能力
 │   │   └── MusicPlayerAbility.ets # 音乐播放能力
-│   ├── entrybackupability        # 备份相关能力
-│   │   └── EntryBackupAbility.ets # 备份能力实现
 │   ├── insightintents            # 意图相关扩展
 │   │   ├── ExtensionExecutor.ets  # 扩展执行器
 │   │   ├── PlayMusicExecutor.ets  # 音乐播放意图执行器
@@ -52,13 +50,11 @@ entry/src/main
     │       ├── insightintent.json # 意图配置
     │       └── main_pages.json   # 主页面路由配置
     ├── dark                      # 深色模式资源
-    └── rawfile                   # 原始资源文件（直接打包，不经过编译处理）
+    └── rawfile                   # 原始资源文件
 
 ```
 
 ### 具体实现
-
-#### 意图绑定UIAbility组件
 
 1. 选中模块或模块下的文件，右键单击New > InsightIntent，进入意图框架配置界面。
 2. 选择意图垂域、意图框架入口代码文件名以及意图配置。意图配置包含意图名称和绑定的Ability组件。
@@ -66,17 +62,6 @@ entry/src/main
    profile中，生成json文件，可在该文件查看当前意图框架配置的相关信息。
 4. 在module目录 > src > main > ets > insightintents目录下生成入口代码文件。开发者在意图执行函数中实现意图的功能代码。
 
-#### 意图绑定UIExtensionAbility组件
-
-1. 参考意图绑定UIAbility组件
-
-#### 意图绑定ServiceExtensionAbility组件
-
-1. 参考意图绑定UIAbility组件
-
-#### 意图绑定卡片
-
-1. 参考意图绑定UIAbility组件
 ### 相关权限
 
 不涉及。
@@ -91,7 +76,7 @@ entry/src/main
 
 2.本示例已适配API version 20版本SDK，版本号：6.0.0。
 
-3.本示例需要使用DevEco Studio 6.0 (需要sdk_full)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 6.0及以上版本才可编译运行。
 
 ### 下载
 
@@ -100,7 +85,7 @@ entry/src/main
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Ability/InsightIntentUIAbility/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/InsightIntentConfigDevelopment/ > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
