@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start variables_decorated_ObjectLink_read_only]
-import { common } from '@kit.AbilityKit';
 
 @Observed
 class Info {
@@ -27,12 +26,10 @@ class Info {
 @Component
 struct Child {
   @ObjectLink num: Info;
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
-      // app.string.value_num资源文件中的value值为'num的值'
-      Text(`${this.context.resourceManager.getStringSync($r('app.string.value_num').id)}: ${this.num.count}`)
+      Text(`num value: ${this.num.count}`)
         .onClick(() => {
           // 正确写法，可以更改@ObjectLink装饰变量的成员属性
           this.num.count = 20;
@@ -45,12 +42,10 @@ struct Child {
 @Component
 struct Parent {
   @State num: Info = new Info(10);
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
-      // app.string.value_count资源文件中的value值为'count的值'
-      Text(`${this.context.resourceManager.getStringSync($r('app.string.value_count').id)}: ${this.num.count}`)
+      Text(`count value: ${this.num.count}`)
       Button('click')
         .onClick(() => {
           // 可以在父组件做整体替换

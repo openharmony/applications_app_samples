@@ -114,7 +114,7 @@ export default function IndexTest() {
       expect(targetElement2=== null).assertFalse();
       await targetElement2.click();
       await driver.delayMs(1000);
-      let targetElement3 = await driver.findComponent(ON.text('num的值', MatchPattern.CONTAINS));
+      let targetElement3 = await driver.findComponent(ON.text('num value', MatchPattern.CONTAINS));
       expect(targetElement3=== null).assertFalse();
       await targetElement3.click();
       await driver.delayMs(1000);

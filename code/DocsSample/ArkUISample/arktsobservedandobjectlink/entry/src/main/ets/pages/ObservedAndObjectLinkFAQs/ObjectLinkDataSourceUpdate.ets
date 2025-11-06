@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start ObjectLink_Data_source_update_timing]
-import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
@@ -69,7 +68,6 @@ struct Parent {
 struct Child {
   @ObjectLink @Watch('onChange02') per: Person;
   clickEvent?: () => void;
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   onChange02() {
     hilog.info(DOMAIN, TAG, `:::onChange02:${this.per.name}`); // 5
@@ -89,8 +87,7 @@ struct Child {
     if (this.clickEvent) {
       this.clickEvent();
     }
-    // app.string.ObjectLinkDataSourceUpdate_Child资源文件中的value值为'此时Child中的this.per.name值仍然是'
-    hilog.info(DOMAIN, TAG, `:::--------${this.context.resourceManager.getStringSync($r('app.string.ObjectLinkDataSourceUpdate_Child').id)}: ${this.per.name}`); // 4
+    hilog.info(DOMAIN, TAG, `:::--------this.per.name in Child is still: ${this.per.name}`); // 4
   };
 }
 // [End ObjectLink_Data_source_update_timing]
