@@ -14,6 +14,9 @@
  */
 
 // [Start prop_six_start]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'Prop';
 let nextId: number = 1;
 
 // @Observed
@@ -102,7 +105,7 @@ struct Library {
             if (this.allBooks.length > 0) {
               this.allBooks.shift();
             } else {
-
+              hilog.info(DOMAIN, TAG, 'length <= 0');
             }
           })
         Button('Mark read for everyone')

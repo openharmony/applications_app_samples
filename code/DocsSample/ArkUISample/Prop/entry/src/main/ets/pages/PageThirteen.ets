@@ -14,6 +14,10 @@
  */
 
 // [Start prop_thirteen_start]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'Prop';
+
 class Animals {
   public name: string;
 
@@ -63,7 +67,7 @@ struct Zoo {
             if (this.animal instanceof Animals) {
               this.animal.name = 'Dog';
             } else {
-
+              hilog.info(DOMAIN, TAG, 'num is undefined, cannot change property');
             }
           })
 
