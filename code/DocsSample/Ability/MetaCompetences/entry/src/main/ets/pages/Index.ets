@@ -18,7 +18,7 @@ import { startupManager } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  @State message: ResourceStr = $r('app.string.manual_mode');
+  @State message: ResourceStr = $r('app.string.manual_mode'); // $r('app.string.manual_mode')为开发者自定义资源
   @State startParams1: Array<string> = ['StartupTask_006'];
   @State startParams2: Array<string> = ['libentry_006'];
 

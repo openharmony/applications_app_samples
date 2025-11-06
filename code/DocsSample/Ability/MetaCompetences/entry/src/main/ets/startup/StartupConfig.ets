@@ -15,8 +15,10 @@
 // [Start startup_entryconfig]
 // [Start startup_config]
 import { StartupConfig, StartupConfigEntry, StartupListener, Want } from '@kit.AbilityKit';
+// [StartExclude startup_config]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [EndExclude startup_config]
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   // [StartExclude startup_config]
