@@ -102,6 +102,7 @@ void OnFrameCallbackNative(ArkUI_NodeHandle node, uint64_t timestamp, uint64_t t
     }
     static uint64_t count = 0;
     count++;
+    // 在头文件plugin_manager.h中定义，FRAME_COUNT的值为50
     if (count % FRAME_COUNT == 0) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "onBind", "OnFrameCallback count = %{public}ld", count);
     }

@@ -13,15 +13,16 @@
  * limitations under the License.
  */
 
-class BasicDataSource12 implements IDataSource {
+// [Start observing_component_internal_state]
+class StateBasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData12[] = [];
+  private originDataArray: StateStringData[] = [];
 
   public totalCount(): number {
     return this.originDataArray.length;
   }
 
-  public getData(index: number): StringData12 {
+  public getData(index: number): StateStringData {
     return this.originDataArray[index];
   }
 
@@ -75,27 +76,27 @@ class BasicDataSource12 implements IDataSource {
   }
 }
 
-// [Start observing_component_internal_state]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource12 extends BasicDataSource12 {
-  private dataArray: StringData12[] = [];
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码。
+其中BasicDataSource、StringData等名称需要开发者自行修改。**/
+class MyStateDataSource extends StateBasicDataSource {
+  private dataArray: StateStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData12 {
+  public getData(index: number): StateStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData12): void {
+  public pushData(data: StateStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @ObservedV2
-class StringData12 {
+class StateStringData {
   @Trace public message: string;
 
   constructor(message: string) {
@@ -106,20 +107,19 @@ class StringData12 {
 @Entry
 @ComponentV2
 struct ObservingComponentInternalState {
-  data: MyDataSource12 = new MyDataSource12();
+  data: MyStateDataSource = new MyStateDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData12(`Hello ${i}`));
+      this.data.pushData(new StateStringData(`Hello ${i}`));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData12, index: number) => {
+      LazyForEach(this.data, (item: StateStringData, index: number) => {
         ListItem() {
           Row() {
-
             Text(item.message).fontSize(50)
               .onClick(() => {
                 // 修改@ObservedV2装饰类中@Trace装饰的变量，触发刷新此处Text组件
@@ -128,7 +128,7 @@ struct ObservingComponentInternalState {
             ObservingComponentChildComponent()
           }
         }
-      }, (item: StringData12, index: number) => index.toString())
+      }, (item: StateStringData, index: number) => index.toString())
     }
     .cachedCount(5)
   }

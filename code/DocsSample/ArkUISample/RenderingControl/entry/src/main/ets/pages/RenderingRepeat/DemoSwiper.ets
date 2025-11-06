@@ -15,7 +15,9 @@
 
 // [Start repeat_swiper]
 const remotePictures: string[] = [
-  'www.example.com/xxx/0001.jpg', // 请填写具体的网络图片地址
+  'common/image/image1.png', // 请填写具体的图片地址
+  'common/image/image2.png',
+  'common/image/image3.png',
 ];
 
 @ObservedV2
@@ -34,7 +36,7 @@ struct DemoSwiper {
   @Local pics: Array<DemoSwiperItemInfo> = [];
 
   aboutToAppear(): void {
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 3; i++) {
       this.pics.push(new DemoSwiperItemInfo('pic' + i));
     }
     setTimeout(() => {

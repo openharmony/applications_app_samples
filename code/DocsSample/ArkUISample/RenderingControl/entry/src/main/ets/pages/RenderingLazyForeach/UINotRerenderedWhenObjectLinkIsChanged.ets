@@ -13,15 +13,16 @@
  * limitations under the License.
  */
 
-class BasicDataSource19 implements IDataSource {
+// [Start ui_not_rerendered]
+class UINoteRenderingDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData19[] = [];
+  private originDataArray: UINoteRenderingStringData[] = [];
 
   public totalCount(): number {
     return this.originDataArray.length;
   }
 
-  public getData(index: number): StringData19 {
+  public getData(index: number): UINoteRenderingStringData {
     return this.originDataArray[index];
   }
 
@@ -75,27 +76,27 @@ class BasicDataSource19 implements IDataSource {
   }
 }
 
-// [Start ui_not_rerendered]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource19 extends BasicDataSource19 {
-  private dataArray: StringData19[] = [];
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码。
+其中BasicDataSource、StringData等名称需要开发者自行修改。**/
+class UINoteRenderingSource extends UINoteRenderingDataSource {
+  private dataArray: UINoteRenderingStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData19 {
+  public getData(index: number): UINoteRenderingStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData19): void {
+  public pushData(data: UINoteRenderingStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Observed
-class StringData19 {
+class UINoteRenderingStringData {
   public message: NestedString;
 
   constructor(message: NestedString) {
@@ -116,17 +117,17 @@ class NestedString {
 @Component
 struct UINotRerenderedWhenObjectLinkIsChanged {
   private moved: number[] = [];
-  private data: MyDataSource19 = new MyDataSource19();
+  private data: UINoteRenderingSource = new UINoteRenderingSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData19(new NestedString(`Hello ${i}`)));
+      this.data.pushData(new UINoteRenderingStringData(new NestedString(`Hello ${i}`)));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData19, index: number) => {
+      LazyForEach(this.data, (item: UINoteRenderingStringData, index: number) => {
         ListItem() {
           UINotRerenderedChildComponent({ data: item })
         }
@@ -134,7 +135,7 @@ struct UINotRerenderedWhenObjectLinkIsChanged {
           // @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到
           item.message = new NestedString(item.message.message + '0');
         })
-      }, (item: StringData19, index: number) => item.message.message + index.toString())
+      }, (item: UINoteRenderingStringData, index: number) => item.message.message + index.toString())
     }
     .cachedCount(5)
   }
@@ -142,7 +143,7 @@ struct UINotRerenderedWhenObjectLinkIsChanged {
 
 @Component
 struct UINotRerenderedChildComponent {
-  @ObjectLink data: StringData19;
+  @ObjectLink data: UINoteRenderingStringData;
 
   build() {
     Row() {

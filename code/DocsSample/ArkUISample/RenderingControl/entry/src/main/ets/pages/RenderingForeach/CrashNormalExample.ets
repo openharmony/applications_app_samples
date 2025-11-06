@@ -14,7 +14,7 @@
  */
 
 // [Start crash_normal_example]
-class Data1 {
+class KeyData {
   public content: bigint;
 
   constructor(content: bigint) {
@@ -24,18 +24,18 @@ class Data1 {
 
 @Entry
 @Component
-struct Parent3 {
-  @State simpleList: Array<Data1> = [new Data1(1234567890123456789n), new Data1(2345678910987654321n)];
+struct GenerationKeyExample {
+  @State simpleList: Array<KeyData> = [new KeyData(1234567890123456789n), new KeyData(2345678910987654321n)];
 
   build() {
     Row() {
       Column() {
-        ForEach(this.simpleList, (item: Data1) => {
-          ChildItem3({ item: item.content.toString() })
+        ForEach(this.simpleList, (item: KeyData) => {
+          GenerationKeyChildItem({ item: item.content.toString() })
         }
           // 如果不定义下面的keyGenerator函数，则ArkUI框架会使用默认的键值生成函数
-          // Data中的content: bigint在JSON序列化时失败
-          , (item: Data1) => item.content.toString()
+          // KeyData中的content: bigint在JSON序列化时失败
+          , (item: KeyData) => item.content.toString()
         )
       }
       .width('100%')
@@ -47,7 +47,7 @@ struct Parent3 {
 }
 
 @Component
-struct ChildItem3 {
+struct GenerationKeyChildItem {
   @Prop item: string;
 
   build() {

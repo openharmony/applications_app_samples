@@ -16,7 +16,7 @@
 // [Start foreach_three]
 @Entry
 @Component
-struct Parent6 {
+struct ForEachNotFirstRender {
   @State simpleList: Array<string> = ['one', 'two', 'three'];
 
   build() {
@@ -30,7 +30,7 @@ struct Parent6 {
           })
 
         ForEach(this.simpleList, (item: string) => {
-          ChildItem6({ item: item })
+          NotFirstRenderChildItem({ item: item })
             .margin({ top: 20 })
         }, (item: string) => item)
       }
@@ -44,7 +44,7 @@ struct Parent6 {
 }
 
 @Component
-struct ChildItem6 {
+struct NotFirstRenderChildItem {
   @Prop item: string;
 
   build() {

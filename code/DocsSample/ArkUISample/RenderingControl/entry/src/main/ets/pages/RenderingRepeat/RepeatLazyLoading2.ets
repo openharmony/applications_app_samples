@@ -16,7 +16,7 @@
 // [Start repeat_lazy_loading_two]
 @Entry
 @ComponentV2
-struct RepeatLazyLoading2 {
+struct RepeatLazyLoadingSync {
   @Local arr: Array<string> = [];
   build() {
     Column({ space: 5 }) {

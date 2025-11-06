@@ -246,6 +246,7 @@ void EGLRender::DrawStar(bool drawColor)
     // 将角度 72° 转换为弧度
     GLfloat rad = M_PI / 180 * 72;
     // 旋转四次。
+    // 在头文件EGLConst.h中定义，NUM_0的值为0，NUM_4的值为4
     for (int i = NUM_0; i < NUM_4; ++i) {
         // 旋转得其他四个四边形的顶点
         Rotate2d(centerX, centerY, &rotateX, &rotateY, rad);

@@ -15,7 +15,7 @@
 
 // [Start render_keep_counter]
 @Component
-struct CounterView1 {
+struct KeepCounterView {
   @Link counter: number;
   label: string = 'unknown';
 
@@ -36,16 +36,16 @@ struct CounterView1 {
 
 @Entry
 @Component
-struct MainView1 {
+struct KeepMainView {
   @State toggle: boolean = true;
   @State counter: number = 0;
 
   build() {
     Column() {
       if (this.toggle) {
-        CounterView1({ counter: $counter, label: 'CounterView #positive' });
+        KeepCounterView({ counter: $counter, label: 'CounterView #positive' });
       } else {
-        CounterView1({ counter: $counter, label: 'CounterView #negative' });
+        KeepCounterView({ counter: $counter, label: 'CounterView #negative' });
       }
       Button(`toggle ${this.toggle}`)
         .onClick(() => {

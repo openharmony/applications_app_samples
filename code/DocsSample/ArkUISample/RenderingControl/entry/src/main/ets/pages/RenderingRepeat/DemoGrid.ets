@@ -14,6 +14,10 @@
  */
 
 // [Start repeat_grid]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
 class DemoGridItemInfo {
   public name: string;
   public icon: Resource;
@@ -67,6 +71,7 @@ struct DemoGrid {
                   this.isRefreshing = true;
                 })
                 .onAppear(() => {
+                  hilog.info(DOMAIN, TAG, 'AceTag', obj.item.name);
                 })
               } else {
                 GridItem() {
@@ -85,6 +90,7 @@ struct DemoGrid {
                 .borderRadius(16)
                 .backgroundColor(Color.White)
                 .onAppear(() => {
+                  hilog.info(DOMAIN, TAG, 'AceTag', obj.item.name);
                 })
               }
             })

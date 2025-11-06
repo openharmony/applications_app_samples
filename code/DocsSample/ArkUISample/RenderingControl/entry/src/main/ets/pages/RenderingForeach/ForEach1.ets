@@ -16,7 +16,7 @@
 // [Start foreach_one]
 @Entry
 @Component
-struct Parent4 {
+struct ForEachFirstRender {
   @State simpleList: Array<string> = ['one', 'two', 'three'];
 
   build() {
@@ -24,7 +24,7 @@ struct Parent4 {
       Column() {
         // [Start foreach_true]
         ForEach(this.simpleList, (item: string) => {
-          ChildItem4({ item: item })
+          ForEachChildItem({ item: item })
         }, (item: string) => item) // 需要保证key唯一
         // [End foreach_true]
       }
@@ -37,7 +37,7 @@ struct Parent4 {
 }
 
 @Component
-struct ChildItem4 {
+struct ForEachChildItem {
   @Prop item: string;
 
   build() {

@@ -14,9 +14,13 @@
  */
 
 // [Start bad_performance]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
 @Entry
 @Component
-struct Parent2 {
+struct ReducedRenderingPerformance {
   @State simpleList: Array<string> = ['one', 'two', 'three'];
 
   build() {
@@ -26,10 +30,11 @@ struct Parent2 {
       }
       .onClick(() => {
         this.simpleList.splice(1, 0, 'new item');
+        hilog.info(DOMAIN, 'testTag', '[onClick]: simpleList is [${this.simpleList.join(', ')}]');
       })
 
       ForEach(this.simpleList, (item: string) => {
-        ChildItem2({ item: item })
+        ReducedChildItem({ item: item })
       })
     }
     .justifyContent(FlexAlign.Center)
@@ -40,10 +45,11 @@ struct Parent2 {
 }
 
 @Component
-struct ChildItem2 {
+struct ReducedChildItem {
   @Prop item: string;
 
   aboutToAppear() {
+    hilog.info(DOMAIN, TAG, '[aboutToAppear]: item is ${this.item}');
   }
 
   build() {

@@ -13,16 +13,17 @@
  * limitations under the License.
  */
 
+// [Start changing_data_sub_properties]
 // [Start basic_data_source]
-class BasicDataSource2 implements IDataSource {
+class SubBasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData2[] = [];
+  private originDataArray: SubStringData[] = [];
 
   public totalCount(): number {
     return this.originDataArray.length;
   }
 
-  public getData(index: number): StringData2 {
+  public getData(index: number): SubStringData {
     return this.originDataArray[index];
   }
 
@@ -77,27 +78,27 @@ class BasicDataSource2 implements IDataSource {
 }
 // [End basic_data_source]
 
-// [Start changing_data_sub_properties]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource2 extends BasicDataSource2 {
-  private dataArray: StringData2[] = [];
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码。
+其中BasicDataSource、StringData等名称需要开发者自行修改。**/
+class MySubDataSource extends SubBasicDataSource {
+  private dataArray: SubStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData2 {
+  public getData(index: number): SubStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData2): void {
+  public pushData(data: SubStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Observed
-class StringData2 {
+class SubStringData {
   public message: string;
 
   constructor(message: string) {
@@ -108,24 +109,24 @@ class StringData2 {
 @Entry
 @Component
 struct ChangingDataSubproperties {
-  private data: MyDataSource2 = new MyDataSource2();
+  private data: MySubDataSource = new MySubDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData2(`Hello ${i}`));
+      this.data.pushData(new SubStringData(`Hello ${i}`));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData2, index: number) => {
+      LazyForEach(this.data, (item: SubStringData, index: number) => {
         ListItem() {
           ChangingDataSubproperties_ChildComponent({ data: item })
         }
         .onClick(() => {
           item.message += '0';
         })
-      }, (item: StringData2, index: number) => index.toString())
+      }, (item: SubStringData, index: number) => index.toString())
     }
     .cachedCount(5)
   }
@@ -133,7 +134,7 @@ struct ChangingDataSubproperties {
 
 @Component
 struct ChangingDataSubproperties_ChildComponent {
-  @ObjectLink data: StringData2;
+  @ObjectLink data: SubStringData;
 
   build() {
     Row() {

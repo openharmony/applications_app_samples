@@ -14,7 +14,7 @@
  */
 
 // [Start non_necessary_mem]
-class Data3 {
+class MemoryData {
   public longStr: string;
   public key: string;
 
@@ -26,8 +26,8 @@ class Data3 {
 
 @Entry
 @Component
-struct Parent7 {
-  @State simpleList: Array<Data3> = [];
+struct NonNecessaryMemory {
+  @State simpleList: Array<MemoryData> = [];
 
   aboutToAppear(): void {
     let longStr = '';
@@ -35,20 +35,20 @@ struct Parent7 {
       longStr += i.toString();
     }
     for (let index = 0; index < 3000; index++) {
-      let data: Data3 = new Data3(longStr, 'a' + index.toString());
+      let data: MemoryData = new MemoryData(longStr, 'a' + index.toString());
       this.simpleList.push(data);
     }
   }
 
   build() {
     List() {
-      ForEach(this.simpleList, (item: Data3) => {
+      ForEach(this.simpleList, (item: MemoryData) => {
         ListItem() {
           Text(item.key)
         }
       }
         // 如果不定义下面的keyGenerator函数，则ArkUI框架会使用默认的键值生成函数
-        , (item: Data3) => {
+        , (item: MemoryData) => {
           return item.key;
         }
       )
