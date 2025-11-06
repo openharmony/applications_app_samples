@@ -50,7 +50,7 @@ export struct LongPress {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    //app.string.singlegesture_LongPressGesture_title资源文件中的value值为'长按手势'
+    // app.string.singlegesture_LongPressGesture_title资源文件中的value值为'长按手势'
     .title($r('app.string.singlegesture_LongPressGesture_title'))
   }
 }

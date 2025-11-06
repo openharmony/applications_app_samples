@@ -27,7 +27,7 @@ struct PreventBubbling {
   build() {
     RelativeContainer() {
       Column() { // 父组件
-        //$r('app.string.xxx')需要替换为开发者所需的资源文件
+        // app.string.preventEvent资源文件中的value值为'如果点中了我'
         Text($r('app.string.preventEvent'))
           .fontColor(Color.White)
           .height('40%')

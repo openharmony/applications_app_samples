@@ -43,7 +43,7 @@ import { TabStopExample } from './TabStop';
 export const Focus_ROUTE_PREFIX: string = 'Focus_ROUTE_PREFIX';
 
 // [Start route_push]
-//$r('app.string.xxx')需要替换为开发者所需的资源文件
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 const routes: Route[] = [
   {
     name: `${Focus_ROUTE_PREFIX}/onFocusBlur`,
@@ -243,7 +243,7 @@ struct FocusExample {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
-    //$r('app.string.Focus_Index_title')需要替换为开发者所需的字符串资源文件
+    // $r('app.string.Focus_Index_title')资源文件中的value值为'焦点事件'
     .title($r('app.string.Focus_Index_title'))
   }
 }

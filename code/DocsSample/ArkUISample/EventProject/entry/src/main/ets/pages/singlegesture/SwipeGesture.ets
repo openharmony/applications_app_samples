@@ -52,7 +52,7 @@ export struct Swipe {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    //app.string.singlegesture_SwipeGesture_title资源文件中的value值为'快滑手势'
+    // app.string.singlegesture_SwipeGesture_title资源文件中的value值为'快滑手势'
     .title($r('app.string.singlegesture_SwipeGesture_title'))
   }
 }

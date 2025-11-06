@@ -60,7 +60,7 @@ export struct OnClickGesture {
       .justifyContent(FlexAlign.Center)
     }
     .backgroundColor('#f1f2f3')
-    //$r('app.string.singlegesture_Index_Click_title')资源文件中的value值为'点击事件'
+    // $r('app.string.singlegesture_Index_Click_title')资源文件中的value值为'点击事件'
     .title($r('app.string.singlegesture_Index_Click_title'))
   }
 }
