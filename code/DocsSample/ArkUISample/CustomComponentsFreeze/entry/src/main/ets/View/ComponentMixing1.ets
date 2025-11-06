@@ -14,6 +14,8 @@
  */
 // [Start arkts_custom_components_freeze10]
 import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
 
 // 用于处理数据监听的IDataSource的基本实现
 class BasicDataSource implements IDataSource {
@@ -31,7 +33,7 @@ class BasicDataSource implements IDataSource {
   // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      hilog.info(0x0000, 'FreezeChild', 'add listener');
+      hilog.info(DOMAIN, TAG, 'add listener');
       this.listeners.push(listener);
     };
   }
@@ -40,7 +42,7 @@ class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      hilog.info(0x0000, 'FreezeChild', 'remove listener');
+      hilog.info(DOMAIN, TAG, 'remove listener');
       this.listeners.splice(pos, 1);
     };
   }
@@ -110,7 +112,7 @@ struct ChildComponent {
   @Link @Watch('sumChange') sum: number;
 
   sumChange() {
-    hilog.info(0x0000, 'FreezeChild', `sum: Change ${this.sum}`);
+    hilog.info(DOMAIN, TAG, `sum: Change ${this.sum}`);
   }
 
   aboutToReuse(params: Record<string, Object>): void {
@@ -119,13 +121,13 @@ struct ChildComponent {
   }
 
   aboutToRecycle(): void {
-    hilog.info(0x0000, 'FreezeChild', `ChildComponent has been recycled`);
+    hilog.info(DOMAIN, TAG, `ChildComponent has been recycled`);
   }
   build() {
     Column() {
       Divider()
         .color('#ff11acb8')
-      // $r('app.string.childComp')需要替换为开发者所需的资源文件
+      // app.string.childComp 资源文件中的value值为'子组件'
       Text(`${$r('app.string.childComp')}: ${this.desc}`)
         .fontSize(30)
         .fontWeight(30)
@@ -159,7 +161,7 @@ struct Page {
       List() {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            ChildComponent({ desc: item, sum: this.sum });
+            ChildComponent({ desc: item, sum: this.sum })
           }
           .width('100%')
           .height(100)

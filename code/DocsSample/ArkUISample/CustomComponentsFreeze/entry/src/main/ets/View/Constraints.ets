@@ -15,6 +15,8 @@
 // [Start arkts_custom_components_freeze11]
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
 
 // 定义一个Params类，用于传递参数
 class Params {
@@ -33,7 +35,7 @@ struct BuildNodeChild {
 
   // 当message更新时，调用此方法
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', `FreezeBuildNode builderNodeChild message callback func ${this.message},index：${this.index}`);
+    hilog.info(DOMAIN, TAG, `FreezeBuildNode builderNodeChild message callback func ${this.message},index:${this.index}`);
   }
 
   build() {
@@ -105,7 +107,7 @@ struct FreezeBuildNode {
 
   // 当message更新时，调用此方法
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', `FreezeBuildNode message callback func ${this.message}, index: ${this.index}`);
+    hilog.info(DOMAIN, TAG, `FreezeBuildNode message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

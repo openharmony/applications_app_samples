@@ -15,18 +15,20 @@
 // [Start arkts_custom_components_freeze9]
 // index.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
 
 @Component
 struct ChildOfParamComponent {
   @Prop @Watch('onChange') childVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'FreezeChild', `Appmonitor ChildOfParamComponent: childVal changed:${this.childVal}`);
+    hilog.info(DOMAIN, TAG, `Appmonitor ChildOfParamComponent: childVal changed:${this.childVal}`);
   }
 
   build() {
     Column() {
-      Text(`Child Param： ${this.childVal}`)
+      Text(`Child Param: ${this.childVal}`)
     }
   }
 }
@@ -36,12 +38,12 @@ struct ParamComponent {
   @Prop @Watch('onChange') paramVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'FreezeChild', `Appmonitor ParamComponent: paramVal changed:${this.paramVal}`);
+    hilog.info(DOMAIN, TAG, `Appmonitor ParamComponent: paramVal changed:${this.paramVal}`);
   }
 
   build() {
     Column() {
-      Text(`val： ${this.paramVal}`)
+      Text(`val: ${this.paramVal}`)
       ChildOfParamComponent({ childVal: this.paramVal });
     }
   }
@@ -54,12 +56,12 @@ struct DelayComponent {
   @Prop @Watch('onChange') delayVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'FreezeChild', `Appmonitor ParamComponent: delayVal changed:${this.delayVal}`);
+    hilog.info(DOMAIN, TAG, `Appmonitor ParamComponent: delayVal changed:${this.delayVal}`);
   }
 
   build() {
     Column() {
-      Text(`Delay Param： ${this.delayVal}`)
+      Text(`Delay Param: ${this.delayVal}`)
     }
   }
 }
@@ -70,7 +72,7 @@ struct TabsComponent {
   @State @Watch('onChange') tabState: number = 47;
 
   onChange() {
-    hilog.info(0x0000, 'FreezeChild', `Appmonitor TabsComponent: tabState changed:${this.tabState}`);
+    hilog.info(DOMAIN, TAG, `Appmonitor TabsComponent: tabState changed:${this.tabState}`);
   }
 
   build() {
@@ -78,7 +80,7 @@ struct TabsComponent {
       Button(`Incr state ${this.tabState}`)
         .fontSize(25)
         .onClick(() => {
-          hilog.info(0x0000, 'FreezeChild', 'Button increment state value');
+          hilog.info(DOMAIN, TAG, 'Button increment state value');
           this.tabState = this.tabState + 1;
         })
 

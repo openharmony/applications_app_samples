@@ -14,6 +14,8 @@
  */
 // [Start arkts_custom_components_freeze8]
 import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
@@ -30,7 +32,7 @@ class BasicDataSource implements IDataSource {
   // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      hilog.info(0x0000, 'FreezeChild', 'add listener');
+      hilog.info(DOMAIN, TAG, 'add listener');
       this.listeners.push(listener);
     };
   }
@@ -39,7 +41,7 @@ class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      hilog.info(0x0000, 'FreezeChild', 'remove listener');
+      hilog.info(DOMAIN, TAG, 'remove listener');
       this.listeners.splice(pos, 1);
     };
   }
@@ -109,7 +111,7 @@ struct ChildComponent {
   @State item: string = '';
   @State index: number = 0;
   descChange() {
-    hilog.info(0x0000, 'FreezeChild', `ChildComponent messageChange ${this.desc}`);
+    hilog.info(DOMAIN, TAG, `ChildComponent messageChange ${this.desc}`);
   }
 
   aboutToReuse(params: Record<string, ESObject>): void {
@@ -118,7 +120,7 @@ struct ChildComponent {
   }
 
   aboutToRecycle(): void {
-    hilog.info(0x0000, 'FreezeChild', `ChildComponent has been recycled`);
+    hilog.info(DOMAIN, TAG, `ChildComponent has been recycled`);
   }
   build() {
     Column() {

@@ -158,7 +158,7 @@ export default function IndexTest(){
     /**
      * @tc.number :testStestSmakeObserved1_0105
      * @tc.name  :testStestSmakeObserved1_0105
-     * @tc.desc  :测试打开collections.Map可以触发UI刷新的API有：set、clear、delete。
+     * @tc.desc  :测试打开collections.Map可以触发UI刷新的API有:set、clear、delete。
      * @tc.level :level1
      * @tc.size  : MediumTest
      *  @tc.type : Function

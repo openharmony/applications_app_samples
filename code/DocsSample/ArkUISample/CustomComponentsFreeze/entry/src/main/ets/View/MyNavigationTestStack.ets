@@ -14,6 +14,8 @@
  */
 // [Start arkts_custom_components_freeze5]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
 
 @Entry
 @Component
@@ -23,7 +25,7 @@ struct MyNavigationTestStack {
   @State logNumber: number = 0;
 
   info() {
-    hilog.info(0x0000, 'FreezeChild', `freeze-test MyNavigation message callback ${this.message}`);
+    hilog.info(DOMAIN, TAG, `freeze-test MyNavigation message callback ${this.message}`);
   }
 
   @Builder
@@ -178,8 +180,8 @@ struct NavigationContentMsgStack {
   @Link logNumber: number;
 
   info() {
-    hilog.info(0x0000, 'FreezeChild', `freeze-test NavigationContent message callback ${this.message}`);
-    hilog.info(0x0000, 'FreezeChild', `freeze-test ---- called by content ${this.index}`);
+    hilog.info(DOMAIN, TAG, `freeze-test NavigationContent message callback ${this.message}`);
+    hilog.info(DOMAIN, TAG, `freeze-test ---- called by content ${this.index}`);
     this.logNumber++;
   }
 

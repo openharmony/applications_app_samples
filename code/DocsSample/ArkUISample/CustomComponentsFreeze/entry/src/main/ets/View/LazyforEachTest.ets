@@ -14,6 +14,8 @@
  */
 // [Start arkts_custom_components_freeze4]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
 
 // 用于处理数据监听的IDataSource的基本实现
 class BasicDataSource implements IDataSource {
@@ -31,7 +33,7 @@ class BasicDataSource implements IDataSource {
   // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      hilog.info(0x0000, 'FreezeChild', 'add listener');
+      hilog.info(DOMAIN, TAG, 'add listener');
       this.listeners.push(listener);
     };
   }
@@ -40,7 +42,7 @@ class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      hilog.info(0x0000, 'FreezeChild', 'remove listener');
+      hilog.info(DOMAIN, TAG, 'remove listener');
       this.listeners.splice(pos, 1);
     };
   }
@@ -103,7 +105,7 @@ struct LazyforEachTest {
   @State @Watch('onMessageUpdated') message: number = 0;
 
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', `LazyforEach message callback func ${this.message}`);
+    hilog.info(DOMAIN, TAG, `LazyforEach message callback func ${this.message}`);
   }
 
   aboutToAppear() {
@@ -135,11 +137,11 @@ struct FreezeChild {
   index: string = '';
 
   aboutToAppear() {
-    hilog.info(0x0000, 'FreezeChild', `FreezeChild aboutToAppear index: ${this.index}`);
+    hilog.info(DOMAIN, TAG, `FreezeChild aboutToAppear index: ${this.index}`);
   }
 
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', `FreezeChild message callback func ${this.message}, index: ${this.index}`);
+    hilog.info(DOMAIN, TAG, `FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

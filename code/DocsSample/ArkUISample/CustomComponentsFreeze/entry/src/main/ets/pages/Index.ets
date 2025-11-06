@@ -18,7 +18,6 @@ import { Router } from '../model/routerModle'
 @Component
 struct Index {
   @State lists: Router [] = [
-    //$r('app.string.arkts_custom_components_freeze1')需要替换为开发者所需的资源文件
     { name: $r('app.string.arkts_custom_components_freeze1'), path: 'View/Page1' },
     { name: $r('app.string.arkts_custom_components_freeze2'), path: 'View/Page2' },
     { name: $r('app.string.arkts_custom_components_freeze3'), path: 'View/TabContentTest' },
