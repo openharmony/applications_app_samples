@@ -95,7 +95,7 @@ export struct FocusControl {
     }
     // [StartExclude dynamic_focus_control_demo]
     .backgroundColor('#f1f2f3')
-    //app.string.Pages_Index_Focus_Active_title资源文件中的value值为'主动获焦/失焦'
+    // app.string.Focus_FocusController_title资源文件中的value值为'主动获焦/失焦'
     .title($r('app.string.Focus_FocusController_title'))
     // [EndExclude dynamic_focus_control_demo]
   }

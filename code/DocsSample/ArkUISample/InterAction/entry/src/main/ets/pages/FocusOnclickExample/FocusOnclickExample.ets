@@ -24,7 +24,7 @@ struct FocusOnclickExample {
     Column() {
       Text(this.text)
         .margin({bottom:20})
-      //app.string.button资源文件中的value值为'按钮'
+      // app.string.button资源文件中的value值为'按钮'
       Button($r('app.string.button'))
         .responseRegion([
           {

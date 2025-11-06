@@ -28,6 +28,7 @@ let want: Want;
 const TAG = '[Sample_Eventproject]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'Eventproject_';
+// $r('app.string.xxx')需要替换为开发者所需的资源文件
 
 export default function IndexTest() {
 
@@ -57,7 +58,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      //$r('app.string.singlegesture_Index_TapGesture_title')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.singlegesture_Index_TapGesture_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_TapGesture_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -81,7 +82,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('gesture', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      //$r('app.string.singlegesture_Index_LongPress_title')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.singlegesture_Index_LongPress_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_LongPress_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -105,7 +106,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('GestureJudge', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      //$r('app.string.gesture_Index_GestureJudge_title')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.gesture_Index_GestureJudge_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.gesture_Index_GestureJudge_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -126,7 +127,7 @@ export default function IndexTest() {
       let button_list = await driver.findComponent(ON.text('TouchEvent', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      //$r('app.string.Touch_Index_ClickEvent_title')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.Touch_Index_ClickEvent_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.Touch_Index_ClickEvent_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -151,7 +152,7 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-      //$r('app.string.singlegesture_Index_Click_title')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.singlegesture_Index_Click_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_Click_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
@@ -354,7 +355,7 @@ export default function IndexTest() {
       expect(button_list === null).assertFalse();
       await button_list.click();
       let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
-      //$r('app.string.singlegesture_Index_Pancom_title')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.singlegesture_Index_Pancom_title')需要替换为开发者所需的字符串资源文件
       let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.singlegesture_Index_Pancom_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面

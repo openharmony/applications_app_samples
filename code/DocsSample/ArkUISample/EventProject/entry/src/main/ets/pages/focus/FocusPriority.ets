@@ -43,7 +43,7 @@ export struct FocusPrioritySample {
     }
     // [StartExclude focus_priority_manage]
     .backgroundColor('#f1f2f3')
-    //app.string.Focus_FocusPriority_title资源文件中的value值为'容器默认焦点'
+    // app.string.Focus_FocusPriority_title资源文件中的value值为'容器默认焦点'
     .title($r('app.string.Focus_FocusPriority_title'))
     // [EndExclude focus_priority_manage]
   }
