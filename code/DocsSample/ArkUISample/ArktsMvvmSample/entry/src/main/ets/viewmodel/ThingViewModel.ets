@@ -32,7 +32,7 @@ export default class ThingViewModel {
   }
 
   addSuffixes(): void {
-    // $r('app.string.la_la')需要替换为开发者所需的资源文件
+    // app.string.la_la资源文件中的value值为'啦'
     this.thingName += this.context.resourceManager.getStringSync($r('app.string.la_la').id);
   }
 }

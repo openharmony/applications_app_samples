@@ -18,7 +18,7 @@
 export struct TodoComponent {
   build() {
     Row() {
-      // $r('app.string.all_tasks')需要替换为开发者所需的资源文件
+      // app.string.all_tasks资源文件中的value值为'全部待办'
       Text($r('app.string.all_tasks'))
         .fontSize(30)
         .fontWeight(FontWeight.Bold)

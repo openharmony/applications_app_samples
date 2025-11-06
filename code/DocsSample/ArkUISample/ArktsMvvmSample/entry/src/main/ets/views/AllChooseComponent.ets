@@ -20,7 +20,7 @@ import { common } from '@kit.AbilityKit';
 @Component
 export struct AllChooseComponent {
   context1 = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // $r('app.string.check_all')需要替换为开发者所需的资源文件
+  // app.string.check_all资源文件中的value值为'全选'
   @State titleName: ResourceStr = this.context1.resourceManager.getStringSync($r('app.string.check_all').id);
   @Link todoListViewModel: TodoListViewModel;
 
@@ -29,9 +29,10 @@ export struct AllChooseComponent {
       Button(`${this.titleName}`, { type: ButtonType.Capsule })
         .onClick(() => {
           this.todoListViewModel.chooseAll(); // View层点击事件发生时，调用ViewModel层方法chooseAll处理逻辑
-          // $r('app.string.xxx')需要替换为开发者所需的资源文件
           this.titleName = this.todoListViewModel.isChoosen ?
+            // app.string.check_all资源文件中的value值为'全选'
             this.context1.resourceManager.getStringSync($r('app.string.check_all').id)
+            // app.string.deselect_all资源文件中的value值为'取消全选'
             : this.context1.resourceManager.getStringSync($r('app.string.deselect_all').id);
         })
         .fontSize(30)
@@ -43,4 +44,5 @@ export struct AllChooseComponent {
     .margin({ top: 10, bottom: 10 })
   }
 }
+
 // [End all_choose_component_view]
