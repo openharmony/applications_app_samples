@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+//  存档图类型数据源页面&媒体库获取的url格式
 @Entry
 @Component
 struct LoadingResources {
@@ -27,7 +28,7 @@ struct LoadingResources {
 
       //  [Start net_resource]
       //  $r('app.string.LoadingResources') 需要替换为开发者所需的资源文件
-      Image($r('app.string.LoadingResources')) // 实际使用时请替换为真实地址
+      Image($r('app.string.LoadingResources')) // 实际使用时请替换真实路径.
       //  [End net_resource]
 
       //  [Start resource_icon]
@@ -42,7 +43,7 @@ struct LoadingResources {
 
       //  [Start fileLibrary_format]
       //  'file://media/Photos/5' 需要替换为开发者所需的资源文件
-      Image('file://media/Photos/5')
+      Image('file://media/Photos/5') // 实际使用时请替换真实路径.
         .width(200)
       //  [End fileLibrary_format]
     }

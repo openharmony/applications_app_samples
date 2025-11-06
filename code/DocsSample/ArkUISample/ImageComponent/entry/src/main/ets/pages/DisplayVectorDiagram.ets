@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+//  显示矢量图页面&同步加载图片
 @Entry
 @Component
 struct DisplayVectorDiagram {
@@ -29,7 +30,7 @@ struct DisplayVectorDiagram {
 
         //  [Start local_svg]
         //  'images/icon.svg' 需要替换为开发者所需的资源文件
-        Image('images/icon.svg')
+        Image('/images/icon.svg')
           .width(50)
           .height(50)
         //  [End local_svg]
