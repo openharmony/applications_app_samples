@@ -19,11 +19,11 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 //[StartExclude dropAnimationExample_start]
 export const dropAnimationRoutePrefix: string = 'dropAnimation';
-
 //[EndExclude dropAnimationExample_start]
-
+//[Start drop_hilog_const]
 const DOMAIN = 0x0000;
 const TAG = 'DropAnimationExampleTag'
+//[End drop_hilog_const]
 
 @Entry
 @Component

@@ -191,6 +191,7 @@ export struct GridEts {
             })
             //[End grid_previewData_start]
             //[End grid_isSelected_start]
+            // 多选场景右上角数量角标需要应用设置numberBadge参数
             .dragPreviewOptions({ numberBadge: this.numberBadge })
             //[End grid_numberBadge_start]
             .onPreDrag((status: PreDragStatus) => {
