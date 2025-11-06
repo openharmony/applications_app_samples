@@ -20,7 +20,7 @@ struct Page2 {
   @StorageLink('PropA') @Watch('second') storageLink2: number = 1;
 
   second() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.storageLink2);
+    hilog.info(0x0000, 'FreezeChild', 'second page: ' + `${this.storageLink2}`);
   }
 
   build() {

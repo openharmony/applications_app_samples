@@ -12,8 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start arkts_custom_components_freeze6]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Reusable
 @Component({ freezeWhenInactive: true })
 struct ChildComponent {
@@ -21,7 +23,7 @@ struct ChildComponent {
   @State count: number = 0;
 
   descChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.desc);
+    hilog.info(0x0000, 'FreezeChild', `ChildComponent messageChange ${this.desc}`);
   }
 
   aboutToReuse(params: Record<string, ESObject>): void {
@@ -29,7 +31,7 @@ struct ChildComponent {
   }
 
   aboutToRecycle(): void {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d');
+    hilog.info(0x0000, 'FreezeChild', `ChildComponent has been recycled`);
   }
 
   build() {
@@ -44,7 +46,7 @@ struct ChildComponent {
 
 @Entry
 @Component
-struct ComponentReuse {
+struct Page {
   @State desc: string = 'Hello World';
   @State flag: boolean = true;
   @State count: number = 0;

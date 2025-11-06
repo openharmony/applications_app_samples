@@ -14,6 +14,7 @@
  */
 // [Start arkts_custom_components_freeze5]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Entry
 @Component
 struct MyNavigationTestStack {
@@ -22,15 +23,15 @@ struct MyNavigationTestStack {
   @State logNumber: number = 0;
 
   info() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.message);
+    hilog.info(0x0000, 'FreezeChild', `freeze-test MyNavigation message callback ${this.message}`);
   }
 
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      PageOneStack1({ message: this.message, logNumber: this.logNumber })
+      PageOneStack({ message: this.message, logNumber: this.logNumber })
     } else if (name === 'pageTwo') {
-      PageTwoStack1({ message: this.message, logNumber: this.logNumber })
+      PageTwoStack({ message: this.message, logNumber: this.logNumber })
     } else if (name === 'pageThree') {
       PageThreeStack({ message: this.message, logNumber: this.logNumber })
     }
@@ -60,7 +61,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct PageOneStack1 {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 1;
   @Link message: number;
@@ -97,7 +98,7 @@ struct PageOneStack1 {
 }
 
 @Component
-struct PageTwoStack1 {
+struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 2;
   @Link message: number;

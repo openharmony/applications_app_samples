@@ -21,7 +21,7 @@ struct TabContentTest {
   private data: number[] = [0, 1];
 
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.message);
+    hilog.info(0x0000, 'FreezeChild', `TabContent message callback func ${this.message}`);
   }
 
   build() {
@@ -51,7 +51,7 @@ struct FreezeChild {
   index: number = 0;
 
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.message, this.index);
+    hilog.info(0x0000, 'FreezeChild', `FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

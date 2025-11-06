@@ -10,7 +10,7 @@
 
 ### 3.[Button](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
 
-### 4.[ 自定义组件冻结功能](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/ui/state-management/arkts-custom-components-freeze.md)
+### 4[ 自定义组件冻结功能](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/ui/state-management/arkts-custom-components-freeze.md)
 
 ### 效果预览
 
@@ -36,38 +36,8 @@
 
 4. 通过自动测试框架可进行测试及维护。
 
-### 具体实现
 
-核心作用：优化复杂 UI 性能，冻结非激活状态组件的刷新能力
-1. 工作机制：
-   启用后仅激活状态组件响应状态变化
-   非激活组件不触发 UI 刷新，减少不必要的渲染
-   重新激活时自动刷新，确保 UI 正确性
-   启用方式：在 @Component 装饰器中设置freezeWhenInactive: true
-2. 适用场景与激活状态
-   主要场景：
-   页面路由：仅栈顶页面为激活状态
-   TabContent：仅当前显示的 Tab 为激活状态
-   LazyForEach：仅当前显示的列表项为激活状态
-   Navigation：仅当前显示的 NavDestination 为激活状态
-   激活状态定义：
-   激活：用户可见的组件
-   非激活：不可见的缓存组件或后台页面组件
-   混用场景：API 18 + 支持父组件激活时仅解冻屏上子组件
-3. 关键使用方式
-   页面路由场景：在 @Entry 组件上启用，实现页面切换时的冻结
-   TabContent 场景：在 TabContent 内的子组件上启用，实现 Tab 切换时的冻结
-   LazyForEach 场景：在列表项组件上启用，减少长列表刷新负担
-   组件复用场景：结合 @Reusable 使用，优化复用池中的组件刷新
-4. 限制条件与注意事项
-   不支持场景：使用 BuilderNode 动态挂载的组件无法被冻结
-   重要注意：
-   激活状态≠可见性，由框架自动管理
-   非激活组件的状态变化会在重新激活时一次性刷新
-   API 11 开始支持，API 18 开始支持混用场景优化
-   性能监控：建议使用 hiTraceMeter 跟踪刷新次数，验证优化效果
 ### 工程目录
-
 
 ```
 CustomComponentsFreeze
@@ -162,6 +132,37 @@ CustomComponentsFreeze
       └─ image9.jpeg
 
 ```
+
+### 具体实现
+
+核心作用：优化复杂 UI 性能，冻结非激活状态组件的刷新能力
+1. 工作机制：
+   启用后仅激活状态组件响应状态变化
+   非激活组件不触发 UI 刷新，减少不必要的渲染
+   重新激活时自动刷新，确保 UI 正确性
+   启用方式：在 @Component 装饰器中设置freezeWhenInactive: true
+2. 适用场景与激活状态
+   主要场景：
+   页面路由：仅栈顶页面为激活状态
+   TabContent：仅当前显示的 Tab 为激活状态
+   LazyForEach：仅当前显示的列表项为激活状态
+   Navigation：仅当前显示的 NavDestination 为激活状态
+   激活状态定义：
+   激活：用户可见的组件
+   非激活：不可见的缓存组件或后台页面组件
+   混用场景：API 18 + 支持父组件激活时仅解冻屏上子组件
+3. 关键使用方式
+   页面路由场景：在 @Entry 组件上启用，实现页面切换时的冻结
+   TabContent 场景：在 TabContent 内的子组件上启用，实现 Tab 切换时的冻结
+   LazyForEach 场景：在列表项组件上启用，减少长列表刷新负担
+   组件复用场景：结合 @Reusable 使用，优化复用池中的组件刷新
+4. 限制条件与注意事项
+   不支持场景：使用 BuilderNode 动态挂载的组件无法被冻结
+   重要注意：
+   激活状态≠可见性，由框架自动管理
+   非激活组件的状态变化会在重新激活时一次性刷新
+   API 11 开始支持，API 18 开始支持混用场景优化
+   性能监控：建议使用 hiTraceMeter 跟踪刷新次数，验证优化效果
 
 ### 相关权限
 

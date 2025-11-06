@@ -13,18 +13,20 @@
  * limitations under the License.
  */
 // [Start arkts_custom_components_freeze9]
+// index.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Component
 struct ChildOfParamComponent {
-  @Prop @Watch('onChange') childVal: number;
+  @Prop @Watch('onChange') child_val: number;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.childVal);
+    hilog.info(0x0000, 'FreezeChild', `Appmonitor ChildOfParamComponent: child_val changed:${this.child_val}`);
   }
 
   build() {
     Column() {
-      Text(`Child Param： ${this.childVal}`);
+      Text(`Child Param： ${this.child_val}`);
     }
   }
 }
@@ -34,13 +36,13 @@ struct ParamComponent {
   @Prop @Watch('onChange') paramVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.paramVal);
+    hilog.info(0x0000, 'FreezeChild', `Appmonitor ParamComponent: paramVal changed:${this.paramVal}`);
   }
 
   build() {
     Column() {
       Text(`val： ${this.paramVal}`)
-      ChildOfParamComponent({ childVal: this.paramVal });
+      ChildOfParamComponent({ child_val: this.paramVal });
     }
   }
 }
@@ -52,7 +54,7 @@ struct DelayComponent {
   @Prop @Watch('onChange') delayVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.delayVal);
+    hilog.info(0x0000, 'FreezeChild', `Appmonitor ParamComponent: delayVal changed:${this.delayVal}`);
   }
 
   build() {
@@ -68,7 +70,7 @@ struct TabsComponent {
   @State @Watch('onChange') tabState: number = 47;
 
   onChange() {
-    hilog.info(0x0000, 'ChildComponent has been recycled', 'FreezeChild message callback func %{public}d, index: %{public}d',this.tabState);
+    hilog.info(0x0000, 'FreezeChild', `Appmonitor TabsComponent: tabState changed:${this.tabState}`);
   }
 
   build() {
@@ -76,7 +78,7 @@ struct TabsComponent {
       Button(`Incr state ${this.tabState}`)
         .fontSize(25)
         .onClick(() => {
-          hilog.info(0x0000, 'Button increment state valued', 'FreezeChild message callback func %{public}d, index: %{public}d');
+          hilog.info(0x0000, 'FreezeChild', 'Button increment state value');
           this.tabState = this.tabState + 1;
         })
 
@@ -104,17 +106,17 @@ struct TabsComponent {
 
 @Entry
 @Component
-struct ComponentMixing {
+struct MyNavigationTestStack {
   @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
 
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      PageOneStack2()
+      PageOneStack()
     } else if (name === 'pageTwo') {
       PageTwoStack()
     }
-  }
+  };
 
   build() {
     Column() {
@@ -136,7 +138,7 @@ struct ComponentMixing {
 }
 
 @Component
-struct PageOneStack2 {
+struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
 
   build() {

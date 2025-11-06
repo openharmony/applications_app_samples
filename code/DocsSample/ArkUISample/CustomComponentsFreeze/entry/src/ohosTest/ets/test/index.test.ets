@@ -84,10 +84,12 @@ export default function IndexTest(){
       expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-      sampleButton = await driver.findComponent(ON.id('firstPageText1'))
+      sampleButton = await driver.findComponent(ON.text('From first Page', MatchPattern.CONTAINS));
+      expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
-      sampleButton = await driver.findComponent(ON.text('go to next page'))
+      sampleButton = await driver.findComponent(ON.text('go to next page'));
+      expect(sampleButton !== null).assertTrue();
       await sampleButton.click();
       await driver.delayMs(1000);
       await driver.pressBack();
@@ -240,8 +242,6 @@ export default function IndexTest(){
     });
   })
 }
-
-
 
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
