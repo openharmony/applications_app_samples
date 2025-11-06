@@ -54,7 +54,7 @@ export struct DefaultFocus {
             })
               // 监听第二个组件的失焦事件，失焦后改变颜色
             .onBlur(() => {
-              this.twoButtonColor = Color.Grey;
+              this.twoButtonColor = Color.Gray;
             })
 
           Button('Third Button')
