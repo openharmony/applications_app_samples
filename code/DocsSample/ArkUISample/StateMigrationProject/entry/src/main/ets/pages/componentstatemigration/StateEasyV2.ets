@@ -16,7 +16,7 @@
 // [Start Child2_start]
 @Entry
 @ComponentV2
-struct Child2 {
+struct Child {
   @Local val: number = 10;
 
   build() {
@@ -24,3 +24,5 @@ struct Child2 {
   }
 }
 // [End Child2_start]
+const child2 = Child;
+export default child2;

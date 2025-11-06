@@ -15,19 +15,19 @@
 // [Start Parent22_start]
 @Entry
 @ComponentV2
-struct Parent22 {
+struct Parent {
   @Local parentValue: number = 42;
 
   build() {
     Column() {
       // @Provider禁止从父组件初始化，替代方案为先用@Param接受，再赋值给@Provider
-      Child22({ initialValue: this.parentValue })
+      Child({ initialValue: this.parentValue })
     }
   }
 }
 
 @ComponentV2
-struct Child22 {
+struct Child {
   @Param @Once initialValue: number = 0;
   @Provider() childValue: number = this.initialValue;
 
@@ -38,3 +38,5 @@ struct Child22 {
   }
 }
 // [End Parent22_start]
+const parent22 = Parent;
+export default parent22;

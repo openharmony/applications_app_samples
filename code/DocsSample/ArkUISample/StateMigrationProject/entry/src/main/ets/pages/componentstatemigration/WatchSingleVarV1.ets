@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 // [Start WatchExample1_start]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
 
 @Entry
 @Component
-struct WatchExample1 {
+struct WatchExample {
   @State @Watch('onAppleChange') apple: number = 0;
 
   onAppleChange(): void {
@@ -38,3 +38,5 @@ struct WatchExample1 {
   }
 }
 // [End WatchExample1_start]
+const watchExample1 = WatchExample;
+export default watchExample1;

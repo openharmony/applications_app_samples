@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 // [Start Parent11_start]
-class Fruit1 {
+class Fruit {
   public apple: number = 5;
   public orange: number = 10;
 }
 
 @Component
-struct Child11 {
+struct Child {
   // @Prop传递Fruit类，当子类修改属性，父类不受影响
-  @Prop fruit: Fruit1;
+  @Prop fruit: Fruit;
 
   build() {
     Column() {
@@ -41,15 +41,17 @@ struct Child11 {
 
 @Entry
 @Component
-struct Parent11 {
-  @State parentFruit: Fruit1 = new Fruit1();
+struct Parent {
+  @State parentFruit: Fruit = new Fruit();
 
   build() {
     Column() {
       Text('parent apple: ' + this.parentFruit.apple.toString())
       Text('parent orange: ' + this.parentFruit.orange.toString())
-      Child11({ fruit: this.parentFruit })
+      Child({ fruit: this.parentFruit })
     }
   }
 }
 // [End Parent11_start]
+const parent11 = Parent;
+export default parent11;

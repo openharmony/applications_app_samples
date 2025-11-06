@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 // [Start example1_start]
-class Child3 {
+class Child {
   public value: number = 10;
 }
 
 @Component
 @Entry
-struct Example1 {
-  @State child: Child3 = new Child3();
+struct Example {
+  @State child: Child = new Child();
 
   build() {
     Column() {
@@ -34,3 +34,5 @@ struct Example1 {
   }
 }
 // [End example1_start]
+const example1 = Example;
+export default example1;

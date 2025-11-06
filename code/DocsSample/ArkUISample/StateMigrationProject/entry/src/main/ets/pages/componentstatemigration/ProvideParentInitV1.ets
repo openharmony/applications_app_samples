@@ -15,19 +15,19 @@
 // [Start Parent21_start]
 @Entry
 @Component
-struct Parent21 {
+struct Parent {
   @State parentValue: number = 42;
 
   build() {
     Column() {
       // @Provide可以从父组件初始化
-      Child21({ childValue: this.parentValue })
+      Child({ childValue: this.parentValue })
     }
   }
 }
 
 @Component
-struct Child21 {
+struct Child {
   @Provide childValue: number = 0;
 
   build() {
@@ -37,3 +37,5 @@ struct Child21 {
   }
 }
 // [End Parent21_start]
+const parent21 = Parent;
+export default parent21;

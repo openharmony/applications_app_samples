@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 // [Start MonitorExample1_start]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
 
 @Entry
 @ComponentV2
-struct MonitorExample1 {
+struct MonitorExample {
   @Local apple: number = 0;
 
   @Monitor('apple')
@@ -39,3 +39,5 @@ struct MonitorExample1 {
   }
 }
 // [End MonitorExample1_start]
+const monitorExample1 = MonitorExample;
+export default monitorExample1;

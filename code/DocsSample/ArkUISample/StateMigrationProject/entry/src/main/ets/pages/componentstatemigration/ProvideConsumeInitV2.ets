@@ -14,7 +14,7 @@
  */
 // [Start Parent20_start]
 @ComponentV2
-struct Child20 {
+struct Child {
   // @Consumer允许本地初始化，当找不到@Provider的时候使用本地默认值
   @Consumer() message: string = 'Hello World';
 
@@ -25,11 +25,13 @@ struct Child20 {
 
 @Entry
 @ComponentV2
-struct Parent20 {
+struct Parent {
   build() {
     Column() {
-      Child20()
+      Child()
     }
   }
 }
 // [End Parent20_start]
+const parent20 = Parent;
+export default parent20;

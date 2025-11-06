@@ -15,28 +15,28 @@
 // [Start GrandParent2_start]
 @Entry
 @ComponentV2
-struct GrandParent2 {
+struct GrandParent {
   @Provider('reviewVotes') reviewVotes: number = 40;
 
   build() {
     Column() {
-      Parent24()
+      Parent()
     }
   }
 }
 
 @ComponentV2
-struct Parent24 {
+struct Parent {
   // @Provider默认支持重载，@Consumer向上查找最近的@Provider
   @Provider() reviewVotes: number = 20;
 
   build() {
-    Child24()
+    Child()
   }
 }
 
 @ComponentV2
-struct Child24 {
+struct Child {
   @Consumer() reviewVotes: number = 0;
 
   build() {
@@ -44,3 +44,5 @@ struct Child24 {
   }
 }
 // [End GrandParent2_start]
+const grandParent2 = GrandParent;
+export default grandParent2;
