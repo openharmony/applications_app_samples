@@ -19,7 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 @Entry
 @Component
-export struct ButtonCase2 {
+export struct ButtonCaseLogin {
   build() {
     NavDestination() {
       Column() {

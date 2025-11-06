@@ -21,8 +21,8 @@ import { Route } from '../../common/Route';
 import { SetButtonType } from './SetButtonType';
 import { SubmitForm } from './SubmitForm';
 import  resource  from  '../../common/resource'
-import { ButtonCase1 } from './ButtonCase1';
-import { ButtonCase2 } from './ButtonCase2';
+import { ButtonCaseTouch } from './ButtonCaseTouch';
+import { ButtonCaseLogin } from './ButtonCaseLogin';
 import { HoverButtonExample } from './HoverButtonExample';
 
 export const BUTTON_ROUTE_PREFIX: string = 'button';
@@ -54,14 +54,14 @@ const routes: Route[] = [
     description: $r('app.string.FloatingButton_description')
   },
   {
-    name: `${BUTTON_ROUTE_PREFIX}/ButtonCase1`,
-    title: resource.resourceToString($r('app.string.ButtonCase1_title')),
-    description: $r('app.string.ButtonCase1_desc')
+    name: `${BUTTON_ROUTE_PREFIX}/ButtonCaseTouch`,
+    title: resource.resourceToString($r('app.string.ButtonCaseTouch_title')),
+    description: $r('app.string.ButtonCaseTouch_desc')
   },
   {
-    name: `${BUTTON_ROUTE_PREFIX}/ButtonCase2`,
-    title: resource.resourceToString($r('app.string.ButtonCase2_title')),
-    description: $r('app.string.ButtonCase2_desc')
+    name: `${BUTTON_ROUTE_PREFIX}/ButtonCaseLogin`,
+    title: resource.resourceToString($r('app.string.ButtonCaseLogin_title')),
+    description: $r('app.string.ButtonCaseLogin_desc')
   },
   {
     name: `${BUTTON_ROUTE_PREFIX}/HoverButtonExample`,
@@ -84,9 +84,9 @@ export function buttonDestination(name: string) {
   } else if (name === routes[4].name) {
     FloatingButton();
   } else if (name === routes[5].name) {
-    ButtonCase1();
+    ButtonCaseTouch();
   } else if (name === routes[6].name) {
-    ButtonCase2();
+    ButtonCaseLogin();
   } else if (name === routes[7].name) {
     HoverButtonExample();
   }
