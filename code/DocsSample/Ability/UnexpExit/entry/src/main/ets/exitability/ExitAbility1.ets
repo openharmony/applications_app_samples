@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start unexp_exit]
+
 import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -51,4 +51,3 @@ export default class ExitAbility1 extends UIAbility {
     }
   }
 }
-// [End unexp_exit]
