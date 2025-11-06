@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start want_ability]
+// [Start want_page]
 import { common, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -68,4 +68,4 @@ struct WantAbilityPage1 {
       })
   }
 }
-// [End want_ability]
+// [End want_page]
