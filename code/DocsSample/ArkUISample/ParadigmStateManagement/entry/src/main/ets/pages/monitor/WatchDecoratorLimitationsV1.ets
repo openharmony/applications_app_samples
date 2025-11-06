@@ -12,25 +12,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_watch_decorator_limitations_v1]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
 
-@Component
-export struct MonitorWatchDecoratorLimitationsV1 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_watch_decorator_limitations_v1'))
-  }
-}
-
-// [Start monitor_watch_decorator_limitations_v1]
 @Observed
 class Info {
   public name: string = 'Tom';
@@ -77,3 +63,17 @@ struct Index {
   }
 }
 // [End monitor_watch_decorator_limitations_v1]
+
+@Component
+export struct MonitorWatchDecoratorLimitationsV1 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_watch_decorator_limitations_v1'))
+  }
+}
