@@ -29,20 +29,21 @@ struct Index {
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          if (!startupManager.isStartupTaskInitialized('StartupTask_006') ) { // 判断是否已经完成初始化
+          if (!startupManager.isStartupTaskInitialized('StartupTask_006')) { // 判断是否已经完成初始化
             startupManager.run(this.startParams1);
           }
-          if (!startupManager.isStartupTaskInitialized('libentry_006') ) {
+          if (!startupManager.isStartupTaskInitialized('libentry_006')) {
             startupManager.run(this.startParams2);
           }
         })
         .alignRules({
-          center: {anchor: '__container__', align: VerticalAlign.Center},
-          middle: {anchor: '__container__', align: HorizontalAlign.Center}
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
     }
     .height('100%')
     .width('100%')
   }
 }
+
 // [End startup_index]

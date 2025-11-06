@@ -12,7 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { InsightIntentExecutor } from '@kit.AbilityKit';
+import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+import window from '@ohos.window';
 
 export default class WidgetExecutor extends InsightIntentExecutor {
+  async onExecuteInUIAbilityForegroundMode(intentName: string, params: Record<string, Object>,
+    windowStage: window.WindowStage): Promise<insightIntent.ExecuteResult> {
+    const result: insightIntent.ExecuteResult = {
+      code: 0
+    };
+    return Promise.resolve(result);
+  }
 }
+

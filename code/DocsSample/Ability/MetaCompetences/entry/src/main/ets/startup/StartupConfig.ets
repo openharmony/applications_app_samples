@@ -18,6 +18,7 @@ import { StartupConfig, StartupConfigEntry, StartupListener, Want } from '@kit.A
 // [StartExclude startup_config]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 // [EndExclude startup_config]
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
@@ -27,7 +28,8 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     let onCompletedCallback = (error: BusinessError<void>) => {
       hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        hilog.error(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
+        hilog.error(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code,
+          error.message);
       } else {
         hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
@@ -41,6 +43,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     };
     return config;
   }
+
   // [EndExclude startup_config]
   // [StartExclude startup_entryconfig]
   onRequestCustomMatchRule(want: Want): string {
@@ -49,7 +52,9 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     }
     return '';
   }
+
   // [EndExclude startup_entryconfig]
 }
+
 // [End startup_config]
 // [End startup_entryconfig]

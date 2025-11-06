@@ -32,4 +32,5 @@ export default class StartupTask001 extends StartupTask {
       dependence, JSON.stringify(result));
   }
 }
+
 // [End startup_task]

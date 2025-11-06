@@ -18,7 +18,9 @@ import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 // [StartExclude playmusic_executor]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0002;
+
 // [EndExclude playmusic_executor]
 
 export default class PlayMusicExecutor extends InsightIntentExecutor {
@@ -45,4 +47,5 @@ export default class PlayMusicExecutor extends InsightIntentExecutor {
     return Promise.resolve(result);
   }
 }
+
 // [End playmusic_executor]
