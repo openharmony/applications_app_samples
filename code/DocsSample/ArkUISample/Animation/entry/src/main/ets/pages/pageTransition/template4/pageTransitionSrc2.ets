@@ -19,6 +19,7 @@
 struct PageTransitionSrc2 {
   build() {
     Column() {
+      // $r('app.media.mountain')需要替换为开发者所需的资源文件
       Image($r('app.media.mountain'))
         .width('90%')
         .height('80%')

@@ -15,6 +15,10 @@
 // [Start animator_template3_start]
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 import resource from '../../../common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAG: string = '[AnimatorTest]';
 
 @Entry
 @Component
@@ -26,6 +30,7 @@ struct Index {
   end: number = 300;
   topWidth: number = 150;
   bottomHeight: number = 100;
+  // 自由落体运动的加速度系数
   g: number = 0.18;
   animatorOption: AnimatorOptions = {
     duration: 4000,
@@ -57,7 +62,7 @@ struct Index {
       this.animatorStatus = $r('app.string.complete');
     }
     this.animatorOptions.onRepeat = () => {
-      console.log('repeat play');
+      hilog.info(DOMAIN, TAG, 'repeat play');
     }
   }
 
@@ -96,7 +101,7 @@ struct Index {
       .width('100%')
       .height('45%')
       .align(Alignment.Start)
-
+      // app.string.animatorStatus资源文件中的value值为'当前动画状态为:'
       Text(resource.resourceToString($r('app.string.animatorStatus')) + resource.resourceToString(this.animatorStatus))
     }.width('100%').height('100%')
   }

@@ -16,6 +16,10 @@
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 // [End animator_template4_import_start]
 import resource from '../../../common/resource';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0000;
+const TAG: string = '[AnimatorTest]';
 
 @Entry
 @Component
@@ -33,7 +37,7 @@ struct Index {
     delay: 0,
     easing: 'linear',
     iterations: 1,
-    fill: "forwards",
+    fill: 'forwards',
     direction: 'normal',
     begin: this.begin,
     end: this.end
@@ -62,7 +66,7 @@ struct Index {
     }
     //动画重复播放时执行方法
     this.animatorOptions.onRepeat = () => {
-      console.log('repeat play');
+      hilog.info(DOMAIN, TAG, 'repeat play');
     }
   }
   // [End animator_template4_show_start]
@@ -108,7 +112,7 @@ struct Index {
       .width('100%')
       .height('45%')
       .align(Alignment.Start)
-
+      // app.string.animatorStatus资源文件中的value值为'当前动画状态为:'
       Text(resource.resourceToString($r('app.string.animatorStatus')) + resource.resourceToString(this.animatorStatus))
     }.width('100%').height('100%')
   }

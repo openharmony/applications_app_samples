@@ -607,6 +607,14 @@
     {
       "name": "modal_transition_text37",
       "value": "共享"
+    },
+    {
+      "name": "drag",
+      "value": "拖动小球"
+    },
+    {
+      "name": "location",
+      "value": "点击位置:"
     }
   ]
 }
