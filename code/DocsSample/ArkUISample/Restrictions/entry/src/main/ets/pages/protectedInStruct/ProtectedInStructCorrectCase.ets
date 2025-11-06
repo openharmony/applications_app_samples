@@ -21,7 +21,7 @@ struct ProtectedCorrectAccessRestrictions {
     Column() {
       ProtectedCorrectComponentChild({ regularValue: 'Hello' })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
@@ -33,7 +33,7 @@ struct ProtectedCorrectComponentChild {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
+        .fontWeight(FontWeight.Bold)
     }
   }
 }

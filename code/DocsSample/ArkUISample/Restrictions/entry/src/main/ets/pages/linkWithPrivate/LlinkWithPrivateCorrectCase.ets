@@ -19,7 +19,7 @@
 struct LinkAccessRestrictions {
   @Builder
   buildTest() {
-    Text('Parent builder');
+    Text('Parent builder')
   }
 
   build() {
@@ -32,7 +32,7 @@ struct LinkAccessRestrictions {
         regularValue: 'Hello'
       })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
@@ -46,14 +46,14 @@ struct LinkComponentChild {
 
   @Builder
   buildTest() {
-    Text('Child builder');
+    Text('Child builder')
   }
 
   build() {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
+        .fontWeight(FontWeight.Bold)
     }
   }
 }

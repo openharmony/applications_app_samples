@@ -51,6 +51,18 @@
     {
       "name": "publicWithStorageProperr_lable",
       "value": "跳转到 publicWithStorageProp 错误案例"
+    },
+    {
+      "name": "Hello",
+      "value": "Hello"
+    },
+    {
+      "name": "Parentbuilder",
+      "value": "Parent builder"
+    },
+    {
+      "name": "Childbuilder",
+      "value": "Child builder"
     }
   ]
 }

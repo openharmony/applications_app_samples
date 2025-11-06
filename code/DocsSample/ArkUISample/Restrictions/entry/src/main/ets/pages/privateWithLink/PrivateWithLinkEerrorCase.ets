@@ -16,15 +16,15 @@
 // [Start PrivateWithLink_EerrorCase]
 @Entry
 @Component
-struct PrivateErrorAccessRestrictions {
+struct PrivateWithLinkErrorAccessRestrictions {
   @State linkValue: string = 'Hello';
   @State objectLinkValue: PrivateErrorComponentObj = new PrivateErrorComponentObj();
 
   build() {
     Column() {
-      PrivateErrorComponentChild({ linkValue: this.linkValue, objectLinkValue: this.objectLinkValue })
+      PrivateWithLinkErrorComponentChild({ linkValue: this.linkValue, objectLinkValue: this.objectLinkValue })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
@@ -34,7 +34,7 @@ class PrivateErrorComponentObj {
 }
 
 @Component
-struct PrivateErrorComponentChild {
+struct PrivateWithLinkErrorComponentChild {
   // 此处使用private修饰符时会出现告警日志
   @Link private linkValue: string;
   // 此处使用private修饰符时会出现告警日志
@@ -44,7 +44,7 @@ struct PrivateErrorComponentChild {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
+        .fontWeight(FontWeight.Bold)
     }
   }
 }

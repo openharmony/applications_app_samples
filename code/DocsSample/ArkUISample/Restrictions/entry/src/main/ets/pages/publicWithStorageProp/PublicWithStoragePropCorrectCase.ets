@@ -23,7 +23,7 @@ struct PublicCorrectAccessRestrictions {
     Column() {
       PublicCorrectComponentChild()
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
@@ -39,7 +39,7 @@ struct PublicCorrectComponentChild {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
+        .fontWeight(FontWeight.Bold)
     }
   }
 }
