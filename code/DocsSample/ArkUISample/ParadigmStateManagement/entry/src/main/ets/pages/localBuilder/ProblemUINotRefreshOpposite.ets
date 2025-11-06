@@ -14,7 +14,7 @@
  */
 // [Start problem_ui_not_refresh_opposite]
 class LayoutSize {
-  size: number = 0;
+  public size: number = 0;
 }
 
 @Entry
@@ -48,7 +48,7 @@ struct Child {
   build() {
     Column() {
       this.customBuilder({ size: this.layoutSize.size }) // 子组件调用父组件的@LocalBuilder函数
-      Button("add child size")
+      Button('add child size')
         .onClick(() => {
           this.layoutSize.size += 1; // 子组件传入的参数发生变化，不会引起@LocalBuilder函数内的UI刷新
         })
