@@ -17,6 +17,8 @@
 // PromptActionClassNew.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, promptAction, UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0000;
 
 export class PromptActionClassNew {
   static ctx: UIContext;
@@ -40,12 +42,12 @@ export class PromptActionClassNew {
       // [Start prompt_action_class_open_custom_dialog]
       PromptActionClassNew.ctx.getPromptAction().openCustomDialog(PromptActionClassNew.contentNode, PromptActionClassNew.options)
         .then(() => {
-          console.info('OpenCustomDialog complete.');
+          hilog.info(DOMAIN, 'testTag', 'testTag', 'OpenCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
-          console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
+          hilog.error(DOMAIN, 'testTag', 'testTag', 'OpenCustomDialog args error code is ${code}, message is ${message}');
         })
       // [End prompt_action_class_open_custom_dialog]
     }
@@ -55,12 +57,12 @@ export class PromptActionClassNew {
     if (PromptActionClassNew.contentNode !== null) {
       PromptActionClassNew.ctx.getPromptAction().closeCustomDialog(PromptActionClassNew.contentNode)
         .then(() => {
-          console.info('CloseCustomDialog complete.');
+          hilog.info(DOMAIN, 'testTag', 'testTag', 'CloseCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
-          console.error(`CloseCustomDialog args error code is ${code}, message is ${message}`);
+          hilog.error(DOMAIN, 'testTag', 'testTag', 'CloseCustomDialog args error code is ${code}, message is ${message}');
         })
     }
   }
@@ -70,7 +72,7 @@ export class PromptActionClassNew {
      // [Start prompt_action_class_close_custom_dialog]
      PromptActionClassNew.ctx.getPromptAction().closeCustomDialog(PromptActionClassNew.contentNode)
      .then(() => {
-       console.info('CloseCustomDialog complete.');
+       hilog.info(DOMAIN, 'testTag', 'testTag', 'CloseCustomDialog complete.g complete.');
        if (this.contentNode !== null) {
             this.contentNode.dispose();   // 释放contentNode
         }
@@ -78,7 +80,7 @@ export class PromptActionClassNew {
      .catch((error: BusinessError) => {
        let message = (error as BusinessError).message;
        let code = (error as BusinessError).code;
-       console.error(`CloseCustomDialog args error code is ${code}, message is ${message}`);
+       hilog.error(DOMAIN, 'testTag', 'testTag', 'CloseCustomDialog args error code is ${code}, message is ${message}');
      })
      // [End prompt_action_class_close_custom_dialog]
   }
@@ -89,12 +91,12 @@ export class PromptActionClassNew {
       // [Start prompt_action_class_update_options]
       PromptActionClassNew.ctx.getPromptAction().updateCustomDialog(PromptActionClassNew.contentNode, options)
         .then(() => {
-          console.info('UpdateCustomDialog complete.');
+          hilog.info(DOMAIN, 'testTag', 'testTag', 'UpdateCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
           let code = (error as BusinessError).code;
-          console.error(`UpdateCustomDialog args error code is ${code}, message is ${message}`);
+          hilog.error(DOMAIN, 'testTag', 'testTag', 'UpdateCustomDialog args error code is ${code}, message is ${message}');
         })
       // [End prompt_action_class_update_options]
     }

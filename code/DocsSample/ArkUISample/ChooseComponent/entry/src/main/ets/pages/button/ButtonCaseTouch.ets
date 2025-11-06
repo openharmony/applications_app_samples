@@ -19,7 +19,7 @@ const DOMAIN = 0x0000;
 // xxx.ets
 @Entry
 @Component
-export struct ButtonCase1 {
+export struct ButtonCaseTouch {
   pathStack: NavPathStack = new NavPathStack();
 
   @Builder
@@ -80,7 +80,7 @@ export struct pageOneTmp {
     }.title('pageOne')
     .onBackPressed(() => {
       const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
-      // $r('app.string.return_value')资源文件中的value为'返回'
+      // $r('app.string.return_value')资源文件中的value为'返回值'
       hilog.info(DOMAIN, 'testTag', 'pop' + $r('app.string.return_value') + JSON.stringify(popDestinationInfo));
       return true
     })
@@ -103,7 +103,7 @@ export struct pageTwoTmp {
     }.title('pageTwo')
     .onBackPressed(() => {
       const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
-      // $r('app.string.return_value')资源文件中的value为'返回'
+      // $r('app.string.return_value')资源文件中的value为'返回值'
       hilog.info(DOMAIN, 'testTag', 'pop' + $r('app.string.return_value') + JSON.stringify(popDestinationInfo));
       return true
     })
@@ -126,7 +126,7 @@ export struct pageThreeTmp {
     }.title('pageThree')
     .onBackPressed(() => {
       const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
-      // $r('app.string.return_value')资源文件中的value为'返回'
+      // $r('app.string.return_value')资源文件中的value为'返回值'
       hilog.info(DOMAIN, 'testTag', 'pop' + $r('app.string.return_value') + JSON.stringify(popDestinationInfo));
       return true
     })

@@ -216,19 +216,19 @@
       "value": "切换按钮/Toggle"
     },
     {
-      "name": "ButtonCase1_title",
+      "name": "ButtonCaseTouch_title",
       "value": "启动操作"
     },
     {
-      "name": "ButtonCase1_desc",
+      "name": "ButtonCaseTouch_desc",
       "value": "可以用按钮启动任何用户界面元素，按钮会根据用户的操作触发相应的事件。"
     },
     {
-      "name": "ButtonCase2_title",
+      "name": "ButtonCaseLogin_title",
       "value": "提交表单"
     },
     {
-      "name": "ButtonCase2_desc",
+      "name": "ButtonCaseLogin_desc",
       "value": "在用户登录/注册页面，使用按钮进行登录或注册操作"
     },
     {
