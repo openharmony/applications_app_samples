@@ -106,7 +106,7 @@ function updateColorMode() {
     value.updateConfiguration();
   })
 }
-// [StartExclude custom_node]
+  // [StartExclude custom_node]
 @Entry
 @Component
 struct Index {
@@ -117,10 +117,10 @@ struct Index {
   @StorageProp('currentColorMode') @Watch('onColorModeChange') currentMode: number =
     ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
   // [End prop_sys]
-// [EndExclude custom_node]
+  // [EndExclude custom_node]
   // [Start color_mode_change_appear]
   aboutToAppear(): void {
-    // [StartExclude custom_node]
+        // [StartExclude custom_node]
     // [StartExclude color_mode_change_appear]
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
@@ -128,9 +128,9 @@ struct Index {
       },
       onConfigurationUpdated: (config: Configuration): void => {
         hilog.info(DOMAIN, TAG, 'onConfigurationUpdated ' + JSON.stringify(config));
-    // [EndExclude custom_node]
+        // [EndExclude custom_node]
         this.getUIContext()?.postFrameCallback(new MyFrameCallback());
-    // [StartExclude custom_node]
+        // [StartExclude custom_node]
       }
     };
     // 注册监听回调
@@ -140,7 +140,6 @@ struct Index {
       .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     // 创建自定义节点并添加至map
     this.textNodeController.createNode(this.getUIContext());
-    // [EndExclude custom_node]
     // [EndExclude color_mode_change_appear]
     if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
       // 当前为浅色模式，资源初始化逻辑
@@ -153,6 +152,7 @@ struct Index {
       this.colorText == 'dark';
       // [EndExclude color_mode_change_appear]
     }
+        // [EndExclude custom_node]
   }
   // [End color_mode_change_appear]
 // [End custom_node]
