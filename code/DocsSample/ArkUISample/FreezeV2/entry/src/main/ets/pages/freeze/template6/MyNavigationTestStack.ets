@@ -27,7 +27,7 @@ struct ChildOfParamComponent {
 
   build() {
     Column() {
-      Text(`Child Param： ${this.childVal}`);
+      Text(`Child Param： ${this.childVal}`)
     }
   }
 }
@@ -42,8 +42,8 @@ struct ParamComponent {
 
   build() {
     Column() {
-      Text(`val： ${this.val}`);
-      ChildOfParamComponent({childVal: this.val});
+      Text(`val： ${this.val}`)
+      ChildOfParamComponent({childVal: this.val})
     }
   }
 }
@@ -58,7 +58,7 @@ struct DelayComponent {
 
   build() {
     Column() {
-      Text(`Delay Param： ${this.delayVal1}`);
+      Text(`Delay Param： ${this.delayVal1}`)
     }
   }
 }
@@ -83,10 +83,10 @@ struct TabsComponent {
 
       Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller}) {
         TabContent() {
-          ParamComponent({val: this.tabState});
+          ParamComponent({val: this.tabState})
         }.tabBar('Update')
         TabContent() {
-          DelayComponent({delayVal1: this.tabState});
+          DelayComponent({delayVal1: this.tabState})
         }.tabBar('DelayUpdate')
       }
       .vertical(false)
@@ -140,7 +140,7 @@ struct PageOneStack1 {
   build() {
     NavDestination() {
       Column() {
-        TabsComponent();
+        TabsComponent()
 
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
