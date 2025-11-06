@@ -24,7 +24,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @ObservedV2
 class Task {
-  // 未实现构造函数，因为@Type当前不支持带参数的构造函数
+  // 未实现构造函数，因为@Type当前不支持带参数的构造函数。
   @Trace public taskName: string = 'Todo';
   @Trace public isFinish: boolean = false;
 }
@@ -37,7 +37,7 @@ class Task {
 
 @ObservedV2
 class TaskList {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
+  // 对于复杂对象需要@Type修饰，确保序列化成功。
   @Type(Task)
   @Trace public tasks: Task[] = [];
 
@@ -65,7 +65,7 @@ struct TaskItem {
   @Event deleteTask: () => void = () => {};
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
-    hilog.debug(0x0000, 'testTag', '%{public}s', '任务' + this.task.taskName + '的完成状态从' + mon.value()?.before + '变为了' + mon.value()?.now);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
   }
 
   build() {
@@ -78,6 +78,7 @@ struct TaskItem {
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
         .fontSize(18)
+      // app.string.Delete_task 资源文件中的value值为'删除'。
       actionButton($r('app.string.Delete_task'), () => this.deleteTask())
     }
     .height('7%')
@@ -116,10 +117,12 @@ struct TodoList {
 
   build() {
     Column() {
+      // app.string.TodoList_title 资源文件中的value值为'待办'。
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin(10)
-      Text(`${this.context.resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
+      // app.string.Unfinish_count 资源文件中的value值为'未完成任务'。
+      Text($r('app.string.Unfinish_count') + `：${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
       Repeat<Task>(this.taskList.tasks.filter(task => this.setting.showCompletedTask || !task.isFinish))
         .each((obj: RepeatItem<Task>) => {
@@ -129,12 +132,15 @@ struct TodoList {
           }).margin(5)
         })
       Row() {
+        // app.string.Finish_all_tasks 资源文件中的value值为'全部完成'。
         actionButton($r('app.string.Finish_all_tasks'), (): void => this.finishAll(true))
+        // app.string.Unfinish_all_tasks 资源文件中的value值为'全部未完成'。
         actionButton($r('app.string.Unfinish_all_tasks'), (): void => this.finishAll(false))
+        // app.string.Setting 资源文件中的value值为'设置'。
         actionButton($r('app.string.Setting'), (): void => {
           let wantInfo: Want = {
-            deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+            deviceId: '', // deviceId为空表示本设备。
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -142,6 +148,7 @@ struct TodoList {
       }
       .margin({ top: 10, bottom: 5 })
       Row() {
+        // app.string.Add_new_task 资源文件中的value值为'添加新任务'。
         TextInput({ placeholder: $r('app.string.Add_new_task'), text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')

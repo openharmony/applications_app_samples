@@ -30,6 +30,7 @@ struct TaskItem {
         .height(28)
       Text(this.taskName)
         .decoration({ type: this.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
+      // app.string.Delete_task资源文件中的value值为'删除'。
       Button($r('app.string.Delete_task'))
         .onClick(() => this.deleteTask())
     }
@@ -44,6 +45,7 @@ struct TodoList {
   @Local newTaskName: string = '';
   build() {
     Column() {
+      // app.string.TodoList_title 资源文件中的value值为'待办'。
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin({ bottom: 10 })
@@ -56,6 +58,7 @@ struct TodoList {
           })
         })
       Row() {
+        // app.string.Add_new_task 资源文件中的value值为'添加新任务'。
         TextInput({ placeholder: $r('app.string.Add_new_task'), text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
