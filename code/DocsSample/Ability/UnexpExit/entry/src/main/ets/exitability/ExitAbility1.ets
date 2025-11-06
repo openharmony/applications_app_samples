@@ -16,6 +16,7 @@
 // [Start unexp_exit]
 import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER = 0xF811;
 const TAG  = '[Sample_UnexpExit]';
 const MAX_RSS_THRESHOLD: number = 100000;
