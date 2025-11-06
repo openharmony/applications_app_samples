@@ -35,6 +35,16 @@ entry/src/
 |   |   |   |---Ability.test.ets                   // 自动化测试用例
 ```
 
+### 具体实现
+* 在EntryAbility.ets导入相关模块import { calendarManager } from '@kit.CalendarKit'并初始化全局变量calendarMgr。
+* 在index.ets引入全局变量calendarMgr。
+* 创建日历账户对象:调用calendarMgr.createCalendar()创建日历账户。
+* 设置日历配置信息:调用calendarMgr.getCalendar()获取刚刚创建的日历账户对象data，调用data.setConfig()设置日历配置信息。
+* 查询指定日历账户:调用calendarMgr.getCalendar()，传入对应日历账户，查询指定日历账户。
+* 查询默认日历账户:调用calendarMgr.getCalendar()查询默认日历账户。
+* 查询所有日历账户:调用calendarMgr.getCalendars()查询所有日历账户。
+* 删除指定日历账户:调用calendarMgr.deleteCalendar()，传入对应日历账户来删除日历对象。
+
 ### 相关权限
 
 [ohos.permission.READ_CALENDAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/permissions-for-all-user#ohospermissionread_calendar)
