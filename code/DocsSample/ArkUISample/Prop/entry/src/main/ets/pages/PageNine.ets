@@ -30,57 +30,57 @@ class Father {
     this.son = son;
   }
 }
-
+// [StartExclude prop_nine_start]
 @Entry
 @Component
 struct Person {
   @State person: Father = new Father('Hello', new Son('world'));
 
   build() {
-      Column() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-          Button('change Father name')
-            .width(312)
-            .height(40)
-            .margin(12)
-            .fontColor('#FFFFFF')
-            .onClick(() => {
-              this.person.name = 'Hi';
-            })
-          Button('change Son title')
-            .width(312)
-            .height(40)
-            .margin(12)
-            .fontColor('#FFFFFF')
-            .onClick(() => {
-              this.person.son.title = 'ArkUI';
-            })
-          Text(this.person.name)
-            .fontSize(16)
-            .margin(12)
-            .width(312)
-            .height(40)
-            .backgroundColor('#ededed')
-            .borderRadius(20)
-            .textAlign(TextAlign.Center)
-            .fontColor('#e6000000')
-            .onClick(() => {
-              this.person.name = 'Bye';
-            })
-          Text(this.person.son.title)
-            .fontSize(16)
-            .margin(12)
-            .width(312)
-            .height(40)
-            .backgroundColor('#ededed')
-            .borderRadius(20)
-            .textAlign(TextAlign.Center)
-            .onClick(() => {
-              this.person.son.title = 'openHarmony';
-            })
-          Child({ child: this.person.son })
-        }
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+        Button('change Father name')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF')
+          .onClick(() => {
+            this.person.name = 'Hi';
+          })
+        Button('change Son title')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF')
+          .onClick(() => {
+            this.person.son.title = 'ArkUI';
+          })
+        Text(this.person.name)
+          .fontSize(16)
+          .margin(12)
+          .width(312)
+          .height(40)
+          .backgroundColor('#ededed')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
+          .fontColor('#e6000000')
+          .onClick(() => {
+            this.person.name = 'Bye';
+          })
+        Text(this.person.son.title)
+          .fontSize(16)
+          .margin(12)
+          .width(312)
+          .height(40)
+          .backgroundColor('#ededed')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.person.son.title = 'openHarmony';
+          })
+        Child({ child: this.person.son })
       }
+    }
   }
 }
 
@@ -105,7 +105,7 @@ struct Child {
     }
   }
 }
-
+// [EndExclude prop_nine_start]
 // [End prop_nine_start]
 
 @Builder

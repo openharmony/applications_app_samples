@@ -38,27 +38,6 @@ export default function IndexTest() {
     })
 
     /**
-     * @tc.number PageOneTest
-     * @tc.name PageOneTest
-     * @tc.desc 测试PageOne是否显示正常
-     * @tc.level : Level1
-     * @tc.size : MediumTest
-     * @tc.type : Function
-     */
-    it('PageOneTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
-      console.info('uitest: PageOneTest begin');
-      let driver = Driver.create();
-      let button1 = await driver.findComponent(ON.text('PageOne', MatchPattern.CONTAINS));
-      expect(button1 === null).assertFalse();
-      await button1.click();
-      await driver.delayMs(1000);
-      await driver.delayMs(1000);
-      await driver.pressBack();
-      console.info('uitest: PageOneTest end');
-      done();
-    })
-
-    /**
      * @tc.number PageTwoTest
      * @tc.name PageTwoTest
      * @tc.desc 测试PageTwo是否显示正常

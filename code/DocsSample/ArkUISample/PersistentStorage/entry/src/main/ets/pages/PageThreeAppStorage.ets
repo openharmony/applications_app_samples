@@ -23,14 +23,11 @@ struct TestPageThree {
 
   // 组件初始化并即将显示时执行（仅触发一次）
   aboutToAppear() {
-    // 保留的逻辑：持久化 aProp 并判断是否超过最大值
-    // [StartExclude Persistent_page_three]
     PersistentStorage.persistProp('aProp', 48);
     if ((AppStorage.get<number>('aProp') ?? 0) > MAX_NUM) {
       // 如果PersistentStorage存储的值超过50，设置为47
       AppStorage.setOrCreate('aProp',47);
     }
-    // [EndExclude Persistent_page_three]
   }
 
   build() {
