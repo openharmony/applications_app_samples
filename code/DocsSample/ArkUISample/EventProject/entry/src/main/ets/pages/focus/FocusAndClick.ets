@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-import { KeyCode } from '@kit.InputKit';
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
-
 // [Start dynamic_focus_click_count]
 @Entry
 @Component

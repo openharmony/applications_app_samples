@@ -35,7 +35,7 @@ struct Sampling {
           if (allHistoricalPoints.length !== 0) {
             for (const point of allHistoricalPoints) {
               hilog.info(DOMAIN, TAG, BUNDLE + 'historical point: [' + point.touchObject.windowX +
-                ', ' + point.touchObject.windowY + ']')
+                ', ' + point.touchObject.windowY + ']');
             }
           }
         })

@@ -23,8 +23,8 @@ const BUNDLE = 'MyApp_MultipleFingerInformation';
 @Entry
 @ComponentV2
 struct MultipleFingerInformation {
-  private currentFingerCount: number = 0
-  private allFingerIds: number[] = []
+  private currentFingerCount: number = 0;
+  private allFingerIds: number[] = [];
 
   build() {
     RelativeContainer() {
@@ -37,24 +37,24 @@ struct MultipleFingerInformation {
             return;
           }
           // clear数组
-          this.allFingerIds.splice(0, this.allFingerIds.length)
+          this.allFingerIds.splice(0, this.allFingerIds.length);
           // 从event中获取所有触点信息
           let allFingers = event.touches;
           if (allFingers.length > 0 && this.currentFingerCount === 0) {
             // 第1根手指按下
-            hilog.info(DOMAIN, TAG, BUNDLE + 'fingers start to press down')
-            this.currentFingerCount = allFingers.length
+            hilog.info(DOMAIN, TAG, BUNDLE + 'fingers start to press down');
+            this.currentFingerCount = allFingers.length;
           }
           if (allFingers.length !== 0) {
             for (const finger of allFingers) {
-              this.allFingerIds.push(finger.id)
+              this.allFingerIds.push(finger.id);
             }
-            hilog.info(DOMAIN, TAG, BUNDLE + 'current all fingers : ' + this.allFingerIds.toString())
+            hilog.info(DOMAIN, TAG, BUNDLE + 'current all fingers : ' + this.allFingerIds.toString());
           }
           if (event.type === TouchType.Up && event.touches.length === 1) {
             // 所有手指都已抬起
-            hilog.info(DOMAIN, TAG, BUNDLE + 'all fingers already up')
-            this.currentFingerCount = 0
+            hilog.info(DOMAIN, TAG, BUNDLE + 'all fingers already up');
+            this.currentFingerCount = 0;
           }
         })
     }

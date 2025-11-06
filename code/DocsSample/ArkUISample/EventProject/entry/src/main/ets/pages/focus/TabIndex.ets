@@ -44,5 +44,4 @@ export struct TabIndexExample {
     // [EndExclude dynamic_focus_tab_index]
   }
 }
-
 // [End dynamic_focus_tab_index]

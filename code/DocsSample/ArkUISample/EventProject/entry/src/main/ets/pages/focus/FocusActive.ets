@@ -35,5 +35,4 @@ export struct FocusActiveExample {
     // [EndExclude dynamic_focus_active]
   }
 }
-
 // [End dynamic_focus_active]

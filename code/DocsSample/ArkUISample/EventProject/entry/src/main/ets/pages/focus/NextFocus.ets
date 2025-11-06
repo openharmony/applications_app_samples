@@ -31,6 +31,7 @@ export struct NextFocusExample {
           Button('C')
             .id('C')
         }
+
         Column({ space: 10 }) {
           Button('D')
             .id('D')
@@ -43,10 +44,11 @@ export struct NextFocusExample {
               right: 'F'
             })
         }
+
         Row({ space: 10 }) {
           Button('F')
             .id('F')
-            .nextFocus({ forward: 'B', down: 'A' });
+            .nextFocus({ forward: 'B', down: 'A' })
         }
       }.width('100%')
     }
