@@ -23,18 +23,18 @@ import { WindowUtils } from '../utils/WindowUtils';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
-// [StartExclude window_stage]
 const TAG: string = 'EntryAbility';
+// [StartExclude window_stage]
 
 export default class EntryAbility extends UIAbility {
   private currentBreakPoint: string = '';
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onCreate');
   }
 
   onDestroy(): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onDestroy');
   }
 
   // [EndExclude window_stage]
@@ -42,7 +42,7 @@ export default class EntryAbility extends UIAbility {
     // [StartExclude window_stage]
     // Main window is created, set main page for this ability
     // [EndExclude window_stage]
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onWindowStageCreate');
     // [StartExclude bind_sheet_entry_ability]
     let mainWindow: window.Window;
     try {
@@ -63,7 +63,7 @@ export default class EntryAbility extends UIAbility {
         }
       })
     } catch {
-      hilog.error(DOMAIN, 'testTag', '%{public}s', 'error');
+      hilog.error(DOMAIN, TAG, '%{public}s', 'error');
       return;
     }
     // [EndExclude bind_sheet_entry_ability]
@@ -114,10 +114,10 @@ export default class EntryAbility extends UIAbility {
 
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(DOMAIN, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
+      hilog.info(DOMAIN, TAG, 'Succeeded in loading the content.');
     });
   }
 
@@ -145,17 +145,17 @@ export default class EntryAbility extends UIAbility {
   // [End window_stage]
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
     // Ability has brought to foreground
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
     // Ability has back to background
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onBackground');
   }
 }
 
