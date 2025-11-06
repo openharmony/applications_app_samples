@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import media from '@ohos.multimedia.media'
-import avSession from '@ohos.multimedia.avsession';
-import common from '@ohos.app.ability.common';
+import { avSession } from '@kit.AVSessionKit';
+import { common } from '@kit.AbilityKit';
+import { media } from '@kit.MediaKit'
 import fileIo from '@ohos.fileio'
 import Logger from '../util/Logger'
 import { SONG_List } from '../mock/BackgroundPlayerData'
@@ -41,12 +41,8 @@ class Song {
 class PlayerModel {
   public isPlaying: boolean = false
   public playlist: PlayList = new PlayList()
-  public playerIndex: number
+  public playerIndex: number = 0; // play song index
   public player: media.AudioPlayer
-  public statusChangedListener
-  public playingProgressListener
-  public intervalID = undefined
-  public currentTimeMs: number = 0 // Current time
   public avSession: avSession.AVSession
 
   constructor() {
@@ -64,8 +60,6 @@ class PlayerModel {
     })
     this.player.on('finish', () => {
       Logger.info(TAG, `finish() callback is called`)
-      this.seekTimeMs(0)
-      this.notifyPlayingStatus(false)
     })
     this.player.on('timeUpdate', () => {
       Logger.info(TAG, `timeUpdate() callback is called`)
@@ -97,47 +91,6 @@ class PlayerModel {
     Logger.info(TAG, `getAudioAssets end`)
   }
 
-  setOnStatusChangedListener(callback: (isPlay: boolean) => void): void {
-    this.statusChangedListener = callback
-  }
-
-  setOnPlayingProgressListener(callback: (currentTimeMs: number) => void): void {
-    this.playingProgressListener = callback
-  }
-
-  // notify status
-  notifyPlayingStatus(isPlaying: boolean): void {
-    this.isPlaying = isPlaying
-    this.statusChangedListener(this.isPlaying)
-    Logger.info(TAG, `notifyPlayingStatus isPlaying= ${isPlaying} intervalId= ${this.intervalID}`)
-    if (isPlaying) {
-      if (typeof (this.intervalID) === 'undefined') {
-        this.intervalID = setInterval(() => {
-          if (typeof (this.playingProgressListener)) {
-            let timeMs = this.player.currentTime
-            this.currentTimeMs = timeMs
-            if (typeof (timeMs) === 'undefined') {
-              timeMs = 0
-            }
-            Logger.info(TAG, `player.currentTime= ${timeMs}`)
-            this.playingProgressListener(timeMs)
-          }
-        }, 500)
-        Logger.info(TAG, `set update interval ${this.intervalID}`)
-      }
-    } else {
-      this.cancelTimer()
-    }
-  }
-
-  cancelTimer(): void {
-    if (typeof (this.intervalID) !== 'undefined') {
-      Logger.info(TAG, `clear update interval ${this.intervalID}`)
-      clearInterval(this.intervalID)
-      this.intervalID = undefined
-    }
-  }
-
   preLoad(index: number, callback: () => void): number {
     Logger.info(TAG, `preLoad ${index}/${this.playlist.audioFiles.length}`)
     if (index < 0 || index >= this.playlist.audioFiles.length) {
@@ -161,8 +114,6 @@ class PlayerModel {
         Logger.info(TAG, `preLoad finished. src not changed`)
         callback()
       } else {
-        this.notifyPlayingStatus(false)
-        this.cancelTimer()
         Logger.info(TAG, `player.reset`)
         this.player.reset()
         Logger.info(TAG, `player.reset done, state= ${this.player.state}`)
@@ -188,31 +139,12 @@ class PlayerModel {
     return this.playlist.audioFiles[this.playerIndex].duration
   }
 
-  getCurrentMs(): number {
-    return this.currentTimeMs
-  }
-
   playMusic(flag: number, startPlay: boolean, context: common.UIAbilityContext): void {
     Logger.info(TAG, `playMusic flag= ${flag} startPlay= ${startPlay}`);
-    this.notifyPlayingStatus(startPlay);
     if (startPlay) {
-      if (flag < 0 && this.currentTimeMs > 0) {
-        Logger.info(TAG, `pop flag= ${this.currentTimeMs}`);
-        flag = this.currentTimeMs;
-      }
-      this.player.on('play', () => {
-        Logger.info(TAG, `play() callback entered, player.state= ${this.player.state}`);
-        if (flag > 0) {
-          this.seekTimeMs(flag);
-        }
-      });
       this.player.play();
       this.createAVSession(context);
       Logger.info(TAG, `player.play called player.state= ${this.player.state}`);
-    } else if (flag > 0) {
-      this.playingProgressListener(flag);
-      this.currentTimeMs = flag;
-      Logger.info(TAG, `stash flag= ${this.currentTimeMs}`);
     }
   }
 
@@ -221,20 +153,9 @@ class PlayerModel {
       Logger.info(TAG, `pauseMusic ignored, isPlaying= ${this.isPlaying}`)
       return
     }
-    this.notifyPlayingStatus(false)
     Logger.info(TAG, `call player.pauseMusic`)
     this.player.pause()
     Logger.info(TAG, `player.pause called, player.state= ${this.player.state}`)
-  }
-
-  seekTimeMs(time: number): void {
-    this.currentTimeMs = time
-    if (this.isPlaying) {
-      Logger.info(TAG, `player.seek= ${time}`)
-      this.player.seek(time)
-    } else {
-      Logger.info(TAG, `stash flag= ${time}`);
-    }
   }
 
   stopMusic(): boolean {
@@ -242,7 +163,6 @@ class PlayerModel {
       Logger.info(TAG, `stopMusic ignored, isPlaying= ${this.isPlaying}`);
       return;
     }
-    this.notifyPlayingStatus(false);
     Logger.info(TAG, 'call player.stop');
     this.player.stop();
     this.destroyAVSession();

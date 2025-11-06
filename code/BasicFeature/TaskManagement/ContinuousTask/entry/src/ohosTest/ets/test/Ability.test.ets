@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,9 +14,8 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { Driver, ON, MatchPattern } from '@ohos.UiTest';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import hilog from '@ohos.hilog';
+import { abilityDelegatorRegistry, Driver, ON, MatchPattern } from '@kit.TestKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[Sample_ContinuousTask]'
 const DOMAIN = 0xF811
@@ -30,7 +29,7 @@ export default function abilityTest() {
      */
     it('StartAbility_001', 0, async  ()=> {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
           bundleName: 'ohos.samples.continuoustask',
@@ -44,82 +43,59 @@ export default function abilityTest() {
     })
 
     /**
-     * 开启长时任务
+     * 开启/取消长时任务
      */
-    it('StartContinuousTaskFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 begin');
+    it('StartAndStopContinuousTaskFunction_001', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'StartAndStopContinuousTaskFunction_001 begin');
       let driver = Driver.create();
       setTimeout(async ()=>{
         await driver.delayMs(1000);
-        // 下拉菜单先清除所有通知
-        await driver.swipe(100, 10, 100, 500, 600);
-        await driver.delayMs(1000);
-        await driver.click(360,1080);
-        await driver.swipe(100, 500, 100, 10, 600);
-        await driver.delayMs(1000);
-        // 点击播放开启长时任务
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 clickPlay');
-        await driver.assertComponentExist(ON.id('image1'));
-        let play = await driver.findComponent(ON.id('image1'));
-        await play.click();
+        // 点击申请长时任务
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAndStopContinuousTaskFunction_001 clickApply');
+        await driver.assertComponentExist(ON.id('applyContinuousTask'));
+        let apply = await driver.findComponent(ON.id('applyContinuousTask'));
+        await apply.click();
         await driver.delayMs(2000);
-        // 点击上一首
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 clickPrevious');
-        await driver.assertComponentExist(ON.id('image0'));
-        let previous = await driver.findComponent(ON.id('image0'));
-        await previous.click();
-        await driver.delayMs(1000);
-        // 点击下一首
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 clickNext');
-        await driver.assertComponentExist(ON.id('image2'));
-        let next = await driver.findComponent(ON.id('image2'));
-        await next.click();
-        await driver.delayMs(1000);
-        // 下拉菜单栏查看长时任务开启情况
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 checkStart');
-        await driver.swipe(100, 10, 100, 500, 600);
-        await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.text(String($r('app.string.Continuous_task'))));
-        await driver.delayMs(1000);
-        await driver.swipe(100, 500, 100, 10, 600);
+        // 点击取消长时任务
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAndStopContinuousTaskFunction_001 clickReset');
+        await driver.assertComponentExist(ON.id('resetContinuousTask'));
+        let reset = await driver.findComponent(ON.id('resetContinuousTask'));
+        await reset.click();
         await driver.delayMs(1000);
         // 将应用退出到桌面
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 outToHome');
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAndStopContinuousTaskFunction_001 outToHome');
         await driver.click(360, 1245);
         await driver.delayMs(2000);
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 end');
+        hilog.info(DOMAIN, TAG, BUNDLE + 'StartAndStopContinuousTaskFunction_001 end');
       },1000)
     })
 
     /**
-     * 结束长时任务
+     * 播放/暂停音乐
      */
-    it('StopContinuousTaskFunction_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StopContinuousTaskFunction_001 begin');
+    it('PlayAndPauseMusic', 0, async () => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'PlayAndPauseMusic begin');
       let driver = Driver.create();
       setTimeout(async ()=>{
         await driver.delayMs(1000);
         // 进入应用
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StopContinuousTaskFunction_001 enter');
+        hilog.info(DOMAIN, TAG, BUNDLE + 'PlayAndPauseMusic enter');
         await driver.assertComponentExist(ON.text(String($r('app.string.Continuous_task'))));
         let btnEnter = await driver.findComponent(ON.text(String($r('app.string.Continuous_task'))));
         await btnEnter.click();
         await driver.delayMs(2000);
-        // 点击暂停结束长时任务
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StopContinuousTaskFunction_001 clickPause');
-        await driver.assertComponentExist(ON.id('image1'));
-        let pause = await driver.findComponent(ON.id('image1'));
+        // 点击播放/暂停按钮，开始播音
+        hilog.info(DOMAIN, TAG, BUNDLE + 'PlayAndPauseMusic clickPlay');
+        await driver.assertComponentExist(ON.id('playAndPause'));
+        let play = await driver.findComponent(ON.id('playAndPause'));
+        await play.click();
+        await driver.delayMs(2000);
+        // 再次点击播放/暂停按钮，暂停播音
+        hilog.info(DOMAIN, TAG, BUNDLE + 'PlayAndPauseMusic clickPause');
+        await driver.assertComponentExist(ON.id('playAndPause'));
+        let pause = await driver.findComponent(ON.id('playAndPause'));
         await pause.click();
         await driver.delayMs(2000);
-        // 下拉菜单栏查看长时任务关闭情况
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StopContinuousTaskFunction_001 checkStop');
-        await driver.swipe(100, 10, 100, 500, 600);
-        await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.text(String($r('app.string.Without_notification'))));
-        await driver.delayMs(1000);
-        await driver.swipe(100, 500, 100, 10, 600);
-        await driver.delayMs(1000);
-        hilog.info(DOMAIN, TAG, BUNDLE + 'StopContinuousTaskFunction_001 end');
       },2000)
     })
   })

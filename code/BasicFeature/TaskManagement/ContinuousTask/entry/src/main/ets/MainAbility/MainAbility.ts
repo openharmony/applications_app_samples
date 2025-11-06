@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import Logger from '../util/Logger'
 
 const TAG: string = 'MainAbility'
@@ -28,10 +28,10 @@ export default class MainAbility extends UIAbility {
     Logger.info(TAG, `onDestroy`)
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     Logger.info(TAG, `onWindowStageCreate`)
-    windowStage.loadContent('pages/BackgroundPlayer', (err, data) => {
+    windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.info(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
         return
