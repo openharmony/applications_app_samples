@@ -17,9 +17,13 @@ import { CompletedRoutableCard } from '../../common/Card';
 import resource from '../../common/Resource';
 import { Route } from '../../common/Route';
 import { LocalBuilderLabelDiff } from './BuilderLabelDiff';
+import { BuilderMakeBinding } from './BuilderMakeBinding';
 import { LocalBuilderThisDiff } from './BuilderThisDiff';
+import { ComponentBuilderModify } from './ComponentBuilderModify';
 import { LocalBuilderCustomBuilderInComponent } from './CustomBuilderInComponent';
 import { LocalBuilderParentRefSync } from './ParentRefSync';
+import { ProblemUINotRefreshOpposite } from './ProblemUINotRefreshOpposite';
+import { ProblemUINotRefreshPositive } from './ProblemUINotRefreshPositive';
 import { LocalBuilderReferencePassing } from './ReferencePassing';
 import { LocalBuilderV2LocalBuilderUpdate } from './V2LocalBuilderUpdate';
 import { LocalBuilderValuePassing } from './ValuePassing';
@@ -54,6 +58,22 @@ const routes: Route[] = [
   {
     name: `${LOCAL_BUILDER}/V2LocalBuilderUpdate`,
     title: resource.resourceToString($r('app.string.v2_local_builder_update')),
+  },
+  {
+    name: `${LOCAL_BUILDER}/ComponentBuilderModify`,
+    title: resource.resourceToString($r('app.string.component_builder_modify')),
+  },
+  {
+    name: `${LOCAL_BUILDER}/BuilderMakeBinding`,
+    title: resource.resourceToString($r('app.string.builder_make_binding')),
+  },
+  {
+    name: `${LOCAL_BUILDER}/ProblemUINotRefreshOpposite`,
+    title: resource.resourceToString($r('app.string.problem_ui_not_refresh_opposite')),
+  },
+  {
+    name: `${LOCAL_BUILDER}/ProblemUINotRefreshPositive`,
+    title: resource.resourceToString($r('app.string.problem_ui_not_refresh_positive')),
   }
 ];
 
@@ -75,6 +95,14 @@ export function localBuilderDestination(name: string) {
     LocalBuilderLabelDiff();
   } else if (name === `${LOCAL_BUILDER}/V2LocalBuilderUpdate`) {
     LocalBuilderV2LocalBuilderUpdate();
+  } else if (name === `${LOCAL_BUILDER}/ComponentBuilderModify`) {
+    ComponentBuilderModify();
+  } else if (name === `${LOCAL_BUILDER}/BuilderMakeBinding`) {
+    BuilderMakeBinding();
+  } else if (name === `${LOCAL_BUILDER}/ProblemUINotRefreshOpposite`) {
+    ProblemUINotRefreshOpposite();
+  } else if (name === `${LOCAL_BUILDER}/ProblemUINotRefreshPositive`) {
+    ProblemUINotRefreshPositive();
   }
 }
 
