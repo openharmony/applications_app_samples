@@ -1,7 +1,6 @@
 {
   "src": [
     "pages/Index",
-    "securitycomponent/pages/Location",
     "securitycomponent/pages/Paste",
     "securitycomponent/pages/Save"
   ]

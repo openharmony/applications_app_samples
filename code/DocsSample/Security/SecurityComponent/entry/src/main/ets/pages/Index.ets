@@ -13,16 +13,14 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-
 @Entry
 @Component
 struct Index {
-  private pageName: string [] = ['Location', 'Paste', 'Save'];
+  private pageName: string [] = ['Paste', 'Save'];
   @State text: string = '';
 
   openPage(pageName: string) {
-    router.pushUrl({
+    this.getUIContext().getRouter().pushUrl({
       url: 'securitycomponent/pages/' + pageName,
     });
   }
