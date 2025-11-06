@@ -17,7 +17,7 @@
 import { ComponentContent, promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
+const DOMAIN = 0x0000;
 // [Start dialog_params]
 class Params {
   public text: string = '';
@@ -169,7 +169,7 @@ export struct DialogController {
         // 'app.string.click_check_status'资源文件中的value值为'点我查询弹窗状态'。
         Button($r('app.string.click_check_status'))
           .onClick(() => {
-            hilog.info(0x0000, 'dialogController', 'state:' + dialogController.getState());
+            hilog.info(DOMAIN, 'dialogController', 'state:' + dialogController.getState());
           })
       }
     }
@@ -194,7 +194,7 @@ export struct DialogController {
                 new Params(this.message, dialogController));
             this.getUIContext().getPromptAction().openCustomDialogWithController(
               contentNode, dialogController, this.baseDialogOptions).catch((err: BusinessError) => {
-              hilog.error(0x0000, 'dialogController',
+              hilog.error(DOMAIN, 'dialogController',
                 'openCustomDialogWithController error: ' + err.code + ' ' + err.message);
             });
             // [End content_node]
@@ -207,7 +207,7 @@ export struct DialogController {
             this.getUIContext().getPromptAction().presentCustomDialog(() => {
               this.customDialogComponent(dialogController);
             }, dialogController, this.dialogOptions).catch((err: BusinessError) => {
-              hilog.error(0x0000, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
+              hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
             });
             // [End dialog_controller_component]
           })
@@ -219,7 +219,7 @@ export struct DialogController {
             this.getUIContext().getPromptAction().presentCustomDialog((dialogId: number) => {
               this.customDialogComponentWithId(dialogId, dialogController);
             }, dialogController, this.dialogOptions).catch((err: BusinessError) => {
-              hilog.error(0x0000, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
+              hilog.error(DOMAIN, 'dialogController', 'presentCustomDialog error: ' + err.code + ' ' + err.message);
             });
             // [End dialog_controller_id]
           })

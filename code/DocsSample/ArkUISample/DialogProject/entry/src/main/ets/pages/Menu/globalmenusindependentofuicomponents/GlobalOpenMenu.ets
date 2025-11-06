@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-import { ComponentContent, PromptAction, UIContext } from '@kit.ArkUI';
+import { ComponentContent, Popup,
+  PopupButtonOptions,
+  PopupIconOptions, PopupTextOptions, PromptAction, UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
@@ -32,18 +34,47 @@ let uiContext = AppStorage.get('UIContext') as UIContext;
 // [Start build_text]
 @Builder
 export function buildText(params: Params) {
-  Menu() {
-    // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
-    MenuItem({ startIcon: $r('app.media.app_icon') }).width(32).height(32).borderRadius(10)
-    MenuItem({ content: 'This is a Menu title 1' })
-    MenuItem({ content: 'This is a Menu title 2' })
-    MenuItem({ content: 'confirm' }).onClick(() => {
-      hilog.error(DOMAIN, 'globalOpenMenu', 'confirm button click');
-    })
-    MenuItem({ content: 'cancel' }).onClick(() => {
-      hilog.info(DOMAIN, 'globalOpenMenu', 'cancel button click');
-    })
-  }
+  Popup({
+    // 类型设置图标内容
+    icon: {
+      // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
+      image: $r('app.media.app_icon'),
+      width: 32,
+      height: 32,
+      fillColor: Color.White,
+      borderRadius: 10
+    } as PopupIconOptions,
+    // 设置文字内容
+    title: {
+      text: `This is a Popup title 1`,
+      fontSize: 20,
+      fontColor: Color.Black,
+      fontWeight: FontWeight.Normal
+    } as PopupTextOptions,
+    // 设置文字内容
+    message: {
+      text: `This is a Popup message 1`,
+      fontSize: 15,
+      fontColor: Color.Black
+    } as PopupTextOptions,
+    // 设置按钮内容
+    buttons: [{
+      text: 'confirm',
+      action: () => {
+        hilog.info(DOMAIN, 'globalOpenMenu', 'confirm button click');
+      },
+      fontSize: 15,
+      fontColor: Color.Black,
+    },
+      {
+        text: 'cancel',
+        action: () => {
+          hilog.info(DOMAIN, 'globalOpenMenu', 'cancel button click');
+        },
+        fontSize: 15,
+        fontColor: Color.Black
+      },] as [PopupButtonOptions?, PopupButtonOptions?]
+  })
 }
 
 let contentNode: ComponentContent<Object> =

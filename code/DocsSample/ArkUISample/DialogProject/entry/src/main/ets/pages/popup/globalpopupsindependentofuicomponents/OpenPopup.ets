@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start open_popup]
+// [Start open_popup_main]
 // entry/src/main/ets/pages/OpenPopup.ets
 import { PromptActionClass } from './PopupMainPage';
 import { ComponentContent, PromptAction } from '@kit.ArkUI';
@@ -97,4 +97,4 @@ export struct OpenPopup {
   }
 }
 
-// [End open_popup]
+// [End open_popup_main]

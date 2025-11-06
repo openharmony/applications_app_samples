@@ -60,6 +60,7 @@ export class PromptActionClass {
     }
   }
 
+  // [StartExclude main_page]
   public closePopup() {
     if (this.promptAction != null) {
       this.promptAction.closePopup(this.contentNode)
@@ -83,6 +84,8 @@ export class PromptActionClass {
         });
     }
   }
+
+  // [EndExclude main_page]
 }
 
 // [End main_page]
