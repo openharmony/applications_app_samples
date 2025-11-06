@@ -41,6 +41,7 @@ export struct SymbolGlyphSpanCustomIconAnimation {
             Column() {
               // 'app.string.variable_color_animation'资源文件中的value值为"可变颜色动效"
               Text($r('app.string.variable_color_animation'));
+              // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
               SymbolGlyph($r('sys.symbol.ohos_wifi'))
                 .fontSize(96)
                 .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
@@ -57,6 +58,7 @@ export struct SymbolGlyphSpanCustomIconAnimation {
             Column() {
               // 'app.string.bounce_animation'资源文件中的value值为"弹跳动效"
               Text($r('app.string.bounce_animation'));
+              // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
               SymbolGlyph($r('sys.symbol.ellipsis_message_1'))
                 .fontSize(96)
                 .fontColor([Color.Gray])
@@ -73,6 +75,7 @@ export struct SymbolGlyphSpanCustomIconAnimation {
             Column() {
               // 'app.string.disable_animation'资源文件中的value值为"禁用动效"
               Text($r('app.string.disable_animation'));
+              // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
               SymbolGlyph(this.replaceFlag ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
                 .fontSize(96)
                 .renderingStrategy(this.renderMode)
@@ -90,10 +93,11 @@ export struct SymbolGlyphSpanCustomIconAnimation {
             Column() {
               // 'app.string.quick_replacement_animation'资源文件中的value值为"快速替换动效"
               Text($r('app.string.quick_replacement_animation'));
+              // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
               SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
                 .fontSize(96)
                 .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE, ReplaceEffectType.CROSS_FADE),
-                  this.triggerValueReplace)
+                              this.triggerValueReplace)
               Button('trigger').onClick(() => {
                 this.replaceFlag = !this.replaceFlag;
                 this.triggerValueReplace = this.triggerValueReplace + 1;
