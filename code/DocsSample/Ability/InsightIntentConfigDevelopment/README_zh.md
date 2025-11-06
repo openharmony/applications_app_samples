@@ -16,7 +16,7 @@
 
 1. insightintent.json配置文件定义意图，声明意图执行器的代码路径、绑定的Ability组件等意图信息。
 2. 选择意图垂域、意图框架入口代码文件名以及意图配置。意图配置包含意图名称和绑定的Ability组件。
-3. 通过insightIntentDriver.execute(系统接口,需full_sdk)调用意图。
+3. 通过insightIntentDriver.execute调用意图，需要配置EXECUTE_INSIGHT_INTENT系统权限，要需full_sdk全量包。
 
 ### 运行机制
 
