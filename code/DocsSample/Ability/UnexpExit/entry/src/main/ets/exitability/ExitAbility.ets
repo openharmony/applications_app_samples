@@ -29,7 +29,7 @@ function doAnotherThing() {
   hilog.info(DOMAIN_NUMBER,TAG,'do Another Thing');
 }
 
-export default class ExitAbility2 extends UIAbility {
+export default class ExitAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 获取退出原因
     let reason: number = launchParam.lastExitReason;

@@ -44,7 +44,7 @@ entry/src/
 * 获取应用异常退出原因
     * 获取应用异常通过AbilityConstant.LaunchParam参数lastExitReason字段获取，具体源码参考：[ExitAbility1](./entry/src/main/ets/exitability/ExitAbility1.ets)
 * 获取应用异常退出原因类型：
-    * 通过lastExitReason获取不同的退出原因类型（取APP_FREEZE和SIGNAL等）退出原因。源码参考：[ExitAbility2](./entry/src/main/ets/exitability/ExitAbility2.ets)
+    * 通过lastExitReason获取不同的退出原因类型（取APP_FREEZE和SIGNAL等）退出原因。源码参考：[ExitAbility](./entry/src/main/ets/exitability/ExitAbility.ets)
 
 ### 相关权限
 
