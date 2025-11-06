@@ -21,15 +21,23 @@ const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
   // [Start create_sys]
+  // [Start create_set_sys]
   onCreate(): void {
+    // [StartExclude create_set_sys]
     this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    // [EndExclude create_set_sys]
+    // [StartExclude create_sys]
     AppStorage.setOrCreate('currentColorMode', this.context.config.colorMode);
+    // [EndExclude create_sys]
   }
+  // [End create_set_sys]
   // [End create_sys]
+  // [Start update_sys]
   onConfigurationUpdate(newConfig: Configuration): void {
     AppStorage.setOrCreate('currentColorMode', newConfig.colorMode);
     hilog.info(0x0000, 'testTag', 'the newConfig.colorMode is %{public}s', JSON.stringify(AppStorage.get('currentColorMode')) ?? '');
   }
+  // [End update_sys]
 
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
