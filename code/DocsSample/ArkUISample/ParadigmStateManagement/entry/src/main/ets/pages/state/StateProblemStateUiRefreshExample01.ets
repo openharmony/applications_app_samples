@@ -15,13 +15,13 @@
 
 // [Start state_problem_state_ui_refresh_example_01]
 class Info {
-  public address: string = '杭州';
+  public address: string = 'Hangzhou';
 }
 
 @Entry
 @Component
 struct Test {
-  @State message: string = '上海';
+  @State message: string = 'Shanghai';
   @State info: Info = new Info();
 
   aboutToAppear(): void {
@@ -34,7 +34,7 @@ struct Test {
       Text(`${this.info.address}`);
       Button('change')
         .onClick(() => {
-          this.info.address = '北京';
+          this.info.address = 'Beijing';
         })
     }
   }
