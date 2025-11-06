@@ -14,7 +14,6 @@
  */
 
 // [Start limiting_condition]
-// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
