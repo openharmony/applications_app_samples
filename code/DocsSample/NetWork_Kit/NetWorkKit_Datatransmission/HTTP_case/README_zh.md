@@ -1,10 +1,10 @@
-# Http_case(网络共享)
+# Http_case
 
 ### 介绍
 
 应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。本项目的构建依据[HTTP数据请求](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/network/http-request.md)示例代码，构建了一个HTTP数据请求的示例应用，它实现了通过按钮实现request接口开发步骤、requestInStream接口开发步骤的功能，使用了[@ohos.net.http](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)接口。
 
-**注意：**本示例需要用户输入一个实际的URL，方能获得通过的结果。
+**注意：** 本示例需要用户输入一个实际的URL，方能获得通过的结果。
 
 ### 效果预览
 
@@ -21,7 +21,7 @@
    const TARGET_URL: string = '';
    ```
 
-   这个位置的单引号之间输入一个实际URL（参考格式：https://www.example.com/）
+   这个位置的单引号之间输入一个实际URL（参考格式：https://www.example.com/)
 
 2. 点击 "普通 HTTP 请求" 按钮，发送一个 GET 请求到 TARGET_URL 并显示测试结果。
 
