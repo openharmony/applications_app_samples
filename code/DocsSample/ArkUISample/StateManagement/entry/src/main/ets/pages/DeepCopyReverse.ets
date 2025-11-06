@@ -44,7 +44,7 @@ struct DeepReParent {
           this.testClass[0].num += 1;
         })
 
-      // DeepRePropChild没有改变@Prop testClass: MyClass的值，所以这时最优的选择是使用@ObjectLink。
+      // DeepRePropChild没有改变@Prop testClass: DeepReMyClass的值，所以这时最优的选择是使用@ObjectLink。
       DeepRePropChild({ testClass: this.testClass[0] })
     }
   }

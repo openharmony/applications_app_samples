@@ -136,7 +136,7 @@ export struct ContentWillChange {
                 this.currentIndexTwo = index;
               })
 
-              //app.string.ContentWillChange_changeIndex资源文件中的value值为‘动态修改index’
+              // app.string.ContentWillChange_changeIndex资源文件中的value值为‘动态修改index’
               Button('app.string.ContentWillChange_changeIndex').width('50%').margin({ top: 1 }).height(25)
                 .onClick(()=>{
                   if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
@@ -152,7 +152,7 @@ export struct ContentWillChange {
                   }
               })
 
-              //app.string.ContentWillChange_changeIndex资源文件中的value值为‘动态修改index’
+              // app.string.ContentWillChange_changeIndex资源文件中的value值为‘动态修改index’
               Button($r('app.string.ContentWillChange_changeIndex')).width('50%').margin({ top: 20 })
                 .onClick(() => {
                   this.currentIndexTwo = (this.currentIndexTwo + 1) % 4;
