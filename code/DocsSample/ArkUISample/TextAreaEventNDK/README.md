@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例为使用NDK接口构建UI->使用文本->[监听输入框事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-textarea-event.md)的配套示例工程。 
+本示例为使用NDK接口构建UI->使用文本->[监听输入框事件](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-textarea-event.md)的配套示例工程。 
 
 本示例展示了输入框输入、选中以及选中菜单。
 
@@ -67,6 +67,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUISample/TextAreaEventNDK > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
