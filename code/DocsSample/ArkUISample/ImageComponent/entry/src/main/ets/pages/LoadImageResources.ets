@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+//  媒体库文件页面
 //  [Start media_libraryfile]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -25,6 +26,7 @@ const TAG = 'Sample_imagecomponent';
 @Component
 struct MediaLibraryFile {
   @State imgDatas: string[] = [];
+  // 使用 PhotoViewPicker 唤起图片选择器. 选择图片并且渲染到页面中.
   // 获取照片url集
   getAllImg() {
     try {

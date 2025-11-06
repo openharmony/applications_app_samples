@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+//  图片添加滤镜效果页面
 //  [Start image_filtereffect]
 @Entry
 @Component
@@ -26,6 +28,7 @@ struct AddFilterEffectsToImages {
         //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
           .width('40%')
+          // 使用colorFilter接口验证对图片添加滤镜后的效果
           .colorFilter(
              [1, 1, 0, 0, 0,
               0, 1, 0, 0, 0,

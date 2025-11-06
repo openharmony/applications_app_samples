@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+//  多媒体像素图页面
 //  [Start multimedia_pixel]
 import { http } from '@kit.NetworkKit';
 import { image } from '@kit.ImageKit';
@@ -30,8 +31,9 @@ struct HttpExample {
   code: http.ResponseCode | number | undefined = undefined;
   @State image: PixelMap | undefined = undefined; //创建PixelMap状态变量。
 
+  //  使用 createHttp 接口验证将加载的网络图片返回数据解码成pixelMap格式.
   aboutToAppear(): void {
-    http.createHttp().request('xxx://xxx.xxx.xxx/example.png', //请填写一个具体的网络图片地址。
+    http.createHttp().request('xxx://xxx.xxx.xxx/example.png', // 实际使用时请替换真实路径.
       (error: BusinessError, data: http.HttpResponse) => {
         if (error) {
           hilog.error(DOMAIN, TAG, `hello http request failed. Code: ${error.code}, message: ${error.message}`);

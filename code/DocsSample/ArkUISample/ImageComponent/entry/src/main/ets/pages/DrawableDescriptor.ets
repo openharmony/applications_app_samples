@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+//  可绘制描述符页面
 //  [Start drawable_descriptor]
 import {
   DrawableDescriptor,
@@ -37,6 +38,7 @@ struct DrawableDescriptorType {
     iterations: -1
   };
 
+  // 使用 DrawableDescriptor 接口验证对图片资源封装为可编程对象.实现动态组合与运行时控制功能.
   async aboutToAppear() {
     const resManager = this.getUIContext().getHostContext()?.resourceManager;
     if (!resManager) {
