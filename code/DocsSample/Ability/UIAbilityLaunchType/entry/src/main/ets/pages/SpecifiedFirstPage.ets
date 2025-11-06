@@ -15,7 +15,7 @@
 @Entry
 @Component
 struct SpecifiedFirstPage {
-  @State message: string | Resource = $r('app.string.new_doc');
+  @State message: string | Resource = $r('app.string.new_doc');  // app.string.new_doc的值为新建一个文档
 
   build() {
     RelativeContainer() {

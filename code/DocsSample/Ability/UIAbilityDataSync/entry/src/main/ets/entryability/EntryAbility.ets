@@ -25,8 +25,8 @@ import { window } from '@kit.ArkUI';
 // [EndExclude onCreate]
 // [EndExclude onDestroy]
 
-const DOMAIN = 0x0000;
 // [StartExclude onDestroy]
+const DOMAIN = 0x0000;
 const TAG: string = '[EventAbility]';
 // [EndExclude onDestroy]
 
@@ -82,8 +82,8 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onBackground');
   }
-  // [EndExclude onCreate]
   // [EndExclude onDestroy]
+  // [EndExclude onCreate]
 }
 // [End onDestroy]
 // [End onCreate]

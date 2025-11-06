@@ -40,10 +40,10 @@ struct EventHubPage {
         .id('HelloWorld')
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-
-      Button($r('app.string.Start_UIAbilityB')).onClick((event: ClickEvent) => {
-        this.startAbilityTest();
-      })
+      Button($r('app.string.Start_UIAbilityB')) // app.string.Start_UIAbilityB的值为拉起UIAbilityB
+        .onClick((event: ClickEvent) => {
+          this.startAbilityTest();
+        })
     }
     .justifyContent(FlexAlign.Center)
     // [EndExclude Page_EventHub]

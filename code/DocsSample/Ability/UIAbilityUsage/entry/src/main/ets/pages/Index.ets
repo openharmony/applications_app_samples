@@ -33,7 +33,7 @@ struct Index {
       }
 
       ListItem() {
-        Button($r('app.string.Start_UIAbilityB'))
+        Button($r('app.string.Start_UIAbilityB')) // app.string.Start_UIAbilityB的值为拉起UIAbilityB
           .onClick((event: ClickEvent) => {
             let want: Want = {
               bundleName: this.context.abilityInfo.bundleName,

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start FuncAbilityA]
+// [Start FuncAbilityAPage]
 // [Start FuncAbilityB]
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -28,7 +28,7 @@ struct FuncAbilityAPage {
   build() {
     Column() {
       // [StartExclude FuncAbilityB]
-      Button($r('app.string.Stop_AbilityA')) //'app.string.Stop_AbilityA'为用户自定义字符串资源
+      Button($r('app.string.Stop_AbilityA')) //'app.string.Stop_AbilityA'的值为StopFuncAbilityA
         .onClick(() => {
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
           // context为需要停止的UIAbility实例的AbilityContext
@@ -39,18 +39,16 @@ struct FuncAbilityAPage {
             }
           });
         })
-        // [StartExclude FuncAbilityA]
+        // [StartExclude FuncAbilityAPage]
         .margin({bottom: 8})
         .width('60%');
-      // [EndExclude FuncAbilityA]
       // [EndExclude FuncAbilityB]
 
-      // [StartExclude FuncAbilityA]
       List({ initialIndex: 0 }) {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityB]
-            Button($r('app.string.Stop_AbilityA_Result')) //'app.string.Stop_AbilityA_Result'为用户自定义字符串资源
+            Button($r('app.string.Stop_AbilityA_Result')) //'app.string.Stop_AbilityA_Result'的值为StopFuncAbilityAWithResult
               .width('60%');
             // [EndExclude FuncAbilityB]
           }
@@ -64,7 +62,7 @@ struct FuncAbilityAPage {
                 moduleName: 'entry', // moduleName非必选
                 abilityName: 'FuncAbilityA',
                 parameters: {
-                  info: $r('app.string.ability_return_info') //'app.string.ability_return_info'为用户自定义字符串资源
+                  info: $r('app.string.ability_return_info') //'app.string.ability_return_info'的值为来自FuncAbility Index页面
                 },
               },
             };
@@ -80,16 +78,16 @@ struct FuncAbilityAPage {
       // [StartExclude FuncAbilityB]
       .alignListItem(ListItemAlign.Center)
       // [EndExclude FuncAbilityB]
-      // [EndExclude FuncAbilityA]
+      // [EndExclude FuncAbilityAPage]
     }
-    // [StartExclude FuncAbilityA]
+    // [StartExclude FuncAbilityAPage]
     // [StartExclude FuncAbilityB]
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
     // [EndExclude FuncAbilityB]
-    // [EndExclude FuncAbilityA]
+    // [EndExclude FuncAbilityAPage]
   }
 }
 // [End FuncAbilityB]
-// [End FuncAbilityA]
+// [End FuncAbilityAPage]

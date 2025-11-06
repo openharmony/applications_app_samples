@@ -40,7 +40,7 @@ struct SpecifiedPage {
           .fontSize($r('app.float.page_text_font_size'))
           .fontWeight(FontWeight.Bold)
         // [EndExclude Page_StartModel]
-        Button($r('app.string.new_doc')) //app.string.new_doc为用户自定义字符串资源
+        Button($r('app.string.new_doc')) // app.string.new_doc的值为新建一个文档
         // [StartExclude Page_StartModel]
           .margin({top: 8})
           .width('60%')
@@ -66,7 +66,7 @@ struct SpecifiedPage {
             this.KEY_NEW = this.KEY_NEW + 'a';
           })
 
-        Button($r('app.string.open_old_doc')) //app.string.open_old_doc为用户自定义字符串资源
+        Button($r('app.string.open_old_doc')) // app.string.open_old_doc的值为打开已保存文档
         // [StartExclude Page_StartModel]
           .margin({top: 8})
           .width('60%')

@@ -35,24 +35,24 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // [EndExclude onWindowStageCreate]
 
 const DOMAIN = 0x0000;
+// [EndExclude onWindowStageDestroy]
+// [EndExclude onNewWant]
+// [EndExclude onDestroy]
 // [EndExclude onBackground]
 // [EndExclude onForeground]
 // [EndExclude onCreate]
-// [EndExclude onWindowStageDestroy]
-// [EndExclude onDestroy]
-// [EndExclude onNewWant]
 
 export default class EntryAbility extends UIAbility {
-  // [StartExclude onCreate]
-  // [StartExclude onForeground]
-  // [StartExclude onBackground]
-  // [StartExclude onWindowStageDestroy]
-  // [StartExclude onDestroy]
   // [StartExclude onNewWant]
+  // [StartExclude onBackground]
+  // [StartExclude onForeground]
+  // [StartExclude onWindowStageDestroy]
+  // [StartExclude onWindowStageCreate]
+  // [StartExclude onDestroy]
+  // [StartExclude onCreate]
   public windowStage: window.WindowStage | undefined = undefined;
   // [EndExclude onCreate]
 
-  // [StartExclude onWindowStageCreate]
   // [StartExclude onWindowStageWillDestroy]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 执行UIAbility整个生命周期中仅发生一次的业务逻辑
@@ -63,15 +63,17 @@ export default class EntryAbility extends UIAbility {
   onDestroy(): void {
     // 系统资源的释放、数据的保存等
   }
-  // [EndExclude onWindowStageCreate]
   // [EndExclude onWindowStageWillDestroy]
+  // [EndExclude onWindowStageCreate]
   // [EndExclude onWindowStageDestroy]
 
   // [StartExclude onDestroy]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // 加载UI资源
     // [StartExclude onWindowStageDestroy]
+    // [StartExclude onWindowStageCreate]
     this.windowStage = windowStage;
+    // [EndExclude onWindowStageCreate]
     // [StartExclude onWindowStageWillDestroy]
     // 设置WindowStage的事件订阅（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）
     try {
@@ -107,11 +109,13 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', `%{public}s`, `Ability onWindowStageCreate`);
     // 设置UI加载
     windowStage.loadContent('pages/Index', (err) => {
+      // [StartExclude onWindowStageCreate]
       if (err.code) {
         hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
         return;
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
+      // [EndExclude onWindowStageCreate]
     });
     // [EndExclude onWindowStageWillDestroy]
     // [EndExclude onWindowStageDestroy]
@@ -156,13 +160,13 @@ export default class EntryAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 更新资源、数据
   }
-  // [EndExclude onCreate]
-  // [EndExclude onWindowStageCreate]
-  // [EndExclude onWindowStageDestroy]
-  // [EndExclude onForeground]
   // [EndExclude onBackground]
+  // [EndExclude onForeground]
+  // [EndExclude onWindowStageDestroy]
   // [EndExclude onWindowStageWillDestroy]
+  // [EndExclude onWindowStageCreate]
   // [EndExclude onDestroy]
+  // [EndExclude onCreate]
 }
 // [End onNewWant]
 // [End onDestroy]
