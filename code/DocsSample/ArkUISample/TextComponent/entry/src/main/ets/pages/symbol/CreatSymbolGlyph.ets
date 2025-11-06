@@ -23,6 +23,7 @@ export struct CreatSymbolGlyph {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CreatSymbolGlyph_title') }) {
           // [Start creat_symbol_glyph]
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.SINGLE)

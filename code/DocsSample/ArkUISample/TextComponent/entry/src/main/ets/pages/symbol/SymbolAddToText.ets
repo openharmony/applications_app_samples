@@ -27,12 +27,12 @@ export struct SymbolGlyphSpanAddToText {
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanAddToText_title_1') }) {
             // [Start creat_symbol_span]
             Text() {
+              // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
               SymbolSpan($r('sys.symbol.ohos_trash'))
                 .fontWeight(FontWeight.Normal)
                 .fontSize(96)
             }
             // [End creat_symbol_span]
-            .id('1')
           }
 
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanAddToText_title_2') }) {
@@ -41,6 +41,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('48')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(48)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
@@ -51,6 +52,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('72')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(72)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
@@ -61,6 +63,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('96')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
@@ -77,6 +80,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('Light')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_trash'))
                     .fontWeight(FontWeight.Lighter)
                     .fontSize(96)
@@ -86,6 +90,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('Normal')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_trash'))
                     .fontWeight(FontWeight.Normal)
                     .fontSize(96)
@@ -95,6 +100,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('Bold')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_trash'))
                     .fontWeight(FontWeight.Bold)
                     .fontSize(96)
@@ -110,6 +116,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('Black')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .fontColor([Color.Black])
@@ -119,6 +126,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('Green')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .fontColor([Color.Green])
@@ -128,6 +136,7 @@ export struct SymbolGlyphSpanAddToText {
               Column() {
                 Text('Pink')
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .fontColor([Color.Pink])
@@ -144,6 +153,7 @@ export struct SymbolGlyphSpanAddToText {
                 // 'app.string.single_color'资源文件中的value值为"单色"
                 Text($r('app.string.single_color'));
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.SINGLE)
@@ -155,6 +165,7 @@ export struct SymbolGlyphSpanAddToText {
                 // 'app.string.multi_color'资源文件中的value值为"多色"
                 Text($r('app.string.multi_color'));
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
@@ -166,6 +177,7 @@ export struct SymbolGlyphSpanAddToText {
                 // 'app.string.hierarchical'资源文件中的value值为"分层"
                 Text($r('app.string.hierarchical'));
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
                     .fontSize(96)
                     .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
@@ -183,6 +195,7 @@ export struct SymbolGlyphSpanAddToText {
                 // 'app.string.no_action'资源文件中的value值为"无动效"
                 Text($r('app.string.no_action'));
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
                     .effectStrategy(SymbolEffectStrategy.NONE)
@@ -193,6 +206,7 @@ export struct SymbolGlyphSpanAddToText {
                 // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
                 Text($r('app.string.overall_scaling_animation_effect'));
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
                     .effectStrategy(SymbolEffectStrategy.SCALE)
@@ -203,6 +217,7 @@ export struct SymbolGlyphSpanAddToText {
                 // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
                 Text($r('app.string.hierarchical_animation'));
                 Text() {
+                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
                   SymbolSpan($r('sys.symbol.ohos_wifi'))
                     .fontSize(96)
                     .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
