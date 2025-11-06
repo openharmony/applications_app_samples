@@ -43,7 +43,7 @@ struct MainPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityA]
-            Button($r('app.string.Start_AbilityA')) // app.string.Start_AbilityA为用户自定义字符串资源
+            Button($r('app.string.Start_AbilityA')) // app.string.Start_AbilityA的值为StartFuncAbilityA
               .width('60%');
             // [EndExclude FuncAbilityA]
           }
@@ -57,7 +57,7 @@ struct MainPage {
               abilityName: 'FuncAbilityA',
               parameters: {
                 // 自定义信息
-                info: $r('app.string.main_page_return_info') // app.string.main_page_return_info为用户自定义字符串资源
+                info: $r('app.string.main_page_return_info') // app.string.main_page_return_info的值为来自EntryAbility MainPage页面
               },
             };
             // context为调用方UIAbility的UIAbilityContext
@@ -76,7 +76,7 @@ struct MainPage {
           Row() {
             // [StartExclude FuncAbilityA_Result]
             // [StartExclude FuncAbilityA_For_Result]
-            Button($r('app.string.Start_AbilityA_Result')) // app.string.Start_AbilityA_Result为用户自定义字符串资源
+            Button($r('app.string.Start_AbilityA_Result')) // app.string.Start_AbilityA_Result的值为StartFuncAbilityAWithResult
               .width('60%');
             // [EndExclude FuncAbilityA_For_Result]
             // [EndExclude FuncAbilityA_Result]
@@ -118,7 +118,7 @@ struct MainPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Cold]
-            Button($r('app.string.Cold_Start_Page')) // app.string.Cold_Start_Page为用户自定义字符串资源
+            Button($r('app.string.Cold_Start_Page')) // app.string.Cold_Start_Page的值为ColdStartPage
               .width('60%');
             // [EndExclude FuncAbility_Cold]
           }
@@ -147,7 +147,7 @@ struct MainPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Hot]
-            Button($r('app.string.Hot_Start_Page')) // app.string.Hot_Start_Page为用户自定义字符串资源
+            Button($r('app.string.Hot_Start_Page')) // app.string.Hot_Start_Page的值为HotStartPage
               .width('60%');
             // [EndExclude FuncAbility_Hot]
           }
@@ -189,7 +189,7 @@ struct MainPage {
               abilityName: 'HotStartAbility',
               parameters: {
                 // 自定义信息
-                info: '来自EntryAbility Index页面'
+                info: $r('app.string.index_return_info') // app.string.index_return_info的值为来自EntryAbility Index页面
               }
             };
             let options: StartOptions = {
