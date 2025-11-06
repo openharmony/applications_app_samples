@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start Delayed_change]
-import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
@@ -31,12 +30,9 @@ class RenderClass {
 @Component
 struct DelayedChangeIndex {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   renderClassChange() {
-    // app.string.renderClass_Change资源文件中的value值为'renderClass的值被更改为'
-    hilog.info(DOMAIN, TAG, `${this.context.resourceManager.getStringSync($r('app.string.renderClass_Change').id)}：` +
-    this.renderClass.waitToRender);
+    hilog.info(DOMAIN, TAG, `The value of renderClass is changed to: ${this.renderClass.waitToRender}`);
   }
 
   onPageShow() {
@@ -48,9 +44,7 @@ struct DelayedChangeIndex {
   build() {
     Row() {
       Column() {
-        // app.string.renderClass资源文件中的value值为'renderClass的值为'
-        Text(`${this.context.resourceManager.getStringSync($r('app.string.renderClass').id)}：` +
-        this.renderClass.waitToRender)
+        Text(`The value of renderClass is: ${this.renderClass.waitToRender}`)
           .fontSize(20)
       }
       .width('100%')
