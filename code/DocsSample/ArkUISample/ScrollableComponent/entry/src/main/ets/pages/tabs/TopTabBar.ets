@@ -60,8 +60,8 @@ export struct TopTabBar {
             }
             .backgroundColor(Color.Pink)
             .tabBar($r('app.string.technology'))
+            // [EndExclude top_navigation]
           }
-          // [EndExclude top_navigation]
           // [End top_navigation]
           .height(500)
         }

@@ -23,7 +23,7 @@ export struct ScrollableTabBar {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ScrollableTabBar_titleExample') }) {
           // [Start scrollable_tab_bar]
-          Tabs({ barPosition: BarPosition.Start  }) {
+          Tabs({ barPosition: BarPosition.Start }) {
             // TabContent的内容：关注、视频、游戏、数码、科技、体育、影视、人文、艺术、自然、军事
             // [StartExclude scrollable_tab_bar]
             TabContent() {

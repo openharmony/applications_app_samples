@@ -33,34 +33,34 @@ export struct ContentPageNoAndTabLinkage {
         // [EndExclude content_page_tab_linkage]
           Tabs({ barPosition: BarPosition.End }) {
             TabContent() {
-              //app.string.homepage_content资源文件中的value值为‘首页内容’
+              // app.string.homepage_content资源文件中的value值为‘首页内容’
               Text($r('app.string.homepage_content')).width('100%').height('100%').backgroundColor('rgb(213,213,213)')
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
             //app.string.homepage资源文件中的value值为‘首页’
             }.tabBar(this.tabBuilder($r('app.string.homepage'), 0))
 
             TabContent() {
-              //app.string.discover_content资源文件中的value值为‘发现内容’
+              // app.string.discover_content资源文件中的value值为‘发现内容’
               Text($r('app.string.discover_content')).width('100%').height('100%').backgroundColor('rgb(112,112,112)')
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
-            //app.string.discover资源文件中的value值为‘发现’
+            // app.string.discover资源文件中的value值为‘发现’
             }.tabBar(this.tabBuilder($r('app.string.discover'), 1))
 
             TabContent() {
-              //app.string.recommend_content资源文件中的value值为‘推荐内容’
+              // app.string.recommend_content资源文件中的value值为‘推荐内容’
               Text($r('app.string.recommend_content')).width('100%').height('100%').backgroundColor('rgb(39,135,217)')
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
-            //app.string.recommend资源文件中的value值为‘推荐’
+            // app.string.recommend资源文件中的value值为‘推荐’
             }.tabBar(this.tabBuilder($r('app.string.recommend'), 2))
 
             // [Start set_custom_tab_bar_style]
             TabContent() {
-              //app.string.mine_content资源文件中的value值为‘我的内容’
+              // app.string.mine_content资源文件中的value值为‘我的内容’
               Text($r('app.string.mine_content')).width('100%').height('100%').backgroundColor('rgb(0,74,175)')
                 // [StartExclude set_custom_tab_bar_style]
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
                 // [EndExclude set_custom_tab_bar_style]
-            //app.string.mine资源文件中的value值为‘我的’
+            // app.string.mine资源文件中的value值为‘我的’
             }.tabBar(this.tabBuilder($r('app.string.mine'), 3))
             // [End set_custom_tab_bar_style]
           }
