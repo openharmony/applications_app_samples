@@ -32,6 +32,7 @@ let uiContext = AppStorage.get('UIContext') as UIContext;
 @Builder
 export function buildText(params: Params) {
   Menu() {
+    // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
     MenuItem({ startIcon: $r('app.media.app_icon') }).width(32).height(32).borderRadius(10)
     MenuItem({ content: 'This is a Menu title 1' })
     MenuItem({ content: 'This is a Menu title 2' })

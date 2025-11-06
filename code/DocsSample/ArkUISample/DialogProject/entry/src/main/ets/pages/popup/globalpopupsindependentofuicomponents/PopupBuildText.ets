@@ -35,6 +35,7 @@ export function buildText(params: Params) {
   Popup({
     // 类型设置图标内容
     icon: {
+      // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
       image: $r('app.media.app_icon'),
       width: 32,
       height: 32,
