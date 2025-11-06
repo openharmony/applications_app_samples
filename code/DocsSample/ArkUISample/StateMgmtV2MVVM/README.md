@@ -4,7 +4,7 @@
 本教程通过一个简单的待办事项应用示例，逐步引入了状态管理V2装饰器，并通过代码重构实现了MVVM架构。最终，将数据、逻辑和视图分层，使得代码结构更加清晰、易于维护。具体介绍链接：
 
 1. [MVVM模式（状态管理V2）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-mvvm-V2.md)。
-2. [AppStorageV2: 应用全局UI状态存储](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-new-appstoragev2.md)指南文档中示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+2. [AppStorageV2: 应用全局UI状态存储](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-appstoragev2.md)指南文档中示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 ### 效果预览
 |TodoList页面                                   |
@@ -38,9 +38,9 @@
 │   │   │   ├── 8-AppStorageV2.ets
 │   │   │   ├── 9-PersistenceV2.ets
 │   │   │   ├── 10-Builder.ets
-│   │   │   ├── AppStorageV2.ets         //AppStorageV2.ets
-│   │   │   ├── Page1.ets                //在Page1和Page2两个页面之间存储数据Sample
-│   │   │   ├── Page2.ets 
+│   │   │   ├── AppStorageV2.ets         //使用AppStorageV2
+│   │   │   ├── PageOne.ets              //在PageOne和PageTwo两个页面之间存储数据Sample
+│   │   │   ├── PageTwo.ets 
 │   │   │   ├── Sample.ets               //Sample数据页面               
 │   │   │   ├── SettingPage.ets          //设置页
 │   │   │   └── TodoListPage.ets         //重构后的主页面

@@ -82,7 +82,7 @@ export default function AppV2Test () {
       await V2.click();
       await driver.delayMs(1000);
 
-      let task = await driver.findComponent(ON.text('Go to page2'));
+      let task = await driver.findComponent(ON.text('Go to pageTwo'));
       await task.click();
       await driver.delayMs(1000);
 
