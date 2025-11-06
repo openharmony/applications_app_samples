@@ -45,14 +45,6 @@ struct SceneRequire {
 
 @Component
 struct Child {
-  @Builder
-  buildFunction() {
-    Column() {
-      Text('initBuilderParam')
-        .fontSize(30)
-    }
-  }
-
   @Require regularValue: string;
   @Require @State stateValue: string;
   @Require @Provide provideValue: string;

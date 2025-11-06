@@ -44,14 +44,6 @@ struct Explame {
 
 @Component
 struct ChildV1 {
-  @Builder
-  buildFunction() {
-    Column() {
-      Text('initBuilderParam')
-        .fontSize(30)
-    }
-  }
-
   // 使用@Require必须构造时传参。
   @Require regularValue: string;
   @Require @State stateValue: string;
