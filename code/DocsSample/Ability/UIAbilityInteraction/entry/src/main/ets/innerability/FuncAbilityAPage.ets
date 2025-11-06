@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start FuncAbilityA]
+// [Start FuncAbilityAPage]
 // [Start FuncAbilityB]
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -39,13 +39,11 @@ struct FuncAbilityAPage {
             }
           });
         })
-        // [StartExclude FuncAbilityA]
+        // [StartExclude FuncAbilityAPage]
         .margin({bottom: 8})
         .width('60%');
-      // [EndExclude FuncAbilityA]
       // [EndExclude FuncAbilityB]
 
-      // [StartExclude FuncAbilityA]
       List({ initialIndex: 0 }) {
         ListItem() {
           Row() {
@@ -80,16 +78,16 @@ struct FuncAbilityAPage {
       // [StartExclude FuncAbilityB]
       .alignListItem(ListItemAlign.Center)
       // [EndExclude FuncAbilityB]
-      // [EndExclude FuncAbilityA]
+      // [EndExclude FuncAbilityAPage]
     }
-    // [StartExclude FuncAbilityA]
+    // [StartExclude FuncAbilityAPage]
     // [StartExclude FuncAbilityB]
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)
     // [EndExclude FuncAbilityB]
-    // [EndExclude FuncAbilityA]
+    // [EndExclude FuncAbilityAPage]
   }
 }
 // [End FuncAbilityB]
-// [End FuncAbilityA]
+// [End FuncAbilityAPage]

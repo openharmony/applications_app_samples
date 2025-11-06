@@ -15,6 +15,7 @@
 
 // [Start FuncAbilityA]
 // [Start FuncAbilityA_Result]
+// [Start FuncAbilityA_For_Result]
 // [Start FuncAbility_Cold]
 // [Start FuncAbility_Hot]
 // [Start FuncAbility_Window]
@@ -38,10 +39,11 @@ struct MainPage {
         // [StartExclude FuncAbility_Hot]
         // [StartExclude FuncAbility_Cold]
         // [StartExclude FuncAbilityA_Result]
+        // [StartExclude FuncAbilityA_For_Result]
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityA]
-            Button($r('app.string.Start_AbilityA')) //app.string.Start_AbilityA为用户自定义字符串资源
+            Button($r('app.string.Start_AbilityA')) // app.string.Start_AbilityA为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbilityA]
           }
@@ -55,7 +57,7 @@ struct MainPage {
               abilityName: 'FuncAbilityA',
               parameters: {
                 // 自定义信息
-                info: $r('app.string.main_page_return_info') //app.string.main_page_return_info为用户自定义字符串资源
+                info: $r('app.string.main_page_return_info') // app.string.main_page_return_info为用户自定义字符串资源
               },
             };
             // context为调用方UIAbility的UIAbilityContext
@@ -66,14 +68,17 @@ struct MainPage {
             });
           })
         }
+        // [EndExclude FuncAbilityA_For_Result]
         // [EndExclude FuncAbilityA_Result]
 
         // [StartExclude FuncAbilityA]
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityA_Result]
-            Button($r('app.string.Start_AbilityA_Result')) //app.string.Start_AbilityA_Result为用户自定义字符串资源
+            // [StartExclude FuncAbilityA_For_Result]
+            Button($r('app.string.Start_AbilityA_Result')) // app.string.Start_AbilityA_Result为用户自定义字符串资源
               .width('60%');
+            // [EndExclude FuncAbilityA_For_Result]
             // [EndExclude FuncAbilityA_Result]
           }
           .onClick(() => {
@@ -109,10 +114,11 @@ struct MainPage {
         // [EndExclude FuncAbility_Cold]
 
         // [StartExclude FuncAbilityA_Result]
+        // [StartExclude FuncAbilityA_For_Result]
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Cold]
-            Button($r('app.string.Cold_Start_Page')) //app.string.Cold_Start_Page为用户自定义字符串资源
+            Button($r('app.string.Cold_Start_Page')) // app.string.Cold_Start_Page为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbility_Cold]
           }
@@ -141,7 +147,7 @@ struct MainPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Hot]
-            Button($r('app.string.Hot_Start_Page')) //app.string.Hot_Start_Page为用户自定义字符串资源
+            Button($r('app.string.Hot_Start_Page')) // app.string.Hot_Start_Page为用户自定义字符串资源
               .width('60%');
             // [EndExclude FuncAbility_Hot]
           }
@@ -170,7 +176,7 @@ struct MainPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbility_Window]
-            Button('StartWindowMode') //StartWindowMode为用户自定义字符串资源
+            Button('StartWindowMode')
               .width('60%');
             // [EndExclude FuncAbility_Window]
           }
@@ -199,11 +205,13 @@ struct MainPage {
         }
         // [EndExclude FuncAbility_Hot]
         // [EndExclude FuncAbility_Cold]
+        // [EndExclude FuncAbilityA_For_Result]
         // [EndExclude FuncAbilityA_Result]
         // [EndExclude FuncAbilityA]
       }
       // [StartExclude FuncAbilityA]
       // [StartExclude FuncAbilityA_Result]
+      // [StartExclude FuncAbilityA_For_Result]
       // [StartExclude FuncAbility_Cold]
       // [StartExclude FuncAbility_Hot]
       // [StartExclude FuncAbility_Window]
@@ -211,11 +219,13 @@ struct MainPage {
       // [EndExclude FuncAbility_Window]
       // [EndExclude FuncAbility_Hot]
       // [EndExclude FuncAbility_Cold]
+      // [EndExclude FuncAbilityA_For_Result]
       // [EndExclude FuncAbilityA_Result]
       // [EndExclude FuncAbilityA]
     }
     // [StartExclude FuncAbilityA]
     // [StartExclude FuncAbilityA_Result]
+    // [StartExclude FuncAbilityA_For_Result]
     // [StartExclude FuncAbility_Cold]
     // [StartExclude FuncAbility_Hot]
     // [StartExclude FuncAbility_Window]
@@ -225,6 +235,7 @@ struct MainPage {
     // [EndExclude FuncAbility_Window]
     // [EndExclude FuncAbility_Hot]
     // [EndExclude FuncAbility_Cold]
+    // [EndExclude FuncAbilityA_For_Result]
     // [EndExclude FuncAbilityA_Result]
     // [EndExclude FuncAbilityA]
   }
@@ -232,5 +243,6 @@ struct MainPage {
 // [End FuncAbility_Window]
 // [End FuncAbility_Hot]
 // [End FuncAbility_Cold]
+// [End FuncAbilityA_For_Result]
 // [End FuncAbilityA_Result]
 // [End FuncAbilityA]

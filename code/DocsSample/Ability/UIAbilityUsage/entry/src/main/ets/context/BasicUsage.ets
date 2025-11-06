@@ -19,9 +19,9 @@ import { common, Want } from '@kit.AbilityKit';
 // [StartExclude basicUsage]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [EndExclude basicUsage]
 
 const DOMAIN = 0x0000;
+// [EndExclude basicUsage]
 
 @Entry
 @Component

@@ -18,10 +18,11 @@ import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start MyParcelable]
 import { rpc } from '@kit.IPCKit';
-
+// [StartExclude MyParcelable]
 const MSG_SEND_METHOD: string = 'CallSendMsg';
 const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = '[CalleeAbility]';
+// [EndExclude MyParcelable]
 
 class MyParcelable {
   public num: number = 0;

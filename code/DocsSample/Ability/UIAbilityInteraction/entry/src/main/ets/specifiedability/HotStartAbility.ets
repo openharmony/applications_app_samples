@@ -27,11 +27,12 @@ export default class HotStartAbility extends UIAbility {
   // [StartExclude onNewWant]
   private funcAbilityWant: Want | undefined = undefined;
   private uiContext: UIContext | undefined = undefined;
-
+  // [StartExclude HotAbility]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 接收调用方UIAbility传过来的参数
     this.funcAbilityWant = want;
   }
+  // [EndExclude HotAbility]
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability

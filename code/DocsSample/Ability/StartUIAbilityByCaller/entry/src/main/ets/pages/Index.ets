@@ -18,12 +18,12 @@ import { common, Want, Caller } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+const TAG: string = '[Index]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct Page_UIAbilityComponentsInteractive {
+struct Index {
   caller: Caller | undefined = undefined;
 
   // 注册caller的release监听

@@ -41,9 +41,10 @@ struct EventHubPage {
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
 
-      Button($r('app.string.Start_UIAbilityB')).onClick((event: ClickEvent) => {
-        this.startAbilityTest();
-      })
+      Button($r('app.string.Start_UIAbilityB')) // app.string.Start_UIAbilityB为用户自定义字符串资源
+        .onClick((event: ClickEvent) => {
+          this.startAbilityTest();
+        })
     }
     .justifyContent(FlexAlign.Center)
     // [EndExclude Page_EventHub]

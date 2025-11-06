@@ -15,7 +15,7 @@
 @Entry
 @Component
 struct MultitonPage {
-  @State message: string | Resource = $r('app.string.multiton_display');
+  @State message: string | Resource = $r('app.string.multiton_display'); // app.string.multiton_display的值为Multiton 演示效果
 
   build() {
     RelativeContainer() {
