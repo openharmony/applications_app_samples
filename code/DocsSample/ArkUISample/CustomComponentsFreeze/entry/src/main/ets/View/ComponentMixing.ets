@@ -18,15 +18,15 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Component
 struct ChildOfParamComponent {
-  @Prop @Watch('onChange') child_val: number;
+  @Prop @Watch('onChange') childVal: number;
 
   onChange() {
-    hilog.info(0x0000, 'FreezeChild', `Appmonitor ChildOfParamComponent: child_val changed:${this.child_val}`);
+    hilog.info(0x0000, 'FreezeChild', `Appmonitor ChildOfParamComponent: childVal changed:${this.childVal}`);
   }
 
   build() {
     Column() {
-      Text(`Child Param： ${this.child_val}`);
+      Text(`Child Param： ${this.childVal}`)
     }
   }
 }
@@ -42,7 +42,7 @@ struct ParamComponent {
   build() {
     Column() {
       Text(`val： ${this.paramVal}`)
-      ChildOfParamComponent({ child_val: this.paramVal });
+      ChildOfParamComponent({ childVal: this.paramVal });
     }
   }
 }
@@ -59,7 +59,7 @@ struct DelayComponent {
 
   build() {
     Column() {
-      Text(`Delay Param： ${this.delayVal}`);
+      Text(`Delay Param： ${this.delayVal}`)
     }
   }
 }
@@ -84,11 +84,11 @@ struct TabsComponent {
 
       Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {
         TabContent() {
-          ParamComponent({ paramVal: this.tabState });
+          ParamComponent({ paramVal: this.tabState })
         }.tabBar('Update')
 
         TabContent() {
-          DelayComponent({ delayVal: this.tabState });
+          DelayComponent({ delayVal: this.tabState })
         }.tabBar('DelayUpdate')
       }
       .vertical(false)
@@ -144,7 +144,7 @@ struct PageOneStack {
   build() {
     NavDestination() {
       Column() {
-        TabsComponent();
+        TabsComponent()
 
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
