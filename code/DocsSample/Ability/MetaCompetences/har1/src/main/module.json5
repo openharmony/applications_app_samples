@@ -17,14 +17,14 @@
   "module": {
     "name": "har1",
     "type": "har",
-    // [StartExclude startup006]
+    // [StartExclude startup_harmodule]
     "deviceTypes": [
       "default",
       "tablet",
       "2in1"
     ],
-    // [EndExclude startup006]
+    // [EndExclude startup_harmodule]
     "appStartup": "$profile:startup_config", // 启动框架的配置文件
   }
 }
-// [End startup006]
+// [End startup_harmodule]
