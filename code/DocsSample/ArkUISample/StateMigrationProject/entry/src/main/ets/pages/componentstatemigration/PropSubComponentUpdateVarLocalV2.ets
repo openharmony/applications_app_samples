@@ -24,7 +24,7 @@ struct Child {
 
   @Monitor('value')
   onValueChange(mon: IMonitor) {
-    hilog.info(DOMAIN,TAG,`value has been changed from ${mon.value()?.before} to ${mon.value()?.now}`);
+    hilog.info(DOMAIN, TAG, `value has been changed from ${mon.value()?.before} to ${mon.value()?.now}`);
     // 父组件value变化时，通知子组件value更新，回调Monitor函数，将更新的值覆写给本地的localValue
     this.localValue = this.value;
   }
