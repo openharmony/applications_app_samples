@@ -37,6 +37,7 @@ export struct HoverButtonExample {
         }.width('90%')
 
         Button() {
+          // $r('app.media.ic_public_add')需要替换为开发者需要的图片资源
           Image($r('app.media.ic_public_add'))
            .width(50)
            .height(50)

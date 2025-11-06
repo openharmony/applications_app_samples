@@ -34,7 +34,7 @@ export struct ButtonCaseLogin {
         // [Start button_case2_add_event]
         Button('Ok', { type: ButtonType.Normal, stateEffect: true })
           .onClick(()=>{
-            hilog.info(DOMAIN, 'testTag', 'Button onClick')
+            hilog.info(DOMAIN, 'testTag', 'Button onClick');
           }).margin(10)
         // [End button_case2_add_event]
         // [EndExclude button_case_2]
