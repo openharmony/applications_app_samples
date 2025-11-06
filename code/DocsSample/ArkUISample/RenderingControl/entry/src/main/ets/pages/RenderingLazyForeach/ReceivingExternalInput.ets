@@ -13,15 +13,16 @@
  * limitations under the License.
  */
 
-class BasicDataSource16 implements IDataSource {
+// [Start receiving_external_input]
+class InputDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData16[] = [];
+  private originDataArray: InputStringData[] = [];
 
   public totalCount(): number {
     return this.originDataArray.length;
   }
 
-  public getData(index: number): StringData16 {
+  public getData(index: number): InputStringData {
     return this.originDataArray[index];
   }
 
@@ -75,27 +76,27 @@ class BasicDataSource16 implements IDataSource {
   }
 }
 
-// [Start receiving_external_input]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource16 extends BasicDataSource16 {
-  private dataArray: StringData16[] = [];
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码。
+其中BasicDataSource、StringData等名称需要开发者自行修改。**/
+class MyInputDataSource extends InputDataSource {
+  private dataArray: InputStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData16 {
+  public getData(index: number): InputStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData16): void {
+  public pushData(data: InputStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @ObservedV2
-class StringData16 {
+class InputStringData {
   @Trace public message: string;
 
   constructor(message: string) {
@@ -106,24 +107,24 @@ class StringData16 {
 @Entry
 @ComponentV2
 struct ReceivingExternalInput {
-  data: MyDataSource16 = new MyDataSource16();
+  data: MyInputDataSource = new MyInputDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new StringData16(`Hello ${i}`));
+      this.data.pushData(new InputStringData(`Hello ${i}`));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData16, index: number) => {
+      LazyForEach(this.data, (item: InputStringData, index: number) => {
         ListItem() {
           ReceivingExternalInputChildComponent({ data: item.message })
             .onClick(() => {
               item.message += '!';
             })
         }
-      }, (item: StringData16, index: number) => index.toString())
+      }, (item: InputStringData, index: number) => index.toString())
     }
     .cachedCount(5)
   }

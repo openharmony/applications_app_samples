@@ -16,7 +16,7 @@
 // [Start render_nested_if]
 @Entry
 @Component
-struct nestedIf {
+struct NestedIf {
   @State toggle: boolean = false;
   @State toggleColor: boolean = false;
 

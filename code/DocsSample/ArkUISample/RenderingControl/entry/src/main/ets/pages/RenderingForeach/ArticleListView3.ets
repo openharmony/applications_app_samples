@@ -15,7 +15,7 @@
 
 // [Start article_list_view_three]
 @Observed
-class Article3 {
+class ArticleChangeData {
   public id: string;
   public title: string;
   public brief: string;
@@ -33,21 +33,21 @@ class Article3 {
 
 @Entry
 @Component
-struct ArticleListView3 {
-  @State articleList: Array<Article3> = [
-    new Article3('001', 'Article 0', 'Abstract', false, 100),
-    new Article3('002', 'Article 1', 'Abstract', false, 100),
-    new Article3('003', 'Article 2', 'Abstract', false, 100),
-    new Article3('004', 'Article 4', 'Abstract', false, 100),
-    new Article3('005', 'Article 5', 'Abstract', false, 100),
-    new Article3('006', 'Article 6', 'Abstract', false, 100),
+struct ArticleListChangeData {
+  @State articleList: Array<ArticleChangeData> = [
+    new ArticleChangeData('001', 'Article 0', 'Abstract', false, 100),
+    new ArticleChangeData('002', 'Article 1', 'Abstract', false, 100),
+    new ArticleChangeData('003', 'Article 2', 'Abstract', false, 100),
+    new ArticleChangeData('004', 'Article 4', 'Abstract', false, 100),
+    new ArticleChangeData('005', 'Article 5', 'Abstract', false, 100),
+    new ArticleChangeData('006', 'Article 6', 'Abstract', false, 100),
   ];
 
   build() {
     Column() {
       Button('Replace first article')
         .onClick(() => {
-          this.articleList[0] = new Article3('001', 'Article 0', 'Abstract', false, 100);
+          this.articleList[0] = new ArticleChangeData('001', 'Article 0', 'Abstract', false, 100);
         })
         .width(300)
         .margin(10)
@@ -62,14 +62,14 @@ struct ArticleListView3 {
         .margin(10)
 
       List() {
-        ForEach(this.articleList, (item: Article3) => {
+        ForEach(this.articleList, (item: ArticleChangeData) => {
           ListItem() {
-            ArticleCard3({
+            ArticleCardChangeData({
               article: item
             })
               .margin({ top: 20 })
           }
-        }, (item: Article3) => item.id)
+        }, (item: ArticleChangeData) => item.id)
       }
       .padding(20)
       .scrollBar(BarState.Off)
@@ -79,8 +79,8 @@ struct ArticleListView3 {
 }
 
 @Component
-struct ArticleCard3 {
-  @ObjectLink article: Article3;
+struct ArticleCardChangeData {
+  @ObjectLink article: ArticleChangeData;
 
   handleLiked() {
     this.article.isLiked = !this.article.isLiked;

@@ -16,7 +16,7 @@
 // [Start foreach_abnormal]
 @Entry
 @Component
-struct Parent1 {
+struct ForEachAbnormal {
   @State simpleList: Array<string> = ['one', 'two', 'three'];
 
   build() {
@@ -29,7 +29,7 @@ struct Parent1 {
       })
 
       ForEach(this.simpleList, (item: string) => {
-        ChildItem1({ item: item })
+        ForEachAbnormalChildItem({ item: item })
       }, (item: string, index: number) => index.toString())
     }
     .justifyContent(FlexAlign.Center)
@@ -40,7 +40,7 @@ struct Parent1 {
 }
 
 @Component
-struct ChildItem1 {
+struct ForEachAbnormalChildItem {
   @Prop item: string;
 
   build() {

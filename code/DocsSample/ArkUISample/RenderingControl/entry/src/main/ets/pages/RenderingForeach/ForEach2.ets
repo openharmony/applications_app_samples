@@ -16,14 +16,14 @@
 // [Start foreach_two]
 @Entry
 @Component
-struct Parent5 {
+struct ForEachSameKey {
   @State simpleList: Array<string> = ['one', 'two', 'two', 'three'];
 
   build() {
     Row() {
       Column() {
         ForEach(this.simpleList, (item: string) => {
-          ChildItem5({ item: item })
+          SameKeyChildItem({ item: item })
         }, (item: string) => item)
       }
       .width('100%')
@@ -35,7 +35,7 @@ struct Parent5 {
 }
 
 @Component
-struct ChildItem5 {
+struct SameKeyChildItem {
   @Prop item: string;
 
   build() {

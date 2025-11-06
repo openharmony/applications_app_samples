@@ -322,6 +322,7 @@ void EGLCore::Draw(int& hasDraw)
     // Convert DEG(72°) to RAD
     GLfloat rad = M_PI / 180 * 72;
     // Rotate four times
+    // 在文件egl_core.cpp中定义，NUM_4的值为4
     for (int i = 0; i < NUM_4; ++i) {
         // 旋转得其他四个四边形的顶点
         Rotate2d(centerX, centerY, &rotateX, &rotateY, rad);
@@ -395,6 +396,7 @@ void EGLCore::ChangeColor(int& hasChangeColor)
     // Convert DEG(72°) to RAD
     GLfloat rad = M_PI / 180 * 72;
     // Rotate four times
+    // 在文件egl_core.cpp中定义，NUM_4的值为4
     for (int i = 0; i < NUM_4; ++i) {
         // 旋转得其他四个四边形的顶点
         Rotate2d(centerX, centerY, &rotateX, &rotateY, rad);

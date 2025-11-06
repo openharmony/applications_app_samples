@@ -29,7 +29,7 @@ class ArrayHolder1 {
 }
 @Entry
 @ComponentV2
-struct RepeatTemplateSingle1 {
+struct RepeatSingle {
   @Local arrayHolder: ArrayHolder1 = new ArrayHolder1(100);
   @Local totalCount: number = this.arrayHolder.arr.length;
   scroller: Scroller = new Scroller();

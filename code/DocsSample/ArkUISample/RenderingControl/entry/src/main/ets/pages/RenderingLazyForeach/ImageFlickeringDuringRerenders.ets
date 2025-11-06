@@ -13,15 +13,20 @@
  * limitations under the License.
  */
 
-class BasicDataSource6 implements IDataSource {
+// [Start image_flickering_during_rerenders]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const TAG = '[Sample_RenderingControl]';
+const DOMAIN = 0xF811;
+
+class ImageFliceringDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData6[] = [];
+  private originDataArray: ImageFliceringStringData[] = [];
 
   public totalCount(): number {
     return this.originDataArray.length;
   }
 
-  public getData(index: number): StringData6 {
+  public getData(index: number): ImageFliceringStringData {
     return this.originDataArray[index];
   }
 
@@ -75,20 +80,20 @@ class BasicDataSource6 implements IDataSource {
   }
 }
 
-// [Start image_flickering_during_rerenders]
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码 **/
-class MyDataSource6 extends BasicDataSource6 {
-  private dataArray: StringData6[] = [];
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码。
+其中BasicDataSource、StringData等名称需要开发者自行修改。**/
+class FliceringDataSource extends ImageFliceringDataSource {
+  private dataArray: ImageFliceringStringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): StringData6 {
+  public getData(index: number): ImageFliceringStringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: StringData6): void {
+  public pushData(data: ImageFliceringStringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
@@ -96,7 +101,7 @@ class MyDataSource6 extends BasicDataSource6 {
 
 // @Observed类装饰器 和 @ObjectLink 用于在涉及嵌套对象或数组的场景中进行双向数据同步
 @Observed
-class StringData6 {
+class ImageFliceringStringData {
   public message: string;
   public imgSrc: Resource;
 
@@ -109,25 +114,25 @@ class StringData6 {
 @Entry
 @Component
 struct ImageFlickeringDuringRerenders {
-  private data: MyDataSource6 = new MyDataSource6();
+  private data: FliceringDataSource = new FliceringDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
       // 此处'app.media.img'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-      this.data.pushData(new StringData6(`Hello ${i}`, $r('app.media.img')));
+      this.data.pushData(new ImageFliceringStringData(`Hello ${i}`, $r('app.media.img')));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: StringData6, index: number) => {
+      LazyForEach(this.data, (item: ImageFliceringStringData, index: number) => {
         ListItem() {
           ImageFlickeringChildComponent({ data: item })
         }
         .onClick(() => {
           item.message += '0';
         })
-      }, (item: StringData6, index: number) => index.toString()) // 键值不受message属性影响
+      }, (item: ImageFliceringStringData, index: number) => index.toString()) // 键值不受message属性影响
     }
     .cachedCount(5)
   }
@@ -136,12 +141,13 @@ struct ImageFlickeringDuringRerenders {
 @Component
 struct ImageFlickeringChildComponent {
   // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
-  @ObjectLink data: StringData6;
+  @ObjectLink data: ImageFliceringStringData;
 
   build() {
     Column() {
       Text(this.data.message).fontSize(50)
         .onAppear(() => {
+          hilog.info(DOMAIN, TAG, 'appear: ${this.data.message}');
         })
       Image(this.data.imgSrc)
         .width(500)
