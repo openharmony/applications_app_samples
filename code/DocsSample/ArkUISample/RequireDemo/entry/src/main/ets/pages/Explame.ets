@@ -56,7 +56,7 @@ struct ChildV1 {
   @Require regularValue: string;
   @Require @State stateValue: string;
   @Require @Provide provideValue: string;
-  @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
+  @Require @BuilderParam initBuildTest: () => void;
   @Require @Prop initMessage: string;
 
   build() {
