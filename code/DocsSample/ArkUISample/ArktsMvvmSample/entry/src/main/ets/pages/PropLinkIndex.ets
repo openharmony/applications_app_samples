@@ -18,7 +18,7 @@
 struct PropLinkTodoComponent {
   build() {
     Row() {
-      // $r('app.string.all_tasks')需要替换为开发者所需的资源文件
+      // app.string.all_tasks资源文件中的value值为'全部待办'
       Text($r('app.string.all_tasks'))
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
@@ -34,7 +34,7 @@ struct PropLinkAllChooseComponent {
 
   build() {
     Row() {
-      // $r('app.string.check_all')需要替换为开发者所需的资源文件
+      // app.string.check_all资源文件中的value值为'全选'
       Button($r('app.string.check_all'), { type: ButtonType.Normal })
         .onClick(() => {
           this.isFinished = !this.isFinished;
@@ -67,7 +67,7 @@ struct ThingComponent1 {
           .width(28)
           .height(28)
       }
-      // $r('app.string.learn_chinese')需要替换为开发者所需的资源文件
+      // app.string.learn_chinese资源文件中的value值为'学习语文'
       Text($r('app.string.learn_chinese'))
         .fontSize(24)
         .decoration({ type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None })
@@ -100,7 +100,7 @@ struct ThingComponent2 {
           .width(28)
           .height(28)
       }
-      // $r('app.string.learn_advanced_math')需要替换为开发者所需的资源文件
+      // app.string.learn_advanced_math资源文件中的value值为'学习高数'
       Text($r('app.string.learn_advanced_math'))
         .fontSize(24)
         .decoration({ type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None })
@@ -140,4 +140,5 @@ struct PropLinkIndex {
     .backgroundColor('#90f1f3f5')
   }
 }
+
 // [End prop_link_update_refresh]

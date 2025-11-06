@@ -16,14 +16,20 @@
 // [Start builder_source_update_refresh]
 @Observed
 class TodoListData {
-  // $r('app.string.xxx')需要替换为开发者所需的资源文件
   public planList: ResourceStr[] = [
+    // app.string.get_up资源文件中的value值为'7.30 起床'
     $r('app.string.get_up'),
+    // app.string.breakfast资源文件中的value值为'8.30 早餐'
     $r('app.string.breakfast'),
+    // app.string.lunch资源文件中的value值为'11.30 中餐'
     $r('app.string.lunch'),
+    // app.string.dinner资源文件中的value值为'17.30 晚餐'
     $r('app.string.dinner'),
+    // app.string.midnight_snack资源文件中的value值为'21.30 夜宵'
     $r('app.string.midnight_snack'),
+    // app.string.bathe资源文件中的value值为'22.30 洗澡'
     $r('app.string.bathe'),
+    // app.string.sleep资源文件中的value值为'1.30 睡觉'
     $r('app.string.sleep')
   ];
 }
@@ -32,7 +38,7 @@ class TodoListData {
 struct StateTodoComponent {
   build() {
     Row() {
-      // $r('app.string.all_tasks')需要替换为开发者所需的资源文件
+      // app.string.all_tasks资源文件中的value值为'全部待办'
       Text($r('app.string.all_tasks'))
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
@@ -48,7 +54,7 @@ struct BuilderAllChooseComponent {
 
   build() {
     Row() {
-      // $r('app.string.check_all')需要替换为开发者所需的资源文件
+      // app.string.check_all资源文件中的value值为'全选'
       Button($r('app.string.check_all'), { type: ButtonType.Capsule })
         .onClick(() => {
           this.isFinished = !this.isFinished;
@@ -95,6 +101,7 @@ struct BuilderThingComponent {
         .fontSize(24)
         .decoration({ type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None })
         .onClick(() => {
+          // app.string.la_la资源文件中的value值为'啦'
           this.thing += this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.la_la').id);
         })
     }
@@ -114,11 +121,11 @@ struct BuilderThingComponent {
 struct BuilderIndex {
   @State isFinished: boolean = false;
   @State data: TodoListData = new TodoListData(); // View绑定ViewModel的数据
-  @State context1: Context = this.getUIContext().getHostContext()!;
 
   aboutToAppear(): void {
     for (let i = 0; i < this.data.planList.length; i++) {
-      this.data.planList[i] = this.context1!.resourceManager.getStringSync((this.data.planList[i] as Resource).id)
+      this.data.planList[i] =
+        this.getUIContext().getHostContext()!.resourceManager.getStringSync((this.data.planList[i] as Resource).id);
     }
   }
 

@@ -18,7 +18,7 @@
 struct ForEachTodoComponent {
   build() {
     Row() {
-      // $r('app.string.all_tasks')需要替换为开发者所需的资源文件
+      // app.string.all_tasks资源文件中的value值为'全部待办'
       Text($r('app.string.all_tasks'))
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
@@ -34,7 +34,7 @@ struct ForEachAllChooseComponent {
 
   build() {
     Row() {
-      // $r('app.string.check_all')需要替换为开发者所需的资源文件
+      // app.string.check_all资源文件中的value值为'全选'
       Button($r('app.string.check_all'), { type: ButtonType.Normal })
         .onClick(() => {
           this.isFinished = !this.isFinished;
@@ -93,14 +93,20 @@ struct ForEachThingComponent {
 @Component
 struct ForEachIndex {
   @State isFinished: boolean = false;
-  // $r('app.string.xxx')需要替换为开发者所需的资源文件
   @State planList: ResourceStr[] = [
+    // app.string.get_up资源文件中的value值为'7.30 起床'
     $r('app.string.get_up'),
+    // app.string.breakfast资源文件中的value值为'8.30 早餐'
     $r('app.string.breakfast'),
+    // app.string.lunch资源文件中的value值为'11.30 中餐'
     $r('app.string.lunch'),
+    // app.string.dinner资源文件中的value值为'17.30 晚餐'
     $r('app.string.dinner'),
+    // app.string.midnight_snack资源文件中的value值为'21.30 夜宵'
     $r('app.string.midnight_snack'),
+    // app.string.bathe资源文件中的value值为'22.30 洗澡'
     $r('app.string.bathe'),
+    // app.string.sleep资源文件中的value值为'1.30 睡觉'
     $r('app.string.sleep')
   ];
   context1 = this.getUIContext().getHostContext();
@@ -133,4 +139,5 @@ struct ForEachIndex {
     .backgroundColor('#90f1f3f5')
   }
 }
+
 // [End foreach_update_refresh]
