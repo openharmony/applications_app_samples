@@ -95,6 +95,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "entry6",
+      "srcPath": "./entry6",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

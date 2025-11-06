@@ -294,7 +294,7 @@ entry3/src/main/
 
 ### 介绍
 
-1. 实现对以下文档中提供的 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/web/arkweb-ndk-jsbridge.md 示例代码片段的工程化，保证指南中示例代码与sample工程文件同源。
+1. 实现文档中提供的示例代码片段的工程化，确保示例代码与sample工程文件同源。文档链接：https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/arkweb-ndk-jsbridge.md 。
 
 ### 效果预览
 
@@ -348,7 +348,7 @@ entry4/src/main/
 
 1. 点击createNoControllerTagPort按钮ETS侧调用testNapi.createWebMessagePorts("noTag")。
 2. 点击createPort按钮ETS侧调用 testNapi.createWebMessagePorts(this.webTaag)。
-3. 点击setHandler按钮ETS侧调用testNapi.setMessageEventHandler(this.webTag(3)。
+3. 点击setHandler按钮ETS侧调用testNapi.setMessageEventHandler(this.webTag(3))。
 4. 点击setHandlerThread按钮ETS侧调用 testNapi.setMessageEventHandlerThread(this.webTag)。
 5. 点击SendString按钮ETS侧清空h5Log,调用 testNapi.postMessage(this.webTag)，通过消息端口将内容发送到前端页面。
 
@@ -360,6 +360,48 @@ entry5/src/main/
 |---ets
 |---|---entry5ability
 |---|---|---Entry5Ability.ets
+|---|---pages
+|---|---|---Index.ets						// 首页
+|---resources								// 静态资源
+|---ohosTest
+|---|---ets
+|---|---|---tests
+|---|---|---|---Ability.test.ets            // 自动化测试用例
+```
+
+
+### 相关权限
+
+无。
+
+# Entry6:
+
+## 应用侧与前端页面的相互调用(C/C++)
+
+### 介绍
+
+1. 实现文档中提供的示例代码片段的工程化，确保示例代码与sample工程文件同源。文档链接：https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/arkweb-ndk-jsbridge.md 。
+
+### 效果预览
+
+| 主页                                                         |
+| ------------------------------------------------------------ |
+| <img src="./screenshots/MutualInvokeCCpp.png" width="360;" /> |
+
+使用说明
+
+1. 点击 runJS hello按钮调用testNapi.runJavaScript。
+2. 点击test Native Development Kit method1 !按钮调用testNdkProxyObjMethod1。
+3. 点击test Native Development Kit method2 !按钮调用testNdkProxyObjMethod2。
+
+### 工程目录
+
+```
+entry6/src/main/
+|---cpp										// cpp文件夹
+|---ets
+|---|---entry6ability
+|---|---|---Entry6Ability.ets
 |---|---pages
 |---|---|---Index.ets						// 首页
 |---resources								// 静态资源
@@ -392,6 +434,6 @@ entry5/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkWeb/UseFrontendJSApp > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

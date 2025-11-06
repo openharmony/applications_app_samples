@@ -14,6 +14,7 @@
  */
 
 // [Start cors_script_raw]
+// main/resources/rawfile/js/script.js
 const body = document.body;
 const element = document.createElement('div');
 element.textContent = 'success';

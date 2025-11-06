@@ -14,6 +14,7 @@
  */
  
 // [Start node_api_layer_code]
+// entry4/src/main/cpp/hello.cpp
 #include "napi/native_api.h"
 #include <bits/alltypes.h>
 #include <memory>
@@ -137,19 +138,20 @@ void ValidCallback(const char *webTag, void *userData)
     // [Start the_front_end_page_calls_application_side_functions]
     // 注册对象
     OH_LOG_Print(
-        LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit RegisterJavaScriptProxy begin");
+        LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit registerJavaScriptProxyEx begin");
     ArkWeb_ProxyMethodWithResult method1 = {
         "method1", ProxyMethod1, static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
     ArkWeb_ProxyMethodWithResult method2 = {
         "method2", ProxyMethod2, static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
     ArkWeb_ProxyMethodWithResult methodList[2] = {method1, method2};
     // 调用Native Development Kit接口注册对象
-    // 如此注册的情况下，在H5页面就可以使用proxy.method1、proxy.method1调用此文件下的ProxyMethod1和ProxyMethod2方法了
+    // 如此注册的情况下，在H5页面就可以使用proxy.method1、proxy.method2调用此文件下的ProxyMethod1和ProxyMethod2方法了
     ArkWeb_ProxyObjectWithResult proxyObject = {"ndkProxy", methodList, 2};
+    // 参数permission为空，表示不进行权限管控
     controller->registerJavaScriptProxyEx(webTag, &proxyObject, "");
     // [End the_front_end_page_calls_application_side_functions]
 
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit RegisterJavaScriptProxy end");
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit registerJavaScriptProxyEx end");
 }
 
 void LoadStartCallback(const char *webTag, void *userData)
@@ -265,10 +267,11 @@ static napi_value NativeWebInit(napi_env env, napi_callback_info info)
 
     // 将webTag保存在实例对象中
     jsbridge_object_ptr = std::make_shared<JSBridgeObject>(webTagValue);
-    if (jsbridge_object_ptr)
+    // [StartExclude parse_and_store_webtags]
+    if (jsbridge_object_ptr) {
         jsbridge_object_ptr->Init();
-// [End parse_and_store_webtags]
-    
+    }
+
     controller = reinterpret_cast<ArkWeb_ControllerAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_CONTROLLER));
     if (controller)
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "get ArkWeb_ControllerAPI success");
@@ -291,7 +294,9 @@ static napi_value NativeWebInit(napi_env env, napi_callback_info info)
     delete[] webTagValue;
 
     return nullptr;
+    // [EndtExclude parse_and_store_webtags]
 }
+// [End parse_and_store_webtags]
 
 // 发送JS脚本到H5侧执行
 static napi_value RunJavaScript(napi_env env, napi_callback_info info)

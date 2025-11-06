@@ -14,6 +14,7 @@
  */
 
 // [Start cors_loccross_one]
+// main/ets/pages/LocCrossOriginResAccSol_one.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry
