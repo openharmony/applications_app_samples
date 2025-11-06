@@ -18,6 +18,8 @@ import { PromptActionClass } from './PopupMainPage';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const DOMAIN = 0x0000;
+
 class Params {
   private text: string = '';
 
@@ -33,7 +35,7 @@ let uiContext = AppStorage.get('UIContext') as UIContext;
 @Builder
 export function buildText(params: Params) {
   Popup({
-    // 类型设置图标内容
+    // 类型设置图标内容。
     icon: {
       // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
       image: $r('app.media.app_icon'),
@@ -42,24 +44,24 @@ export function buildText(params: Params) {
       fillColor: Color.White,
       borderRadius: 10
     } as PopupIconOptions,
-    // 设置文字内容
+    // 设置文字内容。
     title: {
       text: `This is a Popup title 1`,
       fontSize: 20,
       fontColor: Color.Black,
       fontWeight: FontWeight.Normal
     } as PopupTextOptions,
-    // 设置文字内容
+    // 设置文字内容。
     message: {
       text: `This is a Popup message 1`,
       fontSize: 15,
       fontColor: Color.Black
     } as PopupTextOptions,
-    // 设置按钮内容
+    // 设置按钮内容。
     buttons: [{
       text: 'confirm',
       action: () => {
-        hilog.info(0x0000, 'popupBuildText', 'confirm button click');
+        hilog.info(DOMAIN, 'popupBuildText', 'confirm button click');
       },
       fontSize: 15,
       fontColor: Color.Black,
@@ -67,7 +69,7 @@ export function buildText(params: Params) {
       {
         text: 'cancel',
         action: () => {
-          hilog.info(0x0000, 'popupBuildText', 'cancel button click');
+          hilog.info(DOMAIN, 'popupBuildText', 'cancel button click');
         },
         fontSize: 15,
         fontColor: Color.Black
@@ -95,10 +97,10 @@ struct BuildTextExample {
       enableArrow: true
     })
       .then(() => {
-        hilog.info(0x0000, 'popupBuildText', 'openPopup success');
+        hilog.info(DOMAIN, 'popupBuildText', 'openPopup success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'popupBuildText', 'openPopup error: ' + err.code + ' ' + err.message);
+        hilog.error(DOMAIN, 'popupBuildText', 'openPopup error: ' + err.code + ' ' + err.message);
       });
     // [End open_popup]
   }
@@ -109,10 +111,10 @@ struct BuildTextExample {
       enableArrow: false
     }, true)
       .then(() => {
-        hilog.info(0x0000, 'popupBuildText', 'updatePopup success');
+        hilog.info(DOMAIN, 'popupBuildText', 'updatePopup success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'popupBuildText', 'updatePopup error: ' + err.code + ' ' + err.message);
+        hilog.error(DOMAIN, 'popupBuildText', 'updatePopup error: ' + err.code + ' ' + err.message);
       });
     // [End update_popup]
   }
@@ -121,10 +123,10 @@ struct BuildTextExample {
     // [Start close_popup]
     this.promptAction.closePopup(this.contentNode)
       .then(() => {
-        hilog.info(0x0000, 'popupBuildText', 'closePopup success');
+        hilog.info(DOMAIN, 'popupBuildText', 'closePopup success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(0x0000, 'popupBuildText', 'closePopup error: ' + err.code + ' ' + err.message);
+        hilog.error(DOMAIN, 'popupBuildText', 'closePopup error: ' + err.code + ' ' + err.message);
       });
     // [End close_popup]
   }

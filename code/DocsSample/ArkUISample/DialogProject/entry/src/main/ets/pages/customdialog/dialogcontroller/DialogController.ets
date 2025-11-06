@@ -36,7 +36,7 @@ class Params {
 struct MyComponent {
   build() {
     Column({ space: 5 }) {
-      //'app.string.closeDialog_by_custom'资源文件中的value值为'点我关闭弹窗：通过自定义组件自带的DialogController'
+      // 'app.string.closeDialog_by_custom'资源文件中的value值为'点我关闭弹窗：通过自定义组件自带的DialogController'。
       Button($r('app.string.closeDialog_by_custom'))
         .onClick(() => {
           let dialogController: promptAction.DialogController = this.getDialogController();
@@ -57,7 +57,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(30)
     if (params.dialogController !== undefined) {
-      //'app.string.closeDialog_by_controller'资源文件中的value值为'点我关闭弹窗：通过外部传递的DialogController'
+      // 'app.string.closeDialog_by_controller'资源文件中的value值为'点我关闭弹窗：通过外部传递的DialogController'。
       Button($r('app.string.closeDialog_by_controller'))
         .onClick(() => {
           params.dialogController.close();
@@ -80,10 +80,10 @@ struct CustomDialogExample {
 
   build() {
     Column({ space: 5 }) {
-      //'app.string.my_content'资源文件中的value值为'我是内容'
+      // 'app.string.my_content'资源文件中的value值为'我是内容'。
       Text($r('app.string.my_content'))
         .fontSize(30)
-      //'app.string.closeDialog_by_dialog'资源文件中的value值为'点我关闭弹窗：通过自定义组件自带的DialogController'
+      // 'app.string.closeDialog_by_dialog'资源文件中的value值为'点我关闭弹窗：通过自定义组件自带的DialogController'。
       Button($r('app.string.closeDialog_by_dialog'))
         .onClick(() => {
           let dialogController: PromptActionDialogController = this.getDialogController();
@@ -119,7 +119,7 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogController !== undefined) {
-        //'app.string.closeDialog_by_outside'资源文件中的value值为'点击关闭弹窗：通过外部传递的DialogController'
+        // 'app.string.closeDialog_by_outside'资源文件中的value值为'点击关闭弹窗：通过外部传递的DialogController'。
         Button($r('app.string.closeDialog_by_outside'))
           .onClick(() => {
             dialogController.close();
@@ -141,14 +141,14 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogId !== undefined) {
-        //'app.string.closeDialog_by_id'资源文件中的value值为'点击关闭弹窗：通过DialogID'
+        // 'app.string.closeDialog_by_id'资源文件中的value值为'点击关闭弹窗：通过DialogID'。
         Button($r('app.string.closeDialog_by_id'))
           .onClick(() => {
             this.getUIContext().getPromptAction().closeCustomDialog(dialogId);
           })
       }
       if (dialogController !== undefined) {
-        //'app.string.closeDialog_by_dialog_controller'资源文件中的value值为'点击关闭弹窗：通过外部传递的DialogController'
+        // 'app.string.closeDialog_by_dialog_controller'资源文件中的value值为'点击关闭弹窗：通过外部传递的DialogController'。
         Button($r('app.string.closeDialog_by_dialog_controller'))
           .onClick(() => {
             dialogController.close();
@@ -166,7 +166,7 @@ export struct DialogController {
       Text(this.message)
         .fontSize(30)
       if (dialogController !== undefined) {
-        //'app.string.click_check_status'资源文件中的value值为'点我查询弹窗状态'
+        // 'app.string.click_check_status'资源文件中的value值为'点我查询弹窗状态'。
         Button($r('app.string.click_check_status'))
           .onClick(() => {
             hilog.info(0x0000, 'dialogController', 'state:' + dialogController.getState());
@@ -184,7 +184,7 @@ export struct DialogController {
   build() {
     NavDestination() {
       Column({ space: 5 }) {
-        //'app.string.open_custom_dialog_with_controller'资源文件中的value值为'OpenCustomDialogWithController弹窗'
+        // 'app.string.open_custom_dialog_with_controller'资源文件中的value值为'OpenCustomDialogWithController弹窗'。
         Button($r('app.string.open_custom_dialog_with_controller'))
           .onClick(() => {
             // [Start content_node]
@@ -199,7 +199,7 @@ export struct DialogController {
             });
             // [End content_node]
           })
-        //'app.string.present_custom_dialog'资源文件中的value值为'PresentCustomDialog+CustomBuilder弹窗'
+        // 'app.string.present_custom_dialog'资源文件中的value值为'PresentCustomDialog+CustomBuilder弹窗'。
         Button($r('app.string.present_custom_dialog'))
           .onClick(() => {
             // [Start dialog_controller_component]
@@ -211,7 +211,7 @@ export struct DialogController {
             });
             // [End dialog_controller_component]
           })
-        //'app.string.custom_builder_with_id'资源文件中的value值为'PresentCustomDialog+CustomBuilderWithId弹窗'
+        // 'app.string.custom_builder_with_id'资源文件中的value值为'PresentCustomDialog+CustomBuilderWithId弹窗'。
         Button($r('app.string.custom_builder_with_id'))
           .onClick(() => {
             // [Start dialog_controller_id]
@@ -223,7 +223,7 @@ export struct DialogController {
             });
             // [End dialog_controller_id]
           })
-        //'app.string.custom_dialog_controller_dialog'资源文件中的value值为'CustomDialogController弹窗'
+        // 'app.string.custom_dialog_controller_dialog'资源文件中的value值为'CustomDialogController弹窗'。
         Button($r('app.string.custom_dialog_controller_dialog'))
           .onClick(() => {
             // [Start custom_dialog_example_click]
