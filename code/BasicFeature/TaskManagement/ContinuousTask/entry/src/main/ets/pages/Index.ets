@@ -107,11 +107,12 @@ struct Index {
   // 查询当前UIability是否已经申请过特定类型的长时任务
   checkHaveAuidioPlaybackTask(): boolean {
     try {
-      backgroundTaskManager.getAllContinuousTasks(this.context, false).then((info: backgroundTaskManager.ContinuousTaskInfo[]) => {
+      backgroundTaskManager.getAllContinuousTasks(this.context, false).
+        then((info: backgroundTaskManager.ContinuousTaskInfo[]) => {
         console.info(`Operation getAllContinuousTasks succeeded. data: ` + JSON.stringify(info));
         let index: number = 0;
         for (index = 0; index < info.length; index++) {
-          if (info[index].backgroundModes.indexOf("audioPlayback") != 0) {
+          if (info[index].backgroundModes.indexOf('audioPlayback') != 0) {
             return true;
           } else {
             console.info(`current have audioplyback continuous task.`);
@@ -138,7 +139,7 @@ struct Index {
 
   OnContinuousTaskCancel() {
     try {
-      backgroundTaskManager.on("continuousTaskCancel", callback);
+      backgroundTaskManager.on('continuousTaskCancel', callback);
       console.info(`Succeeded in operationing OnContinuousTaskCancel.`);
     } catch (error) {
       console.error(`Operation OnContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
@@ -148,7 +149,7 @@ struct Index {
   OffContinuousTaskCancel() {
     try {
       // callback参数不传，则取消所有已注册的回调
-      backgroundTaskManager.off("continuousTaskCancel", callback);
+      backgroundTaskManager.off('continuousTaskCancel', callback);
       console.info(`Succeeded in operationing OffContinuousTaskCancel.`);
     } catch (error) {
       console.error(`Operation OffContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
@@ -182,10 +183,11 @@ struct Index {
       // 在原子化服务中，使用wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {替换下面一行代码
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
-          let list: Array<string> = ["audioPlayback"];
-          // let list: Array<string> = ["bluetoothInteraction"]; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
-          backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
-            console.info("Operation startBackgroundRunning succeeded");
+          let list: string[] = ["audioPlayback"];
+          // let list: string[] = ["bluetoothInteraction"]; 长时任务类型包含bluetoothInteraction，CAR_KEY子类型合法
+          backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).
+            then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+            console.info('Operation startBackgroundRunning succeeded');
             // 此处执行具体的长时任务逻辑，如播音等。
             // [StartExclude quick_start]
             if (!PlayerModel.isPlaying) {
