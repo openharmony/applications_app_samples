@@ -115,9 +115,7 @@ struct Index {
   // [Start prop]
   @StorageProp('currentColorMode') @Watch('onColorModeChange') currentMode: number = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
   // [End prop]
-  // [Start color_mode_change_appear]
   aboutToAppear(): void {
-    // [StartExclude color_mode_change_appear]
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
         hilog.info(DOMAIN, TAG, 'onMemoryLevel');
@@ -131,35 +129,23 @@ struct Index {
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
     // 创建自定义节点并添加至map
     this.textNodeController.createNode(this.getUIContext());
-    // [EndExclude color_mode_change_appear]
     if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
       // 当前为浅色模式，资源初始化逻辑
-      // [StartExclude color_mode_change_appear]
       this.colorText == 'light';
-      // [EndExclude color_mode_change_appear]
     } else {
       // 当前为深色模式，资源初始化逻辑
-      // [StartExclude color_mode_change_appear]
       this.colorText == 'dark';
-      // [EndExclude color_mode_change_appear]
     }
   }
-  // [End color_mode_change_appear]
-  // [Start color_mode_change]
   onColorModeChange(): void {
     if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
       // 当前为浅色模式，资源初始化逻辑
-      // [StartExclude color_mode_change_appear]
       this.colorText == 'light';
-      // [EndExclude color_mode_change_appear]
     } else {
       // 当前为深色模式，资源初始化逻辑
-      // [StartExclude color_mode_change_appear]
       this.colorText == 'dark';
-      // [EndExclude color_mode_change_appear]
     }
   }
-  // [End color_mode_change]
   aboutToDisappear(): void {
     // 移除map中的引用，并将自定义节点释放
     this.textNodeController.deleteNode();
