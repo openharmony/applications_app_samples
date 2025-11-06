@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start prop_nine_start]
+
 @Observed
 class Son {
   public title: string;
@@ -30,6 +30,7 @@ class Father {
     this.son = son;
   }
 }
+// [Start prop_nine_start]
 // [StartExclude prop_nine_start]
 @Entry
 @Component
