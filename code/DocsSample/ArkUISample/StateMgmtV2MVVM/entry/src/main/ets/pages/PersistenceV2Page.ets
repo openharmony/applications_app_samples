@@ -13,6 +13,7 @@
  * limitations under the License.
  *
 */
+
 // [Start Main_PersistenceV2]
 // src/main/ets/pages/PersistenceV2Page.ets
 import { AppStorageV2, PersistenceV2, Type } from '@kit.ArkUI';
@@ -40,10 +41,10 @@ class TaskList {
 
   async loadTasks(context: common.UIAbilityContext) {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
-    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
-    let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+    let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
+    let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
     let result = textDecoder.decodeToString(getJson);
-    this.tasks = JSON.parse(result).map((task: Task) => {
+    this.tasks =JSON.parse(result).map((task: Task)=>{
       let newTask = new Task();
       newTask.taskName = task.taskName;
       newTask.isFinish = task.isFinish;
@@ -55,14 +56,10 @@ class TaskList {
 @ComponentV2
 struct TaskItem {
   @Param task: Task = new Task();
-  @Event deleteTask: () => void = () => {
-  };
-
+  @Event deleteTask: () => void = () => {};
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
-    hilog.info(0x0000, 'testTag', '%{public}s',
-      'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' +
-        mon.value()?.now);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
   }
 
   build() {
@@ -73,7 +70,7 @@ struct TaskItem {
         .height(28)
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
-      // app.string.Delete_task资源文件中的value值为'删除'
+      // app.string.Delete_task 资源文件中的value值为'删除'。
       Button($r('app.string.Delete_task'))
         .onClick(() => this.deleteTask())
     }
@@ -84,7 +81,7 @@ struct TaskItem {
 @Entry
 @ComponentV2
 struct TodoList {
-  @Local taskList: TaskList = new TaskList([]);
+  @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -109,11 +106,11 @@ struct TodoList {
 
   build() {
     Column() {
-      // app.string.TodoList_title资源文件中的value值为'待办'
+      // app.string.TodoList_title 资源文件中的value值为'待办'。
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin({ bottom: 10 })
-      // app.string.Unfinish_count资源文件中的value值为'未完成任务'
+      // app.string.Unfinish_count 资源文件中的value值为'未完成任务'。
       Text($r('app.string.Unfinish_count') + `：${this.tasksUnfinished}`)
       Repeat<Task>(this.taskList.tasks.filter(task => this.setting.showCompletedTask || !task.isFinish))
         .each((obj: RepeatItem<Task>) => {
@@ -123,13 +120,13 @@ struct TodoList {
           })
         })
       Row() {
-        // app.string.Finish_all_tasks资源文件中的value值为'全部完成'
+        // app.string.Finish_all_tasks 资源文件中的value值为'全部完成'。
         Button($r('app.string.Finish_all_tasks'))
           .onClick(() => this.finishAll(true))
-        // app.string.Unfinish_all_tasks资源文件中的value值为'全部未完成'
+        // app.string.Unfinish_all_tasks 资源文件中的value值为'全部未完成'。
         Button($r('app.string.Unfinish_all_tasks'))
           .onClick(() => this.finishAll(false))
-        // app.string.Setting资源文件中的value值为'设置'
+        // app.string.Setting 资源文件中的value值为'设置'。
         Button($r('app.string.Setting'))
           .onClick(() => {
             let wantInfo: Want = {
@@ -140,9 +137,8 @@ struct TodoList {
             this.context.startAbility(wantInfo);
           })
       }
-
       Row() {
-        // app.string.Add_new_task资源文件中的value值为'添加新任务'
+        // app.string.Add_new_task 资源文件中的value值为'添加新任务'。
         TextInput({ placeholder: $r('app.string.Add_new_task'), text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
@@ -157,5 +153,4 @@ struct TodoList {
     }
   }
 }
-
 // [End Main_PersistenceV2]

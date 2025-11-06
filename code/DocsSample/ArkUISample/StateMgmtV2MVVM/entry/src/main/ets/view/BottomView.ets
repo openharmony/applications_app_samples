@@ -35,12 +35,15 @@ export default struct BottomView {
   build() {
     Column() {
       Row() {
+        // app.string.Finish_all_tasks 资源文件中的value值为'全部完成'。
         actionButton($r('app.string.Finish_all_tasks'), (): void => this.taskList.finishAll(true))
+        // app.string.Unfinish_all_tasks 资源文件中的value值为'全部未完成'。
         actionButton($r('app.string.Unfinish_all_tasks'), (): void => this.taskList.finishAll(false))
+        // app.string.Setting 资源文件中的value值为'设置'。
         actionButton($r('app.string.Setting'), (): void => {
           let wantInfo: Want = {
-            deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
+            deviceId: '', // deviceId为空表示本设备。
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -48,6 +51,7 @@ export default struct BottomView {
       }
       .margin({ top: 10, bottom: 5 })
       Row() {
+        // app.string.Add_new_task 资源文件中的value值为'添加新任务'。
         TextInput({ placeholder: $r('app.string.Add_new_task'), text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')

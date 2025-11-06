@@ -21,6 +21,7 @@
 struct TodoList {
   build() {
     Column() {
+      // app.string.TodoList_title 资源文件中的value值为'待办'。
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin({ bottom: 10 })
