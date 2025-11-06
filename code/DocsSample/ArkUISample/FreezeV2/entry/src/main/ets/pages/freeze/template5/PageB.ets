@@ -17,7 +17,7 @@
 // src/main/ets/pages/freeze/template5/PageB.ets
 @Builder
 function pageBBuilder() {
-  PageB();
+  PageB()
 }
 
 @ComponentV2
