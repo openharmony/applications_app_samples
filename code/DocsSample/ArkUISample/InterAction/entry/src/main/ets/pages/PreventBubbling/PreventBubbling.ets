@@ -23,7 +23,6 @@ const BUNDLE = 'MyApp_MultipleFingerInformation';
 @Entry
 @ComponentV2
 struct PreventBubbling {
-
   build() {
     RelativeContainer() {
       Column() { // 父组件
@@ -36,16 +35,16 @@ struct PreventBubbling {
           .alignSelf(ItemAlign.Center)
           .padding(10)
           .margin(20)
-          .onTouch((event:TouchEvent)=>{
-            event.stopPropagation() // 子组件优先接收到触摸事件后，阻止父组件接收事件
+          .onTouch((event: TouchEvent) => {
+            event.stopPropagation(); // 子组件优先接收到触摸事件后，阻止父组件接收事件
           })
       }
       .justifyContent(FlexAlign.End)
       .backgroundColor(Color.Green)
       .height('100%')
       .width('100%')
-      .onTouch((event:TouchEvent)=>{
-        hilog.info(DOMAIN, TAG, BUNDLE + 'touch event received on parent')
+      .onTouch((event: TouchEvent) => {
+        hilog.info(DOMAIN, TAG, BUNDLE + 'touch event received on parent');
       })
     }
     .height('100%')

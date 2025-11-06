@@ -458,7 +458,7 @@ export default function IndexTest() {
       let button_list1 = await scrollBar.scrollSearch(ON.text(resource.resourceToString($r('app.string.Focus_Index_FocusTransfer_title')), MatchPattern.CONTAINS));
       await button_list1.click();
       //已进入测试界面
-      let button = await driver.findComponent(ON.text('button 1', MatchPattern.CONTAINS));
+      let button = await driver.findComponent(ON.text('Button 1', MatchPattern.CONTAINS));
       await button.click();
       await driver.pressBack();
       await driver.pressBack();

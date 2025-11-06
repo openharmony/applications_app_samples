@@ -43,5 +43,4 @@ export struct RequestFocusExample {
     // [EndExclude dynamic_focus_request]
   }
 }
-
 // [End dynamic_focus_request]

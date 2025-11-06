@@ -12,19 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import { KeyCode } from '@kit.InputKit';
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
 // [Start focus_style_manage]
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 export struct FocusStyle {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-
         Column({ space: 30 }) {
           Button('small black focus box')
             .focusBox({
@@ -40,11 +36,6 @@ export struct FocusStyle {
         }
         .alignItems(HorizontalAlign.Center)
         .width('100%')
-
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
     }
     // [StartExclude focus_style_manage]
     .backgroundColor('#f1f2f3')
