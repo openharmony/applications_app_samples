@@ -15,7 +15,7 @@
 // [Start ComputedV1_start]
 @Entry
 @Component
-struct Index1 {
+struct Index {
   @State firstName: string = 'Li';
   @State lastName: string = 'Hua';
 
@@ -31,3 +31,5 @@ struct Index1 {
   }
 }
 // [End ComputedV1_start]
+const index1 = Index;
+export default index1;

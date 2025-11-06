@@ -14,14 +14,14 @@
  */
 // [Start example2_start]
 @ObservedV2
-class Child4 {
+class Child {
   @Trace public value: number = 10;
 }
 
 @ComponentV2
 @Entry
-struct Example2 {
-  @Local child: Child4 = new Child4();
+struct Example {
+  @Local child: Child = new Child();
 
   build() {
     Column() {
@@ -35,3 +35,5 @@ struct Example2 {
   }
 }
 // [End example2_start]
+const example2 = Example;
+export default example2;

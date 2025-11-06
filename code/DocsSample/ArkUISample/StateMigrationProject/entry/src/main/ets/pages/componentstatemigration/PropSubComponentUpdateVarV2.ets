@@ -14,7 +14,7 @@
  */
 // [Start Parent14_start]
 @ComponentV2
-struct Child14 {
+struct Child {
   // @Param搭配@Once使用，可以在本地修改@Param变量
   @Param @Once value: number = 0;
 
@@ -31,11 +31,13 @@ struct Child14 {
 
 @Entry
 @ComponentV2
-struct Parent14 {
+struct Parent {
   build() {
     Column() {
-      Child14({ value: 30 })
+      Child({ value: 30 })
     }
   }
 }
 // [End Parent14_start]
+const parent14 = Parent;
+export default parent14;

@@ -14,7 +14,7 @@
  */
 // [Start Parent15_start]
 @Component
-struct Child15 {
+struct Child {
   @Prop localValue: number = 0;
 
   build() {
@@ -31,7 +31,7 @@ struct Child15 {
 
 @Entry
 @Component
-struct Parent15 {
+struct Parent {
   @State value: number = 10;
 
   build() {
@@ -41,8 +41,10 @@ struct Parent15 {
           // 改变value的值，通知子组件Child value更新
           this.value += 1;
         })
-      Child15({ localValue: this.value })
+      Child({ localValue: this.value })
     }
   }
 }
 // [End Parent15_start]
+const parent15 = Parent;
+export default parent15;

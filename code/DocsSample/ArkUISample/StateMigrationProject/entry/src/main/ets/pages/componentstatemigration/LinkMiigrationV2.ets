@@ -14,7 +14,7 @@
  */
 // [Start Parent8_start]
 @ComponentV2
-struct Child8 {
+struct Child {
   // @Param搭配@Event回调实现数据双向同步
   @Param val: number = 0;
   @Event addOne: () => void;
@@ -32,14 +32,16 @@ struct Child8 {
 
 @Entry
 @ComponentV2
-struct Parent8 {
+struct Parent {
   @Local myVal: number = 10;
 
   build() {
     Column() {
       Text('parent: ' + this.myVal.toString())
-      Child8({ val: this.myVal, addOne: () => this.myVal++ })
+      Child({ val: this.myVal, addOne: () => this.myVal++ })
     }
   }
 }
 // [End Parent8_start]
+const parent8 = Parent;
+export default parent8;

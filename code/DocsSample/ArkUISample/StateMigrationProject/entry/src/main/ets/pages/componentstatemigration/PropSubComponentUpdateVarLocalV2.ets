@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 // [Start Parent16_start]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
 
 @ComponentV2
-struct Child16 {
+struct Child {
   @Local localValue: number = 0;
   @Param value: number = 0;
 
@@ -43,7 +43,7 @@ struct Child16 {
 
 @Entry
 @ComponentV2
-struct Parent16 {
+struct Parent {
   @Local value: number = 10;
 
   build() {
@@ -53,8 +53,10 @@ struct Parent16 {
           // 改变value的值，通知子组件Child value更新
           this.value += 1;
         })
-      Child16({ value: this.value })
+      Child({ value: this.value })
     }
   }
 }
 // [End Parent16_start]
+const parent16 = Parent;
+export default parent16;

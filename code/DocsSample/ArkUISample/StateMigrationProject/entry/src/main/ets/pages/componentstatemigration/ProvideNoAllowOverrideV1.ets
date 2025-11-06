@@ -15,28 +15,28 @@
 // [Start GrandParent1_start]
 @Entry
 @Component
-struct GrandParent1 {
+struct GrandParent {
   @Provide('reviewVotes') reviewVotes: number = 40;
 
   build() {
     Column() {
-      Parent23()
+      Parent()
     }
   }
 }
 
 @Component
-struct Parent23 {
+struct Parent {
   // @Provide默认不支持重载，支持重载需设置allowOverride函数
   @Provide({ allowOverride: 'reviewVotes' }) reviewVotes: number = 20;
 
   build() {
-    Child23()
+    Child()
   }
 }
 
 @Component
-struct Child23 {
+struct Child {
   @Consume('reviewVotes') reviewVotes: number;
 
   build() {
@@ -44,3 +44,5 @@ struct Child23 {
   }
 }
 // [End GrandParent1_start]
+const grandParent1 = GrandParent;
+export default grandParent1;

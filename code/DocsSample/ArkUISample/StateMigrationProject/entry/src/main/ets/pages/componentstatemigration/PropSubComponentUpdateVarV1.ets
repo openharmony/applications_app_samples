@@ -14,7 +14,7 @@
  */
 // [Start Parent13_start]
 @Component
-struct Child13 {
+struct Child {
   // @Prop可以直接修改变量值
   @Prop value: number;
 
@@ -31,11 +31,13 @@ struct Child13 {
 
 @Entry
 @Component
-struct Parent13 {
+struct Parent {
   build() {
     Column() {
-      Child13({ value: 30 })
+      Child({ value: 30 })
     }
   }
 }
 // [End Parent13_start]
+const parent13 = Parent;
+export default parent13;
