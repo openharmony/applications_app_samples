@@ -32,8 +32,9 @@ export struct EventTransSubWindowMenuExample {
       .width('100%')
       .height('100%')
     }.backgroundColor('#f1f2f3')
-    // $r('app.string.EventTransSubWindowMenu_title')需要替换为开发者所需的资源文件。
+    // [StartExclude eventTrans_menu]
     .title($r('app.string.EventTransSubWindowMenu_title'))
+    // [EndExclude eventTrans_menu]
   }
 
   @Builder

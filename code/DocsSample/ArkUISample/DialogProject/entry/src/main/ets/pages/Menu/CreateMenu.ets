@@ -16,6 +16,12 @@
 import { PromptAction } from '@kit.ArkUI';
 
 // [Start builder_menu_content]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = 'DialogProject';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+// $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 class Tmp {
   private iconStr2: ResourceStr = $r('app.media.view_list_filled')
 
@@ -30,7 +36,9 @@ export struct menuExample  {
   @State select: boolean = true;
   private iconStr: ResourceStr = $r('app.media.view_list_filled');
   private iconStr2: ResourceStr = $r('app.media.view_list_filled');
+  // 'app.string.copy'资源文件中的value值为"复制"。
   private copy: ResourceStr = $r('app.string.copy');
+  // 'app.string.paste'资源文件中的value值为"粘贴"。
   private paste: ResourceStr = $r('app.string.paste');
 
   @Builder
@@ -44,6 +52,7 @@ export struct menuExample  {
   @Builder
   MyMenu() {
     Menu() {
+      // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
       MenuItem({ startIcon: $r('app.media.icon'), content: $r('app.string.menu_selection') })
       MenuItem({ startIcon: $r('app.media.icon'), content: $r('app.string.menu_selection') }).enabled(false)
       MenuItem({
@@ -53,15 +62,18 @@ export struct menuExample  {
         // 当builder参数进行配置时，表示与menuItem项绑定了子菜单。鼠标hover在该菜单项时，会显示子菜单。
         builder: this.SubMenu
       })
+      // 'app.string.menu_subtitle'资源文件中的value值为"小标题"。
       MenuItemGroup({ header: $r('app.string.menu_subtitle') }) {
+        // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
         MenuItem({ content: $r('app.string.menu_selection') })
           .selectIcon(true)
           .selected(this.select)
           .onChange((selected) => {
-            console.info('menuItem select' + selected);
+            hilog.info(DOMAIN_NUMBER, TAG, 'menuItem select' + selected);
             let str: Tmp = new Tmp();
             str.set($r('app.media.icon'));
           })
+        // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
         MenuItem({
           startIcon: $r('app.media.view_list_filled'),
           content: $r('app.string.menu_selection'),
@@ -69,7 +81,7 @@ export struct menuExample  {
           builder: this.SubMenu
         })
       }
-
+      // 'app.string.menu_selection'资源文件中的value值为"菜单选项"。
       MenuItem({
         startIcon: this.iconStr2,
         content: $r('app.string.menu_selection'),
@@ -88,7 +100,7 @@ export struct menuExample  {
             {
               value: 'Menu1',
               action: () => {
-                console.info('handle Menu1 select');
+                hilog.info(DOMAIN_NUMBER, TAG, 'handle Menu1 select');
               }
             }
           ])
@@ -117,7 +129,6 @@ export struct menuExample  {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.create_menu')需要替换为开发者所需的资源文件。
     .title($r('app.string.create_menu'))
   }
   // [EndExclude builder_menu_content]

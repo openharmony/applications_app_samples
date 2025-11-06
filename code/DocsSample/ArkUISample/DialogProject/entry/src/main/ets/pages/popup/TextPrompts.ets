@@ -41,8 +41,9 @@ export struct TextPopupExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.TextPopup_title')需要替换为开发者所需的资源文件。
+    // [StartExclude text_popup]
     .title($r('app.string.TextPopup_title'))
+    // [EndExclude text_popup]
   }
 }
 // [End text_popup]

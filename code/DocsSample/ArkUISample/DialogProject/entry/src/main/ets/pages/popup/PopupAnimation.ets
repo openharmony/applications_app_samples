@@ -77,8 +77,9 @@ export struct AnimationPopupExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // $r('app.string.AnimationPopup_title')需要替换为开发者所需的资源文件。
+    // [StartExclude animation_popup]
     .title($r('app.string.AnimationPopup_title'))
+    // [EndExclude animation_popup]
   }
 }
 // [End animation_popup]
