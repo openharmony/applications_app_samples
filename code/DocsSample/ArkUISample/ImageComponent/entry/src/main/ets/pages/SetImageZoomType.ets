@@ -29,7 +29,7 @@ struct ImageScalingType {
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 该页面重点使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
+            // 使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
             // 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。
             .objectFit(ImageFit.Contain)
             .margin({bottom:25,left:10})
@@ -39,7 +39,7 @@ struct ImageScalingType {
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 该页面重点使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
+            // 使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
             // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .objectFit(ImageFit.Cover)
             .margin({bottom:25,left:10})
@@ -49,7 +49,7 @@ struct ImageScalingType {
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 该页面重点使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
+            // 使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
             // 自适应显示。
             .objectFit(ImageFit.Auto)
             .margin({bottom:25,left:10})
@@ -62,7 +62,7 @@ struct ImageScalingType {
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 该页面重点使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
+            // 使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
             // 不保持宽高比进行放大缩小，使得图片充满显示边界。
             .objectFit(ImageFit.Fill)
             .margin({bottom:25,left:10})
@@ -72,7 +72,7 @@ struct ImageScalingType {
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 该页面重点使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
+            // 使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
             // 保持宽高比显示，图片缩小或者保持不变。
             .objectFit(ImageFit.ScaleDown)
             .margin({bottom:25,left:10})
@@ -82,7 +82,7 @@ struct ImageScalingType {
             .width(200)
             .height(150)
             .border({ width: 1 })
-            // 该页面重点使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
+            // 使用objectFit属性,使得图片中高度和宽度确认的框内进行缩放
             // 保持原有尺寸显示。
             .objectFit(ImageFit.None)
             .margin({bottom:25,left:10})

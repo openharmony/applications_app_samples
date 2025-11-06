@@ -28,7 +28,7 @@ struct AddFilterEffectsToImages {
         //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
           .width('40%')
-          // 该页面重点使用colorFilter接口验证对图片添加滤镜后的效果
+          // 使用colorFilter接口验证对图片添加滤镜后的效果
           .colorFilter(
              [1, 1, 0, 0, 0,
               0, 1, 0, 0, 0,

@@ -23,7 +23,7 @@ struct SetImageRenderingMode {
       Row({ space: 50 }) {
         //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
-          // 该页面重点使用renderMode属性设置图片的渲染模式
+          // 使用renderMode属性设置图片的渲染模式
           // 设置图片的渲染模式为原色
           .renderMode(ImageRenderMode.Original)
           .width(100)
@@ -33,7 +33,7 @@ struct SetImageRenderingMode {
           .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
-          // 该页面重点使用renderMode属性设置图片的渲染模式
+          // 使用renderMode属性设置图片的渲染模式
           // 设置图片的渲染模式为黑白
           .renderMode(ImageRenderMode.Template)
           .width(100)

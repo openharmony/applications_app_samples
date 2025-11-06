@@ -26,7 +26,7 @@ const TAG = 'Sample_imagecomponent';
 @Component
 struct MediaLibraryFile {
   @State imgDatas: string[] = [];
-  // 改页面重点使用 PhotoViewPicker 唤起图片选择器. 选择图片并且渲染到页面中.
+  // 使用 PhotoViewPicker 唤起图片选择器. 选择图片并且渲染到页面中.
   // 获取照片url集
   getAllImg() {
     try {

@@ -31,7 +31,7 @@ struct HttpExample {
   code: http.ResponseCode | number | undefined = undefined;
   @State image: PixelMap | undefined = undefined; //创建PixelMap状态变量。
 
-  //  该页面重点使用 createHttp 接口验证将加载的网络图片返回数据解码成pixelMap格式.
+  //  使用 createHttp 接口验证将加载的网络图片返回数据解码成pixelMap格式.
   aboutToAppear(): void {
     http.createHttp().request('xxx://xxx.xxx.xxx/example.png', // 实际使用时请替换真实路径.
       (error: BusinessError, data: http.HttpResponse) => {

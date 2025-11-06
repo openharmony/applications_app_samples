@@ -26,7 +26,7 @@ struct ImageRepetitionStyle {
           .width(160)
           .height(160)
           .border({ width: 1 })
-          // 该页面重点使用objectRepeat属性设置图片的重复样式方法
+          // 使用objectRepeat属性设置图片的重复样式方法
           // 在水平轴和竖直轴上同时重复绘制图片
           .objectRepeat(ImageRepeat.XY)
           .objectFit(ImageFit.ScaleDown)
@@ -36,7 +36,7 @@ struct ImageRepetitionStyle {
           .width(160)
           .height(160)
           .border({ width: 1 })
-          // 该页面重点使用objectRepeat属性设置图片的重复样式方法
+          // 使用objectRepeat属性设置图片的重复样式方法
           // 只在竖直轴上重复绘制图片
           .objectRepeat(ImageRepeat.Y)
           .objectFit(ImageFit.ScaleDown)
@@ -46,7 +46,7 @@ struct ImageRepetitionStyle {
           .width(160)
           .height(160)
           .border({ width: 1 })
-          // 该页面重点使用objectRepeat属性设置图片的重复样式方法
+          // 使用objectRepeat属性设置图片的重复样式方法
           // 只在水平轴上重复绘制图片
           .objectRepeat(ImageRepeat.X)
           .objectFit(ImageFit.ScaleDown)
