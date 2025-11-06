@@ -14,17 +14,18 @@
  */
 
 // [Start default_drag]
-// [Start module_draggable]
+// [Start module_draggable_head]
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-// [StartExclude module_draggable]
+// [End module_draggable_head]
 // [Start onDragEnd_start]
 // [StartExclude onDragEnd_start]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
+// [Start drag_hilog_const]
 const DOMAIN = 0x0000;
 const TAG = 'DefaultDragError: '
+// [End drag_hilog_const]
 
 @Entry
 @Component
@@ -114,7 +115,7 @@ export struct DefaultDrag {
               .margin(10)
               .backgroundColor('#008888')
             Row() {
-              // [EndExclude module_draggable]
+              // [Start module_draggable]
               // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
               Image($r('app.media.app_icon'))
                 .width(100)
