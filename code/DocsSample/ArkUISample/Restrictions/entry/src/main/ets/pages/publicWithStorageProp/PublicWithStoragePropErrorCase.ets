@@ -23,7 +23,7 @@ struct PublicErrorAccessRestrictions {
     Column() {
       PublicErrorComponentChild()
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
@@ -44,7 +44,7 @@ struct PublicErrorComponentChild {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
+        .fontWeight(FontWeight.Bold)
     }
   }
 }

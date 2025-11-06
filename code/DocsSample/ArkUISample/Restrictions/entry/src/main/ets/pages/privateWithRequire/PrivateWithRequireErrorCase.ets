@@ -21,7 +21,7 @@ struct PrivateErrorAccessRestrictions {
     Column() {
       PrivateErrorComponentChild({ propValue: 'Hello' })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
@@ -34,7 +34,7 @@ struct PrivateErrorComponentChild {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
+        .fontWeight(FontWeight.Bold)
     }
   }
 }

@@ -16,15 +16,15 @@
 // [Start PrivateWithLink_CorrectCase]
 @Entry
 @Component
-struct PrivateAccessRestrictions {
+struct PrivateWithLinkAccessRestrictions {
   @State linkValue: string = 'Hello';
   @State objectLinkValue: PrivateComponentObj = new PrivateComponentObj();
 
   build() {
     Column() {
-      PrivateComponentChild({ linkValue: this.linkValue, objectLinkValue: this.objectLinkValue })
+      PrivateWithLinkComponentChild({ linkValue: this.linkValue, objectLinkValue: this.objectLinkValue })
     }
-    .width('100%');
+    .width('100%')
   }
 }
 
@@ -34,7 +34,7 @@ class PrivateComponentObj {
 }
 
 @Component
-struct PrivateComponentChild {
+struct PrivateWithLinkComponentChild {
   @Link linkValue: string;
   @ObjectLink objectLinkValue: PrivateComponentObj;
 
@@ -42,7 +42,7 @@ struct PrivateComponentChild {
     Column() {
       Text('Hello')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold);
+        .fontWeight(FontWeight.Bold)
     }
   }
 }
