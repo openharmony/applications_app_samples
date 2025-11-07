@@ -14,7 +14,7 @@
  */
 
 // [Start multiple_finger_information]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_MultipleFingerInformation]';
 const DOMAIN = 0xF811;

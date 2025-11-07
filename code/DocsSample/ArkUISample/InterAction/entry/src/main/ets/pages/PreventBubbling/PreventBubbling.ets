@@ -26,7 +26,7 @@ struct PreventBubbling {
   build() {
     RelativeContainer() {
       Column() { // 父组件
-        // app.string.preventEvent资源文件中的value值为'如果点中了我'
+        // app.string.preventEvent资源文件中的value值为'如果点中了我，就阻止父组件收到触摸事件'
         Text($r('app.string.preventEvent'))
           .fontColor(Color.White)
           .height('40%')
