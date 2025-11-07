@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-// [Start main_process_launch_native_child]
+// [Start main_processIpc_launch_native_child]
 // [Start main_handle_child_start_callback]
 #include <IPCKit/ipc_kit.h>
 #include "AbilityKit/native_child_process.h"
 // [StartExclude main_handle_child_start_callback]
-// [StartExclude main_process_launch_native_child]
+// [StartExclude main_processIpc_launch_native_child]
 #include "IpcProxy.h"
 #include <cstdint>
 #include <hilog/log.h>
@@ -122,7 +122,7 @@ void ArkTsThread::CallFunc()
 namespace {
     ArkTsThread *g_thread;
 }
-// [EndExclude main_process_launch_native_child]
+// [EndExclude main_processIpc_launch_native_child]
 // [EndExclude main_handle_child_start_callback]
 static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remoteProxy)
 {
@@ -137,7 +137,7 @@ static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remotePro
     // IPC对象使用完毕后，需要调用OH_IPCRemoteProxy_Destroy方法释放
     // ...
     // [StartExclude main_handle_child_start_callback]
-    // [StartExclude main_process_launch_native_child]
+    // [StartExclude main_processIpc_launch_native_child]
     OH_LOG_INFO(LOG_APP, "Main process - OnNativeChildProcessStarted %{public}d", errCode);
     g_ipcProxyPnt = new (std::nothrow) IpcProxy(remoteProxy);
     if (g_ipcProxyPnt == nullptr) {
@@ -150,7 +150,7 @@ static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remotePro
     if (g_promiseStartProcess != nullptr) {
         g_promiseStartProcess->set_value(errCode);
     }
-    // [EndExclude main_process_launch_native_child]
+    // [EndExclude main_processIpc_launch_native_child]
     // [EndExclude main_handle_child_start_callback]
 }
 // [End main_handle_child_start_callback]
@@ -165,7 +165,7 @@ void CreateNativeChildProcess()
     }
     g_result = ret;
 }
-// [End main_process_launch_native_child]
+// [End main_processIpc_launch_native_child]
 
 static napi_value TestChildProcess(napi_env env, napi_callback_info info)
 {
