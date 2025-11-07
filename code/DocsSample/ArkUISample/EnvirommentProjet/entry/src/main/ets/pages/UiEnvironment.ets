@@ -26,9 +26,9 @@ struct UiEnvironment {
     Row() {
       Column() {
         // 输出当前设备的languageCode
-        Text(this.languageCode);
+        Text(this.languageCode)
       }
     }
-  };
+  }
 }
 // [End ui_Environment]

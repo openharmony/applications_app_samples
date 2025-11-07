@@ -18,6 +18,7 @@ interface listItem {
   name: string;
   description?: string;
 };
+
 let demandList: listItem[] = [
   {
     name: 'UiEnvironment',
@@ -30,6 +31,7 @@ let demandList: listItem[] = [
     router: 'pages/AppliedLogic',
   }
 ];
+
 @Entry
 @Component
 struct Index {
@@ -44,9 +46,9 @@ struct Index {
                 Text(listitem.name)
                   .fontSize(20)
                   .fontColor(this.bgColor)
-                  .maxLines(1);
+                  .maxLines(1)
                 Text(listitem.description)
-                  .width('100%');
+                  .width('100%')
               }
               .margin({ bottom: index >= demandList.length - 1 ? 100 : 0 })
               .padding({
@@ -61,9 +63,9 @@ struct Index {
               .backgroundColor(0xFFFFFF)
               .onClick(() => {
                 if (!!listitem.router) {
-                  this.getUIContext().getRouter().pushUrl({ url: listitem.router })
-                };
-              });
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router });
+                }
+              })
             }
           })
         }
@@ -77,12 +79,12 @@ struct Index {
           endMargin: 20
         }) // 每行之间的分界线
         .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
-        .width('90%');
+        .width('90%')
       }
       .width('100%')
       .height('100%')
       .backgroundColor('#fff4f3f3')
-      .padding({ top: 5 });
+      .padding({ top: 5 })
     }
-  };
+  }
 }

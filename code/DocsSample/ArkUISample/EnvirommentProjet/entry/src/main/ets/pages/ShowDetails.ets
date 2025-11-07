@@ -17,11 +17,12 @@
 // 将设备的languageCode存入AppStorage，默认值为en
 Environment.envProp('languageCode', 'en');
 // [End showfirst_details]
+
 @Entry
 @Component
 struct ShowDetails {
   // [Start showsecond_details]
   @StorageProp('languageCode') lang: string = 'en';
   // [End showsecond_details]
-  build() {};
+  build() {}
 }

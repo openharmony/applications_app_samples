@@ -15,6 +15,7 @@
 
 // [Start applied_logic]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0001;
 const TAG = 'envirommentprojet';
 
@@ -24,15 +25,15 @@ Environment.envProp('languageCode', 'en');
 const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
 
 if (lang.get() === 'zh') {
-  // app.string.AppliedLogic_Hello 资源文件中的value 值为'你好'
+  // app.string.AppliedLogic_Hello 资源文件中的value值为'你好'
   hilog.info(DOMAIN, TAG, `${$r('app.string.AppliedLogic_Hello')}`);
 } else {
   hilog.info(DOMAIN, TAG, 'Hello!');
-};
+}
 // [End applied_logic]
 
 @Entry
 @Component
 struct AppliedLogic {
-  build() {};
+  build() {}
 }
