@@ -17,7 +17,7 @@ import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_UnexpExit]';
+const TAG = '[Sample_UnexpExit]';
 
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -70,7 +70,7 @@ export default function abilityTest() {
         const want: Want = {
           deviceId: '',
           bundleName: 'com.example.unexpexit',
-          abilityName: 'ExitAbility1'
+          abilityName: 'ExitAbility'
         };
         await delegator.startAbility(want);
         const ability: UIAbility = await delegator.getCurrentTopAbility();
@@ -101,7 +101,7 @@ export default function abilityTest() {
         const want: Want = {
           deviceId: '',
           bundleName: 'com.example.unexpexit',
-          abilityName: 'ExitAbility2'
+          abilityName: 'ExitAbility'
         };
         await delegator.startAbility(want);
         const ability: UIAbility = await delegator.getCurrentTopAbility();

@@ -17,7 +17,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_EnvConfig]';
+const TAG = '[EnvAbility0]';
 
 export default class EnvAbility0 extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

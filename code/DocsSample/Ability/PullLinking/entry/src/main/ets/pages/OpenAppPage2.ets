@@ -27,16 +27,16 @@ const DOMAIN_NUMBER: number = 0xFF00;
 struct OpenAppPage2 {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   aboutToAppear() {
-// [EndExclude can_open]
+  // [EndExclude can_open]
     try {
-      let link = 'app1Scheme://test.example.com/home';
+      let link = 'app1Scheme://test.example.com/home'; // 此处为实际应用链接
       let canOpen = bundleManager.canOpenLink(link);
       hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(canOpen));
     } catch (err) {
       let message = (err as BusinessError).message;
       hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
     }
-    // [End can_open]
+  // [StartExclude can_open]
   }
   build() {
     Column() {
@@ -52,3 +52,5 @@ struct OpenAppPage2 {
     }
   }
 }
+// [EndExclude can_open]
+// [End can_open]

@@ -20,7 +20,7 @@ import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_PullLinking]';
+const TAG = '[Sample_PullLinking]';
 
 @Entry
 @Component
@@ -37,7 +37,7 @@ struct DeepWebIndex {
               .then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'openLink success.');
               }).catch((err: BusinessError) => {
-              hilog.error(DOMAIN_NUMBER, TAG,`openLink failed, err: ${JSON.stringify(err)}.`);
+              hilog.error(DOMAIN_NUMBER, TAG, `openLink failed, err: ${JSON.stringify(err)}.`);
             });
             return true;
           }

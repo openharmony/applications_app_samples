@@ -17,8 +17,9 @@
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_AppLinking]';
+const TAG = '[Sample_AppLinking]';
 @Entry
 @Component
 struct Index {
@@ -29,7 +30,7 @@ struct Index {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let link: string = 'https://www.example.com/programs?action=showall';
+        let link: string = 'https://www.example.com/programs?action=showall'; // 此处为实际应用链接
         // 仅以App Linking的方式打开应用
         context.openLink(link, { appLinkingOnly: true })
           .then(() => {
