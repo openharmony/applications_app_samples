@@ -62,7 +62,7 @@ struct TodoList {
         .height(40)
         .margin(20)
         .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({url:'pages/Page1'});
+          this.getUIContext().getRouter().pushUrl({url:'pages/PageOne'});
         })
       // [EndExclude Main_TodoListPage]
     }
