@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//[Start Use_in_if_component]
+//[Start IMonitorValuePage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
@@ -20,32 +20,32 @@ const DOMAIN = 0xF811;
 const BUNDLE = 'Reusablev2_';
 
 @ObservedV2
-export class Info2 {
+class Info {
   @Trace public age: number;
   constructor(age: number) {
     this.age = age;
   }
 }
-
 @Entry
 @ComponentV2
-struct IMonitorValuePage {
+struct Index {
   @Local condition: boolean = true;
-
   build() {
     Column() {
-      // $r('app.string.EntryAbility_RecycleOrReuse')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_RecycleOrReuse')).onClick(()=>{this.condition=!this.condition;})
+      Button('Recycle/Reuse')
+        .onClick(() => {
+          this.condition = !this.condition;
+        })
       if (this.condition) {
-        ReusableV2ComponentIMonitorValue()
+        ReusableV2Component()
       }
     }
   }
 }
 @ReusableV2
 @ComponentV2
-struct ReusableV2ComponentIMonitorValue {
-  noDecoInfo: Info2 = new Info2(30); // 未加装饰器，被视作常量
+struct ReusableV2Component {
+  noDecoInfo: Info = new Info(30); // 未加装饰器，被视作常量
   @Monitor('noDecoInfo.age')
   onAgeChange(monitor: IMonitor) {
     hilog.info(DOMAIN, TAG, BUNDLE + `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
@@ -60,9 +60,13 @@ struct ReusableV2ComponentIMonitorValue {
     Column() {
       Column() {
         Text(`noDecoInfo.age: ${this.noDecoInfo.age}`)
-          .onClick(()=>{this.noDecoInfo.age++;}) // 能够触发刷新但是不会被重置
+          .onClick(() => {
+            this.noDecoInfo.age++;
+          }) // 能够触发刷新但是不会被重置
       }
     }
   }
 }
-//[End Use_in_if_component]
+//[End IMonitorValuePage]
+const iMonitorValuePage = Index;
+export default iMonitorValuePage;

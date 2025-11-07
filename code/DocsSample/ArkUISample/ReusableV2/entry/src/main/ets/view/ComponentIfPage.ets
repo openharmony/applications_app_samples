@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Use_in_Repeat_component_If]
+// [Start ComponentIfPage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
@@ -21,22 +21,23 @@ const BUNDLE = 'Reusablev2_';
 
 @Entry
 @ComponentV2
-struct ComponentIfPage {
+struct Index {
   @Local condition: boolean = true;
-
   build() {
     Column() {
-      // $r('app.string.EntryAbility_RecycleOrReuse')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_RecycleOrReuse')).onClick(()=>{this.condition=!this.condition;}) // 点击切换回收/复用状态
+      Button('Recycle/Reuse')
+        .onClick(() => {
+          this.condition = !this.condition;
+        }) // 点击切换回收/复用状态
       if (this.condition) {
-        ReusableV2ComponentIf()
+        ReusableV2Component()
       }
     }
   }
 }
 @ReusableV2
 @ComponentV2
-struct ReusableV2ComponentIf {
+struct ReusableV2Component {
   @Local message: string = 'Hello World';
   aboutToRecycle() {
     hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToRecycle'); // 回收时被调用
@@ -50,4 +51,6 @@ struct ReusableV2ComponentIf {
     }
   }
 }
-// [End Use_in_Repeat_component_If]
+// [End ComponentIfPage]
+const componentIfPage = Index;
+export default componentIfPage;

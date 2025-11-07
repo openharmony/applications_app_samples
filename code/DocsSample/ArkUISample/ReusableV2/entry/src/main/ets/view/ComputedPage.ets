@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//[Start Reset_the_internal_state_variables_of_the_component_before_reuse1]
+//[Start ComputedPage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
@@ -20,30 +20,38 @@ const DOMAIN = 0xF811;
 const BUNDLE = 'Reusablev2_';
 
 @ObservedV2
-export class Info1 {
-  @Trace public  age: number;
+class Info {
+  @Trace public age: number;
   constructor(age: number) {
     this.age = age;
   }
 }
-
 @Entry
 @ComponentV2
-struct ComputedPage {
+struct Index {
   @Local local: number = 0;
   @Provider('inherit') inheritProvider: number = 100;
   @Local condition: boolean = true;
   build() {
     Column() {
-      // $r('app.string.EntryAbility_RecycleOrReuse')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_RecycleOrReuse')).onClick(()=>{this.condition=!this.condition;})
+      Button('Recycle/Reuse')
+        .onClick(() => {
+          this.condition = !this.condition;
+        })
       Column() {
-        Text($r('app.string.EntryAbility_ParentVariable'))
-        Text(`local: ${this.local}`).onClick(()=>{this.local++;})
-        Text(`inheritProvider: ${this.inheritProvider}`).onClick(()=>{this.inheritProvider++;})
+        Text('Variables of parent component')
+        Text(`local: ${this.local}`)
+          .onClick(() => {
+            this.local++;
+          })
+        Text(`inheritProvider: ${this.inheritProvider}`)
+          .onClick(() => {
+            this.inheritProvider++;
+          })
       }.borderWidth(2)
+
       if (this.condition) {
-        ReusableV2ComponentComputed({
+        ReusableV2Component({
           paramOut: this.local,
           paramOnce: this.local,
           changeParam: () => {
@@ -56,9 +64,9 @@ struct ComputedPage {
 }
 @ReusableV2
 @ComponentV2
-struct ReusableV2ComponentComputed {
+struct ReusableV2Component {
   @Local val: number = 0;
-  @Local info: Info1 = new Info1(25);
+  @Local info: Info = new Info(25);
   @Param paramLocal: number = 1;
   @Require @Param paramOut: number;
   @Require @Param @Once paramOnce: number;
@@ -67,7 +75,7 @@ struct ReusableV2ComponentComputed {
   @Consumer('inherit') inheritConsumer: number = 0;
   @Consumer('selfConsumer') selfConsumer: number = 0;
   noDecoVariable: number = 0; // 未加装饰器，被视作常量
-  noDecoInfo: Info1 = new Info1(30); // 未加装饰器，被视作常量
+  noDecoInfo: Info = new Info(30); // 未加装饰器，被视作常量
   readonly readOnlyVariable: number = 0; // readonly常量
   @Computed
   get plusParam() {
@@ -84,34 +92,59 @@ struct ReusableV2ComponentComputed {
   build() {
     Column() {
       Column() {
-        // $r('app.string.EntryAbility_ResetToLocal')需要替换为开发者所需的字符串（图像、数字等）资源文件
-        Text($r('app.string.EntryAbility_ResetToLocal'))
-        Text(`val: ${this.val}`).onClick(()=>{this.val++;})
-        Text(`info.age: ${this.info.age}`).onClick(()=>{this.info.age++;})
-        Text(`paramLocal: ${this.paramLocal}`).onClick(()=>{/* 无外部传入的Local无法本地修改 */})
-        Text(`selfProvider: ${this.selfProvider}`).onClick(()=>{this.selfProvider++;})
-        Text(`selfConsumer: ${this.selfConsumer}`).onClick(()=>{this.selfConsumer++;})
+        Text('Variables reset to local initial values')
+        Text(`val: ${this.val}`)
+          .onClick(() => {
+            this.val++;
+          })
+        Text(`info.age: ${this.info.age}`)
+          .onClick(() => {
+            this.info.age++;
+          })
+        Text(`paramLocal: ${this.paramLocal}`)
+          .onClick(() => {
+            /* 无外部传入的Local无法本地修改 */
+          })
+        Text(`selfProvider: ${this.selfProvider}`)
+          .onClick(() => {
+            this.selfProvider++;
+          })
+        Text(`selfConsumer: ${this.selfConsumer}`)
+          .onClick(() => {
+            this.selfConsumer++;
+          })
       }.borderWidth(2)
       Column() {
-        // $r('app.string.EntryAbility_ResetToExternal')需要替换为开发者所需的字符串（图像、数字等）资源文件
-        Text($r('app.string.EntryAbility_ResetToExternal'))
-        Text(`paramOut: ${this.paramOut}`).onClick(()=>{this.changeParam();})
-        Text(`paramOnce: ${this.paramOnce}`).onClick(()=>{this.paramOnce++;})
+        Text('Reset to an external variable')
+        Text(`paramOut: ${this.paramOut}`)
+          .onClick(() => {
+            this.changeParam();
+          })
+        Text(`paramOnce: ${this.paramOnce}`)
+          .onClick(() => {
+            this.paramOnce++;
+          })
       }.borderWidth(2)
       Column() {
-        // $r('app.string.EntryAbility_Decision')需要替换为开发者所需的字符串（图像、数字等）资源文件
-        Text($r('app.string.EntryAbility_Decision'))
-        Text(`inheritConsumer: ${this.inheritConsumer}`).onClick(()=>{this.inheritConsumer++;})
+        Text('Depending on the parent component')
+        Text(`inheritConsumer: ${this.inheritConsumer}`)
+          .onClick(() => {
+            this.inheritConsumer++;
+          })
         Text(`plusParam: ${this.plusParam}`)
       }.borderWidth(2)
       Column() {
-        // $r('app.string.EntryAbility_NotReset')需要替换为开发者所需的字符串（图像、数字等）资源文件
-        Text($r('app.string.EntryAbility_NotReset'))
+        Text('Not reset')
         Text(`noDecoVariable: ${this.noDecoVariable}`)
-        Text(`noDecoInfo.age: ${this.noDecoInfo.age}`).onClick(()=>{this.noDecoInfo.age++;}) // 能够触发刷新但是复用时不会被重置
+        Text(`noDecoInfo.age: ${this.noDecoInfo.age}`)
+          .onClick(() => {
+            this.noDecoInfo.age++;
+          }) // 能够触发刷新但是复用时不会被重置
         Text(`readOnlyVariable: ${this.readOnlyVariable}`)
       }.borderWidth(2)
     }
   }
 }
-//[End Reset_the_internal_state_variables_of_the_component_before_reuse1]
+//[End ComputedPage]
+const computedPage = Index;
+export default computedPage;

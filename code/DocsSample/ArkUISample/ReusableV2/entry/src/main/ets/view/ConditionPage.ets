@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//[Start Reset_the_internal_state_variables_of_the_component_before_reuse]
+//[Start ConditionPage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
@@ -20,22 +20,24 @@ const DOMAIN = 0xF811;
 const BUNDLE = 'Reusablev2_';
 
 @ObservedV2
-export class Info {
+class Info {
   @Trace public age: number = 25;
 }
-export const info: Info = new Info();
-
+const info: Info = new Info();
 @Entry
 @ComponentV2
-struct ConditionPage {
+struct Index {
   @Local condition: boolean = true;
-
   build() {
     Column() {
-      // $r('app.string.EntryAbility_RecycleOrReuse')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_RecycleOrReuse')).onClick(()=>{this.condition=!this.condition;})
-      // $r('app.string.EntryAbility_ChangeValue')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_ChangeValue')).onClick(()=>{info.age++;})
+      Button('Reuse/Recycle')
+        .onClick(() => {
+          this.condition = !this.condition;
+        })
+      Button('Change value')
+        .onClick(() => {
+          info.age++;
+        })
       if (this.condition) {
         ReusableV2Component()
       }
@@ -68,4 +70,6 @@ struct ReusableV2Component {
     }
   }
 }
-//[End Reset_the_internal_state_variables_of_the_component_before_reuse]
+//[End ConditionPage]
+const conditionPage = Index;
+export default conditionPage;

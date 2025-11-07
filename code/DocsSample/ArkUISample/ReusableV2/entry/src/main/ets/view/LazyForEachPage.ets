@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Using_LazyForEach_component]
+// [Start LazyForEachPage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
@@ -162,4 +162,4 @@ struct ChildComponent {
     }
   }
 }
-// [End Using_LazyForEach_component]
+// [End LazyForEachPage]
