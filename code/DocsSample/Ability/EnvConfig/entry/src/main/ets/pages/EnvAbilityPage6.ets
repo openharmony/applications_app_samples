@@ -17,7 +17,7 @@ import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[MyAbility]';
+const TAG: string = '[EnvAbilityPage6]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry

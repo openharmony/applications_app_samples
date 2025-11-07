@@ -17,12 +17,12 @@ import { FormExtensionAbility } from '@kit.FormKit';
 import { Configuration } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[EntryAbility]';
+const TAG: string = '[EnvAbility10]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EnvAbility10 extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate: ' + JSON.stringify(newConfig));
+    hilog.info(DOMAIN_NUMBER, TAG, 'onConfigurationUpdate: ' + JSON.stringify(newConfig));
   }
 }
 // [End envconf_ability]
