@@ -21,9 +21,9 @@ const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorReg
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
 let driver: Driver;
-const TAG = '[Sample_arktsobservedandobjectlink]';
+const TAG = '[Sample_ArkTSObservedAndObjectlink]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'arktsobservedandobjectlink_';
+const BUNDLE = 'ArkTSObservedAndObjectlink_';
 
 export default function IndexTest() {
   describe('IndexTest', () => {

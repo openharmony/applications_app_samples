@@ -13,12 +13,6 @@
  * limitations under the License.
  */
 
-// [Start Two_dimensional_array]
-@Observed
-class ObservedArrays<T> extends Array<T> {
-}
-// [End Two_dimensional_array]
-
 // [Start Two_dimensional_array_example]
 @Observed
 class ObservedArray<T> extends Array<T> {
@@ -84,3 +78,4 @@ struct IndexPage {
 }
 
 // [End Two_dimensional_array_example]
+export default IndexPage;

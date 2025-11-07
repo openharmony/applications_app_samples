@@ -65,20 +65,21 @@ struct DecoratorDescriptionHelloWorld {
 
   build() {
     Column() {
+      Button('click me')
+        .onClick(() => {
+          // 赋值变化可以被观察到
+          this.parent.child = new Child(5);
+          this.parent.count = 5;
+          // Child没有被@Observed装饰，其属性的变化观察不到
+          this.parent.child.num = 5;
+          // [StartExclude Modify_and_change]
+          // [Start Attribute_assignment]
+          // 允许@ObjectLink装饰的数据属性赋值
+          this.objLink.a = '...';
+          // [End Attribute_assignment]
+          // [EndExclude Modify_and_change]
+        })
     }
-    .onClick(() => {
-      // 赋值变化可以被观察到
-      this.parent.child = new Child(5);
-      this.parent.count = 5;
-      // Child没有被@Observed装饰，其属性的变化观察不到
-      this.parent.child.num = 5;
-      // [StartExclude Modify_and_change]
-      // [Start Attribute_assignment]
-      // 允许@ObjectLink装饰的数据属性赋值
-      this.objLink.a = '...';
-      // [End Attribute_assignment]
-      // [EndExclude Modify_and_change]
-    })
   }
   // [End Modify_and_change]
 }

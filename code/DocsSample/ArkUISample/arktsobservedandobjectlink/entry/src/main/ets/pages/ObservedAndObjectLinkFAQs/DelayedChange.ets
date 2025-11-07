@@ -16,7 +16,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
-const TAG = 'arktsobservedandobjectlink';
+const TAG = 'ArkTSObservedAndObjectlink';
 
 @Observed
 class RenderClass {
@@ -53,3 +53,9 @@ struct DelayedChangeIndex {
   }
 }
 // [End Delayed_change]
+
+// [Start Two_dimensional_array]
+@Observed
+class ObservedArray<T> extends Array<T> {
+}
+// [End Two_dimensional_array]

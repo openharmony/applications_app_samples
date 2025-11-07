@@ -15,7 +15,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
-const TAG = 'arktsobservedandobjectlink';
+const TAG = 'ArkTSObservedAndObjectlink';
 
 @Observed
 class Person {
