@@ -31,7 +31,6 @@ class Father {
   }
 }
 // [Start prop_nine_start]
-// [StartExclude prop_nine_start]
 @Entry
 @Component
 struct Person {
@@ -106,7 +105,6 @@ struct Child {
     }
   }
 }
-// [EndExclude prop_nine_start]
 // [End prop_nine_start]
 
 @Builder

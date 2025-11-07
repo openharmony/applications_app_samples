@@ -48,7 +48,7 @@ struct Index {
     },
     {
       name:'PageSeven',
-      path:'pages/PageSeven'
+      path:'pages/ViewData'
     },
     {
       name:'PageEight',
@@ -56,7 +56,7 @@ struct Index {
     },
     {
       name:'PageNine',
-      path:'pages/PageNine'
+      path:'pages/Gallery'
     },
     {
       name:'PageTen',

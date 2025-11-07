@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 // [Start prop_eight_start]
-// [StartExclude prop_eight_start]
 // 以下是嵌套类对象的数据结构。
 @Observed
 class Son {
@@ -32,7 +31,6 @@ class Father {
     this.son = son;
   }
 }
-// [EndExclude prop_eight_start]
 // [End prop_eight_start]
 @Entry
 @Component

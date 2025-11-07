@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 // [Start localtorage_page_five_share2]
-// Page.ets
 
 @Builder
 export function PageBuilder() {
-  Page()
+  PageFiveShareChange()
 }
 
-// Page组件获得了父亲Index组件的LocalStorage实例
+// PageFiveShareChange组件获得了父亲Index组件的LocalStorage实例
 @Component
-struct Page {
+struct PageFiveShareChange {
   @LocalStorageLink('PropA') propA: number = 2;
   pathStack: NavPathStack = new NavPathStack();
 

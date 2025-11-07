@@ -33,7 +33,6 @@ struct LocalStorageLinkComponent {
         })
     }
     .borderWidth(3).borderColor(Color.Green)
-
   }
 }
 
@@ -58,7 +57,6 @@ struct LocalStoragePropComponent {
     }
     .borderWidth(3)
     .borderColor(Color.Yellow)
-
   }
 }
 

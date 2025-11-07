@@ -19,31 +19,31 @@ let storage0: LocalStorage = new LocalStorage(para0);
 // 使LocalStorage可从@Component组件访问
 @Entry(storage0)
 @Component
-struct Parent1 {
+struct ParentOne {
   // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
-  @LocalStorageProp('PropA') storageProp1: number = 1;
+  @LocalStorageProp('PropA') storagePropOne: number = 1;
 
   build() {
     Column({ space: 15 }) {
-      // 点击后从47开始加1，只改变当前组件显示的storageProp1，不会同步到LocalStorage中
-      Button(`Parent from LocalStorage ${this.storageProp1}`)
+      // 点击后从47开始加1，只改变当前组件显示的storagePropOne，不会同步到LocalStorage中
+      Button(`Parent from LocalStorage ${this.storagePropOne}`)
         .onClick(() => {
-          this.storageProp1 += 1;
+          this.storagePropOne += 1;
         })
-      Child1()
+      ChildOne()
     }
   }
 }
 
 @Component
-struct Child1 {
+struct ChildOne {
   // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
-  @LocalStorageProp('PropA') storageProp2: number = 2;
+  @LocalStorageProp('PropA') storagePropTwo: number = 2;
 
   build() {
     Column({ space: 15 }) {
-      // 当Parent改变时，当前storageProp2不会改变，显示47
-      Text(`Parent from LocalStorage ${this.storageProp2}`)
+      // 当Parent改变时，当前storagePropTwo不会改变，显示47
+      Text(`Parent from LocalStorage ${this.storagePropTwo}`)
     }
   }
 }

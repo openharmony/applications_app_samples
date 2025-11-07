@@ -13,7 +13,10 @@
  * limitations under the License.
  */
 // [Start appstorage_page_seven]
-// xxx.ets
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG: string = '[Sample_appstorage]';
+
 class ViewData {
   public title: string;
   public uri: Resource;
@@ -67,10 +70,10 @@ export struct TapImage {
   // 判断是否被选中
   onTapIndexChange() {
     if (this.tapIndex >= 0 && this.index === this.tapIndex) {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`);
+      hilog.info(DOMAIN, TAG, `tapindex: ${this.tapIndex}, index: ${this.index}, red`);
       this.tapColor = Color.Red;
     } else {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`);
+      hilog.info(DOMAIN, TAG, `tapindex: ${this.tapIndex}, index: ${this.index}, black`);
       this.tapColor = Color.Black;
     }
   }

@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 // [Start localtorage_page_five_share]
-// index.ets
 
 // 预览器上不支持获取页面共享的LocalStorage实例。
 @Entry({ useSharedStorage: true })
 @Component
-struct Index {
+struct PageFiveShare {
   // 可以使用@LocalStorageLink/Prop与LocalStorage实例中的变量建立联系
   @LocalStorageLink('PropA') propA: number = 1;
   pageStack: NavPathStack = new NavPathStack();
