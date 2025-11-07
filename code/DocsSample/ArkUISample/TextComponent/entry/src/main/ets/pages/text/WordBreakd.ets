@@ -19,7 +19,11 @@ import common from '@ohos.app.ability.common';
 @Entry
 @Component
 export struct WordBreakd {
-  @State message: string = 'Hello World! honorificabilitudinitatibus!';
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
+
+  // 'Text_WordBreak'资源文件中的value值为'混合Hello World! honorificabilitudinitatibus'
+  @State message: string = this.manager.getStringByNameSync('Text_WordBreak');
   build() {
     NavDestination() {
     Column() {

@@ -289,6 +289,7 @@ export struct CustomTextStyle {
                 .textCase(TextCase.LowerCase)
                 .border({ width: 1 })
                 .padding(10)
+                .margin(5)
 
               // 文本全大写展示
               Text('This is the text content with textCase set to UpperCase.')

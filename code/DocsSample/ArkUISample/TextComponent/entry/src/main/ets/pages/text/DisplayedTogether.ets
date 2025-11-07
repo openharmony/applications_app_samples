@@ -14,11 +14,16 @@
  */
 // [Start Displayed_Together]
 // $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+import { common } from '@kit.AbilityKit';
 @Entry
 @Component
 export struct DisplayedTogether {
-  @State fulltext: string =
-    'Hello, I am Text [gin]. Hello, I am [rolling_onthet_floor_laughing] Text, [slightly_stmiling_face] Hello, I am Text [gin]';
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
+
+  // 'Text_Full_Text'资源文件中的value值为
+  // '你好我是Text[grin]，你好我[rolling_on_the_floor_laughing]是Text，[slightly_smiling_face]你好我是Text[grin]'
+  @State fulltext: string = this.manager.getStringByNameSync('Text_Full_Text');
 
   static classifyTextAndEmojis(input: string): Map<string, string[]> {
     const emojiRegex = /\[([a-zA-Z_]+)\]/g; // 根据实际情况编写正则表达式
@@ -50,11 +55,11 @@ export struct DisplayedTogether {
     for (let i = 0; i < emojis.length; i++) {
       switch (emojis[i]) {
         case 'rolling_on_the_floor_laughing':
-          emojisImg.push($r('app.media.app_icon'))
+          emojisImg.push($r('app.media.rolling_on_the_floor_laughing'))
         case 'slightly_smiling_face':
-          emojisImg.push($r('app.media.app_icon'))
+          emojisImg.push($r('app.media.slightly_smiling_face'))
         case 'grin':
-          emojisImg.push($r('app.media.app_icon'))
+          emojisImg.push($r('app.media.grin'))
         default:
       }
     }
@@ -64,8 +69,9 @@ export struct DisplayedTogether {
   build() {
     NavDestination() {
       Column() {
+        // 'app.string.Text_emoji'资源文件中的value值为'用户输入带表情的文本，例如：你好[grin]'
         TextInput({
-          placeholder: 'The user inputs text with emojis, such as: Hello [grin]'
+          placeholder: $r('app.string.Text_emoji')
         })
           .width('80%')
           .padding(10)

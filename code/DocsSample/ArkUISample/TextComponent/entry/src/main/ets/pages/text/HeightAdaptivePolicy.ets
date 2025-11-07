@@ -13,10 +13,16 @@
  * limitations under the License.
  */
 // [Start Height_AdaptivePolicy]
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 export struct HeightAdaptivePolicy {
-  @State message: string = 'Hello World!1282378283 ~';
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
+
+  // 'Text_Adaptive_Layout'资源文件中的value值为'混合Hello World! 多行文本 中英文数字混合 1282378283 ~'
+  @State message: string = this.manager.getStringByNameSync('Text_Adaptive_Layout');
   @State fontSize: number = 25;
   build() {
     NavDestination() {

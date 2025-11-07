@@ -25,9 +25,7 @@ export struct TextLongTow {
   @State message: string = this.manager.getStringByNameSync('Text_Long_String').repeat(50);
 
   build() {
-    // [StartExclude Text_Long_Tow]
     NavDestination() {
-      // [EndExclude Text_Long_Tow]
       Column() {
         Scroll() {
           Text(this.message)
@@ -39,8 +37,9 @@ export struct TextLongTow {
       .margin('10%')
       .borderWidth(1)
       .justifyContent(FlexAlign.Center)
-      // [StartExclude Text_Long_Tow]
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Text_Long_Tow]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Text_Long_Tow'))
     // [EndExclude Text_Long_Tow]
   }
