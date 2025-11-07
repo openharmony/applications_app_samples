@@ -39,8 +39,9 @@ export struct ShaderStyle {
       }
       .height('100%')
       .width('100%')
-    }.backgroundColor('#f1f 2f3')
+    }
     // [StartExclude Shader_Style]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Shader_Style'))
     // [EndExclude Shader_Style]
   }

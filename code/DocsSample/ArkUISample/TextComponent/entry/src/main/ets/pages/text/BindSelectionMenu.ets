@@ -21,7 +21,7 @@ export struct BindSelectionMenu {
   build() {
     NavDestination() {
       Column() {
-        // $r('app.string.xxx')需要替换为开发者所需的资源文件
+        // 'app.string.display_the_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
         Text($r('app.string.display_the_selected_menu'), { controller: this.controller })
           .fontSize(30)
           .copyOption(CopyOptions.InApp)

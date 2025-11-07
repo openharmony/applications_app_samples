@@ -1749,6 +1749,34 @@
     {
       "name": "Text_Long_String",
       "value": "这是一段超长文本"
+    },
+    {
+      "name": "Text_WordBreak",
+      "value": "混合Hello World! honorificabilitudinitatibus!"
+    },
+    {
+      "name": "Text_Adaptive_Layout",
+      "value": "混合Hello World! 多行文本 中英文数字混合 1282378283 ~"
+    },
+    {
+      "name": "Text_Add_Tags_Front_and_Post",
+      "value": "这是一段长文本，超长部分折行，前后添加标签"
+    },
+    {
+      "name": "Text_Add_Tags_Front",
+      "value": "前标签"
+    },
+    {
+      "name": "Text_Add_Tags_Post",
+      "value": "后标签"
+    },
+    {
+      "name": "Text_Full_Text",
+      "value": "你好我是Text[grin]，你好我[rolling_on_the_floor_laughing]是Text，[slightly_smiling_face]你好我是Text[grin]"
+    },
+    {
+      "name": "Text_emoji",
+      "value": "用户输入带表情的文本，例如：你好[grin]"
     }
   ]
 }

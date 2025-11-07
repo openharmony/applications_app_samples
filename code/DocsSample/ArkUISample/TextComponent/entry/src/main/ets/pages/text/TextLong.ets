@@ -42,6 +42,5 @@ export struct TextLong {
     .title($r('app.string.Text_Long'))
     // [EndExclude Text_Long]
   }
-
 }
 // [End Text_Long]

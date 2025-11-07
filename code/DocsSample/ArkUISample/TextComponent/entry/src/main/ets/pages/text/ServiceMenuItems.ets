@@ -14,7 +14,6 @@
  */
 // [Start Service_MenuItems]
 import { TextMenuController } from '@kit.ArkUI';
-
 // xxx.ets
 @Entry
 @Component

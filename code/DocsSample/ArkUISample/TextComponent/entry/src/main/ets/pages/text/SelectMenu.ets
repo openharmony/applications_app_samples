@@ -29,7 +29,7 @@ export struct SelectMenu {
     Column() {
       Menu() {
         MenuItemGroup() {
-          // $r('app.media.app_icon')需要替换为开发者所需的资源文件。
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件。
           MenuItem({ startIcon: $r('app.media.app_icon'), content: 'CustomMenu One', labelInfo: '' })
             .onClick(() => {
               // 使用closeSelectionMenu接口关闭菜单

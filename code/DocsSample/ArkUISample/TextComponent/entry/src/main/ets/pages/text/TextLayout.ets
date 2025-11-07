@@ -65,14 +65,14 @@ export struct TextLayout {
         // [Start Last_space]
         Column() {
           // 启用优化行尾空格功能
-          Text('Trimmed space enabled')
+          Text('Trimmed space enabled     ')
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
             .margin({ top: 20 })
             .optimizeTrailingSpace(true)
             .textAlign(TextAlign.Center)
           // 不启用优化行尾空格功能
-          Text('Trimmed space disabled')
+          Text('Trimmed space disabled     ')
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
             .margin({ top: 20 })
