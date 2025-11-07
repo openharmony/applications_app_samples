@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // [Start underlying_code_required_for_dynamic_components]
+// main/ets/pages/DynamicComponent.ets
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 export interface BuilderData {

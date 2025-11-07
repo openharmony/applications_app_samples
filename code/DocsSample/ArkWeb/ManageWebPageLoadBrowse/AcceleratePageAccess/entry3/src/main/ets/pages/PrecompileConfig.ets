@@ -14,6 +14,7 @@
  */
 
 // [Start compile_resource_allocation_information]
+// main/ets/pages/PrecompileConfig.ets 
 import { webview } from '@kit.ArkWeb'
 
 export interface Config {
