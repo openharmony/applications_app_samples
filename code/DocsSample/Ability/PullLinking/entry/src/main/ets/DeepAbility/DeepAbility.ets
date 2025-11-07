@@ -34,7 +34,7 @@ export default class DeepAbility extends UIAbility {
       if (action === 'showall') {
         // [StartExclude  deep_ability]
         hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
-        // [End deep_ability]
+        // [EndExclude deep_ability]
       }
     }
   }
