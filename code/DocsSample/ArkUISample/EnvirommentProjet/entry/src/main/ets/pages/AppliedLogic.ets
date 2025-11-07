@@ -17,7 +17,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0001;
-const TAG = 'envirommentprojet';
+const TAG = 'environmentalProject';
 
 // 使用Environment.envProp将设备运行languageCode存入AppStorage中
 Environment.envProp('languageCode', 'en');
