@@ -52,8 +52,8 @@ export default function OpenCustomDialogTest() {
       let button_list = await driver.findComponent(ON.text('openCustomDialog', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
-      let button_customDialogComponentWithTransition = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.customDialogComponentWithTransition_title')), MatchPattern.CONTAINS));
-      await button_customDialogComponentWithTransition.click();
+      let button_CustomDialogComponentWithTransition = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialogComponentWithTransition_title')), MatchPattern.CONTAINS));
+      await button_CustomDialogComponentWithTransition.click();
       let text_open = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.open_windows')), MatchPattern.CONTAINS));
       expect(text_open === null).assertFalse();
       await text_open.click();
@@ -74,10 +74,10 @@ export default function OpenCustomDialogTest() {
       await driver.pressBack();
       await driver.pressBack();
 
-      let button_customDialogWithKeyboardAvoidDistance = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.customDialogWithKeyboardAvoidDistance_title')), MatchPattern.CONTAINS));
-      await button_customDialogWithKeyboardAvoidDistance.click();
-      let text_customDialogWithKeyboardAvoidDistance_open = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.open_windows')), MatchPattern.CONTAINS));
-      await text_customDialogWithKeyboardAvoidDistance_open.click();
+      let button_CustomDialogWithKeyboardAvoidDistance = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.CustomDialogWithKeyboardAvoidDistance_title')), MatchPattern.CONTAINS));
+      await button_CustomDialogWithKeyboardAvoidDistance.click();
+      let text_CustomDialogWithKeyboardAvoidDistance_open = await driver.findComponent(ON.text(resource.resourceToString($r('app.string.open_windows')), MatchPattern.CONTAINS));
+      await text_CustomDialogWithKeyboardAvoidDistance_open.click();
       await sleep(1000);
       let textinputComponent = await driver.findComponent(ON.type('TextInput'))
       await textinputComponent.click();

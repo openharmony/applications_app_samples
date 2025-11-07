@@ -56,7 +56,7 @@ export struct CustomDialogControl {
     maskColor: '#33AA0000'
   } as promptAction.CustomDialogOptions;
   // [StartExclude custom_dialog_control_mask]
-  
+
   // [Start custom_dialog_control_transition]
   transitionOpt: promptAction.CustomDialogOptions = {
     builder: () => {
@@ -91,16 +91,16 @@ export struct CustomDialogControl {
           .width('100%')
           .margin({ top: 10 })
           .onClick(() => {
-            this.getUIContext().getPromptAction().openCustomDialog(this.autoCancelOpt)
+            this.getUIContext().getPromptAction().openCustomDialog(this.autoCancelOpt);
           })
-         
+
         // [StartExclude custom_dialog_control_autoCancel]   
         // [EndExclude custom_dialog_control_modal]
         Button('openCustomDialog isModal:false')
           .width('100%')
           .margin({ top: 10 })
           .onClick(() => {
-            this.getUIContext().getPromptAction().openCustomDialog(this.modalOpt)
+            this.getUIContext().getPromptAction().openCustomDialog(this.modalOpt);
           })
 
         // [StartExclude custom_dialog_control_modal]
@@ -109,7 +109,7 @@ export struct CustomDialogControl {
           .width('100%')
           .margin({ top: 10 })
           .onClick(() => {
-            this.getUIContext().getPromptAction().openCustomDialog(this.maskOpt)
+            this.getUIContext().getPromptAction().openCustomDialog(this.maskOpt);
           })
 
         // [StartExclude custom_dialog_control_mask]
@@ -152,12 +152,12 @@ export struct CustomDialogControl {
                 .combine(TransitionEffect.rotate({ z: 1, angle: 180 })),
             });
           })
-          // [End custom_dialog_control_mask_transition]
-          // [EndExclude custom_dialog_control_transition]
-          // [EndExclude custom_dialog_control_mask]
-          // [EndExclude custom_dialog_control_modal]
-          // [EndExclude custom_dialog_control_autoCancel]
-          // [EndExclude custom_dialog_control_immersive]
+        // [End custom_dialog_control_mask_transition]
+        // [EndExclude custom_dialog_control_transition]
+        // [EndExclude custom_dialog_control_mask]
+        // [EndExclude custom_dialog_control_modal]
+        // [EndExclude custom_dialog_control_autoCancel]
+        // [EndExclude custom_dialog_control_immersive]
       }
       .width('100%')
       .height('100%')

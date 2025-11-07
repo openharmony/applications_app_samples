@@ -19,7 +19,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 @Entry
 @Component
-export struct customDialogComponentWithTransition {
+export struct CustomDialogComponentWithTransition {
   private customDialogComponentId: number = 0
   @Builder
   customDialogComponent() {
