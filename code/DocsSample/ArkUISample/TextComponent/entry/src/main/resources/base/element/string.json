@@ -1064,6 +1064,14 @@
       "value": "添加到文本中"
     },
     {
+      "name": "SymbolGlyphSpanEffectStrategy_title",
+      "value": "SymbolSpan的动效策略"
+    },
+    {
+      "name": "SymbolGlyphSpanEffectStrategy_description",
+      "value": "通过effectStrategy属性设置SymbolSpan的动效策略"
+    },
+    {
       "name": "SymbolGlyphSpanAddToText_description",
       "value": "SymbolSpan可作为Text的子组件用于显示图标小符号。可以在一个Text组件内添加多个SymbolSpan，从而展示一串连续的图标。"
     },
@@ -1121,7 +1129,7 @@
     },
     {
       "name": "SymbolGlyphSpanAddToText_title_6",
-      "value": "通过effectStrategy属性设置SymbolSpan的动效策略"
+      "value": "通过设置SymbolEffect属性配置SymbolGlyph的动效\n点击可播放动画效果"
     },
     {
       "name": "SymbolGlyphSpanCustomIconAnimation_title_1",

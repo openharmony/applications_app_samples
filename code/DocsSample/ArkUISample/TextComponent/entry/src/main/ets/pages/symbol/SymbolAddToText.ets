@@ -19,6 +19,7 @@ import { ComponentCard } from '../../common/Card';
 @Component
 export struct SymbolGlyphSpanAddToText {
   scroller: Scroller = new Scroller();
+  @State isActive: boolean = true;
 
   build() {
     NavDestination() {
@@ -189,42 +190,84 @@ export struct SymbolGlyphSpanAddToText {
           }
 
           ComponentCard({ title: $r('app.string.SymbolGlyphSpanAddToText_title_6') }) {
-            // [Start symbol_span_effect_strategy]
-            Row() {
-              Column() {
-                // 'app.string.no_action'资源文件中的value值为"无动效"
-                Text($r('app.string.no_action'));
-                Text() {
-                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
-                  SymbolSpan($r('sys.symbol.ohos_wifi'))
-                    .fontSize(96)
-                    .effectStrategy(SymbolEffectStrategy.NONE)
+            if (this.isActive) {
+              // [Start symbol_span_effect_strategy]
+              Row() {
+                Column() {
+                  // 'app.string.no_action'资源文件中的value值为"无动效"
+                  Text($r('app.string.no_action'));
+                  Text() {
+                    // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.NONE)
+                  }
                 }
-              }
 
-              Column() {
-                // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
-                Text($r('app.string.overall_scaling_animation_effect'));
-                Text() {
-                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
-                  SymbolSpan($r('sys.symbol.ohos_wifi'))
-                    .fontSize(96)
-                    .effectStrategy(SymbolEffectStrategy.SCALE)
+                Column() {
+                  // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
+                  Text($r('app.string.overall_scaling_animation_effect'));
+                  Text() {
+                    // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.SCALE)
+                  }
                 }
-              }
 
-              Column() {
-                // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
-                Text($r('app.string.hierarchical_animation'));
-                Text() {
-                  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
-                  SymbolSpan($r('sys.symbol.ohos_wifi'))
-                    .fontSize(96)
-                    .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
+                Column() {
+                  // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
+                  Text($r('app.string.hierarchical_animation'));
+                  Text() {
+                    // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
+                  }
                 }
               }
+              // [End symbol_span_effect_strategy]
+              .onClick(() => {
+                this.isActive = !this.isActive;
+              })
+            } else {
+              Row() {
+                Column() {
+                  // 'app.string.no_action'资源文件中的value值为"无动效"
+                  Text($r('app.string.no_action'));
+                  Text() {
+                    // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.NONE)
+                  }
+                }
+
+                Column() {
+                  // 'app.string.overall_scaling_animation_effect'资源文件中的value值为"整体缩放动效"
+                  Text($r('app.string.overall_scaling_animation_effect'));
+                  Text() {
+                    // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.SCALE)
+                  }
+                }
+
+                Column() {
+                  // 'app.string.hierarchical_animation'资源文件中的value值为"层级动效"
+                  Text($r('app.string.hierarchical_animation'));
+                  Text() {
+                    // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+                    SymbolSpan($r('sys.symbol.ohos_wifi'))
+                      .fontSize(96)
+                      .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
+                  }
+                }
+              }.onClick(() => {
+                this.isActive = !this.isActive;
+              })
             }
-            // [End symbol_span_effect_strategy]
           }
         }
         .width('100%')
