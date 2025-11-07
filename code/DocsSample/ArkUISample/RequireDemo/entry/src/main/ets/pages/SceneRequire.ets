@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start scene_require_tart]
+// [Start scene_require_start]
 @Entry
 @Component
 struct SceneRequire {
@@ -66,4 +66,4 @@ struct Child {
     .height('100%')
   }
 }
-// [End scene_require_tart]
+// [End scene_require_start]

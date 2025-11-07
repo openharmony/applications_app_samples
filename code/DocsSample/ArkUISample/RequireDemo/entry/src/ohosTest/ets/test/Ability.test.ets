@@ -94,8 +94,8 @@ export default function abilityTest() {
       // 跳转到UIAbility组件启动模式界面
       hilog.info(DOMAIN_NUMBER, TAG, 'button_004 start');
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Explame'));
-      let button = await driver.findComponent(ON.id('Explame'));
+      await driver.assertComponentExist(ON.id('Example'));
+      let button = await driver.findComponent(ON.id('Example'));
       await button.click();
       await driver.delayMs(1000);
       await driver.pressBack()

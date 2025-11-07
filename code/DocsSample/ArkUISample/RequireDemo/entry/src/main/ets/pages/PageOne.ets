@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start page_one_require_tart]
+// [Start page_one_require_start]
 @Entry
 @Component
 struct PageOne {
@@ -36,4 +36,4 @@ struct Child_V1 {
     }
   }
 }
-// [End page_one_require_tart]
+// [End page_one_require_start]
