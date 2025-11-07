@@ -51,9 +51,10 @@ struct BasicUsage {
         .fontWeight(FontWeight.Bold)
         .margin({bottom: 8})
 
-      Button($r('app.string.Start_UIAbilityB')).onClick((event: ClickEvent) => {
-        this.startAbilityTest();
-      })
+      Button($r('app.string.Start_UIAbilityB')) // app.string.Start_UIAbilityB的值为拉起UIAbilityB
+        .onClick((event: ClickEvent) => {
+          this.startAbilityTest();
+        })
       // [EndExclude terminateSelf]
 
       Button('FuncAbilityB')

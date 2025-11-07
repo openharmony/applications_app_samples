@@ -132,6 +132,6 @@
     ]
   }
 }
-// [Start specified]
-// [Start multiton]
-// [Start singleton]
+// [End specified]
+// [End multiton]
+// [End singleton]

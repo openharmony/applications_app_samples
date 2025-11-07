@@ -69,7 +69,10 @@ export default class EntryAbility extends UIAbility {
 
   // [StartExclude onDestroy]
   onWindowStageCreate(windowStage: window.WindowStage): void {
+    // [StartExclude onWindowStageCreate]
     // 加载UI资源
+    // [EndExclude onWindowStageCreate]
+
     // [StartExclude onWindowStageDestroy]
     // [StartExclude onWindowStageCreate]
     this.windowStage = windowStage;
