@@ -615,6 +615,10 @@
     {
       "name": "location",
       "value": "点击位置:"
+    },
+    {
+      "name": "repeat",
+      "value": "动画重复播放"
     }
   ]
 }
