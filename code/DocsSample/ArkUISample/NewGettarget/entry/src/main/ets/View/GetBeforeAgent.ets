@@ -16,7 +16,7 @@
 import { UIUtils } from '@kit.ArkUI';
 @ObservedV2
 class ObservedClassThree {
-  @Trace name: string = 'Tom';
+  @Trace public name: string = 'Tom';
 }
 let globalObservedObject: ObservedClassThree = new ObservedClassThree(); // 不被代理
 let globalNumberList: number[] = [1, 2, 3]; // 不被代理
