@@ -21,8 +21,6 @@
 |----------------|----------------|----------------|----------------|----------------|
 | <img src="screenshots/device/image6.jpeg" width="200" height="400"> | <img src="screenshots/device/image7.jpeg" width="200" height="400"> | <img src="screenshots/device/image8.jpeg" width="200" height="400"> | <img src="screenshots/device/image8.jpeg" width="200" height="400"> | <img src="screenshots/device/image9.jpeg" width="200" height="400"> |
 
-![image11](E:\CustomComponentsFreeze\screenshots\device\image11.jpeg)
-
 ### 使用说明
 
 1. 在主界面，可以点击对应按钮，选择需要参考的代码示例
