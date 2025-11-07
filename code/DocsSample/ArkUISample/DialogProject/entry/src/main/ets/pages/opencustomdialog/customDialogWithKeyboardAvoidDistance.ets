@@ -21,7 +21,7 @@ const DOMAIN = 0x0000;
 
 @Entry
 @Component
-export struct customDialogWithKeyboardAvoidDistance {
+export struct CustomDialogWithKeyboardAvoidDistance {
   @Builder
   customDialogComponent() {
     Column() {

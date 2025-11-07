@@ -82,7 +82,7 @@ export struct pageOneTmp {
       const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
       // $r('app.string.return_value')资源文件中的value为'返回值'
       hilog.info(DOMAIN, 'testTag', 'pop' + $r('app.string.return_value') + JSON.stringify(popDestinationInfo));
-      return true
+      return true;
     })
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;

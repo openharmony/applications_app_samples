@@ -76,8 +76,8 @@ entry/src/main/ets/
 |   |---opencustomdialog                      //不依赖UI组件的全局自定义弹出框
 |   |       |---Index.ets
 |   |       |---openCustomDialog.ets
-|   |       |---customDialogComponentWithTransition.ets
-|   |       |---customDialogWithKeyboardAvoidDistance.ets
+|   |       |---CustomDialogComponentWithTransition.ets
+|   |       |---CustomDialogWithKeyboardAvoidDistance.ets
 |   |       |---OpenDialogAndUpdate.ets
 |   |---OverlayManager                        //设置浮层
 |   |       |---Index.ets
