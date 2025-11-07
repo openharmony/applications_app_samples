@@ -23,7 +23,7 @@ const DOMAIN = 0x0000;
 const TAG: string = 'AgeFriendlyTabs';
 @Entry
 @Component
-struct AgeFriendlyTabs {
+export struct AgeFriendlyTabs {
   @State fontColor: string = '#182431';
   @State selectedFontColor: string = '#007DFF';
   @State currentIndex: number = 0;
