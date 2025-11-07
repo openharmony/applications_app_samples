@@ -68,6 +68,8 @@ entry/src/main/ets/
 |   |       |---Index.ets
 |   |---Menu                                  //菜单
 |   |       |---BindComponentMenu.ets         //基于绑定组件指定位置弹出菜单
+|   |       |---BuilderCustomMenu.ets         //使用@Builder自定义菜单内容
+|   |       |---CreateDefaultMenu.ets         //创建默认样式的菜单
 |   |       |---CreateMenu.ets
 |   |       |---EventTransSubWindowMenu.ets   //控制子窗菜单的事件透传
 |   |       |---Index.ets

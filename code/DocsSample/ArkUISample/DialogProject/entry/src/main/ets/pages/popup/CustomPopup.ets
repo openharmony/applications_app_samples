@@ -31,8 +31,6 @@ export struct CustomPopupExample {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-
         Column() {
           Button('CustomPopupOptions')
             .id('CustomPopupOptions')
@@ -52,13 +50,7 @@ export struct CustomPopupExample {
             })
         }
         .height('100%')
-
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
     }
-    .backgroundColor('#f1f2f3')
     // [StartExclude custom_popup]
     .title($r('app.string.custom_popup'))
     // [EndExclude custom_popup]

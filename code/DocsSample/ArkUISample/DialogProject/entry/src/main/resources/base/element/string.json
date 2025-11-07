@@ -884,6 +884,18 @@
     {
       "name": "click_dialog",
       "value": "点击弹窗"
+    },
+    {
+      "name": "CreateDefaultMenu_title",
+      "value": "创建默认样式的菜单"
+    },
+    {
+      "name": "CreateDefaultMenu_des",
+      "value": "菜单需要调用bindMenu接口来实现。bindMenu响应绑定组件的点击事件，绑定组件后手势点击对应组件后即可弹出。"
+    },
+    {
+      "name": "BuilderCustomMenu_title",
+      "value": "使用@Builder自定义菜单内容"
     }
   ]
 }

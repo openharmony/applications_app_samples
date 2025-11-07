@@ -17,8 +17,8 @@ import { CompletedRoutableCard } from '../../common/Card';
 import resource from '../../common/resource';
 import { Route } from '../../common/Route';
 import { openCustomDialog } from './openCustomDialog';
-import { CustomDialogComponentWithTransition } from './CustomDialogComponentWithTransition';
-import { CustomDialogWithKeyboardAvoidDistance } from './CustomDialogWithKeyboardAvoidDistance';
+import { CustomDialogComponentWithTransition } from './customDialogComponentWithTransition';
+import { CustomDialogWithKeyboardAvoidDistance } from './customDialogWithKeyboardAvoidDistance';
 import { OpenDialogAndUpdate } from './OpenDialogAndUpdate';
 
 export const CustomDialog_ROUTE_PREFIX: string = 'CustomDialog_ROUTE_PREFIX';

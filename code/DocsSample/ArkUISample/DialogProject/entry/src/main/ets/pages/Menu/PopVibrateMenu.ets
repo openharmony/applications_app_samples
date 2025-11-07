@@ -102,7 +102,6 @@ export struct PopVibrateMenuExample  {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
-    .backgroundColor('#f1f2f3')
     // [StartExclude popVibrate_menu]
     .title($r('app.string.PopVibrateMenu_title'))
     // [EndExclude popVibrate_menu]

@@ -22,6 +22,8 @@ import { PopVibrateMenuExample } from './PopVibrateMenu';
 import { SupportAvoidCentralAxisMenuExample } from './SupportAvoidCentralAxisMenu';
 import { EventTransSubWindowMenuExample } from './EventTransSubWindowMenu';
 import { BindComponentMenuExample } from './BindComponentMenu'
+import { CreateDefaultMenuExample } from './CreateDefaultMenu';
+import { BuilderCustomMenuExample } from './BuilderCustomMenu';
 
 export const Menu_ROUTE_PREFIX: string = 'Menu_ROUTE_PREFIX';
 
@@ -55,6 +57,15 @@ const routes: Route[] = [
     name: `${Menu_ROUTE_PREFIX}/BindComponentMenu`,
     title: resource.resourceToString($r('app.string.BindComponentMenu_title')),
     description: $r('app.string.BindComponentMenu_des'),
+  },
+  {
+    name: `${Menu_ROUTE_PREFIX}/CreateDefaultMenuExample`,
+    title: resource.resourceToString($r('app.string.CreateDefaultMenu_title')),
+    description: $r('app.string.CreateDefaultMenu_des'),
+  },
+  {
+    name: `${Menu_ROUTE_PREFIX}/BuilderCustomMenuExample`,
+    title: resource.resourceToString($r('app.string.BuilderCustomMenu_title')),
   }
 ]
 
@@ -64,9 +75,9 @@ export function MenuDestination(name: string) {
     MenuExample();
   } else if (name === routes[0].name) {
     menuExample();
-  } else if (name === routes[1].name) { 
+  } else if (name === routes[1].name) {
     OpenPopup();
-  } else if (name === routes[2].name) { 
+  } else if (name === routes[2].name) {
     PopVibrateMenuExample();
   } else if (name === routes[3].name) {
     SupportAvoidCentralAxisMenuExample();
@@ -74,6 +85,10 @@ export function MenuDestination(name: string) {
     EventTransSubWindowMenuExample();
   } else if (name === routes[5].name) {
     BindComponentMenuExample();
+  } else if (name === routes[6].name) {
+    CreateDefaultMenuExample();
+  } else if (name === routes[7].name) {
+    BuilderCustomMenuExample();
   }
 }
 

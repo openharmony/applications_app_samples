@@ -128,7 +128,6 @@ export struct menuExample  {
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
-    .backgroundColor('#f1f2f3')
     .title($r('app.string.create_menu'))
   }
   // [EndExclude builder_menu_content]

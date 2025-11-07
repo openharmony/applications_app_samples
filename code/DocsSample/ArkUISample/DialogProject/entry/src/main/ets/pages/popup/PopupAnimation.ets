@@ -14,13 +14,16 @@
  */
 
 // [Start animation_popup]
+// xxx.ets
 @Entry
 @Component
 export struct AnimationPopupExample {
   @State handlePopup: boolean = false;
   @State customPopup: boolean = false;
 
-  @Builder popupBuilder() {
+  // popup构造器定义弹框内容
+  @Builder
+  popupBuilder() {
     Row() {
       Text('Custom Popup with transitionEffect').fontSize(10)
     }.height(50).padding(5)
@@ -28,55 +31,51 @@ export struct AnimationPopupExample {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-          // PopupOptions 类型设置弹框内容
-          Button('PopupOptions')
-            .id('PopupOptions')
-            .margin({ top: 250 })
-            .onClick(() => {
-              this.handlePopup = !this.handlePopup;
-            })
-            .bindPopup(this.handlePopup, {
-              message: 'This is a popup with transitionEffect',
-              placementOnTop: true,
-              showInSubWindow: false,
-              onStateChange: (e) => {
-                if (!e.isVisible) {
-                  this.handlePopup = false;
-                }
-              },
-              // 设置弹窗显示动效为透明度动效与平移动效的组合效果，无退出动效
-              transition:TransitionEffect.asymmetric(
-                TransitionEffect.OPACITY.animation({ duration: 1000, curve: Curve.Ease }).combine(
-                  TransitionEffect.translate({ x: 50, y: 50 })),
-                TransitionEffect.IDENTITY)
-            })
+      Flex({ direction: FlexDirection.Column }) {
+        // PopupOptions 类型设置弹框内容
+        Button('PopupOptions')
+          .id('PopupOptions')
+          .onClick(() => {
+            this.handlePopup = !this.handlePopup;
+          })
+          .bindPopup(this.handlePopup, {
+            message: 'This is a popup with transitionEffect',
+            placement: Placement.Top,
+            showInSubWindow: false,
+            onStateChange: (e) => {
+              if (!e.isVisible) {
+                this.handlePopup = false;
+              }
+            },
+            // 设置弹窗显示动效为透明度动效与平移动效的组合效果，无退出动效
+            transition: TransitionEffect.asymmetric(
+              TransitionEffect.OPACITY.animation({ duration: 1000, curve: Curve.Ease }).combine(
+                TransitionEffect.translate({ x: 50, y: 50 })),
+              TransitionEffect.IDENTITY)
+          })
+          .position({ x: 100, y: 150 })
 
-          // CustomPopupOptions 类型设置弹框内容
-          Button('CustomPopupOptions')
-            .id('CustomPopupOptions')
-            .margin({ top: 60 })
-            .onClick(() => {
-              this.customPopup = !this.customPopup;
-            })
-            .bindPopup(this.customPopup, {
-              builder: this.popupBuilder,
-              placement: Placement.Top,
-              showInSubWindow: false,
-              onStateChange: (e) => {
-                if (!e.isVisible) {
-                  this.customPopup = false;
-                }
-              },
-              // 设置弹窗显示动效与退出动效为缩放动效
-              transition:TransitionEffect.scale({ x: 1, y: 0 }).animation({ duration: 500, curve: Curve.Ease })
-            })
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
+        // CustomPopupOptions 类型设置弹框内容
+        Button('CustomPopupOptions')
+          .id('CustomPopupOptions')
+          .onClick(() => {
+            this.customPopup = !this.customPopup;
+          })
+          .bindPopup(this.customPopup, {
+            builder: this.popupBuilder,
+            placement: Placement.Top,
+            showInSubWindow: false,
+            onStateChange: (e) => {
+              if (!e.isVisible) {
+                this.customPopup = false;
+              }
+            },
+            // 设置弹窗显示动效与退出动效为缩放动效
+            transition: TransitionEffect.scale({ x: 1, y: 0 }).animation({ duration: 500, curve: Curve.Ease })
+          })
+          .position({ x: 80, y: 300 })
+      }.width('100%').padding({ top: 5 })
     }
-    .backgroundColor('#f1f2f3')
     // [StartExclude animation_popup]
     .title($r('app.string.AnimationPopup_title'))
     // [EndExclude animation_popup]
