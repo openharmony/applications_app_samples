@@ -17,7 +17,7 @@ import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER = 0xF811;
-const TAG  = '[Sample_UnexpExit]';
+const TAG = '[Sample_UnexpExit]';
 
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
