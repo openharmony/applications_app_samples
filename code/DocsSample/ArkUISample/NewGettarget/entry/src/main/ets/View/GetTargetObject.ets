@@ -20,7 +20,7 @@ class Info {
 }
 @Entry
 @Component
-struct Page1 {
+struct GetTargetObject {
   @State info: Info = new Info();
 
   build() {

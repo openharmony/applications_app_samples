@@ -22,35 +22,35 @@ struct Index {
       Button($r('app.string.arkts_new_gettarget1'))
         .onClick(()=>{
           this.getUIContext().getRouter().pushUrl({
-            url:'View/Page1'
+            url:'View/GetTargetObject'
           })
         })
       // $r('app.string.arkts_new_gettarget4') 需要替换为开发者所需的资源文件
       Button($r('app.string.arkts_new_gettarget4'))
         .onClick(()=>{
           this.getUIContext().getRouter().pushUrl({
-            url:'View/Page2'
+            url:'View/GetTargetNoChange'
           })
         })
       // $r('app.string.arkts_new_gettarget5') 需要替换为开发者所需的资源文件
       Button($r('app.string.arkts_new_gettarget5'))
         .onClick(()=>{
           this.getUIContext().getRouter().pushUrl({
-            url:'View/Page3'
+            url:'View/GetTargetAgent'
           })
         })
       // $r('app.string.arkts_new_gettarget6') 需要替换为开发者所需的资源文件
       Button($r('app.string.arkts_new_gettarget6'))
         .onClick(()=>{
           this.getUIContext().getRouter().pushUrl({
-            url:'View/Page4'
+            url:'View/GetAgentObject'
           })
         })
       // $r('app.string.arkts_new_gettarget7') 需要替换为开发者所需的资源文件
       Button($r('app.string.arkts_new_gettarget7'))
         .onClick(()=>{
           this.getUIContext().getRouter().pushUrl({
-            url:'View/Page5'
+            url:'View/GetBeforeAgent'
           })
         })
     }

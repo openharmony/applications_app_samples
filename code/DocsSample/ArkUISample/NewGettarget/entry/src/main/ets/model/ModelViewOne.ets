@@ -14,7 +14,6 @@
  */
 // [Start ApplicationLogic]
 import { UIUtils } from '@kit.ArkUI';
-// let res = UIUtils.getTarget(2); // 非对象类型入参，错误用法
 @Observed
 class Info {
   public name: string = 'Tom';
