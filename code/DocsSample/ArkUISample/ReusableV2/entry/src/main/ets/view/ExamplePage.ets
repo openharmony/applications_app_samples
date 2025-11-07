@@ -13,25 +13,26 @@
  * limitations under the License.
  */
 
-//[Start Interface Description]
+//[Start ExamplePage]
 @Entry
 @ComponentV2
-struct ExamplePage {
-
+struct Index {
   build() {
     Column() {
-      ReusableV2ComponentExample()
-        .reuse({reuseId: () => 'reuseComponent'}) // 使用'ReusableV2ComponentExample'作为reuseId
-      ReusableV2ComponentExample()
-        .reuse({reuseId: () => ''}) // 使用空字符串将默认使用组件名'ReusableV2ComponentExample'作为reuseId
-      ReusableV2ComponentExample() // 未指定reuseId将默认使用组件名'ReusableV2ComponentExample'作为reuseId
+      ReusableV2Component()
+        .reuse({ reuseId: () => 'reuseComponent' }) // 使用'ReusableV2Component'作为reuseId
+      ReusableV2Component()
+        .reuse({ reuseId: () => '' }) // 使用空字符串将默认使用组件名'ReusableV2Component'作为reuseId
+      ReusableV2Component() // 未指定reuseId将默认使用组件名'ReusableV2Component'作为reuseId
     }
   }
 }
 @ReusableV2
 @ComponentV2
-struct ReusableV2ComponentExample {
+struct ReusableV2Component {
   build() {
   }
 }
-//[End Interface Description]
+//[End ExamplePage]
+const examplePage = Index;
+export default examplePage;

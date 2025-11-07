@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Use_in_Repeat_component]
+// [Start ComponentEachPage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
@@ -21,26 +21,34 @@ const BUNDLE = 'Reusablev2_';
 
 @Entry
 @ComponentV2
-struct ComponentEachPage {
+struct Index {
   @Local simpleList: number[] = [1, 2, 3, 4, 5];
   @Local condition: boolean = true;
   build() {
     Column() {
-      // $r('app.string.EntryAbility_DeleteOrCreate')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_DeleteOrCreate')).onClick(()=>{this.condition=!this.condition;})
-      // $r('app.string.EntryAbility_AddElements')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_AddElements')).onClick(()=>{this.simpleList.push(this.simpleList.length+1);})
-      // $r('app.string.EntryAbility_DeleteElement')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_DeleteElement')).onClick(()=>{this.simpleList.pop();})
-      // $r('app.string.EntryAbility_ChangeElement')需要替换为开发者所需的字符串（图像、数字等）资源文件
-      Button($r('app.string.EntryAbility_ChangeElement')).onClick(()=>{this.simpleList[0]++;})
+      Button('Delete/Create Repeat')
+        .onClick(() => {
+          this.condition = !this.condition;
+        })
+      Button('Add element')
+        .onClick(() => {
+          this.simpleList.push(this.simpleList.length + 1);
+        })
+      Button('Delete element')
+        .onClick(() => {
+          this.simpleList.pop();
+        })
+      Button('Change element')
+        .onClick(() => {
+          this.simpleList[0]++;
+        })
       if (this.condition) {
         List({ space: 10 }) {
           Repeat(this.simpleList)
             .each((obj: RepeatItem<number>) => {
               ListItem() {
                 Column() {
-                  ReusableV2ComponentEach({ num: obj.item })
+                  ReusableV2Component({ num: obj.item })
                 }
               }
             })
@@ -51,7 +59,7 @@ struct ComponentEachPage {
 }
 @ReusableV2
 @ComponentV2
-struct ReusableV2ComponentEach {
+struct ReusableV2Component {
   @Require @Param num: number;
   aboutToAppear() {
     hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToAppear');
@@ -68,4 +76,6 @@ struct ReusableV2ComponentEach {
     }
   }
 }
-// [End Use_in_Repeat_component]
+// [End ComponentEachPage]
+const componentEachPage = Index;
+export default componentEachPage;

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//[Start Freezing_during_the_reuse_phase]
+//[Start AboutToRecyclePage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
@@ -21,7 +21,7 @@ const BUNDLE = 'Reusablev2_';
 
 @Entry
 @ComponentV2
-struct AboutToRecyclePage {
+struct Index {
   @Local condition1: boolean = false;
   @Local condition2: boolean = true;
   build() {
@@ -43,13 +43,13 @@ struct AboutToRecyclePage {
             this.condition1 = false;
           })
         if (this.condition1) {
-          NormalV2ComponentAboutToRecycle({ condition: this.condition2 })
+          NormalV2Component({ condition: this.condition2 })
         }
       }
     }
 }
 @ComponentV2
-struct NormalV2ComponentAboutToRecycle {
+struct NormalV2Component {
   @Require @Param condition: boolean;
   build() {
     if (this.condition) {
@@ -78,4 +78,6 @@ struct ReusableV2Component {
     }
   }
 }
-//[End Freezing_during_the_reuse_phase]
+//[End AboutToRecyclePage]
+const aboutToRecyclePage = Index;
+export default aboutToRecyclePage;

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Use_in_ForEach_component]
+// [Start ComponentForEachPage]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
@@ -21,16 +21,17 @@ const BUNDLE = 'Reusablev2_';
 
 @Entry
 @ComponentV2
-struct ComponentForEachPage {
+struct Index {
   @Local simpleList: number[] = [0, 1, 2, 3, 4, 5];
-
   build() {
     Column() {
       ForEach(this.simpleList, (num: number, index) => {
         Row() {
-          // $r('app.string.EntryAbility_ClickEdit')需要替换为开发者所需的字符串（图像、数字等）资源文件
-          Button($r('app.string.EntryAbility_ClickEdit')).onClick(()=>{this.simpleList[index]++;})
-          ReusableV2ComponentForEach({ num: num })
+          Button('Click to change')
+            .onClick(() => {
+              this.simpleList[index]++;
+            })
+          ReusableV2Component({ num: num })
         }
       }) // 每次修改完key发生变化
     }
@@ -38,7 +39,7 @@ struct ComponentForEachPage {
 }
 @ReusableV2
 @ComponentV2
-struct ReusableV2ComponentForEach {
+struct ReusableV2Component {
   @Require @Param num: number;
   aboutToAppear() {
     hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToAppear', this.num); // 创建时触发
@@ -55,4 +56,7 @@ struct ReusableV2ComponentForEach {
     }
   }
 }
-// [End Use_in_ForEach_component]
+
+// [End ComponentForEachPage]
+const componentForEachPage = Index;
+export default componentForEachPage;
