@@ -22,7 +22,7 @@ struct Child {
   build() {
     Column() {
       Text(`Value of num: ${this.num}`)
-      Text(`num1: ${this.num1}`)
+      Text(`Value of num1: ${this.num1}`)
     }
   }
 }

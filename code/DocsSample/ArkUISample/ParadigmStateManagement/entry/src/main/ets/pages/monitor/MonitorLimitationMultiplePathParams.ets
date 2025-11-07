@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorLimitationMultiplePathParams {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -40,7 +38,7 @@ class Info {
   @Monitor('name', 'age') // Monitor 1
   onNameAgeChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `onNameAgeChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     });
   }
@@ -48,7 +46,7 @@ class Info {
   @Monitor('name', 'position') // Monitor 2
   onNamePositionChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `onNamePositionChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     });
   }
@@ -57,7 +55,7 @@ class Info {
   @Monitor('name', 'position') // Monitor3
   onNamePositionChangeDuplicate(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `onNamePositionChangeDuplicate path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     });
   }

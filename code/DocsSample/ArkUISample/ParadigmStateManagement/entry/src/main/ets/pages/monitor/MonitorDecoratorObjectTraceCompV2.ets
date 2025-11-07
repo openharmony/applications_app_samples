@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorDecoratorObjectTraceCompV2 {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -48,12 +46,12 @@ struct Index {
 
   @Monitor('info')
   infoChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `info change`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `info change`);
   }
 
   @Monitor('info.name')
   infoPropertyChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `info name change`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `info name change`);
   }
 
   build() {

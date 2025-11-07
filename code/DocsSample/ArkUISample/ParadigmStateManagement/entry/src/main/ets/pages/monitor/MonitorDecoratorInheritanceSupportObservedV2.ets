@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorDecoratorInheritanceSupportObservedV2 {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -38,7 +36,7 @@ class Base {
   // 基类监听name属性
   @Monitor('name')
   onBaseNameChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `Base Class name change`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `Base Class name change`);
   }
 
   constructor(name: string) {
@@ -51,7 +49,7 @@ class Derived extends Base {
   // 继承类监听name属性
   @Monitor('name')
   onDerivedNameChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `Derived Class name change`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `Derived Class name change`);
   }
 
   constructor(name: string) {

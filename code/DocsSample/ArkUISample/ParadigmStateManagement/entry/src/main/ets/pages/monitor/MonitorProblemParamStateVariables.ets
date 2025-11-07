@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorProblemParamStateVariables {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -39,7 +37,7 @@ class Info {
   // 监听状态变量age
   @Monitor('age')
   onPropertyChange() {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'age changed');
+    hilog.info(0xFF00, 'testTag', '%{public}s', 'age changed');
   }
 }
 

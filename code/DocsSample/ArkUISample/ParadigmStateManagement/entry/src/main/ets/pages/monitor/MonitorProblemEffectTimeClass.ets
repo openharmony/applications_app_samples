@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorProblemEffectTimeClass {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -41,7 +39,7 @@ class Info {
 
   @Monitor('message')
   onMessageChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }

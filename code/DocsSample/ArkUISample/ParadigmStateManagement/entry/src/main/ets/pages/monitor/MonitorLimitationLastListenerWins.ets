@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorLimitationLastListenerWins {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -37,12 +35,12 @@ class Info {
 
   @Monitor('name')
   onNameChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `onNameChange`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onNameChange`);
   }
 
   @Monitor('name')
   onNameChangeDuplicate(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `onNameChangeDuplicate`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `onNameChangeDuplicate`);
   }
 }
 

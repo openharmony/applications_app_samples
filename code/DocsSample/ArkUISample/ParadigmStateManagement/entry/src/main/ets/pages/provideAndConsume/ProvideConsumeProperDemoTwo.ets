@@ -22,7 +22,7 @@ struct Child {
   build() {
     Column() {
       Text(`Value of num: ${this.num}`)
-      Text(`num_with_defaultValue value: ${this.numWithDefaultValue}`)
+      Text(`Value of numWithDefaultValue: ${this.numWithDefaultValue}`)
     }
   }
 }

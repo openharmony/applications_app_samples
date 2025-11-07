@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorDecoratorArraySupport {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -52,7 +50,7 @@ class ArrMonitor {
   @Monitor('dimensionTwo.0.0', 'dimensionTwo.1.1')
   onDimensionTwoChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `dimensionTwo path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
@@ -61,7 +59,7 @@ class ArrMonitor {
   @Monitor('dimensionThree.0.0.0', 'dimensionThree.1.1.0')
   onDimensionThreeChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `dimensionThree path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
@@ -70,7 +68,7 @@ class ArrMonitor {
   @Monitor('infoArr.0.name', 'infoArr.1.age')
   onInfoArrPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `infoArr path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
@@ -78,13 +76,13 @@ class ArrMonitor {
   // infoArr被@Trace装饰，能够监听到infoArr整体赋值的变化
   @Monitor('infoArr')
   onInfoArrChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `infoArr whole change`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `infoArr whole change`);
   }
 
   // 能够监听到infoArr的长度变化
   @Monitor('infoArr.length')
   onInfoArrLengthChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `infoArr length change`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `infoArr length change`);
   }
 }
 

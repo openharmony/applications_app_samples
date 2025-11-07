@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorDecoratorMultiWatchCompV2 {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -41,7 +39,7 @@ struct Index {
   @Monitor('message', 'name')
   onStrChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     });
   }
