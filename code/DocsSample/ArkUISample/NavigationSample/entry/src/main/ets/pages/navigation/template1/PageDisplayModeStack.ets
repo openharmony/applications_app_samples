@@ -22,7 +22,7 @@ struct PageDisplayModeStack {
   @Builder
   NavigationTitle() {
     Column() {
-      // $r('app.string.mainTitle')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.mainTitle')资源文件中的value值为“主标题”
       Text($r('app.string.mainTitle'))
         .fontColor('#182431')
         .fontSize(30)

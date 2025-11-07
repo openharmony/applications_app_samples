@@ -72,6 +72,7 @@ export struct PageTwo {
             }
             .width('100%')
             .onClick(() => {
+              // $r('app.string.pageSettingParam')资源文件中的value值为“页面设置参数”
               this.pathInfos.pushPathByName(`${item}`,
                 this.context!.resourceManager.getStringSync($r('app.string.pageSettingParam').id));
             })
