@@ -14,6 +14,7 @@
  */
 
 // [Start persistent_data_form_ability]
+// entry/src/main/ets/persistentdataformability/PersistentDataFormAbility.ts
 import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
 import { dataShare } from '@kit.ArkData';

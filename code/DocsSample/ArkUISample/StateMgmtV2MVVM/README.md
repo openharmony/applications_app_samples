@@ -5,11 +5,11 @@
 
 1. [MVVM模式（状态管理V2）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-mvvm-V2.md)。
 2. [AppStorageV2: 应用全局UI状态存储](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-appstoragev2.md)指南文档中示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
-
+   
 ### 效果预览
-|TodoList页面                                   |
-|----------------------------------------------|
-|![todolist](./screenshots/MVVMV2-todolist.gif)|
+|TodoList页面                                   | AppStorageV2应用按钮                           | 使用AppStorageV2                               | 在两个页面之间存储数据                                  |
+|----------------------------------------------|-----------------------------------------------|----------------------------------------------|----------------------------------------------|
+|![todolist](./screenshots/MVVMV2-todolist.gif)|![AppV2](./screenshots/MVVMV2-AppStorageV2.png)| ![AppV2-1](./screenshots/AppStorageV2-1.png) | ![AppV2-2](./screenshots/AppStorageV2-1.png) |
 
 使用说明
 1. 点击任务切换任务完成状态；
