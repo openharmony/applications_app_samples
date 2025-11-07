@@ -119,7 +119,7 @@ export struct AgeFriendlyTabs {
         }
 
         Row() {
-          // app.string.Dark_mode资源文件中的value值为‘深色模式’
+          // app.string.Dark_mode资源文件中的value值为“深色模式”
           Button($r('app.string.Dark_mode'))
             .margin({ top: 5, bottom: 5 })
             .fontSize(this.fontSize)
@@ -127,7 +127,7 @@ export struct AgeFriendlyTabs {
             .onClick(async () => {
               this.darkMode(true);
             })
-          // app.string.Light_mode资源文件中的value值为‘浅色模式’
+          // app.string.Light_mode资源文件中的value值为“浅色模式”
           Button($r('app.string.Light_mode'))
             .margin({ top: 5, bottom: 5 })
             .fontSize(this.fontSize)
