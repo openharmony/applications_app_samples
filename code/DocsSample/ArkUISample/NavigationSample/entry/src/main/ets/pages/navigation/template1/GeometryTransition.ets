@@ -24,7 +24,7 @@ struct FromPage {
     NavDestination() {
       Column() {
         // [StartExclude GeometryTransitionFromPage]
-        // $r('app.string.ToPage')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.ToPage')资源文件中的value值为“跳转到目的页”
         Button($r('app.string.ToPage'))
           .width('80%')
           .height(40)

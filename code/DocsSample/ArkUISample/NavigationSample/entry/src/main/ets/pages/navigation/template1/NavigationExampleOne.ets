@@ -28,7 +28,7 @@ export struct PageOne {
   build() {
     NavDestination() {
       Column() {
-        // $r('app.string.settingPage')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.settingPage')资源文件中的value值为“设置页面”
         Text(`${this.name}${this.context!.resourceManager.getStringSync($r('app.string.settingPage').id)}`)
           .width('100%')
           .fontSize(20)
@@ -47,7 +47,7 @@ export struct PageOne {
           .fontColor(0x666666)
           .textAlign(TextAlign.Center)
           .padding({ top: 45 })
-        // $r('app.string.stepperIndex_text24')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.return')资源文件中的value值为“返回”
         Button($r('app.string.return'))
           .width('50%')
           .height(40)

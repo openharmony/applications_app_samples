@@ -36,7 +36,7 @@ export function NavigationTest() {
 
     beforeAll(async () => {
       await delegator.startAbility({
-        bundleName: 'com.samples.navigation',
+        bundleName: 'com.samples.navigationsample',
         abilityName: 'EntryAbility'
       });
       await driver.delayMs(3000);
@@ -269,13 +269,23 @@ export function NavigationTest() {
      * @tc.level Level 1
      */
     it('OnResultParamTest_010', 0, async (done: Function) => {
-      aimComponent = await driver.findComponent(ON.text(await getResourceString($r('app.string.onResultParam_text7'))));
+      let scrollComponent: Component = await driver.waitForComponent(ON.id('list'), 1000);
+      let scrollCenter = await scrollComponent.getBoundsCenter();
+      await driver.swipe(scrollCenter.x, scrollCenter.y + 400, scrollCenter.x, scrollCenter.y - 400, 3000);
+      await driver.waitForIdle(500, 500);
+      aimComponent = await driver.findComponent(ON.text(await getResourceString($r('app.string.stepperIndex_text2'))));
       await aimComponent.click();
       await driver.delayMs(1000);
       aimComponent = await driver.findComponent(ON.text('pushPath'));
       await aimComponent.click();
       await driver.delayMs(1000);
+      aimComponent = await driver.findComponent(ON.text('pushPathByName'));
+      await aimComponent.click();
+      await driver.delayMs(1000);
       await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(1000);
       done();

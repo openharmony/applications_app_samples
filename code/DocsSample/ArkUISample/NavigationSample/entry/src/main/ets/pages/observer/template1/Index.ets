@@ -30,7 +30,7 @@ struct MyComponent {
     NavDestination() {
       // [EndExclude MyComponent]
       Column() {
-        // $r('app.string.onPageName')需要替换为开发者所需的字符串资源文件
+        // $r('app.string.onPageName')资源文件中的value值为“所属页面Name:”
         Text(this.context!.resourceManager.getStringSync($r('app.string.onPageName').id) + `${this.navDesInfo?.name}`)
       }.width('100%').height('100%')
       // [StartExclude MyComponent]
