@@ -45,7 +45,7 @@ class LogNotTrack {
 @Component
 struct AddLog {
   @State logTrack: LogTrack = new LogTrack('Hello');
-  @State logNotTrack: LogNotTrack = new LogNotTrack(this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.state_hello').id));
+  @State logNotTrack: LogNotTrack = new LogNotTrack('Hello');
 
   isRender(index: number) {
     hilog.info(DOMAIN_NUMBER, TAG, `Text ${index} is rendered`);
@@ -75,7 +75,7 @@ struct AddLog {
           .fontWeight(FontWeight.Bold)
         Button('change logNotTrack.str1')
           .onClick(() => {
-            this.logNotTrack.str1 = this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.state_bye').id);
+            this.logNotTrack.str1 = 'Bye';
           })
       }
       .width('100%')
