@@ -89,7 +89,9 @@ export struct SwipeLockedTabBar {
             }
             .backgroundColor(Color.Orange)
             .tabBar($r('app.string.mine'))
+            // [EndExclude swipe_locked_tab_bar]
           }
+          // [StartExclude swipe_locked_tab_bar]
           .height(500)
           // [EndExclude swipe_locked_tab_bar]
           .scrollable(false)

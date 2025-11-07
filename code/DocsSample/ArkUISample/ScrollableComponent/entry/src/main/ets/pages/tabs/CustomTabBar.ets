@@ -22,7 +22,7 @@ export struct CustomTabBar {
   @State currentIndex: number = 0;
 
   @Builder
-  tabBuilder(title: ResourceStr, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
+  tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
     Column() {
       Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
         .size({ width: 25, height: 25 })
@@ -40,13 +40,26 @@ export struct CustomTabBar {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.CustomTabBar_titleExample') }) {
           Tabs({ barPosition: BarPosition.End }) {
+            // [Start set_custom_tab_bar_style]
+            TabContent() {
+              Column() {
+                // app.string.mine_content资源文件中的value值为“我的内容”
+                Text('app.string.mine_content')  
+              }
+              .width('100%')
+              .height('100%')
+              .backgroundColor('#007DFF')
+            }
+            // app.string.mine资源文件中的value值为“我的”
+            .tabBar(this.tabBuilder($r('app.string.mine'), 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
+            // [End set_custom_tab_bar_style]
             TabContent() {
               Text($r('app.string.internet_content'))
                 .fontSize(30)
             }
             .backgroundColor(Color.Blue)
             .tabBar(this.tabBuilder($r('app.string.internet'),
-              0,
+              1,
               $r('sys.media.ohos_ic_public_web'),
               $r('sys.media.ohos_ic_public_web')))
 
@@ -56,7 +69,7 @@ export struct CustomTabBar {
             }
             .backgroundColor(Color.Green)
             .tabBar(this.tabBuilder($r('app.string.album'),
-              1,
+              2,
               $r('sys.media.ohos_ic_public_albums'),
               $r('sys.media.ohos_ic_public_albums')))
 
@@ -66,7 +79,7 @@ export struct CustomTabBar {
             }
             .backgroundColor(Color.Yellow)
             .tabBar(this.tabBuilder($r('app.string.video'),
-              2,
+              3,
               $r('sys.media.ohos_ic_public_video'),
               $r('sys.media.ohos_ic_public_video')))
 
@@ -76,10 +89,11 @@ export struct CustomTabBar {
             }
             .backgroundColor(Color.Orange)
             .tabBar(this.tabBuilder($r('app.string.more'),
-              3,
+              4,
               $r('sys.media.ohos_ic_public_drawer_open'),
               $r('sys.media.ohos_ic_public_drawer_open')))
-          }.height(500)
+          }
+          .height(500)
           .onChange((index: number) => {
             this.currentIndex = index; // 监听索引index的变化，实现页签内容的切换。
           })
