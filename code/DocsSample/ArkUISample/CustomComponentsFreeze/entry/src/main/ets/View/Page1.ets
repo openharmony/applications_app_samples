@@ -14,19 +14,21 @@
  */
 // [Start arkts_custom_components_freeze1]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
+
 @Entry
 @Component({ freezeWhenInactive: true })
-struct Page1 {
+struct PageOne {
   @StorageLink('PropA') @Watch('first') storageLink: number = 47;
 
   first() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.storageLink);
+    hilog.info(DOMAIN, TAG, 'first page ' + `${this.storageLink}`);
   }
 
   build() {
     Column() {
       Text(`From first Page ${this.storageLink}`).fontSize(50)
-        .id('firstPageText1')
       Button('first page storageLink + 1').fontSize(30)
         .onClick(() => {
           this.storageLink += 1;

@@ -14,6 +14,9 @@
  */
 // [Start arkts_custom_components_freeze3]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
+
 @Entry
 @Component
 struct TabContentTest {
@@ -21,7 +24,7 @@ struct TabContentTest {
   private data: number[] = [0, 1];
 
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.message);
+    hilog.info(DOMAIN, TAG, `TabContent message callback func ${this.message}`);
   }
 
   build() {
@@ -30,7 +33,6 @@ struct TabContentTest {
         Button('change message').onClick(() => {
           this.message++;
         })
-
         Tabs() {
           ForEach(this.data, (item: number) => {
             TabContent() {
@@ -51,7 +53,7 @@ struct FreezeChild {
   index: number = 0;
 
   onMessageUpdated() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.message, this.index);
+    hilog.info(DOMAIN, TAG, `FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

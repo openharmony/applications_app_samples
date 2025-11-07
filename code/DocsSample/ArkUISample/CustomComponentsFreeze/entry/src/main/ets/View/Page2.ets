@@ -14,29 +14,29 @@
  */
 // [Start arkts_custom_components_freeze2]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'FreezeChild';
+
 @Entry
 @Component({ freezeWhenInactive: true })
-struct Page2 {
+struct PageTwo {
   @StorageLink('PropA') @Watch('second') storageLink2: number = 1;
 
   second() {
-    hilog.info(0x0000, 'FreezeChild', 'FreezeChild message callback func %{public}d, index: %{public}d', this.storageLink2);
+    hilog.info(DOMAIN, TAG, 'second page: ' + `${this.storageLink2}`);
   }
 
   build() {
     Column() {
-
       Text(`second Page ${this.storageLink2}`).fontSize(50)
       Button('back')
         .onClick(() => {
           this.getUIContext().getRouter().back();
         })
-
       Button('second page storageLink2 + 2').fontSize(30)
         .onClick(() => {
           this.storageLink2 += 2;
         })
-
     }
   }
 }

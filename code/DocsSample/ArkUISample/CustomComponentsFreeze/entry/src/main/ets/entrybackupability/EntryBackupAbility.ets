@@ -15,7 +15,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
-const DOMAIN = 0x0000;
+const DOMAIN = 0x0001;
 
 export default class EntryBackupAbility extends BackupExtensionAbility {
   async onBackup() {
