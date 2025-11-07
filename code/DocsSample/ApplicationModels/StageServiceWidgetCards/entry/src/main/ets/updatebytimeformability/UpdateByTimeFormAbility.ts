@@ -13,25 +13,26 @@
  * limitations under the License.
  */
 
+// [Start set_form_next_refreshime]
+// entry/src/main/ets/updatebytimeformability/UpdateByTimeFormAbility.ts
 // [Start update_by_time_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
-// [Start set_form_next_refreshime]
+
 const TAG: string = 'UpdateByTimeFormAbility';
 const FIVE_MINUTE: number = 5;
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class UpdateByTimeFormAbility extends FormExtensionAbility {
   // [StartExclude update_by_time_form_ability]
-  // [StartExclude set_form_next_refreshime]
   onAddForm(want: Want): formBindingData.FormBindingData {
     // Called to return a FormBindingData object.
     let formData = {};
     return formBindingData.createFormBindingData(formData);
   }
-
+  // [StartExclude set_form_next_refreshime]
   onUpdateForm(formId: string): void {
     // Called to notify the form provider to update a specified form.
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}`);
@@ -70,12 +71,10 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     }
   }
   // [StartExclude update_by_time_form_ability]
-  // [StartExclude set_form_next_refreshime]
   onAcquireFormState(want: Want): formInfo.FormState {
-    // Called to return a {@link FormState} object.
+    // 卡片使用方查询卡片状态时触发该回调，默认返回初始状态。
     return formInfo.FormState.READY;
   }
-  // [EndExclude set_form_next_refreshime]
   // [EndExclude update_by_time_form_ability]
 }
 // [End set_form_next_refreshime]

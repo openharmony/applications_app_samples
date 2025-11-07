@@ -25,6 +25,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start form_extension_ability_interface]
 // [Start entry_form_ability]
 // [Start update_form_interface]
+// entry/src/main/ets/entryformability/EntryFormAbility.ts
 const TAG: string = 'EntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 

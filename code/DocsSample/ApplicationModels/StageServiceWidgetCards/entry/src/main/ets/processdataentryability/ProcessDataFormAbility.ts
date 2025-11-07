@@ -14,6 +14,7 @@
  */
 
 // [Start process_data_form_ability]
+// entry/src/main/ets/processdataentryability/ProcessDataFormAbility.ts
 import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
