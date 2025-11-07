@@ -1,4 +1,4 @@
-''/*
+/*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  */
 // [Start nonObservedClass_out]
 import { UIUtils } from '@kit.ArkUI';
+// [Start nonObservedClass_outOne]
 @Observed
 class ObservedClass {
   public name: string = 'Tom';
@@ -23,13 +24,14 @@ class NonObservedClass {
 }
 let observedClass: ObservedClass = new ObservedClass(); // 被代理
 let nonObservedClass: NonObservedClass = new NonObservedClass(); // 不被代理
+// [End nonObservedClass_outOne]
 let globalNumberList: number[] = [1, 2, 3]; // 不被代理
-let globalSampleMap: Map<number, string> = new Map([[0,'a'], [1, 'b'], [3, 'c']]); // 不被代理
+let globalSampleMap: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]); // 不被代理
 let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // 不被代理
 let globalSampleDate: Date = new Date(); // 不被代理
 @Entry
 @Component
-struct Page3 {
+struct GetTargetAgent {
   @State observedObject: ObservedClass = observedClass; // 已被代理数据不会重复创建代理
   @State nonObservedObject: NonObservedClass = nonObservedClass; // 创建代理
   @State numberList: number[] = globalNumberList; // Array类型创建代理

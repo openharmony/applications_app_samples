@@ -82,16 +82,16 @@ NewGettarget
 │     │  │  ├─ entrybackupability
 │     │  │  │  └─ EntryBackupAbility.ets
 │     │  │  ├─ model         // 数据类型文件
-│     │  │  │  ├─ modelView1.ets
-│     │  │  │  └─ modelView2.ets
+│     │  │  │  ├─ ModelViewOne.ets
+│     │  │  │  └─ ModelViewTwo.ets
 │     │  │  ├─ pages
 │     │  │  │  └─ Index.ets  // 启动页
 │     │  │  └─ View
-│     │  │     ├─ Page1.ets //更改getTarget获取的原始对象中的内容不会被观察到变化，也不会触发UI刷新
-│     │  │     ├─ Page2.ets //获取状态管理V1代理前的原始对象
-│     │  │     ├─ Page3.ets //使用UIUtils.getTarget接口可以获取代理前的原始对象
-│     │  │     ├─ Page4.ets //获取状态管理V2代理前的原始对象
-│     │  │     └─ Page5.ets //状态管理V2装饰器会为装饰的变量生成getter和setter方法
+│     │  │     ├─ GetTargetObject.ets //更改getTarget获取的原始对象中的内容不会被观察到变化，也不会触发UI刷新
+│     │  │     ├─ GetTargetNoChange.ets //获取状态管理V1代理前的原始对象
+│     │  │     ├─ GetTargetAgent.ets //使用UIUtils.getTarget接口可以获取代理前的原始对象
+│     │  │     ├─ GetAgentObject.ets //获取状态管理V2代理前的原始对象
+│     │  │     └─ GetBeforeAgent.ets //状态管理V2装饰器会为装饰的变量生成getter和setter方法
 │     │  ├─ module.json5
 │     │  └─ resources
 │     │     ├─ base
