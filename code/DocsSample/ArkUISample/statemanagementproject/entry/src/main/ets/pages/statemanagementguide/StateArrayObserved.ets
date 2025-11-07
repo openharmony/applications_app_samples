@@ -26,14 +26,14 @@ class Child6 {
 }
 
 @Observed
-class Child6List extends Array<Child6> {
+class ChildList6 extends Array<Child6> {
 }
 
 @Observed
 class Ancestor6 {
-  public childList: Child6List;
+  public childList: ChildList6;
 
-  constructor(childList: Child6List) {
+  constructor(childList: ChildList6) {
     this.childList = childList;
   }
 
@@ -49,7 +49,7 @@ class Ancestor6 {
 
 @Component
 struct CompChild6 {
-  @Link childList: Child6List;
+  @Link childList: ChildList6;
   @ObjectLink child: Child6;
 
   build() {
@@ -90,7 +90,7 @@ struct CompChild6 {
 
 @Component
 struct CompList6 {
-  @ObjectLink @Watch('changeChildList') Child6List: Child6List;
+  @ObjectLink @Watch('changeChildList') ChildList6: ChildList6;
 
   changeChildList() {
     hilog.info(DOMAIN_NUMBER, TAG, 'CompList ChildList change');
@@ -104,10 +104,10 @@ struct CompList6 {
   build() {
     Column() {
       List() {
-        ForEach(this.Child6List, (item: Child6, index) => {
+        ForEach(this.ChildList6, (item: Child6, index) => {
           ListItem() {
             CompChild6({
-              childList: this.Child6List,
+              childList: this.ChildList6,
               child: item
             })
               .opacity(this.isRenderCompChild(index))
@@ -126,7 +126,7 @@ struct CompAncestor6 {
 
   build() {
     Column() {
-      CompList6({ Child6List: this.Ancestor6.childList })
+      CompList6({ ChildList6: this.Ancestor6.childList })
       Row() {
         Button('Clear')
           .onClick(() => {
@@ -147,7 +147,7 @@ struct CompAncestor6 {
 @Entry
 @Component
 struct Page6 {
-  @State childList: Child6List = [new Child6(1), new Child6(2), new Child6(3), new Child6(4), new Child6(5)];
+  @State childList: ChildList6 = [new Child6(1), new Child6(2), new Child6(3), new Child6(4), new Child6(5)];
   @State ancestor: Ancestor6 = new Ancestor6(this.childList)
 
   build() {
