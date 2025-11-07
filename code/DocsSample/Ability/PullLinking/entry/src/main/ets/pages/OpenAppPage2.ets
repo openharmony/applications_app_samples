@@ -51,6 +51,6 @@ struct OpenAppPage2 {
       }
     }
   }
-  // [EndExclude can_open]
 }
+// [EndExclude can_open]
 // [End can_open]
