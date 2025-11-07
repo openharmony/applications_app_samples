@@ -21,7 +21,7 @@
    const TARGET_URL: string = '';
    ```
 
-   这个位置的单引号之间输入一个实际URL（参考格式：https://www.example.com/)
+   这个位置的单引号之间输入一个实际URL（参考格式：https://www.example.com/）。
 
 2. 点击 "普通 HTTP 请求" 按钮，发送一个 GET 请求到 TARGET_URL 并显示测试结果。
 
