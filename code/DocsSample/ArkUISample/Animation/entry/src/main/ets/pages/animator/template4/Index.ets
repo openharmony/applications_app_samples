@@ -47,6 +47,7 @@ struct Index {
 
   // [Start animator_template4_show_start]
   onPageShow(): void {
+    //创建animatorResult对象
     this.animatorOptions = this.getUIContext().createAnimator(this.animatorOption);
     this.animatorOptions.onFrame = (progress: number) => {
       this.translateX = progress;
@@ -66,7 +67,8 @@ struct Index {
     }
     //动画重复播放时执行方法
     this.animatorOptions.onRepeat = () => {
-      hilog.info(DOMAIN, TAG, 'repeat play');
+      // $('app.string.repeat')资源文件中的value值为'动画重复播放'
+      hilog.info(DOMAIN, TAG, resource.resourceToString($r('app.string.repeat')));
     }
   }
   // [End animator_template4_show_start]
