@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 // [Start Word_Break]
-import { util } from '@kit.ArkTS';
-import { UIContext } from '@kit.ArkUI';
 import common from '@ohos.app.ability.common';
 @Entry
 @Component
