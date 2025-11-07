@@ -29,12 +29,9 @@ export struct ScrollableGrid {
     this.context!.resourceManager.getStringSync($r('app.string.Imported').id)
     ];
   // [StartExclude build_scrollable_horizontally_grid_layouts]
+  private bgColors: string[] = ['#3079fe', '#fea500', '#f45a43']
   aboutToAppear(): void {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-    const streaming = context.resourceManager.getStringByNameSync('Live_Streaming')
-    this.services.push(streaming)
-    const imported = context.resourceManager.getStringByNameSync('Imported')
-    this.services.push(imported)
     const categories = context.resourceManager.getStringByNameSync('Categories')
     this.services.push(categories)
     const recharge = context.resourceManager.getStringByNameSync('Recharge')
@@ -65,10 +62,17 @@ export struct ScrollableGrid {
           // [EndExclude build_scrollable_horizontally_grid_layouts]
 
           Grid() {
-            ForEach(this.services, (service: string, index) => {
+            ForEach(this.services, (service: string, index: number) => {
               GridItem() {
+                // [StartExclude build_scrollable_horizontally_grid_layouts]
+                Text(service)
+                // [EndExclude build_scrollable_horizontally_grid_layouts]
               }
               .width('25%')
+              // [StartExclude build_scrollable_horizontally_grid_layouts]
+              .backgroundColor(this.bgColors[index % this.bgColors.length])
+              .borderRadius(50)
+              // [EndExclude build_scrollable_horizontally_grid_layouts]
             }, (service: string): string => service)
           }
           .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
