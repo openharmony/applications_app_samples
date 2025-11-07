@@ -70,7 +70,7 @@ export default function abilityTest() {
         const want: Want = {
           deviceId: '',
           bundleName: 'com.example.unexpexit',
-          abilityName: 'ExitAbility1'
+          abilityName: 'ExitAbility'
         };
         await delegator.startAbility(want);
         const ability: UIAbility = await delegator.getCurrentTopAbility();
@@ -101,7 +101,7 @@ export default function abilityTest() {
         const want: Want = {
           deviceId: '',
           bundleName: 'com.example.unexpexit',
-          abilityName: 'ExitAbility2'
+          abilityName: 'ExitAbility'
         };
         await delegator.startAbility(want);
         const ability: UIAbility = await delegator.getCurrentTopAbility();

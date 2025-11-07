@@ -27,7 +27,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 struct OpenAppPage2 {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   aboutToAppear() {
-// [EndExclude can_open]
+  // [EndExclude can_open]
     try {
       let link = 'app1Scheme://test.example.com/home';
       let canOpen = bundleManager.canOpenLink(link);
@@ -36,7 +36,7 @@ struct OpenAppPage2 {
       let message = (err as BusinessError).message;
       hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
     }
-    // [End can_open]
+  // [StartExclude can_open]
   }
   build() {
     Column() {
@@ -51,4 +51,6 @@ struct OpenAppPage2 {
       }
     }
   }
+  // [EndExclude can_open]
 }
+// [End can_open]
