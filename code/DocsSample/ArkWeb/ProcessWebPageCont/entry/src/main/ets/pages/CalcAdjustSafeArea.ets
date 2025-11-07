@@ -24,6 +24,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .width('100%').height('100%')
+        // 扩展至系统默认非安全区域（状态栏、导航栏），并设置只扩展上方区域和下方区域
         .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
     }
   }

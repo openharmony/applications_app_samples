@@ -14,6 +14,7 @@
  */
 import { LengthMetrics } from '@kit.ArkUI'
 
+// [Start particle_example6]
 @Entry
 @Component
 struct ParticleExample6 {
@@ -41,14 +42,14 @@ struct ParticleExample6 {
         endAngle: 0 // 圆环的结束角度
       }
     }
-  ];
+  ]
   @State region: ParticleAnnulusRegion = {
     center:{x:this.centerX, y: this.centerY},
     outerRadius: this.outRadius,
     innerRadius: this.inRadius,
     startAngle: -90,
     endAngle: 0
-  };
+  }
 
   aboutToDisappear(): void {
     // 页面销毁时清除计时器
@@ -114,7 +115,7 @@ struct ParticleExample6 {
                 }
                 return;
               }
-              // 更新角度值（5度/秒）
+              // 更新角度值（30度/秒）
               this.startAngle += 30;
               this.endAngle += 30;
             }, 1000);
@@ -127,3 +128,4 @@ struct ParticleExample6 {
     }
   }
 }
+// [End particle_example6]

@@ -12,11 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start pageTransition_template3_pageTransitionDst1_start]
+// PageTransitionDst1
 @Entry
 @Component
 struct PageTransitionDst1 {
   build() {
     Column() {
+      // $r('app.media.forest')需要替换为开发者所需的资源文件
       Image($r('app.media.forest'))
         .width('90%')
         .height('80%')
@@ -56,3 +59,4 @@ struct PageTransitionDst1 {
       .slide(SlideEffect.Right)
   }
 }
+// [End pageTransition_template3_pageTransitionDst1_start]

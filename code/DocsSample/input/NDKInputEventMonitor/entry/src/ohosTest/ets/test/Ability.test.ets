@@ -43,18 +43,18 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加按键事件监听'));
-      await driver.assertComponentExist(ON.text('移除按键事件监听'));
-      await driver.assertComponentExist(ON.text('添加鼠标事件监听'));
-      await driver.assertComponentExist(ON.text('移除鼠标事件监听'));
-      await driver.assertComponentExist(ON.text('添加触摸事件监听'));
-      await driver.assertComponentExist(ON.text('移除触摸事件监听'));
-      await driver.assertComponentExist(ON.text('添加轴事件监听'));
-      await driver.assertComponentExist(ON.text('移除轴事件监听'));
-      await driver.assertComponentExist(ON.text('添加捏合轴事件监听'));
-      await driver.assertComponentExist(ON.text('移除捏合轴事件监听'));
-      await driver.assertComponentExist(ON.text('添加滚轮轴事件监听'));
-      await driver.assertComponentExist(ON.text('移除滚轮轴事件监听'));
+      await driver.assertComponentExist(ON.text('Add key event monitor'));
+      await driver.assertComponentExist(ON.text('Remove key event monitor'));
+      await driver.assertComponentExist(ON.text('Add mouse event monitor'));
+      await driver.assertComponentExist(ON.text('Remove mouse event monitor'));
+      await driver.assertComponentExist(ON.text('Add touch event monitor'));
+      await driver.assertComponentExist(ON.text('Remove touch event monitor'));
+      await driver.assertComponentExist(ON.text('Add axis event monitor'));
+      await driver.assertComponentExist(ON.text('Remove axis event monitor'));
+      await driver.assertComponentExist(ON.text('Add pinch axis event monitor'));
+      await driver.assertComponentExist(ON.text('Remove pinch axis event monitor'));
+      await driver.assertComponentExist(ON.text('Add scroll axis event monitor'));
+      await driver.assertComponentExist(ON.text('Remove scroll axis event monitor'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
@@ -76,8 +76,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加按键事件监听'));
-      let button = await driver.findComponent(ON.text('添加按键事件监听'));
+      await driver.assertComponentExist(ON.text('Add key event monitor'));
+      let button = await driver.findComponent(ON.text('Add key event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -101,8 +101,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加按键事件监听'));
-      let button = await driver.findComponent(ON.text('添加按键事件监听'));
+      await driver.assertComponentExist(ON.text('Add key event monitor'));
+      let button = await driver.findComponent(ON.text('Add key event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -126,8 +126,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加鼠标事件监听'));
-      let button = await driver.findComponent(ON.text('添加鼠标事件监听'));
+      await driver.assertComponentExist(ON.text('Add mouse event monitor'));
+      let button = await driver.findComponent(ON.text('Add mouse event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -151,8 +151,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('移除鼠标事件监听'));
-      let button = await driver.findComponent(ON.text('移除鼠标事件监听'));
+      await driver.assertComponentExist(ON.text('Remove mouse event monitor'));
+      let button = await driver.findComponent(ON.text('Remove mouse event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -176,8 +176,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加触摸事件监听'));
-      let button = await driver.findComponent(ON.text('添加触摸事件监听'));
+      await driver.assertComponentExist(ON.text('Add touch event monitor'));
+      let button = await driver.findComponent(ON.text('Add touch event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -201,8 +201,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('移除触摸事件监听'));
-      let button = await driver.findComponent(ON.text('移除触摸事件监听'));
+      await driver.assertComponentExist(ON.text('Remove touch event monitor'));
+      let button = await driver.findComponent(ON.text('Remove touch event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -226,8 +226,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加轴事件监听'));
-      let button = await driver.findComponent(ON.text('添加轴事件监听'));
+      await driver.assertComponentExist(ON.text('Add axis event monitor'));
+      let button = await driver.findComponent(ON.text('Add axis event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -251,8 +251,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('移除轴事件监听'));
-      let button = await driver.findComponent(ON.text('移除轴事件监听'));
+      await driver.assertComponentExist(ON.text('Remove axis event monitor'));
+      let button = await driver.findComponent(ON.text('Remove axis event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -276,8 +276,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加捏合轴事件监听'));
-      let button = await driver.findComponent(ON.text('添加捏合轴事件监听'));
+      await driver.assertComponentExist(ON.text('Add pinch axis event monitor'));
+      let button = await driver.findComponent(ON.text('Add pinch axis event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -301,8 +301,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('移除捏合轴事件监听'));
-      let button = await driver.findComponent(ON.text('移除捏合轴事件监听'));
+      await driver.assertComponentExist(ON.text('Remove pinch axis event monitor'));
+      let button = await driver.findComponent(ON.text('Remove pinch axis event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -326,8 +326,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加滚轮轴事件监听'));
-      let button = await driver.findComponent(ON.text('添加滚轮轴事件监听'));
+      await driver.assertComponentExist(ON.text('Add scroll axis event monitor'));
+      let button = await driver.findComponent(ON.text('Add scroll axis event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();
@@ -351,8 +351,8 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('移除滚轮轴事件监听'));
-      let button = await driver.findComponent(ON.text('移除滚轮轴事件监听'));
+      await driver.assertComponentExist(ON.text('Remove scroll axis event monitor'));
+      let button = await driver.findComponent(ON.text('Remove scroll axis event monitor'));
       await button.click();
       await driver.delayMs(1000);
       done();

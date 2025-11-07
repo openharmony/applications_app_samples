@@ -1,0 +1,120 @@
+
+{
+  "startupTasks": [
+    {
+      "name": "StartupTask_001",
+      "srcEntry": "./ets/startup/StartupTask001.ets",
+      "dependencies": [
+        "StartupTask_002",
+        "StartupTask_003"
+      ],
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    },
+    {
+      "name": "StartupTask_002",
+      "srcEntry": "./ets/startup/StartupTask002.ets",
+      "dependencies": [
+        "StartupTask_003",
+        "StartupTask_004"
+      ],
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    },
+    {
+      "name": "StartupTask_003",
+      "srcEntry": "./ets/startup/StartupTask003.ets",
+      "dependencies": [
+        "StartupTask_004"
+      ],
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    },
+    {
+      "name": "StartupTask_004",
+      "srcEntry": "./ets/startup/StartupTask004.ets",
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false,
+      "schedulerPhase": "preAbilityStageLoad",
+      "matchRules": {
+        "uris": [
+          "test://com.example.startupdemo/notification"
+        ]
+      }
+    },
+    {
+      "name": "StartupTask_005",
+      "srcEntry": "./ets/startup/StartupTask005.ets",
+      "dependencies": [
+        "StartupTask_006"
+      ],
+      "runOnThread": "mainThread",
+      "waitOnMainThread": true,
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "StartupTask_006",
+      "srcEntry": "./ets/startup/StartupTask006.ets",
+      "runOnThread": "mainThread",
+      "waitOnMainThread": false,
+      "excludeFromAutoStart": true,
+      "matchRules": {
+        "uris": [
+          "test://com.example.startupdemo/notification"
+        ],
+        "customization": [
+          "ruleCard"
+        ]
+      }
+    }
+  ],
+  "appPreloadHintStartupTasks": [
+    {
+      "name": "libentry_001",
+      "srcEntry": "libentry_001.so",
+      "dependencies": [
+        "libentry_002",
+        "libentry_003"
+      ],
+      "runOnThread": "taskPool"
+    },
+    {
+      "name": "libentry_002",
+      "srcEntry": "libentry_002.so",
+      "dependencies": [
+        "libentry_003",
+        "libentry_004"
+      ],
+      "runOnThread": "taskPool"
+    },
+    {
+      "name": "libentry_003",
+      "srcEntry": "libentry_003.so",
+      "dependencies": [
+        "libentry_004"
+      ],
+      "runOnThread": "taskPool"
+    },
+    {
+      "name": "libentry_004",
+      "srcEntry": "libentry_004.so",
+      "runOnThread": "taskPool"
+    },
+    {
+      "name": "libentry_005",
+      "srcEntry": "libentry_005.so",
+      "dependencies": [
+        "libentry_006"
+      ],
+      "runOnThread": "taskPool",
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "libentry_006",
+      "srcEntry": "libentry_006.so",
+      "runOnThread": "taskPool",
+      "excludeFromAutoStart": true
+    }
+  ],
+  "configEntry": "./ets/startup/StartupConfig.ets"
+}

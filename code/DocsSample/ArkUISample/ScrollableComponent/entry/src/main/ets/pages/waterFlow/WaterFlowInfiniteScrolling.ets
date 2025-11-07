@@ -93,7 +93,7 @@ export struct WaterFlowInfiniteScrolling {
       this.columnChanged = true;
     }
   }
-
+  // [Start WaterFlowInfiniteScrolling_start]
   @Builder
   itemFoot() {
     Row() {
@@ -111,6 +111,7 @@ export struct WaterFlowInfiniteScrolling {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.WaterFlowInfiniteScrolling_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.WaterFlowInfiniteScrolling_title') }) {
           WaterFlow({ footer: this.itemFoot(), layoutMode: WaterFlowLayoutMode.SLIDING_WINDOW }) {
             LazyForEach(this.dataSource, (item: number) => {
@@ -130,9 +131,7 @@ export struct WaterFlowInfiniteScrolling {
           // 触底加载数据
           .onReachEnd(() => {
             setTimeout(() => {
-              for (let i = 0; i < 100; i++) {
-                this.dataSource.addLastItem();
-              }
+              this.dataSource.addNewItems(100);
             }, 1000)
           })
         }
@@ -142,6 +141,8 @@ export struct WaterFlowInfiniteScrolling {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.WaterFlowInfiniteScrolling_title')需要替换为开发者所需的资源文件
     .title($r('app.string.WaterFlowInfiniteScrolling_title'))
   }
+  // [End WaterFlowInfiniteScrolling_start]
 }

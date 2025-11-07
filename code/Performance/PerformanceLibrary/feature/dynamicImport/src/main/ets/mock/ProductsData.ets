@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { GoodResponse, ProductDataModel } from '../model/GoodsModel'
+import { GoodResponse, ProductDataModel } from '../model/GoodsModel';
 
 export const Products_Data: GoodResponse = {
   code: 0,
@@ -31,7 +31,7 @@ export const Products_Data: GoodResponse = {
     totalCount: -1
   },
   error: ""
-}
+};
 
 export const PRODUCT_DATA: Array<ProductDataModel> = [
   new ProductDataModel(0, $r('app.media.product001'), $r('app.string.product_data_title_device0'), $r('app.string.product_data_info_device0'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price0')),
@@ -50,4 +50,4 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
   new ProductDataModel(13, $r('app.media.product006'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
   new ProductDataModel(14, $r('app.media.product007'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
   new ProductDataModel(15, $r('app.media.product008'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price'))
-]
+];

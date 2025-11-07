@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,6 +14,7 @@
  */
 
 // [Start the_example_of_bluetooth]
+// xxx.ets
 import { promptAction } from '@kit.ArkUI';
 
 @Entry
@@ -22,12 +23,10 @@ export struct ToggleSample {
   @State message: string = 'off';
   pathStack: NavPathStack = new NavPathStack();
 
-  resourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
-  }
-
   build() {
+    // [StartExclude the_example_of_bluetooth]
     NavDestination() {
+      // [EndExclude the_example_of_bluetooth]
       Column({ space: 8 }) {
         Column({ space: 8 }) {
           Text('Bluetooth Mode: ' + this.message)
@@ -37,18 +36,18 @@ export struct ToggleSample {
             Blank()
             // [Start create_toggle_case]
             Toggle({ type: ToggleType.Switch })
-              .id('toggle')
+              .id('toggle') // 请开发者替换为实际的id
               .onChange((isOn: boolean) => {
                 if (isOn) {
                   // [StartExclude create_toggle_case]
                   this.message = 'on';
-                  promptAction.showToast({ 'message': 'Bluetooth is on.' });
                   // [EndExclude create_toggle_case]
+                  promptAction.openToast({ 'message': 'Bluetooth is on.' });
                 } else {
                   // [StartExclude create_toggle_case]
                   this.message = 'off';
-                  promptAction.showToast({ 'message': 'Bluetooth is off.' });
                   // [EndExclude create_toggle_case]
+                  promptAction.openToast({ 'message': 'Bluetooth is off.' });
                 }
               })
             // [End create_toggle_case]
@@ -63,9 +62,12 @@ export struct ToggleSample {
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+      // [StartExclude the_example_of_bluetooth]
     }
+    // [EndExclude the_example_of_bluetooth]
     .backgroundColor('#f1f2f3')
-    .title(this.resourceToString($r('app.string.ToggleCaseExample_title')))
+    // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+    .title($r('app.string.ToggleCaseExample_title'))
   }
 }
 // [End the_example_of_bluetooth]

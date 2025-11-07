@@ -13,19 +13,24 @@
  * limitations under the License.
  */
 
+//  图片添加滤镜效果页面
+//  [Start image_filtereffect]
 @Entry
 @Component
-struct MyComponent1 {
+struct AddFilterEffectsToImages {
   build() {
     Column() {
       Row() {
+        //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
           .width('40%')
           .margin(10)
+        //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
           .width('40%')
+          // 使用colorFilter接口验证对图片添加滤镜后的效果
           .colorFilter(
-            [1, 1, 0, 0, 0,
+             [1, 1, 0, 0, 0,
               0, 1, 0, 0, 0,
               0, 0, 1, 0, 0,
               0, 0, 0, 1, 0])
@@ -35,3 +40,4 @@ struct MyComponent1 {
     }
   }
 }
+//  [End image_filtereffect]

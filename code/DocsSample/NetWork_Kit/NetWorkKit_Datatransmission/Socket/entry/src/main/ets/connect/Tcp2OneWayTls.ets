@@ -187,7 +187,7 @@ struct SingleTLSAuth {
         this.msgHistory += `CA selected: ${caFileUri}\n`;
         this.canLoad = true;
       }
-    }).catch((err: Error) => {
+    }).catch((err: BusinessError<void>) => {
       this.msgHistory += `Fail to select CA: ${err.message}\n`;
     });
   }

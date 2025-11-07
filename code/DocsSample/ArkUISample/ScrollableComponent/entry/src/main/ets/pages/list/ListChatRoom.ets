@@ -15,12 +15,13 @@
 
 import { ComponentCard } from '../../common/Card'
 // 消息类型定义
+// [Start listitem_data_structure]
 interface Message {
   id: number
-  content: string
-  sender: string
+  content: ResourceStr
+  sender: ResourceStr
 }
-
+// [End listitem_data_structure]
 @Entry
 @Component
 export struct ListChatRoom {
@@ -32,7 +33,7 @@ export struct ListChatRoom {
         .fontSize(16)
         .textAlign(TextAlign.Start)
         .padding(10)
-        .backgroundColor(message.sender === '系统' ? '#F0F0F0' : '#E6F3FF')
+        .backgroundColor(message.sender === 'system' ? '#F0F0F0' : '#E6F3FF')
         .borderRadius(8)
     }
     .width('100%')
@@ -46,24 +47,33 @@ export struct ListChatRoom {
       this.messages = [...this.messages, {
         id: Date.now(),
         content: this.inputText,
-        sender: '观众'
+        sender: 'audience'
       }]
       this.inputText = ''
     }
   }
-  // 消息列表数据
-  @State messages: Message[] = [
-    { id: 1, content: '欢迎来到直播间！', sender: '系统' },
-    { id: 2, content: '大家好啊~', sender: '主播' }
-  ]
 
   // 输入框内容
   @State inputText: string = ''
 
+  // 消息列表数据
+  // [Start construct_list_structure]
+  @State messages: Message[] = [
+    // app.string.welcome_live_room 资源文件中的value值为'欢迎来到直播间'
+    // app.string.system 资源文件中的value值为'系统'
+    { id: 1, content: $r('app.string.welcome_live_room'), sender: $r('app.string.system') },
+    // app.string.hello_everyone 资源文件中的value值为'大家好啊~'
+    // app.string.anchors 资源文件中的value值为'主播'
+    { id: 2, content: $r('app.string.hello_everyone'), sender: $r('app.string.anchors') }
+  ];
+
   build() {
+    // [StartExclude construct_list_structure]
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ListChatRoom_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ListChatRoom_title') }) {
+          // [EndExclude construct_list_structure]
           Column() {
             // 聊天消息区域
             List({ space: 10 }) {
@@ -73,12 +83,14 @@ export struct ListChatRoom {
                 }
               }, (item: Message) => item.id.toString())
             }
+            .stackFromEnd(true)
             .layoutWeight(1)  // 占据剩余空间
             .alignListItem(ListItemAlign.Center)
 
+            // [StartExclude construct_list_structure]
             // 输入区域
             Row({ space: 10 }) {
-              TextInput({ text: this.inputText, placeholder: '说点什么...' })
+              TextInput({ text: this.inputText, placeholder: 'Say something...' })
                 .layoutWeight(1)
                 .onChange((value: string) => {
                   this.inputText = value
@@ -87,7 +99,7 @@ export struct ListChatRoom {
                   this.sendMessage()
                 })
 
-              Button('发送', { type: ButtonType.Capsule })
+              Button($r('app.string.message'), { type: ButtonType.Capsule })
                 .backgroundColor('#007AFF')
                 .onClick(() => {
                   this.sendMessage()
@@ -95,9 +107,11 @@ export struct ListChatRoom {
             }
             .padding(10)
             .backgroundColor('#F5F5F5')
+            // [EndExclude construct_list_structure]
           }
           .width('100%')
           .height('100%')
+          // [StartExclude construct_list_structure]
         }
       }
       .width('100%')
@@ -106,5 +120,7 @@ export struct ListChatRoom {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ListChatRoom_title'))
+    // [EndExclude construct_list_structure]
   }
+  // [End construct_list_structure]
 }

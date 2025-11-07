@@ -63,6 +63,18 @@
     {
       "name": "allNetworkStatus",
       "value": "已注册网络"
+    },
+    {
+      "name": "JudgeDefaultNetwork",
+      "value": "判断默认网络"
+    },
+    {
+      "name": "accessTheInternet",
+      "value": "默认网络是否可以访问互联网"
+    },
+    {
+      "name": "Network_connection_information",
+      "value": "查询所有网络连接信息"
     }
   ]
 }

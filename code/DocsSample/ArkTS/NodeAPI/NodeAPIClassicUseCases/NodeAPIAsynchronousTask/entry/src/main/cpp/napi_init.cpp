@@ -12,10 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#include "napi/native_api.h"
-
 // [Start napi_create_async_work]
+#include "napi/native_api.h"
+// 调用方提供的data context，该数据会传递给execute和complete函数
 struct CallbackData {
     napi_async_work asyncWork = nullptr;
     napi_deferred deferred = nullptr;
@@ -47,6 +46,7 @@ static void CompleteCB(napi_env env, napi_status status, void *data)
 
     napi_delete_async_work(env, callbackData->asyncWork);
     delete callbackData;
+    callbackData = nullptr;
 }
 // [End napi_second_call_back_main]
 // [EndExclude napi_create_async_work]

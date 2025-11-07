@@ -24,65 +24,67 @@ export struct SetTextInputType {
         Grid() {
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_1') }) {
+              // [Start set_password_input_type_1]
               TextInput()
-                .id('Normal')
                 .type(InputType.Normal)
+                // [End set_password_input_type_1]
+                .id('Normal')
             }
-          }.width('33%')
+          }.width('100%')
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_2') }) {
-              // [Start set_password_input_type]
+              // [Start set_password_input_type_2]
               TextInput()
-                .id('Password')
                 .type(InputType.Password)
-              // [End set_password_input_type]
+                // [End set_password_input_type_2]
+                .id('Password')
             }
-          }.width('33%')
+          }.width('100%')
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_3') }) {
-              // [Start set_email_input_type]
+              // [Start set_email_input_type_3]
               TextInput()
-                .id('Email')
                 .type(InputType.Email)
-              // [End set_email_input_type]
+                // [End set_email_input_type_3]
+                .id('Email')
             }
-          }.width('33%')
+          }.width('100%')
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_4') }) {
-              // [Start set_number_input_type]
+              // [Start set_number_input_type_4]
               TextInput()
-                .id('Number')
                 .type(InputType.Number)
-              // [End set_number_input_type]
+                // [End set_number_input_type_4]
+                .id('Number')
             }
-          }.width('33%')
+          }.width('100%')
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_5') }) {
-              // [Start set_phonenumber_input_type]
+              // [Start set_phonenumber_input_type_5]
               TextInput()
-                .id('PhoneNumber')
                 .type(InputType.PhoneNumber)
-              // [End set_phonenumber_input_type]
+                // [End set_phonenumber_input_type_5]
+                .id('PhoneNumber')
             }
-          }.width('33%')
+          }.width('100%')
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_6') }) {
-              // [Start set_number_decimal_input_type]
+              // [Start set_number_decimal_input_type_6]
               TextInput()
-                .id('NUMBER_DECIMAL')
                 .type(InputType.NUMBER_DECIMAL)
-              // [End set_number_decimal_input_type]
+                // [End set_number_decimal_input_type_6]
+                .id('NUMBER_DECIMAL')
             }
-          }.width('33%')
+          }.width('100%')
           GridItem() {
             ComponentCard({ title: $r('app.string.SetTextInputType_title_7') }) {
-              // [Start set_url_input_type]
+              // [Start set_url_input_type_7]
               TextInput()
-                .id('URL')
                 .type(InputType.URL)
-              // [End set_url_input_type]
+                // [End set_url_input_type_7]
+                .id('URL')
             }
-          }.width('33%')
+          }.width('100%')
         }
         .width('100%')
         .height('100%')

@@ -20,7 +20,7 @@ import { StaticHome } from '@ohos/staticImport';
 struct StaticHomePage {
   build() {
     Column() {
-      StaticHome()
+      StaticHome();
     }
   }
 }

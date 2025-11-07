@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start ts_text_metrics_total]
 // Index.ets
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
 import { UIContext } from '@kit.ArkUI';
@@ -161,3 +162,4 @@ struct RenderTest {
     }
   }
 }
+// [End ts_text_metrics_total]

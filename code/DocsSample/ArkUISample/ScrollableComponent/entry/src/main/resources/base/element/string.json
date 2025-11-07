@@ -309,6 +309,10 @@
       "value": "滚动导航栏示例"
     },
     {
+      "name": "Cache_count",
+      "value": "缓存数"
+    },
+    {
       "name": "FocusOn_content",
       "value": "关注的内容"
     },
@@ -337,6 +341,18 @@
       "value": "人文的内容"
     },
     {
+      "name": "art_content",
+      "value": "艺术的内容"
+    },
+    {
+      "name": "nature_content",
+      "value": "自然的内容"
+    },
+    {
+      "name": "military_content",
+      "value": "军事的内容"
+    },
+    {
       "name": "FocusOn",
       "value": "关注"
     },
@@ -363,6 +379,18 @@
     {
       "name": "humanities",
       "value": "人文"
+    },
+    {
+      "name": "art",
+      "value": "艺术"
+    },
+    {
+      "name": "nature",
+      "value": "自然"
+    },
+    {
+      "name": "military",
+      "value": "军事"
     },
     {
       "name": "ScrollableTabBar_description",
@@ -421,6 +449,10 @@
       "value": "内容页和页签联动示例"
     },
     {
+      "name": "ContentWillChange_titleContentOnAndTabSync",
+      "value": "内容页和页签不联动示例"
+    },
+    {
       "name": "ContentWillChange_titleSpecifiedTab",
       "value": "切换指定页签示例"
     },
@@ -435,6 +467,10 @@
     {
       "name": "ContentWillChange_description",
       "value": "示例展示使用了自定义导航栏后，自行实现页签切换逻辑。"
+    },
+    {
+      "name": "Content_titleContentOnAndTabSync",
+      "value": "示例展示使用了自定义导航栏后，内容和标签联动"
     },
     {
       "name": "AgeFriendlyTabs_title",
@@ -575,6 +611,18 @@
     {
       "name": "ResponsiveScrollPositionList_title",
       "value": "响应滚动位置"
+    },
+    {
+      "name": "Sliding_Hand_Event",
+      "value": "滑动离手事件"
+    },
+    {
+      "name": "Support_Sliding_Hand_Event",
+      "value": "支持滑动离手事件"
+    },
+    {
+      "name": "Today_Hot_News",
+      "value": "今日热点新闻"
     },
     {
       "name": "ResponsiveScrollPositionList_titleExample",
@@ -857,6 +905,14 @@
       "value": "手表设备上弧形列表在获焦的情况下可对旋转表冠做出响应，用户可通过旋转表冠的操作滑动列表，浏览列表项数据。"
     },
     {
+      "name": "ArcListCreate_title",
+      "value": "创建弧形列表"
+    },
+    {
+      "name": "ArcListCreate_description",
+      "value": "ArcList可通过调用以下接口来创建。"
+    },
+    {
       "name": "ArcListShow_title",
       "value": "在弧形列表中显示数据"
     },
@@ -881,12 +937,28 @@
       "value": "自定义弧形列表样式"
     },
     {
+      "name": "SwiperDigitIndicatorIgnoreComponentSize_title",
+      "value": "设置数字导航点忽略导航点组件大小"
+    },
+    {
+      "name": "SwiperDigitIndicatorIgnoreComponentSize_description",
+      "value": "针对数字导航点，当导航点的bottom设为0之后，导航点的底部与Swiper的底部还会有一定间距。如果希望消除该间距，可通过调用bottom(bottom, ignoreSize)属性来进行设置。"
+    },
+    {
       "name": "ArcListStyles_titleSpacing",
       "value": "自定义弧形列表项间距"
     },
     {
       "name": "ArcListStyles_titleScale",
       "value": "列表项关闭自动缩放"
+    },
+    {
+      "name": "SwiperVisibleContentPosition_title",
+      "value": "保持可见内容位置不变"
+    },
+    {
+      "name": "SwiperVisibleContentPosition_description",
+      "value": "Swiper通过设置maintainVisibleContentPosition属性，可在使用LazyForEach懒加载数据时（如通过onDataAdd新增数据），保持当前可见内容位置不变，避免因数据增删导致的视图跳动。"
     },
     {
       "name": "ArcListStyles_description",
@@ -941,6 +1013,10 @@
       "value": "部分业务场景需要列表底部插入数据时，自动向上滚动，把新插入的节点展示出来。"
     },
     {
+      "name": "SupportSlidingHand_title",
+      "value": "支持滑动离手事件"
+    },
+    {
       "name": "LongGrid_title",
       "value": "性能优化"
     },
@@ -983,6 +1059,198 @@
     {
       "name": "ArcListStyles_light",
       "value": "显示和亮度"
+    },
+    {
+      "name": "Reading",
+      "value": "读书"
+    },
+    {
+      "name": "Exercise",
+      "value": "旅游"
+    },
+    {
+      "name": "Travel",
+      "value": "旅游"
+    },
+    {
+      "name": "Listening_Music",
+      "value": "听音乐"
+    },
+    {
+      "name": "Watching_Films",
+      "value": "看电影"
+    },
+    {
+      "name": "Singing",
+      "value": "唱歌"
+    },
+    {
+      "name": "Meeting",
+      "value": "会议"
+    },
+    {
+      "name": "Voting",
+      "value": "投票"
+    },
+    {
+      "name": "Check_in",
+      "value": "签到"
+    },
+    {
+      "name": "Printing",
+      "value": "打印"
+    },
+    {
+      "name": "Live_Streaming",
+      "value": "直播"
+    },
+    {
+      "name": "Imported",
+      "value": "进口"
+    },
+    {
+      "name": "Categories",
+      "value": "分类"
+    },
+    {
+      "name": "Recharge",
+      "value": "充值"
+    },
+    {
+      "name": "Membership",
+      "value": "领卷"
+    },
+    {
+      "name": "Claim_Coupon",
+      "value": "抽奖"
+    },
+    {
+      "name": "Lottery",
+      "value": "会员"
+    },
+    {
+      "name": "Favorites",
+      "value": "收藏"
+    },
+    {
+      "name": "Points",
+      "value": "积分"
+    },
+    {
+      "name": "More",
+      "value": "更多"
+    },
+    {
+      "name": "Previous_Page",
+      "value": "上一页"
+    },
+    {
+      "name": "Next_page",
+      "value": "下一页"
+    },
+    {
+      "name": "message",
+      "value": "发送"
+    },
+    {
+      "name": "contacts",
+      "value": "联系人"
+    },
+    {
+      "name": "First_subassembly",
+      "value": "第一个子组件"
+    },
+    {
+      "name": "Second_subassembly",
+      "value": "第二个子组件"
+    },
+    {
+      "name": "Third_subassembly",
+      "value": "第三个子组件"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "Personal_Basic_Information",
+      "value": "个人基本资料"
+    },
+    {
+      "name": "nick_name",
+      "value": "昵称"
+    },
+    {
+      "name": "avatar",
+      "value": "头像"
+    },
+    {
+      "name": "age",
+      "value": "年龄"
+    },
+    {
+      "name": "birthday",
+      "value": "生日"
+    },
+    {
+      "name": "gender",
+      "value": "性别"
+    },
+    {
+      "name": "Device_Information",
+      "value": "设备信息"
+    },
+    {
+      "name": "Application_usage_information",
+      "value": "应用使用信息"
+    },
+    {
+      "name": "data_you_voluntarily_uploaded",
+      "value": "您主动上传的数据"
+    },
+    {
+      "name": "Trading_and_asset_information",
+      "value": "交易与资产信息"
+    },
+    {
+      "name": "Other_materials",
+      "value": "其他资料"
+    },
+    {
+      "name": "welcome_live_room",
+      "value": "欢迎来到直播间"
+    },
+    {
+      "name": "system",
+      "value": "系统"
+    },
+    {
+      "name": "anchors",
+      "value": "主播"
+    },
+    {
+      "name": "hello_everyone",
+      "value": "大家好啊~"
+    },
+    {
+      "name": "new_title",
+      "value": "新闻标题"
+    },
+    {
+      "name": "new_short",
+      "value": "这是第一条短新闻，内容较少，快速滑动切换"
+    },
+    {
+      "name": "new_long",
+      "value": "这是第二条长新闻，内容较多，可以自由滑动查看完整内容。"
+    },
+    {
+      "name": "Dark_mode",
+      "value": "深色模式"
+    },
+    {
+      "name": "Light_mode",
+      "value": "浅色模式"
     }
   ]
 }

@@ -32,9 +32,9 @@ struct WebHeightPage {
               controller: this.webviewController,
               renderMode: RenderMode.SYNC_RENDER // 设置为同步渲染模式
             })
-              .layoutMode(WebLayoutMode.FIT_CONTENT)// 设置为Web组件大小自适应页面内容
+              .layoutMode(WebLayoutMode.FIT_CONTENT) // 设置为Web组件大小自适应页面内容
               .overScrollMode(OverScrollMode.NEVER) // 设置过滚动模式为关闭状态
-            Text($r('app.string.Comment_area'))
+            Text('Comments')
               .fontSize(28)
               .fontColor('#FF0F0F')
               .height(100)
@@ -44,7 +44,7 @@ struct WebHeightPage {
         }
       }
     }
-    .title($r('app.string.Title_bar'))
+    .title('Title')
   }
 }
 // [End a_page_that_contains_a_webview_and_text_in_the_comment_section]

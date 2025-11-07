@@ -40,11 +40,11 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加按键事件拦截'));
-      await driver.assertComponentExist(ON.text('移除按键事件拦截'));
-      await driver.assertComponentExist(ON.text('添加输入事件拦截'));
-      await driver.assertComponentExist(ON.text('移除输入事件拦截'));
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Add key event interceptor'));
+      await driver.assertComponentExist(ON.text('Remove key event interceptor'));
+      await driver.assertComponentExist(ON.text('Add input event interceptor. Input event include: mouse event, touch event, and axis event'));
+      await driver.assertComponentExist(ON.text('Remove input event interceptor. Input event include: mouse event, touch event, and axis event'));
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 end')
     })
@@ -65,11 +65,11 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + `addKeyEventInterceptor_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加按键事件拦截'));
-      let button = await driver.findComponent(ON.text('添加按键事件拦截'));
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Add key event interceptor'));
+      let button = await driver.findComponent(ON.text('Add key event interceptor'));
       await button.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'addKeyEventInterceptor_001 end')
     })
@@ -90,11 +90,11 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + `removeKeyEventInterceptor_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('移除按键事件拦截'));
-      let button = await driver.findComponent(ON.text('移除按键事件拦截'));
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Remove key event interceptor'));
+      let button = await driver.findComponent(ON.text('Remove key event interceptor'));
       await button.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'removeKeyEventInterceptor_001 end')
     })
@@ -115,11 +115,11 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + `addEventInterceptor_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('添加输入事件拦截'));
-      let button = await driver.findComponent(ON.text('添加输入事件拦截'));
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Add input event interceptor. Input event include: mouse event, touch event, and axis event'));
+      let button = await driver.findComponent(ON.text('Add input event interceptor. Input event include: mouse event, touch event, and axis event'));
       await button.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'addEventInterceptor_001 end')
     })
@@ -140,11 +140,11 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + `removeEventInterceptor_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('移除输入事件拦截'));
-      let button = await driver.findComponent(ON.text('移除输入事件拦截'));
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text('Remove input event interceptor. Input event include: mouse event, touch event, and axis event'));
+      let button = await driver.findComponent(ON.text('Remove input event interceptor. Input event include: mouse event, touch event, and axis event'));
       await button.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'removeEventInterceptor_001 end')
     })

@@ -29,7 +29,6 @@ void FinalizeCallback(napi_env env, void *finalizeData, void *finalizeHint)
         InstanceData *data = reinterpret_cast<InstanceData *>(finalizeData);
         // 释放内存，清除指针指向地址
         delete (data);
-        *(InstanceData **)finalizeData = nullptr;
     }
 }
 
@@ -61,6 +60,10 @@ static napi_value GetInstanceData(napi_env env, napi_callback_info info)
     InstanceData *resData = nullptr;
     // napi_get_instance_data获取之前想关联的数据项
     napi_get_instance_data(env, (void **)&resData);
+    if (resData == nullptr) {
+        napi_throw_error(env, nullptr, "Instance data not set or already freed");
+        return nullptr;
+    }
     napi_value result;
     napi_create_int32(env, resData->value, &result);
     return result;

@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/SpecifiedPage",
+    "pages/SpecifiedFirstPage",
+    "pages/SpecifiedSecondPage",
+    "pages/MultitonPage",
+    "pages/SingletonPage"
+  ]
+}

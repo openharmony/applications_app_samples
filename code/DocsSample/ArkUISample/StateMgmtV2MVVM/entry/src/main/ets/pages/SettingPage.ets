@@ -14,8 +14,8 @@
  *
 */
 
+// [Start Main_SettingPage]
 // src/main/ets/pages/SettingPage.ets
-
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -28,20 +28,23 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build(){
     Column(){
+      // app.string.Setting 资源文件中的value值为'设置'。
       Text($r('app.string.Setting'))
         .fontSize(40)
         .margin({ bottom: 10 })
       Row() {
+        // app.string.Show_finished_tasks 资源文件中的value值为'显示已完成任务'。
         Text($r('app.string.Show_finished_tasks'))
         Toggle({ type: ToggleType.Switch, isOn:this.setting.showCompletedTask })
           .onChange((isOn) => {
             this.setting.showCompletedTask = isOn;
           })
       }
+      // app.string.Back 资源文件中的value值为'返回待办'。
       Button($r('app.string.Back'))
         .onClick(()=>this.context.terminateSelf())
         .margin({ top: 10 })
@@ -49,3 +52,4 @@ struct SettingPage {
     .alignItems(HorizontalAlign.Start)
   }
 }
+// [End Main_SettingPage]

@@ -20,7 +20,7 @@ import { WebHome } from '@ohos/webPerformance';
 struct WebHomePage {
   build() {
     Column() {
-      WebHome()
+      WebHome();
     }
   }
 }

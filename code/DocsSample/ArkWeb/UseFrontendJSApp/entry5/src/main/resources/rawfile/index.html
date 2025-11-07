@@ -27,12 +27,12 @@
 
     window.addEventListener('message', function (event) {
         if (event.data === 'init_web_messageport') {
-            const port = event.ports.at(0); // 1. 保存从应用侧发送过来的端口。
+            const port = event.ports[0]; // 1. 保存从应用侧发送过来的端口。
             if (port) {
-                console.log('hwd In html got message');
+                console.info('hwd In html got message');
                 h5Port = port;
                 port.onmessage = function (event) {
-                    console.log('hwd In html got message');
+                    console.info('hwd In html got message');
                     // 2. 接收应用侧发送过来的消息.
                     let result = event.data;
                     let typeS = typeof (result);
@@ -52,7 +52,7 @@
                         default:
                             break;
                     }
-                    console.log('H5 recv type: ' + typeS + '\nH5 recv result: ' + result);
+                    console.info('H5 recv type: ' + typeS + '\nH5 recv result: ' + result);
                     document.getElementById('msg').innerHTML = 'recv type: ' + typeS;
                     document.getElementById('msg2').innerHTML = 'recv value: ' + result;
                 };
@@ -63,7 +63,7 @@
         }
     });
     window.onerror = function(message, url, line, column, error) {
-      console.log('JavaScript Error: ' + message + ' on line ' + line + ' in ' + url);
+      console.info('JavaScript Error: ' + message + ' on line ' + line + ' in ' + url);
       document.getElementById('h1').innerHTML = '执行函数失败';
     };
 
@@ -118,12 +118,12 @@
 
       myMethod() {
         // 实例方法
-        console.log(this.myProperty);
+        console.info(this.myProperty);
       }
 
       static myStaticMethod() {
         // 静态方法
-        console.log('This is a static method.');
+        console.info('This is a static method.');
       }
     }
     function postObjectToApp() {

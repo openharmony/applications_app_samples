@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Switch",
+      "value": "切换"
+    },
+    {
+      "name": "Manpage",
+      "value": "NodeInterface"
+    }
+  ]
+}

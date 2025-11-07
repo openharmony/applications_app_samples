@@ -75,47 +75,59 @@ struct TransitionData {
     ArkUI_TransitionEffect* effect;
 };
 
+
 std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
 {
+    // [Start get_keyframeAnimateTo]
     auto column = std::make_shared<ArkUIColumnNode>();
+    //设置宽度为300，NUM_300 = 300
     column->SetWidth(NUM_300);
+    //设置高度为250，NUM_250 = 250
     column->SetHeight(NUM_250);
     // 创建文本节点，内容区介绍“这是关键帧动画”
     auto textNode = std::make_shared<ArkUITextNode>();
     textNode->SetTextContent("这是关键帧动画");
+    //设置宽度为120，NUM_120 = 120
     textNode->SetWidth(NUM_120);
+    //设置高度为120，NUM_120 = 120
     textNode->SetHeight(NUM_50);
     // 创建button，后续创建的关键帧动画作用在button组件上
     auto button = std::make_shared<ArkUIButtonNode>();
-    // 设置button初始宽高
+    // 设置button初始宽高，NUM_100 = 100
     button->SetWidth(NUM_100);
     button->SetHeight(NUM_100);
     // 存储button全局变量，在onTouch注册时需要使用
     g_keyframe_button = button;
-    // 注册点击事件到button上
+    // 注册点击事件到button上，NUM_1 = 1
     button->RegisterNodeEvent(button->GetHandle(), NODE_ON_CLICK, NUM_1, nullptr);
     g_keyframe_text = std::make_shared<ArkUITextNode>();
     g_keyframe_text->KeyframeAnimatetoToString();
     auto onTouch = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_1 = 1
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_1) {
             // 获取context对象
             ArkUI_ContextHandle context = nullptr;
+            // std::shared_ptr<ArkUIButtonNode> g_keyframe_button存储button的全局变量，在onTouch注册时需要使用
             context = OH_ArkUI_GetContextByNode(g_keyframe_button->GetHandle());
-
+            // [Start get_Api]
             // 获取ArkUI_NativeAnimateAPI接口
             ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
+            // [End get_Api]
             
             // 以下代码为创建关键帧动画的关键流程，包括设置关键帧动画参数、开启关键帧动画
             // 设置ArkUI_KeyframeAnimateOption参数，通过提供的C方法设置对应的参数
-            ArkUI_KeyframeAnimateOption *option =  OH_ArkUI_KeyframeAnimateOption_Create(NUM_2); // 关键帧动画状态数
+            // 关键帧动画状态数，NUM_2 = 2，NUM_500 = 500
+            ArkUI_KeyframeAnimateOption *option =  OH_ArkUI_KeyframeAnimateOption_Create(NUM_2);
             OH_ArkUI_KeyframeAnimateOption_SetDelay(option, NUM_500);
-            OH_ArkUI_KeyframeAnimateOption_SetDuration(option, NUM_1000, NUM_0); // 第一段关键帧动画的持续时间
-            OH_ArkUI_KeyframeAnimateOption_SetDuration(option, NUM_2000, NUM_1); // 第二段关键帧动画的持续时间
-            OH_ArkUI_KeyframeAnimateOption_SetIterations(option, NUM_5); // 关键帧动画播放次数
+            // 第一段关键帧动画的持续时间，NUM_1000 = 1000，NUM_0 = 0
+            OH_ArkUI_KeyframeAnimateOption_SetDuration(option, NUM_1000, NUM_0);
+            // 第二段关键帧动画的持续时间，NUM_2000 = 2000，NUM_1 = 1
+            OH_ArkUI_KeyframeAnimateOption_SetDuration(option, NUM_2000, NUM_1);
+            // 关键帧动画播放次数，NUM_5 = 5
+            OH_ArkUI_KeyframeAnimateOption_SetIterations(option, NUM_5);
             ArkUI_CurveHandle curve = OH_ArkUI_Curve_CreateCubicBezierCurve(0.5f, 4.0f, 1.2f, 0.0f);
-            // 以下四种曲线根据自己得业务需要选择
+            // 以下四种曲线需要根据实际业务选择
             ArkUI_CurveHandle springCurve = OH_ArkUI_Curve_CreateSpringCurve(0.5f, 4.0f, 1.2f, 0.0f);
             ArkUI_CurveHandle springMotionCurve = OH_ArkUI_Curve_CreateSpringMotion(0.5f, 0.6f, 0.0f);
             ArkUI_CurveHandle responsiveSpringMotionCurve = OH_ArkUI_Curve_CreateResponsiveSpringMotion(0.5f,
@@ -125,10 +137,10 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
             OH_ArkUI_KeyframeAnimateOption_SetCurve(option, curve, 1);
             OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(option, nullptr, [](void *userData) {
                   g_keyframe_button->SetWidth(NUM_150);
-            }, NUM_0); // 第一段关键帧时刻状态的闭包函数
+            }, NUM_0); // 第一段关键帧时刻状态的闭包函数NUM_150 = 150，NUM_0 = 0
             OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(option, nullptr, [](void *userData) {
                   g_keyframe_button->SetWidth(80);
-            }, NUM_1); // 第二段关键帧时刻状态的闭包函数
+            }, NUM_1); // 第二段关键帧时刻状态的闭包函数NUM_1 = 1
             KeyFrameAnimateToData* data = new KeyFrameAnimateToData();
             data->option = option;
             data->curve = curve;
@@ -151,9 +163,9 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
                 }
             }); // 关键帧动画结束回调
             ArkUI_ExpectedFrameRateRange *range = new ArkUI_ExpectedFrameRateRange;
-            range->max = NUM_120;
-            range->expected = NUM_60;
-            range->min = NUM_30;
+            range->max = NUM_120; // NUM_120 = 120
+            range->expected = NUM_60; // NUM_60 = 60
+            range->min = NUM_30; // NUM_30 = 30
             OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(option, range); // 关键帧设置期望帧率
 
             // 执行对应的动画
@@ -161,9 +173,9 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
             auto delay = OH_ArkUI_KeyframeAnimateOption_GetDelay(option);
             auto iter = OH_ArkUI_KeyframeAnimateOption_GetIterations(option);
             auto expected = OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate(option); // 获取关键帧动画参数的期望帧率
-            auto dur0 = OH_ArkUI_KeyframeAnimateOption_GetDuration(option, NUM_1);
+            auto dur0 = OH_ArkUI_KeyframeAnimateOption_GetDuration(option, NUM_1); // NUM_1 = 1
             auto dur1 = OH_ArkUI_KeyframeAnimateOption_GetDuration(option, NUM_1);
-            auto curves = OH_ArkUI_KeyframeAnimateOption_GetCurve(option, NUM_1); //获取关键帧动画某段状态动画曲线
+            auto curves = OH_ArkUI_KeyframeAnimateOption_GetCurve(option, NUM_1); // 获取关键帧动画某段状态动画曲线
             g_keyframe_text->KeyframeAnimatetoToString(dur0, dur1, delay, iter, *expected);
         }
     };
@@ -173,28 +185,33 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
     column->AddChild(g_keyframe_text);
     column->AddChild(textNode);
     column->AddChild(button);
+    // [End get_keyframeAnimateTo]
     return column;
 }
 
 std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
 {
     auto column = std::make_shared<ArkUIColumnNode>();
+    // 设置组件宽度，NUM_300 = 300
     column->SetWidth(NUM_300);
+    // 设置组件高度，NUM_250 = 250
     column->SetHeight(NUM_250);
     // 创建文本节点，内容区介绍“这是animateto动画”
     auto textNode = std::make_shared<ArkUITextNode>();
     textNode->SetTextContent("这是animateto动画");
+    // 设置组件宽度，NUM_150 = 150
     textNode->SetWidth(NUM_150);
+    // 设置组件高度，NUM_50 = 50
     textNode->SetHeight(NUM_50);
     // 创建button，后续创建的动画作用在button组件上
     auto button = std::make_shared<ArkUIButtonNode>();
-    // 设置button初始宽高及颜色
+    // 设置button初始宽高及颜色，NUM_100 = 100
     button->SetWidth(NUM_100);
     button->SetHeight(NUM_100);
     button->SetBackgroundColor(0xFFA280FF);
     // 存储button全局变量，在onTouch注册时需要使用
     g_animateto_button = button;
-    // 注册点击事件到button上
+    // 注册点击事件到button上，NUM_2 = 2
     button->RegisterNodeEvent(button->GetHandle(), NODE_ON_CLICK, NUM_2, nullptr);
     g_animateto_text = std::make_shared<ArkUITextNode>();
     g_animateto_text->AnimatetoToString();
@@ -202,29 +219,32 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
         // 获取context对象
         static ArkUI_ContextHandle context = nullptr;
         context = OH_ArkUI_GetContextByNode(g_animateto_button->GetHandle());
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_2 = 2
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_2) {
             // 获取ArkUI_NativeAnimateAPI接口
             ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
             
+            // [Start set_option]
             // 设置动画参数
             ArkUI_AnimateOption *option = OH_ArkUI_AnimateOption_Create();
-            OH_ArkUI_AnimateOption_SetDuration(option, NUM_2000);
+            OH_ArkUI_AnimateOption_SetDuration(option, NUM_2000); // NUM_2000 = 2000
             OH_ArkUI_AnimateOption_SetTempo(option, 1.1);
             OH_ArkUI_AnimateOption_SetCurve(option, ARKUI_CURVE_EASE);
             ArkUI_CurveHandle cubicBezierCurve = OH_ArkUI_Curve_CreateCubicBezierCurve(0.5f, 4.0f, 1.2f, 0.0f);
             // 设置动画的动画曲线，优先于OH_ArkUI_AnimateOption_SetCurve生效
             OH_ArkUI_AnimateOption_SetICurve(option, cubicBezierCurve);
-            OH_ArkUI_AnimateOption_SetDelay(option, NUM_20);
-            OH_ArkUI_AnimateOption_SetIterations(option, NUM_1);
+            OH_ArkUI_AnimateOption_SetDelay(option, NUM_20); // NUM_20 = 20
+            OH_ArkUI_AnimateOption_SetIterations(option, NUM_1); // NUM_1 = 1
             OH_ArkUI_AnimateOption_SetPlayMode(option, ARKUI_ANIMATION_PLAY_MODE_REVERSE);
             ArkUI_ExpectedFrameRateRange *range = new ArkUI_ExpectedFrameRateRange;
-            range->min = NUM_10;
-            range->max = NUM_120;
-            range->expected = NUM_60;
+            range->min = NUM_10; // NUM_10 = 10
+            range->max = NUM_120; // NUM_120 = 120
+            range->expected = NUM_60; // NUM_60 = 60
             OH_ArkUI_AnimateOption_SetExpectedFrameRateRange(option, range);
+            // [End set_option]
             
+            // [Start set_callback]
             // 设置完成的回调
             ArkUI_AnimateCompleteCallback *completeCallback = new ArkUI_AnimateCompleteCallback;
             completeCallback->type = ARKUI_FINISH_CALLBACK_REMOVED;
@@ -257,18 +277,19 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
             update->callback = [](void *user) {
                 // 对应的属性变化 width height
                 if (isback) {
-                    g_animateto_button->SetWidth(NUM_200);
-                    g_animateto_button->SetHeight(NUM_80);
+                    g_animateto_button->SetWidth(NUM_200); // NUM_200 = 200
+                    g_animateto_button->SetHeight(NUM_80); // NUM_80 = 80
                     g_animateto_button->SetBackgroundColor(0xFFA280FF);
                 } else {
-                    g_animateto_button->SetWidth(NUM_100);
-                    g_animateto_button->SetHeight(NUM_40);
+                    g_animateto_button->SetWidth(NUM_100); // NUM_100 = 100
+                    g_animateto_button->SetHeight(NUM_40); // NUM_40 = 40
                     g_animateto_button->SetBackgroundColor(0xFFFF2E77);
                 }
                 isback = !isback;
             };
             // 执行对应的动画
             animateApi->animateTo(context, option, update, completeCallback);
+            // [End set_callback]
             
             auto duration = OH_ArkUI_AnimateOption_GetDuration(option);
             auto tempo = OH_ArkUI_AnimateOption_GetTempo(option);
@@ -419,31 +440,32 @@ std::shared_ptr<ArkUIBaseNode> CreateTransitionEffect()
     return column;
 }
 
+// [Start get_createAnimator]
 std::shared_ptr<ArkUIBaseNode> CreateAnimator()
 {
     auto column = std::make_shared<ArkUIColumnNode>();
-    column->SetWidth(NUM_300);
-    column->SetHeight(NUM_250);
+    column->SetWidth(NUM_300); // NUM_300 = 300
+    column->SetHeight(NUM_250); // NUM_250 = 250
     // 创建文本节点，内容区介绍“这是animator动画”
     auto textNode = std::make_shared<ArkUITextNode>();
     textNode->SetTextContent("这是animator动画");
-    textNode->SetWidth(NUM_120);
-    textNode->SetHeight(NUM_50);
+    textNode->SetWidth(NUM_120); // NUM_120 = 120
+    textNode->SetHeight(NUM_50); // NUM_50 = 50
     // 创建createButton，用于初始化animator参数
     auto createButton = std::make_shared<ArkUIButtonNode>();
     // 创建button，后续创建的animator动画作用在button组件上
     auto button = std::make_shared<ArkUIButtonNode>();
-    // 设置button初始宽高
+    // 设置button初始宽高，NUM_100 = 100
     button->SetWidth(NUM_100);
     button->SetHeight(NUM_100);
     // 存储button全局变量，在onTouch注册时需要使用
     g_animator_button = button;
-    // 注册点击事件到button上
+    // 注册点击事件到button上，NUM_3 = 3
     createButton->RegisterNodeEvent(createButton->GetHandle(), NODE_ON_CLICK, NUM_3, nullptr);
     g_animator_text = std::make_shared<ArkUITextNode>();
     g_animator_text->AnimatorToString();
     auto onTouch = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_3 = 3
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_3) {
             // 获取context对象
             static ArkUI_ContextHandle context = nullptr;
@@ -454,23 +476,23 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
             OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
             
             // 以下代码为创建Animator动画的关键流程，包括设置Animator动画参数、开启Animator动画
-            // 设置ArkUI_AnimatorOption参数，通过提供的C方法设置对应的参数
+            // 设置ArkUI_AnimatorOption参数，通过提供的C方法设置对应的参数，NUM_0 = 0
             static ArkUI_AnimatorOption *option =  OH_ArkUI_AnimatorOption_Create(NUM_0); // Animator动画状态数
-            OH_ArkUI_AnimatorOption_SetDuration(option, NUM_2000);
-            OH_ArkUI_AnimatorOption_SetDelay(option, NUM_10);
-            OH_ArkUI_AnimatorOption_SetIterations(option, NUM_3);
+            OH_ArkUI_AnimatorOption_SetDuration(option, NUM_2000); // NUM_2000 = 2000
+            OH_ArkUI_AnimatorOption_SetDelay(option, NUM_10); // NUM_10 = 10
+            OH_ArkUI_AnimatorOption_SetIterations(option, NUM_3); // NUM_3 = 3
             OH_ArkUI_AnimatorOption_SetFill(option, ARKUI_ANIMATION_FILL_MODE_NONE);
             OH_ArkUI_AnimatorOption_SetDirection(option, ARKUI_ANIMATION_DIRECTION_NORMAL);
             ArkUI_CurveHandle curve = OH_ArkUI_Curve_CreateCubicBezierCurve(0.5f, 4.0f, 1.2f, 0.0f); // 构造三阶贝塞尔曲线对象
             OH_ArkUI_AnimatorOption_SetCurve(option, curve);
-            OH_ArkUI_AnimatorOption_SetBegin(option, NUM_100);
-            OH_ArkUI_AnimatorOption_SetEnd(option, NUM_150);
+            OH_ArkUI_AnimatorOption_SetBegin(option, NUM_100); // NUM_100 = 100
+            OH_ArkUI_AnimatorOption_SetEnd(option, NUM_150); // NUM_150 = 150
             ArkUI_ExpectedFrameRateRange *range = new ArkUI_ExpectedFrameRateRange;
-            range->max = NUM_120;
-            range->expected = NUM_60;
-            range->min = NUM_30;
+            range->max = NUM_120; // NUM_120 = 120
+            range->expected = NUM_60; // NUM_60 = 60
+            range->min = NUM_30; // NUM_30 = 30
             OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange(option, range);
-            OH_ArkUI_AnimatorOption_SetKeyframe(option, 0.5, 120.5, NUM_0); // 设置animator动画关键帧参数
+            OH_ArkUI_AnimatorOption_SetKeyframe(option, 0.5, 120.5, NUM_0); // 设置animator动画关键帧参数，NUM_0 = 0
             OH_ArkUI_AnimatorOption_SetKeyframeCurve(option, curve, NUM_0); // 设置animator动画关键帧曲线类型
             OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(option, nullptr, [](ArkUI_AnimatorOnFrameEvent *event)
             {
@@ -515,18 +537,18 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     createButton->SetButtonLabel("create");
     // 创建容器，用于存放button按键
     auto buttoColumn = std::make_shared<ArkUIColumnNode>();
-    buttoColumn->SetPadding(NUM_30, false); // 设置布局格式，调整组件内间距
-    buttoColumn->SetWidth(NUM_300);
+    buttoColumn->SetPadding(NUM_30, false); // 设置布局格式，调整组件内间距，NUM_30 = 30
+    buttoColumn->SetWidth(NUM_300); // NUM_300 = 300
     // 创建容器，用于存放playButton按键
     auto playButtonColumn = std::make_shared<ArkUIColumnNode>();
-    playButtonColumn->SetPadding(NUM_10, false); // 设置布局格式，调整组件内间距
-    playButtonColumn->SetWidth(NUM_300);
+    playButtonColumn->SetPadding(NUM_10, false); // 设置布局格式，调整组件内间距，NUM_10 = 10
+    playButtonColumn->SetWidth(NUM_300); // NUM_300 = 300
     // 设置animator播放按钮
     auto playButton = std::make_shared<ArkUIButtonNode>();
     playButton->SetButtonLabel("play");
     playButton->RegisterNodeEvent(playButton->GetHandle(), NODE_ON_CLICK, NUM_4, nullptr);
     auto onTouchPlay = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_4 = 4
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_4) {
             OH_ArkUI_Animator_Play(animatorHandle);
         }
@@ -535,9 +557,9 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     // 设置animator结束按钮
     auto finishButton = std::make_shared<ArkUIButtonNode>();
     finishButton->SetButtonLabel("finish");
-    finishButton->RegisterNodeEvent(finishButton->GetHandle(), NODE_ON_CLICK, NUM_5, nullptr);
+    finishButton->RegisterNodeEvent(finishButton->GetHandle(), NODE_ON_CLICK, NUM_5, nullptr); // NUM_5 = 5
     auto onTouchFinish = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_5 = 5
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_5) {
             OH_ArkUI_Animator_Finish(animatorHandle);
         }
@@ -545,25 +567,25 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     finishButton->RegisterNodeEventReceiver(onTouchFinish);
     // 创建容器，用于存放resetButton按键
     auto resetButtonColumn = std::make_shared<ArkUIColumnNode>();
-    resetButtonColumn->SetPadding(NUM_10, false); // 设置布局格式，调整组件内间距
-    resetButtonColumn->SetWidth(NUM_300);
+    resetButtonColumn->SetPadding(NUM_10, false); // 设置布局格式，调整组件内间距，NUM_10 = 10
+    resetButtonColumn->SetWidth(NUM_300); // NUM_300 = 300
     // 设置animator更新按钮
     auto resetButton = std::make_shared<ArkUIButtonNode>();
     resetButton->SetButtonLabel("reset");
-    resetButton->RegisterNodeEvent(resetButton->GetHandle(), NODE_ON_CLICK, NUM_6, nullptr);
+    resetButton->RegisterNodeEvent(resetButton->GetHandle(), NODE_ON_CLICK, NUM_6, nullptr); // NUM_6 = 6
     auto onTouchReset = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_6 = 6
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_6) {
             static ArkUI_AnimatorOption *option =  OH_ArkUI_AnimatorOption_Create(NUM_0); // Animator动画状态数
-            OH_ArkUI_AnimatorOption_SetDuration(option, NUM_1000);
+            OH_ArkUI_AnimatorOption_SetDuration(option, NUM_1000); // NUM_1000 = 1000
             OH_ArkUI_AnimatorOption_SetDelay(option, NUM_0);
-            OH_ArkUI_AnimatorOption_SetIterations(option, NUM_4);
-            // 根据自己得需要选择下述两种曲线适合得去设置OH_ArkUI_AnimatorOption_SetCurve
+            OH_ArkUI_AnimatorOption_SetIterations(option, NUM_4); // NUM_4 = 4
+            // 根据实际业务需求选择下述两种曲线，设置OH_ArkUI_AnimatorOption_SetCurve
             auto curve = OH_ArkUI_Curve_CreateCurveByType(ARKUI_CURVE_EASE); // 动画以低速开始，然后加快，在结束前变慢
-            auto stepsCurve = OH_ArkUI_Curve_CreateStepsCurve(NUM_20, true); // 构造阶梯曲线对象
+            auto stepsCurve = OH_ArkUI_Curve_CreateStepsCurve(NUM_20, true); // 构造阶梯曲线对象，NUM_20 = 20
             OH_ArkUI_AnimatorOption_SetCurve(option, curve);
-            OH_ArkUI_AnimatorOption_SetBegin(option, NUM_200);
-            OH_ArkUI_AnimatorOption_SetEnd(option, NUM_100);
+            OH_ArkUI_AnimatorOption_SetBegin(option, NUM_200); // NUM_200 = 200
+            OH_ArkUI_AnimatorOption_SetEnd(option, NUM_100); // NUM_100 = 100
             OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(option, nullptr, [](ArkUI_AnimatorOnFrameEvent *event)
             {
                 OH_ArkUI_AnimatorOnFrameEvent_GetUserData(event); // 获取动画事件对象中的用户自定义对象
@@ -577,9 +599,9 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     // 设置animator暂停按钮
     auto pauseButton = std::make_shared<ArkUIButtonNode>();
     pauseButton->SetButtonLabel("pause");
-    pauseButton->RegisterNodeEvent(pauseButton->GetHandle(), NODE_ON_CLICK, NUM_7, nullptr);
+    pauseButton->RegisterNodeEvent(pauseButton->GetHandle(), NODE_ON_CLICK, NUM_7, nullptr); // NUM_7 = 7
     auto onTouchPause = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_7 = 7
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_7) {
             OH_ArkUI_Animator_Pause(animatorHandle);
         }
@@ -587,14 +609,14 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     pauseButton->RegisterNodeEventReceiver(onTouchPause);
     // 创建容器，用于存放cancelButton按键
     auto cancelButtonColumn = std::make_shared<ArkUIColumnNode>();
-    cancelButtonColumn->SetPadding(NUM_10, false); // 设置布局格式，调整组件内间距
-    cancelButtonColumn->SetWidth(NUM_300);
+    cancelButtonColumn->SetPadding(NUM_10, false); // 设置布局格式，调整组件内间距，NUM_10 = 10
+    cancelButtonColumn->SetWidth(NUM_300); // NUM_300 = 300
     // 设置animator取消按钮
     auto cancelButton = std::make_shared<ArkUIButtonNode>();
     cancelButton->SetButtonLabel("cancel");
-    cancelButton->RegisterNodeEvent(cancelButton->GetHandle(), NODE_ON_CLICK, NUM_8, nullptr);
+    cancelButton->RegisterNodeEvent(cancelButton->GetHandle(), NODE_ON_CLICK, NUM_8, nullptr); // NUM_8 = 8
     auto onTouchCancel = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_8 = 8
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_8) {
             OH_ArkUI_Animator_Cancel(animatorHandle);
         }
@@ -605,7 +627,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     reverseButton->SetButtonLabel("reverse");
     reverseButton->RegisterNodeEvent(reverseButton->GetHandle(), NODE_ON_CLICK, NUM_9, nullptr);
     auto onTouchReverse = [](ArkUI_NodeEvent *event) {
-        // 点击button按钮时触发该逻辑
+        // 点击button按钮时触发该逻辑，NUM_9 = 9
         if (OH_ArkUI_NodeEvent_GetTargetId(event) == NUM_9) {
             OH_ArkUI_Animator_Reverse(animatorHandle);
         }
@@ -628,6 +650,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimator()
     column->AddChild(buttoColumn);
     return column;
 }
+// [End get_createAnimator]
 
 std::shared_ptr<ArkUIBaseNode> CreateAnimateRootNode()
 {

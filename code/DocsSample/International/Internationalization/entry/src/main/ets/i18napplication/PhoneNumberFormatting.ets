@@ -35,30 +35,27 @@ import { i18n } from '@kit.LocalizationKit';
 // [Start format_phone_numbers]
 // 电话号码格式化开发实例
 // 格式化电话号码
-let phoneNumberFormat1 = new i18n.PhoneNumberFormat('CN');
-let formattedPhoneNumber1 = phoneNumberFormat1.format('15812342312'); // formattedPhoneNumber1: 158 1234 2312
+let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+let formattedPhoneNumber = phoneNumberFormat.format('15812342312'); // formattedPhoneNumber = '158 **** 2312'
 
 // RFC3966类型的电话号码
-let phoneNumberFormat2 = new i18n.PhoneNumberFormat('CN', { type: 'RFC3966' });
-let formattedPhoneNumber2 = phoneNumberFormat2.format('15812342312'); // formattedPhoneNumber2: tel:+86-158-1234-2312
+let rfcFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', { type: 'RFC3966' });
+let formattedRFCPhoneNumber = rfcFormat.format('15812342312'); // formattedRFCPhoneNumber = 'tel:+86-158-****-2312'
 
 // 判断电话号码是否有效
-let phoneNumberFormat3 = new i18n.PhoneNumberFormat('CN');
-let isValid = phoneNumberFormat3.isValidNumber('15812342312'); // isValid: true
+let isValid = phoneNumberFormat.isValidNumber('15812342312'); // isValid = true
 
 // 以某种语言显示号码归属地
-let phoneNumberFormat4 = new i18n.PhoneNumberFormat('CN');
-let locationName4 = phoneNumberFormat4.getLocationName('15812342312', 'en-GB'); // locationName4: Zhanjiang, Guangdong
+let locationName = phoneNumberFormat.getLocationName('15812342312', 'en-GB'); // locationName = 'XiAn, Shanxi'
 
 // 拨号中的电话号码格式化
-let phoneNumberFmt = new i18n.PhoneNumberFormat('CN', { type: 'TYPING' });
-let phoneNumber: string = '0755453';
-let formatResult: string = '';
+let typingFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', { type: 'TYPING' });
+let phoneNumber = '0755453';
+let formatResult = ''; // 通过如下方式对拨号中的号码格式化后，formatResult = '0755 453'
 for (let i = 0; i < phoneNumber.length; i++) {
   formatResult += phoneNumber.charAt(i);
-  formatResult = phoneNumberFmt.format(formatResult);
+  formatResult = typingFormat.format(formatResult);
 }
-console.log(formatResult); // formatResult: 0755 453
 // [End format_phone_numbers]
 
 const expectedFormattedPhoneNumber1 = '158 1234 2312';
@@ -82,13 +79,13 @@ struct PhoneNumberFormatting {
       Text($r('app.string.ResultsOfPhoneNumberFormat'))
         .textStyle()
         .fontWeight(FontWeight.Bold)
-      Text(assertEqual(formattedPhoneNumber1, expectedFormattedPhoneNumber1, $r('app.string.PhoneNumberFormat')))
+      Text(assertEqual(formattedPhoneNumber, expectedFormattedPhoneNumber1, $r('app.string.PhoneNumberFormat')))
         .textStyle()
-      Text(assertEqual(formattedPhoneNumber2, expectedFormattedPhoneNumber2, $r('app.string.RFC3966TypeNumberFormat')))
+      Text(assertEqual(formattedRFCPhoneNumber, expectedFormattedPhoneNumber2, $r('app.string.RFC3966TypeNumberFormat')))
         .textStyle()
       Text(assertEqual(isValid, expectedIsValid, $r('app.string.IsValidNumber')))
         .textStyle()
-      Text(assertEqual(locationName4, expectedLocationName4, $r('app.string.CNLocationName')))
+      Text(assertEqual(locationName, expectedLocationName4, $r('app.string.CNLocationName')))
         .textStyle()
       Text(assertEqual(formatResult, expectedFormatResult, $r('app.string.FormatResult')))
         .textStyle()

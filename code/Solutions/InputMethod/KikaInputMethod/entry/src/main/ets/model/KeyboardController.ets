@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-// [Start input_case_input_KeyboardControler]
-
 import deviceInfo from '@ohos.deviceInfo';
 import { inputMethodEngine, InputMethodExtensionContext, InputMethodSubtype } from '@kit.IMEKit';
 import { display } from '@kit.ArkUI';
@@ -502,7 +500,9 @@ class KeyboardController {
       })
     }
   }
+  // [End input_case_input_KeyboardControler358]
 
+  // [Start input_case_input_KeyboardControler507]
   private registerListener(): void {
     this.inputHandle.addLog('registerListener');
 
@@ -582,7 +582,9 @@ class KeyboardController {
       });
     }
   }
+  // [End input_case_input_KeyboardControler507]
 
+  // [Start input_case_input_KeyboardControler587]
   public isShiftKeyHold(): boolean {
     if (this.keyCodes.length === 0) {
       return false;
@@ -724,5 +726,4 @@ class KeyboardController {
 }
 
 export const keyboardController: KeyboardController = new KeyboardController();
-// [End input_case_input_KeyboardControler358]
-// [End input_case_input_KeyboardControler]
+// [End input_case_input_KeyboardControler587]

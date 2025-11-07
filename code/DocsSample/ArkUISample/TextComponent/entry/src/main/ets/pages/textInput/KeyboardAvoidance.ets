@@ -18,35 +18,41 @@ import { ComponentCard } from '../../common/Card';
 // [Start keyboard_avoid]
 @Entry
 @Component
-export struct KeyboardAvoidance {
+struct KeyboardAvoid {
   placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7'];
 
   build() {
-    // [StartExclude keyboard_avoid]
-    NavDestination() {
-      Column({ space: 12 }) {
-        ComponentCard({ title: $r('app.string.KeyboardAvoidance_title') }) {
-          Column({ space: 12 }) {
+    Scroll() {
+      Column() {
+        ForEach(this.placeHolderArr, (placeholder: string) => {
+          TextInput({ placeholder: 'TextInput ' + placeholder })
+            .margin(30)
+            // [StartExclude keyboard_avoid]
+            .id(placeholder)
             // [EndExclude keyboard_avoid]
-            Scroll() {
-              Column() {
-                ForEach(this.placeHolderArr, (placeholder: string) => {
-                  TextInput({ placeholder: 'TextInput ' + placeholder })
-                    .margin(30)
-                })
-              }
-            }
-            .height('95%')
-            .width('100%')
-          }
-        }
-        // [End keyboard_avoid]
+        })
       }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
     }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.KeyboardAvoidance_title'))
+    .height('100%')
+    .width('100%')
   }
+}
+// [End keyboard_avoid]
+
+@Builder
+export function KeyboardAvoidance() {
+  NavDestination() {
+    Column({ space: 12 }) {
+      ComponentCard({ title: $r('app.string.KeyboardAvoidance_title') }) {
+        Column({ space: 12 }) {
+          KeyboardAvoid()
+        }
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .padding({ left: 12, right: 12 })
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.KeyboardAvoidance_title'))
 }

@@ -38,7 +38,7 @@ export struct LongList {
           .scrollBar(BarState.Off)
           .friction(0.6)
           .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
-          .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
+          .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true, effectEdge: EffectEdge.START })
           .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
             console.info('first' + firstIndex);
             console.info('last' + lastIndex);

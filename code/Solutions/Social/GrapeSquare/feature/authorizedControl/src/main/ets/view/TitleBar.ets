@@ -16,7 +16,7 @@
 @Component
 export struct TitleBar {
   private title: Resource = $r('app.string.explore');
-  private image: Resource = $r('app.media.addfriend')
+  private image: Resource = $r('app.media.addfriend');
 
   build() {
     Column() {

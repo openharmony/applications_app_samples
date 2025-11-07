@@ -18,36 +18,48 @@ import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, common } from '@kit.AbilityKit';
 
-let context = getContext(this) as common.UIAbilityContext;
 let atManager = abilityAccessCtrl.createAtManager();
-
-// 向用户请求位置权限设置。
-atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION']).then((data) => {
-  console.info('data:' + JSON.stringify(data));
-  console.info('data permissions:' + data.permissions);
-  console.info('data authResults:' + data.authResults);
-}).catch((error: BusinessError) => {
-  console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
-})
 
 @Entry
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+  uiContext: UIContext = this.getUIContext();
+
+  // 组件的生命周期函数，创建组件实例后触发
+  aboutToAppear(): void {
+    let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+    if (!context) {
+      console.error('context is undefined');
+      return;
+    }
+    // 向用户请求位置权限，对整个应用生效
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION']).then((data) => {
+      console.info('data:' + JSON.stringify(data));
+      console.info('data permissions:' + data.permissions);
+      console.info('data authResults:' + data.authResults);
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+    })  
+  }
 
   build() {
     Column() {
+      // Web组件的geolocationAccess属性默认为true，可以显式配置为false以禁止Web组件获取地理位置信息
       Web({ src: $rawfile('getLocation.html'), controller: this.controller })
         .geolocationAccess(true)
-        .onGeolocationShow((event) => { // 地理位置权限申请通知
-          AlertDialog.show({
-            title: 'Location permission requests',
-            message: 'Whether to allow access to location information',
+        .onGeolocationShow((event) => {
+          // 位置权限申请通知仅对当前Web组件生效，应用内的其他Web组件不受影响
+          this.uiContext.showAlertDialog({
+            title: '位置权限请求',
+            message: '是否允许获取位置信息',
             primaryButton: {
               value: 'cancel',
               action: () => {
                 if (event) {
-                  event.geolocation.invoke(event.origin, false, false); // 不允许此站点地理位置权限请求
+                  // 不允许此站点位置权限请求
+                  // 注意invoke的第3个参数表示是否记住当前选择，如果传true，则下次不再弹框
+                  event.geolocation.invoke(event.origin, false, false);
                 }
               }
             },
@@ -55,13 +67,17 @@ struct WebComponent {
               value: 'ok',
               action: () => {
                 if (event) {
-                  event.geolocation.invoke(event.origin, true, false); // 允许此站点地理位置权限请求
+                  // 允许此站点位置权限请求
+                  // 注意invoke的第3个参数表示是否记住当前选择，如果传true，则下次不再弹框
+                  event.geolocation.invoke(event.origin, true, false);
                 }
               }
             },
             cancel: () => {
               if (event) {
-                event.geolocation.invoke(event.origin, false, false); // 不允许此站点地理位置权限请求
+                // 不允许此站点位置权限请求
+                // 注意invoke的第3个参数表示是否记住当前选择，如果传true，则下次不再弹框
+                event.geolocation.invoke(event.origin, false, false);
               }
             }
           })

@@ -17,14 +17,6 @@
       "value": "国际化"
     },
     {
-      "name": "LocaleCulturalDivision",
-      "value": "区域标识与文化习惯划分"
-    },
-    {
-      "name": "LocaleCulturalDivisionExample",
-      "value": "区域标识与文化习惯划分 (时间日期格式化为例)"
-    },
-    {
       "name": "LanguagePreferenceSetting",
       "value": "设置语言与用户偏好"
     },

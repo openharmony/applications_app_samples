@@ -1,0 +1,14 @@
+{
+  "devices": {
+    "general": [
+      "wearable"
+    ],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.Graphic.Graphic2D.NativeDrawing"
+        ]
+      }
+    ]
+  }
+}

@@ -12,11 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start pageTransition_template3_pageTransitionSrc1_start]
+// PageTransitionSrc1
 @Entry
 @Component
 struct PageTransitionSrc1 {
   build() {
     Column() {
+      // $r('app.media.mountain')需要替换为开发者所需的资源文件
       Image($r('app.media.mountain'))
         .width('90%')
         .height('80%')
@@ -56,3 +59,4 @@ struct PageTransitionSrc1 {
       .slide(SlideEffect.Right)
   }
 }
+// [End pageTransition_template3_pageTransitionSrc1_start]

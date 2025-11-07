@@ -18,22 +18,24 @@
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
-    "deviceTypes":  [],
+    "deviceTypes": [
+      "phone",
+      "2in1",
+      "tablet"
+    ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
     "abilities": [
-    {
+      {
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
-          "icon": "$media:layered_image",
+        "icon": "$media:layered_image",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon" : "$media:startIcon",
-        "startWindowBackground" : "$color:start_window_background"
-          ,
-        "exported": true
-          ,
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
         "skills": [
           {
             "entities": [
@@ -44,7 +46,49 @@
             ]
           }
         ]
-      }],"extensionAbilities": [
+      },
+      {
+        "name": "ExplicitAbility",
+        "srcEntry": "./ets/explicitability/ExplicitAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ImplicitAbility",
+        "srcEntry": "./ets/implicitability/ImplicitAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
         "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",

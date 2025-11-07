@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import { LocationControl } from '../authorizedControl/LocationControl'
+import { LocationControl } from '../authorizedControl/LocationControl';
 import { promptActionFn } from '../model/DataFactory';
 
 @Observed
@@ -33,7 +33,7 @@ class hotSearchItem {
 
 @Component
 export struct TrendsDetailView {
-  private scroller: Scroller = new Scroller()
+  private scroller: Scroller = new Scroller();
   //微博热搜榜数据数组
   @State hotSearchGroup: hotSearchItem[] = [
     new hotSearchItem('hotfirstitem', $r('app.string.hot_first_item'), $r('app.media.label_hot')),
@@ -253,7 +253,7 @@ export struct TrendsDetailView {
 export struct gird {
   @StorageLink('location') Location: string = '';
   image: Resource = $r('app.media.photo93');
-  message: Resource = $r('app.string.same_city')
+  message: Resource = $r('app.string.same_city');
 
   build() {
     Column() {

@@ -38,21 +38,21 @@ export struct DynamicHome {
           .margin(20)
           .onClick(() => {
             router.back();
-          })
+          });
         Button($r('app.string.home_button_page_one'), { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
             this.onEntryClick();
-          })
+          });
       }
-    }.title($r('app.string.home_title')).navDestination(this.PageMap)
+    }.title($r('app.string.home_title')).navDestination(this.PageMap);
   }
 
   async loadPageOne(key: String): Promise<void> {
-    if (key === "pageOne") {
-      let PageObj: Record<string, () => void> = await import("../model/PageOneLoader");
+    if (key === 'pageOne') {
+      let PageObj: Record<string, () => void> = await import('../model/PageOneLoader');
       this.PageOneLoader = PageObj.PageOneLoader;
     }
   }
@@ -63,9 +63,9 @@ export struct DynamicHome {
       this.loadPageOne('pageOne');
       this.pageInfos.clear();
       this.pageInfos.pushPathByName('pageOne', '');
-      logger.info("DynamicImport Success");
+      logger.info('DynamicImport Success');
     } catch (error) {
-      logger.info("DynamicImport Fail");
+      logger.info('DynamicImport Fail');
     }
   }
 }

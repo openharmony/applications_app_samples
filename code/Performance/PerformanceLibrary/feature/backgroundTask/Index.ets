@@ -12,6 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export { BackgroundTaskHomeView } from './src/main/ets/view/BackgroundTaskHomeView'
-export { TransientTaskView } from './src/main/ets/view/TransientTaskView'
-export { LongTermTaskView } from './src/main/ets/view/LongTermTaskView'
+export { BackgroundTaskHomeView } from './src/main/ets/view/BackgroundTaskHomeView';
+export { TransientTaskView } from './src/main/ets/view/TransientTaskView';
+export { LongTermTaskView } from './src/main/ets/view/LongTermTaskView';

@@ -14,11 +14,13 @@
  */
 
 // [Start reusable_for_composite]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_ReusableComponent]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'ReusableComponent_';
+const NUMBER3 = 3;
+const NUMBER5 = 5;
 
 class MyDataSource implements IDataSource {
   private dataArray: string[] = [];
@@ -94,9 +96,9 @@ struct MyComponent {
     List({ space: 40 }) {
       LazyForEach(this.data, (item: string, index: number) => {
         ListItem() {
-          if (index % 3 === 0) { // 当索引是 3 的倍数时（例如 0, 3, 6, 9...），调用 itemBuilderOne
+          if (index % NUMBER3 === 0) {
             this.itemBuilderOne(item);
-          } else if (index % 5 === 0) { // 当索引是 5 的倍数时（例如 5, 10, 15...），调用 itemBuilderTwo
+          } else if (index % NUMBER5 === 0) {
             this.itemBuilderTwo(item);
           } else {
             this.itemBuilderThree(item);

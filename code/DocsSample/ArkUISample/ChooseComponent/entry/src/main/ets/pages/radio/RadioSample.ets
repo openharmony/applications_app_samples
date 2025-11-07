@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,85 +14,63 @@
  */
 
 // [Start click_radio_to_change_function]
+// xxx.ets
 import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
-export struct RadioSample {
-  @State message: string = 'Ringing';
-  pathStack: NavPathStack = new NavPathStack();
-
-  resourceToString(resource: Resource): string {
-    return getContext(this).resourceManager.getStringSync(resource);
-  }
+export struct RadioExample {
+  @State rst: promptAction.ShowToastOptions = { 'message': 'Ringing mode.' };
+  @State vst: promptAction.ShowToastOptions = { 'message': 'Vibration mode.' };
+  @State sst: promptAction.ShowToastOptions = { 'message': 'Silent mode.' };
 
   build() {
+    // [StartExclude click_radio_to_change_function]
     NavDestination() {
-      Column({ space: 8 }) {
-        Column({ space: 8 }) {
-          Text(this.message).id('message')
-          Row() {
-            // [Start set_radio_status]
-            Radio({ value: 'Ringing', group: 'radioGroup' })
-              .checked(true)
-                // [End set_radio_status]
-              .id('ringing')
-              .onChange((isChecked: boolean) => {
-                if (isChecked) {
-                  // 切换为响铃模式
-                  // [StartExclude click_radio_to_change_function]
-                  this.message = 'Ringing mode';
-                  // [EndExclude click_radio_to_change_function]
-                  promptAction.showToast({ 'message': 'Ringing mode.' });
-                }
-              })
-            Text('Ringing')
-          }.width('25%')
-
-          // [Start change_radio_function]
-          Row() {
-            Radio({ value: 'Vibration', group: 'radioGroup' })
-              .id('vibration')
-              .onChange((isChecked: boolean) => {
-                if (isChecked) {
-                  // 切换为振动模式
-                  // [StartExclude change_radio_function]
-                  this.message = 'Vibration';
-                  // [EndExclude change_radio_function]
-                  promptAction.showToast({ 'message': 'Vibration mode.' });
-                }
-              })
-            Text('Vibration')
-          }.width('25%')
-
-          Row() {
-            Radio({ value: 'Silent', group: 'radioGroup' })
-              .id('silent')
-              .onChange((isChecked: boolean) => {
-                if (isChecked) {
-                  // 切换为静音模式
-                  // [StartExclude change_radio_function]
-                  this.message = 'Silent';
-                  // [EndExclude change_radio_function]
-                  promptAction.showToast({ 'message': 'Silent mode.' });
-                }
-              })
-            Text('Silent')
-          }.width('25%')
-          // [End change_radio_function]
+      // [EndExclude click_radio_to_change_function]
+      Row() {
+        Column() {
+          Radio({ value: 'Ringing', group: 'radioGroup' }).checked(true)
+            .height(50)
+            .width(50)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
+                // 切换为响铃模式
+                this.getUIContext().getPromptAction().openToast(this.rst);
+              }
+            })
+          Text('Ringing')
         }
-        .alignItems(HorizontalAlign.Center)
-        .backgroundColor('#fff')
-        .borderRadius(12)
-        .padding(12)
-        .width('100%')
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
+
+        Column() {
+          Radio({ value: 'Vibration', group: 'radioGroup' })
+            .height(50)
+            .width(50)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
+                // 切换为振动模式
+                this.getUIContext().getPromptAction().openToast(this.vst);
+              }
+            })
+          Text('Vibration')
+        }
+
+        Column() {
+          Radio({ value: 'Silent', group: 'radioGroup' })
+            .height(50)
+            .width(50)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
+                // 切换为静音模式
+                this.getUIContext().getPromptAction().openToast(this.sst);
+              }
+            })
+          Text('Silent')
+        }
+      }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+      // [StartExclude click_radio_to_change_function]
     }
-    .backgroundColor('#f1f2f3')
-    .title(this.resourceToString($r('app.string.RadioSample_title')))
+    // [EndExclude click_radio_to_change_function]
   }
 }
 // [End click_radio_to_change_function]

@@ -1,0 +1,354 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// [Start skills_custom]
+// [Start domainVerify_true]
+// [Start pull_results]
+{
+  "module": {
+    // [StartExclude  skills_custom]
+    // [StartExclude  domainVerify_true]
+    // [StartExclude  pull_results]
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    // [EndExclude  pull_results]
+    // [EndExclude  domainVerify_true]
+    // [EndExclude  skills_custom]
+    "abilities": [
+      // [StartExclude  skills_custom]
+      // [StartExclude  domainVerify_true]
+      // [StartExclude  pull_results]
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "OpenAppAbility1",
+        "srcEntry": "./ets/OpenApp/OpenAppAbility1.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "OpenAppAbility2",
+        "srcEntry": "./ets/OpenApp/OpenAppAbility2.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DeepOpenLinkAbility",
+        "srcEntry": "./ets/DeepAbility/DeepOpenLinkAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DeepStartAbility",
+        "srcEntry": "./ets/DeepAbility/DeepStartAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DeepWebAbility",
+        "srcEntry": "./ets/DeepAbility/DeepWebAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      // [EndExclude  skills_custom]
+      {
+        // [StartExclude  skills_custom]
+        "name": "DeepEntryAbility",
+        "srcEntry": "./ets/DeepAbility/DeepAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        // [EndExclude  skills_custom]
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          },
+          {
+            "actions": [
+              // actions不能为空，actions为空会造成目标方匹配失败。
+              "ohos.want.action.viewData"
+            ],
+            "uris": [
+              {
+                // scheme必选，可以自定义，以link为例，需要替换为实际的scheme
+                "scheme": "link",
+                // host必选，配置待匹配的域名
+                "host": "www.example.com"
+              }
+            ]
+          } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
+        ]
+      },
+      // [EndExclude  domainVerify_true]
+      // [StartExclude  skills_custom]
+      {
+        // [StartExclude  domainVerify_true]
+        "name": "WantAbility1",
+        "srcEntry": "./ets/want/WantAbility1.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        // [EndExclude  domainVerify_true]
+        "skills": [
+          {
+            "entities": [
+              "entity.system.browsable"
+            ],
+            "actions": [
+              "ohos.want.action.viewData"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example.com"
+              }
+            ],
+            "domainVerify": true
+          }
+        ]
+      },
+      // [EndExclude  pull_results]
+      // [StartExclude  domainVerify_true]
+      {
+        // [StartExclude  pull_results]
+        "name": "WantAbility2",
+        "srcEntry": "./ets/want/WantAbility2.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        // [EndExclude  pull_results]
+        "skills": [
+          {
+            "entities": [
+              "entity.system.browsable"
+            ],
+            "actions": [
+              "ohos.want.action.viewData"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example.com"
+              }
+            ],
+            "domainVerify": true
+          }
+        ]
+      },
+      // [StartExclude  pull_results]
+      {
+        "name": "loginAbility",
+        "srcEntry": "./ets/clearability/LoginAbility.ets",
+        "description": "$string:ClearAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:ClearAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            // [Start pulllink_login]
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "developer.huawei.com",
+                "path": "consumer",
+                "linkFeature": "Login"
+              }
+            ]
+            // [End pulllink_login]
+          }
+        ]
+      },
+      // [Start pulllink_clearcache]
+      {
+        "name": "ClearAbility",
+        "srcEntry": "./ets/clearability/ClearAbility.ets",
+        "description": "$string:ClearAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:ClearAbility_label",
+        // [StartExclude  pulllink_clearcache]
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        // [EndExclude  pulllink_clearcache]
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "storage",
+                "host": "developer.huawei.com",
+                "path": "clearcache",
+                "linkFeature": "AppStorageMgmt"
+              }
+            ]
+          }
+        ]
+      }
+      // [End pulllink_clearcache]
+      // [EndExclude  pull_results]
+      // [EndExclude  domainVerify_true]
+      // [EndExclude  skills_custom]
+    ],
+    // [StartExclude  skills_custom]
+    // [StartExclude  domainVerify_true]
+    // [StartExclude  pull_results]
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:location_reason",
+        "usedScene": {
+          "abilities": [ "EntryAbility" ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "$string:location_reason",
+        "usedScene": {
+          "abilities": [ "EntryAbility" ],
+          "when": "always"
+        }
+      }
+    ],
+    // [EndExclude  pull_results]
+    // [EndExclude  domainVerify_true]
+    // [EndExclude  skills_custom]
+  }
+}
+// [End pull_results]
+// [End domainVerify_true]
+// [End skills_custom]

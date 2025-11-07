@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/PageOneDoubleSYN",
+    "pages/PageTwoSigleSYN",
+    "pages/PageTwoWaySYN",
+    "pages/PageFourStateVariableSYN",
+    "pages/PageFiveShare",
+    "pages/PageSixLocalStorage",
+    "pages/PageSixLocalStorageA",
+    "pages/PageSixLocalStorageB",
+    "pages/PageMyNavigation",
+    "pages/PageLocalStorageLink",
+    "pages/LocalDateSample",
+    "pages/LocalMapSample",
+    "pages/LocalSetSample",
+    "pages/ChangeLocalSetSample"
+  ]
+}

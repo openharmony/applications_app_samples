@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start egl_render]
+// EGLRender.cpp
 #include "EGLRender.h"
 #include "EGLConst.h"
 #include <EGL/egl.h>
@@ -75,6 +76,7 @@ GLuint LoadShader(GLenum type, const char *shaderSrc)
     return PROGRAM_ERROR;
 }
 
+// 创建program
 GLuint CreateProgram(const char *vertexShader, const char *fragShader)
 {
     if ((vertexShader == nullptr) || (fragShader == nullptr)) {
@@ -103,7 +105,7 @@ GLuint CreateProgram(const char *vertexShader, const char *fragShader)
         return PROGRAM_ERROR;
     }
 
-    // The gl function has no return value.
+    //  该gl函数没有返回值。
     glAttachShader(program, vertex);
     glAttachShader(program, fragment);
     glLinkProgram(program);
@@ -138,7 +140,7 @@ bool EGLRender::SetUpEGLContext(void *window)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EGLRender", "EglContextInit execute");
     eglWindow_ = (EGLNativeWindowType)(window);
-    // Init display.
+    // 初始化display。
     eglDisplay_ = eglGetDisplay(EGL_DEFAULT_DISPLAY);
     if (eglDisplay_ == EGL_NO_DISPLAY) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "eglGetDisplay: unable to get EGL display");
@@ -151,15 +153,15 @@ bool EGLRender::SetUpEGLContext(void *window)
                      "eglInitialize: unable to get initialize EGL display");
         return false;
     };
-    // Select configuration.
+    // 选择配置。
     const EGLint maxConfigSize = 1;
     EGLint numConfigs;
     if (!eglChooseConfig(eglDisplay_, ATTRIB_LIST, &eglConfig_, maxConfigSize, &numConfigs)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "eglChooseConfig: unable to choose configs");
         return false;
     };
-    // CreateEnvironment.
-    // Create surface.
+    // 创建环境。
+    // 创建 Surface。
     eglSurface_ = eglCreateWindowSurface(eglDisplay_, eglConfig_, eglWindow_, NULL);
     if (eglSurface_ == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender",
@@ -171,13 +173,13 @@ bool EGLRender::SetUpEGLContext(void *window)
                      "eglCreateWindowSurface: unable to create surface");
         return false;
     }
-    // Create context.
+    // 创建上下文。
     eglContext_ = eglCreateContext(eglDisplay_, eglConfig_, EGL_NO_CONTEXT, CONTEXT_ATTRIBS);
     if (!eglMakeCurrent(eglDisplay_, eglSurface_, eglSurface_, eglContext_)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "eglMakeCurrent failed");
         return false;
     }
-    // Create program.
+    // 创建program。
     program_ = CreateProgram(VERTEX_SHADER, FRAGMENT_SHADER);
     if (program_ == PROGRAM_ERROR) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "CreateProgram: unable to create program");
@@ -194,7 +196,7 @@ GLint EGLRender::PrepareDraw()
         return POSITION_ERROR;
     }
 
-    // The gl function has no return value.
+    // 该gl函数没有返回值。
     glViewport(DEFAULT_X_POSITION, DEFAULT_Y_POSITION, width_, height_);
     glClearColor(GL_RED_DEFAULT, GL_GREEN_DEFAULT, GL_BLUE_DEFAULT, GL_ALPHA_DEFAULT);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -203,6 +205,7 @@ GLint EGLRender::PrepareDraw()
     return glGetAttribLocation(program_, POSITION_NAME);
 }
 
+// 绘制五角星
 void EGLRender::DrawStar(bool drawColor)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EGLRender", "Draw");
@@ -212,24 +215,26 @@ void EGLRender::DrawStar(bool drawColor)
         return;
     }
 
+    // 绘制背景
     if (!ExecuteDraw(position, BACKGROUND_COLOR, BACKGROUND_RECTANGLE_VERTICES)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "Draw execute draw background failed");
         return;
     }
 
-    // Divided into five quadrilaterals and calculate one of the quadrilateral's Vertices
+    // 将其划分为五个四边形，并计算其中一个四边形的顶点
     GLfloat rotateX = 0;
     GLfloat rotateY = FIFTY_PERCENT * height_;
     GLfloat centerX = 0;
-    // Convert DEG(54° & 18°) to RAD
+    // 将角度 54° 和 18° 转换为弧度
     GLfloat centerY = -rotateY * (M_PI / 180 * 54) * (M_PI / 180 * 18);
-    // Convert DEG(18°) to RAD
+    // 将角度 18° 转换为弧度
     GLfloat leftX = -rotateY * (M_PI / 180 * 18);
     GLfloat leftY = 0;
-    // Convert DEG(18°) to RAD
+    // 将角度 18° 转换为弧度
     GLfloat rightX = rotateY * (M_PI / 180 * 18);
     GLfloat rightY = 0;
 
+    // 确定绘制四边形的顶点，使用绘制区域的百分比表示
     const GLfloat shapeVertices[] = {centerX / width_, centerY / height_, leftX / width_,  leftY / height_,
                                      rotateX / width_, rotateY / height_, rightX / width_, rightY / height_};
     auto color = drawColor ? DRAW_COLOR : CHANGE_COLOR;
@@ -238,17 +243,21 @@ void EGLRender::DrawStar(bool drawColor)
         return;
     }
 
-    // Convert DEG(72°) to RAD
+    // 将角度 72° 转换为弧度
     GLfloat rad = M_PI / 180 * 72;
-    // Rotate four times
+    // 旋转四次。
+    // 在头文件EGLConst.h中定义，NUM_0的值为0，NUM_4的值为4
     for (int i = NUM_0; i < NUM_4; ++i) {
+        // 旋转得其他四个四边形的顶点
         Rotate2d(centerX, centerY, &rotateX, &rotateY, rad);
         Rotate2d(centerX, centerY, &leftX, &leftY, rad);
         Rotate2d(centerX, centerY, &rightX, &rightY, rad);
 
+        // 确定绘制四边形的顶点，使用绘制区域的百分比表示
         const GLfloat shapeVertices[] = {centerX / width_, centerY / height_, leftX / width_,  leftY / height_,
                                          rotateX / width_, rotateY / height_, rightX / width_, rightY / height_};
 
+        // 绘制图形
         if (!ExecuteDraw(position, color, shapeVertices)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "Draw execute draw shape failed");
             return;
@@ -263,6 +272,7 @@ void EGLRender::DrawStar(bool drawColor)
     }
 }
 
+// [StartExclude egl_render]
 void EGLRender::Clear()
 {
     if ((eglDisplay_ == nullptr) || (eglSurface_ == nullptr) || (eglContext_ == nullptr) ||
@@ -279,6 +289,7 @@ void EGLRender::Clear()
     glFinish();
     eglSwapBuffers(eglDisplay_, eglSurface_);
 }
+// [EndExclude egl_render]
 
 bool EGLRender::ExecuteDraw(GLint position, const GLfloat *color, const GLfloat shapeVertices[])
 {
@@ -287,7 +298,7 @@ bool EGLRender::ExecuteDraw(GLint position, const GLfloat *color, const GLfloat 
         return false;
     }
 
-    // The gl function has no return value.
+    // 该gl函数没有返回值。
     glVertexAttribPointer(position, POINTER_SIZE, GL_FLOAT, GL_FALSE, 0, shapeVertices);
     glEnableVertexAttribArray(position);
     glVertexAttrib4fv(1, color);
@@ -303,6 +314,7 @@ void EGLRender::SetEGLWindowSize(int width, int height)
     height_ = height;
 }
 
+// 释放相关资源
 void EGLRender::DestroySurface()
 {
     if ((eglDisplay_ == nullptr) || (eglSurface_ == nullptr) || (!eglDestroySurface(eglDisplay_, eglSurface_))) {
@@ -320,3 +332,4 @@ void EGLRender::DestroySurface()
     eglSurface_ = EGL_NO_SURFACE;
     eglContext_ = EGL_NO_CONTEXT;
 }
+// [End egl_render]

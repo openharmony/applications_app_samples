@@ -14,9 +14,11 @@
  */
 
 import { ComponentCard } from '../../common/Card';
+import resource from '../../common/resource';
+// [Start styledStringHtml_start]
+// xxx.ets
 import { image } from '@kit.ImageKit';
 import { LengthMetrics } from '@kit.ArkUI';
-import resource from '../../common/resource';
 
 @Entry
 @Component
@@ -50,12 +52,14 @@ export struct StyledStringHtml {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        //'app.string.StyledStringHtml_title'资源文件中的value值为"格式转换"
         ComponentCard({ title: $r('app.string.StyledStringHtml_title') }) {
-          // [Start styled_string_html]
           Column() {
             Text(undefined, { controller: this.controller1 }).height(100).id('text1')
             Row() {
+              //'app.string.StyledStringHtml_Button_1'资源文件中的value值为"添加属性字符串"
               Button($r('app.string.StyledStringHtml_Button_1')).onClick(() => {
+                //'app.string.StyledStringHtml_Text_1'资源文件中的value值为"属性字符串"
                 let mutableStyledString1: MutableStyledString =
                   new MutableStyledString(resource.resourceToString($r('app.string.StyledStringHtml_Text_1')), [{
                   start: 0,
@@ -73,9 +77,11 @@ export struct StyledStringHtml {
                 this.styledString = mutableStyledString1;
                 this.controller1.setStyledString(mutableStyledString1);
               }).margin(5)
+              //'app.string.StyledStringHtml_Button_2'资源文件中的value值为"toHtml"
               Button($r('app.string.StyledStringHtml_Button_2')).onClick(() => {
                 this.html = StyledString.toHtml(this.styledString);
               }).margin(5)
+              //'app.string.StyledStringHtml_Button_3'资源文件中的value值为"fromHtml"
               Button($r('app.string.StyledStringHtml_Button_3')).onClick(async () => {
                 let styledString = await StyledString.fromHtml(this.html);
                 this.controller2.setStyledString(styledString);
@@ -85,7 +91,6 @@ export struct StyledStringHtml {
             Text(undefined, { controller: this.controller2 }).height(100).id('text2')
             Text(this.html).id('text3')
           }.width('100%')
-          // [End styled_string_html]
         }
       }
       .width('100%')
@@ -93,6 +98,8 @@ export struct StyledStringHtml {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    //'app.string.StyledStringHtml_title'资源文件中的value值为"格式转换"
     .title($r('app.string.StyledStringHtml_title'))
   }
 }
+// [End styledStringHtml_start]

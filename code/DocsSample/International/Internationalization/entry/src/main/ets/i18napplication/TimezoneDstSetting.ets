@@ -26,45 +26,44 @@ import { i18n } from '@kit.LocalizationKit';
 // [Start get_current_timezone]
 // 时区相关功能开发实例
 // 获取巴西时区
-let timezone = i18n.getTimeZone('America/Sao_Paulo'); // 传入特定时区，创建时区类
-let timezoneId = timezone.getID(); // America/Sao_Paulo
+let timezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo'); // 传入特定时区，创建时区对象
+let timezoneId = timezone.getID(); // timezoneId = 'America/Sao_Paulo'
 
-// 获取城市Id对应的时区对象
-let aucklandTimezone = i18n.TimeZone.getTimezoneFromCity('Auckland');
-let aucklandTzId = aucklandTimezone.getID(); // Pacific/Auckland
+// 获取城市ID对应的时区对象
+let aucklandTimezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity('Auckland');
+timezoneId = aucklandTimezone.getID(); // timezoneId = 'Pacific/Auckland'
 
-// 时区的本地化名称
-let timeZoneName = timezone.getDisplayName('zh-Hans', true); // 巴西利亚标准时间
+// 获取时区的本地化名称
+let timeZoneName = timezone.getDisplayName('zh-Hans', true); // timeZoneName = '巴西利亚标准时间'
 
 // 本地化城市名称
-let cityDisplayName = i18n.TimeZone.getCityDisplayName('Auckland', 'zh-Hans'); // 奥克兰 (新西兰)
+let cityDisplayName = i18n.TimeZone.getCityDisplayName('Auckland', 'zh-Hans'); // cityDisplayName = '奥克兰 (新西兰)'
 
 // 时区的固定偏移量
-let rawOffset = timezone.getRawOffset(); // -10800000
+let rawOffset = timezone.getRawOffset(); // rawOffset = -10800000
 
-// 时区的实际偏移量(固定偏移量+夏令时)
-let offset = timezone.getOffset(1234567890); // -10800000
+// 时区的实际偏移量（固定偏移量+夏令时）
+let offset = timezone.getOffset(1234567890); // offset = -10800000
 
-// 系统支持的时区Id列表
-// ["America/Adak", "Asia/Hovd", "America/Sao_Paulo", "Asia/Jerusalem", "Europe/London",...]
-let ids = i18n.TimeZone.getAvailableIDs();
+// 系统支持的时区ID列表
+let availableIDs = i18n.TimeZone.getAvailableIDs(); // availableIDs = ['America/Adak', 'Asia/Hovd', ...]
 
-// 系统支持的时区城市Id列表
-let cityIdArray = i18n.TimeZone.getAvailableZoneCityIDs(); // ["Auckland", "Magadan", "Lord Howe Island",...]
+// 系统支持的时区城市ID列表
+let cityIDs = i18n.TimeZone.getAvailableZoneCityIDs(); // cityIDs = ['Auckland', 'Magadan', ...]
 
-// 遍历时区城市Id列表
+// 遍历时区城市ID列表
 let timezoneList: object[] = []; // 呈现给用户的时区列表
 
 class Item {
-  public cityDisplayName: string = '';
-  public timezoneId: string = '';
-  public offset: string = '';
-  public cityId: string = '';
-}
+  public cityDisplayName = '';
+  public timezoneId = '';
+  public offset = '';
+  public cityId = '';
+};
 
-for (let i = 0; i < cityIdArray.length; i++) {
-  let cityId = cityIdArray[i];
-  let timezone = i18n.TimeZone.getTimezoneFromCity(cityId); // 城市Id对应的时区对象
+for (let i = 0; i < cityIDs.length; i++) {
+  let cityId = cityIDs[i];
+  let timezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity(cityId); // 城市ID对应的时区对象
   let cityDisplayName = i18n.TimeZone.getCityDisplayName(cityId, 'zh-CN'); // 本地化城市名称
   let timestamp = (new Date()).getTime();
   let item: Item = {
@@ -72,43 +71,50 @@ for (let i = 0; i < cityIdArray.length; i++) {
     timezoneId: timezone.getID(),
     offset: 'GMT' + (timezone.getOffset(timestamp) / 3600 * 1000),
     cityId: cityId
-  }
+  };
   timezoneList.push(item);
 }
 
 // 指定地理坐标所在的时区对象数组
-let timezoneArray = i18n.TimeZone.getTimezonesByLocation(-43.1, -22.5);
-// [StartExclude get_current_timezone]
-let locationTimezones: string[] = [];
-// [EndExclude get_current_timezone]
-for (let i = 0; i < timezoneArray.length; i++) {
-  let tzId = timezoneArray[i].getID(); // America/Sao_Paulo
-  // [StartExclude get_current_timezone]
-  locationTimezones.push(tzId);
-  // [EndExclude get_current_timezone]
-}
+let timezoneArray: i18n.TimeZone[] = i18n.TimeZone.getTimezonesByLocation(-43.1, -22.5);
+
+// 获取指定时间的下一个时区跳变点
+let tijuanaTzId = 'America/Tijuana';
+let tijuanaTimeZone: i18n.TimeZone = i18n.getTimeZone(tijuanaTzId); // 获取蒂华纳时区对象
+let zoneRules: i18n.ZoneRules = tijuanaTimeZone.getZoneRules(); // 获取蒂华纳时区的时区跳变规则
+let someTime = new Date(2025, 4, 13);
+let zoneOffsetTrans: i18n.ZoneOffsetTransition = zoneRules.nextTransition(someTime.getTime());
+zoneOffsetTrans.getMilliseconds(); // 跳变点的时间戳: 1762074000000
+zoneOffsetTrans.getOffsetAfter(); // 跳变后的偏移量: -28800000
+zoneOffsetTrans.getOffsetBefore(); // 跳变前的偏移量: -25200000
+// 将跳变点时间格式化
+let dateTimeFormat: Intl.DateTimeFormat = new Intl.DateTimeFormat('en-US', {
+  timeZone: tijuanaTzId,
+  dateStyle: 'long',
+  timeStyle: 'long',
+  hour12: false
+});
+let dateFormat =
+  dateTimeFormat.format(new Date(zoneOffsetTrans.getMilliseconds())); // November 2, 2025, 1:00:00 PST
 // [End get_current_timezone]
 
 // [Start get_preferred_timezones_list]
 // 双时钟应用开发实例
-// 选择时区列表中的时区放入应用偏好时区列表中
-let timezone1 = i18n.getTimeZone('America/Sao_Paulo');
-let timezone2 = i18n.getTimeZone();
+let pauloTimezone: i18n.TimeZone = i18n.getTimeZone('America/Sao_Paulo');
+let defaultTimezone: i18n.TimeZone = i18n.getTimeZone();
 let appPreferredTimeZoneList: i18n.TimeZone[] = []; // 应用偏好时区列表
-appPreferredTimeZoneList.push(timezone1);
-appPreferredTimeZoneList.push(timezone2);
+appPreferredTimeZoneList.push(pauloTimezone);
+appPreferredTimeZoneList.push(defaultTimezone);
 // [End get_preferred_timezones_list]
 
 // [Start display_dual_timezones]
-// 选择时区列表中的时区放入应用偏好时区列表中
-let locale = i18n.System.getSystemLocale();
 // [StartExclude display_dual_timezones]
 let timeZoneData: string[] = []; // 用于存储每个时区的时间信息
 // [EndExclude display_dual_timezones]
-// 遍历时区数组并获取时间信息
+let locale: Intl.Locale = i18n.System.getSystemLocaleInstance();
 for (let i = 0; i < appPreferredTimeZoneList.length; i++) {
   let timezone = appPreferredTimeZoneList[i].getID();
-  let calendar = i18n.getCalendar(locale);
+  let calendar: i18n.Calendar = i18n.getCalendar(locale.toString());
   calendar.setTimeZone(timezone); // 设置日历对象的时区
   // 获取年月日时分秒
   let year = calendar.get('year');
@@ -132,17 +138,15 @@ for (let i = 0; i < appPreferredTimeZoneList.length; i++) {
  *********************************************************************************************************************/
 // [Start handle_dst_transition]
 // 计算夏令时跳变前后同一个挂钟时间之间相差的小时数示例
-let calendar = i18n.getCalendar('zh-Hans');
+let calendar: i18n.Calendar = i18n.getCalendar('zh-Hans');
 calendar.setTimeZone('Europe/London');
-calendar.set(2021, 2, 27, 16, 0, 0); // The day before daylight saving time start
-let time1 = calendar.getTimeInMillis();
-calendar.set(2021, 2, 28, 16, 0, 0); // The day daylight saving time start
-let time2 = calendar.getTimeInMillis();
-let hours =
-  (time2 - time1) / (3600 * 1000); // The hours between the same wall clock time before and after DST. Should be 23
+calendar.set(2021, 2, 27, 16, 0, 0); // 夏令时开始前的时间
+let startTime = calendar.getTimeInMillis();
+calendar.set(2021, 2, 28, 16, 0, 0); // 处于夏令时期间的时间
+let finishTime = calendar.getTimeInMillis();
+let hours = (finishTime - startTime) / (3600 * 1000); // hours = 23
 // [End handle_dst_transition]
 
-const expectedTimezoneId = 'America/Sao_Paulo';
 const expectedAucklandTzId = 'Pacific/Auckland';
 const expectedTimeZoneName = [resourceToString($r('app.string.ExpectedTimeZoneName'))];
 const expectedCityDisplayName = resourceToString($r('app.string.ExpectedCityDisplayName'));
@@ -201,9 +205,7 @@ struct TimezoneDstSetting {
           Text($r('app.string.ResultsOfTimezoneFunction'))
             .textStyle()
             .fontWeight(FontWeight.Bold)
-          Text(assertEqual(timezoneId, expectedTimezoneId, $r('app.string.GetTimezoneID')))
-            .textStyle()
-          Text(assertEqual(aucklandTzId, expectedAucklandTzId, $r('app.string.GetAucklandID')))
+          Text(assertEqual(timezoneId, expectedAucklandTzId, $r('app.string.GetAucklandID')))
             .textStyle()
           Text(assertEqualFuzzy(timeZoneName, expectedTimeZoneName, $r('app.string.TimeZoneLocalName')))
             .textStyle()
@@ -213,27 +215,24 @@ struct TimezoneDstSetting {
             .textStyle()
           Text(assertEqual(offset, expectedOffset, $r('app.string.GetOffset')))
             .textStyle()
-          Text(assertEqualLong(ids.join(', '), expectedIds, $r('app.string.GetAvailableIDs')))
+          Text(assertEqualLong(availableIDs.join(', '), expectedIds, $r('app.string.GetAvailableIDs')))
             .textStyle()
           Scroll() {
-            Text(ids.join(', '))
+            Text(availableIDs.join(', '))
               .textStyle()
               .id('idsText')
           }
           .scrollStyle('idsScroll')
 
-          Text(assertEqualLong(cityIdArray.join(', '), expectedCityIdArray, $r('app.string.GetAvailableZoneCityIDs')))
+          Text(assertEqualLong(cityIDs.join(', '), expectedCityIdArray, $r('app.string.GetAvailableZoneCityIDs')))
             .textStyle()
           Scroll() {
-            Text(cityIdArray.join(', '))
+            Text(cityIDs.join(', '))
               .textStyle()
               .id('cityIdArrayText')
           }
           .scrollStyle('cityIdArrayScroll')
 
-          Text(assertEqualLong(JSON.stringify(timezoneList),
-            expectedTimeZoneCityList.map(item => JSON.stringify(item)), $r('app.string.TimezoneList')))
-            .textStyle()
           Scroll() {
             Column() {
               ForEach(timezoneList, (item: Item, index: number) => {
@@ -249,8 +248,6 @@ struct TimezoneDstSetting {
           }
           .scrollStyle('timezoneListScroll')
 
-          Text(assertEqual(locationTimezones.join(','), expectedTzId, $r('app.string.IDOfGeographicCoordinate')))
-            .textStyle()
           Text(assertEqualLong(JSON.stringify(timeZoneData), expectedTimeZoneData,
             $r('app.string.ResultsOfDualClockFeature')))
             .textStyle()

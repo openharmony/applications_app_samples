@@ -1,0 +1,41 @@
+<!--/*
+* Copyright (c) 2025 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+
+<!DOCTYPE html>
+  <html lang='en'>
+  <head>
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <title>iframe嵌套页面打印</title>
+  </head>
+  <body>
+      <button id='printIframe'>打印iframe嵌套页面</button>
+      <iframe id='contentIframe' hidden></iframe>
+
+      <script>
+          document.getElementById('printIframe').addEventListener('click', () => {
+              var ctIframe = document.getElementById('contentIframe');
+              if (!ctIframe.contentWindow || !ctIframe.contentWindow.document) {
+                console.error('iframe页面初始化失败');
+                return;
+              }
+              var ctIframeDoc = ctIframe.contentWindow.document;
+              ctIframeDoc.write('嵌套页面');
+              ctIframeDoc.close();
+              ctIframe.contentWindow.print();
+          });
+      </script>
+  </body>
+  </html>

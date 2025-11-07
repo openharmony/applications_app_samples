@@ -13,12 +13,14 @@
  * limitations under the License.
  */
 
-import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
-import { ColorMetrics, ComponentContent } from '@ohos.arkui.node';
-import { util } from '@kit.ArkTS';
-import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@ohos.arkui.ArcAlphabetIndexer';
 import { ComponentCard } from '../../common/Card';
+import { ArcAlphabetIndexer, ArcAlphabetIndexerAttribute } from '@ohos.arkui.ArcAlphabetIndexer';
+import { util } from '@kit.ArkTS';
+import { ColorMetrics, ComponentContent } from '@ohos.arkui.node';
+// [Start arcAlphabetIndexer_start]
+import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
 
+// [StartExclude arcAlphabetIndexer_start]
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -29,19 +31,27 @@ class Contact {
     this.firstChar = firstChar;
   }
 }
+
 @Builder
 function buildText() {
   Column() {
-    Text('Contacts')
+    Text($r('app.string.contacts'))
       .fontColor('#FFFFFF')
       .fontSize('19fp')
-
   }
 }
+// [EndExclude arcAlphabetIndexer_start]
+const alphabets: string[] = [
+  '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N',
+  'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+];
 
 @Entry
 @Component
 export struct ArcListArcIndexerBar {
+
+  // [StartExclude arcAlphabetIndexer_start]
+  private watchSize: string = '600px'; // 手表默认宽高：233*233
 
   @State contacts: Array<object> = [
     new Contact('阿哈', 'A'),
@@ -64,23 +74,27 @@ export struct ArcListArcIndexerBar {
     new Contact('叔叔', 'S'),
     new Contact('天天', 'T'),
   ];
-  private scrollerForList: Scroller = new Scroller();
-  private watchSize: string = '600px'; // 手表默认宽高：233*233
-  private fullValue: string[] = [
-    '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-  ];
+  // [EndExclude arcAlphabetIndexer_start]
+  // 索引条选中项索引
   @State indexerIndex: number = 0;
+  // 列表绑定的滚动控制器
+  private arcListScroller: Scroller = new Scroller();
 
+  // [StartExclude arcAlphabetIndexer_start]
   context: UIContext = this.getUIContext();
   tabBar1: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(buildText));
+  // [EndExclude arcAlphabetIndexer_start]
 
   build() {
+    // [StartExclude arcAlphabetIndexer_start]
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ArcListArcIndexerBar_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ArcListArcIndexerBar_title') }) {
-          Stack() {
-            ArcList({ initialIndex: 0, header:this.tabBar1, scroller:this.scrollerForList }) {
+          // [EndExclude arcAlphabetIndexer_start]
+          Stack({alignContent: Alignment.End}) {
+            ArcList({ initialIndex: 0, header:this.tabBar1, scroller:this.arcListScroller }) {
+              // [StartExclude arcAlphabetIndexer_start]
               ForEach(this.contacts, (item: Contact) => {
                 ArcListItem() {
                   Row() {
@@ -101,27 +115,36 @@ export struct ArcListArcIndexerBar {
                 .height('130px')
                 .backgroundColor('#26FFFFFF')
               }, (item: Contact) => JSON.stringify(item))
+              // [EndExclude arcAlphabetIndexer_start]
             }
+            // [StartExclude arcAlphabetIndexer_start]
             .space(LengthMetrics.px(10))
             .scrollBar(BarState.Off)
             .width(this.watchSize)
             .height(this.watchSize)
             .borderRadius(this.watchSize)
             .backgroundColor(Color.Black)
+            // [EndExclude arcAlphabetIndexer_start]
             .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
+              // 根据列表滚动到的索引值，重新计算对应索引条的位置this.selectedIndex
               this.indexerIndex = centerIndex + 1;
             })
-
-            ArcAlphabetIndexer({ arrayValue: this.fullValue, selected: this.indexerIndex})
+            // [StartExclude arcAlphabetIndexer_start]
+            .id('arcIndexTest')
+            // [EndExclude arcAlphabetIndexer_start]
+            // 弧形索引条组件
+            ArcAlphabetIndexer({ arrayValue: alphabets, selected: this.indexerIndex})
+              .selected(this.indexerIndex!!)
+              .onSelect((index: number) => {
+                // 选中索引项后，列表跳转到相应位置
+                this.indexerIndex = index
+                this.arcListScroller.scrollToIndex(this.indexerIndex - 1)
+              })
+              // [StartExclude arcAlphabetIndexer_start]
               .autoCollapse(true)
               .width(this.watchSize)
               .height(this.watchSize)
               .usePopup(false)
-              .selected(this.indexerIndex!!)
-              .onSelect((index: number) => {
-                this.indexerIndex = index
-                this.scrollerForList.scrollToIndex(this.indexerIndex - 1)
-              })
               .hitTestBehavior(HitTestMode.Transparent)
               .selectedColor(ColorMetrics.resourceColor(0xFFFFFF))
               .selectedBackgroundColor(ColorMetrics.resourceColor(0x1F71FF))
@@ -141,8 +164,10 @@ export struct ArcListArcIndexerBar {
                 weight: 500,
                 family: 'HarmonyOS Sans'
               })
-
-          }.width('600px')
+            // [EndExclude arcAlphabetIndexer_start]
+          }
+          // [StartExclude arcAlphabetIndexer_start]
+          .width('600px')
         }
       }
       .width('100%')
@@ -150,6 +175,9 @@ export struct ArcListArcIndexerBar {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.ArcListArcIndexerBar_title')需要替换为开发者所需的资源文件
     .title($r('app.string.ArcListArcIndexerBar_title'))
+    // [EndExclude arcAlphabetIndexer_start]
   }
 }
+// [End arcAlphabetIndexer_start]

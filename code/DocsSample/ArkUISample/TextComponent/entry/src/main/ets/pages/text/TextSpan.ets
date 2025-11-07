@@ -25,8 +25,10 @@ export struct TextSpan {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.TextSpan_title_1') }) {
           // [Start create_span]
-          Text($r('app.string.TextSpan_textContent_1')) {
-            Span($r('app.string.TextSpan_textContent_2'))
+          // 'app.string.TextSpan_textContent_text'资源文件中的value值为'我是Text'
+          Text($r('app.string.TextSpan_textContent_text')) {
+            // 'app.string.TextSpan_textContent_span'资源文件中的value值为'我是Span'
+            Span($r('app.string.TextSpan_textContent_span'))
           }
           .padding(10)
           .borderWidth(1)
@@ -36,16 +38,19 @@ export struct TextSpan {
         ComponentCard({ title: $r('app.string.TextSpan_title_2') }) {
           // [Start create_span_with_lines]
           Text() {
-            Span($r('app.string.TextSpan_textContent_3'))
+            // 'app.string.TextSpan_textContent_span_one'资源文件中的value值为'我是Span1，'
+            Span($r('app.string.TextSpan_textContent_span_one'))
               .fontSize(16)
               .fontColor(Color.Grey)
               .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
-            Span($r('app.string.TextSpan_textContent_4'))
+            // 'app.string.TextSpan_textContent_span_two'资源文件中的value值为'我是Span2'
+            Span($r('app.string.TextSpan_textContent_span_two'))
               .fontColor(Color.Blue)
               .fontSize(16)
               .fontStyle(FontStyle.Italic)
               .decoration({ type: TextDecorationType.Underline, color: Color.Black })
-            Span($r('app.string.TextSpan_textContent_5'))
+            // 'app.string.TextSpan_textContent_span_three'资源文件中的value值为'，我是Span3'
+            Span($r('app.string.TextSpan_textContent_span_three'))
               .fontSize(16)
               .fontColor(Color.Grey)
               .decoration({ type: TextDecorationType.Overline, color: Color.Green })

@@ -208,6 +208,14 @@ struct Index {
         }.width('100%')
         .padding(10)
 
+        Button($r('app.string.close_Server'))
+          .enabled(this.canSend)
+          .onClick(() => {
+            this.closeServer();
+          })
+          .width(100)
+          .fontSize(14)
+
         // 消息展示区域
         Scroll(this.scroller) {
           Text(this.msgHistory)
@@ -344,6 +352,22 @@ struct Index {
         this.canSend = true;
       } else if (response.type === 'connectFailure') {
         this.msgHistory += `Connect fail: ${response.message}\r\n`;
+      }
+    }
+  }
+
+  // 关闭服务
+  closeServer() {
+    workerPort.postMessage({
+      type: 'closeServer',
+    });
+    workerPort.onmessage = (e: MessageEvents) => {
+      const response: TlsTwoWayMessage = e.data;
+      if (response.type === 'closeSuccess') {
+        this.msgHistory += 'Close success\r\n';
+        this.canSend = true;
+      } else if (response.type === 'closeFailure') {
+        this.msgHistory += `Close fail: ${response.message}\r\n`;
       }
     }
   }

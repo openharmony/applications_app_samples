@@ -14,12 +14,14 @@
  */
 
 import resource from '../../common/resource';
-
+// [Start createStyledString_start]
 @Entry
 @Component
 struct styled_string_demo1 {
-  styledString1: StyledString = new StyledString(resource.resourceToString($r('app.string.CreateApply_Text_1')));
-  mutableStyledString1: MutableStyledString = new MutableStyledString(resource.resourceToString($r('app.string.CreateApply_Text_2')));
+  //'app.string.CreateApply_Text_Forty_Five'资源文件中的value值为"运动45分钟"
+  styledString1: StyledString = new StyledString(resource.resourceToString($r('app.string.CreateApply_Text_Forty_Five')));
+  //'app.string.CreateApply_Text_Third_Five'资源文件中的value值为"运动35分钟"
+  mutableStyledString1: MutableStyledString = new MutableStyledString(resource.resourceToString($r('app.string.CreateApply_Text_Third_Five')));
   controller1: TextController = new TextController();
   controller2: TextController = new TextController();
 
@@ -41,3 +43,4 @@ struct styled_string_demo1 {
     .width('100%')
   }
 }
+// [End createStyledString_start]

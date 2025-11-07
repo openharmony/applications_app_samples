@@ -1,0 +1,22 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/NavigationIndex",
+    "pages/MailIndex",
+    "pages/RoutePlanPage",
+    "pages/PlaceSearchPage",
+    "pages/ComposeMailPage",
+    "pages/FinanceIndex",
+    "pages/MailtoIndex",
+    "pages/CreditCardRepaymentPage",
+    "pages/TransferPage",
+    "pages/QueryByFlightNoPage",
+    "pages/QueryByLocationPage",
+    "pages/QueryExpressPage",
+    "pages/FlightIndex",
+    "pages/ExpressIndex",
+    "pages/FileIndex",
+    "pages/PhotoIndex",
+    "pages/PhotoEditorIndex"
+  ]
+}

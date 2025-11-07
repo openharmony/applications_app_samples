@@ -12,44 +12,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start FormEditDemo_FormEditSecPageAbility]
+// entry/src/main/ets/entryformeditability/FormEditSecPageAbility.ets
 import { FormEditExtensionAbility } from '@kit.FormKit';
 import { Want, UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from '../model/ExtensionEvent';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = 'FormEditExtensionAbility';
+const TAG = 'FormEditSecPageAbility';
+const DOMAIN = 0xFF00;
 
 export default class FormEditSecPageAbility extends FormEditExtensionAbility {
   public storage: LocalStorage = new LocalStorage();
 
   onCreate() {
-    console.info(TAG, `Ability onCreate`);
+    hilog.info(DOMAIN, TAG, `Ability onCreate`);
   }
   onForeground(): void {
-    console.info(TAG, `Ability onForeground`);
+    hilog.info(DOMAIN, TAG, `Ability onForeground`);
   }
   onBackground(): void {
-    console.info(TAG, `Ability onBackground`);
+    hilog.info(DOMAIN, TAG, `Ability onBackground`);
   }
   onDestroy(): void {
-    console.info(TAG, `Ability onDestroy`);
+    hilog.info(DOMAIN, TAG, `Ability onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     let extensionEvent: ExtensionEvent = new ExtensionEvent();
     this.storage.setOrCreate('extensionEvent', extensionEvent);
     this.storage.setOrCreate('session', session);
+    this.storage.setOrCreate('context', this.context);
 
     try {
       session.loadContent('pages/FormEditSecPage', this.storage);
-      console.info(TAG, `loadContent first edit page success`);
+      hilog.info(DOMAIN, TAG, `loadContent first edit page success`);
     } catch (e) {
-      console.error(TAG, `EntryFormEditAbility loadContent err, want: ${e?.message}`);
+      hilog.error(DOMAIN, TAG, `EntryFormEditAbility loadContent err, want: ${e?.message}`);
     }
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.info(TAG, `onSessionDestroy`);
+    hilog.info(DOMAIN, TAG, `onSessionDestroy`);
   }
 
 }
+// [End FormEditDemo_FormEditSecPageAbility]

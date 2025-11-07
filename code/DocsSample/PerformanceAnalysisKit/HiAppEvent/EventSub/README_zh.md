@@ -4,7 +4,7 @@
 
 本示例主要展示用HiAppEvent如何实现事件订阅（AppEvent），并列举了订阅如下系统事件的例子：
 
-崩溃事件（CrashEvent）、系统卡死事件（FreezeEvent）、系统资源泄漏事件（PssLeakEvent）、系统踩内存事件（ASANEvent）以及主线程超时事件
+崩溃事件（CrashEvent）、系统卡死事件（FreezeEvent）、系统资源泄漏事件（PssLeakEvent）、系统地址越界事件（ASANEvent）以及主线程超时事件
 
 （TimeOutEvent）。
 
@@ -14,31 +14,37 @@
 
 - [事件订阅（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-app-events-ndk.md)
 
-- [订阅崩溃事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-arkts.md)
+- [订阅崩溃事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-arkts.md)
 
-- [订阅崩溃事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-ndk.md)
+- [订阅崩溃事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-crash-events-ndk.md)
 
 - [订阅卡死事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-freeze-events-arkts.md)
 
 - [订阅卡死事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-freeze-events-ndk.md)
 
-- [订阅资源泄漏事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-arkts.md)
+- [订阅资源泄漏事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-arkts.md)
 
-- [订阅资源泄漏事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-ndk.md)
+- [订阅资源泄漏事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-resourceleak-events-ndk.md)
 
-- [订阅踩内存事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
+- [订阅地址越界事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
 
-- [订阅踩内存事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
+- [订阅地址越界事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
 
 - [订阅主线程超时事件（ArkTS）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
 
 - [订阅主线程超时事件（C/C++）](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
 
+- [订阅任务执行超时事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-apphicollie-events-ndk.md)
+
+- [订阅应用终止事件（ArkTS）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-app-killed-events-arkts.md)
+
+- [订阅应用终止事件（C/C++）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx/hiappevent-watcher-app-killed-events-ndk.md)
+
 ###  效果预览
 
 |                             主页                             |
 | :----------------------------------------------------------: |
-| <img src="./screenshots/Screenshot_20250909094941818.jpg" alt="z" width = "400" /> |
+| <img src="./screenshots/Screenshot_EventSub_Index.jpg" alt="z" width = "400" /> |
 
 #### 使用说明
 
@@ -78,7 +84,7 @@ AppEvent HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappe
 2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"AppEvent HiAppEvent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-AppEvent HiAppEvent succeed to read events with onTrigger callback form C API 
+AppEvent HiAppEvent succeed to read events with onTrigger callback form C API
 AppEvent HiAppEvent eventInfo={"domain_":"button","name_":"click","type_":4,"time_":1503514787492,"tz_":"","pid_":18178,"tid_":18178,"clickTime":100}
 AppEvent HiAppEvent eventInfo.domain=button
 AppEvent HiAppEvent eventInfo.name=click
@@ -106,7 +112,7 @@ AppEvents writeEvent ArkTS success
 2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"AppEvent HiAppEvent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-AppEvent HiAppEvent succeed to read events with onTrigger callback form C API 
+AppEvent HiAppEvent succeed to read events with onTrigger callback form C API
 AppEvent HiAppEvent eventInfo={"domain_":"button","name_":"click","type_":4,"time_":1503515278195,"tz_":"","pid_":18178,"tid_":18178,"clickTime":1503515278}
 AppEvent HiAppEvent eventInfo.domain=button
 AppEvent HiAppEvent eventInfo.name=click
@@ -290,7 +296,7 @@ HiAppEvent eventInfo.params.test_data=100
 
 1.先在设备“开发者选项”中打开“系统资源泄漏日志”，并重启设备；
 
-2.在应用侧主界面，点击"pssLeak ArkTS&C++"按钮触发资源泄露事件，等待15~30分钟，会上报应用内存泄漏事件；
+2.在应用侧主界面，点击"pss leak"按钮触发资源泄露事件，等待15~30分钟，会上报应用内存泄漏事件；
 
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
@@ -337,18 +343,18 @@ HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"p
 
 3.C++实现了onReceive和onTrigger两种观察者，ArkTS实现了onReceive观察者。
 
-##### 7.订阅踩内存事件（ArkTS&C++）
+##### 7.订阅地址越界事件（ArkTS&C++）
 
 1.点击DevEco Studio界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。
 
-2.在应用侧主界面，点击"appAsanEvent ArkTS&C++"按钮触发踩内存事件，应用退出后重启应用；
+2.在应用侧主界面，点击"address-sanitizer"按钮触发地址越界事件，应用退出后重启应用；
 
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-HiAppEvent eventInfo.WatcherType=OnTrigger 													
+HiAppEvent eventInfo.WatcherType=OnTrigger
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=ADDRESS_SANITIZER													
+HiAppEvent eventInfo.name=ADDRESS_SANITIZER
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.bundle_version=1.0.0
@@ -359,9 +365,9 @@ HiAppEvent eventInfo.params.type="stack-buffer-overflow"
 HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1609739933234_6628.log"]
 HiAppEvent eventInfo.params.log_over_limit=0
 // 以上为C++ OnTrigger观察者日志输出
-HiAppEvent eventInfo.WatcherType=OnReceive 													
+HiAppEvent eventInfo.WatcherType=OnReceive
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=ADDRESS_SANITIZER													
+HiAppEvent eventInfo.name=ADDRESS_SANITIZER
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.bundle_version=1.0.0
@@ -407,9 +413,9 @@ HiAppEvent eventInfo.params.log_over_limit=0
 3.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"All log of selected app"，搜索内容设置为"HiAppevent"。此时窗口仅显示符合条件的日志，打印日志结果为：
 
 ```text
-HiAppEvent eventInfo.WatcherType=OnReceive 													
+HiAppEvent eventInfo.WatcherType=OnReceive
 HiAppEvent eventInfo.domain=OS
-HiAppEvent eventInfo.name=MAIN_THREAD_JANK												    
+HiAppEvent eventInfo.name=MAIN_THREAD_JANK
 HiAppEvent eventInfo.eventType=1
 HiAppEvent eventInfo.params.time=1609739933049
 HiAppEvent eventInfo.params.pid=6628
@@ -443,6 +449,40 @@ HiAppEvent eventInfo.params.log_over_limit=0
 2.要确认日志输出中的eventInfo.name为MAIN_THREAD_JANK。
 
 3.C++实现了onReceive观察者，ArkTS实现了onReceive观察者。
+
+##### 9.订阅任务执行超时事件（C/C++）
+
+本示例主要展示了订阅任务执行超时事件的功能，包括构造任务执行超时事件及其订阅处理。OH_HiAppEvent_AddWatcher接口用于添加对该超时事件的订阅。
+
+1.在应用侧主界面，点击“TestHiCollieTimerNdk”按钮；
+2.在DevEco Studio侧下方导航栏，切换到"Log"窗口，日志过滤选择"No filters"，搜索内容设置为"testTag"。此时窗口仅显示符合条件的日志，打印日志示例结果为：
+
+```text
+HiAppEvent eventInfo.domain=OS
+HiAppEvent eventInfo.name=APP_HICOLLIE
+HiAppEvent eventInfo.eventType=1
+HiAppEvent eventInfo.params.time=xx
+HiAppEvent eventInfo.params.foreground=1
+HiAppEvent eventInfo.params.bundle_version=1.0.0
+HiAppEvent eventInfo.params.process_name=xx
+HiAppEvent eventInfo.params.pid=xx
+HiAppEvent eventInfo.params.uid=xx
+HiAppEvent eventInfo.params.uuid=xx
+HiAppEvent eventInfo.params.exception={"message":"","name":"APP_HICOLLIE"}
+HiAppEvent eventInfo.params.hilog.size=xx
+HiAppEvent eventInfo.params.peer_binder.size=xx
+HiAppEvent eventInfo.params.memory={"pss":0,"rss":xx,"sys_avail_mem":xx,"sys_free_mem":xx,"sys_total_mem":xx,"vss":xx}
+HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_HICOLLIE_xx_xx.log"]
+HiAppEvent eventInfo.params.log_over_limit=xx
+```
+
+注意：
+
+1.本示例适配API19及以上版本SDK。
+
+2.要确认日志输出中的eventInfo.name为APP_HICOLLIE。
+
+3.C++实现了onReceive和onTrigger两种观察者。
 
 ###  工程目录
 

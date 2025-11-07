@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Button1",
+    "pages/Button2",
+    "pages/Button3",
+    "pages/Button4",
+    "pages/Index"
+  ]
+}

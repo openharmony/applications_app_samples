@@ -1,10 +1,9 @@
-# ArkUI指南文档示例
+# NdkFocus
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例基于[native_interface_focus.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-interface-focus-h.md)中的各接口进行构建，以帮助开发者更好地理解焦点框架C-API的用法。
 
-1. [焦点开发指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-interface-focus-h.md)。
 ### 效果预览
 
 | 首页                                 |
@@ -13,7 +12,7 @@
 
 ### 使用说明
 
-1. 在首页可以查看通过焦点CAPI接口实现焦点管理示例。
+1. 在首页可以查看通过焦点C-API接口实现焦点管理示例。
 
 2. 通过自动测试框架可进行测试及维护。
 
@@ -28,7 +27,7 @@ entry/src/main/ets/
 |     |---init.cpp
 |     |---manager.cpp                       
 |     |---manager.h                         
-|     |---focus_manager.cpp                 // 通过焦点CAPI接口实现焦点管理示例代码
+|     |---focus_manager.cpp                 // 通过焦点C-API接口实现焦点管理示例代码
 |     |---focus_manager.h                   // focus_manager头文件
 |     |---napi_init.cpp
 |---ets

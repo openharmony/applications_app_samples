@@ -1,10 +1,9 @@
-# ArkUI指南文档示例
+# NativeDragDrop
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+本示例基于[drag_and_drop.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-drag-and-drop-h.md)中的各接口进行构建，以帮助开发者更好地理解拖拽框架C-API的用法。
 
-1. [拖拽C-API参考](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-drag-and-drop-h.md)。
 ### 效果预览
 
 | 首页                                 |
@@ -13,7 +12,7 @@
 
 ### 使用说明
 
-1. 在首页可以查看多种拖拽API的使用示例，包括通用拖拽、通用异步拖拽、延迟拖拽、主动发起拖拽、主动发起拖拽（异步加载）的示例。
+1. 在首页可以查看多种拖拽C-API的使用示例，包括通用拖拽、通用异步拖拽、延迟拖拽、主动发起拖拽、主动发起拖拽（异步加载）的示例。
 
 2. 通过自动测试框架可进行测试及维护。
 

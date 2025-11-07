@@ -14,8 +14,8 @@
  *
 */
 
+// [Start View_ListView]
 // src/main/ets/view/ListView.ets
-
 import TaskViewModel from '../viewmodel/TaskViewModel';
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 import { Setting } from '../pages/SettingPage';
@@ -28,11 +28,12 @@ struct TaskItem {
   @Event deleteTask: () => void = () => {};
   @Monitor('task.isFinish')
   onTaskFinished(mon: IMonitor) {
-    hilog.debug(0x0000, 'testTag', '%{public}s', '任务' + this.task.taskName + '的完成状态从' + mon.value()?.before + '变为了' + mon.value()?.now);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'task' + this.task.taskName + 'The completion status of the' + mon.value()?.before + 'has become' + mon.value()?.now);
   }
 
   build() {
     Row() {
+      // 请开发者自行在src/main/resources/base/media路径下添加finished.png和unfinished.png两张图片，否则运行时会因资源缺失而报错。
       Image(this.task.isFinish ? $r('app.media.finished') : $r('app.media.unfinished'))
         .width(28)
         .height(28)
@@ -65,3 +66,4 @@ export default struct ListView {
       })
   }
 }
+// [End View_ListView]

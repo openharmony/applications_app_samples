@@ -20,7 +20,7 @@ import { DynamicContentPageOne } from '@ohos/dynamicImport';
 struct DynamicContentPage {
   build() {
     Column() {
-      DynamicContentPageOne()
+      DynamicContentPageOne();
     }
   }
 }

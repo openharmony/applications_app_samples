@@ -83,6 +83,12 @@
     }, {
       "name": "bindSheet_label10",
       "value": "示例10（使用嵌套滚动交互）"
+    },{
+      "name": "bindSheet_label11",
+      "value": "示例11（二次确认）"
+    },{
+      "name": "bindSheet_label12",
+      "value": "示例12（半模态支持避让中轴）"
     }, {
       "name": "bindSheetCmd_label",
       "value": "命令式打开半模态"
@@ -96,13 +102,13 @@
       "name": "bindSheetCmd_label3",
       "value": "示例3（closeBindSheet）"
     }, {
-      "name": "MyContentCoverBuilder_text1",
+      "name": "Text_choose_person",
       "value": "选择乘车人"
     }, {
-      "name": "MyContentCoverBuilder_text2",
+      "name": "Text_add_person",
       "value": "+ 添加乘车人"
     }, {
-      "name": "MyContentCoverBuilder_text3",
+      "name": "Text_edit",
       "value": "编辑"
     }, {
       "name": "MyContentCoverBuilder_text4",
@@ -117,11 +123,23 @@
       "name": "MyContentCoverBuilder_text7",
       "value": "终点站"
     }, {
-      "name": "MySheetBuilder_text1",
+      "name": "Sheet_choose_person",
       "value": "+ 选择乘车人"
     }, {
-      "name": "MySheetBuilder_text2",
+      "name": "Sheet_tickets_available",
       "value": "有票"
+    }, {
+      "name": "Person_example1",
+      "value": "王**"
+    }, {
+      "name": "Person_example2",
+      "value": "宋*"
+    }, {
+      "name": "Person_example3",
+      "value": "许**"
+    }, {
+      "name": "Person_example4",
+      "value": "唐*"
     }, {
       "name": "sideBuilder_text1",
       "value": "改变半模态交互模式"
@@ -168,20 +186,35 @@
       "name": "MySheetBuilder_text",
       "value": "确认订单"
     }, {
-      "name": "MySheetBuilder_text3",
+      "name": "Text_confirm_order",
       "value": "确认订单"
     }, {
-      "name": "bindSheetCmd_label5",
+      "name": "Label_origin_station",
       "value": "始发站"
     }, {
-      "name": "bindSheetCmd_label6",
+      "name": "Label_start_time",
       "value": "8时1分"
     }, {
-      "name": "bindSheetCmd_label7",
+      "name": "Label_destination_station",
       "value": "终点站"
     }, {
-      "name": "bindSheetCmd_label4",
+      "name": "Text_confirm",
       "value": "确认"
+    },{
+      "name": "bindSheetCmd_label8",
+      "value": "是否选择关闭半模态"
+    },{
+      "name": "bindSheetCmd_label9",
+      "value": "拉起半模态e"
+    },{
+      "name": "bindSheetCmd_label10",
+      "value": "enableHoverMode切换"
+    },{
+      "name": "bindSheetCmd_label11",
+      "value": "hoverModeArea切换"
+    },{
+      "name": "bindSheetCmd_label12",
+      "value": "是否选择关闭半模态"
     }
   ]
 }

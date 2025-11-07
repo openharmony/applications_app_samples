@@ -19,7 +19,7 @@ import { BusinessError } from '@ohos.base';
 
 export class AVPlayerDemo {
   private count: number = 0;
-  private surfaceId: string = ''; // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法。
+  private surfaceId: string = ''; // surfaceId用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法。
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作。
 
   setSurfaceID(id: string){
@@ -54,7 +54,7 @@ export class AVPlayerDemo {
           avPlayer.play(); // 调用播放接口开始播放。
           break;
         case 'playing': // play成功调用后触发该状态机上报。
-          console.info('AVPlayer state prepared called.');
+          console.info('AVPlayer state playing called.');
           if(this.count !== 0) {
             if (this.isSeek) {
               console.info('AVPlayer start to seek.');
@@ -73,8 +73,8 @@ export class AVPlayerDemo {
           avPlayer.play(); // 再次播放接口开始播放。
           break;
         case 'completed': //播放接口后触发该状态机上报。
-          console.info('AVPlayer state paused called.');
-          avPlayer.stop(); // 调用播放接口接口。
+          console.info('AVPlayer state completed called.');
+          avPlayer.stop(); // 调用播放接口。
           break;
         case 'stopped': // stop接口后触发该状态机上报。
           console.info('AVPlayer state stopped called.');
@@ -91,12 +91,12 @@ export class AVPlayerDemo {
 
   // 通过url设置网络地址来实现播放直播码流。
   async avPlayerLiveDemo(){
-    // 创建avPlayer实例对象
+    // 创建avPlayer实例对象。
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // 创建状态机变化回调函数。
     this.setAVPlayerCallback(avPlayer);
     this.isSeek = false; // 不支持seek操作。
-    // 使用时需要自行替换视频链接
+    // 使用时需要自行替换视频链接。
     avPlayer.url = 'xxx/demo.mp4';
   }
 }

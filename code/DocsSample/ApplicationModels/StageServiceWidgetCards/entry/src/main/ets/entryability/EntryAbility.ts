@@ -14,6 +14,7 @@
  */
 
 // [Start entry_ability]
+// src/main/ets/entryability/EntryAbility.ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';

@@ -20,7 +20,7 @@ import { VisibilityView } from '@ohos/hiDumper';
 struct VisibilityPage {
   build() {
     Column() {
-      VisibilityView()
+      VisibilityView();
     }
   }
 }

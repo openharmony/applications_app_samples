@@ -15,6 +15,7 @@
 
 #include "common/common.h"
 #include "customdialog/customdialogexample.h"
+#include "customdialog/nativedialogdemo.h"
 #include <vector>
 #include "napi/native_api.h"
 
@@ -43,6 +44,22 @@ static napi_value Init(napi_env env, napi_value exports)
         {"openNativeDialog", nullptr, CustomDialogTest::OpenNativeDialog, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"resetDialogController", nullptr, CustomDialogTest::ResetDialogController, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"mainPageController", nullptr, Dialog_Demo::Dialog_Controller_Demo::BuildDemoPage, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"disposeController", nullptr, Dialog_Demo::Dialog_Controller_Demo::Dispose, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"mainPageOption", nullptr, Dialog_Demo::Dialog_Option_Demo::BuildDemoPage, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"disposeOption", nullptr, Dialog_Demo::Dialog_Option_Demo::Dispose, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"mainPageOptionText", nullptr, Dialog_Demo::Dialog_OptionText_Demo::BuildDemoPage, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"disposeOptionText", nullptr, Dialog_Demo::Dialog_OptionText_Demo::Dispose, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"mainPageLifecycle", nullptr, Dialog_Demo::Dialog_LifeCycle_Demo::BuildDemoPage, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"disposeLifecycle", nullptr, Dialog_Demo::Dialog_LifeCycle_Demo::Dispose, nullptr, nullptr, nullptr,
          napi_default, nullptr},
     };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {

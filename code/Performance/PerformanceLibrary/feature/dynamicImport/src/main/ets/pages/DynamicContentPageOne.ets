@@ -14,7 +14,6 @@
  */
 
 import { GoodsList } from '../component/GoodsList';
-import logger from '../utils/Logger';
 
 @Component
 export struct DynamicContentPageOne {
@@ -40,6 +39,6 @@ export struct DynamicContentPageOne {
     .title('pageOne').onBackPressed(() => {
       this.pageInfos.pop(); // 弹出路由栈栈顶元素
       return true;
-    })
+    });
   }
 }

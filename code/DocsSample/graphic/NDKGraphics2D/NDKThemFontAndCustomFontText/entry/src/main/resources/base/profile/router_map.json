@@ -1,0 +1,14 @@
+{
+  "routerMap": [
+    {
+      "name": "NdkPage",
+      "pageSourceFile": "src/main/ets/pages/NdkPage.ets",
+      "buildFunction": "NdkPageBuilder"
+    },
+    {
+      "name": "NavTreePage",
+      "pageSourceFile": "src/main/ets/pages/NavTreePage.ets",
+      "buildFunction": "NavTreePageBuilder"
+    }
+  ]
+}

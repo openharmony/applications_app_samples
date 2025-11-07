@@ -1,0 +1,54 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// xxx.ets
+// [Start General_Events]
+// xxx.ets
+import { hilog } from '@kit.PerformanceAnalysisKit';
+@Entry
+@Component
+export struct GeneralEvents {
+  @State textStr1: string = '';
+  @State textStr2: string = '';
+
+  build() {
+    NavDestination() {
+      Row() {
+        Column() {
+          Text('This is a text component.')
+            .fontSize(30)
+            .onClick(() => {
+              hilog.info(0x0000, 'Sample_TextComponent', 'Text onClick is triggering');
+              this.textStr1 = 'Text onClick is triggering';
+            })
+            .onTouch(() => {
+              hilog.info(0x0000, 'Sample_TextComponent', 'Text onTouch is triggering');
+              this.textStr2 = 'Text onTouch is triggering';
+            })
+          Text('onClick：' + this.textStr1)
+            .fontSize(20)
+          Text('onTouch：' + this.textStr2)
+            .fontSize(20)
+        }.width('100%')
+      }
+      .height('100%')
+    }
+    // [StartExclude General_Events]
+    .backgroundColor('#f1f 2f3')
+    .title($r('app.string.General_Events'))
+    // [EndExclude General_Events]
+  }
+}
+
+// [End General_Events]

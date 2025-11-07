@@ -26,7 +26,7 @@ struct Index {
           type: XComponentType.NODE,
           libraryname: "entry"
         }).onAppear(()=> {
-          testNapi.createNativeNode()
+          testNapi.createNativeNode();
         })
       }
       .width('100%')

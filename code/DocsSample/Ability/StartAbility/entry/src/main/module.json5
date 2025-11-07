@@ -1,0 +1,373 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// [Start file_config]
+// [Start photo_config]
+// [Start mailto_config]
+// [Start express_config]
+// [Start finance_config]
+// [Start flight_config]
+// [Start mail_config]
+// [Start navitation_config]
+{
+  "module": {
+    // [StartExclude file_config]
+    // [StartExclude photo_config]
+    // [StartExclude mailto_config]
+    // [StartExclude express_config]
+    // [StartExclude finance_config]
+    // [StartExclude flight_config]
+    // [StartExclude mail_config]
+    // [StartExclude navitation_config]
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "StartAbilityEntry",
+    "deviceTypes": [
+      "default",
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    // [EndExclude file_config]
+    // [EndExclude mailto_config]
+    // [EndExclude express_config]
+    // [EndExclude finance_config]
+    // [EndExclude flight_config]
+    // [EndExclude mail_config]
+    // [EndExclude navitation_config]
+    "abilities": [
+      // [StartExclude file_config]
+      // [StartExclude mailto_config]
+      // [StartExclude express_config]
+      // [StartExclude finance_config]
+      // [StartExclude flight_config]
+      // [StartExclude mail_config]
+      // [StartExclude navitation_config]
+      {
+        "name": "StartAbilityEntry",
+        "srcEntry": "./ets/entryability/StartAbilityEntry.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      // [EndExclude navitation_config]
+      {
+        // [StartExclude navitation_config]
+        "name": "NavigationAbility",
+        "srcEntry": "./ets/entryability/NavigationAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:Navigation_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        // [EndExclude navitation_config]
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ],
+            "uris": [
+              {
+                "scheme": "maps", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
+                "host": "navigation",
+                "path": "",
+                "linkFeature": "Navigation" // 声明应用支持导航功能
+              },
+              {
+                "scheme": "maps", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
+                "host": "routePlan",
+                "path": "",
+                "linkFeature": "RoutePlan" // 声明应用支持路线规划功能
+              },
+              {
+                "scheme": "maps", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
+                "host": "search",
+                "path": "",
+                "linkFeature": "PlaceSearch" // 声明应用支持位置搜索功能
+              }
+            ]
+          }
+        ]
+      },
+      // [EndExclude mail_config]
+      // [StartExclude navitation_config]
+      {
+        // [StartExclude mail_config]
+        "name": "MailAbility",
+        "srcEntry": "./ets/entryability/MailAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:Mail_label",
+        "exported": true,
+        // [EndExclude mail_config]
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "mailto", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
+                "host": "",
+                "path": "",
+                "linkFeature": "ComposeMail" // 声明应用支持撰写邮件功能
+              }
+            ]
+          }
+        ],
+        // [StartExclude mail_config]
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        // [EndExclude mail_config]
+      },
+      // [EndExclude mailto_config]
+      // [StartExclude mail_config]
+      {
+        // [StartExclude mailto_config]
+        "name": "MailtoAbility",
+        "srcEntry": "./ets/entryability/MailtoAbility.ets",
+        "description": "$string:MailtoAbility_label",
+        "icon": "$media:layered_image",
+        "label": "$string:MailtoAbility_label",
+        "exported": true,
+        // [EndExclude mailto_config]
+        "skills": [
+          {
+            "actions": [
+              'ohos.want.action.sendToData'
+            ],
+            "uris": [
+              {
+                "scheme": "mailto",
+                // linkFeature 用于适配垂类面板拉起
+                "linkFeature": 'ComposeMail'
+              }
+            ]
+          }
+        ],
+        // [StartExclude mailto_config]
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        // [EndExclude mailto_config]
+      },
+      // [StartExclude mailto_config]
+      // [EndExclude finance_config]
+      {
+        // [StartExclude finance_config]
+        "name": "FinanceAbility",
+        "srcEntry": "./ets/entryability/FinanceAbility.ets",
+        "description": "$string:FinanceAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:FinanceAbility_label",
+        "exported": true,
+        // [EndExclude finance_config]
+        "skills": [
+          {
+            "actions": ["ohos.want.action.viewData"],
+            "uris": [
+              {
+                "scheme": "finance", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
+                "host": "transfer",
+                "path": "",
+                "linkFeature": "Transfer" // 声明应用支持转账汇款功能
+              },
+              {
+                "scheme": "finance", // 这里仅示意，应用需确保这里声明的uri能被外部正常拉起
+                "host": "credit_card_repayment",
+                "path": "",
+                "linkFeature": "CreditCardRepayment" // 声明应用支持信用卡还款功能
+              }
+            ]
+          }
+        ],
+        // [StartExclude finance_config]
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        // [EndExclude finance_config]
+      },
+      // [StartExclude finance_config]
+      // [EndExclude flight_config]
+      {
+        // [StartExclude flight_config]
+        "name": "FlightAbility",
+        "srcEntry": "./ets/entryability/FlightAbility.ets",
+        "description": "$string:FlightAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:FlightAbility_label",
+        "exported": true,
+        // [EndExclude flight_config]
+        "skills": [
+          {
+            "actions": ["ohos.want.action.viewData"],
+            "uris": [
+              {
+                "scheme": "flight",
+                "host": "queryByFlightNo",
+                "path": "",
+                "linkFeature": "QueryByFlightNo"
+              },
+              {
+                "scheme": "flight",
+                "host": "queryByLocation",
+                "path": "",
+                "linkFeature": "QueryByLocation"
+              }
+            ]
+          }
+        ],
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      // [EndExclude express_config]
+      // [StartExclude flight_config]
+      {
+        // [StartExclude express_config]
+        "name": "ExpressAbility",
+        "srcEntry": "./ets/entryability/ExpressAbility.ets",
+        "description": "$string:ExpressAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:ExpressAbility_label",
+        "exported": true,
+        // [EndExclude express_config]
+        "skills": [
+          {
+            "actions": ["ohos.want.action.viewData"],
+            "uris": [
+              {
+                "scheme": "express",
+                "host": "queryExpress",
+                "path": "",
+                "linkFeature": "QueryExpress"
+              }
+            ]
+          }
+        ],
+        // [StartExclude express_config]
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        // [EndExclude express_config]
+      },
+      // [StartExclude express_config]
+      {
+        "name": "FileCallerAbility",
+        "srcEntry": "./ets/entryability/FileCallerAbility.ets",
+        "description": "$string:FileAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:FileAbility_label",
+        "exported": true,
+        "skills": [
+          {
+            "entities": ["entity.system.home"],
+            "actions": ["ohos.want.action.home"]
+          }
+        ],
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      // [EndExclude file_config]
+      {
+		// [StartExclude file_config]
+        "name": "FileHandlerAbility",
+        "srcEntry": "./ets/entryability/FileHandlerAbility.ets",
+        "description": "$string:FileAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:FileAbility_label",
+        "exported": true,
+		// [EndExclude file_config]
+        "skills": [
+          // [StartExclude file_config]
+          {
+            "entities": ["entity.system.home"],
+            "actions": ["ohos.want.action.home"]
+          },
+          // [EndExclude file_config]
+          {
+            "actions": [
+              "ohos.want.action.viewData" // 必填，声明数据处理能力
+            ],
+            "uris": [
+              {
+                // 允许打开uri中以file://协议开头标识的本地文件
+                "scheme": "file", // 必填，声明协议类型为文件
+                "type": "general.plain-text", // 必填，表示支持打开的文件类型
+                "linkFeature": "FileOpen" // 必填且大小写敏感, 表示此URI的功能为文件打开
+              }
+            ],
+          }
+        ],
+        // [StartExclude file_config]
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        // [EndExclude file_config]
+      }
+      // [EndExclude mailto_config]
+      // [EndExclude express_config]
+      // [EndExclude finance_config]
+      // [EndExclude flight_config]
+      // [EndExclude mail_config]
+      // [EndExclude navitation_config]
+    ],
+	// [StartExclude file_config]
+    // [EndExclude photo_config]
+    // [StartExclude mailto_config]
+    // [StartExclude express_config]
+    // [StartExclude finance_config]
+    // [StartExclude flight_config]
+    // [StartExclude mail_config]
+    // [StartExclude navitation_config]
+    "extensionAbilities": [
+      {
+        "name": "PhotoEditorAbility",
+        "icon": "$media:layered_image",
+        "description": "PhotoEditorAbility",
+        "type": "photoEditor",
+        "exported": true,
+        "srcEntry": "./ets/entryability/PhotoEditorAbility.ets",
+        "label": "$string:photo_label",
+        "extensionProcessMode": "bundle"
+      }
+    ],
+	// [EndExclude file_config]
+    // [EndExclude mailto_config]
+    // [EndExclude express_config]
+    // [EndExclude finance_config]
+    // [EndExclude flight_config]
+    // [EndExclude mail_config]
+    // [EndExclude navitation_config]
+  }
+}
+// [End file_config]
+// [End photo_config]
+// [End mailto_config]
+// [End express_config]
+// [End finance_config]
+// [End flight_config]
+// [End mail_config]
+// [End navitation_config]

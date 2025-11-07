@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/ButtonAlignBottom",
+    "pages/ButtonAlignTop",
+    "pages/ButtonBcgColor",
+    "pages/ButtonBrightness",
+    "pages/ButtonFontColor",
+    "pages/ButtonShadow",
+    "pages/Index"
+  ]
+}

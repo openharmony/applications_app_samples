@@ -1,8 +1,8 @@
-# 按键拦截监听（ArkTS）
+# 优先响应系统功能键（ArkTS）
 
 ## 介绍
 
-本工程主要实现了对以下指南文档[输入监听开发指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/device/input/inputmonitor-guidelines.md)
+本工程主要实现了对以下指南文档[优先响应系统功能键开发指导](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/device/input/keypressed-guidelines.md)
 中示例代码片段的工程化，通过该工程可以添加和取消对音量上下键的拦截监听。
 
 ## 效果预览
@@ -15,7 +15,8 @@
 1. 安装编译生成的hap包,打开应用时会自动添加对音量上下键的拦截监听。
 2. 使用音量上下键，按键事件会被拦截并在页面弹出提示，无法正常调节音量。
 3. 点击对应按钮取消对音量上下键的拦截监听，再次使用音量上下键，可以正常调节音量。
-4. 进入"DocsSample/InputKit/ArkTSInputConsumer/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
+4. 点击对应按钮重新添加对音量上下键的拦截监听，再次使用音量上下键，无法正常调节音量。
+5. 进入"DocsSample/input/ArkTSInputConsumer/entry/src/ohosTest/ets/test/Ability.test.ets"文件，可以对本项目进行UI的自动化测试。
 
 ## 工程目录
 
@@ -60,7 +61,7 @@ ArkTSInputConsumer
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/InputKit/ArkTSInputConsumer > .git/info/sparse-checkout
+echo code/DocsSample/input/ArkTSInputConsumer > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

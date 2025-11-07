@@ -13,55 +13,54 @@
  * limitations under the License.
  */
 // [Start set_up_page_level_ad_filtering_switch]
-import { webview } from '@kit.ArkWeb';
+import { webview } from '@kit.ArkWeb';	
 
-// [StartExclude set_up_page_level_ad_filtering_switch]
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-// [EndExclude set_up_page_level_ad_filtering_switch]
-@Entry
-@Component
-struct WebComponent {
-  mainUrl: string = resourceToString($r('app.string.web_path'));
-  textInputController: TextInputController = new TextInputController();
-  controller: webview.WebviewController = new webview.WebviewController();
+// 演示addAdsBlockAllowedList和addAdsBlockAllowedList配套使用，设置网页级的广告过滤开关。	
+@Entry	
+@Component	
+struct WebComponent {	
+  main_url: string = 'https://www.example.com';	
+  text_input_controller: TextInputController = new TextInputController();	
+  controller: webview.WebviewController = new webview.WebviewController();	
 
-  @State inputText: string = resourceToString($r('app.string.web_path'));
+  @State input_text: string = 'https://www.example.com';	
 
-  build() {
-    Column() {
-      Row() {
-        Flex() {
-          TextInput({ text: this.inputText, placeholder: this.mainUrl, controller: this.textInputController})
-            .id('input_url')
-            .height(40)
-            .margin(5)
-            .borderColor(Color.Blue)
-            .onChange((value: string) => {
-              this.inputText = value;
-            })
+  build() {	
+    Column() {	
+      Row() {	
+        Flex() {	
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})	
+            .id('input_url')	
+            .height(40)	
+            .margin(5)	
+            .borderColor(Color.Blue)	
+            .onChange((value: string) => {	
+              this.input_text = value;	
+            })	
 
-          Button({type: ButtonType.Capsule}) { Text('Go'); }
-          .onClick(() => {
-            this.controller.loadUrl(this.inputText);
-          })
+          Button({type: ButtonType.Capsule}) { Text('Go') }	
+          .onClick(() => {	
+            this.controller.loadUrl(this.input_text);	
+          })	
 
-          Button({type: ButtonType.Capsule}) { Text('addAdsBlockAllowedList'); }
-          .onClick(() => {
-            let arrDisallowDomainSuffixes = ['example.com'];
-            webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes);
+          Button({type: ButtonType.Capsule}) { Text('addAdsBlockAllowedList') }	
+          .onClick(() => {	
+            let arrDisallowDomainSuffixes = new Array<string>();	
+            arrDisallowDomainSuffixes.push('example.com');
+            webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes);	
 
-            let arrAllowedDomainSuffixes = ['news.example.com', 'sport.example.com'];
-            webview.AdsBlockManager.addAdsBlockAllowedList(arrAllowedDomainSuffixes);
-          })
-        }
-      }
-      Web({ src: this.mainUrl, controller: this.controller })
-        .onControllerAttached(()=>{
-          this.controller.enableAdsBlock(true);
-        })
-    }
-  }
+            let arrAllowedDomainSuffixes = new Array<string>();	
+            arrAllowedDomainSuffixes.push('news.example.com');
+            arrAllowedDomainSuffixes.push('sport.example.com');
+            webview.AdsBlockManager.addAdsBlockAllowedList(arrAllowedDomainSuffixes);	
+          })	
+        }	
+      }	
+      Web({ src: this.main_url, controller: this.controller })	
+        .onControllerAttached(()=>{	
+          this.controller.enableAdsBlock(true);	
+        })	
+    }	
+  }	
 }
 // [End set_up_page_level_ad_filtering_switch]

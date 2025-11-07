@@ -1,0 +1,11 @@
+/node_modules
+/oh_modules
+/.idea
+**/build
+/.hvigor
+.cxx
+/.clangd
+/.clang-format
+/.clang-tidy
+**/.test
+/.appanalyzer

@@ -40,10 +40,13 @@ export struct GridSideToSide {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
+      Column({ space: 5 }) {
+        // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
         ComponentCard({ title: $r('app.string.GridSideToSide_title') }) {
-          Column(){
+          // [Start Control_scrolling_position]
+          Column({ space: 5 }){
             Grid(this.scroller) {
+              // [StartExclude Control_scrolling_position]
               LazyForEach(this.numbers, (day: string) => {
                 GridItem() {
                   Text(day)
@@ -54,23 +57,26 @@ export struct GridSideToSide {
                     .textAlign(TextAlign.Center)
                 }
               }, (index: number) => index.toString())
+              // [EndExclude Control_scrolling_position]
             }
             .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
+            // [StartExclude Control_scrolling_position]
             .columnsGap(10)
             .rowsGap(10)
             .width('90%')
             .height(300)
             .scrollBar(BarState.Off)
-
+            // [EndExclude Control_scrolling_position]
             Row({ space: 20 }) {
-              Button('上一页')
+              // app.string.Previous_Page资源文件中的value值为‘上一页’
+              Button($r('app.string.Previous_Page'))
                 .onClick(() => {
                   this.scroller.scrollPage({
                     next: false
                   });
                 })
-
-              Button('下一页')
+              // app.string.Next_page资源文件中的value值为‘下一页’
+              Button($r('app.string.Next_page'))
                 .onClick(() => {
                   this.scroller.scrollPage({
                     next: true
@@ -78,6 +84,7 @@ export struct GridSideToSide {
                 })
             }
           }
+          // [End Control_scrolling_position]
         }
       }
       .width('100%')
@@ -85,6 +92,7 @@ export struct GridSideToSide {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.GridSideToSide_title资源文件中的value值为‘控制滚动位置’
     .title($r('app.string.GridSideToSide_title'))
   }
 }

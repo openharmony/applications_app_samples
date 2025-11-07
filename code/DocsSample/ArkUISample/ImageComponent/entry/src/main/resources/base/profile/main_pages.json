@@ -9,6 +9,10 @@
     "pages/SetImageRepetitionStyle",
     "pages/SetImageZoomType",
     "pages/LoadImageResources",
-    "pages/DisplayVectorDiagram"
+    "pages/DisplayVectorDiagram",
+    "pages/LoadingResources",
+    "pages/MultimediaPixelArt",
+    "pages/DrawableDescriptor",
+    "pages/Shadow"
   ]
 }

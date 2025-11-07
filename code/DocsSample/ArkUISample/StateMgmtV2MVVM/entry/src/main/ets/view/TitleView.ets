@@ -14,19 +14,22 @@
  *
 */
 
+// [Start View_TitleView]
 // src/main/ets/view/TitleView.ets
-
 @ComponentV2
 export default struct TitleView {
   @Param tasksUnfinished: number = 0;
 
   build() {
     Column() {
+      // app.string.TodoList_title 资源文件中的value值为'待办'。
       Text($r('app.string.TodoList_title'))
         .fontSize(40)
         .margin(10)
-      Text(`${getContext(this).resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
+      // app.string.Unfinish_count 资源文件中的value值为'未完成任务'。
+      Text(`${this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
     }
   }
 }
+// [End View_TitleView]

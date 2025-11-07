@@ -13,32 +13,42 @@
  * limitations under the License.
  */
 
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG = 'Sample_imagecomponent';
+//  事件调用页面
+//  [Start event_invocation]
 @Entry
 @Component
-struct MyComponent2 {
-  @State widthValue: number = 0
-  @State heightValue: number = 0
-  @State componentWidth: number = 0
-  @State componentHeight: number = 0
+struct EventCall {
+  @State widthValue: number = 0;
+  @State heightValue: number = 0;
+  @State componentWidth: number = 0;
+  @State componentHeight: number = 0;
 
   build() {
     Column() {
       Row() {
+        //  $r('app.media.ic_img_2')需要替换为开发者所需的资源文件
         Image($r('app.media.ic_img_2'))
           .width(200)
           .height(150)
           .margin(15)
+          // 使用 onComplete 接口验证图片加载成功获取必要信息
+          // 图片加载成功,获取图片必要信息
           .onComplete(msg => {
             if(msg){
-              this.widthValue = msg.width
-              this.heightValue = msg.height
-              this.componentWidth = msg.componentWidth
-              this.componentHeight = msg.componentHeight
-            }
+              this.widthValue = msg.width;
+              this.heightValue = msg.height;
+              this.componentWidth = msg.componentWidth;
+              this.componentHeight = msg.componentHeight;
+            };
+            hilog.info(DOMAIN, TAG, `${msg}`);
           })
-            // 图片获取失败，打印结果
+          // 使用 onError 接口验证图片如果加载失败,触发回调函数获取结果
+          // 图片获取失败，打印结果
           .onError(() => {
-            console.info('load image fail')
+            hilog.info(DOMAIN, TAG, 'load image fail');
           })
           .overlay('\nwidth: ' + String(this.widthValue) + ', height: ' + String(this.heightValue) + '\ncomponentWidth: ' + String(this.componentWidth) + '\ncomponentHeight: ' + String(this.componentHeight), {
             align: Alignment.Bottom,
@@ -48,3 +58,4 @@ struct MyComponent2 {
     }
   }
 }
+//  [End event_invocation]

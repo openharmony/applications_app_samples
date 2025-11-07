@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start input_case_input_Submenu]
+
 import { BusinessError } from '@ohos.base';
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { SubMenuType } from '../model/KeyboardKeyData';
@@ -73,7 +73,7 @@ export struct Submenu {
       console.log('GJ switchCurrentInputMethodSubtype error', JSON.stringify(error));
     }
   }
-  // [Start input_case_input_switchInputMethodgetInputMethods]
+  // [End input_case_input_switchInputMethodgetInputMethods]
 
   aboutToAppear(): void {
     this.inputList()
@@ -173,4 +173,3 @@ export struct Submenu {
     .backgroundColor('#F1F3F5')
   }
 }
-// [End input_case_input_Submenu]

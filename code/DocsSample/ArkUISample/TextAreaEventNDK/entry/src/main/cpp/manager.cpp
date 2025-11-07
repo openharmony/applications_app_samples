@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start obtain_textarea_all]
 #include "manager.h"
 #include <sstream>
 #include <arkui/native_interface.h>
@@ -44,20 +45,24 @@ void NodeManager::CreateTextAreaNode()
     ArkUI_AttributeItem widthItem = {.value = colWidth, .size = 1};
     nodeApi->setAttribute(column, NODE_WIDTH, &widthItem);
 
+    // [Start obtain_create_textarea]
     ArkUI_NodeHandle text = nodeApi->createNode(ARKUI_NODE_TEXT);
     ArkUI_NumberValue textWidth[] = {{.f32 = 300}};
     ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = 1};
     nodeApi->setAttribute(text, NODE_WIDTH, &textWidthItem);
+    // [StartExclude obtain_create_textarea]
     ArkUI_NumberValue textHeight[] = {{.f32 = 100}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeight, .size = 1};
     nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     
     nodeApi->addChild(column, text);
     
+    // [EndExclude obtain_create_textarea]
     ArkUI_NodeHandle selectionText = nodeApi->createNode(ARKUI_NODE_TEXT);
     ArkUI_NumberValue selectionTextWidth[] = {{.f32 = 300}};
     ArkUI_AttributeItem selectionTextWidthItem = {.value = selectionTextWidth, .size = 1};
     nodeApi->setAttribute(selectionText, NODE_WIDTH, &selectionTextWidthItem);
+    // [StartExclude obtain_create_textarea]
     nodeApi->addChild(column, selectionText);
     ArkUI_NodeHandle textArea = nodeApi->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NumberValue textAreaWidth[] = {{.f32 = 300}};
@@ -68,11 +73,13 @@ void NodeManager::CreateTextAreaNode()
     ArkUI_AttributeItem borderWidthItem = {.value = borderWidth, .size = 1};
     nodeApi->setAttribute(textArea, NODE_BORDER_WIDTH, &borderWidthItem);
 
+    // [EndExclude obtain_create_textarea]
     const ArkUI_AttributeItem *attributeItem = nodeApi->getAttribute(textArea, NODE_UNIQUE_ID);
     auto id = attributeItem->value[0].i32;
     nodeApi->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_CHANGE, id, text);
     nodeApi->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_PASTE, id, text);
     nodeApi->registerNodeEvent(textArea, NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE, id, selectionText);
+    // [End obtain_create_textarea]
     TextAreaNodeEventReceiver(nodeApi);
     nodeApi->addChild(column, textArea);
     OH_NativeXComponent_AttachNativeRootNode(xComponent_, column);
@@ -80,6 +87,7 @@ void NodeManager::CreateTextAreaNode()
 
 void NodeManager::TextAreaNodeEventReceiver(ArkUI_NativeNodeAPI_1* nodeApi)
 {
+    // [Start obtain_textarea_NodeEventReceiver]
     nodeApi->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         ArkUI_NodeEventType eventType = OH_ArkUI_NodeEvent_GetEventType(event);
         ArkUI_AttributeItem content;
@@ -101,5 +109,7 @@ void NodeManager::TextAreaNodeEventReceiver(ArkUI_NativeNodeAPI_1* nodeApi)
             nodeApi->setAttribute(textNode, NODE_TEXT_CONTENT, &content);
         }
     });
+    // [End obtain_textarea_NodeEventReceiver]
 }
 } // namespace NativeNode::Manager
+// [End obtain_textarea_all]

@@ -63,19 +63,19 @@ export struct TransientTaskView {
   build() {
     Column() {
       Row() {
-        Text(this.message)
+        Text(this.message);
       }
 
       Row() {
         Button('开始计算')
-          .onClick(this.clickCallback)
+          .onClick(this.clickCallback);
       }
       .width('100%')
-      .justifyContent(FlexAlign.Center)
+      .justifyContent(FlexAlign.Center);
     }
     .width('100%')
     .height('100%')
-    .justifyContent(FlexAlign.Center)
+    .justifyContent(FlexAlign.Center);
   }
 }
 

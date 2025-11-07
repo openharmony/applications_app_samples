@@ -154,8 +154,8 @@ static napi_value ScsiInit(napi_env env, napi_callback_info info)
     return result;
 }
 
-static bool BuildInquiryResult(napi_env env, napi_value& result, ScsiPeripheral_InquiryInfo inquiryInfo,
-    ScsiPeripheral_Response response)
+static bool BuildInquiryResult(napi_env env, napi_value& result, ScsiPeripheral_InquiryInfo& inquiryInfo,
+    ScsiPeripheral_Response& response)
 {
     napi_value deviceInfo;
     napi_create_object(env, &deviceInfo);
@@ -256,6 +256,7 @@ static napi_value Inquiry(napi_env env, napi_callback_info info)
     
     napi_value result = nullptr;
     if (DoInquiry(env, result)) {
+        OH_LOG_INFO(LOG_APP, "DoInquiry success\n");
         return result;
     }
     OH_LOG_INFO(LOG_APP, "GetDeviceInfo failed\n");
@@ -283,8 +284,8 @@ static napi_value Inquiry(napi_env env, napi_callback_info info)
     return result;
 }
 
-static bool BuildReadCapacityResult(napi_env env, ScsiPeripheral_CapacityInfo capacityInfo,
-    ScsiPeripheral_Response response, napi_value& result)
+static bool BuildReadCapacityResult(napi_env env, ScsiPeripheral_CapacityInfo& capacityInfo,
+    ScsiPeripheral_Response& response, napi_value& result)
 {
     napi_value address;
     if (napi_create_uint32(env, capacityInfo.lbAddress, &address) != napi_ok) {
@@ -384,6 +385,7 @@ static napi_value ReadCapacity(napi_env env, napi_callback_info info)
     
     napi_value result;
     if (DoReadCapacity(env, info, result)) {
+        OH_LOG_INFO(LOG_APP, "DoReadCapacity success\n");
         return result;
     }
     OH_LOG_INFO(LOG_APP, "ReadCapacity failed\n");
@@ -429,9 +431,11 @@ static napi_value TestUnitReady(napi_env env, napi_callback_info info)
     return result;
 }
 
-static bool ParseData(napi_env env, char *hexFormat, ScsiPeripheral_Response response, napi_value& senseData,
+static bool ParseData(napi_env env, ScsiPeripheral_Response& response, napi_value& senseData,
     napi_value& parseSenseInfo)
 {
+    char *hexFormat = new char[MAX_SCSI_COUNT * SCSIPERIPHERAL_MAX_SENSE_DATA_LEN];
+    memset(hexFormat, 0, MAX_SCSI_COUNT * SCSIPERIPHERAL_MAX_SENSE_DATA_LEN);
     if (IsAllZero(response.senseData, SCSIPERIPHERAL_MAX_SENSE_DATA_LEN)) {
         // 生成senseData napi_value
         ConvertHexDataToHexStr(hexFormat, response.senseData, SCSIPERIPHERAL_MAX_SENSE_DATA_LEN);
@@ -450,6 +454,10 @@ static bool ParseData(napi_env env, char *hexFormat, ScsiPeripheral_Response res
         if (ret != SCSIPERIPHERAL_DDK_SUCCESS) {
             OH_LOG_ERROR(LOG_APP, "RequestSense OH_ScsiPeripheral_ParseBasicSenseInfo failed, ret = %{public}d",
                          ret);
+            if (hexFormat != nullptr) {
+                delete [] hexFormat;
+                hexFormat = nullptr;
+            }
             return false;
         }
         OH_LOG_INFO(LOG_APP, "senseInfo:  responseCode= 0x%{public}x, valid=%{public}d, information=0x%{public}x, "
@@ -471,10 +479,15 @@ static bool ParseData(napi_env env, char *hexFormat, ScsiPeripheral_Response res
         // 生成senseInfo napi_value
         napi_create_string_utf8(env, buffer, num, &parseSenseInfo);
     }
+    
+    if (hexFormat != nullptr) {
+        delete [] hexFormat;
+        hexFormat = nullptr;
+    }
     return true;
 }
 
-static bool DoRequestSense(napi_env env, char *hexFormat, napi_value& result)
+static bool DoRequestSense(napi_env env, napi_value& result)
 {
     ScsiPeripheral_RequestSenseRequest senseRequest;
     senseRequest.allocationLength = SCSIPERIPHERAL_MAX_SENSE_DATA_LEN + 1;
@@ -497,7 +510,7 @@ static bool DoRequestSense(napi_env env, char *hexFormat, napi_value& result)
     
     napi_value senseData = nullptr;
     napi_value parseSenseInfo = nullptr;
-    if (!ParseData(env, hexFormat, response, senseData, parseSenseInfo)) {
+    if (!ParseData(env, response, senseData, parseSenseInfo)) {
         return false;
     }
 
@@ -534,19 +547,11 @@ static bool DoRequestSense(napi_env env, char *hexFormat, napi_value& result)
 static napi_value RequestSense(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "enter RequestSense\n");
-    char *hexFormat = new char[MAX_SCSI_COUNT * SCSIPERIPHERAL_MAX_SENSE_DATA_LEN];
-    memset(hexFormat, 0, MAX_SCSI_COUNT * SCSIPERIPHERAL_MAX_SENSE_DATA_LEN);
     
     napi_value result;
-    if (DoRequestSense(env, hexFormat, result)) {
-        delete [] hexFormat;
-        hexFormat = nullptr;
+    if (DoRequestSense(env, result)) {
+        OH_LOG_INFO(LOG_APP, "DoRequestSense success.\n");
         return result;
-    }
-
-    if (hexFormat != nullptr) {
-        delete [] hexFormat;
-        hexFormat = nullptr;
     }
 
     OH_LOG_INFO(LOG_APP, "RequestSense failed.\n");
@@ -564,15 +569,25 @@ static napi_value RequestSense(napi_env env, napi_callback_info info)
     return result;
 }
 
-static bool BuildReadBlocksData(napi_env env, napi_callback_info info, napi_value& result, char *hexFormat,
-    ScsiPeripheral_Response response)
+static bool BuildReadBlocksData(napi_env env, napi_value& result, ScsiPeripheral_Response& response)
 {
     napi_value readData;
+    char *hexFormat = new char[MAX_SCSI_COUNT * DEVICE_MEM_MAP_SIZE];
+    memset(hexFormat, 0, MAX_SCSI_COUNT * DEVICE_MEM_MAP_SIZE);
     ConvertHexDataToHexStr(hexFormat, g_scsiDeviceMemMap->address, g_scsiDeviceMemMap->transferredLength);
     if (napi_create_string_utf8(env, hexFormat, MAX_SCSI_COUNT * g_scsiDeviceMemMap->transferredLength,
         &readData)!= napi_ok) {
         OH_LOG_ERROR(LOG_APP, "%{public}s scsi napi_create_uint32 readData failed", __func__);
+        if (hexFormat != nullptr) {
+            delete [] hexFormat;
+            hexFormat = nullptr;
+        }
         return false;
+    }
+    
+    if (hexFormat != nullptr) {
+        delete [] hexFormat;
+        hexFormat = nullptr;
     }
 
     napi_value status;
@@ -598,7 +613,7 @@ static bool BuildReadBlocksData(napi_env env, napi_callback_info info, napi_valu
     return true;
 }
 
-static bool DoReadBlocksData(napi_env env, napi_callback_info info, napi_value& result, char *hexFormat)
+static bool DoReadBlocksData(napi_env env, napi_callback_info info, napi_value& result)
 {
     size_t argc = ARGC_SIZE;
     napi_value args[ARGC_SIZE] = {nullptr};
@@ -638,7 +653,7 @@ static bool DoReadBlocksData(napi_env env, napi_callback_info info, napi_value& 
         __func__, (char *)(g_scsiDeviceMemMap->address),
         g_scsiDeviceMemMap->size, g_scsiDeviceMemMap->transferredLength);
     
-    if (!BuildReadBlocksData(env, info, result, hexFormat, response)) {
+    if (!BuildReadBlocksData(env, result, response)) {
         return false;
     }
     
@@ -649,20 +664,11 @@ static bool DoReadBlocksData(napi_env env, napi_callback_info info, napi_value& 
 static napi_value ReadBlocksData(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "enter ReadBlocksData\n");
-    char *hexFormat = new char[MAX_SCSI_COUNT * DEVICE_MEM_MAP_SIZE];
-    memset(hexFormat, 0, MAX_SCSI_COUNT * DEVICE_MEM_MAP_SIZE);
+    
     napi_value result;
-    if (DoReadBlocksData(env, info, result, hexFormat)) {
-        if (hexFormat != nullptr) {
-            delete [] hexFormat;
-            hexFormat = nullptr;
-        }
+    if (DoReadBlocksData(env, info, result)) {
+        OH_LOG_INFO(LOG_APP, "DoReadBlocksData success\n");
         return result;
-    }
-
-    if (hexFormat != nullptr) {
-        delete [] hexFormat;
-        hexFormat = nullptr;
     }
 
     OH_LOG_INFO(LOG_APP, "ReadBlocksData failed\n");
@@ -777,11 +783,13 @@ static napi_value VerifyBlocksData(napi_env env, napi_callback_info info)
     return result;
 }
 
-static bool BuildSendCDBDataResult(napi_env env, napi_value& result, int32_t direction, char *hexFormat,
-    ScsiPeripheral_Response response)
+static bool BuildSendCDBDataResult(napi_env env, napi_value& result, int32_t direction,
+    ScsiPeripheral_Response& response)
 {
     napi_value retData;
     napi_status retNapiStatus;
+    char *hexFormat = new char[MAX_SCSI_COUNT * DEVICE_MEM_MAP_SIZE];
+    memset(hexFormat, 0, MAX_SCSI_COUNT * DEVICE_MEM_MAP_SIZE);
     if (response.status == 0 && (direction == DIRECTION_ERROR || direction == DIRECTION_WARNING)) {
         ConvertHexDataToHexStr(hexFormat, g_scsiDeviceMemMap->address, g_scsiDeviceMemMap->transferredLength);
         retNapiStatus = napi_create_string_utf8(env, hexFormat,
@@ -789,6 +797,12 @@ static bool BuildSendCDBDataResult(napi_env env, napi_value& result, int32_t dir
     } else {
         retNapiStatus = napi_create_string_utf8(env, "", 0, &retData);
     }
+
+    if (hexFormat != nullptr) {
+        delete [] hexFormat;
+        hexFormat = nullptr;
+    }
+    
     if (retNapiStatus != napi_ok) {
         OH_LOG_ERROR(LOG_APP, "%{public}s scsi napi_create_uint32 readData failed", __func__);
         return false;
@@ -814,10 +828,12 @@ static bool BuildSendCDBDataResult(napi_env env, napi_value& result, int32_t dir
         OH_LOG_ERROR(LOG_APP, "%{public}s scsi napi_set_element 1 failed", __func__);
         return false;
     }
+    OH_LOG_ERROR(LOG_APP, "%{public}s BuildSendCDBDataResult end", __func__);
+    return true;
 }
 
 static bool BuildSendCDBDataReq(napi_env env, napi_callback_info info, int32_t& direction,
-    ScsiPeripheral_Request request)
+    ScsiPeripheral_Request& request)
 {
     size_t argc = NUM_FIVE;
     napi_value args[NUM_FIVE] = {nullptr};
@@ -871,14 +887,15 @@ static bool BuildSendCDBDataReq(napi_env env, napi_callback_info info, int32_t& 
     return true;
 }
 
-static bool DoSendCDBData(napi_env env, napi_callback_info info, napi_value& result, char *hexFormat)
+static bool DoSendCDBData(napi_env env, napi_callback_info info, napi_value& result)
 {
     ScsiPeripheral_Request request;
     int32_t direction = 0;
     if (!BuildSendCDBDataReq(env, info, direction, request)) {
         return false;
     }
-
+    
+    OH_LOG_INFO(LOG_APP, "SendCDBData request.cdbLength:%{public}d,", request.cdbLength);
     ScsiPeripheral_Response response;
     // [Start driver_scsi_step12]
     int32_t ret = OH_ScsiPeripheral_SendRequestByCdb(g_scsiPeripheralDevice, &request, &response);
@@ -891,7 +908,7 @@ static bool DoSendCDBData(napi_env env, napi_callback_info info, napi_value& res
     OH_LOG_INFO(LOG_APP, "%{public}s, retData:%{public}s, size:%{public}d, transferredLength:%{public}d, "
                          "status = %{public}d", __func__, (char *)(g_scsiDeviceMemMap->address),
         g_scsiDeviceMemMap->size, g_scsiDeviceMemMap->transferredLength, response.status);
-    if (!BuildSendCDBDataResult(env, result, direction, hexFormat, response)) {
+    if (!BuildSendCDBDataResult(env, result, direction, response)) {
         return false;
     }
     
@@ -902,23 +919,13 @@ static bool DoSendCDBData(napi_env env, napi_callback_info info, napi_value& res
 static napi_value SendCDBData(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "enter SendCDBData\n");
-    char *hexFormat = new char[MAX_SCSI_COUNT * DEVICE_MEM_MAP_SIZE];
-    memset(hexFormat, 0, MAX_SCSI_COUNT * DEVICE_MEM_MAP_SIZE);
     
     napi_value result;
-    if (DoSendCDBData(env, info, result, hexFormat)) {
-        if (hexFormat != nullptr) {
-            delete [] hexFormat;
-            hexFormat = nullptr;
-        }
+    if (DoSendCDBData(env, info, result)) {
+        OH_LOG_INFO(LOG_APP, "%{public}s, DoSendCDBData success", __func__);
         return result;
     }
-
-    if (hexFormat != nullptr) {
-        delete [] hexFormat;
-        hexFormat = nullptr;
-    }
-
+    
     OH_LOG_INFO(LOG_APP, "SendCDBData failed\n");
     napi_value retData;
     napi_create_string_utf8(env, "", 0, &retData);

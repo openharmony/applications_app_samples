@@ -61,6 +61,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
 static napi_value SyncFenceWait(napi_env env, napi_callback_info info)
 {
+    // [EndExclude wait_fence]
     bool result = OH_NativeFence_Wait(INVALID_FD, TIMEOUT_MS);
     // [End wait_fence]
     // [Start check_fence_invalid]

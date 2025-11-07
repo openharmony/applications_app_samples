@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/Index",
+    "view/ExamplePage",
+    "view/AboutToRecyclePage",
+    "view/ConditionPage",
+    "view/ComputedPage",
+    "view/IMonitorValuePage",
+    "view/ComponentIfPage",
+    "view/RepeatPage",
+    "view/ComponentEachPage",
+    "view/ComponentForEachPage",
+    "view/LazyForEachPage"
+  ]
+}

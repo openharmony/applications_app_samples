@@ -20,7 +20,7 @@ import { LazyForEachPage } from '@ohos/trace';
 struct TracePage {
   build() {
     Column() {
-      LazyForEachPage()
+      LazyForEachPage();
     }
   }
 }

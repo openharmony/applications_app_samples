@@ -14,9 +14,11 @@
  */
 
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+// [Start cursor_avoid_part1]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { KeyboardAvoidMode } from '@kit.ArkUI';
+// [End cursor_avoid_part1]
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -27,7 +29,8 @@ export default class EntryAbility extends UIAbility {
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
-
+  // [Start cursor_avoid_part2]
+  // Used in UIAbility
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -42,15 +45,15 @@ export default class EntryAbility extends UIAbility {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
-
+  // [End cursor_avoid_part2]
   onWindowStageDestroy(): void {
-      // Main window is destroyed, release UI related resources
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-      // Ability has brought to foreground
-      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {

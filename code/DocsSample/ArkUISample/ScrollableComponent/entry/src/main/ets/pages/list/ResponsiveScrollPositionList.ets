@@ -42,6 +42,7 @@ export let contactsGroups: object[] = [
   {
     title: 'A',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_A_one'), $r('sys.media.clone_app_badge_1')),
       new Contact($r('app.string.contacts_A_two'), $r('sys.media.clone_app_badge_2'))
     ],
@@ -50,6 +51,7 @@ export let contactsGroups: object[] = [
   {
     title: 'B',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_B_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_B_two'), $r('sys.media.clone_app_badge_4')),
       new Contact($r('app.string.contacts_B_three'), $r('sys.media.clone_app_badge_5'))
@@ -59,6 +61,7 @@ export let contactsGroups: object[] = [
   {
     title: 'D',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_D_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_D_two'), $r('sys.media.clone_app_badge_4')),
       new Contact($r('app.string.contacts_D_three'), $r('sys.media.clone_app_badge_5'))
@@ -68,6 +71,7 @@ export let contactsGroups: object[] = [
   {
     title: 'F',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_F_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_F_two'), $r('sys.media.clone_app_badge_4'))
     ],
@@ -76,6 +80,7 @@ export let contactsGroups: object[] = [
   {
     title: 'G',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_G_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_G_two'), $r('sys.media.clone_app_badge_4'))
     ],
@@ -84,6 +89,7 @@ export let contactsGroups: object[] = [
   {
     title: 'H',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_H_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_H_two'), $r('sys.media.clone_app_badge_4')),
       new Contact($r('app.string.contacts_H_three'), $r('sys.media.clone_app_badge_5'))
@@ -93,6 +99,7 @@ export let contactsGroups: object[] = [
   {
     title: 'X',
     contacts: [
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       new Contact($r('app.string.contacts_X_one'), $r('sys.media.clone_app_badge_3')),
       new Contact($r('app.string.contacts_X_two'), $r('sys.media.clone_app_badge_4')),
       new Contact($r('app.string.contacts_X_three'), $r('sys.media.clone_app_badge_5'))
@@ -107,9 +114,9 @@ export let contactsGroups: object[] = [
 export struct ResponsiveScrollPositionList {
   @State selectedIndex: number = 0;
   private listScroller: Scroller = new Scroller();
+  // [StartExclude respond_to_scroll_position]
   private currentGroupTitle: string = ''; // 用于跟踪当前显示的分组标题
 
-  // [StartExclude respond_to_scroll_position]
   @Builder
   itemHead(text: string) {
     // 列表分组的头部组件，对应联系人分组A、B等位置的组件
@@ -125,12 +132,20 @@ export struct ResponsiveScrollPositionList {
     // [StartExclude respond_to_scroll_position]
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ResponsiveScrollPositionList_titleExample')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ResponsiveScrollPositionList_titleExample') }) {
+          // [EndExclude respond_to_scroll_position]
           // [EndExclude use_stack]
           Stack({ alignContent: Alignment.End }) {
             // 此为响应滚动位置示例List容器
+            // [Start respond_to_list_scroller]
+            // [Start scroller_scroll_bar]
+            // listScroller初始化List组件的scroller参数，绑定listScroller与列表。
             List({ scroller: this.listScroller }) {
+            // [End scroller_scroll_bar]
+              // [StartExclude respond_to_scroll_position]
               // [StartExclude use_foreach]
+              // [StartExclude respond_to_list_scroller]
               ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
                 ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
                   // 循环渲染ListItem
@@ -141,18 +156,18 @@ export struct ResponsiveScrollPositionList {
                           Image(item.icon).width(40).height(40).margin(10)
                           Text(item.name).fontSize(20)
                         }.width('100%').justifyContent(FlexAlign.Start)
-                        // [EndExclude respond_to_scroll_position]
                       }
-                      // [StartExclude respond_to_scroll_position]
                     }, (item: Contact) => JSON.stringify(item))
                   }
                 }
               }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
+              // [EndExclude respond_to_list_scroller]
+              // [EndExclude respond_to_scroll_position]
             }
-            // [EndExclude respond_to_scroll_position]
+            // [End respond_to_list_scroller]
             .onScrollIndex((firstIndex: number) => {
-              // [StartExclude respond_to_scroll_position]
               // 根据列表滚动到的索引值，重新计算对应联系人索引栏的位置this.selectedIndex
+              // [StartExclude respond_to_scroll_position]
               let group = contactsGroups[firstIndex] as ContactsGroup;
               this.currentGroupTitle = group.title;
               this.selectedIndex = alphabets.indexOf(this.currentGroupTitle);
@@ -162,8 +177,12 @@ export struct ResponsiveScrollPositionList {
             // 字母表索引组件
             AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
               .selected(this.selectedIndex)
-            // [End respond_to_scroll_position]
-          }.height('90%')
+              .onSelect((index: number) => {
+                this.listScroller.scrollToIndex(index);
+              })
+          }
+          // [StartExclude respond_to_scroll_position]
+          .height('90%')
         }
       }
       .width('100%')
@@ -172,5 +191,7 @@ export struct ResponsiveScrollPositionList {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ResponsiveScrollPositionList_title'))
+    // [EndExclude respond_to_scroll_position]
   }
 }
+// [End respond_to_scroll_position]

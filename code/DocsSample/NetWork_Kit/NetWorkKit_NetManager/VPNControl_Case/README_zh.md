@@ -6,9 +6,9 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 
 ### 效果预览
 
-| 程序启动                            | 创建隧道                                | 启动vpnExt                             | 关闭VPN                             |
-| ----------------------------------- | --------------------------------------- | -------------------------------------- | ----------------------------------- |
-| <img src="screenshots/Vpn_Index.jpg" width="300" /> | <img src="screenshots/Create_Tunnel.jpg" width="300" /> | <img src="screenshots/Start_VpnExt.jpg" width="300" /> | <img src="screenshots/Stop_Vpn.jpg" width="300" /> |
+| 程序启动                            | 创建隧道                                | 启动vpnExt                             | 关闭VPN                             | 生成VPN Id                                                 | 断开VPN                                                     |
+| ----------------------------------- | --------------------------------------- | -------------------------------------- | ----------------------------------- |----------------------------------------------------------|-----------------------------------------------------------|
+| <img src="screenshots/Vpn_Index.jpg" width="300" /> | <img src="screenshots/Create_Tunnel.jpg" width="300" /> | <img src="screenshots/Start_VpnExt.jpg" width="300" /> | <img src="screenshots/Stop_Vpn.jpg" width="300" /> | <img src="screenshots/destroySuccess.jpg" width="300" /> | <img src="screenshots/getVpnIdSuccess.jpg" width="300" /> |
 
 使用说明
 
@@ -30,7 +30,9 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 
 8. 点击 `关闭VPN拓展程序` 按钮以停止 VPN 扩展能力。
 
-   
+9. 点击 `getVpnId` 按钮，生成VPN Id。
+ 
+10. 点击 `destroy` 按钮,可断开VPN。
 
 ### 工程目录
 
@@ -47,8 +49,13 @@ entry/src/main/ets/
 |   |---WantAgentUtil.ets			// 创建 WantAgent，用于启动能力或发送通用事件
 |---pages
 |   |---Index.ets                  // 首页
+|   |---SetupVpn.ets               // 设置vpn
 |   |---StartVpn.ets               // 打开vpn
 |   |---StopVpn.ets                // 关闭vpn
+|---vpnability
+|   |---DestroyVpnTest.ets         // 断开VPN
+|   |---GetVpnIdTest.ets           // 生成VPN Id
+|   |---VPNExtentionAbility.ets    // VPN扩展能力
 |---model
 |   |---Logger.ets                 // 日志
 |   |---ShowToast.ets              // 输出气泡
@@ -101,6 +108,18 @@ entry/src/main/cpp/
        - 启动成功后，显示提示并记录日志。
        - 启动失败时，显示错误信息并记录日志。
 
+6. 获取VPN ID
+
+    - 通过 `vpnConnection.generateVpnId()` 方法，可以获取VPN的ID。
+        - 获取成功后，显示提示并记录日志。
+        - 获取失败时，显示错误信息并记录日志。
+
+7. 断开VPN
+
+    - 通过 `vpnConnection.destroy()` 方法，可以断开VPN的连接。
+        - 断开连接成功后，显示提示并记录日志。
+        - 断开连接获取失败时，显示错误信息并记录日志。
+
 ### 相关权限
 
 [ohos.permission.INTERNET](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
@@ -112,7 +131,7 @@ entry/src/main/cpp/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例为Stage模型，支持API14版本SDK，版本号：5.0.2。
+2. 本示例为Stage模型，支持API20版本SDK，版本号：6.0.2。
 3. 本示例需要使用DevEco Studio Release（5.0.5.306）及以上版本才可编译运行。
 
 ### 下载

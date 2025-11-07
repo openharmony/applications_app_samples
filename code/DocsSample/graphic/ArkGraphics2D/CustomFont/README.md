@@ -6,8 +6,8 @@
 
 ## 效果预览
 
-| ![](screenshots/customFont.jpg) |
-|---------------------------------|
+| ![](screenshots/load_custom_font.jpeg) | ![](screenshots/unload_custom_font.jpeg) |
+|----------------------------------------|------------------------------------------|
 
 **使用方法：**
 
@@ -47,8 +47,8 @@ ArkTSDrawing
 ## 约束与限制
 
 1. 本示例支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API14版本SDK，版本号：5.0.2.123。
-3. 本示例已支持DevEco Studio 5.0.2 Release (构建版本：5.0.7.210，构建 2025年5月6日)编译运行。
+2. 本示例支持API20版本SDK，版本号：6.0.0.47。
+3. 本示例已支持DevEco Studio 6.0.0 Release (构建版本：6.0.0.858，构建 2025年10月28日)编译运行。
 
 ## 下载
 
@@ -58,6 +58,6 @@ ArkTSDrawing
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/graphic/Arkgraphics2D/CustomFont/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

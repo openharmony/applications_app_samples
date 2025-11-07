@@ -27,7 +27,7 @@ struct Index {
     RelativeContainer() {
       Column() {
         // [Start pointer_visible]
-        Text("Click to hide the cursor")
+        Text("Click to hide pointer")
           .onClick(() => {
             // 1.应用切换到全屏播放
             // 2.调用鼠标光标隐藏接口隐藏光标
@@ -97,7 +97,7 @@ struct Index {
         // [End pointer_visible]
 
         // [Start pointer_style]
-        Text("Click to set the mouse pointer style to the color picker style")
+        Text(`Click to set the mouse pointer style to the color picker style`)
           .onClick(() => {
             // 1.开发者使能取色功能
             // 2.调用窗口实例获取对应的窗口id
@@ -138,10 +138,11 @@ struct Index {
           .backgroundColor('#F7F9FC')
           .borderRadius(4)
           .padding(8)
+          .wordBreak(WordBreak.NORMAL)
         // [EndExclude pointer_style]
 
 
-        Text("Click to set the mouse pointer style to default style")
+        Text(`Click to set the mouse pointer style to default style`)
           .onClick(() => {
             // 4.取色结束
             window.getLastWindow(this.getUIContext().getHostContext(),
@@ -181,6 +182,7 @@ struct Index {
           .backgroundColor('#F7F9FC')
           .borderRadius(4)
           .padding(8)
+          .wordBreak(WordBreak.NORMAL)
       }
       .height('100%')
       .width('80%')

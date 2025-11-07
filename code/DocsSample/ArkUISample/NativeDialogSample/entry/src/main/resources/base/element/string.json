@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "NativeDialogSample"
     },
     {
       "name": "dialog_controller",
@@ -19,6 +19,34 @@
     {
       "name": "custom_dialog",
       "value": "OpenCustomDialog_CAPI对接示例"
+    },
+    {
+      "name": "dialog_demo",
+      "value": "dialog demo"
+    },
+    {
+      "name": "dialog_controller_demo",
+      "value": "DialogController demo"
+    },
+    {
+      "name": "dialog_option_demo",
+      "value": "DialogOption demo"
+    },
+    {
+      "name": "dialog_optionText_demo",
+      "value": "Text Option demo"
+    },
+    {
+      "name": "dialog_lifecycle_demo",
+      "value": "Dialog lifecycle demo"
+    },
+    {
+      "name": "demo_open_dialog",
+      "value": "点击弹窗"
+    },
+    {
+      "name": "demo_close_dialog",
+      "value": "关闭弹窗"
     },
     {
       "name": "exit_app",

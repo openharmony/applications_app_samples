@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start arcListContentsTitle_start]
 import { ArcList, ArcListAttribute, ArcListItemAttribute, ArcListItem, LengthMetrics } from '@kit.ArkUI';
 import { util } from '@kit.ArkTS';
 import { ComponentCard } from '../../common/Card';
@@ -42,6 +42,7 @@ export struct ArcListContents {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.ArcListContents_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.ArcListContents_title') }) {
           ArcList({ initialIndex: 2 }) {
             ForEach(this.contacts, (item: Contact) => {
@@ -76,6 +77,8 @@ export struct ArcListContents {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.ArcListContents_title')需要替换为开发者所需的资源文件
     .title($r('app.string.ArcListContents_title'))
   }
 }
+// [End arcListContentsTitle_start]

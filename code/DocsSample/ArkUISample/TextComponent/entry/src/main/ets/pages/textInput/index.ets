@@ -19,14 +19,17 @@ import { Route } from '../../common/Route';
 import { CreatTextInput } from './CreatTextInput';
 import { CustomTextInputStyle } from './CustomTextInputStyle';
 import { KeyboardAvoidance } from './KeyboardAvoidance';
-import { LoginRegisterPage } from './LoginRegisterPage';
 import { SetTextInputType } from './SetTextInputType';
 import { TextInputAddEvent } from './TextInputAddEvent';
 import resource from '../../common/resource';
 import { SelectMenu } from './SelectMenu';
 import { AutoFill } from './AutoFill';
-import { SetOmissionProperty } from './SetOmissionProperty';
+import { SetProperty } from './SetProperty';
 import { CursorAvoidance } from './CursorAvoidance';
+import { ProhibitSelectionMenu } from './disablemenu';
+import { SetTextMargin } from './SetTextMargin';
+import { SetInputMultiTypeStyle } from './SetInputMultiTypeStyle';
+import { NormalQuestion } from './NormalQuestion';
 
 export const INPUT_ROUTE_PREFIX: string = 'TextInput';
 
@@ -57,14 +60,24 @@ const routes: Route[] = [
     description: $r('app.string.SelectionMenu_description')
   },
   {
+    name: `${INPUT_ROUTE_PREFIX}/ProhibitSelectMenu`,
+    title: resource.resourceToString($r('app.string.ProhibitSelectionMenu_title')),
+    description: $r('app.string.ProhibitSelectionMenu_description')
+  },
+  {
     name: `${INPUT_ROUTE_PREFIX}/AutoFill`,
     title: resource.resourceToString($r('app.string.Auto_Fill')),
     description: $r('app.string.Auto_Fill_description')
   },
   {
-    name: `${INPUT_ROUTE_PREFIX}/SetOmissionProperty`,
-    title: resource.resourceToString($r('app.string.Set_Omission_Property')),
+    name: `${INPUT_ROUTE_PREFIX}/SetProperty`,
+    title: resource.resourceToString($r('app.string.Set_Property')),
     description: $r('app.string.Set_Omission_Property_description')
+  },
+  {
+    name: `${INPUT_ROUTE_PREFIX}/SetTextMargin`,
+    title: resource.resourceToString($r('app.string.Set_Text_Margin')),
+    description: $r('app.string.Set_Text_Margin_description')
   },
   {
     name: `${INPUT_ROUTE_PREFIX}/KeyboardAvoidance`,
@@ -77,9 +90,14 @@ const routes: Route[] = [
     description: $r('app.string.CursorAvoidance_description')
   },
   {
-    name: `${INPUT_ROUTE_PREFIX}/LoginRegisterPage`,
-    title: resource.resourceToString($r('app.string.LoginRegisterPage_title')),
-    description: $r('app.string.LoginRegisterPage_description')
+    name: `${INPUT_ROUTE_PREFIX}/SetInputMultiTypeStyle`,
+    title: resource.resourceToString($r('app.string.SetInputBoxMultiTypeStyle_title')),
+    description: $r('app.string.SetInputBoxMultiTypeStyle_description')
+  },
+  {
+    name: `${INPUT_ROUTE_PREFIX}/NormalQuestion`,
+    title: resource.resourceToString($r('app.string.NormalQuestion_title')),
+    description: $r('app.string.NormalQuestion_description')
   }
 ];
 
@@ -98,15 +116,21 @@ export function TextInputDestination(name: string) {
   } else if (name === routes[4].name) {
     SelectMenu();
   } else if (name === routes[5].name) {
+    ProhibitSelectionMenu();
+  }else if (name === routes[6].name) {
     AutoFill();
-  } else if (name === routes[6].name) {
-    SetOmissionProperty();
   } else if (name === routes[7].name) {
-    KeyboardAvoidance();
+    SetProperty();
   } else if (name === routes[8].name) {
-    CursorAvoidance();
+    SetTextMargin();
   } else if (name === routes[9].name) {
-    LoginRegisterPage();
+    KeyboardAvoidance();
+  } else if (name === routes[10].name) {
+    CursorAvoidance();
+  } else if (name === routes[11].name) {
+    SetInputMultiTypeStyle();
+  } else if (name === routes[12].name) {
+    NormalQuestion();
   }
 }
 
@@ -134,9 +158,11 @@ struct TextInputExample {
       }.id('scroll_')
     }
     .backgroundColor('#f1f3f5')
-    .title('TextInput/TextArea', {
+    .title('TextInput/TextArea/Search', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
   }
 }
+
+

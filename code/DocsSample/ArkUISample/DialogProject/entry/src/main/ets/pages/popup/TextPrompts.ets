@@ -25,6 +25,7 @@ export struct TextPopupExample {
 
         Column() {
           Button('PopupOptions')
+            .id('PopupOptions')
             .margin({ top: 300 })
             .onClick(() => {
               this.handlePopup = !this.handlePopup;
@@ -40,7 +41,9 @@ export struct TextPopupExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // [StartExclude text_popup]
     .title($r('app.string.TextPopup_title'))
+    // [EndExclude text_popup]
   }
 }
 // [End text_popup]

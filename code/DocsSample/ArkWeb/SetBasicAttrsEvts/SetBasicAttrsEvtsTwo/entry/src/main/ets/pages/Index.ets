@@ -52,6 +52,10 @@ struct Index {
         .onClick(() => {
           router.pushUrl({ url: 'pages/UseMotionDirSensor' });
         })
+      Button('UserAgent_four')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/UserAgent_four' });
+        })
     }.height('100%')
     .width('100%')
   }

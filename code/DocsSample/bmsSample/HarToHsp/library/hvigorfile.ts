@@ -18,7 +18,7 @@
 import { hspTasks } from '@ohos/hvigor-ohos-plugin';
 
 export default {
-  system: hspTasks,  // 编译修改成hsp的任务
+  system: hspTasks,  // 编译修改成HSP的任务
   plugins:[]
 }
 // [End har_to_hsp_003]

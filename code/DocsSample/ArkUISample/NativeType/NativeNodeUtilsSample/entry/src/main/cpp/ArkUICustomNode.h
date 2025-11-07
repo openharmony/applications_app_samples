@@ -14,6 +14,7 @@
  */
 // ArkUICustomNode.h
 // 自定义绘制组件示例
+// [Start arkUICustomNode_start]
 #ifndef MYAPPLICATION_ARKUICUSTOMNODE_H
 #define MYAPPLICATION_ARKUICUSTOMNODE_H
 
@@ -24,7 +25,6 @@
 #include "ArkUINode.h"
 
 namespace NativeModule {
-
 class ArkUICustomNode : public ArkUINode {
 public:
     // 使用自定义组件类型ARKUI_NODE_CUSTOM创建组件。
@@ -53,16 +53,19 @@ public:
     }
 
 private:
+    // [StartExclude arkUICustomNode_start]
     int32_t NUM_2 = 2;
     int32_t NUM_3 = 3;
     int32_t NUM_4 = 4;
     int32_t NUM_5 = 5;
-
+    // [EndExclude arkUICustomNode_start]
     static void OnStaticCustomEvent(ArkUI_NodeCustomEvent *event)
     {
         // 获取组件实例对象，调用相关实例方法。
+        // [StartExclude arkUICustomNode_start]
         auto targetId = OH_ArkUI_NodeCustomEvent_GetEventTargetId(event);
         auto handle =  OH_ArkUI_NodeCustomEvent_GetNodeHandle(event);
+        // [EndExclude arkUICustomNode_start]
         auto customNode = reinterpret_cast<ArkUICustomNode *>(OH_ArkUI_NodeCustomEvent_GetUserData(event));
         auto type = OH_ArkUI_NodeCustomEvent_GetEventType(event);
         switch (type) {
@@ -76,12 +79,14 @@ private:
             case ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT:
                 customNode->OnDrawFront(event);
                 break;
+            // [StartExclude arkUICustomNode_start]
             case ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW:
                 customNode->OnDrawForeGround(event);
                 break;
             case ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW:
                 customNode->OnDrawOverLay(event);
                 break;
+            // [EndExclude arkUICustomNode_start]
             default:
                 break;
         }
@@ -152,14 +157,14 @@ private:
         OH_Drawing_PathLineTo(path, size.width / NUM_3, size.height / NUM_3);
         OH_Drawing_PathClose(path);
         auto brush = OH_Drawing_BrushCreate();
-        OH_Drawing_BrushSetColor(brush, 0xFF00NUM_4AAF); // 深蓝色
+        OH_Drawing_BrushSetColor(brush, 0xFF004AAF); // 深蓝色
         OH_Drawing_CanvasAttachBrush(drawCanvas, brush);
         OH_Drawing_CanvasDrawPath(drawCanvas, path);
         // 释放资源
         OH_Drawing_BrushDestroy(brush);
         OH_Drawing_PathDestroy(path);
     }
-
+    // [StartExclude arkUICustomNode_start]
     void OnDrawForeGround(ArkUI_NodeCustomEvent *event)
     {
         auto drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
@@ -207,8 +212,10 @@ private:
         OH_Drawing_BrushDestroy(brush);
         OH_Drawing_PathDestroy(path);
     }
+    // [EndExclude arkUICustomNode_start]
 };
 
 } // namespace NativeModule
 
 #endif // MYAPPLICATION_ARKUICUSTOMNODE_H
+// [End arkUICustomNode_start]

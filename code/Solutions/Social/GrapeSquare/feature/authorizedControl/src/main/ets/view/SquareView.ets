@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { TitleBar } from './TitleBar'
+import { TitleBar } from './TitleBar';
 import { TrendsDetailView } from './TrendsDetailView';
 
 @Component
@@ -50,7 +50,7 @@ export struct SquareView {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
           //放包含同城按钮页面、微博热搜榜、广告页面等页面
-          TrendsDetailView()
+          TrendsDetailView();
         }
         .tabBar(this.TabBuilder(0, $r('app.string.trend')))
 
@@ -60,7 +60,7 @@ export struct SquareView {
 
       }
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
       .barWidth($r('app.integer.layout_size_200'))
       .barHeight($r('app.integer.layout_size_40'))

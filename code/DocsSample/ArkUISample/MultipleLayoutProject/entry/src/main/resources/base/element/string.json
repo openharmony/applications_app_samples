@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "build_layout",
+      "value": "构建布局"
+    },
+    {
+      "name": "stack_num1",
+      "value": "Stack子元素1"
+    },
+    {
+      "name": "stack_num2",
+      "value": "Stack子元素2"
+    },
+    {
+      "name": "stack_num3",
+      "value": "Stack子元素3"
+    },
+    {
+      "name": "contacts",
+      "value": "联系人"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "text_message",
+      "value": "短信"
+    }
+  ]
+}

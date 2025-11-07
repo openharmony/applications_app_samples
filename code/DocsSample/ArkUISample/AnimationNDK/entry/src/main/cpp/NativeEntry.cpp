@@ -18,10 +18,30 @@
 #include "NativeEntry.h"
 #include "NormalTextListExample.h"
 #include "ArkUIAnimate.h"
+#include "ArkUITransition.h"
 
 namespace NativeModule {
 
 napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // [Start get_context]
+    // 获取NodeContent
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    // [End get_context]
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+
+    // 创建动画
+    auto column = CreateAnimateRootNode();
+    NativeEntry::GetInstance()->SetRootNode(column);
+    return nullptr;
+}
+
+napi_value CreateTransitionEffectRoot(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -34,8 +54,7 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
     NativeEntry::GetInstance()->SetContentHandle(contentHandle);
 
     // 创建动画
-    auto column = CreateAnimateRootNode();
-    NativeEntry::GetInstance()->SetRootNode(column);
+    mainViewMethod(contentHandle);
     return nullptr;
 }
 

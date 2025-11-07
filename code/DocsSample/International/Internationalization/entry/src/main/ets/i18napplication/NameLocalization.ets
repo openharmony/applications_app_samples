@@ -24,16 +24,16 @@ import { i18n } from '@kit.LocalizationKit';
  * 本地化语言与地区名称开发步骤
  **********************************/
 // [Start localized_language_names]
-let displayLanguage = i18n.System.getDisplayLanguage('de', 'zh-Hans-CN'); // 德文
-// language: 语言两字母代码，如"zh"，"de"，"fr"等
-// locale: 本地化标识符，如"en-GB"、"en-US"、"zh-Hans-CN"等
+let displayLanguage = i18n.System.getDisplayLanguage('de', 'zh-Hans-CN'); // displayLanguage = '德文'
+// language: 语言两字母代码，如'zh'，'de'，'fr'等
+// locale: 表示区域ID的字符串，如'en-GB'、'en-US'、'zh-Hans-CN'等
 // sentenceCase: 返回的语言名称是否需要首字母大写，默认值：true
 // [End localized_language_names]
 
 // [Start localized_country_names]
-let displayCountry = i18n.System.getDisplayCountry('SA', 'en-GB'); // Saudi Arabia
-// country: 国家/地区两字母代码，如"CN"、"DE"、"SA"等
-// locale: 本地化标识符，如"en-GB"、"en-US"、"zh-Hans-CN"等
+let displayCountry = i18n.System.getDisplayCountry('SA', 'en-GB'); // displayCountry = 'Saudi Arabia'
+// country: 国家/地区两字母代码，如'CN'、'DE'、'SA'等
+// locale: 表示区域ID的字符串，如'en-GB'、'en-US'、'zh-Hans-CN'等
 // sentenceCase: 返回的国家/地区名称是否需要首字母大写，默认值：true
 // [End localized_country_names]
 

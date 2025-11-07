@@ -21,7 +21,6 @@
 #include "ArkUINode.h"
 
 namespace NativeModule {
-
     class ArkUIColumnNode : public ArkUINode {
     public:
         // 使用自定义组件类型ARKUI_NODE_CUSTOM创建组件。
@@ -30,7 +29,5 @@ namespace NativeModule {
 
         ~ArkUIColumnNode() override {}
     };
-
 } // namespace NativeModule
-
 #endif // MYAPPLICATION_ArkUIColumnNode_H

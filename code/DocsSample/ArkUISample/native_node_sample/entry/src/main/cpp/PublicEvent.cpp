@@ -46,12 +46,23 @@ const int32_t TARGET_ID_15 = 15;
 const int32_t TARGET_ID_16 = 16;
 const int32_t TARGET_ID_18 = 18;
 const int32_t TARGET_ID_19 = 19;
-const float A = 0.8;
-const float B = 0.95;
-ArkUI_NodeHandle buttonUIstate = nullptr;
+const int32_t TARGET_ID_20 = 20;
+const int32_t TARGET_ID_21 = 21;
+const int32_t TARGET_ID_22 = 22;
+const float A_VALUE = 0.8;
+const float B_VALUE = 0.95;
+const float C_VALUE = 0.35;
+ArkUI_NodeHandle buttonUIState = nullptr;
 ArkUI_NodeHandle buttonArea = nullptr;
+ArkUI_NodeHandle buttonResponse = nullptr;
+ArkUI_NodeHandle textResponse = nullptr;
+ArkUI_NodeHandle rowTouchIntercept = nullptr;
+ArkUI_NodeHandle radioOne = nullptr;
+ArkUI_NodeHandle radioTwo = nullptr;
+ArkUI_NodeHandle nodeUIState = nullptr;
 int g_cControl = 1;
 int g_cArea = 0;
+int g_cEnable = 0;
 
 typedef struct {
     ArkUI_NodeHandle columnControl;
@@ -113,7 +124,7 @@ void CreateNodeWithCommonAttribute(ArkUI_NodeHandle parent, const char *attribut
     static auto column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
     ArkUI_NodeHandle row = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
     ArkUI_NodeHandle text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    float columnWidth = B;
+    float columnWidth = B_VALUE;
     SetWidthPercent(column, columnWidth);
     // row设置宽高、边框
     SetWidthPercent(row, 1);
@@ -143,15 +154,30 @@ void StatesChangeHandler(int32_t currentStates, void* userData)
 {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "UIStates", "UI state changed to: %{public}d", currentStates);
     // 根据当前状态调整UI样式
+    if (ArkUI_UIState::UI_STATE_SELECTED) {
+        ArkUI_NumberValue backColorValue[] = {{.u32 = 0xFF444444}, {.u32 = 0xFF444444}, {.u32 = 0xFF444444}};
+        ArkUI_AttributeItem backColorItem = {backColorValue, 3};
+        Manager::nodeAPI_->setAttribute(nodeUIState, NODE_RADIO_STYLE, &backColorItem);
+    }
     if (currentStates == ArkUI_UIState::UI_STATE_NORMAL) {
         ArkUI_NumberValue backColorValue[] = {{.u32 = 0xFF000000}};
         ArkUI_AttributeItem backColorItem = {backColorValue, 1};
-        Manager::nodeAPI_->setAttribute(buttonUIstate, NODE_BACKGROUND_COLOR, &backColorItem);
+        Manager::nodeAPI_->setAttribute(buttonUIState, NODE_BACKGROUND_COLOR, &backColorItem);
     }
     if (currentStates & ArkUI_UIState::UI_STATE_PRESSED) {
         ArkUI_NumberValue backColorValue[] = {{.u32 = 0xFF009A61}};
         ArkUI_AttributeItem backColorItem = {backColorValue, 1};
-        Manager::nodeAPI_->setAttribute(buttonUIstate, NODE_BACKGROUND_COLOR, &backColorItem);
+        Manager::nodeAPI_->setAttribute(buttonUIState, NODE_BACKGROUND_COLOR, &backColorItem);
+    }
+    if (currentStates & ArkUI_UIState::UI_STATE_FOCUSED) {
+        ArkUI_NumberValue backColorValue[] = {{.u32 = 0xFF888888}};
+        ArkUI_AttributeItem backColorItem = {backColorValue, 1};
+        Manager::nodeAPI_->setAttribute(buttonUIState, NODE_BACKGROUND_COLOR, &backColorItem);
+    }
+    if (currentStates & ArkUI_UIState::UI_STATE_DISABLED) {
+        ArkUI_NumberValue backColorValue[] = {{.u32 = 0xFF666666}};
+        ArkUI_AttributeItem backColorItem = {backColorValue, 1};
+        Manager::nodeAPI_->setAttribute(buttonUIState, NODE_BACKGROUND_COLOR, &backColorItem);
     }
 }
 
@@ -416,80 +442,6 @@ void CreateNodeVisibility(ArkUI_NodeHandle &column)
     });
 }
 
-ArkUI_NodeHandle CreateNodeHitTestBehaviorColumn()
-{
-    ArkUI_NodeHandle column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
-    ArkUI_NumberValue columnWidthValue[] = {200};
-    ArkUI_AttributeItem columnWidthItem = {columnWidthValue, 1};
-    ArkUI_NumberValue columnHeightValue[] = {400};
-    ArkUI_AttributeItem columnHeightItem = {columnHeightValue, 1};
-    Manager::nodeAPI_->setAttribute(column, NODE_WIDTH, &columnWidthItem);
-    Manager::nodeAPI_->setAttribute(column, NODE_HEIGHT, &columnHeightItem);
-    return column;
-}
-
-ArkUI_NodeHandle CreateNodeHitTestBehaviorRow()
-{
-    ArkUI_NodeHandle row = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
-    ArkUI_NumberValue rowWidthValue[] = {200};
-    ArkUI_AttributeItem rowWidthItem = {rowWidthValue, 1};
-    ArkUI_NumberValue rowHeightValue[] = {100};
-    ArkUI_AttributeItem rowHeightItem = {rowHeightValue, 1};
-    Manager::nodeAPI_->setAttribute(row, NODE_WIDTH, &rowWidthItem);
-    Manager::nodeAPI_->setAttribute(row, NODE_HEIGHT, &rowHeightItem);
-    return row;
-}
-
-ArkUI_NodeHandle CreateNodeHitTestBehaviorRow1()
-{
-    ArkUI_NodeHandle row1 = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
-    // 设置Row属性
-    ArkUI_NumberValue rowWidthValue[] = {200};
-    ArkUI_AttributeItem rowWidthItem = {rowWidthValue, 1};
-    ArkUI_NumberValue rowHeightValue[] = {100};
-    ArkUI_AttributeItem rowHeightItem = {rowHeightValue, 1};
-    Manager::nodeAPI_->setAttribute(row1, NODE_WIDTH, &rowWidthItem);
-    Manager::nodeAPI_->setAttribute(row1, NODE_HEIGHT, &rowHeightItem);
-    return row1;
-}
-
-ArkUI_NodeHandle CreateNodeHitTestBehaviorText()
-{
-    static ArkUI_NodeHandle text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    ArkUI_NumberValue btnHeightValue[] = {60};
-    ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
-    ArkUI_NumberValue btnMarginValue[] = {20};
-    ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
-    ArkUI_NumberValue btnWidthValue1[] = {300};
-    ArkUI_AttributeItem btnWidthItem1 = {btnWidthValue1, 1};
-    Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &btnWidthItem1);
-    Manager::nodeAPI_->setAttribute(text, NODE_HEIGHT, &btnHeightItem);
-    Manager::nodeAPI_->setAttribute(text, NODE_MARGIN, &btnMarginItem);
-    ArkUI_AttributeItem TextItem = {.string = "NODE_HIT_TEST_BEHAVIOR"};
-    Manager::nodeAPI_->setAttribute(text, NODE_TEXT_CONTENT, &TextItem);
-    return text;
-}
-
-ArkUI_NodeHandle CreateNodeHitTestBehaviorButton1()
-{
-    ArkUI_NodeHandle button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
-    ArkUI_NumberValue btnWidthValue[] = {150};
-    ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
-    ArkUI_NumberValue btnHeightValue[] = {60};
-    ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
-    ArkUI_NumberValue btnMarginValue[] = {20};
-    ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
-    Manager::nodeAPI_->setAttribute(button1, NODE_WIDTH, &btnWidthItem);
-    Manager::nodeAPI_->setAttribute(button1, NODE_HEIGHT, &btnHeightItem);
-    Manager::nodeAPI_->setAttribute(button1, NODE_MARGIN, &btnMarginItem);
-    ArkUI_AttributeItem btn1TextItem = {.string = "Hit Test Button 1"};
-    Manager::nodeAPI_->setAttribute(button1, NODE_BUTTON_LABEL, &btn1TextItem);
-    ArkUI_NumberValue enableValue[] = {{.i32 = ARKUI_HIT_TEST_MODE_DEFAULT}};
-    ArkUI_AttributeItem enableItem = {enableValue, 1};
-    Manager::nodeAPI_->setAttribute(button1, NODE_HIT_TEST_BEHAVIOR, &enableItem);
-    return button1;
-}
-
 void CreateNodeClickDistance(ArkUI_NodeHandle &column)
 {
     CreateNodeWithCommonAttribute(column, "NODE_CLICK_DISTANCE", [](ArkUI_NodeHandle node) {
@@ -547,10 +499,11 @@ void CreateNodeVisibleAreaApproximateChangeRatio(ArkUI_NodeHandle &column)
         auto *options = OH_ArkUI_VisibleAreaEventOptions_Create();
         float *ratiosArray = new float[1];
         ratiosArray[0] = 0;
-        ratiosArray[1] = A;
+        ratiosArray[1] = A_VALUE;
         OH_ArkUI_VisibleAreaEventOptions_SetRatios(options, ratiosArray, TARGET_ID_2);
         auto value = 1000;
         OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval(options, value);
+        OH_ArkUI_VisibleAreaEventOptions_SetMeasureFromViewport(options, true);
         ArkUI_AttributeItem areaItem = {.object = options};
         Manager::nodeAPI_->setAttribute(row, NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO, &areaItem);
         auto item = Manager::nodeAPI_->getAttribute(row, NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO);
@@ -574,12 +527,25 @@ void CreateNodeVisibleAreaApproximateChangeRatio(ArkUI_NodeHandle &column)
     });
 }
 
+void SetRowAttribute(ArkUI_NodeHandle node)
+{
+    ArkUI_NumberValue widthValue[] = {1};
+    ArkUI_AttributeItem widthItem = {widthValue, 1};
+    ArkUI_NumberValue heightValue[] = {100};
+    ArkUI_AttributeItem heightItem = {heightValue, 1};
+    Manager::nodeAPI_->setAttribute(node, NODE_WIDTH_PERCENT, &widthItem);
+    Manager::nodeAPI_->setAttribute(node, NODE_HEIGHT, &heightItem);
+    Manager::nodeAPI_->registerNodeEvent(node, NODE_TOUCH_EVENT, TARGET_ID_2, nullptr);
+}
+
 void CreateNodeTouchEvent(ArkUI_NodeHandle &column)
 {
     CreateNodeWithCommonAttribute(column, "NODE_TOUCH_EVENT ", [](ArkUI_NodeHandle node) {
         if (!Manager::nodeAPI_ || !node) {
             return;
         }
+        rowTouchIntercept = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
+        SetRowAttribute(rowTouchIntercept);
         ArkUI_NodeHandle button1 = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
         ArkUI_NumberValue btnWidthValue[] = {150};
         ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
@@ -595,8 +561,9 @@ void CreateNodeTouchEvent(ArkUI_NodeHandle &column)
         Manager::nodeAPI_->setAttribute(button1, NODE_HEIGHT, &btnHeightItem);
         Manager::nodeAPI_->setAttribute(button1, NODE_MARGIN, &btnMarginItem);
         Manager::nodeAPI_->registerNodeEvent(button1, NODE_TOUCH_EVENT, 1, nullptr);
-        Manager::nodeAPI_->registerNodeEvent(node, NODE_TOUCH_EVENT, TARGET_ID_2, nullptr);
-        Manager::nodeAPI_->addChild(node, button1);
+        
+        Manager::nodeAPI_->addChild(rowTouchIntercept, button1);
+        Manager::nodeAPI_->addChild(node, rowTouchIntercept);
     });
 }
 
@@ -662,6 +629,89 @@ void CreateNodeOnHoverMove(ArkUI_NodeHandle &column)
     });
 }
 
+void SetResponseRegionAttribute(ArkUI_NodeHandle &node)
+{
+    ArkUI_AttributeItem buttonLabel1 = {.string = "x:0 y:0 width:50% height:50% "};
+    Manager::nodeAPI_->setAttribute(node, NODE_BUTTON_LABEL, &buttonLabel1);
+    ArkUI_NumberValue btnAttributeValue[] = {0, 0, 50, 100};
+    ArkUI_AttributeItem buttonAttributeItem = {btnAttributeValue, 4};
+    Manager::nodeAPI_->setAttribute(node, NODE_RESPONSE_REGION, &buttonAttributeItem);
+    Manager::nodeAPI_->registerNodeEvent(node, NODE_ON_CLICK, TARGET_ID_20, nullptr);
+}
+
+void SetResponseRegionAttributeTwo(ArkUI_NodeHandle &node)
+{
+    ArkUI_AttributeItem buttonLabel1 = {.string = "x:0 y:0 width:100% height:100% "};
+    Manager::nodeAPI_->setAttribute(node, NODE_BUTTON_LABEL, &buttonLabel1);
+    ArkUI_NumberValue btnAttributeValue[] = {0, 0, 100, 100};
+    ArkUI_AttributeItem buttonAttributeItem = {btnAttributeValue, 4};
+    Manager::nodeAPI_->setAttribute(node, NODE_RESPONSE_REGION, &buttonAttributeItem);
+    Manager::nodeAPI_->registerNodeEvent(node, NODE_ON_CLICK, TARGET_ID_21, nullptr);
+}
+
+void AddResponseRegion(ArkUI_NodeHandle &column)
+{
+    CreateNodeWithCommonAttribute(column, "NODE_RESPONSE_REGION", [](ArkUI_NodeHandle node) {
+        static auto column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
+        SetWidthPercent(column, 1);
+        SetHeightPercent(column, 1);
+        buttonResponse = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        SetButtonAttribute(buttonResponse);
+        SetResponseRegionAttribute(buttonResponse);
+        static auto buttonResponseTwo = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        SetButtonAttribute(buttonResponseTwo);
+        SetResponseRegionAttributeTwo(buttonResponseTwo);
+        
+        textResponse = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+        ArkUI_AttributeItem TextItem = {.string = "no touch"};
+        Manager::nodeAPI_->setAttribute(textResponse, NODE_TEXT_CONTENT, &TextItem);
+        
+        SetButtonAttribute(textResponse);
+        Manager::nodeAPI_->addChild(column, buttonResponse);
+        Manager::nodeAPI_->addChild(column, buttonResponseTwo);
+        Manager::nodeAPI_->addChild(column, textResponse);
+        Manager::nodeAPI_->addChild(node, column);
+    });
+}
+
+void AddOverlay(ArkUI_NodeHandle &column)
+{
+    CreateNodeWithCommonAttribute(column, "NODE_OVERLAY", [](ArkUI_NodeHandle node) {
+        static auto column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
+        SetWidthPercent(column, 1);
+        SetHeightPercent(column, 1);
+        static auto buttonOver = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        SetButtonAttribute(buttonOver);
+        ArkUI_AttributeItem buttonLabel1 = {.string = "0 width:50% height:100% 0"};
+        Manager::nodeAPI_->setAttribute(buttonOver, NODE_BUTTON_LABEL, &buttonLabel1);
+        ArkUI_NumberValue btnAttributeValue[] = {ARKUI_ALIGNMENT_TOP_START, 0, 15};
+        ArkUI_AttributeItem buttonAttributeItem = {btnAttributeValue, 3, .string = "NODE_BUTTON_LABEL set is true"};
+        Manager::nodeAPI_->setAttribute(buttonOver, NODE_OVERLAY, &buttonAttributeItem);
+        Manager::nodeAPI_->addChild(column, buttonOver);
+        Manager::nodeAPI_->addChild(node, column);
+    });
+}
+
+void SetAttributeRow(ArkUI_NodeHandle &node)
+{
+    radioOne = Manager::nodeAPI_->createNode(ARKUI_NODE_RADIO);
+    radioTwo = Manager::nodeAPI_->createNode(ARKUI_NODE_RADIO);
+    ArkUI_NumberValue btnWidthValue[] = {C_VALUE};
+    ArkUI_AttributeItem btnWidthItem = {btnWidthValue, 1};
+    ArkUI_NumberValue btnHeightValue[] = {60};
+    ArkUI_AttributeItem btnHeightItem = {btnHeightValue, 1};
+    ArkUI_NumberValue btnMarginValue[] = {30};
+    ArkUI_AttributeItem btnMarginItem = {btnMarginValue, 1};
+    Manager::nodeAPI_->setAttribute(radioOne, NODE_WIDTH_PERCENT, &btnWidthItem);
+    Manager::nodeAPI_->setAttribute(radioOne, NODE_HEIGHT, &btnHeightItem);
+    Manager::nodeAPI_->setAttribute(radioOne, NODE_MARGIN, &btnMarginItem);
+    Manager::nodeAPI_->setAttribute(radioTwo, NODE_WIDTH_PERCENT, &btnWidthItem);
+    Manager::nodeAPI_->setAttribute(radioTwo, NODE_HEIGHT, &btnHeightItem);
+    Manager::nodeAPI_->setAttribute(radioTwo, NODE_MARGIN, &btnMarginItem);
+    Manager::nodeAPI_->addChild(node, radioOne);
+    Manager::nodeAPI_->addChild(node, radioTwo);
+}
+
 void AddSupportedUIStates(ArkUI_NodeHandle &column)
 {
     CreateNodeWithCommonAttribute(column, "SupportedUIStates", [](ArkUI_NodeHandle node) {
@@ -669,28 +719,40 @@ void AddSupportedUIStates(ArkUI_NodeHandle &column)
         SetWidthPercent(column, 1);
         SetHeightPercent(column, 1);
         static auto buttonUIstateControl = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
-        buttonUIstate = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
-        SetButtonAttribute(buttonUIstate);
+        buttonUIState = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        static auto buttonUIstateEnableControl = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+        static auto row = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
+        SetAttributeRow(row);
+        SetButtonAttribute(buttonUIState);
         SetButtonAttribute(buttonUIstateControl);
         ArkUI_AttributeItem buttonLabel1 = {.string = "buttonUIstate"};
-        Manager::nodeAPI_->setAttribute(buttonUIstate, NODE_BUTTON_LABEL, &buttonLabel1);
+        Manager::nodeAPI_->setAttribute(buttonUIState, NODE_BUTTON_LABEL, &buttonLabel1);
         ArkUI_AttributeItem buttonLabel2 = {.string = "AddSupportedUIStates"};
         Manager::nodeAPI_->setAttribute(buttonUIstateControl, NODE_BUTTON_LABEL, &buttonLabel2);
+        ArkUI_AttributeItem buttonLabel3 = {.string = "setButtonUIstateEnableAttribute"};
+        Manager::nodeAPI_->setAttribute(buttonUIstateEnableControl, NODE_BUTTON_LABEL, &buttonLabel3);
         static MyData componentUIStates;
-        componentUIStates.columnControl = buttonUIstate;
+        componentUIStates.columnControl = buttonUIState;
         componentUIStates.buttonTwo = buttonUIstateControl;
         Manager::nodeAPI_->registerNodeEvent(buttonUIstateControl, NODE_ON_CLICK_EVENT,
             TARGET_ID_18, &componentUIStates);
-        Manager::nodeAPI_->addChild(column, buttonUIstate);
+        Manager::nodeAPI_->registerNodeEvent(buttonUIstateEnableControl, NODE_ON_CLICK,
+            TARGET_ID_22, &componentUIStates);
+        Manager::nodeAPI_->addChild(column, buttonUIState);
         Manager::nodeAPI_->addChild(column, buttonUIstateControl);
+        Manager::nodeAPI_->addChild(column, buttonUIstateEnableControl);
+        Manager::nodeAPI_->addChild(column, row);
         Manager::nodeAPI_->addChild(node, column);
     });
 }
 
 void AddUIStates(ArkUI_NodeHandle &node, ArkUI_NodeEvent *event)
 {
-    auto result = OH_ArkUI_AddSupportedUIStates(node, ArkUI_UIState::UI_STATE_PRESSED,
-        StatesChangeHandler, false, &event);
+    nodeUIState = node;
+    auto result = OH_ArkUI_AddSupportedUIStates(nodeUIState,
+                                                ArkUI_UIState::UI_STATE_PRESSED | ArkUI_UIState::UI_STATE_FOCUSED |
+                                                    ArkUI_UIState::UI_STATE_DISABLED | ArkUI_UIState::UI_STATE_SELECTED,
+                                                StatesChangeHandler, false, &event);
     if (result) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "publicInfo",
                      "RemoveSupportedUIStates errorCode is %{public}d", result);
@@ -699,7 +761,9 @@ void AddUIStates(ArkUI_NodeHandle &node, ArkUI_NodeEvent *event)
 
 void RemoveUIStates(ArkUI_NodeHandle &node)
 {
-    auto result = OH_ArkUI_RemoveSupportedUIStates(node, ArkUI_UIState::UI_STATE_PRESSED);
+    auto result = OH_ArkUI_RemoveSupportedUIStates(
+        node, ArkUI_UIState::UI_STATE_NORMAL | ArkUI_UIState::UI_STATE_PRESSED | ArkUI_UIState::UI_STATE_FOCUSED |
+                  ArkUI_UIState::UI_STATE_DISABLED | ArkUI_UIState::UI_STATE_SELECTED);
     if (result) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "publicInfo",
                      "RemoveSupportedUIStates errorCode is %{public}d", result);
@@ -726,7 +790,7 @@ void AllRegisterNodeEventReceiverOne(int32_t targetId, ArkUI_NodeEvent *event)
             break;
         }
         case TARGET_ID_2: {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "publicInfo", "CreateNativeNode  column onTouch");
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "publicInfo", "CreateNativeNode  row onTouch");
             break;
         }
         case TARGET_ID_12: {
@@ -863,11 +927,13 @@ void AllRegisterNodeEventReceiverFour(int32_t targetId, ArkUI_NodeEvent *event)
                 ArkUI_AttributeItem butItem = {.string = "removeSupportedUIStates"};
                 Manager::nodeAPI_->setAttribute(component->buttonTwo, NODE_BUTTON_LABEL, &butItem);
                 AddUIStates(component->columnControl, event);
+                AddUIStates(radioTwo, event);
                 g_cControl = 0;
             } else {
                 ArkUI_AttributeItem butItem = {.string = "addSupportedUIStates"};
                 Manager::nodeAPI_->setAttribute(component->buttonTwo, NODE_BUTTON_LABEL, &butItem);
                 RemoveUIStates(component->columnControl);
+                RemoveUIStates(radioTwo);
                 g_cControl = 1;
             }
             break;
@@ -882,6 +948,36 @@ void AllRegisterNodeEventReceiverFour(int32_t targetId, ArkUI_NodeEvent *event)
                          componentEvent->data[1].f32);
             break;
         }
+        case TARGET_ID_20: {
+            ArkUI_AttributeItem TextItem = {.string = "button1 click"};
+            Manager::nodeAPI_->setAttribute(textResponse, NODE_TEXT_CONTENT, &TextItem);
+            break;
+        }
+        case TARGET_ID_21: {
+            ArkUI_AttributeItem TextItem = {.string = "button2 click"};
+            Manager::nodeAPI_->setAttribute(textResponse, NODE_TEXT_CONTENT, &TextItem);
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+void AllRegisterNodeEventReceiverAdd(int32_t targetId, ArkUI_NodeEvent *event)
+{
+    switch (targetId) {
+        case TARGET_ID_22: {
+            MyData *component = (MyData *)OH_ArkUI_NodeEvent_GetUserData(event);
+            if (g_cEnable == 0) {
+                SetEnable(component->columnControl, false);
+                g_cEnable = 1;
+            } else {
+                SetEnable(component->columnControl, true);
+                g_cEnable = 0;
+            }
+            AddUIStates(component->columnControl, event);
+            break;
+        }
         default:
             break;
     }
@@ -891,8 +987,6 @@ void AllRegisterNodeEventReceiver()
 {
     Manager::nodeAPI_->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         auto targetId = OH_ArkUI_NodeEvent_GetTargetId(event);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "publicInfo", "CreateNativeNode  targetId == %{public}d",
-                     targetId);
         switch (targetId) {
             case 0:
             case 1:
@@ -918,8 +1012,14 @@ void AllRegisterNodeEventReceiver()
                 break;
             }
             case TARGET_ID_18:
-            case TARGET_ID_19:{
+            case TARGET_ID_19:
+            case TARGET_ID_20:
+            case TARGET_ID_21:{
                 AllRegisterNodeEventReceiverFour(targetId, event);
+                break;
+            }
+            case TARGET_ID_22:{
+                AllRegisterNodeEventReceiverAdd(targetId, event);
                 break;
             }
             default:
@@ -1017,6 +1117,10 @@ void AddScrollChild(ArkUI_NodeHandle &scroll)
     CreateNodeOnHoverMove(column);
     // ArkUI_UIState
     AddSupportedUIStates(column);
+    // NODE_RESPONSE_REGION
+    AddResponseRegion(column);
+    // NODE_OVERLAY
+    AddOverlay(column);
     // NODE_EVENT_ON_APPEAR   NODE_EVENT_ON_DISAPPEAR
     CreateNodeEventOnAppear(column);
     Manager::nodeAPI_->addChild(scroll, column);

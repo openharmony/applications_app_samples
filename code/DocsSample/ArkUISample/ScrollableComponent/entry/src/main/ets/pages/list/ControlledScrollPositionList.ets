@@ -29,10 +29,8 @@ export struct ControlledScrollPositionList {
         ComponentCard({ title: $r('app.string.ControlledScrollPositionList_titleExample') }) {
           // [Start control_scrolling]
           Stack({ alignContent: Alignment.Bottom }) {
-            // 控制滚动位置示例List容器
             // 将listScroller用于初始化List组件的scroller参数，完成listScroller与列表的绑定。
             List({ space: 20, scroller: this.listScroller }) {
-              // ...
               // [StartExclude control_scrolling]
               ForEach(this.arr, (item: number) => {
                 ListItem() {
@@ -50,7 +48,6 @@ export struct ControlledScrollPositionList {
 
             Button() {
               // [StartExclude control_scrolling]
-              // ...
               Image($r('sys.media.ohos_ic_public_arrow_up')).width(40).height(40)
               // [EndExclude control_scrolling]
             }
@@ -61,9 +58,10 @@ export struct ControlledScrollPositionList {
             .onClick(() => {
               // 点击按钮时，指定跳转位置，返回列表顶部
               this.listScroller.scrollToIndex(0);
-              // [End control_scrolling]
             })
-          }.height('90%')
+          }
+          // [End control_scrolling]
+          .height('90%')
         }
       }
       .width('100%')

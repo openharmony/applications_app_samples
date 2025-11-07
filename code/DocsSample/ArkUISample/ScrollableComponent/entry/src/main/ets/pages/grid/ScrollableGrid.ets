@@ -14,39 +14,82 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-
+import common from '@ohos.app.ability.common';
 // [Start build_scrollable_horizontally_grid_layouts]
 @Entry
 @Component
 export struct ScrollableGrid {
-  @State services: Array<string> = ['Live Streaming', 'Imported', 'Categories', 'Recharge',
-    'Membership', 'Claim Coupon', 'Lottery', 'Favorites', 'Points', 'More'];
-
+  // [StartExclude build_scrollable_horizontally_grid_layouts]
+  context = this.getUIContext().getHostContext();
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
+  @State services: Array<string> = [
+    // app.string.Live_Streaming资源文件中的value值为‘直播’
+    this.context!.resourceManager.getStringSync($r('app.string.Live_Streaming').id),
+    // app.string.Imported资源文件中的value值为‘进口’
+    this.context!.resourceManager.getStringSync($r('app.string.Imported').id)
+    ];
+  // [StartExclude build_scrollable_horizontally_grid_layouts]
+  aboutToAppear(): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const streaming = context.resourceManager.getStringByNameSync('Live_Streaming')
+    this.services.push(streaming)
+    const imported = context.resourceManager.getStringByNameSync('Imported')
+    this.services.push(imported)
+    const categories = context.resourceManager.getStringByNameSync('Categories')
+    this.services.push(categories)
+    const recharge = context.resourceManager.getStringByNameSync('Recharge')
+    this.services.push(recharge)
+    const membership = context.resourceManager.getStringByNameSync('Membership')
+    this.services.push(membership)
+    const claim = context.resourceManager.getStringByNameSync('Claim_Coupon')
+    this.services.push(claim)
+    const lottery = context.resourceManager.getStringByNameSync('Lottery')
+    this.services.push(lottery)
+    const favorites = context.resourceManager.getStringByNameSync('Favorites')
+    this.services.push(favorites)
+    const points = context.resourceManager.getStringByNameSync('Points')
+    this.services.push(points)
+    const more = context.resourceManager.getStringByNameSync('More')
+    this.services.push(more)
+  }
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
   build() {
+    // [StartExclude build_scrollable_horizontally_grid_layouts]
     NavDestination() {
-      Column({ space: 12 }) {
+      // [EndExclude build_scrollable_horizontally_grid_layouts]
+
+      Column({ space: 5 }) {
+        // [StartExclude build_scrollable_horizontally_grid_layouts]
+        // app.string.ScrollableGrid_titleHorizontal资源文件中的value值为‘横向可滚动网格布局示例’
         ComponentCard({ title: $r('app.string.ScrollableGrid_titleHorizontal') }) {
+          // [EndExclude build_scrollable_horizontally_grid_layouts]
+
           Grid() {
-            ForEach(this.services, (service: string) => {
+            ForEach(this.services, (service: string, index) => {
               GridItem() {
-                Text(service)
-              }.backgroundColor('#FFF1F3F5').width('25%')
+              }
+              .width('25%')
             }, (service: string): string => service)
           }
+          .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
+          .rowsGap(15)
+
           // [StartExclude build_scrollable_horizontally_grid_layouts]
           .height(200)
           .columnsGap(10)
           // [EndExclude build_scrollable_horizontally_grid_layouts]
-          .rowsGap(15)
-          .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
         }
       }
-      // [End build_scrollable_horizontally_grid_layouts]
+      // [StartExclude build_scrollable_horizontally_grid_layouts]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
+
     }
     .backgroundColor('#f1f2f3')
+    // app.string.ScrollableGrid_title资源文件中的value值为‘横向可滚动网格布局示例’
     .title($r('app.string.ScrollableGrid_title'))
   }
+  // [EndExclude build_scrollable_horizontally_grid_layouts]
 }
+// [End build_scrollable_horizontally_grid_layouts]

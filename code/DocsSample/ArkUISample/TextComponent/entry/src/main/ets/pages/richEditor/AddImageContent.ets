@@ -19,36 +19,44 @@ import resource from '../../common/resource';
 @Entry
 @Component
 export struct AddImageContent {
+  // [Start richEditor_addImage]
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
+  // [StartExclude richEditor_addImage]
 
   build() {
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard() {
-          RichEditor(this.options)
-            .onReady(() => {
-              this.controller.addTextSpan(resource.resourceToString($r('app.string.AddImageContent_Text_1')), {
-                style: {
-                  fontColor: Color.Black,
-                  fontSize: 15
-                }
+          Column({ space: 10 }) {
+            // [EndExclude richEditor_addImage]
+            // $r('app.string.xxx')需要替换为开发者所需的资源文件
+            RichEditor(this.options)
+              .onReady(() => {
+                this.controller.addTextSpan(resource.resourceToString($r('app.string.AddImageContent_Text_1')), {
+                  style: {
+                    fontColor: Color.Black,
+                    fontSize: 15
+                  }
+                })
               })
+              .width(300)
+              .height(100)
+            Button($r('app.string.AddImageContent_Button_1'), {
+              buttonStyle: ButtonStyleMode.NORMAL
             })
-            .width(300)
-            .height(100)
-          Button($r('app.string.AddImageContent_Button_1'), {
-            buttonStyle: ButtonStyleMode.NORMAL
-          })
-            .height(30)
-            .fontSize(13)
-            .onClick(() => {
-              this.controller.addImageSpan($r('app.media.startIcon'), {
-                imageStyle: {
-                  size: ['57px', '57px']
-                }
+              .height(30)
+              .fontSize(13)
+              .onClick(() => {
+                // $r('app.media.xxx')需要替换为开发者所需的资源文件
+                this.controller.addImageSpan($r('app.media.startIcon'), {
+                  imageStyle: {
+                    size: ['57px', '57px']
+                  }
+                })
               })
-            })
+            // [End richEditor_addImage]
+          }
         }
       }
       .width('100%')

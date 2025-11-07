@@ -34,9 +34,9 @@ struct WebComponent {
               `ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: $r('app.string.web_path'), controller: this.controller })
+      Web({ src: 'www.example.com', controller: this.controller })
         .onIntelligentTrackingPreventionResult((details) => {
-          console.log('onIntelligentTrackingPreventionResult: [websiteHost]= ' + details.host +
+          console.info('onIntelligentTrackingPreventionResult: [websiteHost]= ' + details.host +
             ', [trackerHost]=' + details.trackerHost);
         })
     }

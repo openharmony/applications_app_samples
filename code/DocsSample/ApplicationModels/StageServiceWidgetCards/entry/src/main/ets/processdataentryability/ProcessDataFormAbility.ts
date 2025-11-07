@@ -36,11 +36,9 @@ export default class ProcessDataFormAbility extends FormExtensionAbility {
     return formBinding;
   }
 
-  // [StartExclude process_data_form_ability]
   onAcquireFormState(want: Want): formInfo.FormState {
-    // Called to return a {@link FormState} object.
+    // 卡片使用方查询卡片状态时触发该回调，默认返回初始状态。
     return formInfo.FormState.READY;
   }
-  // [EndExclude process_data_form_ability]
 }
 // [End process_data_form_ability]

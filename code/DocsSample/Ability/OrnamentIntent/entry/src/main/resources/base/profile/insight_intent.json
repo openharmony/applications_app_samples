@@ -1,0 +1,10 @@
+{
+  "insightIntentsSrcEntry": [
+    {
+      "srcEntry": "./ets/insightintents/ViewLogisticsImpl.ets"
+    },
+    {
+      "srcEntry": "./ets/insightintents/PlayMusicImpl.ets"
+    }
+  ]
+}

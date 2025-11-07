@@ -1,0 +1,94 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>H5 拖拽 Demo</title>
+</head>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .draggable {
+      width: 100px;
+      height: 100px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      line-height: 100px;
+      margin-bottom: 20px;
+      cursor: grab;
+    }
+    .droppable {
+      width: 300px;
+      height: 150px;
+      border: 2px dashed #999;
+      background-color: #f0f0f0;
+      text-align: center;
+      line-height: 150px;
+      font-size: 16px;
+    }
+    .success {
+      background-color: #4CAF50;
+      color: white;
+    }
+</style>
+<body>
+
+<h2>H5 拖拽 Demo</h2>
+
+<div id="draggable" class="draggable" draggable="true">可拖拽元素</div>
+
+<div id="droppable" class="droppable">请将方块拖到这里</div>
+
+<script>
+    const draggable = document.getElementById('draggable');
+    const droppable = document.getElementById('droppable');
+    // 拖拽开始事件
+    draggable.addEventListener('dragstart', function (e) {
+      e.dataTransfer.setData('text/plain', this.id);
+      this.style.opacity = '0.4';
+    });
+    // 拖拽结束事件
+    draggable.addEventListener('dragend', function (e) {
+      this.style.opacity = '1';
+    });
+    // 拖入目标区域时触发
+    droppable.addEventListener('dragover', function (e) {
+      e.preventDefault(); // 必须调用，否则无法触发 drop 事件
+    });
+    // 放置事件
+    droppable.addEventListener('drop', function (e) {
+      e.preventDefault();
+      const data = e.dataTransfer.getData('text/plain');
+      // 传入ArkTS
+      postMsgToArkTS(data);
+      const draggableEl = document.getElementById(data);
+      this.appendChild(draggableEl);
+      this.classList.add('success');
+      this.textContent = '放置成功！';
+    });
+    //     scriptproxy端口在js侧设置
+    let h5Port;
+    window.addEventListener('message', function (event) {
+    console.info('H5 receive settingPort message');
+        if (event.data === '__init_port__') {
+            if (event.ports[0] != null) {
+                console.info('H5 set h5Port ' + event.ports[0]);
+                h5Port = event.ports[0];
+            }
+        }
+    });
+    // 通过scriptproxy方式,发送数据到ArkTS侧的实现
+    function postMsgToArkTS(data) {
+        console.info('H5 postMsgToArkTS, h5Port ' + h5Port);
+        if (h5Port) {
+          h5Port.postMessage(data);
+        } else {
+          console.error('h5Port is null, Please initialize first');
+        }
+    }
+</script>
+
+</body>
+</html>

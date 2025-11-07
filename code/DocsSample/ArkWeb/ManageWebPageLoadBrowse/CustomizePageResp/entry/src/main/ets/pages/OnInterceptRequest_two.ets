@@ -16,10 +16,6 @@
 // [Start build_response_resource_enable_gen]
 import { webview } from '@kit.ArkWeb';
 
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-
 @Entry
 @Component
 struct WebComponent {
@@ -49,13 +45,12 @@ struct WebComponent {
     'element9.innerHTML = text_msg;\n' +
     'element10.innerHTML = text_msg;\n' +
     'element11.innerHTML = text_msg;\n';
-
   build() {
     Column() {
       Web({ src: $rawfile('index2.html'), controller: this.controller })
         .onInterceptRequest((event) => {
           // 拦截页面请求
-          if (event?.request.getRequestUrl() == resourceToString($r('app.string.web_path')) + '/test.js') {
+          if (event?.request.getRequestUrl() == 'https://www.example.com/test.js') {
             // 构造响应数据
             this.responseResource.setResponseHeader([
               {

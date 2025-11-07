@@ -33,7 +33,7 @@ const BUFFER: number = 1024; // 读写文件的缓冲区
 // [EndExclude session_restore]
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 // [StartExclude session_backup]
@@ -60,7 +60,7 @@ export async function getLocalCapabilities(): Promise<void> {
     // [EndExclude get_local_cap_ability]
     fs.closeSync(fileData.fd);
   } catch (error) {
-    console.error(`getLocalCapabilities failed with err, code is ${err.code}, message is ${err.message}`);
+    console.error(`getLocalCapabilities failed with err, code is ${error.code}, message is ${error.message}`);
   }
 }
 // [End get_local_cap_ability]

@@ -107,10 +107,11 @@ export struct WaterFlowInfiniteScrollingEarly {
         .margin({ top: 2 })
     }.width('100%').justifyContent(FlexAlign.Center)
   }
-
+  // [Start waterFlowInfiniteScrollingEarly_start]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.WaterFlowInfiniteScrollingEarly_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.WaterFlowInfiniteScrollingEarly_title') }) {
           WaterFlow({ layoutMode: WaterFlowLayoutMode.SLIDING_WINDOW }) {
             LazyForEach(this.dataSource, (item: number) => {
@@ -142,6 +143,8 @@ export struct WaterFlowInfiniteScrollingEarly {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // $r('app.string.WaterFlowInfiniteScrollingEarly_title')需要替换为开发者所需的资源文件
     .title($r('app.string.WaterFlowInfiniteScrollingEarly_title'))
   }
+  // [End waterFlowInfiniteScrollingEarly_start]
 }

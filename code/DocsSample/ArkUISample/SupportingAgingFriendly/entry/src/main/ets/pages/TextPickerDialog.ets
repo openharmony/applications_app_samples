@@ -14,9 +14,7 @@
  */
 
 // [Start trigger_aging_friendly_by_set_font_size]
-import { abilityManager, Configuration } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_SupportingAgingFriendly]';
 const DOMAIN = 0xF811;
@@ -28,7 +26,7 @@ struct TextPickerExample {
   private select: number | number[] = 0;
   private cascade: TextCascadePickerRangeContent[] = [
     {
-      // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       text: $r('app.string.liaoning'),
       children: [{ text: $r('app.string.shenyang'), children: [{ text: $r('app.string.shenhe') },
         { text: $r('app.string.heping') }, { text: $r('app.string.hunnan') }] },
@@ -36,7 +34,7 @@ struct TextPickerExample {
         { text: $r('app.string.jinzhou') }, { text: $r('app.string.changhai') }] }]
     },
     {
-      // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       text: $r('app.string.jilin'),
       children: [{ text: $r('app.string.changchun'), children: [{ text: $r('app.string.nangang') },
         { text: $r('app.string.kuanchen') }, { text: $r('app.string.chaoyang') }] },
@@ -44,7 +42,7 @@ struct TextPickerExample {
         { text: $r('app.string.tiedong') }, { text: $r('app.string.lishu') }] }]
     },
     {
-      // $r('app.string.xxx')需要替换为开发者所需的字符串资源文件
+      // $r('app.string.xxx')需要替换为开发者所需的资源文件
       text: $r('app.string.heilingjiang'),
       children: [{ text: $r('app.string.haerbin'), children: [{ text: $r('app.string.daoli') },
         { text: $r('app.string.daowai') }, { text: $r('app.string.nangang') }] },
@@ -56,20 +54,6 @@ struct TextPickerExample {
   @State showTriggered: string = '';
   private triggered: string = '';
   private maxLines: number = 3; // 最大的行数为3
-  // 设置字体大小
-  async setFontScale(scale: number): Promise<void> {
-    let configInit: Configuration = {
-      fontSizeScale: scale,
-    };
-
-    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
-      if (err) {
-        hilog.info(DOMAIN, TAG, BUNDLE + `updateConfiguration fail, err: ${JSON.stringify(err)}`);
-      } else {
-        hilog.info(DOMAIN, TAG, BUNDLE + 'updateConfiguration success.');
-      }
-    });
-  }
 
   linesNum(max: number): void {
     let items: string[] = this.triggered.split('\n').filter(item => item != '');
@@ -120,30 +104,7 @@ struct TextPickerExample {
           })
         })
         .margin({ top: 60 });
-
-      Row() {
-        // $r('app.string.one_multiple')需要替换为开发者所需的字符串资源文件
-        Button($r('app.string.one_multiple')).onClick(() => {
-          this.setFontScale(1)
-        }).margin(10);
-
-        // $r('app.string.one_point_seven_five_multiple')需要替换为开发者所需的字符串资源文件
-        Button($r('app.string.one_point_seven_five_multiple')).onClick(() => {
-          this.setFontScale(1.75)
-        }).margin(10);
-
-        // $r('app.string.two_multiple')需要替换为开发者所需的字符串资源文件
-        Button($r('app.string.two_multiple')).onClick(() => {
-          this.setFontScale(2)
-        }).margin(10);
-
-        // $r('app.string.three_point_two_multiple')需要替换为开发者所需的字符串资源文件
-        Button($r('app.string.three_point_two_multiple')).onClick(() => {
-          this.setFontScale(3.2)
-        }).margin(10);
-      }.margin({ top: 50 });
     }
-
   }
 }
 // [End trigger_aging_friendly_by_set_font_size]

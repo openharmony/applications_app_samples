@@ -1,0 +1,76 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "high_calorie",
+      "value": "#EE584C"
+    },
+    {
+      "name": "low_calorie",
+      "value": "#73CD57"
+    },
+    {
+      "name": "theme_color_orange",
+      "value": "#FD9A42"
+    },
+    {
+      "name": "theme_color_green",
+      "value": "#73CD57"
+    },
+    {
+      "name": "theme_color_grey",
+      "value": "#999999"
+    },
+    {
+      "name": "tab_bar_select_color",
+      "value": "#73CD57"
+    },
+    {
+      "name": "tab_bar_normal_color",
+      "value": "#999999"
+    },
+    {
+      "name": "back_ground_color",
+      "value": "#FFf1f3f5"
+    },
+    {
+      "name": "back_ground_color_sp1",
+      "value": "#EDF2F5"
+    },
+    {
+      "name": "font_color_sp1",
+      "value": "#99000000"
+    },
+    {
+      "name": "ingredient_item_color1",
+      "value": "#F5D640"
+    },
+    {
+      "name": "ingredient_item_color2",
+      "value": "#9E9EFF"
+    },
+    {
+      "name": "ingredient_item_color3",
+      "value": "#53F540"
+    },
+    {
+      "name": "ingredient_item_color4",
+      "value": "#ccc"
+    },
+    {
+      "name": "font_color_normal",
+      "value": "#313131"
+    },
+    {
+      "name": "font_color_normal1",
+      "value": "#ff858588"
+    }
+  ]
+}

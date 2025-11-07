@@ -26,10 +26,10 @@ struct WebComponent {
 
   build() {
     Column() {
-      Web({ src: 'www.example.com', controller: this.webviewController })
+      Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onPageEnd(() => {
           // 预加载https://www.iana.org/help/example-domains。
-          this.webviewController.prefetchPage(resourceToString($r('app.string.domains_path')));
+          this.webviewController.prefetchPage('https://www.iana.org/help/example-domains');
         })
     }
   }

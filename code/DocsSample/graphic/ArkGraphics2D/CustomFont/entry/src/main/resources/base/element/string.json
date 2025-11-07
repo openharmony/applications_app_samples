@@ -13,8 +13,12 @@
       "value": "CustomFont"
     },
     {
-      "name": "Button_label",
-      "value": "Draw Text"
+      "name": "Button_load_font",
+      "value": "load font"
+    },
+    {
+      "name": "Button_unload_font",
+      "value": "unload font"
     }
   ]
 }

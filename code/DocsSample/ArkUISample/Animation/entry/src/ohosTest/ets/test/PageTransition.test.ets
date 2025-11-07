@@ -138,5 +138,53 @@ export function PageTransitionTest() {
       hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_004_end');
     })
 
+    /*
+      * @tc.number: Animation_PageTransitionTest_005
+      * @tc.name: Set pageTransition with pushUrl
+      * @tc.desc: Set pageTransition with pushUrl
+      * @tc.size: MediumTest
+      * @tc.type: Function
+      * @tc.level Level 1
+      */
+    it(BUNDLE + 'PageTransitionTest_005', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_005_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.pageTransition_temp_label5"))));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      aimComponent = await driver.findComponent(ON.text('pushUrl'));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+
+      aimComponent = await driver.findComponent(ON.text('back'));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_005_end');
+    })
+
+    /*
+      * @tc.number: Animation_PageTransitionTest_006
+      * @tc.name: Set none type pageTransition
+      * @tc.desc: Set none type pageTransition
+      * @tc.size: MediumTest
+      * @tc.type: Function
+      * @tc.level Level 1
+      */
+    it(BUNDLE + 'PageTransitionTest_006', 0, async () => {
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_006_begin');
+      aimComponent = await driver.findComponent(ON.text(resource.resourceToString($r("app.string.pageTransition_temp_label6"))));
+      await aimComponent.click();
+      await driver.delayMs(1000);
+
+      aimComponent = await driver.findComponent(ON.text('pushUrl'));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+
+      aimComponent = await driver.findComponent(ON.text('back'));
+      await aimComponent.click();
+      await driver.delayMs(3000);
+      hilog.info(DOMAIN, TAG, 'Animation_PageTransitionTest_006_end');
+    })
+
   })
 }

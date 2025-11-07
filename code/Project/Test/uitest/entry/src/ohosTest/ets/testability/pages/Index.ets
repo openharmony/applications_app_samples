@@ -32,6 +32,13 @@ struct Index {
        .margin({
          top: 20
        })
+       TextInput({ placeholder: 'welcome', text: 'Hello World' })
+         .type(InputType.Normal)
+         .width(300)
+         .height(50)
+         .fontSize(40)
+         .enabled(true)
+         .margin({ top: 20 })
        .backgroundColor('#0D9FFB')
        .width('35%')
        .height('5%')

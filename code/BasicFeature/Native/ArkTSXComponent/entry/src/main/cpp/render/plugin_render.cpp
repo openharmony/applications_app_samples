@@ -26,7 +26,7 @@ PluginRender::PluginRender(int64_t& id)
     hasDraw_ = 0;
     hasChangeColor_ = 0;
 }
-
+// [Start xcomponent_render_cpp]
 void PluginRender::ChangeColor()
 {
     eglCore_->ChangeColor(hasChangeColor_);
@@ -34,19 +34,19 @@ void PluginRender::ChangeColor()
 
 void PluginRender::DrawPattern()
 {
-    eglCore_->Draw(hasDraw_);
+    eglCore_->Draw(hasDraw_); // 参考Native XComponent场景Draw实现
 }
 
 void PluginRender::InitNativeWindow(OHNativeWindow *window)
 {
-    eglCore_->EglContextInit(window);
+    eglCore_->EglContextInit(window); // 参考Native XComponent场景EglContextInit的实现
 }
 
 void PluginRender::UpdateNativeWindowSize(int width, int height)
 {
-    eglCore_->UpdateSize(width, height);
+    eglCore_->UpdateSize(width, height); // 参考Native XComponent场景UpdateSize的实现
     if (!hasChangeColor_ && !hasDraw_) {
-        eglCore_->Background();
+        eglCore_->Background(); // 参考Native XComponent场景Background的实现
     }
 }
 
@@ -59,4 +59,5 @@ int32_t PluginRender::HasChangedColor()
 {
     return hasChangeColor_;
 }
+// [End xcomponent_render_cpp]
 } // namespace NativeXComponentSample

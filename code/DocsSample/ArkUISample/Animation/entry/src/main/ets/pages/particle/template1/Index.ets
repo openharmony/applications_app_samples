@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start particle_example]
 @Entry
 @Component
 struct ParticleExample {
@@ -38,6 +39,7 @@ struct ParticleExample {
             },
             color: {
               range: [Color.Red, Color.Yellow], //初始颜色范围
+              distributionType: DistributionType.GAUSSIAN, // 初始颜色随机值分布
               updater: {
                 type: ParticleUpdater.CURVE, //变化方式为曲线变化
                 config: [
@@ -122,3 +124,4 @@ struct ParticleExample {
     }.width('100%').height('100%').align(Alignment.Center)
   }
 }
+// [End particle_example]

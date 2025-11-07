@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start vpn_control_case_c++]
 #include "napi/native_api.h"
 #include "hilog/log.h"
  
@@ -237,4 +237,4 @@ static napi_module demoModule = {
 };
  
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
- 
+// [End vpn_control_case_c++]

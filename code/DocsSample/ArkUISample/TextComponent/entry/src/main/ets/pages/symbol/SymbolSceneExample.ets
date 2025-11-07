@@ -14,231 +14,254 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-import resource from '../../common/resource';
+
+// [Start symbol_glyph_span_scene_example]
+// resourceGetString封装工具，从资源中获取字符串
+import resourceGetString from '../../common/resource';
 
 @Entry
 @Component
-export struct SymbolGlyphSpanSceneExample {
+struct SymbolMusicDemo {
   @State triggerValueReplace: number = 0;
+  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
   @State symbolSources: Resource[] =
     [$r('sys.symbol.repeat'), $r('sys.symbol.repeat_1'), $r('sys.symbol.arrow_left_arrow_right')];
   @State symbolSourcesIndex: number = 0;
-  @State symbolText: string[] = [resource.resourceToString($r('app.string.SymbolSceneExample_Text_1')),
-    resource.resourceToString($r('app.string.SymbolSceneExample_Text_2')),
-    resource.resourceToString($r('app.string.SymbolSceneExample_Text_3'))];
+  @State symbolText: string[] = [
+    // 'app.string.play_in_order'资源文件中的value值为"顺序播放"
+    resourceGetString.resourceToString($r('app.string.play_in_order')),
+    // 'app.string.play_in_single_repeat'资源文件中的value值为"单曲循环"
+    resourceGetString.resourceToString($r('app.string.play_in_single_repeat')),
+    // 'app.string.shuffle_play'资源文件中的value值为"随机播放"
+    resourceGetString.resourceToString($r('app.string.shuffle_play')),
+  ];
   @State symbolTextIndex: number = 0;
   @State fontColorValue: ResourceColor = Color.Grey;
   @State fontColorValue1: ResourceColor = '#E8E8E8';
 
   build() {
-    NavDestination() {
-      Column({ space: 12 }) {
-        ComponentCard({ title: $r('app.string.SymbolGlyphSpanSceneExample_title') }) {
-          // [Start symbol_glyph_span_scene_example]
-          Column({ space: 10 }) {
-            Row() {
-              Text() {
-                Span(resource.resourceToString($r('app.string.SymbolSceneExample_Text_4')))
-                  .fontSize(20)
-                  .fontWeight(FontWeight.Bolder)
-                Span('(101)')
-              }.id('text1')
-            }
-
-            Row() {
-              Row({ space: 5 }) {
-                SymbolGlyph(this.symbolSources[this.symbolSourcesIndex])
-                  .id('symbolGlyph1')
-                  .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
-                  .fontSize(20)
-                  .fontColor([this.fontColorValue])
-                Text(this.symbolText[this.symbolTextIndex])
-                  .fontColor(this.fontColorValue)
-              }
-              .onClick(() => {
-                this.symbolTextIndex++;
-                this.symbolSourcesIndex++;
-                this.triggerValueReplace++;
-                if (this.symbolSourcesIndex > (this.symbolSources.length - 1)) {
-                  this.symbolSourcesIndex = 0;
-                  this.triggerValueReplace = 0;
-                }
-                if (this.symbolTextIndex > (this.symbolText.length - 1)) {
-                  this.symbolTextIndex = 0;
-                }
-              })
-              .width('75%')
-
-              Row({ space: 5 }) {
-                Text() {
-                  SymbolSpan($r('sys.symbol.arrow_down_circle_badge_vip_circle_filled'))
-                    .fontColor([this.fontColorValue])
-                    .fontSize(20)
-                }.id('text2')
-
-                Text() {
-                  SymbolSpan($r('sys.symbol.heart_badge_plus'))
-                    .fontColor([this.fontColorValue])
-                    .fontSize(20)
-                }.id('text3')
-
-                Text() {
-                  SymbolSpan($r('sys.symbol.ohos_trash'))
-                    .fontColor([this.fontColorValue])
-                    .fontSize(20)
-                }.id('text4')
-              }
-              .width('25%')
-            }
-
-            Divider().width(5).color(this.fontColorValue1).width('98%')
-            Row() {
-              Row() {
-                Text($r('app.string.SymbolSceneExample_Text_5'))
-              }.width('82%')
-
-              Row({ space: 5 }) {
-                SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
-                  .id('symbolGlyph2')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-                SymbolGlyph($r('sys.symbol.trash'))
-                  .id('symbolGlyph3')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-              }
-            }
-
-            Divider().width(5).color(this.fontColorValue1).width('98%')
-            Row() {
-              Row() {
-                Text($r('app.string.SymbolSceneExample_Text_6'))
-              }.width('82%')
-
-              Row({ space: 5 }) {
-                SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
-                  .id('symbolGlyph4')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-                SymbolGlyph($r('sys.symbol.trash'))
-                  .id('symbolGlyph5')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-              }
-            }
-
-            Divider().width(5).color(this.fontColorValue1).width('98%')
-            Row() {
-              Row() {
-                Text($r('app.string.SymbolSceneExample_Text_7'))
-              }.width('82%')
-
-              Row({ space: 5 }) {
-                SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
-                  .id('symbolGlyph6')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-                SymbolGlyph($r('sys.symbol.trash'))
-                  .id('symbolGlyph7')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-              }
-            }
-
-            Divider().width(5).color(this.fontColorValue1).width('98%')
-            Row() {
-              Row() {
-                Text($r('app.string.SymbolSceneExample_Text_8'))
-              }.width('82%')
-
-              Row({ space: 5 }) {
-                SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
-                  .id('symbolGlyph8')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-                SymbolGlyph($r('sys.symbol.trash'))
-                  .id('symbolGlyph9')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-              }
-            }
-
-            Divider().width(5).color(this.fontColorValue1).width('98%')
-            Row() {
-              Row() {
-                Text($r('app.string.SymbolSceneExample_Text_9'))
-              }.width('82%')
-
-              Row({ space: 5 }) {
-                SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
-                  .id('symbolGlyph10')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-                SymbolGlyph($r('sys.symbol.trash'))
-                  .id('symbolGlyph11')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-              }
-            }
-
-            Divider().width(5).color(this.fontColorValue1).width('98%')
-            Row() {
-              Row() {
-                Text($r('app.string.SymbolSceneExample_Text_10'))
-              }.width('82%')
-
-              Row({ space: 5 }) {
-                SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
-                  .id('symbolGlyph12')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-                SymbolGlyph($r('sys.symbol.trash'))
-                  .id('symbolGlyph13')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-              }
-            }
-
-            Divider().width(5).color(this.fontColorValue1).width('98%')
-            Row() {
-              Row() {
-                Text($r('app.string.SymbolSceneExample_Text_11'))
-              }.width('82%')
-
-              Row({ space: 5 }) {
-                SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
-                  .id('symbolGlyph14')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-                SymbolGlyph($r('sys.symbol.trash'))
-                  .id('symbolGlyph15')
-                  .fontColor([this.fontColorValue])
-                  .fontSize(20)
-              }
-            }
-
-            Divider().width(5).color(this.fontColorValue1).width('98%')
-            Column() {
-              Text($r('app.string.SymbolSceneExample_Text_12'))
-            }
-            .alignItems(HorizontalAlign.Center)
-            .width('98%')
-          }
-          .alignItems(HorizontalAlign.Start)
-          .width('100%')
-          .height(400)
-          .padding({
-            left: 10,
-            top: 10
-          })
-          // [End symbol_glyph_span_scene_example]
+    Column({ space: 10 }) {
+      Row() {
+        Text() {
+          // 'app.string.current_playlist'资源文件中的value值为"当前播放列表"
+          Span(resourceGetString.resourceToString($r('app.string.current_playlist')))
+            .fontSize(20)
+            .fontWeight(FontWeight.Bolder)
+          Span('（101）')
         }
       }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
+
+      Row() {
+        Row({ space: 5 }) {
+          SymbolGlyph(this.symbolSources[this.symbolSourcesIndex])
+            .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
+            .fontSize(20)
+            .fontColor([this.fontColorValue])
+          Text(this.symbolText[this.symbolTextIndex])
+            .fontColor(this.fontColorValue)
+        }
+        .onClick(() => {
+          this.symbolTextIndex++;
+          this.symbolSourcesIndex++;
+          this.triggerValueReplace++;
+          if (this.symbolSourcesIndex > (this.symbolSources.length - 1)) {
+            this.symbolSourcesIndex = 0;
+            this.triggerValueReplace = 0;
+          }
+          if (this.symbolTextIndex > (this.symbolText.length - 1)) {
+            this.symbolTextIndex = 0;
+          }
+        })
+        .width('75%')
+
+        Row({ space: 5 }) {
+          Text() {
+            // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+            SymbolSpan($r('sys.symbol.arrow_down_circle_badge_vip_circle_filled'))
+              .fontColor([this.fontColorValue])
+              .fontSize(20)
+          }
+
+          Text() {
+            // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+            SymbolSpan($r('sys.symbol.heart_badge_plus'))
+              .fontColor([this.fontColorValue])
+              .fontSize(20)
+          }
+
+          Text() {
+            // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+            SymbolSpan($r('sys.symbol.ohos_trash'))
+              .fontColor([this.fontColorValue])
+              .fontSize(20)
+          }
+        }
+        .width('25%')
+      }
+
+      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Row() {
+        Row() {
+          // 'app.string.song'资源文件中的value值为"歌曲一"
+          Text($r('app.string.song'))
+        }.width('82%')
+
+        Row({ space: 5 }) {
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.trash'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+        }
+      }
+
+      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Row() {
+        Row() {
+          // 'app.string.song_again'资源文件中的value值为"歌曲二"
+          Text($r('app.string.song_again'))
+        }.width('82%')
+
+        Row({ space: 5 }) {
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.trash'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+        }
+      }
+
+      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Row() {
+        Row() {
+          // 'app.string.again_song'资源文件中的value值为"歌曲三"
+          Text($r('app.string.again_song'))
+        }.width('82%')
+
+        Row({ space: 5 }) {
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.trash'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+        }
+      }
+
+      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Row() {
+        Row() {
+          // 'app.string.song_repeat'资源文件中的value值为"歌曲四"
+          Text($r('app.string.song_repeat'))
+        }.width('82%')
+
+        Row({ space: 5 }) {
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.trash'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+        }
+      }
+
+      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Row() {
+        Row() {
+          // 'app.string.repeat_song'资源文件中的value值为"歌曲五"
+          Text($r('app.string.repeat_song'))
+        }.width('82%')
+
+        Row({ space: 5 }) {
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.trash'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+        }
+      }
+
+      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Row() {
+        Row() {
+          // 'app.string.song_play'资源文件中的value值为"歌曲六"
+          Text($r('app.string.song_play'))
+        }.width('82%')
+
+        Row({ space: 5 }) {
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.trash'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+        }
+      }
+
+      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Row() {
+        Row() {
+          // 'app.string.play_song'资源文件中的value值为"歌曲七"
+          Text($r('app.string.play_song'))
+        }.width('82%')
+
+        Row({ space: 5 }) {
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
+          SymbolGlyph($r('sys.symbol.trash'))
+            .fontColor([this.fontColorValue])
+            .fontSize(20)
+        }
+      }
+
+      Divider().width(5).color(this.fontColorValue1).width('98%')
+      Column() {
+        // 'app.string.off'资源文件中的value值为"关闭"
+        Text($r('app.string.off'))
+      }
+      .alignItems(HorizontalAlign.Center)
+      .width('98%')
     }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.SymbolGlyphSpanSceneExample_title'))
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+    .height(400)
+    .padding({
+      left: 10,
+      top: 10
+    })
   }
+}
+// [End symbol_glyph_span_scene_example]
+@Builder
+export function SymbolGlyphSpanSceneExample() {
+  NavDestination() {
+    Column({ space: 12 }) {
+      ComponentCard({ title: $r('app.string.SymbolGlyphSpanSceneExample_title') }) {
+        SymbolMusicDemo()
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .padding({ left: 12, right: 12 })
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.SymbolGlyphSpanSceneExample_title'))
 }

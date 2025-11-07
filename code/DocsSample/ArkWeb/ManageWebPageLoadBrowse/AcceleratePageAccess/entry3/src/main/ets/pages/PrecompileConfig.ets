@@ -16,10 +16,6 @@
 // [Start compile_resource_allocation_information]
 import { webview } from '@kit.ArkWeb'
 
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-
 export interface Config {
   url:  string,
   localPath: string, // 本地资源路径
@@ -28,7 +24,7 @@ export interface Config {
 
 export let configs: Config[] = [
   {
-    url: resourceToString($r('app.string.web_path')),
+    url: 'https://www.example.com/example.js',
     localPath: 'example.js',
     options: {
       responseHeaders: [

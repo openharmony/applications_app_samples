@@ -1,0 +1,244 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "RenderingControl"
+    },
+    {
+      "name": "RenderingForeach",
+      "value": "RenderingForeach"
+    },
+    {
+      "name": "RenderingForeach_label1",
+      "value": "RenderingForeach1"
+    },
+    {
+      "name": "RenderingForeach_label2",
+      "value": "RenderingForeach2"
+    },
+    {
+      "name": "RenderingForeach_label3",
+      "value": "RenderingForeach3"
+    },
+    {
+      "name": "RenderingForeach_label4",
+      "value": "RenderingForeach4"
+    },
+    {
+      "name": "RenderingForeach_label5",
+      "value": "RenderingForeach5"
+    },
+    {
+      "name": "RenderingForeach_label6",
+      "value": "RenderingForeach6"
+    },
+    {
+      "name": "RenderingForeach_label7",
+      "value": "RenderingForeach7"
+    },
+    {
+      "name": "RenderingForeach_label8",
+      "value": "RenderingForeach8"
+    },
+    {
+      "name": "RenderingForeach_label9",
+      "value": "RenderingForeach9"
+    },
+    {
+      "name": "RenderingForeach_label10",
+      "value": "RenderingForeach10"
+    },
+    {
+      "name": "RenderingForeach_label11",
+      "value": "RenderingForeach11"
+    },
+    {
+      "name": "RenderingForeach_label12",
+      "value": "RenderingForeach12"
+    },
+    {
+      "name": "RenderingIf",
+      "value": "RenderingIf"
+    },
+    {
+      "name": "RenderingIf_label1",
+      "value": "RenderingIf1"
+    },
+    {
+      "name": "RenderingIf_label2",
+      "value": "RenderingIf2"
+    },
+    {
+      "name": "RenderingIf_label3",
+      "value": "RenderingIf3"
+    },
+    {
+      "name": "RenderingIf_label4",
+      "value": "RenderingIf4"
+    },
+    {
+      "name": "RenderingRepeat",
+      "value": "RenderingRepeat"
+    },
+    {
+      "name": "RenderingRepeat_label1",
+      "value": "RenderingRepeat1"
+    },
+    {
+      "name": "RenderingRepeat_label2",
+      "value": "RenderingRepeat2"
+    },
+    {
+      "name": "RenderingRepeat_label3",
+      "value": "RenderingRepeat3"
+    },
+    {
+      "name": "RenderingRepeat_label4",
+      "value": "RenderingRepeat4"
+    },
+    {
+      "name": "RenderingRepeat_label5",
+      "value": "RenderingRepeat5"
+    },
+    {
+      "name": "RenderingRepeat_label6",
+      "value": "RenderingRepeat6"
+    },
+    {
+      "name": "RenderingRepeat_label7",
+      "value": "RenderingRepeat7"
+    },
+    {
+      "name": "RenderingRepeat_label8",
+      "value": "RenderingRepeat8"
+    },
+    {
+      "name": "RenderingRepeat_label9",
+      "value": "RenderingRepeat9"
+    },
+    {
+      "name": "RenderingRepeat_label10",
+      "value": "RenderingRepeat10"
+    },
+    {
+      "name": "RenderingRepeat_label11",
+      "value": "RenderingRepeat11"
+    },
+    {
+      "name": "RenderingRepeat_label12",
+      "value": "RenderingRepeat12"
+    },
+    {
+      "name": "RenderingRepeat_label13",
+      "value": "RenderingRepeat13"
+    },
+    {
+      "name": "RenderingRepeat_label14",
+      "value": "RenderingRepeat14"
+    },
+    {
+      "name": "RenderingRepeat_label15",
+      "value": "RenderingRepeat15"
+    },
+    {
+      "name": "RenderingRepeat_label16",
+      "value": "RenderingRepeat16"
+    },
+    {
+      "name": "RenderingRepeat_label17",
+      "value": "RenderingRepeat17"
+    },
+    {
+      "name": "RenderingLazyForeach",
+      "value": "RenderingLazyForeach"
+    },
+    {
+      "name": "RenderingLazyForeach_label1",
+      "value": "AddingData"
+    },
+    {
+      "name": "RenderingLazyForeach_label2",
+      "value": "ChangingDataSubproperties"
+    },
+    {
+      "name": "RenderingLazyForeach_label3",
+      "value": "ComponentRerenderingFailure"
+    },
+    {
+      "name": "RenderingLazyForeach_label4",
+      "value": "DataDeletion"
+    },
+    {
+      "name": "RenderingLazyForeach_label5",
+      "value": "DragandDropSorting"
+    },
+    {
+      "name": "RenderingLazyForeach_label6",
+      "value": "ImageFlickeringDuringRerenders"
+    },
+    {
+      "name": "RenderingLazyForeach_label7",
+      "value": "InitialRendering"
+    },
+    {
+      "name": "RenderingLazyForeach_label8",
+      "value": "InitialRendering2"
+    },
+    {
+      "name": "RenderingLazyForeach_label9",
+      "value": "LazyLoadingFailure"
+    },
+    {
+      "name": "RenderingLazyForeach_label10",
+      "value": "ModifyingIndividualDataItems"
+    },
+    {
+      "name": "RenderingLazyForeach_label11",
+      "value": "ModifyingMultipleDataItems"
+    },
+    {
+      "name": "RenderingLazyForeach_label12",
+      "value": "ObservingComponentInternalState"
+    },
+    {
+      "name": "RenderingLazyForeach_label13",
+      "value": "ObservingNestedClassProperties"
+    },
+    {
+      "name": "RenderingLazyForeach_label14",
+      "value": "PreciselyModifyingData"
+    },
+    {
+      "name": "RenderingLazyForeach_label15",
+      "value": "PreciselyModifyingData2"
+    },
+    {
+      "name": "RenderingLazyForeach_label16",
+      "value": "ReceivingExternalInput"
+    },
+    {
+      "name": "RenderingLazyForeach_label17",
+      "value": "ScreenFlickeringInList"
+    },
+    {
+      "name": "RenderingLazyForeach_label18",
+      "value": "SwappingData"
+    },
+    {
+      "name": "RenderingLazyForeach_label19",
+      "value": "UINotRerenderedWhenObjectLinkIsChanged"
+    },
+    {
+      "name": "RenderingLazyForeach_label20",
+      "value": "UnexpectedRenderingResults"
+    }
+  ]
+}

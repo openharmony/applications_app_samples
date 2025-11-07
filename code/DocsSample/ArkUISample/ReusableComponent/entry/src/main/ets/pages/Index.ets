@@ -29,12 +29,16 @@ struct Index {
       path:'pages/ReusableForCustomComponents'
     },
     {
-      name:'ComponentContentNotSupportReusable',
-      path:'pages/ComponentContentNotSupportReusable'
+      name:'ReusableIncorrectSample',
+      path:'pages/ReusableIncorrectSample'
     },
     {
       name:'ReusableCorrectSample',
       path:'pages/ReusableCorrectSample'
+    },
+    {
+      name:'ComponentContentNotSupportReusable',
+      path:'pages/ComponentContentNotSupportReusable'
     },
     {
       name:'DynamicLayoutUpdate',
@@ -49,24 +53,24 @@ struct Index {
       path:'pages/ListScrollingWithIfStatements'
     },
     {
-      name:'ReusableForGridUsageScenario',
-      path:'pages/ReusableForGridUsageScenario'
-    },
-    {
-      name:'ReusableForListItemGroupUsageScenario',
-      path:'pages/ReusableForListItemGroupUsageScenario'
-    },
-    {
-      name:'ReusableIncorrectSample',
-      path:'pages/ReusableIncorrectSample'
-    },
-    {
       name:'ListScrollingWithForEach',
       path:'pages/ListScrollingWithForEach'
     },
     {
+      name:'ReusableForGridUsageScenario',
+      path:'pages/ReusableForGridUsageScenario'
+    },
+    {
       name:'ReusableForWaterFlowUsageScenario',
       path:'pages/ReusableForWaterFlowUsageScenario'
+    },
+    {
+      name:'ReusableForSwiperUsageScenario',
+      path:'pages/ReusableForSwiperUsageScenario'
+    },
+    {
+      name:'ReusableForListItemGroupUsageScenario',
+      path:'pages/ReusableForListItemGroupUsageScenario'
     },
     {
       name:'ReusableForLimitedVariation',
@@ -75,10 +79,6 @@ struct Index {
     {
       name:'ReusableForComposite',
       path:'pages/ReusableForComposite'
-    },
-    {
-      name:'ReusableForSwiperUsageScenario',
-      path:'pages/ReusableForSwiperUsageScenario'
     },
   ];
 

@@ -15,11 +15,7 @@
 
 // [Start compile_resource_allocation_information]
 import { webview } from '@kit.ArkWeb';
-// [StartExclude compile_resource_allocation_information]
-function resourceToString(resource: Resource) {
-  return getContext().resourceManager.getStringSync(resource);
-}
-// [EndExclude compile_resource_allocation_information]
+
 export interface ResourceConfig {
   urlList: Array<string>,
   type: webview.OfflineResourceType,
@@ -31,9 +27,9 @@ export const resourceConfigs: ResourceConfig[] = [
   {
     localPath: 'example.png',
     urlList: [
-      resourceToString($r('app.string.web_path')),
-      resourceToString($r('app.string.web_path')) + 'path1/example.png',
-      resourceToString($r('app.string.web_path')) + 'path2/example.png',
+      'https://www.example.com/',
+      'https://www.example.com/path1/example.png',
+      'https://www.example.com/path2/example.png',
     ],
     type: webview.OfflineResourceType.IMAGE,
     responseHeaders: [
@@ -44,11 +40,11 @@ export const resourceConfigs: ResourceConfig[] = [
   {
     localPath: 'example.js',
     urlList: [ // 仅提供一个url，这个url既作为资源的源，也作为资源的网络请求地址
-      resourceToString($r('app.string.web_path_one')),
+      'https://www.example.com/example.js',
     ],
     type: webview.OfflineResourceType.CLASSIC_JS,
     responseHeaders: [
-    // 以<script crossorigin='anoymous' />方式使用，提供额外的响应头
+      // 以<script crossorigin='anonymous' />方式使用，提供额外的响应头
       { headerKey: 'Cross-Origin', headerValue:'anonymous' }
     ]
   },

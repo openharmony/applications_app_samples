@@ -24,6 +24,7 @@ import { ArcListShow } from './ArcListShow';
 import { ArcListSideSlip } from './ArcListSideSlip';
 import { ArcListStyles } from './ArcListStyles';
 import { ArcLongList } from './ArcLongList';
+import { ArcListCreate } from './ArcListCreate';
 
 import resource from '../../common/resource';
 
@@ -74,6 +75,11 @@ const routes: Route[] = [
     name: `${ARCLIST_ROUTE_PREFIX}/ArcListCrown`,
     title: resource.resourceToString($r('app.string.ArcListCrown_title')),
     description: $r('app.string.ArcListCrown_description')
+  },
+  {
+    name: `${ARCLIST_ROUTE_PREFIX}/ArcListCreate`,
+    title: resource.resourceToString($r('app.string.ArcListCreate_title')),
+    description: $r('app.string.ArcListCreate_description')
   }
 ];
 
@@ -99,6 +105,8 @@ export function arcListDestination(name: string) {
     ArcLongList();
   } else if (name === routes[8].name) {
     ArcListCrown();
+  } else if (name === routes[9].name) {
+    ArcListCreate();
   }
 }
 

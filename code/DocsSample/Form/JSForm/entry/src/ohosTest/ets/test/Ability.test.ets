@@ -16,7 +16,7 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON, Component, Point, On } from '@ohos.UiTest';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_JSForm]';
 const DOMAIN = 0xF811;
@@ -108,7 +108,8 @@ export default function abilityTest() {
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
-      let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
+      let formEditDemoIcon: Component =
+        await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point, 0);
       // 找到卡片是否存在
@@ -128,7 +129,8 @@ export default function abilityTest() {
       await driver.delayMs(DELAYTIME01);
       // 找到应用位置
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
-      let formEditDemoIcon: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
+      let formEditDemoIcon: Component =
+        await driver.findComponent(ON.text(await getResourceString($r('app.string.EntryAbility_label'))).within(ON.type('GridItem')));
       let point: Point = await getCenterPoint(formEditDemoIcon, 2);
       await addForm(point, 1);
       // 找到卡片是否存在

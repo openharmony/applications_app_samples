@@ -1,0 +1,18 @@
+{
+  "src": [
+    "pages/AntiAlias",
+    "pages/CircleExample",
+    "pages/Fill",
+    "pages/Index",
+    "pages/Mesh",
+    "pages/Shape",
+    "pages/ShapeExample",
+    "pages/Stroke",
+    "pages/StrokeLineJoin",
+    "pages/StrokeMiterLimit",
+    "pages/StrokeOpacity",
+    "pages/ViewPort1",
+    "pages/ViewPort2",
+    "pages/ViewPort3"
+  ]
+}

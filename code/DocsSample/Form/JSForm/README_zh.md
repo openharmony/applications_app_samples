@@ -35,10 +35,8 @@
 entry/src/main/ets/
 |---entryability
 |   |---EntryAbility.ets                   // 主进程UIAbility
-|---entryformability
-|   |---EntryFormAbility.ets               // 卡片进程Ability
 |---jscardformability
-|   |---JsCardFormAbility.ets              // 创建基于JS开发的卡片
+|   |---JsCardFormAbility.ets              // 卡片进程Ability
 |---pages
 |   |---index.ets                          // 卡片提供方主应用首页
 

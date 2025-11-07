@@ -14,8 +14,9 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-import { LengthMetrics } from '@kit.ArkUI';
 import resource from '../../common/resource';
+// [Start styledStringSceneExample_start]
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -26,6 +27,7 @@ export struct StyledStringSceneExample {
   //Bold样式
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
   //创建含段落样式的对象paragraphStyledString1
+  //'app.string.StyledStringSceneExample_Text_1'资源文件中的value值为"您的豪华钻石已过期1天\n续费可继续享受会员专属权益"
   paragraphStyledString1: MutableStyledString =
     new MutableStyledString(resource.resourceToString($r('app.string.StyledStringSceneExample_Text_1')), [
       {
@@ -59,6 +61,7 @@ export struct StyledStringSceneExample {
         styledValue: this.lineHeightStyle1
       }
     ]);
+  //'app.string.StyledStringSceneExample_Text_2'资源文件中的value值为"\n￥4.88￥15"
   paragraphStyledString2: MutableStyledString =
     new MutableStyledString(resource.resourceToString($r('app.string.StyledStringSceneExample_Text_2')), [
     {
@@ -104,6 +107,7 @@ export struct StyledStringSceneExample {
       styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough, color: Color.Grey })
     }
   ]);
+  //'app.string.StyledStringSceneExample_Text_3'资源文件中的value值为"\n02时06分后将失去该优惠"
   paragraphStyledString3: MutableStyledString =
     new MutableStyledString(resource.resourceToString($r('app.string.StyledStringSceneExample_Text_3')), [
     {
@@ -136,8 +140,8 @@ export struct StyledStringSceneExample {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        //'app.string.StyledStringSceneExample_title'资源文件中的value值为"场景示例"
         ComponentCard({ title: $r('app.string.StyledStringSceneExample_title') }) {
-          // [Start styled_string_scene_example]
           Row() {
             Column({ space: 5 }) {
               Text(undefined, { controller: this.controller })
@@ -150,7 +154,7 @@ export struct StyledStringSceneExample {
                   this.paragraphStyledString1.appendStyledString(this.paragraphStyledString2);
                   this.controller.setStyledString(this.paragraphStyledString1);
                 })
-
+              //'app.string.StyledStringSceneExample_Button_1'资源文件中的value值为"限时4.88元 立即续费"
               Button($r('app.string.StyledStringSceneExample_Button_1'))
                 .width(200)
                 .fontColor(Color.White)
@@ -162,7 +166,6 @@ export struct StyledStringSceneExample {
             .margin({ left: 10 })
           }
           .height('60%')
-          // [End styled_string_scene_example]
         }
       }
       .width('100%')
@@ -170,6 +173,8 @@ export struct StyledStringSceneExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    //'app.string.StyledStringSceneExample_title'资源文件中的value值为"场景示例"
     .title($r('app.string.StyledStringSceneExample_title'))
   }
 }
+// [End styledStringSceneExample_start]

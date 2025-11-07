@@ -20,7 +20,6 @@ import { ComponentCard } from '../../common/Card';
 export struct GridLayout {
   @State numbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7'];
   scroller: Scroller = new Scroller();
-  // [Start set_rows_and_columns_occupied]
   layoutOptions: GridLayoutOptions = {
     regularSize: [1, 1],
     irregularIndexes: [1, 3, 4], // 索引为0和7的GridItem占用的列数由onGetIrregularSizeByIndex指定
@@ -32,12 +31,12 @@ export struct GridLayout {
     }
   }
 
-  // [StartExclude set_rows_and_columns_occupied]
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // app.string.GridLayout_titleRowSpacing资源文件中的value值为‘设置行列数量占比和行间距示例’
         ComponentCard({ title: $r('app.string.GridLayout_titleRowSpacing') }) {
-          // [EndExclude set_rows_and_columns_occupied]
+
           // [Start build_a_grid]
           Grid() {
             // [StartExclude build_a_grid]
@@ -69,19 +68,14 @@ export struct GridLayout {
             }.backgroundColor('#ffe0e2e4')
             // [EndExclude build_a_grid]
           }
-          //设置行列间距
-          // [StartExclude build_a_grid]
-          .columnsGap(10)
-          .rowsGap(15)
-          .height(150)
-          // [EndExclude build_a_grid]
-          //设置行列数量与占比
           .rowsTemplate('1fr 1fr 1fr')
           .columnsTemplate('1fr 2fr 1fr')
           // [End build_a_grid]
-          // [End set_rows_and_columns_occupied]
+          .columnsGap(10)
+          .rowsGap(15)
+          .height(150)
         }
-
+        // app.string.GridLayout_titleChildSpan资源文件中的value值为‘设置子组件所占行列数示例’
         ComponentCard({ title: $r('app.string.GridLayout_titleChildSpan') }) {
           Grid(undefined, this.layoutOptions) {
             ForEach(this.numbers, (day: string) => {
@@ -102,7 +96,7 @@ export struct GridLayout {
           .width('80%')
           .height(210)
         }
-
+        // app.string.GridLayout_titleMainAxis资源文件中的value值为‘设置主轴方向示例’
         ComponentCard({ title: $r('app.string.GridLayout_titleMainAxis') }) {
           // [Start Set_the_direction_of_the_main_axis_of_the_grid]
           Grid() {
@@ -145,13 +139,10 @@ export struct GridLayout {
             // [EndExclude Set_the_direction_of_the_main_axis_of_the_grid]
           }
           .maxCount(3)
-          // [StartExclude Set_the_direction_of_the_main_axis_of_the_grid]
-          .columnsGap(4)
-          .rowsGap(4)
-          // [EndExclude Set_the_direction_of_the_main_axis_of_the_grid]
           .layoutDirection(GridDirection.Row)
           // [End Set_the_direction_of_the_main_axis_of_the_grid]
-
+          .columnsGap(4)
+          .rowsGap(4)
           Grid() {
             GridItem() {
               Text('1')
@@ -200,6 +191,7 @@ export struct GridLayout {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
+    // app.string.GridLayout_title资源文件中的value值为‘网格开发布局’
     .title($r('app.string.GridLayout_title'))
   }
 }

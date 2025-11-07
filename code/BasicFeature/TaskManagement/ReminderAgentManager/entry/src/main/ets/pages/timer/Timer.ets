@@ -22,13 +22,8 @@ import Logger from '../../util/Logger';
 import { SelectTime } from './SelectTime';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
-import { deviceInfo } from '@kit.BasicServicesKit';
-import { calendarManager } from '@kit.CalendarKit';
-import { calendarMgr } from '../../MainAbility/MainAbility';
 
 const TAG: string = 'CountDown';
-let deviceTypeInfo: string = deviceInfo.deviceType;
-let calendar: calendarManager.Calendar | undefined = undefined;
 
 @Component
 export struct Timer {
@@ -62,9 +57,6 @@ export struct Timer {
     this.intervalId = setInterval(() => {
       this.getTime();
     }, Constant.SECONDS_MILLISECONDS);
-    if (deviceTypeInfo !== 'default') {
-      this.setCalendarReminder();
-    }
   }
 
   aboutToDisappear() {
@@ -182,27 +174,6 @@ export struct Timer {
     return (num < 10) ? ('0' + num).toString() : num.toString()
   }
 
-  setCalendarReminder() {
-    let config: calendarManager.CalendarConfig = {
-      enableReminder: true,
-      color: '#aabbcc',
-    };
-
-    calendarMgr?.getCalendar(async (err: BusinessError, data: calendarManager.Calendar) => {
-      if (err) {
-        Logger.error(TAG, `Failed to get calendar.code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-      } else {
-        Logger.info(TAG, `Succeeded in getting calendar, data ->` + JSON.stringify(data));
-        calendar = data;
-        await calendar!.setConfig(config).then(() => {
-          Logger.info(TAG, `Succeeded in setting config, config -> ` + JSON.stringify(config));
-        }).catch((err: BusinessError) => {
-          Logger.error(TAG, `Failed to set config. code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-        });
-      }
-    });
-  }
-
   getTime() {
     this.selectedTime = new Date();
   }
@@ -242,13 +213,7 @@ export struct Timer {
     this.timer = setInterval(() => {
       this.timerCountDown();
     }, Constant.SECONDS_MILLISECONDS);
-    if (deviceTypeInfo === 'default') {
-      await this.handleDefaultDevice(context);
-    } else {
-      this.calendarTimerId = setTimeout(() => {
-        this.handleNonDefaultDevice(context);
-      }, this.countdownTime * Constant.SECONDS_MILLISECONDS);
-    }
+    await this.handleDefaultDevice(context);
     try {
       this.vibratorId = setTimeout(() => {
         vibrator.startVibration({
@@ -274,38 +239,23 @@ export struct Timer {
 
   async handleDefaultDevice(context: common.UIAbilityContext) {
     await reminderAgent.addNotificationSlot({ notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
+    // [Start timer_reminder]
     let timer: reminderAgent.ReminderRequestTimer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,  // 提醒类型为倒计时类型
       ringDuration: Constant.REMINDER_DURATION,
-      title: context.resourceManager.getStringSync($r('app.string.timer').id),
-      content: context.resourceManager.getStringSync($r('app.string.countdown_close').id),
-      wantAgent: {
-        pkgName: 'ohos.samples.reminderagentmanager',
-        abilityName: 'MainAbility'
+      title: context.resourceManager.getStringSync($r('app.string.timer').id),  // 指明提醒标题“计时器”
+      content: context.resourceManager.getStringSync($r('app.string.countdown_close').id),  // 指明提醒内容“计时器已结束”
+      wantAgent: {  // // 点击提醒通知后跳转的目标UIAbility信息
+        pkgName: 'com.example.reminderagentmanager',
+        abilityName: 'EntryAbility'
       },
-      slotType: notificationManager.SlotType.CONTENT_INFORMATION,
+      notificationId: 100, // 指明提醒使用的通知的ID号，相同ID号的提醒会覆盖
+      slotType: notificationManager.SlotType.CONTENT_INFORMATION,  // 指明提醒的Slot类型
       triggerTimeInSeconds: this.countdownTime
     };
+    // [End timer_reminder]
     this.reminderId = await reminderAgent.publishReminder(timer);
-  }
-
-  handleNonDefaultDevice(context: common.UIAbilityContext) {
-    let event: calendarManager.Event = {
-      type: calendarManager.EventType.NORMAL,
-      title: context.resourceManager.getStringSync($r('app.string.timer').id),
-      reminderTime: [0],
-      startTime: this.selectedTime.getTime(),
-      endTime: this.selectedTime.getTime() + 60 * 1000
-    };
-    calendar!.addEvent(event)
-      .then((data: number) => {
-        Logger.info(TAG, `Succeeded in adding event, id -> {data}`);
-        this.reminderId = data;
-        Logger.info(TAG, `this.reminderId is` + JSON.stringify(this.reminderId));
-      })
-      .catch((err: BusinessError) => {
-        Logger.error(TAG, `Failed to add event.code: ${err.code}, message: ${err.message}`);
-      });
+    Logger.info(TAG, `publish reminder result: id is ${this.reminderId}`);
   }
 
   async pause() {
@@ -315,11 +265,7 @@ export struct Timer {
     this.isRunning = true;
     this.isPausing = true;
     this.startImg = $r('app.media.ic_public_start');
-    if (deviceTypeInfo === 'default') {
-      await reminderAgent.cancelReminder(this.reminderId);
-    } else {
-      clearTimeout(this.calendarTimerId);
-    }
+    await reminderAgent.cancelReminder(this.reminderId);
     await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
   }
 
@@ -341,11 +287,7 @@ export struct Timer {
     this.startImg = $r('app.media.ic_public_start');
     this.resetImg = $r('app.media.ic_countdown_reset');
     if (isCancel) {
-      if (deviceTypeInfo === 'default') {
-        await reminderAgent.cancelReminder(this.reminderId);
-      } else {
-        clearTimeout(this.calendarTimerId);
-      }
+      await reminderAgent.cancelReminder(this.reminderId);
     }
     await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
   }

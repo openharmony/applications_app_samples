@@ -35,7 +35,7 @@ export struct RenderControlWithStack {
             Stack() { // 在条件渲染外套一层容器，限制刷新范围
               if (this.isVisible) {
                 Text('New item')
-                  .fontSize($r('app.integer.font_size_20'))
+                  .fontSize($r('app.integer.font_size_20'));
               }
             }
 
@@ -44,7 +44,7 @@ export struct RenderControlWithStack {
                 .fontSize($r('app.integer.font_size_20'))
                 .width($r('app.string.layout_100_percent'))
                 .textAlign(TextAlign.Center)
-            }, (item: number) => item.toString())
+            }, (item: number) => item.toString());
           }
         }
       }.height($r('app.string.layout_90_percent'))

@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/stateTrack/StateTrackClass",
+    "pages/stateTrack/StateTrackClass2",
+    "pages/stateTrack/StateTrackClass3"
+
+  ]
+}

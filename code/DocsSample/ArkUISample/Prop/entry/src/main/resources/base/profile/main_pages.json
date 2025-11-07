@@ -1,0 +1,23 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/PageOne",
+    "pages/PageTow",
+    "pages/PageThree",
+    "pages/PageFour",
+    "pages/PageFive",
+    "pages/PageSix",
+    "pages/PageSeven",
+    "pages/PageEight",
+    "pages/PageNine",
+    "pages/PageTen",
+    "pages/PageEleven",
+    "pages/PageTwelve",
+    "pages/PageThirteen",
+    "pages/PageFourteen",
+    "pages/PageFifteen",
+    "pages/PageSixteen",
+    "pages/PageSeventeen",
+    "pages/PageEighteen"
+  ]
+}

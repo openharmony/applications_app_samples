@@ -14,8 +14,11 @@
  */
 
 import { MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+// [Start local_socket_worker_import]
 import { socket } from '@kit.NetworkKit';
-import Logger from '../common/Logger';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// [End local_socket_worker_import]
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -36,6 +39,9 @@ workerPort.onmessage = (e: MessageEvents) => {
   if (message.type === 'startLocalSocketServer') {
     startLocalSocketServer(message.address);
   }
+  if (message.type === 'closeLocalSocketServer') {
+    closeLocalSocketServer();
+  }
 };
 
 // 字符串转 `ArrayBuffer`
@@ -48,93 +54,174 @@ function stringToArrayBuffer(str: string): ArrayBuffer {
   return buf;
 }
 
-// [Start application_transmits_data_via_local_socket]
+// [Start local_socket_worker_client]
+// 创建一个LocalSocket连接，返回一个LocalSocket对象。
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+// [End local_socket_worker_client]
+
 // 启动本地 Socket 客户端
 function startLocalSocket(address: string, timeout: number, closeTime: number): void {
-  let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-
+  // [Start local_socket_worker_on_message]
   client.on('message', (value: socket.LocalSocketMessageInfo) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
       messageView += String.fromCharCode(uintArray[i]);
     }
-    Logger.info(`Client received: ${messageView}`);
+    hilog.info(0x0000, 'testTag', 'total receive: ' + JSON.stringify(value));
+    hilog.info(0x0000, 'testTag', 'message information: ' + messageView);
   });
 
   client.on('connect', () => {
+    // [StartExclude local_socket_worker_on_message]
     workerPort.postMessage({ type: 'clientStatus', status: 'Connected' });
-    Logger.info('Client connected');
+    // [EndExclude local_socket_worker_on_message]
+    hilog.info(0x0000, 'testTag', 'Client connected');
   });
 
   client.on('close', () => {
+    // [StartExclude local_socket_worker_on_message]
     workerPort.postMessage({ type: 'clientStatus', status: 'Closed' });
-    Logger.info('Client closed');
+    // [EndExclude local_socket_worker_on_message]
+    hilog.info(0x0000, 'testTag', 'Client closed');
   });
+  // [End local_socket_worker_on_message]
+
+  let localAddress : socket.LocalAddress = {
+    address: address
+  }
 
   let sendOpt: socket.LocalSendOptions = {
     data: 'Hello world!'
   };
-
-  client.connect({ address: { address }, timeout }).then(() => {
-    Logger.info(`connect success`);
+  let connectOpt: socket.LocalConnectOptions = {
+    address: localAddress,
+    timeout: timeout
+  }
+  // [Start local_socket_worker_sendOpt]
+  client.connect(connectOpt).then(() => {
+    hilog.info(0x0000, 'testTag', `connect success`);
+    // 发送数据。
     client.send(sendOpt).then(() => {
-      Logger.info(`send success`);
+      hilog.info(0x0000, 'testTag', `send success`);
     }).catch((err: Object) => {
-      Logger.info(`send failed: ` + JSON.stringify(err));
+      hilog.info(0x0000, 'testTag', `send failed: ` + JSON.stringify(err));
     });
   }).catch((err: Object) => {
-    Logger.info(`connect fail: ` + JSON.stringify(err));
+    hilog.info(0x0000, 'testTag', `connect fail: ` + JSON.stringify(err));
   });
+  // [End local_socket_worker_sendOpt]
 
   setTimeout(async () => {
     await client.close();
     workerPort.postMessage({ type: 'clientStatus', status: 'Closed by timeout' });
   }, closeTime);
 }
-// [End application_transmits_data_via_local_socket]
 
-// [Start application_transmits_data_via_local_socket_server]
+
 // 启动本地 Socket 服务器
 function startLocalSocketServer(address: string): void {
+  // [Start local_socket_server_create]
+  // 创建一个LocalSocketServer连接，返回一个LocalSocketServer对象。
   let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-
-  server.listen({ address }).then(() => {
+  // [End local_socket_server_create]
+  let listenAddr: socket.LocalAddress  = {
+    address
+  }
+  // [Start local_socket_worker_server_listen]
+  server.listen(listenAddr).then(() => {
+    // [StartExclude local_socket_worker_server_listen]
     workerPort.postMessage({ type: 'serverStatus', status: 'Listening' });
-    Logger.info(`Server listening on ${address}`);
+    // [EndExclude local_socket_worker_server_listen]
+    hilog.info(0x0000, 'testTag', `Server listening on ${address}`);
   }).catch((err: object) => {
+    // [StartExclude local_socket_worker_server_listen]
     workerPort.postMessage({ type: 'serverStatus', status: 'Listen Failed' });
-    Logger.error(`Server listen error: ${JSON.stringify(err)}`);
+    // [EndExclude local_socket_worker_server_listen]
+    hilog.error(0x0000, 'testTag', `Server listen error: ${JSON.stringify(err)}`);
   });
+  // [End local_socket_worker_server_listen]
 
+  // [Start local_socket_worker_server_connection]
+  // 订阅LocalSocketServer的connect事件。
   server.on('connect', (connection: socket.LocalSocketConnection) => {
+    // 订阅LocalSocketConnection相关的事件。
+    connection.on('error', (err: Object) => {
+      hilog.info(0x0000, 'testTag', 'on error success');
+    });
+
     connection.on('message', (value: socket.LocalSocketMessageInfo) => {
       const uintArray = new Uint8Array(value.message);
       let messageView = '';
       for (let i = 0; i < uintArray.length; i++) {
         messageView += String.fromCharCode(uintArray[i]);
       }
-      Logger.info(`Server received: ${messageView}`);
+      hilog.info(0x0000, 'testTag', `Server received: ${messageView}`);
     });
 
-    connection.send({ data: stringToArrayBuffer('Hello from server!') }).then(() => {
-      Logger.info('Server send success');
+    connection.on('error', (err: Object) => {
+      hilog.error(0x0000, 'testTag', 'err:' + JSON.stringify(err));
+    })
+
+    // 向客户端发送数据。
+    let sendOpt : socket.LocalSendOptions = {
+      data: 'Hello world!'
+    };
+    connection.send(sendOpt).then(() => {
+      hilog.info(0x0000, 'testTag', 'Server send success');
     }).catch((err: object) => {
-      Logger.error(`Server send failed: ${JSON.stringify(err)}`);
+      hilog.error(0x0000, 'testTag', `Server send failed: ${JSON.stringify(err)}`);
     });
+
+    // [StartExclude local_socket_worker_server_connection]
     setTimeout(() => {
-      // 取消事件订阅
-      connection.close();
-      Logger.info('Connection close by server.');
+      // [EndExclude local_socket_worker_server_connection]
+      // 关闭与客户端的连接。
+      connection.close().then(() => {
+        hilog.info(0x0000, 'testTag', 'close success');
+      }).catch((err: Object) => {
+        hilog.error(0x0000, 'testTag', 'close failed: ' + JSON.stringify(err));
+      });
+
+      // 取消LocalSocketConnection相关的事件订阅。
+      connection.off('message');
+      connection.off('error');
+      // [StartExclude local_socket_worker_server_connection]
     }, 10000); // 设置一个合理的超时关闭
+    // [EndExclude local_socket_worker_server_connection]
   });
+  // [End local_socket_worker_server_connection]
+
+
 
   // 在关闭服务器连接时取消事件订阅
   setTimeout(() => {
-    // 取消事件订阅
+    // [Start local_socket_worker_server_off]
+    // 取消LocalSocketServer相关的事件订阅。
     server.off('connect');
     server.off('error');
-    Logger.info('Server events unsubscribed.');
+    // [End local_socket_worker_server_off]
+    hilog.info(0x0000, 'testTag', 'Server events unsubscribed.');
   }, 30000); // 设置一个合理的超时关闭（例如30秒后关闭服务器）
 }
-// [End application_transmits_data_via_local_socket_server]
+
+// 关闭服务
+function closeLocalSocketServer(): void {
+  // [Start local_socket_worker_close_server]
+  // 当不需要再连接服务端，需要断开且取消事件的监听时。
+  client.off('message');
+  client.off('connect');
+  client.off('close');
+  client.close().then(() => {
+    hilog.info(0x0000, 'testTag', 'close client success')
+    // [StartExclude local_socket_worker_close_server]
+    workerPort.postMessage({ type: 'success', message: `close socket service successfully` });
+    // [EndExclude local_socket_worker_close_server]
+  }).catch((err: Object) => {
+    hilog.error(0x0000, 'testTag', 'close client err: ' + JSON.stringify(err))
+    // [StartExclude local_socket_worker_close_server]
+    workerPort.postMessage({ type: 'fail', message: `close socket service failed` });
+    // [EndExclude local_socket_worker_close_server]
+  })
+  // [End local_socket_worker_close_server]
+}

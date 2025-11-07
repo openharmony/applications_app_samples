@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 
+import { ComponentCard } from '../../common/Card';
 // [Start use_foreach_to_replace_similar_list_items]
 import { util } from '@kit.ArkTS';
-// [StartExclude import_component_card]
-import { ComponentCard } from '../../common/Card';
-// [EndExclude import_component_card]
 
 class Contact {
   public key: string = util.generateRandomUUID(true);
@@ -34,16 +32,19 @@ class Contact {
 @Component
 export struct ListIteration {
   private contacts: Array<object> = [
-    new Contact($r('app.string.peopleOne'), $r('sys.media.clone_app_badge_1')),
-    new Contact($r('app.string.peopleTwo'), $r('sys.media.clone_app_badge_2'))
+
+    // app.string.peopleOne 资源文件中的value值为'小明'，app.media.iconA为自定义资源
+    new Contact($r('app.string.peopleOne'), $r('app.media.iconA')),
+    // app.string.peopleTwo 资源文件中的value值为'小红'，app.media.iconB为自定义资源
+    new Contact($r('app.string.peopleTwo'), $r('app.media.iconB'))
   ];
 
   build() {
-    // [StartExclude use_the_nav_destination]
+    // [StartExclude use_foreach_to_replace_similar_list_items]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ListIteration_titleExample') }) {
-          // [EndExclude use_the_nav_destination]
+          // [EndExclude use_foreach_to_replace_similar_list_items]
           List() {
             ForEach(this.contacts, (item: Contact) => {
               ListItem() {
@@ -60,14 +61,16 @@ export struct ListIteration {
             }, (item: Contact) => JSON.stringify(item))
           }
           .width('100%')
+          // [StartExclude use_foreach_to_replace_similar_list_items]
         }
       }
-      // [End use_foreach_to_replace_similar_list_items]
       .width('100%')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ListIteration_title'))
+    // [EndExclude use_foreach_to_replace_similar_list_items]
   }
 }
+// [End use_foreach_to_replace_similar_list_items]

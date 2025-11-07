@@ -44,7 +44,7 @@ export struct LocationControl {
       Logger.error(`promise getStringByName failed, error code: ${e.code}, message: ${e.message}.`);
     }
     try {
-      context.resourceManager.getStringByName("Loading_positioning").then(value => {
+      context.resourceManager.getStringByName('Loading_positioning').then(value => {
         this.textValue = value;
       }).catch((error: string) => {
         Logger.info('promise, getCurrentLocation: error=' + JSON.stringify(error));
@@ -69,21 +69,21 @@ export struct LocationControl {
       // 得到当前定位信息经纬度
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
         Logger.info('current location: ' + JSON.stringify(result));
-        this.latitude = Number.parseInt(JSON.stringify(result.latitude))
-        this.longitude = Number.parseInt(JSON.stringify(result.longitude))
+        this.latitude = Number.parseInt(JSON.stringify(result.latitude));
+        this.longitude = Number.parseInt(JSON.stringify(result.longitude));
         //得到当前经纬度的城市信息
         geoLocationManager.getAddressesFromLocation({
-          "latitude": this.latitude,
-          "longitude": this.longitude,
-          "maxItems": 1
+          'latitude': this.latitude,
+          'longitude': this.longitude,
+          'maxItems': 1
         }).then((outcome) => {
           this.str = JSON.stringify(outcome[0].subAdministrativeArea);
-          Logger.info('current city' + JSON.stringify(outcome))
-          this.str = this.str.replace("\"", "")
-          this.storLocation = this.str.replace("\"", "")
+          Logger.info('current city' + JSON.stringify(outcome));
+          this.str = this.str.replace('\"', '');
+          this.storLocation = this.str.replace('\"', '');
         }).catch((error: string) => {
           this.promptAction(JSON.stringify(error));
-          Logger.info('promise,getCurrentCity:error=' + JSON.stringify(error))
+          Logger.info('promise,getCurrentCity:error=' + JSON.stringify(error));
         });
 
       }).catch((error: string) => {

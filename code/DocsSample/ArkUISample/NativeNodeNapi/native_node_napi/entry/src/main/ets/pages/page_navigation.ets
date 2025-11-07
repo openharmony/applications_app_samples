@@ -52,7 +52,6 @@ struct Index {
     .mode(NavigationMode.Split)
     .navDestination(this.PagesMap)
     .navBarWidth('50%')
-    .backgroundColor('#2aa1a6b1')
   }
 }
 
@@ -73,7 +72,6 @@ export struct PageOne {
       Napi.createNativeNaviNode(this.nodeContent);
     })
     .id('This is NavDestination ID1')
-    .backgroundColor('#2aa1a6b1')
   }
 }
 
@@ -94,6 +92,5 @@ export struct PageTwo {
       Napi.createNativeNaviNode(this.nodeContent);
     })
     .id('This is NavDestination ID2')
-    .backgroundColor('#2aa1a6b1')
   }
 }

@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "shapedrawing"
+    },
+    {
+      "name": "OriginalSizeCircle",
+      "value": "原始尺寸Circle组件"
+    },
+    {
+      "name": "EnlargedCircle",
+      "value": "shape内放大的Circle组件"
+    },
+    {
+      "name": "ShrunkCircle",
+      "value": "Shape内缩小的Circle组件"
+    }
+  ]
+}

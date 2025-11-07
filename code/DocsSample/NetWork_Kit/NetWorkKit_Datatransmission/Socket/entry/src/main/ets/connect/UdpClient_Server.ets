@@ -14,7 +14,7 @@
  */
 
 import { MessageEvents, worker } from '@kit.ArkTS';
-import Logger from '../common/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { TcpMessage } from './TcpClient';
 
 interface FONT_SIZE {
@@ -209,7 +209,7 @@ struct Index {
   startServer() {
     if (!this.serverIp || !this.serverPort) {
       this.msgHistory += 'Some required fields are missing.\n';
-      Logger.error('Some required fields are missing.');
+      hilog.error(0x0000, 'testTag', 'Some required fields are missing.');
       return;
     }
 
@@ -239,7 +239,7 @@ struct Index {
   sendMessage() {
     if (!this.message || !this.clientIp || !this.clientPort) {
       this.msgHistory += 'Some required fields are missing.\n';
-      Logger.error('Some required fields are missing.');
+      hilog.error(0x0000, 'testTag', 'Some required fields are missing.');
       return;
     }
 

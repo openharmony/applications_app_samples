@@ -14,18 +14,22 @@
  */
 
 import { ComponentCard } from '../../common/Card';
-
+// [Start egLanes_add]
 @Entry
 @Component
 export struct ListLayout {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-
   build() {
+    // [StartExclude egLanes_add]
     NavDestination() {
       Column({ space: 12 }) {
         ComponentCard({ title: $r('app.string.ListLayout_titleMainAxis') }) {
           // [Start build_a_horizontal_scrolling_list]
-          List({ space: 8 }) {
+          List(
+            // [StartExclude build_a_horizontal_scrolling_list]
+            { space: 8 }
+            // [EndExclude build_a_horizontal_scrolling_list]
+          ) {
             // [StartExclude build_a_horizontal_scrolling_list]
             ListItem() {
               Text('ListItem one')
@@ -40,10 +44,15 @@ export struct ListLayout {
           // [End build_a_horizontal_scrolling_list]
           .height(30)
         }
-
         ComponentCard({ title: $r('app.string.ListLayout_titleCrossAxisLanes') }) {
+          // [EndExclude egLanes_add]
           // [Start build_list_by_size]
-          List({ space: 8 }) {
+          List(
+            // [StartExclude egLanes_add]
+            { space: 8 }
+            // [EndExclude egLanes_add]
+          ) {
+            // [StartExclude egLanes_add]
             ListItem() {
               // [StartExclude build_list_by_size]
               Text('ListItem one')
@@ -57,16 +66,24 @@ export struct ListLayout {
               Text('ListItem tree')
             }
             // [EndExclude build_list_by_size]
+            // [EndExclude egLanes_add]
           }
-          // 此处lanes设置主轴方向
           .lanes(this.egLanes)
           // [End build_list_by_size]
+          // [StartExclude egLanes_add]
         }
-
         ComponentCard({ title: $r('app.string.ListLayout_titleCrossAxisAlignment') }) {
           // [Start build_list_with_align_horizontally_in_the_center]
-          List({ space: 8 }) {
+          // [Start lanes_add]
+          List(
             // [StartExclude build_list_with_align_horizontally_in_the_center]
+            // [StartExclude lanes_add]
+            { space: 8 }
+            // [EndExclude lanes_add]
+            // [EndExclude build_list_with_align_horizontally_in_the_center]
+          ) {
+            // [StartExclude build_list_with_align_horizontally_in_the_center]
+            // [StartExclude lanes_add]
             ListItem() {
               Text('ListItem one')
             }
@@ -78,9 +95,14 @@ export struct ListLayout {
             ListItem() {
               Text('ListItem tree')
             }
+            // [EndExclude lanes_add]
             // [EndExclude build_list_with_align_horizontally_in_the_center]
           }
+          // [StartExclude build_list_with_align_horizontally_in_the_center]
+          .lanes(2)
+          // [End lanes_add]
           // 此处alignListItem设置水平方向对齐
+          // [EndExclude build_list_with_align_horizontally_in_the_center]
           .alignListItem(ListItemAlign.Center)
           // [End build_list_with_align_horizontally_in_the_center]
         }
@@ -91,5 +113,7 @@ export struct ListLayout {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ListLayout_title'))
+    // [EndExclude egLanes_add]
   }
 }
+// [End egLanes_add]

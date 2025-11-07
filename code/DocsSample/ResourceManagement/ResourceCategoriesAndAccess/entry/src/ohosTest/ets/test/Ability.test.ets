@@ -78,15 +78,6 @@ export default function abilityTest() {
       expect(await appPluralResourceText.getText() === '2 apples').assertTrue();
       hilog.info(DOMAIN, TAG, 'get app plural resource test end');
 
-      hilog.info(DOMAIN, TAG, 'get hsp resource test begin');
-      let hspResourceTextOne = await driver.findComponent(ON.id('hsp_resource_one'));
-      expect(await hspResourceTextOne.getText() === 'library string test').assertTrue();
-      let hspResourceTextTwo = await driver.findComponent(ON.id('hsp_resource_two'));
-      expect(await hspResourceTextTwo.getText() === 'library string test').assertTrue();
-      hilog.info(DOMAIN, TAG, 'get hsp resource test end');
-
-      await driver.swipe(300, 700, 300, 200);
-      await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'get configure resource test begin');
       let configResourceTextOne = await driver.findComponent(ON.id('config_resource_one'));
       expect(await configResourceTextOne.getText()).not().assertNull();
@@ -95,6 +86,19 @@ export default function abilityTest() {
       let configResourceTextThree = await driver.findComponent(ON.id('config_resource_three'));
       expect(await configResourceTextThree.getText() === 'こんにちは、世界').assertTrue();
       hilog.info(DOMAIN, TAG, 'get configure resource test end');
+
+      hilog.info(DOMAIN, TAG, 'click next page button begin');
+      let button = await driver.findComponent(ON.id('next_page_button'));
+      await button.click();
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'click next page button end');
+
+      hilog.info(DOMAIN, TAG, 'get hsp resource test begin');
+      let hspResourceTextOne = await driver.findComponent(ON.id('hsp_resource_one'));
+      expect(await hspResourceTextOne.getText() === 'library string test').assertTrue();
+      let hspResourceTextTwo = await driver.findComponent(ON.id('hsp_resource_two'));
+      expect(await hspResourceTextTwo.getText() === 'library string test').assertTrue();
+      hilog.info(DOMAIN, TAG, 'get hsp resource test end');
       done();
     })
   })

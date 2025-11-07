@@ -22,7 +22,7 @@
 <body>
 <h1>WebView Message Port Demo</h1>
 <div>
-    <button onclick='postMsgToEts(msgFromJS.value);' >SendToEts</button>
+    <input type='button' value='SendToEts' onclick='postMsgToEts(msgFromJS.value);'/><br/>
     <input id='msgFromJS' type='text' value='send this message from HTML to ets'/><br/>
 </div>
 <p class='output'>display received message send from ets</p>
@@ -33,17 +33,17 @@
     window.addEventListener('message', function (event) {
         if (event.data === '__init_port__') {
             if (event.ports[0] !== null) {
-                h5Port = event.ports[0]; // 1. Save the port number sent from the application side.
+                h5Port = event.ports[0]; // 1. 保存从应用侧发送过来的端口。
                 h5Port.onmessage = function (event) {
-                  // 2. Receive messages sent from the eTS side.
+                  // 2. 接收ets侧发送过来的消息。
                   let msg = 'Got message from ets:';
                   let result = event.data;
                   if (typeof(result) === 'string') {
-                    console.info(`received string message from html5, string is: ${result}`);
+                    console.info(`received string message from ets, string is: ${result}`);
                     msg = msg + result;
                   } else if (typeof(result) === 'object') {
                     if (result instanceof ArrayBuffer) {
-                      console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
+                      console.info(`received arraybuffer from ets, length is: ${result.byteLength}`);
                       msg = msg + 'length is ' + result.byteLength;
                     } else {
                       console.info('not support');
@@ -57,7 +57,7 @@
         }
     });
 
-    // 3. Use h5Port to send messages to the application side.
+    // 3. 使用h5Port向应用侧发送消息。
     function postMsgToEts(data) {
         if (h5Port) {
           h5Port.postMessage(data);

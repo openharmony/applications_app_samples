@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import hilog from '../model/Logger'
-import promptAction from '@ohos.promptAction'
-import wifi from '@ohos.wifiManager'
-import router from '@ohos.router'
+import hilog from '../model/Logger';
+import promptAction from '@ohos.promptAction';
+import wifi from '@ohos.wifiManager';
+import router from '@ohos.router';
 
 const TAG = 'WifiConnect'
 @Entry
@@ -39,12 +39,12 @@ struct WifiConnect {
 
   async connectwifi(deviceConfig: wifi.WifiDeviceConfig) {
     try {
-      promptAction.showToast({ message : 'connect to wifi' })
+      promptAction.showToast({ message : 'connect to wifi' });
       hilog.info(`connectwifi failed err is ${JSON.stringify(deviceConfig)}`);
       wifi.addCandidateConfig(deviceConfig).then(result => {
         // 连接指定网络
         wifi.connectToCandidateConfig(result);
-        this.getLinkedInfo()
+        this.getLinkedInfo();
       });
     }catch(error){
       hilog.error('sun failed:' + JSON.stringify(error));

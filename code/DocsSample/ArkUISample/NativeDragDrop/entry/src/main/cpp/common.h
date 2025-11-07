@@ -71,16 +71,6 @@ int32_t g_requestIdentify = 0;
 ArkUI_DragAction *action;
 std::stringstream g_ss;
 
-void SetWidth(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH)
-{
-    if (!nodeAPI) {
-        return;
-    }
-    ArkUI_NumberValue widthValue[] = {width};
-    ArkUI_AttributeItem widthItem = {widthValue, 1};
-    nodeAPI->setAttribute(node, NODE_WIDTH, &widthItem);
-}
-
 void SetWidthPercent(ArkUI_NodeHandle &node, float width = 1)
 {
     if (!nodeAPI) {
@@ -91,16 +81,6 @@ void SetWidthPercent(ArkUI_NodeHandle &node, float width = 1)
     nodeAPI->setAttribute(node, NODE_WIDTH_PERCENT, &widthItem);
 }
 
-void SetHeight(ArkUI_NodeHandle &node, float height = DEFAULT_HEIGHT)
-{
-    if (!nodeAPI) {
-        return;
-    }
-    ArkUI_NumberValue heightValue[] = {height};
-    ArkUI_AttributeItem heightItem = {heightValue, 1};
-    nodeAPI->setAttribute(node, NODE_HEIGHT, &heightItem);
-}
-
 void SetHeightPercent(ArkUI_NodeHandle &node, float height = 1)
 {
     if (!nodeAPI) {
@@ -109,6 +89,27 @@ void SetHeightPercent(ArkUI_NodeHandle &node, float height = 1)
     ArkUI_NumberValue heightValue[] = {height};
     ArkUI_AttributeItem heightItem = {heightValue, 1};
     nodeAPI->setAttribute(node, NODE_HEIGHT_PERCENT, &heightItem);
+}
+
+// [Start set_common]
+void SetWidth(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_NumberValue widthValue[] = {width};
+    ArkUI_AttributeItem widthItem = {widthValue, 1};
+    nodeAPI->setAttribute(node, NODE_WIDTH, &widthItem);
+}
+
+void SetHeight(ArkUI_NodeHandle &node, float height = DEFAULT_HEIGHT)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_NumberValue heightValue[] = {height};
+    ArkUI_AttributeItem heightItem = {heightValue, 1};
+    nodeAPI->setAttribute(node, NODE_HEIGHT, &heightItem);
 }
 
 void SetBackgroundColor(ArkUI_NodeHandle &node, uint32_t color = DEFAULT_BG_COLOR)
@@ -131,14 +132,22 @@ void SetMargin(ArkUI_NodeHandle &node, float margin = DEFAULT_MARGIN)
     nodeAPI->setAttribute(node, NODE_MARGIN, &marginItem);
 }
 
-void SetPadding(ArkUI_NodeHandle &node, float padding)
+void SetButtonLabel(ArkUI_NodeHandle &node, const char *label)
 {
     if (!nodeAPI) {
         return;
     }
-    ArkUI_NumberValue paddingValue[] = {padding};
-    ArkUI_AttributeItem paddingItem = {paddingValue, 1};
-    nodeAPI->setAttribute(node, NODE_PADDING, &paddingItem);
+    ArkUI_AttributeItem NODE_Button_SRC_Item = {.string = label};
+    nodeAPI->setAttribute(node, NODE_BUTTON_LABEL, &NODE_Button_SRC_Item);
+}
+
+void SetId(ArkUI_NodeHandle &node, const char *id)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_AttributeItem idItem = {.string = id};
+    nodeAPI->setAttribute(node, NODE_ID, &idItem);
 }
 
 void SetBorderWidth(ArkUI_NodeHandle &node, float width = DEFAULT_BORDER_WIDTH)
@@ -159,6 +168,28 @@ void SetBorderColor(ArkUI_NodeHandle &node, uint32_t color = DEFAULT_BORDER_COLO
     ArkUI_NumberValue borderColorValue[] = {{.u32 = color}};
     ArkUI_AttributeItem borderColorItem = {borderColorValue, 1};
     nodeAPI->setAttribute(node, NODE_BORDER_COLOR, &borderColorItem);
+}
+
+void SetCommonAttribute(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH, float height = DEFAULT_HEIGHT,
+                        unsigned int color = DEFAULT_BG_COLOR, float margin = DEFAULT_MARGIN)
+{
+    SetWidth(node, width);
+    SetHeight(node, height);
+    SetBackgroundColor(node, color);
+    SetMargin(node, margin);
+    SetBorderWidth(node, DEFAULT_BORDER_WIDTH);
+    SetBorderColor(node);
+}
+// [End set_common]
+
+void SetPadding(ArkUI_NodeHandle &node, float padding)
+{
+    if (!nodeAPI) {
+        return;
+    }
+    ArkUI_NumberValue paddingValue[] = {padding};
+    ArkUI_AttributeItem paddingItem = {paddingValue, 1};
+    nodeAPI->setAttribute(node, NODE_PADDING, &paddingItem);
 }
 
 void SetBorderStyle(ArkUI_NodeHandle &node, int32_t style = ARKUI_BORDER_STYLE_DASHED, float radius = 10.0)
@@ -187,6 +218,7 @@ void SetText(ArkUI_NodeHandle &node, const char *str, float size = DEFAULT_TEXT_
     nodeAPI->setAttribute(node, NODE_TEXT_FONT, &fontItem);
 }
 
+// [Start set_imageSrc]
 void SetImageSrc(ArkUI_NodeHandle &node, const char *src)
 {
     if (!nodeAPI) {
@@ -195,17 +227,7 @@ void SetImageSrc(ArkUI_NodeHandle &node, const char *src)
     ArkUI_AttributeItem imageSrcItem = {.string = src};
     nodeAPI->setAttribute(node, NODE_IMAGE_SRC, &imageSrcItem);
 }
-
-void SetCommonAttribute(ArkUI_NodeHandle &node, float width = DEFAULT_WIDTH, float height = DEFAULT_HEIGHT,
-                        unsigned int color = DEFAULT_BG_COLOR, float margin = DEFAULT_MARGIN)
-{
-    SetWidth(node, width);
-    SetHeight(node, height);
-    SetBackgroundColor(node, color);
-    SetMargin(node, margin);
-    SetBorderWidth(node, DEFAULT_BORDER_WIDTH);
-    SetBorderColor(node);
-}
+// [End set_imageSrc]
 
 void SetTextAttribute(ArkUI_NodeHandle &node, const char *str, float size = DEFAULT_TEXT_FONT_SIZE,
                       float width = DEFAULT_WIDTH, float height = DEFAULT_HEIGHT)
@@ -254,24 +276,7 @@ void SetRowAlignItem(ArkUI_NodeHandle &node, int32_t alignment)
     nodeAPI->setAttribute(node, NODE_ROW_ALIGN_ITEMS, &alignItem);
 }
 
-void SetButtonLabel(ArkUI_NodeHandle &node, const char *label)
-{
-    if (!nodeAPI) {
-        return;
-    }
-    ArkUI_AttributeItem NODE_Button_SRC_Item = {.string = label};
-    nodeAPI->setAttribute(node, NODE_BUTTON_LABEL, &NODE_Button_SRC_Item);
-}
-
-void SetId(ArkUI_NodeHandle &node, const char *id)
-{
-    if (!nodeAPI) {
-        return;
-    }
-    ArkUI_AttributeItem idItem = {.string = id};
-    nodeAPI->setAttribute(node, NODE_ID, &idItem);
-}
-
+// [Start prepare_dragAction]
 void SetPixelMap(std::vector<OH_PixelmapNative *> &pixelVector)
 {
     uint8_t data[960000];
@@ -323,6 +328,7 @@ void PrintDragActionInfos()
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
         "OH_ArkUI_DragAction_SetTouchPointY returnValue = %{public}d", returnValue);
 }
+// [End prepare_dragAction]
 
 } // namespace NativeXComponentSample
 

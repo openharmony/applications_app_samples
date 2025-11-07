@@ -20,7 +20,7 @@ import { IndependentTask } from '@ohos/ThreadCommunication';
 struct IndependentTaskPage {
   build() {
     Column() {
-      IndependentTask()
+      IndependentTask();
     }
   }
 }

@@ -58,7 +58,7 @@ export struct GridLazyForEachView {
         }, (item: string) => item)
       }
       .cachedCount(2)
-      .columnsTemplate("1fr 1fr 1fr")
+      .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(10)
       .height(500)
@@ -85,7 +85,7 @@ struct ReusableChildComponent {
         .fontSize(16)
         .textAlign(TextAlign.Center)
     }
-    .width("100%")
+    .width('100%')
     .height(120)
     .backgroundColor(0xF9CF93)
   }

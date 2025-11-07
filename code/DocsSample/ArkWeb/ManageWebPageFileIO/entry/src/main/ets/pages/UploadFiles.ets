@@ -27,7 +27,7 @@ struct WebComponent {
     Column() {
       Web({ src: $rawfile('local.html'), controller: this.controller })
         .onShowFileSelector((event) => {
-          console.log('MyFileUploader onShowFileSelector invoked');
+          console.info('MyFileUploader onShowFileSelector invoked');
           const documentSelectOptions = new picker.DocumentSelectOptions();
           let uri: string | null = null;
           const documentViewPicker = new picker.DocumentViewPicker();

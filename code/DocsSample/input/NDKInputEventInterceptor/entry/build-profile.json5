@@ -54,5 +54,13 @@
     {
       "name": "ohosTest",
     }
-  ]
+  ],
+  "buildOption":{
+    "externalNativeOptions": {
+      "abiFilters": [
+        "x86_64",
+        "arm64-v8a",
+      ]
+    }
+  }
 }

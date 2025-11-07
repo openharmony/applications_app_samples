@@ -30,14 +30,13 @@
     },
     {
       "name": "button_one",
-      "value": "更换成：\"message one\""
+      "value": "切换到：\"北京\""
     },
     {
       "name": "button_two",
-      "value": "更换成：\"message two\""
+      "value": "切换到：\"上海\""
     },
     {
-
       "name": "button_three",
       "value": "进入编辑二级页"
     }

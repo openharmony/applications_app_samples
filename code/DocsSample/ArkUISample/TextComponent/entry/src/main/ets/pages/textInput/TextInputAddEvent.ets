@@ -12,79 +12,99 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start TextInputAddEvent]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-import { ComponentCard } from '../../common/Card';
+const TAG = '[Sample_Textcomponent]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Textcomponent_';
 
 @Entry
 @Component
-export struct TextInputAddEvent {
-  @State eventText: ResourceStr = $r('app.string.TextInputAddEvent_textContent_1');
-  @State inputValue: ResourceStr = $r('app.string.TextInputAddEvent_textContent_2');
+struct TextInputEventAdd {
+  @State text: string = '';
+  @State textStr1: string = '';
+  @State textStr2: string = '';
+  @State textStr3: string = '';
+  @State textStr4: string = '';
+  @State textStr5: string = '';
+  @State textStr6: string = '';
+  @State textStr7: string = '';
+  @State textStr8: string = '';
+  @State textStr9: string = '';
+  @State passwordState: boolean = false;
   controller: TextInputController = new TextInputController();
-  passwordState: boolean = false;
 
   build() {
-    NavDestination() {
-      Column({ space: 12 }) {
-        ComponentCard({ title: $r('app.string.TextInputAddEvent_title_1') }) {
-          Column({ space: 8 }) {
-            Text(this.eventText)
-            Text(this.inputValue)
-            // [Start add_text_input_event]
-            TextInput({
-              text: $r('app.string.TextInputAddEvent_textContent_2'),
-              placeholder: 'input your word...',
-              controller: this.controller
-            })
-              .type(InputType.Password)
-              .showPassword(this.passwordState)
-              .onChange((value: string) => {
-                // 文本内容发生变化时触发该回调
-                this.inputValue = 'onChange is triggering: ' + value;
-              })
-              .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
-                // 按下输入法回车键时触发该回调
-                this.eventText = 'onSubmit is triggering: ' + enterKey + ' ' + event.text;
-              })
-              .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-                // 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调
-                this.eventText = 'onTextSelectionChange is triggering: ' + selectionStart + ' ' + selectionEnd;
-              })
-              .onSecurityStateChange((isShowPassword: boolean) => {
-                // 密码显隐状态切换时，触发该回调
-                this.eventText = 'onSecurityStateChange is triggering: ' + isShowPassword
-                this.passwordState = isShowPassword;
-              })
-              .onWillInsert((info: InsertValue) => {
-                // 在将要输入时，触发该回调
-                this.eventText = 'onWillInsert is triggering: ' + info.insertValue + ' ' + info.insertOffset;
-                return true;
-              })
-              .onDidInsert((info: InsertValue) => {
-                // 在输入完成时，触发该回调
-                this.eventText = 'onDidInsert is triggering: ' + info.insertValue + ' ' + info.insertOffset
-              })
-              .onWillDelete((info: DeleteValue) => {
-                // 在将要删除时，触发该回调
-                this.eventText = 'onWillDelete is triggering: ' + info.deleteValue + ' ' + info.deleteOffset
-                return true;
-              })
-              .onDidDelete((info: DeleteValue) => {
-                // 在删除完成时，触发该回调
-                this.eventText = 'onDidDelete is triggering: ' + info.deleteValue + ' ' + info.deleteOffset
-              })
-              .onFocus(() => {
-                this.eventText = $r('app.string.TextInputAddEvent_textContent_3');
-              })
-            // [End add_text_input_event]
-          }
-        }
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
+    Row() {
+      Column() {
+        Text(`${this.textStr1}\n${this.textStr2}\n${this.textStr3}
+          \n${this.textStr4}\n${this.textStr5}\n${this.textStr6}
+          \n${this.textStr7}\n${this.textStr8}\n${this.textStr9}`)
+          .fontSize(20)
+        TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
+          .type(InputType.Password)
+          .showPassword(this.passwordState)
+          .onChange((value: string) => {
+            // 文本内容发生变化时触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onChange is triggering: ' + value);
+            this.textStr1 = `onChange is triggering: ${value}`;
+          })
+          .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
+            // 按下输入法回车键时触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onSubmit is triggering: ' + enterKey + event.text);
+            this.textStr2 = `onSubmit is triggering: ${enterKey} ${event.text}`;
+          })
+          .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+            // 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onTextSelectionChange is triggering: ' + selectionStart + selectionEnd);
+            this.textStr3 = `onTextSelectionChange is triggering: ${selectionStart} ${selectionEnd}`;
+          })
+          .onSecurityStateChange((isShowPassword: boolean) => {
+            // 密码显隐状态切换时，触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onSecurityStateChange is triggering: ' + isShowPassword);
+            this.passwordState = isShowPassword;
+            this.textStr4 = `onSecurityStateChange is triggering: ${isShowPassword}`;
+          })
+          .onWillInsert((info: InsertValue) => {
+            // 在将要输入时，触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onWillInsert is triggering: ' + info.insertValue + info.insertOffset);
+            this.textStr5 = `onWillInsert is triggering: ${info.insertValue} ${info.insertOffset}`;
+            return true;
+          })
+          .onDidInsert((info: InsertValue) => {
+            // 在输入完成时，触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onDidInsert is triggering: ' + info.insertValue + info.insertOffset);
+            this.textStr6 = `onDidInsert is triggering: ${info.insertValue} ${info.insertOffset}`;
+          })
+          .onWillDelete((info: DeleteValue) => {
+            // 在将要删除时，触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onWillDelete is triggering: ' + info.deleteValue + info.deleteOffset);
+            this.textStr7 = `onWillDelete is triggering: ${info.deleteValue} ${info.deleteOffset}`;
+            return true;
+          })
+          .onDidDelete((info: DeleteValue) => {
+            // 在删除完成时，触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onDidDelete is triggering: ' + info.deleteValue + info.deleteOffset);
+            this.textStr8 = `onDidDelete is triggering: ${info.deleteValue} ${info.deleteOffset}`;
+          })
+          .onFocus(() => {
+            // 绑定通用事件，输入框获焦时触发该回调
+            hilog.info(DOMAIN, TAG, BUNDLE + 'onFocus is triggering');
+            this.textStr9 = `onFocus is triggering`;
+          })
+      }.width('100%')
     }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.TextInputAddEvent_title'))
+    .height('100%')
   }
+}
+// [End TextInputAddEvent]
+
+@Builder
+export function TextInputAddEvent() {
+  NavDestination() {
+    TextInputEventAdd()
+  }
+  .backgroundColor('#f1f2f3')
+  .title($r('app.string.TextInputAddEvent_title'))
 }

@@ -48,9 +48,9 @@ export class CommonConstants {
   // space
   public static readonly COLUMN_SPACE: number = 10;
   // max length
-  public static readonly MAX_LENGTH_MODERATE: number = 12;
-  public static readonly MAX_LENGTH_LONG: number = 25;
-  public static readonly MAX_LENGTH_VERY_LONG: number = 100;
+  public static readonly MAX_LENGTH_MODERATE: int = 12;
+  public static readonly MAX_LENGTH_LONG: int = 25;
+  public static readonly MAX_LENGTH_VERY_LONG: int = 100;
   // list
   public static readonly LAYOUT_WEIGHT: number = 1;
   // add image
@@ -59,5 +59,5 @@ export class CommonConstants {
   // search
   public static readonly SEARCH_TEXT: string = '搜索';
   public static readonly SEARCH_TEXT_SIZE: number = 14;
-  public static readonly SEARCH_TEXT_WEIGHT: number = 400;
+  public static readonly SEARCH_TEXT_WEIGHT: int = 400;
 }

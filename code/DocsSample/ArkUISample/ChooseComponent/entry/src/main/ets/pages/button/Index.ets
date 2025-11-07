@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,6 +21,9 @@ import { Route } from '../../common/Route';
 import { SetButtonType } from './SetButtonType';
 import { SubmitForm } from './SubmitForm';
 import  resource  from  '../../common/resource'
+import { ButtonCaseTouch } from './ButtonCaseTouch';
+import { ButtonCaseLogin } from './ButtonCaseLogin';
+import { HoverButtonExample } from './HoverButtonExample';
 
 export const BUTTON_ROUTE_PREFIX: string = 'button';
 
@@ -50,7 +53,21 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.FloatingButton_title')),
     description: $r('app.string.FloatingButton_description')
   },
-]
+  {
+    name: `${BUTTON_ROUTE_PREFIX}/ButtonCaseTouch`,
+    title: resource.resourceToString($r('app.string.ButtonCaseTouch_title')),
+    description: $r('app.string.ButtonCaseTouch_desc')
+  },
+  {
+    name: `${BUTTON_ROUTE_PREFIX}/ButtonCaseLogin`,
+    title: resource.resourceToString($r('app.string.ButtonCaseLogin_title')),
+    description: $r('app.string.ButtonCaseLogin_desc')
+  },
+  {
+    name: `${BUTTON_ROUTE_PREFIX}/HoverButtonExample`,
+    title: resource.resourceToString($r('app.string.HoverButtonExample_title')),
+    description: $r('app.string.HoverButtonExample_desc')
+  }]
 
 @Builder
 export function buttonDestination(name: string) {
@@ -66,6 +83,12 @@ export function buttonDestination(name: string) {
     SubmitForm();
   } else if (name === routes[4].name) {
     FloatingButton();
+  } else if (name === routes[5].name) {
+    ButtonCaseTouch();
+  } else if (name === routes[6].name) {
+    ButtonCaseLogin();
+  } else if (name === routes[7].name) {
+    HoverButtonExample();
   }
 }
 

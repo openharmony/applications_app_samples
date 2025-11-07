@@ -1,0 +1,39 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//[Start FlexExample_start]
+@Entry
+@Component
+struct FlexExample {
+  build() {
+    Column() {
+      Column({ space: 5 }) {
+        Flex({
+          direction: FlexDirection.Row,
+          wrap: FlexWrap.NoWrap,
+          justifyContent: FlexAlign.SpaceBetween,
+          alignItems: ItemAlign.Center
+        }) {
+          Text('1').width('30%').height(50).backgroundColor('#F5DEB3')
+          Text('2').width('30%').height(50).backgroundColor('#D2B48C')
+          Text('3').width('30%').height(50).backgroundColor('#F5DEB3')
+        }
+        .height(70)
+        .width('90%')
+        .backgroundColor('#AFEEEE')
+      }.width('100%').margin({ top: 5 })
+    }.width('100%')
+  }
+}
+// [End FlexExample_start]

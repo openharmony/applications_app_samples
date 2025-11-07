@@ -86,9 +86,9 @@ static napi_value AddKeyEventInterceptor(napi_env env, napi_callback_info info)
     // [StartExclude key_event_interceptor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "添加按键事件拦截成功，返回码为" + std::to_string(ret);
+        message = "Key event interceptor added successfully, return " + std::to_string(ret);
     } else {
-        message = "添加按键事件拦截失败，返回码为" + std::to_string(ret);
+        message = "Key event interceptor added failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);
@@ -102,9 +102,9 @@ static napi_value RemoveKeyEventInterceptor(napi_env env, napi_callback_info inf
     // [StartExclude key_event_interceptor]
     std::string message = "";
     if (ret == INPUT_SUCCESS) {
-        message = "移除按键事件拦截成功，返回码为" + std::to_string(ret);
+        message = "Key event interceptor removed successfully, return " + std::to_string(ret);
     } else {
-        message = "移除按键事件拦截失败，返回码为" + std::to_string(ret);
+        message = "Key event interceptor removed failed, return " + std::to_string(ret);
     }
     napi_value result;
     napi_create_string_utf8(env, message.c_str(), message.size(), &result);

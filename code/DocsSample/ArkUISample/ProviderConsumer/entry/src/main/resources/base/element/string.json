@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Twoway_Binding",
+      "value": "点击建立双向绑定"
+    },
+    {
+      "name": "No_Twoway_Binding",
+      "value": "点击未建立双向绑定"
+    },
+    {
+      "name": "Decorative_Array",
+      "value": "点击装饰Array类型变量"
+    },
+    {
+      "name": "Decorative_Date",
+      "value": "点击装饰Date类型变量"
+    },
+    {
+      "name": "Decorative_Map",
+      "value": "点击装饰Map类型变量"
+    },
+    {
+      "name": "Decorative_Set",
+      "value": "点击装饰Set类型变量"
+    },
+    {
+      "name": "Drag_Drop",
+      "value": "点击在拖拽场景中"
+    },
+    {
+      "name": "Decorative_Complex",
+      "value": "点击装饰复杂类型变量"
+    },
+    {
+      "name": "Provider_Same",
+      "value": "点击@Provider重名时"
+    },
+    {
+      "name": "Decorative_Initialized",
+      "value": "点击@Provider和@Consumer装饰的变量可以初始化子组件中@Param装饰的变量"
+    },
+    {
+      "name": "Code_First",
+      "value": "点击第一段代码"
+    },
+    {
+      "name": "Code_Second",
+      "value": "点击第二段代码"
+    },
+    {
+      "name": "Code_Three",
+      "value": "点击第三段代码"
+    },
+    {
+      "name": "Builder_Node",
+      "value": "@Consumer在跨BuilderNode场景下和@Provider建立双向同步过程"
+    }
+  ]
+}

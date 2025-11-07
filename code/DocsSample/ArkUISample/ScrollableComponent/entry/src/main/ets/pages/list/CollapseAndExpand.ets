@@ -13,12 +13,14 @@
  * limitations under the License.
  */
 
-import { curves } from '@kit.ArkUI';
+
 import { ComponentCard } from '../../common/Card';
+//[Start data_structures_head]
+import { curves } from '@kit.ArkUI';
 
 interface ItemInfo {
   index: number,
-  name: string,
+  name: ResourceStr,
   label: ResourceStr,
   type?: string,
 }
@@ -26,44 +28,51 @@ interface ItemInfo {
 interface ItemGroupInfo extends ItemInfo {
   children: ItemInfo[]
 }
-
+//[End data_structures_head]
 
 @Entry
 @Component
 export struct CollapseAndExpand {
+  //[Start list_item_data_structure]
   @State routes: ItemGroupInfo[] = [
     {
       index: 0,
       name: 'basicInfo',
-      label: '个人基本资料',
+      // app.string.Personal_Basic_Information 资源文件中的value值为'个人基本资料'
+      label: $r('app.string.Personal_Basic_Information'),
       children: [
         {
           index: 0,
-          name: '昵称',
+          // app.string.nick_name 资源文件中的value值为'昵称'
+          name: $r('app.string.nick_name'),
           label: 'xxxx',
           type: 'Text'
         },
         {
           index: 1,
-          name: '头像',
+          // app.string.avatar 资源文件中的value值为'头像'
+          name: $r('app.string.avatar'),
           label: $r('sys.media.ohos_user_auth_icon_face'),
           type: 'Image'
         },
         {
           index: 2,
-          name: '年龄',
+          // app.string.age 资源文件中的value值为'年龄'
+          name: $r('app.string.age'),
           label: 'xxxx',
           type: 'Text'
         },
         {
           index: 3,
-          name: '生日',
+          // app.string.birthday 资源文件中的value值为'性别'
+          name: $r('app.string.birthday'),
           label: 'xxxxxxxxx',
           type: 'Text'
         },
         {
           index: 4,
-          name: '性别',
+          // app.string.gender 资源文件中的value值为''
+          name: $r('app.string.gender'),
           label: 'xxxxxxxx',
           type: 'Text'
         },
@@ -72,38 +81,44 @@ export struct CollapseAndExpand {
     {
       index: 1,
       name: 'equipInfo',
-      label: '设备信息',
+      // app.string.Device_Information 资源文件中的value值为'设备信息'
+      label: $r('app.string.Device_Information'),
       children: []
     },
     {
       index: 2,
       name: 'appInfo',
-      label: '应用使用信息',
+      // app.string.Application_usage_information 资源文件中的value值为'应用使用信息'
+      label: $r('app.string.Application_usage_information'),
       children: []
     },
     {
       index: 3,
       name: 'uploadInfo',
-      label: '您主动上传的数据',
+      // app.string.data_you_voluntarily_uploaded 资源文件中的value值为'您主动上传的数据'
+      label: $r('app.string.data_you_voluntarily_uploaded'),
       children: []
     },
     {
       index: 4,
       name: 'tradeInfo',
-      label: '交易与资产信息',
+      // app.string.Trading_and_asset_information 资源文件中的value值为'交易与资产信息'
+      label: $r('app.string.Trading_and_asset_information'),
       children: []
     },
     {
       index: 5,
       name: 'otherInfo',
-      label: '其他资料',
+      // app.string.Other_materials 资源文件中的value值为'其他资料'
+      label: $r('app.string.Other_materials'),
       children: []
     },
   ];
-
   @State expandedItems: boolean[] = Array(this.routes.length).fill(false);
   @State selection: string | null = null;
 
+  //[StartExclude list_item_data_structure]
+  //[Start list_item_data_group_info]
   @Builder
   ListItemGroupHeader(itemGroup: ItemGroupInfo) {
     Row() {
@@ -127,10 +142,16 @@ export struct CollapseAndExpand {
       }
     })
   }
+  //[End list_item_data_group_info]
+  //[EndExclude list_item_data_structure]
+
   build() {
+    //[StartExclude list_item_data_structure]
     NavDestination() {
       Column({ space: 12 }) {
+        // $r('app.string.CollapseAndExpand_title')需要替换为开发者所需的资源文件
         ComponentCard({ title: $r('app.string.CollapseAndExpand_title') }) {
+          // [EndExclude list_item_data_structure]
           Column() {
             List({ space: 10 }) {
               ForEach(this.routes, (itemGroup: ItemGroupInfo) => {
@@ -171,6 +192,7 @@ export struct CollapseAndExpand {
           .height('100%')
           .justifyContent(FlexAlign.Start)
           .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+          //[StartExclude list_item_data_structure]
         }
       }
       .width('100%')
@@ -179,6 +201,7 @@ export struct CollapseAndExpand {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.CollapseAndExpand_title'))
+    // [EndExclude list_item_data_structure]
   }
-
 }
+//[End list_item_data_structure]

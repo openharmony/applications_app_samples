@@ -20,7 +20,7 @@ import { SmartPerfEditorView } from '@ohos/smartPerfEditor';
 struct SmartPerfEditorPage {
   build() {
     Column() {
-      SmartPerfEditorView()
+      SmartPerfEditorView();
     }
   }
 }

@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/IndexCustomDialog",
-    "pages/IndexController"
+    "pages/IndexController",
+    "pages/DialogDemo"
   ]
 }

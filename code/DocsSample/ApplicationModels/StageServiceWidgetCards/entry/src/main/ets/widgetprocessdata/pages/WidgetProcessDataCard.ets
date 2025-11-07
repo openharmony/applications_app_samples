@@ -19,6 +19,7 @@ let storageProcess = new LocalStorage();
 @Entry(storageProcess)
 @Component
 struct WidgetProcessDataCard {
+  // $r('app.string.loading')需要替换为开发者所需的资源文件
   @LocalStorageProp('datashareproxy://com.samples.widgetupdatebyproxy/weather') city: ResourceStr = 
     $r('app.string.loading');
 
@@ -33,6 +34,7 @@ struct WidgetProcessDataCard {
       }.width('100%')
       .alignItems(HorizontalAlign.Start)
     }.width('100%').height('100%')
+    // $r('app.media.CardEvent')需要替换为开发者所需的资源文件
     .backgroundImage($r('app.media.CardEvent'))
     .backgroundImageSize(ImageSize.Cover)
   }

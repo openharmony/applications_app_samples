@@ -13,13 +13,17 @@
  * limitations under the License.
  */
 
+//  图片渲染模式页面
+//  [Start image_renderingmode]
 @Entry
 @Component
-struct MyComponent5 {
+struct SetImageRenderingMode {
   build() {
     Column({ space: 10 }) {
       Row({ space: 50 }) {
+        //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
+          // 使用renderMode属性设置图片的渲染模式
           // 设置图片的渲染模式为原色
           .renderMode(ImageRenderMode.Original)
           .width(100)
@@ -27,7 +31,9 @@ struct MyComponent5 {
           .border({ width: 1 })
             // overlay是通用属性，用于在组件上显示说明文字
           .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
+          // 使用renderMode属性设置图片的渲染模式
           // 设置图片的渲染模式为黑白
           .renderMode(ImageRenderMode.Template)
           .width(100)
@@ -38,3 +44,4 @@ struct MyComponent5 {
     }.height(150).width('100%').padding({ top: 20,right: 10 })
   }
 }
+//  [End image_renderingmode]

@@ -29,7 +29,7 @@ namespace NativeXComponentSample {
 
 ArkUI_NodeHandle dragImage2 = nullptr;
 ArkUI_NodeHandle dropImage2 = nullptr;
-
+// [Start drag_start]
 void SetImageData(ArkUI_DragEvent* dragEvent)
 {
     int returnValue;
@@ -41,16 +41,18 @@ void SetImageData(ArkUI_DragEvent* dragEvent)
     returnValue = OH_UdmfData_AddRecord(data, record);
     returnValue = OH_ArkUI_DragEvent_SetData(dragEvent, data);
 }
+// [StartExclude drag_start]
 
 void ExecuteDragPending(ArkUI_DragEvent* dragEvent)
 {
     int32_t requestId = -1;
     auto ret = OH_ArkUI_DragEvent_RequestDragEndPending(dragEvent, &requestId);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_DROP get id = %{public}d, ret = %{public}d", requestId, ret);
-    if (ret != 0) {
+    if (ret == ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "dragTest", "The operation is not allowed!");
         return;
     }
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        "NODE_ON_DROP get id = %{public}d, ret = %{public}d", requestId, ret);
     std::thread tt([requestId]() {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP_ASYNC 1");
         sleep(1);
@@ -90,11 +92,13 @@ void RegisterNodeEventThirdReceiver1(ArkUI_NodeHandle &dragNode)
             "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
         auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
         switch (eventType) {
+            // [EndExclude drag_start]
             case NODE_ON_DRAG_START: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_START EventReceiver");
                 SetImageData(dragEvent);
                 break;
             }
+            // [End drag_start]
             case NODE_ON_DRAG_END: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_END EventReceiver");
                 GetThirdDragResult(dragEvent);
@@ -171,12 +175,14 @@ void ThirdModule(ArkUI_NodeHandle &root)
     auto dragColumn = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     auto dragText = nodeAPI->createNode(ARKUI_NODE_TEXT);
     SetTextAttribute(dragText, "请长按拖拽图像", TEXT_FONT_SIZE_15, SIZE_140, SIZE_20);
+    // [Start create_imageNode]
     dragImage2 = nodeAPI->createNode(ARKUI_NODE_IMAGE);
     SetId(dragImage2, "dragImage");
     SetCommonAttribute(dragImage2, SIZE_140, SIZE_140, DEFAULT_BG_COLOR, BLANK_5);
     SetImageSrc(dragImage2, "/resources/seagull.png");
     OH_ArkUI_SetNodeDraggable(dragImage2, true);
     nodeAPI->registerNodeEvent(dragImage2, NODE_ON_DRAG_START, 1, nullptr);
+    // [End create_imageNode]
     nodeAPI->registerNodeEvent(dragImage2, NODE_ON_DRAG_END, 1, nullptr);
     nodeAPI->addChild(dragColumn, dragText);
     nodeAPI->addChild(dragColumn, dragImage2);
