@@ -52,7 +52,9 @@ namespace NativeModule {
 // [StartExclude arkUICustomNodeCpp_start]
 #define FRAMEWORK_NODE_TREE_NUMBER 4 // 在框架线程创建组件树的数量。
 #define USER_NODE_TREE_NUMBER 3      // 在开发者线程创建组件树的数量。
+// [EndExclude arkUICustomNodeCpp_start]
 #define SIZE_150 150
+// [StartExclude arkUICustomNodeCpp_start]
 struct AsyncData {
     napi_env env;
     std::shared_ptr<ArkUINode> parent = nullptr;
