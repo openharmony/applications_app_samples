@@ -135,7 +135,6 @@ static void OnNativeChildProcessStarted(int errCode, OHIPCRemoteProxy *remotePro
     // 保存remoteProxy对象，后续基于IPC Kit提供的API同子进程间进行IPC通信
     // 耗时操作建议转移到独立线程去处理，避免长时间阻塞回调线程
     // IPC对象使用完毕后，需要调用OH_IPCRemoteProxy_Destroy方法释放
-    // ...
     // [StartExclude main_handle_child_start_callback]
     // [StartExclude main_processIpc_launch_native_child]
     OH_LOG_INFO(LOG_APP, "Main process - OnNativeChildProcessStarted %{public}d", errCode);

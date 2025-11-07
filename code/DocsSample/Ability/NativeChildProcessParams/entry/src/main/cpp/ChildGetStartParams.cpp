@@ -36,7 +36,7 @@ void ThreadFunc()
         char *fdName = current->fdName;
         int32_t fd = current->fd;
         current = current->next;
-        // 业务逻辑..
+        // 实现业务逻辑
     }
 }
 
@@ -46,7 +46,7 @@ void ThreadFunc()
  */
 void Main(NativeChildProcess_Args args)
 {
-    // 业务逻辑..
+    // 实现业务逻辑
 
     // 创建线程
     std::thread tObj(ThreadFunc);
