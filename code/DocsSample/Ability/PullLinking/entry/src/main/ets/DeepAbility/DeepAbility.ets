@@ -35,7 +35,7 @@ export default class DeepAbility extends UIAbility {
       }
     }
   }
-  // [EndExclude  deep_ability]
+  // [StartExclude  deep_ability]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
@@ -67,6 +67,6 @@ export default class DeepAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
-  // [StartExclude  deep_ability]
+  // [EndExclude  deep_ability]
 }
 // [End deep_ability]
