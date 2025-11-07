@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start appstorage_page_nine]
-// xxx.ets
+
 class ViewData {
   public title: string;
   public uri: Resource;

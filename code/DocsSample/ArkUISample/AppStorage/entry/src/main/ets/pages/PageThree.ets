@@ -53,7 +53,7 @@ struct StoragePropComponent {
 
 @Entry
 @Component
-struct TestPageThree {
+struct TestPageStorageLink {
   build() {
     Row() {
       Column() {

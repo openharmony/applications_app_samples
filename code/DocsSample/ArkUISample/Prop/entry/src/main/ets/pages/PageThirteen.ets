@@ -16,7 +16,7 @@
 // [Start prop_thirteen_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG = 'Prop';
+const TAG: string = '[Sample_prop]';
 
 class Animals {
   public name: string;

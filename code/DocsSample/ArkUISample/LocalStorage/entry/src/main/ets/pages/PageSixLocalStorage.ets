@@ -33,7 +33,7 @@ struct TestIndex {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         // 使用LocalStorage 实例localStorageTwo
-        Child6({ count: this.count }, localStorageTwo)
+        ChildSix({ count: this.count }, localStorageTwo)
       }
       .width('100%')
     }
@@ -43,7 +43,7 @@ struct TestIndex {
 
 
 @Component
-struct Child6 {
+struct ChildSix {
   @Link count: number;
   //  'Hello World'和localStorageTwo中'propB'的双向同步，如果localStorageTwo中没有'propB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') propB: string = 'Hello World';

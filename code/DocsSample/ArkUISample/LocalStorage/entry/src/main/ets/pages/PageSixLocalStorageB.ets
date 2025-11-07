@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 // [Start localtorage_page_six_local_storageB]
-let localStorageB1: LocalStorage = new LocalStorage();
-localStorageB1.setOrCreate('propA', 'propA');
+let localStorageBOne: LocalStorage = new LocalStorage();
+localStorageBOne.setOrCreate('propA', 'propA');
 
-let localStorageB2: LocalStorage = new LocalStorage();
-localStorageB2.setOrCreate('propB', 'propB');
+let localStorageBTwo: LocalStorage = new LocalStorage();
+localStorageBTwo.setOrCreate('propB', 'propB');
 
-@Entry(localStorageB1)
+@Entry(localStorageBOne)
 @Component
-struct BIndex {
-  // 'PropA'，和localStorageB1中'propA'的双向同步
+struct PageSixLocalStorageB {
+  // 'PropA'，和localStorageBOne中'propA'的双向同步
   @LocalStorageLink('PropA') propA: string = 'Hello World';
   @State count: number = 0;
 
@@ -32,8 +32,8 @@ struct BIndex {
         Text(this.propA)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorageB2
-        BChild({}, localStorageB2)
+        // 使用LocalStorage 实例localStorageBTwo
+        BChild({}, localStorageBTwo)
       }
       .width('100%')
     }
@@ -44,7 +44,7 @@ struct BIndex {
 @Component
 struct BChild {
   @State count: number = 5;
-  // 'Hello World'，和localStorageB2中'propB'的双向同步，如果localStorageB2中没有'propB'，则使用默认值'Hello World'
+  // 'Hello World'，和localStorageBTwo中'propB'的双向同步，如果localStorageBTwo中没有'propB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') propB: string = 'Hello World';
 
   build() {

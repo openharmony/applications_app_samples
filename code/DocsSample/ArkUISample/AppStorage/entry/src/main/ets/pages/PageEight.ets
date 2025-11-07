@@ -14,6 +14,9 @@
  */
 // [Start appstorage_page_eight]
 import { emitter } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+const DOMAIN = 0x0001;
+const TAG: string = '[Sample_appstorage]';
 
 let nextId: number = 0;
 
@@ -62,7 +65,7 @@ struct Gallery {
             emitter.emit(innerEvent, eventData);
 
             if (this.preIndex != -1) {
-              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`);
+              hilog.info(DOMAIN, TAG, `preIndex: ${this.preIndex}, index: ${item.id}, black`);
               let innerEvent: emitter.InnerEvent = { eventId: this.preIndex };
               // 取消选中态：红变黑
               let eventData: emitter.EventData = {

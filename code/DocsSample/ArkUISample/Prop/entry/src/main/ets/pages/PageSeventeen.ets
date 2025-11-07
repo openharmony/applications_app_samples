@@ -14,7 +14,6 @@
  */
 
 // [Start prop_seventeen_start]
-// [StartExclude prop_seventeen_start]
 // 定义嵌套类
 class Info {
   public value: string;
@@ -31,14 +30,15 @@ class Model {
     this.info = info;
   }
 }
-// [EndExclude prop_seventeen_start]
+// [End prop_seventeen_start]
 
 // 子组件：展示 Model 中的两个值
 @Component
 struct NestedDisplay {
   // 接收复杂类型 Model（带嵌套 Info）
+  // [Start prop_twentyone_start]
   @Prop title: Model;
-
+  // [End prop_twentyone_start]
   build() {
     Column({ space: 20 }) {
       // 显示第一层属性：title.value
@@ -61,19 +61,19 @@ struct NestedDisplay {
         // 按钮1：修改第一层属性（@Prop 可观察到）
         Button('change title.value to "Hi"')
           .onClick(() => {
-            // [StartExclude prop_seventeen_start]
+            // [Start prop_nineteen_start]
             // 可以观察到第一层的变化
             this.title.value = 'Hi';
-            // [EndExclude prop_seventeen_start]
+            // [End prop_nineteen_start]
           })
 
         // 按钮2：修改第二层属性（@Prop 观察不到，UI 不更新）
         Button('change title.info.value to "ArkUI"')
           .onClick(() => {
-            // [StartExclude prop_seventeen_start]
+            // [Start prop_twenty_start]
             // 观察不到第二层的变化
             this.title.info.value = 'ArkUI';
-            // [EndExclude prop_seventeen_start]
+            // [End prop_twenty_start]
           })
 
         // 按钮3：重新赋值整个 Model（强制更新所有属性）
@@ -91,7 +91,7 @@ struct NestedDisplay {
     .padding(30);
   }
 }
-// [End prop_seventeen_start]
+
 // 入口组件：提供初始数据
 @Entry
 @Component
