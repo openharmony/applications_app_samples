@@ -1206,6 +1206,7 @@ static napi_value RegisterAppHicollieWatcherT(napi_env env, napi_callback_info i
 // [Start PssLeakEvent_Init]
 // [Start AppKillEvent_Init]
 // [Start Sys_Crash_Event_C++_Init]
+// [Start Sys_Native_Nullptr_Event_C++_Init]
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
@@ -1215,6 +1216,7 @@ static napi_value Init(napi_env env, napi_value exports)
         // [StartExclude AsanEventTS_Init]
         // [StartExclude AppEvent_C++_Init]
         // [StartExclude Sys_Crash_Event_C++_Init]
+        // [StartExclude Sys_Native_Nullptr_Event_C++_Init]
         {"registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr},
         // [EndExclude AppEvent_C++_Init]
         { "registerWatcherCrash", nullptr, RegisterWatcherCrash, nullptr, nullptr, nullptr, napi_default, nullptr },
@@ -1227,6 +1229,9 @@ static napi_value Init(napi_env env, napi_value exports)
         { "registerWatcherClickCrash", nullptr, RegisterWatcherClickCrash, nullptr, nullptr, nullptr, napi_default,
             nullptr },
         // [StartExclude Sys_Crash_Event_C++_Init]
+        // [EndExclude Sys_Native_Nullptr_Event_C++_Init]
+        { "testNullptr", nullptr, TestNullptr, nullptr, nullptr, nullptr, napi_default, nullptr },
+        // [StartExclude Sys_Native_Nullptr_Event_C++_Init]
         // [Start test_hicollie_timer]
         // 将TestHiCollieTimerNdk注册为ArkTS接口
         { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
@@ -1259,6 +1264,7 @@ static napi_value Init(napi_env env, napi_value exports)
         // [EndExclude PssLeakEvent_Init]
         // [EndExclude AppEvent_C++_Init]
         // [EndExclude Sys_Crash_Event_C++_Init]
+        // [EndExclude Sys_Native_Nullptr_Event_C++_Init]
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -1269,6 +1275,7 @@ static napi_value Init(napi_env env, napi_value exports)
 // [End AsanEvent_Init]
 // [End AppEvent_C++_Init]
 // [End Sys_Crash_Event_C++_Init]
+// [End Sys_Native_Nullptr_Event_C++_Init]
 // [End EventSub_Init_All]
 static napi_module demoModule = {
     .nm_version = 1,
