@@ -14,7 +14,7 @@
  */
 
 // [Start samp_ling]
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Sampling]';
 const DOMAIN = 0xF811;

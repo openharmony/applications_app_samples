@@ -16,9 +16,9 @@
 // [Start prevent_bubbling]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = '[Sample_MultipleFingerInformation]';
+const TAG = '[Sample_PreventBubbling]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'MyApp_MultipleFingerInformation';
+const BUNDLE = 'MyApp_PreventBubbling';
 
 @Entry
 @ComponentV2
