@@ -27,7 +27,7 @@ class ViewLogisticsResultDef {
   displayName: '查询快递',
   displayDescription: '根据快递单号查询快递信息',
   schema: 'ViewLogistics',
-  icon: $r('app.media.playMusic'), // $r表示本地图标，需要在资源目录中定义
+  icon: $r('app.media.viewLogistics'), // $r表示本地图标，需要在资源目录中定义
   abilityName: 'EntryAbility',
   executeMode: [insightIntent.ExecuteMode.UI_ABILITY_BACKGROUND]
 })
