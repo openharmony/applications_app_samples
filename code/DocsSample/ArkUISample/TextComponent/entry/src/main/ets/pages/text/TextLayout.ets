@@ -83,7 +83,7 @@ export struct TextLayout {
         // [End Last_space]
         Column() {
           // [Start text_VerticalAlign]
-          // $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
           Text() {
             Span('Hello')
               .fontSize(50)

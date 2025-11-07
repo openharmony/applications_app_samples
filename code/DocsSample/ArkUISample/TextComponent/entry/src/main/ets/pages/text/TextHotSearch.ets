@@ -22,8 +22,10 @@ export struct TextHotSearch {
   build() {
     NavDestination() {
       Column({ space: 12 }) {
+        // [StartExclude the_text_fact_example]
         // 'app.string.TextHotSearch_title_1'资源文件中的value值为'热搜榜示例'
         ComponentCard({ title: $r('app.string.TextHotSearch_title_1') }) {
+          // [EndExclude the_text_fact_example]
           Column() {
             Row() {
               Text('1').fontSize(14).fontColor(Color.Red).margin({ left: 10, right: 10 })
@@ -105,7 +107,9 @@ export struct TextHotSearch {
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
             }.width('100%').margin(5)
           }.width('100%')
+        // [StartExclude the_text_fact_example]
         }
+        // [EndExclude the_text_fact_example]
       }
       .width('100%')
       .height('100%')

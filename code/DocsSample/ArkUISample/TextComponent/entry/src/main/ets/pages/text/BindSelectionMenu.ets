@@ -42,7 +42,7 @@ export struct BindSelectionMenu {
   }
   // [End Bind_SelectionMenu]
   // [Start Right_ClickTextCustomMenu]
-  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
   @Builder
   RightClickTextCustomMenu() {
     Column() {
