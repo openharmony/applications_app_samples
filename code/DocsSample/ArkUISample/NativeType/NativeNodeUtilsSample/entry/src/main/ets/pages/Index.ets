@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2025 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the 'License');
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -55,13 +55,13 @@ struct Index {
           .onClick(() => {
             this.isShow = !this.isShow;
             if (this.isShow) {
-              this.message = 'DisposeNodeTree'
+              this.message = 'DisposeNodeTree';
             } else {
-              this.message = 'CreateNodeTree'
+              this.message = 'CreateNodeTree';
             }
           })
         if (this.isShow) {
-          CAPIComponent()
+          CAPIComponent();
         }
         Button('ShowDrawPage')
           .onClick(()=>{
