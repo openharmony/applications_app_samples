@@ -18,6 +18,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 // [Start PssLeakEvent_ArkTS_Header]
 // [Start AppEvent_Crash_Click_ArkTS_Header]
 import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { deviceInfo } from '@kit.BasicServicesKit';
 // [End AppEvent_Crash_Click_ArkTS_Header]
 import { BusinessError } from '@kit.BasicServicesKit';
 // [End PssLeakEvent_ArkTS_Header]
@@ -109,19 +110,21 @@ export default class EntryAbility extends UIAbility {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
 
-    // 构建崩溃日志规格自定义参数
-    let crashConfigParams: Record<string, hiAppEvent.ParamType> = {
-      "extend_pc_lr_printing": true, // 使能扩展打印pc和lr寄存器附近的内存值
-      "log_file_cutoff_sz_bytes": 102400, // 截断崩溃日志到100KB
-      "simplify_vma_printing": true // 使能精简打印maps
-    };
+    if (deviceInfo.sdkApiVersion >= 20) {  // API Version 20及以后版本，支持设置崩溃日志配置参数
+      // 构建崩溃日志规格自定义参数
+      let crashConfigParams: Record<string, hiAppEvent.ParamType> = {
+        "extend_pc_lr_printing": true, // 使能扩展打印pc和lr寄存器附近的内存值
+        "log_file_cutoff_sz_bytes": 1024000, // 截断崩溃日志到1000KB
+        "simplify_vma_printing": true // 使能精简打印maps
+      };
+      // 开发者可以设置崩溃日志配置参数
+      hiAppEvent.setEventConfig(hiAppEvent.event.APP_CRASH, crashConfigParams).then(() => {
+        hilog.info(0x0000, 'testTag', `HiAppEvent success to set event config.`);
+      }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
+      });
+    }
 
-    // 开发者可以设置崩溃日志配置参数
-    hiAppEvent.setEventConfig(hiAppEvent.event.APP_CRASH, crashConfigParams).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event config.`);
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
-    });
     // [End Crash_ArkTS_Add_Event]
     // [Start FreezeEvent_ArkTS_Add_Event]
     // 开发者可以设置事件的自定义参数
