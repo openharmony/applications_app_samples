@@ -18,11 +18,11 @@ export const add: (a: number, b: number) => number; // 模块加载
 // [End node_api_module_add_api]
 
 // [Start node_api_module_create_object_properties_api]
-export const createObjectWithProperties: (data: string) => Object; // ArkTS Object相关 napi_create_object_with_properties
+export const createObjectWithProperties: (data: string) => {name:string}; // ArkTS Object相关 napi_create_object_with_properties
 // [End node_api_module_create_object_properties_api]
 
 // [Start node_api_module_create_object_name_properties_api]
-export const createObjectWithNameProperties: (data: string) => string | { name: string }; // ArkTS Object相关 napi_create_object_with_named_properties
+export const createObjectWithNameProperties: (data: string) => undefined | { name: string }; // ArkTS Object相关 napi_create_object_with_named_properties
 // [End node_api_module_create_object_name_properties_api]
 
 // [Start node_api_module_run_script_path_api]
@@ -42,7 +42,7 @@ export const clear: () => void;
 // [End napi_coerce_to_native_binding_object_api]
 
 // [Start napi_serialize_deserialize_delete_serialization_data_api]
-export const aboutSerialize: (obj: Object) => number; // 序列化和反序列化
+export const aboutSerialize: (obj: {numKey:number}) => number | undefined; // 序列化和反序列化
 // [End napi_serialize_deserialize_delete_serialization_data_api]
 
 // [Start napi_is_sendable_api]
@@ -72,7 +72,7 @@ export const getSendableArrayWithLength: () => []; // Sendable相关 napi_create
 // [End napi_create_sendable_array_with_length_api]
 
 // [Start napi_create_sendable_arraybuffer_api]
-export const getSendableArrayBuffer: () => void; // Sendable相关 napi_create_sendable_arraybuffer
+export const getSendableArrayBuffer: () => ArrayBuffer; // Sendable相关 napi_create_sendable_arraybuffer
 // [End napi_create_sendable_arraybuffer_api]
 
 // [Start napi_create_sendable_typed_array_api]

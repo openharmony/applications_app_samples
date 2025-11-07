@@ -82,11 +82,13 @@ static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_inf
     const napi_value values[] = {
         argv[0],
     };
-    napi_property_descriptor desc[] = {{"name", nullptr, nullptr, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {{"name", nullptr, nullptr,
+                                        nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_status status = napi_create_object_with_named_properties(
-        env, &obj, sizeof(desc) / sizeof(desc[0]), key, values);
+        env, &obj, sizeof(desc) / sizeof(desc[0]), key, values
+    );
     if (status != napi_ok) {
-        return argv[0];
+        return nullptr;
     }
     return obj;
 }
