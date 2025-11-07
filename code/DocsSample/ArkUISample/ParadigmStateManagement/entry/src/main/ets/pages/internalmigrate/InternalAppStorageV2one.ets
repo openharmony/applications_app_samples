@@ -18,7 +18,7 @@ import { AppStorageV2 } from '@kit.ArkUI';
 
 @ObservedV2
 export class MyStorage {
-  @Trace public count: number = 0
+  @Trace public count: number = 0;
 }
 
 @Entry
