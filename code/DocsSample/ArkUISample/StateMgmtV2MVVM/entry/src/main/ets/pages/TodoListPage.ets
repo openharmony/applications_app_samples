@@ -18,7 +18,7 @@
 // src/main/ets/pages/TodoListPage.ets
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 import { common } from '@kit.AbilityKit';
-import { AppStorageV2, PersistenceV2, router } from '@kit.ArkUI';
+import { AppStorageV2, PersistenceV2 } from '@kit.ArkUI';
 import { Setting } from '../pages/SettingPage';
 import TitleView from '../view/TitleView';
 import ListView from '../view/ListView';
