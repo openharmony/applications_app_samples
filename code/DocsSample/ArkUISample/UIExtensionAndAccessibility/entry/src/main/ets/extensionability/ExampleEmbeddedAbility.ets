@@ -24,7 +24,7 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
   }
 
   onForeground() {
-    hilog.info(0x0000, TAG, '%{public}s',  `onForeground`);
+    hilog.info(0x0000, TAG, '%{public}s', `onForeground`);
   }
 
   onBackground() {
@@ -36,17 +36,17 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    hilog.info(0x0000, TAG , '%{public}s', `onSessionCreate, want: ${JSON.stringify(want)}`);
+    hilog.info(0x0000, TAG, '%{public}s', `onSessionCreate, want: ${JSON.stringify(want)}`);
     let param: Record<string, UIExtensionContentSession> = {
       'session': session
     };
     let storage: LocalStorage = new LocalStorage(param);
-    // 加载 Extension.ets 页面内容
+    // 加载Extension.ets页面内容
     session.loadContent('pages/EmbeddedComponent/Extension', storage);
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    hilog.info(0x0000, TAG , '%{public}s',  `onSessionDestroy`);
+    hilog.info(0x0000, TAG, '%{public}s', `onSessionDestroy`);
   }
 }
 // [End exampleEmbeddedAbility_start]

@@ -15,28 +15,29 @@
 
 // [Start uiExtensionProvider_start]
 import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
 
   onCreate() {
-    console.log(TAG, `UIExtAbility onCreate`)
+    hilog.info(0x0000, TAG, `UIExtAbility onCreate`)
   }
 
   onForeground() {
-    console.log(TAG, `UIExtAbility onForeground`)
+    hilog.info(0x0000, TAG, `UIExtAbility onForeground`)
   }
 
   onBackground() {
-    console.log(TAG, `UIExtAbility onBackground`)
+    hilog.info(0x0000, TAG, `UIExtAbility onBackground`)
   }
 
   onDestroy() {
-    console.log(TAG, `UIExtAbility onDestroy`)
+    hilog.info(0x0000, TAG, `UIExtAbility onDestroy`)
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
+    hilog.info(0x0000, TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
     let param: Record<string, UIExtensionContentSession> = {
       'session': session
     };
@@ -45,7 +46,7 @@ export default class UIExtAbility extends UIExtensionAbility {
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(TAG, `UIExtAbility onSessionDestroy`)
+    hilog.info(0x0000, TAG, `UIExtAbility onSessionDestroy`)
   }
 }
 // [End uiExtensionProvider_start]

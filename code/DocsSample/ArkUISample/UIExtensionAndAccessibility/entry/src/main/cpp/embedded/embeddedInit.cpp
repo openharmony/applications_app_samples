@@ -15,7 +15,6 @@
 
 #include <hilog/log.h>
 
-#include "common/common.h"
 #include "embedded/embedded.h"
 #include <node_api.h>
 

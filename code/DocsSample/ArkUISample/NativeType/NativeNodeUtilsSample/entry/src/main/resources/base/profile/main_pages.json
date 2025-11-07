@@ -3,6 +3,8 @@
     "pages/Entry",
     "pages/Index",
     "pages/CustomProperty",
-    "pages/NodeAdapter"
+    "pages/NodeAdapter",
+    "pages/drawPage/DrawPage",
+    "pages/nativeUI/NativeUIPage"
   ]
 }
