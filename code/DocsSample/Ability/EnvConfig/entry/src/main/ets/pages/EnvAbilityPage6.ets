@@ -56,6 +56,7 @@ struct EnvAbilityPage6 {
 
   // 页面展示
   build() {
+    //...
   }
 }
 // [End envconf_page]
