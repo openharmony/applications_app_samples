@@ -14,12 +14,11 @@
  */
 
 // [Start main_page]
-// entry/src/main/ets/components/MainPage.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, TargetInfo, PromptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
+const DOMAIN = 0xFF00;
 
 export class PromptActionClass {
   private promptAction: PromptAction | null = null;
@@ -60,7 +59,6 @@ export class PromptActionClass {
     }
   }
 
-  // [StartExclude main_page]
   public closePopup() {
     if (this.promptAction != null) {
       this.promptAction.closePopup(this.contentNode)
@@ -84,8 +82,6 @@ export class PromptActionClass {
         });
     }
   }
-
-  // [EndExclude main_page]
 }
 
 // [End main_page]

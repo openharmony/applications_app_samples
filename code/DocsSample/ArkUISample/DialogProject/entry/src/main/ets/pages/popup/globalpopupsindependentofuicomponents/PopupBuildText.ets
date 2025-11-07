@@ -18,7 +18,7 @@ import { PromptActionClass } from './PopupMainPage';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
+const DOMAIN = 0xFF00;
 
 class Params {
   private text: string = '';
@@ -61,6 +61,7 @@ export function buildText(params: Params) {
     buttons: [{
       text: 'confirm',
       action: () => {
+        // 全局变量定义：const DOMAIN = 0xFF00;
         hilog.info(DOMAIN, 'popupBuildText', 'confirm button click');
       },
       fontSize: 15,
@@ -97,6 +98,7 @@ struct BuildTextExample {
       enableArrow: true
     })
       .then(() => {
+        // 全局变量定义：const DOMAIN = 0xFF00;
         hilog.info(DOMAIN, 'popupBuildText', 'openPopup success');
       })
       .catch((err: BusinessError) => {
@@ -111,6 +113,7 @@ struct BuildTextExample {
       enableArrow: false
     }, true)
       .then(() => {
+        // 全局变量定义：const DOMAIN = 0xFF00;
         hilog.info(DOMAIN, 'popupBuildText', 'updatePopup success');
       })
       .catch((err: BusinessError) => {
@@ -123,6 +126,7 @@ struct BuildTextExample {
     // [Start close_popup]
     this.promptAction.closePopup(this.contentNode)
       .then(() => {
+        // 全局变量定义：const DOMAIN = 0xFF00;
         hilog.info(DOMAIN, 'popupBuildText', 'closePopup success');
       })
       .catch((err: BusinessError) => {

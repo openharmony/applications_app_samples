@@ -14,7 +14,6 @@
  */
 
 // [Start open_popup_main]
-// entry/src/main/ets/pages/OpenPopup.ets
 import { PromptActionClass } from './PopupMainPage';
 import { ComponentContent, PromptAction } from '@kit.ArkUI';
 
