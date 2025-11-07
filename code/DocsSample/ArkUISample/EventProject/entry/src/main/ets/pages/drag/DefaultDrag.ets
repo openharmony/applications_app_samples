@@ -21,8 +21,8 @@ import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 // [StartExclude onDragEnd_start]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 // [Start drag_hilog_const]
+import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
 const TAG = 'DefaultDragError: '
 // [End drag_hilog_const]
