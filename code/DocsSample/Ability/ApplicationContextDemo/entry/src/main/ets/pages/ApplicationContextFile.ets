@@ -37,9 +37,9 @@ struct ApplicationContextFile {
         // [EndExclude app_context_file_start]
         Button() {
           Text('create file')
-          // [StartExclude app_context_file_start]
+            // [StartExclude app_context_file_start]
             .width('50vp')
-          // [EndExclude app_context_file_start]
+            // [EndExclude app_context_file_start]
             .onClick(() => {
               let applicationContext = this.context.getApplicationContext();
               // 获取应用文件路径

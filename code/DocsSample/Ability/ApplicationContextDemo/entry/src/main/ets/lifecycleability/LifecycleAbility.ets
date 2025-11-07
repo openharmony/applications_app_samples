@@ -16,6 +16,7 @@
 import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const TAG = '[LifecycleAbility]';
 const DOMAIN = 0xF811;
 

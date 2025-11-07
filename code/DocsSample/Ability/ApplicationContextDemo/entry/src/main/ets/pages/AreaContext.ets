@@ -14,7 +14,7 @@
  */
 
 // [Start scene_area_context_start]
-// Index.ets
+// AreaContext.ets
 import { contextConstant, common } from '@kit.AbilityKit';
 
 @Entry
