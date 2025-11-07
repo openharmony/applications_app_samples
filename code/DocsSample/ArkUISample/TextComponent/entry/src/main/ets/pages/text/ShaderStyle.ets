@@ -26,11 +26,9 @@ export struct ShaderStyle {
     };
 
   build() {
-    // [StartExclude Shader_Style]
     NavDestination() {
-      // [EndExclude Shader_Style]
       Column({ space: 5 }) {
-        // 'app.string.direction_LeftTop'×ÊÔ´ÎÄ¼şÖĞµÄvalueÖµÎª'directionÎªLeftTopµÄÏßĞÔ½¥±ä'
+        // 'app.string.direction_LeftTop'èµ„æºæ–‡ä»¶ä¸­çš„valueå€¼ä¸º'directionä¸ºLeftTopçš„çº¿æ€§æ¸å˜'
         Text($r('app.string.direction_LeftTop')).fontSize(18).width('90%').fontColor(0xCCCCCC)
           .margin({ top: 40, left: 40 })
         Text(this.message)
@@ -41,8 +39,8 @@ export struct ShaderStyle {
       }
       .height('100%')
       .width('100%')
-      // [StartExclude Shader_Style]
     }.backgroundColor('#f1f 2f3')
+    // [StartExclude Shader_Style]
     .title($r('app.string.Shader_Style'))
     // [EndExclude Shader_Style]
   }

@@ -77,23 +77,23 @@
       "value": "Span只能作为Text和RichEditor组件的子组件显示文本内容，可以在一个Text内添加多个Span来显示一段信息"
     },
     {
-      "name": "TextSpan_textContent_1",
+      "name": "TextSpan_textContent_text",
       "value": "我是Text"
     },
     {
-      "name": "TextSpan_textContent_2",
+      "name": "TextSpan_textContent_span",
       "value": "我是Span"
     },
     {
-      "name": "TextSpan_textContent_3",
+      "name": "TextSpan_textContent_span_one",
       "value": "我是Span1，"
     },
     {
-      "name": "TextSpan_textContent_4",
+      "name": "TextSpan_textContent_span_two",
       "value": "我是Span2"
     },
     {
-      "name": "TextSpan_textContent_5",
+      "name": "TextSpan_textContent_span_three",
       "value": "，我是Span3"
     },
     {
@@ -157,31 +157,31 @@
       "value": "textOverflow需配合maxLines一起使用（默认情况下文本自动折行）。从API version 18开始，文本超长时设置跑马灯的方式展示时，支持设置跑马灯的配置项，比如开关、步长、循环次数、方向等"
     },
     {
-      "name": "CustomTextStyle_textContent_1",
+      "name": "CustomTextStyle_textContent_epsis",
       "value": "我是超长文本，超出的部分显示省略号 I am an extra long text, with ellipses displayed for any excess。"
     },
     {
-      "name": "CustomTextStyle_textContent_2",
+      "name": "CustomTextStyle_textContent_marq",
       "value": "当文本溢出其尺寸时，文本将滚动显示 When the text overflows its dimensions,the text will scroll for displaying."
     },
     {
-      "name": "CustomTextStyle_textContent_3",
+      "name": "CustomTextStyle_textContent_one_style",
       "value": "我的最大字号为30，最小字号为5，宽度为250，maxLines为1"
     },
     {
-      "name": "CustomTextStyle_textContent_4",
+      "name": "CustomTextStyle_textContent_two_style",
       "value": "我的最大字号为30，最小字号为5，宽度为250，maxLines为2"
     },
     {
-      "name": "CustomTextStyle_textContent_5",
+      "name": "CustomTextStyle_textContent_no_max",
       "value": "我的最大字号为30，最小字号为15，宽度为250,高度为50"
     },
     {
-      "name": "CustomTextStyle_textContent_6",
+      "name": "CustomTextStyle_textContent_high",
       "value": "我的最大字号为30，最小字号为15，宽度为250,高度为100"
     },
     {
-      "name": "CustomTextStyle_textContent_7",
+      "name": "CustomTextStyle_textContent_incopy",
       "value": "这是一段可复制文本。"
     },
     {
@@ -269,7 +269,7 @@
       "value": "Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作。"
     },
     {
-      "name": "CustomTextStyle_textContent_8",
+      "name": "CustomTextStyle_textContent_marq_def",
       "value": "当文本溢出其尺寸时，文本将滚动显示，支持设置跑马灯配置项 When the text overflows its dimensions, the text will scroll for displaying."
     },
     {
@@ -377,27 +377,27 @@
       "value": "示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果"
     },
     {
-      "name": "TextHotSearch_textContent_1",
+      "name": "TextHotSearch_textContent_one",
       "value": "我是热搜词条1"
     },
     {
-      "name": "TextHotSearch_textContent_2",
+      "name": "TextHotSearch_textContent_two",
       "value": "爆"
     },
     {
-      "name": "TextHotSearch_textContent_3",
+      "name": "TextHotSearch_textContent_three",
       "value": "我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2"
     },
     {
-      "name": "TextHotSearch_textContent_4",
+      "name": "TextHotSearch_textContent_four",
       "value": "热"
     },
     {
-      "name": "TextHotSearch_textContent_5",
+      "name": "TextHotSearch_textContent_five",
       "value": "我是热搜词条3"
     },
     {
-      "name": "TextHotSearch_textContent_6",
+      "name": "TextHotSearch_textContent_six",
       "value": "我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4"
     },
     {
@@ -1556,31 +1556,35 @@
       "value": "径向渐变"
     },
     {
-      "name": "AIMenu_Text_1",
+      "name": "last_song",
+      "value": "关闭"
+    },
+    {
+      "name": "AIMenu_Text_One",
       "value": "电话号码：(86) (755) ********  \n \n 链接：www.********.com \n \n 邮箱：***@example.com\n \n 地址：XX省XX市XX区XXXX \n \n 时间：XX年XX月XX日XXXX"
     },
     {
-      "name": "CreateText_Text_1",
+      "name": "CreateText_Text_new",
       "value": "我是一段文本"
     },
     {
-      "name": "SelectMenu_Text_1",
+      "name": "SelectMenu_Text_customMenu",
       "value": "拦截 id: customMenu2 start:"
     },
     {
-      "name": "SelectMenu_Text_2",
+      "name": "SelectMenu_Text_copy",
       "value": "拦截 COPY start:"
     },
     {
-      "name": "SelectMenu_Text_3",
+      "name": "SelectMenu_Text_SelectionAll",
       "value": "不拦截 SELECT_ALL start:"
     },
     {
-      "name": "SelectMenu_Text_4",
+      "name": "SelectMenu_Text_Ejected",
       "value": "自定义选择菜单弹出时触发该回调"
     },
     {
-      "name": "SelectMenu_Text_5",
+      "name": "SelectMenu_Text_Close",
       "value": "自定义选择菜单关闭时触发该回调"
     },
     {

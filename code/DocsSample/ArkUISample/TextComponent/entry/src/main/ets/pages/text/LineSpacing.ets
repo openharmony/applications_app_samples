@@ -29,16 +29,15 @@ function style() {
 @Component
 export struct LineSpacing {
   build() {
-    // [StartExclude Line_Spacing]
     NavDestination() {
-      // [EndExclude Line_Spacing]
       Column() {
         Text('The line spacing of this context is set to 20_px, and the spacing is effective only between the lines.')
           .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
           .style()
       }
-      // [StartExclude Line_Spacing]
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Line_Spacing]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Set_text_line_spacing'))
     // [EndExclude Line_Spacing]
   }

@@ -14,6 +14,8 @@
  */
 // [Start textspan_onhover]
 // xxx.ets
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Entry
 @Component
 export struct TextSpanOnHover {
@@ -21,9 +23,7 @@ export struct TextSpanOnHover {
   @State textStr2: string = '';
 
   build() {
-    // [StartExclude textspan_onhover]
     NavDestination() {
-      // [EndExclude textspan_onhover]
       Row() {
         Column() {
           Text() {
@@ -31,11 +31,11 @@ export struct TextSpanOnHover {
               .textCase(TextCase.UpperCase)
               .fontSize(30)
               .onClick(() => {
-                console.info('Span onClick is triggering');
+                hilog.info(0x0000, 'Sample_TextComponent', 'Span onClick is triggering');
                 this.textStr1 = 'Span onClick is triggering';
               })
               .onHover(() => {
-                console.info('Span onHover is triggering');
+                hilog.info(0x0000, 'Sample_TextComponent', 'Span onHover is triggering');
                 this.textStr2 = 'Span onHover is triggering';
               })
           }
@@ -47,8 +47,9 @@ export struct TextSpanOnHover {
         }.width('100%')
       }
       .height('100%')
-      // [StartExclude textspan_onhover]
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude textspan_onhover]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.OnClick_onHover'))
     // [EndExclude textspan_onhover]
   }

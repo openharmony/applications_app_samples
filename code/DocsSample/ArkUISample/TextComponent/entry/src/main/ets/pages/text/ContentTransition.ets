@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Content_Transition]
-// xxx.ets
+
 @Entry
 @Component
 export struct ContentTransition {
@@ -22,9 +22,7 @@ export struct ContentTransition {
   @State numberTransition: NumericTextTransition =
     new NumericTextTransition({ flipDirection: FlipDirection.DOWN, enableBlur: false });
   build() {
-    // [StartExclude Content_Transition]
     NavDestination() {
-      // [EndExclude Content_Transition]
       Column() {
         Text(this.number + '')
           .borderWidth(1)
@@ -38,8 +36,9 @@ export struct ContentTransition {
       }
       .width('100%')
       .height('100%')
-      // [StartExclude Content_Transition]
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Content_Transition]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Set_digital_flip_effect'))
     // [EndExclude Content_Transition]
   }

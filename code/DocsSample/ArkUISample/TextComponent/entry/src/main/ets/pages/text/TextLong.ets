@@ -21,12 +21,11 @@ export struct TextLong {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private manager = this.context.resourceManager;
 
+  // 'Text_Long_String'资源文件中的value值为'这是一段超长文本'
   @State message: string = this.manager.getStringByNameSync('Text_Long_String').repeat(50);
 
   build() {
-    // [StartExclude Text_Long]
     NavDestination() {
-      // [EndExclude Text_Long]
       Column() {
         Text(this.message)
           .height('auto')
@@ -37,8 +36,9 @@ export struct TextLong {
       .margin('10%')
       .borderWidth(1)
       .justifyContent(FlexAlign.Center)
-      // [StartExclude Text_Long]
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Text_Long]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Text_Long'))
     // [EndExclude Text_Long]
   }

@@ -19,9 +19,7 @@ export struct HeightAdaptivePolicy {
   @State message: string = 'Hello World!1282378283 ~';
   @State fontSize: number = 25;
   build() {
-    // [StartExclude Height_AdaptivePolicy]
     NavDestination() {
-      // [EndExclude Height_AdaptivePolicy]
       Column({ space: 10 }) {
         Text(this.message)
           .id('HelloWorld')
@@ -43,8 +41,9 @@ export struct HeightAdaptivePolicy {
         }
       }
       .margin({ left: 30, top: 50 })
-      // [StartExclude Height_AdaptivePolicy]
-    }.backgroundColor('#f1f 2f3')
+    }
+    // [StartExclude Height_AdaptivePolicy]
+    .backgroundColor('#f1f 2f3')
     .title($r('app.string.Set_text_line_spacing'))
     // [EndExclude Height_AdaptivePolicy]
   }
