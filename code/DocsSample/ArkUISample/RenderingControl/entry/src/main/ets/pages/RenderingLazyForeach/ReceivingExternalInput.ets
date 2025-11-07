@@ -76,8 +76,6 @@ class InputDataSource implements IDataSource {
   }
 }
 
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码。
-其中BasicDataSource、StringData等名称需要开发者自行修改。**/
 class MyInputDataSource extends InputDataSource {
   private dataArray: InputStringData[] = [];
 
