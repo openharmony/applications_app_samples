@@ -58,7 +58,7 @@ export default class ExitAbility extends UIAbility {
       let processName: string = launchParam.lastExitDetailInfo.processName;
       let rss: number = launchParam.lastExitDetailInfo.rss;
       let pss: number = launchParam.lastExitDetailInfo.pss;
-      // [StartExclude  unexp_exit]
+      // [StartExclude unexp_exit]
       // [Start unexp_rss]
       if (rss > MAX_RSS_THRESHOLD || pss > MAX_PSS_THRESHOLD) {
         // RSS或PSS值过大，说明内存使用率接近或达到上限，打印告警，或者增加处理逻辑。
@@ -69,7 +69,7 @@ export default class ExitAbility extends UIAbility {
       // 其他信息
       let uid: number = launchParam.lastExitDetailInfo.uid;
       let timestamp: number = launchParam.lastExitDetailInfo.timestamp;
-      // [StartExclude  unexp_exit]
+      // [StartExclude unexp_exit]
       // [Start unexp_uid]
       hilog.info(DOMAIN_NUMBER, TAG, `App ${uid} terminated at ${timestamp}.`);
       // [End unexp_uid]

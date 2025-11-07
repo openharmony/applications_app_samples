@@ -17,9 +17,9 @@
 // [Start pull_results]
 {
   "module": {
-    // [StartExclude  skills_custom]
-    // [StartExclude  domainVerify_true]
-    // [StartExclude  pull_results]
+    // [StartExclude skills_custom]
+    // [StartExclude domainVerify_true]
+    // [StartExclude pull_results]
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
@@ -30,13 +30,13 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    // [EndExclude  pull_results]
-    // [EndExclude  domainVerify_true]
-    // [EndExclude  skills_custom]
+    // [EndExclude pull_results]
+    // [EndExclude domainVerify_true]
+    // [EndExclude skills_custom]
     "abilities": [
-      // [StartExclude  skills_custom]
-      // [StartExclude  domainVerify_true]
-      // [StartExclude  pull_results]
+      // [StartExclude skills_custom]
+      // [StartExclude domainVerify_true]
+      // [StartExclude pull_results]
       {
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
@@ -157,9 +157,9 @@
           }
         ]
       },
-      // [EndExclude  skills_custom]
+      // [EndExclude skills_custom]
       {
-        // [StartExclude  skills_custom]
+        // [StartExclude skills_custom]
         "name": "DeepEntryAbility",
         "srcEntry": "./ets/DeepAbility/DeepAbility.ets",
         "description": "$string:EntryAbility_desc",
@@ -168,7 +168,7 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        // [EndExclude  skills_custom]
+        // [EndExclude skills_custom]
         "skills": [
           {
             "entities": [
@@ -194,10 +194,10 @@
           } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       },
-      // [EndExclude  domainVerify_true]
-      // [StartExclude  skills_custom]
+      // [EndExclude domainVerify_true]
+      // [StartExclude skills_custom]
       {
-        // [StartExclude  domainVerify_true]
+        // [StartExclude domainVerify_true]
         "name": "WantAbility1",
         "srcEntry": "./ets/want/WantAbility1.ets",
         "description": "$string:EntryAbility_desc",
@@ -206,7 +206,7 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        // [EndExclude  domainVerify_true]
+        // [EndExclude domainVerify_true]
         "skills": [
           {
             "entities": [
@@ -225,10 +225,10 @@
           }
         ]
       },
-      // [EndExclude  pull_results]
-      // [StartExclude  domainVerify_true]
+      // [EndExclude pull_results]
+      // [StartExclude domainVerify_true]
       {
-        // [StartExclude  pull_results]
+        // [StartExclude pull_results]
         "name": "WantAbility2",
         "srcEntry": "./ets/want/WantAbility2.ets",
         "description": "$string:EntryAbility_desc",
@@ -237,7 +237,7 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        // [EndExclude  pull_results]
+        // [EndExclude pull_results]
         "skills": [
           {
             "entities": [
@@ -256,7 +256,7 @@
           }
         ]
       },
-      // [StartExclude  pull_results]
+      // [StartExclude pull_results]
       {
         "name": "loginAbility",
         "srcEntry": "./ets/clearability/LoginAbility.ets",
@@ -287,10 +287,10 @@
         "description": "$string:ClearAbility_desc",
         "icon": "$media:layered_image",
         "label": "$string:ClearAbility_label",
-        // [StartExclude  pulllink_clearcache]
+        // [StartExclude pulllink_clearcache]
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        // [EndExclude  pulllink_clearcache]
+        // [EndExclude pulllink_clearcache]
         "skills": [
           {
             "uris": [
@@ -305,13 +305,13 @@
         ]
       }
       // [End pulllink_clearcache]
-      // [EndExclude  pull_results]
-      // [EndExclude  domainVerify_true]
-      // [EndExclude  skills_custom]
+      // [EndExclude pull_results]
+      // [EndExclude domainVerify_true]
+      // [EndExclude skills_custom]
     ],
-    // [StartExclude  skills_custom]
-    // [StartExclude  domainVerify_true]
-    // [StartExclude  pull_results]
+    // [StartExclude skills_custom]
+    // [StartExclude domainVerify_true]
+    // [StartExclude pull_results]
     "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
@@ -344,9 +344,9 @@
         }
       }
     ],
-    // [EndExclude  pull_results]
-    // [EndExclude  domainVerify_true]
-    // [EndExclude  skills_custom]
+    // [EndExclude pull_results]
+    // [EndExclude domainVerify_true]
+    // [EndExclude skills_custom]
   }
 }
 // [End pull_results]

@@ -32,13 +32,13 @@ export default class DeepAbility extends UIAbility {
       let action = urlObject.params.get('action');
       // 例如，当action为showall时，展示所有的节目。
       if (action === 'showall') {
-        // [StartExclude  deep_ability]
+        // [StartExclude deep_ability]
         hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
         // [EndExclude deep_ability]
       }
     }
   }
-  // [StartExclude  deep_ability]
+  // [StartExclude deep_ability]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
@@ -70,6 +70,6 @@ export default class DeepAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
-  // [EndExclude  deep_ability]
+  // [EndExclude deep_ability]
 }
 // [End deep_ability]

@@ -31,7 +31,7 @@ export default class AppLinkEntryAbility extends UIAbility {
       let action = urlObject.params.get('action');
       // 例如，当action为showall时，展示所有的节目。
       if (action === 'showall') {
-        // [StartExclude  applink_ability]
+        // [StartExclude applink_ability]
         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'AppLinkEntryAbility onCreate');
         // [EndExclude applink_ability]
       }
