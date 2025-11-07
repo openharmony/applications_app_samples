@@ -139,9 +139,8 @@ export default class EntryAbility extends UIAbility {
       // 使用状态变量记录当前断点值
       AppStorage.setOrCreate('currentBreakpoint', this.currentBreakPoint);
     }
-    // [EndExclude window_stage]
   }
-
+  // [EndExclude window_stage]
   // [End window_stage]
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
