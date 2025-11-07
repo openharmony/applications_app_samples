@@ -22,11 +22,11 @@ const MAX_RSS_THRESHOLD: number = 100000;
 const MAX_PSS_THRESHOLD: number = 100000;
 
 function doSomething() {
-  hilog.info(DOMAIN_NUMBER,TAG,'do Something');
+  hilog.info(DOMAIN_NUMBER, TAG, 'do Something');
 }
 
 function doAnotherThing() {
-  hilog.info(DOMAIN_NUMBER,TAG,'do Another Thing');
+  hilog.info(DOMAIN_NUMBER, TAG, 'do Another Thing');
 }
 
 export default class ExitAbility extends UIAbility {
@@ -48,7 +48,7 @@ export default class ExitAbility extends UIAbility {
       doAnotherThing();
     } else if (reason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
       // Ability上次因rss管控而退出，此处可实现处理逻辑，最简单的就是打印出来。
-      hilog.info(DOMAIN_NUMBER,TAG,`The ability has exit last because the rss control，the lastExitReason is ${reason}, subReason is ${subReason}, lastExitMessage is ${exitMsg}.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `The ability has exit last because the rss control，the lastExitReason is ${reason}, subReason is ${subReason}, lastExitMessage is ${exitMsg}.`);
     }
     // [End unexp_freeze]
     // [EndExclude unexp_exit]
@@ -62,7 +62,7 @@ export default class ExitAbility extends UIAbility {
       // [Start unexp_rss]
       if (rss > MAX_RSS_THRESHOLD || pss > MAX_PSS_THRESHOLD) {
         // RSS或PSS值过大，说明内存使用率接近或达到上限，打印告警，或者增加处理逻辑。
-        hilog.warn(DOMAIN_NUMBER,TAG,`Process ${processName}(${pid}) memory usage approaches or reaches the upper limit.`);
+        hilog.warn(DOMAIN_NUMBER, TAG, `Process ${processName}(${pid}) memory usage approaches or reaches the upper limit.`);
       }
       // [End unexp_rss]
       // [EndExclude unexp_exit]
@@ -71,7 +71,7 @@ export default class ExitAbility extends UIAbility {
       let timestamp: number = launchParam.lastExitDetailInfo.timestamp;
       // [StartExclude  unexp_exit]
       // [Start unexp_uid]
-      hilog.info(DOMAIN_NUMBER,TAG,`App ${uid} terminated at ${timestamp}.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `App ${uid} terminated at ${timestamp}.`);
       // [End unexp_uid]
       // [EndExclude unexp_exit]
     }
