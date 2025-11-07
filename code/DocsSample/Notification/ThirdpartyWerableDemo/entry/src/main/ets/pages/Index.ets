@@ -17,7 +17,6 @@ import { abilityAccessCtrl, common } from '@kit.AbilityKit';
 import { notificationExtensionSubscription } from '@kit.NotificationKit';
 import { HashSet } from '@kit.ArkTS';
 import { connection } from '@kit.ConnectivityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
@@ -47,17 +46,17 @@ struct Index {
     RelativeContainer() {
       Column({ space: 10 }) {
         Button("openSubscriberSettings").backgroundColor('#FFFF00FF')
-          .onClick(async (e: ClickEvent) => {
+          .onClick(async () => {
             try {
               let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
               await notificationExtensionSubscription.openSubscriptionSettings(context);
             } catch (error) {
-             hilog.error(DOMAIN, 'testTag', `failed to call openSubscriptionSettings ${error}`)
+              hilog.error(DOMAIN, 'testTag', `failed to call openSubscriptionSettings ${error}`)
             }
             hilog.info(DOMAIN, 'testTag', `openSubscriberSettings success`);
           })
         Button("queryBluetooth").backgroundColor('#FFFF00FF')
-          .onClick(async (e: ClickEvent) => {
+          .onClick(async () => {
             try {
               // 获取已配对设备信息
               this.devices = connection.getPairedDevices();
@@ -100,7 +99,7 @@ struct Index {
               let result = await notificationExtensionSubscription.subscribe(subscribeInfo);
               hilog.info(DOMAIN, 'testTag', `subscribe result ${result}`);
             } catch (error) {
-             hilog.error(DOMAIN, 'testTag', `failed to call subscribe`)
+              hilog.error(DOMAIN, 'testTag', `failed to call subscribe`)
             }
           })
         Button("unsubscribe").backgroundColor('#FFFF00FF')
@@ -109,7 +108,7 @@ struct Index {
               let result = await notificationExtensionSubscription.unsubscribe();
               hilog.info(DOMAIN, 'testTag', `unsubscribe result ${result}`);
             } catch (error) {
-             hilog.error(DOMAIN, 'testTag', `failed to call unsubscribe`)
+              hilog.error(DOMAIN, 'testTag', `failed to call unsubscribe`)
             }
           })
       }
