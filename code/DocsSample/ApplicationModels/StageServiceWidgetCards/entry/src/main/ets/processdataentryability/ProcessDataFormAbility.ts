@@ -37,7 +37,7 @@ export default class ProcessDataFormAbility extends FormExtensionAbility {
   }
 
   onAcquireFormState(want: Want): formInfo.FormState {
-    // 函数调用后返回对象{@link FormState}.
+    // 卡片使用方查询卡片状态时触发该回调，默认返回初始状态。
     return formInfo.FormState.READY;
   }
 }

@@ -77,7 +77,6 @@ export default class WidgetCalleeEntryAbility extends UIAbility {
     } catch (error) {
       hilog.error(DOMAIN_NUMBER, TAG, `${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
     }
-    ;
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
