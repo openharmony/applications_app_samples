@@ -15,8 +15,6 @@
 // [Start monitor_watch_decorator_limitations_v1]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Observed
 class Info {
   public name: string = 'Tom';
@@ -30,11 +28,11 @@ struct Index {
   @State @Watch('onNumArrChange') numArr: number[] = [1, 2, 3, 4, 5];
 
   onInfoChange() {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `info after change name: ${this.info.name}, age: ${this.info.age} `);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `info after change name: ${this.info.name}, age: ${this.info.age} `);
   }
 
   onNumArrChange() {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `numArr after change ${this.numArr}`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `numArr after change ${this.numArr}`);
   }
 
   build() {

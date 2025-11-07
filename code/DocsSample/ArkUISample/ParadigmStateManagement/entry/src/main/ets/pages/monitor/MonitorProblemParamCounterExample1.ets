@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorProblemParamCounterExample1 {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -40,7 +38,7 @@ class Info {
   @Monitor('age', 'name')
   onPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `property path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }

@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorLimitationParameterStringConstraint {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -49,22 +47,22 @@ class Info {
   // 字符串字面量
   @Monitor('t1')
   onT1Change(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `t1 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `t1 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   @Monitor(t2)
   onT2Change(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `t2 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `t2 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   @Monitor(ENUM.T3)
   onT3Change(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `t3 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `t3 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   @Monitor(t4)
   onT4Change(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', `t4 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(0xFF00, 'testTag', '%{public}s', `t4 change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
 

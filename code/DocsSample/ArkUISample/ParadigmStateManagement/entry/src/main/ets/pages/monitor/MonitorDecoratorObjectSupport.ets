@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorDecoratorObjectSupport {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -37,13 +35,13 @@ class Info {
 
   @Monitor('person.name')
   onNameChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   @Monitor('person.age')
   onAgeChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 

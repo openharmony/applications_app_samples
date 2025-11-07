@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorProblemStateChangeUseAddMonitor {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -44,7 +42,7 @@ struct Page {
   @Monitor('user.age')
   onChange(mon: IMonitor) {
     mon.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `onChange: User property ${path} change from ${mon.value(path)?.before} to ${mon.value(path)?.now}`);
     });
   }

@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorProblemClassFailureTimeSetComp {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -55,12 +53,12 @@ struct Child {
 
   @Monitor('infoWrapper.info.age')
   onInfoAgeChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   aboutToDisappear(): void {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Child aboutToDisappear', this.infoWrapper.info?.age);
+    hilog.info(0xFF00, 'testTag', '%{public}s', 'Child aboutToDisappear', this.infoWrapper.info?.age);
   }
 
   build() {
@@ -90,7 +88,7 @@ struct Index {
         })
       Button('change number')
         .onClick(() => {
-          hilog.info(DOMAIN, 'testTag', '%{public}s', 'click to change age');
+          hilog.info(0xFF00, 'testTag', '%{public}s', 'click to change age');
           this.dataArray.forEach((info: Info) => {
             info.age += 100;
           })

@@ -14,8 +14,6 @@
 */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct MonitorDecoratorMultiWatchObservedV2 {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -41,14 +39,14 @@ class Info {
   // name被@Trace装饰，能够监听变化
   @Monitor('name')
   onNameChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   // age未被@Trace装饰，不能监听变化
   @Monitor('age')
   onAgeChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s',
+    hilog.info(0xFF00, 'testTag', '%{public}s',
       `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
@@ -56,7 +54,7 @@ class Info {
   @Monitor('region', 'job')
   onChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      hilog.info(DOMAIN, 'testTag', '%{public}s',
+      hilog.info(0xFF00, 'testTag', '%{public}s',
         `${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }

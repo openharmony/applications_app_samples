@@ -14,8 +14,6 @@
  */
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0x0000;
-
 @Component
 export struct LocalQuestionSparkUpdate {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -39,7 +37,7 @@ struct Index {
 
   @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, 'testTag', '%{public}s', 'dataObjFromList has changed');
+    hilog.info(0xFF00, 'testTag', '%{public}s', 'dataObjFromList has changed');
   }
 
   build() {
