@@ -39,14 +39,14 @@ struct Index {
     if (this.showNative) {
       // 传递NodeContent对象用于Native创建组件的挂载显示
       nativeNode?.createNativeRoot(this.rootSlot);
-      // [StartExclude get_content]
     } else {
+      // [StartExclude get_content]
       // 销毁NativeModule组件
       nativeNode.destroyNativeRoot();
       // [EndExclude get_content]
     }
-    // [End get_content]
   }
+  // [End get_content]
 
   build() {
     Column() {

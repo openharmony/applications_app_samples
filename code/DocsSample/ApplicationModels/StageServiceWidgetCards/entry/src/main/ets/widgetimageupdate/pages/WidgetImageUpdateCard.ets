@@ -14,6 +14,7 @@
  */
 
 // [Start widget_image_update_card]
+// entry/src/main/ets/widgetimageupdate/pages/WidgetImageUpdateCard.ets
 let storageWidgetImageUpdate = new LocalStorage();
 
 @Entry(storageWidgetImageUpdate)

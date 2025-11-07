@@ -13,15 +13,18 @@
  * limitations under the License.
  */
 
+// [Start refresh_import]
+// entry/src/main/ets/wgtimgupdateentryformability/WgtImgUpdateEntryFormAbility.ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { http } from '@kit.NetworkKit';
-
+// [End refresh_import]
 // [Start network_file_refresh]
 // [Start local_file_refresh]
+// entry/src/main/ets/wgtimgupdateentryformability/WgtImgUpdateEntryFormAbility.ts
 const TAG: string = 'WgtImgUpdateEntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
  // [StartExclude local_file_refresh]
@@ -124,14 +127,12 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     }
     httpRequest.destroy();
   }
-  // [StartExclude network_file_refresh]
 
   onAcquireFormState(want: Want): formInfo.FormState {
-    // Called to return a {@link FormState} object.
+    // 卡片使用方查询卡片状态时触发该回调，默认返回初始状态。
     return formInfo.FormState.READY;
   }
   // [EndExclude local_file_refresh]
-  // [EndExclude network_file_refresh]
 }
 // [End local_file_refresh]
 // [End network_file_refresh]

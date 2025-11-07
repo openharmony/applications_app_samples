@@ -79,6 +79,7 @@ struct TransitionData {
 std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
 {
     // [Start get_keyframeAnimateTo]
+    // ArkUIColumnNode为工程内封装的node类型
     auto column = std::make_shared<ArkUIColumnNode>();
     //设置宽度为300，NUM_300 = 300
     column->SetWidth(NUM_300);
@@ -101,6 +102,7 @@ std::shared_ptr<ArkUIBaseNode> CreateKeyFrameAnimeteto()
     // 注册点击事件到button上，NUM_1 = 1
     button->RegisterNodeEvent(button->GetHandle(), NODE_ON_CLICK, NUM_1, nullptr);
     g_keyframe_text = std::make_shared<ArkUITextNode>();
+    // 该函数为封装功能为在text组件中打印Animateto中参数值，使用者根据需要自行封装
     g_keyframe_text->KeyframeAnimatetoToString();
     auto onTouch = [](ArkUI_NodeEvent *event) {
         // 点击button按钮时触发该逻辑，NUM_1 = 1
@@ -248,6 +250,7 @@ std::shared_ptr<ArkUIBaseNode> CreateAnimeteto()
             // 设置完成的回调
             ArkUI_AnimateCompleteCallback *completeCallback = new ArkUI_AnimateCompleteCallback;
             completeCallback->type = ARKUI_FINISH_CALLBACK_REMOVED;
+            // 结构体AnimateData中包含ArkUI_AnimateOption* option和ArkUI_CurveHandle curve
             AnimateData* data = new AnimateData();
             data->option = option;
             data->curve = cubicBezierCurve;

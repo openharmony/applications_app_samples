@@ -14,6 +14,7 @@
  */
 
 // [Start widget_persistent_data_card]
+// entry/src/main/ets/widgetpersistentdata/pages/WidgetPersistentDataCard.ets
 let storagePersis = new LocalStorage();
 
 @Entry(storagePersis)
