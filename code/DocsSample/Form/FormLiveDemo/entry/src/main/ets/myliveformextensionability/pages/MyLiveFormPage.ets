@@ -105,9 +105,9 @@ struct MyLiveFormPage {
     .width('100%')
     .height('100%')
     .onClick(() => {
-      hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm click to start ability');
+      hilog.info(DOMAIN, 'testTag', 'MyLiveFormPage click to start ability');
       if (!this.liveFormContext) {
-        hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm liveFormContext is empty');
+        hilog.info(DOMAIN, 'testTag', 'MyLiveFormPage liveFormContext is empty');
         return;
       }
       this.startAbilityByLiveForm();
@@ -131,15 +131,15 @@ struct MyLiveFormPage {
         // 在页面出现时执行动效
         this.runAnimation();
       })
-
+    // $r('app.string.button_cancel')需要在相应的资源文件string.json中定义
     Button($r('app.string.button_cancel'))
       .backgroundColor(Color.Grey)
       .onClick(() => {
         if (!this.formId) {
-          hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm formId is empty, cancel overflow failed');
+          hilog.info(DOMAIN, 'testTag', 'MyLiveFormPage formId is empty, cancel overflow failed');
           return;
         }
-        hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm cancel overflow animation');
+        hilog.info(DOMAIN, 'testTag', 'MyLiveFormPage cancel overflow animation');
         formProvider.cancelOverflow(this.formId);
       })
   }
