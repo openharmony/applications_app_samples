@@ -204,7 +204,7 @@ export struct SpringLoadingPage {
       .title($r('app.string.Pages_Index_DropAnimation'))
 
       //[EndExclude springLoading_example]
-      //[StartExclude SpringLoading_start]
+      //[EndExclude SpringLoading_start]
     }.width('100%').height('100%')
     .justifyContent(FlexAlign.Center)
   }
