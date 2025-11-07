@@ -21,8 +21,6 @@ import { ComponentCard } from '../../common/Card';
 @Component
 export struct ContentWillChange {
   scroller: Scroller = new Scroller();
-  @State currentIndexThree: number = 2;
-  @State currentIndexTwo: number = 2;
   private controllerTwo: TabsController = new TabsController();
   // [EndExclude switch_the_tab_specific_tab]
   @State currentIndex: number = 2;
@@ -42,7 +40,7 @@ export struct ContentWillChange {
   tabBuilderTwo(title: ResourceStr, targetIndex: number) {
     Column() {
       Text(title)
-        .fontColor(this.currentIndexTwo === targetIndex ? '#F111C1' : '#6B6B6B')
+        .fontColor(this.currentIndex === targetIndex ? '#F111C1' : '#6B6B6B')
     }
   }
 
@@ -50,7 +48,7 @@ export struct ContentWillChange {
   tabBuilderThree(title: ResourceStr, targetIndex: number) {
     Column() {
       Text(title)
-        .fontColor(this.currentIndexThree === targetIndex ? '#F111C1' : '#6B6B6B')
+        .fontColor(this.currentIndex === targetIndex ? '#F111C1' : '#6B6B6B')
     }
   }
 
@@ -98,7 +96,7 @@ export struct ContentWillChange {
           ComponentCard({ title: $r('app.string.ContentWillChange_titleSpecifiedTab') }) {
             Column({ space: 8 }) {
               // [EndExclude switch_the_tab_specific_tab]
-              Tabs({ barPosition: BarPosition.End, index: this.currentIndexTwo, controller: this.controller }) {
+              Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
                 // [StartExclude switch_the_tab_specific_tab]
                 TabContent() {
                   Text($r('app.string.homepage_content'))
@@ -133,7 +131,7 @@ export struct ContentWillChange {
               .height(300)
               .animationMode(this.currentAnimationMode)
               .onChange((index: number) => {
-                this.currentIndexTwo = index;
+                this.currentIndex = index;
               })
 
               // app.string.ContentWillChange_changeIndex资源文件中的value值为“动态修改index”
@@ -155,12 +153,12 @@ export struct ContentWillChange {
               // app.string.ContentWillChange_changeIndex资源文件中的value值为“动态修改index”
               Button($r('app.string.ContentWillChange_changeIndex')).width('50%').margin({ top: 20 })
                 .onClick(() => {
-                  this.currentIndexTwo = (this.currentIndexTwo + 1) % 4;
+                  this.currentIndex = (this.currentIndex + 1) % 4;
                 })
 
               Button('changeIndex').width('50%').margin({ top: 20 })
                 .onClick(() => {
-                  let index = (this.currentIndexTwo + 1) % 4;
+                  let index = (this.currentIndex + 1) % 4;
                   this.controller.changeIndex(index);
                 })
               // [End switch_the_tab_specific_tab]
@@ -170,7 +168,7 @@ export struct ContentWillChange {
           ComponentCard({ title: $r('app.string.ContentWillChange_titleInterception') }) {
             Column({ space: 8 }) {
               // [Start custom_page_toggle_interception_events]
-              Tabs({ barPosition: BarPosition.End, index: this.currentIndexThree, controller: this.controllerTwo }) {
+              Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controllerTwo }) {
                 // [StartExclude custom_page_toggle_interception_events]
                 TabContent() {
                   Text($r('app.string.homepage_content'))
@@ -205,7 +203,7 @@ export struct ContentWillChange {
               .animationDuration(0)
               .height(300)
               .onChange((index: number) => {
-                this.currentIndexThree = index;
+                this.currentIndex = index;
               })
               // [EndExclude custom_page_toggle_interception_events]
               .onContentWillChange((currentIndex, comingIndex) => {
@@ -218,12 +216,12 @@ export struct ContentWillChange {
 
               Button($r('app.string.ContentWillChange_changeIndex')).width('50%')
                 .onClick(() => {
-                  this.currentIndexThree = (this.currentIndexThree + 1) % 4;
+                  this.currentIndex = (this.currentIndex + 1) % 4;
                 })
 
               Button('changeIndex').width('50%')
                 .onClick(() => {
-                  let index = (this.currentIndexThree + 1) % 4;
+                  let index = (this.currentIndex + 1) % 4;
                   this.controllerTwo.changeIndex(index);
                 })
             }

@@ -26,7 +26,9 @@ export struct ContentPageNoAndTabLinkage {
     }
   }
   build() {
+    // [StartExclude content_page_tab_linkage]
     NavDestination() {
+      // [EndExclude content_page_tab_linkage]
       Column({ space: 12 }) {
         // [StartExclude content_page_tab_linkage]
         ComponentCard({ title: $r('app.string.ContentWillChange_titleContentOnAndTabSync') }) {
@@ -53,17 +55,13 @@ export struct ContentPageNoAndTabLinkage {
             // app.string.recommend资源文件中的value值为“推荐”
             }.tabBar(this.tabBuilder($r('app.string.recommend'), 2))
 
-            // [Start set_custom_tab_bar_style]
             TabContent() {
               // app.string.mine_content资源文件中的value值为“我的内容”
               Text($r('app.string.mine_content')).width('100%').height('100%').backgroundColor('rgb(0,74,175)')
-                // [StartExclude set_custom_tab_bar_style]
                 .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
-                // [EndExclude set_custom_tab_bar_style]
             }
             // app.string.mine资源文件中的value值为“我的”
             .tabBar(this.tabBuilder($r('app.string.mine'), 3))
-            // [End set_custom_tab_bar_style]
           }
           .animationDuration(0)
           .backgroundColor('#F1F3F5')
@@ -78,9 +76,7 @@ export struct ContentPageNoAndTabLinkage {
       // [StartExclude content_page_tab_linkage]
       .height('100%')
       .padding({ left: 12, right: 12 })
-      // [EndExclude content_page_tab_linkage]
     }
-    // [StartExclude content_page_tab_linkage]
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ContentWillChange_titleContentOnAndTabSync'))
     // [EndExclude content_page_tab_linkage]
