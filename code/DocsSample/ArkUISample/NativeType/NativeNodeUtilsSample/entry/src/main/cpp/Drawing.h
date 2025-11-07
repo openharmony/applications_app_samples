@@ -22,19 +22,23 @@
 #include <native_drawing/drawing_path.h>
 #include <native_drawing/drawing_pen.h>
 
+// [Start drawCanvas_Start]
 #define SIZE_3 3
 #define SIZE_4 4
 #define SIZE_10 10
+// [StartExclude drawCanvas_Start]
 #define SIZE_150 150
 #define SIZE_200 200
 #define SIZE_480 480
 #define SIZE_720 720
+// [EndExclude drawCanvas_Start]
 #define SIZE_1000 1000
-#define COLOR_YELLOW 0xFFFFFF00
 #define RGBA_R1 0xFF
 #define RGBA_G1 0xFF
 #define RGBA_B1 0x00
 #define RGBA_A1 0x00
+// [StartExclude drawCanvas_Start]
+#define COLOR_YELLOW 0xFFFFFF00
 
 ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
 {
@@ -83,7 +87,7 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
         // [End nodeCustomEvent_start]
         if (type == ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW && targetId == 1 && userData->flag) {
             // [Start nodeCustomEvent_start]
-            // [Start drawCanvas_Start]
+            // [EndExclude drawCanvas_Start]
             // 获取自定义事件绘制的上下文。
             auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
             // 获取绘制canvas指针。
