@@ -25,5 +25,4 @@ export default class DownloadExecutor extends InsightIntentExecutor {
     return Promise.resolve(result);
   }
 }
-
 // [End playmusic_download]
