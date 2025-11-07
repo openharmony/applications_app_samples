@@ -32,7 +32,7 @@ const BUFFER: number = 1024; // 读写文件的缓冲区
 // [EndExclude session_backup]
 // [EndExclude session_restore]
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+// 请在组件内获取context，确保getContext(this)返回结果为UIAbilityContext
 let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
