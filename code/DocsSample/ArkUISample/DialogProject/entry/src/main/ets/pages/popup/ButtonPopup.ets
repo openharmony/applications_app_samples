@@ -26,8 +26,6 @@ export struct ButtonPopupExample {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-
         Column() {
           Button('PopupOptions').margin({ top: 300 })
             .id('PopupOptions')
@@ -56,13 +54,7 @@ export struct ButtonPopupExample {
               }
             })
         }.width('100%').padding({ top: 5 })
-
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
     }
-    .backgroundColor('#f1f2f3')
     // [StartExclude button_popup]
     .title($r('app.string.button_popup'))
     // [EndExclude button_popup]

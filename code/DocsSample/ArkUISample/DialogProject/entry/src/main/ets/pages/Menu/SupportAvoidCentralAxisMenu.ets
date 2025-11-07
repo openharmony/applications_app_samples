@@ -114,7 +114,6 @@ export struct SupportAvoidCentralAxisMenuExample {
       .height('100%')
       .width('100%')
     }
-    .backgroundColor('#f1f2f3')
     // [StartExclude avoid_central_axis_menu]
     .title($r('app.string.SupportAvoidCentralAxisMenu_title'))
     // [StartExclude avoid_central_axis_menu]

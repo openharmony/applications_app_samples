@@ -61,7 +61,7 @@ export default function PopupTest() {
         MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
-      // await driver.delayMs(1000);
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('PopupOptions', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();
@@ -97,6 +97,7 @@ export default function PopupTest() {
           MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('PopupOptions', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();
@@ -131,6 +132,7 @@ export default function PopupTest() {
         MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('PopupOptions', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();
@@ -169,6 +171,7 @@ export default function PopupTest() {
           MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('PopupOptions', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();
@@ -204,12 +207,14 @@ export default function PopupTest() {
       let button_list = await driver.findComponent(ON.text('Popup', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      await driver.delayMs(1000);
 
       let TextButton =
         await driver.findComponent(ON.text(resource.resourceToString($r('app.string.custom_popup')),
           MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('CustomPopupOptions', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();
@@ -237,12 +242,14 @@ export default function PopupTest() {
       let button_list = await driver.findComponent(ON.text('Popup', MatchPattern.CONTAINS));
       expect(button_list === null).assertFalse();
       await button_list.click();
+      await driver.delayMs(1000);
 
       let TextButton =
         await driver.findComponent(ON.text(resource.resourceToString($r('app.string.StylePopup_title')),
           MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('PopupOptions', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();
@@ -280,6 +287,7 @@ export default function PopupTest() {
           MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('PopupOptions', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();
@@ -318,6 +326,7 @@ export default function PopupTest() {
           MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('click me', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();
@@ -348,7 +357,7 @@ export default function PopupTest() {
       await button_list.click();
       await driver.delayMs(1000);
 
-      await driver.swipe(100, 800, 100, 0);
+      await driver.swipe(100, 1200, 100, 100);
       await driver.delayMs(1000);
 
       let TextButton =
@@ -356,6 +365,7 @@ export default function PopupTest() {
           MatchPattern.CONTAINS));
       expect(TextButton === null).assertFalse();
       await TextButton.click();
+      await driver.delayMs(1000);
 
       let PopupOptionsButton = await driver.findComponent(ON.id('Popup', MatchPattern.CONTAINS));
       expect(PopupOptionsButton === null).assertFalse();

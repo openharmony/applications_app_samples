@@ -74,7 +74,7 @@ export struct PolymorphicEffectPopupExample {
       }
       .width('100%')
       .justifyContent(FlexAlign.Center)
-    }.backgroundColor('#f1f2f3')
+    }
     // [StartExclude polymorphicEffect_popup]
     .title($r('app.string.PolymorphicEffectPopupExample_title'))
     // [EndExclude polymorphicEffect_popup]

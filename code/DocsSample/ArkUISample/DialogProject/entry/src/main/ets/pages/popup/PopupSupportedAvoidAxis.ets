@@ -96,7 +96,7 @@ export struct SupportedAvoidAxisPopupExample {
       }
       .height('100%')
       .width('100%')
-    }.backgroundColor('#f1f2f3')
+    }
     // [StartExclude supportedAvoidAxis_popup]
     .title($r('app.string.SupportedAvoidAxisPopupExample_title'))
     // [EndExclude supportedAvoidAxis_popup]

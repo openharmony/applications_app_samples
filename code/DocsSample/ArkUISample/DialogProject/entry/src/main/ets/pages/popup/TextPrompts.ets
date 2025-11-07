@@ -21,26 +21,18 @@ export struct TextPopupExample {
 
   build() {
     NavDestination() {
-      Column({ space: 12 }) {
-
-        Column() {
-          Button('PopupOptions')
-            .id('PopupOptions')
-            .margin({ top: 300 })
-            .onClick(() => {
-              this.handlePopup = !this.handlePopup;
-            })
-            .bindPopup(this.handlePopup, {
-              message: 'This is a popup with PopupOptions',
-            })
-        }.width('100%').padding({ top: 5 })
-
-      }
-      .width('100%')
-      .height('100%')
-      .padding({ left: 12, right: 12 })
+      Column() {
+        Button('PopupOptions')
+          .id('PopupOptions')
+          .margin({ top: 300 })
+          .onClick(() => {
+            this.handlePopup = !this.handlePopup;
+          })
+          .bindPopup(this.handlePopup, {
+            message: 'This is a popup with PopupOptions',
+          })
+      }.width('100%').padding({ top: 5 })
     }
-    .backgroundColor('#f1f2f3')
     // [StartExclude text_popup]
     .title($r('app.string.TextPopup_title'))
     // [EndExclude text_popup]

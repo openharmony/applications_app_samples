@@ -49,7 +49,7 @@ export struct AvoidSoftKeyboardPopupExample {
           .position({ x: 100, y: 300 })
       }
       .width('100%')
-    }.backgroundColor('#f1f2f3')
+    }
     // [StartExclude avoidSoftKeyboard_popup]
     .title($r('app.string.AvoidSoftKeyboardPopupExample_title'))
     // [EndExclude avoidSoftKeyboard_popup]
