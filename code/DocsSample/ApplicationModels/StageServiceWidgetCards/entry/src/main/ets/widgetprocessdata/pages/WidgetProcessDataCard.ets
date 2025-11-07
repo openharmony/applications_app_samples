@@ -14,6 +14,7 @@
  */
 
 // [Start widget_process_data_card]
+// entry/src/main/ets/widgetprocessdata/pages/WidgetProcessDataCard.ets
 let storageProcess = new LocalStorage();
 
 @Entry(storageProcess)
