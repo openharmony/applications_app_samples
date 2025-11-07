@@ -20,8 +20,10 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 @Entry
 @Component
 export struct SelectMenu {
+  // [Start set_selection_menu_with_bindselectionmenu]
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
+  // [End set_selection_menu_with_bindselectionmenu]
   // [Start Right_Click_Text_CustomMenu]
   // 定义菜单项
   @Builder
@@ -44,7 +46,7 @@ export struct SelectMenu {
   // [End Right_Click_Text_CustomMenu]
   // [Start onCreate_Menu]
   // 定义onCreateMenu，onMenuItemClick
-  // $r('app.media.xxx')需要替换为开发者所需的图像资源文件
+  // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'customMenu1',
