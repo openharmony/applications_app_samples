@@ -16,6 +16,7 @@
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 // [End animator_template4_import_start]
 import resource from '../../../common/resource';
+import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
@@ -24,6 +25,8 @@ const TAG: string = '[AnimatorTest]';
 @Entry
 @Component
 struct Index {
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
   @State animatorOptions: AnimatorResult | undefined = undefined;
   // $r('app.string.create')资源文件中的value值为'创建'
   @State animatorStatus: Resource = $r('app.string.create');
@@ -67,8 +70,8 @@ struct Index {
     }
     //动画重复播放时执行方法
     this.animatorOptions.onRepeat = () => {
-      // $('app.string.repeat')资源文件中的value值为'动画重复播放'
-      hilog.info(DOMAIN, TAG, resource.resourceToString($r('app.string.repeat')));
+      // 'repeat'资源文件中的value值为'动画重复播放'
+      hilog.info(DOMAIN, TAG, this.manager.getStringByNameSync('repeat'));
     }
   }
   // [End animator_template4_show_start]

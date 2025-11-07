@@ -14,7 +14,7 @@
  */
 // [Start animator_template3_start]
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
-import resource from '../../../common/resource';
+import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
@@ -23,9 +23,11 @@ const TAG: string = '[AnimatorTest]';
 @Entry
 @Component
 struct Index {
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  private manager = this.context.resourceManager;
   @State animatorOptions: AnimatorResult | undefined = undefined;
-  // $r('app.string.create')资源文件中的value值为'创建'
-  @State animatorStatus: Resource = $r('app.string.create');
+  // 'create'资源文件中的value值为'创建'
+  @State animatorStatus: string = 'create';
   begin: number = 0;
   end: number = 300;
   topWidth: number = 150;
@@ -54,12 +56,12 @@ struct Index {
       }
     }
     this.animatorOptions.onCancel = () => {
-      // $r('app.string.cancel')资源文件中的value值为'取消'
-      this.animatorStatus = $r('app.string.cancel');
+      // 'cancel'资源文件中的value值为'取消'
+      this.animatorStatus = 'cancel';
     }
     this.animatorOptions.onFinish = () => {
-      // $r('app.string.complete')资源文件中的value值为'完成'
-      this.animatorStatus = $r('app.string.complete');
+      // 'complete'资源文件中的value值为'完成'
+      this.animatorStatus = 'complete';
     }
     this.animatorOptions.onRepeat = () => {
       hilog.info(DOMAIN, TAG, 'repeat play');
@@ -76,8 +78,8 @@ struct Index {
         // $r('app.string.play')资源文件中的value值为'播放'
         Button($r('app.string.play')).onClick(() => {
           this.animatorOptions?.play();
-          // $r('app.string.playing')资源文件中的value值为'播放中'
-          this.animatorStatus = $r('app.string.playing');
+          // 'playing'资源文件中的value值为'播放中'
+          this.animatorStatus = 'playing';
         }).width(80).height(35)
         // $r('app.string.reset')资源文件中的value值为'重置'
         Button($r('app.string.reset')).onClick(() => {
@@ -87,8 +89,8 @@ struct Index {
         // $r('app.string.pause')资源文件中的value值为'暂停'
         Button($r('app.string.pause')).onClick(() => {
           this.animatorOptions?.pause();
-          // $r('app.string.pause')资源文件中的value值为'暂停'
-          this.animatorStatus = $r('app.string.pause');
+          // 'pause'资源文件中的value值为'暂停'
+          this.animatorStatus = 'pause';
         }).width(80).height(35)
       }.width('100%').height('25%')
 
@@ -101,8 +103,8 @@ struct Index {
       .width('100%')
       .height('45%')
       .align(Alignment.Start)
-      // app.string.animatorStatus资源文件中的value值为'当前动画状态为:'
-      Text(resource.resourceToString($r('app.string.animatorStatus')) + resource.resourceToString(this.animatorStatus))
+      // 'animatorStatus'资源文件中的value值为'当前动画状态为:'
+      Text(this.manager.getStringByNameSync('animatorStatus') + this.manager.getStringByNameSync(this.animatorStatus))
     }.width('100%').height('100%')
   }
 }
