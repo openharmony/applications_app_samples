@@ -24,7 +24,7 @@ Environment.envProp('languageCode', 'en');
 const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
 
 if (lang.get() === 'zh') {
-  // $r('app.string.AppliedLogic_Hello')需要替换为开发者所需的资源文件
+  // app.string.AppliedLogic_Hello 资源文件中的value 值为'你好'
   hilog.info(DOMAIN, TAG, `${$r('app.string.AppliedLogic_Hello')}`);
 } else {
   hilog.info(DOMAIN, TAG, 'Hello!');
