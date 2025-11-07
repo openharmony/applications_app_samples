@@ -58,13 +58,13 @@ export struct SwipeLockedTabBar {
                       .fontSize(30)
                   }
                   .tabBar($r('app.string.technology'))
+                  // [EndExclude swipe_locked_tab_bar]
                 }
               }
-              // [EndExclude swipe_locked_tab_bar]
               .backgroundColor('#ff08a8f1')
               .width('100%')
             }
-            // app.string.homepage资源文件中的value值为‘首页’
+            // app.string.homepage资源文件中的value值为“首页”
             .tabBar($r('app.string.homepage'))
 
             // 其他TabContent内容：发现、推荐、我的
