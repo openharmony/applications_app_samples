@@ -32,7 +32,6 @@ struct TodoList {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
-    this.taskList = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
     if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
