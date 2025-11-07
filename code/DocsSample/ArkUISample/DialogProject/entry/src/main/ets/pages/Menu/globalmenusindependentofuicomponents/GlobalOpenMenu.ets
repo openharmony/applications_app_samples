@@ -13,12 +13,19 @@
  * limitations under the License.
  */
 
-import { ComponentContent, Popup,
+import {
+  ComponentContent,
+  Popup,
   PopupButtonOptions,
-  PopupIconOptions, PopupTextOptions, PromptAction, UIContext } from '@kit.ArkUI';
+  PopupIconOptions,
+  PopupTextOptions,
+  PromptAction,
+  UIContext
+} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-const DOMAIN = 0x0000;
+
+const DOMAIN = 0xFF00;
 
 class Params {
   public message: string = '';
@@ -61,6 +68,7 @@ export function buildText(params: Params) {
     buttons: [{
       text: 'confirm',
       action: () => {
+        // 全局变量定义：const DOMAIN = 0xFF00;
         hilog.info(DOMAIN, 'globalOpenMenu', 'confirm button click');
       },
       fontSize: 15,
@@ -106,6 +114,7 @@ export struct OpenPopup {
         enableArrow: true
       })
       .then(() => {
+        // 全局变量定义：const DOMAIN = 0xFF00;
         hilog.info(DOMAIN, 'globalOpenMenu', 'openMenu success');
       })
       .catch((err: BusinessError) => {
@@ -121,6 +130,7 @@ export struct OpenPopup {
         enableArrow: false
       }, true)
       .then(() => {
+        // 全局变量定义：const DOMAIN = 0xFF00;
         hilog.info(DOMAIN, 'globalOpenMenu', 'updateMenu success');
       })
       .catch((err: BusinessError) => {
@@ -134,6 +144,7 @@ export struct OpenPopup {
     this.getUIContext().getPromptAction()
       .closeMenu(this.contentNode)
       .then(() => {
+        // 全局变量定义：const DOMAIN = 0xFF00;
         hilog.info(DOMAIN, 'globalOpenMenu', 'closeMenu success');
       })
       .catch((err: BusinessError) => {
