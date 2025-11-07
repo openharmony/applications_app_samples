@@ -125,7 +125,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     // 获取message事件中传递的detail参数
     let msg: Record<string, string> = JSON.parse(message);
     if (msg.detail === 'message detail') {
-      // 执行业务逻辑
+      // 执行业务逻辑，由用户自行实现
       hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
     }
   }

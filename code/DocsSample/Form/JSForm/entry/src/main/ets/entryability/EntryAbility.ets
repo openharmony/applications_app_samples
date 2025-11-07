@@ -29,12 +29,12 @@ export default class EntryAbility extends UIAbility {
       let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
       // 获取router事件中传递的info参数
       if (params.info === 'router info') {
-        // 执行业务逻辑
+        // 执行业务逻辑，由用户自行实现
         hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
       }
       // 获取router事件中传递的message参数
       if (params.message === 'router message') {
-        // 执行业务逻辑
+        // 执行业务逻辑，由用户自行实现
         hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
       }
     }

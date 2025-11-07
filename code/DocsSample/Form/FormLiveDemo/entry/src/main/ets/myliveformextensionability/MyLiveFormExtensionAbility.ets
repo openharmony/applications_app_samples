@@ -36,7 +36,7 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
     // liveFormInfo.rect字段表示非激活态卡片组件相对激活态UI的位置和尺寸信息
     let formRect: formInfo.Rect = liveFormInfo.rect;
     storage.setOrCreate('formRect', formRect);
-    hilog.info(DOMAIN, 'testTag', `startAbilityByLiveForm onSessionCreate formId: ${formId}` +
+    hilog.info(DOMAIN, 'testTag', `MyLiveFormExtensionAbility onSessionCreate formId: ${formId}` +
       `, borderRadius: ${borderRadius}, formRectInfo: ${JSON.stringify(formRect)}`);
 
     // 加载互动页面
@@ -44,7 +44,7 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
   }
 
   onLiveFormDestroy(liveFormInfo: LiveFormInfo) {
-    hilog.info(DOMAIN, 'testTag', `startAbilityByLiveForm onDestroy`);
+    hilog.info(DOMAIN, 'testTag', `MyLiveFormExtensionAbility onDestroy`);
   }
 };
 // [End liveform_LiveFormExtensionAbility]

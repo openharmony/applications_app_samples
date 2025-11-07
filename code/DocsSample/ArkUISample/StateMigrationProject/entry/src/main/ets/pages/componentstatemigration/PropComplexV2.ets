@@ -15,7 +15,7 @@
 // [Start Parent12_start]
 @ObservedV2
 class Fruit {
-  @Trace public  apple: number = 5;
+  @Trace public apple: number = 5;
   @Trace public orange: number = 10;
 
   // 实现深拷贝，子组件不会修改父组件的数据
