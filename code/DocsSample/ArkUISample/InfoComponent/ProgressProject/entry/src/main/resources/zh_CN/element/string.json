@@ -18,31 +18,31 @@
     },
     {
       "name": "Linear_Progress",
-      "value": "Linear Progress"
+      "value": "线性样式进度条"
     },
     {
       "name": "Ring_Progress",
-      "value": "Ring Progress"
+      "value": "环形无刻度样式进度条"
     },
     {
       "name": "ScaleRing_Progress",
-      "value": "ScaleRing Progress"
+      "value": "环形有刻度样式进度条"
     },
     {
       "name": "Eclipse_Progress",
-      "value": "Eclipse Progress"
+      "value": "圆形样式进度条"
     },
     {
       "name": "Capsule_Progress",
-      "value": "Capsule Progress"
+      "value": "胶囊样式进度条"
     },
     {
       "name": "progress_add",
-      "value": "progress add 5"
+      "value": "进度条+5"
     },
     {
       "name": "progress_reduce",
-      "value": "progress reduce 5"
+      "value": "进度条-5"
     }
   ]
 }
