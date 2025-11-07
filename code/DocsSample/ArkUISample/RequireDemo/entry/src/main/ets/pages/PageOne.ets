@@ -21,13 +21,13 @@ struct PageOne {
 
   build() {
     Column() {
-      Child_V1({ message: this.message })
+      ChildIndex({ message: this.message })
     }
   }
 }
 
 @Component
-struct Child_V1 {
+struct ChildIndex {
   @Require @State message: string;
 
   build() {
