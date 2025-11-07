@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// [Start parent_require_tart]
+// [Start parent_require_start]
 @ObservedV2
 class Info {
   @Trace public name: string = '';
@@ -79,4 +79,4 @@ struct ParentPage {
     }
   }
 }
-// [End parent_require_tart]
+// [End parent_require_start]

@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-// [Start explame_require_tart]
+// [Start example_require_start]
 @Entry
 @Component
-struct Explame {
+struct Example {
   @State message: string = 'Hello World!';
 
   @Builder
@@ -71,4 +71,4 @@ struct ChildV2 {
     }
   }
 }
-// [End explame_require_tart]
+// [End example_require_start]

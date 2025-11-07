@@ -6,7 +6,7 @@
 
 ### 效果预览
 
-| 首页选项目录            | SceneRequire示例                          | ParentPage示例                            | PageOne示例                           | Explame 
+| 首页选项目录            | SceneRequire示例                          | ParentPage示例                            | PageOne示例                           | Example 
 |-------------------|------------------------------------|------------------------------------|--------------------------------------|--------------------------------------|
 | ![](screenshots/Screenshot_2025-10-24T173700.png) | ![](screenshots/Screenshot_2025-10-24T173714.png) | ![](screenshots/Screenshot_2025-10-24T173738.png) | ![](screenshots/Screenshot_2025-10-24T173811.png) | ![](screenshots/Screenshot_2025-10-24T173835.png) |
 
@@ -26,7 +26,7 @@ entry/src/
  │   │   ├── entryability
  │   │   ├── entrybackupability
  │   │   ├── pages
- │   │       ├── Explame.ets                   
+ │   │       ├── Example.ets                   
  │   │       ├── Index.ets                   // 首页
  │   │       ├── PageOne.ets                   
  │   │       ├── ParentPage.ets                   
