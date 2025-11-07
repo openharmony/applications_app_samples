@@ -86,7 +86,7 @@ struct MyLiveFormPage {
 
   build() {
     Stack({alignContent: Alignment.TopStart}) {
-      // 背景组件，和普通卡片等大
+      // 背景组件和普通卡片一样大
       Column()
         .width(this.formRect? this.formRect.width : 0)
         .height(this.formRect? this.formRect.height : 0)
