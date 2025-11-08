@@ -64,7 +64,8 @@ struct Index {
       this.animatorStatus = 'complete';
     }
     this.animatorOptions.onRepeat = () => {
-      hilog.info(DOMAIN, TAG, 'repeat play');
+      // 'repeat'资源文件中的value值为'动画重复播放'
+      hilog.info(DOMAIN, TAG, this.manager.getStringByNameSync('repeat'));
     }
   }
 
