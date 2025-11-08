@@ -15,7 +15,7 @@
 // [Start ReusableV2Component1]
 @ReusableV2 // 装饰ComponentV2的自定义组件
 @ComponentV2
-export struct ReusableV2Component {
+struct ReusableV2Component {
   @Local message: string = 'Hello World';
   build () {
     Column() {

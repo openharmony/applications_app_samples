@@ -20,7 +20,7 @@ struct Index {
   build() {
     Column() {
       ReusableV2Component()
-        .reuse({ reuseId: () => 'reuseComponent' }) // 使用'ReusableV2Component'作为reuseId
+        .reuse({ reuseId: () => 'reuseComponent' }) // 使用'reuseComponent'作为reuseId
       ReusableV2Component()
         .reuse({ reuseId: () => '' }) // 使用空字符串将默认使用组件名'ReusableV2Component'作为reuseId
       ReusableV2Component() // 未指定reuseId将默认使用组件名'ReusableV2Component'作为reuseId
