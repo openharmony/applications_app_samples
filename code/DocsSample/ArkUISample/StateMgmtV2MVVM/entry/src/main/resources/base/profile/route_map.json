@@ -3,7 +3,7 @@
     {
       "name": "PageTwo",
       "pageSourceFile": "src/main/ets/pages/PageTwo.ets",
-      "buildFunction": "Page2Builder",
+      "buildFunction": "PageTwoBuilder",
       "data": {
         "description" : "AppStorageV2 example"
       }
