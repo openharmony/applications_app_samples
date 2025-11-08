@@ -16,8 +16,6 @@
 // [Start drag_sorting]
 import { BasicDataSource } from './BasicDataSource';
 
-/** BasicDataSource代码见文档末尾BasicDataSource示例代码: StringData类型数组的BasicDataSource代码。
-其中BasicDataSource、StringData等名称需要开发者自行修改。**/
 class DragAndDropDataSource extends BasicDataSource {
   private dataArray: string[] = [];
 
