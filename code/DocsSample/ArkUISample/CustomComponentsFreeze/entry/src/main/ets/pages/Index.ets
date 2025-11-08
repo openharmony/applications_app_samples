@@ -19,17 +19,17 @@ import { Router } from '../model/routerModle';
 @Component
 struct Index {
   @State lists: Router [] = [
-    { name: $r('app.string.arkts_custom_components_freeze1'), path: 'View/Page1' },
-    { name: $r('app.string.arkts_custom_components_freeze2'), path: 'View/PageTwo' },
-    { name: $r('app.string.arkts_custom_components_freeze3'), path: 'View/TabContentTest' },
-    { name: $r('app.string.arkts_custom_components_freeze4'), path: 'View/LazyforEachTest' },
-    { name: $r('app.string.arkts_custom_components_freeze5'), path: 'View/MyNavigationTestStack' },
-    { name: $r('app.string.arkts_custom_components_freeze6'), path: 'View/ComponentReuse' },
-    { name: $r('app.string.arkts_custom_components_freeze7'), path: 'View/ComponentReuse1' },
-    { name: $r('app.string.arkts_custom_components_freeze8'), path: 'View/ComponentReuse2' },
-    { name: $r('app.string.arkts_custom_components_freeze9'), path: 'View/ComponentMixing' },
-    { name: $r('app.string.arkts_custom_components_freeze10'), path: 'View/ComponentMixing1' },
-    { name: $r('app.string.arkts_custom_components_freeze11'), path: 'View/Constraints' }
+    { name: 'Page 1 Page 2 Jump', path: 'View/Page1' },
+    { name: 'Page 2 Go back to the previous page', path: 'View/PageTwo' },
+    { name: 'TabContent creation', path: 'View/TabContentTest' },
+    { name: 'Freeze custom components cached in LazyForEach', path: 'View/LazyforEachTest' },
+    { name: 'NavigationContentMsStack will be set to inactive state', path: 'View/MyNavigationTestStack' },
+    { name: 'Mixed scenario of component reuse, if, and component freezing', path: 'View/ComponentReuse' },
+    { name: 'LazyForEach、 Mixed scenario of component reuse and component freezing', path: 'View/ComponentReuse1' },
+    { name: 'LazyForEach、if、 Mixed scenario of component reuse and component freezing', path: 'View/ComponentReuse2' },
+    { name: 'Mixing Navigation and TabContent', path: 'View/ComponentMixing' },
+    { name: 'Page and LazyForEach', path: 'View/ComponentMixing1' },
+    { name: 'Constraints', path: 'View/Constraints' }
   ]
 
   build() {

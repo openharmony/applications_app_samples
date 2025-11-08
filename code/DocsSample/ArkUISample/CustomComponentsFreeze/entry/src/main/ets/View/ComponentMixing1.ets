@@ -128,8 +128,7 @@ struct ChildComponent {
     Column() {
       Divider()
         .color('#ff11acb8')
-      // app.string.childComp 资源文件中的value值为'子组件'
-      Text(`${$r('app.string.childComp')}: ${this.desc}`)
+      Text(`subcomponent: ${this.desc}`)
         .fontSize(30)
         .fontWeight(30)
       Text(`${this.sum}`)
