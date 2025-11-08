@@ -15,8 +15,8 @@
 
 {
   "app": {
-    "bundleName": "com.example.ColorAdaption",
-    "vendor": "example",
+    "bundleName": "com.samples.ColorAdaption",
+    "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:layered_image",

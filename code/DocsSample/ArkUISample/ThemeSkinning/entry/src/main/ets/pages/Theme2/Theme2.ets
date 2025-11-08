@@ -38,7 +38,7 @@ class AppThemeSec implements CustomTheme {
 @Component
 struct DisplayPage1 {
   @State customTheme: CustomTheme = new AppTheme();
-  // $r('app.string.SetCustomThemeStyle')需要替换为开发者所需的资源文件
+  // $r('app.string.SetCustomThemeStyle')资源文件文件中的value值为'设置应用局部页面自定义主题风格'
   @State message: string =
     this.getUIContext().getHostContext()!.resourceManager.getStringSync($r('app.string.SetCustomThemeStyle'));
   count = 0;
