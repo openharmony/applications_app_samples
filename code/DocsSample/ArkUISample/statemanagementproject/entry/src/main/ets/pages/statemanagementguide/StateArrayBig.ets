@@ -19,7 +19,7 @@ const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[Sample_StateManagement]';
 
 @Observed
-class UiStyle3 {
+class UiStyle {
   public translateX: number = 0;
   public translateY: number = 0;
   public scaleX: number = 0.3;
@@ -39,7 +39,7 @@ class UiStyle3 {
 
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle: UiStyle3;
+  @ObjectLink uiStyle: UiStyle;
   private isRenderSpecialImage(): number { // 显示组件是否渲染的函数
     hilog.info(DOMAIN_NUMBER, TAG, 'SpecialImage is rendered');
     return 1;
@@ -59,8 +59,8 @@ struct SpecialImage {
 }
 
 @Component
-struct PageChild3 {
-  @ObjectLink uiStyle: UiStyle3
+struct PageChild {
+  @ObjectLink uiStyle: UiStyle;
 
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn(): number {
@@ -168,12 +168,12 @@ struct PageChild3 {
 
 @Entry
 @Component
-struct Page3 {
-  @State uiStyle: UiStyle3 = new UiStyle3();
+struct Page {
+  @State uiStyle: UiStyle = new UiStyle();
 
   build() {
     Stack() {
-      PageChild3({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -181,3 +181,5 @@ struct Page3 {
   }
 }
 // [End StateArrayBig_start]
+const stateArrayBigPage = Page;
+export default stateArrayBigPage;

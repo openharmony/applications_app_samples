@@ -18,7 +18,7 @@ const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[Sample_StateManagement]';
 
 @Observed
-class UiStyle5 {
+class UiStyle {
   @Track public translateX: number = 0;
   @Track public translateY: number = 0;
   @Track public scaleX: number = 0.3;
@@ -37,15 +37,15 @@ class UiStyle5 {
 }
 
 @Component
-struct SpecialImage5 {
-  @ObjectLink uiStyle: UiStyle5;
+struct SpecialImage {
+  @ObjectLink uiStyle: UiStyle;
   private isRenderSpecialImage(): number { // 显示组件是否渲染的函数
     hilog.info(DOMAIN_NUMBER, TAG, 'SpecialImage is rendered');
     return 1;
   }
 
   build() {
-    Image($r('app.media.foreground')) // 此处'app.media.foreground'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -58,8 +58,8 @@ struct SpecialImage5 {
 }
 
 @Component
-struct Page5Child {
-  @ObjectLink uiStyle: UiStyle5
+struct PageChild {
+  @ObjectLink uiStyle: UiStyle;
 
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn(): number {
@@ -84,12 +84,12 @@ struct Page5Child {
 
   build() {
     Column() {
-      SpecialImage5({
+      SpecialImage({
         uiStyle: this.uiStyle
       })
       Stack() {
         Column() {
-          Image($r('app.media.foreground')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
             .opacity(this.uiStyle.alpha)
             .scale({
               x: this.uiStyle.scaleX,
@@ -167,12 +167,12 @@ struct Page5Child {
 
 @Entry
 @Component
-struct Page5 {
-  @State uiStyle: UiStyle5 = new UiStyle5();
+struct Page {
+  @State uiStyle: UiStyle = new UiStyle();
 
   build() {
     Stack() {
-      SpecialImage5({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -180,3 +180,5 @@ struct Page5 {
   }
 }
 // [End StateArrayTrack_start]
+const stateArrayTrackPage = Page;
+export default stateArrayTrackPage;
