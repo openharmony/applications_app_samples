@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start appStorageV2_page1]
+// [Start appStorageV2_pageOne]
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from './Sample';
 
@@ -63,4 +63,4 @@ struct PageOne {
     }
   }
 }
-// [End appStorageV2_page1]
+// [End appStorageV2_pageOne]

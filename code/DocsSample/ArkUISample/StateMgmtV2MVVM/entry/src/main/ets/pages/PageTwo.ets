@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start appStorageV2_page2]
+// [Start appStorageV2_pageTwo]
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from './Sample';
 
 @Builder
-export function Page2Builder() {
-  Page2()
+export function PageTwoBuilder() {
+  PageTwo()
 }
 @Entry
 @ComponentV2
-struct Page2 {
+struct PageTwo {
   // 在AppStorageV2中创建一个key为Sample的键值对（如果存在，则返回AppStorageV2中的数据），并且和prop关联
   @Local prop: Sample = AppStorageV2.connect(Sample, () => new Sample())!;
   pathStack: NavPathStack = new NavPathStack();
@@ -59,4 +59,4 @@ struct Page2 {
     })
   }
 }
-// [End appStorageV2_page2]
+// [End appStorageV2_pageTwo]
