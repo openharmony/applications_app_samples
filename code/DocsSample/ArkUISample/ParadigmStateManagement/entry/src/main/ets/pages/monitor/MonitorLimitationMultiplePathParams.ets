@@ -12,21 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-@Component
-export struct MonitorLimitationMultiplePathParams {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_limitation_multiple_path_params'))
-  }
-}
-
 // [Start monitor_limitation_multiple_path_params]
+import { hilog } from "@kit.PerformanceAnalysisKit";
+
 @ObservedV2
 class Info {
   @Trace public name: string = 'Tom';
@@ -74,3 +62,17 @@ struct Index {
   }
 }
 // [End monitor_limitation_multiple_path_params]
+
+@Component
+export struct MonitorLimitationMultiplePathParams {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_limitation_multiple_path_params'))
+  }
+}

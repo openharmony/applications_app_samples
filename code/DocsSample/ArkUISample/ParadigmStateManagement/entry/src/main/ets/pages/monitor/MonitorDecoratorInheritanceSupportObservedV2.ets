@@ -12,20 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-@Component
-export struct MonitorDecoratorInheritanceSupportObservedV2 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_decorator_inheritance_support_observed_v2'))
-  }
-}
-
 // [Start monitor_decorator_inheritance_support_observed_v2]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -72,3 +58,16 @@ struct Index {
   }
 }
 // [End monitor_decorator_inheritance_support_observed_v2]
+@Component
+export struct MonitorDecoratorInheritanceSupportObservedV2 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_decorator_inheritance_support_observed_v2'))
+  }
+}

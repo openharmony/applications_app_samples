@@ -12,20 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-@Component
-export struct MonitorProblemEffectTimeClass {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_effect_time_class'))
-  }
-}
-
 // [Start monitor_problem_effect_time_class]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -63,3 +49,16 @@ struct Index {
   }
 }
 // [End monitor_problem_effect_time_class]
+@Component
+export struct MonitorProblemEffectTimeClass {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_effect_time_class'))
+  }
+}
