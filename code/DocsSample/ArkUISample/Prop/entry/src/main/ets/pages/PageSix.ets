@@ -16,7 +16,7 @@
 // [Start prop_six_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG: string = '[Sample_prop]';
+const TAG: string = '[SampleProp]';
 let nextId: number = 1;
 
 // @Observed

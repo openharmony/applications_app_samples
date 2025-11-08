@@ -14,10 +14,10 @@
  */
 // [Start localtorage_page_two_sigle_syn]
 // 创建新实例并使用给定对象初始化
-let para0: Record<string, number> = { 'PropA': 47 };
-let storage0: LocalStorage = new LocalStorage(para0);
+let paraOneLocal: Record<string, number> = { 'PropA': 47 };
+let storageOneLocal: LocalStorage = new LocalStorage(paraOneLocal);
 // 使LocalStorage可从@Component组件访问
-@Entry(storage0)
+@Entry(storageOneLocal)
 @Component
 struct ParentOne {
   // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
@@ -25,8 +25,8 @@ struct ParentOne {
 
   build() {
     Column({ space: 15 }) {
-      // 点击后从47开始加1，只改变当前组件显示的storagePropOne，不会同步到LocalStorage中
-      Button(`Parent from LocalStorage ${this.storagePropOne}`)
+      // 点击后从47开始加1，只改变当前组件显示的storagePropOne ，不会同步到LocalStorage中
+      Button(`ParentOne from LocalStorage ${this.storagePropOne}`)
         .onClick(() => {
           this.storagePropOne += 1;
         })
@@ -42,8 +42,8 @@ struct ChildOne {
 
   build() {
     Column({ space: 15 }) {
-      // 当Parent改变时，当前storagePropTwo不会改变，显示47
-      Text(`Parent from LocalStorage ${this.storagePropTwo}`)
+      // 当ParentOne改变时，当前storagePropTwo不会改变，显示47
+      Text(`ParentOne from LocalStorage ${this.storagePropTwo}`)
     }
   }
 }
