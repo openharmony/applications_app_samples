@@ -134,8 +134,8 @@ export struct ContentWillChange {
                 this.currentIndex = index;
               })
 
-              // app.string.ContentWillChange_changeIndex资源文件中的value值为“动态修改index”
-              Button('app.string.ContentWillChange_changeIndex').width('50%').margin({ top: 1 }).height(25)
+              // app.string.ContentWillChange_animationMode资源文件中的value值为“动态修改animationMode”
+              Button($r('app.string.ContentWillChange_animationMode')).width('50%').margin({ top: 1 }).height(25)
                 .onClick(()=>{
                   if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
                     this.currentAnimationMode = AnimationMode.ACTION_FIRST;

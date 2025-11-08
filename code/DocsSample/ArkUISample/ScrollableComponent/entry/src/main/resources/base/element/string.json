@@ -1251,6 +1251,10 @@
     {
       "name": "Light_mode",
       "value": "浅色模式"
+    },
+    {
+      "name": "ContentWillChange_animationMode",
+      "value": "动态修改animationMode"
     }
   ]
 }

@@ -32,7 +32,7 @@ export struct ContentPageNoAndTabLinkage {
       Column({ space: 12 }) {
         // [StartExclude content_page_tab_linkage]
         ComponentCard({ title: $r('app.string.ContentWillChange_titleContentOnAndTabSync') }) {
-        // [EndExclude content_page_tab_linkage]
+          // [EndExclude content_page_tab_linkage]
           Tabs({ barPosition: BarPosition.End }) {
             TabContent() {
               // app.string.homepage_content资源文件中的value值为“首页内容”
