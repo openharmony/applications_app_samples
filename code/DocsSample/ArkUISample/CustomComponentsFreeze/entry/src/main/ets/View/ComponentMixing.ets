@@ -114,7 +114,7 @@ struct MyNavigationTestStack {
     } else if (name === 'pageTwo') {
       PageTwoStack()
     }
-  };
+  }
 
   build() {
     Column() {

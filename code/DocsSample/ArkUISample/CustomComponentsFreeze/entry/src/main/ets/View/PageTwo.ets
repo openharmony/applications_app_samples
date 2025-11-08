@@ -20,22 +20,22 @@ const TAG = 'FreezeChild';
 @Entry
 @Component({ freezeWhenInactive: true })
 struct PageTwo {
-  @StorageLink('PropA') @Watch('second') storageLink2: number = 1;
+  @StorageLink('PropA') @Watch('second') storageLink: number = 1;
 
   second() {
-    hilog.info(DOMAIN, TAG, 'second page: ' + `${this.storageLink2}`);
+    hilog.info(DOMAIN, TAG, 'second page: ' + `${this.storageLink}`);
   }
 
   build() {
     Column() {
-      Text(`second Page ${this.storageLink2}`).fontSize(50)
+      Text(`second Page ${this.storageLink}`).fontSize(50)
       Button('back')
         .onClick(() => {
           this.getUIContext().getRouter().back();
         })
-      Button('second page storageLink2 + 2').fontSize(30)
+      Button('second page storageLink + 2').fontSize(30)
         .onClick(() => {
-          this.storageLink2 += 2;
+          this.storageLink += 2;
         })
     }
   }
