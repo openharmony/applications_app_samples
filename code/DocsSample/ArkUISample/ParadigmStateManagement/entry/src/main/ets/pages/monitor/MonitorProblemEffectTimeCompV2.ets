@@ -12,23 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_problem_effect_time_comp_v2]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Component
-export struct MonitorProblemEffectTimeCompV2 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_effect_time_comp_v2'))
-  }
-}
-
-// [Start monitor_problem_effect_time_comp_v2]
 @ObservedV2
 class Info {
   @Trace public message: string = 'not initialized';
@@ -101,3 +87,16 @@ struct Index {
   }
 }
 // [End monitor_problem_effect_time_comp_v2]
+@Component
+export struct MonitorProblemEffectTimeCompV2 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_effect_time_comp_v2'))
+  }
+}

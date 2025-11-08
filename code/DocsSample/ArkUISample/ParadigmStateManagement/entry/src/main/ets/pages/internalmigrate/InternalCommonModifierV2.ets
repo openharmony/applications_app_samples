@@ -41,7 +41,6 @@ struct MyImage1 {
 
   build() {
     // 此处'app.media.img2'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-    // $r('app.media.img2')需要替换为开发者所需的资源文件
     Image($r('app.media.img2'))
       .attributeModifier(this.modifier as MyModifier)
   }

@@ -12,23 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_limitation_parameter_string_constraint]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Component
-export struct MonitorLimitationParameterStringConstraint {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_limitation_parameter_string_constraint'))
-  }
-}
-
-// [Start monitor_limitation_parameter_string_constraint]
 const t2: string = 't2'; // const常量
 
 enum ENUM {
@@ -105,3 +91,16 @@ struct Index {
   }
 }
 // [End monitor_limitation_parameter_string_constraint]
+@Component
+export struct MonitorLimitationParameterStringConstraint {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_limitation_parameter_string_constraint'))
+  }
+}

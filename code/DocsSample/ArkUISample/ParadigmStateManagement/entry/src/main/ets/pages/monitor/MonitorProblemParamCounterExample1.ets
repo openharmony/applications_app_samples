@@ -12,23 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_problem_param_counter_example_1]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Component
-export struct MonitorProblemParamCounterExample1 {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_param_counter_example_1'))
-  }
-}
-
-// [Start monitor_problem_param_counter_example_1]
 @ObservedV2
 class Info {
   public name: string = 'John';
@@ -60,3 +46,16 @@ struct Index {
   }
 }
 // [End monitor_problem_param_counter_example_1]
+@Component
+export struct MonitorProblemParamCounterExample1 {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_param_counter_example_1'))
+  }
+}

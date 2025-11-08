@@ -12,23 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Local_Question_Spark_Update]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Component
-export struct LocalQuestionSparkUpdate {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.local_question_spark_update'))
-  }
-}
-
-// [Start Local_Question_Spark_Update]
 @Entry
 @ComponentV2
 struct Index {
@@ -50,3 +36,16 @@ struct Index {
   }
 }
 // [End Local_Question_Spark_Update]
+@Component
+export struct LocalQuestionSparkUpdate {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.local_question_spark_update'))
+  }
+}

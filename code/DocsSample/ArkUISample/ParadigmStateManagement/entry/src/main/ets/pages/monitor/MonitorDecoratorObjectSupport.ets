@@ -12,23 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_decorator_object_support]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Component
-export struct MonitorDecoratorObjectSupport {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_decorator_object_support'))
-  }
-}
-
-// [Start monitor_decorator_object_support]
 @ObservedV2
 class Info {
   @Trace public person: Person;
@@ -84,3 +70,16 @@ struct Index {
   }
 }
 // [End monitor_decorator_object_support]
+@Component
+export struct MonitorDecoratorObjectSupport {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_decorator_object_support'))
+  }
+}

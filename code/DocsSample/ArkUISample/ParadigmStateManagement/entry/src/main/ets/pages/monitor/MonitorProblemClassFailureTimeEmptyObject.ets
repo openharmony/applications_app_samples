@@ -12,23 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_problem_class_failure_time_empty_object]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Component
-export struct MonitorProblemClassFailureTimeEmptyObject {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_problem_class_failure_time_empty_object'))
-  }
-}
-
-// [Start monitor_problem_class_failure_time_empty_object]
 @ObservedV2
 class InfoWrapper {
   public info?: Info;
@@ -108,3 +94,16 @@ struct Index {
   }
 }
 // [End monitor_problem_class_failure_time_empty_object]
+@Component
+export struct MonitorProblemClassFailureTimeEmptyObject {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_problem_class_failure_time_empty_object'))
+  }
+}

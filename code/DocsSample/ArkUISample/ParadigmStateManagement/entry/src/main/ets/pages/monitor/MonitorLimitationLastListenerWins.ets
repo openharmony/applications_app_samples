@@ -12,23 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start monitor_limitation_last_listener_wins]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Component
-export struct MonitorLimitationLastListenerWins {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.monitor_limitation_last_listener_wins'))
-  }
-}
-
-// [Start monitor_limitation_last_listener_wins]
 @ObservedV2
 class Info {
   @Trace public name: string = 'Tom';
@@ -59,3 +45,16 @@ struct Index {
   }
 }
 // [End monitor_limitation_last_listener_wins]
+@Component
+export struct MonitorLimitationLastListenerWins {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.monitor_limitation_last_listener_wins'))
+  }
+}

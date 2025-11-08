@@ -12,9 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start state_problem_complex_constant_repeat_refresh]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// [Start state_problem_complex_constant_repeat_refresh]
 class DataObj {
   public name: string = 'default name';
 
