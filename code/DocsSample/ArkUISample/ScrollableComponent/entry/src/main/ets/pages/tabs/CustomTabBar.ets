@@ -22,7 +22,7 @@ export struct CustomTabBar {
   @State currentIndex: number = 0;
 
   @Builder
-  tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
+  tabBuilder(title: ResourceStr, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
     Column() {
       Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
         .size({ width: 25, height: 25 })
@@ -44,7 +44,7 @@ export struct CustomTabBar {
             TabContent() {
               Column() {
                 // app.string.mine_content资源文件中的value值为“我的内容”
-                Text('app.string.mine_content')  
+                Text($r('app.string.mine_content'))  
               }
               .width('100%')
               .height('100%')
