@@ -91,3 +91,5 @@ struct Index {
   }
 }
 // [End TextComponent1_start]
+const stateArrayPage = Index;
+export default stateArrayPage;

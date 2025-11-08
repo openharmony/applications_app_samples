@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start TextComponent13_start]
+// [Start TextComponent_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[Sample_StateManagement]';
 
 @Observed
-class StyleList extends Array<TextStyles13> {
+class StyleList extends Array<TextStyles> {
 }
 
 @Observed
-class TextStyles13 {
+class TextStyles {
   public fontSize: number;
 
   constructor(fontSize: number) {
@@ -31,23 +31,23 @@ class TextStyles13 {
 }
 
 @Component
-struct TextComponent13 {
-  @ObjectLink textStyle13: TextStyles13;
+struct TextComponent {
+  @ObjectLink textStyle: TextStyles;
 
   build() {
     Text('Hello World')
-      .fontSize(this.textStyle13.fontSize)
+      .fontSize(this.textStyle.fontSize)
   }
 }
 
 @Entry
 @Component
-struct Page13 {
+struct Page {
   @State styleList: StyleList = new StyleList();
 
   aboutToAppear() {
     for (let i = 15; i < 50; i++) {
-      this.styleList.push(new TextStyles13(i));
+      this.styleList.push(new TextStyles(i));
     }
   }
 
@@ -62,13 +62,15 @@ struct Page13 {
           hilog.info(DOMAIN_NUMBER, TAG, 'change font size');
         })
       List() {
-        ForEach(this.styleList, (item: TextStyles13) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
-            TextComponent13({ textStyle13: item })
+            TextComponent({ textStyle: item })
           }
         })
       }
     }
   }
 }
-// [End TextComponent13_start]
+// [End TextComponent_start]
+const stateArrayForeach2Page = Page;
+export default stateArrayForeach2Page;
