@@ -4,13 +4,18 @@ import BuilderProxyNode02Test from './BuilderProxyNode02.test';
 import EnvironmentCallbackPageTest from './EnvironmentCallbackPage.test';
 import FrameNodeTest from './FrameNode.test';
 import inheritFreezeTest from './InheritFreezeOptionsPage.test';
+import inheritFreezeRouterPageTest from './inheritFreezeRouterPage.test';
 import isDisposedPageTest from './IsDisposedPage.test';
 import LocalStoragePageTest from './LocalStoragePage.test';
+import NavigationPageTest from './NavigationPage.test';
 import postTouchEventTest from './PostTouchEvent.test';
 import RenderNodeTest from './RenderNode.test';
+import RepeatPageTest from './RepeatPage.test';
+import RepeatTabPageTest from './RepeatTabPage.test';
 import ReusablePage01Test from './ReusablePage01.test';
 import ReusablePage02Test from './ReusablePage02.test';
 import routerPageTest from './RouterPage.test';
+import TabContentPageTest from './TabContentPage.test';
 import WrappedBuilderTest from './WrappedBuilder.test';
 
 export default function testsuite() {
@@ -28,4 +33,9 @@ export default function testsuite() {
   isDisposedPageTest();
   inheritFreezeTest();
   ArkWebPageTest();
+  inheritFreezeRouterPageTest();
+  NavigationPageTest();
+  RepeatPageTest();
+  RepeatTabPageTest();
+  TabContentPageTest();
 }
