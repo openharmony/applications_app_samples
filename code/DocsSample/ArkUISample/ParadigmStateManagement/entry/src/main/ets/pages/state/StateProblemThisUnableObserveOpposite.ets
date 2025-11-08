@@ -12,9 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+// [Start state_problem_this_unable_observe_opposite]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// [Start state_problem_this_unable_observe_opposite]
 @Entry
 @Component
 struct Index {

@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 // [Start monitor_limitation_multiple_path_params]
-import { hilog } from "@kit.PerformanceAnalysisKit";
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @ObservedV2
 class Info {
