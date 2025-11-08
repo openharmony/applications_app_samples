@@ -12,8 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 @Component
 export struct MonitorProblemStateChangeUseAddMonitor {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -29,6 +27,8 @@ export struct MonitorProblemStateChangeUseAddMonitor {
 }
 
 // [Start monitor_problem_state_change_use_addMonitor]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @ObservedV2
 class User {
   @Trace public age: number = 10;

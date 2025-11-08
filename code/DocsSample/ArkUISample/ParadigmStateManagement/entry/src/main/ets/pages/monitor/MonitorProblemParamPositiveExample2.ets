@@ -12,8 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 @Component
 export struct MonitorProblemParamPositiveExample2 {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -29,6 +27,8 @@ export struct MonitorProblemParamPositiveExample2 {
 }
 
 // [Start monitor_problem_param_positive_example_2]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @ObservedV2
 class Info {
   public name: string = 'John';

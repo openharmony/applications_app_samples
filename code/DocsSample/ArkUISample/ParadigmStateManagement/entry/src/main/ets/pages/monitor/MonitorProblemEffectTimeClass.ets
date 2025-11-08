@@ -12,8 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 @Component
 export struct MonitorProblemEffectTimeClass {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -29,6 +27,8 @@ export struct MonitorProblemEffectTimeClass {
 }
 
 // [Start monitor_problem_effect_time_class]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @ObservedV2
 class Info {
   @Trace public message: string = 'not initialized';

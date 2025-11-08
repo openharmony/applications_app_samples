@@ -12,8 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 @Component
 export struct MonitorDecoratorLastWrite {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -29,6 +27,8 @@ export struct MonitorDecoratorLastWrite {
 }
 
 // [Start monitor_decorator_last_write]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @ObservedV2
 class Frequency {
   @Trace public count: number = 0;
@@ -63,4 +63,5 @@ struct Index {
     }
   }
 }
+
 // [End monitor_decorator_last_write]

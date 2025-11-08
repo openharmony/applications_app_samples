@@ -12,8 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 @Component
 export struct MonitorDecoratorObjectTraceObservedV2 {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -29,6 +27,8 @@ export struct MonitorDecoratorObjectTraceObservedV2 {
 }
 
 // [Start monitor_decorator_object_trace_observed_v2]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @ObservedV2
 class Inner {
   @Trace public num: number = 0;

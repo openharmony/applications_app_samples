@@ -12,8 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 @Component
 export struct MonitorProblemClassFailureTimeEmptyObject {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -29,6 +27,8 @@ export struct MonitorProblemClassFailureTimeEmptyObject {
 }
 
 // [Start monitor_problem_class_failure_time_empty_object]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @ObservedV2
 class InfoWrapper {
   public info?: Info;

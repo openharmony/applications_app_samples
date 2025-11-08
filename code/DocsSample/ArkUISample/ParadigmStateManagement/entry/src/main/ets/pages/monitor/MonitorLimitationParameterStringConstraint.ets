@@ -12,8 +12,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
 @Component
 export struct MonitorLimitationParameterStringConstraint {
   @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
@@ -29,6 +27,8 @@ export struct MonitorLimitationParameterStringConstraint {
 }
 
 // [Start monitor_limitation_parameter_string_constraint]
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const t2: string = 't2'; // const常量
 
 enum ENUM {
