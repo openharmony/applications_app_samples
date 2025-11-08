@@ -99,7 +99,7 @@ export struct SelectMenu {
         }
 
         ComponentCard({ title: $r('app.string.SetSelectionMenu_textContent_2') }) {
-          // [Start set_selection_menu_with_bindselectionmenu]
+          // [Start set_selection_menu_with_bindselectionmenu_sec]
           // 'app.string.show_selected_menu'资源文件中的value值为'这是一段文本，用来展示选中菜单'
           Text($r('app.string.show_selected_menu'), this.options)
             .fontSize(30)
@@ -116,7 +116,7 @@ export struct SelectMenu {
                   resource.resourceToString($r('app.string.SelectMenu_Text_Close')));
               }
             })
-          // [End set_selection_menu_with_bindselectionmenu]
+          // [End set_selection_menu_with_bindselectionmenu_sec]
         }
 
         ComponentCard({ title: $r('app.string.SetSelectionMenu_textContent_3') }) {
