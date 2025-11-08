@@ -65,7 +65,7 @@ export struct LengthMetric {
     // 后标签offsetX的偏移量backOffsetVpX=frontTag+message最后一行的宽度
     this.backOffsetVpX =
       this.getUIContext().px2vp((paragraphArr[paragraphArr.length-1].getLineWidth(linesFrontTagPlusMessage - 1)))
-    // 后标签offsetY的偏移量backOffsetVpY=frontTag+message总高度-最后一行的高度。
+    // 后标签offsetY的偏移量backOffsetVpY=frontTag+message总高度-最后一行的高度
     let heightFrontTagPlusMessageVp = 0;
     for (let i = 0; i < paragraphArr.length; ++i) {
       heightFrontTagPlusMessageVp += this.getUIContext().px2vp(paragraphArr[i].getHeight());
