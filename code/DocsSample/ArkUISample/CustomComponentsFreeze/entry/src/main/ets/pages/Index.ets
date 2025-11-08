@@ -20,7 +20,7 @@ import { Router } from '../model/routerModle';
 struct Index {
   @State lists: Router [] = [
     { name: $r('app.string.arkts_custom_components_freeze1'), path: 'View/Page1' },
-    { name: $r('app.string.arkts_custom_components_freeze2'), path: 'View/Page2' },
+    { name: $r('app.string.arkts_custom_components_freeze2'), path: 'View/PageTwo' },
     { name: $r('app.string.arkts_custom_components_freeze3'), path: 'View/TabContentTest' },
     { name: $r('app.string.arkts_custom_components_freeze4'), path: 'View/LazyforEachTest' },
     { name: $r('app.string.arkts_custom_components_freeze5'), path: 'View/MyNavigationTestStack' },

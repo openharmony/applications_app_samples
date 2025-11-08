@@ -35,7 +35,7 @@ struct PageOne {
         })
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          this.getUIContext().getRouter().pushUrl({ url: 'View/Page2' });
+          this.getUIContext().getRouter().pushUrl({ url: 'View/PageTwo' });
         })
     }
   }
