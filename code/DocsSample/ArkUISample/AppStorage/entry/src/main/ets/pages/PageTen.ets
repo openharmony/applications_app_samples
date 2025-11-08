@@ -15,7 +15,7 @@
 // [Start appstorage_page_ten]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
-const TAG: string = '[Sample_appstorage]';
+const TAG: string = '[SampleAppStorage]';
 AppStorage.setOrCreate('propA', false);
 
 @Entry
