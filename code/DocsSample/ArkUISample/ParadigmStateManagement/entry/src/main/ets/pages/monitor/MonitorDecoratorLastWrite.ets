@@ -63,5 +63,4 @@ struct Index {
     }
   }
 }
-
 // [End monitor_decorator_last_write]
