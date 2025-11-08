@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [Start Persistent_page_three]
+// [Start Persistent_page_first]
 const MAX_NUM: number = 50; // 大字体尺寸
-
+// [End Persistent_page_first]
 @Entry
 @Component
 struct TestPageThree {
@@ -23,11 +23,13 @@ struct TestPageThree {
 
   // 组件初始化并即将显示时执行（仅触发一次）
   aboutToAppear() {
+    // [Start Persistent_page_three]
     PersistentStorage.persistProp('aProp', 48);
     if ((AppStorage.get<number>('aProp') ?? 0) > MAX_NUM) {
       // 如果PersistentStorage存储的值超过50，设置为47
       AppStorage.setOrCreate('aProp',47);
     }
+    // [End Persistent_page_three]
   }
 
   build() {
@@ -39,4 +41,3 @@ struct TestPageThree {
     }
   }
 }
-// [End Persistent_page_three]
