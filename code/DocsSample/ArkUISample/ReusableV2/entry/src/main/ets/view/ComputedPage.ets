@@ -17,7 +17,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'Reusablev2_';
 
 @ObservedV2
 class Info {
@@ -83,11 +82,11 @@ struct ReusableV2Component {
   }
   @Monitor('val')
   onValChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, TAG, BUNDLE + `val change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(DOMAIN, TAG, `val change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   @Monitor('plusParam')
   onPlusParamChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, TAG, BUNDLE + `plusParam change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(DOMAIN, TAG, `plusParam change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   build() {
     Column() {

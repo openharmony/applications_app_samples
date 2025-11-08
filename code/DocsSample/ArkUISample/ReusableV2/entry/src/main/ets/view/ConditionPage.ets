@@ -17,7 +17,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'Reusablev2_';
 
 @ObservedV2
 class Info {
@@ -50,18 +49,18 @@ struct ReusableV2Component {
   @Local info: Info = info; // 仅做演示使用，并不建议@Local赋值全局变量
   @Monitor('info.age')
   onValChange() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'info.age change');
+    hilog.info(DOMAIN, TAG, 'info.age change');
   }
   aboutToRecycle() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'aboutToRecycle');
+    hilog.info(DOMAIN, TAG, 'aboutToRecycle');
     this.info.age++;
   }
   aboutToReuse() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'aboutToReuse');
+    hilog.info(DOMAIN, TAG, 'aboutToReuse');
     this.info.age++;
   }
   onRender(): string {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'info.age onRender');
+    hilog.info(DOMAIN, TAG, 'info.age onRender');
     return this.info.age.toString();
   }
   build() {

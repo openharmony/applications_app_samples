@@ -17,7 +17,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'Reusablev2_';
 
 @Entry
 @ComponentV2
@@ -25,28 +24,28 @@ struct Index {
   @Local condition1: boolean = false;
   @Local condition2: boolean = true;
   build() {
-      Column(){
-        Button('step1. appear')
-          .onClick(() => {
-            this.condition1 = true;
-          })
-        Button('step2. recycle')
-          .onClick(() => {
-            this.condition2 = false;
-          })
-        Button('step3. reuse')
-          .onClick(() => {
-            this.condition2 = true;
-          })
-        Button('step4. disappear')
-          .onClick(() => {
-            this.condition1 = false;
-          })
-        if (this.condition1) {
-          NormalV2Component({ condition: this.condition2 })
-        }
+    Column(){
+      Button('step1. appear')
+        .onClick(() => {
+          this.condition1 = true;
+        })
+      Button('step2. recycle')
+        .onClick(() => {
+          this.condition2 = false;
+        })
+      Button('step3. reuse')
+        .onClick(() => {
+          this.condition2 = true;
+        })
+      Button('step4. disappear')
+        .onClick(() => {
+          this.condition1 = false;
+        })
+      if (this.condition1) {
+        NormalV2Component({ condition: this.condition2 })
       }
     }
+  }
 }
 @ComponentV2
 struct NormalV2Component {
@@ -61,16 +60,16 @@ struct NormalV2Component {
 @ComponentV2
 struct ReusableV2Component {
   aboutToAppear() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToAppear called'); // 组件创建时调用
+    hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToAppear called'); // 组件创建时调用
   }
   aboutToDisappear() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToDisappear called'); // 组件销毁时调用
+    hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToDisappear called'); // 组件销毁时调用
   }
   aboutToRecycle() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToRecycle called'); // 组件回收时调用
+    hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToRecycle called'); // 组件回收时调用
   }
   aboutToReuse() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToReuse called'); // 组件复用时调用
+    hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToReuse called'); // 组件复用时调用
   }
   build() {
     Column() {

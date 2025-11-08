@@ -17,7 +17,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'Reusablev2_';
 
 @Entry
 @ComponentV2
@@ -62,13 +61,13 @@ struct Index {
 struct ReusableV2Component {
   @Require @Param num: number;
   aboutToAppear() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToAppear');
+    hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToAppear');
   }
   aboutToRecycle() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToRecycle');
+    hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToRecycle');
   }
   aboutToReuse() {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'ReusableV2Component aboutToReuse');
+    hilog.info(DOMAIN, TAG, 'ReusableV2Component aboutToReuse');
   }
   build() {
     Column() {
