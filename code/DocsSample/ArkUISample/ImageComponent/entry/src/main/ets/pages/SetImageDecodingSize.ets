@@ -23,7 +23,7 @@ struct SetImageDecodingSize {
       Row({ space: 50 }) {
         //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
-        // 使用sourceSize接口验证对图片设置解码尺寸,降低图片分辨率.
+        // 使用sourceSize接口对图片设置解码尺寸，降低图片分辨率。
           .sourceSize({
             width: 40,
             height: 40
@@ -35,7 +35,7 @@ struct SetImageDecodingSize {
           .overlay('width:40 height:40', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
         //  $r('app.media.example')需要替换为开发者所需的资源文件
         Image($r('app.media.example'))
-        // 使用sourceSize接口验证对图片设置解码尺寸,降低图片分辨率.
+        // 使用sourceSize接口对图片设置解码尺寸，降低图片分辨率。
           .sourceSize({
             width: 90,
             height: 90

@@ -29,7 +29,7 @@ struct DisplayVectorDiagram {
         //  [End svg_fillColor]
 
         //  [Start local_svg]
-        //  'images/icon.svg' 需要替换为开发者所需的资源文件
+        //  'images/icon.svg'需要替换为开发者所需的资源文件
         Image('/images/icon.svg')
           .width(50)
           .height(50)
