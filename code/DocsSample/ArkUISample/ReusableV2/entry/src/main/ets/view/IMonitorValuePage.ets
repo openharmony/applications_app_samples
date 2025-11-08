@@ -17,7 +17,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'Reusablev2_';
 
 @ObservedV2
 class Info {
@@ -48,7 +47,7 @@ struct ReusableV2Component {
   noDecoInfo: Info = new Info(30); // 未加装饰器，被视作常量
   @Monitor('noDecoInfo.age')
   onAgeChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, TAG, BUNDLE + `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(DOMAIN, TAG, `age change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   aboutToRecycle() {
     this.noDecoInfo.age = 25;

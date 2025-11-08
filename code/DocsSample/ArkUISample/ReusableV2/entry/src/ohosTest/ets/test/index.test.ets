@@ -20,7 +20,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG = '[Sample_Reusablev2]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'Reusablev2_';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -43,7 +42,7 @@ export default function IndexTest(){
       await delegator.startAbility(want);
       await sleep(2000);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'get top ability');
+      hilog.info(DOMAIN, TAG, 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 
@@ -72,7 +71,7 @@ export default function IndexTest(){
 
         done();
       } catch (error) {
-        hilog.error(DOMAIN, TAG, BUNDLE + 'Index test failed:', error);
+        hilog.error(DOMAIN, TAG, 'Index test failed:', error);
         done();
       }
     });
