@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Persistent_page_first]
-const MAX_NUM: number = 50; // 大字体尺寸
+const MAX_NUM: number = 50;
 // [End Persistent_page_first]
 @Entry
 @Component

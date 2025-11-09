@@ -34,7 +34,7 @@ struct TestCase6 {
           .fontSize(FONT_SIZE_LARGE)
           .fontWeight(FontWeight.Bold)
         Button('changeToNumber').onClick(() => {
-          this.p = DEFAULT_NUMBER; // 引用常量，避免直接写10
+          this.p = DEFAULT_NUMBER;
         })
         Button('changeTo undefined').onClick(() => {
           this.p = undefined;

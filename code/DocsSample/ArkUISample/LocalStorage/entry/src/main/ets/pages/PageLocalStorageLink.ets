@@ -20,7 +20,7 @@ struct LocalStorageLinkComponent {
 
   build() {
     Column() {
-      Text('@LocalStorageLink接口初始化，@LocalStorageLink取值')
+      Text('@LocalStorageLink API Initialization, @LocalStorageLink Value')
       Text(`${this.linkA}`)
         .fontSize(20)
         .onClick(() => {
@@ -43,7 +43,7 @@ struct LocalStoragePropComponent {
 
   build() {
     Column() {
-      Text('@LocalStorageProp接口初始化，@LocalStorageProp取值')
+      Text('@LocalStorageProp API Initialization, @LocalStorageProp Value')
       Text(`${this.propA}`)
         .fontSize(20)
         .onClick(() => {

@@ -33,7 +33,7 @@ struct Test {
 
   build() {
     Column() {
-      Text(`count值: ${this.count}`)
+      Text(`count value: ${this.count}`)
       Button('change')
         .onClick(() => {
           model.call('count', this.count + 1);
