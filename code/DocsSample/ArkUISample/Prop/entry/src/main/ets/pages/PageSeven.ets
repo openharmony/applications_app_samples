@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
+// [Start prop_seven_start]
 @Component
-  // [Start prop_seven_start]
 struct MyComponent {
   @Prop customCounter: number;
   @Prop customCounter2: number = 5;
