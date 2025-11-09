@@ -140,7 +140,7 @@ struct PageChild {
               duration: 500
             }, () => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
-            })
+            });
           })
         Button('Scale')
           .borderRadius(20)

@@ -60,7 +60,7 @@ struct SpecialImage {
 
 @Component
 struct PageChild {
-  @ObjectLink uiStyle: UiStyle
+  @ObjectLink uiStyle: UiStyle;
 
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn(): number {
@@ -141,7 +141,7 @@ struct PageChild {
               duration: 500
             }, () => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
-            })
+            });
           })
         Button('Scale')
           .borderRadius(20)

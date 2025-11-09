@@ -192,7 +192,7 @@ struct PageChild {
               duration: 500
             }, () => {
               this.needRenderTranslate.translateY = (this.needRenderTranslate.translateY + 180) % 250;
-            })
+            });
           })
         Button('Scale')
           .borderRadius(20)

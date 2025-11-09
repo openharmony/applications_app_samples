@@ -135,7 +135,7 @@ struct MyComponent {
 
 @Component
 struct ChildComponent {
-  @ObjectLink data: StringData
+  @ObjectLink data: StringData;
 
   build() {
     Column() {
