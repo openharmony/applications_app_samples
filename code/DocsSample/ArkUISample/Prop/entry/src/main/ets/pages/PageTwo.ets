@@ -12,9 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start prop_two_start]
 @Component
-  // [Start prop_two_start]
 struct CountDownComponent {
   @Prop count: number = 0;
   costOfOneAttempt: number = 1;
