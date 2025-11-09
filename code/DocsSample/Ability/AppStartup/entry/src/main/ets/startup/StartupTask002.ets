@@ -16,7 +16,7 @@ import { StartupTask, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Sendable
-export default class StartupTask002 extends StartupTask {
+export default class StartupTask_002 extends StartupTask {
   constructor() {
     super();
   }
