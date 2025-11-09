@@ -57,20 +57,20 @@ export default function TodoListTest () {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testTask begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let text = await driver.findComponent(ON.text('未完成任务：', MatchPattern.CONTAINS));
+      let text = await driver.findComponent(ON.text('All Not Completed：', MatchPattern.CONTAINS));
       await text.getText().then(result => {
-        expect(result).assertEqual('未完成任务：2');
+        expect(result).assertEqual('All Not Completed：2');
       });
       let task = await driver.findComponent(ON.text('刷题'));
       await task.click();
       await driver.delayMs(1000);
       await text.getText().then(result => {
-        expect(result).assertEqual('未完成任务：3');
+        expect(result).assertEqual('All Not Completed：3');
       });
       await task.click();
       await driver.delayMs(1000);
       await text.getText().then(result => {
-        expect(result).assertEqual('未完成任务：2');
+        expect(result).assertEqual('All Not Completed：2');
       });
       done();
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testTask end');
@@ -89,18 +89,18 @@ export default function TodoListTest () {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testFinishAll_UnfinishAll begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let unfinishAll = await driver.findComponent(ON.text('全部未完成'));
+      let unfinishAll = await driver.findComponent(ON.text('All Not Completed'));
       await unfinishAll.click();
       await driver.delayMs(1000);
-      let text = await driver.findComponent(ON.text('未完成任务：', MatchPattern.CONTAINS));
+      let text = await driver.findComponent(ON.text('All Not Completed：', MatchPattern.CONTAINS));
       await text.getText().then(result => {
-        expect(result).assertEqual('未完成任务：5');
+        expect(result).assertEqual('All Not Completed：5');
       });
-      let finishAll = await driver.findComponent(ON.text('全部完成'));
+      let finishAll = await driver.findComponent(ON.text('All Completed'));
       await finishAll.click();
       await driver.delayMs(1000);
       await text.getText().then(result => {
-        expect(result).assertEqual('未完成任务：0');
+        expect(result).assertEqual('All Not Completed：0');
       });
       done();
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testFinishAll_UnfinishAll end');
@@ -119,7 +119,7 @@ export default function TodoListTest () {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testDeleteAddTask begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let deleteButton = await driver.findComponent(ON.text('删除'));
+      let deleteButton = await driver.findComponent(ON.text('Delete'));
       await deleteButton.click();
       await driver.delayMs(1000);
       let button_search = await driver.findComponent(ON.text('学习ArkTS开发'));
@@ -149,13 +149,13 @@ export default function TodoListTest () {
       hilog.info(0x0000, 'testTag', '%{public}s', 'uitest: testSetting begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let settingButton = await driver.findComponent(ON.text('设置'));
+      let settingButton = await driver.findComponent(ON.text('Setting'));
       await settingButton.click();
       await driver.delayMs(1000);
       let switchToggle = await driver.findComponent(ON.type('Toggle'));
       await switchToggle.click();
       await driver.delayMs(1000);
-      let backButton = await driver.findComponent(ON.text('返回待办'));
+      let backButton = await driver.findComponent(ON.text('Back to To do'));
       await backButton.click();
       await driver.delayMs(1000);
       let finishTask = await driver.findComponent(ON.text('健身'));
@@ -165,7 +165,7 @@ export default function TodoListTest () {
       let switchToggle1 = await driver.findComponent(ON.type('Toggle'));
       await switchToggle1.click();
       await driver.delayMs(1000);
-      let backButton1 = await driver.findComponent(ON.text('返回待办'));
+      let backButton1 = await driver.findComponent(ON.text('Back to To do'));
       await backButton1.click();
       await driver.delayMs(1000);
       let finishTask1 = await driver.findComponent(ON.text('健身'));

@@ -45,8 +45,7 @@ struct TaskItem {
         .height(28)
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
-      // app.string.Delete_task 资源文件中的value值为'删除'。
-      Button($r('app.string.Delete_task'))
+      Button('Delete')
         .onClick(() => this.deleteTask())
     }
     .onClick(() => this.task.isFinish = !this.task.isFinish)
@@ -76,12 +75,10 @@ struct TodoList {
 
   build() {
     Column() {
-      // app.string.TodoList_title 资源文件中的value值为'待办'。
-      Text($r('app.string.TodoList_title'))
+      Text('To do')
         .fontSize(40)
         .margin({ bottom: 10 })
-      // app.string.Unfinish_count 资源文件中的value值为'未完成任务'。
-      Text($r('app.string.Unfinish_count') + `：${this.tasksUnfinished}`)
+      Text('Unfinished task' + `：${this.tasksUnfinished}`)
       Repeat<Task>(this.tasks)
         .each((obj: RepeatItem<Task>) => {
           TaskItem({
@@ -90,16 +87,13 @@ struct TodoList {
           })
         })
       Row() {
-        // app.string.Finish_all_tasks 资源文件中的value值为'全部完成'。
-        Button($r('app.string.Finish_all_tasks'))
+        Button('All Completed')
           .onClick(() => this.finishAll(true))
-        // app.string.Unfinish_all_tasks 资源文件中的value值为'全部未完成'。
-        Button($r('app.string.Unfinish_all_tasks'))
+        Button('All Not Completed')
           .onClick(() => this.finishAll(false))
       }
       Row() {
-        // app.string.Add_new_task 资源文件中的value值为'添加新任务'。
-        TextInput({ placeholder: $r('app.string.Add_new_task'), text: this.newTaskName })
+        TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
         Button('+')

@@ -41,7 +41,7 @@ struct TaskItem {
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
         .fontSize(18)
-      actionButton($r('app.string.Delete_task'), () => this.deleteTask());
+      actionButton('Delete', () => this.deleteTask());
     }
     .height('7%')
     .width('90%')

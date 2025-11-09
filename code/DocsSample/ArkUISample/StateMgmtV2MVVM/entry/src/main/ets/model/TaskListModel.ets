@@ -17,7 +17,7 @@
 // src/main/ets/model/TaskListModel.ets
 // [Start Model_TaskListModel]
 import { common } from '@kit.AbilityKit';
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 import TaskModel from'./TaskModel';
 
 export default class TaskListModel {

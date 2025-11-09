@@ -32,20 +32,17 @@ struct SettingPage {
 
   build(){
     Column(){
-      // app.string.Setting 资源文件中的value值为'设置'。
-      Text($r('app.string.Setting'))
+      Text('Setting')
         .fontSize(40)
         .margin({ bottom: 10 })
       Row() {
-        // app.string.Show_finished_tasks 资源文件中的value值为'显示已完成任务'。
-        Text($r('app.string.Show_finished_tasks'))
+        Text('Show completed tasks')
         Toggle({ type: ToggleType.Switch, isOn:this.setting.showCompletedTask })
           .onChange((isOn) => {
             this.setting.showCompletedTask = isOn;
           })
       }
-      // app.string.Back 资源文件中的value值为'返回待办'。
-      Button($r('app.string.Back'))
+      Button('Back to To do')
         .onClick(()=>this.context.terminateSelf())
         .margin({ top: 10 })
     }

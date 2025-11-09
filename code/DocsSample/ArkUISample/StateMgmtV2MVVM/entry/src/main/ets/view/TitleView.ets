@@ -22,12 +22,10 @@ export default struct TitleView {
 
   build() {
     Column() {
-      // app.string.TodoList_title 资源文件中的value值为'待办'。
-      Text($r('app.string.TodoList_title'))
+      Text('To do')
         .fontSize(40)
         .margin(10)
-      // app.string.Unfinish_count 资源文件中的value值为'未完成任务'。
-      Text(`${this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.Unfinish_count').id)}：${this.tasksUnfinished}`)
+      Text(`All Not Completed：${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
     }
   }
