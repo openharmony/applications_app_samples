@@ -43,7 +43,7 @@ struct NormalV2Component {
   }
 }
 @Builder
-function reusableV2Builder(param: number) {
+function ReusableV2Builder(param: number) {
   ReusableV2Component({ val: param })
 }
 @ReusableV2

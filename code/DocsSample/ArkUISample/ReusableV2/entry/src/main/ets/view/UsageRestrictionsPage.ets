@@ -29,7 +29,7 @@ struct ReusableV2Component {
   }
 }
 @Builder
-function v2ReusableBuilder() {
+function V2ReusableBuilder() {
   ReusableV2Component()
 }
 //[End UsageRestrictionsPage]
