@@ -14,8 +14,7 @@
 */
 
 // [Start get_vpn_id_ability]
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import { vpnExtension } from '@kit.NetworkKit';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
 // [StartExclude get_vpn_id_ability]
 import { common } from '@kit.AbilityKit';
 // [EndExclude get_vpn_id_ability]
