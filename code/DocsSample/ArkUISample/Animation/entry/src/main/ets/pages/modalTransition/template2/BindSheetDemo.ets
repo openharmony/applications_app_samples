@@ -73,7 +73,7 @@ struct BindSheetDemo {
           }
           .alignItems(HorizontalAlign.Start)
 
-          Blank();
+          Blank()
 
           Row()
             .width(12)

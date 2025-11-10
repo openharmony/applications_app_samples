@@ -14,7 +14,7 @@
  */
 
 // [Start geometry_transition]
-import resource from '../../../common/resource';
+import { common } from '@kit.AbilityKit';
 
 class PostData {
   // 图片使用Resource资源，需用户自定义
@@ -30,6 +30,7 @@ struct Index {
   @State isPersonalPageShow: boolean = false;
   @State selectedIndex: number = 0;
   @State alphaValue: number = 1;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   // 数组中图片均使用Resource资源，需用户自定义
   private allPostData: PostData[] = [
@@ -37,21 +38,21 @@ struct Index {
       avatar: $r('app.media.flower'),
       name: 'Alice',
       // 'app.string.shareTransition_text1'资源文件中的value值为'天气晴朗'
-      message:resource.resourceToString($r('app.string.shareTransition_text1')),
+      message:this.context.resourceManager.getStringByNameSync('shareTransition_text1'),
       images: [$r('app.media.spring'), $r('app.media.tall_tree')]
     },
     {
       avatar: $r('app.media.sunset_sky'),
       name: 'Bob',
       // 'app.string.shareTransition_text2'资源文件中的value值为'你好世界'
-      message: resource.resourceToString($r('app.string.shareTransition_text2')),
+      message: this.context.resourceManager.getStringByNameSync('shareTransition_text2'),
       images: [$r('app.media.island')]
     },
     {
       avatar: $r('app.media.tall_tree'),
       name: 'Carl',
       // 'app.string.shareTransition_text3'资源文件中的value值为'万物生长'
-      message: resource.resourceToString($r('app.string.shareTransition_text3')),
+      message:this.context.resourceManager.getStringByNameSync('shareTransition_text3'),
       images: [$r('app.media.flower'), $r('app.media.sunset_sky'), $r('app.media.spring')]
     }];
 
@@ -97,7 +98,7 @@ struct Index {
         ))
 
       // 'app.string.shareTransition_text11'资源文件中的value值为'你好，我是'
-      Text(resource.resourceToString($r('app.string.shareTransition_text11')) + this.allPostData[index].name)
+      Text(this.context.resourceManager.getStringByNameSync('shareTransition_text11') + this.allPostData[index].name)
       // 对文本添加出现转场效果
         .transition(TransitionEffect.asymmetric(
           TransitionEffect.OPACITY

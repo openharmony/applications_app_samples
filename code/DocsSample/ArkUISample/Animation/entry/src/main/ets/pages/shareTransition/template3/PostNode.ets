@@ -17,13 +17,13 @@
 // PostNode.ets
 // 跨容器迁移能力
 import { UIContext, curves, NodeController, BuilderNode, FrameNode } from '@kit.ArkUI';
-import resource from '../../../common/resource';
+import { common } from '@kit.AbilityKit';
 
 class Data {
   public item: string | null = null;
   public isExpand: boolean = false;
 }
-
+let context: undefined | common.UIAbilityContext = undefined;
 @Builder
 function postBuilder(data: Data) {
   // 跨容器迁移组件置于@Builder内
@@ -35,8 +35,8 @@ function postBuilder(data: Data) {
         .width(80)
         .height(80)
       Column() {
-        // 'app.string.shareTransition_text5'资源文件中的value值为'点击展开 Item '
-        Text(resource.resourceToString($r('app.string.shareTransition_text5')) + data.item)
+        // 'shareTransition_text5'资源文件中的value值为'点击展开 Item '
+        Text((context as common.UIAbilityContext)?.resourceManager.getStringByNameSync('shareTransition_text5') + data.item)
           .fontSize(20)
         // 'app.string.shareTransition_text6'资源文件中的value值为'共享元素转场'
         Text($r('app.string.shareTransition_text6'))
@@ -106,6 +106,7 @@ export class PostNode extends NodeController {
     }
     // 创建节点，需要uiContext
     this.node = new BuilderNode(uiContext);
+    context = uiContext.getHostContext() as common.UIAbilityContext;
     // 创建离线组件
     this.data = { item: id, isExpand: isExpand };
     this.node.build(wrapBuilder<Data[]>(postBuilder), this.data);

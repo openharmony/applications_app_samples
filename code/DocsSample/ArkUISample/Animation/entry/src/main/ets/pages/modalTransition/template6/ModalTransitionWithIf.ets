@@ -78,7 +78,7 @@ struct ModalTransitionWithIf {
                 }
                 .alignItems(HorizontalAlign.Start)
 
-                Blank();
+                Blank()
 
                 Row()
                   .width(12)
