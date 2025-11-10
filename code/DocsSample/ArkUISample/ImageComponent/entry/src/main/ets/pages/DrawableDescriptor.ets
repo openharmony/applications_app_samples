@@ -38,7 +38,7 @@ struct DrawableDescriptorType {
     iterations: -1
   };
 
-  // 使用 DrawableDescriptor 接口验证对图片资源封装为可编程对象.实现动态组合与运行时控制功能.
+  // 开发者可利用DrawableDescriptor实现图片的分层叠加（如徽章图标），动态属性调整（如颜色滤镜），复杂动画序列等高级效果
   async aboutToAppear() {
     const resManager = this.getUIContext().getHostContext()?.resourceManager;
     if (!resManager) {
