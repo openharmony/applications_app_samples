@@ -35,10 +35,6 @@ class LogNotTrack {
     this.str1 = str1;
     this.str2 = 'World';
   }
-
-  getUIContext() {
-    throw new Error('Method not implemented.');
-  }
 }
 
 @Entry
