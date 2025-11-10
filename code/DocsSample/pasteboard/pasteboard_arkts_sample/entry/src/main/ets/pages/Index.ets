@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
 import { TestJs } from './PasteboardModel';
 // [Start pasteboard_permission]
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
-
+import hilog from '@ohos.hilog';
 
 const permissions: Permissions[] = ['ohos.permission.READ_PASTEBOARD'];
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();

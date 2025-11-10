@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
 // [Start pasteboard_timelaps_PasteData1]
 // [Start pasteboard_usedata]
 // [Start pasteboard_useudc]
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+import hilog from '@ohos.hilog';
 // [StartExclude pasteboard_usedata]
 import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
