@@ -81,6 +81,8 @@
 #define EVENT_TEXT_AREA_WILL_DELETE 29
 #define EVENT_TEXT_AREA_WILL_CHANGE 30
 #define EVENT_TEXT_DETECT_RESULT_UPDATE 31
+#define EVENT_TEXT_ON_CLICK 32
+#define FLOAT_50 50.0f
 
 // 处理Span事件
 static void HandleSpanEvent(int32_t eventId)
@@ -256,7 +258,7 @@ static void OnEventReceive(ArkUI_NodeEvent *event)
 
 void setText1(ArkUI_NodeHandle &text)
 {
-    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_380}};
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
     ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text, NODE_WIDTH, &textWidthItem);
     ArkUI_NumberValue textHeight[] = {{.f32 = VALUE_100}};
@@ -284,6 +286,13 @@ void setText1(ArkUI_NodeHandle &text)
             ArkUI_NumberValue baselineOffsetVal = {.f32 = VALUE_10};
             ArkUI_AttributeItem baselineOffsetItem = {&baselineOffsetVal, VALUE_1};
             Manager::nodeAPI_->setAttribute(text, NODE_SPAN_BASELINE_OFFSET, &baselineOffsetItem);
+            //设置无极字重
+            ArkUI_NumberValue fontWeight = {.i32 = ARKUI_FONT_WEIGHT_W500};
+            ArkUI_AttributeItem fontWeightItem = {&fontWeight, VALUE_1};
+            Manager::nodeAPI_->setAttribute(span, NODE_IMMUTABLE_FONT_WEIGHT, &fontWeightItem);
+            ArkUI_NumberValue fontWeight1 = {.i32 = ARKUI_FONT_WEIGHT_W500};
+            ArkUI_AttributeItem fontWeight1Item = {&fontWeight1, VALUE_1};
+            Manager::nodeAPI_->setAttribute(text, NODE_IMMUTABLE_FONT_WEIGHT, &fontWeight1Item);
             // 长按span组件，触发回调
             Manager::nodeAPI_->registerNodeEvent(span, NODE_TEXT_SPAN_ON_LONG_PRESS, EVENT_SPAN_LONG_PRESS, nullptr);
             Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
@@ -327,6 +336,9 @@ static void setTextInput1Base(ArkUI_NodeHandle &textInput1)
 // 设置TextInput1的基础属性（提示文本、光标、字体、输入模式等）
 static void SetTextInput1BaseAttrs(ArkUI_NodeHandle &textInput1)
 {
+    ArkUI_NumberValue marginValue[] = {20};
+    ArkUI_AttributeItem marginItem = {marginValue, 1};
+    Manager::nodeAPI_->setAttribute(textInput1, NODE_MARGIN, &marginItem);
     // 默认提示文本内容
     const char *inputPlaceHolederVal = "please info password";
     ArkUI_AttributeItem placeHolederItem = {.string = inputPlaceHolederVal};
@@ -376,10 +388,10 @@ static void RegisterTextInput1Events(ArkUI_NodeHandle &textInput1)
     // TextInput 按下输入法回车键触发
     Manager::nodeAPI_->registerNodeEvent(textInput1, NODE_TEXT_INPUT_ON_SUBMIT, EVENT_TEXT_INPUT_SUBMIT, nullptr);
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 长按弹出剪贴板后点击剪切触发
+    // 长按弹出菜单后点击剪切触发
     Manager::nodeAPI_->registerNodeEvent(textInput1, NODE_TEXT_INPUT_ON_CUT, EVENT_TEXT_INPUT_CUT, nullptr);
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 长按弹出剪贴板后点击粘贴触发
+    // 长按弹出菜单后点击粘贴触发
     Manager::nodeAPI_->registerNodeEvent(textInput1, NODE_TEXT_INPUT_ON_PASTE, EVENT_TEXT_INPUT_PASTE, nullptr);
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
     // 文本选择变化触发
@@ -434,7 +446,7 @@ static void setTextInputVal(ArkUI_NodeHandle &textInput2)
     Manager::nodeAPI_->setAttribute(textInput2, NODE_TEXT_INPUT_LETTER_SPACING, &inputLetterSpacingItem);
 
     // 是否开启输入预上屏
-    ArkUI_NumberValue enablePreviewText = {.i32 = false};
+    ArkUI_NumberValue enablePreviewText = {.i32 = true};
     ArkUI_AttributeItem enablePreviewTextItem = {&enablePreviewText, VALUE_1};
     Manager::nodeAPI_->setAttribute(textInput2, NODE_TEXT_INPUT_ENABLE_PREVIEW_TEXT, &enablePreviewTextItem);
 
@@ -469,7 +481,8 @@ void setTextInput2(ArkUI_NodeHandle &textInput2)
     OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_INPUT_CONTENT_LINE_COUNT:%{public}d、%{public}d",
                  Manager::nodeAPI_->getAttribute(textInput2, NODE_TEXT_INPUT_CONTENT_LINE_COUNT)->value[VALUE_0].i32,
                  Manager::nodeAPI_->getAttribute(textInput2, NODE_TEXT_INPUT_CONTENT_LINE_COUNT)->value[VALUE_1].i32);
-
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_INPUT_LINE_HEIGHT:%{public}d",
+                 Manager::nodeAPI_->getAttribute(textInput2, NODE_TEXT_INPUT_LINE_HEIGHT)->value[VALUE_0].i32);
     // TextInput输入内容发生变化时触发该事件
     Manager::nodeAPI_->registerNodeEvent(textInput2, NODE_TEXT_INPUT_ON_CONTENT_SIZE_CHANGE,
                                          EVENT_TEXT_INPUT_CONTENT_SIZE_CHANGE, nullptr);
@@ -490,7 +503,7 @@ void setTextInput2(ArkUI_NodeHandle &textInput2)
                                          EVENT_TEXT_INPUT_CHANGE_PREVIEW, nullptr);
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
 
-    // 定义在删除完成时，触发回调的枚举值
+    // 定义内容将要改变时（包含预上屏内容），触发回调的枚举值
     Manager::nodeAPI_->registerNodeEvent(textInput2, NODE_TEXT_INPUT_ON_WILL_CHANGE, EVENT_TEXT_INPUT_WILL_CHANGE,
                                          nullptr);
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
@@ -498,6 +511,8 @@ void setTextInput2(ArkUI_NodeHandle &textInput2)
 
 void setTextInput3(ArkUI_NodeHandle &textInput3)
 {
+    ArkUI_AttributeItem textInputText = {.string = "this is textInput 3 aaaaaaaaaa"};
+    Manager::nodeAPI_->setAttribute(textInput3, NODE_TEXT_INPUT_TEXT, &textInputText);
     // 输入框下划线
     ArkUI_NumberValue showUnderLine = {.i32 = true};
     ArkUI_AttributeItem showUnderLineItem = {&showUnderLine, VALUE_1};
@@ -582,8 +597,10 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
     ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
 
     // 获取TextInput文本输入框未达到和超出最大字符数时计数器的颜色
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager",
-        "GetCounterTextColor: 0x%{public}X GetCounterTextOverflowColor: 0x%{public}X",
+    OH_LOG_Print(
+        LOG_APP, LOG_INFO, 0xFF00, "Manager",
+        "GetCounterTextColor: 0x%{public}X GetCounterTextOverflowColor: "
+        "0x%{public}X",
         OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
         OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
@@ -674,8 +691,10 @@ void setTextArea1(ArkUI_NodeHandle &textArea1)
     ArkUI_AttributeItem ShowCounterColorItem = {.value = showCounterArray, .size = 3, .object = options};
 
     // 设置TextArea文本输入框未达到和超出最大字符数时计数器的颜色
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager",
-        "GetCounterTextColor: 0x%{public}X GetCounterTextOverflowColor: 0x%{public}X",
+    OH_LOG_Print(
+        LOG_APP, LOG_INFO, 0xFF00, "Manager",
+        "GetCounterTextColor: 0x%{public}X GetCounterTextOverflowColor: "
+        "0x%{public}X",
         OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
         OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
     Manager::nodeAPI_->setAttribute(textArea1, NODE_TEXT_AREA_SHOW_COUNTER, &ShowCounterColorItem);
@@ -744,8 +763,8 @@ void setTextArea2(ArkUI_NodeHandle &textArea2)
     ArkUI_AttributeItem keyboardAppenranceItem = {&keyboardAppenrance, VALUE_1};
     Manager::nodeAPI_->setAttribute(textArea2, NODE_TEXT_AREA_KEYBOARD_APPEARANCE, &keyboardAppenranceItem);
 
-    // 设置输入框文本的行间距
-    ArkUI_NumberValue textAreaLetterSpacing = {.i32 = VALUE_10};
+    // 设置输入框文本的字符间距
+    ArkUI_NumberValue textAreaLetterSpacing = {.f32 = VALUE_10};
     ArkUI_AttributeItem textAreaLetterSpacingItem = {&textAreaLetterSpacing, VALUE_1};
     Manager::nodeAPI_->setAttribute(textArea2, NODE_TEXT_AREA_LETTER_SPACING, &textAreaLetterSpacingItem);
 
@@ -821,12 +840,12 @@ void setText2(ArkUI_NodeHandle &text2)
     // 文本最大行数
     ArkUI_NumberValue maxLinesVal = {.i32 = VALUE_1};
     ArkUI_AttributeItem maxLinesItem = {&maxLinesVal, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_LETTER_SPACING, &maxLinesItem);
+    Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_MAX_LINES, &maxLinesItem);
 
-    // 最小显示字号
-    ArkUI_NumberValue minFontSizeVal = {.i32 = ARKUI_COPY_OPTIONS_NONE};
-    ArkUI_AttributeItem minFontSizeItem = {&minFontSizeVal, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_COPY_OPTION, &minFontSizeItem);
+    // 设置是否可复制
+    ArkUI_NumberValue copyOptionsVal = {.i32 = ARKUI_COPY_OPTIONS_NONE};
+    ArkUI_AttributeItem copyOptionsItem = {&copyOptionsVal, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text2, NODE_TEXT_COPY_OPTION, &copyOptionsItem);
 
     // 文本溢出：跑马灯（ARKUI_TEXT_OVERFLOW_MARQUEE）
     ArkUI_NumberValue overflowVal = {.i32 = ARKUI_TEXT_OVERFLOW_MARQUEE};
@@ -842,69 +861,65 @@ void setText2(ArkUI_NodeHandle &text2)
 void setText3(ArkUI_NodeHandle &text3)
 {
     const char *textContent =
-        "this is text 3 this is text 3 this is text 3!!!!this is text 3 this is text 3 this is text 3!!!! ";
+        "this is text 3 this is text 3 this is text 3!!!!this is text 3 this is text 3!!!! ******@example.com";
     ArkUI_AttributeItem contentItem = {.string = textContent};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_CONTENT, &contentItem);
 
-    // 自适应高度：MaxLines优先（ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST）
-    ArkUI_NumberValue adaptPolicyVal = {.i32 = ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST};
-    ArkUI_AttributeItem adaptPolicyItem = {&adaptPolicyVal, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_HEIGHT_ADAPTIVE_POLICY, &adaptPolicyItem);
-
+    ArkUI_NumberValue intVal_0 = {.i32 = VALUE_0};
+    ArkUI_AttributeItem int_0_Item = {&intVal_0, VALUE_1};
     // 水平对齐：首部对齐（ARKUI_TEXT_ALIGNMENT_START）
-    ArkUI_NumberValue hAlignVal = {.i32 = ARKUI_TEXT_ALIGNMENT_START};
-    ArkUI_AttributeItem hAlignItem = {&hAlignVal, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_ALIGN, &hAlignItem);
-
+    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_ALIGN, &int_0_Item);
+    // 省略位置：行首省略（ARKUI_ELLIPSIS_MODE_START）
+    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_ELLIPSIS_MODE, &int_0_Item);
+    // 自适应高度策略：MaxLines优先
+    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_HEIGHT_ADAPTIVE_POLICY, &int_0_Item);
+    // 设置最小最大显示字号
+    ArkUI_NumberValue minFontSize = {.f32 = VALUE_20};
+    ArkUI_AttributeItem minFontSizeItem = {&minFontSize, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_MIN_FONT_SIZE, &minFontSizeItem);
+    ArkUI_NumberValue maxFontSize = {.f32 = VALUE_30};
+    ArkUI_AttributeItem maxFontSizeItem = {&maxFontSize, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_MAX_FONT_SIZE, &maxFontSizeItem);
+    
     // 首行缩进
     ArkUI_NumberValue indentVal = {.f32 = VALUE_30};
     ArkUI_AttributeItem indentItem = {&indentVal, VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_INDENT, &indentItem);
+    // 文本最大行数
+    ArkUI_NumberValue maxLinesVal = {.i32 = VALUE_1};
+    ArkUI_AttributeItem maxLinesItem = {&maxLinesVal, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_MAX_LINES, &maxLinesItem);
+    // 文本溢出：省略号（ARKUI_TEXT_OVERFLOW_ELLIPSIS）
+    ArkUI_NumberValue overflowVal = {.i32 = ARKUI_TEXT_OVERFLOW_ELLIPSIS};
+    ArkUI_AttributeItem overflowItem = {&overflowVal, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_OVERFLOW, &overflowItem);
 
-    // 省略位置：行首省略（ARKUI_ELLIPSIS_MODE_START）
-    ArkUI_NumberValue ellipsisVal = {.i32 = ARKUI_ELLIPSIS_MODE_START};
-    ArkUI_AttributeItem ellipsisItem = {&ellipsisVal, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_ELLIPSIS_MODE, &ellipsisItem);
-
-    // 复制粘贴：不支持复制（ARKUI_COPY_OPTIONS_NONE / ARKUI_TEXT_COPY_OPTIONS_NONE）
-    ArkUI_NumberValue copyOptVal = {.i32 = ARKUI_COPY_OPTIONS_NONE};
+    // 复制粘贴：应用内支持复制（ARKUI_COPY_OPTIONS_IN_APP）
+    ArkUI_NumberValue copyOptVal = {.i32 = ARKUI_COPY_OPTIONS_IN_APP};
     ArkUI_AttributeItem copyOptItem = {&copyOptVal, VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_COPY_OPTION, &copyOptItem);
 
-    // 断行规则：CJK任意断行（ARKUI_WORD_BREAK_NORMAL）
-    ArkUI_NumberValue wordBreakVal = {.i32 = ARKUI_WORD_BREAK_NORMAL};
+    // 设置断行规则
+    ArkUI_NumberValue wordBreakVal = {.i32 = ARKUI_WORD_BREAK_BREAK_ALL};
     ArkUI_AttributeItem wordBreakItem = {&wordBreakVal, VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_WORD_BREAK, &wordBreakItem);
-
-    // 文本行间距
-    ArkUI_NumberValue lineSpaceVal = {.f32 = VALUE_10};
-    ArkUI_AttributeItem lineSpaceItem = {&lineSpaceVal, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_LINE_SPACING, &lineSpaceItem);
     // 设置文本装饰
     ArkUI_NumberValue textDecoration[] = {
         {.i32 = ARKUI_TEXT_DECORATION_TYPE_UNDERLINE}, {.u32 = 0xFFFF0000}, {.i32 = ARKUI_TEXT_DECORATION_STYLE_SOLID}};
     ArkUI_AttributeItem textDecorationItem = {.value = textDecoration, .size = VALUE_3};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_DECORATION, &textDecorationItem);
 
-    // 设置text样式
-    ArkUI_NumberValue textFont[] = {
-        {.f32 = VALUE_5}, {.i32 = ARKUI_FONT_WEIGHT_W600}, {.i32 = ARKUI_FONT_STYLE_NORMAL}};
-    ArkUI_AttributeItem textFontItem = {textFont, VALUE_3};
-    Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_WORD_BREAK, &textFontItem);
     // 文本大小写属性
     ArkUI_NumberValue textCase = {.i32 = ARKUI_TEXT_CASE_UPPER};
     ArkUI_AttributeItem textCaseItem = {&textCase, VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_CASE, &textCaseItem);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_LINE_COUNT :%{public}d",
-                 Manager::nodeAPI_->getAttribute(text3, NODE_TEXT_LINE_COUNT)->value[VALUE_0].i32);
-    // 设置文本识别
+    // 开启文本识别和设置TextDataDetectorConfig，识别成功时触发onDetectResultUpdate回调
     ArkUI_NumberValue enableDataDetector = {.i32 = true};
     ArkUI_AttributeItem enableDataDetectorItem = {.value = &enableDataDetector, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_ENABLE_DATA_DETECTOR, &enableDataDetectorItem);
-    ArkUI_NumberValue detectorConfig = {.i32 = ARKUI_TEXT_DATA_DETECTOR_TYPE_PHONE_NUMBER};
+    ArkUI_NumberValue detectorConfig = {.i32 = ARKUI_TEXT_DATA_DETECTOR_TYPE_EMAIL};
     ArkUI_AttributeItem detectorConfigItem = {.value = &detectorConfig, .size = VALUE_2};
     Manager::nodeAPI_->setAttribute(text3, NODE_TEXT_ENABLE_DATA_DETECTOR_CONFIG, &detectorConfigItem);
-    // 文本设置TextDataDetectorConfig且识别成功时，触发onDetectResultUpdate回调
     Manager::nodeAPI_->registerNodeEvent(text3, NODE_TEXT_ON_DETECT_RESULT_UPDATE, EVENT_TEXT_DETECT_RESULT_UPDATE,
                                          nullptr);
     Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
@@ -922,7 +937,7 @@ void setText4(ArkUI_NodeHandle &text4)
     Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_LINE_HEIGHT, &lineHeightItem);
 
     // 文本基线的偏移量属性
-    ArkUI_NumberValue baselineOffset = {.f32 = VALUE_50};
+    ArkUI_NumberValue baselineOffset = {.f32 = VALUE_20};
     ArkUI_AttributeItem baselineOffsetItem = {&baselineOffset, VALUE_1};
     Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_BASELINE_OFFSET, &baselineOffsetItem);
 
@@ -931,169 +946,86 @@ void setText4(ArkUI_NodeHandle &text4)
         {.f32 = VALUE_5}, {.i32 = ARKUI_SHADOW_TYPE_BLUR}, {.u32 = 0xFFFF0000}, {.f32 = VALUE_5}, {.f32 = VALUE_5}};
     ArkUI_AttributeItem textShadowItem = {textShadow, VALUE_5};
     Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_TEXT_SHADOW, &textShadowItem);
-
-    // Text最大显示字号
-    ArkUI_NumberValue maxFontSize = {.f32 = VALUE_10};
-    ArkUI_AttributeItem maxFontSizeItem = {&maxFontSize, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_MAX_FONT_SIZE, &maxFontSizeItem);
-
+    
+    // 设置font样式
+    ArkUI_NumberValue textFont[] = {
+        {.f32 = VALUE_10}, {.i32 = ARKUI_FONT_WEIGHT_W600}, {.i32 = ARKUI_FONT_STYLE_NORMAL}};
+    ArkUI_AttributeItem textFontItem = {textFont, VALUE_3};
+    Manager::nodeAPI_->setAttribute(text4, NODE_TEXT_FONT, &textFontItem);
     // 设置NODE_FONT_FEATURE
     ArkUI_AttributeItem fontFeatureItem = {.string = "ss01"};
     Manager::nodeAPI_->setAttribute(text4, NODE_FONT_FEATURE, &fontFeatureItem);
 
-    // Text最大显示字号ARKUI_FONT_WEIGHT_W500
+    // 设置NODE_IMMUTABLE_FONT_WEIGHT，字体粗细可以不跟随系统设置变化
     ArkUI_NumberValue fontWeight = {.i32 = ARKUI_FONT_WEIGHT_W500};
     ArkUI_AttributeItem fontWeightItem = {&fontWeight, VALUE_1};
     Manager::nodeAPI_->setAttribute(text4, NODE_IMMUTABLE_FONT_WEIGHT, &fontWeightItem);
-    ArkUI_AttributeItem fontfamily = {.string = "字体"};
-    Manager::nodeAPI_->setAttribute(text4, NODE_FONT_FAMILY, &fontfamily);
+    // 指定有效字体可以不跟随主题变更
+    ArkUI_AttributeItem fontFamilyVal = {.string = "HarmonyOS Sans"};
+    Manager::nodeAPI_->setAttribute(text4, NODE_FONT_FAMILY, &fontFamilyVal);
 }
 
-void setText5(ArkUI_NodeHandle &text5)
+void setText5_1(ArkUI_NodeHandle &text5)
 {
-    const char *textContent = "this is text 5";
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text5, NODE_WIDTH, &textWidthItem);
+
+    const char *textContent = "线性渐变--线性渐变";
     ArkUI_AttributeItem contentItem = {.string = textContent};
     Manager::nodeAPI_->setAttribute(text5, NODE_TEXT_CONTENT, &contentItem);
-    // 渐变
-    ArkUI_NumberValue linearGradient[] = {{.f32 = ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM},
-                                          {.i32 = ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM},
-                                          {.i32 = VALUE_0}};
-    ArkUI_AttributeItem linearGradientItem = {linearGradient, VALUE_3};
+
+    ArkUI_NumberValue fontSize[] = {{.f32 = VALUE_50}};
+    ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text5, NODE_FONT_SIZE, &fontSizeItem);
+    // 设置线性渐变
+    float stops[] = { 0.0f, 0.1f, 0.5f };
+
+    uint32_t colors[] = { 0xFFFF0000, 0xFFFFFF00, 0xFF0000FF };
+
+    ArkUI_ColorStop colorStop = { colors, stops, VALUE_3 };
+    ArkUI_ColorStop *colorStopPtr = &colorStop;
+
+    ArkUI_NumberValue linearGradient[] = {
+        {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.f32 = FLOAT_50}};
+
+    ArkUI_AttributeItem linearGradientItem = {
+        linearGradient, sizeof(linearGradient) / sizeof(ArkUI_NumberValue)};
+    linearGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
+    linearGradientItem.size = sizeof(linearGradientItem) / sizeof(ArkUI_NumberValue);
+
     Manager::nodeAPI_->setAttribute(text5, NODE_TEXT_LINEAR_GRADIENT, &linearGradientItem);
-    ArkUI_NumberValue radialGradient[] = {{.f32 = ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM},
-                                          {.i32 = ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM},
-                                          {.i32 = VALUE_0}};
-    ArkUI_AttributeItem radialGradientItem = {radialGradient, VALUE_3};
-    Manager::nodeAPI_->setAttribute(text5, NODE_TEXT_RADIAL_GRADIENT, &radialGradientItem);
 }
 
-void setTextArea3(ArkUI_NodeHandle &textArea3)
+void setText5_2(ArkUI_NodeHandle &text5_2)
 {
-    // 多行文本输入框的默认提示文本内容属性
-    const char *textAreaText = "触发回调测试";
-    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
-    Manager::nodeAPI_->setAttribute(textArea3, NODE_TEXT_AREA_PLACEHOLDER, &textAreaTextItem);
-    // 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_PASTE, EVENT_TEXT_AREA_PASTE, nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 文本选择的位置发生变化时，触发该回调
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE,
-                                         EVENT_TEXT_AREA_SELECTION_CHANGE, nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 文本内容滚动时，触发该回调。触发该事件的条件：文本内容滚动时
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_CONTENT_SCROLL, EVENT_TEXT_AREA_CONTENT_SCROLL,
-                                         nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 输入状态变化时，触发该回调
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_EDIT_CHANGE, EVENT_TEXT_AREA_EDIT_CHANGE,
-                                         nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // TextArea按下输入法回车键触发该事件
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_SUBMIT, EVENT_TEXT_AREA_SUBMIT, nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // TextArea输入内容发生变化时触发该事件
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_CONTENT_SIZE_CHANGE,
-                                         EVENT_TEXT_AREA_CONTENT_SIZE_CHANGE, nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 定义在输入完成时，触发回调的枚举值
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_DID_INSERT, EVENT_TEXT_AREA_DID_INSERT, nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 定义在删除完成时，触发回调的枚举值
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_DID_DELETE, EVENT_TEXT_AREA_DID_DELETE, nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 定义TextArea组件在内容改变时（包含预上屏内容），触发回调的枚举值
-    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT,
-                                         EVENT_TEXT_AREA_CHANGE_PREVIEW, nullptr);
-    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
-    // 设置支持滚动时节点的最大行数
-    ArkUI_NumberValue maxLinesWithScroll = {.i32 = VALUE_10};
-    ArkUI_AttributeItem maxLinesWithScrollItem = {&maxLinesWithScroll, VALUE_1};
-    Manager::nodeAPI_->setAttribute(textArea3, NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL, &maxLinesWithScrollItem);
-}
-
-void setTextArea4(ArkUI_NodeHandle &textArea4)
-{
-    const char *textAreaText = "设置TextArea滚动条颜色以及显示";
-    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
-    ArkUI_NumberValue textAreaHeightValue{ .f32 = VALUE_30 };
-    ArkUI_AttributeItem textAreaHeightItem = {&textAreaHeightValue, VALUE_1};
-    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_TEXT, &textAreaTextItem);
-    Manager::nodeAPI_->setAttribute(textArea4, NODE_HEIGHT, &textAreaHeightItem);
+    ArkUI_NumberValue textWidth[] = {{.f32 = VALUE_300}};
+    ArkUI_AttributeItem textWidthItem = {.value = textWidth, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text5_2, NODE_WIDTH, &textWidthItem);
     
-    // 滚动条状态
-    ArkUI_NumberValue textAreaScrollBarState = { .i32 = VALUE_2 };
-    ArkUI_AttributeItem textAreaScrollBarStateItem = {&textAreaScrollBarState, VALUE_1};
-    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_BAR_STATE, &textAreaScrollBarStateItem);
+    const char *textContent = "径向渐变--径向渐变";
+    ArkUI_AttributeItem contentItem = {.string = textContent};
+    Manager::nodeAPI_->setAttribute(text5_2, NODE_TEXT_CONTENT, &contentItem);
     
-    // 滚动条颜色属性
-    ArkUI_NumberValue textAreaScrollBarColor = { .u32 = 0xFFFFE4E1 };
-    ArkUI_AttributeItem textAreaScrollBarColorItem = {&textAreaScrollBarColor, VALUE_1};
-    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_SCROLL_BAR_COLOR, &textAreaScrollBarColorItem);
+    ArkUI_NumberValue fontSize[] = {{.f32 = VALUE_50}};
+    ArkUI_AttributeItem fontSizeItem = {.value = fontSize, .size = VALUE_1};
+    Manager::nodeAPI_->setAttribute(text5_2, NODE_FONT_SIZE, &fontSizeItem);
+    // 设置径向渐变
+    float stops[] = { 0.0f, 0.1f, 0.5f };
 
-    // 设置文本选中识别属性
-    ArkUI_NumberValue selectValue = {.i32 = true};
-    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
-    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
-}
+    uint32_t colors[] = { 0xFFFF0000, 0xFFFFFF00, 0xFF0000FF };
 
-void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
-{
-    const char *textAreaText = "这是设置自定义键盘";
-    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
-    ArkUI_NumberValue textAreaHeightValue{ .f32 = VALUE_50 };
-    ArkUI_AttributeItem textAreaHeightItem = {&textAreaHeightValue, VALUE_1};
-    Manager::nodeAPI_->setAttribute(textArea5, NODE_TEXT_AREA_PLACEHOLDER, &textAreaTextItem);
-    // 自定义键盘
-    auto button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
-    ArkUI_NumberValue buttonHeightValue { .f32 = VALUE_300 };
-    ArkUI_AttributeItem heightItem = {&buttonHeightValue, VALUE_1};
-    Manager::nodeAPI_->setAttribute(button, NODE_HEIGHT, &heightItem);
-    ArkUI_NumberValue customKeyboardValue[] = { { .u32 = 0XFFFF0330 } };
-    ArkUI_AttributeItem customKeyboard = {customKeyboardValue, sizeof(customKeyboardValue) / sizeof(ArkUI_NumberValue)};
-    customKeyboard.object = button;
-    Manager::nodeAPI_->setAttribute(textArea5, NODE_TEXT_AREA_CUSTOM_KEYBOARD, &customKeyboard);
-}
+    ArkUI_ColorStop colorStop = { colors, stops, VALUE_3 };
+    ArkUI_ColorStop *colorStopPtr = &colorStop;
 
-void setAccessibility(ArkUI_NodeHandle &accessibilityText)
-{
-    ArkUI_AccessibilityValue *accessibilityLabelVal = OH_ArkUI_AccessibilityValue_Create();
-    OH_ArkUI_AccessibilityValue_SetText(accessibilityLabelVal, "这里设置了一段无障碍文本");
-    const char *a11yItemVal = OH_ArkUI_AccessibilityValue_GetText(accessibilityLabelVal);
-    ArkUI_AttributeItem a11yItem = {.string = a11yItemVal};
-    Manager::nodeAPI_->setAttribute(accessibilityText, NODE_TEXT_CONTENT, &a11yItem);
-}
+    ArkUI_NumberValue radialGradient[] = {
+        {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.f32 = FLOAT_50}, {.i32 = true}};
+    ArkUI_AttributeItem radialGradientItem = {
+        radialGradient, sizeof(radialGradient) / sizeof(ArkUI_NumberValue)};
+    radialGradientItem.object = reinterpret_cast<void *>(colorStopPtr);
+    radialGradientItem.size = sizeof(radialGradientItem) / sizeof(ArkUI_NumberValue);
 
-void setCustom(ArkUI_NodeHandle &customSpan)
-{
-    Manager::nodeAPI_->registerNodeCustomEvent(customSpan, ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE, VALUE_1, nullptr);
-    Manager::nodeAPI_->registerNodeCustomEvent(customSpan, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW, VALUE_1, nullptr);
-    Manager::nodeAPI_->registerNodeCustomEventReceiver([](ArkUI_NodeCustomEvent *event) {
-        auto eventId = OH_ArkUI_NodeCustomEvent_GetEventTargetId(event);
-        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "manager", "EventID:%{public}d", eventId);
-        if (eventId == VALUE_0) {
-            ArkUI_CustomSpanMeasureInfo *measureInfo = OH_ArkUI_CustomSpanMeasureInfo_Create();
-            OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo(event, measureInfo);
-            OH_ArkUI_CustomSpanMeasureInfo_Dispose(measureInfo);
-            ArkUI_CustomSpanMetrics *customSpanMetrics = OH_ArkUI_CustomSpanMetrics_Create();
-            OH_ArkUI_CustomSpanMetrics_SetHeight(customSpanMetrics, 120.0f);
-            OH_ArkUI_CustomSpanMetrics_SetWidth(customSpanMetrics, 80.0f);
-            OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics(event, customSpanMetrics);
-            OH_ArkUI_CustomSpanMetrics_Dispose(customSpanMetrics);
-        }
-        if (eventId == VALUE_1) {
-            auto *layoutConstraint = OH_ArkUI_NodeCustomEvent_GetLayoutConstraintInMeasure(event);
-            auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
-            auto *drawingHandle = reinterpret_cast<OH_Drawing_Canvas *>(OH_ArkUI_DrawContext_GetCanvas(drawContext));
-            auto size = OH_ArkUI_DrawContext_GetSize(drawContext);
-            ArkUI_CustomSpanDrawInfo *customSpanDrawInfo = OH_ArkUI_CustomSpanDrawInfo_Create();
-            OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo(event, customSpanDrawInfo);
-            float optionsX = OH_ArkUI_CustomSpanDrawInfo_GetXOffset(customSpanDrawInfo);
-            float optionsLineTop = OH_ArkUI_CustomSpanDrawInfo_GetLineTop(customSpanDrawInfo);
-            float optionsLineBottom = OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(customSpanDrawInfo);
-            float optionsBaseLine = OH_ArkUI_CustomSpanDrawInfo_GetBaseline(customSpanDrawInfo);
-            OH_ArkUI_CustomSpanDrawInfo_Dispose(customSpanDrawInfo);
-        }
-    });
+    Manager::nodeAPI_->setAttribute(text5_2, NODE_TEXT_RADIAL_GRADIENT, &radialGradientItem);
 }
 
 void setText6(ArkUI_NodeHandle &text6)
@@ -1224,6 +1156,131 @@ void setText10(ArkUI_NodeHandle &text10)
     Manager::nodeAPI_->setAttribute(text10, NODE_TEXT_MAX_LINE_HEIGHT, &item2);
 }
 
+void setTextArea3(ArkUI_NodeHandle &textArea3)
+{
+    // 多行文本输入框的默认提示文本内容属性
+    const char *textAreaText = "触发回调测试";
+    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
+    Manager::nodeAPI_->setAttribute(textArea3, NODE_TEXT_AREA_PLACEHOLDER, &textAreaTextItem);
+    // 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_PASTE, EVENT_TEXT_AREA_PASTE, nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // 文本选择的位置发生变化时，触发该回调
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_TEXT_SELECTION_CHANGE,
+                                         EVENT_TEXT_AREA_SELECTION_CHANGE, nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // 文本内容滚动时，触发该回调。触发该事件的条件：文本内容滚动时
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_CONTENT_SCROLL, EVENT_TEXT_AREA_CONTENT_SCROLL,
+                                         nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // 输入状态变化时，触发该回调
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_EDIT_CHANGE, EVENT_TEXT_AREA_EDIT_CHANGE,
+                                         nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // TextArea按下输入法回车键触发该事件
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_SUBMIT, EVENT_TEXT_AREA_SUBMIT, nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // TextArea输入内容发生变化时触发该事件
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_CONTENT_SIZE_CHANGE,
+                                         EVENT_TEXT_AREA_CONTENT_SIZE_CHANGE, nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // 定义在输入完成时，触发回调的枚举值
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_DID_INSERT, EVENT_TEXT_AREA_DID_INSERT, nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // 定义在删除完成时，触发回调的枚举值
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_DID_DELETE, EVENT_TEXT_AREA_DID_DELETE, nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // 定义TextArea组件在内容改变时（包含预上屏内容），触发回调的枚举值
+    Manager::nodeAPI_->registerNodeEvent(textArea3, NODE_TEXT_AREA_ON_CHANGE_WITH_PREVIEW_TEXT,
+                                         EVENT_TEXT_AREA_CHANGE_PREVIEW, nullptr);
+    Manager::nodeAPI_->registerNodeEventReceiver(&OnEventReceive);
+    // 设置支持滚动时节点的最大行数
+    ArkUI_NumberValue maxLinesWithScroll = {.i32 = VALUE_10};
+    ArkUI_AttributeItem maxLinesWithScrollItem = {&maxLinesWithScroll, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea3, NODE_TEXT_AREA_MAX_LINES_WITH_SCROLL, &maxLinesWithScrollItem);
+}
+
+void setTextArea4(ArkUI_NodeHandle &textArea4)
+{
+    const char *textAreaText = "设置TextArea滚动条颜色以及显示";
+    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
+    ArkUI_NumberValue textAreaHeightValue{ .f32 = VALUE_50 };
+    ArkUI_AttributeItem textAreaHeightItem = {&textAreaHeightValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_TEXT, &textAreaTextItem);
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_HEIGHT, &textAreaHeightItem);
+    
+    // 滚动条状态
+    ArkUI_NumberValue textAreaScrollBarState = { .i32 = VALUE_2 };
+    ArkUI_AttributeItem textAreaScrollBarStateItem = {&textAreaScrollBarState, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_BAR_STATE, &textAreaScrollBarStateItem);
+    
+    // 滚动条颜色属性
+    ArkUI_NumberValue textAreaScrollBarColor = { .u32 = 0xFFFFE4E1 };
+    ArkUI_AttributeItem textAreaScrollBarColorItem = {&textAreaScrollBarColor, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textArea4, NODE_TEXT_AREA_SCROLL_BAR_COLOR, &textAreaScrollBarColorItem);
+}
+
+void setCustomKeyboard(ArkUI_NodeHandle &textArea5)
+{
+    const char *textAreaText = "这是设置自定义键盘";
+    ArkUI_AttributeItem textAreaTextItem = {.string = textAreaText};
+    Manager::nodeAPI_->setAttribute(textArea5, NODE_TEXT_AREA_PLACEHOLDER, &textAreaTextItem);
+    // 自定义键盘
+    auto button = Manager::nodeAPI_->createNode(ARKUI_NODE_BUTTON);
+    ArkUI_NumberValue buttonHeightValue { .f32 = VALUE_300 };
+    ArkUI_AttributeItem heightItem = {&buttonHeightValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(button, NODE_HEIGHT, &heightItem);
+    ArkUI_NumberValue customKeyboardValue[] = { { .u32 = 0XFFFF0330 } };
+    ArkUI_AttributeItem customKeyboard = {customKeyboardValue, sizeof(customKeyboardValue) / sizeof(ArkUI_NumberValue)};
+    customKeyboard.object = button;
+    Manager::nodeAPI_->setAttribute(textArea5, NODE_TEXT_AREA_CUSTOM_KEYBOARD, &customKeyboard);
+}
+
+void setAccessibility(ArkUI_NodeHandle &accessibilityText)
+{
+    ArkUI_AccessibilityValue *accessibilityLabelVal = OH_ArkUI_AccessibilityValue_Create();
+    OH_ArkUI_AccessibilityValue_SetText(accessibilityLabelVal, "这里设置了一段无障碍文本");
+    const char *a11yItemVal = OH_ArkUI_AccessibilityValue_GetText(accessibilityLabelVal);
+    ArkUI_AttributeItem a11yItem = {.string = a11yItemVal};
+    Manager::nodeAPI_->setAttribute(accessibilityText, NODE_ACCESSIBILITY_TEXT, &a11yItem);
+    ArkUI_AttributeItem item0;
+    item0.string = "给Text设置无障碍播报内容";
+    Manager::nodeAPI_->setAttribute(accessibilityText, NODE_TEXT_CONTENT, &item0);
+}
+
+void setCustom(ArkUI_NodeHandle &customSpan)
+{
+    Manager::nodeAPI_->registerNodeCustomEvent(customSpan, ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE, VALUE_1, nullptr);
+    Manager::nodeAPI_->registerNodeCustomEvent(customSpan, ARKUI_NODE_CUSTOM_EVENT_ON_DRAW, VALUE_1, nullptr);
+    Manager::nodeAPI_->registerNodeCustomEventReceiver([](ArkUI_NodeCustomEvent *event) {
+        auto eventId = OH_ArkUI_NodeCustomEvent_GetEventTargetId(event);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "manager", "EventID:%{public}d", eventId);
+        if (eventId == VALUE_0) {
+            ArkUI_CustomSpanMeasureInfo *measureInfo = OH_ArkUI_CustomSpanMeasureInfo_Create();
+            OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo(event, measureInfo);
+            OH_ArkUI_CustomSpanMeasureInfo_Dispose(measureInfo);
+            ArkUI_CustomSpanMetrics *customSpanMetrics = OH_ArkUI_CustomSpanMetrics_Create();
+            OH_ArkUI_CustomSpanMetrics_SetHeight(customSpanMetrics, 120.0f);
+            OH_ArkUI_CustomSpanMetrics_SetWidth(customSpanMetrics, 80.0f);
+            OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics(event, customSpanMetrics);
+            OH_ArkUI_CustomSpanMetrics_Dispose(customSpanMetrics);
+        }
+        if (eventId == VALUE_1) {
+            auto *layoutConstraint = OH_ArkUI_NodeCustomEvent_GetLayoutConstraintInMeasure(event);
+            auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
+            auto *drawingHandle = reinterpret_cast<OH_Drawing_Canvas *>(OH_ArkUI_DrawContext_GetCanvas(drawContext));
+            auto size = OH_ArkUI_DrawContext_GetSize(drawContext);
+            ArkUI_CustomSpanDrawInfo *customSpanDrawInfo = OH_ArkUI_CustomSpanDrawInfo_Create();
+            OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo(event, customSpanDrawInfo);
+            float optionsX = OH_ArkUI_CustomSpanDrawInfo_GetXOffset(customSpanDrawInfo);
+            float optionsLineTop = OH_ArkUI_CustomSpanDrawInfo_GetLineTop(customSpanDrawInfo);
+            float optionsLineBottom = OH_ArkUI_CustomSpanDrawInfo_GetLineBottom(customSpanDrawInfo);
+            float optionsBaseLine = OH_ArkUI_CustomSpanDrawInfo_GetBaseline(customSpanDrawInfo);
+            OH_ArkUI_CustomSpanDrawInfo_Dispose(customSpanDrawInfo);
+        }
+    });
+}
+
 void setColumn(ArkUI_NodeHandle &column)
 {
     // 设置空隙以便于展示对齐效果
@@ -1236,12 +1293,12 @@ void setColumn(ArkUI_NodeHandle &column)
     Manager::nodeAPI_->setAttribute(spaceColumn2, NODE_HEIGHT, &columnHeightItem);
 
     auto text12 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
-    // 设置文本字体粗细
+    // 设置Text节点组件宽度
     ArkUI_NumberValue textWeightValue[] = {{.f32 = 160}};
     ArkUI_AttributeItem textWeightItem = {.value = textWeightValue,
         .size = sizeof(textWeightValue) / sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text12, NODE_WIDTH, &textWeightItem);
-    // 设置文本高度
+    // 设置Text节点组件高度
     ArkUI_NumberValue textHeightValue[] = {{.f32 = 50}};
     ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
         .size = sizeof(textHeightValue) / sizeof(ArkUI_NumberValue)};
@@ -1257,6 +1314,10 @@ void setColumn(ArkUI_NodeHandle &column)
     // 设置文本内容
     ArkUI_AttributeItem item = {.string = "这是一个长长长长长文本，用于展示文本内容高度大于文本高度时，竖向居中对齐依然生效"};
     Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_CONTENT, &item);
+    // 文本行间距
+    ArkUI_NumberValue lineSpaceVal = {.f32 = VALUE_10};
+    ArkUI_AttributeItem lineSpaceItem = {&lineSpaceVal, VALUE_1};
+    Manager::nodeAPI_->setAttribute(text12, NODE_TEXT_LINE_SPACING, &lineSpaceItem);
     // 设置对齐模式
     ArkUI_NumberValue textContentAlignCenter[] = {{.u32 = ARKUI_TEXT_CONTENT_ALIGN_CENTER}};
     ArkUI_AttributeItem textContentAlignItemCenter = {textContentAlignCenter, 1};
@@ -1333,6 +1394,7 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle text3 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text4 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle text5_2 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text6 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text7 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle text8 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
@@ -1347,7 +1409,8 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     measuredInfo(text4);
     RunTaskInUIContext(text5);
     SetComponentForceDark(text5);
-    setText5(text5);
+    setText5_1(text5);
+    setText5_2(text5_2);
     setText6(text6);
     setText7(text7);
     setText8(text8);
@@ -1357,8 +1420,13 @@ void setAllText(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, text1);
     Manager::nodeAPI_->addChild(textContainer, text2);
     Manager::nodeAPI_->addChild(textContainer, text3);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_INDENT :%{public}f",
+                 Manager::nodeAPI_->getAttribute(text3, NODE_TEXT_INDENT)->value[VALUE_0].f32);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_LINE_COUNT :%{public}d",
+                 Manager::nodeAPI_->getAttribute(text3, NODE_TEXT_LINE_COUNT)->value[VALUE_0].i32);
     Manager::nodeAPI_->addChild(textContainer, text4);
     Manager::nodeAPI_->addChild(textContainer, text5);
+    Manager::nodeAPI_->addChild(textContainer, text5_2);
     Manager::nodeAPI_->addChild(textContainer, text6);
     Manager::nodeAPI_->addChild(textContainer, text7);
     Manager::nodeAPI_->addChild(textContainer, text8);
@@ -1398,6 +1466,8 @@ void setUIVal(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textInput4);
     Manager::nodeAPI_->addChild(textContainer, textArea1);
     Manager::nodeAPI_->addChild(textContainer, textArea2);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "NODE_TEXT_AREA_LINE_SPACING :%{public}d",
+                 Manager::nodeAPI_->getAttribute(textArea2, NODE_TEXT_AREA_LINE_SPACING)->value[VALUE_0].i32);
     Manager::nodeAPI_->addChild(textContainer, textArea3);
     Manager::nodeAPI_->addChild(textContainer, textArea4);
     Manager::nodeAPI_->addChild(textContainer, textArea5);
@@ -1409,7 +1479,7 @@ ArkUI_NodeHandle TextMaker::CreateNativeNode()
 {
     ArkUI_NodeHandle scroll = Manager::nodeAPI_->createNode(ARKUI_NODE_SCROLL);
     ArkUI_NodeHandle textContainer = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
-    ArkUI_NumberValue colWidth[] = {{.f32 = VALUE_400}};
+    ArkUI_NumberValue colWidth[] = {{.f32 = VALUE_300}};
     ArkUI_AttributeItem widthItem = {.value = colWidth, .size = VALUE_1};
     Manager::nodeAPI_->setAttribute(textContainer, NODE_WIDTH, &widthItem);
     setUIVal(textContainer);
