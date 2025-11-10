@@ -76,4 +76,5 @@ struct LinkIndex {
     .height('100%')
   }
 }
+
 // [End localtorage_page_local_storage_link]

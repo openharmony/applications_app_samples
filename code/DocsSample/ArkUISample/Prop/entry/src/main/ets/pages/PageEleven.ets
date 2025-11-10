@@ -48,18 +48,18 @@ struct SetSample {
   @State message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
-      Row() {
-        Column() {
-          Child({ message: this.message })
-        }
-        .width('100%')
+    Row() {
+      Column() {
+        Child({ message: this.message })
       }
-      .height('100%')
+      .width('100%')
     }
+    .height('100%')
+  }
 }
 
 // [End prop_eleven_start]
 @Builder
-export function MySetSampleBuilder(){
+export function MySetSampleBuilder() {
   SetSample()
 }

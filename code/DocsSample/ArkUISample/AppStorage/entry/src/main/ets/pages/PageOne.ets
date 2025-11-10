@@ -22,7 +22,6 @@ struct StorageDemoPage {
   private link1: SubscribedAbstractProperty<number> = AppStorage.link('propA');
   private link2: SubscribedAbstractProperty<number> = AppStorage.link('propA');
   private prop: SubscribedAbstractProperty<number> = AppStorage.prop('propA');
-
   // 状态变量用于UI展示
   @State appPropA: number = 0;
   @State localPropA: number = 0;
@@ -65,15 +64,18 @@ struct StorageDemoPage {
               .fontColor('#0066CC')
               .padding(5)
           }
+
           ListItem() {
             Text(`当前值: ${this.appPropA}`)
               .padding({ left: 10 })
           }
+
           ListItem() {
             Text(`link1: ${this.link1Val} | link2: ${this.link2Val} | prop: ${this.propVal}`)
               .fontSize(14)
               .padding({ left: 10 })
           }
+
           ListItem() {
             List({ space: 5 }) {
               ListItem() {
@@ -85,6 +87,7 @@ struct StorageDemoPage {
                   .backgroundColor('#0066CC')
                   .fontSize(12)
               }
+
               ListItem() {
                 Button('prop.set(1)')
                   .onClick(() => {
@@ -94,6 +97,7 @@ struct StorageDemoPage {
                   .backgroundColor('#0066CC')
                   .fontSize(12)
               }
+
               ListItem() {
                 Button('link1.set(49)')
                   .onClick(() => {
@@ -121,10 +125,12 @@ struct StorageDemoPage {
               .fontColor('#FF6600')
               .padding(5)
           }
+
           ListItem() {
             Text(`当前值: ${this.localPropA}`)
               .padding({ left: 10 })
           }
+
           ListItem() {
             Button('storage.set(101)')
               .onClick(() => {
@@ -153,4 +159,5 @@ struct StorageDemoPage {
     .backgroundColor('#F5F5F5')
   }
 }
+
 // [End appstorage_page_one]

@@ -14,50 +14,53 @@
  */
 
 import { router } from '@kit.ArkUI';
+
 interface Ary {
-  path:string,
-  name:string
+  path: string,
+  name: string
 }
+
 @Entry
 @Component
 struct Index {
-  ary:Ary[]=[
+  ary: Ary[] = [
     {
-      name:'PageOne',
-      path:'pages/PageOneMessageStorage'
+      name: 'PageOne',
+      path: 'pages/PageOneMessageStorage'
     },
     {
-      name:'PageTwo',
-      path:'pages/PageTwoPersistentStorage'
+      name: 'PageTwo',
+      path: 'pages/PageTwoPersistentStorage'
     },
     {
-      name:'PageThree',
-      path:'pages/PageThreeAppStorage'
+      name: 'PageThree',
+      path: 'pages/PageThreeAppStorage'
     },
     {
-      name:'PageFour',
-      path:'pages/PageFourMessageChange'
+      name: 'PageFour',
+      path: 'pages/PageFourMessageChange'
     },
     {
-      name:'PageFive',
-      path:'pages/PageFivePersistedDate'
+      name: 'PageFive',
+      path: 'pages/PageFivePersistedDate'
     },
     {
-      name:'PageSix',
-      path:'pages/PageSixPersistedMap'
+      name: 'PageSix',
+      path: 'pages/PageSixPersistedMap'
     },
     {
-      name:'PageSeven',
-      path:'pages/PageSevenPersistedSet'
+      name: 'PageSeven',
+      path: 'pages/PageSevenPersistedSet'
     },
   ]
+
   build() {
     Scroll() {
       Column({ space: 2 }) {
-        ForEach(this.ary,(item:Ary)=>{
+        ForEach(this.ary, (item: Ary) => {
           Button(item.name)
             .onClick(() => this.getUIContext().getRouter().pushUrl({ url: item.path }))
-        },(item:Ary)=>item.name)
+        }, (item: Ary) => item.name)
       }
       .width('100%')
     }

@@ -155,4 +155,5 @@ struct NavigationContentMsgStack {
     }
   }
 }
+
 // [End localtorage_page_my_navigation]

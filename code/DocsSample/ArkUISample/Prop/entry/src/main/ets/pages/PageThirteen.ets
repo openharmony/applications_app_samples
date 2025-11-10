@@ -15,6 +15,7 @@
 
 // [Start prop_thirteen_start]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0001;
 const TAG: string = '[SampleProp]';
 
@@ -56,31 +57,32 @@ struct Zoo {
   @State animal: Animals | undefined = new Animals('lion');
 
   build() {
-      Column() {
-        Text(`Parents' animals are  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
+    Column() {
+      Text(`Parents' animals are  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
 
-        Child({ animal: this.animal })
+      Child({ animal: this.animal })
 
-        Button('Parents change animals into dogs')
-          .onClick(() => {
-            // 判断animal的类型，做属性的更新
-            if (this.animal instanceof Animals) {
-              this.animal.name = 'Dog';
-            } else {
-              hilog.info(DOMAIN, TAG, 'num is undefined, cannot change property');
-            }
-          })
+      Button('Parents change animals into dogs')
+        .onClick(() => {
+          // 判断animal的类型，做属性的更新
+          if (this.animal instanceof Animals) {
+            this.animal.name = 'Dog';
+          } else {
+            hilog.info(DOMAIN, TAG, 'num is undefined, cannot change property');
+          }
+        })
 
-        Button('Parents change animal to undefined')
-          .onClick(() => {
-            // 赋值为undefined
-            this.animal = undefined;
-          })
-      }
+      Button('Parents change animal to undefined')
+        .onClick(() => {
+          // 赋值为undefined
+          this.animal = undefined;
+        })
+    }
   }
 }
+
 // [End prop_thirteen_start]
 @Builder
-export function MyZooBuilder(){
+export function MyZooBuilder() {
   Zoo()
 }

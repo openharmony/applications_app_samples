@@ -78,4 +78,5 @@ struct PersistedSet {
     }
   }
 }
+
 // [End Persistent_page_seven]

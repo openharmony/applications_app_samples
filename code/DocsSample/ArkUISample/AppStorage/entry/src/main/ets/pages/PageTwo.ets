@@ -14,6 +14,7 @@
  */
 // [Start appstorage_page_two]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0001;
 const TAG: string = '[SampleAppStorage]';
 
@@ -74,4 +75,5 @@ struct TestStorageProp {
     }
   }
 }
+
 // [End appstorage_page_two]

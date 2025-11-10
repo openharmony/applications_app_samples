@@ -47,4 +47,5 @@ struct MapSample {
     .height('100%')
   }
 }
+
 // [End appstorage_page_five]

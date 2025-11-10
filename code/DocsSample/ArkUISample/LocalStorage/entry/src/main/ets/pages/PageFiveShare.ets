@@ -14,7 +14,7 @@
  */
 // [Start localtorage_page_five_share]
 // PageFiveShare.ets
-// 预览器上不支持获取页面共享的LocalStorage实例。
+// 预览器上不支持获取页面共享的LocalStorage实例
 @Entry({ useSharedStorage: true })
 @Component
 struct PageFiveShare {
@@ -24,7 +24,7 @@ struct PageFiveShare {
 
   build() {
     Navigation(this.pageStack) {
-      Row(){
+      Row() {
         Column() {
           Text(`${this.propA}`)
             .fontSize(50)
@@ -40,4 +40,5 @@ struct PageFiveShare {
     }
   }
 }
+
 // [End localtorage_page_five_share]

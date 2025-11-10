@@ -14,6 +14,7 @@
  */
 // [Start appstorage_page_seven]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const DOMAIN = 0x0001;
 const TAG: string = '[SampleAppStorage]';
 
@@ -32,7 +33,9 @@ class ViewData {
 @Component
 struct Gallery {
   // $r('app.media.startIcon')需要替换为开发者所需的资源文件;
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.startIcon')), new ViewData('OMG', $r('app.media.startIcon')), new ViewData('OMG', $r('app.media.startIcon'))];
+  dataList: Array<ViewData> =
+    [new ViewData('flower', $r('app.media.startIcon')), new ViewData('OMG', $r('app.media.startIcon')),
+      new ViewData('OMG', $r('app.media.startIcon'))];
   scroller: Scroller = new Scroller();
 
   build() {
@@ -90,4 +93,5 @@ export struct TapImage {
 
   }
 }
+
 // [End appstorage_page_seven]

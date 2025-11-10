@@ -16,6 +16,7 @@
 @Observed
 class Son {
   public title: string;
+
   constructor(title: string) {
     this.title = title;
   }
@@ -25,11 +26,13 @@ class Son {
 class Father {
   public name: string;
   public son: Son;
+
   constructor(name: string, son: Son) {
     this.name = name;
     this.son = son;
   }
 }
+
 // [Start prop_nine_start]
 @Entry
 @Component
@@ -105,9 +108,10 @@ struct Child {
     }
   }
 }
+
 // [End prop_nine_start]
 
 @Builder
-export function MyPersonBuilder(){
+export function MyPersonBuilder() {
   Person()
 }

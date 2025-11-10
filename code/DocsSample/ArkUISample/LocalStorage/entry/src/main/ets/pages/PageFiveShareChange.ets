@@ -27,7 +27,7 @@ struct PageFiveShareChange {
 
   build() {
     NavDestination() {
-      Row(){
+      Row() {
         Column() {
           Text(`${this.propA}`)
             .fontSize(50)
@@ -51,4 +51,5 @@ struct PageFiveShareChange {
     })
   }
 }
+
 // [End localtorage_page_five_share2]

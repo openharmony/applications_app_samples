@@ -14,6 +14,7 @@
  */
 // [Start Persistent_page_first]
 const MAX_NUM: number = 50;
+
 // [End Persistent_page_first]
 @Entry
 @Component
@@ -27,7 +28,7 @@ struct TestPageThree {
     PersistentStorage.persistProp('aProp', 48);
     if ((AppStorage.get<number>('aProp') ?? 0) > MAX_NUM) {
       // 如果PersistentStorage存储的值超过50，设置为47
-      AppStorage.setOrCreate('aProp',47);
+      AppStorage.setOrCreate('aProp', 47);
     }
     // [End Persistent_page_three]
   }
