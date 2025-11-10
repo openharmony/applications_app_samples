@@ -25,8 +25,6 @@ import {
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0xFF00;
-
 class Params {
   public message: string = '';
 
@@ -68,8 +66,7 @@ export function buildText(params: Params) {
     buttons: [{
       text: 'confirm',
       action: () => {
-        // 全局变量定义：const DOMAIN = 0xFF00;
-        hilog.info(DOMAIN, 'globalOpenMenu', 'confirm button click');
+        hilog.info(0xFF00, 'globalOpenMenu', 'confirm button click');
       },
       fontSize: 15,
       fontColor: Color.Black,
@@ -77,7 +74,7 @@ export function buildText(params: Params) {
       {
         text: 'cancel',
         action: () => {
-          hilog.info(DOMAIN, 'globalOpenMenu', 'cancel button click');
+          hilog.info(0xFF00, 'globalOpenMenu', 'cancel button click');
         },
         fontSize: 15,
         fontColor: Color.Black
@@ -114,11 +111,10 @@ export struct OpenPopup {
         enableArrow: true
       })
       .then(() => {
-        // 全局变量定义：const DOMAIN = 0xFF00;
-        hilog.info(DOMAIN, 'globalOpenMenu', 'openMenu success');
+        hilog.info(0xFF00, 'globalOpenMenu', 'openMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(DOMAIN, 'globalOpenMenu', 'openMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'globalOpenMenu', 'openMenu error: ' + err.code + ' ' + err.message);
       });
     // [End open_menu]
   }
@@ -130,11 +126,10 @@ export struct OpenPopup {
         enableArrow: false
       }, true)
       .then(() => {
-        // 全局变量定义：const DOMAIN = 0xFF00;
-        hilog.info(DOMAIN, 'globalOpenMenu', 'updateMenu success');
+        hilog.info(0xFF00, 'globalOpenMenu', 'updateMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(DOMAIN, 'globalOpenMenu', 'updateMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'globalOpenMenu', 'updateMenu error: ' + err.code + ' ' + err.message);
       });
     // [End update_menu]
   }
@@ -144,11 +139,10 @@ export struct OpenPopup {
     this.getUIContext().getPromptAction()
       .closeMenu(this.contentNode)
       .then(() => {
-        // 全局变量定义：const DOMAIN = 0xFF00;
-        hilog.info(DOMAIN, 'globalOpenMenu', 'closeMenu success');
+        hilog.info(0xFF00, 'globalOpenMenu', 'closeMenu success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(DOMAIN, 'globalOpenMenu', 'closeMenu error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'globalOpenMenu', 'closeMenu error: ' + err.code + ' ' + err.message);
       });
     // [End close_menu]
   }

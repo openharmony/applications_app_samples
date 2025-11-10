@@ -18,8 +18,6 @@ import { PromptActionClass } from './PopupMainPage';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const DOMAIN = 0xFF00;
-
 class Params {
   private text: string = '';
 
@@ -61,8 +59,7 @@ export function buildText(params: Params) {
     buttons: [{
       text: 'confirm',
       action: () => {
-        // 全局变量定义：const DOMAIN = 0xFF00;
-        hilog.info(DOMAIN, 'popupBuildText', 'confirm button click');
+        hilog.info(0xFF00, 'popupBuildText', 'confirm button click');
       },
       fontSize: 15,
       fontColor: Color.Black,
@@ -70,7 +67,7 @@ export function buildText(params: Params) {
       {
         text: 'cancel',
         action: () => {
-          hilog.info(DOMAIN, 'popupBuildText', 'cancel button click');
+          hilog.info(0xFF00, 'popupBuildText', 'cancel button click');
         },
         fontSize: 15,
         fontColor: Color.Black
@@ -98,11 +95,10 @@ struct BuildTextExample {
       enableArrow: true
     })
       .then(() => {
-        // 全局变量定义：const DOMAIN = 0xFF00;
-        hilog.info(DOMAIN, 'popupBuildText', 'openPopup success');
+        hilog.info(0xFF00, 'popupBuildText', 'openPopup success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(DOMAIN, 'popupBuildText', 'openPopup error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'popupBuildText', 'openPopup error: ' + err.code + ' ' + err.message);
       });
     // [End open_popup]
   }
@@ -113,11 +109,10 @@ struct BuildTextExample {
       enableArrow: false
     }, true)
       .then(() => {
-        // 全局变量定义：const DOMAIN = 0xFF00;
-        hilog.info(DOMAIN, 'popupBuildText', 'updatePopup success');
+        hilog.info(0xFF00, 'popupBuildText', 'updatePopup success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(DOMAIN, 'popupBuildText', 'updatePopup error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'popupBuildText', 'updatePopup error: ' + err.code + ' ' + err.message);
       });
     // [End update_popup]
   }
@@ -126,11 +121,10 @@ struct BuildTextExample {
     // [Start close_popup]
     this.promptAction.closePopup(this.contentNode)
       .then(() => {
-        // 全局变量定义：const DOMAIN = 0xFF00;
-        hilog.info(DOMAIN, 'popupBuildText', 'closePopup success');
+        hilog.info(0xFF00, 'popupBuildText', 'closePopup success');
       })
       .catch((err: BusinessError) => {
-        hilog.error(DOMAIN, 'popupBuildText', 'closePopup error: ' + err.code + ' ' + err.message);
+        hilog.error(0xFF00, 'popupBuildText', 'closePopup error: ' + err.code + ' ' + err.message);
       });
     // [End close_popup]
   }
