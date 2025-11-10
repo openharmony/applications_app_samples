@@ -20,6 +20,7 @@ import MenuTest from './Menu.test'
 import OpenCustomDialogTest from './OpenCustomDialog.test';
 import CustomDialogTest from './CustomDialog.test';
 import NewFixDialogTest from './FixedDialogNew.test';
+import DialogFocusStrategyTest from './DialogFocusStrategy.test'
 
 export default function testsuite() {
   abilityTest();
@@ -29,4 +30,5 @@ export default function testsuite() {
   OpenCustomDialogTest();
   CustomDialogTest();
   NewFixDialogTest();
+  DialogFocusStrategyTest()
 }
