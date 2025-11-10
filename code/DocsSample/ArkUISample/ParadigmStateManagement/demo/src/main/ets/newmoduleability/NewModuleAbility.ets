@@ -20,7 +20,6 @@ const DOMAIN = 0x0000;
 
 export default class NewModuleAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    console.log('NewModuleAbility onCreate'+JSON.stringify(want))
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
 

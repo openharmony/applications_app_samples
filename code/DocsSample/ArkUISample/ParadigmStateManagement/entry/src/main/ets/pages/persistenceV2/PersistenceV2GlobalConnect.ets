@@ -41,7 +41,8 @@ export class SampleGlobalConnect {
 struct Page1 {
   @Local refresh: number = 0;
   // key不传入尝试用为type的name作为key，加密参数不传入默认加密等级为EL2
-  @Local p: SampleGlobalConnect = PersistenceV2.globalConnect({ type: SampleGlobalConnect, defaultCreator: () => new SampleGlobalConnect() })!;
+  @Local p: SampleGlobalConnect =
+    PersistenceV2.globalConnect({ type: SampleGlobalConnect, defaultCreator: () => new SampleGlobalConnect() })!;
   // 使用key:global1连接，传入加密等级为EL1
   @Local p1: SampleGlobalConnect = PersistenceV2.globalConnect({
     type: SampleGlobalConnect,
@@ -50,7 +51,8 @@ struct Page1 {
     areaMode: contextConstant.AreaMode.EL1
   })!;
   // 使用key:global2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
-  options: ConnectOptions<SampleGlobalConnect> = { type: SampleGlobalConnect, key: 'global2', defaultCreator: () => new SampleGlobalConnect() };
+  options: ConnectOptions<SampleGlobalConnect> =
+    { type: SampleGlobalConnect, key: 'global2', defaultCreator: () => new SampleGlobalConnect() };
   @Local p2: SampleGlobalConnect = PersistenceV2.globalConnect(this.options)!;
   // 使用key:global3连接，直接写加密数值，范围只能在0-4，否则运行会crash,例如加密设置为EL3
   @Local p3: SampleGlobalConnect = PersistenceV2.globalConnect({
