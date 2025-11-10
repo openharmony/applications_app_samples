@@ -28,16 +28,16 @@
 │   │   │   ├── TaskListModel.ets
 │   │   │   └── TaskModel.ets
 │   │   ├── /pages                       //通过状态管理V2版本实现ViewModel
-│   │   │   ├── 1-Basic.ets
-│   │   │   ├── 2-Local.ets
-│   │   │   ├── 3-Param.ets
-│   │   │   ├── 4-Event.ets
-│   │   │   ├── 5-Repeat.ets
-│   │   │   ├── 6-ObservedV2Trace.ets
-│   │   │   ├── 7-MonitorComputed.ets
-│   │   │   ├── 8-AppStorageV2.ets
-│   │   │   ├── 9-PersistenceV2.ets
-│   │   │   ├── 10-Builder.ets
+│   │   │   ├── BasicPage.ets
+│   │   │   ├── LocalPage.ets
+│   │   │   ├── ParamPage.ets
+│   │   │   ├── EventPage.ets
+│   │   │   ├── RepeatPage.ets
+│   │   │   ├── ObservedV2TracePage.ets
+│   │   │   ├── MonitorComputedPage.ets
+│   │   │   ├── AppStorageV2Page.ets
+│   │   │   ├── PersistenceV2Page.ets
+│   │   │   ├── BuilderPage.ets
 │   │   │   ├── AppStorageV2.ets         //使用AppStorageV2
 │   │   │   ├── PageOne.ets              //在PageOne和PageTwo两个页面之间存储数据Sample
 │   │   │   ├── PageTwo.ets 

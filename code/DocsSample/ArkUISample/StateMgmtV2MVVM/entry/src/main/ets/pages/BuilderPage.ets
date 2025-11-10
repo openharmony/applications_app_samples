@@ -141,7 +141,6 @@ struct TodoList {
       }
       .margin({ top: 10, bottom: 5 })
       Row() {
-        // app.string.Add_new_task 资源文件中的value值为'添加新任务'。
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
