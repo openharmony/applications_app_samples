@@ -16,18 +16,18 @@ import { StartupTask, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Sendable
-export default class StartupTask003 extends StartupTask {
+export default class StartupTask_002 extends StartupTask {
   constructor() {
     super();
   }
 
   async init(context: common.AbilityStageContext) {
-    hilog.info(0x0000, 'testTag', 'StartupTask_003 init.');
-    return 'StartupTask_003';
+    hilog.info(0x0000, 'testTag', 'StartupTask_002 init.');
+    return 'StartupTask_002';
   }
 
   onDependencyCompleted(dependence: string, result: Object): void {
-    hilog.info(0x0000, 'testTag', 'StartupTask_003 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
+    hilog.info(0x0000, 'testTag', 'StartupTask_002 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
       dependence, JSON.stringify(result));
   }
 }

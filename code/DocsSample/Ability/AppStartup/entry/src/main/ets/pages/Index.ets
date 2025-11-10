@@ -45,5 +45,4 @@ struct Index {
     .width('100%')
   }
 }
-
 // [End startup_index]

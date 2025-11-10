@@ -20,7 +20,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
-
 // [EndExclude startup_entry]
 
 export default class EntryAbility extends UIAbility {
@@ -41,7 +40,6 @@ export default class EntryAbility extends UIAbility {
       console.error(`Startup catch error, errMsg= ${errMsg}.`);
     }
   }
-
   // [StartExclude startup_entry]
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
@@ -74,8 +72,6 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
-
   // [EndExclude startup_entry]
 }
-
 // [End startup_entry]
