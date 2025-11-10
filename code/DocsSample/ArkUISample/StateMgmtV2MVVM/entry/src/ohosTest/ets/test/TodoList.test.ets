@@ -125,11 +125,11 @@ export default function TodoListTest () {
       let button_search = await driver.findComponent(ON.text('学习ArkTS开发'));
       expect(button_search === null).assertTrue();
       let inputField = await driver.findComponent(ON.type('TextInput'));
-      await inputField.inputText('test123')
+      await inputField.inputText('喝水')
       let addButton = await driver.findComponent(ON.text('+'));
       await addButton.click();
       await driver.delayMs(1000);
-      let newTask = await driver.findComponent(ON.text('test123'));
+      let newTask = await driver.findComponent(ON.text('喝水'));
       expect(newTask === null).assertFalse();
       await driver.delayMs(2000);
       done();

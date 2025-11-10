@@ -37,6 +37,9 @@ export default struct BottomView {
       Row() {
         actionButton('All Completed', (): void => this.taskList.finishAll(true))
         actionButton('All Not Completed', (): void => this.taskList.finishAll(false))
+      }
+      .margin({ top: 10 })
+      Row(){
         actionButton('Setting', (): void => {
           let wantInfo: Want = {
             deviceId: '', // deviceId为空表示本设备。
@@ -46,7 +49,7 @@ export default struct BottomView {
           this.context.startAbility(wantInfo);
         })
       }
-      .margin({ top: 10, bottom: 5 })
+      .margin({ bottom: 5 })
       Row() {
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
