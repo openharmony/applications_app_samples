@@ -48,7 +48,6 @@ export struct SymbolShadowAndColor {
             Column() {
               // 'app.string.shadow_ability'资源文件中的value值为"阴影能力"
               Text($r('app.string.shadow_ability'));
-              // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
               SymbolGlyph($r('sys.symbol.ohos_wifi'))
                 .fontSize(96)
                 .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
@@ -69,7 +68,6 @@ export struct SymbolShadowAndColor {
                 .fontSize(18)
                 .fontColor(0xCCCCCC)
                 .textAlign(TextAlign.Center)
-              // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
               SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
                 .fontSize(96)
                 .shaderStyle([new RadialGradientStyle(this.radialGradientOptions)])
