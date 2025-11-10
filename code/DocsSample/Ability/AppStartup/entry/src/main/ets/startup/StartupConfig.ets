@@ -42,7 +42,6 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     };
     return config;
   }
-
   // [EndExclude startup_config]
   // [StartExclude startup_entryconfig]
   onRequestCustomMatchRule(want: Want): string {
@@ -51,9 +50,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     }
     return '';
   }
-
   // [EndExclude startup_entryconfig]
 }
-
 // [End startup_config]
 // [End startup_entryconfig]
