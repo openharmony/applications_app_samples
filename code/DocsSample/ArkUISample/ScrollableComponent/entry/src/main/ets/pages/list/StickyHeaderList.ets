@@ -124,7 +124,7 @@ export struct StickyHeaderList {
           }
           .sticky(StickyStyle.Header) // 设置吸顶，实现粘性标题效果
           // [StartExclude add_sticky_titles]
-          .height(230)
+          .height(130)
         }
       }
       .width('100%')

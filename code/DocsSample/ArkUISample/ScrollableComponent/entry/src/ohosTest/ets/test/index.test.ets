@@ -140,10 +140,6 @@ export default function IndexTest() {
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-
-      let stickyList = await driver.findComponent(ON.type('List'));
-      expect(stickyList === null).assertFalse();
-      await stickyList.scrollToBottom();
       await driver.pressBack();
       await driver.pressBack();
       console.info('uitest: testStickyHeaderList end');

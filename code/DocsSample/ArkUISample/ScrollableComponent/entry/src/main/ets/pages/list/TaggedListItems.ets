@@ -44,8 +44,9 @@ export struct TaggedListItems {
                     .backgroundColor('#FFF1F3F5')
                   // [EndExclude add_tags_to_list_items]
                 }
-                // [End add_tags_to_list_items]
-              }.margin({ top: 12 })
+              }
+              // [End add_tags_to_list_items]
+              .margin({ top: 12 })
             }, (item: number) => item.toString())
           }
         }
