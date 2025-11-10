@@ -203,6 +203,7 @@ void FifthModule(ArkUI_NodeHandle &root)
     SetId(button5_2, "dropBt4");
     SetCommonAttribute(button5_2, SIZE_140, SIZE_50, 0xFFFF0000, BLANK_20);
     SetButtonLabel(button5_2, "拖拽至此处");
+    OH_ArkUI_DisableDropDataPrefetchOnNode(button5_2, true);
     nodeAPI->registerNodeEvent(button5_2, NODE_ON_DROP, 1, nullptr);
     nodeAPI->addChild(row5, button5_2);
 
