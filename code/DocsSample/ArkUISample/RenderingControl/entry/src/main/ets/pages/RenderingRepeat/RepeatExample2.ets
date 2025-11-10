@@ -17,7 +17,7 @@
 // 在List容器组件中使用Repeat
 @Entry
 @ComponentV2 // 推荐使用V2装饰器
-struct RepeatExample2 {
+struct RepeatExampleWithTemplates {
   @Local dataArr: Array<string> = []; // 数据源
 
   aboutToAppear(): void {
