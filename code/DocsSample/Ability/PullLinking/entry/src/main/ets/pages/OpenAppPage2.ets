@@ -16,6 +16,7 @@
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 // [StartExclude can_open]
 import { common, Want, wantConstant } from '@kit.AbilityKit';
 

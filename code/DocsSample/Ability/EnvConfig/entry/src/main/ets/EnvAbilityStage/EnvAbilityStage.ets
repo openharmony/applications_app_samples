@@ -16,12 +16,12 @@
 import { AbilityStage, Configuration } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = '[EnvAbility8]';
+const TAG: string = '[EnvAbilityStage]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 let systemLanguage: string | undefined; // 系统当前语言
 
-export default class EnvAbility8 extends AbilityStage {
+export default class EnvAbilityStage extends AbilityStage {
   onCreate(): void {
     systemLanguage = this.context.config.language; // Module首次加载时，获取系统当前语言
     hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage is ${systemLanguage}`);
