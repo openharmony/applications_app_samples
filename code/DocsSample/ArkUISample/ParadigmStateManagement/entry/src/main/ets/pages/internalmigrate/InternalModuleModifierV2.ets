@@ -67,7 +67,6 @@ struct MyImage1 {
 struct Index {
   // 使用makeObserved的能力观测TextModifier
   @Local myModifier: TextModifier = UIUtils.makeObserved(new MyModifier().width(100).height(100).margin(10));
-  // 临时存储的index数字
   index: number = 0;
 
   build() {

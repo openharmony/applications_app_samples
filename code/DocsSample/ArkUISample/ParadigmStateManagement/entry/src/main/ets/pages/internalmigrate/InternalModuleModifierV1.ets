@@ -65,7 +65,6 @@ struct MyImage1 {
 @Component
 struct Index {
   @State myModifier: TextModifier = new MyModifier().width(100).height(100).margin(10);
-  // 临时存储的index数字
   index: number = 0;
 
   build() {

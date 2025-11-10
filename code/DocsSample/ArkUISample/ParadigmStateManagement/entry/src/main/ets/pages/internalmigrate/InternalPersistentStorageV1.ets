@@ -19,13 +19,13 @@ class Data {
 }
 
 PersistentStorage.persistProp('numProp', 47);
-PersistentStorage.persistProp('DataProp', new Data());
+PersistentStorage.persistProp('dataProp', new Data());
 
 @Entry
 @Component
 struct Index {
   @StorageLink('numProp') numProp: number = 48;
-  @StorageLink('DataProp') dataProp: Data = new Data();
+  @StorageLink('dataProp') dataProp: Data = new Data();
 
   build() {
     Column() {
@@ -37,13 +37,13 @@ struct Index {
         .fontSize(30)
 
       // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
-      Text(`DataProp.name: ${this.dataProp.name}`)
+      Text(`dataProp.name: ${this.dataProp.name}`)
         .onClick(() => {
           this.dataProp.name += 'a';
         })
         .fontSize(30)
       // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
-      Text(`DataProp.id: ${this.dataProp.id}`)
+      Text(`dataProp.id: ${this.dataProp.id}`)
         .onClick(() => {
           this.dataProp.id += 1;
         })

@@ -17,7 +17,7 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
-  para: Record<string, number> = { 'count': 47 };
+  public para: Record<string, number> = { 'count': 47 };
   public storage: LocalStorage = new LocalStorage(this.para);
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
