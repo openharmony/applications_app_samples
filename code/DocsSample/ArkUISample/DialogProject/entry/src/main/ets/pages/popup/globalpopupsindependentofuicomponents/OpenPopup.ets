@@ -62,7 +62,7 @@ export struct OpenPopup {
   private targetId: number = ID;
   // [Start content_node]
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.uiContext, wrapBuilder(buildText), this.message);
+    new ComponentContent(this.uiContext, wrapBuilder(buildText), new Params(this.message, this.promptActionClass));
   // [End content_node]
   // [Start private_options]
   private options: PopupCommonOptions = { enableArrow: true };
