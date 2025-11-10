@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例展示了在一个Stage模型中，开发基于ArkTS UI的Navigation的应用,使用组件导航（Navigation）主要用于实现Navigation页面（NavDestination）间的跳转，支持在不同Navigation页面间传递参数，提供灵活的跳转栈操作，从而更便捷地实现对不同页面的访问和复用。
+本示例展示了在一个Stage模型中，开发基于ArkTS UI的Navigation的应用,使用组件导航（Navigation）主要用于实现Navigation页面（NavDestination）间的跳转，支持在不同Navigation页面间传递参数，提供灵活的跳转栈操作，从而更便捷地实现对不同页面的访问和复用，具体可参考[组件导航(Navigation) (推荐)指南文档示例](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-navigation-navigation.md)。
 ### 效果预览
 
 | 首页                                 |
