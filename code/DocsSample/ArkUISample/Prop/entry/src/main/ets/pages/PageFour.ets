@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
+// [Start prop_four_start]
 @Component
-  // [Start prop_four_start]
 struct Child {
   @Prop value: number = 0;
 

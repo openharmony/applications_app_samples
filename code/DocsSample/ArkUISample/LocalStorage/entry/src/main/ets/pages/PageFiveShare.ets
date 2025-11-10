@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start localtorage_page_five_share]
-
+// PageFiveShare.ets
 // 预览器上不支持获取页面共享的LocalStorage实例。
 @Entry({ useSharedStorage: true })
 @Component

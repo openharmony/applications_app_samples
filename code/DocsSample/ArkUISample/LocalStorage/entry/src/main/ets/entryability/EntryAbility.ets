@@ -14,13 +14,14 @@
  */
 import { AbilityConstant, ConfigurationConstant, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-// [Start localtorage_export_one]
+// [Start localstorage_export_one]
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-// [End localtorage_export_one]
+
+// [StartExclude localstorage_export_one]
 const DOMAIN = 0x0000;
-// [Start localtorage_export_two]
+// [EndExclude localstorage_export_one]
 export default class EntryAbility extends UIAbility {
   para: Record<string, number> = {
     'PropA': 47
@@ -30,7 +31,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void{
     windowStage.loadContent('pages/Index', this.storage);
   }
-  // [End localtorage_export_two]
+  // [StartExclude localstorage_export_one]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
@@ -58,6 +59,6 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
-  // [Start localtorage_export_three]
+  // [EndExclude localstorage_export_one]
 }
-// [End localtorage_export_three]
+// [End localstorage_export_one]
