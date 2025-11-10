@@ -40,7 +40,9 @@ struct EventHubPage {
         .id('HelloWorld')
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      Button($r('app.string.Start_UIAbilityB')) // app.string.Start_UIAbilityB的值为拉起UIAbilityB
+
+      // app.string.Start_UIAbilityB资源文件中的value值为'拉起UIAbilityB'
+      Button($r('app.string.Start_UIAbilityB'))
         .onClick((event: ClickEvent) => {
           this.startAbilityTest();
         })

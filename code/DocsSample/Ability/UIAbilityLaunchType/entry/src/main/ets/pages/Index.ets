@@ -33,7 +33,8 @@ struct Index {
           this.message = 'Welcome';
         })
 
-      Button($r('app.string.singletonAbility')) // app.string.singletonAbility的值为启动单实例模式UIAbility
+      // app.string.singletonAbility资源文件中的value值为'启动单实例模式UIAbility'
+      Button($r('app.string.singletonAbility'))
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -51,7 +52,8 @@ struct Index {
           })
         })
 
-      Button($r('app.string.multitonAbility')) // app.string.multitonAbility的值为启动多实例模式UIAbility
+      // app.string.multitonAbility资源文件中的value值为'启动多实例模式UIAbility'
+      Button($r('app.string.multitonAbility'))
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -69,7 +71,8 @@ struct Index {
           })
         })
 
-      Button($r('app.string.specifiedAbility')) // app.string.specifiedAbility的值为启动指定实例模式UIAbility
+      // app.string.specifiedAbility资源文件中的value值为'启动指定实例模式UIAbility'
+      Button($r('app.string.specifiedAbility'))
         .margin({top: 8})
         .onClick(() => {
           let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;

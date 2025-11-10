@@ -28,7 +28,8 @@ struct FuncAbilityAPage {
   build() {
     Column() {
       // [StartExclude FuncAbilityB]
-      Button($r('app.string.Stop_AbilityA')) //'app.string.Stop_AbilityA'的值为StopFuncAbilityA
+      // app.string.Stop_AbilityA资源文件中的value值为'StopFuncAbilityA'
+      Button($r('app.string.Stop_AbilityA'))
         .onClick(() => {
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
           // context为需要停止的UIAbility实例的AbilityContext
@@ -48,7 +49,8 @@ struct FuncAbilityAPage {
         ListItem() {
           Row() {
             // [StartExclude FuncAbilityB]
-            Button($r('app.string.Stop_AbilityA_Result')) //'app.string.Stop_AbilityA_Result'的值为StopFuncAbilityAWithResult
+            // app.string.Stop_AbilityA_Result资源文件中的value值为'StopFuncAbilityAWithResult'
+            Button($r('app.string.Stop_AbilityA_Result'))
               .width('60%');
             // [EndExclude FuncAbilityB]
           }
@@ -62,7 +64,8 @@ struct FuncAbilityAPage {
                 moduleName: 'entry', // moduleName非必选
                 abilityName: 'FuncAbilityA',
                 parameters: {
-                  info: $r('app.string.ability_return_info') //'app.string.ability_return_info'的值为来自FuncAbility Index页面
+                  // app.string.ability_return_info资源文件中的value值为'来自FuncAbility Index页面'
+                  info: $r('app.string.ability_return_info')
                 },
               },
             };
