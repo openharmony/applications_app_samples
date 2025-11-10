@@ -33,7 +33,7 @@ struct PageSixLocalStorageB {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         // 使用LocalStorage 实例localStorageBTwo
-        BChild({}, localStorageBTwo)
+        Child({}, localStorageBTwo)
       }
       .width('100%')
     }
@@ -42,7 +42,7 @@ struct PageSixLocalStorageB {
 }
 
 @Component
-struct BChild {
+struct Child {
   @State count: number = 5;
   // 'Hello World'，和localStorageBTwo中'propB'的双向同步，如果localStorageBTwo中没有'propB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') propB: string = 'Hello World';
@@ -55,3 +55,6 @@ struct BChild {
 }
 
 // [End localtorage_page_six_local_storageB]
+const nestedObjectIndexOne = Child;
+
+export default nestedObjectIndexOne;

@@ -19,7 +19,7 @@ export function PageBuilder() {
   PageFiveShareChange()
 }
 
-// PageFiveShareChange组件获得了父亲Index组件的LocalStorage实例
+// PageFiveShareChange组件获得了父亲PageFiveShare组件的LocalStorage实例
 @Component
 struct PageFiveShareChange {
   @LocalStorageLink('PropA') propA: number = 2;
@@ -38,7 +38,7 @@ struct PageFiveShareChange {
               this.propA = 100;
             })
 
-          Button('Back Index')
+          Button('Back PageFiveShare')
             .onClick(() => {
               this.pathStack.pop();
             })

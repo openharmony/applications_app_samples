@@ -21,7 +21,7 @@ localStorageChange.setOrCreate('propB', 'propB');
 
 @Entry(localStorageInstance)
 @Component
-struct AIndex {
+struct Index {
   // 'PropA'，和localStorageInstance中'PropA'的双向同步
   @LocalStorageLink('PropA') propA: string = 'Hello World';
   @State count: number = 0;
@@ -33,7 +33,7 @@ struct AIndex {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         // 使用LocalStorage 实例localStorageChange
-        AChild(localStorageChange)
+        ChildOne(localStorageChange)
       }
       .width('100%')
     }
@@ -42,7 +42,7 @@ struct AIndex {
 }
 
 @Component
-struct AChild {
+struct ChildOne {
   build() {
     Text('hello')
       .fontSize(50)
@@ -51,3 +51,6 @@ struct AChild {
 }
 
 // [End localtorage_page_six_local_storageA]
+const nestedObjectIndex = Index;
+
+export default nestedObjectIndex;
