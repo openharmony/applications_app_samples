@@ -27,7 +27,7 @@ struct LoadingResources {
       //  [End local_resource]
 
       //  [Start net_resource]
-      //  $r('app.string.LoadingResources')需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径。
+      //  $r('app.string.LoadingResources')需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径
       Image($r('app.string.LoadingResources'))
       //  [End net_resource]
 
@@ -42,7 +42,7 @@ struct LoadingResources {
       //  [End rawfile_resource]
 
       //  [Start fileLibrary_format]
-      //  'file://media/Photos/5'需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径。
+      //  'file://media/Photos/5'需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径
       Image('file://media/Photos/5')
         .width(200)
       //  [End fileLibrary_format]

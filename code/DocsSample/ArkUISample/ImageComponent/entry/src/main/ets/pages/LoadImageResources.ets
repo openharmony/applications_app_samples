@@ -26,7 +26,7 @@ const TAG = 'Sample_imagecomponent';
 @Component
 struct MediaLibraryFile {
   @State imgDatas: string[] = [];
-  // 使用PhotoViewPicker唤起图片选择器，选择图片并且渲染到页面中。
+  // 使用PhotoViewPicker唤起图片选择器，选择图片并且渲染到页面中
   // 获取照片url集
   getAllImg() {
     try {
@@ -53,7 +53,7 @@ struct MediaLibraryFile {
   async aboutToAppear() {
     this.getAllImg();
   };
-  // 使用imgDatas的url加载图片。
+  // 使用imgDatas的url加载图片
   build() {
     Column() {
       Grid() {

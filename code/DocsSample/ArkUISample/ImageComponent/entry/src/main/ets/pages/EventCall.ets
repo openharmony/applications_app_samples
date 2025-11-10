@@ -34,7 +34,7 @@ struct EventCall {
           .width(200)
           .height(150)
           .margin(15)
-          // 图片加载成功后，通过onComplete获取图片必要信息。
+          // 图片加载成功后，通过onComplete获取图片必要信息
           .onComplete(msg => {
             if(msg){
               this.widthValue = msg.width;
@@ -44,7 +44,7 @@ struct EventCall {
             };
             hilog.info(DOMAIN, TAG, `${msg}`);
           })
-          // 如果加载失败，使用onError触发回调函数获取结果。
+          // 如果加载失败，使用onError触发回调函数获取结果
           .onError(() => {
             hilog.info(DOMAIN, TAG, 'load image fail');
           })

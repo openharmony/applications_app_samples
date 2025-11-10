@@ -23,7 +23,7 @@ struct ImageInterpolationType {
         //  $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
-          // 使用interpolation接口对图片进行插值，显著提升清晰度。
+          // 使用interpolation接口对图片进行插值，显著提升清晰度
           .interpolation(ImageInterpolation.None)
           .borderWidth(1)
           .overlay('Interpolation.None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
@@ -31,7 +31,7 @@ struct ImageInterpolationType {
         //  $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
-          // 使用interpolation接口对图片进行插值，显著提升清晰度。
+          // 使用interpolation接口对图片进行插值，显著提升清晰度
           .interpolation(ImageInterpolation.Low)
           .borderWidth(1)
           .overlay('Interpolation.Low', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
@@ -43,7 +43,7 @@ struct ImageInterpolationType {
         //  $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
-          // 使用interpolation接口对图片进行插值，显著提升清晰度。
+          // 使用interpolation接口对图片进行插值，显著提升清晰度
           .interpolation(ImageInterpolation.Medium)
           .borderWidth(1)
           .overlay('Interpolation.Medium', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
@@ -51,7 +51,7 @@ struct ImageInterpolationType {
         //  $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
-          // 使用interpolation接口对图片进行插值，显著提升清晰度。
+          // 使用interpolation接口对图片进行插值，显著提升清晰度
           .interpolation(ImageInterpolation.High)
           .borderWidth(1)
           .overlay('Interpolation.High', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
