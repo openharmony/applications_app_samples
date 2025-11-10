@@ -23,9 +23,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 // [StartExclude onCreate]
 import { window } from '@kit.ArkUI';
 // [EndExclude onCreate]
-// [EndExclude onDestroy]
 
-// [StartExclude onDestroy]
 const DOMAIN = 0x0000;
 const TAG: string = '[EventAbility]';
 // [EndExclude onDestroy]
