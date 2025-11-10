@@ -20,7 +20,7 @@ import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 @ObservedV2
 class Params {
   // 单例模式，确保只有一个Params实例。
-  static singleton_: Params;
+  public static singleton_: Params;
 
   // 获取Params实例的方法。
   static instance() {
@@ -31,7 +31,7 @@ class Params {
   }
 
   // 使用@Trace装饰器装饰message属性，以便跟踪其变化。
-  public @Trace message: string = 'Hello';
+  @Trace public message: string = 'Hello';
   public index: number = 0;
 
   constructor(index: number) {
