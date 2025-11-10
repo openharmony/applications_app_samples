@@ -14,6 +14,7 @@
  */
 
 // [Start cors_loccross_two]
+// main/ets/pages/LocCrossOriginResAccSol_two.ets
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
