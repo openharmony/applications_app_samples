@@ -10,6 +10,8 @@
 
 ### 3.[Button](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
 
+### 4.[@ReusableV2装饰器：组件复用](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-reusableV2.md)
+
 ## 预览效果
 
 ![](screenshots/device/image1.jpeg)
