@@ -30,6 +30,7 @@ export default class EntryAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage(this.para);
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 当前用例需要开发者手动修改为windowStage.loadContent('pages/PageFiveShare', this.storage);
     windowStage.loadContent('pages/Index', this.storage);
   }
 
