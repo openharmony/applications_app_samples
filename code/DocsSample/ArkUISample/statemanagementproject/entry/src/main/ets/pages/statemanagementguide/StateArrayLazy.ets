@@ -102,8 +102,8 @@ class MyDataSource extends BasicDataSource {
 }
 
 class StringData {
- public message: string;
- public imgSrc: Resource;
+  public message: string;
+  public imgSrc: Resource;
 
   constructor(message: string, imgSrc: Resource) {
     this.message = message;
