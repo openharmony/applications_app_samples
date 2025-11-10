@@ -272,12 +272,14 @@ export default class EntryAbility extends UIAbility {
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
-    // 完成自定义配置键值对赋值
-    let configParams: Record<string, hiAppEvent.ParamType> = {
-      'js_heap_logtype': 'event', // 仅获取事件
+    if (deviceInfo.sdkApiVersion >= 20) {  // API Version 20及以后版本，支持设置资源泄漏日志配置参数
+      // 完成自定义配置键值对赋值
+      let configParams: Record<string, hiAppEvent.ParamType> = {
+        'js_heap_logtype': 'event', // 仅获取事件
+      };
+      // 设置资源泄漏事件的自定义配置
+      hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
     }
-    // 设置资源泄漏事件的自定义配置
-    hiAppEvent.setEventConfig(hiAppEvent.event.RESOURCE_OVERLIMIT, configParams);
     hiAppEvent.addWatcher({
       // 自定义观察者名称，系统会使用名称来标识不同的观察者
       name: 'pssLeakWatcher',
