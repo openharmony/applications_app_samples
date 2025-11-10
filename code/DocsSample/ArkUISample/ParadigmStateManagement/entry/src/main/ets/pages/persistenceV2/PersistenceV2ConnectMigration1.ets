@@ -42,13 +42,13 @@ export class Sample {
 @ComponentV2
 struct Page1 {
   @Local refresh: number = 0;
-  // 使用key:connect2存储
-  @Local p: Sample = PersistenceV2.connect(Sample, 'connect2', () => new Sample())!;
+  // 使用key:connect3存储
+  @Local p: Sample = PersistenceV2.connect(Sample, 'connect3', () => new Sample())!;
 
   build() {
     Column({space: 5}) {
       /**************************** 显示数据 **************************/
-      Text('Key connect2: ' + this.p.father.childId.toString())
+      Text('Key connect3: ' + this.p.father.childId.toString())
         .onClick(() => {
           this.p.father.childId += 1;
         })
@@ -61,7 +61,7 @@ struct Page1 {
         .onClick(() => {
           // 未被@Trace保存的对象无法自动存储，需要调用save存储
           this.p.father.groupId += 1;
-          PersistenceV2.save('connect2');
+          PersistenceV2.save('connect3');
           this.refresh += 1;
         })
         .fontSize(25)
