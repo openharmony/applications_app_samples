@@ -16,7 +16,6 @@
 // [Start app_context_cache_start]
 import { common } from '@kit.AbilityKit';
 
-
 @Entry
 @Component
 struct ApplicationContextCache {
