@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 [定位与解决Web白屏问题](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-white-screen.md) 示例代码片段的工程化，主要目标是帮助开发者定位与解决Web的白屏问题。
+本工程主要实现了对以下指南文档中 [定位与解决Web白屏问题](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-white-screen.md) 示例代码片段的工程化，主要目标是帮助开发者定位与解决Web的白屏问题。
 
 ### 检查权限和网络状态
 

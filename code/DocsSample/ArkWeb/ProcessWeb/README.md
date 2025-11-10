@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 [ArkWeb进程](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web_component_process.md) 和 [优化跳转至新Web组件过程中的页面闪烁现象](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-router-flash-optimization.md) 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+本工程主要实现了对以下指南文档中 [ArkWeb进程](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web_component_process.md) 和 [优化跳转至新Web组件过程中的页面闪烁现象](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-router-flash-optimization.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解ArkWeb进程和如何设置与网页背景色相同的Web组件的背景色，避免视觉闪烁。
 
 ## setRenderProcessMode
 
