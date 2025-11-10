@@ -41,6 +41,7 @@ public:
     void Export(napi_env env, napi_value exports);
     void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
     void OnTouchEvent(OH_NativeXComponent* component, void* window);
+    void OnTouchEventPartTwo(OH_NativeXComponent* component, void* window);
     void OnMouseEvent(OH_NativeXComponent* component, void* window);
     void OnHoverEvent(OH_NativeXComponent* component, bool isHover);
     void OnFocusEvent(OH_NativeXComponent* component, void* window);
