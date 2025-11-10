@@ -119,7 +119,7 @@ struct ChangingDataSubproperties {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: SubStringData, index: number) => {
         ListItem() {
-          ChangingDataSubproperties_ChildComponent({ data: item })
+          ChangingDataSubpropertiesChildComponent({ data: item })
         }
         .onClick(() => {
           item.message += '0';
@@ -131,7 +131,7 @@ struct ChangingDataSubproperties {
 }
 
 @Component
-struct ChangingDataSubproperties_ChildComponent {
+struct ChangingDataSubpropertiesChildComponent {
   @ObjectLink data: SubStringData;
 
   build() {

@@ -17,7 +17,7 @@
 // 定义一个类，标记为可观察的
 // 类中自定义一个数组，标记为可追踪的
 @ObservedV2
-class ArrayHolder1 {
+class ArrayHolderLocal {
   @Trace public arr: Array<number> = [];
 
   // constructor，用于初始化数组个数
@@ -30,7 +30,7 @@ class ArrayHolder1 {
 @Entry
 @ComponentV2
 struct RepeatSingle {
-  @Local arrayHolder: ArrayHolder1 = new ArrayHolder1(100);
+  @Local arrayHolder: ArrayHolderLocal = new ArrayHolderLocal(100);
   @Local totalCount: number = this.arrayHolder.arr.length;
   scroller: Scroller = new Scroller();
 
