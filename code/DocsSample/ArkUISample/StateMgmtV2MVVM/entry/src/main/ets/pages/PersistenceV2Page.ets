@@ -70,7 +70,6 @@ struct TaskItem {
         .height(28)
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
-      // app.string.Delete_task 资源文件中的value值为'删除'。
       Button('Delete')
         .onClick(() => this.deleteTask())
     }
