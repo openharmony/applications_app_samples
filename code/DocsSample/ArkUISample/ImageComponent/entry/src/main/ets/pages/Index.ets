@@ -79,11 +79,6 @@ let demandList: listItem[] = [
     name: 'EventCall',
     description: 'After the image is successfully loaded, necessary information about the image can be obtained',
     router: 'pages/EventCall',
-  },
-  {
-    name: "Shadow",
-    description: "The shadow interface can add shadow effects to the current component.",
-    router: "pages/Shadow",
   }
 ];
 @Entry
