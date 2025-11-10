@@ -31,7 +31,7 @@ struct HttpExample {
   code: http.ResponseCode | number | undefined = undefined;
   @State image: PixelMap | undefined = undefined; //创建PixelMap状态变量
 
-  //  使用createHttp接口将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上
+  // 使用createHttp接口将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上
   aboutToAppear(): void {
     http.createHttp().request('xxx://xxx.xxx.xxx/example.png', // 需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径
       (error: BusinessError, data: http.HttpResponse) => {
@@ -40,7 +40,7 @@ struct HttpExample {
           return;
         };
         this.outData = data;
-        //将网络地址成功返回的数据，编码转码成pixelMap的图片格式
+        // 将网络地址成功返回的数据，编码转码成pixelMap的图片格式
         if (http.ResponseCode.OK === this.outData.responseCode) {
           let imageData: ArrayBuffer = this.outData.result as ArrayBuffer;
           let imageSource: image.ImageSource = image.createImageSource(imageData);
