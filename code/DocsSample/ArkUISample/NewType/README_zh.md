@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例展示了在一个Stage模型中，开发基于ArkTS UI的@Type装饰器：标记类属性的类型的应用。
+本示例展示了在一个Stage模型中，开发基于ArkTS UI的@Type装饰器：标记类属性的类型的应用，具体可参考[@Type装饰器：标记类属性的类型](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-type.md)。
 
 应用通过@Type配合PersistenceV2使用
 ### 效果预览

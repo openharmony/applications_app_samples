@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例展示了在一个Stage模型中，开发基于ArkTS UI的自定义组件的自定义布局。
+本示例展示了在一个Stage模型中，开发基于ArkTS UI的自定义组件的自定义布局，具体可参考[自定义组件的自定义布局](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-page-custom-components-layout.md)。
 
 ### 效果预览
 
