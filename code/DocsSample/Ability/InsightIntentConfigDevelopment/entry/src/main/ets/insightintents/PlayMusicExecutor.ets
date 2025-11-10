@@ -47,5 +47,4 @@ export default class PlayMusicExecutor extends InsightIntentExecutor {
     return Promise.resolve(result);
   }
 }
-
 // [End playmusic_executor]
