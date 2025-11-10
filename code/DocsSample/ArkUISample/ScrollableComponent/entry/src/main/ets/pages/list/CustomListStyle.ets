@@ -35,6 +35,12 @@ class DividerTmp {
 export struct CustomListStyle {
   @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0');
 
+  // [StartExclude set_the_divider]
+  // [Start external_scroll_ctrl]
+  private listScroller: Scroller = new Scroller();
+  // [End external_scroll_ctrl]
+  // [EndExclude set_the_divider]
+
   build() {
     // [StartExclude set_the_divider]
     NavDestination() {
@@ -106,6 +112,39 @@ export struct CustomListStyle {
           .scrollBar(BarState.Auto)
           // [End add_a_scrollbar]
           .backgroundColor('#FFF1F3F5')
+        }
+
+        ComponentCard({ title: $r('app.string.CustomListStyle_titleExternalScrollbars') }) {
+
+          Stack({ alignContent: Alignment.End }){
+            // [Start external_scroll_list]
+            // listScroller初始化List组件的scroller参数，绑定listScroller与列表。
+            List({ scroller: this.listScroller }) {
+              // [StartExclude external_scroll_list]
+              ListItem() {
+                Text('ListItem One')
+              }.height(30)
+
+              ListItem() {
+                Text('ListItem Two')
+              }.height(30)
+
+              ListItem() {
+                Text('ListItem Three')
+              }.height(30)
+              // [EndExclude external_scroll_list]
+            }
+            // [End external_scroll_list]
+            .scrollBar(BarState.Off)
+            .backgroundColor('#FFF1F3F5')
+
+            // [Start external_scroll_bar]
+            // listScroller初始化ScrollBar组件的scroller参数，绑定listScroller与列表。
+            ScrollBar({ scroller: this.listScroller})
+            // [End external_scroll_bar]
+
+          }.height(60)
+
         }
       }
       .width('100%')

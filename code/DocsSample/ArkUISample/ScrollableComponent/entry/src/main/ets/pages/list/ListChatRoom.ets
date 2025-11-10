@@ -14,6 +14,7 @@
  */
 
 import { ComponentCard } from '../../common/Card'
+import common from '@ohos.app.ability.common';
 // 消息类型定义
 // [Start listitem_data_structure]
 interface Message {
@@ -58,14 +59,23 @@ export struct ListChatRoom {
 
   // 消息列表数据
   // [Start construct_list_structure]
-  @State messages: Message[] = [
-    // app.string.welcome_live_room 资源文件中的value值为'欢迎来到直播间'
-    // app.string.system 资源文件中的value值为'系统'
-    { id: 1, content: $r('app.string.welcome_live_room'), sender: $r('app.string.system') },
-    // app.string.hello_everyone 资源文件中的value值为'大家好啊~'
-    // app.string.anchors 资源文件中的value值为'主播'
-    { id: 2, content: $r('app.string.hello_everyone'), sender: $r('app.string.anchors') }
-  ];
+  @State messages: Message[] = [];
+
+  aboutToAppear(): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // app.string.welcome_live_room资源文件中的value值为'欢迎来到直播间'
+    const welcomeLiveRoom = context.resourceManager.getStringByNameSync('welcome_live_room');
+    // app.string.system资源文件中的value值为'系统'
+    const system = context.resourceManager.getStringByNameSync('system');
+    // app.string.hello_everyone资源文件中的value值为'大家好啊~'
+    const helloEveryone = context.resourceManager.getStringByNameSync('hello_everyone');
+    // app.string.anchors资源文件中的value值为'主播'
+    const anchors = context.resourceManager.getStringByNameSync('anchors');
+    this.messages = [
+      { id: 1, content: welcomeLiveRoom, sender: system },
+      { id: 2, content: helloEveryone, sender: anchors }
+    ];
+  }
 
   build() {
     // [StartExclude construct_list_structure]
@@ -90,7 +100,8 @@ export struct ListChatRoom {
             // [StartExclude construct_list_structure]
             // 输入区域
             Row({ space: 10 }) {
-              TextInput({ text: this.inputText, placeholder: 'Say something...' })
+              // app.string.say_something资源文件中的value值为'说点什么...'
+              TextInput({ text: this.inputText, placeholder: $r('app.string.say_something') })
                 .layoutWeight(1)
                 .onChange((value: string) => {
                   this.inputText = value

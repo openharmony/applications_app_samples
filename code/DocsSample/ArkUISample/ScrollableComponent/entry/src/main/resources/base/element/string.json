@@ -569,6 +569,10 @@
       "value": "添加滚动条"
     },
     {
+      "name": "CustomListStyle_titleExternalScrollbars",
+      "value": "添加外置滚动条"
+    },
+    {
       "name": "CustomListStyle_description",
       "value": "示例通过属性自定义设置列表的内容间距、分隔线、滚动条等样式。"
     },
@@ -1215,6 +1219,10 @@
     {
       "name": "Other_materials",
       "value": "其他资料"
+    },
+    {
+      "name": "say_something",
+      "value": "说点什么..."
     },
     {
       "name": "welcome_live_room",

@@ -67,9 +67,9 @@ export struct SwipeListItem {
                     // [EndExclude bind_the_swipeAction_property_to_left_swipe_list_item]
                     this.itemEnd(this.index);
                   },
-                } // 设置侧滑属性.
-                // [End bind_the_swipeAction_property_to_left_swipe_list_item]
-              })
+                }
+              }) // 设置侧滑属性.
+              // [End bind_the_swipeAction_property_to_left_swipe_list_item]
             }, (item: number) => item.toString())
           }
         }
