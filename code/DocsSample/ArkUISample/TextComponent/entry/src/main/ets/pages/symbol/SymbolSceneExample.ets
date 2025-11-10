@@ -23,7 +23,6 @@ import resourceGetString from '../../common/resource';
 @Component
 struct SymbolMusicDemo {
   @State triggerValueReplace: number = 0;
-  // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
   @State symbolSources: Resource[] =
     [$r('sys.symbol.repeat'), $r('sys.symbol.repeat_1'), $r('sys.symbol.arrow_left_arrow_right')];
   @State symbolSourcesIndex: number = 0;
@@ -76,21 +75,18 @@ struct SymbolMusicDemo {
 
         Row({ space: 5 }) {
           Text() {
-            // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
             SymbolSpan($r('sys.symbol.arrow_down_circle_badge_vip_circle_filled'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
           }
 
           Text() {
-            // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
             SymbolSpan($r('sys.symbol.heart_badge_plus'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
           }
 
           Text() {
-            // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
             SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
@@ -107,11 +103,9 @@ struct SymbolMusicDemo {
         }.width('82%')
 
         Row({ space: 5 }) {
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.trash'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -126,11 +120,9 @@ struct SymbolMusicDemo {
         }.width('82%')
 
         Row({ space: 5 }) {
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.trash'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -145,11 +137,9 @@ struct SymbolMusicDemo {
         }.width('82%')
 
         Row({ space: 5 }) {
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.trash'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -164,11 +154,9 @@ struct SymbolMusicDemo {
         }.width('82%')
 
         Row({ space: 5 }) {
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.trash'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -183,11 +171,9 @@ struct SymbolMusicDemo {
         }.width('82%')
 
         Row({ space: 5 }) {
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.trash'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -202,11 +188,9 @@ struct SymbolMusicDemo {
         }.width('82%')
 
         Row({ space: 5 }) {
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.trash'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -221,11 +205,9 @@ struct SymbolMusicDemo {
         }.width('82%')
 
         Row({ space: 5 }) {
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
-          // $r('sys.symbol.xxx')需要替换成开发者需要的系统资源
           SymbolGlyph($r('sys.symbol.trash'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
