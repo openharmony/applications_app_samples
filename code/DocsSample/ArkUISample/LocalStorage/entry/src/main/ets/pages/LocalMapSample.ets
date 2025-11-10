@@ -47,4 +47,5 @@ struct LocalMapSample {
     .height('100%')
   }
 }
+
 // [End localtorage_local_map_sample]

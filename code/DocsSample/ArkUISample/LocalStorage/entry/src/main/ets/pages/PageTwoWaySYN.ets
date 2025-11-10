@@ -22,7 +22,6 @@ let linkToPropA: SubscribedAbstractProperty<object> = storageOne.link('PropA');
 @Entry(storageOne)
 @Component
 struct ParentTwo {
-
   // @LocalStorageLink('PropA')在Parent自定义组件中创建'PropA'的双向同步数据，初始值为47，因为在构造LocalStorage已经给“PropA”设置47
   @LocalStorageLink('PropA') storageLink: number = 1;
 
@@ -40,4 +39,5 @@ struct ParentTwo {
     }
   }
 }
+
 // [End localtorage_page_two_way_syn]

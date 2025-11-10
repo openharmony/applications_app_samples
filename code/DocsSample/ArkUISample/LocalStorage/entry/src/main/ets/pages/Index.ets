@@ -14,83 +14,86 @@
  */
 
 import { router } from '@kit.ArkUI';
+
 interface Ary {
-  path:string,
-  name:string
+  path: string,
+  name: string
 }
+
 @Entry
 @Component
 struct Index {
-  ary:Ary[]=[
+  ary: Ary[] = [
     {
-      name:'PageOne',
-      path:'pages/PageOneDoubleSYN'
+      name: 'PageOne',
+      path: 'pages/PageOneDoubleSYN'
     },
     {
-      name:'PageTwo',
-      path:'pages/PageTwoSigleSYN'
+      name: 'PageTwo',
+      path: 'pages/PageTwoSigleSYN'
     },
     {
-      name:'PageThree',
-      path:'pages/PageTwoWaySYN'
+      name: 'PageThree',
+      path: 'pages/PageTwoWaySYN'
     },
     {
-      name:'PageFour',
-      path:'pages/PageFourStateVariableSYN'
+      name: 'PageFour',
+      path: 'pages/PageFourStateVariableSYN'
     },
     {
-      name:'PageFive',
-      path:'pages/PageFiveShare'
+      name: 'PageFive',
+      path: 'pages/PageFiveShare'
     },
     {
-      name:'PageSix',
-      path:'pages/PageSixLocalStorage'
+      name: 'PageSix',
+      path: 'pages/PageSixLocalStorage'
     },
     {
-      name:'PageSeven',
-      path:'pages/PageSixLocalStorageA'
+      name: 'PageSeven',
+      path: 'pages/PageSixLocalStorageA'
     },
     {
-      name:'PageEight',
-      path:'pages/PageSixLocalStorageB'
+      name: 'PageEight',
+      path: 'pages/PageSixLocalStorageB'
     },
     {
-      name:'PageNine',
-      path:'pages/PageMyNavigation'
+      name: 'PageNine',
+      path: 'pages/PageMyNavigation'
     },
     {
-      name:'PageTen',
-      path:'pages/PageLocalStorageLink'
+      name: 'PageTen',
+      path: 'pages/PageLocalStorageLink'
     },
     {
-      name:'PageEleven',
-      path:'pages/PageFiveShareChange'
+      name: 'PageEleven',
+      path: 'pages/PageFiveShareChange'
     },
     {
-      name:'PageTwelve',
-      path:'pages/LocalSetSample'
+      name: 'PageTwelve',
+      path: 'pages/LocalSetSample'
     },
     {
-      name:'PageThirteen',
-      path:'pages/LocalMapSample'
+      name: 'PageThirteen',
+      path: 'pages/LocalMapSample'
     },
     {
-      name:'PageFourteen',
-      path:'pages/LocalDateSample'
+      name: 'PageFourteen',
+      path: 'pages/LocalDateSample'
     },
     {
-      name:'PageFifteen',
-      path:'pages/ChangeLocalSetSample'
+      name: 'PageFifteen',
+      path: 'pages/ChangeLocalSetSample'
     },
 
   ]
+
   build() {
     Scroll() {
       Column({ space: 2 }) {
-        ForEach(this.ary,(item:Ary)=>{
+        ForEach(this.ary, (item: Ary) => {
           Button(item.name)
             .onClick(() => this.getUIContext().getRouter().pushUrl({ url: item.path }))
-        },(item:Ary)=>item.name)
+        }, (item: Ary) => item.name)
       }
       .width('100%')
     }

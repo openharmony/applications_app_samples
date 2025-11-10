@@ -40,9 +40,10 @@ struct Father {
     }
   }
 }
+
 // [End prop_one_start]
 
 @Builder
-export function MyFatherBuilder(){
+export function MyFatherBuilder() {
   Father()
 }

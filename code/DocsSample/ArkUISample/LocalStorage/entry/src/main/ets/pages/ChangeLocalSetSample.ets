@@ -41,4 +41,5 @@ struct Test {
     }
   }
 }
+
 // [End localtorage_change_local_set_sample]

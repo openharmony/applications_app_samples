@@ -16,6 +16,7 @@
 // 创建新实例并使用给定对象初始化
 let paraOneLocal: Record<string, number> = { 'PropA': 47 };
 let storageOneLocal: LocalStorage = new LocalStorage(paraOneLocal);
+
 // 使LocalStorage可从@Component组件访问
 @Entry(storageOneLocal)
 @Component
@@ -47,4 +48,5 @@ struct ChildOne {
     }
   }
 }
+
 // [End localtorage_page_two_sigle_syn]

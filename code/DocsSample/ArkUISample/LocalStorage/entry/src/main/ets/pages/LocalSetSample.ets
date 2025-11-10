@@ -48,4 +48,5 @@ struct LocalSetSample {
     .height('100%')
   }
 }
+
 // [End localtorage_local_set_sample]

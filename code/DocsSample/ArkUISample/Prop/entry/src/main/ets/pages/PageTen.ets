@@ -51,18 +51,19 @@ struct MapSample {
   @State message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
-      Row() {
-        Column() {
-          Child({ value: this.message })
-        }
-        .width('100%')
+    Row() {
+      Column() {
+        Child({ value: this.message })
       }
-      .height('100%')
+      .width('100%')
     }
+    .height('100%')
+  }
 }
+
 // [End prop_ten_start]
 
 @Builder
-export function MyMapSampleBuilder(){
+export function MyMapSampleBuilder() {
   MapSample()
 }

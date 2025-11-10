@@ -21,6 +21,7 @@ import { window } from '@kit.ArkUI';
 
 // [StartExclude localstorage_export_one]
 const DOMAIN = 0x0000;
+
 // [EndExclude localstorage_export_one]
 export default class EntryAbility extends UIAbility {
   para: Record<string, number> = {
@@ -28,9 +29,10 @@ export default class EntryAbility extends UIAbility {
   };
   storage: LocalStorage = new LocalStorage(this.para);
 
-  onWindowStageCreate(windowStage: window.WindowStage): void{
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     windowStage.loadContent('pages/Index', this.storage);
   }
+
   // [StartExclude localstorage_export_one]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     try {
@@ -44,7 +46,7 @@ export default class EntryAbility extends UIAbility {
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
-  
+
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
@@ -59,6 +61,8 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+
   // [EndExclude localstorage_export_one]
 }
+
 // [End localstorage_export_one]

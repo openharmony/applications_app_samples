@@ -91,4 +91,5 @@ struct ParentFour {
     }
   }
 }
+
 // [End localtorage_page_four_state_variable_syn]

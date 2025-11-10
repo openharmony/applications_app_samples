@@ -53,4 +53,5 @@ struct BChild {
       .fontWeight(FontWeight.Bold)
   }
 }
+
 // [End localtorage_page_six_local_storageB]

@@ -56,4 +56,5 @@ struct PersistedMap {
     }
   }
 }
+
 // [End Persistent_page_six]

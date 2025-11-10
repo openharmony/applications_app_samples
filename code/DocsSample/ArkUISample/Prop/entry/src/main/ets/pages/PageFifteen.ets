@@ -16,11 +16,12 @@
 // [Start prop_fifteen_start]
 class Score {
   public value: number;
+
   constructor(value: number) {
     this.value = value;
   }
 
-  static changeScore1(score:Score) {
+  static changeScore1(score: Score) {
     score.value += 1;
   }
 }
@@ -31,14 +32,14 @@ struct Parent {
   @State score: Score = new Score(1);
 
   build() {
-      Column({ space: 8 }) {
-        Text(`The value in Parent is ${this.score.value}.`)
-          .fontSize(30)
-          .fontColor(Color.Red)
-        Child({ score: this.score })
-      }
-      .width('100%')
-      .height('100%')
+    Column({ space: 8 }) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 
@@ -46,22 +47,22 @@ struct Parent {
 struct Child {
   @Prop score: Score;
 
-  changeScore2(score:Score) {
+  changeScore2(score: Score) {
     score.value += 2;
   }
 
   build() {
-    Column({space:8}) {
+    Column({ space: 8 }) {
       Text(`The value in Child is ${this.score.value}.`)
         .fontSize(30)
       Button(`changeScore1`)
-        .onClick(()=>{
+        .onClick(() => {
           // 通过赋值添加 Proxy 代理
           let score1 = this.score;
           Score.changeScore1(score1);
         })
       Button(`changeScore2`)
-        .onClick(()=>{
+        .onClick(() => {
           // 通过赋值添加 Proxy 代理
           let score2 = this.score;
           this.changeScore2(score2);
@@ -69,9 +70,10 @@ struct Child {
     }
   }
 }
+
 // [End prop_fifteen_start]
 
 @Builder
-export function MyParentBuilder(){
+export function MyParentBuilder() {
   Parent()
 }

@@ -17,6 +17,7 @@
 // 定义嵌套类
 class Info {
   public value: string;
+
   constructor(value: string) {
     this.value = value;
   }
@@ -25,11 +26,13 @@ class Info {
 class Model {
   public value: string;
   public info: Info;
+
   constructor(value: string, info: Info) {
     this.value = value;
     this.info = info;
   }
 }
+
 // [End prop_seventeen_start]
 
 // 子组件：展示 Model 中的两个值
@@ -38,6 +41,7 @@ struct NestedDisplay {
   // 接收复杂类型 Model（带嵌套 Info）
   // [Start prop_twentyone_start]
   @Prop title: Model;
+
   // [End prop_twentyone_start]
   build() {
     Column({ space: 20 }) {
@@ -99,22 +103,22 @@ struct Test {
   // 初始化嵌套对象
   @State initTitle: Model = new Model(
     'Hello', // title.value 初始值
-    new Info('Initial Info') // title.info.value 初始值
+    new Info('Initial Info')// title.info.value 初始值
   );
 
   build() {
-      Column() {
-        // 引入子组件，传递 Model 数据
-        NestedDisplay({ title: this.initTitle });
-      }
-      .width('100%')
-      .height('100%')
-      .justifyContent(FlexAlign.Start)
-      .padding(15)
+    Column() {
+      // 引入子组件，传递 Model 数据
+      NestedDisplay({ title: this.initTitle });
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Start)
+    .padding(15)
   }
 }
 
 @Builder
-export function MyTestBuilder(){
+export function MyTestBuilder() {
   Test()
 }
