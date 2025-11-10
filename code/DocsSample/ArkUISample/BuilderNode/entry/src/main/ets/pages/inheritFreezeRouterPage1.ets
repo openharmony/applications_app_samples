@@ -18,7 +18,7 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 @ObservedV2
 export class Book {
-  public @Trace name: string = '100';
+  @Trace public name: string = '100';
   constructor(name: string) {
     this.name = name;
   }
