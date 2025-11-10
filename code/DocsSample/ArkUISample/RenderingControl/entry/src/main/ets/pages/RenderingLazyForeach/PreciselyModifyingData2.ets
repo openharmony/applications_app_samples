@@ -15,6 +15,7 @@
 
 // [Start precisely_modifying_data_two]
 import { hilog } from '@kit.PerformanceAnalysisKit';
+/** BasicDataSource代码见文档末尾BasicDataSource示例代码: String类型数组的BasicDataSource代码。**/
 import { BasicDataSource } from './BasicDataSource';
 const TAG = '[Sample_RenderingControl]';
 const DOMAIN = 0xF811;
