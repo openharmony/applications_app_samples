@@ -49,8 +49,7 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
   } catch (err) {
     hilog.info(0xFF00, '[Sample_pasteboard]', 'Failed to get the ChangeCount. Cause: ${err.message}');
     return false;
-  }
-  ;
+  };
 
   // 查询剪贴板是否存在应用所需数据类型
   try {
@@ -70,8 +69,7 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
   } catch (err) {
     hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to check the DataType. Cause:' + err.message);
     return false;
-  }
-  ;
+  };
   return true;
 }
 
