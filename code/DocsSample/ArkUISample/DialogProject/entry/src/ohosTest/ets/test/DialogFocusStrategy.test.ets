@@ -7,7 +7,7 @@
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an 'AS IS' BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -20,7 +20,7 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 import resource from '../../../main/ets/common/resource';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let want: Want;
 const ONE_SECONDS_TIME = 1000;
@@ -43,7 +43,7 @@ export default function DialogFocusStrategyTest() {
       await delegator.startAbility(want);
       await sleep(ONE_SECONDS_TIME);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(0xff00, 'index', "get top ability");
+      hilog.info(0xff00, 'index', 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 

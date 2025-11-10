@@ -61,12 +61,12 @@ export default function IndexTest() {
 
       let button_list2 = await driver.findComponent(ON.text('CustomDialogController animate', MatchPattern.CONTAINS));
       await button_list2.click();
-      await sleep(ONE_SECONDS_TIME)
+      await sleep(ONE_SECONDS_TIME);
       await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
-      await sleep(ONE_SECONDS_TIME)
-      await sleep(ONE_SECONDS_TIME)
+      await sleep(ONE_SECONDS_TIME);
+      await sleep(ONE_SECONDS_TIME);
       done();
     })
 
