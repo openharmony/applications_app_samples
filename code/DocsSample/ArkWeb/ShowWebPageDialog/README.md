@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本工程主要实现了对以下指南文档中 [使用Web组件显示网页弹框](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/web/web-dialog.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在HTML中，可以使用JavaScript创建三种类型的弹框：警告框window.alert(message)、确认框window.confirm(message)和提示框window.prompt(message, defaultValue)。这些弹框可以用于向用户传递信息、确认操作或请求输入。
+本工程主要实现了对以下指南文档中 [使用Web组件显示网页弹框](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/web/web-dialog.md) 示例代码片段的工程化，主要目标是帮助开发者快速了解在HTML中，可以使用JavaScript创建三种类型的弹框：警告框window.alert(message)、确认框window.confirm(message)和提示框window.prompt(message, defaultValue)。这些弹框可以用于向用户传递信息、确认操作或请求输入。
 
 ### 实现Alert弹框
 
