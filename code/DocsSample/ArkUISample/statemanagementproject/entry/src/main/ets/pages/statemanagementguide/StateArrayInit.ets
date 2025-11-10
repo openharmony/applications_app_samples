@@ -17,17 +17,17 @@ const DOMAIN_NUMBER: number = 0XFF00;
 const TAG: string = '[Sample_StateManagement]';
 
 @Observed
-class Child8 {
+class Child {
   public count: number;
 
   constructor(count: number) {
-    this.count = count
+    this.count = count;
   }
 }
 
 @Observed
-class ChildList8 extends Array<Child8> {
-  constructor(children?: Child8[]) {
+class ChildList extends Array<Child> {
+  constructor(children?: Child[]) {
     super();
     if (children) {
       this.push(...children);
@@ -36,32 +36,32 @@ class ChildList8 extends Array<Child8> {
 }
 
 @Observed
-class Ancestor8 {
-  public childList: ChildList8;
-  constructor(childList: ChildList8) {
+class Ancestor {
+  public childList: ChildList;
+  constructor(childList: ChildList) {
     this.childList = childList;
   }
 
   public loadData() {
     let tempList =
-      new ChildList8([new Child8(1), new Child8(2), new Child8(3),
-        new Child8(4), new Child8(5)]);
+      new ChildList([new Child(1), new Child(2), new Child(3),
+        new Child(4), new Child(5)]);
     this.childList = tempList;
   }
 
   public clearData() {
-    this.childList = new ChildList8();
+    this.childList = new ChildList();
   }
 }
 
 @Component
 struct StateArrayInit {
-  @Link childList: ChildList8;
-  @ObjectLink Child8: Child8;
+  @Link childList: ChildList;
+  @ObjectLink child: Child;
 
   build() {
     Row() {
-      Text(this.Child8.count + '')
+      Text(this.child.count + '')
         .height(70)
         .fontSize(20)
         .borderRadius({ topLeft: 6, topRight: 6 })
@@ -71,8 +71,8 @@ struct StateArrayInit {
         .backgroundColor(Color.Red)
         .onClick(() => {
           let index = this.childList.findIndex((item) => {
-            return item.count === this.Child8.count
-          })
+            return item.count === this.child.count;
+          });
           if (index !== -1) {
             this.childList.splice(index, 1);
           }
@@ -92,7 +92,7 @@ struct StateArrayInit {
 
 @Component
 struct StateArrayInitCompList {
-  @ObjectLink @Watch('changeChildList') Child8List: ChildList8;
+  @ObjectLink @Watch('changeChildList') childList: ChildList;
 
   changeChildList() {
     hilog.info(DOMAIN_NUMBER, TAG, 'CompList ChildList change');
@@ -106,11 +106,11 @@ struct StateArrayInitCompList {
   build() {
     Column() {
       List() {
-        ForEach(this.Child8List, (item: Child8, index) => {
+        ForEach(this.childList, (item: Child, index) => {
           ListItem() {
             StateArrayInit({
-              childList: this.Child8List,
-              Child8: item
+              childList: this.childList,
+              child: item
             })
               .opacity(this.isRenderCompChild(index))
           }
@@ -123,21 +123,21 @@ struct StateArrayInitCompList {
 
 @Component
 struct StateArrayInitCompAncestor {
-  @ObjectLink Ancestor8: Ancestor8;
+  @ObjectLink ancestor: Ancestor;
 
   build() {
     Column() {
-      StateArrayInitCompList({ Child8List: this.Ancestor8.childList })
+      StateArrayInitCompList({ childList: this.ancestor.childList })
       Row() {
         Button('Clear')
           .onClick(() => {
-            this.Ancestor8.clearData()
+            this.ancestor.clearData();
           })
           .width(100)
           .margin({ right: 50 })
         Button('Recover')
           .onClick(() => {
-            this.Ancestor8.loadData()
+            this.ancestor.loadData();
           })
           .width(100)
       }
@@ -149,14 +149,12 @@ struct StateArrayInitCompAncestor {
 @Component
 struct StateArrayInitPage {
   // [Start StateArrayInit_start]
-  @State childList: ChildList8 =
-    new ChildList8([new Child8(1), new Child8(2), new Child8(3),
-      new Child8(4), new Child8(5)]);
-  @State ancestor: Ancestor8 = new Ancestor8(this.childList)
+  @State childList: ChildList = [new Child(1), new Child(2), new Child(3), new Child(4), new Child(5)];
+  @State ancestor: Ancestor = new Ancestor(this.childList);
   // [End StateArrayInit_start]
   build() {
     Column() {
-      StateArrayInitCompAncestor({ Ancestor8: this.ancestor })
+      StateArrayInitCompAncestor({ ancestor: this.ancestor })
     }
   }
 }

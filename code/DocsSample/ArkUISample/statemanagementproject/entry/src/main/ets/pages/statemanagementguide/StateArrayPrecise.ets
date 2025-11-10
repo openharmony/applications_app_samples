@@ -66,7 +66,7 @@ class NeedRenderTranslate { // 在一起使用的属性可以划分为相同的�
 }
 
 @Observed
-class UiStyle4 {
+class UiStyle {
   // 使用NeedRenderxxx类
   public needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
   public needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
@@ -79,9 +79,9 @@ class UiStyle4 {
 }
 
 @Component
-struct SpecialImage4 {
-  @ObjectLink uiStyle: UiStyle4;
-  @ObjectLink needRenderImage: NeedRenderImage // 从其父组件接收新类
+struct SpecialImage {
+  @ObjectLink uiStyle: UiStyle;
+  @ObjectLink needRenderImage: NeedRenderImage; // 从其父组件接收新类
 
   private isRenderSpecialImage(): number { // 显示组件是否渲染的函数
     hilog.info(DOMAIN_NUMBER, TAG, 'SpecialImage is rendered');
@@ -89,7 +89,7 @@ struct SpecialImage4 {
   }
 
   build() {
-    Image($r('app.media.background')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+    Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       .width(this.needRenderImage.imageWidth) // 使用this.needRenderImage.xxx
       .height(this.needRenderImage.imageHeight)
       .margin({ top: 20 })
@@ -102,8 +102,8 @@ struct SpecialImage4 {
 }
 
 @Component
-struct PageChild4 {
-  @ObjectLink uiStyle: UiStyle4;
+struct PageChild {
+  @ObjectLink uiStyle: UiStyle;
   @ObjectLink needRenderTranslate: NeedRenderTranslate; // 从其父组件接收新定义的NeedRenderxxx类的实例
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
   @ObjectLink needRenderBorderRadius: NeedRenderBorderRadius;
@@ -135,13 +135,13 @@ struct PageChild4 {
 
   build() {
     Column() {
-      SpecialImage4({
+      SpecialImage({
         uiStyle: this.uiStyle,
         needRenderImage: this.uiStyle.needRenderImage // 传递给子组件
       })
       Stack() {
         Column() {
-          Image($r('app.media.background')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          Image($r('app.media.icon')) // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // 使用this.needRenderXxx.xxx
@@ -192,7 +192,7 @@ struct PageChild4 {
               duration: 500
             }, () => {
               this.needRenderTranslate.translateY = (this.needRenderTranslate.translateY + 180) % 250;
-            })
+            });
           })
         Button('Scale')
           .borderRadius(20)
@@ -227,12 +227,12 @@ struct PageChild4 {
 
 @Entry
 @Component
-struct Page4 {
-  @State uiStyle: UiStyle4 = new UiStyle4();
+struct Page {
+  @State uiStyle: UiStyle = new UiStyle();
 
   build() {
     Stack() {
-      PageChild4({
+      PageChild({
         uiStyle: this.uiStyle,
         needRenderTranslate: this.uiStyle.needRenderTranslate, // 传递needRenderxxx类给子组件
         needRenderFontSize: this.uiStyle.needRenderFontSize,
@@ -246,5 +246,6 @@ struct Page4 {
     .backgroundColor('#F1F3F5')
   }
 }
-
 // [End StateArrayPrecise_start]
+const stateArrayPrecisePage = Page;
+export default  stateArrayPrecisePage;

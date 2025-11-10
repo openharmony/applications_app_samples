@@ -19,7 +19,7 @@ const TAG: string = '[Sample_StateManagement]';
 
 @Observed
 class InfoList extends Array<Info> {
-}
+};
 
 @Observed
 class Info {
@@ -76,7 +76,7 @@ struct Information {
 
 @Entry
 @Component
-struct Page2 {
+struct Page {
   @State infoList: InfoList = new InfoList();
   @State items: string[] = [];
 
@@ -117,3 +117,5 @@ struct Page2 {
   }
 }
 // [End Information_start]
+const stateArrayUpdatePage = Page;
+export default stateArrayUpdatePage;
