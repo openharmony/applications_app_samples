@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Word_Break]
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 @Entry
 @Component
 export struct WordBreakd {
