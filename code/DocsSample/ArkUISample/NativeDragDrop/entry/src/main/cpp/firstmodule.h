@@ -144,7 +144,7 @@ void GetDragData(ArkUI_DragEvent* dragEvent)
     // 创建OH_UdmfData对象
     OH_UdmfData *data = OH_UdmfData_Create();
     returnValue = OH_ArkUI_DragEvent_GetUdmfData(dragEvent, data);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
         "OH_ArkUI_DragEvent_GetUdmfData returnValue = %{public}d", returnValue);
     // 判断OH_UdmfData是否有对应的类型
     bool resultUdmf = OH_UdmfData_HasType(data, UDMF_META_GENERAL_FILE);
@@ -159,7 +159,7 @@ void GetDragData(ArkUI_DragEvent* dragEvent)
             OH_UdsFileUri *imageValue = OH_UdsFileUri_Create();
             returnStatus = OH_UdmfRecord_GetFileUri(records[i], imageValue);
             const char *fileUri = OH_UdsFileUri_GetFileUri(imageValue);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
                 "dragTest OH_UdmfRecord_GetPlainText "
                 "returnStatus= %{public}d "
                 "fileUri= %{public}s",
@@ -171,25 +171,25 @@ void GetDragData(ArkUI_DragEvent* dragEvent)
             OH_ArkUI_DragEvent_SetDragResult(dragEvent, ARKUI_DRAG_RESULT_SUCCESSFUL);
             ArkUI_DropOperation option;
             OH_ArkUI_DragEvent_GetDropOperation(dragEvent, &option);
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+            OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
                 "OH_ArkUI_DragEvent_GetDropOperation returnValue = %{public}d", option);
         }
     } else {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
             "OH_UdmfData_HasType not contain UDMF_META_GENERAL_FILE");
     }
     int32_t count;
     OH_ArkUI_DragEvent_GetDataTypeCount(dragEvent, &count);
-    if (count <= 0 || count >= MAX_LENGTH) {
+    if (count <= 0 || count >= 128U) {
         return;
     }
     char **eventTypeArray = new char *[count];
     for (int i = 0; i < count; i++) {
-        eventTypeArray[i] = new char[MAX_LENGTH];
+        eventTypeArray[i] = new char[128U];
     }
-    OH_ArkUI_DragEvent_GetDataTypes(dragEvent, eventTypeArray, count, MAX_LENGTH);
+    OH_ArkUI_DragEvent_GetDataTypes(dragEvent, eventTypeArray, count, 128U);
     for (int i = 0; i < count; i++) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
             "OH_ArkUI_DragEvent_GetDataTypes returnValue = %{public}s", eventTypeArray[i]);
     }
 }
@@ -203,19 +203,24 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
 
     // [Start event_Type]
     nodeAPI->addNodeEventReceiver(dragNode, [](ArkUI_NodeEvent *event) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "RegisterNodeEventFirstReceiver called");
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "RegisterNodeEventFirstReceiver called");
         auto eventType = OH_ArkUI_NodeEvent_GetEventType(event);
         auto preDragStatus = OH_ArkUI_NodeEvent_GetPreDragStatus(event);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
+        OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest",
             "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
         auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
         switch (eventType) {
-            case NODE_ON_PRE_DRAG: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_PRE_DRAG EventReceiver");
+            case NODE_ON_PRE_DRAG:
+            case NODE_ON_CLICK:
+            case NODE_ON_DROP:
+            case NODE_ON_DRAG_ENTER:
+            case NODE_ON_DRAG_MOVE:
+            case NODE_ON_DRAG_LEAVE: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "eventType = %{public}d EventReceiver", eventType);
                 break;
             }
             case NODE_ON_DRAG_START: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_START EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_START EventReceiver");
                 // [StartExclude event_Type]
                 PrintDragStartInfos(dragEvent);
                 SetData(dragEvent);
@@ -223,7 +228,7 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
                 break;
             }
             case NODE_ON_DRAG_END: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_END EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_END EventReceiver");
                 // [StartExclude event_Type]
                 ArkUI_DragResult result;
                 OH_ArkUI_DragEvent_GetDragResult(dragEvent, &result);
@@ -239,7 +244,7 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
                 break;
             }
             default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "UNKOWN EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKOWN EventReceiver");
                 break;
             }
         }
@@ -265,7 +270,7 @@ void RegisterNodeEventFirstReceiver2(ArkUI_NodeHandle node)
             // [EndExclude on_drop]
             case NODE_ON_DROP: {
                 OH_ArkUI_DragEvent_SetSuggestedDropOperation(dragEvent, ARKUI_DROP_OPERATION_COPY);
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DROP EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DROP EventReceiver");
                 GetDragData(dragEvent);
                 break;
             }
@@ -374,29 +379,29 @@ void SetPreviewOption(ArkUI_NodeHandle &node)
     uint8_t data[960000];
     size_t dataSize = 960000;
     for (int i = 0; i < dataSize; i++) {
-    data[i] = i + 1;
+        data[i] = i + 1;
     }
     // 创建参数结构体实例，并设置参数
     OH_Pixelmap_InitializationOptions *createOpts;
     OH_PixelmapInitializationOptions_Create(&createOpts);
-    OH_PixelmapInitializationOptions_SetWidth(createOpts, SIZE_200);
-    OH_PixelmapInitializationOptions_SetHeight(createOpts, SIZE_200);
+    OH_PixelmapInitializationOptions_SetWidth(createOpts, 200U);
+    OH_PixelmapInitializationOptions_SetHeight(createOpts, 200U);
     OH_PixelmapInitializationOptions_SetPixelFormat(createOpts, PIXEL_FORMAT_BGRA_8888);
     OH_PixelmapInitializationOptions_SetAlphaType(createOpts, PIXELMAP_ALPHA_TYPE_UNKNOWN);
     // 设置自定义跟手图
     OH_PixelmapNative *pixelmap = nullptr;
     OH_PixelmapNative_CreatePixelmap(data, dataSize, createOpts, &pixelmap);
-    OH_PixelmapNative_Opacity(pixelmap, DEFAULT_OPACITY);
+    OH_PixelmapNative_Opacity(pixelmap, 0.1f);
     OH_ArkUI_SetNodeDragPreview(node, pixelmap);
     // 设置跟手图选项
     auto *previewOptionsText = OH_ArkUI_CreateDragPreviewOption();
     OH_ArkUI_DragPreviewOption_SetScaleMode(previewOptionsText, ARKUI_DRAG_PREVIEW_SCALE_DISABLED);
     OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled(previewOptionsText, true);
-    OH_ArkUI_DragPreviewOption_SetBadgeNumber(previewOptionsText, DRAG_COUNT);
+    OH_ArkUI_DragPreviewOption_SetBadgeNumber(previewOptionsText, 10U);
     OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled(previewOptionsText, true);
     OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled(previewOptionsText, true);
     int returnValue = OH_ArkUI_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled(previewOptionsText, true);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "Manager",
         "dragTest DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled returnValue = %{public}d",
         returnValue);
     OH_ArkUI_SetNodeDragPreviewOption(node, previewOptionsText);

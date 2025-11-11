@@ -35,6 +35,7 @@ void SetImageData(ArkUI_DragEvent* dragEvent)
     int returnValue;
     OH_UdmfRecord *record = OH_UdmfRecord_Create();
     OH_UdsFileUri *imageValue = OH_UdsFileUri_Create();
+    // 图片src/main/ets/resources/seagull.png需要替换为开发者所需的资源文件
     returnValue = OH_UdsFileUri_SetFileUri(imageValue, "/resources/seagull.png");
     returnValue = OH_UdmfRecord_AddFileUri(record, imageValue);
     OH_UdmfData *data = OH_UdmfData_Create();
@@ -94,7 +95,7 @@ void RegisterNodeEventThirdReceiver1(ArkUI_NodeHandle &dragNode)
         switch (eventType) {
             // [EndExclude drag_start]
             case NODE_ON_DRAG_START: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "NODE_ON_DRAG_START EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_START EventReceiver");
                 SetImageData(dragEvent);
                 break;
             }
@@ -178,7 +179,8 @@ void ThirdModule(ArkUI_NodeHandle &root)
     // [Start create_imageNode]
     dragImage2 = nodeAPI->createNode(ARKUI_NODE_IMAGE);
     SetId(dragImage2, "dragImage");
-    SetCommonAttribute(dragImage2, SIZE_140, SIZE_140, DEFAULT_BG_COLOR, BLANK_5);
+    SetCommonAttribute(dragImage2, 140.0f, 140.0f, 0xFFFFFFFF, 5.0f);
+    // 图片src/main/ets/resources/seagull.png需要替换为开发者所需的资源文件
     SetImageSrc(dragImage2, "/resources/seagull.png");
     OH_ArkUI_SetNodeDraggable(dragImage2, true);
     nodeAPI->registerNodeEvent(dragImage2, NODE_ON_DRAG_START, 1, nullptr);
