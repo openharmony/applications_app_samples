@@ -13,26 +13,25 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import wifiManager from '@ohos.wifiManager';
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { wifiManager } from '@kit.ConnectivityKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { Driver, ON } from '@ohos.UiTest';
 import { Logger } from '../utils/Logger';
 
 const DRIVER = Driver.create();
 
-let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelRegistry = abilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () =>{
     /**
      * 拉起应用
      */
-    it('StartAbility_001', 0, async (done) => {
+    it('StartAbility_001', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       Logger.info('StartAbility_001 begin');
       try {
-        await abilityDelegatorRegistry.startAbility({
+        await abilityDelRegistry.startAbility({
           bundleName: 'ohos.samples.workschedulerextensionability',
           abilityName: 'MainAbility'
         });
@@ -60,7 +59,7 @@ export default function abilityTest() {
     /**
      * 控制wifi
      */
-    it('ControlWifi_001', 0, async (done) => {
+    it('ControlWifi_001', 0, async (done: Function) => {
       Logger.info('ControlWifi_001 begin');
       // 如果没有打开wifi，就打开wifi
       if (!wifiManager.isWifiActive()) {

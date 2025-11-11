@@ -23,12 +23,12 @@ const DRIVER = Driver.create();
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function updateTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      * 自动化测试用例执行结束后，可通过该测试验证是否升级成功
      */
-    it('StartAbility_002', 0, async (done) => {
+    it('StartAbility_002', 0, async (done: Function) => {
       Logger.info('StartAbility_002 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       try {

@@ -37,23 +37,19 @@ export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility 
       filePath = JSON.parse(workInfo.parameters?.toString()).filePath;
       version = JSON.parse(workInfo.parameters?.toString()).version;
     }
-    Logger.info('838078 WorkScheduler version: %{public}s', JSON.stringify(version));
     if (version === VERSION) {
       let result: Promise<http.HttpResponse> = WorkSchedulerSystem.getNewHap(URL);
       result.then(data => {
-        Logger.info('838078WorkScheduler', 'getNewHap success' + data.responseCode);
         if (data.responseCode === HTTP_STATUS_CODE) {
-          Logger.info('838078WorkScheduler', 'saveFile start');
           WorkSchedulerSystem.saveFile(filePath, data.result as ArrayBuffer);
-          Logger.info('838078WorkScheduler', 'saveFile success, publishNotification start');
           WorkSchedulerSystem.publishNotification('download', 'isReady', 'download hap to update the application');
-          Logger.info('838078WorkScheduler', 'publishNotification success');
           notificationSubscribe.subscribe({
             onConsume: (data) => {
               if (data.request.content.normal?.text === 'allow') {
                 let path: string[] = [];
                 path.push(filePath);
-                WorkSchedulerSystem.installBundle(path);
+                workInfo.parameters = {};
+                WorkSchedulerSystem.installBundle(path, workInfo);
               }
             }
           }, {

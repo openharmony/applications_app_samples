@@ -14,7 +14,7 @@
  */
 
 import { WorkSchedulerSystem } from '../feature/WorkSchedulerSystem'
-import promptAction from '@ohos.promptAction'
+import { promptAction } from '@kit.ArkUI'
 
 const VERSION: string = '1.0'
 const FONT_WEIGHT: number = 700

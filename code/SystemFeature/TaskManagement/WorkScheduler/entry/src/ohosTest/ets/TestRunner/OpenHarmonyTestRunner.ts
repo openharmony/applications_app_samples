@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import TestRunner from '@ohos.application.testRunner';
+import { abilityDelegatorRegistry, TestRunner } from '@kit.TestKit';
 import { Logger } from '../utils/Logger';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegatorArguments: abilityDelegatorRegistry.AbilityDelegatorArgs;
 
 async function onAbilityCreateCallback() {
   Logger.info('onAbilityCreateCallback');
@@ -38,8 +37,8 @@ export default class OpenHarmonyTestRunner implements TestRunner {
 
   async onRun() {
     Logger.info('OpenHarmonyTestRunner onRun run');
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
+    abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
     let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility';
     let lMonitor = {
       abilityName: testAbilityName,

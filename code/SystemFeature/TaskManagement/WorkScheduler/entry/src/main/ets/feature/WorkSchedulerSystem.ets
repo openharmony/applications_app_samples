@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { notificationManager, notificationSubscribe } from '@kit.NotificationKit';
 
-import { bundle } from '@kit.AbilityKit';
-import { osAccount } from '@kit.BasicServicesKit';
+import { installer } from '@kit.AbilityKit';
+import { osAccount, BusinessError } from '@kit.BasicServicesKit';
 import { workScheduler } from '@kit.BackgroundTasksKit';
 import { http } from '@kit.NetworkKit';
 import { Logger } from '../utils/Logger';
-import { BusinessError } from '@ohos.base';
 
 const FILE_NAME = '/UpdateWorkScheduler.hap';
 const BUNDLE_NAMES = ['ohos.samples.workschedulerextensionability'];
@@ -37,11 +36,11 @@ export namespace WorkSchedulerSystem {
   export function saveFile(pathDir: string, content: ArrayBuffer): void {
     try {
       let filePath = pathDir + FILE_NAME;
-      let fd = fileIo.openSync(filePath, 0o2 | 0o100).fd;
-      fileIo.writeSync(fd, content);
-      fileIo.closeSync(fd);
+      let fd = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).fd;
+      fs.writeSync(fd, content);
+      fs.closeSync(fd);
     } catch (err) {
-      Logger.error(`838078 saveFile failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(`saveFile failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
@@ -97,10 +96,10 @@ export namespace WorkSchedulerSystem {
    * @param filePath An array of paths to hold the installation package.
    * @permission ohos.permission.INSTALL_BUNDLE
    */
-  export async function installBundle(filePath: Array<string>): Promise<void> {
+  export async function installBundle(filePath: Array<string>, workInfo: workScheduler.WorkInfo): Promise<void> {
     try {
-      let bundleInstall = await bundle.getBundleInstaller();
-      let userId = await osAccount.getAccountManager().getOsAccountLocalIdFromProcess();
+      let bundleInstall = await installer.getBundleInstaller();
+      let userId = await osAccount.getAccountManager().getOsAccountLocalId();
       bundleInstall.install(filePath, {
         userId: userId,
         installFlag: INSTALL_PARAMETER,
@@ -108,6 +107,12 @@ export namespace WorkSchedulerSystem {
       }, (status, statusMessage) => {
         Logger.info(`installBundle filepath is ${filePath}`);
         Logger.info(`installBundle code is ${status.code}, message is ${JSON.stringify(statusMessage)}`);
+        try {
+          workScheduler.stopWork(workInfo);
+          console.info(`stopWork success`);
+        } catch (error) {
+          console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
       })
     } catch (err) {
       Logger.error(`installBundle failed, code is ${err.code}, message is ${err.message}`);
@@ -148,7 +153,6 @@ export namespace WorkSchedulerSystem {
    * @permission ohos.permission.INTERNET
    */
   export async function getNewHap(url: string): Promise<http.HttpResponse> {
-    Logger.info(`838078 getNewHap,start`, JSON.stringify(url));
     let result = await http.createHttp().request(
       url,
       {
@@ -157,14 +161,5 @@ export namespace WorkSchedulerSystem {
       Logger.error(`838078 get result failed, code is ${err.code}, message is ${err.message}`);
     });
     return result as http.HttpResponse;
-    // try {
-    //   return await http.createHttp().request(
-    //     url,
-    //     {
-    //       expectDataType: http.HttpDataType.ARRAY_BUFFER
-    //     });
-    // } catch {
-    //   Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
-    // }
   }
 }

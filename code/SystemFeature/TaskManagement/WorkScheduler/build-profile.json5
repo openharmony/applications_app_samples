@@ -22,11 +22,11 @@
         "material": {
           "certpath": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001ACE876E33D34168C5BFC0196BE10205ABD5C4901D8AC39BFEBA74DA55CF875E7F1F63B87D59B4",
+          "keyPassword": "0000001B4F7B17F6B7CD48840DE113F9D4BB4196EE7BDEB1010D0916650E651BF71B1819CC2B39A4D5396E",
           "profile": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.p12",
-          "storePassword": "0000001A8C0379597BB9789F86F8C11AB02BAE675A99AD4064CEFD87740A929877E474D2577148A29416"
+          "storePassword": "0000001B25374764E540144FC0892700AEC3F95AFF4ECA9436DCF6DB68221BFFF17C019F670CB87E7C6B34"
         }
       }
     ],
