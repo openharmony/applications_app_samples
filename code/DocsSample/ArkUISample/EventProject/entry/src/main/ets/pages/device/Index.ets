@@ -21,6 +21,8 @@ import { OnKey } from './OnKey';
 import { PreIme } from './OnKeyPreIme';
 import { Mouse } from './OnMouse';
 import resource from '../../common/resource';
+import { OnKeyDistributeEvent } from './OnKeyDistributeEvent';
+import { OnKeyPreImeCommit } from './OnKeyPreImeCommit';
 
 
 export const Device_ROUTE_PREFIX: string = 'Device_ROUTE_PREFIX';
@@ -42,14 +44,24 @@ const routes: Route[] = [
     description: resource.resourceToString($r('app.string.Hover_Effect_Description')),
   },
   {
-    name: `${Device_ROUTE_PREFIX}/onKeyEvent `,
+    name: `${Device_ROUTE_PREFIX}/onKeyEvent`,
     title: resource.resourceToString($r('app.string.Key_Event')),
     description: resource.resourceToString($r('app.string.Key_Description')),
   },
   {
-    name: `${Device_ROUTE_PREFIX}/OnKeyPreIme `,
+    name: `${Device_ROUTE_PREFIX}/OnKeyPreIme`,
     title: resource.resourceToString($r('app.string.Key_PreIme')),
     description: resource.resourceToString($r('app.string.Key_PreIme_Description')),
+  },
+  {
+    name: `${Device_ROUTE_PREFIX}/OnKeyDistributeEvent`,
+    title: resource.resourceToString($r('app.string.OnKeyDistributeEvent_title')),
+    description: resource.resourceToString($r('app.string.Key_OnKeyDistributeEvent_Description')),
+  },
+  {
+    name: `${Device_ROUTE_PREFIX}/OnKeyPreImeCommit`,
+    title: resource.resourceToString($r('app.string.OnKeyPreImeCommit_title')),
+    description: resource.resourceToString($r('app.string.OnKeyPreImeCommit_Description')),
   }
 
 
@@ -69,6 +81,10 @@ export function DeviceDestination(name: string) {
     OnKey();
   } else if (name === routes[4].name) {
     PreIme();
+  } else if (name === routes[5].name) {
+    OnKeyDistributeEvent();
+  } else if (name === routes[6].name) {
+    OnKeyPreImeCommit();
   }
 }
 
