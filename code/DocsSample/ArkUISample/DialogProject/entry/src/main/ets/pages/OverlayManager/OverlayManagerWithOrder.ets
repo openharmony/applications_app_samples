@@ -15,7 +15,10 @@
 
 // [Start OverlayManager_Demo3]
 import { ComponentContent, LevelOrder, OverlayManager } from '@kit.ArkUI';
-import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[Sample_dialogproject]';
+const DOMAIN: number = 0xFF00;
 
 class Params {
   public text: string = '';
@@ -64,8 +67,6 @@ function builderNormalText(params: Params) {
 export struct OverlayManagerWithOrder {
   private ctx: UIContext = this.getUIContext();
   private overlayManager: OverlayManager = this.ctx.getOverlayManager();
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  private manager = this.context.resourceManager;
   @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
   @StorageLink('componentContentIndex') componentContentIndex: number = 0;
   @StorageLink('arrayIndex') arrayIndex: number = 0;
@@ -77,33 +78,30 @@ export struct OverlayManagerWithOrder {
       // [EndExclude OverlayManager_Demo3]
       Row() {
         Column({ space: 5 }) {
-          // 'app.string.Demo_topDialogButton'资源文件中的value值为'点击打开置顶弹窗'
-          Button($r('app.string.Demo_topDialogButton'))
+          Button('Build top text')
             .onClick(() => {
               let componentContent = new ComponentContent(
                 this.ctx, wrapBuilder<[Params]>(builderTopText),
-                // 'Demo_topDialog'资源文件中的value值为'我是置顶弹窗'
-                new Params(this.manager.getStringByNameSync('Demo_topDialog'), this.componentOffset)
+                new Params('I am top text', this.componentOffset)
               );
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100000));
             })
-          // 'app.string.Demo_normalDialogButton'资源文件中的value值为'点击打开普通弹窗'
-          Button($r('app.string.Demo_normalDialogButton'))
+          Button('Build normal text')
             .onClick(() => {
               let componentContent = new ComponentContent(
                 this.ctx, wrapBuilder<[Params]>(builderNormalText),
-                // 'Demo_normalDialog'资源文件中的value值为'我是普通弹窗'
-                new Params(this.manager.getStringByNameSync('Demo_normalDialog'), this.componentOffset)
+                new Params('I am normal text', this.componentOffset)
               );
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(0));
             })
-          // 'app.string.Demo_removeDialogButton'资源文件中的value值为'点击移除弹窗'
-          Button($r('app.string.Demo_removeDialogButton')).onClick(() => {
+          Button('Remove text').onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray.splice(this.arrayIndex, 1);
               this.overlayManager.removeComponentContent(componentContent.pop());
+            } else {
+              hilog.info(DOMAIN, TAG, '%{public}s', 'arrayIndex error');
             }
           })
         }.width('100%')

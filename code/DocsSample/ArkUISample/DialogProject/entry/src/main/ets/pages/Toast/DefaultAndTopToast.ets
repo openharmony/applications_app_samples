@@ -26,8 +26,7 @@ export struct DefaultAndTopToastExample {
       Column({ space: 10 }) {
         TextInput()
         Button() {
-          // 'app.string.DefaultAndTopToast_defaultToast'资源文件中的value值为'DEFAULT类型Toast'
-          Text($r('app.string.DefaultAndTopToast_defaultToast'))
+          Text('DEFAULT Toast')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
@@ -35,8 +34,7 @@ export struct DefaultAndTopToastExample {
         .width('100%')
         .onClick(() => {
           this.getUIContext().getPromptAction().showToast({
-            // 'app.string.DefaultAndTopToast_defaultToastMessage'资源文件中的value值为'ok，我是DEFAULT toast'
-            message: $r('app.string.DefaultAndTopToast_defaultToastMessage'),
+            message: 'ok, I am DEFAULT toast',
             duration: 2000,
             showMode: promptAction.ToastShowMode.DEFAULT,
             bottom: 80
@@ -45,8 +43,7 @@ export struct DefaultAndTopToastExample {
 
         Blank().height(200);
         Button() {
-          // 'app.string.DefaultAndTopToast_topToast'资源文件中的value值为'TOPMOST类型Toast'
-          Text($r('app.string.DefaultAndTopToast_topToast'))
+          Text('TOPMOST Toast')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
@@ -54,8 +51,7 @@ export struct DefaultAndTopToastExample {
         .width('100%')
         .onClick(() => {
           this.getUIContext().getPromptAction().showToast({
-            // 'app.string.DefaultAndTopToast_topToastMessage'资源文件中的value值为'ok，我是TOP_MOST toast'
-            message: $r('app.string.DefaultAndTopToast_topToastMessage'),
+            message: 'ok, I am TOP_MOST toast',
             duration: 2000,
             showMode: promptAction.ToastShowMode.TOP_MOST,
             bottom: 85
