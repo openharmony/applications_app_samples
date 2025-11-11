@@ -69,6 +69,10 @@ export default function IndexTest() {
      */
     it('testImageZoomNavigation', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG,'ImageTest: testImageZoomNavigation begin');
+      let size = await driver.getDisplaySize();
+      let x = Math.floor(size.x * 0.3);
+      await driver.swipe(x, Math.floor(size.y * 0.9), x, Math.floor(size.y * 0.6), 5000);
+      await driver.delayMs(5000);
 
       // 点击"设置图片缩放类型"项
       const zoomItem = await driver.findComponent(ON.text('SetImageZoomType'));
