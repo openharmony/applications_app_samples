@@ -147,7 +147,7 @@ napi_value createJsFileDescriptor(napi_env env, RawFileDescriptor& descriptor)
         return result;
     }
 
-    // 将文件描述符df存入到result对象中
+    // 将文件描述符fd存入到result对象中
     napi_value fd;
     status = napi_create_int32(env, descriptor.fd, &fd);
     if (status != napi_ok) {
