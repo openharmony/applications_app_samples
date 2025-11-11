@@ -14,15 +14,15 @@
 
 ## 预览效果
 
-![](screenshots/device/image1.jpeg)
+![img.png](screenshots/device/img.png)
 
-![](screenshots/device/image3.jpeg)
+![img_1.png](screenshots/device/img_1.png)
 
-![](screenshots/device/imag3.jpeg)
+![img_2.png](screenshots/device/img_2.png)
 
-![](screenshots/device/image2.jpeg)
+![img_3.png](screenshots/device/img_3.png)
 
-![](screenshots/device/image4.jpeg)
+![img_4.png](screenshots/device/img_4.png)
 
 ## 具体实现
 1. 基本功能与适用范围
