@@ -14,7 +14,7 @@
  */
 
 #include "ChildProcess.h"
-#include "AbilityKit/native_child_process.h"
+#include <AbilityKit/native_child_process.h>
 
 static void DummyCallBack(int errCode, OHIPCRemoteProxy *remoteProxy)
 {
