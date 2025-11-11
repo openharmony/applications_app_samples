@@ -1,11 +1,11 @@
 {
   "routerMap": [
     {
-      "name": "PageFiveShareChange",
+      "name": "Page",
       "pageSourceFile": "src/main/ets/pages/PageFiveShareChange.ets",
       "buildFunction": "PageBuilder",
       "data": {
-        "description" : "LocalStorage example"
+        "description": "LocalStorage example"
       }
     }
   ]
