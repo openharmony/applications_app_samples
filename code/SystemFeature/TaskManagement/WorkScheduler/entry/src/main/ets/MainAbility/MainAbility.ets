@@ -28,9 +28,9 @@ export default class MainAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     try {
       abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context, PERMISSIONS);
-      console.info(`838078 requestPermissionsFromUser`);
+      console.info(`requestPermissionsFromUser`);
     } catch (err) {
-      Logger.info(TAG, `838078 catch err->${JSON.stringify(err)}`);
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
     }
     AppStorage.SetOrCreate('filePath', this.context.filesDir)
   }
@@ -41,10 +41,10 @@ export default class MainAbility extends UIAbility {
     WorkSchedulerSystem.startUpdateSample(VERSION, filePath)
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error('838078 Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')
+        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')
         return
       }
-      Logger.info('838078 Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '')
+      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '')
     })
   }
 }

@@ -28,7 +28,7 @@ const BUNDLE_NAME = ['ohos.samples.workschedulerextensionability'];
 export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility {
   // 延迟任务开始回调
   onWorkStart(workInfo: workScheduler.WorkInfo) {
-    Logger.info('WorkScheduler', 'WorkSchedulerAbility start 838078');
+    Logger.info('WorkScheduler', 'WorkSchedulerAbility start');
     // 打印 parameters中的参数，如：参数key1
     // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
     let version:string = '';

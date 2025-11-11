@@ -71,7 +71,7 @@ export namespace WorkSchedulerSystem {
    * @permission ohos.permission.NOTIFICATION_CONTROLLER
    */
   export function publishNotification(title: string, text: string, additionalText: string): void {
-    Logger.info(`publishNotification start 838078`);
+    Logger.info(`publishNotification start`);
     let notificationRequest: notificationManager.NotificationRequest = {
       content: {
         notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -84,10 +84,10 @@ export namespace WorkSchedulerSystem {
     }
     notificationManager.publish(notificationRequest, (err: BusinessError) => {
       if (err) {
-        Logger.error(`publishNotification failed 838078`);
+        Logger.error(`publishNotification failed`);
       }
     })
-    Logger.info(`publishNotification success 838078`);
+    Logger.info(`publishNotification success`);
   }
 
   /**
@@ -158,7 +158,7 @@ export namespace WorkSchedulerSystem {
       {
         expectDataType: http.HttpDataType.ARRAY_BUFFER
       }).catch((err: BusinessError) => {
-      Logger.error(`838078 get result failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
     });
     return result as http.HttpResponse;
   }
