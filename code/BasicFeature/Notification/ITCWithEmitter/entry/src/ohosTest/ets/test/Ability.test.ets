@@ -29,7 +29,7 @@ export default function abilityTest() {
     beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
-      await delegator.startAbility(want)
+      await delegator.startAbility(want);
     });
 
     /**
