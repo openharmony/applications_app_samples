@@ -15,21 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B4F7B17F6B7CD48840DE113F9D4BB4196EE7BDEB1010D0916650E651BF71B1819CC2B39A4D5396E",
-          "profile": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\shichangcheng\\.ohos\\config\\default_workscheduler_u8XJggOe1M6psN0fO8KCqD4lBZt_1qrXzAQUzAjkF8E=.p12",
-          "storePassword": "0000001B25374764E540144FC0892700AEC3F95AFF4ECA9436DCF6DB68221BFFF17C019F670CB87E7C6B34"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
