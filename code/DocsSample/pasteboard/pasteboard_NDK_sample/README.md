@@ -56,9 +56,9 @@ entry/src/main
 
 1. 本示例支持标准系统上运行，支持设备：RK3568，Phone;
 
-2. 本示例支持API20版本SDK，版本号：6.0.0.49;
+2. 本示例支持API21版本SDK，版本号：6.0.1.246;
 
-3. 本示例需要使用DevEco Studio 5.1.1 Release（5.1.1.840）及以上版本才可编译运行。
+3. 本示例需要使用DevEco Studio 6.0.1 Beta1及以上版本才可编译运行。
 
 ## 下载
 
@@ -68,6 +68,6 @@ entry/src/main
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

@@ -16,13 +16,16 @@
 // [Start pasteboard_timelaps_PasteData1]
 // [Start pasteboard_usedata]
 // [Start pasteboard_useudc]
-import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+import hilog from '@ohos.hilog';
 // [StartExclude pasteboard_usedata]
-import {unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
 // [End pasteboard_timelaps_PasteData1]
 // [StartExclude pasteboard_useudc]
 // [EndExclude pasteboard_usedata]
 const systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+
 // [StartExclude pasteboard_usedata]
 export namespace TestJs {
   // 使用基础数据类型进行复制粘贴
@@ -33,7 +36,7 @@ export namespace TestJs {
     // [StartExclude pasteboard_usedata]
   }
 
-  export async function getPlainData(type: string): Promise<string>  {
+  export async function getPlainData(type: string): Promise<string> {
     // [EndExclude pasteboard_usedata]
     //从系统剪贴板中读取数据
     let data = await systemPasteboard.getData();
@@ -41,7 +44,7 @@ export namespace TestJs {
     let result = '';
     for (let i = 0; i < recordCount; i++) {
       let record = data.getRecord(i).toPlainText();
-      console.info('Get data success, record:' + record);
+      hilog.info(0xFF00, '[Sample_pasteboard]', 'Get data success, record:' + record);
       result = record;
     }
     // [End pasteboard_usedata]
@@ -51,11 +54,11 @@ export namespace TestJs {
   // 使用统一数据类型进行复制粘贴
   // [EndExclude pasteboard_useudc]
   // 1.构造一条PlainText数据
-  export async function handleUniformData () {
-    let plainText : uniformDataStruct.PlainText = {
+  export async function handleUniformData() {
+    let plainText: uniformDataStruct.PlainText = {
       uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
-      textContent : 'PLAINTEXT_CONTENT',
-      abstract : 'PLAINTEXT_ABSTRACT',
+      textContent: 'PLAINTEXT_CONTENT',
+      abstract: 'PLAINTEXT_ABSTRACT',
     }
 
     let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
@@ -63,10 +66,10 @@ export namespace TestJs {
     data.addRecord(record);
     // 2.向系统剪贴板中存入一条PlainText数据
     systemPasteboard.setUnifiedData(data).then((data: void) => {
-      console.info('Succeeded in setting UnifiedData.');
+      hilog.info(0xFF00, '[Sample_pasteboard]', 'Succeeded in setting UnifiedData.');
       // 存入成功，处理正常场景
     }).catch((err: BusinessError) => {
-      console.error('Failed to set UnifiedData. Cause: ' + err.message);
+      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to set UnifiedData. Cause: ' + err.message);
       // 处理异常场景
     });
     // 3.从系统剪贴板中读取这条text数据
@@ -75,21 +78,21 @@ export namespace TestJs {
       for (let j = 0; j < records.length; j++) {
         if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
           let text = records[j].getValue() as uniformDataStruct.PlainText;
-          console.info(`${j + 1}.${text.textContent}`);
+          hilog.info(0xFF00, '[Sample_pasteboard]', `${j + 1}.${text.textContent}`);
         }
       }
     }).catch((err: BusinessError) => {
-      console.error('Failed to get UnifiedData. Cause: ' + err.message);
+      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to get UnifiedData. Cause: ' + err.message);
       // 处理异常场景
     });
   }
   // [End pasteboard_useudc]
 
   // 使用基于PasteData级别的延迟复制粘贴（不建议使用，会影响粘贴体验和成功率）
-  export async function pasteDatatimelate () {
+  export async function pasteDatatimelate() {
     // [Start pasteboard_timelaps_PasteData2]
     let plainTextData = new unifiedDataChannel.UnifiedData();
-    let getDelayPlainText = ((dataType:string) => {
+    let getDelayPlainText = ((dataType: string) => {
       let plainText = new unifiedDataChannel.PlainText();
       plainText.details = {
         Key: 'delayPlaintext',
@@ -106,11 +109,11 @@ export namespace TestJs {
       plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
       // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
       plainTextData.properties.getDelayData = getDelayPlainText;
-      pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
-        console.info('Succeeded in set PlainText.');
+      pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(() => {
+        hilog.info(0xFF00, '[Sample_pasteboard]', 'Succeeded in set PlainText.');
         // 存入成功，处理正常场景
       }).catch((error: BusinessError) => {
-        console.error('Failed to set PlainText. Cause: ' + error.message);
+        hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to set PlainText. Cause: ' + error.message);
         // 处理异常场景
       });
     }
@@ -122,13 +125,13 @@ export namespace TestJs {
         let records = outputData.getRecords();
         if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
           let record = records[0] as unifiedDataChannel.PlainText;
-          console.info('GetPlainText success, type:' + records[0].getType() );
+          hilog.info(0xFF00, '[Sample_pasteboard]', 'GetPlainText success, type:' + records[0].getType());
           //注意：用户复制的数据内容属于敏感信息，禁止应用程序使用日志明文打印从剪贴板获取到的数据内容。
         } else {
-          console.info('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+          hilog.info(0xFF00, '[Sample_pasteboard]', 'Get Plain Text Data No Success, Type is: ' + records[0].getType());
         }
       }).catch((error: BusinessError) => {
-        console.error('Failed to get PlainTextUnifiedData. Cause: ' + error.message);
+        hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to get PlainTextUnifiedData. Cause: ' + error.message);
         //处理异常场景
       })
     })
@@ -136,18 +139,18 @@ export namespace TestJs {
     // [Start pasteboard_timelaps_PasteData5]
     try {
       systemPasteboard.setAppShareOptions(pasteboard.ShareOption.LOCALDEVICE);
-      console.info('Set app share options success.');
+      hilog.info(0xFF00, '[Sample_pasteboard]', 'Set app share options success.');
     } catch (err) {
-      console.error('Failed to gSet app share options. Cause: ' + err.message);
+      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to gSet app share options. Cause: ' + err.message);
       //处理异常场景
     }
     // [End pasteboard_timelaps_PasteData5]
     // [Start pasteboard_timelaps_PasteData6]
     try {
       systemPasteboard.removeAppShareOptions();
-      console.info('Remove app share options success.');
+      hilog.info(0xFF00, '[Sample_pasteboard]', 'Remove app share options success.');
     } catch (err) {
-      console.error('Failed to Remove app share options. Cause: ' + err.message);
+      hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to Remove app share options. Cause: ' + err.message);
       //处理异常场景
     }
     // [End pasteboard_timelaps_PasteData6]
