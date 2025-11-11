@@ -21,7 +21,7 @@ const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let want: Want = {
   bundleName: 'com.samples.itcwithemitter',
   abilityName: 'EntryAbility',
-}
+};
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -41,12 +41,12 @@ export default function abilityTest() {
      * @tc.level Level 0
      */
     it('SUB_SAMPLE_BASIC_SERVICES_0100', 0, async (done: Function) => {
-      let comp = await driver.findComponent(ON.id('emitterOn'))
-      await comp.click()
-      await comp.click()
-      await comp.click()
-      done()
-    })
+      let comp = await driver.findComponent(ON.id('emitterOn'));
+      await comp.click();
+      await comp.click();
+      await comp.click();
+      done();
+    });
 
     /**
      * @tc.number SUB_SAMPLE_BASIC_SERVICES_0200
@@ -57,12 +57,13 @@ export default function abilityTest() {
      * @tc.level Level 0
      */
     it('SUB_SAMPLE_BASIC_SERVICES_0200', 0, async (done: Function) => {
-      let comp = await driver.findComponent(ON.id('emitterOn'))
-      await comp.click()
-      let off = await driver.findComponent(ON.id('2025'))
-      await off.click()
-      await comp.click()
-      done()
-    })
+      let comp = await driver.findComponent(ON.id('emitterOn'));
+      await comp.click();
+      let off = await driver.findComponent(ON.id('2025'));
+      await off.click();
+      await comp.click();
+      done();
+    });
+
   })
 }
