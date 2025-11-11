@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/LazyTextListExample",
-    "pages/Index"
+    "pages/Index",
+    "pages/LazyLoadingExample"
   ]
 }

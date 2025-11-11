@@ -14,6 +14,9 @@ ArkUI开发框架提供了列表组件，使用列表可以轻松高效地显示
 |-----------------------------|
 | ![](screenshots/result.jpg) |
 
+| 懒加载列表测试                      |
+|-----------------------------|
+| ![](screenshots/result1.jpg) |
 
 ### 使用说明
 
@@ -52,6 +55,7 @@ entry/
     │   │   │   └── EntryBackupAbility.ets
     │   │   └── pages
     │   │       ├── Index.ets
+    │   │       └── LazyLoadingExample.ets
     │   │       └── LazyTextListExample.ets
     │   ├── module.json5
     │   ├── resources

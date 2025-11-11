@@ -216,6 +216,7 @@ public:
     }
 
     ArkUI_NodeHandle GetHandle() const { return handle_; }
+    std::list<std::shared_ptr<ArkUIBaseNode>> &GetChildren() { return children_; }
 
 protected:
     // 针对父容器子类需要重载下面的函数，实现组件挂载和卸载。

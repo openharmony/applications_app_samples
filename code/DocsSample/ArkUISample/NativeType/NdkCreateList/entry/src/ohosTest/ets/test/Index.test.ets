@@ -69,5 +69,34 @@ export default function IndexTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'LazyTextListExampleTest_001, end');
       done();
     })
+
+    /**
+     * @tc.number: LazyLoadingExampleTest_001
+     * @tc.name: Lazy loading example
+     * @tc.desc: Test lazy loading example
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('LazyLoadingExampleTest_001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'LazyLoadingExampleTest_001, begin');
+      want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      };
+      await delegator.startAbility(want);
+      await sleep(ONE_SECONDS_TIME);
+      let driver = Driver.create();
+      let button_root = await driver.findComponent(ON.text('LazyLoadingExample', MatchPattern.CONTAINS));
+      await button_root.click();
+      let button_list = await driver.findComponent(ON.text('ShowNativeUI', MatchPattern.CONTAINS));
+      expect(button_list === null).assertFalse();
+      await button_list.click();
+      await driver.pressBack();
+      await driver.pressBack();
+      await driver.delayMs(ONE_SECONDS_TIME);
+      hilog.info(DOMAIN, TAG, BUNDLE + 'LazyLoadingExampleTest_001, end');
+      done();
+    })
   })
 }

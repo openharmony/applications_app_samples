@@ -164,6 +164,7 @@ public:
         OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, "Manager",
                      "uniqueId:%{public}d, isCrossLanguage:%{public}d", uniqueId, isCross);
         OH_ArkUI_CrossLanguageOption_Destroy(option);
+        return isCross;
     }
 
     ArkUI_IntOffset GetLayoutPositionInWindow()
