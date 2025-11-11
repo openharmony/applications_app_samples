@@ -33,6 +33,10 @@
 entry/src/main/ets/
 |---entryability                
 |---pages
+|   |---faqs
+|   |    |---ChildPage.ets
+|   |    |---RouterIndex.ets
+|   |    |---SerializationAndDeserialization.ets
 |   |---overview
 |   |    |---InheritedChanges.ets
 |   |    |---Limitations.ets
@@ -77,7 +81,7 @@ entry/src/ohosTest/
 
 ### 依赖
 
-不涉及。
+1. 反序列化功能依赖class-transformer与reflect-metadata。
 
 ### 约束与限制
 

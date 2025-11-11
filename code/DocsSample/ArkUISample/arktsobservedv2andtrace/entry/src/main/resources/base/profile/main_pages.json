@@ -15,6 +15,9 @@
     "pages/usagescenarios/DecorativeObject",
     "pages/usagescenarios/DecorationMap",
     "pages/usagescenarios/DecorationSet",
-    "pages/usagescenarios/DecorateDate"
+    "pages/usagescenarios/DecorateDate",
+    "pages/faqs/RouterIndex",
+    "pages/faqs/ChildPage",
+    "pages/faqs/SerializationAndDeserialization"
   ]
 }
