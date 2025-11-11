@@ -20,7 +20,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import hilog from '@ohos.hilog';
 
 const DOMAIN = 0X0000;
-const TAG : string = '[Sample_CreatSubWindow]';
+const TAG: string = '[Sample_CreatSubWindow]';
 
 let windowStage_: window.WindowStage | null = null;
 let sub_windowClass: window.Window | null = null;
