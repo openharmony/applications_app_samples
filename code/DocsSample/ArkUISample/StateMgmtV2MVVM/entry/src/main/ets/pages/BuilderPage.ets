@@ -29,7 +29,7 @@ class Task {
   @Trace public isFinish: boolean = false;
 }
 
-@Builder function actionButton(text: string|Resource, onClick:() => void) {
+@Builder function ActionButton(text: string|Resource, onClick:() => void) {
   Button(text, { buttonStyle: ButtonStyleMode.NORMAL })
     .onClick(onClick)
     .margin({ left: 10, right: 10, top: 5, bottom: 5 })
@@ -78,7 +78,7 @@ struct TaskItem {
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
         .fontSize(18)
-      actionButton('Delete', () => this.deleteTask())
+      ActionButton('Delete', () => this.deleteTask())
     }
     .height('7%')
     .width('90%')
@@ -128,9 +128,9 @@ struct TodoList {
           }).margin(5)
         })
       Row() {
-        actionButton('All Completed', (): void => this.finishAll(true))
-        actionButton('All Not Completed', (): void => this.finishAll(false))
-        actionButton('Setting', (): void => {
+        ActionButton('All Completed', (): void => this.finishAll(true))
+        ActionButton('All Not Completed', (): void => this.finishAll(false))
+        ActionButton('Setting', (): void => {
           let wantInfo: Want = {
             deviceId: '', // deviceId为空表示本设备。
             bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
@@ -144,7 +144,7 @@ struct TodoList {
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
-        actionButton('+', (): void => {
+        ActionButton('+', (): void => {
           let newTask = new Task();
           newTask.taskName = this.newTaskName;
           this.taskList.tasks.push(newTask);

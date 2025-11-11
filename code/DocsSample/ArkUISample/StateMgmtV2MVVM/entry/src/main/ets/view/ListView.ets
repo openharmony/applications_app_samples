@@ -19,7 +19,7 @@
 import TaskViewModel from '../viewmodel/TaskViewModel';
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 import { Setting } from '../pages/SettingPage';
-import { actionButton } from './BottomView';
+import { ActionButton } from './BottomView';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @ComponentV2
@@ -41,7 +41,7 @@ struct TaskItem {
       Text(this.task.taskName)
         .decoration({ type: this.task.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
         .fontSize(18)
-      actionButton('Delete', () => this.deleteTask());
+      ActionButton('Delete', () => this.deleteTask());
     }
     .height('7%')
     .width('90%')
