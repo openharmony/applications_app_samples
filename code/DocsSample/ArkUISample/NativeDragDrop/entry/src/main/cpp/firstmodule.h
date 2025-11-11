@@ -85,57 +85,6 @@ void SetData(ArkUI_DragEvent* dragEvent)
     returnValue = OH_ArkUI_DragEvent_SetData(dragEvent, data);
 }
 
-void GetDragMoveInfos(ArkUI_DragEvent* dragEvent)
-{
-    // 预览图尺寸
-    float previewRectWidth = OH_ArkUI_DragEvent_GetPreviewRectWidth(dragEvent);
-    float previewRectHeight = OH_ArkUI_DragEvent_GetPreviewRectHeight(dragEvent);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE previewRectWidth = %{public}f; previewRectHeight = %{public}f",
-        previewRectWidth, previewRectHeight);
-    float previewTouchPointX = OH_ArkUI_DragEvent_GetPreviewTouchPointX(dragEvent);
-    float previewTouchPointY = OH_ArkUI_DragEvent_GetPreviewTouchPointY(dragEvent);
-    g_ss.str("");
-    g_ss << "previewTouchPointX/Y: " << previewTouchPointX << "/" << previewTouchPointY;
-    SetText(previewTouchPointText1, g_ss.str().c_str());
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE previewTouchPointX = %{public}f; previewTouchPointY = %{public}f",
-        previewTouchPointX, previewTouchPointY);
-    float touchPointXToWindow = OH_ArkUI_DragEvent_GetTouchPointXToWindow(dragEvent);
-    float touchPointYToWindow = OH_ArkUI_DragEvent_GetTouchPointYToWindow(dragEvent);
-    g_ss.str("");
-    g_ss << "touchPointX/YToWindow: " << touchPointXToWindow << "/" << touchPointYToWindow;
-    SetText(touchPointToWindowText1, g_ss.str().c_str());
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE touchPointXToWindow = %{public}f; touchPointYToWindow = %{public}f",
-        touchPointXToWindow, touchPointYToWindow);
-    float touchPointXToDisplay = OH_ArkUI_DragEvent_GetTouchPointXToDisplay(dragEvent);
-    float touchPointYToDisplay = OH_ArkUI_DragEvent_GetTouchPointYToDisplay(dragEvent);
-    g_ss.str("");
-    g_ss << "touchPointX/YToDisplay: " << touchPointXToDisplay << "/" << touchPointYToDisplay;
-    SetText(touchPointToDisplayText1, g_ss.str().c_str());
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE touchPointXToDisplay = %{public}f; touchPointYToDisplay = %{public}f",
-        touchPointXToDisplay, touchPointYToDisplay);
-    float touchPointXToGlobalDisplay = OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay(dragEvent);
-    float touchPointYToGlobalDisplay = OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay(dragEvent);
-    g_ss.str("");
-    g_ss << "touchPointX/YToGlobalDisplay: " << touchPointXToDisplay << "/" << touchPointYToDisplay;
-    SetText(touchPointToGlobalDisplayText1, g_ss.str().c_str());
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE touchPointXToGlobalDisplay = %{public}f; touchPointYToGlobalDisplay = %{public}f",
-        touchPointXToGlobalDisplay, touchPointYToGlobalDisplay);
-    float velocityX = OH_ArkUI_DragEvent_GetVelocityX(dragEvent);
-    float velocityY = OH_ArkUI_DragEvent_GetVelocityY(dragEvent);
-    float velocity = OH_ArkUI_DragEvent_GetVelocity(dragEvent);
-    g_ss.str("");
-    g_ss << "velocityX: " << velocityX << "  velocityY: " << velocityY << "  velocity: " << velocity;
-    SetText(velocityText1, g_ss.str().c_str());
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-        "NODE_ON_MOVE velocityX = %{public}f; velocityY = %{public}f; velocity = %{public}f",
-        velocityX, velocityY, velocity);
-}
-
 // [Start on_drop]
 void GetDragData(ArkUI_DragEvent* dragEvent)
 {
@@ -210,17 +159,32 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
             "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
         auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
         switch (eventType) {
-            case NODE_ON_PRE_DRAG:
-            case NODE_ON_CLICK:
-            case NODE_ON_DROP:
-            case NODE_ON_DRAG_ENTER:
-            case NODE_ON_DRAG_MOVE:
+            case NODE_ON_PRE_DRAG: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_PRE_DRAG Event Receive");
+                break;
+            }
+            case NODE_ON_CLICK: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_CLICK Event Receive");
+                break;
+            }
+            case NODE_ON_DROP: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DROP Event Receive");
+                break;
+            }
+            case NODE_ON_DRAG_ENTER: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_ENTER Event Receive");
+                break;
+            }
+            case NODE_ON_DRAG_MOVE: {
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_MOVE Event Receive");
+                break;
+            }
             case NODE_ON_DRAG_LEAVE: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "eventType = %{public}d EventReceiver", eventType);
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_LEAVE Event Receive");
                 break;
             }
             case NODE_ON_DRAG_START: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_START EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_START Event Receive");
                 // [StartExclude event_Type]
                 PrintDragStartInfos(dragEvent);
                 SetData(dragEvent);
@@ -228,23 +192,14 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
                 break;
             }
             case NODE_ON_DRAG_END: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_END EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_END Event Receive");
                 // [StartExclude event_Type]
-                ArkUI_DragResult result;
-                OH_ArkUI_DragEvent_GetDragResult(dragEvent, &result);
-                if (result == ARKUI_DRAG_RESULT_SUCCESSFUL) {
-                    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Successful!");
-                    nodeAPI->resetAttribute(dragText1, NODE_TEXT_CONTENT);
-                    SetText(dropText1, "drag me", TEXT_FONT_SIZE_20);
-                    SetText(dropText2, "drag me", TEXT_FONT_SIZE_20);
-                } else if (result == ARKUI_DRAG_RESULT_FAILED) {
-                    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest", "Drag Failed!");
-                }
+                GetDragResult(dragEvent);
                 // [EndExclude event_Type]
                 break;
             }
             default: {
-                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKOWN EventReceiver");
+                OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKOWN Event Receive");
                 break;
             }
         }

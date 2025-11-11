@@ -65,6 +65,9 @@ int32_t g_requestIdentify = 0;
 ArkUI_DragAction *action;
 std::stringstream g_ss;
 
+void GetDragResult(ArkUI_DragEvent* dragEvent);
+void GetDragMoveInfos(ArkUI_DragEvent* dragEvent);
+
 void SetWidthPercent(ArkUI_NodeHandle &node, float width = 1)
 {
     if (!nodeAPI) {
