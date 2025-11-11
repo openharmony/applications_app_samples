@@ -162,6 +162,10 @@ export default class EntryAbility extends UIAbility {
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['crash_type']}`);
             // 开发者可以获取到崩溃应用的前后台状态
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
+            // 开发者可以获取到崩溃应用类型
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.release_type=${eventInfo.params['release_type']}`);
+            // 开发者可以获取到崩溃应用的二进制接口类型
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.cpu_abi=${eventInfo.params['cpu_abi']}`);
             // 开发者可以获取到崩溃应用的版本信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
             // 开发者可以获取到崩溃应用的包名
@@ -216,6 +220,10 @@ export default class EntryAbility extends UIAbility {
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
             // 开发者可以获取到卡死应用的前后台状态
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
+            // 开发者可以获取到卡死应用类型
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.release_type=${eventInfo.params['release_type']}`);
+            // 开发者可以获取到卡死应用的二进制接口类型
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.cpu_abi=${eventInfo.params['cpu_abi']}`);
             // 开发者可以获取到卡死应用的版本信息
             hilog.info(0x0000, 'testTag',
               `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
