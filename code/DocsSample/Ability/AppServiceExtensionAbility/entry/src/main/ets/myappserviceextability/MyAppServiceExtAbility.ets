@@ -27,9 +27,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG: string = '[MyAppServiceExtAbility]';
 // [StartExclude ability_app_service_two]
 const DOMAIN_NUMBER: number = 0xFF00;
-// [EndExclude  ability_app_service_two]
 
-// [StartExclude ability_app_service_two]
 class StubTest extends rpc.RemoteObject {
   constructor(des: string) {
     super(des);
