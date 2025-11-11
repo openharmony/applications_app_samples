@@ -154,7 +154,7 @@
     },
     {
       "name": "local_question_expected_effect",
-      "value": "状态管理V2中使用animateTo动画效果异常--通过下面的方法暂时获得预期的显示效果"
+      "value": "状态管理V2中使用animateTo动画效果异常--使用applySync接口实现预期的显示效果"
     },
     {
       "name": "persistenceV2",
