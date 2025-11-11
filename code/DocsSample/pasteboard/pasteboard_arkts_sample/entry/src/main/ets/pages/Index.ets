@@ -46,7 +46,7 @@ async function isNeedGetPermissionFromUser(): Promise<boolean> {
       return false;
     }
   } catch (err) {
-    hilog.info(0xFF00, '[Sample_pasteboard]', 'Failed to get the ChangeCount. Cause: ${err.message}');
+    hilog.error(0xFF00, '[Sample_pasteboard]', 'Failed to get the ChangeCount. Cause: ${err.message}');
     return false;
   };
 
