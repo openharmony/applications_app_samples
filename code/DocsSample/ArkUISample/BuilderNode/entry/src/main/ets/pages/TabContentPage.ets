@@ -15,6 +15,7 @@
 
 // [Start Main_TabContentPage]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Params {
   public message: number = 0;
@@ -100,7 +101,7 @@ struct FreezeBuildNode {
   @Param message: number = 0;
   @Param index: number = 0;
   @Monitor('message') onMessageUpdated(mon: IMonitor) {
-    console.info(`FreezeBuildNode message callback func ${this.message}`);
+    hilog.info(0xF811, 'testTag', '%{public}s',`FreezeBuildNode message callback func ${this.message}`);
   }
   build() {
     if (this.index === 0) {
@@ -115,7 +116,7 @@ struct buildNodeChild {
   @Param index: number = 0;
 
   @Monitor('message') onMessageUpdated(mon: IMonitor) {
-    console.info(`FreezeBuildNode buildNodeChild message callback func ${this.message}`);
+    hilog.info(0xF811, 'testTag', '%{public}s',`FreezeBuildNode buildNodeChild message callback func ${this.message}`);
   }
 
   build() {

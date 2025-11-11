@@ -15,6 +15,7 @@
 
 // [Start Main_RepeatTabPage]
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 定义一个Params类，用于传递参数。
 @ObservedV2
@@ -49,7 +50,7 @@ struct buildNodeChild {
   // 使用@Monitor装饰器监听storage.message的变化。
   @Monitor('storage.message')
   onMessageChange(monitor: IMonitor) {
-    console.info(`FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
+    hilog.info(0xF811, 'testTag', '%{public}s',`FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
   }
 
   build() {
@@ -128,7 +129,7 @@ struct FreezeBuildNode {
   // 使用@Monitor装饰器监听storage.message的变化。
   @Monitor('storage.message')
   onMessageChange(monitor: IMonitor) {
-    console.info(`FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
+    hilog.info(0xF811, 'testTag', '%{public}s',`FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
   }
 
   build() {

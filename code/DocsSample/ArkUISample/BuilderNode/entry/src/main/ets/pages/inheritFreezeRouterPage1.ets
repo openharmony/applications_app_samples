@@ -15,6 +15,7 @@
 
 // [Start Main_inheritFreezeRouterPage1]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @ObservedV2
 export class Book {
@@ -67,7 +68,7 @@ struct BuildNodeChild {
 
   @Monitor('bookTest.name')
   onMessageChange(monitor: IMonitor) {
-    console.info(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(0xF811, 'testTag', '%{public}s',`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {

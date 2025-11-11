@@ -15,6 +15,7 @@
 
 // [Start Main_NavigationPage]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Params {
   public count: number = 0;
@@ -182,7 +183,7 @@ struct TextBuilder {
 
   @Monitor('message')
   info() {
-    console.info(` freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结。
+    hilog.info(0xF811, 'testTag', '%{public}s',` freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结。
   }
   build() {
     Row() {
