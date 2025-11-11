@@ -24,7 +24,7 @@ const DOMAIN = 0x0000;
 class TransferInfo {
   public type: string = ''
   public info: extensionSubscription.NotificationInfo | undefined
-  public cancelHashCodes: Array<string>| undefined
+  public cancelHashCodes: Array<string> | undefined
 }
 
 class SppClientManager {
@@ -65,7 +65,7 @@ class SppClientManager {
       return;
     }
     if (!jsonStr) {
-      hilog.error(DOMAIN, 'testTag',  'json is empty');
+      hilog.error(DOMAIN, 'testTag', 'json is empty');
       return;
     }
     hilog.info(DOMAIN, 'testTag', `prepare sending data to client ${this.clientNumber}`);
@@ -80,26 +80,26 @@ class SppClientManager {
 
   // 发送数据
   public sendNotificationData(notificationInfo: extensionSubscription.NotificationInfo) {
-      let info: TransferInfo = {
-        type: 'publish',
-        info: notificationInfo,
-        cancelHashCodes: undefined
-      };
+    let info: TransferInfo = {
+      type: 'publish',
+      info: notificationInfo,
+      cancelHashCodes: undefined
+    };
 
-      let jsonStr = JSON.stringify(info);
-      this.sendData(jsonStr);
+    let jsonStr = JSON.stringify(info);
+    this.sendData(jsonStr);
   }
 
   public sendCancelNotificationData(cancelHashCodes: Array<string>) {
-      let info: TransferInfo = {
-        type: 'cancel',
-        cancelHashCodes: cancelHashCodes,
-        info: undefined
-      };
+    let info: TransferInfo = {
+      type: 'cancel',
+      cancelHashCodes: cancelHashCodes,
+      info: undefined
+    };
 
-      // 步骤1：将NotificationInfo序列化为JSON字符串
-      let jsonStr = JSON.stringify(info);
-      this.sendData(jsonStr);
+    // 步骤1：将NotificationInfo序列化为JSON字符串
+    let jsonStr = JSON.stringify(info);
+    this.sendData(jsonStr);
   }
 
   public read = (dataBuffer: ArrayBuffer) => {
