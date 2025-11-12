@@ -26,7 +26,7 @@ export struct DefaultAndTopToastExample {
       Column({ space: 10 }) {
         TextInput()
         Button() {
-          Text('DEFAULT Toast')
+          Text('Toast of the DEFAULT type')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }
@@ -43,7 +43,7 @@ export struct DefaultAndTopToastExample {
 
         Blank().height(200);
         Button() {
-          Text('TOPMOST Toast')
+          Text('Toast of the TOPMOST type')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
         }

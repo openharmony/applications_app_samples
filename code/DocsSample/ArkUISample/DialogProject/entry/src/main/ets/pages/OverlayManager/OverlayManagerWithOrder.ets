@@ -78,25 +78,25 @@ export struct OverlayManagerWithOrder {
       // [EndExclude OverlayManager_Demo3]
       Row() {
         Column({ space: 5 }) {
-          Button('Build top text')
+          Button('Open Top-Level Dialog Box')
             .onClick(() => {
               let componentContent = new ComponentContent(
                 this.ctx, wrapBuilder<[Params]>(builderTopText),
-                new Params('I am top text', this.componentOffset)
+                new Params('I am a top-level dialog box', this.componentOffset)
               );
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100000));
             })
-          Button('Build normal text')
+          Button('Open Normal Dialog Box')
             .onClick(() => {
               let componentContent = new ComponentContent(
                 this.ctx, wrapBuilder<[Params]>(builderNormalText),
-                new Params('I am normal text', this.componentOffset)
+                new Params('I am a normal dialog box', this.componentOffset)
               );
               this.contentArray.push(componentContent);
               this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(0));
             })
-          Button('Remove text').onClick(() => {
+          Button('Remove Dialog Box').onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray.splice(this.arrayIndex, 1);
               this.overlayManager.removeComponentContent(componentContent.pop());

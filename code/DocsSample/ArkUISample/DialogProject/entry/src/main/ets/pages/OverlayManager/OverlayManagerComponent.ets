@@ -63,7 +63,7 @@ export struct OverlayManagerComponent {
           .onClick(() => {
             --this.componentContentIndex;
           })
-        Button('addComponentContent:' + this.contentArray.length)
+        Button('Add ComponentContent:' + this.contentArray.length)
           .onClick(() => {
             let componentContent = new ComponentContent(
               this.uiContext, wrapBuilder<[Params]>(builderText),
@@ -72,15 +72,15 @@ export struct OverlayManagerComponent {
             this.contentArray.push(componentContent);
             this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
           })
-        Button('Increment arrayIndex: ' + this.arrayIndex)
+        Button('Increment arrayIndex:' + this.arrayIndex)
           .onClick(() => {
             ++this.arrayIndex;
           })
-        Button('Decrement arrayIndex: ' + this.arrayIndex)
+        Button('Decrement arrayIndex:' + this.arrayIndex)
           .onClick(() => {
             --this.arrayIndex;
           })
-        Button('removeComponentContent: ' + this.arrayIndex)
+        Button('Delete ComponentContent:' + this.arrayIndex)
           .onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray.splice(this.arrayIndex, 1);
@@ -89,7 +89,7 @@ export struct OverlayManagerComponent {
               hilog.info(DOMAIN, TAG, '%{public}s', 'arrayIndex error');
             }
           })
-        Button('showComponentContent: ' + this.arrayIndex)
+        Button('Show ComponentContent:' + this.arrayIndex)
           .onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray[this.arrayIndex];
@@ -98,7 +98,7 @@ export struct OverlayManagerComponent {
               hilog.info(DOMAIN, TAG, '%{public}s', 'arrayIndex error');
             }
           })
-        Button('hideComponentContent: ' + this.arrayIndex)
+        Button('Hide ComponentContent:' + this.arrayIndex)
           .onClick(() => {
             if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
               let componentContent = this.contentArray[this.arrayIndex];
@@ -107,16 +107,16 @@ export struct OverlayManagerComponent {
               hilog.info(DOMAIN, TAG, '%{public}s', 'arrayIndex error');
             }
           })
-        Button('showAllComponentContents')
+        Button('Show All ComponentContent')
           .onClick(() => {
             this.overlayNode.showAllComponentContents();
           })
-        Button('hideAllComponentContents')
+        Button('Hide All ComponentContent')
           .onClick(() => {
             this.overlayNode.hideAllComponentContents();
           })
 
-        Button('Page Jump')
+        Button('Go')
           .onClick(() => {
             this.getUIContext().getRouter().pushUrl({
               url: 'pages/Second'

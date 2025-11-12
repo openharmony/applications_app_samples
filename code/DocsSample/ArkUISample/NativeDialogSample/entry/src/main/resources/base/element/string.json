@@ -42,11 +42,11 @@
     },
     {
       "name": "demo_open_dialog",
-      "value": "Show Dialog"
+      "value": "Click Dialog Box"
     },
     {
       "name": "demo_close_dialog",
-      "value": "Close Dialog"
+      "value": "Close Dialog Box"
     },
     {
       "name": "exit_app",
