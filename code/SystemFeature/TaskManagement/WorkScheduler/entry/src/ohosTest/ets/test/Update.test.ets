@@ -31,7 +31,7 @@ export default function updateTest() {
       try {
         await abilityDelRegistry.startAbility({
           bundleName: 'ohos.samples.workschedulerextensionability',
-          abilityName: 'MainAbility'
+          abilityName: 'TestAbility'
         });
         done();
       } catch (err) {

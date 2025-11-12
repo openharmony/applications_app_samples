@@ -25,12 +25,14 @@ const URL: string = 'https://gitcode.com/openharmony/applications_app_samples/bl
   'WorkScheduler/UpdateWorkScheduler.hap';
 const BUNDLE_NAME = ['ohos.samples.workschedulerextensionability'];
 
+// [Start workSchedulerExtension]
 export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility {
   // 延迟任务开始回调
   onWorkStart(workInfo: workScheduler.WorkInfo) {
     Logger.info('WorkScheduler', 'WorkSchedulerAbility start');
     // 打印 parameters中的参数，如：参数key1
     // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
+    // [StartExclude workSchedulerExtension]
     let version:string = '';
     let filePath: string = '';
     if (workInfo.parameters) {
@@ -58,6 +60,7 @@ export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility 
         }
       })
     }
+    // [EndExclude workSchedulerExtension]
   }
 
   // 延迟任务结束回调。当延迟任务2分钟超时或应用调用stopWork接口取消任务时，触发该回调。
@@ -65,3 +68,4 @@ export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility 
     console.info(`onWorkStop, workInfo is ${JSON.stringify(workInfo)}`);
   }
 }
+// [End workSchedulerExtension]

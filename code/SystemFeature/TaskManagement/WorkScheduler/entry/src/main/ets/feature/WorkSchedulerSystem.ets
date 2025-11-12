@@ -107,12 +107,7 @@ export namespace WorkSchedulerSystem {
       }, (status, statusMessage) => {
         Logger.info(`installBundle filepath is ${filePath}`);
         Logger.info(`installBundle code is ${status.code}, message is ${JSON.stringify(statusMessage)}`);
-        try {
-          workScheduler.stopWork(workInfo);
-          console.info(`stopWork success`);
-        } catch (error) {
-          console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-        }
+        stopWork(workInfo);
       })
     } catch (err) {
       Logger.error(`installBundle failed, code is ${err.code}, message is ${err.message}`);
@@ -126,17 +121,24 @@ export namespace WorkSchedulerSystem {
    * @param filePath Storage address of the application package.
    */
   export async function startUpdateSample(version: string, filePath: string): Promise<void> {
+    // [Start startWork]
+    // [Start stopWork]
     let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       networkType: workScheduler.NetworkType.NETWORK_TYPE_ANY,
       bundleName: 'ohos.samples.workschedulerextensionability',
       abilityName: 'WorkSchedulerAbility',
+      // [StartExclude startWork]
+      // [StartExclude stopWork]
       parameters: {
         version: version,
         filePath: filePath
       }
+      // [EndExclude startWork]
+      // [EndExclude stopWork]
     }
 
+    // [StartExclude stopWork]
     try {
       workScheduler.startWork(workInfo);
       console.info(`startWork success`);
@@ -144,6 +146,18 @@ export namespace WorkSchedulerSystem {
     catch (error) {
       console.error(`startWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
+    // [End startWork]
+  }
+
+  async function stopWork(workInfo: workScheduler.WorkInfo): Promise<void> {
+    // [EndExclude stopWork]
+    try {
+      workScheduler.stopWork(workInfo);
+      console.info(`stopWork success`);
+    } catch (error) {
+      console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+    }
+    // [End stopWork]
   }
 
   /**

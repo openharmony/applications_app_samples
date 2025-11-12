@@ -19,6 +19,9 @@ import { window } from '@kit.ArkUI'
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import { Logger } from '../utils/Logger';
+import { WorkSchedulerSystem } from '../../../main/ets/feature/WorkSchedulerSystem'
+
+const VERSION: string = '1.0'
 
 export default class TestAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -39,6 +42,9 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     Logger.info('TestAbility onWindowStageCreate');
+    WorkSchedulerSystem.handleNotification()
+    let filePath = `${this.context.filesDir.split('/haps')[0]}/files`
+    WorkSchedulerSystem.startUpdateSample(VERSION, filePath)
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
         Logger.error('Failed to load the content. Cause: ' + JSON.stringify(err));
