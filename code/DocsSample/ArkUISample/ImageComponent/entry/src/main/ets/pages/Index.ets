@@ -88,7 +88,7 @@ let demandList: listItem[] = [
 @Entry
 @Component
 struct Index {
-  @State bgColor: ResourceColor = '#39b5fa';
+
   build() {
     Column() {
       Text($r('app.string.ImageShow'))
@@ -97,8 +97,8 @@ struct Index {
         .textAlign(TextAlign.Center)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
-        .backgroundColor(this.bgColor)
-        .fontColor(Color.White)
+        .backgroundColor($r('app.color.Title_Back'))
+        .fontColor($r('app.color.Title_TextColor'))
       Column() {
         List({ space: 20, initialIndex: 0 }) {
           ForEach(demandList, (listitem: listItem, index: number) => {
@@ -106,10 +106,11 @@ struct Index {
               Column({ space: 10 }) {
                 Text(listitem.name)
                   .fontSize(20)
-                  .fontColor(this.bgColor)
+                  .fontColor($r('app.color.Index_first'))
                   .maxLines(1)
                 Text(listitem.description)
                   .width('100%')
+                  .fontColor($r('app.color.start_window_background'))
               }
               .margin({ bottom: index >= demandList.length - 1 ? 100 : 0 })
               .padding({
@@ -121,7 +122,7 @@ struct Index {
               .width('100%')
               .constraintSize({ minHeight: 100 })
               .borderRadius(10)
-              .backgroundColor(0xFFFFFF)
+              .backgroundColor($r('app.color.Index_Column'))
               .onClick(() => {
                 if (!!listitem.router) {
                   this.getUIContext().getRouter().pushUrl({ url: listitem.router })
@@ -144,7 +145,7 @@ struct Index {
       }
       .width('100%')
       .height('100%')
-      .backgroundColor('#fff4f3f3')
+      .backgroundColor($r('app.color.Index_backgroundColor'))
       .padding({ top: 5 })
     }
   }

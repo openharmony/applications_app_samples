@@ -12,16 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//  媒体库文件页面
-//  [Start media_libraryfile]
+// 媒体库文件页面
+// [Start media_libraryfile]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-// [StartExclude media_libraryfile]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'Sample_imagecomponent';
-// [EndExclude media_libraryfile]
+
 @Entry
 @Component
 struct MediaLibraryFile {
@@ -67,4 +65,4 @@ struct MediaLibraryFile {
     }.width('100%').height('100%')
   }
 }
-//  [End media_libraryfile]
+// [End media_libraryfile]
