@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AnimateCallback, CustomTransition } from './CustomTransitionUtils'
+import { AnimateCallback, CustomTransition } from './CustomTransitionUtils';
 
 @Entry
 @Component
@@ -62,7 +62,7 @@ struct NavigationCustomTransitionExample {
                 toParam.finish(true, false);
               }
 
-            })
+            });
           } else if (operation == NavigationOperation.POP) {
             // Pop动画
             if (fromParam.start && toParam.start) {
@@ -81,7 +81,7 @@ struct NavigationCustomTransitionExample {
                 fromParam.finish(false, true);
                 toParam.finish(false, false);
               }
-            })
+            });
           } else {
             // Replace不做动画
           }
@@ -110,7 +110,7 @@ export struct PageContainer {
   pageInfos: NavPathStack = new NavPathStack();
   @State translateY: string = '0';
   pageId: string = '';
-  title: string = ''
+  title: string = '';
 
   registerCallback() {
     CustomTransition.getInstance().registerNavParam(this.pageId,

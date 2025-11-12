@@ -32,7 +32,7 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.Drag_Index_MoreDrag_title')),
     description: resource.resourceToString($r('app.string.Drag_Index_MoreDrag_description')),
   }
-]
+];
 
 @Builder
 export function DragGestureDestination(name: string) {

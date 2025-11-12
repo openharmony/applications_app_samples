@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CustomTransition } from './CustomNavigationUtils'
+import { CustomTransition } from './CustomNavigationUtils';
 
 @Builder
 export function PageTwoBuilder(name: string, param: Object) {
@@ -30,7 +30,7 @@ export struct PageTwo {
   registerCallback() {
     CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean) => {
       if (isPush) {
-        this.translateX = '100%'
+        this.translateX = '100%';
       } else {
         this.translateX = '0';
       }
@@ -51,7 +51,7 @@ export struct PageTwo {
           }
         }, () => {
           this.translateX = '0';
-        })
+        });
       } else {
         this.translateX = '0';
         this.getUIContext()?.animateTo({
@@ -60,9 +60,9 @@ export struct PageTwo {
           }
         }, () => {
           this.translateX = '100%';
-        })
+        });
       }
-    }, 2000)
+    }, 2000);
   }
 
   build() {

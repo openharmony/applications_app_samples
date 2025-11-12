@@ -53,7 +53,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/StateEasyV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/StateEasyV1' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -72,7 +72,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/StateEasyV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/StateEasyV2' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -90,7 +90,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/StateComplexV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/StateComplexV1' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('value+1'));
         expect(title === null).assertFalse();
@@ -114,7 +114,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/StateComplexV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/StateComplexV2' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('value+1'));
         expect(title === null).assertFalse();
@@ -137,7 +137,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/StateExternalInitializationV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/StateExternalInitializationV1' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -156,7 +156,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/StateExternalInitializationV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/StateExternalInitializationV2' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -174,7 +174,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/LinkMiigrationV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/LinkMiigrationV1' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('+1'));
         expect(title === null).assertFalse();
@@ -198,7 +198,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/LinkMiigrationV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/LinkMiigrationV2' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('+1'));
         expect(title === null).assertFalse();
@@ -221,7 +221,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/PropEasyV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/PropEasyV1' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -239,7 +239,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/PropEasyV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/PropEasyV2' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -257,7 +257,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/PropComplexV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/PropComplexV1' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('apple+1'));
         expect(title === null).assertFalse();
@@ -284,7 +284,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/PropComplexV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/PropComplexV2' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('apple+1'));
         expect(title === null).assertFalse();
@@ -311,7 +311,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/PropSubComponentUpdateVarV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/PropSubComponentUpdateVarV1' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('+1'));
         expect(title === null).assertFalse();
@@ -334,7 +334,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/PropSubComponentUpdateVarV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/PropSubComponentUpdateVarV2' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('+1'));
         expect(title === null).assertFalse();
@@ -357,7 +357,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/PropSubComponentUpdateVarLocalV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/PropSubComponentUpdateVarLocalV1' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('Parent +1'));
         expect(title === null).assertFalse();
@@ -384,7 +384,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/PropSubComponentUpdateVarLocalV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/PropSubComponentUpdateVarLocalV2' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('Parent +1'));
         expect(title === null).assertFalse();
@@ -411,7 +411,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideAliasV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideAliasV1' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -429,7 +429,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideAliasV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideAliasV2' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -447,7 +447,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideConsumeNoInitV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideConsumeNoInitV1' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -465,7 +465,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideConsumeInitV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideConsumeInitV2' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -483,7 +483,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideParentInitV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideParentInitV1' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -501,7 +501,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideParentNoInitV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideParentNoInitV2' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -519,7 +519,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideNoAllowOverrideV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideNoAllowOverrideV1' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -537,7 +537,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideAllowOverrideV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ProvideAllowOverrideV2' });
         await driver.delayMs(2000);
         await driver.pressBack();
         await driver.delayMs(1000);
@@ -555,7 +555,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/WatchSingleVarV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/WatchSingleVarV1' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('add apple'));
         expect(title === null).assertFalse();
@@ -578,7 +578,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/WatchSingleVarV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/WatchSingleVarV2' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('add apple'));
         expect(title === null).assertFalse();
@@ -601,7 +601,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/WatchMoreVarV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/WatchMoreVarV1' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('add apple'));
         expect(title === null).assertFalse();
@@ -628,7 +628,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/WatchMoreVarV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/WatchMoreVarV2' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('add apple'));
         expect(title === null).assertFalse();
@@ -655,7 +655,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ComputedV1' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ComputedV1' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('changed lastName'));
         expect(title === null).assertFalse();
@@ -678,7 +678,7 @@ export default function ComponentStateMigration() {
       async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
-        await router.pushUrl({ url: 'pages/componentstatemigration/ComputedV2' })
+        await router.pushUrl({ url: 'pages/componentstatemigration/ComputedV2' });
         await driver.delayMs(1000);
         const title = await driver.findComponent(ON.text('changed lastName'));
         expect(title === null).assertFalse();

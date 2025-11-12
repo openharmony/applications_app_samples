@@ -103,9 +103,9 @@ export const createNWeb = (url: string, uiContext: UIContext) => {
   baseNode.initWeb(url, uiContext, controller);
   controllerMap.set(url, controller);
   nodeMap.set(url, baseNode);
-}
+};
 // 自定义获取NodeController接口。
 export const getNWeb = (url : string) : MyNodeController2 | undefined => {
   return nodeMap.get(url);
-}
+};
 // [End Common_CommonIndex]

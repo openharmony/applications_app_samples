@@ -40,7 +40,7 @@ export struct VolumeControlDemo {
     this.currentVolume = Math.min(
       this.MAX_VOLUME,
       Math.max(this.MIN_VOLUME, this.currentVolume + delta)
-    )
+    );
   }
 
   build() {

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 interface listItem {
   router?: string;
@@ -72,7 +72,7 @@ let demandList: listItem[] = [
     description: "Correct: Managing Object State Scope",
     router: "pages/PreciseControlPositiveCases",
   },
-]
+];
 
 @Entry
 @Component
@@ -117,7 +117,7 @@ struct Index {
               .backgroundColor(0xFFFFFF)
               .onClick(() => {
                 if (!!listitem.router) {
-                  this.getUIContext().getRouter().pushUrl({ url: listitem.router })
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router });
                 }
               })
             }

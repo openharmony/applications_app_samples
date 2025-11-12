@@ -28,9 +28,9 @@ struct MouseWheel {
         .margin(20)
         .onClick(() => {
           if (this.dir1 === Axis.Vertical) {
-            this.dir1 = Axis.Horizontal
+            this.dir1 = Axis.Horizontal;
           } else {
-            this.dir1 = Axis.Vertical
+            this.dir1 = Axis.Vertical;
           }
         })
       List({ space: 20, initialIndex: 0 }) {

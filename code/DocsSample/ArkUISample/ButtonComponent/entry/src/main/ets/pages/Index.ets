@@ -43,7 +43,7 @@ let demandList: listItem[] = [
     name: "ButtonShadow",
     router: "pages/ButtonShadow",
   },
-]
+];
 
 @Entry
 @Component
@@ -76,7 +76,7 @@ struct Index {
               .borderWidth(1)
               .onClick(() => {
                 if (!!listitem.router) {
-                  this.getUIContext().getRouter().pushUrl({ url: listitem.router })
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router });
                 }
               })
             }

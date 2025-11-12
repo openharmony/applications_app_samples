@@ -15,7 +15,7 @@
 
 // [Start router_hsp23]
 // 1.导入跨包的路由页面
-import { PageInHSP } from 'library/src/main/ets/pages/PageInHSP'
+import { PageInHSP } from 'library/src/main/ets/pages/PageInHSP';
 
 @Entry
 @Component

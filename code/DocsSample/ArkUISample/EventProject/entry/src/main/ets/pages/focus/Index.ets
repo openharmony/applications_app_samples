@@ -160,7 +160,7 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.Tab_Index_TabStop_title')),
     description: resource.resourceToString($r('app.string.Tab_Index_TabStop_description')),
   }
-]
+];
 // [End route_push]
 @Builder
 export function FocusDestination(name: string) {
@@ -230,7 +230,7 @@ struct FocusExample {
             }
             .width('100%')
             .onClick(() => {
-              this.pathStack.pushPath({ name: route.name })
+              this.pathStack.pushPath({ name: route.name });
             })
           })
         }
