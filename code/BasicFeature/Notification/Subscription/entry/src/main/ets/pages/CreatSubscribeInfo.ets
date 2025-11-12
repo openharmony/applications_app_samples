@@ -35,8 +35,7 @@ let options: commonEventManager.CommonEventPublishData = {
   code: 1, // 公共事件的初始代码
   data: 'initial data', // 公共事件的初始数据
 };
-
-// [Start PublicEventInformation]
+// [End PublicEventInformation]
 @Entry
 @Component
 struct CreatSubscribeInfo {
