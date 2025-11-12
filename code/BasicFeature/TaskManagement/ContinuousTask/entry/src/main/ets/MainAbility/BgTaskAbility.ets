@@ -48,8 +48,8 @@ function stopContinuousTask() {
 }
 
 class MyParcelable implements rpc.Parcelable {
-  num: number = 0;
-  str: string = '';
+  private num: number = 0;
+  private str: string = '';
 
   constructor(num: number, str: string) {
     this.num = num;
@@ -88,7 +88,7 @@ function sendMsgCallback(data: rpc.MessageSequence) {
 export default class BgTaskAbility extends UIAbility {
   // Ability创建
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.info("[Demo] BgTaskAbility onCreate");
+    console.info('[Demo] BgTaskAbility onCreate');
     try {
       this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
     } catch (error) {
