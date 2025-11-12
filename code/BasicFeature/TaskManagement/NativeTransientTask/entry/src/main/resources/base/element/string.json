@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "request_suspend_delay",
+      "value": "申请短时任务"
+    },
+    {
+      "name": "get_remaining_delay_time",
+      "value": "获取短时任务剩余时间"
+    },
+    {
+      "name": "cancel_suspend_delay",
+      "value": "取消短时任务"
+    },
+    {
+      "name": "get_transient_task_info",
+      "value": "获取短时任务信息"
+    },
+    {
+      "name": "transient_task_id",
+      "value": "短时任务Id："
+    }
+  ]
+}
