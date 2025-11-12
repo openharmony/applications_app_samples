@@ -65,10 +65,6 @@ struct Index {
       path: 'pages/PageLocalStorageLink'
     },
     {
-      name: 'PageEleven',
-      path: 'pages/PageFiveShareChange'
-    },
-    {
       name: 'PageTwelve',
       path: 'pages/LocalSetSample'
     },
