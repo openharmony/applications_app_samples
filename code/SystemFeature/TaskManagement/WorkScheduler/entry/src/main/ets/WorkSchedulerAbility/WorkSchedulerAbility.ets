@@ -31,7 +31,7 @@ export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility 
   onWorkStart(workInfo: workScheduler.WorkInfo) {
     Logger.info('WorkScheduler', 'WorkSchedulerAbility start');
     // 打印 parameters中的参数，如：参数key1
-    // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
+    console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`);
     // [StartExclude workSchedulerExtension]
     let version:string = '';
     let filePath: string = '';
