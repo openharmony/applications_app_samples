@@ -30,7 +30,7 @@ entry/src/main
 ### 具体实现
 
 * 该示例使用requestSuspendDelay方法申请短时任务，延迟挂起，setInterval方法进行计数，实现应用退后台仍然可以计数的功能。
-* 源码链接：[Interval.ets](entry/src/main/ets/pages/Interval.ets)，[TransientTaskDialog.ets](entry/src/main/ets/pages/TransientTaskDialog.ets)
+* 源码链接：[CMakeLists.txt](entry/src/main/cpp/CMakeLists.txt)，[napi_init.cpp](entry/src/main/cpp/napi_init.cpp),
 * 接口参考：[transient_task_api](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/capi-transient-task-api-h.md)
 
 ### 相关权限
