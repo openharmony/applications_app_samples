@@ -24,14 +24,13 @@
 #define VALUE_400 400
 #define VALUE_1 1
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
-
-namespace ConstIde {
-// [Start runtaskinscopeone_start]
-const uint32_t NUMBER_0 = 0;
-const uint32_t NUMBER_1 = 1;
+// [Start runtaskinscopethree_start]
 const uint32_t VALUE_2 = 250;
 const uint32_t VALUE_3 = 480;
-// [StartExclude runtaskinscopeone_start]
+// [End runtaskinscopethree_start]
+namespace ConstIde {
+const uint32_t NUMBER_0 = 0;
+const uint32_t NUMBER_1 = 1;
 constexpr const char *K_LOG_DOMAIN = "Manager";
 }
 ArkUI_NativeNodeAPI_1* nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
@@ -39,7 +38,7 @@ ArkUI_NativeNodeAPI_1* nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
 
 static void CreateAndSetID(ArkUI_NodeHandle &textContainer)
 {
-    // [EndExclude runtaskinscopeone_start]
+    // [Start runtaskinscopeone_start]
     //page1
     ArkUI_NodeHandle button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
     ArkUI_AttributeItem LABEL_Item = {.string = "pageOneButton"};
