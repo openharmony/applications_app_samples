@@ -15,12 +15,12 @@
 // [Start main_button2]
 
 // pages/Button2.ets
-import { MyButtonModifier2 } from '../Common/ButtonModifier02'
+import { MyButtonModifier } from '../Common/ButtonModifier01'
 
 @Entry
 @Component
 struct Button2 {
-  @State modifier: MyButtonModifier2 = new MyButtonModifier2(true);
+  @State modifier: MyButtonModifier = new MyButtonModifier(true);
 
   build() {
     Row() {
