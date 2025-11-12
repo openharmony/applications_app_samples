@@ -124,6 +124,7 @@ class FinalHttpInterceptor implements http.HttpInterceptor {
     return Promise.resolve(this.result);
   }
 }
+
 // [End HTTP_interceptor_case_creat_http_interceptor]
 
 function httpNormalRequest() {
@@ -165,7 +166,7 @@ function httpNormalRequest() {
     // 发起请求
     httpRequest.request(EXAMPLE_URL, options, (err: BusinessError, res: http.HttpResponse) => {
       if (err) {
-        hilog.info(0xFF00, 'httpNormalRequest', `request fail, error code: ${err.code}, msg: ${err.message}`);
+        hilog.error(0xFF00, 'httpNormalRequest', `request fail, error code: ${err.code}, msg: ${err.message}`);
         // [StartExclude HTTP_interceptor_case_request]
         promptAction.showToast({
           message: `request hit the interceptor fail`,
@@ -192,7 +193,7 @@ function httpNormalRequest() {
     });
     // [End HTTP_interceptor_case_request]
   } catch (error) {
-    hilog.info(0xFF00, 'httpNormalRequest', `catch ERROR-->:${JSON.stringify(error.message)}`);
+    hilog.error(0xFF00, 'httpNormalRequest', `catch ERROR-->:${JSON.stringify(error.message)}`);
     promptAction.showToast({
       message: `${error.message}`,
       duration: 4000, // 持续时间
@@ -208,18 +209,18 @@ struct Index {
     Column() {
       Button($r('app.string.normal_process_request'))
         .onClick(() => {
-          httpNormalRequest()
+          httpNormalRequest();
         })
         .width('85%')
         .height(BUTTON_HEIGHT)
         .margin({ top: TEXT_MARGIN_TOP_L })
         .fontColor(Color.White)
         .fontSize(BUTTON_FONT_SIZE)
-        .borderRadius(BUTTON_RADIUS)
+        .borderRadius(BUTTON_RADIUS);
 
     }
     .height('100%')
     .width('100%')
-    .justifyContent(FlexAlign.Center)
+    .justifyContent(FlexAlign.Center);
   }
 }
