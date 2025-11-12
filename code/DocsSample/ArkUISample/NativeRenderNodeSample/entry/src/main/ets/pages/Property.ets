@@ -45,7 +45,7 @@ struct Index {
   build() {
     Flex() {
       Column() {
-        Text('CreateNodeTreeOnMultiThread')
+        Text('CreateNode')
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
         Button(this.message)
