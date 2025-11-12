@@ -18,7 +18,7 @@
     },
     {
       "name": "get_remaining_delay_time",
-      "value": "获取短时任务剩余时间"
+      "value": "获取剩余时间"
     },
     {
       "name": "cancel_suspend_delay",
@@ -26,7 +26,7 @@
     },
     {
       "name": "get_transient_task_info",
-      "value": "获取短时任务信息"
+      "value": "获取所有短时任务信息"
     },
     {
       "name": "transient_task_id",

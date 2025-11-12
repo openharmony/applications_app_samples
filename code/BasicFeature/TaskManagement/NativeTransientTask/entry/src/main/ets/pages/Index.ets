@@ -34,7 +34,7 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Button('申请短时任务')
+        Button($r('app.string.request_suspend_delay'))
           .onClick(event => {
           this.RequestSuspendDelay();
         })
@@ -43,7 +43,7 @@ struct Index {
           .fontSize(20)
           .margin({ top: 10, bottom: 10 })
           // [EndExclude native_transient_task]
-        Button('获取剩余时间')
+        Button($r('app.string.get_remaining_delay_time'))
           .onClick(event =>{
           this.GetRemainingDelayTime();
         })
@@ -52,7 +52,7 @@ struct Index {
           .fontSize(20)
           .margin({ top: 10, bottom: 10 })
           // [EndExclude native_transient_task]
-        Button('取消短时任务')
+        Button($r('app.string.cancel_suspend_delay'))
           .onClick(event =>{
           this.CancelSuspendDelay();
         })
@@ -61,7 +61,7 @@ struct Index {
           .fontSize(20)
           .margin({ top: 10, bottom: 10 })
           // [EndExclude native_transient_task]
-        Button('获取所有短时任务信息')
+        Button($r('app.string.get_transient_task_info'))
           .onClick(event =>{
           this.GetTransientTaskInfo();
         })
