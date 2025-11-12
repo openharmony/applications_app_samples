@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
+// 事件调用页面
+// [Start event_invocation]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'Sample_imagecomponent';
-//  事件调用页面
-//  [Start event_invocation]
+
 @Entry
 @Component
 struct EventCall {
@@ -29,7 +30,7 @@ struct EventCall {
   build() {
     Column() {
       Row() {
-        //  $r('app.media.ic_img_2')需要替换为开发者所需的资源文件
+        // $r('app.media.ic_img_2')需要替换为开发者所需的资源文件
         Image($r('app.media.ic_img_2'))
           .width(200)
           .height(150)
@@ -48,6 +49,7 @@ struct EventCall {
           .onError(() => {
             hilog.info(DOMAIN, TAG, 'load image fail');
           })
+          // overlay接口暂不支持深色模式
           .overlay('\nwidth: ' + String(this.widthValue) + ', height: ' + String(this.heightValue) + '\ncomponentWidth: ' + String(this.componentWidth) + '\ncomponentHeight: ' + String(this.componentHeight), {
             align: Alignment.Bottom,
             offset: { x: 0, y: 60 }
@@ -56,4 +58,4 @@ struct EventCall {
     }
   }
 }
-//  [End event_invocation]
+// [End event_invocation]

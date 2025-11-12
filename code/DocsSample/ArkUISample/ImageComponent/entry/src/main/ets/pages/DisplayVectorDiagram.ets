@@ -13,34 +13,33 @@
  * limitations under the License.
  */
 
-//  显示矢量图页面&同步加载图片
+// 显示矢量图页面&同步加载图片
 @Entry
 @Component
 struct DisplayVectorDiagram {
   build() {
     Column({ space: 10 }) {
       Row({ space: 50 }) {
-
-        //  [Start svg_fillColor]
-        //  $r('app.media.cloud')需要替换为开发者所需的资源文件
+        // [Start svg_fillColor]
+        // $r('app.media.cloud')需要替换为开发者所需的资源文件
         Image($r('app.media.cloud'))
           .width(50)
           .fillColor(Color.Blue)
-        //  [End svg_fillColor]
+        // [End svg_fillColor]
 
-        //  [Start local_svg]
-        //  'images/icon.svg'需要替换为开发者所需的资源文件
+        // [Start local_svg]
+        // 'images/icon.svg'需要替换为开发者所需的资源文件
         Image('/images/icon.svg')
           .width(50)
           .height(50)
-        //  [End local_svg]
+        // [End local_svg]
 
       }
-      //  [Start synchronous_imageloading]
-      //  $r('app.media.icon')需要替换为开发者所需的资源文件
+      // [Start synchronous_imageloading]
+      // $r('app.media.icon')需要替换为开发者所需的资源文件
       Image($r('app.media.icon'))
         .syncLoad(true)
-      //  [End synchronous_imageloading]
+      // [End synchronous_imageloading]
     }.height(150).width('100%').padding({ top: 20,right: 10 })
   }
 }

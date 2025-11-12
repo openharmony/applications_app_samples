@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-//  可绘制描述符页面
-//  [Start drawable_descriptor]
+// 可绘制描述符页面
+// [Start drawable_descriptor]
 import {
   DrawableDescriptor,
   PixelMapDrawableDescriptor,
@@ -45,27 +45,27 @@ struct DrawableDescriptorType {
       return;
     };
     // 创建普通DrawableDescriptor
-    //  $r('app.media.landscape')需要替换为开发者所需的资源文件
+    // $r('app.media.landscape')需要替换为开发者所需的资源文件
     let pixmapDescResult = resManager.getDrawableDescriptor($r('app.media.landscape').id);
     if (pixmapDescResult) {
       this.pixmapDesc = pixmapDescResult as DrawableDescriptor;
     };
     // 创建PixelMapDrawableDescriptor
-    //  $r('app.media.landscape')需要替换为开发者所需的资源文件
+    // $r('app.media.landscape')需要替换为开发者所需的资源文件
     const pixelMap = await this.getPixmapFromMedia($r('app.media.landscape'));
     this.pixelMapDesc = new PixelMapDrawableDescriptor(pixelMap);
     // 创建分层图标
-    //  $r('app.media.foreground')需要替换为开发者所需的资源文件
+    // $r('app.media.foreground')需要替换为开发者所需的资源文件
     const foreground = await this.getDrawableDescriptor($r('app.media.foreground'));
-    //  $r('app.media.landscape')需要替换为开发者所需的资源文件
+    // $r('app.media.landscape')需要替换为开发者所需的资源文件
     const background = await this.getDrawableDescriptor($r('app.media.landscape'));
     this.layeredDesc = new LayeredDrawableDescriptor(foreground, background);
     // 创建动画图片（需加载多张图片）
-    //  $r('app.media.sky')需要替换为开发者所需的资源文件
+    // $r('app.media.sky')需要替换为开发者所需的资源文件
     const frame1 = await this.getPixmapFromMedia($r('app.media.sky'));
-    //  $r('app.media.landscape')需要替换为开发者所需的资源文件
+    // $r('app.media.landscape')需要替换为开发者所需的资源文件
     const frame2 = await this.getPixmapFromMedia($r('app.media.landscape'));
-    //  $r('app.media.clouds')需要替换为开发者所需的资源文件
+    // $r('app.media.clouds')需要替换为开发者所需的资源文件
     const frame3 = await this.getPixmapFromMedia($r('app.media.clouds'));
     if (frame1 && frame2 && frame3) {
       this.animatedDesc = new AnimatedDrawableDescriptor([frame1, frame2, frame3], this.animationOptions);
@@ -98,7 +98,6 @@ struct DrawableDescriptorType {
   build() {
     RelativeContainer() {
       Column() {
-
         // 显示普通图片
         Image(this.pixmapDesc)
           .width(100)
@@ -130,4 +129,4 @@ struct DrawableDescriptorType {
     .margin(50)
   }
 }
-//  [End drawable_descriptor]
+// [End drawable_descriptor]

@@ -12,48 +12,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//  图片插值页面
-//  [Start image_interpolation]
+// 图片插值页面
+// [Start image_interpolation]
 @Entry
 @Component
 struct ImageInterpolationType {
   build() {
     Column() {
       Row() {
-        //  $r('app.media.grass')需要替换为开发者所需的资源文件
+        // $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
           // 使用interpolation接口对图片进行插值，显著提升清晰度
           .interpolation(ImageInterpolation.None)
           .borderWidth(1)
+          // overlay接口暂不支持深色模式
           .overlay('Interpolation.None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           .margin(10)
-        //  $r('app.media.grass')需要替换为开发者所需的资源文件
+        // $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
           // 使用interpolation接口对图片进行插值，显著提升清晰度
           .interpolation(ImageInterpolation.Low)
           .borderWidth(1)
+          // overlay接口暂不支持深色模式
           .overlay('Interpolation.Low', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           .margin(10)
       }.width('100%')
       .justifyContent(FlexAlign.Center)
 
       Row() {
-        //  $r('app.media.grass')需要替换为开发者所需的资源文件
+        // $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
           // 使用interpolation接口对图片进行插值，显著提升清晰度
           .interpolation(ImageInterpolation.Medium)
           .borderWidth(1)
+          // overlay接口暂不支持深色模式
           .overlay('Interpolation.Medium', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           .margin(10)
-        //  $r('app.media.grass')需要替换为开发者所需的资源文件
+        // $r('app.media.grass')需要替换为开发者所需的资源文件
         Image($r('app.media.grass'))
           .width('40%')
           // 使用interpolation接口对图片进行插值，显著提升清晰度
           .interpolation(ImageInterpolation.High)
           .borderWidth(1)
+          // overlay接口暂不支持深色模式
           .overlay('Interpolation.High', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           .margin(10)
       }.width('100%')
@@ -62,4 +66,4 @@ struct ImageInterpolationType {
     .height('100%')
   }
 }
-//  [End image_interpolation]
+// [End image_interpolation]

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-//  设置图片缩放类型页面
-//  [Start image_objectfit]
+// 设置图片缩放类型页面
+// [Start image_objectfit]
 @Entry
 @Component
 struct ImageScalingType {
@@ -24,7 +24,7 @@ struct ImageScalingType {
     Scroll(this.scroller) {
       Row() {
         Column() {
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -33,8 +33,9 @@ struct ImageScalingType {
             // 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内
             .objectFit(ImageFit.Contain)
             .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
             .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -43,8 +44,9 @@ struct ImageScalingType {
             // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界
             .objectFit(ImageFit.Cover)
             .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
             .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -53,11 +55,12 @@ struct ImageScalingType {
             // 自适应显示
             .objectFit(ImageFit.Auto)
             .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
             .overlay('Auto', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
 
         Column() {
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -66,8 +69,9 @@ struct ImageScalingType {
             // 不保持宽高比进行放大缩小，使得图片充满显示边界
             .objectFit(ImageFit.Fill)
             .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
             .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -76,8 +80,9 @@ struct ImageScalingType {
             // 保持宽高比显示，图片缩小或者保持不变
             .objectFit(ImageFit.ScaleDown)
             .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
             .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          //  $r('app.media.img_2')需要替换为开发者所需的资源文件
+          // $r('app.media.img_2')需要替换为开发者所需的资源文件
           Image($r('app.media.img_2'))
             .width(200)
             .height(150)
@@ -86,10 +91,11 @@ struct ImageScalingType {
             // 保持原有尺寸显示
             .objectFit(ImageFit.None)
             .margin({bottom:25,left:10})
+            // overlay接口暂不支持深色模式
             .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
       }
     }
   }
 }
-//  [End image_objectfit]
+// [End image_objectfit]

@@ -13,39 +13,38 @@
  * limitations under the License.
  */
 
-//  存档图类型数据源页面&媒体库获取的url格式
+// 存档图类型数据源页面&媒体库获取的url格式
 @Entry
 @Component
 struct LoadingResources {
   build() {
     Column({ space: 10 }) {
-
-      //  [Start local_resource]
-      //  'images/view.jpg'需要替换为开发者所需的资源文件
+      // [Start local_resource]
+      // 'images/view.jpg'需要替换为开发者所需的资源文件
       Image('images/view.jpg')
         .width(200)
-      //  [End local_resource]
+      // [End local_resource]
 
-      //  [Start net_resource]
-      //  $r('app.string.LoadingResources')需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径
+      // [Start net_resource]
+      // $r('app.string.LoadingResources')需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径
       Image($r('app.string.LoadingResources'))
-      //  [End net_resource]
+      // [End net_resource]
 
-      //  [Start resource_icon]
-      //  $r('app.media.icon')需要替换为开发者所需的资源文件
+      // [Start resource_icon]
+      // $r('app.media.icon')需要替换为开发者所需的资源文件
       Image($r('app.media.icon'))
-      //  [End resource_icon]
+      // [End resource_icon]
 
-      //  [Start rawfile_resource]
-      //  $rawfile('example1.png')需要替换为开发者所需的资源文件
+      // [Start rawfile_resource]
+      // $rawfile('example1.png')需要替换为开发者所需的资源文件
       Image($rawfile('example1.png'))
-      //  [End rawfile_resource]
+      // [End rawfile_resource]
 
-      //  [Start fileLibrary_format]
-      //  'file://media/Photos/5'需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径
+      // [Start fileLibrary_format]
+      // 'file://media/Photos/5'需要替换为开发者所需的资源文件，资源文件中的value值请替换为真实路径
       Image('file://media/Photos/5')
         .width(200)
-      //  [End fileLibrary_format]
+      // [End fileLibrary_format]
     }
     .height(150)
     .width('100%')
