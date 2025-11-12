@@ -14,15 +14,15 @@
 
 ## 预览效果
 
-![img.png](screenshots/device/img.png)
+![](screenshots/device/img.png)
 
-![img_1.png](screenshots/device/img_1.png)
+![](screenshots/device/img_1.png)
 
-![img_2.png](screenshots/device/img_2.png)
+![](screenshots/device/img_2.png)
 
-![img_3.png](screenshots/device/img_3.png)
+![](screenshots/device/img_3.png)
 
-![img_4.png](screenshots/device/img_4.png)
+![](screenshots/device/img_4.png)
 
 ## 具体实现
 1. 基本功能与适用范围
@@ -58,10 +58,9 @@
 
 ## 使用说明
 
-### 1.在进入主页面后，点击页面按钮进行查看
+1.在进入主页面后，点击页面按钮进行查看
 
 ## 工程目录结构
-
 
 ```
 ├─ AppScope
@@ -82,18 +81,8 @@
 │  └─ src
 │     ├─ main
 │     │  ├─ ets
-│     │  │  ├─ common      // 复用组件
-│     │  │  │  ├─ NormalV2Component.ets
-│     │  │  │  ├─ ReusableV2Component.ets
-│     │  │  │  ├─ ReusableV2Component1.ets
-│     │  │  │  ├─ ReusableV2Component2.ets
-│     │  │  │  ├─ ReusableV2Component3.ets
-│     │  │  │  ├─ ReusableV2Component4.ets
-│     │  │  │  ├─ ReusableV2Component5.ets
-│     │  │  │  ├─ ReusableV2Component6.ets
-│     │  │  │  ├─ ReusableV2Component7.ets
-│     │  │  │  ├─ ReusableV2Component8.ets
-│     │  │  │  └─ ReusableV2Component9.ets
+│     │  │  ├─ common
+│     │  │  │  └─ ReusableV2Component1.ets
 │     │  │  ├─ entryability
 │     │  │  │  └─ EntryAbility.ets
 │     │  │  ├─ entrybackupability
@@ -101,19 +90,18 @@
 │     │  │  ├─ pages
 │     │  │  │  └─ Index.ets   // 主页面
 │     │  │  └─ view
-│     │  │     ├─ Page1.ets   // 装饰器说明
-│     │  │     ├─ Page10.ets  // 接口说明
-│     │  │     ├─ Page11.ets  // 使用限制
-│     │  │     ├─ Page12.ets  // V1和V2支持部分混用场景
-│     │  │     ├─ Page13.ets  // 回收与复用的生命周期
-│     │  │     ├─ Page2.ets   // 复用阶段的冻结
-│     │  │     ├─ Page3.ets   // 复用前的组件内状态变量重置
-│     │  │     ├─ Page4.ets   // 简化复用前的组件内状态变量重置
-│     │  │     ├─ Page5.ets   // 在if组件中使用通过改变if组件的条件可以控制组件回收/复用。
-│     │  │     ├─ Page6.ets   // 在Repeat组件中使用
-│     │  │     ├─ Page7.ets   // 在Repeat组件非懒加载场景的each属性中使用
-│     │  │     ├─ Page8.ets  // 在ForEach组件中使用
-│     │  │     └─ Page9.ets  // 在LazyForEach组件中使用
+│     │  │     ├─ AboutToRecyclePage.ets
+│     │  │     ├─ ComponentEachPage.ets
+│     │  │     ├─ ComponentForEachPage.ets
+│     │  │     ├─ ComponentIfPage.ets
+│     │  │     ├─ ComputedPage.ets
+│     │  │     ├─ ConditionPage.ets
+│     │  │     ├─ ExamplePage.ets
+│     │  │     ├─ IMonitorValuePage.ets
+│     │  │     ├─ LazyForEachPage.ets
+│     │  │     ├─ RepeatPage.ets
+│     │  │     ├─ RepeatTemplatePage.ets
+│     │  │     └─ UsageRestrictionsPage.ets
 │     │  ├─ module.json5
 │     │  └─ resources
 │     │     ├─ base
@@ -153,9 +141,11 @@
 ├─ README_zh.md
 └─ screenshots  // 预览图片
    └─ device
-      ├─ image1.png
-      ├─ image2.png
-      └─ image3.png
+      ├─ img.png
+      ├─ img_1.png
+      ├─ img_2.png
+      ├─ img_3.png
+      └─ img_4.png
 
 ```
 
