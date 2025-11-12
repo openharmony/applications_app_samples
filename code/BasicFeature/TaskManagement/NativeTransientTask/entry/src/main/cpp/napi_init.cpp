@@ -80,7 +80,7 @@ static napi_value GetTransientTaskInfo(napi_env env, napi_callback_info info)
         uint32_t count = 0;
         // 格式化所有已申请的短时任务信息
         for (int index = 0; index < TransientTask_TIMER; index++) {
-            if (transientTaskInfo.transientTasks[index].requestId == 0) {   
+            if (transientTaskInfo.transientTasks[index].requestId == 0) {
                 continue;
             }
             
