@@ -16,9 +16,6 @@
 import { PromptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = 'DialogProject';
-const DOMAIN_NUMBER: number = 0xFF00;
-
 @Entry
 @Component
 export struct CreateDefaultMenuExample {
@@ -26,14 +23,12 @@ export struct CreateDefaultMenuExample {
     NavDestination() {
       Column({ space: 12 }) {
         // [Start create_default_menu]
-        // 全局变量定义：const TAG: string = 'DialogProject';
-        // 全局变量定义：const DOMAIN_NUMBER: number = 0xFF00;
         Button('click for Menu')
           .bindMenu([
             {
               value: 'Menu1',
               action: () => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'handle Menu1 select');
+                hilog.info(0xFF00, 'DialogProject', 'handle Menu1 select');
               }
             }
           ])

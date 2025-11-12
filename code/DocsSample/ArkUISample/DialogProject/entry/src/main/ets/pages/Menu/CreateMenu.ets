@@ -18,9 +18,6 @@ import { PromptAction } from '@kit.ArkUI';
 // [Start builder_menu_content]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = 'DialogProject';
-const DOMAIN_NUMBER: number = 0xFF00;
-
 // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
 class Tmp {
   private iconStr2: ResourceStr = $r('app.media.view_list_filled')
@@ -69,7 +66,7 @@ export struct menuExample  {
           .selectIcon(true)
           .selected(this.select)
           .onChange((selected) => {
-            hilog.info(DOMAIN_NUMBER, TAG, 'menuItem select' + selected);
+            hilog.info(0xFF00, 'DialogProject', 'menuItem select' + selected);
             let str: Tmp = new Tmp();
             str.set($r('app.media.icon'));
           })
@@ -100,7 +97,7 @@ export struct menuExample  {
             {
               value: 'Menu1',
               action: () => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'handle Menu1 select');
+                hilog.info(0xFF00, 'DialogProject', 'handle Menu1 select');
               }
             }
           ])

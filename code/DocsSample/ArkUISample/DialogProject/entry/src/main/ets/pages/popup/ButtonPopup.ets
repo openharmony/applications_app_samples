@@ -16,9 +16,6 @@
 // [Start button_popup]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG: string = 'DialogProject';
-const DOMAIN_NUMBER: number = 0xFF00;
-
 @Entry
 @Component
 export struct ButtonPopupExample {
@@ -38,7 +35,7 @@ export struct ButtonPopupExample {
                 value: 'Confirm',
                 action: () => {
                   this.handlePopup = !this.handlePopup;
-                  hilog.info(DOMAIN_NUMBER, TAG, 'confirm Button click');
+                  hilog.info(0xFF00, 'DialogProject', 'confirm Button click');
                 }
               },
               secondaryButton: {
