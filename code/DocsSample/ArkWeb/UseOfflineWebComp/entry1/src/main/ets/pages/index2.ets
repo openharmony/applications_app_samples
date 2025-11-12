@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 // [Start nodeContainer_bind_controller_show_dynamic_pages]
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct index2 {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Row() {
       Column() {
-        Web({src: 'www.example.com', controller: this.webviewController})
+        Web({src: 'https://www.example.com', controller: this.webviewController})
           .width('100%')
           .height('100%')
       }
