@@ -159,30 +159,24 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
             "eventType = %{public}d, preDragStatus = %{public}d", eventType, preDragStatus);
         auto *dragEvent = OH_ArkUI_NodeEvent_GetDragEvent(event);
         switch (eventType) {
-            case NODE_ON_PRE_DRAG: {
+            case NODE_ON_PRE_DRAG:
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_PRE_DRAG Event Receive");
                 break;
-            }
-            case NODE_ON_CLICK: {
+            case NODE_ON_CLICK:
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_CLICK Event Receive");
                 break;
-            }
-            case NODE_ON_DROP: {
+            case NODE_ON_DROP:
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DROP Event Receive");
                 break;
-            }
-            case NODE_ON_DRAG_ENTER: {
+            case NODE_ON_DRAG_ENTER:
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_ENTER Event Receive");
                 break;
-            }
-            case NODE_ON_DRAG_MOVE: {
+            case NODE_ON_DRAG_MOVE:
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_MOVE Event Receive");
                 break;
-            }
-            case NODE_ON_DRAG_LEAVE: {
+            case NODE_ON_DRAG_LEAVE:
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_LEAVE Event Receive");
                 break;
-            }
             case NODE_ON_DRAG_START: {
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "NODE_ON_DRAG_START Event Receive");
                 // [StartExclude event_Type]
@@ -198,10 +192,9 @@ void RegisterNodeEventFirstReceiver1(ArkUI_NodeHandle &dragNode)
                 // [EndExclude event_Type]
                 break;
             }
-            default: {
+            default:
                 OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00U, "dragTest", "UNKOWN Event Receive");
                 break;
-            }
         }
     });
     // [End event_Type]
