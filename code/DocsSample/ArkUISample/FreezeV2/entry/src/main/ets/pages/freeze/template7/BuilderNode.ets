@@ -17,6 +17,7 @@ import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
+const INDEX_INITIAL_VALUE = 0;
 
 // 定义一个Params类，用于传递参数
 @ObservedV2
@@ -34,7 +35,7 @@ class Params {
 
   // 使用@Trace装饰器装饰message属性，以便跟踪其变化
   @Trace public message: string = 'Hello';
-  public index: number = 0;
+  public index: number = INDEX_INITIAL_VALUE;
 
   constructor(index: number) {
     this.index = index;
@@ -46,7 +47,7 @@ class Params {
 struct buildNodeChild {
   // 使用Params实例作为storage属性
   storage: Params = Params.instance();
-  @Param index: number = 0;
+  @Param index: number = INDEX_INITIAL_VALUE;
 
   // 使用@Monitor装饰器监听storage.message的变化
   @Monitor('storage.message')
@@ -70,7 +71,7 @@ function buildText(params: Params) {
 
 class TextNodeController extends NodeController {
   private textNode: BuilderNode<[Params]> | null = null;
-  private index: number = 0;
+  private index: number = INDEX_INITIAL_VALUE;
 
   // 构造函数接收一个index参数
   constructor(index: number) {
@@ -125,7 +126,7 @@ struct Index {
 struct FreezeBuildNode {
   // 使用Params实例作为storage属性
   storage: Params = Params.instance();
-  @Param index: number = 0;
+  @Param index: number = INDEX_INITIAL_VALUE;
 
   // 使用@Monitor装饰器监听storage.message的变化
   @Monitor('storage.message')

@@ -16,9 +16,12 @@
 // [Start Main_inheritFreezeRouterPage1]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
+const BOOK_INITIAL_NAME = '100';
+const INDEX_INITIAL_VALUE = 0;
+
 @ObservedV2
 export class Book {
-  @Trace public name: string = '100';
+  @Trace public name: string = BOOK_INITIAL_NAME;
   constructor(name: string) {
     this.name = name;
   }
@@ -34,8 +37,8 @@ function buildText(book: Book) {
 class TextNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
   public textNode: BuilderNode<[Book]> | null = null;
-  public index: number = 0;
-  public name: string = '100';
+  public index: number = INDEX_INITIAL_VALUE;
+  public name: string = BOOK_INITIAL_NAME;
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);

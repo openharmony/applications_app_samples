@@ -16,8 +16,11 @@
 // [Start Main_TabContentPage]
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
+const INITIAL_VALUE_ZERO = 0;
+const INDEX_INCREMENT_STEP = 1;
+
 class Params {
-  public message: number = 0;
+  public message: number = INITIAL_VALUE_ZERO;
 
   constructor( message: number) {
     this.message = message;
@@ -34,7 +37,7 @@ function buildText(params: Params) {
 class TextNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private textNode: BuilderNode<[Params]> | null = null;
-  private message: number = 0;
+  private message: number = INITIAL_VALUE_ZERO;
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
@@ -60,8 +63,8 @@ const textNodeController: TextNodeController = new TextNodeController();
 @Entry
 @ComponentV2
 struct TabContentTest {
-  @Local message: number = 0;
-  @Local index:number = 0;
+  @Local message: number = INITIAL_VALUE_ZERO;
+  @Local index:number = INDEX_INCREMENT_STEP;
 
   build() {
     Row() {
@@ -97,8 +100,8 @@ struct TabContentTest {
 
 @ComponentV2({ freezeWhenInactive: true })
 struct FreezeBuildNode {
-  @Param message: number = 0;
-  @Param index: number = 0;
+  @Param message: number = INITIAL_VALUE_ZERO;
+  @Param index: number = INDEX_INCREMENT_STEP;
   @Monitor('message') onMessageUpdated(mon: IMonitor) {
     console.info(`FreezeBuildNode message callback func ${this.message}`);
   }
@@ -111,8 +114,8 @@ struct FreezeBuildNode {
 
 @ComponentV2({ freezeWhenInactive: true }) // BuilderNode下面的子组件开启冻结。
 struct buildNodeChild {
-  @Param message: number = 0;
-  @Param index: number = 0;
+  @Param message: number = INITIAL_VALUE_ZERO;
+  @Param index: number = INDEX_INCREMENT_STEP;
 
   @Monitor('message') onMessageUpdated(mon: IMonitor) {
     console.info(`FreezeBuildNode buildNodeChild message callback func ${this.message}`);

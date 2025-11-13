@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 // [Start Parent12_start]
+const APPLE_INITIAL_COUNT = 5;
+const ORANGE_INITIAL_COUNT = 10;
+
 @ObservedV2
 class Fruit {
-  @Trace public apple: number = 5;
-  @Trace public orange: number = 10;
+  @Trace public apple: number = APPLE_INITIAL_COUNT;
+  @Trace public orange: number = ORANGE_INITIAL_COUNT;
 
   // 实现深拷贝，子组件不会修改父组件的数据
   clone(): Fruit {

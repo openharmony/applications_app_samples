@@ -13,10 +13,14 @@
  * limitations under the License.
  */
 // [Start GrandParent2_start]
+const GRANDPARENT_REVIEW_VOTES_INITIAL = 40;
+const PARENT_REVIEW_VOTES_INITIAL = 20;
+const CHILD_REVIEW_VOTES_INITIAL = 0;
+
 @Entry
 @ComponentV2
 struct GrandParent {
-  @Provider('reviewVotes') reviewVotes: number = 40;
+  @Provider('reviewVotes') reviewVotes: number = GRANDPARENT_REVIEW_VOTES_INITIAL;
 
   build() {
     Column() {
@@ -28,7 +32,7 @@ struct GrandParent {
 @ComponentV2
 struct Parent {
   // @Provider默认支持重载，@Consumer向上查找最近的@Provider
-  @Provider() reviewVotes: number = 20;
+  @Provider() reviewVotes: number = PARENT_REVIEW_VOTES_INITIAL;
 
   build() {
     Child()
@@ -37,7 +41,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
-  @Consumer() reviewVotes: number = 0;
+  @Consumer() reviewVotes: number = CHILD_REVIEW_VOTES_INITIAL;
 
   build() {
     Text(this.reviewVotes.toString()) // Text显示20

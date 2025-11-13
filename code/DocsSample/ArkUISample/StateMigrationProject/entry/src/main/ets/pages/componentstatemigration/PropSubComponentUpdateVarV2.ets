@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 // [Start Parent14_start]
+const ONCE_PARAM_VALUE_INITIAL_VALUE = 0;
+
 @ComponentV2
 struct Child {
   // @Param搭配@Once使用，可以在本地修改@Param变量
-  @Param @Once value: number = 0;
+  @Param @Once value: number = ONCE_PARAM_VALUE_INITIAL_VALUE;
 
   build() {
     Column() {

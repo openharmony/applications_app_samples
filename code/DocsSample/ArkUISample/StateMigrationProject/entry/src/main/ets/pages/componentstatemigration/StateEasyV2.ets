@@ -14,10 +14,12 @@
  */
 
 // [Start Child2_start]
+const VAL_INIT = 10;
+
 @Entry
 @ComponentV2
 struct Child {
-  @Local val: number = 10;
+  @Local val: number = VAL_INIT;
 
   build() {
     Text(this.val.toString())

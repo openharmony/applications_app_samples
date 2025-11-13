@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 // [Start Parent6_start]
+const VALUE_DEFAULT_INIT = 0;
+
 @ComponentV2
 struct Child {
-  @Param @Once value: number = 0;
+  @Param @Once value: number = VALUE_DEFAULT_INIT;
 
   build() {
     Text(this.value.toString())

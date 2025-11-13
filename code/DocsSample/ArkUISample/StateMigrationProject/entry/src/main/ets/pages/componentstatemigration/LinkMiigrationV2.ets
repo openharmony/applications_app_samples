@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 // [Start Parent8_start]
+const INITIAL_MYVAL = 10;
+const INITIAL_VAL = 0;
+
 @ComponentV2
 struct Child {
   // @Param搭配@Event回调实现数据双向同步
-  @Param val: number = 0;
+  @Param val: number = INITIAL_VAL;
   @Event addOne: () => void;
 
   build() {
@@ -33,7 +36,7 @@ struct Child {
 @Entry
 @ComponentV2
 struct Parent {
-  @Local myVal: number = 10;
+  @Local myVal: number = INITIAL_MYVAL;
 
   build() {
     Column() {
