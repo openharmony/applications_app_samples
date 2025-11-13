@@ -42,7 +42,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
-      createNWeb('', windowStage.getMainWindowSync().getUIContext());
+      createNWeb('https://www.example.com', windowStage.getMainWindowSync().getUIContext());
       if (err.code) {
         hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
         return;

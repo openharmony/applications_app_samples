@@ -24,7 +24,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 // @Builder中为动态组件的具体组件内容。
 // Data为入参封装类。
 class Data{
-  public url: string = '';
+  public url: string = 'https://www.example.com';
   public controller: WebviewController = new webview.WebviewController();
 }
 // 通过布尔变量shouldInactive控制网页在后台完成预渲染后停止渲染。

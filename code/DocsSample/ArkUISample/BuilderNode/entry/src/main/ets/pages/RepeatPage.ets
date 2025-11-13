@@ -15,6 +15,7 @@
 
 // [Start Main_RepeatPage]
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 定义一个Params类，用于传递参数。
 @ObservedV2
@@ -119,7 +120,7 @@ struct FreezeBuildNode {
   @Monitor('storage.bgColor')
   onBgColorChange(monitor: IMonitor) {
     // bgColor改变时，缓存池中组件不刷新，不会打印日志。
-    console.info(`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(0xF811, 'testTag', '%{public}s',`repeat---bgColor change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
   build() {
     NodeContainer(new TextNodeController(this.message))
@@ -135,7 +136,7 @@ struct BuildNodeChild {
   // 使用@Monitor装饰器监听storage.message的变化。
   @Monitor('storage.bgColor')
   onMessageChange(monitor: IMonitor) {
-    console.info(`FreezeBuildNode buildNodeChild message callback func ${this.message}`);
+    hilog.info(0xF811, 'testTag', '%{public}s',`FreezeBuildNode buildNodeChild message callback func ${this.message}`);
   }
 
   build() {
