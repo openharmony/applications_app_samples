@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例基于[NativeNode](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)、[NativeTypeNapi](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-type-h.md)展示了如何创建文本、输入框、文本域、滑动容器、视效、动效、进度条、日期选择器、日历选择器、文本选择器、图片等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
+本示例基于[NativeNode](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md)、[NativeTypeNapi](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-type-h.md)展示了如何创建文本、输入框、文本域、滑动容器、视效、动效、进度条、日期选择器、日历选择器、文本选择器、图片等组件，以及展示如何通过该头文件提供的各种函数来配置其特殊样式类、属性与事件设置等功能。
 
 ## 效果预览
 

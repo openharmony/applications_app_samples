@@ -2,7 +2,7 @@
 
 ## 介绍
 
-本示例为使用NDK接口构建UI->使用文本->[Text组件的文本绘制与显示](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-styled-string.md)的配套示例工程。 
+本示例为使用NDK接口构建UI->使用文本->[Text组件的文本绘制与显示](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-styled-string.md)的配套示例工程。 
 
 本示例展示了如何创建文本以及设置文本样式。
 
@@ -66,6 +66,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUISample/StyledStringNDK > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
