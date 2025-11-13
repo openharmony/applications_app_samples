@@ -121,7 +121,7 @@ void CreateNodeWithCommonAttribute(ArkUI_NodeHandle parent, const char *attribut
     if (!Manager::nodeAPI_ || !parent) {
         return;
     }
-    static auto column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
+    auto column = Manager::nodeAPI_->createNode(ARKUI_NODE_COLUMN);
     ArkUI_NodeHandle row = Manager::nodeAPI_->createNode(ARKUI_NODE_ROW);
     ArkUI_NodeHandle text = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     float columnWidth = B_VALUE;
