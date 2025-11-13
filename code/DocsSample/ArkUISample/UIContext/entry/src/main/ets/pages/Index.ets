@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Router } from '@kit.ArkUI';
+import { router, Router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xF811;
@@ -21,8 +21,6 @@ const DOMAIN = 0xF811;
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-
   aboutToAppear() {
     try {
       let router1 = this.getUIContext().getRouter();
@@ -33,18 +31,49 @@ struct Index {
   }
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('IndexHelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+    Column({ space: 10 }) {
+      Button('ContextPage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/ContextPage',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('CalendarPickerDialogPage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/CalendarPickerDialogPage',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('LocalStoragePage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/LocalStoragePage',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('NewGlobal').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/NewGlobal',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('VpPage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/VpPage',
+        }
+        routerInstance.pushUrl(options);
+      })
+      Button('WindowTestPage').onClick(() => {
+        const routerInstance = AppStorage.get<Router>('router') as Router
+        let options: router.RouterOptions = {
+          url: 'pages/WindowTestPage',
+        }
+        routerInstance.pushUrl(options);
+      })
     }
     .height('100%')
     .width('100%')

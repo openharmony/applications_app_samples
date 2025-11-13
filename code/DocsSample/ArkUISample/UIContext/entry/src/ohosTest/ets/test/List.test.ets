@@ -14,14 +14,14 @@
  */
 
 import CalendarPickerDialogPageTest from './CalendarPickerDialogPage.test';
-import IndexTest from './index.test';
+import ContextPageTest from './ContextPage.test';
 import LocalStoragePageTest from './LocalStoragePage.test';
 import NewGlobalTest from './NewGlobal.test';
 import VpPageTest from './VpPage.test';
 import WindowTestPageTest from './WindowTestPage.test';
 
 export default function testsuite() {
-  IndexTest();
+  ContextPageTest();
   LocalStoragePageTest();
   CalendarPickerDialogPageTest();
   NewGlobalTest();
