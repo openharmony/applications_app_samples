@@ -27,7 +27,9 @@ struct Index {
     '3. getValueStringUtf16',
     '4. createStringUtf16',
     '5. getValueStringLatin1',
-    '6. createStringLatin1'
+    '6. createStringLatin1',
+    '7. CreateExternalStringUtf16',
+    '8. CreateExternalStringAscii'
   ]
 
   build() {
@@ -96,6 +98,18 @@ struct Index {
                     testNapi.createStringLatin1());
                   // [End ark_napi_create_string_latin1]
                   this.result = 'createStringLatin1 tested';
+                } else if (item === '7. CreateExternalStringUtf16') {
+                  // [Start ark_napi_create_external_string_utf16]
+                  hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_string_latin1:%{public}s',
+                    testNapi.CreateExternalStringUtf16());
+                  // [End ark_napi_create_external_string_utf16]
+                  this.result = 'CreateExternalStringUtf16 tested';
+                } else if (item === '8. CreateExternalStringAscii') {
+                  // [Start ark_napi_create_external_string_ascii]
+                  hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_string_latin1:%{public}s',
+                    testNapi.CreateExternalStringAscii());
+                  // [End ark_napi_create_external_string_ascii]
+                  this.result = 'CreateExternalStringAscii tested';
                 }
               })
           }

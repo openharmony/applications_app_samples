@@ -138,5 +138,37 @@ export default function nodeAPIStringTest() {
       console.info('uitest: testCreateStringLatin1 end');
       done();
     })
+
+    /**
+     * 点击按钮，调用CreateExternalStringUtf16相关函数
+     */
+    it('testCreateExternalStringUtf16', 0, async (done: Function) => {
+      console.info('uitest: testCreateExternalStringUtf16 begin');
+      const driver = Driver.create();
+      await driver.delayMs(testDelayMs);
+      const text = await driver.findComponent(ON.text('7. CreateExternalStringUtf16'));
+      await driver.delayMs(testDelayMs);
+      await text.click();
+      await driver.delayMs(testDelayMs);
+      await driver.assertComponentExist(ON.text('Result: CreateExternalStringUtf16 tested'));
+      console.info('uitest: testCreateExternalStringUtf16 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，调用CreateExternalStringAscii相关函数
+     */
+    it('testCreateExternalStringAscii', 0, async (done: Function) => {
+      console.info('uitest: testCreateExternalStringAscii begin');
+      const driver = Driver.create();
+      await driver.delayMs(testDelayMs);
+      const text = await driver.findComponent(ON.text('8. CreateExternalStringAscii'));
+      await driver.delayMs(testDelayMs);
+      await text.click();
+      await driver.delayMs(testDelayMs);
+      await driver.assertComponentExist(ON.text('Result: CreateExternalStringAscii tested'));
+      console.info('uitest: testCreateExternalStringAscii end');
+      done();
+    })
   })
 }
