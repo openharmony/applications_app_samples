@@ -78,7 +78,7 @@ export struct ScrollSnapExample {
       .padding({ left: 16, right: 16 })
     }
     .backgroundColor('#f1f3f5')
-    .title('ScrollSnap', {
+    .title('Scroll', {
       backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
       barStyle: BarStyle.STACK
     })
