@@ -64,4 +64,4 @@ struct Parent {
 }
 // [End Parent12_start]
 const parent12 = Parent;
-export default parent12
+export default parent12;

@@ -65,7 +65,7 @@ const routes: Route[] = [
   }
 
 
-]
+];
 
 @Builder
 export function DeviceDestination(name: string) {

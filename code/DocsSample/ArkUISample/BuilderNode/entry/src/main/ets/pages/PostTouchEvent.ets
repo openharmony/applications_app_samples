@@ -46,7 +46,7 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: 'this is a string' })
+    this.rootNode.build(this.wrapBuilder, { text: 'this is a string' });
     return this.rootNode.getFrameNode();
   }
 

@@ -32,12 +32,12 @@ struct GridEts {
 
   @Styles
   normalStyles(): void{
-    .opacity(1.0)
+    .opacity(1.0);
   }
 
   @Styles
   selectStyles(): void{
-    .opacity(0.4)
+    .opacity(0.4);
   }
 
   //[Start gridExample_onPageShow]
@@ -93,8 +93,8 @@ struct GridEts {
                 this.pixmap = pixmap;
                 this.previewData[i] = {
                   pixelMap: this.pixmap
-                }
-              })
+                };
+              });
             }
           }
         })
@@ -137,8 +137,8 @@ struct GridEts {
                 this.pixmap = pixmap;
                 this.previewData[idx] = {
                   pixelMap: this.pixmap
-                }
-              })
+                };
+              });
             } else {
               this.numberBadge--;
               for (let i = 0; i < this.isSelectedGrid.length; i++) {

@@ -26,12 +26,12 @@ struct GridEts {
 
   @Styles
   normalStyles(): void {
-    .opacity(1.0)
+    .opacity(1.0);
   }
 
   @Styles
   selectStyles(): void {
-    .opacity(0.4)
+    .opacity(0.4);
   }
 
   onPageShow(): void {
@@ -73,7 +73,7 @@ build() {
             selected: this.selectStyles
           })
           .onClick(() => {
-            this.isSelectedGrid[idx] = !this.isSelectedGrid[idx]
+            this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
             if (this.isSelectedGrid[idx]) {
               this.numberBadge++;
               let gridItemName = 'grid' + idx;
@@ -82,8 +82,8 @@ build() {
                 this.pixmap = pixmap;
                 this.previewData[idx] = {
                   pixelMap: this.pixmap
-                }
-              })
+                };
+              });
             } else {
               this.numberBadge--;
             }

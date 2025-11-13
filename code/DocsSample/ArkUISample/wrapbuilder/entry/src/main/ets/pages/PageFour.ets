@@ -33,7 +33,7 @@ struct Parent {
 
   build() {
     Column() {
-      wBuilder.builder({ paramA2: this.label.paramA2 })
+      wBuilder.builder({ paramA2: this.label.paramA2 });
       Button('Click me').onClick(() => {
         this.label.paramA2 = 'ArkUI';
       })

@@ -25,7 +25,7 @@ struct Index {
   @Local simpleList: number[] = [];
   aboutToAppear(): void {
     for (let i = 0; i < 100; i++) {
-      this.simpleList.push(i)
+      this.simpleList.push(i);
     }
   }
   build() {

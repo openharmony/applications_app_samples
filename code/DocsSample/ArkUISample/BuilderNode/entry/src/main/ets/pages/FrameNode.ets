@@ -44,7 +44,7 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     return this.textNode.getFrameNode();
   }
 }

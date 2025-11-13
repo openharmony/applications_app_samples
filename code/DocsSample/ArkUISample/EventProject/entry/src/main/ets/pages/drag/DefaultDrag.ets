@@ -24,7 +24,7 @@ import { image } from '@kit.ImageKit';
 // [Start drag_hilog_const]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0000;
-const TAG = 'DefaultDragError: '
+const TAG = 'DefaultDragError: ';
 // [End drag_hilog_const]
 
 @Entry
@@ -88,7 +88,7 @@ export struct DefaultDrag {
   // 调用componentSnapshot中的createFromBuilder接口截取自定义builder的截图
   private getComponentSnapshot(): void {
     this.getUIContext().getComponentSnapshot().createFromBuilder(() => {
-      this.pixelMapBuilder()
+      this.pixelMapBuilder();
     },
       (error: Error, pixmap: image.PixelMap) => {
         if (error) {
@@ -96,7 +96,7 @@ export struct DefaultDrag {
           return;
         }
         this.pixmap = pixmap;
-      })
+      });
   }
 
   // [End generate_pix_map]
@@ -185,8 +185,8 @@ export struct DefaultDrag {
                 .border({ color: Color.Black, width: 1 })// 控制角标显示类型为MOVE，即不显示角标
                 // [Start set_drag_behavior_move]
                 .onDragMove((event) => {
-                  event.setResult(DragResult.DROP_ENABLED)
-                  event.dragBehavior = DragBehavior.COPY
+                  event.setResult(DragResult.DROP_ENABLED);
+                  event.dragBehavior = DragBehavior.COPY;
                 })
                 // [End set_drag_behavior_move]
                 // [Start drag_allow_drop]
@@ -208,7 +208,7 @@ export struct DefaultDrag {
                     this.imgState = Visibility.None;
                     // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
                     event.setResult(DragResult.DRAG_SUCCESSFUL);
-                  })
+                  });
                 })
               // [End set_on_drop_call]
             }

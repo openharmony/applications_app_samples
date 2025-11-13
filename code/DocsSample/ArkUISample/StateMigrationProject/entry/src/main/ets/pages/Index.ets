@@ -140,7 +140,7 @@ let demandList: listItem[] = [
     name: 'ComputedV2',
     router: 'pages/componentstatemigration/ComputedV2',
   }
-]
+];
 
 @Entry
 @Component
@@ -170,7 +170,7 @@ struct Index {
               }
               .onClick(() => {
                 if (!!listitem.router) {
-                  this.getUIContext().getRouter().pushUrl({ url: listitem.router })
+                  this.getUIContext().getRouter().pushUrl({ url: listitem.router });
                 }
               })
             }

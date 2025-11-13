@@ -45,7 +45,7 @@ struct Index {
                 return;
               }
               hilog.info( DOMAIN, TAG, 'Invoke pushUrl succeeded.');
-            })
+            });
           })
         // [StartExclude router_index]
         Text(this.router)
@@ -65,7 +65,7 @@ struct Index {
                 return;
               }
               hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
-            })
+            });
           })
 
         Button($r('app.string.routerToNavigation_router_text2'), { stateEffect: true, type: ButtonType.Capsule })
@@ -82,7 +82,7 @@ struct Index {
                 return;
               }
               hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
-            })
+            });
           })
 
         Button($r('app.string.routerToNavigation_router_text3'), { stateEffect: true, type: ButtonType.Capsule })
@@ -99,7 +99,7 @@ struct Index {
                 return;
               }
               hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
-            })
+            });
           })
 
         Button($r('app.string.routerToNavigation_router_text4'), { stateEffect: true, type: ButtonType.Capsule })
@@ -116,7 +116,7 @@ struct Index {
                 return;
               }
               hilog.info(DOMAIN, TAG, 'Invoke pushUrl succeeded.');
-            })
+            });
           })
         // [EndExclude router_index]
       }

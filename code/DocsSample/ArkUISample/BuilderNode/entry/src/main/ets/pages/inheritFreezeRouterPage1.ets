@@ -83,7 +83,7 @@ struct BuildNodeChild {
           this.getUIContext().getRouter().pushUrl({ url: 'pages/inheritFreezeRouterPage2' });
           setTimeout(() => {
             this.bookTest = new Book(`Jane Austen's Pride and Prejudice`);
-          }, 1000)
+          }, 1000);
         })
     }
   }

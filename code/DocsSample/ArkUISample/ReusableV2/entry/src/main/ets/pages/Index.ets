@@ -19,51 +19,51 @@ struct Index {
     Column() {
       Button('ExamplePage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/ExamplePage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ExamplePage' });
         })
       Button('UsageRestrictionsPage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/UsageRestrictionsPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/UsageRestrictionsPage' });
         })
       Button('RepeatTemplatePage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/RepeatTemplatePage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/RepeatTemplatePage' });
         })
       Button('AboutToRecyclePage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/AboutToRecyclePage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/AboutToRecyclePage' });
         })
       Button('ConditionPage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/ConditionPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ConditionPage' });
         })
       Button('ComputedPage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/ComputedPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ComputedPage' });
         })
       Button('IMonitorValuePage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/IMonitorValuePage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/IMonitorValuePage' });
         })
       Button('ComponentIfPage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentIfPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentIfPage' });
         })
       Button('RepeatPage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/RepeatPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/RepeatPage' });
         })
       Button('ComponentEachPage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentEachPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentEachPage' });
         })
       Button('ComponentForEachPage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentForEachPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/ComponentForEachPage' });
         })
       Button('LazyForEachPage')
         .onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().pushUrl({ url: 'view/LazyForEachPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'view/LazyForEachPage' });
         })
     }
   }

@@ -70,7 +70,7 @@ const routes: Route[] = [
     description: resource.resourceToString($r('app.string.singlegesture_Index_Click_description')),
   }
 
-]
+];
 
 @Builder
 export function GestureDestination(name: string) {

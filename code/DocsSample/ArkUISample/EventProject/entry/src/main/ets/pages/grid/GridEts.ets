@@ -41,21 +41,21 @@ export struct GridEts {
   //[Start grid_styles_start]
   @Styles
   normalStyles(): void {
-    .opacity(1.0)
+    .opacity(1.0);
   }
 
   @Styles
   selectStyles(): void {
-    .opacity(0.4)
+    .opacity(0.4);
   }
 
   //[StartExclude grid_styles_start]
   aboutToAppear(): void {
-    let i: number = 0
+    let i: number = 0;
     for (i = 0; i < 500; i++) {
-      this.numbers.push(i)
-      this.isSelectedGrid.push(false)
-      this.previewData.push({})
+      this.numbers.push(i);
+      this.isSelectedGrid.push(false);
+      this.previewData.push({});
     }
   }
 
@@ -99,11 +99,11 @@ export struct GridEts {
                 let gridItemName = 'grid' + i;
                 // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
                 this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap) => {
-                  this.pixmap = pixmap
+                  this.pixmap = pixmap;
                   this.previewData[i] = {
                     pixelMap: this.pixmap
-                  }
-                })
+                  };
+                });
               }
             }
           })
@@ -166,8 +166,8 @@ export struct GridEts {
                   this.pixmap = pixmap;
                   this.previewData[idx] = {
                     pixelMap: this.pixmap
-                  }
-                })
+                  };
+                });
                 //[EndExclude grid_numberBadge_start]
               } else {
                 //[StartExclude grid_previewData_start]
@@ -198,7 +198,7 @@ export struct GridEts {
               // 1.长按时通知，350ms回调
               if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
                 // 2.用户按住一段时间，还没有松手，有可能会拖拽，此时可准备数据
-                this.loadData()
+                this.loadData();
               } else if (status == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG) {
                 // 3.用户停止拖拽交互，取消数据准备(模拟方法：定时器取消)
                 clearTimeout(this.timeout);
