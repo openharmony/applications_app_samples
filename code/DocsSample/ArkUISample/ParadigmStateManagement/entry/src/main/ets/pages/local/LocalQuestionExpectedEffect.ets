@@ -12,23 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start Local_Question_Expected_Effect]
 import { UIUtils } from '@kit.ArkUI';
 
-@Component
-export struct LocalQuestionExpectedEffect {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
-  @Consume pathStack: NavPathStack;
-
-  build() {
-    NavDestination() {
-      Index()
-    }
-    .backgroundColor('#f1f2f3')
-    .title($r('app.string.local_question_expected_effect'))
-  }
-}
-
-// [Start Local_Question_Expected_Effect]
 @Entry
 @ComponentV2
 struct Index {
@@ -65,3 +51,16 @@ struct Index {
   }
 }
 // [End Local_Question_Expected_Effect]
+@Component
+export struct LocalQuestionExpectedEffect {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
+  @Consume pathStack: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Index()
+    }
+    .backgroundColor('#f1f2f3')
+    .title($r('app.string.local_question_expected_effect'))
+  }
+}
