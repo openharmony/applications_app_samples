@@ -63,14 +63,10 @@ void OnReceive(const CommonEvent_RcvData *data)
 // [End event_subscriber_on_receive]
 
 // [Start event_subscriber_get_parameters]
-void GetParameters(const CommonEvent_RcvData *data)
+void ProcessIntParameter(const CommonEvent_Parameters *parameters)
 {
-    // 获取回调公共事件附件信息
-    bool exists = false;
-    const CommonEvent_Parameters *parameters = OH_CommonEvent_GetParametersFromRcvData(data);
-
     // 检查公共事件附加信息中是否包含某个键值对信息
-    exists = OH_CommonEvent_HasKeyInParameters(parameters, "intKey");
+    bool exists = OH_CommonEvent_HasKeyInParameters(parameters, "intKey");
     // 获取公共事件附加信息中int数据信息
     int intValue = OH_CommonEvent_GetIntFromParameters(parameters, "intKey", 10);
     OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, intValue = %{public}d", exists, intValue);
@@ -95,9 +91,12 @@ void GetParameters(const CommonEvent_RcvData *data)
     // 获取公共事件附加信息中char数据信息
     char charValue = OH_CommonEvent_GetCharFromParameters(parameters, "charKey", 'A');
     OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, charValue = %{public}c", exists, charValue);
-    
+}
+
+void ProcessIntArrayParameter(const CommonEvent_Parameters *parameters)
+{
     int** arr = new int*;
-    exists = OH_CommonEvent_HasKeyInParameters(parameters, "intArrayKey");
+    bool exists = OH_CommonEvent_HasKeyInParameters(parameters, "intArrayKey");
     // 获取公共事件附加信息中int数组信息
     int32_t intArraySize = OH_CommonEvent_GetIntArrayFromParameters(parameters, "intArrayKey", arr);
     if (intArraySize <= 0 || *arr == nullptr) {
@@ -111,9 +110,30 @@ void GetParameters(const CommonEvent_RcvData *data)
             OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}d>", *((*arr) + i));
         }
     }
-    
+}
+
+void ProcessLongArrayParameter(const CommonEvent_Parameters *parameters)
+{
     long** longArray = new long*;
-    exists = OH_CommonEvent_HasKeyInParameters(parameters, "longArrayKey");
+    bool exists = OH_CommonEvent_HasKeyInParameters(parameters, "longArrayKey");
+    int32_t longArraySize = OH_CommonEvent_GetLongArrayFromParameters(parameters, "longArrayKey", longArray);
+    if (longArraySize <= 0 || *longArray == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST",
+                     "exists = %{public}d, Failed to get long array or invalid size: %{public}d",
+                     exists, longArraySize);
+    } else {
+        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, longArraySize = %{public}d",
+                     exists, longArraySize);
+        for (int i = 0; i < longArraySize; i++) {
+            OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}ld>", *((*longArray) + i));
+        }
+    }
+}
+
+void ProcessDoubleArrayParameter(const CommonEvent_Parameters *parameters)
+{
+    long** longArray = new long*;
+    bool exists = OH_CommonEvent_HasKeyInParameters(parameters, "longArrayKey");
     // 获取公共事件附加信息中long数组信息
     int32_t longArraySize = OH_CommonEvent_GetLongArrayFromParameters(parameters, "longArrayKey", longArray);
     if (longArraySize <= 0 || *longArray == nullptr) {
@@ -127,25 +147,12 @@ void GetParameters(const CommonEvent_RcvData *data)
             OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}ld>", *((*longArray) + i));
         }
     }
+}
 
-    double** doubleArray = new double*;
-    exists = OH_CommonEvent_HasKeyInParameters(parameters, "doubleArrayKey");
-    // 获取公共事件附加信息中double数组信息
-    int32_t doubleArraySize = OH_CommonEvent_GetDoubleArrayFromParameters(parameters, "doubleArrayKey", doubleArray);
-    if (doubleArraySize <= 0 || *doubleArray == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST",
-                     "exists = %{public}d, Failed to get double array or invalid size: %{public}d",
-                     exists, doubleArraySize);
-    } else {
-        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, doubleArraySize = %{public}d",
-                     exists, doubleArraySize);
-        for (int i = 0; i < doubleArraySize; i++) {
-            OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}f>", *((*doubleArray) + i));
-        }
-    }
-
+void ProcessCharArrayParameter(const CommonEvent_Parameters *parameters)
+{
     char** charArray = new char*;
-    exists = OH_CommonEvent_HasKeyInParameters(parameters, "charArrayKey");
+    bool exists = OH_CommonEvent_HasKeyInParameters(parameters, "charArrayKey");
     // 获取公共事件附加信息中char数组信息
     int32_t charArraySize = OH_CommonEvent_GetCharArrayFromParameters(parameters, "charArrayKey", charArray);
     if (charArraySize <= 0 || *charArray == nullptr) {
@@ -155,9 +162,12 @@ void GetParameters(const CommonEvent_RcvData *data)
     } else {
         OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "charArray as string: %{public}s", *charArray);
     }
+}
 
+void ProcessBoolArrayParameter(const CommonEvent_Parameters *parameters)
+{
     bool** boolArray = new bool*;
-    exists = OH_CommonEvent_HasKeyInParameters(parameters, "boolArrayKey");
+    bool exists = OH_CommonEvent_HasKeyInParameters(parameters, "boolArrayKey");
     // 获取公共事件附加信息中bool数组信息
     int32_t boolArraySize = OH_CommonEvent_GetBoolArrayFromParameters(parameters, "boolArrayKey", boolArray);
     if (boolArraySize <= 0 || *boolArray == nullptr) {
@@ -171,6 +181,18 @@ void GetParameters(const CommonEvent_RcvData *data)
             OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}d>", *((*boolArray) + i));
         }
     }
+}
+
+void GetParameters(const CommonEvent_RcvData *data)
+{
+    // 获取回调公共事件附件信息
+    const CommonEvent_Parameters *parameters = OH_CommonEvent_GetParametersFromRcvData(data);
+    ProcessIntParameter(parameters);
+    ProcessIntArrayParameter(parameters);
+    ProcessLongArrayParameter(parameters);
+    ProcessDoubleArrayParameter(parameters);
+    ProcessCharArrayParameter(parameters);
+    ProcessBoolArrayParameter(parameters);
 }
 // [End event_subscriber_get_parameters]
 
