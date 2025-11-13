@@ -449,10 +449,6 @@
       "value": "内容页和页签联动示例"
     },
     {
-      "name": "ContentWillChange_titleContentOnAndTabSync",
-      "value": "内容页和页签不联动示例"
-    },
-    {
       "name": "ContentWillChange_titleSpecifiedTab",
       "value": "切换指定页签示例"
     },
@@ -467,10 +463,6 @@
     {
       "name": "ContentWillChange_description",
       "value": "示例展示使用了自定义导航栏后，自行实现页签切换逻辑。"
-    },
-    {
-      "name": "Content_titleContentOnAndTabSync",
-      "value": "示例展示使用了自定义导航栏后，内容和标签联动"
     },
     {
       "name": "AgeFriendlyTabs_title",

@@ -155,9 +155,35 @@ entry/src/ohosTest/
 2. 创建瀑布流（WaterFlow）
    ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组件支持条件渲染、循环渲染和懒加载等方式生成子组件
 
-### 相关权限
+## 具体实现
+1. 基本结构与布局。构成：使用Tabs容器包裹多个TabContent子组件。
+    - 页签设置：每个TabContent通过.tabBar('页签名称')方法设置其对应的导航页签。
+    - 布局类型：通过barPosition参数决定导航栏位置。
+    - 顶部导航：BarPosition.Start (默认)
+    - 底部导航：BarPosition.End
+    - 侧边导航：需额外设置.vertical(true)，并通常配合barWidth或barHeight调整尺寸。
+2. 导航栏模式控制
+    - 禁止滑动切换：设置.scrollable(false)。
+    - 固定导航栏：设置.barMode(BarMode.Fixed)，页签均分宽度，适用于分类固定的场景（如底部导航）。
+    - 滚动导航栏：设置.barMode(BarMode.Scrollable)，页签可横向滚动，适用于分类较多的场景（如顶部导航）。
+3. 自定义导航栏
+    - 当默认的下划线样式不满足需求时（如需要图文组合），可使用@Builder构建自定义页签函数。
+    - 在自定义函数中，通过判断currentIndex与页签索引是否相等，来动态改变选中与未选中状态的样式（如图标、文字颜色）。
+    - 将自定义的@Builder函数通过.tabBar(this.builderFunc(...))方式赋给TabContent。
+4. 页签与内容联动
+    - 监听页签切换：使用Tabs的.onSelected((index: number) => { ... })方法，在回调中更新用于判断选中状态的索引值（如selectIndex），以实现自定义页签与内容页的同步高亮。
+5. 高级控制功能
+    - 切换拦截：使用.onContentWillChange回调函数，可根据业务逻辑决定是否允许切换到目标页签（返回true允许，返回false阻止）。
+    - 页面缓存控制 (API 19+)：使用.cachedMaxCount(maxCount, TabsCacheMode)接口。用于控制最大缓存的子页面数量，避免一次性加载所有页面带来的性能问题，采用懒加载机制。缓存模式TabsCacheMode决定缓存策略（如缓存两侧页面或最近切换的页面）。
 
-不涉及。
+### 相关权限
+1. tabs选项卡中支持适老化AgeFriendlyTabs组件需要配置系统权限：
+    - 配置原因：
+    - import { abilityManager, Configuration } from '@kit.AbilityKit';
+    - abilityManager.updateConfiguration需要做以下配置
+    - 配置方法：
+    - 在module.json5中配置ohos.permission.UPDATE_CONFIGURATION权限。
+    - 在签名中需要配置系统权限。
 
 ### 依赖
 
