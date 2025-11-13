@@ -4,11 +4,11 @@
 
 本示例通过使用[ArkUI指南文档](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/ui/state-management/arkts-basic-syntax-overview.md)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-### 1.[线性容器(Column)](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-column.md)
+### 1.[线性容器(Column)](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-column.md)
 
-### 2.[文本显示器(Text)](https://docs.openharmony.cn/pages/v5.1/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
+### 2.[文本显示器(Text)](https://docs.openharmony.cn/pages/v6.0/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
 
-### 3.[Button](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
+### 3.[Button](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
 
 ### 3[makeObserved接口：将非观察数据变为可观察数据](https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/ui/state-management/arkts-new-makeObserved.md)
 
