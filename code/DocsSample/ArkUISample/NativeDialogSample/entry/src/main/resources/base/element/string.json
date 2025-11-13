@@ -42,11 +42,11 @@
     },
     {
       "name": "demo_open_dialog",
-      "value": "点击弹窗"
+      "value": "Click Dialog Box"
     },
     {
       "name": "demo_close_dialog",
-      "value": "关闭弹窗"
+      "value": "Close Dialog Box"
     },
     {
       "name": "exit_app",
