@@ -271,7 +271,7 @@
     },
     {
       "name": "OpenMenu_des",
-      "value": "通过使用全局接口openPopup的方式，在无UI组件的场景下直接或封装使用。"
+      "value": "通过使用全局接口openMenu的方式，在无UI组件的场景下直接或封装使用。"
     },
     {
       "name": "Customdialog_title",
