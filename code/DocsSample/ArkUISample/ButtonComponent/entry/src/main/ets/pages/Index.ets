@@ -48,7 +48,8 @@ let demandList: listItem[] = [
 @Entry
 @Component
 struct Index {
-  @State bgColor: ResourceColor = "#39b5fa";
+  @State bgColor: ResourceColor = '#39b5fa';
+  
   build() {
     Column() {
       Text($r('app.string.ListShow'))
