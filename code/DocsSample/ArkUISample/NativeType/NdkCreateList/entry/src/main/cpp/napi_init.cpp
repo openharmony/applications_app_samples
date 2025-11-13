@@ -23,6 +23,7 @@ static napi_value Init(napi_env env, napi_value exports)
     // 绑定Native侧的创建组件和销毁组件。
     napi_property_descriptor desc[] = {
         {"createNativeRoot", nullptr, NativeModule::CreateNativeRoot, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"createNativeNode", nullptr, NativeModule::CreateNativeNode, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"destroyNativeRoot", nullptr, NativeModule::DestroyNativeRoot, nullptr, nullptr, nullptr, napi_default,
             nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

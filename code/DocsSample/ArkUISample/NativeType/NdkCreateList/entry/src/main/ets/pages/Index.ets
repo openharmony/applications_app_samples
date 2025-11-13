@@ -24,6 +24,10 @@ struct Index {
     {
       name:'LazyTextListExample',
       path:'pages/LazyTextListExample'
+    },
+    {
+      name:'LazyLoadingExample',
+      path:'pages/LazyLoadingExample'
     }
   ];
   build() {
