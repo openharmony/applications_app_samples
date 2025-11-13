@@ -17,7 +17,7 @@ import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { wantAgent, WantAgent } from '@kit.AbilityKit';
-import PlayerModel from '../feature/BackgroundPlayerFeature'
+import PlayerModel from '../feature/BackgroundPlayerFeature';
 
 // [Start continuous_task]
 function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
@@ -31,20 +31,20 @@ function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
 @Component
 struct Index {
   @State message: string = 'ContinuousTask';
-  @State isSwitching: boolean = false
   // 通过getUIContext().getHostContext()方法，来获取page所在的UIAbility上下文
   private context: Context | undefined = this.getUIContext().getHostContext();
 
   // [StartExclude play_music]
+  @State isSwitching: boolean = false;
   // 播放或暂停
   onPlayClick(): void {
     if (this.isSwitching) {
-      console.info(`onPlayClick ignored, isSwitching`)
+      console.info(`onPlayClick ignored, isSwitching`);
       return
     }
-    console.info(`onPlayClick isPlaying= ${PlayerModel.isPlaying}`)
+    console.info(`onPlayClick isPlaying= ${PlayerModel.isPlaying}`);
     if (PlayerModel.isPlaying) {
-      PlayerModel.pauseMusic()
+      PlayerModel.pauseMusic();
       // cancel continuous task
       this.stopContinuousTask();
       PlayerModel.isPlaying = false;
@@ -63,18 +63,18 @@ struct Index {
   // 上一首
   onPreviousClick(): void {
     if (this.isSwitching) {
-      console.info(`onPreviousClick ignored, isSwitching`)
-      return
+      console.info(`onPreviousClick ignored, isSwitching`);
+      return;
     }
-    console.info(`onPreviousClick`)
-    PlayerModel.playerIndex--
+    console.info(`onPreviousClick`);
+    PlayerModel.playerIndex--;
     if (PlayerModel.playerIndex < 0 && PlayerModel.playlist.audioFiles.length >= 1) {
-      PlayerModel.playerIndex = PlayerModel.playlist.audioFiles.length - 1
+      PlayerModel.playerIndex = PlayerModel.playlist.audioFiles.length - 1;
     }
-    this.isSwitching = true
+    this.isSwitching = true;
     PlayerModel.preLoad(PlayerModel.playerIndex, () => {
       PlayerModel.playMusic(0, true, this.context as common.UIAbilityContext);
-      this.isSwitching = false
+      this.isSwitching = false;
       PlayerModel.isPlaying = true;
       if (!this.checkHaveAuidioPlaybackTask()) {
         this.startContinuousTask();
@@ -85,18 +85,18 @@ struct Index {
   // 下一首
   onNextClick(): void {
     if (this.isSwitching) {
-      console.info(`onNextClick ignored, isSwitching`)
-      return
+      console.info(`onNextClick ignored, isSwitching`);
+      return;
     }
-    console.info(`onNextClick`)
-    PlayerModel.playerIndex++
+    console.info(`onNextClick`);
+    PlayerModel.playerIndex++;
     if (PlayerModel.playerIndex >= PlayerModel.playlist.audioFiles.length) {
-      PlayerModel.playerIndex = 0
+      PlayerModel.playerIndex = 0;
     }
-    this.isSwitching = true
+    this.isSwitching = true;
     PlayerModel.preLoad(PlayerModel.playerIndex, () => {
       PlayerModel.playMusic(0, true, this.context as common.UIAbilityContext);
-      this.isSwitching = false
+      this.isSwitching = false;
       PlayerModel.isPlaying = true;
       if (!this.checkHaveAuidioPlaybackTask()) {
         this.startContinuousTask();
@@ -132,7 +132,7 @@ struct Index {
 
   aboutToAppear() {
     PlayerModel.getPlaylist(() => {
-      console.info(`on playlist generated`)
+      console.info(`on playlist generated`);
     })
   }
   // [EndExclude play_music]
@@ -193,7 +193,7 @@ struct Index {
             // 此处执行具体的长时任务逻辑，如播音等。
             // [StartExclude apply_play_music]
             if (!PlayerModel.isPlaying) {
-              this.onPlayClick()
+              this.onPlayClick();
             }
             // [EndExclude apply_play_music]
           }).catch((error: BusinessError) => {
@@ -214,7 +214,7 @@ struct Index {
       console.info(`Succeeded in operationing stopBackgroundRunning.`);
       // [StartExclude stop_play_music]
       if (PlayerModel.isPlaying) {
-        this.onPlayClick()
+        this.onPlayClick();
       }
       // [EndExclude stop_play_music]
     }).catch((err: BusinessError) => {
