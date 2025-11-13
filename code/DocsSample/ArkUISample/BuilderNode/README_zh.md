@@ -14,13 +14,9 @@
 
 ### 使用说明
 
-1. 在主界面，可以点击对应卡片，选择需要参考的组件示例。
-
-2. 在组件目录选择详细的示例参考。
-
-3. 进入示例界面，查看参考示例。
-
-4. 通过自动测试框架可进行测试及维护。
+1. 通过运行EnvironmentCallbackPage.test.ets测试用例，页面当中的留白区域变宽。
+2. 通过运行postTouchEvent.test.ets测试用例，使页面从Index页面跳到postTouchEvent页面，页面的下区域颜色由粉色变为蓝色。
+3. 通过运行inheritFreezeOptionsPage.test.ets测试用例，使页面从Index页面跳到inheritFreezeOptionsPage页面，各页面能正常跳转且文本更新次数后面的数字随着按钮的点击大小逐步增加。
 
 ### 工程目录
 ```
