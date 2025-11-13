@@ -38,7 +38,7 @@ export default function InterfaceTest() {
       let driver = Driver.create();
       await driver.delayMs(SECONDS_TIME);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
-      hilog.info(DOMAIN, TAG, 'get top ability);
+      hilog.info(DOMAIN, TAG, 'get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 
