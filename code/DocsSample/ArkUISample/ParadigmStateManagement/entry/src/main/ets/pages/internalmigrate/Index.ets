@@ -94,7 +94,7 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.Internal_AppStorage_V1_two')),
   },
   {
-    name: `${INTERNAL_MIGRATE}/InternalAppStorageV1one`,
+    name: `${INTERNAL_MIGRATE}/InternalAppStorageV2one`,
     title: resource.resourceToString($r('app.string.Internal_AppStorage_V2_one')),
   },
   {

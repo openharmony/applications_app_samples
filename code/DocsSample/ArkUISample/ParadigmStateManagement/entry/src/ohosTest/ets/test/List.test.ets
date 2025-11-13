@@ -12,11 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { MigrationDestination } from '../../../main/ets/pages/migrationDataObjectVariables/Index';
 import abilityTest from './Ability.test';
 import extendTest from './Extend.test';
+import InternalTest from './Internalmigrate';
 import localTest from './Local.test';
 import localBuilderTest from './LocalBuilder.test';
+import migrationTest from './MigrationDataObjectVariables.test';
 import monitorTest from './Monitor.test';
+import paramTest from './Param.test';
+import persistenceV2Test from './PersistenceV2.test';
+import provideConsumeTest from './ProvideConsume.test';
+import stateTest from './State.test';
 import syncStateManagerTest from './SyncStateManager.test';
 
 export default function testsuite() {
@@ -26,4 +33,10 @@ export default function testsuite() {
   localTest();
   monitorTest();
   syncStateManagerTest();
+  migrationTest();
+  persistenceV2Test();
+  provideConsumeTest();
+  stateTest();
+  paramTest();
+  InternalTest();
 }

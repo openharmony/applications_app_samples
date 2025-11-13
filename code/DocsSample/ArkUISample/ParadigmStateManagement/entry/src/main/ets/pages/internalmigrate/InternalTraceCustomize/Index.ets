@@ -24,11 +24,11 @@ struct MyNavigationTestStack {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      PageOneStack()
+      pageOneStack()
     } else if (name === 'pageTwo') {
-      PageTwoStack()
+      pageTwoStack()
     } else if (name === 'pageThree') {
-      PageThreeStack()
+      pageThreeStack()
     }
   }
 
@@ -53,7 +53,7 @@ struct MyNavigationTestStack {
 }
 
 @ComponentV2
-struct PageOneStack {
+struct pageOneStack {
   pageInfo: NavPathStack = new NavPathStack();
   @Local storageA: MyStorageA = new MyStorageA('PropA');
 
@@ -84,7 +84,7 @@ struct PageOneStack {
 }
 
 @ComponentV2
-struct PageTwoStack {
+struct pageTwoStack {
   pageInfo: NavPathStack = new NavPathStack();
   @Local storageB: MyStorageB = new MyStorageB('PropB');
 
@@ -116,7 +116,7 @@ struct PageTwoStack {
 }
 
 @ComponentV2
-struct PageThreeStack {
+struct pageThreeStack {
   pageInfo: NavPathStack = new NavPathStack();
   @Local storageC: MyStorageC = new MyStorageC('PropC');
 
