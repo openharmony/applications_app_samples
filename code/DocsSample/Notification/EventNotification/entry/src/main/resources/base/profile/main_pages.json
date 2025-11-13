@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/RequestEnableNotification",
+    "pages/ManageNotificationBadges",
+    "pages/ManageNotificationWays",
+    "pages/PublishNotification",
+    "pages/AddBehaviorIntent",
+    "pages/UpdateNotification",
+    "pages/CancelNotification",
+    "pages/ClearDuplicateNotifications"
+  ]
+}
