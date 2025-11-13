@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
 import { ScrollModifier } from '@ohos.arkui.modifier';
 
 class CustomModifier extends ScrollModifier {
@@ -21,7 +20,7 @@ class CustomModifier extends ScrollModifier {
 
 @Entry
 @Component
-struct Index {
+struct ScrollModifierScroll1 {
   scroller: Scroller = new Scroller();
   private arr: number[] =
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
@@ -55,21 +54,21 @@ struct Index {
       Row() {
         Scroll() {
           Column() {
-            WaterFlow({ scroller: this.scroller }) {
-              ForEach(this.arr, (item: number) => {
-                FlowItem() {
-                  Text('ListItem' + item)
-                    .width('100%')
-                    .height('100%')
-                    .borderRadius(15)
-                    .fontSize(16)
-                    .textAlign(TextAlign.Center)
-                    .backgroundColor(Color.White)
-                }.width('100%').height(100)
-              }, (item: number) => item.toString())
-            }
+            ForEach(this.arr, (item: number) => {
+              Text(item.toString())
+                .width('90%')
+                .height(200)
+                .draggable(true)
+                .copyOption(CopyOptions.InApp)
+                .backgroundColor('#FFFFFF')
+                .borderWidth(1)
+                .borderColor(Color.Black)
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+            }, (item: number) => item.toString())
 
-          }.width('90%').backgroundColor(0xDCDCDC)
+          }.width('90%').backgroundColor('#DCDCDC')
         }.attributeModifier(this.customModifier)
 
         ScrollBar({ scroller: this.scroller, state: BarState.On }) {
@@ -83,7 +82,7 @@ struct Index {
       }
       .height('90%')
 
-      Button('滑动').onClick((event: ClickEvent) => {
+      Button('slide').onClick((event: ClickEvent) => {
         this.scroller.scrollTo({
           xOffset: this.scroller.currentOffset().xOffset,
           yOffset: this.scroller.currentOffset().yOffset + 100,

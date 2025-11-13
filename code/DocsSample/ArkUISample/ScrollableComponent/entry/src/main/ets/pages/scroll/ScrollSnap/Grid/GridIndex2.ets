@@ -12,12 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct Index {
+struct ScrollSnapGrid1 {
   scroller: Scroller = new Scroller();
   private arr: number[] =
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
@@ -27,10 +25,10 @@ struct Index {
       Row() {
         Scroll() {
           Column() {
-            WaterFlow({ scroller: this.scroller }) {
+            Grid(this.scroller) {
               ForEach(this.arr, (item: number) => {
-                FlowItem() {
-                  Text('ListItem' + item)
+                GridItem() {
+                  Text('GridItem' + item)
                     .width('100%')
                     .height('100%')
                     .borderRadius(15)
@@ -41,10 +39,14 @@ struct Index {
               }, (item: number) => item.toString())
             }
 
-          }.width('90%').backgroundColor(0xDCDCDC)
+          }.width('90%').backgroundColor('#DCDCDC')
         }
         .scrollBar(BarState.On)
         .edgeEffect(EdgeEffect.Spring)
+        .scrollSnap({
+          snapAlign: ScrollSnapAlign.START,
+          snapPagination: 800
+        })
         .onWillStartDragging(() => {
           console.log('callback1 onWillStartDragging');
         })
@@ -74,20 +76,11 @@ struct Index {
       }
       .height('90%')
 
-      Button('滑动').onClick((event: ClickEvent) => {
+      Button('slide').onClick((event: ClickEvent) => {
         this.scroller.scrollTo({
           xOffset: this.scroller.currentOffset().xOffset,
           yOffset: this.scroller.currentOffset().yOffset + 100,
           animation: { duration: 500 }
-        });
-      })
-
-      Button('翻页').onClick(() => {
-        router.pushUrl({
-          url: 'pages/waterFlow/ScrollSnap/WaterFlowIndex2',
-          params: {
-            data1: 'message'
-          }
         });
       })
     }

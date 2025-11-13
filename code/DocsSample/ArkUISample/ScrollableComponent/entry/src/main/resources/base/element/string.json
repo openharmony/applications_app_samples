@@ -617,8 +617,32 @@
       "value": "滑动离手事件"
     },
     {
+      "name": "Scroll_Title",
+      "value": "Scroll"
+    },
+    {
+      "name": "ScrollModifier_Title",
+      "value": "ScrollModifier"
+    },
+    {
       "name": "Support_Sliding_Hand_Event",
       "value": "支持滑动离手事件"
+    },
+    {
+      "name": "Support_ScrollSnapList_Hand_Event",
+      "value": "支持List限制位滚动事件"
+    },
+    {
+      "name": "Support_ScrollSnapGrid_Hand_Event",
+      "value": "支持Grid限位滚动事件"
+    },
+    {
+      "name": "Support_ScrollSnapWaterFlow_Hand_Event",
+      "value": "支持WaterFlow限位滚动事件"
+    },
+    {
+      "name": "Support_ScrollSnapScroll_Hand_Event",
+      "value": "支持Scroll限位滚动事件"
     },
     {
       "name": "Today_Hot_News",

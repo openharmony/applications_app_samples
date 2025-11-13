@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import { router } from '@kit.ArkUI';
 import { ScrollModifier } from '@ohos.arkui.modifier';
 
@@ -21,7 +21,7 @@ class CustomModifier extends ScrollModifier {
 
 @Entry
 @Component
-struct Index {
+export struct ScrollModifierList {
   scroller: Scroller = new Scroller();
   private arr: number[] =
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
@@ -47,55 +47,56 @@ struct Index {
     .height('90%')
 
   build() {
-    Column() {
-      Row() {
-        Scroll() {
-          Column() {
-            WaterFlow({ scroller: this.scroller }) {
-              ForEach(this.arr, (item: number) => {
-                FlowItem() {
-                  Text('ListItem' + item)
-                    .width('100%')
-                    .height('100%')
-                    .borderRadius(15)
-                    .fontSize(16)
-                    .textAlign(TextAlign.Center)
-                    .backgroundColor(Color.White)
-                }.width('100%').height(100)
-              }, (item: number) => item.toString())
-            }
+    NavDestination() {
+      Column() {
+        Row() {
+          Scroll() {
+            Column() {
+              List({ space: 20, scroller: this.scroller }) {
+                ForEach(this.arr, (item: number) => {
+                  ListItem() {
+                    Text('ListItem' + item)
+                      .width('100%')
+                      .height('100%')
+                      .borderRadius(15)
+                      .fontSize(16)
+                      .textAlign(TextAlign.Center)
+                      .backgroundColor(Color.White)
+                  }.width('100%').height(100)
+                }, (item: number) => item.toString())
+              }
 
-          }.width('90%').backgroundColor(0xDCDCDC)
-        }.attributeModifier(this.customModifier)
+            }.width('90%').backgroundColor(0xDCDCDC)
+          } //.attributeModifier(this.customModifier)
 
-        ScrollBar({ scroller: this.scroller, state: BarState.On }) {
-          Text()
-            .width(20)
-            .height(100)
-            .borderRadius(10)
-            .backgroundColor('#C0C0C0')
-        }
-        .width(20)
-      }
-      .height('90%')
-
-      Button('滑动').onClick((event: ClickEvent) => {
-        this.scroller.scrollTo({
-          xOffset: this.scroller.currentOffset().xOffset,
-          yOffset: this.scroller.currentOffset().yOffset + 100,
-          animation: { duration: 500 }
-        });
-      })
-
-      Button('翻页').onClick(() => {
-        router.pushUrl({
-          url: 'pages/waterFlow/ScrollSnap/WaterFlowIndex2',
-          params: {
-            data1: 'message'
+          ScrollBar({ scroller: this.scroller, state: BarState.On }) {
+            Text()
+              .width(20)
+              .height(100)
+              .borderRadius(10)
+              .backgroundColor('#C0C0C0')
           }
-        });
-      })
-    }
+          .width(20)
+        }
+        .height('90%')
 
+        Button('slide').onClick((event: ClickEvent) => {
+          this.scroller.scrollTo({
+            xOffset: this.scroller.currentOffset().xOffset,
+            yOffset: this.scroller.currentOffset().yOffset + 100,
+            animation: { duration: 500 }
+          });
+        })
+
+        Button('flip').onClick(() => {
+          router.pushUrl({
+            url: 'pages/scroll/ScrollModifier/List/ListIndex2',
+            params: {
+              data1: 'message'
+            }
+          });
+        })
+      }
+    }
   }
 }

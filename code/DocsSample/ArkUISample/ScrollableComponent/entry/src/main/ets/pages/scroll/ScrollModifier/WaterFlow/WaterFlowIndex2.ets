@@ -13,14 +13,41 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
+import { ScrollModifier } from '@ohos.arkui.modifier';
+
+class CustomModifier extends ScrollModifier {
+}
 
 @Entry
 @Component
-struct Index {
+struct ScrollModifierWaterFlow1 {
   scroller: Scroller = new Scroller();
   private arr: number[] =
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+  customModifier: ScrollModifier = new CustomModifier()
+    .scrollBar(BarState.On)
+    .edgeEffect(EdgeEffect.Spring)
+    .onWillStartDragging(() => {
+      console.log('callback1 onWillStartDragging');
+    })
+    .onDidStopDragging((willFling: boolean) => {
+      console.log('callback2 onDidStopDragging willFling = ' + willFling);
+    })
+    .onWillStopDragging((velocity: number) => {
+      console.log('callback onWillStopDragging velocity = ' + velocity);
+    })
+    .onWillStartFling(() => {
+      console.log('callback3 onWillStartFling');
+    })
+    .onDidStopFling(() => {
+      console.log('callback4 onDidStopFling');
+    })
+    .backgroundColor(Color.Yellow)
+    .height('90%')
+    .scrollSnap({
+      snapAlign: ScrollSnapAlign.START,
+      snapPagination: 800
+    })
 
   build() {
     Column() {
@@ -30,7 +57,7 @@ struct Index {
             WaterFlow({ scroller: this.scroller }) {
               ForEach(this.arr, (item: number) => {
                 FlowItem() {
-                  Text('ListItem' + item)
+                  Text('FlowItem' + item)
                     .width('100%')
                     .height('100%')
                     .borderRadius(15)
@@ -41,31 +68,8 @@ struct Index {
               }, (item: number) => item.toString())
             }
 
-          }.width('90%').backgroundColor(0xDCDCDC)
-        }
-        .scrollBar(BarState.On)
-        .edgeEffect(EdgeEffect.Spring)
-        .scrollSnap({
-          snapAlign : ScrollSnapAlign.START,
-          snapPagination : 800
-        })
-        .onWillStartDragging(() => {
-          console.log('callback1 onWillStartDragging');
-        })
-        .onDidStopDragging((willFling: boolean) => {
-          console.log('callback2 onDidStopDragging willFling = ' + willFling);
-        })
-        .onWillStopDragging((velocity: number) => {
-          console.log('callback onWillStopDragging velocity = ' + velocity);
-        })
-        .onWillStartFling(() => {
-          console.log('callback3 onWillStartFling');
-        })
-        .onDidStopFling(() => {
-          console.log('callback4 onDidStopFling');
-        })
-        .backgroundColor(Color.Yellow)
-        .height('90%')
+          }.width('90%').backgroundColor('#DCDCDC')
+        }.attributeModifier(this.customModifier)
 
         ScrollBar({ scroller: this.scroller, state: BarState.On }) {
           Text()
@@ -78,7 +82,7 @@ struct Index {
       }
       .height('90%')
 
-      Button('滑动').onClick((event: ClickEvent) => {
+      Button('slide').onClick((event: ClickEvent) => {
         this.scroller.scrollTo({
           xOffset: this.scroller.currentOffset().xOffset,
           yOffset: this.scroller.currentOffset().yOffset + 100,

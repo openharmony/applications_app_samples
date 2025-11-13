@@ -21,7 +21,7 @@ class CustomModifier extends ScrollModifier {
 
 @Entry
 @Component
-struct Index {
+struct ScrollModifierGrid {
   scroller: Scroller = new Scroller();
   private arr: number[] =
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
@@ -45,53 +45,58 @@ struct Index {
     })
     .backgroundColor(Color.Yellow)
     .height('90%')
-    .scrollSnap({
-      snapAlign : ScrollSnapAlign.START,
-      snapPagination : 800
-    })
 
   build() {
-    Column() {
-      Row() {
-        Scroll() {
-          Column() {
-            Grid(this.scroller) {
-              ForEach(this.arr, (item: number) => {
-                GridItem() {
-                  Text('ListItem' + item)
-                    .width('100%')
-                    .height('100%')
-                    .borderRadius(15)
-                    .fontSize(16)
-                    .textAlign(TextAlign.Center)
-                    .backgroundColor(Color.White)
-                }.width('100%').height(100)
-              }, (item: number) => item.toString())
-            }
+    NavDestination() {
+      Column() {
+        Row() {
+          Scroll() {
+            Column() {
+              Grid(this.scroller) {
+                ForEach(this.arr, (item: number) => {
+                  GridItem() {
+                    Text('GridItem' + item)
+                      .width('100%')
+                      .height('100%')
+                      .borderRadius(15)
+                      .fontSize(16)
+                      .textAlign(TextAlign.Center)
+                      .backgroundColor(Color.White)
+                  }.width('100%').height(100)
+                }, (item: number) => item.toString())
+              }
 
-          }.width('90%').backgroundColor(0xDCDCDC)
-        }.attributeModifier(this.customModifier)
+            }.width('90%').backgroundColor('#DCDCDC')
+          }.attributeModifier(this.customModifier)
 
-        ScrollBar({ scroller: this.scroller, state: BarState.On }) {
-          Text()
-            .width(20)
-            .height(100)
-            .borderRadius(10)
-            .backgroundColor('#C0C0C0')
+          ScrollBar({ scroller: this.scroller, state: BarState.On }) {
+            Text()
+              .width(20)
+              .height(100)
+              .borderRadius(10)
+              .backgroundColor('#C0C0C0')
+          }
+          .width(20)
         }
-        .width(20)
+        .height('90%')
+
+        Button('slide').onClick((event: ClickEvent) => {
+          this.scroller.scrollTo({
+            xOffset: this.scroller.currentOffset().xOffset,
+            yOffset: this.scroller.currentOffset().yOffset + 100,
+            animation: { duration: 500 }
+          });
+        })
+
+        Button('flip').onClick(() => {
+          router.pushUrl({
+            url: 'pages/scroll/ScrollModifier/Grid/GridIndex2',
+            params: {
+              data1: 'message'
+            }
+          });
+        })
       }
-      .height('90%')
-
-      Button('滑动').onClick((event: ClickEvent) => {
-        this.scroller.scrollTo({
-          xOffset: this.scroller.currentOffset().xOffset,
-          yOffset: this.scroller.currentOffset().yOffset + 100,
-          animation: { duration: 500 }
-        });
-      })
-
     }
-
   }
 }
