@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 // [Start Parent7_start]
+const INITIAL_COUNT = 10;
+
 @Component
 struct Child {
   // @Link可以双向同步数据
@@ -32,7 +34,7 @@ struct Child {
 @Entry
 @Component
 struct Parent {
-  @State myVal: number = 10;
+  @State myVal: number = INITIAL_COUNT;
 
   build() {
     Column() {

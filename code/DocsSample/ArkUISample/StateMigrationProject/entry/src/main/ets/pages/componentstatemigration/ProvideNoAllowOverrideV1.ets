@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 // [Start GrandParent1_start]
+const GRANDPARENT_REVIEW_VOTES_INITIAL = 40;
+const PARENT_REVIEW_VOTES_INITIAL = 20;
+
 @Entry
 @Component
 struct GrandParent {
-  @Provide('reviewVotes') reviewVotes: number = 40;
+  @Provide('reviewVotes') reviewVotes: number = GRANDPARENT_REVIEW_VOTES_INITIAL;
 
   build() {
     Column() {
@@ -28,7 +31,7 @@ struct GrandParent {
 @Component
 struct Parent {
   // @Provide默认不支持重载，支持重载需设置allowOverride函数
-  @Provide({ allowOverride: 'reviewVotes' }) reviewVotes: number = 20;
+  @Provide({ allowOverride: 'reviewVotes' }) reviewVotes: number = PARENT_REVIEW_VOTES_INITIAL;
 
   build() {
     Child()

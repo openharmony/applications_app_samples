@@ -21,11 +21,13 @@ localStorage1.setOrCreate('propA', 'propA');
 let localStorage2: LocalStorage = new LocalStorage();
 localStorage2.setOrCreate('propB', 'propB');
 
+const COUNT_INITIAL_VALUE = 0;
+
 @Entry(localStorage1)
 @Component
 struct Index {
   @LocalStorageLink('propA') propA: string = 'Hello World';
-  @State count: number = 0;
+  @State count: number = COUNT_INITIAL_VALUE;
   private controller: NodeController = new MyNodeController(this.count, localStorage2);
 
   build() {

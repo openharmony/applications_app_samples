@@ -17,8 +17,12 @@
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
+const INITIAL_VALUE_ZERO = 0;
+const PAGE_ONE_INDEX = 1;
+const PAGE_TWO_INDEX = 2;
+
 class Params {
-  public count: number = 0;
+  public count: number = INITIAL_VALUE_ZERO;
 
   constructor(count: number) {
     this.count = count;
@@ -36,7 +40,7 @@ function buildText(params: Params) {
 class TextNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private textNode: BuilderNode<[Params]> | null = null;
-  private count: number = 0;
+  private count: number = INITIAL_VALUE_ZERO;
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
@@ -63,8 +67,8 @@ const textNodeController: TextNodeController = new TextNodeController();
 @ComponentV2
 struct MyNavigationTestStack {
   @Provider('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @Local message: number = 0;
-  @Local logNumber: number = 0;
+  @Local message: number = INITIAL_VALUE_ZERO;
+  @Local logNumber: number = INITIAL_VALUE_ZERO;
 
   @Builder
   PageMap(name: string) {
@@ -101,7 +105,7 @@ struct MyNavigationTestStack {
 @ComponentV2
 struct pageOneStack {
   @Consumer('pageInfo') pageInfo: NavPathStack=new NavPathStack();
-  @Local index: number = 1;
+  @Local index: number = PAGE_ONE_INDEX;
   @Param @Require  message: number;
   @Param @Require logNumber: number;
 
@@ -135,7 +139,7 @@ struct pageOneStack {
 @ComponentV2
 struct PageTwoStack {
   @Consumer('pageInfo') pageInfo: NavPathStack=new NavPathStack();
-  @Local index: number = 2;
+  @Local index: number = PAGE_TWO_INDEX;
   @Param @Require message: number;
   @Param @Require logNumber: number;
 
@@ -179,7 +183,7 @@ struct NavigationContentMsgStack {
 
 @ComponentV2({ freezeWhenInactive: true }) // 设置冻结策略为不活跃冻结。
 struct TextBuilder {
-  @Param  message: number = 0;
+  @Param message: number = INITIAL_VALUE_ZERO;
 
   @Monitor('message')
   info() {

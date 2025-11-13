@@ -17,10 +17,11 @@ import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
+const INDEX_INITIAL_VALUE = 0;
 
 // 定义一个Params类，用于传递参数
 class Params {
-  public index: number = 0;
+  public index: number = INDEX_INITIAL_VALUE;
 
   constructor(index: number) {
     this.index = index;
@@ -31,7 +32,7 @@ class Params {
 @Component
 struct BuildNodeChild {
   @StorageProp('buildNodeTest') @Watch('onMessageUpdated') message: string = 'hello world';
-  @State index: number = 0;
+  @State index: number = INDEX_INITIAL_VALUE;
 
   // 当message更新时，调用此方法
   onMessageUpdated() {
@@ -54,7 +55,7 @@ function buildText(params: Params) {
 // 定义一个TextNodeController类，继承自NodeController
 class TextNodeController extends NodeController {
   private textNode: BuilderNode<[Params]> | null = null;
-  private index: number = 0;
+  private index: number = INDEX_INITIAL_VALUE;
 
   // 构造函数接收一个index参数
   constructor(index: number) {
@@ -102,7 +103,7 @@ struct Index {
 @Component({ freezeWhenInactive: true })
 struct FreezeBuildNode {
   @StorageProp('buildNodeTest') @Watch('onMessageUpdated') message: string = '1111';
-  @State index: number = 0;
+  @State index: number = INDEX_INITIAL_VALUE;
 
   // 当message更新时，调用此方法
   onMessageUpdated() {

@@ -16,11 +16,12 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
+const STORAGE_LINK_INITIAL_VALUE = 1;
 
 @Entry
 @Component({ freezeWhenInactive: true })
 struct PageTwo {
-  @StorageLink('PropA') @Watch('second') storageLink: number = 1;
+  @StorageLink('PropA') @Watch('second') storageLink: number = STORAGE_LINK_INITIAL_VALUE;
 
   second() {
     hilog.info(DOMAIN, TAG, 'second page: ' + `${this.storageLink}`);

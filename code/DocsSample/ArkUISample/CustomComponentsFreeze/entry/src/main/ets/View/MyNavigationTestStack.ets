@@ -16,13 +16,18 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
+const MESSAGE_INITIAL_VALUE = 0;
+const LOG_NUMBER_INITIAL_VALUE = 0;
+const PAGE_ONE_INDEX = 1;
+const PAGE_TWO_INDEX = 2;
+const PAGE_THREE_INDEX = 3;
 
 @Entry
 @Component
 struct MyNavigationTestStack {
   @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @State @Watch('info') message: number = 0;
-  @State logNumber: number = 0;
+  @State @Watch('info') message: number = MESSAGE_INITIAL_VALUE;
+  @State logNumber: number = LOG_NUMBER_INITIAL_VALUE;
 
   info() {
     hilog.info(DOMAIN, TAG, `freeze-test MyNavigation message callback ${this.message}`);
@@ -65,7 +70,7 @@ struct MyNavigationTestStack {
 @Component
 struct PageOneStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
-  @State index: number = 1;
+  @State index: number = PAGE_ONE_INDEX;
   @Link message: number;
   @Link logNumber: number;
 
@@ -102,7 +107,7 @@ struct PageOneStack {
 @Component
 struct PageTwoStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
-  @State index: number = 2;
+  @State index: number = PAGE_TWO_INDEX;
   @Link message: number;
   @Link logNumber: number;
 
@@ -139,7 +144,7 @@ struct PageTwoStack {
 @Component
 struct PageThreeStack {
   @Consume('pageInfo') pageInfo: NavPathStack;
-  @State index: number = 3;
+  @State index: number = PAGE_THREE_INDEX;
   @Link message: number;
   @Link logNumber: number;
 
