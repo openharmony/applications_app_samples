@@ -66,7 +66,7 @@ export struct ScrollModifierList {
                 }, (item: number) => item.toString())
               }
 
-            }.width('90%').backgroundColor(0xDCDCDC)
+            }.width('90%').backgroundColor('#DCDCDC')
           } //.attributeModifier(this.customModifier)
 
           ScrollBar({ scroller: this.scroller, state: BarState.On }) {
