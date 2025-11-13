@@ -14,10 +14,10 @@
  */
 
 
-import ArcButtonTest from './Index.test'
+import ArcButtonTest from './Index.test';
 import abilityTest from './Ability.test';
 
 export default function testsuite() {
   abilityTest();
-  ArcButtonTest()
+  ArcButtonTest();
 }

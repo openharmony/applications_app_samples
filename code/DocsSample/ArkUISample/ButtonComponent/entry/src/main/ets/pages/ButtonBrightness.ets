@@ -16,11 +16,14 @@
 // [Start brightness_page]
 import { LengthMetrics, LengthUnit, ArcButton, ArcButtonOptions, ArcButtonStyleMode } from '@kit.ArkUI';
 
+const BRIGHT_NESS_VALUE = 30;
+const BRIGHT_NESS_VALUE_DEFAULT = 50;
+
 @Entry
 @ComponentV2
 struct BrightnessPage {
-  @Local brightnessValue: number = 30;
-  private defaultBrightnessValue: number = 50;
+  @Local brightnessValue: number = BRIGHT_NESS_VALUE;
+  private defaultBrightnessValue: number = BRIGHT_NESS_VALUE_DEFAULT;
 
   build() {
     RelativeContainer() {
