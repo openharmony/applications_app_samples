@@ -118,25 +118,29 @@ napi_value NAPI_DestroySubscriber(napi_env env, napi_callback_info info)
     return result;
 }
 
-napi_value NAPI_GetSubscribeInfoState(napi_env env, napi_callback_info info) {
+napi_value NAPI_GetSubscribeInfoState(napi_env env, napi_callback_info info)
+{
     napi_value result;
     napi_get_boolean(env, (g_subscribeInfo != nullptr), &result);
     return result;
 }
 
-napi_value NAPI_GetSubscriberState(napi_env env, napi_callback_info info) {
+napi_value NAPI_GetSubscriberState(napi_env env, napi_callback_info info)
+{
     napi_value result;
     napi_get_boolean(env, (g_subscriber != nullptr), &result);
     return result;
 }
 
-napi_value NAPI_GetSubscribeState(napi_env env, napi_callback_info info) {
+napi_value NAPI_GetSubscribeState(napi_env env, napi_callback_info info)
+{
     napi_value result;
     napi_get_boolean(env, g_isSubscribed, &result);
     return result;
 }
 
-napi_value NAPI_GetPublishedEvents(napi_env env, napi_callback_info info) {
+napi_value NAPI_GetPublishedEvents(napi_env env, napi_callback_info info)
+{
     napi_value result;
     napi_create_array(env, &result);
     
@@ -326,7 +330,8 @@ napi_value NAPI_ClearAllStates(napi_env env, napi_callback_info info)
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"createSubscribeInfo", nullptr, NAPI_CreateSubscribeInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"destroySubscribeInfo", nullptr, NAPI_DestroySubscribeInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -337,8 +342,10 @@ static napi_value Init(napi_env env, napi_value exports) {
         {"publish", nullptr, NAPI_Publish, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"publishWithInfo", nullptr, NAPI_PublishWithInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"abortCommonEvent", nullptr, NAPI_AbortCommonEvent, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"clearAbortCommonEvent", nullptr, NAPI_ClearAbortCommonEvent, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"getSubscribeInfoState", nullptr, NAPI_GetSubscribeInfoState, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"clearAbortCommonEvent", nullptr, NAPI_ClearAbortCommonEvent,
+         nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"getSubscribeInfoState", nullptr, NAPI_GetSubscribeInfoState,
+         nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getSubscriberState", nullptr, NAPI_GetSubscriberState, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getSubscribeState", nullptr, NAPI_GetSubscribeState, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getPublishedEvents", nullptr, NAPI_GetPublishedEvents, nullptr, nullptr, nullptr, napi_default, nullptr},

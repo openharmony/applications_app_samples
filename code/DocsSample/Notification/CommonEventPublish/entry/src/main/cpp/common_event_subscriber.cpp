@@ -134,11 +134,11 @@ void GetParameters(const CommonEvent_RcvData *data)
     int32_t doubleArraySize = OH_CommonEvent_GetDoubleArrayFromParameters(parameters, "doubleArrayKey", doubleArray);
     if (doubleArraySize <= 0 || *doubleArray == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST",
-            "exists = %{public}d, Failed to get double array or invalid size: %{public}d",
-            exists, doubleArraySize);
+                     "exists = %{public}d, Failed to get double array or invalid size: %{public}d",
+                     exists, doubleArraySize);
     } else {
         OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, doubleArraySize = %{public}d",
-                    exists, doubleArraySize);
+                     exists, doubleArraySize);
         for (int i = 0; i < doubleArraySize; i++) {
             OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}f>", *((*doubleArray) + i));
         }
