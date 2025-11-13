@@ -39,10 +39,10 @@ struct JumpCall {
               }
           });
           // 订阅通话业务状态变化（可选）
-          class SlotId {slotId: number = 0}
+          class SlotId {public slotId: number = 0}
           class CallStateCallback {
               public state: call.CallState = call.CallState.CALL_STATE_UNKNOWN;
-              public number: string = "";
+              public number: string = '';
           }
           let slotId: SlotId = {slotId: 0}
           observer.on('callStateChange', slotId, (data: CallStateCallback) => {
