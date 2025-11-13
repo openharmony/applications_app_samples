@@ -33,9 +33,9 @@ struct Index {
             }
         
           context.startAbility(want).then((data) => {
-              console.info("Success" + JSON.stringify(data));
+              console.info('Success' + JSON.stringify(data));
           }).catch(() => {
-              console.error("error");
+              console.error('error');
           });
 
         })

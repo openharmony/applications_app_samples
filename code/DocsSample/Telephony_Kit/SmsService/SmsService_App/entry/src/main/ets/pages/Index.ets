@@ -50,9 +50,9 @@ struct JumpMessage {
         };
 
         this.context.startAbilityForResult(want).then((data) => {
-            console.info("Success" + JSON.stringify(data));
+            console.info('Success' + JSON.stringify(data));
         }).catch(() => {
-            console.error("error");
+            console.error('error');
         });
     }
 
