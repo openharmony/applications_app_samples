@@ -178,5 +178,351 @@ export default function mixedStateManageV1V2Test() {
       hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
       done();
     })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneObservedClassV1V2
+     * @tc.name       : mixedState_StateMixedSceneObservedClassV1V2
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneObservedClassV1V2', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_observed_class_v1_v2')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('name: a'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('count: 0'));
+      await text3.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneObservedClassV2V1
+     * @tc.name       : mixedState_StateMixedSceneObservedClassV2V1
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneObservedClassV2V1', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_observed_class_v2_v1')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('name: a'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('count: 0'));
+      await text3.click();
+      await driver.delayMs(100);
+      const text4 =
+        await driver.findComponent(ON.text('count: aa'));
+      await text4.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneBuiltTypeV1V2Recommend
+     * @tc.name       : mixedState_StateMixedSceneBuiltTypeV1V2Recommend
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneBuiltTypeV1V2Recommend', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_built_type_v1_v2_recommend')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('V1 1'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('V2 2'));
+      await text3.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneBuiltTypeV2V1Recommend
+     * @tc.name       : mixedState_StateMixedSceneBuiltTypeV2V1Recommend
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneBuiltTypeV2V1Recommend', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 800, 200, 20);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_built_type_v2_v1_recommend')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('V2 1'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('V1 2'));
+      await text3.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneBuiltTypeV2V1NotRecommend
+     * @tc.name       : mixedState_StateMixedSceneBuiltTypeV2V1NotRecommend
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneBuiltTypeV2V1NotRecommend', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 800, 200, 20);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_built_type_v2_v1_not_recommend')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('V2 1'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('V1 1'));
+      await text3.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneTwoBitArrayV1V2
+     * @tc.name       : mixedState_StateMixedSceneTwoBitArrayV1V2
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneTwoBitArrayV1V2', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 800, 200, 20, 3000);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_two_bit_array_v1_v2')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('@State push two-dimensional array item'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('@State push array item'));
+      await text3.click();
+      await driver.delayMs(100);
+      const text4 =
+        await driver.findComponent(ON.text('@State change two-dimensional array first item'));
+      await text4.click();
+      await driver.delayMs(100);
+      const text5 =
+        await driver.findComponent(ON.text('@State change array first item'));
+      await text5.click();
+      await driver.delayMs(100);
+      const text6 =
+        await driver.findComponent(ON.text('@Param push'));
+      await text6.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneTwoBitArrayV2V1
+     * @tc.name       : mixedState_StateMixedSceneTwoBitArrayV2V1
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneTwoBitArrayV2V1', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 800, 200, 20, 3000);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_two_bit_array_v2_v1')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('@Local push two-dimensional array item'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('@Local push array item'));
+      await text3.click();
+      await driver.delayMs(100);
+      const text4 =
+        await driver.findComponent(ON.text('@Local change two-dimensional array first item'));
+      await text4.click();
+      await driver.delayMs(100);
+      const text5 =
+        await driver.findComponent(ON.text('@Local change array first item'));
+      await text5.click();
+      await driver.delayMs(100);
+      const text6 =
+        await driver.findComponent(ON.text('@ObjectLink push'));
+      await text6.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneNestedTypeV1V2
+     * @tc.name       : mixedState_StateMixedSceneNestedTypeV1V2
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneNestedTypeV1V2', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 800, 200, 20, 3000);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_nested_type_v1_v2')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('@Param push'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('@Param change the last Item'));
+      await text3.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
+
+    /**
+     * @tc.number     : mixedState_StateMixedSceneNestedTypeV2V1
+     * @tc.name       : mixedState_StateMixedSceneNestedTypeV2V1
+     * @tc.desc       : mixedState
+     * @tc.level      : Level 1
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     */
+    it('mixedState_StateMixedSceneNestedTypeV2V1', 0, async (done: Function) => {
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: TestRuntimeTask begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text(await getResourceString('mixed_state_manage_v1_v2')));
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.swipe(100, 800, 200, 20, 3000);
+      await driver.delayMs(1000);
+      const text1 =
+        await driver.findComponent(ON.text(await getResourceString('state_mixed_scene_nested_type_v2_v1')));
+      await text1.click();
+      await driver.delayMs(1000);
+      const text2 =
+        await driver.findComponent(ON.text('@ObjectLink push'));
+      await text2.click();
+      await driver.delayMs(100);
+      const text3 =
+        await driver.findComponent(ON.text('@ObjectLink change the last Item'));
+      await text3.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
+      done();
+    })
   })
 }
