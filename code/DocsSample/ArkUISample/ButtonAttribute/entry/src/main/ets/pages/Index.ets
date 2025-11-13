@@ -13,36 +13,56 @@
  * limitations under the License.
  */
 
-import { Router } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { Router } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-
   aboutToAppear() {
     try {
       let router1 = this.getUIContext().getRouter();
-      AppStorage.setOrCreate<Router>('router',router1);
+      AppStorage.setOrCreate<Router>('router', router1);
     } catch (e) {
-      hilog.info(0xF811,'testTag','%{public}s','e' + e);
+      hilog.info(0xF811, 'testTag', '%{public}s', 'e' + e);
     }
   }
 
   build() {
     RelativeContainer() {
-      Text(this.message)
-        .id('IndexHelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+      Column({ space: 12 }) {
+        Row() {
+          Button('Button1')
+            .onClick(() => {
+              this.getUIContext().getRouter().pushUrl({ url: 'pages/Button1' })
+            })
+        }
+
+        Row() {
+          Button('Button2')
+            .onClick(() => {
+              this.getUIContext().getRouter().pushUrl({ url: 'pages/Button2' })
+            })
+        }
+
+        Row() {
+          Button('Button3')
+            .onClick(() => {
+              this.getUIContext().getRouter().pushUrl({ url: 'pages/Button3' })
+            })
+        }
+
+        Row() {
+          Button('Button4')
+            .onClick(() => {
+              this.getUIContext().getRouter().pushUrl({ url: 'pages/Button4' })
+            })
+        }
+
+      }.width('100%')
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+
     }
     .height('100%')
     .width('100%')

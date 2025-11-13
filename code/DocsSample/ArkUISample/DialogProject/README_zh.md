@@ -129,7 +129,7 @@ entry/src/ohosTest/
 
 3. 菜单控制（Menu）
 
-   * Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体用法请参考菜单控制。
+   * Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体用法请参考[菜单控制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)。
    
    * 使用bindContextMenu并设置预览图，菜单弹出时有蒙层，此时为模态。
    
@@ -139,11 +139,11 @@ entry/src/ohosTest/
    
    * CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件更新等与用户交互响应操作。
 
-   * 开发者可以通过CustomDialogController类显示自定义弹出框。具体用法请参考自定义弹出框。
+   * 开发者可以通过CustomDialogController类显示自定义弹出框。具体用法请参考[自定义弹出框](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)。
 
    * 默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。
 
-   * 可以通过配置CustomDialogControllerOptions中的isModal属性来实现模态和非模态弹窗，详细说明可参考弹窗的种类。
+   * 可以通过配置CustomDialogControllerOptions中的isModal属性来实现模态和非模态弹窗，详细说明可参考[弹窗的种类](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-dialog-overview.md#弹窗的种类)。
 
 5. 不依赖UI组件的全局自定义弹出框 (openCustomDialog)
 
@@ -151,7 +151,7 @@ entry/src/ohosTest/
    
    * 弹出框（openCustomDialog）默认为模态弹窗且有蒙层，不可与蒙层下方控件进行交互（不支持点击和手势等向下透传）。
 
-   * 可以通过配置promptAction.BaseDialogOptions类型中的isModal属性来实现模态和非模态弹窗，详细说明可参考弹窗的种类。
+   * 可以通过配置promptAction.BaseDialogOptions类型中的isModal属性来实现模态和非模态弹窗，详细说明可参考[弹窗的种类](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-dialog-overview.md#弹窗的种类)。
 
    * 当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
