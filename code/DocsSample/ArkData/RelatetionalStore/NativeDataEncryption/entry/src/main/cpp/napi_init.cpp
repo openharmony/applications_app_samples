@@ -41,6 +41,7 @@ static napi_value DefaultConfigRdbStore(napi_env env, napi_callback_info info)
     // [End DefaultConfigRdbStore]
     
     napi_value sum;
+    napi_create_int32(env, 0, &sum);
     return sum;
 }
 
@@ -96,6 +97,7 @@ static napi_value CustomizedConfigRdbStore(napi_env env,
     // [End CustomizedConfigRdbStore]
     
     napi_value sum;
+    napi_create_int32(env, 0, &sum);
     return sum;
 }
 
@@ -120,6 +122,7 @@ static napi_value BackupRdbStore(napi_env env, napi_callback_info info)
     // [End BackupRdbStore]
     
     napi_value sum;
+    napi_create_int32(env, 0, &sum);
     return sum;
 }
 
@@ -145,6 +148,7 @@ static napi_value RestoreRdbStore(napi_env env, napi_callback_info info)
     // [End rdb_OH_Rdb_Restore]
     
     napi_value sum;
+    napi_create_int32(env, 0, &sum);
     return sum;
 }
 
@@ -174,6 +178,10 @@ static napi_value SetSecurityLevelForRdbStore(napi_env env,
     OH_Rdb_DestroyConfig(config);
     config = nullptr;
     // [End SetSecurityLevelForRdbStore]
+    
+    napi_value ret;
+    napi_create_int32(env, 0, &ret);
+    return ret;
 }
 
 EXTERN_C_START
