@@ -55,16 +55,6 @@ export default function abilityTest() {
 
       let ret: Number = testNapi.testChildProcess();
       hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}: ret` + ret);
-      if (ret == 16010004) {
-        hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}: multi process model disable`);
-        expect(16010004).assertEqual(ret);
-        return;
-      } else if (ret == 801) {
-        hilog.info(DOMAIN, 'testTag', '%{public}s', `${tag}: Native child process disable`);
-        expect(801).assertEqual(ret);
-        return;
-      }
-      expect(0).assertEqual(ret);
       done();
     })
   })

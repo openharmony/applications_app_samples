@@ -76,7 +76,7 @@ entry/src/main/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 20版本SDK，版本号：6.0.0。
+2.本示例已适配API version 21版本SDK，版本号：6.0.0。
 
 3.本示例需要使用DevEco Studio 6.0 及以上版本才可编译运行。
 
