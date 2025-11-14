@@ -336,6 +336,7 @@ export default function IndexTest() {
       await textArea.inputText('this is content');
       await driver.triggerKey(KeyCode.KEYCODE_ENTER);
 
+      await driver.pressBack();
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.pressBack();
@@ -415,7 +416,6 @@ export default function IndexTest() {
       await driver.triggerKey(2049);
       await driver.triggerKey(2013);
       await driver.triggerKey(2013);
-      await driver.pressBack();
       await driver.pressBack();
       await driver.pressBack();
       done();

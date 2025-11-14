@@ -1,0 +1,116 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Notification"
+    },
+    {
+      "name": "ability_agent_create",
+      "value": "创建拉起UIAbility的WantAgent的WantAgentInfo信息"
+    },
+    {
+      "name": "pub_event_agent",
+      "value": "创建发布公共事件的WantAgent的WantAgentInfo信息"
+    },
+    {
+      "name": "plain_text_notify",
+      "value": "发布普通文本类型通知"
+    },
+    {
+      "name": "cancel_notify",
+      "value": "取消通知"
+    },
+    {
+      "name": "pub_notify_with_msgid",
+      "value": "发布通知消息，通知消息中包含appMessageId字段"
+    },
+    {
+      "name": "request_notify_auth",
+      "value": "请求通知授权"
+    },
+    {
+      "name": "manage_notify_badge",
+      "value": "管理通知角标"
+    },
+    {
+      "name": "manage_notify_channel",
+      "value": "管理通知渠道"
+    },
+    {
+      "name": "publish_notify",
+      "value": "发布通知"
+    },
+    {
+      "name": "add_notify_action",
+      "value": "为通知添加行为意图"
+    },
+    {
+      "name": "update_notify",
+      "value": "更新通知"
+    },
+    {
+      "name": "cross_device_clear_duplicate_notify",
+      "value": "清除跨设备场景下的重复通知"
+    },
+    {
+      "name": "increase_badge_count",
+      "value": "增加角标个数"
+    },
+    {
+      "name": "reduce_notify_badge",
+      "value": "减少角标个数"
+    },
+    {
+      "name": "badge_count_neg",
+      "value": "角标设置个数反例"
+    },
+    {
+      "name": "badge_count_pos",
+      "value": "角标设置个数正例"
+    },
+    {
+      "name": "create_channel_type",
+      "value": "创建指定类型的通知渠道"
+    },
+    {
+      "name": "get_channel_type",
+      "value": "查询指定类型的通知渠道"
+    },
+    {
+      "name": "delete_channel_type",
+      "value": "删除指定类型的通知渠道"
+    },
+    {
+      "name": "pub_plaintext_notify",
+      "value": "发布普通文本类型通知"
+    },
+    {
+      "name": "pub_multi_line_notify",
+      "value": "发布多行文本类型通知"
+    },
+    {
+      "name": "check_progress_template_notify",
+      "value": "查询系统是否支持进度条模板"
+    },
+    {
+      "name": "pub_progress_notify",
+      "value": "发布进度条类型通知"
+    },
+    {
+      "name": "cancel_notify_auth",
+      "value": "取消通知授权"
+    },
+    {
+      "name": "reapply_notify_auth",
+      "value": "再次申请通知授权"
+    }
+  ]
+}

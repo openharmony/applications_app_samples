@@ -19,7 +19,7 @@
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { backup } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 // [StartExclude session_restore]
 // [StartExclude session_backup]
 // [StartExclude get_local_cap_ability]

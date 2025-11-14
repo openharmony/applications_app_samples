@@ -26,6 +26,41 @@
 
 namespace NativeModule {
 
+// [StartExclude Interface_entrance_mounting_file]
+std::shared_ptr<ArkUIBaseNode> CreateLazyTextListExample(napi_env env)
+{
+    // 创建组件并挂载。
+    // 1：创建List组件。
+    auto list = std::make_shared<ArkUIListNode>();
+    list->SetPercentWidth(1);
+    list->SetPercentHeight(1);
+    // 2：创建ListItem懒加载组件并挂载到List上。
+    auto adapter = std::make_shared<ArkUIListItemAdapter>();
+    list->SetLazyAdapter(adapter);
+    return list;
+}
+
+napi_value CreateNativeNode(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    // 获取NodeContent。
+    ArkUI_NodeContentHandle contentHandle;
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
+    NativeEntry::GetInstance()->SetContentHandle(contentHandle);
+
+    // 创建懒加载文本列表。
+    auto node = CreateLazyTextListExample(env);
+
+    // 保持Native侧对象到管理类中，维护生命周期。
+    NativeEntry::GetInstance()->SetRootNode(node);
+    return nullptr;
+}
+// [EndExclude Interface_entrance_mounting_file]
+
 napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;

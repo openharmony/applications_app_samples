@@ -20,9 +20,13 @@ import { router } from '@kit.ArkUI';
 struct Index {
   build() {
     Column({ space: 10 }) {
-      Button('ImpNestedScroll')
+      Button('WebNestedScroll1')
         .onClick(() => {
           router.pushUrl({ url: 'pages/ImpNestedScroll' });
+        })
+      Button('WebNestedScroll2')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/WebNestedScroll' });
         })
       Button('OnIntKbdAttachSysCustIn')
         .onClick(() => {

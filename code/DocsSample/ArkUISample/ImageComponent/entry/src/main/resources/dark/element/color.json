@@ -2,7 +2,27 @@
   "color": [
     {
       "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Title_TextColor",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Index_backgroundColor",
+      "value": "#FF242222"
+    },
+    {
+      "name": "Index_Column",
       "value": "#000000"
+    } ,
+    {
+      "name": "Index_first",
+      "value": "#FFFFFF"
+    } ,
+    {
+      "name": "Title_Back",
+      "value": "#FF413F3F"
     }
   ]
 }

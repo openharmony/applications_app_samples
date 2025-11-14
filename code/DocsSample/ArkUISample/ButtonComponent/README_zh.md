@@ -33,55 +33,74 @@ entry/src/ohosTest/
 |---ets
 |   |---index.test.ets                 // 示例代码测试代码
 ```
-### 具体实现
+## 具体实现
+
 实现了弧形按钮使用用例，包含亮度值显示、滑动调节滑块和重置按钮。以下是详细实现过程：
-1. 数据定义
-   在结构体BrightnessPage中定义了两个核心数据：
-   @Local brightnessValue: number = 30：用@Local装饰器声明的本地状态变量，记录当前亮度值，初始值为 30（单位：%）。
-   private defaultBrightnessValue: number = 50：私有变量，存储默认亮度值（50%），用于重置功能。
-2. 布局容器
-   使用RelativeContainer作为根容器，通过对齐规则（alignRules） 管理子组件的位置关系，特点是：
-   容器尺寸设置为width('100%')和height('100%')，占满整个父容器。
-   背景色设为Color.Black（黑色），形成深色主题。
-3. 子组件实现
-   （1）标题文本（Text）
-   显示内容：$r('app.string.Brightness')，通过资源管理器引用字符串资源（“亮度”）。
-   样式：白色字体（Color.White）、字号 24、顶部外边距 16px。
-   位置：通过alignRules设置水平居中（middle对齐容器的HorizontalAlign.Center）。
-   （2）亮度值显示文本（Text）
-   显示内容：${this.brightnessValue} %，动态展示当前亮度值（如 “30 %”）。
-   样式：白色字体、左侧外边距 16px。
-   位置：
-   start对齐容器的HorizontalAlign.Start（左对齐容器左侧）。
-   center对齐容器的VerticalAlign.Center（垂直居中于容器）。
-   （3）亮度调节滑块（Slider）
-   核心配置：
-   value: this.brightnessValue：滑块当前值绑定到brightnessValue。
-   min: 0、max: 100：调节范围 0~100（对应亮度百分比）。
-   style: SliderStyle.InSet：滑块样式为内嵌模式（通常用于紧凑布局）。
-   样式：
-   滑块轨道未选中部分：trackColor('#ADD8E6')（浅蓝色）。
-   选中部分：selectedColor('#4169E1')（皇家蓝）。
-   滑块按钮：blockColor('#191970')（深靛蓝）。
-   宽度 150px，左右外边距 16px。
-   交互：onChange事件监听滑块值变化，实时更新brightnessValue（双向绑定）。
-   位置：
-   center对齐亮度文本（id_brightness_min_text）的垂直中心。
-   start对齐亮度文本的右侧（HorizontalAlign.End），即滑块紧接在文本右侧。
-   （4）重置按钮（ArcButton）
-   配置：通过ArcButtonOptions设置弧形按钮属性：
-   文本：$r('app.string.Reset')（引用 “重置” 字符串资源）。
-   样式：styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT（高亮浅色模式，适合深色背景）。
-   字号：19fp（基于字体像素的自适应单位）。
-   点击事件：onClick回调中将brightnessValue重置为defaultBrightnessValue（50%）。
-   位置：
-   middle对齐容器水平中心（水平居中）。
-   bottom对齐容器底部（垂直靠下）。
-4. 整体效果
-   页面呈现一个深色背景的亮度调节界面：
-   顶部居中显示 “亮度” 标题。
-   中间左侧显示当前亮度值（如 “30 %”），右侧紧接一个滑块，可拖动调节亮度（0~100%），滑块值实时同步到文本。
-   底部居中显示 “重置” 按钮，点击后亮度值恢复为 50%。
+
+### 数据定义
+
+在结构体BrightnessPage中定义了两个核心数据：
+
+- `@Local brightnessValue: number = 30`：用@Local装饰器声明的本地状态变量，记录当前亮度值，初始值为 30（单位：%）
+- `private defaultBrightnessValue: number = 50`：私有变量，存储默认亮度值（50%），用于重置功能
+
+### 布局容器
+
+使用RelativeContainer作为根容器，通过对齐规则（alignRules）管理子组件的位置关系，特点是：
+
+- 容器尺寸设置为`width('100%')`和`height('100%')`，占满整个父容器
+- 背景色设为`Color.Black`（黑色），形成深色主题
+
+### 子组件实现
+
+#### 1. 标题文本（Text）
+
+- **显示内容**：`$r('app.string.Brightness')`，通过资源管理器引用字符串资源（"亮度"）
+- **样式**：白色字体（`Color.White`）、字号 24、顶部外边距 16px
+- **位置**：通过alignRules设置水平居中（middle对齐容器的`HorizontalAlign.Center`）
+
+#### 2. 亮度值显示文本（Text）
+
+- **显示内容**：`${this.brightnessValue} %`，动态展示当前亮度值（如 "30 %"）
+- **样式**：白色字体、左侧外边距 16px
+- **位置**：
+   - start对齐容器的`HorizontalAlign.Start`（左对齐容器左侧）
+   - center对齐容器的`VerticalAlign.Center`（垂直居中于容器）
+
+#### 3. 亮度调节滑块（Slider）
+
+- **核心配置**：
+   - `value: this.brightnessValue`：滑块当前值绑定到brightnessValue
+   - `min: 0`、`max: 100`：调节范围 0~100（对应亮度百分比）
+   - `style: SliderStyle.InSet`：滑块样式为内嵌模式（通常用于紧凑布局）
+- **样式**：
+   - 滑块轨道未选中部分：`trackColor('#ADD8E6')`（浅蓝色）
+   - 选中部分：`selectedColor('#4169E1')`（皇家蓝）
+   - 滑块按钮：`blockColor('#191970')`（深靛蓝）
+   - 宽度 150px，左右外边距 16px
+- **交互**：onChange事件监听滑块值变化，实时更新brightnessValue（双向绑定）
+- **位置**：
+   - center对齐亮度文本（id_brightness_min_text）的垂直中心
+   - start对齐亮度文本的右侧（`HorizontalAlign.End`），即滑块紧接在文本右侧
+
+#### 4. 重置按钮（ArcButton）
+
+- **配置**：通过ArcButtonOptions设置弧形按钮属性：
+   - 文本：`$r('app.string.Reset')`（引用 "重置" 字符串资源）
+   - 样式：`styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT`（高亮浅色模式，适合深色背景）
+   - 字号：`19fp`（基于字体像素的自适应单位）
+- **点击事件**：onClick回调中将brightnessValue重置为defaultBrightnessValue（50%）
+- **位置**：
+   - middle对齐容器水平中心（水平居中）
+   - bottom对齐容器底部（垂直靠下）
+
+### 整体效果
+
+页面呈现一个深色背景的亮度调节界面：
+
+- 顶部居中显示 "亮度" 标题
+- 中间左侧显示当前亮度值（如 "30 %"），右侧紧接一个滑块，可拖动调节亮度（0~100%），滑块值实时同步到文本
+- 底部居中显示 "重置" 按钮，点击后亮度值恢复为 50%
 
 ### 相关权限
 
@@ -107,6 +126,6 @@ entry/src/ohosTest/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUISample/ButtonComponent > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````

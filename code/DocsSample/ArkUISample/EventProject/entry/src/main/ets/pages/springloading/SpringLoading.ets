@@ -25,7 +25,7 @@ export const springLoadingRoutePrefix: string = 'springLoadingExample';
 @Entry
 @ComponentV2
 export struct SpringLoadingPage {
-  context1 = this.getUIContext().getHostContext()
+  context1 = this.getUIContext().getHostContext();
   @Local isShowSheet: boolean = false;
   // app.string.Select_Result资源文件中的value值为'搜索结果：\n  设备 1\n  设备 2\n  设备 3\n  ... ...'
   private searchResult: string = this.context1?.resourceManager.getStringSync($r('app.string.Select_Result').id)!;
@@ -180,11 +180,11 @@ export struct SpringLoadingPage {
           //[Start springLoading_onDragEnter]
           .onDragEnter(() => {
             // 当用户拖拽进入按钮范围，即提醒用户，此处是可以处理数据的
-            this.buttonBackgroundColor = this.reminderColor
+            this.buttonBackgroundColor = this.reminderColor;
           })
           .onDragLeave(() => {
             // 当用户拖拽离开按钮范围，恢复UI
-            this.buttonBackgroundColor = this.normalColor
+            this.buttonBackgroundColor = this.normalColor;
           })
           //[End springLoading_onDragEnter]
           //[Start springLoading_onDragSpringLoading_null]

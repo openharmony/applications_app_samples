@@ -22,7 +22,6 @@ import { util } from '@kit.ArkTS';
 const TAG:string = "WatchAbility_DemoTest";
 
 export default class EntryAbility extends UIAbility {
-// [Start collab]
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -30,6 +29,7 @@ export default class EntryAbility extends UIAbility {
   onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     return 1;
   }
+  // [Start collab]
   onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
     hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
     let param = wantParam['ohos.extra.param.key.supportCollaborateIndex'] as Record<string, Object>
@@ -47,7 +47,7 @@ export default class EntryAbility extends UIAbility {
     abilityConnectionManager.acceptConnect(sessionId, collabToken).then(() => {
       AppStorage.setOrCreate<number>('sessionId', sessionId);
     }).catch(() => {
-      console.log(TAG + `acceptConnect failed` );
+      console.error(TAG + `acceptConnect failed` );
     })
   }
 

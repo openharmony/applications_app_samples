@@ -32,7 +32,7 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.Touch_Index_TouchEvent_title')),
     description: resource.resourceToString($r('app.string.Touch_Index_TouchEvent_description')),
   }
-]
+];
 
 @Builder
 export function TouchDestination(name: string) {

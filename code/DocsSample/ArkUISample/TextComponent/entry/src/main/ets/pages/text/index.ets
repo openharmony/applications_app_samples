@@ -236,19 +236,21 @@ struct TextExample {
 
   build() {
     NavDestination() {
-      List({ space: 12 }) {
-        ForEach(routes, (route: Route) => {
-          ListItem() {
-            CompletedRoutableCard({ title: route.title, description: route.description })
-          }
-          .width('100%')
-          .onClick(() => {
-            this.pathStack.pushPath({ name: route.name });
+      Scroll() {
+        List({ space: 12 }) {
+          ForEach(routes, (route: Route) => {
+            ListItem() {
+              CompletedRoutableCard({ title: route.title, description: route.description })
+            }
+            .width('100%')
+            .onClick(() => {
+              this.pathStack.pushPath({ name: route.name });
+            })
           })
-        })
-      }
-      .contentStartOffset(56)
-      .padding({ left: 16, right: 16 })
+        }
+        .contentStartOffset(56)
+        .padding({ left: 16, right: 16 })
+      }.id('scroll_')
     }
     .backgroundColor('#f1f3f5')
     .title('Text/Span', {

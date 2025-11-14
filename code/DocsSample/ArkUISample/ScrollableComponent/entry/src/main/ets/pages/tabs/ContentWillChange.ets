@@ -135,7 +135,7 @@ export struct ContentWillChange {
               })
 
               // app.string.ContentWillChange_animationMode资源文件中的value值为“动态修改animationMode”
-              Button($r('app.string.ContentWillChange_animationMode')).width('50%').margin({ top: 1 }).height(25)
+              Button($r('app.string.ContentWillChange_animationMode')).width('50%').margin({ top: 20 })
                 .onClick(()=>{
                   if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
                     this.currentAnimationMode = AnimationMode.ACTION_FIRST;
@@ -148,7 +148,7 @@ export struct ContentWillChange {
                   } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
                     this.currentAnimationMode = AnimationMode.CONTENT_FIRST;
                   }
-              })
+                })
 
               // app.string.ContentWillChange_changeIndex资源文件中的value值为“动态修改index”
               Button($r('app.string.ContentWillChange_changeIndex')).width('50%').margin({ top: 20 })

@@ -205,7 +205,7 @@
       "value": "是否选择关闭半模态"
     },{
       "name": "bindSheetCmd_label9",
-      "value": "拉起半模态e"
+      "value": "拉起半模态"
     },{
       "name": "bindSheetCmd_label10",
       "value": "enableHoverMode切换"

@@ -14,7 +14,7 @@
  */
 
 // [Start dynamic_webview_component_loading]
-// main/ets/pages/ndex.ets
+// main/ets/pages/Index.ets
 import { webview } from '@kit.ArkWeb';
 import { NodeController } from '@kit.ArkUI';
 import { createNode } from './DynamicComponent';

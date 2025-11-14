@@ -131,7 +131,7 @@ static napi_value NAPI_Pasteboard_get(napi_env env, napi_callback_info info)
         }
         napi_value result;
         napi_create_string_utf8(env, content, strlen(content), &result);
-        // 5. 使用完销毁指针
+        // 6. 使用完销毁指针
         OH_UdsPlainText_Destroy(plainText);
         OH_UdmfRecord_Destroy(record);
         return result;
@@ -181,11 +181,11 @@ OH_Pasteboard* CreateAndSetPasteboardData()
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     // 5. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
     OH_UdmfRecordProvider* provider = OH_UdmfRecordProvider_Create();
-    OH_UdmfRecordProvider_SetData(provider, (void*)record, GetDataCallback, ProviderFinalizeCallback);
+    OH_UdmfRecordProvider_SetData(provider, (void *)record, GetDataCallback, ProviderFinalizeCallback);
 
     // 6. 将provider绑定到record，并设置支持的数据类型。
     #define TYPE_COUNT 2
-    const char* types[TYPE_COUNT] = { UDMF_META_PLAIN_TEXT, UDMF_META_HTML };
+    const char* types[TYPE_COUNT] = {UDMF_META_PLAIN_TEXT, UDMF_META_HTML};
     OH_UdmfRecord_SetProvider(record, types, TYPE_COUNT, provider);
 
     // 7. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
@@ -278,7 +278,14 @@ static napi_value NAPI_Pasteboard_time(napi_env env, napi_callback_info info)
     // [Start pasteboard_timelapse_Record6]
     // 15. 查询剪贴板内的数据是否变化。
     uint32_t newChangeCount = OH_Pasteboard_GetChangeCount(pasteboard);
-    // 16. 如果newChangeCount == changeCount通知剪贴板获取全量数据，需要等待SyncCallback回调完成再继续退出
+    if (newChangeCount == changeCount) {
+        // 16. 通知剪贴板获取全量数据。
+        OH_Pasteboard_SyncDelayedDataAsync(pasteboard, SyncCallback);
+        // 需要等待SyncCallback回调完成再继续退出
+    } else {
+        // 继续退出
+        OH_LOG_INFO(LOG_APP, "No newChangeCount in pasteboard.");
+    }
     // [End pasteboard_timelapse_Record6]
     // 17. 查询剪贴板内的数据是否变化。
     // [Start pasteboard_timelapse_Record7]
@@ -293,9 +300,8 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        { "pasteboard_test_set", nullptr, NAPI_Pasteboard_set, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "pasteboard_test_get", nullptr, NAPI_Pasteboard_get, nullptr, nullptr, nullptr, napi_default, nullptr }
-    };
+        {"pasteboard_test_set", nullptr, NAPI_Pasteboard_set, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"pasteboard_test_get", nullptr, NAPI_Pasteboard_get, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
@@ -307,8 +313,8 @@ static napi_module demoModule = {
     .nm_filename = nullptr,
     .nm_register_func = Init,
     .nm_modname = "entry",
-    .nm_priv = ((void*)0),
-    .reserved = { 0 },
+    .nm_priv = ((void *)0),
+    .reserved = {0},
 };
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void)

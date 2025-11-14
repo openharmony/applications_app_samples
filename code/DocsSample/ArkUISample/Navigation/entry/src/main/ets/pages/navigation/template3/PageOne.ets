@@ -52,7 +52,7 @@ export struct PageOne {
           }
         }, () => {
           this.translateX = '0';
-        })
+        });
       } else {
         this.translateX = '0';
         this.getUIContext()?.animateTo({
@@ -62,7 +62,7 @@ export struct PageOne {
           }
         }, () => {
           this.translateX = '100%';
-        })
+        });
       }
     }, 200);
   }

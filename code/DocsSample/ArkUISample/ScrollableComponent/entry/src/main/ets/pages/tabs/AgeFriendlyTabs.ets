@@ -76,94 +76,96 @@ export struct AgeFriendlyTabs {
   }
 
   build() {
-    Column() {
+    NavDestination() {
       Column() {
-        Row() {
-          Text(`current fontSizeScale:${this.currentFontSizeScale}`)
-            .margin({ top: 5, bottom: 5 })
-            .fontSize(this.fontSize)
-        }
+        Column() {
+          Row() {
+            Text(`current fontSizeScale:${this.currentFontSizeScale}`)
+              .margin({ top: 5, bottom: 5 })
+              .fontSize(this.fontSize)
+          }
 
-        Row() {
-          Button('1.75')
-            .margin({ top: 5, bottom: 5 })
-            .fontSize(this.fontSize)
-            .width('40%')
-            .onClick(async () => {
-              await this.setFontScale(1.75);
-            })
-          Button('2')
-            .margin({ top: 5, bottom: 5 })
-            .fontSize(this.fontSize)
-            .width('40%')
-            .onClick(async () => {
-              await this.setFontScale(2);
-            })
-        }.margin({ top: 25 })
+          Row() {
+            Button('1.75')
+              .margin({ top: 5, bottom: 5 })
+              .fontSize(this.fontSize)
+              .width('40%')
+              .onClick(async () => {
+                await this.setFontScale(1.75);
+              })
+            Button('2')
+              .margin({ top: 5, bottom: 5 })
+              .fontSize(this.fontSize)
+              .width('40%')
+              .onClick(async () => {
+                await this.setFontScale(2);
+              })
+          }.margin({ top: 25 })
 
-        Row() {
-          Button('3.2')
-            .margin({ top: 5, bottom: 5 })
-            .fontSize(this.fontSize)
-            .width('40%')
-            .onClick(async () => {
-              await this.setFontScale(3.2);
-            })
-          Button('1')
-            .margin({ top: 5, bottom: 5 })
-            .fontSize(this.fontSize)
-            .width('40%')
-            .onClick(async () => {
-              await this.setFontScale(1);
-            })
-        }
+          Row() {
+            Button('3.2')
+              .margin({ top: 5, bottom: 5 })
+              .fontSize(this.fontSize)
+              .width('40%')
+              .onClick(async () => {
+                await this.setFontScale(3.2);
+              })
+            Button('1')
+              .margin({ top: 5, bottom: 5 })
+              .fontSize(this.fontSize)
+              .width('40%')
+              .onClick(async () => {
+                await this.setFontScale(1);
+              })
+          }
 
-        Row() {
-          // app.string.Dark_mode资源文件中的value值为“深色模式”
-          Button($r('app.string.Dark_mode'))
-            .margin({ top: 5, bottom: 5 })
-            .fontSize(this.fontSize)
-            .width('40%')
-            .onClick(async () => {
-              this.darkMode(true);
-            })
-          // app.string.Light_mode资源文件中的value值为“浅色模式”
-          Button($r('app.string.Light_mode'))
-            .margin({ top: 5, bottom: 5 })
-            .fontSize(this.fontSize)
-            .width('40%')
-            .onClick(async () => {
-              this.darkMode(false);
-            })
-        }
-      }.alignItems(HorizontalAlign.Start)
+          Row() {
+            // app.string.Dark_mode资源文件中的value值为“深色模式”
+            Button($r('app.string.Dark_mode'))
+              .margin({ top: 5, bottom: 5 })
+              .fontSize(this.fontSize)
+              .width('40%')
+              .onClick(async () => {
+                this.darkMode(true);
+              })
+            // app.string.Light_mode资源文件中的value值为“浅色模式”
+            Button($r('app.string.Light_mode'))
+              .margin({ top: 5, bottom: 5 })
+              .fontSize(this.fontSize)
+              .width('40%')
+              .onClick(async () => {
+                this.darkMode(false);
+              })
+          }
+        }.alignItems(HorizontalAlign.Start)
 
-      Column() {
-        Tabs({ barPosition: BarPosition.End }) {
-          TabContent() {
-            Column().width('100%').height('100%').backgroundColor(Color.Pink)
-          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'OverLength'))
-          TabContent() {
-            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
-          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'SixLine'))
-          TabContent() {
-            Column().width('100%').height('100%').backgroundColor(Color.Blue)
-          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
-          TabContent() {
-            Column().width('100%').height('100%').backgroundColor(Color.Green)
-          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
-        }
-        .vertical(false)
-        .scrollable(true)
-        .barMode(BarMode.Fixed)
-        .onChange((index: number) => {
-          hilog.info(DOMAIN, TAG, index.toString());
-        })
-        .width('100%')
-        .backgroundColor(0xF1F3F5)
-      }.width('80%').height(200)
-      .margin({ top: 200 })
-    }.width('100%')
+        Column() {
+          Tabs({ barPosition: BarPosition.End }) {
+            TabContent() {
+              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'OverLength'))
+            TabContent() {
+              Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'SixLine'))
+            TabContent() {
+              Column().width('100%').height('100%').backgroundColor(Color.Blue)
+            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+            TabContent() {
+              Column().width('100%').height('100%').backgroundColor(Color.Green)
+            }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+          }
+          .vertical(false)
+          .scrollable(true)
+          .barMode(BarMode.Fixed)
+          .onChange((index: number) => {
+            hilog.info(DOMAIN, TAG, index.toString());
+          })
+          .width('100%')
+          .backgroundColor(0xF1F3F5)
+        }.width('80%').height(200)
+        .margin({ top: 200 })
+      }.width('100%')
+    }
   }
 }
 // [End age_friendly_tab]

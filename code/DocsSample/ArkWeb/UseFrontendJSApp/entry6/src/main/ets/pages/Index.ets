@@ -42,7 +42,7 @@ struct Index {
   controller: webview.WebviewController = new webview.WebviewController(this.webTag);
   // [StartExclude customize_a_webtag_and_send_it_to_the_native_side_of_the_application]
   @State testObjtest: testObj = new testObj();
-  // [StartExclude customize_a_webtag_and_send_it_to_the_native_side_of_the_application]
+  // [EndExclude customize_a_webtag_and_send_it_to_the_native_side_of_the_application]
   // aboutToAppear中将webTag通过Node-API接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
   aboutToAppear() {
     console.info('aboutToAppear');

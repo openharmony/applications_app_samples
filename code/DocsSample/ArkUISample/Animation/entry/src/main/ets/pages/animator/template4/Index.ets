@@ -15,7 +15,6 @@
 // [Start animator_template4_import_start]
 import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 // [End animator_template4_import_start]
-import resource from '../../../common/resource';
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -117,8 +116,8 @@ struct Index {
       .width('100%')
       .height('45%')
       .align(Alignment.Start)
-      // app.string.animatorStatus资源文件中的value值为'当前动画状态为:'
-      Text(resource.resourceToString($r('app.string.animatorStatus')) + resource.resourceToString(this.animatorStatus))
+      // 'animatorStatus'资源文件中的value值为'当前动画状态为:'
+      Text(this.manager.getStringByNameSync('animatorStatus') + this.animatorStatus)
     }.width('100%').height('100%')
   }
 }

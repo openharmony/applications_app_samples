@@ -13,23 +13,21 @@
  * limitations under the License.
  */
 
-//  多媒体像素图页面
-//  [Start multimedia_pixel]
+// 多媒体像素图页面
+// [Start multimedia_pixel]
 import { http } from '@kit.NetworkKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-// [StartExclude multimedia_pixel]
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'Sample_imagecomponent';
-// [EndExclude multimedia_pixel]
+
 @Entry
 @Component
 struct HttpExample {
   outData: http.HttpResponse | undefined = undefined;
   code: http.ResponseCode | number | undefined = undefined;
-  @State image: PixelMap | undefined = undefined; //创建PixelMap状态变量
+  @State image: PixelMap | undefined = undefined; // 创建PixelMap状态变量
 
   // 使用createHttp接口将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上
   aboutToAppear(): void {
@@ -56,11 +54,11 @@ struct HttpExample {
 
   build() {
     Column() {
-      //显示图片
+      // 显示图片
       Image(this.image)
         .height(100)
         .width(100)
     }
   }
 }
-//  [End multimedia_pixel]
+// [End multimedia_pixel]

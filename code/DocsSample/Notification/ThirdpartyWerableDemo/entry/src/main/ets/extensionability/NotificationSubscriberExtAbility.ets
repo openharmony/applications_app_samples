@@ -22,6 +22,7 @@ const DOMAIN = 0x0000;
 
 export default class NotificationSubscriberExtAbility extends NotificationSubscriberExtensionAbility {
   private sppClientManager: SppClientManager | undefined;
+
   onDestroy(): void {
     hilog.info(DOMAIN, 'testTag', 'onDestroy');
     this.sppClientManager!.stopConnect();
@@ -35,7 +36,7 @@ export default class NotificationSubscriberExtAbility extends NotificationSubscr
         if (this.sppClientManager == undefined) {
           this.sppClientManager = new SppClientManager(info[0].addr);
         }
-        if(this.sppClientManager.isConnect()) {
+        if (this.sppClientManager.isConnect()) {
           this.sendPublishWithRetry(notificationInfo);
         } else {
           this.sppClientManager.startConnect()
@@ -45,13 +46,13 @@ export default class NotificationSubscriberExtAbility extends NotificationSubscr
         }
       })
   }
-  
+
   // Sends a publish notification and retries once upon failure.
   private sendPublishWithRetry(notificationInfo: notificationExtensionSubscription.NotificationInfo) {
     try {
       this.sppClientManager!.sendNotificationData(notificationInfo);
     } catch (err) {
-      hilog.info(DOMAIN, 'testTag', `send failed, errCode ${err.code}, errorMessage ${err.message}, and retry one times`);
+      hilog.error(DOMAIN, 'testTag', `send failed, errCode ${err.code}, errorMessage ${err.message}, and retry one times`);
       this.sppClientManager!.startConnect();
       setTimeout(() => {
         this.sppClientManager!.sendNotificationData(notificationInfo);
@@ -67,7 +68,7 @@ export default class NotificationSubscriberExtAbility extends NotificationSubscr
         if (this.sppClientManager == undefined) {
           this.sppClientManager = new SppClientManager(info[0].addr);
         }
-        if(this.sppClientManager.isConnect()) {
+        if (this.sppClientManager.isConnect()) {
           this.sendCancelWithRetry(hashCodes);
         } else {
           this.sppClientManager.startConnect()
@@ -80,11 +81,10 @@ export default class NotificationSubscriberExtAbility extends NotificationSubscr
 
   // Retries a cancel operation if it fails.
   private sendCancelWithRetry(hashCodes: string[]) {
-    this.sppClientManager!.sendCancelNotificationData(hashCodes);
     try {
       this.sppClientManager!.sendCancelNotificationData(hashCodes);
     } catch (err) {
-      hilog.info(DOMAIN, 'testTag', `send failed, errCode ${err.code}, errorMessage ${err.message}, and retry one times`);
+      hilog.error(DOMAIN, 'testTag', `send failed, errCode ${err.code}, errorMessage ${err.message}, and retry one times`);
       this.sppClientManager!.startConnect();
       setTimeout(() => {
         this.sppClientManager!.sendCancelNotificationData(hashCodes);

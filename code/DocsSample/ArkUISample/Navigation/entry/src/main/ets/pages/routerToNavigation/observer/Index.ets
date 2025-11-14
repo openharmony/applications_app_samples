@@ -38,10 +38,10 @@ export default class EntryAbility extends UIAbility {
         // NavDestinationState.ON_SHOWN = 0, NavDestinationState.ON_HIDE = 1
         if (info.state == 0) {
           // NavDestination组件显示时操作
-          hilog.info(DOMAIN, TAG, 'page ON_SHOWN:' + info.name.toString())
+          hilog.info(DOMAIN, TAG, 'page ON_SHOWN:' + info.name.toString());
         }
-      })
-    })
+      });
+    });
   }
 }
 // [End observer_index]

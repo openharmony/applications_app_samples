@@ -40,10 +40,10 @@ struct Index {
                   data3: [123, 456, 789]
                 }
               }
-            })
+            });
           } catch (err) {
-            let message = (err as BusinessError).message
-            let code = (err as BusinessError).code
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
             hilog.error(DOMAIN, TAG,`pushNamedRoute failed, code is ${code}, message is ${message}`);
           }
         })

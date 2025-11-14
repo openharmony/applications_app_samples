@@ -27,7 +27,7 @@ const routes: Route[] = [
     title: resource.resourceToString($r('app.string.gesture_Index_GestureJudge_title')),
     description: resource.resourceToString($r('app.string.gesture_Index_GestureJudge_description')),
   }
-]
+];
 
 @Builder
 export function GestureJudgeDestination(name: string) {

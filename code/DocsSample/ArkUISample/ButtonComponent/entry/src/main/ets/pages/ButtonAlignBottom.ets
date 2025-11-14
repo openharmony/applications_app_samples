@@ -17,7 +17,7 @@ import { ArcButton, ArcButtonOptions, ArcButtonPosition, ArcButtonStyleMode } fr
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xF811;
-const TAG = '[Sample_Button_Component]'
+const TAG = '[Sample_Button_Component]';
 
 @Entry
 @ComponentV2

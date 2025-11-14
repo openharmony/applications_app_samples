@@ -61,10 +61,10 @@ export default function IndexTest() {
       let str = await getResourceString($r('app.string.computed_desc_1'));
       let buttonComponent = await driver.findComponent(ON.text(str));
       await buttonComponent.click();
-      buttonComponent = await driver.findComponent(ON.text('changed lastName', MatchPattern.CONTAINS));
+      buttonComponent = await driver.findComponent(ON.text('lastName', MatchPattern.CONTAINS));
       await buttonComponent.click();
       await buttonComponent.click();
-      buttonComponent = await driver.findComponent(ON.text('changed age', MatchPattern.CONTAINS));
+      buttonComponent = await driver.findComponent(ON.text('age', MatchPattern.CONTAINS));
       await buttonComponent.click();
       await buttonComponent.click();
 

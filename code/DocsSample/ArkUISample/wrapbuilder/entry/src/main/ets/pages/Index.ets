@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI'
+import { router } from '@kit.ArkUI';
 interface Ary {
   path:string,
   name:string
@@ -42,7 +42,7 @@ struct Index {
       name:'PageComponentV2',
       path:'pages/PageComponentV2'
     },
-  ]
+  ];
   build() {
     Scroll() {
       Column({ space: 10 }) {

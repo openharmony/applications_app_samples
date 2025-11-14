@@ -17,8 +17,8 @@
 @Entry
 @Component
 struct FocusOnclickExample {
-  @State text: string = ''
-  @State number:number = 0
+  @State text: string = '';
+  @State number:number = 0;
 
   build() {
     Column() {
@@ -42,7 +42,7 @@ struct FocusOnclickExample {
         ])
         .onClick(() => {
           this.number++;
-          this.text = 'button' + this.number + 'clicked'
+          this.text = 'button' + this.number + 'clicked';
         })
         .width(200)
     }.width('100%').justifyContent(FlexAlign.Center)

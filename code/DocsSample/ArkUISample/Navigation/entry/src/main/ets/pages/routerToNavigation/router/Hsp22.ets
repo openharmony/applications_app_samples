@@ -14,5 +14,5 @@
  */
 
 // [Start router_hsp22]
-export { PageInHSP } from './src/main/ets/pages/PageInHSP'
+export { PageInHSP } from './src/main/ets/pages/PageInHSP';
 // [End router_hsp22]

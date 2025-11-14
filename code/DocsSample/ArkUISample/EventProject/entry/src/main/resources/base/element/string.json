@@ -601,12 +601,24 @@
       "value": "分发按键事件"
     },
     {
+      "name": "Key_OnKeyDistributeEvent_Description",
+      "value": "使用onKeyEventDispatch分发按键事件到子组件，子组件使用onKeyEvent。"
+    },
+    {
       "name": "OnKeyPreImeCommit_title",
-      "value": "使用OnKeyPreIme实现回车提交"
+      "value": "回车提交"
+    },
+    {
+      "name": "OnKeyPreImeCommit_Description",
+      "value": "使用OnKeyPreIme实现回车提交（建议使用物理键盘）。"
     },
     {
       "name": "Select_All",
       "value": "全选"
+    },
+    {
+      "name": "Container_Coking",
+      "value": "容器获焦"
     }
   ]
 }

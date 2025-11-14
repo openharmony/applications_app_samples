@@ -39,7 +39,7 @@ export struct MoreDrag {
   }
 
   onPageShow(): void {
-    let i: number = 0
+    let i: number = 0;
     for (i = 0; i < 100; i++) {
       this.numbers.push(i);
       this.isSelectedGrid.push(false);
@@ -96,7 +96,7 @@ export struct MoreDrag {
                       this.previewData[idx] = {
                         pixelMap: this.pixmap
                       };
-                    })
+                    });
                 } else {
                   this.numberBadge--;
                 }

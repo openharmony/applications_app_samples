@@ -24,7 +24,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 // @Builder中为动态组件的具体组件内容。
 // Data为入参封装类。
 class Data{
-  public url: string = '';
+  public url: string = 'https://www.example.com';
   public controller: WebviewController = new webview.WebviewController();
 }
 // 通过布尔变量shouldInactive控制网页在后台完成预渲染后停止渲染。
@@ -103,9 +103,9 @@ export const createNWeb = (url: string, uiContext: UIContext) => {
   baseNode.initWeb(url, uiContext, controller);
   controllerMap.set(url, controller);
   nodeMap.set(url, baseNode);
-}
+};
 // 自定义获取NodeController接口。
 export const getNWeb = (url : string) : MyNodeController2 | undefined => {
   return nodeMap.get(url);
-}
+};
 // [End Common_CommonIndex]

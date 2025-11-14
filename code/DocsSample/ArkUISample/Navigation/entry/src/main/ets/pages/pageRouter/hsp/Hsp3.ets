@@ -40,7 +40,7 @@ struct Index {
                   data3: [123, 456, 789]
                 }
               }
-            })
+            });
           } catch (err) {
             let message = (err as BusinessError).message;
             let code = (err as BusinessError).code;

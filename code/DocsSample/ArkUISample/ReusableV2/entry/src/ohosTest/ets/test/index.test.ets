@@ -25,12 +25,6 @@ const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let want: Want;
 
-async function getResourceString(resource: Resource): Promise<string> {
-  let manage = abilityDelegator.getAppContext().resourceManager;
-  let textString: string = await manage.getStringValue(resource);
-  return textString;
-}
-
 export default function IndexTest(){
   describe('IndexTest', () => {
 

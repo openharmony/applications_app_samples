@@ -4,19 +4,17 @@
 本教程通过一个简单的待办事项应用示例，逐步引入了状态管理V2装饰器，并通过代码重构实现了MVVM架构。最终，将数据、逻辑和视图分层，使得代码结构更加清晰、易于维护。具体介绍链接：
 
 1. [MVVM模式（状态管理V2）](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-mvvm-V2.md)。
-2. [AppStorageV2: 应用全局UI状态存储](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-appstoragev2.md)指南文档中示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
    
 ### 效果预览
-|TodoList页面                                   | AppStorageV2应用按钮                           | 使用AppStorageV2                               | 在两个页面之间存储数据                                  |
-|----------------------------------------------|-----------------------------------------------|----------------------------------------------|----------------------------------------------|
-|![todolist](./screenshots/MVVMV2-todolist.gif)|![AppV2](./screenshots/MVVMV2-AppStorageV2.png)| ![AppV2-1](./screenshots/AppStorageV2-1.png) | ![AppV2-2](./screenshots/AppStorageV2-1.png) |
+|TodoList页面                                   |
+|----------------------------------------------|
+|![todolist](./screenshots/MVVMV2-todolist.gif)|
 
 使用说明
 1. 点击任务切换任务完成状态；
 2. 点击删除、输入添加新任务完成任务增删；
 3. 点击全部完成、全部未完成更新所有任务完成状态；
 4. 点击设置，更新是否显示已完成任务。
-5. 点击AppStorageV2，查看存储全局UI状态状态变量。
 
 ### 工程目录
 ```
@@ -37,11 +35,7 @@
 │   │   │   ├── MonitorComputedPage.ets
 │   │   │   ├── AppStorageV2Page.ets
 │   │   │   ├── PersistenceV2Page.ets
-│   │   │   ├── BuilderPage.ets
-│   │   │   ├── AppStorageV2.ets         //使用AppStorageV2
-│   │   │   ├── PageOne.ets              //在PageOne和PageTwo两个页面之间存储数据Sample
-│   │   │   ├── PageTwo.ets 
-│   │   │   ├── Sample.ets               //Sample数据页面               
+│   │   │   ├── BuilderPage.ets       
 │   │   │   ├── SettingPage.ets          //设置页
 │   │   │   └── TodoListPage.ets         //重构后的主页面
 │   │   ├── /settingability
@@ -78,10 +72,6 @@
 1. Model层：TaskModel定义任务数据结构，TaskListModel提供任务加载业务逻辑（如从文件加载初始任务）；
 2. ViewModel层：TaskViewModel封装单个任务的状态与更新逻辑（如updateIsFinish），TaskListViewModel管理任务列表（加载、增删、批量更新状态）；
 3. View层：TitleView展示标题与未完成数，ListView渲染任务列表，BottomView提供操作按钮，各View通过@Param接收ViewModel数据并响应交互。
-
-五、AppStorageV2: 应用全局UI状态存储
-1. 使用AppStorageV2，AppStorageV2使用connect接口即可实现对AppStorageV2中数据的修改和同步，如果修改的数据被@Trace装饰，该数据的修改会同步更新UI。
-2. 在两个页面之间存储数据，先定义Sample数据页面，然后在Page1和Page2之间实现数据存储。
 
 ### 相关权限
 不涉及。

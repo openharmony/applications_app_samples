@@ -17,9 +17,9 @@ import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { wantAgent, WantAgent } from '@kit.AbilityKit';
-import PlayerModel from '../feature/BackgroundPlayerFeature'
+import PlayerModel from '../feature/BackgroundPlayerFeature';
 
-// [Start quick_start]
+// [Start continuous_task]
 function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
   // 长时任务id
   console.info('OnContinuousTaskCancel callback id ' + info.id);
@@ -31,20 +31,20 @@ function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
 @Component
 struct Index {
   @State message: string = 'ContinuousTask';
-  @State isSwitching: boolean = false
   // 通过getUIContext().getHostContext()方法，来获取page所在的UIAbility上下文
   private context: Context | undefined = this.getUIContext().getHostContext();
 
-  // [StartExclude quick_start]
+  // [StartExclude play_music]
+  @State isSwitching: boolean = false;
   // 播放或暂停
   onPlayClick(): void {
     if (this.isSwitching) {
-      console.info(`onPlayClick ignored, isSwitching`)
+      console.info(`onPlayClick ignored, isSwitching`);
       return
     }
-    console.info(`onPlayClick isPlaying= ${PlayerModel.isPlaying}`)
+    console.info(`onPlayClick isPlaying= ${PlayerModel.isPlaying}`);
     if (PlayerModel.isPlaying) {
-      PlayerModel.pauseMusic()
+      PlayerModel.pauseMusic();
       // cancel continuous task
       this.stopContinuousTask();
       PlayerModel.isPlaying = false;
@@ -63,18 +63,18 @@ struct Index {
   // 上一首
   onPreviousClick(): void {
     if (this.isSwitching) {
-      console.info(`onPreviousClick ignored, isSwitching`)
-      return
+      console.info(`onPreviousClick ignored, isSwitching`);
+      return;
     }
-    console.info(`onPreviousClick`)
-    PlayerModel.playerIndex--
+    console.info(`onPreviousClick`);
+    PlayerModel.playerIndex--;
     if (PlayerModel.playerIndex < 0 && PlayerModel.playlist.audioFiles.length >= 1) {
-      PlayerModel.playerIndex = PlayerModel.playlist.audioFiles.length - 1
+      PlayerModel.playerIndex = PlayerModel.playlist.audioFiles.length - 1;
     }
-    this.isSwitching = true
+    this.isSwitching = true;
     PlayerModel.preLoad(PlayerModel.playerIndex, () => {
       PlayerModel.playMusic(0, true, this.context as common.UIAbilityContext);
-      this.isSwitching = false
+      this.isSwitching = false;
       PlayerModel.isPlaying = true;
       if (!this.checkHaveAuidioPlaybackTask()) {
         this.startContinuousTask();
@@ -85,18 +85,18 @@ struct Index {
   // 下一首
   onNextClick(): void {
     if (this.isSwitching) {
-      console.info(`onNextClick ignored, isSwitching`)
-      return
+      console.info(`onNextClick ignored, isSwitching`);
+      return;
     }
-    console.info(`onNextClick`)
-    PlayerModel.playerIndex++
+    console.info(`onNextClick`);
+    PlayerModel.playerIndex++;
     if (PlayerModel.playerIndex >= PlayerModel.playlist.audioFiles.length) {
-      PlayerModel.playerIndex = 0
+      PlayerModel.playerIndex = 0;
     }
-    this.isSwitching = true
+    this.isSwitching = true;
     PlayerModel.preLoad(PlayerModel.playerIndex, () => {
       PlayerModel.playMusic(0, true, this.context as common.UIAbilityContext);
-      this.isSwitching = false
+      this.isSwitching = false;
       PlayerModel.isPlaying = true;
       if (!this.checkHaveAuidioPlaybackTask()) {
         this.startContinuousTask();
@@ -132,10 +132,10 @@ struct Index {
 
   aboutToAppear() {
     PlayerModel.getPlaylist(() => {
-      console.info(`on playlist generated`)
+      console.info(`on playlist generated`);
     })
   }
-  // [EndExclude quick_start]
+  // [EndExclude play_music]
 
   OnContinuousTaskCancel() {
     try {
@@ -191,11 +191,11 @@ struct Index {
             then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info('Operation startBackgroundRunning succeeded');
             // 此处执行具体的长时任务逻辑，如播音等。
-            // [StartExclude quick_start]
+            // [StartExclude apply_play_music]
             if (!PlayerModel.isPlaying) {
-              this.onPlayClick()
+              this.onPlayClick();
             }
-            // [EndExclude quick_start]
+            // [EndExclude apply_play_music]
           }).catch((error: BusinessError) => {
             console.error(`Failed to Operation startBackgroundRunning. code is ${error.code} message is ${error.message}`);
           });
@@ -212,11 +212,11 @@ struct Index {
   stopContinuousTask() {
     backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
       console.info(`Succeeded in operationing stopBackgroundRunning.`);
-      // [StartExclude quick_start]
+      // [StartExclude stop_play_music]
       if (PlayerModel.isPlaying) {
-        this.onPlayClick()
+        this.onPlayClick();
       }
-      // [EndExclude quick_start]
+      // [EndExclude stop_play_music]
     }).catch((err: BusinessError) => {
       console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
     });
@@ -284,11 +284,10 @@ struct Index {
           // 通过按钮取消注册长时任务取消回调
           this.OffContinuousTaskCancel();
         })
-
+        // [StartExclude play_music_ux]
         Text('播音业务功能')
           .fontSize(40)
           .fontWeight(FontWeight.Bold)
-
         Button() {
           Text('播放/暂停音乐').fontSize(25).fontWeight(FontWeight.Bold)
         }
@@ -301,7 +300,6 @@ struct Index {
         .onClick(() => {
           this.onPlayClick();
         })
-
         Button() {
           Text('上一首').fontSize(25).fontWeight(FontWeight.Bold)
         }
@@ -313,7 +311,6 @@ struct Index {
         .onClick(() => {
           this.onPreviousClick();
         })
-
         Button() {
           Text('下一首').fontSize(25).fontWeight(FontWeight.Bold)
         }
@@ -325,10 +322,11 @@ struct Index {
         .onClick(() => {
           this.onNextClick();
         })
+        // [EndExclude play_music_ux]
       }
       .width('100%')
     }
     .height('100%')
   }
-  // [End quick_start]
+  // [End continuous_task]
 }

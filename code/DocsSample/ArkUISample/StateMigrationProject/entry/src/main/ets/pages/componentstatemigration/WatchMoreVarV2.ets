@@ -17,12 +17,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
+const APPLE_INIT = 0;
+const ORANGE_INIT = 0;
 
 @Entry
 @ComponentV2
 struct MonitorExample {
-  @Local apple: number = 0;
-  @Local orange: number = 0;
+  @Local apple: number = APPLE_INIT;
+  @Local orange: number = ORANGE_INIT;
 
   // @Monitor回调，支持监听多个变量，可以获取变化前的值
   @Monitor('apple','orange')

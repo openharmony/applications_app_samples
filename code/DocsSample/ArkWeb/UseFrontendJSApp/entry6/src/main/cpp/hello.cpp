@@ -267,7 +267,7 @@ static napi_value NativeWebInit(napi_env env, napi_callback_info info)
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit NativeWebInit end");
     delete[] webTagValue;
     return nullptr;
-    // [EndtExclude parse_and_store_webtags]
+    // [EndExclude parse_and_store_webtags]
 }
 // [End parse_and_store_webtags]
 

@@ -18,7 +18,7 @@
   "devDependencies": {},
   "name": "entry",
   "description": "example description",
-  "repository": {},
+  "repository": "",
   "version": "1.0.0",
   "dependencies": {}
 }

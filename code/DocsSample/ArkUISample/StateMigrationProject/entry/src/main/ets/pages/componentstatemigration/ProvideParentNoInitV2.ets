@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 // [Start Parent22_start]
+const PARENT_INIT_VALUE = 42;
+const CHILD_ONCE_PARAM_INIT = 0;
+
 @Entry
 @ComponentV2
 struct Parent {
-  @Local parentValue: number = 42;
+  @Local parentValue: number = PARENT_INIT_VALUE;
 
   build() {
     Column() {
@@ -28,7 +31,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
-  @Param @Once initialValue: number = 0;
+  @Param @Once initialValue: number = CHILD_ONCE_PARAM_INIT;
   @Provider() childValue: number = this.initialValue;
 
   build() {

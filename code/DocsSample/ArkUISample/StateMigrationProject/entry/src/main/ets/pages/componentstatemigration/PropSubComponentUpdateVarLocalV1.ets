@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 // [Start Parent15_start]
+const CHILD_PROP_INITIAL_VALUE = 0;
+const PARENT_STATE_INITIAL_VALUE = 10;
+
 @Component
 struct Child {
-  @Prop localValue: number = 0;
+  @Prop localValue: number = CHILD_PROP_INITIAL_VALUE;
 
   build() {
     Column() {
@@ -32,7 +35,7 @@ struct Child {
 @Entry
 @Component
 struct Parent {
-  @State value: number = 10;
+  @State value: number = PARENT_STATE_INITIAL_VALUE;
 
   build() {
     Column() {

@@ -55,7 +55,7 @@ struct ShowAlert {
       let message = (err as BusinessError).message;
       let code = (err as BusinessError).code;
       hilog.error(DOMAIN, TAG, `Invoke showDialog failed, code is ${code}, message is ${message}`);
-    })
+    });
   }
   // [End page_showDialog2]
 

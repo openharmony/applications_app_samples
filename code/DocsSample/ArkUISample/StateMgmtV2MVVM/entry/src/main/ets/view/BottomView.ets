@@ -20,7 +20,7 @@ import { common, Want } from '@kit.AbilityKit';
 import TaskViewModel from '../viewmodel/TaskViewModel';
 import TaskListViewModel from '../viewmodel/TaskListViewModel';
 
-@Builder export function actionButton(text: string|Resource, onClick:() => void) {
+@Builder export function ActionButton(text: string|Resource, onClick:() => void) {
   Button(text, { buttonStyle: ButtonStyleMode.NORMAL })
     .onClick(onClick)
     .margin({ left: 10, right: 10, top: 5, bottom: 5 })
@@ -35,12 +35,12 @@ export default struct BottomView {
   build() {
     Column() {
       Row() {
-        actionButton('All Completed', (): void => this.taskList.finishAll(true))
-        actionButton('All Not Completed', (): void => this.taskList.finishAll(false))
+        ActionButton('All Completed', (): void => this.taskList.finishAll(true))
+        ActionButton('All Not Completed', (): void => this.taskList.finishAll(false))
       }
       .margin({ top: 10 })
       Row(){
-        actionButton('Setting', (): void => {
+        ActionButton('Setting', (): void => {
           let wantInfo: Want = {
             deviceId: '', // deviceId为空表示本设备。
             bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName。
@@ -54,7 +54,7 @@ export default struct BottomView {
         TextInput({ placeholder: 'Add new tasks', text: this.newTaskName })
           .onChange((value) => this.newTaskName = value)
           .width('70%')
-        actionButton('+', (): void => {
+        ActionButton('+', (): void => {
           let newTask = new TaskViewModel();
           newTask.taskName = this.newTaskName;
           this.taskList.addTask(newTask);
