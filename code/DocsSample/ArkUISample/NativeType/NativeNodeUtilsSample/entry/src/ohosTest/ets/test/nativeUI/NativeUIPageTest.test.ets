@@ -51,15 +51,12 @@ export default function NativeUIPageTest() {
     /**
      * @tc.number ArkUINativeUI_001
      * @tc.name NativeUITest_001
-     * @tc.desc 点击显示隐藏按钮
+     * @tc.desc 自定义绘制容器测试
      */
     it('NativeUIPageTest', 0, async () => {
       const driver = Driver.create();
       const button = await driver.findComponent(ON.text('ShowNativeUIPage'));
       await button.click();
-      await driver.delayMs(1000);
-      const button1 = await driver.findComponent(ON.text('HideNativeUI'));
-      await button1.click();
       await driver.delayMs(1000);
     })
   })
