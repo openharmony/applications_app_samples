@@ -19,33 +19,35 @@ import { UIContext } from '@kit.ArkUI';
 @Component
 struct Index {
   build() {
-    Column(){
-      Column(){
+    Column() {
+      Column() {
         // $r('app.string.Linear_Gradient_Effect')需要替换为开发者所需的文本资源文件
         Text($r('app.string.Linear_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
-      .onClick(()=>{
+      .onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         const router = uiContext.getRouter();
-        router.pushUrl({url:'homePage/LinearGradientEffect'});
+        router.pushUrl({ url: 'homePage/LinearGradientEffect' });
       })
-      Column(){
+
+      Column() {
         // $r('app.string.Direction_Gradient_Effect')需要替换为开发者所需的文本资源文件
         Text($r('app.string.Direction_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
-      .onClick(()=>{
+      .onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         const router = uiContext.getRouter();
-        router.pushUrl({url:'homePage/DirectionGradientEffect'});
+        router.pushUrl({ url: 'homePage/DirectionGradientEffect' });
       })
-      Column(){
+
+      Column() {
         // $r('app.string.Radial_Gradient_Effect')需要替换为开发者所需的文本资源文件
         Text($r('app.string.Radial_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
-      .onClick(()=>{
+      .onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         const router = uiContext.getRouter();
-        router.pushUrl({url:'homePage/RadialGradientEffect'});
+        router.pushUrl({ url: 'homePage/RadialGradientEffect' });
       })
     }
   }
