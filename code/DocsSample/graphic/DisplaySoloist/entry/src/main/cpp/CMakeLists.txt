@@ -20,4 +20,6 @@ find_library(
     hilog_ndk.z
 )
 target_link_libraries(entry PUBLIC ${hilog-lib})
+#// [Start display_soloist_add_lib]
 target_link_libraries(entry PUBLIC libace_napi.z.so libnative_drawing.so libnative_window.so libace_ndk.z.so libnative_display_soloist.so)
+#// [End display_soloist_add_lib]

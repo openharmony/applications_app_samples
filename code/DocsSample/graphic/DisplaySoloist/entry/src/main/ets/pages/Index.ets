@@ -14,9 +14,11 @@
  */
 // [Start display_soloist_create_xcomponent]
 import XComponentContext from '../interface/XComponentContext';
+// [StartExclude display_soloist_create_xcomponent]
 import Logger from '../utils/Logger';
 
 const TAG = '[XComponentDisplaySoloist]';
+// [EndExclude display_soloist_create_xcomponent]
 
 @Entry
 @Component
@@ -27,7 +29,9 @@ struct Index {
   // [StartExclude display_soloist_create_xcomponent]
   // [Start display_soloist_disappear]
   aboutToDisappear(): void {
+    // [StartExclude display_soloist_disappear]
     Logger.info(TAG, 'aboutToDisappear');
+    // [EndExclude display_soloist_disappear]
     if (this.xComponentContext1) {
       this.xComponentContext1.unregister();
       this.xComponentContext1.destroy();
@@ -37,9 +41,9 @@ struct Index {
       this.xComponentContext2.destroy();
     }
   }
-  // [End display_soloist_disappear]
   // [EndExclude display_soloist_create_xcomponent]
 
+  // [StartExclude display_soloist_disappear]
   build() {
     Column() {
       Row() {
@@ -61,7 +65,9 @@ struct Index {
           .onLoad((xComponentContext) => {
             this.xComponentContext1 = xComponentContext as XComponentContext;
           }).width('640px')
+          // [StartExclude display_soloist_create_xcomponent]
           .backgroundColor(Color.White)
+          // [EndExclude display_soloist_create_xcomponent]
       }.height('40%')
 
       Row() {
@@ -83,10 +89,13 @@ struct Index {
           .onLoad((xComponentContext) => {
             this.xComponentContext2 = xComponentContext as XComponentContext;
           }).width('640px')
+          // [StartExclude display_soloist_create_xcomponent]
           .backgroundColor(Color.White)
+          // [EndExclude display_soloist_create_xcomponent]
       }.height('40%')
-      // [End display_soloist_create_xcomponent]
+      // [EndExclude display_soloist_disappear]
 
+      // [StartExclude display_soloist_create_xcomponent]
       // [Start display_soloist_start_and_stop]
       Row() {
         Button('Start')
@@ -122,12 +131,14 @@ struct Index {
           .width('30%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
-
       }
+      // [End display_soloist_disappear]
       .justifyContent(FlexAlign.SpaceEvenly)
       .width('100%')
       .height('20%')
       // [End display_soloist_start_and_stop]
+      // [EndExclude display_soloist_create_xcomponent]
     }
   }
 }
+// [End display_soloist_create_xcomponent]

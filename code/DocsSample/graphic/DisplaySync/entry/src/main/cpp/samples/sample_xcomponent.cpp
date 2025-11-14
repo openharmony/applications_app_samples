@@ -14,7 +14,9 @@
  */
 #include <bits/alltypes.h>
 #include <native_drawing/drawing_font_collection.h>
+// [Start display_sync_import_module_two]
 #include <native_drawing/drawing_text_typography.h>
+// [End display_sync_import_module_two]
 #include "common/log_common.h"
 #include "sample_xcomponent.h"
 
@@ -63,9 +65,10 @@ static void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
     SampleXComponent::Release(id);
 }
 
-// Start display_sync_napi_frame_rate_setting_and_subscription_function_registration]
+// [Start display_sync_napi_frame_rate_setting_and_subscription_function_registration]
 static void TestCallback(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp)
 {
+    // [StartExclude display_sync_napi_frame_rate_setting_and_subscription_function_registration]
     SAMPLE_LOGI("test callback timestamp = %{public}llu, targetTimestamp = %{public}llu", timestamp, targetTimestamp);
     if (component == nullptr) {
         SAMPLE_LOGE("TestCallback: component is null");
@@ -84,6 +87,7 @@ static void TestCallback(OH_NativeXComponent *component, uint64_t timestamp, uin
     OHNativeWindow *nativeWindow = render->GetNativeWindow();
     uint64_t width;
     uint64_t height;
+    // [EndExclude display_sync_napi_frame_rate_setting_and_subscription_function_registration]
     
     int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, nativeWindow, &width, &height);
     if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
@@ -97,13 +101,15 @@ static void TestCallback(OH_NativeXComponent *component, uint64_t timestamp, uin
             int offset = 4;
             render->ConstructPath(offset, offset, render->defaultOffsetY);
         }
+        // [StartExclude display_sync_napi_frame_rate_setting_and_subscription_function_registration]
         render->SetPenAndBrush();
         render->DrawPath();
         render->DisPlay();
         render->Destroy();
+        // [EndExclude display_sync_napi_frame_rate_setting_and_subscription_function_registration]
     }
 }
-// End display_sync_napi_frame_rate_setting_and_subscription_function_registration]
+// [End display_sync_napi_frame_rate_setting_and_subscription_function_registration]
 
 static std::unordered_map<std::string, SampleXComponent *> g_instance;
 
@@ -418,7 +424,9 @@ void SampleXComponent::RegisterCallback(OH_NativeXComponent *nativeXComponent)
 // [Start display_sync_register_on_frame_callback]
 void SampleXComponent::RegisterOnFrameCallback(OH_NativeXComponent *nativeXComponent)
 {
+    // [StartExclude display_sync_register_on_frame_callback]
     SAMPLE_LOGI("register onFrameCallback");
+    // [EndExclude display_sync_register_on_frame_callback]
     OH_NativeXComponent_RegisterOnFrameCallback(nativeXComponent, TestCallback);
 }
 // [End display_sync_register_on_frame_callback]
