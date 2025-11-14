@@ -96,11 +96,11 @@ struct Index {
                   type: notificationExtensionSubscription.SubscribeType.BLUETOOTH
                 })
               })
-              let result = await notificationExtensionSubscription.subscribe(subscribeInfo);
-              hilog.info(DOMAIN, 'testTag', `subscribe result ${result}`);
-            } catch (error) {
-              hilog.error(DOMAIN, 'testTag', `failed to call subscribe`)
-            }
+              notificationExtensionSubscription.subscribe(infos).then(() => {
+              hilog.info(DOMAIN, 'testTag', "subscribe success");
+              }).catch((err: BusinessError) => {
+                hilog.error(`subscribe fail: ${JSON.stringify(err)}`);
+              });
           })
         Button("unsubscribe").backgroundColor('#FFFF00FF')
           .onClick(async (e: ClickEvent) => {
