@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from '@ohos.app.ability.AbilityStage'
+import { AbilityStage } from '@kit.AbilityKit'
 
 export default class MyAbilityStage extends AbilityStage {
 }

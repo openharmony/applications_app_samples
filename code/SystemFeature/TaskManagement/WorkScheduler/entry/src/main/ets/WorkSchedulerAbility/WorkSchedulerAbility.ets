@@ -13,35 +13,45 @@
  * limitations under the License.
  */
 
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-import http from '@ohos.net.http';
-import Notification from '@ohos.notification';
+import {workScheduler, WorkSchedulerExtensionAbility} from '@kit.BackgroundTasksKit';
+import { http } from '@kit.NetworkKit';
+import { notificationSubscribe } from '@kit.NotificationKit';
 import { WorkSchedulerSystem } from '../feature/WorkSchedulerSystem';
 import { Logger } from '../utils/Logger';
 
 const VERSION: string = '1.0';
 const HTTP_STATUS_CODE: number = 200;
-const URL: string = 'https://gitee.com/openharmony/applications_app_samples/raw/master/code/DataMock/' +
+const URL: string = 'https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DataMock/' +
   'WorkScheduler/UpdateWorkScheduler.hap';
 const BUNDLE_NAME = ['ohos.samples.workschedulerextensionability'];
 
+// [Start workSchedulerExtension]
 export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility {
-  onWorkStart(workInfo) {
+  // 延迟任务开始回调
+  onWorkStart(workInfo: workScheduler.WorkInfo) {
     Logger.info('WorkScheduler', 'WorkSchedulerAbility start');
-    let filePath = JSON.parse(workInfo.parameters).filePath;
-    if (JSON.parse(workInfo.parameters).version === VERSION) {
+    // 打印 parameters中的参数，如：参数key1
+    console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`);
+    // [StartExclude workSchedulerExtension]
+    let version:string = '';
+    let filePath: string = '';
+    if (workInfo.parameters) {
+      filePath = JSON.parse(workInfo.parameters?.toString()).filePath;
+      version = JSON.parse(workInfo.parameters?.toString()).version;
+    }
+    if (version === VERSION) {
       let result: Promise<http.HttpResponse> = WorkSchedulerSystem.getNewHap(URL);
       result.then(data => {
-        Logger.info('WorkScheduler', 'getNewHap success');
         if (data.responseCode === HTTP_STATUS_CODE) {
           WorkSchedulerSystem.saveFile(filePath, data.result as ArrayBuffer);
           WorkSchedulerSystem.publishNotification('download', 'isReady', 'download hap to update the application');
-          Notification.subscribe({
+          notificationSubscribe.subscribe({
             onConsume: (data) => {
-              if (data.request.content.normal.text === 'allow') {
+              if (data.request.content.normal?.text === 'allow') {
                 let path: string[] = [];
                 path.push(filePath);
-                WorkSchedulerSystem.installBundle(path);
+                workInfo.parameters = {};
+                WorkSchedulerSystem.installBundle(path, workInfo);
               }
             }
           }, {
@@ -50,5 +60,12 @@ export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility 
         }
       })
     }
+    // [EndExclude workSchedulerExtension]
+  }
+
+  // 延迟任务结束回调。当延迟任务2分钟超时或应用调用stopWork接口取消任务时，触发该回调。
+  onWorkStop(workInfo: workScheduler.WorkInfo) {
+    console.info(`onWorkStop, workInfo is ${JSON.stringify(workInfo)}`);
   }
 }
+// [End workSchedulerExtension]
