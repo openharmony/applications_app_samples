@@ -21,6 +21,7 @@ struct Index {
   build() {
     Column(){
       Column(){
+        // $r('app.string.Linear_Gradient_Effect')需要替换为开发者所需的文本资源文件
         Text($r('app.string.Linear_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
       .onClick(()=>{
@@ -29,6 +30,7 @@ struct Index {
         router.pushUrl({url:'homePage/LinearGradientEffect'});
       })
       Column(){
+        // $r('app.string.Direction_Gradient_Effect')需要替换为开发者所需的文本资源文件
         Text($r('app.string.Direction_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
       .onClick(()=>{
@@ -37,6 +39,7 @@ struct Index {
         router.pushUrl({url:'homePage/DirectionGradientEffect'});
       })
       Column(){
+        // $r('app.string.Radial_Gradient_Effect')需要替换为开发者所需的文本资源文件
         Text($r('app.string.Radial_Gradient_Effect')).backgroundColor(Color.Green)
       }.width('100%').height(50)
       .onClick(()=>{
