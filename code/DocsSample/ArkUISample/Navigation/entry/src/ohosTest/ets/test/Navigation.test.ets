@@ -105,7 +105,7 @@ export function NavigationTest() {
       await driver.delayMs(300);
 
       aimComponent = await driver.findComponent(ON.text('NavIndex'));
-      expect(aimComponent)
+      expect(aimComponent);
       hilog.info(DOMAIN, TAG, 'Navigation_NavigationTest_002_end');
     })
 

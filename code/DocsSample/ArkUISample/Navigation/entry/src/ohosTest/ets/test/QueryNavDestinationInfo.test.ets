@@ -63,15 +63,15 @@ export function QueryNavDestinationInfoTest() {
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text('pageOne'))
+      aimComponent = await driver.findComponent(ON.text('pageOne'));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.navStackTemp1PageOne_text1'))))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.navStackTemp1PageOne_text1'))));
       await aimComponent.click();
       await driver.delayMs(1000);
 
-      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.navStackTemp1PageOne_text3'))))
+      aimComponent = await driver.findComponent(ON.text(resourceManager.getStringSync($r('app.string.navStackTemp1PageOne_text3'))));
       await aimComponent.click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'Navigation_QueryNavDestinationInfoTest_001_end');

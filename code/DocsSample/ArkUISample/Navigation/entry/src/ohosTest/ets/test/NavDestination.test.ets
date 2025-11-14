@@ -46,7 +46,7 @@ export function NavDestinationTest() {
       do {
         await driver.pressBack();
         aimComponent = await driver.findComponent(ON.text('Index'));
-      } while (aimComponent == null)
+      } while (aimComponent == null);
     })
 
     /*
@@ -87,7 +87,7 @@ export function NavDestinationTest() {
 
       await driver.pressBack();
 
-      aimComponent = await driver.findComponent(ON.text('push PageOne'))
+      aimComponent = await driver.findComponent(ON.text('push PageOne'));
       await aimComponent.click();
       await driver.delayMs(300);
 
