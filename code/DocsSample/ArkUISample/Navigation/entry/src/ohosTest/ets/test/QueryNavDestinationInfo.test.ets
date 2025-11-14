@@ -17,14 +17,14 @@ import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { ON } from '@ohos.UiTest';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 
 const driver = Driver.create();
-const BUNDLE = 'Navigation_'
+const BUNDLE = 'Navigation_';
 const TAG = '[Sample_Navigation_]';
-const DOMAIN = 0xF811
+const DOMAIN = 0xF811;
 let resourceManager = delegator.getAppContext().resourceManager;
-let aimComponent : Component
+let aimComponent : Component;
 
 export function QueryNavDestinationInfoTest() {
   describe('Navigation_QueryNavDestinationInfoTest', () => {
@@ -46,7 +46,7 @@ export function QueryNavDestinationInfoTest() {
       do {
         await driver.pressBack();
         aimComponent = await driver.findComponent(ON.text('Index'));
-      } while (aimComponent == null)
+      } while (aimComponent == null);
     })
 
     /*
