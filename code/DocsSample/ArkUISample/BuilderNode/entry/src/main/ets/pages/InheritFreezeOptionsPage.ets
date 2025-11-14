@@ -16,12 +16,11 @@
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const INITIAL_VALUE_ZERO = 0;
 const PAGE_ONE_INDEX = 1;
 const PAGE_TWO_INDEX = 2;
 
 class Params {
-  public count: number = INITIAL_VALUE_ZERO;
+  public count: number = 0;
 
   constructor(count: number) {
     this.count = count;
@@ -39,7 +38,7 @@ function buildText(params: Params) {
 class TextNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private textNode: BuilderNode<[Params]> | null = null;
-  private count: number = INITIAL_VALUE_ZERO;
+  private count: number = 0;
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
@@ -67,8 +66,8 @@ const textNodeController: TextNodeController = new TextNodeController();
 @Component
 struct MyNavigationTestStack {
   @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @State message: number = INITIAL_VALUE_ZERO;
-  @State logNumber: number = INITIAL_VALUE_ZERO;
+  @State message: number = 0;
+  @State logNumber: number = 0;
 
   @Builder
   PageMap(name: string) {
@@ -185,7 +184,7 @@ struct NavigationContentMsgStack {
 @Component({ freezeWhenInactive: true })
   // 设置冻结策略为不活跃冻结
 struct TextBuilder {
-  @Prop @Watch('info') message: number = INITIAL_VALUE_ZERO;
+  @Prop @Watch('info') message: number = 0;
 
   info(): void {
     hilog.info(0xF811, 'testTag', '%{public}s',

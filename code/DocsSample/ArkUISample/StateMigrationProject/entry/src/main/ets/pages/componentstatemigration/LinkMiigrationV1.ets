@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start Parent7_start]
-const INITIAL_COUNT = 10;
+const INITIAL_MYVAL = 10;
 
 @Component
 struct Child {
@@ -34,7 +34,7 @@ struct Child {
 @Entry
 @Component
 struct Parent {
-  @State myVal: number = INITIAL_COUNT;
+  @State myVal: number = INITIAL_MYVAL;
 
   build() {
     Column() {

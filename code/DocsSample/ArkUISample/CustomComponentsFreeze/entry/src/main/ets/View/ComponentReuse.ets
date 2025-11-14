@@ -17,13 +17,12 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
-const COUNT_INITIAL_VALUE = 0;
 
 @Reusable
 @Component({ freezeWhenInactive: true })
 struct ChildComponent {
   @Link @Watch('descChange') desc: string;
-  @State count: number = COUNT_INITIAL_VALUE;
+  @State count: number = 0;
 
   descChange() {
     hilog.info(DOMAIN, TAG, `ChildComponent messageChange ${this.desc}`);
@@ -52,7 +51,7 @@ struct ChildComponent {
 struct Page {
   @State desc: string = 'Hello World';
   @State flag: boolean = true;
-  @State count: number = COUNT_INITIAL_VALUE;
+  @State count: number = 0;
 
   build() {
     Column() {

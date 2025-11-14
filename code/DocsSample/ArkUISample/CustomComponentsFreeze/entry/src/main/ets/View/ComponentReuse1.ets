@@ -16,7 +16,6 @@
 import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
-const INDEX_INITIAL_VALUE = 0;
 
 // 用于处理数据监听的IDataSource的基本实现
 class BasicDataSource implements IDataSource {
@@ -111,7 +110,7 @@ class MyDataSource extends BasicDataSource {
 struct ChildComponent {
   @Link @Watch('descChange') desc: string;
   @State item: string = '';
-  @State index: number = INDEX_INITIAL_VALUE;
+  @State index: number = 0;
 
   descChange() {
     hilog.info(DOMAIN, TAG, `ChildComponent messageChange ${this.desc}`);

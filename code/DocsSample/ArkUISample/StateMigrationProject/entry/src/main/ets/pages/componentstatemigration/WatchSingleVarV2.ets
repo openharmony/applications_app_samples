@@ -17,12 +17,11 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
-const APPLE_INIT = 0;
 
 @Entry
 @ComponentV2
 struct MonitorExample {
-  @Local apple: number = APPLE_INIT;
+  @Local apple: number = 0;
 
   @Monitor('apple')
   onFruitChange(monitor: IMonitor) {

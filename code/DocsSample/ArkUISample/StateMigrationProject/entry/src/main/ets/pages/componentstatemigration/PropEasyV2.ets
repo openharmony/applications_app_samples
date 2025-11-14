@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 // [Start Parent10_start]
-const INITIAL_VALUE = 0;
-
 @ComponentV2
 struct Child {
-  @Param value: number = INITIAL_VALUE;
+  @Param value: number = 0;
 
   build() {
     Text(this.value.toString())

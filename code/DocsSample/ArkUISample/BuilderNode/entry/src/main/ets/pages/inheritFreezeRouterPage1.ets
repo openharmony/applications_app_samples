@@ -18,7 +18,6 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const BOOK_INITIAL_NAME = '100';
-const INDEX_INITIAL_VALUE = 0;
 
 @ObservedV2
 export class Book {
@@ -38,7 +37,7 @@ function buildText(book: Book) {
 class TextNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
   public textNode: BuilderNode<[Book]> | null = null;
-  public index: number = INDEX_INITIAL_VALUE;
+  public index: number = 0;
   public name: string = BOOK_INITIAL_NAME;
 
   makeNode(context: UIContext): FrameNode | null {

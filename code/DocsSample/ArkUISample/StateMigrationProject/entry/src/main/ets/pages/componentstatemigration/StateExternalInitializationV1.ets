@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 // [Start Parent5_start]
-const VALUE_DEFAULT_INIT = 0;
-
 @Component
 struct Child {
-  @State value: number = VALUE_DEFAULT_INIT;
+  @State value: number = 0;
 
   build() {
     Text(this.value.toString())

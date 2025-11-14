@@ -17,8 +17,6 @@
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const INDEX_INITIAL_VALUE = 0;
-
 // 定义一个Params类，用于传递参数。
 @ObservedV2
 class Params {
@@ -36,7 +34,7 @@ class Params {
   // 使用@Trace装饰器装饰message、bgColor属性，以便跟踪其变化。
   @Trace public message: string = '';
   @Trace public bgColor: Color = Color.Pink;
-  public index: number = INDEX_INITIAL_VALUE;
+  public index: number = 0;
 
   constructor( message: string) {
     this.message = message;

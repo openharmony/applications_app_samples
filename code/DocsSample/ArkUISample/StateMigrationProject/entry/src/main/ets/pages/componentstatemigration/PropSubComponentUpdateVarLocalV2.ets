@@ -16,14 +16,12 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
-const CHILD_LOCAL_VALUE_INITIAL = 0;
-const CHILD_PARAM_VALUE_INITIAL = 0;
-const PARENT_LOCAL_VALUE_INITIAL = 10;
+const PARENT_INITIAL_LOCAL_VALUE = 10;
 
 @ComponentV2
 struct Child {
-  @Local localValue: number = CHILD_LOCAL_VALUE_INITIAL;
-  @Param value: number = CHILD_PARAM_VALUE_INITIAL;
+  @Local localValue: number = 0;
+  @Param value: number = 0;
 
   @Monitor('value')
   onValueChange(mon: IMonitor) {
@@ -47,7 +45,7 @@ struct Child {
 @Entry
 @ComponentV2
 struct Parent {
-  @Local value: number = PARENT_LOCAL_VALUE_INITIAL;
+  @Local value: number = PARENT_INITIAL_LOCAL_VALUE;
 
   build() {
     Column() {

@@ -16,13 +16,11 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
-const MESSAGE_INITIAL_VALUE = 0;
-const TAB_INITIAL_INDEX = 0;
 
 @Entry
 @Component
 struct TabContentTest {
-  @State @Watch('onMessageUpdated') message: number = MESSAGE_INITIAL_VALUE;
+  @State @Watch('onMessageUpdated') message: number = 0;
   private data: number[] = [0, 1];
 
   onMessageUpdated() {
@@ -52,7 +50,7 @@ struct TabContentTest {
 @Component({ freezeWhenInactive: true })
 struct FreezeChild {
   @Link @Watch('onMessageUpdated') message: number;
-  index: number = TAB_INITIAL_INDEX;
+  index: number = 0;
 
   onMessageUpdated() {
     hilog.info(DOMAIN, TAG, `FreezeChild message callback func ${this.message}, index: ${this.index}`);
