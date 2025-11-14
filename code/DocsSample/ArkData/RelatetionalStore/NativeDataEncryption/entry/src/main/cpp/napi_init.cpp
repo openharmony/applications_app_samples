@@ -179,9 +179,9 @@ static napi_value SetSecurityLevelForRdbStore(napi_env env,
     config = nullptr;
     // [End SetSecurityLevelForRdbStore]
     
-    napi_value sum;
-    napi_create_int32(env, 0, &sum);
-    return sum;
+    napi_value ret;
+    napi_create_int32(env, 0, &ret);
+    return ret;
 }
 
 EXTERN_C_START
