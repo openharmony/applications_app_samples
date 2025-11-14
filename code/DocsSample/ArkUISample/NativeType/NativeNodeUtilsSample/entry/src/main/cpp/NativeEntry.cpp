@@ -407,6 +407,10 @@ std::shared_ptr<ArkUIBaseNode> CreateTextListExample()
         textNode->SetHeight(height);
         textNode->SetBackgroundColor(0xFFfffacd);
         textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
+        // 在当前节点注册布局回调
+        textNode->SetLayoutCallBack(i);
+        // 在当前节点注册绘制送显回调
+        textNode->SetDrawCallBack(i);
         listItem->InsertChild(textNode, i);
         list->AddChild(listItem);
     }
