@@ -20,17 +20,17 @@ struct StackLayoutzIndex {
     //[Start StackLayoutzIndex_start]
     Stack({ alignContent: Alignment.BottomStart }) {
       Column() {
-        //$r('app.string.stack_num1')需要替换为开发者所需的资源文件
+        //$r('app.string.stack_num1')需要替换为开发者所需的资源文件,stack_num1为'Stack子元素1'
         Text($r('app.string.stack_num1')).fontSize(20)
       }.width(100).height(100).backgroundColor(0xffd306).zIndex(2)
 
       Column() {
-        //$r('app.string.stack_num2')需要替换为开发者所需的资源文件
+        //$r('app.string.stack_num2')需要替换为开发者所需的资源文件,stack_num2为'Stack子元素2'
         Text($r('app.string.stack_num2')).fontSize(20)
       }.width(150).height(150).backgroundColor(Color.Pink).zIndex(1)
 
       Column() {
-        //$r('app.string.stack_num3')需要替换为开发者所需的资源文件
+        //$r('app.string.stack_num3')需要替换为开发者所需的资源文件,stack_num3为'Stack子元素3'
         Text($r('app.string.stack_num3')).fontSize(20)
       }.width(200).height(200).backgroundColor(Color.Grey)
     }.width(350).height(350).backgroundColor(0xe0e0e0)

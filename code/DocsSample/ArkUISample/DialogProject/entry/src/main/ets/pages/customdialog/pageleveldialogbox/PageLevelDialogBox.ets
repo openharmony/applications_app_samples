@@ -51,6 +51,7 @@ export struct PageLevelDialogBox {
       Row() {
         Column() {
           // [Start test_text]
+          // [Start dialog_embedded]
           Text(this.message).id('test_text')
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
@@ -61,12 +62,12 @@ export struct PageLevelDialogBox {
                 builder: () => {
                   this.customDialogComponent();
                 },
-                // [StartExclude test_text]
                 levelMode: LevelMode.EMBEDDED, // 启用页面级弹出框
-                // [EndExclude test_text]
                 // [StartExclude open_custom_dialog]
                 levelUniqueId: node?.getUniqueId(), // 设置页面级弹出框所在页面的任意节点ID
+                // [StartExclude test_text]
                 immersiveMode: ImmersiveMode.EXTEND, // 设置页面级弹出框蒙层的显示模式
+                // [EndExclude test_text]
                 // [EndExclude open_custom_dialog]
               })
               // [End open_custom_dialog]
@@ -74,22 +75,8 @@ export struct PageLevelDialogBox {
                   customDialogId = dialogId;
                 });
             })
-          // [End test_text]
-
-          // [Start dialog_embedded]
-          Text(this.message).id('test_text')
-            .onClick(() => {
-              const node: FrameNode | null = this.getUIContext().getFrameNodeById('test_text') || null;
-              this.getUIContext().getPromptAction().openCustomDialog({
-                builder: () => {
-                  this.customDialogComponent();
-                },
-                levelMode: LevelMode.EMBEDDED, // 启用页面级弹出框
-                levelUniqueId: node?.getUniqueId(), // 设置页面级弹出框所在页面的任意节点ID
-                immersiveMode: ImmersiveMode.EXTEND, // 设置页面级弹出框蒙层的显示模式
-              });
-            })
           // [End dialog_embedded]
+          // [End test_text]
         }
         .width('100%')
       }

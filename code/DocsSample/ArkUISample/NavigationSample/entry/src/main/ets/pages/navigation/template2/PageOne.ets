@@ -14,26 +14,30 @@
  */
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
-class TmpClass {
-  count: number = 10;
+// [Start onResult]
+class NavParam {
+  desc: string = 'navigation-param'
 };
-
+// [StartExclude onResult]
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
   PageOne();
 }
 const DOMAIN = 0x0000;
+// [EndExclude onResult]
 @Component
 export struct PageOne {
+  // [StartExclude onResult]
   pageStack: NavPathStack = new NavPathStack();
   @State message: string = 'Hello World';
   scroller: Scroller = new Scroller();
   onPageShow(): void {
     this.message = JSON.stringify(this.pageStack);
   }
+  // [EndExclude onResult]
   build() {
     NavDestination() {
+      // [StartExclude onResult]
         Scroll(this.scroller){
           Column() {
             Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
@@ -41,7 +45,7 @@ export struct PageOne {
               .height(40)
               .onClick(() => {
                 // [Start PushPathByNameParam]
-                this.pageStack.pushPathByName('pageTwo', 'PageOne Param');
+                this.pageStack.pushPathByName('pageTwo', 'PageTwo Param');
                 // [End PushPathByNameParam]
               })
             Button('pushDestination', { stateEffect: true, type: ButtonType.Capsule })
@@ -51,7 +55,7 @@ export struct PageOne {
               .onClick(() => {
                 // [Start PushDestination]
                 this.pageStack.pushDestination({
-                  name: 'pageTwo', param: 'PageOne Param'}).catch((error: BusinessError) => {
+                  name: 'pageTwo', param: 'PageTwo Param'}).catch((error: BusinessError) => {
                   hilog.info(DOMAIN, 'testTag', '[pushDestination]failed', 'error code = ', error.code,
                     'error.message = ', error.message);
                 }).then(() => {
@@ -64,7 +68,7 @@ export struct PageOne {
               .height(40)
               .onClick(() => {
                 // [Start PushDestinationByName]
-                this.pageStack.pushDestinationByName('pageTwo', 'PageOne Param').catch((error: BusinessError) => {
+                this.pageStack.pushDestinationByName('pageTwo', 'PageTwo Param').catch((error: BusinessError) => {
                   hilog.info(DOMAIN, 'testTag', '[pushDestinationByName]failed', 'error code = ', error.code,
                     'error.message = ', error.message);
                 }).then(() => {
@@ -117,7 +121,7 @@ export struct PageOne {
               .height(40)
               .onClick(() => {
                 // [Start replacePathByName]
-                this.pageStack.replacePathByName('pageTwo', 'PageOne Param');
+                this.pageStack.replacePathByName('pageTwo', 'PageTwo Param');
                 // [End replacePathByName]
                 this.message = 'replacePathByName' + JSON.stringify(this.pageStack);
                 hilog.info(DOMAIN, 'testTag', 'replacePathByName', JSON.stringify(this.pageStack));
@@ -130,7 +134,7 @@ export struct PageOne {
               .onClick(() => {
                 // [Start replacePath]
                 // 将栈顶页面替换为pageTwo
-                this.pageStack.replacePath({ name: 'pageTwo', param: 'PageOne Param' });
+                this.pageStack.replacePath({ name: 'pageTwo', param: 'PageTwo Param' });
                 // [End replacePath]
                 this.message = 'replacePath' + JSON.stringify(this.pageStack);
                 hilog.info(DOMAIN, 'testTag', 'replacePath', JSON.stringify(this.pageStack));
@@ -142,7 +146,7 @@ export struct PageOne {
               .onClick(() => {
                 // [Start replaceDestination]
                 // 带错误码的替换，跳转结束会触发异步回调，返回错误码信息
-                this.pageStack.replaceDestination({ name: 'pageTwo', param: 'PageOne Param' })
+                this.pageStack.replaceDestination({ name: 'pageTwo', param: 'PageTwo Param' })
                   .catch((error: BusinessError) => {
                     hilog.info(DOMAIN, 'testTag', '[replaceDestination]failed', 'error code = ', error.code,
                       'error.message = ', error.message);
@@ -222,8 +226,9 @@ export struct PageOne {
         .scrollable(ScrollDirection.Vertical)
         .edgeEffect(EdgeEffect.None)
         .id('ScrollNoParam')
-
+      // [EndExclude onResult]
     }
+    // [StartExclude onResult]
     .width('100%')
     .height('100%')
     .title('pageOne')
@@ -234,8 +239,18 @@ export struct PageOne {
       const popDestinationInfo = this.pageStack.pop(); // 弹出路由栈栈顶元素
       hilog.info(DOMAIN, 'testTag', 'pop', 'Return value', JSON.stringify(popDestinationInfo));
       return true;
-    }).onReady((context: NavDestinationContext) => {
+    })
+    .onReady((context: NavDestinationContext) => {
       this.pageStack = context.pathStack;
+    })
+    // [EndExclude onResult]
+    .onResult((param: Object) => {
+      if (param instanceof NavParam) {
+        console.info('TestTag', 'get NavParam, its desc: ' + (param as NavParam).desc);
+        return;
+      }
+      console.info('TestTag', 'param not instance of NavParam');;
     })
   }
 }
+// [End onResult]

@@ -44,7 +44,7 @@ export default function IndexTest() {
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
 
-    it('testOpenCustomDialog', 0, async (done: Function) => {
+    it('testCrownEvent', 0, async (done: Function) => {
       console.info("uitest: testOpenCustomDialog begin");
       let driver = Driver.create();
       done();

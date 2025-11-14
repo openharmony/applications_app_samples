@@ -54,7 +54,7 @@ struct BookCard {
 
 @Entry
 @Component
-struct NestedObjectIndex {
+struct Index {
   @State bag: Bag = new Bag(new Book('JS'));
 
   build() {
@@ -77,3 +77,5 @@ struct NestedObjectIndex {
 }
 
 // [End Nested_Object]
+const nestedObjectIndex = Index;
+export default nestedObjectIndex;

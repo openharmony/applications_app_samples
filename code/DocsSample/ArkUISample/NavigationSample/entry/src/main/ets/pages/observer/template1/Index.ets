@@ -20,6 +20,7 @@ import { uiObserver } from '@kit.ArkUI';
 struct MyComponent {
   navDesInfo: uiObserver.NavDestinationInfo | undefined;
   context = this.getUIContext().getHostContext();
+
   aboutToAppear() {
     this.navDesInfo = this.queryNavDestinationInfo();
   }

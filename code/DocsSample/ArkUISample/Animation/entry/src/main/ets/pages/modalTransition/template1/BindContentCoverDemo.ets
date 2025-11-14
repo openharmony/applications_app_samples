@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start bind_content_cover]
 import { curves } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 interface PersonList {
   name: string,
@@ -25,9 +25,7 @@ interface PersonList {
 @Entry
 @Component
 struct BindContentCoverDemo {
-  // [StartExclude bind_content_cover]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude bind_content_cover]
   private personList: Array<PersonList> = [
     { name: this.context.resourceManager.getStringByNameSync('modal_transition_text1'), cardNum: '1234***********789' },
     { name: this.context.resourceManager.getStringByNameSync('modal_transition_text2'), cardNum: '2345***********789' },
@@ -142,22 +140,22 @@ struct BindContentCoverDemo {
       Column() {
         Row() {
           Column() {
-            Text('00:25');
-            Text(this.context.resourceManager.getStringByNameSync('modal_transition_text10'));
+            Text('00:25')
+            Text(this.context.resourceManager.getStringByNameSync('modal_transition_text10'))
           }
-          .width('30%');
+          .width('30%')
 
           Column() {
-            Text('G1234');
-            Text(this.context.resourceManager.getStringByNameSync('modal_transition_text11'));
+            Text('G1234')
+            Text(this.context.resourceManager.getStringByNameSync('modal_transition_text11'))
           }
-          .width('30%');
+          .width('30%')
 
           Column() {
-            Text('08:26');
-            Text(this.context.resourceManager.getStringByNameSync('modal_transition_text12'));
+            Text('08:26')
+            Text(this.context.resourceManager.getStringByNameSync('modal_transition_text12'))
           }
-          .width('30%');
+          .width('30%')
         }
       }
       .width('92%')
@@ -175,9 +173,9 @@ struct BindContentCoverDemo {
           .padding({ top: 10, bottom: 10 })
           .width('60%')
           .textAlign(TextAlign.Center)
+          .borderRadius(15)
           // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，
           // 这里选择DEFAULT代表设置上下切换动画效果，通过onDisappear控制状态变量变换。
-          .borderRadius(15)
           .bindContentCover(this.isPresent, this.MyBuilder(), {
             modalTransition: ModalTransition.DEFAULT,
             onDisappear: () => {
@@ -192,7 +190,7 @@ struct BindContentCoverDemo {
             this.isPresent = !this.isPresent;
           })
       }
-      .padding({ top: 60 });
+      .padding({ top: 60 })
     }
   }
 }

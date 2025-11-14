@@ -16,7 +16,7 @@
 // [Start page_one_require_tart]
 @Entry
 @Component
-struct Index {
+struct PageOne {
   message: string = 'Hello World';
 
   build() {

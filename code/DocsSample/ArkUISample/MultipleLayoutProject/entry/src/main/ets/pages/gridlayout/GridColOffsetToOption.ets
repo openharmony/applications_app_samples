@@ -15,7 +15,7 @@
 //[Start GridColOffsetToOption_start]
 @Entry
 @Component
-struct Index18 {
+struct OffsetColumnOptionExample {
   @State bgColors: ResourceColor[] =
     ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
       'rgb(255,192,0)', 'rgb(170,10,33)'];
@@ -23,15 +23,7 @@ struct Index18 {
   build() {
     GridRow({ columns: 12 }) {
       ForEach(this.bgColors, (color: ResourceColor, index?: number | undefined) => {
-        GridCol({
-          offset: {
-            xs: 1,
-            sm: 2,
-            md: 3,
-            lg: 4
-          },
-          span: 1
-        }) {
+        GridCol({ offset: { xs: 1, sm: 2, md: 3, lg: 4 }, span: 1 }) {
           Row() {
             Text('' + index)
           }.width('100%').height('50vp')

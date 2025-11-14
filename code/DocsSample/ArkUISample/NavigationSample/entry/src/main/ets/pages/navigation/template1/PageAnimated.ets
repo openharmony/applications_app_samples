@@ -33,6 +33,7 @@ struct MyComponent {
 struct PageAnimated {
   // [Start PageAnimated]
   pageStack: NavPathStack = new NavPathStack();
+
   aboutToAppear(): void {
     this.pageStack.disableAnimation(true);
   }

@@ -22,7 +22,7 @@ class ObjLink {
 }
 
 // [Start Observe_the_changes]
-class DecoratorDescriptionChild {
+class Child {
   public num: number;
 
   constructor(num: number) {
@@ -31,11 +31,11 @@ class DecoratorDescriptionChild {
 }
 
 @Observed
-class DecoratorDescriptionParent {
-  public child: DecoratorDescriptionChild;
+class Parent {
+  public child: Child;
   public count: number;
 
-  constructor(child: DecoratorDescriptionChild, count: number) {
+  constructor(child: Child, count: number) {
     this.child = child;
     this.count = count;
   }
@@ -61,7 +61,7 @@ struct DecoratorDescription {
 struct DecoratorDescriptionHelloWorld {
   @ObjectLink objLink: ObjLink;
   // [Start Modify_and_change]
-  @ObjectLink parent: DecoratorDescriptionParent;
+  @ObjectLink parent: Parent;
 
   // [StartExclude Modify_and_change]
   build() {
@@ -70,7 +70,7 @@ struct DecoratorDescriptionHelloWorld {
         .onClick(() => {
           // [EndExclude Modify_and_change]
           // 赋值变化可以被观察到
-          this.parent.child = new DecoratorDescriptionChild(5);
+          this.parent.child = new Child(5);
           this.parent.count = 5;
           // Child没有被@Observed装饰，其属性的变化观察不到
           this.parent.child.num = 5;
@@ -86,3 +86,4 @@ struct DecoratorDescriptionHelloWorld {
     .width('100%')
   }
 }
+export default DecoratorDescription;

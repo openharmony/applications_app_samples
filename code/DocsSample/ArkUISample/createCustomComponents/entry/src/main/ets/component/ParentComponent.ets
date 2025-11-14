@@ -33,7 +33,7 @@ struct HelloComponent {
 // [Start ArkUI_message]
 @Entry
 @Component
-struct ParentComponentUI {
+struct ParentComponent {
   build() {
     Column() {
       Text('ArkUI message')
@@ -46,4 +46,5 @@ struct ParentComponentUI {
 }
 
 // [End ArkUI_message]
-
+const parentComponentUI = ParentComponent;
+export default parentComponentUI;

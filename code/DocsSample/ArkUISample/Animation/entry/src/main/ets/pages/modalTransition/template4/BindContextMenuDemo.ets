@@ -12,15 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { common } from '@kit.AbilityKit';
 
 // [Start bind_context_menu_demo]
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct BindContextMenuDemo {
-  // [StartExclude bind_context_menu_demo]
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  // [EndExclude bind_context_menu_demo]
   private menu: string[] = [this.context.resourceManager.getStringByNameSync('modal_transition_text25'),
     this.context.resourceManager.getStringByNameSync('modal_transition_text26'),
     this.context.resourceManager.getStringByNameSync('modal_transition_text27')];

@@ -160,11 +160,11 @@ export default struct Post {
           .geometryTransition(this.index.toString(), { follow: true })
           .transition(TransitionEffect.OPACITY.animation({ duration: 350, curve: Curve.Friction }))
 
-        Text(this.data.name);
+        Text(this.data.name)
       }
       .justifyContent(FlexAlign.Start)
 
-      Text(this.data.message);
+      Text(this.data.message)
 
       Row({ space: 15 }) {
         ForEach(this.data.images, (imageResource: Resource, index: number) => {

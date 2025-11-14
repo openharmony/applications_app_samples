@@ -14,14 +14,14 @@
  */
 // [Start Decoration_Set]
 @ObservedV2
-class SetInfo {
+class Info {
   @Trace public memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
 }
 
 @Entry
 @ComponentV2
 struct SetSample {
-  info: SetInfo = new SetInfo();
+  info: Info = new Info();
 
   build() {
     Row() {
@@ -30,7 +30,7 @@ struct SetSample {
           Text(`${item[0]}`)
             .fontSize(30)
           Divider()
-        });
+        })
         Button('init set')
           .onClick(() => {
             this.info.memberSet = new Set([0, 1, 2, 3, 4]);
@@ -55,3 +55,4 @@ struct SetSample {
 }
 
 // [End Decoration_Set]
+export default SetSample;

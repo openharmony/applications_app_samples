@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// [Start jump_search_detail]
 @Entry
 @Component
 struct SearchDetail {
@@ -38,4 +37,3 @@ struct SearchDetail {
     .height('100%')
   }
 }
-// [End jump_search_detail]

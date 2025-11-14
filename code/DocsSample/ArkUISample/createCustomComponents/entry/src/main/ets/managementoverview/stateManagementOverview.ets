@@ -14,7 +14,7 @@
  */
 // [Start state_management_overview]
 @Component
-struct MyComponentOverview {
+struct MyComponent {
   @State count: number = 0;
   increaseBy: number = 1;
 
@@ -35,10 +35,12 @@ struct Parent {
   build() {
     Column() {
       // 从父组件初始化，覆盖本地定义的默认值
-      MyComponentOverview({ count: 1, increaseBy: 2 })
+      MyComponent({ count: 1, increaseBy: 2 })
     }
 
   }
 }
 
 // [End state_management_overview]
+const myComponentOverview = MyComponent;
+export default myComponentOverview;

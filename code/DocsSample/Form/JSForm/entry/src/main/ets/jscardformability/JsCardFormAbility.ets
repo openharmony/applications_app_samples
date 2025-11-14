@@ -24,33 +24,37 @@ import { preferences } from '@kit.ArkData';
 // [Start JSForm_JsCardFormAbility_onAddForm]
 // [Start JSForm_JsCardFormAbility_onRemoveForm]
 // [Start JSForm_JsCardFormAbility_onUpdateForm]
+// [Start JSForm_JsCardFormAbility_onFormEvent]
 // entry/src/main/ets/jscardformability/JsCardFormAbility.ets
 const TAG: string = 'JsCardFormAbility';
 // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
+// [StartExclude JSForm_JsCardFormAbility_onFormEvent]
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
+// [EndExclude JSForm_JsCardFormAbility_onFormEvent]
 // [EndExclude JSForm_JsCardFormAbility_onUpdateForm]
 const DOMAIN_NUMBER: number = 0xFF00;
+// [StartExclude JSForm_JsCardFormAbility_onFormEvent]
 // [StartExclude JSForm_JsCardFormAbility_onRemoveForm]
 // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
 let storeFormInfo =
   async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
-  // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
-  let formInfo: Record<string, string | boolean | number> = {
-    'formName': formName,
-    'tempFlag': tempFlag,
-    'updateCount': 0
-  };
-  try {
-    const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
-    // put form info
-    await storage.put(formId, JSON.stringify(formInfo));
-    hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
-    await storage.flush();
-  } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo,
+    // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
+    let formInfo: Record<string, string | boolean | number> = {
+      'formName': formName,
+      'tempFlag': tempFlag,
+      'updateCount': 0
+    };
+    try {
+      const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
+      // put form info
+      await storage.put(formId, JSON.stringify(formInfo));
+      hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
+      await storage.flush();
+    } catch (err) {
+      hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo,
       err: ${JSON.stringify(err as BusinessError)}`);
+    }
   }
-}
 // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
 // [StartExclude JSForm_JsCardFormAbility_onAddForm]
 let deleteFormInfo = async (formId: string, context: common.FormExtensionContext): Promise<void> => {
@@ -67,9 +71,12 @@ let deleteFormInfo = async (formId: string, context: common.FormExtensionContext
 };
 // [EndExclude JSForm_JsCardFormAbility_onAddForm]
 // [EndExclude JSForm_JsCardFormAbility_onUpdateForm]
+// [EndExclude JSForm_JsCardFormAbility_onFormEvent]
+
 export default class JsCardFormAbility extends FormExtensionAbility {
   // [StartExclude JSForm_JsCardFormAbility_onRemoveForm]
   // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
+  // [StartExclude JSForm_JsCardFormAbility_onFormEvent]
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[JsCardFormAbility] onAddForm');
 
@@ -111,9 +118,8 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }
-  // [EndExclude JSForm_JsCardFormAbility_onAddForm]
-  // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
-  // [Start JSForm_JsCardFormAbility_onFormEvent]
+  // [EndExclude JSForm_JsCardFormAbility_onFormEvent]
+  // [StartExclude JSForm_JsCardFormAbility_onUpdateForm]
   onFormEvent(formId: string, message: string): void {
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
@@ -124,8 +130,11 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
     }
   }
-  // [End JSForm_JsCardFormAbility_onFormEvent]
+  // [EndExclude JSForm_JsCardFormAbility_onAddForm]
+  // [EndExclude JSForm_JsCardFormAbility_onRemoveForm]
+  // [EndExclude JSForm_JsCardFormAbility_onUpdateForm]
 }
+// [End JSForm_JsCardFormAbility_onFormEvent]
 // [End JSForm_JsCardFormAbility_onAddForm]
 // [End JSForm_JsCardFormAbility_onRemoveForm]
 // [End JSForm_JsCardFormAbility_onUpdateForm]

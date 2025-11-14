@@ -14,6 +14,7 @@
  */
 
 // [Start widget_event_router_card]
+// src/main/ets/widgeteventrouter/pages/WidgetEventRouterCard.ets
 @Entry
 @Component
 struct WidgetEventRouterCard {

@@ -98,14 +98,18 @@ export default class EntryAbility extends UIAbility {
     };
     // [End ArkTS_Add_Event_Params]
     // [Start Crash_ArkTS_Add_Event]
+    // 构建崩溃事件的自定义参数
+    let crashParams: Record<string, hiAppEvent.ParamType> = {
+      "test_data": 100, //test_data为自定义数据，开发者可根据实际需求自定义params参数。
+    };
     // 开发者可以设置崩溃事件的自定义参数
-    hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_CRASH).then(() => {
+    hiAppEvent.setEventParam(crashParams, hiAppEvent.domain.OS, hiAppEvent.event.APP_CRASH).then(() => {
       hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
 
-    // 构建配置项
+    // 构建崩溃日志规格自定义参数
     let crashConfigParams: Record<string, hiAppEvent.ParamType> = {
       "extend_pc_lr_printing": true, // 使能扩展打印pc和lr寄存器附近的内存值
       "log_file_cutoff_sz_bytes": 102400, // 截断崩溃日志到100KB

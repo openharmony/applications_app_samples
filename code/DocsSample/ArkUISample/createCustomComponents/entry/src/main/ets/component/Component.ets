@@ -15,7 +15,7 @@
 @Entry
   // [Start Component_data_structure]
 @Component
-struct MyComponentStruct {
+struct MyComponent {
   // [StartExclude Component_data_structure]
   build() {
     Column() {
@@ -31,3 +31,5 @@ struct MyComponentStruct {
 }
 
 // [End Component_data_structure]
+const myComponentStruct = MyComponent;
+export default myComponentStruct;

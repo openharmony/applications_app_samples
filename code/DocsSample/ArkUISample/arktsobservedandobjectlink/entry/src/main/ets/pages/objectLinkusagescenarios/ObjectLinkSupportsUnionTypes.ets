@@ -38,12 +38,12 @@ class Data {
 
 @Entry
 @Component
-struct ObjectLinkSupportsUnionTypesParent {
+struct Parent {
   @State count: Source | Data | undefined = new Source(10);
 
   build() {
     Column() {
-      ObjectLinkSupportsUnionTypesChild({ count: this.count })
+      Child({ count: this.count })
 
       Button('change count property')
         .margin(10)
@@ -83,7 +83,7 @@ struct ObjectLinkSupportsUnionTypesParent {
 }
 
 @Component
-struct ObjectLinkSupportsUnionTypesChild {
+struct Child {
   @ObjectLink count: Source | Data | undefined;
 
   build() {
@@ -100,3 +100,5 @@ struct ObjectLinkSupportsUnionTypesChild {
 }
 
 // [End ObjectLink_Supports_Union_Types]
+const objectLinkSupportsUnionTypesParent = Parent;
+export default objectLinkSupportsUnionTypesParent;

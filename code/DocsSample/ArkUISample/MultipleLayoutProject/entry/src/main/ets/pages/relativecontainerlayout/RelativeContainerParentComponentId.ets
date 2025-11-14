@@ -26,7 +26,7 @@ let bwc: Record<string, number | string> = { 'width': 2, 'color': '#6699FF' }
 
 @Entry
 @Component
-struct Index1 {
+struct ParentRefRelativeContainer {
   build() {
     RelativeContainer() {
       Row() {

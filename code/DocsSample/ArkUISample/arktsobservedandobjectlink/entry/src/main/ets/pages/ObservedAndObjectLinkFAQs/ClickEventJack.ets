@@ -50,7 +50,7 @@ struct Parent {
     Column() {
       Text(this.info.person.name).height(40)
       // [Start ClickEvent_Jack]
-      ClickEventJackChild({
+      Child({
         per: this.info.person, clickEvent: () => {
           hilog.info(DOMAIN, TAG, `:::clickEvent before ${this.info.person.name}`); // 1
           this.info.person.name = 'Jack';
@@ -63,7 +63,7 @@ struct Parent {
 }
 
 @Component
-struct ClickEventJackChild {
+struct Child {
   @ObjectLink @Watch('onChange02') per: Person;
   clickEvent?: () => void;
 
@@ -87,3 +87,4 @@ struct ClickEventJackChild {
     }
   }
 }
+export default Parent;

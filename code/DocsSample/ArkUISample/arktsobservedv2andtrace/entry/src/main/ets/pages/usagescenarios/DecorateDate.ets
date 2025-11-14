@@ -14,14 +14,14 @@
  */
 // [Start Decorate_Date]
 @ObservedV2
-class DateInfo {
+class Info {
   @Trace public selectedDate: Date = new Date('2021-08-08');
 }
 
 @Entry
 @ComponentV2
 struct DateSample {
-  info: DateInfo = new DateInfo();
+  info: Info = new Info();
 
   build() {
     Column() {
@@ -55,3 +55,4 @@ struct DateSample {
 }
 
 // [End Decorate_Date]
+export default DateSample;

@@ -90,3 +90,4 @@ struct SetSampleNestedChild {
 }
 
 // [End Inherit_From_Set_Class]
+export default SetSampleNested;

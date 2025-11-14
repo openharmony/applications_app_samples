@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-// [Start persistent_data_form_ability]
 import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
 import { Want } from '@kit.AbilityKit';
 import { dataShare } from '@kit.ArkData';
 
+// [Start persistent_data_form_ability]
 export default class PersistentDataFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
     let dataShareHelper;

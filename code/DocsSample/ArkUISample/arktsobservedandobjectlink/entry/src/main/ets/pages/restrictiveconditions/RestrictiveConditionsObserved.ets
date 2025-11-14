@@ -14,19 +14,11 @@
  */
 // [Start Test_Info_Observed]
 @Observed
-class RestrictiveConditionsObservedInfo {
+class Info {
   public count: number;
 
   constructor(count: number) {
     this.count = count;
-  }
-}
-
-class Test {
-  public msg: number;
-
-  constructor(msg: number) {
-    this.msg = msg;
   }
 }
 
@@ -35,7 +27,7 @@ class Test {
 struct TestInfo {
   // [EndExclude Test_Info_Observed]
   // 正确写法
-  @ObjectLink count: RestrictiveConditionsObservedInfo;
+  @ObjectLink count: Info;
 
   // [End Test_Info_Observed]
   build() {
@@ -45,7 +37,7 @@ struct TestInfo {
 
 // [Start Info_Initialization]
 @Observed
-class InfoInitialization {
+class CountInfo {
   public count: number;
 
   constructor(count: number) {
@@ -59,7 +51,7 @@ struct Initialization {
   // [EndExclude Info_Initialization]
 
   // 正确写法
-  @ObjectLink count: InfoInitialization;
+  @ObjectLink count: CountInfo;
 
   // [End Info_Initialization]
 
@@ -83,3 +75,4 @@ struct RestrictiveConditionsObserved {
     .width('100%')
   }
 }
+export default RestrictiveConditionsObserved;

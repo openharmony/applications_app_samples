@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-
 import { Want } from '@kit.AbilityKit';
-// [Start network_file_refresh]
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { http } from '@kit.NetworkKit';
 
+// [Start network_file_refresh]
 // [Start local_file_refresh]
 const TAG: string = 'WgtImgUpdateEntryFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -46,7 +45,6 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
     } catch (e) {
       hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
     }
-    ;
 
     class FormDataClass {
       text: string = 'Image: Bear';
@@ -113,7 +111,6 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
         } finally {
           fileIo.closeSync(imgFile);
         }
-        ;
       } catch (e) {
         hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
       }

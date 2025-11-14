@@ -32,7 +32,7 @@ struct Index {
         ForEach(this.listArray, (item: number) => {
           ListItem() {
             // 卡片折叠态
-            PostItem({ index: item, animationProperties: this.animationProperties });
+            PostItem({ index: item, animationProperties: this.animationProperties })
           }
         })
       }
@@ -41,7 +41,7 @@ struct Index {
 
       if (this.animationProperties.isExpandPageShow) {
         // 卡片展开态
-        ExpandPage({ animationProperties: this.animationProperties });
+        ExpandPage({ animationProperties: this.animationProperties })
       }
     }
     .key('rootStack')
@@ -71,7 +71,7 @@ struct PostItem {
 
   build() {
     Stack() {
-      NodeContainer(this.nodeController);
+      NodeContainer(this.nodeController)
     }
     .width('100%')
     .height(100)
@@ -103,7 +103,7 @@ struct ExpandPage {
 
   build() {
     Stack() {
-      NodeContainer(this.nodeController);
+      NodeContainer(this.nodeController)
     }
     .width('100%')
     .height(this.animationProperties.changedHeight ? '100%' : 100)

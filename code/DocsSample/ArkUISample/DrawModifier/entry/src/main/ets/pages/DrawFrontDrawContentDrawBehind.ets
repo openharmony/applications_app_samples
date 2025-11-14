@@ -16,7 +16,7 @@
 // [Start drawFront_drawContent_drawBehind_start]
 import { drawing } from '@kit.ArkGraphics2D';
 import { AnimatorResult } from '@kit.ArkUI';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const LOG_PRINT_DOMAIN:  number = 0xFF00;
 const PREFIX: string = '[Sample]'
@@ -152,7 +152,8 @@ struct DrawModifierExample {
   build() {
     Column() {
       Row() {
-        Text('Text component Bind drawModifier')
+        // $r('app.string.Modifier')需要替换为开发者所需的资源文件
+        Text($r('app.string.Modifier'))
           .width(100)
           .height(100)
           .margin(10)

@@ -14,15 +14,15 @@
  */
 // [Start UiRefresh_CannotTriggered]
 @ObservedV2
-class TriggeredPerson {
+class Person {
   public id: number = 0;
   @Trace public age: number = 8;
 }
 
 @Entry
 @ComponentV2
-struct UiRefreshCannotTriggered {
-  person: TriggeredPerson = new TriggeredPerson();
+struct Index {
+  person: Person = new Person();
 
   build() {
     Column() {
@@ -41,3 +41,5 @@ struct UiRefreshCannotTriggered {
 }
 
 // [End UiRefresh_CannotTriggered]
+const uiRefreshCannotTriggered = Index;
+export default uiRefreshCannotTriggered;

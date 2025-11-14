@@ -34,7 +34,7 @@ struct SearchResult {
   }
 
   build() {
-    // [StartExclude quick_start]
+    // [StartExclude search_click]
     Row() {
       Column() {
         Text('SearchResult Page')
@@ -50,6 +50,6 @@ struct SearchResult {
       }.width('100%')
     }.height('100%')
   }
-  // [EndExclude quick_start]
+  // [EndExclude search_click]
 }
 // [End search_click]
