@@ -15,21 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\X30060367\\.ohos\\config\\default_NDKEnvironmentSample_Cw3Grot3Yvk7eZHKNxvu6HFJBIXkWeGahtgSfuiZiDY=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B03C74549233EFE9BB307946F66261B786E8B72EB8BB5701967FB89A518BD1C09FDA7EAC8FB070E",
-          "profile": "C:\\Users\\X30060367\\.ohos\\config\\default_NDKEnvironmentSample_Cw3Grot3Yvk7eZHKNxvu6HFJBIXkWeGahtgSfuiZiDY=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\X30060367\\.ohos\\config\\default_NDKEnvironmentSample_Cw3Grot3Yvk7eZHKNxvu6HFJBIXkWeGahtgSfuiZiDY=.p12",
-          "storePassword": "0000001BD0507F99197599EAAE3B66B76234B36455516A1CC9124A72918FD055075A49BDBF823840206A84"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
