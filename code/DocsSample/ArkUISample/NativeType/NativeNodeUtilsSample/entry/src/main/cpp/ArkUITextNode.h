@@ -32,11 +32,7 @@ const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 // 布局完成的回调方法
 void OnLayoutCompleted(void *userData)
 {
-    ArkUI_NodeHandle node = (ArkUI_NodeHandle)userData;
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "the text_node is layout completed");
-    ArkUI_NativeNodeAPI_1 *nativeModule = NativeModuleInstance::GetInstance()->GetNativeNodeAPI();
-    ArkUI_AttributeItem item = {nullptr, 0, "layout callback"};
-    nativeModule->setAttribute(node, NODE_TEXT_CONTENT, &item);
 }
 // 绘制送显完成的回调方法
 void OnDrawCompleted(void *userData)
@@ -91,7 +87,7 @@ public:
     {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "set layout callback");
         // 注册布局完成的回调方法
-        OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(handle_, this, OnLayoutCompleted);
+        OH_ArkUI_RegisterLayoutCallbackOnNodeHandle(handle_, handle_, OnLayoutCompleted);
     }
     void ResetLayoutCallBack()
     {
@@ -103,7 +99,7 @@ public:
     {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "set draw callback");
         // 注册绘制送显完成的回调方法
-        OH_ArkUI_RegisterDrawCallbackOnNodeHandle(handle_, this, OnDrawCompleted);
+        OH_ArkUI_RegisterDrawCallbackOnNodeHandle(handle_, handle_, OnDrawCompleted);
     }
     void ResetDrawCallBack()
     {
