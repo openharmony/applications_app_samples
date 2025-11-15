@@ -20,7 +20,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import hilog from '@ohos.hilog';
 
 const DOMAIN = 0X0000;
-const TAG : string = '[Sample_CreatFloatWindow]';
+const TAG: string = '[Sample_CreatFloatWindow]';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -72,6 +72,7 @@ export default class EntryAbility extends UIAbility {
           hilog.info(DOMAIN, TAG, `Succeeded in showing the window.`);
         });
       });
+      // 4.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁。
     });
   }
 };

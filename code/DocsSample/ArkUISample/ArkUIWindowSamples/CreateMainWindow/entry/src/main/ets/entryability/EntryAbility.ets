@@ -20,7 +20,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import hilog from '@ohos.hilog';
 
 const DOMAIN = 0X0000;
-const TAG : string = '[Sample_CreatMainWindow]';
+const TAG: string = '[Sample_CreatMainWindow]';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
