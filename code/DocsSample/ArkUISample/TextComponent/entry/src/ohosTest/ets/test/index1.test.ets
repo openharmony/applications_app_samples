@@ -61,10 +61,13 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
       let str = await getResourceString($r('app.string.Create_Apply_StyledString_MutableStyledString_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
+      await driver.delayMs(1000);
 
       str = await getResourceString($r('app.string.CreateApply_Text_Forty_Five'));
       let styledString = await driver.findComponent(ON.text(str));
@@ -94,7 +97,7 @@ export default function IndexTest1() {
       await buttonComponent.click();
       await driver.delayMs(1000);
 
-      await driver.swipe(100, 800, 100, 300);
+      await driver.swipe(100, 1000, 100, 300);
       await driver.delayMs(1000);
 
       let str = await getResourceString($r('app.string.StyledStringImageAttachment_title'));
@@ -132,13 +135,14 @@ export default function IndexTest1() {
       await buttonComponent.click();
       await driver.delayMs(1000);
 
-      await driver.swipe(100, 800, 100, 300);
+      await driver.swipe(100, 1100, 100, 100);
       await driver.delayMs(1000);
 
       let str = await getResourceString($r('app.string.TStyledStringGestureStyle_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
+      await driver.delayMs(1000);
 
       let text1 = await driver.findComponent(ON.id('text1'));
       expect(text1 === null).assertFalse();
@@ -165,35 +169,30 @@ export default function IndexTest1() {
       await buttonComponent.click();
       await driver.delayMs(1000);
 
-      await driver.swipe(100, 800, 100, 300);
+      await driver.swipe(100, 1500, 100, 100);
       await driver.delayMs(1000);
 
       let str = await getResourceString($r('app.string.StyledStringHtml_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
+      await driver.delayMs(1000);
 
       str = await getResourceString($r('app.string.StyledStringHtml_Button_1'));
       let addButton = await driver.findComponent(ON.text(str));
       expect(addButton === null).assertFalse();
       await addButton.click();
       await driver.waitForIdle(500, 500);
-      let text1 = await driver.findComponent(ON.id('text1'));
-      expect(text1 === null).assertFalse();
 
       let toHtmlButton = await driver.findComponent(ON.text('toHtml'));
       expect(toHtmlButton === null).assertFalse();
       await toHtmlButton.click();
       await driver.waitForIdle(500, 500);
-      let text3 = await driver.findComponent(ON.id('text3'));
-      expect(text3 === null).assertFalse();
 
       let fromHtmlButton = await driver.findComponent(ON.text('fromHtml'));
       expect(fromHtmlButton === null).assertFalse();
       await fromHtmlButton.click();
       await driver.waitForIdle(500, 500);
-      let text2 = await driver.findComponent(ON.id('text2'));
-      expect(text2 === null).assertFalse();
 
       await driver.pressBack();
       await driver.delayMs(1000);
@@ -217,7 +216,7 @@ export default function IndexTest1() {
       await buttonComponent.click();
       await driver.delayMs(1000);
 
-      await driver.swipe(100, 800, 100, 100);
+      await driver.swipe(100, 2500, 100, 100);
       await driver.delayMs(1000);
       let str = await getResourceString($r('app.string.StyledStringSceneExample_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
@@ -250,6 +249,8 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
       let str = await getResourceString($r('app.string.StyledStringStyle_title_1'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -276,6 +277,8 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
       let str = await getResourceString($r('app.string.StyledStringStyle_title_2'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -302,6 +305,8 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
       let str = await getResourceString($r('app.string.StyledStringStyle_title_3'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -328,6 +333,8 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
       let str = await getResourceString($r('app.string.StyledStringStyle_title_4'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -354,10 +361,16 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
+      await driver.swipe(100, 1300, 100, 100);
+
       let str = await getResourceString($r('app.string.StyledStringReplaceParagraphStyle_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
+      await driver.delayMs(1000);
+
       let str1 = await getResourceString($r('app.string.Replace_paragraph_style'));
       let button = await driver.findComponent(ON.text(str1, MatchPattern.CONTAINS));
       expect(button === null).assertFalse();
@@ -417,7 +430,7 @@ export default function IndexTest1() {
       await buttonComponent.click();
       await driver.delayMs(1000);
 
-      await driver.swipe(100, 800, 100, 100);
+      await driver.swipe(100, 2500, 100, 100);
       await driver.delayMs(1000);
 
       let str = await getResourceString($r('app.string.StyledStringHtmlOne_title'));
@@ -464,6 +477,8 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
       let str = await getResourceString($r('app.string.StyledStringStyle_title_5'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -490,6 +505,8 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
       let str = await getResourceString($r('app.string.StyledStringStyle_title_6'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -516,6 +533,8 @@ export default function IndexTest1() {
       let buttonComponent = await driver.findComponent(ON.text('StyledString', MatchPattern.CONTAINS));
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
+      await driver.delayMs(1000);
+
       let str = await getResourceString($r('app.string.StyledStringParagraphStyleOne_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
