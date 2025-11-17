@@ -15,15 +15,15 @@
 
 // [Start changing_data_sub_properties]
 // [Start basic_data_source]
-class SubBasicDataSource implements IDataSource {
+class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
-  private originDataArray: SubStringData[] = [];
+  private originDataArray: StringData[] = [];
 
   public totalCount(): number {
     return this.originDataArray.length;
   }
 
-  public getData(index: number): SubStringData {
+  public getData(index: number): StringData {
     return this.originDataArray[index];
   }
 
@@ -78,25 +78,25 @@ class SubBasicDataSource implements IDataSource {
 }
 // [End basic_data_source]
 
-class MySubDataSource extends SubBasicDataSource {
-  private dataArray: SubStringData[] = [];
+class MySubDataSource extends BasicDataSource {
+  private dataArray: StringData[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): SubStringData {
+  public getData(index: number): StringData {
     return this.dataArray[index];
   }
 
-  public pushData(data: SubStringData): void {
+  public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Observed
-class SubStringData {
+class StringData {
   public message: string;
 
   constructor(message: string) {
@@ -111,20 +111,20 @@ struct ChangingDataSubproperties {
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(new SubStringData(`Hello ${i}`));
+      this.data.pushData(new StringData(`Hello ${i}`));
     }
   }
 
   build() {
     List({ space: 3 }) {
-      LazyForEach(this.data, (item: SubStringData, index: number) => {
+      LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
           ChangingDataSubpropertiesChildComponent({ data: item })
         }
         .onClick(() => {
           item.message += '0';
         })
-      }, (item: SubStringData, index: number) => index.toString())
+      }, (item: StringData, index: number) => index.toString())
     }
     .cachedCount(5)
   }
@@ -132,7 +132,7 @@ struct ChangingDataSubproperties {
 
 @Component
 struct ChangingDataSubpropertiesChildComponent {
-  @ObjectLink data: SubStringData;
+  @ObjectLink data: StringData;
 
   build() {
     Row() {
