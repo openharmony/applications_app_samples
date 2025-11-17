@@ -14,7 +14,6 @@
  */
 // [Start emitter_imp]
 import { emitter, Callback } from '@kit.BasicServicesKit';
-
 // [End emitter_imp]
 @Entry
 @Component
