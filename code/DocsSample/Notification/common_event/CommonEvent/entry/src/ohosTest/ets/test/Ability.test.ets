@@ -74,10 +74,6 @@ export default function abilityTest() {
       await button.click();
       await driver.delayMs(2000);
 
-      const button1 = await driver.findComponent(ON.text('CreateSubscriberCallback'));
-      await button1.click();
-      await driver.delayMs(100);
-
       hilog.info(DOMAIN_NUMBER, TAG, 'test_Subscription_001 end');
       done();
     })
@@ -96,12 +92,8 @@ export default function abilityTest() {
       await button.click();
       await driver.delayMs(2000);
 
-      const button1 = await driver.findComponent(ON.text('CreateSubscriberCallback'));
+      const button1 = await driver.findComponent(ON.text('订阅公共事件'));
       await button1.click();
-      await driver.delayMs(100);
-
-      const button2 = await driver.findComponent(ON.text('SubscribeToPublicEvents'));
-      await button2.click();
       await driver.delayMs(100);
 
       hilog.info(DOMAIN_NUMBER, TAG, 'test_Subscription_002 end');
@@ -122,11 +114,7 @@ export default function abilityTest() {
       await button.click();
       await driver.delayMs(2000);
 
-      const button2 = await driver.findComponent(ON.text('SubscribeToPublicEvents'));
-      await button2.click();
-      await driver.delayMs(100);
-
-      const button1 = await driver.findComponent(ON.text('UnsubscribePublicEvents'));
+      const button1 = await driver.findComponent(ON.text('取消订阅订阅公共事件'));
       await button1.click();
       await driver.delayMs(100);
 
@@ -148,7 +136,7 @@ export default function abilityTest() {
       await button.click();
       await driver.delayMs(2000);
 
-      const button1 = await driver.findComponent(ON.text('PublicEventNoInformation'));
+      const button1 = await driver.findComponent(ON.text('发布不携带信息的公共事件\'event\''));
       await button1.click();
       await driver.delayMs(100);
 
@@ -170,7 +158,7 @@ export default function abilityTest() {
       await button.click();
       await driver.delayMs(2000);
 
-      const button1 = await driver.findComponent(ON.text('PublicEventCarryingInformation'));
+      const button1 = await driver.findComponent(ON.text('发布携带信息的公共事件\'event\''));
       await button1.click();
       await driver.delayMs(100);
 

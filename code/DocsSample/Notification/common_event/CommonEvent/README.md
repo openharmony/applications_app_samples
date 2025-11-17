@@ -62,7 +62,7 @@ entry/src/main/
 |---|---entryability
 |---|---|---EntryAbility.ets
 |---|---pages
-|---|---|---CreatSubscribeInfo.ets
+|---|---|---CreatSubscribeInfo.ets          // 公共事件订阅
 |---|---|---Index.ets                       // 首页
 |---resources								// 静态资源
 |---ohosTest
@@ -102,7 +102,7 @@ entry/src/main/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Notification/Subscription > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Notification 
+echo code/DocsSample/Notification/common_event/CommonEvent > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Notification/common_event 
 git pull origin master
 ```
