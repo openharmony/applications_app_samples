@@ -56,8 +56,8 @@ struct Page1 {
         .fontColor(Color.Red)
 
       /**************************** save接口 **************************/
-      // 非状态变量需要借助状态变量refresh才能刷新
-      Text('save key Sample: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
+      // 未被@Trace装饰的变量需要借助状态变量refresh才能刷新
+      Text('save key connect3: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
         .onClick(() => {
           // 未被@Trace保存的对象无法自动存储，需要调用save存储
           this.p.father.groupId += 1;
