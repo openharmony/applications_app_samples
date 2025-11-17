@@ -639,9 +639,9 @@ napi_value CreateNativeRoot(napi_env env, napi_callback_info info)
 
     // 创建自定义容器和自定义绘制组件。
     auto node = std::make_shared<ArkUICustomContainerNode>();
-    node->SetBackgroundColor(0xFFD5D5D5);// 浅灰色
+    node->SetBackgroundColor(0xFFD5D5D5); // 浅灰色
     auto customNode = std::make_shared<ArkUICustomNode>();
-    customNode->SetBackgroundColor(0xFF707070);// 深灰色
+    customNode->SetBackgroundColor(0xFF707070); // 深灰色
     customNode->SetWidth(SIZE_150);
     customNode->SetHeight(SIZE_150);
     node->AddChild(customNode);
