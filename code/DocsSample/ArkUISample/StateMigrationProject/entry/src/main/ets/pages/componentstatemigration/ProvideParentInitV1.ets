@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 // [Start Parent21_start]
-const PARENT_STATE_PARENT_VALUE_INITIAL = 42;
-const CHILD_PROVIDE_CHILD_VALUE_INITIAL = 0;
+const STATE_INITIAL_PARENT_VALUE = 42;
 
 @Entry
 @Component
 struct Parent {
-  @State parentValue: number = PARENT_STATE_PARENT_VALUE_INITIAL;
+  @State parentValue: number = STATE_INITIAL_PARENT_VALUE;
 
   build() {
     Column() {
@@ -31,7 +30,7 @@ struct Parent {
 
 @Component
 struct Child {
-  @Provide childValue: number = CHILD_PROVIDE_CHILD_VALUE_INITIAL;
+  @Provide childValue: number = 0;
 
   build() {
     Column() {

@@ -15,8 +15,6 @@
 // [Start Main_WrappedBuilder]
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
-const COUNT_INITIAL_VALUE = 0;
-
 class Params {
   public text: string = '';
   constructor(text: string) {
@@ -82,7 +80,7 @@ class TextNodeController extends NodeController {
 struct WrappedBuilderPage {
   @State message: string = 'hello';
   private textNodeController: TextNodeController = new TextNodeController(this.message);
-  private count = COUNT_INITIAL_VALUE;
+  private count = 0;
 
   build() {
     Row() {

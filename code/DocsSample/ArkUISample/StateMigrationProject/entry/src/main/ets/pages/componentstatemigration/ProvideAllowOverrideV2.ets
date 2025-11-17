@@ -15,7 +15,6 @@
 // [Start GrandParent2_start]
 const GRANDPARENT_REVIEW_VOTES_INITIAL = 40;
 const PARENT_REVIEW_VOTES_INITIAL = 20;
-const CHILD_REVIEW_VOTES_INITIAL = 0;
 
 @Entry
 @ComponentV2
@@ -41,7 +40,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
-  @Consumer() reviewVotes: number = CHILD_REVIEW_VOTES_INITIAL;
+  @Consumer() reviewVotes: number = 0;
 
   build() {
     Text(this.reviewVotes.toString()) // Text显示20

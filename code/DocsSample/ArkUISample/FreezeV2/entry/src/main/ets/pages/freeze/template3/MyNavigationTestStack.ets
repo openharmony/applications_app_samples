@@ -16,7 +16,6 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
-const MESSAGE_INITIAL_VALUE = 0;
 const PAGE_ONE_INDEX = 1;
 const PAGE_TWO_INDEX = 2;
 const PAGE_THREE_INDEX = 3;
@@ -25,7 +24,7 @@ const PAGE_THREE_INDEX = 3;
 @ComponentV2
 struct MyNavigationTestStack {
   @Provider('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @Local message: number = MESSAGE_INITIAL_VALUE;
+  @Local message: number = 0;
 
   @Monitor('message') info() {
     hilog.info(DOMAIN, 'testTag', `freeze-test MyNavigation message callback ${this.message}`);
@@ -66,7 +65,7 @@ struct MyNavigationTestStack {
 struct PageOneStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = PAGE_ONE_INDEX;
-  @Param message: number = MESSAGE_INITIAL_VALUE;
+  @Param message: number = 0;
 
   build() {
     NavDestination() {
@@ -95,7 +94,7 @@ struct PageOneStack {
 struct PageTwoStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = PAGE_TWO_INDEX;
-  @Param message: number = MESSAGE_INITIAL_VALUE;
+  @Param message: number = 0;
 
   build() {
     NavDestination() {
@@ -124,7 +123,7 @@ struct PageTwoStack {
 struct PageThreeStack {
   @Consumer('pageInfo') pageInfo: NavPathStack = new NavPathStack();
   @Local index: number = PAGE_THREE_INDEX;
-  @Param message: number = MESSAGE_INITIAL_VALUE;
+  @Param message: number = 0;
 
   build() {
     NavDestination() {
@@ -153,7 +152,7 @@ struct PageThreeStack {
 
 @ComponentV2({ freezeWhenInactive: true })
 struct NavigationContentMsgStack {
-  @Param message: number = MESSAGE_INITIAL_VALUE;
+  @Param message: number = 0;
   @Param index: number = PAGE_ONE_INDEX;
 
   @Monitor('message') info() {

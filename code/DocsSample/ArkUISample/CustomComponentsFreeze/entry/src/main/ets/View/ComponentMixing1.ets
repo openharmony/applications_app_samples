@@ -16,7 +16,6 @@
 import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
-const SUM_INITIAL_VALUE = 0;
 
 // 用于处理数据监听的IDataSource的基本实现
 class BasicDataSource implements IDataSource {
@@ -143,7 +142,7 @@ struct ChildComponent {
 @Component({ freezeWhenInactive: true })
 struct Page {
   private data: MyDataSource = new MyDataSource();
-  @State sum: number = SUM_INITIAL_VALUE;
+  @State sum: number = 0;
   @State desc: string = '';
 
   aboutToAppear() {

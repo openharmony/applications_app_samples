@@ -16,8 +16,6 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 const DOMAIN = 0x0001;
 const TAG = 'FreezeChild';
-const MESSAGE_INITIAL_VALUE = 0;
-const LOG_NUMBER_INITIAL_VALUE = 0;
 const PAGE_ONE_INDEX = 1;
 const PAGE_TWO_INDEX = 2;
 const PAGE_THREE_INDEX = 3;
@@ -26,8 +24,8 @@ const PAGE_THREE_INDEX = 3;
 @Component
 struct MyNavigationTestStack {
   @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
-  @State @Watch('info') message: number = MESSAGE_INITIAL_VALUE;
-  @State logNumber: number = LOG_NUMBER_INITIAL_VALUE;
+  @State @Watch('info') message: number = 0;
+  @State logNumber: number = 0;
 
   info() {
     hilog.info(DOMAIN, TAG, `freeze-test MyNavigation message callback ${this.message}`);

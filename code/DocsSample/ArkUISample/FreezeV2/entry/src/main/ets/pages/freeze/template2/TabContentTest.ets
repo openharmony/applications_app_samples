@@ -16,13 +16,11 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0x0000;
-const MESSAGE_INITIAL_VALUE = 0;
-const TAB_INITIAL_INDEX = 0;
 
 @Entry
 @ComponentV2
 struct TabContentTest {
-  @Local message: number = MESSAGE_INITIAL_VALUE;
+  @Local message: number = 0;
   @Local data: number[] = [0, 1];
 
   build() {
@@ -48,8 +46,8 @@ struct TabContentTest {
 
 @ComponentV2({ freezeWhenInactive: true })
 struct FreezeChild {
-  @Param message: number = MESSAGE_INITIAL_VALUE;
-  @Param index: number = TAB_INITIAL_INDEX;
+  @Param message: number = 0;
+  @Param index: number = 0;
 
   @Monitor('message') onMessageUpdated(mon: IMonitor) {
     hilog.info(DOMAIN, 'testTag', `FreezeChild message callback func ${this.message}, index: ${this.index}`);

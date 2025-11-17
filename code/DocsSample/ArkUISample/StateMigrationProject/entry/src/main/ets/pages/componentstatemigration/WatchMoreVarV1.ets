@@ -17,14 +17,12 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const DOMAIN = 0xFF00;
 const TAG = '[Sample_StateMigration_App]';
-const APPLE_INIT = 0;
-const ORANGE_INIT = 0;
 
 @Entry
 @Component
 struct WatchExample {
-  @State @Watch('onAppleChange') apple: number = APPLE_INIT;
-  @State @Watch('onOrangeChange') orange: number = ORANGE_INIT;
+  @State @Watch('onAppleChange') apple: number = 0;
+  @State @Watch('onOrangeChange') orange: number = 0;
 
   // @Watch 回调，只能监听单个变量，不能获取变化前的值
   onAppleChange(): void {
