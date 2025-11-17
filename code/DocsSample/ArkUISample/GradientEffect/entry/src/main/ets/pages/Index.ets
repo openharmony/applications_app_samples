@@ -12,31 +12,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router, Router } from '@kit.ArkUI'
+
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-build() {
- Column(){
-   Column(){
-     Text($r('app.string.Linear_Gradient_Effect')).backgroundColor(Color.Green)
-   }.width('100%').height(50)
-   .onClick(()=>{
-     router.pushUrl({url:'homePage/LinearGradientEffect'});
-   })
-   Column(){
-     Text($r('app.string.Direction_Gradient_Effect')).backgroundColor(Color.Green)
-   }.width('100%').height(50)
-   .onClick(()=>{
-     router.pushUrl({url:'homePage/DirectionGradientEffect'});
-   })
-   Column(){
-     Text($r('app.string.Radial_Gradient_Effect')).backgroundColor(Color.Green)
-   }.width('100%').height(50)
-   .onClick(()=>{
-     router.pushUrl({url:'homePage/RadialGradientEffect'});
-   })
- }
-}
+  build() {
+    Column() {
+      Column() {
+        // app.string.Linear_Gradient_Effect资源文件中的value值为'点击线性渐变效果'
+        Text($r('app.string.Linear_Gradient_Effect')).backgroundColor(Color.Green)
+      }.width('100%').height(50)
+      .onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        const router = uiContext.getRouter();
+        router.pushUrl({ url: 'homePage/LinearGradientEffect' });
+      })
+
+      Column() {
+        // app.string.Direction_Gradient_Effect资源文件中的value值为'点击角度渐变效果'
+        Text($r('app.string.Direction_Gradient_Effect')).backgroundColor(Color.Green)
+      }.width('100%').height(50)
+      .onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        const router = uiContext.getRouter();
+        router.pushUrl({ url: 'homePage/DirectionGradientEffect' });
+      })
+
+      Column() {
+        // app.string.Radial_Gradient_Effect资源文件中的value值为'点击径向渐变效果'
+        Text($r('app.string.Radial_Gradient_Effect')).backgroundColor(Color.Green)
+      }.width('100%').height(50)
+      .onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        const router = uiContext.getRouter();
+        router.pushUrl({ url: 'homePage/RadialGradientEffect' });
+      })
+    }
+  }
 }

@@ -16,16 +16,17 @@
 
 5. 点击设置capi侧主窗口Context，查看如何将ArkTS的上下文传到capi。
 
-6. 点击“展示绘画页面”，查看绘画效果。
+6. 点击“展示自定义绘制页面”，查看绘画效果。
 
-7. 点击：“返回”，返回到主页面。
+7. 点击"展示自定义绘制容器页面"，查看容器效果。
 
 ## 效果预览
 
 | 首页 | 应用页面                                           |
 | ---- | -------------------------------------------------------- |
+|      | <img src="./screenshots/NativeNodePage.png" width="300;" />       |
 |      | <img src="./screenshots/DrawPage.png" width="300;" /> |
-|      | <img src="./screenshots/MultiThread.png" width="300;" /> |
+|      | <img src="./screenshots/NativeUI.png" width="300;" /> |
 
 ### 具体实现
 
@@ -48,6 +49,11 @@ entry/src/main/cpp
 entry/src/main/ets/
 |---entryability
 |---pages
+|   |   |drawPage
+        ---DrawPage.ets                // 自定义绘制页面
+|   |   |nativeUI
+        ---NativeUI.ets                // 自定义绘制容器页面
+|   |---customproperty.ets             // 自定义属性用例demo
 |   |---customproperty.ets             // 自定义属性用例demo
 |   |---entry.ets                      // 多线程创建组件demo
 |   |---index.ets                      // 应用主页面

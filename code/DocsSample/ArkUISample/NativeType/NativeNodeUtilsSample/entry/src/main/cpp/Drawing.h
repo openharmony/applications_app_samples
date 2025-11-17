@@ -22,22 +22,14 @@
 #include <native_drawing/drawing_path.h>
 #include <native_drawing/drawing_pen.h>
 
-// [Start drawCanvas_Start]
 #define SIZE_3 3
 #define SIZE_4 4
 #define SIZE_10 10
-// [StartExclude drawCanvas_Start]
 #define SIZE_150 150
 #define SIZE_200 200
 #define SIZE_480 480
 #define SIZE_720 720
-// [EndExclude drawCanvas_Start]
 #define SIZE_1000 1000
-#define RGBA_R1 0xFF
-#define RGBA_G1 0xFF
-#define RGBA_B1 0x00
-#define RGBA_A1 0x00
-// [StartExclude drawCanvas_Start]
 #define COLOR_YELLOW 0xFFFFFF00
 
 ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
@@ -87,7 +79,7 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
         // [End nodeCustomEvent_start]
         if (type == ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW && targetId == 1 && userData->flag) {
             // [Start nodeCustomEvent_start]
-            // [EndExclude drawCanvas_Start]
+            // [Start drawCanvas_Start]
             // 获取自定义事件绘制的上下文。
             auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
             // 获取绘制canvas指针。
@@ -97,18 +89,18 @@ ArkUI_NodeHandle test_draw(ArkUI_NativeNodeAPI_1 *nodeAPI)
             // [StartExclude drawing_start]
             // 绘制逻辑。
             // [EndExclude drawing_start]
-            int32_t width = SIZE_1000;
-            int32_t height = SIZE_1000;
+            int32_t width = SIZE_1000;  // SIZE_1000 = 1000
+            int32_t height = SIZE_1000; // SIZE_1000 = 1000
             auto path = OH_Drawing_PathCreate();
-            OH_Drawing_PathMoveTo(path, width / SIZE_4, height / SIZE_4);
-            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
-            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
-            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
-            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4);
+            OH_Drawing_PathMoveTo(path, width / SIZE_4, height / SIZE_4);                   // SIZE_4 = 4
+            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4); // SIZE_3 = 3,SIZE_4 = 4
+            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4); // SIZE_3 = 3,SIZE_4 = 4
+            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4); // SIZE_3 = 3,SIZE_4 = 4
+            OH_Drawing_PathLineTo(path, width * SIZE_3 / SIZE_4, height * SIZE_3 / SIZE_4); // SIZE_3 = 3,SIZE_4 = 4
             OH_Drawing_PathClose(path);
             auto pen = OH_Drawing_PenCreate();
-            OH_Drawing_PenSetWidth(pen, SIZE_10);
-            OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(RGBA_R1, RGBA_G1, RGBA_B1, RGBA_A1));
+            OH_Drawing_PenSetWidth(pen, SIZE_10); // SIZE_10=10
+            OH_Drawing_PenSetColor(pen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
             OH_Drawing_CanvasAttachPen(canvas, pen);
             OH_Drawing_CanvasDrawPath(canvas, path);
             // [End drawCanvas_Start]

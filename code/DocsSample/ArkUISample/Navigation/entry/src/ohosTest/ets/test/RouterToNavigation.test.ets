@@ -21,9 +21,9 @@ import { router } from '@kit.ArkUI';
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 let resourceManager = delegator.getAppContext().resourceManager;
 const driver = Driver.create();
-const BUNDLE = 'Navigation_'
+const BUNDLE = 'Navigation_';
 const TAG = '[Sample_Navigation_]';
-const DOMAIN = 0xF811
+const DOMAIN = 0xF811;
 
 let aimComponent : Component;
 
@@ -47,7 +47,7 @@ export function Navigation_RouteToNavTest() {
       do {
         await driver.pressBack();
         aimComponent = await driver.findComponent(ON.text('Index'));
-      } while (aimComponent == null)
+      } while (aimComponent == null);
     })
 
     /*
