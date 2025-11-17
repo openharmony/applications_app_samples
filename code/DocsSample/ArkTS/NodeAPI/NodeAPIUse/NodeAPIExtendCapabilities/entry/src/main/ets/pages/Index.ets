@@ -78,11 +78,11 @@ async function test01(): Promise<void> {
 }
 // [End ark_napi_coerce_to_native_binding_object]
 
-// [Start ark_napi_serialize_deserialize_delete_serialization_data]
+// [Start ark_napi_serialize_deserialize_delete_serialization_data_class]
 class Obj {
   numKey: number = 0;
 }
-// [StartExclude ark_napi_serialize_deserialize_delete_serialization_data]
+// [End ark_napi_serialize_deserialize_delete_serialization_data_class]
 
 @Entry
 @Component
@@ -175,7 +175,7 @@ struct Index {
                   test01();
                   this.result = 'napiCoerceToNativeBindingObjectSuccess';
                 } else if (item === '6.napiAboutSerialize') {
-                  // [EndExclude ark_napi_serialize_deserialize_delete_serialization_data]
+                  // [Start ark_napi_serialize_deserialize_delete_serialization_data]
                   // 序列化和反序列化
                   let obj: Obj = { numKey: 500 };
                   hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.aboutSerialize(obj));
