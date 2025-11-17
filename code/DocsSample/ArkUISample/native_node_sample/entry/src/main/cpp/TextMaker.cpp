@@ -604,11 +604,6 @@ void setTextInput4(ArkUI_NodeHandle &textInput4)
         OH_ArkUI_ShowCounterConfig_GetCounterTextColor(options),
         OH_ArkUI_ShowCounterConfig_GetCounterTextOverflowColor(options));
     Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_SHOW_COUNTER, &ShowCounterColorItem);
-
-    // 设置文本选中识别属性
-    ArkUI_NumberValue selectValue = {.i32 = true};
-    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
-    Manager::nodeAPI_->setAttribute(textInput4, NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 static void setTextArea1Val(ArkUI_NodeHandle &textArea1)
@@ -1131,10 +1126,6 @@ void setText9(ArkUI_NodeHandle &text9)
     ArkUI_NumberValue value[] = {{.f32 = 2.0}};
     ArkUI_AttributeItem item = {value, sizeof(value)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_LINE_HEIGHT_MULTIPLE, &item);
-    // 设置文本选中识别属性
-    ArkUI_NumberValue selectValue = {.i32 = true};
-    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
-    Manager::nodeAPI_->setAttribute(text9, NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 void setText10(ArkUI_NodeHandle &text10)
@@ -1246,6 +1237,66 @@ void setAccessibility(ArkUI_NodeHandle &accessibilityText)
     ArkUI_AttributeItem item0;
     item0.string = "给Text设置无障碍播报内容";
     Manager::nodeAPI_->setAttribute(accessibilityText, NODE_TEXT_CONTENT, &item0);
+}
+
+void setTextSelectAI(ArkUI_NodeHandle &textAISelect)
+{
+    ArkUI_NumberValue copyOptVal = { .i32 = ARKUI_COPY_OPTIONS_LOCAL_DEVICE };
+    ArkUI_AttributeItem copyOptItem = { &copyOptVal, VALUE_1 };
+    Manager::nodeAPI_->setAttribute(textAISelect, NODE_TEXT_COPY_OPTION, &copyOptItem);
+    ArkUI_AttributeItem contentItem = { .string = "下面展示了Text选中识别文本内容\n"
+      "电话：(86) (755) 13612345678\n"
+      "链接：www.ABC.com\n"
+      "邮箱：ABC@example.com\n"
+      "地址：北京市朝阳街道\n"
+      "日期：2000年1月1日6:00\n"
+    };
+    Manager::nodeAPI_->setAttribute(textAISelect, NODE_TEXT_CONTENT, &contentItem);
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textAISelect, NODE_TEXT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
+}
+
+void setTextInputSelectAI(ArkUI_NodeHandle &textInputAISelect)
+{
+    ArkUI_NumberValue copyOptVal = { .i32 = ARKUI_COPY_OPTIONS_LOCAL_DEVICE };
+    ArkUI_AttributeItem copyOptItem = { &copyOptVal, VALUE_1 };
+    Manager::nodeAPI_->setAttribute(textInputAISelect, NODE_TEXT_COPY_OPTION, &copyOptItem);
+    ArkUI_AttributeItem contentItem = { .string = "下面展示了TextInput选中识别文本内容\n"
+      "电话：(86) (755) 13612345678\n"
+      "链接：www.ABC.com\n"
+      "邮箱：ABC@example.com\n"
+      "地址：北京市朝阳街道\n"
+      "日期：2000年1月1日6:00\n"
+    };
+    Manager::nodeAPI_->setAttribute(textInputAISelect, NODE_TEXT_INPUT_TEXT, &contentItem);
+    ArkUI_NumberValue styleVal = { .i32 = ARKUI_TEXTINPUT_STYLE_INLINE };
+    ArkUI_AttributeItem styleItem = { &styleVal, VALUE_1 };
+    Manager::nodeAPI_->setAttribute(textInputAISelect, NODE_TEXT_INPUT_STYLE, &styleItem);
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textInputAISelect, NODE_TEXT_INPUT_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
+}
+
+void setTextAreaSelectAI(ArkUI_NodeHandle &textAreaAISelect)
+{
+    ArkUI_NumberValue copyOptVal = { .i32 = ARKUI_COPY_OPTIONS_LOCAL_DEVICE };
+    ArkUI_AttributeItem copyOptItem = { &copyOptVal, VALUE_1 };
+    Manager::nodeAPI_->setAttribute(textAreaAISelect, NODE_TEXT_COPY_OPTION, &copyOptItem);
+    ArkUI_AttributeItem contentItem = { .string = "下面展示了TextArea选中识别文本内容\n"
+      "电话：(86) (755) 13612345678\n"
+      "链接：www.ABC.com\n"
+      "邮箱：ABC@example.com\n"
+      "地址：北京市朝阳街道\n"
+      "日期：2000年1月1日6:00\n"
+    };
+    Manager::nodeAPI_->setAttribute(textAreaAISelect, NODE_TEXT_AREA_TEXT, &contentItem);
+    // 设置文本选中识别属性
+    ArkUI_NumberValue selectValue = {.i32 = true};
+    ArkUI_AttributeItem selectValueItem = {&selectValue, VALUE_1};
+    Manager::nodeAPI_->setAttribute(textAreaAISelect, NODE_TEXT_AREA_ENABLE_SELECTED_DATA_DETECTOR, &selectValueItem);
 }
 
 void setCustom(ArkUI_NodeHandle &customSpan)
@@ -1450,6 +1501,9 @@ void setUIVal(ArkUI_NodeHandle &textContainer)
     ArkUI_NodeHandle textArea5 = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     ArkUI_NodeHandle accessibilityLabel = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
     ArkUI_NodeHandle customSpan = Manager::nodeAPI_->createNode(ARKUI_NODE_CUSTOM_SPAN);
+    ArkUI_NodeHandle textAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT);
+    ArkUI_NodeHandle textInputAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_INPUT);
+    ArkUI_NodeHandle textAreaAISelect = Manager::nodeAPI_->createNode(ARKUI_NODE_TEXT_AREA);
     setTextInput1(textInput1);
     setTextInput2(textInput2);
     setTextInput3(textInput3);
@@ -1460,6 +1514,9 @@ void setUIVal(ArkUI_NodeHandle &textContainer)
     setTextArea4(textArea4);
     setCustomKeyboard(textArea5);
     setAccessibility(accessibilityLabel);
+    setTextSelectAI(textAISelect);
+    setTextInputSelectAI(textInputAISelect);
+    setTextAreaSelectAI(textAreaAISelect);
     Manager::nodeAPI_->addChild(textContainer, textInput1);
     Manager::nodeAPI_->addChild(textContainer, textInput2);
     Manager::nodeAPI_->addChild(textContainer, textInput3);
@@ -1473,6 +1530,9 @@ void setUIVal(ArkUI_NodeHandle &textContainer)
     Manager::nodeAPI_->addChild(textContainer, textArea5);
     Manager::nodeAPI_->addChild(textContainer, accessibilityLabel);
     Manager::nodeAPI_->addChild(textContainer, customSpan);
+    Manager::nodeAPI_->addChild(textContainer, textAISelect);
+    Manager::nodeAPI_->addChild(textContainer, textInputAISelect);
+    Manager::nodeAPI_->addChild(textContainer, textAreaAISelect);
 }
 
 ArkUI_NodeHandle TextMaker::CreateNativeNode()
