@@ -62,12 +62,12 @@
 <script>
     window.onload = function(){
       // 视口作为根元素，不进行扩展
-      const options = {root:document,rootMargin:'0% 0% 0% 0%'}
+      const options = {root:document, rootMargin:'0% 0% 0% 0%'}
       // 创建一个IntersectionObserver实例
-      const observer = new IntersectionObserver(function(entries,observer){
+      const observer = new IntersectionObserver(function(entries, observer){
         entries.forEach(function(entry){
           // 检查图片是否进入可视区域
-          if (entry.isIntersecting){
+          if (entry.isIntersecting) {
             const image = entry.target;
             // 将数据源的src赋值给img的src
             image.src = image.dataset.src;
