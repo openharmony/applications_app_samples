@@ -51,7 +51,7 @@ struct ParentPage {
   @Builder
   componentBuilder() {
     Row() {
-      Text(`Local Builder:${this.label}`)
+      Text(`Local Builder: ${this.label}`)
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
     }
