@@ -43,10 +43,6 @@
     {
       "name": "main_page_return_info",
       "value": "来自EntryAbility MainPage页面"
-    },
-    {
-      "name": "index_return_info",
-      "value": "来自EntryAbility Index页面"
     }
   ]
 }

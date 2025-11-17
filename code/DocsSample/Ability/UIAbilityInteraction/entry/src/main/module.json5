@@ -112,28 +112,6 @@
             ]
           }
         ]
-      },
-      {
-        "name": "CalleeAbility",
-        "srcEntry": "./ets/calleeability/CalleeAbility.ets",
-        "launchType": "singleton",
-        "supportWindowMode": ["floating", "fullscreen", "split"],
-        "description": "$string:EntryAbility_desc",
-        "icon": "$media:layered_image",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
-        "startWindowBackground": "$color:start_window_background",
-        "exported": true,
-        "skills": [
-          {
-            "entities": [
-              "entity.system.home"
-            ],
-            "actions": [
-              "ohos.want.action.home"
-            ]
-          }
-        ]
       }
     ],
     "extensionAbilities": [
@@ -149,26 +127,7 @@
           }
         ]
       }
-    ],
-    "requestPermissions": [
-      {
-        "name": "ohos.permission.SYSTEM_FLOAT_WINDOW"
-      },
-      {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
-        "usedScene": {
-          "abilities": ["CalleeAbility"],
-          "when": "always"
-        },
-        "reason":"$string:app_name"
-      },
-      {
-        "name": "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION"
-      },
-      {
-        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
-      }
-    ],
+    ]
     // [EndExclude routerMap]
   }
 }

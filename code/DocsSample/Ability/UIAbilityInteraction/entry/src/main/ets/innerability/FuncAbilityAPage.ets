@@ -65,7 +65,7 @@ struct FuncAbilityAPage {
                 abilityName: 'FuncAbilityA',
                 parameters: {
                   // app.string.ability_return_info资源文件中的value值为'来自FuncAbility Index页面'
-                  info: $r('app.string.ability_return_info')
+                  info: context.resourceManager.getStringSync($r('app.string.ability_return_info').id)
                 },
               },
             };
