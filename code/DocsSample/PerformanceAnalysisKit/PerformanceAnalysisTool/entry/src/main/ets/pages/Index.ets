@@ -16,6 +16,7 @@
 // [Start Project_Header]
 import { hilog, hiTraceMeter, hiTraceChain, hidebug, hiAppEvent } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import jsLeakWatcher from '@ohos.hiviewdfx.jsLeakWatcher';
 import testNapi from 'libentry.so';
 // [End Project_Header]
 // [Start testHidebug]
@@ -27,6 +28,23 @@ function testHidebug(event?: ClickEvent) {
   }
 }
 // [End testHidebug]
+
+// [Start testJsLeakWatcher]
+
+function testEnableJsLeakWatcher(event?: ClickEvent) {
+  let config : Array<string> = [];
+  jsLeakWatcher.enableLeakWatcher(true, config, (filepath: Array<string>) => {
+    console.log('testJsLeakWatcher leakListFileName: ' + filepath[0]);
+    console.log('testJsLeakWatcher heapDumpFileName: ' + filepath[1]);
+  });
+}
+
+function testDisableJsLeakWatcher(event?: ClickEvent) {
+  let config : Array<string> = [];
+  jsLeakWatcher.enableLeakWatcher(false, config, () => {});
+}
+// [End testJsLeakWatcher]
+
 @Entry
 @Component
 struct Index {
@@ -113,6 +131,27 @@ struct Index {
           // 添加点击事件
           .onClick(testHidebug);
         // [End HiDebugArkTS_Button]
+        Button($r('app.string.EnableJsLeakWatcher_Button'))
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          // 添加点击事件
+          .onClick(testEnableJsLeakWatcher);
+        Button($r('app.string.DisableJsLeakWatcher_Button'))
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          // 添加点击事件
+          .onClick(testDisableJsLeakWatcher);
+
         Button($r('app.string.HiCheckerArkTS_Button'))
           .type(ButtonType.Capsule)
           .margin({

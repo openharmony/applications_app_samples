@@ -25,6 +25,14 @@
       "value": "HiDebug ArkTS"
     },
     {
+      "name": "EnableJsLeakWatcher_Button",
+      "value": "Enable JsLeakWatcher"
+    },
+    {
+      "name": "DisableJsLeakWatcher_Button",
+      "value": "Disable JsLeakWatcher"
+    },
+    {
       "name": "HiCheckerArkTS_Button",
       "value": "HiChecker ArkTS"
     },
