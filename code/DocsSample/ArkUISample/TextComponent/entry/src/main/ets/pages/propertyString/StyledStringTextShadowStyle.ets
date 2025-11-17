@@ -17,9 +17,8 @@
 @Entry
 @Component
 struct styled_string_demo3 {
-  //'app.string.CreateApply_Text_Third_Five'资源文件中的value值为"运动35分钟"
   @State str: string =
-    this.getUIContext().getHostContext()?.resourceManager.getStringSync($r('app.string.CreateApply_Text_Third_Five')) as string;
+    this.getUIContext().getHostContext()?.resourceManager.getStringByNameSync('CreateApply_Text_Third_Five') as string;
   mutableStyledString: MutableStyledString = new MutableStyledString(this.str, [
     {
       start: 0,
