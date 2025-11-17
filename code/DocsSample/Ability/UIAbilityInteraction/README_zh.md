@@ -59,7 +59,7 @@ UIAbilityLaunchType/
 │   │       └── List.test.ets
 ```
 ### 具体实现
-UIAbility是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility，包括应用内的其他UIAbility、或者其他应用的UIAbility（例如启动三方支付UIAbility）。
+UIAbility是系统调度的基本单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility，包括应用内的UIAbility、或者其它应用的UIAbility（例如启动第三方支付UIAbility）。
 1. 启动应用内的UIAbility
     * 在EntryAbility中，通过调用startAbility()方法启动UIAbility，want为UIAbility实例启动的入口参数。源码参考[MainPage](/entry/src/main/ets/pages/MainPage.ets)。
     * 在FuncAbilityA的onCreate()或者onNewWant()生命周期回调文件中接收EntryAbility传递过来的参数。。源码参考[FuncAbilityA](/entry/src/main/ets/innerability/FuncAbilityA.ets)。
