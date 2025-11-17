@@ -165,5 +165,18 @@ export default function abilityTest() {
       done();
     })
 
+    it('testBindSelectionMenuText001', 0, async (done: Function) => {
+      const driver = Driver.create();
+      await driver.delayMs(DELAY_1000);
+
+      const button1 = await driver.findComponent(ON.text('bindSelectionMenuText'));
+      await button1.click();
+      await driver.delayMs(DELAY_3000);
+
+      const web1 = await driver.findComponent(ON.type('Web'));
+      let src: string = await web1.getText();
+      expect(src).assertContain('bindSelectionMenuText.html');
+      done();
+    })
   })
 }

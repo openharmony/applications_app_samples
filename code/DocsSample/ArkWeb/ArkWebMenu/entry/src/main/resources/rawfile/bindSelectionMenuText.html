@@ -1,0 +1,54 @@
+<!--bindSelectionMenuText.html-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义文本菜单</title>
+    <style>
+        .container {
+            background-color: white;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .context {
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .context span {
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="context">
+        <span>在这个数字时代，文本复制功能变得日益重要。无论是引用名言、保存重要信息，还是分享有趣的内容，复制文本都是我们日常操作的  一部分。</span>
+    </div>
+</div>
+
+<script>
+  function copySelectedText() {
+      const selectedText = window.getSelection().toString();
+      if (selectedText.length > 0) {
+          // 使用Clipboard API复制文本
+          navigator.clipboard.writeText(selectedText)
+              .then(() => {
+                  showNotification();
+              })
+              .catch(err => {
+                  console.error('copy failed:', err);
+              });
+      }
+  }
+  function clearSelection() {
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+    }
+  }
+</script>
+</body>
+</html>
