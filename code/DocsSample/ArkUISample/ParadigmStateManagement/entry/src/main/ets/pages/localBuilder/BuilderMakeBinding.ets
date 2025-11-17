@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // [Start builder_make_binding]
-import { UIUtils, Binding } from '@ohos.arkui.StateManagement';
+import { UIUtils, Binding } from '@kit.ArkUI';
 
 @Entry
 @Component
