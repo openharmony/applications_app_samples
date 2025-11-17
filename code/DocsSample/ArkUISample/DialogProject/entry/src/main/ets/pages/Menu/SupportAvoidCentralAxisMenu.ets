@@ -116,7 +116,7 @@ export struct SupportAvoidCentralAxisMenuExample {
     }
     // [StartExclude avoid_central_axis_menu]
     .title($r('app.string.SupportAvoidCentralAxisMenu_title'))
-    // [StartExclude avoid_central_axis_menu]
+    // [EndExclude avoid_central_axis_menu]
   }
 }
 // [End avoid_central_axis_menu]
