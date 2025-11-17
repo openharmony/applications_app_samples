@@ -42,9 +42,10 @@ export default function abilityTest() {
      */
     it('SUB_SAMPLE_BASIC_SERVICES_0100', 0, async (done: Function) => {
       let comp = await driver.findComponent(ON.id('emitterOn'));
+      let send = await driver.findComponent(ON.id('emitter'));
       await comp.click();
-      await comp.click();
-      await comp.click();
+      await send.click();
+      await send.click();
       done();
     });
 
@@ -58,10 +59,30 @@ export default function abilityTest() {
      */
     it('SUB_SAMPLE_BASIC_SERVICES_0200', 0, async (done: Function) => {
       let comp = await driver.findComponent(ON.id('emitterOn'));
+      let off = await driver.findComponent(ON.id('emitterOff'));
+      let send = await driver.findComponent(ON.id('emitter'));
       await comp.click();
-      let off = await driver.findComponent(ON.id('2025'));
       await off.click();
+      await send.click();
+      done();
+    });
+
+    /**
+     * @tc.number SUB_SAMPLE_BASIC_SERVICES_0300
+     * @tc.name SUB_SAMPLE_BASIC_SERVICES_0300
+     * @tc.desc Verify emitter communication
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 0
+     */
+    it('SUB_SAMPLE_BASIC_SERVICES_0300', 0, async (done: Function) => {
+      let comp = await driver.findComponent(ON.id('emitterOn'));
+      let off = await driver.findComponent(ON.id('emitterOff'));
+      let send = await driver.findComponent(ON.id('emitter'));
       await comp.click();
+      await send.click();
+      await off.click();
+      await send.click();
       done();
     });
 

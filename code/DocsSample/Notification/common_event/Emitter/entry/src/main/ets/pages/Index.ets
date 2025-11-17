@@ -14,6 +14,7 @@
  */
 // [Start emitter_imp]
 import { emitter, Callback } from '@kit.BasicServicesKit';
+
 // [End emitter_imp]
 @Entry
 @Component
@@ -43,10 +44,6 @@ struct Index {
     // [End emitter_on]
   }
 
-  onPageShow(): void {
-    this.emitterOn();
-  }
-
   emitEvent(): void {
     // [Start emitter_emit]
     // 定义一个eventId为1的事件，事件优先级为Low。
@@ -70,15 +67,21 @@ struct Index {
 
   build() {
     Column() {
-      Button(this.messageOn)
+      Button($r("app.string.button1"))
         .id('emitterOn')
-        .margin(20)
+        .margin({ top: 20, bottom: 20 })
+        .onClick(() => {
+          this.emitterOn();
+        })
+      Button($r("app.string.button2"))
+        .id('emitter')
+        .margin({ top: 20, bottom: 20 })
         .onClick(() => {
           this.emitEvent();
         })
-      Button('emitterOff')
-        .id('2025')
-        .margin(20)
+      Button($r("app.string.button3"))
+        .id('emitterOff')
+        .margin({ top: 20, bottom: 20 })
         .onClick(() => {
           // [Start emitter_off]
           // 取消eventId为1的事件。

@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "button1",
+      "value": "订阅eventId为1的时间"
+    },
+    {
+      "name": "button2",
+      "value": "发送eventId为1的时间"
+    },
+    {
+      "name": "button3",
+      "value": "取消订阅eventId为1的时间"
+    }
+  ]
+}
