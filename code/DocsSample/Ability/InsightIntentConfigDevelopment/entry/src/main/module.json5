@@ -25,9 +25,6 @@
     "installationFree": false,
     "pages": "$profile:main_pages",
     "requestPermissions": [
-      {
-        "name": "ohos.permission.EXECUTE_INSIGHT_INTENT"
-      }
     ],
     "abilities": [
       {
