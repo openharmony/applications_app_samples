@@ -15,6 +15,7 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 
 let driver = Driver.create();
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
