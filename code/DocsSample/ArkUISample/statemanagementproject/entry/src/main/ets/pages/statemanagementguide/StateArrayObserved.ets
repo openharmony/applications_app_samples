@@ -112,7 +112,6 @@ struct CompList {
             })
               .opacity(this.isRenderCompChild(index))
           }
-
         })
       }
       .height('70%')
