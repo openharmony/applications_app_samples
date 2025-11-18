@@ -12,9 +12,9 @@ include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
 add_library(entry SHARED
-    common_event_subscriber.cpp
-    common_event_unsubscriber.cpp
-    common_event_publisher.cpp
+    common_event_subscribe.cpp
+    common_event_unsubscribe.cpp
+    common_event_publish.cpp
     napi_init.cpp
 )
 

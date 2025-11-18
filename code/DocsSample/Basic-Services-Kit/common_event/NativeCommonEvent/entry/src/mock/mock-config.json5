@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 {
-  "libentry.so": {
+  "@ohos.util": {
     "source": "src/mock/Libentry.mock.ets"
   }
 }

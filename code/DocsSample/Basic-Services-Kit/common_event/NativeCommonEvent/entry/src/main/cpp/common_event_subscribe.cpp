@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-#include "common_event_subscriber.h"
+#include "common_event_subscribe.h"
 // [Start event_subscriber_create_destroy]
 CommonEvent_SubscribeInfo *CreateSubscribeInfo(const char *events[], int32_t eventsNum, const char *permission,
                                                const char *bundleName)

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef COMMON_EVENT_PUBLISHER_H
-#define COMMON_EVENT_PUBLISHER_H
+#ifndef COMMON_EVENT_PUBLISH_H
+#define COMMON_EVENT_PUBLISH_H
 
 // [Start event_publisher_import]
 #include <cstdint>
@@ -43,4 +43,4 @@ void DestroyPublishInfo(CommonEvent_Parameters* param, CommonEvent_PublishInfo* 
 }
 #endif
 
-#endif // COMMON_EVENT_PUBLISHER_H
+#endif // COMMON_EVENT_PUBLISH_H

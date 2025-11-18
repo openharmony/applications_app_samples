@@ -13,28 +13,24 @@
  * limitations under the License.
  */
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testNapi from 'libentry.so';
+#ifndef COMMON_EVENT_UNSUBSCRIBE_H
+#define COMMON_EVENT_UNSUBSCRIBE_H
 
-const DOMAIN = 0x0000;
+// [Start event_unsubscriber_import]
+#include <cstdint>
+#include "hilog/log.h"
+#include "BasicServicesKit/oh_commonevent.h"
+// [End event_unsubscriber_import]
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize($r('app.float.page_text_font_size'))
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            this.message = 'Welcome';
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
+// 取消订阅公共事件
+void Unsubscribe(CommonEvent_Subscriber* subscriber);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif // COMMON_EVENT_UNSUBSCRIBE_H

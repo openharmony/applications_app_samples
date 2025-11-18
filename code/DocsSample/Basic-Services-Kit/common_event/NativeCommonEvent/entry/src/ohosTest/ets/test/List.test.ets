@@ -13,7 +13,9 @@
  * limitations under the License.
  */
  
-import commonEventNapiTest from './Ability.test';
+import CommonEventUITest from './Ability.test';
+import EventUITest from './EventUITest.test';
 export default function testsuite() {
-  commonEventNapiTest();
+  CommonEventUITest();
+  EventUITest();
 }
