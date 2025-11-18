@@ -4,9 +4,9 @@
 
 支持自定义协议的JavaScript生成字节码缓存适用于在页面加载时存在自定义协议的JavaScript文件，支持其生成字节码缓存到本地，在页面非首次加载时节省编译时间。具体操作步骤如下：
 
-1. 开发者首先需要在Web组件运行前，向Web组件注册自定义协议。
+1. 首先，开发者需要在Web组件运行前，向Web组件注册自定义协议。
 
-2. 其次需要拦截自定义协议的JavaScript，设置ResponseData和ResponseDataID，ResponseData为JavaScript内容，ResponseDataID用于区分JavaScript内容是否发生变更。若JavaScript内容变更，ResponseDataID需要一起变更。
+2. 其次，开发者需要拦截自定义协议的JavaScript，设置ResponseData和ResponseDataID，ResponseData为JavaScript内容，ResponseDataID用于区分JavaScript内容是否发生变更。若JavaScript内容变更，ResponseDataID需要一起变更。
 
 ### 效果预览
 | 首页                         |
