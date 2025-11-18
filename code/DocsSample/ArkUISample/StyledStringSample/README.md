@@ -4,6 +4,8 @@
 
 本示例展示了如何创建文本、设置文本样式。
 
+[styled_string.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-styled-string-h.md)
+
 ## 效果预览
 
 | 预览                                      | 
