@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef COMMON_EVENT_SUBSCRIBER_H
-#define COMMON_EVENT_SUBSCRIBER_H
+#ifndef COMMON_EVENT_SUBSCRIBE_H
+#define COMMON_EVENT_SUBSCRIBE_H
 
 // [Start event_subscriber_import]
 #include <cstdint>
@@ -55,4 +55,4 @@ void GetFromSubscriber(CommonEvent_Subscriber* subscriber);
 }
 #endif
 
-#endif // COMMON_EVENT_SUBSCRIBER_H
+#endif // COMMON_EVENT_SUBSCRIBE_H

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-#include "common_event_publisher.h"
+#include "common_event_publish.h"
 
 const long PARAM_LONG_VALUE1 = 2147483646;
 const long PARAM_LONG_VALUE2 = 2147483645;

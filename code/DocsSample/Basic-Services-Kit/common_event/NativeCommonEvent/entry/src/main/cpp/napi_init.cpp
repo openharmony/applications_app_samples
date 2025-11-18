@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-#include "common_event_publisher.h"
-#include "common_event_subscriber.h"
-#include "common_event_unsubscriber.h"
+#include "common_event_publish.h"
+#include "common_event_subscribe.h"
+#include "common_event_unsubscribe.h"
 #include "napi/native_api.h"
 #include <BasicServicesKit/oh_commonevent.h>
 #include <vector>
@@ -28,6 +28,8 @@ constexpr int32_t EVENT_COUNT = 2;
 constexpr const char* TEST_PERMISSION = "permission.TEST";
 constexpr const char* BUNDLE_NAME = "com.example.commoneventpublish";
 constexpr int32_t NAPI_MODULE_FLAGS = 0;
+
+constexpr const char* TEST = "TEST";
 
 CommonEvent_SubscribeInfo* g_subscribeInfo = nullptr;
 CommonEvent_Subscriber* g_subscriber = nullptr;
@@ -46,7 +48,7 @@ napi_value NAPI_CreateSubscribeInfo(napi_env env, napi_callback_info info)
     g_subscribeInfo = ::CreateSubscribeInfo(events, eventsNum, permission, bundleName);
 
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "NAPI: CreateSubscribeInfo success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: CreateSubscribeInfo success");
     return result;
 }
 
@@ -69,7 +71,7 @@ napi_value NAPI_DestroySubscribeInfo(napi_env env, napi_callback_info info)
     }
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: DestroySubscribeInfo success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: DestroySubscribeInfo success");
     return result;
 }
 
@@ -91,7 +93,7 @@ napi_value NAPI_CreateSubscriber(napi_env env, napi_callback_info info)
     }
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: CreateSubscriber success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: CreateSubscriber success");
     return result;
 }
 
@@ -114,7 +116,7 @@ napi_value NAPI_DestroySubscriber(napi_env env, napi_callback_info info)
     }
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: DestroySubscriber success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: DestroySubscriber success");
     return result;
 }
 
@@ -122,6 +124,7 @@ napi_value NAPI_GetSubscribeInfoState(napi_env env, napi_callback_info info)
 {
     napi_value result;
     napi_get_boolean(env, (g_subscribeInfo != nullptr), &result);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetSubscribeInfoState success");
     return result;
 }
 
@@ -129,6 +132,7 @@ napi_value NAPI_GetSubscriberState(napi_env env, napi_callback_info info)
 {
     napi_value result;
     napi_get_boolean(env, (g_subscriber != nullptr), &result);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetSubscriberState success");
     return result;
 }
 
@@ -136,6 +140,7 @@ napi_value NAPI_GetSubscribeState(napi_env env, napi_callback_info info)
 {
     napi_value result;
     napi_get_boolean(env, g_isSubscribed, &result);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetSubscribeState success");
     return result;
 }
 
@@ -151,6 +156,7 @@ napi_value NAPI_GetPublishedEvents(napi_env env, napi_callback_info info)
         napi_set_element(env, result, index++, eventString);
     }
     
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: GetPublishedEvents success");
     return result;
 }
 
@@ -173,7 +179,7 @@ napi_value NAPI_Subscribe(napi_env env, napi_callback_info info)
     }
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: Subscribe success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: Subscribe success");
     return result;
 }
 
@@ -196,7 +202,7 @@ napi_value NAPI_Unsubscribe(napi_env env, napi_callback_info info)
     }
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: Unsubscribe success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: Unsubscribe success");
     return result;
 }
 
@@ -217,7 +223,7 @@ napi_value NAPI_Publish(napi_env env, napi_callback_info info)
     g_publishedEvents.push_back(TEST_EVENT);
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: Publish success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: Publish success");
     return result;
 }
 
@@ -250,7 +256,7 @@ napi_value NAPI_PublishWithInfo(napi_env env, napi_callback_info info)
     OH_CommonEvent_DestroyPublishInfo(publishInfo);
     g_publishedEvents.push_back(TEST_EVENT_WITH_INFO);
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: PublishWithInfo success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: PublishWithInfo success");
     
     return result;
 }
@@ -273,7 +279,7 @@ napi_value NAPI_AbortCommonEvent(napi_env env, napi_callback_info info)
     }
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: AbortCommonEvent called");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: AbortCommonEvent success");
     return result;
 }
 
@@ -295,7 +301,7 @@ napi_value NAPI_ClearAbortCommonEvent(napi_env env, napi_callback_info info)
     }
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0, LOG_TAG, "NAPI: ClearAbortCommonEvent called");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: ClearAbortCommonEvent success");
     return result;
 }
 
@@ -325,13 +331,12 @@ napi_value NAPI_ClearAllStates(napi_env env, napi_callback_info info)
     g_isSubscribed = false;
     
     napi_get_boolean(env, true, &result);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "NAPI: ClearAllStates success");
+    OH_LOG_Print(LOG_APP, LOG_INFO, 1, TEST, "NAPI: ClearAllStates success");
     return result;
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
+static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
         {"createSubscribeInfo", nullptr, NAPI_CreateSubscribeInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"destroySubscribeInfo", nullptr, NAPI_DestroySubscribeInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -342,10 +347,10 @@ static napi_value Init(napi_env env, napi_value exports)
         {"publish", nullptr, NAPI_Publish, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"publishWithInfo", nullptr, NAPI_PublishWithInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"abortCommonEvent", nullptr, NAPI_AbortCommonEvent, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"clearAbortCommonEvent", nullptr, NAPI_ClearAbortCommonEvent,
-         nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"getSubscribeInfoState", nullptr, NAPI_GetSubscribeInfoState,
-         nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"clearAbortCommonEvent", nullptr, NAPI_ClearAbortCommonEvent, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"getSubscribeInfoState", nullptr, NAPI_GetSubscribeInfoState, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
         {"getSubscriberState", nullptr, NAPI_GetSubscriberState, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getSubscribeState", nullptr, NAPI_GetSubscribeState, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getPublishedEvents", nullptr, NAPI_GetPublishedEvents, nullptr, nullptr, nullptr, napi_default, nullptr},
