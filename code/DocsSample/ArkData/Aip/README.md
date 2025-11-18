@@ -49,6 +49,26 @@ entry/src/
              └── Ability.test.ets        // 自动化测试代码
 ```
 
+### 具体实现
+
+* 调用端调用getTextEmbeddingModel接口获取文本模型：
+    
+    * 调用loadModel接口加载文本模型。
+
+    * 调用getEmbedding接口获取文本的向量化结果。
+
+    * 调用releaseModel接口释放文本模型。
+
+* 调用端调用splitText接口获取文本分块的结果：
+    
+* 调用端调用getImageEmbeddingModel接口获取图像模型：
+    
+    * 调用loadModel接口加载图像模型。
+
+    * 调用getEmbedding接口获取图像的向量化结果。
+
+    * 调用releaseModel接口释放图像模型。
+
 ### 相关权限
 
 不涉及。
