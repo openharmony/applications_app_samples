@@ -39,26 +39,24 @@ let options: commonEventManager.CommonEventPublishData = {
 @Entry
 @Component
 struct CreatSubscribeInfo {
+  aboutToAppear(): void {
+    // [Start CreateSubscriberCallback]
+    // 创建订阅者回调
+    commonEventManager.createSubscriber(subscribeInfo,
+      (err: BusinessError, data: commonEventManager.CommonEventSubscriber) => {
+        if (err) {
+          hilog.error(DOMAIN_NUMBER, TAG,
+            `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in creating subscriber.');
+        subscriber = data;
+      })
+    // [End CreateSubscriberCallback]
+  }
   build() {
     Column({ space: 10 }) {
-      Button('CreateSubscriberCallback')
-        .onClick(() => {
-          // [Start CreateSubscriberCallback]
-          // 创建订阅者回调
-          commonEventManager.createSubscriber(subscribeInfo,
-            (err: BusinessError, data: commonEventManager.CommonEventSubscriber) => {
-              if (err) {
-                hilog.error(DOMAIN_NUMBER, TAG,
-                  `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
-                return;
-              }
-              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in creating subscriber.');
-              subscriber = data;
-            })
-          // [End CreateSubscriberCallback]
-        })
-
-      Button('SubscribeToPublicEvents')
+      Button('订阅公共事件')
         .onClick(() => {
           // [Start SubscribeToPublicEvents]
           // 订阅公共事件回调
@@ -76,8 +74,9 @@ struct CreatSubscribeInfo {
           }
           // [End SubscribeToPublicEvents]
         })
+        .margin({ top: 20, bottom: 20 })
 
-      Button('UnsubscribePublicEvents')
+      Button('取消订阅订阅公共事件')
         .onClick(() => {
           // [Start UnsubscribePublicEvents]
           // subscriber为订阅事件时创建的订阅者对象
@@ -94,8 +93,9 @@ struct CreatSubscribeInfo {
           }
           // [End UnsubscribePublicEvents]
         })
+        .margin({ top: 20, bottom: 20 })
 
-      Button('PublicEventNoInformation')
+      Button('发布不携带信息的公共事件\'event\'')
         .onClick(() => {
           // [Start PublicEventNoInformation]
           // 发布公共事件，其中的event字段需要替换为实际的事件名称。
@@ -110,8 +110,9 @@ struct CreatSubscribeInfo {
           });
           // [End PublicEventNoInformation]
         })
+        .margin({ top: 20, bottom: 20 })
 
-      Button('PublicEventCarryingInformation')
+      Button('发布携带信息的公共事件\'event\'')
         .onClick(() => {
           // [Start PublicEventCarryingInformation]
           // 发布公共事件，其中的event字段需要替换为实际的事件名称。
@@ -126,6 +127,7 @@ struct CreatSubscribeInfo {
           });
           // [End PublicEventCarryingInformation]
         })
+        .margin({ top: 20, bottom: 20 })
     }
     .height('100%')
     .width('100%')
