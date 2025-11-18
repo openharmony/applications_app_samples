@@ -18,9 +18,9 @@ import commonEventManager from 'libentry.so';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Common Event Management'
-  private subscriber: boolean = false
-  private eventName: string = 'usual.event.TEST'
+  @State message: string = 'Common Event Management';
+  private subscriber: boolean = false;
+  private eventName: string = 'usual.event.TEST';
 
   // Subscribe to event - Test createSubscribeInfo, createSubscriber, subscribe APIs
   subscribeEvent(): void {
