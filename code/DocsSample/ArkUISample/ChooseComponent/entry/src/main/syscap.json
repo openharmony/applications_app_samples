@@ -18,7 +18,8 @@
       "SystemCapability.Advertising.Ads",
       "SystemCapability.Customization.EnterpriseDeviceManager",
       "SystemCapability.Security.DeviceSecurityLevel",
-      "SystemCapability.UserIAM.UserAuth.PinAuth"
+      "SystemCapability.UserIAM.UserAuth.PinAuth",
+      "SystemCapability.Security.DataTransitManager"
     ]
   }
 }
