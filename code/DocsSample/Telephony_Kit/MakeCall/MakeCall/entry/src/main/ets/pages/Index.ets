@@ -17,7 +17,7 @@ import { common, Want } from '@kit.AbilityKit';
 import { call, observer } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const MMS_ENTITIES = "entity.system.home";
+const MMS_ENTITIES = 'entity.system.home';
 
 
 
@@ -54,7 +54,7 @@ struct JumpCall {
     build() {
         Row() {
             Column() {
-                Button('拨打电话')
+                Button('Make Call')
                   .onClick(() => {
                       this.startCallAbilityExplicit();
                   })

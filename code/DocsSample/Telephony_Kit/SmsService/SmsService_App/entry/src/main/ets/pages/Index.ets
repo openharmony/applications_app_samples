@@ -15,9 +15,9 @@
 // 示例代码
 import { common, Want } from '@kit.AbilityKit';
 
-const MMS_BUNDLE_NAME = "com.ohos.mms";
-const MMS_ABILITY_NAME = "com.ohos.mms.MainAbility";
-const MMS_ENTITIES = "entity.system.home";
+const MMS_BUNDLE_NAME = 'com.ohos.mms';
+const MMS_ABILITY_NAME = 'com.ohos.mms.MainAbility';
+const MMS_ENTITIES = 'entity.system.home';
 
 export class Contact {
     contactsName: string;
@@ -36,16 +36,16 @@ struct JumpMessage {
 
     startMMSAbilityExplicit() {
         // 这里完善联系人和号码；姓名主要是通过手机号来查询实际联系人名称，因此这种方式还是以手机号码为主。
-        let params: Array<Object> = [new Contact("张三", 133XXXXXXXX)];
+        let params: Array<Object> = [new Contact("XX", 133XXXXXXXX)];
 
         let want: Want = {
-            bundleName: "com.ohos.mms",
-            abilityName: "com.ohos.mms.MainAbility",
+            bundleName: 'com.ohos.mms',
+            abilityName: 'com.ohos.mms.MainAbility',
             parameters: {
                 contactObjects: JSON.stringify(params),
-                pageFlag: "conversation",
+                pageFlag: 'conversation',
                 // 这里填写短信内容。
-                content: "我是短信具体内容"
+                content: "Hello World"
             }
         };
 
@@ -59,7 +59,7 @@ struct JumpMessage {
     build() {
         Row() {
             Column() {
-                Button('发送短信')
+                Button('Send Message')
                   .onClick(() => {
                       this.startMMSAbilityExplicit();
                   })
