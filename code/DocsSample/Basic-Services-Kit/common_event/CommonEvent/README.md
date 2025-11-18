@@ -102,7 +102,7 @@ entry/src/main/
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Notification/common_event/CommonEvent > .git/info/sparse-checkout
-git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Notification/common_event 
+echo code/DocsSample/Basic-Services-Kit/common_event/CommonEvent > .git/info/sparse-checkout
+git remote add origin https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Basic-Services-Kit/common_event 
 git pull origin master
 ```
