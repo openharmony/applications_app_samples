@@ -34,6 +34,7 @@ export struct SymbolGlyphSpanAddEvent {
               this.wifiColor = Color.Gray;
             })
           // [End symbol_glyph_span_add_event]
+            .id('symbolGlyph1')
         }
       }
       .width('100%')
