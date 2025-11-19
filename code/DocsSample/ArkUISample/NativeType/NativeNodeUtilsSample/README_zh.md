@@ -72,7 +72,7 @@ entry/src/main/ets/
 
 1.本示例支持标准系统上运行, 支持设备：RK3568等。
 
-2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.47，镜像版本号：OpenHarmony_5.0.2.57。
+2.本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.56，镜像版本号：OpenHarmony_6.0.2.56。
 
 ### 下载
 

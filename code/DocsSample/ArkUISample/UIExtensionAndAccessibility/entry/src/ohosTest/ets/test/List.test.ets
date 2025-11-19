@@ -14,7 +14,7 @@
  */
 
 import abilityTest from './Ability.test';
-import ShowEmbeddedComponent from './ShowEmbeddedComponent/ShowEmbeddedComponent';
+import ShowEmbeddedComponent from './ShowEmbeddedComponent/ShowEmbeddedComponent.test';
 
 export default function testsuite() {
   abilityTest();
