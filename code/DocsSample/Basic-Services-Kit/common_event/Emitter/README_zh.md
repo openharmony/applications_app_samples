@@ -66,7 +66,7 @@ entry/src/main
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/DocsSample/ITCWithEmitter > .git/info/sparse-checkout
+echo code/DocsSample/Basic-Services-Kit/common_event/Emitter > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
