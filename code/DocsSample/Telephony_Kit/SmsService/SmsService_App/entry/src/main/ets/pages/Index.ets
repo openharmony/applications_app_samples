@@ -36,7 +36,7 @@ struct JumpMessage {
 
     startMMSAbilityExplicit() {
         // 这里完善联系人和号码；姓名主要是通过手机号来查询实际联系人名称，因此这种方式还是以手机号码为主。
-        let params: Array<Object> = [new Contact("XX", 133XXXXXXXX)];
+        let params: Array<Object> = [new Contact('XX', 13333333333)];
 
         let want: Want = {
             bundleName: 'com.ohos.mms',
@@ -45,7 +45,7 @@ struct JumpMessage {
                 contactObjects: JSON.stringify(params),
                 pageFlag: 'conversation',
                 // 这里填写短信内容。
-                content: "Hello World"
+                content: 'Hello World'
             }
         };
 

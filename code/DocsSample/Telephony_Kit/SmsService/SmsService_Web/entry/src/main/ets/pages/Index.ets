@@ -21,10 +21,10 @@ struct Index {
 
   build() {
     Column() {
-      Button('发送短信')
+      Button('Send Sms')
         .onClick(() => {
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-          let exampleUrl = "sms:106XXXXXXXXXX?body=%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E5%86%85%E5%AE%B9";
+          let exampleUrl = 'sms:106XXXXXXXXXX?body=%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E5%86%85%E5%AE%B9';
         
           let want: Want = {
               bundleName: 'com.ohos.mms',
