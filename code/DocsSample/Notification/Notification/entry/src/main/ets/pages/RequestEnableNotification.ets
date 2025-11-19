@@ -21,7 +21,6 @@ import { common } from '@kit.AbilityKit';
 
 const TAG: string = '[PublishOperation]';
 const DOMAIN_NUMBER: number = 0xFF00;
-
 // [End request_enable_notification_header]
 
 @Entry
@@ -57,26 +56,6 @@ export struct RequestEnableNotification {
                 `isNotificationEnabled fail, code is ${err.code}, message is ${err.message}`);
             });
             // [End request_enable_notification_permission]
-          })
-
-        Button($r('app.string.cancel_notify_auth'))
-          .margin({ top: 20, bottom: 20 })
-          .onClick(() => {
-            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-            notificationManager.isNotificationEnabled().then((data: boolean) => {
-              hilog.info(DOMAIN_NUMBER, TAG, 'isNotificationEnabled failed, data: ' + JSON.stringify(data));
-              if (data) {
-                notificationManager.openNotificationSettings(context).then(() => {
-                  hilog.info(DOMAIN_NUMBER, TAG, `[ANS] openNotificationSettings fail`);
-                }).catch((err: BusinessError) => {
-                  hilog.error(DOMAIN_NUMBER, TAG,
-                    `[ANS] openNotificationSettings successed, code is ${err.code}, message is ${err.message}`);
-                });
-              }
-            }).catch((err: BusinessError) => {
-              hilog.error(DOMAIN_NUMBER, TAG,
-                `isNotificationEnabled success, code is ${err.code}, message is ${err.message}`);
-            });
           })
 
         Button($r('app.string.reapply_notify_auth'))
