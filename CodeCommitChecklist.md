@@ -67,6 +67,7 @@ class Logger {
 ```
 25. 代码中避免出现中文字符，要使用资源代替，符合国际化开发标准；
 26. 应用包名统一使用“com.samples.xxx”，“xxx”为特性名称；
+27. build-profile.json5文件中的sdk版本号优先使用开源版本号，除非有调用闭源接口，否则不允许使用闭源版本号;
 
 ## ReadMe编写规范<a name="section2"></a>
 
