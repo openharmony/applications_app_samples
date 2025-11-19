@@ -49,13 +49,6 @@ namespace NativeModule {
             : ArkUINode(NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_SCROLL)) {}
     };
 
-    // 封装Column组件。
-    class ArkUIColumnNode : public ArkUINode {
-    public:
-        ArkUIColumnNode()
-            : ArkUINode(NativeModuleInstance::GetInstance()->GetNativeNodeAPI()->createNode(ARKUI_NODE_COLUMN)) {}
-    };
-
     // 多线程创建组件。
     napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info);
     // 释放多线程创建的组件。
