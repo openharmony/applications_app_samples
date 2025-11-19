@@ -24,11 +24,11 @@ export const escapableHandleScopeTest: () => string; // napi_open_escapable_hand
 // [End napi_open_close_escapable_handle_scope_api]
 
 // [Start napi_create_delete_reference_api]
-export const addFinalizer: () => Object | void; // napi_add_finalizer
+export const addFinalizer: () => Object | undefined; // napi_add_finalizer
 
-export const createReference: () => Object | void; // napi_create_reference、napi_reference_ref
+export const createReference: () => Object | undefined; // napi_create_reference、napi_reference_ref
 
-export const useReference: () => Object | void; // napi_get_reference_value
+export const useReference: () => Object | undefined; // napi_get_reference_value
 
-export const deleteReference: () => string | void; // napi_delete_reference、napi_reference_unref
+export const deleteReference: () => string | undefined; // napi_delete_reference、napi_reference_unref
 // [End napi_create_delete_reference_api]
