@@ -68,9 +68,11 @@ Button是按钮组件，通常用于响应用户的点击操作，其类型包�
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568。
 
-2.本示例为Stage模型，支持API18版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56。
+2.本示例为Stage模型，支持API20版本SDK，版本号：5.1.0.56，镜像版本号：OpenHarmony_5.1.0.56。
 
 3.本示例需要使用DevEco Studio NEXT Developer Preview2 (Build Version: 5.0.5.306， built on December 12, 2024)及以上版本才可编译运行。
+
+4.测试用例运行时候需要将时间限制设置大于150。
 
 ### 下载
 

@@ -336,7 +336,9 @@ export default function BuilderGuidesTest() {
           x: theComponentRect.right,
           y: theComponentPointFrom.y
         }
-        await driver.clickAt(theComponentPointFrom);
+        theComponent = await driver.findComponent(ON.text('1', MatchPattern.EQUALS));
+        await theComponent.click();
+        await driver.delayMs(1000);
         await driver.swipe(theComponentPointFrom.x, theComponentPointFrom.y,
                            theComponentPointTo.x, theComponentPointTo.y, speed);
         theComponentBuilder = await driver.findComponent(ON.text('Global Builder', MatchPattern.EQUALS));

@@ -20,8 +20,7 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "default",
-      "phone"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
