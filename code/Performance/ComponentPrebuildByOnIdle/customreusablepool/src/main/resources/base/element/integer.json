@@ -1,0 +1,44 @@
+{
+  "integer": [
+    {
+      "name": "customreusablepool_title_view_padding_left_side",
+      "value": 20
+    },{
+      "name": "customreusablepool_title_view_padding_right_side",
+      "value": 20
+    },{
+      "name": "customreusablepool_title_view_padding_left",
+      "value": 10
+    },{
+      "name": "customreusablepool_title_view_padding_right",
+      "value": 10
+    },{
+      "name": "customreusablepool_title_view_list_height",
+      "value": 30
+    },{
+      "name": "customreusablepool_home_button_margin_top",
+      "value": 20
+    },{
+      "name": "customreusablepool_item_name_margin_top",
+      "value": 10
+    },{
+      "name": "customreusablepool_flow_item_comp_border_radius",
+      "value": 10
+    },{
+      "name": "customreusablepool_flow_item_comp_name_font_size",
+      "value": 14
+    },{
+      "name": "customreusablepool_flow_item_comp_des_font_size",
+      "value": 12
+    },{
+      "name": "customreusablepool_flow_swiper_height",
+      "value": 200
+    },{
+      "name": "customreusablepool_flow_columns_Gap",
+      "value": 10
+    },{
+      "name": "customreusablepool_flow_rows_Gap",
+      "value": 5
+    }
+  ]
+}
