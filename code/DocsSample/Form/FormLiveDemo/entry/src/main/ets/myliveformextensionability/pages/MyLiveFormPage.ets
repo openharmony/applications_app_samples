@@ -30,7 +30,6 @@ const DOMAIN = 0x0000;
 struct MyLiveFormPage {
   @State columnScale: number = 1.0;
   @State columnTranslate: number = 0.0;
-
   private uiContext: UIContext | undefined = undefined;
   private storageForMyLiveFormPage: LocalStorage | undefined = undefined;
   private formId: string | undefined = undefined;
@@ -77,7 +76,8 @@ struct MyLiveFormPage {
           hilog.info(DOMAIN, 'testTag', 'startAbilityByLiveForm succeed');
         })
         .catch((err: BusinessError) => {
-          hilog.error(DOMAIN, 'testTag', `startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
+          hilog.error(DOMAIN, 'testTag',
+            `startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
         });
     } catch (e) {
       hilog.error(DOMAIN, 'testTag', `startAbilityByLiveForm failed, code is ${e?.code}, message is ${e?.message}`);
@@ -85,14 +85,14 @@ struct MyLiveFormPage {
   }
 
   build() {
-    Stack({alignContent: Alignment.TopStart}) {
+    Stack({ alignContent: Alignment.TopStart }) {
       // 背景组件和普通卡片一样大
       Column()
-        .width(this.formRect? this.formRect.width : 0)
-        .height(this.formRect? this.formRect.height : 0)
+        .width(this.formRect ? this.formRect.width : 0)
+        .height(this.formRect ? this.formRect.height : 0)
         .offset({
-          x: this.formRect? this.formRect.left : 0,
-          y: this.formRect? this.formRect.top : 0,
+          x: this.formRect ? this.formRect.left : 0,
+          y: this.formRect ? this.formRect.top : 0,
         })
         .borderRadius(this.formBorderRadius ? this.formBorderRadius : 0)
         .backgroundColor('#2875F5')

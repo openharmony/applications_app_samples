@@ -101,7 +101,13 @@ struct WidgetUpdateByStatusCard {
             .fontColor('#000000')
             .opacity(0.4)
             .fontSize(12)
-        }.margin({ top: '12px', bottom: '21px', left: 26, right: '26px' })
+        }
+        .margin({
+          top: '12px',
+          bottom: '21px',
+          left: 26,
+          right: '26px'
+        })
       }
       .margin({ top: 80 })
       .width('100%')

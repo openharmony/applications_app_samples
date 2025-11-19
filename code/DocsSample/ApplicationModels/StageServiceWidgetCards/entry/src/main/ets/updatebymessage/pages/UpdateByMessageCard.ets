@@ -20,9 +20,7 @@ let storageUpdateByMsg = new LocalStorage();
 @Entry(storageUpdateByMsg)
 @Component
 struct UpdateByMessageCard {
-  // [StartExclude update_by_message_card]
   // 创建两个待刷新的Text，Text初始内容分别为'Title default'、'Description default'。资源文件定义请参见下方步骤4
-  // [EndExclude update_by_message_card]
   @LocalStorageProp('title') title: ResourceStr = $r('app.string.default_title');
   @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.DescriptionDefault');
 
