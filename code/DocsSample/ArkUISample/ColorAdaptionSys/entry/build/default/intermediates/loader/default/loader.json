@@ -1,0 +1,22 @@
+{
+  "modulePathMap": {
+    "entry": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ColorAdaptionSys\\entry"
+  },
+  "compileMode": "esmodule",
+  "projectRootPath": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ColorAdaptionSys",
+  "nodeModulesPath": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ColorAdaptionSys\\entry\\build\\default\\intermediates\\loader_out\\default\\node_modules",
+  "byteCodeHarInfo": {},
+  "declarationEntry": [],
+  "moduleName": "entry",
+  "hspNameOhmMap": {},
+  "harNameOhmMap": {},
+  "packageManagerType": "ohpm",
+  "compileEntry": [],
+  "otherCompileFiles": [],
+  "dynamicImportLibInfo": {},
+  "routerMap": [],
+  "hspResourcesMap": {},
+  "updateVersionInfo": {},
+  "anBuildOutPut": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ColorAdaptionSys\\entry\\build\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
+  "anBuildMode": "type"
+}

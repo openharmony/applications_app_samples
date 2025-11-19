@@ -1,0 +1,414 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚq/*
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import isPromiseLike from './isPromiseLike';
+
+function assertPromiseIsRejectedWithError(actualPromise, expectedValue) {
+    if (!isPromiseLike(actualPromise)) {
+        return Promise.reject().then(function () {
+        }, function () {
+            return {pass: false, message: 'Expected not be called on a promise.'};
+        });
+    }
+    return actualPromise.then(
+        function (got) {
+            return {
+                pass: false,
+                message: 'Expected a promise to be rejected but actualValue is resolve'
+            };
+        },
+        function (actualValue) {
+            return matchError(actualValue, expectedValue);
+        }
+    );
+
+}
+
+function matchError(actualValue, expectedValue) {
+    if (expectedValue.length == 1 && typeof expectedValue[0] === 'function') {
+        if (expectedValue[0].name === actualValue.__proto__.name) {
+            return {pass: true, message: 'actual error type is ' + actualValue.name + '.'};
+        }
+        return {pass: false, message: `except error type is ${expectedValue[0].name},but actual is ${actualValue.name}.`};
+    }
+
+    if (expectedValue.length == 1 && typeof expectedValue[0] === 'string') {
+        if (expectedValue[0] === actualValue.message) {
+            return {pass: true, message: `actual error message is ${actualValue.message}.`};
+        }
+        return {pass: false, message: `except error message ${expectedValue[0]},but actual is ${actualValue.message}.`};
+    }
+
+    if (expectedValue.length == 1) {
+        return {pass: false, message: 'When only one parameter, it should be error type or error message.'};
+    }
+
+    if (expectedValue.length == 2 && typeof expectedValue[0] === 'function' && expectedValue[0].name === actualValue.name) {
+        if (typeof expectedValue[1] === 'string' && actualValue.message === expectedValue[1]) {
+            return {pass: true, message: 'actual error message is ' + actualValue.message + '.'};
+        }
+        return {pass: false, message: `except error message is ${expectedValue[1]},but actual is ${actualValue.message}.`};
+    }
+
+    if (expectedValue.length == 2 && typeof expectedValue[0] === 'function' && expectedValue[0].name !== actualValue.name) {
+        if (typeof expectedValue[1] === 'string' && actualValue.message === expectedValue[1]) {
+            return {pass: false, message: `except error type is ${expectedValue[0].name},but actual is ${actualValue.name}.`};
+        }
+        return {pass: false, message: 'except error type and message are incorrect.'};
+    }
+    if (expectedValue.length > 2) {
+        return {pass: false, message: 'Up to two parameters are supported.'};
+    }
+    return {pass: true, message: 'not equal type'};
+}
+
+export default assertPromiseIsRejectedWithError;Â‘ÙÁD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\assert\isPromiseLike.jsÙÔD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\assert\assertPromiseIsRejectedWithError.jsÔrB˜±isLocalDependency¯isNodeEntryFile§pkgPath§pkgNameªpkgVersion±belongProjectPath±dependencyPkgInfo¨commonjsÂÂÙ™D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium¬@ohos/hypium¦1.0.24Ù\D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionAppÔrC’§pkgNameªpkgVersion¬@ohos/hypium¦1.0.24ÔrD’°hasDefaultExportªisCommonJSÃÂÃÚq/*
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import isPromiseLike from './isPromiseLike';
+
+function assertPromiseIsRejectedWithError(actualPromise, expectedValue) {
+    if (!isPromiseLike(actualPromise)) {
+        return Promise.reject().then(function () {
+        }, function () {
+            return {pass: false, message: 'Expected not be called on a promise.'};
+        });
+    }
+    return actualPromise.then(
+        function (got) {
+            return {
+                pass: false,
+                message: 'Expected a promise to be rejected but actualValue is resolve'
+            };
+        },
+        function (actualValue) {
+            return matchError(actualValue, expectedValue);
+        }
+    );
+
+}
+
+function matchError(actualValue, expectedValue) {
+    if (expectedValue.length == 1 && typeof expectedValue[0] === 'function') {
+        if (expectedValue[0].name === actualValue.__proto__.name) {
+            return {pass: true, message: 'actual error type is ' + actualValue.name + '.'};
+        }
+        return {pass: false, message: `except error type is ${expectedValue[0].name},but actual is ${actualValue.name}.`};
+    }
+
+    if (expectedValue.length == 1 && typeof expectedValue[0] === 'string') {
+        if (expectedValue[0] === actualValue.message) {
+            return {pass: true, message: `actual error message is ${actualValue.message}.`};
+        }
+        return {pass: false, message: `except error message ${expectedValue[0]},but actual is ${actualValue.message}.`};
+    }
+
+    if (expectedValue.length == 1) {
+        return {pass: false, message: 'When only one parameter, it should be error type or error message.'};
+    }
+
+    if (expectedValue.length == 2 && typeof expectedValue[0] === 'function' && expectedValue[0].name === actualValue.name) {
+        if (typeof expectedValue[1] === 'string' && actualValue.message === expectedValue[1]) {
+            return {pass: true, message: 'actual error message is ' + actualValue.message + '.'};
+        }
+        return {pass: false, message: `except error message is ${expectedValue[1]},but actual is ${actualValue.message}.`};
+    }
+
+    if (expectedValue.length == 2 && typeof expectedValue[0] === 'function' && expectedValue[0].name !== actualValue.name) {
+        if (typeof expectedValue[1] === 'string' && actualValue.message === expectedValue[1]) {
+            return {pass: false, message: `except error type is ${expectedValue[0].name},but actual is ${actualValue.name}.`};
+        }
+        return {pass: false, message: 'except error type and message are incorrect.'};
+    }
+    if (expectedValue.length > 2) {
+        return {pass: false, message: 'Up to two parameters are supported.'};
+    }
+    return {pass: true, message: 'not equal type'};
+}
+
+export default assertPromiseIsRejectedWithError;ÔrE•§version¨mappings¥names§sources®sourcesContentÜ M””    ”  ”  ”  Ü 4”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3Ü D”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌCÜ E”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌDÜ ,”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +””   ” ” ” Ü 3”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2””   ” ” ” Ü H”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌD”ÌE ÌE”ÌF ÌF”ÌG ÌGÜ F”  	 ” 	” 	” 	” 	” 	” 	” 	” 	”	 		”
+ 	
+” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	”  	 ”! 	!”" 	"”# 	#”$ 	$”% 	%”& 	&”' 	'”( 	(”) 	)”* 	*”+ 	+”, 	,”- 	-”. 	.”/ 	/”0 	0”1 	1”2 	2”3 	3”4 	4”5 	5”6 	6”7 	7”8 	8”9 	9”: 	:”; 	;”< 	<”= 	=”> 	>”? 	?”Ì@ 	Ì@”ÌA 	ÌA”ÌB 	ÌB”ÌC 	ÌC”ÌD 	ÌD”ÌE 	ÌEÜ M”  
+ ” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+”	 
+	”
+ 
+
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+”  
+ ”! 
+!”" 
+"”# 
+#”$ 
+$”% 
+%”& 
+&”' 
+'”( 
+(”) 
+)”* 
+*”+ 
++”, 
+,”- 
+-”. 
+.”/ 
+/”0 
+0”1 
+1”2 
+2”3 
+3”4 
+4”5 
+5”6 
+6”7 
+7”8 
+8”9 
+9”: 
+:”; 
+;”< 
+<”= 
+=”> 
+>”? 
+?”Ì@ 
+Ì@”ÌA 
+ÌA”ÌB 
+ÌB”ÌC 
+ÌC”ÌD 
+ÌD”ÌE 
+ÌE”ÌF 
+ÌF”ÌG 
+ÌG”ÌH 
+ÌH”ÌI 
+ÌI”ÌJ 
+ÌJ”ÌK 
+ÌK”ÌL 
+ÌLÜ H”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌD”ÌE ÌE”ÌF ÌF”ÌG ÌGÜ #”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "•”   ” ” ” ” ’”   ” Ü .”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -’”   ” Ü K”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌD”ÌE ÌE”ÌF ÌF”ÌG ÌG”ÌH ÌH”ÌI ÌI”ÌJ ÌJÜ *”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )Ü 4”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” Ü T”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌD”ÌE ÌE”ÌF ÌF”ÌG ÌG”ÌH ÌH”ÌI ÌI”ÌJ ÌJ”ÌK ÌK”ÌL ÌL”ÌM ÌM”ÌN ÌN”ÌO ÌO”ÌP ÌP”ÌQ ÌQ”ÌR ÌR”ÌS ÌS”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” —”   ” ” ” ” ” ” Ü  ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” Ü Y”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌD”ÌE ÌE”ÌF ÌF”ÌG ÌG”ÌH ÌH”ÌI ÌI”ÌJ ÌJ”ÌK ÌK”ÌL ÌL”ÌM ÌM”ÌN ÌN”ÌO ÌO”ÌP ÌP”ÌQ ÌQ”ÌR ÌR”ÌS ÌS”ÌT ÌT”ÌU ÌU”ÌV ÌV”ÌW ÌW”ÌX ÌXÜ ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” œ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” Ü "”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !Ü <”    ”  ”  ”  ”  ”  ”  ”  ”  ”	  	”
+  
+”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”    ”!  !”"  "”#  #”$  $”%  %”&  &”'  '”(  (”)  )”*  *”+  +”,  ,”-  -”.  .”/  /”0  0”1  1”2  2”3  3”4  4”5  5”6  6”7  7”8  8”9  9”:  :”;  ;›”  ! ” !” !” !” !” !” !” !” !”	 !	”
+ !
+˜”  " ” "” "” "” "” "” "” "’”  # ” #“”  $ ” $” $’”  % ” %Ü 3”  & ” &” &” &” &” &” &” &” &”	 &	”
+ &
+” &” &” &” &” &” &” &” &” &” &” &” &” &” &” &” &” &” &” &” &” &”  & ”! &!”" &"”# &#”$ &$”% &%”& &&”' &'”( &(”) &)”* &*”+ &+”, &,”- &-”. &.”/ &/”0 &0”1 &1”2 &2Ü P”  ' ” '” '” '” '” '” '” '” '”	 '	”
+ '
+” '” '” '” '” '” '” '” '” '” '” '” '” '” '” '” '” '” '” '” '” '”  ' ”! '!”" '"”# '#”$ '$”% '%”& '&”' ''”( '(”) ')”* '*”+ '+”, ',”- '-”. '.”/ '/”0 '0”1 '1”2 '2”3 '3”4 '4”5 '5”6 '6”7 '7”8 '8”9 '9”: ':”; ';”< '<”= '=”> '>”? '?”Ì@ 'Ì@”ÌA 'ÌA”ÌB 'ÌB”ÌC 'ÌC”ÌD 'ÌD”ÌE 'ÌE”ÌF 'ÌF”ÌG 'ÌG”ÌH 'ÌH”ÌI 'ÌI”ÌJ 'ÌJ”ÌK 'ÌK”ÌL 'ÌL”ÌM 'ÌM”ÌN 'ÌN”ÌO 'ÌOÜ E”  ( ” (” (” (” (” (” (” (” (”	 (	”
+ (
+” (” (” (” (” (” (” (” (” (” (” (” (” (” (” (” (” (” (” (” (” (”  ( ”! (!”" ("”# (#”$ ($”% (%”& (&”' ('”( ((”) ()”* (*”+ (+”, (,”- (-”. (.”/ (/”0 (0”1 (1”2 (2”3 (3”4 (4”5 (5”6 (6”7 (7”8 (8”9 (9”: (:”; (;”< (<”= (=”> (>”? (?”Ì@ (Ì@”ÌA (ÌA”ÌB (ÌB”ÌC (ÌC”ÌD (ÌDÜ ]”  ) ” )” )” )” )” )” )” )” )”	 )	”
+ )
+” )” )” )” )” )” )” )” )” )” )” )” )” )” )” )” )” )” )” )” )” )”  ) ”! )!”" )"”# )#”$ )$”% )%”& )&”' )'”( )(”) ))”* )*”+ )+”, ),”- )-”. ).”/ )/”0 )0”1 )1”2 )2”3 )3”4 )4”5 )5”6 )6”7 )7”8 )8”9 )9”: ):”; );”< )<”= )=”> )>”? )?”Ì@ )Ì@”ÌA )ÌA”ÌB )ÌB”ÌC )ÌC”ÌD )ÌD”ÌE )ÌE”ÌF )ÌF”ÌG )ÌG”ÌH )ÌH”ÌI )ÌI”ÌJ )ÌJ”ÌK )ÌK”ÌL )ÌL”ÌM )ÌM”ÌN )ÌN”ÌO )ÌO”ÌP )ÌP”ÌQ )ÌQ”ÌR )ÌR”ÌS )ÌS”ÌT )ÌT”ÌU )ÌU”ÌV )ÌV”ÌW )ÌW”ÌX )ÌX”ÌY )ÌY”ÌZ )ÌZ”Ì[ )Ì[”Ì\ )Ì\›”  * ” *” *” *” *” *” *” *” *”	 *	”
+ *
+Ü |”  + ” +” +” +” +” +” +” +” +”	 +	”
+ +
+” +” +” +” +” +” +” +” +” +” +” +” +” +” +” +” +” +” +” +” +” +”  + ”! +!”" +"”# +#”$ +$”% +%”& +&”' +'”( +(”) +)”* +*”+ ++”, +,”- +-”. +.”/ +/”0 +0”1 +1”2 +2”3 +3”4 +4”5 +5”6 +6”7 +7”8 +8”9 +9”: +:”; +;”< +<”= +=”> +>”? +?”Ì@ +Ì@”ÌA +ÌA”ÌB +ÌB”ÌC +ÌC”ÌD +ÌD”ÌE +ÌE”ÌF +ÌF”ÌG +ÌG”ÌH +ÌH”ÌI +ÌI”ÌJ +ÌJ”ÌK +ÌK”ÌL +ÌL”ÌM +ÌM”ÌN +ÌN”ÌO +ÌO”ÌP +ÌP”ÌQ +ÌQ”ÌR +ÌR”ÌS +ÌS”ÌT +ÌT”ÌU +ÌU”ÌV +ÌV”ÌW +ÌW”ÌX +ÌX”ÌY +ÌY”ÌZ +ÌZ”Ì[ +Ì[”Ì\ +Ì\”Ì] +Ì]”Ì^ +Ì^”Ì_ +Ì_”Ì` +Ì`”Ìa +Ìa”Ìb +Ìb”Ìc +Ìc”Ìd +Ìd”Ìe +Ìe”Ìf +Ìf”Ìg +Ìg”Ìh +Ìh”Ìi +Ìi”Ìj +Ìj”Ìk +Ìk”Ìl +Ìl”Ìm +Ìm”Ìn +Ìn”Ìo +Ìo”Ìp +Ìp”Ìq +Ìq”Ìr +Ìr”Ìs +Ìs”Ìt +Ìt”Ìu +Ìu”Ìv +Ìv”Ìw +Ìw”Ìx +Ìx”Ìy +Ìy”Ìz +Ìz”Ì{ +Ì{—”  , ” ,” ,” ,” ,” ,” ,’”  - ” -Ü N”  . ” .” .” .” .” .” .” .” .”	 .	”
+ .
+” .” .” .” .” .” .” .” .” .” .” .” .” .” .” .” .” .” .” .” .” .”  . ”! .!”" ."”# .#”$ .$”% .%”& .&”' .'”( .(”) .)”* .*”+ .+”, .,”- .-”. ..”/ ./”0 .0”1 .1”2 .2”3 .3”4 .4”5 .5”6 .6”7 .7”8 .8”9 .9”: .:”; .;”< .<”= .=”> .>”? .?”Ì@ .Ì@”ÌA .ÌA”ÌB .ÌB”ÌC .ÌC”ÌD .ÌD”ÌE .ÌE”ÌF .ÌF”ÌG .ÌG”ÌH .ÌH”ÌI .ÌI”ÌJ .ÌJ”ÌK .ÌK”ÌL .ÌL”ÌM .ÌMÜ 9”  / ” /” /” /” /” /” /” /” /”	 /	”
+ /
+” /” /” /” /” /” /” /” /” /” /” /” /” /” /” /” /” /” /” /” /” /”  / ”! /!”" /"”# /#”$ /$”% /%”& /&”' /'”( /(”) /)”* /*”+ /+”, /,”- /-”. /.”/ //”0 /0”1 /1”2 /2”3 /3”4 /4”5 /5”6 /6”7 /7”8 /8Ü ^”  0 ” 0” 0” 0” 0” 0” 0” 0” 0”	 0	”
+ 0
+” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0”  0 ”! 0!”" 0"”# 0#”$ 0$”% 0%”& 0&”' 0'”( 0(”) 0)”* 0*”+ 0+”, 0,”- 0-”. 0.”/ 0/”0 00”1 01”2 02”3 03”4 04”5 05”6 06”7 07”8 08”9 09”: 0:”; 0;”< 0<”= 0=”> 0>”? 0?”Ì@ 0Ì@”ÌA 0ÌA”ÌB 0ÌB”ÌC 0ÌC”ÌD 0ÌD”ÌE 0ÌE”ÌF 0ÌF”ÌG 0ÌG”ÌH 0ÌH”ÌI 0ÌI”ÌJ 0ÌJ”ÌK 0ÌK”ÌL 0ÌL”ÌM 0ÌM”ÌN 0ÌN”ÌO 0ÌO”ÌP 0ÌP”ÌQ 0ÌQ”ÌR 0ÌR”ÌS 0ÌS”ÌT 0ÌT”ÌU 0ÌU”ÌV 0ÌV”ÌW 0ÌW”ÌX 0ÌX”ÌY 0ÌY”ÌZ 0ÌZ”Ì[ 0Ì[”Ì\ 0Ì\”Ì] 0Ì]›”  1 ” 1” 1” 1” 1” 1” 1” 1” 1”	 1	”
+ 1
+Ü z”  2 ” 2” 2” 2” 2” 2” 2” 2” 2”	 2	”
+ 2
+” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2”  2 ”! 2!”" 2"”# 2#”$ 2$”% 2%”& 2&”' 2'”( 2(”) 2)”* 2*”+ 2+”, 2,”- 2-”. 2.”/ 2/”0 20”1 21”2 22”3 23”4 24”5 25”6 26”7 27”8 28”9 29”: 2:”; 2;”< 2<”= 2=”> 2>”? 2?”Ì@ 2Ì@”ÌA 2ÌA”ÌB 2ÌB”ÌC 2ÌC”ÌD 2ÌD”ÌE 2ÌE”ÌF 2ÌF”ÌG 2ÌG”ÌH 2ÌH”ÌI 2ÌI”ÌJ 2ÌJ”ÌK 2ÌK”ÌL 2ÌL”ÌM 2ÌM”ÌN 2ÌN”ÌO 2ÌO”ÌP 2ÌP”ÌQ 2ÌQ”ÌR 2ÌR”ÌS 2ÌS”ÌT 2ÌT”ÌU 2ÌU”ÌV 2ÌV”ÌW 2ÌW”ÌX 2ÌX”ÌY 2ÌY”ÌZ 2ÌZ”Ì[ 2Ì[”Ì\ 2Ì\”Ì] 2Ì]”Ì^ 2Ì^”Ì_ 2Ì_”Ì` 2Ì`”Ìa 2Ìa”Ìb 2Ìb”Ìc 2Ìc”Ìd 2Ìd”Ìe 2Ìe”Ìf 2Ìf”Ìg 2Ìg”Ìh 2Ìh”Ìi 2Ìi”Ìj 2Ìj”Ìk 2Ìk”Ìl 2Ìl”Ìm 2Ìm”Ìn 2Ìn”Ìo 2Ìo”Ìp 2Ìp”Ìq 2Ìq”Ìr 2Ìr”Ìs 2Ìs”Ìt 2Ìt”Ìu 2Ìu”Ìv 2Ìv”Ìw 2Ìw”Ìx 2Ìx”Ìy 2Ìy—”  3 ” 3” 3” 3” 3” 3” 3’”  4 ” 4Ü &”  5 ” 5” 5” 5” 5” 5” 5” 5” 5”	 5	”
+ 5
+” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5”  5 ”! 5!”" 5"”# 5#”$ 5$”% 5%Ü n”  6 ” 6” 6” 6” 6” 6” 6” 6” 6”	 6	”
+ 6
+” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6” 6”  6 ”! 6!”" 6"”# 6#”$ 6$”% 6%”& 6&”' 6'”( 6(”) 6)”* 6*”+ 6+”, 6,”- 6-”. 6.”/ 6/”0 60”1 61”2 62”3 63”4 64”5 65”6 66”7 67”8 68”9 69”: 6:”; 6;”< 6<”= 6=”> 6>”? 6?”Ì@ 6Ì@”ÌA 6ÌA”ÌB 6ÌB”ÌC 6ÌC”ÌD 6ÌD”ÌE 6ÌE”ÌF 6ÌF”ÌG 6ÌG”ÌH 6ÌH”ÌI 6ÌI”ÌJ 6ÌJ”ÌK 6ÌK”ÌL 6ÌL”ÌM 6ÌM”ÌN 6ÌN”ÌO 6ÌO”ÌP 6ÌP”ÌQ 6ÌQ”ÌR 6ÌR”ÌS 6ÌS”ÌT 6ÌT”ÌU 6ÌU”ÌV 6ÌV”ÌW 6ÌW”ÌX 6ÌX”ÌY 6ÌY”ÌZ 6ÌZ”Ì[ 6Ì[”Ì\ 6Ì\”Ì] 6Ì]”Ì^ 6Ì^”Ì_ 6Ì_”Ì` 6Ì`”Ìa 6Ìa”Ìb 6Ìb”Ìc 6Ìc”Ìd 6Ìd”Ìe 6Ìe”Ìf 6Ìf”Ìg 6Ìg”Ìh 6Ìh”Ìi 6Ìi”Ìj 6Ìj”Ìk 6Ìk”Ìl 6Ìl”Ìm 6Ìm—”  7 ” 7” 7” 7” 7” 7” 7’”  8 ” 8Ü ~”  9 ” 9” 9” 9” 9” 9” 9” 9” 9”	 9	”
+ 9
+” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9” 9”  9 ”! 9!”" 9"”# 9#”$ 9$”% 9%”& 9&”' 9'”( 9(”) 9)”* 9*”+ 9+”, 9,”- 9-”. 9.”/ 9/”0 90”1 91”2 92”3 93”4 94”5 95”6 96”7 97”8 98”9 99”: 9:”; 9;”< 9<”= 9=”> 9>”? 9?”Ì@ 9Ì@”ÌA 9ÌA”ÌB 9ÌB”ÌC 9ÌC”ÌD 9ÌD”ÌE 9ÌE”ÌF 9ÌF”ÌG 9ÌG”ÌH 9ÌH”ÌI 9ÌI”ÌJ 9ÌJ”ÌK 9ÌK”ÌL 9ÌL”ÌM 9ÌM”ÌN 9ÌN”ÌO 9ÌO”ÌP 9ÌP”ÌQ 9ÌQ”ÌR 9ÌR”ÌS 9ÌS”ÌT 9ÌT”ÌU 9ÌU”ÌV 9ÌV”ÌW 9ÌW”ÌX 9ÌX”ÌY 9ÌY”ÌZ 9ÌZ”Ì[ 9Ì[”Ì\ 9Ì\”Ì] 9Ì]”Ì^ 9Ì^”Ì_ 9Ì_”Ì` 9Ì`”Ìa 9Ìa”Ìb 9Ìb”Ìc 9Ìc”Ìd 9Ìd”Ìe 9Ìe”Ìf 9Ìf”Ìg 9Ìg”Ìh 9Ìh”Ìi 9Ìi”Ìj 9Ìj”Ìk 9Ìk”Ìl 9Ìl”Ìm 9Ìm”Ìn 9Ìn”Ìo 9Ìo”Ìp 9Ìp”Ìq 9Ìq”Ìr 9Ìr”Ìs 9Ìs”Ìt 9Ìt”Ìu 9Ìu”Ìv 9Ìv”Ìw 9Ìw”Ìx 9Ìx”Ìy 9Ìy”Ìz 9Ìz”Ì{ 9Ì{”Ì| 9Ì|”Ì} 9Ì}Ü a”  : ” :” :” :” :” :” :” :” :”	 :	”
+ :
+” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :”  : ”! :!”" :"”# :#”$ :$”% :%”& :&”' :'”( :(”) :)”* :*”+ :+”, :,”- :-”. :.”/ :/”0 :0”1 :1”2 :2”3 :3”4 :4”5 :5”6 :6”7 :7”8 :8”9 :9”: ::”; :;”< :<”= :=”> :>”? :?”Ì@ :Ì@”ÌA :ÌA”ÌB :ÌB”ÌC :ÌC”ÌD :ÌD”ÌE :ÌE”ÌF :ÌF”ÌG :ÌG”ÌH :ÌH”ÌI :ÌI”ÌJ :ÌJ”ÌK :ÌK”ÌL :ÌL”ÌM :ÌM”ÌN :ÌN”ÌO :ÌO”ÌP :ÌP”ÌQ :ÌQ”ÌR :ÌR”ÌS :ÌS”ÌT :ÌT”ÌU :ÌU”ÌV :ÌV”ÌW :ÌW”ÌX :ÌX”ÌY :ÌY”ÌZ :ÌZ”Ì[ :Ì[”Ì\ :Ì\”Ì] :Ì]”Ì^ :Ì^”Ì_ :Ì_”Ì` :Ì`Ü c”  ; ” ;” ;” ;” ;” ;” ;” ;” ;”	 ;	”
+ ;
+” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;”  ; ”! ;!”" ;"”# ;#”$ ;$”% ;%”& ;&”' ;'”( ;(”) ;)”* ;*”+ ;+”, ;,”- ;-”. ;.”/ ;/”0 ;0”1 ;1”2 ;2”3 ;3”4 ;4”5 ;5”6 ;6”7 ;7”8 ;8”9 ;9”: ;:”; ;;”< ;<”= ;=”> ;>”? ;?”Ì@ ;Ì@”ÌA ;ÌA”ÌB ;ÌB”ÌC ;ÌC”ÌD ;ÌD”ÌE ;ÌE”ÌF ;ÌF”ÌG ;ÌG”ÌH ;ÌH”ÌI ;ÌI”ÌJ ;ÌJ”ÌK ;ÌK”ÌL ;ÌL”ÌM ;ÌM”ÌN ;ÌN”ÌO ;ÌO”ÌP ;ÌP”ÌQ ;ÌQ”ÌR ;ÌR”ÌS ;ÌS”ÌT ;ÌT”ÌU ;ÌU”ÌV ;ÌV”ÌW ;ÌW”ÌX ;ÌX”ÌY ;ÌY”ÌZ ;ÌZ”Ì[ ;Ì[”Ì\ ;Ì\”Ì] ;Ì]”Ì^ ;Ì^”Ì_ ;Ì_”Ì` ;Ì`”Ìa ;Ìa”Ìb ;Ìb›”  < ” <” <” <” <” <” <” <” <”	 <	”
+ <
+Ü }”  = ” =” =” =” =” =” =” =” =”	 =	”
+ =
+” =” =” =” =” =” =” =” =” =” =” =” =” =” =” =” =” =” =” =” =” =”  = ”! =!”" ="”# =#”$ =$”% =%”& =&”' ='”( =(”) =)”* =*”+ =+”, =,”- =-”. =.”/ =/”0 =0”1 =1”2 =2”3 =3”4 =4”5 =5”6 =6”7 =7”8 =8”9 =9”: =:”; =;”< =<”= ==”> =>”? =?”Ì@ =Ì@”ÌA =ÌA”ÌB =ÌB”ÌC =ÌC”ÌD =ÌD”ÌE =ÌE”ÌF =ÌF”ÌG =ÌG”ÌH =ÌH”ÌI =ÌI”ÌJ =ÌJ”ÌK =ÌK”ÌL =ÌL”ÌM =ÌM”ÌN =ÌN”ÌO =ÌO”ÌP =ÌP”ÌQ =ÌQ”ÌR =ÌR”ÌS =ÌS”ÌT =ÌT”ÌU =ÌU”ÌV =ÌV”ÌW =ÌW”ÌX =ÌX”ÌY =ÌY”ÌZ =ÌZ”Ì[ =Ì[”Ì\ =Ì\”Ì] =Ì]”Ì^ =Ì^”Ì_ =Ì_”Ì` =Ì`”Ìa =Ìa”Ìb =Ìb”Ìc =Ìc”Ìd =Ìd”Ìe =Ìe”Ìf =Ìf”Ìg =Ìg”Ìh =Ìh”Ìi =Ìi”Ìj =Ìj”Ìk =Ìk”Ìl =Ìl”Ìm =Ìm”Ìn =Ìn”Ìo =Ìo”Ìp =Ìp”Ìq =Ìq”Ìr =Ìr”Ìs =Ìs”Ìt =Ìt”Ìu =Ìu”Ìv =Ìv”Ìw =Ìw”Ìx =Ìx”Ìy =Ìy”Ìz =Ìz”Ì{ =Ì{”Ì| =Ì|—”  > ” >” >” >” >” >” >’”  ? ” ?Ü ~”  Ì@ ” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@”	 Ì@	”
+ Ì@
+” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@”  Ì@ ”! Ì@!”" Ì@"”# Ì@#”$ Ì@$”% Ì@%”& Ì@&”' Ì@'”( Ì@(”) Ì@)”* Ì@*”+ Ì@+”, Ì@,”- Ì@-”. Ì@.”/ Ì@/”0 Ì@0”1 Ì@1”2 Ì@2”3 Ì@3”4 Ì@4”5 Ì@5”6 Ì@6”7 Ì@7”8 Ì@8”9 Ì@9”: Ì@:”; Ì@;”< Ì@<”= Ì@=”> Ì@>”? Ì@?”Ì@ Ì@Ì@”ÌA Ì@ÌA”ÌB Ì@ÌB”ÌC Ì@ÌC”ÌD Ì@ÌD”ÌE Ì@ÌE”ÌF Ì@ÌF”ÌG Ì@ÌG”ÌH Ì@ÌH”ÌI Ì@ÌI”ÌJ Ì@ÌJ”ÌK Ì@ÌK”ÌL Ì@ÌL”ÌM Ì@ÌM”ÌN Ì@ÌN”ÌO Ì@ÌO”ÌP Ì@ÌP”ÌQ Ì@ÌQ”ÌR Ì@ÌR”ÌS Ì@ÌS”ÌT Ì@ÌT”ÌU Ì@ÌU”ÌV Ì@ÌV”ÌW Ì@ÌW”ÌX Ì@ÌX”ÌY Ì@ÌY”ÌZ Ì@ÌZ”Ì[ Ì@Ì[”Ì\ Ì@Ì\”Ì] Ì@Ì]”Ì^ Ì@Ì^”Ì_ Ì@Ì_”Ì` Ì@Ì`”Ìa Ì@Ìa”Ìb Ì@Ìb”Ìc Ì@Ìc”Ìd Ì@Ìd”Ìe Ì@Ìe”Ìf Ì@Ìf”Ìg Ì@Ìg”Ìh Ì@Ìh”Ìi Ì@Ìi”Ìj Ì@Ìj”Ìk Ì@Ìk”Ìl Ì@Ìl”Ìm Ì@Ìm”Ìn Ì@Ìn”Ìo Ì@Ìo”Ìp Ì@Ìp”Ìq Ì@Ìq”Ìr Ì@Ìr”Ìs Ì@Ìs”Ìt Ì@Ìt”Ìu Ì@Ìu”Ìv Ì@Ìv”Ìw Ì@Ìw”Ìx Ì@Ìx”Ìy Ì@Ìy”Ìz Ì@Ìz”Ì{ Ì@Ì{”Ì| Ì@Ì|”Ì} Ì@Ì}Ü a”  ÌA ” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA”	 ÌA	”
+ ÌA
+” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA” ÌA”  ÌA ”! ÌA!”" ÌA"”# ÌA#”$ ÌA$”% ÌA%”& ÌA&”' ÌA'”( ÌA(”) ÌA)”* ÌA*”+ ÌA+”, ÌA,”- ÌA-”. ÌA.”/ ÌA/”0 ÌA0”1 ÌA1”2 ÌA2”3 ÌA3”4 ÌA4”5 ÌA5”6 ÌA6”7 ÌA7”8 ÌA8”9 ÌA9”: ÌA:”; ÌA;”< ÌA<”= ÌA=”> ÌA>”? ÌA?”Ì@ ÌAÌ@”ÌA ÌAÌA”ÌB ÌAÌB”ÌC ÌAÌC”ÌD ÌAÌD”ÌE ÌAÌE”ÌF ÌAÌF”ÌG ÌAÌG”ÌH ÌAÌH”ÌI ÌAÌI”ÌJ ÌAÌJ”ÌK ÌAÌK”ÌL ÌAÌL”ÌM ÌAÌM”ÌN ÌAÌN”ÌO ÌAÌO”ÌP ÌAÌP”ÌQ ÌAÌQ”ÌR ÌAÌR”ÌS ÌAÌS”ÌT ÌAÌT”ÌU ÌAÌU”ÌV ÌAÌV”ÌW ÌAÌW”ÌX ÌAÌX”ÌY ÌAÌY”ÌZ ÌAÌZ”Ì[ ÌAÌ[”Ì\ ÌAÌ\”Ì] ÌAÌ]”Ì^ ÌAÌ^”Ì_ ÌAÌ_”Ì` ÌAÌ`Ü €”  ÌB ” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB”	 ÌB	”
+ ÌB
+” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB”  ÌB ”! ÌB!”" ÌB"”# ÌB#”$ ÌB$”% ÌB%”& ÌB&”' ÌB'”( ÌB(”) ÌB)”* ÌB*”+ ÌB+”, ÌB,”- ÌB-”. ÌB.”/ ÌB/”0 ÌB0”1 ÌB1”2 ÌB2”3 ÌB3”4 ÌB4”5 ÌB5”6 ÌB6”7 ÌB7”8 ÌB8”9 ÌB9”: ÌB:”; ÌB;”< ÌB<”= ÌB=”> ÌB>”? ÌB?”Ì@ ÌBÌ@”ÌA ÌBÌA”ÌB ÌBÌB”ÌC ÌBÌC”ÌD ÌBÌD”ÌE ÌBÌE”ÌF ÌBÌF”ÌG ÌBÌG”ÌH ÌBÌH”ÌI ÌBÌI”ÌJ ÌBÌJ”ÌK ÌBÌK”ÌL ÌBÌL”ÌM ÌBÌM”ÌN ÌBÌN”ÌO ÌBÌO”ÌP ÌBÌP”ÌQ ÌBÌQ”ÌR ÌBÌR”ÌS ÌBÌS”ÌT ÌBÌT”ÌU ÌBÌU”ÌV ÌBÌV”ÌW ÌBÌW”ÌX ÌBÌX”ÌY ÌBÌY”ÌZ ÌBÌZ”Ì[ ÌBÌ[”Ì\ ÌBÌ\”Ì] ÌBÌ]”Ì^ ÌBÌ^”Ì_ ÌBÌ_”Ì` ÌBÌ`”Ìa ÌBÌa”Ìb ÌBÌb”Ìc ÌBÌc”Ìd ÌBÌd”Ìe ÌBÌe”Ìf ÌBÌf”Ìg ÌBÌg”Ìh ÌBÌh”Ìi ÌBÌi”Ìj ÌBÌj”Ìk ÌBÌk”Ìl ÌBÌl”Ìm ÌBÌm”Ìn ÌBÌn”Ìo ÌBÌo”Ìp ÌBÌp”Ìq ÌBÌq”Ìr ÌBÌr”Ìs ÌBÌs”Ìt ÌBÌt”Ìu ÌBÌu”Ìv ÌBÌv”Ìw ÌBÌw”Ìx ÌBÌx”Ìy ÌBÌy”Ìz ÌBÌz”Ì{ ÌBÌ{”Ì| ÌBÌ|”Ì} ÌBÌ}”Ì~ ÌBÌ~”Ì ÌBÌ›”  ÌC ” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC”	 ÌC	”
+ ÌC
+Ü X”  ÌD ” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD”	 ÌD	”
+ ÌD
+” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD”  ÌD ”! ÌD!”" ÌD"”# ÌD#”$ ÌD$”% ÌD%”& ÌD&”' ÌD'”( ÌD(”) ÌD)”* ÌD*”+ ÌD+”, ÌD,”- ÌD-”. ÌD.”/ ÌD/”0 ÌD0”1 ÌD1”2 ÌD2”3 ÌD3”4 ÌD4”5 ÌD5”6 ÌD6”7 ÌD7”8 ÌD8”9 ÌD9”: ÌD:”; ÌD;”< ÌD<”= ÌD=”> ÌD>”? ÌD?”Ì@ ÌDÌ@”ÌA ÌDÌA”ÌB ÌDÌB”ÌC ÌDÌC”ÌD ÌDÌD”ÌE ÌDÌE”ÌF ÌDÌF”ÌG ÌDÌG”ÌH ÌDÌH”ÌI ÌDÌI”ÌJ ÌDÌJ”ÌK ÌDÌK”ÌL ÌDÌL”ÌM ÌDÌM”ÌN ÌDÌN”ÌO ÌDÌO”ÌP ÌDÌP”ÌQ ÌDÌQ”ÌR ÌDÌR”ÌS ÌDÌS”ÌT ÌDÌT”ÌU ÌDÌU”ÌV ÌDÌV”ÌW ÌDÌW—”  ÌE ” ÌE” ÌE” ÌE” ÌE” ÌE” ÌEÜ %”  ÌF ” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF”	 ÌF	”
+ ÌF
+” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF”  ÌF ”! ÌF!”" ÌF"”# ÌF#”$ ÌF$Ü O”  ÌG ” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG”	 ÌG	”
+ ÌG
+” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG”  ÌG ”! ÌG!”" ÌG"”# ÌG#”$ ÌG$”% ÌG%”& ÌG&”' ÌG'”( ÌG(”) ÌG)”* ÌG*”+ ÌG+”, ÌG,”- ÌG-”. ÌG.”/ ÌG/”0 ÌG0”1 ÌG1”2 ÌG2”3 ÌG3”4 ÌG4”5 ÌG5”6 ÌG6”7 ÌG7”8 ÌG8”9 ÌG9”: ÌG:”; ÌG;”< ÌG<”= ÌG=”> ÌG>”? ÌG?”Ì@ ÌGÌ@”ÌA ÌGÌA”ÌB ÌGÌB”ÌC ÌGÌC”ÌD ÌGÌD”ÌE ÌGÌE”ÌF ÌGÌF”ÌG ÌGÌG”ÌH ÌGÌH”ÌI ÌGÌI”ÌJ ÌGÌJ”ÌK ÌGÌK”ÌL ÌGÌL”ÌM ÌGÌM”ÌN ÌGÌN—”  ÌH ” ÌH” ÌH” ÌH” ÌH” ÌH” ÌHÜ 5”  ÌI ” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI”	 ÌI	”
+ ÌI
+” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI”  ÌI ”! ÌI!”" ÌI"”# ÌI#”$ ÌI$”% ÌI%”& ÌI&”' ÌI'”( ÌI(”) ÌI)”* ÌI*”+ ÌI+”, ÌI,”- ÌI-”. ÌI.”/ ÌI/”0 ÌI0”1 ÌI1”2 ÌI2”3 ÌI3”4 ÌI4“”  ÌJ ” ÌJ” ÌJ’”  ÌK ” ÌKÜ 0”  ÌL ” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL”	 ÌL	”
+ ÌL
+” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL”  ÌL ”! ÌL!”" ÌL"”# ÌL#”$ ÌL$”% ÌL%”& ÌL&”' ÌL'”( ÌL(”) ÌL)”* ÌL*”+ ÌL+”, ÌL,”- ÌL-”. ÌL.”/ ÌL/‘ÙÔD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\assert\assertPromiseIsRejectedWithError.js‘Úq/*
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import isPromiseLike from './isPromiseLike';
+
+function assertPromiseIsRejectedWithError(actualPromise, expectedValue) {
+    if (!isPromiseLike(actualPromise)) {
+        return Promise.reject().then(function () {
+        }, function () {
+            return {pass: false, message: 'Expected not be called on a promise.'};
+        });
+    }
+    return actualPromise.then(
+        function (got) {
+            return {
+                pass: false,
+                message: 'Expected a promise to be rejected but actualValue is resolve'
+            };
+        },
+        function (actualValue) {
+            return matchError(actualValue, expectedValue);
+        }
+    );
+
+}
+
+function matchError(actualValue, expectedValue) {
+    if (expectedValue.length == 1 && typeof expectedValue[0] === 'function') {
+        if (expectedValue[0].name === actualValue.__proto__.name) {
+            return {pass: true, message: 'actual error type is ' + actualValue.name + '.'};
+        }
+        return {pass: false, message: `except error type is ${expectedValue[0].name},but actual is ${actualValue.name}.`};
+    }
+
+    if (expectedValue.length == 1 && typeof expectedValue[0] === 'string') {
+        if (expectedValue[0] === actualValue.message) {
+            return {pass: true, message: `actual error message is ${actualValue.message}.`};
+        }
+        return {pass: false, message: `except error message ${expectedValue[0]},but actual is ${actualValue.message}.`};
+    }
+
+    if (expectedValue.length == 1) {
+        return {pass: false, message: 'When only one parameter, it should be error type or error message.'};
+    }
+
+    if (expectedValue.length == 2 && typeof expectedValue[0] === 'function' && expectedValue[0].name === actualValue.name) {
+        if (typeof expectedValue[1] === 'string' && actualValue.message === expectedValue[1]) {
+            return {pass: true, message: 'actual error message is ' + actualValue.message + '.'};
+        }
+        return {pass: false, message: `except error message is ${expectedValue[1]},but actual is ${actualValue.message}.`};
+    }
+
+    if (expectedValue.length == 2 && typeof expectedValue[0] === 'function' && expectedValue[0].name !== actualValue.name) {
+        if (typeof expectedValue[1] === 'string' && actualValue.message === expectedValue[1]) {
+            return {pass: false, message: `except error type is ${expectedValue[0].name},but actual is ${actualValue.name}.`};
+        }
+        return {pass: false, message: 'except error type and message are incorrect.'};
+    }
+    if (expectedValue.length > 2) {
+        return {pass: false, message: 'Up to two parameters are supported.'};
+    }
+    return {pass: true, message: 'not equal type'};
+}
+
+export default assertPromiseIsRejectedWithError;ÔrF‘¯./isPromiseLikeÔrG—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙÁD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\assert\isPromiseLike.jsAÃªoh-resolveÂ‘ÔrH’§missing¦pluginÃ¦genAbcÂÔ  ÔrI”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache‘ÔrJ•¤type¥start£endªspecifiers¦source±ImportDeclarationÍuÍ¡‘ÔrK”¤type¥start£end¥local¶ImportDefaultSpecifierÍ|Í‰ÔrL”¤type¥start£end¤nameªIdentifierÍ|Í‰­isPromiseLikeÔrM•¤type¥start£end¥value£raw§LiteralÍÍ ¯./isPromiseLike±'./isPromiseLike'

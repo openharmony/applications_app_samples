@@ -1,0 +1,803 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ/*
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {SuiteService, SpecService, ExpectService, ReportService} from './service';
+import {ConfigService} from './module/config/configService';
+import {SpecEvent, TaskEvent, SuiteEvent} from './event';
+
+/**
+ * core service for execute testcase.
+ */
+class Core {
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new Core();
+        }
+        return this.instance;
+    }
+
+    constructor() {
+        this.instance = null;
+        this.services = {
+            suite: {},
+            spec: {},
+            config: {},
+            expect: {},
+            log: {},
+            report: {}
+
+        };
+        this.events = {
+            suite: {},
+            spec: {},
+            task: {}
+        };
+    }
+
+    addService(name, service) {
+        let serviceObj = {};
+        if (!this.services[name]) {
+            this.services[name] = serviceObj;
+        } else {
+            serviceObj = this.services[name];
+        }
+        serviceObj[service.id] = service;
+    }
+
+    getDefaultService(name) {
+        return this.services[name].default;
+    }
+
+    getServices(name) {
+        return this.services[name];
+    }
+
+    registerEvent(serviceName, event) {
+        let eventObj = {};
+        if (!this.events[serviceName]) {
+            this.events[serviceName] = eventObj;
+        } else {
+            eventObj = this.events[serviceName];
+        }
+        eventObj[event.id] = event;
+    }
+
+    unRegisterEvent(serviceName, eventID) {
+        const eventObj = this.events[serviceName];
+        if (eventObj) {
+            delete eventObj[eventID];
+        }
+    }
+
+    subscribeEvent(serviceName, serviceObj) {
+        const eventObj = this.events[serviceName];
+        if (eventObj) {
+            for (const attr in eventObj) {
+                eventObj[attr]['subscribeEvent'](serviceObj);
+            }
+        }
+    }
+
+    async fireEvents(serviceName, eventName) {
+        const eventObj = this.events[serviceName];
+        if (!eventObj) {
+            return;
+        }
+        for (const attr in eventObj) {
+            await eventObj[attr][eventName]();
+        }
+    }
+
+    addToGlobal(apis) {
+        if (typeof globalThis !== 'undefined') {
+            for (let api in apis) {
+                globalThis[api] = apis[api];
+            }
+        }
+        for (const api in apis) {
+            this[api] = apis[api];
+        }
+    }
+
+    init() {
+        this.addService('suite', new SuiteService({id: 'default'}));
+        this.addService('spec', new SpecService({id: 'default'}));
+        this.addService('expect', new ExpectService({id: 'default'}));
+        this.addService('report', new ReportService({id: 'default'}));
+        this.addService('config', new ConfigService({id: 'default'}));
+        this.registerEvent('task', new TaskEvent({id: 'default', coreContext: this}));
+        this.registerEvent('suite', new SuiteEvent({id: 'default', coreContext: this}));
+        this.registerEvent('spec', new SpecEvent({id: 'default', coreContext: this}));
+        this.subscribeEvent('spec', this.getDefaultService('report'));
+        this.subscribeEvent('suite', this.getDefaultService('report'));
+        this.subscribeEvent('task', this.getDefaultService('report'));
+        const context = this;
+        for (const key in this.services) {
+            const serviceObj = this.services[key];
+            for (const serviceID in serviceObj) {
+                const service = serviceObj[serviceID];
+                service.init(context);
+
+                if (typeof service.apis !== 'function') {
+                    continue;
+                }
+                const apis = service.apis();
+                if (apis) {
+                    this.addToGlobal(apis);
+                }
+            }
+        }
+    }
+
+    execute(abilityDelegator) {
+        const suiteService = this.getDefaultService('suite');
+        const configService = this.getDefaultService('config');
+        if (configService['dryRun'] === 'true') {
+            (async function () {
+                await suiteService.dryRun(abilityDelegator);
+            })();
+            return;
+        }
+        setTimeout(() => {
+            suiteService.execute();
+        }, 10);
+    }
+}
+
+export default Core;
+Â“Ù³D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\service.jsÙÇD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\config\configService.jsÙ±D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\event.jsÙ°D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\core.jsÔrB˜±isLocalDependency¯isNodeEntryFile§pkgPath§pkgNameªpkgVersion±belongProjectPath±dependencyPkgInfo¨commonjsÂÂÙŸD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium¬@ohos/hypium¦1.0.24ÙbD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponentsÔrC’§pkgNameªpkgVersion¬@ohos/hypium¦1.0.24ÔrD’°hasDefaultExportªisCommonJSÃÂÃÚ/*
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {SuiteService, SpecService, ExpectService, ReportService} from './service';
+import {ConfigService} from './module/config/configService';
+import {SpecEvent, TaskEvent, SuiteEvent} from './event';
+
+/**
+ * core service for execute testcase.
+ */
+class Core {
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new Core();
+        }
+        return this.instance;
+    }
+
+    constructor() {
+        this.instance = null;
+        this.services = {
+            suite: {},
+            spec: {},
+            config: {},
+            expect: {},
+            log: {},
+            report: {}
+
+        };
+        this.events = {
+            suite: {},
+            spec: {},
+            task: {}
+        };
+    }
+
+    addService(name, service) {
+        let serviceObj = {};
+        if (!this.services[name]) {
+            this.services[name] = serviceObj;
+        } else {
+            serviceObj = this.services[name];
+        }
+        serviceObj[service.id] = service;
+    }
+
+    getDefaultService(name) {
+        return this.services[name].default;
+    }
+
+    getServices(name) {
+        return this.services[name];
+    }
+
+    registerEvent(serviceName, event) {
+        let eventObj = {};
+        if (!this.events[serviceName]) {
+            this.events[serviceName] = eventObj;
+        } else {
+            eventObj = this.events[serviceName];
+        }
+        eventObj[event.id] = event;
+    }
+
+    unRegisterEvent(serviceName, eventID) {
+        const eventObj = this.events[serviceName];
+        if (eventObj) {
+            delete eventObj[eventID];
+        }
+    }
+
+    subscribeEvent(serviceName, serviceObj) {
+        const eventObj = this.events[serviceName];
+        if (eventObj) {
+            for (const attr in eventObj) {
+                eventObj[attr]['subscribeEvent'](serviceObj);
+            }
+        }
+    }
+
+    async fireEvents(serviceName, eventName) {
+        const eventObj = this.events[serviceName];
+        if (!eventObj) {
+            return;
+        }
+        for (const attr in eventObj) {
+            await eventObj[attr][eventName]();
+        }
+    }
+
+    addToGlobal(apis) {
+        if (typeof globalThis !== 'undefined') {
+            for (let api in apis) {
+                globalThis[api] = apis[api];
+            }
+        }
+        for (const api in apis) {
+            this[api] = apis[api];
+        }
+    }
+
+    init() {
+        this.addService('suite', new SuiteService({id: 'default'}));
+        this.addService('spec', new SpecService({id: 'default'}));
+        this.addService('expect', new ExpectService({id: 'default'}));
+        this.addService('report', new ReportService({id: 'default'}));
+        this.addService('config', new ConfigService({id: 'default'}));
+        this.registerEvent('task', new TaskEvent({id: 'default', coreContext: this}));
+        this.registerEvent('suite', new SuiteEvent({id: 'default', coreContext: this}));
+        this.registerEvent('spec', new SpecEvent({id: 'default', coreContext: this}));
+        this.subscribeEvent('spec', this.getDefaultService('report'));
+        this.subscribeEvent('suite', this.getDefaultService('report'));
+        this.subscribeEvent('task', this.getDefaultService('report'));
+        const context = this;
+        for (const key in this.services) {
+            const serviceObj = this.services[key];
+            for (const serviceID in serviceObj) {
+                const service = serviceObj[serviceID];
+                service.init(context);
+
+                if (typeof service.apis !== 'function') {
+                    continue;
+                }
+                const apis = service.apis();
+                if (apis) {
+                    this.addToGlobal(apis);
+                }
+            }
+        }
+    }
+
+    execute(abilityDelegator) {
+        const suiteService = this.getDefaultService('suite');
+        const configService = this.getDefaultService('config');
+        if (configService['dryRun'] === 'true') {
+            (async function () {
+                await suiteService.dryRun(abilityDelegator);
+            })();
+            return;
+        }
+        setTimeout(() => {
+            suiteService.execute();
+        }, 10);
+    }
+}
+
+export default Core;
+ÔrE•§version¨mappings¥names§sources®sourcesContentÜ  ””    ”  ”  ”  Ü 4”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3Ü D”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌCÜ E”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌDÜ ,”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +””   ” ” ” Ü 3”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2””   ” ” ” Ü H”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌD”ÌE ÌE”ÌF ÌF”ÌG ÌGÜ F”  	 ” 	” 	” 	” 	” 	” 	” 	” 	”	 		”
+ 	
+” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	” 	”  	 ”! 	!”" 	"”# 	#”$ 	$”% 	%”& 	&”' 	'”( 	(”) 	)”* 	*”+ 	+”, 	,”- 	-”. 	.”/ 	/”0 	0”1 	1”2 	2”3 	3”4 	4”5 	5”6 	6”7 	7”8 	8”9 	9”: 	:”; 	;”< 	<”= 	=”> 	>”? 	?”Ì@ 	Ì@”ÌA 	ÌA”ÌB 	ÌB”ÌC 	ÌC”ÌD 	ÌD”ÌE 	ÌEÜ M”  
+ ” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+”	 
+	”
+ 
+
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+” 
+”  
+ ”! 
+!”" 
+"”# 
+#”$ 
+$”% 
+%”& 
+&”' 
+'”( 
+(”) 
+)”* 
+*”+ 
++”, 
+,”- 
+-”. 
+.”/ 
+/”0 
+0”1 
+1”2 
+2”3 
+3”4 
+4”5 
+5”6 
+6”7 
+7”8 
+8”9 
+9”: 
+:”; 
+;”< 
+<”= 
+=”> 
+>”? 
+?”Ì@ 
+Ì@”ÌA 
+ÌA”ÌB 
+ÌB”ÌC 
+ÌC”ÌD 
+ÌD”ÌE 
+ÌE”ÌF 
+ÌF”ÌG 
+ÌG”ÌH 
+ÌH”ÌI 
+ÌI”ÌJ 
+ÌJ”ÌK 
+ÌK”ÌL 
+ÌLÜ H”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌD”ÌE ÌE”ÌF ÌF”ÌG ÌGÜ #”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "•”   ” ” ” ” ’”   ” Ü T”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =”> >”? ?”Ì@ Ì@”ÌA ÌA”ÌB ÌB”ÌC ÌC”ÌD ÌD”ÌE ÌE”ÌF ÌF”ÌG ÌG”ÌH ÌH”ÌI ÌI”ÌJ ÌJ”ÌK ÌK”ÌL ÌL”ÌM ÌM”ÌN ÌN”ÌO ÌO”ÌP ÌP”ÌQ ÌQ”ÌR ÌR”ÌS ÌSÜ >”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :”; ;”< <”= =Ü ;”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (”) )”* *”+ +”, ,”- -”. .”/ /”0 0”1 1”2 2”3 3”4 4”5 5”6 6”7 7”8 8”9 9”: :’”   ” •”   ” ” ” ” Ü '”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &•”   ” ” ” ” ž”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” Ü )”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ”   ”! !”" "”# #”$ $”% %”& &”' '”( (›”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” —”   ” ” ” ” ” ” ’”   ” Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” Ü ”   ” ” ” ” ” ” ” ” ”	 	”
+ 
+” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” ” Ü ”    ”  ”  ”  ”  ”  ”  ”  ”  ”	  	”
+  
+”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  ”  Ü ”  ! ” !” !” !” !” !” !” !” !”	 !	”
+ !
+” !” !” !” !” !” !” !” !” !” !” !” !” !Ü ”  " ” "” "” "” "” "” "” "” "”	 "	”
+ "
+” "” "” "” "” "” "” "” "” "” "” "” "Ü ”  # ” #” #” #” #” #” #” #” #”	 #	”
+ #
+” #” #” #” #” #” #” #” #” #” #” #” #” #” #Ü ”  $ ” $” $” $” $” $” $” $” $”	 $	”
+ $
+” $” $” $” $” $” $” $” $” $” $” $” $” $” $Ü ”  % ” %” %” %” %” %” %” %” %”	 %	”
+ %
+” %” %” %” %” %” %” %” %” %” %” %Ü ”  & ” &” &” &” &” &” &” &” &”	 &	”
+ &
+” &” &” &” &” &” &” &” &” &” &” &” &” &’”  ' ” 'œ”  ( ” (” (” (” (” (” (” (” (”	 (	”
+ (
+” (Ü ”  ) ” )” )” )” )” )” )” )” )”	 )	”
+ )
+” )” )” )” )” )” )” )” )” )” )” )” )” )” )Ü ”  * ” *” *” *” *” *” *” *” *”	 *	”
+ *
+” *” *” *” *” *” *” *” *” *” *” *” *” *Ü ”  + ” +” +” +” +” +” +” +” +”	 +	”
+ +
+” +” +” +” +” +” +” +” +” +” +” +” +Ü ”  , ” ,” ,” ,” ,” ,” ,” ,” ,”	 ,	”
+ ,
+” ,” ,” ,” ,” ,” ,” ,” ,” ,” ,” ,œ”  - ” -” -” -” -” -” -” -” -”	 -	”
+ -
+” -—”  . ” .” .” .” .” .” .’”  / ” /Ü !”  0 ” 0” 0” 0” 0” 0” 0” 0” 0”	 0	”
+ 0
+” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0” 0”  0 Ü ”  1 ” 1” 1” 1” 1” 1” 1” 1” 1”	 1	”
+ 1
+” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1” 1Ü %”  2 ” 2” 2” 2” 2” 2” 2” 2” 2”	 2	”
+ 2
+” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2” 2”  2 ”! 2!”" 2"”# 2#”$ 2$Ü /”  3 ” 3” 3” 3” 3” 3” 3” 3” 3”	 3	”
+ 3
+” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3” 3”  3 ”! 3!”" 3"”# 3#”$ 3$”% 3%”& 3&”' 3'”( 3(”) 3)”* 3*”+ 3+”, 3,”- 3-”. 3.Ü ”  4 ” 4” 4” 4” 4” 4” 4” 4” 4”	 4	”
+ 4
+” 4” 4” 4” 4” 4” 4” 4Ü /”  5 ” 5” 5” 5” 5” 5” 5” 5” 5”	 5	”
+ 5
+” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5” 5”  5 ”! 5!”" 5"”# 5#”$ 5$”% 5%”& 5&”' 5'”( 5(”) 5)”* 5*”+ 5+”, 5,”- 5-”. 5.›”  6 ” 6” 6” 6” 6” 6” 6” 6” 6”	 6	”
+ 6
+Ü +”  7 ” 7” 7” 7” 7” 7” 7” 7” 7”	 7	”
+ 7
+” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7” 7”  7 ”! 7!”" 7"”# 7#”$ 7$”% 7%”& 7&”' 7'”( 7(”) 7)”* 7*—”  8 ” 8” 8” 8” 8” 8” 8’”  9 ” 9Ü ”  : ” :” :” :” :” :” :” :” :”	 :	”
+ :
+” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :” :Ü -”  ; ” ;” ;” ;” ;” ;” ;” ;” ;”	 ;	”
+ ;
+” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;” ;”  ; ”! ;!”" ;"”# ;#”$ ;$”% ;%”& ;&”' ;'”( ;(”) ;)”* ;*”+ ;+”, ;,—”  < ” <” <” <” <” <” <’”  = ” =Ü ”  > ” >” >” >” >” >” >” >” >”	 >	”
+ >
+” >” >” >” >” >” >” >” >” >” >” >” >” >” >Ü %”  ? ” ?” ?” ?” ?” ?” ?” ?” ?”	 ?	”
+ ?
+” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?” ?”  ? ”! ?!”" ?"”# ?#”$ ?$—”  Ì@ ” Ì@” Ì@” Ì@” Ì@” Ì@” Ì@’”  ÌA ” ÌAÜ )”  ÌB ” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB”	 ÌB	”
+ ÌB
+” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB” ÌB”  ÌB ”! ÌB!”" ÌB"”# ÌB#”$ ÌB$”% ÌB%”& ÌB&”' ÌB'”( ÌB(Ü ”  ÌC ” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC”	 ÌC	”
+ ÌC
+” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌCÜ *”  ÌD ” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD”	 ÌD	”
+ ÌD
+” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD” ÌD”  ÌD ”! ÌD!”" ÌD"”# ÌD#”$ ÌD$”% ÌD%”& ÌD&”' ÌD'”( ÌD(”) ÌD)Ü 2”  ÌE ” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE”	 ÌE	”
+ ÌE
+” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE” ÌE”  ÌE ”! ÌE!”" ÌE"”# ÌE#”$ ÌE$”% ÌE%”& ÌE&”' ÌE'”( ÌE(”) ÌE)”* ÌE*”+ ÌE+”, ÌE,”- ÌE-”. ÌE.”/ ÌE/”0 ÌE0”1 ÌE1Ü ”  ÌF ” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF”	 ÌF	”
+ ÌF
+” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF” ÌFÜ 2”  ÌG ” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG”	 ÌG	”
+ ÌG
+” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG”  ÌG ”! ÌG!”" ÌG"”# ÌG#”$ ÌG$”% ÌG%”& ÌG&”' ÌG'”( ÌG(”) ÌG)”* ÌG*”+ ÌG+”, ÌG,”- ÌG-”. ÌG.”/ ÌG/”0 ÌG0”1 ÌG1›”  ÌH ” ÌH” ÌH” ÌH” ÌH” ÌH” ÌH” ÌH” ÌH”	 ÌH	”
+ ÌH
+Ü %”  ÌI ” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI”	 ÌI	”
+ ÌI
+” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI”  ÌI ”! ÌI!”" ÌI"”# ÌI#”$ ÌI$—”  ÌJ ” ÌJ” ÌJ” ÌJ” ÌJ” ÌJ” ÌJ’”  ÌK ” ÌKÜ -”  ÌL ” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL”	 ÌL	”
+ ÌL
+” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL”  ÌL ”! ÌL!”" ÌL"”# ÌL#”$ ÌL$”% ÌL%”& ÌL&”' ÌL'”( ÌL(”) ÌL)”* ÌL*”+ ÌL+”, ÌL,Ü 4”  ÌM ” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM”	 ÌM	”
+ ÌM
+” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM” ÌM”  ÌM ”! ÌM!”" ÌM"”# ÌM#”$ ÌM$”% ÌM%”& ÌM&”' ÌM'”( ÌM(”) ÌM)”* ÌM*”+ ÌM+”, ÌM,”- ÌM-”. ÌM.”/ ÌM/”0 ÌM0”1 ÌM1”2 ÌM2”3 ÌM3Ü ”  ÌN ” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN”	 ÌN	”
+ ÌN
+” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌN” ÌNÜ '”  ÌO ” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO”	 ÌO	”
+ ÌO
+” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO” ÌO”  ÌO ”! ÌO!”" ÌO"”# ÌO#”$ ÌO$”% ÌO%”& ÌO&›”  ÌP ” ÌP” ÌP” ÌP” ÌP” ÌP” ÌP” ÌP” ÌP”	 ÌP	”
+ ÌP
+—”  ÌQ ” ÌQ” ÌQ” ÌQ” ÌQ” ÌQ” ÌQ’”  ÌR ” ÌRÜ /”  ÌS ” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS”	 ÌS	”
+ ÌS
+” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS” ÌS”  ÌS ”! ÌS!”" ÌS"”# ÌS#”$ ÌS$”% ÌS%”& ÌS&”' ÌS'”( ÌS(”) ÌS)”* ÌS*”+ ÌS+”, ÌS,”- ÌS-”. ÌS.Ü 4”  ÌT ” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT”	 ÌT	”
+ ÌT
+” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT” ÌT”  ÌT ”! ÌT!”" ÌT"”# ÌT#”$ ÌT$”% ÌT%”& ÌT&”' ÌT'”( ÌT(”) ÌT)”* ÌT*”+ ÌT+”, ÌT,”- ÌT-”. ÌT.”/ ÌT/”0 ÌT0”1 ÌT1”2 ÌT2”3 ÌT3Ü ”  ÌU ” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU”	 ÌU	”
+ ÌU
+” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU” ÌUÜ ,”  ÌV ” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV”	 ÌV	”
+ ÌV
+” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV” ÌV”  ÌV ”! ÌV!”" ÌV"”# ÌV#”$ ÌV$”% ÌV%”& ÌV&”' ÌV'”( ÌV(”) ÌV)”* ÌV*”+ ÌV+Ü ?”  ÌW ” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW”	 ÌW	”
+ ÌW
+” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW” ÌW”  ÌW ”! ÌW!”" ÌW"”# ÌW#”$ ÌW$”% ÌW%”& ÌW&”' ÌW'”( ÌW(”) ÌW)”* ÌW*”+ ÌW+”, ÌW,”- ÌW-”. ÌW.”/ ÌW/”0 ÌW0”1 ÌW1”2 ÌW2”3 ÌW3”4 ÌW4”5 ÌW5”6 ÌW6”7 ÌW7”8 ÌW8”9 ÌW9”: ÌW:”; ÌW;”< ÌW<”= ÌW=”> ÌW>Ÿ”  ÌX ” ÌX” ÌX” ÌX” ÌX” ÌX” ÌX” ÌX” ÌX”	 ÌX	”
+ ÌX
+” ÌX” ÌX” ÌX” ÌX›”  ÌY ” ÌY” ÌY” ÌY” ÌY” ÌY” ÌY” ÌY” ÌY”	 ÌY	”
+ ÌY
+—”  ÌZ ” ÌZ” ÌZ” ÌZ” ÌZ” ÌZ” ÌZ’”  Ì[ ” Ì[Ü 0”  Ì\ ” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\”	 Ì\	”
+ Ì\
+” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\” Ì\”  Ì\ ”! Ì\!”" Ì\"”# Ì\#”$ Ì\$”% Ì\%”& Ì\&”' Ì\'”( Ì\(”) Ì\)”* Ì\*”+ Ì\+”, Ì\,”- Ì\-”. Ì\.”/ Ì\/Ü 4”  Ì] ” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]”	 Ì]	”
+ Ì]
+” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]” Ì]”  Ì] ”! Ì]!”" Ì]"”# Ì]#”$ Ì]$”% Ì]%”& Ì]&”' Ì]'”( Ì](”) Ì])”* Ì]*”+ Ì]+”, Ì],”- Ì]-”. Ì].”/ Ì]/”0 Ì]0”1 Ì]1”2 Ì]2”3 Ì]3Ü ”  Ì^ ” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^”	 Ì^	”
+ Ì^
+” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^” Ì^Ü ”  Ì_ ” Ì_” Ì_” Ì_” Ì_” Ì_” Ì_” Ì_” Ì_”	 Ì_	”
+ Ì_
+” Ì_” Ì_” Ì_” Ì_” Ì_” Ì_” Ì_” Ì_” Ì_” Ì_›”  Ì` ” Ì`” Ì`” Ì`” Ì`” Ì`” Ì`” Ì`” Ì`”	 Ì`	”
+ Ì`
+Ü (”  Ìa ” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa”	 Ìa	”
+ Ìa
+” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa” Ìa”  Ìa ”! Ìa!”" Ìa"”# Ìa#”$ Ìa$”% Ìa%”& Ìa&”' Ìa'Ü 0”  Ìb ” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb”	 Ìb	”
+ Ìb
+” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb” Ìb”  Ìb ”! Ìb!”" Ìb"”# Ìb#”$ Ìb$”% Ìb%”& Ìb&”' Ìb'”( Ìb(”) Ìb)”* Ìb*”+ Ìb+”, Ìb,”- Ìb-”. Ìb.”/ Ìb/›”  Ìc ” Ìc” Ìc” Ìc” Ìc” Ìc” Ìc” Ìc” Ìc”	 Ìc	”
+ Ìc
+—”  Ìd ” Ìd” Ìd” Ìd” Ìd” Ìd” Ìd’”  Ìe ” ÌeÜ ”  Ìf ” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf”	 Ìf	”
+ Ìf
+” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf” ÌfÜ 2”  Ìg ” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg”	 Ìg	”
+ Ìg
+” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg” Ìg”  Ìg ”! Ìg!”" Ìg"”# Ìg#”$ Ìg$”% Ìg%”& Ìg&”' Ìg'”( Ìg(”) Ìg)”* Ìg*”+ Ìg+”, Ìg,”- Ìg-”. Ìg.”/ Ìg/”0 Ìg0”1 Ìg1Ü %”  Ìh ” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh”	 Ìh	”
+ Ìh
+” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh” Ìh”  Ìh ”! Ìh!”" Ìh"”# Ìh#”$ Ìh$Ü .”  Ìi ” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi”	 Ìi	”
+ Ìi
+” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi” Ìi”  Ìi ”! Ìi!”" Ìi"”# Ìi#”$ Ìi$”% Ìi%”& Ìi&”' Ìi'”( Ìi(”) Ìi)”* Ìi*”+ Ìi+”, Ìi,”- Ìi-Ÿ”  Ìj ” Ìj” Ìj” Ìj” Ìj” Ìj” Ìj” Ìj” Ìj”	 Ìj	”
+ Ìj
+” Ìj” Ìj” Ìj” Ìj›”  Ìk ” Ìk” Ìk” Ìk” Ìk” Ìk” Ìk” Ìk” Ìk”	 Ìk	”
+ Ìk
+Ü #”  Ìl ” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl”	 Ìl	”
+ Ìl
+” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl” Ìl”  Ìl ”! Ìl!”" Ìl"Ü $”  Ìm ” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm”	 Ìm	”
+ Ìm
+” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm” Ìm”  Ìm ”! Ìm!”" Ìm"”# Ìm#›”  Ìn ” Ìn” Ìn” Ìn” Ìn” Ìn” Ìn” Ìn” Ìn”	 Ìn	”
+ Ìn
+—”  Ìo ” Ìo” Ìo” Ìo” Ìo” Ìo” Ìo’”  Ìp ” Ìpž”  Ìq ” Ìq” Ìq” Ìq” Ìq” Ìq” Ìq” Ìq” Ìq”	 Ìq	”
+ Ìq
+” Ìq” Ìq” ÌqÜ F”  Ìr ” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr”	 Ìr	”
+ Ìr
+” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr” Ìr”  Ìr ”! Ìr!”" Ìr"”# Ìr#”$ Ìr$”% Ìr%”& Ìr&”' Ìr'”( Ìr(”) Ìr)”* Ìr*”+ Ìr+”, Ìr,”- Ìr-”. Ìr.”/ Ìr/”0 Ìr0”1 Ìr1”2 Ìr2”3 Ìr3”4 Ìr4”5 Ìr5”6 Ìr6”7 Ìr7”8 Ìr8”9 Ìr9”: Ìr:”; Ìr;”< Ìr<”= Ìr=”> Ìr>”? Ìr?”Ì@ ÌrÌ@”ÌA ÌrÌA”ÌB ÌrÌB”ÌC ÌrÌC”ÌD ÌrÌD”ÌE ÌrÌEÜ D”  Ìs ” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs”	 Ìs	”
+ Ìs
+” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs” Ìs”  Ìs ”! Ìs!”" Ìs"”# Ìs#”$ Ìs$”% Ìs%”& Ìs&”' Ìs'”( Ìs(”) Ìs)”* Ìs*”+ Ìs+”, Ìs,”- Ìs-”. Ìs.”/ Ìs/”0 Ìs0”1 Ìs1”2 Ìs2”3 Ìs3”4 Ìs4”5 Ìs5”6 Ìs6”7 Ìs7”8 Ìs8”9 Ìs9”: Ìs:”; Ìs;”< Ìs<”= Ìs=”> Ìs>”? Ìs?”Ì@ ÌsÌ@”ÌA ÌsÌA”ÌB ÌsÌB”ÌC ÌsÌCÜ H”  Ìt ” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt”	 Ìt	”
+ Ìt
+” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt” Ìt”  Ìt ”! Ìt!”" Ìt"”# Ìt#”$ Ìt$”% Ìt%”& Ìt&”' Ìt'”( Ìt(”) Ìt)”* Ìt*”+ Ìt+”, Ìt,”- Ìt-”. Ìt.”/ Ìt/”0 Ìt0”1 Ìt1”2 Ìt2”3 Ìt3”4 Ìt4”5 Ìt5”6 Ìt6”7 Ìt7”8 Ìt8”9 Ìt9”: Ìt:”; Ìt;”< Ìt<”= Ìt=”> Ìt>”? Ìt?”Ì@ ÌtÌ@”ÌA ÌtÌA”ÌB ÌtÌB”ÌC ÌtÌC”ÌD ÌtÌD”ÌE ÌtÌE”ÌF ÌtÌF”ÌG ÌtÌGÜ H”  Ìu ” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu”	 Ìu	”
+ Ìu
+” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu” Ìu”  Ìu ”! Ìu!”" Ìu"”# Ìu#”$ Ìu$”% Ìu%”& Ìu&”' Ìu'”( Ìu(”) Ìu)”* Ìu*”+ Ìu+”, Ìu,”- Ìu-”. Ìu.”/ Ìu/”0 Ìu0”1 Ìu1”2 Ìu2”3 Ìu3”4 Ìu4”5 Ìu5”6 Ìu6”7 Ìu7”8 Ìu8”9 Ìu9”: Ìu:”; Ìu;”< Ìu<”= Ìu=”> Ìu>”? Ìu?”Ì@ ÌuÌ@”ÌA ÌuÌA”ÌB ÌuÌB”ÌC ÌuÌC”ÌD ÌuÌD”ÌE ÌuÌE”ÌF ÌuÌF”ÌG ÌuÌGÜ H”  Ìv ” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv”	 Ìv	”
+ Ìv
+” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv” Ìv”  Ìv ”! Ìv!”" Ìv"”# Ìv#”$ Ìv$”% Ìv%”& Ìv&”' Ìv'”( Ìv(”) Ìv)”* Ìv*”+ Ìv+”, Ìv,”- Ìv-”. Ìv.”/ Ìv/”0 Ìv0”1 Ìv1”2 Ìv2”3 Ìv3”4 Ìv4”5 Ìv5”6 Ìv6”7 Ìv7”8 Ìv8”9 Ìv9”: Ìv:”; Ìv;”< Ìv<”= Ìv=”> Ìv>”? Ìv?”Ì@ ÌvÌ@”ÌA ÌvÌA”ÌB ÌvÌB”ÌC ÌvÌC”ÌD ÌvÌD”ÌE ÌvÌE”ÌF ÌvÌF”ÌG ÌvÌGÜ X”  Ìw ” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw”	 Ìw	”
+ Ìw
+” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw” Ìw”  Ìw ”! Ìw!”" Ìw"”# Ìw#”$ Ìw$”% Ìw%”& Ìw&”' Ìw'”( Ìw(”) Ìw)”* Ìw*”+ Ìw+”, Ìw,”- Ìw-”. Ìw.”/ Ìw/”0 Ìw0”1 Ìw1”2 Ìw2”3 Ìw3”4 Ìw4”5 Ìw5”6 Ìw6”7 Ìw7”8 Ìw8”9 Ìw9”: Ìw:”; Ìw;”< Ìw<”= Ìw=”> Ìw>”? Ìw?”Ì@ ÌwÌ@”ÌA ÌwÌA”ÌB ÌwÌB”ÌC ÌwÌC”ÌD ÌwÌD”ÌE ÌwÌE”ÌF ÌwÌF”ÌG ÌwÌG”ÌH ÌwÌH”ÌI ÌwÌI”ÌJ ÌwÌJ”ÌK ÌwÌK”ÌL ÌwÌL”ÌM ÌwÌM”ÌN ÌwÌN”ÌO ÌwÌO”ÌP ÌwÌP”ÌQ ÌwÌQ”ÌR ÌwÌR”ÌS ÌwÌS”ÌT ÌwÌT”ÌU ÌwÌU”ÌV ÌwÌV”ÌW ÌwÌWÜ Z”  Ìx ” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx”	 Ìx	”
+ Ìx
+” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx” Ìx”  Ìx ”! Ìx!”" Ìx"”# Ìx#”$ Ìx$”% Ìx%”& Ìx&”' Ìx'”( Ìx(”) Ìx)”* Ìx*”+ Ìx+”, Ìx,”- Ìx-”. Ìx.”/ Ìx/”0 Ìx0”1 Ìx1”2 Ìx2”3 Ìx3”4 Ìx4”5 Ìx5”6 Ìx6”7 Ìx7”8 Ìx8”9 Ìx9”: Ìx:”; Ìx;”< Ìx<”= Ìx=”> Ìx>”? Ìx?”Ì@ ÌxÌ@”ÌA ÌxÌA”ÌB ÌxÌB”ÌC ÌxÌC”ÌD ÌxÌD”ÌE ÌxÌE”ÌF ÌxÌF”ÌG ÌxÌG”ÌH ÌxÌH”ÌI ÌxÌI”ÌJ ÌxÌJ”ÌK ÌxÌK”ÌL ÌxÌL”ÌM ÌxÌM”ÌN ÌxÌN”ÌO ÌxÌO”ÌP ÌxÌP”ÌQ ÌxÌQ”ÌR ÌxÌR”ÌS ÌxÌS”ÌT ÌxÌT”ÌU ÌxÌU”ÌV ÌxÌV”ÌW ÌxÌW”ÌX ÌxÌX”ÌY ÌxÌYÜ X”  Ìy ” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy”	 Ìy	”
+ Ìy
+” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy” Ìy”  Ìy ”! Ìy!”" Ìy"”# Ìy#”$ Ìy$”% Ìy%”& Ìy&”' Ìy'”( Ìy(”) Ìy)”* Ìy*”+ Ìy+”, Ìy,”- Ìy-”. Ìy.”/ Ìy/”0 Ìy0”1 Ìy1”2 Ìy2”3 Ìy3”4 Ìy4”5 Ìy5”6 Ìy6”7 Ìy7”8 Ìy8”9 Ìy9”: Ìy:”; Ìy;”< Ìy<”= Ìy=”> Ìy>”? Ìy?”Ì@ ÌyÌ@”ÌA ÌyÌA”ÌB ÌyÌB”ÌC ÌyÌC”ÌD ÌyÌD”ÌE ÌyÌE”ÌF ÌyÌF”ÌG ÌyÌG”ÌH ÌyÌH”ÌI ÌyÌI”ÌJ ÌyÌJ”ÌK ÌyÌK”ÌL ÌyÌL”ÌM ÌyÌM”ÌN ÌyÌN”ÌO ÌyÌO”ÌP ÌyÌP”ÌQ ÌyÌQ”ÌR ÌyÌR”ÌS ÌyÌS”ÌT ÌyÌT”ÌU ÌyÌU”ÌV ÌyÌV”ÌW ÌyÌWÜ H”  Ìz ” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz”	 Ìz	”
+ Ìz
+” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz” Ìz”  Ìz ”! Ìz!”" Ìz"”# Ìz#”$ Ìz$”% Ìz%”& Ìz&”' Ìz'”( Ìz(”) Ìz)”* Ìz*”+ Ìz+”, Ìz,”- Ìz-”. Ìz.”/ Ìz/”0 Ìz0”1 Ìz1”2 Ìz2”3 Ìz3”4 Ìz4”5 Ìz5”6 Ìz6”7 Ìz7”8 Ìz8”9 Ìz9”: Ìz:”; Ìz;”< Ìz<”= Ìz=”> Ìz>”? Ìz?”Ì@ ÌzÌ@”ÌA ÌzÌA”ÌB ÌzÌB”ÌC ÌzÌC”ÌD ÌzÌD”ÌE ÌzÌE”ÌF ÌzÌF”ÌG ÌzÌGÜ I”  Ì{ ” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{”	 Ì{	”
+ Ì{
+” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{” Ì{”  Ì{ ”! Ì{!”" Ì{"”# Ì{#”$ Ì{$”% Ì{%”& Ì{&”' Ì{'”( Ì{(”) Ì{)”* Ì{*”+ Ì{+”, Ì{,”- Ì{-”. Ì{.”/ Ì{/”0 Ì{0”1 Ì{1”2 Ì{2”3 Ì{3”4 Ì{4”5 Ì{5”6 Ì{6”7 Ì{7”8 Ì{8”9 Ì{9”: Ì{:”; Ì{;”< Ì{<”= Ì{=”> Ì{>”? Ì{?”Ì@ Ì{Ì@”ÌA Ì{ÌA”ÌB Ì{ÌB”ÌC Ì{ÌC”ÌD Ì{ÌD”ÌE Ì{ÌE”ÌF Ì{ÌF”ÌG Ì{ÌG”ÌH Ì{ÌHÜ H”  Ì| ” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|”	 Ì|	”
+ Ì|
+” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|” Ì|”  Ì| ”! Ì|!”" Ì|"”# Ì|#”$ Ì|$”% Ì|%”& Ì|&”' Ì|'”( Ì|(”) Ì|)”* Ì|*”+ Ì|+”, Ì|,”- Ì|-”. Ì|.”/ Ì|/”0 Ì|0”1 Ì|1”2 Ì|2”3 Ì|3”4 Ì|4”5 Ì|5”6 Ì|6”7 Ì|7”8 Ì|8”9 Ì|9”: Ì|:”; Ì|;”< Ì|<”= Ì|=”> Ì|>”? Ì|?”Ì@ Ì|Ì@”ÌA Ì|ÌA”ÌB Ì|ÌB”ÌC Ì|ÌC”ÌD Ì|ÌD”ÌE Ì|ÌE”ÌF Ì|ÌF”ÌG Ì|ÌGÜ ”  Ì} ” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}”	 Ì}	”
+ Ì}
+” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}” Ì}Ü ,”  Ì~ ” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~”	 Ì~	”
+ Ì~
+” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~” Ì~”  Ì~ ”! Ì~!”" Ì~"”# Ì~#”$ Ì~$”% Ì~%”& Ì~&”' Ì~'”( Ì~(”) Ì~)”* Ì~*”+ Ì~+Ü 4”  Ì ” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì”	 Ì	”
+ Ì
+” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì”  Ì ”! Ì!”" Ì"”# Ì#”$ Ì$”% Ì%”& Ì&”' Ì'”( Ì(”) Ì)”* Ì*”+ Ì+”, Ì,”- Ì-”. Ì.”/ Ì/”0 Ì0”1 Ì1”2 Ì2”3 Ì3Ü 3”  Ì€ ” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€”	 Ì€	”
+ Ì€
+” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€” Ì€”  Ì€ ”! Ì€!”" Ì€"”# Ì€#”$ Ì€$”% Ì€%”& Ì€&”' Ì€'”( Ì€(”) Ì€)”* Ì€*”+ Ì€+”, Ì€,”- Ì€-”. Ì€.”/ Ì€/”0 Ì€0”1 Ì€1”2 Ì€2Ü 8”  Ì ” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì”	 Ì	”
+ Ì
+” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì”  Ì ”! Ì!”" Ì"”# Ì#”$ Ì$”% Ì%”& Ì&”' Ì'”( Ì(”) Ì)”* Ì*”+ Ì+”, Ì,”- Ì-”. Ì.”/ Ì/”0 Ì0”1 Ì1”2 Ì2”3 Ì3”4 Ì4”5 Ì5”6 Ì6”7 Ì7Ü (”  Ì‚ ” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚”	 Ì‚	”
+ Ì‚
+” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚” Ì‚”  Ì‚ ”! Ì‚!”" Ì‚"”# Ì‚#”$ Ì‚$”% Ì‚%”& Ì‚&”' Ì‚'’”  Ìƒ ” ÌƒÜ ;”  Ì„ ” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„”	 Ì„	”
+ Ì„
+” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„” Ì„”  Ì„ ”! Ì„!”" Ì„"”# Ì„#”$ Ì„$”% Ì„%”& Ì„&”' Ì„'”( Ì„(”) Ì„)”* Ì„*”+ Ì„+”, Ì„,”- Ì„-”. Ì„.”/ Ì„/”0 Ì„0”1 Ì„1”2 Ì„2”3 Ì„3”4 Ì„4”5 Ì„5”6 Ì„6”7 Ì„7”8 Ì„8”9 Ì„9”: Ì„:Ü ”  Ì… ” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…”	 Ì…	”
+ Ì…
+” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…” Ì…Ü ”  Ì† ” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†”	 Ì†	”
+ Ì†
+” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†” Ì†Ü .”  Ì‡ ” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡”	 Ì‡	”
+ Ì‡
+” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡” Ì‡”  Ì‡ ”! Ì‡!”" Ì‡"”# Ì‡#”$ Ì‡$”% Ì‡%”& Ì‡&”' Ì‡'”( Ì‡(”) Ì‡)”* Ì‡*”+ Ì‡+”, Ì‡,”- Ì‡-Ü ”  Ìˆ ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ”	 Ìˆ	”
+ Ìˆ
+” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” Ìˆ” ÌˆÜ -”  Ì‰ ” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰”	 Ì‰	”
+ Ì‰
+” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰” Ì‰”  Ì‰ ”! Ì‰!”" Ì‰"”# Ì‰#”$ Ì‰$”% Ì‰%”& Ì‰&”' Ì‰'”( Ì‰(”) Ì‰)”* Ì‰*”+ Ì‰+”, Ì‰,Ü ”  ÌŠ ” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ”	 ÌŠ	”
+ ÌŠ
+” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠ” ÌŠŸ”  Ì‹ ” Ì‹” Ì‹” Ì‹” Ì‹” Ì‹” Ì‹” Ì‹” Ì‹”	 Ì‹	”
+ Ì‹
+” Ì‹” Ì‹” Ì‹” Ì‹›”  ÌŒ ” ÌŒ” ÌŒ” ÌŒ” ÌŒ” ÌŒ” ÌŒ” ÌŒ” ÌŒ”	 ÌŒ	”
+ ÌŒ
+—”  Ì ” Ì” Ì” Ì” Ì” Ì” Ì’”  ÌŽ ” ÌŽÜ !”  Ì ” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì”	 Ì	”
+ Ì
+” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì”  Ì Ü ?”  Ì ” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì”	 Ì	”
+ Ì
+” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì” Ì”  Ì ”! Ì!”" Ì"”# Ì#”$ Ì$”% Ì%”& Ì&”' Ì'”( Ì(”) Ì)”* Ì*”+ Ì+”, Ì,”- Ì-”. Ì.”/ Ì/”0 Ì0”1 Ì1”2 Ì2”3 Ì3”4 Ì4”5 Ì5”6 Ì6”7 Ì7”8 Ì8”9 Ì9”: Ì:”; Ì;”< Ì<”= Ì=”> Ì>Ü A”  Ì‘ ” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘”	 Ì‘	”
+ Ì‘
+” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘” Ì‘”  Ì‘ ”! Ì‘!”" Ì‘"”# Ì‘#”$ Ì‘$”% Ì‘%”& Ì‘&”' Ì‘'”( Ì‘(”) Ì‘)”* Ì‘*”+ Ì‘+”, Ì‘,”- Ì‘-”. Ì‘.”/ Ì‘/”0 Ì‘0”1 Ì‘1”2 Ì‘2”3 Ì‘3”4 Ì‘4”5 Ì‘5”6 Ì‘6”7 Ì‘7”8 Ì‘8”9 Ì‘9”: Ì‘:”; Ì‘;”< Ì‘<”= Ì‘=”> Ì‘>”? Ì‘?”Ì@ Ì‘Ì@Ü 3”  Ì’ ” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’”	 Ì’	”
+ Ì’
+” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’” Ì’”  Ì’ ”! Ì’!”" Ì’"”# Ì’#”$ Ì’$”% Ì’%”& Ì’&”' Ì’'”( Ì’(”) Ì’)”* Ì’*”+ Ì’+”, Ì’,”- Ì’-”. Ì’.”/ Ì’/”0 Ì’0”1 Ì’1”2 Ì’2Ü "”  Ì“ ” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“”	 Ì“	”
+ Ì“
+” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“” Ì“”  Ì“ ”! Ì“!Ü >”  Ì” ” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì””	 Ì”	”
+ Ì”
+” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì”” Ì””  Ì” ”! Ì”!”" Ì”"”# Ì”#”$ Ì”$”% Ì”%”& Ì”&”' Ì”'”( Ì”(”) Ì”)”* Ì”*”+ Ì”+”, Ì”,”- Ì”-”. Ì”.”/ Ì”/”0 Ì”0”1 Ì”1”2 Ì”2”3 Ì”3”4 Ì”4”5 Ì”5”6 Ì”6”7 Ì”7”8 Ì”8”9 Ì”9”: Ì”:”; Ì”;”< Ì”<”= Ì”=Ü ”  Ì• ” Ì•” Ì•” Ì•” Ì•” Ì•” Ì•” Ì•” Ì•”	 Ì•	”
+ Ì•
+” Ì•” Ì•” Ì•” Ì•” Ì•” Ì•” Ì•” Ì•Ü ”  Ì– ” Ì–” Ì–” Ì–” Ì–” Ì–” Ì–” Ì–” Ì–”	 Ì–	”
+ Ì–
+” Ì–” Ì–” Ì–” Ì–” Ì–” Ì–” Ì–” Ì–” Ì–” Ì–›”  Ì— ” Ì—” Ì—” Ì—” Ì—” Ì—” Ì—” Ì—” Ì—”	 Ì—	”
+ Ì—
+Ü ”  Ì˜ ” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜”	 Ì˜	”
+ Ì˜
+” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜” Ì˜Ü %”  Ì™ ” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™”	 Ì™	”
+ Ì™
+” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™” Ì™”  Ì™ ”! Ì™!”" Ì™"”# Ì™#”$ Ì™$Ü ”  Ìš ” Ìš” Ìš” Ìš” Ìš” Ìš” Ìš” Ìš” Ìš”	 Ìš	”
+ Ìš
+” Ìš” Ìš” Ìš” Ìš” Ìš” Ìš—”  Ì› ” Ì›” Ì›” Ì›” Ì›” Ì›” Ì›“”  Ìœ ” Ìœ” Ìœ’”  Ì ” ÌÜ ”  Ìž ” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž”	 Ìž	”
+ Ìž
+” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž” Ìž‘Ù°D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\core.js‘Ú/*
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {SuiteService, SpecService, ExpectService, ReportService} from './service';
+import {ConfigService} from './module/config/configService';
+import {SpecEvent, TaskEvent, SuiteEvent} from './event';
+
+/**
+ * core service for execute testcase.
+ */
+class Core {
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new Core();
+        }
+        return this.instance;
+    }
+
+    constructor() {
+        this.instance = null;
+        this.services = {
+            suite: {},
+            spec: {},
+            config: {},
+            expect: {},
+            log: {},
+            report: {}
+
+        };
+        this.events = {
+            suite: {},
+            spec: {},
+            task: {}
+        };
+    }
+
+    addService(name, service) {
+        let serviceObj = {};
+        if (!this.services[name]) {
+            this.services[name] = serviceObj;
+        } else {
+            serviceObj = this.services[name];
+        }
+        serviceObj[service.id] = service;
+    }
+
+    getDefaultService(name) {
+        return this.services[name].default;
+    }
+
+    getServices(name) {
+        return this.services[name];
+    }
+
+    registerEvent(serviceName, event) {
+        let eventObj = {};
+        if (!this.events[serviceName]) {
+            this.events[serviceName] = eventObj;
+        } else {
+            eventObj = this.events[serviceName];
+        }
+        eventObj[event.id] = event;
+    }
+
+    unRegisterEvent(serviceName, eventID) {
+        const eventObj = this.events[serviceName];
+        if (eventObj) {
+            delete eventObj[eventID];
+        }
+    }
+
+    subscribeEvent(serviceName, serviceObj) {
+        const eventObj = this.events[serviceName];
+        if (eventObj) {
+            for (const attr in eventObj) {
+                eventObj[attr]['subscribeEvent'](serviceObj);
+            }
+        }
+    }
+
+    async fireEvents(serviceName, eventName) {
+        const eventObj = this.events[serviceName];
+        if (!eventObj) {
+            return;
+        }
+        for (const attr in eventObj) {
+            await eventObj[attr][eventName]();
+        }
+    }
+
+    addToGlobal(apis) {
+        if (typeof globalThis !== 'undefined') {
+            for (let api in apis) {
+                globalThis[api] = apis[api];
+            }
+        }
+        for (const api in apis) {
+            this[api] = apis[api];
+        }
+    }
+
+    init() {
+        this.addService('suite', new SuiteService({id: 'default'}));
+        this.addService('spec', new SpecService({id: 'default'}));
+        this.addService('expect', new ExpectService({id: 'default'}));
+        this.addService('report', new ReportService({id: 'default'}));
+        this.addService('config', new ConfigService({id: 'default'}));
+        this.registerEvent('task', new TaskEvent({id: 'default', coreContext: this}));
+        this.registerEvent('suite', new SuiteEvent({id: 'default', coreContext: this}));
+        this.registerEvent('spec', new SpecEvent({id: 'default', coreContext: this}));
+        this.subscribeEvent('spec', this.getDefaultService('report'));
+        this.subscribeEvent('suite', this.getDefaultService('report'));
+        this.subscribeEvent('task', this.getDefaultService('report'));
+        const context = this;
+        for (const key in this.services) {
+            const serviceObj = this.services[key];
+            for (const serviceID in serviceObj) {
+                const service = serviceObj[serviceID];
+                service.init(context);
+
+                if (typeof service.apis !== 'function') {
+                    continue;
+                }
+                const apis = service.apis();
+                if (apis) {
+                    this.addToGlobal(apis);
+                }
+            }
+        }
+    }
+
+    execute(abilityDelegator) {
+        const suiteService = this.getDefaultService('suite');
+        const configService = this.getDefaultService('config');
+        if (configService['dryRun'] === 'true') {
+            (async function () {
+                await suiteService.dryRun(abilityDelegator);
+            })();
+            return;
+        }
+        setTimeout(() => {
+            suiteService.execute();
+        }, 10);
+    }
+}
+
+export default Core;
+ÔrF“§./event©./service½./module/config/configServiceÔrG—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙ±D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\event.jsAÃªoh-resolveÂGAÂÙ³D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\service.jsAÃªoh-resolveÂGAÂÙÇD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\createCustomComponents\oh_modules\.ohpm\@ohos+hypium@1.0.24\oh_modules\@ohos\hypium\src\main\module\config\configService.jsAÃªoh-resolveÂ‘ÔrH’§missing¦pluginÃ¦genAbcÂÔ  ÔrI”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache“ÔrJ•¤type¥start£endªspecifiers¦source±ImportDeclarationÍuÍÇ”ÔrK•¤type¥start£end¨imported¥local¯ImportSpecifierÍ}Í‰ÔrL”¤type¥start£end¤nameªIdentifierÍ}Í‰¬SuiteServiceLªIdentifierÍ}Í‰¬SuiteServiceK¯ImportSpecifierÍ‹Í–LªIdentifierÍ‹Í–«SpecServiceLªIdentifierÍ‹Í–«SpecServiceK¯ImportSpecifierÍ˜Í¥LªIdentifierÍ˜Í¥­ExpectServiceLªIdentifierÍ˜Í¥­ExpectServiceK¯ImportSpecifierÍ§Í´LªIdentifierÍ§Í´­ReportServiceLªIdentifierÍ§Í´­ReportServiceÔrM•¤type¥start£end¥value£raw§LiteralÍ»ÍÆ©./service«'./service'J±ImportDeclarationÍÉÍ‘K¯ImportSpecifierÍÑÍÞLªIdentifierÍÑÍÞ­ConfigServiceLªIdentifierÍÑÍÞ­ConfigServiceM§LiteralÍåÍ½./module/config/configService¿'./module/config/configService'J±ImportDeclarationÍÍ@“K¯ImportSpecifierÍÍLªIdentifierÍÍ©SpecEventLªIdentifierÍÍ©SpecEventK¯ImportSpecifierÍÍ#LªIdentifierÍÍ#©TaskEventLªIdentifierÍÍ#©TaskEventK¯ImportSpecifierÍ%Í/LªIdentifierÍ%Í/ªSuiteEventLªIdentifierÍ%Í/ªSuiteEventM§LiteralÍ6Í?§./event©'./event'

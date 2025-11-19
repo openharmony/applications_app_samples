@@ -1,0 +1,503 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ.;if (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { NodeController, BuilderNode, FrameCallback } from '@kit.ArkUI';
+import { ConfigurationConstant } from '@kit.AbilityKit';
+import hilog from '@ohos.hilog';
+const TAG = '[Sample_ColorAdaption_App]';
+const DOMAIN = 0xFF00;
+class Params {
+    constructor(text) {
+        this.text = '';
+        this.text = text;
+    }
+}
+class TextBuilder extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__message = new SynchedPropertySimpleOneWayPU(params.message, this, "message");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.message === undefined) {
+            this.__message.set('TextBuilder');
+        }
+    }
+    updateStateVars(params) {
+        this.__message.reset(params.message);
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__message.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__message.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get message() {
+        return this.__message.get();
+    }
+    set message(newValue) {
+        this.__message.set(newValue);
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(this.message);
+            Text.fontSize(50);
+            Text.fontWeight(FontWeight.Bold);
+            Text.margin({ bottom: 36 });
+        }, Text);
+        Text.pop();
+        Column.pop();
+        Row.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+function buildText(params, parent = null) {
+    const __params__ = params;
+    (parent ? parent : this).observeComponentCreation2((elmtId, isInitialRender, params = __params__) => {
+        Column.create();
+        Column.backgroundColor({ "id": 125829129, "type": 10001, params: [], "bundleName": "com.samples.ColorAdaption", "moduleName": "entry" });
+    }, Column);
+    (parent ? parent : this).observeComponentCreation2((elmtId, isInitialRender, params = __params__) => {
+        Text.create(params.text);
+        Text.fontSize(50);
+        Text.fontWeight(FontWeight.Bold);
+        Text.margin({ bottom: 36 });
+    }, Text);
+    Text.pop();
+    {
+        (parent ? parent : this).observeComponentCreation2((elmtId, isInitialRender, params = __params__) => {
+            if (isInitialRender) {
+                let componentCall = new TextBuilder(parent ? parent : this, { message: params.text }, undefined, elmtId, () => { }, { page: "entry/src/main/ets/pages/BuilderNodeAdaptation.ets", line: 56, col: 5 });
+                ViewPU.create(componentCall);
+                let paramsLambda = () => {
+                    return {
+                        message: params.text
+                    };
+                };
+                componentCall.paramsGenerator_ = paramsLambda;
+            }
+            else {
+                (parent ? parent : this).updateStateVarsOfChildByElmtId(elmtId, {
+                    message: params.text
+                });
+            }
+        }, { name: "TextBuilder" });
+    }
+    Column.pop();
+}
+// ç»§æ‰¿NodeControllerå®ç°è‡ªå®šä¹‰textNodeæ§åˆ¶å™¨
+class TextNodeController extends NodeController {
+    constructor(message) {
+        super();
+        this.textNode = null;
+        this.message = '';
+        this.message = message;
+    }
+    makeNode(context) {
+        return this.textNode?.getFrameNode() ? this.textNode?.getFrameNode() : null;
+    }
+    createNode(context) {
+        this.textNode = new BuilderNode(context);
+        this.textNode.build(wrapBuilder(buildText), new Params(this.message));
+        builderNodeMap.push(this.textNode);
+    }
+    deleteNode() {
+        let node = builderNodeMap.pop();
+        node?.dispose();
+    }
+    update(message) {
+        if (this.textNode !== null) {
+            // è°ƒç”¨updateè¿›è¡Œæ›´æ–°
+            this.textNode.update(new Params(message));
+        }
+    }
+}
+// è®°å½•åˆ›å»ºçš„è‡ªå®šä¹‰èŠ‚ç‚¹å¯¹è±¡
+const builderNodeMap = [];
+class MyFrameCallback extends FrameCallback {
+    onFrame() {
+        updateColorMode();
+    }
+}
+function updateColorMode() {
+    builderNodeMap.forEach((value, index) => {
+        // é€šçŸ¥BuilderNodeç¯å¢ƒå˜é‡æ”¹å˜ï¼Œè§¦å‘æ·±æµ…è‰²åˆ‡æ¢
+        value.updateConfiguration();
+    });
+}
+class Index extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__message = new ObservedPropertySimplePU('hello', this, "message");
+        this.__colorText = new ObservedPropertySimplePU('light', this, "colorText");
+        this.textNodeController = new TextNodeController(this.message);
+        this.__currentMode = this.createStorageProp('currentColorMode', ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT, "currentMode");
+        this.setInitiallyProvidedValue(params);
+        this.declareWatch("currentMode", this.onColorModeChange);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.message !== undefined) {
+            this.message = params.message;
+        }
+        if (params.colorText !== undefined) {
+            this.colorText = params.colorText;
+        }
+        if (params.textNodeController !== undefined) {
+            this.textNodeController = params.textNodeController;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__message.purgeDependencyOnElmtId(rmElmtId);
+        this.__colorText.purgeDependencyOnElmtId(rmElmtId);
+        this.__currentMode.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__message.aboutToBeDeleted();
+        this.__colorText.aboutToBeDeleted();
+        this.__currentMode.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get message() {
+        return this.__message.get();
+    }
+    set message(newValue) {
+        this.__message.set(newValue);
+    }
+    get colorText() {
+        return this.__colorText.get();
+    }
+    set colorText(newValue) {
+        this.__colorText.set(newValue);
+    }
+    get currentMode() {
+        return this.__currentMode.get();
+    }
+    set currentMode(newValue) {
+        this.__currentMode.set(newValue);
+    }
+    // [End prop]
+    aboutToAppear() {
+        let environmentCallback = {
+            onMemoryLevel: (level) => {
+                hilog.info(DOMAIN, TAG, 'onMemoryLevel');
+            },
+            onConfigurationUpdated: (config) => {
+                hilog.info(DOMAIN, TAG, 'onConfigurationUpdated ' + JSON.stringify(config));
+                this.getUIContext()?.postFrameCallback(new MyFrameCallback());
+            }
+        };
+        // æ³¨å†Œç›‘å¬å›è°ƒ
+        this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+        // åˆ›å»ºè‡ªå®šä¹‰èŠ‚ç‚¹å¹¶æ·»åŠ è‡³map
+        this.textNodeController.createNode(this.getUIContext());
+        if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
+            // å½“å‰ä¸ºæµ…è‰²æ¨¡å¼ï¼Œèµ„æºåˆå§‹åŒ–é€»è¾‘
+            this.colorText == 'light';
+        }
+        else {
+            // å½“å‰ä¸ºæ·±è‰²æ¨¡å¼ï¼Œèµ„æºåˆå§‹åŒ–é€»è¾‘
+            this.colorText == 'dark';
+        }
+    }
+    onColorModeChange() {
+        if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
+            // å½“å‰ä¸ºæµ…è‰²æ¨¡å¼ï¼Œèµ„æºåˆå§‹åŒ–é€»è¾‘
+            this.colorText == 'light';
+        }
+        else {
+            // å½“å‰ä¸ºæ·±è‰²æ¨¡å¼ï¼Œèµ„æºåˆå§‹åŒ–é€»è¾‘
+            this.colorText == 'dark';
+        }
+    }
+    aboutToDisappear() {
+        // ç§»é™¤mapä¸­çš„å¼•ç”¨ï¼Œå¹¶å°†è‡ªå®šä¹‰èŠ‚ç‚¹é‡Šæ”¾
+        this.textNodeController.deleteNode();
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.height('100%');
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.width('100%');
+            Column.height('100%');
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            NodeContainer.create(this.textNodeController);
+            NodeContainer.width('100%');
+            NodeContainer.height(200);
+            NodeContainer.backgroundColor('#FFF0F0F0');
+        }, NodeContainer);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel('Switch to Dark Mode');
+            Button.onClick(() => {
+                this.getUIContext()
+                    .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+            });
+        }, Button);
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel('Switch to Light Mode');
+            Button.onClick(() => {
+                this.getUIContext()
+                    .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+            });
+        }, Button);
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel('Switch to Color Not Set');
+            Button.onClick(() => {
+                this.getUIContext()
+                    .getHostContext()?.getApplicationContext()
+                    .setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+            });
+        }, Button);
+        Button.pop();
+        Column.pop();
+        Row.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+    static getEntryName() {
+        return "Index";
+    }
+}
+registerNamedRoute(() => new Index(undefined, {}), "", { bundleName: "com.samples.ColorAdaption", moduleName: "entry", pagePath: "pages/BuilderNodeAdaptation", pageFullPath: "entry/src/main/ets/pages/BuilderNodeAdaptation", integratedHsp: "false", moduleType: "followWithHap" });
+//# sourceMappingURL=BuilderNodeAdaptation.js.mapÂ“ÙX hvigor_ignore_C:_Users_lenovo_AppData_Local_OpenHarmony_Sdk_20_ets_kits_@kit.ArkUI.d.tsÙ] hvigor_ignore_C:_Users_lenovo_AppData_Local_OpenHarmony_Sdk_20_ets_kits_@kit.AbilityKit.d.tsÙX hvigor_ignore_C:_Users_lenovo_AppData_Local_OpenHarmony_Sdk_20_ets_api_@ohos.hilog.d.tsÙD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp\entry\src\main\ets\pages\BuilderNodeAdaptation.etsÔrB›ªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo°belongModulePath§checker¬shouldEmitJs¥entryÃÂÙbD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp\entryÙ\D:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp¥entry¥1.0.0Ô  ÙbD:\Code-Sample\MyCode\arkui-samplesQuestion-xxy\code\DocsSample\ArkUISample\ColorAdaptionApp\entryÔrCÜ ®¬getNodeCount²getIdentifierCount®getSymbolCount¬getTypeCountµgetInstantiationCountµgetRelationCacheSizes±isUndefinedSymbol±isArgumentsSymbol¯isUnknownSymbol¯getMergedSymbol®getDiagnostics´getGlobalDiagnostics´getRecursionIdentity¶getUnmatchedProperties¹getTypeOfSymbolAtLocation¯getTypeOfSymbolÙ(getSymbolsOfParameterPropertyDeclaration·getDeclaredTypeOfSymbol³getPropertiesOfType±getPropertyOfTypeÙ"getPrivateIdentifierPropertyOfType·getTypeOfPropertyOfType²getIndexInfoOfType³getIndexInfosOfTypeºgetIndexInfosOfIndexSymbol³getSignaturesOfType²getIndexTypeOfType¬getIndexType¬getBaseTypes¸getBaseTypeOfLiteralType®getWidenedType³getTypeFromTypeNode°getParameterTypeÙ$getParameterIdentifierNameAtPosition¸getPromisedTypeOfPromise®getAwaitedType¸getReturnTypeOfSignature®isNullableType¯getNullableType²getNonNullableType²getNonOptionalType°getTypeArguments®typeToTypeNodeÙ$indexInfoToIndexSignatureDeclaration¿signatureToSignatureDeclaration²symbolToEntityName²symbolToExpression¬symbolToNodeÙ!symbolToTypeParameterDeclarations¼symbolToParameterDeclarationºtypeParameterToDeclaration±getSymbolsInScope³getSymbolAtLocation·getIndexInfosAtLocationÙ!getShorthandAssignmentValueSymbolÙ#getExportSpecifierLocalTargetSymbol·getExportSymbolOfSymbol±getTypeAtLocationÙ tryGetTypeAtLocationWithoutCheckºgetTypeOfAssignmentPatternÙ*getPropertySymbolOfDestructuringAssignment±signatureToString¬typeToString®symbolToStringµtypePredicateToString®writeSignature©writeType«writeSymbol²writeTypePredicate¼getAugmentedPropertiesOfType®getRootSymbols²getSymbolOfExpando±getContextualTypeÙ(getContextualTypeForObjectLiteralElementÙ#getContextualTypeForArgumentAtIndexÙ getContextualTypeForJsxAttribute²isContextSensitiveÙ!getTypeOfPropertyOfContextualTypeµgetFullyQualifiedNameÙ#tryGetResolvedSignatureWithoutCheck´getResolvedSignatureÙ/getResolvedSignatureForStringLiteralCompletionsÙ$getResolvedSignatureForSignatureHelpµgetExpandedParameters¹hasEffectiveRestParameterºcontainsArgumentsReference°getConstantValueµisValidPropertyAccessÙ#isValidPropertyAccessForCompletions»getSignatureFromDeclarationºisImplementationOfOverload¹getImmediateAliasedSymbol°getAliasedSymbol¯getEmitResolver²getExportsOfModule¿getExportsAndPropertiesOfModuleÙ forEachExportAndPropertyOfModule¯getSymbolWalker±getAmbientModules¹getJsxIntrinsicTagNamesAt³isOptionalParameter»tryGetMemberInModuleExportsÙ(tryGetMemberInModuleExportsAndProperties´tryFindAmbientModuleÙ(tryFindAmbientModuleWithoutAugmentations¯getApparentType¬getUnionType²isTypeAssignableTo³createAnonymousType¯createSignature¬createSymbol¯createIndexInfoªgetAnyType­getStringType­getNumberType±createPromiseType¯createArrayType¹getElementTypeOfArrayType®getBooleanType¬getFalseType«getTrueType«getVoidType°getUndefinedType«getNullType¯getESSymbolType¬getNeverType¯getOptionalType®getPromiseType²getPromiseLikeType´getAsyncIterableType²isSymbolAccessible«isArrayType«isTupleType¯isArrayLikeTypeÙ#isTypeInvalidDueToUnionDiscriminantºgetExactOptionalProperties¿getAllPossiblePropertiesOfTypesÙ(getSuggestedSymbolForNonexistentPropertyÙ#getSuggestionForNonexistentPropertyÙ,getSuggestedSymbolForNonexistentJSXAttributeÙ&getSuggestedSymbolForNonexistentSymbolÙ!getSuggestionForNonexistentSymbolÙ&getSuggestedSymbolForNonexistentModuleÙ!getSuggestionForNonexistentExportÙ+getSuggestedSymbolForNonexistentClassMember·getBaseConstraintOfType»getDefaultFromTypeParameter«resolveName¯getJsxNamespaceµgetJsxFragmentFactory¸getAccessibleSymbolChain»getTypePredicateOfSignature¹resolveExternalModuleName»resolveExternalModuleSymbol°tryGetThisTypeAt¹getTypeArgumentConstraint¸getSuggestionDiagnostics¸runWithCancellationTokenÙ3getLocalTypeParametersOfClassOrInterfaceOrTypeAlias´isDeclarationVisible´isPropertyAccessible»getTypeOnlyAliasDeclaration¿getMemberOverrideModifierStatusÙ!isTypeParameterPossiblyReferenced²getConstEnumRelate´clearConstEnumRelateµdeleteConstEnumRelateÙ$getTypeArgumentsForResolvedSignatureµgetCheckedSourceFilesÙ"collectHaveTsNoCheckFilesForLinter·clearQualifiedNameCache®isStaticRecord²isStaticSourceFile³createIntrinsicTypeÔ  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  Ô  ÃÃÚÈ/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { NodeController, BuilderNode, FrameNode, UIContext, FrameCallback } from '@kit.ArkUI';
+import { AbilityConstant, Configuration, ConfigurationConstant, EnvironmentCallback } from '@kit.AbilityKit';
+import hilog from '@ohos.hilog';
+
+const TAG = '[Sample_ColorAdaption_App]';
+const DOMAIN = 0xFF00;
+
+class Params {
+  public text: string = '';
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+// è‡ªå®šä¹‰ç»„ä»¶
+@Component
+struct TextBuilder {
+  // ä½œä¸ºè‡ªå®šä¹‰ç»„ä»¶ä¸­éœ€è¦æ›´æ–°çš„å±æ€§ï¼Œæ•°æ®ç±»å‹ä¸ºåŸºç¡€å±æ€§ï¼Œå®šä¹‰ä¸º@Prop
+  @Prop message: string = 'TextBuilder';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .margin({ bottom: 36 })
+      }
+    }
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+    TextBuilder({ message: params.text }) // è‡ªå®šä¹‰ç»„ä»¶
+  }.backgroundColor($r('sys.color.ohos_id_color_background'))
+}
+
+// ç»§æ‰¿NodeControllerå®ç°è‡ªå®šä¹‰textNodeæ§åˆ¶å™¨
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private message: string = '';
+
+  constructor(message: string) {
+    super();
+    this.message = message;
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    return this.textNode?.getFrameNode() ? this.textNode?.getFrameNode() : null;
+  }
+
+  createNode(context: UIContext) {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    builderNodeMap.push(this.textNode);
+  }
+
+  deleteNode() {
+    let node = builderNodeMap.pop();
+    node?.dispose();
+  }
+
+  update(message: string) {
+    if (this.textNode !== null) {
+      // è°ƒç”¨updateè¿›è¡Œæ›´æ–°
+      this.textNode.update(new Params(message));
+    }
+  }
+}
+
+// è®°å½•åˆ›å»ºçš„è‡ªå®šä¹‰èŠ‚ç‚¹å¯¹è±¡
+const builderNodeMap: BuilderNode<[Params]>[] = [];
+
+class MyFrameCallback extends FrameCallback {
+  onFrame() {
+    updateColorMode();
+  }
+}
+
+function updateColorMode() {
+  builderNodeMap.forEach((value, index) => {
+    // é€šçŸ¥BuilderNodeç¯å¢ƒå˜é‡æ”¹å˜ï¼Œè§¦å‘æ·±æµ…è‰²åˆ‡æ¢
+    value.updateConfiguration();
+  })
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello';
+  @State colorText: string = 'light';
+  private textNodeController: TextNodeController = new TextNodeController(this.message);
+  // [Start prop]
+  @StorageProp('currentColorMode') @Watch('onColorModeChange') currentMode: number = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+  // [End prop]
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+        hilog.info(DOMAIN, TAG, 'onMemoryLevel');
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        hilog.info(DOMAIN, TAG, 'onConfigurationUpdated ' + JSON.stringify(config));
+        this.getUIContext()?.postFrameCallback(new MyFrameCallback());
+      }
+    };
+    // æ³¨å†Œç›‘å¬å›è°ƒ
+    this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    // åˆ›å»ºè‡ªå®šä¹‰èŠ‚ç‚¹å¹¶æ·»åŠ è‡³map
+    this.textNodeController.createNode(this.getUIContext());
+    if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
+      // å½“å‰ä¸ºæµ…è‰²æ¨¡å¼ï¼Œèµ„æºåˆå§‹åŒ–é€»è¾‘
+      this.colorText == 'light';
+    } else {
+      // å½“å‰ä¸ºæ·±è‰²æ¨¡å¼ï¼Œèµ„æºåˆå§‹åŒ–é€»è¾‘
+      this.colorText == 'dark';
+    }
+  }
+  onColorModeChange(): void {
+    if (this.currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
+      // å½“å‰ä¸ºæµ…è‰²æ¨¡å¼ï¼Œèµ„æºåˆå§‹åŒ–é€»è¾‘
+      this.colorText == 'light';
+    } else {
+      // å½“å‰ä¸ºæ·±è‰²æ¨¡å¼ï¼Œèµ„æºåˆå§‹åŒ–é€»è¾‘
+      this.colorText == 'dark';
+    }
+  }
+  aboutToDisappear(): void {
+    // ç§»é™¤mapä¸­çš„å¼•ç”¨ï¼Œå¹¶å°†è‡ªå®šä¹‰èŠ‚ç‚¹é‡Šæ”¾
+    this.textNodeController.deleteNode();
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(this.textNodeController)
+          .width('100%')
+          .height(200)
+          .backgroundColor('#FFF0F0F0')
+        Button('Switch to Dark Mode')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+          })
+        Button('Switch to Light Mode')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+          })
+        Button('Switch to Color Not Set')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext()
+              .setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}ÀÔrD“ª@kit.ArkUI¯@kit.AbilityKit«@ohos.hilogÔrE—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÃÙX hvigor_ignore_C:_Users_lenovo_AppData_Local_OpenHarmony_Sdk_20_ets_kits_@kit.ArkUI.d.tsÔrF‘¯hostModulesInfo‘ÔrG’²hostDependencyName®hostModuleNameª@kit.ArkUI¥entryÃªoh-resolveÂEAÃÙ] hvigor_ignore_C:_Users_lenovo_AppData_Local_OpenHarmony_Sdk_20_ets_kits_@kit.AbilityKit.d.tsAÃªoh-resolveÂEAÃÙX hvigor_ignore_C:_Users_lenovo_AppData_Local_OpenHarmony_Sdk_20_ets_api_@ohos.hilog.d.tsF‘G«@ohos.hilog¥entryÃªoh-resolveÂ“ÔrH–§version¤fileªsourceRoot§sources¥names¨mappings¸BuilderNodeAdaptation.js ‘¹BuilderNodeAdaptation.etsÜ&‘”    ‘” œ”   ” ”	 	” ” ”$ $”& <”3 ÌI”5 ÌK”; ÌQ”ÌG Ì]”ÌH Ì^˜”   ” ”	 )” >”  ÌU”& Ì[”7 Ìl”8 Ìm–”   ” ” ” ” ”   –”   ” ”	 	” ”( (”) )–”   ” ” ” ” ” “”   ” ” “” ” ” •” 	” ” ” ” —” ” ” 	” ” ” ” ’” ” ‘” ’”  ”  ‘”  ‘” ’” "”, "'’”$ "”+ "’” "” "’” "” "‘” $’” %” %’” &” &–” '” '” '” '” '”$ '–” '” '” (” (” (” (˜” '” '” )” )” )”& ) ”' )!”+ )%š” '” '” *” *” *” *”  *”" *”$ *”& * ’” '” '’” &” &’” %” %‘” -•”  0 ”	 1	” 1” 1” 1!‘” 1‘”ÌQ 1’” 2” 2”” 2” 2” 8” 8‘”ÌQ 1–” 3” 3” 3	” 3” 3” 3–” 3” 3” 4” 4” 4” 4˜” 3” 3” 5” 5” 5”" 5”# 5”' 5!š” 3” 3” 6” 6” 6” 6” 6” 6”  6”" 6’” 3” 3‘”ÌU 1š”( 7”3 7”ÌL 7”ÌN 7”ÌU 7”ÌW 7”Ì] 7!”Ì^ 7"”Ìb 7&”Ìd 7(–” 7” 7”! 7”' 7!”( 7"”, 7&–” 7” 7” 7”# 7!”$ 7"”( 7&’” 2”
+ 2‘” 9’”  ; ”# ;#•”  < ” <” <”! <!”/ </“” Ì@” Ì@” Ì@”” ÌA” ÌA	” ÌA” ÌA•” =
+” =” =3” =7” =8•” >
+” >” >” >” >—” ÌB” ÌB” ÌB	” ÌB” ÌB” ÌB” ÌB’” ÌC” ÌC”” ÌE” ÌE
+” ÌE” ÌEÜ ” ÌF” ÌF” ÌF” ÌF” ÌF” ÌF”* ÌF&”, ÌF(”- ÌF)”. ÌF*”/ ÌF+”3 ÌF/”4 ÌF0”< ÌF8”> ÌF:”ÌJ ÌFÌF”ÌL ÌFÌH”ÌM ÌFÌI”ÌN ÌFÌJ”ÌO ÌFÌK”ÌS ÌFÌO”ÌT ÌFÌP’” ÌG” ÌG”” ÌI” ÌI” ÌI” ÌI›” ÌJ” ÌJ” ÌJ	” ÌJ” ÌJ” ÌJ”' ÌJ#”( ÌJ$”/ ÌJ+”0 ÌJ,”1 ÌJ-Ü ” ÌK” ÌK” ÌK	” ÌK” ÌK” ÌK” ÌK”' ÌK#”( ÌK.”1 ÌK7”2 ÌK8”4 ÌK:”8 ÌK>”> ÌKÌD”? ÌKÌE”ÌC ÌKÌI”ÌD ÌKÌJ”ÌK ÌKÌQ”ÌL ÌKÌR”ÌM ÌKÌS”ÌN ÌKÌTš” ÌL” ÌL” ÌL” ÌL” ÌL”  ÌL”! ÌL”) ÌL%”* ÌL&”+ ÌL'’” ÌM” ÌM’” ÌO” ÌO™” ÌP” ÌP” ÌP” ÌP”! ÌP”" ÌP”% ÌP!”' ÌP#”( ÌP$–” ÌQ” ÌQ” ÌQ
+” ÌQ” ÌQ” ÌQ’” ÌR” ÌR”” ÌT”
+ ÌT” ÌT	” ÌT˜” ÌU” ÌU” ÌU” ÌU” ÌU” ÌU”" ÌU”$ ÌU ’” ÌV” ÌV” ÌW” ÌW
+” ÌW” ÌW” ÌW”  ÌW”! ÌW”% ÌW”+ ÌW%”, ÌW&”3 ÌW-”4 ÌW.”5 ÌW/”6 ÌW0‘”	 ÌX’” ÌY” ÌY‘” ÌZ’”  Ì\ ” Ì\–”  Ì] ” Ì]” Ì]” Ì]0” Ì]2” Ì]3•”  Ì_ ” Ì_” Ì_” Ì_”+ Ì_+’” Ì`” Ì`	”” Ìa” Ìa” Ìa” Ìa’” Ìb” Ìb‘” Ìc“”  Ìe ”	 Ìe	” Ìe›” Ìf” Ìf” Ìf” Ìf” Ìf” Ìf”! Ìf”# Ìf!”( Ìf&”* Ìf(”, Ìf*’” Ìg”& Ìg"–” Ìh” Ìh	” Ìh
+”! Ìh”# Ìh”$ Ìh ”” Ìi” Ìi” Ìi” Ìi’”  Ìj ” Ìj’” Ìn” Ìn‘” Ìl ’”6 Ìo”= Ìo"’”8 Ìp”? Ìp$˜”" Ìq3”& Ìq7”8 ÌqÌI”9 ÌqÌJ”= ÌqÌN”> ÌqÌO”ÌE ÌqÌV”ÌF ÌqÌW˜”4 Ìs”ÌF Ìs!”ÌH ÌsÌU”Ì] ÌsÌj”Ì^ ÌsÌk”Ìg ÌsÌt”Ìh ÌsÌu”Ìx ÌsÌ…‘” Ìj’” Ìo	” Ìo’” Ìo	” Ìo’” Ìp	” Ìp’” Ìp	” Ìp’” Ìs?” ÌsÌJ’” Ìs?” ÌsÌJ’” Ìt” Ìt’” Ìu” Ìu”” Ìv” Ìv” Ìv”" Ìv3—” Ìw” Ìw” Ìw” Ìw”! Ìw8”# ÌwÌ@”% ÌwÌBœ” Ìx” Ìx” Ìx” Ìx” Ìx”! Ìx”# Ìx”& Ìx”( Ìx ”7 Ìx/”8 Ìx0”9 Ìx1’” Ìy” Ìy—” Ìz”" Ìz”$ Ìz”% Ìz”+ Ìz4”- Ìz<”/ Ìz>Ü ” Ì{” Ì{” Ì{” Ì{” Ì{”! Ì{”# Ì{”& Ì{”( Ì{ ”ÌA Ì{9”ÌD Ì{<”ÌH Ì{Ì@”ÌI Ì{ÌA”ÌR Ì{ÌJ”ÌS Ì{ÌK”ÌY Ì{ÌQ”ÌZ Ì{ÌR”Ì[ Ì{ÌS”Ì\ Ì{ÌT” Ì|” Ì|” Ì|”! Ì|”# Ì|”% Ì|”6 Ì|.”7 Ì|/”; Ì|3”ÌJ Ì|ÌB”ÌL Ì|ÌD”ÌM Ì|ÌE”ÌN Ì|ÌF’” Ì}” Ì}’”	 Ì~”
+ Ì~’” Ì” ÌÜ ” Ì€” Ì€” Ì€	” Ì€” Ì€” Ì€”* Ì€&”, Ì€(”. Ì€*”ÌC Ì€?”ÌE Ì€ÌA”ÌF Ì€ÌB”ÌH Ì€ÌD”ÌI Ì€ÌE”ÌV Ì€ÌR”ÌX Ì€ÌT”Ìk Ì€Ìg”Ìl Ì€Ìh”Ìm Ì€Ìi’” Ì” Ì” Ì‚” Ì‚” Ì‚	” Ì‚”  Ì‚”* Ì‚&”+ Ì‚'”/ Ì‚+”0 Ì‚,”< Ì‚8”> Ì‚:”? Ì‚;”Ì@ Ì‚<œ” Ìƒ” Ìƒ” Ìƒ” Ìƒ” Ìƒ”  Ìƒ”5 Ìƒ1”6 Ìƒ2”? Ìƒ;”Ì@ Ìƒ<”ÌP ÌƒÌL”ÌR ÌƒÌN’” Ì„” Ì„—” Ì…” Ì…
+” Ì…” Ì…” Ì…”% Ì…”& Ì… ‘”	 Ì†‘” Ì†’” Ì‡” Ì‡—” Ìˆ” Ìˆ
+” Ìˆ” Ìˆ” Ìˆ”$ Ìˆ”% Ìˆ‘”	 Ì‰’” ÌŠ” ÌŠ’” Ì‹” Ì‹œ” ÌŒ” ÌŒ” ÌŒ” ÌŒ” ÌŒ”  ÌŒ”5 ÌŒ1”6 ÌŒ2”? ÌŒ;”Ì@ ÌŒ<”ÌP ÌŒÌL”ÌR ÌŒÌN’” Ì” Ì—” Ì” Ì
+” Ì” Ì” Ì”% Ì”& Ì ‘”	 Ì‘” Ì’” Ì” Ì—” Ì‘” Ì‘
+” Ì‘” Ì‘” Ì‘”$ Ì‘”% Ì‘‘”	 Ì’’” Ì“” Ì“’” Ì”” Ì”’” Ì•” Ì•˜” Ì–” Ì–” Ì–	” Ì–”  Ì–”* Ì–&”, Ì–(”- Ì–)’” Ì—” Ì—‘” Ì™’” Ìš” Ìš–” Ìš” Ìš” Ì´” Ì´” Ì´” Ì´’” Ì›” Ì›–” Ì›” Ì›” Ì±” Ì±” Ì±” Ì±–” Ì›” Ì›” Ì²” Ì²” Ì²”  Ì²–” Ìœ” Ìœ”! Ìœ”% Ìœ”& Ìœ”8 Ìœ-–” Ìœ” Ìœ” Ì” Ì”  Ì”& Ì–” Ìœ” Ìœ” Ì”  Ì”! Ì”$ Ì–” Ìœ” Ìœ” ÌŸ”) ÌŸ”* ÌŸ”5 ÌŸ&”” Ì ” Ì ”# Ì ”8 Ì $—” Ì ” Ì ” Ì¡” Ì¡” Ì¡” Ì¡”  Ì¡•” Ì¢” Ì¢” Ì¢”! Ì¢”# Ì¢Ü ” Ì£”# Ì£”% Ì£”' Ì£!”< Ì£6”> Ì£8”? Ì£9”ÌK Ì£ÌE”ÌL Ì£ÌF”Ìa Ì£Ì[”Ìb Ì£Ì\”Ìk Ì£Ìe”Ìl Ì£Ìf”Ì{ Ì£Ìu”Ì| Ì£Ìv”Ì} Ì£Ìw’” Ì¤
+” Ì¤’” Ì ” Ì ”” Ì¥” Ì¥”# Ì¥”9 Ì¥%—” Ì¥” Ì¥” Ì¦” Ì¦” Ì¦” Ì¦”  Ì¦•” Ì§” Ì§” Ì§”! Ì§”# Ì§Ü ” Ì¨”# Ì¨”% Ì¨”' Ì¨!”< Ì¨6”> Ì¨8”? Ì¨9”ÌK Ì¨ÌE”ÌL Ì¨ÌF”Ìa Ì¨Ì[”Ìb Ì¨Ì\”Ìk Ì¨Ìe”Ìl Ì¨Ìf”Ì| Ì¨Ìv”Ì} Ì¨Ìw”Ì~ Ì¨Ìx’” Ì©
+” Ì©’” Ì¥” Ì¥”” Ìª” Ìª”# Ìª”< Ìª(—” Ìª” Ìª” Ì«” Ì«” Ì«” Ì«”  Ì«•” Ì¬” Ì¬” Ì¬”! Ì¬”# Ì¬–” Ì­”# Ì­”% Ì­”' Ì­!”< Ì­6”> Ì­8š” Ì®”! Ì®”" Ì®”7 Ì®1”8 Ì®2”ÌA Ì®;”ÌB Ì®<”ÌT Ì®ÌN”ÌU Ì®ÌO”ÌV Ì®ÌP’” Ì¯
+” Ì¯’” Ìª” Ìª’” Ì›” Ì›’” Ìš” Ìš‘” ÌµÔrI–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜ/‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌĞ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘”  ÌØ ‘”  ÌÙ ‘”  ÌÚ ‘”  ÌÛ ‘”  ÌÜ ‘”  Ìİ ‘”  ÌŞ ‘”  Ìß ‘”  Ìà ‘”  Ìá ‘”  Ìâ ‘”  Ìã ‘”  Ìä ‘”  Ìå ‘”  Ìæ ‘”  Ìç ‘”  Ìè ‘”  Ìé ‘”  Ìê ‘”  Ìë ‘”  Ìì ‘”  Ìí ‘”  Ìî ‘”  Ìï ‘”  Ìğ ‘”  Ìñ ‘”  Ìò ‘”  Ìó ‘”  Ìô ‘”  Ìõ ‘”  Ìö ‘”  Ì÷ ‘”  Ìø ‘”  Ìù ‘”  Ìú ‘”  Ìû ‘”  Ìü ‘”  Ìı ‘”  Ìş ‘”  Ìÿ ‘”  Í  ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í	 ‘”  Í
+ ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í  ‘”  Í! ‘”  Í" ‘”  Í# ‘”  Í$ ‘”  Í% ‘”  Í& ‘”  Í' ‘”  Í( ‘”  Í) ‘”  Í* ‘”  Í+ ‘”  Í, ‘”  Í- ‘”  Í. ÔrJ’§missing¦pluginÃ¦genAbcÂÔ  ÔrK”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache“ÔrL•¤type¥start£endªspecifiers¦source±ImportDeclarationÍîÍ6“ÔrM•¤type¥start£end¨imported¥local¯ImportSpecifierÍ÷ÍÔrN”¤type¥start£end¤nameªIdentifierÍ÷Í®NodeControllerNªIdentifierÍ÷Í®NodeControllerM¯ImportSpecifierÍÍNªIdentifierÍÍ«BuilderNodeNªIdentifierÍÍ«BuilderNodeM¯ImportSpecifierÍÍ!NªIdentifierÍÍ!­FrameCallbackNªIdentifierÍÍ!­FrameCallbackÔrO•¤type¥start£end¥value£raw§LiteralÍ)Í5ª@kit.ArkUI¬'@kit.ArkUI'L±ImportDeclarationÍ8Íp‘M¯ImportSpecifierÍAÍVNªIdentifierÍAÍVµConfigurationConstantNªIdentifierÍAÍVµConfigurationConstantO§LiteralÍ^Ío¯@kit.AbilityKit±'@kit.AbilityKit'L±ImportDeclarationÍrÍ’‘ÔrP”¤type¥start£end¥local¶ImportDefaultSpecifierÍyÍ~NªIdentifierÍyÍ~¥hilogO§LiteralÍ„Í‘«@ohos.hilog­'@ohos.hilog'

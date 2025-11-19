@@ -18,8 +18,7 @@
     "name": "entry_test",
     "type": "feature",
     "deviceTypes": [
-      "default",
-      "wearable"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false

@@ -1,0 +1,23 @@
+{
+  "modulePathMap": {
+    "entry_test": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ComponentExtension\\entry",
+    "entry": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ComponentExtension\\entry"
+  },
+  "compileMode": "esmodule",
+  "projectRootPath": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ComponentExtension",
+  "nodeModulesPath": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ComponentExtension\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\node_modules",
+  "byteCodeHarInfo": {},
+  "declarationEntry": [],
+  "moduleName": "entry_test",
+  "hspNameOhmMap": {},
+  "harNameOhmMap": {},
+  "packageManagerType": "ohpm",
+  "compileEntry": [],
+  "otherCompileFiles": [],
+  "dynamicImportLibInfo": {},
+  "routerMap": [],
+  "hspResourcesMap": {},
+  "updateVersionInfo": {},
+  "anBuildOutPut": "D:\\Code-Sample\\MyCode\\arkui-samplesQuestion-xxy\\code\\DocsSample\\ArkUISample\\ComponentExtension\\entry\\build\\default\\intermediates\\loader_out\\ohosTest\\an\\arm64-v8a",
+  "anBuildMode": "type"
+}
