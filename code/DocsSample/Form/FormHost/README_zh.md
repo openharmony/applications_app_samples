@@ -83,7 +83,7 @@ entry/src/main/ets/
 ## 约束与限制
 
 1. 本示例支持标准系统上运行，支持设备：RK3568；
-2. 本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.33，镜像版本号：OpenHarmony_6.0.0.33。
+2. 本示例为Stage模型，支持API22版本SDK，版本号：6.0.2.54。
 3. 本示例需要使用DevEco Studio 6.0.0 Release (Build Version: 6.0.0.858， built on September 24, 2025)及以上版本才可编译运行。
 4. 本示例需要使用系统权限的系统接口，需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)；
 5. 本示例所配置的权限为system_basic或system_core级别(权限级别请参考[权限定义列表](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md))，需要配置对应级别的权限签名(可查看[自动化签名方案](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md))；

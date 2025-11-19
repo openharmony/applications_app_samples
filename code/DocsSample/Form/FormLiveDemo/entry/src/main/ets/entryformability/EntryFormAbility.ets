@@ -52,7 +52,12 @@ export default class EntryFormAbility extends FormExtensionAbility {
     try {
       formProvider.requestOverflow(formId, {
         // 动效申请范围
-        area: { left: left, top: top, width: width, height: height },
+        area: {
+          left: left,
+          top: top,
+          width: width,
+          height: height
+        },
         // 动效持续时间
         duration: duration,
         // 指定是否使用系统提供的默认切换动效

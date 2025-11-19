@@ -16,15 +16,26 @@
 {
   "app": {
     "signingConfigs": [
-      
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/niuniu/.ohos/config/openharmony/default_FormHost_8JyD8grNi-1y8WgC5kPC-Z66w5XKyJob0VLIRL2CbB0=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001AB258E10FDE3D125F85131C19AA8A10C4377D3EE4E6C4FD0565CEF604F3EBDFE987F8B4927D9A",
+          "profile": "C:/Users/niuniu/.ohos/config/openharmony/default_FormHost_8JyD8grNi-1y8WgC5kPC-Z66w5XKyJob0VLIRL2CbB0=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/niuniu/.ohos/config/openharmony/default_FormHost_8JyD8grNi-1y8WgC5kPC-Z66w5XKyJob0VLIRL2CbB0=.p12",
+          "storePassword": "0000001ACE551A1C979841D48E8C87A18F04CF5D7A7CBBCE2D5962FE9E788F615999A255B219774075E6"
+        }
+      }
     ],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
         "compileSdkVersion": 22,
-        "targetSdkVersion": 20,
-        "compatibleSdkVersion": 20,
+        "targetSdkVersion": 22,
+        "compatibleSdkVersion": 22,
         "runtimeOS": "OpenHarmony"
       }
     ]

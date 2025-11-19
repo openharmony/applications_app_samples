@@ -14,6 +14,7 @@
  */
 
 // [Start custom_drawing]
+// entry/src/main/ets/customcanvasdrawing/pages/CustomCanvasDrawingCard.ets
 @Entry
 @Component
 struct CustomCanvasDrawingCard {
