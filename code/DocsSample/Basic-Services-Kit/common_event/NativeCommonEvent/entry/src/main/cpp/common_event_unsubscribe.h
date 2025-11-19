@@ -27,7 +27,7 @@ extern "C" {
 #endif
 
 // 取消订阅公共事件
-void Unsubscribe(CommonEvent_Subscriber* subscriber);
+void Unsubscribe(CommonEvent_Subscriber *subscriber);
 
 #ifdef __cplusplus
 }

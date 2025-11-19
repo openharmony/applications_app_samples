@@ -23,21 +23,32 @@
 #include <cstring>
 #include "hilog/log.h"
 #include "BasicServicesKit/oh_commonevent.h"
+
+const long PARAM_LONG_VALUE1 = 2147483646;
+const long PARAM_LONG_VALUE2 = 2147483645;
+const long PARAM_LONG_VALUE3 = 555;
+const double PARAM_DOUBLE_VALUE1 = 11.22;
+const double PARAM_DOUBLE_VALUE2 = 33.44;
+const double PARAM_DOUBLE_VALUE3 = 55.66;
+const int PARAM_INT_VALUE1 = 10;
+const int PARAM_INT_VALUE2 = 123;
+const int PARAM_INT_VALUE3 = 234;
+const int PARAM_INT_VALUE4 = 567;
 // [End event_publisher_import]
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void Publish(const char* event);
+void Publish(const char *event);
 
-void PublishWithInfo(const char* event, CommonEvent_PublishInfo* info);
+void PublishWithInfo(const char *event, CommonEvent_PublishInfo *info);
 
-void SetPublishInfo(const char* bundleName, const char* permissions[], int32_t num, const int32_t code,
-                    const char* data);
-CommonEvent_Parameters* CreateParameters();
+void SetPublishInfo(const char *bundleName, const char *permissions[], int32_t num, const int32_t code,
+                    const char *data);
+CommonEvent_Parameters *CreateParameters();
 
-void DestroyPublishInfo(CommonEvent_Parameters* param, CommonEvent_PublishInfo* info);
+void DestroyPublishInfo(CommonEvent_Parameters *param, CommonEvent_PublishInfo *info);
 
 #ifdef __cplusplus
 }
