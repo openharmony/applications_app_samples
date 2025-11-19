@@ -30,26 +30,26 @@ extern "C" {
 #endif
 
 // 订阅者信息创建和销毁
-CommonEvent_SubscribeInfo* CreateSubscribeInfo(const char* events[],
-                                               int32_t eventsNum, const char* permission, const char* bundleName);
-void DestroySubscribeInfo(CommonEvent_SubscribeInfo* info);
+CommonEvent_SubscribeInfo *CreateSubscribeInfo(const char *events[], int32_t eventsNum, const char *permission,
+                                               const char *bundleName);
+void DestroySubscribeInfo(CommonEvent_SubscribeInfo *info);
 
 // 订阅者创建和销毁
-CommonEvent_Subscriber* CreateSubscriber(CommonEvent_SubscribeInfo* info);
-void DestroySubscriber(CommonEvent_Subscriber* subscriber);
+CommonEvent_Subscriber *CreateSubscriber(CommonEvent_SubscribeInfo *info);
+void DestroySubscriber(CommonEvent_Subscriber *subscriber);
 
 // 事件订阅
-void Subscribe(CommonEvent_Subscriber* subscriber);
+void Subscribe(CommonEvent_Subscriber *subscriber);
 
 // 公共事件回调函数
 void OnReceive(const CommonEvent_RcvData *data);
 void GetParameters(const CommonEvent_RcvData *data);
 
 // 有序公共事件处理
-void AbortCommonEvent(CommonEvent_Subscriber* subscriber);
-void ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber);
-void SetToSubscriber(CommonEvent_Subscriber* subscriber, const int32_t code, const char* data);
-void GetFromSubscriber(CommonEvent_Subscriber* subscriber);
+void AbortCommonEvent(CommonEvent_Subscriber *subscriber);
+void ClearAbortCommonEvent(CommonEvent_Subscriber *subscriber);
+void SetToSubscriber(CommonEvent_Subscriber *subscriber, const int32_t code, const char *data);
+void GetFromSubscriber(CommonEvent_Subscriber *subscriber);
 
 #ifdef __cplusplus
 }

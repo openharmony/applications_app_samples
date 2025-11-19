@@ -15,7 +15,7 @@
 
 #include "common_event_unsubscribe.h"
 // [Start event_unsubscriber]
-void Unsubscribe(CommonEvent_Subscriber* subscriber)
+void Unsubscribe(CommonEvent_Subscriber *subscriber)
 {
     // 通过传入订阅者来退订事件
     int32_t ret = OH_CommonEvent_UnSubscribe(subscriber);
