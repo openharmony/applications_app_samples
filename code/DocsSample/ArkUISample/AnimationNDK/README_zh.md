@@ -76,7 +76,7 @@ entry/src/main/
 
 1. 本示例支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例为Stage模型，支持API19版本full-SDK，版本号：5.1.1.208，镜像版本号：OpenHarmony_5.1.1 Release。
+2. 本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.33，镜像版本号：OpenHarmony_6.0.0.33。
 
 3. 本示例需要使用DevEco Studio 5.1.1 Release (Build Version: 5.1.1.830, built on August 4, 2025)及以上版本才可编译运行。
 
