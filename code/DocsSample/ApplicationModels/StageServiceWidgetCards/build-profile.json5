@@ -19,10 +19,10 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": "6.0.0(20)",
-        "targetSdkVersion": "6.0.0(20)",
-        "compatibleSdkVersion": "6.0.0(20)",
-        "runtimeOS": "HarmonyOS"
+        "compileSdkVersion": 22,
+        "targetSdkVersion": 20,
+        "compatibleSdkVersion": 20,
+        "runtimeOS": "OpenHarmony"
       }
     ],
     "signingConfigs": [
