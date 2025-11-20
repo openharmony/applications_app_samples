@@ -21,7 +21,7 @@ import { ComponentContent } from '@kit.ArkUI';
 struct CustomDialogExample {
   cancel?: () => void;
   confirm?: () => void;
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -37,7 +37,7 @@ struct CustomDialogExample {
             .lineHeight(21)
         }
         .onClick(() => {
-          this.controller.close();
+          this.controller?.close();
         })
         .layoutWeight(1)
         .backgroundColor(Color.Transparent)
@@ -52,7 +52,7 @@ struct CustomDialogExample {
             .fontColor($r('sys.color.font_emphasize'))
         }
         .onClick(() => {
-          this.controller.close();
+          this.controller?.close();
         })
         .layoutWeight(1)
         .backgroundColor(Color.Transparent)

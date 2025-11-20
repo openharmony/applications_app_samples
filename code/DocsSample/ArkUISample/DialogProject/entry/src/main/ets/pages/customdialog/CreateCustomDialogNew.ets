@@ -17,7 +17,7 @@
 // [Start create_custom_dialog_new_customDialog_controller_default]
 @CustomDialog
 struct CustomDialogExample {
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
 
   build() {
     Column() {

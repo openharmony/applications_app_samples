@@ -23,7 +23,7 @@ struct CustomDialogExample {
   }
   confirm: () => void = () => {
   }
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -32,14 +32,14 @@ struct CustomDialogExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
             if (this.cancel) {
               this.cancel();
             }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
             if (this.confirm) {
               this.confirm();
             }
