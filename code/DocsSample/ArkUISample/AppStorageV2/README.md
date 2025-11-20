@@ -45,7 +45,7 @@
 
 ### 约束与限制
 1. 本示例支持标准系统上运行，支持设备：RK3568等。
-2. 本示例支持API22版本SDK，版本号：6.0.2.54。
+2. 本示例支持API20版本SDK，版本号：6.0.0.33。
 3. 本示例已支持使DevEco Studio 6.0.0 Release 编译运行。
 
 ### 下载
@@ -53,7 +53,7 @@
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/StateMgmtV2MVVM > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/AppStorageV2 > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
