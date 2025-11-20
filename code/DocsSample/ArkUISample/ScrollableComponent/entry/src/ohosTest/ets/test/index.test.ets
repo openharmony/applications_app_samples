@@ -47,6 +47,7 @@ export default function IndexTest() {
       console.info('get top ability');
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
     })
+
     /**
      * @tc.number UiTest_001
      * @tc.name testControlledScrollPositionList
@@ -890,6 +891,7 @@ export default function IndexTest() {
       await preArcButton.click();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testGridSideToSide end');
       done();
     })
@@ -909,6 +911,7 @@ export default function IndexTest() {
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
       let str = await getResourceString($r('app.string.LongList_title'));
+      await driver.delayMs(1000)
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
@@ -918,6 +921,7 @@ export default function IndexTest() {
       await scrollableList.scrollToBottom();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testLongList end');
       done();
     })
@@ -936,6 +940,7 @@ export default function IndexTest() {
       let list = await driver.findComponent(ON.type('List'));
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
+      await driver.delayMs(1000)
       let str = await getResourceString($r('app.string.CollapseAndExpand_title'));
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
@@ -951,6 +956,7 @@ export default function IndexTest() {
       expect(nameText === null).assertTrue();
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000);
       console.info('uitest: testCollapseAndExpand end');
       done();
     })
@@ -970,6 +976,7 @@ export default function IndexTest() {
       expect(list === null).assertFalse();
       await list.scrollToBottom(1000);
       let str = await getResourceString($r('app.string.ListChatRoom_title'));
+      await driver.delayMs(1000)
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
