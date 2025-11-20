@@ -1,9 +1,16 @@
-# ArkUI使用支持交互事件指南文档示例
+# 手势响应指南
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)
+1. 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)
 中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。
+2. 单击作为常用的手势，可以方便地使用onClick接口实现。尽管被称为事件，它实际上是基本手势类型，等同于将count配置为1的TapGesture，即单击手势。
+3. 组合手势由多种单一手势组合而成，通过在GestureGroup中使用不同的GestureMode来声明该组合手势的类型，支持顺序识别、并行识别和互斥识别三种类型。
+4. 多层级手势事件指父子组件嵌套时，父子组件均绑定了手势或事件。在该场景下，手势或者事件的响应受到多个因素的影响，相互之间发生传递和竞争，容易出现预期外的响应。
+5. 手势冲突是指多个手势识别器在同一组件或重叠区域同时识别时产生竞争，导致识别结果不符合预期。
+
+### 示例文档
+[stateStyles：多态样式](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-statestyles.md)
 
 ### 效果预览
 
@@ -42,10 +49,9 @@ entry/src/ohosTest/
 
 ### 具体实现
 
-stateStyles 通过为组件的不同内部状态（如 normal、focused、pressed 等）
-绑定对应的样式规则，实现动态的多态视觉效果，其使用方式是在组件上调用
-.stateStyles({}) 方法，传入一个以状态名为键的对象，每个状态内通过链式调
-用设置通用样式属性，从而在用户交互时自动切换外观，提升用户体验。
+1. stateStyles 通过为组件的不同内部状态（如 normal、focused、pressed 等）。
+2. 绑定对应的样式规则，实现动态的多态视觉效果，其使用方式是在组件上调用。
+3. stateStyles({}) 方法，传入一个以状态名为键的对象，每个状态内通过链式调用设置通用样式属性，从而在用户交互时自动切换外观，提升用户体验。
 
 ### 相关权限
 

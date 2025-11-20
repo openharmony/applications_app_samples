@@ -1,4 +1,4 @@
-# ArkUI查询和操作自定义节点知道文档
+# ArkUI查询和操作自定义节点指南
 
 ## 介绍
 
@@ -13,6 +13,9 @@
 | OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand | 获取目标节点在树上的第一个子节点的下标。 |
 | OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand | 获取目标节点在树上的最后一个子节点的下标。 |
 | OH_ArkUI_NodeUtils_GetChildWithExpandMode | 用不同的展开模式获取对应下标的子节点。 |
+
+### 示例文档
+[节点查询](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-node-query-operate.md)。
 
 ## 效果预览
 <table>
