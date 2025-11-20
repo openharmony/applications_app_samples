@@ -63,7 +63,9 @@ export struct ShowActionMenuExample {
     }
     .backgroundColor('#f1f2f3')
     .title($r('app.string.ShowActionMenu_title'))
+
     // [EndExclude fixed_style_pop_up_box]
   }
 }
+
 // [End fixed_style_pop_up_box]
