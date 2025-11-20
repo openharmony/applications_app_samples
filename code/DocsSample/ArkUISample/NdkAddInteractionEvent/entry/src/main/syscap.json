@@ -17,9 +17,7 @@
       "SystemCapability.DistributedHardware.DeviceManager",
       "SystemCapability.Multimedia.Drm.Core",
       "SystemCapability.Advertising.Ads",
-      "SystemCapability.Customization.EnterpriseDeviceManager",
-      "SystemCapability.Security.DeviceSecurityLevel",
-      "SystemCapability.UserIAM.UserAuth.PinAuth"
+      "SystemCapability.Customization.EnterpriseDeviceManager"
     ]
   }
 }

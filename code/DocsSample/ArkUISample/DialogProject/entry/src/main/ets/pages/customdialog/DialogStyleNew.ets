@@ -71,4 +71,5 @@ export struct DialogStyleNew {
     }
   }
 }
+
 // [End dialog_style_new]
