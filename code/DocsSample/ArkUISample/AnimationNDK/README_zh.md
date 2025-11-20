@@ -2,13 +2,17 @@
 
 ## 介绍
 
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
+
+1. [使用动画](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ndk-use-animation.md)。
+
 本示例展示了keyFrameAnimeteto、animateTo、tranisation及animator动画。该工程中展示的接口详细描述可查如下链接：
 
 [native_animate.h](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/capi-native-animate-h.md)。
 
 ## 效果预览
 
-| 预览                                      | 组件转场效果预览                                               |
+| 帧动画效果预览                                      | 组件转场效果预览                                               |
 | -------------------------------------------- |--------------------------------------------------------|
 |<img src="./screenshots/Animation.gif" width="300" />| <img src="./screenshots/Animation2.gif" width="300" /> |
 
