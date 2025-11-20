@@ -1113,6 +1113,20 @@ void setText8(ArkUI_NodeHandle &text8)
     ArkUI_NumberValue value2[] = {{.i32 = 5}};
     ArkUI_AttributeItem item2 = {value2, sizeof(value2)/ sizeof(ArkUI_NumberValue)};
     Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_MAX_LINES, &item2);
+    //创建选择选项
+    ArkUI_SelectionOptions *options = OH_ArkUI_SelectionOptions_Create();
+    //设置选择选项的菜单弹出策略为不弹出菜单
+    OH_ArkUI_SelectionOptions_SetMenuPolicy(options, ARKUI_MENU_POLICY_HIDE);
+    //获取选择选项的菜单弹出策略
+    ArkUI_MenuPolicy menuPolicy = OH_ArkUI_SelectionOptions_GetMenuPolicy(options);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "Manager", "MenuPolicy: %{public}d", menuPolicy);
+    //设置文本选择区域为[1, 3]，该区域将被高亮显示
+    ArkUI_NumberValue valueArray[] = { {.i32 = 1}, {.i32 = 3} };
+    ArkUI_NumberValue* values = valueArray;
+    ArkUI_AttributeItem selectionItem = {.value = values, .object = options};
+    Manager::nodeAPI_->setAttribute(text8, NODE_TEXT_TEXT_SELECTION, &selectionItem);
+    //释放选择选项对象
+    OH_ArkUI_SelectionOptions_Dispose(options);
 }
 
 void setText9(ArkUI_NodeHandle &text9)
