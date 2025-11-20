@@ -108,8 +108,8 @@ XComponent NativeWindow NativeImage EGL。
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行；
-2. 本示例为Stage模型，已适配API version 12版本SDK，SDK版本号5.0.0.19及以上版本,镜像版本号支持5.0.0.19及以上版本;
-3. 本示例需要使用DevEco Studio 4.0 Beta2 版本号(4.1.3.400)及以上版本才可编译运行。
+2. 本示例为Stage模型，已适配API version 23版本SDK，SDK版本号6.1.0.19及以上版本，镜像版本号支持6.1.0.19及以上版本;
+3. 本示例需要使用DevEco Studio 6.0.1 Beta1 版本号(6.0.1.246)及以上版本才可编译运行。
 ### 下载
 
 如需单独下载本工程，执行如下命令：
@@ -118,6 +118,6 @@ XComponent NativeWindow NativeImage EGL。
 git init
 git config core.sparsecheckout true
 echo code/BasicFeature/Native/NdkNativeWindow/ > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

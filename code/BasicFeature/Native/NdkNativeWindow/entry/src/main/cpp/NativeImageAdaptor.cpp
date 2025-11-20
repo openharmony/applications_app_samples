@@ -15,6 +15,7 @@
 
 #include "NativeImageAdaptor.h"
 #include "logger_common.h"
+#include "IPCKit/ipc_cparcel.h"
 #include "cstdint"
 
 namespace NativeWindowSample {
@@ -365,6 +366,15 @@ void NativeImageAdaptor::SetBufferColorSpace(NativeWindowBuffer *buffer)
     if (setRet != 0) {
         LOGE("set colorSpace fail.");
     }
+    parcel_ = OH_IPCParcel_Create();
+    if (parcel_ == nullptr) {
+        LOGE("OH_IPCParcel_Create fail");
+        return;
+    }
+    setRet = OH_NativeBuffer_WriteToParcel(nativeBuffer, parcel_);
+    if (setRet != 0) {
+        LOGE("OH_NativeBuffer_WriteToParcel fail, ret: %{public}d", setRet);
+    }
 }
 
 int32_t NativeImageAdaptor::ProduceBuffer(uint32_t value, OHNativeWindow *InNativeWindow)
@@ -455,6 +465,17 @@ int32_t NativeImageAdaptor::ConsumerBuffer(uint32_t value, OHNativeWindow *InNat
     if (ret != 0) {
         LOGE("OH_NativeImage_AcquireNativeWindowBuffer fail, ret:%{public}d", ret);
         return GSERROR_FAILD;
+    }
+    OH_NativeBuffer* nativeBuffer = nullptr;
+    ret = OH_NativeBuffer_ReadFromParcel(parcel_, &nativeBuffer);
+    if (ret != 0) {
+        LOGE("OH_NativeBuffer_ReadFromParcel fail, ret:%{public}d", ret);
+    } else {
+        OH_NativeBuffer_Config checkConfig = {};
+        void* virAddr = nullptr;
+        OH_NativeBuffer_MapAndGetConfig(nativeBuffer, &virAddr, &checkConfig);
+        LOGI("width(%{public}d), height(%{public}d), format(%{public}d), usage(%{public}d), stride(%{public}d)",
+            checkConfig.width, checkConfig.height, checkConfig.format, checkConfig.usage, checkConfig.stride);
     }
     ret = OH_NativeImage_ReleaseNativeWindowBuffer(image_, buffer, fenceFd);
     if (ret != 0) {
