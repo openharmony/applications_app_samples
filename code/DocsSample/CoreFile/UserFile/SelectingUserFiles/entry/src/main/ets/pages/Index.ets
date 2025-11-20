@@ -193,7 +193,6 @@ struct Index {
         //文件选择成功后，返回被选中音频的URI结果集。
         uris = audioSelectResult;
         console.info('audioViewPicker.select to file succeed and uri is:' + uris);
-        // [End audio_select_picker]
         // [StartExclude audio_view_picker]
         this.fileContent = 'Select Success';
         this.readAudioFile(uris);
@@ -201,6 +200,7 @@ struct Index {
       }).catch((err: BusinessError) => {
         console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
       })
+      // [End audio_select_picker]
     } catch (err) {
       const error: BusinessError = err as BusinessError;
       Logger.error(`Invoke audioViewPicker.select failed, code is ${error.code}, message is ${error.message}`);
