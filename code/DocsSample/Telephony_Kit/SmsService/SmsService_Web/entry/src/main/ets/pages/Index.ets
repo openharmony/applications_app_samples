@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start SmsService_Web]
 // 示例代码
 import { common, Want } from '@kit.AbilityKit';
 
@@ -42,3 +43,4 @@ struct Index {
     }
   }
 }
+// [End SmsService_Web]

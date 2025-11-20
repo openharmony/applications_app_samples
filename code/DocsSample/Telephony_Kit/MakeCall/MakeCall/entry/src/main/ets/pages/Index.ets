@@ -14,18 +14,16 @@
  */
 // 示例代码
 import { common, Want } from '@kit.AbilityKit';
+// [Start MakeCall]
 import { call, observer } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-const MMS_ENTITIES = 'entity.system.home';
-
-
-
+// [StartExclude MakeCall]
 @Entry
 @Component
 struct JumpCall {
     private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     startCallAbilityExplicit() {
+    // [EndExclude MakeCall]
       // 调用查询能力接口
       let isSupport = call.hasVoiceCapability();
       if (isSupport) {
@@ -49,6 +47,7 @@ struct JumpCall {
               console.info('call state change, data is:' + JSON.stringify(data));
           });
     }
+// [End MakeCall]
   }
 
     build() {

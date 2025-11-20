@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// [Start SmsService_App]
 // 示例代码
 import { common, Want } from '@kit.AbilityKit';
 
@@ -69,3 +70,4 @@ struct JumpMessage {
         .height('100%')
     }
 }
+// [End SmsService_App]
