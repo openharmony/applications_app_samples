@@ -2,7 +2,7 @@
 
 ### 介绍
 
-1. 本工程主要实现了对以下指南文档中 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/UniversalKeystoreKit/huks-export-key-arkts.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+1. 本工程主要实现了对以下指南文档中 https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/UniversalKeystoreKit/huks-export-key-arkts.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 #### KeyExport
 
@@ -24,7 +24,7 @@
 
 ### 介绍
 
-1. 本工程主要实现了对以下指南文档中 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/UniversalKeystoreKit/huks-export-key-ndk.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
+1. 本工程主要实现了对以下指南文档中 https://docs.openharmony.cn/pages/v6.0/zh-cn/application-dev/security/UniversalKeystoreKit/huks-export-key-ndk.md 示例代码片段的工程化，主要目标是实现指南中示例代码需要与sample工程文件同源。
 
 #### Call C/C++
 
@@ -71,8 +71,8 @@ entry/src/main/
 ## 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例支持API14版本SDK，SDK版本号(API Version 14 Release)。
-3. 本示例需要使用 DevEco Studio 版本号(5.0.1Release)才可编译运行。
+2. 本示例支持API20版本SDK，SDK版本号(API Version 20 Release)。
+3. 本示例需要使用 DevEco Studio 版本号(6.0.0Release)才可编译运行。
 
 ## 下载
 
@@ -82,6 +82,6 @@ entry/src/main/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/Security/UniversalKeystoreKit/OtherOperations/KeyExport > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

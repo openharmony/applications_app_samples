@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-// [Start get_persistent_storage_asymmetric_public_keys]
+// [Start get_persistent_storage_asymmetric_public_keys_cpp]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <cstring>
-// [StartExclude get_persistent_storage_asymmetric_public_keys]
 /* 以下以生成ECC密钥为例 */
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount)
@@ -63,7 +62,7 @@ static OH_Huks_Result GenerateKeyHelper(const char *alias)
     OH_Huks_FreeParamSet(&testGenerateKeyParamSet);
     return ohResult;
 }
-// [EndExclude get_persistent_storage_asymmetric_public_keys]
+
 static napi_value ExportKey(napi_env env, napi_callback_info info)
 {
     /* 1. 参数构造：确定密钥别名 */
@@ -96,7 +95,7 @@ static napi_value ExportKey(napi_env env, napi_callback_info info)
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;
 }
-// [End get_persistent_storage_asymmetric_public_keys]
+// [End get_persistent_storage_asymmetric_public_keys_cpp]
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
