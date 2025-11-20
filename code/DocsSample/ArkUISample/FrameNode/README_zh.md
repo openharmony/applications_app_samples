@@ -2,7 +2,9 @@
 
 ### 介绍
 
-本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-arktsNode-frameNode.md)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。通过该工程可以创建组件树FrameNode，FrameNode支持动态操作，如节点的增加、修改和删除。基础的FrameNode具备设置通用属性和事件回调的功能，同时提供完整的自定义能力，涵盖自定义测量、布局和绘制等方面。
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好的理解并合理使用ArkUI提供的组件以及组件属性。通过该工程可以创建组件树FrameNode，FrameNode支持动态操作，如节点的增加、修改和删除。基础的FrameNode具备设置通用属性和事件回调的功能，同时提供完整的自定义能力，涵盖自定义测量、布局和绘制等方面。
+
+1. [自定义组件节点 (FrameNode)](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-arktsNode-frameNode.md)
 
 ### 效果预览
 
