@@ -2,8 +2,7 @@
 {
   "devices": {
     "general": [
-      "default",
-      "tablet"
+      "default"
     ]
   },
   "production": {
@@ -17,7 +16,10 @@
       "SystemCapability.DistributedHardware.DeviceManager",
       "SystemCapability.Multimedia.Drm.Core",
       "SystemCapability.Advertising.Ads",
-      "SystemCapability.Customization.EnterpriseDeviceManager"
+      "SystemCapability.Customization.EnterpriseDeviceManager",
+      "SystemCapability.Security.DataTransitManager",
+      "SystemCapability.Security.DeviceSecurityLevel",
+      "SystemCapability.UserIAM.UserAuth.PinAuth"
     ]
   }
 }

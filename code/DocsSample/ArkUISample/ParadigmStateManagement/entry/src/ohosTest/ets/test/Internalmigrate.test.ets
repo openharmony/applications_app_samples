@@ -439,6 +439,8 @@ export default function InternalTest() {
       await driver.delayMs(1000);
       await driver.swipe(100, 600, 200, 20, 6000);
       await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 2000);
+      await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_StorageProp_V1_two')));
       await text1.click();
       await driver.delayMs(1000);
@@ -472,6 +474,8 @@ export default function InternalTest() {
       await text.click();
       await driver.delayMs(1000);
       await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 2000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_StorageProp_V2_one')));
       await text1.click();
@@ -507,6 +511,8 @@ export default function InternalTest() {
       await driver.delayMs(1000);
       await driver.swipe(100, 600, 200, 20, 6000);
       await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 1000);
+      await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_StorageProp_V2_two')));
       await text1.click();
       await driver.delayMs(1000);
@@ -519,6 +525,7 @@ export default function InternalTest() {
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.pressBack();
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
       done();
     })
@@ -539,7 +546,9 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 9000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Environment_V1')));
       await text1.click();
@@ -567,7 +576,9 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 9000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Environment_V2')));
       await text1.click();
@@ -595,7 +606,9 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 10000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Persistent_Storage_V1')));
       await text1.click();
@@ -603,6 +616,7 @@ export default function InternalTest() {
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.pressBack();
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
       done();
     })
@@ -623,7 +637,9 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 10000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 5000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Persistent_Storage_V2')));
       await text1.click();
@@ -651,7 +667,9 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 10000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 5000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Gradual_Migration')));
       await text1.click();
@@ -659,6 +677,7 @@ export default function InternalTest() {
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.pressBack();
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
       done();
     })
@@ -679,7 +698,11 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 10000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Other_Migrations_List_V1')));
       await text1.click();
@@ -716,8 +739,12 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 10000);
-      await driver.delayMs(2000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 5000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
+      await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Other_Migrations_List_V2')));
       await text1.click();
       await driver.delayMs(1000);
@@ -754,8 +781,12 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 12000);
-      await driver.delayMs(2000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 5000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
+      await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Other_Migrations_WaterFlow_V1')));
       await text1.click();
       await driver.delayMs(1000);
@@ -791,8 +822,12 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 12000);
-      await driver.delayMs(2000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 5000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
+      await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Other_Migrations_WaterFlow_V2')));
       await text1.click();
       await driver.delayMs(1000);
@@ -828,7 +863,11 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 18000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_attribute_Modifier_V1')));
       await text1.click();
@@ -859,7 +898,11 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 18000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 2000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_attribute_Modifier_V2')));
       await text1.click();
@@ -890,7 +933,11 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 16000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 2000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Common_Modifier_V1')));
       await text1.click();
@@ -906,7 +953,6 @@ export default function InternalTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
-      await driver.pressBack();
       hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
       done();
     })
@@ -927,13 +973,19 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 20000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 4000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Common_Modifier_V2')));
       await text1.click();
       await driver.delayMs(1000);
       const text2 = await driver.findComponent(ON.text(await getResourceString('EntryAbility_label')));
       await text2.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
@@ -957,7 +1009,11 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 20000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Module_Modifier_V1')));
       await text1.click();
@@ -971,6 +1027,7 @@ export default function InternalTest() {
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.pressBack();
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
       done();
     })
@@ -991,7 +1048,11 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 20000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 7000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Module_Modifier_V2')));
       await text1.click();
@@ -1005,6 +1066,7 @@ export default function InternalTest() {
       await driver.pressBack();
       await driver.delayMs(1000);
       await driver.pressBack();
+      await driver.delayMs(1000);
       hilog.info(DOMAIN, 'testTag', '%{public}s', 'uitest: testArcListArcIndexerBar end');
       done();
     })
@@ -1025,7 +1087,11 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 20000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Attribute_Updater_V1')));
       await text1.click();
@@ -1060,7 +1126,11 @@ export default function InternalTest() {
       const text = await driver.findComponent(ON.text(await getResourceString('internal_trace')));
       await text.click();
       await driver.delayMs(1000);
-      await driver.swipe(100, 600, 200, 20, 21000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 6000);
+      await driver.delayMs(1000);
+      await driver.swipe(100, 600, 200, 20, 7000);
       await driver.delayMs(1000);
       const text1 = await driver.findComponent(ON.text(await getResourceString('Internal_Attribute_Updater_V2')));
       await text1.click();

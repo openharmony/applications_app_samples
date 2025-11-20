@@ -546,6 +546,8 @@ export default function stateTest() {
       await driver.delayMs(1000);
       await driver.swipe(100, 600, 200, 20, 5000);
       await driver.delayMs(2000);
+      await driver.swipe(100, 600, 200, 20, 1000);
+      await driver.delayMs(1000);
       const text1 =
         await driver.findComponent(ON.text(await getResourceString('state_problem_state_ui_refresh_example_03')));
       await text1.click();
