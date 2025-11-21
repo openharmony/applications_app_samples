@@ -69,7 +69,7 @@ class Cousin extends Parent {
   }
 
   setChild(childId: number): void {
-    return this.child.setChildId(childId);
+    this.child.setChildId(childId);
   }
 }
 
