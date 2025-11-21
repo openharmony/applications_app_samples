@@ -16,9 +16,9 @@
 
 5. 点击设置capi侧主窗口Context，查看如何将ArkTS的上下文传到capi。
 
-6. 点击“展示自定义绘制页面”，查看绘画效果。
+6. 点击“展示自定义绘制页面”，查看绘画效果。具体实现请参考[自定义绘制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-draw.md)。
 
-7. 点击"展示自定义绘制容器页面"，查看容器效果。
+7. 点击"展示自定义绘制容器页面"，查看容器效果。具体实现请参考[自定义绘制](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined-draw.md)。
 
 ## 效果预览
 
@@ -30,11 +30,13 @@
 
 ### 具体实现
 
-- 本示例实现了多线程创建组件的能力，通过调用CAPI抛线程创建的接口，将组件创建操作放到其它线程执行，有效提高UI效率。
+- 本示例实现了多线程创建组件的功能，通过调用CAPI抛线程创建的接口，将组件创建操作放到其它线程执行，有效提高UI效率。
 
-- 实现了组件存储自定义属性的能力，开发者可以通过该能力，赋予组件一些特殊的字段接口，用以实现即时性的接口调用。
+- 实现了组件存储自定义属性的能力，开发者可以通过该能力，赋予组件一些特殊的字段接口，用以实现即时接口调用。
 
-- 实现了CAPI侧懒加载实现列表的能力，可复用已生成的列表项，减少创建/销毁的性能开销。
+- 实现了CAPI侧懒加载实现列表的能力，可复用已生成的列表项，减少创建/销毁的性能消耗。
+
+- 自定义绘制实现：自定义节点的创建，通过ArkUI_NativeNodeAPI_1的create接口，传入ARKUI_NODE_CUSTOM创建自定义节点。在事件注册过程中，需将事件注册为绘制事件，通过查阅ArkUI_NodeCustomEventType枚举值获取事件类型及含义。 创建自定义节点：通过ArkUI_NativeNodeAPI_1的create接口，传入ARKUI_NODE_CUSTOM创建自定义节点。在事件注册时，将自定义节点、事件类型、事件ID和UserData作为参数传入。在回调函数中，通过获取自定义事件的事件类型、事件ID和UserData来执行不同的逻辑。
 
 ### 工程目录
 ```
@@ -81,7 +83,7 @@ entry/src/main/ets/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/NativeNodeSample > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/NativeNodeUtilsSample > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
