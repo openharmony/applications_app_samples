@@ -20,7 +20,7 @@
 #include <cstring>
 
 static OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
-                            uint32_t paramCount)
+                                    uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
     if (ret.errorCode != OH_HUKS_SUCCESS) {
@@ -69,8 +69,7 @@ static const char *DATA_TO_SIGN_RSA_PKCS1 = "Hks_RSA_PKCS1_V1_5_Sign_Verify_Test
                                             "000000000000000000000000000000000000000000000000000000000000_string";
 
 /* 1. 生成密钥 */
-static OH_Huks_Result GenerateKey(const struct OH_Huks_Blob *keyAlias,
-                                   const struct OH_Huks_ParamSet *genParamSet)
+static OH_Huks_Result GenerateKey(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *genParamSet)
 {
     return OH_Huks_GenerateKeyItem(keyAlias, genParamSet, nullptr);
 }
@@ -128,10 +127,9 @@ static OH_Huks_Result VerifySignature(const struct OH_Huks_Blob *keyAlias,
 
 napi_value SignVerifyKeyRsaSha256Pkcs1V15(napi_env env, napi_callback_info info)
 {
-    struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_RSA_SHA256_PKCS1"), 
-                                      (uint8_t *)"test_signVerify_RSA_SHA256_PKCS1"};
-    struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_RSA_PKCS1), 
-                                  (uint8_t *)DATA_TO_SIGN_RSA_PKCS1};
+    struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_RSA_SHA256_PKCS1"),
+            (uint8_t *)"test_signVerify_RSA_SHA256_PKCS1"};
+    struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_RSA_PKCS1), (uint8_t *)DATA_TO_SIGN_RSA_PKCS1};
     struct OH_Huks_ParamSet *genParamSet = nullptr;
     struct OH_Huks_ParamSet *signParamSet = nullptr;
     struct OH_Huks_ParamSet *verifyParamSet = nullptr;
@@ -139,19 +137,19 @@ napi_value SignVerifyKeyRsaSha256Pkcs1V15(napi_env env, napi_callback_info info)
 
     do {
         ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsRsaPkcs1,
-                                sizeof(g_genSignVerifyParamsRsaPkcs1) / sizeof(OH_Huks_Param));
+                                    sizeof(g_genSignVerifyParamsRsaPkcs1) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
-        ohResult = InitParamSet(&signParamSet, g_signParamsRsaPkcs1, 
-                     sizeof(g_signParamsRsaPkcs1) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&signParamSet, g_signParamsRsaPkcs1,
+                                    sizeof(g_signParamsRsaPkcs1) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
-        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsRsaPkcs1, 
-                     sizeof(g_verifyParamsRsaPkcs1) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsRsaPkcs1,
+                                    sizeof(g_verifyParamsRsaPkcs1) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

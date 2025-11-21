@@ -63,7 +63,8 @@ static struct OH_Huks_Param g_verifyParamsSM2[] = {
 static const uint32_t SM2_COMMON_SIZE = 256;
 static const char *DATA_TO_SIGN_SM2 = "Hks_SM2_Sign_Verify_Test_0000000000000000000000000000000000000000000000000000000"
                                       "00000000000000000000000000000000000000000000000000000000000000000000000000000000"
-                                      "0000000000000000000000000000000000000000000000000000000000000000000000000_string";
+                                      "0000000000000000000000000000000000000000000000000"
+                                      "000000000000000000000000_string";
 
 /* 1. 生成密钥 */
 static OH_Huks_Result GenerateKeySM2(const struct OH_Huks_Blob *keyAlias,
@@ -125,8 +126,8 @@ static OH_Huks_Result VerifySignatureSM2(const struct OH_Huks_Blob *keyAlias,
 
 napi_value SignVerifyKeySM2SM3(napi_env env, napi_callback_info info)
 {
-    struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_SM2_SM3"), 
-                                      (uint8_t *)"test_signVerify_SM2_SM3"};
+    struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_SM2_SM3"),
+            (uint8_t *)"test_signVerify_SM2_SM3"};
     struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_SM2), 
                                   (uint8_t *)DATA_TO_SIGN_SM2};
     struct OH_Huks_ParamSet *genParamSet = nullptr;
@@ -136,19 +137,19 @@ napi_value SignVerifyKeySM2SM3(napi_env env, napi_callback_info info)
     
     do {
         ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsSM2,
-                                sizeof(g_genSignVerifyParamsSM2) / sizeof(OH_Huks_Param));
+                                    sizeof(g_genSignVerifyParamsSM2) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
         
-        ohResult = InitParamSet(&signParamSet, g_signParamsSM2, 
-                                sizeof(g_signParamsSM2) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&signParamSet, g_signParamsSM2,
+                                    sizeof(g_signParamsSM2) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
         
-        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsSM2, 
-                                sizeof(g_verifyParamsSM2) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsSM2,
+                                    sizeof(g_verifyParamsSM2) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

@@ -20,7 +20,7 @@
 #include <cstring>
 
 static OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
-                            uint32_t paramCount)
+                                   uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
     if (ret.errorCode != OH_HUKS_SUCCESS) {
@@ -129,7 +129,7 @@ static OH_Huks_Result VerifySignature(const struct OH_Huks_Blob *keyAlias,
 napi_value SignVerifyKeyRsaSha256Pss(napi_env env, napi_callback_info info)
 {
     struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_RSA_SHA256_PSS"),
-                                        (uint8_t *)"test_signVerify_RSA_SHA256_PSS"};
+            (uint8_t *)"test_signVerify_RSA_SHA256_PSS"};
     struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_RSA_PSS), (uint8_t *)DATA_TO_SIGN_RSA_PSS};
     struct OH_Huks_ParamSet *genParamSet = nullptr;
     struct OH_Huks_ParamSet *signParamSet = nullptr;
@@ -138,19 +138,18 @@ napi_value SignVerifyKeyRsaSha256Pss(napi_env env, napi_callback_info info)
 
     do {
         ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsRsaPss,
-                    sizeof(g_genSignVerifyParamsRsaPss) / sizeof(OH_Huks_Param));
+                                    sizeof(g_genSignVerifyParamsRsaPss) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
-        ohResult = InitParamSet(&signParamSet, g_signParamsRsaPss, 
-                     sizeof(g_signParamsRsaPss) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&signParamSet, g_signParamsRsaPss, sizeof(g_signParamsRsaPss) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
         ohResult = InitParamSet(&verifyParamSet, g_verifyParamsRsaPss,
-                    sizeof(g_verifyParamsRsaPss) / sizeof(OH_Huks_Param));
+                                    sizeof(g_verifyParamsRsaPss) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

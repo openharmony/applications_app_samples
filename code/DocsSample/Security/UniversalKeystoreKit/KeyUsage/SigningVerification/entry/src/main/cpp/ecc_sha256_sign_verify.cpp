@@ -20,7 +20,7 @@
 #include <cstring>
 
 static OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
-                            uint32_t paramCount)
+                                    uint32_t paramCount)
 {
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
     if (ret.errorCode != OH_HUKS_SUCCESS) {
@@ -124,10 +124,8 @@ static OH_Huks_Result VerifySignatureECC(const struct OH_Huks_Blob *keyAlias,
 
 napi_value SignVerifyKeyECC(napi_env env, napi_callback_info info)
 {
-    struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_ECC"), 
-                                      (uint8_t *)"test_signVerify_ECC"};
-    struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_ECC), 
-                                  (uint8_t *)DATA_TO_SIGN_ECC};
+    struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_ECC"), (uint8_t *)"test_signVerify_ECC"};
+    struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_ECC), (uint8_t *)DATA_TO_SIGN_ECC};
     struct OH_Huks_ParamSet *genParamSet = nullptr;
     struct OH_Huks_ParamSet *signParamSet = nullptr;
     struct OH_Huks_ParamSet *verifyParamSet = nullptr;
@@ -135,19 +133,19 @@ napi_value SignVerifyKeyECC(napi_env env, napi_callback_info info)
     
     do {
         ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsTestECC,
-                                sizeof(g_genSignVerifyParamsTestECC) / sizeof(OH_Huks_Param));
+                                    sizeof(g_genSignVerifyParamsTestECC) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
         
-        ohResult = InitParamSet(&signParamSet, g_signParamsTestECC, 
-                                sizeof(g_signParamsTestECC) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&signParamSet, g_signParamsTestECC,
+                                    sizeof(g_signParamsTestECC) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
         
-        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsTestECC, 
-                                sizeof(g_verifyParamsTestECC) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsTestECC,
+                                    sizeof(g_verifyParamsTestECC) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

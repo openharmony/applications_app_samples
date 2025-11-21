@@ -117,10 +117,9 @@ static OH_Huks_Result VerifySignatureSM2NoDigest(const struct OH_Huks_Blob *keyA
 
 napi_value SignVerifyKeySM2NoDigest(napi_env env, napi_callback_info info)
 {
-    struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_SM2_NoDigest"), 
-                                      (uint8_t *)"test_signVerify_SM2_NoDigest"};
-    struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_SM2_NODIGEST), 
-                                  (uint8_t *)DATA_TO_SIGN_SM2_NODIGEST};
+    struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_SM2_NoDigest"),
+            (uint8_t *)"test_signVerify_SM2_NoDigest"};
+    struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_SM2_NODIGEST), (uint8_t *)DATA_TO_SIGN_SM2_NODIGEST};
     struct OH_Huks_ParamSet *genParamSet = nullptr;
     struct OH_Huks_ParamSet *signParamSet = nullptr;
     struct OH_Huks_ParamSet *verifyParamSet = nullptr;
@@ -128,19 +127,19 @@ napi_value SignVerifyKeySM2NoDigest(napi_env env, napi_callback_info info)
 
     do {
         ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsSM2NoDigest,
-                                sizeof(g_genSignVerifyParamsSM2NoDigest) / sizeof(OH_Huks_Param));
+                                    sizeof(g_genSignVerifyParamsSM2NoDigest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
         ohResult = InitParamSet(&signParamSet, g_signParamsSM2NoDigest,
-                                sizeof(g_signParamsSM2NoDigest) / sizeof(OH_Huks_Param));
+                                    sizeof(g_signParamsSM2NoDigest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
-        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsSM2NoDigest, 
-                                sizeof(g_verifyParamsSM2NoDigest) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&verifyParamSet, g_verifyParamsSM2NoDigest,
+                                    sizeof(g_verifyParamsSM2NoDigest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

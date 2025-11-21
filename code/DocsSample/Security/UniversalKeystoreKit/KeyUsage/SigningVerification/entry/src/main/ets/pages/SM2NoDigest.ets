@@ -26,7 +26,7 @@ let hash = '12345678901234567890123456789012';
 let signature: Uint8Array;
 
 function stringToUint8Array(str: string) {
-  let arr: number[] = new Array();
+  let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
