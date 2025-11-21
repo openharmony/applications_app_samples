@@ -42,7 +42,7 @@ export default function Index2Test() {
       };
       await delegator.startAbility(want);
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       const ability: UIAbility = await delegator.getCurrentTopAbility();
       hilog.info(DOMAIN, TAG, BUNDLE + "get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
@@ -57,23 +57,23 @@ export default function Index2Test() {
     it('testAIMenu', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testAIMenu begin");
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let buttonComponent = await driver.findComponent(ON.text('Text', MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
 
       let str = await getResourceString('SetUpAIMenu_title');
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
 
       str = await getResourceString('AIMenu_Text_One');
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let aiMenuText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(aiMenuText === null).assertFalse();
 
       await driver.pressBack();
@@ -91,23 +91,23 @@ export default function Index2Test() {
     it('testHotSearch', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testHotSearch begin");
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let buttonComponent = await driver.findComponent(ON.text('Text', MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
       let str = await getResourceString('TextHotSearch_title');
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let textHotSearch1 = await driver.findComponent(ON.text('1'));
       let textHotSearch2 = await driver.findComponent(ON.text('2'));
       let textHotSearch3 = await driver.findComponent(ON.text('3'));
       let textHotSearch4 = await driver.findComponent(ON.text('4'));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(textHotSearch1 === null).assertFalse();
       expect(textHotSearch2 === null).assertFalse();
       expect(textHotSearch3 === null).assertFalse();
@@ -125,7 +125,7 @@ export default function Index2Test() {
       let hotText5 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
       str = await getResourceString('TextHotSearch_textContent_six');
       let hotText6 = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(hotText1 === null).assertFalse();
       expect(hotText2 === null).assertFalse();
       expect(hotText3 === null).assertFalse();
@@ -135,6 +135,7 @@ export default function Index2Test() {
 
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testHotSearch end");
       done();
     })
@@ -148,36 +149,37 @@ export default function Index2Test() {
     it('testDisableMenuItems', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testDisableMenuItems begin");
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let buttonComponent = await driver.findComponent(ON.text('Text', MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(scrollComponent === null).assertFalse();
       let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
       await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 8000);
       await driver.waitForIdle(500, 500);
 
       let str = await getResourceString('Disable_MenuItems');
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
 
       str = await getResourceString('Service_MenuItems_Text');
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let disableMenuItemsText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(disableMenuItemsText === null).assertFalse();
 
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testDisableMenuItems end");
       done();
     })
@@ -191,34 +193,35 @@ export default function Index2Test() {
     it('testPrepareMenu', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testPrepareMenu begin");
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let buttonComponent = await driver.findComponent(ON.text('Text', MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
 
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(scrollComponent === null).assertFalse();
       let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
       await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 8000);
       await driver.waitForIdle(500, 500);
 
       let str = await getResourceString('Prepare_Menu');
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let prepareMenuText = await driver.findComponent(ON.text('Text editMenuOptions'));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(prepareMenuText === null).assertFalse();
 
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testPrepareMenu end");
       done();
     })
@@ -232,35 +235,37 @@ export default function Index2Test() {
     it('testWordBreakd', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testWordBreakd begin");
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let buttonComponent = await driver.findComponent(ON.text('Text', MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
 
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(scrollComponent === null).assertFalse();
       let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
       await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 10000);
       await driver.waitForIdle(500, 500);
 
       let str = await getResourceString('Word_Break');
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       str = await getResourceString('Text_WordBreak');
       let wordBreakdText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(wordBreakdText === null).assertFalse();
 
       await driver.pressBack();
+      await driver.delayMs(500)
       await driver.pressBack();
+      await driver.delayMs(500)
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testWordBreakd end");
       done();
     })
@@ -286,7 +291,11 @@ export default function Index2Test() {
       let scrollCenter = await scrollComponent.getBoundsCenter();
       await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
-      await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 10000);
+      await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 8000);
+      await driver.swipe(100, 1000, 100, 6000);
+      await driver.delayMs(500);
+      await driver.swipe(100, 1000, 100, 6000);
+      await driver.delayMs(500);
       await driver.waitForIdle(500, 500);
       await driver.delayMs(500);
       let str = await getResourceString('Height_AdaptivePolicy');
@@ -304,6 +313,7 @@ export default function Index2Test() {
 
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testHeightAdaptivePolicy end");
       done();
     })
@@ -317,17 +327,17 @@ export default function Index2Test() {
     it('testLengthMetric', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testLengthMetric begin");
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let buttonComponent = await driver.findComponent(ON.text('Text', MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(scrollComponent === null).assertFalse();
       let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
       await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 12000);
       await driver.waitForIdle(500, 500);
@@ -369,7 +379,7 @@ export default function Index2Test() {
       await buttonComponent.click();
       await driver.delayMs(500);
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(scrollComponent === null).assertFalse();
       let scrollCenter = await scrollComponent.getBoundsCenter();
       await driver.delayMs(500);
@@ -406,35 +416,36 @@ export default function Index2Test() {
     it('testTextLong', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testTextLong begin");
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let buttonComponent = await driver.findComponent(ON.text('Text', MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(scrollComponent === null).assertFalse();
       let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
       await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 14000);
       await driver.waitForIdle(500, 500);
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let str = await getResourceString('Text_Long');
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let sampleButton = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       str = await getResourceString('Text_Long_String');
       let textLongText = await driver.findComponent(ON.text(str, MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(textLongText === null).assertFalse();
 
       await driver.pressBack();
       await driver.pressBack();
+      await driver.delayMs(1000)
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testTextLong end");
       done();
     })
@@ -449,17 +460,17 @@ export default function Index2Test() {
     it('testTextLongTow', Level.LEVEL1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + "uitest: testTextLongTow begin");
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let buttonComponent = await driver.findComponent(ON.text('Text', MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(buttonComponent === null).assertFalse();
       await buttonComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       let scrollComponent: Component = await driver.waitForComponent(ON.id('scroll_'), 1000);
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(scrollComponent === null).assertFalse();
       let scrollCenter = await scrollComponent.getBoundsCenter();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + `[XYING6] (scrollCenter.x, scrollCenter.y): (${scrollCenter.x}, ${scrollCenter.y})`);
       await driver.swipe(scrollCenter.x, scrollCenter.y, scrollCenter.x, scrollCenter.y - 1300, 14000);
       await driver.waitForIdle(500, 500);
@@ -470,10 +481,10 @@ export default function Index2Test() {
       await driver.delayMs(500);
       expect(sampleButton === null).assertFalse();
       await sampleButton.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       str = await getResourceString('Text_Long_String');
       let textLongTowText = await driver.findComponent(ON.text(str,  MatchPattern.CONTAINS));
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
       expect(textLongTowText === null).assertFalse();
 
       await driver.pressBack();
