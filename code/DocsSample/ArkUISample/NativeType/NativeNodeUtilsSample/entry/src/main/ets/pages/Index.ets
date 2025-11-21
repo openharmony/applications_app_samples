@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NodeContent,UIContext } from '@kit.ArkUI';
+import { NodeContent, UIContext } from '@kit.ArkUI';
 import entry from 'libentry.so';
 
 @Component
@@ -41,42 +41,26 @@ struct CAPIComponent {
 @Entry
 @Component
 struct Index {
-
   @State isShow: boolean = false;
   @State message: string = 'CreateNodeTree';
 
   build() {
     Flex() {
       Column() {
-        Text('CreateNodeTreeOnMultiThread')
-          .fontSize(18)
-          .fontWeight(FontWeight.Bold)
-        Button(this.message)
-          .onClick(() => {
-            this.isShow = !this.isShow;
-            if (this.isShow) {
-              this.message = 'DisposeNodeTree';
-            } else {
-              this.message = 'CreateNodeTree';
-            }
-          })
-        if (this.isShow) {
-          CAPIComponent();
-        }
         Button('ShowDrawPage')
-          .onClick(()=>{
+          .onClick(() => {
             const uiContext: UIContext = this.getUIContext();
             const router = uiContext.getRouter();
             router.pushUrl({
-              url:'pages/drawPage/DrawPage'
+              url: 'pages/drawPage/DrawPage'
             })
           })
         Button('ShowNativeUIPage')
-          .onClick(()=>{
+          .onClick(() => {
             const uiContext: UIContext = this.getUIContext();
             const router = uiContext.getRouter();
             router.pushUrl({
-              url:'pages/nativeUI/NativeUIPage'
+              url: 'pages/nativeUI/NativeUIPage'
             })
           })
         // app.string.Create_Component资源文件中的value值为'多实例创建组件'
@@ -84,7 +68,7 @@ struct Index {
           const uiContext: UIContext = this.getUIContext();
           const router = uiContext.getRouter();
           router.pushUrl({
-            url: 'pages/Index'
+            url: 'pages/Entry'
           });
         })
         // app.string.Custom_Attribute_Test资源文件中的value值为'自定义属性测试'
@@ -105,7 +89,7 @@ struct Index {
         })
         // 该接口作用为NDK侧保存主窗口实例，用户保护实例错误调用场景。
         // app.string.Setting_NDKNativeWindows_Context资源文件中的value值为'设置NDK侧主窗口Context'
-        Button($r('app.string.Setting_NDKNativeWindows_Context')).onClick(()=> {
+        Button($r('app.string.Setting_NDKNativeWindows_Context')).onClick(() => {
           entry.getContext(this.getUIContext());
         })
       }.width('100%')
