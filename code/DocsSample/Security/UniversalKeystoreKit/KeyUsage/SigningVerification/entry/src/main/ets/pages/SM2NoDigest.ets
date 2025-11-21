@@ -18,7 +18,7 @@
  * 密钥算法为SM2、摘要算法为NoDigest，由业务自己做SM3摘要
  */
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from "@kit.BasicServicesKit";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let keyAlias = 'test_sm2KeyAlias';
 let handle: number;
@@ -42,7 +42,7 @@ function uint8ArrayToString(fileData: Uint8Array) {
 }
 
 function getSm2GenerateProperties() {
-  let properties: Array<huks.HuksParam> = [{
+  let properties: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
   }, {
@@ -60,7 +60,7 @@ function getSm2GenerateProperties() {
 }
 
 function getSm2SignProperties() {
-  let properties: Array<huks.HuksParam> = [{
+  let properties: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
   }, {
@@ -77,7 +77,7 @@ function getSm2SignProperties() {
 }
 
 function getSm2VerifyProperties() {
-  let properties: Array<huks.HuksParam> = [{
+  let properties: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
   }, {

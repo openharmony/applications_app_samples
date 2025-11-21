@@ -128,7 +128,7 @@ static OH_Huks_Result VerifySignature(const struct OH_Huks_Blob *keyAlias,
 napi_value SignVerifyKeyRsaSha256Pkcs1V15(napi_env env, napi_callback_info info)
 {
     struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_RSA_SHA256_PKCS1"),
-            (uint8_t *)"test_signVerify_RSA_SHA256_PKCS1"};
+        (uint8_t *)"test_signVerify_RSA_SHA256_PKCS1"};
     struct OH_Huks_Blob inData = {(uint32_t)strlen(DATA_TO_SIGN_RSA_PKCS1), (uint8_t *)DATA_TO_SIGN_RSA_PKCS1};
     struct OH_Huks_ParamSet *genParamSet = nullptr;
     struct OH_Huks_ParamSet *signParamSet = nullptr;
