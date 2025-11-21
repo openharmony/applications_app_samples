@@ -25,8 +25,8 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* // 第一步：计算各子组件的大小。通过onMeasureSize：组件每次布局时触发，计算子组件的尺寸，其执行时间先于onPlaceChildren；
-* // 第二步：放置各子组件的位置。通过onPlaceChildren：组件每次布局时触发，设置子组件的起始位置；
+* 第一步：计算各子组件的大小。通过onMeasureSize：组件每次布局时触发，计算子组件的尺寸，其执行时间先于onPlaceChildren；
+* 第二步：放置各子组件的位置。通过onPlaceChildren：组件每次布局时触发，设置子组件的起始位置；
 
 
 ### 相关权限

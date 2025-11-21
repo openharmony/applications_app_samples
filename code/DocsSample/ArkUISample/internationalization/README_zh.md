@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例展示了[@Once：初始化同步一次](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-color-effect.md)色彩的使用方法：
+本示例展示了[UI国际化](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-internationalization.md)的使用方法：
 
 使用说明：
 1. 该工程可以选择在模拟器和开发板上运行。
@@ -10,8 +10,8 @@
 3. 进入”DocsSample/ArkUISample/internationalization/entry/src/ohosTest/ets/test/index.test.ets“文件，可以对本项目进行UI的自动化测试。
 ### 效果预览
 
-| 首页                                 | 列表类组件目录                            | 列表中显示数据示例                            |
-|------------------------------------|------------------------------------|------------------------------------|
+| 界面布局和边框设置                                 | 自定义绘制Canvas组件                            |
+|------------------------------------|------------------------------------|
 | ![](screenshots/device/image1.png) | ![](screenshots/device/image2.png) |
 
 ### 使用说明
