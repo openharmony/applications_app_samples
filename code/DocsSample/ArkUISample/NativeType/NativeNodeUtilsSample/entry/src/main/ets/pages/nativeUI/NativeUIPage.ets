@@ -46,16 +46,16 @@ struct NativeCustomPage {
           .onClick(() => {
             this.flag = !this.flag
             if (this.flag) {
-              this.text = 'HideNativeUI'
-              this.createNativeNodes()
-            } else {
               this.text = 'ShowNativeUI'
               this.DestroyNativeRoot()
+            } else {
+              this.text = 'HideNativeUI'
+              this.createNativeNodes()
             }
           })
       }
 
-      if (this.flag = true) {
+      if (!this.flag) {
         Column() {
           ContentSlot(this.nodeContent);
         }
