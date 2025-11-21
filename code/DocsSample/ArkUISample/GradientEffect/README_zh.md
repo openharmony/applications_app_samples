@@ -1,16 +1,14 @@
-# ArkUI使用滚动类指南文档示例
+# ArkUI使用颜色渐变指南文档示例
 
 ### 介绍
 
-本示例展示了[@Once：初始化同步一次](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-internationalization.md)UI国际化的使用方法：
+本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)中各场景的开发示例，展示在工程中，帮助开发者更好地理解ArkUI提供的组件及组件属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-使用说明：
-1. 该工程可以选择在模拟器和开发板上运行。
-2. 点击构建，即可在生成的应用中点击对应的按钮，观察自定义占位节点的不同应用。
-3. 进入”DocsSample/ArkUISample/GradientEffect/entry/src/ohosTest/ets/test/index.test.ets“文件，可以对本项目进行UI的自动化测试。
+1. [颜色渐变](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-color-effect.md)
+
 ### 效果预览
 
-| 首页                                 | 列表类组件目录                            | 列表中显示数据示例                            |
+| 线性渐变效果                                 | 角度渐变效果                            | 径向渐变效果                            |
 |------------------------------------|------------------------------------|------------------------------------|
 | ![](screenshots/device/image1.png) | ![](screenshots/device/image2.png) | ![](screenshots/device/image3.png) |
 
