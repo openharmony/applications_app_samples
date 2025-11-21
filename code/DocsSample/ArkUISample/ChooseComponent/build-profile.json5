@@ -15,15 +15,14 @@
 
 {
   "app": {
-    "signingConfigs": [
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
         "compileSdkVersion": 22,
-        "compatibleSdkVersion": 22,
-        "targetSdkVersion": 22,
+        "compatibleSdkVersion": 20,
+        "targetSdkVersion": 20,
         "runtimeOS": "OpenHarmony",
         "buildOption": {
           "strictMode": {

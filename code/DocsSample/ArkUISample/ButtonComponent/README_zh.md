@@ -112,9 +112,9 @@ entry/src/ohosTest/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行, 支持设备：RK3568。
+1.本示例仅支持标准系统上运行, 支持设备：wearable(优先使用), RK3568(需要更改“deviceTypes”) 。
 
-2.本示例为Stage模型，支持API21版本SDK，版本号：6.0.0.254，镜像版本号：OpenHarmony_5.0.2.57。
+2.本示例为Stage模型，支持API20版本SDK，版本号：6.0.0.254，镜像版本号：OpenHarmony_5.0.2.57。
 
 3.本示例需要使用DevEco Studio NEXT Developer Preview2 (Build Version: 5.0.5.306， built on December 12, 2024)及以上版本才可编译运行。
 
