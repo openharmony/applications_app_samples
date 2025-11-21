@@ -1,4 +1,4 @@
-# com.samples.wrapbuilder
+# wrapBuilder：封装全局@Builder
 
 ## 介绍
 
@@ -19,7 +19,7 @@
 
 从API version 12开始，wrapBuilder支持在元服务中使用。
 
-[@ComponentV2装饰器](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-componentV2.md)。
+[@ComponentV2装饰器](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-create-custom-components.md#componentv2)。
 
 [wrapBuilder：封装全局@Builder](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-wrapBuilder.md)。
 

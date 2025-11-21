@@ -1,4 +1,4 @@
-# ArkUI@Track装饰器指南文档示例
+# @Track装饰器：class对象属性级更新
 
 ### 介绍
 
@@ -6,7 +6,7 @@ stateTrack
 本示例通过使用[ArkUI指南文档](https://gitcode.com/openharmony/docs/tree/master/zh-cn/application-dev/ui)
 中各场景的开发示例，展示在工程中，帮助开发者更好地理解@Track装饰器：class对象属性并合理使用。该工程中展示的代码详细描述可查如下链接：
 
-1. [class属性级更新说明](https://gitcode.com/tianlongdevcode/docs_zh/blob/master/zh-cn/application-dev/ui/state-management/arkts-track.md)。
+1. [class属性级更新说明](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-track.md)
 
 ###  [class属性级更新说明]
 
@@ -73,6 +73,6 @@ entry/src/ohosTest/
 git init
 git config core.sparsecheckout true
 echo code/DocsSample/ArkUISample/StateTrack > .git/info/sparse-checkout
-git remote add origin https://gitCode.com/openharmony/applications_app_samples.git
+git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
