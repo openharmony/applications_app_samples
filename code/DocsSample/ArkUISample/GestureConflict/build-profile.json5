@@ -14,21 +14,7 @@
  */
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\xhm\\.ohos\\config\\default_GestureConflict_BlVQ47PCmWLhLz1gDZnpnMr6cZp0ebCfjhSwhEZVlNg=.cer",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BEDCBC64FE091BBC49F17ADD1B3EF9BB4977E53235101574CE4AE78835EAF9FF1E78035F61A77DD",
-          "profile": "C:\\Users\\xhm\\.ohos\\config\\default_GestureConflict_BlVQ47PCmWLhLz1gDZnpnMr6cZp0ebCfjhSwhEZVlNg=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\xhm\\.ohos\\config\\default_GestureConflict_BlVQ47PCmWLhLz1gDZnpnMr6cZp0ebCfjhSwhEZVlNg=.p12",
-          "storePassword": "0000001B921614C53DE363726C1A26234E5E26CD7B022178F5E59C11E128B50137D6C9A246A42BBD10E39A"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",

@@ -64,8 +64,7 @@ struct Index {
               } else {
                 return GestureJudgeResult.REJECT;
               }
-            }
-            ;
+            };
             return GestureJudgeResult.CONTINUE;
           })
         }.width('100%')
