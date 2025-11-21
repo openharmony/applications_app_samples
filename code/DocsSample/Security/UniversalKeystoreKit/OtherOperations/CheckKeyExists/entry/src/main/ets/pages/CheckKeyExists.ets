@@ -14,18 +14,12 @@
  */
 
 
-// [Start querying_the_existence_of_a_key]
+// [Start querying_the_existence_of_a_key_arkts]
 import { huks } from '@kit.UniversalKeystoreKit';
 
-/* 1.确定密钥别名 */
 let keyAlias = 'test_key';
 let isKeyExist: Boolean;
-/* 2.构造空对象 */
-let huksOptions: huks.HuksOptions = {
-  properties: []
-}
-// [StartExclude querying_the_existence_of_a_key]
-/* 3.初始化密钥属性集 */
+
 let generateProperties: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -46,7 +40,7 @@ let generateHuksOptions: huks.HuksOptions = {
   inData: new Uint8Array([])
 }
 
-/* 3.生成密钥 */
+/* 1.生成密钥 */
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   return new Promise<void>((resolve, reject) => {
     try {
@@ -63,51 +57,56 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   });
 }
 
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+async function generateKey(keyAlias: string, huksOptions: huks.HuksOptions): Promise<void> {
   console.info(`enter promise generateKeyItem`);
-  try {
-    await generateKeyItem(keyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
+  await generateKeyItem(keyAlias, huksOptions);
+  console.info(`promise: generateKeyItem success`);
+}
+
+/* 2.检查密钥是否存在 */
+let huksOptions: huks.HuksOptions = {
+  properties: []
+}
+
+function hasKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  return new Promise<boolean>((resolve, reject) => {
+    try {
+      huks.hasKeyItem(keyAlias, huksOptions, (error, data) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data.valueOf());
+        }
       });
-    return 'Success';
-  } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ` + JSON.stringify(error));
-    return 'Failed';
-  }
+    } catch (error) {
+      throw (error as Error);
+    }
+  });
 }
 
-async function testGenKey(): Promise<string> {
-  let ret = await publicGenKeyFunc(keyAlias, generateHuksOptions);
-  return ret;
+async function checkKeyExistence(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
+  console.info(`enter promise hasKeyItem`);
+  const exists = await hasKeyItem(keyAlias, huksOptions);
+  console.info(`promise: hasKeyItem success, isKeyExist = ${exists}`);
+  return exists;
 }
 
-function check(): string {
-// [EndExclude querying_the_existence_of_a_key]
+async function executeCheckKey(): Promise<string> {
   try {
     /* 1.生成密钥 */
-    testGenKey();
-    /* 2.判断密钥是否存在 */
-    huks.hasKeyItem(keyAlias, huksOptions, (error, data) => {
-      if (error) {
-        console.error(`callback: hasKeyItem failed, ` + JSON.stringify(error));
-      } else {
-        if (data !== null && data.valueOf() !== null) {
-          isKeyExist = data.valueOf();
-          console.info(`callback: hasKeyItem success, isKeyExist = ${isKeyExist}`);
-        }
-      }
-    });
+    await generateKey(keyAlias, generateHuksOptions);
+
+    /* 2.检查密钥是否存在 */
+    isKeyExist = await checkKeyExistence(keyAlias, huksOptions);
+
+    console.info(`Key check completed, isKeyExist = ${isKeyExist}`);
     return 'Success';
   } catch (error) {
-    console.error(`callback: hasKeyItem input arg invalid, ` + JSON.stringify(error));
+    console.error(`Key check failed: ${JSON.stringify(error)}`);
     return 'Failed';
   }
-// [End querying_the_existence_of_a_key]
 }
+// [End querying_the_existence_of_a_key_arkts]
 
 @Entry
 @Component
@@ -129,8 +128,8 @@ struct Index {
         .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
         .fontSize('14sp')
         .fontColor('#ffffff')
-        .onClick(() => {
-          let ret: string = check();
+        .onClick(async () => {
+          let ret: string = await executeCheckKey();
           this.message = 'CheckKeyExists Result: ' + ret;
         })
     }
