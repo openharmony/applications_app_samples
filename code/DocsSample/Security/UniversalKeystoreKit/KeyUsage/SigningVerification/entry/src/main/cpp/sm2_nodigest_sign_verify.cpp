@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start key_algorithm_sm2_nodigest_sign_verify_cpp]
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start key_algorithm_SM2SM3]
 /*
  * 密钥算法为SM2、摘要算法为SM3

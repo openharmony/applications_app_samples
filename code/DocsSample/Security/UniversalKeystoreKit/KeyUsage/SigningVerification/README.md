@@ -257,8 +257,8 @@ entry/src/main/
 2. **ECC256/SHA256** - 高效椭圆曲线签名
 3. **SM2/SM3** - 国密签名算法
 4. **SM2/NoDigest** - 业务自行摘要的SM2签名
-5. **RSA/SHA256/PSS** - 标准RSA签名（PSS填充）
-6. **RSA/SHA256/PKCS1_V1_5** - 传统RSA签名（PKCS1填充）
+5. **RSA/SHA256/PSS** - RSA签名（PSS填充）
+6. **RSA/SHA256/PKCS1_V1_5** - RSA签名（PKCS1填充）
 
 ## 相关权限
 
