@@ -18,7 +18,6 @@
 #include "napi/native_api.h"
 #include <cstring>
 
-// ===== 工具函数：初始化参数集 =====
 OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
                             uint32_t paramCount)
 {
@@ -39,28 +38,25 @@ OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_
     return ret;
 }
 
-// ===== 密钥生成参数配置 =====
 struct OH_Huks_Param g_testGenerateKeyParam[] = {{.tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_ECC},
                                                  {.tag = OH_HUKS_TAG_PURPOSE, .uint32Param = OH_HUKS_KEY_PURPOSE_AGREE},
                                                  {.tag = OH_HUKS_TAG_KEY_SIZE, .uint32Param = OH_HUKS_ECC_KEY_SIZE_256},
                                                  {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE}};
 
-// ===== 生成密钥 =====
+/* 1.生成密钥 */
 static OH_Huks_Result GenerateKeyHelper(const char *alias)
 {
     struct OH_Huks_Blob aliasBlob = {.size = (uint32_t)strlen(alias), .data = (uint8_t *)alias};
     struct OH_Huks_ParamSet *testGenerateKeyParamSet = nullptr;
     struct OH_Huks_Result ohResult;
-    
+
     do {
-        // 初始化参数集
         ohResult = InitParamSet(&testGenerateKeyParamSet, g_testGenerateKeyParam,
                                 sizeof(g_testGenerateKeyParam) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        
-        // 生成密钥
+
         ohResult = OH_Huks_GenerateKeyItem(&aliasBlob, testGenerateKeyParamSet, nullptr);
     } while (0);
     
@@ -68,17 +64,15 @@ static OH_Huks_Result GenerateKeyHelper(const char *alias)
     return ohResult;
 }
 
-// ===== NAPI 接口：删除密钥 =====
 static napi_value DeleteKey(napi_env env, napi_callback_info info)
 {
-    // 设置密钥别名
     const char *alias = "test_key";
     struct OH_Huks_Blob keyAlias = {
         (uint32_t)strlen("test_key"),
         (uint8_t *)"test_key"
     };
     
-    // 先生成密钥用于演示
+    /* 1.生成密钥 */
     OH_Huks_Result genResult = GenerateKeyHelper(alias);
     if (genResult.errorCode != OH_HUKS_SUCCESS) {
         napi_value ret;
@@ -86,7 +80,7 @@ static napi_value DeleteKey(napi_env env, napi_callback_info info)
         return ret;
     }
 
-    // 删除密钥
+    /* 2.删除密钥 */
     struct OH_Huks_Result ohResult = OH_Huks_DeleteKeyItem(&keyAlias, nullptr);
 
     napi_value ret;

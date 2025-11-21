@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
+// [Start key_deletions_arkts]
 /*
  * 以下以HKDF256密钥的Promise操作使用为例
  */
-// [Start key_deletions_arkts]
 import { huks } from '@kit.UniversalKeystoreKit';
 
 let keyAlias = 'test_Key';
 
-// ===== 密钥生成配置 =====
 let generateProperties: huks.HuksParam[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -42,7 +41,7 @@ let generateHuksOptions: huks.HuksOptions = {
   inData: new Uint8Array([])
 }
 
-// ===== 生成密钥 =====
+/* 1.生成密钥 */
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
   return new Promise<void>((resolve, reject) => {
     try {
@@ -69,7 +68,7 @@ async function generateKey(keyAlias: string, huksOptions: huks.HuksOptions): Pro
   }
 }
 
-// ===== 删除密钥 =====
+/* 2.删除密钥 */
 let deleteHuksOptions: huks.HuksOptions = {
   properties: []
 }
@@ -100,15 +99,14 @@ async function deleteKey(keyAlias: string, huksOptions: huks.HuksOptions): Promi
   }
 }
 
-// ===== 完整流程：生成并删除密钥 =====
 async function executeKeyLifecycle(): Promise<string> {
   try {
-    // 生成密钥
+    /* 1.生成密钥 */
     console.log('start generateKey...');
     await generateKey(keyAlias, generateHuksOptions);
     console.log('end generateKey...');
 
-    // 删除密钥
+    /* 2.删除密钥 */
     console.log('start deleteKey...');
     await deleteKey(keyAlias, deleteHuksOptions);
     console.log('end deleteKey...');
