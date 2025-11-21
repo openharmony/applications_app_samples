@@ -17,8 +17,8 @@
 @Entry
 @ComponentV2
 struct Index {
-  @Local progress: number = 496000;  // 初始进度，秒
-  @Local total: number = 27490000;   // 总时长，秒
+  @Local progress: number = 496000; // 初始进度，秒
+  @Local total: number = 27490000; // 总时长，秒
   @Local currentWidth: string = '100%';
   @Local currentHeight: string = '100%';
   private currentPosX: number = 0;
@@ -37,7 +37,8 @@ struct Index {
   startNormalPlayTimer(): void {
     if (this.normalPlayTimer != -1) {
       this.stopNormalPlayTimer()
-    };
+    }
+    ;
     this.normalPlayTimer = setInterval(() => {
       this.progress = this.progress + 1000
     }, 1000);
@@ -46,7 +47,8 @@ struct Index {
   stopNormalPlayTimer(): void {
     if (this.normalPlayTimer == -1) {
       return;
-    };
+    }
+    ;
     clearInterval(this.normalPlayTimer);
     this.normalPlayTimer = -1;
   };
@@ -54,7 +56,8 @@ struct Index {
   startFastForwardTimer(): void {
     if (this.fastForwardTimer != -1) {
       this.stopFastForwardTimer();
-    };
+    }
+    ;
     this.fastForwardTimer = setInterval(() => {
       this.progress = this.progress + 100000;
     }, 100);
@@ -63,7 +66,8 @@ struct Index {
   stopFastForwardTimer(): void {
     if (this.fastForwardTimer == -1) {
       return;
-    };
+    }
+    ;
     clearInterval(this.fastForwardTimer);
     this.fastForwardTimer = -1;
   };
@@ -85,7 +89,8 @@ struct Index {
     } else {
       this.currentWidth = '100%';
       this.currentHeight = '50%';
-    };
+    }
+    ;
     //  $r('app.string.Play_full_screen') 需要替换为开发者所需的资源文件
     //  $r('app.string.Exit_play_full_screen') 需要替换为开发者所需的资源文件
     this.showMessage(this.currentFullScreenState
@@ -100,7 +105,8 @@ struct Index {
     } else {
       // 重新启动
       this.startNormalPlayTimer();
-    };
+    }
+    ;
     //  $r('app.string.stop_playing') 需要替换为开发者所需的资源文件
     //  $r('app.string.Continue_playing') 需要替换为开发者所需的资源文件
     this.showMessage(this.isPlaying
@@ -116,7 +122,8 @@ struct Index {
       this.showMessage(
         this.context!.resourceManager.getStringSync($r('app.string.Cancel_FastForwarding').id));
       return;
-    };
+    }
+    ;
 
     this.stopNormalPlayTimer();
     this.startFastForwardTimer();
@@ -133,16 +140,18 @@ struct Index {
       this.showMessage(this.context!.resourceManager
         .getStringSync($r('app.string.Start_adjusting_brightness').id));
       return;
-    };
+    }
+    ;
     let offsetY = newY - this.currentPosY;
     if (Math.abs(offsetY) > 10) {
       //  $r('app.string.Reduce_brightness') 需要替换为开发者所需的资源文件
       //  $r('app.string.Increase_brightness') 需要替换为开发者所需的资源文件
       this.showMessage((offsetY > 0)
         ? this.context!.resourceManager.getStringSync($r('app.string.Reduce_brightness').id)
-        : this.context!.resourceManager.getStringSync($r('app.string.Increase_brightness').id) )
+        : this.context!.resourceManager.getStringSync($r('app.string.Increase_brightness').id))
       this.currentPosY = newY;
-    };
+    }
+    ;
   };
 
   updateProgress(start: boolean, event: BaseGestureEvent): void {
@@ -153,7 +162,8 @@ struct Index {
       this.showMessage(this.context!.resourceManager
         .getStringSync($r('app.string.Adjust_schedule').id));
       return;
-    };
+    }
+    ;
     let offsetX = newX - this.currentPosX;
     this.progress = Math.floor(this.progress + offsetX * 10000);
     this.currentPosX = newX;
@@ -167,6 +177,7 @@ struct Index {
           Text(this.context!.resourceManager.getStringSync($r('app.string.Playback_progress').id) + this.progress)
         }
         .width('100%').height('90%')
+
         Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
           Slider({
             value: this.progress,
@@ -185,13 +196,15 @@ struct Index {
                 if (inspectorInfo !== 'progress_layer') {
                   // 用户操作到进度条区域时，禁用掉所有非progress_layer上的手势
                   recognizer.preventBegin();
-                };
-              };
+                }
+                ;
+              }
+              ;
             })
             .margin({ left: 5 })
-            .trackColor(Color.Red)
-            .blockColor(Color.Yellow)
-            .selectedColor(Color.Orange)
+            .trackColor(Color.Blue)
+            .blockColor(Color.Gray)
+            .selectedColor(Color.White)
             .trackThickness(2)
             .flexShrink(1)
             .flexGrow(1)
@@ -251,4 +264,5 @@ struct Index {
     .height(this.currentHeight)
   }
 }
+
 // [End gesture_recognition]

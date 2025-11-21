@@ -66,7 +66,7 @@ struct ListExample {
 
   @Styles
   selectedStyle(): void {
-    .backgroundColor(Color.Green);
+    .backgroundColor(Color.Blue);
   }
 
   isItemSelected(item: number): boolean {
@@ -138,4 +138,5 @@ struct ListExample {
     .padding({ top: 5 })
   }
 }
+
 // [End mouse_button]
