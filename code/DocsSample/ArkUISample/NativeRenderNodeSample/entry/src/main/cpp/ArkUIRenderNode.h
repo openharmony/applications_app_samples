@@ -61,6 +61,9 @@ class ArkUIRenderNode {
             if (colorAnimatablePropertyHandle_) {
                 OH_ArkUI_RenderNodeUtils_DisposeColorAnimatableProperty(colorAnimatablePropertyHandle_);
             }
+            if (renderContentModifierHandle_) {
+                OH_ArkUI_RenderNodeUtils_DisposeContentModifier(renderContentModifierHandle_);
+            }
             OH_ArkUI_RenderNodeUtils_DisposeNode(handle_);
         }
 
@@ -140,6 +143,11 @@ class ArkUIRenderNode {
             OH_ArkUI_RenderNodeUtils_GetChildrenCount(handle_, &count);
             return count;
         }
+
+        int32_t ClearChildren()
+        {
+            return OH_ArkUI_RenderNodeUtils_ClearChildren(handle_);
+        }
         /******** 属性设置类接口，默认单位均为px ********/
         int32_t SetSize(int32_t width, int32_t height)
         {
@@ -149,6 +157,16 @@ class ArkUIRenderNode {
         int32_t GetSize(int32_t* width, int32_t* height)
         {
             return OH_ArkUI_RenderNodeUtils_GetSize(handle_, width, height);
+        }
+
+        int32_t SetBounds(int32_t x, int32_t y, int32_t width, int32_t height)
+        {
+            return OH_ArkUI_RenderNodeUtils_SetBounds(handle_, x, y, width, height);
+        }
+    
+        int32_t GetBounds(int32_t* x, int32_t* y, int32_t* width, int32_t* height)
+        {
+            return OH_ArkUI_RenderNodeUtils_GetBounds(handle_, x, y, width, height);
         }
     
         int32_t SetTransform(float matrix[])
@@ -368,7 +386,10 @@ class ArkUIRenderNode {
         void SetRectShapeMask(float top, float right, float bottom, float left, MaskOption option)
         {
             auto rectShape = OH_ArkUI_RenderNodeUtils_CreateRectShapeOption();
-            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, top, right, bottom, left);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, top, ARKUI_EDGE_DIRECTION_TOP);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, right, ARKUI_EDGE_DIRECTION_RIGHT);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, bottom, ARKUI_EDGE_DIRECTION_BOTTOM);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, left, ARKUI_EDGE_DIRECTION_LEFT);
             auto rectMask = OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromRectShape(rectShape);
             OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(rectMask, option.fillColor);
             OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(rectMask, option.strokeColor);
@@ -381,7 +402,10 @@ class ArkUIRenderNode {
         void SetRoundShapeMask(float top, float right, float bottom, float left, MaskOption option)
         {
             auto roundShape = OH_ArkUI_RenderNodeUtils_CreateRoundRectShapeOption();
-            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, top, right, bottom, left);
+            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, top, ARKUI_EDGE_DIRECTION_TOP);
+            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, right, ARKUI_EDGE_DIRECTION_RIGHT);
+            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, bottom, ARKUI_EDGE_DIRECTION_BOTTOM);
+            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, left, ARKUI_EDGE_DIRECTION_LEFT);
             OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionCornerXY(roundShape, 0, 0,
                                                                      ArkUI_CornerDirection::ARKUI_CORNER_DIRECTION_ALL);
             auto rectMask = OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromRoundRectShape(roundShape);
@@ -412,7 +436,10 @@ class ArkUIRenderNode {
         void SetOvalShapeMask(float top, float right, float bottom, float left, MaskOption option)
         {
             auto rectShape = OH_ArkUI_RenderNodeUtils_CreateRectShapeOption();
-            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, top, right, bottom, left);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, top, ARKUI_EDGE_DIRECTION_TOP);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, right, ARKUI_EDGE_DIRECTION_RIGHT);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, bottom, ARKUI_EDGE_DIRECTION_BOTTOM);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, left, ARKUI_EDGE_DIRECTION_LEFT);
             auto rectMask = OH_ArkUI_RenderNodeUtils_CreateRenderNodeMaskOptionFromOvalShape(rectShape);
             OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionFillColor(rectMask, option.fillColor);
             OH_ArkUI_RenderNodeUtils_SetRenderNodeMaskOptionStrokeColor(rectMask, option.strokeColor);
@@ -439,7 +466,10 @@ class ArkUIRenderNode {
         void SetRectShapeClip(float top, float right, float bottom, float left)
         {
             auto rectShape = OH_ArkUI_RenderNodeUtils_CreateRectShapeOption();
-            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, top, right, bottom, left);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, top, ARKUI_EDGE_DIRECTION_TOP);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, right, ARKUI_EDGE_DIRECTION_RIGHT);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, bottom, ARKUI_EDGE_DIRECTION_BOTTOM);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, left, ARKUI_EDGE_DIRECTION_LEFT);
             auto rectClip = OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromRectShape(rectShape);
             OH_ArkUI_RenderNodeUtils_SetClip(handle_, rectClip);
             OH_ArkUI_RenderNodeUtils_DisposeRectShapeOption(rectShape);
@@ -449,7 +479,10 @@ class ArkUIRenderNode {
         void SetRoundShapeClip(float top, float right, float bottom, float left)
         {
             auto roundShape = OH_ArkUI_RenderNodeUtils_CreateRoundRectShapeOption();
-            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, top, right, bottom, left);
+            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, top, ARKUI_EDGE_DIRECTION_TOP);
+            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, right, ARKUI_EDGE_DIRECTION_RIGHT);
+            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, bottom, ARKUI_EDGE_DIRECTION_BOTTOM);
+            OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionEdgeValue(roundShape, left, ARKUI_EDGE_DIRECTION_LEFT);
             OH_ArkUI_RenderNodeUtils_SetRoundRectShapeOptionCornerXY(roundShape, 0, 0,
                                                                      ArkUI_CornerDirection::ARKUI_CORNER_DIRECTION_ALL);
             auto rectClip = OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromRoundRectShape(roundShape);
@@ -474,7 +507,10 @@ class ArkUIRenderNode {
         void SetOvalShapeClip(float top, float right, float bottom, float left)
         {
             auto rectShape = OH_ArkUI_RenderNodeUtils_CreateRectShapeOption();
-            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, top, right, bottom, left);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, top, ARKUI_EDGE_DIRECTION_TOP);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, right, ARKUI_EDGE_DIRECTION_RIGHT);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, bottom, ARKUI_EDGE_DIRECTION_BOTTOM);
+            OH_ArkUI_RenderNodeUtils_SetRectShapeOptionEdgeValue(rectShape, left, ARKUI_EDGE_DIRECTION_LEFT);
             auto rectClip = OH_ArkUI_RenderNodeUtils_CreateRenderNodeClipOptionFromOvalShape(rectShape);
             OH_ArkUI_RenderNodeUtils_SetClip(handle_, rectClip);
             OH_ArkUI_RenderNodeUtils_DisposeRectShapeOption(rectShape);
