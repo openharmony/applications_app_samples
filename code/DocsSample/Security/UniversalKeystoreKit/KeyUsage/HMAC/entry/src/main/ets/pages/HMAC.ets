@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [Start hmac_to]
 /*
  * 以下以HMAC密钥的Promise操作使用为例
@@ -39,7 +40,6 @@ function uint8ArrayToString(fileData: Uint8Array) {
   return dataString;
 }
 
-// ===== HMAC 配置 =====
 function getHMACProperties() {
   const properties: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -57,7 +57,7 @@ function getHMACProperties() {
   return properties;
 }
 
-// ===== 生成 HMAC 密钥 =====
+/* 1.生成 HMAC 密钥 */
 async function generateHMACKey() {
   let options: huks.HuksOptions = {
     properties: getHMACProperties()
@@ -71,15 +71,13 @@ async function generateHMACKey() {
       throw (error as Error);
     })
 }
-
-// ===== 执行 HMAC 计算 =====
+/* 2.执行 HMAC 计算 */
 async function hMACData() {
   let options: huks.HuksOptions = {
     properties: getHMACProperties(),
     inData: stringToUint8Array(plainText)
   }
 
-  // 初始化会话
   await huks.initSession(hmacKeyAlias, options)
     .then((data) => {
       handle = data.handle;
@@ -88,7 +86,6 @@ async function hMACData() {
       throw (error as Error);
     })
 
-  // 完成会话并获取 HMAC 结果
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: HMAC data success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
