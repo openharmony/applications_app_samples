@@ -87,20 +87,18 @@ struct Index {
 
         Button("subscribe").backgroundColor('#FFFF00FF')
           .onClick(async (e: ClickEvent) => {
-            try {
-              let subscribeInfo: notificationExtensionSubscription.NotificationExtensionSubscriptionInfo[] =
-                new Array()
-              this.selectedAddr.forEach((value, _) => {
-                subscribeInfo.push({
-                  addr: value!,
-                  type: notificationExtensionSubscription.SubscribeType.BLUETOOTH
-                })
+            let subscribeInfo: notificationExtensionSubscription.NotificationExtensionSubscriptionInfo[] = new Array()
+            this.selectedAddr.forEach((value, _) => {
+              subscribeInfo.push({
+                addr: value!,
+                type: notificationExtensionSubscription.SubscribeType.BLUETOOTH
               })
-              notificationExtensionSubscription.subscribe(infos).then(() => {
+            })
+            notificationExtensionSubscription.subscribe(subscribeInfo).then(() => {
               hilog.info(DOMAIN, 'testTag', "subscribe success");
-              }).catch((err: BusinessError) => {
-                hilog.error(`subscribe fail: ${JSON.stringify(err)}`);
-              });
+            }).catch((err: BusinessError) => {
+              hilog.error(DOMAIN, 'testTag', `subscribe fail: ${JSON.stringify(err)}`);
+            });
           })
         Button("unsubscribe").backgroundColor('#FFFF00FF')
           .onClick(async (e: ClickEvent) => {
