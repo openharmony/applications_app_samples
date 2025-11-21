@@ -63,6 +63,58 @@ static struct OH_Huks_Param g_verifyParamsSM2NoDigest[] = {
 static const uint32_t SM2_COMMON_SIZE = 256;
 static const char *DATA_TO_SIGN_SM2_NODIGEST = "12345678901234567890123456789012";
 
+/* 1. 生成密钥 */
+static OH_Huks_Result GenerateKeySM2(const struct OH_Huks_Blob *keyAlias,
+                                     const struct OH_Huks_ParamSet *genParamSet)
+{
+    return OH_Huks_GenerateKeyItem(keyAlias, genParamSet, nullptr);
+}
+
+/* 2. 签名 */
+static OH_Huks_Result SignDataSM2NoDigest(const struct OH_Huks_Blob *keyAlias,
+                                          const struct OH_Huks_ParamSet *signParamSet,
+                                          const struct OH_Huks_Blob *inData,
+                                          struct OH_Huks_Blob *outDataSign)
+{
+    uint8_t handleS[sizeof(uint64_t)] = {0};
+    struct OH_Huks_Blob handleSign = {(uint32_t)sizeof(uint64_t), handleS};
+
+    OH_Huks_Result ohResult = OH_Huks_InitSession(keyAlias, signParamSet, &handleSign, nullptr);
+    if (ohResult.errorCode != OH_HUKS_SUCCESS) {
+        return ohResult;
+    }
+
+    ohResult = OH_Huks_FinishSession(&handleSign, signParamSet, inData, outDataSign);
+
+    return ohResult;
+}
+
+/* 3. 验签  */
+static OH_Huks_Result VerifySignatureSM2NoDigest(const struct OH_Huks_Blob *keyAlias,
+                                                 const struct OH_Huks_ParamSet *verifyParamSet,
+                                                 const struct OH_Huks_Blob *inData,
+                                                 const struct OH_Huks_Blob *signature)
+{
+    uint8_t handleV[sizeof(uint64_t)] = {0};
+    struct OH_Huks_Blob handleVerify = {(uint32_t)sizeof(uint64_t), handleV};
+    
+    OH_Huks_Result ohResult = OH_Huks_InitSession(keyAlias, verifyParamSet, &handleVerify, nullptr);
+    if (ohResult.errorCode != OH_HUKS_SUCCESS) {
+        return ohResult;
+    }
+
+    uint8_t temp[] = "out";
+    struct OH_Huks_Blob verifyOut = {(uint32_t)sizeof(temp), temp};
+    ohResult = OH_Huks_UpdateSession(&handleVerify, verifyParamSet, inData, &verifyOut);
+    if (ohResult.errorCode != OH_HUKS_SUCCESS) {
+        return ohResult;
+    }
+    
+    ohResult = OH_Huks_FinishSession(&handleVerify, verifyParamSet, signature, &verifyOut);
+    
+    return ohResult;
+}
+
 napi_value SignVerifyKeySM2NoDigest(napi_env env, napi_callback_info info)
 {
     struct OH_Huks_Blob g_keyAlias = {(uint32_t)strlen("test_signVerify_SM2_NoDigest"), 
@@ -73,7 +125,7 @@ napi_value SignVerifyKeySM2NoDigest(napi_env env, napi_callback_info info)
     struct OH_Huks_ParamSet *signParamSet = nullptr;
     struct OH_Huks_ParamSet *verifyParamSet = nullptr;
     OH_Huks_Result ohResult;
-    
+
     do {
         ohResult = InitParamSet(&genParamSet, g_genSignVerifyParamsSM2NoDigest,
                                 sizeof(g_genSignVerifyParamsSM2NoDigest) / sizeof(OH_Huks_Param));
@@ -81,56 +133,34 @@ napi_value SignVerifyKeySM2NoDigest(napi_env env, napi_callback_info info)
             break;
         }
 
-        ohResult = InitParamSet(&signParamSet, g_signParamsSM2NoDigest, 
-                     sizeof(g_signParamsSM2NoDigest) / sizeof(OH_Huks_Param));
+        ohResult = InitParamSet(&signParamSet, g_signParamsSM2NoDigest,
+                                sizeof(g_signParamsSM2NoDigest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
         ohResult = InitParamSet(&verifyParamSet, g_verifyParamsSM2NoDigest, 
-                     sizeof(g_verifyParamsSM2NoDigest) / sizeof(OH_Huks_Param));
+                                sizeof(g_verifyParamsSM2NoDigest) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
-        /* 1. Generate Key */
-        ohResult = OH_Huks_GenerateKeyItem(&g_keyAlias, genParamSet, nullptr);
+        /* 1. 生成密钥 */
+        ohResult = GenerateKeySM2(&g_keyAlias, genParamSet);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
-        /* 2. Sign */
-        uint8_t handleS[sizeof(uint64_t)] = {0};
-        struct OH_Huks_Blob handleSign = {(uint32_t)sizeof(uint64_t), handleS};
-        ohResult = OH_Huks_InitSession(&g_keyAlias, signParamSet, &handleSign, nullptr);
-        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
-            break;
-        }
-
+        /* 2. 签名 */
         uint8_t outDataS[SM2_COMMON_SIZE] = {0};
         struct OH_Huks_Blob outDataSign = {SM2_COMMON_SIZE, outDataS};
-
-        ohResult = OH_Huks_FinishSession(&handleSign, signParamSet, &inData, &outDataSign);
+        ohResult = SignDataSM2NoDigest(&g_keyAlias, signParamSet, &inData, &outDataSign);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
 
-        /* 3. Verify */
-        uint8_t handleV[sizeof(uint64_t)] = {0};
-        struct OH_Huks_Blob handleVerify = {(uint32_t)sizeof(uint64_t), handleV};
-        ohResult = OH_Huks_InitSession(&g_keyAlias, verifyParamSet, &handleVerify, nullptr);
-        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
-            break;
-        }
-
-        uint8_t temp[] = "out";
-        struct OH_Huks_Blob verifyOut = {(uint32_t)sizeof(temp), temp};
-        ohResult = OH_Huks_UpdateSession(&handleVerify, verifyParamSet, &inData, &verifyOut);
-        if (ohResult.errorCode != OH_HUKS_SUCCESS) {
-            break;
-        }
-
-        ohResult = OH_Huks_FinishSession(&handleVerify, verifyParamSet, &outDataSign, &verifyOut);
+        /* 3. 验签 */
+        ohResult = VerifySignatureSM2NoDigest(&g_keyAlias, verifyParamSet, &inData, &outDataSign);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }

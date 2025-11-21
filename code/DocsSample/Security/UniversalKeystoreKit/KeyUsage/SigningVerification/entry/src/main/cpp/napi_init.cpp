@@ -14,13 +14,7 @@
  */
 
 #include "napi/native_api.h"
-
-extern napi_value SignVerifyKey(napi_env env, napi_callback_info info);
-extern napi_value SignVerifyKeyECC(napi_env env, napi_callback_info info);
-extern napi_value SignVerifyKeySM2SM3(napi_env env, napi_callback_info info);
-extern napi_value SignVerifyKeySM2NoDigest(napi_env env, napi_callback_info info);
-extern napi_value SignVerifyKeyRsaSha256Pss(napi_env env, napi_callback_info info);
-extern napi_value SignVerifyKeyRsaSha256Pkcs1V15(napi_env env, napi_callback_info info);
+#include "sign_verify.h"
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
@@ -29,9 +23,12 @@ static napi_value Init(napi_env env, napi_value exports)
         { "signVerifyKey", nullptr, SignVerifyKey, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "signVerifyKeyECC", nullptr, SignVerifyKeyECC, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "signVerifyKeySM2SM3", nullptr, SignVerifyKeySM2SM3, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "signVerifyKeySM2NoDigest", nullptr, SignVerifyKeySM2NoDigest, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "signVerifyKeyRsaSha256Pss", nullptr, SignVerifyKeyRsaSha256Pss, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "signVerifyKeyRsaSha256Pkcs1V15", nullptr, SignVerifyKeyRsaSha256Pkcs1V15, nullptr, nullptr, nullptr, napi_default, nullptr }
+        { "signVerifyKeySM2NoDigest", nullptr, SignVerifyKeySM2NoDigest, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "signVerifyKeyRsaSha256Pss", nullptr, SignVerifyKeyRsaSha256Pss, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+        { "signVerifyKeyRsaSha256Pkcs1V15", nullptr, SignVerifyKeyRsaSha256Pkcs1V15, nullptr, nullptr, nullptr,
+            napi_default, nullptr }
     };
     
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
