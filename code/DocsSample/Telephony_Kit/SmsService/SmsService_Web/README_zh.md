@@ -28,6 +28,9 @@ entry/src/main/ets/
 |---entryability
 |---pages
 |   |---Index.ets                       // 应用主页面
+entry/src/ohosTest/
+|---ets
+|   |---index.test.ets                 // 示例代码测试代码
 ```
 ### 具体实现
 

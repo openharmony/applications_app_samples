@@ -25,6 +25,9 @@ entry/src/main/ets/
 |---entryability
 |---pages
 |   |---Index.ets                       // 应用主页面
+entry/src/ohosTest/
+|---ets
+|   |---index.test.ets                 // 示例代码测试代码
 ```
 ### 具体实现
 
@@ -54,7 +57,7 @@ entry/src/main/ets/
 ````
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/ArkUISample/SmsService_Web > .git/info/sparse-checkout
+echo code/DocsSample/ArkUISample/MakeCall > .git/info/sparse-checkout
 git remote add origin https://gitcode.com/openharmony/applications_app_samples.git
 git pull origin master
 ````
