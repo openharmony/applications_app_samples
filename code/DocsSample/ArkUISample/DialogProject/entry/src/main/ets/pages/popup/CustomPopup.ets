@@ -31,29 +31,32 @@ export struct CustomPopupExample {
 
   build() {
     NavDestination() {
-        Column() {
-          Button('CustomPopupOptions')
-            .id('CustomPopupOptions')
-            .margin({ top: 300 })
-            .onClick(() => {
-              this.customPopup = !this.customPopup;
-            })
-            .bindPopup(this.customPopup, {
-              builder: this.popupBuilder, // 气泡的内容
-              placement: Placement.Bottom, // 气泡的弹出位置
-              popupColor: Color.Pink, // 气泡的背景色
-              onStateChange: (e) => {
-                if (!e.isVisible) {
-                  this.customPopup = false
-                }
+      Column() {
+        Button('CustomPopupOptions')
+          .id('CustomPopupOptions')
+          .margin({ top: 300 })
+          .onClick(() => {
+            this.customPopup = !this.customPopup;
+          })
+          .bindPopup(this.customPopup, {
+            builder: this.popupBuilder, // 气泡的内容
+            placement: Placement.Bottom, // 气泡的弹出位置
+            popupColor: Color.Pink, // 气泡的背景色
+            backgroundBlurStyle: BlurStyle.NONE,
+            onStateChange: (e) => {
+              if (!e.isVisible) {
+                this.customPopup = false
               }
-            })
-        }
-        .height('100%')
+            }
+          })
+      }
+      .height('100%')
     }
     // [StartExclude custom_popup]
     .title($r('app.string.custom_popup'))
+
     // [EndExclude custom_popup]
   }
 }
+
 // [End custom_popup]
